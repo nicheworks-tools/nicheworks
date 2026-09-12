@@ -159,6 +159,106 @@ function findCombinations(records, target, tolerance, maxSize, maxNodes) {
   return { solutions, truncated, visitedNodes };
 }
 
+function candidatesForRecord(recordA, amountIndexB, usedB, config, useDate, useReference, exactReferenceOnly = false) {
+  const candidates = [];
+  for (const recordB of recordsWithinAmount(amountIndexB, recordA.amount, config.amountTolerance)) {
+    if (usedB.has(recordB.sourceRow)) continue;
+    if (exactReferenceOnly) {
+      if (!recordA.reference || !recordB.reference || recordA.reference !== recordB.reference) continue;
+    } else if (!referencesCompatible(recordA, recordB, useReference)) {
+      continue;
+    }
+    const amountGap = amountDistance(recordA, recordB);
+    const dateGap = useDate ? dateDistance(recordA, recordB) : null;
+    if (useDate && (dateGap === null || dateGap > config.dateToleranceDays)) continue;
+    candidates.push({ recordB, amountGap, dateGap });
+  }
+  candidates.sort((x, y) => x.amountGap - y.amountGap || (x.dateGap ?? 0) - (y.dateGap ?? 0) || x.recordB.sourceRow - y.recordB.sourceRow);
+  return candidates;
+}
+
+function acceptPair(recordA, match, useDate, usedA, usedB, results) {
+  usedA.add(recordA.sourceRow);
+  usedB.add(match.recordB.sourceRow);
+  const exact = match.amountGap === 0 && (!useDate || match.dateGap === 0);
+  results.push({
+    status: exact ? 'exact_match' : 'tolerant_match',
+    relation: '1:1',
+    aRows: [recordA.sourceRow],
+    bRows: [match.recordB.sourceRow],
+    amount: recordA.amount,
+    date: recordA.dateIso,
+    reason: reasonFor(recordA, match.recordB, match.dateGap, match.amountGap)
+  });
+}
+
+function resolveMutualUniquePairs({ a, amountIndexB, usedA, usedB, config, useDate, useReference, results, exactReferenceOnly }) {
+  let resolved = 0;
+  while (true) {
+    const graph = new Map();
+    const reverseClaims = new Map();
+
+    for (const recordA of a) {
+      if (usedA.has(recordA.sourceRow) || recordA.invalidAmount || recordA.dateError) continue;
+      const candidates = candidatesForRecord(recordA, amountIndexB, usedB, config, useDate, useReference, exactReferenceOnly);
+      if (!candidates.length) continue;
+      graph.set(recordA.sourceRow, { recordA, candidates });
+      for (const candidate of candidates) {
+        const row = candidate.recordB.sourceRow;
+        if (!reverseClaims.has(row)) reverseClaims.set(row, new Set());
+        reverseClaims.get(row).add(recordA.sourceRow);
+      }
+    }
+
+    const pairs = [];
+    for (const { recordA, candidates } of graph.values()) {
+      if (candidates.length !== 1) continue;
+      const match = candidates[0];
+      if (reverseClaims.get(match.recordB.sourceRow)?.size !== 1) continue;
+      pairs.push({ recordA, match });
+    }
+    if (!pairs.length) break;
+
+    for (const { recordA, match } of pairs) acceptPair(recordA, match, useDate, usedA, usedB, results);
+    resolved += pairs.length;
+  }
+  return resolved;
+}
+
+function reserveRemainingCandidates({ a, amountIndexB, usedA, usedB, config, useDate, useReference, reservedCandidateA, reservedCandidateB, results }) {
+  const graph = new Map();
+  const reverseClaims = new Map();
+  for (const recordA of a) {
+    if (usedA.has(recordA.sourceRow) || recordA.invalidAmount || recordA.dateError) continue;
+    const candidates = candidatesForRecord(recordA, amountIndexB, usedB, config, useDate, useReference, false);
+    if (!candidates.length) continue;
+    graph.set(recordA.sourceRow, { recordA, candidates });
+    for (const candidate of candidates) {
+      const row = candidate.recordB.sourceRow;
+      if (!reverseClaims.has(row)) reverseClaims.set(row, new Set());
+      reverseClaims.get(row).add(recordA.sourceRow);
+    }
+  }
+
+  for (const { recordA, candidates } of graph.values()) {
+    reservedCandidateA.add(recordA.sourceRow);
+    candidates.forEach((item) => reservedCandidateB.add(item.recordB.sourceRow));
+    const soleClaimCount = candidates.length === 1 ? reverseClaims.get(candidates[0].recordB.sourceRow)?.size || 1 : 0;
+    const reason = candidates.length === 1 && soleClaimCount > 1
+      ? `Only acceptable B-side candidate is also claimed by ${soleClaimCount} A-side rows`
+      : `${candidates.length} acceptable candidate${candidates.length === 1 ? '' : 's'} require review`;
+    results.push({
+      status: 'candidate',
+      relation: '1:?',
+      aRows: [recordA.sourceRow],
+      bRows: candidates.map((item) => item.recordB.sourceRow),
+      amount: recordA.amount,
+      date: recordA.dateIso,
+      reason
+    });
+  }
+}
+
 function groupReason(relation, target, members, tolerance) {
   const sum = members.reduce((total, item) => roundAmount(total + item.amount), 0);
   const diff = roundAmount(Math.abs(sum - target.amount));
@@ -184,6 +284,7 @@ export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
   const dupA = markDuplicates(a, useDate, useReference);
   const dupB = markDuplicates(b, useDate, useReference);
   const amountIndexB = buildAmountIndex(b);
+  const referenceIndexA = buildReferenceIndex(a);
   const referenceIndexB = buildReferenceIndex(b);
   const usedA = new Set();
   const usedB = new Set();
@@ -195,59 +296,29 @@ export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
     if (recordA.invalidAmount || recordA.dateError) {
       results.push({ status: 'a_only', relation: '1:0', aRows: [recordA.sourceRow], bRows: [], amount: recordA.amount, date: recordA.dateIso, reason: recordA.invalidAmount ? 'Invalid amount in A' : `Date error in A: ${recordA.dateError}` });
       usedA.add(recordA.sourceRow);
-      continue;
     }
+  }
 
-    const conflicts = (recordA.reference ? (referenceIndexB.get(recordA.reference) || []) : [])
-      .filter((recordB) => !usedB.has(recordB.sourceRow) && referenceConflict(recordA, recordB, config.amountTolerance));
-    if (conflicts.length === 1) {
-      const recordB = conflicts[0];
+  if (useReference) {
+    for (const [reference, recordsA] of referenceIndexA.entries()) {
+      const recordsB = referenceIndexB.get(reference) || [];
+      const validA = recordsA.filter((record) => !usedA.has(record.sourceRow) && !record.invalidAmount && !record.dateError);
+      const validB = recordsB.filter((record) => !usedB.has(record.sourceRow) && !record.invalidAmount && !record.dateError);
+      if (validA.length !== 1 || validB.length !== 1) continue;
+      const recordA = validA[0];
+      const recordB = validB[0];
+      if (!referenceConflict(recordA, recordB, config.amountTolerance)) continue;
       usedA.add(recordA.sourceRow);
       usedB.add(recordB.sourceRow);
       results.push({ status: 'conflict', relation: '1:1', aRows: [recordA.sourceRow], bRows: [recordB.sourceRow], amount: recordA.amount, date: recordA.dateIso, reason: `Same reference · Amount differs by ${amountDistance(recordA, recordB)}` });
-      continue;
-    }
-
-    const candidates = [];
-    for (const recordB of recordsWithinAmount(amountIndexB, recordA.amount, config.amountTolerance)) {
-      if (usedB.has(recordB.sourceRow)) continue;
-      const amountGap = amountDistance(recordA, recordB);
-      const dateGap = useDate ? dateDistance(recordA, recordB) : null;
-      if (useDate && (dateGap === null || dateGap > config.dateToleranceDays)) continue;
-      if (!referencesCompatible(recordA, recordB, useReference)) continue;
-      candidates.push({ recordB, amountGap, dateGap });
-    }
-
-    candidates.sort((x, y) => x.amountGap - y.amountGap || (x.dateGap ?? 0) - (y.dateGap ?? 0) || x.recordB.sourceRow - y.recordB.sourceRow);
-
-    if (candidates.length === 1) {
-      const match = candidates[0];
-      usedA.add(recordA.sourceRow);
-      usedB.add(match.recordB.sourceRow);
-      const exact = match.amountGap === 0 && (!useDate || match.dateGap === 0);
-      results.push({
-        status: exact ? 'exact_match' : 'tolerant_match',
-        relation: '1:1',
-        aRows: [recordA.sourceRow],
-        bRows: [match.recordB.sourceRow],
-        amount: recordA.amount,
-        date: recordA.dateIso,
-        reason: reasonFor(recordA, match.recordB, match.dateGap, match.amountGap)
-      });
-    } else if (candidates.length > 1) {
-      reservedCandidateA.add(recordA.sourceRow);
-      candidates.forEach((item) => reservedCandidateB.add(item.recordB.sourceRow));
-      results.push({
-        status: 'candidate',
-        relation: '1:?',
-        aRows: [recordA.sourceRow],
-        bRows: candidates.map((item) => item.recordB.sourceRow),
-        amount: recordA.amount,
-        date: recordA.dateIso,
-        reason: `${candidates.length} acceptable candidates require review`
-      });
     }
   }
+
+  if (useReference) {
+    resolveMutualUniquePairs({ a, amountIndexB, usedA, usedB, config, useDate, useReference, results, exactReferenceOnly: true });
+  }
+  resolveMutualUniquePairs({ a, amountIndexB, usedA, usedB, config, useDate, useReference, results, exactReferenceOnly: false });
+  reserveRemainingCandidates({ a, amountIndexB, usedA, usedB, config, useDate, useReference, reservedCandidateA, reservedCandidateB, results });
 
   if (config.groupMatching) {
     for (const recordA of a) {
