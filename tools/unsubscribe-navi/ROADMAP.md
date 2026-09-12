@@ -126,6 +126,34 @@ Wave 3反映後:
 
 Wave 3でも件数優先にはせず、公式の解約・自動更新停止sourceと契約経路を固定できたserviceだけを追加する。Amazonプライム / ディズニープラスは日本向けの安定した公式procedure URLをまだ固定できていないため、`needs_review`のまま維持する。
 
+### Wave 4 — 2026-09-12
+
+Official-source verified 11件:
+
+- Y!mobile
+- BIGLOBEモバイル
+- radikoプレミアム
+- マネーフォワード ME プレミアムサービス
+- Chatwork 有料プラン
+- Udemy 個人向け定額プラン
+- Medium Membership
+- Proton 有料プラン
+- Asana 有料プラン
+- Trello Standard / Premium
+- Dropbox Sign
+
+Wave 4反映後:
+
+- effective records: 79
+- public-visible: 75
+- verified: 72
+- retired: 1
+- needs_review: 2
+- placeholder: 4
+- progress to 100 public-visible: **75%**
+
+Wave 4では国内通信・音声・家計簿・業務SaaS・学習を厚くした。解約とMNP、サブスクリプション停止とアカウント削除、ストア課金とWeb課金を同一視せず、公式source上の手続き差をrecordへ反映する。
+
 ### Next waves
 
 Priority:
@@ -139,7 +167,7 @@ Priority:
 7. ebooks / magazines / learning
 8. major shopping / paid memberships
 
-候補例としてLemino、Y!mobile、追加MVNO、Canva、学習subscription等を調査するが、official procedure sourceを確認できるまでverified追加しない。
+候補例としてLemino、追加MVNO、Canva、学習subscription等を調査するが、official procedure sourceを確認できるまでverified追加しない。
 
 Rule:
 
