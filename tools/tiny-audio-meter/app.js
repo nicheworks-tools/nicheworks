@@ -3,784 +3,675 @@
 
   const $ = (id) => document.getElementById(id);
   const root = document.documentElement;
-
-  const micButton = $("micButton");
-  const stopMicButton = $("stopMicButton");
-  const micStatus = $("micStatus");
-  const voiceActivity = $("voiceActivity");
-  const volumeBar = $("volumeBar");
-  const volumeValue = $("volumeValue");
-  const pitchValue = $("pitchValue");
-  const noteValue = $("noteValue");
-
-  const spectrumCanvas = $("spectrumCanvas");
-  const sctx = spectrumCanvas.getContext("2d");
-
-  const snapshotButton = $("snapshotButton");
-  const snapshotCount = $("snapshotCount");
-  const snapshotItems = $("snapshotItems");
-  const clearSnapshotsBtn = $("clearSnapshots");
-
-  const segmentStart = $("segmentStart");
-  const segmentStop = $("segmentStop");
-  const segmentResult = $("segmentResult");
-  const resetButton = $("resetButton");
-
   const LANG_KEY = "nw_lang";
   const FFT_SIZE = 2048;
-  const ACTIVITY_THRESHOLD = 0.06;
   const SNAP_MAX = 20;
+  const PITCH_MIN_HZ = 60;
+  const PITCH_MAX_HZ = 1200;
+  const PITCH_INTERVAL_MS = 100;
+  const PITCH_CONFIDENCE_MIN = 0.55;
+  const ACTIVITY_RMS = 0.018;
+
+  const els = {
+    micButton: $("micButton"), stopMicButton: $("stopMicButton"), micStatus: $("micStatus"), micStateBadge: $("micStateBadge"),
+    deviceRow: $("deviceRow"), deviceSelect: $("deviceSelect"), processingStatus: $("processingStatus"),
+    echoChip: $("echoChip"), noiseChip: $("noiseChip"), gainChip: $("gainChip"),
+    voiceActivity: $("voiceActivity"), volumeBar: $("volumeBar"), volumeValue: $("volumeValue"),
+    pitchValue: $("pitchValue"), noteValue: $("noteValue"), confidenceValue: $("confidenceValue"),
+    spectrumCanvas: $("spectrumCanvas"),
+    snapshotButton: $("snapshotButton"), snapshotCount: $("snapshotCount"), snapshotItems: $("snapshotItems"), clearSnapshots: $("clearSnapshots"),
+    segmentStart: $("segmentStart"), segmentStop: $("segmentStop"), segmentResult: $("segmentResult"), resetButton: $("resetButton"),
+    affiliateSection: $("audioAffiliateSection"), soundAffiliate: $("soundLevelAffiliate"), usbAffiliate: $("usbMicAffiliate"), disclosure: $("amazonDisclosure")
+  };
+
+  const sctx = els.spectrumCanvas.getContext("2d");
 
   const MSG = {
     ja: {
       starting: "マイクを起動しています…",
-      micOn: "マイクは有効です。停止する場合は「マイクを停止」を押してください。",
+      micOn: "マイク入力をブラウザ内で解析しています。",
       micOff: "マイクを停止しました。",
-      unsupported: "このブラウザは音声入力に対応していない可能性があります。",
-      micDenied: "マイク権限が拒否されました。ブラウザ設定からこのサイトのマイク許可を確認してください。",
-      micError: "マイクの起動に失敗しました。別のアプリが使用中でないか、端末設定を確認してください。",
-      snapshotEmpty: "スナップショットはまだありません。",
-      clearArmed: "もう一度押すと、すべての数値スナップショットを削除します。",
-      cleared: "スナップショットを削除しました。",
-      segmentRecording: "記録中…",
-      segmentTooShort: "短すぎます（1秒以上）",
-      segmentTitle: "区間解析結果",
-      duration: "区間長",
-      avgLoudness: "平均音量",
-      avgPitch: "平均周波数",
-      stability: "安定度",
-      noiseLevel: "ノイズ",
-      low: "Low",
-      mid: "Mid",
-      high: "High",
+      unsupported: "このブラウザではマイク入力を利用できません。",
+      denied: "マイク権限が拒否されました。ブラウザ設定でこのサイトのマイク許可を確認してください。",
+      error: "マイクを開始できませんでした。別アプリの使用状況や端末設定を確認してください。",
+      switching: "入力マイクを切り替えています…",
+      waiting: "入力待機",
+      active: "音を検出",
+      noSnapshots: "記録はまだありません。",
       delete: "削除",
-      peak: "ピーク",
-      active: "active",
-      silent: "silent",
-      volume: "Volume",
-      pitch: "Pitch"
+      segmentRecording: "区間を記録中…",
+      segmentTooShort: "区間が短すぎます。1秒以上計測してください。",
+      segmentTitle: "区間分析結果",
+      duration: "区間長",
+      avgLevel: "平均相対音量",
+      avgPitch: "平均pitch",
+      stability: "Pitch安定度",
+      noPitch: "有効なpitchなし",
+      soundLevelAmazon: "Amazonで騒音計を探す",
+      usbMicAmazon: "AmazonでUSBマイクを探す"
     },
     en: {
-      starting: "Starting microphone...",
-      micOn: "Microphone is active. Press Stop Mic to turn it off.",
+      starting: "Starting microphone…",
+      micOn: "Microphone input is being analyzed locally in your browser.",
       micOff: "Microphone stopped.",
-      unsupported: "Your browser may not support audio input features.",
-      micDenied: "Microphone permission was denied. Check this site's microphone permission in browser settings.",
-      micError: "Failed to start microphone. Check whether another app is using it or device settings block access.",
-      snapshotEmpty: "No snapshots yet.",
-      clearArmed: "Press again to delete all number snapshots.",
-      cleared: "Snapshots cleared.",
-      segmentRecording: "Recording...",
-      segmentTooShort: "Too short (needs 1s+).",
-      segmentTitle: "Segment Result",
-      duration: "Duration",
-      avgLoudness: "Avg Loudness",
-      avgPitch: "Avg Pitch",
-      stability: "Stability",
-      noiseLevel: "Noise Level",
-      low: "Low",
-      mid: "Mid",
-      high: "High",
+      unsupported: "Microphone input is not available in this browser.",
+      denied: "Microphone permission was denied. Check this site's microphone permission in browser settings.",
+      error: "Could not start the microphone. Check device settings or whether another app is using it.",
+      switching: "Switching input microphone…",
+      waiting: "Waiting for input",
+      active: "Sound detected",
+      noSnapshots: "No snapshots yet.",
       delete: "Delete",
-      peak: "Peak",
-      active: "active",
-      silent: "silent",
-      volume: "Volume",
-      pitch: "Pitch"
+      segmentRecording: "Recording segment…",
+      segmentTooShort: "Segment is too short. Measure for at least 1 second.",
+      segmentTitle: "Segment result",
+      duration: "Duration",
+      avgLevel: "Average relative level",
+      avgPitch: "Average pitch",
+      stability: "Pitch stability",
+      noPitch: "No valid pitch",
+      soundLevelAmazon: "Find sound level meters on Amazon",
+      usbMicAmazon: "Find USB microphones on Amazon"
     }
   };
 
   let currentLang = detectInitialLang();
-
   let audioCtx = null;
   let analyser = null;
-  let sourceNode = null;
   let mediaStream = null;
   let timeData = null;
   let freqData = null;
   let rafId = null;
-  let lastActive = false;
   let starting = false;
-
+  let lastPitchAt = 0;
+  let selectedDeviceId = "";
   let snapshots = [];
-  let clearArmed = false;
-  let clearTimer = null;
+  let lastSegment = null;
 
-  let segActive = false;
-  let segStartTs = 0;
-  let segVolDb = [];
-  let segHz = [];
-  let segActiveFrames = 0;
-  let segTotalFrames = 0;
-  let lastSegmentRows = [];
+  let current = {
+    db: -60,
+    rms: 0,
+    hz: null,
+    note: null,
+    confidence: 0,
+    active: false
+  };
+
+  let segment = createSegmentState();
 
   function detectInitialLang() {
     try {
       const saved = localStorage.getItem(LANG_KEY);
       if (saved === "ja" || saved === "en") return saved;
-    } catch {}
+    } catch (_) {}
     return (navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en";
   }
 
+  function m(key) { return MSG[currentLang][key] || MSG.ja[key] || key; }
+
   function applyLang(lang) {
     currentLang = lang === "en" ? "en" : "ja";
-    root.setAttribute("data-lang", currentLang);
-    document.documentElement.lang = currentLang;
-
-    try {
-      localStorage.setItem(LANG_KEY, currentLang);
-    } catch {}
-
-    document.querySelectorAll("[data-i18n]").forEach((el) => {
-      el.style.display = el.dataset.i18n === currentLang ? "" : "none";
+    root.lang = currentLang;
+    root.dataset.lang = currentLang;
+    try { localStorage.setItem(LANG_KEY, currentLang); } catch (_) {}
+    document.querySelectorAll("[data-i18n]").forEach((node) => {
+      node.style.display = node.dataset.i18n === currentLang ? "" : "none";
     });
-
-    document.querySelectorAll("[data-lang-switch]").forEach((btn) => {
-      btn.classList.toggle("active", btn.dataset.langSwitch === currentLang);
+    document.querySelectorAll("[data-lang-switch]").forEach((button) => {
+      button.classList.toggle("active", button.dataset.langSwitch === currentLang);
     });
-
+    setActivity(current.active);
     renderSnapshots();
-
-    if (segActive) {
-      segmentResult.textContent = MSG[currentLang].segmentRecording;
-    } else if (!segmentResult.classList.contains("hidden") && segVolDb.length) {
-      renderSegmentResult();
-    }
+    if (segment.active) renderSegmentRecording();
+    else if (lastSegment) renderSegmentSummary(lastSegment);
+    mountAffiliate();
   }
 
-  function clamp(n, min, max) {
-    return Math.min(max, Math.max(min, n));
+  function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
+
+  function computeRms(buffer) {
+    let sum = 0;
+    for (let i = 0; i < buffer.length; i += 1) sum += buffer[i] * buffer[i];
+    return Math.sqrt(sum / buffer.length);
   }
 
   function rmsToDb(rms) {
-    const value = Math.max(rms, 1e-6);
-    return clamp(20 * Math.log10(value), -60, 0);
-  }
-
-  function computeRMS(buf) {
-    let sum = 0;
-    for (let i = 0; i < buf.length; i += 1) {
-      sum += buf[i] * buf[i];
-    }
-    return Math.sqrt(sum / buf.length);
-  }
-
-  function detectPitchACF(floatBuf, sampleRate) {
-    const size = floatBuf.length;
-    const rms = computeRMS(floatBuf);
-    if (rms < 0.008) return null;
-
-    let r1 = 0;
-    let r2 = size - 1;
-    const threshold = 0.02;
-
-    for (let i = 0; i < size / 2; i += 1) {
-      if (Math.abs(floatBuf[i]) < threshold) {
-        r1 = i;
-        break;
-      }
-    }
-
-    for (let i = 1; i < size / 2; i += 1) {
-      if (Math.abs(floatBuf[size - i]) < threshold) {
-        r2 = size - i;
-        break;
-      }
-    }
-
-    if (r2 - r1 < 256) {
-      r1 = 0;
-      r2 = size - 1;
-    }
-
-    const buf = floatBuf.slice(r1, r2);
-    const n = buf.length;
-    const correlations = new Array(n).fill(0);
-
-    for (let lag = 0; lag < n; lag += 1) {
-      let sum = 0;
-      for (let i = 0; i < n - lag; i += 1) {
-        sum += buf[i] * buf[i + lag];
-      }
-      correlations[lag] = sum;
-    }
-
-    let dip = 0;
-    while (dip < n - 1 && correlations[dip] > correlations[dip + 1]) dip += 1;
-
-    let maxValue = -1;
-    let maxPos = -1;
-    for (let i = dip; i < n; i += 1) {
-      if (correlations[i] > maxValue) {
-        maxValue = correlations[i];
-        maxPos = i;
-      }
-    }
-    if (maxPos <= 0) return null;
-
-    const x1 = correlations[maxPos - 1] || 0;
-    const x2 = correlations[maxPos] || 0;
-    const x3 = correlations[maxPos + 1] || 0;
-    const a = (x1 + x3 - 2 * x2) / 2;
-    const b = (x3 - x1) / 2;
-
-    let period = maxPos;
-    if (a !== 0) period = maxPos - b / (2 * a);
-
-    const hz = sampleRate / period;
-    if (!Number.isFinite(hz)) return null;
-    if (hz < 60 || hz > 1200) return null;
-    return hz;
+    return clamp(20 * Math.log10(Math.max(rms, 1e-6)), -60, 0);
   }
 
   function hzToNoteName(hz) {
-    if (!hz || !Number.isFinite(hz) || hz <= 0) return "--";
-    const noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-    const semitonesFromA4 = Math.round(12 * Math.log2(hz / 440));
-    const midi = 69 + semitonesFromA4;
-    const name = noteNames[(midi + 1200) % 12];
-    const octave = Math.floor(midi / 12) - 1;
-    return `${name}${octave}`;
+    if (!Number.isFinite(hz) || hz <= 0) return null;
+    const names = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+    const midi = 69 + Math.round(12 * Math.log2(hz / 440));
+    return `${names[(midi + 1200) % 12]}${Math.floor(midi / 12) - 1}`;
   }
 
-  function findPeak(freqBins, sampleRate) {
-    let maxIndex = 0;
-    let maxValue = -1;
-    for (let i = 0; i < freqBins.length; i += 1) {
-      if (freqBins[i] > maxValue) {
-        maxValue = freqBins[i];
-        maxIndex = i;
+  function detectPitch(buffer, sampleRate) {
+    const rms = computeRms(buffer);
+    if (rms < 0.008) return { hz: null, confidence: 0 };
+
+    const minLag = Math.max(2, Math.floor(sampleRate / PITCH_MAX_HZ));
+    const maxLag = Math.min(buffer.length - 2, Math.ceil(sampleRate / PITCH_MIN_HZ));
+    const correlations = new Float32Array(maxLag + 2);
+    let bestLag = -1;
+    let bestCorrelation = -1;
+
+    for (let lag = minLag; lag <= maxLag; lag += 1) {
+      let cross = 0;
+      let energyA = 0;
+      let energyB = 0;
+      const limit = buffer.length - lag;
+      for (let i = 0; i < limit; i += 1) {
+        const a = buffer[i];
+        const b = buffer[i + lag];
+        cross += a * b;
+        energyA += a * a;
+        energyB += b * b;
+      }
+      const denom = Math.sqrt(energyA * energyB) || 1;
+      const corr = cross / denom;
+      correlations[lag] = corr;
+      if (corr > bestCorrelation) {
+        bestCorrelation = corr;
+        bestLag = lag;
       }
     }
-    if (maxValue <= 0) return { peakHz: null, peakAmp: null };
-    return {
-      peakHz: (maxIndex * (sampleRate / 2)) / freqBins.length,
-      peakAmp: maxValue
-    };
+
+    const confidence = clamp(bestCorrelation, 0, 1);
+    if (bestLag < 0 || confidence < PITCH_CONFIDENCE_MIN) return { hz: null, confidence };
+
+    const left = correlations[bestLag - 1] || bestCorrelation;
+    const center = correlations[bestLag] || bestCorrelation;
+    const right = correlations[bestLag + 1] || bestCorrelation;
+    const denom = left - 2 * center + right;
+    const offset = denom !== 0 ? 0.5 * (left - right) / denom : 0;
+    const refinedLag = bestLag + clamp(offset, -1, 1);
+    const hz = sampleRate / refinedLag;
+    if (!Number.isFinite(hz) || hz < PITCH_MIN_HZ || hz > PITCH_MAX_HZ) return { hz: null, confidence };
+    return { hz, confidence };
   }
 
-  function formatTime(ts) {
-    const d = new Date(ts);
-    return [d.getHours(), d.getMinutes(), d.getSeconds()]
-      .map((v) => String(v).padStart(2, "0"))
-      .join(":");
+  function buildAudioConstraints(deviceId = "") {
+    const audio = {
+      echoCancellation: false,
+      noiseSuppression: false,
+      autoGainControl: false,
+      channelCount: 1
+    };
+    if (deviceId) audio.deviceId = { exact: deviceId };
+    return { audio };
   }
 
   function isMicRunning() {
-    return Boolean(audioCtx && analyser && mediaStream);
+    return Boolean(audioCtx && analyser && mediaStream && mediaStream.getAudioTracks().some((track) => track.readyState === "live"));
   }
 
-  function setStatus(message, type = "info") {
-    if (!micStatus) return;
-    micStatus.textContent = message;
-    micStatus.className = `mic-status ${type}`;
+  function setStatus(text, type = "info") {
+    els.micStatus.textContent = text;
+    els.micStatus.className = `mic-status ${type}`;
+    els.micStatus.hidden = !text;
   }
 
-  function clearStatus() {
-    if (!micStatus) return;
-    micStatus.textContent = "";
-    micStatus.className = "mic-status hidden";
+  function setMicBadge(mode) {
+    els.micStateBadge.classList.remove("off", "on", "pending");
+    els.micStateBadge.classList.add(mode);
+    const ja = els.micStateBadge.querySelector('[data-i18n="ja"]');
+    const en = els.micStateBadge.querySelector('[data-i18n="en"]');
+    if (mode === "on") { ja.textContent = "マイク動作中"; en.textContent = "Mic active"; }
+    else if (mode === "pending") { ja.textContent = "起動中"; en.textContent = "Starting"; }
+    else { ja.textContent = "マイク停止中"; en.textContent = "Mic off"; }
+    ja.style.display = currentLang === "ja" ? "" : "none";
+    en.style.display = currentLang === "en" ? "" : "none";
   }
 
-  function setVoiceActivity(active) {
-    voiceActivity.classList.toggle("active", active);
-    voiceActivity.classList.toggle("silent", !active);
-    lastActive = active;
+  function setActivity(active) {
+    current.active = Boolean(active);
+    els.voiceActivity.classList.toggle("active", current.active);
+    els.voiceActivity.classList.toggle("silent", !current.active);
+    const ja = els.voiceActivity.querySelector('[data-i18n="ja"]');
+    const en = els.voiceActivity.querySelector('[data-i18n="en"]');
+    ja.textContent = current.active ? MSG.ja.active : MSG.ja.waiting;
+    en.textContent = current.active ? MSG.en.active : MSG.en.waiting;
+    ja.style.display = currentLang === "ja" ? "" : "none";
+    en.style.display = currentLang === "en" ? "" : "none";
   }
 
-  function setVolumeUI(db) {
-    volumeValue.textContent = `${Math.round(db)} dB`;
-    volumeBar.style.width = `${clamp(((db + 60) / 60) * 100, 0, 100)}%`;
+  function setProcessChip(element, label, value) {
+    element.classList.remove("on", "off");
+    let rendered = "?";
+    if (value === false) { rendered = "OFF"; element.classList.add("off"); }
+    if (value === true) { rendered = "ON"; element.classList.add("on"); }
+    element.textContent = `${label} ${rendered}`;
   }
 
-  function setPitchUI(hz) {
-    pitchValue.textContent = hz ? `${Math.round(hz)} Hz` : "-- Hz";
-    noteValue.textContent = hz ? hzToNoteName(hz) : "--";
-  }
-
-  function resizeSpectrumCanvasToCSS() {
-    const rect = spectrumCanvas.getBoundingClientRect();
-    const dpr = window.devicePixelRatio || 1;
-    const w = Math.max(200, Math.floor(rect.width * dpr));
-    const h = Math.max(120, Math.floor(rect.height * dpr));
-    if (spectrumCanvas.width !== w || spectrumCanvas.height !== h) {
-      spectrumCanvas.width = w;
-      spectrumCanvas.height = h;
-    }
-  }
-
-  function resetMeterUI() {
-    setVoiceActivity(false);
-    setVolumeUI(-60);
-    setPitchUI(null);
-    resizeSpectrumCanvasToCSS();
-    sctx.clearRect(0, 0, spectrumCanvas.width, spectrumCanvas.height);
-  }
-
-  function drawSpectrumBars(freqBins) {
-    resizeSpectrumCanvasToCSS();
-
-    const w = spectrumCanvas.width;
-    const h = spectrumCanvas.height;
-
-    sctx.clearRect(0, 0, w, h);
-    sctx.fillStyle = "#ffffff";
-    sctx.fillRect(0, 0, w, h);
-
-    const bars = w < 420 ? 20 : w < 700 ? 32 : 48;
-    const step = Math.max(1, Math.floor(freqBins.length / bars));
-    const barW = w / bars;
-
-    sctx.fillStyle = "#111827";
-
-    for (let i = 0; i < bars; i += 1) {
-      let max = 0;
-      const start = i * step;
-      const end = Math.min(freqBins.length, start + step);
-      for (let j = start; j < end; j += 1) {
-        max = Math.max(max, freqBins[j]);
-      }
-
-      const value = max / 255;
-      const barHeight = value * (h - 10);
-      sctx.fillRect(i * barW + barW * 0.18, h - barHeight, barW * 0.64, barHeight);
-    }
-
-    sctx.strokeStyle = "#e5e7eb";
-    sctx.lineWidth = Math.max(1, window.devicePixelRatio || 1);
-    sctx.strokeRect(0.5, 0.5, w - 1, h - 1);
+  function renderProcessingSettings(track) {
+    const settings = typeof track?.getSettings === "function" ? track.getSettings() : {};
+    setProcessChip(els.echoChip, "EC", settings.echoCancellation);
+    setProcessChip(els.noiseChip, "NS", settings.noiseSuppression);
+    setProcessChip(els.gainChip, "AGC", settings.autoGainControl);
+    els.processingStatus.hidden = false;
   }
 
   function updateControls() {
     const running = isMicRunning();
-
-    micButton.disabled = running || starting;
-    micButton.classList.toggle("hidden", running);
-    micButton.classList.toggle("is-pending", starting);
-    micButton.setAttribute("aria-disabled", String(running || starting));
-
-    stopMicButton.disabled = !running;
-    stopMicButton.classList.toggle("hidden", !running);
-    stopMicButton.setAttribute("aria-disabled", String(!running));
-
-    snapshotButton.disabled = !running;
-    clearSnapshotsBtn.disabled = snapshots.length === 0;
-
-    segmentStart.disabled = !running || segActive;
-    segmentStop.disabled = !segActive;
-
-    resetButton.classList.toggle(
-      "hidden",
-      snapshots.length === 0 && segmentResult.classList.contains("hidden") && !running
-    );
+    els.micButton.disabled = starting || running;
+    els.micButton.hidden = running;
+    els.stopMicButton.disabled = !running;
+    els.stopMicButton.hidden = !running;
+    els.snapshotButton.disabled = !running;
+    els.segmentStart.disabled = !running || segment.active;
+    els.segmentStop.disabled = !segment.active;
+    els.clearSnapshots.disabled = snapshots.length === 0;
+    els.resetButton.hidden = snapshots.length === 0 && !lastSegment;
   }
 
-  function renderSnapshots() {
-    snapshotCount.textContent = String(snapshots.length);
-    snapshotItems.replaceChildren();
+  async function enumerateInputs() {
+    if (!navigator.mediaDevices?.enumerateDevices) return;
+    try {
+      const devices = (await navigator.mediaDevices.enumerateDevices()).filter((device) => device.kind === "audioinput");
+      const currentValue = selectedDeviceId || mediaStream?.getAudioTracks?.()[0]?.getSettings?.().deviceId || "";
+      els.deviceSelect.replaceChildren();
+      devices.forEach((device, index) => {
+        const option = document.createElement("option");
+        option.value = device.deviceId;
+        option.textContent = device.label || `${currentLang === "ja" ? "マイク" : "Microphone"} ${index + 1}`;
+        els.deviceSelect.appendChild(option);
+      });
+      if (devices.some((device) => device.deviceId === currentValue)) els.deviceSelect.value = currentValue;
+      selectedDeviceId = els.deviceSelect.value || currentValue || "";
+      els.deviceRow.hidden = devices.length < 2;
+    } catch (_) {
+      els.deviceRow.hidden = true;
+    }
+  }
 
-    if (snapshots.length === 0) {
-      const p = document.createElement("p");
-      p.className = "empty-note";
-      p.textContent = MSG[currentLang].snapshotEmpty;
-      snapshotItems.appendChild(p);
-      updateControls();
-      return;
+  function resetLiveUI() {
+    current = { db: -60, rms: 0, hz: null, note: null, confidence: 0, active: false };
+    els.volumeValue.textContent = "-- dB";
+    els.volumeBar.style.width = "0%";
+    els.pitchValue.textContent = "-- Hz";
+    els.noteValue.textContent = "--";
+    els.confidenceValue.textContent = "--%";
+    setActivity(false);
+    resizeSpectrum();
+    sctx.clearRect(0, 0, els.spectrumCanvas.width, els.spectrumCanvas.height);
+    sctx.fillStyle = "#ffffff";
+    sctx.fillRect(0, 0, els.spectrumCanvas.width, els.spectrumCanvas.height);
+  }
+
+  function resizeSpectrum() {
+    const rect = els.spectrumCanvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    const width = Math.max(320, Math.floor(rect.width * dpr));
+    const height = Math.max(140, Math.floor(rect.height * dpr));
+    if (els.spectrumCanvas.width !== width || els.spectrumCanvas.height !== height) {
+      els.spectrumCanvas.width = width;
+      els.spectrumCanvas.height = height;
+    }
+  }
+
+  function drawSpectrum() {
+    resizeSpectrum();
+    const width = els.spectrumCanvas.width;
+    const height = els.spectrumCanvas.height;
+    sctx.clearRect(0, 0, width, height);
+    sctx.fillStyle = "#ffffff";
+    sctx.fillRect(0, 0, width, height);
+
+    const sampleRate = audioCtx?.sampleRate || 48000;
+    const nyquist = sampleRate / 2;
+    const maxHz = Math.min(12000, nyquist);
+    const maxBin = Math.max(1, Math.floor((maxHz / nyquist) * freqData.length));
+    const bars = width < 500 ? 28 : 48;
+    const binsPerBar = Math.max(1, Math.floor(maxBin / bars));
+    const barWidth = width / bars;
+    sctx.fillStyle = "#111827";
+
+    for (let bar = 0; bar < bars; bar += 1) {
+      const start = bar * binsPerBar;
+      const end = Math.min(maxBin, start + binsPerBar);
+      let peak = 0;
+      for (let i = start; i < end; i += 1) peak = Math.max(peak, freqData[i]);
+      const h = (peak / 255) * (height - 12);
+      sctx.fillRect(bar * barWidth + barWidth * 0.16, height - h, barWidth * 0.68, h);
     }
 
-    snapshots.forEach((snapshot) => {
-      const card = document.createElement("div");
-      card.className = "snapshot-card";
-
-      const meta = document.createElement("div");
-      meta.className = "meta";
-      meta.textContent = `${formatTime(snapshot.ts)} • ${
-        snapshot.active ? MSG[currentLang].active : MSG[currentLang].silent
-      }`;
-      card.appendChild(meta);
-
-      const vals = document.createElement("div");
-      vals.className = "vals";
-
-      [
-        `${MSG[currentLang].volume}: ${Math.round(snapshot.volDb)} dB`,
-        `${MSG[currentLang].pitch}: ${
-          snapshot.hz ? `${Math.round(snapshot.hz)} Hz (${snapshot.note})` : "--"
-        }`,
-        `${MSG[currentLang].peak}: ${
-          snapshot.peakHz ? `${Math.round(snapshot.peakHz)} Hz` : "--"
-        }`
-      ].forEach((line) => {
-        const div = document.createElement("div");
-        div.textContent = line;
-        vals.appendChild(div);
-      });
-
-      card.appendChild(vals);
-
-      const actions = document.createElement("div");
-      actions.className = "actions";
-
-      const del = document.createElement("button");
-      del.className = "delete";
-      del.type = "button";
-      del.textContent = MSG[currentLang].delete;
-      del.addEventListener("click", () => {
-        snapshots = snapshots.filter((item) => item.id !== snapshot.id);
-        renderSnapshots();
-      });
-
-      actions.appendChild(del);
-      card.appendChild(actions);
-      snapshotItems.appendChild(card);
-    });
-
-    updateControls();
+    sctx.strokeStyle = "#e5e7eb";
+    sctx.lineWidth = Math.max(1, window.devicePixelRatio || 1);
+    sctx.strokeRect(0.5, 0.5, width - 1, height - 1);
   }
 
-  function computeStabilityStars(hzSeries) {
-    const vals = hzSeries.filter((v) => typeof v === "number" && Number.isFinite(v));
-    if (vals.length < 5) return 1;
+  function updatePitch(now) {
+    if (!audioCtx || now - lastPitchAt < PITCH_INTERVAL_MS) return;
+    lastPitchAt = now;
+    const result = detectPitch(timeData, audioCtx.sampleRate);
+    current.confidence = result.confidence;
+    els.confidenceValue.textContent = result.confidence > 0 ? `${Math.round(result.confidence * 100)}%` : "--%";
 
-    const mean = vals.reduce((a, b) => a + b, 0) / vals.length;
-    const variance = vals.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / vals.length;
-    const std = Math.sqrt(variance);
-    const ratio = std / Math.max(mean, 1e-6);
-
-    if (ratio < 0.01) return 5;
-    if (ratio < 0.02) return 4;
-    if (ratio < 0.04) return 3;
-    if (ratio < 0.07) return 2;
-    return 1;
-  }
-
-  function computeNoiseLabel(volDbSeries, activeRate) {
-    const meanDb = volDbSeries.reduce((a, b) => a + b, 0) / Math.max(1, volDbSeries.length);
-    if (meanDb > -28) return MSG[currentLang].high;
-    if (meanDb > -38 || activeRate > 0.35) return MSG[currentLang].mid;
-    return MSG[currentLang].low;
-  }
-
-  function appendResultRow(parent, label, value, muted = false) {
-    const row = document.createElement("div");
-    if (muted) {
-      const span = document.createElement("span");
-      span.className = "muted";
-      span.textContent = label;
-      row.appendChild(span);
+    if (result.hz) {
+      current.hz = result.hz;
+      current.note = hzToNoteName(result.hz);
+      els.pitchValue.textContent = `${result.hz.toFixed(1)} Hz`;
+      els.noteValue.textContent = current.note || "--";
+      addSegmentPitch(result.hz, result.confidence);
     } else {
-      row.textContent = `${label}: ${value}`;
+      current.hz = null;
+      current.note = null;
+      els.pitchValue.textContent = "-- Hz";
+      els.noteValue.textContent = "--";
     }
-    parent.appendChild(row);
   }
 
-  function renderSegmentResult() {
-    const durationSec = (Date.now() - segStartTs) / 1000;
-    segmentResult.replaceChildren();
-    segmentResult.classList.remove("hidden");
-
-    if (durationSec < 1) {
-      segmentResult.textContent = MSG[currentLang].segmentTooShort;
-      lastSegmentRows = [];
-      updateControls();
-      return;
-    }
-
-    const meanVol = segVolDb.reduce((a, b) => a + b, 0) / Math.max(1, segVolDb.length);
-    const hzVals = segHz.filter((v) => typeof v === "number" && Number.isFinite(v));
-    const meanHz = hzVals.length ? hzVals.reduce((a, b) => a + b, 0) / hzVals.length : null;
-    const stars = computeStabilityStars(segHz);
-    const activeRate = segTotalFrames > 0 ? segActiveFrames / segTotalFrames : 0;
-    const noise = computeNoiseLabel(segVolDb, activeRate);
-
-    lastSegmentRows = [
-      [MSG[currentLang].duration, `${durationSec.toFixed(1)}s`],
-      [MSG[currentLang].avgLoudness, `${Math.round(meanVol)} dB`],
-      [MSG[currentLang].avgPitch, meanHz ? `${Math.round(meanHz)} Hz` : "--"],
-      [MSG[currentLang].stability, `${"★".repeat(stars)}${"☆".repeat(5 - stars)}`],
-      [MSG[currentLang].noiseLevel, noise]
-    ];
-
-    appendResultRow(segmentResult, MSG[currentLang].segmentTitle, "", true);
-    lastSegmentRows.forEach(([label, value]) => appendResultRow(segmentResult, label, value));
-
-    updateControls();
-  }
-
-  function tick() {
-    if (!analyser || !audioCtx || !timeData || !freqData) return;
-
+  function frame(now) {
+    if (!isMicRunning()) return;
     analyser.getFloatTimeDomainData(timeData);
     analyser.getByteFrequencyData(freqData);
-
-    const rms = computeRMS(timeData);
-    const db = rmsToDb(rms);
-    const active = rms >= ACTIVITY_THRESHOLD;
-    const hz = rms >= 0.01 ? detectPitchACF(timeData, audioCtx.sampleRate) : null;
-
-    setVolumeUI(db);
-    if (active !== lastActive) setVoiceActivity(active);
-    setPitchUI(hz);
-    drawSpectrumBars(freqData);
-
-    if (segActive) {
-      segTotalFrames += 1;
-      if (active) segActiveFrames += 1;
-      segVolDb.push(db);
-      segHz.push(hz);
-    }
-
-    rafId = requestAnimationFrame(tick);
+    current.rms = computeRms(timeData);
+    current.db = rmsToDb(current.rms);
+    els.volumeValue.textContent = `${current.db.toFixed(1)} dB`;
+    els.volumeBar.style.width = `${clamp(((current.db + 60) / 60) * 100, 0, 100)}%`;
+    setActivity(current.rms >= ACTIVITY_RMS);
+    updatePitch(now);
+    drawSpectrum();
+    addSegmentLevel(current.db);
+    rafId = requestAnimationFrame(frame);
   }
 
-  function cleanupAudio() {
-    if (rafId) cancelAnimationFrame(rafId);
-    rafId = null;
-
-    if (sourceNode) {
-      try {
-        sourceNode.disconnect();
-      } catch {}
-    }
-    sourceNode = null;
-
-    if (mediaStream) {
-      mediaStream.getTracks().forEach((track) => {
-        try {
-          track.stop();
-        } catch {}
-      });
-    }
-    mediaStream = null;
-
-    if (audioCtx) {
-      const ctx = audioCtx;
-      try {
-        if (ctx.state !== "closed") {
-          ctx.close().catch(() => {});
-        }
-      } catch {}
-    }
-
-    audioCtx = null;
-    analyser = null;
-    timeData = null;
-    freqData = null;
-  }
-
-  async function startMic() {
-    if (starting || isMicRunning()) return;
-
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      setStatus(MSG[currentLang].unsupported, "error");
-      updateControls();
-      return;
-    }
-
-    const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextCtor) {
-      setStatus(MSG[currentLang].unsupported, "error");
-      updateControls();
+  async function startMic(deviceId = "", options = {}) {
+    if (starting) return;
+    if (!navigator.mediaDevices?.getUserMedia) {
+      setStatus(m("unsupported"), "error");
       return;
     }
 
     starting = true;
-    setStatus(MSG[currentLang].starting, "info");
+    setMicBadge("pending");
+    setStatus(options.switching ? m("switching") : m("starting"));
     updateControls();
 
     try {
+      cleanupAudio();
+      const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextCtor) throw new Error("AudioContext unavailable");
+      mediaStream = await navigator.mediaDevices.getUserMedia(buildAudioConstraints(deviceId));
+      selectedDeviceId = mediaStream.getAudioTracks()[0]?.getSettings?.().deviceId || deviceId || "";
       audioCtx = new AudioContextCtor();
-
-      mediaStream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          echoCancellation: true,
-          noiseSuppression: true,
-          autoGainControl: true
-        },
-        video: false
-      });
-
       analyser = audioCtx.createAnalyser();
       analyser.fftSize = FFT_SIZE;
-      analyser.smoothingTimeConstant = 0.85;
-
-      sourceNode = audioCtx.createMediaStreamSource(mediaStream);
-      sourceNode.connect(analyser);
-
+      analyser.smoothingTimeConstant = 0.72;
+      const source = audioCtx.createMediaStreamSource(mediaStream);
+      source.connect(analyser);
       timeData = new Float32Array(analyser.fftSize);
       freqData = new Uint8Array(analyser.frequencyBinCount);
-
-      resetMeterUI();
-
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(tick);
-
-      setStatus(MSG[currentLang].micOn, "ok");
-    } catch (err) {
-      const name = err && err.name ? err.name : "";
-      setStatus(
-        name === "NotAllowedError" || name === "PermissionDeniedError"
-          ? MSG[currentLang].micDenied
-          : MSG[currentLang].micError,
-        "error"
-      );
+      lastPitchAt = 0;
+      mediaStream.getAudioTracks().forEach((track) => track.addEventListener("ended", () => {
+        if (isMicRunning()) stopMic({ silent: true });
+      }, { once: true }));
+      renderProcessingSettings(mediaStream.getAudioTracks()[0]);
+      await enumerateInputs();
+      setStatus(m("micOn"), "success");
+      setMicBadge("on");
+      rafId = requestAnimationFrame(frame);
+    } catch (error) {
       cleanupAudio();
-      resetMeterUI();
+      const denied = error?.name === "NotAllowedError" || error?.name === "SecurityError";
+      setStatus(denied ? m("denied") : m("error"), "error");
+      setMicBadge("off");
     } finally {
       starting = false;
       updateControls();
     }
   }
 
+  function cleanupAudio() {
+    if (rafId != null) cancelAnimationFrame(rafId);
+    rafId = null;
+    if (mediaStream) mediaStream.getTracks().forEach((track) => track.stop());
+    mediaStream = null;
+    analyser = null;
+    timeData = null;
+    freqData = null;
+    if (audioCtx && audioCtx.state !== "closed") audioCtx.close().catch(() => {});
+    audioCtx = null;
+  }
+
   function stopMic(options = {}) {
+    if (segment.active) finishSegment(true);
     cleanupAudio();
-
-    if (segActive) {
-      segActive = false;
-      segmentStop.disabled = true;
-      segmentStart.disabled = true;
-    }
-
-    resetMeterUI();
-
-    if (options.showMessage !== false) {
-      setStatus(MSG[currentLang].micOff, "info");
-    }
-
+    resetLiveUI();
+    els.processingStatus.hidden = true;
+    setMicBadge("off");
+    if (!options.silent) setStatus(m("micOff"));
     updateControls();
   }
 
-  function takeSnapshot() {
+  function formatTime(ts) {
+    const date = new Date(ts);
+    return [date.getHours(), date.getMinutes(), date.getSeconds()].map((part) => String(part).padStart(2, "0")).join(":");
+  }
+
+  function captureSnapshot() {
     if (!isMicRunning()) return;
-
-    analyser.getFloatTimeDomainData(timeData);
-    analyser.getByteFrequencyData(freqData);
-
-    const rms = computeRMS(timeData);
-    const volDb = rmsToDb(rms);
-    const active = rms >= ACTIVITY_THRESHOLD;
-    const hz = rms >= 0.01 ? detectPitchACF(timeData, audioCtx.sampleRate) : null;
-    const note = hz ? hzToNoteName(hz) : "--";
-    const { peakHz, peakAmp } = findPeak(freqData, audioCtx.sampleRate);
-
-    snapshots.push({
-      id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+    snapshots.unshift({
       ts: Date.now(),
-      volDb,
-      hz,
-      note,
-      peakHz,
-      peakAmp,
-      active
+      db: current.db,
+      hz: current.hz,
+      note: current.note,
+      confidence: current.confidence
     });
-
-    if (snapshots.length > SNAP_MAX) {
-      snapshots = snapshots.slice(snapshots.length - SNAP_MAX);
-    }
-
-    clearArmed = false;
+    if (snapshots.length > SNAP_MAX) snapshots.length = SNAP_MAX;
     renderSnapshots();
   }
 
-  function clearSnapshots() {
-    if (snapshots.length === 0) return;
-
-    if (!clearArmed) {
-      clearArmed = true;
-      setStatus(MSG[currentLang].clearArmed, "info");
-      clearTimeout(clearTimer);
-      clearTimer = setTimeout(() => {
-        clearArmed = false;
-      }, 3500);
+  function renderSnapshots() {
+    els.snapshotCount.textContent = String(snapshots.length);
+    els.snapshotItems.replaceChildren();
+    if (!snapshots.length) {
+      const empty = document.createElement("p");
+      empty.className = "empty-note";
+      empty.textContent = m("noSnapshots");
+      els.snapshotItems.appendChild(empty);
+      updateControls();
       return;
     }
 
-    clearArmed = false;
-    clearTimeout(clearTimer);
+    snapshots.forEach((snapshot, index) => {
+      const card = document.createElement("div");
+      card.className = "snapshot-card";
+      const meta = document.createElement("div");
+      meta.className = "meta";
+      meta.textContent = formatTime(snapshot.ts);
+      const values = document.createElement("div");
+      values.className = "values";
+      const pitch = snapshot.hz ? `${snapshot.hz.toFixed(1)} Hz / ${snapshot.note || "--"} / ${Math.round(snapshot.confidence * 100)}%` : `-- Hz / -- / ${Math.round(snapshot.confidence * 100)}%`;
+      values.textContent = `${snapshot.db.toFixed(1)} dB · ${pitch}`;
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "link-btn";
+      remove.textContent = m("delete");
+      remove.addEventListener("click", () => {
+        snapshots.splice(index, 1);
+        renderSnapshots();
+      });
+      card.append(meta, values, remove);
+      els.snapshotItems.appendChild(card);
+    });
+    updateControls();
+  }
+
+  function clearSnapshots() {
     snapshots = [];
     renderSnapshots();
-    setStatus(MSG[currentLang].cleared, "info");
+  }
+
+  function createSegmentState() {
+    return {
+      active: false,
+      start: 0,
+      dbSum: 0,
+      dbCount: 0,
+      pitchCount: 0,
+      pitchMean: 0,
+      pitchM2: 0,
+      confidenceSum: 0
+    };
+  }
+
+  function addSegmentLevel(db) {
+    if (!segment.active || !Number.isFinite(db)) return;
+    segment.dbSum += db;
+    segment.dbCount += 1;
+  }
+
+  function addSegmentPitch(hz, confidence) {
+    if (!segment.active || !Number.isFinite(hz)) return;
+    segment.pitchCount += 1;
+    const delta = hz - segment.pitchMean;
+    segment.pitchMean += delta / segment.pitchCount;
+    const delta2 = hz - segment.pitchMean;
+    segment.pitchM2 += delta * delta2;
+    segment.confidenceSum += confidence || 0;
   }
 
   function startSegment() {
-    if (!isMicRunning()) return;
-
-    segActive = true;
-    segStartTs = Date.now();
-    segVolDb = [];
-    segHz = [];
-    segActiveFrames = 0;
-    segTotalFrames = 0;
-    lastSegmentRows = [];
-
-    segmentResult.classList.remove("hidden");
-    segmentResult.textContent = MSG[currentLang].segmentRecording;
-
+    if (!isMicRunning() || segment.active) return;
+    segment = createSegmentState();
+    segment.active = true;
+    segment.start = performance.now();
+    lastSegment = null;
+    renderSegmentRecording();
     updateControls();
   }
 
-  function stopSegment() {
-    if (!segActive) return;
+  function renderSegmentRecording() {
+    els.segmentResult.hidden = false;
+    els.segmentResult.textContent = m("segmentRecording");
+  }
 
-    segActive = false;
-    renderSegmentResult();
+  function finishSegment(interrupted = false) {
+    if (!segment.active) return;
+    const duration = Math.max(0, (performance.now() - segment.start) / 1000);
+    segment.active = false;
+    if (duration < 1 && !interrupted) {
+      lastSegment = { tooShort: true };
+      renderSegmentSummary(lastSegment);
+      segment = createSegmentState();
+      updateControls();
+      return;
+    }
+    if (duration >= 1) {
+      const pitchStd = segment.pitchCount > 1 ? Math.sqrt(segment.pitchM2 / (segment.pitchCount - 1)) : null;
+      let stability = null;
+      if (segment.pitchCount > 1 && Number.isFinite(pitchStd) && segment.pitchMean > 0) {
+        stability = clamp(100 * (1 - pitchStd / Math.max(segment.pitchMean * 0.04, 1)), 0, 100);
+      }
+      lastSegment = {
+        duration,
+        avgDb: segment.dbCount ? segment.dbSum / segment.dbCount : null,
+        avgHz: segment.pitchCount ? segment.pitchMean : null,
+        avgConfidence: segment.pitchCount ? segment.confidenceSum / segment.pitchCount : null,
+        stability
+      };
+      renderSegmentSummary(lastSegment);
+    } else {
+      els.segmentResult.hidden = true;
+    }
+    segment = createSegmentState();
+    updateControls();
+  }
+
+  function renderSegmentSummary(summary) {
+    els.segmentResult.replaceChildren();
+    els.segmentResult.hidden = false;
+    if (summary.tooShort) {
+      els.segmentResult.textContent = m("segmentTooShort");
+      return;
+    }
+    const title = document.createElement("strong");
+    title.textContent = m("segmentTitle");
+    els.segmentResult.appendChild(title);
+    const rows = [
+      [m("duration"), `${summary.duration.toFixed(1)} s`],
+      [m("avgLevel"), Number.isFinite(summary.avgDb) ? `${summary.avgDb.toFixed(1)} dB` : "—"],
+      [m("avgPitch"), Number.isFinite(summary.avgHz) ? `${summary.avgHz.toFixed(1)} Hz (${Math.round((summary.avgConfidence || 0) * 100)}%)` : m("noPitch")],
+      [m("stability"), Number.isFinite(summary.stability) ? `${Math.round(summary.stability)}%` : "—"]
+    ];
+    rows.forEach(([label, value]) => {
+      const line = document.createElement("div");
+      const key = document.createElement("strong");
+      key.textContent = `${label}:`;
+      line.append(key, document.createTextNode(` ${value}`));
+      els.segmentResult.appendChild(line);
+    });
   }
 
   function resetRecords() {
-    segActive = false;
-    segStartTs = 0;
-    segVolDb = [];
-    segHz = [];
-    segActiveFrames = 0;
-    segTotalFrames = 0;
-    lastSegmentRows = [];
-
-    segmentResult.classList.add("hidden");
-    segmentResult.replaceChildren();
-
     snapshots = [];
-    clearArmed = false;
+    lastSegment = null;
+    segment = createSegmentState();
+    els.segmentResult.hidden = true;
+    els.segmentResult.replaceChildren();
     renderSnapshots();
-    clearStatus();
-    resetMeterUI();
-
     updateControls();
   }
 
-  micButton.addEventListener("click", startMic);
-  stopMicButton.addEventListener("click", () => stopMic());
-  snapshotButton.addEventListener("click", takeSnapshot);
-  clearSnapshotsBtn.addEventListener("click", clearSnapshots);
-  segmentStart.addEventListener("click", startSegment);
-  segmentStop.addEventListener("click", stopSegment);
-  resetButton.addEventListener("click", resetRecords);
+  function configureAffiliate() {
+    const helper = window.NWAmazonAffiliate;
+    const config = window.NWTinyAudioAffiliate || { enabled: false, targets: {} };
+    if (!helper) return;
+    helper.configure({ enabled: config.enabled === true, tool: "tiny-audio-meter", targets: config.targets || {} });
+    helper.renderDisclosure(els.disclosure, { includeEnglish: true });
+  }
 
-  document.querySelectorAll("[data-lang-switch]").forEach((btn) => {
-    btn.addEventListener("click", () => applyLang(btn.dataset.langSwitch));
-  });
-
-  window.addEventListener("resize", () => {
-    if (analyser && freqData) {
-      try {
-        analyser.getByteFrequencyData(freqData);
-        drawSpectrumBars(freqData);
-      } catch {}
-    } else {
-      resetMeterUI();
+  function mountAffiliate() {
+    const helper = window.NWAmazonAffiliate;
+    if (!helper) {
+      els.affiliateSection.hidden = true;
+      return;
     }
-  });
+    const soundMounted = helper.mount({
+      container: els.soundAffiliate,
+      target: "sound_level_meter",
+      label: m("soundLevelAmazon"),
+      placement: "post_meter",
+      className: "amazon-cta"
+    });
+    const usbMounted = helper.mount({
+      container: els.usbAffiliate,
+      target: "usb_microphone",
+      label: m("usbMicAmazon"),
+      placement: "post_meter",
+      className: "amazon-cta"
+    });
+    els.affiliateSection.hidden = !(soundMounted || usbMounted);
+  }
 
-  window.addEventListener("pagehide", () => stopMic({ showMessage: false }));
-  window.addEventListener("beforeunload", () => stopMic({ showMessage: false }));
+  function bind() {
+    document.querySelectorAll("[data-lang-switch]").forEach((button) => button.addEventListener("click", () => applyLang(button.dataset.langSwitch)));
+    els.micButton.addEventListener("click", () => startMic(selectedDeviceId));
+    els.stopMicButton.addEventListener("click", () => stopMic());
+    els.deviceSelect.addEventListener("change", async () => {
+      selectedDeviceId = els.deviceSelect.value;
+      if (isMicRunning()) await startMic(selectedDeviceId, { switching: true });
+    });
+    els.snapshotButton.addEventListener("click", captureSnapshot);
+    els.clearSnapshots.addEventListener("click", clearSnapshots);
+    els.segmentStart.addEventListener("click", startSegment);
+    els.segmentStop.addEventListener("click", () => finishSegment(false));
+    els.resetButton.addEventListener("click", resetRecords);
+    window.addEventListener("resize", () => { if (isMicRunning()) drawSpectrum(); });
+    window.addEventListener("pagehide", () => cleanupAudio(), { once: true });
+  }
 
-  snapshotButton.disabled = true;
-  clearSnapshotsBtn.disabled = true;
-  segmentStart.disabled = true;
-  segmentStop.disabled = true;
-  resetButton.classList.add("hidden");
+  function init() {
+    bind();
+    configureAffiliate();
+    resetLiveUI();
+    renderSnapshots();
+    applyLang(currentLang);
+    updateControls();
+  }
 
-  resetMeterUI();
-  renderSnapshots();
-  applyLang(currentLang);
-  updateControls();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
 })();
