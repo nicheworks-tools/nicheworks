@@ -147,8 +147,8 @@
     <footer class="footer">
       <div class="row">
         <span>Donate:</span>
-        <a href="https://nicheworks.app/support/">Ko-fi</a>
-        <a href="https://nicheworks.app/support/">OFUSE</a>
+        <a href="https://ko-fi.com/nicheworks">Ko-fi</a>
+        <a href="https://ofuse.me/nicheworks">OFUSE</a>
         <span>·</span>
         <a href="https://nicheworks.app/">Other tools</a>
       </div>
@@ -166,7 +166,7 @@
       const KEY="nw_theme";
       const root=document.documentElement;
       function pref(){
-        try{ const v=localStorage.getItem(KEY); if(v==="dark"||v==="light") return v; }catch(e){}
+        try{ const v=localStorage.getItem(KEY); if(v==="dark"||v==="light") return v;}catch(e){}
         const d=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
         return d?"dark":"light";
       }
