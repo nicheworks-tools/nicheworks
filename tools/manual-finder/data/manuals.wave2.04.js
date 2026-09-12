@@ -43,6 +43,32 @@ window.MANUALFINDER_WAVE2_SEIKO.push(`3X22|https://www.seikowatches.com/instruct
 8B63|https://www.seikowatches.com/instructions/html/SEIKO_8B63_JP/index
 8B92|https://www.seikowatches.com/instructions/html/SEIKO_8B92_JP/index`);
 
+// Wave 2T: older direct Seiko caliber manuals with unique official index targets.
+window.MANUALFINDER_WAVE2_SEIKO.push(`3B21|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/3/3B21/3B21.pdf
+3B51|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/3/3B51/3B51.pdf
+3F30|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/3/3F30/3F30.pdf
+3F31|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/3/3F31/3F31.pdf
+3F81|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/3/3F81/3F81.pdf
+3M21|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/3/3M21/3M21.pdf
+3M22|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/3/3M22/3M22.pdf
+4F32|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4F32/4F32.pdf
+4F56|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4F56/4F56.pdf
+4J27|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4J27/4J27.pdf
+4J40|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4J40/4J40.pdf
+4J41|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4J41/4J41.pdf
+4J42|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4J42/4J42.pdf
+4J45|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4J45/4J45.pdf
+4L25|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4L25/4L25.pdf
+4M21|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4M21/4M21.pdf
+4M61|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4M61/4M61.pdf
+4N20|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4N20/4N20.pdf
+4N21|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4N21/4N21.pdf
+4N30|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4N30/4N30.pdf
+4N31|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4N31/4N31.pdf
+4S15|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4S15/4S15.pdf
+4S27|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4S27/4S27.pdf
+4S36|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/4/4S36/4S36.pdf`);
+
 // Normalize Seiko evidence/support links to the model-specific official caliber search.
 // This removes the original H-index assumption while preserving the existing builder contract.
 {
