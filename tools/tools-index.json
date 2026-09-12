@@ -881,14 +881,14 @@
     },
     {
       "slug": "reconcile",
-      "title_en": "NicheWorks Reconcile",
-      "title_ja": "CSV・Excel取引照合ツール",
-      "desc_en": "Reconcile two CSV/XLSX transaction datasets locally and isolate records that require human review.",
-      "desc_ja": "2つのCSV・Excel取引データをブラウザ内で照合し、候補・重複・不一致など人が確認すべき取引だけを絞り込みます。",
+      "title_en": "CSV / Excel Reconciliation — Reconcile",
+      "title_ja": "CSV・Excel取引照合｜Reconcile",
+      "desc_en": "Reconcile two CSV or Excel transaction datasets locally in your browser and isolate exceptions for manual review.",
+      "desc_ja": "2つのCSV・Excel取引データをブラウザ内で照合し、確認が必要な差分・候補・重複を抽出します。",
       "tags": [
         "csv",
         "xlsx",
-        "reconcile",
+        "reconciliation",
         "accounting"
       ]
     },
