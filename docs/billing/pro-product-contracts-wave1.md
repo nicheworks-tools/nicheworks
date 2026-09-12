@@ -129,20 +129,98 @@ The following are not defined by this contract:
 - Stripe Price environment variable mapping;
 - live/test enablement policy.
 
-## 4. Implementation order
+## 4. Logistics Compliance Kit JP
+
+### 4.1 Free boundary — fixed
+
+The current assessment workflow remains Free:
+
+- review/priority level and supporting signals;
+- next-action guidance;
+- medium/long-term improvement-plan draft;
+- current-state memo display;
+- on-screen Markdown preview.
+
+The scoring/review workflow must not become dependent on paid entitlement availability.
+
+### 4.2 Paid boundary — existing implemented value
+
+The current runtime already contains eight paid operations:
+
+1. internal-share memo copy;
+2. contractor/vendor confirmation memo copy;
+3. improvement-plan copy;
+4. GitHub Issue draft copy;
+5. Codex task copy;
+6. handoff Markdown export;
+7. JSON export;
+8. Markdown save.
+
+No new paid feature is required to prepare this tool for product-scoped migration.
+
+### 4.3 Staged product-scoped controller
+
+`tools/logistics-compliance-kit-jp/product-scoped-controller.mjs` is a non-live migration component. It does not register or activate a real Logistics product.
+
+The staging contract requires:
+
+- an explicit future product ID with no fallback/default;
+- a complete and unique feature-ID mapping for all eight paid operations;
+- server-backed `refreshProState({ productId })` verification;
+- exact product match;
+- `active: true`;
+- `source: "server"`;
+- `reason: "verified_entitlement"`;
+- operation-level activation only for feature IDs returned by the verified server response.
+
+The controller rejects local/browser-only authority, the legacy `nicheworks_pro` authority, wrong-product responses, unverified states, incomplete/duplicate mappings, and entitlement refresh failures. It handles fixed entitlement metadata only and must not receive assessment answers, memo content, generated output, or export content.
+
+The current public runtime remains on `pro-bridge.js` until commercial configuration and an explicit migration are authorized.
+
+### 4.4 Live migration requirements
+
+Logistics migration is complete only after all of the following are true:
+
+1. an authoritative Logistics product ID and commercial configuration are registered in the billing registry;
+2. all eight operation feature IDs are registered for that product;
+3. checkout uses the common billing endpoint for the Logistics product;
+4. webhook fulfillment records the matching paid entitlement in D1;
+5. the public page loads the common server-backed product entitlement adapter;
+6. the live bridge enables only verified returned feature IDs;
+7. the legacy shared Payment Link and `nicheworks_pro` authority stop being authoritative for this tool;
+8. the JSON export no longer writes the legacy `nicheworks_pro` marker as its entitlement identity;
+9. failed/inactive entitlement checks leave the complete Free assessment workflow usable.
+
+Return path: `/tools/logistics-compliance-kit-jp/`
+
+### 4.5 Commercial fields intentionally unresolved
+
+Do not invent these values:
+
+- product ID;
+- display product name;
+- price / currency;
+- one-time vs recurring billing model;
+- price tier ID;
+- Stripe Price environment mapping;
+- live/test enablement policy;
+- final production feature-ID namespace.
+
+## 5. Implementation order
 
 1. Obtain authoritative commercial configuration for Command Safety.
 2. Migrate Command Safety as the first legacy-shared reference product and prove checkout → webhook → D1 → entitlement → reload behavior.
-3. Implement JSON2Mermaid's additive Pro features behind a disabled/non-live product-scoped gate.
-4. Configure JSON2Mermaid commercial settings only after the feature package exists and passes regression/privacy checks.
-5. Use the proven migration pattern for Logistics Compliance Kit JP and the remaining legacy shared candidates.
+3. Keep JSON2Mermaid's additive Pro implementation staged until its commercial settings and Mermaid bundle delivery are explicitly authorized.
+4. Keep Logistics on the live legacy bridge while its server-verified product-scoped controller and regression checks are prepared.
+5. After the first product-scoped migration is proven, use the same verified path to migrate Logistics and the remaining legacy shared candidates.
 
-## 5. Definition of done for this contract wave
+## 6. Definition of done for this contract wave
 
 This documentation wave is complete when:
 
 - Command Safety's Free and paid boundaries are unambiguous;
 - JSON2Mermaid's existing Free features are protected from retroactive paywalling;
-- JSON2Mermaid has a concrete additive paid feature package;
+- JSON2Mermaid has a concrete additive paid feature package and staged local pipeline;
+- Logistics has an exact Free/Paid boundary and a fail-closed staged product-scoped controller contract;
 - unresolved commercial settings are explicitly marked unresolved;
-- neither tool is falsely described as product-scoped before runtime migration is implemented.
+- no tool is falsely described as product-scoped before runtime migration is implemented.
