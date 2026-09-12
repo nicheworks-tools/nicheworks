@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "datasets": [
+    {
+      "path": "services.json",
+      "kind": "migration_base",
+      "wave": "legacy-import",
+      "note": "Standalone repository migration snapshot. Not independently authoritative without later overlays."
+    },
+    {
+      "path": "reverification/2026-09-12-wave1-media.json",
+      "kind": "overlay",
+      "wave": "2026-09-12-wave1-media"
+    },
+    {
+      "path": "reverification/2026-09-12-wave1-cloud-software.json",
+      "kind": "overlay",
+      "wave": "2026-09-12-wave1-cloud-software"
+    },
+    {
+      "path": "reverification/2026-09-12-wave1-carrier-hygiene.json",
+      "kind": "overlay",
+      "wave": "2026-09-12-wave1-carrier-hygiene"
+    },
+    {
+      "path": "reverification/2026-09-12-wave2-cleanup.json",
+      "kind": "overlay",
+      "wave": "2026-09-12-wave2"
+    },
+    {
+      "path": "reverification/2026-09-12-wave3-phase1-close.json",
+      "kind": "overlay",
+      "wave": "2026-09-12-wave3"
+    }
+  ]
+}
