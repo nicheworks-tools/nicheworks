@@ -8,7 +8,7 @@
 
 ## Purpose
 
-Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one directly entered size, plus conservative measurement-based estimates that refuse to fabricate endpoint matches outside the supported chart.
+Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one directly entered size, plus conservative measurement-based estimates and a page-memory comparison tray for checking several candidate rows side by side.
 
 ## Primary workflow
 
@@ -17,7 +17,8 @@ Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one d
 3. Select a base system or type a prefixed value such as `US 4`, `EU 42`, or `JP 26.5`.
 4. Resolve an exact row from the bundled reference table, or for supported women's clothing numeric ranges resolve a numeric input that falls inside the displayed range row.
 5. Immediately display the corresponding JP/US/EU row and a concise source-to-target summary.
-6. Optionally use the measurement section for a conservative nearby-size estimate.
+6. Optionally pin up to four direct-conversion rows for page-local comparison.
+7. Optionally use the measurement section for a conservative nearby-size estimate.
 
 ## Current functional contract
 
@@ -32,6 +33,15 @@ Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one d
 - Keep the same conversion row selected when switching the source system.
 - Show a no-match state for values outside the bundled table and supported range rows.
 - Display and locally copy the full selected table or the current direct conversion result.
+
+### Candidate comparison tray
+
+- Allow the current valid direct-conversion row to be pinned to a comparison tray.
+- Keep at most four candidate rows; when adding a fifth unique row, discard the oldest pinned row.
+- Deduplicate identical category/chart/JP/US/EU rows.
+- Show category and chart context for every pinned row so identical-looking size numbers are not compared without context.
+- Allow individual removal, clear-all, and local clipboard export as tab-separated text.
+- Keep comparison candidates in page memory only; do not write them to localStorage, URL parameters, analytics, or affiliate destinations.
 
 ### Shoe measurement estimate
 
@@ -57,7 +67,7 @@ Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one d
 ### Shared behavior
 
 - Switch JA/EN UI on the same page and persist only the UI-language choice.
-- Perform conversion and measurement calculations locally in the browser.
+- Perform conversion, comparison, and measurement calculations locally in the browser.
 - Do not apply brand-wide numerical size offsets. `brand.json` is not part of the active calculation path.
 - Results are approximate and official seller/brand charts take precedence.
 
@@ -67,6 +77,7 @@ Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one d
 - Chart type: men or women.
 - Base system: JP, US, or EU.
 - Direct size text, optionally prefixed with JP/US/EU.
+- Optional compare action on a valid direct-conversion row.
 - Shoe measurements: foot length and optional width.
 - Clothing measurements: garment type, unit, waist, optional chest/bust, optional hip.
 - JA/EN UI language.
@@ -76,6 +87,7 @@ Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one d
 - Concise direct conversion sentence such as `US 8.5 → JP 26.5 / EU 42`.
 - One-row JP/US/EU conversion cards.
 - Active category/chart context and common US 4 shortcuts.
+- Up to four page-local candidate comparison cards plus copy/remove/clear controls.
 - Full JP/US/EU reference table.
 - Approximate shoe fit result, nearby rows, or explicit out-of-range state.
 - Approximate clothing size result with measurement basis, or explicit out-of-range state.
@@ -93,20 +105,21 @@ Default configuration remains deliberately disabled:
 
 While disabled or without valid Amazon HTTPS targets, no Amazon CTA, disclosure, or affiliate click event is emitted. When Amazon Associates is ready, activation requires only verified target URLs plus `enabled: true`.
 
-The active affiliate insertion point remains immediately after a valid direct-conversion result. Measurement inputs/results are never encoded into affiliate URLs or affiliate analytics. Query-intent shortcut state is also not added to affiliate URLs or analytics.
+The active affiliate insertion point remains immediately after a valid direct-conversion result. Measurement inputs/results and comparison candidates are never encoded into affiliate URLs or affiliate analytics. Query-intent shortcut state is also not added to affiliate URLs or analytics.
 
 ## State and persistence
 
 - Current category, chart, base system, selected row, direct size text, and measurement inputs are page state only.
 - Query-intent range-resolution state and shortcut context are page state only.
+- Candidate comparison rows are page state only and capped at four.
 - Measurement/profile history is not persisted.
 - JA/EN preference may be stored as `nw_lang` in localStorage.
 
 ## Privacy and network behavior
 
-- Size conversion and fit calculations run locally in the browser.
-- Direct size text and measurements are not sent to a fitting backend or affiliate destination.
-- Query-intent helpers run locally and do not create new network requests.
+- Size conversion, comparison, and fit calculations run locally in the browser.
+- Direct size text, pinned comparison rows, and measurements are not sent to a fitting backend or affiliate destination.
+- Query-intent and comparison helpers run locally and do not create new network requests.
 - Ads and analytics may load separately under the NicheWorks common specification.
 
 ## Language mode
@@ -117,7 +130,7 @@ The active affiliate insertion point remains immediately after a valid direct-co
 
 `mobile-oriented`
 
-The page uses a direct-input conversion card first, followed by an expandable table and measurement helpers with collapsible measurement guidance.
+The page uses a direct-input conversion card first, followed by query-intent/context helpers, a candidate comparison tray, an expandable table, and measurement helpers with collapsible measurement guidance.
 
 ## Limits and non-goals
 
@@ -126,6 +139,7 @@ The page uses a direct-input conversion card first, followed by an expandable ta
 - The foot-width ratio is a rough contextual signal only and is not a formal width-size standard.
 - Current direct conversion centers on JP/US/EU.
 - Numeric-in-range resolution does not convert between standards mathematically; it only maps an input into an already bundled displayed range row.
+- The comparison tray compares bundled conversion rows; it does not rank products, brands, fit quality, or purchase suitability.
 - UK, CN, kids, wide sizing, and verified brand/model-specific official charts require separate verified data work.
 - The tool is not a virtual fitting service.
 
@@ -134,6 +148,9 @@ The page uses a direct-input conversion card first, followed by an expandable ta
 - [ ] A plain or prefixed direct size resolves an exact bundled row, except supported women's clothing numeric values may resolve inside an already bundled US/EU range row.
 - [ ] `US 4` can be checked explicitly for men's shoes and women's shoes without implying they are the same chart.
 - [ ] The UI states the active category/chart context near the direct result.
+- [ ] A valid direct result can be pinned to a comparison tray.
+- [ ] The comparison tray deduplicates identical rows, caps at four, and exposes context plus JP/US/EU values.
+- [ ] Comparison rows can be removed, cleared, and copied locally without persistence or network transmission.
 - [ ] Unsupported direct sizes show a no-match state.
 - [ ] Changing source system preserves the current conversion row.
 - [ ] Shoe foot length outside the current selected chart range returns out-of-range, not the nearest endpoint row.
@@ -145,7 +162,7 @@ The page uses a direct-input conversion card first, followed by an expandable ta
 - [ ] Shoe/clothing estimate text can be copied locally.
 - [ ] No active brand-wide numerical correction changes a calculated result.
 - [ ] Default affiliate configuration keeps Amazon CTA/disclosure hidden.
-- [ ] Affiliate analytics never receive size text, query-intent state, or measurement state.
+- [ ] Affiliate analytics never receive size text, query-intent state, comparison state, or measurement state.
 
 ## Implementation evidence
 
