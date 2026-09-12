@@ -7,8 +7,9 @@ Continue the 87-tool implementation-quality cycle by auditing registry tools 31�
 ## Base and scope
 
 - Original audit base main SHA: `630ba3a978be0d87ab8ef4d6b9672adbebdb6882`.
-- Latest integrated main SHA before PR: `8fdba8fee169fc16af14df53fe71778ce546e83b`.
+- Latest replayed main SHA before final PR validation: `f5b24b731d33400ea3f6a292df58e875cf058219`.
 - Branch: `audit/spec-conformance-wave3-20260912`.
+- Pull request: `#558`.
 - Scope: registry tools 31–45.
 
 ## Wave 3 tools
@@ -50,7 +51,7 @@ For each tool:
 ## Special current-main checks
 
 - `json2mermaid`: re-audited after main moved to the shared `window.NWJSON2MermaidConverter` API. The visible Free converter still enforces the documented 300 KB / depth 12 / array 50 limits. The staged Pro batch integration calls the same converter API, while `pro-engine.mjs` and `mermaid-renderer-adapter.mjs` remain disconnected from the public page.
-- `manual-finder`: re-audited against the current verified model-data waves and dynamic batch loader through the latest integrated main. Current search/pagination/shared-target behavior matches the evolved specification.
+- `manual-finder`: re-audited against the current verified model-data waves and dynamic batch loader through the replayed main. Current search/pagination/shared-target behavior matches the evolved specification, and later concurrent data-only waves are preserved by PR merge integration.
 - `metadatasnap`: current public copy correctly discloses Worker-first proxying, AllOrigins fallback, and possible direct OGP-image requests.
 
 ## Findings and fixes
@@ -139,6 +140,17 @@ The following were checked against their active runtime and current acceptance c
 - Message Generator culture/content separation;
 - MetadataSnap proxy order/disclosure/failure handling.
 
+## Validation
+
+On PR `#558`, head `0c177feb6f384a3270cd67200598abe3db8dcdfb` passed the integrated PR checks after correcting one checker-only MetadataSnap text marker:
+
+- Tool runtime contract audit: run `34690194620` — success.
+- Tool spec audit: run `34690194630` — success.
+- SEO audit: run `34690194668` — success.
+- Validate Construction Tools Atlas Data: run `34690194619` — success.
+
+The earlier runtime failure was not a product defect: the checker searched for `input URL is sent...` while the actual public disclosure says `entered URL is sent...`. The checker was aligned to the real visible copy; the product UI was not weakened or changed for that failure.
+
 ## Progress
 
 - [x] Branch created from current main.
@@ -147,9 +159,10 @@ The following were checked against their active runtime and current acceptance c
 - [x] Audit tools 41–45.
 - [x] Fix P0/P1 findings and synchronize affected specs.
 - [x] Extend runtime-contract audit to 45 tools.
-- [x] Rebase/replay the seven wave-3 files onto latest main and re-audit concurrent JSON2Mermaid / ManualFinder changes.
-- [ ] Run CI, open PR, and merge only when green.
+- [x] Rebase/replay the seven wave-3 files onto current main and re-audit concurrent JSON2Mermaid / ManualFinder changes.
+- [x] Open PR and obtain green integrated PR validation.
+- [ ] Squash merge after the final documentation-only head is green; then confirm main checks.
 
 ## Acceptance
 
-Wave 3 closes only after all 15 tools have been inspected against their current specifications and active runtime, all discovered P0/P1 failures are fixed or explicitly justified, runtime-contract coverage reaches 45 tools, and the relevant repository checks are green on the final integrated head.
+Wave 3 closes only after all 15 tools have been inspected against their current specifications and active runtime, all discovered P0/P1 failures are fixed or explicitly justified, runtime-contract coverage reaches 45 tools, and the relevant repository checks are green on the final integrated head and after merge.
