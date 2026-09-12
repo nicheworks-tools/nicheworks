@@ -33,29 +33,49 @@ The safety checker itself must not become a paid gate. A user who has no paid en
 
 The current paid-value surface is limited to the already implemented review/handoff artifacts:
 
-- review Markdown;
-- Codex safety-check task text;
-- GitHub Issue draft;
-- JSON export;
-- Markdown export.
+1. review Markdown;
+2. Codex safety-check task text;
+3. GitHub Issue draft;
+4. JSON export;
+5. Markdown export.
 
 No additional paid feature is required to perform the reference migration.
 
-### 2.3 Product-scoped migration contract
+### 2.3 Staged product-scoped controller
 
-Migration is complete only when all of the following are true:
+`tools/command-safety-checker/product-scoped-controller.mjs` is a non-live migration component. It does not register or activate a real Command Safety product.
+
+The staging contract requires:
+
+- an explicit future product ID with no fallback/default;
+- a complete and unique feature-ID mapping for all five paid operations;
+- server-backed `refreshProState({ productId })` verification;
+- exact product match;
+- `active: true`;
+- `source: "server"`;
+- `reason: "verified_entitlement"`;
+- operation-level activation only for feature IDs returned by the verified server response.
+
+The controller rejects local/browser-only authority, the legacy `nicheworks_pro` authority, wrong-product responses, unverified states, incomplete/duplicate mappings, and entitlement refresh failures. It handles fixed entitlement metadata only and must not receive command text, normalized command content, findings, generated review text, or export payloads.
+
+The current public runtime remains on `pro-bridge.js` until commercial configuration and an explicit migration are authorized.
+
+### 2.4 Live migration requirements
+
+Command Safety migration is complete only when all of the following are true:
 
 1. the tool has its own registered product entry in the common billing registry;
-2. checkout is created through the common billing endpoint for that product;
-3. Stripe webhook fulfillment records the matching paid entitlement in D1;
-4. the public page checks that product-specific server entitlement before enabling paid artifacts;
-5. reloading the page re-verifies the entitlement rather than trusting a browser-local active flag;
-6. the legacy shared Payment Link and `nicheworks_pro` authority are no longer authoritative for this tool;
-7. the Free checker continues to function when entitlement lookup fails or returns inactive.
+2. all five paid operation feature IDs are registered for that product;
+3. checkout is created through the common billing endpoint for that product;
+4. Stripe webhook fulfillment records the matching paid entitlement in D1;
+5. the public page checks that product-specific server entitlement before enabling paid artifacts;
+6. reloading the page re-verifies the entitlement rather than trusting a browser-local active flag;
+7. the legacy shared Payment Link and `nicheworks_pro` authority are no longer authoritative for this tool;
+8. failed/inactive entitlement checks leave the complete current Free checker available.
 
 Return path: `/tools/command-safety-checker/`
 
-### 2.4 Commercial fields intentionally unresolved
+### 2.5 Commercial fields intentionally unresolved
 
 Do not invent these values:
 
@@ -65,9 +85,10 @@ Do not invent these values:
 - price / currency;
 - internal price tier ID;
 - Stripe Price environment variable mapping;
+- production feature-ID namespace;
 - test/live checkout enablement policy.
 
-Until those fields are explicitly authorized, Command Safety remains on the legacy shared gate and must not be presented as product-scoped.
+Until those fields are explicitly authorized, Command Safety remains on the legacy shared gate and must not be presented as a live product-scoped product.
 
 ## 3. JSON2Mermaid Lite
 
@@ -208,17 +229,17 @@ Do not invent these values:
 
 ## 5. Implementation order
 
-1. Obtain authoritative commercial configuration for Command Safety.
+1. Command Safety now has a staged fail-closed product-scoped controller; obtain authoritative commercial configuration before connecting it to the public runtime.
 2. Migrate Command Safety as the first legacy-shared reference product and prove checkout → webhook → D1 → entitlement → reload behavior.
 3. Keep JSON2Mermaid's additive Pro implementation staged until its commercial settings and Mermaid bundle delivery are explicitly authorized.
-4. Keep Logistics on the live legacy bridge while its server-verified product-scoped controller and regression checks are prepared.
+4. Keep Logistics on the live legacy bridge while its server-verified product-scoped controller and regression checks remain ready for a later authorized migration.
 5. After the first product-scoped migration is proven, use the same verified path to migrate Logistics and the remaining legacy shared candidates.
 
 ## 6. Definition of done for this contract wave
 
 This documentation wave is complete when:
 
-- Command Safety's Free and paid boundaries are unambiguous;
+- Command Safety has an exact Free/Paid boundary and a fail-closed staged product-scoped controller contract;
 - JSON2Mermaid's existing Free features are protected from retroactive paywalling;
 - JSON2Mermaid has a concrete additive paid feature package and staged local pipeline;
 - Logistics has an exact Free/Paid boundary and a fail-closed staged product-scoped controller contract;
