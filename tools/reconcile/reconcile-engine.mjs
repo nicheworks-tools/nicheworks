@@ -159,7 +159,20 @@ function findCombinations(records, target, tolerance, maxSize, maxNodes) {
   return { solutions, truncated, visitedNodes };
 }
 
-function candidatesForRecord(recordA, amountIndexB, usedB, config, useDate, useReference, exactReferenceOnly = false) {
+function candidateGraphOverflow(limit) {
+  const error = new Error('candidate_graph_too_large');
+  error.code = 'candidate_graph_too_large';
+  error.limit = limit;
+  return error;
+}
+
+function countCandidateEdge(edgeBudget) {
+  if (!edgeBudget) return;
+  edgeBudget.count += 1;
+  if (edgeBudget.count > edgeBudget.limit) throw candidateGraphOverflow(edgeBudget.limit);
+}
+
+function candidatesForRecord(recordA, amountIndexB, usedB, config, useDate, useReference, exactReferenceOnly = false, edgeBudget = null) {
   const candidates = [];
   for (const recordB of recordsWithinAmount(amountIndexB, recordA.amount, config.amountTolerance)) {
     if (usedB.has(recordB.sourceRow)) continue;
@@ -171,6 +184,7 @@ function candidatesForRecord(recordA, amountIndexB, usedB, config, useDate, useR
     const amountGap = amountDistance(recordA, recordB);
     const dateGap = useDate ? dateDistance(recordA, recordB) : null;
     if (useDate && (dateGap === null || dateGap > config.dateToleranceDays)) continue;
+    countCandidateEdge(edgeBudget);
     candidates.push({ recordB, amountGap, dateGap });
   }
   candidates.sort((x, y) => x.amountGap - y.amountGap || (x.dateGap ?? 0) - (y.dateGap ?? 0) || x.recordB.sourceRow - y.recordB.sourceRow);
@@ -197,10 +211,11 @@ function resolveMutualUniquePairs({ a, amountIndexB, usedA, usedB, config, useDa
   while (true) {
     const graph = new Map();
     const reverseClaims = new Map();
+    const edgeBudget = { count: 0, limit: config.candidateGraphEdgeLimit };
 
     for (const recordA of a) {
       if (usedA.has(recordA.sourceRow) || recordA.invalidAmount || recordA.dateError) continue;
-      const candidates = candidatesForRecord(recordA, amountIndexB, usedB, config, useDate, useReference, exactReferenceOnly);
+      const candidates = candidatesForRecord(recordA, amountIndexB, usedB, config, useDate, useReference, exactReferenceOnly, edgeBudget);
       if (!candidates.length) continue;
       graph.set(recordA.sourceRow, { recordA, candidates });
       for (const candidate of candidates) {
@@ -228,9 +243,10 @@ function resolveMutualUniquePairs({ a, amountIndexB, usedA, usedB, config, useDa
 function reserveRemainingCandidates({ a, amountIndexB, usedA, usedB, config, useDate, useReference, reservedCandidateA, reservedCandidateB, results }) {
   const graph = new Map();
   const reverseClaims = new Map();
+  const edgeBudget = { count: 0, limit: config.candidateGraphEdgeLimit };
   for (const recordA of a) {
     if (usedA.has(recordA.sourceRow) || recordA.invalidAmount || recordA.dateError) continue;
-    const candidates = candidatesForRecord(recordA, amountIndexB, usedB, config, useDate, useReference, false);
+    const candidates = candidatesForRecord(recordA, amountIndexB, usedB, config, useDate, useReference, false, edgeBudget);
     if (!candidates.length) continue;
     graph.set(recordA.sourceRow, { recordA, candidates });
     for (const candidate of candidates) {
@@ -273,7 +289,8 @@ export function reconcile({ rowsA, rowsB, mappingA, mappingB, options = {} }) {
     signMode: ['normal', 'invert_b', 'ignore_sign'].includes(options.signMode) ? options.signMode : 'normal',
     groupMatching: Boolean(options.groupMatching),
     maxGroupSize: Math.min(5, Math.max(2, Number(options.maxGroupSize ?? 5))),
-    groupSearchNodeLimit: Math.max(1, Number(options.groupSearchNodeLimit ?? 50000))
+    groupSearchNodeLimit: Math.max(1, Number(options.groupSearchNodeLimit ?? 50000)),
+    candidateGraphEdgeLimit: Math.min(500000, Math.max(100, Number(options.candidateGraphEdgeLimit ?? 100000)))
   };
   if (!mappingA?.amount || !mappingB?.amount) throw new Error('amount_mapping_required');
 
