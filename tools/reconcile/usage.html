@@ -1,46 +1,62 @@
 <!doctype html>
 <html lang="ja">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="robots" content="noindex,nofollow">
-  <title>Reconcile usage — development</title>
+  <title>NicheWorks Reconcile 使い方｜CSV・Excel取引照合</title>
+  <meta name="description" content="NicheWorks Reconcileで2つのCSV・Excel取引データを照合する手順、Free/Proの上限、判定ルール、XLSX出力、プライバシー仕様を説明します。">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://nicheworks.app/tools/reconcile/usage.html">
+  <link rel="icon" href="/assets/favicon.ico">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./styles.css">
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 <body>
   <main class="nw-main" style="padding-top:30px">
     <section class="panel">
-      <h1>NicheWorks Reconcile — Usage</h1>
-      <p>このページは開発ブランチ用です。CSV照合コア、高度照合エンジン、XLSX読込/出力は実装済みです。XLSXは検証済みSheetJS CE 0.20.3 miniをローカル同梱し、ランタイムCDNを使用しません。Pro機能は課金接続前のためロックされています。</p>
+      <h1>NicheWorks Reconcile — 使い方</h1>
+      <p>2つのCSV/XLSX取引データをブラウザ内で照合し、完全一致だけでなく候補・重複・不一致など、人が確認すべき例外を抽出するツールです。取引ファイルや取引行はNicheWorksサーバーやStripeへ送信しません。</p>
 
       <h2>Free workflow</h2>
       <ol>
-        <li>CSV A/Bを選択、またはサンプルを読み込みます。</li>
-        <li>必要なら文字コード、区切り文字、ヘッダー行を調整します。</li>
-        <li>金額列を必須で対応付け、必要なら日付・取引ID・摘要を選びます。</li>
-        <li>日付許容差と曖昧日付の解釈を選び、照合します。</li>
-        <li>exact / tolerant / candidate / A only / B only / duplicate / conflict を確認します。</li>
-        <li>結果をCSVで保存できます。</li>
+        <li>File A / File BとしてCSVまたはXLSXを選択します。</li>
+        <li>CSVの場合は必要に応じて文字コード、区切り文字、ヘッダー行を調整します。XLSXの場合はworksheetを選択できます。</li>
+        <li>金額列を必須で対応付け、必要なら日付・取引ID/Reference・摘要を選びます。</li>
+        <li>Freeでは日付許容差を0日または±1日から選び、照合します。</li>
+        <li>exact_match / tolerant_match / candidate / a_only / b_only / duplicate / conflict を確認します。</li>
+        <li>監査結果をCSVで保存できます。</li>
       </ol>
 
       <h2>Matching rules</h2>
-      <p>照合は決定論的です。Reference完全一致を優先し、その後もA/B双方から見て一意な1:1関係だけを自動確定します。複数の候補がある場合や複数A行が同じB行を取り合う場合は、入力順で勝手に割り当てずcandidateにします。同一参照IDでも金額差が許容範囲を超える場合はconflictとして扱います。</p>
-      <p>同額取引が大量に並ぶなど、1:1候補グラフが安全上限を超える場合は途中結果を自動確定せず照合を停止します。その場合は日付または取引ID/参照列を追加して候補を絞ります。1:n / n:1の組合せ探索にも別の探索上限があり、上限到達時は自動一致せずmanual review候補へ落とします。</p>
+      <p>照合は決定論的です。Reference完全一致を優先し、その後もA/B双方から見て一意な1:1関係だけを自動確定します。複数候補がある場合や複数A行が同じB行を取り合う場合は入力順で勝手に割り当てず、candidateとして人の確認対象に残します。同一Referenceでも金額差が許容範囲を超える場合はconflictとして扱います。</p>
+      <p>同額取引が大量に並ぶなど1:1候補グラフが安全上限を超える場合は、途中結果を勝手に確定せず照合を停止します。その場合は日付やReference列を追加して候補を絞ってください。1:n / n:1の組合せ探索にも別の安全上限があります。</p>
 
-      <h2>Reconcile Pro implementation</h2>
-      <p>Pro用の金額許容差、B側符号反転、符号無視、1:n / n:1照合、最大5件のグループ照合、XLSXレポート、保存済みルールのコードとUIは実装済みです。ただしこの隔離ブランチではentitlementを接続していないため、操作はロックされています。</p>
-      <p>保存済みルールは列対応・CSV解析設定・照合条件だけをlocalStorageへ保存します。取引行、ファイル本体、照合結果は保存しません。ルールは最大20件で、JSONとしてimport/exportできます。保存した列名が新しいファイルに存在しない場合は、その列を勝手に置き換えず未選択に戻して警告します。</p>
+      <h2>Reconcile Pro</h2>
+      <p>Reconcile Proは¥3,980 JPYのone-time商品です。CSVは1ファイル100,000行・50MBまで、XLSXは1ファイル50,000行・25MBまで扱えます。金額許容差、B側符号反転、符号無視、1:n / n:1照合、最大5件のグループ照合、7-sheet XLSX audit report、保存済みルール、ルールJSON import/exportを追加します。</p>
+      <p>Reconcile Pro購入ではReconcile専用権利に加えてNicheWorks共通Proも付与されます。一方、NicheWorks共通Proだけを持っていてもReconcile Proは解錠されません。Reconcile側は専用権利をサーバーで確認し、確認できない場合はFreeのまま動作します。</p>
 
-      <h2>XLSX status</h2>
-      <p>複数worksheetの選択、Excel日付/数値の読み込み、Summary / Matches / Candidates / A Only / B Only / Duplicates / Conflicts の7シートレポート生成まで実装済みです。SheetJS CE 0.20.3のmini buildをローカル固定し、ランタイムCDNは使用しません。vendor本体はsize / SHA-256 / Git blob SHA / runtime versionを照合済みで、実vendorを使ったXLSX write→read再読込テストも通過しています。公開前には実ブラウザUIで最終スモーク確認します。</p>
+      <h2>Saved rule profiles</h2>
+      <p>Proの保存済みルールは列対応・CSV解析設定・照合条件だけをlocalStorageへ保存します。取引行、ファイル本体、照合結果は保存しません。最大20件まで保存でき、JSONとしてimport/exportできます。保存した列名が新しいファイルに存在しない場合は、その列を勝手に置き換えず未選択に戻します。</p>
+
+      <h2>XLSX</h2>
+      <p>複数worksheetの選択、Excel日付/数値の読み込み、Summary / Matches / Candidates / A Only / B Only / Duplicates / Conflicts の7シート監査レポート生成に対応します。SheetJS CE 0.20.3 miniをローカルvendorとして固定しており、XLSX処理のためのランタイムCDNは使用しません。</p>
 
       <h2>Privacy</h2>
-      <p>取引行はブラウザ内で処理します。この開発ブランチのコードは取引データ送信用APIを持ちません。公開時の課金通信もentitlement情報のみを扱い、取引ファイルは送信対象にしません。</p>
+      <p>CSV/XLSXの解析、正規化、照合、監査結果生成はブラウザ内で行います。取引データ、取引行、摘要、金額、Reference、ファイル本体をNicheWorksサーバーやStripeへ送信しません。課金時の通信はcheckout作成とentitlement確認に必要な商品・権利情報に限られます。</p>
 
-      <h2>Current limits</h2>
-      <p>FreeはCSV/XLSXとも1ファイル500行・5MBまでです。Reconcile ProはCSVが1ファイル100,000行・50MBまで、XLSXが1ファイル50,000行・25MBまでです。これらはブラウザを安全に扱うための製品上限であり、理論上の処理能力を示すものではありません。さらに1:1候補グラフと1:n / n:1探索には明示的な安全予算を設けています。</p>
+      <h2>Limits</h2>
+      <p>FreeはCSV/XLSXとも1ファイル500行・5MBまでです。Reconcile ProはCSVが1ファイル100,000行・50MBまで、XLSXが1ファイル50,000行・25MBまでです。unlimitedではありません。さらに1:1候補グラフと1:n / n:1探索には安全上限があります。</p>
 
-      <p><a href="./development.html">Return to Reconcile development UI</a></p>
+      <p><a href="./">Reconcileへ戻る</a></p>
     </section>
   </main>
 </body>
