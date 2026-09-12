@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const failures = [];
-const expectedToolCount = 87;
+const expectedToolCount = 88;
 const legacyFlagKey = ['review', 'Mode'].join('');
 const legacyIndexName = ['tools-index', 'review'].join('-') + '.json';
 const legacySitemapName = ['sitemap', 'review'].join('-') + '.xml';
