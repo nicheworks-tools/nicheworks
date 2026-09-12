@@ -5,9 +5,6 @@ import { SITE_ORIGIN, htmlFilePublicUrl } from './seo-public-url-contract.mjs';
 const root = process.cwd();
 const SKIP_DIRS = new Set(['.git', '.github', 'node_modules', '.next', 'dist', 'build', 'coverage']);
 const PAGE_IDENTITY_TYPES = new Set([
-  'WebApplication',
-  'SoftwareApplication',
-  'MobileApplication',
   'WebPage',
   'AboutPage',
   'CheckoutPage',
