@@ -46,14 +46,89 @@ For each tool:
 - P1: material acceptance-criterion failure, broken state/export/language/network contract, billing bypass, or materially misleading behavior.
 - P2: cleanup, dead code, copy precision, or edge-case hardening that does not block the core contract.
 
+## Findings and fixes
+
+### P0
+
+None found in this wave.
+
+### P1 — Outsource Spec Generator accepted unrelated active entitlement
+
+The shared Pro bridge previously trusted `status.active` without checking which entitlement produced that active state. A product-scoped entitlement for another tool could therefore be interpreted as common NicheWorks Pro.
+
+Fix:
+- require both `status.active` and `status.entitlement === 'nicheworks_pro'`;
+- keep all Free generation/copy paths unchanged;
+- update the specification to make cross-product entitlement isolation explicit.
+
+### P1 — Pages Deploy Guide local code was forgeable
+
+The existing `NW-PDG-...` code was validated entirely by a public client-side checksum and persisted in `pdg_pro_key`. Anyone could construct a valid code without purchase, so it was not an entitlement boundary.
+
+Fix:
+- load the shared `/assets/nw-pro.js` client before the tool runtime;
+- add `pro-bridge.js`, which treats active shared `nicheworks_pro` as the only authoritative Pro source;
+- remove a forged/stale `pdg_pro_key` before the legacy app initializes when shared Pro is inactive;
+- when shared Pro is valid, provide only a temporary compatibility value for the old app and remove it immediately after initialization;
+- hide the legacy manual activation controls from the public workflow and update public copy/specification to the shared Pro model.
+
+### P1 — SQL DB Risk Checker could mistake nested WHERE for row limiter
+
+The active SQL checker used `/\bwhere\b/i` for UPDATE/DELETE risk detection. An UPDATE with no outer row-limiting WHERE but a WHERE inside a nested subquery could suppress the full-table warning.
+
+Fix:
+- install a top-level WHERE scanner that ignores quoted text and nested parentheses;
+- preserve existing destructive/read-only/environment rules;
+- add a runtime executable regression test proving nested-only WHERE returns false while a true outer WHERE returns true;
+- synchronize the specification and implementation evidence.
+
+## No P0/P1 findings in the other twelve tools
+
+The following were checked against their active runtime/current specification with no material P0/P1 mismatch found:
+
+- `ops-weekly-report-generator`
+- `pattern-atlas`
+- `pdf-page-tools-mini`
+- `pdf2csv-local`
+- `place-old-kanji-checker`
+- `product-founder-os`
+- `redirect-unwrapper`
+- `release-guardian`
+- `rename-wizard`
+- `screenshot-stitcher`
+- `size-converter`
+- `sponsor-page-builder`
+
+Notable verified boundaries include browser-local report/sponsor drafting; Pattern Atlas cultural-warning acknowledgement before flagged export; PDF Page Tools bundled local processing; PDF2CSV's 30 MB/selectable-text/no-OCR boundary with only the SheetJS library loader using its external CDN; filename-only Rename Wizard behavior; and Redirect Unwrapper's no-fetch string analysis.
+
+## Runtime regression coverage
+
+`scripts/check-tool-runtime-contracts-wave5.mjs` covers registry tools 61–75 and is wired into `.github/workflows/tool-runtime-contract-audit.yml` after the existing waves 1–4 checks.
+
+Wave 5 adds structural/executable checks for:
+
+- Ops required-field gating and bilingual local exports;
+- Outsource shared-entitlement isolation;
+- Pages Deploy shared-Pro adapter, script order, legacy-code cleanup, and compatibility checksum validity;
+- Pattern Atlas dataset/export/cultural-warning flow;
+- PDF page range/protection behavior and PDF2CSV no-OCR/local-bytes boundary;
+- Old Kanji same-site reference lookup and official-use caution;
+- Product Founder OS / Release Guardian documentation-only boundaries;
+- Redirect Unwrapper no-fetch behavior;
+- Rename Wizard filename-only processing;
+- Screenshot Stitcher local supported formats and split export;
+- Size Converter local heuristic/reference behavior;
+- Sponsor Page Builder tier/missing-price behavior;
+- SQL destructive/read-only rules and an executable nested-vs-top-level WHERE regression test.
+
 ## Progress
 
 - [x] Branch created from current main.
-- [ ] Audit tools 61–65.
-- [ ] Audit tools 66–70.
-- [ ] Audit tools 71–75.
-- [ ] Fix P0/P1 findings and synchronize affected specs.
-- [ ] Add Wave 5 runtime-contract coverage.
+- [x] Audit tools 61–65.
+- [x] Audit tools 66–70.
+- [x] Audit tools 71–75.
+- [x] Fix P0/P1 findings and synchronize affected specs.
+- [x] Add Wave 5 runtime-contract coverage.
 - [ ] Reconcile final branch with latest main.
 - [ ] Run CI, open PR, and merge only when green.
 
