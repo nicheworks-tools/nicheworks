@@ -1,0 +1,30 @@
+name: Incident Update Generator product-scoped staging check
+
+on:
+  pull_request:
+    paths:
+      - 'tools/incident-update-generator/**'
+      - 'assets/nw-product-scoped-controller.mjs'
+      - 'scripts/check-incident-update-generator-product-scoped-staging.mjs'
+      - 'docs/tools/incident-update-generator.md'
+      - 'docs/billing/pro-product-contracts-wave6.md'
+      - 'docs/billing/nicheworks-pro-bundle-contract.md'
+      - 'MONETIZATION_CLASSIFICATION_87.json'
+      - '.github/workflows/incident-update-generator-product-scoped-staging-check.yml'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: JavaScript syntax
+        run: |
+          node --check tools/incident-update-generator/pro-bridge.js
+          node --check tools/incident-update-generator/product-scoped-controller.mjs
+          node --check scripts/check-incident-update-generator-product-scoped-staging.mjs
+      - name: Incident Update Generator bundle boundary contracts
+        run: node scripts/check-incident-update-generator-product-scoped-staging.mjs
