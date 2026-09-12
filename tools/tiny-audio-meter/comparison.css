@@ -1,0 +1,81 @@
+.comparison-card {
+  grid-column: 1 / -1;
+}
+
+.comparison-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.baseline-summary {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #475569;
+  line-height: 1.55;
+}
+
+.delta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.delta-item {
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.delta-item span {
+  display: block;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.delta-item strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.processing-warning {
+  margin: 10px 0 0;
+  padding: 9px 11px;
+  border-radius: 9px;
+  background: #fff7ed;
+  color: #9a3412;
+  line-height: 1.5;
+}
+
+.spectrum-readout {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  color: #475569;
+  font-size: 13px;
+}
+
+.spectrum-readout strong {
+  color: #111827;
+}
+
+@media (max-width: 640px) {
+  .delta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-actions .primary-btn,
+  .comparison-actions .secondary-btn {
+    width: 100%;
+  }
+}
