@@ -1,0 +1,14 @@
+[
+  {
+    "pref": "東京都",
+    "city": "中央区",
+    "name": "中央区 あなたの町のごみ・資源収集曜日",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.chuo.lg.jp/a0039/kurashi/gomi/calendar/syuusyuuyoubi.html",
+    "lgcode": "131024",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  }
+]
