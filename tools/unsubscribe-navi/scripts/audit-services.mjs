@@ -6,6 +6,8 @@ const dataPath = path.join(root, 'data', 'services.json');
 const additionsDir = path.join(root, 'data', 'additions');
 const reverificationDir = path.join(root, 'data', 'reverification');
 const allowedStates = new Set(['legacy_review_required', 'verified', 'needs_review', 'retired', 'placeholder']);
+const freshnessThresholdDays = 90;
+const millisecondsPerDay = 24 * 60 * 60 * 1000;
 const errors = [];
 const warnings = [];
 
@@ -22,6 +24,11 @@ function jsonFiles(dir) {
   return fs.existsSync(dir)
     ? fs.readdirSync(dir).filter((name) => name.endsWith('.json')).sort()
     : [];
+}
+function parseDateOnly(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return null;
+  const parsed = new Date(`${value}T00:00:00Z`);
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
 }
 
 const base = readJson(dataPath);
@@ -122,6 +129,11 @@ const stateCounts = {};
 const categoryCounts = {};
 const procedureTypeCounts = {};
 const billingRouteCounts = {};
+const staleVerified = [];
+let directProcedureUrlCount = 0;
+let verifiedWithProcedureType = 0;
+let verifiedWithBillingRoutes = 0;
+const now = new Date();
 
 for (const [index, record] of records.entries()) {
   const label = record?.id || `record[${index}]`;
@@ -138,13 +150,30 @@ for (const [index, record] of records.entries()) {
   if (record?.procedure_url && !/^https:\/\//.test(record.procedure_url)) {
     fail(`${label}: procedure_url must use https when present`);
   }
+  if (record?.procedure_url) directProcedureUrlCount += 1;
 
   if (record?.publication_state === 'verified') {
     if (!record.procedure_url) fail(`${label}: verified record requires procedure_url`);
     if (!record.verification?.last_verified_at) fail(`${label}: verified record requires verification.last_verified_at`);
     if (!record.verification?.source_title) fail(`${label}: verified record requires verification.source_title`);
-    if (!record.procedure_type) warn(`${label}: verified record should declare procedure_type`);
-    if (!Array.isArray(record.billing_routes) || record.billing_routes.length === 0) warn(`${label}: verified record should declare billing_routes`);
+    if (!record.procedure_type) {
+      warn(`${label}: verified record should declare procedure_type`);
+    } else {
+      verifiedWithProcedureType += 1;
+    }
+    if (!Array.isArray(record.billing_routes) || record.billing_routes.length === 0) {
+      warn(`${label}: verified record should declare billing_routes`);
+    } else {
+      verifiedWithBillingRoutes += 1;
+    }
+
+    const verifiedDate = parseDateOnly(record.verification?.last_verified_at);
+    if (!verifiedDate) {
+      fail(`${label}: verification.last_verified_at must use YYYY-MM-DD`);
+    } else {
+      const ageDays = Math.floor((now.getTime() - verifiedDate.getTime()) / millisecondsPerDay);
+      if (ageDays > freshnessThresholdDays) staleVerified.push({ id: record.id, ageDays });
+    }
   }
 
   if (!record?.procedure_url && !['placeholder', 'needs_review'].includes(record?.publication_state)) {
@@ -180,6 +209,9 @@ console.log(`- needs review: ${needsReviewCount}`);
 console.log(`- review required total: ${reviewCount}`);
 console.log(`- retired: ${retiredCount}`);
 console.log(`- placeholders hidden: ${placeholderCount}`);
+console.log(`- direct procedure URLs: ${directProcedureUrlCount}/${records.length}`);
+console.log(`- verified with procedure_type: ${verifiedWithProcedureType}/${verifiedCount}`);
+console.log(`- verified with billing_routes: ${verifiedWithBillingRoutes}/${verifiedCount}`);
 console.log(`- verified share of visible records: ${visibleCount ? Math.round((verifiedCount / visibleCount) * 100) : 0}%`);
 console.log(`- progress to 100-service target: ${Math.min(100, Math.round((visibleCount / 100) * 100))}% (${visibleCount}/100)`);
 console.log(`- progress to 200-service target: ${Math.min(100, Math.round((visibleCount / 200) * 100))}% (${visibleCount}/200)`);
@@ -187,6 +219,11 @@ console.log(`- states: ${JSON.stringify(stateCounts)}`);
 console.log(`- categories: ${JSON.stringify(categoryCounts)}`);
 console.log(`- procedure types: ${JSON.stringify(procedureTypeCounts)}`);
 console.log(`- billing routes: ${JSON.stringify(billingRouteCounts)}`);
+console.log(`- freshness report-only threshold: ${freshnessThresholdDays} days`);
+console.log(`- verified older than threshold: ${staleVerified.length}`);
+for (const record of staleVerified.sort((a, b) => b.ageDays - a.ageDays)) {
+  console.log(`  - ${record.id}: ${record.ageDays} days since verification`);
+}
 
 if (warnings.length) {
   console.log(`- warnings: ${warnings.length}`);
