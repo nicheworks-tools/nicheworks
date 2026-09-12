@@ -1,51 +1,41 @@
-# Server Entitlement Check API (OKJ-BILLING-LIVE-04)
+# Server Entitlement Check API
 
 ## Endpoint
 
 - `GET /api/billing/entitlement`
 
-Query params:
+Query parameters:
 
-- `productId=okj.toolkit_pro`
-- `sessionId=cs_test_...` (or `cs_live_...`)
+- `productId=<configured product id>`
+- `sessionId=cs_test_...` or `cs_live_...`
 
-## Behavior
+`okj.toolkit_pro` is currently the only configured product, but the endpoint itself is registry-driven and no longer hardcodes that product ID.
 
-This API provides a minimal server-side restore/check boundary.
+## Validation
 
-Validation rejects:
+The endpoint:
 
-- missing `productId`
-- unknown `productId`
-- missing `sessionId`
-- malformed `sessionId`
+1. loads `config/billing/products.json`;
+2. requires `productId` to identify a valid configured product whose price metadata matches its price tier;
+3. requires a well-formed Stripe Checkout Session ID;
+4. queries D1 `BILLING_DB` for an active entitlement matching both product and session;
+5. intersects the stored feature snapshot with the product's currently configured feature list before returning it.
 
-The API only supports `okj.toolkit_pro` for this phase.
+Unknown products, malformed sessions and unavailable storage fail closed.
 
 ## Entitlement proof model
 
-`sessionId` in URL/query is **not proof of Pro access** by itself.
+Neither `productId` nor `sessionId` is sufficient by itself.
 
-The server checks D1 (`BILLING_DB`) and only returns active when all conditions match:
+Active access requires a D1 row where:
 
 - `stripe_checkout_session_id = sessionId`
 - `product_id = productId`
 - `status = active`
 
-If no matching row exists, response is inactive (`restore-required`).
+An absent row returns an inactive `restore-required` state.
 
-If D1 binding is missing, API fails closed:
-
-```json
-{
-  "ok": false,
-  "error": "entitlement_storage_not_configured"
-}
-```
-
-## Response shape
-
-Active example:
+## Active response
 
 ```json
 {
@@ -55,11 +45,11 @@ Active example:
   "state": "pro-active",
   "source": "server",
   "features": ["okj.exportCsv"],
-  "entitlementId": "ent_okj.toolkit_pro_..."
+  "entitlementId": "ent_..."
 }
 ```
 
-Inactive example:
+## Inactive response
 
 ```json
 {
@@ -72,21 +62,16 @@ Inactive example:
 }
 ```
 
-## Data minimization and security
+## Data minimization
 
-Client response must not expose:
+The client response does not expose:
 
-- Stripe customer ID
-- Stripe payment intent ID
-- raw checkout session internals
-- webhook payload internals
-- D1 raw row
-- customer email or email hash
+- Stripe customer ID;
+- Stripe payment intent ID;
+- raw Checkout Session internals;
+- webhook payload;
+- D1 raw row;
+- customer email/hash;
+- tool content.
 
-This phase does not add client-side unlock wiring:
-
-- no localStorage unlock
-- no URL-only unlock
-- no client self-unlock
-
-Future phases may replace session-based restore with account/email-based verified restore.
+The browser entitlement adapter may remember a verified product-scoped Checkout Session ID only as a restore/check convenience. It must re-check the server in a new page lifecycle and must not store an authoritative `active=true` flag.
