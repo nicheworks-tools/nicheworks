@@ -16,8 +16,9 @@ Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized 
 - Accept pasted comma/line-separated ingredient text and built-in samples.
 - Preserve legitimate ingredient punctuation such as `/`, `・`, and numeric locant commas such as `1,2-Hexanediol` through parsing and OCR cleanup.
 - Accept an image and run browser-side OCR using Tesseract.js loaded from an external CDN, with separate English and Japanese+English OCR actions.
+- Show a local preview of the selected image before OCR and allow the user to remove/reselect it without uploading it.
 - Show OCR progress in the page while recognition is running.
-- Put OCR output back into the editable ingredient textarea; users review/correct OCR text before running ingredient matching.
+- Put OCR output back into the editable ingredient textarea and show a clear review cue after OCR; users review/correct OCR text before running ingredient matching.
 - Normalize/parse OCR or pasted text and match ingredients against the local/generated dictionary and declared aliases.
 - Show ingredient-analysis results that distinguish known, review-needed/caution, and unknown/unmatched items according to the current dictionary logic.
 - For sufficiently close unknown spellings, show up to three conservative near-match candidates without automatically replacing user input.
@@ -35,14 +36,16 @@ Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized 
 
 ## Outputs
 
+- Local selected-image preview prior to OCR.
 - Editable OCR text and visible OCR status/progress where OCR is used.
+- Post-OCR review reminder before ingredient matching.
 - Parsed/matched ingredient result groups and explanatory notes.
 - Known/review-needed/unknown classification according to the current dictionary/rules.
 - Conservative close-match suggestions for eligible unknown entries; suggestions are display-only and never auto-applied.
 
 ## State and persistence
 
-Ingredient text, selected image, OCR result, and scan result are current-session browser state. The current contract does not define saved scan history. UI language preference may be stored locally in the browser.
+Ingredient text, selected image, OCR result, image preview, and scan result are current-session browser state. Preview object URLs are revoked when the image is removed/replaced. The current contract does not define saved scan history. UI language preference may be stored locally in the browser.
 
 ## Privacy and network behavior
 
@@ -94,11 +97,11 @@ When activation is eventually allowed, optional analytics are limited to `affili
 ## Limits and non-goals
 
 - OCR may be slow and can omit, split, or misrecognize characters; users must visually verify OCR text before trusting scan results.
+- Image preview is a review aid only; this wave does not rotate/crop/re-encode the selected file before OCR.
 - Near-match suggestions are spelling/OCR repair hints only; they are not authoritative ingredient identification and are never auto-applied.
 - Dictionary coverage is finite; an unknown result is not evidence that an ingredient is unsafe.
 - The tool does not provide medical/dermatological diagnosis, allergy prediction, concentration analysis, product-safety certification, pregnancy suitability, drug-interaction advice, or regulatory approval.
 - External CDN availability can affect OCR even though ingredient processing itself is browser-side.
-- This improvement wave does not add crop/rotate image editing or conduct a full dictionary audit.
 - Amazon Associates is not active until account setup and policy verification are complete.
 
 ## Acceptance criteria
@@ -106,7 +109,8 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - [x] Pasted INCI/English and Japanese-label text can be parsed and checked against the current generated dictionary/rules.
 - [x] Slash / middle-dot names and numeric locant commas survive the current parsing/OCR cleanup path.
 - [x] OCR can be started from a selected image when the external Tesseract library loads and visible progress is exposed in the page.
-- [x] OCR results remain editable before ingredient matching.
+- [x] Selected OCR images can be previewed locally and removed/reselected without upload.
+- [x] OCR results remain editable and a review cue is shown before ingredient matching.
 - [x] Results distinguish known/review-needed/unknown states without presenting unknown as a medical safety judgment.
 - [x] Eligible unknown spellings can show conservative candidates without auto-replacement.
 - [x] Japanese-label wording describes dictionary matching rather than machine translation.
@@ -124,6 +128,8 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - `tools/_shared/check-cosmetics-affiliate-contract.mjs`
 - `tools/inci-fastscan/index.html`
 - `tools/inci-fastscan/style.css`
+- `tools/inci-fastscan/enhancements.js`
+- `tools/inci-fastscan/enhancements.css`
 - `tools/inci-fastscan/js/core_parser.js`
 - `tools/inci-fastscan/js/core_matcher.js`
 - `tools/inci-fastscan/js/core_analyze.js`
