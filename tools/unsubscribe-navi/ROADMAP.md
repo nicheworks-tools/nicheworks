@@ -43,9 +43,9 @@ Status: **complete (2026-09-12)**.
 
 ## Phase 2 — Expand to 100
 
-Status: **active**.
+Status: **100 public-visible milestone reached (2026-09-12)**.
 
-100件というraw countではなく、**100 public-visible / verified中心**を目標にする。Phase 1のplaceholder 4件は公開数に含めないため、開始時点36 public-visibleから+64以上の有効recordが必要。
+100件というraw countではなく、**100 public-visible / verified中心**を目標とした。Phase 1のplaceholder 4件は公開数に含めず、開始時点36 public-visibleから公式sourceを確認できたserviceだけをwave単位で追加した。
 
 Phase 2では新規serviceを`data/additions/*.json`へwave単位で追加し、legacy migration snapshotを直接増築しない。merge順は legacy base → additions → re-verification overlays。
 
@@ -182,20 +182,47 @@ Wave 5反映後:
 
 Wave 5では電子書籍・音楽・動画を追加しつつ、AI / productivity / creator系SaaSの解約導線を補強した。ストア経由契約とWeb直接契約、プラン解約とアカウント削除・ダウングレードを公式sourceに従って分離する。
 
-### Next waves
+### Wave 6 — 2026-09-12 — 100 milestone
 
-Priority:
+Official-source verified 14件:
 
-1. 動画配信 / streaming
-2. 音楽 / audio
-3. AI / SaaS / productivity
-4. cloud / storage
-5. mobile / carrier / SIM
-6. gaming memberships
-7. ebooks / magazines / learning
-8. major shopping / paid memberships
+- dマガジン
+- pixivプレミアム
+- Apple Arcade
+- Dashlane 個人向け有料プラン
+- JetBrains 個人サブスクリプション
+- Bitwarden Premium
+- ExpressVPN
+- Surfshark
+- Clipchamp Premium
+- Leminoプレミアム
+- LYPプレミアム スタンダードプラン
+- 食べログプレミアム
+- Schoo プレミアムプラン
+- メルカリモバイル
 
-候補例としてLemino、追加MVNO、Canva、学習subscription等を調査するが、official procedure sourceを確認できるまでverified追加しない。
+Wave 6反映後:
+
+- effective records: 104
+- public-visible: **100**
+- verified: **97**
+- retired: 1
+- needs_review: 2
+- placeholder: 4
+- progress to 100 public-visible: **100%**
+
+最初の公開規模目標である100 public-visibleへ到達。ただし100件到達だけを理由に正式登録・index公開は行わない。Amazonプライム / ディズニープラスの2件は引き続き`needs_review`とし、staged状態でUI・data quality・個別page候補・freshness設計を次に確認する。
+
+### Phase 2 follow-up after 100
+
+100件到達後に優先するのはraw count増加ではない。
+
+1. Amazonプライム / ディズニープラスの`needs_review` 2件を、安定した日本向けofficial sourceが確保できる場合のみ閉じる
+2. 100 public-visible recordのcategory偏り・procedure type・billing route coverageをauditする
+3. verified recordから個別page候補20〜30件を選定する
+4. staged UIが100件規模で実用的か確認する
+5. freshness / stale-source検知のreport-only設計を作る
+6. current 87-tool quality cycleとのタイミングを見て正式登録可否を決める
 
 Rule:
 
@@ -203,7 +230,7 @@ Rule:
 - official sourceが取れない候補は公開数に含めない
 - 同一brandの複数planはprocedureが実際に異なる場合のみ分ける
 - 新規addition `id`は既存base/additionと衝突不可
-- Amazonプライム / ディズニープラスの`needs_review` 2件も並行して閉じる
+- HTTP 200だけではverifiedへ昇格しない
 
 ## Phase 3 — Expand to 150
 
