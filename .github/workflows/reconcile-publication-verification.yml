@@ -46,3 +46,5 @@ jobs:
           git add .github/workflows/reconcile-publication-verification.yml
           git commit -m "chore(reconcile): remove publication verifier"
           git push origin HEAD:feat/reconcile-publication-20260912
+
+# trigger after workflow registration
