@@ -41,9 +41,28 @@
     "alcohol denat": "alcohol denat."
   });
 
+  // These labels are category/group abbreviations or multi-identity labels in
+  // the maintained data. Exact matching one arbitrary record would be worse
+  // than leaving them unclassified for review.
+  const AMBIGUOUS_EXACT_KEYS = Object.freeze([
+    "aha",
+    "bha",
+    "pha",
+    "iron oxides",
+    "酸化鉄"
+  ]);
+  const ambiguousExactKeySet = new Set(AMBIGUOUS_EXACT_KEYS);
+
   function normalizeKey(value = "") {
     const base = normalizeBaseKey(value);
-    return ALIAS_EQUIVALENTS[base] || base;
+    if (!base || ambiguousExactKeySet.has(base)) return "";
+    const equivalent = ALIAS_EQUIVALENTS[base] || base;
+    if (ambiguousExactKeySet.has(equivalent)) return "";
+    return equivalent;
+  }
+
+  function isAmbiguousExactName(value = "") {
+    return ambiguousExactKeySet.has(normalizeBaseKey(value));
   }
 
   function protectNumericLocantCommas(value) {
@@ -73,7 +92,7 @@
     const seen = new Set();
     const unique = [];
     for (const item of parts) {
-      const key = normalizeKey(item);
+      const key = normalizeKey(item) || `ambiguous:${normalizeBaseKey(item)}`;
       if (!key || seen.has(key)) continue;
       seen.add(key);
       unique.push(item);
@@ -127,13 +146,15 @@
   }
 
   const api = {
-    version: "1.3.0",
+    version: "1.4.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
     splitIngredients,
     isExactIngredientMatch,
-    aliasEquivalents: ALIAS_EQUIVALENTS
+    isAmbiguousExactName,
+    aliasEquivalents: ALIAS_EQUIVALENTS,
+    ambiguousExactKeys: AMBIGUOUS_EXACT_KEYS
   };
 
   if (typeof module !== "undefined" && module.exports) {
