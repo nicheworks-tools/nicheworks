@@ -78,4 +78,23 @@ assert.equal(guardedResults.some((x)=>x.status==='tolerant_match'), false);
 const repeated = reconcile({ rowsA:a.rows, rowsB:b.rows, mappingA:{amount:'Amount',date:'Date',reference:'Reference'}, mappingB:{amount:'Amount',date:'Date',reference:'Reference'}, options:{dateToleranceDays:1} });
 assert.deepEqual(repeated, results);
 
+const contestedA = table('Date,Amount\n2026-09-01,100\n2026-09-01,100\n');
+const contestedB = table('Date,Amount\n2026-09-01,100\n');
+const contested = reconcile({ rowsA:contestedA.rows, rowsB:contestedB.rows, mappingA:{amount:'Amount',date:'Date'}, mappingB:{amount:'Amount',date:'Date'} });
+assert.equal(contested.filter((x)=>x.status==='exact_match').length, 0);
+assert.equal(contested.filter((x)=>x.status==='candidate').length, 2);
+assert.ok(contested.filter((x)=>x.status==='candidate').every((x)=>x.bRows.length===1 && x.bRows[0]===2));
+
+const priorityA = table('Date,Reference,Amount\n2026-09-01,,100\n2026-09-01,X,100\n');
+const priorityAReversed = table('Date,Reference,Amount\n2026-09-01,X,100\n2026-09-01,,100\n');
+const priorityB = table('Date,Reference,Amount\n2026-09-01,X,100\n2026-09-01,Y,100\n');
+for (const sourceA of [priorityA, priorityAReversed]) {
+  const resolved = reconcile({ rowsA:sourceA.rows, rowsB:priorityB.rows, mappingA:{amount:'Amount',date:'Date',reference:'Reference'}, mappingB:{amount:'Amount',date:'Date',reference:'Reference'} });
+  const resolvedSummary = summarize(resolved);
+  assert.equal(resolvedSummary.exact_match, 2);
+  assert.equal(resolvedSummary.candidate, 0);
+  assert.equal(resolvedSummary.a_only, 0);
+  assert.equal(resolvedSummary.b_only, 0);
+}
+
 console.log('reconcile-engine tests: OK');
