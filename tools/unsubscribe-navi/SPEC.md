@@ -27,7 +27,7 @@ Phase 1はmonorepoへ吸収済みだが、既存87ツールの品質改善母数
 - `procedure_url` がある場合のみ公式手続き・関連情報へのlinkを表示し、無い場合はofficial siteのみ表示する。
 - legacy recordをHTTP 200だけでverifiedへ昇格させない。
 
-2026-09-12 re-verification wave 1時点で、40 legacy seed中24件をofficial source確認済みの`verified`へ昇格し、dTVを`retired`、Rakuten TVを`needs_review`、旧generic 2件を`placeholder`へ隔離している。
+2026-09-12 re-verification wave 2時点で、40 legacy seed中28件をofficial source確認済みの`verified`へ昇格している。加えて`retired` 1件、`needs_review` 2件、通常検索から隔離する`placeholder` 4件、未処理の`legacy_review_required` 5件という状態である。
 
 ## Inputs
 
