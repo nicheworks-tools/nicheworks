@@ -23,8 +23,9 @@ Reconcile two transaction datasets locally in the browser and isolate exact matc
 - Preserve physical source row numbers across blank rows and non-row-1 headers.
 - Bound ordinary candidate graphs and grouped matching searches so pathological inputs stop or degrade to manual review rather than partially auto-resolving.
 - Provide result counts, status filtering, text search, CSV audit export, and a seven-sheet XLSX report implementation.
-- Render Reconcile Pro controls for amount tolerance, sign modes, larger limits, 1:n / n:1 matching, XLSX report export, and saved profiles, but keep those controls hard-locked until the product-specific entitlement integration is added.
-- Store saved profile configuration locally only when Pro is enabled by a future entitlement adapter; profile code never stores transaction rows or uploaded file bytes.
+- Reconcile Pro enables amount tolerance, sign modes, larger limits, 1:n / n:1 matching, XLSX report export, and saved profiles only after server verification of product `reconcile.pro_v1` with feature `reconcile_pro_v1`.
+- A Reconcile Pro purchase is ¥3,980 JPY one-time and grants both `reconcile_pro_v1` and shared `nicheworks_pro`. A shared NicheWorks Pro entitlement by itself must not unlock Reconcile Pro.
+- Store saved profile configuration locally only while Reconcile Pro is active; profile code never stores transaction rows or uploaded file bytes.
 
 ### Matching safety bounds
 
@@ -55,7 +56,7 @@ Reconcile two transaction datasets locally in the browser and isolate exact matc
 - Optional Date, Reference, and Description mappings for both sides.
 - Date tolerance: 0 or ±1 day.
 - Ambiguous date mode: Auto/reject ambiguous, MDY, or DMY.
-- Pro engine configuration, when entitlement integration later enables it: non-negative amount tolerance, `normal` / `invert_b` / `ignore_sign`, optional 1:n / n:1 matching, and maximum group size 2–5.
+- Reconcile Pro engine configuration after verified entitlement: non-negative amount tolerance, `normal` / `invert_b` / `ignore_sign`, optional 1:n / n:1 matching, and maximum group size 2–5.
 
 ## Outputs
 
@@ -65,13 +66,14 @@ Reconcile two transaction datasets locally in the browser and isolate exact matc
 - Deterministic result table with status, relation, A/B source row references, normalized amount/date, and human-readable reason.
 - Filtered/searched views that do not mutate the underlying reconciliation result.
 - UTF-8 BOM CSV audit export containing status, relation, source rows, normalized values, reason, and selected original identifying values from both sides.
-- Pro XLSX report implementation with `Summary`, `Matches`, `Candidates`, `A Only`, `B Only`, `Duplicates`, and `Conflicts` sheets. The Summary records source filenames, selected mappings, and active reconciliation settings.
-- Versioned JSON import/export for saved profile configuration when Pro becomes entitled.
+- Reconcile Pro XLSX report with `Summary`, `Matches`, `Candidates`, `A Only`, `B Only`, `Duplicates`, and `Conflicts` sheets. The Summary records source filenames, selected mappings, and active reconciliation settings.
+- Versioned JSON import/export for saved profile configuration while Reconcile Pro is active.
 
 ## State and persistence
 
 - Parsed transaction rows, file bytes, and reconciliation results remain in page memory and disappear on reload.
 - Shared language preference uses `localStorage` key `nw_lang`.
+- The shared billing adapter may store only the verified product-scoped Stripe Checkout Session ID under `nicheworks:billing:session:reconcile.pro_v1`; that identifier is re-verified against the server and is never accepted as proof of entitlement by itself.
 - Saved profile implementation uses `localStorage` key `nw_reconcile_profiles_v1`, schema version 1, maximum 20 profiles, and stores configuration only.
 - Saved profiles contain parser settings, column mappings, matching options, local profile id/name, and timestamps; they do not contain transaction rows, uploaded file bytes, result rows, account data, or payment data.
 - Profile JSON uses bundle type `nicheworks-reconcile-profile-bundle`; imported options are validated, sanitized, and bounded before persistence.
@@ -82,7 +84,8 @@ Reconcile two transaction datasets locally in the browser and isolate exact matc
 - Reconcile does not send transaction contents to a NicheWorks API or third-party reconciliation service.
 - The XLSX parser/writer is vendored locally; there is no runtime SheetJS CDN fetch.
 - The public page follows suite-wide GA4, AdSense, and Cloudflare Analytics behavior. Those services receive ordinary page/advertising telemetry under the common site contract, not uploaded transaction files or parsed reconciliation rows from Reconcile.
-- Product billing/entitlement requests are not connected in the current implementation; Reconcile Pro remains hard-locked until the separate billing integration is merged.
+- Checkout creation sends only product/return-path billing context to the NicheWorks billing API. Entitlement restoration sends the product ID plus Stripe Checkout Session ID. Neither request contains uploaded transaction rows, descriptions, amounts, references, mappings, or file contents.
+- Paid access is enabled only after the server confirms an active entitlement created from a verified Stripe webhook. URL parameters, redirects, and localStorage do not directly unlock Reconcile Pro.
 
 ## Language mode
 
@@ -95,8 +98,8 @@ Bilingual single-page. Japanese and English UI copy share the same public URL an
 ## Limits and non-goals
 
 - Free cap: 500 parsed rows and 5 MB per file for CSV or XLSX.
-- Reconcile Pro engine cap: CSV 100,000 parsed rows / 50 MB per file; XLSX 50,000 parsed rows / 25 MB per file. These limits are implemented product safety bounds, not theoretical browser-capacity claims.
-- Reconcile Pro UI is visible but unavailable until a real server-backed `reconcile_pro_v1` entitlement adapter is connected.
+- Reconcile Pro cap: CSV 100,000 parsed rows / 50 MB per file; XLSX 50,000 parsed rows / 25 MB per file. These limits are implemented product safety bounds, not theoretical browser-capacity claims.
+- Reconcile Pro remains locked whenever product-specific entitlement verification is unavailable, fails, has been revoked/refunded/disputed, or does not include `reconcile_pro_v1`.
 - v1 does not include user accounts, cloud transaction storage, AI/probabilistic matching, OCR, PDF input, bank/Open Banking APIs, QuickBooks/Xero APIs, team workspaces, or server-side reconciliation.
 - The tool is not an accounting system and does not certify that a financial ledger is complete or legally/audit compliant.
 
@@ -118,11 +121,13 @@ Bilingual single-page. Japanese and English UI copy share the same public URL an
 - CSV audit export includes the defined reconciliation context and selected original A/B identifying values.
 - The committed XLSX vendor passes fixed byte/hash/version checks plus real-vendor write/read and seven-sheet report re-read tests.
 - Saved profile serialization never contains transaction rows or uploaded file bytes.
-- Pro controls stay unavailable while the product-specific entitlement adapter is absent.
+- Reconcile Pro controls unlock only when server verification for product `reconcile.pro_v1` includes feature `reconcile_pro_v1`; `nicheworks_pro` alone is insufficient.
+- Failed/unavailable entitlement verification fails closed without changing Free reconciliation behavior.
 - Japanese/English switching preserves the current reconciliation state and the wide result workflow remains usable with mobile stacking/scrolling.
 
 ## Implementation evidence
 
+- `tools/reconcile/index.html`
 - `tools/reconcile/development.html`
 - `tools/reconcile/app.mjs`
 - `tools/reconcile/styles.css`
@@ -133,6 +138,10 @@ Bilingual single-page. Japanese and English UI copy share the same public URL an
 - `tools/reconcile/xlsx-adapter.mjs`
 - `tools/reconcile/rules-store.mjs`
 - `tools/reconcile/usage.html`
+- `assets/nw-pro-entitlement.js`
+- `functions/api/billing/create-checkout-session.js`
+- `functions/api/billing/entitlement.js`
+- `config/billing/products.json`
 - `tools/reconcile/vendor/README.md`
 - `tools/reconcile/vendor/LICENSE.sheetjs`
 - `tools/reconcile/vendor/NOTICE.sheetjs.txt`
