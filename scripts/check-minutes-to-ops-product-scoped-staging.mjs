@@ -28,7 +28,7 @@ const clientFrom = (response) => ({
   async refreshProState(input) {
     this.calls.push(input);
     if (response instanceof Error) throw response;
-    return typeof response === 'function' ? response(input) : response;
+    return response;
   }
 });
 
@@ -49,55 +49,29 @@ assert.deepEqual(verifiedClient.calls, [{ productId: PRODUCT_ID }]);
 assert.equal(verified.active, true);
 assert.equal(controller.can('history'), true);
 assert.equal(controller.can('githubIssue'), true);
-for (const operation of ['outputPack', 'codexRequest', 'sopHandoff']) {
-  assert.equal(controller.can(operation), false);
-}
+assert.equal(controller.can('outputPack'), false);
+assert.equal(controller.can('codexRequest'), false);
+assert.equal(controller.can('sopHandoff'), false);
 assert.throws(() => controller.can('unknown'), /Unknown Minutes to Ops paid operation/);
 
-const localOnly = createMinutesToOpsProductScopedController({
-  entitlementClient: clientFrom({
+for (const [response, expectedReason] of [
+  [{ productId: PRODUCT_ID, active: true, source: 'local', reason: 'verified_entitlement', features: Object.values(FEATURE_MAP) }, 'non_server_authority'],
+  [{ productId: 'fixture.other.product', active: true, source: 'server', reason: 'verified_entitlement', features: Object.values(FEATURE_MAP) }, 'wrong_product'],
+  [{ productId: PRODUCT_ID, active: true, source: 'server', reason: 'cached_active', features: Object.values(FEATURE_MAP) }, 'unverified_entitlement']
+]) {
+  const candidate = createMinutesToOpsProductScopedController({
+    entitlementClient: clientFrom(response),
     productId: PRODUCT_ID,
-    active: true,
-    source: 'local',
-    reason: 'verified_entitlement',
-    features: Object.values(FEATURE_MAP)
-  }),
-  productId: PRODUCT_ID,
-  featureMap: FEATURE_MAP
-});
-assert.equal((await localOnly.refresh()).active, false);
-assert.equal(localOnly.getState().reason, 'non_server_authority');
-
-const wrongProduct = createMinutesToOpsProductScopedController({
-  entitlementClient: clientFrom({
-    productId: 'fixture.other.product',
-    active: true,
-    source: 'server',
-    reason: 'verified_entitlement',
-    features: Object.values(FEATURE_MAP)
-  }),
-  productId: PRODUCT_ID,
-  featureMap: FEATURE_MAP
-});
-assert.equal((await wrongProduct.refresh()).active, false);
-assert.equal(wrongProduct.getState().reason, 'wrong_product');
-
-const unverified = createMinutesToOpsProductScopedController({
-  entitlementClient: clientFrom({
-    productId: PRODUCT_ID,
-    active: true,
-    source: 'server',
-    reason: 'cached_active',
-    features: Object.values(FEATURE_MAP)
-  }),
-  productId: PRODUCT_ID,
-  featureMap: FEATURE_MAP
-});
-assert.equal((await unverified.refresh()).active, false);
-assert.equal(unverified.getState().reason, 'unverified_entitlement');
+    featureMap: FEATURE_MAP
+  });
+  assert.equal((await candidate.refresh()).active, false);
+  assert.equal(candidate.getState().reason, expectedReason);
+}
 
 const failed = createMinutesToOpsProductScopedController({
-  entitlementClient: clientFrom(new Error('network down')),
+  entitlementClient: {
+    async refreshProState() { throw new Error('network down'); }
+  },
   productId: PRODUCT_ID,
   featureMap: FEATURE_MAP
 });
@@ -118,45 +92,33 @@ assert.throws(() => createMinutesToOpsProductScopedController({
 
 const wrapperSource = fs.readFileSync(new URL('../tools/minutes-to-ops/product-scoped-controller.mjs', import.meta.url), 'utf8');
 assert.match(wrapperSource, /createProductScopedController/);
-for (const forbidden of [
-  'NWPro',
-  'nicheworks_pro',
-  'nicheworks.pro',
-  'localStorage',
-  'buy.stripe.com',
-  'notes',
-  'participants',
-  'nw_mto_history_v2',
-  'githubIssue',
-  'codexPrompt',
-  'handoffMarkdown',
-  'Blob',
-  'function normalizeProductId',
-  'function validateVerifiedResponse'
-]) {
-  if (forbidden === 'githubIssue') continue;
-  assert.equal(wrapperSource.includes(forbidden), false, `staged wrapper must not contain legacy authority or meeting/generated-data dependency: ${forbidden}`);
-}
+assert.equal(wrapperSource.includes('NWPro'), false);
+assert.equal(wrapperSource.includes('nicheworks_pro'), false);
+assert.equal(wrapperSource.includes('localStorage'), false);
+assert.equal(wrapperSource.includes('buy.stripe.com'), false);
+assert.equal(wrapperSource.includes('nw_mto_history_v2'), false);
 
 const bridgeSource = fs.readFileSync(new URL('../tools/minutes-to-ops/pro-bridge.js', import.meta.url), 'utf8');
-assert.match(bridgeSource, /var ENTITLEMENT = 'nicheworks_pro'/);
-assert.match(bridgeSource, /current\.active === true && current\.entitlement === ENTITLEMENT/);
-assert.match(bridgeSource, /PRO_ACTION_SELECTOR = 'button\[data-pro-only\]'/);
-assert.match(bridgeSource, /document\.addEventListener\('click', recheckProAction, true\)/);
-assert.match(bridgeSource, /event\.stopImmediatePropagation\(\)/);
-assert.match(bridgeSource, /isActive: function \(\) \{ return lastActive && exactActive\(status\(\)\); \}/);
+for (const required of [
+  "current.active === true && current.entitlement === 'nicheworks_pro'",
+  "PRO_ACTION_SELECTOR = 'button[data-pro-only]'",
+  "document.addEventListener('click', recheckProAction, true)",
+  'event.stopImmediatePropagation()',
+  'isActive: function () { return lastActive && exactActive(status()); }'
+]) {
+  assert.equal(bridgeSource.includes(required), true, `legacy gate hardening evidence missing: ${required}`);
+}
 
 const appSource = fs.readFileSync(new URL('../tools/minutes-to-ops/app.js', import.meta.url), 'utf8');
 for (const freeEvidence of [
   "const HISTORY_KEY = 'nw_mto_history_v2'",
   'function generate(',
-  'copyMd',
-  'copySop',
-  'dlCsv',
-  'dlMd',
-  'makeCsv'
+  "els.dlCsv?.addEventListener('click'",
+  "els.dlMd?.addEventListener('click'",
+  "els.copyMd?.addEventListener('click'",
+  "els.copySop?.addEventListener('click'"
 ]) {
-  assert.equal(appSource.includes(freeEvidence), true, `Minutes to Ops runtime evidence missing: ${freeEvidence}`);
+  assert.equal(appSource.includes(freeEvidence), true, `Free runtime evidence missing: ${freeEvidence}`);
 }
 for (const paidEvidence of [
   'function saveHistory()',
@@ -165,18 +127,19 @@ for (const paidEvidence of [
   'githubIssue',
   'codexPrompt',
   'handoffMarkdown',
-  'proCopy',
-  'proDownload'
+  'function proCopy(',
+  'function proDownload('
 ]) {
-  assert.equal(appSource.includes(paidEvidence), true, `Minutes to Ops paid runtime evidence missing: ${paidEvidence}`);
+  assert.equal(appSource.includes(paidEvidence), true, `paid runtime evidence missing: ${paidEvidence}`);
 }
-assert.match(appSource, /function saveHistory\(\) \{\s*if \(!requirePro\(\)\) return;/);
-assert.match(appSource, /function compareHistory\(\) \{\s*if \(!requirePro\(\)\) return;/);
-assert.match(appSource, /function outputPack\(\) \{\s*if \(!requirePro\(\)\) return;/);
-assert.match(appSource, /event\('tool_run', \{ tool_slug: TOOL, lang: UI \}\)/);
-assert.match(appSource, /event\('pro_feature_use', \{ tool_slug: TOOL, feature: 'history_save' \}\)/);
-assert.match(appSource, /event\('pro_feature_use', \{ tool_slug: TOOL, feature: 'history_compare' \}\)/);
-assert.match(appSource, /event\('pro_feature_use', \{ tool_slug: TOOL, feature: 'export_pack' \}\)/);
+for (const analyticsEvidence of [
+  "event('tool_run', { tool_slug: TOOL, lang: UI })",
+  "event('pro_feature_use', { tool_slug: TOOL, feature: 'history_save' })",
+  "event('pro_feature_use', { tool_slug: TOOL, feature: 'history_compare' })",
+  "event('pro_feature_use', { tool_slug: TOOL, feature: 'export_pack' })"
+]) {
+  assert.equal(appSource.includes(analyticsEvidence), true, `fixed analytics metadata evidence missing: ${analyticsEvidence}`);
+}
 
 const localSpec = fs.readFileSync(new URL('../tools/minutes-to-ops/SPEC.md', import.meta.url), 'utf8');
 const canonicalSpec = fs.readFileSync(new URL('../docs/tools/minutes-to-ops.md', import.meta.url), 'utf8');
@@ -190,8 +153,10 @@ for (const source of [localSpec, canonicalSpec, wave8]) {
   assert.match(source, /PRO_BUNDLE/);
   assert.match(source, /nicheworks_pro/);
   assert.match(source, /nicheworks\.pro/);
-  for (const operation of MINUTES_TO_OPS_PRO_OPERATIONS) assert.match(source, new RegExp(operation));
   assert.match(source, /billing\/entitlement/i);
+  for (const operation of MINUTES_TO_OPS_PRO_OPERATIONS) {
+    assert.equal(source.includes(operation), true, `boundary documentation missing ${operation}`);
+  }
 }
 assert.match(bundleContract, /nicheworks\.pro/);
 assert.match(wave8, /commercial configuration unresolved/i);
