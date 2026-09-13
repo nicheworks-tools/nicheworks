@@ -12,8 +12,8 @@ Current order:
 
 1. **Generic exact-model search** — active. One validated Amazon search template generates a tagged search URL from canonical ManualFinder `maker + model` metadata.
 2. **Consumer-printer ink** — active for Brother Wave 1, Epson Wave 1, and Canon Wave 1 below. Consumable codes come only from official manufacturer compatibility sources.
-3. **Office-printer toner** — active for ten OKI exact-model records and five KYOCERA exact-model records. Exact toner codes are retained as compatibility evidence while the Amazon handoff stays concise at one toner-search CTA per model.
-4. **Office-printer toner cross-maker expansion** — next evaluate RICOH and FUJIFILM Business Innovation where official model-to-toner evidence is explicit.
+3. **Office-printer toner** — active for ten OKI, five KYOCERA, and five RICOH exact-model records. Exact toner codes or official toner identifiers are retained as compatibility evidence while the Amazon handoff stays concise at one toner-search CTA per model.
+4. **Office-printer toner cross-maker expansion** — next evaluate FUJIFILM Business Innovation, then continue bounded waves for existing manufacturers where evidence remains explicit.
 5. **Office-printer drum / maintenance parts** — later, after toner behavior is established.
 6. **Camera batteries / chargers** — later, only for independently verified compatibility mappings.
 7. **Appliance replacement parts / filters** — later, only where exact compatibility can be proven.
@@ -114,7 +114,7 @@ The Amazon query is `OKI <model> トナー` with the fixed Associate tag. The ex
 
 ## Office-printer toner rule — KYOCERA Wave 1
 
-KYOCERA Document Solutions already has 123 exact ManualFinder printer/MFP rows. The first bounded toner wave uses five existing printer records whose official product/specification pages state exact consumable toner codes.
+KYOCERA Document Solutions already has exact ManualFinder printer/MFP rows. The first bounded toner wave uses five existing printer records whose official product/specification pages state exact consumable toner codes.
 
 | ManualFinder model | Amazon search maker | Officially verified toner codes |
 | --- | --- | --- |
@@ -126,7 +126,21 @@ KYOCERA Document Solutions already has 123 exact ManualFinder printer/MFP rows. 
 
 The runtime matches the canonical maker string `KYOCERA Document Solutions` but deliberately uses the shorter retail search term `KYOCERA` in Amazon queries. The generated handoff is `KYOCERA <model> トナー` with the fixed Associate tag. Exact toner codes remain attached as manufacturer evidence and do not create separate color links.
 
-The UI does not say that every Amazon result is genuine or compatible. A note tells the user that consumable codes were checked against an official manufacturer source and that the exact Amazon item must still be confirmed before purchase.
+## Office-printer toner rule — RICOH Wave 1
+
+RICOH already has exact current color-MFP records in ManualFinder. The first bounded RICOH wave uses five existing model records and only mappings explicitly stated by Ricoh's official maintenance pages. Some current machine names intentionally use a toner identifier from an earlier compatible family; those relationships are stored exactly as Ricoh states them rather than inferred from model-number similarity.
+
+| ManualFinder model | Official toner identifiers |
+| --- | --- |
+| RICOH IM C8010 | RICOH MP toner C8003 (K/Y/M/C) |
+| RICOH IM C6510 | RICOH MP toner C8003 (K/Y/M/C) |
+| RICOH IM C7010 | RICOH toner IM C7010 (K/Y/M/C) |
+| RICOH IM C6011 | RICOH toner IM C6010 (K/Y/M/C) |
+| RICOH IM C3511 | RICOH toner IM C3510 (K/Y/M/C) |
+
+The canonical model strings already begin with `RICOH`, so each row carries a separate retail `searchModel` to avoid generating a duplicated query such as `RICOH RICOH IM C8010`. The Amazon handoff becomes `RICOH IM C8010 トナー` while exact manufacturer toner identifiers remain attached as evidence. No separate color links are emitted.
+
+The UI does not say that every Amazon result is genuine or compatible. A note tells the user that consumable identifiers were checked against an official manufacturer source and that the exact Amazon item must still be confirmed before purchase.
 
 Unmapped printer models receive only the generic exact-model Amazon search. Consumable compatibility is never guessed from model naming.
 
@@ -150,4 +164,4 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 
 ## Next expansion gate
 
-After KYOCERA Wave 1, evaluate RICOH and FUJIFILM Business Innovation using the same model-to-toner evidence standard. Continue KYOCERA only where the exact existing ManualFinder model and official consumable code can be matched without inference. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.
+After RICOH Wave 1, evaluate FUJIFILM Business Innovation using the same model-to-toner evidence standard. Additional RICOH and KYOCERA waves remain eligible only where exact existing ManualFinder models and official consumable identifiers can be matched without inference. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.
