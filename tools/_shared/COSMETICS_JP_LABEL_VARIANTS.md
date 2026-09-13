@@ -4,7 +4,7 @@ This contract records reviewed Japanese label forms that may resolve to maintain
 
 The mappings in this wave are source-backed label/name equivalences. They are not safety, efficacy, concentration, suitability, or medical claims.
 
-## Wave 1 active mappings
+## Active mappings
 
 | Observed / accepted label | Canonical identity | Evidence |
 | --- | --- | --- |
@@ -12,15 +12,17 @@ The mappings in this wave are source-backed label/name equivalences. They are no
 | `水酸化ナトリウム液` | `Sodium Hydroxide` | PMDA additive list identifies 水酸化ナトリウム液 as Sodium Hydroxide Solution: https://www.pmda.go.jp/files/000223946.pdf |
 | `水酸化カリウム液(A)` | `Potassium Hydroxide` | MHLW specification defines 水酸化カリウム液(A) as a KOH aqueous solution: https://www.mhlw.go.jp/web/t_doc?dataId=00tc3056&dataType=1&pageNo=1 |
 | `グリセリルエチルヘキシルエーテル` | `Ethylhexylglycerin` | Iwaki cosmetic raw-material documentation lists エチルヘキシルグリセリン and the quasi-drug display variant グリセリルエチルヘキシルエーテル together: https://www.iwaki-kk.co.jp/dcms_media/other/B00025_2025.pdf |
+| `ジカプリン酸ネオペンチルグリコール` | `Neopentyl Glycol Dicaprate` | KOKYU ALCOHOL KOGYO identifies ジカプリン酸ネオペンチルグリコール with INCI `NEOPENTYL GLYCOL DICAPRATE`: https://www.kak.co.jp/product/plant_petroleum_derived_ester/item_12 |
+| `ラウリルヒドロキシスルホベタイン液` | `Lauryl Hydroxysultaine` | Kao Japan identifies the external-standard label ラウリルヒドロキシスルホベタイン液 for AMPHITOL 20HD, while Kao's English product page gives INCI `LAURYL HYDROXYSULTAINE`: https://chemical.kao.com/ja/products/B0001639_ja/ and https://chemical.kao.com/en/products/B0001639_en/ |
 
-## Deferred candidates
+## PR31 canonical record activation
 
-Two source-backed equivalences were reviewed but are deliberately not activated in Wave 1 because their canonical target records are not yet present in the maintained nine-file dictionary set:
+PR30 deliberately deferred the last two mappings because their canonical targets did not yet exist in the maintained nine-file dictionary set. PR31 closes that structural gap by adding reviewed canonical records for:
 
-- `ジカプリン酸ネオペンチルグリコール` → `Neopentyl Glycol Dicaprate`. Supporting manufacturer evidence: https://www.kak.co.jp/product/plant_petroleum_derived_ester/item_12
-- `ラウリルヒドロキシスルホベタイン液` → `Lauryl Hydroxysultaine`. Supporting Kao evidence: https://chemical.kao.com/ja/products/B0001639_ja/
+- `Neopentyl Glycol Dicaprate`, category `emollient`, with Japanese label `ジカプリン酸ネオペンチルグリコール`;
+- `Lauryl Hydroxysultaine`, category `surfactant`, with Japanese label `ラウリルヒドロキシスルホベタイン液`.
 
-They remain unresolved until a separate reviewed dictionary-record addition establishes those canonical targets. The alias layer must never point at a canonical identity that the maintained dictionary does not actually contain.
+The labels are attached to the canonical records themselves rather than introduced as dangling shared aliases. The dictionary's legacy `safety` field remains an internal compatibility field; this mapping contract does not turn that field into a safety claim.
 
 ## Guardrails
 
