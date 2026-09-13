@@ -1,8 +1,9 @@
 (() => {
   const V = "2026-09-13";
-  window.MANUALFINDER_WAVE3_BATCHES = ["manuals.wave3.01.js", "manuals.wave3.02.js"];
+  window.MANUALFINDER_WAVE3_BATCHES = ["manuals.wave3.01.js", "manuals.wave3.02.js", "manuals.wave3.03.js"];
   window.MANUALFINDER_WAVE3_NIKON = window.MANUALFINDER_WAVE3_NIKON || [];
   window.MANUALFINDER_WAVE3_BROTHER = window.MANUALFINDER_WAVE3_BROTHER || [];
+  window.MANUALFINDER_WAVE3_SONY = window.MANUALFINDER_WAVE3_SONY || [];
 
   const slug = (v) => String(v || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const lines = (parts) => parts.flatMap((part) => String(part || "").split("\n").map((x) => x.trim()).filter(Boolean));
@@ -52,5 +53,26 @@
     });
   };
 
-  window.MANUALFINDER_BUILD_WAVE3 = () => [...nikon(), ...brother()];
+  const sony = () => {
+    const supportUrl = "https://support.sony.jp/electronics/support/interchangeable-lens-cameras-e-mount-body/manuals";
+    return lines(window.MANUALFINDER_WAVE3_SONY).map((line) => {
+      const [model, manualUrl] = line.split("|");
+      return {
+        id: `wave3-sony-${slug(model)}`,
+        brand: "Sony", maker: "Sony", model, family: "Alpha flagship E-mount camera",
+        nameJa: `ソニー ${model}`, nameEn: `Sony ${model}`,
+        category: "カメラ・映像", country: "Japan", manualUrl, supportUrl,
+        noteJa: "ソニー公式の機種別取扱説明書ページです。",
+        noteEn: "Official Sony model-specific manual page.",
+        hintJa: `ソニー Sony ${model} α Alpha Eマウント カメラ 取扱説明書`,
+        hintEn: `Sony ${model} Alpha E-mount camera manual`,
+        aliases: ["ソニー", "Sony", "α", "Alpha", "Eマウント", "カメラ", "取扱説明書"],
+        sourceType: "official", sourceLevel: "A", verifiedAt: V, evidenceUrl: manualUrl,
+        resolutionState: "direct_manual_page", manualKind: "manual-index", sharedTarget: false,
+        linkReview: `official Wave 3C target verified ${V}`
+      };
+    });
+  };
+
+  window.MANUALFINDER_BUILD_WAVE3 = () => [...nikon(), ...brother(), ...sony()];
 })();
