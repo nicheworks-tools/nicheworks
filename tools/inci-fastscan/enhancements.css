@@ -52,7 +52,8 @@
   margin-top: 12px;
 }
 
-.fastscan-filter-btn {
+.fastscan-filter-btn,
+.fastscan-review-nav {
   min-height: 36px;
   padding: 6px 11px;
   border: 1px solid rgba(127, 127, 127, 0.3);
@@ -70,6 +71,24 @@
   font-weight: 700;
 }
 
+.fastscan-review-queue {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.fastscan-review-position {
+  min-width: 10em;
+  text-align: center;
+  color: var(--muted, #667085);
+}
+
+.fastscan-review-nav:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 .fastscan-result-action-status {
   min-height: 1.25em;
   margin-top: 8px;
@@ -77,6 +96,11 @@
 
 .result-card[hidden] {
   display: none;
+}
+
+.result-card.is-current-review {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }
 
 .suggestion-action {
@@ -96,7 +120,9 @@
 }
 
 .suggestion-action:focus-visible,
-.fastscan-filter-btn:focus-visible {
+.fastscan-filter-btn:focus-visible,
+.fastscan-review-nav:focus-visible,
+.result-card:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
@@ -116,6 +142,15 @@
 
   .fastscan-filter-btn {
     flex: 0 0 auto;
+  }
+
+  .fastscan-review-queue {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .fastscan-review-position {
+    min-width: 0;
   }
 
   .suggestion-action {
