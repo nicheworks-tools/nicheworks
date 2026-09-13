@@ -83,6 +83,14 @@ const RESULT_TEXT = {
     ja: "辞書に一致しませんでした。OCR崩れ、表記ゆれ、辞書未登録、または曖昧なカテゴリ名の可能性があります。",
     en: "No exact dictionary match was found. This may be an OCR issue, spelling variant, missing dictionary item, or an intentionally ambiguous group label."
   },
+  ocrSuspected: {
+    ja: "OCR文字誤認識の可能性",
+    en: "Possible OCR character confusion"
+  },
+  ocrSuspectedHint: {
+    ja: candidate => `I / l / 1 または O / 0 の読み違いだけで「${candidate}」に近づきます。元画像を確認し、必要なら入力欄を手で修正してください。`,
+    en: candidate => `Only common I / l / 1 or O / 0 OCR confusions separate this from “${candidate}”. Check the image and edit the input manually if appropriate.`
+  },
   suggestionTitle: {
     ja: "近い表記候補",
     en: "Possible close matches"
@@ -181,6 +189,7 @@ function renderResults(container, results, lang = "ja") {
           <span class="review-label">${escapeHtml(rt("unknownLabel", uiLang))}</span>
         </div>
         <div class="result-note">${escapeHtml(rt("unknownReason", uiLang))}</div>
+        ${renderOcrConfusion(r.ocr_confusion, uiLang)}
         ${renderSuggestions(r.suggestions, uiLang)}
         <ul class="unknown-tips">
           <li>${escapeHtml(rt("tipSpell", uiLang))}</li>
@@ -192,6 +201,16 @@ function renderResults(container, results, lang = "ja") {
 
     container.appendChild(div);
   });
+}
+
+function renderOcrConfusion(confusion, lang) {
+  if (!confusion?.en) return "";
+  return `
+    <div class="status-note status-warn">
+      <strong>${escapeHtml(rt("ocrSuspected", lang))}</strong>
+      <div class="small">${escapeHtml(rt("ocrSuspectedHint", lang, confusion.en))}</div>
+    </div>
+  `;
 }
 
 function renderSuggestions(suggestions, lang) {
@@ -218,8 +237,9 @@ function getMatchRouteLabel(kind, lang) {
   return rt("routeCanonical", lang);
 }
 
-function rt(key, lang) {
-  return RESULT_TEXT[key]?.[lang] || RESULT_TEXT[key]?.ja || "";
+function rt(key, lang, ...args) {
+  const value = RESULT_TEXT[key]?.[lang] || RESULT_TEXT[key]?.ja || "";
+  return typeof value === "function" ? value(...args) : value;
 }
 
 function summarizeResults(results) {
