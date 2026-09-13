@@ -47,6 +47,8 @@
     "pcaナトリウム": "sodium pca",
     "pg": "propylene glycol",
     "グリセリルエチルヘキシルエーテル": "ethylhexylglycerin",
+    "ヤシ油脂肪酸アシルグルタミン酸na": "sodium cocoyl glutamate",
+    "シュガースクワラン": "squalane",
     "alcohol denat": "alcohol denat."
   });
 
@@ -238,7 +240,7 @@
   }
 
   const api = {
-    version: "1.10.0",
+    version: "1.10.1",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,

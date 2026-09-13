@@ -25,7 +25,12 @@ const mappings = [
   ['水酸化カリウム液(A)', 'Potassium Hydroxide'],
   ['グリセリルエチルヘキシルエーテル', 'Ethylhexylglycerin'],
   ['ジカプリン酸ネオペンチルグリコール', 'Neopentyl Glycol Dicaprate'],
-  ['ラウリルヒドロキシスルホベタイン液', 'Lauryl Hydroxysultaine']
+  ['ラウリルヒドロキシスルホベタイン液', 'Lauryl Hydroxysultaine'],
+  ['ヤシ油脂肪酸アシルグルタミン酸Na', 'Sodium Cocoyl Glutamate'],
+  ['シュガースクワラン', 'Squalane'],
+  ['ラウロイルアスパラギン酸Na液', 'Sodium Lauroyl Aspartate'],
+  ['イソステアリルグリセリルエーテル', 'Isostearyl Glyceryl Ether'],
+  ['イソステアリン酸コレステリル', 'Cholesteryl Isostearate']
 ];
 
 const exactOwners = new Map();
@@ -62,7 +67,8 @@ for (const [label, canonical] of mappings) {
 for (const unresolved of [
   'パラベン',
   'エデト酸塩',
-  'Ammonium Polyacryloyldimethyl'
+  'Ammonium Polyacryloyldimethyl',
+  'POE・ジメチコン共重合体'
 ]) {
   const key = parser.normalizeKey(unresolved);
   const owners = key ? exactOwners.get(key) : null;
@@ -71,7 +77,10 @@ for (const unresolved of [
 
 const canonicalRecordPairs = [
   ['Neopentyl Glycol Dicaprate', 'ジカプリン酸ネオペンチルグリコール', 'emollient'],
-  ['Lauryl Hydroxysultaine', 'ラウリルヒドロキシスルホベタイン液', 'surfactant']
+  ['Lauryl Hydroxysultaine', 'ラウリルヒドロキシスルホベタイン液', 'surfactant'],
+  ['Sodium Lauroyl Aspartate', 'ラウロイルアスパラギン酸Na液', 'surfactant'],
+  ['Isostearyl Glyceryl Ether', 'イソステアリルグリセリルエーテル', 'emulsifier'],
+  ['Cholesteryl Isostearate', 'イソステアリン酸コレステリル', 'emollient']
 ];
 for (const [canonical, japaneseLabel, category] of canonicalRecordPairs) {
   const record = records.find((item) => item?.en === canonical);
@@ -80,14 +89,26 @@ for (const [canonical, japaneseLabel, category] of canonicalRecordPairs) {
   assert.equal(record.category, category, `${canonical}: canonical category mismatch`);
 }
 
+const aliasBackedPairs = [
+  ['ヤシ油脂肪酸アシルグルタミン酸Na', 'Sodium Cocoyl Glutamate'],
+  ['シュガースクワラン', 'Squalane']
+];
+for (const [label, canonical] of aliasBackedPairs) {
+  assert.equal(parser.normalizeKey(label), parser.normalizeKey(canonical), `${label}: shared alias must resolve to ${canonical}`);
+}
+
 const doc = read('tools/_shared/COSMETICS_JP_LABEL_VARIANTS.md');
 for (const token of [
   'MHLW',
   'PMDA',
-  'Ethylhexylglycerin',
   'Neopentyl Glycol Dicaprate',
   'Lauryl Hydroxysultaine',
-  'canonical record activation',
+  'Sodium Lauroyl Aspartate',
+  'Sodium Cocoyl Glutamate',
+  'Isostearyl Glyceryl Ether',
+  'Cholesteryl Isostearate',
+  'Squalane',
+  'Wave 2',
   'no fuzzy auto-replacement',
   'Amazon destinations remain fixed'
 ]) {
@@ -96,10 +117,10 @@ for (const token of [
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'jp-label-variants-canonical-record-wave1',
+  phase: 'jp-label-variants-wave2',
   reviewed_active_mappings: mappings.length,
-  canonical_records_added: canonicalRecordPairs.length,
-  deferred_candidates: 0,
+  canonical_records_active: canonicalRecordPairs.length,
+  shared_alias_mappings_added_wave2: aliasBackedPairs.length,
   dictionary_files: DATA_FILES.length,
   fuzzy_auto_replacement: false,
   broad_labels_forced_exact: false,
