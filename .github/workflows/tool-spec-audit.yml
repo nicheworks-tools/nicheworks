@@ -12,11 +12,14 @@ on:
       - 'docs/tools/**'
       - 'audits/tool-quality-matrix.json'
       - 'audits/tool-quality-matrix.md'
+      - 'MONETIZATION_CLASSIFICATION_87.json'
+      - 'MONETIZATION_CLASSIFICATION_87.md'
       - 'assets/nw-support.css'
       - 'scripts/check-common-support-contract.mjs'
       - 'scripts/check-tool-spec-contract.mjs'
       - 'scripts/check-tool-spec-coverage.mjs'
       - 'scripts/check-tool-quality-contract.mjs'
+      - 'scripts/check-monetization-classification.mjs'
       - '.github/workflows/tool-spec-audit.yml'
   push:
     branches:
@@ -30,11 +33,14 @@ on:
       - 'docs/tools/**'
       - 'audits/tool-quality-matrix.json'
       - 'audits/tool-quality-matrix.md'
+      - 'MONETIZATION_CLASSIFICATION_87.json'
+      - 'MONETIZATION_CLASSIFICATION_87.md'
       - 'assets/nw-support.css'
       - 'scripts/check-common-support-contract.mjs'
       - 'scripts/check-tool-spec-contract.mjs'
       - 'scripts/check-tool-spec-coverage.mjs'
       - 'scripts/check-tool-quality-contract.mjs'
+      - 'scripts/check-monetization-classification.mjs'
       - '.github/workflows/tool-spec-audit.yml'
 
 permissions:
@@ -63,6 +69,9 @@ jobs:
 
       - name: Check registered-tool support contract
         run: node scripts/check-common-support-contract.mjs
+
+      - name: Check monetization classification contract
+        run: node scripts/check-monetization-classification.mjs
 
       - name: Confirm repository was not modified
         run: git diff --exit-code
