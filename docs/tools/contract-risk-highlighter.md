@@ -101,7 +101,29 @@ Follow common-spec sections 6 and 9-4. Preserve and update in place rather than 
 - **Language handling for existing usage pages:** Japanese coverage **present**; English coverage **present**.
 - Any usage link must remain a subdued text link, separated from advertising as required by common-spec section 10-6.
 
-## 14. Monetization and entitlement contract
+## 14. Functional acceptance tests
+
+- [ ] Analyzing supported sample/pasted text produces an overall result and clause-pattern findings without transmitting the contract to an application backend.
+- [ ] Free mode exposes the overall result, at most three findings, and Lite Markdown preview/copy while the complete findings/artifacts remain paid.
+- [ ] Current legacy Pro requires both active state and exact `nicheworks_pro`; generic active-like fields alone cannot unlock it.
+- [ ] Manually unhiding paid controls while inactive cannot execute Show All, Pro pack copy, Markdown download, or Print/Save PDF.
+- [ ] Inactive hidden Pro review-pack fields are cleared after relevant interactions/status refresh.
+- [ ] A stale previous-Pro Show All state cannot leave more than three findings visible after entitlement becomes inactive.
+- [ ] Product-scoped staging fails closed unless server-verified entitlement state matches the configured product and operation features.
+- [ ] Canonical monetization classification is `PRO_BUNDLE`, and future live product authority is `nicheworks.pro` rather than a tool-specific paid product.
+- [ ] Billing/entitlement traffic is contract-content-free.
+- [ ] Pro review outputs are derived from the current analysis and Print/Save PDF uses the browser printing path rather than claiming direct contract-PDF analysis.
+- [ ] JP/EN switching retains the legal disclaimer, privacy warning, and analysis controls.
+
+Automated regression/source-contract evidence: `scripts/check-tool-runtime-contracts.mjs` and `scripts/check-contract-risk-product-scoped-staging.mjs`. The dedicated staging check validates entitlement isolation, operation mapping, source-level Free/Pro boundaries, bundle classification/authority, and hardening invariants; it is not represented as a full browser E2E test. Browser behavior-level status remains **behavior-test-missing** until an actual browser-level scenario test is added.
+
+## 15. Explicit tool-specific exceptions
+
+- No language exception is established beyond the language mode above.
+- No additional layout exception is established.
+- Direct PDF contract-text extraction is not part of the current operative input contract; Print/Save PDF refers to browser printing of the generated result.
+
+### Monetization and entitlement contract
 
 `MONETIZATION_CLASSIFICATION_87.md` classifies `contract-risk-highlighter` as an approved `PRO_BUNDLE` member. Its future paid product authority is therefore the shared `nicheworks.pro` product; legacy `nicheworks_pro` remains compatibility/migration state only.
 
@@ -119,28 +141,6 @@ The public runtime remains on the legacy shared-Pro mechanism until the shared b
 For live migration, the configured product ID must be `nicheworks.pro` plus the approved Contract Risk operation/feature mapping. No Contract-Risk-specific paid product is created by this contract.
 
 The NicheWorks Pro price/currency, Stripe Product/Price, price-tier mapping, production Contract Risk feature namespace, historical-purchaser treatment, and live/test rollout policy remain unresolved. Detailed staging requirements are in `docs/billing/pro-product-contracts-wave3.md`; shared-bundle authority is in `docs/billing/nicheworks-pro-bundle-contract.md`.
-
-## 15. Functional acceptance tests
-
-- [ ] Analyzing supported sample/pasted text produces an overall result and clause-pattern findings without transmitting the contract to an application backend.
-- [ ] Free mode exposes the overall result, at most three findings, and Lite Markdown preview/copy while the complete findings/artifacts remain paid.
-- [ ] Current legacy Pro requires both active state and exact `nicheworks_pro`; generic active-like fields alone cannot unlock it.
-- [ ] Manually unhiding paid controls while inactive cannot execute Show All, Pro pack copy, Markdown download, or Print/Save PDF.
-- [ ] Inactive hidden Pro review-pack fields are cleared after relevant interactions/status refresh.
-- [ ] A stale previous-Pro Show All state cannot leave more than three findings visible after entitlement becomes inactive.
-- [ ] Product-scoped staging fails closed unless server-verified entitlement state matches the configured product and operation features.
-- [ ] Canonical monetization classification is `PRO_BUNDLE`, and future live product authority is `nicheworks.pro` rather than a tool-specific paid product.
-- [ ] Billing/entitlement traffic is contract-content-free.
-- [ ] Pro review outputs are derived from the current analysis and Print/Save PDF uses the browser printing path rather than claiming direct contract-PDF analysis.
-- [ ] JP/EN switching retains the legal disclaimer, privacy warning, and analysis controls.
-
-Automated regression/source-contract evidence: `scripts/check-tool-runtime-contracts.mjs` and `scripts/check-contract-risk-product-scoped-staging.mjs`. The dedicated staging check validates entitlement isolation, operation mapping, source-level Free/Pro boundaries, bundle classification/authority, and hardening invariants; it is not represented as a full browser E2E test. Browser behavior-level status remains **behavior-test-missing** until an actual browser-level scenario test is added.
-
-## 16. Explicit tool-specific exceptions
-
-- No language exception is established beyond the language mode above.
-- No additional layout exception is established.
-- Direct PDF contract-text extraction is not part of the current operative input contract; Print/Save PDF refers to browser printing of the generated result.
 
 ### Implementation evidence
 

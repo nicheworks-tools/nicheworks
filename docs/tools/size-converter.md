@@ -91,7 +91,9 @@ Amazon readiness is isolated from user sizing state: direct size text, chart sel
 
 The main public page must keep a tool-specific title/description, exactly one self-referencing canonical for `https://nicheworks.app/tools/size-converter/`, valid `WebApplication` JSON-LD, and evidence-based FAQ/schema content. Search-oriented examples such as `US 4` are valid only where the bundled reference table actually supports them.
 
-## 11. Advertising / affiliate contract
+## 11. Advertising contract
+
+### Affiliate contract
 
 - Preserve existing GA4 and AdSense identifiers/code and common-spec placement rules.
 - The shared `/assets/amazon-affiliate.js` helper and local `affiliate-config.js` form the Amazon insertion contract.
