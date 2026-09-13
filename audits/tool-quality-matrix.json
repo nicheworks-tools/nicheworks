@@ -1787,13 +1787,12 @@
       "json_ld_status": "present",
       "donation_status": "present",
       "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
+      "functional_test_status": "behavior-test-present",
       "automated_tests": [
-        "scripts/check-tool-runtime-contracts.mjs"
+        "scripts/check-tool-runtime-contracts.mjs",
+        "functions/api/earth-map-suite/tests/precipitation-sample-real-harness.mjs"
       ],
-      "outstanding_issues": [
-        "Behavior-level automated tests are absent."
-      ],
+      "outstanding_issues": [],
       "final_state": "PASS",
       "evidence": [
         "tools/earth-map-suite/index.html",
@@ -1824,13 +1823,15 @@
         {
           "path": "scripts/check-tool-runtime-contracts.mjs",
           "classification": "regression/contract test"
+        },
+        {
+          "path": "functions/api/earth-map-suite/tests/precipitation-sample-real-harness.mjs",
+          "classification": "behavior test"
         }
       ],
       "decision_gaps": [],
       "hard_compliance_gaps": [],
-      "recommendation_only_gaps": [
-        "Behavior-level automated tests are absent."
-      ]
+      "recommendation_only_gaps": []
     },
     {
       "slug": "earth-timeseries",
@@ -2544,15 +2545,15 @@
       "json_ld_status": "present",
       "donation_status": "present",
       "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
+      "functional_test_status": "behavior-test-present",
       "automated_tests": [
         "scripts/check-tool-runtime-contracts.mjs",
         "tools/inci-fastscan/scripts/validate_dict.js",
-        "tools/inci-fastscan/validate-dictionary.mjs"
+        "tools/inci-fastscan/validate-dictionary.mjs",
+        "tools/_shared/check-fastscan-ocr-confusion.mjs"
       ],
       "outstanding_issues": [
-        "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "Usage documentation is recommended but absent."
       ],
       "final_state": "PASS",
       "evidence": [
@@ -2586,13 +2587,16 @@
         {
           "path": "tools/inci-fastscan/validate-dictionary.mjs",
           "classification": "data validation"
+        },
+        {
+          "path": "tools/_shared/check-fastscan-ocr-confusion.mjs",
+          "classification": "behavior test"
         }
       ],
       "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
-        "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "Usage documentation is recommended but absent."
       ]
     },
     {
