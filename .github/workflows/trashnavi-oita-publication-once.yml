@@ -1,0 +1,125 @@
+name: TrashNavi Oita publication one-shot
+
+on:
+  push:
+    branches:
+      - feat/trashnavi-oita-publication-20260913
+    paths:
+      - .github/workflows/trashnavi-oita-publication-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-oita-publication-20260913
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Apply Oita publication contract
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          function replaceOnce(text, from, to, label) {
+            if (text.includes(to)) return text;
+            if (!text.includes(from)) throw new Error(`${label}: anchor missing`);
+            return text.replace(from, to);
+          }
+
+          const manifestPath = 'tools/trashnavi/municipality-page-manifest.json';
+          let manifest = fs.readFileSync(manifestPath, 'utf8');
+          manifest = replaceOnce(
+            manifest,
+            '  {"lgcode":"372013","pref_slug":"kagawa","city_slug":"takamatsu","publish":true}\n]',
+            '  {"lgcode":"372013","pref_slug":"kagawa","city_slug":"takamatsu","publish":true},\n  {"lgcode":"442011","pref_slug":"oita","city_slug":"oita","publish":true}\n]',
+            'manifest'
+          );
+          fs.writeFileSync(manifestPath, manifest);
+
+          const generatorPath = 'tools/trashnavi/scripts/generate-municipality-pages.mjs';
+          let generator = fs.readFileSync(generatorPath, 'utf8');
+          generator = replaceOnce(
+            generator,
+            'if(outputs.length!==18) throw new Error(`municipality page count must be 18; got ${outputs.length}`);',
+            'if(outputs.length!==19) throw new Error(`municipality page count must be 19; got ${outputs.length}`);',
+            'generator count'
+          );
+          fs.writeFileSync(generatorPath, generator);
+
+          const indexPath = 'tools/trashnavi/index.html';
+          let index = fs.readFileSync(indexPath, 'utf8');
+          index = replaceOnce(
+            index,
+            '<a href="/tools/trashnavi/kagawa/takamatsu/">高松市</a></div>',
+            '<a href="/tools/trashnavi/kagawa/takamatsu/">高松市</a><a href="/tools/trashnavi/oita/oita/">大分市</a></div>',
+            'root municipality link'
+          );
+          fs.writeFileSync(indexPath, index);
+
+          const rootSitemapPath = 'sitemap.xml';
+          let rootSitemap = fs.readFileSync(rootSitemapPath, 'utf8');
+          const oitaBlock = '  <url>\n    <loc>https://nicheworks.app/tools/trashnavi/oita/oita/</loc>\n    <lastmod>2026-09-13</lastmod>\n  </url>\n';
+          if (!rootSitemap.includes('https://nicheworks.app/tools/trashnavi/oita/oita/')) {
+            if (!rootSitemap.includes('</urlset>')) throw new Error('root sitemap closing tag missing');
+            rootSitemap = rootSitemap.replace('</urlset>', `${oitaBlock}</urlset>`);
+          }
+          fs.writeFileSync(rootSitemapPath, rootSitemap);
+
+          const specPath = 'tools/trashnavi/SPEC.md';
+          let spec = fs.readFileSync(specPath, 'utf8');
+          spec = replaceOnce(
+            spec,
+            'Wave 12では、Wave 11と同じ供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から大分市を選定した。大分市公式の2026年度（令和8年度）ごみ収集カレンダー（住所別検索）と粗大ごみ・一時的多量ごみ案内を追加し、既存のごみ導線と合わせてpreferred candidateへ引き上げた。data enrichment検証は完了し、自治体page publicationは別PRで行う。\n\n- 大分県 大分市 — publication pending',
+            'Wave 12では、Wave 11と同じ供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から大分市を選定した。大分市公式の2026年度（令和8年度）ごみ収集カレンダー（住所別検索）と粗大ごみ・一時的多量ごみ案内を追加し、既存のごみ導線と合わせてpreferred candidateへ引き上げた。data enrichment検証後、公開対象を **19自治体** とする。\n\n- 大分県 大分市 — `/tools/trashnavi/oita/oita/`',
+            'Wave 12 publication state'
+          );
+          spec = replaceOnce(spec, '- [x] 公開18自治体をmanifest allowlistで管理する。', '- [x] 公開19自治体をmanifest allowlistで管理する。', 'manifest acceptance');
+          spec = replaceOnce(spec, '- [x] generator `--check` で18ページの生成driftを検出する。', '- [x] generator `--check` で19ページの生成driftを検出する。', 'generator acceptance');
+          spec = replaceOnce(spec, '- [x] Wave 12で大分市をpreferred candidateへ引き上げる。自治体page publicationは別PRで閉じる。', '- [x] Wave 12で大分市をpreferred candidateへ引き上げ、自治体pageを公開する。', 'Wave 12 acceptance');
+          const evidence = '- `tools/trashnavi/oita/oita/index.html` — Wave 12 municipality page。';
+          if (!spec.includes(evidence)) {
+            const anchor = '- `tools/trashnavi/kagawa/takamatsu/index.html` — Wave 11 municipality page。';
+            if (!spec.includes(anchor)) throw new Error('Wave 11 page evidence anchor missing');
+            spec = spec.replace(anchor, `${anchor}\n${evidence}`);
+          }
+          fs.writeFileSync(specPath, spec);
+          NODE
+
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs
+      - name: Validate Oita publication
+        shell: bash
+        run: |
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+          node <<'NODE'
+          const fs = require('fs');
+          const manifest = JSON.parse(fs.readFileSync('tools/trashnavi/municipality-page-manifest.json', 'utf8'));
+          if (manifest.filter(x => x.publish).length !== 19) throw new Error('manifest must publish 19 municipalities');
+          const page = fs.readFileSync('tools/trashnavi/oita/oita/index.html', 'utf8');
+          const cards = (page.match(/<article class="official-link-card">/g) || []).length;
+          if (cards !== 3) throw new Error(`Oita official-link cards must be 3; got ${cards}`);
+          if (!page.includes('2026年の収集カレンダー')) throw new Error('Oita FY2026 calendar callout missing');
+          if (!page.includes('https://www.city.oita.oita.jp/o150/kurashi/gomi/2026karenda/kensakuhyo.html')) throw new Error('Oita calendar URL missing');
+          if (!page.includes('https://www.city.oita.oita.jp/o017/homepage/bulkygarbage.html')) throw new Error('Oita bulky-waste URL missing');
+          const root = fs.readFileSync('tools/trashnavi/index.html', 'utf8');
+          if ((root.match(/\/tools\/trashnavi\/oita\/oita\//g) || []).length !== 1) throw new Error('Oita root link must appear once');
+          const sitemap = fs.readFileSync('sitemap.xml', 'utf8');
+          if ((sitemap.match(/https:\/\/nicheworks\.app\/tools\/trashnavi\/oita\/oita\//g) || []).length !== 1) throw new Error('Oita root sitemap URL must appear once');
+          console.log('Oita publication contract: 19 pages / 3 official cards / FY2026 calendar / root link+sitemap OK');
+          NODE
+      - name: Commit publication output
+        shell: bash
+        run: |
+          git config user.name 'nicheworks-tools'
+          git config user.email 'nicheworks.tools@gmail.com'
+          git add sitemap-trashnavi.xml sitemap.xml tools/trashnavi/SPEC.md tools/trashnavi/index.html tools/trashnavi/oita/oita/index.html tools/trashnavi/municipality-page-manifest.json tools/trashnavi/scripts/generate-municipality-pages.mjs
+          git commit -m 'Publish Oita as TrashNavi municipality page'
+          git push origin HEAD:feat/trashnavi-oita-publication-20260913
