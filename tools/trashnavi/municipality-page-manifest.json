@@ -16,5 +16,6 @@
   {"lgcode":"292010","pref_slug":"nara","city_slug":"nara","publish":true},
   {"lgcode":"462012","pref_slug":"kagoshima","city_slug":"kagoshima","publish":true},
   {"lgcode":"452017","pref_slug":"miyazaki","city_slug":"miyazaki","publish":true},
-  {"lgcode":"372013","pref_slug":"kagawa","city_slug":"takamatsu","publish":true}
+  {"lgcode":"372013","pref_slug":"kagawa","city_slug":"takamatsu","publish":true},
+  {"lgcode":"442011","pref_slug":"oita","city_slug":"oita","publish":true}
 ]
