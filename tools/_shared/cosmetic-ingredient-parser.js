@@ -29,6 +29,7 @@
     "塩化ナトリウム": "sodium chloride",
     "クエン酸ナトリウム": "sodium citrate",
     "水酸化ナトリウム": "sodium hydroxide",
+    "水酸化ナトリウム液": "sodium hydroxide",
     "エデト酸2ナトリウム": "disodium edta",
     "エデト酸二ナトリウム": "disodium edta",
     "ニコチン酸アミド": "niacinamide",
@@ -40,9 +41,14 @@
     "安息香酸ナトリウム": "sodium benzoate",
     "ソルビン酸カリウム": "potassium sorbate",
     "水酸化カリウム": "potassium hydroxide",
+    "水酸化カリウム液a": "potassium hydroxide",
     "リン酸ナトリウム": "sodium phosphate",
     "リン酸二ナトリウム": "disodium phosphate",
     "pcaナトリウム": "sodium pca",
+    "pg": "propylene glycol",
+    "ジカプリン酸ネオペンチルグリコール": "neopentyl glycol dicaprate",
+    "ラウリルヒドロキシスルホベタイン液": "lauryl hydroxysultaine",
+    "グリセリルエチルヘキシルエーテル": "ethylhexylglycerin",
     "alcohol denat": "alcohol denat."
   });
 
@@ -237,7 +243,7 @@
   }
 
   const api = {
-    version: "1.9.1",
+    version: "1.10.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
