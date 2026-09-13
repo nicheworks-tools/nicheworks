@@ -1,5 +1,126 @@
 {
-  "version": 1,
-  "updatedAt": null,
-  "accessories": []
+  "version": 2,
+  "updatedAt": "2026-09-13",
+  "accessories": [
+    {
+      "key": "cable-usbc-usbc",
+      "labelJa": "USB-C ⇔ USB-C ケーブル",
+      "labelEn": "USB-C to USB-C cable",
+      "noteJa": "端末側USB-C用。高速充電する場合は充電器側の出力・規格にも対応したケーブルを選んでください。",
+      "noteEn": "For USB-C phones. For fast charging, choose a cable rated for the charger's required power and charging profile.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-pd-20w",
+      "labelJa": "USB-PD対応 20W以上の充電器",
+      "labelEn": "20W+ USB-PD charger",
+      "noteJa": "20W以上のUSB-C Power Delivery対応充電器を選ぶ目安です。",
+      "noteEn": "Choose a USB-C Power Delivery charger rated for at least 20W.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-pd-40w",
+      "labelJa": "USB-PD対応 40W以上の充電器",
+      "labelEn": "40W+ USB-PD charger",
+      "noteJa": "40W以上が公式の高速充電条件になっている機種向けです。",
+      "noteEn": "For phones whose official fast-charge guidance calls for a 40W-or-higher adapter.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-avs-60w",
+      "labelJa": "USB PD 3.1 AVS対応 60W以上の充電器",
+      "labelEn": "60W+ USB PD 3.1 AVS charger",
+      "noteJa": "iPhone 18 Pro系の高速有線充電条件。60W対応USB-Cケーブルも必要です。",
+      "noteEn": "For iPhone 18 Pro fast wired charging. A 60W-capable USB-C cable is also required.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-pps-30w",
+      "labelJa": "USB-PD PPS対応 30W以上の充電器",
+      "labelEn": "30W+ USB-PD PPS charger",
+      "noteJa": "PPS対応を明記した30W以上のUSB-C充電器を選んでください。",
+      "noteEn": "Choose a 30W-or-higher USB-C charger that explicitly supports PPS.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-pps-45w",
+      "labelJa": "USB-PD PPS対応 45W以上の充電器",
+      "labelEn": "45W+ USB-PD PPS charger",
+      "noteJa": "PPS対応を明記した45W以上のUSB-C充電器を選んでください。",
+      "noteEn": "Choose a 45W-or-higher USB-C charger that explicitly supports PPS.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-samsung-25w",
+      "labelJa": "Galaxy Super Fast Charging対応 25W充電器",
+      "labelEn": "25W Galaxy Super Fast Charging charger",
+      "noteJa": "Galaxyの25W Super Fast Charging対応を明記したUSB-C充電器を選んでください。",
+      "noteEn": "Choose a USB-C charger that explicitly supports Samsung 25W Super Fast Charging.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-samsung-45w",
+      "labelJa": "Galaxy Super Fast Charging 2.0対応 45W充電器",
+      "labelEn": "45W Galaxy Super Fast Charging 2.0 charger",
+      "noteJa": "45W動作では対応充電器に加えて適切な高電流USB-Cケーブルも確認してください。",
+      "noteEn": "For 45W operation, confirm both a compatible charger and the required high-current USB-C cable.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-samsung-60w",
+      "labelJa": "Galaxy Super Fast Charging 3.0対応 60W充電器",
+      "labelEn": "60W Galaxy Super Fast Charging 3.0 charger",
+      "noteJa": "Galaxy S26 Ultraの60W高速充電条件に対応することを製品仕様で確認してください。",
+      "noteEn": "Confirm that the charger explicitly supports the Galaxy S26 Ultra 60W fast-charging requirement.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-pd-30w",
+      "labelJa": "USB-PD対応 30W以上の充電器",
+      "labelEn": "30W+ USB-PD charger",
+      "noteJa": "USB Power Delivery対応30W以上を目安に選んでください。",
+      "noteEn": "Choose a USB Power Delivery charger rated for at least 30W.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-pd-45w",
+      "labelJa": "USB-PD対応 45W以上の充電器",
+      "labelEn": "45W+ USB-PD charger",
+      "noteJa": "端末側の給電条件を満たすUSB Power Delivery対応45W以上を目安にしてください。",
+      "noteEn": "Choose a 45W-or-higher USB Power Delivery charger that meets the phone's charging requirements.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-qi",
+      "labelJa": "Qi対応ワイヤレス充電器",
+      "labelEn": "Qi wireless charger",
+      "noteJa": "端末が対応するQi規格と充電器側の出力を確認してください。",
+      "noteEn": "Confirm the phone's Qi support and the charger's rated wireless output.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-qi2",
+      "labelJa": "Qi2対応ワイヤレス充電器",
+      "labelEn": "Qi2 wireless charger",
+      "noteJa": "Qi2対応を明記した充電器を選び、端末側の最大ワイヤレス出力も確認してください。",
+      "noteEn": "Choose a Qi2-certified charger and check the phone's maximum supported wireless output.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-qi2-case-required",
+      "labelJa": "Qi2充電器＋対応マグネットケース",
+      "labelEn": "Qi2 charger + compatible magnetic case",
+      "noteJa": "この機種ではQi2利用に対応ケースが必要なため、充電器だけでなくケースの対応も確認してください。",
+      "noteEn": "This phone requires a compatible case for its Qi2 setup, so verify both the charger and case.",
+      "amazonUrl": null
+    },
+    {
+      "key": "powerbank-10000-usbc",
+      "labelJa": "10,000mAh USB-Cモバイルバッテリー",
+      "labelEn": "10,000mAh USB-C power bank",
+      "noteJa": "充電回数表示は本ページの概算値を参照し、出力規格とケーブル条件も確認してください。",
+      "noteEn": "Use the page's recharge estimate as a guide and also confirm output profile and cable requirements.",
+      "amazonUrl": null
+    }
+  ]
 }

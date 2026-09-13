@@ -25,8 +25,8 @@
       dataError: "データ読込エラー",
       emptyTitle: "該当する機種がありません",
       emptyBody: "検索条件を変更してください。",
-      preparingTitle: "端末データを準備中です",
-      preparingBody: "UI骨格は実装済みです。検証済み機種データは次のデータ更新で追加します。",
+      preparingTitle: "端末データがありません",
+      preparingBody: "検証済みデータがまだ登録されていません。",
       loadErrorTitle: "データを読み込めませんでした",
       loadErrorBody: "ページを再読み込みしてください。問題が続く場合は後でもう一度お試しください。",
       size: "サイズ",
@@ -37,7 +37,8 @@
       display: "画面",
       water: "防水・防塵",
       charging: "充電",
-      recommendedCharger: "推奨充電器",
+      chargerGuidance: "充電器目安",
+      maxWired: "端末側の有線充電上限",
       standard: "規格",
       pps: "PPS",
       wireless: "ワイヤレス",
@@ -57,8 +58,8 @@
       rechargeNote: "変換効率67%を用いた簡易推定です。実際は使用状況・温度・ケーブル・バッテリー状態などで変動します。",
       thirdPartyBattery: "メーカー非公表のため、維持対象の第三者参考値です。",
       whatYouNeed: "このスマホで必要なもの",
-      affiliatePending: "Amazon導線は準備中です",
-      affiliatePendingBody: "対応条件を確認したうえで、後続PRでアクセサリーカテゴリ別のリンクを設定します。",
+      affiliatePending: "購入リンクは準備中です",
+      affiliatePendingBody: "互換カテゴリは端末の確認済み充電条件から判定しています。Amazonリンクはアソシエイト設定後に有効化します。",
       officialInfo: "公式情報",
       officialSpecs: "メーカー仕様 ↗",
       officialManual: "公式マニュアル ↗",
@@ -77,8 +78,8 @@
       dataError: "Data load error",
       emptyTitle: "No matching models",
       emptyBody: "Change the search or filters.",
-      preparingTitle: "Phone data is being prepared",
-      preparingBody: "The runtime UI is in place. Verified phone records will be added in the next data update.",
+      preparingTitle: "No verified phone data",
+      preparingBody: "No verified phone records are currently registered.",
       loadErrorTitle: "Could not load data",
       loadErrorBody: "Reload the page. If the problem continues, try again later.",
       size: "Size",
@@ -89,7 +90,8 @@
       display: "Display",
       water: "Water / dust",
       charging: "Charging",
-      recommendedCharger: "Recommended charger",
+      chargerGuidance: "Charger guidance",
+      maxWired: "Max wired charging",
       standard: "Standard",
       pps: "PPS",
       wireless: "Wireless",
@@ -109,8 +111,8 @@
       rechargeNote: "Simple estimate using 67% conversion efficiency. Real results vary with use, temperature, cable, battery condition, and other factors.",
       thirdPartyBattery: "Reference value because the manufacturer does not publish the maintained mAh figure.",
       whatYouNeed: "What you need",
-      affiliatePending: "Amazon links are being prepared",
-      affiliatePendingBody: "Accessory-category destinations will be configured in a later PR after compatibility rules are verified.",
+      affiliatePending: "Purchase links are being prepared",
+      affiliatePendingBody: "Compatibility classes are derived from verified charging facts. Amazon links will be enabled after the Associates setup is configured.",
       officialInfo: "Official information",
       officialSpecs: "Official specs ↗",
       officialManual: "Official manual ↗",
@@ -194,7 +196,6 @@
     const connectorValue = currentSelectValue('#connectorFilter');
     const yearValue = currentSelectValue('#yearFilter');
     const sortValue = currentSelectValue('#sortSelect', 'newest');
-
     const manufacturers = unique(state.phones.map((phone) => phone.manufacturer)).sort((a, b) => a.localeCompare(b));
     const connectors = unique(state.phones.map((phone) => phone.charging?.connector)).sort((a, b) => a.localeCompare(b));
     const years = unique(state.phones.map((phone) => phone.releaseYear)).sort((a, b) => Number(b) - Number(a));
@@ -215,7 +216,6 @@
     const connector = $('#connectorFilter').value;
     const year = $('#yearFilter').value;
     const sort = $('#sortSelect').value;
-
     const result = state.phones.filter((phone) => {
       const aliases = Array.isArray(phone.aliases) ? phone.aliases : [];
       const haystack = [phone.manufacturer, phone.model, ...aliases].join(' ').toLowerCase();
@@ -237,6 +237,7 @@
 
   function numberOrInfinity(value) { return Number.isFinite(Number(value)) ? Number(value) : Number.POSITIVE_INFINITY; }
   function numberOrZero(value) { return Number.isFinite(Number(value)) ? Number(value) : 0; }
+  function numberOrNull(value) { return Number.isFinite(Number(value)) ? Number(value) : null; }
 
   function render() {
     renderDataState();
@@ -311,8 +312,10 @@
     const connector = phone.charging?.connector || '—';
     const display = phone.displayInch ? `${formatNumber(phone.displayInch)} in` : '—';
     const water = phone.waterRating || '—';
-    const protocols = Array.isArray(phone.charging?.protocols) && phone.charging.protocols.length ? phone.charging.protocols.join(' / ') : '—';
-    const charger = phone.charging?.wiredRecommendedW ? `${formatNumber(phone.charging.wiredRecommendedW)}W+` : '—';
+    const protocols = protocolLabel(phone);
+    const guidanceW = numberOrNull(phone.charging?.wiredRecommendedW);
+    const charger = guidanceW ? `${formatNumber(guidanceW)}W+` : '—';
+    const maxWired = sourceBackedMaxWired(phone);
     const pps = ppsLabel(phone.charging?.pps);
     const wireless = wirelessLabel(phone.charging);
     const battery = phone.charging?.battery || {};
@@ -327,7 +330,7 @@
     </div>
     <div class="detail-body">
       <section class="detail-section"><h3>${escapeHtml(msg('device'))}</h3>${kv(msg('dimensions'), dimensions)}${kv(msg('display'), display)}${kv(msg('water'), water)}</section>
-      <section class="detail-section"><h3>${escapeHtml(msg('charging'))}</h3>${kv(msg('port'), connector)}${kv(msg('recommendedCharger'), charger)}${kv(msg('standard'), protocols)}${kv(msg('pps'), pps)}${kv(msg('wireless'), wireless)}${kv(msg('battery'), batteryLabel)}${kv(msg('cableIncluded'), cable)}${kv(msg('adapterIncluded'), adapter)}${battery.valueClass === 'third_party_reference' ? `<p class="detail-note">* ${escapeHtml(msg('thirdPartyBattery'))}</p>` : ''}</section>
+      <section class="detail-section"><h3>${escapeHtml(msg('charging'))}</h3>${kv(msg('port'), connector)}${kv(msg('chargerGuidance'), charger)}${maxWired ? kv(msg('maxWired'), `${formatNumber(maxWired)}W`) : ''}${kv(msg('standard'), protocols)}${kv(msg('pps'), pps)}${kv(msg('wireless'), wireless)}${kv(msg('battery'), batteryLabel)}${kv(msg('cableIncluded'), cable)}${kv(msg('adapterIncluded'), adapter)}${battery.valueClass === 'third_party_reference' ? `<p class="detail-note">* ${escapeHtml(msg('thirdPartyBattery'))}</p>` : ''}</section>
       <section class="detail-section"><h3>${escapeHtml(msg('recharge'))}</h3>${rechargeHtml(battery)}<p class="detail-note">${escapeHtml(msg('rechargeNote'))}</p></section>
       <section class="detail-section"><h3>${escapeHtml(msg('whatYouNeed'))}</h3>${accessoryHtml(accessories)}</section>
       <section class="detail-section"><h3>${escapeHtml(msg('officialInfo'))}</h3>${officialLinksHtml(phone.sources || {})}</section>
@@ -348,16 +351,75 @@
     }).join('')}</div>`;
   }
 
+  function accessoryKeysFor(phone) {
+    const keys = new Set(Array.isArray(phone.affiliateKeys) ? phone.affiliateKeys : []);
+    const connector = String(phone.charging?.connector || '').toLowerCase();
+    const manufacturer = String(phone.manufacturer || '').toLowerCase();
+    const watts = numberOrNull(phone.charging?.wiredRecommendedW);
+    const pps = phone.charging?.pps;
+    const protocols = Array.isArray(phone.charging?.protocols) ? phone.charging.protocols.join(' ').toLowerCase() : '';
+    const wireless = String(phone.charging?.wirelessStandard || '').toLowerCase();
+
+    if (connector === 'usb-c') keys.add('cable-usbc-usbc');
+
+    if (manufacturer === 'apple' && watts) {
+      if (watts >= 60) keys.add('charger-avs-60w');
+      else if (watts >= 40) keys.add('charger-pd-40w');
+      else keys.add('charger-pd-20w');
+    } else if (manufacturer === 'google' && pps === 'required' && watts) {
+      keys.add(watts > 30 ? 'charger-pps-45w' : 'charger-pps-30w');
+    } else if (manufacturer === 'samsung' && watts) {
+      if (watts >= 60) keys.add('charger-samsung-60w');
+      else if (watts >= 45) keys.add('charger-samsung-45w');
+      else keys.add('charger-samsung-25w');
+    } else if (protocols.includes('usb pd') && watts) {
+      keys.add(watts > 30 ? 'charger-pd-45w' : 'charger-pd-30w');
+    }
+
+    if (wireless.includes('qi2') && wireless.includes('compatible case')) keys.add('charger-qi2-case-required');
+    else if (wireless.includes('qi2')) keys.add('charger-qi2');
+    else if (wireless.includes('qi')) keys.add('charger-qi');
+
+    if (connector === 'usb-c') keys.add('powerbank-10000-usbc');
+    return [...keys];
+  }
+
   function resolvedAccessories(phone) {
-    const keys = Array.isArray(phone.affiliateKeys) ? phone.affiliateKeys : [];
-    return keys.map((key) => state.accessories.find((item) => item.key === key)).filter(Boolean);
+    return accessoryKeysFor(phone)
+      .map((key) => state.accessories.find((item) => item.key === key))
+      .filter(Boolean);
   }
 
   function accessoryHtml(accessories) {
     if (!accessories.length) {
-      return `<div class="recommend"><strong>${escapeHtml(msg('affiliatePending'))}</strong><p class="detail-note">${escapeHtml(msg('affiliatePendingBody'))}</p><div class="affiliate-grid"><span class="affiliate-btn" aria-disabled="true">Amazon</span><span class="affiliate-btn" aria-disabled="true">Amazon</span></div></div>`;
+      return `<div class="recommend"><strong>${escapeHtml(msg('affiliatePending'))}</strong><p class="detail-note">${escapeHtml(msg('affiliatePendingBody'))}</p><div class="affiliate-grid"><span class="affiliate-btn" aria-disabled="true">Amazon</span></div></div>`;
     }
-    return `<div class="recommend">${accessories.map((item) => `<div class="need"><span class="check">✓</span><div><strong>${escapeHtml(state.lang === 'ja' ? item.labelJa : item.labelEn)}</strong><small>${escapeHtml(state.lang === 'ja' ? (item.noteJa || '') : (item.noteEn || ''))}</small></div></div>`).join('')}<p class="detail-note">${escapeHtml(msg('affiliatePendingBody'))}</p></div>`;
+    return `<div class="recommend">${accessories.map((item) => `<div class="need"><span class="check">✓</span><div><strong>${escapeHtml(state.lang === 'ja' ? item.labelJa : item.labelEn)}</strong><small>${escapeHtml(state.lang === 'ja' ? (item.noteJa || '') : (item.noteEn || ''))}</small></div></div>`).join('')}<p class="detail-note">${escapeHtml(msg('affiliatePendingBody'))}</p><div class="affiliate-grid"><span class="affiliate-btn" aria-disabled="true">Amazon</span></div></div>`;
+  }
+
+  function protocolLabel(phone) {
+    const raw = Array.isArray(phone.charging?.protocols) ? [...phone.charging.protocols] : [];
+    const manufacturer = String(phone.manufacturer || '').toLowerCase();
+    const watts = numberOrNull(phone.charging?.wiredRecommendedW);
+    if (manufacturer === 'apple' && String(phone.charging?.connector || '').toLowerCase() === 'usb-c') {
+      raw.push(watts && watts >= 60 ? 'USB PD 3.1 AVS' : 'USB PD');
+    } else if (manufacturer === 'google' && phone.charging?.pps === 'required') {
+      raw.push('USB PD', 'PPS');
+    } else if (manufacturer === 'samsung' && watts) {
+      raw.push(watts >= 60 ? 'Super Fast Charging 3.0' : watts >= 45 ? 'Super Fast Charging 2.0' : 'Super Fast Charging');
+    }
+    const labels = unique(raw);
+    return labels.length ? labels.join(' / ') : '—';
+  }
+
+  function sourceBackedMaxWired(phone) {
+    const explicit = numberOrNull(phone.charging?.wiredMaxW);
+    if (explicit) return explicit;
+    const manufacturer = String(phone.manufacturer || '').toLowerCase();
+    if (manufacturer === 'samsung' || manufacturer === 'sharp') {
+      return numberOrNull(phone.charging?.wiredRecommendedW);
+    }
+    return null;
   }
 
   function officialLinksHtml(sources) {
