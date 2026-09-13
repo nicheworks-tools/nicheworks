@@ -88,13 +88,13 @@ The initial public launch does not send users to live Amazon affiliate destinati
 
 ## Language mode
 
-bilingual single-page
+`bilingual single-page`
 
 Japanese and English share one canonical page and one canonical device dataset. UI labels, explanations, disclaimers, and accessory guidance are localized. Technical values such as manufacturer/model names, `USB-C`, `USB PD`, `PPS`, `Qi`, and `Qi2` remain canonical technical terms rather than duplicated translated facts.
 
 ## Layout class
 
-hybrid
+`hybrid`
 
 Desktop uses a wide two-pane layout: searchable/filterable list on the left and a sticky selected-phone detail pane on the right. Mobile transforms the list into a single-column readable view and opens the same detail content in a dismissible, vertically scrollable bottom sheet. The mobile implementation must not depend on forcing the desktop table through horizontal scrolling.
 
