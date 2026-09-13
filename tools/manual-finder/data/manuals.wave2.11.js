@@ -20,3 +20,15 @@ YK54|https://www.seikowatches.com/middleeast-en/-/media/Files/Common/Seiko/instr
 YK70|https://www.seikowatches.com/middleeast-en/-/media/Files/Common/Seiko/instructions/Japanese/Y/YK70/YK70_3.pdf
 YL50|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/Y/YL50/YL50.pdf
 YM92|https://www.seikowatches.com/jp-ja/-/media/Files/Common/Seiko/instructions/Japanese/Y/YM92/YM92.pdf`);
+
+// Wave 2AN: residual direct Seiko 1/2-series Japanese primary manuals; shared 1B and 2R targets are excluded.
+window.MANUALFINDER_WAVE2_SEIKO.push(`1E20|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/1/1E20/1E20.pdf
+1F20|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/1/1F20/1F20.pdf
+1F21|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/1/1F21/1F21.pdf
+1M20|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/1/1M20/1M20.pdf
+1N00|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/1/1N00/1N00.pdf
+1N01|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/1/1N01/1N01.pdf
+2E20|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/2/2E20/2E20.pdf
+2J30|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/2/2J30/2J30.pdf
+2J31|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/2/2J31/2J31.pdf
+2J41|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/2/2J41/2J41.pdf`);
