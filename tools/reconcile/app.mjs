@@ -286,7 +286,7 @@ async function reparseLoadedCsv(side) {
     encoding: parsed.encoding,
     delimiter: parsed.delimiter,
     rawRows: parsed.rows,
-    sourceFile: file
+    sourceFile: current.sourceFile
   };
   const suffix = side.toUpperCase();
   for (const field of ['amount', 'date', 'reference', 'description']) {
@@ -323,7 +323,8 @@ async function loadCsv(side, file) {
     size: parsed.size,
     encoding: parsed.encoding,
     delimiter: parsed.delimiter,
-    rawRows: parsed.rows
+    rawRows: parsed.rows,
+    sourceFile: file
   })) return;
   setNotice(message(`${side.toUpperCase()}のCSVを読み込みました。`, `Loaded CSV file ${side.toUpperCase()}.`), 'success');
 }
