@@ -22,11 +22,12 @@ The following rules remain unchanged and take precedence everywhere else:
 
 ## 3. Allowed implementation
 
-The only shared helper authorized by this exception is:
+The shared files authorized by this exception are:
 
-`/assets/nw-tool-analytics.js`
+- `/assets/nw-tool-analytics.js` — fixed allowlist + GA4 event sender;
+- `/assets/nw-tool-analytics-pilot.js` — DOM-only bindings for the explicitly listed pilot tools.
 
-It may call the existing global `gtag()` function only with event names from the fixed allowlist below and fixed non-user parameters.
+The event sender may call the existing global `gtag()` function only with event names from the fixed allowlist below and fixed non-user parameters. The pilot binding file may detect only fixed UI state/action changes needed to map a user action to one of those event names. It must not pass DOM text, input values, file properties, selected item identifiers, measurements, or output values to analytics.
 
 Allowed event names:
 
@@ -55,13 +56,13 @@ No tool may attach additional parameters without a separate specification change
 - `file_selected`: a local file was selected for use; never send file name, type, size, path, metadata, or contents.
 - `tool_execute`: the user explicitly starts the core transformation/analysis action.
 - `result_shown`: a usable result becomes available; use `trackOnce` when repeated rendering would inflate counts.
-- `copy_result`: a result/prompt/output copy action succeeds.
+- `copy_result`: a result/prompt/output copy action succeeds or is explicitly requested by a fixed copy control. No copied content may be sent.
 - `download_result`: a generated result download/export action is initiated successfully.
 - `compare_use`: the user explicitly adds/uses a comparison feature.
-- `snapshot_capture`: the user explicitly captures a local numeric snapshot.
+- `snapshot_capture`: the user explicitly captures a local numeric snapshot. No captured value may be sent.
 - `segment_complete`: a user-requested analysis segment completes successfully.
 - `detail_open`: the user explicitly opens an item detail; do not fire for automatic initial selection.
-- `search_use`: the user explicitly uses a tool search/filter interaction; avoid firing on initial rendering.
+- `search_use`: the user explicitly uses a tool search/filter interaction; avoid firing on initial rendering and never send the query.
 
 ## 5. Privacy requirements
 
@@ -81,7 +82,7 @@ If an event cannot be represented by an allowlisted fixed name without user-deri
 
 ## 6. Failure behavior
 
-The analytics helper must be fail-silent. A blocked, unavailable, or misconfigured GA4 tag must never block or alter tool behavior.
+The analytics helper and pilot bindings must be fail-silent. A blocked, unavailable, or misconfigured GA4 tag must never block or alter tool behavior.
 
 ## 7. Initial pilot
 
