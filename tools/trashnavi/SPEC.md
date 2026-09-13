@@ -165,9 +165,9 @@ Wave 8では、Wave 7と同じ供給側拡張方針を維持し、既存direct-l
 
 - 奈良県 奈良市 — `/tools/trashnavi/nara/nara/`
 
-Wave 9では、Search Consoleに新しいmunicipality-specific demand signalがない状態を維持したまま、供給側拡張として鹿児島市を選定した。既存の市公式ごみ導線に、令和8年版家庭のごみ出しカレンダーと粗大ごみ案内を追加し、preferred candidateへ引き上げた。data enrichment検証は完了し、自治体page publicationは別PRで行う。
+Wave 9では、Search Consoleに新しいmunicipality-specific demand signalがない状態を維持したまま、供給側拡張として鹿児島市を選定した。既存の市公式ごみ導線に、令和8年版家庭のごみ出しカレンダーと粗大ごみ案内を追加し、preferred candidateへ引き上げた。data enrichment検証後、公開対象を **16自治体** とする。
 
-- 鹿児島県 鹿児島市 — publication pending
+- 鹿児島県 鹿児島市 — `/tools/trashnavi/kagoshima/kagoshima/`
 
 生成器は公開対象ごとにrepository dataを再集約し、`municipal_home` を除くdistinct waste-specific canonical typeが **3種類未満なら生成を拒否**する。manifestに追加しただけでthin pageを公開してはならない。
 
@@ -272,9 +272,9 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 ### Municipality page expansion
 
 - [x] preferred readiness 3種類以上を生成時に再検証する。
-- [x] 公開15自治体をmanifest allowlistで管理する。
+- [x] 公開16自治体をmanifest allowlistで管理する。
 - [x] 自治体pageをgeneratorから静的生成する。
-- [x] generator `--check` で15ページの生成driftを検出する。
+- [x] generator `--check` で16ページの生成driftを検出する。
 - [x] 公開URLをroot sitemapと専用sitemapへ収録する。
 - [x] robotsの既存root sitemap契約を維持し、sitemap indexから専用sitemapを発見可能にする。
 - [x] Wave 3で御浜町・海津市・結城市をpreferred candidateへ引き上げる。
@@ -283,7 +283,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - [x] Wave 6で猪苗代町をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 7で松山市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 8で奈良市をpreferred candidateへ引き上げ、自治体pageを公開する。
-- [x] Wave 9で鹿児島市をpreferred candidateへ引き上げる。自治体page publicationは別PRで閉じる。
+- [x] Wave 9で鹿児島市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
 ### Link health Phase 4
@@ -319,6 +319,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/fukushima/inawashiro/index.html` — Wave 6 municipality page。
 - `tools/trashnavi/ehime/matsuyama/index.html` — Wave 7 municipality page。
 - `tools/trashnavi/nara/nara/index.html` — Wave 8 municipality page。
+- `tools/trashnavi/kagoshima/kagoshima/index.html` — Wave 9 municipality page。
 - `scripts/check-trashnavi-direct-links.mjs` — all-direct-link dataset inventory / scheduled link-health checker。
 - `.github/workflows/check-trashnavi-direct-links.yml` — monthly/manual live link-health check and report artifact upload。
 - `.agent/plans/20260912-trashnavi-link-freshness-phase4.md` — Phase 4 implementation / safety contract。
