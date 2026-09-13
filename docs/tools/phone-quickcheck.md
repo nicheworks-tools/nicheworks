@@ -140,7 +140,7 @@ Current main-page donation/support evidence: **present**.
 - [x] Official manufacturer specification/manual links remain distinct from accessory guidance.
 - [x] Amazon accessory search CTAs are active through the shared helper with fixed tracking ID, visible disclosure, canonical accessory queries, and coarse analytics only.
 
-Automated test evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/contract test). Behavior-level status: **behavior-test-missing**; this is recorded as a recommendation-only gap rather than hidden as behavior coverage.
+Automated test evidence: `scripts/check-tool-runtime-contracts.mjs`, `scripts/check-phone-quickcheck-data.mjs`, `scripts/check-phone-quickcheck-affiliate.mjs`, and `tools/phone-quickcheck/tests/behavior.test.mjs`. Behavior-level status: **behavior-test-present**. The VM behavior suite exercises real `app.js` logic for alias/model search, JP/EN switching, recharge estimates, Apple unknown-capacity handling, Lightning accessory guidance, proprietary charging semantics, and mobile bottom-sheet open/close behavior.
 
 ## 15. Explicit tool-specific exceptions
 
@@ -162,4 +162,5 @@ Automated test evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/
 - `tools/phone-quickcheck/affiliate-runtime.js`
 - `scripts/check-phone-quickcheck-affiliate.mjs`
 - `scripts/check-phone-quickcheck-data.mjs`
+- `tools/phone-quickcheck/tests/behavior.test.mjs`
 - `tools/phone-quickcheck/SPEC.md`
