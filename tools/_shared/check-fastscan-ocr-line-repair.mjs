@@ -17,6 +17,8 @@ assert.equal(typeof repair, 'function', 'repairWrappedIngredientFragments must b
 const dict = [
   { en: 'Water', jp: ['水'], alias: [] },
   { en: 'Glycerin', jp: ['グリセリン'], alias: [] },
+  { en: 'Alcohol', jp: ['エタノール'], alias: [] },
+  { en: 'Cetearyl Alcohol', jp: ['セテアリルアルコール'], alias: [] },
   {
     en: 'Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine',
     jp: ['ビスエチルヘキシルオキシフェノールメトキシフェニルトリアジン'],
@@ -43,6 +45,14 @@ assert.deepEqual(
   'a trailing OCR wrap hyphen may be removed only when the resulting name exactly matches the dictionary'
 );
 
+result = repair(['Cetearyl', 'Alcohol', 'Water'], dict);
+assert.deepEqual(
+  Array.from(result.list),
+  ['Cetearyl Alcohol', 'Water'],
+  'an exact combined identity may be repaired when only one fragment is independently known'
+);
+assert.equal(result.repairs.length, 1, 'one-known-fragment exact repair should be recorded');
+
 result = repair(['Unknown Alpha', 'Unknown Beta'], dict);
 assert.deepEqual(
   Array.from(result.list),
@@ -50,6 +60,14 @@ assert.deepEqual(
   'unknown adjacent lines must never be guessed into a combined ingredient'
 );
 assert.equal(result.repairs.length, 0, 'no repair should be recorded for non-exact joins');
+
+result = repair(['Unknown Alpha', 'Alcohol'], dict);
+assert.deepEqual(
+  Array.from(result.list),
+  ['Unknown Alpha', 'Alcohol'],
+  'one known fragment must not trigger a merge unless the combined identity is exact'
+);
+assert.equal(result.repairs.length, 0, 'no repair should be recorded without an exact combined identity');
 
 result = repair(['Water', 'Glycerin'], dict);
 assert.deepEqual(

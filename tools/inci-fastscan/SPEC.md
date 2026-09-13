@@ -19,7 +19,8 @@ Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized 
 - Show a local preview of the selected image before OCR and allow the user to remove/reselect it without uploading it.
 - Show OCR progress in the page while recognition is running.
 - Put OCR output back into the editable ingredient textarea and show a clear review cue after OCR; users review/correct OCR text before running ingredient matching.
-- Conservatively repair OCR line wraps only when two individually unmatched adjacent fragments form an exact maintained dictionary name/alias; arbitrary fragments are never fuzzy-joined.
+- Preserve OCR candidate line boundaries during label cleanup rather than guessing joins from common INCI prefixes/suffixes.
+- Conservatively repair OCR line wraps only at the dictionary-aware analysis stage, and only when adjacent fragments form an exact maintained dictionary name/alias and are not already two independently known ingredients. One fragment may itself be known when the combined identity is exact.
 - Normalize/parse OCR or pasted text and match ingredients against the local/generated dictionary and declared aliases.
 - For every exact match, retain the canonical INCI name and identify the route used: canonical INCI, Japanese name, declared alias, or shared high-confidence naming variant.
 - Show result cards with canonical INCI, original input, match route, matched spelling, Japanese names where available, category, review cue, and neutral explanatory note.
@@ -147,7 +148,9 @@ Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` 
 
 - OCR may be slow and can omit, split, or misrecognize characters; users must visually verify OCR text before trusting scan results.
 - Image preview is a review aid only; this wave does not rotate/crop/re-encode the selected file before OCR.
-- Exact OCR line repair only joins fragments when the repaired text exactly matches a maintained dictionary key; it is not fuzzy correction.
+- OCR cleanup preserves candidate boundaries; it does not heuristically join lines based on a prefix/suffix list.
+- Exact OCR line repair only joins fragments when the combined text exactly matches a maintained dictionary key and the fragments are not already two independently known ingredients; it is not fuzzy correction.
+- A fragment that is independently known may still participate in a repair only when the complete combined identity is an exact maintained dictionary name/alias.
 - Near-match suggestions are spelling/OCR repair hints only; they are not authoritative ingredient identification and are never auto-applied.
 - Applying a suggestion is an explicit user editing action, not confirmation that the candidate is correct; the original label should still be checked.
 - Result filters change visibility only and do not change result state or rerun matching.
@@ -166,7 +169,10 @@ Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` 
 - [x] OCR can be started from a selected image when the external Tesseract library loads and visible progress is exposed in the page.
 - [x] Selected OCR images can be previewed locally and removed/reselected without upload.
 - [x] OCR results remain editable and a review cue is shown before ingredient matching.
-- [x] Adjacent OCR fragments are automatically rejoined only when the joined value is an exact maintained dictionary name/alias and neither fragment already matches alone.
+- [x] OCR cleanup preserves candidate line boundaries and does not perform heuristic prefix/suffix joining.
+- [x] Adjacent OCR fragments are automatically rejoined only when their combined value is an exact maintained dictionary name/alias and they are not already two independently known ingredients.
+- [x] An exact combined identity such as `Cetearyl` + `Alcohol` may be repaired even when one fragment is independently known; non-exact combinations remain separate.
+- [x] The source-backed 12-product real-label corpus round-trips through OCR cleanup without losing or merging ingredient boundaries, and safe cleanup does not reduce exact recognition.
 - [x] Exact matched results expose canonical INCI plus canonical / Japanese / alias / shared-variant match route metadata.
 - [x] Displayed result states use neutral dictionary/review language rather than presenting a safe/unsafe score.
 - [x] Result cards can be filtered by matched / review / unmatched state without rerunning analysis.
@@ -190,6 +196,8 @@ Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` 
 - `tools/_shared/cosmetics-affiliate-slot.css`
 - `tools/_shared/check-cosmetics-affiliate-contract.mjs`
 - `tools/_shared/check-fastscan-ocr-line-repair.mjs`
+- `tools/_shared/check-fastscan-ocr-robustness.mjs`
+- `tools/_shared/COSMETICS_OCR_ROBUSTNESS.md`
 - `tools/_shared/check-fastscan-review-queue.mjs`
 - `tools/inci-fastscan/index.html`
 - `tools/inci-fastscan/style.css`
