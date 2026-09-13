@@ -4,12 +4,15 @@
 
 Work only on NicheWorks Reconcile quality/performance hardening and a Reconcile-specific CI check.
 
-Allowed paths:
+Allowed final-diff paths:
 - `tools/reconcile/**`
 - `.github/workflows/reconcile-quality-check.yml`
 - `.agent/plans/2026-09-13-reconcile-quality-performance.md`
 
-Do not modify billing implementation, common specs, other tools, deployment settings, or unrelated workflows.
+Temporary execution bridge:
+- `.github/workflows/ems-rd-api-smoke.yml` may be modified on this branch only to run the scoped patch because newly added workflows are not executable from this branch before merge. It must be restored byte-for-byte to the current `main` version before opening the PR and must not appear in the final PR diff.
+
+Do not modify billing implementation, common specs, other tools, deployment settings, or leave changes in unrelated workflows.
 
 ## Goal
 
@@ -45,6 +48,7 @@ Additional Reconcile-local files may be changed only if a failing audit demonstr
 5. Preserve all Free/Pro limits, matching semantics, entitlement behavior, privacy behavior, and export contents.
 6. Add a Reconcile-only GitHub Actions workflow that syntax-checks the relevant modules and runs the Reconcile tests, including quality/stress coverage, only when Reconcile-scoped paths change.
 7. Update the Reconcile tool specification with the resulting parser-setting and large-result rendering contracts.
+8. Restore the temporary execution-bridge workflow to the exact current `main` content before PR creation.
 
 ## Verification
 
@@ -52,8 +56,8 @@ Automated:
 - `node --check` on Reconcile modules touched by this plan.
 - Existing Reconcile tests.
 - New realistic-data quality tests.
-- New stress test at the declared Pro CSV row ceiling.
-- Reconcile-specific GitHub Actions check on the PR.
+- New stress test at the declared Pro CSV row ceiling and XLSX parsing ceiling.
+- Reconcile-specific GitHub Actions check on main after merge, plus generic PR checks before merge.
 
 Manual/preview:
 - Load two CSVs, then change delimiter/encoding and confirm loaded CSV data is reparsed without re-upload.
