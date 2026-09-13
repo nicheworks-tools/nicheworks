@@ -1056,6 +1056,19 @@
         "reconciliation",
         "accounting"
       ]
+    },
+    "phone-quickcheck": {
+      "title_ja": "スマホ QuickCheck",
+      "title_en": "Phone QuickCheck",
+      "desc_ja": "スマホのサイズ・重さ・充電端子・充電器条件・モバイルバッテリー充電回数の目安と公式情報を素早く確認します。",
+      "desc_en": "Quickly check phone size, weight, charging port, charger requirements, power-bank estimates, and official information.",
+      "tags": [
+        "phone",
+        "smartphone",
+        "charging",
+        "size",
+        "battery"
+      ]
     }
   }
 }
