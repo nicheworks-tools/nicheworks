@@ -6,6 +6,7 @@
 - Common specification: `common-spec/spec-ja.md`
 - Affiliate rules when enabled: `common-spec/amazon-affiliate.md`
 - Data-basis audit: `tools/size-converter/data-basis.md`
+- UK support evaluation: `tools/size-converter/uk-evaluation.md`
 
 ## Purpose
 
@@ -79,7 +80,9 @@ The bundled tables are representative orientation data, not an official universa
 - The shoe and clothing measurement ranges are local heuristic ranges. They are not copied from one official brand and are not represented as universal body/foot standards.
 - `tools/size-converter/data-basis.md` is the maintainer source ledger and records the current official sources and audit conclusions.
 - No one brand chart may silently become the generic table. Brand/model-specific data must remain separately identified if added later.
-- Any future UK/CN/kids expansion requires separate verified data work and must not be implemented as an assumed fixed offset.
+- UK footwear was separately evaluated against current official adidas, ASICS, and New Balance charts. The same men's US sizes map to different UK labels across brands, so a single generic UK column is deliberately deferred rather than fabricated.
+- `tools/size-converter/uk-evaluation.md` records the compared rows and the no-addition decision.
+- CN/kids and any future regional expansion require separate verified data work and must not be implemented as an assumed fixed offset.
 
 ### Shared behavior
 
@@ -121,7 +124,7 @@ Production defaults remain:
 
 Disabled/invalid configuration emits no CTA, disclosure, or affiliate click event. Activation later requires only verified Amazon targets and `enabled: true`.
 
-Measurement inputs/results are never encoded into affiliate URLs or affiliate analytics. Direct raw size text, normalized syntax state, query-intent state, comparison rows, selected shoe unit, raw fit measurements, and data-basis audit state are likewise excluded. `affiliate_click` remains coarse shared-helper metadata only.
+Measurement inputs/results are never encoded into affiliate URLs or affiliate analytics. Direct raw size text, normalized syntax state, query-intent state, comparison rows, selected shoe unit, raw fit measurements, data-basis audit state, and UK evaluation state are likewise excluded. `affiliate_click` remains coarse shared-helper metadata only.
 
 ## State and persistence
 
@@ -135,7 +138,7 @@ Measurement inputs/results are never encoded into affiliate URLs or affiliate an
 - Core calculations and all wave-3 helpers run locally.
 - Direct text, comparison rows, unit choice, and measurements are not sent to fitting or affiliate backends.
 - Fit handoff moves only estimated JP size plus category/chart inside the page.
-- Reading the bundled data-basis documentation creates no sizing-data network request.
+- Reading the bundled data-basis/UK-evaluation documentation creates no sizing-data network request.
 - Ads/analytics may load separately under common-spec rules.
 
 ## Language mode
@@ -154,9 +157,10 @@ Direct conversion remains first; query/context and comparison follow; full table
 - No fit guarantee.
 - The current JP/US/EU mapping is representative orientation data, not a universal official standard.
 - Current direct conversion is JP/US/EU only.
+- UK generic conversion is **verified-deferred** because current official manufacturer charts disagree on US→UK mappings for the same nominal sizes.
 - Inch support is a shoe **measurement-input unit**, not a new sizing standard.
 - No unsupported quarter-size interpolation.
-- UK/CN/kids/formal width/verified brand-model tables require separate verified data work.
+- CN/kids/formal width/verified brand-model tables require separate verified data work.
 - Comparison does not rank brands/products or purchase suitability.
 - Fit handoff only avoids retyping an approximate estimate.
 
@@ -173,6 +177,8 @@ Direct conversion remains first; query/context and comparison follow; full table
 - [ ] No brand-wide numerical offset changes results.
 - [ ] Generic rows/ranges are described as representative, not a universal/official standard.
 - [ ] `data-basis.md` records the official-source audit and the disposition of each dataset family.
+- [ ] `uk-evaluation.md` records the multi-source UK disagreement and the deliberate no-addition decision.
+- [ ] Generic UK runtime conversion remains absent unless a future source model explicitly resolves brand variation.
 - [ ] Default Amazon config remains invisible/inert.
 
 ## Implementation evidence
@@ -183,6 +189,7 @@ Direct conversion remains first; query/context and comparison follow; full table
 - `tools/size-converter/fit-handoff.js`
 - `tools/size-converter/shoe-units.js`
 - `tools/size-converter/data-basis.md`
+- `tools/size-converter/uk-evaluation.md`
 - `tools/size-converter/style.css`
 - `tools/size-converter/affiliate-config.js`
 - `assets/amazon-affiliate.js`
