@@ -23,8 +23,6 @@ const mappings = [
   ['PG', 'Propylene Glycol'],
   ['水酸化ナトリウム液', 'Sodium Hydroxide'],
   ['水酸化カリウム液(A)', 'Potassium Hydroxide'],
-  ['ジカプリン酸ネオペンチルグリコール', 'Neopentyl Glycol Dicaprate'],
-  ['ラウリルヒドロキシスルホベタイン液', 'Lauryl Hydroxysultaine'],
   ['グリセリルエチルヘキシルエーテル', 'Ethylhexylglycerin']
 ];
 
@@ -46,19 +44,24 @@ for (const [label, canonical] of mappings) {
   assert.ok(owners && owners.size === 1, `${canonical}: canonical target must exist uniquely in maintained dictionaries`);
 }
 
-for (const unresolved of ['パラベン', 'エデト酸塩', 'Ammonium Polyacryloyldimethyl']) {
+for (const unresolved of [
+  'パラベン',
+  'エデト酸塩',
+  'Ammonium Polyacryloyldimethyl',
+  'ジカプリン酸ネオペンチルグリコール',
+  'ラウリルヒドロキシスルホベタイン液'
+]) {
   const key = parser.normalizeKey(unresolved);
   const owners = key ? canonicalOwners.get(key) : null;
-  assert.ok(!owners || owners.size !== 1, `${unresolved}: intentionally unresolved label must not become one exact maintained identity`);
+  assert.ok(!owners || owners.size !== 1, `${unresolved}: unresolved label must not become one exact maintained identity in this wave`);
 }
 
 const doc = read('tools/_shared/COSMETICS_JP_LABEL_VARIANTS.md');
 for (const token of [
   'MHLW',
   'PMDA',
-  'Neopentyl Glycol Dicaprate',
-  'Lauryl Hydroxysultaine',
   'Ethylhexylglycerin',
+  'Deferred candidates',
   'no fuzzy auto-replacement',
   'Amazon destinations remain fixed'
 ]) {
@@ -68,7 +71,8 @@ for (const token of [
 console.log(JSON.stringify({
   status: 'pass',
   phase: 'jp-label-variants-wave1',
-  reviewed_mappings: mappings.length,
+  reviewed_active_mappings: mappings.length,
+  deferred_candidates: 2,
   dictionary_files: DATA_FILES.length,
   fuzzy_auto_replacement: false,
   broad_labels_forced_exact: false,
