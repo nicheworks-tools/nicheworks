@@ -6,7 +6,7 @@ Implement the first repository-backed vertical slice of the NicheWorks Pattern D
 
 ## Base
 
-- Base main SHA: `785e653628e44e46090e15b0711b65a2b2593c25`
+- Synced main SHA: `d5e8d861d35255c2ccf1ad36e102acd7dfef45bc`
 - Branch: `feat/pattern-dictionary-vertical-slice-20260914`
 - Repository: `nicheworks-tools/nicheworks`
 - Target: `tools/pattern-dictionary/`
@@ -21,19 +21,21 @@ Implement the first repository-backed vertical slice of the NicheWorks Pattern D
 - Add deterministic visual placeholder assets for patterns that do not yet have verified production PNGs.
 - Clearly mark all placeholder/reference status in data and documentation.
 - Follow NicheWorks common layout, analytics, ad-slot, donation, SEO, responsive, privacy and internal-link rules where applicable.
+- Register the public tool landing in `tools/tools-index.json` and `sitemap.xml`, because the repository SEO public URL contract requires every public `tools/<slug>/index.html` landing to be registered in both places.
 
 ## Files to touch
 
 - `.agent/plans/2026-09-14-pattern-dictionary-vertical-slice.md`
 - `tools/pattern-dictionary/**`
+- `tools/tools-index.json`
+- `sitemap.xml`
 
-No other files are in scope for this first vertical slice.
+No other files are in scope for this vertical slice.
 
 ## Non-goals
 
 - Do not modify `common-spec/`.
-- Do not modify existing tools.
-- Do not add the prototype to the mother-site tool index or sitemap yet.
+- Do not modify existing tools, including `tools/pattern-atlas/`.
 - Do not add live Amazon affiliate URLs yet.
 - Do not claim prototype-curated pattern facts are source-verified.
 - Do not generate or publish the remaining 80 production patterns in this change.
@@ -47,7 +49,8 @@ No other files are in scope for this first vertical slice.
 4. Generate JA/EN static pattern detail URLs from the canonical IDs. **Implemented: 20 JA + 20 EN.**
 5. Add deterministic micro-pattern/filter visuals and visibly marked DEV pattern placeholders. **Implemented.**
 6. Add structural/search/link validation scripts that require no third-party packages. **Implemented; static-page checks added.**
-7. Run validators and browser smoke checks. **Search smoke and JS syntax checks run locally; repository checkout/browser QA remains before ready-for-review.**
+7. Register the public landing and satisfy the repository SEO URL identity contract. **In progress.**
+8. Run validators and browser smoke checks. **Search smoke and JS syntax checks run locally; browser QA remains before ready-for-review.**
 
 ## Current validation evidence
 
@@ -56,6 +59,8 @@ No other files are in scope for this first vertical slice.
 - GitHub branch contains canonical static JA/EN detail directories for all 20 prototype IDs.
 - Legacy query detail pages have been removed.
 - Static detail pages remain `noindex,follow` until data/image verification.
+- Tool runtime contract audit, tool spec audit, and Construction Tools Atlas validator passed on draft PR #732 before the latest main sync.
+- SEO audit failure was traced to the repository public URL contract: a new public tool landing must be present in `tools/tools-index.json` and `sitemap.xml`.
 
 ## Manual verification still required
 
@@ -72,13 +77,13 @@ No other files are in scope for this first vertical slice.
 
 ## Acceptance
 
-- [x] Tool is fully contained under `tools/pattern-dictionary/` plus this ExecPlan.
 - [x] 20 canonical prototype records have unique IDs and required color/review fields.
 - [x] JA and EN top/search/static-detail flows are implemented.
 - [x] Search and browse both provide discovery paths.
 - [x] Visual autocomplete and micro-pattern visual filters are implemented.
 - [x] Similar/commonly-confused relationships render from canonical data.
 - [x] Compare supports two patterns.
+- [ ] Public tool registration and SEO URL identity checks pass.
 - [ ] Full repository validator/browser QA passes with zero broken local references.
 - [x] DEV placeholders are visibly marked and not represented as production-verified dictionary images.
 - [x] No live affiliate URLs are introduced in this slice.
