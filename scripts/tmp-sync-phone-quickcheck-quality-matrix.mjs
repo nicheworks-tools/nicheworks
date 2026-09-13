@@ -4,14 +4,6 @@ const path = 'audits/tool-quality-matrix.json';
 const matrix = JSON.parse(fs.readFileSync(path, 'utf8'));
 const slug = 'phone-quickcheck';
 
-matrix.registered_tool_count = 89;
-matrix.record_count = 89;
-matrix.spec_coverage_count = 89;
-matrix.counts = matrix.counts || {};
-matrix.counts.pass = 89;
-matrix.counts.pending = 0;
-matrix.counts.decision_required = 0;
-
 matrix.records = (matrix.records || []).filter((record) => record.slug !== slug);
 
 const record = {
@@ -115,5 +107,18 @@ if (matrix.records.length !== 89) {
 const slugs = matrix.records.map((item) => item.slug);
 if (new Set(slugs).size !== slugs.length) throw new Error('Duplicate quality-matrix slug detected');
 
+matrix.registered_tool_count = matrix.records.length;
+matrix.record_count = matrix.records.length;
+matrix.counts = {
+  PASS: matrix.records.filter((item) => item.final_state === 'PASS').length,
+  FIX: matrix.records.filter((item) => item.final_state === 'FIX').length,
+  BLOCKED: matrix.records.filter((item) => item.final_state === 'BLOCKED').length,
+  NEEDS_DECISION: matrix.records.filter((item) => item.final_state === 'NEEDS_DECISION').length
+};
+
+if (matrix.counts.PASS !== 89 || matrix.counts.FIX !== 0 || matrix.counts.BLOCKED !== 0 || matrix.counts.NEEDS_DECISION !== 0) {
+  throw new Error(`Unexpected quality-matrix state counts: ${JSON.stringify(matrix.counts)}`);
+}
+
 fs.writeFileSync(path, `${JSON.stringify(matrix, null, 2)}\n`);
-console.log(`Synced ${slug}; ${matrix.records.length} records.`);
+console.log(`Synced ${slug}; ${matrix.records.length} records; PASS=${matrix.counts.PASS}.`);
