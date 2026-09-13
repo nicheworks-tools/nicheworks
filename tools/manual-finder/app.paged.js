@@ -158,6 +158,9 @@
     items.forEach((x) => {
       const card = document.createElement("article");
       card.className = "card";
+      card.dataset.maker = x.maker || "";
+      card.dataset.model = x.model || "";
+      card.dataset.category = x.category || "";
       card.appendChild(txt("div", "card-title", x.model ? `${x.maker} ${x.model}` : (S.lang === "ja" ? x.nameJa : x.nameEn)));
       const meta = document.createElement("div");
       meta.className = "card-meta";
