@@ -143,7 +143,6 @@ function isNoiseLine(line) {
   if (!containsLetters(trimmed)) return true;
   if (/^\d{1,2}:\d{2}(:\d{2})?(\s?[AP]M)?$/i.test(trimmed)) return true;
   if (/^\d{1,4}[%％]$/.test(trimmed)) return true;
-  if (/^[\W_]+$/.test(trimmed)) return true;
   return false;
 }
 
