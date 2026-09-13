@@ -51,16 +51,18 @@ for (const ambiguous of ['"aha"', '"bha"', '"pha"', '"iron oxides"', '"酸化鉄
   check(parser.includes(ambiguous), `ambiguous exact-key protection missing: ${ambiguous}`);
 }
 
-// PR21: OCR line-wrap repair remains exact-only and never becomes fuzzy auto-correction.
+// PR21/PR28: OCR line-wrap repair remains exact-only and never becomes fuzzy auto-correction.
 for (const token of [
   'repairWrappedIngredientFragments',
   'buildKnownIngredientNameMap',
   'findExactWrappedJoin',
-  'repairs: repaired.repairs'
+  'repairs: repaired.repairs',
+  'currentKnown && nextKnown'
 ]) {
   check(fastAnalyze.includes(token), `FastScan OCR exact line repair missing: ${token}`);
 }
-check(fastSpec.includes('Exact OCR line repair only joins fragments when the repaired text exactly matches a maintained dictionary key'), 'FastScan SPEC lost exact-only OCR line repair contract');
+check(fastSpec.includes('OCR cleanup preserves candidate boundaries'), 'FastScan SPEC lost conservative OCR-boundary contract');
+check(fastSpec.includes('Exact OCR line repair only joins fragments when the combined text exactly matches a maintained dictionary key'), 'FastScan SPEC lost exact-only OCR line repair contract');
 
 // PR22: Lite remains a fast long-result review surface.
 for (const token of [
@@ -108,11 +110,12 @@ for (const spec of [liteSpec, fastSpec]) {
   check(/raw ingredient|pasted ingredient|OCR output/i.test(spec), 'tool SPEC lost input privacy contract');
 }
 
-// CI must continuously enforce every Wave 3 regression plus the live affiliate contract.
+// CI must continuously enforce every Wave 3 regression plus the OCR robustness and live affiliate contracts.
 for (const checkFile of [
   'check-cosmetics-full-label-benchmark.mjs',
   'check-cosmetics-canonical-equivalents.mjs',
   'check-fastscan-ocr-line-repair.mjs',
+  'check-fastscan-ocr-robustness.mjs',
   'check-lite-wave3-navigation.mjs',
   'check-fastscan-review-queue.mjs',
   'check-cosmetics-wave2-release.mjs',
@@ -135,6 +138,7 @@ console.log(JSON.stringify({
   product_categories: categories.size,
   canonical_equivalence: true,
   ocr_exact_line_repair: true,
+  ocr_source_backed_robustness: true,
   lite_long_result_navigation: true,
   fastscan_review_queue: true,
   amazon_enabled: true,

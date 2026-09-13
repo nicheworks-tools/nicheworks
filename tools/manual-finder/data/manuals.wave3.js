@@ -1,8 +1,10 @@
 (() => {
   const V = "2026-09-13";
-  window.MANUALFINDER_WAVE3_BATCHES = ["manuals.wave3.01.js", "manuals.wave3.02.js"];
+  const EPSON_V = "2026-09-14";
+  window.MANUALFINDER_WAVE3_BATCHES = ["manuals.wave3.01.js", "manuals.wave3.02.js", "manuals.wave3.04.js"];
   window.MANUALFINDER_WAVE3_NIKON = window.MANUALFINDER_WAVE3_NIKON || [];
   window.MANUALFINDER_WAVE3_BROTHER = window.MANUALFINDER_WAVE3_BROTHER || [];
+  window.MANUALFINDER_WAVE3_EPSON = window.MANUALFINDER_WAVE3_EPSON || [];
 
   const slug = (v) => String(v || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const lines = (parts) => parts.flatMap((part) => String(part || "").split("\n").map((x) => x.trim()).filter(Boolean));
@@ -52,5 +54,23 @@
     });
   };
 
-  window.MANUALFINDER_BUILD_WAVE3 = () => [...nikon(), ...brother()];
+  const epson = () => lines(window.MANUALFINDER_WAVE3_EPSON).map((line) => {
+    const [model, manualUrl, supportUrl] = line.split("|");
+    return {
+      id: `wave3-epson-${slug(model)}`,
+      brand: "Epson", maker: "Epson", model, family: "Colorio inkjet printer / MFP",
+      nameJa: `エプソン ${model}`, nameEn: `Epson ${model}`,
+      category: "プリンター・複合機", country: "Japan", manualUrl, supportUrl,
+      noteJa: "エプソン公式の機種別マニュアルページです。",
+      noteEn: "Official Epson model-specific manual page.",
+      hintJa: `エプソン Epson ${model} カラリオ プリンター 複合機 取扱説明書`,
+      hintEn: `Epson ${model} Colorio printer MFP manual`,
+      aliases: ["エプソン", "Epson", "カラリオ", "プリンター", "複合機", "取扱説明書"],
+      sourceType: "official", sourceLevel: "A", verifiedAt: EPSON_V, evidenceUrl: manualUrl,
+      resolutionState: "direct_manual_page", manualKind: "manual-index", sharedTarget: false,
+      linkReview: `official Wave 3D target verified ${EPSON_V}`
+    };
+  });
+
+  window.MANUALFINDER_BUILD_WAVE3 = () => [...nikon(), ...brother(), ...epson()];
 })();

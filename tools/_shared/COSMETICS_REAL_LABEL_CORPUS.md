@@ -63,19 +63,31 @@ Run:
 node tools/_shared/check-cosmetics-real-label-corpus.mjs
 ```
 
-PR25 established the source-backed baseline at **190 / 293 exact identities = 64.85%**.
-
-PR26 keeps the same 12 products and the same source labels and raises the release floor to:
+The same 12 source-backed products and 293 ingredient tokens are retained across the coverage waves:
 
 ```txt
-exact identity coverage >= 80%
+PR25 baseline: 190 / 293 exact identities = 64.85%
+PR26 Wave 1:   244 / 293 exact identities = 83.28%
+PR29 Wave 2:   269 / 293 exact identities = 91.81%
+```
+
+PR29 raises the release floor to:
+
+```txt
+exact identity coverage >= 90%
 ```
 
 The score may improve only through reviewed parser/dictionary identity coverage. It must not improve by deleting hard products, rewriting source labels into already-known names, or weakening ambiguity protections.
 
 Broad or incomplete labels remain non-exact where one chemical identity cannot be justified. In particular, `パラベン` remains a group label rather than one paraben identity, and the truncated `Ammonium Polyacryloyldimethyl` remains non-exact.
 
-Wave 1 adds reviewed full INCI names and label variants observed in this corpus, including multilingual Water labels, Japanese display names, surfactants, chelators, polymers, emollients, and other exact identities. These additions are shared by Lite and FastScan because both tools use the maintained dictionary set.
+Wave 1 added reviewed full INCI names and label variants observed in this corpus, including multilingual Water labels, Japanese display names, surfactants, chelators, polymers, emollients, and other exact identities.
+
+Wave 2 adds 25 additional exact English ingredient identities that occur in the same official-source corpus. It deliberately does not guess mappings for unresolved Japanese display names or quasi-drug-style labels. Those remaining names stay visible in the checker output for a later reviewed mapping wave.
+
+The checker now emits the complete unresolved-name inventory, not only the first 30 names, so future dictionary work can be selected from measured source-backed gaps rather than from guessed high-frequency ingredients.
+
+All dictionary additions are shared by Lite and FastScan because both tools use the maintained dictionary set.
 
 ## Privacy and monetization
 
