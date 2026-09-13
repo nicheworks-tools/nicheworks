@@ -56,7 +56,7 @@ ManualFinder is an `AFFILIATE` tool, but its official manual directory remains t
 - A dynamic model-search destination may be generated only from canonical ManualFinder maker/model metadata, never from arbitrary user-entered search text.
 - The Amazon tracking ID is fixed in configuration and is never accepted from user input.
 - A fixed override may still be used for an exact model when there is a reason to pin one Amazon-provided Special Link. The current `Nikon` / `Z8` override remains `https://amzn.to/3T7sxbB`.
-- The generic model-search template is represented by one coarse target (`manual_model_search_template`) rather than one target per model. Until its representative generated URL is validated with Amazon's Link Checker or an equivalent authoritative Amazon path, the template remains fail-closed.
+- The generic model-search template is represented by one coarse target (`manual_model_search_template`) rather than one target per model. Its representative Brother MFC-J4440N tagged search URL was validated by Amazon Link Checker on 2026-09-13 and the template is active.
 - Initial template eligibility is limited to model-level `カメラ・映像` and `プリンター・複合機` results. Compatibility-sensitive accessory offers require separate verified mapping data and must not be inferred from model names.
 - Amazon search CTAs are handoffs (`Amazonで <maker> <model> を探す` / `Find <maker> <model> on Amazon`), not claims that any listing is official, recommended, cheapest, available, or compatible.
 - Amazon commerce UI appears after official links, is visually distinct, explicitly identifies Amazon/affiliate status, and uses the shared `/assets/amazon-affiliate.js` helper.
@@ -103,7 +103,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] Japanese and English canonical pages provide equivalent core search/directory behavior and preserve the accuracy disclaimer.
 - [x] Search text remains local to the browser search/filter runtime and is not intentionally sent to an application search backend.
 - [x] The Nikon Z8 result may show the verified Amazon search override only after the official manual links.
-- [x] The dynamic model-search builder can generate deterministic tagged URLs from canonical maker/model metadata without requiring a per-model stored link, but remains inactive until its one representative template proof is accepted.
+- [x] The validated dynamic model-search builder generates deterministic tagged URLs from canonical maker/model metadata without requiring a per-model stored link for eligible categories.
 - [x] The Amazon disclosure and sponsored link semantics are supplied by the shared affiliate helper, with only coarse fixed click metadata.
 
 ## Implementation evidence
