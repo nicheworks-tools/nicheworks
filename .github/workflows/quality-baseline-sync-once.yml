@@ -1,0 +1,39 @@
+name: Quality baseline 88 sync once
+
+on:
+  push:
+    branches:
+      - audit/quality-baseline-88-reconcile-20260913
+    paths:
+      - 'scripts/sync-quality-baseline-88-once.mjs'
+      - '.github/workflows/quality-baseline-sync-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: audit/quality-baseline-88-reconcile-20260913
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate synchronized baseline
+        run: node scripts/sync-quality-baseline-88-once.mjs
+
+      - name: Commit generated baseline
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/reconcile/index.html docs/tools/reconcile.md audits/tool-quality-matrix.json audits/tool-quality-matrix.md scripts/check-common-support-contract.mjs
+          git diff --cached --quiet && exit 0
+          git commit -m "Sync Reconcile into 88-tool quality baseline"
+          git push origin HEAD:audit/quality-baseline-88-reconcile-20260913
