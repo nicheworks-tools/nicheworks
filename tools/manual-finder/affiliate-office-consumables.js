@@ -29,6 +29,31 @@
       maker: "OKI", model: "C844dnw", verifiedAt: "2026-09-14",
       sourceUrl: "https://www.oki.com/jp/printing/support/consumables-and-accessories/color/C844DNW/",
       tonerCodes: Object.freeze(["TC-C3BK1", "TC-C3BY1", "TC-C3BM1", "TC-C3BC1", "TC-C3BK2", "TC-C3BY2", "TC-C3BM2", "TC-C3BC2"])
+    }),
+    Object.freeze({
+      maker: "OKI", model: "C824dn", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.oki.com/jp/printing/support/consumables-and-accessories/color/C824DN/",
+      tonerCodes: Object.freeze(["TC-C3BK1", "TC-C3BY1", "TC-C3BM1", "TC-C3BC1"])
+    }),
+    Object.freeze({
+      maker: "OKI", model: "C835dnwt", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.oki.com/jp/printing/support/consumables-and-accessories/color/C835DNWT/",
+      tonerCodes: Object.freeze(["TC-C3BK1", "TC-C3BY1", "TC-C3BM1", "TC-C3BC1", "TC-C3BK2", "TC-C3BY2", "TC-C3BM2", "TC-C3BC2"])
+    }),
+    Object.freeze({
+      maker: "OKI", model: "C911dn", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.oki.com/jp/printing/support/consumables-and-accessories/color/C911DN/",
+      tonerCodes: Object.freeze(["TNR-C3RK2", "TNR-C3RY2", "TNR-C3RM2", "TNR-C3RC2"])
+    }),
+    Object.freeze({
+      maker: "OKI", model: "C931dn", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.oki.com/jp/printing/support/consumables-and-accessories/color/C931DN/",
+      tonerCodes: Object.freeze(["TNR-C3RK2", "TNR-C3RY2", "TNR-C3RM2", "TNR-C3RC2", "TNR-C3RK1", "TNR-C3RY1", "TNR-C3RM1", "TNR-C3RC1"])
+    }),
+    Object.freeze({
+      maker: "OKI", model: "C941dn", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.oki.com/jp/printing/support/consumables-and-accessories/color/C941DN/",
+      tonerCodes: Object.freeze(["TNR-C3RK2", "TNR-C3RY2", "TNR-C3RM2", "TNR-C3RC2", "TNR-C3RSW2", "TNR-C3RSC2", "TNR-C3RK1", "TNR-C3RY1", "TNR-C3RM1", "TNR-C3RC1"])
     })
   ]);
 

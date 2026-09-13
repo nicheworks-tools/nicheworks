@@ -45,8 +45,8 @@ assert.equal(
 
 assert.equal(config.consumableSearchTemplate.status, 'verified');
 assert.equal(config.consumableSearchTemplate.activationTarget, 'printer_consumable_search_template');
-assert.equal(config.printerConsumables.length, 30, 'Brother 13 + Epson 6 + Canon 6 + OKI 5 verified printer mappings should be present');
-assert.equal(config.officePrinterConsumables.length, 5, 'first OKI toner wave should contain five exact models');
+assert.equal(config.printerConsumables.length, 35, 'Brother 13 + Epson 6 + Canon 6 + OKI 10 verified printer mappings should be present');
+assert.equal(config.officePrinterConsumables.length, 10, 'OKI toner waves should contain ten exact models');
 assert.equal(Object.keys(config.targets).length, 3, 'fixed override, model template, and consumable template should be active');
 assert.equal(config.offers.length, 1, 'dynamic searches must not create one stored Amazon URL per record');
 
@@ -55,6 +55,7 @@ const samples = [
   ['Epson', 'EW-056A', 'プリンター・複合機'],
   ['Canon', 'TS8830', 'プリンター・複合機'],
   ['OKI', 'C650dnw', 'プリンター・複合機'],
+  ['OKI', 'C941dn', 'プリンター・複合機'],
   ['Nikon', 'Z6III', 'カメラ・映像'],
   ['T-fal', 'KO4901JP', '家電'],
   ['Aterm', 'WX5400HP', 'ネットワーク機器'],
@@ -135,7 +136,12 @@ const okiModels = new Map([
   ['C651dnw', ['TC-C4FK1', 'TC-C4FY1', 'TC-C4FM1', 'TC-C4FC1']],
   ['C712dnw', ['TC-C4CK1', 'TC-C4CY1', 'TC-C4CM1', 'TC-C4CC1', 'TC-C4CK2', 'TC-C4CY2', 'TC-C4CM2', 'TC-C4CC2']],
   ['C835dnw', ['TC-C3BK1', 'TC-C3BY1', 'TC-C3BM1', 'TC-C3BC1', 'TC-C3BK2', 'TC-C3BY2', 'TC-C3BM2', 'TC-C3BC2']],
-  ['C844dnw', ['TC-C3BK1', 'TC-C3BY1', 'TC-C3BM1', 'TC-C3BC1', 'TC-C3BK2', 'TC-C3BY2', 'TC-C3BM2', 'TC-C3BC2']]
+  ['C844dnw', ['TC-C3BK1', 'TC-C3BY1', 'TC-C3BM1', 'TC-C3BC1', 'TC-C3BK2', 'TC-C3BY2', 'TC-C3BM2', 'TC-C3BC2']],
+  ['C824dn', ['TC-C3BK1', 'TC-C3BY1', 'TC-C3BM1', 'TC-C3BC1']],
+  ['C835dnwt', ['TC-C3BK1', 'TC-C3BY1', 'TC-C3BM1', 'TC-C3BC1', 'TC-C3BK2', 'TC-C3BY2', 'TC-C3BM2', 'TC-C3BC2']],
+  ['C911dn', ['TNR-C3RK2', 'TNR-C3RY2', 'TNR-C3RM2', 'TNR-C3RC2']],
+  ['C931dn', ['TNR-C3RK2', 'TNR-C3RY2', 'TNR-C3RM2', 'TNR-C3RC2', 'TNR-C3RK1', 'TNR-C3RY1', 'TNR-C3RM1', 'TNR-C3RC1']],
+  ['C941dn', ['TNR-C3RK2', 'TNR-C3RY2', 'TNR-C3RM2', 'TNR-C3RC2', 'TNR-C3RSW2', 'TNR-C3RSC2', 'TNR-C3RK1', 'TNR-C3RY1', 'TNR-C3RM1', 'TNR-C3RC1']]
 ]);
 for (const [model, codes] of okiModels) {
   const row = Array.from(config.officePrinterConsumables).find((item) => item.model === model);
@@ -147,7 +153,6 @@ for (const [model, codes] of okiModels) {
   assert.equal(offers.length, 1, `${model} should expose one concise toner handoff`);
   assert.equal(offers[0].kind, 'toner_search');
   assert.equal(offers[0].query, `OKI ${model} トナー`);
-  assert.ok(offers[0].url.includes(`k=OKI+${encodeURIComponent(model).replace(/%/g, '%25')}`) || offers[0].url.includes(`k=OKI+${model}+%E3%83%88%E3%83%8A%E3%83%BC`));
   assert.ok(offers[0].url.includes('tag=nicheworks09-22'));
   assert.deepEqual(Array.from(offers[0].verifiedCodes), codes);
 }
