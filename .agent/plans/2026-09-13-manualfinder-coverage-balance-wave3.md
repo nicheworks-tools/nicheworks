@@ -66,9 +66,15 @@ Wave 3B result:
 
 ### Wave 3C — Sony
 
-- Select one category only.
-- Do not treat the 1,094-entry camera/camcorder catalog as one wave.
-- Use product-specific official manual/support destinations and record vendor-defined sharing if present.
+Wave 3C result:
+
+- Source boundary: Sony official Japanese E-mount body support, complete current α1 and α9 series only.
+- α1 series: 2/2 (`ILCE-1M2`, `ILCE-1`).
+- α9 series: 3/3 (`ILCE-9M3`, `ILCE-9M2`, `ILCE-9`).
+- Accepted exact model-manual pages: 5.
+- Direct rows: 5; shared rows: 0.
+- Broader α7/ZV-E/α6000 and other Sony series remain outside this pass.
+- Sony becomes `expanded`, not company-complete.
 
 ### Wave 3D / 3E
 
@@ -100,7 +106,8 @@ Every data PR must report:
 - [x] Add cross-maker coverage authority and rotation rule.
 - [x] Merge inventory PR after repository CI (#703).
 - [x] Implement and merge Wave 3A Nikon (#708).
-- [x] Implement Wave 3B Brother from latest main.
-- [ ] Merge Wave 3B after repository CI.
-- [ ] Implement Wave 3C Sony from latest main.
-- [ ] Continue rotation with Epson/Canon and Panasonic before revisiting deep-covered makers.
+- [x] Implement and merge Wave 3B Brother (#711).
+- [x] Implement Wave 3C Sony from latest main.
+- [ ] Merge Wave 3C after repository CI.
+- [ ] Implement Wave 3D Epson or Canon from latest main.
+- [ ] Continue rotation with Panasonic before revisiting deep-covered makers.
