@@ -80,6 +80,43 @@ assert.equal(parsedDefault.value, '27.0');
 assert.equal(api.findSizeIndex('jp', '27.0'), 10);
 assert.deepEqual(Array.from(api.shoeRange()), [22, 31]);
 
+// Wave 4: crawlable representative examples must remain grounded in the production DATA table.
+assert.deepEqual(
+  { ...api.DATA.shoes.men.find((row) => row.us === '4') },
+  { jp: '22.0', us: '4', eu: '36' },
+  'men shoes US 4 reference row should match the static representative answer',
+);
+assert.deepEqual(
+  { ...api.DATA.shoes.women.find((row) => row.us === '4') },
+  { jp: '21.0', us: '4', eu: '34' },
+  'women shoes US 4 reference row should match the static representative answer',
+);
+assert.deepEqual(
+  { ...api.DATA.shoes.men.find((row) => row.us === '8.5') },
+  { jp: '26.5', us: '8.5', eu: '42' },
+  'men shoes US 8.5 reference row should match the static representative answer',
+);
+assert.deepEqual(
+  { ...api.DATA.shoes.women.find((row) => row.us === '8.5') },
+  { jp: '25.5', us: '8.5', eu: '40' },
+  'women shoes US 8.5 reference row should match the static representative answer',
+);
+assert.deepEqual(
+  { ...api.DATA.clothing.men.find((row) => row.jp === 'M') },
+  { jp: 'M', us: 'M', eu: '48' },
+  'men clothing M reference row should match the static representative answer',
+);
+assert.deepEqual(
+  { ...api.DATA.clothing.women.find((row) => row.jp === 'S') },
+  { jp: 'S', us: '2–4', eu: '34–36' },
+  'women clothing S reference row should remain the source for the US 4 range answer',
+);
+for (const category of Object.values(api.DATA)) {
+  for (const chart of Object.values(category)) {
+    for (const row of chart) assert.equal(Object.hasOwn(row, 'uk'), false, 'generic UK runtime field must remain absent while verified-deferred');
+  }
+}
+
 const nearest = api.nearestShoe(27.25);
 assert.equal(nearest.outOfRange, false);
 assert.equal(nearest.row.jp, '27.0');
