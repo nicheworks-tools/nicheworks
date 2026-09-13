@@ -1,0 +1,31 @@
+name: Temporary Phone QuickCheck main sync
+
+on:
+  push:
+    branches:
+      - feat/phone-quickcheck-data-wave3-60-20260914
+    paths:
+      - '.github/workflows/tmp-sync-phone-wave3-main.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/phone-quickcheck-data-wave3-60-20260914
+          fetch-depth: 0
+      - name: Merge latest main and remove temporary workflow
+        shell: bash
+        run: |
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git fetch origin main
+          git merge origin/main --no-edit
+          rm .github/workflows/tmp-sync-phone-wave3-main.yml
+          git add -A
+          git commit -m "Sync Phone QuickCheck wave3 with latest main"
+          git push origin HEAD:feat/phone-quickcheck-data-wave3-60-20260914
