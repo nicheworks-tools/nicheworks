@@ -107,17 +107,22 @@
 
   const seiko = () => {
     const supportUrl = "https://www.seikowatches.com/jp-ja/customerservice/instruction?caliberNumber=&idx=H&language=ja-JP";
-    return lines(window.MANUALFINDER_WAVE2_SEIKO).map((line) => {
-      const [model, manualUrl] = line.split("|");
-      return {
+    return lines(window.MANUALFINDER_WAVE2_SEIKO).flatMap((line) => {
+      const [modelsRaw, manualUrl] = line.split("|");
+      const models = modelsRaw.split(",").map((x) => x.trim()).filter(Boolean);
+      const shared = models.length > 1;
+      return models.map((model) => ({
         id: `wave2-seiko-${slug(model)}`, brand: "Seiko", maker: "Seiko", model, family: "Watch caliber",
         nameJa: `セイコー キャリバー ${model}`, nameEn: `Seiko caliber ${model}`, category: "その他", country: "Japan",
-        manualUrl, supportUrl, noteJa: "セイコー公式のキャリバー別取扱説明書です。", noteEn: "Official Seiko instruction manual for this caliber code.",
+        manualUrl, supportUrl,
+        noteJa: shared ? "セイコーが複数キャリバーに共通提供している公式取扱説明書です。" : "セイコー公式のキャリバー別取扱説明書です。",
+        noteEn: shared ? "Official Seiko instruction manual shared by the vendor-defined caliber group." : "Official Seiko instruction manual for this caliber code.",
         hintJa: `セイコー SEIKO ${model} キャリバー 腕時計 時計 取扱説明書`, hintEn: `Seiko ${model} caliber watch manual`,
         aliases: ["セイコー", "SEIKO", "キャリバー", "腕時計", "時計"], sourceType: "official", sourceLevel: "A", verifiedAt: V, evidenceUrl: supportUrl,
-        resolutionState: "direct_manual_page", manualKind: manualUrl.includes("/instructions/html/") ? "online-manual" : "manual", sharedTarget: false,
+        resolutionState: shared ? "shared_official_manual_page" : "direct_manual_page",
+        manualKind: manualUrl.includes("/instructions/html/") ? "online-manual" : "manual", sharedTarget: shared,
         linkReview: `official Wave 2 target verified ${V}`
-      };
+      }));
     });
   };
 
