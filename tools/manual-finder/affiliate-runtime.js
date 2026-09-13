@@ -22,14 +22,13 @@
     return active && active.getAttribute("data-lang") === "en" ? "en" : "ja";
   }
 
-  function addOffer(card) {
-    if (!(card instanceof Element) || card.dataset.mfAffiliateChecked === "1") return;
-    card.dataset.mfAffiliateChecked = "1";
+  function parseCanonicalTitle(title) {
+    const knownMakers = ["Nikon", "Brother"];
+    const maker = knownMakers.find((name) => title.startsWith(`${name} `)) || "";
+    return maker ? { maker, model: title.slice(maker.length + 1).trim() } : { maker: "", model: "" };
+  }
 
-    const title = card.querySelector(".card-title")?.textContent?.trim() || "";
-    const offer = offersByTitle.get(title);
-    if (!offer || !affiliate.isActive(offer.target)) return;
-
+  function makeCommerceBlock(card) {
     const wrapper = document.createElement("div");
     wrapper.className = "mf-commerce";
 
@@ -41,18 +40,48 @@
 
     const slot = document.createElement("div");
     slot.className = "mf-commerce-slot";
-
     wrapper.append(caption, slot);
     card.appendChild(wrapper);
+    return { wrapper, slot };
+  }
 
-    const mounted = affiliate.mount({
+  function addOffer(card) {
+    if (!(card instanceof Element) || card.dataset.mfAffiliateChecked === "1") return;
+    card.dataset.mfAffiliateChecked = "1";
+
+    const title = card.querySelector(".card-title")?.textContent?.trim() || "";
+    const staticOffer = offersByTitle.get(title);
+
+    if (staticOffer && affiliate.isActive(staticOffer.target)) {
+      const { wrapper, slot } = makeCommerceBlock(card);
+      const mounted = affiliate.mount({
+        container: slot,
+        target: staticOffer.target,
+        label: currentLang() === "en" ? staticOffer.labelEn : staticOffer.labelJa,
+        placement: "manual_result_commerce",
+        className: "mf-amazon-link"
+      });
+      if (!mounted) wrapper.remove();
+      return;
+    }
+
+    const template = config.modelSearchTemplate;
+    if (!template || !affiliate.isActive(template.activationTarget) || typeof config.buildModelSearchUrl !== "function") return;
+
+    const { maker, model } = parseCanonicalTitle(title);
+    const category = card.querySelector(".card-category")?.textContent?.trim() || "";
+    const url = config.buildModelSearchUrl({ maker, model, category });
+    if (!url) return;
+
+    const { wrapper, slot } = makeCommerceBlock(card);
+    const mounted = affiliate.mountUrl({
       container: slot,
-      target: offer.target,
-      label: currentLang() === "en" ? offer.labelEn : offer.labelJa,
+      target: template.activationTarget,
+      url,
+      label: currentLang() === "en" ? `Find ${maker} ${model} on Amazon` : `Amazonで ${maker} ${model} を探す`,
       placement: "manual_result_commerce",
       className: "mf-amazon-link"
     });
-
     if (!mounted) wrapper.remove();
   }
 
@@ -61,8 +90,9 @@
   }
 
   function refreshDisclosure() {
-    const hasActiveOffer = (config.offers || []).some((offer) => affiliate.isActive(offer.target));
-    if (!hasActiveOffer) return;
+    const hasStatic = (config.offers || []).some((offer) => affiliate.isActive(offer.target));
+    const hasDynamic = Boolean(config.modelSearchTemplate && affiliate.isActive(config.modelSearchTemplate.activationTarget));
+    if (!hasStatic && !hasDynamic) return;
 
     let box = document.getElementById("manualFinderAmazonDisclosure");
     if (!box) {
