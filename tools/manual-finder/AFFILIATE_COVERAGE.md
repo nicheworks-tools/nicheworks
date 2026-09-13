@@ -12,8 +12,8 @@ Current order:
 
 1. **Generic exact-model search** — active. One validated Amazon search template generates a tagged search URL from canonical ManualFinder `maker + model` metadata.
 2. **Consumer-printer ink** — active for Brother Wave 1, Epson Wave 1, and Canon Wave 1 below. Consumable codes come only from official manufacturer compatibility sources.
-3. **Office-printer toner** — active for ten existing OKI exact-model records across two bounded waves. Exact toner codes are retained as compatibility evidence while the Amazon handoff stays concise at one toner-search CTA per model.
-4. **Office-printer toner cross-maker expansion** — next evaluate KYOCERA, RICOH, and FUJIFILM Business Innovation where official model-to-toner evidence is explicit.
+3. **Office-printer toner** — active for ten OKI exact-model records and five KYOCERA exact-model records. Exact toner codes are retained as compatibility evidence while the Amazon handoff stays concise at one toner-search CTA per model.
+4. **Office-printer toner cross-maker expansion** — next evaluate RICOH and FUJIFILM Business Innovation where official model-to-toner evidence is explicit.
 5. **Office-printer drum / maintenance parts** — later, after toner behavior is established.
 6. **Camera batteries / chargers** — later, only for independently verified compatibility mappings.
 7. **Appliance replacement parts / filters** — later, only where exact compatibility can be proven.
@@ -112,6 +112,20 @@ OKI already has deep exact model-level ManualFinder coverage, so these affiliate
 
 The Amazon query is `OKI <model> トナー` with the fixed Associate tag. The exact toner-code list remains attached to the mapping as manufacturer evidence. C941dn's specialty white/clear toner codes are retained as evidence but do not create additional links.
 
+## Office-printer toner rule — KYOCERA Wave 1
+
+KYOCERA Document Solutions already has 123 exact ManualFinder printer/MFP rows. The first bounded toner wave uses five existing printer records whose official product/specification pages state exact consumable toner codes.
+
+| ManualFinder model | Amazon search maker | Officially verified toner codes |
+| --- | --- | --- |
+| ECOSYS P6026cdn | KYOCERA | TK-591K / TK-591C / TK-591M / TK-591Y |
+| LS-C8500DN | KYOCERA | TK-881K / TK-881C / TK-881M / TK-881Y |
+| FS-C5300DN | KYOCERA | TK-561K / TK-561Y / TK-561M / TK-561C |
+| FS-C5200DN | KYOCERA | TK-551K / TK-551C / TK-551M / TK-551Y |
+| LS-C8026N | KYOCERA | TK-811K / TK-811Y / TK-811M / TK-811C |
+
+The runtime matches the canonical maker string `KYOCERA Document Solutions` but deliberately uses the shorter retail search term `KYOCERA` in Amazon queries. The generated handoff is `KYOCERA <model> トナー` with the fixed Associate tag. Exact toner codes remain attached as manufacturer evidence and do not create separate color links.
+
 The UI does not say that every Amazon result is genuine or compatible. A note tells the user that consumable codes were checked against an official manufacturer source and that the exact Amazon item must still be confirmed before purchase.
 
 Unmapped printer models receive only the generic exact-model Amazon search. Consumable compatibility is never guessed from model naming.
@@ -128,7 +142,7 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 
 - `app.paged.js` places canonical `maker`, `model`, and `category` metadata on each result card.
 - `affiliate-config.js` owns the fixed tracking ID, generic model-search policy, and consumer-printer compatibility mappings.
-- `affiliate-office-consumables.js` extends the same fail-closed contract with verified office-printer toner mappings without duplicating the main config.
+- `affiliate-office-consumables.js` extends the same fail-closed contract with verified cross-maker office-printer toner mappings without duplicating the main config.
 - `affiliate-runtime.js` renders the generic model search plus zero or more verified consumable searches.
 - `/assets/amazon-affiliate.js` validates the Amazon destination host and records only coarse analytics targets. Model names and consumable terms are not analytics parameters.
 - Unsupported categories, empty models, malformed URLs, and unmapped consumables fail closed.
@@ -136,4 +150,4 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 
 ## Next expansion gate
 
-With the first OKI production check passed and Wave 2 extending the same verified behavior, the next target is cross-maker office-printer toner. Evaluate KYOCERA Document Solutions first, then RICOH and FUJIFILM Business Innovation, accepting only exact model-to-consumable mappings supported by official manufacturer sources. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.
+After KYOCERA Wave 1, evaluate RICOH and FUJIFILM Business Innovation using the same model-to-toner evidence standard. Continue KYOCERA only where the exact existing ManualFinder model and official consumable code can be matched without inference. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.
