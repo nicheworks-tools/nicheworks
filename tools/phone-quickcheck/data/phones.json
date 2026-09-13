@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "updatedAt": "2026-09-14",
   "phones": [
     {
@@ -2834,6 +2834,1990 @@
         "specificationsUrl": "https://store.motorola.co.jp/item/EDGE60PRO.html",
         "manualUrl": "https://www.motorola.co.jp/support",
         "releaseUrl": "https://store.motorola.co.jp/item/EDGE60PRO.html",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "apple-iphone-12",
+      "manufacturer": "Apple",
+      "model": "iPhone 12",
+      "aliases": [
+        "iPhone12",
+        "アイフォン12"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "dimensions": {
+        "heightMm": 146.7,
+        "widthMm": 71.5,
+        "depthMm": 7.4
+      },
+      "weightG": 164,
+      "displayInch": 6.1,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "Lightning",
+        "wiredRecommendedW": 20,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "MagSafe / Qi",
+        "wirelessMaxW": 15,
+        "battery": {
+          "capacityMah": null,
+          "valueClass": "unknown",
+          "sourceRef": null
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.apple.com/ja-jp/111876",
+        "manualUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+        "releaseUrl": "https://support.apple.com/ja-jp/111876",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "apple-iphone-12-mini",
+      "manufacturer": "Apple",
+      "model": "iPhone 12 mini",
+      "aliases": [
+        "iPhone12mini",
+        "iPhone 12 mini",
+        "アイフォン12 mini",
+        "アイフォン12ミニ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "dimensions": {
+        "heightMm": 131.5,
+        "widthMm": 64.2,
+        "depthMm": 7.4
+      },
+      "weightG": 135,
+      "displayInch": 5.4,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "Lightning",
+        "wiredRecommendedW": 20,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "MagSafe / Qi",
+        "wirelessMaxW": 12,
+        "battery": {
+          "capacityMah": null,
+          "valueClass": "unknown",
+          "sourceRef": null
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.apple.com/ja-jp/111877",
+        "manualUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+        "releaseUrl": "https://support.apple.com/ja-jp/111877",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "apple-iphone-12-pro",
+      "manufacturer": "Apple",
+      "model": "iPhone 12 Pro",
+      "aliases": [
+        "iPhone12Pro",
+        "アイフォン12 Pro",
+        "アイフォン12プロ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "dimensions": {
+        "heightMm": 146.7,
+        "widthMm": 71.5,
+        "depthMm": 7.4
+      },
+      "weightG": 187,
+      "displayInch": 6.1,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "Lightning",
+        "wiredRecommendedW": 20,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "MagSafe / Qi",
+        "wirelessMaxW": 15,
+        "battery": {
+          "capacityMah": null,
+          "valueClass": "unknown",
+          "sourceRef": null
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.apple.com/ja-jp/111875",
+        "manualUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+        "releaseUrl": "https://support.apple.com/ja-jp/111875",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "apple-iphone-12-pro-max",
+      "manufacturer": "Apple",
+      "model": "iPhone 12 Pro Max",
+      "aliases": [
+        "iPhone12ProMax",
+        "アイフォン12 Pro Max",
+        "アイフォン12プロマックス"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "dimensions": {
+        "heightMm": 160.8,
+        "widthMm": 78.1,
+        "depthMm": 7.4
+      },
+      "weightG": 226,
+      "displayInch": 6.7,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "Lightning",
+        "wiredRecommendedW": 20,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "MagSafe / Qi",
+        "wirelessMaxW": 15,
+        "battery": {
+          "capacityMah": null,
+          "valueClass": "unknown",
+          "sourceRef": null
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.apple.com/ja-jp/111874",
+        "manualUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+        "releaseUrl": "https://support.apple.com/ja-jp/111874",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "apple-iphone-11",
+      "manufacturer": "Apple",
+      "model": "iPhone 11",
+      "aliases": [
+        "iPhone11",
+        "アイフォン11"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2019,
+      "dimensions": {
+        "heightMm": 150.9,
+        "widthMm": 75.7,
+        "depthMm": 8.3
+      },
+      "weightG": 194,
+      "displayInch": 6.1,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "Lightning",
+        "wiredRecommendedW": 18,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 7.5,
+        "battery": {
+          "capacityMah": null,
+          "valueClass": "unknown",
+          "sourceRef": null
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.apple.com/ja-jp/111865",
+        "manualUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+        "releaseUrl": "https://support.apple.com/ja-jp/111865",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "apple-iphone-se-2",
+      "manufacturer": "Apple",
+      "model": "iPhone SE (2nd generation)",
+      "aliases": [
+        "iPhone SE2",
+        "iPhone SE 第2世代",
+        "アイフォンSE2"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "dimensions": {
+        "heightMm": 138.4,
+        "widthMm": 67.3,
+        "depthMm": 7.3
+      },
+      "weightG": 148,
+      "displayInch": 4.7,
+      "waterRating": "IP67",
+      "charging": {
+        "connector": "Lightning",
+        "wiredRecommendedW": 18,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 7.5,
+        "battery": {
+          "capacityMah": null,
+          "valueClass": "unknown",
+          "sourceRef": null
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.apple.com/ja-jp/111882",
+        "manualUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+        "releaseUrl": "https://support.apple.com/ja-jp/111882",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-7",
+      "manufacturer": "Google",
+      "model": "Pixel 7",
+      "aliases": [
+        "Google Pixel 7",
+        "Pixel7",
+        "ピクセル7"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 155.6,
+        "widthMm": 73.2,
+        "depthMm": 8.7
+      },
+      "weightG": 197,
+      "displayInch": 6.3,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 30,
+        "wiredMaxW": 20,
+        "protocols": [
+          "USB PD 3.0",
+          "PPS"
+        ],
+        "pps": "required",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 20,
+        "battery": {
+          "capacityMah": 4355,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://support.google.com/pixelphone/answer/7158570?hl=ja"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
+        "releaseUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-7-pro",
+      "manufacturer": "Google",
+      "model": "Pixel 7 Pro",
+      "aliases": [
+        "Google Pixel 7 Pro",
+        "Pixel7Pro",
+        "ピクセル7 Pro",
+        "ピクセル7プロ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 162.9,
+        "widthMm": 76.6,
+        "depthMm": 8.9
+      },
+      "weightG": 212,
+      "displayInch": 6.7,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 30,
+        "wiredMaxW": 23,
+        "protocols": [
+          "USB PD 3.0",
+          "PPS"
+        ],
+        "pps": "required",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 23,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://support.google.com/pixelphone/answer/7158570?hl=ja"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
+        "releaseUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-7a",
+      "manufacturer": "Google",
+      "model": "Pixel 7a",
+      "aliases": [
+        "Google Pixel 7a",
+        "Pixel7a",
+        "ピクセル7a"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "dimensions": {
+        "heightMm": 152,
+        "widthMm": 72.9,
+        "depthMm": 9
+      },
+      "weightG": 193.5,
+      "displayInch": 6.1,
+      "waterRating": "IP67",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 30,
+        "wiredMaxW": 18,
+        "protocols": [
+          "USB PD 3.0",
+          "PPS"
+        ],
+        "pps": "required",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 7.5,
+        "battery": {
+          "capacityMah": 4385,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://support.google.com/pixelphone/answer/7158570?hl=ja"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
+        "releaseUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-6",
+      "manufacturer": "Google",
+      "model": "Pixel 6",
+      "aliases": [
+        "Google Pixel 6",
+        "Pixel6",
+        "ピクセル6"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2021,
+      "dimensions": {
+        "heightMm": 158.6,
+        "widthMm": 74.8,
+        "depthMm": 8.9
+      },
+      "weightG": 207,
+      "displayInch": 6.4,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 30,
+        "wiredMaxW": 21,
+        "protocols": [
+          "USB PD 3.0",
+          "PPS"
+        ],
+        "pps": "required",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 21,
+        "battery": {
+          "capacityMah": 4614,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://support.google.com/pixelphone/answer/7158570?hl=ja"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
+        "releaseUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-6-pro",
+      "manufacturer": "Google",
+      "model": "Pixel 6 Pro",
+      "aliases": [
+        "Google Pixel 6 Pro",
+        "Pixel6Pro",
+        "ピクセル6 Pro",
+        "ピクセル6プロ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2021,
+      "dimensions": {
+        "heightMm": 163.9,
+        "widthMm": 75.9,
+        "depthMm": 8.9
+      },
+      "weightG": 210,
+      "displayInch": 6.7,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 30,
+        "wiredMaxW": 23,
+        "protocols": [
+          "USB PD 3.0",
+          "PPS"
+        ],
+        "pps": "required",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 23,
+        "battery": {
+          "capacityMah": 5003,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://support.google.com/pixelphone/answer/7158570?hl=ja"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
+        "releaseUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-6a",
+      "manufacturer": "Google",
+      "model": "Pixel 6a",
+      "aliases": [
+        "Google Pixel 6a",
+        "Pixel6a",
+        "ピクセル6a"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 152.2,
+        "widthMm": 71.8,
+        "depthMm": 8.9
+      },
+      "weightG": 178,
+      "displayInch": 6.134,
+      "waterRating": "IP67",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 30,
+        "wiredMaxW": 18,
+        "protocols": [
+          "USB PD 3.0",
+          "PPS"
+        ],
+        "pps": "required",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4410,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://support.google.com/pixelphone/answer/7158570?hl=ja"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
+        "releaseUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-s22",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S22",
+      "aliases": [
+        "Samsung Galaxy S22",
+        "GalaxyS22",
+        "ギャラクシーS22"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 146,
+        "widthMm": 70.6,
+        "depthMm": 7.6
+      },
+      "weightG": 167,
+      "displayInch": 6.1,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 15,
+        "battery": {
+          "capacityMah": 3700,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.samsung.com/sg/business/smartphones/galaxy-s/galaxy-s22-for-business-sm-s901-sm-s901ezagxsp/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/sg/business/smartphones/galaxy-s/galaxy-s22-for-business-sm-s901-sm-s901ezagxsp/",
+        "manualUrl": "https://www.samsung.com/jp/support/",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-s22-ultra",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S22 Ultra",
+      "aliases": [
+        "Samsung Galaxy S22 Ultra",
+        "GalaxyS22Ultra",
+        "ギャラクシーS22 Ultra",
+        "ギャラクシーS22ウルトラ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 163.3,
+        "widthMm": 77.9,
+        "depthMm": 8.9
+      },
+      "weightG": 228,
+      "displayInch": 6.8,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 45,
+        "wiredMaxW": 45,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 15,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.samsung.com/au/business/smartphones/galaxy-s/galaxy-s22-ultra-for-business-sm-s908-sm-s908ezwnats/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/au/business/smartphones/galaxy-s/galaxy-s22-ultra-for-business-sm-s908-sm-s908ezwnats/",
+        "manualUrl": "https://www.samsung.com/jp/support/",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-s21-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S21 5G",
+      "aliases": [
+        "Samsung Galaxy S21 5G",
+        "GalaxyS21",
+        "Galaxy S21",
+        "ギャラクシーS21"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2021,
+      "dimensions": {
+        "heightMm": 151.7,
+        "widthMm": 71.2,
+        "depthMm": 7.9
+      },
+      "weightG": 169,
+      "displayInch": 6.2,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 15,
+        "battery": {
+          "capacityMah": 4000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%EA%B0%A4%EB%9F%AD%EC%8B%9C-s21-3%EC%A2%85-%EC%A0%84%EA%B2%A9-%EA%B3%B5%EA%B0%9C"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%EA%B0%A4%EB%9F%AD%EC%8B%9C-s21-3%EC%A2%85-%EC%A0%84%EA%B2%A9-%EA%B3%B5%EA%B0%9C",
+        "manualUrl": "https://www.samsung.com/jp/support/",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-s21-ultra-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S21 Ultra 5G",
+      "aliases": [
+        "Samsung Galaxy S21 Ultra 5G",
+        "GalaxyS21Ultra",
+        "Galaxy S21 Ultra",
+        "ギャラクシーS21ウルトラ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2021,
+      "dimensions": {
+        "heightMm": 165.1,
+        "widthMm": 75.6,
+        "depthMm": 8.9
+      },
+      "weightG": 227,
+      "displayInch": 6.8,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 15,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.samsung.com/sg/business/smartphones/galaxy-s/galaxy-s21-ultra-5g-g988-sm-g998bzkhxsp/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/sg/business/smartphones/galaxy-s/galaxy-s21-ultra-5g-g988-sm-g998bzkhxsp/",
+        "manualUrl": "https://www.samsung.com/jp/support/",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-a54-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A54 5G",
+      "aliases": [
+        "Samsung Galaxy A54 5G",
+        "GalaxyA54",
+        "Galaxy A54",
+        "ギャラクシーA54"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "dimensions": {
+        "heightMm": 158.2,
+        "widthMm": 76.7,
+        "depthMm": 8.2
+      },
+      "weightG": 201,
+      "displayInch": 6.4,
+      "waterRating": "IP67",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.samsung.com/jp/smartphones/galaxy-a/galaxy-a54-5g-awesome-graphite-128gb-docomo-sm-a546dzkbdcm/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-a/galaxy-a54-5g-awesome-graphite-128gb-docomo-sm-a546dzkbdcm/",
+        "manualUrl": "https://www.samsung.com/jp/support/",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-a53-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A53 5G",
+      "aliases": [
+        "Samsung Galaxy A53 5G",
+        "GalaxyA53",
+        "Galaxy A53",
+        "ギャラクシーA53"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 159.6,
+        "widthMm": 74.8,
+        "depthMm": 8.1
+      },
+      "weightG": 189,
+      "displayInch": 6.5,
+      "waterRating": "IP67",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://news.samsung.com/global/galaxy-a53-5g-and-galaxy-a33-5g-awesome-mobile-experiences-open-to-everyone"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://news.samsung.com/global/galaxy-a53-5g-and-galaxy-a33-5g-awesome-mobile-experiences-open-to-everyone",
+        "manualUrl": "https://www.samsung.com/jp/support/",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-a35-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A35 5G",
+      "aliases": [
+        "Samsung Galaxy A35 5G",
+        "GalaxyA35",
+        "Galaxy A35",
+        "ギャラクシーA35"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 161.7,
+        "widthMm": 78,
+        "depthMm": 8.2
+      },
+      "weightG": 209,
+      "displayInch": 6.6,
+      "waterRating": "IP67",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://news.samsung.com/global/samsung-galaxy-a55-5g-and-galaxy-a35-5g-awesome-innovations-and-security-engineered-for-everyone"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://news.samsung.com/global/samsung-galaxy-a55-5g-and-galaxy-a35-5g-awesome-innovations-and-security-engineered-for-everyone",
+        "manualUrl": "https://www.samsung.com/jp/support/",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sony-xperia-1-v",
+      "manufacturer": "Sony",
+      "model": "Xperia 1 V",
+      "aliases": [
+        "Sony Xperia 1 V",
+        "Xperia1V",
+        "エクスペリア1 V",
+        "エクスペリア1V"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "dimensions": {
+        "heightMm": 165,
+        "widthMm": 71,
+        "depthMm": 8.3
+      },
+      "weightG": 187,
+      "displayInch": 6.5,
+      "waterRating": "IPX5/IPX8, IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 30,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.sony.jp/xperia/xperia/xperia1m5/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia1m5/compare.html",
+        "manualUrl": "https://www.sony.jp/xperia/support/",
+        "chargingUrl": "https://www.sony.jp/xperia/xperia/xperia1m5/",
+        "wirelessUrl": "https://www.sony.jp/xperia/xperia/xperia1m5/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sony-xperia-1-iv",
+      "manufacturer": "Sony",
+      "model": "Xperia 1 IV",
+      "aliases": [
+        "Sony Xperia 1 IV",
+        "Xperia1IV",
+        "エクスペリア1 IV",
+        "エクスペリア1IV"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 165,
+        "widthMm": 71,
+        "depthMm": 8.2
+      },
+      "weightG": 185,
+      "displayInch": 6.5,
+      "waterRating": "IPX5/IPX8, IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 30,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.sony.jp/xperia/xperia/xperia1m4/spec_sony.html"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia1m4/spec_sony.html",
+        "manualUrl": "https://www.sony.jp/xperia/support/",
+        "chargingUrl": "https://www.sony.jp/xperia/xperia/xperia1m4/performance-usability.html",
+        "wirelessUrl": "https://www.sony.jp/xperia/xperia/xperia1m4/performance-usability.html",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sony-xperia-5-iv",
+      "manufacturer": "Sony",
+      "model": "Xperia 5 IV",
+      "aliases": [
+        "Sony Xperia 5 IV",
+        "Xperia5IV",
+        "エクスペリア5 IV",
+        "エクスペリア5IV"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 156,
+        "widthMm": 67,
+        "depthMm": 8.2
+      },
+      "weightG": 172,
+      "displayInch": 6.1,
+      "waterRating": "IPX5/IPX8, IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 30,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.sony.jp/xperia/xperia/xperia5m4/spec_sony.html"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia5m4/spec_sony.html",
+        "manualUrl": "https://www.sony.jp/xperia/support/",
+        "chargingUrl": "https://www.sony.jp/xperia/xperia/xperia5m4/accessory.html",
+        "wirelessUrl": "https://www.sony.jp/xperia/xperia/xperia5m4/spec_sony.html",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sony-xperia-10-iv",
+      "manufacturer": "Sony",
+      "model": "Xperia 10 IV",
+      "aliases": [
+        "Sony Xperia 10 IV",
+        "Xperia10IV",
+        "エクスペリア10 IV",
+        "エクスペリア10IV"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 153,
+        "widthMm": 67,
+        "depthMm": 8.3
+      },
+      "weightG": 161,
+      "displayInch": 6,
+      "waterRating": "IPX5/IPX8, IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 30,
+        "wiredMaxW": 18,
+        "protocols": [
+          "USB PD"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.sony.jp/xperia/xperia/xperia10m4/spec_sony.html"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia10m4/spec_sony.html",
+        "manualUrl": "https://www.sony.jp/xperia/support/",
+        "chargingUrl": "https://www.sony.jp/xperia/xperia/xperia10m4/accessory.html",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sony-xperia-ace-iii",
+      "manufacturer": "Sony",
+      "model": "Xperia Ace III",
+      "aliases": [
+        "Sony Xperia Ace III",
+        "XperiaAceIII",
+        "エクスペリアAce III",
+        "エクスペリアエース3"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 140,
+        "widthMm": 69,
+        "depthMm": 8.9
+      },
+      "weightG": 162,
+      "displayInch": 5.5,
+      "waterRating": "IPX5/IPX8, IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 30,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4500,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.sony.jp/xperia/xperia/acem3/spec_docomo.html"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.sony.jp/xperia/xperia/acem3/spec_docomo.html",
+        "manualUrl": "https://www.sony.jp/xperia/support/",
+        "chargingUrl": "https://www.sony.jp/xperia/xperia/acem3/accessory.html",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-sense8",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense8",
+      "aliases": [
+        "Sharp AQUOS sense8",
+        "AQUOSsense8",
+        "アクオス sense8",
+        "アクオスセンス8"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "dimensions": {
+        "heightMm": 153,
+        "widthMm": 71,
+        "depthMm": 8.4
+      },
+      "weightG": 159,
+      "displayInch": 6.1,
+      "waterRating": "IPX5/IPX8, IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.sharp/products/aquos-sense8/simfree/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp.sharp/products/aquos-sense8/simfree/",
+        "manualUrl": "https://jp.sharp/support/aquos/",
+        "chargingUrl": "https://jp.sharp/products/aquos-sense8/simfree/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-sense7",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense7",
+      "aliases": [
+        "Sharp AQUOS sense7",
+        "AQUOSsense7",
+        "アクオス sense7",
+        "アクオスセンス7"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 152,
+        "widthMm": 70,
+        "depthMm": 8
+      },
+      "weightG": 158,
+      "displayInch": 6.1,
+      "waterRating": "IPX5/IPX8, IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4570,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.sharp/k-tai/22winter/spec-sense7.html"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp.sharp/k-tai/22winter/spec-sense7.html",
+        "manualUrl": "https://jp.sharp/support/aquos/",
+        "chargingUrl": "https://cgi.jp.sharp/products/aquos-sense7/simfree/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-sense6",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense6",
+      "aliases": [
+        "Sharp AQUOS sense6",
+        "AQUOSsense6",
+        "アクオス sense6",
+        "アクオスセンス6"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2021,
+      "dimensions": {
+        "heightMm": 152,
+        "widthMm": 70,
+        "depthMm": 7.9
+      },
+      "weightG": 156,
+      "displayInch": 6.1,
+      "waterRating": "IPX5/IPX8, IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4570,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.sharp/products/aquos-sense6/simfree/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp.sharp/products/aquos-sense6/simfree/",
+        "manualUrl": "https://jp.sharp/support/aquos/",
+        "chargingUrl": "https://jp.sharp/products/aquos-sense6/simfree/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-wish3",
+      "manufacturer": "SHARP",
+      "model": "AQUOS wish3",
+      "aliases": [
+        "Sharp AQUOS wish3",
+        "AQUOSwish3",
+        "アクオス wish3",
+        "アクオスウィッシュ3"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "dimensions": {
+        "heightMm": 147,
+        "widthMm": 70,
+        "depthMm": 8.9
+      },
+      "weightG": 161,
+      "displayInch": 5.7,
+      "waterRating": "IPX5/IPX7, IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 3730,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.sharp/products/aquos-wish3/d/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp.sharp/products/aquos-wish3/d/",
+        "manualUrl": "https://jp.sharp/support/aquos/",
+        "chargingUrl": "https://jp.sharp/products/aquos-wish3/d/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-wish2",
+      "manufacturer": "SHARP",
+      "model": "AQUOS wish2",
+      "aliases": [
+        "Sharp AQUOS wish2",
+        "AQUOSwish2",
+        "アクオス wish2",
+        "アクオスウィッシュ2"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 147,
+        "widthMm": 71,
+        "depthMm": 8.9
+      },
+      "weightG": 162,
+      "displayInch": 5.7,
+      "waterRating": "IPX5/IPX7, IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 3730,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.sharp/products/aquos-wish2/d/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp.sharp/products/aquos-wish2/d/",
+        "manualUrl": "https://jp.sharp/support/aquos/",
+        "chargingUrl": "https://jp.sharp/products/aquos-wish2/d/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-r8",
+      "manufacturer": "SHARP",
+      "model": "AQUOS R8",
+      "aliases": [
+        "Sharp AQUOS R8",
+        "AQUOSR8",
+        "アクオスR8"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "dimensions": {
+        "heightMm": 159,
+        "widthMm": 74,
+        "depthMm": 8.7
+      },
+      "weightG": 179,
+      "displayInch": 6.39,
+      "waterRating": "IPX5/IPX8, IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4570,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.sharp/products/aquos-r8/simfree/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp.sharp/products/aquos-r8/simfree/",
+        "manualUrl": "https://jp.sharp/support/aquos/",
+        "chargingUrl": "https://jp.sharp/products/aquos-r8/simfree/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-r8-pro",
+      "manufacturer": "SHARP",
+      "model": "AQUOS R8 pro",
+      "aliases": [
+        "Sharp AQUOS R8 pro",
+        "AQUOSR8pro",
+        "アクオスR8 pro",
+        "アクオスR8プロ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "dimensions": {
+        "heightMm": 161,
+        "widthMm": 77,
+        "depthMm": 9.3
+      },
+      "weightG": 203,
+      "displayInch": 6.6,
+      "waterRating": "IPX5/IPX8, IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.sharp/products/aquos-r8-pro/simfree/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp.sharp/products/aquos-r8-pro/simfree/",
+        "manualUrl": "https://jp.sharp/support/aquos/",
+        "chargingUrl": "https://jp.sharp/products/aquos-r8-pro/simfree/",
+        "wirelessUrl": "https://jp.sharp/products/aquos-r8-pro/simfree/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "oppo-reno10-pro-5g",
+      "manufacturer": "OPPO",
+      "model": "Reno10 Pro 5G",
+      "aliases": [
+        "OPPO Reno10 Pro 5G",
+        "Reno10Pro5G",
+        "Reno10 Pro",
+        "リノ10プロ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "dimensions": {
+        "heightMm": 163,
+        "widthMm": 75,
+        "depthMm": 7.9
+      },
+      "weightG": 185,
+      "displayInch": 6.7,
+      "waterRating": "IPX4, IP5X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 80,
+        "protocols": [
+          "SUPERVOOC"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4600,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.oppo.com/jp/smartphones/series-reno/reno10-pro/specs/"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno10-pro/specs/",
+        "manualUrl": "https://support.oppo.com/jp/",
+        "releaseUrl": "https://www.oppo.com/jp/newsroom/press/oppo-reno10-pro-5g-launch/",
+        "chargingUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno10-pro/specs/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "oppo-reno9-a",
+      "manufacturer": "OPPO",
+      "model": "Reno9 A",
+      "aliases": [
+        "OPPO Reno9 A",
+        "Reno9A",
+        "リノ9A"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "dimensions": {
+        "heightMm": 160,
+        "widthMm": 74,
+        "depthMm": 7.8
+      },
+      "weightG": 183,
+      "displayInch": 6.4,
+      "waterRating": "IPX8, IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 18,
+        "wiredMaxW": 18,
+        "protocols": [
+          "USB PD",
+          "QC 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4500,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.oppo.com/jp/smartphones/series-reno/reno9-a/specs/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno9-a/specs/",
+        "manualUrl": "https://support.oppo.com/jp/",
+        "chargingUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno9-a/specs/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "oppo-reno7-a",
+      "manufacturer": "OPPO",
+      "model": "Reno7 A",
+      "aliases": [
+        "OPPO Reno7 A",
+        "Reno7A",
+        "リノ7A"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 159.7,
+        "widthMm": 73.4,
+        "depthMm": 7.6
+      },
+      "weightG": 175,
+      "displayInch": 6.4,
+      "waterRating": "IPX8, IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 18,
+        "wiredMaxW": 18,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4500,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.oppo.com/jp/smartphones/series-reno/reno7-a/specs/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno7-a/specs/",
+        "manualUrl": "https://support.oppo.com/jp/",
+        "chargingUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno7-a/specs/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "oppo-a77",
+      "manufacturer": "OPPO",
+      "model": "A77",
+      "aliases": [
+        "OPPO A77",
+        "OPPOA77"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 163.7,
+        "widthMm": 75,
+        "depthMm": 8
+      },
+      "weightG": 187,
+      "displayInch": 6.5,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 33,
+        "protocols": [
+          "SUPERVOOC"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.oppo.com/jp/smartphones/series-a/a77/specs/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-a/a77/specs/",
+        "manualUrl": "https://support.oppo.com/jp/",
+        "chargingUrl": "https://www.oppo.com/jp/smartphones/series-a/a77/specs/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-redmi-note-13-pro-plus-5g",
+      "manufacturer": "Xiaomi",
+      "model": "Redmi Note 13 Pro+ 5G",
+      "aliases": [
+        "Xiaomi Redmi Note 13 Pro+ 5G",
+        "RedmiNote13Pro+5G",
+        "Redmi Note 13 Pro Plus 5G",
+        "レッドミーノート13プロプラス"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 161.4,
+        "widthMm": 74.2,
+        "depthMm": 8.9
+      },
+      "weightG": 204.5,
+      "displayInch": 6.67,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 120,
+        "protocols": [
+          "HyperCharge"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/redmi-note-13-pro-plus-5g/specs/"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/redmi-note-13-pro-plus-5g/specs/",
+        "manualUrl": "https://www.mi.com/jp/support/",
+        "chargingUrl": "https://www.mi.com/jp/product/redmi-note-13-pro-plus-5g/specs/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-redmi-note-13-pro-5g",
+      "manufacturer": "Xiaomi",
+      "model": "Redmi Note 13 Pro 5G",
+      "aliases": [
+        "Xiaomi Redmi Note 13 Pro 5G",
+        "RedmiNote13Pro5G",
+        "レッドミーノート13プロ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 161.15,
+        "widthMm": 74.24,
+        "depthMm": 7.98
+      },
+      "weightG": 189,
+      "displayInch": 6.67,
+      "waterRating": "IP54",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 67,
+        "protocols": [
+          "TurboCharge"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5100,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/redmi-note-13-pro-5g/specs/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/redmi-note-13-pro-5g/specs/",
+        "manualUrl": "https://www.mi.com/jp/support/",
+        "chargingUrl": "https://www.mi.com/jp/product/redmi-note-13-pro-5g/specs/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-redmi-note-11-pro-5g",
+      "manufacturer": "Xiaomi",
+      "model": "Redmi Note 11 Pro 5G",
+      "aliases": [
+        "Xiaomi Redmi Note 11 Pro 5G",
+        "RedmiNote11Pro5G",
+        "レッドミーノート11プロ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 164.19,
+        "widthMm": 76.1,
+        "depthMm": 8.12
+      },
+      "weightG": 202,
+      "displayInch": 6.67,
+      "waterRating": "IP53",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 67,
+        "protocols": [
+          "TurboCharge"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/redmi-note-11-pro-5g/specs/"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/redmi-note-11-pro-5g/specs/",
+        "manualUrl": "https://www.mi.com/jp/support/",
+        "chargingUrl": "https://www.mi.com/jp/product/redmi-note-11-pro-5g/specs/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "motorola-moto-g64-5g",
+      "manufacturer": "Motorola",
+      "model": "moto g64 5G",
+      "aliases": [
+        "Motorola moto g64 5G",
+        "motog645G",
+        "moto g64",
+        "モトg64"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 161.56,
+        "widthMm": 73.82,
+        "depthMm": 7.99
+      },
+      "weightG": 177,
+      "displayInch": 6.5,
+      "waterRating": "IP52",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 30,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192474/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192474/",
+        "manualUrl": "https://jp-jp.support.motorola.com/",
+        "chargingUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192474/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "motorola-edge-50-pro",
+      "manufacturer": "Motorola",
+      "model": "motorola edge 50 pro",
+      "aliases": [
+        "Motorola edge 50 pro",
+        "edge50pro",
+        "エッジ50プロ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 161.23,
+        "widthMm": 72.4,
+        "depthMm": 8.19
+      },
+      "weightG": 186,
+      "displayInch": 6.7,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 125,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 50,
+        "battery": {
+          "capacityMah": 4500,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192373/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/178982/~/specifications---motorola-edge-50-pro/",
+        "manualUrl": "https://jp-jp.support.motorola.com/",
+        "chargingUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192373/",
+        "wirelessUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/178982/~/specifications---motorola-edge-50-pro/",
         "verifiedAt": "2026-09-14"
       },
       "affiliateKeys": []
