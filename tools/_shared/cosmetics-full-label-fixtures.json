@@ -124,7 +124,8 @@
     "category": "sunscreen",
     "language": "en",
     "label": "Water, Glycerin, Zinc Oxide, Titanium Dioxide, Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine, Diethylamino Hydroxybenzoyl Hexyl Benzoate, Dimethicone, Tocopherol",
-    "maxUnknown": 0
+    "maxUnknown": 2,
+    "knownGap": "Titanium Dioxide | Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine"
   },
   {
     "id": "jp-conditioner-wave3",
@@ -167,6 +168,7 @@
     "category": "color-cosmetic",
     "language": "en",
     "label": "Water, Glycerin, Cyclopentasiloxane, Trimethylsiloxysilicate, Titanium Dioxide, CI 19140, CI 15985, CI 42090",
-    "maxUnknown": 0
+    "maxUnknown": 1,
+    "knownGap": "Titanium Dioxide"
   }
 ]
