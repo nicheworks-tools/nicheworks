@@ -43,13 +43,14 @@ assert.equal(
 
 assert.equal(config.consumableSearchTemplate.status, 'verified');
 assert.equal(config.consumableSearchTemplate.activationTarget, 'printer_consumable_search_template');
-assert.equal(config.printerConsumables.length, 19, 'Brother 13 plus Epson 6 verified printer mappings should be present');
+assert.equal(config.printerConsumables.length, 25, 'Brother 13 plus Epson 6 plus Canon 6 verified printer mappings should be present');
 assert.equal(Object.keys(config.targets).length, 3, 'fixed override, model template, and consumable template should be active');
 assert.equal(config.offers.length, 1, 'dynamic searches must not create one stored Amazon URL per record');
 
 const samples = [
   ['Brother', 'MFC-J4440N', 'プリンター・複合機'],
   ['Epson', 'EW-056A', 'プリンター・複合機'],
+  ['Canon', 'TS8830', 'プリンター・複合機'],
   ['Nikon', 'Z6III', 'カメラ・映像'],
   ['T-fal', 'KO4901JP', '家電'],
   ['Aterm', 'WX5400HP', 'ネットワーク機器'],
@@ -82,7 +83,13 @@ const expectedFamilies = new Map([
   ['Epson|EP-817A', ['kak-6cl']],
   ['Epson|EP-887AW', ['kni-6cl', 'kni-6cl-l']],
   ['Epson|EP-887AB', ['kni-6cl', 'kni-6cl-l']],
-  ['Epson|EP-887AP', ['kni-6cl', 'kni-6cl-l']]
+  ['Epson|EP-887AP', ['kni-6cl', 'kni-6cl-l']],
+  ['Canon|TS8830', ['bci331-330', 'bci331xl-330xl']],
+  ['Canon|TS8730', ['bci331-330', 'bci331xl-330xl']],
+  ['Canon|TS7630', ['bci331-330', 'bci331xl-330xl']],
+  ['Canon|TS6730', ['bc385-386', 'bc385xl-386xl']],
+  ['Canon|TS3730', ['bc365-366', 'bc365xl-366xl']],
+  ['Canon|XK130', ['xki-n21-n20']]
 ]);
 for (const [identity, keys] of expectedFamilies) {
   const [maker, model] = identity.split('|');
@@ -93,6 +100,7 @@ for (const [identity, keys] of expectedFamilies) {
     assert.ok(offer.url.includes('tag=nicheworks09-22'), `${identity}/${offer.key} should retain the fixed tracking ID`);
     if (maker === 'Brother') assert.ok(offer.sourceUrl.includes('brother.co.jp'), `${identity}/${offer.key} must retain official Brother evidence`);
     if (maker === 'Epson') assert.ok(offer.sourceUrl.includes('epson.jp'), `${identity}/${offer.key} must retain official Epson evidence`);
+    if (maker === 'Canon') assert.ok(offer.sourceUrl.includes('canon.jp'), `${identity}/${offer.key} must retain official Canon evidence`);
   }
 }
 
@@ -100,12 +108,23 @@ const j4440 = config.getConsumableOffers({ maker: 'Brother', model: 'MFC-J4440N'
 assert.equal(j4440[0].url, 'https://www.amazon.co.jp/s?k=Brother+LC416&tag=nicheworks09-22');
 assert.equal(j4440[1].url, 'https://www.amazon.co.jp/s?k=Brother+LC416XL&tag=nicheworks09-22');
 
+const j4720 = config.getConsumableOffers({ maker: 'Brother', model: 'MFC-J4720N', category: 'プリンター・複合機' });
+assert.equal(j4720[1].url, 'https://www.amazon.co.jp/s?k=Brother+LC217+LC215&tag=nicheworks09-22', 'Brother MFC-J4720N must keep the LC217/LC215 mapping');
+
 const ew056 = config.getConsumableOffers({ maker: 'Epson', model: 'EW-056A', category: 'プリンター・複合機' });
 assert.equal(ew056[0].url, 'https://www.amazon.co.jp/s?k=Epson+MED-4CL&tag=nicheworks09-22');
 
 const ep887 = config.getConsumableOffers({ maker: 'Epson', model: 'EP-887AW', category: 'プリンター・複合機' });
 assert.equal(ep887[0].url, 'https://www.amazon.co.jp/s?k=Epson+KNI-6CL&tag=nicheworks09-22');
 assert.equal(ep887[1].url, 'https://www.amazon.co.jp/s?k=Epson+KNI-6CL-L&tag=nicheworks09-22');
+
+const ts8830 = config.getConsumableOffers({ maker: 'Canon', model: 'TS8830', category: 'プリンター・複合機' });
+assert.equal(ts8830[0].url, 'https://www.amazon.co.jp/s?k=Canon+BCI-331+BCI-330&tag=nicheworks09-22');
+assert.equal(ts8830[1].url, 'https://www.amazon.co.jp/s?k=Canon+BCI-331XL+BCI-330XL&tag=nicheworks09-22');
+
+const ts3730 = config.getConsumableOffers({ maker: 'Canon', model: 'TS3730', category: 'プリンター・複合機' });
+assert.equal(ts3730[0].url, 'https://www.amazon.co.jp/s?k=Canon+BC-365+BC-366&tag=nicheworks09-22');
+assert.equal(ts3730[1].url, 'https://www.amazon.co.jp/s?k=Canon+BC-365XL+BC-366XL&tag=nicheworks09-22');
 
 assert.deepEqual(
   Array.from(config.getConsumableOffers({ maker: 'Brother', model: 'MFC-J4440N', category: 'その他' })),
@@ -121,6 +140,11 @@ assert.deepEqual(
   Array.from(config.getConsumableOffers({ maker: 'Epson', model: 'UNKNOWN', category: 'プリンター・複合機' })),
   [],
   'unverified Epson models must not receive guessed consumable offers'
+);
+assert.deepEqual(
+  Array.from(config.getConsumableOffers({ maker: 'Canon', model: 'UNKNOWN', category: 'プリンター・複合機' })),
+  [],
+  'unverified Canon models must not receive guessed consumable offers'
 );
 
 assert.equal(
@@ -139,4 +163,4 @@ assert.equal(
   'generic manufacturer entrances without exact model metadata must fail closed'
 );
 
-console.log('ManualFinder model-search plus Brother/Epson consumable affiliate behavior tests passed.');
+console.log('ManualFinder model-search plus Brother/Epson/Canon consumable affiliate behavior tests passed.');
