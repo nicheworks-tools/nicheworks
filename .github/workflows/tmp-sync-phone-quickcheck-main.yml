@@ -18,7 +18,7 @@ jobs:
         with:
           ref: feat/phone-quickcheck-public-launch-20260913
           fetch-depth: 0
-      - name: Merge latest main and resolve maintained ledger
+      - name: Merge latest main and resolve maintained files
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -28,14 +28,26 @@ jobs:
             conflicts="$(git diff --name-only --diff-filter=U)"
             echo "Conflicts:"
             printf '%s\n' "$conflicts"
-            unexpected="$(printf '%s\n' "$conflicts" | grep -v '^MONETIZATION_CLASSIFICATION_87.json$' || true)"
+            unexpected="$(printf '%s\n' "$conflicts" | grep -Ev '^(MONETIZATION_CLASSIFICATION_87.json|sitemap.xml)$' || true)"
             if [ -n "$unexpected" ]; then
               echo "Unexpected merge conflicts:" >&2
               printf '%s\n' "$unexpected" >&2
               exit 1
             fi
             git checkout --ours MONETIZATION_CLASSIFICATION_87.json
-            git add MONETIZATION_CLASSIFICATION_87.json
+            git checkout --theirs sitemap.xml
+            node <<'NODE'
+          const fs = require('fs');
+          const path = 'sitemap.xml';
+          let text = fs.readFileSync(path, 'utf8');
+          const url = 'https://nicheworks.app/tools/phone-quickcheck/';
+          if (!text.includes(`<loc>${url}</loc>`)) {
+            const entry = `  <url>\n    <loc>${url}</loc>\n    <lastmod>2026-09-14</lastmod>\n  </url>\n`;
+            text = text.replace('</urlset>', `${entry}</urlset>`);
+            fs.writeFileSync(path, text);
+          }
+          NODE
+            git add MONETIZATION_CLASSIFICATION_87.json sitemap.xml
             git commit --no-edit
           fi
           rm .github/workflows/tmp-sync-phone-quickcheck-main.yml
