@@ -89,14 +89,14 @@ Text/OCR input and result panels work on mobile but benefit from wider space for
 
 ## Amazon affiliate contract
 
-The existing result-adjacent slot is now live through the shared cosmetics affiliate layer:
+The existing result-adjacent slot is live through the shared cosmetics affiliate layer:
 
 ```txt
 #amazonAffiliateSlot
 provider = amazon
 placement = after-results
 HTML default state = inactive (fail-closed before runtime)
-runtime state = active when the verified Special Link config loads
+runtime state = active when the fixed Amazon search config passes validation
 ```
 
 Both cosmetics tools share these runtime assets:
@@ -111,21 +111,27 @@ The current activation contract is:
 
 ```txt
 enabled = true
-trackingMode = special_link
-associateTag = empty
-verified Special Link = https://amzn.to/4xNbcDO
+trackingMode = tagged_search
+associateTag = nicheworks09-22
+fixed Amazon search categories = 4
 verifiedAt = 2026-09-13
 placement = after-results
 ```
 
-The supplied Amazon Special Link already carries its Amazon Associates tracking, so this implementation does not invent or synthesize a separate Associate tag. The adapter fail-closes unless the destination is HTTPS on `amzn.to`, `amazon.co.jp`, or an `amazon.co.jp` subdomain.
+The four fixed destinations are neutral Amazon Japan searches for general skincare, moisturizing skincare, ceramide skincare, and sunscreen. They are defined statically in the shared config and are not selected, rewritten, or ranked from OCR text, dictionary matches, review state, or any other scan output.
 
-The live CTA is intentionally generic and not tied to scan output:
+The adapter fail-closes unless a tagged-search destination is HTTPS on `amazon.co.jp` / an `amazon.co.jp` subdomain, uses the `/s` search path, contains a non-empty fixed `k` search term, and carries the exact configured Associate tag.
+
+The live CTAs are intentionally generic and not tied to scan output, for example:
 
 ```txt
-Amazonでスキンケアを探す [PR]
-Find skincare on Amazon [PR]
+スキンケアをAmazonで探す [PR]
+保湿スキンケアを探す [PR]
+セラミド系スキンケアを探す [PR]
+日焼け止めをAmazonで探す [PR]
 ```
+
+The English UI uses equivalent neutral labels for the same four destinations.
 
 The affiliate card renders the Amazon Associates disclosure for the active UI language, including:
 
@@ -133,7 +139,7 @@ The affiliate card renders the Amazon Associates disclosure for the active UI la
 Amazonのアソシエイトとして、NicheWorksは適格販売により収入を得ています。
 ```
 
-The link is a generic Amazon search handoff. It is not a statement that any product is safe, suitable, recommended, cheapest, available, hypoallergenic, or medically appropriate for the scanned ingredients.
+These are fixed Amazon search handoffs. They are not statements that any product is safe, suitable, recommended, cheapest, available, hypoallergenic, or medically appropriate for the scanned ingredients.
 
 Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` with `tool`, `provider`, `placement`, and `link_key`. Raw ingredient text, OCR output, filenames, images, matched ingredients, selected correction candidates, review position, and complete analysis results must never be attached.
 
@@ -150,7 +156,7 @@ Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` 
 - Dictionary coverage is finite; an unmatched result is not evidence that an ingredient is unsafe.
 - The tool does not provide medical/dermatological diagnosis, allergy prediction, concentration analysis, product-safety certification, pregnancy suitability, drug-interaction advice, or regulatory approval.
 - External CDN availability can affect OCR even though ingredient processing itself is browser-side.
-- The current Amazon CTA is static and generic; it does not change based on OCR text, dictionary state, candidates, or analysis results.
+- The current Amazon links are fixed generic category searches and do not change based on OCR text, dictionary state, candidates, or analysis results.
 - The tool does not display Amazon price, availability, rating, seller status, review count, or product imagery.
 
 ## Acceptance criteria
@@ -171,8 +177,9 @@ Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` 
 - [x] JP/EN switching preserves text scan, OCR, dictionary status, and medical/OCR disclaimers.
 - [x] The Lite tool is linked as the paste-only alternative.
 - [x] The Amazon slot keeps the frozen `after-results` placement and fail-closed HTML default.
-- [x] The verified skincare Special Link is rendered only through `special_link` mode; no separate Associate tag is fabricated.
-- [x] Amazon disclosure and `[PR]` labeling are visible with the live affiliate CTA.
+- [x] Four fixed Amazon category searches are rendered only through `tagged_search` mode with the configured Associate tag.
+- [x] Amazon destinations remain independent of OCR text, input text, dictionary matches, candidates, review state, filters, and complete analysis output.
+- [x] Amazon disclosure and `[PR]` labeling are visible with the live affiliate CTAs.
 - [x] Affiliate analytics remain coarse and contain no ingredient/OCR/analysis payload.
 
 ## Implementation evidence
