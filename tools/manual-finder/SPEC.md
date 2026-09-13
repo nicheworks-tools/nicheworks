@@ -91,6 +91,8 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - `tools/manual-finder/data/manuals.full.js`
 - `tools/manual-finder/data/manuals.wave1.01.js` through `manuals.wave1.06.js`
 - `tools/manual-finder/data/manuals.wave2.js` and Wave 2 data batches
+- `tools/manual-finder/data/manuals.wave3.js` and Wave 3 data batches
+- `tools/manual-finder/COVERAGE.md`
 - `tools/manual-finder/howto/`
 - `tools/manual-finder/usage.html`
 - `tools/manual-finder/usage-en.html`
