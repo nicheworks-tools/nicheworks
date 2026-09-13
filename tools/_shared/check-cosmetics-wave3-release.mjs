@@ -53,9 +53,10 @@ for (const ambiguous of ['"aha"', '"bha"', '"pha"', '"iron oxides"', '"酸化鉄
 
 // PR21: OCR line-wrap repair remains exact-only and never becomes fuzzy auto-correction.
 for (const token of [
-  'repairExactOcrLineWraps',
-  'exactDictionaryKeySet',
-  'repaired_line_wraps'
+  'repairWrappedIngredientFragments',
+  'buildKnownIngredientNameMap',
+  'findExactWrappedJoin',
+  'repairs: repaired.repairs'
 ]) {
   check(fastAnalyze.includes(token), `FastScan OCR exact line repair missing: ${token}`);
 }
