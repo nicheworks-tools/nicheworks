@@ -1,196 +1,161 @@
-# スマホ QuickCheck / Phone QuickCheck 仕様書
+# Phone QuickCheck — canonical tool specification
 
-## 1. 基本情報
+- **Slug:** `phone-quickcheck`
+- **Display name (JA):** スマホ QuickCheck
+- **Display name (EN):** Phone QuickCheck
+- **Implementation:** `tools/phone-quickcheck/`
+- **Registry state:** active (registered implementation present)
+- **Category:** phone, smartphone, charging, size, battery
+- **Common specification:** `common-spec/spec-ja.md`
+- **Audit state:** `PASS`
 
-- ツールID: `phone-quickcheck`
-- 日本語名: `スマホ QuickCheck`
-- 英語名: `Phone QuickCheck`
-- 公開URL: `https://nicheworks.app/tools/phone-quickcheck/`
-- 実装: 静的HTML / CSS / JavaScript / JSON
-- 言語: 日本語・英語の同一ページ切替
-- 初期公開データ: 30機種
-- 初期対象メーカー: Apple / Google / Samsung / Sony / SHARP
-- 位置づけ: スマートフォンの実用情報を短時間で確認するQuick Checkツール
+## 1. Identity
 
-本ツールはスマートフォン辞典やレビューサイトではない。機種を選んだ利用者が「サイズはどの程度か」「充電端子は何か」「どのクラスの充電器が必要か」「モバイルバッテリーで何回程度充電できるか」「公式仕様・マニュアルはどこか」を短時間で確認できることを主目的とする。
+This record is the canonical per-tool contract for the registered `phone-quickcheck` implementation at `/tools/phone-quickcheck/`. The initial public baseline contains 30 maintained smartphone records across Apple, Google, Samsung, Sony, and SHARP.
 
-## 2. 目的
+The product is a practical Quick Check utility, not a comprehensive smartphone encyclopedia, review database, benchmark service, or live retail catalog.
 
-利用者がスマートフォンの購入、アクセサリー購入、充電まわりの確認を行う際に、複数のメーカー仕様ページや検索結果を行き来せず、必要性の高い項目だけを一画面で確認できるようにする。
+## 2. Purpose
 
-主要導線は次の通りとする。
+スマートフォン利用者が、機種名からサイズ・重量・充電端子・充電器条件・ワイヤレス充電・モバイルバッテリー充電回数の概算・メーカー公式仕様／マニュアルを短時間で確認できるようにする。
 
-`機種を探す → サイズと充電条件を理解する → 必要なアクセサリーの種類を理解する → 公式情報を確認する → 将来的には適切なAmazon導線へ進む`
+主要導線は `機種を探す → サイズと充電条件を理解する → 必要なアクセサリーの種類を理解する → 公式情報を確認する` とする。将来のAmazon導線はこの実用導線の後段に置き、互換性判定を収益都合で変更しない。
 
-収益化はAmazonアクセサリー紹介を想定するが、互換性の判定や表示内容を収益都合で変えてはならない。Amazonリンクが未設定でもQuick Checkそのものが独立して有用である状態を維持する。
+## 3. Inputs
 
-## 3. 想定ユーザー
+- 機種名のフリーテキスト検索。
+- メーカー選択。
+- 充電端子選択。
+- 発売年選択。
+- 並び順選択。
+- 日本語 / 英語切替。
+- 一覧からの機種選択。
+- 内部入力として `tools/phone-quickcheck/data/phones.json` と `tools/phone-quickcheck/data/accessories.json` の静的データ。
 
-- 自分のスマホのサイズや重量をすぐ確認したい利用者
-- USB-C / Lightningなど充電端子を確認したい利用者
-- 急速充電に必要な充電器のクラスを知りたい利用者
-- PPS、USB PD、Samsung Super Fast Charging、Qi、Qi2などの条件を簡潔に確認したい利用者
-- 5,000 / 10,000 / 20,000mAhのモバイルバッテリーで何回程度充電できるか目安を知りたい利用者
-- メーカー公式仕様や公式マニュアルへ迷わず移動したい利用者
-- スペック表を網羅的に読みたいのではなく、購入前・困った時の要点だけ確認したい利用者
+検索は正規モデル名と管理済みaliasesを対象とする。aliasesは実在する同一モデルの表記揺れに限定し、架空モデルや別機種を生成しない。
 
-## 4. 利用シーン
+## 4. Processing behavior
 
-代表的な利用シーンは次の通り。
+- 30機種の初期検証済みデータをブラウザ内で検索・絞り込み・並び替えする。
+- 一覧は走査性を優先し、モデル、発売年、サイズ、重量、端子を中心に表示する。
+- 選択機種の詳細では本体情報、充電条件、モバイルバッテリー目安、アクセサリークラス、公式情報を整理して表示する。
+- `wiredRecommendedW` は充電器の推奨／必要クラスとして扱い、端末側の実測・最大入力W数と同一視しない。
+- 端末側最大有線充電W数は、その意味を直接支える維持済み根拠がある場合のみ表示する。
+- USB PD、PPS、Samsung Super Fast Charging、Qi、Qi2等は維持済み事実から表示・分類する。
+- バッテリー容量が利用可能な場合のみ、`power_bank_mAh × 0.67 ÷ phone_battery_mAh` で5,000 / 10,000 / 20,000mAhの概算充電回数を計算し、小数1桁で表示する。
+- バッテリー容量がunknownの場合は概算を生成しない。
+- メーカーが通常仕様でmAhを公表していない機種について、第三者値を無断でメーカー公式値として扱わない。
+- アクセサリー案内は端末×個別商品マトリクスではなく、USB-Cケーブル、USB-PD、PPS、Samsung Super Fast Charging、Qi/Qi2、USB-Cモバイルバッテリー等の再利用可能クラスから解決する。
+- 初期公開では維持済み `amazonUrl` をnullのままとし、ライブAmazon導線を有効化しない。
 
-1. Amazon等で充電器を買う前に、自分のスマホに必要な充電規格とW数の目安を確認する。
-2. モバイルバッテリー購入前に、10,000mAhで何回程度の充電になるか概算を確認する。
-3. 機種変更時に旧端末と新端末の幅・高さ・重さを簡易比較する。
-4. ケーブル購入前に端子がUSB-CかLightningかを確認する。
-5. Qi / Qi2 / MagSafe等のワイヤレス充電可否と維持済み上限W数を確認する。
-6. 公式マニュアルやメーカー仕様を確認したい時に正規リンクへ移動する。
-7. 家族や知人の端末アクセサリーを買う際、機種名だけから必要条件を確認する。
+## 5. Outputs
 
-## 5. 入力
+- 検索・フィルター後のスマートフォン一覧。
+- 選択機種の高さ × 幅 × 厚さ、重量、画面サイズ等の維持済み本体情報。
+- 充電端子、充電器目安、充電規格、PPS状態、ワイヤレス充電情報。
+- 維持済みバッテリー容量がある場合の5,000 / 10,000 / 20,000mAh概算充電回数。
+- 互換条件から導出した再利用可能アクセサリークラス。
+- メーカー公式仕様URL。
+- 公式マニュアル／公式サポートURL。
+- 最終確認日。
 
-利用者が操作する入力は以下。
+初期公開ではAmazon価格、在庫、配送情報、ライブ商品リンクを出力しない。
 
-- 機種名のフリーテキスト検索
-- メーカー選択
-- 充電端子選択
-- 発売年選択
-- 並び順選択
-- 日本語 / 英語切替
-- 一覧からの機種選択
+Observed delivery capabilities: clipboard copy **not found**; download/export **not found**.
 
-検索は正規モデル名に加えて、管理済みaliasesも対象とする。例えば空白の有無や日本語読みなど、実際に利用者が入力しやすい表記を維持対象にできる。ただしaliasesによって架空のモデルや別機種を生成してはならない。
+## 6. Error behavior
 
-内部入力は `tools/phone-quickcheck/data/phones.json` と `tools/phone-quickcheck/data/accessories.json` の静的データである。主要技術情報はメーカー公式仕様・公式サポート・公式マニュアルを優先して維持する。
-
-## 6. 出力
-
-一覧では走査しやすさを優先し、原則として以下だけを表示する。
-
-- メーカー / モデル
-- 発売年
-- 高さ × 幅
-- 重量
-- 充電端子
-
-機種選択後の詳細では以下を表示できる。
-
-- 高さ × 幅 × 厚さ
-- 重量
-- 画面サイズ
-- 防水・防塵等級（維持値がある場合）
-- 充電端子
-- 充電器目安
-- 端末側最大有線充電W数（その意味で根拠がある場合のみ）
-- USB PD / PPS等の規格
-- ワイヤレス充電規格と上限W数
-- メーカー公表済み、または明示的に採用したバッテリー容量
-- 同梱ケーブル / ACアダプター状態
-- 5,000 / 10,000 / 20,000mAhモバイルバッテリー充電回数の概算
-- 対応条件から導出したアクセサリーカテゴリ
-- メーカー公式仕様URL
-- 公式マニュアル / 公式サポートURL
-- 最終確認日
-
-## 7. 主要機能
-
-主要機能は次の通り。
-
-- 30機種の初期検証済みスマートフォンデータ表示
-- 正規名＋aliasesによる検索
-- メーカー / 端子 / 発売年フィルター
-- 新しい順 / 軽い順 / 小さい順の並び替え
-- PCとモバイルで同じ事実情報を異なるレイアウトで表示
-- 日本語 / 英語の同一ページ切替
-- バッテリー容量が確認済みの場合のみ充電回数を計算
-- `power_bank_mAh × 0.67 ÷ phone_battery_mAh` による1桁小数の簡易推定
-- バッテリー容量不明時は推定値を生成しない
-- 充電器目安と端末側最大入力の意味を混同しない表示
-- 充電条件から再利用可能なアクセサリークラスを導出
-- Apple USB-C端末のUSB-PD系、PixelのPPS系、GalaxyのSamsung Super Fast Charging系、Sony/SHARPのUSB-PD系などを維持済み事実に基づいて分類
-- Qi / Qi2等のワイヤレス充電クラス判定
-- メーカー公式情報への直接導線
-
-Amazonアフィリエイトは将来の収益導線だが、初期公開時は `amazonUrl` をnullのまま維持し、ライブ商品リンク、価格、在庫表示を行わない。
-
-## 8. 画面構成
-
-ページ上部にタイトル、短い説明、JP/EN切替を置く。その下に検索・フィルター・並び替えをまとめた操作領域を置く。
-
-PCではメイン領域を二分し、左側に機種一覧、右側に選択機種のQuick Check詳細を表示する。一覧は全スペックを詰め込まず、モデル、サイズ、重量、端子を中心とした走査用表示とする。
-
-詳細領域は「本体」「充電」「モバイルバッテリー充電回数の目安」「このスマホで必要なもの」「公式情報」といった実用単位で整理する。公式リンクと将来の購入導線は視覚的・意味的に分離する。
-
-ページ下部には推定方法の注意、関連ツール、NicheWorks共通の支援導線を配置する。
-
-## 9. モバイル仕様
-
-モバイルではPC表をそのまま横スクロールさせることを主設計にしない。検索・フィルターの後にモデルを読みやすい単一列リストとして表示する。
-
-機種をタップすると詳細をボトムシートで開く。ボトムシートは縦スクロール可能で、閉じるボタンを備え、Escape等の利用可能な閉じ操作にも対応する。シート表示中は背面スクロールを抑止する。
-
-サイズ・重量・端子など、一覧で必要な要点はカード内にも簡潔に残す。PCで得られる事実情報をモバイルで省略しない。
-
-## 10. PC仕様
-
-PCではワイドレイアウトを利用し、左側を一覧、右側を詳細ペインとする。詳細ペインはスクロール中も参照しやすいsticky配置とし、内部が長い場合は詳細ペイン側でスクロールできる。
-
-一覧の表示列は実用性を優先して限定する。CPU、RAM、カメラ、GPU、ベンチマークなどは本ツールの主目的から外れるため、単に取得可能という理由だけで列追加しない。
-
-検索結果から別の行を選択すると右ペインを更新する。キーボード操作でも行を選択できることを維持する。
-
-## 11. エラー仕様
-
-- `phones.json` または `accessories.json` の取得に失敗した場合は、空の一覧を誤って正常表示せず、データ読込エラーを表示する。
+- `phones.json` または `accessories.json` の取得に失敗した場合は、正常な空一覧として扱わず、データ読込失敗を明示する。
 - 検索条件に該当する機種がない場合は、条件変更を促す空状態を表示する。
-- バッテリー容量が不明な場合は「算出不可 / 未確認」とし、0回や推測mAhを作らない。
-- 公式根拠がない充電規格やW数は推測で埋めない。
-- 外部URLはHTTPSの維持済みURLのみリンク化し、不正形式は安全側に倒す。
-- アクセサリー定義が解決できない場合でも、端末スペック・公式情報表示は継続できるようにする。
-- Amazonリンク未設定時は無効状態を表示し、ダミー商品URLへ遷移させない。
+- バッテリー容量が不明な場合は0回や推測mAhを作らず、算出不可／未確認として扱う。
+- 根拠のない充電規格、最大W数、同梱状態を推測で補完しない。
+- 外部リンクが未設定または不正な場合は、ダミーURLへ遷移させない。
+- アクセサリー定義が解決できない場合でも、端末スペックと公式情報の表示は可能な範囲で継続する。
+- モバイル詳細シートは閉じる操作を維持し、操作不能なモーダル状態を残さない。
 
-## 12. 状態管理
+## 7. Privacy/data handling
 
-検索、フィルター、並び替え、選択機種はブラウザ内の実行状態として扱う。初期版ではユーザーアカウントや端末お気に入り保存機能を持たない。
+検索、フィルター、並び替え、詳細表示はNicheWorks配下の静的データを使ってブラウザ内で処理する。検索語や選択機種をアプリケーション検索バックエンドへ送信しない。
 
-言語設定はNicheWorksの共有方針に合わせ `nw_lang` のlocalStorageを利用可能な場合に保存する。検索語や選択端末を外部検索APIへ送信しない。
+言語設定は共通方針に従い `nw_lang` のlocalStorageを利用可能な場合に保存する。初期版ではユーザーアカウント、保存済み端末プロフィール、サーバー側履歴を持たない。
 
-正規端末データは静的JSONに保持し、端末IDの重複を許さない。公式値、第三者参考値、派生値、unknownを意味上区別する。AppleなどメーカーがmAhを通常仕様で公表しない場合は、第三者値を無断で公式値として採用しない。
+外部通信は共通のGA4 / AdSense、支援リンク、およびユーザーが明示的に開くメーカー公式リンク等に限る。初期公開ではAmazon価格・在庫取得やAmazonページのスクレイピングを行わない。
 
-## 13. 非目標
+Persistence evidence: `localStorage`. Core phone search and compatibility processing require no application backend.
 
-- GSMArena等のような完全なスマートフォン辞典を作ること
-- CPU / GPU / RAM / カメラ / ベンチマークの網羅
-- スマートフォン性能ランキングやおすすめ順位付け
-- すべての過去機種をアーカイブすること
-- 実測充電性能を保証すること
-- モバイルバッテリー充電回数を保証値として扱うこと
-- 互換カテゴリに属する全第三者製品の動作を保証すること
-- 初期公開時点でAmazon価格・在庫・配送予定を表示すること
-- Amazonの商品ページをスクレイピングすること
-- 機種ごとに大量の個別商品リンクを手管理すること
-- 需要確認前に薄い機種別SEOページを大量生成すること
-- ユーザーアカウント、個人端末履歴、サーバー側検索を導入すること
+## 8. Responsive contract
 
-## 14. 受け入れ条件
+- **Layout class:** `desktop-wide` (source classification: `hybrid`).
+- PCでは左側に検索・フィルター済み一覧、右側にstickyな選択機種詳細ペインを配置する。
+- モバイルでは一覧を単一列で読みやすく表示し、機種選択時に詳細を縦スクロール可能なボトムシートで開く。
+- PC表を単純な横スクロールだけでモバイルへ押し込む設計にしない。
+- PCとモバイルで得られる主要な事実情報を一致させる。
+- Current audit: no concrete responsive defect was established for the maintained public baseline.
 
-- [x] 正式URL `/tools/phone-quickcheck/` に公開用 `index.html` がある。
-- [x] 公開ページにstaging用`noindex`が残っていない。
-- [x] 日本語と英語を同一ページで切り替えられる。
-- [x] PCでは一覧＋右詳細ペイン、モバイルではボトムシートを使用する。
-- [x] 初期公開データが30機種ある。
-- [x] 端末IDの重複を前提としない正規データ契約がある。
-- [x] バッテリー容量不明時に充電回数を捏造しない。
-- [x] 5,000 / 10,000 / 20,000mAhの推定は変換効率0.67で一元計算する。
-- [x] 推定結果を約 / Approx.として表示する。
-- [x] 充電器目安と端末最大有線充電W数を意味上区別する。
-- [x] アクセサリー導線は再利用可能な互換カテゴリを使う。
-- [x] 公式仕様・公式マニュアルURLと最終確認日を端末データで維持できる。
-- [x] 初期公開時にAmazonライブURL、価格、在庫を有効化しない。
-- [x] `tools/tools-index.json`、`tools/tool-spec-manifest.json`、`sitemap.xml`の公開登録と整合する。
-- [x] 検索・フィルター・詳細表示にアプリケーション検索バックエンドを必要としない。
+## 9. Language contract
 
-## 15. 変更履歴
+- **Policy:** `bilingual single-page`.
+- 日本語と英語は同一canonicalページ上で切り替える。
+- メーカー名、モデル名、USB-C、USB PD、PPS、Qi、Qi2等の技術値はcanonicalデータとして共有する。
+- UIラベル、説明、注意書き、アクセサリー案内はJP/ENで切り替える。
+- 正規寸法・重量はmm / gで保持し、英語UIでinch / ozを出す場合は派生表示とする。
 
-| Version | Date | Changes |
-| --- | --- | --- |
-| v1.0.0 | 2026-09-13 | 30機種、日英UI、PC右ペイン、モバイルボトムシート、充電回数推定、公式リンク、アクセサリー互換カテゴリを備えた初期公開仕様を確定。Amazonライブ導線は未有効化。 |
+## 10. SEO contract
+
+The main public page must meet common-spec section 9-3: tool-specific title and description, exactly one self-referencing canonical for `https://nicheworks.app/tools/phone-quickcheck/`, one explicit indexable robots directive, and valid `WebApplication` JSON-LD.
+
+The public tool must be registered in `tools/tools-index.json`, `tools/tools-meta.json`, and root `sitemap.xml` according to current repository contracts. Initial launch uses one canonical tool page; mass-generated thin per-model indexable pages are out of scope.
+
+Primary search intent includes smartphone size, charging connector/cable type, charger requirements, power-bank charge estimates, and official manual/specification lookup. SEO copy must not invent unsupported device facts.
+
+## 11. Advertising contract
+
+Preserve the existing NicheWorks GA4 and AdSense identifiers/code and follow common-spec advertising placement rules. Ads must not be inserted into the phone selection flow in a way that obscures the primary controls or masquerades as compatible-accessory recommendations.
+
+Amazon affiliate activation is separate from AdSense. Live Amazon destinations require a later reviewed change with compliant Associates setup and disclosure; no scraped or hard-coded live Amazon price/availability claims are permitted by this baseline.
+
+## 12. Donation/support contract
+
+Follow common-spec sections 6 and 9-4. Preserve the current OFUSE / Ko-fi support block and do not confuse donation/support links with official manufacturer links or future purchase guidance.
+
+Current main-page donation/support evidence: **present**.
+
+## 13. Help/usage/FAQ contract
+
+- **Main-page concise explanation:** `required-and-present`.
+- **Usage documentation:** `recommended-and-missing`. Missing recommended usage documentation is an improvement opportunity, not a hard compliance failure.
+- **FAQ:** `optional-absent` for the current Quick Check baseline.
+- **Language handling:** the main tool UI provides JP/EN on one page; no standalone usage pages are currently maintained.
+- Any future usage/FAQ link must remain clearly separated from advertising and purchase CTAs.
+
+## 14. Functional acceptance tests
+
+- [x] 30 maintained models load from the static phone dataset.
+- [x] Search matches canonical model names and maintained aliases.
+- [x] Manufacturer, connector, and release-year filters operate on canonical data.
+- [x] Desktop uses list + right detail pane and mobile uses a detail bottom sheet.
+- [x] Unknown battery capacity does not generate a fabricated recharge count.
+- [x] Recharge estimates use the single maintained 0.67 approximation and one-decimal display.
+- [x] Charger guidance is not intentionally conflated with device-side maximum input.
+- [x] Official manufacturer specification/manual links remain distinct from accessory guidance.
+- [x] Live Amazon affiliate URLs, prices, and inventory remain disabled at initial public launch.
+
+Automated test evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/contract test). Behavior-level status: **behavior-test-missing**; this is recorded as a recommendation-only gap rather than hidden as behavior coverage.
+
+## 15. Explicit tool-specific exceptions
+
+- The product deliberately omits CPU, GPU, RAM, camera, benchmark, exhaustive storage/performance, and exhaustive radio-band data even where obtainable, because the product contract is Quick Check rather than smartphone encyclopedia.
+- A manufacturer-nonpublic battery mAh value may remain unknown; coverage completeness does not justify guessing it.
+- Recharge counts are approximate full-charge equivalents, not guaranteed real-world charging counts.
+- Accessory classes indicate compatibility requirements, not a guarantee that every third-party product in that broad class will work.
+- Initial launch keeps all Amazon destinations disabled until a separate monetization review.
+- Per-model indexable landing pages are not part of the initial SEO contract.
+
+### Implementation evidence
+
+- `tools/phone-quickcheck/index.html`
+- `tools/phone-quickcheck/app.js`
+- `tools/phone-quickcheck/style.css`
+- `tools/phone-quickcheck/data/phones.json`
+- `tools/phone-quickcheck/data/accessories.json`
+- `tools/phone-quickcheck/SPEC.md`
