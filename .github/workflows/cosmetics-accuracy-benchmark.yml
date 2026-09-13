@@ -12,6 +12,7 @@ on:
       - 'tools/_shared/cosmetics-full-label-fixtures.json'
       - 'tools/_shared/check-cosmetics-dictionary-quality.mjs'
       - 'tools/_shared/check-cosmetics-canonical-merge.mjs'
+      - 'tools/_shared/check-cosmetics-canonical-equivalents.mjs'
       - 'tools/_shared/check-fastscan-result-contract.mjs'
       - 'tools/_shared/check-fastscan-ocr-confusion.mjs'
       - 'tools/_shared/check-fastscan-result-controls.mjs'
@@ -44,6 +45,8 @@ jobs:
         run: node tools/_shared/check-cosmetics-dictionary-quality.mjs
       - name: Canonical merge regression
         run: node tools/_shared/check-cosmetics-canonical-merge.mjs
+      - name: Canonical equivalent regression
+        run: node tools/_shared/check-cosmetics-canonical-equivalents.mjs
       - name: Cosmetics JavaScript syntax
         run: |
           node --check tools/_shared/cosmetic-ingredient-parser.js
