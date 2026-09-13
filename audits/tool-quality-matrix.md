@@ -9,7 +9,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 - FIX: **0**
 - BLOCKED: **0**
 - NEEDS_DECISION: **0**
-- Behavior-level tests missing: **85**
+- Behavior-level tests missing: **83**
 - Real responsive defects found: **0**
 - Hard common-spec violations: **0 tools**
 - Recommendation-only documentation gaps: **28 tools**
@@ -39,7 +39,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 | [design-request-builder](../docs/tools/design-request-builder.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [dry-meter](../docs/tools/dry-meter.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [earth-alerts](../docs/tools/earth-alerts.md) | mobile-oriented | not-applicable | not-applicable | behavior-test-missing | 0 | 0 | **PASS** |
-| [earth-map-suite](../docs/tools/earth-map-suite.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
+| [earth-map-suite](../docs/tools/earth-map-suite.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-present | 0 | 0 | **PASS** |
 | [earth-timeseries](../docs/tools/earth-timeseries.md) | mobile-oriented | not-applicable | not-applicable | behavior-test-missing | 0 | 0 | **PASS** |
 | [exif-cleaner-mini](../docs/tools/exif-cleaner-mini.md) | mobile-oriented | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [filetype-sniffer](../docs/tools/filetype-sniffer.md) | mobile-oriented | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
@@ -48,7 +48,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 | [habit-plan-generator](../docs/tools/habit-plan-generator.md) | mobile-oriented | optional-absent | optional-absent | behavior-test-missing | 0 | 0 | **PASS** |
 | [image-compression-inspector](../docs/tools/image-compression-inspector.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [image-redact](../docs/tools/image-redact.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
-| [inci-fastscan](../docs/tools/inci-fastscan.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
+| [inci-fastscan](../docs/tools/inci-fastscan.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-present | 0 | 0 | **PASS** |
 | [incident-update-generator](../docs/tools/incident-update-generator.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [jp-postal-lite](../docs/tools/jp-postal-lite.md) | mobile-oriented | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [json-repair](../docs/tools/json-repair.md) | desktop-wide | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
