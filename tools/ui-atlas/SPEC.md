@@ -48,7 +48,7 @@
 - favoritesは`ui-atlas:${lang}:favorites`としてlocalStorageへ保存する。
 - recent viewsは`ui-atlas:${lang}:recent`としてlocalStorageへ保存する。
 - compare selection、current detail、filtersはpage stateであり永続保存を仕様としない。
-- current live Pro active stateは`UIAtlasProBridge`または共通`NWPro` legacy contractに従う。
+- current live Pro active stateは`UIAtlasProBridge`または共通`NWPro` legacy contractに従い、`active`だけでなくexact `nicheworks_pro` entitlement一致を必須とする。別productのactive entitlementではUI Atlas paid operationを解放しない。
 - favorites/recentはdevice/browser間でsyncしない。
 
 ## Paid-operation boundary
@@ -117,7 +117,7 @@ desktop-firstのfilters / catalog / detail workspaceを主構成とし、mobile�
 - [ ] detailからshort AI promptをcopyできる。
 - [ ] favorite/recentがlanguage-specific localStorageへ保存され、再訪時に復元される。
 - [ ] Free状態ではcompareが2件を超えず、上限時にupgrade案内を表示する。
-- [ ] current legacy Pro active時はcompare上限が5件へ拡張される。
+- [ ] current legacy Proは`active && entitlement === "nicheworks_pro"`の場合だけcompare上限が5件へ拡張され、別entitlementのactive stateではFree上限2件を維持する。
 - [ ] Preview-marked generator copy/Markdown/JSON exportはinactive時にもcurrent runtime contractとして利用できる。
 - [ ] EN rootとJA pageの双方で同等のcore catalog workflowを利用できる。
 - [ ] staged product-scoped wrapperは3 paid operationsをexactly once定義し、entitlement state machineはshared coreへ委譲する。
