@@ -13,6 +13,7 @@ on:
       - 'scripts/check-amazon-ready-tools.mjs'
       - 'scripts/check-size-audio-growth-wave.mjs'
       - 'scripts/check-size-audio-growth-wave3.mjs'
+      - 'scripts/check-size-converter-growth-wave4.mjs'
       - 'scripts/run-tool-behavior-tests.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
   push:
@@ -29,6 +30,7 @@ on:
       - 'scripts/check-amazon-ready-tools.mjs'
       - 'scripts/check-size-audio-growth-wave.mjs'
       - 'scripts/check-size-audio-growth-wave3.mjs'
+      - 'scripts/check-size-converter-growth-wave4.mjs'
       - 'scripts/run-tool-behavior-tests.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
 
@@ -73,6 +75,9 @@ jobs:
 
       - name: Check Size and Tiny Audio growth wave 3
         run: node scripts/check-size-audio-growth-wave3.mjs
+
+      - name: Check Size Converter growth wave 4
+        run: node scripts/check-size-converter-growth-wave4.mjs
 
       - name: Verify audit is read-only
         run: |
