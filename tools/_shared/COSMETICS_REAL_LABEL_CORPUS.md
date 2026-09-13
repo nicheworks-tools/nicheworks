@@ -66,16 +66,17 @@ node tools/_shared/check-cosmetics-real-label-corpus.mjs
 The same 12 source-backed products and 293 ingredient tokens are retained across the coverage waves:
 
 ```txt
-PR25 baseline:                 190 / 293 exact identities = 64.85%
-PR26 Wave 1:                   244 / 293 exact identities = 83.28%
-PR29 Wave 2:                   269 / 293 exact identities = 91.81%
-PR30 JP label variants Wave 1: 273 / 293 exact identities = 93.17%
+PR25 baseline:                    190 / 293 exact identities = 64.85%
+PR26 Wave 1:                      244 / 293 exact identities = 83.28%
+PR29 Wave 2:                      269 / 293 exact identities = 91.81%
+PR30 JP label variants Wave 1:    273 / 293 exact identities = 93.17%
+PR31 canonical records Wave 1:    275 / 293 exact identities = 93.86%
 ```
 
-PR30 raises the release floor to:
+PR31 raises the release floor to:
 
 ```txt
-exact identity coverage >= 93%
+exact identity coverage >= 93.8%
 ```
 
 The score may improve only through reviewed parser/dictionary identity coverage. It must not improve by deleting hard products, rewriting source labels into already-known names, or weakening ambiguity protections.
@@ -86,9 +87,9 @@ Wave 1 added reviewed full INCI names and label variants observed in this corpus
 
 Wave 2 added 25 additional exact English ingredient identities that occur in the same official-source corpus. It deliberately did not guess mappings for unresolved Japanese display names or quasi-drug-style labels.
 
-PR30 adds four source-backed Japanese/abbreviated label equivalences whose canonical identities already exist uniquely in the maintained dictionary set: `PG`, `水酸化ナトリウム液`, `水酸化カリウム液(A)`, and `グリセリルエチルヘキシルエーテル`. The mapping contract and evidence are maintained in `COSMETICS_JP_LABEL_VARIANTS.md`.
+PR30 added four source-backed Japanese/abbreviated label equivalences whose canonical identities already existed uniquely in the maintained dictionary set: `PG`, `水酸化ナトリウム液`, `水酸化カリウム液(A)`, and `グリセリルエチルヘキシルエーテル`.
 
-Two additional source-backed candidates, `ジカプリン酸ネオペンチルグリコール` and `ラウリルヒドロキシスルホベタイン液`, remain deliberately unresolved in PR30 because their canonical targets are not yet present in the maintained nine-file dictionary set. No alias is allowed to point to a canonical identity that the maintained dictionary does not actually contain.
+PR31 closes two structural dictionary gaps rather than bypassing them with aliases. It adds canonical records for `Neopentyl Glycol Dicaprate` and `Lauryl Hydroxysultaine`, then attaches the source-backed Japanese labels `ジカプリン酸ネオペンチルグリコール` and `ラウリルヒドロキシスルホベタイン液` to those records. Evidence and mapping constraints are maintained in `COSMETICS_JP_LABEL_VARIANTS.md`.
 
 The checker emits the complete unresolved-name inventory so future dictionary work can be selected from measured source-backed gaps rather than from guessed high-frequency ingredients.
 
