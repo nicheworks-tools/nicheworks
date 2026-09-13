@@ -3,11 +3,69 @@
 
   const TRACKING_ID = "nicheworks09-22";
   const AMAZON_SEARCH_BASE = "https://www.amazon.co.jp/s";
-  const printerConsumables = Object.freeze(
-    Array.isArray(window.MANUALFINDER_PRINTER_CONSUMABLES)
-      ? window.MANUALFINDER_PRINTER_CONSUMABLES.slice()
-      : []
-  );
+
+  const consumableOffer = (key, query, labelJa, labelEn) => Object.freeze({ key, kind: "ink_search", query, labelJa, labelEn });
+  const consumableRow = (model, sourceUrl, offers) => Object.freeze({
+    maker: "Brother",
+    model,
+    category: "プリンター・複合機",
+    verifiedAt: "2026-09-13",
+    sourceType: "official_manufacturer_compatibility",
+    sourceUrl,
+    offers: Object.freeze(offers)
+  });
+
+  const printerConsumables = Object.freeze([
+    consumableRow("MFC-J1500N", "https://direct.brother.co.jp/shop/r/r-printer-supply-model-mfcj1500/", [
+      consumableOffer("lc3133", "Brother LC3133", "Amazonで LC3133 インクを探す", "Find Brother LC3133 ink on Amazon"),
+      consumableOffer("lc3135", "Brother LC3135", "Amazonで LC3135 インクを探す", "Find Brother LC3135 ink on Amazon")
+    ]),
+    consumableRow("MFC-J1605DN", "https://direct.brother.co.jp/shop/r/r-printer-supply-model-mfcj1605/", [
+      consumableOffer("lc3133", "Brother LC3133", "Amazonで LC3133 インクを探す", "Find Brother LC3133 ink on Amazon"),
+      consumableOffer("lc3135", "Brother LC3135", "Amazonで LC3135 インクを探す", "Find Brother LC3135 ink on Amazon")
+    ]),
+    consumableRow("MFC-J4440N", "https://www.brother.co.jp/product/printer/inkjet/mfcj4440n/accessory/index.aspx", [
+      consumableOffer("lc416", "Brother LC416", "Amazonで LC416 インクを探す", "Find Brother LC416 ink on Amazon"),
+      consumableOffer("lc416xl", "Brother LC416XL", "Amazonで LC416XL インクを探す", "Find Brother LC416XL ink on Amazon")
+    ]),
+    consumableRow("MFC-J4443N", "https://www.brother.co.jp/product/printer/inkjet/mfcj4443n/accessory/index.aspx", [
+      consumableOffer("lc416", "Brother LC416", "Amazonで LC416 インクを探す", "Find Brother LC416 ink on Amazon"),
+      consumableOffer("lc416xl", "Brother LC416XL", "Amazonで LC416XL インクを探す", "Find Brother LC416XL ink on Amazon")
+    ]),
+    consumableRow("MFC-J4450N", "https://www.brother.co.jp/product/printer/inkjet/mfcj4450n/accessory/index.aspx", [
+      consumableOffer("lc516", "Brother LC516", "Amazonで LC516 インクを探す", "Find Brother LC516 ink on Amazon"),
+      consumableOffer("lc516xl", "Brother LC516XL", "Amazonで LC516XL インクを探す", "Find Brother LC516XL ink on Amazon")
+    ]),
+    consumableRow("MFC-J4510N", "https://direct.brother.co.jp/shop/r/r-printer-supply-model-mfcj4510/", [
+      consumableOffer("lc113", "Brother LC113", "Amazonで LC113 インクを探す", "Find Brother LC113 ink on Amazon"),
+      consumableOffer("lc117-115", "Brother LC117 LC115", "Amazonで LC117 / LC115 インクを探す", "Find Brother LC117 / LC115 ink on Amazon")
+    ]),
+    consumableRow("MFC-J4540N", "https://www.brother.co.jp/product/printer/inkjet/mfcj4540n/accessory/index.aspx", [
+      consumableOffer("lc416", "Brother LC416", "Amazonで LC416 インクを探す", "Find Brother LC416 ink on Amazon"),
+      consumableOffer("lc416xl", "Brother LC416XL", "Amazonで LC416XL インクを探す", "Find Brother LC416XL ink on Amazon")
+    ]),
+    consumableRow("MFC-J4543N", "https://www.brother.co.jp/product/printer/inkjet/mfcj4543n/accessory/index.aspx", [
+      consumableOffer("lc416", "Brother LC416", "Amazonで LC416 インクを探す", "Find Brother LC416 ink on Amazon"),
+      consumableOffer("lc416xl", "Brother LC416XL", "Amazonで LC416XL インクを探す", "Find Brother LC416XL ink on Amazon")
+    ]),
+    consumableRow("MFC-J4720N", "https://direct.brother.co.jp/shop/r/r-printer-supply-model-mfcj4720/", [
+      consumableOffer("lc213", "Brother LC213", "Amazonで LC213 インクを探す", "Find Brother LC213 ink on Amazon"),
+      consumableOffer("lc217-215", "Brother LC217 LC215", "Amazonで LC217 / LC215 インクを探す", "Find Brother LC217 / LC215 ink on Amazon")
+    ]),
+    consumableRow("MFC-J4725N", "https://www.brother.co.jp/product/printer/inkjet/mfcj4725n/accessory/index.aspx", [
+      consumableOffer("lc213", "Brother LC213", "Amazonで LC213 インクを探す", "Find Brother LC213 ink on Amazon"),
+      consumableOffer("lc217-215", "Brother LC217 LC215", "Amazonで LC217 / LC215 インクを探す", "Find Brother LC217 / LC215 ink on Amazon")
+    ]),
+    consumableRow("MFC-J6995CDW", "https://www.brother.co.jp/product/printer/inkjet/mfcj6995cdw/accessory/index.aspx", [
+      consumableOffer("lc3129", "Brother LC3129", "Amazonで LC3129 インクを探す", "Find Brother LC3129 ink on Amazon")
+    ]),
+    consumableRow("MFC-J6997CDW", "https://www.brother.co.jp/product/printer/inkjet/mfcj6997cdw/accessory/index.aspx", [
+      consumableOffer("lc3139", "Brother LC3139", "Amazonで LC3139 インクを探す", "Find Brother LC3139 ink on Amazon")
+    ]),
+    consumableRow("MFC-J6999CDW", "https://www.brother.co.jp/product/printer/inkjet/mfcj6999cdw/accessory/index.aspx", [
+      consumableOffer("lc3139", "Brother LC3139", "Amazonで LC3139 インクを探す", "Find Brother LC3139 ink on Amazon")
+    ])
+  ]);
 
   const staticOffers = Object.freeze([
     Object.freeze({
@@ -60,7 +118,7 @@
     baseUrl: AMAZON_SEARCH_BASE,
     activationTarget: "printer_consumable_search_template",
     proofUrl: modelSearchTemplate.proofUrl,
-    note: "Uses the already Link-Checker-validated Amazon tagged-search format. Consumable query terms are enabled only when maker/model compatibility is independently verified on an official manufacturer source."
+    note: "Uses the Link-Checker-validated tagged-search format. Consumable terms are emitted only from manufacturer-verified maker/model compatibility mappings."
   });
 
   function isAmazonHttpsUrl(value) {
@@ -103,14 +161,14 @@
     if (!cleanMaker || !cleanModel || cleanCategory !== "プリンター・複合機") return [];
 
     const mapping = printerConsumables.find((row) =>
-      row && row.maker === cleanMaker && row.model === cleanModel && row.category === cleanCategory
+      row.maker === cleanMaker && row.model === cleanModel && row.category === cleanCategory
     );
-    if (!mapping || !Array.isArray(mapping.offers) || !mapping.sourceUrl) return [];
+    if (!mapping || !mapping.sourceUrl) return [];
 
     return mapping.offers.map((offer) => Object.freeze({
       target: consumableSearchTemplate.activationTarget,
-      kind: offer.kind || "consumable_search",
-      key: offer.key || "consumable",
+      kind: offer.kind,
+      key: offer.key,
       query: offer.query,
       url: buildTaggedSearchUrl(offer.query),
       labelJa: offer.labelJa,
