@@ -1,0 +1,109 @@
+name: Temporary Phone QuickCheck wave4 finalizer
+
+on:
+  push:
+    branches:
+      - feat/phone-quickcheck-data-wave4-100-20260914
+    paths:
+      - '.github/workflows/tmp-finalize-phone-quickcheck-wave4.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/phone-quickcheck-data-wave4-100-20260914
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Finalize 100-model dataset and contracts
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const phonePath = 'tools/phone-quickcheck/data/phones.json';
+          const wavePaths = [
+            'tools/phone-quickcheck/data/phones.wave4.01.json',
+            'tools/phone-quickcheck/data/phones.wave4.02.json',
+            'tools/phone-quickcheck/data/phones.wave4.03.json',
+            'tools/phone-quickcheck/data/phones.wave4.04.json'
+          ];
+          const validatorPath = 'scripts/check-phone-quickcheck-data.mjs';
+          const specPath = 'tools/phone-quickcheck/SPEC.md';
+          const docsPath = 'docs/tools/phone-quickcheck.md';
+
+          const payload = JSON.parse(fs.readFileSync(phonePath, 'utf8'));
+          const base = Array.isArray(payload.phones) ? payload.phones : [];
+          if (base.length !== 60) throw new Error(`expected 60 base phones, got ${base.length}`);
+
+          const waves = wavePaths.flatMap((p) => {
+            const data = JSON.parse(fs.readFileSync(p, 'utf8'));
+            if (!Array.isArray(data.records)) throw new Error(`${p}: records missing`);
+            return data.records;
+          });
+          if (waves.length !== 40) throw new Error(`expected 40 wave4 phones, got ${waves.length}`);
+
+          const merged = [...base, ...waves];
+          const ids = new Set();
+          const identities = new Set();
+          for (const phone of merged) {
+            if (!phone.id || !phone.manufacturer || !phone.model) throw new Error('identity fields missing');
+            if (ids.has(phone.id)) throw new Error(`duplicate id: ${phone.id}`);
+            ids.add(phone.id);
+            const identity = `${String(phone.manufacturer).toLowerCase()}::${String(phone.model).toLowerCase()}`;
+            if (identities.has(identity)) throw new Error(`duplicate identity: ${identity}`);
+            identities.add(identity);
+          }
+          if (merged.length !== 100) throw new Error(`expected 100 merged phones, got ${merged.length}`);
+
+          payload.version = 5;
+          payload.updatedAt = '2026-09-14';
+          payload.phones = merged;
+          fs.writeFileSync(phonePath, JSON.stringify(payload, null, 2) + '\n');
+
+          let validator = fs.readFileSync(validatorPath, 'utf8');
+          validator = validator.replace(
+            "if (phones.length < 60) fail(`expected at least 60 phones, got ${phones.length}`);",
+            "if (phones.length < 100) fail(`expected at least 100 phones, got ${phones.length}`);"
+          );
+          if (!validator.includes('expected at least 100 phones')) throw new Error('validator count update missing');
+          fs.writeFileSync(validatorPath, validator);
+
+          let spec = fs.readFileSync(specPath, 'utf8');
+          spec = spec.replace('- Current dataset: `60 verified models`', '- Current dataset: `100 verified models`');
+          spec = spec.replace('The maintained public dataset contains 60 verified models across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, and Motorola.', 'The maintained public dataset contains 100 verified models across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, and Motorola.');
+          spec = spec.replace('- [x] The maintained public dataset contains 60 maintained models.', '- [x] The maintained public dataset contains 100 maintained models.');
+          if (!spec.includes('100 maintained models')) throw new Error('SPEC count update missing');
+          if (!spec.includes('- verified dataset expansion to 100 models:')) {
+            spec = spec.replace('- verified dataset expansion to 60 models: PR #736', '- verified dataset expansion to 60 models: PR #736\n- verified dataset expansion to 100 models: current wave4 PR');
+          }
+          fs.writeFileSync(specPath, spec);
+
+          let docs = fs.readFileSync(docsPath, 'utf8');
+          docs = docs.replace('The maintained public dataset contains 60 smartphone records across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, and Motorola.', 'The maintained public dataset contains 100 smartphone records across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, and Motorola.');
+          docs = docs.replace('- 60機種の検証済みデータをブラウザ内で検索・絞り込み・並び替えする。', '- 100機種の検証済みデータをブラウザ内で検索・絞り込み・並び替えする。');
+          docs = docs.replace('- [x] 60 maintained models load from the static phone dataset.', '- [x] 100 maintained models load from the static phone dataset.');
+          if (!docs.includes('100 maintained models')) throw new Error('canonical docs count update missing');
+          fs.writeFileSync(docsPath, docs);
+          NODE
+
+          node scripts/check-phone-quickcheck-data.mjs
+          node scripts/check-phone-quickcheck-affiliate.mjs
+          node scripts/check-tool-runtime-contracts.mjs
+
+          rm tools/phone-quickcheck/data/phones.wave4.01.json
+          rm tools/phone-quickcheck/data/phones.wave4.02.json
+          rm tools/phone-quickcheck/data/phones.wave4.03.json
+          rm tools/phone-quickcheck/data/phones.wave4.04.json
+          rm .github/workflows/tmp-finalize-phone-quickcheck-wave4.yml
+
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git add -A
+          git commit -m "Expand Phone QuickCheck to 100 verified models"
+          git push origin HEAD:feat/phone-quickcheck-data-wave4-100-20260914
