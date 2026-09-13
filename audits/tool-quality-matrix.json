@@ -6408,7 +6408,6 @@
       "final_state": "PASS",
       "evidence": [
         "tools/size-converter/index.html",
-        "tools/size-converter/app-complete.js",
         "tools/size-converter/app.js",
         "tools/size-converter/style.css"
       ],
