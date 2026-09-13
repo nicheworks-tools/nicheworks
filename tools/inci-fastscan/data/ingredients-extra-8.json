@@ -111,5 +111,7 @@
 {"id":"wave4_gap2_sphingomonas_ferment_extract","en":"Sphingomonas Ferment Extract","jp":[],"alias":[],"safety":"safe","category":"ferment"},
 {"id":"wave4_gap2_stearic_acid","en":"Stearic Acid","jp":[],"alias":[],"safety":"safe","category":"general"},
 {"id":"wave4_gap2_triethoxycaprylylsilane","en":"Triethoxycaprylylsilane","jp":[],"alias":[],"safety":"safe","category":"general"},
-{"id":"wave4_gap2_valine","en":"Valine","jp":[],"alias":[],"safety":"safe","category":"amino acid"}
+{"id":"wave4_gap2_valine","en":"Valine","jp":[],"alias":[],"safety":"safe","category":"amino acid"},
+{"id":"wave4_gap3_neopentyl_glycol_dicaprate","en":"Neopentyl Glycol Dicaprate","jp":["ジカプリン酸ネオペンチルグリコール"],"alias":[],"safety":"safe","category":"emollient"},
+{"id":"wave4_gap3_lauryl_hydroxysultaine","en":"Lauryl Hydroxysultaine","jp":["ラウリルヒドロキシスルホベタイン液"],"alias":[],"safety":"safe","category":"surfactant"}
 ]

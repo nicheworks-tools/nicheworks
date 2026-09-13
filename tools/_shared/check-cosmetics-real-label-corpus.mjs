@@ -135,16 +135,17 @@ const topUnknowns = unknownInventory.slice(0, 30);
 
 const overallCoverage = ingredientTotal ? exactKnownTotal / ingredientTotal : 0;
 
-// PR30 quality floor. Keep the same source-backed products and improve actual
+// PR31 quality floor. Keep the same source-backed products and improve actual
 // exact-identity coverage; do not inflate the score by treating broad group
 // labels or visibly truncated OCR/label fragments as one exact chemical.
-assert.ok(overallCoverage >= 0.93, `real-label exact coverage ${(overallCoverage * 100).toFixed(2)}% is below the 93% Wave 4 floor`);
+assert.ok(overallCoverage >= 0.938, `real-label exact coverage ${(overallCoverage * 100).toFixed(2)}% is below the 93.8% Wave 4 floor`);
 assert.equal(isExactKnown('パラベン'), false, 'broad group label パラベン must not become one exact ingredient identity');
+assert.equal(isExactKnown('エデト酸塩'), false, 'broad group label エデト酸塩 must not become one exact ingredient identity');
 assert.equal(isExactKnown('Ammonium Polyacryloyldimethyl'), false, 'truncated Ammonium Polyacryloyldimethyl must remain non-exact');
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'wave4-jp-label-variants-wave1',
+  phase: 'wave4-canonical-records-wave1',
   products: corpus.length,
   brands: brands.size,
   markets: [...markets].sort(),
@@ -154,7 +155,7 @@ console.log(JSON.stringify({
   exact_known: exactKnownTotal,
   unknown: ingredientTotal - exactKnownTotal,
   exact_coverage: Number(overallCoverage.toFixed(4)),
-  exact_coverage_floor: 0.93,
+  exact_coverage_floor: 0.938,
   distinct_unknowns: unknownInventory.length,
   broad_group_labels_are_not_exact: true,
   top_unknowns: topUnknowns,

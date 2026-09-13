@@ -23,37 +23,61 @@ const mappings = [
   ['PG', 'Propylene Glycol'],
   ['水酸化ナトリウム液', 'Sodium Hydroxide'],
   ['水酸化カリウム液(A)', 'Potassium Hydroxide'],
-  ['グリセリルエチルヘキシルエーテル', 'Ethylhexylglycerin']
+  ['グリセリルエチルヘキシルエーテル', 'Ethylhexylglycerin'],
+  ['ジカプリン酸ネオペンチルグリコール', 'Neopentyl Glycol Dicaprate'],
+  ['ラウリルヒドロキシスルホベタイン液', 'Lauryl Hydroxysultaine']
 ];
 
-const canonicalOwners = new Map();
+const exactOwners = new Map();
+function addOwner(value, canonical) {
+  const key = parser.normalizeKey(value);
+  if (!key) return;
+  if (!exactOwners.has(key)) exactOwners.set(key, new Set());
+  exactOwners.get(key).add(parser.canonicalIdentityKey(canonical));
+}
+
 for (const item of records) {
   if (!item?.en) continue;
-  const key = parser.normalizeKey(item.en);
-  if (!key) continue;
-  if (!canonicalOwners.has(key)) canonicalOwners.set(key, new Set());
-  canonicalOwners.get(key).add(parser.canonicalIdentityKey(item.en));
+  addOwner(item.en, item.en);
+  for (const value of Array.isArray(item.jp) ? item.jp : []) addOwner(value, item.en);
+  for (const value of Array.isArray(item.alias) ? item.alias : []) addOwner(value, item.en);
 }
 
 for (const [label, canonical] of mappings) {
   const labelKey = parser.normalizeKey(label);
   const canonicalKey = parser.normalizeKey(canonical);
+  const canonicalIdentity = parser.canonicalIdentityKey(canonical);
   assert.ok(labelKey, `${label}: reviewed label must produce an exact key`);
-  assert.equal(labelKey, canonicalKey, `${label}: must resolve to ${canonical}`);
-  const owners = canonicalOwners.get(canonicalKey);
-  assert.ok(owners && owners.size === 1, `${canonical}: canonical target must exist uniquely in maintained dictionaries`);
+  assert.ok(canonicalKey, `${canonical}: canonical identity must produce an exact key`);
+
+  const labelOwners = exactOwners.get(labelKey);
+  assert.ok(labelOwners && labelOwners.size === 1, `${label}: reviewed label must resolve to one maintained identity`);
+  assert.ok(labelOwners.has(canonicalIdentity), `${label}: maintained owner must be ${canonical}`);
+
+  const canonicalOwners = exactOwners.get(canonicalKey);
+  assert.ok(canonicalOwners && canonicalOwners.size === 1, `${canonical}: canonical target must exist uniquely in maintained dictionaries`);
+  assert.ok(canonicalOwners.has(canonicalIdentity), `${canonical}: canonical owner identity mismatch`);
 }
 
 for (const unresolved of [
   'パラベン',
   'エデト酸塩',
-  'Ammonium Polyacryloyldimethyl',
-  'ジカプリン酸ネオペンチルグリコール',
-  'ラウリルヒドロキシスルホベタイン液'
+  'Ammonium Polyacryloyldimethyl'
 ]) {
   const key = parser.normalizeKey(unresolved);
-  const owners = key ? canonicalOwners.get(key) : null;
-  assert.ok(!owners || owners.size !== 1, `${unresolved}: unresolved label must not become one exact maintained identity in this wave`);
+  const owners = key ? exactOwners.get(key) : null;
+  assert.ok(!owners || owners.size !== 1, `${unresolved}: intentionally unresolved label must not become one exact maintained identity`);
+}
+
+const canonicalRecordPairs = [
+  ['Neopentyl Glycol Dicaprate', 'ジカプリン酸ネオペンチルグリコール', 'emollient'],
+  ['Lauryl Hydroxysultaine', 'ラウリルヒドロキシスルホベタイン液', 'surfactant']
+];
+for (const [canonical, japaneseLabel, category] of canonicalRecordPairs) {
+  const record = records.find((item) => item?.en === canonical);
+  assert.ok(record, `${canonical}: reviewed canonical record must exist`);
+  assert.ok(Array.isArray(record.jp) && record.jp.includes(japaneseLabel), `${canonical}: reviewed Japanese label must be attached to canonical record`);
+  assert.equal(record.category, category, `${canonical}: canonical category mismatch`);
 }
 
 const doc = read('tools/_shared/COSMETICS_JP_LABEL_VARIANTS.md');
@@ -61,7 +85,9 @@ for (const token of [
   'MHLW',
   'PMDA',
   'Ethylhexylglycerin',
-  'Deferred candidates',
+  'Neopentyl Glycol Dicaprate',
+  'Lauryl Hydroxysultaine',
+  'canonical record activation',
   'no fuzzy auto-replacement',
   'Amazon destinations remain fixed'
 ]) {
@@ -70,9 +96,10 @@ for (const token of [
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'jp-label-variants-wave1',
+  phase: 'jp-label-variants-canonical-record-wave1',
   reviewed_active_mappings: mappings.length,
-  deferred_candidates: 2,
+  canonical_records_added: canonicalRecordPairs.length,
+  deferred_candidates: 0,
   dictionary_files: DATA_FILES.length,
   fuzzy_auto_replacement: false,
   broad_labels_forced_exact: false,
