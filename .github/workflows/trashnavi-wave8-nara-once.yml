@@ -1,0 +1,53 @@
+name: TrashNavi Wave 8 Nara one-shot
+
+on:
+  push:
+    branches:
+      - feat/trashnavi-wave8-nara-20260913
+    paths:
+      - 'tools/trashnavi/data/direct-waste-links-supply-wave8.json'
+
+permissions:
+  contents: write
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-wave8-nara-20260913
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Wire Wave 8 dataset
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const p = 'tools/trashnavi/app.js';
+          let s = fs.readFileSync(p, 'utf8');
+          const needle = '"data/direct-waste-links-supply-wave7.json"]';
+          const repl = '"data/direct-waste-links-supply-wave7.json","data/direct-waste-links-supply-wave8.json"]';
+          if (!s.includes(repl)) {
+            if (!s.includes(needle)) throw new Error('Wave 7 dataset anchor missing');
+            s = s.replace(needle, repl);
+            fs.writeFileSync(p, s);
+          }
+          NODE
+      - name: Validate Wave 8 readiness
+        run: |
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+      - name: Commit runtime wiring
+        shell: bash
+        run: |
+          git config user.name 'nicheworks-tools'
+          git config user.email 'nicheworks.tools@gmail.com'
+          git add tools/trashnavi/app.js
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Load TrashNavi Wave 8 Nara routes'
+          git push origin HEAD:feat/trashnavi-wave8-nara-20260913
