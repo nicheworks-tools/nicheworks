@@ -17,7 +17,7 @@
   }
 
   function exactActive(current) {
-    return Boolean(current && current.active === true && current.entitlement === ENTITLEMENT);
+    return Boolean(current && current.active === true && current.entitlement === 'nicheworks_pro');
   }
 
   function apply() {
