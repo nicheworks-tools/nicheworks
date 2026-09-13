@@ -65,7 +65,7 @@ check(fastSpec.includes('Exact OCR line repair only joins fragments when the rep
 // PR22: Lite remains a fast long-result review surface.
 for (const token of [
   'liteCategoryFilter',
-  'data-lite-category',
+  'dataset.liteCategory',
   'rowCategoryMatches',
   '表示中をコピー',
   '未分類をコピー'
