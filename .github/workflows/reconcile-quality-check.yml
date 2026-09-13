@@ -30,11 +30,11 @@ jobs:
             echo "==> $test"
             node "$test"
           done
-      - name: Commit Reconcile-only changes
+      - name: Commit Reconcile implementation only
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add tools/reconcile .github/workflows/reconcile-quality-check.yml .agent/plans/reconcile-quality-apply.py
+          git add tools/reconcile .agent/plans/reconcile-quality-apply.py
           git diff --cached --quiet && exit 0
           git commit -m "Harden Reconcile quality, scale, and result UX"
           git push origin HEAD:fix/reconcile-quality-performance-20260913
