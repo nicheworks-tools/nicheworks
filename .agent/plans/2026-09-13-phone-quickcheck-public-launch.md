@@ -43,9 +43,11 @@ Launch requirements:
 ## Verification
 
 - compare against latest `main` and confirm only launch-scoped files change
+- latest `main` was merged into the launch branch before final CI; current main sitemap additions were preserved and Phone QuickCheck was added once
 - verify `tools/tools-index.json` remains valid JSON and contains 89 unique tool entries after this launch
 - verify `tools/tools-meta.json` contains exactly one `phone-quickcheck` metadata record
 - verify `tools/tool-spec-manifest.json` and `audits/tool-quality-matrix.json` both cover the same 89 registered tools
+- verify `MONETIZATION_CLASSIFICATION_87.json` covers all 89 registered tools, retains `reconcile` as `STANDALONE_PRO`, and classifies `phone-quickcheck` as `AFFILIATE`
 - verify sitemap contains the Phone QuickCheck canonical URL once
 - verify production HTML has canonical metadata and an explicit indexable robots directive
 - verify the existing 30-device JSON and accessory catalog remain untouched by the launch promotion
