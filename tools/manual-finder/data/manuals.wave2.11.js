@@ -58,3 +58,16 @@ window.MANUALFINDER_WAVE2_SEIKO.push(`7740|https://www.seikowatches.com/my-en/-/
 7T27|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/7/7T27/7T27.pdf
 7T52|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/7/7T52/7T52.pdf
 7T59|https://www.seikowatches.com/my-en/-/media/Files/Common/Seiko/instructions/Japanese/7/7T59/7T59.pdf`);
+
+// Wave 2AP: residual direct Seiko 4/5-series Japanese primary manuals; the 5T82 time-zone notice is omitted.
+window.MANUALFINDER_WAVE2_SEIKO.push(`4J51|https://www.seikowatches.com/in-en/-/media/Files/Common/Seiko/instructions/Japanese/4/4J51/4J51.pdf
+4J52|https://www.seikowatches.com/in-en/-/media/Files/Common/Seiko/instructions/Japanese/4/4J52/4J52.pdf
+5J32|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/Japanese/5/5J32/5J32.pdf
+5T24|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/Japanese/5/5T24/5T24.pdf
+5T32|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/Japanese/5/5T32/5T32.pdf
+5T82|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/Japanese/5/5T82/5T82.pdf
+5Y63|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/Japanese/5/5Y63/5Y63.pdf
+5Y66|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/Japanese/5/5Y66/5Y66.pdf
+5Y67|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/Japanese/5/5Y67/5Y67.pdf
+5Y85|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/Japanese/5/5Y85/5Y85.pdf
+5Y89|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/Japanese/5/5Y89/5Y89.pdf`);
