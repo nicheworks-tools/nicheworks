@@ -15,10 +15,11 @@ Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one d
 1. Select category: shoes or clothing.
 2. Select men's or women's reference chart.
 3. Select a base system or type a prefixed value such as `US 4`, `EU 42`, or `JP 26.5`.
-4. Resolve an exact row from the bundled reference table, or for supported women's clothing numeric ranges resolve a numeric input that falls inside the displayed range row.
-5. Immediately display the corresponding JP/US/EU row and a concise source-to-target summary.
-6. Optionally pin up to four direct-conversion rows for page-local comparison.
-7. Optionally use the measurement section for a conservative nearby-size estimate.
+4. Retail-style half-size syntax such as `US 8 1/2`, `US 8-1/2`, `US 8½`, and full-width ASCII input is normalized locally before lookup.
+5. Resolve an exact row from the bundled reference table, or for supported women's clothing numeric ranges resolve a numeric input that falls inside the displayed range row.
+6. Immediately display the corresponding JP/US/EU row and a concise source-to-target summary.
+7. Optionally pin up to four direct-conversion rows for page-local comparison.
+8. Optionally use the measurement section for a conservative nearby-size estimate.
 
 ## Current functional contract
 
@@ -27,6 +28,9 @@ Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one d
 - Convert one directly entered size across JP/US/EU using the bundled representative table.
 - Accept a plain size under the selected base system or a `JP` / `US` / `EU` prefixed size.
 - Normalize common dash variants and a trailing `cm` for exact matching; do not guess unsupported direct sizes.
+- Normalize retail-style half sizes `8 1/2`, `8-1/2`, and `8½` to the existing decimal half-size form before the core lookup.
+- Normalize full-width ASCII letters/digits/punctuation used in JP/US/EU size input to half-width equivalents before lookup.
+- Input normalization changes syntax only. It must not invent a table row or mathematically interpolate an unsupported size.
 - For women's clothing only, `US` and `EU` numeric values that fall inside an existing displayed reference range may resolve to that range. Example: `US 4` may resolve to the `US 2–4` row; no new size data is invented.
 - The query-intent helper displays the active category/chart context because the same US number can map differently across men's/women's charts and shoes/clothing.
 - Provide explicit US 4 men's-shoe and women's-shoe shortcuts because current Search Console demand includes `us4 日本サイズ`-style queries.
@@ -67,7 +71,7 @@ Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one d
 ### Shared behavior
 
 - Switch JA/EN UI on the same page and persist only the UI-language choice.
-- Perform conversion, comparison, and measurement calculations locally in the browser.
+- Perform conversion, comparison, input normalization, and measurement calculations locally in the browser.
 - Do not apply brand-wide numerical size offsets. `brand.json` is not part of the active calculation path.
 - Results are approximate and official seller/brand charts take precedence.
 
@@ -76,7 +80,7 @@ Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one d
 - Category: shoes or clothing.
 - Chart type: men or women.
 - Base system: JP, US, or EU.
-- Direct size text, optionally prefixed with JP/US/EU.
+- Direct size text, optionally prefixed with JP/US/EU and optionally written with supported half-size/full-width retail syntax.
 - Optional compare action on a valid direct-conversion row.
 - Shoe measurements: foot length and optional width.
 - Clothing measurements: garment type, unit, waist, optional chest/bust, optional hip.
@@ -105,21 +109,21 @@ Default configuration remains deliberately disabled:
 
 While disabled or without valid Amazon HTTPS targets, no Amazon CTA, disclosure, or affiliate click event is emitted. When Amazon Associates is ready, activation requires only verified target URLs plus `enabled: true`.
 
-The active affiliate insertion point remains immediately after a valid direct-conversion result. Measurement inputs/results are never encoded into affiliate URLs or affiliate analytics. Comparison candidates are also never encoded into affiliate URLs or affiliate analytics. Query-intent shortcut state is also not added to affiliate URLs or analytics.
+The active affiliate insertion point remains immediately after a valid direct-conversion result. Measurement inputs/results are never encoded into affiliate URLs or affiliate analytics. Comparison candidates are also never encoded into affiliate URLs or affiliate analytics. Query-intent shortcut state and normalized raw input syntax are also not added to affiliate URLs or analytics.
 
 ## State and persistence
 
 - Current category, chart, base system, selected row, direct size text, and measurement inputs are page state only.
-- Query-intent range-resolution state and shortcut context are page state only.
+- Query-intent range-resolution state, retail-input normalization state, and shortcut context are page state only.
 - Candidate comparison rows are page state only and capped at four.
 - Measurement/profile history is not persisted.
 - JA/EN preference may be stored as `nw_lang` in localStorage.
 
 ## Privacy and network behavior
 
-- Size conversion, comparison, and fit calculations run locally in the browser.
+- Size conversion, comparison, input normalization, and fit calculations run locally in the browser.
 - Direct size text, pinned comparison rows, and measurements are not sent to a fitting backend or affiliate destination.
-- Query-intent and comparison helpers run locally and do not create new network requests.
+- Query-intent, input-normalization, and comparison helpers run locally and do not create new network requests.
 - Ads and analytics may load separately under the NicheWorks common specification.
 
 ## Language mode
@@ -138,6 +142,7 @@ The page uses a direct-input conversion card first, followed by query-intent/con
 - Results are approximate and must not be represented as guaranteed fit.
 - The foot-width ratio is a rough contextual signal only and is not a formal width-size standard.
 - Current direct conversion centers on JP/US/EU.
+- Retail syntax normalization does not add UK/CN/kids systems and does not interpolate unsupported quarter sizes.
 - Numeric-in-range resolution does not convert between standards mathematically; it only maps an input into an already bundled displayed range row.
 - The comparison tray compares bundled conversion rows; it does not rank products, brands, fit quality, or purchase suitability.
 - UK, CN, kids, wide sizing, and verified brand/model-specific official charts require separate verified data work.
@@ -146,6 +151,8 @@ The page uses a direct-input conversion card first, followed by query-intent/con
 ## Acceptance criteria
 
 - [ ] A plain or prefixed direct size resolves an exact bundled row, except supported women's clothing numeric values may resolve inside an already bundled US/EU range row.
+- [ ] Supported retail half-size syntax (`8 1/2`, `8-1/2`, `8½`) normalizes to the same existing decimal lookup as `8.5` without adding new data.
+- [ ] Full-width ASCII size input normalizes locally before lookup.
 - [ ] `US 4` can be checked explicitly for men's shoes and women's shoes without implying they are the same chart.
 - [ ] The UI states the active category/chart context near the direct result.
 - [ ] A valid direct result can be pinned to a comparison tray.
@@ -162,7 +169,7 @@ The page uses a direct-input conversion card first, followed by query-intent/con
 - [ ] Shoe/clothing estimate text can be copied locally.
 - [ ] No active brand-wide numerical correction changes a calculated result.
 - [ ] Default affiliate configuration keeps Amazon CTA/disclosure hidden.
-- [ ] Affiliate analytics never receive size text, query-intent state, comparison state, or measurement state.
+- [ ] Affiliate analytics never receive size text, normalized syntax state, query-intent state, comparison state, or measurement state.
 
 ## Implementation evidence
 
