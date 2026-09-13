@@ -116,16 +116,14 @@
     "category": "sunscreen",
     "language": "ja",
     "label": "水、グリセリン、酸化亜鉛、酸化チタン、ビスエチルヘキシルオキシフェノールメトキシフェニルトリアジン、ジエチルアミノヒドロキシベンゾイル安息香酸ヘキシル、ジメチコン、トコフェロール、パンテノール、スクワラン",
-    "maxUnknown": 1,
-    "knownGap": "酸化チタン"
+    "maxUnknown": 0
   },
   {
     "id": "en-sunscreen-wave3",
     "category": "sunscreen",
     "language": "en",
     "label": "Water, Glycerin, Zinc Oxide, Titanium Dioxide, Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine, Diethylamino Hydroxybenzoyl Hexyl Benzoate, Dimethicone, Tocopherol, Panthenol, Squalane",
-    "maxUnknown": 2,
-    "knownGap": "Titanium Dioxide | Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine"
+    "maxUnknown": 0
   },
   {
     "id": "jp-conditioner-wave3",
@@ -160,15 +158,13 @@
     "category": "color-cosmetic",
     "language": "ja",
     "label": "水、グリセリン、シクロペンタシロキサン、トリメチルシロキシケイ酸、酸化チタン、黄4、黄5、青1",
-    "maxUnknown": 1,
-    "knownGap": "酸化チタン"
+    "maxUnknown": 0
   },
   {
     "id": "en-color-cosmetic-wave3",
     "category": "color-cosmetic",
     "language": "en",
     "label": "Water, Glycerin, Cyclopentasiloxane, Trimethylsiloxysilicate, Titanium Dioxide, CI 19140, CI 15985, CI 42090",
-    "maxUnknown": 1,
-    "knownGap": "Titanium Dioxide"
+    "maxUnknown": 0
   }
 ]

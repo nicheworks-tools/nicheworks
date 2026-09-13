@@ -46,6 +46,16 @@
     "alcohol denat": "alcohol denat."
   });
 
+  // Multiple maintained records can legitimately represent the same chemical
+  // identity under a generic/INCI name and a CI/common name. Keep one preferred
+  // canonical key so both cosmetics tools and benchmarks resolve them alike.
+  const CANONICAL_EQUIVALENTS = Object.freeze({
+    "bemotrizinol": "bis-ethylhexyloxyphenol methoxyphenyl triazine",
+    "bisoctrizole": "methylene bis-benzotriazolyl tetramethylbutylphenol",
+    "ci 77891": "titanium dioxide",
+    "ci 77019": "mica"
+  });
+
   const AMBIGUOUS_EXACT_KEYS = Object.freeze([
     "aha",
     "bha",
@@ -55,12 +65,18 @@
   ]);
   const ambiguousExactKeySet = new Set(AMBIGUOUS_EXACT_KEYS);
 
+  function canonicalIdentityKey(value = "") {
+    const base = normalizeBaseKey(value);
+    if (!base) return "";
+    return CANONICAL_EQUIVALENTS[base] || base;
+  }
+
   function normalizeKey(value = "") {
     const base = normalizeBaseKey(value);
     if (!base || ambiguousExactKeySet.has(base)) return "";
-    const equivalent = ALIAS_EQUIVALENTS[base] || base;
-    if (ambiguousExactKeySet.has(equivalent)) return "";
-    return equivalent;
+    const aliasEquivalent = ALIAS_EQUIVALENTS[base] || base;
+    if (ambiguousExactKeySet.has(aliasEquivalent)) return "";
+    return canonicalIdentityKey(aliasEquivalent);
   }
 
   function isAmbiguousExactName(value = "") {
@@ -88,7 +104,8 @@
 
     for (const raw of Array.isArray(items) ? items : []) {
       if (!raw || !raw.en) continue;
-      const canonicalKey = normalizeBaseKey(raw.en);
+      const rawBaseKey = normalizeBaseKey(raw.en);
+      const canonicalKey = canonicalIdentityKey(raw.en);
       if (!canonicalKey) continue;
 
       if (!byCanonical.has(canonicalKey)) {
@@ -103,8 +120,20 @@
       }
 
       const current = byCanonical.get(canonicalKey);
+      const currentBaseKey = normalizeBaseKey(current.en);
+      const rawIsPreferredCanonical = rawBaseKey === canonicalKey && currentBaseKey !== canonicalKey;
+
+      if (rawIsPreferredCanonical) {
+        current.alias = mergeNameLists(current.alias, [current.en], raw.alias);
+        current.en = raw.en;
+        if (raw.category) current.category = raw.category;
+        if (raw.note_short) current.note_short = raw.note_short;
+        if (raw.safety) current.safety = raw.safety;
+      } else {
+        current.alias = mergeNameLists(current.alias, rawBaseKey !== currentBaseKey ? [raw.en] : [], raw.alias);
+      }
+
       current.jp = mergeNameLists(current.jp, raw.jp);
-      current.alias = mergeNameLists(current.alias, raw.alias);
       if (!current.category && raw.category) current.category = raw.category;
       if (!current.note_short && raw.note_short) current.note_short = raw.note_short;
       if (!current.safety && raw.safety) current.safety = raw.safety;
@@ -208,15 +237,17 @@
   }
 
   const api = {
-    version: "1.8.0",
+    version: "1.9.1",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
+    canonicalIdentityKey,
     splitIngredients,
     isExactIngredientMatch,
     isAmbiguousExactName,
     mergeDictionaryRecords,
     aliasEquivalents: ALIAS_EQUIVALENTS,
+    canonicalEquivalents: CANONICAL_EQUIVALENTS,
     ambiguousExactKeys: AMBIGUOUS_EXACT_KEYS
   };
 
