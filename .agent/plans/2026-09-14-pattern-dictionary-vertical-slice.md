@@ -17,7 +17,7 @@ Implement the first repository-backed vertical slice of the NicheWorks Pattern D
 - Add a 20-pattern prototype dataset derived from the approved working master.
 - Implement JA/EN top pages.
 - Implement client-side ambiguous search, visual autocomplete, search interpretation chips, filters, similar-pattern navigation, and 2-pattern comparison.
-- Add per-pattern JA/EN detail pages generated from the canonical JSON data.
+- Add per-pattern JA/EN static detail URLs from the canonical JSON data.
 - Add deterministic visual placeholder assets for patterns that do not yet have verified production PNGs.
 - Clearly mark all placeholder/reference status in data and documentation.
 - Follow NicheWorks common layout, analytics, ad-slot, donation, SEO, responsive, privacy and internal-link rules where applicable.
@@ -41,15 +41,23 @@ No other files are in scope for this first vertical slice.
 
 ## Implementation steps
 
-1. Establish canonical 20-pattern JSON data with stable IDs, bilingual names/search vocabulary, color policy, relationships, and review/image state.
-2. Implement shared CSS and JS modules for rendering/search/filter/compare behavior.
-3. Implement JA/EN top pages and search result pages.
-4. Generate JA/EN pattern detail page wrappers from the canonical data.
-5. Add deterministic micro-pattern/filter visuals and DEV pattern placeholders.
-6. Add structural/search/link validation scripts that require no third-party packages.
-7. Run validators and local static-server smoke checks.
+1. Establish canonical 20-pattern JSON data with stable IDs, bilingual names/search vocabulary, color policy, relationships, and review/image state. **Implemented.**
+2. Implement shared CSS and JS modules for rendering/search/filter/compare behavior. **Implemented.**
+3. Implement JA/EN top pages and search result pages. **Implemented.**
+4. Generate JA/EN static pattern detail URLs from the canonical IDs. **Implemented: 20 JA + 20 EN.**
+5. Add deterministic micro-pattern/filter visuals and visibly marked DEV pattern placeholders. **Implemented.**
+6. Add structural/search/link validation scripts that require no third-party packages. **Implemented; static-page checks added.**
+7. Run validators and browser smoke checks. **Search smoke and JS syntax checks run locally; repository checkout/browser QA remains before ready-for-review.**
 
-## Manual verification
+## Current validation evidence
+
+- Search smoke set: 9/9 queries include the expected pattern in Top3.
+- `node --check` passes for the same static-URL `app.js` implementation.
+- GitHub branch contains canonical static JA/EN detail directories for all 20 prototype IDs.
+- Legacy query detail pages have been removed.
+- Static detail pages remain `noindex,follow` until data/image verification.
+
+## Manual verification still required
 
 - Desktop: 1200px wide.
 - Tablet: 768px wide.
@@ -64,13 +72,13 @@ No other files are in scope for this first vertical slice.
 
 ## Acceptance
 
-- [ ] Tool is fully contained under `tools/pattern-dictionary/`.
-- [ ] 20 canonical prototype records have unique IDs and required color/review fields.
-- [ ] JA and EN top/search/detail flows work.
-- [ ] Search and browse both provide viable discovery paths.
-- [ ] Visual autocomplete and visual filters are functional.
-- [ ] Similar/commonly-confused relationships render from canonical data.
-- [ ] Compare supports two patterns.
-- [ ] Validators pass with zero broken local references.
-- [ ] DEV placeholders are never represented as production-verified dictionary images.
-- [ ] No live affiliate URLs are introduced in this slice.
+- [x] Tool is fully contained under `tools/pattern-dictionary/` plus this ExecPlan.
+- [x] 20 canonical prototype records have unique IDs and required color/review fields.
+- [x] JA and EN top/search/static-detail flows are implemented.
+- [x] Search and browse both provide discovery paths.
+- [x] Visual autocomplete and micro-pattern visual filters are implemented.
+- [x] Similar/commonly-confused relationships render from canonical data.
+- [x] Compare supports two patterns.
+- [ ] Full repository validator/browser QA passes with zero broken local references.
+- [x] DEV placeholders are visibly marked and not represented as production-verified dictionary images.
+- [x] No live affiliate URLs are introduced in this slice.
