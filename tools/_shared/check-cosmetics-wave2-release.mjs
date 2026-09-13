@@ -81,15 +81,16 @@ check(fastUi.includes('再解析も自動では行いません'), 'FastScan Japa
 check(fastUi.includes('analysis will not rerun automatically'), 'FastScan English no-auto-rerun statement missing');
 check(fastSpec.includes('does not automatically rerun ingredient analysis'), 'FastScan SPEC must retain no-auto-rerun contract');
 
-// Amazon-ready invariant: this wave may improve either tool but must never activate monetization.
-check(affiliateConfig.includes('enabled: false'), 'Amazon config must remain disabled');
-check(affiliateConfig.includes('associateTag: ""'), 'Amazon associate tag must remain empty');
+// Post-activation Amazon invariant: only the verified generic skincare Special Link may be live.
+check(affiliateConfig.includes('enabled: true'), 'Amazon config must be active after verified activation');
+check(affiliateConfig.includes('trackingMode: "special_link"'), 'Amazon tracking mode must remain special_link');
+check(affiliateConfig.includes('associateTag: ""'), 'do not invent a separate Associate tag for the supplied Special Link');
+check(affiliateConfig.includes('href: "https://amzn.to/4xNbcDO"'), 'verified skincare Special Link missing');
 check(affiliateConfig.includes('placement: "after-summary"'), 'Lite Amazon placement changed');
 check(affiliateConfig.includes('placement: "after-results"'), 'FastScan Amazon placement changed');
-check((affiliateConfig.match(/links: Object\.freeze\(\[\]\)/g) || []).length === 2, 'Amazon link arrays must remain empty for both cosmetics tools');
-check(!/https?:\/\/[^"']*amazon\./i.test(affiliateConfig), 'live Amazon URL must not exist before activation');
+check((affiliateConfig.match(/links: Object\.freeze\(\[skincareSearch\]\)/g) || []).length === 2, 'both cosmetics tools must retain the verified Special Link');
 for (const spec of [liteSpec, fastSpec]) {
-  check(spec.includes('enabled = false'), 'tool SPEC lost disabled Amazon activation contract');
+  check(/Special Link|trackingMode = special_link/i.test(spec), 'tool SPEC lost active Special Link contract');
   check(/raw ingredient|pasted ingredient|OCR output/i.test(spec), 'tool SPEC lost input privacy contract');
 }
 
@@ -118,6 +119,6 @@ console.log(JSON.stringify({
   lite_result_filters: 4,
   fastscan_result_filters: 4,
   ocr_auto_correction: false,
-  amazon_enabled: false,
-  amazon_activation_ready: true
+  amazon_enabled: true,
+  amazon_tracking_mode: 'special_link'
 }, null, 2));
