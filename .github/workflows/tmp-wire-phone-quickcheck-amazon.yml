@@ -1,0 +1,145 @@
+name: Temporary Phone QuickCheck affiliate wiring
+
+on:
+  push:
+    branches:
+      - feat/phone-quickcheck-amazon-activation-20260914
+    paths:
+      - '.github/workflows/tmp-wire-phone-quickcheck-amazon.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  wire:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/phone-quickcheck-amazon-activation-20260914
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Wire production HTML and synchronize specs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path, old, new):
+              p = Path(path)
+              text = p.read_text()
+              if old not in text:
+                  raise SystemExit(f'missing replacement marker in {path}: {old[:100]!r}')
+              text = text.replace(old, new, 1)
+              p.write_text(text)
+
+          replace_once(
+              'tools/phone-quickcheck/index.html',
+              '  <link rel="stylesheet" href="./style.css">',
+              '  <link rel="stylesheet" href="./style.css">\n  <link rel="stylesheet" href="./affiliate.css">'
+          )
+          replace_once(
+              'tools/phone-quickcheck/index.html',
+              '  <script src="./app.js"></script>',
+              '  <script src="/assets/amazon-affiliate.js"></script>\n  <script src="./affiliate-config.js"></script>\n  <script src="./app.js"></script>\n  <script src="./affiliate-runtime.js"></script>'
+          )
+
+          replacements = [
+              ('affiliatePending: "購入リンクは準備中です",', 'affiliatePending: "購入候補を表示できません",'),
+              ('affiliatePendingBody: "互換カテゴリは端末の確認済み充電条件から判定しています。Amazonリンクはアソシエイト設定後に有効化します。",', 'affiliatePendingBody: "互換カテゴリは確認済み充電条件から判定しています。購入前にAmazonの商品ページで端子・規格・出力条件をご確認ください。",'),
+              ('affiliatePending: "Purchase links are being prepared",', 'affiliatePending: "No purchase suggestions available",'),
+              ('affiliatePendingBody: "Compatibility classes are derived from verified charging facts. Amazon links will be enabled after the Associates setup is configured.",', 'affiliatePendingBody: "Compatibility classes are derived from verified charging facts. Confirm connector, protocol, and output requirements on Amazon before purchase.",'),
+              ('<div class="affiliate-grid"><span class="affiliate-btn" aria-disabled="true">Amazon</span></div>', '<div class="affiliate-grid"></div>'),
+          ]
+          p = Path('tools/phone-quickcheck/app.js')
+          text = p.read_text()
+          for old, new in replacements:
+              if old not in text:
+                  raise SystemExit(f'missing app marker: {old[:100]!r}')
+              text = text.replace(old, new)
+          p.write_text(text)
+
+          spec_replacements = [
+              (
+                  'Live Amazon destinations remain disabled at the initial public launch; maintained `amazonUrl` values stay null until Associates setup, approved destinations, and disclosure are ready in a separate change.',
+                  'Amazon purchase handoffs use the shared NicheWorks Associates helper and a fixed tagged-search template. Search destinations are generated only from maintained accessory-class metadata; user free-text search is never inserted into an Amazon URL. Maintained `amazonUrl` fields remain null because Phone QuickCheck uses the reviewed dynamic accessory-search template rather than per-record retail URLs.'
+              ),
+              (
+                  'No live Amazon price, stock, or availability output is part of the initial public contract.',
+                  'No live Amazon price, stock, rating, review count, delivery estimate, or availability output is part of the product contract.'
+              ),
+              (
+                  'The initial public launch does not send users to live Amazon affiliate destinations from Phone QuickCheck, does not fetch Amazon prices or inventory, and does not scrape retailer pages.',
+                  'Amazon affiliate navigation occurs only after an explicit user click on an Amazon-labelled CTA. Phone QuickCheck does not fetch Amazon prices or inventory, does not scrape retailer pages, and does not send the user\'s phone-search text in affiliate analytics or destination queries.'
+              ),
+              (
+                  '- [x] Live Amazon affiliate URLs, price, and inventory remain disabled at the initial public launch.',
+                  '- [x] Amazon accessory search CTAs use the shared helper, fixed tracking ID, visible disclosure, canonical accessory queries, and coarse analytics only; no live price or inventory is displayed.'
+              ),
+          ]
+          p = Path('tools/phone-quickcheck/SPEC.md')
+          text = p.read_text()
+          for old, new in spec_replacements:
+              if old not in text:
+                  raise SystemExit(f'missing SPEC marker: {old[:100]!r}')
+              text = text.replace(old, new, 1)
+          if '- `tools/phone-quickcheck/affiliate-config.js`' not in text:
+              text = text.replace(
+                  '- `tools/phone-quickcheck/data/accessories.json`\n',
+                  '- `tools/phone-quickcheck/data/accessories.json`\n- `tools/phone-quickcheck/affiliate-config.js`\n- `tools/phone-quickcheck/affiliate-runtime.js`\n- `scripts/check-phone-quickcheck-affiliate.mjs`\n'
+              )
+          p.write_text(text)
+
+          docs_replacements = [
+              (
+                  '主要導線は `機種を探す → サイズと充電条件を理解する → 必要なアクセサリーの種類を理解する → 公式情報を確認する` とする。将来のAmazon導線はこの実用導線の後段に置き、互換性判定を収益都合で変更しない。',
+                  '主要導線は `機種を探す → サイズと充電条件を理解する → 必要なアクセサリーの種類を理解する → Amazonまたは公式情報を確認する` とする。Amazon導線は実用導線の後段に置き、互換性判定を収益都合で変更しない。'
+              ),
+              (
+                  '- 初期公開では維持済み `amazonUrl` をnullのままとし、ライブAmazon導線を有効化しない。',
+                  '- Amazon導線は共通affiliate helperと固定tracking IDを使い、維持済みアクセサリークラスごとの固定検索語だけからAmazon Japan検索URLを生成する。ユーザーの検索文字列はAmazon URLへ渡さない。'
+              ),
+              (
+                  '初期公開ではAmazon価格、在庫、配送情報、ライブ商品リンクを出力しない。',
+                  'Amazon価格、在庫、評価、レビュー数、配送情報は出力しない。Amazon購入導線は商品詳細の転載ではなく、互換アクセサリークラスからAmazon検索へ明示的に移動するだけとする。'
+              ),
+              (
+                  '外部通信は共通のGA4 / AdSense、支援リンク、およびユーザーが明示的に開くメーカー公式リンク等に限る。初期公開ではAmazon価格・在庫取得やAmazonページのスクレイピングを行わない。',
+                  '外部通信は共通のGA4 / AdSense、支援リンク、ユーザーが明示的に開くメーカー公式リンク、および明示的にクリックしたAmazon Associatesリンク等に限る。Amazon価格・在庫取得やAmazonページのスクレイピングは行わない。affiliate analyticsには共通契約のcoarse metadataだけを送り、モデル名・検索語等は送信しない。'
+              ),
+              (
+                  'Amazon affiliate activation is separate from AdSense. Live Amazon destinations require a later reviewed change with compliant Associates setup and disclosure; no scraped or hard-coded live Amazon price/availability claims are permitted by this baseline.',
+                  'Amazon affiliate links are separate from AdSense. Active Phone QuickCheck CTAs must use the shared helper, identify Amazon in the label, show the Associates disclosure, use only canonical accessory-class search terms, and never display scraped or hard-coded Amazon price/availability claims.'
+              ),
+              (
+                  '- [x] Live Amazon affiliate URLs, prices, and inventory remain disabled at initial public launch.',
+                  '- [x] Amazon accessory search CTAs are active through the shared helper with fixed tracking ID, visible disclosure, canonical accessory queries, and coarse analytics only.'
+              ),
+              (
+                  '- Initial launch keeps all Amazon destinations disabled until a separate monetization review.',
+                  '- Amazon destinations are limited to reviewed tagged searches derived from maintained accessory classes; they do not override or imply device compatibility beyond the charging facts shown by the tool.'
+              ),
+          ]
+          p = Path('docs/tools/phone-quickcheck.md')
+          text = p.read_text()
+          for old, new in docs_replacements:
+              if old not in text:
+                  raise SystemExit(f'missing docs marker: {old[:100]!r}')
+              text = text.replace(old, new, 1)
+          if '- `tools/phone-quickcheck/affiliate-config.js`' not in text:
+              text = text.replace(
+                  '- `tools/phone-quickcheck/data/accessories.json`\n',
+                  '- `tools/phone-quickcheck/data/accessories.json`\n- `tools/phone-quickcheck/affiliate-config.js`\n- `tools/phone-quickcheck/affiliate-runtime.js`\n- `scripts/check-phone-quickcheck-affiliate.mjs`\n'
+              )
+          p.write_text(text)
+          PY
+
+          node scripts/check-phone-quickcheck-affiliate.mjs
+          git diff --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/tmp-wire-phone-quickcheck-amazon.yml
+          git add tools/phone-quickcheck/index.html tools/phone-quickcheck/app.js tools/phone-quickcheck/SPEC.md docs/tools/phone-quickcheck.md
+          git commit -m "Activate Phone QuickCheck Amazon handoffs"
+          git push origin HEAD:feat/phone-quickcheck-amazon-activation-20260914
