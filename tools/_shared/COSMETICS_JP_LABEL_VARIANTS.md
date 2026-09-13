@@ -19,6 +19,9 @@ The mappings in these waves are source-backed label/name equivalences. They are 
 | `ラウロイルアスパラギン酸Na液` | `Sodium Lauroyl Aspartate` | Asahi Kasei Finechem lists the quasi-drug simplified name ラウロイルアスパラギン酸Na液 and INCI `SODIUM LAUROYL ASPARTATE` for Aminoformer FLDS-L: https://www.asahikasei-fc.jp/product/amino/amino_acid/flds-l.html |
 | `イソステアリルグリセリルエーテル` | `Isostearyl Glyceryl Ether` | Kao lists ingredient イソステアリルグリセリルエーテル and INCI `ISOSTEARYL GLYCERYL ETHER` for Penetol GE-IS; MHLW's additive list also pairs the Japanese name with Isostearyl Glyceryl Ether: https://chemical.kao.com/ja/products/Z0000250_ja/ and https://www.mhlw.go.jp/web/t_doc?dataId=00tc5776&dataType=1&pageNo=1 |
 | `イソステアリン酸コレステリル` | `Cholesteryl Isostearate` | Kao lists ingredient/display name イソステアリン酸コレステリル and INCI `CHOLESTERYL ISOSTEARATE` for Exceparl IS-CE-A: https://chemical.kao.com/ja/products/B0011969_ja/ |
+| `PEG1540` | `PEG-32` | Sanyo Chemical and Toho Chemical list PEG-1540 / ポリエチレングリコール1540 with INCI `PEG-32`: https://solutions.sanyo-chemical.co.jp/products/peg/ and https://www.toho-chem.co.jp/products/industry/6/detail/107 |
+| `PEG6000` | `PEG-150` | Sanyo Chemical and Toho Chemical list PEG-6000 / ポリエチレングリコール6000 with INCI `PEG-150`: https://solutions.sanyo-chemical.co.jp/products/peg/ and https://www.toho-chem.co.jp/products/industry/6/detail/114 |
+| `トリシロキサン` | `Trisiloxane` | DOWSIL raw-material data distributed by Matsumoto Trading lists cosmetic display name トリシロキサン and INCI `TRISILOXANE`: https://matsumoto-trd.com/material/materialdetail.php?materialid=1073 |
 
 ## PR31 canonical record activation
 
@@ -42,15 +45,25 @@ Two canonical targets already existed uniquely in the maintained dictionaries, s
 - `ヤシ油脂肪酸アシルグルタミン酸Na` → `Sodium Cocoyl Glutamate`;
 - `シュガースクワラン` → `Squalane`.
 
+## Wave 3
+
+PR33 resolves three further measured names with direct manufacturer-backed cosmetic-name/INCI equivalence:
+
+- `PEG1540` → canonical `PEG-32`;
+- `PEG6000` → canonical `PEG-150`;
+- `トリシロキサン` → canonical `Trisiloxane`.
+
+All three canonical targets are maintained records. The PEG records retain the no-hyphen label forms observed in the source-backed corpus as exact Japanese-market/display aliases and also record the hyphenated commercial names used by raw-material manufacturers.
+
 The dictionary's legacy `safety` field remains an internal compatibility field; this mapping contract does not turn that field into a safety claim.
 
 ## Guardrails
 
-- Matching remains exact after the shared parser's existing NFKC/punctuation normalization. This wave adds no fuzzy auto-replacement.
-- A label variant is activated only when the evidence supports one maintained canonical identity and that canonical target exists uniquely in the maintained dictionary set.
+- Matching remains exact after the shared parser's existing NFKC/punctuation normalization. These waves add no fuzzy auto-replacement.
+- A label variant is activated only when evidence supports one maintained canonical identity and that canonical target exists uniquely in the maintained dictionary set.
 - Broad labels such as `パラベン` and `エデト酸塩` remain unresolved rather than being forced onto one member of a chemical group.
 - The truncated corpus token `Ammonium Polyacryloyldimethyl` remains unresolved.
-- `POE・ジメチコン共重合体` remains unresolved because that broad display name does not by itself establish one exact maintained INCI identity.
+- `POE・ジメチコン共重合体`, `POEメチルグルコシド`, and `POE水添ヒマシ油` remain unresolved because those display names do not yet establish one exact maintained INCI identity under the evidence standard used here.
 - Amazon destinations remain fixed and independent of these mappings, ingredient input, OCR output, or analysis results.
 
 Run the regression with:
