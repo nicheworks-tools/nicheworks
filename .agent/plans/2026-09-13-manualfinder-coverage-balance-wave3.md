@@ -8,12 +8,12 @@ Move ManualFinder from opportunistic deep expansion of a small number of easy of
 
 ## Starting state
 
-- Accepted verified model/caliber rows: 1,477.
+- Accepted verified model/caliber rows before Wave 3: 1,477.
 - Seiko: 443 rows and paused after Wave 2AR.
-- Non-Seiko: 1,034 rows.
+- Non-Seiko before Wave 3: 1,034 rows.
 - Curated baseline brands: 66.
-- Baseline brands with accepted model-level expansion: 6.
-- Baseline brands still generic-only: 60.
+- Baseline brands with accepted model-level expansion before Wave 3: 6.
+- Baseline brands still generic-only before Wave 3: 60.
 - Additional expanded makers outside the baseline include Aterm, OKI, CASIO, Insta360, FUJIFILM Business Innovation, Hisense, Haier, Roland and Seiko.
 
 The prior row count is therefore not a proxy for broad manufacturer coverage.
@@ -48,6 +48,16 @@ No inferred/manual URL templates may be used merely because a vendor URL pattern
 - Store one row per real camera model.
 - If Nikon groups documents by model family, preserve that grouping explicitly rather than inventing a distinct destination.
 - Keep HLG/cloud error supplements out of the primary-manual field.
+
+Wave 3A implementation result:
+
+- Source boundary: Nikon official Japanese Web-manual portal, mirrorless-camera section.
+- Accepted models: 14/14 explicitly listed mirrorless-camera models.
+- Unique primary Web-manual targets: 12.
+- Direct rows: 10.
+- Vendor-shared rows: 4 (`Z7II`/`Z6II`, `Z7`/`Z6`).
+- Supplemental HLG/Nikon Imaging Cloud error documents are not promoted as the primary manual.
+- Nikon becomes `expanded`, not company-complete; DSLR, compact, lenses and other product sections remain outside this pass.
 
 ### Wave 3B — Brother
 
@@ -88,6 +98,8 @@ Every data PR must report:
 - [x] Audit all 66 curated baseline brands for model-level state.
 - [x] Recheck official source structures for Nikon, Brother, Sony, Epson, Canon and Panasonic.
 - [x] Add cross-maker coverage authority and rotation rule.
-- [ ] Merge inventory PR after repository CI.
-- [ ] Implement Wave 3A Nikon from latest main.
-- [ ] Continue rotation with Brother and Sony before revisiting deep-covered makers.
+- [x] Merge inventory PR after repository CI (#703).
+- [x] Implement Wave 3A Nikon from the inventory-locked main baseline.
+- [ ] Merge Wave 3A after repository CI.
+- [ ] Implement Wave 3B Brother from latest main.
+- [ ] Continue rotation with Sony before revisiting deep-covered makers.
