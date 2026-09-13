@@ -29,6 +29,12 @@ assert.equal(
   config.modelSearchTemplate.proofUrl,
   'https://www.amazon.co.jp/s?k=Brother+MFC-J4440N&tag=nicheworks09-22'
 );
+assert.deepEqual(
+  Array.from(config.modelSearchTemplate.eligibleCategories),
+  ['PC・スマホ', '家電', 'プリンター・複合機', 'カメラ・映像', 'オーディオ', 'ゲーム', 'ネットワーク機器'],
+  'exact model search should cover product categories but not heterogeneous その他 records'
+);
+assert.deepEqual(Array.from(config.modelSearchTemplate.excludedCategories), ['その他']);
 assert.equal(
   config.targets.manual_model_search_template,
   'https://www.amazon.co.jp/s?k=Brother+MFC-J4440N&tag=nicheworks09-22',
@@ -37,36 +43,35 @@ assert.equal(
 assert.equal(Object.keys(config.targets).length, 2, 'one fixed override plus one reusable template target should be active');
 assert.equal(config.offers.length, 1, 'dynamic model search should not create one stored offer per model');
 
-const brother = config.buildModelSearchUrl({
-  maker: 'Brother',
-  model: 'MFC-J4440N',
-  category: 'プリンター・複合機'
-});
-assert.equal(
-  brother,
-  'https://www.amazon.co.jp/s?k=Brother+MFC-J4440N&tag=nicheworks09-22',
-  'canonical maker/model should deterministically produce one tagged Amazon search URL'
-);
-
-const nikon = config.buildModelSearchUrl({
-  maker: 'Nikon',
-  model: 'Z6III',
-  category: 'カメラ・映像'
-});
-assert.equal(
-  nikon,
-  'https://www.amazon.co.jp/s?k=Nikon+Z6III&tag=nicheworks09-22'
-);
+const samples = [
+  ['Brother', 'MFC-J4440N', 'プリンター・複合機'],
+  ['Nikon', 'Z6III', 'カメラ・映像'],
+  ['T-fal', 'KO4901JP', '家電'],
+  ['Aterm', 'WX5400HP', 'ネットワーク機器'],
+  ['ExampleAudio', 'A100', 'オーディオ'],
+  ['ExamplePhone', 'P100', 'PC・スマホ'],
+  ['ExampleGame', 'G100', 'ゲーム']
+];
+for (const [maker, model, category] of samples) {
+  const url = config.buildModelSearchUrl({ maker, model, category });
+  assert.ok(url.startsWith('https://www.amazon.co.jp/s?'), `${category} should use the validated Amazon search template`);
+  assert.ok(url.includes('tag=nicheworks09-22'), `${category} should retain the fixed tracking ID`);
+}
 
 assert.equal(
-  config.buildModelSearchUrl({ maker: 'Brother', model: 'MFC-J4440N', category: 'その他' }),
+  config.buildModelSearchUrl({ maker: 'Seiko', model: '9F85', category: 'その他' }),
   '',
-  'ineligible categories must fail closed'
+  'Seiko caliber / その他 records must not receive a generic Amazon model-search CTA'
+);
+assert.equal(
+  config.buildModelSearchUrl({ maker: 'Roland', model: 'S-50', category: 'その他' }),
+  '',
+  'heterogeneous legacy その他 records must remain excluded until a family-specific rule exists'
 );
 assert.equal(
   config.buildModelSearchUrl({ maker: 'Brother', model: '', category: 'プリンター・複合機' }),
   '',
-  'missing canonical model must fail closed'
+  'generic manufacturer entrances without exact model metadata must fail closed'
 );
 
-console.log('ManualFinder live affiliate template behavior test passed.');
+console.log('ManualFinder expanded affiliate template behavior test passed.');
