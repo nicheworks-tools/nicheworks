@@ -56,19 +56,17 @@
     window.gtag("event", "affiliate_click", params);
   }
 
-  function mount(options = {}) {
-    const container = options.container;
-    const target = options.target;
+  function mountLink(container, target, url, options = {}) {
     if (!(container instanceof Element)) return false;
 
     container.replaceChildren();
     container.hidden = true;
 
-    if (!isActive(target)) return false;
+    if (!isActive(target) || !isAmazonHttpsUrl(url)) return false;
 
     const link = document.createElement("a");
     link.className = options.className || "nw-affiliate-link";
-    link.href = state.targets[target];
+    link.href = url;
     link.target = "_blank";
     link.rel = "sponsored noopener";
     link.textContent = options.label || "Amazonで探す";
@@ -77,6 +75,15 @@
     container.appendChild(link);
     container.hidden = false;
     return true;
+  }
+
+  function mount(options = {}) {
+    const target = options.target;
+    return mountLink(options.container, target, state.targets[target], options);
+  }
+
+  function mountUrl(options = {}) {
+    return mountLink(options.container, options.target, options.url, options);
   }
 
   function renderDisclosure(container, options = {}) {
@@ -105,6 +112,7 @@
     configure,
     isActive,
     mount,
+    mountUrl,
     renderDisclosure
   });
 
