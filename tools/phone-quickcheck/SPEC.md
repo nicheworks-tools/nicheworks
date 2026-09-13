@@ -35,7 +35,7 @@ Power-bank charge estimates use the maintained product approximation:
 
 The UI shows 5,000 / 10,000 / 20,000mAh estimates rounded to one decimal place and clearly labels them approximate. If battery capacity is unknown, no charge-count estimate is generated.
 
-Accessory guidance is resolved from maintained charging facts and reusable accessory classes rather than a phone × product matrix. Current classes cover USB-C cables, USB-PD, PPS, Samsung Super Fast Charging, Qi/Qi2, and USB-C power banks. Live Amazon destinations remain disabled at the initial public launch; maintained `amazonUrl` values stay null until Associates setup, approved destinations, and disclosure are ready in a separate change.
+Accessory guidance is resolved from maintained charging facts and reusable accessory classes rather than a phone × product matrix. Current classes cover USB-C cables, USB-PD, PPS, Samsung Super Fast Charging, Qi/Qi2, and USB-C power banks. Amazon purchase handoffs use the shared NicheWorks Associates helper and a fixed tagged-search template. Search destinations are generated only from maintained accessory-class metadata; user free-text search is never inserted into an Amazon URL. Maintained `amazonUrl` fields remain null because Phone QuickCheck uses the reviewed dynamic accessory-search template rather than per-record retail URLs.
 
 ## Inputs
 
@@ -53,6 +53,9 @@ Canonical runtime inputs are static NicheWorks-hosted JSON data:
 
 - `tools/phone-quickcheck/data/phones.json`
 - `tools/phone-quickcheck/data/accessories.json`
+- `tools/phone-quickcheck/affiliate-config.js`
+- `tools/phone-quickcheck/affiliate-runtime.js`
+- `scripts/check-phone-quickcheck-affiliate.mjs`
 
 Phone records use stable model IDs, canonical manufacturer/model names, maintained aliases, dimensions in millimetres, mass in grams, charging facts, provenance/source URLs, verification date, and optional additive accessory keys.
 
@@ -70,7 +73,7 @@ The tool produces an on-screen Quick Check rather than a downloadable artifact. 
 - official manufacturer specification and manual/support links;
 - last verification date.
 
-No live Amazon price, stock, or availability output is part of the initial public contract.
+No live Amazon price, stock, rating, review count, delivery estimate, or availability output is part of the product contract.
 
 ## State and persistence
 
@@ -84,7 +87,7 @@ Phone filtering and detail rendering run locally against static NicheWorks-hoste
 
 External navigation occurs only when a user follows an official manufacturer link or, in a future reviewed release, an enabled affiliate destination. NicheWorks common analytics and advertising behavior remains governed by `common-spec/spec-ja.md`.
 
-The initial public launch does not send users to live Amazon affiliate destinations from Phone QuickCheck, does not fetch Amazon prices or inventory, and does not scrape retailer pages.
+Amazon affiliate navigation occurs only after an explicit user click on an Amazon-labelled CTA. Phone QuickCheck does not fetch Amazon prices or inventory, does not scrape retailer pages, and does not send the user's phone-search text in affiliate analytics or destination queries.
 
 ## Language mode
 
@@ -126,7 +129,7 @@ Desktop uses a wide two-pane layout: searchable/filterable list on the left and 
 - [x] Charger guidance and device-side maximum charging are not intentionally conflated.
 - [x] Accessory compatibility is resolved through reusable classes rather than a per-phone product matrix.
 - [x] Official manufacturer specification/manual links are visually/functionally separate from purchase guidance.
-- [x] Live Amazon affiliate URLs, price, and inventory remain disabled at the initial public launch.
+- [x] Amazon accessory search CTAs use the shared helper, fixed tracking ID, visible disclosure, canonical accessory queries, and coarse analytics only; no live price or inventory is displayed.
 - [x] Phone search/filter behavior requires no application backend or user account.
 
 ## Implementation evidence
@@ -138,6 +141,9 @@ Production/runtime evidence:
 - `tools/phone-quickcheck/app.js`
 - `tools/phone-quickcheck/data/phones.json`
 - `tools/phone-quickcheck/data/accessories.json`
+- `tools/phone-quickcheck/affiliate-config.js`
+- `tools/phone-quickcheck/affiliate-runtime.js`
+- `scripts/check-phone-quickcheck-affiliate.mjs`
 
 Publication/discovery evidence:
 
