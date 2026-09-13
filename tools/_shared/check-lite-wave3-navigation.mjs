@@ -6,7 +6,7 @@ const css = fs.readFileSync('tools/cosmetic-ingredient-checker-lite/enhancements
 
 for (const required of [
   'liteCategoryFilter',
-  'data-lite-category',
+  'button.dataset.liteCategory',
   'rowCategoryMatches',
   '表示中をコピー',
   '未分類をコピー',
