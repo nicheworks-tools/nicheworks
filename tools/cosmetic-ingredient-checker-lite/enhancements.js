@@ -5,14 +5,16 @@
     const summaryBox = document.getElementById('summaryBox');
     const metricGrid = summaryBox?.querySelector('.metric-grid');
     const categoryBlock = summaryBox?.querySelector('.category-block');
+    const categoryGrid = document.getElementById('categoryGrid');
     const parsedCount = document.getElementById('parsedCount');
     const matchedCount = document.getElementById('matchedCount');
     const unknownCount = document.getElementById('unknownCount');
     const tableBody = document.getElementById('itemsTableBody');
     const table = document.getElementById('itemsTable');
-    if (!summaryBox || !metricGrid || !parsedCount || !matchedCount || !unknownCount || !tableBody || !table) return;
+    if (!summaryBox || !metricGrid || !categoryGrid || !parsedCount || !matchedCount || !unknownCount || !tableBody || !table) return;
 
     let activeFilter = 'all';
+    let activeCategory = 'all';
 
     let coverageValue = document.getElementById('dictionaryCoveragePercent');
     if (!coverageValue) {
@@ -51,20 +53,33 @@
       filterBar.className = 'lite-result-filter-bar';
       filterBar.hidden = true;
       filterBar.innerHTML = `
-        <div class="lite-filter-scroll" role="group" aria-label="結果を絞り込む">
-          <button type="button" class="lite-filter-btn is-active" data-lite-filter="all">すべて</button>
-          <button type="button" class="lite-filter-btn" data-lite-filter="unknown">未分類</button>
-          <button type="button" class="lite-filter-btn" data-lite-filter="review">確認候補</button>
-          <button type="button" class="lite-filter-btn" data-lite-filter="matched">辞書一致</button>
+        <div class="lite-filter-row">
+          <span class="lite-filter-label">状態</span>
+          <div class="lite-filter-scroll" role="group" aria-label="状態で結果を絞り込む">
+            <button type="button" class="lite-filter-btn is-active" data-lite-filter="all">すべて</button>
+            <button type="button" class="lite-filter-btn" data-lite-filter="unknown">未分類</button>
+            <button type="button" class="lite-filter-btn" data-lite-filter="review">確認候補</button>
+            <button type="button" class="lite-filter-btn" data-lite-filter="matched">辞書一致</button>
+          </div>
         </div>
-        <button type="button" id="liteCopyUnknownBtn" class="lite-copy-unknown-btn">未分類をコピー</button>
+        <div class="lite-filter-row" id="liteCategoryFilterRow" hidden>
+          <span class="lite-filter-label">分類</span>
+          <div id="liteCategoryFilter" class="lite-filter-scroll" role="group" aria-label="分類で結果を絞り込む"></div>
+        </div>
+        <div class="lite-copy-actions">
+          <button type="button" id="liteCopyVisibleBtn" class="lite-copy-unknown-btn">表示中をコピー</button>
+          <button type="button" id="liteCopyUnknownBtn" class="lite-copy-unknown-btn">未分類をコピー</button>
+        </div>
         <span id="liteFilterStatus" class="lite-filter-status" aria-live="polite"></span>
       `;
       table.parentElement?.insertAdjacentElement('beforebegin', filterBar);
     }
 
     const filterStatus = document.getElementById('liteFilterStatus');
+    const copyVisibleBtn = document.getElementById('liteCopyVisibleBtn');
     const copyUnknownBtn = document.getElementById('liteCopyUnknownBtn');
+    const categoryFilter = document.getElementById('liteCategoryFilter');
+    const categoryFilterRow = document.getElementById('liteCategoryFilterRow');
 
     function rowKind(row) {
       const cells = row.querySelectorAll('td');
@@ -74,11 +89,49 @@
       return 'matched';
     }
 
+    function rowCategoryMatches(row) {
+      if (activeCategory === 'all') return true;
+      return row.textContent.includes(`分類: ${activeCategory}`);
+    }
+
+    function currentCategories() {
+      return [...categoryGrid.querySelectorAll('.category-chip')]
+        .map((chip) => chip.textContent.replace(/\s+\d+\s*$/, '').trim())
+        .filter(Boolean);
+    }
+
+    function syncCategoryFilters() {
+      if (!categoryFilter || !categoryFilterRow) return;
+      const categories = currentCategories();
+      if (activeCategory !== 'all' && !categories.includes(activeCategory)) activeCategory = 'all';
+      categoryFilterRow.hidden = categories.length === 0;
+      categoryFilter.innerHTML = '';
+
+      const values = ['all', ...categories];
+      for (const value of values) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'lite-filter-btn';
+        button.dataset.liteCategory = value;
+        button.textContent = value === 'all' ? 'すべて' : value;
+        const active = value === activeCategory;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-pressed', active ? 'true' : 'false');
+        button.addEventListener('click', () => {
+          activeCategory = value;
+          syncCategoryFilters();
+          applyFilter();
+        });
+        categoryFilter.appendChild(button);
+      }
+    }
+
     function applyFilter() {
       const rows = [...tableBody.querySelectorAll('tr')];
       let visible = 0;
       for (const row of rows) {
-        const show = activeFilter === 'all' || rowKind(row) === activeFilter;
+        const stateMatches = activeFilter === 'all' || rowKind(row) === activeFilter;
+        const show = stateMatches && rowCategoryMatches(row);
         row.hidden = !show;
         if (show) visible += 1;
       }
@@ -98,21 +151,30 @@
       });
     });
 
-    copyUnknownBtn?.addEventListener('click', async () => {
-      const names = [...tableBody.querySelectorAll('tr')]
-        .filter((row) => rowKind(row) === 'unknown')
+    async function copyNames(rows, emptyMessage, successPrefix) {
+      const names = rows
         .map((row) => row.querySelector('td')?.textContent?.trim())
         .filter(Boolean);
       if (!names.length) {
-        if (filterStatus) filterStatus.textContent = '未分類の成分はありません。';
+        if (filterStatus) filterStatus.textContent = emptyMessage;
         return;
       }
       try {
         await navigator.clipboard.writeText(names.join('\n'));
-        if (filterStatus) filterStatus.textContent = `未分類 ${names.length} 件をコピーしました。`;
+        if (filterStatus) filterStatus.textContent = `${successPrefix} ${names.length} 件をコピーしました。`;
       } catch (error) {
         if (filterStatus) filterStatus.textContent = 'コピーに失敗しました。';
       }
+    }
+
+    copyVisibleBtn?.addEventListener('click', () => {
+      const rows = [...tableBody.querySelectorAll('tr')].filter((row) => !row.hidden);
+      return copyNames(rows, '表示中の成分はありません。', '表示中');
+    });
+
+    copyUnknownBtn?.addEventListener('click', () => {
+      const rows = [...tableBody.querySelectorAll('tr')].filter((row) => rowKind(row) === 'unknown');
+      return copyNames(rows, '未分類の成分はありません。', '未分類');
     });
 
     function update() {
@@ -148,6 +210,7 @@
         }
       }
 
+      syncCategoryFilters();
       applyFilter();
     }
 

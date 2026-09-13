@@ -17,6 +17,7 @@ on:
       - 'tools/_shared/check-fastscan-ocr-confusion.mjs'
       - 'tools/_shared/check-fastscan-ocr-line-repair.mjs'
       - 'tools/_shared/check-fastscan-result-controls.mjs'
+      - 'tools/_shared/check-lite-wave3-navigation.mjs'
       - 'tools/_shared/check-cosmetics-cross-tool-release.mjs'
       - 'tools/_shared/check-cosmetics-wave2-release.mjs'
       - 'tools/_shared/COSMETICS_ACCURACY_BENCHMARK.md'
@@ -74,6 +75,8 @@ jobs:
         run: node tools/_shared/check-fastscan-ocr-line-repair.mjs
       - name: FastScan result controls regression
         run: node tools/_shared/check-fastscan-result-controls.mjs
+      - name: Lite wave 3 navigation regression
+        run: node tools/_shared/check-lite-wave3-navigation.mjs
       - name: Cosmetics 100-case accuracy benchmark
         run: node tools/_shared/check-cosmetics-accuracy-benchmark.mjs
       - name: Cosmetics full-label coverage benchmark
