@@ -53,9 +53,9 @@ The source URL and retrieval date are part of the record because manufacturers m
 - remove a trailing formula/code annotation that is not an ingredient;
 - collapse source line wrapping without rewriting ingredient names.
 
-Slash-bearing names and aliases are deliberately retained. If the current parser/dictionary does not recognize them, that remains visible as a real corpus gap for the next PR rather than being hidden by corpus cleanup.
+Slash-bearing names and aliases are deliberately retained. If the current parser/dictionary does not recognize them, that remains visible as a real corpus gap rather than being hidden by corpus cleanup.
 
-## Baseline rule
+## Coverage contract
 
 Run:
 
@@ -63,12 +63,22 @@ Run:
 node tools/_shared/check-cosmetics-real-label-corpus.mjs
 ```
 
-The checker validates provenance/schema/diversity and reports current exact-identity coverage plus frequent unknown strings.
+PR25 established the source-backed baseline at **190 / 293 exact identities = 64.85%**.
 
-PR25 establishes a baseline and therefore does **not** impose a release coverage threshold. PR26 must use the measured gaps as the input for dictionary/parser improvements. It must not improve the score by deleting hard products, rewriting source ingredients into already-known names, or weakening ambiguous-key protections.
+PR26 keeps the same 12 products and the same source labels and raises the release floor to:
+
+```txt
+exact identity coverage >= 80%
+```
+
+The score may improve only through reviewed parser/dictionary identity coverage. It must not improve by deleting hard products, rewriting source labels into already-known names, or weakening ambiguity protections.
+
+Broad or incomplete labels remain non-exact where one chemical identity cannot be justified. In particular, `パラベン` remains a group label rather than one paraben identity, and the truncated `Ammonium Polyacryloyldimethyl` remains non-exact.
+
+Wave 1 adds reviewed full INCI names and label variants observed in this corpus, including multilingual Water labels, Japanese display names, surfactants, chelators, polymers, emollients, and other exact identities. These additions are shared by Lite and FastScan because both tools use the maintained dictionary set.
 
 ## Privacy and monetization
 
 The corpus contains public product-label text only. It contains no user-entered ingredient lists, OCR images, filenames, scan results, or personal data.
 
-Amazon affiliate links are now live as a separate neutral commerce layer. Corpus records and user analysis results must not select or construct affiliate destinations dynamically, and corpus contents must not be sent to affiliate analytics. Affiliate analytics remain limited to coarse fixed metadata under the shared cosmetics affiliate contract.
+Amazon affiliate links are live as a separate neutral commerce layer. Corpus records and user analysis results must not select or construct affiliate destinations dynamically, and corpus contents must not be sent to affiliate analytics. Affiliate analytics remain limited to coarse fixed metadata under the shared cosmetics affiliate contract.
