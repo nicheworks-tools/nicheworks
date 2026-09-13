@@ -87,15 +87,17 @@ check(!resultUi.includes('注意して確認'), 'legacy safety-framed caution la
 for (const [name, spec] of [['Lite', liteSpec], ['FastScan', fastSpec]]) {
   check(spec.includes('Specification status: `complete`'), `${name} SPEC must remain complete`);
   check(/raw ingredient|raw analysis|raw ingredient text|pasted ingredient/i.test(spec), `${name} SPEC must retain raw-input privacy language`);
-  check(/Amazon Associates is not active|enabled = false/i.test(spec), `${name} SPEC must retain inactive Amazon state`);
+  check(/trackingMode = special_link|Special Link/i.test(spec), `${name} SPEC must document the live Special Link contract`);
 }
 
 // Amazon activation invariant.
-check(affiliateConfig.includes('enabled: false'), 'Amazon config must remain disabled');
-check(affiliateConfig.includes('associateTag: ""'), 'Amazon associate tag must remain empty');
+check(affiliateConfig.includes('enabled: true'), 'Amazon config must be active');
+check(affiliateConfig.includes('trackingMode: "special_link"'), 'Amazon config must use special_link mode');
+check(affiliateConfig.includes('associateTag: ""'), 'no separate Associate tag may be invented for the supplied Special Link');
+check(affiliateConfig.includes('href: "https://amzn.to/4xNbcDO"'), 'verified skincare Special Link missing');
 check(affiliateConfig.includes('placement: "after-summary"'), 'Lite affiliate placement changed');
 check(affiliateConfig.includes('placement: "after-results"'), 'FastScan affiliate placement changed');
-check(!/https?:\/\/[^"']*amazon\./i.test(affiliateConfig), 'live Amazon URL must not exist before activation');
+check((affiliateConfig.match(/links: Object\.freeze\(\[skincareSearch\]\)/g) || []).length === 2, 'both cosmetics tools must use the verified skincare Special Link');
 
 // Benchmark/release quality floor.
 check(Array.isArray(fixtures) && fixtures.length >= 12, 'full-label fixture set must retain at least 12 cases');
@@ -115,6 +117,7 @@ console.log(JSON.stringify({
   tools: ['cosmetic-ingredient-checker-lite', 'inci-fastscan'],
   shared_dictionary_files: dictFiles.length,
   full_label_fixtures: fixtures.length,
-  amazon_enabled: false,
-  release_gate: 'amazon-ready-improvement-wave'
+  amazon_enabled: true,
+  amazon_tracking_mode: 'special_link',
+  release_gate: 'amazon-live-quality-wave'
 }, null, 2));
