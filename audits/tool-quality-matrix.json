@@ -2,8 +2,8 @@
   "schema_version": 1,
   "generated_from": "tools/tools-index.json",
   "common_specification": "common-spec/spec-ja.md",
-  "registered_tool_count": 87,
-  "record_count": 87,
+  "registered_tool_count": 88,
+  "record_count": 88,
   "status_enum": [
     "PASS",
     "FIX",
@@ -11,7 +11,7 @@
     "NEEDS_DECISION"
   ],
   "counts": {
-    "PASS": 87,
+    "PASS": 88,
     "FIX": 0,
     "BLOCKED": 0,
     "NEEDS_DECISION": 0
@@ -5880,6 +5880,136 @@
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
       ]
+    },
+    {
+      "slug": "reconcile",
+      "display_name": {
+        "ja": "NicheWorks Reconcile",
+        "en": "NicheWorks Reconcile"
+      },
+      "implementation": "tools/reconcile/",
+      "active_state": "active",
+      "category": [
+        "reconcile",
+        "finance",
+        "csv",
+        "xlsx"
+      ],
+      "spec": "docs/tools/reconcile.md",
+      "spec_coverage": "complete",
+      "implementation_exists": true,
+      "layout_class": "desktop-wide",
+      "language_policy": "bilingual single-page",
+      "functional_completeness": "documented-current-contract",
+      "inputs_summary": "Two local CSV/XLSX transaction files, CSV/XLSX parser settings, column mappings, Free date controls, and verified-Pro matching/profile settings.",
+      "outputs_summary": "Deterministic reconciliation statuses and review table, Free CSV audit export, and verified-Pro XLSX report plus saved-rule JSON/profile operations.",
+      "network_dependency": {
+        "status": "present",
+        "external_hosts": [
+          "ofuse.me",
+          "ko-fi.com"
+        ]
+      },
+      "storage": {
+        "localStorage": true,
+        "sessionStorage": false
+      },
+      "capabilities": {
+        "copy": false,
+        "download": true
+      },
+      "responsive_status": "no-observed-defect",
+      "usage_status": "recommended-and-present",
+      "faq_status": "optional-absent",
+      "ga4_status": "present",
+      "adsense_status": "present",
+      "canonical_status": "present",
+      "json_ld_status": "present",
+      "donation_status": "present",
+      "privacy_compliance": "documented",
+      "functional_test_status": "behavior-test-present",
+      "automated_tests": [
+        "tools/reconcile/tests/export.test.mjs",
+        "tools/reconcile/tests/normalize.test.mjs",
+        "tools/reconcile/tests/parser.test.mjs",
+        "tools/reconcile/tests/reconcile-engine.test.mjs",
+        "tools/reconcile/tests/reconcile-quality.test.mjs",
+        "tools/reconcile/tests/reconcile-stress.test.mjs",
+        "tools/reconcile/tests/rules-store.test.mjs",
+        "tools/reconcile/tests/xlsx-adapter.test.mjs",
+        "tools/reconcile/tests/xlsx-real-vendor.test.mjs"
+      ],
+      "outstanding_issues": [],
+      "final_state": "PASS",
+      "evidence": [
+        "tools/reconcile/index.html",
+        "tools/reconcile/app.mjs",
+        "tools/reconcile/styles.css",
+        "tools/reconcile/SPEC.md",
+        "tools/reconcile/usage.html",
+        "tools/reconcile/parser.mjs",
+        "tools/reconcile/normalize.mjs",
+        "tools/reconcile/reconcile-engine.mjs",
+        "tools/reconcile/export.mjs",
+        "tools/reconcile/xlsx-adapter.mjs"
+      ],
+      "usage_html_present": true,
+      "usage_en_html_present": false,
+      "common_spec_compliance": "no-hard-gap-found",
+      "obvious_broken_or_incomplete_behavior": [],
+      "help_documentation": {
+        "main_page_summary": "required-and-present",
+        "usage": "recommended-and-present",
+        "faq": "optional-absent",
+        "usage_evidence": [
+          "tools/reconcile/usage.html"
+        ],
+        "usage_language_coverage": {
+          "ja": true,
+          "en": false
+        }
+      },
+      "test_evidence": [
+        {
+          "path": "tools/reconcile/tests/export.test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/reconcile/tests/normalize.test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/reconcile/tests/parser.test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/reconcile/tests/reconcile-engine.test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/reconcile/tests/reconcile-quality.test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/reconcile/tests/reconcile-stress.test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/reconcile/tests/rules-store.test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/reconcile/tests/xlsx-adapter.test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/reconcile/tests/xlsx-real-vendor.test.mjs",
+          "classification": "behavior test"
+        }
+      ],
+      "decision_gaps": [],
+      "hard_compliance_gaps": [],
+      "recommendation_only_gaps": []
     },
     {
       "slug": "redirect-unwrapper",
