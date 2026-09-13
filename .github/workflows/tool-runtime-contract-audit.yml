@@ -12,6 +12,7 @@ on:
       - 'scripts/check-tool-runtime-contracts-wave7.mjs'
       - 'scripts/check-amazon-ready-tools.mjs'
       - 'scripts/check-size-audio-growth-wave.mjs'
+      - 'scripts/check-size-audio-growth-wave3.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
   push:
     branches:
@@ -26,6 +27,7 @@ on:
       - 'scripts/check-tool-runtime-contracts-wave7.mjs'
       - 'scripts/check-amazon-ready-tools.mjs'
       - 'scripts/check-size-audio-growth-wave.mjs'
+      - 'scripts/check-size-audio-growth-wave3.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
 
 permissions:
@@ -63,6 +65,9 @@ jobs:
 
       - name: Check Size and Tiny Audio growth wave
         run: node scripts/check-size-audio-growth-wave.mjs
+
+      - name: Check Size and Tiny Audio growth wave 3
+        run: node scripts/check-size-audio-growth-wave3.mjs
 
       - name: Verify audit is read-only
         run: |
