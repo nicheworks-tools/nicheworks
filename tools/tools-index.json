@@ -857,8 +857,8 @@
       "slug": "phone-quickcheck",
       "title_en": "Phone QuickCheck",
       "title_ja": "スマホ QuickCheck",
-      "desc_en": "Quickly check phone size, charging port, charger guidance, power-bank estimates, and official manufacturer links.",
-      "desc_ja": "スマホのサイズ・重さ・充電端子・充電器目安・モバイルバッテリー充電回数・公式情報を素早く確認します。",
+      "desc_en": "Quickly check phone size, weight, charging port, charger requirements, power-bank estimates, and official information.",
+      "desc_ja": "スマホのサイズ・重さ・充電端子・充電器条件・モバイルバッテリー充電回数の目安と公式情報を素早く確認します。",
       "tags": [
         "phone",
         "smartphone",
