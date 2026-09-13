@@ -19,7 +19,7 @@ Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one d
 5. Resolve an exact row from the bundled reference table, or for supported women's clothing numeric ranges resolve a numeric input that falls inside the displayed range row.
 6. Immediately display the corresponding JP/US/EU row and a concise source-to-target summary.
 7. Optionally pin up to four direct-conversion rows for page-local comparison.
-8. Optionally use the measurement section for a conservative nearby-size estimate.
+8. Optionally use the measurement section for a conservative nearby-size estimate and hand the resulting JP size into the direct converter without retyping it.
 
 ## Current functional contract
 
@@ -56,6 +56,7 @@ Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one d
 - Treat a distance of about 0.2 cm or more from the nearest 0.5 cm reference row as boundary context and advise checking adjacent sizes.
 - If foot width is supplied, calculate a simple width/length ratio only as context. It is not a JIS width/last or formal shoe-width classification.
 - Show the calculation basis and allow the result text to be copied locally.
+- A valid in-range shoe estimate exposes a local handoff action that copies only the estimated JP size and the chart context into the direct converter.
 
 ### Clothing measurement estimate
 
@@ -67,11 +68,20 @@ Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one d
 - For an in-range result, show each supplied measurement against the selected row's range.
 - Warn when a supplied measurement lies within 1 cm of a selected-row boundary.
 - Allow the result text to be copied locally.
+- A valid clothing estimate exposes the same local handoff action using the estimated JP alpha size and the chart context.
+
+### Fit-to-converter handoff
+
+- The handoff is available only when a valid measurement result exists; out-of-range/error results do not expose it.
+- Capture the men's/women's chart context at the time the valid result is rendered so a later chart change cannot silently reinterpret an old fit result.
+- On handoff, set category/chart/base to the corresponding measurement context, copy only the estimated JP size into the direct converter, and run the existing direct lookup.
+- Do not copy foot length, foot width, waist, chest/bust, hip, score, boundary flags, or any raw measurement into the direct-conversion input, URL, analytics, or affiliate destination.
+- The resulting direct conversion may expose the normal Amazon insertion point only if the separate affiliate configuration is later enabled with valid targets.
 
 ### Shared behavior
 
 - Switch JA/EN UI on the same page and persist only the UI-language choice.
-- Perform conversion, comparison, input normalization, and measurement calculations locally in the browser.
+- Perform conversion, comparison, input normalization, measurement calculations, and fit handoff locally in the browser.
 - Do not apply brand-wide numerical size offsets. `brand.json` is not part of the active calculation path.
 - Results are approximate and official seller/brand charts take precedence.
 
@@ -84,6 +94,7 @@ Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one d
 - Optional compare action on a valid direct-conversion row.
 - Shoe measurements: foot length and optional width.
 - Clothing measurements: garment type, unit, waist, optional chest/bust, optional hip.
+- Optional fit-to-converter handoff action on a valid measurement result.
 - JA/EN UI language.
 
 ## Outputs
@@ -95,6 +106,7 @@ Provide a fast, approximate JP/US/EU clothing and shoe size conversion for one d
 - Full JP/US/EU reference table.
 - Approximate shoe fit result, nearby rows, or explicit out-of-range state.
 - Approximate clothing size result with measurement basis, or explicit out-of-range state.
+- Local action that can move a valid estimated JP size into the direct converter without moving the raw measurements.
 - Visible guidance that all results are general estimates.
 
 ## Amazon affiliate readiness
@@ -109,21 +121,22 @@ Default configuration remains deliberately disabled:
 
 While disabled or without valid Amazon HTTPS targets, no Amazon CTA, disclosure, or affiliate click event is emitted. When Amazon Associates is ready, activation requires only verified target URLs plus `enabled: true`.
 
-The active affiliate insertion point remains immediately after a valid direct-conversion result. Measurement inputs/results are never encoded into affiliate URLs or affiliate analytics. Comparison candidates are also never encoded into affiliate URLs or affiliate analytics. Query-intent shortcut state and normalized raw input syntax are also not added to affiliate URLs or analytics.
+The active affiliate insertion point remains immediately after a valid direct-conversion result. Measurement inputs/results are never encoded into affiliate URLs or affiliate analytics. Comparison candidates are also never encoded into affiliate URLs or affiliate analytics. Query-intent shortcut state and normalized raw input syntax are also not added to affiliate URLs or analytics. A fit handoff may cause the normal direct-conversion CTA to become eligible, but the handoff transfers only the estimated JP size/category/chart state; raw measurements never enter the affiliate payload.
 
 ## State and persistence
 
 - Current category, chart, base system, selected row, direct size text, and measurement inputs are page state only.
-- Query-intent range-resolution state, retail-input normalization state, and shortcut context are page state only.
+- Query-intent range-resolution state, retail-input normalization state, shortcut context, and fit-handoff context are page state only.
 - Candidate comparison rows are page state only and capped at four.
 - Measurement/profile history is not persisted.
 - JA/EN preference may be stored as `nw_lang` in localStorage.
 
 ## Privacy and network behavior
 
-- Size conversion, comparison, input normalization, and fit calculations run locally in the browser.
+- Size conversion, comparison, input normalization, fit calculations, and fit handoff run locally in the browser.
 - Direct size text, pinned comparison rows, and measurements are not sent to a fitting backend or affiliate destination.
-- Query-intent, input-normalization, and comparison helpers run locally and do not create new network requests.
+- Fit handoff transfers only the estimated JP size and category/chart context inside the page; it does not create a network request.
+- Query-intent, input-normalization, comparison, and fit-handoff helpers run locally and do not create new network requests.
 - Ads and analytics may load separately under the NicheWorks common specification.
 
 ## Language mode
@@ -145,6 +158,7 @@ The page uses a direct-input conversion card first, followed by query-intent/con
 - Retail syntax normalization does not add UK/CN/kids systems and does not interpolate unsupported quarter sizes.
 - Numeric-in-range resolution does not convert between standards mathematically; it only maps an input into an already bundled displayed range row.
 - The comparison tray compares bundled conversion rows; it does not rank products, brands, fit quality, or purchase suitability.
+- Fit handoff does not turn a rough measurement estimate into a guarantee; it only avoids retyping the estimated JP size into the direct converter.
 - UK, CN, kids, wide sizing, and verified brand/model-specific official charts require separate verified data work.
 - The tool is not a virtual fitting service.
 
@@ -166,6 +180,9 @@ The page uses a direct-input conversion card first, followed by query-intent/con
 - [ ] Clothing fit requires waist and supports cm/inch conversion.
 - [ ] Clothing measurements outside the overall chart envelope return out-of-range, not the smallest/largest size.
 - [ ] In-range clothing results show supplied measurements against selected-row ranges and flag near-boundary measurements.
+- [ ] Valid shoe/clothing estimates can hand only their estimated JP size plus category/chart context into the direct converter.
+- [ ] Out-of-range/error measurement results do not expose a fit-handoff action.
+- [ ] Fit handoff never copies raw measurements into URL, analytics, or affiliate state.
 - [ ] Shoe/clothing estimate text can be copied locally.
 - [ ] No active brand-wide numerical correction changes a calculated result.
 - [ ] Default affiliate configuration keeps Amazon CTA/disclosure hidden.
@@ -176,6 +193,7 @@ The page uses a direct-input conversion card first, followed by query-intent/con
 - `tools/size-converter/index.html`
 - `tools/size-converter/app.js`
 - `tools/size-converter/query-intent.js`
+- `tools/size-converter/fit-handoff.js`
 - `tools/size-converter/style.css`
 - `tools/size-converter/affiliate-config.js`
 - `assets/amazon-affiliate.js`

@@ -300,6 +300,14 @@
     document.head.appendChild(style);
   }
 
+  function loadLocalExtension(src, marker) {
+    if (document.querySelector(`script[data-size-converter-extension="${marker}"]`)) return;
+    const script = document.createElement("script");
+    script.src = src;
+    script.dataset.sizeConverterExtension = marker;
+    document.head.appendChild(script);
+  }
+
   input.addEventListener("input", applyRetailInputNormalization, { capture: true });
   input.addEventListener("change", applyRetailInputNormalization, { capture: true });
   input.addEventListener("keydown", (event) => { if (event.key === "Enter") applyRetailInputNormalization(); }, { capture: true });
@@ -318,6 +326,7 @@
   installStyles();
   renderContext();
   renderCompare();
+  loadLocalExtension("./fit-handoff.js", "fit-handoff");
 
   window.addEventListener("pagehide", () => quickObserver.disconnect(), { once: true });
 })();
