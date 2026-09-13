@@ -59,11 +59,10 @@ has(behavior, 'men shoes US 4 reference row should match the static representati
 has(behavior, 'women shoes US 8.5 reference row should match the static representative answer');
 has(behavior, 'generic UK runtime field must remain absent while verified-deferred');
 
-// Amazon remains ready-but-inert until separate verified activation.
-has(affiliate, 'enabled: false', 'disabled Amazon config');
-has(affiliate, 'shoes: ""', 'empty shoes target');
-has(affiliate, 'clothing: ""', 'empty clothing target');
-lacks(affiliate, 'https://', 'live affiliate URL before activation');
+// Amazon is activated only with the verified Size Converter targets.
+has(affiliate, 'enabled: true', 'enabled Amazon config');
+has(affiliate, 'shoes: "https://amzn.to/4hnXGRb"', 'verified shoes target');
+has(affiliate, 'clothing: "https://amzn.to/4dxBv8Q"', 'verified clothing target');
 
 if (failures.length) {
   console.error(`Size Converter growth-wave 4 contract failed (${failures.length})`);
@@ -75,5 +74,5 @@ console.log(JSON.stringify({
   status: 'pass',
   tool: 'size-converter',
   wave4: ['static-search-answers', 'data-basis-audit', 'uk-verified-deferral', 'production-data-behavior-lock'],
-  amazon_enabled: false
+  amazon_enabled: true
 }, null, 2));
