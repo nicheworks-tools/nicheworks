@@ -19,7 +19,7 @@ The product is a practical Quick Check utility, not a comprehensive smartphone e
 
 スマートフォン利用者が、機種名からサイズ・重量・充電端子・充電器条件・ワイヤレス充電・モバイルバッテリー充電回数の概算・メーカー公式仕様／マニュアルを短時間で確認できるようにする。
 
-主要導線は `機種を探す → サイズと充電条件を理解する → 必要なアクセサリーの種類を理解する → 公式情報を確認する` とする。将来のAmazon導線はこの実用導線の後段に置き、互換性判定を収益都合で変更しない。
+主要導線は `機種を探す → サイズと充電条件を理解する → 必要なアクセサリーの種類を理解する → Amazonまたは公式情報を確認する` とする。Amazon導線は実用導線の後段に置き、互換性判定を収益都合で変更しない。
 
 ## 3. Inputs
 
@@ -46,7 +46,7 @@ The product is a practical Quick Check utility, not a comprehensive smartphone e
 - バッテリー容量がunknownの場合は概算を生成しない。
 - メーカーが通常仕様でmAhを公表していない機種について、第三者値を無断でメーカー公式値として扱わない。
 - アクセサリー案内は端末×個別商品マトリクスではなく、USB-Cケーブル、USB-PD、PPS、Samsung Super Fast Charging、Qi/Qi2、USB-Cモバイルバッテリー等の再利用可能クラスから解決する。
-- 初期公開では維持済み `amazonUrl` をnullのままとし、ライブAmazon導線を有効化しない。
+- Amazon導線は共通affiliate helperと固定tracking IDを使い、維持済みアクセサリークラスごとの固定検索語だけからAmazon Japan検索URLを生成する。ユーザーの検索文字列はAmazon URLへ渡さない。
 
 ## 5. Outputs
 
@@ -59,7 +59,7 @@ The product is a practical Quick Check utility, not a comprehensive smartphone e
 - 公式マニュアル／公式サポートURL。
 - 最終確認日。
 
-初期公開ではAmazon価格、在庫、配送情報、ライブ商品リンクを出力しない。
+Amazon価格、在庫、評価、レビュー数、配送情報は出力しない。Amazon購入導線は商品詳細の転載ではなく、互換アクセサリークラスからAmazon検索へ明示的に移動するだけとする。
 
 Observed delivery capabilities: clipboard copy **not found**; download/export **not found**.
 
@@ -79,7 +79,7 @@ Observed delivery capabilities: clipboard copy **not found**; download/export **
 
 言語設定は共通方針に従い `nw_lang` のlocalStorageを利用可能な場合に保存する。初期版ではユーザーアカウント、保存済み端末プロフィール、サーバー側履歴を持たない。
 
-外部通信は共通のGA4 / AdSense、支援リンク、およびユーザーが明示的に開くメーカー公式リンク等に限る。初期公開ではAmazon価格・在庫取得やAmazonページのスクレイピングを行わない。
+外部通信は共通のGA4 / AdSense、支援リンク、ユーザーが明示的に開くメーカー公式リンク、および明示的にクリックしたAmazon Associatesリンク等に限る。Amazon価格・在庫取得やAmazonページのスクレイピングは行わない。affiliate analyticsには共通契約のcoarse metadataだけを送り、モデル名・検索語等は送信しない。
 
 Persistence evidence: `localStorage`. Core phone search and compatibility processing require no application backend.
 
@@ -112,7 +112,7 @@ Primary search intent includes smartphone size, charging connector/cable type, c
 
 Preserve the existing NicheWorks GA4 and AdSense identifiers/code and follow common-spec advertising placement rules. Ads must not be inserted into the phone selection flow in a way that obscures the primary controls or masquerades as compatible-accessory recommendations.
 
-Amazon affiliate activation is separate from AdSense. Live Amazon destinations require a later reviewed change with compliant Associates setup and disclosure; no scraped or hard-coded live Amazon price/availability claims are permitted by this baseline.
+Amazon affiliate links are separate from AdSense. Active Phone QuickCheck CTAs must use the shared helper, identify Amazon in the label, show the Associates disclosure, use only canonical accessory-class search terms, and never display scraped or hard-coded Amazon price/availability claims.
 
 ## 12. Donation/support contract
 
@@ -138,7 +138,7 @@ Current main-page donation/support evidence: **present**.
 - [x] Recharge estimates use the single maintained 0.67 approximation and one-decimal display.
 - [x] Charger guidance is not intentionally conflated with device-side maximum input.
 - [x] Official manufacturer specification/manual links remain distinct from accessory guidance.
-- [x] Live Amazon affiliate URLs, prices, and inventory remain disabled at initial public launch.
+- [x] Amazon accessory search CTAs are active through the shared helper with fixed tracking ID, visible disclosure, canonical accessory queries, and coarse analytics only.
 
 Automated test evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/contract test). Behavior-level status: **behavior-test-missing**; this is recorded as a recommendation-only gap rather than hidden as behavior coverage.
 
@@ -148,7 +148,7 @@ Automated test evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/
 - A manufacturer-nonpublic battery mAh value may remain unknown; coverage completeness does not justify guessing it.
 - Recharge counts are approximate full-charge equivalents, not guaranteed real-world charging counts.
 - Accessory classes indicate compatibility requirements, not a guarantee that every third-party product in that broad class will work.
-- Initial launch keeps all Amazon destinations disabled until a separate monetization review.
+- Amazon destinations are limited to reviewed tagged searches derived from maintained accessory classes; they do not override or imply device compatibility beyond the charging facts shown by the tool.
 - Per-model indexable landing pages are not part of the initial SEO contract.
 
 ### Implementation evidence
@@ -158,4 +158,7 @@ Automated test evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/
 - `tools/phone-quickcheck/style.css`
 - `tools/phone-quickcheck/data/phones.json`
 - `tools/phone-quickcheck/data/accessories.json`
+- `tools/phone-quickcheck/affiliate-config.js`
+- `tools/phone-quickcheck/affiliate-runtime.js`
+- `scripts/check-phone-quickcheck-affiliate.mjs`
 - `tools/phone-quickcheck/SPEC.md`

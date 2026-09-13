@@ -58,8 +58,8 @@
       rechargeNote: "変換効率67%を用いた簡易推定です。実際は使用状況・温度・ケーブル・バッテリー状態などで変動します。",
       thirdPartyBattery: "メーカー非公表のため、維持対象の第三者参考値です。",
       whatYouNeed: "このスマホで必要なもの",
-      affiliatePending: "購入リンクは準備中です",
-      affiliatePendingBody: "互換カテゴリは端末の確認済み充電条件から判定しています。Amazonリンクはアソシエイト設定後に有効化します。",
+      affiliatePending: "購入候補を表示できません",
+      affiliatePendingBody: "互換カテゴリは確認済み充電条件から判定しています。購入前にAmazonの商品ページで端子・規格・出力条件をご確認ください。",
       officialInfo: "公式情報",
       officialSpecs: "メーカー仕様 ↗",
       officialManual: "公式マニュアル ↗",
@@ -111,8 +111,8 @@
       rechargeNote: "Simple estimate using 67% conversion efficiency. Real results vary with use, temperature, cable, battery condition, and other factors.",
       thirdPartyBattery: "Reference value because the manufacturer does not publish the maintained mAh figure.",
       whatYouNeed: "What you need",
-      affiliatePending: "Purchase links are being prepared",
-      affiliatePendingBody: "Compatibility classes are derived from verified charging facts. Amazon links will be enabled after the Associates setup is configured.",
+      affiliatePending: "No purchase suggestions available",
+      affiliatePendingBody: "Compatibility classes are derived from verified charging facts. Confirm connector, protocol, and output requirements on Amazon before purchase.",
       officialInfo: "Official information",
       officialSpecs: "Official specs ↗",
       officialManual: "Official manual ↗",
@@ -392,9 +392,9 @@
 
   function accessoryHtml(accessories) {
     if (!accessories.length) {
-      return `<div class="recommend"><strong>${escapeHtml(msg('affiliatePending'))}</strong><p class="detail-note">${escapeHtml(msg('affiliatePendingBody'))}</p><div class="affiliate-grid"><span class="affiliate-btn" aria-disabled="true">Amazon</span></div></div>`;
+      return `<div class="recommend"><strong>${escapeHtml(msg('affiliatePending'))}</strong><p class="detail-note">${escapeHtml(msg('affiliatePendingBody'))}</p><div class="affiliate-grid"></div></div>`;
     }
-    return `<div class="recommend">${accessories.map((item) => `<div class="need"><span class="check">✓</span><div><strong>${escapeHtml(state.lang === 'ja' ? item.labelJa : item.labelEn)}</strong><small>${escapeHtml(state.lang === 'ja' ? (item.noteJa || '') : (item.noteEn || ''))}</small></div></div>`).join('')}<p class="detail-note">${escapeHtml(msg('affiliatePendingBody'))}</p><div class="affiliate-grid"><span class="affiliate-btn" aria-disabled="true">Amazon</span></div></div>`;
+    return `<div class="recommend">${accessories.map((item) => `<div class="need"><span class="check">✓</span><div><strong>${escapeHtml(state.lang === 'ja' ? item.labelJa : item.labelEn)}</strong><small>${escapeHtml(state.lang === 'ja' ? (item.noteJa || '') : (item.noteEn || ''))}</small></div></div>`).join('')}<p class="detail-note">${escapeHtml(msg('affiliatePendingBody'))}</p><div class="affiliate-grid"></div></div>`;
   }
 
   function protocolLabel(phone) {
