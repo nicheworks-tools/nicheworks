@@ -111,21 +111,7 @@ Preserve the existing support block and common-spec behavior unless a separate s
 - FAQ: present/optional under the current implementation.
 - Existing usage/help links remain subordinate to the core redaction workflow.
 
-## 14. Monetization and entitlement contract
-
-`MONETIZATION_CLASSIFICATION_87.md` classifies `api-key-token-redactor` as `PRO_BUNDLE`. Future live paid product authority is shared `nicheworks.pro`; legacy `nicheworks_pro` remains compatibility/migration state only.
-
-The eight exact current paid operation boundaries are listed in section 5. Free detection/redaction, safe findings/summaries, redacted-output copy and TXT download remain independent of billing availability.
-
-The current legacy bridge may activate paid behavior only when `status.active === true` and `status.entitlement === "nicheworks_pro"`. Missing entitlement must fail closed rather than being replaced with the expected entitlement.
-
-Because the current app reads `data-pro-active` for custom-rule creation and Pro-active scanning, the bridge revalidates exact legacy state in capture phase before ordinary Redact/sample actions. Pro-only profile/custom-rule/review/export controls are also revalidated and blocked at capture time while inactive. Manually editing `data-pro-active` or unhiding the Pro section therefore does not unlock the ordinary UI path.
-
-`tools/api-key-token-redactor/product-scoped-controller.mjs` remains non-live staging. It exposes exactly the eight paid operations and delegates server verification to `assets/nw-product-scoped-controller.mjs`. For live migration, configured product ID must be `nicheworks.pro`; no API-Key-Redactor-specific paid product is authorized.
-
-Bundle price/currency, Stripe Product/Price, production feature IDs, restore/account policy, purchaser migration and rollout timing remain unresolved.
-
-## 15. Functional acceptance tests
+## 14. Functional acceptance tests
 
 - [ ] Supported secret patterns in sample or pasted text can be detected and replaced according to the selected masking mode.
 - [ ] Category and severity counts reflect the current findings and clear/reset removes the current working result.
@@ -140,11 +126,25 @@ Bundle price/currency, Stripe Product/Price, production feature IDs, restore/acc
 
 Automated evidence includes `scripts/check-tool-runtime-contracts.mjs`, `scripts/check-api-key-redactor-product-scoped-staging.mjs`, and the tool test-data generator.
 
-## 16. Explicit tool-specific exceptions
+## 15. Explicit tool-specific exceptions
 
 - No language exception beyond bilingual single-page mode.
 - No additional layout exception.
 - Secret-preview hardening is part of the product contract and must not be weakened by monetization migration.
+
+### Monetization and entitlement contract
+
+`MONETIZATION_CLASSIFICATION_87.md` classifies `api-key-token-redactor` as `PRO_BUNDLE`. Future live paid product authority is shared `nicheworks.pro`; legacy `nicheworks_pro` remains compatibility/migration state only.
+
+The eight exact current paid operation boundaries are listed in section 5. Free detection/redaction, safe findings/summaries, redacted-output copy and TXT download remain independent of billing availability.
+
+The current legacy bridge may activate paid behavior only when `status.active === true` and `status.entitlement === "nicheworks_pro"`. Missing entitlement must fail closed rather than being replaced with the expected entitlement.
+
+Because the current app reads `data-pro-active` for custom-rule creation and Pro-active scanning, the bridge revalidates exact legacy state in capture phase before ordinary Redact/sample actions. Pro-only profile/custom-rule/review/export controls are also revalidated and blocked at capture time while inactive. Manually editing `data-pro-active` or unhiding the Pro section therefore does not unlock the ordinary UI path.
+
+`tools/api-key-token-redactor/product-scoped-controller.mjs` remains non-live staging. It exposes exactly the eight paid operations and delegates server verification to `assets/nw-product-scoped-controller.mjs`. For live migration, configured product ID must be `nicheworks.pro`; no API-Key-Redactor-specific paid product is authorized.
+
+Bundle price/currency, Stripe Product/Price, production feature IDs, restore/account policy, purchaser migration and rollout timing remain unresolved.
 
 ### Implementation evidence
 
