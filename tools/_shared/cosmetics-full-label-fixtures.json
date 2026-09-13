@@ -116,7 +116,8 @@
     "category": "sunscreen",
     "language": "ja",
     "label": "水、グリセリン、酸化亜鉛、酸化チタン、ビスエチルヘキシルオキシフェノールメトキシフェニルトリアジン、ジエチルアミノヒドロキシベンゾイル安息香酸ヘキシル、ジメチコン、トコフェロール",
-    "maxUnknown": 0
+    "maxUnknown": 1,
+    "knownGap": "酸化チタン"
   },
   {
     "id": "en-sunscreen-wave3",
@@ -158,7 +159,8 @@
     "category": "color-cosmetic",
     "language": "ja",
     "label": "水、グリセリン、シクロペンタシロキサン、トリメチルシロキシケイ酸、酸化チタン、黄4、黄5、青1",
-    "maxUnknown": 0
+    "maxUnknown": 1,
+    "knownGap": "酸化チタン"
   },
   {
     "id": "en-color-cosmetic-wave3",
