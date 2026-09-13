@@ -31,12 +31,12 @@ function syntax(rel) {
 // Size Converter: current-search intent without inventing new source data.
 has('tools/size-converter/index.html', './query-intent.js');
 has('tools/size-converter/query-intent.js', 'const clothingRanges = {');
-has('tools/size-converter/query-intent.js', 'Men\'s shoes US 4');
-has('tools/size-converter/query-intent.js', 'Women\'s shoes US 4');
+has('tools/size-converter/query-intent.js', "Men's shoes US 4");
+has('tools/size-converter/query-intent.js', "Women's shoes US 4");
 has('tools/size-converter/query-intent.js', 'const COMPARE_MAX = 4;');
 has('tools/size-converter/query-intent.js', 'function addCurrentToCompare()');
 has('tools/size-converter/query-intent.js', 'function copyCompare()');
-has('tools/size-converter/SPEC.md', 'US 4 men's-shoe and women's-shoe shortcuts');
+has('tools/size-converter/SPEC.md', "US 4 men's-shoe and women's-shoe shortcuts");
 has('tools/size-converter/SPEC.md', 'Candidate comparison rows are page state only and capped at four.');
 lacks('tools/size-converter/query-intent.js', 'localStorage.setItem', 'query/compare persistence');
 lacks('tools/size-converter/query-intent.js', 'gtag(', 'query/compare analytics payload');
