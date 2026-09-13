@@ -14,6 +14,7 @@ on:
       - 'tools/_shared/check-cosmetics-canonical-merge.mjs'
       - 'tools/_shared/check-fastscan-result-contract.mjs'
       - 'tools/_shared/check-fastscan-ocr-confusion.mjs'
+      - 'tools/_shared/check-fastscan-result-controls.mjs'
       - 'tools/_shared/check-cosmetics-cross-tool-release.mjs'
       - 'tools/_shared/COSMETICS_ACCURACY_BENCHMARK.md'
       - 'tools/_shared/COSMETICS_ALIAS_POLICY.md'
@@ -62,6 +63,8 @@ jobs:
         run: node tools/_shared/check-fastscan-result-contract.mjs
       - name: FastScan OCR confusion regression
         run: node tools/_shared/check-fastscan-ocr-confusion.mjs
+      - name: FastScan result controls regression
+        run: node tools/_shared/check-fastscan-result-controls.mjs
       - name: Cosmetics 100-case accuracy benchmark
         run: node tools/_shared/check-cosmetics-accuracy-benchmark.mjs
       - name: Cosmetics full-label coverage benchmark

@@ -23,7 +23,9 @@ Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized 
 - For every exact match, retain the canonical INCI name and identify the route used: canonical INCI, Japanese name, declared alias, or shared high-confidence naming variant.
 - Show result cards with canonical INCI, original input, match route, matched spelling, Japanese names where available, category, review cue, and neutral explanatory note.
 - Display `辞書一致 / Dictionary match`, `追加確認 / Additional review`, and `未一致 / Unmatched` as reference states; these are not safety or danger grades.
+- Allow result cards to be filtered by all / dictionary match / additional review / unmatched without rerunning analysis.
 - For sufficiently close unmatched spellings, show up to three conservative near-match candidates without automatically replacing user input.
+- A user may explicitly press a candidate to replace the corresponding original spelling in the active input textarea; this action never runs automatically and does not automatically rerun ingredient analysis.
 - Treat the Japanese-label tab as Japanese-name/alias matching, not machine translation.
 - Provide JP/EN UI and explicit warnings that OCR can misread text and ingredient results are not medical or safety guarantees.
 - Link to Cosmetic Ingredient Checker Lite near the lower related-tools area for users who only need a fast paste workflow.
@@ -32,7 +34,7 @@ Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized 
 
 - Pasted English/INCI or Japanese ingredient-label text.
 - Optional local image for OCR.
-- INCI/Japanese tab, sample, OCR, reset, and check actions.
+- INCI/Japanese tab, sample, OCR, reset, check, result-filter, and explicit candidate-apply actions.
 - Optional Cmd/Ctrl + Enter check shortcut.
 - UI language.
 
@@ -43,7 +45,9 @@ Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized 
 - Post-OCR review reminder before ingredient matching.
 - Result summary for dictionary matches, additional-review entries, and unmatched items.
 - Detailed match cards exposing canonical INCI, original input spelling, match route, matched name, Japanese names where available, category, and reference note.
-- Conservative close-match suggestions for eligible unmatched entries; suggestions are display-only and never auto-applied.
+- Client-side result filtering by reference state.
+- Conservative close-match suggestions for eligible unmatched entries; no suggestion is auto-applied.
+- When a user explicitly applies a suggestion, only the corresponding source spelling in the active textarea is replaced and the user must run the check again manually.
 
 ## Match-route semantics
 
@@ -60,11 +64,11 @@ The route describes how the name was resolved. It does not imply ingredient conc
 
 ## State and persistence
 
-Ingredient text, selected image, OCR result, image preview, and scan result are current-session browser state. Preview object URLs are revoked when the image is removed/replaced. The current contract does not define saved scan history. UI language preference may be stored locally in the browser.
+Ingredient text, selected image, OCR result, image preview, scan result, and current result filter are current-session browser state. Preview object URLs are revoked when the image is removed/replaced. Candidate application edits the current textarea only. The current contract does not define saved scan history. UI language preference may be stored locally in the browser.
 
 ## Privacy and network behavior
 
-Ingredient text and selected image analysis run in the browser, but the Tesseract.js OCR library is loaded from the external `unpkg.com` CDN. Suite-wide analytics/advertising resources may also load. Raw ingredient text, OCR output, filenames, images, matched ingredients, and complete analysis results must not be added to analytics or affiliate events. The current contract does not claim a fully offline page.
+Ingredient text, result filtering, candidate application, and selected image analysis run in the browser, but the Tesseract.js OCR library is loaded from the external `unpkg.com` CDN. Suite-wide analytics/advertising resources may also load. Raw ingredient text, OCR output, filenames, images, matched ingredients, chosen correction candidates, and complete analysis results must not be added to analytics or affiliate events. The current contract does not claim a fully offline page.
 
 ## Language mode
 
@@ -76,7 +80,7 @@ JP/EN controls switch the same scanner; separate INCI and Japanese-label tabs ha
 
 `hybrid`
 
-Text/OCR input and result panels work on mobile but benefit from wider space for ingredient result review. The current layout is input-first, with explanatory/FAQ content after the primary scanner workflow.
+Text/OCR input and result panels work on mobile but benefit from wider space for ingredient result review. The current layout is input-first, with mobile-scrollable result filters and explanatory/FAQ content after the primary scanner workflow.
 
 ## Monetization readiness
 
@@ -105,15 +109,17 @@ associateTag = empty
 links = empty
 ```
 
-The shared adapter is loaded only when the stable affiliate slot exists. While disabled it clears and hides the slot and emits no affiliate impression/click event. Future activation must not require changes to OCR, ingredient parsing, dictionary matching, result rendering, or the slot ID/placement.
+The shared adapter is loaded only when the stable affiliate slot exists. While disabled it clears and hides the slot and emits no affiliate impression/click event. Future activation must not require changes to OCR, ingredient parsing, dictionary matching, result rendering, result filters, candidate-apply controls, or the slot ID/placement.
 
-When activation is eventually allowed, optional analytics are limited to `affiliate_impression` and `affiliate_click` with generic metadata only: `tool`, `provider`, `placement`, `link_key`. Raw ingredient text, OCR output, filenames, images, matched ingredients, and complete analysis results must never be attached.
+When activation is eventually allowed, optional analytics are limited to `affiliate_impression` and `affiliate_click` with generic metadata only: `tool`, `provider`, `placement`, `link_key`. Raw ingredient text, OCR output, filenames, images, matched ingredients, selected correction candidates, and complete analysis results must never be attached.
 
 ## Limits and non-goals
 
 - OCR may be slow and can omit, split, or misrecognize characters; users must visually verify OCR text before trusting scan results.
 - Image preview is a review aid only; this wave does not rotate/crop/re-encode the selected file before OCR.
 - Near-match suggestions are spelling/OCR repair hints only; they are not authoritative ingredient identification and are never auto-applied.
+- Applying a suggestion is an explicit user editing action, not confirmation that the candidate is correct; the original label should still be checked.
+- Result filters change visibility only and do not change result state or rerun matching.
 - `追加確認 / Additional review` reflects existing dictionary metadata or review cues and is not a declaration that an ingredient is dangerous or unsuitable.
 - Dictionary coverage is finite; an unmatched result is not evidence that an ingredient is unsafe.
 - The tool does not provide medical/dermatological diagnosis, allergy prediction, concentration analysis, product-safety certification, pregnancy suitability, drug-interaction advice, or regulatory approval.
@@ -129,7 +135,9 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - [x] OCR results remain editable and a review cue is shown before ingredient matching.
 - [x] Exact matched results expose canonical INCI plus canonical / Japanese / alias / shared-variant match route metadata.
 - [x] Displayed result states use neutral dictionary/review language rather than presenting a safe/unsafe score.
-- [x] Eligible unmatched spellings can show conservative candidates without auto-replacement.
+- [x] Result cards can be filtered by matched / review / unmatched state without rerunning analysis.
+- [x] Eligible unmatched spellings can show conservative candidates without automatic replacement.
+- [x] A candidate can modify the active input only after an explicit user action, and the analysis is not automatically rerun afterward.
 - [x] Japanese-label wording describes dictionary matching rather than machine translation.
 - [x] JP/EN switching preserves text scan, OCR, dictionary status, and medical/OCR disclaimers.
 - [x] The Lite tool is linked as the paste-only alternative.

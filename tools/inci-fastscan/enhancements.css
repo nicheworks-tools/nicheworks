@@ -45,9 +45,80 @@
   line-height: 1.5;
 }
 
+.fastscan-result-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.fastscan-filter-btn {
+  min-height: 36px;
+  padding: 6px 11px;
+  border: 1px solid rgba(127, 127, 127, 0.3);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+
+.fastscan-filter-btn.is-active {
+  border-color: currentColor;
+  background: rgba(127, 127, 127, 0.12);
+  font-weight: 700;
+}
+
+.fastscan-result-action-status {
+  min-height: 1.25em;
+  margin-top: 8px;
+}
+
+.result-card[hidden] {
+  display: none;
+}
+
+.suggestion-action {
+  appearance: none;
+  border: 1px solid rgba(127, 127, 127, 0.28);
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+
+.suggestion-action small {
+  display: block;
+  margin-top: 2px;
+  opacity: 0.76;
+  font-size: 0.74rem;
+}
+
+.suggestion-action:focus-visible,
+.fastscan-filter-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
 @media (max-width: 640px) {
   .ocr-image-preview-meta {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .fastscan-result-filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: thin;
+  }
+
+  .fastscan-filter-btn {
+    flex: 0 0 auto;
+  }
+
+  .suggestion-action {
+    min-height: 44px;
   }
 }
