@@ -30,7 +30,10 @@ const mappings = [
   ['シュガースクワラン', 'Squalane'],
   ['ラウロイルアスパラギン酸Na液', 'Sodium Lauroyl Aspartate'],
   ['イソステアリルグリセリルエーテル', 'Isostearyl Glyceryl Ether'],
-  ['イソステアリン酸コレステリル', 'Cholesteryl Isostearate']
+  ['イソステアリン酸コレステリル', 'Cholesteryl Isostearate'],
+  ['PEG1540', 'PEG-32'],
+  ['PEG6000', 'PEG-150'],
+  ['トリシロキサン', 'Trisiloxane']
 ];
 
 const exactOwners = new Map();
@@ -68,7 +71,9 @@ for (const unresolved of [
   'パラベン',
   'エデト酸塩',
   'Ammonium Polyacryloyldimethyl',
-  'POE・ジメチコン共重合体'
+  'POE・ジメチコン共重合体',
+  'POEメチルグルコシド',
+  'POE水添ヒマシ油'
 ]) {
   const key = parser.normalizeKey(unresolved);
   const owners = key ? exactOwners.get(key) : null;
@@ -80,7 +85,10 @@ const canonicalRecordPairs = [
   ['Lauryl Hydroxysultaine', 'ラウリルヒドロキシスルホベタイン液', 'surfactant'],
   ['Sodium Lauroyl Aspartate', 'ラウロイルアスパラギン酸Na液', 'surfactant'],
   ['Isostearyl Glyceryl Ether', 'イソステアリルグリセリルエーテル', 'emulsifier'],
-  ['Cholesteryl Isostearate', 'イソステアリン酸コレステリル', 'emollient']
+  ['Cholesteryl Isostearate', 'イソステアリン酸コレステリル', 'emollient'],
+  ['PEG-32', 'PEG1540', 'humectant'],
+  ['PEG-150', 'PEG6000', 'humectant'],
+  ['Trisiloxane', 'トリシロキサン', 'silicone']
 ];
 for (const [canonical, japaneseLabel, category] of canonicalRecordPairs) {
   const record = records.find((item) => item?.en === canonical);
@@ -101,14 +109,10 @@ const doc = read('tools/_shared/COSMETICS_JP_LABEL_VARIANTS.md');
 for (const token of [
   'MHLW',
   'PMDA',
-  'Neopentyl Glycol Dicaprate',
-  'Lauryl Hydroxysultaine',
-  'Sodium Lauroyl Aspartate',
-  'Sodium Cocoyl Glutamate',
-  'Isostearyl Glyceryl Ether',
-  'Cholesteryl Isostearate',
-  'Squalane',
-  'Wave 2',
+  'PEG-32',
+  'PEG-150',
+  'Trisiloxane',
+  'Wave 3',
   'no fuzzy auto-replacement',
   'Amazon destinations remain fixed'
 ]) {
@@ -117,10 +121,10 @@ for (const token of [
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'jp-label-variants-wave2',
+  phase: 'jp-label-variants-peg-trisiloxane-wave1',
   reviewed_active_mappings: mappings.length,
   canonical_records_active: canonicalRecordPairs.length,
-  shared_alias_mappings_added_wave2: aliasBackedPairs.length,
+  shared_alias_mappings_active: aliasBackedPairs.length,
   dictionary_files: DATA_FILES.length,
   fuzzy_auto_replacement: false,
   broad_labels_forced_exact: false,
