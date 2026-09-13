@@ -42,14 +42,7 @@ No inferred/manual URL templates may be used merely because a vendor URL pattern
 
 ### Wave 3A — Nikon
 
-- Source only from Nikon official Web manuals / Download Center.
-- Begin with a coherent mirrorless-camera batch whose model names and direct Web-manual destinations are explicitly listed by Nikon.
-- Prefer Japanese Web manuals where available.
-- Store one row per real camera model.
-- If Nikon groups documents by model family, preserve that grouping explicitly rather than inventing a distinct destination.
-- Keep HLG/cloud error supplements out of the primary-manual field.
-
-Wave 3A implementation result:
+Wave 3A result:
 
 - Source boundary: Nikon official Japanese Web-manual portal, mirrorless-camera section.
 - Accepted models: 14/14 explicitly listed mirrorless-camera models.
@@ -61,8 +54,15 @@ Wave 3A implementation result:
 
 ### Wave 3B — Brother
 
-- Select one bounded printer/MFP family from the official product-manual search.
-- Exact model identity and official product-manual page are required.
+Wave 3B result:
+
+- Official MFC-J product search reports 96 products.
+- Bounded target: the first 14 single-model results before the first grouped MFC-J700D/MFC-J700DW entry.
+- Accepted exact product-manual pages: 13.
+- Held: `MFC-J6990CDW` because its direct manual page was not confirmed in this pass.
+- Direct rows: 13; shared rows: 0.
+- No product URL was inferred merely from the visible URL pattern; each accepted destination was confirmed on Brother's official support domain.
+- Brother becomes `expanded`, not company-complete; the remaining MFC-J catalog and other Brother product families remain outside this pass.
 
 ### Wave 3C — Sony
 
@@ -99,7 +99,8 @@ Every data PR must report:
 - [x] Recheck official source structures for Nikon, Brother, Sony, Epson, Canon and Panasonic.
 - [x] Add cross-maker coverage authority and rotation rule.
 - [x] Merge inventory PR after repository CI (#703).
-- [x] Implement Wave 3A Nikon from the inventory-locked main baseline.
-- [ ] Merge Wave 3A after repository CI.
-- [ ] Implement Wave 3B Brother from latest main.
-- [ ] Continue rotation with Sony before revisiting deep-covered makers.
+- [x] Implement and merge Wave 3A Nikon (#708).
+- [x] Implement Wave 3B Brother from latest main.
+- [ ] Merge Wave 3B after repository CI.
+- [ ] Implement Wave 3C Sony from latest main.
+- [ ] Continue rotation with Epson/Canon and Panasonic before revisiting deep-covered makers.
