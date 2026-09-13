@@ -31,8 +31,8 @@ assert.deepEqual(
   ['PC・スマホ', '家電', 'プリンター・複合機', 'カメラ・映像', 'オーディオ', 'ゲーム', 'ネットワーク機器']
 );
 assert.deepEqual(Array.from(config.modelSearchTemplate.excludedCategories), ['その他']);
-assert.equal(config.printerConsumables.length, 40, '25 consumer-printer mappings plus 15 office-toner mappings should be present');
-assert.equal(config.officePrinterConsumables.length, 15, 'OKI 10 plus KYOCERA 5 office-toner mappings should be present');
+assert.equal(config.printerConsumables.length, 45, '25 consumer-printer mappings plus 20 office-toner mappings should be present');
+assert.equal(config.officePrinterConsumables.length, 20, 'OKI 10 + KYOCERA 5 + RICOH 5 office-toner mappings should be present');
 assert.equal(Object.keys(config.targets).length, 3);
 assert.equal(config.offers.length, 1, 'dynamic searches must not create one stored Amazon URL per record');
 
@@ -42,6 +42,7 @@ for (const [maker, model, category] of [
   ['Canon', 'TS8830', 'プリンター・複合機'],
   ['OKI', 'C650dnw', 'プリンター・複合機'],
   ['KYOCERA Document Solutions', 'ECOSYS P6026cdn', 'プリンター・複合機'],
+  ['RICOH', 'RICOH IM C8010', 'プリンター・複合機'],
   ['Nikon', 'Z6III', 'カメラ・映像'],
   ['T-fal', 'KO4901JP', '家電'],
   ['Aterm', 'WX5400HP', 'ネットワーク機器']
@@ -116,13 +117,18 @@ const officeModels = new Map([
   ['KYOCERA Document Solutions|LS-C8500DN', ['TK-881K', 'TK-881C', 'TK-881M', 'TK-881Y']],
   ['KYOCERA Document Solutions|FS-C5300DN', ['TK-561K', 'TK-561Y', 'TK-561M', 'TK-561C']],
   ['KYOCERA Document Solutions|FS-C5200DN', ['TK-551K', 'TK-551C', 'TK-551M', 'TK-551Y']],
-  ['KYOCERA Document Solutions|LS-C8026N', ['TK-811K', 'TK-811Y', 'TK-811M', 'TK-811C']]
+  ['KYOCERA Document Solutions|LS-C8026N', ['TK-811K', 'TK-811Y', 'TK-811M', 'TK-811C']],
+  ['RICOH|RICOH IM C8010', ['RICOH MP トナー ブラック C8003', 'RICOH MP トナー イエロー C8003', 'RICOH MP トナー マゼンタ C8003', 'RICOH MP トナー シアン C8003']],
+  ['RICOH|RICOH IM C6510', ['RICOH MP トナー ブラック C8003', 'RICOH MP トナー イエロー C8003', 'RICOH MP トナー マゼンタ C8003', 'RICOH MP トナー シアン C8003']],
+  ['RICOH|RICOH IM C7010', ['RICOH トナー ブラック IM C7010', 'RICOH トナー イエロー IM C7010', 'RICOH トナー マゼンタ IM C7010', 'RICOH トナー シアン IM C7010']],
+  ['RICOH|RICOH IM C6011', ['RICOH トナー ブラック IM C6010', 'RICOH トナー イエロー IM C6010', 'RICOH トナー マゼンタ IM C6010', 'RICOH トナー シアン IM C6010']],
+  ['RICOH|RICOH IM C3511', ['RICOH トナー ブラック IM C3510', 'RICOH トナー イエロー IM C3510', 'RICOH トナー マゼンタ IM C3510', 'RICOH トナー シアン IM C3510']]
 ]);
 for (const [identity, codes] of officeModels) {
   const [maker, model] = identity.split('|');
   const row = Array.from(config.officePrinterConsumables).find((item) => item.maker === maker && item.model === model);
   assert.ok(row, `${identity} should retain an official toner mapping`);
-  assert.deepEqual(Array.from(row.tonerCodes), codes, `${identity} toner codes should match manufacturer evidence`);
+  assert.deepEqual(Array.from(row.tonerCodes), codes, `${identity} toner identifiers should match manufacturer evidence`);
 
   const offers = config.getConsumableOffers({ maker, model, category: 'プリンター・複合機' });
   assert.equal(offers.length, 1, `${identity} should expose one concise toner handoff`);
@@ -143,13 +149,26 @@ assert.equal(
 );
 assert.ok(kyocera[0].sourceUrl.includes('kyoceradocumentsolutions.co.jp'));
 
+const ricoh = config.getConsumableOffers({
+  maker: 'RICOH',
+  model: 'RICOH IM C8010',
+  category: 'プリンター・複合機'
+});
+assert.equal(ricoh[0].query, 'RICOH IM C8010 トナー');
+assert.equal(
+  ricoh[0].url,
+  'https://www.amazon.co.jp/s?k=RICOH+IM+C8010+%E3%83%88%E3%83%8A%E3%83%BC&tag=nicheworks09-22'
+);
+assert.ok(ricoh[0].sourceUrl.includes('ricoh.co.jp'));
+
 for (const args of [
   { maker: 'Brother', model: 'MFC-J4440N', category: 'その他' },
   { maker: 'Nikon', model: 'Z8', category: 'カメラ・映像' },
   { maker: 'Epson', model: 'UNKNOWN', category: 'プリンター・複合機' },
   { maker: 'Canon', model: 'UNKNOWN', category: 'プリンター・複合機' },
   { maker: 'OKI', model: 'UNKNOWN', category: 'プリンター・複合機' },
-  { maker: 'KYOCERA Document Solutions', model: 'UNKNOWN', category: 'プリンター・複合機' }
+  { maker: 'KYOCERA Document Solutions', model: 'UNKNOWN', category: 'プリンター・複合機' },
+  { maker: 'RICOH', model: 'UNKNOWN', category: 'プリンター・複合機' }
 ]) {
   assert.deepEqual(Array.from(config.getConsumableOffers(args)), []);
 }

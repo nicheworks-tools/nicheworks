@@ -79,6 +79,31 @@
       maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "LS-C8026N", verifiedAt: "2026-09-14",
       sourceUrl: "https://www.kyoceradocumentsolutions.co.jp/products/ecosys/eco01/ls_c8026n/option.html",
       tonerCodes: Object.freeze(["TK-811K", "TK-811Y", "TK-811M", "TK-811C"])
+    }),
+    Object.freeze({
+      maker: "RICOH", searchMaker: "RICOH", searchModel: "IM C8010", model: "RICOH IM C8010", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.ricoh.co.jp/products/list/ricoh-im-c8010-c6510/maintenance",
+      tonerCodes: Object.freeze(["RICOH MP トナー ブラック C8003", "RICOH MP トナー イエロー C8003", "RICOH MP トナー マゼンタ C8003", "RICOH MP トナー シアン C8003"])
+    }),
+    Object.freeze({
+      maker: "RICOH", searchMaker: "RICOH", searchModel: "IM C6510", model: "RICOH IM C6510", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.ricoh.co.jp/products/list/ricoh-im-c8010-c6510/maintenance",
+      tonerCodes: Object.freeze(["RICOH MP トナー ブラック C8003", "RICOH MP トナー イエロー C8003", "RICOH MP トナー マゼンタ C8003", "RICOH MP トナー シアン C8003"])
+    }),
+    Object.freeze({
+      maker: "RICOH", searchMaker: "RICOH", searchModel: "IM C7010", model: "RICOH IM C7010", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.ricoh.co.jp/products/list/ricoh-im-c7010-c6010-c5510-c4510-c3510-c3010-c2510/maintenance",
+      tonerCodes: Object.freeze(["RICOH トナー ブラック IM C7010", "RICOH トナー イエロー IM C7010", "RICOH トナー マゼンタ IM C7010", "RICOH トナー シアン IM C7010"])
+    }),
+    Object.freeze({
+      maker: "RICOH", searchMaker: "RICOH", searchModel: "IM C6011", model: "RICOH IM C6011", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.ricoh.co.jp/products/list/ricoh-im-c6011-c5511-c4511-c3511-c3011-c2511/maintenance",
+      tonerCodes: Object.freeze(["RICOH トナー ブラック IM C6010", "RICOH トナー イエロー IM C6010", "RICOH トナー マゼンタ IM C6010", "RICOH トナー シアン IM C6010"])
+    }),
+    Object.freeze({
+      maker: "RICOH", searchMaker: "RICOH", searchModel: "IM C3511", model: "RICOH IM C3511", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.ricoh.co.jp/products/list/ricoh-im-c6011-c5511-c4511-c3511-c3011-c2511/maintenance",
+      tonerCodes: Object.freeze(["RICOH トナー ブラック IM C3510", "RICOH トナー イエロー IM C3510", "RICOH トナー マゼンタ IM C3510", "RICOH トナー シアン IM C3510"])
     })
   ]);
 
@@ -102,15 +127,16 @@
     if (!row) return [];
 
     const searchMaker = row.searchMaker || row.maker;
-    const query = `${searchMaker} ${cleanModel} トナー`;
+    const searchModel = row.searchModel || cleanModel;
+    const query = `${searchMaker} ${searchModel} トナー`;
     return [Object.freeze({
       target: base.consumableSearchTemplate.activationTarget,
       kind: "toner_search",
-      key: `${keyMaker(searchMaker)}-${cleanModel.toLowerCase()}-toner`,
+      key: `${keyMaker(searchMaker)}-${searchModel.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-toner`,
       query,
       url: buildTaggedSearchUrl(query),
       labelJa: `Amazonで ${cleanModel} 用トナーを探す`,
-      labelEn: `Find toner for ${searchMaker} ${cleanModel} on Amazon`,
+      labelEn: `Find toner for ${cleanModel} on Amazon`,
       sourceUrl: row.sourceUrl,
       verifiedAt: row.verifiedAt,
       verifiedCodes: row.tonerCodes
