@@ -21,13 +21,25 @@
     });
   }
 
+  function isAmazonHttpsUrl(value) {
+    if (typeof value !== "string" || !value.trim()) return false;
+    try {
+      const url = new URL(value, root.location?.href || "https://nicheworks.app/");
+      if (url.protocol !== "https:") return false;
+      const host = url.hostname.toLowerCase();
+      return host === "amzn.to" || host === "amazon.co.jp" || host.endsWith(".amazon.co.jp");
+    } catch (_) {
+      return false;
+    }
+  }
+
   function safeLink(link) {
     if (!link || typeof link !== "object") return null;
     const href = String(link.href || "").trim();
     const key = String(link.key || "").trim();
     const labelJa = String(link.labelJa || "").trim();
     const labelEn = String(link.labelEn || labelJa).trim();
-    if (!href || !key || !labelJa) return null;
+    if (!href || !key || !labelJa || !isAmazonHttpsUrl(href)) return null;
     return { href, key, labelJa, labelEn };
   }
 
@@ -48,8 +60,9 @@
     const links = Array.isArray(slotConfig.links)
       ? slotConfig.links.map(safeLink).filter(Boolean)
       : [];
+    const trackingReady = config.trackingMode === "special_link" || Boolean(config.associateTag);
 
-    if (!config.enabled || !config.associateTag || !links.length) {
+    if (!config.enabled || !trackingReady || !links.length) {
       slot.hidden = true;
       slot.setAttribute("aria-hidden", "true");
       slot.dataset.affiliateState = "inactive";
@@ -111,7 +124,7 @@
   }
 
   root.NWCosmeticsAffiliateSlots = Object.freeze({
-    version: "1.0.0",
+    version: "1.1.0",
     events: Object.freeze({ impression: EVENT_IMPRESSION, click: EVENT_CLICK }),
     render
   });

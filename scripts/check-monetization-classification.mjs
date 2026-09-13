@@ -10,6 +10,8 @@ const readJson = (relativePath) => JSON.parse(
 );
 
 const registry = readJson('tools/tools-index.json');
+const manifest = readJson('tools/tool-spec-manifest.json');
+const quality = readJson('audits/tool-quality-matrix.json');
 const ledger = readJson('MONETIZATION_CLASSIFICATION_87.json');
 
 const allowedClasses = [
@@ -38,16 +40,23 @@ if (registry.total !== registry.items.length) {
   fail(`registry total=${registry.total} but items.length=${registry.items.length}`);
 }
 
-if (ledger.registryTotal !== registry.total) {
-  fail(`ledger registryTotal=${ledger.registryTotal} but registry total=${registry.total}`);
+const denominators = {
+  registry: registry.total,
+  specRequired: manifest.required_complete,
+  specComplete: manifest.complete,
+  qualityRegistered: quality.registered_tool_count,
+  qualityRecords: quality.record_count,
+  monetization: ledger.registryTotal,
+};
+
+for (const [name, value] of Object.entries(denominators)) {
+  if (value !== registry.total) {
+    fail(`${name} denominator=${value}, expected ${registry.total}`);
+  }
 }
 
 if (ledger.bundleProductId !== 'nicheworks.pro') {
   fail(`bundleProductId must be nicheworks.pro, got ${ledger.bundleProductId}`);
-}
-
-if (ledger.bundleBoundaryStatus !== 'pending-freeze') {
-  fail(`bundleBoundaryStatus must remain pending-freeze in this phase, got ${ledger.bundleBoundaryStatus}`);
 }
 
 if (!ledger.classes || typeof ledger.classes !== 'object') {
@@ -116,9 +125,17 @@ if (declaredTotal !== registry.total) {
   fail(`declared class counts sum to ${declaredTotal}, registry total is ${registry.total}`);
 }
 
+if (registrySet.has('reconcile')) {
+  const reconcileClasses = occurrences.get('reconcile') || [];
+  if (reconcileClasses.length !== 1 || reconcileClasses[0] !== 'STANDALONE_PRO') {
+    fail(`reconcile must be STANDALONE_PRO while reconcile.pro_v1 is authoritative; got ${reconcileClasses.join(', ') || 'unclassified'}`);
+  }
+}
+
 if (!process.exitCode) {
   console.log(
     `monetization classification OK: ${registry.total} tools; ` +
-    allowedClasses.map((key) => `${key}=${ledger.classes[key].length}`).join(', '),
+    allowedClasses.map((key) => `${key}=${ledger.classes[key].length}`).join(', ') +
+    '; registry/spec/quality/monetization denominators agree',
   );
 }

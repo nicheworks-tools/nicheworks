@@ -1,7 +1,7 @@
 window.NWSizeConverterAffiliate = Object.freeze({
-  enabled: false,
+  enabled: true,
   targets: Object.freeze({
-    shoes: "",
-    clothing: ""
+    shoes: "https://amzn.to/4hnXGRb",
+    clothing: "https://amzn.to/4dxBv8Q"
   })
 });

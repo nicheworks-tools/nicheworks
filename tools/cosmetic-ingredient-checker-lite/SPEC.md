@@ -72,7 +72,9 @@ Input, parsed results, the current status filter, and the current category filte
 
 ## Privacy and network behavior
 
-Ingredient parsing, filtering, matching, and subset-copy operations run in the browser. The pasted ingredient text is not intentionally uploaded by the checker workflow. Static dictionary files are loaded from the same NicheWorks origin. Suite-wide advertising and analytics resources may load separately, but raw ingredient input must not be included in analytics or affiliate events.
+Ingredient parsing, filtering, matching, and subset-copy operations run in the browser. The pasted ingredient text is not intentionally uploaded by the checker workflow. Static dictionary files are loaded from the same NicheWorks origin. Suite-wide advertising and analytics resources may load separately.
+
+The Amazon affiliate layer is isolated from ingredient state. Raw ingredient input, parsed ingredient names, unknown names, categories, filters, complete analysis results, and copied subsets must never be attached to affiliate analytics or the Amazon destination. Affiliate analytics are limited to fixed metadata: `tool`, `provider`, `placement`, `link_key`.
 
 ## Language mode
 
@@ -86,18 +88,19 @@ The current UI explicitly labels itself Japanese-only. English UI must not be ad
 
 The page is input-first: the first meaningful interaction after the existing top advertising slot is the ingredient input. Results use a compact summary followed by mobile-friendly status/category controls and a horizontally safe detailed table.
 
-## Monetization readiness
+## Amazon affiliate contract
 
-The page includes the stable, intentionally inactive result-adjacent container:
+The existing result-adjacent slot is now live through the shared cosmetics affiliate layer:
 
 ```txt
 #amazonAffiliateSlot
 provider = amazon
 placement = after-summary
-state = inactive
+HTML default state = inactive (fail-closed before runtime)
+runtime state = active when the verified Special Link config loads
 ```
 
-Both cosmetics tools share these frozen runtime assets:
+Both cosmetics tools share these runtime assets:
 
 ```txt
 /tools/_shared/cosmetics-affiliate-config.js
@@ -105,17 +108,34 @@ Both cosmetics tools share these frozen runtime assets:
 /tools/_shared/cosmetics-affiliate-slot.css
 ```
 
-`cosmetics-affiliate-config.js` is the single activation point. Before Amazon Associates setup is ready it must remain:
+The current activation contract is:
 
 ```txt
-enabled = false
+enabled = true
+trackingMode = special_link
 associateTag = empty
-links = empty
+verified Special Link = https://amzn.to/4xNbcDO
+verifiedAt = 2026-09-13
+placement = after-summary
 ```
 
-The shared adapter is loaded only when the stable affiliate slot exists. While disabled it clears and hides the slot and emits no affiliate impression/click event. Future activation must not require changes to ingredient parsing, dictionary matching, result layout, or the slot ID/placement.
+The supplied Amazon Special Link already carries its Amazon Associates tracking, so this implementation does not invent or synthesize a separate Associate tag. The adapter fail-closes unless the destination is HTTPS on `amzn.to`, `amazon.co.jp`, or an `amazon.co.jp` subdomain.
 
-When activation is eventually allowed, optional analytics are limited to `affiliate_impression` and `affiliate_click` with generic metadata only: `tool`, `provider`, `placement`, `link_key`. Pasted ingredient names, complete analysis results, or other user-entered content must never be attached.
+The live CTA is intentionally generic and not tied to the ingredient analysis:
+
+```txt
+Amazonでスキンケアを探す [PR]
+```
+
+The affiliate card also renders the required disclosure:
+
+```txt
+Amazonのアソシエイトとして、NicheWorksは適格販売により収入を得ています。
+```
+
+The link is a generic Amazon search handoff. It is not a statement that any product is safe, suitable, recommended, cheapest, available, hypoallergenic, or medically appropriate for the entered ingredients.
+
+Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` with `tool`, `provider`, `placement`, and `link_key`. Pasted ingredient names, complete analysis results, or other user-entered content must never be attached.
 
 ## Limits and non-goals
 
@@ -127,8 +147,8 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - Category filters are derived from the tool's existing functional classification labels and are not product-suitability recommendations.
 - The tool does not know ingredient concentration, complete formulation context, user allergies, individual skin condition, pregnancy suitability, drug interactions, or regulatory status from the pasted list alone.
 - Lite does not perform OCR; use INCI FastScan for image input.
-- This improvement wave does not attempt a full audit of every dictionary entry.
-- Amazon Associates is not active until account setup and policy verification are complete.
+- The current Amazon CTA is static and generic; it does not change based on the ingredient list or analysis result.
+- The tool does not display Amazon price, availability, rating, seller status, review count, or product imagery.
 
 ## Acceptance criteria
 
@@ -146,8 +166,10 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - [x] The NicheWorks logo image is not shown in the tool header.
 - [x] The donation block appears before the footer.
 - [x] A clear INCI FastScan route exists for photo/OCR use.
-- [x] The Amazon-ready slot exists and keeps the frozen `after-summary` placement.
-- [x] Shared affiliate configuration remains disabled, empty, and non-tracking before activation.
+- [x] The Amazon slot keeps the frozen `after-summary` placement and fail-closed HTML default.
+- [x] The verified skincare Special Link is rendered only through `special_link` mode; no separate Associate tag is fabricated.
+- [x] Amazon disclosure and `[PR]` labeling are visible with the live affiliate CTA.
+- [x] Affiliate analytics remain coarse and contain no ingredient or analysis payload.
 
 ## Implementation evidence
 

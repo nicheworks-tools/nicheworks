@@ -22,7 +22,8 @@ const EQUIVALENT_CANONICAL_GROUPS = [
   ['bemotrizinol', 'bis-ethylhexyloxyphenol methoxyphenyl triazine'],
   ['bisoctrizole', 'methylene bis-benzotriazolyl tetramethylbutylphenol'],
   ['titanium dioxide', 'ci 77891'],
-  ['mica', 'ci 77019']
+  ['mica', 'ci 77019'],
+  ['butyrospermum parkii shea butter', 'butyrospermum parkii butter']
 ].map((group) => new Set(group));
 
 function baseKey(value = '') {
@@ -84,9 +85,6 @@ for (const item of rows) {
       continue;
     }
     if (localSeen.has(key)) {
-      // Existing dictionaries intentionally contain full-width/half-width and
-      // other NFKC-equivalent spellings. Runtime normalization already merges
-      // these safely, so count them as redundancy rather than an identity bug.
       redundantLocalNames += 1;
       continue;
     }

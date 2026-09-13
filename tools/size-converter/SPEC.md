@@ -5,10 +5,14 @@
 - Specification status: `complete`
 - Common specification: `common-spec/spec-ja.md`
 - Affiliate rules when enabled: `common-spec/amazon-affiliate.md`
+- Data-basis audit: `tools/size-converter/data-basis.md`
+- UK support evaluation: `tools/size-converter/uk-evaluation.md`
 
 ## Purpose
 
 Provide a fast approximate JP/US/EU clothing and shoe size converter with local retail-input normalization, a four-row comparison tray, conservative measurement-based estimates, valid-fit handoff into direct conversion, and cm/inch shoe-measurement input.
+
+The bundled tables are representative orientation data, not an official universal sizing standard. Brand/model-specific official charts take precedence.
 
 ## Primary workflow
 
@@ -66,7 +70,19 @@ Provide a fast approximate JP/US/EU clothing and shoe size converter with local 
 - Capture chart/category context with the rendered result.
 - Set direct converter to the estimated `JP ...` size and existing context; raw foot/body measurements are not copied.
 - Handoff itself makes no network request and does not add analytics.
-- It may make the ordinary direct-result Amazon insertion point eligible only if a separate future affiliate activation enables valid targets.
+- The ordinary direct-result Amazon insertion point is active through the separate verified affiliate configuration; raw measurements remain excluded from affiliate state.
+
+### Data basis and provenance contract
+
+- The bundled JP/US/EU crosswalk is a synthesized representative lookup for orientation. It is not an ISO/JIS/brand-independent universal standard.
+- Current official-source audit confirms cross-brand variation. For example, official adidas and ASICS footwear charts can map the same men's US size to different CM/JP-style values even when the EU label matches.
+- Official clothing charts also differ in numeric ranges, alpha labels, body-measurement ranges, and whether men's international conversion is numeric or alpha.
+- The shoe and clothing measurement ranges are local heuristic ranges. They are not copied from one official brand and are not represented as universal body/foot standards.
+- `tools/size-converter/data-basis.md` is the maintainer source ledger and records the current official sources and audit conclusions.
+- No one brand chart may silently become the generic table. Brand/model-specific data must remain separately identified if added later.
+- UK footwear was separately evaluated against current official adidas, ASICS, and New Balance charts. The same men's US sizes map to different UK labels across brands, so a single generic UK column is deliberately deferred rather than fabricated.
+- `tools/size-converter/uk-evaluation.md` records the compared rows and the no-addition decision.
+- CN/kids and any future regional expansion require separate verified data work and must not be implemented as an assumed fixed offset.
 
 ### Shared behavior
 
@@ -96,19 +112,19 @@ Provide a fast approximate JP/US/EU clothing and shoe size converter with local 
 - Valid-fit handoff action.
 - Local copy actions and approximation cautions.
 
-## Amazon affiliate readiness
+## Amazon affiliate activation
 
 The page uses `/assets/amazon-affiliate.js` plus local `affiliate-config.js`.
 
-Production defaults remain:
+Production is active with the user-provided Amazon Special Links:
 
-- `enabled: false`
-- `shoes: ""`
-- `clothing: ""`
+- `enabled: true`
+- `shoes: "https://amzn.to/4hnXGRb"`
+- `clothing: "https://amzn.to/4dxBv8Q"`
 
-Disabled/invalid configuration emits no CTA, disclosure, or affiliate click event. Activation later requires only verified Amazon targets and `enabled: true`.
+A valid direct result may expose the contextual Amazon CTA and the shared Associates disclosure. Disabled/invalid configuration must still emit no CTA, disclosure, or affiliate click event.
 
-Measurement inputs/results are never encoded into affiliate URLs or affiliate analytics. Direct raw size text, normalized syntax state, query-intent state, comparison rows, selected shoe unit, and raw fit measurements are likewise excluded. `affiliate_click` remains coarse shared-helper metadata only.
+Measurement inputs/results are never encoded into affiliate URLs or affiliate analytics. Direct raw size text, normalized syntax state, query-intent state, comparison rows, selected shoe unit, raw fit measurements, data-basis audit state, and UK evaluation state are likewise excluded. `affiliate_click` remains coarse shared-helper metadata only: `tool`, `affiliate`, `target`, and `placement`.
 
 ## State and persistence
 
@@ -122,6 +138,8 @@ Measurement inputs/results are never encoded into affiliate URLs or affiliate an
 - Core calculations and all wave-3 helpers run locally.
 - Direct text, comparison rows, unit choice, and measurements are not sent to fitting or affiliate backends.
 - Fit handoff moves only estimated JP size plus category/chart inside the page.
+- Reading the bundled data-basis/UK-evaluation documentation creates no sizing-data network request.
+- Amazon navigation occurs only after an explicit CTA click; raw sizing/measurement state is not included in the configured Special Links.
 - Ads/analytics may load separately under common-spec rules.
 
 ## Language mode
@@ -138,12 +156,15 @@ Direct conversion remains first; query/context and comparison follow; full table
 
 - Results are approximate.
 - No fit guarantee.
+- The current JP/US/EU mapping is representative orientation data, not a universal official standard.
 - Current direct conversion is JP/US/EU only.
+- UK generic conversion is **verified-deferred** because current official manufacturer charts disagree on US→UK mappings for the same nominal sizes.
 - Inch support is a shoe **measurement-input unit**, not a new sizing standard.
 - No unsupported quarter-size interpolation.
-- UK/CN/kids/formal width/verified brand-model tables require separate verified data work.
+- CN/kids/formal width/verified brand-model tables require separate verified data work.
 - Comparison does not rank brands/products or purchase suitability.
 - Fit handoff only avoids retyping an approximate estimate.
+- Amazon CTA does not claim price, availability, rating, review, or fit suitability.
 
 ## Acceptance criteria
 
@@ -156,7 +177,11 @@ Direct conversion remains first; query/context and comparison follow; full table
 - [ ] Valid fit handoff transfers only estimated JP size plus category/chart; invalid/out-of-range exposes no handoff.
 - [ ] Raw measurements/unit/direct input never enter affiliate analytics or URLs.
 - [ ] No brand-wide numerical offset changes results.
-- [ ] Default Amazon config remains invisible/inert.
+- [ ] Generic rows/ranges are described as representative, not a universal/official standard.
+- [ ] `data-basis.md` records the official-source audit and the disposition of each dataset family.
+- [ ] `uk-evaluation.md` records the multi-source UK disagreement and the deliberate no-addition decision.
+- [ ] Generic UK runtime conversion remains absent unless a future source model explicitly resolves brand variation.
+- [ ] Active Amazon config uses only the verified shoes/clothing Special Links and keeps affiliate analytics coarse.
 
 ## Implementation evidence
 
@@ -165,6 +190,8 @@ Direct conversion remains first; query/context and comparison follow; full table
 - `tools/size-converter/query-intent.js`
 - `tools/size-converter/fit-handoff.js`
 - `tools/size-converter/shoe-units.js`
+- `tools/size-converter/data-basis.md`
+- `tools/size-converter/uk-evaluation.md`
 - `tools/size-converter/style.css`
 - `tools/size-converter/affiliate-config.js`
 - `assets/amazon-affiliate.js`

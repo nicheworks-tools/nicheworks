@@ -165,6 +165,22 @@ Wave 8では、Wave 7と同じ供給側拡張方針を維持し、既存direct-l
 
 - 奈良県 奈良市 — `/tools/trashnavi/nara/nara/`
 
+Wave 9では、Search Consoleに新しいmunicipality-specific demand signalがない状態を維持したまま、供給側拡張として鹿児島市を選定した。既存の市公式ごみ導線に、令和8年版家庭のごみ出しカレンダーと粗大ごみ案内を追加し、preferred candidateへ引き上げた。data enrichment検証後、公開対象を **16自治体** とする。
+
+- 鹿児島県 鹿児島市 — `/tools/trashnavi/kagoshima/kagoshima/`
+
+Wave 10では、Wave 9と同じ供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から宮崎市を選定した。宮崎市公式の令和8年度家庭ごみ・資源物収集日程表と粗大ごみ案内を追加し、既存のごみ分別導線と合わせてpreferred candidateへ引き上げた。data enrichment検証後、公開対象を **17自治体** とする。
+
+- 宮崎県 宮崎市 — `/tools/trashnavi/miyazaki/miyazaki/`
+
+Wave 11では、Wave 10と同じ供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から高松市を選定した。高松市公式の令和8年度ごみ収集カレンダーと臨時・粗大ごみ案内を追加し、既存のごみ分別導線と合わせてpreferred candidateへ引き上げた。data enrichment検証後、公開対象を **18自治体** とする。
+
+- 香川県 高松市 — `/tools/trashnavi/kagawa/takamatsu/`
+
+Wave 12では、Wave 11と同じ供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から大分市を選定した。大分市公式の2026年度（令和8年度）ごみ収集カレンダー（住所別検索）と粗大ごみ・一時的多量ごみ案内を追加し、既存のごみ導線と合わせてpreferred candidateへ引き上げた。data enrichment検証後、公開対象を **19自治体** とする。
+
+- 大分県 大分市 — `/tools/trashnavi/oita/oita/`
+
 生成器は公開対象ごとにrepository dataを再集約し、`municipal_home` を除くdistinct waste-specific canonical typeが **3種類未満なら生成を拒否**する。manifestに追加しただけでthin pageを公開してはならない。
 
 各自治体pageは最低限以下を持つ。
@@ -190,17 +206,49 @@ node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
 
 CIではcoverage strict auditと生成drift checkの両方を必須とし、公開URLがroot sitemapから欠落しても失敗させる。
 
-### Wave 8 verified coverage baseline
+### Wave 10 verified coverage baseline
 
-2026-09-13のWave 8 CI基準値は次のとおり。
+2026-09-13のWave 10 CI基準値は次のとおり。
 
 - municipalities: 1,916
-- records: 2,194 / 2,194 valid HTTP(S)
+- records: 2,198 / 2,198 valid HTTP(S)
 - municipalities with any waste-specific direct link: 78
-- publish candidates (2+ types): 15
-- preferred candidates (3+ types): 15
-- collection calendar coverage: 15 municipalities
-- bulky-waste coverage: 14 municipalities
+- publish candidates (2+ types): 17
+- preferred candidates (3+ types): 17
+- collection calendar coverage: 17 municipalities
+- bulky-waste coverage: 16 municipalities
+- drop-off facility coverage: 1 municipality
+- waste-app coverage: 1 municipality
+- invalid records: 0
+- unknown type labels: 0
+
+### Wave 11 verified coverage baseline
+
+2026-09-13のWave 11 CI基準値は次のとおり。
+
+- municipalities: 1,916
+- records: 2,200 / 2,200 valid HTTP(S)
+- municipalities with any waste-specific direct link: 78
+- publish candidates (2+ types): 18
+- preferred candidates (3+ types): 18
+- collection calendar coverage: 18 municipalities
+- bulky-waste coverage: 17 municipalities
+- drop-off facility coverage: 1 municipality
+- waste-app coverage: 1 municipality
+- invalid records: 0
+- unknown type labels: 0
+
+### Wave 12 verified coverage baseline
+
+2026-09-13のWave 12 CI基準値は次のとおり。
+
+- municipalities: 1,916
+- records: 2,202 / 2,202 valid HTTP(S)
+- municipalities with any waste-specific direct link: 78
+- publish candidates (2+ types): 19
+- preferred candidates (3+ types): 19
+- collection calendar coverage: 19 municipalities
+- bulky-waste coverage: 18 municipalities
 - drop-off facility coverage: 1 municipality
 - waste-app coverage: 1 municipality
 - invalid records: 0
@@ -268,9 +316,9 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 ### Municipality page expansion
 
 - [x] preferred readiness 3種類以上を生成時に再検証する。
-- [x] 公開15自治体をmanifest allowlistで管理する。
+- [x] 公開19自治体をmanifest allowlistで管理する。
 - [x] 自治体pageをgeneratorから静的生成する。
-- [x] generator `--check` で15ページの生成driftを検出する。
+- [x] generator `--check` で19ページの生成driftを検出する。
 - [x] 公開URLをroot sitemapと専用sitemapへ収録する。
 - [x] robotsの既存root sitemap契約を維持し、sitemap indexから専用sitemapを発見可能にする。
 - [x] Wave 3で御浜町・海津市・結城市をpreferred candidateへ引き上げる。
@@ -279,6 +327,10 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - [x] Wave 6で猪苗代町をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 7で松山市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 8で奈良市をpreferred candidateへ引き上げ、自治体pageを公開する。
+- [x] Wave 9で鹿児島市をpreferred candidateへ引き上げ、自治体pageを公開する。
+- [x] Wave 10で宮崎市をpreferred candidateへ引き上げ、自治体pageを公開する。
+- [x] Wave 11で高松市をpreferred candidateへ引き上げ、自治体pageを公開する。
+- [x] Wave 12で大分市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
 ### Link health Phase 4
@@ -301,6 +353,10 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/data/direct-waste-links-demand-wave6.json` — 猪苗代町のWave 6 waste-sorting / collection-calendar / bulky-waste enrichment。
 - `tools/trashnavi/data/direct-waste-links-supply-wave7.json` — 松山市のWave 7 collection-calendar / bulky-waste enrichment。
 - `tools/trashnavi/data/direct-waste-links-supply-wave8.json` — 奈良市のWave 8 collection-calendar / bulky-waste enrichment。
+- `tools/trashnavi/data/direct-waste-links-supply-wave9.json` — 鹿児島市のWave 9 collection-calendar / bulky-waste enrichment。
+- `tools/trashnavi/data/direct-waste-links-supply-wave10.json` — 宮崎市のWave 10 collection-calendar / bulky-waste enrichment。
+- `tools/trashnavi/data/direct-waste-links-supply-wave11.json` — 高松市のWave 11 collection-calendar / bulky-waste enrichment。
+- `tools/trashnavi/data/direct-waste-links-supply-wave12.json` — 大分市のWave 12 collection-calendar / bulky-waste enrichment。
 - `tools/trashnavi/DATA_MODEL.md` — forward schema、canonical taxonomy、landing-page readiness。
 - `tools/trashnavi/scripts/audit-coverage.mjs` — repository-local coverage/data-quality audit。
 - `tools/trashnavi/scripts/check-runtime-contract.mjs` — Current runtime 6項目と公開自治体のroot internal-link整合性をCI検証する。
@@ -313,6 +369,10 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/fukushima/inawashiro/index.html` — Wave 6 municipality page。
 - `tools/trashnavi/ehime/matsuyama/index.html` — Wave 7 municipality page。
 - `tools/trashnavi/nara/nara/index.html` — Wave 8 municipality page。
+- `tools/trashnavi/kagoshima/kagoshima/index.html` — Wave 9 municipality page。
+- `tools/trashnavi/miyazaki/miyazaki/index.html` — Wave 10 municipality page。
+- `tools/trashnavi/kagawa/takamatsu/index.html` — Wave 11 municipality page。
+- `tools/trashnavi/oita/oita/index.html` — Wave 12 municipality page。
 - `scripts/check-trashnavi-direct-links.mjs` — all-direct-link dataset inventory / scheduled link-health checker。
 - `.github/workflows/check-trashnavi-direct-links.yml` — monthly/manual live link-health check and report artifact upload。
 - `.agent/plans/20260912-trashnavi-link-freshness-phase4.md` — Phase 4 implementation / safety contract。

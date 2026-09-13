@@ -10,6 +10,8 @@ on:
       - 'tools/_shared/check-cosmetics-accuracy-benchmark.mjs'
       - 'tools/_shared/check-cosmetics-full-label-benchmark.mjs'
       - 'tools/_shared/cosmetics-full-label-fixtures.json'
+      - 'tools/_shared/cosmetics-real-label-corpus.json'
+      - 'tools/_shared/check-cosmetics-real-label-corpus.mjs'
       - 'tools/_shared/check-cosmetics-dictionary-quality.mjs'
       - 'tools/_shared/check-cosmetics-canonical-merge.mjs'
       - 'tools/_shared/check-cosmetics-canonical-equivalents.mjs'
@@ -17,15 +19,19 @@ on:
       - 'tools/_shared/check-fastscan-ocr-confusion.mjs'
       - 'tools/_shared/check-fastscan-ocr-line-repair.mjs'
       - 'tools/_shared/check-fastscan-result-controls.mjs'
+      - 'tools/_shared/check-fastscan-review-queue.mjs'
       - 'tools/_shared/check-lite-wave3-navigation.mjs'
       - 'tools/_shared/check-cosmetics-cross-tool-release.mjs'
       - 'tools/_shared/check-cosmetics-wave2-release.mjs'
+      - 'tools/_shared/check-cosmetics-wave3-release.mjs'
       - 'tools/_shared/COSMETICS_ACCURACY_BENCHMARK.md'
       - 'tools/_shared/COSMETICS_ALIAS_POLICY.md'
       - 'tools/_shared/COSMETICS_CANONICAL_MERGE.md'
       - 'tools/_shared/COSMETICS_OCR_LINE_REPAIR.md'
       - 'tools/_shared/COSMETICS_RELEASE_GATE.md'
       - 'tools/_shared/COSMETICS_WAVE2_RELEASE.md'
+      - 'tools/_shared/COSMETICS_WAVE3_RELEASE.md'
+      - 'tools/_shared/COSMETICS_REAL_LABEL_CORPUS.md'
       - 'tools/_shared/cosmetics-affiliate-*.js'
       - 'tools/_shared/cosmetics-affiliate-*.css'
       - '.github/workflows/cosmetics-accuracy-benchmark.yml'
@@ -75,15 +81,21 @@ jobs:
         run: node tools/_shared/check-fastscan-ocr-line-repair.mjs
       - name: FastScan result controls regression
         run: node tools/_shared/check-fastscan-result-controls.mjs
+      - name: FastScan review queue regression
+        run: node tools/_shared/check-fastscan-review-queue.mjs
       - name: Lite wave 3 navigation regression
         run: node tools/_shared/check-lite-wave3-navigation.mjs
       - name: Cosmetics 100-case accuracy benchmark
         run: node tools/_shared/check-cosmetics-accuracy-benchmark.mjs
       - name: Cosmetics full-label coverage benchmark
         run: node tools/_shared/check-cosmetics-full-label-benchmark.mjs
+      - name: Source-backed real-label baseline
+        run: node tools/_shared/check-cosmetics-real-label-corpus.mjs
       - name: Cross-tool release gate
         run: node tools/_shared/check-cosmetics-cross-tool-release.mjs
       - name: Wave 2 release gate
         run: node tools/_shared/check-cosmetics-wave2-release.mjs
+      - name: Wave 3 release gate
+        run: node tools/_shared/check-cosmetics-wave3-release.mjs
       - name: Affiliate readiness contract remains isolated
         run: node tools/_shared/check-cosmetics-affiliate-contract.mjs

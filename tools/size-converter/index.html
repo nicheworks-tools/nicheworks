@@ -12,17 +12,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>サイズ換算｜US・JP・EUサイズをすぐ変換 | NicheWorks</title>
-  <meta name="description" content="US 4、EU 42、JP 26.5など靴・服のサイズを直接入力してJP / US / EUへすぐ換算。足長・足幅・体の実寸から近いサイズ目安も確認できます。">
+  <meta name="description" content="US 4、EU 42、JP 26.5など靴・服のサイズをメンズ・レディース別にJP / US / EUへ換算。代表例と実寸から近いサイズ目安も確認できます。">
   <link rel="canonical" href="https://nicheworks.app/tools/size-converter/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="サイズ換算｜US・JP・EUサイズをすぐ変換 | NicheWorks">
-  <meta property="og:description" content="靴・服のJP / US / EUサイズを直接入力して換算し、実寸からのサイズ目安も確認できます。">
+  <meta property="og:description" content="靴・服のJP / US / EUサイズをメンズ・レディース別に換算し、実寸からのサイズ目安も確認できます。">
   <meta property="og:url" content="https://nicheworks.app/tools/size-converter/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta property="og:site_name" content="NicheWorks">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="サイズ換算｜US・JP・EUサイズをすぐ変換 | NicheWorks">
-  <meta name="twitter:description" content="靴・服のJP / US / EUサイズを直接入力してすぐ換算できます。">
+  <meta name="twitter:description" content="靴・服のJP / US / EUサイズをメンズ・レディース別にすぐ換算できます。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="robots" content="index,follow">
   <link rel="icon" href="/assets/favicon.ico">
@@ -31,11 +31,13 @@
   <link rel="stylesheet" href="/assets/nw-base.css">
   <link rel="stylesheet" href="/tools/size-converter/style.css">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebApplication","name":"JP / US / EU Size Converter","url":"https://nicheworks.app/tools/size-converter/","applicationCategory":"UtilityApplication","description":"靴・服のJP / US / EUサイズを直接入力して換算し、足や体の実寸から近い代表サイズも確認できる無料ツール。","operatingSystem":"All"}
+  {"@context":"https://schema.org","@type":"WebApplication","name":"JP / US / EU Size Converter","url":"https://nicheworks.app/tools/size-converter/","applicationCategory":"UtilityApplication","description":"靴・服のJP / US / EUサイズをメンズ・レディース別に直接換算し、足や体の実寸から近い代表サイズも確認できる無料ツール。","operatingSystem":"All"}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-    {"@type":"Question","name":"USサイズを日本サイズへ換算できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。US、JP、EUの代表的な対応関係を確認できます。US 4のように地域記号付きで直接入力することもできます。"}},
+    {"@type":"Question","name":"USサイズを日本サイズへ換算できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。ただし同じUS番号でもメンズ・レディース、靴・衣類、ブランドや製品で対応が変わるため、該当するサイズ表を選び、購入前は公式表を確認してください。"}},
+    {"@type":"Question","name":"US 4は日本サイズでいくつですか？","acceptedAnswer":{"@type":"Answer","text":"このツールの代表表では、靴のUS 4はメンズがJP 22.0、レディースがJP 21.0です。これは共通規格ではなく代表的な目安です。"}},
+    {"@type":"Question","name":"UKサイズに対応していますか？","acceptedAnswer":{"@type":"Answer","text":"現在は対応していません。複数の公式メーカー表を比較すると、同じUSサイズでもUK表記がブランド間で異なるため、単一の汎用UK換算を表示していません。"}},
     {"@type":"Question","name":"このサイズで必ず合いますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。ブランド、製品、素材、靴型、足幅、好みで変わります。購入前に販売店・ブランド公式のサイズ表を確認してください。"}},
     {"@type":"Question","name":"実寸判定は正確ですか？","acceptedAnswer":{"@type":"Answer","text":"簡易的な目安です。対応範囲外の入力は範囲外として表示し、最小・最大サイズへ強制的に丸めません。"}},
     {"@type":"Question","name":"入力内容は送信されますか？","acceptedAnswer":{"@type":"Answer","text":"サイズ換算と実寸判定はブラウザ内で行います。ただしページ表示のため広告・解析タグは読み込まれます。"}}
@@ -52,8 +54,8 @@
 <main class="nw-main">
   <div class="ad-slot ad-top">広告枠</div>
   <section class="notice-card compact-notice" aria-label="size conversion notice">
-    <p data-i18n="ja">換算・実寸判定は一般的な目安です。ブランド・モデル・素材・足幅などで差があるため、購入前は販売店やブランドの公式サイズ表を優先してください。</p>
-    <p data-i18n="en">Conversions and fit checks are general estimates. Brand, model, material, and foot width can change fit, so check the seller or brand's official chart before buying.</p>
+    <p data-i18n="ja">換算・実寸判定は一般的な目安です。JP / US / EUにブランド横断の単一換算表がある前提ではありません。ブランド・モデル・素材・足幅などで差があるため、購入前は販売店やブランドの公式サイズ表を優先してください。</p>
+    <p data-i18n="en">Conversions and fit checks are general estimates, not a universal cross-brand JP/US/EU standard. Brand, model, material, and foot width can change fit, so check the seller or brand's official chart before buying.</p>
   </section>
 
   <section class="quick-card" aria-labelledby="quickTitle">
@@ -68,6 +70,20 @@
     <div id="quickResult" class="quick-result" aria-live="polite"></div>
     <div class="quick-actions"><button id="copyQuickResult" class="secondary-btn" type="button" hidden><span data-i18n="ja">この換算結果をコピー</span><span data-i18n="en">Copy this conversion</span></button></div>
     <div id="sizeAffiliate" class="affiliate-block" hidden></div>
+  </section>
+
+  <section class="common-conversions" aria-labelledby="commonConversionsTitle">
+    <div class="section-heading"><div><h2 id="commonConversionsTitle"><span data-i18n="ja">よく確認される代表換算</span><span data-i18n="en">Common reference conversions</span></h2><p><span data-i18n="ja">同じUS番号でも、メンズ・レディース、靴・衣類で対応は変わります。以下はこのツールの現在の代表表にある値です。</span><span data-i18n="en">The same US number can map differently by chart. These examples come directly from this tool's current reference rows.</span></p></div></div>
+    <div class="common-conversion-grid">
+      <article class="common-conversion-card"><strong><span data-i18n="ja">メンズ靴 US 4</span><span data-i18n="en">Men's shoes US 4</span></strong><p>US 4 → JP 22.0 / EU 36</p></article>
+      <article class="common-conversion-card"><strong><span data-i18n="ja">レディース靴 US 4</span><span data-i18n="en">Women's shoes US 4</span></strong><p>US 4 → JP 21.0 / EU 34</p></article>
+      <article class="common-conversion-card"><strong><span data-i18n="ja">メンズ靴 US 8.5</span><span data-i18n="en">Men's shoes US 8.5</span></strong><p>US 8.5 → JP 26.5 / EU 42</p></article>
+      <article class="common-conversion-card"><strong><span data-i18n="ja">レディース靴 US 8.5</span><span data-i18n="en">Women's shoes US 8.5</span></strong><p>US 8.5 → JP 25.5 / EU 40</p></article>
+      <article class="common-conversion-card"><strong><span data-i18n="ja">メンズ服 M</span><span data-i18n="en">Men's clothing M</span></strong><p>JP M / US M / EU 48</p></article>
+      <article class="common-conversion-card"><strong><span data-i18n="ja">レディース服 US 4</span><span data-i18n="en">Women's clothing US 4</span></strong><p>US 4 → JP S / EU 34–36</p></article>
+    </div>
+    <p class="common-conversion-note"><span data-i18n="ja">ブランド固有のサイズ表でも、国際的な単一共通規格でもありません。複数の公式表では同じUS番号でもCM/JPやEUの対応がずれるため、購入時は商品・ブランド公式表を優先してください。</span><span data-i18n="en">This is neither a brand-specific chart nor a single international standard. Official brand charts can map the same US label differently, so use the product or brand chart before buying.</span></p>
+    <details class="data-basis-note"><summary><span data-i18n="ja">なぜ「目安」なのか</span><span data-i18n="en">Why these are estimates</span></summary><p><span data-i18n="ja">公式ブランド表を比較すると、同じUSサイズでもCM/JP表記やEU表記、身体寸法レンジが一致しない場合があります。このツールはその差を消して「正解」にするのではなく、代表的な対応を探すための出発点として表示します。</span><span data-i18n="en">Official brand charts do not always agree on CM/JP labels, EU labels, or body-measurement ranges for the same nominal size. This tool keeps a representative crosswalk as a starting point rather than claiming one universal answer.</span></p></details>
   </section>
 
   <details class="detail-card" id="tableDetails">
@@ -106,10 +122,12 @@
   </section>
 
   <section class="faq-section" aria-label="FAQ"><h2>FAQ</h2>
-    <details><summary>USサイズを日本サイズへ換算できますか？ / Can I convert US sizes to JP?</summary><p>はい。USを基準にするか、「US 4」のように直接入力すると同じ行のJP / EU目安を表示します。</p></details>
+    <details><summary>USサイズを日本サイズへ換算できますか？ / Can I convert US sizes to JP?</summary><p>はい。ただし同じUS番号でもメンズ・レディース、靴・衣類、ブランドや製品で対応が変わります。該当するカテゴリとサイズ表を選び、購入前は公式表を確認してください。</p></details>
+    <details><summary>US 4は日本サイズでいくつですか？ / What is US 4 in JP size?</summary><p>このツールの代表表では、靴のUS 4はメンズがJP 22.0、レディースがJP 21.0です。これは共通規格ではなく代表的な目安です。</p></details>
     <details><summary>実寸が対応範囲より小さい/大きい場合は？ / What if my measurement is outside the chart?</summary><p>対応範囲外として表示します。最小・最大サイズを適合サイズとして自動表示しません。</p></details>
     <details><summary>このサイズで必ず合いますか？ / Will this size always fit?</summary><p>いいえ。ブランド、製品、素材、靴型、足幅、好みで変わります。販売店・ブランド公式のサイズ表を優先してください。</p></details>
-    <details><summary>UKサイズやキッズサイズに対応していますか？ / Are UK or kids sizes supported?</summary><p>現在の直接換算はJP / US / EUのメンズ・レディースが中心です。UK・キッズは検証後の拡張対象です。</p></details>
+    <details><summary>UKサイズに対応していますか？ / Are UK sizes supported?</summary><p>現在は汎用UK換算を表示していません。公式のadidas・ASICS・New Balance表を比較すると、同じUSサイズでもUK表記が0.5異なる例が確認できるためです。購入するブランド・商品の公式UK表を確認してください。</p></details>
+    <details><summary>キッズサイズに対応していますか？ / Are kids sizes supported?</summary><p>現在の直接換算はJP / US / EUの成人向けメンズ・レディースが中心です。キッズは別の検証・データ契約が必要なため未対応です。</p></details>
   </section>
 
   <div id="amazonDisclosure" class="affiliate-disclosure" hidden></div>

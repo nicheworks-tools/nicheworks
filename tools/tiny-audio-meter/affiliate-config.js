@@ -1,7 +1,7 @@
 window.NWTinyAudioAffiliate = Object.freeze({
-  enabled: false,
+  enabled: true,
   targets: Object.freeze({
-    sound_level_meter: "",
-    usb_microphone: ""
+    sound_level_meter: "https://amzn.to/4xHeUyd",
+    usb_microphone: "https://amzn.to/4iZFUF8"
   })
 });

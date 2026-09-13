@@ -1,0 +1,27 @@
+[
+  {
+    "pref": "香川県",
+    "city": "高松市",
+    "name": "高松市 令和8年度ごみ収集カレンダー",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.takamatsu.kagawa.jp/kurashi/kurashi/gomi/r8_gomi_calendar.html",
+    "lgcode": "372013",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "香川県",
+    "city": "高松市",
+    "name": "高松市 臨時・粗大ごみの出し方",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.takamatsu.kagawa.jp/kurashi/kurashi/gomi/rinjisodai/dashikata.html",
+    "lgcode": "372013",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  }
+]

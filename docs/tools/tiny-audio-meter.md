@@ -131,15 +131,16 @@ Keep a tool-specific title/description, one self-referencing canonical for `http
 
 - Preserve existing GA4/AdSense identifiers and common-spec placement rules.
 - Shared `/assets/amazon-affiliate.js` plus local `affiliate-config.js` form the Amazon insertion contract.
-- Production default remains `enabled: false` with empty `sound_level_meter` and `usb_microphone` targets until verified Amazon URLs exist.
+- Production is active with `sound_level_meter=https://amzn.to/4xHeUyd` and `usb_microphone=https://amzn.to/4iZFUF8`.
 - Disabled or invalid config: no Amazon CTA, Associates disclosure, or affiliate click event.
-- Valid enabled config may expose contextual Amazon navigation for dedicated sound-level meters or USB microphones.
+- Valid enabled config may expose contextual Amazon navigation for dedicated sound-level meters or USB microphones and renders the shared Associates disclosure.
 - `affiliate_click` stays limited to coarse `tool`, `affiliate`, `target`, and `placement` metadata.
 - Device label/ID, EC/NS/AGC, sample rate, FFT size, microphone readings, baseline/ambient/snapshot/segment/export/conditions values are forbidden affiliate analytics fields.
+- The CTA does not claim calibration, price, availability, ratings, or review quality.
 
 ## 12. Donation/support contract
 
-Preserve the existing donation/support block. Future Amazon activation remains independent.
+Preserve the existing donation/support block. Amazon activation remains independent.
 
 ## 13. Help/usage/FAQ contract
 
@@ -162,7 +163,7 @@ Preserve the existing donation/support block. Future Amazon activation remains i
 - [ ] Segment under one second is rejected and valid result can be copied with relative-value wording.
 - [ ] Measurement conditions show active device label, analyser sample rate/FFT size, and EC / NS / AGC from existing acquisition state.
 - [ ] Measurement-condition copy opens no new microphone stream, persists nothing, and sends no analytics.
-- [ ] Default Amazon config mounts no CTA/disclosure; enabled+valid uses only coarse click metadata; enabled+invalid remains hidden.
+- [ ] Active Amazon config uses only the two verified Special Links; contextual CTA/disclosure remain separate from microphone-derived state.
 
 Automated contract evidence: `scripts/check-amazon-ready-tools.mjs`, `scripts/check-size-audio-growth-wave.mjs`, and `scripts/check-size-audio-growth-wave3.mjs`, all executed by the existing Tool runtime audit. A full real-microphone browser automation suite is not claimed.
 
