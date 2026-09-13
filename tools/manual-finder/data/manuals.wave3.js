@@ -1,10 +1,12 @@
 (() => {
   const V = "2026-09-13";
   const EPSON_V = "2026-09-14";
-  window.MANUALFINDER_WAVE3_BATCHES = ["manuals.wave3.01.js", "manuals.wave3.02.js", "manuals.wave3.04.js"];
+  const CANON_V = "2026-09-14";
+  window.MANUALFINDER_WAVE3_BATCHES = ["manuals.wave3.01.js", "manuals.wave3.02.js", "manuals.wave3.04.js", "manuals.wave3.05.js"];
   window.MANUALFINDER_WAVE3_NIKON = window.MANUALFINDER_WAVE3_NIKON || [];
   window.MANUALFINDER_WAVE3_BROTHER = window.MANUALFINDER_WAVE3_BROTHER || [];
   window.MANUALFINDER_WAVE3_EPSON = window.MANUALFINDER_WAVE3_EPSON || [];
+  window.MANUALFINDER_WAVE3_CANON = window.MANUALFINDER_WAVE3_CANON || [];
 
   const slug = (v) => String(v || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const lines = (parts) => parts.flatMap((part) => String(part || "").split("\n").map((x) => x.trim()).filter(Boolean));
@@ -72,5 +74,25 @@
     };
   });
 
-  window.MANUALFINDER_BUILD_WAVE3 = () => [...nikon(), ...brother(), ...epson()];
+  const canon = () => lines(window.MANUALFINDER_WAVE3_CANON).map((line) => {
+    const [model, manualUrl, targetMode] = line.split("|");
+    const shared = targetMode === "shared";
+    return {
+      id: `wave3-canon-${slug(model)}`,
+      brand: "Canon", maker: "Canon", model, family: "PIXUS inkjet printer / MFP",
+      nameJa: `キヤノン ${model}`, nameEn: `Canon ${model}`,
+      category: "プリンター・複合機", country: "Japan", manualUrl, supportUrl: manualUrl,
+      noteJa: shared ? "キヤノンがこの機種を含むシリーズ向けに提供している公式オンラインマニュアルです。" : "キヤノン公式の機種別オンラインマニュアルです。",
+      noteEn: shared ? "Official Canon online manual for the vendor-defined series containing this model." : "Official Canon model-specific online manual.",
+      hintJa: `キヤノン Canon PIXUS ${model} プリンター 複合機 取扱説明書`,
+      hintEn: `Canon PIXUS ${model} printer MFP manual`,
+      aliases: ["キヤノン", "Canon", "PIXUS", "プリンター", "複合機", "取扱説明書"],
+      sourceType: "official", sourceLevel: "A", verifiedAt: CANON_V, evidenceUrl: manualUrl,
+      resolutionState: shared ? "shared_official_manual_page" : "direct_online_manual",
+      manualKind: "online-manual", sharedTarget: shared,
+      linkReview: `official Wave 3E target verified ${CANON_V}`
+    };
+  });
+
+  window.MANUALFINDER_BUILD_WAVE3 = () => [...nikon(), ...brother(), ...epson(), ...canon()];
 })();
