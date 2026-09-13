@@ -39,6 +39,24 @@
     return document.documentElement.lang === "en" ? "en" : "ja";
   }
 
+  function toHalfWidth(text) {
+    return String(text || "").replace(/[！-～]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 0xFEE0)).replace(/　/g, " ");
+  }
+
+  function normalizeRetailSizeSyntax(raw) {
+    let text = toHalfWidth(raw).trim();
+    text = text.replace(/(\d+)\s*(?:-|\s)?\s*1\s*\/\s*2\b/g, "$1.5");
+    text = text.replace(/(\d+)\s*½/g, "$1.5");
+    text = text.replace(/^(JP|US|EU)\s*[:：-]?\s*/i, (_, system) => `${system.toUpperCase()} `);
+    text = text.replace(/\s+/g, " ").trim();
+    return text;
+  }
+
+  function applyRetailInputNormalization() {
+    const normalized = normalizeRetailSizeSyntax(input.value);
+    if (normalized && normalized !== input.value) input.value = normalized;
+  }
+
   function parseEntry(raw) {
     const text = String(raw || "").trim();
     const match = /^(JP|US|EU)\s*[:\-]?\s*(.+)$/i.exec(text);
@@ -62,6 +80,7 @@
 
   function resolveRangeInput() {
     if (resolving) return;
+    applyRetailInputNormalization();
     const parsed = parseEntry(input.value);
     const range = rangeFor(parsed.system, parsed.value);
     if (!range || range.label === parsed.value) return;
@@ -133,8 +152,8 @@
         : `${lastRangeResolution.system} ${lastRangeResolution.entered} は対応表の ${lastRangeResolution.range} の範囲内として表示しています。`);
     } else {
       parts.push(en
-        ? "The same US number can map differently by chart and category."
-        : "同じUS番号でも、メンズ/レディースや靴/衣類で対応は変わります。");
+        ? "The same US number can map differently by chart and category. Retail-style half sizes such as 8 1/2, 8-1/2, 8½, and full-width JP/US/EU input are normalized locally."
+        : "同じUS番号でも、メンズ/レディースや靴/衣類で対応は変わります。8 1/2・8-1/2・8½や全角のJP/US/EU入力もブラウザ内で正規化します。");
     }
     note.textContent = parts.join(" ");
   }
@@ -281,6 +300,9 @@
     document.head.appendChild(style);
   }
 
+  input.addEventListener("input", applyRetailInputNormalization, { capture: true });
+  input.addEventListener("change", applyRetailInputNormalization, { capture: true });
+  input.addEventListener("keydown", (event) => { if (event.key === "Enter") applyRetailInputNormalization(); }, { capture: true });
   input.addEventListener("change", resolveRangeInput);
   input.addEventListener("keydown", (event) => {
     if (event.key === "Enter") queueMicrotask(resolveRangeInput);
