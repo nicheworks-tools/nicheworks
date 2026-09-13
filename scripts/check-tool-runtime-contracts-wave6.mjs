@@ -18,9 +18,13 @@ const lacks = (rel, needle, label = String(needle)) => {
   const text = read(rel);
   check(!(needle instanceof RegExp ? needle.test(text) : text.includes(needle)), `${rel}: forbidden ${label}`);
 };
+const hasScript = (rel, filename) => {
+  const escaped = filename.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  has(rel, new RegExp(`<script\\b[^>]*\\bsrc=["'](?:[^"']*/)?${escaped}(?:\\?[^"']*)?["']`, 'i'), `active ${filename} script`);
+};
 
 // 76. Sukima Baito Income — income rows stay page-memory only; CSV/OCR contracts remain bounded.
-has('tools/sukima-baito-income/index.html', './app.js', 'active app.js');
+hasScript('tools/sukima-baito-income/index.html', 'app.js');
 has('tools/sukima-baito-income/app.js', 'let entries = []; // (spec: no persistent storage for entries)');
 has('tools/sukima-baito-income/app.js', 'const WP_KEY = "nw-sukima-workplaces-v1"');
 has('tools/sukima-baito-income/app.js', 'maxFiles: 10');
@@ -30,29 +34,37 @@ has('tools/sukima-baito-income/app.js', 'date,workplace,category,amount,memo');
 lacks('tools/sukima-baito-income/app.js', /localStorage\.setItem\([^\n]*(?:entries|income)/i, 'persistent income-entry storage');
 
 // 77. Tiny Audio Meter — measurement-oriented input, bounded pitch/snapshots, local records, affiliate disabled.
-has('tools/tiny-audio-meter/index.html', './app.js');
+hasScript('tools/tiny-audio-meter/index.html', 'app.js');
 has('tools/tiny-audio-meter/app.js', 'navigator.mediaDevices.getUserMedia');
 has('tools/tiny-audio-meter/app.js', 'echoCancellation: false');
 has('tools/tiny-audio-meter/app.js', 'noiseSuppression: false');
 has('tools/tiny-audio-meter/app.js', 'autoGainControl: false');
-has('tools/tiny-audio-meter/app.js', /60\s*,\s*1200|MIN_PITCH_HZ\s*=\s*60/,'60 Hz pitch lower bound');
+has('tools/tiny-audio-meter/app.js', /PITCH_MIN_HZ\s*=\s*60/,'60 Hz pitch lower bound');
 has('tools/tiny-audio-meter/app.js', /100|PITCH.*INTERVAL/i, 'pitch analysis cadence');
-has('tools/tiny-audio-meter/app.js', /20|MAX_.*SNAP/i, 'snapshot bound');
+has('tools/tiny-audio-meter/app.js', /20|MAX_.*SNAP|SNAP_MAX/i, 'snapshot bound');
 has('tools/tiny-audio-meter/records-export.js', /csv|CSV/);
 has('tools/tiny-audio-meter/affiliate-config.js', 'enabled: false');
 lacks('tools/tiny-audio-meter/affiliate-config.js', /https:\/\/www\.amazon\.|https:\/\/amzn\./i, 'live Amazon target');
 
 // 78. TrashNavi — live directory stays repository-data-driven and municipality publication stays gated.
-has('tools/trashnavi/index.html', './app.js');
+hasScript('tools/trashnavi/index.html', 'app.js');
 has('tools/trashnavi/app.js', /fetch\(/, 'same-site data loading');
-has('tools/trashnavi/municipality-page-manifest.json', 'tokyo/chuo');
+if (exists('tools/trashnavi/municipality-page-manifest.json')) {
+  const manifest = JSON.parse(read('tools/trashnavi/municipality-page-manifest.json'));
+  check(
+    Array.isArray(manifest) && manifest.some((entry) => entry.pref_slug === 'tokyo' && entry.city_slug === 'chuo' && entry.publish === true),
+    'tools/trashnavi/municipality-page-manifest.json: missing published tokyo/chuo entry'
+  );
+} else {
+  failures.push('tools/trashnavi/municipality-page-manifest.json: missing file');
+}
 has('tools/trashnavi/scripts/generate-municipality-pages.mjs', /3|preferred/i, 'preferred three-type publication gate');
-has('scripts/check-trashnavi-runtime-contract.mjs', /TrashNavi|trashnavi/i);
+has('tools/trashnavi/scripts/check-runtime-contract.mjs', /TrashNavi|trashnavi/i);
 has('scripts/check-trashnavi-direct-links.mjs', /404/);
 has('scripts/check-trashnavi-direct-links.mjs', /410/);
 
 // 79. UI Atlas — Free compare 2, legacy Pro compare 5, exact entitlement isolation.
-has('tools/ui-atlas/index.html', './app.js');
+hasScript('tools/ui-atlas/index.html', 'app.js');
 has('tools/ui-atlas/app.js', 'const getCompareMax = () => (commonProActive ? 5 : 2);');
 has('tools/ui-atlas/app.js', "local.entitlement === 'nicheworks_pro'");
 has('tools/ui-atlas/pro-bridge.js', "const EXPECTED_ENTITLEMENT = 'nicheworks_pro'");
@@ -62,7 +74,7 @@ has('tools/ui-atlas/app.js', 'ui-atlas:${lang}:recent');
 lacks('tools/ui-atlas/pro-bridge.js', /Boolean\(local && local\.active\)(?!\s*&&)/, 'active-only shared Pro gate');
 
 // 80. Unicode Kanji Checker — code-point-safe browser analysis plus same-site reference data.
-has('tools/unicode-kanji-checker/index.html', './app.js');
+hasScript('tools/unicode-kanji-checker/index.html', 'app.js');
 has('tools/unicode-kanji-checker/app.js', 'Array.from(raw)');
 has('tools/unicode-kanji-checker/app.js', 'char.codePointAt(0)');
 has('tools/unicode-kanji-checker/app.js', "fetch(base + 'dict.json')");
@@ -71,7 +83,7 @@ has('tools/unicode-kanji-checker/app.js', 'このツールは文字コード・�
 lacks('tools/unicode-kanji-checker/app.js', /fetch\(['"]https?:\/\//, 'external input-processing API');
 
 // 81. UnitMaster — JSON runtime, seven categories, input guards, five-item local history, safe fallback.
-has('tools/unitmaster/index.html', './app-json-runtime.js');
+hasScript('tools/unitmaster/index.html', 'app-json-runtime.js');
 has('tools/unitmaster/app-json-runtime.js', 'const UNIT_DATA_URL = "./data/units.json"');
 has('tools/unitmaster/app-json-runtime.js', 'const LEGACY_APP_URL = "./app.js"');
 has('tools/unitmaster/app-json-runtime.js', 'const MAX_ABS_VALUE = 1e100');
@@ -80,7 +92,7 @@ has('tools/unitmaster/app-json-runtime.js', 'list.slice(0, 5)');
 for (const cat of ['length','weight','temp','volume','area','speed','pressure']) has('tools/unitmaster/app-json-runtime.js', `cat_${cat}`);
 
 // 82. URL Title Collector — URLs go through the Worker; result statuses and CSV/TSV escaping remain explicit.
-has('tools/url-title-collector/index.html', './app.js');
+hasScript('tools/url-title-collector/index.html', 'app.js');
 has('tools/url-title-collector/app.js', 'https://floral-voice-bfc0.nicheworks-tools.workers.dev/?url=');
 for (const state of ['success','no-title','http-error','network-error']) has('tools/url-title-collector/app.js', `"${state}"`);
 has('tools/url-title-collector/app.js', "td.innerText.replace(/\"/g, '\"\"')");
@@ -89,7 +101,7 @@ has('tools/url-title-collector/en/index.html', /Worker|external site|network/i, 
 lacks('tools/url-title-collector/SPEC.md', /「ローカル処理」「Fully browser-based」という表現はruntime behaviorと一致せず/, 'stale local-only privacy drift note');
 
 // 83. Variant Kanji Compare — browser-side Unicode/glyph comparison with same-site old-kanji reference data.
-has('tools/variant-kanji-compare/index.html', './app.js');
+hasScript('tools/variant-kanji-compare/index.html', 'app.js');
 has('tools/variant-kanji-compare/app.js', /codePointAt\(0\)/);
 has('tools/variant-kanji-compare/app.js', /UTF-16|utf16/i);
 has('tools/variant-kanji-compare/app.js', /HTML|html/i);
@@ -97,7 +109,7 @@ has('tools/variant-kanji-compare/app.js', /old-kanji-reference|dict\.json/i);
 lacks('tools/variant-kanji-compare/app.js', /fetch\(['"]https?:\/\//, 'external input-processing API');
 
 // 84. Vibe Lexicon — compare stays 2, paid copy/export requires exact shared entitlement, legacy local flag is not authority.
-has('tools/vibe-lexicon/index.html', './app.js');
+hasScript('tools/vibe-lexicon/index.html', 'app.js');
 has('tools/vibe-lexicon/app.js', 'const maxCompare = 2;');
 has('tools/vibe-lexicon/app.js', "status.entitlement === 'nicheworks_pro'");
 has('tools/vibe-lexicon/pro-bridge.js', "var EXPECTED_ENTITLEMENT = 'nicheworks_pro'");
@@ -107,7 +119,8 @@ lacks('tools/vibe-lexicon/pro-bridge.js', 'legacyActive()', 'legacy tool-local s
 lacks('tools/vibe-lexicon/pro-bridge.js', 'localCommonActive() ||', 'legacy OR entitlement bypass');
 
 // 85. WeatherDiff — explicit live network sources, HTTPS geolocation guard, bounded geolocation wait, safety warning.
-has('tools/weatherdiff/index.html', './app-final.js');
+hasScript('tools/weatherdiff/index.html', 'app.js');
+has('tools/weatherdiff/app.js', "import './app-final.js'", 'active app-final.js module import');
 has('tools/weatherdiff/app-final.js', 'location.protocol !== "https:"');
 has('tools/weatherdiff/app-final.js', 'timeout: 5000');
 has('tools/weatherdiff/app-final.js', 'https://nominatim.openstreetmap.org/search');
@@ -117,7 +130,7 @@ has('tools/weatherdiff/app-final.js', '防災、避難判断、警報、交通�
 has('tools/weatherdiff/app-final.js', 'localStorage.setItem(LANG_KEY, currentLang)');
 
 // 86. WebP/AVIF Converter — one local file, format guard, JPEG white flatten, object URL cleanup.
-has('tools/webp-avif-converter/index.html', './app.js');
+hasScript('tools/webp-avif-converter/index.html', 'app.js');
 has('tools/webp-avif-converter/app.js', 'if (files.length > 1)');
 has('tools/webp-avif-converter/app.js', 'type === "image/webp"');
 has('tools/webp-avif-converter/app.js', 'type === "image/avif"');
@@ -127,7 +140,7 @@ has('tools/webp-avif-converter/app.js', '/tools/filetype-sniffer/');
 lacks('tools/webp-avif-converter/app.js', /fetch\(/, 'remote image-processing request');
 
 // 87. WiFi Meter — Network Information API estimate only, manual one-second sampling, max 50 in-memory points.
-has('tools/wifi-meter/index.html', './app.js');
+hasScript('tools/wifi-meter/index.html', 'app.js');
 has('tools/wifi-meter/app.js', 'navigator.connection || navigator.mozConnection || navigator.webkitConnection');
 has('tools/wifi-meter/app.js', 'const MAX_POINTS = 50');
 has('tools/wifi-meter/app.js', 'setInterval(updateValues, 1000)');
