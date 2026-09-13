@@ -43,7 +43,7 @@
 - `current relative dB - ambient reference relative dB`を表示する。
 - microphone calibration、sensitivity correction、noise-floor SPL、校正済みdB SPLではない。
 - mic start/stopまたはdevice変更でsampling/referenceを破棄する。
-- activity threshold、pitch detection、spectrum計算を変更しない。
+- Ambient referenceはactivity threshold、pitch detection、spectrum計算を変更しない。
 - EC / NS / AGCがONなら自動処理影響を警告する。
 
 ## Snapshot / segment contract
