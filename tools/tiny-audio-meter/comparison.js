@@ -36,7 +36,7 @@
 
         const peakHz = peakValue > 0 ? peakIndex * binHz : null;
         window.dispatchEvent(new CustomEvent(SPECTRUM_EVENT, {
-          detail: { peakHz, peakValue }
+          detail: { peakHz, peakValue, sampleRate, fftSize: analyser.fftSize }
         }));
       };
       return analyser;
@@ -234,4 +234,5 @@
   refresh();
   loadLocalExtension("./records-export.js", "records-export");
   loadLocalExtension("./ambient-reference.js", "ambient-reference");
+  loadLocalExtension("./measurement-conditions.js", "measurement-conditions");
 })();
