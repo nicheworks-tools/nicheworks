@@ -22,6 +22,8 @@ The Lite product is intentionally distinct from INCI FastScan:
 - Fall back gracefully to the implemented lightweight exact-match rules if dictionary files cannot be loaded.
 - Show parsed count, dictionary-match count, review-candidate count, unclassified count, dictionary recognition percentage, top functional categories, and a row-per-ingredient result table.
 - Surface the current unclassified ingredient names as a compact review list so users can see coverage gaps without scanning the entire table.
+- Allow result-table filtering between all / unclassified / review-candidate / dictionary-match rows without re-running analysis.
+- Allow users to copy only the current unclassified ingredient names for follow-up review.
 - Keep `caution` / `risk` dictionary metadata internal to the matching layer; the Lite UI exposes only a non-diagnostic `確認候補` signal.
 - Keep unknown entries explicitly unclassified rather than inventing a diagnosis or safety conclusion.
 - Support clear/reset and copying the current result.
@@ -32,7 +34,7 @@ The Lite product is intentionally distinct from INCI FastScan:
 ## Inputs
 
 - Pasted cosmetic ingredient-list text.
-- Check, clear, and copy actions.
+- Check, clear, copy, and result-filter actions.
 - Optional keyboard shortcut: Cmd/Ctrl + Enter.
 
 ## Outputs
@@ -43,7 +45,8 @@ The Lite product is intentionally distinct from INCI FastScan:
 - Compact list of currently unclassified ingredient names, capped in the summary while the full table remains available.
 - Up to eight prominent functional-category chips derived from matched dictionary entries.
 - Ingredient table containing the original input name, current reference status/categories, and concise explanatory note.
-- Clipboard copy of the current result.
+- Client-side filtering of the result table by status, including a horizontally scrollable mobile control row.
+- Clipboard copy of the current full result or unclassified-name subset.
 
 ## Ingredient data dependency
 
@@ -62,11 +65,11 @@ The legacy `tools/cosmetic-ingredient-checker-lite/data/ingredients.json` is not
 
 ## State and persistence
 
-Input and parsed results are ephemeral current-page state. The current implementation does not define saved ingredient history or cross-session persistence.
+Input, parsed results, and the current result filter are ephemeral current-page state. The current implementation does not define saved ingredient history or cross-session persistence.
 
 ## Privacy and network behavior
 
-Ingredient parsing and matching run in the browser. The pasted ingredient text is not intentionally uploaded by the checker workflow. Static dictionary files are loaded from the same NicheWorks origin. Suite-wide advertising and analytics resources may load separately, but raw ingredient input must not be included in analytics or affiliate events.
+Ingredient parsing, filtering, and matching run in the browser. The pasted ingredient text is not intentionally uploaded by the checker workflow. Static dictionary files are loaded from the same NicheWorks origin. Suite-wide advertising and analytics resources may load separately, but raw ingredient input must not be included in analytics or affiliate events.
 
 ## Language mode
 
@@ -78,7 +81,7 @@ The current UI explicitly labels itself Japanese-only. English UI must not be ad
 
 `mobile-oriented`
 
-The page is input-first: the first meaningful interaction after the existing top advertising slot is the ingredient input. Results use a compact summary followed by a horizontally safe detailed table.
+The page is input-first: the first meaningful interaction after the existing top advertising slot is the ingredient input. Results use a compact summary followed by mobile-friendly filter controls and a horizontally safe detailed table.
 
 ## Monetization readiness
 
@@ -117,6 +120,7 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - `辞書認識率` is a dictionary coverage indicator, not a product-quality or safety score.
 - `確認候補` is a review cue, not a danger label.
 - `未分類` is not evidence that an ingredient is unsafe.
+- Result filters only change visibility; they do not change the underlying analysis.
 - The tool does not know ingredient concentration, complete formulation context, user allergies, individual skin condition, pregnancy suitability, drug interactions, or regulatory status from the pasted list alone.
 - Lite does not perform OCR; use INCI FastScan for image input.
 - This improvement wave does not attempt a full audit of every dictionary entry.
@@ -131,6 +135,8 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - [x] Unknown items remain explicitly unclassified rather than receiving fabricated safety claims.
 - [x] Dictionary recognition percentage is visible after analysis without being framed as a safety score.
 - [x] Unclassified ingredient names are surfaced compactly while the complete result table remains available.
+- [x] Result rows can be filtered by status without changing analysis state, including on narrow mobile screens.
+- [x] Users can copy only unclassified ingredient names without sending them to analytics or an external API.
 - [x] The page remains explicitly Japanese-only and retains the medical/regulatory disclaimer.
 - [x] The NicheWorks logo image is not shown in the tool header.
 - [x] The donation block appears before the footer.
