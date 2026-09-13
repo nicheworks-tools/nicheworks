@@ -68,3 +68,4 @@ The primary use case is preparing short/medium social text for copying, with a v
 - `tools/linebreak-doctor/index.html`
 - `tools/linebreak-doctor/app.js`
 - `tools/linebreak-doctor/style.css`
+- `tools/linebreak-doctor/tests/behavior.test.mjs`
