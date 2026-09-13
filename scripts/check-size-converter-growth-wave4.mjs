@@ -38,13 +38,14 @@ has(index, 'not a universal cross-brand JP/US/EU standard', 'non-universal sizin
 has(basis, 'representative crosswalk for orientation', 'representative data classification');
 has(basis, 'https://www.adidas.com/us/help/size_charts/shoes', 'adidas official footwear source');
 has(basis, 'https://www.asics.com/nz/en-nz/japan-s-unisex-1203a615-109', 'ASICS official footwear source');
-has(basis, 'https://www.newbalance.com/size-guide.html', 'New Balance official footwear source');
+has(basis, 'https://www.nike.com/jp/en/size-fit/mens-footwear', 'Nike official footwear source');
 has(basis, 'Never describe the bundled table as an ISO/JIS/US/EU universal conversion standard', 'anti-universal maintenance rule');
 has(spec, 'Data basis and provenance contract');
 has(canonical, 'representative', 'canonical representative-data classification');
 
 // PR18: UK is a verified deferral, not a hidden fixed offset or generic runtime column.
 has(ukEval, 'Decision: **defer generic UK runtime conversion**', 'UK verified-deferred decision');
+has(ukEval, 'https://www.newbalance.com/size-guide.html', 'New Balance official UK evaluation source');
 has(ukEval, 'US 4: adidas/New Balance UK 3.5 vs ASICS UK 3', 'UK US4 disagreement');
 has(ukEval, 'US 8.5: adidas/New Balance UK 8 vs ASICS UK 7.5', 'UK US8.5 disagreement');
 has(ukEval, 'Do **not** add a generic UK column', 'no generic UK runtime decision');
