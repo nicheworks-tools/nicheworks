@@ -98,6 +98,9 @@
 .common-conversion-card strong { display: block; margin-bottom: 5px; color: #334155; }
 .common-conversion-card p { margin: 0; font-size: 17px; font-weight: 800; line-height: 1.45; }
 .common-conversion-note { margin: 12px 0 0; color: #64748b; font-size: 13px; line-height: 1.6; }
+.data-basis-note { margin-top: 12px; padding-top: 12px; border-top: 1px solid #e2e8f0; }
+.data-basis-note summary { cursor: pointer; font-weight: 700; color: #334155; }
+.data-basis-note p { margin: 8px 0 0; color: #475569; font-size: 13px; line-height: 1.65; }
 
 .detail-card { margin-bottom: 18px; }
 .detail-card summary { cursor: pointer; font-weight: 700; }
