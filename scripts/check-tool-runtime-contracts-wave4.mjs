@@ -88,11 +88,12 @@ has('tools/notion-form-design-kit/app.js', 'fieldCatalog');
 lacks('tools/notion-form-design-kit/app.js', 'api.notion.com', 'Notion API transport');
 lacks('tools/notion-form-design-kit/app.js', 'fetch(', 'network fetch in design runtime');
 
-// 57. OG Image Maker — fixed canvas, local settings, safe-area export exclusion, and safe shared Pro override order.
+// 57. OG Image Maker — fixed canvas, local settings, safe-area export exclusion, and exact shared entitlement isolation.
 has('tools/og-image-maker/index.html', '<canvas id="preview" width="1200" height="630"');
 has('tools/og-image-maker/app.js', 'const STORAGE_KEY = "nw_og_settings"');
 has('tools/og-image-maker/app.js', 'if (state.showSafeArea && !isExport)');
-has('tools/og-image-maker/pro-bridge.js', 'status.active && (!status.entitlement || status.entitlement === ENTITLEMENT)');
+has('tools/og-image-maker/pro-bridge.js', 'status.active === true && status.entitlement === ENTITLEMENT');
+lacks('tools/og-image-maker/pro-bridge.js', '!status.entitlement || status.entitlement === ENTITLEMENT', 'missing-entitlement shared Pro fallback');
 {
   const html = read('tools/og-image-maker/index.html');
   check(html.indexOf('<script src="./app.js"></script>') < html.indexOf('<script src="./pro-bridge.js"></script>'), 'tools/og-image-maker/index.html: Pro bridge must load after app.js so legacy helper cannot override the shared entitlement gate');
