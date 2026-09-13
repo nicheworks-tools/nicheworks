@@ -45,13 +45,30 @@ Provide a searchable, paginated directory of verified official manufacturer manu
 - Shared target URLs are valid only when the manufacturer itself groups those models/products on the same official page/manual.
 - Coverage count is not a quality target by itself; unresolved model targets remain out until an acceptable official destination is established.
 
+## Affiliate / commerce contract
+
+ManualFinder is an `AFFILIATE` tool, but its official manual directory remains the primary product. Commerce is an optional next-action layer and must never be mixed into the official-source fields.
+
+- Always render the official manual/support destination before any commercial CTA.
+- Affiliate offers are maintained separately from `manualUrl`, `supportUrl`, evidence, and verification metadata.
+- A result may have zero, one, or multiple commerce offers. There is no one-model-one-link requirement.
+- An offer may render only from an explicit verified maker/model mapping. Do not infer Amazon URLs, product compatibility, availability, pricing, seller status, or accessory suitability from a model name.
+- If no verified offer exists for a result, render no commerce CTA.
+- The initial live Amazon offer is the exact `Nikon` / `Z8` result mapped to the Amazon search Special Link `https://amzn.to/3T7sxbB`, generated for the NicheWorks Associates account and recorded on 2026-09-13.
+- The Z8 CTA is a search handoff (`Amazonで Nikon Z8 を探す` / `Find Nikon Z8 on Amazon`), not a claim that a particular Amazon listing is official, recommended, cheapest, available, or compatible.
+- Amazon commerce UI appears after the official links, is visually distinct, explicitly identifies Amazon/affiliate status, and uses the shared `/assets/amazon-affiliate.js` helper.
+- The required Amazon Associates disclosure is rendered whenever the configured Amazon target is active.
+- Do not display copied/scraped Amazon price, availability, rating, review count, seller claim, or product imagery.
+- Affiliate analytics may emit only the shared coarse `affiliate_click` metadata (`tool`, `affiliate`, `target`, `placement`). Search text, selected filters, model-query text, and other user input must not be sent through the affiliate analytics path.
+- Future expansion must add verified offers to the separate affiliate configuration rather than editing official manual records to carry commerce URLs.
+
 ## State and persistence
 
 Search/filter/page state is current-browser UI state. The current contract does not include saved manual lists, account history, or downloaded manual storage.
 
 ## Privacy and network behavior
 
-Directory filtering runs locally in the browser against NicheWorks-hosted data. Search terms are not intentionally submitted to an application search backend or exported as analytics free text. Clicking a manufacturer destination intentionally navigates to that external official site, where that site's own network/privacy behavior applies. Advertising and analytics resources may load on NicheWorks pages.
+Directory filtering runs locally in the browser against NicheWorks-hosted data. Search terms are not intentionally submitted to an application search backend or exported as analytics free text. Clicking a manufacturer destination intentionally navigates to that external official site, where that site's own network/privacy behavior applies. Clicking an active Amazon CTA intentionally navigates to Amazon through the configured Associates Special Link. Advertising and analytics resources may load on NicheWorks pages.
 
 ## Language mode
 
@@ -71,6 +88,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - A listed official link can change or become stale; users must confirm the latest information on the manufacturer site.
 - Not every manufacturer/model has a sufficiently deep official target available to ManualFinder yet. Such gaps must not be filled with guessed or synthetic model URLs.
 - A verified record may intentionally resolve to a manufacturer-defined shared page when that is the vendor's canonical manual structure.
+- Amazon links are commercial search handoffs, not manufacturer-source evidence and not product endorsements.
 
 ## Acceptance criteria
 
@@ -81,12 +99,17 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] Vendor-defined shared manual pages remain explicit shared targets instead of being expanded into invented per-model URLs.
 - [x] Japanese and English canonical pages provide equivalent core search/directory behavior and preserve the accuracy disclaimer.
 - [x] Search text remains local to the browser search/filter runtime and is not intentionally sent to an application search backend.
+- [x] The Nikon Z8 result may show the verified Amazon search CTA only after the official manual links; unmapped results show no Amazon CTA.
+- [x] The Amazon disclosure and sponsored link semantics are supplied by the shared affiliate helper, with only coarse fixed click metadata.
 
 ## Implementation evidence
 
 - `tools/manual-finder/index.html`
 - `tools/manual-finder/en/index.html`
 - `tools/manual-finder/app.paged.js`
+- `tools/manual-finder/affiliate-config.js`
+- `tools/manual-finder/affiliate-runtime.js`
+- `tools/manual-finder/affiliate.css`
 - `tools/manual-finder/data/manuals.json`
 - `tools/manual-finder/data/manuals.full.js`
 - `tools/manual-finder/data/manuals.wave1.01.js` through `manuals.wave1.06.js`
