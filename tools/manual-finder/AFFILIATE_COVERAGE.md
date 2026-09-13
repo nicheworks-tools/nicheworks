@@ -21,10 +21,13 @@ Amazon's help recognizes affiliate links created or edited outside Associates Ce
 - query source: canonical ManualFinder maker + model only
 - user-entered search text: never used in the Amazon destination
 - initial eligible categories: `カメラ・映像`, `プリンター・複合機`
-- current status: `pending_link_checker`
+- current status: `verified`
+- verified: `2026-09-13`
+- verification method: Amazon Link Checker
 - representative proof URL: `https://www.amazon.co.jp/s?k=Brother+MFC-J4440N&tag=nicheworks09-22`
+- Link Checker result: the URL contains an Associates ID / Tracking ID that is correctly associated with the account
 
-Once that representative generated URL is confirmed valid for the account, the template can be changed to `verified`. That single change activates the same format for eligible canonical model records. It does **not** require storing or maintaining one URL per model.
+This one validation activates the same tagged-search format for eligible canonical model records. It does **not** require storing or maintaining one URL per model.
 
 ## Fixed overrides
 
@@ -50,6 +53,6 @@ A rule may apply to many canonical records. Compatibility-sensitive rules need t
 
 - `affiliate-config.js` owns the fixed tracking ID and deterministic URL builder.
 - `affiliate-runtime.js` may use a dynamic destination only when the corresponding coarse template target is active.
-- `/assets/amazon-affiliate.js` validates the destination host and records only fixed coarse analytics metadata such as `manual_model_search`; model names/search terms are not sent as analytics parameters.
+- `/assets/amazon-affiliate.js` validates the destination host and records only fixed coarse analytics metadata such as `manual_model_search_template`; model names/search terms are not sent as analytics parameters.
 - Existing fixed links continue to work as overrides.
-- If the template is not verified, dynamic results fail closed and only verified fixed overrides render.
+- The verified model-search template is active only for the explicitly eligible categories; other categories still fail closed until deliberately added.
