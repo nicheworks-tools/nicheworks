@@ -35,7 +35,7 @@ const expectedBrother = [
   'MFC-J6995CDW', 'MFC-J6997CDW', 'MFC-J6999CDW'
 ];
 assert.deepEqual(
-  pending.map((row) => row.model),
+  Array.from(pending, (row) => row.model),
   expectedBrother,
   'Brother affiliate candidates should match the accepted ManualFinder Wave 3B model set'
 );
