@@ -9,7 +9,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 - FIX: **0**
 - BLOCKED: **0**
 - NEEDS_DECISION: **0**
-- Behavior-level tests missing: **83**
+- Behavior-level tests missing: **82**
 - Real responsive defects found: **0**
 - Hard common-spec violations: **0 tools**
 - Recommendation-only documentation gaps: **28 tools**
@@ -56,7 +56,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 | [kanji-modernizer](../docs/tools/kanji-modernizer.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [laundry-code-decode](../docs/tools/laundry-code-decode.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [light-check](../docs/tools/light-check.md) | mobile-oriented | optional-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
-| [linebreak-doctor](../docs/tools/linebreak-doctor.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
+| [linebreak-doctor](../docs/tools/linebreak-doctor.md) | mobile-oriented | optional-absent | optional-present | behavior-test-present | 0 | 0 | **PASS** |
 | [log-formatter](../docs/tools/log-formatter.md) | desktop-wide | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [logistics-compliance-kit-jp](../docs/tools/logistics-compliance-kit-jp.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [lp-skeleton-generator](../docs/tools/lp-skeleton-generator.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |

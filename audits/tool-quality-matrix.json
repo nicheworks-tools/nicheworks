@@ -3255,13 +3255,12 @@
       "json_ld_status": "present",
       "donation_status": "present",
       "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
+      "functional_test_status": "behavior-test-present",
       "automated_tests": [
-        "scripts/check-tool-runtime-contracts.mjs"
+        "scripts/check-tool-runtime-contracts.mjs",
+        "tools/linebreak-doctor/tests/behavior.test.mjs"
       ],
-      "outstanding_issues": [
-        "Behavior-level automated tests are absent."
-      ],
+      "outstanding_issues": [],
       "final_state": "PASS",
       "evidence": [
         "tools/linebreak-doctor/index.html",
@@ -3286,13 +3285,15 @@
         {
           "path": "scripts/check-tool-runtime-contracts.mjs",
           "classification": "regression/contract test"
+        },
+        {
+          "path": "tools/linebreak-doctor/tests/behavior.test.mjs",
+          "classification": "behavior test"
         }
       ],
       "decision_gaps": [],
       "hard_compliance_gaps": [],
-      "recommendation_only_gaps": [
-        "Behavior-level automated tests are absent."
-      ]
+      "recommendation_only_gaps": []
     },
     {
       "slug": "log-formatter",
