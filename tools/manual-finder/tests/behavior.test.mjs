@@ -11,24 +11,31 @@ const ledger = context.window.MANUALFINDER_AFFILIATE_LEDGER;
 const config = context.window.MANUALFINDER_AFFILIATE_CONFIG;
 
 assert.ok(Array.isArray(ledger), 'fixed affiliate ledger should be exposed');
-assert.equal(ledger.length, 1, 'per-model pending link rows should not be required');
+assert.equal(ledger.length, 1, 'per-model stored links should not be required');
 assert.ok(config, 'runtime affiliate config should be exposed');
-assert.equal(config.enabled, true, 'verified Nikon Z8 override keeps affiliate runtime enabled');
+assert.equal(config.enabled, true, 'affiliate runtime should be enabled');
 
 assert.equal(ledger[0].maker, 'Nikon');
 assert.equal(ledger[0].model, 'Z8');
 assert.equal(ledger[0].specialLink, 'https://amzn.to/3T7sxbB');
 assert.equal(config.targets.nikon_z8_search, 'https://amzn.to/3T7sxbB');
-assert.equal(Object.keys(config.targets).length, 1, 'unverified dynamic template must not create an active target');
-assert.equal(config.offers.length, 1, 'only the verified fixed override should be active before template validation');
 
 assert.equal(config.trackingId, 'nicheworks09-22');
-assert.equal(config.modelSearchTemplate.status, 'pending_link_checker');
+assert.equal(config.modelSearchTemplate.status, 'verified');
+assert.equal(config.modelSearchTemplate.verifiedAt, '2026-09-13');
+assert.equal(config.modelSearchTemplate.verificationMethod, 'amazon_link_checker');
 assert.equal(config.modelSearchTemplate.activationTarget, 'manual_model_search_template');
 assert.equal(
   config.modelSearchTemplate.proofUrl,
   'https://www.amazon.co.jp/s?k=Brother+MFC-J4440N&tag=nicheworks09-22'
 );
+assert.equal(
+  config.targets.manual_model_search_template,
+  'https://www.amazon.co.jp/s?k=Brother+MFC-J4440N&tag=nicheworks09-22',
+  'validated template should expose one coarse active target'
+);
+assert.equal(Object.keys(config.targets).length, 2, 'one fixed override plus one reusable template target should be active');
+assert.equal(config.offers.length, 1, 'dynamic model search should not create one stored offer per model');
 
 const brother = config.buildModelSearchUrl({
   maker: 'Brother',
@@ -62,4 +69,4 @@ assert.equal(
   'missing canonical model must fail closed'
 );
 
-console.log('ManualFinder affiliate template behavior test passed.');
+console.log('ManualFinder live affiliate template behavior test passed.');
