@@ -60,12 +60,15 @@ ManualFinder is an `AFFILIATE` tool, but its official manual directory remains t
 - The generic model-search template is represented by one coarse target (`manual_model_search_template`) rather than one target per model. Its representative Brother MFC-J4440N tagged search URL was validated by Amazon Link Checker on 2026-09-13 and the template is active.
 - Generic exact-model search is enabled for `PC・スマホ`, `家電`, `プリンター・複合機`, `カメラ・映像`, `オーディオ`, `ゲーム`, and `ネットワーク機器`, provided the record has a non-empty canonical model.
 - `その他` is deliberately excluded from the generic rule because it mixes materially different identity types such as Seiko watch calibers and Roland legacy products. Any future commerce rule for an `その他` family must be narrowly scoped and independently justified.
-- Compatibility-sensitive accessory offers require separate verified mapping data and must not be inferred from model names. The next planned specialized rule family is printer consumables; camera batteries/chargers and appliance replacement parts/filters follow only where compatibility can be proven.
+- Compatibility-sensitive accessory offers require separate verified mapping data and must not be inferred from model names.
+- The first compatibility-sensitive rule is active for the 13 Wave 3B Brother MFC-J records. Exact ink-family mappings are stored with an official Brother product/accessory or Brother Direct Club source URL and a verification date. Unmapped printer models receive no consumable CTA.
+- Brother consumable CTAs use one coarse analytics target (`printer_consumable_search_template`) and generate Amazon searches from verified consumable codes such as `LC416`, not from arbitrary user text.
+- Consumable CTA wording identifies the searched code but does not claim that every Amazon result is genuine, recommended, or compatible. The UI states that the code was checked against the manufacturer source and asks the user to confirm the exact Amazon item before purchase.
 - Amazon search CTAs are handoffs (`Amazonで <maker> <model> を探す` / `Find <maker> <model> on Amazon`), not claims that any listing is official, recommended, cheapest, available, or compatible.
 - Amazon commerce UI appears after official links, is visually distinct, explicitly identifies Amazon/affiliate status, and uses the shared `/assets/amazon-affiliate.js` helper.
 - The required Amazon Associates disclosure is rendered whenever an Amazon target is active.
 - Do not display copied/scraped Amazon price, availability, rating, review count, seller claim, or product imagery.
-- Affiliate analytics may emit only the shared coarse `affiliate_click` metadata (`tool`, `affiliate`, `target`, `placement`). Model names, generated Amazon query terms, search text, selected filters, and other user input must not be sent through the affiliate analytics path.
+- Affiliate analytics may emit only the shared coarse `affiliate_click` metadata (`tool`, `affiliate`, `target`, `placement`). Model names, generated Amazon query terms, consumable codes, search text, selected filters, and other user input must not be sent through the affiliate analytics path.
 - Future expansion should add a small number of verified offer rules/templates, not thousands of individually maintained URLs.
 
 ## State and persistence
@@ -108,6 +111,8 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] The Nikon Z8 result may show the verified Amazon search override only after the official manual links.
 - [x] The validated dynamic model-search builder generates deterministic tagged URLs from canonical maker/model metadata without requiring a per-model stored link for eligible product categories.
 - [x] Generic manufacturer entrances and `その他` records do not receive the generic Amazon model-search CTA.
+- [x] The 13 mapped Brother MFC-J records expose only their manufacturer-verified ink-family searches; unknown or unmapped models fail closed for consumables.
+- [x] Consumable searches use the fixed NicheWorks tracking ID while analytics receive only the coarse consumable target, not the ink/model query.
 - [x] The Amazon disclosure and sponsored link semantics are supplied by the shared affiliate helper, with only coarse fixed click metadata.
 
 ## Implementation evidence
