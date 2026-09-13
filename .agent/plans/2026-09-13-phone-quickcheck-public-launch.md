@@ -42,10 +42,11 @@ Launch requirements:
 
 - compare against latest `main` and confirm only launch-scoped files change
 - verify `tools/tools-index.json` remains valid JSON and contains 89 unique tool entries after this launch
+- verify `tools/tool-spec-manifest.json` and `audits/tool-quality-matrix.json` both cover the same 89 registered tools
 - verify sitemap contains the Phone QuickCheck canonical URL once
-- verify production HTML has canonical metadata and no robots `noindex`
+- verify production HTML has canonical metadata and an explicit indexable robots directive
 - verify the existing 30-device JSON and accessory catalog remain untouched by the launch promotion
-- run all pull-request CI, including Tool runtime contract audit and SEO audit
+- run all pull-request CI, including Tool runtime contract audit, Tool spec audit and SEO audit
 - require mergeable=true immediately before merge
 - squash merge only after all current CI checks succeed
 
