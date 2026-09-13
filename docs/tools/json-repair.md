@@ -98,7 +98,7 @@ Follow common-spec sections 6 and 9-4. Preserve and update in place rather than 
 - **Language handling for existing usage pages:** not applicable while no usage page exists.
 - Any future usage link must remain subdued and separated from advertising per common-spec section 10-6.
 
-## 14. Monetization and entitlement contract
+### Monetization and entitlement contract
 
 `MONETIZATION_CLASSIFICATION_87.md` classifies `json-repair` as an approved `PRO_BUNDLE` member. Its future paid product authority is the shared `nicheworks.pro` product; legacy `nicheworks_pro` remains compatibility/migration state only.
 
@@ -121,7 +121,7 @@ For live migration, the configured product ID must be `nicheworks.pro` plus the 
 
 The historical `$2.99` copy and shared Payment Link are legacy commerce evidence only, not future price authority. NicheWorks Pro price/currency, Stripe Product/Price, price tier, production feature IDs, restore/account policy, historical-purchaser treatment, and live/test rollout remain unresolved. Detailed staging requirements are in `docs/billing/pro-product-contracts-wave7.md`.
 
-## 15. Functional acceptance tests
+## 14. Functional acceptance tests
 
 - [ ] Valid/invalid JSON can be checked and syntax failure is surfaced without executing input content.
 - [ ] Safe/Standard repair, Pretty, Minify, copy, normal `.json` download, repair log, simple diff, and Free samples remain available without Pro.
@@ -134,7 +134,7 @@ The historical `$2.99` copy and shared Payment Link are legacy commerce evidence
 
 Automated regression/source-contract evidence: `scripts/check-tool-runtime-contracts.mjs` and `scripts/check-json-repair-product-scoped-staging.mjs`. The dedicated staging check is not represented as a full browser E2E test. Browser behavior-level status remains **behavior-test-missing** until an actual browser scenario test is added.
 
-## 16. Explicit tool-specific exceptions
+## 15. Explicit tool-specific exceptions
 
 - No language exception is established beyond the language mode above.
 - The information-dense workflow is desktop-wide; mobile adaptation must not collapse its primary workspace into an arbitrary fixed narrow width.
