@@ -15,7 +15,7 @@ This file is the cross-maker coverage authority for ManualFinder expansion work.
 
 ## Current verified model-level inventory
 
-With Wave 3A, the accepted dataset contains **1,491 verified model/caliber rows**. **1,048 are outside Seiko**.
+With Wave 3B, the accepted dataset contains **1,504 verified model/caliber rows**. **1,061 are outside Seiko**.
 
 | Maker / dataset identity | Verified rows | Current state | Notes |
 | --- | ---: | --- | --- |
@@ -33,9 +33,10 @@ With Wave 3A, the accepted dataset contains **1,491 verified model/caliber rows*
 | FUJIFILM Business Innovation | 27 | expanded | Vendor-defined grouped MFP manual pages. |
 | CASIO | 20 | expanded | G-SHOCK / EX-word / NAME LAND / keyboard model support. |
 | Nikon | 14 | expanded | Wave 3A covers all 14 mirrorless-camera models explicitly listed in Nikon's current Japanese Web-manual portal mirrorless section. Company-wide coverage is not complete. |
+| Brother | 13 | expanded | Wave 3B covers 13 exact MFC-J model manual pages from the first bounded search-result block; one targeted model remains held. |
 | Insta360 | 7 | expanded | Product-specific official online manuals. |
 | Hisense | 2 | expanded | Exact TV function-manual targets; coverage is still very thin. |
-| **Total** | **1,491** |  |  |
+| **Total** | **1,504** |  |  |
 
 Counts above are accepted repository rows, not estimates of manufacturer catalog size.
 
@@ -46,12 +47,12 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | # | Baseline brand | Model-level state | Next action |
 | ---: | --- | --- | --- |
 | 1 | Apple | generic-only | PC/mobile queue |
-| 2 | Sony | generic-only | **P0 — phase by product category** |
+| 2 | Sony | generic-only | **P0 — Wave 3C next target, phase by product category** |
 | 3 | Panasonic | generic-only | **P0 — phase by product category** |
 | 4 | Canon | generic-only | **P0 — structured product groups** |
-| 5 | Nikon | **expanded — 14** | Mirrorless Web-manual section covered in Wave 3A; rotate to Brother next |
+| 5 | Nikon | **expanded — 14** | Mirrorless Web-manual section covered in Wave 3A; rotate away |
 | 6 | Fujifilm | generic-only | Camera division must be handled separately from FUJIFILM Business Innovation |
-| 7 | Brother | generic-only | **P0 — Wave 3B next target** |
+| 7 | Brother | **expanded — 13** | First bounded MFC-J batch covered in Wave 3B; MFC-J6990CDW held; rotate to Sony |
 | 8 | Epson | generic-only | **P0 — model/category manual indexes** |
 | 9 | HP | generic-only | PC/mobile queue |
 | 10 | Dell | generic-only | PC/mobile queue |
@@ -112,7 +113,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 65 | Bambu Lab | generic-only | P1 3D-printer queue |
 | 66 | Creality | generic-only | P1 3D-printer queue |
 
-Result after Wave 3A: **59 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
+Result after Wave 3B: **58 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
 
 ## P0 source audit and order
 
@@ -121,8 +122,8 @@ The first rotation is based on source structure, user usefulness, and the abilit
 | Order | Maker | Official source structure observed 2026-09-13 | Decision |
 | ---: | --- | --- | --- |
 | 1 | Nikon | Nikon's Web manual portal enumerates product families and individual camera manuals. The mirrorless section explicitly lists 14 camera models. | **Wave 3A implemented:** 14 searchable rows, 12 unique primary Web-manual targets, including vendor-shared Z7II/Z6II and Z7/Z6 pages. |
-| 2 | Brother | Official product-manual search resolves exact models; MFC-J search alone exposes 96 products. | **Wave 3B next.** Start with one coherent printer/MFP family and exact model pages. |
-| 3 | Sony | Official manuals are highly structured but enormous: camera/camcorder alone reports 1,094 product names; interchangeable-lens camera body page reports 166. | Wave 3C+. Never attempt all-Sony in one pass; rotate by category. |
+| 2 | Brother | Official product search reports 96 MFC-J products. Wave 3B bounded the first search-result block to the 14 single-model results before the first grouped result. | **Wave 3B implemented:** 13 exact model manual pages accepted; MFC-J6990CDW held because its direct manual target was not confirmed in this pass. |
+| 3 | Sony | Official manuals are highly structured but enormous: camera/camcorder alone reports 1,094 product names; interchangeable-lens camera body page reports 166. | **Wave 3C next.** Never attempt all-Sony in one pass; rotate by category. |
 | 4 | Epson | Official support/manual system exposes model/category manuals and downloadable official PDFs. | Wave 3 rotation after first Nikon/Brother/Sony batches. |
 | 5 | Canon | Official manual selector is structured by product group, series and model across camera, printer, scanner and business lines. | Phase by product group. |
 | 6 | Panasonic | Official manual search supports exact part-number lookup across a very broad appliance/AV catalog. | Phase by product category; do not scrape the entire catalog as one wave. |
@@ -141,7 +142,7 @@ Primary official entry points used for this audit:
 Starting with Wave 3:
 
 1. **Wave 3A — Nikon:** implemented for the complete current mirrorless-camera Web-manual section; Nikon remains only `expanded`, not company-complete.
-2. **Wave 3B — Brother:** coherent model family from official product-manual pages.
+2. **Wave 3B — Brother:** implemented for a bounded first MFC-J block; Brother remains only `expanded`, not company-complete.
 3. **Wave 3C — Sony:** one bounded category only; preserve official per-model destinations.
 4. **Wave 3D — Epson or Canon:** choose the cleaner exact-target batch found during source audit.
 5. **Wave 3E — Panasonic:** one bounded product category.
