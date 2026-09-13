@@ -27,6 +27,7 @@
 
   const offers = Object.freeze([
     offer("cable-usbc-usbc", "cable", "USB-C USB-C ケーブル 100W", "AmazonでUSB-Cケーブルを探す", "Find a USB-C cable on Amazon"),
+    offer("cable-usbc-lightning", "cable", "USB-C Lightning ケーブル Apple 対応", "AmazonでUSB-C–Lightningケーブルを探す", "Find a USB-C to Lightning cable on Amazon"),
     offer("charger-pd-20w", "wired_charger", "USB PD 20W USB-C 充電器", "Amazonで20W USB-PD充電器を探す", "Find a 20W USB-PD charger on Amazon"),
     offer("charger-pd-40w", "wired_charger", "USB PD 40W USB-C 充電器", "Amazonで40W USB-PD充電器を探す", "Find a 40W USB-PD charger on Amazon"),
     offer("charger-avs-60w", "wired_charger", "USB PD 3.1 AVS 60W 充電器", "Amazonで60W AVS充電器を探す", "Find a 60W AVS charger on Amazon"),
