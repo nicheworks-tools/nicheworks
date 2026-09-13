@@ -1,0 +1,32 @@
+name: OG Image Maker product-scoped staging check
+
+on:
+  pull_request:
+    paths:
+      - 'tools/og-image-maker/**'
+      - 'docs/tools/og-image-maker.md'
+      - 'docs/billing/pro-product-contracts-wave9.md'
+      - 'docs/billing/nicheworks-pro-bundle-contract.md'
+      - 'MONETIZATION_CLASSIFICATION_87.json'
+      - 'scripts/check-og-image-maker-product-scoped-staging.mjs'
+      - 'scripts/check-tool-runtime-contracts-wave4.mjs'
+      - 'assets/nw-product-scoped-controller.mjs'
+      - '.github/workflows/og-image-maker-product-scoped-staging-check.yml'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: JavaScript syntax
+        run: |
+          node --check tools/og-image-maker/app.js
+          node --check tools/og-image-maker/pro-bridge.js
+          node --check tools/og-image-maker/product-scoped-controller.mjs
+          node --check scripts/check-og-image-maker-product-scoped-staging.mjs
+      - name: OG Image Maker bundle boundary contracts
+        run: node scripts/check-og-image-maker-product-scoped-staging.mjs
