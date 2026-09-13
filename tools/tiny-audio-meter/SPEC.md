@@ -104,17 +104,17 @@
 - Device labelはexplicit local conditions copyには含められるが、外部送信は禁止する。
 - Snapshot CSV/summary、segment copy、conditions copyはbrowser内だけで生成する。
 
-## Amazon affiliate readiness
+## Amazon affiliate activation
 
-Shared `/assets/amazon-affiliate.js` plus local `affiliate-config.js` are loaded. Production defaults remain:
+Shared `/assets/amazon-affiliate.js` plus local `affiliate-config.js` are loaded. Production is active with the user-provided Amazon Special Links:
 
-- `enabled: false`
-- `sound_level_meter: ""`
-- `usb_microphone: ""`
+- `enabled: true`
+- `sound_level_meter: "https://amzn.to/4xHeUyd"`
+- `usb_microphone: "https://amzn.to/4iZFUF8"`
 
-Disabled/invalid config shows no Amazon CTA/disclosure and emits no affiliate click. Future activation requires verified targets plus `enabled: true` only.
+Valid configuration may expose contextual Amazon navigation for a dedicated sound-level meter or USB microphone and renders the shared Associates disclosure. Disabled/invalid config must still show no CTA/disclosure and emit no affiliate click.
 
-Allowed `affiliate_click` metadata remains coarse `tool`, `affiliate`, `target`, `placement` only. Measurement/device/conditions state is forbidden.
+Allowed `affiliate_click` metadata remains coarse `tool`, `affiliate`, `target`, `placement` only. Measurement/device/conditions state is forbidden. The configured URLs do not include live microphone-derived values, device labels, baseline state, CSV/snapshot data, or other user state.
 
 ## Language mode
 
@@ -136,6 +136,7 @@ Live values remain first. Baseline/ambient/snapshot/segment/conditions are secon
 - 異なるdevice間のbaseline/ambient比較を行わない。
 - 騒音測定、労働安全、法的証明、専門音響測定には専用機器を使用する。
 - 音声録音/audio export/long-term history/cloud保存は行わない。
+- Amazon CTA does not claim calibrated performance, price, availability, rating, or review quality.
 
 ## Acceptance criteria
 
@@ -147,7 +148,7 @@ Live values remain first. Baseline/ambient/snapshot/segment/conditions are secon
 - [ ] measurement conditionsはactive device label、same-analyser sample rate/FFT size、EC / NS / AGCを表示・ローカルコピーする。
 - [ ] measurement conditionsはsecond `getUserMedia`を開かず、analytics/affiliateへ条件値を送らない。
 - [ ] Baselineやmicrophone-derived valuesは永続保存・affiliate analytics送信されない。
-- [ ] Default affiliate configurationではAmazon CTA/disclosureが表示されない。
+- [ ] Active affiliate configuration uses only the verified sound-level-meter and USB-microphone Special Links with coarse click metadata.
 
 ## Implementation evidence
 
