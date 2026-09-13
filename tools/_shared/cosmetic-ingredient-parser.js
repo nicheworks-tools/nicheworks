@@ -65,18 +65,18 @@
   ]);
   const ambiguousExactKeySet = new Set(AMBIGUOUS_EXACT_KEYS);
 
-  function normalizeKey(value = "") {
-    const base = normalizeBaseKey(value);
-    if (!base || ambiguousExactKeySet.has(base)) return "";
-    const equivalent = ALIAS_EQUIVALENTS[base] || base;
-    if (ambiguousExactKeySet.has(equivalent)) return "";
-    return equivalent;
-  }
-
   function canonicalIdentityKey(value = "") {
     const base = normalizeBaseKey(value);
     if (!base) return "";
     return CANONICAL_EQUIVALENTS[base] || base;
+  }
+
+  function normalizeKey(value = "") {
+    const base = normalizeBaseKey(value);
+    if (!base || ambiguousExactKeySet.has(base)) return "";
+    const aliasEquivalent = ALIAS_EQUIVALENTS[base] || base;
+    if (ambiguousExactKeySet.has(aliasEquivalent)) return "";
+    return canonicalIdentityKey(aliasEquivalent);
   }
 
   function isAmbiguousExactName(value = "") {
@@ -237,7 +237,7 @@
   }
 
   const api = {
-    version: "1.9.0",
+    version: "1.9.1",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
