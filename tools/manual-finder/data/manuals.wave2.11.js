@@ -71,3 +71,10 @@ window.MANUALFINDER_WAVE2_SEIKO.push(`4J51|https://www.seikowatches.com/in-en/-/
 5Y67|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/Japanese/5/5Y67/5Y67.pdf
 5Y85|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/Japanese/5/5Y85/5Y85.pdf
 5Y89|https://www.seikowatches.com/br-pt/-/media/Files/Common/Seiko/instructions/Japanese/5/5Y89/5Y89.pdf`);
+
+// Wave 2AQ: final direct Seiko 7-series Japanese primary manuals from the official index.
+window.MANUALFINDER_WAVE2_SEIKO.push(`7N89|https://www.seikowatches.com/in-en/-/media/Files/Common/Seiko/instructions/Japanese/7/7N89/7N89.pdf
+7N93|https://www.seikowatches.com/in-en/-/media/Files/Common/Seiko/instructions/Japanese/7/7N93/7N93.pdf
+7S26|https://www.seikowatches.com/in-en/-/media/Files/Common/Seiko/instructions/Japanese/7/7S26/7S26.pdf
+7S36|https://www.seikowatches.com/in-en/-/media/Files/Common/Seiko/instructions/Japanese/7/7S36/7S36.pdf
+7T92|https://www.seikowatches.com/in-en/-/media/Files/Common/Seiko/instructions/Japanese/7/7T92/7T92.pdf`);
