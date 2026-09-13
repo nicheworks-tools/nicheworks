@@ -78,3 +78,7 @@ window.MANUALFINDER_WAVE2_SEIKO.push(`7N89|https://www.seikowatches.com/in-en/-/
 7S26|https://www.seikowatches.com/in-en/-/media/Files/Common/Seiko/instructions/Japanese/7/7S26/7S26.pdf
 7S36|https://www.seikowatches.com/in-en/-/media/Files/Common/Seiko/instructions/Japanese/7/7S36/7S36.pdf
 7T92|https://www.seikowatches.com/in-en/-/media/Files/Common/Seiko/instructions/Japanese/7/7T92/7T92.pdf`);
+
+// Wave 2AR: vendor-defined shared Seiko Japanese primary manuals; auxiliary documents are omitted.
+window.MANUALFINDER_WAVE2_SEIKO.push(`7B62,7B72|https://www.seikowatches.com/instructions/html/SEIKO_7B62_7B72_JP/index
+8R46,8R48|https://www.seikowatches.com/instructions/html/SEIKO_8R46_8R48_JP/index`);
