@@ -11,11 +11,12 @@ ManualFinder stays rule-driven. The target is a small number of reusable commerc
 Current order:
 
 1. **Generic exact-model search** — active. One validated Amazon search template generates a tagged search URL from canonical ManualFinder `maker + model` metadata.
-2. **Printer consumables** — active for Brother Wave 1, Epson Wave 1, and Canon Wave 1 below. Consumable codes come only from official manufacturer compatibility sources.
-3. **Office-printer toner / drum** — next evaluation area for existing exact model coverage where official compatibility sources are explicit.
-4. **Camera batteries / chargers** — later, only for independently verified compatibility mappings.
-5. **Appliance replacement parts / filters** — later, only where exact compatibility can be proven.
-6. Additional accessory families require a clear user need and a verified mapping source.
+2. **Consumer-printer ink** — active for Brother Wave 1, Epson Wave 1, and Canon Wave 1 below. Consumable codes come only from official manufacturer compatibility sources.
+3. **Office-printer toner** — active first wave for five existing OKI exact-model records. Exact toner codes are retained as compatibility evidence while the Amazon handoff stays concise at one toner-search CTA per model.
+4. **Office-printer drum / maintenance parts** — later, after toner behavior is checked in production.
+5. **Camera batteries / chargers** — later, only for independently verified compatibility mappings.
+6. **Appliance replacement parts / filters** — later, only where exact compatibility can be proven.
+7. Additional accessory families require a clear user need and a verified mapping source.
 
 ## Amazon tagged-search format
 
@@ -91,14 +92,28 @@ Canon is the third manufacturer. This bounded PIXUS wave adds six exact model id
 
 Official Canon consumable evidence comes from Canon Marketing Japan product/supply pages. The runtime searches by ink family codes; it does not copy Canon prices, availability, seller data, or ratings.
 
-The UI deliberately says `Amazonで <consumable code> インクを探す`. It does not say that every Amazon result is genuine or compatible. A note tells the user that the consumable code was checked against an official manufacturer source and that the exact Amazon item must still be confirmed before purchase.
+## Office-printer toner rule — OKI Wave 1
+
+OKI already has deep exact model-level ManualFinder coverage, so this affiliate wave does not add or inflate manual-directory records. It adds verified toner compatibility only for five existing color LED printer models. Exact OKI toner codes are retained as evidence; the user sees one concise model-specific toner search rather than four or eight separate color links.
+
+| OKI model | Officially verified toner codes |
+| --- | --- |
+| C650dnw | TC-C4EK1 / TC-C4EY1 / TC-C4EM1 / TC-C4EC1 |
+| C651dnw | TC-C4FK1 / TC-C4FY1 / TC-C4FM1 / TC-C4FC1 |
+| C712dnw | TC-C4CK1 / TC-C4CY1 / TC-C4CM1 / TC-C4CC1 / TC-C4CK2 / TC-C4CY2 / TC-C4CM2 / TC-C4CC2 |
+| C835dnw | TC-C3BK1 / TC-C3BY1 / TC-C3BM1 / TC-C3BC1 / TC-C3BK2 / TC-C3BY2 / TC-C3BM2 / TC-C3BC2 |
+| C844dnw | TC-C3BK1 / TC-C3BY1 / TC-C3BM1 / TC-C3BC1 / TC-C3BK2 / TC-C3BY2 / TC-C3BM2 / TC-C3BC2 |
+
+The Amazon query is `OKI <model> トナー` with the fixed Associate tag. The exact toner-code list remains attached to the mapping as manufacturer evidence. This avoids presenting an inferred prefix as an official product family while still giving users a practical Amazon handoff.
+
+The UI does not say that every Amazon result is genuine or compatible. A note tells the user that consumable codes were checked against an official manufacturer source and that the exact Amazon item must still be confirmed before purchase.
 
 Unmapped printer models receive only the generic exact-model Amazon search. Consumable compatibility is never guessed from model naming.
 
 ## Current fixed override
 
 | Maker | Model | Type | Status | Destination | Verified |
-| --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | Nikon | Z8 | Amazon search override | verified | `https://amzn.to/3T7sxbB` | 2026-09-13 |
 
 The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It is not the normal rollout mechanism.
@@ -106,7 +121,8 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 ## Runtime boundary
 
 - `app.paged.js` places canonical `maker`, `model`, and `category` metadata on each result card.
-- `affiliate-config.js` owns the fixed tracking ID, generic model-search policy, official manufacturer compatibility mappings, and deterministic URL builders.
+- `affiliate-config.js` owns the fixed tracking ID, generic model-search policy, and consumer-printer compatibility mappings.
+- `affiliate-office-consumables.js` extends the same fail-closed contract with verified office-printer toner mappings without duplicating the main config.
 - `affiliate-runtime.js` renders the generic model search plus zero or more verified consumable searches.
 - `/assets/amazon-affiliate.js` validates the Amazon destination host and records only coarse analytics targets. Model names and consumable terms are not analytics parameters.
 - Unsupported categories, empty models, malformed URLs, and unmapped consumables fail closed.
@@ -114,4 +130,4 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 
 ## Next expansion gate
 
-After Canon production rendering and link construction are checked, evaluate the already deep office-printer datasets — especially KYOCERA Document Solutions, OKI, RICOH and FUJIFILM Business Innovation — for toner/drum rules. Only mappings with explicit official manufacturer compatibility evidence should be accepted. Camera battery/charger and appliance replacement rules remain behind this printer-consumable rollout.
+First verify one OKI model in production for the model CTA, toner CTA, exact tagged URL, and disclosure. If that passes, expand toner mappings to additional already-covered OKI models or evaluate KYOCERA/RICOH/FUJIFILM Business Innovation where explicit official consumable compatibility is available. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.
