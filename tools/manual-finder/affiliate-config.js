@@ -24,13 +24,15 @@
     templateId: "manual_model_search",
     provider: "amazon",
     kind: "amazon_search",
-    status: "pending_link_checker",
+    status: "verified",
+    verifiedAt: "2026-09-13",
+    verificationMethod: "amazon_link_checker",
     trackingId: TRACKING_ID,
     baseUrl: AMAZON_SEARCH_BASE,
     activationTarget: "manual_model_search_template",
     proofUrl: "https://www.amazon.co.jp/s?k=Brother+MFC-J4440N&tag=nicheworks09-22",
     eligibleCategories: Object.freeze(["カメラ・映像", "プリンター・複合機"]),
-    note: "One validated tagged search-link template replaces per-model Special Link creation."
+    note: "Amazon Link Checker confirmed the representative tagged search URL as correctly associated with the NicheWorks tracking ID."
   });
 
   function isAmazonHttpsUrl(value) {
