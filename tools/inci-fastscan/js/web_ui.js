@@ -47,6 +47,26 @@ const RESULT_TEXT = {
     ja: (visible, total) => `${visible} / ${total} 件を表示`,
     en: (visible, total) => `Showing ${visible} / ${total}`
   },
+  reviewQueuePrev: {
+    ja: "前の要確認",
+    en: "Previous review item"
+  },
+  reviewQueueNext: {
+    ja: "次の要確認",
+    en: "Next review item"
+  },
+  reviewQueuePosition: {
+    ja: (current, total) => `要確認 ${current} / ${total}`,
+    en: (current, total) => `Review ${current} / ${total}`
+  },
+  reviewQueueReady: {
+    ja: total => `表示中の要確認 ${total} 件`,
+    en: total => `${total} visible review items`
+  },
+  reviewQueueEmpty: {
+    ja: "表示中の要確認項目はありません",
+    en: "No visible review items"
+  },
   unknownMany: {
     ja: "未一致の成分が多いです。OCRの誤認識、カンマ区切り、表記ゆれを確認してから再チェックしてください。",
     en: "Many items are unmatched. Check OCR mistakes, comma separation, and spelling variants before running the check again."
@@ -188,6 +208,11 @@ function renderResults(container, results, lang = "ja") {
       <button type="button" class="fastscan-filter-btn" data-result-filter="review">${escapeHtml(rt("filterReview", uiLang))}</button>
       <button type="button" class="fastscan-filter-btn" data-result-filter="unknown">${escapeHtml(rt("filterUnknown", uiLang))}</button>
     </div>
+    <div class="fastscan-review-queue" role="group" aria-label="Review queue">
+      <button type="button" class="fastscan-review-nav" data-review-nav="prev">${escapeHtml(rt("reviewQueuePrev", uiLang))}</button>
+      <span class="small fastscan-review-position" aria-live="polite"></span>
+      <button type="button" class="fastscan-review-nav" data-review-nav="next">${escapeHtml(rt("reviewQueueNext", uiLang))}</button>
+    </div>
     <div class="small fastscan-result-action-status" aria-live="polite"></div>
   `;
   container.appendChild(summaryEl);
@@ -202,6 +227,7 @@ function renderResults(container, results, lang = "ja") {
   results.forEach(r => {
     const div = document.createElement("div");
     div.className = "result-card";
+    div.tabIndex = -1;
 
     if (r.found) {
       const reviewState = isReviewState(r.safety) ? "review" : "matched";
@@ -277,8 +303,61 @@ function renderSuggestions(suggestions, lang, originalInput) {
 
 function setupResultInteractions(container, lang) {
   let activeFilter = "all";
+  let reviewIndex = -1;
   const status = container.querySelector(".fastscan-result-action-status");
+  const reviewPosition = container.querySelector(".fastscan-review-position");
+  const reviewNavButtons = [...container.querySelectorAll("[data-review-nav]")];
   const cards = () => [...container.querySelectorAll(".result-card[data-result-state]")];
+  const reviewCards = () => cards().filter(card =>
+    !card.hidden && (card.dataset.resultState === "review" || card.dataset.resultState === "unknown")
+  );
+
+  const clearReviewHighlight = () => {
+    for (const card of cards()) card.classList.remove("is-current-review");
+  };
+
+  const syncReviewQueue = () => {
+    const queue = reviewCards();
+    const disabled = queue.length === 0;
+    for (const button of reviewNavButtons) button.disabled = disabled;
+
+    if (!queue.length) {
+      reviewIndex = -1;
+      clearReviewHighlight();
+      if (reviewPosition) reviewPosition.textContent = rt("reviewQueueEmpty", lang);
+      return;
+    }
+
+    if (reviewIndex >= queue.length) reviewIndex = -1;
+    clearReviewHighlight();
+    if (reviewIndex >= 0) {
+      queue[reviewIndex].classList.add("is-current-review");
+      if (reviewPosition) reviewPosition.textContent = rt("reviewQueuePosition", lang, reviewIndex + 1, queue.length);
+    } else if (reviewPosition) {
+      reviewPosition.textContent = rt("reviewQueueReady", lang, queue.length);
+    }
+  };
+
+  const moveReview = (direction) => {
+    const queue = reviewCards();
+    if (!queue.length) {
+      syncReviewQueue();
+      return;
+    }
+
+    if (reviewIndex < 0) {
+      reviewIndex = direction < 0 ? queue.length - 1 : 0;
+    } else {
+      reviewIndex = (reviewIndex + direction + queue.length) % queue.length;
+    }
+
+    clearReviewHighlight();
+    const card = queue[reviewIndex];
+    card.classList.add("is-current-review");
+    if (reviewPosition) reviewPosition.textContent = rt("reviewQueuePosition", lang, reviewIndex + 1, queue.length);
+    if (typeof card.scrollIntoView === "function") card.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (typeof card.focus === "function") card.focus({ preventScroll: true });
+  };
 
   const applyFilter = () => {
     const allCards = cards();
@@ -294,12 +373,20 @@ function setupResultInteractions(container, lang) {
       button.setAttribute("aria-pressed", active ? "true" : "false");
     });
     if (status) status.textContent = rt("filterCount", lang, visible, allCards.length);
+    syncReviewQueue();
   };
 
   container.querySelectorAll("[data-result-filter]").forEach(button => {
     button.addEventListener("click", () => {
       activeFilter = button.dataset.resultFilter || "all";
+      reviewIndex = -1;
       applyFilter();
+    });
+  });
+
+  reviewNavButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      moveReview(button.dataset.reviewNav === "prev" ? -1 : 1);
     });
   });
 
