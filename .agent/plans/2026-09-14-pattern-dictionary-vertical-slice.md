@@ -21,13 +21,19 @@ Implement the first repository-backed vertical slice of the NicheWorks Pattern D
 - Add deterministic visual placeholder assets for patterns that do not yet have verified production PNGs.
 - Clearly mark all placeholder/reference status in data and documentation.
 - Follow NicheWorks common layout, analytics, ad-slot, donation, SEO, responsive, privacy and internal-link rules where applicable.
-- Register the public tool landing in `tools/tools-index.json` and `sitemap.xml`, because the repository SEO public URL contract requires every public `tools/<slug>/index.html` landing to be registered in both places.
+- Register the public tool landing in `tools/tools-index.json` and `sitemap.xml`.
+- Extend the repository's canonical 89-tool contracts to 90 without weakening any validation logic: per-tool SPEC manifest/coverage, quality matrix, monetization classification, and the fixed canonical publication count.
 
 ## Files to touch
 
 - `.agent/plans/2026-09-14-pattern-dictionary-vertical-slice.md`
 - `tools/pattern-dictionary/**`
+- `docs/tools/pattern-dictionary.md`
 - `tools/tools-index.json`
+- `tools/tool-spec-manifest.json`
+- `audits/tool-quality-matrix.json`
+- `MONETIZATION_CLASSIFICATION_87.json`
+- `scripts/audit-publishing-mode.mjs` — canonical count only (`89` → `90`), no rule/logic relaxation
 - `sitemap.xml`
 
 No other files are in scope for this vertical slice.
@@ -39,7 +45,8 @@ No other files are in scope for this vertical slice.
 - Do not add live Amazon affiliate URLs yet.
 - Do not claim prototype-curated pattern facts are source-verified.
 - Do not generate or publish the remaining 80 production patterns in this change.
-- Do not alter Cloudflare deployment configuration or CI.
+- Do not alter Cloudflare deployment configuration.
+- Do not weaken or bypass repository audits; only synchronize canonical manifests/counts required by the new registered tool.
 
 ## Implementation steps
 
@@ -49,8 +56,9 @@ No other files are in scope for this vertical slice.
 4. Generate JA/EN static pattern detail URLs from the canonical IDs. **Implemented: 20 JA + 20 EN.**
 5. Add deterministic micro-pattern/filter visuals and visibly marked DEV pattern placeholders. **Implemented.**
 6. Add structural/search/link validation scripts that require no third-party packages. **Implemented; static-page checks added.**
-7. Register the public landing and satisfy the repository SEO URL identity contract. **In progress.**
-8. Run validators and browser smoke checks. **Search smoke and JS syntax checks run locally; browser QA remains before ready-for-review.**
+7. Register the public landing and satisfy repository publication contracts. **In progress: tools-index/sitemap added; canonical 90-tool manifests still being synchronized.**
+8. Convert Pattern Dictionary's tool-local and canonical docs into the standard 15-section per-tool SPEC contract. **In progress.**
+9. Run repository audits and browser smoke checks. **Search smoke and JS syntax checks run locally; browser QA remains before ready-for-review.**
 
 ## Current validation evidence
 
@@ -59,8 +67,10 @@ No other files are in scope for this vertical slice.
 - GitHub branch contains canonical static JA/EN detail directories for all 20 prototype IDs.
 - Legacy query detail pages have been removed.
 - Static detail pages remain `noindex,follow` until data/image verification.
-- Tool runtime contract audit, tool spec audit, and Construction Tools Atlas validator passed on draft PR #732 before the latest main sync.
-- SEO audit failure was traced to the repository public URL contract: a new public tool landing must be present in `tools/tools-index.json` and `sitemap.xml`.
+- JA/EN top pages are the only Pattern Dictionary pages intended to be indexable in this slice; query-dependent search/compare pages are `noindex,follow`.
+- Tool runtime contract audit passes after registration.
+- Current Tool spec audit failure is because `pattern-dictionary` is not yet in `tools/tool-spec-manifest.json`.
+- Current SEO audit failure is the canonical publication count still fixed at 89 while the registry is now 90.
 
 ## Manual verification still required
 
@@ -83,7 +93,7 @@ No other files are in scope for this vertical slice.
 - [x] Visual autocomplete and micro-pattern visual filters are implemented.
 - [x] Similar/commonly-confused relationships render from canonical data.
 - [x] Compare supports two patterns.
-- [ ] Public tool registration and SEO URL identity checks pass.
+- [ ] Public tool registration and all 90-tool repository contracts pass.
 - [ ] Full repository validator/browser QA passes with zero broken local references.
 - [x] DEV placeholders are visibly marked and not represented as production-verified dictionary images.
 - [x] No live affiliate URLs are introduced in this slice.
