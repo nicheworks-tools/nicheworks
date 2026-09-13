@@ -161,9 +161,9 @@ Wave 7では、Search Consoleの過去180日データを再確認したが、公
 
 - 愛媛県 松山市 — `/tools/trashnavi/ehime/matsuyama/`
 
-Wave 8では、Wave 7と同じ供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から奈良市を選定した。奈良市公式の2026年度ごみ収集カレンダーと大型ごみ案内を追加し、既存のごみ分別導線と合わせてpreferred candidateへ引き上げた。data enrichment検証は完了し、自治体pageのpublicationは別PRで行う。
+Wave 8では、Wave 7と同じ供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から奈良市を選定した。奈良市公式の2026年度ごみ収集カレンダーと大型ごみ案内を追加し、既存のごみ分別導線と合わせてpreferred candidateへ引き上げた。data enrichment検証後、公開対象を **15自治体** とする。
 
-- 奈良県 奈良市 — publication pending
+- 奈良県 奈良市 — `/tools/trashnavi/nara/nara/`
 
 生成器は公開対象ごとにrepository dataを再集約し、`municipal_home` を除くdistinct waste-specific canonical typeが **3種類未満なら生成を拒否**する。manifestに追加しただけでthin pageを公開してはならない。
 
@@ -268,9 +268,9 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 ### Municipality page expansion
 
 - [x] preferred readiness 3種類以上を生成時に再検証する。
-- [x] 公開14自治体をmanifest allowlistで管理する。
+- [x] 公開15自治体をmanifest allowlistで管理する。
 - [x] 自治体pageをgeneratorから静的生成する。
-- [x] generator `--check` で14ページの生成driftを検出する。
+- [x] generator `--check` で15ページの生成driftを検出する。
 - [x] 公開URLをroot sitemapと専用sitemapへ収録する。
 - [x] robotsの既存root sitemap契約を維持し、sitemap indexから専用sitemapを発見可能にする。
 - [x] Wave 3で御浜町・海津市・結城市をpreferred candidateへ引き上げる。
@@ -278,7 +278,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - [x] Wave 5で葛飾区をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 6で猪苗代町をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 7で松山市をpreferred candidateへ引き上げ、自治体pageを公開する。
-- [x] Wave 8で奈良市をpreferred candidateへ引き上げる。自治体page publicationは別PRで閉じる。
+- [x] Wave 8で奈良市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
 ### Link health Phase 4
@@ -312,6 +312,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/tokyo/katsushika/index.html` — Wave 5 municipality page。
 - `tools/trashnavi/fukushima/inawashiro/index.html` — Wave 6 municipality page。
 - `tools/trashnavi/ehime/matsuyama/index.html` — Wave 7 municipality page。
+- `tools/trashnavi/nara/nara/index.html` — Wave 8 municipality page。
 - `scripts/check-trashnavi-direct-links.mjs` — all-direct-link dataset inventory / scheduled link-health checker。
 - `.github/workflows/check-trashnavi-direct-links.yml` — monthly/manual live link-health check and report artifact upload。
 - `.agent/plans/20260912-trashnavi-link-freshness-phase4.md` — Phase 4 implementation / safety contract。
