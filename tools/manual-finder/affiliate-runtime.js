@@ -93,6 +93,7 @@
 
     const { wrapper, links } = makeCommerceBlock(card);
     let mountedCount = 0;
+    let consumableMountedCount = 0;
 
     if (modelUrl) {
       const mounted = affiliate.mountUrl({
@@ -115,10 +116,13 @@
         placement: "manual_result_consumable",
         className: "mf-amazon-link"
       });
-      if (mounted) mountedCount += 1;
+      if (mounted) {
+        mountedCount += 1;
+        consumableMountedCount += 1;
+      }
     });
 
-    if (consumables.length && mountedCount > (modelUrl ? 1 : 0)) addVerifiedConsumableNote(wrapper);
+    if (consumableMountedCount > 0) addVerifiedConsumableNote(wrapper);
     if (!mountedCount) wrapper.remove();
   }
 
