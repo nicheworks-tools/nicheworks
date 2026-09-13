@@ -3,9 +3,11 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 
 const source = fs.readFileSync(new URL('../affiliate-config.js', import.meta.url), 'utf8');
+const officeSource = fs.readFileSync(new URL('../affiliate-office-consumables.js', import.meta.url), 'utf8');
 const sandbox = { window: {}, URL };
 const context = vm.createContext(sandbox);
 vm.runInContext(source, context, { filename: 'tools/manual-finder/affiliate-config.js' });
+vm.runInContext(officeSource, context, { filename: 'tools/manual-finder/affiliate-office-consumables.js' });
 
 const ledger = context.window.MANUALFINDER_AFFILIATE_LEDGER;
 const config = context.window.MANUALFINDER_AFFILIATE_CONFIG;
@@ -43,7 +45,8 @@ assert.equal(
 
 assert.equal(config.consumableSearchTemplate.status, 'verified');
 assert.equal(config.consumableSearchTemplate.activationTarget, 'printer_consumable_search_template');
-assert.equal(config.printerConsumables.length, 25, 'Brother 13 plus Epson 6 plus Canon 6 verified printer mappings should be present');
+assert.equal(config.printerConsumables.length, 30, 'Brother 13 + Epson 6 + Canon 6 + OKI 5 verified printer mappings should be present');
+assert.equal(config.officePrinterConsumables.length, 5, 'first OKI toner wave should contain five exact models');
 assert.equal(Object.keys(config.targets).length, 3, 'fixed override, model template, and consumable template should be active');
 assert.equal(config.offers.length, 1, 'dynamic searches must not create one stored Amazon URL per record');
 
@@ -51,6 +54,7 @@ const samples = [
   ['Brother', 'MFC-J4440N', 'プリンター・複合機'],
   ['Epson', 'EW-056A', 'プリンター・複合機'],
   ['Canon', 'TS8830', 'プリンター・複合機'],
+  ['OKI', 'C650dnw', 'プリンター・複合機'],
   ['Nikon', 'Z6III', 'カメラ・映像'],
   ['T-fal', 'KO4901JP', '家電'],
   ['Aterm', 'WX5400HP', 'ネットワーク機器'],
@@ -126,6 +130,28 @@ const ts3730 = config.getConsumableOffers({ maker: 'Canon', model: 'TS3730', cat
 assert.equal(ts3730[0].url, 'https://www.amazon.co.jp/s?k=Canon+BC-365+BC-366&tag=nicheworks09-22');
 assert.equal(ts3730[1].url, 'https://www.amazon.co.jp/s?k=Canon+BC-365XL+BC-366XL&tag=nicheworks09-22');
 
+const okiModels = new Map([
+  ['C650dnw', ['TC-C4EK1', 'TC-C4EY1', 'TC-C4EM1', 'TC-C4EC1']],
+  ['C651dnw', ['TC-C4FK1', 'TC-C4FY1', 'TC-C4FM1', 'TC-C4FC1']],
+  ['C712dnw', ['TC-C4CK1', 'TC-C4CY1', 'TC-C4CM1', 'TC-C4CC1', 'TC-C4CK2', 'TC-C4CY2', 'TC-C4CM2', 'TC-C4CC2']],
+  ['C835dnw', ['TC-C3BK1', 'TC-C3BY1', 'TC-C3BM1', 'TC-C3BC1', 'TC-C3BK2', 'TC-C3BY2', 'TC-C3BM2', 'TC-C3BC2']],
+  ['C844dnw', ['TC-C3BK1', 'TC-C3BY1', 'TC-C3BM1', 'TC-C3BC1', 'TC-C3BK2', 'TC-C3BY2', 'TC-C3BM2', 'TC-C3BC2']]
+]);
+for (const [model, codes] of okiModels) {
+  const row = Array.from(config.officePrinterConsumables).find((item) => item.model === model);
+  assert.ok(row, `${model} should retain an official OKI toner mapping`);
+  assert.deepEqual(Array.from(row.tonerCodes), codes, `${model} toner codes should match official OKI evidence`);
+  assert.ok(row.sourceUrl.includes('oki.com/'), `${model} should retain OKI source evidence`);
+
+  const offers = config.getConsumableOffers({ maker: 'OKI', model, category: 'プリンター・複合機' });
+  assert.equal(offers.length, 1, `${model} should expose one concise toner handoff`);
+  assert.equal(offers[0].kind, 'toner_search');
+  assert.equal(offers[0].query, `OKI ${model} トナー`);
+  assert.ok(offers[0].url.includes(`k=OKI+${encodeURIComponent(model).replace(/%/g, '%25')}`) || offers[0].url.includes(`k=OKI+${model}+%E3%83%88%E3%83%8A%E3%83%BC`));
+  assert.ok(offers[0].url.includes('tag=nicheworks09-22'));
+  assert.deepEqual(Array.from(offers[0].verifiedCodes), codes);
+}
+
 assert.deepEqual(
   Array.from(config.getConsumableOffers({ maker: 'Brother', model: 'MFC-J4440N', category: 'その他' })),
   [],
@@ -146,6 +172,11 @@ assert.deepEqual(
   [],
   'unverified Canon models must not receive guessed consumable offers'
 );
+assert.deepEqual(
+  Array.from(config.getConsumableOffers({ maker: 'OKI', model: 'UNKNOWN', category: 'プリンター・複合機' })),
+  [],
+  'unverified OKI models must not receive guessed toner offers'
+);
 
 assert.equal(
   config.buildModelSearchUrl({ maker: 'Seiko', model: '9F85', category: 'その他' }),
@@ -163,4 +194,4 @@ assert.equal(
   'generic manufacturer entrances without exact model metadata must fail closed'
 );
 
-console.log('ManualFinder model-search plus Brother/Epson/Canon consumable affiliate behavior tests passed.');
+console.log('ManualFinder model-search plus Brother/Epson/Canon/OKI consumable affiliate behavior tests passed.');
