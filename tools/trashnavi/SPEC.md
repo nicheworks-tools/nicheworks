@@ -173,9 +173,9 @@ Wave 10では、Wave 9と同じ供給側拡張方針を維持し、既存direct-
 
 - 宮崎県 宮崎市 — `/tools/trashnavi/miyazaki/miyazaki/`
 
-Wave 11では、Wave 10と同じ供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から高松市を選定した。高松市公式の令和8年度ごみ収集カレンダーと臨時・粗大ごみ案内を追加し、既存のごみ分別導線と合わせてpreferred candidateへ引き上げた。data enrichment検証は完了し、自治体page publicationは別PRで行う。
+Wave 11では、Wave 10と同じ供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から高松市を選定した。高松市公式の令和8年度ごみ収集カレンダーと臨時・粗大ごみ案内を追加し、既存のごみ分別導線と合わせてpreferred candidateへ引き上げた。data enrichment検証後、公開対象を **18自治体** とする。
 
-- 香川県 高松市 — publication pending
+- 香川県 高松市 — `/tools/trashnavi/kagawa/takamatsu/`
 
 生成器は公開対象ごとにrepository dataを再集約し、`municipal_home` を除くdistinct waste-specific canonical typeが **3種類未満なら生成を拒否**する。manifestに追加しただけでthin pageを公開してはならない。
 
@@ -296,9 +296,9 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 ### Municipality page expansion
 
 - [x] preferred readiness 3種類以上を生成時に再検証する。
-- [x] 公開17自治体をmanifest allowlistで管理する。
+- [x] 公開18自治体をmanifest allowlistで管理する。
 - [x] 自治体pageをgeneratorから静的生成する。
-- [x] generator `--check` で17ページの生成driftを検出する。
+- [x] generator `--check` で18ページの生成driftを検出する。
 - [x] 公開URLをroot sitemapと専用sitemapへ収録する。
 - [x] robotsの既存root sitemap契約を維持し、sitemap indexから専用sitemapを発見可能にする。
 - [x] Wave 3で御浜町・海津市・結城市をpreferred candidateへ引き上げる。
@@ -309,7 +309,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - [x] Wave 8で奈良市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 9で鹿児島市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 10で宮崎市をpreferred candidateへ引き上げ、自治体pageを公開する。
-- [x] Wave 11で高松市をpreferred candidateへ引き上げる。自治体page publicationは別PRで閉じる。
+- [x] Wave 11で高松市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
 ### Link health Phase 4
@@ -349,6 +349,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/nara/nara/index.html` — Wave 8 municipality page。
 - `tools/trashnavi/kagoshima/kagoshima/index.html` — Wave 9 municipality page。
 - `tools/trashnavi/miyazaki/miyazaki/index.html` — Wave 10 municipality page。
+- `tools/trashnavi/kagawa/takamatsu/index.html` — Wave 11 municipality page。
 - `scripts/check-trashnavi-direct-links.mjs` — all-direct-link dataset inventory / scheduled link-health checker。
 - `.github/workflows/check-trashnavi-direct-links.yml` — monthly/manual live link-health check and report artifact upload。
 - `.agent/plans/20260912-trashnavi-link-freshness-phase4.md` — Phase 4 implementation / safety contract。
