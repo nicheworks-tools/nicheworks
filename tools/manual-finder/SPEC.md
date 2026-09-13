@@ -52,18 +52,21 @@ ManualFinder is an `AFFILIATE` tool, but its official manual directory remains t
 - Always render the official manual/support destination before any commercial CTA.
 - Affiliate configuration remains separate from `manualUrl`, `supportUrl`, evidence, and verification metadata.
 - A result may have zero, one, or multiple commerce offers. There is no one-model-one-link requirement.
-- ManualFinder must not require one manually generated SiteStripe short link per model. Reusable Amazon link templates are preferred where Amazon permits a deterministic tagged-link format and the template has passed the common release gate.
+- ManualFinder must not require one manually generated SiteStripe short link per model. Reusable Amazon link templates are the default when Amazon permits a deterministic tagged-link format and the template has passed the common release gate.
 - A dynamic model-search destination may be generated only from canonical ManualFinder maker/model metadata, never from arbitrary user-entered search text.
 - The Amazon tracking ID is fixed in configuration and is never accepted from user input.
+- Rendered cards expose canonical maker/model/category metadata directly to the affiliate runtime; the runtime must not recover those values by parsing display titles.
 - A fixed override may still be used for an exact model when there is a reason to pin one Amazon-provided Special Link. The current `Nikon` / `Z8` override remains `https://amzn.to/3T7sxbB`.
 - The generic model-search template is represented by one coarse target (`manual_model_search_template`) rather than one target per model. Its representative Brother MFC-J4440N tagged search URL was validated by Amazon Link Checker on 2026-09-13 and the template is active.
-- Initial template eligibility is limited to model-level `カメラ・映像` and `プリンター・複合機` results. Compatibility-sensitive accessory offers require separate verified mapping data and must not be inferred from model names.
+- Generic exact-model search is enabled for `PC・スマホ`, `家電`, `プリンター・複合機`, `カメラ・映像`, `オーディオ`, `ゲーム`, and `ネットワーク機器`, provided the record has a non-empty canonical model.
+- `その他` is deliberately excluded from the generic rule because it mixes materially different identity types such as Seiko watch calibers and Roland legacy products. Any future commerce rule for an `その他` family must be narrowly scoped and independently justified.
+- Compatibility-sensitive accessory offers require separate verified mapping data and must not be inferred from model names. The next planned specialized rule family is printer consumables; camera batteries/chargers and appliance replacement parts/filters follow only where compatibility can be proven.
 - Amazon search CTAs are handoffs (`Amazonで <maker> <model> を探す` / `Find <maker> <model> on Amazon`), not claims that any listing is official, recommended, cheapest, available, or compatible.
 - Amazon commerce UI appears after official links, is visually distinct, explicitly identifies Amazon/affiliate status, and uses the shared `/assets/amazon-affiliate.js` helper.
 - The required Amazon Associates disclosure is rendered whenever an Amazon target is active.
 - Do not display copied/scraped Amazon price, availability, rating, review count, seller claim, or product imagery.
 - Affiliate analytics may emit only the shared coarse `affiliate_click` metadata (`tool`, `affiliate`, `target`, `placement`). Model names, generated Amazon query terms, search text, selected filters, and other user input must not be sent through the affiliate analytics path.
-- Future expansion should add a small number of verified offer rules/templates (for example model search or independently verified consumable/accessory families), not thousands of individually maintained URLs.
+- Future expansion should add a small number of verified offer rules/templates, not thousands of individually maintained URLs.
 
 ## State and persistence
 
@@ -103,7 +106,8 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] Japanese and English canonical pages provide equivalent core search/directory behavior and preserve the accuracy disclaimer.
 - [x] Search text remains local to the browser search/filter runtime and is not intentionally sent to an application search backend.
 - [x] The Nikon Z8 result may show the verified Amazon search override only after the official manual links.
-- [x] The validated dynamic model-search builder generates deterministic tagged URLs from canonical maker/model metadata without requiring a per-model stored link for eligible categories.
+- [x] The validated dynamic model-search builder generates deterministic tagged URLs from canonical maker/model metadata without requiring a per-model stored link for eligible product categories.
+- [x] Generic manufacturer entrances and `その他` records do not receive the generic Amazon model-search CTA.
 - [x] The Amazon disclosure and sponsored link semantics are supplied by the shared affiliate helper, with only coarse fixed click metadata.
 
 ## Implementation evidence
