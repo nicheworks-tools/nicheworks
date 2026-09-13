@@ -12,7 +12,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 - Behavior-level tests missing: **85**
 - Real responsive defects found: **0**
 - Hard common-spec violations: **0 tools**
-- Recommendation-only documentation gaps: **85 tools**
+- Recommendation-only documentation gaps: **28 tools**
 - Remaining unresolved product decision gaps: **0**
 - Error decision gaps removed as implementation-evidenced false positives: **108**
 - Previous false `FIX` findings removed: **76**
@@ -118,3 +118,5 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 ## Wave 1 hard-gap status
 
 The mandatory donation/support shared-root-cause repair is complete for: `ats-paste-doctor`, `message-generator`, `old-document-kanji-highlighter`, `old-kanji-ocr-scanner`, `place-old-kanji-checker`, `unicode-kanji-checker`, `url-title-collector`, `variant-kanji-compare`. Their recommendation-only usage/FAQ/test gaps remain visible, but the support-block defect no longer forces `FIX`. Current matrix state after this repair: **88 PASS / 0 FIX / 0 BLOCKED / 0 NEEDS_DECISION**.
+
+The 88th registered tool, `reconcile`, was added to the canonical quality baseline after publication; its missing mandatory support block was closed during the same baseline sync.
