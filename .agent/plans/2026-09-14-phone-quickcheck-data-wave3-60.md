@@ -69,4 +69,4 @@ Lightning-era iPhones add `cable-usbc-lightning`. Their charger class remains US
 
 ## Release gate
 
-Squash merge only after the branch is mergeable against current `main` and all triggered PR checks succeed.
+Canonical merge completed on the branch: 30 base records + 30 wave records = 60 records. `phones.wave3.json` and temporary finalizer/sync workflows were removed after validation. The branch was synchronized with current `main` before final CI. Squash merge only after the branch is mergeable and all triggered PR checks succeed.
