@@ -90,19 +90,20 @@ check(!fastUi.includes('btn-fast-check.click('), 'review queue must not auto-rer
 check(!fastUi.includes('btn-jb-check.click('), 'review queue must not auto-rerun Japanese analysis');
 check(fastSpec.includes('Review-queue controls only move focus'), 'FastScan SPEC lost review-queue no-edit contract');
 
-// Amazon-ready invariant: Wave 3 may improve either tool but must not activate monetization.
-check(affiliateConfig.includes('enabled: false'), 'Amazon config must remain disabled');
-check(affiliateConfig.includes('associateTag: ""'), 'Amazon associate tag must remain empty');
+// Post-activation Amazon invariant: verified Special Link only, unchanged placements and privacy.
+check(affiliateConfig.includes('enabled: true'), 'Amazon config must be active after verified activation');
+check(affiliateConfig.includes('trackingMode: "special_link"'), 'Amazon tracking mode must remain special_link');
+check(affiliateConfig.includes('associateTag: ""'), 'do not invent a separate Associate tag for the supplied Special Link');
+check(affiliateConfig.includes('href: "https://amzn.to/4xNbcDO"'), 'verified skincare Special Link missing');
 check(affiliateConfig.includes('placement: "after-summary"'), 'Lite Amazon placement changed');
 check(affiliateConfig.includes('placement: "after-results"'), 'FastScan Amazon placement changed');
-check((affiliateConfig.match(/links: Object\.freeze\(\[\]\)/g) || []).length === 2, 'Amazon link arrays must remain empty for both cosmetics tools');
-check(!/https?:\/\/[^"']*amazon\./i.test(affiliateConfig), 'live Amazon URL must not exist before activation');
+check((affiliateConfig.match(/links: Object\.freeze\(\[skincareSearch\]\)/g) || []).length === 2, 'both cosmetics tools must retain the verified Special Link');
 for (const spec of [liteSpec, fastSpec]) {
-  check(spec.includes('enabled = false'), 'tool SPEC lost disabled Amazon activation contract');
+  check(/Special Link|trackingMode = special_link/i.test(spec), 'tool SPEC lost active Special Link contract');
   check(/raw ingredient|pasted ingredient|OCR output/i.test(spec), 'tool SPEC lost input privacy contract');
 }
 
-// CI must continuously enforce every Wave 3 regression plus the frozen affiliate contract.
+// CI must continuously enforce every Wave 3 regression plus the live affiliate contract.
 for (const checkFile of [
   'check-cosmetics-full-label-benchmark.mjs',
   'check-cosmetics-canonical-equivalents.mjs',
@@ -131,6 +132,6 @@ console.log(JSON.stringify({
   ocr_exact_line_repair: true,
   lite_long_result_navigation: true,
   fastscan_review_queue: true,
-  amazon_enabled: false,
-  amazon_activation_ready: true
+  amazon_enabled: true,
+  amazon_tracking_mode: 'special_link'
 }, null, 2));
