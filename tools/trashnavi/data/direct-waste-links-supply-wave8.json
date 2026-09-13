@@ -1,0 +1,27 @@
+[
+  {
+    "pref": "奈良県",
+    "city": "奈良市",
+    "name": "奈良市 令和8年10月からのごみ収集日カレンダー",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.nara.lg.jp/site/gomi-syusyu/214555.html",
+    "lgcode": "292010",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "奈良県",
+    "city": "奈良市",
+    "name": "奈良市 大型ごみ",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.nara.lg.jp/site/gomi-syusyu/4464.html",
+    "lgcode": "292010",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  }
+]
