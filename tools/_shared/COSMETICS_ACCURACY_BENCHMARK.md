@@ -9,6 +9,7 @@ Run:
 
 ```bash
 node tools/_shared/check-cosmetics-accuracy-benchmark.mjs
+node tools/_shared/check-cosmetics-full-label-benchmark.mjs
 ```
 
 ## Fixed 100-case composition
@@ -28,6 +29,20 @@ The parser cases explicitly cover Japanese punctuation, newlines, semicolons, nu
 
 The unknown/OCR-noise cases must remain unknown to exact matching. FastScan may separately display conservative spelling candidates, but the benchmark does not permit fuzzy input to become an automatic exact match.
 
+## Full-label benchmark
+
+The full-label layer complements the atomic 100-case suite by exercising complete representative ingredient lists. It is a regression corpus, not a branded-product catalog and not a claim that every market formula is covered.
+
+Wave 3 raises the floor to:
+
+- at least 24 complete-label fixtures;
+- at least 12 distinct product categories;
+- Japanese, English, and mixed-language coverage;
+- explicit sunscreen, conditioner, active-serum, and color-cosmetic coverage;
+- at least 80% coverage per fixture and 95% coverage overall.
+
+The fixture set also retains the earlier toner, serum, cream, cleanser, haircare, barrier-care, emulsion, OCR-review, and mixed-language cases.
+
 ## Cross-tool contract
 
 The benchmark also verifies that:
@@ -37,17 +52,12 @@ The benchmark also verifies that:
 - Lite keeps using the shared cosmetics parser.
 - FastScan keeps using the shared cosmetics parser.
 
-This benchmark measures parsing and exact dictionary identity only. It does not claim medical safety, ingredient concentration, product suitability, allergy risk, regulatory status, or formulation quality.
+These benchmarks measure parsing and exact dictionary identity only. They do not claim medical safety, ingredient concentration, product suitability, allergy risk, regulatory status, or formulation quality.
 
 ## Quality gates
 
-The path-scoped cosmetics workflow runs, in order:
-
-1. shared parser regression checks;
-2. dictionary/canonical/alias collision checks;
-3. this 100-case benchmark;
-4. the frozen Amazon-ready affiliate contract check.
+The path-scoped cosmetics workflow runs shared parser regression, dictionary/canonical/alias checks, FastScan review regressions, the 100-case benchmark, the full-label benchmark, cross-tool release gates, and the frozen Amazon-ready affiliate contract check.
 
 ## Change policy
 
-Later dictionary work must keep this benchmark passing. New aliases must be explicit and deterministic. When an alias collision is discovered, resolve the collision rather than weakening the benchmark to accept an ambiguous exact match.
+Later dictionary work must keep both benchmark layers passing. New aliases must be explicit and deterministic. When an alias collision is discovered, resolve the collision rather than weakening the benchmark to accept an ambiguous exact match. Amazon readiness must remain isolated from ingredient analysis and benchmark logic.
