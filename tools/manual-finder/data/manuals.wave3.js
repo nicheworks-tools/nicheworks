@@ -1,0 +1,34 @@
+(() => {
+  const V = "2026-09-13";
+  window.MANUALFINDER_WAVE3_BATCHES = ["manuals.wave3.01.js"];
+  window.MANUALFINDER_WAVE3_NIKON = window.MANUALFINDER_WAVE3_NIKON || [];
+
+  const slug = (v) => String(v || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const lines = (parts) => parts.flatMap((part) => String(part || "").split("\n").map((x) => x.trim()).filter(Boolean));
+
+  const nikon = () => {
+    const supportUrl = "https://onlinemanual.nikonimglib.com/portal/ja/";
+    return lines(window.MANUALFINDER_WAVE3_NIKON).flatMap((line) => {
+      const [modelsRaw, manualUrl] = line.split("|");
+      const models = modelsRaw.split(",").map((x) => x.trim()).filter(Boolean);
+      const shared = models.length > 1;
+      return models.map((model) => ({
+        id: `wave3-nikon-${slug(model)}`,
+        brand: "Nikon", maker: "Nikon", model, family: "Mirrorless camera",
+        nameJa: `ニコン ${model}`, nameEn: `Nikon ${model}`,
+        category: "カメラ・映像", country: "Japan", manualUrl, supportUrl,
+        noteJa: shared ? "ニコンが複数機種に共通提供している公式Webマニュアルです。" : "ニコン公式の機種別Webマニュアルです。",
+        noteEn: shared ? "Official Nikon Web manual shared by the vendor-defined model group." : "Official Nikon model-specific Web manual.",
+        hintJa: `ニコン Nikon ${model} ミラーレス カメラ 取扱説明書`,
+        hintEn: `Nikon ${model} mirrorless camera manual`,
+        aliases: ["ニコン", "Nikon", "ミラーレス", "カメラ", "取扱説明書"],
+        sourceType: "official", sourceLevel: "A", verifiedAt: V, evidenceUrl: supportUrl,
+        resolutionState: shared ? "shared_official_manual_page" : "direct_online_manual",
+        manualKind: "online-manual", sharedTarget: shared,
+        linkReview: `official Wave 3A target verified ${V}`
+      }));
+    });
+  };
+
+  window.MANUALFINDER_BUILD_WAVE3 = () => nikon();
+})();
