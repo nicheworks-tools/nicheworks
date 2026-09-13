@@ -51,8 +51,8 @@ check(adapter.includes('config.trackingMode === "tagged_search"'), 'adapter must
 check(adapter.includes('url.searchParams.get("tag") !== expectedTag'), 'adapter must reject links with the wrong Associates tag');
 check(adapter.includes('url.pathname !== "/s"'), 'adapter must restrict tagged mode to Amazon search paths');
 check(adapter.includes('!url.searchParams.get("k")'), 'adapter must require a fixed search keyword');
-check(adapter.includes('host === "amazon.co.jp"'), 'adapter must allowlist amazon.co.jp');
-check(adapter.includes('host.endsWith(".amazon.co.jp")'), 'adapter must allowlist Amazon Japan subdomains');
+check(adapter.includes('host !== "amazon.co.jp"'), 'adapter must explicitly handle the amazon.co.jp host');
+check(adapter.includes('!host.endsWith(".amazon.co.jp")'), 'adapter must explicitly handle Amazon Japan subdomains');
 check(adapter.includes('url.protocol !== "https:"'), 'adapter must reject non-HTTPS affiliate URLs');
 check(adapter.includes('rel = "sponsored noopener noreferrer"'), 'affiliate link sponsored/noopener/noreferrer semantics missing');
 
