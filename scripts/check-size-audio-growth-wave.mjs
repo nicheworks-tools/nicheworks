@@ -63,7 +63,7 @@ has('tools/tiny-audio-meter/ambient-reference.js', 'const SAMPLE_DURATION_MS = 2
 has('tools/tiny-audio-meter/ambient-reference.js', 'const MIN_SAMPLES = 10;');
 has('tools/tiny-audio-meter/ambient-reference.js', 'function median(values)');
 has('tools/tiny-audio-meter/ambient-reference.js', 'function clearAmbientReference()');
-has('tools/tiny-audio-meter/ambient-reference.js', 'current relative dB minus ambient-reference relative dB', 'non-calibrated ambient explanation');
+has('tools/tiny-audio-meter/ambient-reference.js', 'This is not microphone calibration or dB SPL.', 'non-calibrated ambient explanation');
 has('tools/tiny-audio-meter/ambient-reference.js', 'processingOn()');
 lacks('tools/tiny-audio-meter/ambient-reference.js', 'getUserMedia', 'second microphone acquisition');
 lacks('tools/tiny-audio-meter/ambient-reference.js', 'localStorage', 'ambient persistence');
