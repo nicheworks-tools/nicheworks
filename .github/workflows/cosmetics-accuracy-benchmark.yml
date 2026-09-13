@@ -15,12 +15,14 @@ on:
       - 'tools/_shared/check-cosmetics-canonical-equivalents.mjs'
       - 'tools/_shared/check-fastscan-result-contract.mjs'
       - 'tools/_shared/check-fastscan-ocr-confusion.mjs'
+      - 'tools/_shared/check-fastscan-ocr-line-repair.mjs'
       - 'tools/_shared/check-fastscan-result-controls.mjs'
       - 'tools/_shared/check-cosmetics-cross-tool-release.mjs'
       - 'tools/_shared/check-cosmetics-wave2-release.mjs'
       - 'tools/_shared/COSMETICS_ACCURACY_BENCHMARK.md'
       - 'tools/_shared/COSMETICS_ALIAS_POLICY.md'
       - 'tools/_shared/COSMETICS_CANONICAL_MERGE.md'
+      - 'tools/_shared/COSMETICS_OCR_LINE_REPAIR.md'
       - 'tools/_shared/COSMETICS_RELEASE_GATE.md'
       - 'tools/_shared/COSMETICS_WAVE2_RELEASE.md'
       - 'tools/_shared/cosmetics-affiliate-*.js'
@@ -68,6 +70,8 @@ jobs:
         run: node tools/_shared/check-fastscan-result-contract.mjs
       - name: FastScan OCR confusion regression
         run: node tools/_shared/check-fastscan-ocr-confusion.mjs
+      - name: FastScan OCR line repair regression
+        run: node tools/_shared/check-fastscan-ocr-line-repair.mjs
       - name: FastScan result controls regression
         run: node tools/_shared/check-fastscan-result-controls.mjs
       - name: Cosmetics 100-case accuracy benchmark
