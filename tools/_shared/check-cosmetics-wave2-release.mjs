@@ -17,7 +17,6 @@ const fastSpec = read('tools/inci-fastscan/SPEC.md');
 const affiliateConfig = read('tools/_shared/cosmetics-affiliate-config.js');
 const workflow = read('.github/workflows/cosmetics-accuracy-benchmark.yml');
 
-// PR13: high-frequency dictionary coverage must remain available to both tools.
 const wave2Ingredients = [
   ['Sodium PCA', 'PCA-Na'],
   ['Urea', '尿素'],
@@ -40,7 +39,6 @@ for (const id of ['jp-barrier-wave2', 'en-barrier-wave2', 'jp-emulsion-wave2', '
 }
 check(fixtures.length >= 16, 'wave 2 must retain at least 16 full-label fixtures');
 
-// PR14: reviewed Japanese naming variants remain shared rather than tool-specific.
 for (const value of [
   'ポリアクリル酸ナトリウム',
   'ラウレス硫酸ナトリウム',
@@ -55,7 +53,6 @@ for (const value of [
 }
 check(parser.includes('version: "1.8.0"') || /version: "1\.(?:[89]|[1-9][0-9])\./.test(parser), 'shared parser version predates wave 2 variants');
 
-// PR15: OCR review hints stay conservative and never become automatic correction.
 check(matcher.includes('ocr_confusion'), 'FastScan OCR confusion metadata missing');
 check(matcher.includes('isCommonOcrConfusion'), 'FastScan OCR confusion guard missing');
 for (const pair of ['i1', '1i', 'l1', '1l', 'il', 'li', 'o0', '0o']) {
@@ -64,14 +61,12 @@ for (const pair of ['i1', '1i', 'l1', '1l', 'il', 'li', 'o0', '0o']) {
 check(fastUi.includes('OCR文字誤認識の可能性'), 'FastScan OCR review warning missing');
 check(fastUi.includes('Suggestions are never applied automatically'), 'FastScan must retain no-auto-apply wording');
 
-// PR16: Lite remains the fast mobile review surface.
 for (const state of ['all', 'unknown', 'review', 'matched']) {
   check(liteEnhancements.includes(`data-lite-filter="${state}"`), `Lite result filter missing: ${state}`);
 }
 check(liteEnhancements.includes('liteCopyUnknownBtn'), 'Lite unclassified-only copy control missing');
 check(liteSpec.includes('Result filters only change visibility'), 'Lite SPEC must state filters do not change analysis');
 
-// PR17: FastScan retains explicit review controls without auto rerun.
 for (const state of ['all', 'matched', 'review', 'unknown']) {
   check(fastUi.includes(`data-result-filter="${state}"`), `FastScan result filter missing: ${state}`);
 }
@@ -81,20 +76,21 @@ check(fastUi.includes('再解析も自動では行いません'), 'FastScan Japa
 check(fastUi.includes('analysis will not rerun automatically'), 'FastScan English no-auto-rerun statement missing');
 check(fastSpec.includes('does not automatically rerun ingredient analysis'), 'FastScan SPEC must retain no-auto-rerun contract');
 
-// Post-activation Amazon invariant: only the verified generic skincare Special Link may be live.
-check(affiliateConfig.includes('enabled: true'), 'Amazon config must be active after verified activation');
-check(affiliateConfig.includes('trackingMode: "special_link"'), 'Amazon tracking mode must remain special_link');
-check(affiliateConfig.includes('associateTag: ""'), 'do not invent a separate Associate tag for the supplied Special Link');
-check(affiliateConfig.includes('href: "https://amzn.to/4xNbcDO"'), 'verified skincare Special Link missing');
+// Post-activation Amazon invariant: four fixed, non-input-driven tagged searches.
+check(affiliateConfig.includes('enabled: true'), 'Amazon config must stay active');
+check(affiliateConfig.includes('trackingMode: "tagged_search"'), 'Amazon tracking mode must be tagged_search');
+check(affiliateConfig.includes('const ASSOCIATE_TAG = "nicheworks09-22"'), 'verified Associates tag missing');
 check(affiliateConfig.includes('placement: "after-summary"'), 'Lite Amazon placement changed');
 check(affiliateConfig.includes('placement: "after-results"'), 'FastScan Amazon placement changed');
-check((affiliateConfig.match(/links: Object\.freeze\(\[skincareSearch\]\)/g) || []).length === 2, 'both cosmetics tools must retain the verified Special Link');
+check((affiliateConfig.match(/links: fixedSearchLinks/g) || []).length === 2, 'both cosmetics tools must use the fixed category searches');
+for (const key of ['skincare_general', 'skincare_moisturizing', 'skincare_ceramide', 'sunscreen_general']) {
+  check(affiliateConfig.includes(`key: "${key}"`), `fixed affiliate category missing: ${key}`);
+}
 for (const spec of [liteSpec, fastSpec]) {
-  check(/Special Link|trackingMode = special_link/i.test(spec), 'tool SPEC lost active Special Link contract');
+  check(/tagged_search|fixed Amazon search/i.test(spec), 'tool SPEC lost active fixed-search contract');
   check(/raw ingredient|pasted ingredient|OCR output/i.test(spec), 'tool SPEC lost input privacy contract');
 }
 
-// The CI must continuously enforce every wave-2 behavioral regression plus the affiliate gate.
 for (const checkFile of [
   'check-fastscan-ocr-confusion.mjs',
   'check-fastscan-result-controls.mjs',
@@ -120,5 +116,6 @@ console.log(JSON.stringify({
   fastscan_result_filters: 4,
   ocr_auto_correction: false,
   amazon_enabled: true,
-  amazon_tracking_mode: 'special_link'
+  amazon_tracking_mode: 'tagged_search',
+  amazon_fixed_categories: 4
 }, null, 2));

@@ -1,0 +1,32 @@
+name: Phone QuickCheck affiliate check
+
+on:
+  pull_request:
+    paths:
+      - 'assets/amazon-affiliate.js'
+      - 'common-spec/amazon-affiliate.md'
+      - 'tools/phone-quickcheck/**'
+      - 'scripts/check-phone-quickcheck-affiliate.mjs'
+      - '.github/workflows/phone-quickcheck-affiliate-check.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'assets/amazon-affiliate.js'
+      - 'common-spec/amazon-affiliate.md'
+      - 'tools/phone-quickcheck/**'
+      - 'scripts/check-phone-quickcheck-affiliate.mjs'
+      - '.github/workflows/phone-quickcheck-affiliate-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/check-phone-quickcheck-affiliate.mjs

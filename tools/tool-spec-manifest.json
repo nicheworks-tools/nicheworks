@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "registry": "tools/tools-index.json",
-  "required_complete": 88,
-  "complete": 88,
+  "required_complete": 89,
+  "complete": 89,
   "pending": 0,
   "items": [
     {"slug":"ai-interaction-atlas","state":"complete","spec":"tools/ai-interaction-atlas/SPEC.md"},
@@ -71,6 +71,7 @@
     {"slug":"pattern-atlas","state":"complete","spec":"tools/pattern-atlas/SPEC.md"},
     {"slug":"pdf-page-tools-mini","state":"complete","spec":"tools/pdf-page-tools-mini/SPEC.md"},
     {"slug":"pdf2csv-local","state":"complete","spec":"tools/pdf2csv-local/SPEC.md"},
+    {"slug":"phone-quickcheck","state":"complete","spec":"tools/phone-quickcheck/SPEC.md"},
     {"slug":"place-old-kanji-checker","state":"complete","spec":"tools/place-old-kanji-checker/SPEC.md"},
     {"slug":"product-founder-os","state":"complete","spec":"tools/product-founder-os/SPEC.md"},
     {"slug":"reconcile","state":"complete","spec":"tools/reconcile/SPEC.md"},

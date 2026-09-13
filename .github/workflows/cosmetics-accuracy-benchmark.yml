@@ -18,6 +18,7 @@ on:
       - 'tools/_shared/check-fastscan-result-contract.mjs'
       - 'tools/_shared/check-fastscan-ocr-confusion.mjs'
       - 'tools/_shared/check-fastscan-ocr-line-repair.mjs'
+      - 'tools/_shared/check-fastscan-ocr-robustness.mjs'
       - 'tools/_shared/check-fastscan-result-controls.mjs'
       - 'tools/_shared/check-fastscan-review-queue.mjs'
       - 'tools/_shared/check-lite-wave3-navigation.mjs'
@@ -28,6 +29,7 @@ on:
       - 'tools/_shared/COSMETICS_ALIAS_POLICY.md'
       - 'tools/_shared/COSMETICS_CANONICAL_MERGE.md'
       - 'tools/_shared/COSMETICS_OCR_LINE_REPAIR.md'
+      - 'tools/_shared/COSMETICS_OCR_ROBUSTNESS.md'
       - 'tools/_shared/COSMETICS_RELEASE_GATE.md'
       - 'tools/_shared/COSMETICS_WAVE2_RELEASE.md'
       - 'tools/_shared/COSMETICS_WAVE3_RELEASE.md'
@@ -61,6 +63,7 @@ jobs:
           node --check tools/_shared/cosmetic-ingredient-parser.js
           node --check tools/_shared/cosmetics-affiliate-config.js
           node --check tools/_shared/cosmetics-affiliate-slot.js
+          node --check tools/_shared/check-fastscan-ocr-robustness.mjs
           node --check tools/cosmetic-ingredient-checker-lite/app.js
           node --check tools/cosmetic-ingredient-checker-lite/enhancements.js
           node --check tools/inci-fastscan/enhancements.js
@@ -79,6 +82,8 @@ jobs:
         run: node tools/_shared/check-fastscan-ocr-confusion.mjs
       - name: FastScan OCR line repair regression
         run: node tools/_shared/check-fastscan-ocr-line-repair.mjs
+      - name: FastScan source-backed OCR robustness
+        run: node tools/_shared/check-fastscan-ocr-robustness.mjs
       - name: FastScan result controls regression
         run: node tools/_shared/check-fastscan-result-controls.mjs
       - name: FastScan review queue regression

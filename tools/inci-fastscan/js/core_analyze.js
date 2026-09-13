@@ -23,7 +23,18 @@ function repairWrappedIngredientFragments(list, dict) {
     const current = input[index];
     const next = input[index + 1];
 
-    if (!next || isKnownIngredientName(current, knownNames) || isKnownIngredientName(next, knownNames)) {
+    if (!next) {
+      output.push(current);
+      continue;
+    }
+
+    const currentKnown = isKnownIngredientName(current, knownNames);
+    const nextKnown = isKnownIngredientName(next, knownNames);
+
+    // Two independently known ingredients must never be collapsed together.
+    // If only one fragment is independently known, still allow an exact
+    // dictionary-backed combined identity (for example Cetearyl + Alcohol).
+    if (currentKnown && nextKnown) {
       output.push(current);
       continue;
     }

@@ -51,16 +51,18 @@ for (const ambiguous of ['"aha"', '"bha"', '"pha"', '"iron oxides"', '"酸化鉄
   check(parser.includes(ambiguous), `ambiguous exact-key protection missing: ${ambiguous}`);
 }
 
-// PR21: OCR line-wrap repair remains exact-only and never becomes fuzzy auto-correction.
+// PR21/PR28: OCR line-wrap repair remains exact-only and never becomes fuzzy auto-correction.
 for (const token of [
   'repairWrappedIngredientFragments',
   'buildKnownIngredientNameMap',
   'findExactWrappedJoin',
-  'repairs: repaired.repairs'
+  'repairs: repaired.repairs',
+  'currentKnown && nextKnown'
 ]) {
   check(fastAnalyze.includes(token), `FastScan OCR exact line repair missing: ${token}`);
 }
-check(fastSpec.includes('Exact OCR line repair only joins fragments when the repaired text exactly matches a maintained dictionary key'), 'FastScan SPEC lost exact-only OCR line repair contract');
+check(fastSpec.includes('OCR cleanup preserves candidate boundaries'), 'FastScan SPEC lost conservative OCR-boundary contract');
+check(fastSpec.includes('Exact OCR line repair only joins fragments when the combined text exactly matches a maintained dictionary key'), 'FastScan SPEC lost exact-only OCR line repair contract');
 
 // PR22: Lite remains a fast long-result review surface.
 for (const token of [
@@ -90,24 +92,30 @@ check(!fastUi.includes('btn-fast-check.click('), 'review queue must not auto-rer
 check(!fastUi.includes('btn-jb-check.click('), 'review queue must not auto-rerun Japanese analysis');
 check(fastSpec.includes('Review-queue controls only move focus'), 'FastScan SPEC lost review-queue no-edit contract');
 
-// Post-activation Amazon invariant: verified Special Link only, unchanged placements and privacy.
-check(affiliateConfig.includes('enabled: true'), 'Amazon config must be active after verified activation');
-check(affiliateConfig.includes('trackingMode: "special_link"'), 'Amazon tracking mode must remain special_link');
-check(affiliateConfig.includes('associateTag: ""'), 'do not invent a separate Associate tag for the supplied Special Link');
-check(affiliateConfig.includes('href: "https://amzn.to/4xNbcDO"'), 'verified skincare Special Link missing');
+// Post-activation Amazon invariant: four fixed, non-input-driven tagged searches.
+check(affiliateConfig.includes('enabled: true'), 'Amazon config must stay active');
+check(affiliateConfig.includes('trackingMode: "tagged_search"'), 'Amazon tracking mode must be tagged_search');
+check(affiliateConfig.includes('const ASSOCIATE_TAG = "nicheworks09-22"'), 'verified Associates tag missing');
+check(affiliateConfig.includes('associateTag: ASSOCIATE_TAG'), 'affiliate config must use the verified Associates tag constant');
 check(affiliateConfig.includes('placement: "after-summary"'), 'Lite Amazon placement changed');
 check(affiliateConfig.includes('placement: "after-results"'), 'FastScan Amazon placement changed');
-check((affiliateConfig.match(/links: Object\.freeze\(\[skincareSearch\]\)/g) || []).length === 2, 'both cosmetics tools must retain the verified Special Link');
+check((affiliateConfig.match(/links: fixedSearchLinks/g) || []).length === 2, 'both cosmetics tools must retain the fixed search set');
+for (const key of ['skincare_general', 'skincare_moisturizing', 'skincare_ceramide', 'sunscreen_general']) {
+  check(affiliateConfig.includes(`key: "${key}"`), `fixed affiliate category missing: ${key}`);
+}
+check((affiliateConfig.match(/tag=nicheworks09-22/g) || []).length === 4, 'all four fixed searches must carry the configured Associates tag');
+check(!affiliateConfig.includes('amzn.to/4xNbcDO'), 'retired single Special Link returned');
 for (const spec of [liteSpec, fastSpec]) {
-  check(/Special Link|trackingMode = special_link/i.test(spec), 'tool SPEC lost active Special Link contract');
+  check(/tagged_search|fixed Amazon search/i.test(spec), 'tool SPEC lost active fixed-search contract');
   check(/raw ingredient|pasted ingredient|OCR output/i.test(spec), 'tool SPEC lost input privacy contract');
 }
 
-// CI must continuously enforce every Wave 3 regression plus the live affiliate contract.
+// CI must continuously enforce every Wave 3 regression plus the OCR robustness and live affiliate contracts.
 for (const checkFile of [
   'check-cosmetics-full-label-benchmark.mjs',
   'check-cosmetics-canonical-equivalents.mjs',
   'check-fastscan-ocr-line-repair.mjs',
+  'check-fastscan-ocr-robustness.mjs',
   'check-lite-wave3-navigation.mjs',
   'check-fastscan-review-queue.mjs',
   'check-cosmetics-wave2-release.mjs',
@@ -130,8 +138,10 @@ console.log(JSON.stringify({
   product_categories: categories.size,
   canonical_equivalence: true,
   ocr_exact_line_repair: true,
+  ocr_source_backed_robustness: true,
   lite_long_result_navigation: true,
   fastscan_review_queue: true,
   amazon_enabled: true,
-  amazon_tracking_mode: 'special_link'
+  amazon_tracking_mode: 'tagged_search',
+  amazon_fixed_categories: 4
 }, null, 2));
