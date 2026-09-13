@@ -7,6 +7,8 @@ Date: 2026-09-13
 
 `MONETIZATION_CLASSIFICATION_87.md` classifies `minutes-to-ops` as `PRO_BUNDLE`. The future live paid product authority is the shared `nicheworks.pro` product. Legacy `nicheworks_pro` remains compatibility/migration state only.
 
+The historical shared Payment Link is legacy commerce evidence only. It does not establish the future NicheWorks Pro price, product identity, or purchase authority.
+
 This contract freezes the runtime-backed Free/Pro boundary for Minutes to Ops. It does not create a Minutes-to-Ops-specific paid product, authorize a price, or connect live checkout.
 
 ## 2. Free boundary — fixed
