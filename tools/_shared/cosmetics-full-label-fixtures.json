@@ -115,7 +115,7 @@
     "id": "jp-sunscreen-wave3",
     "category": "sunscreen",
     "language": "ja",
-    "label": "水、グリセリン、酸化亜鉛、酸化チタン、ビスエチルヘキシルオキシフェノールメトキシフェニルトリアジン、ジエチルアミノヒドロキシベンゾイル安息香酸ヘキシル、ジメチコン、トコフェロール",
+    "label": "水、グリセリン、酸化亜鉛、酸化チタン、ビスエチルヘキシルオキシフェノールメトキシフェニルトリアジン、ジエチルアミノヒドロキシベンゾイル安息香酸ヘキシル、ジメチコン、トコフェロール、パンテノール、スクワラン",
     "maxUnknown": 1,
     "knownGap": "酸化チタン"
   },
@@ -123,7 +123,7 @@
     "id": "en-sunscreen-wave3",
     "category": "sunscreen",
     "language": "en",
-    "label": "Water, Glycerin, Zinc Oxide, Titanium Dioxide, Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine, Diethylamino Hydroxybenzoyl Hexyl Benzoate, Dimethicone, Tocopherol",
+    "label": "Water, Glycerin, Zinc Oxide, Titanium Dioxide, Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine, Diethylamino Hydroxybenzoyl Hexyl Benzoate, Dimethicone, Tocopherol, Panthenol, Squalane",
     "maxUnknown": 2,
     "knownGap": "Titanium Dioxide | Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine"
   },
