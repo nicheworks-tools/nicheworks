@@ -71,7 +71,7 @@ Provide a fast approximate JP/US/EU clothing and shoe size converter with local 
 - JP/EN bilingual single page; only language choice may persist.
 - All sizing logic, syntax normalization, comparison, unit conversion, fit, and handoff are browser-local.
 - No brand-wide numerical correction is active; `brand.json` is not in the active calculation path.
-- Results remain approximate; official seller/brand charts take precedence.
+- Results are approximate and official seller/brand charts take precedence.
 
 ## Inputs
 
@@ -134,6 +134,7 @@ Direct conversion remains first; query/context and comparison follow; full table
 
 ## Limits and non-goals
 
+- Results are approximate.
 - No fit guarantee.
 - Current direct conversion is JP/US/EU only.
 - Inch support is a shoe **measurement-input unit**, not a new sizing standard.
