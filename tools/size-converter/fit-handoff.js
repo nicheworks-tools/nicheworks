@@ -48,29 +48,50 @@
     input.focus({ preventScroll: true });
   }
 
+  function applyLabels(wrap, jpSize) {
+    const en = isEnglish();
+    const button = wrap.querySelector("button");
+    const note = wrap.querySelector(".fit-handoff-note");
+    if (button) button.textContent = en ? "Use this estimate in the converter" : "この目安を換算欄で使う";
+    if (note) {
+      note.textContent = en
+        ? `Only the estimated JP size (${jpSize}) is copied into the direct converter. Measurement values stay on this page.`
+        : `目安として出たJPサイズ（${jpSize}）だけを直接換算欄へ渡します。入力した実寸値はこのページ内に残ります。`;
+    }
+  }
+
   function renderHandoff(target, kind) {
-    target.querySelectorAll(`.${HANDOFF_CLASS}`).forEach((node) => node.remove());
     const jpSize = recommendedJp(target, kind);
-    if (!jpSize) return;
+    const existing = target.querySelector(`.${HANDOFF_CLASS}`);
+
+    if (!jpSize) {
+      if (existing) existing.remove();
+      return;
+    }
 
     const chart = gender.value;
-    const en = isEnglish();
+    if (existing && existing.dataset.kind === kind && existing.dataset.chart === chart && existing.dataset.jp === jpSize) {
+      applyLabels(existing, jpSize);
+      return;
+    }
+
+    if (existing) existing.remove();
     const wrap = document.createElement("div");
     wrap.className = HANDOFF_CLASS;
+    wrap.dataset.kind = kind;
+    wrap.dataset.chart = chart;
+    wrap.dataset.jp = jpSize;
 
     const button = document.createElement("button");
     button.type = "button";
     button.className = "primary-btn";
-    button.textContent = en ? "Use this estimate in the converter" : "この目安を換算欄で使う";
     button.addEventListener("click", () => handoff(kind, chart, jpSize));
 
     const note = document.createElement("p");
     note.className = "fit-handoff-note";
-    note.textContent = en
-      ? `Only the estimated JP size (${jpSize}) is copied into the direct converter. Measurement values stay on this page.`
-      : `目安として出たJPサイズ（${jpSize}）だけを直接換算欄へ渡します。入力した実寸値はこのページ内に残ります。`;
 
     wrap.append(button, note);
+    applyLabels(wrap, jpSize);
     target.querySelector(".fit-card")?.appendChild(wrap);
   }
 
