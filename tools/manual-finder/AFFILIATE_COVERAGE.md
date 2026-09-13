@@ -1,6 +1,6 @@
 # ManualFinder Affiliate Coverage
 
-Updated: 2026-09-13
+Updated: 2026-09-14
 
 ManualFinder must not require one manually generated Amazon short link per model. Official manufacturer destinations remain the primary output; Amazon is an optional commercial next action.
 
@@ -11,7 +11,7 @@ ManualFinder stays rule-driven. The target is a small number of reusable commerc
 Current order:
 
 1. **Generic exact-model search** — active. One validated Amazon search template generates a tagged search URL from canonical ManualFinder `maker + model` metadata.
-2. **Printer consumables** — active first wave for the 13 verified Brother MFC-J records below. Consumable codes come only from official Brother compatibility sources.
+2. **Printer consumables** — active for Brother Wave 1 and Epson Wave 1 below. Consumable codes come only from official manufacturer compatibility sources.
 3. **Camera batteries / chargers** — later, only for independently verified compatibility mappings.
 4. **Appliance replacement parts / filters** — later, only where exact compatibility can be proven.
 5. Additional accessory families require a clear user need and a verified mapping source.
@@ -62,6 +62,19 @@ For these 13 models, compatibility was checked on official Brother product/acces
 | MFC-J6997CDW | LC3139 |
 | MFC-J6999CDW | LC3139 |
 
+## Printer consumable rule — Epson Wave 1
+
+The Brother production pilot passed rendering and tagged-link checks. Epson is the second manufacturer. This bounded first Epson wave adds six current Colorio model records with exact official manual/support destinations and official Epson consumable evidence.
+
+| Epson model | Verified consumable search families |
+| --- | --- |
+| EW-056A | MED-4CL |
+| EW-456A | MED-4CL |
+| EP-817A | KAK-6CL |
+| EP-887AW | KNI-6CL / KNI-6CL-L |
+| EP-887AB | KNI-6CL / KNI-6CL-L |
+| EP-887AP | KNI-6CL / KNI-6CL-L |
+
 The UI deliberately says `Amazonで <consumable code> インクを探す`. It does not say that every Amazon result is genuine or compatible. A note tells the user that the consumable code was checked against an official manufacturer source and that the exact Amazon item must still be confirmed before purchase.
 
 Unmapped printer models receive only the generic exact-model Amazon search. Consumable compatibility is never guessed from model naming.
@@ -77,7 +90,7 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 ## Runtime boundary
 
 - `app.paged.js` places canonical `maker`, `model`, and `category` metadata on each result card.
-- `affiliate-config.js` owns the fixed tracking ID, generic model-search policy, official Brother compatibility mappings, and deterministic URL builders.
+- `affiliate-config.js` owns the fixed tracking ID, generic model-search policy, official manufacturer compatibility mappings, and deterministic URL builders.
 - `affiliate-runtime.js` renders the generic model search plus zero or more verified consumable searches.
 - `/assets/amazon-affiliate.js` validates the Amazon destination host and records only coarse analytics targets. Model names and consumable terms are not analytics parameters.
 - Unsupported categories, empty models, malformed URLs, and unmapped consumables fail closed.
@@ -85,4 +98,4 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 
 ## Next expansion gate
 
-Do not add a second printer manufacturer until the Brother wave is checked in production for rendering, link construction, and usability. After that, prioritize printer manufacturers that already have strong model-level ManualFinder coverage and accessible official consumable mappings. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.
+After the Epson wave is checked in production, continue with Canon if exact model-level ManualFinder rows and official consumable mappings can be established cleanly. Existing office-printer datasets such as OKI, KYOCERA, RICOH and FUJIFILM Business Innovation may then be evaluated for toner/drum rules where official compatibility evidence is sufficiently explicit. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.
