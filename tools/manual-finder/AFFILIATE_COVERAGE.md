@@ -2,45 +2,54 @@
 
 Updated: 2026-09-13
 
-This file tracks ManualFinder commerce coverage separately from the official manual/source dataset. Official manufacturer destinations remain the primary output. Amazon offers are optional next actions and are activated only after an exact Special Link has been generated and verified for the NicheWorks Associates account.
+ManualFinder must not require one manually generated Amazon short link per model. Official manufacturer destinations remain the primary output; Amazon is an optional commercial next action.
 
-## Status contract
+## Current strategy
 
-- `verified`: an exact HTTPS Amazon Special Link has been generated and checked; the offer may enter runtime configuration.
-- `pending_special_link`: the ManualFinder model is accepted for the planned commerce wave, but no verified Special Link is recorded yet; runtime must not show an Amazon CTA.
-- Missing/unrecognized status or empty/invalid URL: fail closed; no Amazon CTA.
+There are two affiliate destination modes.
 
-The runtime allowlist accepts verified HTTPS destinations on `amzn.to`, `amazon.co.jp`, or `www.amazon.co.jp`. No Amazon URL may be inferred from maker/model text, and no tag may be mechanically appended to an unverified URL.
+1. **Fixed override** — use an exact Amazon-generated Special Link when there is a reason to pin one specific destination. The current Nikon Z8 proof remains in this class.
+2. **Validated deterministic template** — generate an Amazon search URL from canonical ManualFinder maker/model metadata plus the fixed NicheWorks tracking ID. One validated template can serve many model records; no per-model SiteStripe operation is required.
 
-## Current coverage
+Amazon's help recognizes affiliate links created or edited outside Associates Central and provides Link Checker for validating them. The release gate is therefore **one representative template validation**, not thousands of manual short-link generations.
 
-| Maker | Model | Category | Offer type | Status | Special Link | Verified |
-| --- | --- | --- | --- | --- | --- | --- |
-| Nikon | Z8 | Camera / video | Amazon search | verified | `https://amzn.to/3T7sxbB` | 2026-09-13 |
-| Brother | MFC-J1500N | Printer / MFP | Amazon search | pending_special_link | — | — |
-| Brother | MFC-J1605DN | Printer / MFP | Amazon search | pending_special_link | — | — |
-| Brother | MFC-J4440N | Printer / MFP | Amazon search | pending_special_link | — | — |
-| Brother | MFC-J4443N | Printer / MFP | Amazon search | pending_special_link | — | — |
-| Brother | MFC-J4450N | Printer / MFP | Amazon search | pending_special_link | — | — |
-| Brother | MFC-J4510N | Printer / MFP | Amazon search | pending_special_link | — | — |
-| Brother | MFC-J4540N | Printer / MFP | Amazon search | pending_special_link | — | — |
-| Brother | MFC-J4543N | Printer / MFP | Amazon search | pending_special_link | — | — |
-| Brother | MFC-J4720N | Printer / MFP | Amazon search | pending_special_link | — | — |
-| Brother | MFC-J4725N | Printer / MFP | Amazon search | pending_special_link | — | — |
-| Brother | MFC-J6995CDW | Printer / MFP | Amazon search | pending_special_link | — | — |
-| Brother | MFC-J6997CDW | Printer / MFP | Amazon search | pending_special_link | — | — |
-| Brother | MFC-J6999CDW | Printer / MFP | Amazon search | pending_special_link | — | — |
+## Current template
 
-Current runtime coverage: **1 verified offer / 14 ledger rows**.
+- template: `manual_model_search`
+- base: `https://www.amazon.co.jp/s`
+- tracking ID: `nicheworks09-22`
+- query source: canonical ManualFinder maker + model only
+- user-entered search text: never used in the Amazon destination
+- initial eligible categories: `カメラ・映像`, `プリンター・複合機`
+- current status: `pending_link_checker`
+- representative proof URL: `https://www.amazon.co.jp/s?k=Brother+MFC-J4440N&tag=nicheworks09-22`
 
-## Wave order
+Once that representative generated URL is confirmed valid for the account, the template can be changed to `verified`. That single change activates the same format for eligible canonical model records. It does **not** require storing or maintaining one URL per model.
 
-1. Prove the Nikon Z8 search handoff end to end — complete.
-2. Capture exact Amazon search Special Links for the 13 accepted Brother MFC-J models above.
-3. Activate Brother rows only as their exact links are supplied and checked; partial activation is allowed.
-4. After search handoffs are stable, evaluate model-specific consumables/accessories as separate offers. Compatibility must be independently verified; never infer cartridge, toner, battery, charger, filter, or other accessory compatibility from a model name alone.
-5. Rotate next to other commercially useful ManualFinder families rather than attempting blanket coverage of all records.
+## Fixed overrides
+
+| Maker | Model | Type | Status | Destination | Verified |
+| --- | --- | --- | --- | --- | --- |
+| Nikon | Z8 | Amazon search override | verified | `https://amzn.to/3T7sxbB` | 2026-09-13 |
+
+The Z8 override remains useful as an end-to-end proof of SiteStripe/account behavior, but it is not the rollout model for the directory.
+
+## Offer-rule budget
+
+ManualFinder should stay rule-driven. The expected long-term shape is a small number of offer rules/templates, not thousands of links. Candidate rule classes include:
+
+- model search;
+- genuine ink / toner search where the consumable mapping is independently verified;
+- battery / charger search where compatibility is independently verified;
+- filter / replacement-part search where compatibility is independently verified;
+- other narrowly justified accessory families.
+
+A rule may apply to many canonical records. Compatibility-sensitive rules need their own verified mapping data; the generic model-search rule does not infer accessory compatibility.
 
 ## Runtime boundary
 
-`affiliate-config.js` is fail-closed. It exposes the full ledger as `window.MANUALFINDER_AFFILIATE_LEDGER`, but builds `MANUALFINDER_AFFILIATE_CONFIG.targets` and `.offers` only from `verified` rows with an approved HTTPS Amazon host. Pending rows therefore remain visible to maintainers but cannot appear to users.
+- `affiliate-config.js` owns the fixed tracking ID and deterministic URL builder.
+- `affiliate-runtime.js` may use a dynamic destination only when the corresponding coarse template target is active.
+- `/assets/amazon-affiliate.js` validates the destination host and records only fixed coarse analytics metadata such as `manual_model_search`; model names/search terms are not sent as analytics parameters.
+- Existing fixed links continue to work as overrides.
+- If the template is not verified, dynamic results fail closed and only verified fixed overrides render.
