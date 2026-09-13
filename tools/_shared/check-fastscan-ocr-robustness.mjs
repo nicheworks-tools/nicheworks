@@ -7,6 +7,13 @@ const require = createRequire(import.meta.url);
 const parser = require('./cosmetic-ingredient-parser.js');
 const read = (path) => fs.readFileSync(path, 'utf8');
 
+const RUNTIME_FILES = [
+  'tools/inci-fastscan/js/core_ocr_post.js',
+  'tools/inci-fastscan/js/core_parser.js',
+  'tools/inci-fastscan/js/core_matcher.js',
+  'tools/inci-fastscan/js/core_analyze.js'
+];
+
 const context = {
   console,
   NWCosmeticIngredientParser: parser
@@ -14,12 +21,7 @@ const context = {
 context.globalThis = context;
 vm.createContext(context);
 
-for (const file of [
-  'tools/inci-fastscan/js/core_ocr_post.js',
-  'tools/inci-fastscan/js/core_parser.js',
-  'tools/inci-fastscan/js/core_matcher.js',
-  'tools/inci-fastscan/js/core_analyze.js'
-]) {
+for (const file of RUNTIME_FILES) {
   vm.runInContext(read(file), context, { filename: file });
 }
 
@@ -56,6 +58,8 @@ function boundaryKey(value) {
 // Source-backed round-trip: reshape each maintained real label into an OCR-like
 // line stream and verify that cleanup does not lose, invent, or merge boundaries.
 let corpusIngredientCount = 0;
+let sourceKnownCount = 0;
+let roundTripKnownCount = 0;
 for (const item of corpus) {
   const sourceParts = parser.splitIngredients(item.analysis_label);
   corpusIngredientCount += sourceParts.length;
@@ -72,6 +76,17 @@ for (const item of corpus) {
     roundTrip.map(boundaryKey),
     sourceParts.map(boundaryKey),
     `${item.id}: OCR cleanup changed real-label ingredient boundaries`
+  );
+
+  const sourceMatches = await match(sourceParts, dict);
+  const roundTripMatches = await match(roundTrip, dict);
+  const sourceKnown = sourceMatches.filter((result) => result.found).length;
+  const roundTripKnown = roundTripMatches.filter((result) => result.found).length;
+  sourceKnownCount += sourceKnown;
+  roundTripKnownCount += roundTripKnown;
+  assert.ok(
+    roundTripKnown >= sourceKnown,
+    `${item.id}: safe OCR cleanup reduced exact dictionary recognition (${sourceKnown} -> ${roundTripKnown})`
   );
 }
 
@@ -170,11 +185,10 @@ assert.equal(
   'ordinary spelling edits must not be mislabeled as OCR character confusion'
 );
 
-// The real-label corpus is quality evidence, not an affiliate input. The OCR
-// benchmark must not reference the affiliate runtime or Amazon destinations.
-const source = read('tools/_shared/check-fastscan-ocr-robustness.mjs');
+// OCR runtime remains independent from the live Amazon layer.
+const ocrRuntime = RUNTIME_FILES.map(read).join('\n');
 for (const forbidden of ['cosmetics-affiliate-config', 'amazon.co.jp', 'amzn.to', 'affiliate_click']) {
-  assert.equal(source.includes(forbidden), false, `OCR robustness benchmark must stay isolated from affiliate logic: ${forbidden}`);
+  assert.equal(ocrRuntime.includes(forbidden), false, `OCR runtime must stay isolated from affiliate logic: ${forbidden}`);
 }
 
 console.log(JSON.stringify({
@@ -182,6 +196,8 @@ console.log(JSON.stringify({
   phase: 'fastscan-ocr-robustness',
   source_backed_products: corpus.length,
   source_backed_ingredients_round_tripped: corpusIngredientCount,
+  exact_known_before_cleanup: sourceKnownCount,
+  exact_known_after_cleanup: roundTripKnownCount,
   cleanup_preserves_candidate_boundaries: true,
   exact_dictionary_join_stage: 'analysis-only',
   one_known_fragment_exact_join: true,
