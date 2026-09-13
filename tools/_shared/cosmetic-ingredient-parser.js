@@ -35,6 +35,14 @@
     "ヒアルロン酸ナトリウム": "sodium hyaluronate",
     "ヒアルロン酸ソーダ": "sodium hyaluronate",
     "乳酸ナトリウム": "sodium lactate",
+    "ポリアクリル酸ナトリウム": "sodium polyacrylate",
+    "ラウレス硫酸ナトリウム": "sodium laureth sulfate",
+    "安息香酸ナトリウム": "sodium benzoate",
+    "ソルビン酸カリウム": "potassium sorbate",
+    "水酸化カリウム": "potassium hydroxide",
+    "リン酸ナトリウム": "sodium phosphate",
+    "リン酸二ナトリウム": "disodium phosphate",
+    "pcaナトリウム": "sodium pca",
     "alcohol denat": "alcohol denat."
   });
 
@@ -200,7 +208,7 @@
   }
 
   const api = {
-    version: "1.7.0",
+    version: "1.8.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
