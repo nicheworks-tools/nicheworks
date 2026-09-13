@@ -374,7 +374,9 @@
       else if (watts >= 45) keys.add('charger-samsung-45w');
       else keys.add('charger-samsung-25w');
     } else if (protocols.includes('usb pd') && watts) {
-      keys.add(watts > 30 ? 'charger-pd-45w' : 'charger-pd-30w');
+      if (watts <= 20) keys.add('charger-pd-20w');
+      else if (watts <= 30) keys.add('charger-pd-30w');
+      else keys.add('charger-pd-45w');
     }
 
     if (wireless.includes('qi2') && wireless.includes('compatible case')) keys.add('charger-qi2-case-required');
