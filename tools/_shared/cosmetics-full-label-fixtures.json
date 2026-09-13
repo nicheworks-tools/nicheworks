@@ -82,5 +82,33 @@
     "language": "en",
     "label": "Water, Glycerin, Niacinamide, Panthenol, Sodium Hyaluronate, PhenoxyethanoI",
     "maxUnknown": 1
+  },
+  {
+    "id": "jp-barrier-wave2",
+    "category": "barrier-care",
+    "language": "ja",
+    "label": "水、グリセリン、PCA-Na、尿素、セラミドNP、コレステロール、カプリリルグリコール、ヒドロキシエチルセルロース",
+    "maxUnknown": 0
+  },
+  {
+    "id": "en-barrier-wave2",
+    "category": "barrier-care",
+    "language": "en",
+    "label": "Water, Glycerin, Sodium PCA, Urea, Ceramide NP, Cholesterol, Caprylyl Glycol, Hydroxyethylcellulose",
+    "maxUnknown": 0
+  },
+  {
+    "id": "jp-emulsion-wave2",
+    "category": "emulsion",
+    "language": "ja",
+    "label": "水、グリセリン、ポリアクリル酸Na、ラウリン酸ポリグリセリル-10、カプリリルグリコール、セラミドNP",
+    "maxUnknown": 0
+  },
+  {
+    "id": "en-emulsion-wave2",
+    "category": "emulsion",
+    "language": "en",
+    "label": "Water, Glycerin, Sodium Polyacrylate, Polyglyceryl-10 Laurate, Caprylyl Glycol, Ceramide NP",
+    "maxUnknown": 0
   }
 ]
