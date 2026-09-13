@@ -28,7 +28,7 @@ function add(value, canonical) {
   const key = parser.normalizeKey(value);
   if (!key) return;
   if (!owners.has(key)) owners.set(key, new Set());
-  owners.get(key).add(canonical);
+  owners.get(key).add(parser.canonicalIdentityKey(canonical));
 }
 
 for (const item of records) {
