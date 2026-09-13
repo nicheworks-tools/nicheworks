@@ -1,17 +1,17 @@
-name: TrashNavi Wave 11 Takamatsu one-shot
+name: TrashNavi Wave 11 Takamatsu SPEC sync
 
 on:
   push:
     branches:
       - feat/trashnavi-wave11-takamatsu-20260913
     paths:
-      - tools/trashnavi/data/direct-waste-links-supply-wave11.json
+      - .github/workflows/trashnavi-wave11-takamatsu-once.yml
 
 permissions:
   contents: write
 
 jobs:
-  enrich:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,33 +21,51 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Wire Wave 11 dataset
+      - name: Patch Wave 11 SPEC
         shell: bash
         run: |
           node <<'NODE'
           const fs = require('fs');
-          const p = 'tools/trashnavi/app.js';
+          const p = 'tools/trashnavi/SPEC.md';
           let s = fs.readFileSync(p, 'utf8');
-          const old = '"data/direct-waste-links-supply-wave10.json"]';
-          const next = '"data/direct-waste-links-supply-wave10.json","data/direct-waste-links-supply-wave11.json"]';
-          if (!s.includes(next)) {
-            if (!s.includes(old)) throw new Error('Wave 10 app anchor missing');
-            s = s.replace(old, next);
-            fs.writeFileSync(p, s);
+          const wave10 = '- 宮崎県 宮崎市 — `/tools/trashnavi/miyazaki/miyazaki/`';
+          const wave11 = 'Wave 11では、Wave 10と同じ供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から高松市を選定した。高松市公式の令和8年度ごみ収集カレンダーと臨時・粗大ごみ案内を追加し、既存のごみ分別導線と合わせてpreferred candidateへ引き上げた。data enrichment検証は完了し、自治体page publicationは別PRで行う。\n\n- 香川県 高松市 — publication pending';
+          if (!s.includes(wave11)) {
+            if (!s.includes(wave10)) throw new Error('Wave 10 municipality anchor missing');
+            s = s.replace(wave10, `${wave10}\n\n${wave11}`);
           }
+          const baseline10 = `### Wave 10 verified coverage baseline\n\n2026-09-13のWave 10 CI基準値は次のとおり。\n\n- municipalities: 1,916\n- records: 2,198 / 2,198 valid HTTP(S)\n- municipalities with any waste-specific direct link: 78\n- publish candidates (2+ types): 17\n- preferred candidates (3+ types): 17\n- collection calendar coverage: 17 municipalities\n- bulky-waste coverage: 16 municipalities\n- drop-off facility coverage: 1 municipality\n- waste-app coverage: 1 municipality\n- invalid records: 0\n- unknown type labels: 0`;
+          const baseline11 = `### Wave 11 verified coverage baseline\n\n2026-09-13のWave 11 CI基準値は次のとおり。\n\n- municipalities: 1,916\n- records: 2,200 / 2,200 valid HTTP(S)\n- municipalities with any waste-specific direct link: 78\n- publish candidates (2+ types): 18\n- preferred candidates (3+ types): 18\n- collection calendar coverage: 18 municipalities\n- bulky-waste coverage: 17 municipalities\n- drop-off facility coverage: 1 municipality\n- waste-app coverage: 1 municipality\n- invalid records: 0\n- unknown type labels: 0`;
+          if (!s.includes('### Wave 11 verified coverage baseline')) {
+            if (!s.includes(baseline10)) throw new Error('Wave 10 baseline anchor missing');
+            s = s.replace(baseline10, `${baseline10}\n\n${baseline11}`);
+          }
+          const acceptance10 = '- [x] Wave 10で宮崎市をpreferred candidateへ引き上げ、自治体pageを公開する。';
+          const acceptance11 = '- [x] Wave 11で高松市をpreferred candidateへ引き上げる。自治体page publicationは別PRで閉じる。';
+          if (!s.includes(acceptance11)) {
+            if (!s.includes(acceptance10)) throw new Error('Wave 10 acceptance anchor missing');
+            s = s.replace(acceptance10, `${acceptance10}\n${acceptance11}`);
+          }
+          const evidence10 = '- `tools/trashnavi/data/direct-waste-links-supply-wave10.json` — 宮崎市のWave 10 collection-calendar / bulky-waste enrichment。';
+          const evidence11 = '- `tools/trashnavi/data/direct-waste-links-supply-wave11.json` — 高松市のWave 11 collection-calendar / bulky-waste enrichment。';
+          if (!s.includes(evidence11)) {
+            if (!s.includes(evidence10)) throw new Error('Wave 10 evidence anchor missing');
+            s = s.replace(evidence10, `${evidence10}\n${evidence11}`);
+          }
+          fs.writeFileSync(p, s);
           NODE
-      - name: Validate Wave 11 readiness
+      - name: Validate Wave 11 state
         run: |
           node tools/trashnavi/scripts/audit-coverage.mjs --strict
           node scripts/check-trashnavi-direct-links.mjs --inventory
           node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
           node tools/trashnavi/scripts/check-runtime-contract.mjs
-      - name: Commit runtime wiring
+      - name: Commit SPEC sync
         shell: bash
         run: |
           git config user.name 'nicheworks-tools'
           git config user.email 'nicheworks.tools@gmail.com'
-          git add tools/trashnavi/app.js
+          git add tools/trashnavi/SPEC.md
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Wire TrashNavi Wave 11 Takamatsu data'
+          git commit -m 'Sync TrashNavi Wave 11 Takamatsu SPEC'
           git push origin HEAD:feat/trashnavi-wave11-takamatsu-20260913
