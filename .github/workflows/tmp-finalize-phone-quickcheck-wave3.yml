@@ -1,0 +1,135 @@
+name: Temporary Phone QuickCheck wave3 finalizer
+
+on:
+  push:
+    branches:
+      - feat/phone-quickcheck-data-wave3-60-20260914
+    paths:
+      - '.github/workflows/tmp-finalize-phone-quickcheck-wave3.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/phone-quickcheck-data-wave3-60-20260914
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Finalize 60-model dataset and contracts
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          const phonesPath = 'tools/phone-quickcheck/data/phones.json';
+          const wavePath = 'tools/phone-quickcheck/data/phones.wave3.json';
+          const accessoriesPath = 'tools/phone-quickcheck/data/accessories.json';
+          const appPath = 'tools/phone-quickcheck/app.js';
+          const affiliatePath = 'tools/phone-quickcheck/affiliate-config.js';
+          const specPath = 'tools/phone-quickcheck/SPEC.md';
+          const docsPath = 'docs/tools/phone-quickcheck.md';
+
+          const phonesPayload = JSON.parse(fs.readFileSync(phonesPath, 'utf8'));
+          const wavePayload = JSON.parse(fs.readFileSync(wavePath, 'utf8'));
+          const base = Array.isArray(phonesPayload.phones) ? phonesPayload.phones : [];
+          const wave = Array.isArray(wavePayload.records) ? wavePayload.records : [];
+          if (base.length !== 30) throw new Error(`expected 30 base phones, got ${base.length}`);
+          if (wave.length !== 30) throw new Error(`expected 30 wave3 phones, got ${wave.length}`);
+
+          for (const phone of wave) {
+            if (phone.manufacturer === 'Apple' && /^iphone-/.test(phone.id)) phone.id = `apple-${phone.id}`;
+            if (!Array.isArray(phone.affiliateKeys)) phone.affiliateKeys = [];
+          }
+          const merged = [...base, ...wave];
+          const ids = new Set();
+          const identities = new Set();
+          for (const phone of merged) {
+            if (ids.has(phone.id)) throw new Error(`duplicate id: ${phone.id}`);
+            ids.add(phone.id);
+            const identity = `${String(phone.manufacturer).toLowerCase()}::${String(phone.model).toLowerCase()}`;
+            if (identities.has(identity)) throw new Error(`duplicate identity: ${identity}`);
+            identities.add(identity);
+          }
+          if (merged.length !== 60) throw new Error(`expected 60 merged phones, got ${merged.length}`);
+          phonesPayload.version = 4;
+          phonesPayload.updatedAt = '2026-09-14';
+          phonesPayload.phones = merged;
+          fs.writeFileSync(phonesPath, JSON.stringify(phonesPayload, null, 2) + '\n');
+
+          const accessoryPayload = JSON.parse(fs.readFileSync(accessoriesPath, 'utf8'));
+          if (!accessoryPayload.accessories.some((item) => item.key === 'cable-usbc-lightning')) {
+            const index = accessoryPayload.accessories.findIndex((item) => item.key === 'cable-usbc-usbc');
+            const row = {
+              key: 'cable-usbc-lightning',
+              labelJa: 'USB-C ⇔ Lightning ケーブル',
+              labelEn: 'USB-C to Lightning cable',
+              noteJa: 'Lightning端子のiPhoneをUSB-C充電器やUSB-C出力モバイルバッテリーへ接続するためのケーブルです。Appleの対応条件も購入前に確認してください。',
+              noteEn: 'For connecting a Lightning iPhone to a USB-C charger or USB-C-output power bank. Confirm Apple compatibility before purchase.',
+              amazonUrl: null
+            };
+            accessoryPayload.accessories.splice(index >= 0 ? index + 1 : 0, 0, row);
+          }
+          accessoryPayload.version = 3;
+          accessoryPayload.updatedAt = '2026-09-14';
+          fs.writeFileSync(accessoriesPath, JSON.stringify(accessoryPayload, null, 2) + '\n');
+
+          let app = fs.readFileSync(appPath, 'utf8');
+          const appCableNeedle = "    if (connector === 'usb-c') keys.add('cable-usbc-usbc');";
+          const appCableReplacement = "    if (connector === 'usb-c') keys.add('cable-usbc-usbc');\n    else if (connector === 'lightning') keys.add('cable-usbc-lightning');";
+          if (!app.includes("keys.add('cable-usbc-lightning')")) {
+            if (!app.includes(appCableNeedle)) throw new Error('app cable insertion point missing');
+            app = app.replace(appCableNeedle, appCableReplacement);
+          }
+          const pbNeedle = "    if (connector === 'usb-c') keys.add('powerbank-10000-usbc');";
+          const pbReplacement = "    if (connector === 'usb-c' || connector === 'lightning') keys.add('powerbank-10000-usbc');";
+          if (app.includes(pbNeedle)) app = app.replace(pbNeedle, pbReplacement);
+          if (!app.includes("connector === 'usb-c' || connector === 'lightning'")) throw new Error('power-bank connector expansion missing');
+          fs.writeFileSync(appPath, app);
+
+          let affiliate = fs.readFileSync(affiliatePath, 'utf8');
+          if (!affiliate.includes('"cable-usbc-lightning"')) {
+            const needle = '    offer("cable-usbc-usbc", "cable", "USB-C USB-C ケーブル 100W", "AmazonでUSB-Cケーブルを探す", "Find a USB-C cable on Amazon"),';
+            const addition = needle + '\n    offer("cable-usbc-lightning", "cable", "USB-C Lightning ケーブル Apple 対応", "AmazonでUSB-C–Lightningケーブルを探す", "Find a USB-C to Lightning cable on Amazon"),';
+            if (!affiliate.includes(needle)) throw new Error('affiliate cable insertion point missing');
+            affiliate = affiliate.replace(needle, addition);
+          }
+          fs.writeFileSync(affiliatePath, affiliate);
+
+          let spec = fs.readFileSync(specPath, 'utf8');
+          spec = spec.replace('- Initial public dataset: `30 verified models`', '- Current dataset: `60 verified models`');
+          spec = spec.replace('The public baseline contains 30 verified models across Apple, Google, Samsung, Sony, and SHARP.', 'The maintained public dataset contains 60 verified models across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, and Motorola.');
+          spec = spec.replace('Current classes cover USB-C cables, USB-PD, PPS, Samsung Super Fast Charging, Qi/Qi2, and USB-C power banks.', 'Current classes cover USB-C cables, USB-C-to-Lightning cables, USB-PD, PPS, Samsung Super Fast Charging, Qi/Qi2, and USB-C power banks.');
+          spec = spec.replace('- [x] The initial public dataset contains 30 maintained models.', '- [x] The maintained public dataset contains 60 maintained models.');
+          if (!spec.includes('60 maintained models')) throw new Error('SPEC 60-model acceptance update missing');
+          fs.writeFileSync(specPath, spec);
+
+          let docs = fs.readFileSync(docsPath, 'utf8');
+          docs = docs.replace('The initial public baseline contains 30 maintained smartphone records across Apple, Google, Samsung, Sony, and SHARP.', 'The maintained public dataset contains 60 smartphone records across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, and Motorola.');
+          docs = docs.replace('- 30機種の初期検証済みデータをブラウザ内で検索・絞り込み・並び替えする。', '- 60機種の検証済みデータをブラウザ内で検索・絞り込み・並び替えする。');
+          docs = docs.replace('USB-Cケーブル、USB-PD、PPS、Samsung Super Fast Charging、Qi/Qi2、USB-Cモバイルバッテリー等', 'USB-Cケーブル、USB-C ⇔ Lightningケーブル、USB-PD、PPS、Samsung Super Fast Charging、Qi/Qi2、USB-Cモバイルバッテリー等');
+          docs = docs.replace('- [x] 30 maintained models load from the static phone dataset.', '- [x] 60 maintained models load from the static phone dataset.');
+          if (!docs.includes('60 maintained models')) throw new Error('canonical docs 60-model acceptance update missing');
+          if (!docs.includes('- `scripts/check-phone-quickcheck-data.mjs`')) {
+            docs = docs.replace('- `scripts/check-phone-quickcheck-affiliate.mjs`', '- `scripts/check-phone-quickcheck-affiliate.mjs`\n- `scripts/check-phone-quickcheck-data.mjs`');
+          }
+          fs.writeFileSync(docsPath, docs);
+          NODE
+
+          node scripts/check-phone-quickcheck-data.mjs
+          node scripts/check-phone-quickcheck-affiliate.mjs
+          node scripts/check-tool-runtime-contracts.mjs
+
+          rm tools/phone-quickcheck/data/phones.wave3.json
+          rm .github/workflows/tmp-finalize-phone-quickcheck-wave3.yml
+
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git add -A
+          git commit -m "Expand Phone QuickCheck to 60 verified models"
+          git push origin HEAD:feat/phone-quickcheck-data-wave3-60-20260914
