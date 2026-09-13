@@ -3,8 +3,10 @@
 - Japanese name: `スマホ QuickCheck`
 - English name: `Phone QuickCheck`
 - Slug: `phone-quickcheck`
-- Planned public URL: `https://nicheworks.app/tools/phone-quickcheck/`
-- Specification status: `planned`
+- Public URL: `https://nicheworks.app/tools/phone-quickcheck/`
+- Specification status: `implemented / public`
+- Initial public dataset: `30 verified models`
+- Public launch date: `2026-09-13`
 - Common specification: `common-spec/spec-ja.md`
 - Product class: `static browser utility / quick-check directory`
 
@@ -113,12 +115,15 @@ The selected-phone detail pane/sheet may show:
 
 - Connector
 - Verified charging protocol/standard labels
-- Recommended charger wattage or minimum class, only where the source supports that guidance
+- Charger guidance wattage or minimum class, only where the source supports that guidance
+- Device-side maximum wired charging wattage only where a maintained source explicitly supports that semantic
 - PPS requirement/support where relevant and verified
 - Wireless charging standard/support
 - Wireless charging wattage where verified
 - Included cable state
 - Included AC adapter/charger state
+
+The UI must not silently treat a manufacturer's recommended charger rating as the handset's measured maximum input. `Charger guidance` and `Max wired charging` are distinct concepts.
 
 #### Power-bank estimate
 
@@ -142,17 +147,17 @@ Show only accessory classes determined from compatibility facts, for example:
 
 - USB-C to USB-C cable
 - USB-C to Lightning cable
-- USB PD 20W+ charger
-- USB PD/PPS 30W+ charger
-- USB PD/PPS 45W+ charger
-- Qi2 charger
-- 5,000 / 10,000 / 20,000 mAh power bank
+- USB PD charger class
+- USB PD/PPS charger class
+- Samsung Super Fast Charging class
+- Qi/Qi2 charger class
+- USB-C power bank class
 
 This guidance must not imply that every Amazon result is guaranteed compatible; the user must still confirm the selected product's own specifications.
 
 ## Canonical data contract
 
-Runtime data is expected to be hosted as static NicheWorks data, initially under a structure such as:
+Runtime data is hosted as static NicheWorks data:
 
 - `tools/phone-quickcheck/data/phones.json`
 - `tools/phone-quickcheck/data/accessories.json`
@@ -181,6 +186,7 @@ A phone record must use stable normalized fields conceptually equivalent to:
       "sourceRef": null
     },
     "wiredRecommendedW": null,
+    "wiredMaxW": null,
     "protocols": [],
     "pps": "supported|required|not_supported|unknown",
     "wirelessStandard": null,
@@ -211,7 +217,7 @@ Every displayed numeric/compatibility fact must be attributable to one of three 
 2. `third_party_reference`
    - Used only when the manufacturer does not publish the needed value and a maintained external reference is deliberately accepted.
 3. `derived`
-   - Computed by NicheWorks from canonical inputs, such as inches, ounces, size bands, or power-bank charge estimates.
+   - Computed by NicheWorks from canonical inputs, such as inches, ounces, size bands, accessory-class resolution, or power-bank charge estimates.
 
 Rules:
 
@@ -231,6 +237,7 @@ Battery capacity is special because some manufacturers do not publish mAh values
 - If capacity is not manufacturer-published but the project deliberately accepts a maintained third-party reference, store it as `third_party_reference` and label the UI as a reference/non-manufacturer value.
 - If no acceptable maintained value exists, keep capacity unknown and do not generate a charge-count estimate.
 - Do not reverse-engineer or guess mAh from runtime claims such as video playback time.
+- Initial public Apple records keep mAh unknown where Apple does not publish the maintained value.
 
 ## Power-bank estimate contract
 
@@ -259,27 +266,15 @@ Runtime rules:
 
 Do not maintain a large phone × individual-product matrix.
 
-Use reusable compatibility/accessory keys, conceptually such as:
+Use reusable compatibility/accessory keys. Current runtime classes include cable, USB-PD, PPS, Samsung Super Fast Charging, Qi/Qi2, and USB-C power-bank classes.
 
-- `cable-usbc-usbc`
-- `cable-usbc-lightning`
-- `charger-pd-20w`
-- `charger-pd-30w`
-- `charger-pps-30w`
-- `charger-pps-45w`
-- `charger-pd-65w`
-- `charger-qi2`
-- `powerbank-5000`
-- `powerbank-10000`
-- `powerbank-20000`
-
-A phone record references the appropriate keys. Accessory definitions provide localized labels, compatibility notes, and affiliate/search destinations.
+Compatibility is resolved from maintained device facts in `app.js` and the reusable definitions in `data/accessories.json`. Explicit `affiliateKeys` remain available as additive exceptions; they are not required for routine compatibility derivation.
 
 The compatibility rule must be based on verified charging facts, not on affiliate economics.
 
 ## Amazon affiliate contract
 
-Primary monetization is Amazon accessory referral.
+Primary intended monetization is Amazon accessory referral.
 
 Rules:
 
@@ -294,19 +289,34 @@ Rules:
 - The initial Japanese and English UI may both route to the project's configured Amazon Japan destination; adding US/UK/other regional affiliate programs is a later explicit expansion, not an automatic geolocation feature.
 - No affiliate destination may alter the underlying compatibility classification.
 
+### Current public-launch gate
+
+At the initial public launch:
+
+- reusable accessory compatibility guidance is active;
+- all maintained `amazonUrl` values remain `null`;
+- Amazon purchase controls remain disabled/placeholders;
+- there are no live Amazon prices or inventory claims.
+
+Live affiliate activation requires a separate reviewed change after the Associates account/tag/destinations and disclosure are ready.
+
 ## Privacy and network behavior
 
 - Search/filter/detail behavior runs locally in the browser against NicheWorks-hosted static data.
 - Model search text is not intentionally sent to an application search backend.
 - No account or saved-phone profile is required for the initial version.
-- External navigation occurs only when the user intentionally opens an official-source or affiliate destination.
+- External navigation occurs only when the user intentionally opens an official-source or future affiliate destination.
 - NicheWorks common analytics/advertising behavior remains governed by `common-spec/spec-ja.md`.
 
 ## SEO and indexing direction
 
 Initial launch uses one canonical tool page rather than generating hundreds of thin per-model pages.
 
-The root tool should communicate search intent around:
+The canonical public page is:
+
+`https://nicheworks.app/tools/phone-quickcheck/`
+
+The root tool communicates search intent around:
 
 - smartphone/phone size
 - charging connector/cable type
@@ -318,16 +328,17 @@ Per-model indexable landing pages are out of scope until real search demand and 
 
 ## Initial dataset scope
 
-Do not block initial runtime quality on an enormous catalog.
+Initial public coverage is 30 verified representative/current models across brands relevant to Japanese users:
 
-Implementation sequence:
+- Apple
+- Google
+- Samsung
+- Sony
+- SHARP
 
-- First functional dataset: approximately 30 verified representative/current models across major brands relevant to Japanese users.
-- Validate the full UI/data/source workflow with that set.
-- Expand to approximately 100–150 maintained models after the product behavior is stable.
-- Coverage count is not a quality target by itself.
+The next coverage target is approximately 100–150 maintained models after product behavior and source-maintenance cost are validated. Coverage count is not a quality target by itself.
 
-Candidate brand coverage may include Apple, Google, Samsung, Sony, SHARP, Xiaomi, OPPO, and Motorola, but inclusion still requires maintainable source evidence.
+Candidate future coverage may include Xiaomi, OPPO, Motorola and additional generations from current brands, but inclusion still requires maintainable source evidence.
 
 ## Limits and non-goals
 
@@ -340,25 +351,28 @@ Candidate brand coverage may include Apple, Google, Samsung, Sony, SHARP, Xiaomi
 - Not an exhaustive archive of every historic handset.
 - No server-side phone search, user accounts, or personal device history in the initial version.
 
-## Acceptance criteria — specification foundation
+## Acceptance criteria — implemented public baseline
 
 - [x] Product purpose is limited to practical Quick Check information and accessory compatibility.
-- [x] Japanese and English behavior is explicitly required.
-- [x] Desktop right-pane and mobile bottom-sheet behavior are explicitly defined.
+- [x] Japanese and English UI are implemented on one canonical page.
+- [x] Desktop right-pane and mobile bottom-sheet behavior are implemented.
 - [x] List-level fields are intentionally smaller than detail-level fields.
-- [x] Canonical data structure and reusable accessory-key structure are defined.
-- [x] Official, third-party-reference, and derived values are distinguishable.
+- [x] Canonical phone data and reusable accessory definitions are implemented as static JSON.
+- [x] Official, third-party-reference, unknown, and derived-value rules are defined.
 - [x] Manufacturer-nonpublic battery capacity cannot silently appear as an official value.
-- [x] 5,000 / 10,000 / 20,000 mAh estimate behavior and initial 0.67 efficiency methodology are defined.
+- [x] 5,000 / 10,000 / 20,000 mAh estimate behavior and 0.67 efficiency methodology are implemented.
 - [x] Unknown battery capacity produces no fabricated charge estimate.
-- [x] Official specification/manual links and review dates are part of the production record contract.
-- [x] Amazon monetization is compatibility/category based rather than a per-phone product-link matrix.
+- [x] Official specification/manual links and review dates are part of production records.
+- [x] Accessory guidance is compatibility/category based rather than a per-phone product-link matrix.
+- [x] Charger guidance and device-side maximum charging are not intentionally conflated.
 - [x] Live Amazon price/availability scraping/hard-coding is outside the initial contract.
+- [x] Live Amazon affiliate destinations remain disabled at initial public launch.
+- [x] Initial public dataset contains 30 verified models.
 - [x] The initial product uses a single canonical tool page rather than mass-generated thin model pages.
 
-## Planned implementation evidence
+## Implementation evidence
 
-Later PRs should add and then keep this section current with concrete implementation paths, expected to include at minimum:
+Production/runtime files:
 
 - `tools/phone-quickcheck/index.html`
 - `tools/phone-quickcheck/style.css`
@@ -366,4 +380,16 @@ Later PRs should add and then keep this section current with concrete implementa
 - `tools/phone-quickcheck/data/phones.json`
 - `tools/phone-quickcheck/data/accessories.json`
 
-Until those files exist, this `SPEC.md` is the product contract and must not claim implementation completion.
+Publication/discovery files:
+
+- `tools/tools-index.json`
+- `sitemap.xml`
+
+Implementation history:
+
+- specification foundation: PR #655
+- staged runtime shell: PR #662
+- verified data wave 1: PR #668
+- verified dataset expansion to 30 models: PR #670
+- charging semantics and reusable accessory guidance: PR #676
+- public promotion: this launch change
