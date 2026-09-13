@@ -14,5 +14,6 @@
   {"lgcode":"074080","pref_slug":"fukushima","city_slug":"inawashiro","publish":true},
   {"lgcode":"382019","pref_slug":"ehime","city_slug":"matsuyama","publish":true},
   {"lgcode":"292010","pref_slug":"nara","city_slug":"nara","publish":true},
-  {"lgcode":"462012","pref_slug":"kagoshima","city_slug":"kagoshima","publish":true}
+  {"lgcode":"462012","pref_slug":"kagoshima","city_slug":"kagoshima","publish":true},
+  {"lgcode":"452017","pref_slug":"miyazaki","city_slug":"miyazaki","publish":true}
 ]
