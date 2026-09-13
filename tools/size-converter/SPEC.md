@@ -70,7 +70,7 @@ The bundled tables are representative orientation data, not an official universa
 - Capture chart/category context with the rendered result.
 - Set direct converter to the estimated `JP ...` size and existing context; raw foot/body measurements are not copied.
 - Handoff itself makes no network request and does not add analytics.
-- It may make the ordinary direct-result Amazon insertion point eligible only if a separate future affiliate activation enables valid targets.
+- The ordinary direct-result Amazon insertion point is active through the separate verified affiliate configuration; raw measurements remain excluded from affiliate state.
 
 ### Data basis and provenance contract
 
@@ -112,19 +112,19 @@ The bundled tables are representative orientation data, not an official universa
 - Valid-fit handoff action.
 - Local copy actions and approximation cautions.
 
-## Amazon affiliate readiness
+## Amazon affiliate activation
 
 The page uses `/assets/amazon-affiliate.js` plus local `affiliate-config.js`.
 
-Production defaults remain:
+Production is active with the user-provided Amazon Special Links:
 
-- `enabled: false`
-- `shoes: ""`
-- `clothing: ""`
+- `enabled: true`
+- `shoes: "https://amzn.to/4hnXGRb"`
+- `clothing: "https://amzn.to/4dxBv8Q"`
 
-Disabled/invalid configuration emits no CTA, disclosure, or affiliate click event. Activation later requires only verified Amazon targets and `enabled: true`.
+A valid direct result may expose the contextual Amazon CTA and the shared Associates disclosure. Disabled/invalid configuration must still emit no CTA, disclosure, or affiliate click event.
 
-Measurement inputs/results are never encoded into affiliate URLs or affiliate analytics. Direct raw size text, normalized syntax state, query-intent state, comparison rows, selected shoe unit, raw fit measurements, data-basis audit state, and UK evaluation state are likewise excluded. `affiliate_click` remains coarse shared-helper metadata only.
+Measurement inputs/results are never encoded into affiliate URLs or affiliate analytics. Direct raw size text, normalized syntax state, query-intent state, comparison rows, selected shoe unit, raw fit measurements, data-basis audit state, and UK evaluation state are likewise excluded. `affiliate_click` remains coarse shared-helper metadata only: `tool`, `affiliate`, `target`, and `placement`.
 
 ## State and persistence
 
@@ -139,6 +139,7 @@ Measurement inputs/results are never encoded into affiliate URLs or affiliate an
 - Direct text, comparison rows, unit choice, and measurements are not sent to fitting or affiliate backends.
 - Fit handoff moves only estimated JP size plus category/chart inside the page.
 - Reading the bundled data-basis/UK-evaluation documentation creates no sizing-data network request.
+- Amazon navigation occurs only after an explicit CTA click; raw sizing/measurement state is not included in the configured Special Links.
 - Ads/analytics may load separately under common-spec rules.
 
 ## Language mode
@@ -163,6 +164,7 @@ Direct conversion remains first; query/context and comparison follow; full table
 - CN/kids/formal width/verified brand-model tables require separate verified data work.
 - Comparison does not rank brands/products or purchase suitability.
 - Fit handoff only avoids retyping an approximate estimate.
+- Amazon CTA does not claim price, availability, rating, review, or fit suitability.
 
 ## Acceptance criteria
 
@@ -179,7 +181,7 @@ Direct conversion remains first; query/context and comparison follow; full table
 - [ ] `data-basis.md` records the official-source audit and the disposition of each dataset family.
 - [ ] `uk-evaluation.md` records the multi-source UK disagreement and the deliberate no-addition decision.
 - [ ] Generic UK runtime conversion remains absent unless a future source model explicitly resolves brand variation.
-- [ ] Default Amazon config remains invisible/inert.
+- [ ] Active Amazon config uses only the verified shoes/clothing Special Links and keeps affiliate analytics coarse.
 
 ## Implementation evidence
 
