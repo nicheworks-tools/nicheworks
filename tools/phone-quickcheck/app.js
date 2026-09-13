@@ -361,6 +361,7 @@
     const wireless = String(phone.charging?.wirelessStandard || '').toLowerCase();
 
     if (connector === 'usb-c') keys.add('cable-usbc-usbc');
+    else if (connector === 'lightning') keys.add('cable-usbc-lightning');
 
     if (manufacturer === 'apple' && watts) {
       if (watts >= 60) keys.add('charger-avs-60w');
@@ -380,7 +381,7 @@
     else if (wireless.includes('qi2')) keys.add('charger-qi2');
     else if (wireless.includes('qi')) keys.add('charger-qi');
 
-    if (connector === 'usb-c') keys.add('powerbank-10000-usbc');
+    if (connector === 'usb-c' || connector === 'lightning') keys.add('powerbank-10000-usbc');
     return [...keys];
   }
 

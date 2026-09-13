@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "updatedAt": "2026-09-13",
+  "version": 3,
+  "updatedAt": "2026-09-14",
   "accessories": [
     {
       "key": "cable-usbc-usbc",
@@ -8,6 +8,14 @@
       "labelEn": "USB-C to USB-C cable",
       "noteJa": "端末側USB-C用。高速充電する場合は充電器側の出力・規格にも対応したケーブルを選んでください。",
       "noteEn": "For USB-C phones. For fast charging, choose a cable rated for the charger's required power and charging profile.",
+      "amazonUrl": null
+    },
+    {
+      "key": "cable-usbc-lightning",
+      "labelJa": "USB-C ⇔ Lightning ケーブル",
+      "labelEn": "USB-C to Lightning cable",
+      "noteJa": "Lightning端子のiPhoneをUSB-C充電器やUSB-C出力モバイルバッテリーへ接続するためのケーブルです。Appleの対応条件も購入前に確認してください。",
+      "noteEn": "For connecting a Lightning iPhone to a USB-C charger or USB-C-output power bank. Confirm Apple compatibility before purchase.",
       "amazonUrl": null
     },
     {
