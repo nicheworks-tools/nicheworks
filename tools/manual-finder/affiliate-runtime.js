@@ -22,12 +22,6 @@
     return active && active.getAttribute("data-lang") === "en" ? "en" : "ja";
   }
 
-  function parseCanonicalTitle(title) {
-    const knownMakers = ["Nikon", "Brother"];
-    const maker = knownMakers.find((name) => title.startsWith(`${name} `)) || "";
-    return maker ? { maker, model: title.slice(maker.length + 1).trim() } : { maker: "", model: "" };
-  }
-
   function makeCommerceBlock(card) {
     const wrapper = document.createElement("div");
     wrapper.className = "mf-commerce";
@@ -68,8 +62,9 @@
     const template = config.modelSearchTemplate;
     if (!template || !affiliate.isActive(template.activationTarget) || typeof config.buildModelSearchUrl !== "function") return;
 
-    const { maker, model } = parseCanonicalTitle(title);
-    const category = card.querySelector(".card-category")?.textContent?.trim() || "";
+    const maker = String(card.dataset.maker || "").trim();
+    const model = String(card.dataset.model || "").trim();
+    const category = String(card.dataset.category || "").trim();
     const url = config.buildModelSearchUrl({ maker, model, category });
     if (!url) return;
 
