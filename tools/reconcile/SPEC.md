@@ -22,7 +22,7 @@ Reconcile two transaction datasets locally in the browser and isolate exact matc
 - Classify results as `exact_match`, `tolerant_match`, `candidate`, `a_only`, `b_only`, `duplicate`, or `conflict`.
 - Preserve physical source row numbers across blank rows and non-row-1 headers.
 - Bound ordinary candidate graphs and grouped matching searches so pathological inputs stop or degrade to manual review rather than partially auto-resolving.
-- Provide result counts, status filtering, text search, CSV audit export, and a seven-sheet XLSX report implementation.
+- Provide result counts, status filtering, text search, CSV audit export, and a seven-sheet XLSX report implementation. Large result sets are rendered in bounded 250-row UI pages while filtering/searching/export continue to operate on the complete result set.
 - Reconcile Pro enables amount tolerance, sign modes, larger limits, 1:n / n:1 matching, XLSX report export, and saved profiles only after server verification of product `reconcile.pro_v1` with feature `reconcile_pro_v1`.
 - A Reconcile Pro purchase is ¥3,980 JPY one-time and grants both `reconcile_pro_v1` and shared `nicheworks_pro`. A shared NicheWorks Pro entitlement by itself must not unlock Reconcile Pro.
 - Store saved profile configuration locally only while Reconcile Pro is active; profile code never stores transaction rows or uploaded file bytes.
@@ -71,7 +71,7 @@ Reconcile two transaction datasets locally in the browser and isolate exact matc
 
 ## State and persistence
 
-- Parsed transaction rows, file bytes, and reconciliation results remain in page memory and disappear on reload.
+- Parsed transaction rows, selected in-memory `File` objects, file bytes, and reconciliation results remain in page memory and disappear on reload. Loaded CSV files are reparsed in memory when encoding/delimiter settings change; the file is not re-uploaded.
 - Shared language preference uses `localStorage` key `nw_lang`.
 - The shared billing adapter may store only the verified product-scoped Stripe Checkout Session ID under `nicheworks:billing:session:reconcile.pro_v1`; that identifier is re-verified against the server and is never accepted as proof of entitlement by itself.
 - Saved profile implementation uses `localStorage` key `nw_reconcile_profiles_v1`, schema version 1, maximum 20 profiles, and stores configuration only.
@@ -139,6 +139,9 @@ Japanese and English UI copy share the same public URL and are switched client-s
 - [x] The purchase CTA states that customer-convenience refunds/cancellations are generally unavailable and links to the Reconcile refund policy before checkout.
 - [x] The refund policy documents limited review exceptions, applicable-law override, no self-service refund, and purchase-scoped entitlement revocation after refund/dispute.
 - [x] Japanese/English switching preserves the current reconciliation state and the wide result workflow remains usable with mobile stacking/scrolling.
+- [x] Changing CSV encoding/delimiter settings reparses already loaded CSV files in memory; applying a saved profile applies its parser settings before restoring saved mappings.
+- [x] Large result sets render at most 250 result rows per UI page; paging does not change the complete reconciliation result or export contents.
+- [x] Synthetic stress coverage verifies the declared 100,000-row Pro CSV ceiling and 50,000-row Pro XLSX parsing ceiling without imposing a brittle wall-clock pass/fail threshold.
 ## Implementation evidence
 
 - `tools/reconcile/index.html`
