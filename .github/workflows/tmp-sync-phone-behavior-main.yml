@@ -1,0 +1,31 @@
+name: Temporary Phone QuickCheck behavior sync
+
+on:
+  push:
+    branches:
+      - test/phone-quickcheck-behavior-20260914
+    paths:
+      - '.github/workflows/tmp-sync-phone-behavior-main.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: test/phone-quickcheck-behavior-20260914
+          fetch-depth: 0
+      - name: Merge latest main and remove temporary workflow
+        shell: bash
+        run: |
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git fetch origin main
+          git merge origin/main --no-edit
+          rm .github/workflows/tmp-sync-phone-behavior-main.yml
+          git add -A
+          git commit -m "Sync Phone QuickCheck behavior tests with latest main"
+          git push origin HEAD:test/phone-quickcheck-behavior-20260914
