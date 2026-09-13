@@ -128,23 +128,23 @@ assert.ok(markets.has('JP') && markets.has('US'), 'real-label corpus must includ
 assert.ok(languages.has('ja') && languages.has('en'), 'real-label corpus must include Japanese and English labels');
 assert.ok(categories.size >= 6, `real-label corpus requires at least 6 categories; found ${categories.size}`);
 
-const topUnknowns = [...unknownCounts.entries()]
+const unknownInventory = [...unknownCounts.entries()]
   .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-  .slice(0, 30)
   .map(([name, count]) => ({ name, count }));
+const topUnknowns = unknownInventory.slice(0, 30);
 
 const overallCoverage = ingredientTotal ? exactKnownTotal / ingredientTotal : 0;
 
-// Wave 4 / PR26 quality floor. Keep the same source-backed products and raise
-// actual exact-identity coverage; do not inflate the score by treating broad
-// group labels or visibly truncated OCR/label fragments as one exact chemical.
+// Wave 4 baseline. Keep the same source-backed products and improve actual
+// exact-identity coverage; do not inflate the score by treating broad group
+// labels or visibly truncated OCR/label fragments as one exact chemical.
 assert.ok(overallCoverage >= 0.80, `real-label exact coverage ${(overallCoverage * 100).toFixed(2)}% is below the 80% Wave 4 floor`);
 assert.equal(isExactKnown('パラベン'), false, 'broad group label パラベン must not become one exact ingredient identity');
 assert.equal(isExactKnown('Ammonium Polyacryloyldimethyl'), false, 'truncated Ammonium Polyacryloyldimethyl must remain non-exact');
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'wave4-real-label-gap-wave1',
+  phase: 'wave4-real-label-gap-wave2',
   products: corpus.length,
   brands: brands.size,
   markets: [...markets].sort(),
@@ -155,7 +155,9 @@ console.log(JSON.stringify({
   unknown: ingredientTotal - exactKnownTotal,
   exact_coverage: Number(overallCoverage.toFixed(4)),
   exact_coverage_floor: 0.80,
+  distinct_unknowns: unknownInventory.length,
   broad_group_labels_are_not_exact: true,
   top_unknowns: topUnknowns,
+  unknown_inventory: unknownInventory,
   results
 }, null, 2));
