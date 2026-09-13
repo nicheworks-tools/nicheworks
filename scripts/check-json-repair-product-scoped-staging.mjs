@@ -141,7 +141,7 @@ for (const forbidden of [
 const appSource = fs.readFileSync(new URL('../tools/json-repair/app.js', import.meta.url), 'utf8');
 assert.match(appSource, /status && status\.active === true && status\.entitlement === ENTITLEMENT/);
 assert.doesNotMatch(appSource, /!status\.entitlement \|\| status\.entitlement === ENTITLEMENT/);
-assert.match(appSource, /value === "aggressive" && !guardPro\(\)/);
+assert.match(appSource, /level === "aggressive" && !guardPro\(\)/);
 assert.match(appSource, /data-cand-use/);
 assert.match(appSource, /data-cand-repair/);
 assert.match(appSource, /if \(!guardPro\(\)\) return; const idx/);
