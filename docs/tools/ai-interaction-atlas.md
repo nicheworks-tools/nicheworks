@@ -99,19 +99,7 @@ Preserve the existing support block in place according to common-spec; do not re
 - FAQ: recommended-and-present under current common-spec interpretation.
 - Usage links remain subdued text links and separated from advertising.
 
-## 14. Monetization and entitlement contract
-
-`MONETIZATION_CLASSIFICATION_87.md` classifies `ai-interaction-atlas` as `PRO_BUNDLE`. Its future paid product authority is the shared `nicheworks.pro` product; legacy `nicheworks_pro` is compatibility/migration state only.
-
-The exact current additive paid boundaries are the four operations in section 5. Free atlas browsing, five favorites, two-item comparison, Free comparison rows/copy, pattern details, and basic prompt copy must remain independent of billing availability.
-
-The current legacy bridge must require exact `status.active === true` plus `status.entitlement === "nicheworks_pro"`. Missing or unrelated entitlement state must not unlock current paid behavior.
-
-`tools/ai-interaction-atlas/product-scoped-controller.mjs` is non-live staging. It requires explicit product/feature configuration and delegates fail-closed server verification to `assets/nw-product-scoped-controller.mjs`. For live migration, configured product ID must be `nicheworks.pro`; no separate AI Interaction Atlas product is created.
-
-NicheWorks Pro price/currency, Stripe Product/Price, production feature IDs, restore/account policy, legacy purchaser treatment, and migration-wave timing remain unresolved.
-
-## 15. Functional acceptance tests
+## 14. Functional acceptance tests
 
 - [ ] Search/filter changes the visible pattern set without external AI processing.
 - [ ] Pattern detail and basic prompt copy remain Free; recent state remains local.
@@ -125,11 +113,23 @@ NicheWorks Pro price/currency, Stripe Product/Price, production feature IDs, res
 
 Automated evidence includes the suite runtime-contract checker and `scripts/check-ai-interaction-atlas-product-scoped-staging.mjs`. Browser behavior-level coverage remains separate from source-contract checks.
 
-## 16. Explicit tool-specific exceptions
+## 15. Explicit tool-specific exceptions
 
 - No language exception is established beyond separate EN/JA pages.
 - The information-dense workflow is desktop-wide; mobile adaptation must preserve the workspace rather than force an arbitrary narrow fixed width.
 - Pro does not currently increase the five-favorite runtime cap.
+
+### Monetization and entitlement contract
+
+`MONETIZATION_CLASSIFICATION_87.md` classifies `ai-interaction-atlas` as `PRO_BUNDLE`. Its future paid product authority is the shared `nicheworks.pro` product; legacy `nicheworks_pro` is compatibility/migration state only.
+
+The exact current additive paid boundaries are the four operations in section 5. Free atlas browsing, five favorites, two-item comparison, Free comparison rows/copy, pattern details, and basic prompt copy must remain independent of billing availability.
+
+The current legacy bridge must require exact `status.active === true` plus `status.entitlement === "nicheworks_pro"`. Missing or unrelated entitlement state must not unlock current paid behavior.
+
+`tools/ai-interaction-atlas/product-scoped-controller.mjs` is non-live staging. It requires explicit product/feature configuration and delegates fail-closed server verification to `assets/nw-product-scoped-controller.mjs`. For live migration, configured product ID must be `nicheworks.pro`; no separate AI Interaction Atlas product is created.
+
+NicheWorks Pro price/currency, Stripe Product/Price, production feature IDs, restore/account policy, legacy purchaser treatment, and migration-wave timing remain unresolved.
 
 ### Implementation evidence
 

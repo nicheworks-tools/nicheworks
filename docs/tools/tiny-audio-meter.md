@@ -116,7 +116,9 @@ Snapshot CSV/summary and segment copy are generated locally. Only the JP/EN pref
 
 Keep a tool-specific title/description, one self-referencing canonical for `https://nicheworks.app/tools/tiny-audio-meter/`, valid `WebApplication` JSON-LD, and evidence-based FAQ/schema copy. Claims must preserve the distinction between relative input level and calibrated dB SPL.
 
-## 11. Advertising / affiliate contract
+## 11. Advertising contract
+
+### Affiliate contract
 
 - Preserve existing GA4/AdSense identifiers and common-spec placement rules.
 - Shared `/assets/amazon-affiliate.js` plus local `affiliate-config.js` form the Amazon insertion contract.

@@ -1,0 +1,34 @@
+name: Fix canonical section numbering once
+
+on:
+  push:
+    branches:
+      - audit/quality-baseline-88-reconcile-20260913
+    paths:
+      - 'scripts/fix-canonical-section-numbering-once.mjs'
+      - '.github/workflows/fix-canonical-section-numbering-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/quality-baseline-88-reconcile-20260913
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Restore canonical 15-section numbering
+        run: node scripts/fix-canonical-section-numbering-once.mjs
+      - name: Commit repaired specifications
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/tools/ai-interaction-atlas.md docs/tools/api-key-token-redactor.md docs/tools/ats-paste-doctor.md docs/tools/contract-risk-highlighter.md docs/tools/incident-update-generator.md docs/tools/size-converter.md docs/tools/tiny-audio-meter.md
+          git diff --cached --quiet && exit 0
+          git commit -m "Restore canonical 15-section tool specs"
+          git push origin HEAD:audit/quality-baseline-88-reconcile-20260913

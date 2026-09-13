@@ -96,7 +96,26 @@ Follow common-spec sections 6 and 9-4. Preserve and update in place rather than 
 - **Language handling for existing usage pages:** not applicable while no usage page exists.
 - Any future usage link must remain a subdued text link separated from advertising per common-spec section 10-6.
 
-## 14. Monetization and entitlement contract
+## 14. Functional acceptance tests
+
+- [ ] Confirmed incident fields can generate distinct customer, internal, and social drafts for the selected status/tone.
+- [ ] Missing optional information can be marked unconfirmed rather than silently fabricated when the option is enabled.
+- [ ] Free copy/TXT actions remain usable without Pro while the Incident Communication Pack remains the only paid value boundary.
+- [ ] Current legacy Pro requires both active state and exact `nicheworks_pro`; missing/unrelated entitlement state cannot unlock the pack.
+- [ ] Product-scoped staging fails closed unless server-verified entitlement state matches the configured product and the mapped `communicationPack` feature.
+- [ ] Canonical monetization classification is `PRO_BUNDLE`, and future live product authority is `nicheworks.pro` rather than a tool-specific paid product.
+- [ ] Billing/entitlement traffic contains no incident facts or generated communication content.
+- [ ] JP/EN modes retain the same fact fields and mandatory human-review warning.
+
+Automated regression/source-contract evidence: `scripts/check-tool-runtime-contracts.mjs` and `scripts/check-incident-update-generator-product-scoped-staging.mjs`. The dedicated staging check is not represented as a full browser E2E test. Browser behavior-level status remains **behavior-test-missing** until an actual browser scenario test is added.
+
+## 15. Explicit tool-specific exceptions
+
+- No language exception is established beyond the language mode above.
+- No additional layout exception is established.
+- Direct publishing to Statuspage, Slack/Teams, GitHub, or other incident systems is outside the current contract; the pack only generates local draft text.
+
+### Monetization and entitlement contract
 
 `MONETIZATION_CLASSIFICATION_87.md` classifies `incident-update-generator` as an approved `PRO_BUNDLE` member. Its future paid product authority is therefore the shared `nicheworks.pro` product; legacy `nicheworks_pro` remains compatibility/migration state only.
 
@@ -113,25 +132,6 @@ The public runtime remains on the hardened legacy shared-Pro mechanism until the
 For live migration, the configured product ID must be `nicheworks.pro` plus the approved Incident Communication Pack feature mapping. No Incident-specific paid product is created by this contract.
 
 The NicheWorks Pro price/currency, Stripe Product/Price, price-tier mapping, production feature ID, restore/account policy, historical-purchaser treatment, and live/test rollout remain unresolved. Detailed staging requirements are in `docs/billing/pro-product-contracts-wave6.md`; shared-bundle authority is in `docs/billing/nicheworks-pro-bundle-contract.md`.
-
-## 15. Functional acceptance tests
-
-- [ ] Confirmed incident fields can generate distinct customer, internal, and social drafts for the selected status/tone.
-- [ ] Missing optional information can be marked unconfirmed rather than silently fabricated when the option is enabled.
-- [ ] Free copy/TXT actions remain usable without Pro while the Incident Communication Pack remains the only paid value boundary.
-- [ ] Current legacy Pro requires both active state and exact `nicheworks_pro`; missing/unrelated entitlement state cannot unlock the pack.
-- [ ] Product-scoped staging fails closed unless server-verified entitlement state matches the configured product and the mapped `communicationPack` feature.
-- [ ] Canonical monetization classification is `PRO_BUNDLE`, and future live product authority is `nicheworks.pro` rather than a tool-specific paid product.
-- [ ] Billing/entitlement traffic contains no incident facts or generated communication content.
-- [ ] JP/EN modes retain the same fact fields and mandatory human-review warning.
-
-Automated regression/source-contract evidence: `scripts/check-tool-runtime-contracts.mjs` and `scripts/check-incident-update-generator-product-scoped-staging.mjs`. The dedicated staging check is not represented as a full browser E2E test. Browser behavior-level status remains **behavior-test-missing** until an actual browser scenario test is added.
-
-## 16. Explicit tool-specific exceptions
-
-- No language exception is established beyond the language mode above.
-- No additional layout exception is established.
-- Direct publishing to Statuspage, Slack/Teams, GitHub, or other incident systems is outside the current contract; the pack only generates local draft text.
 
 ### Implementation evidence
 
