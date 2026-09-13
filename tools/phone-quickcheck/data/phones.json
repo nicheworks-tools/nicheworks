@@ -1,5 +1,306 @@
 {
-  "version": 1,
-  "updatedAt": null,
-  "phones": []
+  "version": 2,
+  "updatedAt": "2026-09-13",
+  "phones": [
+    {
+      "id": "apple-iphone-18-pro",
+      "manufacturer": "Apple",
+      "model": "iPhone 18 Pro",
+      "aliases": ["iPhone18Pro", "アイフォン18 Pro", "アイフォン18プロ"],
+      "releaseYear": 2026,
+      "dimensions": { "heightMm": 150.0, "widthMm": 71.9, "depthMm": 8.75 },
+      "weightG": 211,
+      "displayInch": 6.3,
+      "charging": {
+        "connector": "USB-C",
+        "battery": { "capacityMah": null, "valueClass": "unknown", "sourceRef": null },
+        "wiredRecommendedW": 60,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi2 / MagSafe",
+        "wirelessMaxW": 25
+      },
+      "included": { "cable": "unknown", "adapter": "not_included" },
+      "waterRating": "IP68",
+      "sources": {
+        "specificationsUrl": "https://www.apple.com/jp/iphone-18-pro/specs/",
+        "manualUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+        "releaseUrl": "https://www.apple.com/jp/newsroom/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/",
+        "chargingUrl": "https://www.apple.com/jp/iphone-18-pro/specs/",
+        "wirelessUrl": "https://www.apple.com/jp/iphone-18-pro/specs/",
+        "verifiedAt": "2026-09-13"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "apple-iphone-18-pro-max",
+      "manufacturer": "Apple",
+      "model": "iPhone 18 Pro Max",
+      "aliases": ["iPhone18ProMax", "アイフォン18 Pro Max", "アイフォン18プロマックス"],
+      "releaseYear": 2026,
+      "dimensions": { "heightMm": 163.4, "widthMm": 78.0, "depthMm": 8.75 },
+      "weightG": 249,
+      "displayInch": 6.9,
+      "charging": {
+        "connector": "USB-C",
+        "battery": { "capacityMah": null, "valueClass": "unknown", "sourceRef": null },
+        "wiredRecommendedW": 60,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi2 / MagSafe",
+        "wirelessMaxW": 25
+      },
+      "included": { "cable": "unknown", "adapter": "not_included" },
+      "waterRating": "IP68",
+      "sources": {
+        "specificationsUrl": "https://www.apple.com/jp/iphone-18-pro/specs/",
+        "manualUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+        "releaseUrl": "https://www.apple.com/jp/newsroom/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/",
+        "chargingUrl": "https://www.apple.com/jp/iphone-18-pro/specs/",
+        "wirelessUrl": "https://www.apple.com/jp/iphone-18-pro/specs/",
+        "verifiedAt": "2026-09-13"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "apple-iphone-17",
+      "manufacturer": "Apple",
+      "model": "iPhone 17",
+      "aliases": ["iPhone17", "アイフォン17"],
+      "releaseYear": 2025,
+      "dimensions": { "heightMm": 149.6, "widthMm": 71.5, "depthMm": 7.95 },
+      "weightG": 177,
+      "displayInch": 6.3,
+      "charging": {
+        "connector": "USB-C",
+        "battery": { "capacityMah": null, "valueClass": "unknown", "sourceRef": null },
+        "wiredRecommendedW": 40,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi2 / MagSafe",
+        "wirelessMaxW": 25
+      },
+      "included": { "cable": "unknown", "adapter": "not_included" },
+      "waterRating": null,
+      "sources": {
+        "specificationsUrl": "https://www.apple.com/jp/iphone-17/specs/",
+        "manualUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+        "releaseUrl": "https://www.apple.com/jp/newsroom/2025/09/apple-debuts-iphone-17/",
+        "chargingUrl": "https://www.apple.com/jp/iphone-17/specs/",
+        "wirelessUrl": "https://www.apple.com/jp/iphone-17/specs/",
+        "verifiedAt": "2026-09-13"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "apple-iphone-17e",
+      "manufacturer": "Apple",
+      "model": "iPhone 17e",
+      "aliases": ["iPhone17e", "アイフォン17e"],
+      "releaseYear": 2026,
+      "dimensions": { "heightMm": 146.7, "widthMm": 71.5, "depthMm": 7.8 },
+      "weightG": 169,
+      "displayInch": 6.1,
+      "charging": {
+        "connector": "USB-C",
+        "battery": { "capacityMah": null, "valueClass": "unknown", "sourceRef": null },
+        "wiredRecommendedW": 20,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi2 / MagSafe",
+        "wirelessMaxW": 15
+      },
+      "included": { "cable": "unknown", "adapter": "not_included" },
+      "waterRating": "IP68",
+      "sources": {
+        "specificationsUrl": "https://www.apple.com/jp/iphone-17e/specs/",
+        "manualUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+        "releaseUrl": "https://www.apple.com/jp/newsroom/2026/03/apple-introduces-iphone-17e/",
+        "chargingUrl": "https://www.apple.com/jp/iphone-17e/specs/",
+        "wirelessUrl": "https://www.apple.com/jp/iphone-17e/specs/",
+        "verifiedAt": "2026-09-13"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-11",
+      "manufacturer": "Google",
+      "model": "Pixel 11",
+      "aliases": ["Google Pixel 11", "Pixel11", "ピクセル11"],
+      "releaseYear": 2026,
+      "dimensions": { "heightMm": 152.8, "widthMm": 72.0, "depthMm": 8.6 },
+      "weightG": 197,
+      "displayInch": 6.3,
+      "charging": {
+        "connector": "USB-C",
+        "battery": { "capacityMah": 4985, "valueClass": "official", "sourceRef": "https://store.google.com/jp/product/pixel_11_specs?hl=ja" },
+        "wiredRecommendedW": 30,
+        "protocols": ["PPS"],
+        "pps": "required",
+        "wirelessStandard": "Qi2.2",
+        "wirelessMaxW": 25
+      },
+      "included": { "cable": "included", "adapter": "not_included" },
+      "waterRating": "IP68",
+      "sources": {
+        "specificationsUrl": "https://store.google.com/jp/product/pixel_11_specs?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
+        "releaseUrl": "https://blog.google/intl/ja-jp/products/devices-services/google-pixel-11-pro-xl/",
+        "chargingUrl": "https://store.google.com/jp/product/pixel_11_specs?hl=ja",
+        "wirelessUrl": "https://store.google.com/jp/product/pixel_11_specs?hl=ja",
+        "verifiedAt": "2026-09-13"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-11-pro",
+      "manufacturer": "Google",
+      "model": "Pixel 11 Pro",
+      "aliases": ["Google Pixel 11 Pro", "Pixel11Pro", "ピクセル11 Pro", "ピクセル11プロ"],
+      "releaseYear": 2026,
+      "dimensions": { "heightMm": 152.7, "widthMm": 71.9, "depthMm": 8.4 },
+      "weightG": 204,
+      "displayInch": 6.3,
+      "charging": {
+        "connector": "USB-C",
+        "battery": { "capacityMah": 4850, "valueClass": "official", "sourceRef": "https://store.google.com/jp/product/pixel_11_pro_specs?hl=ja" },
+        "wiredRecommendedW": 30,
+        "protocols": ["PPS"],
+        "pps": "required",
+        "wirelessStandard": "Qi2.2",
+        "wirelessMaxW": 25
+      },
+      "included": { "cable": "included", "adapter": "not_included" },
+      "waterRating": null,
+      "sources": {
+        "specificationsUrl": "https://store.google.com/jp/product/pixel_11_pro_specs?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
+        "releaseUrl": "https://blog.google/intl/ja-jp/products/devices-services/google-pixel-11-pro-xl/",
+        "chargingUrl": "https://store.google.com/jp/product/pixel_11_pro_specs?hl=ja",
+        "wirelessUrl": "https://store.google.com/jp/product/pixel_11_pro_specs?hl=ja",
+        "verifiedAt": "2026-09-13"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-11-pro-xl",
+      "manufacturer": "Google",
+      "model": "Pixel 11 Pro XL",
+      "aliases": ["Google Pixel 11 Pro XL", "Pixel11ProXL", "ピクセル11 Pro XL", "ピクセル11プロXL"],
+      "releaseYear": 2026,
+      "dimensions": { "heightMm": 162.7, "widthMm": 76.5, "depthMm": 8.5 },
+      "weightG": 226,
+      "displayInch": 6.8,
+      "charging": {
+        "connector": "USB-C",
+        "battery": { "capacityMah": 5115, "valueClass": "official", "sourceRef": "https://store.google.com/jp/product/pixel_11_pro_specs?hl=ja" },
+        "wiredRecommendedW": 45,
+        "protocols": ["PPS"],
+        "pps": "required",
+        "wirelessStandard": "Qi2.2",
+        "wirelessMaxW": 25
+      },
+      "included": { "cable": "included", "adapter": "not_included" },
+      "waterRating": null,
+      "sources": {
+        "specificationsUrl": "https://store.google.com/jp/product/pixel_11_pro_specs?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
+        "releaseUrl": "https://blog.google/intl/ja-jp/products/devices-services/google-pixel-11-pro-xl/",
+        "chargingUrl": "https://store.google.com/jp/product/pixel_11_pro_specs?hl=ja",
+        "wirelessUrl": "https://store.google.com/jp/product/pixel_11_pro_specs?hl=ja",
+        "verifiedAt": "2026-09-13"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-s26",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S26",
+      "aliases": ["Samsung Galaxy S26", "GalaxyS26", "ギャラクシーS26"],
+      "releaseYear": 2026,
+      "dimensions": { "heightMm": 149.6, "widthMm": 71.7, "depthMm": 7.2 },
+      "weightG": 167,
+      "displayInch": 6.3,
+      "charging": {
+        "connector": "USB-C",
+        "battery": { "capacityMah": 4300, "valueClass": "official", "sourceRef": "https://www.samsung.com/jp/business/smartphones/galaxy-s/galaxy-s26-cobalt-violet-256gb-sm-s942qzvesjp/" },
+        "wiredRecommendedW": 25,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi2.2 (with compatible case)",
+        "wirelessMaxW": 25
+      },
+      "included": { "cable": "unknown", "adapter": "unknown" },
+      "waterRating": null,
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/business/smartphones/galaxy-s/galaxy-s26-cobalt-violet-256gb-sm-s942qzvesjp/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-S942QZKESJP/",
+        "releaseUrl": "https://news.samsung.com/jp/galaxy-s26-launch",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/mobile-accessories/magnet-wireless-charger-dark-gray-ep-p2900bbjgjp/",
+        "verifiedAt": "2026-09-13"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-s26-plus",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S26+",
+      "aliases": ["Samsung Galaxy S26+", "GalaxyS26+", "Galaxy S26 Plus", "ギャラクシーS26+"],
+      "releaseYear": 2026,
+      "dimensions": { "heightMm": 158.4, "widthMm": 75.8, "depthMm": 7.3 },
+      "weightG": 190,
+      "displayInch": 6.7,
+      "charging": {
+        "connector": "USB-C",
+        "battery": { "capacityMah": 4900, "valueClass": "official", "sourceRef": "https://www.samsung.com/jp/business/smartphones/galaxy-s/galaxy-s26-plus-black-256gb-sm-s947qzkasjp/" },
+        "wiredRecommendedW": 45,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi2.2 (with compatible case)",
+        "wirelessMaxW": 25
+      },
+      "included": { "cable": "unknown", "adapter": "unknown" },
+      "waterRating": null,
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/business/smartphones/galaxy-s/galaxy-s26-plus-black-256gb-sm-s947qzkasjp/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-S947QZVASJP/",
+        "releaseUrl": "https://news.samsung.com/jp/galaxy-s26-launch",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/mobile-accessories/magnet-wireless-charger-dark-gray-ep-p2900bbjgjp/",
+        "verifiedAt": "2026-09-13"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-s26-ultra",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S26 Ultra",
+      "aliases": ["Samsung Galaxy S26 Ultra", "GalaxyS26Ultra", "ギャラクシーS26 Ultra", "ギャラクシーS26ウルトラ"],
+      "releaseYear": 2026,
+      "dimensions": { "heightMm": 163.6, "widthMm": 78.1, "depthMm": 7.9 },
+      "weightG": 214,
+      "displayInch": 6.9,
+      "charging": {
+        "connector": "USB-C",
+        "battery": { "capacityMah": 5000, "valueClass": "official", "sourceRef": "https://www.samsung.com/jp/business/smartphones/galaxy-s/galaxy-s26-ultra-white-256gb-sm-s948qzwasjp/" },
+        "wiredRecommendedW": 60,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi2.2 (with compatible case)",
+        "wirelessMaxW": 25
+      },
+      "included": { "cable": "unknown", "adapter": "unknown" },
+      "waterRating": null,
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/business/smartphones/galaxy-s/galaxy-s26-ultra-white-256gb-sm-s948qzwasjp/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-S948QZVFSJP/",
+        "releaseUrl": "https://news.samsung.com/jp/galaxy-s26-launch",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/mobile-accessories/magnet-wireless-charger-dark-gray-ep-p2900bbjgjp/",
+        "verifiedAt": "2026-09-13"
+      },
+      "affiliateKeys": []
+    }
+  ]
 }
