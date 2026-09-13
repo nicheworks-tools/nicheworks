@@ -95,7 +95,7 @@ Follow common-spec sections 6 and 9-4. Preserve and update in place rather than 
 - [ ] Generated variants remain reviewable/copyable and the UI tells users to confirm the actual post preview before publishing.
 - [ ] JP/EN switching preserves the formatter, rule explanations, and invisible-character warning.
 
-Automated test evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/contract test). Behavior-level status: **behavior-test-missing**; build, generator, data-validation, audit, and source-contract checks are not silently counted as behavior tests.
+Automated test evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/contract test) and `tools/linebreak-doctor/tests/behavior.test.mjs` (behavior test, executed by `scripts/run-tool-behavior-tests.mjs`). Behavior-level status: **behavior-test-present**.
 
 ## 15. Explicit tool-specific exceptions
 
@@ -107,3 +107,4 @@ Automated test evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/
 - `tools/linebreak-doctor/index.html`
 - `tools/linebreak-doctor/app.js`
 - `tools/linebreak-doctor/style.css`
+- `tools/linebreak-doctor/tests/behavior.test.mjs`
