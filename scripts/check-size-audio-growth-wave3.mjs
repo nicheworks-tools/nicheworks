@@ -66,11 +66,13 @@ lacks('tools/tiny-audio-meter/measurement-conditions.js', 'fetch(', 'conditions 
 syntax('tools/tiny-audio-meter/comparison.js');
 syntax('tools/tiny-audio-meter/measurement-conditions.js');
 
-// Amazon remains ready-but-inert until the separate activation PR has verified URLs.
-for (const rel of ['tools/size-converter/affiliate-config.js', 'tools/tiny-audio-meter/affiliate-config.js']) {
-  has(rel, 'enabled: false', 'disabled Amazon config');
-  lacks(rel, 'https://', 'live affiliate URL before activation');
-}
+// Amazon activation is now open only for the four verified user-provided targets.
+has('tools/size-converter/affiliate-config.js', 'enabled: true', 'enabled Size Converter Amazon config');
+has('tools/size-converter/affiliate-config.js', 'https://amzn.to/4hnXGRb', 'Size Converter shoes target');
+has('tools/size-converter/affiliate-config.js', 'https://amzn.to/4dxBv8Q', 'Size Converter clothing target');
+has('tools/tiny-audio-meter/affiliate-config.js', 'enabled: true', 'enabled Tiny Audio Amazon config');
+has('tools/tiny-audio-meter/affiliate-config.js', 'https://amzn.to/4xHeUyd', 'Tiny Audio sound-level-meter target');
+has('tools/tiny-audio-meter/affiliate-config.js', 'https://amzn.to/4iZFUF8', 'Tiny Audio USB microphone target');
 
 if (failures.length) {
   console.error(`Size/Tiny Audio growth-wave 3 contract failed (${failures.length})`);
@@ -82,5 +84,5 @@ console.log(JSON.stringify({
   status: 'pass',
   size_converter: ['retail-input-normalization', 'fit-handoff', 'shoe-inch-input'],
   tiny_audio: ['measurement-conditions-report'],
-  amazon_enabled: false
+  amazon_enabled: true
 }, null, 2));
