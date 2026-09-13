@@ -1,7 +1,8 @@
 (() => {
   const V = "2026-09-13";
-  window.MANUALFINDER_WAVE3_BATCHES = ["manuals.wave3.01.js"];
+  window.MANUALFINDER_WAVE3_BATCHES = ["manuals.wave3.01.js", "manuals.wave3.02.js"];
   window.MANUALFINDER_WAVE3_NIKON = window.MANUALFINDER_WAVE3_NIKON || [];
+  window.MANUALFINDER_WAVE3_BROTHER = window.MANUALFINDER_WAVE3_BROTHER || [];
 
   const slug = (v) => String(v || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const lines = (parts) => parts.flatMap((part) => String(part || "").split("\n").map((x) => x.trim()).filter(Boolean));
@@ -30,5 +31,26 @@
     });
   };
 
-  window.MANUALFINDER_BUILD_WAVE3 = () => nikon();
+  const brother = () => {
+    const supportUrl = "https://support.brother.co.jp/j/b/productsearch.aspx?c=jp&content=ml&lang=ja";
+    return lines(window.MANUALFINDER_WAVE3_BROTHER).map((line) => {
+      const [model, manualUrl] = line.split("|");
+      return {
+        id: `wave3-brother-${slug(model)}`,
+        brand: "Brother", maker: "Brother", model, family: "Inkjet printer / MFP",
+        nameJa: `ブラザー ${model}`, nameEn: `Brother ${model}`,
+        category: "プリンター・複合機", country: "Japan", manualUrl, supportUrl,
+        noteJa: "ブラザー公式の機種別製品マニュアルページです。",
+        noteEn: "Official Brother model-specific product manual page.",
+        hintJa: `ブラザー Brother ${model} インクジェット プリンター 複合機 取扱説明書`,
+        hintEn: `Brother ${model} inkjet printer MFP manual`,
+        aliases: ["ブラザー", "Brother", "インクジェット", "プリンター", "複合機", "取扱説明書"],
+        sourceType: "official", sourceLevel: "A", verifiedAt: V, evidenceUrl: manualUrl,
+        resolutionState: "direct_manual_page", manualKind: "manual-index", sharedTarget: false,
+        linkReview: `official Wave 3B target verified ${V}`
+      };
+    });
+  };
+
+  window.MANUALFINDER_BUILD_WAVE3 = () => [...nikon(), ...brother()];
 })();
