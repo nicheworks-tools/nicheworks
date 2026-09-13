@@ -227,4 +227,12 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.equal(h.document.body.style.overflow, '');
 }
 
+// 18W USB-PD guidance resolves to the 20W accessory class, not an overstated 30W class.
+{
+  const h = await createHarness(['oppo-reno5-a', 'xiaomi-redmi-12-5g']);
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /USB-PD対応 20W以上の充電器/);
+  assert.doesNotMatch(html, /USB-PD対応 30W以上の充電器/);
+}
+
 console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estimates, Apple unknown capacity, Lightning guidance, proprietary charging, and mobile sheet.');
