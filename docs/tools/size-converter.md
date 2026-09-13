@@ -90,7 +90,7 @@ Observed delivery capabilities: clipboard copy **present**; download/export **no
 - **Invalid/out-of-range fit result:** no fit-handoff action is exposed.
 - **Copy failure:** visible/local copy-failure behavior remains available in the core runtime.
 - **Safe reset:** measurement reset clears page-local inputs/results only; selected shoe unit may remain page state for the session.
-- **Network/API failure:** not applicable to core sizing logic; ads, analytics, donations, and future affiliate links are separate page resources.
+- **Network/API failure:** not applicable to core sizing logic; ads, analytics, donations, and affiliate links are separate page resources.
 
 ## 7. Privacy/data handling
 
@@ -98,7 +98,7 @@ Direct size text, normalized syntax, candidate comparison rows, shoe/clothing me
 
 Data-basis and UK-evaluation files are static maintainer documentation and do not add user-data collection.
 
-Amazon readiness is isolated from user sizing state. Raw size text, measurements, candidate rows, fit details, provenance state, and UK evaluation state must not be encoded into affiliate URLs or affiliate analytics. A valid fit handoff moves only the estimated JP size plus category/chart state inside the page.
+Amazon activation is isolated from user sizing state. Raw size text, measurements, candidate rows, fit details, provenance state, and UK evaluation state must not be encoded into affiliate URLs or affiliate analytics. A valid fit handoff moves only the estimated JP size plus category/chart state inside the page.
 
 ## 8. Responsive contract
 
@@ -129,11 +129,12 @@ Search-oriented representative examples such as `US 4` and `US 8.5` may be prese
 
 - Preserve GA4/AdSense identifiers and common-spec placement rules.
 - Shared `/assets/amazon-affiliate.js` plus local `affiliate-config.js` form the Amazon insertion contract.
-- Production default remains `enabled: false` with empty `shoes` and `clothing` targets until verified Amazon URLs exist.
+- Production is active with `shoes=https://amzn.to/4hnXGRb` and `clothing=https://amzn.to/4dxBv8Q`.
 - Disabled or invalid config: no Amazon CTA, Associates disclosure, or affiliate click event.
-- Valid enabled config may mount only the contextual CTA after a valid direct-conversion result.
+- Valid enabled config may mount only the contextual CTA after a valid direct-conversion result and renders the shared Associates disclosure.
 - `affiliate_click` remains limited to coarse `tool`, `affiliate`, `target`, and `placement` metadata.
 - Raw size text, normalized input, chart choice, comparison state, shoe unit, measurements, fit results, data-basis state, and UK-evaluation state are forbidden affiliate analytics fields.
+- The affiliate CTA makes no price, availability, rating, review, or fit-suitability claim.
 
 ## 12. Donation/support contract
 
@@ -165,7 +166,7 @@ Preserve the existing donation/support block under common-spec rules. Amazon act
 - [ ] `data-basis.md` remains present with official-source provenance and non-universal classification.
 - [ ] `uk-evaluation.md` remains present with the multi-source disagreement and no-addition decision.
 - [ ] No brand-wide numerical offset changes a result.
-- [ ] Default Amazon config mounts no CTA/disclosure; enabled+valid remains coarse/contextual; enabled+invalid remains hidden.
+- [ ] Active Amazon config uses the two verified Special Links; valid results expose contextual CTA/disclosure, while invalid config remains hidden.
 
 Automated contract evidence includes the discovered production-code test `tools/size-converter/tests/behavior.test.mjs`, existing runtime waves, `scripts/check-amazon-ready-tools.mjs`, prior Size/Tiny growth-wave checks, and `scripts/check-size-converter-growth-wave4.mjs`. The behavior test executes production `app.js` calculation/data logic in Node; it is not represented as a full real-browser end-to-end UI test.
 
