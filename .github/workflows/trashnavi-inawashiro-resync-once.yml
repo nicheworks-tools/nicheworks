@@ -1,0 +1,56 @@
+name: TrashNavi Inawashiro resync one-shot
+
+on:
+  push:
+    branches:
+      - feat/trashnavi-inawashiro-publication-20260913
+    paths:
+      - 'tools/trashnavi/municipality-page-manifest.json'
+
+permissions:
+  contents: write
+
+jobs:
+  resync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-inawashiro-publication-20260913
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Preserve current root sitemap and add Inawashiro
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const p = 'sitemap.xml';
+          let s = fs.readFileSync(p, 'utf8');
+          const url = 'https://nicheworks.app/tools/trashnavi/fukushima/inawashiro/';
+          if (!s.includes(`<loc>${url}</loc>`)) {
+            const entry = `  <url>\n    <loc>${url}</loc>\n    <lastmod>2026-09-13</lastmod>\n  </url>\n`;
+            if (!s.includes('</urlset>')) throw new Error('root sitemap closing tag missing');
+            s = s.replace('</urlset>', `${entry}</urlset>`);
+            fs.writeFileSync(p, s);
+          }
+          NODE
+      - name: Validate publication state
+        run: |
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+      - name: Commit root sitemap reconciliation
+        shell: bash
+        run: |
+          git config user.name 'nicheworks-tools'
+          git config user.email 'nicheworks.tools@gmail.com'
+          git add sitemap.xml
+          if git diff --cached --quiet; then
+            echo 'No sitemap reconciliation needed.'
+            exit 0
+          fi
+          git commit -m 'Reconcile Inawashiro publication with current root sitemap'
+          git push origin HEAD:feat/trashnavi-inawashiro-publication-20260913
