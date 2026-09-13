@@ -1,0 +1,27 @@
+[
+  {
+    "pref": "鹿児島県",
+    "city": "鹿児島市",
+    "name": "鹿児島市 令和8年版家庭のごみ出しカレンダー",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.kagoshima.lg.jp/kankyo/seiso/recycle/kurashi/gomi/kate/dashikata/calendar/r3kiirecalendar.html",
+    "lgcode": "462012",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "鹿児島県",
+    "city": "鹿児島市",
+    "name": "鹿児島市 粗大ごみ",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.kagoshima.lg.jp/shigenseisaku/gomi/kate/dashikata/wakekata/sodaigomi.html",
+    "lgcode": "462012",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  }
+]
