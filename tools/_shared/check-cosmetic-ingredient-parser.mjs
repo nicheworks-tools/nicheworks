@@ -65,6 +65,14 @@ const aliasPairs = [
   ["ヒアルロン酸ナトリウム", "Sodium Hyaluronate"],
   ["ヒアルロン酸ソーダ", "Sodium Hyaluronate"],
   ["乳酸ナトリウム", "Sodium Lactate"],
+  ["ポリアクリル酸ナトリウム", "Sodium Polyacrylate"],
+  ["ラウレス硫酸ナトリウム", "Sodium Laureth Sulfate"],
+  ["安息香酸ナトリウム", "Sodium Benzoate"],
+  ["ソルビン酸カリウム", "Potassium Sorbate"],
+  ["水酸化カリウム", "Potassium Hydroxide"],
+  ["リン酸ナトリウム", "Sodium Phosphate"],
+  ["リン酸二ナトリウム", "Disodium Phosphate"],
+  ["PCAナトリウム", "Sodium PCA"],
   ["Alcohol Denat", "Alcohol Denat."]
 ];
 
@@ -75,6 +83,12 @@ for (const [alias, canonicalOrDeclaredAlias] of aliasPairs) {
     `shared alias equivalence should normalize identically: ${alias}`
   );
 }
+
+assert.equal(
+  parser.normalizeKey("ＰＣＡナトリウム"),
+  parser.normalizeKey("Sodium PCA"),
+  "NFKC normalization should preserve shared JP label equivalence"
+);
 
 for (const ambiguous of ["AHA", "BHA", "PHA", "Iron Oxides", "酸化鉄"]) {
   assert.equal(parser.isAmbiguousExactName(ambiguous), true, `${ambiguous} must be marked ambiguous`);

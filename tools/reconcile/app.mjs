@@ -5,21 +5,27 @@ import { ensureXlsxAvailable, readXlsxFile, tableFromXlsx, resultsWorkbookBytes 
 import { createProfileStore } from './rules-store.mjs';
 
 const FREE_MAX_ROWS = 500;
+const RESULT_PAGE_SIZE = 250;
 const FREE_MAX_BYTES = 5 * 1024 * 1024;
 const PRO_CSV_MAX_ROWS = 100000;
 const PRO_CSV_MAX_BYTES = 50 * 1024 * 1024;
 const PRO_XLSX_MAX_ROWS = 50000;
 const PRO_XLSX_MAX_BYTES = 25 * 1024 * 1024;
+const RECONCILE_PRODUCT_ID = 'reconcile.pro_v1';
+const RECONCILE_FEATURE_ID = 'reconcile_pro_v1';
 const profileStore = createProfileStore(localStorage);
 
 const state = {
   lang: localStorage.getItem('nw_lang') || (navigator.language.startsWith('ja') ? 'ja' : 'en'),
   proEnabled: false,
+  proStatus: 'checking',
+  checkoutBusy: false,
   selectedProfileId: '',
   a: null,
   b: null,
   results: [],
   filtered: [],
+  resultPage: 1,
   runContext: null
 };
 
@@ -36,6 +42,26 @@ function setNotice(text, kind = '') {
   node.className = `notice ${kind}`.trim();
 }
 
+function renderProState() {
+  document.querySelectorAll('[data-pro-state]').forEach((node) => {
+    if (state.proEnabled) {
+      node.textContent = message('Pro有効', 'Pro active');
+      return;
+    }
+    if (state.proStatus === 'checking') {
+      node.textContent = message('確認中', 'Checking');
+      return;
+    }
+    if (state.proStatus === 'error') {
+      node.textContent = message('確認エラー', 'Check error');
+      return;
+    }
+    node.textContent = 'Free';
+  });
+  const checkoutButton = $('proCheckoutBtn');
+  if (checkoutButton) checkoutButton.disabled = state.proEnabled || state.checkoutBusy;
+}
+
 function setLang(lang) {
   state.lang = lang === 'en' ? 'en' : 'ja';
   localStorage.setItem('nw_lang', state.lang);
@@ -47,24 +73,70 @@ function setLang(lang) {
   if (state.a) refreshMappingPlaceholders('a');
   if (state.b) refreshMappingPlaceholders('b');
   renderProfileList();
+  renderProState();
   renderStatus();
 }
 
-function setProState(enabled) {
+function setProState(enabled, status = enabled ? 'active' : 'free') {
   state.proEnabled = Boolean(enabled);
+  state.proStatus = status;
   document.querySelectorAll('[data-pro-control]').forEach((node) => {
     node.disabled = !state.proEnabled;
   });
-  document.querySelectorAll('[data-pro-state]').forEach((node) => {
-    node.textContent = state.proEnabled ? message('Pro有効', 'Pro active') : message('課金接続待ち', 'Billing not connected');
-  });
+  renderProState();
   renderProfileList();
 }
 
 function requirePro() {
   if (state.proEnabled) return true;
-  setNotice(message('この機能はReconcile Pro用です。課金接続は公開統合PRで行います。', 'This feature is for Reconcile Pro. Billing will be connected in the publication integration PR.'), 'warning');
+  setNotice(message('この機能はReconcile Pro用です。購入済みの場合はページを再読み込みして権利を再確認してください。', 'This feature requires Reconcile Pro. If you already purchased it, reload the page to re-check the entitlement.'), 'warning');
   return false;
+}
+
+async function refreshProEntitlement() {
+  const adapter = window.NicheWorksProEntitlement;
+  setProState(false, 'checking');
+  if (!adapter || typeof adapter.refreshProState !== 'function') {
+    setProState(false, 'error');
+    return;
+  }
+  try {
+    const result = await adapter.refreshProState({
+      productId: RECONCILE_PRODUCT_ID,
+      featureId: RECONCILE_FEATURE_ID
+    });
+    setProState(Boolean(result?.active), result?.active ? 'active' : (result?.state === 'entitlement-error' ? 'error' : 'free'));
+  } catch {
+    setProState(false, 'error');
+  }
+}
+
+async function startProCheckout() {
+  if (state.proEnabled || state.checkoutBusy) return;
+  state.checkoutBusy = true;
+  renderProState();
+  setNotice(message('安全な決済ページを準備しています。', 'Preparing secure checkout.'), '');
+  try {
+    const response = await fetch('/api/billing/create-checkout-session', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ productId: RECONCILE_PRODUCT_ID, returnPath: '/tools/reconcile/' })
+    });
+    const data = await response.json().catch(() => null);
+    if (!response.ok || !data?.ok || typeof data?.url !== 'string') {
+      throw new Error(data?.error || 'checkout_unavailable');
+    }
+    const checkoutUrl = new URL(data.url);
+    if (checkoutUrl.protocol !== 'https:' || checkoutUrl.hostname !== 'checkout.stripe.com') {
+      throw new Error('checkout_url_invalid');
+    }
+    location.assign(checkoutUrl.toString());
+  } catch (error) {
+    state.checkoutBusy = false;
+    renderProState();
+    const code = String(error?.message || error);
+    setNotice(message(`Reconcile Proの決済を開始できませんでした (${code})。`, `Could not start Reconcile Pro checkout (${code}).`), 'error');
+  }
 }
 
 function populateSelect(select, headers, placeholder, selected = '') {
@@ -190,8 +262,58 @@ function rebuildSide(side) {
   renderPreview(side);
 }
 
+function selectedCsvDelimiter() {
+  return $('delimiter').value === 'tab' ? '\t' : $('delimiter').value;
+}
+
+function currentSideMapping(side) {
+  const suffix = side.toUpperCase();
+  return Object.fromEntries(['amount', 'date', 'reference', 'description'].map((field) => [field, $(`${field}${suffix}`).value]));
+}
+
+async function reparseLoadedCsv(side) {
+  const current = state[side];
+  if (!current || current.type !== 'csv' || !current.sourceFile) return false;
+  const previous = currentSideMapping(side);
+  const parsed = await readCsvFile(current.sourceFile, { encoding: $('encoding').value, delimiter: selectedCsvDelimiter() });
+  const table = tableFromRows(parsed.rows, Number($('headerRow').value || 1));
+  if (!rowLimitOk(table, 'csv')) return false;
+  state[side] = {
+    ...current,
+    ...table,
+    name: parsed.name,
+    size: parsed.size,
+    encoding: parsed.encoding,
+    delimiter: parsed.delimiter,
+    rawRows: parsed.rows,
+    sourceFile: file
+  };
+  const suffix = side.toUpperCase();
+  for (const field of ['amount', 'date', 'reference', 'description']) {
+    populateSelect($(`${field}${suffix}`), table.headers, message('未選択', 'Not selected'), previous[field]);
+  }
+  renderPreview(side);
+  return true;
+}
+
+async function reparseLoadedCsvs({ announce = true } = {}) {
+  let reparsed = 0;
+  try {
+    for (const side of ['a', 'b']) {
+      if (await reparseLoadedCsv(side)) reparsed += 1;
+    }
+  } catch (error) {
+    setNotice(message(`CSV解析設定を適用できませんでした: ${error.message}`, `Could not apply CSV parser settings: ${error.message}`), 'error');
+    return false;
+  }
+  if (announce && reparsed) {
+    setNotice(message(`CSV解析設定を${reparsed}ファイルに再適用しました。`, `Reapplied CSV parser settings to ${reparsed} loaded file(s).`), 'success');
+  }
+  return true;
+}
+
 async function loadCsv(side, file) {
-  const selectedDelimiter = $('delimiter').value === 'tab' ? '\t' : $('delimiter').value;
+  const selectedDelimiter = selectedCsvDelimiter();
   const parsed = await readCsvFile(file, { encoding: $('encoding').value, delimiter: selectedDelimiter });
   const table = tableFromRows(parsed.rows, Number($('headerRow').value || 1));
   hideSheetSelect(side);
@@ -308,7 +430,7 @@ function setMapping(side, savedMapping) {
   return missing;
 }
 
-function applyProfile(profile) {
+async function applyProfile(profile) {
   const config = profile?.config;
   if (!config) return;
   $('encoding').value = config.parser.encoding;
@@ -320,8 +442,9 @@ function applyProfile(profile) {
   $('signMode').value = config.options.signMode;
   $('groupMatching').checked = Boolean(config.options.groupMatching);
   $('maxGroupSize').value = String(config.options.maxGroupSize);
-  if (state.a) rebuildSide('a');
-  if (state.b) rebuildSide('b');
+  if (!(await reparseLoadedCsvs({ announce: false }))) return;
+  if (state.a?.type === 'xlsx') rebuildSide('a');
+  if (state.b?.type === 'xlsx') rebuildSide('b');
   const missing = [...setMapping('a', config.mappingA), ...setMapping('b', config.mappingB)];
   state.selectedProfileId = profile.id;
   $('profileName').value = profile.name;
@@ -364,12 +487,12 @@ function saveProfile() {
   setNotice(message(`ルール「${saved.name}」をブラウザに保存しました。`, `Saved profile “${saved.name}” in this browser.`), 'success');
 }
 
-function selectProfile() {
+async function selectProfile() {
   if (!requirePro()) return;
   const id = $('profileSelect').value;
   const profile = profileStore.list().find((item) => item.id === id);
   if (!profile) return;
-  applyProfile(profile);
+  await applyProfile(profile);
 }
 
 function deleteProfile() {
@@ -457,6 +580,7 @@ function renderSummary() {
 }
 
 function applyFilter() {
+  state.resultPage = 1;
   const status = $('statusFilter').value;
   const query = $('resultSearch').value.trim().toLowerCase();
   state.filtered = state.results.filter((item) => {
@@ -468,7 +592,11 @@ function applyFilter() {
 }
 
 function renderResults() {
-  $('resultBody').innerHTML = state.filtered.map((item) => `<tr>
+  const totalPages = Math.max(1, Math.ceil(state.filtered.length / RESULT_PAGE_SIZE));
+  state.resultPage = Math.min(totalPages, Math.max(1, state.resultPage));
+  const start = (state.resultPage - 1) * RESULT_PAGE_SIZE;
+  const pageRows = state.filtered.slice(start, start + RESULT_PAGE_SIZE);
+  $('resultBody').innerHTML = pageRows.map((item) => `<tr>
     <td><span class="status status-${item.status}">${escapeHtml(item.status)}</span></td>
     <td>${escapeHtml(item.relation)}</td>
     <td>${escapeHtml(item.aRows.join(', ') || '—')}</td>
@@ -478,6 +606,17 @@ function renderResults() {
     <td>${escapeHtml(item.reason)}</td>
   </tr>`).join('');
   $('resultCount').textContent = `${state.filtered.length} / ${state.results.length}`;
+  const pageLabel = $('resultPage');
+  if (pageLabel) pageLabel.textContent = state.filtered.length ? `${state.resultPage} / ${totalPages}` : '0 / 0';
+  const prev = $('resultPrevBtn');
+  const next = $('resultNextBtn');
+  if (prev) prev.disabled = state.filtered.length === 0 || state.resultPage <= 1;
+  if (next) next.disabled = state.filtered.length === 0 || state.resultPage >= totalPages;
+}
+
+function changeResultPage(delta) {
+  state.resultPage += delta;
+  renderResults();
 }
 
 function exportCsv() {
@@ -527,6 +666,8 @@ function wire() {
   document.querySelectorAll('[data-lang]').forEach((button) => button.addEventListener('click', () => setLang(button.dataset.lang)));
   $('fileA').addEventListener('change', (event) => loadFile('a', event.target.files[0]));
   $('fileB').addEventListener('change', (event) => loadFile('b', event.target.files[0]));
+  $('encoding').addEventListener('change', () => reparseLoadedCsvs());
+  $('delimiter').addEventListener('change', () => reparseLoadedCsvs());
   $('sheetA').addEventListener('change', (event) => {
     if (!state.a?.xlsxSource) return;
     state.a.sheetName = event.target.value;
@@ -545,6 +686,8 @@ function wire() {
   $('reconcileBtn').addEventListener('click', run);
   $('statusFilter').addEventListener('change', applyFilter);
   $('resultSearch').addEventListener('input', applyFilter);
+  $('resultPrevBtn').addEventListener('click', () => changeResultPage(-1));
+  $('resultNextBtn').addEventListener('click', () => changeResultPage(1));
   $('exportCsvBtn').addEventListener('click', exportCsv);
   $('exportXlsxBtn').addEventListener('click', exportXlsx);
   $('profileSaveBtn').addEventListener('click', saveProfile);
@@ -552,8 +695,10 @@ function wire() {
   $('profileDeleteBtn').addEventListener('click', deleteProfile);
   $('profileExportBtn').addEventListener('click', exportProfiles);
   $('profileImport').addEventListener('change', (event) => importProfiles(event.target.files[0]));
+  if ($('proCheckoutBtn')) $('proCheckoutBtn').addEventListener('click', startProCheckout);
   setLang(state.lang);
-  setProState(false);
+  setProState(false, 'checking');
+  refreshProEntitlement();
 }
 
 wire();

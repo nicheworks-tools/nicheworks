@@ -1,26 +1,50 @@
 <!doctype html>
 <html lang="ja">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NicheWorks Reconcile — development branch</title>
-  <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="Development build of NicheWorks Reconcile. Two-file transaction reconciliation runs locally in the browser.">
+  <title>CSV・Excel取引照合ツール｜NicheWorks Reconcile</title>
+  <meta name="description" content="2つのCSV・Excel取引データをブラウザ内で照合し、完全一致・候補・重複・不一致を分類。人が確認すべき取引だけを絞り込める無料ツールです。">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://nicheworks.app/tools/reconcile/">
   <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="CSV・Excel取引照合ツール｜NicheWorks Reconcile">
+  <meta property="og:description" content="2つのCSV・Excelをローカル照合し、人が確認すべき差分だけを絞り込みます。">
+  <meta property="og:url" content="https://nicheworks.app/tools/reconcile/">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CSV・Excel取引照合ツール｜NicheWorks Reconcile">
+  <meta name="twitter:description" content="2つのCSV・Excelをブラウザ内で照合し、候補・重複・不一致を分類します。">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"NicheWorks Reconcile","url":"https://nicheworks.app/tools/reconcile/","applicationCategory":"BusinessApplication","operatingSystem":"All","description":"Two-file CSV and XLSX transaction reconciliation that runs locally in the browser and isolates records requiring human review.","inLanguage":["ja","en"],"isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"NicheWorks","url":"https://nicheworks.app/"}}
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./styles.css">
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 <body>
-  <div class="dev-banner">Development branch — publication/SEO/billing integration is intentionally deferred.</div>
   <header class="nw-header">
     <div class="nw-lang-switch" aria-label="Language switch"><button type="button" data-lang="ja">JP</button> / <button type="button" data-lang="en">EN</button></div>
-    <h1 class="nw-title">NicheWorks Reconcile <span class="pill">Free core</span></h1>
+    <h1 class="nw-title">NicheWorks Reconcile <span class="pill">Free + Pro</span></h1>
     <p class="nw-subtitle" data-i18n="ja">2つのCSV/XLSXを照合し、人が確認すべき取引だけを絞り込むブラウザ完結ツールです。</p>
     <p class="nw-subtitle" data-i18n="en">Reconcile two CSV/XLSX datasets locally and isolate the transactions that require human review.</p>
   </header>
 
   <main class="nw-main">
-    <p class="privacy-strip" data-i18n="ja"><strong>ローカル処理:</strong> 読み込んだ取引データはNicheWorksへ送信しません。CSV/XLSXともローカル処理です。XLSXは検証済みSheetJS CE 0.20.3 miniをローカル同梱し、ランタイムCDNを使用しません。</p>
-    <p class="privacy-strip" data-i18n="en"><strong>Local processing:</strong> Transaction data is not sent to NicheWorks. CSV and XLSX are processed locally. XLSX uses a verified locally vendored SheetJS CE 0.20.3 mini build with no runtime CDN dependency.</p>
+    <p class="privacy-strip" data-i18n="ja"><strong>ローカル処理:</strong> 読み込んだ取引データはNicheWorksへ送信しません。CSV/XLSXともブラウザ内で処理します。XLSXは検証済みSheetJS CE 0.20.3 miniをローカル同梱し、ランタイムCDNを使用しません。</p>
+    <p class="privacy-strip" data-i18n="en"><strong>Local processing:</strong> Transaction data is not sent to NicheWorks. CSV and XLSX are processed in the browser. XLSX uses a verified locally vendored SheetJS CE 0.20.3 mini build with no runtime CDN dependency.</p>
 
     <section class="steps" aria-label="Workflow">
       <div class="step"><strong>1. Files</strong><span data-i18n="ja">A/Bを読み込む</span><span data-i18n="en">Load A/B</span></div>
@@ -60,9 +84,14 @@
       </div>
 
       <div class="pro-note">
-        <div class="pro-note-head"><strong>Reconcile Pro — ¥3,980 one-time</strong><span class="pill pro" data-pro-state>課金接続待ち</span></div>
-        <span data-i18n="ja">CSV 100,000行・50MB、XLSX 50,000行・25MBまで。金額許容差、符号モード、1:n / n:1、XLSXレポート、ルール保存を提供します。購入者にはNicheWorks共通Proも付与する設計です。</span>
-        <span data-i18n="en">Up to 100,000 rows / 50 MB for CSV and 50,000 rows / 25 MB for XLSX. Adds amount tolerance, sign modes, 1:n / n:1 matching, XLSX reports and saved profiles. Reconcile Pro is designed to grant shared NicheWorks Pro as well.</span>
+        <div class="pro-note-head"><strong>Reconcile Pro — ¥3,980 one-time</strong><span class="pill pro" data-pro-state>確認中</span></div>
+        <span data-i18n="ja">CSV 100,000行・50MB、XLSX 50,000行・25MBまで。金額許容差、符号モード、1:n / n:1、XLSXレポート、ルール保存を提供します。Reconcile Pro購入にはNicheWorks共通Proも含まれます。</span>
+        <span data-i18n="en">Up to 100,000 rows / 50 MB for CSV and 50,000 rows / 25 MB for XLSX. Adds amount tolerance, sign modes, 1:n / n:1 matching, XLSX reports and saved profiles. A Reconcile Pro purchase also includes shared NicheWorks Pro.</span>
+        <div class="actions">
+          <button class="btn btn-primary" id="proCheckoutBtn" type="button"><span data-i18n="ja">Reconcile Proを購入</span><span data-i18n="en">Get Reconcile Pro</span></button>
+        </div>
+        <p class="muted" data-i18n="ja">購入完了後のお客様都合による返金・キャンセルは原則として受け付けません。二重請求、決済上の誤り、またはNicheWorks側の技術的不具合によりReconcile Proを利用できない場合は個別に確認します。<a href="./refund.html">Refund Policy</a></p>
+        <p class="muted" data-i18n="en">Customer-convenience refunds or cancellations are generally not accepted after purchase. Duplicate charges, payment-processing errors, or a NicheWorks-side technical failure that prevents use of Reconcile Pro are reviewed individually. <a href="./refund.html">Refund Policy</a></p>
       </div>
 
       <div class="pro-settings" aria-label="Reconcile Pro settings">
@@ -110,7 +139,8 @@
     </section>
   </main>
 
-  <footer class="nw-footer">NicheWorks Reconcile development build. Transaction processing is local to the browser. · <a href="./usage.html">Usage</a></footer>
+  <footer class="nw-footer">NicheWorks Reconcile · <a href="./usage.html">Usage</a> · <a href="./refund.html">Refund Policy</a> · <a href="/privacy.html">Privacy</a> · <a href="/contact.html">Contact</a></footer>
+  <script src="/assets/nw-pro-entitlement.js"></script>
   <script type="module" src="./app.mjs"></script>
 </body>
 </html>

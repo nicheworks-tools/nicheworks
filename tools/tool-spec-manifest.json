@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "registry": "tools/tools-index.json",
-  "required_complete": 87,
-  "complete": 87,
+  "required_complete": 88,
+  "complete": 88,
   "pending": 0,
   "items": [
     {"slug":"ai-interaction-atlas","state":"complete","spec":"tools/ai-interaction-atlas/SPEC.md"},
@@ -73,6 +73,7 @@
     {"slug":"pdf2csv-local","state":"complete","spec":"tools/pdf2csv-local/SPEC.md"},
     {"slug":"place-old-kanji-checker","state":"complete","spec":"tools/place-old-kanji-checker/SPEC.md"},
     {"slug":"product-founder-os","state":"complete","spec":"tools/product-founder-os/SPEC.md"},
+    {"slug":"reconcile","state":"complete","spec":"tools/reconcile/SPEC.md"},
     {"slug":"redirect-unwrapper","state":"complete","spec":"tools/redirect-unwrapper/SPEC.md"},
     {"slug":"release-guardian","state":"complete","spec":"tools/release-guardian/SPEC.md"},
     {"slug":"rename-wizard","state":"complete","spec":"tools/rename-wizard/SPEC.md"},
