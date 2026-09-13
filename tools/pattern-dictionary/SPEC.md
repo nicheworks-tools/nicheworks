@@ -1,120 +1,145 @@
-# Pattern Dictionary — Tool SPEC
+# Tool Specification — Pattern Dictionary
 
-## 1. Purpose
+- Japanese name: `模様辞典`
+- English name: `Pattern Dictionary`
+- Slug: `pattern-dictionary`
+- Public URL: `https://nicheworks.app/tools/pattern-dictionary/`
+- Specification status: `complete`
+- Common specification: `common-spec/spec-ja.md`
+- Current dataset: `20 prototype-curated patterns`
+- Product class: `static browser visual dictionary / discovery tool`
+- Monetization class: `AFFILIATE` (planned downstream Amazon Associates handoff; live affiliate URLs disabled in this slice)
 
-Pattern Dictionary is a bilingual visual pattern-identification dictionary. It is designed for users who do not know a pattern's formal name and therefore need to discover it either by looking through images or by describing its appearance in ordinary Japanese or English. It is not an asset-download product. The current repository slice validates the discovery model with 20 prototype-curated patterns before expansion to the planned 100-pattern catalog.
+## Purpose
 
-## 2. User-visible inputs
+Pattern Dictionary is a bilingual visual pattern-identification dictionary for users who do not know a pattern's formal name. It supports two equal discovery paths: ambiguous natural-language description and visual browsing. The tool is not an asset-download marketplace and is separate from the existing Pattern Atlas creation/export tool.
 
-- Free-form Japanese or English search text describing appearance, color, use, culture, or an approximate name.
-- Visual family filter selection on the top page.
-- Pattern-card or Visual Autocomplete candidate selection.
-- Search-interpretation cue removal on the search results page.
-- Two pattern IDs for the comparison view.
-- Normal page/language navigation between Japanese and English pages.
+The current repository slice validates the discovery model with 20 prototype-curated pattern records before expansion toward the planned 100-pattern first release.
+
+## Current functional contract
+
+The current slice provides Japanese and English landing pages, client-side ambiguous search, image-backed Visual Autocomplete, search-interpretation chips, micro-pattern family filters, static bilingual detail routes for every maintained pattern ID, related/confusable-pattern navigation, and two-pattern comparison.
+
+Canonical pattern records use language-independent stable IDs. Japanese and English labels, aliases, search terms, descriptions, and navigation point to the same identity. Detail-page language switching preserves the pattern ID. Search normalization and ranking run in the browser against same-origin static data.
+
+Visual browsing and vague-language search are equal-priority entry paths. Low-confidence search results must present nearby candidates rather than claim a certain identification. Primary pattern colors are deterministic; user queries do not recolor the primary reference image. Current large visuals are visibly marked DEV placeholders and must not be represented as verified Reference Images.
+
+The current 20 records remain `prototype-curated`. Their static detail pages therefore remain `noindex,follow` until source verification and production Reference Image verification are complete. Japanese and English landing pages are the only Pattern Dictionary pages intended to be indexable in this slice. Search and compare pages are also `noindex,follow`.
+
+## Inputs
+
+User-visible inputs are:
+
+- free-form Japanese or English search text describing appearance, color, use, culture, or an approximate name;
+- pattern-family filter selection on the landing page;
+- pattern-card or Visual Autocomplete candidate selection;
+- removal of recognized search cues on the results page;
+- two pattern IDs for comparison;
+- Japanese/English page navigation.
+
+Canonical runtime data inputs are:
+
+- `tools/pattern-dictionary/data/patterns.json`
+- `tools/pattern-dictionary/data/search-dictionary.json`
 
 No image upload, account input, or payment input is accepted by the current slice.
 
-## 3. User-visible outputs
+## Outputs
 
-- Image-backed pattern grid for visual browsing.
-- Visual Autocomplete candidates while typing.
-- Ranked search candidates with confidence wording and matched cues.
-- Bilingual static pattern detail pages containing names, aliases, representative colors, uses, relationships, and prototype description text.
-- Similar and commonly-confused pattern cards derived from canonical data.
-- Two-pattern comparison output.
-- A non-functional commerce placeholder indicating that product discovery will be connected later; no live affiliate URL is emitted in this slice.
+The tool produces:
 
-## 4. Functional behavior
+- an image-backed pattern grid for visual browsing;
+- Visual Autocomplete candidates while typing;
+- ranked candidates with confidence wording and matched cues;
+- static Japanese and English pattern detail pages;
+- names, aliases, representative colors, uses, relationships, and prototype description text from canonical data;
+- similar and commonly-confused pattern cards;
+- two-pattern comparison output.
 
-- Canonical pattern records live in `data/patterns.json` and use language-independent stable IDs.
-- Search is client-side and combines normalized names, aliases, descriptive terms, canonical pattern attributes, and the bilingual search dictionary.
-- Visual browsing and ambiguous text search are equal-priority discovery paths.
-- Visual Autocomplete returns image-backed candidates rather than text-only suggestions.
-- Search interpretation chips expose recognized cues and let the user remove a cue and rerank.
-- Low-confidence searches explicitly present nearby candidates instead of asserting a certain identification.
-- Family filters use micro-pattern visual cues in addition to labels.
-- Pattern-card, autocomplete, related-pattern, and search-result links resolve to static `/patterns/{id}/` or `/en/patterns/{id}/` pages.
-- Detail-page language switching preserves the same canonical pattern ID.
-- Primary pattern colors are deterministic and are not randomized by searches.
-- `color_role` is one of `non-essential`, `traditional`, `identity-relevant`, or `variable`.
-- DEV placeholder imagery must remain visibly marked until replaced by verified production Reference Images.
+No downloadable pattern asset, live Amazon product result, live price, stock, rating, review count, or delivery claim is part of the current contract.
 
-## 5. Current Pro behavior
+## State and persistence
 
-There is no Pattern Dictionary Pro feature in the current implementation. No capability is gated by NicheWorks Pro, and no paid entitlement is read or stored. The intended monetization path for this tool is affiliate referral after a user has identified a pattern, not a Pro feature boundary. Live Amazon affiliate URLs are intentionally absent from this slice.
+Pattern search, ranking, filtering, comparison, and rendering run in the browser. Search/query state may be represented in the page URL where applicable. The current implementation does not persist pattern queries, selections, or history in `localStorage` or `sessionStorage`.
 
-## 6. Network / external dependencies
+Canonical records and search mappings live in static repository JSON files. The tool has no user account, server-side search history, or user-specific database state.
 
-Core pattern search, filtering, comparison, and data lookup run from static same-origin files and do not require an external search API. Page presentation currently loads the repository's standard Google analytics/advertising and Cloudflare analytics resources. Footer support links can navigate to OFUSE and Ko-fi when the user chooses them. User search text is not sent to an external pattern-search service.
+## Privacy and network behavior
 
-## 7. Browser storage
+Pattern search text and ranking are processed locally in the browser against same-origin static data. Search text is not intentionally sent to an external pattern-search or AI service.
 
-The current Pattern Dictionary implementation does not use `localStorage` or `sessionStorage` for pattern queries, selections, or history. Query state is represented by the page URL where applicable.
+The page still follows NicheWorks common analytics, advertising, and support behavior, including standard site analytics/advertising resources and user-initiated OFUSE/Ko-fi navigation. These common resources must not be described as absent.
 
-## 8. Download / copy behavior
+Future Amazon affiliate navigation, when separately activated, must occur only after explicit user action on a clearly labelled commerce link and must remain downstream of the identification experience. No live affiliate URL is emitted in this slice.
 
-The current slice does not provide pattern-asset download or copy operations. DEV placeholder imagery is for interface validation only and is not offered as a downloadable asset. Future commerce links must remain separate from any asset-download concept.
+## Language mode
 
-## 9. Privacy expectations
+`separate JA/EN pages`
 
-- Search text and ranking are processed in the browser against same-origin static data.
-- Search text must not be sent to an external search or AI service.
-- The tool must not claim that standard page analytics/advertising resources are absent; those resources follow the NicheWorks common site behavior.
-- No personal profile, account, payment, or uploaded image data is collected by the tool itself in this slice.
+Japanese root: `/tools/pattern-dictionary/`.
 
-## 10. Responsive expectations
+English root: `/tools/pattern-dictionary/en/`.
 
-- The pattern catalog must remain visually scannable on desktop, tablet, and phone layouts.
-- Target verification widths are 1200px, 768px, 390px, and 320px.
-- The primary mobile catalog is a two-column visual grid.
-- Visual filter controls may scroll horizontally on narrow screens rather than collapsing into unreadable jargon-only controls.
-- Two-pattern comparison remains two-up where practical on mobile and must avoid horizontal page overflow.
-- Search, autocomplete, interpretation chips, and detail content must remain usable without precision pointer input.
+Pattern detail routes use the same canonical ID in both languages. Language switching on a detail page must preserve that ID rather than return the user to a generic language home.
 
-## 11. Known limits
+## Layout class
 
-- The current catalog contains only 20 representative patterns rather than the planned 100-pattern first release.
-- All 20 records remain `prototype-curated`; their historical/name/taxonomy facts have not yet completed source verification.
-- Current large pattern visuals are deterministic DEV SVG placeholders, not verified production Reference Images.
-- Static detail pages therefore remain `noindex,follow` until data and Reference Image verification are complete.
-- Final primary image target is 1536×1536 PNG.
-- Search smoke coverage is intentionally small at this stage and must expand before release-scale confidence claims.
-- No live Amazon affiliate URLs are present yet.
-- Browser QA for all target widths remains a pre-ready-for-review gate.
+`hybrid`
 
-## 12. Automated checks
+Desktop uses a wide visual-discovery layout with a substantial equal-square pattern grid, search/autocomplete, visual filters, and detail/comparison surfaces. Mobile keeps the pattern catalog in two columns while surrounding controls collapse responsively. Target verification widths are 1200px, 768px, 390px, and 320px. Search, filter, autocomplete, and compare interactions must remain usable without a precision pointer and without horizontal page overflow.
 
-- `tools/pattern-dictionary/tests/validate.mjs` validates the 20-record structure, stable required fields, and required static files/pages.
-- `tools/pattern-dictionary/tests/search-test.mjs` runs deterministic ambiguous-search smoke cases against the same canonical data and search dictionary.
-- JavaScript syntax for `app.js` is checked during implementation work.
-- Repository-wide tool, SEO, publication, and quality audits remain applicable once the tool is registered.
+## Limits and non-goals
 
-## 13. Current classification
+- Current catalog size is 20 patterns, not the planned 100-pattern first release.
+- Pattern facts are still `prototype-curated` and are not yet source-verified for publication as authoritative dictionary entries.
+- Current pattern visuals are deterministic DEV SVG placeholders, not verified 1536×1536 PNG Reference Images.
+- Detail pages remain `noindex,follow` until data and image verification gates are satisfied.
+- Search smoke coverage is deliberately small and cannot support broad recall/accuracy claims yet.
+- No image-upload identification is implemented.
+- No runtime AI/API search is required for the current product contract.
+- No asset download or pattern generator behavior belongs to this tool.
+- Existing `tools/pattern-atlas/` remains a separate tool and is not modified by this product.
+- No live Amazon affiliate URLs are enabled yet.
 
-- Product state: repository vertical slice / pre-release validation.
-- Runtime type: static browser tool.
-- Language policy: separate Japanese and English public pages sharing one canonical dataset.
-- Monetization classification: `AFFILIATE` by intended downstream Amazon Associates product discovery; live affiliate links remain disabled until separate activation work.
-- Pattern data state: `prototype-curated`.
-- Detail-page indexability: `noindex,follow` until source and image verification.
+## Acceptance criteria
 
-## 14. Canonical source of truth
+- [x] One registered Pattern Dictionary tool exists at `/tools/pattern-dictionary/` with a separate English landing at `/tools/pattern-dictionary/en/`.
+- [x] Twenty canonical prototype records use unique language-independent IDs.
+- [x] Visual browsing and ambiguous natural-language search are both implemented as primary discovery paths.
+- [x] Visual Autocomplete shows image-backed candidates.
+- [x] Search interpretation chips expose recognized cues and support cue removal/reranking.
+- [x] All 20 IDs have static Japanese and English detail routes.
+- [x] Detail-page language switching preserves the canonical pattern ID.
+- [x] Similar and commonly-confused relationships render from canonical data.
+- [x] Compare supports two pattern IDs.
+- [x] DEV imagery is visibly marked and is not represented as verified production Reference Imagery.
+- [x] Search/compare and prototype detail pages remain `noindex,follow` while the two landing pages are the intended indexable entry points.
+- [x] No live affiliate URL is introduced in this slice.
+- [ ] Source verification and production Reference Images are complete for publication-scale detail indexing.
+- [ ] Browser QA is complete at 1200px, 768px, 390px, and 320px.
 
-- Tool behavior and release contract: `tools/pattern-dictionary/SPEC.md` and canonical repository documentation at `docs/tools/pattern-dictionary.md`.
-- Pattern records: `tools/pattern-dictionary/data/patterns.json`.
-- Ambiguous-search mapping: `tools/pattern-dictionary/data/search-dictionary.json`.
-- Runtime search/rendering logic: `tools/pattern-dictionary/app.js`.
-- Shared responsive presentation: `tools/pattern-dictionary/style.css`.
-- Canonical public detail URL shape: `/tools/pattern-dictionary/patterns/{id}/` and `/tools/pattern-dictionary/en/patterns/{id}/`.
-- Existing `tools/pattern-atlas/` is a separate tool and is not a source of truth for Pattern Dictionary.
+## Implementation evidence
 
-## 15. Coverage checklist
+Production/runtime evidence:
 
-- [x] Purpose documented
-- [x] Inputs documented
-- [x] Outputs documented
-- [x] Pro/free boundary documented
-- [x] Network/privacy behavior documented
-- [x] Responsive expectations documented
-- [x] Known limits documented
+- `tools/pattern-dictionary/index.html`
+- `tools/pattern-dictionary/en/index.html`
+- `tools/pattern-dictionary/search.html`
+- `tools/pattern-dictionary/en/search.html`
+- `tools/pattern-dictionary/compare.html`
+- `tools/pattern-dictionary/en/compare.html`
+- `tools/pattern-dictionary/app.js`
+- `tools/pattern-dictionary/style.css`
+- `tools/pattern-dictionary/data/patterns.json`
+- `tools/pattern-dictionary/data/search-dictionary.json`
+- `tools/pattern-dictionary/tests/validate.mjs`
+- `tools/pattern-dictionary/tests/search-test.mjs`
+
+Publication/discovery evidence:
+
+- `tools/tools-index.json`
+- `tools/tool-spec-manifest.json`
+- `docs/tools/pattern-dictionary.md`
+- `sitemap.xml`
+
+Publication state remains prototype-gated until source verification, production PNG Reference Images, and target-width browser QA are complete.
