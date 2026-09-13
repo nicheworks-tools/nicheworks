@@ -21,12 +21,14 @@ on:
       - 'tools/_shared/check-lite-wave3-navigation.mjs'
       - 'tools/_shared/check-cosmetics-cross-tool-release.mjs'
       - 'tools/_shared/check-cosmetics-wave2-release.mjs'
+      - 'tools/_shared/check-cosmetics-wave3-release.mjs'
       - 'tools/_shared/COSMETICS_ACCURACY_BENCHMARK.md'
       - 'tools/_shared/COSMETICS_ALIAS_POLICY.md'
       - 'tools/_shared/COSMETICS_CANONICAL_MERGE.md'
       - 'tools/_shared/COSMETICS_OCR_LINE_REPAIR.md'
       - 'tools/_shared/COSMETICS_RELEASE_GATE.md'
       - 'tools/_shared/COSMETICS_WAVE2_RELEASE.md'
+      - 'tools/_shared/COSMETICS_WAVE3_RELEASE.md'
       - 'tools/_shared/cosmetics-affiliate-*.js'
       - 'tools/_shared/cosmetics-affiliate-*.css'
       - '.github/workflows/cosmetics-accuracy-benchmark.yml'
@@ -88,5 +90,7 @@ jobs:
         run: node tools/_shared/check-cosmetics-cross-tool-release.mjs
       - name: Wave 2 release gate
         run: node tools/_shared/check-cosmetics-wave2-release.mjs
+      - name: Wave 3 release gate
+        run: node tools/_shared/check-cosmetics-wave3-release.mjs
       - name: Affiliate readiness contract remains isolated
         run: node tools/_shared/check-cosmetics-affiliate-contract.mjs
