@@ -8,125 +8,113 @@
 
 ## Purpose
 
-ブラウザのマイク入力を使い、相対入力レベル、単音に近い音の推定周波数・音階、pitch confidence、スペクトラム、短い区間の傾向を確認し、同一端末・同一マイク内で基準値との差も比較する。数値snapshotはローカルCSV/要約として持ち出せる。さらに約2秒の表示相対レベルを環境基準として取り、同じ条件内の現在値との差を確認できる。騒音計、法定測定器、業務用音響計、専用チューナーの代替ではない。
+ブラウザのマイク入力を使い、relative input level、単音に近いpitch/note、pitch confidence、spectrum、短区間傾向、baseline差、2秒ambient relative reference、numeric snapshot/CSV、そしてbefore/after比較時の取得条件を確認する。騒音計、法定測定器、業務用音響計、専用チューナーの代替ではない。
 
 ## Primary workflow
 
-1. 利用者がマイクを開始し、browser permissionを許可する。
-2. `echoCancellation=false`、`noiseSuppression=false`、`autoGainControl=false`を要求する。
-3. browser/deviceが公開する実際のEC / NS / AGC settingsを表示する。
-4. relative level、pitch/note/confidence、spectrum、spectrum peakを表示する。
-5. 必要に応じて現在値をbaselineとして保存し、同じマイクでrelative level/pitchの差を比較する。
-6. 必要に応じて約2秒の表示relative levelからambient referenceを取得し、現在値との差を比較する。
-7. 必要に応じてnumeric snapshotまたは1秒以上のsegment analysisを使う。
-8. 必要に応じて現在残っているnumeric snapshotsをCSV保存または数値要約としてコピーし、segment resultをテキストコピーする。
+1. マイクを開始しbrowser permissionを許可する。
+2. EC / NS / AGCをOFFで要求し、実際のreported settingsを表示する。
+3. relative level、pitch/note/confidence、spectrum/peakを確認する。
+4. 必要に応じbaselineまたは2秒ambient referenceで相対比較する。
+5. numeric snapshot / segment analysisを利用し、snapshotはローカルCSV/summaryとして持ち出せる。
+6. before/after比較時は測定条件メモでdevice label、sample rate、FFT size、EC / NS / AGCを確認・ローカルコピーする。
 
 ## Current functional contract
 
-- Browser microphone streamを開始し、Stop操作で全trackとanimation loopを終了する。
-- permission取得後に公開された`audioinput`を列挙し、複数入力がある場合は切り替えられる。
-- device label / device IDは永続保存せずaffiliate analyticsにも送らない。
-- Web Audio time-domain dataからRMSを計算し、約`-60..0 dB`のrelative input levelとして表示する。これはdB SPLではない。
-- pitch解析は約100 ms間隔にthrottleし、約60–1200 Hz相当のnormalized autocorrelationからrelative confidenceを算出する。
-- confidenceが低いpitch estimateはHz/note表示から除外する。
-- A4=440 Hz基準で推定Hzをnote nameへ変換する。
-- frequency dataをcanvas spectrumとして表示し、同じanalyser dataから40 Hz–12 kHz内の最大成分を`spectrum peak`として表示する。spectrum peakとpitch estimateは別指標であり一致を保証しない。
-- RMS thresholdによる簡易sound activity表示を行う。
+- Browser microphone streamを開始し、Stopで全trackとanimation loopを終了する。
+- permission後に`audioinput`を列挙し、複数入力があれば切り替えられる。
+- `echoCancellation=false`、`noiseSuppression=false`、`autoGainControl=false`を要求するが、browser/OS/deviceが無視する可能性があるためreported stateを表示する。
+- Web Audio time-domain dataからRMSを計算し約`-60..0 dB`のrelative input levelとして表示する。dB SPLではない。
+- pitchは約100ms cadence、概ね60–1200Hzのnormalized autocorrelationで推定し、低confidence結果をHz/noteから除外する。
+- A4=440Hzでnoteへ変換する。
+- frequency dataをcanvasへ描画し、同じanalyserから40Hz–12kHz内の最大FFT成分をspectrum peakとして表示する。
+- comparison hookは同じanalyserから`sampleRate`と`fftSize`もpage-local custom eventへ出す。別stream/analyser acquisitionは作らない。
 
 ## Baseline comparison contract
 
-- Baselineは現在のrelative levelと、その時点で有効な場合のみpitch/note/confidenceをpage memoryへ保存する。
-- Baseline取得後、現在のrelative level minus baseline relative levelを相対差として表示する。
-- Baseline/current双方に有効なpitchがある場合のみpitch差をHzで表示する。
-- Relative level差は校正済みdB SPL差を意味しない。用途は同じ端末・同じマイク・近い条件でのbefore/after比較に限定する。
-- microphone streamの開始/停止、またはinput device変更時はbaselineを破棄する。
-- BaselineはlocalStorage等へ永続保存しない。
-- reported EC / NS / AGCのいずれかが`true`の場合、比較値が端末側処理の影響を受け得ることを警告する。
+- Baselineは現在のrelative levelと、その時点でvalidなpitch/note/confidenceのみpage memoryへ保存する。
+- current minus baselineのrelative level差を表示し、双方valid pitchのときだけpitch差を表示する。
+- mic start/stopまたはdevice変更でbaselineを破棄する。
+- Baselineは校正済みdB SPL差ではない。
 
 ## Ambient relative reference contract
 
-- 利用者操作で約2秒間、画面に表示されているrelative dBを約100 ms間隔でpage memoryへサンプリングする。
-- 有効値を十分に取得できた場合、その中央値をambient relative referenceとして使用する。
-- 表示する差は`current relative dB - ambient reference relative dB`であり、物理的な騒音レベル差や校正済みdB SPL差ではない。
-- Ambient referenceはmicrophone calibrationではなく、同じ端末・同じマイク・近い位置・近いinput processing条件での相対比較に限定する。
-- microphone start/stopまたはinput device変更時はambient referenceと進行中samplingを破棄する。
-- Ambient referenceはactivity threshold、pitch detection、spectrum計算を変更しない。
-- Ambient referenceはlocalStorageへ保存せず、analytics/affiliate destinationへ送らない。
-- Reference取得時または取得後にEC / NS / AGCのいずれかがONと報告される場合、自動処理が比較へ影響し得る旨を表示する。
+- 約2秒、表示relative dBを約100ms間隔でpage memoryへsampleし、有効値10点以上の中央値をreferenceにする。
+- `current relative dB - ambient reference relative dB`を表示する。
+- microphone calibration、sensitivity correction、noise-floor SPL、校正済みdB SPLではない。
+- mic start/stopまたはdevice変更でsampling/referenceを破棄する。
+- activity threshold、pitch detection、spectrum計算を変更しない。
+- EC / NS / AGCがONなら自動処理影響を警告する。
 
 ## Snapshot / segment contract
 
-- 数値snapshotを最大20件までpage memoryに保持する。音声は保存しない。
-- 現在snapshot一覧に残っている数値だけを、`time,relative_db,pitch_hz,note,pitch_confidence_percent`のCSVとしてbrowser内で生成・保存できる。
-- CSVにはaudio、device label、device ID、baseline、affiliate dataを含めない。
-- Snapshot一覧から削除した行は、その後のCSV/要約にも含めない。
-- Snapshotの数値要約として件数、relative dBのmin/avg/max、有効pitch件数、有効pitch平均Hzをローカルコピーできる。
-- Segment Analysisでは1秒以上の区間についてaverage relative level、average pitch、pitch stabilityの目安を算出する。
-- Segment resultをローカルコピーでき、コピー文にもrelative input valueでありdB SPLではない旨を含める。
-- snapshot、segment result、baseline、ambient referenceはrefreshすると消える。
+- numeric snapshotは最大20件、page memoryのみ。音声は保存しない。
+- 現在残っているsnapshotだけを`time,relative_db,pitch_hz,note,pitch_confidence_percent`のCSVへローカル生成できる。
+- 削除済みsnapshotは後のCSV/summaryへ復活させない。
+- Snapshot summaryは件数、relative dB min/avg/max、有効pitch件数/平均Hzをローカルコピーできる。
+- Segment Analysisは1秒以上を対象にaverage relative level、average pitch/confidence、rough pitch stabilityをまとめる。
+- Segment result copyにもrelative input valueでありdB SPLではない旨を含める。
+
+## Measurement conditions contract
+
+- マイク稼働中、selected input device label、同じanalyserのsample rate/FFT size、reported EC / NS / AGCを表示する。
+- sample rate/FFT sizeは`nw-tiny-audio-spectrum`の既存same-analyser eventから受け取る。
+- device labelはページ表示と利用者が明示的に押したlocal clipboard copyだけに使用する。
+- conditions copyには「relative browser microphone-input measurementでありcalibrated dB SPLではない」旨を含める。
+- mic start/stop/device変更でcached sample rate/FFT stateを破棄し、active analyserから新しい値が来るまで`—`とする。
+- conditions機能は`getUserMedia`を呼ばず、新しいstreamを作らない。
 
 ## Inputs
 
-- Browser microphone permission。
-- Microphone input stream。
-- 利用可能な場合のaudio input device selection。
+- Browser microphone permission / microphone stream。
+- Input device selection。
 - Start / Stop mic。
 - Set / Clear baseline。
-- Set / Clear 2-second ambient relative reference。
-- Numeric snapshot。
-- Numeric snapshot CSV / summary export action。
-- Segment Analysis Start / Stop / copy action。
-- UI language JA / EN。
+- Set / Clear 2-second ambient reference。
+- Numeric snapshot / CSV / summary。
+- Segment Start / Stop / copy。
+- Measurement conditions copy。
+- JA / EN。
 
 ## Outputs
 
-- Relative input levelとmeter bar。
-- 推定Hzとnote name。
-- Relative pitch confidence。
-- Spectrum canvasとspectrum peak frequency。
-- Sound activity表示。
-- EC / NS / AGCのreported track settingsと必要時のprocessing warning。
-- Baseline summary、relative level delta、validな場合のpitch delta。
-- Ambient relative referenceとcurrent-minus-reference relative dB。
-- 最大20件のnumeric snapshots。
-- Snapshot numeric summaryとCSV。
-- Segment Analysis summaryとcopy text。
+- Relative level / meter bar。
+- Estimated Hz / note / confidence。
+- Spectrum / spectrum peak。
+- Sound activity。
+- EC / NS / AGC reported states / warning。
+- Baseline delta、ambient reference/delta。
+- Up to 20 numeric snapshots、summary、CSV。
+- Segment summary/copy。
+- Measurement conditions: active device label、sample rate、FFT size、EC / NS / AGC、local copy。
 
 ## State and persistence
 
-- baseline、ambient reference、snapshot、segment data、current meter values、device selectionはpage memoryのみ。
-- CSVは利用者操作時に現在のsnapshot DOMから一時生成し、cloudやlocalStorageへ保存しない。
-- 音声stream/fileを保存しない。
-- microphone device label / device IDをlocalStorageへ保存しない。
-- UI languageのみ`nw_lang`としてlocalStorageへ保存する。
+- baseline、ambient reference、snapshot、segment、current meter values、device selection、sample rate/FFT conditionsはpage memoryのみ。
+- CSV/summary/copy textは利用者操作時にbrowser内で一時生成する。
+- audio stream/fileやmeasurement historyを保存しない。
+- device label/device IDをlocalStorageへ保存しない。
+- UI languageのみ`nw_lang`として保存し得る。
 
 ## Privacy and network behavior
 
-- マイク音声の解析はbrowser内で行い、audio stream/fileをNicheWorksの解析APIへuploadしない。
-- Stop時には全media stream trackを終了する。
-- GA4やaffiliate analyticsへdevice label、relative level、pitch、note、confidence、spectrum peak、baseline、snapshot、segment resultを送らない。
-- Ambient reference、そのsampling値、current-minus-reference差もanalytics/affiliate destinationへ送らない。
-- Snapshot CSV/summaryとsegment copyはbrowser内だけで生成し、外部送信しない。
-- ページ表示時にはGoogle Analytics / AdSense等の外部resourceが読み込まれ得る。
+- 音声解析はbrowser内で行い、audio stream/fileをNicheWorks解析APIへuploadしない。
+- Stop時には全media trackを終了する。
+- GA4やaffiliate analyticsへdevice label/ID、relative level、pitch、note、confidence、spectrum peak、sample rate、FFT size、baseline、ambient、snapshot、segment、conditions copyを送らない。
+- Device labelはexplicit local conditions copyには含められるが、外部送信は禁止する。
+- Snapshot CSV/summary、segment copy、conditions copyはbrowser内だけで生成する。
 
 ## Amazon affiliate readiness
 
-The page loads `/assets/amazon-affiliate.js` plus local `affiliate-config.js`.
-
-Default configuration remains disabled:
+Shared `/assets/amazon-affiliate.js` plus local `affiliate-config.js` are loaded. Production defaults remain:
 
 - `enabled: false`
 - `sound_level_meter: ""`
 - `usb_microphone: ""`
 
-While disabled or without valid Amazon HTTPS targets, no Amazon CTA/disclosure/affiliate click event appears. When Amazon Associates is ready, activation requires only verified target URLs plus `enabled: true`.
+Disabled/invalid config shows no Amazon CTA/disclosure and emits no affiliate click. Future activation requires verified targets plus `enabled: true` only.
 
-Planned contextual targets remain:
-
-- `sound_level_meter` — dedicated/calibrated sound-level measurement.
-- `usb_microphone` — improved audio input/recording hardware.
-
-Allowed affiliate analytics remain limited to coarse `tool`, `affiliate`, `target`, and `placement` metadata.
+Allowed `affiliate_click` metadata remains coarse `tool`, `affiliate`, `target`, `placement` only. Measurement/device/conditions state is forbidden.
 
 ## Language mode
 
@@ -136,37 +124,29 @@ Allowed affiliate analytics remain limited to coarse `tool`, `affiliate`, `targe
 
 `mobile-oriented`
 
-Live values appear first; baseline/ambient/snapshot/segment comparison tools are secondary; numeric export controls stay inside the snapshot/segment workflow; limitations and FAQ follow.
+Live values remain first. Baseline/ambient/snapshot/segment/conditions are secondary analysis cards. Condition grid collapses on narrow screens.
 
 ## Limits and non-goals
 
-- Displayed dB, baseline dB delta, ambient reference, and ambient delta are relative microphone input values, not calibrated dB SPL.
-- CSV `relative_db` is the same relative microphone-input metric, not sound-pressure level.
-- Ambient reference is not a microphone sensitivity calibration, background-noise SPL measurement, legal noise-floor measurement, or correction factor.
-- `echoCancellation=false`等を要求してもbrowser / OS / hardwareが無視する場合がある。
-- pitchは単音に近い入力向けで、和音、会話、雑音、環境音では不正確になり得る。
-- pitch confidenceは正解確率ではない。
-- spectrum peakは最大FFT成分であり、fundamental/pitchを保証しない。
-- 異なるdevice間のbaseline/ambient比較は行わない。device変更時に両方を破棄する。
-- 騒音測定、労働安全、法的証明、専門的音響測定、保証用途には専用機器を使用する。
-- 音声録音、audio file export、long-term history、cloud保存を行わない。
+- All displayed dB/delta values are relative microphone-input values, not calibrated dB SPL。
+- Pitch confidenceは正解確率ではない。
+- Spectrum peakはfundamental/pitchを保証しない。
+- Measurement conditionsはcalibrationやlaboratory reproducibilityを保証しない。
+- `echoCancellation=false`等を要求しても実際にOFFになるとは限らない。
+- 異なるdevice間のbaseline/ambient比較を行わない。
+- 騒音測定、労働安全、法的証明、専門音響測定には専用機器を使用する。
+- 音声録音/audio export/long-term history/cloud保存は行わない。
 
 ## Acceptance criteria
 
-- [ ] microphone permission後にrelative level、pitch/note/confidence、spectrum、spectrum peakが更新される。
-- [ ] EC / NS / AGCをfalseで要求し、reported settingsを表示する。
-- [ ] reported EC / NS / AGCのいずれかがONならprocessing warningが表示される。
-- [ ] 複数audioinputがある場合はinput deviceを切り替えられる。
-- [ ] Baselineを設定するとrelative level deltaが表示され、pitch deltaは双方にvalid pitchがある場合だけ表示される。
-- [ ] microphone start/stopまたはdevice変更でbaselineが破棄される。
-- [ ] 2秒ambient referenceは表示relative dBの複数sample中央値から作成され、current-minus-reference相対差を表示する。
-- [ ] microphone start/stopまたはdevice変更でambient reference/samplingが破棄される。
-- [ ] Ambient referenceはcore activity/pitch/spectrum calculationを変更しない。
+- [ ] microphone permission後にrelative level、pitch/note/confidence、spectrum/peakが更新される。
+- [ ] EC / NS / AGCをOFF要求し、reported statesを表示する。
+- [ ] multiple audioinputを切替でき、device identifierを永続保存しない。
+- [ ] baseline/ambientはpage-onlyで、mic start/stop/device変更で破棄される。
+- [ ] snapshot max20、segment min1秒、numeric CSV/summary/copyはローカルのみ。
+- [ ] measurement conditionsはactive device label、same-analyser sample rate/FFT size、EC / NS / AGCを表示・ローカルコピーする。
+- [ ] measurement conditionsはsecond `getUserMedia`を開かず、analytics/affiliateへ条件値を送らない。
 - [ ] Baselineやmicrophone-derived valuesは永続保存・affiliate analytics送信されない。
-- [ ] snapshotは最大20件、segment analysisは1秒未満を短すぎるとして扱う。
-- [ ] 現在残っているsnapshotだけをCSV/summaryへ出力でき、音声・device metadata・baseline・affiliate dataは含めない。
-- [ ] Segment resultをrelative-value注意書き付きでローカルコピーできる。
-- [ ] JA/EN切替が動作し、選択言語のみ`nw_lang`へ保存される。
 - [ ] Default affiliate configurationではAmazon CTA/disclosureが表示されない。
 
 ## Implementation evidence
@@ -176,6 +156,7 @@ Live values appear first; baseline/ambient/snapshot/segment comparison tools are
 - `tools/tiny-audio-meter/comparison.js`
 - `tools/tiny-audio-meter/ambient-reference.js`
 - `tools/tiny-audio-meter/records-export.js`
+- `tools/tiny-audio-meter/measurement-conditions.js`
 - `tools/tiny-audio-meter/style.css`
 - `tools/tiny-audio-meter/comparison.css`
 - `tools/tiny-audio-meter/affiliate-config.js`
