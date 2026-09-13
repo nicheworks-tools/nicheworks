@@ -46,15 +46,10 @@
     "リン酸二ナトリウム": "disodium phosphate",
     "pcaナトリウム": "sodium pca",
     "pg": "propylene glycol",
-    "ジカプリン酸ネオペンチルグリコール": "neopentyl glycol dicaprate",
-    "ラウリルヒドロキシスルホベタイン液": "lauryl hydroxysultaine",
     "グリセリルエチルヘキシルエーテル": "ethylhexylglycerin",
     "alcohol denat": "alcohol denat."
   });
 
-  // Multiple maintained records can legitimately represent the same chemical
-  // identity under a generic/INCI name and a CI/common name. Keep one preferred
-  // canonical key so both cosmetics tools and benchmarks resolve them alike.
   const CANONICAL_EQUIVALENTS = Object.freeze({
     "bemotrizinol": "bis-ethylhexyloxyphenol methoxyphenyl triazine",
     "bisoctrizole": "methylene bis-benzotriazolyl tetramethylbutylphenol",
