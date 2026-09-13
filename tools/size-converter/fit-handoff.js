@@ -100,6 +100,14 @@
     renderHandoff(clothingResult, "clothing");
   }
 
+  function loadLocalExtension(src, marker) {
+    if (document.querySelector(`script[data-size-converter-fit-extension="${marker}"]`)) return;
+    const script = document.createElement("script");
+    script.src = src;
+    script.dataset.sizeConverterFitExtension = marker;
+    document.head.appendChild(script);
+  }
+
   const shoeObserver = new MutationObserver(() => renderHandoff(shoeResult, "shoes"));
   const clothingObserver = new MutationObserver(() => renderHandoff(clothingResult, "clothing"));
   shoeObserver.observe(shoeResult, { childList: true, subtree: true });
@@ -116,6 +124,7 @@
   document.head.appendChild(style);
 
   refresh();
+  loadLocalExtension("./shoe-units.js", "shoe-units");
   window.addEventListener("pagehide", () => {
     shoeObserver.disconnect();
     clothingObserver.disconnect();
