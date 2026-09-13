@@ -157,6 +157,10 @@ Wave 6では、Search Consoleの過去180日データで猪苗代町のごみカ
 
 - 福島県 猪苗代町 — `/tools/trashnavi/fukushima/inawashiro/`
 
+Wave 7では、Search Consoleの過去180日データを再確認したが、公開済み・対応済み自治体以外に新しいmunicipality-specific demand signalは確認できなかった。そのため需要閾値を下げず、既存direct-link coverageのうち1種類止まりの県庁所在地から、current official sourceで3種類へ到達できる自治体を供給側候補として選ぶ。松山市について、既存のごみ分別導線に2026年度地区別ごみカレンダーと粗大ごみ収集申込み方法を追加し、preferred candidateへ引き上げる。公開page化はdata enrichment検証後の別PRで行う。
+
+- 愛媛県 松山市 — preferred candidate（publication pending）
+
 生成器は公開対象ごとにrepository dataを再集約し、`municipal_home` を除くdistinct waste-specific canonical typeが **3種類未満なら生成を拒否**する。manifestに追加しただけでthin pageを公開してはならない。
 
 各自治体pageは最低限以下を持つ。
@@ -182,17 +186,17 @@ node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
 
 CIではcoverage strict auditと生成drift checkの両方を必須とし、公開URLがroot sitemapから欠落しても失敗させる。
 
-### Wave 6 verified coverage baseline
+### Wave 7 verified coverage baseline
 
-2026-09-13のWave 6 CI基準値は次のとおり。
+2026-09-13のWave 7 CI基準値は次のとおり。
 
 - municipalities: 1,916
-- records: 2,190 / 2,190 valid HTTP(S)
+- records: 2,192 / 2,192 valid HTTP(S)
 - municipalities with any waste-specific direct link: 78
-- publish candidates (2+ types): 13
-- preferred candidates (3+ types): 13
-- collection calendar coverage: 13 municipalities
-- bulky-waste coverage: 12 municipalities
+- publish candidates (2+ types): 14
+- preferred candidates (3+ types): 14
+- collection calendar coverage: 14 municipalities
+- bulky-waste coverage: 13 municipalities
 - drop-off facility coverage: 1 municipality
 - waste-app coverage: 1 municipality
 - invalid records: 0
@@ -269,6 +273,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - [x] Wave 4で中央区をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 5で葛飾区をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 6で猪苗代町をpreferred candidateへ引き上げ、自治体pageを公開する。
+- [x] Wave 7で松山市をpreferred candidateへ引き上げる。
 - [x] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
 ### Link health Phase 4
@@ -289,6 +294,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/data/direct-waste-links-demand-wave4.json` — 中央区のWave 4 collection-calendar enrichment。
 - `tools/trashnavi/data/direct-waste-links-demand-wave5.json` — 葛飾区のWave 5 collection-calendar / bulky-waste enrichment。
 - `tools/trashnavi/data/direct-waste-links-demand-wave6.json` — 猪苗代町のWave 6 waste-sorting / collection-calendar / bulky-waste enrichment。
+- `tools/trashnavi/data/direct-waste-links-supply-wave7.json` — 松山市のWave 7 collection-calendar / bulky-waste enrichment。
 - `tools/trashnavi/DATA_MODEL.md` — forward schema、canonical taxonomy、landing-page readiness。
 - `tools/trashnavi/scripts/audit-coverage.mjs` — repository-local coverage/data-quality audit。
 - `tools/trashnavi/scripts/check-runtime-contract.mjs` — Current runtime 6項目と公開自治体のroot internal-link整合性をCI検証する。
