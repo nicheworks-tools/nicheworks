@@ -71,7 +71,9 @@ Ingredient text, selected image, OCR result, image preview, scan result, current
 
 ## Privacy and network behavior
 
-Ingredient text, result filtering, review-queue navigation, candidate application, and selected image analysis run in the browser, but the Tesseract.js OCR library is loaded from the external `unpkg.com` CDN. Suite-wide analytics/advertising resources may also load. Raw ingredient text, OCR output, filenames, images, matched ingredients, chosen correction candidates, review position, and complete analysis results must not be added to analytics or affiliate events. The current contract does not claim a fully offline page.
+Ingredient text, result filtering, review-queue navigation, candidate application, and selected image analysis run in the browser, but the Tesseract.js OCR library is loaded from the external `unpkg.com` CDN. Suite-wide analytics/advertising resources may also load.
+
+The Amazon affiliate layer is isolated from scan state. Raw ingredient text, OCR output, filenames, images, matched ingredients, chosen correction candidates, review position, filters, and complete analysis results must not be added to analytics, affiliate events, or the Amazon destination. Affiliate analytics are limited to fixed metadata: `tool`, `provider`, `placement`, `link_key`. The current contract does not claim a fully offline page.
 
 ## Language mode
 
@@ -85,18 +87,19 @@ JP/EN controls switch the same scanner; separate INCI and Japanese-label tabs ha
 
 Text/OCR input and result panels work on mobile but benefit from wider space for ingredient result review. The current layout is input-first, with mobile-scrollable result filters, compact review navigation, and explanatory/FAQ content after the primary scanner workflow.
 
-## Monetization readiness
+## Amazon affiliate contract
 
-The page includes the stable, intentionally inactive result-adjacent container:
+The existing result-adjacent slot is now live through the shared cosmetics affiliate layer:
 
 ```txt
 #amazonAffiliateSlot
 provider = amazon
 placement = after-results
-state = inactive
+HTML default state = inactive (fail-closed before runtime)
+runtime state = active when the verified Special Link config loads
 ```
 
-Both cosmetics tools share these frozen runtime assets:
+Both cosmetics tools share these runtime assets:
 
 ```txt
 /tools/_shared/cosmetics-affiliate-config.js
@@ -104,17 +107,35 @@ Both cosmetics tools share these frozen runtime assets:
 /tools/_shared/cosmetics-affiliate-slot.css
 ```
 
-`cosmetics-affiliate-config.js` is the single activation point. Before Amazon Associates setup is ready it must remain:
+The current activation contract is:
 
 ```txt
-enabled = false
+enabled = true
+trackingMode = special_link
 associateTag = empty
-links = empty
+verified Special Link = https://amzn.to/4xNbcDO
+verifiedAt = 2026-09-13
+placement = after-results
 ```
 
-The shared adapter is loaded only when the stable affiliate slot exists. While disabled it clears and hides the slot and emits no affiliate impression/click event. Future activation must not require changes to OCR, ingredient parsing, dictionary matching, result rendering, result filters, review navigation, candidate-apply controls, or the slot ID/placement.
+The supplied Amazon Special Link already carries its Amazon Associates tracking, so this implementation does not invent or synthesize a separate Associate tag. The adapter fail-closes unless the destination is HTTPS on `amzn.to`, `amazon.co.jp`, or an `amazon.co.jp` subdomain.
 
-When activation is eventually allowed, optional analytics are limited to `affiliate_impression` and `affiliate_click` with generic metadata only: `tool`, `provider`, `placement`, `link_key`. Raw ingredient text, OCR output, filenames, images, matched ingredients, selected correction candidates, review position, and complete analysis results must never be attached.
+The live CTA is intentionally generic and not tied to scan output:
+
+```txt
+Amazonでスキンケアを探す [PR]
+Find skincare on Amazon [PR]
+```
+
+The affiliate card renders the Amazon Associates disclosure for the active UI language, including:
+
+```txt
+Amazonのアソシエイトとして、NicheWorksは適格販売により収入を得ています。
+```
+
+The link is a generic Amazon search handoff. It is not a statement that any product is safe, suitable, recommended, cheapest, available, hypoallergenic, or medically appropriate for the scanned ingredients.
+
+Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` with `tool`, `provider`, `placement`, and `link_key`. Raw ingredient text, OCR output, filenames, images, matched ingredients, selected correction candidates, review position, and complete analysis results must never be attached.
 
 ## Limits and non-goals
 
@@ -129,7 +150,8 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - Dictionary coverage is finite; an unmatched result is not evidence that an ingredient is unsafe.
 - The tool does not provide medical/dermatological diagnosis, allergy prediction, concentration analysis, product-safety certification, pregnancy suitability, drug-interaction advice, or regulatory approval.
 - External CDN availability can affect OCR even though ingredient processing itself is browser-side.
-- Amazon Associates is not active until account setup and policy verification are complete.
+- The current Amazon CTA is static and generic; it does not change based on OCR text, dictionary state, candidates, or analysis results.
+- The tool does not display Amazon price, availability, rating, seller status, review count, or product imagery.
 
 ## Acceptance criteria
 
@@ -144,12 +166,14 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - [x] Result cards can be filtered by matched / review / unmatched state without rerunning analysis.
 - [x] Previous/next review controls navigate only currently visible additional-review/unmatched cards and never edit input or rerun analysis.
 - [x] Eligible unmatched spellings can show conservative candidates without automatic replacement.
-- [x] A candidate can modify the active input only after an explicit user action, and the analysis is not automatically rerun afterward.
+- [x] A candidate can modify the active input only after an explicit user action, and the analysis does not automatically rerun ingredient analysis afterward.
 - [x] Japanese-label wording describes dictionary matching rather than machine translation.
 - [x] JP/EN switching preserves text scan, OCR, dictionary status, and medical/OCR disclaimers.
 - [x] The Lite tool is linked as the paste-only alternative.
-- [x] The Amazon-ready slot exists and keeps the frozen `after-results` placement.
-- [x] Shared affiliate configuration remains disabled, empty, and non-tracking before activation.
+- [x] The Amazon slot keeps the frozen `after-results` placement and fail-closed HTML default.
+- [x] The verified skincare Special Link is rendered only through `special_link` mode; no separate Associate tag is fabricated.
+- [x] Amazon disclosure and `[PR]` labeling are visible with the live affiliate CTA.
+- [x] Affiliate analytics remain coarse and contain no ingredient/OCR/analysis payload.
 
 ## Implementation evidence
 
