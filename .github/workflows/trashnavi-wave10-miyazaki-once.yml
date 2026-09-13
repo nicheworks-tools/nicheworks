@@ -1,4 +1,4 @@
-name: TrashNavi Wave 10 Miyazaki one-shot
+name: TrashNavi Wave 10 Miyazaki SPEC sync
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  enrich:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,33 +21,55 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Wire Wave 10 dataset
+      - name: Patch Wave 10 SPEC
         shell: bash
         run: |
           node <<'NODE'
           const fs = require('fs');
-          const p = 'tools/trashnavi/app.js';
+          const p = 'tools/trashnavi/SPEC.md';
           let s = fs.readFileSync(p, 'utf8');
-          const old = '"data/direct-waste-links-supply-wave9.json"]';
-          const next = '"data/direct-waste-links-supply-wave9.json","data/direct-waste-links-supply-wave10.json"]';
-          if (!s.includes(next)) {
-            if (!s.includes(old)) throw new Error('Wave 9 app anchor missing');
-            s = s.replace(old, next);
-            fs.writeFileSync(p, s);
+
+          if (!s.includes('Wave 10では')) {
+            const anchor = '- 鹿児島県 鹿児島市 — `/tools/trashnavi/kagoshima/kagoshima/`\n\n生成器は';
+            const insert = '- 鹿児島県 鹿児島市 — `/tools/trashnavi/kagoshima/kagoshima/`\n\nWave 10では、Wave 9と同じ供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から宮崎市を選定した。宮崎市公式の令和8年度家庭ごみ・資源物収集日程表と粗大ごみ案内を追加し、既存のごみ分別導線と合わせてpreferred candidateへ引き上げた。data enrichment検証は完了し、自治体page publicationは別PRで行う。\n\n- 宮崎県 宮崎市 — publication pending\n\n生成器は';
+            if (!s.includes(anchor)) throw new Error('Wave 10 publication anchor missing');
+            s = s.replace(anchor, insert);
           }
+
+          s = s.replace('### Wave 9 verified coverage baseline', '### Wave 10 verified coverage baseline');
+          s = s.replace('2026-09-13のWave 9 CI基準値は次のとおり。', '2026-09-13のWave 10 CI基準値は次のとおり。');
+          s = s.replace('- records: 2,196 / 2,196 valid HTTP(S)', '- records: 2,198 / 2,198 valid HTTP(S)');
+          s = s.replace('- publish candidates (2+ types): 16', '- publish candidates (2+ types): 17');
+          s = s.replace('- preferred candidates (3+ types): 16', '- preferred candidates (3+ types): 17');
+          s = s.replace('- collection calendar coverage: 16 municipalities', '- collection calendar coverage: 17 municipalities');
+          s = s.replace('- bulky-waste coverage: 15 municipalities', '- bulky-waste coverage: 16 municipalities');
+
+          if (!s.includes('Wave 10で宮崎市をpreferred candidateへ引き上げる')) {
+            const a = '- [x] Wave 9で鹿児島市をpreferred candidateへ引き上げ、自治体pageを公開する。';
+            if (!s.includes(a)) throw new Error('Wave 10 acceptance anchor missing');
+            s = s.replace(a, a + '\n- [x] Wave 10で宮崎市をpreferred candidateへ引き上げる。自治体page publicationは別PRで閉じる。');
+          }
+
+          if (!s.includes('direct-waste-links-supply-wave10.json')) {
+            const a = '- `tools/trashnavi/data/direct-waste-links-supply-wave9.json` — 鹿児島市のWave 9 collection-calendar / bulky-waste enrichment。';
+            if (!s.includes(a)) throw new Error('Wave 10 evidence anchor missing');
+            s = s.replace(a, a + '\n- `tools/trashnavi/data/direct-waste-links-supply-wave10.json` — 宮崎市のWave 10 collection-calendar / bulky-waste enrichment。');
+          }
+
+          fs.writeFileSync(p, s);
           NODE
-      - name: Validate Wave 10 readiness
+      - name: Validate Wave 10 state
         run: |
           node tools/trashnavi/scripts/audit-coverage.mjs --strict
           node scripts/check-trashnavi-direct-links.mjs --inventory
           node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
           node tools/trashnavi/scripts/check-runtime-contract.mjs
-      - name: Commit runtime wiring
+      - name: Commit SPEC sync
         shell: bash
         run: |
           git config user.name 'nicheworks-tools'
           git config user.email 'nicheworks.tools@gmail.com'
-          git add tools/trashnavi/app.js
+          git add tools/trashnavi/SPEC.md
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Wire TrashNavi Wave 10 Miyazaki data'
+          git commit -m 'Document TrashNavi Wave 10 Miyazaki readiness'
           git push origin HEAD:feat/trashnavi-wave10-miyazaki-20260913
