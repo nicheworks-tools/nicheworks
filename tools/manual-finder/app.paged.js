@@ -3,6 +3,7 @@
   const base = isEn ? ".." : ".";
   const FULL = `${base}/data/manuals.full.js?v=mf-wave1-20260912a`;
   const WAVE2 = `${base}/data/manuals.wave2.js?v=mf-wave2c-20260912a`;
+  const WAVE3 = `${base}/data/manuals.wave3.js?v=mf-wave3a-20260913a`;
   const JSON_URL = `${base}/data/manuals.json?v=mf-wave2c-20260912a`;
   const S = { all: [], filtered: [], page: 1, per: 48, lang: isEn ? "en" : "ja" };
   const $ = (id) => document.getElementById(id);
@@ -217,14 +218,25 @@
     return [];
   }
 
+  async function loadWave3() {
+    try {
+      await loadScript(WAVE3);
+      const batches = Array.isArray(window.MANUALFINDER_WAVE3_BATCHES) ? window.MANUALFINDER_WAVE3_BATCHES : [];
+      await Promise.all(batches.map((name) => loadScript(`${base}/data/${name}?v=mf-wave3a-20260913a`)));
+      if (typeof window.MANUALFINDER_BUILD_WAVE3 === "function") return window.MANUALFINDER_BUILD_WAVE3();
+    } catch (_) {}
+    return [];
+  }
+
   async function initData() {
     if (E.status) E.status.textContent = t("データを読み込み中です...", "Loading manual directory...");
-    const [wave1Rows, wave2Rows, baseRows] = await Promise.all([
+    const [wave1Rows, wave2Rows, wave3Rows, baseRows] = await Promise.all([
       loadWave1(),
       loadWave2(),
+      loadWave3(),
       fetch(JSON_URL, { cache: "no-store" }).then((r) => r.ok ? r.json() : []).then((x) => Array.isArray(x) ? x : []).catch(() => [])
     ]);
-    S.all = normalize([...baseRows, ...wave1Rows, ...wave2Rows]);
+    S.all = normalize([...baseRows, ...wave1Rows, ...wave2Rows, ...wave3Rows]);
     if (E.status) {
       E.status.textContent = S.all.length ? "" : t("データを読み込めませんでした。", "Manual directory could not be loaded.");
       E.status.hidden = Boolean(S.all.length);
