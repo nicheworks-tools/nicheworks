@@ -1,0 +1,38 @@
+name: Temporary Phone QuickCheck quality sync
+
+on:
+  push:
+    branches:
+      - feat/phone-quickcheck-public-launch-20260913
+    paths:
+      - scripts/tmp-sync-phone-quickcheck-quality-matrix.mjs
+      - .github/workflows/tmp-phone-quickcheck-quality-sync.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout feature branch
+        uses: actions/checkout@v4
+        with:
+          ref: feat/phone-quickcheck-public-launch-20260913
+          fetch-depth: 1
+
+      - name: Generate 89-tool quality matrix
+        run: node scripts/tmp-sync-phone-quickcheck-quality-matrix.mjs
+
+      - name: Validate generated quality matrix
+        run: node scripts/check-tool-quality-contract.mjs
+
+      - name: Commit generated matrix and remove temporary sync files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm scripts/tmp-sync-phone-quickcheck-quality-matrix.mjs
+          git rm .github/workflows/tmp-phone-quickcheck-quality-sync.yml
+          git add audits/tool-quality-matrix.json
+          git commit -m "Sync Phone QuickCheck quality matrix"
+          git push origin HEAD:feat/phone-quickcheck-public-launch-20260913
