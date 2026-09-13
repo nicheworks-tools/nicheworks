@@ -28,7 +28,8 @@ Provide a fast approximate JP/US/EU clothing and shoe size converter with local 
 - Accept plain input under the selected base system or explicit `JP` / `US` / `EU` prefixes.
 - Normalize supported half-size notation and full-width ASCII before core lookup; normalization never invents/interpolates a row.
 - Women's US/EU clothing numeric input may resolve only within already displayed bundled ranges.
-- Preserve category/chart context around ambiguous values such as `US 4`; explicit men's/women's shoe US 4 shortcuts remain available.
+- Preserve category/chart context around ambiguous values such as `US 4`.
+- US 4 men's-shoe and women's-shoe shortcuts remain explicit so the same numeric label is never implied to mean the same chart.
 - Unsupported sizes show no-match rather than guessed nearest direct conversion.
 - Direct result and full table can be copied locally.
 
@@ -38,7 +39,8 @@ Provide a fast approximate JP/US/EU clothing and shoe size converter with local 
 - Preserve category/chart context for each row.
 - Adding a fifth unique row drops the oldest.
 - Support individual removal, clear-all, and local TSV clipboard copy.
-- Comparison state is page memory only and never enters URL/analytics/affiliate state.
+- Candidate comparison rows are page state only and capped at four.
+- Comparison state never enters URL/analytics/affiliate state.
 
 ### Shoe measurement estimate
 
@@ -111,7 +113,7 @@ Measurement inputs/results are never encoded into affiliate URLs or affiliate an
 ## State and persistence
 
 - Direct selection/input, query-intent state, comparison rows, unit choice, measurements, fit/handoff context are page state only.
-- Comparison rows cap at four.
+- Candidate comparison rows are page state only and capped at four.
 - Measurement/profile history is not persisted.
 - Only `nw_lang` may be stored for JP/EN preference.
 
