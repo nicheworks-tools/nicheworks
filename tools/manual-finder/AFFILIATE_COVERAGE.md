@@ -12,11 +12,12 @@ Current order:
 
 1. **Generic exact-model search** — active. One validated Amazon search template generates a tagged search URL from canonical ManualFinder `maker + model` metadata.
 2. **Consumer-printer ink** — active for Brother Wave 1, Epson Wave 1, and Canon Wave 1 below. Consumable codes come only from official manufacturer compatibility sources.
-3. **Office-printer toner** — active first wave for five existing OKI exact-model records. Exact toner codes are retained as compatibility evidence while the Amazon handoff stays concise at one toner-search CTA per model.
-4. **Office-printer drum / maintenance parts** — later, after toner behavior is checked in production.
-5. **Camera batteries / chargers** — later, only for independently verified compatibility mappings.
-6. **Appliance replacement parts / filters** — later, only where exact compatibility can be proven.
-7. Additional accessory families require a clear user need and a verified mapping source.
+3. **Office-printer toner** — active for ten existing OKI exact-model records across two bounded waves. Exact toner codes are retained as compatibility evidence while the Amazon handoff stays concise at one toner-search CTA per model.
+4. **Office-printer toner cross-maker expansion** — next evaluate KYOCERA, RICOH, and FUJIFILM Business Innovation where official model-to-toner evidence is explicit.
+5. **Office-printer drum / maintenance parts** — later, after toner behavior is established.
+6. **Camera batteries / chargers** — later, only for independently verified compatibility mappings.
+7. **Appliance replacement parts / filters** — later, only where exact compatibility can be proven.
+8. Additional accessory families require a clear user need and a verified mapping source.
 
 ## Amazon tagged-search format
 
@@ -92,9 +93,9 @@ Canon is the third manufacturer. This bounded PIXUS wave adds six exact model id
 
 Official Canon consumable evidence comes from Canon Marketing Japan product/supply pages. The runtime searches by ink family codes; it does not copy Canon prices, availability, seller data, or ratings.
 
-## Office-printer toner rule — OKI Wave 1
+## Office-printer toner rule — OKI Waves 1–2
 
-OKI already has deep exact model-level ManualFinder coverage, so this affiliate wave does not add or inflate manual-directory records. It adds verified toner compatibility only for five existing color LED printer models. Exact OKI toner codes are retained as evidence; the user sees one concise model-specific toner search rather than four or eight separate color links.
+OKI already has deep exact model-level ManualFinder coverage, so these affiliate waves do not add or inflate manual-directory records. They add verified toner compatibility to ten existing color LED printer models. Exact OKI toner codes are retained as evidence; the user sees one concise model-specific toner search rather than separate color links.
 
 | OKI model | Officially verified toner codes |
 | --- | --- |
@@ -103,8 +104,13 @@ OKI already has deep exact model-level ManualFinder coverage, so this affiliate 
 | C712dnw | TC-C4CK1 / TC-C4CY1 / TC-C4CM1 / TC-C4CC1 / TC-C4CK2 / TC-C4CY2 / TC-C4CM2 / TC-C4CC2 |
 | C835dnw | TC-C3BK1 / TC-C3BY1 / TC-C3BM1 / TC-C3BC1 / TC-C3BK2 / TC-C3BY2 / TC-C3BM2 / TC-C3BC2 |
 | C844dnw | TC-C3BK1 / TC-C3BY1 / TC-C3BM1 / TC-C3BC1 / TC-C3BK2 / TC-C3BY2 / TC-C3BM2 / TC-C3BC2 |
+| C824dn | TC-C3BK1 / TC-C3BY1 / TC-C3BM1 / TC-C3BC1 |
+| C835dnwt | TC-C3BK1 / TC-C3BY1 / TC-C3BM1 / TC-C3BC1 / TC-C3BK2 / TC-C3BY2 / TC-C3BM2 / TC-C3BC2 |
+| C911dn | TNR-C3RK2 / TNR-C3RY2 / TNR-C3RM2 / TNR-C3RC2 |
+| C931dn | TNR-C3RK2 / TNR-C3RY2 / TNR-C3RM2 / TNR-C3RC2 / TNR-C3RK1 / TNR-C3RY1 / TNR-C3RM1 / TNR-C3RC1 |
+| C941dn | TNR-C3RK2 / TNR-C3RY2 / TNR-C3RM2 / TNR-C3RC2 / TNR-C3RSW2 / TNR-C3RSC2 / TNR-C3RK1 / TNR-C3RY1 / TNR-C3RM1 / TNR-C3RC1 |
 
-The Amazon query is `OKI <model> トナー` with the fixed Associate tag. The exact toner-code list remains attached to the mapping as manufacturer evidence. This avoids presenting an inferred prefix as an official product family while still giving users a practical Amazon handoff.
+The Amazon query is `OKI <model> トナー` with the fixed Associate tag. The exact toner-code list remains attached to the mapping as manufacturer evidence. C941dn's specialty white/clear toner codes are retained as evidence but do not create additional links.
 
 The UI does not say that every Amazon result is genuine or compatible. A note tells the user that consumable codes were checked against an official manufacturer source and that the exact Amazon item must still be confirmed before purchase.
 
@@ -113,7 +119,7 @@ Unmapped printer models receive only the generic exact-model Amazon search. Cons
 ## Current fixed override
 
 | Maker | Model | Type | Status | Destination | Verified |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | Nikon | Z8 | Amazon search override | verified | `https://amzn.to/3T7sxbB` | 2026-09-13 |
 
 The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It is not the normal rollout mechanism.
@@ -130,4 +136,4 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 
 ## Next expansion gate
 
-First verify one OKI model in production for the model CTA, toner CTA, exact tagged URL, and disclosure. If that passes, expand toner mappings to additional already-covered OKI models or evaluate KYOCERA/RICOH/FUJIFILM Business Innovation where explicit official consumable compatibility is available. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.
+With the first OKI production check passed and Wave 2 extending the same verified behavior, the next target is cross-maker office-printer toner. Evaluate KYOCERA Document Solutions first, then RICOH and FUJIFILM Business Innovation, accepting only exact model-to-consumable mappings supported by official manufacturer sources. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.
