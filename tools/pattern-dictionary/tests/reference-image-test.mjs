@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
-const expected = new Set(['houndstooth','gingham','chevron','seigaiha','asanoha','shippo','ichimatsu','kikko']);
+const expected = new Set(['houndstooth','gingham','tartan','glen-check','argyle','chevron','polka-dot','moroccan-trellis','seigaiha','asanoha','shippo','ichimatsu','kikko']);
 const manifest = JSON.parse(fs.readFileSync(path.join(root,'data','reference-images.json'),'utf8'));
 const prod = JSON.parse(fs.readFileSync(path.join(root,'data','production-content.json'),'utf8'));
 const app = fs.readFileSync(path.join(root,'app.js'),'utf8');
@@ -16,7 +16,7 @@ function pngSize(buf) {
   return [buf.readUInt32BE(16), buf.readUInt32BE(20)];
 }
 
-if (manifest.images.length !== expected.size) throw new Error(`expected 8 manifest images, got ${manifest.images.length}`);
+if (manifest.images.length !== expected.size) throw new Error(`expected 13 manifest images, got ${manifest.images.length}`);
 for (const image of manifest.images) {
   if (!expected.delete(image.pattern_id)) throw new Error(`unexpected/duplicate pattern ${image.pattern_id}`);
   if (image.review_state !== 'image_ready') throw new Error(`${image.pattern_id}: state must be image_ready`);
@@ -31,4 +31,4 @@ for (const image of manifest.images) {
 if (expected.size) throw new Error(`missing expected images: ${[...expected].join(', ')}`);
 if (!app.includes('REFERENCE_IDS')) throw new Error('app.js missing REFERENCE_IDS runtime contract');
 if (!app.includes("assets/reference/")) throw new Error('app.js missing reference image path');
-console.log('OK: 8/8 geometric Reference Image candidates are 1536x1536 PNG, image_ready, and runtime-wired.');
+console.log('OK: 13/13 deterministic Reference Image candidates are 1536x1536 PNG, image_ready, and runtime-wired.');
