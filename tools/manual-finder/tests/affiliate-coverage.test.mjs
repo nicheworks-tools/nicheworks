@@ -75,6 +75,7 @@ assert.ok(records.length > 0, 'ManualFinder canonical catalog should not be empt
 for (const name of [
   'affiliate-config.js',
   'affiliate-office-consumables.js',
+  'affiliate-ricoh-consumables-wave3.js',
   'affiliate-kyocera-toner-wave3.js',
   'affiliate-kyocera-toner-wave4.js',
   'affiliate-kyocera-toner-wave6.js',
@@ -142,6 +143,25 @@ const excludedCategoryByMaker = Object.fromEntries(
     return map;
   }, new Map())).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
 );
+const printerMissingDetailRows = rows.filter(
+  (row) => row.category === 'プリンター・複合機' && row.basic && !row.detail
+);
+const printerMissingDetailByMaker = Object.fromEntries(
+  Array.from(printerMissingDetailRows.reduce((map, row) => {
+    map.set(row.maker, (map.get(row.maker) || 0) + 1);
+    return map;
+  }, new Map())).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+);
+const printerMissingDetailModelsByMaker = Object.fromEntries(
+  Array.from(printerMissingDetailRows.reduce((map, row) => {
+    const models = map.get(row.maker) || [];
+    models.push(row.model);
+    map.set(row.maker, models);
+    return map;
+  }, new Map())).sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))
+);
+for (const models of Object.values(printerMissingDetailModelsByMaker)) models.sort();
+
 const summary = {
   total: rows.length,
   basic: rows.filter((row) => row.basic).length,
@@ -152,6 +172,9 @@ const summary = {
   unclassified: unclassified.length,
   excludedCategories: Array.from(excludedCategories).sort(),
   excludedCategoryByMaker,
+  printerMissingDetail: printerMissingDetailRows.length,
+  printerMissingDetailByMaker,
+  printerMissingDetailModelsByMaker,
   excludedFingerprint: crypto.createHash('sha256').update(
     explicitExclusions
       .map((row) => `${row.id}|${row.maker}|${row.model}|${row.category}|${row.exclusionReason}`)
@@ -191,6 +214,16 @@ assert.deepEqual(
 assert.ok(
   excludedCategoryRows.every((row) => row.maker === 'Seiko' && row.family === 'Watch caliber'),
   'all category exclusions must remain non-retail Seiko caliber identifiers'
+);
+assert.equal(
+  Object.values(summary.printerMissingDetailByMaker).reduce((sum, count) => sum + count, 0),
+  summary.printerMissingDetail,
+  'printer missing-detail maker counts must reconcile to the audited missing-detail total'
+);
+assert.equal(
+  summary.printerMissingDetail,
+  summary.byCategory['プリンター・複合機'].basic - summary.byCategory['プリンター・複合機'].detail,
+  'printer missing-detail count must equal basic minus detailed printer coverage'
 );
 
 console.log('ManualFinder affiliate coverage audit passed.');
