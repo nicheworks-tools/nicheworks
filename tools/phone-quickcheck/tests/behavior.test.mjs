@@ -358,6 +358,13 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.ok(h.elements.desktopDetail.innerHTML.includes('165 × 72 × 15.9–17.1 mm'));
 }
 
+// Samsung charging protocol labels must come from canonical source-backed protocols, not wattage inference.
+{
+  const h = await createHarness(['synthetic-foldable']);
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /規格<\/span><b>—/);
+}
+
 // Charger guidance must never be promoted to a handset-side wired maximum without wiredMaxW.
 {
   const h = await createHarness(['synthetic-foldable']);
