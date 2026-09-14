@@ -1,0 +1,273 @@
+{
+  "schema_version": 1,
+  "phase": "source-verification",
+  "updated": "2026-09-14",
+  "policy": {
+    "purpose": "Evidence ledger for the canonical 20-pattern production set.",
+    "primary_palette_rule": "A fixed primary palette is an editorial recognition reference unless a source establishes color as identity-relevant. The palette itself is never presented as the only valid colorway.",
+    "relationship_rule": "similar and often_confused_with are visual-discovery relationships, not claims of shared historical origin unless explicitly sourced.",
+    "states": ["verified", "qualified"]
+  },
+  "patterns": [
+    {
+      "pattern_id": "houndstooth",
+      "verification_state": "verified",
+      "term_scope": "two-color broken twill/check pattern",
+      "verified_names": {"ja": "千鳥格子", "en": "Houndstooth"},
+      "verified_aliases": {"ja": ["ハウンドトゥース"], "en": ["hound's tooth", "dogtooth check"]},
+      "structure": "Two-color broken twill/check producing jagged four-pointed forms.",
+      "color_guidance": {"color_role": "non-essential", "primary": ["black", "white"], "primary_status": "editorial-reference", "reason": "High-contrast recognition reference; the definition requires two colors, not specifically black and white."},
+      "sources": [
+        {"publisher": "Museum of Fine Arts Boston / CAMEO", "url": "https://cameo.mfa.org/wiki/Houndstooth_check", "supports": ["English term", "dogtooth alias", "two-color broken twill structure"]},
+        {"publisher": "Kotobank / Shogakukan", "url": "https://kotobank.jp/word/%E3%81%AF%E3%81%86%E3%82%93%E3%81%A9%E3%81%A8%E3%81%86%E3%83%BC%E3%81%99-599646", "supports": ["Japanese name equivalence", "hound's tooth naming"]}
+      ]
+    },
+    {
+      "pattern_id": "gingham",
+      "verification_state": "verified",
+      "term_scope": "checked cotton cloth / check appearance",
+      "verified_names": {"ja": "ギンガムチェック", "en": "Gingham"},
+      "verified_aliases": {"ja": ["ギンガム"], "en": []},
+      "structure": "Woven colored squares/checks on a white ground; the surface appearance comes from crossing colored and white yarns.",
+      "color_guidance": {"color_role": "non-essential", "primary": ["blue", "white"], "primary_status": "editorial-reference", "reason": "White plus a colored check is characteristic; blue is only the fixed reference color."},
+      "sources": [
+        {"publisher": "Cambridge Dictionary", "url": "https://dictionary.cambridge.org/dictionary/english/gingham", "supports": ["English term", "cotton cloth", "colored-square check on white ground"]}
+      ]
+    },
+    {
+      "pattern_id": "tartan",
+      "verification_state": "verified",
+      "term_scope": "registered woven design / repeated sett",
+      "verified_names": {"ja": "タータン", "en": "Tartan"},
+      "verified_aliases": {"ja": ["タータンチェック"], "en": ["tartan check"]},
+      "structure": "Two or more alternating colored stripes repeat vertically and horizontally to form a chequered sett.",
+      "color_guidance": {"color_role": "identity-relevant", "primary": ["red", "green", "navy"], "primary_status": "editorial-reference", "reason": "Color sequence and stripe proportions are part of a specific tartan's sett; the chosen palette is not itself a registered tartan claim."},
+      "sources": [
+        {"publisher": "The Scottish Register of Tartans", "url": "https://www.tartanregister.gov.uk/FAQ", "supports": ["statutory definition", "sett terminology", "role of color sequence and stripe proportions"]},
+        {"publisher": "Kotobank", "url": "https://kotobank.jp/word/%E3%81%9F%E3%83%BC%E3%81%9F%E3%82%93-3182845", "supports": ["Japanese term", "tartan-check alias"]}
+      ]
+    },
+    {
+      "pattern_id": "glen-check",
+      "verification_state": "verified",
+      "term_scope": "compound check / glen plaid",
+      "verified_names": {"ja": "グレンチェック", "en": "Glen Check"},
+      "verified_aliases": {"ja": ["グレナカートチェック"], "en": ["glen plaid", "Glenurquhart check"]},
+      "structure": "Small and larger checks are combined into an irregular compound check, commonly in muted or black/gray/white tones.",
+      "color_guidance": {"color_role": "non-essential", "primary": ["gray", "black", "white"], "primary_status": "source-aligned-reference", "reason": "Muted or black/gray/white combinations are documented as common, but are not the sole valid palette."},
+      "sources": [
+        {"publisher": "Collins English Dictionary", "url": "https://www.collinsdictionary.com/us/dictionary/english/glen-plaid", "supports": ["glen plaid / glen check equivalence", "compound irregular-check structure", "common muted palette"]},
+        {"publisher": "Kotobank / Shogakukan", "url": "https://kotobank.jp/word/%E3%81%90%E3%82%8C%E3%82%93%E3%81%A1%E3%81%88%E3%81%A4%E3%81%8F-3210361", "supports": ["Japanese name", "small-checks forming larger check"]}
+      ]
+    },
+    {
+      "pattern_id": "argyle",
+      "verification_state": "verified",
+      "term_scope": "diamond-pattern family used especially in knitwear",
+      "verified_names": {"ja": "アーガイル", "en": "Argyle"},
+      "verified_aliases": {"ja": ["アーガイルチェック"], "en": ["argyle pattern"]},
+      "structure": "Repeating colored diamonds/lozenges; many common forms add crossing diagonal lines over the diamonds.",
+      "color_guidance": {"color_role": "variable", "primary": ["navy", "burgundy", "cream"], "primary_status": "editorial-reference", "reason": "Multiple colors are characteristic, but no single palette defines argyle."},
+      "sources": [
+        {"publisher": "Cambridge Dictionary", "url": "https://dictionary.cambridge.org/us/dictionary/english/argyle", "supports": ["English term", "multicolored diamond structure", "socks/sweaters use"]},
+        {"publisher": "Kotobank", "url": "https://kotobank.jp/word/%E3%81%82%E3%83%BC%E3%81%8C%E3%81%84%E3%82%8B-3177059", "supports": ["Japanese term", "multicolor diamond pattern", "knitwear use"]}
+      ]
+    },
+    {
+      "pattern_id": "chevron",
+      "verification_state": "verified",
+      "term_scope": "geometric V/zigzag motif family",
+      "verified_names": {"ja": "シェブロン", "en": "Chevron"},
+      "verified_aliases": {"ja": ["山形模様"], "en": ["chevron pattern"]},
+      "structure": "Repeated V-shaped or zigzag bands/units.",
+      "color_guidance": {"color_role": "non-essential", "primary": ["black", "white"], "primary_status": "editorial-reference", "reason": "Geometry, not color, defines the recognition target."},
+      "sources": [
+        {"publisher": "Smarthistory", "url": "https://smarthistory.org/motifs-and-patterns-fundamentals-of-design-vocabulary/", "supports": ["chevron as zigzag motif", "textile use"]},
+        {"publisher": "The Metropolitan Museum of Art", "url": "https://www.metmuseum.org/art/collection/search/708512", "supports": ["historic textile-design use of a chevron base pattern"]}
+      ]
+    },
+    {
+      "pattern_id": "polka-dot",
+      "verification_state": "verified",
+      "term_scope": "regular repeated round-dot surface pattern",
+      "verified_names": {"ja": "水玉", "en": "Polka Dot"},
+      "verified_aliases": {"ja": ["水玉模様", "ドット柄"], "en": ["polka-dot", "polkadot"]},
+      "structure": "Many small round spots repeated in a regular pattern.",
+      "color_guidance": {"color_role": "non-essential", "primary": ["black", "white"], "primary_status": "editorial-reference", "reason": "Round repeated dots define the pattern; color is variable."},
+      "sources": [
+        {"publisher": "Cambridge Dictionary", "url": "https://dictionary.cambridge.org/dictionary/english/polka-dot", "supports": ["English term and spelling variants", "round spots", "regular repeat"]},
+        {"publisher": "Kotobank / Shogakukan", "url": "https://kotobank.jp/jeword/%E6%A8%A1%E6%A7%98", "supports": ["Japanese water-dot wording mapped to polka-dot pattern"]}
+      ]
+    },
+    {
+      "pattern_id": "moroccan-trellis",
+      "verification_state": "qualified",
+      "term_scope": "contemporary decorative/design-market descriptor",
+      "verified_names": {"ja": "モロッカントレリス", "en": "Moroccan Trellis"},
+      "verified_aliases": {"ja": ["モロッカン格子"], "en": ["Moroccan lattice", "lantern pattern", "Casbah trellis"]},
+      "structure": "A repeating lattice cell with rounded sides and pointed top/bottom or related quatrefoil-like variants.",
+      "color_guidance": {"color_role": "variable", "primary": ["teal", "white"], "primary_status": "editorial-reference", "reason": "No evidence supports a defining historical palette for this market label."},
+      "qualification": "The name is well established in contemporary interiors and pattern-market usage, but the reviewed sources do not establish one uniquely canonical historic Moroccan motif under this exact name. Detail copy must avoid claiming a single traditional provenance.",
+      "sources": [
+        {"publisher": "Isthmus / University of Wisconsin design commentary", "url": "https://isthmus.com/arts/emphasis/design-tile-moroccan-trellis/", "supports": ["common contemporary name", "lantern/Casbah/quatrefoil variants", "interior-design usage"]},
+        {"publisher": "TM Interiors", "url": "https://tm-interiors.co.uk/fabric-guide/guide-to-common-fabric-patterns", "supports": ["Moroccan lattice/trellis label", "rounded-and-pointed repeating cell description"]}
+      ]
+    },
+    {
+      "pattern_id": "seigaiha",
+      "verification_state": "verified",
+      "term_scope": "named Japanese traditional motif",
+      "verified_names": {"ja": "青海波", "en": "Seigaiha"},
+      "verified_aliases": {"ja": ["青海波文"], "en": ["seigaiha pattern"]},
+      "structure": "Overlapping/fanned concentric semicircular arcs repeat to depict waves.",
+      "color_guidance": {"color_role": "traditional", "primary": ["indigo", "white"], "primary_status": "editorial-traditional-reference", "reason": "The motif is structural and appears in many colors; indigo/white is a stable recognition palette rather than a defining rule."},
+      "sources": [
+        {"publisher": "Agency for Cultural Affairs / Cultural Heritage Online", "url": "https://online.bunka.go.jp/heritages/detail/248366", "supports": ["Japanese name", "overlapping semicircle wave structure", "historical textile use"]},
+        {"publisher": "Agency for Cultural Affairs / Cultural Heritage Online", "url": "https://online.bunka.go.jp/heritages/detail/587897", "supports": ["fan-like concentric circles stacked as waves", "name context"]}
+      ]
+    },
+    {
+      "pattern_id": "asanoha",
+      "verification_state": "verified",
+      "term_scope": "named Japanese traditional geometric motif",
+      "verified_names": {"ja": "麻の葉", "en": "Asanoha"},
+      "verified_aliases": {"ja": ["麻の葉文"], "en": ["hemp-leaf pattern"]},
+      "structure": "A repeating star-like geometry constructed from regular hexagons and lines, named for resemblance to hemp leaves.",
+      "color_guidance": {"color_role": "traditional", "primary": ["indigo", "white"], "primary_status": "editorial-traditional-reference", "reason": "Color is not part of the motif definition; indigo/white is retained as a recognition reference."},
+      "sources": [
+        {"publisher": "Agency for Cultural Affairs / Cultural Heritage Online", "url": "https://online.bunka.go.jp/index.php/heritages/detail/587667", "supports": ["Japanese name", "regular-hexagon/star geometry", "hemp-leaf naming", "textile use"]}
+      ]
+    },
+    {
+      "pattern_id": "shippo",
+      "verification_state": "verified",
+      "term_scope": "named Japanese interlocking-circle motif",
+      "verified_names": {"ja": "七宝", "en": "Shippo"},
+      "verified_aliases": {"ja": ["七宝文", "七宝繋ぎ"], "en": ["shippo pattern", "interlocking circles"]},
+      "structure": "Equal circular arcs overlap by quarters to make a continuous interlocking-circle repeat.",
+      "color_guidance": {"color_role": "traditional", "primary": ["indigo", "white"], "primary_status": "editorial-traditional-reference", "reason": "The defining feature is the interlocking circular geometry, not a fixed color."},
+      "sources": [
+        {"publisher": "Agency for Cultural Affairs / Cultural Heritage Online", "url": "https://online.bunka.go.jp/heritages/detail/588607", "supports": ["Japanese name", "quarter-overlapped equal-circle construction", "continuous motif"]}
+      ]
+    },
+    {
+      "pattern_id": "ichimatsu",
+      "verification_state": "verified",
+      "term_scope": "Japanese name for alternating-square/checker motif",
+      "verified_names": {"ja": "市松", "en": "Ichimatsu"},
+      "verified_aliases": {"ja": ["市松模様", "石畳", "霰"], "en": ["ichimatsu pattern", "checker pattern"]},
+      "structure": "Squares of contrasting colors/values alternate in a regular checker arrangement.",
+      "color_guidance": {"color_role": "non-essential", "primary": ["black", "white"], "primary_status": "editorial-reference", "reason": "Library reference evidence explicitly notes that the colors are not fixed."},
+      "sources": [
+        {"publisher": "National Diet Library", "url": "https://www.ndl.go.jp/kaleido/entry/34/2.html", "supports": ["Ichimatsu name origin", "older arare/ishidatami names"]},
+        {"publisher": "National Diet Library Collaborative Reference Database", "url": "https://crd.ndl.go.jp/reference/entry/index.php?id=1000289587&page=ref_view", "supports": ["alternating squares", "colors are not fixed"]},
+        {"publisher": "Agency for Cultural Affairs / Cultural Heritage Online", "url": "https://online.bunka.go.jp/heritages/detail/457252", "supports": ["historic textile example with alternating colored squares called ichimatsu"]}
+      ]
+    },
+    {
+      "pattern_id": "kikko",
+      "verification_state": "verified",
+      "term_scope": "named Japanese hexagonal motif",
+      "verified_names": {"ja": "亀甲", "en": "Kikko"},
+      "verified_aliases": {"ja": ["亀甲文"], "en": ["kikko pattern", "tortoiseshell pattern", "honeycomb pattern"]},
+      "structure": "A regular hexagon or continuous repeat of regular hexagons, named for resemblance to a tortoise shell.",
+      "color_guidance": {"color_role": "traditional", "primary": ["indigo", "white"], "primary_status": "editorial-traditional-reference", "reason": "Hexagonal structure defines the motif; color is not fixed."},
+      "sources": [
+        {"publisher": "Agency for Cultural Affairs / Cultural Heritage Online", "url": "https://online.bunka.go.jp/heritages/detail/621195", "supports": ["Japanese name", "regular-hexagon definition", "tortoiseshell naming", "honeycomb English comparison"]}
+      ]
+    },
+    {
+      "pattern_id": "karakusa",
+      "verification_state": "verified",
+      "term_scope": "Japanese scrolling-plant ornament family",
+      "verified_names": {"ja": "唐草", "en": "Karakusa"},
+      "verified_aliases": {"ja": ["唐草文", "唐草模様"], "en": ["karakusa pattern", "Japanese scrolling-vine pattern"]},
+      "structure": "Continuous scrolling vegetal/vine ornament; variants may incorporate flowers and leaves.",
+      "color_guidance": {"color_role": "non-essential", "primary": ["green", "white"], "primary_status": "editorial-reference", "reason": "Plant-scroll structure is defining; green/white is a recognition choice rather than a sourced canonical palette."},
+      "sources": [
+        {"publisher": "Agency for Cultural Affairs / Cultural Heritage Online", "url": "https://online.bunka.go.jp/heritages/detail/651736", "supports": ["Japanese karakusa name", "historic stencil/textile use"]},
+        {"publisher": "Ministry of Agriculture, Forestry and Fisheries", "url": "https://www.maff.go.jp/j/pr/aff/1802/pdf/1802_06.pdf", "supports": ["karakusa as traditional Japanese pattern representing plants", "furoshiki association"]}
+      ]
+    },
+    {
+      "pattern_id": "damask",
+      "verification_state": "verified",
+      "term_scope": "woven figured textile / weave-defined visual family",
+      "verified_names": {"ja": "ダマスク", "en": "Damask"},
+      "verified_aliases": {"ja": ["ダマスク織"], "en": ["damask weave"]},
+      "structure": "One warp and one weft form a figured pattern by contrasting binding systems, appearing in reverse on face and back.",
+      "color_guidance": {"color_role": "variable", "primary": ["charcoal", "ivory"], "primary_status": "editorial-reference", "reason": "Damask is defined primarily by weave structure and figure/ground contrast, not by a fixed palette."},
+      "sources": [
+        {"publisher": "The Fitzwilliam Museum / Getty AAT terminology", "url": "https://data.fitzmuseum.cam.ac.uk/id/terminology/term-40147", "supports": ["damask terminology", "one-warp/one-weft structure", "reversed face/back pattern"]},
+        {"publisher": "The Metropolitan Museum of Art", "url": "https://www.metmuseum.org/art/collection/search/216471", "supports": ["visual effect from shiny warp face versus matte weft face", "furnishing and dress uses"]}
+      ]
+    },
+    {
+      "pattern_id": "arabesque",
+      "verification_state": "verified",
+      "term_scope": "ornamental vegetal pattern vocabulary",
+      "verified_names": {"ja": "アラベスク", "en": "Arabesque"},
+      "verified_aliases": {"ja": ["アラベスク文様"], "en": ["arabesque ornament"]},
+      "structure": "Rhythmical scrolling vine and foliate forms, often with bifurcating vines and split leaves that imply continuing extension.",
+      "color_guidance": {"color_role": "non-essential", "primary": ["teal", "cream"], "primary_status": "editorial-reference", "reason": "The ornamental structure, not palette, defines the entry."},
+      "qualification": "The Met notes that 'arabesque' is a Western term coined much later than the medieval Islamic patterns it describes; copy should avoid implying that it is the historical native name for one single Islamic motif.",
+      "sources": [
+        {"publisher": "The Metropolitan Museum of Art", "url": "https://www.metmuseum.org/ko/essays/vegetal-patterns-in-islamic-art", "supports": ["term history", "Islamic vegetal-pattern context", "scholarly caution on the term"]},
+        {"publisher": "The Metropolitan Museum of Art", "url": "https://www.metmuseum.org/art/collection/search/447782", "supports": ["rhythmical vine-scroll and foliate definition", "infinite-extension structure"]}
+      ]
+    },
+    {
+      "pattern_id": "paisley",
+      "verification_state": "verified",
+      "term_scope": "boteh-derived ornamental motif family",
+      "verified_names": {"ja": "ペイズリー", "en": "Paisley"},
+      "verified_aliases": {"ja": ["ペイズリー柄"], "en": ["paisley pattern", "boteh"]},
+      "structure": "Curved boteh/palmette forms, commonly perceived as teardrop- or cone-like motifs, repeated within textile designs.",
+      "color_guidance": {"color_role": "variable", "primary": ["burgundy", "cream"], "primary_status": "editorial-reference", "reason": "Boteh form, not color, defines the recognition target."},
+      "sources": [
+        {"publisher": "The Metropolitan Museum of Art", "url": "https://www.metmuseum.org/art/collection/search/157846", "supports": ["boteh form", "Indian/Persian context", "Paisley naming"]},
+        {"publisher": "Smithsonian National Museum of Asian Art", "url": "https://asia-archive.si.edu/collections/new/acquisitions-2017/S2017.14/", "supports": ["paisley motif as boteh", "tear-shaped description", "Persian textile context"]}
+      ]
+    },
+    {
+      "pattern_id": "leopard-print",
+      "verification_state": "verified",
+      "term_scope": "animal-inspired surface print",
+      "verified_names": {"ja": "レオパード柄", "en": "Leopard Print"},
+      "verified_aliases": {"ja": ["ヒョウ柄"], "en": ["leopard pattern"]},
+      "structure": "Irregular rosette-like spots distributed over a contrasting ground, imitating leopard coat markings.",
+      "color_guidance": {"color_role": "identity-relevant", "primary": ["tan", "black", "brown"], "primary_status": "naturalistic-reference", "reason": "Rosette structure is primary; the naturalistic tan/dark palette materially improves recognition even though fashion variants can recolor it."},
+      "sources": [
+        {"publisher": "Victoria and Albert Museum", "url": "https://www.vam.ac.uk/articles/fashion-inspired-by-the-natural-world", "supports": ["leopard print in fashion", "rosette distinction", "animal-pattern inspiration"]}
+      ]
+    },
+    {
+      "pattern_id": "ikat",
+      "verification_state": "qualified",
+      "term_scope": "resist-dye textile technique and resulting visual family, not one fixed motif",
+      "verified_names": {"ja": "イカット", "en": "Ikat"},
+      "verified_aliases": {"ja": ["絣系イカット"], "en": ["ikat textile"]},
+      "structure": "Warp and/or weft threads are bound/resist-dyed before weaving; alignment of pre-dyed yarns commonly produces distinctive soft or feathered motif edges.",
+      "color_guidance": {"color_role": "variable", "primary": ["indigo", "red", "cream"], "primary_status": "editorial-reference", "reason": "Ikat spans many regions, motifs and palettes; no single color set defines the technique."},
+      "qualification": "The dictionary entry must explicitly say that ikat is fundamentally a dyeing/weaving technique and visual family, not a single geometric motif.",
+      "sources": [
+        {"publisher": "The Metropolitan Museum of Art", "url": "https://www.metmuseum.org/pt/essays/textiles-island-southeast-asia", "supports": ["pre-weave resist-dye process", "warp/weft variants", "soft-edge visual result"]},
+        {"publisher": "The Metropolitan Museum of Art", "url": "https://www.metmuseum.org/de/press-releases/the-fabric-of-life-ikat-textiles-of-indonesia-2006-exhibitions", "supports": ["term derived from tying", "technique creates diverse imagery rather than one motif"]}
+      ]
+    },
+    {
+      "pattern_id": "kilim",
+      "verification_state": "qualified",
+      "term_scope": "flat-woven textile category and kilim-inspired visual family, not one fixed motif",
+      "verified_names": {"ja": "キリム柄", "en": "Kilim Pattern"},
+      "verified_aliases": {"ja": ["キリム"], "en": ["kilim", "kelim"]},
+      "structure": "Flat-woven/tapestry-woven textile tradition with diverse regional designs; angular geometric bands, diamonds and stepped forms are common in kilim-inspired surface design but are not one universal canonical motif.",
+      "color_guidance": {"color_role": "variable", "primary": ["red", "navy", "cream"], "primary_status": "editorial-reference", "reason": "Kilim traditions use diverse colors and designs; the fixed palette is only a recognition reference."},
+      "qualification": "Production copy must distinguish kilim itself (a flat-woven textile category) from 'kilim pattern' as a modern visual-search label for designs inspired by those textiles.",
+      "sources": [
+        {"publisher": "Encyclopaedia Iranica", "url": "https://www.iranicaonline.org/articles/kelim/", "supports": ["kelim/kilim terminology", "flat-woven carpet category", "diverse designs and colors"]},
+        {"publisher": "The Metropolitan Museum of Art", "url": "https://www.metmuseum.org/art/collection/search/787736", "supports": ["kilim as flat-woven tapestry", "regional textile context"]}
+      ]
+    }
+  ]
+}
