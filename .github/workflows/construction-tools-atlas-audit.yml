@@ -37,11 +37,23 @@ jobs:
       - name: Check detail bootstrap syntax
         run: node --check tools/construction-tools-atlas/detail-dictionary-fix.js
 
+      - name: Check canonical image runtime syntax
+        run: node --check tools/construction-tools-atlas/detail-image-hotfix.js
+
       - name: Check dictionary presentation syntax
         run: node --check tools/construction-tools-atlas/dictionary-presentation-v2.3.js
 
       - name: Check deep-link runtime syntax
         run: node --check tools/construction-tools-atlas/deep-link-v2.3.js
+
+      - name: Check Wave 1 image builder syntax
+        run: node --check tools/construction-tools-atlas/scripts/build-image-wave1-v2.3.mjs
+
+      - name: Check Wave 1 source checker syntax
+        run: node --check tools/construction-tools-atlas/scripts/check-image-wave1-sources-v2.3.cjs
+
+      - name: Check image runtime checker syntax
+        run: node --check tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
 
       - name: Check master-detail v2.3 contract
         run: node tools/construction-tools-atlas/scripts/check-master-detail-v2.3.cjs
@@ -55,5 +67,11 @@ jobs:
       - name: Audit image assets and canonical mappings
         run: node tools/construction-tools-atlas/scripts/audit-image-assets-v2.3.cjs
 
+      - name: Validate Wave 1 image source ledger
+        run: node tools/construction-tools-atlas/scripts/check-image-wave1-sources-v2.3.cjs
+
       - name: Validate canonical image registry
         run: node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs
+
+      - name: Validate canonical image runtime priority
+        run: node tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
