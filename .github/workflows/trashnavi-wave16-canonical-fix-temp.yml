@@ -1,0 +1,49 @@
+name: TrashNavi Wave 16 canonical fix temp
+
+on:
+  push:
+    branches:
+      - fix/trashnavi-matsue-canonical-sorting-wave16-20260914
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Refresh canonical Matsue sorting record
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/trashnavi/data/direct-waste-links.json')
+          s = p.read_text()
+          old = '{"pref":"島根県","city":"松江市","name":"松江市 ごみの出し方・分別","type":"ごみ分別ページ","url":"https://www.city.matsue.lg.jp/kurashi_tetsuzuki/gomi_recycle/index.html","lgcode":"322016"}'
+          new = '{"pref":"島根県","city":"松江市","name":"松江市 家庭ごみの分別区分と出し方","type":"ごみ分別ページ","url":"https://www.city.matsue.lg.jp/kurashi_tetsuzuki/gomi_kankyo_pet/6/2/index.html","lgcode":"322016"}'
+          if s.count(old) != 1:
+              raise SystemExit(f'expected exactly one old Matsue canonical record, got {s.count(old)}')
+          p.write_text(s.replace(old, new, 1))
+          PY
+      - name: Required TrashNavi audits
+        run: |
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-affiliate-contract.mjs
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+      - name: Commit canonical fix and remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/trashnavi/data/direct-waste-links.json
+          git commit -m 'Refresh Matsue canonical sorting URL'
+          git rm .github/workflows/trashnavi-wave16-canonical-fix-temp.yml
+          git commit -m 'Remove temporary Matsue canonical fix workflow'
+          git push origin HEAD:${{ github.ref_name }}
