@@ -433,4 +433,29 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.ok(h.elements.desktopDetail.innerHTML.includes('Dimensions (unfolded)'));
 }
 
+// Legacy Japan-market Motorola foldables preserve official dimensions and proprietary TurboPower charging.
+{
+  const h = await createHarness(['motorola-razr-40-ultra']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('88.42 × 73.95 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /88\.42 × 73\.95 × 15\.1 mm/);
+  assert.match(html, /170\.83 × 73\.95 × 6\.99 mm/);
+  assert.match(html, /3800 mAh/);
+  assert.match(html, /30W/);
+  assert.match(html, /TurboPower/);
+  assert.match(html, /Qi \/ 5W/);
+}
+
+// Current Y!mobile nubia Flip generation keeps carrier-published PPS and 33W device-side charging facts.
+{
+  const h = await createHarness(['zte-nubia-flip-3']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('87 × 76 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /87 × 76 × 15\.9 mm/);
+  assert.match(html, /170 × 76 × 7\.5 mm/);
+  assert.match(html, /4610 mAh/);
+  assert.match(html, /33W/);
+  assert.match(html, /PPS/);
+}
+
 console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estimates, Apple unknown capacity, Lightning guidance, proprietary charging, and mobile sheet.');
