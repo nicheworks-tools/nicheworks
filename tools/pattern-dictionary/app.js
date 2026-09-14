@@ -11,7 +11,7 @@ function detailUrl(p,lang){return ROOT+(lang==='en'?'en/':'')+'patterns/'+encode
 function compareUrl(a,b,lang){return ROOT+(lang==='en'?'en/':'')+'compare.html?a='+encodeURIComponent(a)+'&b='+encodeURIComponent(b)}
 function patternSvg(p){
   const id=p.id, fam=p.families?.[0]||''; let body='';
-  if(['houndstooth','chevron','yagasuri'].includes(id))body='<path d="M0 30L30 0l20 20 20-20 30 30-30 30-20-20-20 20z" fill="#111827"/>';
+  if(['houndstooth','chevron'].includes(id))body='<path d="M0 30L30 0l20 20 20-20 30 30-30 30-20-20-20 20z" fill="#111827"/>';
   else if(['gingham','tartan','glen-check','ichimatsu'].includes(id)||fam==='check')body='<rect width="50" height="50" fill="#1f2937"/><rect x="50" y="50" width="50" height="50" fill="#1f2937"/><path d="M50 0V100M0 50H100" stroke="#94a3b8" stroke-width="12" opacity=".55"/>';
   else if(id==='argyle')body='<path d="M50 0L100 50 50 100 0 50z" fill="#334155"/><path d="M0 0L100 100M100 0L0 100" stroke="#cbd5e1" stroke-width="4"/>';
   else if(id==='polka-dot')body='<circle cx="25" cy="25" r="13" fill="#111827"/><circle cx="75" cy="75" r="13" fill="#111827"/>';

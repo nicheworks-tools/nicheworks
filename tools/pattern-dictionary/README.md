@@ -24,13 +24,13 @@ node tools/pattern-dictionary/tests/search-test.mjs
 node --check tools/pattern-dictionary/app.js
 ```
 
-Current search smoke set: 9/9 expected patterns appear in Top3. This is a vertical-slice check, not a final search-quality benchmark.
+Current search smoke set: 12/12 expectations pass; Houndstooth and Kilim include Top1-locked regression cases. This is a vertical-slice check, not a final search-quality benchmark.
 
 ## Before publication
 
 1. Research and source-verify the 20 prototype records.
 2. Replace DEV placeholders with verified high-quality primary PNG Reference Images.
 3. Expand search-quality cases substantially.
-4. Run desktop/tablet/mobile browser QA.
+4. Re-run desktop/tablet/mobile browser QA after production data/image replacement.
 5. Remove `noindex` only from records that satisfy the publication contract.
 6. Add Amazon affiliate URLs only after the dictionary experience itself is ready.

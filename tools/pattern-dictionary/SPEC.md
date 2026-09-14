@@ -116,7 +116,7 @@ Desktop uses a wide visual-discovery layout with a substantial equal-square patt
 - [x] Search/compare and prototype detail pages remain `noindex,follow` while the two landing pages are the intended indexable entry points.
 - [x] No live affiliate URL is introduced in this slice.
 - [ ] Source verification and production Reference Images are complete for publication-scale detail indexing.
-- [ ] Browser QA is complete at 1200px, 768px, 390px, and 320px.
+- [x] Browser QA is complete at 1200px, 768px, 390px, and 320px for this vertical slice; production data/image changes require a final re-run.
 
 ## Implementation evidence
 

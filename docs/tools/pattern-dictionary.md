@@ -148,7 +148,7 @@ Acceptance for the current slice requires:
 - no live affiliate URL is introduced before the separate affiliate activation work;
 - prototype detail pages remain noindex until verification gates are complete.
 
-Browser QA at 1200px, 768px, 390px, and 320px remains a pre-ready-for-review gate.
+Browser QA at 1200px, 768px, 390px, and 320px is complete for this vertical slice; production data/image changes require a final re-run before detail indexing.
 
 ## 15. Explicit tool-specific exceptions
 

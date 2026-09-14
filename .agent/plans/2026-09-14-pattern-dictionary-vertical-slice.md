@@ -56,7 +56,7 @@ No other persistent product files are in scope for this vertical slice.
 
 ## Validation evidence
 
-- Search smoke: 10/10 expectations pass; the ambiguous JA `白黒のギザギザしたチェック` and EN `black white jagged check` cases are locked to Houndstooth as Top1 regressions.
+- Search smoke: 12/12 expectations pass; the ambiguous JA `白黒のギザギザしたチェック` and EN `black white jagged check` cases are locked to Houndstooth as Top1 regressions, and JA `幾何学の絨毯柄` / EN `kilim rug pattern` are locked to Kilim as Top1 regressions.
 - `node --check` passes for the static-URL `app.js` implementation.
 - Static JA/EN detail directories exist for all 20 prototype IDs; legacy query detail pages were removed.
 - All 40 detail pages remain `noindex,follow` until source/image verification.
