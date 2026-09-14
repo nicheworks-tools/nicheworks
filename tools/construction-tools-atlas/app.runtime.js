@@ -10,6 +10,7 @@
     { id: "measure", label: "Measure", tokens: ["measure", "measurement", "level", "計測", "測定"] },
     { id: "drill", label: "Drill", tokens: ["drill", "hole", "穴あけ", "穿孔"] }
   ];
+  const DETAIL_MEDIA = "(min-width: 900px)";
   const els = {};
   const state = {
     theme: localStorage.getItem(LS.theme) || "light",
@@ -40,6 +41,9 @@
   function div(text, cls) { const el = document.createElement("div"); if (cls) el.className = cls; el.textContent = text || ""; return el; }
   function chip(parent, text) { const t = str(text); if (!parent || !t) return; const s = document.createElement("span"); s.className = "chip"; s.textContent = t; parent.appendChild(s); }
   function ul(parent, items, empty) { clear(parent); if (!parent) return; const values = arr(items); if (!values.length) { if (empty) parent.appendChild(div(empty, "muted")); return; } const list = document.createElement("ul"); values.forEach((v) => { const li = document.createElement("li"); li.textContent = v; list.appendChild(li); }); parent.appendChild(list); }
+  function isDesktopDetail() { return window.matchMedia?.(DETAIL_MEDIA)?.matches === true; }
+  function transientSheets() { return [els.supportSheet, els.menuSheet, els.howtoSheet, els.filterSheet].filter(Boolean); }
+  function anyTransientOpen() { return transientSheets().some((sheet) => !sheet.hidden); }
   function norm(v) {
     if (state.searchEngine?.normalizeText) return state.searchEngine.normalizeText(v);
     return String(v || "").normalize("NFKC").trim().toLowerCase().replace(/[\s\u3000]+/g, " ");
@@ -69,9 +73,7 @@
   function aliasLine(e) { return [...e.aliases.ja, ...e.aliases.en].filter(Boolean).join(" / "); }
   function hay(e) { return [e.id,e.type,e.term.ja,e.term.en,e.description.ja,e.description.en,e.summary.ja,e.summary.en,e.detail.ja,e.detail.en,...e.aliases.ja,...e.aliases.en,...e.categories,...e.tasks,...e.fuzzy,...e.region].join("\n").toLowerCase(); }
   function queryParts() { return norm(state.q).split(/\s+/).filter(Boolean); }
-  function refreshInterpretations() {
-    state.interpretations = state.searchEngine?.interpret?.(state.q, state.ignoredSignals) || [];
-  }
+  function refreshInterpretations() { state.interpretations = state.searchEngine?.interpret?.(state.q, state.ignoredSignals) || []; }
   function matchQuery(e) {
     if (!norm(state.q)) return true;
     if (state.searchEngine) return queryScore(e) > 0;
@@ -121,10 +123,100 @@
     return title(a).localeCompare(title(b), state.lang === "ja" ? "ja" : "en");
   }
   function actionMatch(e) { const a = ACTIONS.find((x) => x.id === state.action) || ACTIONS[0]; if (!a.tokens.length) return true; const h = hay(e); return a.tokens.some((t) => h.includes(String(t).toLowerCase())); }
-  function openSheet(sheet) { if (!sheet) return; [els.detailSheet,els.supportSheet,els.menuSheet,els.howtoSheet,els.filterSheet].forEach((x) => { if (x) x.hidden = true; }); if (els.overlay) els.overlay.hidden = false; sheet.hidden = false; }
-  function closeSheets() { [els.detailSheet,els.supportSheet,els.menuSheet,els.howtoSheet,els.filterSheet].forEach((x) => { if (x) x.hidden = true; }); if (els.overlay) els.overlay.hidden = true; }
+
+  function ensureMasterDetailUi() {
+    if (!document.querySelector('link[data-cta-master-detail="v2.3"]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "./master-detail-v2.3.css?v=20260914-master-detail-1";
+      link.setAttribute("data-cta-master-detail", "v2.3");
+      document.head.appendChild(link);
+    }
+    if (!$("#atlasWorkspace")) {
+      const results = els.resultList?.closest(".results");
+      if (results?.parentNode) {
+        const workspace = document.createElement("div");
+        workspace.id = "atlasWorkspace";
+        workspace.className = "atlasWorkspace";
+        results.parentNode.insertBefore(workspace, results);
+        workspace.appendChild(results);
+
+        const host = document.createElement("div");
+        host.id = "atlasDetailHost";
+        host.className = "atlasDetailHost";
+        const empty = document.createElement("div");
+        empty.id = "atlasDetailEmpty";
+        empty.className = "atlasDetailEmpty";
+        empty.textContent = state.lang === "ja" ? "左の候補を選ぶと、ここに詳細が表示されます。" : "Select a result to view its details here.";
+        host.appendChild(empty);
+        workspace.appendChild(host);
+      }
+    }
+  }
+
+  function syncDetailContainer() {
+    ensureMasterDetailUi();
+    bindEls();
+    const host = $("#atlasDetailHost");
+    const empty = $("#atlasDetailEmpty");
+    const detail = els.detailSheet;
+    if (!detail) return;
+
+    if (isDesktopDetail()) {
+      if (host && detail.parentElement !== host) host.appendChild(detail);
+      detail.classList.add("detailPanel--desktop");
+      detail.classList.remove("detailPanel--mobile");
+      if (state.current) {
+        detail.hidden = false;
+        if (empty) empty.hidden = true;
+      } else {
+        detail.hidden = true;
+        if (empty) {
+          empty.hidden = false;
+          empty.textContent = state.lang === "ja" ? "左の候補を選ぶと、ここに詳細が表示されます。" : "Select a result to view its details here.";
+        }
+      }
+      if (els.overlay) els.overlay.hidden = !anyTransientOpen();
+    } else {
+      if (detail.parentElement !== document.body) document.body.appendChild(detail);
+      detail.classList.remove("detailPanel--desktop");
+      detail.classList.add("detailPanel--mobile");
+      if (empty) empty.hidden = true;
+      if (els.overlay && !anyTransientOpen()) els.overlay.hidden = detail.hidden || !state.current;
+    }
+  }
+
+  function openSheet(sheet) {
+    if (!sheet) return;
+    transientSheets().forEach((x) => { x.hidden = true; });
+    if (sheet === els.detailSheet) {
+      syncDetailContainer();
+      sheet.hidden = false;
+      if (els.overlay) els.overlay.hidden = isDesktopDetail();
+      return;
+    }
+    if (!isDesktopDetail() && els.detailSheet) els.detailSheet.hidden = true;
+    if (els.overlay) els.overlay.hidden = false;
+    sheet.hidden = false;
+  }
+
+  function closeSheets() {
+    transientSheets().forEach((x) => { x.hidden = true; });
+    if (!isDesktopDetail() && els.detailSheet) els.detailSheet.hidden = true;
+    if (els.overlay) els.overlay.hidden = true;
+    syncDetailContainer();
+  }
+
+  function closeDetail() {
+    if (els.detailSheet) els.detailSheet.hidden = true;
+    state.current = null;
+    if (els.overlay) els.overlay.hidden = true;
+    renderList();
+    syncDetailContainer();
+  }
+
   function setTheme(theme) { state.theme = theme; document.documentElement.setAttribute("data-theme", theme); localStorage.setItem(LS.theme, theme); if (els.themeBtn) els.themeBtn.textContent = theme === "light" ? "☼" : "☾"; }
-  function setLang(lang) { state.lang = lang; document.documentElement.lang = lang; localStorage.setItem(LS.lang, lang); render(); if (state.current) renderDetail(state.current); }
+  function setLang(lang) { state.lang = lang; document.documentElement.lang = lang; localStorage.setItem(LS.lang, lang); render(); if (state.current) renderDetail(state.current); syncDetailContainer(); }
   function saveFavs() { localStorage.setItem(LS.favs, JSON.stringify([...state.favs])); }
   function filter() {
     refreshInterpretations();
@@ -136,6 +228,10 @@
       if (state.task !== "all" && !e.tasks.includes(state.task)) return false;
       return true;
     }).sort(compareResult);
+    if (state.current && !state.filtered.some((entry) => entry.id === state.current.id)) {
+      state.current = null;
+      if (els.detailSheet) els.detailSheet.hidden = true;
+    }
   }
   function ensureSemanticUi() {
     if (!document.querySelector('link[data-cta-semantic-css="v2.3"]')) {
@@ -194,12 +290,18 @@
     clear(els.resultList);
     const frag = document.createDocumentFragment();
     state.filtered.slice(0, state.visibleCount).forEach((e) => {
-      const row = document.createElement("div"); row.className = "row"; row.setAttribute("role", "button"); row.tabIndex = 0;
+      const row = document.createElement("div");
+      row.className = "row" + (state.current?.id === e.id ? " row--selected" : "");
+      row.dataset.entryId = e.id;
+      row.setAttribute("role", "button");
+      row.setAttribute("aria-pressed", state.current?.id === e.id ? "true" : "false");
+      row.tabIndex = 0;
       const main = document.createElement("div"); main.className = "row__main";
       main.appendChild(div(title(e), "row__title"));
       main.appendChild(div(pick(e.summary) || pick(e.description) || (state.lang === "ja" ? "説明なし" : "No description"), "row__desc"));
       const meta = document.createElement("div"); meta.className = "row__meta"; [e.type,...e.categories.slice(0,2),...e.tasks.slice(0,1)].forEach((x) => chip(meta, x)); main.appendChild(meta);
       const star = document.createElement("button"); star.type = "button"; star.className = "starbtn"; star.textContent = state.favs.has(e.id) ? "★" : "☆";
+      star.setAttribute("aria-label", state.favs.has(e.id) ? (state.lang === "ja" ? "お気に入りから削除" : "Remove favorite") : (state.lang === "ja" ? "お気に入りに追加" : "Add favorite"));
       star.addEventListener("click", (ev) => { ev.stopPropagation(); state.favs.has(e.id) ? state.favs.delete(e.id) : state.favs.add(e.id); saveFavs(); renderList(); });
       const open = () => openDetail(e.id); row.addEventListener("click", open); row.addEventListener("keydown", (ev) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); open(); } });
       row.appendChild(main); row.appendChild(star); frag.appendChild(row);
@@ -253,7 +355,16 @@
     ul(els.tabAliases, [...e.aliases.ja,...e.aliases.en].filter(Boolean), state.lang === "ja" ? "別名はまだありません。" : "No aliases yet.");
     ul(els.tabMeta, [`id: ${e.id}`,`type: ${e.type}`,`categories: ${e.categories.join(", ")}`,`tasks: ${e.tasks.join(", ")}`,`region: ${e.region.join(", ")}`,`quality_batch: ${e.meta?.quality_batch || ""}`], "");
   }
-  function openDetail(id) { const e = state.entries.find((x) => x.id === id); if (!e) return; state.current = e; renderDetail(e); tab("meaning"); openSheet(els.detailSheet); }
+  function openDetail(id) {
+    const e = state.entries.find((x) => x.id === id);
+    if (!e) return;
+    state.current = e;
+    renderDetail(e);
+    tab("meaning");
+    renderList();
+    openSheet(els.detailSheet);
+    syncDetailContainer();
+  }
   function renderFilters() {
     draft = { action: state.action, category: state.category, task: state.task };
     const group = (node, values, key) => { clear(node); values.forEach((v) => { const b = document.createElement("button"); b.type = "button"; b.className = "pillbtn" + (draft[key] === v ? " pillbtn--accent" : ""); b.textContent = v; b.addEventListener("click", () => { draft[key] = v; group(node, values, key); }); node?.appendChild(b); }); };
@@ -261,7 +372,15 @@
     const tasks = [...new Set(state.entries.flatMap((e) => e.tasks).filter(Boolean))].sort();
     group(els.filterActionItems, ACTIONS.map((a) => a.id), "action"); group(els.filterCategoryItems, ["all",...cats], "category"); group(els.filterTaskItems, ["all",...tasks], "task");
   }
-  function render() { filter(); renderInterpretations(); renderActions(); renderList(); if (els.statusArea) els.statusArea.hidden = true; }
+  function render() {
+    filter();
+    renderInterpretations();
+    renderActions();
+    renderList();
+    if (state.current) renderDetail(state.current);
+    syncDetailContainer();
+    if (els.statusArea) els.statusArea.hidden = true;
+  }
   async function loadSemanticCore() {
     if (window.CTA_SEMANTIC_SEARCH?.createEngine) return window.CTA_SEMANTIC_SEARCH;
     return new Promise((resolve) => {
@@ -313,12 +432,19 @@
     } catch (err) { console.error("CTA data load failed", err); if (els.statusArea) { clear(els.statusArea); els.statusArea.hidden = false; els.statusArea.appendChild(div(state.lang === "ja" ? "読み込みに失敗しました" : "Failed to load data", "status__title")); } }
   }
   function wire() {
-    bindEls(); ensureSemanticUi(); setTheme(state.theme); document.documentElement.lang = state.lang;
+    bindEls();
+    ensureSemanticUi();
+    ensureMasterDetailUi();
+    bindEls();
+    setTheme(state.theme);
+    document.documentElement.lang = state.lang;
+    syncDetailContainer();
     els.searchInput?.removeAttribute("stable"); els.searchInput?.removeAttribute("content"); if (els.searchInput) els.searchInput.placeholder = "例：コンクリに穴あける電動のやつ / インパクト / torque wrench";
     els.themeBtn?.addEventListener("click", () => setTheme(state.theme === "light" ? "dark" : "light")); els.langBtn?.addEventListener("click", () => setLang(state.lang === "ja" ? "en" : "ja"));
     els.searchInput?.addEventListener("input", () => { state.q = els.searchInput.value || ""; state.ignoredSignals.clear(); state.visibleCount = state.pageSize; render(); }); els.clearBtn?.addEventListener("click", () => { if (els.searchInput) els.searchInput.value = ""; state.q = ""; state.ignoredSignals.clear(); render(); });
     els.loadMoreBtn?.addEventListener("click", () => { state.visibleCount += state.pageSize; renderList(); });
-    [els.detailClose,els.supportClose,els.menuClose,els.howtoClose,els.filterClose,els.overlay].forEach((x) => x?.addEventListener("click", closeSheets));
+    els.detailClose?.addEventListener("click", closeDetail);
+    [els.supportClose,els.menuClose,els.howtoClose,els.filterClose,els.overlay].forEach((x) => x?.addEventListener("click", closeSheets));
     els.menuBtn?.addEventListener("click", () => openSheet(els.menuSheet)); els.supportBtn?.addEventListener("click", () => openSheet(els.supportSheet)); els.supportInlineBtn?.addEventListener("click", () => openSheet(els.supportSheet)); els.howtoOpen?.addEventListener("click", () => openSheet(els.howtoSheet));
     [els.filterOpenBtn,els.categoryBtn,els.taskBtn].forEach((x) => x?.addEventListener("click", () => { renderFilters(); openSheet(els.filterSheet); }));
     els.filterApplyBtn?.addEventListener("click", () => { state.action = draft.action; state.category = draft.category; state.task = draft.task; localStorage.setItem(LS.action,state.action); localStorage.setItem(LS.category,state.category); localStorage.setItem(LS.task,state.task); state.visibleCount = state.pageSize; closeSheets(); render(); });
@@ -328,6 +454,8 @@
     els.favsOnly?.addEventListener("change", () => { state.visibleCount = state.pageSize; render(); });
     els.exportFavsBtn?.addEventListener("click", () => navigator.clipboard?.writeText(JSON.stringify({ v:1, tool:"construction-tools-atlas", type:"favorites", ids:[...state.favs] }, null, 2)).catch(() => {}));
     els.importFavsBtn?.addEventListener("click", () => { const data = json(prompt("Paste favorites JSON:"), null); if (!data || !Array.isArray(data.ids)) return; const ids = new Set(state.entries.map((e) => e.id)); state.favs = new Set(data.ids.filter((id) => ids.has(id))); saveFavs(); render(); });
+    const detailMedia = window.matchMedia?.(DETAIL_MEDIA);
+    detailMedia?.addEventListener?.("change", () => { syncDetailContainer(); if (state.current) renderList(); });
   }
   document.addEventListener("DOMContentLoaded", () => { wire(); load(); });
 })();
