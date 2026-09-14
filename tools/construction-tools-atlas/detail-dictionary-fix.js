@@ -1,22 +1,14 @@
 (() => {
   "use strict";
 
-  const $ = (selector, root = document) => root.querySelector(selector);
+  const MODE_KEY = "cta_lang_mode";
+  const LEGACY_LANG_KEY = "cta_uilang";
+  const MODES = new Set(["ja", "en", "both"]);
   const byId = new Map();
+  let mode = MODES.has(localStorage.getItem(MODE_KEY)) ? localStorage.getItem(MODE_KEY) : (localStorage.getItem(LEGACY_LANG_KEY) === "en" ? "en" : "ja");
+  let legacyLangButton = null;
   let ready = false;
-
-  const IMAGE_PILOT = new Map([
-    ["q011_torque_wrench", { ja: "トルクレンチ", en: "Torque wrench", caption_ja: "指定トルクで締付確認する工具。", caption_en: "Tool used to tighten to a specified torque." }],
-    ["q011_anchor_bolt", { ja: "アンカーボルト", en: "Anchor bolt", caption_ja: "基礎やコンクリートに部材を固定するボルト。", caption_en: "Bolt used to fix members to concrete or foundations." }],
-    ["q011_gypsum_board", { ja: "石膏ボード", en: "Gypsum board", caption_ja: "壁や天井の下地に使う板材。", caption_en: "Board used for wall and ceiling lining." }],
-    ["q011_floor_leveler", { ja: "床レベラー", en: "Floor leveler", caption_ja: "床の不陸をならす下地調整材。", caption_en: "Material used to level uneven floors." }],
-    ["q011_laser_level", { ja: "レーザー墨出し器", en: "Laser level", caption_ja: "水平・垂直の基準線を投影する工具。", caption_en: "Tool that projects level and plumb reference lines." }],
-    ["q011_caulking_gun", { ja: "コーキングガン", en: "Caulking gun", caption_ja: "シーリング材を目地へ押し出す工具。", caption_en: "Tool used to dispense sealant into joints." }],
-    ["q013_scaffold_clamp", { ja: "クランプ", en: "Scaffold clamp", caption_ja: "単管同士を固定する足場用金具。", caption_en: "Clamp used to connect scaffold pipes." }],
-    ["q015_cable_tray", { ja: "ケーブルトレイ", en: "Cable tray", caption_ja: "ケーブルをまとめて敷設する受け材。", caption_en: "Tray used to support and organize cable runs." }],
-    ["q014_window_sash", { ja: "サッシ", en: "Window sash", caption_ja: "ガラスを納める窓の枠・可動部材。", caption_en: "Window frame or operable unit that holds glazing." }],
-    ["q016_safety_glasses", { ja: "保護メガネ", en: "Safety glasses", caption_ja: "切粉や粉じんから目を守る保護具。", caption_en: "Eye protection used against chips and dust." }],
-  ]);
+  let renderTimer = 0;
 
   const UI_TEXT = {
     ja: {
@@ -41,8 +33,9 @@
       exportFavsBtn: "お気に入りを書き出し",
       importFavsBtn: "お気に入りを読み込み",
       footerDisclaimer: "当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。",
-      searchPlaceholder: "例：インパクト / 石膏ボード / 床レベラー / torque wrench",
+      searchPlaceholder: "例：コンクリに穴あける電動のやつ / インパクト / torque wrench",
       faqTitle: "よくある質問",
+      detailTitle: "詳細"
     },
     en: {
       brandTitle: "Construction Tools Atlas",
@@ -68,210 +61,351 @@
       footerDisclaimer: "This site may include ads. Information is not guaranteed; always check official sources.",
       searchPlaceholder: "e.g. impact driver / gypsum board / floor leveler / torque wrench",
       faqTitle: "FAQ",
-    },
+      detailTitle: "Detail"
+    }
   };
 
   const HOWTO = {
     ja: [
-      "検索欄に工具名・作業名・別名・英語名を入力します。",
-      "結果の用語をタップすると、意味・例・別名・分類を確認できます。",
-      "★を押すとお気に入りに保存できます。",
-      "メニュー内の「お気に入りのみ表示」で保存済み用語だけに絞れます。",
-      "JA / EN で表示言語を切り替えられます。",
-      "カテゴリ・作業フィルタで絞り込めます。",
+      "工具名・作業名・別名だけでなく、用途を説明する言葉でも検索できます。",
+      "結果を選ぶと、意味・使用例・別名・分類を確認できます。",
+      "★でお気に入り保存できます。お気に入りはこのブラウザ内だけに保存されます。",
+      "日本語 / English / Both で表示方法を切り替えられます。",
+      "日本語またはEnglishでは、各説明の副言語を必要な箇所だけ展開できます。",
+      "カテゴリ・作業フィルタで候補を絞り込めます。"
     ],
     en: [
-      "Type a tool name, jobsite term, alias, or English/Japanese name into the search box.",
-      "Tap a result to view its meaning, examples, aliases, and classification.",
-      "Tap ★ to save a term as a favorite.",
-      "Use Favorites only in the menu to show saved terms.",
-      "Use JA / EN to switch the display language.",
-      "Use category and task filters to narrow the results.",
-    ],
+      "Search by tool names, jobsite terms, aliases, or a description of what the item does.",
+      "Select a result to view meaning, examples, aliases, and classification.",
+      "Use ★ to save favorites locally in this browser.",
+      "Switch among Japanese, English, and Both display modes.",
+      "In Japanese or English mode, expand the secondary language only where needed.",
+      "Use category and task filters to narrow the results."
+    ]
   };
 
-  function text(value) { return typeof value === "string" ? value.trim() : ""; }
-  function asArray(value) { if (Array.isArray(value)) return value.filter(Boolean).map(String); if (typeof value === "string" && value.trim()) return [value.trim()]; return []; }
-  function pair(obj, ja, en) { return { ja: text(obj?.ja) || text(ja), en: text(obj?.en) || text(en) }; }
-  function lang() { return document.documentElement.lang === "en" ? "en" : "ja"; }
-  function pick(value) { return lang() === "ja" ? (value?.ja || value?.en || "") : (value?.en || value?.ja || ""); }
-  function clear(node) { if (!node) return; while (node.firstChild) node.removeChild(node.firstChild); }
-  function byDomId(id) { return document.getElementById(id); }
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const byDomId = (id) => document.getElementById(id);
+  const text = (value) => typeof value === "string" ? value.trim() : "";
+  const asArray = (value) => Array.isArray(value) ? value.filter(Boolean).map(String) : (typeof value === "string" && value.trim() ? [value.trim()] : []);
+  const pair = (obj, ja, en) => ({ ja: text(obj?.ja) || text(ja), en: text(obj?.en) || text(en) });
+  const clear = (node) => { if (node) while (node.firstChild) node.removeChild(node.firstChild); };
+  const baseLang = () => mode === "en" ? "en" : "ja";
+  const secondaryLang = () => baseLang() === "ja" ? "en" : "ja";
 
   function normalize(raw) {
-    const description = pair(raw?.description, raw?.description_ja, raw?.summary_ja);
-    const descriptionEn = pair(raw?.description, raw?.description_ja, raw?.description_en || raw?.summary_en);
+    const description = pair(raw?.description, raw?.description_ja || raw?.summary_ja, raw?.description_en || raw?.summary_en);
     const detail = pair(raw?.detail, raw?.detail_ja, raw?.detail_en);
     const summary = pair(raw?.summary, raw?.summary_ja, raw?.summary_en);
     return {
       id: text(raw?.id || raw?.slug),
       term: pair(raw?.term, raw?.ja || raw?.jp, raw?.en),
-      aliases: { ja: asArray(raw?.aliases?.ja || raw?.alias?.ja || raw?.aliases_ja), en: asArray(raw?.aliases?.en || raw?.alias?.en || raw?.aliases_en) },
-      description: { ja: description.ja || summary.ja || detail.ja, en: descriptionEn.en || summary.en || detail.en },
-      detail: { ja: detail.ja, en: detail.en },
-      bullets: { ja: asArray(raw?.bullets?.ja || raw?.bullets_ja), en: asArray(raw?.bullets?.en || raw?.bullets_en) },
-      examples: { ja: asArray(raw?.examples?.ja || raw?.example?.ja || raw?.examples_ja || raw?.usage?.ja), en: asArray(raw?.examples?.en || raw?.example?.en || raw?.examples_en || raw?.usage?.en) },
+      aliases: {
+        ja: asArray(raw?.aliases?.ja || raw?.alias?.ja || raw?.aliases_ja),
+        en: asArray(raw?.aliases?.en || raw?.alias?.en || raw?.aliases_en)
+      },
+      description: {
+        ja: description.ja || summary.ja || detail.ja,
+        en: description.en || summary.en || detail.en
+      },
+      detail,
+      bullets: {
+        ja: asArray(raw?.bullets?.ja || raw?.bullets_ja),
+        en: asArray(raw?.bullets?.en || raw?.bullets_en)
+      },
+      examples: {
+        ja: asArray(raw?.examples?.ja || raw?.example?.ja || raw?.examples_ja || raw?.usage?.ja),
+        en: asArray(raw?.examples?.en || raw?.example?.en || raw?.examples_en || raw?.usage?.en)
+      },
       categories: asArray(raw?.categories || raw?.category),
       tasks: asArray(raw?.tasks || raw?.task),
-      fuzzy: asArray(raw?.fuzzy),
       region: asArray(raw?.region),
       type: text(raw?.type),
-      meta: raw?.meta && typeof raw.meta === "object" ? raw.meta : {},
+      meta: raw?.meta && typeof raw.meta === "object" ? raw.meta : {}
     };
   }
 
-  function addBlock(node, label, body, className) {
-    if (!node || !body) return;
-    const wrap = document.createElement("section");
-    wrap.className = className || "dictionaryBlock";
-    const heading = document.createElement("h3");
-    heading.className = "dictionaryBlock__label";
-    heading.textContent = label;
-    const textNode = document.createElement("p");
-    textNode.className = "dictionaryBlock__text";
-    textNode.textContent = body;
-    wrap.appendChild(heading);
-    wrap.appendChild(textNode);
-    node.appendChild(wrap);
+  function ensureCss() {
+    if (document.querySelector('link[data-cta-bilingual="v2.3"]')) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "./bilingual-v2.3.css?v=20260914-bilingual-1";
+    link.setAttribute("data-cta-bilingual", "v2.3");
+    document.head.appendChild(link);
   }
 
-  function addListBlock(node, label, items, className) {
-    const values = asArray(items);
-    if (!node || !values.length) return;
-    const wrap = document.createElement("section");
-    wrap.className = className || "dictionaryBlock";
-    const heading = document.createElement("h3");
-    heading.className = "dictionaryBlock__label";
-    heading.textContent = label;
-    const ul = document.createElement("ul");
-    ul.className = "dictionaryBlock__list";
-    values.forEach((item) => { const li = document.createElement("li"); li.textContent = item; ul.appendChild(li); });
-    wrap.appendChild(heading);
-    wrap.appendChild(ul);
-    node.appendChild(wrap);
+  function ensureLanguageControls() {
+    const existing = byDomId("langModeGroup");
+    if (existing) return existing;
+    const old = byDomId("langBtn");
+    if (!old?.parentNode) return null;
+    legacyLangButton = old;
+    const group = document.createElement("div");
+    group.id = "langModeGroup";
+    group.className = "ctaLangModes";
+    group.setAttribute("role", "group");
+    group.setAttribute("aria-label", "Display language");
+    [
+      ["ja", "日本語"],
+      ["en", "English"],
+      ["both", "Both"]
+    ].forEach(([value, label]) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "ctaLangModes__button";
+      button.dataset.langMode = value;
+      button.textContent = label;
+      button.addEventListener("click", () => setMode(value));
+      group.appendChild(button);
+    });
+    old.replaceWith(group);
+    return group;
   }
 
-  function addChip(parent, value) { const v = text(value); if (!parent || !v) return; const chip = document.createElement("span"); chip.className = "chip"; chip.textContent = v; parent.appendChild(chip); }
+  function syncLegacyRuntime(targetBase) {
+    if (!legacyLangButton) return;
+    const current = document.documentElement.lang === "en" ? "en" : "ja";
+    if (current !== targetBase) legacyLangButton.click();
+    localStorage.setItem(LEGACY_LANG_KEY, targetBase);
+  }
+
+  function setMode(next) {
+    if (!MODES.has(next)) return;
+    mode = next;
+    localStorage.setItem(MODE_KEY, mode);
+    const targetBase = baseLang();
+    syncLegacyRuntime(targetBase);
+    document.documentElement.lang = targetBase;
+    document.documentElement.dataset.langMode = mode;
+    applyStaticI18n();
+    updateModeButtons();
+    scheduleApply();
+    window.dispatchEvent(new CustomEvent("cta:language-mode", { detail: { mode, baseLang: targetBase } }));
+  }
+
+  function updateModeButtons() {
+    document.querySelectorAll("[data-lang-mode]").forEach((button) => {
+      const active = button.dataset.langMode === mode;
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+  }
+
+  function setNodeText(id, value) {
+    const node = byDomId(id);
+    if (node) node.textContent = value;
+  }
+
+  function applyHowto(current) {
+    const list = byDomId("howtoList");
+    if (!list) return;
+    clear(list);
+    HOWTO[current].forEach((item) => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      list.appendChild(li);
+    });
+  }
+
+  function applyMenuLinks(current) {
+    const menu = byDomId("menuSheet");
+    if (!menu) return;
+    const labels = current === "en" ? ["FAQ", "Related tools", "Support links"] : ["よくある質問", "関連ツール", "支援リンク"];
+    Array.from(menu.querySelectorAll(".menuJump")).forEach((link, index) => {
+      if (labels[index]) link.textContent = labels[index];
+    });
+  }
+
+  function applyStaticI18n() {
+    const current = baseLang();
+    const labels = UI_TEXT[current];
+    Object.entries(labels).forEach(([id, value]) => {
+      if (id === "searchPlaceholder" || id === "faqTitle" || id === "detailTitle") return;
+      setNodeText(id, value);
+    });
+    const input = byDomId("searchInput");
+    if (input) input.placeholder = labels.searchPlaceholder;
+    const faqTitle = document.querySelector("#faq h2");
+    if (faqTitle) faqTitle.textContent = labels.faqTitle;
+    const detailTitle = byDomId("detailTitle");
+    if (detailTitle) detailTitle.textContent = labels.detailTitle;
+    applyHowto(current);
+    applyMenuLinks(current);
+  }
 
   function selectedId() {
-    const sheet = $("#detailSheet");
+    const sheet = byDomId("detailSheet");
     if (!sheet || sheet.hidden) return "";
-    const meta = $("#tabMeta");
-    const textContent = meta?.textContent || "";
-    const found = textContent.match(/id:\s*([^\n]+)/);
+    const meta = byDomId("tabMeta");
+    const found = (meta?.textContent || "").match(/id:\s*([^\n]+)/);
     return found ? found[1].trim() : "";
   }
 
-  function termTitle(entry) { return `${entry.term.en || "—"} / ${entry.term.ja || "—"}`; }
-  function aliasLine(entry) { return [...entry.aliases.ja, ...entry.aliases.en].filter(Boolean).join(" / "); }
-
-  function createSvgNode(name) {
-    const ns = "http://www.w3.org/2000/svg";
-    const svg = document.createElementNS(ns, "svg");
-    svg.setAttribute("viewBox", "0 0 320 180");
-    svg.setAttribute("role", "img");
-    svg.setAttribute("aria-label", name);
-
-    const bg = document.createElementNS(ns, "rect");
-    bg.setAttribute("width", "320");
-    bg.setAttribute("height", "180");
-    bg.setAttribute("rx", "18");
-    bg.setAttribute("fill", "#f7f7f4");
-    svg.appendChild(bg);
-
-    const card = document.createElementNS(ns, "rect");
-    card.setAttribute("x", "42");
-    card.setAttribute("y", "54");
-    card.setAttribute("width", "236");
-    card.setAttribute("height", "76");
-    card.setAttribute("rx", "12");
-    card.setAttribute("fill", "#ffffff");
-    card.setAttribute("stroke", "#d4d7dd");
-    card.setAttribute("stroke-width", "3");
-    svg.appendChild(card);
-
-    const line1 = document.createElementNS(ns, "path");
-    line1.setAttribute("d", "M76 88h168");
-    line1.setAttribute("stroke", "#20242a");
-    line1.setAttribute("stroke-width", "10");
-    line1.setAttribute("stroke-linecap", "round");
-    svg.appendChild(line1);
-
-    const line2 = document.createElementNS(ns, "path");
-    line2.setAttribute("d", "M98 112h124");
-    line2.setAttribute("stroke", "#737a84");
-    line2.setAttribute("stroke-width", "6");
-    line2.setAttribute("stroke-linecap", "round");
-    svg.appendChild(line2);
-
-    const label = document.createElementNS(ns, "text");
-    label.setAttribute("x", "30");
-    label.setAttribute("y", "35");
-    label.setAttribute("font-family", "Arial, sans-serif");
-    label.setAttribute("font-size", "16");
-    label.setAttribute("fill", "#20242a");
-    label.textContent = name;
-    svg.appendChild(label);
-
-    return svg;
-  }
-
-  function ensureImageSlot() {
-    const terms = byDomId("detailTerms");
-    if (!terms) return null;
-    let slot = byDomId("detailImagePilot");
-    if (!slot) {
-      slot = document.createElement("figure");
-      slot.id = "detailImagePilot";
-      slot.className = "detailImagePilot";
-      terms.insertAdjacentElement("afterend", slot);
+  function appendLanguageCopy(parent, langCode, content, isList) {
+    const wrap = document.createElement("div");
+    wrap.className = "bilingualCopy";
+    wrap.dataset.copyLang = langCode;
+    const tag = document.createElement("div");
+    tag.className = "bilingualCopy__tag";
+    tag.textContent = langCode === "ja" ? "日本語" : "English";
+    wrap.appendChild(tag);
+    if (isList) {
+      const list = document.createElement("ul");
+      list.className = "dictionaryBlock__list";
+      asArray(content).forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        list.appendChild(li);
+      });
+      wrap.appendChild(list);
+    } else {
+      const paragraph = document.createElement("p");
+      paragraph.className = "dictionaryBlock__text";
+      paragraph.textContent = text(content);
+      wrap.appendChild(paragraph);
     }
-    return slot;
+    parent.appendChild(wrap);
+    return wrap;
   }
 
-  function renderPilotImage(entry) {
-    const slot = ensureImageSlot();
-    if (!slot) return;
-    clear(slot);
-    slot.hidden = true;
-    const item = IMAGE_PILOT.get(entry?.id || "");
-    if (!item) return;
-    const current = lang();
-    const label = current === "ja" ? item.ja : item.en;
-    const captionText = current === "ja" ? item.caption_ja : item.caption_en;
-    slot.appendChild(createSvgNode(label));
-    const caption = document.createElement("figcaption");
-    caption.textContent = captionText;
-    slot.appendChild(caption);
-    slot.hidden = false;
-  }
+  function appendSection(parent, labels, content, className, isList = false) {
+    if (!parent) return;
+    const jaValue = isList ? asArray(content?.ja) : text(content?.ja);
+    const enValue = isList ? asArray(content?.en) : text(content?.en);
+    const hasJa = isList ? jaValue.length > 0 : Boolean(jaValue);
+    const hasEn = isList ? enValue.length > 0 : Boolean(enValue);
+    if (!hasJa && !hasEn) return;
 
-  function hidePilotImage() {
-    const slot = byDomId("detailImagePilot");
-    if (!slot) return;
-    clear(slot);
-    slot.hidden = true;
-  }
-
-  function renderMeta(entry) {
-    const meta = $("#tabMeta");
-    if (!meta) return;
-    clear(meta);
-    const tagWrap = document.createElement("section");
-    tagWrap.className = "dictionaryBlock dictionaryBlock--meta";
+    const section = document.createElement("section");
+    section.className = className || "dictionaryBlock";
     const heading = document.createElement("h3");
     heading.className = "dictionaryBlock__label";
-    heading.textContent = lang() === "ja" ? "分類タグ" : "Tags";
-    const chips = document.createElement("div");
-    chips.className = "termblock__chiprow";
-    [entry.type, ...entry.categories, ...entry.tasks].forEach((item) => addChip(chips, item));
-    tagWrap.appendChild(heading);
-    tagWrap.appendChild(chips);
-    meta.appendChild(tagWrap);
-    addListBlock(meta, lang() === "ja" ? "管理情報" : "Record", [`id: ${entry.id}`, `region: ${entry.region.join(", ")}`, `quality_batch: ${entry.meta?.quality_batch || ""}`], "dictionaryBlock dictionaryBlock--record");
+    if (mode === "both") heading.textContent = `${labels.ja} / ${labels.en}`;
+    else heading.textContent = labels[baseLang()];
+    section.appendChild(heading);
+
+    if (mode === "both") {
+      if (hasJa) appendLanguageCopy(section, "ja", jaValue, isList);
+      if (hasEn) appendLanguageCopy(section, "en", enValue, isList);
+    } else {
+      const primary = baseLang();
+      const secondary = secondaryLang();
+      const primaryValue = primary === "ja" ? jaValue : enValue;
+      const secondaryValue = secondary === "ja" ? jaValue : enValue;
+      const hasPrimary = isList ? primaryValue.length > 0 : Boolean(primaryValue);
+      const hasSecondary = isList ? secondaryValue.length > 0 : Boolean(secondaryValue);
+      if (hasPrimary) appendLanguageCopy(section, primary, primaryValue, isList);
+      else if (hasSecondary) appendLanguageCopy(section, secondary, secondaryValue, isList);
+
+      if (hasPrimary && hasSecondary) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "secondaryLanguageToggle";
+        button.setAttribute("aria-expanded", "false");
+        button.textContent = secondary === "ja" ? "日本語 ▼" : "English ▼";
+        const secondaryCopy = appendLanguageCopy(section, secondary, secondaryValue, isList);
+        secondaryCopy.hidden = true;
+        button.addEventListener("click", () => {
+          const open = button.getAttribute("aria-expanded") === "true";
+          button.setAttribute("aria-expanded", open ? "false" : "true");
+          secondaryCopy.hidden = open;
+          button.textContent = secondary === "ja" ? `日本語 ${open ? "▼" : "▲"}` : `English ${open ? "▼" : "▲"}`;
+        });
+        section.insertBefore(button, secondaryCopy);
+      }
+    }
+    parent.appendChild(section);
   }
 
-  function hideTopMeta() {
+  function renderTerms(entry) {
+    const terms = byDomId("detailTerms");
+    if (!terms) return;
+    clear(terms);
+    const primary = mode === "en" ? entry.term.en : entry.term.ja;
+    const secondary = mode === "en" ? entry.term.ja : entry.term.en;
+    const title = document.createElement("div");
+    title.className = "termblock__title";
+    title.textContent = primary || secondary || "—";
+    terms.appendChild(title);
+    if (secondary && secondary !== primary) {
+      const second = document.createElement("div");
+      second.className = "termblock__secondaryName";
+      second.textContent = secondary;
+      terms.appendChild(second);
+    }
+    const aliases = [...entry.aliases.ja, ...entry.aliases.en].filter(Boolean);
+    if (aliases.length) {
+      const sub = document.createElement("div");
+      sub.className = "termblock__sub";
+      sub.textContent = aliases.join(" / ");
+      terms.appendChild(sub);
+    }
+  }
+
+  function renderTabs(entry) {
+    const current = baseLang();
+    const tabLabels = current === "en"
+      ? { meaning: "Meaning", examples: "Examples", aliases: "Aliases", meta: "Meta" }
+      : { meaning: "意味", examples: "使用例", aliases: "別名", meta: "分類" };
+    document.querySelectorAll("#detailTabs .tab").forEach((button) => {
+      if (tabLabels[button.dataset.tab]) button.textContent = tabLabels[button.dataset.tab];
+    });
+
+    const meaning = byDomId("tabMeaning");
+    clear(meaning);
+    appendSection(meaning, { ja: "これは何？", en: "What is it?" }, entry.description, "dictionaryBlock dictionaryBlock--definition");
+    appendSection(meaning, { ja: "使い方・注意", en: "Use / notes" }, entry.detail, "dictionaryBlock dictionaryBlock--notes");
+    appendSection(meaning, { ja: "要点", en: "Key points" }, entry.bullets, "dictionaryBlock dictionaryBlock--bullets", true);
+
+    const examples = byDomId("tabExamples");
+    clear(examples);
+    appendSection(examples, { ja: "使用例", en: "Examples" }, entry.examples, "dictionaryBlock dictionaryBlock--examples", true);
+    if (examples && !examples.children.length) {
+      const empty = document.createElement("p");
+      empty.className = "muted";
+      empty.textContent = current === "ja" ? "使用例はまだありません。" : "No examples yet.";
+      examples.appendChild(empty);
+    }
+
+    const aliases = byDomId("tabAliases");
+    clear(aliases);
+    appendSection(aliases, { ja: "別名・現場呼称", en: "Aliases / jobsite names" }, entry.aliases, "dictionaryBlock dictionaryBlock--aliases", true);
+    if (aliases && !aliases.children.length) {
+      const empty = document.createElement("p");
+      empty.className = "muted";
+      empty.textContent = current === "ja" ? "別名はまだありません。" : "No aliases yet.";
+      aliases.appendChild(empty);
+    }
+
+    const meta = byDomId("tabMeta");
+    clear(meta);
+    if (meta) {
+      const section = document.createElement("section");
+      section.className = "dictionaryBlock dictionaryBlock--record";
+      const heading = document.createElement("h3");
+      heading.className = "dictionaryBlock__label";
+      heading.textContent = current === "ja" ? "分類・管理情報" : "Classification / record";
+      section.appendChild(heading);
+      const list = document.createElement("ul");
+      list.className = "dictionaryBlock__list";
+      [
+        `id: ${entry.id}`,
+        `type: ${entry.type}`,
+        `categories: ${entry.categories.join(", ")}`,
+        `tasks: ${entry.tasks.join(", ")}`,
+        `region: ${entry.region.join(", ")}`,
+        `quality_batch: ${entry.meta?.quality_batch || ""}`
+      ].forEach((value) => {
+        const li = document.createElement("li");
+        li.textContent = value;
+        list.appendChild(li);
+      });
+      section.appendChild(list);
+      meta.appendChild(section);
+    }
+  }
+
+  function hideLegacyTopMeta() {
     ["detailChips", "detailDesc", "detailBullets"].forEach((id) => {
       const node = byDomId(id);
       if (node) {
@@ -281,93 +415,31 @@
     });
   }
 
-  function applyDictionaryLayout() {
+  function applyDetail() {
     if (!ready) return;
     const id = selectedId();
-    if (!id || !byId.has(id)) { hideTopMeta(); hidePilotImage(); return; }
+    if (!id || !byId.has(id)) {
+      hideLegacyTopMeta();
+      return;
+    }
     const entry = byId.get(id);
-    const definition = pick(entry.description);
-    const note = pick(entry.detail);
-    const bullets = lang() === "ja" ? entry.bullets.ja : entry.bullets.en;
-    const examples = lang() === "ja" ? entry.examples.ja : entry.examples.en;
-    const aliases = aliasLine(entry);
-
-    const terms = byDomId("detailTerms");
-    if (terms) {
-      clear(terms);
-      const title = document.createElement("div");
-      title.className = "termblock__title";
-      title.textContent = termTitle(entry);
-      terms.appendChild(title);
-      if (aliases) {
-        const sub = document.createElement("div");
-        sub.className = "termblock__sub";
-        sub.textContent = aliases;
-        terms.appendChild(sub);
-      }
-    }
-    hideTopMeta();
-    renderPilotImage(entry);
-
-    const meaning = byDomId("tabMeaning");
-    if (meaning) {
-      clear(meaning);
-      addBlock(meaning, lang() === "ja" ? "意味" : "Meaning", definition, "dictionaryBlock dictionaryBlock--definition");
-      if (note && note !== definition) addBlock(meaning, lang() === "ja" ? "使い方・注意" : "Use / notes", note, "dictionaryBlock dictionaryBlock--notes");
-      addListBlock(meaning, lang() === "ja" ? "要点" : "Key points", bullets, "dictionaryBlock dictionaryBlock--bullets");
-    }
-    const examplesNode = byDomId("tabExamples");
-    if (examplesNode) {
-      clear(examplesNode);
-      addListBlock(examplesNode, lang() === "ja" ? "使用例" : "Examples", examples, "dictionaryBlock dictionaryBlock--examples");
-      if (!examples.length) addBlock(examplesNode, lang() === "ja" ? "使用例" : "Examples", lang() === "ja" ? "例はまだありません。" : "No examples yet.", "dictionaryBlock dictionaryBlock--empty");
-    }
-    const aliasesNode = byDomId("tabAliases");
-    if (aliasesNode) {
-      clear(aliasesNode);
-      addListBlock(aliasesNode, lang() === "ja" ? "別名・英語表記" : "Aliases / English", [...entry.aliases.ja, ...entry.aliases.en], "dictionaryBlock dictionaryBlock--aliases");
-    }
-    renderMeta(entry);
-  }
-
-  function setNodeText(id, value) { const el = byDomId(id); if (el) el.textContent = value; }
-  function setPlaceholder(id, value) { const el = byDomId(id); if (!el) return; el.removeAttribute("stable"); el.removeAttribute("content"); el.setAttribute("placeholder", value); }
-
-  function applyHowto(current) {
-    const list = byDomId("howtoList");
-    if (!list) return;
-    clear(list);
-    HOWTO[current].forEach((item) => { const li = document.createElement("li"); li.textContent = item; list.appendChild(li); });
-  }
-
-  function applyMenuLinks(current) {
-    const menu = byDomId("menuSheet");
-    if (!menu) return;
-    const labels = current === "en" ? ["FAQ", "Related tools", "Support links"] : ["よくある質問", "関連ツール", "支援リンク"];
-    Array.from(menu.querySelectorAll(".menuJump")).forEach((link, index) => { if (labels[index]) link.textContent = labels[index]; });
-  }
-
-  function applyStaticI18n() {
-    const current = lang();
-    const t = UI_TEXT[current];
-    Object.keys(t).forEach((key) => {
-      if (key === "searchPlaceholder" || key === "faqTitle") return;
-      setNodeText(key, t[key]);
-    });
-    setPlaceholder("searchInput", t.searchPlaceholder);
-    const faqTitle = document.querySelector("#faq h2");
-    if (faqTitle) faqTitle.textContent = t.faqTitle;
-    applyHowto(current);
-    applyMenuLinks(current);
-    hideTopMeta();
+    renderTerms(entry);
+    hideLegacyTopMeta();
+    renderTabs(entry);
+    const title = byDomId("detailTitle");
+    if (title) title.textContent = UI_TEXT[baseLang()].detailTitle;
   }
 
   function scheduleApply() {
-    setTimeout(() => { applyStaticI18n(); applyDictionaryLayout(); }, 0);
-    setTimeout(() => { applyStaticI18n(); applyDictionaryLayout(); }, 80);
+    window.clearTimeout(renderTimer);
+    renderTimer = window.setTimeout(() => {
+      applyStaticI18n();
+      updateModeButtons();
+      applyDetail();
+    }, 0);
   }
 
-  async function loadRawEntries() {
+  async function loadEntries() {
     try {
       const raw = await window.CTA_DATA_LOADER?.loadEntries?.();
       if (!Array.isArray(raw)) return;
@@ -375,15 +447,38 @@
       ready = true;
       scheduleApply();
     } catch (error) {
-      console.warn("CTA dictionary layout fix skipped", error);
+      console.warn("CTA bilingual presentation skipped", error);
     }
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  function init() {
+    ensureCss();
+    ensureLanguageControls();
+    const targetBase = baseLang();
+    syncLegacyRuntime(targetBase);
+    document.documentElement.lang = targetBase;
+    document.documentElement.dataset.langMode = mode;
     applyStaticI18n();
-    loadRawEntries();
-    document.addEventListener("click", scheduleApply, true);
-    document.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") scheduleApply(); }, true);
-    new MutationObserver(scheduleApply).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
-  });
+    updateModeButtons();
+    loadEntries();
+
+    document.addEventListener("click", (event) => {
+      if (event.target.closest(".secondaryLanguageToggle")) return;
+      window.setTimeout(scheduleApply, 0);
+      window.setTimeout(scheduleApply, 80);
+    }, true);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") window.setTimeout(scheduleApply, 0);
+    }, true);
+
+    window.CTA_LANGUAGE_PRESENTATION = Object.freeze({
+      version: "2.3",
+      modes: ["ja", "en", "both"],
+      getMode: () => mode,
+      setMode
+    });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
+  else init();
 })();
