@@ -253,6 +253,20 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.doesNotMatch(html, /USB-PD対応 30W以上の充電器/);
 }
 
+// Canonical foldable data proves the production schema with manufacturer-verified dimensions and charging facts.
+{
+  const h = await createHarness(['google-pixel-11-pro-fold']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('155.2 × 76 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /155\.2 × 76 × 10\.1 mm/);
+  assert.match(html, /155\.2 × 150\.4 × 5 mm/);
+  assert.match(html, /239 g/);
+  assert.match(html, /4806 mAh/);
+  assert.match(html, /30W/);
+  assert.match(html, /PPS/);
+  assert.match(html, /Qi2\.2 \/ 25W/);
+}
+
 // Foldable schema renders both physical states and keeps folded dimensions in the list.
 {
   const h = await createHarness(['synthetic-foldable']);
