@@ -185,6 +185,10 @@ Wave 13では、供給側拡張方針を維持し、既存direct-link coverage�
 
 - 三重県 津市 — `/tools/trashnavi/mie/tsu/`
 
+Wave 14では、供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から山口市を選定した。山口市公式の令和8年度版ごみ収集カレンダー（ごみ分別の手引き）と粗大ごみ案内を追加し、既存のごみ分別導線と合わせてpreferred candidateへ引き上げた。data enrichment検証後、公開対象を **21自治体** とする。
+
+- 山口県 山口市 — `/tools/trashnavi/yamaguchi/yamaguchi/`
+
 生成器は公開対象ごとにrepository dataを再集約し、`municipal_home` を除くdistinct waste-specific canonical typeが **3種類未満なら生成を拒否**する。manifestに追加しただけでthin pageを公開してはならない。
 
 各自治体pageは最低限以下を持つ。
@@ -276,6 +280,23 @@ CIではcoverage strict auditと生成drift checkの両方を必須とし、公�
 - invalid records: 0
 - unknown type labels: 0
 
+### Wave 14 verified coverage baseline
+
+2026-09-14のWave 14 CI基準値は次のとおり。
+
+- municipalities: 1,916
+- records: 2,206 / 2,206 valid HTTP(S)
+- municipalities with any waste-specific direct link: 78
+- publish candidates (2+ types): 21
+- preferred candidates (3+ types): 21
+- collection calendar coverage: 21 municipalities
+- bulky-waste coverage: 20 municipalities
+- drop-off facility coverage: 1 municipality
+- waste-app coverage: 1 municipality
+- direct-link inventory: 17 datasets / 138 records / 119 unique URLs / 0 invalid URLs
+- invalid records: 0
+- unknown type labels: 0
+
 ### Direct-link health monitoring — Phase 4
 
 Phase 4では、単一legacy fileだけを確認していたlink checkを、`tools/trashnavi/data/direct-waste-links*.json` に一致する全direct-link datasetへ拡張する。
@@ -338,9 +359,9 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 ### Municipality page expansion
 
 - [x] preferred readiness 3種類以上を生成時に再検証する。
-- [x] 公開20自治体をmanifest allowlistで管理する。
+- [x] 公開21自治体をmanifest allowlistで管理する。
 - [x] 自治体pageをgeneratorから静的生成する。
-- [x] generator `--check` で20ページの生成driftを検出する。
+- [x] generator `--check` で21ページの生成driftを検出する。
 - [x] 公開URLをroot sitemapと専用sitemapへ収録する。
 - [x] robotsの既存root sitemap契約を維持し、sitemap indexから専用sitemapを発見可能にする。
 - [x] Wave 3で御浜町・海津市・結城市をpreferred candidateへ引き上げる。
@@ -354,6 +375,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - [x] Wave 11で高松市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 12で大分市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 13で津市をpreferred candidateへ引き上げ、自治体pageを公開する。
+- [x] Wave 14で山口市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
 ### Link health Phase 4
@@ -381,6 +403,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/data/direct-waste-links-supply-wave11.json` — 高松市のWave 11 collection-calendar / bulky-waste enrichment。
 - `tools/trashnavi/data/direct-waste-links-supply-wave12.json` — 大分市のWave 12 collection-calendar / bulky-waste enrichment。
 - `tools/trashnavi/data/direct-waste-links-supply-wave13.json` — 津市のWave 13 collection-calendar / bulky-waste enrichment。
+- `tools/trashnavi/data/direct-waste-links-supply-wave14.json` — 山口市のWave 14 collection-calendar / bulky-waste enrichment。
 - `tools/trashnavi/DATA_MODEL.md` — forward schema、canonical taxonomy、landing-page readiness。
 - `tools/trashnavi/scripts/audit-coverage.mjs` — repository-local coverage/data-quality audit。
 - `tools/trashnavi/scripts/check-runtime-contract.mjs` — Current runtime 6項目と公開自治体のroot internal-link整合性をCI検証する。
@@ -398,6 +421,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/kagawa/takamatsu/index.html` — Wave 11 municipality page。
 - `tools/trashnavi/oita/oita/index.html` — Wave 12 municipality page。
 - `tools/trashnavi/mie/tsu/index.html` — Wave 13 municipality page。
+- `tools/trashnavi/yamaguchi/yamaguchi/index.html` — Wave 14 municipality page。
 - `scripts/check-trashnavi-direct-links.mjs` — all-direct-link dataset inventory / scheduled link-health checker。
 - `.github/workflows/check-trashnavi-direct-links.yml` — monthly/manual live link-health check and report artifact upload。
 - `.agent/plans/20260912-trashnavi-link-freshness-phase4.md` — Phase 4 implementation / safety contract。
