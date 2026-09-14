@@ -54,3 +54,6 @@ jobs:
 
       - name: Audit image assets and canonical mappings
         run: node tools/construction-tools-atlas/scripts/audit-image-assets-v2.3.cjs
+
+      - name: Validate canonical image registry
+        run: node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs
