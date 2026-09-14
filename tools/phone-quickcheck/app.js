@@ -34,6 +34,9 @@
       port: "充電端子",
       device: "本体",
       dimensions: "外形寸法",
+      dimensionsFolded: "外形寸法（折りたたみ時）",
+      dimensionsUnfolded: "外形寸法（展開時）",
+      foldedShort: "折りたたみ時",
       display: "画面",
       water: "防水・防塵",
       charging: "充電",
@@ -87,6 +90,9 @@
       port: "Charging port",
       device: "Device",
       dimensions: "Dimensions",
+      dimensionsFolded: "Dimensions (folded)",
+      dimensionsUnfolded: "Dimensions (unfolded)",
+      foldedShort: "folded",
       display: "Display",
       water: "Water / dust",
       charging: "Charging",
@@ -228,7 +234,7 @@
     if (sort === 'lightest') {
       result.sort((a, b) => numberOrInfinity(a.weightG) - numberOrInfinity(b.weightG));
     } else if (sort === 'compact') {
-      result.sort((a, b) => numberOrInfinity(a.dimensions?.widthMm) - numberOrInfinity(b.dimensions?.widthMm) || numberOrInfinity(a.dimensions?.heightMm) - numberOrInfinity(b.dimensions?.heightMm));
+      result.sort((a, b) => numberOrInfinity(sortDimensions(a)?.widthMm) - numberOrInfinity(sortDimensions(b)?.widthMm) || numberOrInfinity(sortDimensions(a)?.heightMm) - numberOrInfinity(sortDimensions(b)?.heightMm));
     } else {
       result.sort((a, b) => numberOrZero(b.releaseYear) - numberOrZero(a.releaseYear) || a.model.localeCompare(b.model));
     }
@@ -329,7 +335,7 @@
       <div class="key-strip"><div class="key-box"><span>${escapeHtml(msg('size'))}</span><strong>${escapeHtml(compactDimensions(phone))}</strong></div><div class="key-box"><span>${escapeHtml(msg('weight'))}</span><strong>${escapeHtml(weight)}</strong></div><div class="key-box"><span>${escapeHtml(msg('port'))}</span><strong>${escapeHtml(connector)}</strong></div></div>
     </div>
     <div class="detail-body">
-      <section class="detail-section"><h3>${escapeHtml(msg('device'))}</h3>${kv(msg('dimensions'), dimensions)}${kv(msg('display'), display)}${kv(msg('water'), water)}</section>
+      <section class="detail-section"><h3>${escapeHtml(msg('device'))}</h3>${dimensionRowsHtml(phone)}${kv(msg('display'), display)}${kv(msg('water'), water)}</section>
       <section class="detail-section"><h3>${escapeHtml(msg('charging'))}</h3>${kv(msg('port'), connector)}${kv(msg('chargerGuidance'), charger)}${maxWired ? kv(msg('maxWired'), `${formatNumber(maxWired)}W`) : ''}${kv(msg('standard'), protocols)}${kv(msg('pps'), pps)}${kv(msg('wireless'), wireless)}${kv(msg('battery'), batteryLabel)}${kv(msg('cableIncluded'), cable)}${kv(msg('adapterIncluded'), adapter)}${battery.valueClass === 'third_party_reference' ? `<p class="detail-note">* ${escapeHtml(msg('thirdPartyBattery'))}</p>` : ''}</section>
       <section class="detail-section"><h3>${escapeHtml(msg('recharge'))}</h3>${rechargeHtml(battery)}<p class="detail-note">${escapeHtml(msg('rechargeNote'))}</p></section>
       <section class="detail-section"><h3>${escapeHtml(msg('whatYouNeed'))}</h3>${accessoryHtml(accessories)}</section>
@@ -437,19 +443,41 @@
     return `${links.length ? `<div class="official-links">${links.join('')}</div>` : '<span>—</span>'}${date}`;
   }
 
-  function compactDimensions(phone) {
-    const h = phone.dimensions?.heightMm;
-    const w = phone.dimensions?.widthMm;
+  function isFoldable(phone) {
+    return phone?.formFactor === 'foldable';
+  }
+
+  function sortDimensions(phone) {
+    return isFoldable(phone) ? phone.dimensionsFolded : phone.dimensions;
+  }
+
+  function dimensionString(dimensions) {
+    const h = dimensions?.heightMm;
+    const w = dimensions?.widthMm;
+    const d = dimensions?.depthMm;
     if (!h || !w) return '—';
-    return `${formatNumber(h)} × ${formatNumber(w)} mm`;
+    return [h, w, d].filter((value) => value !== null && value !== undefined).map(formatNumber).join(' × ') + ' mm';
+  }
+
+  function compactDimensions(phone) {
+    const dimensions = sortDimensions(phone);
+    const h = dimensions?.heightMm;
+    const w = dimensions?.widthMm;
+    if (!h || !w) return '—';
+    const suffix = isFoldable(phone) ? ` (${msg('foldedShort')})` : '';
+    return `${formatNumber(h)} × ${formatNumber(w)} mm${suffix}`;
   }
 
   function fullDimensions(phone) {
-    const h = phone.dimensions?.heightMm;
-    const w = phone.dimensions?.widthMm;
-    const d = phone.dimensions?.depthMm;
-    if (!h || !w) return '—';
-    return [h, w, d].filter((value) => value !== null && value !== undefined).map(formatNumber).join(' × ') + ' mm';
+    return dimensionString(sortDimensions(phone));
+  }
+
+  function dimensionRowsHtml(phone) {
+    if (isFoldable(phone)) {
+      return kv(msg('dimensionsFolded'), dimensionString(phone.dimensionsFolded))
+        + kv(msg('dimensionsUnfolded'), dimensionString(phone.dimensionsUnfolded));
+    }
+    return kv(msg('dimensions'), fullDimensions(phone));
   }
 
   function ppsLabel(value) {
