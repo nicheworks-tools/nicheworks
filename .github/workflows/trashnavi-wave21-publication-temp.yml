@@ -25,100 +25,85 @@ jobs:
           set -euo pipefail
           node <<'NODE'
           const fs = require('fs');
-          const path = require('path');
           const mustReplace = (text, from, to, label) => {
             if (!text.includes(from)) throw new Error(`missing anchor: ${label}`);
             return text.replace(from, to);
           };
 
-          // Manifest 27 -> 28, preserving compact row formatting.
           const manifestPath = 'tools/trashnavi/municipality-page-manifest.json';
           let manifest = fs.readFileSync(manifestPath, 'utf8');
           if (manifest.includes('"lgcode":"422011"')) throw new Error('Nagasaki already in manifest');
-          manifest = mustReplace(
-            manifest,
+          manifest = mustReplace(manifest,
             '  {"lgcode":"362018","pref_slug":"tokushima","city_slug":"tokushima","publish":true}\n]',
             '  {"lgcode":"362018","pref_slug":"tokushima","city_slug":"tokushima","publish":true},\n  {"lgcode":"422011","pref_slug":"nagasaki","city_slug":"nagasaki","publish":true}\n]',
-            'manifest Tokushima tail'
-          );
+            'manifest tail');
           fs.writeFileSync(manifestPath, manifest);
 
-          // Generator and affiliate publication guards.
           const genPath = 'tools/trashnavi/scripts/generate-municipality-pages.mjs';
           let gen = fs.readFileSync(genPath, 'utf8');
-          gen = mustReplace(gen, 'if(outputs.length!==27) throw new Error(`municipality page count must be 27; got ${outputs.length}`);', 'if(outputs.length!==28) throw new Error(`municipality page count must be 28; got ${outputs.length}`);', 'generator page guard');
+          gen = mustReplace(gen,
+            'if(outputs.length!==27) throw new Error(`municipality page count must be 27; got ${outputs.length}`);',
+            'if(outputs.length!==28) throw new Error(`municipality page count must be 28; got ${outputs.length}`);',
+            'generator count');
           fs.writeFileSync(genPath, gen);
 
           const affPath = 'tools/trashnavi/scripts/check-affiliate-contract.mjs';
           let aff = fs.readFileSync(affPath, 'utf8');
-          aff = mustReplace(aff, 'check(manifest.length === 27, `expected 27 published municipality pages, got ${manifest.length}`);', 'check(manifest.length === 28, `expected 28 published municipality pages, got ${manifest.length}`);', 'affiliate page guard');
+          aff = mustReplace(aff,
+            'check(manifest.length === 27, `expected 27 published municipality pages, got ${manifest.length}`);',
+            'check(manifest.length === 28, `expected 28 published municipality pages, got ${manifest.length}`);',
+            'affiliate count');
           fs.writeFileSync(affPath, aff);
 
-          // TrashNavi root municipality link.
           const indexPath = 'tools/trashnavi/index.html';
           let index = fs.readFileSync(indexPath, 'utf8');
-          if (index.includes('/tools/trashnavi/nagasaki/nagasaki/')) throw new Error('Nagasaki already linked from TrashNavi root');
-          index = mustReplace(
-            index,
+          if (index.includes('/tools/trashnavi/nagasaki/nagasaki/')) throw new Error('Nagasaki already linked');
+          index = mustReplace(index,
             '<a href="/tools/trashnavi/tokushima/tokushima/">徳島市</a></div>',
             '<a href="/tools/trashnavi/tokushima/tokushima/">徳島市</a><a href="/tools/trashnavi/nagasaki/nagasaki/">長崎市</a></div>',
-            'TrashNavi municipality link tail'
-          );
+            'root municipality links');
           fs.writeFileSync(indexPath, index);
 
-          // Machine-readable AI reference 27 -> 28.
           const aiPath = 'tools/trashnavi/ai-reference.json';
           let ai = fs.readFileSync(aiPath, 'utf8');
           if (ai.includes('"lgcode":"422011"')) throw new Error('Nagasaki already in AI reference');
           ai = mustReplace(ai, '"published_municipality_count": 27', '"published_municipality_count": 28', 'AI count');
-          ai = mustReplace(
-            ai,
+          ai = mustReplace(ai,
             '    {"lgcode":"362018","pref_slug":"tokushima","city_slug":"tokushima","url":"https://nicheworks.app/tools/trashnavi/tokushima/tokushima/"}\n  ]',
             '    {"lgcode":"362018","pref_slug":"tokushima","city_slug":"tokushima","url":"https://nicheworks.app/tools/trashnavi/tokushima/tokushima/"},\n    {"lgcode":"422011","pref_slug":"nagasaki","city_slug":"nagasaki","url":"https://nicheworks.app/tools/trashnavi/nagasaki/nagasaki/"}\n  ]',
-            'AI Tokushima tail'
-          );
+            'AI tail');
           fs.writeFileSync(aiPath, ai);
 
-          // Specification sync.
           const specPath = 'tools/trashnavi/SPEC.md';
           let spec = fs.readFileSync(specPath, 'utf8');
           if (spec.includes('Wave 21では、供給側拡張方針')) throw new Error('Wave 21 already documented');
-          const wave21Narrative = `Wave 21では、供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から長崎市を選定した。長崎市公式の家庭ごみ分別導線を現行ページへ更新し、町別のごみ収集曜日と粗大ごみ案内を追加して、3種類のwaste-specific canonical typeを持つpreferred candidateへ引き上げた。data enrichment検証後、公開対象を **28自治体** とする。\n\n- 長崎県 長崎市 — \`/tools/trashnavi/nagasaki/nagasaki/\`\n\n`;
-          spec = mustReplace(
-            spec,
+          const narrative = 'Wave 21では、供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から長崎市を選定した。長崎市公式の家庭ごみ分別導線を現行ページへ更新し、町別のごみ収集曜日と粗大ごみ案内を追加して、3種類のwaste-specific canonical typeを持つpreferred candidateへ引き上げた。data enrichment検証後、公開対象を **28自治体** とする。\n\n- 長崎県 長崎市 — `/tools/trashnavi/nagasaki/nagasaki/`\n\n';
+          spec = mustReplace(spec,
             '- 徳島県 徳島市 — `/tools/trashnavi/tokushima/tokushima/`\n\n生成器は',
-            '- 徳島県 徳島市 — `/tools/trashnavi/tokushima/tokushima/`\n\n' + wave21Narrative + '生成器は',
-            'Wave 20 narrative tail'
-          );
-
-          spec = mustReplace(spec, '- [x] 公開27自治体をmanifest allowlistで管理する。', '- [x] 公開28自治体をmanifest allowlistで管理する。', 'published count contract');
-          spec = mustReplace(spec, '- [x] generator `--check` で27ページの生成driftを検出する。', '- [x] generator `--check` で28ページの生成driftを検出する。', 'generator count contract');
-          spec = mustReplace(
-            spec,
+            '- 徳島県 徳島市 — `/tools/trashnavi/tokushima/tokushima/`\n\n' + narrative + '生成器は',
+            'Wave20 narrative tail');
+          spec = mustReplace(spec, '- [x] 公開27自治体をmanifest allowlistで管理する。', '- [x] 公開28自治体をmanifest allowlistで管理する。', 'manifest count contract');
+          spec = mustReplace(spec, '- [x] generator `--check` で27ページの生成driftを検出する。', '- [x] generator `--check` で28ページの生成driftを検出する。', 'generator drift contract');
+          spec = mustReplace(spec,
             '- [x] Wave 20で徳島市をpreferred candidateへ引き上げ、自治体pageを公開する。',
             '- [x] Wave 20で徳島市をpreferred candidateへ引き上げ、自治体pageを公開する。\n- [x] Wave 21で長崎市をpreferred candidateへ引き上げ、自治体pageを公開する。',
-            'Wave 21 checklist'
-          );
-          spec = mustReplace(
-            spec,
+            'Wave21 checklist');
+          spec = mustReplace(spec,
             '- `tools/trashnavi/data/direct-waste-links-supply-wave20.json` — 徳島市のWave 20 collection-calendar / bulky-waste enrichment。',
             '- `tools/trashnavi/data/direct-waste-links-supply-wave20.json` — 徳島市のWave 20 collection-calendar / bulky-waste enrichment。\n- `tools/trashnavi/data/direct-waste-links-supply-wave21.json` — 長崎市のWave 21 collection-calendar / bulky-waste enrichment。',
-            'Wave 21 supply evidence'
-          );
-          spec = mustReplace(
-            spec,
+            'Wave21 supply evidence');
+          spec = mustReplace(spec,
             '- `tools/trashnavi/tokushima/tokushima/index.html` — Wave 20 municipality page。',
             '- `tools/trashnavi/tokushima/tokushima/index.html` — Wave 20 municipality page。\n- `tools/trashnavi/nagasaki/nagasaki/index.html` — Wave 21 municipality page。',
-            'Wave 21 page evidence'
-          );
+            'Wave21 page evidence');
 
-          const baseline = `### Wave 21 verified coverage baseline\n\n2026-09-14のWave 21 CI基準値は次のとおり。\n\n- municipalities: 1,916\n- records: 2,221 / 2,221 valid HTTP(S)\n- municipalities with any waste-specific direct link: 78\n- publish candidates (2+ types): 28\n- preferred candidates (3+ types): 28\n- collection calendar coverage: 28 municipalities\n- bulky-waste coverage: 27 municipalities\n- waste-search coverage: 1 municipality\n- drop-off facility coverage: 1 municipality\n- waste-app coverage: 1 municipality\n- direct-link inventory: 24 datasets / 153 records / 134 unique URLs / 0 invalid URLs\n- invalid records: 0\n- unknown type labels: 0\n\n`;
-          const wave20Start = spec.indexOf('### Wave 20 verified coverage baseline');
-          if (wave20Start < 0) throw new Error('Wave 20 baseline heading missing');
-          const nextHeadingCandidates = [spec.indexOf('\n### ', wave20Start + 10), spec.indexOf('\n## ', wave20Start + 10)].filter(i => i >= 0);
-          if (!nextHeadingCandidates.length) throw new Error('heading after Wave 20 baseline missing');
-          const insertAt = Math.min(...nextHeadingCandidates) + 1;
-          spec = spec.slice(0, insertAt) + baseline + spec.slice(insertAt);
+          const baseline = '### Wave 21 verified coverage baseline\n\n2026-09-14のWave 21 CI基準値は次のとおり。\n\n- municipalities: 1,916\n- records: 2,221 / 2,221 valid HTTP(S)\n- municipalities with any waste-specific direct link: 78\n- publish candidates (2+ types): 28\n- preferred candidates (3+ types): 28\n- collection calendar coverage: 28 municipalities\n- bulky-waste coverage: 27 municipalities\n- waste-search coverage: 1 municipality\n- drop-off facility coverage: 1 municipality\n- waste-app coverage: 1 municipality\n- direct-link inventory: 24 datasets / 153 records / 134 unique URLs / 0 invalid URLs\n- invalid records: 0\n- unknown type labels: 0\n\n';
+          const wave20 = spec.indexOf('### Wave 20 verified coverage baseline');
+          if (wave20 < 0) throw new Error('Wave20 baseline missing');
+          const candidates = [spec.indexOf('\n### ', wave20 + 10), spec.indexOf('\n## ', wave20 + 10)].filter(i => i >= 0);
+          if (!candidates.length) throw new Error('heading after Wave20 missing');
+          const at = Math.min(...candidates) + 1;
+          spec = spec.slice(0, at) + baseline + spec.slice(at);
           fs.writeFileSync(specPath, spec);
           NODE
 
@@ -126,32 +111,35 @@ jobs:
 
           node <<'NODE'
           const fs = require('fs');
-          const pagePath = 'tools/trashnavi/nagasaki/nagasaki/index.html';
-          const page = fs.readFileSync(pagePath, 'utf8');
           const canonical = 'https://nicheworks.app/tools/trashnavi/nagasaki/nagasaki/';
+          const rootPath = 'sitemap.xml';
+          let root = fs.readFileSync(rootPath, 'utf8');
+          if (root.includes(`<loc>${canonical}</loc>`)) throw new Error('Nagasaki already in root sitemap');
+          if (!root.includes('</urlset>')) throw new Error('root sitemap closing tag missing');
+          root = root.replace('</urlset>', `  <url>\n    <loc>${canonical}</loc>\n    <lastmod>2026-09-14</lastmod>\n  </url>\n</urlset>`);
+          fs.writeFileSync(rootPath, root);
+
+          const page = fs.readFileSync('tools/trashnavi/nagasaki/nagasaki/index.html', 'utf8');
+          const count = (s, needle) => s.split(needle).length - 1;
           const urls = [
             'https://www.city.nagasaki.lg.jp/page/3432.html',
             'https://www.city.nagasaki.lg.jp/page/3223.html',
             'https://www.city.nagasaki.lg.jp/page/3031.html'
           ];
-          const count = (s, needle) => s.split(needle).length - 1;
-          if (count(page, 'class="official-link-card"') !== 3) throw new Error('Nagasaki page must have exactly 3 official cards');
+          if (count(page, 'class="official-link-card"') !== 3) throw new Error('Nagasaki must have exactly 3 official cards');
           if (!page.includes(`<link rel="canonical" href="${canonical}">`)) throw new Error('Nagasaki canonical missing');
-          for (const url of urls) if (!page.includes(url)) throw new Error(`Nagasaki official URL missing: ${url}`);
-          if (!page.includes('[PR]')) throw new Error('Nagasaki affiliate PR disclosure missing');
-          if (page.includes('/shimin/140000/142000/index.html')) throw new Error('legacy Nagasaki sorting URL leaked into generated page');
-          if (page.includes('class="current-calendar-callout"')) throw new Error('Nagasaki must not render annual 2026 calendar callout for ongoing weekday source');
+          for (const url of urls) if (!page.includes(url)) throw new Error(`official URL missing: ${url}`);
+          if (!page.includes('[PR]')) throw new Error('affiliate PR block missing');
+          if (page.includes('/shimin/140000/142000/index.html')) throw new Error('legacy Nagasaki URL leaked');
+          if (page.includes('class="current-calendar-callout"')) throw new Error('annual 2026 callout must be absent for ongoing weekday source');
 
           const ai = JSON.parse(fs.readFileSync('tools/trashnavi/ai-reference.json','utf8'));
-          if (ai.published_municipality_count !== 28) throw new Error('AI published count must be 28');
-          if (!Array.isArray(ai.municipalities) || ai.municipalities.length !== 28) throw new Error('AI municipality list length must be 28');
+          if (ai.published_municipality_count !== 28 || ai.municipalities.length !== 28) throw new Error('AI reference must be 28/28');
           const n = ai.municipalities.filter(x => x.lgcode === '422011');
-          if (n.length !== 1) throw new Error(`AI Nagasaki entry count must be 1; got ${n.length}`);
-          if (n[0].url !== canonical) throw new Error('AI Nagasaki canonical mismatch');
-
+          if (n.length !== 1 || n[0].url !== canonical) throw new Error('AI Nagasaki entry mismatch');
           for (const file of ['sitemap.xml','sitemap-trashnavi.xml']) {
             const text = fs.readFileSync(file,'utf8');
-            if (count(text, canonical) !== 1) throw new Error(`${file}: Nagasaki canonical count must be 1`);
+            if (count(text, `<loc>${canonical}</loc>`) !== 1) throw new Error(`${file}: Nagasaki canonical must appear exactly once`);
           }
           console.log(JSON.stringify({page_cards:3, annual_calendar_callout:false, ai_count:28, canonical}, null, 2));
           NODE
