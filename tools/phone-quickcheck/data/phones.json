@@ -9035,6 +9035,65 @@
         "verifiedAt": "2026-09-14"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "oppo-find-n6",
+      "manufacturer": "OPPO",
+      "model": "OPPO Find N6",
+      "aliases": [
+        "Find N6",
+        "OPPO FindN6",
+        "FindN6",
+        "オッポ Find N6",
+        "CPH2765"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 160,
+        "widthMm": 74,
+        "depthMm": 8.9
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 160,
+        "widthMm": 146,
+        "depthMm": 4.2
+      },
+      "weightG": 225,
+      "displayInch": 8.1,
+      "waterRating": "IP56 / IP58 / IP59",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 6000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.oppo.com/jp/smartphones/series-find-n/find-n6/specs/"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": 80,
+        "protocols": [
+          "SUPERVOOC"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "AIRVOOC",
+        "wirelessMaxW": 50
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-find-n/find-n6/specs/",
+        "manualUrl": "https://support.oppo.com/jp/user-guide/",
+        "releaseUrl": "https://www.oppo.com/jp/newsroom/press/findn6-release/",
+        "chargingUrl": "https://www.oppo.com/jp/newsroom/press/findn6-release/",
+        "wirelessUrl": "https://www.oppo.com/jp/newsroom/press/findn6-release/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
     }
   ]
 }
