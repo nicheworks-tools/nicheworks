@@ -22,6 +22,7 @@ on:
       - 'tools/_shared/check-cosmetics-runtime-semantic-merge.mjs'
       - 'tools/_shared/check-cosmetics-note-provenance-isolation.mjs'
       - 'tools/_shared/check-cosmetics-note-provenance-schema.mjs'
+      - 'tools/_shared/check-cosmetics-verified-note-wave1.mjs'
       - 'tools/_shared/check-cosmetics-canonical-merge.mjs'
       - 'tools/_shared/check-cosmetics-canonical-equivalents.mjs'
       - 'tools/_shared/check-cosmetics-jp-label-variants.mjs'
@@ -88,6 +89,8 @@ jobs:
         run: node tools/_shared/check-cosmetics-note-provenance-isolation.mjs
       - name: Note provenance schema
         run: node tools/_shared/check-cosmetics-note-provenance-schema.mjs
+      - name: Verified note wave 1
+        run: node tools/_shared/check-cosmetics-verified-note-wave1.mjs
       - name: Japanese label variant regression
         run: node tools/_shared/check-cosmetics-jp-label-variants.mjs
       - name: Canonical merge regression
@@ -107,6 +110,7 @@ jobs:
           node --check tools/_shared/check-cosmetics-runtime-semantic-merge.mjs
           node --check tools/_shared/check-cosmetics-note-provenance-isolation.mjs
           node --check tools/_shared/check-cosmetics-note-provenance-schema.mjs
+          node --check tools/_shared/check-cosmetics-verified-note-wave1.mjs
           node --check tools/_shared/check-cosmetics-jp-label-variants.mjs
           node --check tools/_shared/check-fastscan-ocr-robustness.mjs
           node --check tools/cosmetic-ingredient-checker-lite/app.js
