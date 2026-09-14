@@ -1,0 +1,122 @@
+name: TrashNavi Wave 20 readiness temp
+on:
+  push:
+    branches:
+      - feat/trashnavi-tokushima-readiness-wave20-20260914
+permissions:
+  contents: write
+jobs:
+  readiness:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Enrich Tokushima and audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, pathlib
+          data_dir = pathlib.Path('tools/trashnavi/data')
+          old = 'https://www.city.tokushima.tokushima.jp/kurashi/recycle/gomi/'
+          new = 'https://www.city.tokushima.tokushima.jp/kurashi/recycle/gomi/kateigomi/dashi/wakedashi.html'
+          hits=[]
+          for path in sorted(data_dir.glob('direct-waste-links*.json')):
+              text=path.read_text()
+              if '362018' not in text:
+                  continue
+              for i,line in enumerate(text.splitlines(),1):
+                  if '362018' in line:
+                      hits.append((str(path),i,line.strip()))
+          print('Tokushima lgcode occurrences before:')
+          for h in hits: print(h)
+          if len(hits) != 2:
+              raise SystemExit(f'expected exactly 2 existing Tokushima lgcode rows, got {len(hits)}')
+          changed=[]
+          replaced=0
+          for path in sorted(data_dir.glob('direct-waste-links*.json')):
+              lines=path.read_text().splitlines(True)
+              out=[]
+              local=0
+              for line in lines:
+                  if '"lgcode":"362018"' in line and old in line:
+                      line=line.replace(old,new,1)
+                      local += 1
+                  out.append(line)
+              if local:
+                  path.write_text(''.join(out))
+                  changed.append(str(path))
+                  replaced += local
+          if replaced != 2:
+              raise SystemExit(f'expected 2 Tokushima canonical replacements, got {replaced}')
+          expected={
+            'tools/trashnavi/data/direct-waste-links.json',
+            'tools/trashnavi/data/direct-waste-links-pref-capitals-extra.json'
+          }
+          if set(changed) != expected:
+              raise SystemExit(f'unexpected Tokushima canonical files: {changed}')
+
+          wave20=[
+            {
+              'pref':'徳島県','city':'徳島市','name':'徳島市 令和8年度家庭ごみ収集日程表',
+              'type':'収集カレンダー','link_type':'collection_calendar',
+              'url':'https://www.city.tokushima.tokushima.jp/kurashi/recycle/gomi/R08gomischedule.html',
+              'lgcode':'362018','fiscal_year':'2026','last_checked':'2026-09-14','status':'active','language':'ja'
+            },
+            {
+              'pref':'徳島県','city':'徳島市','name':'徳島市 粗大ごみ',
+              'type':'粗大ごみ','link_type':'bulky_waste',
+              'url':'https://www.city.tokushima.tokushima.jp/kurashi/recycle/gomi/sodaigomi.html',
+              'lgcode':'362018','last_checked':'2026-09-14','status':'active','language':'ja'
+            }
+          ]
+          wave_path=data_dir/'direct-waste-links-supply-wave20.json'
+          if wave_path.exists(): raise SystemExit('Wave20 dataset already exists')
+          wave_path.write_text(json.dumps(wave20,ensure_ascii=False,indent=2)+'\n')
+
+          app=pathlib.Path('tools/trashnavi/app.js')
+          text=app.read_text()
+          needle='"data/direct-waste-links-supply-wave19.json"]'
+          repl='"data/direct-waste-links-supply-wave19.json","data/direct-waste-links-supply-wave20.json"]'
+          if needle not in text: raise SystemExit('Wave19 app tail not found')
+          app.write_text(text.replace(needle,repl,1))
+
+          all_hits=[]
+          for path in sorted(data_dir.glob('direct-waste-links*.json')):
+              text=path.read_text()
+              if '362018' not in text: continue
+              try: rows=json.loads(text)
+              except Exception as e: raise SystemExit(f'{path}: {e}')
+              for row in rows:
+                  if str(row.get('lgcode'))=='362018': all_hits.append((str(path),row))
+          types=set()
+          for p,row in all_hits:
+              lt=row.get('link_type')
+              if not lt:
+                  if row.get('type')=='ごみ分別ページ': lt='waste_sorting'
+              if lt: types.add(lt)
+              if row.get('url')==old: raise SystemExit(f'legacy Tokushima URL remains in {p}')
+          print('Tokushima rows after:', len(all_hits), 'types:', sorted(types))
+          if types != {'waste_sorting','collection_calendar','bulky_waste'}:
+              raise SystemExit(f'Tokushima canonical types mismatch: {sorted(types)}')
+          PY
+
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-affiliate-contract.mjs
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+
+          rm .github/workflows/trashnavi-wave20-readiness-temp.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/trashnavi/app.js tools/trashnavi/data/direct-waste-links.json tools/trashnavi/data/direct-waste-links-pref-capitals-extra.json tools/trashnavi/data/direct-waste-links-supply-wave20.json .github/workflows/trashnavi-wave20-readiness-temp.yml
+          git diff --cached --check
+          test "$(git diff --cached --name-only | wc -l)" -eq 5
+          git commit -m "Promote Tokushima to TrashNavi preferred candidate"
+          git push
