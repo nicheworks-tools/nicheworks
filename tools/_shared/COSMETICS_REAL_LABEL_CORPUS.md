@@ -42,6 +42,24 @@ tools/_shared/cosmetics-real-label-corpus-cohort2.json
 
 PR34 established the independent cohort-2 baseline at `94 / 129` exact-known ingredient tokens, or `72.87%`. PR35 uses that measured unknown inventory for the first cohort-2 dictionary wave rather than adding speculative ingredients.
 
+## Cohort 3
+
+PR36 adds a third independent source-backed baseline instead of tuning further against cohorts 1 and 2.
+
+Cohort 3 adds six United States official-product labels retrieved on `2026-09-14` from three brands not present in either earlier cohort:
+
+- COSRX — Advanced Snail 96 Mucin Power Essence; Low pH Good Morning Gel Cleanser.
+- Vanicream — Facial Moisturizer Broad Spectrum SPF 30; Gentle Body Wash.
+- The INKEY List — Oat Cleansing Balm; Caffeine Eye Cream.
+
+This cohort deliberately broadens form and category coverage with essence, body-wash, cleansing-balm, and eye-cream examples while also re-testing cleanser and sunscreen formulas on new brands. Records live separately in:
+
+```txt
+tools/_shared/cosmetics-real-label-corpus-cohort3.json
+```
+
+PR36 is a baseline-only cohort expansion. CI measures cohort 3 at `91 / 132` exact-known ingredient tokens, or `68.94%`, with 41 unknown tokens representing 39 distinct names. It does not add dictionary identities to improve that newly observed score, and it does not invent a cohort-3 release floor. The next dictionary wave must be selected from this measured inventory.
+
 Every record must retain:
 
 ```txt
@@ -64,7 +82,7 @@ For the original cohort-1 file, the checker assigns `cohort1` when the field is 
 
 ## Source rule
 
-Both cohorts accept only official product pages on explicitly allow-listed brand domains. Marketplace pages, retailer mirrors, review sites, ingredient databases, search snippets without an official destination, and user-submitted lists are not valid corpus sources.
+All cohorts accept only official product pages on explicitly allow-listed brand domains. Marketplace pages, retailer mirrors, review sites, ingredient databases, search snippets without an official destination, and user-submitted lists are not valid corpus sources.
 
 The source URL and retrieval date are part of the record because manufacturers may revise formulas or page content. Where an official page itself warns that packaging may contain the latest formula, the corpus remains only a dated observation of that official web page.
 
@@ -108,7 +126,7 @@ The cohort-1 release floor remains frozen at:
 exact identity coverage >= 96.5%
 ```
 
-Cohort 2 now has its own measured history:
+Cohort 2 has its own measured history:
 
 ```txt
 PR34 baseline:                    94 / 129 exact identities = 72.87%
@@ -121,11 +139,13 @@ PR35 freezes the cohort-2 Wave 1 floor at:
 exact identity coverage >= 97.6%
 ```
 
-Across both cohorts, PR35 measures `409 / 422` exact-known ingredient tokens, or `96.92%` overall. The two cohort floors remain independent so a high score in one cohort cannot hide a regression in the other.
+Across cohorts 1 and 2, PR35 measures `409 / 422` exact-known ingredient tokens, or `96.92%` overall. The two frozen cohort floors remain independent so a high score in one cohort cannot hide a regression in the other.
+
+PR36 expands the corpus to 24 products, 9 brands, 16 categories, and 554 ingredient tokens. With cohort 3 intentionally left at baseline, the combined measurement is `500 / 554` exact-known ingredient tokens, or `90.25%` overall. Cohort 3 itself is `91 / 132 = 68.94%`; this score is reported independently and does not lower either earlier floor.
 
 PR35 adds only exact names observed in the cohort-2 official-product labels. It also recognizes the finite display form `Aqua (Water)` as the existing `Water` identity. The checker separately freezes all 28 Wave 1 exact names so later dictionary changes cannot silently trade one recognized identity for another while preserving only the aggregate percentage.
 
-Three cohort-2 labels remain deliberately unresolved after Wave 1: `Carbomer Homopolymer Type B`, `Chondrus Crispus`, and `Phospholipids`. They are not collapsed onto broader or possibly different maintained identities merely to force 100% coverage.
+Three cohort-2 labels remain deliberately unresolved after Wave 1: `Carbomer Homopolymer Type B`, `Chondrus Crispus`, and `Phospholipids`. They are not collapsed onto broader or possibly different maintained identities merely to force 100% coverage. Cohort 3 may repeat an unresolved name; repetition does not make an under-specified identity safe to guess.
 
 The score may improve only through reviewed parser/dictionary identity coverage. It must not improve by deleting hard products, rewriting source labels into already-known names, or weakening ambiguity protections.
 
