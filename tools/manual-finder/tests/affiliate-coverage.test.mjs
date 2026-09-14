@@ -95,13 +95,13 @@ const rows = records.map((record) => {
   const staticOffer = staticOfferTitles.has(`${record.maker} ${record.model}`);
   const basic = Boolean(modelUrl || staticOffer);
   const detail = Boolean(consumables.length || staticOffer);
-  const excludedCategory = !basic && excludedCategories.has(record.category);
   const makerIndexWithoutModel = !basic && !record.model;
+  const excludedCategory = !basic && !makerIndexWithoutModel && excludedCategories.has(record.category);
   const explicitlyExcluded = excludedCategory || makerIndexWithoutModel;
-  const exclusionReason = excludedCategory
-    ? 'excluded_category'
-    : makerIndexWithoutModel
-      ? 'maker_index_without_model'
+  const exclusionReason = makerIndexWithoutModel
+    ? 'maker_index_without_model'
+    : excludedCategory
+      ? 'excluded_category'
       : '';
   const unclassified = !basic && !explicitlyExcluded;
   return {
@@ -136,6 +136,12 @@ const explicitExclusions = rows.filter((row) => row.explicitlyExcluded);
 const excludedCategoryRows = rows.filter((row) => row.exclusionReason === 'excluded_category');
 const makerIndexRows = rows.filter((row) => row.exclusionReason === 'maker_index_without_model');
 const unclassified = rows.filter((row) => row.unclassified);
+const excludedCategoryByMaker = Object.fromEntries(
+  Array.from(excludedCategoryRows.reduce((map, row) => {
+    map.set(row.maker, (map.get(row.maker) || 0) + 1);
+    return map;
+  }, new Map())).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+);
 const summary = {
   total: rows.length,
   basic: rows.filter((row) => row.basic).length,
@@ -145,6 +151,7 @@ const summary = {
   makerIndexWithoutModel: makerIndexRows.length,
   unclassified: unclassified.length,
   excludedCategories: Array.from(excludedCategories).sort(),
+  excludedCategoryByMaker,
   excludedFingerprint: crypto.createHash('sha256').update(
     explicitExclusions
       .map((row) => `${row.id}|${row.maker}|${row.model}|${row.category}|${row.exclusionReason}`)
@@ -170,6 +177,20 @@ assert.equal(
   summary.excludedCategoryRecords + summary.makerIndexWithoutModel,
   summary.explicitlyExcluded,
   'every explicit exclusion must have exactly one audited reason'
+);
+assert.equal(
+  Object.values(summary.excludedCategoryByMaker).reduce((sum, count) => sum + count, 0),
+  summary.excludedCategoryRecords,
+  'maker-level excluded-category counts must reconcile to the audited excluded total'
+);
+assert.deepEqual(
+  Object.keys(summary.excludedCategoryByMaker),
+  ['Seiko'],
+  'only the reviewed Seiko caliber family may remain excluded by category; new その他 makers must be reviewed explicitly'
+);
+assert.ok(
+  excludedCategoryRows.every((row) => row.maker === 'Seiko' && row.family === 'Watch caliber'),
+  'all category exclusions must remain non-retail Seiko caliber identifiers'
 );
 
 console.log('ManualFinder affiliate coverage audit passed.');
