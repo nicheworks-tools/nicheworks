@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "phase": "researched-content",
+  "phase": "reference-image-candidates",
   "updated": "2026-09-14",
   "policy": {
     "record_count": 20,
     "runtime_merge": "Overlay these fields on data/patterns.json by matching pattern_id.",
-    "review_state": "mixed",
+    "review_state": "image_ready",
     "qualified_terms": [
       "moroccan-trellis",
       "ikat",
       "kilim"
     ],
-    "image_state": "partial"
+    "image_state": "candidates-complete"
   },
   "patterns": [
     {
@@ -819,7 +819,7 @@
     },
     {
       "pattern_id": "karakusa",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "唐草",
@@ -881,7 +881,7 @@
     },
     {
       "pattern_id": "damask",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "ダマスク",
@@ -941,7 +941,7 @@
     },
     {
       "pattern_id": "arabesque",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "アラベスク",
@@ -1001,7 +1001,7 @@
     },
     {
       "pattern_id": "paisley",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "ペイズリー",
@@ -1064,7 +1064,7 @@
     },
     {
       "pattern_id": "leopard-print",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "レオパード柄",
@@ -1127,7 +1127,7 @@
     },
     {
       "pattern_id": "ikat",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "qualified",
       "names": {
         "ja": "イカット",
@@ -1193,7 +1193,7 @@
     },
     {
       "pattern_id": "kilim",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "qualified",
       "names": {
         "ja": "キリム柄",

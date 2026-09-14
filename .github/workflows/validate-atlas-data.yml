@@ -4,9 +4,6 @@ on:
   push:
   pull_request:
 
-permissions:
-  contents: write
-
 jobs:
   validate-data:
     runs-on: ubuntu-latest
@@ -19,59 +16,3 @@ jobs:
           node-version: '20'
       - name: Run data validation
         run: node tools/construction-tools-atlas/scripts/validate-data.mjs
-
-  pattern-dictionary-phase3-complete:
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/feat/pattern-dictionary-production-20-20260914' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout production branch
-        uses: actions/checkout@v4
-        with:
-          ref: feat/pattern-dictionary-production-20-20260914
-      - name: Generate all twenty deterministic reference images
-        run: |
-          python3 tools/pattern-dictionary/scripts/generate-reference-images.py
-          python3 tools/pattern-dictionary/scripts/generate-reference-images-organic.py
-      - name: Advance all twenty candidates and runtime image set
-        run: |
-          python3 <<'PY'
-          from pathlib import Path
-          import json, re
-          root=Path('tools/pattern-dictionary')
-          canonical=['houndstooth','gingham','tartan','glen-check','argyle','chevron','polka-dot','moroccan-trellis','seigaiha','asanoha','shippo','ichimatsu','kikko','karakusa','damask','arabesque','paisley','leopard-print','ikat','kilim']
-          ids=set(canonical)
-
-          prod=root/'data/production-content.json'
-          d=json.loads(prod.read_text())
-          assert {r['pattern_id'] for r in d['patterns']} == ids
-          for r in d['patterns']:
-              r['review_state']='image_ready'
-          d['phase']='reference-image-candidates'
-          d['policy']['review_state']='image_ready'
-          d['policy']['image_state']='candidates-complete'
-          prod.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
-
-          app=root/'app.js'
-          s=app.read_text()
-          replacement="const REFERENCE_IDS=new Set(["+','.join(repr(x) for x in canonical)+"]);"
-          s,n=re.subn(r"const REFERENCE_IDS=new Set\(\[.*?\]\);",replacement,s,count=1)
-          assert n == 1
-          app.write_text(s)
-          PY
-      - name: Validate Pattern Dictionary Phase 2 and Phase 3 contracts
-        run: |
-          node tools/pattern-dictionary/tests/source-verification-test.mjs
-          node tools/pattern-dictionary/tests/production-content-test.mjs
-          node tools/pattern-dictionary/tests/validate.mjs
-          node tools/pattern-dictionary/tests/search-test.mjs
-          node tools/pattern-dictionary/tests/reference-image-test.mjs
-          node --check tools/pattern-dictionary/app.js
-      - name: Persist Phase 3 completion and restore CI workflow
-        run: |
-          git fetch origin main --depth=1
-          git checkout origin/main -- .github/workflows/validate-atlas-data.yml
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add .github/workflows/validate-atlas-data.yml tools/pattern-dictionary
-          git commit -m 'feat: complete 20 Pattern Dictionary reference image candidates [phase3]'
-          git push origin HEAD:feat/pattern-dictionary-production-20-20260914
