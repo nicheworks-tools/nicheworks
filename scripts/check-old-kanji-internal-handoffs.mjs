@@ -24,11 +24,11 @@ const contracts = [
     required: ['../old-kanji-reference/', '../kanji-modernizer/', '../old-kanji-ocr-scanner/']
   },
   {
-    slug: 'unicode-kanji-checker', marker: 'class="reference-links"', expectedCount: 3,
+    slug: 'unicode-kanji-checker', marker: '<section class="reference-links">', expectedCount: 3,
     required: ['../variant-kanji-compare/', '../old-kanji-reference/', '../kanji-modernizer/']
   },
   {
-    slug: 'variant-kanji-compare', marker: 'class="reference-links"', expectedCount: 3,
+    slug: 'variant-kanji-compare', marker: '<section class="reference-links">', expectedCount: 3,
     required: ['../unicode-kanji-checker/', '../old-kanji-reference/', '../name-old-kanji-checker/']
   },
   {
