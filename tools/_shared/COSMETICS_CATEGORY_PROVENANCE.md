@@ -1,6 +1,6 @@
 # Cosmetics Verified Category Provenance
 
-PR44 introduced a source-backed category overlay for canonical cosmetic ingredient identities. PR45 added wave 2, PR46 formalized the verified category taxonomy, and PR47 promotes two taxonomy-reviewed mappings as wave 3. None of these changes rewrites the raw recognition dictionaries merely to make the frozen 187 missing-category baseline smaller.
+PR44 introduced a source-backed category overlay for canonical cosmetic ingredient identities. PR45 added wave 2, PR46 formalized the verified category taxonomy, PR47 promoted two taxonomy-reviewed mappings as wave 3, and PR53 adds two further identities using existing taxonomy terms only. None of these changes rewrites the raw recognition dictionaries merely to make the frozen 187 missing-category baseline smaller.
 
 ## Contract
 
@@ -44,7 +44,14 @@ Raw recognition records remain unchanged. This keeps recognition identity/aliase
 | `sodium chloride` | `viscosity adjuster` | Cosmetics Info lists Sodium Chloride as a `viscosity increasing agent - aqueous`. PR46 explicitly mapped that authority wording to the internal category `viscosity adjuster`. |
 | `disodium edta` | `chelating agent` | Cosmetics Info states that EDTA and related ingredients function as chelating agents. PR46 explicitly mapped that authority wording to the internal category `chelating agent`. |
 
-Wave 3 does not invent new taxonomy mappings. It promotes the two mappings that PR46 already reviewed and held as `runtime_verified: false`.
+## Wave 4 reviewed set
+
+| Canonical identity | Verified category | Source basis |
+| --- | --- | --- |
+| `tocopheryl acetate` | `antioxidant` | Cosmetics Info explicitly states that Tocopheryl Acetate functions as an antioxidant. |
+| `sodium citrate` | `pH adjuster` | Cosmetics Info lists Sodium Citrate among the citrate salts and lists `pH adjuster` among the functions of citric acid, its salts and esters. |
+
+Wave 4 introduces no new internal category and no new authority-function translation. Both entries use mappings already permitted by the explicit taxonomy: `antioxidant` → `antioxidant` and `pH adjuster` → `pH adjuster`.
 
 Source URLs are stored in `VERIFIED_CATEGORY_EVIDENCE` in `cosmetic-ingredient-parser.js`, while authority-function translations are controlled by `cosmetics-category-taxonomy.json`. Both are enforced in CI.
 
@@ -54,6 +61,7 @@ Source URLs are stored in `VERIFIED_CATEGORY_EVIDENCE` in `cosmetic-ingredient-p
 - Wave 1 remains exactly five reviewed canonical identities.
 - Wave 2 remains exactly two reviewed canonical identities.
 - Wave 3 contains exactly Sodium Chloride and Disodium EDTA.
+- Wave 4 contains exactly Tocopheryl Acetate and Sodium Citrate.
 - Every overlay entry must exist in the maintained nine-file dictionary set.
 - Every entry must have a non-empty category, source organization, and approved HTTPS source URL.
 - The checker pins the reviewed source URL for every verified canonical identity.

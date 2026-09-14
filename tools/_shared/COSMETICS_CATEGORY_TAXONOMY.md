@@ -1,6 +1,6 @@
 # Cosmetics Verified Category Taxonomy
 
-PR46 defines the controlled vocabulary used only by the source-backed verified category overlay. PR47 promotes two mappings that PR46 had already reviewed. The taxonomy does not rewrite or normalize legacy raw dictionary category fields.
+PR46 defines the controlled vocabulary used only by the source-backed verified category overlay. PR47 promotes two mappings that PR46 had already reviewed. PR53 adds Tocopheryl Acetate and Sodium Citrate using already-authorized function terms; it does not expand the internal category vocabulary. The taxonomy does not rewrite or normalize legacy raw dictionary category fields.
 
 ## Why this exists
 
@@ -54,9 +54,31 @@ Source: https://www.cosmeticsinfo.org/ingredient/disodium-edta/
 
 The source states that EDTA and related ingredients function as chelating agents in cosmetics and personal care products. PR46 reviewed this mapping; PR47 promotes it to `runtime_verified: true`.
 
+## Direct terminology mappings added in wave 4
+
+### Tocopheryl Acetate
+
+Authority wording: `antioxidant`
+
+Internal verified category: `antioxidant`
+
+Source: https://www.cosmeticsinfo.org/ingredient/tocopherol/
+
+No cross-terminology normalization is needed: Cosmetics Info directly states that Tocopheryl Acetate functions as an antioxidant.
+
+### Sodium Citrate
+
+Authority wording: `pH adjuster`
+
+Internal verified category: `pH adjuster`
+
+Source: https://www.cosmeticsinfo.org/ingredient/citric-acid/
+
+No new taxonomy synonym is introduced. Cosmetics Info includes Sodium Citrate among citrate salts and lists pH adjuster among the functions of citric acid, its salts and esters.
+
 ## Existing provenance mappings
 
-All nine runtime-verified canonical identities from PR44-47 are represented in the taxonomy registry. The taxonomy checker requires their category, authority and source URL to remain identical to the runtime evidence overlay.
+All eleven runtime-verified canonical identities from PR44-47 and PR53 are represented in the taxonomy registry. The taxonomy checker requires their category, authority and source URL to remain identical to the runtime evidence overlay.
 
 ## Fail-closed behavior
 
