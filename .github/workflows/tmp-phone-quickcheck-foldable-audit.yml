@@ -1,0 +1,20 @@
+name: Temporary Phone QuickCheck foldable audit
+
+on:
+  push:
+    branches:
+      - audit/phone-quickcheck-foldables-20260915
+    paths:
+      - .github/workflows/tmp-phone-quickcheck-foldable-audit.yml
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/phone-quickcheck-foldables-20260915
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/tmp-phone-quickcheck-foldable-audit.mjs
