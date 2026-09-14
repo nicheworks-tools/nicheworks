@@ -162,8 +162,16 @@ function classifyRecord({ source, target, meta, note, duplicate, forwardIssues }
   const verifiedOldPair = hasVerifiedOldToModernEvidence(meta, target);
   if (verifiedOldPair) evidence.push('verified_metadata_old_to_modern');
 
+  const classificationBlockingIssues = new Set([
+    'conflicting_duplicate_key',
+    'metadata_modern_mismatch',
+    'compatibility_note_modern_mismatch',
+    'reverse_mapping_missing',
+    'reverse_target_mismatch'
+  ]);
+
   let classification;
-  if (issues.some((issue) => ['conflicting_duplicate_key', 'metadata_modern_mismatch', 'compatibility_note_modern_mismatch', 'reverse_mapping_missing'].includes(issue))) {
+  if (issues.some((issue) => classificationBlockingIssues.has(issue))) {
     classification = 'unresolved';
   } else if (source === target) {
     classification = 'identity';
@@ -213,7 +221,11 @@ export function buildAudit() {
     forwardIssuesBySource.get(source).push(issue);
   };
 
+  // Identity mappings do not need a self-reference in new_to_old. The reverse
+  // table is a conversion-candidate table, so requiring X -> [X] would create
+  // noise rather than a useful integrity check.
   for (const [source, target] of Object.entries(oldToNew)) {
+    if (source === target) continue;
     const reverse = Array.isArray(newToOld[target]) ? newToOld[target] : [];
     if (!reverse.includes(source)) {
       reverseIssues.push({ type: 'forward_missing_from_reverse', source, target });
@@ -287,7 +299,7 @@ export function buildAudit() {
       compatibility: 'Unicode U+F900–U+FAFF or existing compatibility note riskTypes includes compatibility-ideograph',
       variant: 'existing repository metadata/compatibility wording explicitly says 異体字 or variant',
       old_to_modern: 'verified metadata modern target matches dict and sourceNote explicitly describes old/new-form correspondence',
-      identity: 'source equals mapped target',
+      identity: 'source equals mapped target; self-reference in new_to_old is not required',
       unresolved: 'repository evidence is insufficient or data-quality conflicts exist',
       seoCandidate: 'non-identity/non-unresolved classification + no issues + verified matching metadata + at least two standalone repository signals; publication still requires actual search demand'
     },
