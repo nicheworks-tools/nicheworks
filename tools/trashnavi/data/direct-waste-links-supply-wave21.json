@@ -1,0 +1,26 @@
+[
+  {
+    "pref": "長崎県",
+    "city": "長崎市",
+    "name": "長崎市 町別のごみ収集曜日",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.nagasaki.lg.jp/page/3223.html",
+    "lgcode": "422011",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "長崎県",
+    "city": "長崎市",
+    "name": "長崎市 粗大ごみの出し方",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.nagasaki.lg.jp/page/3031.html",
+    "lgcode": "422011",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  }
+]
