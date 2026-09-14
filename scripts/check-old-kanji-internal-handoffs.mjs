@@ -24,11 +24,11 @@ const contracts = [
     required: ['../old-kanji-reference/', '../kanji-modernizer/', '../old-kanji-ocr-scanner/']
   },
   {
-    slug: 'unicode-kanji-checker', marker: 'class="nw-links"', expectedCount: 3,
+    slug: 'unicode-kanji-checker', marker: 'class="reference-links"', expectedCount: 3,
     required: ['../variant-kanji-compare/', '../old-kanji-reference/', '../kanji-modernizer/']
   },
   {
-    slug: 'variant-kanji-compare', marker: 'class="nw-links"', expectedCount: 3,
+    slug: 'variant-kanji-compare', marker: 'class="reference-links"', expectedCount: 3,
     required: ['../unicode-kanji-checker/', '../old-kanji-reference/', '../name-old-kanji-checker/']
   },
   {
@@ -36,7 +36,7 @@ const contracts = [
     required: ['../old-kanji-reference/', '../kanji-modernizer/', '../name-old-kanji-checker/']
   },
   {
-    slug: 'name-old-kanji-checker', marker: 'class="nw-links"', expectedCount: 3,
+    slug: 'name-old-kanji-checker', marker: 'class="reference-links related-links"', expectedCount: 3,
     required: ['../old-kanji-reference/', '../variant-kanji-compare/', '../unicode-kanji-checker/']
   },
 ];
@@ -45,7 +45,7 @@ function blockAfterMarker(html, marker) {
   const start = html.indexOf(marker);
   if (start < 0) return '';
   const open = html.lastIndexOf('<', start);
-  const tagMatch = html.slice(open).match(/^<(div|section)\b/);
+  const tagMatch = html.slice(open).match(/^<(div|section|footer)\b/);
   if (!tagMatch) return '';
   const tag = tagMatch[1];
   const end = html.indexOf(`</${tag}>`, start);
@@ -60,7 +60,7 @@ for (const contract of contracts) {
   for (const target of contract.required) {
     check(block.includes(target), `${contract.slug}: missing required handoff ${target}`);
   }
-  const count = (block.match(/<(?:a)\b/g) || []).length;
+  const count = (block.match(/<a\b/g) || []).length;
   check(count >= 2 && count <= 4, `${contract.slug}: handoff block must contain 2–4 links, found ${count}`);
   check(count === contract.expectedCount, `${contract.slug}: expected ${contract.expectedCount} handoff links, found ${count}`);
 }
