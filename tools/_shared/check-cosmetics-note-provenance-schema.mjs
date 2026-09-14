@@ -117,7 +117,11 @@ for (const [key, group] of groups.entries()) {
   }
 }
 
-assert.equal(parser.normalizeNoteSources(['https://example.com/a', 'https://example.com/a']), ['https://example.com/a'].map(String).length ? undefined : undefined);
+assert.deepEqual(
+  parser.normalizeNoteSources(['https://example.com/a', 'https://example.com/a', 'http://example.com/b']),
+  ['https://example.com/a'],
+  'note source normalization must dedupe HTTPS URLs and reject non-HTTPS sources'
+);
 
 const secondRecordVerified = parser.mergeDictionaryRecords([
   {
