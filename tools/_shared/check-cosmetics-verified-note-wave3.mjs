@@ -20,25 +20,46 @@ const DATA_FILES = [
 ];
 
 const CLAIM_REVIEW_RE = /\b(?:safe|safety|risk|irritat|allerg|sensiti|pregnan|toxic|comedogen|acne|well tolerated|avoid)\b/i;
+const FORBIDDEN_VAGUE_CLAIM_RE = /\b(?:generally safe|well tolerated|high allergy risk|often avoided|may clog pores|avoid eye area|very sensitive skin|mild irritation possible)\b/i;
 const EXPECTED_RAW_CLAIM_ROWS = 22;
-const EXPECTED_WAVE1 = Object.freeze({
-  phenoxyethanol: Object.freeze({
-    note_short: 'Preservative; SCCS considers it safe for use up to 1.0% in cosmetic products.',
-    source: 'https://health.ec.europa.eu/publications/phenoxyethanol_en',
+const PRIOR_WAVE_KEYS = Object.freeze([
+  'phenoxyethanol',
+  'sodium hydroxide',
+  'potassium hydroxide',
+  'methylisothiazolinone',
+  'methylchloroisothiazolinone',
+  'sodium benzoate',
+  'sodium dehydroacetate',
+  'sulfur'
+]);
+const EXPECTED_WAVE3 = Object.freeze({
+  'alpha-arbutin': Object.freeze({
+    note_short: 'SCCS-reviewed cosmetic ingredient; alpha-arbutin is considered safe up to 2% in face creams and 0.5% in body lotions.',
+    source: 'https://health.ec.europa.eu/publications/safety-alpha-arbutin-and-beta-arbutin-cosmetic-products_en',
     authority: 'European Commission Scientific Committee on Consumer Safety'
   }),
-  'sodium hydroxide': Object.freeze({
-    note_short: 'pH adjuster; EU cosmetic rules list sodium hydroxide for pH-adjusting uses subject to specified restrictions.',
-    source: 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0622',
-    authority: 'European Union / EUR-Lex'
+  'ceteareth-20': Object.freeze({
+    note_short: 'Surfactant; Cosmetics Info reports Ceteareth-20 as a solubilizing and cleansing agent.',
+    source: 'https://www.cosmeticsinfo.org/ingredient/ceteareth-20/',
+    authority: 'Personal Care Products Council / Cosmetics Info'
   }),
-  'potassium hydroxide': Object.freeze({
-    note_short: 'pH adjuster; EU cosmetic rules list potassium hydroxide for pH-adjusting uses subject to specified restrictions.',
-    source: 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0622',
-    authority: 'European Union / EUR-Lex'
+  'steareth-21': Object.freeze({
+    note_short: 'Surfactant; Cosmetics Info reports Steareth-21 as a cleansing, emulsifying and solubilizing agent.',
+    source: 'https://www.cosmeticsinfo.org/ingredient/steareth-21/',
+    authority: 'Personal Care Products Council / Cosmetics Info'
+  }),
+  'isopropyl myristate': Object.freeze({
+    note_short: 'Binder and skin-conditioning emollient; these functions are reported for isopropyl myristate by Cosmetics Info.',
+    source: 'https://www.cosmeticsinfo.org/ingredient/isopropyl-myristate/',
+    authority: 'Personal Care Products Council / Cosmetics Info'
+  }),
+  'simmondsia chinensis jojoba seed oil': Object.freeze({
+    note_short: 'Hair-conditioning and occlusive skin-conditioning ingredient; these functions are reported for jojoba seed oil by Cosmetics Info.',
+    source: 'https://www.cosmeticsinfo.org/ingredient/simmondsia-chinensis-jojoba-seed-oil/',
+    authority: 'Personal Care Products Council / Cosmetics Info'
   })
 });
-const ALLOWED_SOURCE_HOSTS = new Set(['health.ec.europa.eu', 'eur-lex.europa.eu']);
+const ALLOWED_SOURCE_HOSTS = new Set(['health.ec.europa.eu', 'www.cosmeticsinfo.org']);
 
 function normalizeText(value = '') {
   return String(value).normalize('NFKC').replace(/\s+/g, ' ').trim();
@@ -60,15 +81,11 @@ const rows = DATA_FILES.flatMap((file) => {
 });
 
 const claimRows = rows.filter((item) => CLAIM_REVIEW_RE.test(normalizeText(item.note_short)));
-assert.equal(
-  claimRows.length,
-  EXPECTED_RAW_CLAIM_ROWS,
-  'raw claim-bearing legacy-note baseline must remain auditable at 22 rows'
-);
+assert.equal(claimRows.length, EXPECTED_RAW_CLAIM_ROWS, 'raw claim-bearing legacy-note baseline must remain exactly 22 rows');
 
 const evidence = parser.verifiedNoteEvidence || {};
-for (const canonical of Object.keys(EXPECTED_WAVE1)) {
-  assert.ok(Object.hasOwn(evidence, canonical), `${canonical}: verified note wave 1 entry must remain present`);
+for (const canonical of [...PRIOR_WAVE_KEYS, ...Object.keys(EXPECTED_WAVE3)]) {
+  assert.ok(Object.hasOwn(evidence, canonical), `${canonical}: wave 1-3 verified note entry must remain present`);
 }
 
 const canonicalRows = new Map();
@@ -79,18 +96,19 @@ for (const row of rows) {
   canonicalRows.get(key).push(row);
 }
 
-for (const [canonical, expected] of Object.entries(EXPECTED_WAVE1)) {
+for (const [canonical, expected] of Object.entries(EXPECTED_WAVE3)) {
   const item = evidence[canonical];
-  assert.ok(item, `${canonical}: verified note evidence missing`);
-  assert.equal(normalizeText(item.note_short), expected.note_short, `${canonical}: verified note text changed unexpectedly`);
+  assert.ok(item, `${canonical}: wave 3 verified note evidence missing`);
+  assert.equal(normalizeText(item.note_short), expected.note_short, `${canonical}: reviewed wave 3 note text changed unexpectedly`);
   assert.equal(normalizeText(item.authority), expected.authority, `${canonical}: reviewed authority changed unexpectedly`);
+  assert.ok(!FORBIDDEN_VAGUE_CLAIM_RE.test(item.note_short), `${canonical}: vague legacy safety/tolerability language must not return`);
   assert.ok(Array.isArray(item.note_sources) && item.note_sources.length > 0, `${canonical}: HTTPS source required`);
-  assert.ok(item.note_sources.every(validSource), `${canonical}: only reviewed EC/EUR-Lex HTTPS sources are allowed in wave 1`);
+  assert.ok(item.note_sources.every(validSource), `${canonical}: only reviewed SCCS/Cosmetics Info HTTPS sources are allowed in wave 3`);
   assert.ok(item.note_sources.includes(expected.source), `${canonical}: reviewed source URL missing`);
   assert.ok(canonicalRows.has(canonical), `${canonical}: canonical identity must exist in maintained dictionary`);
   assert.ok(
     canonicalRows.get(canonical).some((row) => CLAIM_REVIEW_RE.test(normalizeText(row.note_short))),
-    `${canonical}: wave 1 must resolve an existing claim-bearing legacy note rather than invent a new note surface`
+    `${canonical}: wave 3 must resolve an existing frozen claim-bearing legacy note`
   );
 }
 
@@ -100,30 +118,32 @@ for (const ambiguous of parser.ambiguousExactKeys || []) {
 
 const merged = parser.mergeDictionaryRecords(rows);
 const mergedByCanonical = new Map(merged.map((item) => [parser.canonicalIdentityKey(item.en), item]));
-for (const [canonical, expected] of Object.entries(EXPECTED_WAVE1)) {
+for (const [canonical, expected] of Object.entries(EXPECTED_WAVE3)) {
   const item = mergedByCanonical.get(canonical);
   assert.ok(item, `${canonical}: missing from merged runtime dictionary`);
   assert.equal(item.note_verified, true, `${canonical}: verified note flag must survive canonical merge`);
-  assert.equal(item.note_short, expected.note_short, `${canonical}: runtime note must be the reviewed note`);
+  assert.equal(item.note_short, expected.note_short, `${canonical}: runtime note must be the reviewed wave 3 note`);
   assert.ok(Array.isArray(item.note_sources) && item.note_sources.includes(expected.source), `${canonical}: reviewed source must survive canonical merge`);
   assert.equal(item.note_authority, expected.authority, `${canonical}: note authority must survive canonical merge`);
   assert.equal(item.note_provenance_conflict, undefined, `${canonical}: verified overlay must not create note provenance conflict`);
 }
 
-const wave1Set = new Set(Object.keys(EXPECTED_WAVE1));
-const wave1ResolvedClaimRows = claimRows.filter((row) => wave1Set.has(parser.canonicalIdentityKey(row.en)));
-assert.equal(wave1ResolvedClaimRows.length, 3, 'wave 1 should continue to resolve exactly three of the frozen 22 claim-bearing legacy-note rows');
+const wave123Set = new Set([...PRIOR_WAVE_KEYS, ...Object.keys(EXPECTED_WAVE3)]);
+const wave123ResolvedClaimRows = claimRows.filter((row) => wave123Set.has(parser.canonicalIdentityKey(row.en)));
+assert.equal(wave123ResolvedClaimRows.length, 13, 'waves 1-3 must continue to resolve exactly thirteen frozen claim-bearing rows');
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'verified-note-wave-1',
+  phase: 'verified-note-wave-3',
   raw_claim_bearing_legacy_note_rows: claimRows.length,
-  wave_1_verified_note_overlay_canonical_identities: Object.keys(EXPECTED_WAVE1).length,
+  prior_verified_canonical_identities: PRIOR_WAVE_KEYS.length,
+  wave_3_verified_canonical_identities: Object.keys(EXPECTED_WAVE3).length,
   cumulative_verified_note_overlay_canonical_identities: Object.keys(evidence).length,
-  wave_1_resolved_claim_bearing_rows: wave1ResolvedClaimRows.length,
-  wave_1_resolved_canonical_identities: Object.keys(EXPECTED_WAVE1),
+  wave_1_through_3_resolved_claim_bearing_rows: wave123ResolvedClaimRows.length,
+  wave_3_resolved_canonical_identities: Object.keys(EXPECTED_WAVE3),
   raw_dictionary_records_rewritten: false,
   runtime_notes_use_existing_provenance_gate: true,
+  vague_legacy_safety_language_reintroduced: false,
   safety_contract_changed: false,
   recognition_contract_changed: false,
   affiliate_contract_changed: false

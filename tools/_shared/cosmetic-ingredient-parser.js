@@ -131,6 +131,86 @@
       note_short: "pH adjuster; EU cosmetic rules list potassium hydroxide for pH-adjusting uses subject to specified restrictions.",
       note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0622"]),
       authority: "European Union / EUR-Lex"
+    }),
+    "methylisothiazolinone": Object.freeze({
+      note_short: "Preservative; EU cosmetic rules limit methylisothiazolinone to rinse-off products at up to 0.0015%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R1224"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "methylchloroisothiazolinone": Object.freeze({
+      note_short: "Preservative; in EU cosmetics, the methylchloroisothiazolinone/methylisothiazolinone 3:1 mixture is limited to rinse-off products at up to 0.0015%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32014R1003"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "sodium benzoate": Object.freeze({
+      note_short: "Preservative; EU Annex V sets sodium benzoate limits of 2.5% for rinse-off products, 1.7% for oral products and 0.5% for leave-on products, expressed as acid.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223/2026-05-18"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "sodium dehydroacetate": Object.freeze({
+      note_short: "Preservative; EU Annex V permits sodium dehydroacetate up to 0.6% expressed as acid and excludes aerosol sprays.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223/2026-05-18"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "sulfur": Object.freeze({
+      note_short: "OTC acne active; FDA Monograph M006 permits sulfur at 3% to 10% as a single active ingredient.",
+      note_sources: Object.freeze(["https://www.accessdata.fda.gov/drugsatfda_docs/omuf/OTC%20Monograph_M006-Topical%20Acne%20drug%20products%20for%20OTC%20Human%20Use%2011.23.2021.pdf"]),
+      authority: "U.S. Food and Drug Administration"
+    }),
+    "alpha-arbutin": Object.freeze({
+      note_short: "SCCS-reviewed cosmetic ingredient; alpha-arbutin is considered safe up to 2% in face creams and 0.5% in body lotions.",
+      note_sources: Object.freeze(["https://health.ec.europa.eu/publications/safety-alpha-arbutin-and-beta-arbutin-cosmetic-products_en"]),
+      authority: "European Commission Scientific Committee on Consumer Safety"
+    }),
+    "ceteareth-20": Object.freeze({
+      note_short: "Surfactant; Cosmetics Info reports Ceteareth-20 as a solubilizing and cleansing agent.",
+      note_sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/ceteareth-20/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "steareth-21": Object.freeze({
+      note_short: "Surfactant; Cosmetics Info reports Steareth-21 as a cleansing, emulsifying and solubilizing agent.",
+      note_sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/steareth-21/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "isopropyl myristate": Object.freeze({
+      note_short: "Binder and skin-conditioning emollient; these functions are reported for isopropyl myristate by Cosmetics Info.",
+      note_sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/isopropyl-myristate/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "simmondsia chinensis jojoba seed oil": Object.freeze({
+      note_short: "Hair-conditioning and occlusive skin-conditioning ingredient; these functions are reported for jojoba seed oil by Cosmetics Info.",
+      note_sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/simmondsia-chinensis-jojoba-seed-oil/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "aminobenzoic acid": Object.freeze({
+      note_short: "UV filter; EU Annex VI lists PABA (4-Aminobenzoic acid) at up to 5%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "ecamsule": Object.freeze({
+      note_short: "UV filter; EU Annex VI lists Ecamsule at up to 10% expressed as acid.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "octisalate": Object.freeze({
+      note_short: "UV filter; EU Annex VI lists Ethylhexyl Salicylate (Octisalate) at up to 5%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "diethylamino hydroxybenzoyl hexyl benzoate": Object.freeze({
+      note_short: "UV filter; EU Regulation 2026/909 sets DHHB at up to 10% and limits unavoidable DnHexP impurity to 10 ppm.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0909"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "diazolidinyl urea": Object.freeze({
+      note_short: "Preservative; EU Annex V lists Diazolidinyl Urea at up to 0.5%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "imidazolidinyl urea": Object.freeze({
+      note_short: "Preservative; EU Annex V lists Imidazolidinyl Urea at up to 0.6%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]),
+      authority: "European Union / EUR-Lex"
     })
   });
 
@@ -468,7 +548,7 @@
   }
 
   const api = {
-    version: "1.16.0",
+    version: "1.19.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
