@@ -5,13 +5,13 @@
   "policy": {
     "record_count": 20,
     "runtime_merge": "Overlay these fields on data/patterns.json by matching pattern_id.",
-    "review_state": "researched",
+    "review_state": "mixed",
     "qualified_terms": [
       "moroccan-trellis",
       "ikat",
       "kilim"
     ],
-    "image_state": "not-started"
+    "image_state": "partial"
   },
   "patterns": [
     {
@@ -137,7 +137,7 @@
     },
     {
       "pattern_id": "tartan",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "タータン",
@@ -198,7 +198,7 @@
     },
     {
       "pattern_id": "glen-check",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "グレンチェック",
@@ -260,7 +260,7 @@
     },
     {
       "pattern_id": "argyle",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "アーガイル",
@@ -381,7 +381,7 @@
     },
     {
       "pattern_id": "polka-dot",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "水玉",
@@ -445,7 +445,7 @@
     },
     {
       "pattern_id": "moroccan-trellis",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "qualified",
       "names": {
         "ja": "モロッカントレリス",

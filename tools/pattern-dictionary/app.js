@@ -3,7 +3,7 @@ const DATA=ROOT+'data/patterns.json';
 const PROD=ROOT+'data/production-content.json';
 const DICT=ROOT+'data/search-dictionary.json';
 let patternsPromise,dictPromise;
-const REFERENCE_IDS=new Set(['houndstooth','gingham','chevron','seigaiha','asanoha','shippo','ichimatsu','kikko']);
+const REFERENCE_IDS=new Set(['houndstooth','gingham','tartan','glen-check','argyle','chevron','polka-dot','moroccan-trellis','seigaiha','asanoha','shippo','ichimatsu','kikko']);
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const norm=s=>(s||'').toLowerCase().normalize('NFKC').replace(/[’']/g,"'").replace(/[‐‑‒–—―]/g,'-').replace(/\s+/g,' ').trim();
 const esc=s=>(s||'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt',"'":'&#39;','"':'&quot;'}[c]));
