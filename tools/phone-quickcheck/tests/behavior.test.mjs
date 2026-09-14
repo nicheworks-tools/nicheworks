@@ -304,6 +304,21 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.match(html, /PPS対応 30W以上の充電器/);
 }
 
+// Galaxy Z Fold4 proves production data preserves an official folded-thickness range.
+{
+  const h = await createHarness(['samsung-galaxy-z-fold4']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('155.1 × 67.1 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /155\.1 × 67\.1 × 14\.2–15\.8 mm/);
+  assert.match(html, /155\.1 × 130\.1 × 6\.3 mm/);
+  assert.match(html, /263 g/);
+  assert.match(html, /4400 mAh/);
+  assert.match(html, /充電器目安<\/span><b>25W\+/);
+  assert.match(html, /端末側の有線充電上限<\/span><b>25W/);
+  assert.match(html, /Super Fast Charging/);
+  assert.match(html, /Qi \/ 15W/);
+}
+
 // Foldable depth ranges render without collapsing an official variable-thickness specification.
 {
   const h = await createHarness(['synthetic-foldable-depth-range']);
