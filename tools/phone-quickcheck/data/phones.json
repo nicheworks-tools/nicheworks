@@ -9094,6 +9094,64 @@
         "verifiedAt": "2026-09-14"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "motorola-razr-5g",
+      "manufacturer": "Motorola",
+      "model": "motorola razr 5G",
+      "aliases": [
+        "Motorola razr 5G",
+        "razr 5G",
+        "razr5G",
+        "レーザー 5G",
+        "PAJR0005JP"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2021,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 91.7,
+        "widthMm": 72.6,
+        "depthMm": 16
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 169.2,
+        "widthMm": 72.6,
+        "depthMm": 7.9
+      },
+      "weightG": 192,
+      "displayInch": 6.2,
+      "waterRating": "Water-repellent",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 2800,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.motorola.com/ru/smartphones-razr-5g/p?skuId=279"
+        },
+        "wiredRecommendedW": 15,
+        "wiredMaxW": 15,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.motorola.com/ru/smartphones-razr-5g/p?skuId=279",
+        "manualUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/158713/~/motorola-razr-5g%C2%A0-%C2%A0-%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%AC%E3%82%A4%E3%83%89%28html%29",
+        "releaseUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=95",
+        "chargingUrl": "https://www.motorola.com/ru/smartphones-razr-5g/p?skuId=279",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
     }
   ]
 }

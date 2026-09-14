@@ -471,4 +471,16 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.match(html, /AIRVOOC \/ 50W/);
 }
 
+// Japan-market motorola razr 5G preserves legacy foldable dimensions and 15W TurboPower semantics.
+{
+  const h = await createHarness(['motorola-razr-5g']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('91.7 × 72.6 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /91\.7 × 72\.6 × 16 mm/);
+  assert.match(html, /169\.2 × 72\.6 × 7\.9 mm/);
+  assert.match(html, /2800 mAh/);
+  assert.match(html, /15W/);
+  assert.match(html, /TurboPower/);
+}
+
 console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estimates, Apple unknown capacity, Lightning guidance, proprietary charging, and mobile sheet.');
