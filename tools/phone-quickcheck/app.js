@@ -426,13 +426,7 @@
   }
 
   function sourceBackedMaxWired(phone) {
-    const explicit = numberOrNull(phone.charging?.wiredMaxW);
-    if (explicit) return explicit;
-    const manufacturer = String(phone.manufacturer || '').toLowerCase();
-    if (manufacturer === 'samsung' || manufacturer === 'sharp') {
-      return numberOrNull(phone.charging?.wiredRecommendedW);
-    }
-    return null;
+    return numberOrNull(phone.charging?.wiredMaxW);
   }
 
   function officialLinksHtml(sources) {
