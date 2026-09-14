@@ -60,7 +60,7 @@
     },
     "carbomer": {
       "category": "thickener",
-      "source_functions": ["thickening agent"],
+      "source_functions": ["thickening"],
       "authority": "Personal Care Products Council / Cosmetics Info",
       "sources": ["https://www.cosmeticsinfo.org/ingredient/carbomer/"],
       "runtime_verified": true
