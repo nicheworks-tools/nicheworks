@@ -225,8 +225,19 @@ function classifyExactMatch(item, input) {
   return { kind: "canonical", matchedName: item.en };
 }
 
+function verifiedNote(item) {
+  if (item?.note_verified !== true) return "";
+  const note = String(item.note_short || "").trim();
+  const sources = Array.isArray(item.note_sources)
+    ? item.note_sources.filter(source => typeof source === "string" && /^https:\/\//i.test(source.trim()))
+    : [];
+  if (!note || sources.length === 0) return "";
+  return note;
+}
+
 function found(item, input) {
   const route = classifyExactMatch(item, input);
+  const note = verifiedNote(item);
   return {
     found: true,
     input,
@@ -236,6 +247,6 @@ function found(item, input) {
     match_kind: route.kind,
     matched_name: route.matchedName,
     category: item.category || "general",
-    note_short: item.note_short
+    note_short: note || undefined
   };
 }
