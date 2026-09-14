@@ -1,0 +1,50 @@
+name: One-shot TrashNavi placeholder source fix
+
+on:
+  push:
+    branches:
+      - chore/adsense-review-surface-final-20260915
+    paths:
+      - '.github/workflows/_tmp-trashnavi-placeholder-source-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chore/adsense-review-surface-final-20260915
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Remove placeholder-only ad elements from municipality generator
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'tools/trashnavi/scripts/generate-municipality-pages.mjs';
+          const before = fs.readFileSync(file, 'utf8');
+          let after = before
+            .replace('<nav class="municipality-breadcrumb" aria-label="Breadcrumb"><a href="/tools/trashnavi/">TrashNavi</a><span>›</span><span>${esc(pref)}</span><span>›</span><span>${esc(city)}</span></nav><div class="ad-slot ad-top">広告枠</div>', '<nav class="municipality-breadcrumb" aria-label="Breadcrumb"><a href="/tools/trashnavi/">TrashNavi</a><span>›</span><span>${esc(pref)}</span><span>›</span><span>${esc(city)}</span></nav>')
+            .replace('</div></section><div class="ad-slot ad-inline">広告枠</div>\n<section class="municipality-guide">', '</div></section>\n<section class="municipality-guide">');
+          if (after === before) throw new Error('TrashNavi generator placeholder targets not found');
+          if (/class="ad-slot ad-(?:top|inline)">広告枠/.test(after)) throw new Error('TrashNavi generator still emits placeholder ad UI');
+          fs.writeFileSync(file, after);
+          NODE
+      - name: Validate generated municipality pages and AdSense surface
+        run: |
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node scripts/check-adsense-review-surface.mjs
+          node scripts/check-tool-runtime-contracts-wave6.mjs
+          git diff --check
+      - name: Commit generator source fix
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/trashnavi/scripts/generate-municipality-pages.mjs
+          git commit -m 'fix: stop generating TrashNavi ad placeholders'
+          git push origin HEAD:chore/adsense-review-surface-final-20260915
