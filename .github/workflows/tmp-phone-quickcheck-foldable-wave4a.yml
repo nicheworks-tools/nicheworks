@@ -1,0 +1,34 @@
+name: Temporary Phone QuickCheck foldable wave 4A
+
+on:
+  push:
+    branches:
+      - feat/phone-quickcheck-foldable-data-wave4a-20260914
+    paths:
+      - '.github/workflows/tmp-phone-quickcheck-foldable-wave4a.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/phone-quickcheck-foldable-data-wave4a-20260914
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/tmp-phone-quickcheck-foldable-wave4a.mjs
+      - run: node scripts/check-phone-quickcheck-data.mjs
+      - run: node scripts/check-phone-quickcheck-source-semantics.mjs
+      - run: node scripts/check-phone-quickcheck-affiliate.mjs
+      - run: node tools/phone-quickcheck/tests/behavior.test.mjs
+      - name: Commit validated canonical files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/phone-quickcheck/data/phones.json tools/phone-quickcheck/index.html tools/phone-quickcheck/usage.html tools/phone-quickcheck/SPEC.md docs/tools/phone-quickcheck.md scripts/check-phone-quickcheck-data.mjs tools/phone-quickcheck/tests/behavior.test.mjs
+          git commit -m "Phone QuickCheck: add Galaxy Z Fold4 and Z Flip4"
+          git push origin HEAD:feat/phone-quickcheck-foldable-data-wave4a-20260914
