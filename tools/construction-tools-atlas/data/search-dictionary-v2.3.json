@@ -106,5 +106,34 @@
       "boost_terms": ["アンカー", "anchor", "install_anchor", "plug anchor"],
       "weight": 390
     }
+  ],
+  "combinations": [
+    {
+      "id": "powered-concrete-drilling",
+      "all_signals": ["concrete", "drill", "electric"],
+      "entry_boosts": {
+        "rotary_hammer": 1700,
+        "hammer_drill": 1600,
+        "core_drill": 500
+      }
+    },
+    {
+      "id": "powered-screw-fastening",
+      "all_signals": ["fasten", "electric"],
+      "entry_boosts": {
+        "impact_driver": 1700,
+        "drill_driver": 1500,
+        "cordless_drill": 700
+      }
+    },
+    {
+      "id": "powered-sanding",
+      "all_signals": ["sand", "electric"],
+      "entry_boosts": {
+        "random_orbit_sander": 1500,
+        "orbital_sander": 1400,
+        "angle_grinder": 500
+      }
+    }
   ]
 }
