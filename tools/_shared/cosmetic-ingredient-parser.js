@@ -118,11 +118,6 @@
       category: "antioxidant",
       sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/tocopherol/"]),
       authority: "Personal Care Products Council / Cosmetics Info"
-    }),
-    "sodium citrate": Object.freeze({
-      category: "pH adjuster",
-      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/citric-acid/"]),
-      authority: "Personal Care Products Council / Cosmetics Info"
     })
   });
 
