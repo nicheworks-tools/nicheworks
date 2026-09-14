@@ -1,0 +1,123 @@
+name: Temporary Pattern Dictionary browser QA
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-vertical-slice-20260914
+
+permissions:
+  contents: read
+
+jobs:
+  browser-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-vertical-slice-20260914
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install isolated Playwright
+        run: |
+          mkdir -p /tmp/pd-playwright
+          cd /tmp/pd-playwright
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.55.0 >/dev/null 2>&1
+          ./node_modules/.bin/playwright install chromium
+      - name: Start static server
+        run: |
+          python3 -m http.server 8000 --directory "$GITHUB_WORKSPACE" >/tmp/pd-http.log 2>&1 &
+          echo $! >/tmp/pd-http.pid
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:8000/tools/pattern-dictionary/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/pd-http.log
+          exit 1
+      - name: Run viewport and interaction QA
+        run: |
+          NODE_PATH=/tmp/pd-playwright/node_modules node <<'NODE'
+          const { chromium } = require('playwright');
+          const assert = require('assert');
+          const base = 'http://127.0.0.1:8000';
+          const viewports = [
+            { name: 'desktop-1200', width: 1200, height: 900 },
+            { name: 'tablet-768', width: 768, height: 1024 },
+            { name: 'mobile-390', width: 390, height: 844 },
+            { name: 'mobile-320', width: 320, height: 800 }
+          ];
+          const routes = [
+            '/tools/pattern-dictionary/',
+            '/tools/pattern-dictionary/en/',
+            '/tools/pattern-dictionary/search.html?q=' + encodeURIComponent('白黒のギザギザしたチェック'),
+            '/tools/pattern-dictionary/en/search.html?q=houndstooth',
+            '/tools/pattern-dictionary/patterns/houndstooth/',
+            '/tools/pattern-dictionary/en/patterns/houndstooth/',
+            '/tools/pattern-dictionary/compare.html?a=houndstooth&b=glen-check',
+            '/tools/pattern-dictionary/en/compare.html?a=houndstooth&b=glen-check'
+          ];
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            for (const viewport of viewports) {
+              const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
+              const page = await context.newPage();
+              const consoleErrors = [];
+              page.on('console', msg => { if (msg.type() === 'error') consoleErrors.push(msg.text()); });
+              for (const route of routes) {
+                await page.goto(base + route, { waitUntil: 'networkidle' });
+                const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+                assert(overflow <= 1, `${viewport.name} horizontal overflow ${overflow}px at ${route}`);
+                assert(await page.locator('body').isVisible(), `${viewport.name} body not visible at ${route}`);
+              }
+              await page.goto(base + '/tools/pattern-dictionary/', {waitUntil:'networkidle'});
+              assert.strictEqual(await page.locator('#pattern-grid .pd-card').count(), 20, `${viewport.name} JA grid count`);
+              const jaCols = await page.locator('#pattern-grid').evaluate(el => getComputedStyle(el).gridTemplateColumns.split(' ').filter(Boolean).length);
+              assert.strictEqual(jaCols, viewport.width <= 680 ? 2 : viewport.width <= 900 ? 4 : 5, `${viewport.name} JA grid columns`);
+              const typedRequests = [];
+              page.on('request', req => typedRequests.push({url:req.url(), post:req.postData()||''}));
+              await page.locator('#q').fill('白黒のギザギザしたチェック');
+              await page.waitForTimeout(300);
+              assert(await page.locator('#autocomplete .pd-suggestion').count() > 0, `${viewport.name} JA autocomplete empty`);
+              const leaked = typedRequests.some(r => decodeURIComponent(r.url).includes('白黒のギザギザしたチェック') || r.post.includes('白黒のギザギザしたチェック'));
+              assert(!leaked, `${viewport.name} typed search leaked into network request`);
+
+              await page.goto(base + '/tools/pattern-dictionary/en/', {waitUntil:'networkidle'});
+              assert.strictEqual(await page.locator('#pattern-grid .pd-card').count(), 20, `${viewport.name} EN grid count`);
+              await page.locator('#q').fill('houndstooth');
+              await page.waitForTimeout(300);
+              assert(await page.locator('#autocomplete .pd-suggestion').count() > 0, `${viewport.name} EN autocomplete empty`);
+
+              await page.goto(base + '/tools/pattern-dictionary/search.html?q=' + encodeURIComponent('白黒のギザギザしたチェック'), {waitUntil:'networkidle'});
+              assert(await page.locator('.pd-top-result').isVisible(), `${viewport.name} JA top result missing`);
+              assert((await page.locator('.pd-top-result a.pd-button').getAttribute('href')).includes('/houndstooth/'), `${viewport.name} JA ambiguous search did not rank houndstooth first`);
+              assert(await page.locator('#interpret .pd-chip').count() > 0, `${viewport.name} interpretation chips missing`);
+              const beforeTitle = await page.locator('.pd-top-result .pd-title').textContent();
+              await page.locator('#interpret .pd-chip button').first().click();
+              await page.waitForTimeout(100);
+              assert(await page.locator('.pd-top-result').isVisible(), `${viewport.name} reranked result missing after chip removal`);
+              assert(beforeTitle, `${viewport.name} initial result title missing`);
+
+              await page.goto(base + '/tools/pattern-dictionary/patterns/houndstooth/', {waitUntil:'networkidle'});
+              assert(await page.locator('#detail .pd-detail-image').isVisible(), `${viewport.name} detail image missing`);
+              assert((await page.locator('#detail .pd-title').textContent()).trim().length > 0, `${viewport.name} detail title missing`);
+              assert((await page.locator('#lang-link').getAttribute('href')).endsWith('/en/patterns/houndstooth/'), `${viewport.name} JA→EN same-ID link broken`);
+
+              await page.goto(base + '/tools/pattern-dictionary/en/patterns/houndstooth/', {waitUntil:'networkidle'});
+              assert((await page.locator('#lang-link').getAttribute('href')).endsWith('/patterns/houndstooth/'), `${viewport.name} EN→JA same-ID link broken`);
+
+              await page.goto(base + '/tools/pattern-dictionary/compare.html?a=houndstooth&b=glen-check', {waitUntil:'networkidle'});
+              assert.strictEqual(await page.locator('.pd-compare-panel').count(), 2, `${viewport.name} compare panel count`);
+              assert.strictEqual(await page.locator('#cmp-a').inputValue(), 'houndstooth', `${viewport.name} compare left`);
+              assert.strictEqual(await page.locator('#cmp-b').inputValue(), 'glen-check', `${viewport.name} compare right`);
+              await page.locator('#cmp-b').selectOption('gingham');
+              assert((await page.url()).includes('b=gingham'), `${viewport.name} compare URL did not synchronize`);
+
+              assert.strictEqual(consoleErrors.length, 0, `${viewport.name} console errors: ${consoleErrors.join(' | ')}`);
+              await context.close();
+              console.log(`PASS ${viewport.name}`);
+            }
+            await browser.close();
+            console.log('Pattern Dictionary browser QA: PASS');
+          })().catch(err => { console.error(err); process.exit(1); });
+          NODE
