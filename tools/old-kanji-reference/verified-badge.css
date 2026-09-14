@@ -131,6 +131,53 @@
 .codepoint-line { margin: 0; color: var(--muted); font-size: 0.86rem; }
 .mobile-detail-content { display: block; }
 
+/* The grouped-by-modern summary is secondary navigation/reference content.
+   Keep it compact so it does not push the list controls several screens down. */
+.modern-summary {
+  margin: 10px 0 14px;
+  padding: 12px;
+}
+
+.modern-summary h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.modern-summary ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px 10px;
+}
+
+.modern-summary li {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 2em minmax(0, 1fr);
+  align-items: baseline;
+  gap: 6px;
+  margin: 0;
+  padding: 5px 7px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--soft);
+  line-height: 1.35;
+}
+
+.modern-summary li strong {
+  font-size: 0.98rem;
+  white-space: nowrap;
+}
+
+.modern-summary li > div {
+  min-width: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  overflow-wrap: anywhere;
+}
+
 /* Keep the reference list in normal document flow. The prior nested 68–72vh
    scroll box created a detached/broken middle-page block in production. */
 .group-wrapper #groupContainer {
@@ -155,7 +202,17 @@
 }
 
 @media (max-width: 720px) {
+  .modern-summary ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .group-wrapper .kanji-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 340px) {
+  .modern-summary ul {
     grid-template-columns: 1fr;
   }
 }

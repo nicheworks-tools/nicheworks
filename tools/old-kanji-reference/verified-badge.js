@@ -81,6 +81,17 @@
     });
   }
 
+  function normalizeModernSummaryPlacement() {
+    const panel = document.getElementById("modernSummary");
+    const status = document.getElementById("statusMessage");
+    if (!panel || !status) return;
+
+    if (status.nextElementSibling !== panel) {
+      status.insertAdjacentElement("afterend", panel);
+    }
+    panel.dataset.layoutNormalized = "1";
+  }
+
   function syncLanguageDisplay() {
     const lang = document.documentElement.lang === "en" ? "en" : "ja";
     document.querySelectorAll("[data-i18n]").forEach((el) => {
@@ -93,6 +104,7 @@
     insertToolLinks();
     insertFaqForConverter();
     applyMobileCompactHints();
+    normalizeModernSummaryPlacement();
     syncLanguageDisplay();
   }
 
