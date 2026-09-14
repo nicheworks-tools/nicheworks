@@ -37,11 +37,17 @@ const EXPECTED_WAVE3 = Object.freeze({
 const EXPECTED_WAVE4 = Object.freeze({
   'tocopheryl acetate': 'antioxidant'
 });
+const EXPECTED_WAVE5 = Object.freeze({
+  'butylene glycol': 'solvent',
+  'dipropylene glycol': 'solvent',
+  'sodium hydroxide': 'pH adjuster'
+});
 const EXPECTED_ALL = Object.freeze({
   ...EXPECTED_WAVE1,
   ...EXPECTED_WAVE2,
   ...EXPECTED_WAVE3,
-  ...EXPECTED_WAVE4
+  ...EXPECTED_WAVE4,
+  ...EXPECTED_WAVE5
 });
 const EXPECTED_SOURCES = Object.freeze({
   water: 'https://www.cosmeticsinfo.org/ingredient/water/',
@@ -53,7 +59,10 @@ const EXPECTED_SOURCES = Object.freeze({
   tocopherol: 'https://www.cosmeticsinfo.org/ingredient/tocopherol/',
   'sodium chloride': 'https://www.cosmeticsinfo.org/ingredient/sodium-chloride/',
   'disodium edta': 'https://www.cosmeticsinfo.org/ingredient/disodium-edta/',
-  'tocopheryl acetate': 'https://www.cosmeticsinfo.org/ingredient/tocopherol/'
+  'tocopheryl acetate': 'https://www.cosmeticsinfo.org/ingredient/tocopherol/',
+  'butylene glycol': 'https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/',
+  'dipropylene glycol': 'https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/',
+  'sodium hydroxide': 'https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/'
 });
 const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu']);
 
@@ -81,7 +90,7 @@ const evidence = parser.verifiedCategoryEvidence || {};
 assert.deepEqual(
   Object.fromEntries(Object.entries(evidence).map(([key, item]) => [key, item.category])),
   EXPECTED_ALL,
-  'verified category evidence must remain the reviewed cumulative wave 1 + wave 2 + wave 3 + wave 4 set'
+  'verified category evidence must remain the reviewed cumulative wave 1 + wave 2 + wave 3 + wave 4 + wave 5 set'
 );
 for (const ambiguous of parser.ambiguousExactKeys || []) {
   assert.equal(evidence[ambiguous], undefined, `ambiguous exact token must not receive category evidence: ${ambiguous}`);
@@ -99,7 +108,7 @@ for (const row of rows) if (!normalizeText(row.category)) rawMissingCategoryRows
 assert.equal(rawMissingCategoryRows, 187, 'verified overlay must not hide the frozen 187 raw category gaps by rewriting recognition records');
 
 let newlyClassifiedCanonicalIdentities = 0;
-let wave4NewlyClassifiedCanonicalIdentities = 0;
+let wave5NewlyClassifiedCanonicalIdentities = 0;
 const rawCategoryInventory = {};
 for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
   const item = evidence[canonical];
@@ -115,7 +124,7 @@ for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
   rawCategoryInventory[canonical] = rawCategories;
   if (rawCategories.length === 0) {
     newlyClassifiedCanonicalIdentities += 1;
-    if (Object.hasOwn(EXPECTED_WAVE4, canonical)) wave4NewlyClassifiedCanonicalIdentities += 1;
+    if (Object.hasOwn(EXPECTED_WAVE5, canonical)) wave5NewlyClassifiedCanonicalIdentities += 1;
   }
   if (rawCategories.length > 0) {
     assert.ok(rawCategories.includes(expectedCategory.toLowerCase()), `${canonical}: verified category conflicts with existing raw category metadata (${rawCategories.join(', ')})`);
@@ -138,17 +147,18 @@ assert.equal(Object.keys(EXPECTED_WAVE1).length, 5);
 assert.equal(Object.keys(EXPECTED_WAVE2).length, 2);
 assert.equal(Object.keys(EXPECTED_WAVE3).length, 2);
 assert.equal(Object.keys(EXPECTED_WAVE4).length, 1, 'wave 4 reviewed set must remain one nonconflicting canonical identity');
-assert.equal(wave4NewlyClassifiedCanonicalIdentities, 1, 'wave 4 must classify exactly one previously raw-missing canonical identity');
+assert.equal(Object.keys(EXPECTED_WAVE5).length, 3, 'wave 5 reviewed set must remain three source-backed canonical identities');
+assert.equal(wave5NewlyClassifiedCanonicalIdentities, 3, 'wave 5 must classify exactly three previously raw-missing canonical identities');
 assert.equal(evidence['sodium citrate'], undefined, 'Sodium Citrate must remain deferred until buffer vs pH-adjuster taxonomy is explicitly resolved');
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'category-provenance-wave-4',
+  phase: 'category-provenance-wave-5',
   raw_missing_category_rows_unchanged: rawMissingCategoryRows,
   verified_category_evidence_canonical_identities: Object.keys(EXPECTED_ALL).length,
-  wave_4_verified_canonical_identities: Object.keys(EXPECTED_WAVE4).length,
+  wave_5_verified_canonical_identities: Object.keys(EXPECTED_WAVE5).length,
   newly_classified_canonical_identities: newlyClassifiedCanonicalIdentities,
-  wave_4_newly_classified_canonical_identities: wave4NewlyClassifiedCanonicalIdentities,
+  wave_5_newly_classified_canonical_identities: wave5NewlyClassifiedCanonicalIdentities,
   sodium_citrate_deferred_for_taxonomy_decision: true,
   raw_category_inventory: rawCategoryInventory,
   recognition_records_rewritten: false,

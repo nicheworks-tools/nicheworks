@@ -1,6 +1,6 @@
 # Cosmetics Verified Category Provenance
 
-PR44 introduced a source-backed category overlay for canonical cosmetic ingredient identities. PR45 added wave 2, PR46 formalized the verified category taxonomy, PR47 promoted two taxonomy-reviewed mappings as wave 3, and PR53 adds two further identities using existing taxonomy terms only. None of these changes rewrites the raw recognition dictionaries merely to make the frozen 187 missing-category baseline smaller.
+PR44 introduced a source-backed category overlay for canonical cosmetic ingredient identities. PR45 added wave 2, PR46 formalized the verified category taxonomy, PR47 promoted two taxonomy-reviewed mappings as wave 3, PR53 added Tocopheryl Acetate as wave 4, and PR54 adds three further identities using existing taxonomy terms only. None of these changes rewrites the raw recognition dictionaries merely to make the frozen 187 missing-category baseline smaller.
 
 ## Contract
 
@@ -49,9 +49,18 @@ Raw recognition records remain unchanged. This keeps recognition identity/aliase
 | Canonical identity | Verified category | Source basis |
 | --- | --- | --- |
 | `tocopheryl acetate` | `antioxidant` | Cosmetics Info explicitly states that Tocopheryl Acetate functions as an antioxidant. |
-| `sodium citrate` | `pH adjuster` | Cosmetics Info lists Sodium Citrate among the citrate salts and lists `pH adjuster` among the functions of citric acid, its salts and esters. |
 
-Wave 4 introduces no new internal category and no new authority-function translation. Both entries use mappings already permitted by the explicit taxonomy: `antioxidant` → `antioxidant` and `pH adjuster` → `pH adjuster`.
+Sodium Citrate was evaluated during PR53 but intentionally deferred. Its raw canonical metadata is `buffer`, while the external source supports `pH adjuster`. The fail-closed provenance checker rejected silently treating those as equivalent, so Sodium Citrate remains outside runtime evidence until a dedicated taxonomy decision is made.
+
+## Wave 5 reviewed set
+
+| Canonical identity | Verified category | Source basis |
+| --- | --- | --- |
+| `butylene glycol` | `solvent` | Cosmetics Info states that Butylene Glycol and related glycols function as solvents in cosmetics and personal care products. |
+| `dipropylene glycol` | `solvent` | Cosmetics Info states that Dipropylene Glycol and related glycols function as solvents in cosmetics and personal care products. |
+| `sodium hydroxide` | `pH adjuster` | Cosmetics Info states that sodium hydroxide can be used in lesser quantities as a pH adjuster in cosmetic products. |
+
+Wave 5 introduces no new internal category and no new authority-function translation. All three entries use terms already permitted by the explicit taxonomy.
 
 Source URLs are stored in `VERIFIED_CATEGORY_EVIDENCE` in `cosmetic-ingredient-parser.js`, while authority-function translations are controlled by `cosmetics-category-taxonomy.json`. Both are enforced in CI.
 
@@ -61,7 +70,9 @@ Source URLs are stored in `VERIFIED_CATEGORY_EVIDENCE` in `cosmetic-ingredient-p
 - Wave 1 remains exactly five reviewed canonical identities.
 - Wave 2 remains exactly two reviewed canonical identities.
 - Wave 3 contains exactly Sodium Chloride and Disodium EDTA.
-- Wave 4 contains exactly Tocopheryl Acetate and Sodium Citrate.
+- Wave 4 contains exactly Tocopheryl Acetate.
+- Wave 5 contains exactly Butylene Glycol, Dipropylene Glycol and Sodium Hydroxide.
+- Sodium Citrate remains deferred until the `buffer` vs `pH adjuster` semantic relationship is explicitly reviewed.
 - Every overlay entry must exist in the maintained nine-file dictionary set.
 - Every entry must have a non-empty category, source organization, and approved HTTPS source URL.
 - The checker pins the reviewed source URL for every verified canonical identity.
