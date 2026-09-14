@@ -3,7 +3,6 @@ import path from 'node:path';
 
 const root = process.cwd();
 const errors = [];
-const sitemapPath = path.join(root, 'sitemap.xml');
 
 function fail(message) {
   errors.push(message);
@@ -18,10 +17,25 @@ function read(file) {
   }
 }
 
+function readJson(file) {
+  const text = read(file);
+  if (!text) return null;
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    fail(`${file}: invalid JSON: ${error.message}`);
+    return null;
+  }
+}
+
 function metaRobots(html) {
   const match = html.match(/<meta\b[^>]*name=["']robots["'][^>]*content=["']([^"']*)["'][^>]*>/i)
     || html.match(/<meta\b[^>]*content=["']([^"']*)["'][^>]*name=["']robots["'][^>]*>/i);
   return (match?.[1] || '').toLowerCase().split(/[,\s]+/).filter(Boolean);
+}
+
+function hasAdsense(html) {
+  return /pagead2\.googlesyndication\.com|adsbygoogle/i.test(html);
 }
 
 const developmentTemplates = [
@@ -36,7 +50,7 @@ for (const file of developmentTemplates) {
   if (!robots.includes('noindex') || !robots.includes('nofollow')) {
     fail(`${file}: development template must declare noindex,nofollow`);
   }
-  if (/pagead2\.googlesyndication\.com|adsbygoogle/i.test(html)) {
+  if (hasAdsense(html)) {
     fail(`${file}: development template must not load AdSense`);
   }
   if (/googletagmanager\.com|cloudflareinsights\.com/i.test(html)) {
@@ -74,8 +88,35 @@ for (const file of ['billing/success.html', 'billing/cancel.html']) {
   if (!robots.includes('noindex')) {
     fail(`${file}: billing outcome page must remain noindex`);
   }
-  if (/pagead2\.googlesyndication\.com|adsbygoogle/i.test(html)) {
+  if (hasAdsense(html)) {
     fail(`${file}: billing outcome page must not load AdSense`);
+  }
+}
+
+const stagedRegistry = readJson('tools/staged-tools.json');
+const stagedItems = Array.isArray(stagedRegistry?.items) ? stagedRegistry.items : [];
+for (const item of stagedItems) {
+  const slug = item?.slug;
+  if (!slug) {
+    fail('tools/staged-tools.json: staged item missing slug');
+    continue;
+  }
+  const file = `tools/${slug}/index.html`;
+  const html = read(file);
+  if (!html) continue;
+  const robots = metaRobots(html);
+  if (!robots.includes('noindex') || !robots.includes('nofollow')) {
+    fail(`${file}: staged tool must declare noindex,nofollow`);
+  }
+  if (hasAdsense(html)) {
+    fail(`${file}: staged tool must not load AdSense`);
+  }
+  if (/>\s*(?:広告枠(?:（準備中）)?|Ad slot|Advertisement placeholder)\s*</i.test(html)) {
+    fail(`${file}: staged tool must not render an ad placeholder`);
+  }
+  const publicUrl = `https://nicheworks.app/tools/${slug}/`;
+  if (sitemap.includes(`<loc>${publicUrl}</loc>`)) {
+    fail(`${file}: staged tool must be absent from sitemap`);
   }
 }
 
@@ -84,5 +125,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('AdSense review surface contract: OK');
+  console.log(`AdSense review surface contract: OK (${stagedItems.length} staged tools checked)`);
 }
