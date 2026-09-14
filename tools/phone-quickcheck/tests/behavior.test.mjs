@@ -304,6 +304,21 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.match(html, /PPS対応 30W以上の充電器/);
 }
 
+// Galaxy Z Fold3 5G preserves the older hinge-depth range and model-specific 10W wireless maximum.
+{
+  const h = await createHarness(['samsung-galaxy-z-fold3-5g']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('158.2 × 67.1 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /158\.2 × 67\.1 × 14\.4–16 mm/);
+  assert.match(html, /158\.2 × 128\.1 × 6\.4 mm/);
+  assert.match(html, /271 g/);
+  assert.match(html, /4400 mAh/);
+  assert.match(html, /充電器目安<\/span><b>25W\+/);
+  assert.match(html, /端末側の有線充電上限<\/span><b>25W/);
+  assert.match(html, /Super Fast Charging/);
+  assert.match(html, /Qi \/ 10W/);
+}
+
 // Galaxy Z Fold4 proves production data preserves an official folded-thickness range.
 {
   const h = await createHarness(['samsung-galaxy-z-fold4']);
