@@ -1,0 +1,93 @@
+name: Audit visible AdSense placeholders
+
+on:
+  push:
+    branches:
+      - audit/adsense-visible-placeholders-20260915
+    paths:
+      - '.github/workflows/_tmp-audit-visible-ad-placeholders.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/adsense-visible-placeholders-20260915
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Scan HTML review surface
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          const root = process.cwd();
+          const rows = [];
+          const tokenRows = [];
+
+          function walk(dir) {
+            for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
+              if (['.git', 'node_modules', '_archive'].includes(ent.name)) continue;
+              const full = path.join(dir, ent.name);
+              if (ent.isDirectory()) walk(full);
+              else if (ent.isFile() && ent.name.endsWith('.html')) inspect(full);
+            }
+          }
+
+          function inspect(full) {
+            const rel = path.relative(root, full).replaceAll('\\', '/');
+            const html = fs.readFileSync(full, 'utf8');
+            const robots = (html.match(/<meta\b[^>]*name=["']robots["'][^>]*content=["']([^"']*)["']/i)?.[1] || '').toLowerCase();
+            const indexable = !robots.includes('noindex');
+            const hasAdsense = /pagead2\.googlesyndication\.com|adsbygoogle/i.test(html);
+            const visible = html
+              .replace(/<!--[\s\S]*?-->/g, ' ')
+              .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
+              .replace(/<style\b[\s\S]*?<\/style>/gi, ' ');
+            const matches = [...visible.matchAll(/広告枠(?:（準備中）)?|Ad slot|Advertisement placeholder/gi)].map(m => m[0]);
+            if (matches.length) {
+              rows.push({ file: rel, indexable, hasAdsense, count: matches.length, labels: [...new Set(matches)] });
+            }
+            if (/YOUR_TOKEN_HERE|REPLACE_ME|YOUR_[A-Z0-9_]+/i.test(html)) {
+              tokenRows.push({ file: rel, indexable, hasAdsense, tokens: [...new Set(html.match(/YOUR_TOKEN_HERE|REPLACE_ME|YOUR_[A-Z0-9_]+/gi) || [])] });
+            }
+          }
+
+          walk(root);
+          const indexable = rows.filter(r => r.indexable);
+          const report = {
+            generatedAt: new Date().toISOString(),
+            totals: {
+              htmlWithVisiblePlaceholder: rows.length,
+              indexableHtmlWithVisiblePlaceholder: indexable.length,
+              indexablePlaceholderOccurrences: indexable.reduce((s, r) => s + r.count, 0),
+              indexableWithAdsenseAndPlaceholder: indexable.filter(r => r.hasAdsense).length,
+              filesWithTemplateTokens: tokenRows.length
+            },
+            indexable,
+            nonIndexable: rows.filter(r => !r.indexable),
+            templateTokens: tokenRows
+          };
+          fs.writeFileSync('adsense-visible-placeholder-audit.json', JSON.stringify(report, null, 2));
+          fs.writeFileSync('adsense-visible-placeholder-audit.tsv', [
+            'file\tindexable\thasAdsense\tcount\tlabels',
+            ...rows.map(r => `${r.file}\t${r.indexable}\t${r.hasAdsense}\t${r.count}\t${r.labels.join(' | ')}`)
+          ].join('\n') + '\n');
+          console.log(JSON.stringify(report.totals, null, 2));
+          console.log('Indexable sample:');
+          console.log(indexable.slice(0, 80));
+          console.log('Template tokens:');
+          console.log(tokenRows);
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: adsense-visible-placeholder-audit
+          path: |
+            adsense-visible-placeholder-audit.json
+            adsense-visible-placeholder-audit.tsv
