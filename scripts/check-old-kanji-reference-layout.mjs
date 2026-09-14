@@ -20,7 +20,8 @@ check(css.includes('max-height: none;'), 'print must release the list height bou
 check(css.includes('overflow: visible;'), 'print must expose the full list');
 check(css.includes('grid-template-columns: repeat(2, minmax(0, 1fr));'), 'desktop two-column reference grid missing');
 check(css.includes('@media (max-width: 720px)'), 'mobile reference grid breakpoint missing');
-check(html.includes('verified-badge.css?v=20260914-reference-layout-2'), 'layout stylesheet cache key missing');
+check(html.includes('verified-badge.css?v=20260914-modern-summary-4'), 'current modern-summary stylesheet cache key missing');
+check(!html.includes('verified-badge.css?v=20260914-reference-layout-2'), 'stale modern-summary stylesheet cache key returned');
 
 check(css.includes('.modern-summary ul'), 'grouped-by-modern summary grid styles missing');
 check(css.includes('grid-template-columns: repeat(3, minmax(0, 1fr));'), 'desktop grouped-by-modern compact grid missing');
@@ -29,6 +30,9 @@ check(css.includes('@media (max-width: 340px)'), 'narrow-screen grouped-by-moder
 check(js.includes('function normalizeModernSummaryPlacement()'), 'grouped-by-modern placement normalizer missing');
 check(js.includes('emptyMessage.insertAdjacentElement("afterend", panel);'), 'grouped-by-modern summary must appear after the all-entries list');
 check(js.includes('normalizeModernSummaryPlacement();'), 'grouped-by-modern placement normalizer is not executed');
+check(js.includes('document.querySelector(".group-wrapper") || document.body'), 'dynamic summary observer must watch the whole group wrapper');
+check(html.includes('verified-badge.js?v=20260914-modern-summary-4'), 'current modern-summary script cache key missing');
+check(!html.includes('verified-badge.js?v=20260503-okj-badge-1'), 'stale modern-summary script cache key returned');
 
 if (failures.length) {
   console.error(`Old Kanji Reference layout contract failed (${failures.length})`);

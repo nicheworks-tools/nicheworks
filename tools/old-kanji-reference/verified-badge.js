@@ -110,7 +110,7 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     enhancePage();
-    const target = document.getElementById("groupContainer") || document.body;
+    const target = document.querySelector(".group-wrapper") || document.body;
     const observer = new MutationObserver(() => enhancePage());
     observer.observe(target, { childList: true, subtree: true });
 
