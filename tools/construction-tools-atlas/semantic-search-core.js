@@ -76,9 +76,27 @@
     };
   }
 
+  function normalizeCombination(raw) {
+    const boosts = {};
+    if (raw?.entry_boosts && typeof raw.entry_boosts === "object") {
+      Object.entries(raw.entry_boosts).forEach(([id, value]) => {
+        const score = Number(value);
+        if (id && Number.isFinite(score) && score > 0) boosts[id] = score;
+      });
+    }
+    return {
+      id: String(raw?.id || "").trim(),
+      all_signals: toArray(raw?.all_signals),
+      entry_boosts: boosts,
+    };
+  }
+
   function createEngine(dictionary) {
     const signals = Array.isArray(dictionary?.signals)
       ? dictionary.signals.map(normalizeSignal).filter((signal) => signal.id)
+      : [];
+    const combinations = Array.isArray(dictionary?.combinations)
+      ? dictionary.combinations.map(normalizeCombination).filter((combo) => combo.id && combo.all_signals.length)
       : [];
 
     function interpret(query, ignoredIds) {
@@ -103,6 +121,17 @@
         return normalizedTerm && hay.includes(normalizedTerm);
       });
       return matchedTerm ? { score: signal.weight, reason: matchedTerm } : { score: 0, reason: "" };
+    }
+
+    function combinationBoost(entry, interpretedSignals) {
+      const active = new Set((interpretedSignals || []).map((signal) => signal.id));
+      let score = 0;
+      const id = String(entry?.id || "");
+      for (const combo of combinations) {
+        if (!combo.all_signals.every((signalId) => active.has(signalId))) continue;
+        score += combo.entry_boosts[id] || 0;
+      }
+      return score;
     }
 
     function scoreEntry(entry, query, interpretedSignals) {
@@ -132,14 +161,18 @@
       });
 
       for (const signal of interpretedSignals || []) score += semanticMatch(signal, entry).score;
+      score += combinationBoost(entry, interpretedSignals);
       return score;
     }
 
     function reasonsFor(entry, interpretedSignals) {
-      return (interpretedSignals || []).map((signal) => {
+      const reasons = (interpretedSignals || []).map((signal) => {
         const match = semanticMatch(signal, entry);
         return match.score > 0 ? { id: signal.id, label: signal.label, reason: match.reason, score: match.score } : null;
       }).filter(Boolean);
+      const comboScore = combinationBoost(entry, interpretedSignals);
+      if (comboScore > 0) reasons.push({ id: "semantic-combination", label: { ja: "複合条件", en: "Combined intent" }, reason: "combination", score: comboScore });
+      return reasons;
     }
 
     function confidence(rankedScores) {
