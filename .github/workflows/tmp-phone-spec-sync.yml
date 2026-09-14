@@ -1,0 +1,64 @@
+name: Temporary Phone QuickCheck spec sync
+
+on:
+  push:
+    branches:
+      - docs/phone-quickcheck-spec-sync-20260914
+    paths:
+      - '.github/workflows/tmp-phone-spec-sync.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: docs/phone-quickcheck-spec-sync-20260914
+          fetch-depth: 0
+      - name: Sync Phone QuickCheck specifications
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const toolPath = 'tools/phone-quickcheck/SPEC.md';
+          const docPath = 'docs/tools/phone-quickcheck.md';
+
+          let tool = fs.readFileSync(toolPath, 'utf8');
+          tool = tool.replace(
+            'Current classes cover USB-C cables, USB-C-to-Lightning cables, USB-PD, PPS, Samsung Super Fast Charging, Qi/Qi2, and USB-C power banks.',
+            'Current classes cover USB-C cables, USB-C-to-Lightning cables, USB-PD, PPS, Samsung Super Fast Charging, OPPO SUPERVOOC, Xiaomi HyperCharge/TurboCharge, Motorola TurboPower, Qi/Qi2, and USB-C power banks.'
+          );
+          tool = tool.replace(
+            '- `scripts/check-phone-quickcheck-affiliate.mjs`\n',
+            '- `scripts/check-phone-quickcheck-affiliate.mjs`\n- `scripts/check-phone-quickcheck-source-semantics.mjs`\n- `tools/phone-quickcheck/tests/behavior.test.mjs`\n'
+          );
+          fs.writeFileSync(toolPath, tool);
+
+          let doc = fs.readFileSync(docPath, 'utf8');
+          doc = doc.replace(
+            '- USB PD、PPS、Samsung Super Fast Charging、Qi、Qi2等は維持済み事実から表示・分類する。',
+            '- USB PD、PPS、Samsung Super Fast Charging、OPPO SUPERVOOC、Xiaomi HyperCharge/TurboCharge、Motorola TurboPower、Qi、Qi2等は維持済み事実から表示・分類する。'
+          );
+          doc = doc.replace(
+            'USB-Cケーブル、USB-C ⇔ Lightningケーブル、USB-PD、PPS、Samsung Super Fast Charging、Qi/Qi2、USB-Cモバイルバッテリー等の再利用可能クラス',
+            'USB-Cケーブル、USB-C ⇔ Lightningケーブル、USB-PD、PPS、Samsung Super Fast Charging、OPPO SUPERVOOC、Xiaomi HyperCharge/TurboCharge、Motorola TurboPower、Qi/Qi2、USB-Cモバイルバッテリー等の再利用可能クラス'
+          );
+          const evidence = '- `scripts/check-phone-quickcheck-source-semantics.mjs`';
+          if (!doc.includes(evidence)) {
+            doc = doc.replace(
+              '- `scripts/check-phone-quickcheck-data.mjs`\n',
+              '- `scripts/check-phone-quickcheck-data.mjs`\n- `scripts/check-phone-quickcheck-source-semantics.mjs`\n'
+            );
+          }
+          fs.writeFileSync(docPath, doc);
+          NODE
+
+          rm .github/workflows/tmp-phone-spec-sync.yml
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git add -A
+          git commit -m "Sync Phone QuickCheck proprietary charger specification"
+          git push origin HEAD:docs/phone-quickcheck-spec-sync-20260914
