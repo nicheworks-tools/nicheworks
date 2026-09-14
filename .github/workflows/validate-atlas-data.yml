@@ -75,10 +75,13 @@ jobs:
               assert s.count('function bag(p,lang){')==1
               s=s.replace('function bag(p,lang){',status_func+'function bag(p,lang){',1)
 
-          old_warning='<p class="pd-warning">${lang===\'ja\'?\'この画像はUI検証用DEVプレースホルダーです。辞典用Reference Imageとして未検証です。\':\'This image is a DEV placeholder for UI validation, not a verified dictionary Reference Image.\'}</p>'
           if '${imageStatus(p,lang)}' not in s:
-              assert s.count(old_warning)==1
-              s=s.replace(old_warning,'${imageStatus(p,lang)}',1)
+              needle='この画像はUI検証用DEVプレースホルダーです。辞典用Reference Imageとして未検証です。'
+              idx=s.index(needle)
+              start=s.rfind('<p class="pd-warning">',0,idx)
+              end=s.find('</p>',idx)
+              assert start>=0 and end>idx
+              s=s[:start]+'${imageStatus(p,lang)}'+s[end+4:]
           app.write_text(s)
           PY
       - name: Validate Pattern Dictionary Phase 2 and 3 contracts
