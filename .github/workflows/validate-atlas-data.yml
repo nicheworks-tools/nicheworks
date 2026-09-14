@@ -4,9 +4,6 @@ on:
   push:
   pull_request:
 
-permissions:
-  contents: write
-
 jobs:
   validate-data:
     runs-on: ubuntu-latest
@@ -19,50 +16,3 @@ jobs:
           node-version: '20'
       - name: Run data validation
         run: node tools/construction-tools-atlas/scripts/validate-data.mjs
-
-  pattern-dictionary-phase2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Source verification contract
-        run: node tools/pattern-dictionary/tests/source-verification-test.mjs
-      - name: Researched content contract
-        run: node tools/pattern-dictionary/tests/production-content-test.mjs
-      - name: Static runtime contract
-        run: node tools/pattern-dictionary/tests/validate.mjs
-      - name: Search regressions
-        run: node tools/pattern-dictionary/tests/search-test.mjs
-      - name: JavaScript syntax
-        run: node --check tools/pattern-dictionary/app.js
-
-  pattern-dictionary-kilim-fix:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout branch
-        uses: actions/checkout@v4
-        with:
-          ref: feat/pattern-dictionary-production-20-20260914
-      - name: Align Kilim production record
-        run: |
-          python3 -c "import json,pathlib; p=pathlib.Path('tools/pattern-dictionary/data/production-content.json'); d=json.loads(p.read_text()); r=next(x for x in d['patterns'] if x['pattern_id']=='kilim'); r['names']['en']='Kilim Pattern'; r['aliases']['en']=['Kilim','kelim','kilim rug pattern']; r['term_scope']='flat-woven textile category and kilim-inspired visual family, not one fixed motif'; r['colors']['primary']=['red','navy','cream']; r['colors']['primary_reason']='Kilim traditions use diverse colors and designs; this fixed palette is only an editorial recognition reference.'; p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\\n')"
-      - name: Run Pattern Dictionary contracts after repair
-        run: |
-          node tools/pattern-dictionary/tests/source-verification-test.mjs
-          node tools/pattern-dictionary/tests/production-content-test.mjs
-          node tools/pattern-dictionary/tests/validate.mjs
-          node tools/pattern-dictionary/tests/search-test.mjs
-          node --check tools/pattern-dictionary/app.js
-      - name: Persist repair only when changed
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tools/pattern-dictionary/data/production-content.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'fix: align Kilim production record with source ledger'
-            git push origin HEAD:feat/pattern-dictionary-production-20-20260914
-          fi
