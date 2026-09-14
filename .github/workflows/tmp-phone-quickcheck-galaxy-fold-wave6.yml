@@ -33,3 +33,5 @@ jobs:
           git add tools/phone-quickcheck/data/phones.json tools/phone-quickcheck/data/accessories.json tools/phone-quickcheck/app.js tools/phone-quickcheck/affiliate-config.js tools/phone-quickcheck/index.html tools/phone-quickcheck/usage.html tools/phone-quickcheck/SPEC.md docs/tools/phone-quickcheck.md scripts/check-phone-quickcheck-data.mjs tools/phone-quickcheck/tests/behavior.test.mjs
           git commit -m "Phone QuickCheck: add first-generation Galaxy Fold"
           git push origin HEAD:feat/phone-quickcheck-galaxy-fold-wave6-20260914
+
+# retrigger after canonical Samsung protocol completion
