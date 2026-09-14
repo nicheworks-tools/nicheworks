@@ -13,6 +13,7 @@ const SUBJECT_STATES = new Set(['unreviewed', 'matched', 'rejected']);
 const MIGRATION_STATES = new Set(['legacy_svg', 'identity_resolved', 'raster_candidate', 'reviewed', 'verified', 'promoted']);
 const FORMAL_STATES = new Set(['reviewed', 'verified']);
 const SOURCE_FIELDS = ['source_url', 'source_page', 'license', 'license_url', 'author', 'attribution', 'modifications'];
+const LEDGER_SYNC_FIELDS = ['source_url', 'source_page', 'license', 'license_url', 'author', 'attribution', 'source_sha1'];
 const errors = [];
 
 function text(value) { return typeof value === 'string' ? value.trim() : ''; }
@@ -42,6 +43,32 @@ function loadCorpusIds() {
     for (const id of entryIdsFrom(readJson(file))) ids.add(id);
   }
   return ids;
+}
+
+function loadSourceLedgerItems() {
+  const paths = [
+    path.join(DATA, 'image-wave1-sources-v2.3.json'),
+    path.join(DATA, 'image-wave2-sources-v2.3.json')
+  ];
+  const byId = new Map();
+  for (const file of paths) {
+    if (!fs.existsSync(file)) continue;
+    const ledger = readJson(file);
+    if (!Array.isArray(ledger.items)) {
+      errors.push(`${path.basename(file)}: items must be an array`);
+      continue;
+    }
+    for (const item of ledger.items) {
+      const id = text(item.entry_id);
+      if (!id) {
+        errors.push(`${path.basename(file)}: source ledger item missing entry_id`);
+        continue;
+      }
+      if (byId.has(id)) errors.push(`${id}: duplicate source-ledger entry_id across waves`);
+      byId.set(id, item);
+    }
+  }
+  return byId;
 }
 
 function assetPath(src) {
@@ -87,8 +114,23 @@ function validateSource(source, entryId) {
     if (!text(source[field])) errors.push(`${entryId}: source.${field} is required`);
   }
   for (const field of ['source_url', 'source_page', 'license_url']) requireHttps(source[field], `source.${field}`, entryId);
-  if (text(source.source_sha1) && !/^[a-f0-9]{40}$/.test(source.source_sha1)) {
+  if (!text(source.source_sha1)) {
+    errors.push(`${entryId}: source.source_sha1 is required for promoted reviewed/verified images`);
+  } else if (!/^[a-f0-9]{40}$/.test(source.source_sha1)) {
     errors.push(`${entryId}: source.source_sha1 must be 40 lowercase hex characters`);
+  }
+}
+
+function validateLedgerParity(item, ledgerItem) {
+  const id = text(item.entry_id);
+  if (!ledgerItem) return;
+  for (const field of LEDGER_SYNC_FIELDS) {
+    const registryValue = text(item.source?.[field]);
+    const ledgerValue = text(ledgerItem[field]);
+    if (!ledgerValue) errors.push(`${id}: source ledger ${field} is required`);
+    if (registryValue !== ledgerValue) {
+      errors.push(`${id}: registry source.${field} must match source ledger exactly`);
+    }
   }
 }
 
@@ -100,6 +142,7 @@ if (registry.policy?.wrong_image_behavior !== 'omit') errors.push('policy.wrong_
 if (!Array.isArray(registry.items)) errors.push('registry.items must be an array');
 
 const corpusIds = loadCorpusIds();
+const sourceLedgerById = loadSourceLedgerItems();
 const seen = new Set();
 for (const item of array(registry.items)) {
   const id = text(item.entry_id);
@@ -139,11 +182,16 @@ for (const item of array(registry.items)) {
     if (!text(item.primary?.source)) errors.push(`${id}: formal image_state requires retained local primary.source`);
     if (!['reviewed', 'verified', 'promoted'].includes(item.migration_state)) errors.push(`${id}: formal image_state requires reviewed/verified/promoted migration_state`);
     validateSource(item.source, id);
+    validateLedgerParity(item, sourceLedgerById.get(id));
   }
 
   if (item.migration_state === 'promoted' && !FORMAL_STATES.has(item.image_state)) errors.push(`${id}: promoted image must be reviewed or verified`);
   if (item.subject_match === 'rejected' && item.migration_state === 'promoted') errors.push(`${id}: rejected subject cannot be promoted`);
   if (item.legacy?.src) requireExistingLocal(item.legacy.src, 'legacy.src', id);
+}
+
+for (const id of sourceLedgerById.keys()) {
+  if (!seen.has(id)) errors.push(`${id}: reviewed source-ledger item is missing from canonical registry`);
 }
 
 if (errors.length) {
@@ -155,5 +203,7 @@ if (errors.length) {
 console.log('Construction Tools Atlas image registry v2.3: PASS');
 console.log(`- current corpus IDs: ${corpusIds.size}`);
 console.log(`- canonical registry items: ${array(registry.items).length}`);
+console.log(`- source-ledger parity entries: ${sourceLedgerById.size}`);
 console.log('- formal primary images require matched subject + separate display/thumb WebP assets + retained local source + provenance');
+console.log('- canonical source provenance and SHA-1 must exactly match reviewed source ledgers');
 console.log('- SVG is allowed only as legacy/diagram input, never as v2.3 primary display/thumbnail');

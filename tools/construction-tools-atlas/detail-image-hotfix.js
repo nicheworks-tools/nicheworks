@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const REGISTRY_URL = "./data/image-registry-v2.3.json?v=20260914-wave1-1";
+  const REGISTRY_URL = "./data/image-registry-v2.3.json?v=2026-09-14-wave2a-1";
   const MANIFEST_URLS = [
     "./data/image-pilots.json?v=20260513-asset-5",
     "./data/image-pilots-002.json?v=20260513-asset-6",

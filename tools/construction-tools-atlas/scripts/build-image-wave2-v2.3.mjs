@@ -7,8 +7,8 @@ import { fileURLToPath } from 'node:url';
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, '..');
 const DATA = path.join(ROOT, 'data');
-const MANIFEST_PATH = path.join(DATA, 'image-wave1-sources-v2.3.json');
-const WAVE2_PATH = path.join(DATA, 'image-wave2-sources-v2.3.json');
+const MANIFEST_PATH = path.join(DATA, 'image-wave2-sources-v2.3.json');
+const WAVE1_PATH = path.join(DATA, 'image-wave1-sources-v2.3.json');
 const IMAGE_ROOT = path.join(ROOT, 'images');
 const USER_AGENT = 'NicheWorks-Construction-Tools-Atlas/2.3 (+https://nicheworks.app/tools/construction-tools-atlas/)';
 const MAX_BYTES = 25 * 1024 * 1024;
@@ -56,13 +56,10 @@ async function download(item) {
     headers: { 'user-agent': USER_AGENT, accept: 'image/*' }
   });
   if (!response.ok) fail(`${item.entry_id}: source download failed (${response.status})`);
-
   const type = response.headers.get('content-type') || '';
   if (!type.toLowerCase().startsWith('image/')) fail(`${item.entry_id}: source is not an image (${type || 'missing content-type'})`);
-
   const declaredLength = Number(response.headers.get('content-length') || 0);
   if (declaredLength > MAX_BYTES) fail(`${item.entry_id}: source exceeds ${MAX_BYTES} bytes`);
-
   const buffer = Buffer.from(await response.arrayBuffer());
   if (!buffer.length) fail(`${item.entry_id}: downloaded source is empty`);
   if (buffer.length > MAX_BYTES) fail(`${item.entry_id}: downloaded source exceeds ${MAX_BYTES} bytes`);
@@ -81,25 +78,14 @@ function validateItem(item, seen) {
     const url = new URL(item[field]);
     if (url.protocol !== 'https:') fail(`${id}: ${field} must use https`);
   }
-  if (item.subject_match !== 'matched') fail(`${id}: Wave 1 build requires subject_match=matched`);
-  if (item.review_state !== 'reviewed' && item.review_state !== 'verified') fail(`${id}: Wave 1 build requires reviewed/verified source`);
+  if (item.subject_match !== 'matched') fail(`${id}: Wave 2 build requires subject_match=matched`);
+  if (item.review_state !== 'reviewed' && item.review_state !== 'verified') fail(`${id}: Wave 2 build requires reviewed/verified source`);
   if (text(item.source_sha1) && !/^[a-f0-9]{40}$/.test(item.source_sha1)) fail(`${id}: source_sha1 must be 40 lowercase hex characters`);
   return id;
 }
 
-async function optionalWave2Ledger() {
-  try {
-    const ledger = JSON.parse(await fs.readFile(WAVE2_PATH, 'utf8'));
-    if (ledger.schema !== 'cta-image-wave2-sources-v2.3') fail('Unexpected Wave 2 source ledger schema.');
-    return ledger;
-  } catch (error) {
-    if (error?.code === 'ENOENT') return null;
-    throw error;
-  }
-}
-
-function attributionMarkdown(ledgers, wave1Rows) {
-  const actualWave1Hashes = new Map(wave1Rows.map((row) => [row.item.entry_id, row.hash]));
+function attributionMarkdown(ledgers, wave2Rows) {
+  const actualWave2Hashes = new Map(wave2Rows.map((row) => [row.item.entry_id, row.hash]));
   const lines = [
     '# Construction Tools Atlas — Image attribution',
     '',
@@ -114,7 +100,7 @@ function attributionMarkdown(ledgers, wave1Rows) {
   ];
   for (const ledger of ledgers) {
     for (const item of ledger.items || []) {
-      const hash = actualWave1Hashes.get(item.entry_id) || text(item.source_sha1);
+      const hash = actualWave2Hashes.get(item.entry_id) || text(item.source_sha1);
       if (!hash) fail(`${item.entry_id}: attribution generation requires a source SHA-1`);
       const safeAttribution = item.attribution.replaceAll('|', '\\|');
       const safeLicense = item.license.replaceAll('|', '\\|');
@@ -127,8 +113,10 @@ function attributionMarkdown(ledgers, wave1Rows) {
 
 async function main() {
   const manifest = JSON.parse(await fs.readFile(MANIFEST_PATH, 'utf8'));
-  if (manifest.schema !== 'cta-image-wave1-sources-v2.3') fail('Unexpected Wave 1 source ledger schema.');
-  if (!Array.isArray(manifest.items) || manifest.items.length === 0) fail('Wave 1 source ledger must contain items.');
+  const wave1 = JSON.parse(await fs.readFile(WAVE1_PATH, 'utf8'));
+  if (manifest.schema !== 'cta-image-wave2-sources-v2.3') fail('Unexpected Wave 2 source ledger schema.');
+  if (wave1.schema !== 'cta-image-wave1-sources-v2.3') fail('Unexpected Wave 1 source ledger schema.');
+  if (!Array.isArray(manifest.items) || manifest.items.length === 0) fail('Wave 2 source ledger must contain items.');
 
   const binary = imageMagickBinary();
   const seen = new Set();
@@ -139,33 +127,28 @@ async function main() {
     const id = validateItem(item, seen);
     const dir = path.join(IMAGE_ROOT, id);
     await fs.mkdir(dir, { recursive: true });
-
     const buffer = await download(item);
     const hash = sha1(buffer);
     if (item.source_sha1 && hash !== item.source_sha1) {
       fail(`${id}: SHA-1 mismatch; expected ${item.source_sha1}, got ${hash}`);
     }
-
     const source = path.join(dir, item.source_filename);
     const primary = path.join(dir, 'primary.webp');
     const thumb = path.join(dir, 'thumb.webp');
     await fs.writeFile(source, buffer);
     convertImage(binary, source, primary, '960x720>', 82);
     convertImage(binary, source, thumb, '320x240>', 78);
-
     const [primaryStat, thumbStat] = await Promise.all([fs.stat(primary), fs.stat(thumb)]);
     if (!primaryStat.size || !thumbStat.size) fail(`${id}: generated WebP is empty`);
     rows.push({ item, hash });
     console.log(`${id}: source=${buffer.length}B primary=${primaryStat.size}B thumb=${thumbStat.size}B sha1=${hash}`);
   }
 
-  const wave2 = await optionalWave2Ledger();
-  const ledgers = wave2 ? [manifest, wave2] : [manifest];
-  await fs.writeFile(path.join(IMAGE_ROOT, 'ATTRIBUTION.md'), attributionMarkdown(ledgers, rows), 'utf8');
-  console.log(`Wave 1 image build complete: ${rows.length} canonical entries`);
+  await fs.writeFile(path.join(IMAGE_ROOT, 'ATTRIBUTION.md'), attributionMarkdown([wave1, manifest], rows), 'utf8');
+  console.log(`Wave 2 image build complete: ${rows.length} canonical entries`);
 }
 
 main().catch((error) => {
-  console.error(`Construction Tools Atlas Wave 1 image build: FAIL\n${error.stack || error.message || error}`);
+  console.error(`Construction Tools Atlas Wave 2 image build: FAIL\n${error.stack || error.message || error}`);
   process.exit(1);
 });

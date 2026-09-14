@@ -1,0 +1,128 @@
+{
+  "schema": "cta-image-identity-resolutions-v2.3",
+  "source_backlog": "./image-identity-backlog-v2.3.json",
+  "policy": {
+    "rule": "Resolve by canonical subject identity, not by legacy label similarity alone.",
+    "confirmed_state": "resolved_existing",
+    "hold_states": [
+      "canonical_duplicate_review",
+      "semantic_scope_review",
+      "canonical_missing",
+      "generated_variant_review"
+    ]
+  },
+  "resolutions": [
+    {
+      "manifest": "image-pilots.json",
+      "index": 33,
+      "legacy_ja": "台車",
+      "legacy_en": "Platform cart",
+      "state": "resolved_existing",
+      "entry_id": "q013_dolly",
+      "rationale": "Canonical definition is a wheeled platform used to move materials or tools; this matches the legacy Platform cart subject."
+    },
+    {
+      "manifest": "image-pilots-003.json",
+      "index": 3,
+      "legacy_ja": "ルーフィング",
+      "legacy_en": "Roofing underlayment",
+      "state": "resolved_existing",
+      "entry_id": "q011_roof_underlayment",
+      "rationale": "Canonical entry explicitly describes secondary waterproof roof underlayment beneath roofing."
+    },
+    {
+      "manifest": "image-pilots-004.json",
+      "index": 9,
+      "legacy_ja": "目地鏝",
+      "legacy_en": "Pointing trowel",
+      "state": "resolved_existing",
+      "entry_id": "pointing_trowel",
+      "rationale": "The alternate candidate is a concrete groover for control joints, which is a different tool from the legacy pointing-trowel subject."
+    },
+    {
+      "manifest": "image-pilots-007.json",
+      "index": 6,
+      "legacy_ja": "チャンネル材",
+      "legacy_en": "Strut channel",
+      "state": "resolved_existing",
+      "entry_id": "q012_unistrut_channel",
+      "rationale": "Canonical entry is explicitly Strut Channel used to support piping or equipment."
+    },
+    {
+      "manifest": "image-pilots.json",
+      "index": 68,
+      "legacy_ja": "かんな",
+      "legacy_en": "Hand plane",
+      "state": "resolved_existing",
+      "entry_id": "q012_japanese_plane",
+      "rationale": "Canonical entry is Japanese Plane, a hand plane used to smooth wood surfaces; the legacy kana spelling refers to the same tool."
+    },
+    {
+      "manifest": "image-pilots-003.json",
+      "index": 6,
+      "legacy_ja": "換気棟",
+      "legacy_en": "Roof vent",
+      "state": "resolved_existing",
+      "entry_id": "q014_roof_vent",
+      "rationale": "Canonical entry is a ridge vent that exhausts attic heat or moisture; this matches the legacy roof-vent subject."
+    },
+    {
+      "manifest": "image-pilots-004.json",
+      "index": 8,
+      "legacy_ja": "木鏝",
+      "legacy_en": "Float trowel",
+      "state": "resolved_existing",
+      "entry_id": "q011_float",
+      "rationale": "Canonical entry covers 木鏝・フロート used to level mortar or concrete surfaces."
+    }
+  ],
+  "holds": [
+    {"manifest":"image-pilots.json","index":66,"state":"semantic_scope_review","reason":"Generic Chisel conflicts with a more specific Cold Chisel candidate; do not narrow the subject without evidence."},
+    {"manifest":"image-pilots-003.json","index":2,"state":"canonical_duplicate_review","reason":"flashing and q011_flashing represent the same apparent subject and require canonical dedupe/precedence."},
+    {"manifest":"image-pilots-003.json","index":9,"state":"canonical_duplicate_review","reason":"drip_edge and q014_drip_edge represent the same apparent subject and require canonical dedupe/precedence."},
+    {"manifest":"image-pilots-004.json","index":3,"state":"generated_variant_review","reason":"Only compact/standard generated formwork-panel variants are tied; choose a canonical concept before promotion."},
+    {"manifest":"image-pilots-004.json","index":4,"state":"semantic_scope_review","reason":"Legacy Japanese says separator while English says form tie; current candidates distinguish those concepts."},
+    {"manifest":"image-pilots-011.json","index":2,"state":"canonical_duplicate_review","reason":"paint_tray and q013_paint_tray represent the same apparent subject and require canonical dedupe/precedence."},
+    {"manifest":"image-pilots-012.json","index":1,"state":"canonical_duplicate_review","reason":"notched_trowel and q011_notched_trowel are duplicate apparent subjects."},
+    {"manifest":"image-pilots-012.json","index":5,"state":"generated_variant_review","reason":"Only compact/standard generated flooring-spacer variants are tied."},
+
+    {"manifest":"image-pilots.json","index":32,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Workbench."},
+    {"manifest":"image-pilots.json","index":35,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Toolbox."},
+    {"manifest":"image-pilots.json","index":47,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Sealant joint."},
+    {"manifest":"image-pilots.json","index":53,"state":"semantic_scope_review","reason":"Ceiling hanger is broader than the existing ceiling hanger wire concept; exact hardware identity is not yet established."},
+    {"manifest":"image-pilots.json","index":67,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Rubber mallet."},
+    {"manifest":"image-pilots.json","index":69,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Wood rasp."},
+    {"manifest":"image-pilots-002.json","index":0,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Needle nose pliers."},
+    {"manifest":"image-pilots-002.json","index":3,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Insulated screwdriver."},
+    {"manifest":"image-pilots-002.json","index":8,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Cable cutter."},
+    {"manifest":"image-pilots-002.json","index":9,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Tie fastener / cable tie tool."},
+    {"manifest":"image-pilots-004.json","index":5,"state":"generated_variant_review","reason":"Only low-score compact/standard generated formwork clamp candidates exist."},
+    {"manifest":"image-pilots-005.json","index":1,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Pipe threader."},
+    {"manifest":"image-pilots-005.json","index":3,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Pipe deburrer."},
+    {"manifest":"image-pilots-005.json","index":5,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Copper pipe."},
+    {"manifest":"image-pilots-005.json","index":6,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Pipe elbow."},
+    {"manifest":"image-pilots-005.json","index":7,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Pipe tee."},
+    {"manifest":"image-pilots-005.json","index":8,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Pipe coupling."},
+    {"manifest":"image-pilots-005.json","index":9,"state":"semantic_scope_review","reason":"ball_valve is not equivalent to generic Stop valve; do not force the low-score candidate."},
+    {"manifest":"image-pilots-006.json","index":4,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Ceiling runner."},
+    {"manifest":"image-pilots-006.json","index":8,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Access floor panel."},
+    {"manifest":"image-pilots-007.json","index":2,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Drop-in anchor."},
+    {"manifest":"image-pilots-007.json","index":8,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Eye bolt."},
+    {"manifest":"image-pilots-008.json","index":2,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Conduit coupling."},
+    {"manifest":"image-pilots-008.json","index":3,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Conduit connector."},
+    {"manifest":"image-pilots-008.json","index":8,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Switch plate."},
+    {"manifest":"image-pilots-008.json","index":9,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Wire duct."},
+    {"manifest":"image-pilots-009.json","index":7,"state":"semantic_scope_review","reason":"safety_harness is a low-score candidate; confirm it is specifically equivalent to Full body harness before promotion."},
+    {"manifest":"image-pilots-009.json","index":9,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Barricade bar."},
+    {"manifest":"image-pilots-010.json","index":1,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Rotary laser."},
+    {"manifest":"image-pilots-010.json","index":2,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Laser receiver."},
+    {"manifest":"image-pilots-010.json","index":3,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Survey tripod."},
+    {"manifest":"image-pilots-010.json","index":9,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Inspection mirror."},
+    {"manifest":"image-pilots-011.json","index":4,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Abrasive block."},
+    {"manifest":"image-pilots-011.json","index":9,"state":"semantic_scope_review","reason":"A wallpaper seam roller exists, but the legacy Seam roller subject is not explicitly scoped to wallpaper."},
+    {"manifest":"image-pilots-012.json","index":4,"state":"generated_variant_review","reason":"Only low-score compact/standard generated flooring roller candidates exist."},
+    {"manifest":"image-pilots-012.json","index":7,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Adhesive spreader."},
+    {"manifest":"image-pilots-012.json","index":8,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Flooring pull bar."},
+    {"manifest":"image-pilots-012.json","index":9,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Floor edge pad."}
+  ]
+}

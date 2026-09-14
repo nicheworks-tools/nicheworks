@@ -3,7 +3,9 @@ const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..');
 const runtimePath = path.join(ROOT, 'detail-image-hotfix.js');
+const registryPath = path.join(ROOT, 'data', 'image-registry-v2.3.json');
 const source = fs.readFileSync(runtimePath, 'utf8');
+const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
 const errors = [];
 
 function requireText(fragment, label) {
@@ -20,6 +22,13 @@ requireText('img.dataset.imageSource = "canonical-registry"', 'canonical render 
 requireText('img.dataset.imageSource = "legacy-svg-pilot"', 'legacy fallback diagnostics');
 requireText('window.addEventListener("cta:entry-open"', 'entry-open rerender hook');
 requireText('window.addEventListener("cta:language-mode"', 'language-mode rerender hook');
+
+const registryVersion = typeof registry?.version === 'string' ? registry.version.trim() : '';
+if (!registryVersion) {
+  errors.push('canonical image registry version is missing');
+} else {
+  requireText(`image-registry-v2.3.json?v=${registryVersion}`, 'runtime cache key matches canonical image registry version');
+}
 
 const renderStart = source.indexOf('async function render(');
 const canonicalPosition = source.indexOf('const canonical = matchCanonical();', renderStart);
@@ -55,5 +64,6 @@ if (errors.length) {
 }
 
 console.log('Construction Tools Atlas canonical image runtime v2.3: PASS');
+console.log(`- registry cache key: ${registryVersion}`);
 console.log('- resolution order: promoted canonical registry -> legacy SVG pilot -> no image');
 console.log('- promoted canonical ownership suppresses legacy fallback even on raster load failure');

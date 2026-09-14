@@ -49,11 +49,29 @@ jobs:
       - name: Check Wave 1 image builder syntax
         run: node --check tools/construction-tools-atlas/scripts/build-image-wave1-v2.3.mjs
 
+      - name: Check Wave 2 image builder syntax
+        run: node --check tools/construction-tools-atlas/scripts/build-image-wave2-v2.3.mjs
+
       - name: Check Wave 1 source checker syntax
         run: node --check tools/construction-tools-atlas/scripts/check-image-wave1-sources-v2.3.cjs
 
+      - name: Check Wave 2 source checker syntax
+        run: node --check tools/construction-tools-atlas/scripts/check-image-wave2-sources-v2.3.cjs
+
+      - name: Check registry source sync syntax
+        run: node --check tools/construction-tools-atlas/scripts/sync-image-registry-sources-v2.3.cjs
+
+      - name: Check image attribution checker syntax
+        run: node --check tools/construction-tools-atlas/scripts/check-image-attribution-v2.3.cjs
+
       - name: Check image runtime checker syntax
         run: node --check tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
+
+      - name: Check image identity backlog generator syntax
+        run: node --check tools/construction-tools-atlas/scripts/generate-image-identity-backlog-v2.3.cjs
+
+      - name: Check image identity resolution checker syntax
+        run: node --check tools/construction-tools-atlas/scripts/check-image-identity-resolutions-v2.3.cjs
 
       - name: Check master-detail v2.3 contract
         run: node tools/construction-tools-atlas/scripts/check-master-detail-v2.3.cjs
@@ -67,11 +85,25 @@ jobs:
       - name: Audit image assets and canonical mappings
         run: node tools/construction-tools-atlas/scripts/audit-image-assets-v2.3.cjs
 
+      - name: Regenerate image identity backlog
+        run: |
+          node tools/construction-tools-atlas/scripts/generate-image-identity-backlog-v2.3.cjs
+          git diff --exit-code -- tools/construction-tools-atlas/data/image-identity-backlog-v2.3.json
+
+      - name: Validate image identity resolution ledger
+        run: node tools/construction-tools-atlas/scripts/check-image-identity-resolutions-v2.3.cjs
+
       - name: Validate Wave 1 image source ledger
         run: node tools/construction-tools-atlas/scripts/check-image-wave1-sources-v2.3.cjs
 
-      - name: Validate canonical image registry
+      - name: Validate Wave 2 image source ledger
+        run: node tools/construction-tools-atlas/scripts/check-image-wave2-sources-v2.3.cjs
+
+      - name: Validate canonical image registry and source-ledger parity
         run: node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs
+
+      - name: Validate generated image attribution
+        run: node tools/construction-tools-atlas/scripts/check-image-attribution-v2.3.cjs
 
       - name: Validate canonical image runtime priority
         run: node tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
