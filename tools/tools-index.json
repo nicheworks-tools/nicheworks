@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-09-13T00:00:00.000Z",
-  "total": 89,
+  "total": 90,
   "items": [
     {
       "slug": "ai-interaction-atlas",
@@ -825,6 +825,20 @@
       "tags": [
         "pattern",
         "atlas"
+      ]
+    },
+    {
+      "slug": "pattern-dictionary",
+      "title_en": "Pattern Dictionary",
+      "title_ja": "模様辞典",
+      "desc_en": "Find pattern names from visual browsing and rough everyday descriptions.",
+      "desc_ja": "名前が分からない模様を、画像一覧や曖昧な言葉から探せる視覚模様辞典です。",
+      "tags": [
+        "pattern",
+        "dictionary",
+        "visual",
+        "search",
+        "design"
       ]
     },
     {

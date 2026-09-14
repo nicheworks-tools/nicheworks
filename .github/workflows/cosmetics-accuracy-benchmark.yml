@@ -14,9 +14,11 @@ on:
       - 'tools/_shared/check-cosmetics-real-label-corpus.mjs'
       - 'tools/_shared/check-cosmetics-dictionary-quality.mjs'
       - 'tools/_shared/check-cosmetics-semantic-quality.mjs'
+      - 'tools/_shared/check-cosmetics-category-gap-inventory.mjs'
       - 'tools/_shared/check-cosmetics-legacy-safety-isolation.mjs'
       - 'tools/_shared/check-cosmetics-runtime-semantic-merge.mjs'
       - 'tools/_shared/check-cosmetics-note-provenance-isolation.mjs'
+      - 'tools/_shared/check-cosmetics-note-provenance-schema.mjs'
       - 'tools/_shared/check-cosmetics-canonical-merge.mjs'
       - 'tools/_shared/check-cosmetics-canonical-equivalents.mjs'
       - 'tools/_shared/check-cosmetics-jp-label-variants.mjs'
@@ -34,6 +36,7 @@ on:
       - 'tools/_shared/COSMETICS_ALIAS_POLICY.md'
       - 'tools/_shared/COSMETICS_CANONICAL_MERGE.md'
       - 'tools/_shared/COSMETICS_CANONICAL_SEMANTICS.md'
+      - 'tools/_shared/COSMETICS_CATEGORY_GAPS.md'
       - 'tools/_shared/COSMETICS_JP_LABEL_VARIANTS.md'
       - 'tools/_shared/COSMETICS_NOTE_PROVENANCE.md'
       - 'tools/_shared/COSMETICS_OCR_LINE_REPAIR.md'
@@ -66,12 +69,16 @@ jobs:
         run: node tools/_shared/check-cosmetics-dictionary-quality.mjs
       - name: Dictionary semantic quality audit
         run: node tools/_shared/check-cosmetics-semantic-quality.mjs
+      - name: Category gap inventory
+        run: node tools/_shared/check-cosmetics-category-gap-inventory.mjs
       - name: Legacy safety runtime isolation
         run: node tools/_shared/check-cosmetics-legacy-safety-isolation.mjs
       - name: Canonical runtime semantic merge
         run: node tools/_shared/check-cosmetics-runtime-semantic-merge.mjs
       - name: Note provenance runtime isolation
         run: node tools/_shared/check-cosmetics-note-provenance-isolation.mjs
+      - name: Note provenance schema
+        run: node tools/_shared/check-cosmetics-note-provenance-schema.mjs
       - name: Japanese label variant regression
         run: node tools/_shared/check-cosmetics-jp-label-variants.mjs
       - name: Canonical merge regression
@@ -84,9 +91,11 @@ jobs:
           node --check tools/_shared/cosmetics-affiliate-config.js
           node --check tools/_shared/cosmetics-affiliate-slot.js
           node --check tools/_shared/check-cosmetics-semantic-quality.mjs
+          node --check tools/_shared/check-cosmetics-category-gap-inventory.mjs
           node --check tools/_shared/check-cosmetics-legacy-safety-isolation.mjs
           node --check tools/_shared/check-cosmetics-runtime-semantic-merge.mjs
           node --check tools/_shared/check-cosmetics-note-provenance-isolation.mjs
+          node --check tools/_shared/check-cosmetics-note-provenance-schema.mjs
           node --check tools/_shared/check-cosmetics-jp-label-variants.mjs
           node --check tools/_shared/check-fastscan-ocr-robustness.mjs
           node --check tools/cosmetic-ingredient-checker-lite/app.js

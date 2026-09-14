@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "registry": "tools/tools-index.json",
-  "required_complete": 89,
-  "complete": 89,
+  "required_complete": 90,
+  "complete": 90,
   "pending": 0,
   "items": [
     {"slug":"ai-interaction-atlas","state":"complete","spec":"tools/ai-interaction-atlas/SPEC.md"},
@@ -69,6 +69,7 @@
     {"slug":"outsource-spec-generator","state":"complete","spec":"tools/outsource-spec-generator/SPEC.md"},
     {"slug":"pages-deploy-guide","state":"complete","spec":"tools/pages-deploy-guide/SPEC.md"},
     {"slug":"pattern-atlas","state":"complete","spec":"tools/pattern-atlas/SPEC.md"},
+    {"slug":"pattern-dictionary","state":"complete","spec":"tools/pattern-dictionary/SPEC.md"},
     {"slug":"pdf-page-tools-mini","state":"complete","spec":"tools/pdf-page-tools-mini/SPEC.md"},
     {"slug":"pdf2csv-local","state":"complete","spec":"tools/pdf2csv-local/SPEC.md"},
     {"slug":"phone-quickcheck","state":"complete","spec":"tools/phone-quickcheck/SPEC.md"},

@@ -6,27 +6,55 @@
   const base = window.MANUALFINDER_AFFILIATE_CONFIG;
   if (!base || !base.consumableSearchTemplate) return;
 
-  const sourceUrl = "https://www.fujifilm.com/fb/ja/support/sds-and-ais/multifunction-printers/color/apeos-c7071-c6571-c5571-c4571-c3571-C3071-c2571";
-  const evidenceScope = "FUJIFILM Business Innovation's official SDS page explicitly lists black, yellow, magenta, and cyan toner for the Apeos C7071/C6571/C5571/C4571/C3571/C3071/C2571 family.";
-  const models = Object.freeze([
-    "Apeos C7071",
-    "Apeos C6571",
-    "Apeos C5571",
-    "Apeos C4571",
-    "Apeos C3571",
-    "Apeos C2571"
+  const families = Object.freeze([
+    Object.freeze({
+      sourceUrl: "https://www.fujifilm.com/fb/ja/support/sds-and-ais/multifunction-printers/color/apeos-c7071-c6571-c5571-c4571-c3571-C3071-c2571",
+      evidenceKind: "official_family_toner_sds",
+      evidenceScope: "FUJIFILM Business Innovation's official SDS page explicitly groups Apeos C7071/C6571/C5571/C4571/C3571/C3071/C2571 and lists black, yellow, magenta, and cyan toner for the family.",
+      models: Object.freeze(["Apeos C7071", "Apeos C6571", "Apeos C5571", "Apeos C4571", "Apeos C3571", "Apeos C2571"])
+    }),
+    Object.freeze({
+      sourceUrl: "https://www.fujifilm.com/fb/ja/support/sds-and-ais/multifunction-printers/monochrome/apeos-7580-6580-5580",
+      evidenceKind: "official_family_toner_sds",
+      evidenceScope: "FUJIFILM Business Innovation's official SDS page explicitly groups Apeos 7580/6580/5580 and lists black toner for the family.",
+      models: Object.freeze(["Apeos 7580", "Apeos 6580", "Apeos 5580"])
+    }),
+    Object.freeze({
+      sourceUrl: "https://www.fujifilm.com/fb/ja/support/sds-and-ais/multifunction-printers/color/apeos-c3067-c3061-2561-2061",
+      evidenceKind: "official_family_toner_sds",
+      evidenceScope: "FUJIFILM Business Innovation's official SDS page explicitly groups Apeos C3067/C3061/C2561/C2061 and lists black, yellow, magenta, and cyan toner for the family.",
+      models: Object.freeze(["Apeos C3061", "Apeos C2561", "Apeos C2061"])
+    }),
+    Object.freeze({
+      sourceUrl: "https://www.fujifilm.com/fb/ja/support/sds-and-ais/multifunction-printers/monochrome/apeos-3060-2560",
+      evidenceKind: "official_family_toner_sds",
+      evidenceScope: "FUJIFILM Business Innovation's official SDS page explicitly groups Apeos 3060/2560/1860 and lists black toner for the family.",
+      models: Object.freeze(["Apeos 3060", "Apeos 2560", "Apeos 1860"])
+    }),
+    Object.freeze({
+      sourceUrl: "https://www.fujifilm.com/fb/ja/support/sds-and-ais/multifunction-printers/monochrome/apeos-4570-3570",
+      evidenceKind: "official_family_toner_sds",
+      evidenceScope: "FUJIFILM Business Innovation's official SDS page explicitly groups Apeos 4570/3570 and lists black toner for the family.",
+      models: Object.freeze(["Apeos 4570", "Apeos 3570"])
+    }),
+    Object.freeze({
+      sourceUrl: "https://www.fujifilm.com/fb/ja/products/multifunction-printers/monochrome/apeos-3061-2561-2061/features",
+      evidenceKind: "official_family_toner_product_page",
+      evidenceScope: "FUJIFILM Business Innovation's official Apeos 3061/2561/2061 product family page explicitly describes newly developed toner for the Apeos 3061 series.",
+      models: Object.freeze(["Apeos 3061", "Apeos 2561", "Apeos 2061"])
+    })
   ]);
 
-  const rows = Object.freeze(models.map((model) => Object.freeze({
+  const rows = Object.freeze(families.flatMap((family) => family.models.map((model) => Object.freeze({
     maker: "FUJIFILM Business Innovation",
     searchMaker: "FUJIFILM",
     model,
     verifiedAt: "2026-09-14",
-    sourceUrl,
-    evidenceKind: "official_family_toner_sds",
-    evidenceScope,
+    sourceUrl: family.sourceUrl,
+    evidenceKind: family.evidenceKind,
+    evidenceScope: family.evidenceScope,
     tonerCodes: Object.freeze([])
-  })));
+  }))));
 
   function buildTaggedSearchUrl(query) {
     const url = new URL("https://www.amazon.co.jp/s");

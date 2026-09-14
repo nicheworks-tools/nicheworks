@@ -1,0 +1,27 @@
+[
+  {
+    "pref": "滋賀県",
+    "city": "大津市",
+    "name": "大津市 ごみ収集カレンダー（令和8年4月～令和9年3月）",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.otsu.lg.jp/kurashi/g/b/c/index.html",
+    "lgcode": "252018",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "滋賀県",
+    "city": "大津市",
+    "name": "大津市 家庭ごみ・大型ごみの出し方",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.otsu.lg.jp/soshiki/030/1703/g/bumbetsu/28743.html",
+    "lgcode": "252018",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  }
+]

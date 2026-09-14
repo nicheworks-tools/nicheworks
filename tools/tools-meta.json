@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-13",
+  "updatedAt": "2026-09-14",
   "items": {
     "ai-project-pack": {
       "title_ja": "AIプロジェクトパック",
@@ -1031,6 +1031,18 @@
       "tags": [
         "pattern",
         "atlas"
+      ]
+    },
+    "pattern-dictionary": {
+      "title_ja": "模様辞典",
+      "title_en": "Pattern Dictionary",
+      "desc_ja": "名前が分からない模様を、曖昧な言葉や画像一覧から探し、正式名称や似た柄まで確認できる視覚模様辞典です。",
+      "desc_en": "Identify patterns from rough descriptions, image browsing, similar designs, and common look-alikes.",
+      "tags": [
+        "pattern",
+        "dictionary",
+        "visual",
+        "search"
       ]
     },
     "old-kanji-ocr-scanner": {

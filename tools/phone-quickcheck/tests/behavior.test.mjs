@@ -253,6 +253,50 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.doesNotMatch(html, /USB-PD対応 30W以上の充電器/);
 }
 
+// Canonical foldable data proves the production schema with manufacturer-verified dimensions and charging facts.
+{
+  const h = await createHarness(['google-pixel-11-pro-fold']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('155.2 × 76 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /155\.2 × 76 × 10\.1 mm/);
+  assert.match(html, /155\.2 × 150\.4 × 5 mm/);
+  assert.match(html, /239 g/);
+  assert.match(html, /4806 mAh/);
+  assert.match(html, /30W/);
+  assert.match(html, /PPS/);
+  assert.match(html, /Qi2\.2 \/ 25W/);
+}
+
+// A production clamshell foldable keeps folded height distinct and resolves Samsung charging classes.
+{
+  const h = await createHarness(['samsung-galaxy-z-flip7']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('85.5 × 75.2 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /85\.5 × 75\.2 × 13\.7 mm/);
+  assert.match(html, /166\.7 × 75\.2 × 6\.5 mm/);
+  assert.match(html, /188 g/);
+  assert.match(html, /4300 mAh/);
+  assert.match(html, /25W/);
+  assert.match(html, /Super Fast Charging/);
+  assert.match(html, /Qi \/ 15W/);
+  assert.match(html, /Galaxy Super Fast Charging対応 25W充電器/);
+}
+
+// Pixel Fold proves charger guidance and device-side maximum stay separate on real foldable data.
+{
+  const h = await createHarness(['google-pixel-fold']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('139.7 × 79.5 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /139\.7 × 79\.5 × 12\.1 mm/);
+  assert.match(html, /139\.7 × 158\.7 × 5\.8 mm/);
+  assert.match(html, /4821 mAh/);
+  assert.match(html, /充電器目安<\/span><b>30W\+/);
+  assert.match(html, /端末側の有線充電上限<\/span><b>18W/);
+  assert.match(html, /PPS/);
+  assert.match(html, /Qi \/ 7\.5W/);
+  assert.match(html, /PPS対応 30W以上の充電器/);
+}
+
 // Foldable schema renders both physical states and keeps folded dimensions in the list.
 {
   const h = await createHarness(['synthetic-foldable']);

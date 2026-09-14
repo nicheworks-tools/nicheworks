@@ -31,8 +31,8 @@ assert.deepEqual(
   ['PC・スマホ', '家電', 'プリンター・複合機', 'カメラ・映像', 'オーディオ', 'ゲーム', 'ネットワーク機器']
 );
 assert.deepEqual(Array.from(config.modelSearchTemplate.excludedCategories), ['その他']);
-assert.equal(config.printerConsumables.length, 52, '25 consumer-printer mappings plus 27 office-toner mappings should be present');
-assert.equal(config.officePrinterConsumables.length, 27, 'OKI 10 + KYOCERA 5 + RICOH 5 + FUJIFILM BI 7 office-toner mappings should be present');
+assert.equal(config.printerConsumables.length, 58, '25 consumer-printer mappings plus 33 office-toner mappings should be present');
+assert.equal(config.officePrinterConsumables.length, 33, 'OKI 10 + KYOCERA 5 + RICOH 11 + FUJIFILM BI 7 office-toner mappings should be present');
 assert.equal(Object.keys(config.targets).length, 3);
 assert.equal(config.offers.length, 1, 'dynamic searches must not create one stored Amazon URL per record');
 
@@ -124,6 +124,12 @@ const officeModels = new Map([
   ['RICOH|RICOH IM C7010', ['RICOH トナー ブラック IM C7010', 'RICOH トナー イエロー IM C7010', 'RICOH トナー マゼンタ IM C7010', 'RICOH トナー シアン IM C7010']],
   ['RICOH|RICOH IM C6011', ['RICOH トナー ブラック IM C6010', 'RICOH トナー イエロー IM C6010', 'RICOH トナー マゼンタ IM C6010', 'RICOH トナー シアン IM C6010']],
   ['RICOH|RICOH IM C3511', ['RICOH トナー ブラック IM C3510', 'RICOH トナー イエロー IM C3510', 'RICOH トナー マゼンタ IM C3510', 'RICOH トナー シアン IM C3510']],
+  ['RICOH|RICOH IM C5511', ['RICOH トナー ブラック IM C6010', 'RICOH トナー イエロー IM C6010', 'RICOH トナー マゼンタ IM C6010', 'RICOH トナー シアン IM C6010']],
+  ['RICOH|RICOH IM C4511', ['RICOH トナー ブラック IM C6010', 'RICOH トナー イエロー IM C6010', 'RICOH トナー マゼンタ IM C6010', 'RICOH トナー シアン IM C6010']],
+  ['RICOH|RICOH IM C3011', ['RICOH トナー ブラック IM C3510', 'RICOH トナー イエロー IM C3510', 'RICOH トナー マゼンタ IM C3510', 'RICOH トナー シアン IM C3510']],
+  ['RICOH|RICOH IM C2511', ['RICOH トナー ブラック IM C2510', 'RICOH トナー イエロー IM C2510', 'RICOH トナー マゼンタ IM C2510', 'RICOH トナー シアン IM C2510']],
+  ['RICOH|RICOH IM C320F', ['RICOH Pトナー ブラック IM C320', 'RICOH Pトナー イエロー IM C320', 'RICOH Pトナー マゼンタ IM C320', 'RICOH Pトナー シアン IM C320']],
+  ['RICOH|RICOH IM C2011', ['RICOH トナーキット ブラック IM C2010', 'RICOH トナーキット イエロー IM C2010', 'RICOH トナーキット マゼンタ IM C2010', 'RICOH トナーキット シアン IM C2010']],
   ['FUJIFILM Business Innovation|ApeosPort-VII C7773', ['CT203138', 'CT203139', 'CT203140', 'CT203141']],
   ['FUJIFILM Business Innovation|ApeosPort-VII C6673', ['CT203138', 'CT203139', 'CT203140', 'CT203141']],
   ['FUJIFILM Business Innovation|ApeosPort-VII C5573', ['CT203138', 'CT203139', 'CT203140', 'CT203141']],

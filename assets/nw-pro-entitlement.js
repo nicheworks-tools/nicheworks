@@ -148,4 +148,22 @@
     activateFromSession,
     clearProductSession
   };
+
+  const OLD_KANJI_ANALYTICS_TOOLS = new Set([
+    'old-kanji-reference',
+    'old-kanji-ocr-scanner',
+    'old-document-kanji-highlighter',
+    'unicode-kanji-checker',
+    'variant-kanji-compare',
+    'place-old-kanji-checker',
+    'name-old-kanji-checker'
+  ]);
+  const pathParts = global.location?.pathname?.split('/').filter(Boolean) || [];
+  if (pathParts[0] === 'tools' && OLD_KANJI_ANALYTICS_TOOLS.has(pathParts[1]) && !global.__nicheworksOldKanjiAnalyticsLoading) {
+    global.__nicheworksOldKanjiAnalyticsLoading = true;
+    const script = global.document.createElement('script');
+    script.src = '/assets/old-kanji-analytics.js?v=20260914-1';
+    script.defer = true;
+    global.document.head.appendChild(script);
+  }
 })(window);
