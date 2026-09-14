@@ -1,0 +1,95 @@
+{
+  "schema": "cta-image-wave3-sources-v2.3",
+  "version": "2026-09-14-wave3a-1",
+  "policy": {
+    "runtime_hotlink": false,
+    "source_provider": "Wikimedia Commons",
+    "promotion_rule": "Only real raster sources with explicit license provenance, an active q017 canonical identity, and manually reviewed subject match may be promoted."
+  },
+  "items": [
+    {
+      "entry_id": "q017_workbench",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Carpenter%27s_workbench.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Carpenter%27s_workbench.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "author": "Emhoo~commonswiki",
+      "attribution": "Emhoo~commonswiki / Wikimedia Commons, CC BY-SA 3.0",
+      "source_sha1": "",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Commons explicitly identifies the real photograph as a carpenter's workbench; it shows the heavy bench surface and vise structure characteristic of the canonical Workbench subject."
+    },
+    {
+      "entry_id": "q017_toolbox",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/7/71/Metal_tool_box.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Metal_tool_box.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "Santeri Viinamäki",
+      "attribution": "Santeri Viinamäki / Wikimedia Commons, CC BY-SA 4.0",
+      "source_sha1": "",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Commons describes the photograph as an old metal tool box and categorizes it under Toolboxes; direct real-subject match for q017_toolbox."
+    },
+    {
+      "entry_id": "q017_rubber_mallet",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Rubber_mallets.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Rubber_mallets.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "MartinMerinsky",
+      "attribution": "MartinMerinsky / Wikimedia Commons, CC BY-SA 4.0",
+      "source_sha1": "",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Real photograph explicitly titled and described as rubber mallets; direct match for the non-marring rubber-mallet canonical."
+    },
+    {
+      "entry_id": "q017_needle_nose_pliers",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Basic_NeedleNose_Pliers.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Basic_NeedleNose_Pliers.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "author": "oomlout",
+      "attribution": "oomlout / Wikimedia Commons, CC BY-SA 2.0",
+      "source_sha1": "",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Real photograph explicitly identifies basic needle-nose pliers; the long narrow jaws are clearly visible and match q017_needle_nose_pliers."
+    },
+    {
+      "entry_id": "q017_survey_tripod",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Surveyors_tripod.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Surveyors_tripod.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "author": "Michael Daly",
+      "attribution": "Michael Daly / Wikimedia Commons, CC BY-SA 3.0",
+      "source_sha1": "",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Commons explicitly describes a surveyor's tripod and calls out the instrument head, spiked feet, and carrying strap; exact match for q017_survey_tripod."
+    },
+    {
+      "entry_id": "q017_copper_pipe",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Tubo_cobre.png",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Tubo_cobre.png",
+      "source_filename": "source.png",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "MdeVicente",
+      "attribution": "MdeVicente / Wikimedia Commons, CC0 1.0",
+      "source_sha1": "",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Commons explicitly labels the photographed object Copper pipe; the image isolates a real copper tube section rather than fittings or a retail display."
+    }
+  ]
+}
