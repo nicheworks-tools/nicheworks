@@ -123,7 +123,7 @@
 {"id":"wave4_c3_betaine_salicylate","en":"Betaine Salicylate","jp":[],"alias":[],"safety":"caution","category":"active"},
 {"id":"wave4_c3_bis_octyldodecyl_copolymer","en":"Bis-Octyldodecyl Dimer Dilinoleate/Propanediol Copolymer","jp":[],"alias":[],"safety":"safe","category":"film former"},
 {"id":"wave4_c3_carnosine","en":"Carnosine","jp":[],"alias":[],"safety":"safe","category":"peptide"},
-{"id":"wave4_c3_cera_microcristallina","en":"Cera Microcristallina","jp":[],"alias":["Microcrystalline Wax"],"safety":"safe","category":"texture agent"},
+{"id":"wave4_c3_cera_microcristallina","en":"Microcrystalline Wax","jp":[],"alias":["Cera Microcristallina"],"safety":"safe","category":"texture agent"},
 {"id":"wave4_c3_coco_caprylate_caprate","en":"Coco-Caprylate/Caprate","jp":[],"alias":[],"safety":"safe","category":"emollient"},
 {"id":"wave4_c3_cryptomeria_japonica_leaf_extract","en":"Cryptomeria Japonica Leaf Extract","jp":[],"alias":[],"safety":"safe","category":"plant extract"},
 {"id":"wave4_c3_darutoside","en":"Darutoside","jp":[],"alias":[],"safety":"safe","category":"skin conditioning"},
