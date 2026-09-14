@@ -2875,6 +2875,178 @@
       "affiliateKeys": []
     },
     {
+      "id": "samsung-galaxy-z-fold2-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Fold2 5G",
+      "aliases": [
+        "Samsung Galaxy Z Fold2 5G",
+        "GalaxyZFold2",
+        "Galaxy Z Fold2",
+        "Galaxy Fold2",
+        "ギャラクシーZ Fold2 5G",
+        "ギャラクシーZフォールド2"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 159.2,
+        "widthMm": 68,
+        "depthMmMin": 13.8,
+        "depthMmMax": 16.8
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 159.2,
+        "widthMm": 128.2,
+        "depthMmMin": 6,
+        "depthMmMax": 6.9
+      },
+      "weightG": 282,
+      "displayInch": 7.6,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4500,
+          "valueClass": "official",
+          "sourceRef": "https://news.samsung.com/global/introducing-the-galaxy-z-fold2-change-the-shape-of-the-future"
+        },
+        "wiredRecommendedW": 25,
+        "protocols": [
+          "Super Fast Charging"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi"
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://news.samsung.com/global/introducing-the-galaxy-z-fold2-change-the-shape-of-the-future",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F916JZNAKDI/",
+        "releaseUrl": "https://news.samsung.com/global/introducing-the-galaxy-z-fold2-change-the-shape-of-the-future",
+        "chargingUrl": "https://www.samsung.com/au/smartphones/galaxy-z-fold2/design/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-flip-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Flip 5G",
+      "aliases": [
+        "Samsung Galaxy Z Flip 5G",
+        "GalaxyZFlip5G",
+        "Galaxy Z Flip 5G SCG04",
+        "ギャラクシーZ Flip 5G",
+        "ギャラクシーZフリップ5G"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 87.4,
+        "widthMm": 73.6,
+        "depthMmMin": 15.4,
+        "depthMmMax": 17.4
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 167.3,
+        "widthMm": 73.6,
+        "depthMmMin": 6.9,
+        "depthMmMax": 7.2
+      },
+      "weightG": 183,
+      "displayInch": 6.7,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 3300,
+          "valueClass": "official",
+          "sourceRef": "https://news.samsung.com/global/introducing-galaxy-z-flip-5g-express-yourself-with-a-stylish-5g-enabled-foldable-smartphone"
+        },
+        "wiredRecommendedW": 15,
+        "wiredMaxW": 15,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi"
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://news.samsung.com/global/introducing-galaxy-z-flip-5g-express-yourself-with-a-stylish-5g-enabled-foldable-smartphone",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F707JZNAKDI/",
+        "releaseUrl": "https://news.samsung.com/global/introducing-galaxy-z-flip-5g-express-yourself-with-a-stylish-5g-enabled-foldable-smartphone",
+        "chargingUrl": "https://image-us.samsung.com/SamsungUS/samsungbusiness/pdfs/datasheet/Galaxy-Z-Flip_Z-Flip-5G-Datasheet-Generic.pdf",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-flip",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Flip",
+      "aliases": [
+        "Samsung Galaxy Z Flip",
+        "GalaxyZFlip",
+        "Galaxy Z Flip SCV47",
+        "ギャラクシーZ Flip",
+        "ギャラクシーZフリップ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 87.4,
+        "widthMm": 73.6,
+        "depthMmMin": 15.4,
+        "depthMmMax": 17.3
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 167.3,
+        "widthMm": 73.6,
+        "depthMmMin": 6.9,
+        "depthMmMax": 7.2
+      },
+      "weightG": 183,
+      "displayInch": 6.7,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 3300,
+          "valueClass": "official",
+          "sourceRef": "https://image-us.samsung.com/SamsungUS/samsungbusiness/pdfs/datasheet/Galaxy-Z-Flip_Z-Flip-5G-Datasheet-Generic.pdf"
+        },
+        "wiredRecommendedW": 15,
+        "wiredMaxW": 15,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi"
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://image-us.samsung.com/SamsungUS/samsungbusiness/pdfs/datasheet/Galaxy-Z-Flip_Z-Flip-5G-Datasheet-Generic.pdf",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F700JZKAKDI/",
+        "chargingUrl": "https://image-us.samsung.com/SamsungUS/samsungbusiness/pdfs/datasheet/Galaxy-Z-Flip_Z-Flip-5G-Datasheet-Generic.pdf",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
       "id": "samsung-galaxy-a55-5g",
       "manufacturer": "Samsung",
       "model": "Galaxy A55 5G",
