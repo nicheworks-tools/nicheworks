@@ -3979,8 +3979,8 @@
         "wirelessMaxW": 30
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://store.motorola.co.jp/category/RAZR/RAZR60ULTRA.html",
@@ -3988,7 +3988,7 @@
         "releaseUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=1115",
         "chargingUrl": "https://store.motorola.co.jp/category/RAZR/RAZR60ULTRA.html",
         "wirelessUrl": "https://store.motorola.co.jp/category/RAZR/RAZR60ULTRA.html",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
     },
@@ -8796,8 +8796,8 @@
         "wirelessMaxW": 5
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/175748/",
@@ -8805,7 +8805,7 @@
         "releaseUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=718",
         "chargingUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/175748/",
         "wirelessUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/175748/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
     },
