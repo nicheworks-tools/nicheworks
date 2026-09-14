@@ -1,22 +1,22 @@
 {
   "schema_version": 1,
-  "phase": "reference-images-reviewed",
-  "updated": "2026-09-14",
+  "phase": "verified-publication",
+  "updated": "2026-09-15",
   "policy": {
     "record_count": 20,
     "runtime_merge": "Overlay these fields on data/patterns.json by matching pattern_id.",
-    "review_state": "reviewed",
+    "review_state": "verified",
     "qualified_terms": [
       "moroccan-trellis",
       "ikat",
       "kilim"
     ],
-    "image_state": "structural-review-complete"
+    "image_state": "verified-publication"
   },
   "patterns": [
     {
       "pattern_id": "houndstooth",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "千鳥格子",
@@ -79,7 +79,7 @@
     },
     {
       "pattern_id": "gingham",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "ギンガムチェック",
@@ -137,7 +137,7 @@
     },
     {
       "pattern_id": "tartan",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "タータン",
@@ -198,7 +198,7 @@
     },
     {
       "pattern_id": "glen-check",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "グレンチェック",
@@ -260,7 +260,7 @@
     },
     {
       "pattern_id": "argyle",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "アーガイル",
@@ -321,7 +321,7 @@
     },
     {
       "pattern_id": "chevron",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "シェブロン",
@@ -381,7 +381,7 @@
     },
     {
       "pattern_id": "polka-dot",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "水玉",
@@ -445,7 +445,7 @@
     },
     {
       "pattern_id": "moroccan-trellis",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "qualified",
       "names": {
         "ja": "モロッカントレリス",
@@ -511,7 +511,7 @@
     },
     {
       "pattern_id": "seigaiha",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "青海波",
@@ -571,7 +571,7 @@
     },
     {
       "pattern_id": "asanoha",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "麻の葉",
@@ -631,7 +631,7 @@
     },
     {
       "pattern_id": "shippo",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "七宝",
@@ -693,7 +693,7 @@
     },
     {
       "pattern_id": "ichimatsu",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "市松",
@@ -758,7 +758,7 @@
     },
     {
       "pattern_id": "kikko",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "亀甲",
@@ -819,7 +819,7 @@
     },
     {
       "pattern_id": "karakusa",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "唐草",
@@ -881,7 +881,7 @@
     },
     {
       "pattern_id": "damask",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "ダマスク",
@@ -941,7 +941,7 @@
     },
     {
       "pattern_id": "arabesque",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "アラベスク",
@@ -1001,7 +1001,7 @@
     },
     {
       "pattern_id": "paisley",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "ペイズリー",
@@ -1064,7 +1064,7 @@
     },
     {
       "pattern_id": "leopard-print",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "verified",
       "names": {
         "ja": "レオパード柄",
@@ -1127,7 +1127,7 @@
     },
     {
       "pattern_id": "ikat",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "qualified",
       "names": {
         "ja": "イカット",
@@ -1193,7 +1193,7 @@
     },
     {
       "pattern_id": "kilim",
-      "review_state": "reviewed",
+      "review_state": "verified",
       "verification_state": "qualified",
       "names": {
         "ja": "キリム柄",

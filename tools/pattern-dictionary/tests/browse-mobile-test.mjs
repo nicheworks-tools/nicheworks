@@ -5,6 +5,8 @@ import {fileURLToPath} from 'node:url';
 const here=path.dirname(fileURLToPath(import.meta.url));
 const root=path.resolve(here,'..');
 const patterns=JSON.parse(fs.readFileSync(path.join(root,'data','patterns.json'),'utf8'));
+const prod=JSON.parse(fs.readFileSync(path.join(root,'data','production-content.json'),'utf8'));
+const prodById=Object.fromEntries(prod.patterns.map(x=>[x.pattern_id,x]));
 const css=fs.readFileSync(path.join(root,'style.css'),'utf8');
 const app=fs.readFileSync(path.join(root,'app.js'),'utf8');
 const indexes=[path.join(root,'index.html'),path.join(root,'en','index.html')];
@@ -31,7 +33,7 @@ for(const p of patterns){
     const file=path.join(root,prefix,'patterns',p.id,'index.html');
     if(!fs.existsSync(file))throw new Error(`missing detail page ${prefix}${p.id}`);
     const html=fs.readFileSync(file,'utf8');
-    if(!html.includes('noindex,follow'))throw new Error(`${prefix}${p.id}: detail page must remain noindex until final verified publication`);
+    const verified=prodById[p.id]?.review_state==='verified'||prodById[p.id]?.review_state==='published';if(verified&&!html.includes('index,follow'))throw new Error(`${prefix}${p.id}: verified detail page must be index,follow`);if(!verified&&!html.includes('noindex,follow'))throw new Error(`${prefix}${p.id}: pre-verified detail page must remain noindex,follow`);
   }
 }
 console.log('OK: browse families, 40 detail wrappers, stale messaging, and mobile comparison/filter contracts passed.');

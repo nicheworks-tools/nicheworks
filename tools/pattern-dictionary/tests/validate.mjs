@@ -22,7 +22,7 @@ for(const x of p){
     if(!fs.existsSync(full)){errors.push(`${x.id}: missing ${lang} static detail page`);continue}
     const html=fs.readFileSync(full,'utf8');
     if(!html.includes(`data-pattern-id="${x.id}"`)) errors.push(`${rel}: pattern id mismatch`);
-    if(!html.includes('noindex,follow')) errors.push(`${rel}: detail must stay noindex until image verification`);
+    const shouldIndex=reviewOrder.indexOf(x.review_state)>=reviewOrder.indexOf('verified');if(shouldIndex&&!html.includes('index,follow')) errors.push(`${rel}: verified detail must be index,follow`);if(!shouldIndex&&!html.includes('noindex,follow')) errors.push(`${rel}: pre-verified detail must remain noindex,follow`);
   }
 }
 for(const f of ['data/production-content.json','data/source-verification.json','index.html','search.html','compare.html','en/index.html','en/search.html','en/compare.html','app.js','style.css','data/search-dictionary.json']) if(!fs.existsSync(path.join(r,f))) errors.push(`missing ${f}`);
@@ -31,4 +31,4 @@ if(app.includes('pattern.html?id=')) errors.push('app.js still links to legacy q
 if(!app.includes("'patterns/'+encodeURIComponent(p.id)+'/'")) errors.push('app.js static detail URL contract missing');
 if(!app.includes("data/production-content.json")) errors.push('app.js researched production overlay is not wired');
 if(errors.length){console.error(errors.join('\n'));process.exit(1)}
-console.log('OK: 20 canonical records are researched-or-later, 40 static noindex detail pages exist, and required production-phase files are present.');
+console.log('OK: 20 canonical records are researched-or-later, 40 static detail pages follow review-state indexing rules, and required production-phase files are present.');

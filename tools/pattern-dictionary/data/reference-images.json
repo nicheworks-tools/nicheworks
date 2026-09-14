@@ -1,36 +1,227 @@
 {
   "schema_version": 1,
-  "updated": "2026-09-14",
-  "status": "structural-review-complete",
+  "updated": "2026-09-15",
+  "status": "verified-publication",
   "policy": {
-    "dimensions": [1536, 1536],
+    "dimensions": [
+      1536,
+      1536
+    ],
     "format": "PNG",
     "purpose": "recognition-reference",
-    "requirements": ["square","flat-front-on","no-text","no-frame","no-shadow","no-product-mockup","multiple-repeats-visible"],
-    "verification_rule": "reviewed images passed visual structural recognition review; verified remains a separate publication gate",
+    "requirements": [
+      "square",
+      "flat-front-on",
+      "no-text",
+      "no-frame",
+      "no-shadow",
+      "no-product-mockup",
+      "multiple-repeats-visible"
+    ],
+    "verification_rule": "verified images passed source/content contract checks, structural visual review, search/compare regressions, and desktop/mobile Chromium publication QA",
     "broad_category_rule": "For broad technique/style/textile categories, the image is a representative recognition cue and must not imply one uniquely canonical motif.",
     "review_ledger": "data/reference-image-review.json"
   },
   "images": [
-    {"pattern_id":"houndstooth","path":"assets/reference/houndstooth.png","review_state":"reviewed","method":"deterministic 2:2 twill simulation using alternating four-dark/four-light thread bands","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"gingham","path":"assets/reference/gingham.png","review_state":"reviewed","method":"deterministic orthogonal check construction","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"tartan","path":"assets/reference/tartan.png","review_state":"reviewed","method":"deterministic repeated sett with twill-like crossing of red, green and navy stripe bands","representation_scope":"editorial-sett-reference-not-a-registered-tartan-claim","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"glen-check","path":"assets/reference/glen-check.png","review_state":"reviewed","method":"deterministic fine-check field with unequal grouped stripes and larger overcheck divisions","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"argyle","path":"assets/reference/argyle.png","review_state":"reviewed","method":"deterministic staggered colored lozenges with overlaid diagonal lattice","representation_scope":"representative-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"chevron","path":"assets/reference/chevron.png","review_state":"reviewed","method":"deterministic repeated V-band construction","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"polka-dot","path":"assets/reference/polka-dot.png","review_state":"reviewed","method":"deterministic regular equal-size round-dot grid","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"moroccan-trellis","path":"assets/reference/moroccan-trellis.png","review_state":"reviewed","method":"deterministic interlocking pointed lantern/quatrefoil trellis cell","representation_scope":"representative-contemporary-market-label-not-canonical-historic-motif","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"seigaiha","path":"assets/reference/seigaiha.png","review_state":"reviewed","method":"deterministic staggered concentric semicircle wave construction","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"asanoha","path":"assets/reference/asanoha.png","review_state":"reviewed","method":"deterministic triangular-lattice subdivision forming repeating six-rayed hemp-leaf stars","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"shippo","path":"assets/reference/shippo.png","review_state":"reviewed","method":"deterministic equal interlocking-circle construction","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"ichimatsu","path":"assets/reference/ichimatsu.png","review_state":"reviewed","method":"deterministic alternating-square construction","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"kikko","path":"assets/reference/kikko.png","review_state":"reviewed","method":"deterministic regular-hexagon tortoiseshell lattice construction","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"karakusa","path":"assets/reference/karakusa.png","review_state":"reviewed","method":"deterministic continuous scrolling vine with attached curls and terminal leaves","representation_scope":"representative-scrolling-vine-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"damask","path":"assets/reference/damask.png","review_state":"reviewed","method":"deterministic bilateral foliate medallion representative of modern damask-derived surface design","representation_scope":"representative-not-canonical-weave-or-motif","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"arabesque","path":"assets/reference/arabesque.png","review_state":"reviewed","method":"deterministic continuous multidirectional vegetal scroll and linking-stem network","representation_scope":"representative-broad-ornamental-category","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"paisley","path":"assets/reference/paisley.png","review_state":"reviewed","method":"deterministic staggered curved boteh units with interior negative detail","representation_scope":"representative-boteh-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"leopard-print","path":"assets/reference/leopard-print.png","review_state":"reviewed","method":"deterministic irregular rosette-ring and solid-spot field","representation_scope":"representative-natural-marking-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"ikat","path":"assets/reference/ikat.png","review_state":"reviewed","method":"deterministic geometric repeat with seeded feathered and misregistered edges","representation_scope":"representative-technique-cue-not-a-fixed-motif","has_text":false,"is_mockup":false,"multiple_repeats":true},
-    {"pattern_id":"kilim","path":"assets/reference/kilim.png","review_state":"reviewed","method":"deterministic horizontal bands, large stepped diamonds and hook-like terminals in the editorial reference palette","representation_scope":"representative-visual-search-family-not-a-fixed-kilim-motif","has_text":false,"is_mockup":false,"multiple_repeats":true}
+    {
+      "pattern_id": "houndstooth",
+      "path": "assets/reference/houndstooth.png",
+      "review_state": "verified",
+      "method": "deterministic 2:2 twill simulation using alternating four-dark/four-light thread bands",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "gingham",
+      "path": "assets/reference/gingham.png",
+      "review_state": "verified",
+      "method": "deterministic orthogonal check construction",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "tartan",
+      "path": "assets/reference/tartan.png",
+      "review_state": "verified",
+      "method": "deterministic repeated sett with twill-like crossing of red, green and navy stripe bands",
+      "representation_scope": "editorial-sett-reference-not-a-registered-tartan-claim",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "glen-check",
+      "path": "assets/reference/glen-check.png",
+      "review_state": "verified",
+      "method": "deterministic fine-check field with unequal grouped stripes and larger overcheck divisions",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "argyle",
+      "path": "assets/reference/argyle.png",
+      "review_state": "verified",
+      "method": "deterministic staggered colored lozenges with overlaid diagonal lattice",
+      "representation_scope": "representative-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "chevron",
+      "path": "assets/reference/chevron.png",
+      "review_state": "verified",
+      "method": "deterministic repeated V-band construction",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "polka-dot",
+      "path": "assets/reference/polka-dot.png",
+      "review_state": "verified",
+      "method": "deterministic regular equal-size round-dot grid",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "moroccan-trellis",
+      "path": "assets/reference/moroccan-trellis.png",
+      "review_state": "verified",
+      "method": "deterministic interlocking pointed lantern/quatrefoil trellis cell",
+      "representation_scope": "representative-contemporary-market-label-not-canonical-historic-motif",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "seigaiha",
+      "path": "assets/reference/seigaiha.png",
+      "review_state": "verified",
+      "method": "deterministic staggered concentric semicircle wave construction",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "asanoha",
+      "path": "assets/reference/asanoha.png",
+      "review_state": "verified",
+      "method": "deterministic triangular-lattice subdivision forming repeating six-rayed hemp-leaf stars",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "shippo",
+      "path": "assets/reference/shippo.png",
+      "review_state": "verified",
+      "method": "deterministic equal interlocking-circle construction",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "ichimatsu",
+      "path": "assets/reference/ichimatsu.png",
+      "review_state": "verified",
+      "method": "deterministic alternating-square construction",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "kikko",
+      "path": "assets/reference/kikko.png",
+      "review_state": "verified",
+      "method": "deterministic regular-hexagon tortoiseshell lattice construction",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "karakusa",
+      "path": "assets/reference/karakusa.png",
+      "review_state": "verified",
+      "method": "deterministic continuous scrolling vine with attached curls and terminal leaves",
+      "representation_scope": "representative-scrolling-vine-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "damask",
+      "path": "assets/reference/damask.png",
+      "review_state": "verified",
+      "method": "deterministic bilateral foliate medallion representative of modern damask-derived surface design",
+      "representation_scope": "representative-not-canonical-weave-or-motif",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "arabesque",
+      "path": "assets/reference/arabesque.png",
+      "review_state": "verified",
+      "method": "deterministic continuous multidirectional vegetal scroll and linking-stem network",
+      "representation_scope": "representative-broad-ornamental-category",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "paisley",
+      "path": "assets/reference/paisley.png",
+      "review_state": "verified",
+      "method": "deterministic staggered curved boteh units with interior negative detail",
+      "representation_scope": "representative-boteh-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "leopard-print",
+      "path": "assets/reference/leopard-print.png",
+      "review_state": "verified",
+      "method": "deterministic irregular rosette-ring and solid-spot field",
+      "representation_scope": "representative-natural-marking-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "ikat",
+      "path": "assets/reference/ikat.png",
+      "review_state": "verified",
+      "method": "deterministic geometric repeat with seeded feathered and misregistered edges",
+      "representation_scope": "representative-technique-cue-not-a-fixed-motif",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "pattern_id": "kilim",
+      "path": "assets/reference/kilim.png",
+      "review_state": "verified",
+      "method": "deterministic horizontal bands, large stepped diamonds and hook-like terminals in the editorial reference palette",
+      "representation_scope": "representative-visual-search-family-not-a-fixed-kilim-motif",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    }
   ]
 }
