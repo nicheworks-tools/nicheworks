@@ -1,0 +1,27 @@
+[
+  {
+    "pref": "島根県",
+    "city": "松江市",
+    "name": "松江市 令和8年度家庭ごみ収集日程",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.matsue.lg.jp/kurashi_tetsuzuki/gomi_kankyo_pet/6/R8gominittei/index.html",
+    "lgcode": "322016",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "島根県",
+    "city": "松江市",
+    "name": "松江市 粗大ごみの回収申し込み",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.matsue.lg.jp/soshikikarasagasu/kankyoenergybu_recycletoshisuishinka/5/5-2/244.html",
+    "lgcode": "322016",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  }
+]
