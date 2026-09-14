@@ -2,8 +2,10 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..');
-const controllerPath = path.join(ROOT, 'detail-dictionary-fix.js');
+const bootstrapPath = path.join(ROOT, 'detail-dictionary-fix.js');
+const controllerPath = path.join(ROOT, 'dictionary-presentation-v2.3.js');
 const cssPath = path.join(ROOT, 'bilingual-v2.3.css');
+const bootstrap = fs.readFileSync(bootstrapPath, 'utf8');
 const controller = fs.readFileSync(controllerPath, 'utf8');
 const css = fs.readFileSync(cssPath, 'utf8');
 
@@ -15,6 +17,7 @@ function forbidText(source, token, message) {
   if (source.includes(token)) errors.push(message || `forbidden ${token}`);
 }
 
+requireText(bootstrap, 'dictionary-presentation-v2.3.js', 'legacy detail bootstrap must load the v2.3 presentation module');
 requireText(controller, 'cta_lang_mode', 'language mode must persist independently of legacy JA/EN state');
 requireText(controller, 'new Set(["ja", "en", "both"])', 'JA / EN / Both mode set is missing');
 requireText(controller, '["ja", "日本語"]', 'Japanese mode control is missing');
@@ -46,8 +49,9 @@ if (errors.length) {
 }
 
 console.log('Construction Tools Atlas bilingual v2.3 contract: PASS');
+console.log('- compatibility bootstrap loads the presentation module');
 console.log('- modes: ja / en / both');
 console.log('- names remain bilingual');
 console.log('- secondary explanatory language expands per section');
 console.log('- Both mode stacks both languages vertically');
-console.log('- legacy inline SVG representative-image fallback removed from presentation layer');
+console.log('- representative-image SVG synthesis stays out of the presentation module');
