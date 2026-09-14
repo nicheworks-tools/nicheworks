@@ -12,7 +12,6 @@ import zlib
 
 SIZE = 1536
 TILE = 192
-REPEATS = SIZE // TILE
 OUT = Path(__file__).resolve().parents[1] / "assets" / "reference"
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -35,13 +34,16 @@ def chunk(kind: bytes, data: bytes) -> bytes:
     return struct.pack(">I", len(data)) + kind + data + struct.pack(">I", zlib.crc32(kind + data) & 0xffffffff)
 
 
-def write_png(path: Path, fn):
-    tile = [[fn(x, y) for x in range(TILE)] for y in range(TILE)]
+def write_png(path: Path, fn, tile_h=TILE):
+    """Render a periodic recognition tile, repeat it, and write a 1536 square PNG."""
+    tile = [[fn(x, y) for x in range(TILE)] for y in range(tile_h)]
     encoded_rows = [bytes(c for rgb in row for c in rgb) for row in tile]
     raw = bytearray()
+    row_repeats = (SIZE + TILE - 1) // TILE
     for y in range(SIZE):
         raw.append(0)
-        raw.extend(encoded_rows[y % TILE] * REPEATS)
+        row = encoded_rows[y % tile_h] * row_repeats
+        raw.extend(row[: SIZE * 3])
     png = b"\x89PNG\r\n\x1a\n"
     png += chunk(b"IHDR", struct.pack(">IIBBBBB", SIZE, SIZE, 8, 2, 0, 0, 0))
     png += chunk(b"IDAT", zlib.compress(bytes(raw), 9))
@@ -65,7 +67,6 @@ def on_segments(x, y, segments, width=3.0):
 
 
 def houndstooth(x, y):
-    # 2:2 twill surface simulation with four-thread dark/light bands.
     thread = 12
     ix, iy = x // thread, y // thread
     warp_dark = ((ix // 4) % 2) == 0
@@ -107,19 +108,21 @@ def tartan(x, y):
 
 
 def glen_check(x, y):
-    # Glen check: uneven small/large checks from 2+2 and 4+4 dark/light stripe groups.
-    # A fine 2:2 twill treatment keeps this visually distinct from flat checkerboard.
-    seq = (0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1)
-    unit = 4
-    wx = seq[(x // unit) % len(seq)] == 0
-    wy = seq[(y // unit) % len(seq)] == 0
-    warp_on_top = (((x // 3) + (y // 3)) % 4) < 2
-    dark = wx if warp_on_top else wy
-    # Subtle large overcheck reinforces the large-check reading without claiming a
-    # Prince-of-Wales colored overcheck as mandatory.
-    if (x % 96) < 2 or (y % 96) < 2:
-        return GRAY
-    return BLACK if dark else LIGHT_GRAY
+    # Recognition-first Glen check: subtle small checks with unequal grouped fine
+    # stripes plus stronger large overcheck lines. This deliberately avoids the
+    # jagged diagonal surface used by the Houndstooth reference.
+    micro = ((x // 8) + (y // 8)) % 2
+    value = 225 if micro == 0 else 245
+    for pos in (24, 28, 56, 60):
+        dx = min((x - pos) % 96, (pos - x) % 96)
+        dy = min((y - pos) % 96, (pos - y) % 96)
+        if dx < 1.5 or dy < 1.5:
+            value = min(value, 120)
+    if (x % 96) < 4 or (y % 96) < 4:
+        value = 45
+    if 46 <= (x % 96) < 50 or 46 <= (y % 96) < 50:
+        value = min(value, 80)
+    return (value, value, value)
 
 
 def argyle(x, y):
@@ -165,7 +168,6 @@ MOROCCAN_SEGMENTS = [(*MOROCCAN_POINTS[i], *MOROCCAN_POINTS[i+1]) for i in range
 
 
 def moroccan_trellis(x, y):
-    # Qualified contemporary market label: interlocking pointed quatrefoil/lantern cells.
     for row in range(-1, 4):
         cy = row * 96 + 48
         shift = 48 if row % 2 else 0
@@ -218,18 +220,39 @@ def kikko_segments():
 
 
 def asanoha_segments():
-    # Staggered 96px rows make the reference tile seamless while preserving the
-    # six-rayed hemp-leaf/star reading at thumbnail size.
-    segs = []
-    for row in range(-1, 4):
-        cy = row * 96 + 48
-        shift = 48 if row % 2 else 0
-        for col in range(-2, 5):
-            cx = col * 96 + 48 + shift
-            pts = [(cx,cy-46),(cx+40,cy-23),(cx+40,cy+23),(cx,cy+46),(cx-40,cy+23),(cx-40,cy-23)]
-            segs.extend([(pts[i][0],pts[i][1],pts[(i+1)%6][0],pts[(i+1)%6][1]) for i in range(6)])
-            segs.extend([(cx,cy,px,py) for px,py in pts])
-    return segs
+    # Construct the hemp-leaf star from a triangular lattice by subdividing each
+    # triangle from its centroid to all three vertices. 96x84 geometry stays close
+    # to equilateral while giving an exact 192x168 repeat tile.
+    segs = set()
+    s = 96.0
+    h = 84.0
+    def point(i, j):
+        return (i * s + (s / 2 if j % 2 else 0), j * h)
+    def add(a, b):
+        key = tuple(round(v, 3) for v in (*a, *b))
+        rev = tuple(round(v, 3) for v in (*b, *a))
+        if rev not in segs:
+            segs.add(key)
+    for j in range(-2, 5):
+        for i in range(-3, 5):
+            p = point(i, j)
+            if j % 2 == 0:
+                tris = [
+                    (p, point(i, j+1), point(i-1, j+1)),
+                    (p, point(i+1, j), point(i, j+1)),
+                ]
+            else:
+                tris = [
+                    (p, point(i, j+1), point(i+1, j+1)),
+                    (p, point(i+1, j), point(i+1, j+1)),
+                ]
+            for tri in tris:
+                for k in range(3):
+                    add(tri[k], tri[(k+1) % 3])
+                c = (sum(q[0] for q in tri)/3, sum(q[1] for q in tri)/3)
+                for q in tri:
+                    add(c, q)
+    return list(segs)
 
 KIKKO_SEGMENTS = kikko_segments()
 ASANOHA_SEGMENTS = asanoha_segments()
@@ -240,26 +263,26 @@ def kikko(x, y):
 
 
 def asanoha(x, y):
-    return INDIGO if on_segments(x, y, ASANOHA_SEGMENTS, 2.5) else WHITE
+    return INDIGO if on_segments(x, y, ASANOHA_SEGMENTS, 2.2) else WHITE
 
 
 GENERATORS = {
-    "houndstooth": houndstooth,
-    "gingham": gingham,
-    "tartan": tartan,
-    "glen-check": glen_check,
-    "argyle": argyle,
-    "chevron": chevron,
-    "polka-dot": polka_dot,
-    "moroccan-trellis": moroccan_trellis,
-    "seigaiha": seigaiha,
-    "asanoha": asanoha,
-    "shippo": shippo,
-    "ichimatsu": ichimatsu,
-    "kikko": kikko,
+    "houndstooth": (houndstooth, TILE),
+    "gingham": (gingham, TILE),
+    "tartan": (tartan, TILE),
+    "glen-check": (glen_check, TILE),
+    "argyle": (argyle, TILE),
+    "chevron": (chevron, TILE),
+    "polka-dot": (polka_dot, TILE),
+    "moroccan-trellis": (moroccan_trellis, TILE),
+    "seigaiha": (seigaiha, TILE),
+    "asanoha": (asanoha, 168),
+    "shippo": (shippo, TILE),
+    "ichimatsu": (ichimatsu, TILE),
+    "kikko": (kikko, TILE),
 }
 
-for pattern_id, fn in GENERATORS.items():
+for pattern_id, (fn, tile_h) in GENERATORS.items():
     path = OUT / f"{pattern_id}.png"
-    write_png(path, fn)
+    write_png(path, fn, tile_h)
     print(f"generated {pattern_id}: {path} ({path.stat().st_size} bytes)")
