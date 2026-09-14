@@ -38,7 +38,7 @@ jobs:
             await desktop.waitForSelector('#pattern-grid .pd-card');
             assert.equal(await desktop.locator('#pattern-grid .pd-card').count(),20,'desktop home must render 20 patterns');
             assert.equal((await desktop.locator('body').innerText()).includes('DEV PLACEHOLDER'),false,'home must not expose DEV placeholders');
-            await desktop.locator('[data-family="japanese"]').click();
+            await desktop.locator('.pd-filter[data-family="japanese"]').click();
             const filtered=await desktop.locator('#pattern-grid .pd-card').count();
             assert.ok(filtered>0&&filtered<20,'Japanese filter must narrow the grid');
 
