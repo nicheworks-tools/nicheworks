@@ -42,7 +42,7 @@ jobs:
             return true;
           }
 
-          // 1) Replace the obsolete global advertising contract that required placeholder UI and AdSense on every page.
+          // 1) Replace the obsolete global contract that required ad placeholders and AdSense on every page.
           {
             const file = path.join(root, 'common-spec/spec-ja.md');
             const before = fs.readFileSync(file, 'utf8');
@@ -53,27 +53,30 @@ jobs:
             writeIfChanged(file, before, before.slice(0, start) + replacement + before.slice(end));
           }
 
-          // 2) Remove only placeholder-only ad-slot elements and stale placeholder comments/tokens.
-          const placeholderText = /^(?:広告枠(?:（準備中）)?|Ad slot|Advertisement placeholder)$/i;
-          const openClose = /<([a-z][a-z0-9:-]*)\b([^>]*\bclass=["'][^"']*\bad-slot\b[^"']*["'][^>]*)>([\s\S]*?)<\/\1>/gi;
+          // 2) Remove only elements whose complete visible content is an ad-placeholder label.
+          const placeholderOnly = /^(?:(?:広告枠(?:（準備中）)?|Ad slot|Advertisement placeholder)(?:\s*(?:\/|\||・)\s*)?)+$/i;
+          const candidateElement = /<(div|p|span|aside|section|li|td|th)\b([^>]*)>([\s\S]*?)<\/\1>/gi;
           const staleComments = [
             /<!--\s*AdSense\s*\(MUST\)\s*-->/gi,
             /<!--\s*Top Ad\s*\(required\)\s*-->/gi,
             /<!--\s*Bottom Ad\s*\(recommended\)\s*-->/gi
           ];
 
+          function visibleText(inner) {
+            return inner
+              .replace(/<!--[\s\S]*?-->/g, ' ')
+              .replace(/<[^>]+>/g, ' ')
+              .replace(/&nbsp;/gi, ' ')
+              .replace(/\s+/g, ' ')
+              .trim();
+          }
+
           function cleanHtml(file) {
             const before = fs.readFileSync(file, 'utf8');
             let html = before;
-            html = html.replace(openClose, (full, tag, attrs, inner) => {
+            html = html.replace(candidateElement, (full, tag, attrs, inner) => {
               if (/<ins\b|adsbygoogle|pagead2\.googlesyndication\.com/i.test(inner)) return full;
-              const visible = inner
-                .replace(/<!--[\s\S]*?-->/g, ' ')
-                .replace(/<[^>]+>/g, ' ')
-                .replace(/&nbsp;/gi, ' ')
-                .replace(/\s+/g, ' ')
-                .trim();
-              return placeholderText.test(visible) ? '' : full;
+              return placeholderOnly.test(visibleText(inner)) ? '' : full;
             });
             html = html.replace(/<!--[\s\S]*?YOUR_TOKEN_HERE[\s\S]*?-->/gi, '');
             for (const re of staleComments) html = html.replace(re, '');
@@ -95,24 +98,23 @@ jobs:
           for (const rel of ['tools/earth-map-suite/usage.html', 'tools/earth-map-suite/usage-en.html']) {
             const file = path.join(root, rel);
             const before = fs.readFileSync(file, 'utf8');
-            let html = before
+            const html = before
               .replace(/\s*<p class="hint">広告枠は整備済みです。公開後もページ上下のみの表示を想定しています。<\/p>/, '')
               .replace(/\s*<p class="hint">Ad slots are in preparation and planned for top\/bottom placement only\.<\/p>/, '');
             writeIfChanged(file, before, html);
           }
 
-          // 4) Extend the review-surface contract to every indexable HTML page.
+          // 4) Extend the review-surface contract to every indexable HTML page using the same exact-element rule.
           {
             const file = path.join(root, 'scripts/check-adsense-review-surface.mjs');
             const before = fs.readFileSync(file, 'utf8');
             const anchor = `\nif (errors.length) {`;
             if (!before.includes(anchor)) throw new Error('check-adsense-review-surface.mjs: final error block anchor missing');
-            const addition = `\nfunction walkHtml(dir, callback) {\n  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {\n    if (['.git', 'node_modules', '_archive'].includes(entry.name)) continue;\n    const full = path.join(dir, entry.name);\n    if (entry.isDirectory()) walkHtml(full, callback);\n    else if (entry.isFile() && entry.name.endsWith('.html')) callback(full);\n  }\n}\n\nconst visibleAdPlaceholderPattern = /広告枠(?:（準備中）)?|Ad slot|Advertisement placeholder/gi;\nwalkHtml(root, (full) => {\n  const file = path.relative(root, full).replaceAll('\\\\', '/');\n  const html = fs.readFileSync(full, 'utf8');\n  if (metaRobots(html).includes('noindex')) return;\n  const visible = html\n    .replace(/<!--[\\s\\S]*?-->/g, ' ')\n    .replace(/<script\\b[\\s\\S]*?<\\/script>/gi, ' ')\n    .replace(/<style\\b[\\s\\S]*?<\\/style>/gi, ' ');\n  visibleAdPlaceholderPattern.lastIndex = 0;\n  if (visibleAdPlaceholderPattern.test(visible)) {\n    fail(\`${file}: indexable public HTML must not render a visible ad placeholder label\`);\n  }\n  if (/YOUR_TOKEN_HERE/i.test(html)) {\n    fail(\`${file}: indexable public HTML must not contain an unreplaced analytics token placeholder\`);\n  }\n});\n`;
+            const addition = `\nfunction walkHtml(dir, callback) {\n  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {\n    if (['.git', 'node_modules', '_archive'].includes(entry.name)) continue;\n    const full = path.join(dir, entry.name);\n    if (entry.isDirectory()) walkHtml(full, callback);\n    else if (entry.isFile() && entry.name.endsWith('.html')) callback(full);\n  }\n}\n\nfunction placeholderOnlyText(inner) {\n  return inner\n    .replace(/<!--[\\s\\S]*?-->/g, ' ')\n    .replace(/<[^>]+>/g, ' ')\n    .replace(/&nbsp;/gi, ' ')\n    .replace(/\\s+/g, ' ')\n    .trim();\n}\n\nconst placeholderOnlyPattern = /^(?:(?:広告枠(?:（準備中）)?|Ad slot|Advertisement placeholder)(?:\\s*(?:\\/|\\||・)\\s*)?)+$/i;\nconst placeholderElementPattern = /<(div|p|span|aside|section|li|td|th)\\b([^>]*)>([\\s\\S]*?)<\\/\\1>/gi;\nwalkHtml(root, (full) => {\n  const file = path.relative(root, full).replaceAll('\\\\', '/');\n  const html = fs.readFileSync(full, 'utf8');\n  if (metaRobots(html).includes('noindex')) return;\n  placeholderElementPattern.lastIndex = 0;\n  let match;\n  while ((match = placeholderElementPattern.exec(html))) {\n    const inner = match[3];\n    if (/<ins\\b|adsbygoogle|pagead2\\.googlesyndication\\.com/i.test(inner)) continue;\n    if (placeholderOnlyPattern.test(placeholderOnlyText(inner))) {\n      fail(file + ': indexable public HTML must not render a placeholder-only ad element');\n      break;\n    }\n  }\n  if (/YOUR_TOKEN_HERE/i.test(html)) {\n    fail(file + ': indexable public HTML must not contain an unreplaced analytics token placeholder');\n  }\n});\n`;
             writeIfChanged(file, before, before.replace(anchor, addition + anchor));
           }
 
           if (!changed.size) throw new Error('No files changed');
-          fs.writeFileSync('/tmp/adsense-placeholder-changed.txt', [...changed].sort().join('\n') + '\n');
           console.log(`Changed ${changed.size} files`);
           console.log([...changed].sort().slice(0, 250).join('\n'));
           NODE
