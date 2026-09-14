@@ -59,7 +59,7 @@ Canonical runtime inputs are static NicheWorks-hosted JSON data:
 - `scripts/check-phone-quickcheck-source-semantics.mjs`
 - `tools/phone-quickcheck/tests/behavior.test.mjs`
 
-Phone records use stable model IDs, canonical manufacturer/model names, maintained aliases, dimensions in millimetres, mass in grams, charging facts, provenance/source URLs, verification date, and optional additive accessory keys. Standard phones use `dimensions`; foldables use `formFactor: foldable` plus complete `dimensionsFolded` and `dimensionsUnfolded` sets. Foldables are listed and compact-sorted by folded dimensions while detail output shows both physical states.
+Phone records use stable model IDs, canonical manufacturer/model names, maintained aliases, dimensions in millimetres, mass in grams, charging facts, provenance/source URLs, verification date, and optional additive accessory keys. Standard phones use `dimensions`; foldables use `formFactor: foldable` plus complete `dimensionsFolded` and `dimensionsUnfolded` sets. Each dimension set keeps `heightMm` and `widthMm` plus either one `depthMm` value or, for a manufacturer-published variable foldable thickness, the paired `depthMmMin` / `depthMmMax` range. A range must never be collapsed into an inferred single depth. Foldables are listed and compact-sorted by folded dimensions while detail output shows both physical states.
 
 ## Outputs
 
