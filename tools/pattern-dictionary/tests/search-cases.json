@@ -1,1 +1,17 @@
-[{"lang":"ja","query":"犬の歯みたいな白黒チェック","expected":"houndstooth"},{"lang":"ja","query":"白黒のギザギザしたチェック","expected":"houndstooth","top1":true},{"lang":"ja","query":"セーターのダイヤ柄","expected":"argyle"},{"lang":"ja","query":"青い波みたいな和柄","expected":"seigaiha"},{"lang":"ja","query":"丸が重なる和柄","expected":"shippo"},{"lang":"ja","query":"しずくみたいな柄","expected":"paisley"},{"lang":"ja","query":"幾何学の絨毯柄","expected":"kilim","top1":true},{"lang":"en","query":"black white jagged check","expected":"houndstooth","top1":true},{"lang":"en","query":"diamond sweater pattern","expected":"argyle"},{"lang":"en","query":"Japanese wave pattern","expected":"seigaiha"},{"lang":"en","query":"teardrop pattern","expected":"paisley"},{"lang":"en","query":"kilim rug pattern","expected":"kilim","top1":true}]
+[
+  {"lang":"ja","query":"犬の歯みたいな白黒チェック","expected":"houndstooth"},
+  {"lang":"ja","query":"白黒のギザギザしたチェック","expected":"houndstooth","top1":true},
+  {"lang":"ja","query":"セーターのダイヤ柄","expected":"argyle","top1":true},
+  {"lang":"ja","query":"青い波みたいな和柄","expected":"seigaiha","top1":true},
+  {"lang":"ja","query":"豪華な壁紙みたいな柄","expected":"damask","top1":true},
+  {"lang":"ja","query":"勾玉みたいな柄","expected":"paisley","top1":true},
+  {"lang":"ja","query":"ヒョウ柄","expected":"leopard-print","top1":true},
+  {"lang":"ja","query":"丸が重なる和柄","expected":"shippo"},
+  {"lang":"ja","query":"しずくみたいな柄","expected":"paisley"},
+  {"lang":"ja","query":"幾何学の絨毯柄","expected":"kilim","top1":true},
+  {"lang":"en","query":"black white jagged check","expected":"houndstooth","top1":true},
+  {"lang":"en","query":"diamond sweater pattern","expected":"argyle","top1":true},
+  {"lang":"en","query":"Japanese wave pattern","expected":"seigaiha","top1":true},
+  {"lang":"en","query":"teardrop pattern","expected":"paisley"},
+  {"lang":"en","query":"kilim rug pattern","expected":"kilim","top1":true}
+]
