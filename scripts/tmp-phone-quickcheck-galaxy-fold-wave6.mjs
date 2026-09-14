@@ -46,6 +46,38 @@ for (const id of ['samsung-galaxy-z-flip', 'samsung-galaxy-z-flip-5g', 'samsung-
   if (!phone) throw new Error(`${id} missing`);
   phone.charging.protocols = ['Adaptive Fast Charging', 'QC2.0'];
 }
+
+const sourceBackedSfcIds = [
+  'samsung-galaxy-s26',
+  'samsung-galaxy-s26-plus',
+  'samsung-galaxy-s26-ultra',
+  'samsung-galaxy-s25',
+  'samsung-galaxy-s25-ultra',
+  'samsung-galaxy-z-fold7',
+  'samsung-galaxy-z-flip7',
+  'samsung-galaxy-s24',
+  'samsung-galaxy-s24-ultra',
+  'samsung-galaxy-z-fold6',
+  'samsung-galaxy-z-flip6',
+  'samsung-galaxy-z-fold5',
+  'samsung-galaxy-z-flip5',
+  'samsung-galaxy-a55-5g',
+  'samsung-galaxy-a36-5g',
+  'samsung-galaxy-s23',
+  'samsung-galaxy-s22',
+  'samsung-galaxy-s22-ultra',
+  'samsung-galaxy-s21-5g',
+  'samsung-galaxy-s21-ultra-5g',
+  'samsung-galaxy-a54-5g',
+  'samsung-galaxy-a53-5g',
+  'samsung-galaxy-a35-5g'
+];
+for (const id of sourceBackedSfcIds) {
+  const phone = payload.phones.find((item) => item.id === id);
+  if (!phone) throw new Error(`${id} missing for Samsung protocol completion`);
+  phone.charging.protocols = [id === 'samsung-galaxy-s26-ultra' ? 'Super Fast Charging 3.0' : 'Super Fast Charging'];
+}
+
 const flipIndex = payload.phones.findIndex((phone) => phone.id === 'samsung-galaxy-z-flip');
 if (flipIndex < 0) throw new Error('Galaxy Z Flip insertion anchor missing');
 payload.phones.splice(flipIndex + 1, 0, fold);
@@ -112,4 +144,4 @@ const regression = `// First-generation Galaxy Fold SCV44 keeps JP-market hardwa
 behavior = behavior.replace(marker, regression + marker);
 fs.writeFileSync(behaviorPath, behavior);
 
-console.log(`Applied Galaxy Fold wave 6: ${payload.phones.length} phones, ${accessoryPayload.accessories.length} accessory classes.`);
+console.log(`Applied Galaxy Fold wave 6: ${payload.phones.length} phones, ${accessoryPayload.accessories.length} accessory classes, ${sourceBackedSfcIds.length} Samsung SFC protocol completions.`);
