@@ -1,0 +1,1262 @@
+{
+  "schema_version": 1,
+  "phase": "researched-content",
+  "updated": "2026-09-14",
+  "policy": {
+    "record_count": 20,
+    "runtime_merge": "Overlay these fields on data/patterns.json by matching pattern_id.",
+    "review_state": "researched",
+    "qualified_terms": [
+      "moroccan-trellis",
+      "ikat",
+      "kilim"
+    ],
+    "image_state": "not-started"
+  },
+  "patterns": [
+    {
+      "pattern_id": "houndstooth",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "千鳥格子",
+        "en": "Houndstooth"
+      },
+      "aliases": {
+        "ja": [
+          "ハウンドトゥース"
+        ],
+        "en": [
+          "hound's tooth",
+          "dogtooth check"
+        ]
+      },
+      "term_scope": "two-color broken twill/check pattern",
+      "definition": {
+        "ja": "2色の糸で作るブロークンツイル系のチェックで、先の尖った四方向の形が連続して見える柄です。",
+        "en": "A two-color broken-twill check whose repeat forms jagged, four-pointed shapes."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "尖った四方向の形が規則的に反復する",
+          "通常の格子より輪郭が崩れ、歯や鳥のシルエットのように見える",
+          "色よりもギザギザした反復構造で識別する"
+        ],
+        "en": [
+          "Look for jagged four-pointed units in a regular repeat",
+          "The check is visually broken rather than made of plain square cells",
+          "Identify it by the pointed repeat, not by a specific colorway"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "コート",
+          "ジャケット",
+          "スーツ",
+          "スカート",
+          "マフラー",
+          "バッグ",
+          "インテリア生地"
+        ],
+        "en": [
+          "coats",
+          "jackets",
+          "suits",
+          "skirts",
+          "scarves",
+          "bags",
+          "furnishing textiles"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "black",
+          "white"
+        ],
+        "color_role": "non-essential",
+        "primary_reason": "High-contrast editorial recognition reference; black and white are not the only valid colors."
+      }
+    },
+    {
+      "pattern_id": "gingham",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "ギンガムチェック",
+        "en": "Gingham"
+      },
+      "aliases": {
+        "ja": [
+          "ギンガム"
+        ],
+        "en": []
+      },
+      "term_scope": "checked cloth / regular two-color check appearance",
+      "definition": {
+        "ja": "白地と有色糸の縦横の帯が同じリズムで交差し、明暗の四角が規則的に並ぶチェックです。",
+        "en": "A regular check created by crossing colored and white bands, producing repeated light, medium, and darker squares."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "縦横の帯幅が揃い、規則的な四角が並ぶ",
+          "交差部が濃く見え、中間色と白地が繰り返される",
+          "複雑な太細線よりも均等な反復が目印"
+        ],
+        "en": [
+          "Equal-width horizontal and vertical bands form regular squares",
+          "Intersections read darker than the single-color bands",
+          "The even rhythm distinguishes it from more complex plaids"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "シャツ",
+          "ワンピース",
+          "エプロン",
+          "テーブルクロス",
+          "寝具",
+          "雑貨"
+        ],
+        "en": [
+          "shirts",
+          "dresses",
+          "aprons",
+          "table linens",
+          "bedding",
+          "accessories"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "blue",
+          "white"
+        ],
+        "color_role": "non-essential",
+        "primary_reason": "Editorial recognition reference; white plus a colored check is characteristic, but blue is not required."
+      }
+    },
+    {
+      "pattern_id": "tartan",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "タータン",
+        "en": "Tartan"
+      },
+      "aliases": {
+        "ja": [
+          "タータンチェック"
+        ],
+        "en": [
+          "tartan check"
+        ]
+      },
+      "term_scope": "woven design / repeated sett",
+      "definition": {
+        "ja": "複数色の縦横のストライプを一定の順序と幅で反復し、格子状の「sett」を作る織柄です。",
+        "en": "A woven design in which colored stripes repeat vertically and horizontally in a defined sequence and proportion to form a sett."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "縦と横で同じ色列が交差する",
+          "線の色順と幅の比率が個々のタータン識別に関わる",
+          "単なる多色チェックよりsettの反復を重視する"
+        ],
+        "en": [
+          "The same stripe sequence crosses in warp and weft",
+          "Color order and stripe proportions matter to a specific tartan sett",
+          "The repeated sett distinguishes tartan from a generic multicolor plaid"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "キルト",
+          "スカート",
+          "マフラー",
+          "ジャケット",
+          "ブランケット",
+          "服飾小物"
+        ],
+        "en": [
+          "kilts",
+          "skirts",
+          "scarves",
+          "jackets",
+          "blankets",
+          "fashion accessories"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "red",
+          "green",
+          "navy"
+        ],
+        "color_role": "identity-relevant",
+        "primary_reason": "For a specific tartan, color sequence and stripe proportions are part of its sett; this palette is only an editorial reference."
+      }
+    },
+    {
+      "pattern_id": "glen-check",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "グレンチェック",
+        "en": "Glen Check"
+      },
+      "aliases": {
+        "ja": [
+          "グレナカートチェック"
+        ],
+        "en": [
+          "glen plaid",
+          "Glenurquhart check"
+        ]
+      },
+      "term_scope": "compound check / glen plaid",
+      "definition": {
+        "ja": "細かなチェックやブロークンチェックを組み合わせ、さらに大きな格子として見える複合チェックです。",
+        "en": "A compound check combining small checks and broken checks so that a larger-scale plaid emerges."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "小さな格子の集合がさらに大きな格子を作る",
+          "遠目では灰色調や細かな織柄に見えやすい",
+          "単純な千鳥格子より複数スケールの格子がある"
+        ],
+        "en": [
+          "Small checks combine into a larger-scale check",
+          "It often reads as a fine gray or muted texture from a distance",
+          "Multiple check scales distinguish it from plain houndstooth"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "スーツ",
+          "ジャケット",
+          "パンツ",
+          "コート",
+          "帽子",
+          "インテリア生地"
+        ],
+        "en": [
+          "suits",
+          "jackets",
+          "trousers",
+          "coats",
+          "hats",
+          "furnishing textiles"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "gray",
+          "black",
+          "white"
+        ],
+        "color_role": "non-essential",
+        "primary_reason": "Muted gray/black/white is a useful recognition reference, not a defining rule."
+      }
+    },
+    {
+      "pattern_id": "argyle",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "アーガイル",
+        "en": "Argyle"
+      },
+      "aliases": {
+        "ja": [
+          "アーガイルチェック"
+        ],
+        "en": [
+          "argyle pattern"
+        ]
+      },
+      "term_scope": "diamond-pattern family used especially in knitwear",
+      "definition": {
+        "ja": "色の異なる菱形を反復し、細い斜線が菱形の上を交差する構成が多い幾何学柄です。",
+        "en": "A repeating diamond pattern, commonly with thin diagonal lines crossing over the colored lozenges."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "菱形が規則的に並ぶ",
+          "細い対角線が菱形を横切る構成が典型的",
+          "単なるダイヤ柄より線の重なりが識別の手掛かり"
+        ],
+        "en": [
+          "Repeating diamonds or lozenges form the base",
+          "Thin diagonal lines commonly cross the diamonds",
+          "The overlaid diagonal network helps distinguish argyle from a plain diamond repeat"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "セーター",
+          "ベスト",
+          "靴下",
+          "ゴルフウェア",
+          "バッグ",
+          "ブランケット"
+        ],
+        "en": [
+          "sweaters",
+          "vests",
+          "socks",
+          "golfwear",
+          "bags",
+          "blankets"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "navy",
+          "burgundy",
+          "cream"
+        ],
+        "color_role": "variable",
+        "primary_reason": "Argyle uses many palettes; this is only a stable editorial reference."
+      }
+    },
+    {
+      "pattern_id": "chevron",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "シェブロン",
+        "en": "Chevron"
+      },
+      "aliases": {
+        "ja": [
+          "山形模様"
+        ],
+        "en": [
+          "chevron pattern"
+        ]
+      },
+      "term_scope": "geometric V/zigzag motif family",
+      "definition": {
+        "ja": "V字または山形の帯を連続させ、規則的なジグザグを作る幾何学模様です。",
+        "en": "A geometric repeat built from V-shaped units or bands that create a regular zigzag."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "V字が同じ向きと間隔で連続する",
+          "山と谷が明瞭なジグザグ線になる",
+          "ヘリンボーンのような短い斜線の組み合わせではなく、連続Vを優先して見る"
+        ],
+        "en": [
+          "Repeated V-shaped units form clear peaks and valleys",
+          "The zigzag is continuous and regular",
+          "Unlike herringbone, the primary cue is a continuous V rhythm rather than offset short strokes"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "壁紙",
+          "ラグ",
+          "クッション",
+          "服地",
+          "タイル",
+          "包装デザイン"
+        ],
+        "en": [
+          "wallpaper",
+          "rugs",
+          "cushions",
+          "apparel textiles",
+          "tile",
+          "packaging"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "black",
+          "white"
+        ],
+        "color_role": "non-essential",
+        "primary_reason": "Geometry rather than color defines the motif."
+      }
+    },
+    {
+      "pattern_id": "polka-dot",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "水玉",
+        "en": "Polka Dot"
+      },
+      "aliases": {
+        "ja": [
+          "水玉模様",
+          "ドット柄"
+        ],
+        "en": [
+          "polka-dot",
+          "polkadot"
+        ]
+      },
+      "term_scope": "regular repeated round-dot surface pattern",
+      "definition": {
+        "ja": "同程度の大きさの丸い点を一定の間隔で反復する水玉模様です。",
+        "en": "A surface pattern of regularly repeated round dots, usually consistent in size and spacing."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "丸い点が多数反復する",
+          "点の大きさと間隔に規則性がある",
+          "不規則な斑点や動物柄ではなく、人工的な配置が目印"
+        ],
+        "en": [
+          "Many round dots repeat across the surface",
+          "Dot size and spacing are usually regular",
+          "The ordered placement distinguishes it from irregular spots or animal markings"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ワンピース",
+          "ブラウス",
+          "スカーフ",
+          "子ども服",
+          "食器",
+          "包装",
+          "インテリア"
+        ],
+        "en": [
+          "dresses",
+          "blouses",
+          "scarves",
+          "children's wear",
+          "tableware",
+          "packaging",
+          "interiors"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "black",
+          "white"
+        ],
+        "color_role": "non-essential",
+        "primary_reason": "Round repeated dots define the pattern; color is variable."
+      }
+    },
+    {
+      "pattern_id": "moroccan-trellis",
+      "review_state": "researched",
+      "verification_state": "qualified",
+      "names": {
+        "ja": "モロッカントレリス",
+        "en": "Moroccan Trellis"
+      },
+      "aliases": {
+        "ja": [
+          "モロッカン格子"
+        ],
+        "en": [
+          "Moroccan lattice",
+          "lantern pattern",
+          "Casbah trellis"
+        ]
+      },
+      "term_scope": "contemporary decorative/design-market descriptor",
+      "definition": {
+        "ja": "丸みのある辺と上下の尖りをもつ格子セルなどを反復する、現代のインテリア市場で「Moroccan Trellis」と呼ばれる装飾柄の総称的ラベルです。",
+        "en": "A contemporary decorative-market label for repeating lattice cells, often with rounded sides and pointed top and bottom."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "同形の格子セルが連続して面を埋める",
+          "セルはランタン形・四つ葉形に近い変種を含む",
+          "歴史的に単一のモロッコ正典文様と断定せず、市場ラベルとして扱う"
+        ],
+        "en": [
+          "Repeating lattice cells fill the surface",
+          "Common variants resemble lantern or quatrefoil-like cells",
+          "Treat the term as a contemporary market label, not as one uniquely canonical historic Moroccan motif"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ラグ",
+          "カーテン",
+          "クッション",
+          "壁紙",
+          "タイル風プリント",
+          "寝具"
+        ],
+        "en": [
+          "rugs",
+          "curtains",
+          "cushions",
+          "wallpaper",
+          "tile-inspired prints",
+          "bedding"
+        ]
+      },
+      "qualification": {
+        "ja": "この名称は現代のインテリア／柄市場で広く使われるラベルとして扱い、単一の歴史的モロッコ正典文様だとは断定しません。",
+        "en": "This entry treats the name as a contemporary interiors/pattern-market label and does not claim one uniquely canonical historic Moroccan motif."
+      },
+      "colors": {
+        "primary": [
+          "teal",
+          "white"
+        ],
+        "color_role": "variable",
+        "primary_reason": "No defining historic palette is asserted; this is an editorial reference."
+      }
+    },
+    {
+      "pattern_id": "seigaiha",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "青海波",
+        "en": "Seigaiha"
+      },
+      "aliases": {
+        "ja": [
+          "青海波文"
+        ],
+        "en": [
+          "seigaiha pattern"
+        ]
+      },
+      "term_scope": "named Japanese traditional motif",
+      "definition": {
+        "ja": "同心円状の半円弧を扇形に重ね、波が連なって見える日本の伝統文様です。",
+        "en": "A Japanese traditional motif made from overlapping concentric semicircular arcs arranged like repeating waves."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "半円の中に複数の同心弧がある",
+          "半円同士が段違いに重なり波の列を作る",
+          "単なる鱗形や円弧ではなく扇状の波の反復が目印"
+        ],
+        "en": [
+          "Each fan contains several concentric arcs",
+          "The fans overlap in staggered rows to read as waves",
+          "The layered wave-fan repeat distinguishes it from simple scallops"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "手ぬぐい",
+          "風呂敷",
+          "陶磁器",
+          "包装紙",
+          "和雑貨"
+        ],
+        "en": [
+          "kimono",
+          "tenugui",
+          "furoshiki",
+          "ceramics",
+          "wrapping paper",
+          "Japanese goods"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "indigo",
+          "white"
+        ],
+        "color_role": "traditional",
+        "primary_reason": "Indigo/white is an editorial traditional reference; the motif itself is structural."
+      }
+    },
+    {
+      "pattern_id": "asanoha",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "麻の葉",
+        "en": "Asanoha"
+      },
+      "aliases": {
+        "ja": [
+          "麻の葉文"
+        ],
+        "en": [
+          "hemp-leaf pattern"
+        ]
+      },
+      "term_scope": "named Japanese traditional geometric motif",
+      "definition": {
+        "ja": "正六角形を基礎に放射状の線を組み、麻の葉を思わせる星形が連続する日本の幾何学文様です。",
+        "en": "A Japanese geometric motif built from regular hexagons and radiating lines, forming star-like units associated with hemp leaves."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "六角形を基礎に細線が中心から放射する",
+          "六方向の星形・葉形が連続する",
+          "亀甲より内部線が多く、星状の細かな分割が目立つ"
+        ],
+        "en": [
+          "Regular hexagons provide the underlying grid",
+          "Radiating lines create six-point star or leaf-like units",
+          "More internal spokes than kikko make the star-like subdivision prominent"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "手ぬぐい",
+          "木工・組子風デザイン",
+          "包装",
+          "インテリア"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "tenugui",
+          "lattice-inspired design",
+          "packaging",
+          "interiors"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "indigo",
+          "white"
+        ],
+        "color_role": "traditional",
+        "primary_reason": "Indigo/white is an editorial traditional reference; color does not define the motif."
+      }
+    },
+    {
+      "pattern_id": "shippo",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "七宝",
+        "en": "Shippo"
+      },
+      "aliases": {
+        "ja": [
+          "七宝文",
+          "七宝繋ぎ"
+        ],
+        "en": [
+          "shippo pattern",
+          "interlocking circles"
+        ]
+      },
+      "term_scope": "named Japanese interlocking-circle motif",
+      "definition": {
+        "ja": "同じ大きさの円弧を四分の一ずつ重ね、連続した円形・花形を作る日本の伝統文様です。",
+        "en": "A Japanese traditional motif formed by overlapping equal circular arcs to create a continuous network of circles and petal-like intersections."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "同じ半径の円が規則的に重なる",
+          "交差部に四弁の花のような形が現れる",
+          "青海波より完全な円のネットワークとして見える"
+        ],
+        "en": [
+          "Equal-radius circles overlap in a regular network",
+          "Intersections create four-petal flower-like shapes",
+          "It reads as interlocking circles rather than the fan-shaped wave units of seigaiha"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "陶磁器",
+          "漆器",
+          "包装紙",
+          "和雑貨"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "ceramics",
+          "lacquerware",
+          "wrapping paper",
+          "Japanese goods"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "indigo",
+          "white"
+        ],
+        "color_role": "traditional",
+        "primary_reason": "Indigo/white is an editorial traditional reference; the circle geometry is defining."
+      }
+    },
+    {
+      "pattern_id": "ichimatsu",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "市松",
+        "en": "Ichimatsu"
+      },
+      "aliases": {
+        "ja": [
+          "市松模様",
+          "石畳",
+          "霰"
+        ],
+        "en": [
+          "ichimatsu pattern",
+          "checker pattern"
+        ]
+      },
+      "term_scope": "Japanese name for alternating-square/checker motif",
+      "definition": {
+        "ja": "対照的な色や明度の正方形を交互に並べる、日本で「市松」と呼ばれる格子文様です。",
+        "en": "The Japanese term for a checker arrangement of alternating square cells in contrasting colors or values."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "同じ大きさの正方形が縦横に並ぶ",
+          "隣り合うマスが交互に色・明度を変える",
+          "色自体は固定されず、交互配列が本体"
+        ],
+        "en": [
+          "Equal-size square cells form a grid",
+          "Adjacent cells alternate in color or value",
+          "The alternating arrangement defines the motif; the colors are not fixed"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "バッグ",
+          "タイル",
+          "床材",
+          "包装",
+          "グラフィック"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "bags",
+          "tile",
+          "flooring",
+          "packaging",
+          "graphic design"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "black",
+          "white"
+        ],
+        "color_role": "non-essential",
+        "primary_reason": "Black/white is an editorial reference; the alternating-square arrangement is defining."
+      }
+    },
+    {
+      "pattern_id": "kikko",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "亀甲",
+        "en": "Kikko"
+      },
+      "aliases": {
+        "ja": [
+          "亀甲文"
+        ],
+        "en": [
+          "kikko pattern",
+          "tortoiseshell pattern"
+        ]
+      },
+      "term_scope": "named Japanese hexagonal tortoiseshell motif",
+      "definition": {
+        "ja": "正六角形を連続させ、亀の甲羅を思わせる日本の伝統的な幾何学文様です。",
+        "en": "A Japanese traditional geometric motif based on repeating hexagons associated with tortoiseshell."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "六角形が隙間なく連続する",
+          "基本形は内部の放射線を必要としない",
+          "麻の葉より単純な六角セルの輪郭が主役"
+        ],
+        "en": [
+          "Hexagons repeat in a close tessellation",
+          "The basic form does not require the internal spokes seen in asanoha",
+          "The hexagonal cell outline is the primary cue"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "和紙",
+          "陶磁器",
+          "建具",
+          "包装"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "washi",
+          "ceramics",
+          "architectural fittings",
+          "packaging"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "indigo",
+          "white"
+        ],
+        "color_role": "traditional",
+        "primary_reason": "Indigo/white is an editorial traditional reference; the hexagonal geometry is defining."
+      }
+    },
+    {
+      "pattern_id": "karakusa",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "唐草",
+        "en": "Karakusa"
+      },
+      "aliases": {
+        "ja": [
+          "唐草文様",
+          "唐草模様"
+        ],
+        "en": [
+          "karakusa pattern",
+          "Japanese arabesque"
+        ]
+      },
+      "term_scope": "Japanese scrolling-vine motif family",
+      "definition": {
+        "ja": "茎やつるが曲線で連続し、葉や枝を伸ばしながら反復する日本の唐草文様です。",
+        "en": "A Japanese scrolling-vine motif in which stems and tendrils continue in flowing curves with leaves or offshoots."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "途切れにくい蔓状の曲線が連続する",
+          "葉や枝が主線から伸びる",
+          "ペイズリーの独立した滴形より、つながる蔓の流れを重視する"
+        ],
+        "en": [
+          "Continuous vine-like curves travel across the surface",
+          "Leaves or branches grow from the main scroll",
+          "The connected vine flow distinguishes it from separate paisley boteh units"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "風呂敷",
+          "手ぬぐい",
+          "陶磁器",
+          "着物",
+          "包装",
+          "インテリア"
+        ],
+        "en": [
+          "furoshiki",
+          "tenugui",
+          "ceramics",
+          "kimono",
+          "packaging",
+          "interiors"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "green",
+          "cream"
+        ],
+        "color_role": "traditional",
+        "primary_reason": "Green/cream is an editorial traditional reference; the scrolling vine structure is defining."
+      }
+    },
+    {
+      "pattern_id": "damask",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "ダマスク",
+        "en": "Damask"
+      },
+      "aliases": {
+        "ja": [
+          "ダマスク柄"
+        ],
+        "en": [
+          "damask pattern"
+        ]
+      },
+      "term_scope": "reversible figured weave / damask-derived ornamental surface pattern",
+      "definition": {
+        "ja": "本来は表裏で地と文様の光沢関係が反転する織物・織組織を指し、現代の表面デザインでは大きな植物・花文様の反復を「ダマスク柄」と呼ぶことがあります。",
+        "en": "Originally a figured, often reversible weave in which pattern and ground contrast through weave structure; in modern surface design, 'damask pattern' often refers to large repeating floral or foliate motifs derived from that look."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "大きな植物・花・葉のモチーフが反復する表面柄が多い",
+          "左右対称に見える構成は一般的だが絶対条件ではない",
+          "歴史的な定義はモチーフ形より織組織にある"
+        ],
+        "en": [
+          "Modern surface versions often repeat large floral or foliate motifs",
+          "Symmetry is common but not an absolute defining rule",
+          "Historically, damask is defined by weave structure rather than one fixed motif shape"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "カーテン",
+          "壁紙",
+          "椅子張り",
+          "テーブルリネン",
+          "ドレス地",
+          "寝具"
+        ],
+        "en": [
+          "curtains",
+          "wallpaper",
+          "upholstery",
+          "table linen",
+          "dress textiles",
+          "bedding"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "charcoal",
+          "ivory"
+        ],
+        "color_role": "variable",
+        "primary_reason": "The weave or ornamental structure is defining, not a fixed palette."
+      }
+    },
+    {
+      "pattern_id": "arabesque",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "アラベスク",
+        "en": "Arabesque"
+      },
+      "aliases": {
+        "ja": [
+          "アラベスク文様"
+        ],
+        "en": [
+          "arabesque pattern"
+        ]
+      },
+      "term_scope": "scrolling vegetal and geometric ornamental tradition",
+      "definition": {
+        "ja": "植物の茎・葉を抽象化した連続曲線や幾何学的反復を組み合わせる装飾様式・文様群です。",
+        "en": "An ornamental tradition using rhythmic scrolling vegetal forms, geometric repetition, or combinations of the two."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "曲線的なつる・葉が反復しながら連続する",
+          "幾何学的な反復と組み合わさる場合がある",
+          "単一の固定モチーフ名ではなく装飾様式の広いカテゴリー"
+        ],
+        "en": [
+          "Scrolling vegetal curves repeat rhythmically",
+          "Geometric repetition may be combined with foliage",
+          "It is a broad ornamental category rather than one single fixed motif"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "建築装飾",
+          "タイル",
+          "壁紙",
+          "テキスタイル",
+          "金工",
+          "グラフィック"
+        ],
+        "en": [
+          "architectural ornament",
+          "tile",
+          "wallpaper",
+          "textiles",
+          "metalwork",
+          "graphic design"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "teal",
+          "cream"
+        ],
+        "color_role": "variable",
+        "primary_reason": "The ornamental structure is defining, not a fixed palette."
+      }
+    },
+    {
+      "pattern_id": "paisley",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "ペイズリー",
+        "en": "Paisley"
+      },
+      "aliases": {
+        "ja": [
+          "ペイズリー柄"
+        ],
+        "en": [
+          "paisley pattern",
+          "boteh pattern"
+        ]
+      },
+      "term_scope": "boteh-based ornamental repeat",
+      "definition": {
+        "ja": "先端が曲がった滴形・葉形の「boteh」を主要モチーフとして反復する装飾柄です。",
+        "en": "An ornamental repeat built around the boteh, a curved teardrop- or leaf-like motif."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "先端が一方向へ曲がる滴形・葉形が中心",
+          "内部に細かな植物・幾何学装飾を持つことが多い",
+          "唐草のような連続蔓ではなく、独立したboteh単位が見分けやすい"
+        ],
+        "en": [
+          "Curved teardrop or leaf-shaped boteh units are the main cue",
+          "The motifs often contain smaller floral or geometric decoration",
+          "Separate boteh units distinguish paisley from a continuous vine scroll"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "スカーフ",
+          "バンダナ",
+          "ネクタイ",
+          "シャツ",
+          "ドレス",
+          "壁紙",
+          "寝具"
+        ],
+        "en": [
+          "scarves",
+          "bandanas",
+          "ties",
+          "shirts",
+          "dresses",
+          "wallpaper",
+          "bedding"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "burgundy",
+          "cream"
+        ],
+        "color_role": "variable",
+        "primary_reason": "Boteh structure defines the pattern; no single palette is required."
+      }
+    },
+    {
+      "pattern_id": "leopard-print",
+      "review_state": "researched",
+      "verification_state": "verified",
+      "names": {
+        "ja": "レオパード柄",
+        "en": "Leopard Print"
+      },
+      "aliases": {
+        "ja": [
+          "ヒョウ柄",
+          "豹柄"
+        ],
+        "en": [
+          "leopard pattern",
+          "leopard spots"
+        ]
+      },
+      "term_scope": "animal-print imitation of leopard coat markings",
+      "definition": {
+        "ja": "ヒョウの被毛に見られる斑紋を模したアニマルプリントで、輪状・ロゼット状の斑点と不規則な点が組み合わさります。",
+        "en": "An animal print imitating leopard coat markings, using irregular spots and rosette-like ringed markings."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "斑点の位置と大きさが規則正しく揃わない",
+          "単純な黒点だけでなく輪状・ロゼット状の斑が混じる",
+          "水玉のような等間隔の反復ではない"
+        ],
+        "en": [
+          "Spot size and placement are irregular",
+          "Ringed or rosette-like marks mix with solid spots",
+          "It lacks the even spacing and uniform dots of polka dot"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "コート",
+          "バッグ",
+          "靴",
+          "スカーフ",
+          "トップス",
+          "ネイル・雑貨"
+        ],
+        "en": [
+          "coats",
+          "bags",
+          "shoes",
+          "scarves",
+          "tops",
+          "nail art and accessories"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "tan",
+          "brown",
+          "black"
+        ],
+        "color_role": "identity-relevant",
+        "primary_reason": "Natural leopard coloration supports recognition, though fashion prints may recolor it."
+      }
+    },
+    {
+      "pattern_id": "ikat",
+      "review_state": "researched",
+      "verification_state": "qualified",
+      "names": {
+        "ja": "イカット",
+        "en": "Ikat"
+      },
+      "aliases": {
+        "ja": [
+          "絣",
+          "イカット柄"
+        ],
+        "en": [
+          "ikat weave",
+          "ikat textile"
+        ]
+      },
+      "term_scope": "resist-dyeing technique applied to yarn before weaving",
+      "definition": {
+        "ja": "織る前の経糸・緯糸または両方を部分的に防染してから織る技法で、その工程に由来する輪郭のにじみ・ずれがイカットらしい表情を作ります。",
+        "en": "A resist-dyeing technique in which warp, weft, or both are bound and dyed before weaving; the process often produces softly feathered or shifted motif edges."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "モチーフの輪郭にわずかなずれやぼかしが見える",
+          "幾何学形や植物形など多様で、形そのものは固定されない",
+          "単一の柄名ではなく制作技法として扱う"
+        ],
+        "en": [
+          "Motif edges often look softly feathered or slightly misregistered",
+          "Geometric and floral motifs vary widely; no single shape defines ikat",
+          "Treat ikat primarily as a textile technique rather than one fixed pattern"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "布地",
+          "衣服",
+          "サロン",
+          "クッション",
+          "ラグ",
+          "インテリアテキスタイル"
+        ],
+        "en": [
+          "textiles",
+          "garments",
+          "sarongs",
+          "cushions",
+          "rugs",
+          "furnishing fabrics"
+        ]
+      },
+      "qualification": {
+        "ja": "イカットは単一の固定柄ではなく、糸を先に防染してから織る技法です。本辞典では、その技法から生じる視覚的特徴を検索対象にします。",
+        "en": "Ikat is not one fixed motif; it is a yarn-resist dyeing technique. This dictionary indexes the visual characteristics produced by that technique."
+      },
+      "colors": {
+        "primary": [
+          "indigo",
+          "white"
+        ],
+        "color_role": "variable",
+        "primary_reason": "Indigo/white is an editorial recognition reference; technique, not palette, defines ikat."
+      }
+    },
+    {
+      "pattern_id": "kilim",
+      "review_state": "researched",
+      "verification_state": "qualified",
+      "names": {
+        "ja": "キリム柄",
+        "en": "Kilim"
+      },
+      "aliases": {
+        "ja": [
+          "キリム",
+          "キリム模様"
+        ],
+        "en": [
+          "kilim pattern",
+          "kilim rug pattern"
+        ]
+      },
+      "term_scope": "flat-woven textile category with varied motifs",
+      "definition": {
+        "ja": "キリムは毛足のない平織り系の敷物・織物カテゴリーで、表面には菱形、フック、帯状幾何学など多様なモチーフが用いられます。本辞典では市場でいう「キリム柄」を、その外観を指す検索ラベルとして扱います。",
+        "en": "Kilim is a category of pileless flat-woven rugs and textiles that can carry many geometric motifs. Here, 'kilim pattern' is treated as a search label for that visual family rather than one single canonical motif."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "平面的な織物上に幾何学モチーフが反復することが多い",
+          "菱形・フック・帯など複数のモチーフ体系を含む",
+          "一つの固定柄ではなくキリム外観の検索カテゴリーとして扱う"
+        ],
+        "en": [
+          "Flat-woven surfaces often carry repeated geometric motifs",
+          "Diamonds, hooks, bands, and other motifs vary across kilims",
+          "Treat it as a visual search family, not as one fixed canonical pattern"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ラグ",
+          "クッション",
+          "バッグ",
+          "椅子張り",
+          "壁掛け",
+          "インテリア雑貨"
+        ],
+        "en": [
+          "rugs",
+          "cushions",
+          "bags",
+          "upholstery",
+          "wall hangings",
+          "interior accessories"
+        ]
+      },
+      "qualification": {
+        "ja": "キリムは単一の固定模様名ではなく、平織り系の敷物・織物カテゴリーです。「キリム柄」はその外観を探すための検索ラベルとして扱います。",
+        "en": "Kilim is not one fixed pattern name; it is a category of flat-woven rugs/textiles. 'Kilim pattern' is used here as a practical visual-search label."
+      },
+      "colors": {
+        "primary": [
+          "rust",
+          "navy",
+          "cream"
+        ],
+        "color_role": "variable",
+        "primary_reason": "This is an editorial recognition palette; no single colorway defines kilim."
+      }
+    }
+  ]
+}
