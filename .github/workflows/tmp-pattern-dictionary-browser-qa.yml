@@ -62,8 +62,16 @@ jobs:
             for (const viewport of viewports) {
               const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
               const page = await context.newPage();
-              const consoleErrors = [];
-              page.on('console', msg => { if (msg.type() === 'error') consoleErrors.push(msg.text()); });
+              const pageErrors = [];
+              const localRequestFailures = [];
+              const localHttpErrors = [];
+              page.on('pageerror', err => pageErrors.push(err.message));
+              page.on('requestfailed', req => {
+                if (req.url().startsWith(base)) localRequestFailures.push(`${req.url()} :: ${req.failure()?.errorText || 'failed'}`);
+              });
+              page.on('response', res => {
+                if (res.url().startsWith(base) && res.status() >= 400) localHttpErrors.push(`${res.status()} ${res.url()}`);
+              });
               for (const route of routes) {
                 await page.goto(base + route, { waitUntil: 'networkidle' });
                 const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
@@ -113,7 +121,9 @@ jobs:
               await page.locator('#cmp-b').selectOption('gingham');
               assert((await page.url()).includes('b=gingham'), `${viewport.name} compare URL did not synchronize`);
 
-              assert.strictEqual(consoleErrors.length, 0, `${viewport.name} console errors: ${consoleErrors.join(' | ')}`);
+              assert.strictEqual(pageErrors.length, 0, `${viewport.name} page JS errors: ${pageErrors.join(' | ')}`);
+              assert.strictEqual(localRequestFailures.length, 0, `${viewport.name} local request failures: ${localRequestFailures.join(' | ')}`);
+              assert.strictEqual(localHttpErrors.length, 0, `${viewport.name} local HTTP errors: ${localHttpErrors.join(' | ')}`);
               await context.close();
               console.log(`PASS ${viewport.name}`);
             }
