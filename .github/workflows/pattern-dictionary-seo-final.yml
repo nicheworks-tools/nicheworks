@@ -1,0 +1,176 @@
+name: Pattern Dictionary indexable SEO normalization
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-production-20-20260914
+    paths:
+      - .github/workflows/pattern-dictionary-seo-final.yml
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-production-20-20260914
+          fetch-depth: 2
+      - name: Normalize all 40 indexable detail heads
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, re, html
+
+          root=Path('tools/pattern-dictionary')
+          canonical=['houndstooth','gingham','tartan','glen-check','argyle','chevron','polka-dot','moroccan-trellis','seigaiha','asanoha','shippo','ichimatsu','kikko','karakusa','damask','arabesque','paisley','leopard-print','ikat','kilim']
+          prod=json.loads((root/'data'/'production-content.json').read_text())
+          by_id={x['pattern_id']:x for x in prod['patterns']}
+          if set(by_id)!=set(canonical): raise SystemExit('canonical production set mismatch')
+
+          def esc(value): return html.escape(str(value), quote=True)
+          def strip_tag(s, pattern): return re.sub(pattern,'',s,flags=re.I|re.S)
+
+          touched=0
+          for pid in canonical:
+            p=by_id[pid]
+            for prefix,lang in [('', 'ja'),('en/','en')]:
+              file=root/prefix/'patterns'/pid/'index.html'
+              s=file.read_text()
+              if '<meta name="robots" content="index,follow">' not in s:
+                raise SystemExit(f'{file}: publication robots contract missing')
+
+              ja_url=f'https://nicheworks.app/tools/pattern-dictionary/patterns/{pid}/'
+              en_url=f'https://nicheworks.app/tools/pattern-dictionary/en/patterns/{pid}/'
+              url=ja_url if lang=='ja' else en_url
+              image=f'https://nicheworks.app/tools/pattern-dictionary/assets/reference/{pid}.png'
+              title=(f"{p['names']['ja']}（{p['names']['en']}）｜Pattern Dictionary | NicheWorks" if lang=='ja' else f"{p['names']['en']} | Pattern Dictionary | NicheWorks")
+              definition=p['definition'][lang]
+              if lang=='ja':
+                description=f"{p['names']['ja']}（{p['names']['en']}）の見分け方を解説。{definition} 別名、特徴、似た模様との違い、代表的な用途を確認できます。"
+              else:
+                description=f"Learn how to identify {p['names']['en']}. {definition} Review aliases, distinguishing features, similar patterns, colors, and common uses."
+              if len(description)<45: raise SystemExit(f'{file}: generated description unexpectedly short')
+
+              s=re.sub(r'<title\b[^>]*>[\s\S]*?</title>',f'<title>{esc(title)}</title>',s,count=1,flags=re.I)
+              s=strip_tag(s,r'<meta\b(?=[^>]*\bname=["\']description["\'])[^>]*>')
+              s=strip_tag(s,r'<meta\b(?=[^>]*\bproperty=["\']og:[^"\']+["\'])[^>]*>')
+              s=strip_tag(s,r'<meta\b(?=[^>]*\bname=["\']twitter:[^"\']+["\'])[^>]*>')
+              s=strip_tag(s,r'<link\b(?=[^>]*\brel=["\']canonical["\'])[^>]*>')
+              s=strip_tag(s,r'<link\b(?=[^>]*\brel=["\']alternate["\'])[^>]*>')
+              s=strip_tag(s,r'<link\b(?=[^>]*\brel=["\']apple-touch-icon["\'])[^>]*>')
+              s=strip_tag(s,r'<script\b(?=[^>]*\btype=["\']application/ld\+json["\'])[^>]*>[\s\S]*?</script>')
+
+              structured={
+                '@context':'https://schema.org',
+                '@graph':[
+                  {
+                    '@type':'WebPage',
+                    'url':url,
+                    'name':title,
+                    'description':description,
+                    'inLanguage':lang,
+                    'image':image
+                  },
+                  {
+                    '@type':'WebApplication',
+                    'name':'Pattern Dictionary',
+                    'applicationCategory':'ReferenceApplication',
+                    'operatingSystem':'Web',
+                    'url':'https://nicheworks.app/tools/pattern-dictionary/'
+                  }
+                ]
+              }
+              jsonld=json.dumps(structured,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')
+              block=(
+                f'<meta name="description" content="{esc(description)}">'
+                f'<link rel="canonical" href="{url}">'
+                f'<link rel="alternate" hreflang="ja" href="{ja_url}">'
+                f'<link rel="alternate" hreflang="en" href="{en_url}">'
+                f'<meta property="og:title" content="{esc(title)}">'
+                f'<meta property="og:description" content="{esc(description)}">'
+                f'<meta property="og:url" content="{url}">'
+                f'<meta property="og:image" content="{image}">'
+                f'<meta name="twitter:card" content="summary_large_image">'
+                f'<meta name="twitter:title" content="{esc(title)}">'
+                f'<meta name="twitter:description" content="{esc(description)}">'
+                f'<meta name="twitter:image" content="{image}">'
+                f'<link rel="apple-touch-icon" href="/assets/nicheworks-favicon-512-white.png">'
+                f'<script type="application/ld+json">{jsonld}</script>'
+              )
+              robots='<meta name="robots" content="index,follow">'
+              if s.count(robots)!=1: raise SystemExit(f'{file}: expected exactly one robots tag')
+              s=s.replace(robots,robots+block,1)
+              file.write_text(s)
+              touched+=1
+          if touched!=40: raise SystemExit(f'expected 40 pages, touched {touched}')
+          PY
+      - name: Add Pattern Dictionary SEO detail contract
+        run: |
+          cat > tools/pattern-dictionary/tests/seo-detail-test.mjs <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import {fileURLToPath} from 'node:url';
+          const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+          const ids=['houndstooth','gingham','tartan','glen-check','argyle','chevron','polka-dot','moroccan-trellis','seigaiha','asanoha','shippo','ichimatsu','kikko','karakusa','damask','arabesque','paisley','leopard-print','ikat','kilim'];
+          function count(s,re){return [...s.matchAll(re)].length}
+          for(const id of ids){
+            const ja=`https://nicheworks.app/tools/pattern-dictionary/patterns/${id}/`;
+            const en=`https://nicheworks.app/tools/pattern-dictionary/en/patterns/${id}/`;
+            for(const [prefix,lang,url] of [['','ja',ja],['en/','en',en]]){
+              const file=path.join(root,prefix,'patterns',id,'index.html');
+              const s=fs.readFileSync(file,'utf8');
+              if(!s.includes('<meta name="robots" content="index,follow">'))throw new Error(`${prefix}${id}: not indexable`);
+              const required=[
+                [/<meta\b[^>]*property="og:title"[^>]*>/g,'og:title'],
+                [/<meta\b[^>]*property="og:description"[^>]*>/g,'og:description'],
+                [/<meta\b[^>]*property="og:url"[^>]*>/g,'og:url'],
+                [/<meta\b[^>]*property="og:image"[^>]*>/g,'og:image'],
+                [/<meta\b[^>]*name="twitter:card"[^>]*>/g,'twitter:card'],
+                [/<meta\b[^>]*name="twitter:title"[^>]*>/g,'twitter:title'],
+                [/<meta\b[^>]*name="twitter:description"[^>]*>/g,'twitter:description'],
+                [/<meta\b[^>]*name="twitter:image"[^>]*>/g,'twitter:image'],
+                [/<script\b[^>]*type="application\/ld\+json"[^>]*>/g,'JSON-LD']
+              ];
+              for(const [re,label] of required)if(count(s,re)!==1)throw new Error(`${prefix}${id}: expected one ${label}`);
+              if(!s.includes(`property="og:url" content="${url}"`))throw new Error(`${prefix}${id}: og:url mismatch`);
+              if(!s.includes(`hreflang="ja" href="${ja}"`)||!s.includes(`hreflang="en" href="${en}"`))throw new Error(`${prefix}${id}: reciprocal language links missing`);
+              if(!s.includes('rel="apple-touch-icon"'))throw new Error(`${prefix}${id}: apple-touch-icon missing`);
+              if(!s.includes('"@type":"WebPage"')||!s.includes('"@type":"WebApplication"'))throw new Error(`${prefix}${id}: structured-data types missing`);
+              if(!s.includes(`"url":"${url}"`))throw new Error(`${prefix}${id}: WebPage JSON-LD URL mismatch`);
+              if(!s.includes(`"inLanguage":"${lang}"`))throw new Error(`${prefix}${id}: JSON-LD language mismatch`);
+            }
+          }
+          console.log('OK: 40/40 Pattern Dictionary detail pages carry canonical social, language, icon, and structured-data publication metadata.');
+          JS
+      - name: Validate Pattern Dictionary and repository SEO contracts
+        run: |
+          set -euo pipefail
+          node --check tools/pattern-dictionary/app.js
+          node tools/pattern-dictionary/tests/source-verification-test.mjs
+          node tools/pattern-dictionary/tests/production-content-test.mjs
+          node tools/pattern-dictionary/tests/reference-image-test.mjs
+          node tools/pattern-dictionary/tests/search-test.mjs
+          node tools/pattern-dictionary/tests/compare-test.mjs
+          node tools/pattern-dictionary/tests/affiliate-test.mjs
+          node tools/pattern-dictionary/tests/browse-mobile-test.mjs
+          node tools/pattern-dictionary/tests/validate.mjs
+          node tools/pattern-dictionary/tests/publication-test.mjs
+          node tools/pattern-dictionary/tests/seo-detail-test.mjs
+          node scripts/check-seo-indexable-url-identity.mjs
+          node scripts/check-seo-head-metadata-cardinality.mjs
+          node scripts/check-seo-language-metadata-integrity.mjs
+          node scripts/check-seo-internal-link-integrity.mjs
+          node scripts/check-seo-structured-data-integrity.mjs
+          node scripts/audit-seo.mjs --strict
+      - name: Persist SEO normalization and remove one-shot workflow
+        run: |
+          git rm .github/workflows/pattern-dictionary-seo-final.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/pattern-dictionary
+          git commit -m "fix: complete Pattern Dictionary indexable SEO metadata"
+          git push origin HEAD:feat/pattern-dictionary-production-20-20260914
