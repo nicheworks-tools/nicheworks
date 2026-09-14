@@ -30,3 +30,9 @@ jobs:
 
       - name: Check semantic search v2.3 regression
         run: node tools/construction-tools-atlas/scripts/check-semantic-search-v2.3.cjs
+
+      - name: Check active runtime syntax
+        run: node --check tools/construction-tools-atlas/app.runtime.js
+
+      - name: Check master-detail v2.3 contract
+        run: node tools/construction-tools-atlas/scripts/check-master-detail-v2.3.cjs
