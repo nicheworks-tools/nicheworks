@@ -282,6 +282,21 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.match(html, /Galaxy Super Fast Charging対応 25W充電器/);
 }
 
+// Pixel Fold proves charger guidance and device-side maximum stay separate on real foldable data.
+{
+  const h = await createHarness(['google-pixel-fold']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('139.7 × 79.5 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /139\.7 × 79\.5 × 12\.1 mm/);
+  assert.match(html, /139\.7 × 158\.7 × 5\.8 mm/);
+  assert.match(html, /4821 mAh/);
+  assert.match(html, /充電器目安<\/span><b>30W\+/);
+  assert.match(html, /端末側の有線充電上限<\/span><b>18W/);
+  assert.match(html, /PPS/);
+  assert.match(html, /Qi \/ 7\.5W/);
+  assert.match(html, /PPS対応 30W以上の充電器/);
+}
+
 // Foldable schema renders both physical states and keeps folded dimensions in the list.
 {
   const h = await createHarness(['synthetic-foldable']);
