@@ -1,0 +1,11 @@
+{
+  "schema": "cta-image-registry-v2.3",
+  "version": "2026-09-14-foundation-1",
+  "policy": {
+    "primary_format": "webp",
+    "formal_min_state": "reviewed",
+    "wrong_image_behavior": "omit",
+    "notes": "Only canonical-ID records that pass subject review belong here. Legacy SVG manifests remain compatibility input during migration and are not automatically promoted."
+  },
+  "items": []
+}
