@@ -217,6 +217,10 @@ Wave 21では、供給側拡張方針を維持し、既存direct-link coverage�
 
 - 長崎県 長崎市 — `/tools/trashnavi/nagasaki/nagasaki/`
 
+Wave 22では、供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から高知市を選定した。高知市公式の家庭ごみ分別導線を現行ページへ更新し、ごみ収集日、ごみの収集日検索、家庭ごみの自己搬入案内を追加して、4種類のwaste-specific canonical typeを持つpreferred candidateへ引き上げた。data enrichment検証後、公開対象を **29自治体** とする。
+
+- 高知県 高知市 — `/tools/trashnavi/kochi/kochi/`
+
 生成器は公開対象ごとにrepository dataを再集約し、`municipal_home` を除くdistinct waste-specific canonical typeが **3種類未満なら生成を拒否**する。manifestに追加しただけでthin pageを公開してはならない。
 
 各自治体pageは最低限以下を持つ。
@@ -449,6 +453,24 @@ CIではcoverage strict auditと生成drift checkの両方を必須とし、公�
 - invalid records: 0
 - unknown type labels: 0
 
+### Wave 22 verified coverage baseline
+
+2026-09-14のWave 22 CI基準値は次のとおり。
+
+- municipalities: 1,916
+- records: 2,224 / 2,224 valid HTTP(S)
+- municipalities with any waste-specific direct link: 78
+- publish candidates (2+ types): 29
+- preferred candidates (3+ types): 29
+- collection calendar coverage: 29 municipalities
+- bulky-waste coverage: 27 municipalities
+- waste-search coverage: 2 municipalities
+- drop-off facility coverage: 2 municipalities
+- waste-app coverage: 1 municipality
+- direct-link inventory: 25 datasets / 156 records / 137 unique URLs / 0 invalid URLs
+- invalid records: 0
+- unknown type labels: 0
+
 ### Direct-link health monitoring — Phase 4
 
 Phase 4では、単一legacy fileだけを確認していたlink checkを、`tools/trashnavi/data/direct-waste-links*.json` に一致する全direct-link datasetへ拡張する。
@@ -511,9 +533,9 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 ### Municipality page expansion
 
 - [x] preferred readiness 3種類以上を生成時に再検証する。
-- [x] 公開28自治体をmanifest allowlistで管理する。
+- [x] 公開29自治体をmanifest allowlistで管理する。
 - [x] 自治体pageをgeneratorから静的生成する。
-- [x] generator `--check` で28ページの生成driftを検出する。
+- [x] generator `--check` で29ページの生成driftを検出する。
 - [x] 公開URLをroot sitemapと専用sitemapへ収録する。
 - [x] robotsの既存root sitemap契約を維持し、sitemap indexから専用sitemapを発見可能にする。
 - [x] Wave 3で御浜町・海津市・結城市をpreferred candidateへ引き上げる。
@@ -535,6 +557,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - [x] Wave 19で那覇市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 20で徳島市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 21で長崎市をpreferred candidateへ引き上げ、自治体pageを公開する。
+- [x] Wave 22で高知市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
 ### Link health Phase 4
@@ -570,6 +593,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/data/direct-waste-links-supply-wave19.json` — 那覇市のWave 19 waste-search / collection-calendar / bulky-waste enrichment。
 - `tools/trashnavi/data/direct-waste-links-supply-wave20.json` — 徳島市のWave 20 collection-calendar / bulky-waste enrichment。
 - `tools/trashnavi/data/direct-waste-links-supply-wave21.json` — 長崎市のWave 21 collection-calendar / bulky-waste enrichment。
+- `tools/trashnavi/data/direct-waste-links-supply-wave22.json` — 高知市のWave 22 collection-calendar / waste-search / drop-off enrichment。
 - `tools/trashnavi/DATA_MODEL.md` — forward schema、canonical taxonomy、landing-page readiness。
 - `tools/trashnavi/scripts/audit-coverage.mjs` — repository-local coverage/data-quality audit。
 - `tools/trashnavi/scripts/check-runtime-contract.mjs` — Current runtime 6項目と公開自治体のroot internal-link整合性をCI検証する。
@@ -596,6 +620,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/okinawa/naha/index.html` — Wave 19 municipality page。
 - `tools/trashnavi/tokushima/tokushima/index.html` — Wave 20 municipality page。
 - `tools/trashnavi/nagasaki/nagasaki/index.html` — Wave 21 municipality page。
+- `tools/trashnavi/kochi/kochi/index.html` — Wave 22 municipality page。
 - `scripts/check-trashnavi-direct-links.mjs` — all-direct-link dataset inventory / scheduled link-health checker。
 - `.github/workflows/check-trashnavi-direct-links.yml` — monthly/manual live link-health check and report artifact upload。
 - `.agent/plans/20260912-trashnavi-link-freshness-phase4.md` — Phase 4 implementation / safety contract。
