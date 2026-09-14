@@ -1,0 +1,92 @@
+{
+  "schema": "cta-image-wave1-sources-v2.3",
+  "version": "2026-09-14-wave1-1",
+  "policy": {
+    "runtime_hotlink": false,
+    "source_provider": "Wikimedia Commons",
+    "promotion_rule": "Only sources with explicit license provenance and manually reviewed canonical subject match may be promoted."
+  },
+  "items": [
+    {
+      "entry_id": "rotary_hammer",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Bosch_GBH5-40_LargeDrill.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Bosch_GBH5-40_LargeDrill.jpg",
+      "source_filename": "source.jpg",
+      "license": "Public Domain",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+      "author": "KVDP",
+      "attribution": "KVDP / Wikimedia Commons (Public Domain)",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Large construction rotary hammer with masonry bit; canonical subject is clearly distinguishable from an ordinary drill."
+    },
+    {
+      "entry_id": "impact_driver",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/HiKOKI_cordless_impact_driver_WH36DC.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:HiKOKI_cordless_impact_driver_WH36DC.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "Daraku K.",
+      "attribution": "Daraku K. / Wikimedia Commons, CC BY-SA 4.0",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Cordless impact driver kit; reviewed against the canonical impact-driver entry rather than generic drill imagery."
+    },
+    {
+      "entry_id": "cordless_drill",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Cordless_Electric_Drill.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Cordless_Electric_Drill.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Tony Webster",
+      "attribution": "Tony Webster / Wikimedia Commons, CC BY 2.0",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Real cordless electric drill/driver image; kept separate from the impact-driver canonical entry."
+    },
+    {
+      "entry_id": "laser_level",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/24/Laser_Level.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Laser_Level.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "author": "Fanti Salms",
+      "attribution": "Fanti Salms / Wikimedia Commons, CC BY-SA 3.0",
+      "source_sha1": "377afc295acf95eaf7d41eaa6ae3ba3a6c50c740",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Tripod-mounted construction laser level; subject is clearly identifiable."
+    },
+    {
+      "entry_id": "caulking_gun",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Caulkinggun_000000.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Caulkinggun_000000.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "author": "Mwnuk",
+      "attribution": "Mwnuk / Wikimedia Commons, CC BY-SA 3.0",
+      "source_sha1": "ab90455d6c8d03e4a7d7ba38ae409f260f40b7b3",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Manual cartridge caulking gun; canonical subject is unambiguous."
+    },
+    {
+      "entry_id": "angle_grinder",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/db/AngleGrinder.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:AngleGrinder.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "author": "soulfish",
+      "attribution": "soulfish / Wikimedia Commons, CC BY-SA 2.0; Commons crop by Pittigrilli",
+      "source_sha1": "fa474a8574f3b90ed05b3be4029d14346b0c7691",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Real angle grinder with side handle and abrasive disc; canonical subject is clearly identifiable."
+    }
+  ]
+}
