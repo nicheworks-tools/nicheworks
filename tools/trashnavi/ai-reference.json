@@ -9,143 +9,28 @@
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
   "published_municipality_count": 23,
   "municipalities": [
-    {
-      "lgcode": "131016",
-      "pref_slug": "tokyo",
-      "city_slug": "chiyoda",
-      "url": "https://nicheworks.app/tools/trashnavi/tokyo/chiyoda/"
-    },
-    {
-      "lgcode": "131032",
-      "pref_slug": "tokyo",
-      "city_slug": "minato",
-      "url": "https://nicheworks.app/tools/trashnavi/tokyo/minato/"
-    },
-    {
-      "lgcode": "131041",
-      "pref_slug": "tokyo",
-      "city_slug": "shinjuku",
-      "url": "https://nicheworks.app/tools/trashnavi/tokyo/shinjuku/"
-    },
-    {
-      "lgcode": "131121",
-      "pref_slug": "tokyo",
-      "city_slug": "setagaya",
-      "url": "https://nicheworks.app/tools/trashnavi/tokyo/setagaya/"
-    },
-    {
-      "lgcode": "131130",
-      "pref_slug": "tokyo",
-      "city_slug": "shibuya",
-      "url": "https://nicheworks.app/tools/trashnavi/tokyo/shibuya/"
-    },
-    {
-      "lgcode": "131156",
-      "pref_slug": "tokyo",
-      "city_slug": "suginami",
-      "url": "https://nicheworks.app/tools/trashnavi/tokyo/suginami/"
-    },
-    {
-      "lgcode": "131202",
-      "pref_slug": "tokyo",
-      "city_slug": "nerima",
-      "url": "https://nicheworks.app/tools/trashnavi/tokyo/nerima/"
-    },
-    {
-      "lgcode": "245615",
-      "pref_slug": "mie",
-      "city_slug": "mihama",
-      "url": "https://nicheworks.app/tools/trashnavi/mie/mihama/"
-    },
-    {
-      "lgcode": "212211",
-      "pref_slug": "gifu",
-      "city_slug": "kaizu",
-      "url": "https://nicheworks.app/tools/trashnavi/gifu/kaizu/"
-    },
-    {
-      "lgcode": "082074",
-      "pref_slug": "ibaraki",
-      "city_slug": "yuki",
-      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/yuki/"
-    },
-    {
-      "lgcode": "131024",
-      "pref_slug": "tokyo",
-      "city_slug": "chuo",
-      "url": "https://nicheworks.app/tools/trashnavi/tokyo/chuo/"
-    },
-    {
-      "lgcode": "131229",
-      "pref_slug": "tokyo",
-      "city_slug": "katsushika",
-      "url": "https://nicheworks.app/tools/trashnavi/tokyo/katsushika/"
-    },
-    {
-      "lgcode": "074080",
-      "pref_slug": "fukushima",
-      "city_slug": "inawashiro",
-      "url": "https://nicheworks.app/tools/trashnavi/fukushima/inawashiro/"
-    },
-    {
-      "lgcode": "382019",
-      "pref_slug": "ehime",
-      "city_slug": "matsuyama",
-      "url": "https://nicheworks.app/tools/trashnavi/ehime/matsuyama/"
-    },
-    {
-      "lgcode": "292010",
-      "pref_slug": "nara",
-      "city_slug": "nara",
-      "url": "https://nicheworks.app/tools/trashnavi/nara/nara/"
-    },
-    {
-      "lgcode": "462012",
-      "pref_slug": "kagoshima",
-      "city_slug": "kagoshima",
-      "url": "https://nicheworks.app/tools/trashnavi/kagoshima/kagoshima/"
-    },
-    {
-      "lgcode": "452017",
-      "pref_slug": "miyazaki",
-      "city_slug": "miyazaki",
-      "url": "https://nicheworks.app/tools/trashnavi/miyazaki/miyazaki/"
-    },
-    {
-      "lgcode": "372013",
-      "pref_slug": "kagawa",
-      "city_slug": "takamatsu",
-      "url": "https://nicheworks.app/tools/trashnavi/kagawa/takamatsu/"
-    },
-    {
-      "lgcode": "442011",
-      "pref_slug": "oita",
-      "city_slug": "oita",
-      "url": "https://nicheworks.app/tools/trashnavi/oita/oita/"
-    },
-    {
-      "lgcode": "242012",
-      "pref_slug": "mie",
-      "city_slug": "tsu",
-      "url": "https://nicheworks.app/tools/trashnavi/mie/tsu/"
-    },
-    {
-      "lgcode": "352039",
-      "pref_slug": "yamaguchi",
-      "city_slug": "yamaguchi",
-      "url": "https://nicheworks.app/tools/trashnavi/yamaguchi/yamaguchi/"
-    },
-    {
-      "lgcode": "252018",
-      "pref_slug": "shiga",
-      "city_slug": "otsu",
-      "url": "https://nicheworks.app/tools/trashnavi/shiga/otsu/"
-    },
-    {
-      "lgcode": "322016",
-      "pref_slug": "shimane",
-      "city_slug": "matsue",
-      "url": "https://nicheworks.app/tools/trashnavi/shimane/matsue/"
-    }
+    {"lgcode":"131016","pref_slug":"tokyo","city_slug":"chiyoda","url":"https://nicheworks.app/tools/trashnavi/tokyo/chiyoda/"},
+    {"lgcode":"131032","pref_slug":"tokyo","city_slug":"minato","url":"https://nicheworks.app/tools/trashnavi/tokyo/minato/"},
+    {"lgcode":"131041","pref_slug":"tokyo","city_slug":"shinjuku","url":"https://nicheworks.app/tools/trashnavi/tokyo/shinjuku/"},
+    {"lgcode":"131121","pref_slug":"tokyo","city_slug":"setagaya","url":"https://nicheworks.app/tools/trashnavi/tokyo/setagaya/"},
+    {"lgcode":"131130","pref_slug":"tokyo","city_slug":"shibuya","url":"https://nicheworks.app/tools/trashnavi/tokyo/shibuya/"},
+    {"lgcode":"131156","pref_slug":"tokyo","city_slug":"suginami","url":"https://nicheworks.app/tools/trashnavi/tokyo/suginami/"},
+    {"lgcode":"131202","pref_slug":"tokyo","city_slug":"nerima","url":"https://nicheworks.app/tools/trashnavi/tokyo/nerima/"},
+    {"lgcode":"245615","pref_slug":"mie","city_slug":"mihama","url":"https://nicheworks.app/tools/trashnavi/mie/mihama/"},
+    {"lgcode":"212211","pref_slug":"gifu","city_slug":"kaizu","url":"https://nicheworks.app/tools/trashnavi/gifu/kaizu/"},
+    {"lgcode":"082074","pref_slug":"ibaraki","city_slug":"yuki","url":"https://nicheworks.app/tools/trashnavi/ibaraki/yuki/"},
+    {"lgcode":"131024","pref_slug":"tokyo","city_slug":"chuo","url":"https://nicheworks.app/tools/trashnavi/tokyo/chuo/"},
+    {"lgcode":"131229","pref_slug":"tokyo","city_slug":"katsushika","url":"https://nicheworks.app/tools/trashnavi/tokyo/katsushika/"},
+    {"lgcode":"074080","pref_slug":"fukushima","city_slug":"inawashiro","url":"https://nicheworks.app/tools/trashnavi/fukushima/inawashiro/"},
+    {"lgcode":"382019","pref_slug":"ehime","city_slug":"matsuyama","url":"https://nicheworks.app/tools/trashnavi/ehime/matsuyama/"},
+    {"lgcode":"292010","pref_slug":"nara","city_slug":"nara","url":"https://nicheworks.app/tools/trashnavi/nara/nara/"},
+    {"lgcode":"462012","pref_slug":"kagoshima","city_slug":"kagoshima","url":"https://nicheworks.app/tools/trashnavi/kagoshima/kagoshima/"},
+    {"lgcode":"452017","pref_slug":"miyazaki","city_slug":"miyazaki","url":"https://nicheworks.app/tools/trashnavi/miyazaki/miyazaki/"},
+    {"lgcode":"372013","pref_slug":"kagawa","city_slug":"takamatsu","url":"https://nicheworks.app/tools/trashnavi/kagawa/takamatsu/"},
+    {"lgcode":"442011","pref_slug":"oita","city_slug":"oita","url":"https://nicheworks.app/tools/trashnavi/oita/oita/"},
+    {"lgcode":"242012","pref_slug":"mie","city_slug":"tsu","url":"https://nicheworks.app/tools/trashnavi/mie/tsu/"},
+    {"lgcode":"352039","pref_slug":"yamaguchi","city_slug":"yamaguchi","url":"https://nicheworks.app/tools/trashnavi/yamaguchi/yamaguchi/"},
+    {"lgcode":"252018","pref_slug":"shiga","city_slug":"otsu","url":"https://nicheworks.app/tools/trashnavi/shiga/otsu/"},
+    {"lgcode":"322016","pref_slug":"shimane","city_slug":"matsue","url":"https://nicheworks.app/tools/trashnavi/shimane/matsue/"}
   ]
 }
