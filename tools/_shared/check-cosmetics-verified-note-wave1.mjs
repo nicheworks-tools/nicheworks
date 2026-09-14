@@ -67,11 +67,9 @@ assert.equal(
 );
 
 const evidence = parser.verifiedNoteEvidence || {};
-assert.deepEqual(
-  new Set(Object.keys(evidence)),
-  new Set(Object.keys(EXPECTED_WAVE1)),
-  'verified note wave 1 must remain exactly Phenoxyethanol, Sodium Hydroxide and Potassium Hydroxide'
-);
+for (const canonical of Object.keys(EXPECTED_WAVE1)) {
+  assert.ok(Object.hasOwn(evidence, canonical), `${canonical}: verified note wave 1 entry must remain present`);
+}
 
 const canonicalRows = new Map();
 for (const row of rows) {
@@ -112,17 +110,18 @@ for (const [canonical, expected] of Object.entries(EXPECTED_WAVE1)) {
   assert.equal(item.note_provenance_conflict, undefined, `${canonical}: verified overlay must not create note provenance conflict`);
 }
 
-const resolvedClaimRows = claimRows.filter((row) => Object.hasOwn(evidence, parser.canonicalIdentityKey(row.en)));
-assert.equal(resolvedClaimRows.length, 3, 'wave 1 should resolve exactly three of the frozen 22 claim-bearing legacy-note rows');
+const wave1Set = new Set(Object.keys(EXPECTED_WAVE1));
+const wave1ResolvedClaimRows = claimRows.filter((row) => wave1Set.has(parser.canonicalIdentityKey(row.en)));
+assert.equal(wave1ResolvedClaimRows.length, 3, 'wave 1 should continue to resolve exactly three of the frozen 22 claim-bearing legacy-note rows');
 
 console.log(JSON.stringify({
   status: 'pass',
   phase: 'verified-note-wave-1',
   raw_claim_bearing_legacy_note_rows: claimRows.length,
-  verified_note_overlay_canonical_identities: Object.keys(evidence).length,
-  resolved_claim_bearing_rows: resolvedClaimRows.length,
-  unresolved_claim_bearing_rows: claimRows.length - resolvedClaimRows.length,
-  resolved_canonical_identities: Object.keys(EXPECTED_WAVE1),
+  wave_1_verified_note_overlay_canonical_identities: Object.keys(EXPECTED_WAVE1).length,
+  cumulative_verified_note_overlay_canonical_identities: Object.keys(evidence).length,
+  wave_1_resolved_claim_bearing_rows: wave1ResolvedClaimRows.length,
+  wave_1_resolved_canonical_identities: Object.keys(EXPECTED_WAVE1),
   raw_dictionary_records_rewritten: false,
   runtime_notes_use_existing_provenance_gate: true,
   safety_contract_changed: false,
