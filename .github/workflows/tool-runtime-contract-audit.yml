@@ -16,6 +16,7 @@ on:
       - 'scripts/check-size-converter-growth-wave4.mjs'
       - 'scripts/check-old-kanji-reference-layout.mjs'
       - 'scripts/check-old-kanji-cluster-contract.mjs'
+      - 'scripts/check-old-kanji-reference-seo.mjs'
       - 'scripts/run-tool-behavior-tests.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
   push:
@@ -35,6 +36,7 @@ on:
       - 'scripts/check-size-converter-growth-wave4.mjs'
       - 'scripts/check-old-kanji-reference-layout.mjs'
       - 'scripts/check-old-kanji-cluster-contract.mjs'
+      - 'scripts/check-old-kanji-reference-seo.mjs'
       - 'scripts/run-tool-behavior-tests.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
 
@@ -88,6 +90,9 @@ jobs:
 
       - name: Check Old Kanji cluster contract
         run: node scripts/check-old-kanji-cluster-contract.mjs
+
+      - name: Check Old Kanji Reference SEO contract
+        run: node scripts/check-old-kanji-reference-seo.mjs
 
       - name: Verify audit is read-only
         run: |
