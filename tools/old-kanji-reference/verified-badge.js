@@ -83,11 +83,11 @@
 
   function normalizeModernSummaryPlacement() {
     const panel = document.getElementById("modernSummary");
-    const status = document.getElementById("statusMessage");
-    if (!panel || !status) return;
+    const emptyMessage = document.getElementById("emptyMessage");
+    if (!panel || !emptyMessage) return;
 
-    if (status.nextElementSibling !== panel) {
-      status.insertAdjacentElement("afterend", panel);
+    if (emptyMessage.nextElementSibling !== panel) {
+      emptyMessage.insertAdjacentElement("afterend", panel);
     }
     panel.dataset.layoutNormalized = "1";
   }
