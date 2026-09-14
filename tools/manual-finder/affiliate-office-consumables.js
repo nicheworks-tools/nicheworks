@@ -81,6 +81,36 @@
       tonerCodes: Object.freeze(["TK-811K", "TK-811Y", "TK-811M", "TK-811C"])
     }),
     Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "LS-C8100DN", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.kyoceradocumentsolutions.co.jp/support/prod_inf/pdf_c/km_page_printer_series.pdf",
+      tonerCodes: Object.freeze(["TK-821K", "TK-821Y", "TK-821M", "TK-821C"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "LS-C8008N", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.kyoceradocumentsolutions.co.jp/support/prod_inf/pdf_c/km_page_printer_series.pdf",
+      tonerCodes: Object.freeze(["TK-801K", "TK-801Y", "TK-801M", "TK-801C"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "LS-C8008DN", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.kyoceradocumentsolutions.co.jp/support/prod_inf/pdf_c/km_page_printer_series.pdf",
+      tonerCodes: Object.freeze(["TK-801K", "TK-801Y", "TK-801M", "TK-801C"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "LS-C5030N", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.kyoceradocumentsolutions.co.jp/products/ecosys/eco01/ls_c5030n/specs_1.html",
+      tonerCodes: Object.freeze(["TK-511K", "TK-511Y", "TK-511M", "TK-511C"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "LS-C5016N", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.kyoceradocumentsolutions.co.jp/support/prod_inf/pdf_c/km_page_printer_series.pdf",
+      tonerCodes: Object.freeze(["TK-501K", "TK-501Y", "TK-501M", "TK-501C"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "LS-9520DN", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.kyoceradocumentsolutions.co.jp/products/ecosys/eco02/ls_9520dn/option.html",
+      tonerCodes: Object.freeze(["TK-76"])
+    }),
+    Object.freeze({
       maker: "RICOH", searchMaker: "RICOH", searchModel: "IM C8010", model: "RICOH IM C8010", verifiedAt: "2026-09-14",
       sourceUrl: "https://www.ricoh.co.jp/products/list/ricoh-im-c8010-c6510/maintenance",
       tonerCodes: Object.freeze(["RICOH MP トナー ブラック C8003", "RICOH MP トナー イエロー C8003", "RICOH MP トナー マゼンタ C8003", "RICOH MP トナー シアン C8003"])
