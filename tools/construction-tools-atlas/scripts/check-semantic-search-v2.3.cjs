@@ -128,6 +128,16 @@ const signalIds = signals.map((signal) => signal?.id).filter(Boolean);
 if (new Set(signalIds).size !== signalIds.length) fail('search dictionary contains duplicate signal IDs');
 else ok(`search dictionary signal IDs are unique (${signalIds.length})`);
 
+const combinations = Array.isArray(dictionary?.combinations) ? dictionary.combinations : [];
+const combinationIds = combinations.map((combo) => combo?.id).filter(Boolean);
+if (new Set(combinationIds).size !== combinationIds.length) fail('search dictionary contains duplicate combination IDs');
+else ok(`search dictionary combination IDs are unique (${combinationIds.length})`);
+for (const combo of combinations) {
+  for (const signalId of safeArray(combo?.all_signals)) {
+    if (!signalIds.includes(signalId)) fail(`combination ${combo?.id} references unknown signal ${signalId}`);
+  }
+}
+
 const engine = core.createEngine(dictionary);
 const entries = loadCorpus();
 if (entries.length < 10) fail(`unexpectedly small legacy corpus: ${entries.length}`);
@@ -176,9 +186,11 @@ expectSignals('赤い線出すやつ', ['laser-line']);
 expectSignals('シリコン押し出すやつ', ['sealant', 'dispense']);
 expectSignals('壁の中の柱探すやつ', ['hidden-wall']);
 
-expectTop('コンクリに穴あける電動のやつ', 'hammer_drill', 5);
-expectTop('ネジ締める電動のやつ', 'drill_driver', 5);
-expectTop('研磨する電動のやつ', 'random_orbit_sander', 5);
+expectFirst('コンクリに穴あける電動のやつ', 'rotary_hammer');
+expectTop('コンクリに穴あける電動のやつ', 'hammer_drill', 3);
+expectFirst('ネジ締める電動のやつ', 'impact_driver');
+expectTop('ネジ締める電動のやつ', 'drill_driver', 3);
+expectFirst('研磨する電動のやつ', 'random_orbit_sander');
 expectFirst('ドリルドライバー', 'drill_driver');
 expectTop('hammer drill', 'hammer_drill', 3);
 
