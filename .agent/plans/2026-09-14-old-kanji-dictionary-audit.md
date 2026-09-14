@@ -30,6 +30,16 @@ Required audit classes:
 - no mass deletion or remapping solely from inference;
 - a read-only checker that detects audit drift when the canonical dictionary changes.
 
+## Generation method
+
+Because the audit artifact is deterministic and derived from repository files, a temporary branch-only GitHub Actions workflow may be used to execute the generator and commit `dictionary-audit.json` to this branch. That temporary workflow must:
+- run only on `feat/old-kanji-dictionary-audit-20260914`;
+- have no deployment behavior;
+- write only the generated audit artifact;
+- be removed from the branch before the PR is merged.
+
+The permanent CI change is limited to a read-only `--check` invocation of the generator in the existing tool runtime audit.
+
 ## SEO gate
 
 Per-kanji indexable pages remain blocked for records that are `identity`, `unresolved`, or otherwise lack enough standalone data. The audit must produce a clear eligibility signal rather than auto-publishing pages.
@@ -47,6 +57,8 @@ Per-kanji indexable pages remain blocked for records that are `identity`, `unres
 
 - validate JSON structure and counts;
 - ensure every `dict.json.old_to_new` record appears exactly once in the audit artifact;
+- detect raw duplicate keys before JSON parsing, including conflicting duplicates;
+- verify forward/reverse mapping consistency;
 - ensure identity mappings are never marked SEO-eligible;
 - ensure compatibility-range characters are not mislabeled as plain old-to-modern without an explicit override/evidence;
 - run existing Old Kanji runtime/spec/SEO/Amazon/Pro checks through CI.
