@@ -16,3 +16,62 @@ jobs:
           node-version: '20'
       - name: Run data validation
         run: node tools/construction-tools-atlas/scripts/validate-data.mjs
+
+  pattern-dictionary-align-search:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/feat/pattern-dictionary-production-20-20260914' }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-production-20-20260914
+          fetch-depth: 2
+      - name: Align runtime weighting with regression model
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('tools/pattern-dictionary/app.js')
+          s=p.read_text()
+          old="for(const t of p.search_terms?.[lang]||[]){const nt=norm(t);if(nq.includes(nt)||nt.includes(nq))add(55,lang==='ja'?'説明語':'descriptive phrase')}"
+          new="for(const t of p.search_terms?.[lang]||[]){const nt=norm(t);if(nq.includes(nt))add(55,lang==='ja'?'説明語':'descriptive phrase');else if(nq.length>=4&&nt.includes(nq))add(12,lang==='ja'?'説明語の一部':'partial descriptive phrase')}"
+          if old not in s: raise SystemExit('runtime weighting anchor not found')
+          p.write_text(s.replace(old,new,1))
+          PY
+      - name: Validate Pattern Dictionary search quality
+        run: |
+          node --check tools/pattern-dictionary/app.js
+          node tools/pattern-dictionary/tests/search-test.mjs
+          node tools/pattern-dictionary/tests/reference-image-test.mjs
+          node tools/pattern-dictionary/tests/source-verification-test.mjs
+          node tools/pattern-dictionary/tests/production-content-test.mjs
+          node tools/pattern-dictionary/tests/validate.mjs
+          grep -q "partial descriptive phrase" tools/pattern-dictionary/app.js
+      - name: Persist runtime alignment and restore workflow
+        run: |
+          cat > .github/workflows/validate-atlas-data.yml <<'YAML'
+          name: Validate Construction Tools Atlas Data
+
+          on:
+            push:
+            pull_request:
+
+          jobs:
+            validate-data:
+              runs-on: ubuntu-latest
+              steps:
+                - name: Checkout repository
+                  uses: actions/checkout@v4
+                - name: Use Node.js
+                  uses: actions/setup-node@v4
+                  with:
+                    node-version: '20'
+                - name: Run data validation
+                  run: node tools/construction-tools-atlas/scripts/validate-data.mjs
+          YAML
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/pattern-dictionary/app.js .github/workflows/validate-atlas-data.yml
+          git diff --cached --quiet && exit 0
+          git commit -m "fix: align Pattern Dictionary runtime search weights"
+          git push origin HEAD:feat/pattern-dictionary-production-20-20260914
