@@ -29,8 +29,10 @@ for (const slug of cluster) {
 
 const reference = read('tools/old-kanji-reference/index.html');
 check(
-  reference.includes('CSV / JSON / Markdown / 印刷は無料'),
-  'old-kanji-reference: current Free exports must remain explicitly free'
+  reference.includes('出力（現在は無料）') &&
+    reference.includes('Export (currently free)') &&
+    reference.includes('現行版ではPro購入は不要です。'),
+  'old-kanji-reference: current Free export UI must remain explicitly free and not require Pro'
 );
 
 const clusterContract = read('tools/OLD_KANJI_CLUSTER.md');
