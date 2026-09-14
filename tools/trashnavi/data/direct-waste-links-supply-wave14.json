@@ -1,0 +1,27 @@
+[
+  {
+    "pref": "山口県",
+    "city": "山口市",
+    "name": "山口市 令和8年度版ごみ収集カレンダー（ごみ分別の手引き）",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.yamaguchi.lg.jp/site/gomisigen/188479.html",
+    "lgcode": "352039",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "山口県",
+    "city": "山口市",
+    "name": "山口市 粗大ごみ",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.yamaguchi.lg.jp/site/gomisigen/79604.html",
+    "lgcode": "352039",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  }
+]
