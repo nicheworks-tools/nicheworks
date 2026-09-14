@@ -131,6 +131,31 @@
       note_short: "pH adjuster; EU cosmetic rules list potassium hydroxide for pH-adjusting uses subject to specified restrictions.",
       note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0622"]),
       authority: "European Union / EUR-Lex"
+    }),
+    "methylisothiazolinone": Object.freeze({
+      note_short: "Preservative; EU cosmetic rules limit methylisothiazolinone to rinse-off products at up to 0.0015%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R1224"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "methylchloroisothiazolinone": Object.freeze({
+      note_short: "Preservative; in EU cosmetics, the methylchloroisothiazolinone/methylisothiazolinone 3:1 mixture is limited to rinse-off products at up to 0.0015%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32014R1003"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "sodium benzoate": Object.freeze({
+      note_short: "Preservative; EU Annex V sets sodium benzoate limits of 2.5% for rinse-off products, 1.7% for oral products and 0.5% for leave-on products, expressed as acid.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223/2026-05-18"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "sodium dehydroacetate": Object.freeze({
+      note_short: "Preservative; EU Annex V permits sodium dehydroacetate up to 0.6% expressed as acid and excludes aerosol sprays.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223/2026-05-18"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "sulfur": Object.freeze({
+      note_short: "OTC acne active; FDA Monograph M006 permits sulfur at 3% to 10% as a single active ingredient.",
+      note_sources: Object.freeze(["https://www.accessdata.fda.gov/drugsatfda_docs/omuf/OTC%20Monograph_M006-Topical%20Acne%20drug%20products%20for%20OTC%20Human%20Use%2011.23.2021.pdf"]),
+      authority: "U.S. Food and Drug Administration"
     })
   });
 
@@ -468,7 +493,7 @@
   }
 
   const api = {
-    version: "1.16.0",
+    version: "1.17.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
