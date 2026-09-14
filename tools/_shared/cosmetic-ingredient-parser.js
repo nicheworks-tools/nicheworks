@@ -101,8 +101,39 @@
     return output;
   }
 
+  function addSemanticValue(map, canonicalKey, field, value) {
+    const normalized = normalizeText(value);
+    if (!normalized) return;
+    if (!map.has(canonicalKey)) {
+      map.set(canonicalKey, { safety: [], category: [], safetySet: new Set(), categorySet: new Set() });
+    }
+    const state = map.get(canonicalKey);
+    const normalizedKey = field === "safety" ? normalized.toLowerCase() : normalized.toLowerCase();
+    const set = field === "safety" ? state.safetySet : state.categorySet;
+    const list = field === "safety" ? state.safety : state.category;
+    if (set.has(normalizedKey)) return;
+    set.add(normalizedKey);
+    list.push(field === "safety" ? normalizedKey : normalized);
+  }
+
+  function atomicCategoryValues(values) {
+    const output = [];
+    const seen = new Set();
+    for (const raw of values) {
+      for (const part of String(raw).split(/\s*\/\s*/)) {
+        const text = normalizeText(part);
+        const key = text.toLowerCase();
+        if (!text || seen.has(key)) continue;
+        seen.add(key);
+        output.push(text);
+      }
+    }
+    return output;
+  }
+
   function mergeDictionaryRecords(items = []) {
     const byCanonical = new Map();
+    const semanticValues = new Map();
     const order = [];
 
     for (const raw of Array.isArray(items) ? items : []) {
@@ -110,6 +141,9 @@
       const rawBaseKey = normalizeBaseKey(raw.en);
       const canonicalKey = canonicalIdentityKey(raw.en);
       if (!canonicalKey) continue;
+
+      addSemanticValue(semanticValues, canonicalKey, "safety", raw.safety);
+      addSemanticValue(semanticValues, canonicalKey, "category", raw.category);
 
       if (!byCanonical.has(canonicalKey)) {
         const first = {
@@ -129,20 +163,48 @@
       if (rawIsPreferredCanonical) {
         current.alias = mergeNameLists(current.alias, [current.en], raw.alias);
         current.en = raw.en;
-        if (raw.category) current.category = raw.category;
         if (raw.note_short) current.note_short = raw.note_short;
-        if (raw.safety) current.safety = raw.safety;
       } else {
         current.alias = mergeNameLists(current.alias, rawBaseKey !== currentBaseKey ? [raw.en] : [], raw.alias);
       }
 
       current.jp = mergeNameLists(current.jp, raw.jp);
-      if (!current.category && raw.category) current.category = raw.category;
       if (!current.note_short && raw.note_short) current.note_short = raw.note_short;
-      if (!current.safety && raw.safety) current.safety = raw.safety;
     }
 
-    return order.map((key) => byCanonical.get(key));
+    return order.map((key) => {
+      const current = byCanonical.get(key);
+      const semantics = semanticValues.get(key) || { safety: [], category: [] };
+      const conflicts = {};
+
+      if (semantics.safety.length === 1) {
+        current.safety = semantics.safety[0];
+      } else if (semantics.safety.length > 1) {
+        delete current.safety;
+        current.legacy_safety_values = semantics.safety.slice();
+        conflicts.safety = semantics.safety.slice();
+      } else {
+        delete current.safety;
+      }
+
+      if (semantics.category.length === 1) {
+        current.category = semantics.category[0];
+        current.categories = semantics.category.slice();
+      } else if (semantics.category.length > 1) {
+        const categories = atomicCategoryValues(semantics.category);
+        current.categories = categories;
+        current.category = categories.join(" / ");
+        conflicts.category = semantics.category.slice();
+      } else {
+        delete current.category;
+        current.categories = [];
+      }
+
+      if (Object.keys(conflicts).length) current.semantic_conflicts = conflicts;
+      else delete current.semantic_conflicts;
+
+      return current;
+    });
   }
 
   function protectNumericLocantCommas(value) {
@@ -240,7 +302,7 @@
   }
 
   const api = {
-    version: "1.10.1",
+    version: "1.11.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
