@@ -86,6 +86,30 @@
     consumableRow("Epson", "EP-887AP", "https://www.epson.jp/products/colorio/ep887a/supply.htm", "2026-09-14", [
       consumableOffer("kni-6cl", "Epson KNI-6CL", "Amazonで KNI-6CL インクを探す", "Find Epson KNI-6CL ink on Amazon"),
       consumableOffer("kni-6cl-l", "Epson KNI-6CL-L", "Amazonで KNI-6CL-L 増量インクを探す", "Find Epson KNI-6CL-L high-capacity ink on Amazon")
+    ]),
+
+    consumableRow("Canon", "TS8830", "https://personal.canon.jp/product/printer/pixus/lineup/ts8830/supply", "2026-09-14", [
+      consumableOffer("bci331-330", "Canon BCI-331 BCI-330", "Amazonで BCI-331 / BCI-330 インクを探す", "Find Canon BCI-331 / BCI-330 ink on Amazon"),
+      consumableOffer("bci331xl-330xl", "Canon BCI-331XL BCI-330XL", "Amazonで BCI-331XL / BCI-330XL インクを探す", "Find Canon BCI-331XL / BCI-330XL ink on Amazon")
+    ]),
+    consumableRow("Canon", "TS8730", "https://personal.canon.jp/product/supply/models/ts8730", "2026-09-14", [
+      consumableOffer("bci331-330", "Canon BCI-331 BCI-330", "Amazonで BCI-331 / BCI-330 インクを探す", "Find Canon BCI-331 / BCI-330 ink on Amazon"),
+      consumableOffer("bci331xl-330xl", "Canon BCI-331XL BCI-330XL", "Amazonで BCI-331XL / BCI-330XL インクを探す", "Find Canon BCI-331XL / BCI-330XL ink on Amazon")
+    ]),
+    consumableRow("Canon", "TS7630", "https://personal.canon.jp/product/supply/models/ts7630", "2026-09-14", [
+      consumableOffer("bci331-330", "Canon BCI-331 BCI-330", "Amazonで BCI-331 / BCI-330 インクを探す", "Find Canon BCI-331 / BCI-330 ink on Amazon"),
+      consumableOffer("bci331xl-330xl", "Canon BCI-331XL BCI-330XL", "Amazonで BCI-331XL / BCI-330XL インクを探す", "Find Canon BCI-331XL / BCI-330XL ink on Amazon")
+    ]),
+    consumableRow("Canon", "TS6730", "https://personal.canon.jp/product/supply/models/ts6730", "2026-09-14", [
+      consumableOffer("bc385-386", "Canon BC-385 BC-386", "Amazonで BC-385 / BC-386 インクを探す", "Find Canon BC-385 / BC-386 ink on Amazon"),
+      consumableOffer("bc385xl-386xl", "Canon BC-385XL BC-386XL", "Amazonで BC-385XL / BC-386XL インクを探す", "Find Canon BC-385XL / BC-386XL ink on Amazon")
+    ]),
+    consumableRow("Canon", "TS3730", "https://personal.canon.jp/product/supply/models/ts3730", "2026-09-14", [
+      consumableOffer("bc365-366", "Canon BC-365 BC-366", "Amazonで BC-365 / BC-366 インクを探す", "Find Canon BC-365 / BC-366 ink on Amazon"),
+      consumableOffer("bc365xl-366xl", "Canon BC-365XL BC-366XL", "Amazonで BC-365XL / BC-366XL インクを探す", "Find Canon BC-365XL / BC-366XL ink on Amazon")
+    ]),
+    consumableRow("Canon", "XK130", "https://personal.canon.jp/product/supply/models/xk130", "2026-09-14", [
+      consumableOffer("xki-n21-n20", "Canon XKI-N21 XKI-N20", "Amazonで XKI-N21 / XKI-N20 インクを探す", "Find Canon XKI-N21 / XKI-N20 ink on Amazon")
     ])
   ]);
 

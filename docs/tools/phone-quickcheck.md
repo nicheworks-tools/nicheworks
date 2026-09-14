@@ -11,7 +11,7 @@
 
 ## 1. Identity
 
-This record is the canonical per-tool contract for the registered `phone-quickcheck` implementation at `/tools/phone-quickcheck/`. The initial public baseline contains 30 maintained smartphone records across Apple, Google, Samsung, Sony, and SHARP.
+This record is the canonical per-tool contract for the registered `phone-quickcheck` implementation at `/tools/phone-quickcheck/`. The maintained public dataset contains 152 smartphone records across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, and Motorola.
 
 The product is a practical Quick Check utility, not a comprehensive smartphone encyclopedia, review database, benchmark service, or live retail catalog.
 
@@ -36,22 +36,22 @@ The product is a practical Quick Check utility, not a comprehensive smartphone e
 
 ## 4. Processing behavior
 
-- 30機種の初期検証済みデータをブラウザ内で検索・絞り込み・並び替えする。
-- 一覧は走査性を優先し、モデル、発売年、サイズ、重量、端子を中心に表示する。
+- 152機種の検証済みデータをブラウザ内で検索・絞り込み・並び替えする。
+- 一覧は走査性を優先し、モデル、発売年、サイズ、重量、端子を中心に表示する。通常機は `dimensions`、foldableは `dimensionsFolded` / `dimensionsUnfolded` を使い、一覧と「小さい順」は折りたたみ時寸法、詳細は折りたたみ時／展開時の両方を表示する。
 - 選択機種の詳細では本体情報、充電条件、モバイルバッテリー目安、アクセサリークラス、公式情報を整理して表示する。
 - `wiredRecommendedW` は充電器の推奨／必要クラスとして扱い、端末側の実測・最大入力W数と同一視しない。
 - 端末側最大有線充電W数は、その意味を直接支える維持済み根拠がある場合のみ表示する。
-- USB PD、PPS、Samsung Super Fast Charging、Qi、Qi2等は維持済み事実から表示・分類する。
+- USB PD、PPS、Samsung Super Fast Charging、OPPO SUPERVOOC、Xiaomi HyperCharge/TurboCharge、Motorola TurboPower、Qi、Qi2等は維持済み事実から表示・分類する。
 - バッテリー容量が利用可能な場合のみ、`power_bank_mAh × 0.67 ÷ phone_battery_mAh` で5,000 / 10,000 / 20,000mAhの概算充電回数を計算し、小数1桁で表示する。
 - バッテリー容量がunknownの場合は概算を生成しない。
 - メーカーが通常仕様でmAhを公表していない機種について、第三者値を無断でメーカー公式値として扱わない。
-- アクセサリー案内は端末×個別商品マトリクスではなく、USB-Cケーブル、USB-PD、PPS、Samsung Super Fast Charging、Qi/Qi2、USB-Cモバイルバッテリー等の再利用可能クラスから解決する。
+- アクセサリー案内は端末×個別商品マトリクスではなく、USB-Cケーブル、USB-C ⇔ Lightningケーブル、USB-PD、PPS、Samsung Super Fast Charging、OPPO SUPERVOOC、Xiaomi HyperCharge/TurboCharge、Motorola TurboPower、Qi/Qi2、USB-Cモバイルバッテリー等の再利用可能クラスから解決する。
 - Amazon導線は共通affiliate helperと固定tracking IDを使い、維持済みアクセサリークラスごとの固定検索語だけからAmazon Japan検索URLを生成する。ユーザーの検索文字列はAmazon URLへ渡さない。
 
 ## 5. Outputs
 
 - 検索・フィルター後のスマートフォン一覧。
-- 選択機種の高さ × 幅 × 厚さ、重量、画面サイズ等の維持済み本体情報。
+- 選択機種の高さ × 幅 × 厚さ、重量、画面サイズ等の維持済み本体情報。foldableでは折りたたみ時／展開時の外形寸法を分けて表示する。
 - 充電端子、充電器目安、充電規格、PPS状態、ワイヤレス充電情報。
 - 維持済みバッテリー容量がある場合の5,000 / 10,000 / 20,000mAh概算充電回数。
 - 互換条件から導出した再利用可能アクセサリークラス。
@@ -123,14 +123,14 @@ Current main-page donation/support evidence: **present**.
 ## 13. Help/usage/FAQ contract
 
 - **Main-page concise explanation:** `required-and-present`.
-- **Usage documentation:** `recommended-and-missing`. Missing recommended usage documentation is an improvement opportunity, not a hard compliance failure.
-- **FAQ:** `optional-absent` for the current Quick Check baseline.
-- **Language handling:** the main tool UI provides JP/EN on one page; no standalone usage pages are currently maintained.
+- **Usage documentation:** `recommended-and-present` at `tools/phone-quickcheck/usage.html`.
+- **FAQ:** `optional-present` inside the bilingual usage page.
+- **Language handling:** the main tool UI and `usage.html` both provide JP/EN on one page and share the `nw_lang` preference.
 - Any future usage/FAQ link must remain clearly separated from advertising and purchase CTAs.
 
 ## 14. Functional acceptance tests
 
-- [x] 30 maintained models load from the static phone dataset.
+- [x] 152 maintained models load from the static phone dataset.
 - [x] Search matches canonical model names and maintained aliases.
 - [x] Manufacturer, connector, and release-year filters operate on canonical data.
 - [x] Desktop uses list + right detail pane and mobile uses a detail bottom sheet.
@@ -140,7 +140,7 @@ Current main-page donation/support evidence: **present**.
 - [x] Official manufacturer specification/manual links remain distinct from accessory guidance.
 - [x] Amazon accessory search CTAs are active through the shared helper with fixed tracking ID, visible disclosure, canonical accessory queries, and coarse analytics only.
 
-Automated test evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/contract test). Behavior-level status: **behavior-test-missing**; this is recorded as a recommendation-only gap rather than hidden as behavior coverage.
+Automated test evidence: `scripts/check-tool-runtime-contracts.mjs`, `scripts/check-phone-quickcheck-data.mjs`, `scripts/check-phone-quickcheck-affiliate.mjs`, and `tools/phone-quickcheck/tests/behavior.test.mjs`. Behavior-level status: **behavior-test-present**. The VM behavior suite exercises real `app.js` logic for alias/model search, JP/EN switching, recharge estimates, Apple unknown-capacity handling, Lightning accessory guidance, proprietary charging semantics, and mobile bottom-sheet open/close behavior.
 
 ## 15. Explicit tool-specific exceptions
 
@@ -154,6 +154,7 @@ Automated test evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/
 ### Implementation evidence
 
 - `tools/phone-quickcheck/index.html`
+- `tools/phone-quickcheck/usage.html`
 - `tools/phone-quickcheck/app.js`
 - `tools/phone-quickcheck/style.css`
 - `tools/phone-quickcheck/data/phones.json`
@@ -161,4 +162,7 @@ Automated test evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/
 - `tools/phone-quickcheck/affiliate-config.js`
 - `tools/phone-quickcheck/affiliate-runtime.js`
 - `scripts/check-phone-quickcheck-affiliate.mjs`
+- `scripts/check-phone-quickcheck-data.mjs`
+- `scripts/check-phone-quickcheck-source-semantics.mjs`
+- `tools/phone-quickcheck/tests/behavior.test.mjs`
 - `tools/phone-quickcheck/SPEC.md`

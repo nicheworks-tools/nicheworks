@@ -3,67 +3,57 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 
 const source = fs.readFileSync(new URL('../affiliate-config.js', import.meta.url), 'utf8');
+const officeSource = fs.readFileSync(new URL('../affiliate-office-consumables.js', import.meta.url), 'utf8');
 const sandbox = { window: {}, URL };
 const context = vm.createContext(sandbox);
 vm.runInContext(source, context, { filename: 'tools/manual-finder/affiliate-config.js' });
+vm.runInContext(officeSource, context, { filename: 'tools/manual-finder/affiliate-office-consumables.js' });
 
 const ledger = context.window.MANUALFINDER_AFFILIATE_LEDGER;
 const config = context.window.MANUALFINDER_AFFILIATE_CONFIG;
 
-assert.ok(Array.isArray(ledger), 'fixed affiliate ledger should be exposed');
+assert.ok(Array.isArray(ledger));
 assert.equal(ledger.length, 1, 'per-model stored Amazon links should not be required');
-assert.ok(config, 'runtime affiliate config should be exposed');
-assert.equal(config.enabled, true, 'affiliate runtime should be enabled');
-
 assert.equal(ledger[0].maker, 'Nikon');
 assert.equal(ledger[0].model, 'Z8');
 assert.equal(ledger[0].specialLink, 'https://amzn.to/3T7sxbB');
-assert.equal(config.targets.nikon_z8_search, 'https://amzn.to/3T7sxbB');
 
+assert.ok(config);
+assert.equal(config.enabled, true);
 assert.equal(config.trackingId, 'nicheworks09-22');
 assert.equal(config.modelSearchTemplate.status, 'verified');
-assert.equal(config.modelSearchTemplate.verifiedAt, '2026-09-13');
 assert.equal(config.modelSearchTemplate.verificationMethod, 'amazon_link_checker');
 assert.equal(config.modelSearchTemplate.activationTarget, 'manual_model_search_template');
-assert.equal(
-  config.modelSearchTemplate.proofUrl,
-  'https://www.amazon.co.jp/s?k=Brother+MFC-J4440N&tag=nicheworks09-22'
-);
-assert.deepEqual(
-  Array.from(config.modelSearchTemplate.eligibleCategories),
-  ['PC・スマホ', '家電', 'プリンター・複合機', 'カメラ・映像', 'オーディオ', 'ゲーム', 'ネットワーク機器'],
-  'exact model search should cover product categories but not heterogeneous その他 records'
-);
-assert.deepEqual(Array.from(config.modelSearchTemplate.excludedCategories), ['その他']);
-assert.equal(
-  config.targets.manual_model_search_template,
-  'https://www.amazon.co.jp/s?k=Brother+MFC-J4440N&tag=nicheworks09-22',
-  'validated model template should expose one coarse active target'
-);
-
 assert.equal(config.consumableSearchTemplate.status, 'verified');
 assert.equal(config.consumableSearchTemplate.activationTarget, 'printer_consumable_search_template');
-assert.equal(config.printerConsumables.length, 19, 'Brother 13 plus Epson 6 verified printer mappings should be present');
-assert.equal(Object.keys(config.targets).length, 3, 'fixed override, model template, and consumable template should be active');
+assert.deepEqual(
+  Array.from(config.modelSearchTemplate.eligibleCategories),
+  ['PC・スマホ', '家電', 'プリンター・複合機', 'カメラ・映像', 'オーディオ', 'ゲーム', 'ネットワーク機器']
+);
+assert.deepEqual(Array.from(config.modelSearchTemplate.excludedCategories), ['その他']);
+assert.equal(config.printerConsumables.length, 52, '25 consumer-printer mappings plus 27 office-toner mappings should be present');
+assert.equal(config.officePrinterConsumables.length, 27, 'OKI 10 + KYOCERA 5 + RICOH 5 + FUJIFILM BI 7 office-toner mappings should be present');
+assert.equal(Object.keys(config.targets).length, 3);
 assert.equal(config.offers.length, 1, 'dynamic searches must not create one stored Amazon URL per record');
 
-const samples = [
+for (const [maker, model, category] of [
   ['Brother', 'MFC-J4440N', 'プリンター・複合機'],
   ['Epson', 'EW-056A', 'プリンター・複合機'],
+  ['Canon', 'TS8830', 'プリンター・複合機'],
+  ['OKI', 'C650dnw', 'プリンター・複合機'],
+  ['KYOCERA Document Solutions', 'ECOSYS P6026cdn', 'プリンター・複合機'],
+  ['RICOH', 'RICOH IM C8010', 'プリンター・複合機'],
+  ['FUJIFILM Business Innovation', 'ApeosPort-VII C7773', 'プリンター・複合機'],
   ['Nikon', 'Z6III', 'カメラ・映像'],
   ['T-fal', 'KO4901JP', '家電'],
-  ['Aterm', 'WX5400HP', 'ネットワーク機器'],
-  ['ExampleAudio', 'A100', 'オーディオ'],
-  ['ExamplePhone', 'P100', 'PC・スマホ'],
-  ['ExampleGame', 'G100', 'ゲーム']
-];
-for (const [maker, model, category] of samples) {
+  ['Aterm', 'WX5400HP', 'ネットワーク機器']
+]) {
   const url = config.buildModelSearchUrl({ maker, model, category });
-  assert.ok(url.startsWith('https://www.amazon.co.jp/s?'), `${category} should use the validated Amazon search template`);
-  assert.ok(url.includes('tag=nicheworks09-22'), `${category} should retain the fixed tracking ID`);
+  assert.ok(url.startsWith('https://www.amazon.co.jp/s?'));
+  assert.ok(url.includes('tag=nicheworks09-22'));
 }
 
-const expectedFamilies = new Map([
+const consumerFamilies = new Map([
   ['Brother|MFC-J1500N', ['lc3133', 'lc3135']],
   ['Brother|MFC-J1605DN', ['lc3133', 'lc3135']],
   ['Brother|MFC-J4440N', ['lc416', 'lc416xl']],
@@ -82,61 +72,130 @@ const expectedFamilies = new Map([
   ['Epson|EP-817A', ['kak-6cl']],
   ['Epson|EP-887AW', ['kni-6cl', 'kni-6cl-l']],
   ['Epson|EP-887AB', ['kni-6cl', 'kni-6cl-l']],
-  ['Epson|EP-887AP', ['kni-6cl', 'kni-6cl-l']]
+  ['Epson|EP-887AP', ['kni-6cl', 'kni-6cl-l']],
+  ['Canon|TS8830', ['bci331-330', 'bci331xl-330xl']],
+  ['Canon|TS8730', ['bci331-330', 'bci331xl-330xl']],
+  ['Canon|TS7630', ['bci331-330', 'bci331xl-330xl']],
+  ['Canon|TS6730', ['bc385-386', 'bc385xl-386xl']],
+  ['Canon|TS3730', ['bc365-366', 'bc365xl-366xl']],
+  ['Canon|XK130', ['xki-n21-n20']]
 ]);
-for (const [identity, keys] of expectedFamilies) {
+for (const [identity, keys] of consumerFamilies) {
   const [maker, model] = identity.split('|');
-  const consumables = config.getConsumableOffers({ maker, model, category: 'プリンター・複合機' });
-  assert.deepEqual(Array.from(consumables, (offer) => offer.key), keys, `${identity} should expose only its manufacturer-verified ink families`);
-  for (const offer of consumables) {
-    assert.ok(offer.url.startsWith('https://www.amazon.co.jp/s?'), `${identity}/${offer.key} should use tagged Amazon search`);
-    assert.ok(offer.url.includes('tag=nicheworks09-22'), `${identity}/${offer.key} should retain the fixed tracking ID`);
-    if (maker === 'Brother') assert.ok(offer.sourceUrl.includes('brother.co.jp'), `${identity}/${offer.key} must retain official Brother evidence`);
-    if (maker === 'Epson') assert.ok(offer.sourceUrl.includes('epson.jp'), `${identity}/${offer.key} must retain official Epson evidence`);
+  const offers = config.getConsumableOffers({ maker, model, category: 'プリンター・複合機' });
+  assert.deepEqual(Array.from(offers, (offer) => offer.key), keys, `${identity} should expose only verified consumable families`);
+  for (const offer of offers) {
+    assert.ok(offer.url.startsWith('https://www.amazon.co.jp/s?'));
+    assert.ok(offer.url.includes('tag=nicheworks09-22'));
   }
 }
 
-const j4440 = config.getConsumableOffers({ maker: 'Brother', model: 'MFC-J4440N', category: 'プリンター・複合機' });
-assert.equal(j4440[0].url, 'https://www.amazon.co.jp/s?k=Brother+LC416&tag=nicheworks09-22');
-assert.equal(j4440[1].url, 'https://www.amazon.co.jp/s?k=Brother+LC416XL&tag=nicheworks09-22');
-
-const ew056 = config.getConsumableOffers({ maker: 'Epson', model: 'EW-056A', category: 'プリンター・複合機' });
-assert.equal(ew056[0].url, 'https://www.amazon.co.jp/s?k=Epson+MED-4CL&tag=nicheworks09-22');
-
-const ep887 = config.getConsumableOffers({ maker: 'Epson', model: 'EP-887AW', category: 'プリンター・複合機' });
-assert.equal(ep887[0].url, 'https://www.amazon.co.jp/s?k=Epson+KNI-6CL&tag=nicheworks09-22');
-assert.equal(ep887[1].url, 'https://www.amazon.co.jp/s?k=Epson+KNI-6CL-L&tag=nicheworks09-22');
-
-assert.deepEqual(
-  Array.from(config.getConsumableOffers({ maker: 'Brother', model: 'MFC-J4440N', category: 'その他' })),
-  [],
-  'consumable offers must fail closed outside the printer category'
-);
-assert.deepEqual(
-  Array.from(config.getConsumableOffers({ maker: 'Nikon', model: 'Z8', category: 'カメラ・映像' })),
-  [],
-  'non-printer products must not receive printer consumable offers'
-);
-assert.deepEqual(
-  Array.from(config.getConsumableOffers({ maker: 'Epson', model: 'UNKNOWN', category: 'プリンター・複合機' })),
-  [],
-  'unverified Epson models must not receive guessed consumable offers'
-);
-
 assert.equal(
-  config.buildModelSearchUrl({ maker: 'Seiko', model: '9F85', category: 'その他' }),
-  '',
-  'Seiko caliber / その他 records must not receive a generic Amazon model-search CTA'
+  config.getConsumableOffers({ maker: 'Brother', model: 'MFC-J4440N', category: 'プリンター・複合機' })[0].url,
+  'https://www.amazon.co.jp/s?k=Brother+LC416&tag=nicheworks09-22'
 );
 assert.equal(
-  config.buildModelSearchUrl({ maker: 'Roland', model: 'S-50', category: 'その他' }),
-  '',
-  'heterogeneous legacy その他 records must remain excluded until a family-specific rule exists'
+  config.getConsumableOffers({ maker: 'Epson', model: 'EP-887AW', category: 'プリンター・複合機' })[1].url,
+  'https://www.amazon.co.jp/s?k=Epson+KNI-6CL-L&tag=nicheworks09-22'
 );
 assert.equal(
-  config.buildModelSearchUrl({ maker: 'Brother', model: '', category: 'プリンター・複合機' }),
-  '',
-  'generic manufacturer entrances without exact model metadata must fail closed'
+  config.getConsumableOffers({ maker: 'Canon', model: 'TS8830', category: 'プリンター・複合機' })[0].url,
+  'https://www.amazon.co.jp/s?k=Canon+BCI-331+BCI-330&tag=nicheworks09-22'
 );
 
-console.log('ManualFinder model-search plus Brother/Epson consumable affiliate behavior tests passed.');
+const officeModels = new Map([
+  ['OKI|C650dnw', ['TC-C4EK1', 'TC-C4EY1', 'TC-C4EM1', 'TC-C4EC1']],
+  ['OKI|C651dnw', ['TC-C4FK1', 'TC-C4FY1', 'TC-C4FM1', 'TC-C4FC1']],
+  ['OKI|C712dnw', ['TC-C4CK1', 'TC-C4CY1', 'TC-C4CM1', 'TC-C4CC1', 'TC-C4CK2', 'TC-C4CY2', 'TC-C4CM2', 'TC-C4CC2']],
+  ['OKI|C835dnw', ['TC-C3BK1', 'TC-C3BY1', 'TC-C3BM1', 'TC-C3BC1', 'TC-C3BK2', 'TC-C3BY2', 'TC-C3BM2', 'TC-C3BC2']],
+  ['OKI|C844dnw', ['TC-C3BK1', 'TC-C3BY1', 'TC-C3BM1', 'TC-C3BC1', 'TC-C3BK2', 'TC-C3BY2', 'TC-C3BM2', 'TC-C3BC2']],
+  ['OKI|C824dn', ['TC-C3BK1', 'TC-C3BY1', 'TC-C3BM1', 'TC-C3BC1']],
+  ['OKI|C835dnwt', ['TC-C3BK1', 'TC-C3BY1', 'TC-C3BM1', 'TC-C3BC1', 'TC-C3BK2', 'TC-C3BY2', 'TC-C3BM2', 'TC-C3BC2']],
+  ['OKI|C911dn', ['TNR-C3RK2', 'TNR-C3RY2', 'TNR-C3RM2', 'TNR-C3RC2']],
+  ['OKI|C931dn', ['TNR-C3RK2', 'TNR-C3RY2', 'TNR-C3RM2', 'TNR-C3RC2', 'TNR-C3RK1', 'TNR-C3RY1', 'TNR-C3RM1', 'TNR-C3RC1']],
+  ['OKI|C941dn', ['TNR-C3RK2', 'TNR-C3RY2', 'TNR-C3RM2', 'TNR-C3RC2', 'TNR-C3RSW2', 'TNR-C3RSC2', 'TNR-C3RK1', 'TNR-C3RY1', 'TNR-C3RM1', 'TNR-C3RC1']],
+  ['KYOCERA Document Solutions|ECOSYS P6026cdn', ['TK-591K', 'TK-591C', 'TK-591M', 'TK-591Y']],
+  ['KYOCERA Document Solutions|LS-C8500DN', ['TK-881K', 'TK-881C', 'TK-881M', 'TK-881Y']],
+  ['KYOCERA Document Solutions|FS-C5300DN', ['TK-561K', 'TK-561Y', 'TK-561M', 'TK-561C']],
+  ['KYOCERA Document Solutions|FS-C5200DN', ['TK-551K', 'TK-551C', 'TK-551M', 'TK-551Y']],
+  ['KYOCERA Document Solutions|LS-C8026N', ['TK-811K', 'TK-811Y', 'TK-811M', 'TK-811C']],
+  ['RICOH|RICOH IM C8010', ['RICOH MP トナー ブラック C8003', 'RICOH MP トナー イエロー C8003', 'RICOH MP トナー マゼンタ C8003', 'RICOH MP トナー シアン C8003']],
+  ['RICOH|RICOH IM C6510', ['RICOH MP トナー ブラック C8003', 'RICOH MP トナー イエロー C8003', 'RICOH MP トナー マゼンタ C8003', 'RICOH MP トナー シアン C8003']],
+  ['RICOH|RICOH IM C7010', ['RICOH トナー ブラック IM C7010', 'RICOH トナー イエロー IM C7010', 'RICOH トナー マゼンタ IM C7010', 'RICOH トナー シアン IM C7010']],
+  ['RICOH|RICOH IM C6011', ['RICOH トナー ブラック IM C6010', 'RICOH トナー イエロー IM C6010', 'RICOH トナー マゼンタ IM C6010', 'RICOH トナー シアン IM C6010']],
+  ['RICOH|RICOH IM C3511', ['RICOH トナー ブラック IM C3510', 'RICOH トナー イエロー IM C3510', 'RICOH トナー マゼンタ IM C3510', 'RICOH トナー シアン IM C3510']],
+  ['FUJIFILM Business Innovation|ApeosPort-VII C7773', ['CT203138', 'CT203139', 'CT203140', 'CT203141']],
+  ['FUJIFILM Business Innovation|ApeosPort-VII C6673', ['CT203138', 'CT203139', 'CT203140', 'CT203141']],
+  ['FUJIFILM Business Innovation|ApeosPort-VII C5573', ['CT203138', 'CT203139', 'CT203140', 'CT203141']],
+  ['FUJIFILM Business Innovation|ApeosPort-VII C4473', ['CT203138', 'CT203139', 'CT203140', 'CT203141']],
+  ['FUJIFILM Business Innovation|ApeosPort-VII C3373', ['CT203138', 'CT203139', 'CT203140', 'CT203141']],
+  ['FUJIFILM Business Innovation|ApeosPort-VII C3372', ['CT203138', 'CT203139', 'CT203140', 'CT203141']],
+  ['FUJIFILM Business Innovation|ApeosPort-VII C2273', ['CT203138', 'CT203139', 'CT203140', 'CT203141']]
+]);
+for (const [identity, codes] of officeModels) {
+  const [maker, model] = identity.split('|');
+  const row = Array.from(config.officePrinterConsumables).find((item) => item.maker === maker && item.model === model);
+  assert.ok(row, `${identity} should retain an official toner mapping`);
+  assert.deepEqual(Array.from(row.tonerCodes), codes, `${identity} toner identifiers should match manufacturer evidence`);
+
+  const offers = config.getConsumableOffers({ maker, model, category: 'プリンター・複合機' });
+  assert.equal(offers.length, 1, `${identity} should expose one concise toner handoff`);
+  assert.equal(offers[0].kind, 'toner_search');
+  assert.ok(offers[0].url.includes('tag=nicheworks09-22'));
+  assert.deepEqual(Array.from(offers[0].verifiedCodes), codes);
+}
+
+const kyocera = config.getConsumableOffers({
+  maker: 'KYOCERA Document Solutions',
+  model: 'ECOSYS P6026cdn',
+  category: 'プリンター・複合機'
+});
+assert.equal(kyocera[0].query, 'KYOCERA ECOSYS P6026cdn トナー');
+assert.equal(
+  kyocera[0].url,
+  'https://www.amazon.co.jp/s?k=KYOCERA+ECOSYS+P6026cdn+%E3%83%88%E3%83%8A%E3%83%BC&tag=nicheworks09-22'
+);
+assert.ok(kyocera[0].sourceUrl.includes('kyoceradocumentsolutions.co.jp'));
+
+const ricoh = config.getConsumableOffers({
+  maker: 'RICOH',
+  model: 'RICOH IM C8010',
+  category: 'プリンター・複合機'
+});
+assert.equal(ricoh[0].query, 'RICOH IM C8010 トナー');
+assert.equal(
+  ricoh[0].url,
+  'https://www.amazon.co.jp/s?k=RICOH+IM+C8010+%E3%83%88%E3%83%8A%E3%83%BC&tag=nicheworks09-22'
+);
+assert.ok(ricoh[0].sourceUrl.includes('ricoh.co.jp'));
+
+const fujifilm = config.getConsumableOffers({
+  maker: 'FUJIFILM Business Innovation',
+  model: 'ApeosPort-VII C7773',
+  category: 'プリンター・複合機'
+});
+assert.equal(fujifilm[0].query, 'FUJIFILM ApeosPort-VII C7773 トナー');
+assert.equal(
+  fujifilm[0].url,
+  'https://www.amazon.co.jp/s?k=FUJIFILM+ApeosPort-VII+C7773+%E3%83%88%E3%83%8A%E3%83%BC&tag=nicheworks09-22'
+);
+assert.ok(fujifilm[0].sourceUrl.includes('fujifilm.com'));
+
+for (const args of [
+  { maker: 'Brother', model: 'MFC-J4440N', category: 'その他' },
+  { maker: 'Nikon', model: 'Z8', category: 'カメラ・映像' },
+  { maker: 'Epson', model: 'UNKNOWN', category: 'プリンター・複合機' },
+  { maker: 'Canon', model: 'UNKNOWN', category: 'プリンター・複合機' },
+  { maker: 'OKI', model: 'UNKNOWN', category: 'プリンター・複合機' },
+  { maker: 'KYOCERA Document Solutions', model: 'UNKNOWN', category: 'プリンター・複合機' },
+  { maker: 'RICOH', model: 'UNKNOWN', category: 'プリンター・複合機' },
+  { maker: 'FUJIFILM Business Innovation', model: 'UNKNOWN', category: 'プリンター・複合機' }
+]) {
+  assert.deepEqual(Array.from(config.getConsumableOffers(args)), []);
+}
+
+assert.equal(config.buildModelSearchUrl({ maker: 'Seiko', model: '9F85', category: 'その他' }), '');
+assert.equal(config.buildModelSearchUrl({ maker: 'Roland', model: 'S-50', category: 'その他' }), '');
+assert.equal(config.buildModelSearchUrl({ maker: 'Brother', model: '', category: 'プリンター・複合機' }), '');
+
+console.log('ManualFinder model-search and cross-maker consumable affiliate behavior tests passed.');

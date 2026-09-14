@@ -33,9 +33,13 @@ const ha = merged.find((item) => item.en === 'Sodium Hyaluronate');
 assert.ok(ha, 'merged Sodium Hyaluronate missing');
 assert.deepEqual(ha.jp, ['ヒアルロン酸Na', 'ヒアルロン酸ナトリウム'], 'normalized duplicate JP names should collapse while unique names survive');
 assert.deepEqual(ha.alias, ['Hyaluronate Sodium'], 'later unique aliases should survive canonical merge');
-assert.equal(ha.safety, 'safe', 'first semantic safety field must remain authoritative in Wave 1');
-assert.equal(ha.category, 'humectant', 'first semantic category field must remain authoritative in Wave 1');
-assert.equal(ha.note_short, 'first', 'first note must remain authoritative in Wave 1');
+assert.equal(ha.safety, undefined, 'conflicting legacy safety values must not silently select a winner');
+assert.deepEqual(ha.legacy_safety_values, ['safe', 'caution'], 'all conflicting legacy safety values must remain auditable');
+assert.deepEqual(ha.semantic_conflicts?.safety, ['safe', 'caution'], 'safety conflict must be explicit on the merged canonical record');
+assert.deepEqual(ha.categories, ['humectant', 'active'], 'all conflicting functional categories must survive canonical merge');
+assert.equal(ha.category, 'humectant / active', 'runtime category must expose all observed functions instead of silently selecting one');
+assert.deepEqual(ha.semantic_conflicts?.category, ['humectant', 'active'], 'category conflict must retain the original source values');
+assert.equal(ha.note_short, 'first', 'first note remains the compatibility note until note provenance work is complete');
 
 assert.equal(parser.normalizeKey('ヒアルロン酸ナトリウム'), parser.normalizeKey('Sodium Hyaluronate'));
 assert.equal(parser.normalizeKey('AHA'), '', 'ambiguous exact labels must remain blocked');

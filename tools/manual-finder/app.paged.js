@@ -3,7 +3,7 @@
   const base = isEn ? ".." : ".";
   const FULL = `${base}/data/manuals.full.js?v=mf-wave1-20260912a`;
   const WAVE2 = `${base}/data/manuals.wave2.js?v=mf-wave2c-20260912a`;
-  const WAVE3 = `${base}/data/manuals.wave3.js?v=mf-wave3d-20260914a`;
+  const WAVE3 = `${base}/data/manuals.wave3.js?v=mf-wave3e-20260914a`;
   const JSON_URL = `${base}/data/manuals.json?v=mf-wave2c-20260912a`;
   const S = { all: [], filtered: [], page: 1, per: 48, lang: isEn ? "en" : "ja" };
   const $ = (id) => document.getElementById(id);
@@ -225,7 +225,7 @@
     try {
       await loadScript(WAVE3);
       const batches = Array.isArray(window.MANUALFINDER_WAVE3_BATCHES) ? window.MANUALFINDER_WAVE3_BATCHES : [];
-      await Promise.all(batches.map((name) => loadScript(`${base}/data/${name}?v=mf-wave3d-20260914a`)));
+      await Promise.all(batches.map((name) => loadScript(`${base}/data/${name}?v=mf-wave3e-20260914a`)));
       if (typeof window.MANUALFINDER_BUILD_WAVE3 === "function") return window.MANUALFINDER_BUILD_WAVE3();
     } catch (_) {}
     return [];

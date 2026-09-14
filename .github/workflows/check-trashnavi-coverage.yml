@@ -45,5 +45,8 @@ jobs:
       - name: Check generated municipality pages
         run: node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
 
+      - name: Check Amazon affiliate contract
+        run: node tools/trashnavi/scripts/check-affiliate-contract.mjs
+
       - name: Check runtime contract
         run: node tools/trashnavi/scripts/check-runtime-contract.mjs

@@ -29,6 +29,7 @@
     "塩化ナトリウム": "sodium chloride",
     "クエン酸ナトリウム": "sodium citrate",
     "水酸化ナトリウム": "sodium hydroxide",
+    "水酸化ナトリウム液": "sodium hydroxide",
     "エデト酸2ナトリウム": "disodium edta",
     "エデト酸二ナトリウム": "disodium edta",
     "ニコチン酸アミド": "niacinamide",
@@ -40,15 +41,17 @@
     "安息香酸ナトリウム": "sodium benzoate",
     "ソルビン酸カリウム": "potassium sorbate",
     "水酸化カリウム": "potassium hydroxide",
+    "水酸化カリウム液a": "potassium hydroxide",
     "リン酸ナトリウム": "sodium phosphate",
     "リン酸二ナトリウム": "disodium phosphate",
     "pcaナトリウム": "sodium pca",
+    "pg": "propylene glycol",
+    "グリセリルエチルヘキシルエーテル": "ethylhexylglycerin",
+    "ヤシ油脂肪酸アシルグルタミン酸na": "sodium cocoyl glutamate",
+    "シュガースクワラン": "squalane",
     "alcohol denat": "alcohol denat."
   });
 
-  // Multiple maintained records can legitimately represent the same chemical
-  // identity under a generic/INCI name and a CI/common name. Keep one preferred
-  // canonical key so both cosmetics tools and benchmarks resolve them alike.
   const CANONICAL_EQUIVALENTS = Object.freeze({
     "bemotrizinol": "bis-ethylhexyloxyphenol methoxyphenyl triazine",
     "bisoctrizole": "methylene bis-benzotriazolyl tetramethylbutylphenol",
@@ -98,8 +101,88 @@
     return output;
   }
 
+  function addSemanticValue(map, canonicalKey, field, value) {
+    const normalized = normalizeText(value);
+    if (!normalized) return;
+    if (!map.has(canonicalKey)) {
+      map.set(canonicalKey, { safety: [], category: [], safetySet: new Set(), categorySet: new Set() });
+    }
+    const state = map.get(canonicalKey);
+    const normalizedKey = normalized.toLowerCase();
+    const set = field === "safety" ? state.safetySet : state.categorySet;
+    const list = field === "safety" ? state.safety : state.category;
+    if (set.has(normalizedKey)) return;
+    set.add(normalizedKey);
+    list.push(field === "safety" ? normalizedKey : normalized);
+  }
+
+  function atomicCategoryValues(values) {
+    const output = [];
+    const seen = new Set();
+    for (const raw of values) {
+      for (const part of String(raw).split(/\s*\/\s*/)) {
+        const text = normalizeText(part);
+        const key = text.toLowerCase();
+        if (!text || seen.has(key)) continue;
+        seen.add(key);
+        output.push(text);
+      }
+    }
+    return output;
+  }
+
+  function normalizeHttpsSource(value = "") {
+    if (typeof value !== "string") return "";
+    const text = value.trim();
+    if (!text) return "";
+    try {
+      const parsed = new URL(text);
+      if (parsed.protocol !== "https:" || !parsed.hostname) return "";
+      return parsed.href;
+    } catch {
+      return "";
+    }
+  }
+
+  function normalizeNoteSources(values = []) {
+    const output = [];
+    const seen = new Set();
+    for (const value of Array.isArray(values) ? values : []) {
+      const source = normalizeHttpsSource(value);
+      if (!source || seen.has(source)) continue;
+      seen.add(source);
+      output.push(source);
+    }
+    return output;
+  }
+
+  function verifiedNoteCandidate(raw) {
+    if (raw?.note_verified !== true) return null;
+    const note = normalizeText(raw.note_short);
+    const sources = normalizeNoteSources(raw.note_sources);
+    if (!note || sources.length === 0) return null;
+    return { note, sources };
+  }
+
+  function addVerifiedNoteCandidate(map, canonicalKey, raw) {
+    const candidate = verifiedNoteCandidate(raw);
+    if (!candidate) return;
+    if (!map.has(canonicalKey)) map.set(canonicalKey, new Map());
+    const candidates = map.get(canonicalKey);
+    const noteKey = candidate.note;
+    if (!candidates.has(noteKey)) {
+      candidates.set(noteKey, { note: candidate.note, sources: [] });
+    }
+    candidates.get(noteKey).sources = normalizeNoteSources([
+      ...candidates.get(noteKey).sources,
+      ...candidate.sources
+    ]);
+  }
+
   function mergeDictionaryRecords(items = []) {
     const byCanonical = new Map();
+    const semanticValues = new Map();
+    const verifiedNotes = new Map();
     const order = [];
 
     for (const raw of Array.isArray(items) ? items : []) {
@@ -107,6 +190,10 @@
       const rawBaseKey = normalizeBaseKey(raw.en);
       const canonicalKey = canonicalIdentityKey(raw.en);
       if (!canonicalKey) continue;
+
+      addSemanticValue(semanticValues, canonicalKey, "safety", raw.safety);
+      addSemanticValue(semanticValues, canonicalKey, "category", raw.category);
+      addVerifiedNoteCandidate(verifiedNotes, canonicalKey, raw);
 
       if (!byCanonical.has(canonicalKey)) {
         const first = {
@@ -126,20 +213,68 @@
       if (rawIsPreferredCanonical) {
         current.alias = mergeNameLists(current.alias, [current.en], raw.alias);
         current.en = raw.en;
-        if (raw.category) current.category = raw.category;
         if (raw.note_short) current.note_short = raw.note_short;
-        if (raw.safety) current.safety = raw.safety;
       } else {
         current.alias = mergeNameLists(current.alias, rawBaseKey !== currentBaseKey ? [raw.en] : [], raw.alias);
       }
 
       current.jp = mergeNameLists(current.jp, raw.jp);
-      if (!current.category && raw.category) current.category = raw.category;
       if (!current.note_short && raw.note_short) current.note_short = raw.note_short;
-      if (!current.safety && raw.safety) current.safety = raw.safety;
     }
 
-    return order.map((key) => byCanonical.get(key));
+    return order.map((key) => {
+      const current = byCanonical.get(key);
+      const semantics = semanticValues.get(key) || { safety: [], category: [] };
+      const provenanceCandidates = [...(verifiedNotes.get(key)?.values() || [])];
+      const conflicts = {};
+
+      if (semantics.safety.length === 1) {
+        current.safety = semantics.safety[0];
+      } else if (semantics.safety.length > 1) {
+        delete current.safety;
+        current.legacy_safety_values = semantics.safety.slice();
+        conflicts.safety = semantics.safety.slice();
+      } else {
+        delete current.safety;
+      }
+
+      if (semantics.category.length === 1) {
+        current.category = semantics.category[0];
+        current.categories = semantics.category.slice();
+      } else if (semantics.category.length > 1) {
+        const categories = atomicCategoryValues(semantics.category);
+        current.categories = categories;
+        current.category = categories.join(" / ");
+        conflicts.category = semantics.category.slice();
+      } else {
+        delete current.category;
+        current.categories = [];
+      }
+
+      if (provenanceCandidates.length === 1) {
+        current.note_short = provenanceCandidates[0].note;
+        current.note_verified = true;
+        current.note_sources = provenanceCandidates[0].sources.slice();
+        delete current.note_provenance_conflict;
+      } else if (provenanceCandidates.length > 1) {
+        delete current.note_verified;
+        delete current.note_sources;
+        current.note_provenance_conflict = provenanceCandidates.map((candidate) => ({
+          note_short: candidate.note,
+          note_sources: candidate.sources.slice()
+        }));
+        conflicts.note_provenance = provenanceCandidates.map((candidate) => candidate.note);
+      } else {
+        delete current.note_verified;
+        delete current.note_sources;
+        delete current.note_provenance_conflict;
+      }
+
+      if (Object.keys(conflicts).length) current.semantic_conflicts = conflicts;
+      else delete current.semantic_conflicts;
+
+      return current;
+    });
   }
 
   function protectNumericLocantCommas(value) {
@@ -237,11 +372,12 @@
   }
 
   const api = {
-    version: "1.9.1",
+    version: "1.12.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
     canonicalIdentityKey,
+    normalizeNoteSources,
     splitIngredients,
     isExactIngredientMatch,
     isAmbiguousExactName,

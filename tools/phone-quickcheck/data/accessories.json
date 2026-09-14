@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "updatedAt": "2026-09-13",
+  "version": 4,
+  "updatedAt": "2026-09-14",
   "accessories": [
     {
       "key": "cable-usbc-usbc",
@@ -8,6 +8,14 @@
       "labelEn": "USB-C to USB-C cable",
       "noteJa": "端末側USB-C用。高速充電する場合は充電器側の出力・規格にも対応したケーブルを選んでください。",
       "noteEn": "For USB-C phones. For fast charging, choose a cable rated for the charger's required power and charging profile.",
+      "amazonUrl": null
+    },
+    {
+      "key": "cable-usbc-lightning",
+      "labelJa": "USB-C ⇔ Lightning ケーブル",
+      "labelEn": "USB-C to Lightning cable",
+      "noteJa": "Lightning端子のiPhoneをUSB-C充電器やUSB-C出力モバイルバッテリーへ接続するためのケーブルです。Appleの対応条件も購入前に確認してください。",
+      "noteEn": "For connecting a Lightning iPhone to a USB-C charger or USB-C-output power bank. Confirm Apple compatibility before purchase.",
       "amazonUrl": null
     },
     {
@@ -88,6 +96,30 @@
       "labelEn": "45W+ USB-PD charger",
       "noteJa": "端末側の給電条件を満たすUSB Power Delivery対応45W以上を目安にしてください。",
       "noteEn": "Choose a 45W-or-higher USB Power Delivery charger that meets the phone's charging requirements.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-oppo-supervooc",
+      "labelJa": "OPPO SUPERVOOC対応充電器",
+      "labelEn": "OPPO SUPERVOOC charger",
+      "noteJa": "SUPERVOOC対応を明記した充電器を選び、端末ごとの対応W数とケーブル条件を購入前に確認してください。",
+      "noteEn": "Choose a charger that explicitly supports SUPERVOOC and confirm the phone-specific wattage and cable requirements before purchase.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-xiaomi-hypercharge",
+      "labelJa": "Xiaomi HyperCharge / TurboCharge対応充電器",
+      "labelEn": "Xiaomi HyperCharge / TurboCharge charger",
+      "noteJa": "XiaomiのHyperChargeまたはTurboCharge対応を明記した充電器を選び、端末ごとの対応W数を購入前に確認してください。",
+      "noteEn": "Choose a charger that explicitly supports Xiaomi HyperCharge or TurboCharge and confirm the phone-specific wattage before purchase.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-motorola-turbopower",
+      "labelJa": "Motorola TurboPower対応充電器",
+      "labelEn": "Motorola TurboPower charger",
+      "noteJa": "TurboPower対応を明記した充電器を選び、端末ごとの対応W数を購入前に確認してください。",
+      "noteEn": "Choose a charger that explicitly supports Motorola TurboPower and confirm the phone-specific wattage before purchase.",
       "amazonUrl": null
     },
     {

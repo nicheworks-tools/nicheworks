@@ -6,7 +6,7 @@
 - Public URL: `https://nicheworks.app/tools/phone-quickcheck/`
 - Specification status: `complete`
 - Common specification: `common-spec/spec-ja.md`
-- Initial public dataset: `30 verified models`
+- Current dataset: `152 verified models`
 - Public launch date: `2026-09-13`
 - Product class: `static browser utility / quick-check directory`
 
@@ -18,7 +18,7 @@ It is intentionally not a comprehensive smartphone encyclopedia, review database
 
 ## Current functional contract
 
-The public baseline contains 30 verified models across Apple, Google, Samsung, Sony, and SHARP. Users can search by model name and maintained aliases, filter by manufacturer, charging connector, and release year, and sort by newest, lightest, or compact-size oriented order.
+The maintained public dataset contains 152 verified models across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, and Motorola. Users can search by model name and maintained aliases, filter by manufacturer, charging connector, and release year, and sort by newest, lightest, or compact-size oriented order.
 
 The list view remains deliberately compact. Selecting a phone exposes detail information including dimensions, weight, display size where maintained, charging port, charger guidance, verified protocol labels, PPS state, wireless charging standard/wattage, battery capacity where an accepted value exists, included cable/adapter state, official specification/manual links, and last verification date.
 
@@ -35,7 +35,7 @@ Power-bank charge estimates use the maintained product approximation:
 
 The UI shows 5,000 / 10,000 / 20,000mAh estimates rounded to one decimal place and clearly labels them approximate. If battery capacity is unknown, no charge-count estimate is generated.
 
-Accessory guidance is resolved from maintained charging facts and reusable accessory classes rather than a phone × product matrix. Current classes cover USB-C cables, USB-PD, PPS, Samsung Super Fast Charging, Qi/Qi2, and USB-C power banks. Amazon purchase handoffs use the shared NicheWorks Associates helper and a fixed tagged-search template. Search destinations are generated only from maintained accessory-class metadata; user free-text search is never inserted into an Amazon URL. Maintained `amazonUrl` fields remain null because Phone QuickCheck uses the reviewed dynamic accessory-search template rather than per-record retail URLs.
+Accessory guidance is resolved from maintained charging facts and reusable accessory classes rather than a phone × product matrix. Current classes cover USB-C cables, USB-C-to-Lightning cables, USB-PD, PPS, Samsung Super Fast Charging, OPPO SUPERVOOC, Xiaomi HyperCharge/TurboCharge, Motorola TurboPower, Qi/Qi2, and USB-C power banks. Amazon purchase handoffs use the shared NicheWorks Associates helper and a fixed tagged-search template. Search destinations are generated only from maintained accessory-class metadata; user free-text search is never inserted into an Amazon URL. Maintained `amazonUrl` fields remain null because Phone QuickCheck uses the reviewed dynamic accessory-search template rather than per-record retail URLs.
 
 ## Inputs
 
@@ -56,15 +56,17 @@ Canonical runtime inputs are static NicheWorks-hosted JSON data:
 - `tools/phone-quickcheck/affiliate-config.js`
 - `tools/phone-quickcheck/affiliate-runtime.js`
 - `scripts/check-phone-quickcheck-affiliate.mjs`
+- `scripts/check-phone-quickcheck-source-semantics.mjs`
+- `tools/phone-quickcheck/tests/behavior.test.mjs`
 
-Phone records use stable model IDs, canonical manufacturer/model names, maintained aliases, dimensions in millimetres, mass in grams, charging facts, provenance/source URLs, verification date, and optional additive accessory keys.
+Phone records use stable model IDs, canonical manufacturer/model names, maintained aliases, dimensions in millimetres, mass in grams, charging facts, provenance/source URLs, verification date, and optional additive accessory keys. Standard phones use `dimensions`; foldables use `formFactor: foldable` plus complete `dimensionsFolded` and `dimensionsUnfolded` sets. Foldables are listed and compact-sorted by folded dimensions while detail output shows both physical states.
 
 ## Outputs
 
 The tool produces an on-screen Quick Check rather than a downloadable artifact. Outputs include:
 
 - matching phone list/cards;
-- selected phone dimensions and weight;
+- selected phone dimensions and weight; foldables show separate folded and unfolded dimensions;
 - charging connector and charger guidance;
 - protocol/PPS/wireless-charging information where verified;
 - battery capacity where accepted;
@@ -119,7 +121,7 @@ Desktop uses a wide two-pane layout: searchable/filterable list on the left and 
 - [x] One canonical public tool page exists at `/tools/phone-quickcheck/`.
 - [x] Japanese and English UI are available on the same page.
 - [x] Desktop uses list + right detail pane and mobile uses a bottom sheet for details.
-- [x] The initial public dataset contains 30 maintained models.
+- [x] The maintained public dataset contains 152 maintained models.
 - [x] Search matches canonical model names plus maintained aliases.
 - [x] Manufacturer, connector, and release-year filters work from canonical data.
 - [x] Device dimensions, weight, charging information, and official-source links can be displayed without converting the tool into a full specification encyclopedia.
@@ -131,6 +133,7 @@ Desktop uses a wide two-pane layout: searchable/filterable list on the left and 
 - [x] Official manufacturer specification/manual links are visually/functionally separate from purchase guidance.
 - [x] Amazon accessory search CTAs use the shared helper, fixed tracking ID, visible disclosure, canonical accessory queries, and coarse analytics only; no live price or inventory is displayed.
 - [x] Phone search/filter behavior requires no application backend or user account.
+- [x] A bilingual usage/FAQ guide is available from the main Phone QuickCheck page.
 
 ## Implementation evidence
 
@@ -138,6 +141,7 @@ Production/runtime evidence:
 
 - `tools/phone-quickcheck/index.html`
 - `tools/phone-quickcheck/style.css`
+- `tools/phone-quickcheck/usage.html`
 - `tools/phone-quickcheck/app.js`
 - `tools/phone-quickcheck/data/phones.json`
 - `tools/phone-quickcheck/data/accessories.json`
@@ -159,3 +163,11 @@ Implementation history:
 - verified dataset expansion to 30 models: PR #670
 - charging semantics and reusable accessory guidance: PR #676
 - public promotion: PR #689
+- verified dataset expansion to 150 models: PR #749
+- behavior regression coverage: PR #741
+- usage / quality evidence sync: current PR
+- Amazon accessory handoff activation: PR #731
+- verified dataset expansion to 60 models: PR #736
+- verified dataset expansion to 100 models: PR #740
+- behavior regression coverage: PR #741
+- verified dataset expansion to 150 models: current wave5 PR

@@ -27,6 +27,7 @@
 
   const offers = Object.freeze([
     offer("cable-usbc-usbc", "cable", "USB-C USB-C ケーブル 100W", "AmazonでUSB-Cケーブルを探す", "Find a USB-C cable on Amazon"),
+    offer("cable-usbc-lightning", "cable", "USB-C Lightning ケーブル Apple 対応", "AmazonでUSB-C–Lightningケーブルを探す", "Find a USB-C to Lightning cable on Amazon"),
     offer("charger-pd-20w", "wired_charger", "USB PD 20W USB-C 充電器", "Amazonで20W USB-PD充電器を探す", "Find a 20W USB-PD charger on Amazon"),
     offer("charger-pd-40w", "wired_charger", "USB PD 40W USB-C 充電器", "Amazonで40W USB-PD充電器を探す", "Find a 40W USB-PD charger on Amazon"),
     offer("charger-avs-60w", "wired_charger", "USB PD 3.1 AVS 60W 充電器", "Amazonで60W AVS充電器を探す", "Find a 60W AVS charger on Amazon"),
@@ -37,6 +38,9 @@
     offer("charger-samsung-60w", "wired_charger", "Samsung Super Fast Charging 3.0 60W 充電器", "AmazonでGalaxy 60W充電器を探す", "Find a Galaxy 60W charger on Amazon"),
     offer("charger-pd-30w", "wired_charger", "USB PD 30W USB-C 充電器", "Amazonで30W USB-PD充電器を探す", "Find a 30W USB-PD charger on Amazon"),
     offer("charger-pd-45w", "wired_charger", "USB PD 45W USB-C 充電器", "Amazonで45W USB-PD充電器を探す", "Find a 45W USB-PD charger on Amazon"),
+    offer("charger-oppo-supervooc", "wired_charger", "OPPO SUPERVOOC 充電器", "AmazonでSUPERVOOC充電器を探す", "Find a SUPERVOOC charger on Amazon"),
+    offer("charger-xiaomi-hypercharge", "wired_charger", "Xiaomi HyperCharge TurboCharge 充電器", "AmazonでXiaomi急速充電器を探す", "Find a Xiaomi HyperCharge charger on Amazon"),
+    offer("charger-motorola-turbopower", "wired_charger", "Motorola TurboPower 充電器", "AmazonでTurboPower充電器を探す", "Find a TurboPower charger on Amazon"),
     offer("charger-qi", "wireless_charger", "Qi ワイヤレス充電器", "AmazonでQi充電器を探す", "Find a Qi charger on Amazon"),
     offer("charger-qi2", "wireless_charger", "Qi2 ワイヤレス充電器", "AmazonでQi2充電器を探す", "Find a Qi2 charger on Amazon"),
     offer("charger-qi2-case-required", "wireless_charger", "Qi2 ワイヤレス充電器", "AmazonでQi2充電器を探す", "Find a Qi2 charger on Amazon"),

@@ -194,8 +194,11 @@ async function loadDictionary() {
       return dictionaryIndex;
     }
 
-    dictionaryEntries = loaded.length;
-    dictionaryIndex = buildDictionaryIndex(loaded);
+    const merged = sharedParser?.mergeDictionaryRecords
+      ? sharedParser.mergeDictionaryRecords(loaded)
+      : loaded;
+    dictionaryEntries = merged.length;
+    dictionaryIndex = buildDictionaryIndex(merged);
     dictionaryLoadState = results.some((result) => result.status === 'rejected') ? 'partial' : 'ready';
     refreshDictionaryStatus();
     return dictionaryIndex;
@@ -251,8 +254,9 @@ function findDictionaryMatch(ingredientKey) {
 }
 
 function isReviewCandidate(match, flags) {
-  const safety = String(match?.safety || '').toLowerCase();
-  return safety === 'caution' || safety === 'risk' || flags.some((flag) => flag.key === 'acid');
+  // Legacy safe/caution/risk metadata is not source-backed enough to drive a
+  // user-facing review state. Keep only the explicit neutral functional cue.
+  return Boolean(match) && flags.some((flag) => flag.key === 'acid');
 }
 
 function categoryLabel(category) {

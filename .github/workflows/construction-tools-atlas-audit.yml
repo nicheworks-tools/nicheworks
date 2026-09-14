@@ -27,3 +27,33 @@ jobs:
 
       - name: Check whether data dedupe would remove records
         run: node tools/construction-tools-atlas/scripts/dedupe-quality-data.mjs --dry-run --write-report
+
+      - name: Check semantic search v2.3 regression
+        run: node tools/construction-tools-atlas/scripts/check-semantic-search-v2.3.cjs
+
+      - name: Check active runtime syntax
+        run: node --check tools/construction-tools-atlas/app.runtime.js
+
+      - name: Check detail bootstrap syntax
+        run: node --check tools/construction-tools-atlas/detail-dictionary-fix.js
+
+      - name: Check dictionary presentation syntax
+        run: node --check tools/construction-tools-atlas/dictionary-presentation-v2.3.js
+
+      - name: Check deep-link runtime syntax
+        run: node --check tools/construction-tools-atlas/deep-link-v2.3.js
+
+      - name: Check master-detail v2.3 contract
+        run: node tools/construction-tools-atlas/scripts/check-master-detail-v2.3.cjs
+
+      - name: Check bilingual v2.3 contract
+        run: node tools/construction-tools-atlas/scripts/check-bilingual-v2.3.cjs
+
+      - name: Check deep-link v2.3 contract
+        run: node tools/construction-tools-atlas/scripts/check-deep-link-v2.3.cjs
+
+      - name: Audit image assets and canonical mappings
+        run: node tools/construction-tools-atlas/scripts/audit-image-assets-v2.3.cjs
+
+      - name: Validate canonical image registry
+        run: node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs

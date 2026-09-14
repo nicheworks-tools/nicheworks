@@ -1,0 +1,26 @@
+.detailHeaderActions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex:0 0 auto;
+}
+.detailShareBtn{
+  min-height:38px;
+  padding:0 12px;
+}
+@media (max-width:520px){
+  #detailSheet .sheet__top{
+    gap:8px;
+  }
+  #detailSheet .sheet__title{
+    min-width:0;
+    flex:1 1 auto;
+  }
+  .detailHeaderActions{
+    gap:6px;
+  }
+  .detailShareBtn{
+    min-height:36px;
+    padding:0 10px;
+  }
+}

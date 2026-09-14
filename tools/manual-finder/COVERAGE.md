@@ -1,6 +1,6 @@
 # ManualFinder Coverage Inventory
 
-Status date: 2026-09-13
+Status date: 2026-09-14
 
 This file is the cross-maker coverage authority for ManualFinder expansion work. It exists to prevent a single easy-to-crawl manufacturer from consuming the roadmap while major brands remain generic support links only.
 
@@ -15,7 +15,7 @@ This file is the cross-maker coverage authority for ManualFinder expansion work.
 
 ## Current verified model-level inventory
 
-With Wave 3B, the accepted dataset contains **1,504 verified model/caliber rows**. **1,061 are outside Seiko**.
+With deployed Wave 3A / 3B / 3D / 3E, the accepted dataset contains **1,516 verified model/caliber rows**. **1,073 are outside Seiko**. Wave 3C Sony remains outside the deployed dataset and is not counted here.
 
 | Maker / dataset identity | Verified rows | Current state | Notes |
 | --- | ---: | --- | --- |
@@ -35,8 +35,10 @@ With Wave 3B, the accepted dataset contains **1,504 verified model/caliber rows*
 | Nikon | 14 | expanded | Wave 3A covers all 14 mirrorless-camera models explicitly listed in Nikon's current Japanese Web-manual portal mirrorless section. Company-wide coverage is not complete. |
 | Brother | 13 | expanded | Wave 3B covers 13 exact MFC-J model manual pages from the first bounded search-result block; one targeted model remains held. |
 | Insta360 | 7 | expanded | Product-specific official online manuals. |
+| Epson | 6 | expanded | Wave 3D first Colorio batch; exact official manual/support targets with verified consumable mappings. |
+| Canon | 6 | expanded | Wave 3E first PIXUS batch; direct or vendor-shared official online manuals with verified consumable mappings. |
 | Hisense | 2 | expanded | Exact TV function-manual targets; coverage is still very thin. |
-| **Total** | **1,504** |  |  |
+| **Total** | **1,516** |  |  |
 
 Counts above are accepted repository rows, not estimates of manufacturer catalog size.
 
@@ -47,13 +49,13 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | # | Baseline brand | Model-level state | Next action |
 | ---: | --- | --- | --- |
 | 1 | Apple | generic-only | PC/mobile queue |
-| 2 | Sony | generic-only | **P0 — Wave 3C next target, phase by product category** |
+| 2 | Sony | generic-only | **P0 — Wave 3C branch remains outside deployed dataset; phase by product category** |
 | 3 | Panasonic | generic-only | **P0 — phase by product category** |
-| 4 | Canon | generic-only | **P0 — structured product groups** |
+| 4 | Canon | **expanded — 6** | First PIXUS batch covered in Wave 3E; broader Canon remains incomplete |
 | 5 | Nikon | **expanded — 14** | Mirrorless Web-manual section covered in Wave 3A; rotate away |
 | 6 | Fujifilm | generic-only | Camera division must be handled separately from FUJIFILM Business Innovation |
-| 7 | Brother | **expanded — 13** | First bounded MFC-J batch covered in Wave 3B; MFC-J6990CDW held; rotate to Sony |
-| 8 | Epson | generic-only | **P0 — model/category manual indexes** |
+| 7 | Brother | **expanded — 13** | First bounded MFC-J batch covered in Wave 3B; MFC-J6990CDW held; rotate away |
+| 8 | Epson | **expanded — 6** | First bounded Colorio batch covered in Wave 3D; broader Epson remains incomplete |
 | 9 | HP | generic-only | PC/mobile queue |
 | 10 | Dell | generic-only | PC/mobile queue |
 | 11 | Lenovo | generic-only | PC/mobile queue |
@@ -113,20 +115,20 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 65 | Bambu Lab | generic-only | P1 3D-printer queue |
 | 66 | Creality | generic-only | P1 3D-printer queue |
 
-Result after Wave 3B: **58 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
+Result after deployed Wave 3E: **56 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
 
 ## P0 source audit and order
 
 The first rotation is based on source structure, user usefulness, and the ability to preserve exact official targets without URL guessing.
 
-| Order | Maker | Official source structure observed 2026-09-13 | Decision |
+| Order | Maker | Official source structure observed 2026-09-13/14 | Decision |
 | ---: | --- | --- | --- |
 | 1 | Nikon | Nikon's Web manual portal enumerates product families and individual camera manuals. The mirrorless section explicitly lists 14 camera models. | **Wave 3A implemented:** 14 searchable rows, 12 unique primary Web-manual targets, including vendor-shared Z7II/Z6II and Z7/Z6 pages. |
 | 2 | Brother | Official product search reports 96 MFC-J products. Wave 3B bounded the first search-result block to the 14 single-model results before the first grouped result. | **Wave 3B implemented:** 13 exact model manual pages accepted; MFC-J6990CDW held because its direct manual target was not confirmed in this pass. |
-| 3 | Sony | Official manuals are highly structured but enormous: camera/camcorder alone reports 1,094 product names; interchangeable-lens camera body page reports 166. | **Wave 3C next.** Never attempt all-Sony in one pass; rotate by category. |
-| 4 | Epson | Official support/manual system exposes model/category manuals and downloadable official PDFs. | Wave 3 rotation after first Nikon/Brother/Sony batches. |
-| 5 | Canon | Official manual selector is structured by product group, series and model across camera, printer, scanner and business lines. | Phase by product group. |
-| 6 | Panasonic | Official manual search supports exact part-number lookup across a very broad appliance/AV catalog. | Phase by product category; do not scrape the entire catalog as one wave. |
+| 3 | Sony | Official manuals are highly structured but enormous: camera/camcorder alone reports 1,094 product names; interchangeable-lens camera body page reports 166. | **Wave 3C remains pending outside deployed dataset.** Never attempt all-Sony in one pass; phase by category. |
+| 4 | Epson | Official support/manual system exposes model/category manuals and downloadable official pages. | **Wave 3D implemented:** six current Colorio models with direct official targets. |
+| 5 | Canon | Official manual selector is structured by product group, series and model across camera, printer, scanner and business lines. | **Wave 3E implemented:** six PIXUS models, preserving Canon-defined shared manual groups where applicable. |
+| 6 | Panasonic | Official manual search supports exact part-number lookup across a very broad appliance/AV catalog. | Next cross-maker P0 model-coverage phase; do not scrape the entire catalog as one wave. |
 
 Primary official entry points used for this audit:
 
@@ -139,14 +141,17 @@ Primary official entry points used for this audit:
 
 ## Wave rotation contract
 
-Starting with Wave 3:
+Current deployed state:
 
 1. **Wave 3A — Nikon:** implemented for the complete current mirrorless-camera Web-manual section; Nikon remains only `expanded`, not company-complete.
 2. **Wave 3B — Brother:** implemented for a bounded first MFC-J block; Brother remains only `expanded`, not company-complete.
-3. **Wave 3C — Sony:** one bounded category only; preserve official per-model destinations.
-4. **Wave 3D — Epson or Canon:** choose the cleaner exact-target batch found during source audit.
-5. **Wave 3E — Panasonic:** one bounded product category.
-6. Re-evaluate counts and gaps before any second wave for a maker.
+3. **Wave 3C — Sony:** pending outside the deployed dataset; retain its bounded-category requirement before merge.
+4. **Wave 3D — Epson:** implemented for six exact current Colorio models selected for clean manual and consumable evidence.
+5. **Wave 3E — Canon:** implemented for six PIXUS models; direct and vendor-shared manual targets are distinguished explicitly.
+6. **Next cross-maker coverage wave — Panasonic:** one bounded product category, unless Wave 3C Sony is closed first.
+7. Re-evaluate counts and gaps before any second model-coverage wave for Nikon/Brother/Epson/Canon.
+
+Affiliate expansion has a separate priority queue and may evaluate already-deep office-printer datasets for verified toner/drum mappings without claiming new model coverage.
 
 Seiko and Roland are excluded from this first rotation unless a correctness bug is found in already-published records.
 
