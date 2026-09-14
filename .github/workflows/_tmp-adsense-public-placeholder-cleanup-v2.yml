@@ -64,6 +64,7 @@ jobs:
             // Remove only the individual HTML comment that contains the unreplaced token.
             html = html.replace(/<!--[\s\S]*?-->/g, (comment) => /YOUR_TOKEN_HERE/i.test(comment) ? '' : comment);
             for (const re of staleComments) html = html.replace(re, '');
+            html = html.replace(/[ \t]+$/gm, '');
             html = html.replace(/\n{4,}/g, '\n\n\n');
             write(file, before, html);
           }
@@ -83,7 +84,8 @@ jobs:
             const before = fs.readFileSync(file, 'utf8');
             const html = before
               .replace(/\s*<p class="hint">広告枠は整備済みです。公開後もページ上下のみの表示を想定しています。<\/p>/, '')
-              .replace(/\s*<p class="hint">Ad slots are in preparation and planned for top\/bottom placement only\.<\/p>/, '');
+              .replace(/\s*<p class="hint">Ad slots are in preparation and planned for top\/bottom placement only\.<\/p>/, '')
+              .replace(/[ \t]+$/gm, '');
             write(file, before, html);
           }
 
