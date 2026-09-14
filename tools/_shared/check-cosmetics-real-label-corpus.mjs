@@ -22,7 +22,8 @@ const DATA_FILES = [
 
 const CORPUS_FILES = [
   ['cohort1', 'tools/_shared/cosmetics-real-label-corpus.json'],
-  ['cohort2', 'tools/_shared/cosmetics-real-label-corpus-cohort2.json']
+  ['cohort2', 'tools/_shared/cosmetics-real-label-corpus-cohort2.json'],
+  ['cohort3', 'tools/_shared/cosmetics-real-label-corpus-cohort3.json']
 ];
 
 const ALLOWED_OFFICIAL_HOSTS = new Set([
@@ -31,7 +32,10 @@ const ALLOWED_OFFICIAL_HOSTS = new Set([
   'www.laroche-posay.us',
   'theordinary.com',
   'www.neutrogena.com',
-  'www.eucerinus.com'
+  'www.eucerinus.com',
+  'www.cosrx.com',
+  'www.vanicream.com',
+  'www.theinkeylist.com'
 ]);
 
 const COHORT2_WAVE1_EXACT = [
@@ -72,7 +76,7 @@ const corpus = CORPUS_FILES.flatMap(([defaultCohort, rel]) => {
 });
 const records = DATA_FILES.flatMap((rel) => JSON.parse(read(rel)));
 
-assert.ok(corpus.length >= 18, 'real-label corpus requires at least 18 source-backed products after cohort 2 expansion');
+assert.ok(corpus.length >= 24, 'real-label corpus requires at least 24 source-backed products after cohort 3 expansion');
 
 const ids = new Set();
 const brands = new Set();
@@ -139,7 +143,7 @@ for (const item of corpus) {
     assert.ok(item[field].trim(), `${item.id || '<missing-id>'}: ${field} must not be empty`);
   }
 
-  assert.ok(['cohort1', 'cohort2'].includes(item.cohort), `${item.id}: unsupported corpus cohort ${item.cohort}`);
+  assert.ok(['cohort1', 'cohort2', 'cohort3'].includes(item.cohort), `${item.id}: unsupported corpus cohort ${item.cohort}`);
   assert.ok(!ids.has(item.id), `duplicate real-label corpus id: ${item.id}`);
   ids.add(item.id);
   brands.add(item.brand);
@@ -154,7 +158,7 @@ for (const item of corpus) {
   if (item.cohort === 'cohort1') {
     assert.match(item.retrieved_at, /^2026-09-13$/, `${item.id}: cohort 1 retrieved_at must be 2026-09-13`);
   } else {
-    assert.match(item.retrieved_at, /^2026-09-14$/, `${item.id}: cohort 2 retrieved_at must be 2026-09-14`);
+    assert.match(item.retrieved_at, /^2026-09-14$/, `${item.id}: ${item.cohort} retrieved_at must be 2026-09-14`);
   }
 
   const parts = parser.splitIngredients(item.analysis_label);
@@ -195,17 +199,24 @@ for (const item of corpus) {
   });
 }
 
-assert.ok(brands.size >= 6, `expanded real-label corpus requires at least 6 brands; found ${brands.size}`);
+assert.ok(brands.size >= 9, `expanded real-label corpus requires at least 9 brands; found ${brands.size}`);
 assert.ok(markets.has('JP') && markets.has('US'), 'real-label corpus must include JP and US markets');
 assert.ok(languages.has('ja') && languages.has('en'), 'real-label corpus must include Japanese and English labels');
-assert.ok(categories.size >= 10, `expanded real-label corpus requires at least 10 categories; found ${categories.size}`);
+assert.ok(categories.size >= 16, `expanded real-label corpus requires at least 16 categories; found ${categories.size}`);
 
 const cohort1 = cohortStats.get('cohort1');
 const cohort2 = cohortStats.get('cohort2');
+const cohort3 = cohortStats.get('cohort3');
 assert.ok(cohort1 && cohort1.products === 12, `cohort 1 must remain exactly 12 fixed products; found ${cohort1?.products || 0}`);
-assert.ok(cohort2 && cohort2.products >= 6, `cohort 2 requires at least 6 products; found ${cohort2?.products || 0}`);
-assert.ok(cohort2.brands.size >= 3, `cohort 2 requires at least 3 new brands; found ${cohort2.brands.size}`);
-assert.ok(cohort2.categories.size >= 5, `cohort 2 requires at least 5 categories; found ${cohort2.categories.size}`);
+assert.ok(cohort2 && cohort2.products === 6, `cohort 2 must remain exactly 6 fixed products; found ${cohort2?.products || 0}`);
+assert.ok(cohort2.brands.size === 3, `cohort 2 must remain exactly 3 brands; found ${cohort2.brands.size}`);
+assert.ok(cohort2.categories.size === 5, `cohort 2 must remain exactly 5 categories; found ${cohort2.categories.size}`);
+assert.ok(cohort3 && cohort3.products === 6, `cohort 3 baseline requires exactly 6 products; found ${cohort3?.products || 0}`);
+assert.ok(cohort3.brands.size === 3, `cohort 3 baseline requires exactly 3 new brands; found ${cohort3.brands.size}`);
+assert.ok(cohort3.categories.size === 6, `cohort 3 baseline requires exactly 6 categories; found ${cohort3.categories.size}`);
+for (const brand of cohort3.brands) {
+  assert.ok(!cohort1.brands.has(brand) && !cohort2.brands.has(brand), `cohort 3 brand must be new to the source-backed corpus: ${brand}`);
+}
 
 const cohort1Coverage = cohort1.exactKnown / cohort1.ingredients;
 const cohort2Coverage = cohort2.exactKnown / cohort2.ingredients;
@@ -240,7 +251,7 @@ const unknownInventory = sortedUnknownInventory(unknownCounts);
 const overallCoverage = ingredientTotal ? exactKnownTotal / ingredientTotal : 0;
 const cohortSummaries = [...cohortStats.values()].map((cohort) => {
   const unknownInventoryForCohort = sortedUnknownInventory(cohort.unknownCounts);
-  const floor = cohort.cohort === 'cohort1' ? 0.965 : 0.976;
+  const floor = cohort.cohort === 'cohort1' ? 0.965 : cohort.cohort === 'cohort2' ? 0.976 : null;
   return {
     cohort: cohort.cohort,
     products: cohort.products,
@@ -258,7 +269,7 @@ const cohortSummaries = [...cohortStats.values()].map((cohort) => {
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'wave4-cohort2-dictionary-wave1',
+  phase: 'wave4-real-label-corpus-cohort3-baseline',
   products: corpus.length,
   brands: brands.size,
   markets: [...markets].sort(),
@@ -271,7 +282,7 @@ console.log(JSON.stringify({
   cohort1_exact_coverage_floor: 0.965,
   cohort2_exact_coverage_floor: 0.976,
   cohort2_wave1_exact_names: COHORT2_WAVE1_EXACT.length,
-  cohort2_is_baseline_only: false,
+  cohort3_is_baseline_only: true,
   distinct_unknowns: unknownInventory.length,
   broad_group_labels_are_not_exact: true,
   top_unknowns: unknownInventory.slice(0, 30),
