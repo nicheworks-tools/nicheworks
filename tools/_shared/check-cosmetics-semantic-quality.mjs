@@ -23,6 +23,23 @@ const EVIDENCE_FIELDS = ['source', 'source_url', 'evidence', 'evidence_url', 're
 const GENERATED_NOTE_RE = /generated dictionary entry|use official ingredient labels for final confirmation/i;
 const CLAIM_REVIEW_RE = /\b(?:safe|safety|risk|irritat|allerg|sensiti|pregnan|toxic|comedogen|acne|well tolerated|avoid)\b/i;
 
+// PR38 freezes the measured semantic-debt baseline. These are ceilings, not
+// targets: future cleanup may reduce them, but later dictionary expansion may
+// not silently increase semantic debt while still passing coverage checks.
+const BASELINE_CEILINGS = Object.freeze({
+  duplicate_canonical_groups: 120,
+  duplicate_canonical_records_beyond_first: 126,
+  records_missing_category: 187,
+  records_missing_safety: 0,
+  records_missing_note_short: 538,
+  records_with_generated_placeholder_note: 0,
+  records_with_claim_bearing_note_for_review: 22,
+  canonical_groups_with_safety_conflict: 16,
+  canonical_groups_with_category_conflict: 4,
+  canonical_groups_with_note_conflict: 0,
+  duplicate_groups_with_incomplete_semantics: 120
+});
+
 function normalizeText(value = '') {
   return String(value).normalize('NFKC').replace(/\s+/g, ' ').trim();
 }
@@ -148,6 +165,33 @@ for (const group of groups.values()) {
   if (missingKinds.length) incompleteDuplicateSemantics.push({ ...summary, missing_fields: missingKinds });
 }
 
+const measured = {
+  duplicate_canonical_groups: duplicateGroups.length,
+  duplicate_canonical_records_beyond_first: rows.length - groups.size,
+  records_missing_category: missingCategory,
+  records_missing_safety: missingSafety,
+  records_missing_note_short: missingNote,
+  records_with_generated_placeholder_note: generatedPlaceholderNotes,
+  records_with_claim_bearing_note_for_review: claimBearingNotes,
+  canonical_groups_with_safety_conflict: safetyConflicts.length,
+  canonical_groups_with_category_conflict: categoryConflicts.length,
+  canonical_groups_with_note_conflict: noteConflicts.length,
+  duplicate_groups_with_incomplete_semantics: incompleteDuplicateSemantics.length
+};
+
+for (const [metric, ceiling] of Object.entries(BASELINE_CEILINGS)) {
+  const actual = measured[metric];
+  if (!Number.isInteger(actual)) {
+    hardFailures.push(`semantic baseline metric missing: ${metric}`);
+  } else if (actual > ceiling) {
+    hardFailures.push(`semantic debt regression ${metric}: ${actual} exceeds frozen ceiling ${ceiling}`);
+  }
+}
+
+if (DATA_FILES.length !== 9) {
+  hardFailures.push(`maintained dictionary file count changed: expected 9, found ${DATA_FILES.length}`);
+}
+
 function topCounts(map, limit = 30) {
   return [...map.entries()]
     .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
@@ -172,22 +216,13 @@ function sampleConflicts(items, limit = 25) {
 
 const report = {
   status: hardFailures.length ? 'fail' : 'pass',
-  phase: 'semantic-quality-baseline-inventory',
+  phase: 'semantic-quality-baseline-frozen',
   dictionary_files: DATA_FILES.length,
   dictionary_records: rows.length,
   canonical_identities: groups.size,
-  duplicate_canonical_groups: duplicateGroups.length,
-  duplicate_canonical_records_beyond_first: rows.length - groups.size,
-  records_missing_category: missingCategory,
-  records_missing_safety: missingSafety,
-  records_missing_note_short: missingNote,
-  records_with_generated_placeholder_note: generatedPlaceholderNotes,
-  records_with_claim_bearing_note_for_review: claimBearingNotes,
+  ...measured,
   records_with_explicit_evidence_metadata: evidenceBackedRecords,
-  canonical_groups_with_safety_conflict: safetyConflicts.length,
-  canonical_groups_with_category_conflict: categoryConflicts.length,
-  canonical_groups_with_note_conflict: noteConflicts.length,
-  duplicate_groups_with_incomplete_semantics: incompleteDuplicateSemantics.length,
+  frozen_ceiling: BASELINE_CEILINGS,
   safety_values: topCounts(safetyCounts, 20),
   top_categories: topCounts(categoryCounts, 30),
   safety_conflict_samples: sampleConflicts(safetyConflicts),
