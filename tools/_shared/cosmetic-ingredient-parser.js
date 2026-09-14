@@ -113,6 +113,16 @@
       category: "chelating agent",
       sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/disodium-edta/"]),
       authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "tocopheryl acetate": Object.freeze({
+      category: "antioxidant",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/tocopherol/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "sodium citrate": Object.freeze({
+      category: "pH adjuster",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/citric-acid/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
     })
   });
 
@@ -563,7 +573,7 @@
   }
 
   const api = {
-    version: "1.20.0",
+    version: "1.21.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
