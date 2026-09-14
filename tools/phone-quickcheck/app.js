@@ -418,8 +418,6 @@
       raw.push(watts && watts >= 60 ? 'USB PD 3.1 AVS' : 'USB PD');
     } else if (manufacturer === 'google' && phone.charging?.pps === 'required') {
       raw.push('USB PD', 'PPS');
-    } else if (manufacturer === 'samsung' && watts) {
-      raw.push(watts >= 60 ? 'Super Fast Charging 3.0' : watts >= 45 ? 'Super Fast Charging 2.0' : 'Super Fast Charging');
     }
     const labels = unique(raw);
     return labels.length ? labels.join(' / ') : '—';
