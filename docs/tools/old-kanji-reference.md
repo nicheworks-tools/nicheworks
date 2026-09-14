@@ -7,6 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** kanji, old-kanji, japanese, reference
 - **Common specification:** `common-spec/spec-ja.md`
+- **Affiliate specification:** `common-spec/amazon-affiliate.md`
 - **Audit state:** `PASS`
 
 ## 1. Identity
@@ -15,7 +16,7 @@ This record is the canonical per-tool contract for the registered `old-kanji-ref
 
 ## 2. Purpose
 
-Provide a searchable bilingual reference for old Japanese kanji forms and their modern equivalents, including selected metadata, text detection, local study state, and export utilities.
+Provide a searchable bilingual reference for old Japanese kanji forms and their modern equivalents, including selected metadata, text detection, local study state, export utilities, and optional contextual Amazon search handoffs for physical reference tools.
 
 ## 3. Inputs
 
@@ -39,15 +40,19 @@ Provide a searchable bilingual reference for old Japanese kanji forms and their 
 - Export the currently visible entries as CSV or JSON, copy a Markdown table, and invoke browser print.
 - CSV, JSON, Markdown, and print export controls are currently Free and are not gated on Pro entitlement.
 - The Old Kanji Toolkit Pro area is visibly marked billing-unavailable. Advanced learning-history and saved-set areas are described as planned/unavailable rather than purchasable current features.
+- Dynamic shape/stroke detail sections must use the explicit card/grid rules in `amazon-layout.css`; they must not fall back to unstyled browser-default blocks.
+- The Amazon resource panel builds fixed tagged Amazon.co.jp search URLs only for `旧字体 異体字 辞典`, `古文書 ルーペ`, and `書見台 ブックスタンド` using tracking ID `nicheworks09-22`.
 
 ## 5. Outputs
 
 - Filtered old/modern kanji reference cards/table.
 - Reading, meaning, usage, category, Unicode, rendering/compatibility detail when present.
+- Shape/stroke detail cards when bundled data exists.
 - Text-detection highlight and pair results.
 - CSV and JSON downloads of visible entries.
 - Markdown table copy and browser print output.
 - Quiz question/result/statistics UI.
+- Optional contextual Amazon search links plus the required Associates disclosure.
 
 Observed delivery capabilities: clipboard copy **present**; download/export **present**.
 
@@ -65,28 +70,40 @@ Observed delivery capabilities: clipboard copy **present**; download/export **pr
 
 Search, detector, quiz, favorites, and export processing occur in the browser after same-site reference data loads. Detector/search input is not sent to an external kanji lookup service. Google Fonts, ads, analytics, and other page resources may load independently.
 
-Persistence evidence: `localStorage`. Network-capable application code: **found**; non-suite hosts observed: `ofuse.me`, `ko-fi.com`.
+Amazon affiliate URLs are fixed-resource searches. Search text, detector text, selected kanji, favorites, recent state, quiz state, detail metadata, exports, and other user-derived values are not appended to those URLs or affiliate analytics. Affiliate click events use only the shared coarse keys `tool`, `affiliate`, `target`, and `placement`.
+
+Persistence evidence: `localStorage`. Network-capable application code: **found**; non-suite hosts observed include `ofuse.me`, `ko-fi.com`, and Amazon.co.jp through explicit user-initiated affiliate navigation.
 
 ## 8. Responsive contract
 
 - **Layout class:** `desktop-wide` (source classification: `pc-oriented`).
 - The dense searchable catalog, filters, detector, display modes, export controls, details, favorites/recent state, and quiz are best served by desktop width while remaining responsive.
 - The implementation must preserve its functional width class and follow common-spec section 9-2 breakpoints/adaptation rules; it must not be forced into a universal 600px layout.
-- Current audit: no concrete responsive defect was established by static inspection. Absence of a media query alone is not treated as failure; viewport, fluid sizing, wrapping, and the tool-specific interaction shape must be evaluated together.
+- Shape/stroke detail grids and Amazon resource links collapse to one column on narrow screens.
 
 ## 9. Language contract
 
 - **Policy:** `bilingual single-page`.
-- The implemented `bilingual single-page` mode above is the canonical language behavior; repository HTML/JavaScript establishes the switching or page-separation mechanism.
-- Existing languages must not be removed. English UI must not be added to an explicit Japanese-only exception without a specification change.
+- The implemented `bilingual single-page` mode above is the canonical language behavior; repository HTML/JavaScript establishes the switching mechanism.
+- Existing languages must not be removed.
 
 ## 10. SEO contract
 
-The main public page must meet common-spec section 9-3: a tool-specific title and meaningful description, exactly one self-referencing canonical for `https://nicheworks.app/tools/old-kanji-reference/`, and valid `WebApplication` JSON-LD. Current audit: canonical **present**; WebApplication JSON-LD **present**. SEO prose must remain evidence-based rather than being padded arbitrarily.
+The main public page must meet common-spec section 9-3: a tool-specific title and meaningful description, exactly one self-referencing canonical for `https://nicheworks.app/tools/old-kanji-reference/`, and valid `WebApplication` JSON-LD. SEO prose must remain evidence-based rather than being padded arbitrarily.
 
 ## 11. Advertising contract
 
-Preserve all existing GA4 and AdSense identifiers/code. Advertising must follow common-spec sections 1.1 and 9-5: no ad inserted into the input flow or directly beneath the principal action button. Current main-page evidence: GA4 **present**; AdSense **present**.
+Preserve all existing GA4 and AdSense identifiers/code. Advertising must follow common-spec sections 1.1 and 9-5: no ad inserted into the input flow or directly beneath the principal action button.
+
+### Affiliate contract
+
+- Shared `/assets/amazon-affiliate.js`, local `affiliate-config.js`, and local `affiliate.js` form the Amazon path.
+- Production tracking ID is `nicheworks09-22`.
+- Active targets are fixed searches for dictionaries, magnifiers, and book stands only.
+- Associates disclosure is visible whenever active targets are available.
+- Links use `rel="sponsored noopener"` and open externally through the shared helper.
+- No product images, prices, ratings, reviews, availability, or scraped product metadata are rendered.
+- No searched character, detector text, local state, or export data may enter affiliate URLs or affiliate analytics.
 
 ## 12. Donation/support contract
 
@@ -94,10 +111,9 @@ Follow common-spec sections 6 and 9-4. Preserve and update in place rather than 
 
 ## 13. Help/usage/FAQ contract
 
-- **Main-page concise explanation:** `required-and-present` (the implementation provides title/lead or equivalent purpose copy).
-- **Usage documentation:** `recommended-and-missing`. Evidence: no usage page found. Missing recommended documentation is an improvement opportunity, not a hard compliance failure.
-- **FAQ:** `recommended-and-present`. FAQ is conditional under common-spec sections 10–11; LogFormatter, Rename Wizard, and immediate formatting utilities may omit it. Missing recommended FAQ content is not a hard compliance failure.
-- **Language handling for existing usage pages:** not applicable while no usage page exists.
+- **Main-page concise explanation:** `required-and-present`.
+- **Usage documentation:** `recommended-and-missing`.
+- **FAQ:** `recommended-and-present`.
 - Any usage link must remain a subdued text link, separated from advertising as required by common-spec section 10-6.
 
 ## 14. Functional acceptance tests
@@ -109,8 +125,12 @@ Follow common-spec sections 6 and 9-4. Preserve and update in place rather than 
 - [ ] Public JP/EN copy explicitly identifies the current export actions as Free and does not label them Pro-only.
 - [ ] The disabled Pro panel communicates billing unavailable and does not present planned learning/saved-set features as currently purchasable.
 - [ ] Reference results retain cautions appropriate to non-authoritative old/variant-kanji data.
+- [ ] Shape/stroke detail sections retain explicit grid/card/wrapping/mobile rules.
+- [ ] Amazon resource configuration uses `nicheworks09-22` and only the three approved fixed queries.
+- [ ] User-derived data never enters Amazon URLs or affiliate analytics.
+- [ ] Associates disclosure and shared sponsored-link behavior remain active.
 
-Automated test evidence: `scripts/check-tool-runtime-contracts-wave4.mjs` (regression/contract test), `tools/old-kanji-reference/validate-compatibility-notes.js` (data validation), `tools/old-kanji-reference/validate-meta.js` (data validation), `tools/old-kanji-reference/validate-shape-notes.js` (data validation), `tools/old-kanji-reference/validate-stroke-counts.js` (data validation). Behavior-level status: **behavior-test-missing**; build, generator, data-validation, audit, and source-contract checks are not silently counted as behavior tests.
+Automated test evidence: `scripts/check-tool-runtime-contracts-wave4.mjs` plus the existing old-kanji data validators. Behavior-level status remains **behavior-test-missing** for a full real-browser suite.
 
 ## 15. Explicit tool-specific exceptions
 
@@ -120,8 +140,10 @@ Automated test evidence: `scripts/check-tool-runtime-contracts-wave4.mjs` (regre
 ### Implementation evidence
 
 - `tools/old-kanji-reference/index.html`
-- `tools/old-kanji-reference/app-meaning-v3.js`
 - `tools/old-kanji-reference/app-meaning-v4.js`
-- `tools/old-kanji-reference/app-meaning.js`
-- `tools/old-kanji-reference/app.js`
 - `tools/old-kanji-reference/style.css`
+- `tools/old-kanji-reference/verified-badge.css`
+- `tools/old-kanji-reference/amazon-layout.css`
+- `tools/old-kanji-reference/affiliate-config.js`
+- `tools/old-kanji-reference/affiliate.js`
+- `assets/amazon-affiliate.js`
