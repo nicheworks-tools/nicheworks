@@ -304,6 +304,22 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.match(html, /PPS対応 30W以上の充電器/);
 }
 
+// First-generation Galaxy Fold SCV44 keeps JP-market hardware facts and Adaptive Fast Charging distinct from SFC.
+{
+  const h = await createHarness(['samsung-galaxy-fold-scv44']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('160.9 × 62.8 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /160\.9 × 62\.8 × 15\.7–17\.1 mm/);
+  assert.match(html, /160\.9 × 117\.9 × 6\.9–7\.6 mm/);
+  assert.match(html, /276 g/);
+  assert.match(html, /4380 mAh/);
+  assert.match(html, /充電器目安<\/span><b>15W\+/);
+  assert.doesNotMatch(html, /端末側の有線充電上限<\/span><b>15W/);
+  assert.ok(html.includes('Adaptive Fast Charging / QC2.0'));
+  assert.match(html, /Galaxy Adaptive Fast Charging対応 15W充電器/);
+  assert.doesNotMatch(html, /Galaxy Super Fast Charging対応 25W充電器/);
+}
+
 // Galaxy Z Fold2 5G proves production data can preserve depth ranges in both folded and unfolded states.
 {
   const h = await createHarness(['samsung-galaxy-z-fold2-5g']);

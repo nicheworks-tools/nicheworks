@@ -405,7 +405,9 @@
           "sourceRef": "https://www.samsung.com/jp/business/smartphones/galaxy-s/galaxy-s26-cobalt-violet-256gb-sm-s942qzvesjp/"
         },
         "wiredRecommendedW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi2.2 (with compatible case)",
         "wirelessMaxW": 15
@@ -451,7 +453,9 @@
           "sourceRef": "https://www.samsung.com/jp/business/smartphones/galaxy-s/galaxy-s26-plus-black-256gb-sm-s947qzkasjp/"
         },
         "wiredRecommendedW": 45,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi2.2 (with compatible case)",
         "wirelessMaxW": 20
@@ -498,7 +502,9 @@
           "sourceRef": "https://www.samsung.com/jp/business/smartphones/galaxy-s/galaxy-s26-ultra-white-256gb-sm-s948qzwasjp/"
         },
         "wiredRecommendedW": 60,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging 3.0"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi2.2 (with compatible case)",
         "wirelessMaxW": 25
@@ -1309,7 +1315,9 @@
           "sourceRef": "https://www.samsung.com/jp/business/smartphones/galaxy-s/galaxy-s25-silver-shadow-256gb-sm-s931qzsesjp/"
         },
         "wiredRecommendedW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Fast Wireless Charging 2.0 (WPC)",
         "wirelessMaxW": null
@@ -1355,7 +1363,9 @@
           "sourceRef": "https://www.samsung.com/jp/business/smartphones/galaxy-s/galaxy-s25-ultra-titanium-whitesilver-256gb-sm-s938qzsasjp/"
         },
         "wiredRecommendedW": 45,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Fast Wireless Charging 2.0 (WPC)",
         "wirelessMaxW": null
@@ -1413,7 +1423,9 @@
         },
         "wiredRecommendedW": 25,
         "wiredMaxW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi",
         "wirelessMaxW": 15
@@ -1470,7 +1482,9 @@
         },
         "wiredRecommendedW": 25,
         "wiredMaxW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi",
         "wirelessMaxW": 15
@@ -2337,7 +2351,9 @@
         "connector": "USB-C",
         "wiredRecommendedW": 25,
         "wiredMaxW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi",
         "wirelessMaxW": 15,
@@ -2384,7 +2400,9 @@
         "connector": "USB-C",
         "wiredRecommendedW": 45,
         "wiredMaxW": 45,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi",
         "wirelessMaxW": 15,
@@ -2444,7 +2462,9 @@
         },
         "wiredRecommendedW": 25,
         "wiredMaxW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi",
         "wirelessMaxW": 15
@@ -2501,7 +2521,9 @@
         },
         "wiredRecommendedW": 25,
         "wiredMaxW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi",
         "wirelessMaxW": 15
@@ -2558,7 +2580,9 @@
         },
         "wiredRecommendedW": 25,
         "wiredMaxW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi",
         "wirelessMaxW": 15
@@ -2615,7 +2639,9 @@
         },
         "wiredRecommendedW": 25,
         "wiredMaxW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi",
         "wirelessMaxW": 15
@@ -2855,7 +2881,10 @@
         },
         "wiredRecommendedW": 15,
         "wiredMaxW": 15,
-        "protocols": [],
+        "protocols": [
+          "Adaptive Fast Charging",
+          "QC2.0"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi",
         "wirelessMaxW": 10
@@ -2972,7 +3001,10 @@
         },
         "wiredRecommendedW": 15,
         "wiredMaxW": 15,
-        "protocols": [],
+        "protocols": [
+          "Adaptive Fast Charging",
+          "QC2.0"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi"
       },
@@ -3029,7 +3061,10 @@
         },
         "wiredRecommendedW": 15,
         "wiredMaxW": 15,
-        "protocols": [],
+        "protocols": [
+          "Adaptive Fast Charging",
+          "QC2.0"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi"
       },
@@ -3041,6 +3076,66 @@
         "specificationsUrl": "https://image-us.samsung.com/SamsungUS/samsungbusiness/pdfs/datasheet/Galaxy-Z-Flip_Z-Flip-5G-Datasheet-Generic.pdf",
         "manualUrl": "https://www.samsung.com/jp/support/model/SM-F700JZKAKDI/",
         "chargingUrl": "https://image-us.samsung.com/SamsungUS/samsungbusiness/pdfs/datasheet/Galaxy-Z-Flip_Z-Flip-5G-Datasheet-Generic.pdf",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-fold-scv44",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Fold",
+      "aliases": [
+        "Samsung Galaxy Fold",
+        "Galaxy Fold SCV44",
+        "SCV44",
+        "SM-F900J",
+        "ギャラクシー Fold",
+        "ギャラクシーフォールド"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2019,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 160.9,
+        "widthMm": 62.8,
+        "depthMmMin": 15.7,
+        "depthMmMax": 17.1
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 160.9,
+        "widthMm": 117.9,
+        "depthMmMin": 6.9,
+        "depthMmMax": 7.6
+      },
+      "weightG": 276,
+      "displayInch": 7.3,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4380,
+          "valueClass": "official",
+          "sourceRef": "https://news.samsung.com/global/samsung-galaxy-fold-now-available"
+        },
+        "wiredRecommendedW": 15,
+        "protocols": [
+          "Adaptive Fast Charging",
+          "QC2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi"
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://news.samsung.com/global/samsung-galaxy-fold-now-available",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F900JZSAKDI/",
+        "releaseUrl": "https://news.samsung.com/global/samsung-galaxy-fold-now-available",
+        "chargingUrl": "https://www.samsung.com/ca/support/mobile-devices/galaxy-phone-wall-chargers-and-charging/",
         "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
         "verifiedAt": "2026-09-14"
       },
@@ -3071,7 +3166,9 @@
         "connector": "USB-C",
         "wiredRecommendedW": 25,
         "wiredMaxW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": null,
         "wirelessMaxW": null,
@@ -3118,7 +3215,9 @@
         "connector": "USB-C",
         "wiredRecommendedW": 45,
         "wiredMaxW": 45,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": null,
         "wirelessMaxW": null,
@@ -3165,7 +3264,9 @@
         "connector": "USB-C",
         "wiredRecommendedW": 25,
         "wiredMaxW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi",
         "wirelessMaxW": 15,
@@ -4441,7 +4542,9 @@
         "connector": "USB-C",
         "wiredRecommendedW": 25,
         "wiredMaxW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi",
         "wirelessMaxW": 15,
@@ -4490,7 +4593,9 @@
         "connector": "USB-C",
         "wiredRecommendedW": 45,
         "wiredMaxW": 45,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi",
         "wirelessMaxW": 15,
@@ -4539,7 +4644,9 @@
         "connector": "USB-C",
         "wiredRecommendedW": 25,
         "wiredMaxW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi",
         "wirelessMaxW": 15,
@@ -4588,7 +4695,9 @@
         "connector": "USB-C",
         "wiredRecommendedW": 25,
         "wiredMaxW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": "Qi",
         "wirelessMaxW": 15,
@@ -4637,7 +4746,9 @@
         "connector": "USB-C",
         "wiredRecommendedW": 25,
         "wiredMaxW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": null,
         "wirelessMaxW": null,
@@ -4686,7 +4797,9 @@
         "connector": "USB-C",
         "wiredRecommendedW": 25,
         "wiredMaxW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": null,
         "wirelessMaxW": null,
@@ -4735,7 +4848,9 @@
         "connector": "USB-C",
         "wiredRecommendedW": 25,
         "wiredMaxW": 25,
-        "protocols": [],
+        "protocols": [
+          "Super Fast Charging"
+        ],
         "pps": "unknown",
         "wirelessStandard": null,
         "wirelessMaxW": null,

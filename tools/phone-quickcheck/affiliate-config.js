@@ -33,6 +33,7 @@
     offer("charger-avs-60w", "wired_charger", "USB PD 3.1 AVS 60W 充電器", "Amazonで60W AVS充電器を探す", "Find a 60W AVS charger on Amazon"),
     offer("charger-pps-30w", "wired_charger", "USB PD PPS 30W 充電器", "Amazonで30W PPS充電器を探す", "Find a 30W PPS charger on Amazon"),
     offer("charger-pps-45w", "wired_charger", "USB PD PPS 45W 充電器", "Amazonで45W PPS充電器を探す", "Find a 45W PPS charger on Amazon"),
+    offer("charger-samsung-afc-15w", "wired_charger", "Samsung Adaptive Fast Charging 15W 充電器", "AmazonでGalaxy 15W AFC充電器を探す", "Find a Galaxy 15W AFC charger on Amazon"),
     offer("charger-samsung-25w", "wired_charger", "Samsung Super Fast Charging 25W 充電器", "AmazonでGalaxy 25W充電器を探す", "Find a Galaxy 25W charger on Amazon"),
     offer("charger-samsung-45w", "wired_charger", "Samsung Super Fast Charging 2.0 45W 充電器", "AmazonでGalaxy 45W充電器を探す", "Find a Galaxy 45W charger on Amazon"),
     offer("charger-samsung-60w", "wired_charger", "Samsung Super Fast Charging 3.0 60W 充電器", "AmazonでGalaxy 60W充電器を探す", "Find a Galaxy 60W charger on Amazon"),
