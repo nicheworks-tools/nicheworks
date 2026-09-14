@@ -45,29 +45,21 @@ const PRIOR_WAVE_KEYS = Object.freeze([
 ]);
 const EXPECTED_WAVE5 = Object.freeze({
   'ammonium hydroxide': Object.freeze({
-    note_short: 'pH adjuster; CIR identifies Ammonium Hydroxide as a cosmetic pH adjuster, and EU Annex III limits ammonia including CAS 1336-21-6 to 6% as NH3; above 2% the label must state "Contains ammonia".',
-    sources: Object.freeze([
-      'https://www.cir-safety.org/panelbook/safety-assessment-ammonia-and-ammonium-hydroxide-used-cosmetics',
-      'https://eur-lex.europa.eu/eli/reg/2009/1223'
-    ]),
-    authority: 'Cosmetic Ingredient Review / European Union'
+    note_short: 'Buffering and denaturant ingredient; COSMILE Europe lists both functions for Ammonium Hydroxide and notes that it is subject to EU Annex III restrictions.',
+    source: 'https://cosmileeurope.eu/inci/detail/906/ammonium-hydroxide',
+    authority: 'Cosmetics Europe / COSMILE Europe'
   }),
   glutathione: Object.freeze({
     note_short: 'Reducing agent; COSMILE Europe lists Glutathione as a reducing ingredient in cosmetic products.',
-    sources: Object.freeze(['https://cosmileeurope.eu/pl/inci/szczegoly/5915/glutathione/']),
+    source: 'https://cosmileeurope.eu/inci/detail/5915/glutathione/',
     authority: 'Cosmetics Europe / COSMILE Europe'
   }),
   'zinc pca': Object.freeze({
     note_short: 'Humectant and skin-conditioning ingredient; COSMILE Europe lists both functions for Zinc PCA.',
-    sources: Object.freeze(['https://cosmileeurope.eu/inci/detail/17133/zinc-pca/']),
+    source: 'https://cosmileeurope.eu/inci/detail/17133/zinc-pca/',
     authority: 'Cosmetics Europe / COSMILE Europe'
   })
 });
-const ALLOWED_HOSTS = new Set([
-  'www.cir-safety.org',
-  'eur-lex.europa.eu',
-  'cosmileeurope.eu'
-]);
 
 function normalizeText(value = '') {
   return String(value).normalize('NFKC').replace(/\s+/g, ' ').trim();
@@ -76,7 +68,7 @@ function normalizeText(value = '') {
 function validSource(value) {
   try {
     const url = new URL(String(value || '').trim());
-    return url.protocol === 'https:' && ALLOWED_HOSTS.has(url.hostname);
+    return url.protocol === 'https:' && url.hostname === 'cosmileeurope.eu';
   } catch {
     return false;
   }
@@ -113,9 +105,9 @@ for (const [canonical, expected] of Object.entries(EXPECTED_WAVE5)) {
   assert.equal(normalizeText(item.note_short), expected.note_short, `${canonical}: reviewed wave 5 note text changed unexpectedly`);
   assert.equal(normalizeText(item.authority), expected.authority, `${canonical}: reviewed authority changed unexpectedly`);
   assert.ok(!FORBIDDEN_LEGACY_RE.test(item.note_short), `${canonical}: unsupported legacy wording must not return`);
-  assert.ok(Array.isArray(item.note_sources) && item.note_sources.length === expected.sources.length, `${canonical}: exact reviewed source set required`);
-  assert.ok(item.note_sources.every(validSource), `${canonical}: wave 5 sources must use approved HTTPS authority hosts`);
-  assert.deepEqual(new Set(item.note_sources), new Set(expected.sources), `${canonical}: reviewed wave 5 sources changed unexpectedly`);
+  assert.ok(Array.isArray(item.note_sources) && item.note_sources.length === 1, `${canonical}: exact reviewed source required`);
+  assert.ok(item.note_sources.every(validSource), `${canonical}: wave 5 source must use COSMILE Europe HTTPS`);
+  assert.ok(item.note_sources.includes(expected.source), `${canonical}: reviewed source URL missing`);
   assert.ok(canonicalRows.has(canonical), `${canonical}: canonical identity must exist in maintained dictionary`);
   assert.ok(
     canonicalRows.get(canonical).some((row) => CLAIM_REVIEW_RE.test(normalizeText(row.note_short))),
@@ -134,7 +126,7 @@ for (const [canonical, expected] of Object.entries(EXPECTED_WAVE5)) {
   assert.ok(item, `${canonical}: missing from merged runtime dictionary`);
   assert.equal(item.note_verified, true, `${canonical}: verified note flag must survive canonical merge`);
   assert.equal(item.note_short, expected.note_short, `${canonical}: runtime note must be the reviewed wave 5 note`);
-  assert.deepEqual(new Set(item.note_sources), new Set(expected.sources), `${canonical}: reviewed source set must survive canonical merge`);
+  assert.ok(Array.isArray(item.note_sources) && item.note_sources.includes(expected.source), `${canonical}: reviewed source must survive canonical merge`);
   assert.equal(item.note_authority, expected.authority, `${canonical}: note authority must survive canonical merge`);
   assert.equal(item.note_provenance_conflict, undefined, `${canonical}: verified overlay must not create note provenance conflict`);
 }
