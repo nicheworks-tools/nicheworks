@@ -116,6 +116,24 @@
     })
   });
 
+  const VERIFIED_NOTE_EVIDENCE = Object.freeze({
+    "phenoxyethanol": Object.freeze({
+      note_short: "Preservative; SCCS considers it safe for use up to 1.0% in cosmetic products.",
+      note_sources: Object.freeze(["https://health.ec.europa.eu/publications/phenoxyethanol_en"]),
+      authority: "European Commission Scientific Committee on Consumer Safety"
+    }),
+    "sodium hydroxide": Object.freeze({
+      note_short: "pH adjuster; EU cosmetic rules list sodium hydroxide for pH-adjusting uses subject to specified restrictions.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0622"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "potassium hydroxide": Object.freeze({
+      note_short: "pH adjuster; EU cosmetic rules list potassium hydroxide for pH-adjusting uses subject to specified restrictions.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0622"]),
+      authority: "European Union / EUR-Lex"
+    })
+  });
+
   function canonicalIdentityKey(value = "") {
     const base = normalizeBaseKey(value);
     if (!base) return "";
@@ -275,11 +293,21 @@
       addSemanticValue(semanticValues, canonicalKey, "category", evidence.category);
     }
 
+    for (const [canonicalKey, evidence] of Object.entries(VERIFIED_NOTE_EVIDENCE)) {
+      if (!byCanonical.has(canonicalKey)) continue;
+      addVerifiedNoteCandidate(verifiedNotes, canonicalKey, {
+        note_short: evidence.note_short,
+        note_verified: true,
+        note_sources: evidence.note_sources
+      });
+    }
+
     return order.map((key) => {
       const current = byCanonical.get(key);
       const semantics = semanticValues.get(key) || { safety: [], category: [] };
       const provenanceCandidates = [...(verifiedNotes.get(key)?.values() || [])];
       const categoryEvidence = VERIFIED_CATEGORY_EVIDENCE[key] || null;
+      const noteEvidence = VERIFIED_NOTE_EVIDENCE[key] || null;
       const conflicts = {};
 
       if (semantics.safety.length === 1) {
@@ -319,10 +347,13 @@
         current.note_short = provenanceCandidates[0].note;
         current.note_verified = true;
         current.note_sources = provenanceCandidates[0].sources.slice();
+        if (noteEvidence) current.note_authority = noteEvidence.authority;
+        else delete current.note_authority;
         delete current.note_provenance_conflict;
       } else if (provenanceCandidates.length > 1) {
         delete current.note_verified;
         delete current.note_sources;
+        delete current.note_authority;
         current.note_provenance_conflict = provenanceCandidates.map((candidate) => ({
           note_short: candidate.note,
           note_sources: candidate.sources.slice()
@@ -331,6 +362,7 @@
       } else {
         delete current.note_verified;
         delete current.note_sources;
+        delete current.note_authority;
         delete current.note_provenance_conflict;
       }
 
@@ -436,7 +468,7 @@
   }
 
   const api = {
-    version: "1.15.0",
+    version: "1.16.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
@@ -447,6 +479,7 @@
     isAmbiguousExactName,
     mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
+    verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
     aliasEquivalents: ALIAS_EQUIVALENTS,
     canonicalEquivalents: CANONICAL_EQUIVALENTS,
     ambiguousExactKeys: AMBIGUOUS_EXACT_KEYS
