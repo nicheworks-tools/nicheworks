@@ -57,162 +57,75 @@
 
 ---
 
-## 1. レイアウト & 広告枠
+## 1. レイアウト & 広告
 
-基本レイアウト（共通ベース）：
+基本レイアウトは、ツール本体の操作と説明を主役にする。広告のための空要素や「準備中」表示をページ構造の必須要件にしない。
 
 ```html
 <body>
   <header class="nw-header">
     <!-- ツールタイトル＋1行説明 -->
-
-    <!--
-      任意ナビゲーション（必要な場合のみ使用可）
-      ※原則として全ツール共通の横断ナビは設置しない。
-      ※どうしても置く場合は「Home へのリンク1つまで」を推奨。
-    -->
-    <!--
-    <nav class="nw-nav">
-      <a href="https://nicheworks.app/">Home</a>
-    </nav>
-    -->
   </header>
 
   <main class="nw-main">
-    <!-- 上部広告枠（必須） -->
-    <div class="ad-slot ad-top">
-      広告枠（準備中）
-      <!-- 審査通過後に広告コード -->
-    </div>
-
-    <!-- （任意）メイン操作直下などに ad-inline を挿入可 -->
-    <!-- <div class="ad-slot ad-inline">広告枠（準備中）</div> -->
-
     <!-- ツール固有コンテンツ -->
-
-    <!-- 下部広告枠（任意。短めページでは推奨） -->
-    <div class="ad-slot ad-bottom">
-      広告枠（準備中）
-      <!-- 審査通過後に広告コード -->
-    </div>
 
     <!-- 寄付導線（配置ルールは第6章参照） -->
     <!-- <div class="nw-donate">…</div> -->
   </main>
 
   <footer class="nw-footer">
-    <p class="nw-footer-line">
-      © NicheWorks — Small Web Tools for Boring Tasks
-    </p>
-    <p class="nw-footer-line">
-      当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。
-    </p>
-    <p class="nw-footer-line">
-      <a href="https://nicheworks.app/" target="_blank" rel="noopener">
-        nicheworks.app
-      </a>
-    </p>
+    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p>
   </footer>
-
-  <!-- （一部ツールのみ）条件付きフローティング寄付導線：第6章参照 -->
 </body>
 ```
 
 注意：
 
 * **共通ナビ（他ツールへの横断リンク）は標準仕様ではないため設置しない。**
-* 免責が不要なツールはフッター2行目だけ削除OK。
-* `nw-nav` のリンクは各ツールに合わせて適宜調整。
-* **広告のフローティングは禁止。** 広告は `ad-top` / `ad-inline` / `ad-bottom` のみを使用。
+* `nw-nav` を使う場合も、必要な導線だけに限定する。
+* 広告をフローティング、ポップアップ、操作UIと誤認しやすい位置に配置しない。
+* 公開ページに `広告枠`、`広告枠（準備中）`、`Ad slot`、`Advertisement placeholder` などのダミー表示を出してはならない。
+* 実広告が存在しない場所に、空の手動広告コンテナを将来用として置かない。
 
-## **1.1 AdSense 導入ルール（2025-11 追加）**
+## 1.1 AdSense 導入ルール（2026-09 AdSense再審査契約）
 
-※ この節は共通仕様 v2 における **広告の最終ルール** であり、
-既存の広告枠仕様と矛盾する場合は **本節を優先** する。
+### (1) ページ適格性を先に判定する
 
----
+AdSense は「全HTMLへ必須」ではない。広告コードを置く前に、そのページが公開・完成・独自価値を持つ広告適格ページかを判定する。
 
-### **(1) AdSense コードの扱い**
+以下のページでは AdSense を読み込まない。
 
-**母艦サイト：すでに `<head>` に貼付済みでOK（現在の状態を正）**
-**各ツール：必ず `<head>` に同じコードを入れる（必須）**
+* `noindex` ページ
+* `tools/staged-tools.json` に登録された staged tool
+* 開発テンプレート、検証用ページ、billing success/cancel 等の結果ページ
+* Coming soon / 準備中 / mock / placeholder / 未実装を主内容とするページ
+* ツール本体や独自説明が未完成で、広告より先に公開品質を満たしていないページ
 
-理由：
+完成済み・indexable・公開対象で、十分な機能または独自コンテンツを持つページでは、承認済みの AdSense publisher 設定を利用してよい。既存 publisher ID `ca-pub-9879006623791275` を別IDへ勝手に変更しない。
 
-* AdSense の自動広告は、**各ツールの HTML にも `<script async …>` が無いと発火しない**
-* 母艦だけに入れても **tools/ 以下の個別ツールには広告が出ない**
-* Cloudflare Pages でサブディレクトリ配信している構造のため、
-  Google は **ページ単位で `<head>` のタグを確認**している
+### (2) 再審査中の表示契約
 
-貼るべきコードは AdSense が発行した以下（例）：
+* 広告が実際に配信されていない場所へ、ダミーの広告枠ラベルを表示しない。
+* `ad-top` / `ad-bottom` / `ad-inline` は必須クラスではない。実広告ユニットを意図的に実装するときだけ使用する。
+* 「広告準備中」「公開後に広告を表示予定」など、未完成の収益化状態を公開本文に出さない。
+* Auto Ads の利用可否は AdSense 側の承認状態とページ適格性に従う。Auto Ads を理由に全ページへ広告loaderを強制しない。
 
-```html
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
-```
+### (3) 開発・CIルール
 
----
+AI / Codex / 手動修正のいずれでも、次を守る。
 
-### **(2) 自動広告の使用 → 標準では “ON”**
+* staged / noindex / template / billing outcome ページへ AdSense を追加しない。既にあれば削除する。
+* 完成した広告適格ページの publisher ID は不用意に変更しない。
+* 公開indexable HTMLへダミー広告枠ラベルを追加しない。
+* `YOUR_TOKEN_HERE` など未置換の計測テンプレートを公開HTMLへ残さない。Cloudflare Web Analytics は第5章の方式に従う。
+* 新しいページを公開対象へ昇格するときは、機能完成・indexability・sitemap・広告適格性を同時に確認する。
+* `scripts/check-adsense-review-surface.mjs` を回帰契約として維持する。
 
-* 母艦：ON（推奨）
-* 各ツール：ON（基本）
+### (4) 承認後の手動広告
 
-AdSense の仕様上、
-
-**自動広告＝好きな場所に ads を勝手に挿入する機能ではない。
-「最適な位置の候補の中から Google が判断する」だけ。**
-
-レイアウト崩れリスクが極めて低く、今の NicheWorks の UI との相性も良い。
-
----
-
-### **(3) 手動広告枠との関係**
-
-共通仕様で定義している：
-
-* `ad-top`
-* `ad-bottom`
-* `ad-inline`
-
-は **そのまま維持** する。
-
-Google が自動広告で勝手に広告を挿入しても構わないが、
-NicheWorks の UI 基本方針としては以下を守る：
-
-| 広告種類        | 必須/任意   | 理由                      |
-| ----------- | ------- | ----------------------- |
-| `ad-top`    | **必須**  | ユーザー導線の邪魔にならない位置＋収益率が高い |
-| `ad-bottom` | 推奨      | ページの長さに応じて追加            |
-| `ad-inline` | 任意（慎重に） | 誤クリックにならない配置に限る         |
-
----
-
-### **(4) 各ツールへの実装指示（開発ルール）**
-
-AI / Codex への指示として以下を厳守：
-
-* `<head>` の AdSense `<script>` を **削除してはならない**
-* `<script>` の client ID を **勝手に変更してはならない**
-* 自動広告を OFF に書き換えてはならない
-* フローティング広告・ポップアップ広告は禁止（従来仕様を維持）
-* 既存ツールにおいて広告コード欠落が見つかった場合、
-  **必ず `<head>` に追加する**
-
----
-
-### **(5) クリエイティブの除外設定（任意）**
-
-ゲーム・暗号資産などカテゴリ除外は AdSense 管理画面で行う。
-ツール側には設定不要。
-
----
-
-了解した。
-**続き（2/3）をそのまま貼る。**
-※ **1/3 の直後にそのままコピペ可能**
-※ **ここでは一切の要約・省略・表現変更をしない**
-※ **第5章／第10章／第11章以外は「原文どおり再掲」**
-（＝あなたが添付した `spec-ja.md` の該当箇所をそのまま写している）
+AdSense承認後に手動広告ユニットを追加する場合も、空のプレースホルダーではなく実ユニットとして実装し、ツール操作を妨げない位置に限定する。広告数や位置はページごとに決め、全ツールへ同じ配置を機械的に強制しない。
 
 ---
 

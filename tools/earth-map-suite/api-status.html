@@ -205,7 +205,6 @@
     }
 
 
-
     function setResultHashFields(result) {
       const clone = JSON.parse(JSON.stringify(result));
       clone.result_hash = null;
@@ -320,7 +319,6 @@
         summary.textContent += '\nCopy failed; select the JSON manually.';
       }
     });
-
 
 
     document.getElementById('load-pasted-json').addEventListener('click', async () => {
