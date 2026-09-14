@@ -39,7 +39,7 @@ jobs:
 
       - name: Commit generated artifact
         run: |
-          if git diff --quiet -- tools/old-kanji-reference/dictionary-audit.json; then
+          if test -z "$(git status --porcelain -- tools/old-kanji-reference/dictionary-audit.json)"; then
             echo "Audit artifact already current."
             exit 0
           fi
