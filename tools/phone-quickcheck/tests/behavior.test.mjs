@@ -344,6 +344,14 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.ok(h.elements.desktopDetail.innerHTML.includes('165 × 72 × 15.9–17.1 mm'));
 }
 
+// Charger guidance must never be promoted to a handset-side wired maximum without wiredMaxW.
+{
+  const h = await createHarness(['synthetic-foldable']);
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /充電器目安<\/span><b>25W\+/);
+  assert.doesNotMatch(html, /端末側の有線充電上限<\/span><b>25W/);
+}
+
 // Foldable schema renders both physical states and keeps folded dimensions in the list.
 {
   const h = await createHarness(['synthetic-foldable']);
