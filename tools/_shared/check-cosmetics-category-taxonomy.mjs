@@ -23,6 +23,7 @@ const EXPECTED_CATEGORIES = new Set([
 
 const EXPECTED_DEFERRED = new Set();
 const EXPECTED_WAVE3_PROMOTED = new Set(['sodium chloride', 'disodium edta']);
+const EXPECTED_WAVE4_PROMOTED = new Set(['tocopheryl acetate', 'sodium citrate']);
 const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu']);
 
 function normalize(value = '') {
@@ -93,14 +94,13 @@ for (const [canonical, mapping] of Object.entries(taxonomy.reviewed_mappings)) {
   else assert.fail(`${canonical}: runtime_verified must be explicit boolean`);
 }
 
-assert.deepEqual(
-  deferredMappings,
-  EXPECTED_DEFERRED,
-  'wave 3 must not leave reviewed Sodium Chloride or Disodium EDTA mappings deferred'
-);
+assert.deepEqual(deferredMappings, EXPECTED_DEFERRED, 'reviewed mappings must not remain silently deferred');
 
 for (const canonical of EXPECTED_WAVE3_PROMOTED) {
-  assert.ok(runtimeMappings[canonical], `${canonical}: wave 3 mapping must be runtime_verified`);
+  assert.ok(runtimeMappings[canonical], `${canonical}: wave 3 mapping must remain runtime_verified`);
+}
+for (const canonical of EXPECTED_WAVE4_PROMOTED) {
+  assert.ok(runtimeMappings[canonical], `${canonical}: wave 4 mapping must be runtime_verified`);
 }
 
 const runtimeEvidence = parser.verifiedCategoryEvidence || {};
@@ -124,12 +124,13 @@ for (const ambiguous of parser.ambiguousExactKeys || []) {
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'verified-category-taxonomy-wave-3',
+  phase: 'verified-category-taxonomy-wave-4',
   mapping_policy: taxonomy.mapping_policy,
   canonical_categories: Object.keys(taxonomy.categories).length,
   unique_authority_function_terms: authorityFunctionToCategory.size,
   runtime_verified_mappings: Object.keys(runtimeMappings).length,
   wave_3_promoted_mappings: [...EXPECTED_WAVE3_PROMOTED],
+  wave_4_promoted_mappings: [...EXPECTED_WAVE4_PROMOTED],
   deferred_reviewed_mappings: [...deferredMappings],
   raw_legacy_taxonomy_rewritten: false,
   safety_contract_changed: false,
