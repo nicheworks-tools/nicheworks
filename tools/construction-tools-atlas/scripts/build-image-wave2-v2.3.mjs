@@ -132,6 +132,7 @@ async function main() {
     if (item.source_sha1 && hash !== item.source_sha1) {
       fail(`${id}: SHA-1 mismatch; expected ${item.source_sha1}, got ${hash}`);
     }
+    if (!text(item.source_sha1)) item.source_sha1 = hash;
     const source = path.join(dir, item.source_filename);
     const primary = path.join(dir, 'primary.webp');
     const thumb = path.join(dir, 'thumb.webp');
@@ -144,6 +145,7 @@ async function main() {
     console.log(`${id}: source=${buffer.length}B primary=${primaryStat.size}B thumb=${thumbStat.size}B sha1=${hash}`);
   }
 
+  await fs.writeFile(MANIFEST_PATH, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
   await fs.writeFile(path.join(IMAGE_ROOT, 'ATTRIBUTION.md'), attributionMarkdown([wave1, manifest], rows), 'utf8');
   console.log(`Wave 2 image build complete: ${rows.length} canonical entries`);
 }

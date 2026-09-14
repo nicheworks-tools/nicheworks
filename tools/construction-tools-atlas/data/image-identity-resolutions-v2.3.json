@@ -74,16 +74,65 @@
       "state": "resolved_existing",
       "entry_id": "q011_float",
       "rationale": "Canonical entry covers 木鏝・フロート used to level mortar or concrete surfaces."
+    },
+    {
+      "manifest": "image-pilots.json",
+      "index": 66,
+      "legacy_ja": "たがね",
+      "legacy_en": "Chisel",
+      "state": "resolved_existing",
+      "entry_id": "q012_cold_chisel",
+      "rationale": "The legacy Japanese term たがね denotes a striking chisel for hard material; q012_cold_chisel is the canonical タガネ for cutting or chipping metal or concrete, while the generic chisel candidate is explicitly a woodworking chisel (のみ)."
+    },
+    {
+      "manifest": "image-pilots-003.json",
+      "index": 2,
+      "legacy_ja": "水切り金物",
+      "legacy_en": "Flashing",
+      "state": "resolved_existing",
+      "entry_id": "q011_flashing",
+      "rationale": "q011_flashing is the roof/component canonical for 水切り / Flashing that directs water away from joints; it is more specific than the generic basic material entry."
+    },
+    {
+      "manifest": "image-pilots-003.json",
+      "index": 9,
+      "legacy_ja": "唐草",
+      "legacy_en": "Drip edge",
+      "state": "resolved_existing",
+      "entry_id": "q014_drip_edge",
+      "rationale": "The legacy 唐草 / Drip edge subject is a roof-edge water-shedding component; q014_drip_edge is the roof-component canonical, whereas the alternate drip_edge entry also spans sills, copings, and exterior transitions."
+    },
+    {
+      "manifest": "image-pilots-011.json",
+      "index": 2,
+      "legacy_ja": "塗料皿",
+      "legacy_en": "Paint tray",
+      "state": "resolved_existing",
+      "entry_id": "q013_paint_tray",
+      "rationale": "q013_paint_tray explicitly defines the roller paint tray used to load paint onto a roller and is the higher-quality canonical match for the legacy subject."
+    },
+    {
+      "manifest": "image-pilots-012.json",
+      "index": 1,
+      "legacy_ja": "くし目ごて",
+      "legacy_en": "Notched trowel",
+      "state": "resolved_existing",
+      "entry_id": "q011_notched_trowel",
+      "rationale": "q011_notched_trowel exactly matches くし目ごて / Notched Trowel and explicitly defines the notched adhesive-spreading tile tool."
+    },
+    {
+      "manifest": "image-pilots-009.json",
+      "index": 7,
+      "legacy_ja": "フルハーネス",
+      "legacy_en": "Full body harness",
+      "state": "resolved_existing",
+      "entry_id": "safety_harness",
+      "rationale": "The safety_harness canonical explicitly names 墜落制止用器具(フルハーネス) and includes Full-Body Harness as an English alias, establishing exact subject identity."
     }
   ],
   "holds": [
-    {"manifest":"image-pilots.json","index":66,"state":"semantic_scope_review","reason":"Generic Chisel conflicts with a more specific Cold Chisel candidate; do not narrow the subject without evidence."},
-    {"manifest":"image-pilots-003.json","index":2,"state":"canonical_duplicate_review","reason":"flashing and q011_flashing represent the same apparent subject and require canonical dedupe/precedence."},
-    {"manifest":"image-pilots-003.json","index":9,"state":"canonical_duplicate_review","reason":"drip_edge and q014_drip_edge represent the same apparent subject and require canonical dedupe/precedence."},
     {"manifest":"image-pilots-004.json","index":3,"state":"generated_variant_review","reason":"Only compact/standard generated formwork-panel variants are tied; choose a canonical concept before promotion."},
-    {"manifest":"image-pilots-004.json","index":4,"state":"semantic_scope_review","reason":"Legacy Japanese says separator while English says form tie; current candidates distinguish those concepts."},
-    {"manifest":"image-pilots-011.json","index":2,"state":"canonical_duplicate_review","reason":"paint_tray and q013_paint_tray represent the same apparent subject and require canonical dedupe/precedence."},
-    {"manifest":"image-pilots-012.json","index":1,"state":"canonical_duplicate_review","reason":"notched_trowel and q011_notched_trowel are duplicate apparent subjects."},
+    {"manifest":"image-pilots-004.json","index":4,"state":"semantic_scope_review","reason":"Legacy Japanese says separator while English says form tie; q011_form_tie and q011_separator are distinct formwork components, so image identity cannot be narrowed safely."},
     {"manifest":"image-pilots-012.json","index":5,"state":"generated_variant_review","reason":"Only compact/standard generated flooring-spacer variants are tied."},
 
     {"manifest":"image-pilots.json","index":32,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Workbench."},
@@ -103,7 +152,7 @@
     {"manifest":"image-pilots-005.json","index":6,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Pipe elbow."},
     {"manifest":"image-pilots-005.json","index":7,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Pipe tee."},
     {"manifest":"image-pilots-005.json","index":8,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Pipe coupling."},
-    {"manifest":"image-pilots-005.json","index":9,"state":"semantic_scope_review","reason":"ball_valve is not equivalent to generic Stop valve; do not force the low-score candidate."},
+    {"manifest":"image-pilots-005.json","index":9,"state":"semantic_scope_review","reason":"ball_valve is not equivalent to generic Stop valve; the alias overlap alone is insufficient to force the legacy subject to that valve mechanism."},
     {"manifest":"image-pilots-006.json","index":4,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Ceiling runner."},
     {"manifest":"image-pilots-006.json","index":8,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Access floor panel."},
     {"manifest":"image-pilots-007.json","index":2,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Drop-in anchor."},
@@ -112,7 +161,6 @@
     {"manifest":"image-pilots-008.json","index":3,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Conduit connector."},
     {"manifest":"image-pilots-008.json","index":8,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Switch plate."},
     {"manifest":"image-pilots-008.json","index":9,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Wire duct."},
-    {"manifest":"image-pilots-009.json","index":7,"state":"semantic_scope_review","reason":"safety_harness is a low-score candidate; confirm it is specifically equivalent to Full body harness before promotion."},
     {"manifest":"image-pilots-009.json","index":9,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Barricade bar."},
     {"manifest":"image-pilots-010.json","index":1,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Rotary laser."},
     {"manifest":"image-pilots-010.json","index":2,"state":"canonical_missing","reason":"No canonical candidate currently reaches the identity threshold for Laser receiver."},

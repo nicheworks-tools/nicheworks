@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-registry-v2.3",
-  "version": "2026-09-14-wave2a-1",
+  "version": "2026-09-14-wave2b-1",
   "policy": {
     "primary_format": "webp",
     "formal_min_state": "reviewed",
@@ -295,6 +295,150 @@
         "source_sha1": "89e3900dcd531476533674a5cc0722f598b58e25"
       },
       "notes": "Wave 2A manually reviewed real-subject image; legacy Float trowel identity resolved to q011_float."
+    },
+    {
+      "entry_id": "q012_cold_chisel",
+      "alt_ja": "金属加工用の平タガネ2本",
+      "alt_en": "Two metalworking cold chisels",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/q012_cold_chisel/source.jpg",
+        "display": "./images/q012_cold_chisel/primary.webp",
+        "thumbnail": "./images/q012_cold_chisel/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/ColdChisels.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:ColdChisels.jpg",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Glenn McKechnie",
+        "attribution": "Glenn McKechnie (uploaded by Graibeard) / Wikimedia Commons, CC BY-SA 3.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "db81d38d878d31a1927916342a496ab8636e7962"
+      },
+      "notes": "Wave 2B manually reviewed real-subject image; legacy たがね / Chisel identity resolved to q012_cold_chisel rather than the woodworking chisel canonical."
+    },
+    {
+      "entry_id": "q011_flashing",
+      "alt_ja": "屋根に施工された水切り金物",
+      "alt_en": "Roof flashing installed on a building",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/q011_flashing/source.jpg",
+        "display": "./images/q011_flashing/primary.webp",
+        "thumbnail": "./images/q011_flashing/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Roof_flashing_-_geograph.org.uk_-_7117812.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Roof_flashing_-_geograph.org.uk_-_7117812.jpg",
+        "license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "author": "Bob Harvey",
+        "attribution": "Bob Harvey / Geograph via Wikimedia Commons, CC BY-SA 2.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "da22e1ee5fdbd51017e26d2ad956b34db83b3ae5"
+      },
+      "notes": "Wave 2B manually reviewed real-subject image; legacy 水切り金物 / Flashing identity resolved to q011_flashing."
+    },
+    {
+      "entry_id": "q014_drip_edge",
+      "alt_ja": "屋根端部に施工されるドリップエッジ",
+      "alt_en": "Drip edge being installed along a roof edge",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/q014_drip_edge/source.jpg",
+        "display": "./images/q014_drip_edge/primary.webp",
+        "thumbnail": "./images/q014_drip_edge/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/Preservationists_install_rake_boards_and_drip_edge_along_the_edge_of_the_new_cedar_shingle_roof._(29d9d9d7-7b7a-4b33-905e-afa0713314c2).jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Preservationists_install_rake_boards_and_drip_edge_along_the_edge_of_the_new_cedar_shingle_roof._(29d9d9d7-7b7a-4b33-905e-afa0713314c2).jpg",
+        "license": "Public Domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-NPS",
+        "author": "NPS Photo",
+        "attribution": "NPS Photo / Wikimedia Commons (Public Domain)",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "5c443430e8d49fc639f916d4c555063e64a2bc55"
+      },
+      "notes": "Wave 2B manually reviewed real-subject image; legacy 唐草 / Drip edge identity resolved to the roof-component canonical q014_drip_edge."
+    },
+    {
+      "entry_id": "q013_paint_tray",
+      "alt_ja": "塗料を入れたローラー用塗料皿",
+      "alt_en": "Paint tray containing paint for a roller",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/q013_paint_tray/source.jpg",
+        "display": "./images/q013_paint_tray/primary.webp",
+        "thumbnail": "./images/q013_paint_tray/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Paint_Tray_(1535689884).jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Paint_Tray_(1535689884).jpg",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0/",
+        "author": "Bart Everson",
+        "attribution": "Bart Everson / Wikimedia Commons, CC BY 2.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "0ebe457e81416cf89c1a0bf3b2047713fe33b1e3"
+      },
+      "notes": "Wave 2B manually reviewed real-subject image; legacy 塗料皿 / Paint tray identity resolved to q013_paint_tray."
+    },
+    {
+      "entry_id": "q011_notched_trowel",
+      "alt_ja": "タイル接着剤用の角くし目ごて",
+      "alt_en": "Square-notched adhesive trowels for tile work",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/q011_notched_trowel/source.jpg",
+        "display": "./images/q011_notched_trowel/primary.webp",
+        "thumbnail": "./images/q011_notched_trowel/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Trowels_of_various_sizes_and_shapes%2C_square_notch_trowels%2C_in_German_hardware_store_(cropped).jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Trowels_of_various_sizes_and_shapes,_square_notch_trowels,_in_German_hardware_store_(cropped).jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Pittigrilli",
+        "attribution": "Pittigrilli / Wikimedia Commons, CC0 1.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "23392c92ef470f0fb66fb614f552417ff633a232"
+      },
+      "notes": "Wave 2B manually reviewed real-subject image; legacy くし目ごて / Notched trowel identity resolved to q011_notched_trowel."
+    },
+    {
+      "entry_id": "safety_harness",
+      "alt_ja": "墜落制止用フルハーネスを装着した作業員",
+      "alt_en": "Worker wearing a full-body fall-arrest harness",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/safety_harness/source.jpg",
+        "display": "./images/safety_harness/primary.webp",
+        "thumbnail": "./images/safety_harness/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Safety_Harness.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Safety_Harness.jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "SafetyEdition",
+        "attribution": "SafetyEdition / Wikimedia Commons, CC0 1.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "81998490514502015085394ebeeed1dfd79e51b1"
+      },
+      "notes": "Wave 2B manually reviewed real-subject image; legacy フルハーネス / Full body harness identity resolved to safety_harness."
     }
   ]
 }
