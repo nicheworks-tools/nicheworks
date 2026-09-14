@@ -55,6 +55,8 @@ for (const row of rows) {
   groups.get(key).push(row);
 }
 
+const verifiedCategoryEvidence = parser.verifiedCategoryEvidence || {};
+const verifiedEvidenceKeys = new Set(Object.keys(verifiedCategoryEvidence));
 const missingRows = rows.filter((row) => !normalizeText(row.category));
 const missingCanonicalKeys = new Set();
 const entries = [];
@@ -63,6 +65,7 @@ let rowsWithCanonicalLegacyCategory = 0;
 let rowsRequiringExternalSource = 0;
 const canonicalWithLegacyCategory = new Set();
 const canonicalRequiringExternalSource = new Set();
+const canonicalResolvedByVerifiedEvidence = new Set();
 const sourceRequiredUniqueCanonical = new Set();
 const sourceRequiredDuplicateCanonical = new Set();
 
@@ -85,6 +88,9 @@ for (const row of missingRows) {
   }
 
   const hasLegacyHint = observedCategories.length > 0;
+  const hasVerifiedEvidence = verifiedEvidenceKeys.has(key);
+  if (hasVerifiedEvidence) canonicalResolvedByVerifiedEvidence.add(key);
+
   if (hasLegacyHint) {
     rowsWithCanonicalLegacyCategory += 1;
     canonicalWithLegacyCategory.add(key);
@@ -102,7 +108,12 @@ for (const row of missingRows) {
     index: row.__index,
     canonical_records: group.length,
     observed_legacy_categories: observedCategories,
-    disposition: hasLegacyHint ? 'legacy_hint_requires_source_verification' : 'external_source_required'
+    verified_category_evidence: hasVerifiedEvidence ? verifiedCategoryEvidence[key].category : null,
+    disposition: hasVerifiedEvidence
+      ? 'resolved_by_verified_category_evidence'
+      : hasLegacyHint
+        ? 'legacy_hint_requires_source_verification'
+        : 'external_source_required'
   });
 }
 
@@ -113,12 +124,19 @@ entries.sort((a, b) =>
   || a.index - b.index
 );
 
+const unresolvedExternalSourceCanonical = new Set(
+  [...canonicalRequiringExternalSource].filter((key) => !canonicalResolvedByVerifiedEvidence.has(key))
+);
+
 const hardFailures = [];
 if (missingRows.length > FROZEN_MISSING_CATEGORY_CEILING) {
   hardFailures.push(`category semantic debt regressed: ${missingRows.length} missing rows exceeds ceiling ${FROZEN_MISSING_CATEGORY_CEILING}`);
 }
 if (rowsWithCanonicalLegacyCategory + rowsRequiringExternalSource !== missingRows.length) {
   hardFailures.push('category gap disposition does not account for every missing-category row');
+}
+for (const key of verifiedEvidenceKeys) {
+  if (!groups.has(key)) hardFailures.push(`verified category evidence references unknown canonical identity: ${key}`);
 }
 
 const report = {
@@ -132,9 +150,12 @@ const report = {
   canonical_identities_with_legacy_category_hint: canonicalWithLegacyCategory.size,
   rows_requiring_external_source: rowsRequiringExternalSource,
   canonical_identities_requiring_external_source: canonicalRequiringExternalSource.size,
+  verified_category_evidence_canonical_identities: verifiedEvidenceKeys.size,
+  missing_category_canonical_identities_resolved_by_verified_evidence: canonicalResolvedByVerifiedEvidence.size,
+  unresolved_external_source_canonical_identities_after_verified_overlay: unresolvedExternalSourceCanonical.size,
   source_required_unique_canonical_identities: sourceRequiredUniqueCanonical.size,
   source_required_duplicate_canonical_identities: sourceRequiredDuplicateCanonical.size,
-  rule: 'Legacy category values are hints only. Do not auto-copy them into missing records without source-backed review.',
+  rule: 'Legacy category values are hints only. Verified canonical category evidence is maintained separately from recognition records.',
   entries,
   hard_failures: hardFailures
 };
