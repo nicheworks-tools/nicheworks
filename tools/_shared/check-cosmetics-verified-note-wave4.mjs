@@ -20,7 +20,7 @@ const DATA_FILES = [
 ];
 
 const CLAIM_REVIEW_RE = /\b(?:safe|safety|risk|irritat|allerg|sensiti|pregnan|toxic|comedogen|acne|well tolerated|avoid)\b/i;
-const FORBIDDEN_VAGUE_CLAIM_RE = /\b(?:generally safe|well tolerated|high allergy risk|often avoided|may clog pores|avoid eye area|very sensitive skin|mild irritation possible)\b/i;
+const FORBIDDEN_VAGUE_CLAIM_RE = /\b(?:generally safe|well tolerated|high allergy risk|often avoided|may clog pores|avoid eye area|sensitization risk|allergy risk|staining)\b/i;
 const EXPECTED_RAW_CLAIM_ROWS = 22;
 const PRIOR_WAVE_KEYS = Object.freeze([
   'phenoxyethanol',
@@ -30,36 +30,46 @@ const PRIOR_WAVE_KEYS = Object.freeze([
   'methylchloroisothiazolinone',
   'sodium benzoate',
   'sodium dehydroacetate',
-  'sulfur'
+  'sulfur',
+  'alpha-arbutin',
+  'ceteareth-20',
+  'steareth-21',
+  'isopropyl myristate',
+  'simmondsia chinensis jojoba seed oil'
 ]);
-const EXPECTED_WAVE3 = Object.freeze({
-  'alpha-arbutin': Object.freeze({
-    note_short: 'SCCS-reviewed cosmetic ingredient; alpha-arbutin is considered safe up to 2% in face creams and 0.5% in body lotions.',
-    source: 'https://health.ec.europa.eu/publications/safety-alpha-arbutin-and-beta-arbutin-cosmetic-products_en',
-    authority: 'European Commission Scientific Committee on Consumer Safety'
+const CURRENT_EU_REGULATION = 'https://eur-lex.europa.eu/eli/reg/2009/1223';
+const EXPECTED_WAVE4 = Object.freeze({
+  'aminobenzoic acid': Object.freeze({
+    note_short: 'UV filter; EU Annex VI lists PABA (4-Aminobenzoic acid) at up to 5%.',
+    source: CURRENT_EU_REGULATION,
+    authority: 'European Union / EUR-Lex'
   }),
-  'ceteareth-20': Object.freeze({
-    note_short: 'Surfactant; Cosmetics Info reports Ceteareth-20 as a solubilizing and cleansing agent.',
-    source: 'https://www.cosmeticsinfo.org/ingredient/ceteareth-20/',
-    authority: 'Personal Care Products Council / Cosmetics Info'
+  ecamsule: Object.freeze({
+    note_short: 'UV filter; EU Annex VI lists Ecamsule at up to 10% expressed as acid.',
+    source: CURRENT_EU_REGULATION,
+    authority: 'European Union / EUR-Lex'
   }),
-  'steareth-21': Object.freeze({
-    note_short: 'Surfactant; Cosmetics Info reports Steareth-21 as a cleansing, emulsifying and solubilizing agent.',
-    source: 'https://www.cosmeticsinfo.org/ingredient/steareth-21/',
-    authority: 'Personal Care Products Council / Cosmetics Info'
+  octisalate: Object.freeze({
+    note_short: 'UV filter; EU Annex VI lists Ethylhexyl Salicylate (Octisalate) at up to 5%.',
+    source: CURRENT_EU_REGULATION,
+    authority: 'European Union / EUR-Lex'
   }),
-  'isopropyl myristate': Object.freeze({
-    note_short: 'Binder and skin-conditioning emollient; these functions are reported for isopropyl myristate by Cosmetics Info.',
-    source: 'https://www.cosmeticsinfo.org/ingredient/isopropyl-myristate/',
-    authority: 'Personal Care Products Council / Cosmetics Info'
+  'diethylamino hydroxybenzoyl hexyl benzoate': Object.freeze({
+    note_short: 'UV filter; EU Regulation 2026/909 sets DHHB at up to 10% and limits unavoidable DnHexP impurity to 10 ppm.',
+    source: 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0909',
+    authority: 'European Union / EUR-Lex'
   }),
-  'simmondsia chinensis jojoba seed oil': Object.freeze({
-    note_short: 'Hair-conditioning and occlusive skin-conditioning ingredient; these functions are reported for jojoba seed oil by Cosmetics Info.',
-    source: 'https://www.cosmeticsinfo.org/ingredient/simmondsia-chinensis-jojoba-seed-oil/',
-    authority: 'Personal Care Products Council / Cosmetics Info'
+  'diazolidinyl urea': Object.freeze({
+    note_short: 'Preservative; EU Annex V lists Diazolidinyl Urea at up to 0.5%.',
+    source: CURRENT_EU_REGULATION,
+    authority: 'European Union / EUR-Lex'
+  }),
+  'imidazolidinyl urea': Object.freeze({
+    note_short: 'Preservative; EU Annex V lists Imidazolidinyl Urea at up to 0.6%.',
+    source: CURRENT_EU_REGULATION,
+    authority: 'European Union / EUR-Lex'
   })
 });
-const ALLOWED_SOURCE_HOSTS = new Set(['health.ec.europa.eu', 'www.cosmeticsinfo.org']);
 
 function normalizeText(value = '') {
   return String(value).normalize('NFKC').replace(/\s+/g, ' ').trim();
@@ -68,7 +78,7 @@ function normalizeText(value = '') {
 function validSource(value) {
   try {
     const url = new URL(String(value || '').trim());
-    return url.protocol === 'https:' && ALLOWED_SOURCE_HOSTS.has(url.hostname);
+    return url.protocol === 'https:' && url.hostname === 'eur-lex.europa.eu';
   } catch {
     return false;
   }
@@ -84,9 +94,12 @@ const claimRows = rows.filter((item) => CLAIM_REVIEW_RE.test(normalizeText(item.
 assert.equal(claimRows.length, EXPECTED_RAW_CLAIM_ROWS, 'raw claim-bearing legacy-note baseline must remain exactly 22 rows');
 
 const evidence = parser.verifiedNoteEvidence || {};
-for (const canonical of [...PRIOR_WAVE_KEYS, ...Object.keys(EXPECTED_WAVE3)]) {
-  assert.ok(Object.hasOwn(evidence, canonical), `${canonical}: wave 1-3 verified note entry must remain present`);
-}
+const expectedAllKeys = [...PRIOR_WAVE_KEYS, ...Object.keys(EXPECTED_WAVE4)];
+assert.deepEqual(
+  new Set(Object.keys(evidence)),
+  new Set(expectedAllKeys),
+  'verified note overlay must contain exactly thirteen prior entries plus six reviewed wave 4 identities'
+);
 
 const canonicalRows = new Map();
 for (const row of rows) {
@@ -96,19 +109,19 @@ for (const row of rows) {
   canonicalRows.get(key).push(row);
 }
 
-for (const [canonical, expected] of Object.entries(EXPECTED_WAVE3)) {
+for (const [canonical, expected] of Object.entries(EXPECTED_WAVE4)) {
   const item = evidence[canonical];
-  assert.ok(item, `${canonical}: wave 3 verified note evidence missing`);
-  assert.equal(normalizeText(item.note_short), expected.note_short, `${canonical}: reviewed wave 3 note text changed unexpectedly`);
+  assert.ok(item, `${canonical}: wave 4 verified note evidence missing`);
+  assert.equal(normalizeText(item.note_short), expected.note_short, `${canonical}: reviewed wave 4 note text changed unexpectedly`);
   assert.equal(normalizeText(item.authority), expected.authority, `${canonical}: reviewed authority changed unexpectedly`);
-  assert.ok(!FORBIDDEN_VAGUE_CLAIM_RE.test(item.note_short), `${canonical}: vague legacy safety/tolerability language must not return`);
+  assert.ok(!FORBIDDEN_VAGUE_CLAIM_RE.test(item.note_short), `${canonical}: unsupported legacy risk/tolerability wording must not return`);
   assert.ok(Array.isArray(item.note_sources) && item.note_sources.length > 0, `${canonical}: HTTPS source required`);
-  assert.ok(item.note_sources.every(validSource), `${canonical}: only reviewed SCCS/Cosmetics Info HTTPS sources are allowed in wave 3`);
+  assert.ok(item.note_sources.every(validSource), `${canonical}: wave 4 sources must be EUR-Lex HTTPS URLs`);
   assert.ok(item.note_sources.includes(expected.source), `${canonical}: reviewed source URL missing`);
   assert.ok(canonicalRows.has(canonical), `${canonical}: canonical identity must exist in maintained dictionary`);
   assert.ok(
     canonicalRows.get(canonical).some((row) => CLAIM_REVIEW_RE.test(normalizeText(row.note_short))),
-    `${canonical}: wave 3 must resolve an existing frozen claim-bearing legacy note`
+    `${canonical}: wave 4 must resolve an existing frozen claim-bearing legacy note`
   );
 }
 
@@ -118,32 +131,32 @@ for (const ambiguous of parser.ambiguousExactKeys || []) {
 
 const merged = parser.mergeDictionaryRecords(rows);
 const mergedByCanonical = new Map(merged.map((item) => [parser.canonicalIdentityKey(item.en), item]));
-for (const [canonical, expected] of Object.entries(EXPECTED_WAVE3)) {
+for (const [canonical, expected] of Object.entries(EXPECTED_WAVE4)) {
   const item = mergedByCanonical.get(canonical);
   assert.ok(item, `${canonical}: missing from merged runtime dictionary`);
   assert.equal(item.note_verified, true, `${canonical}: verified note flag must survive canonical merge`);
-  assert.equal(item.note_short, expected.note_short, `${canonical}: runtime note must be the reviewed wave 3 note`);
+  assert.equal(item.note_short, expected.note_short, `${canonical}: runtime note must be the reviewed wave 4 note`);
   assert.ok(Array.isArray(item.note_sources) && item.note_sources.includes(expected.source), `${canonical}: reviewed source must survive canonical merge`);
   assert.equal(item.note_authority, expected.authority, `${canonical}: note authority must survive canonical merge`);
   assert.equal(item.note_provenance_conflict, undefined, `${canonical}: verified overlay must not create note provenance conflict`);
 }
 
-const wave123Set = new Set([...PRIOR_WAVE_KEYS, ...Object.keys(EXPECTED_WAVE3)]);
-const wave123ResolvedClaimRows = claimRows.filter((row) => wave123Set.has(parser.canonicalIdentityKey(row.en)));
-assert.equal(wave123ResolvedClaimRows.length, 13, 'waves 1-3 must continue to resolve exactly thirteen frozen claim-bearing rows');
+const resolvedClaimRows = claimRows.filter((row) => Object.hasOwn(evidence, parser.canonicalIdentityKey(row.en)));
+assert.equal(resolvedClaimRows.length, 19, 'waves 1-4 should resolve exactly nineteen of the frozen 22 claim-bearing legacy-note rows');
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'verified-note-wave-3',
+  phase: 'verified-note-wave-4',
   raw_claim_bearing_legacy_note_rows: claimRows.length,
   prior_verified_canonical_identities: PRIOR_WAVE_KEYS.length,
-  wave_3_verified_canonical_identities: Object.keys(EXPECTED_WAVE3).length,
+  wave_4_verified_canonical_identities: Object.keys(EXPECTED_WAVE4).length,
   cumulative_verified_note_overlay_canonical_identities: Object.keys(evidence).length,
-  wave_1_through_3_resolved_claim_bearing_rows: wave123ResolvedClaimRows.length,
-  wave_3_resolved_canonical_identities: Object.keys(EXPECTED_WAVE3),
+  resolved_claim_bearing_rows: resolvedClaimRows.length,
+  unresolved_claim_bearing_rows: claimRows.length - resolvedClaimRows.length,
+  wave_4_resolved_canonical_identities: Object.keys(EXPECTED_WAVE4),
   raw_dictionary_records_rewritten: false,
   runtime_notes_use_existing_provenance_gate: true,
-  vague_legacy_safety_language_reintroduced: false,
+  unsupported_legacy_risk_language_reintroduced: false,
   safety_contract_changed: false,
   recognition_contract_changed: false,
   affiliate_contract_changed: false

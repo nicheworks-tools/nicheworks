@@ -181,6 +181,36 @@
       note_short: "Hair-conditioning and occlusive skin-conditioning ingredient; these functions are reported for jojoba seed oil by Cosmetics Info.",
       note_sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/simmondsia-chinensis-jojoba-seed-oil/"]),
       authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "aminobenzoic acid": Object.freeze({
+      note_short: "UV filter; EU Annex VI lists PABA (4-Aminobenzoic acid) at up to 5%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "ecamsule": Object.freeze({
+      note_short: "UV filter; EU Annex VI lists Ecamsule at up to 10% expressed as acid.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "octisalate": Object.freeze({
+      note_short: "UV filter; EU Annex VI lists Ethylhexyl Salicylate (Octisalate) at up to 5%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "diethylamino hydroxybenzoyl hexyl benzoate": Object.freeze({
+      note_short: "UV filter; EU Regulation 2026/909 sets DHHB at up to 10% and limits unavoidable DnHexP impurity to 10 ppm.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0909"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "diazolidinyl urea": Object.freeze({
+      note_short: "Preservative; EU Annex V lists Diazolidinyl Urea at up to 0.5%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "imidazolidinyl urea": Object.freeze({
+      note_short: "Preservative; EU Annex V lists Imidazolidinyl Urea at up to 0.6%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]),
+      authority: "European Union / EUR-Lex"
     })
   });
 
@@ -518,7 +548,7 @@
   }
 
   const api = {
-    version: "1.18.0",
+    version: "1.19.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
