@@ -122,15 +122,15 @@
       note_sources: Object.freeze(["https://health.ec.europa.eu/publications/phenoxyethanol_en"]),
       authority: "European Commission Scientific Committee on Consumer Safety"
     }),
-    "limonene": Object.freeze({
-      note_short: "Fragrance ingredient; oxidised limonene is an established contact allergen in the SCCS opinion.",
-      note_sources: Object.freeze(["https://health.ec.europa.eu/document/download/392a791e-d831-4bb0-a449-7031bffcd6a4_en"]),
-      authority: "European Commission Scientific Committee on Consumer Safety"
+    "sodium hydroxide": Object.freeze({
+      note_short: "pH adjuster; EU cosmetic rules list sodium hydroxide for pH-adjusting uses subject to specified restrictions.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0622"]),
+      authority: "European Union / EUR-Lex"
     }),
-    "linalool": Object.freeze({
-      note_short: "Fragrance ingredient; oxidised linalool is an established contact allergen in the SCCS opinion.",
-      note_sources: Object.freeze(["https://health.ec.europa.eu/document/download/392a791e-d831-4bb0-a449-7031bffcd6a4_en"]),
-      authority: "European Commission Scientific Committee on Consumer Safety"
+    "potassium hydroxide": Object.freeze({
+      note_short: "pH adjuster; EU cosmetic rules list potassium hydroxide for pH-adjusting uses subject to specified restrictions.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0622"]),
+      authority: "European Union / EUR-Lex"
     })
   });
 
