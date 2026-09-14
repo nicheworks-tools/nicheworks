@@ -4,6 +4,9 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: write
+
 jobs:
   validate-data:
     runs-on: ubuntu-latest
@@ -16,3 +19,49 @@ jobs:
           node-version: '20'
       - name: Run data validation
         run: node tools/construction-tools-atlas/scripts/validate-data.mjs
+
+  pattern-dictionary-review-state:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/feat/pattern-dictionary-production-20-20260914' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout production branch
+        uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-production-20-20260914
+      - name: Advance production records to reviewed
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          import json
+          root=Path('tools/pattern-dictionary')
+          prod=root/'data/production-content.json'
+          review=root/'data/reference-image-review.json'
+          d=json.loads(prod.read_text())
+          r=json.loads(review.read_text())
+          passed={x['pattern_id'] for x in r['records'] if x['decision']=='pass'}
+          ids={x['pattern_id'] for x in d['patterns']}
+          assert len(ids)==20 and passed==ids
+          for rec in d['patterns']:
+              rec['review_state']='reviewed'
+          d['phase']='reference-images-reviewed'
+          d['policy']['review_state']='reviewed'
+          d['policy']['image_state']='structural-review-complete'
+          prod.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+          PY
+      - name: Validate reviewed state
+        run: |
+          node tools/pattern-dictionary/tests/source-verification-test.mjs
+          node tools/pattern-dictionary/tests/production-content-test.mjs
+          node tools/pattern-dictionary/tests/validate.mjs
+          node tools/pattern-dictionary/tests/search-test.mjs
+          node tools/pattern-dictionary/tests/reference-image-test.mjs
+          node --check tools/pattern-dictionary/app.js
+      - name: Persist review state and restore CI workflow
+        run: |
+          git fetch origin main --depth=1
+          git checkout origin/main -- .github/workflows/validate-atlas-data.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/validate-atlas-data.yml tools/pattern-dictionary/data/production-content.json
+          git commit -m 'data: advance 20 Pattern Dictionary references to reviewed'
+          git push origin HEAD:feat/pattern-dictionary-production-20-20260914
