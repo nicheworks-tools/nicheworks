@@ -235,7 +235,6 @@ function found(item, input) {
     alias: item.alias || [],
     match_kind: route.kind,
     matched_name: route.matchedName,
-    safety: item.safety,
     category: item.category || "general",
     note_short: item.note_short
   };
