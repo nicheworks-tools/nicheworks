@@ -1,10 +1,10 @@
 # Cosmetics Verified Category Taxonomy
 
-PR46 defines the controlled vocabulary used only by the source-backed verified category overlay. It does not rewrite or normalize the legacy raw dictionary category fields.
+PR46 defines the controlled vocabulary used only by the source-backed verified category overlay. PR47 promotes two mappings that PR46 had already reviewed. The taxonomy does not rewrite or normalize legacy raw dictionary category fields.
 
 ## Why this exists
 
-External authorities do not always use the same function labels as NicheWorks. A source may say `viscosity increasing agent - aqueous`, while the runtime may need the stable internal label `viscosity adjuster`. Those translations must be reviewed explicitly rather than inferred from similar wording.
+External authorities do not always use the same function labels as NicheWorks. A source may say `viscosity increasing agent - aqueous`, while the runtime uses the stable internal label `viscosity adjuster`. Those translations must be reviewed explicitly rather than inferred from similar wording.
 
 The registry is `cosmetics-category-taxonomy.json`.
 
@@ -30,9 +30,9 @@ The registry is `cosmetics-category-taxonomy.json`.
 - `viscosity adjuster`
 - `chelating agent`
 
-This list is intentionally narrower than the legacy raw category vocabulary. PR46 is not a full rewrite of every historical category string.
+This list is intentionally narrower than the legacy raw category vocabulary. The taxonomy is not a full rewrite of every historical category string.
 
-## Explicit cross-terminology mappings introduced in PR46
+## Explicit cross-terminology mappings
 
 ### Sodium Chloride
 
@@ -42,7 +42,7 @@ Internal verified category: `viscosity adjuster`
 
 Source: https://www.cosmeticsinfo.org/ingredient/sodium-chloride/
 
-The source explains that Sodium Chloride can increase the thickness of the aqueous portion of cosmetic products and lists it as a viscosity increasing agent - aqueous. This mapping is reviewed but remains `runtime_verified: false` in PR46.
+The source explains that Sodium Chloride can increase the thickness of the aqueous portion of cosmetic products and lists it as a viscosity increasing agent - aqueous. PR46 reviewed this mapping; PR47 promotes it to `runtime_verified: true`.
 
 ### Disodium EDTA
 
@@ -52,11 +52,11 @@ Internal verified category: `chelating agent`
 
 Source: https://www.cosmeticsinfo.org/ingredient/disodium-edta/
 
-The source states that EDTA and related ingredients function as chelating agents in cosmetics and personal care products. This mapping is reviewed but remains `runtime_verified: false` in PR46.
+The source states that EDTA and related ingredients function as chelating agents in cosmetics and personal care products. PR46 reviewed this mapping; PR47 promotes it to `runtime_verified: true`.
 
 ## Existing provenance mappings
 
-The seven runtime-verified canonical identities from PR44-45 are represented in the taxonomy registry as well. The taxonomy checker requires their category, authority and source URL to remain identical to the runtime evidence overlay.
+All nine runtime-verified canonical identities from PR44-47 are represented in the taxonomy registry. The taxonomy checker requires their category, authority and source URL to remain identical to the runtime evidence overlay.
 
 ## Fail-closed behavior
 
@@ -66,7 +66,6 @@ CI fails when any of the following occurs:
 - an authority function term is assigned to more than one internal category;
 - a reviewed mapping uses an authority function term not explicitly allowed for its category;
 - a runtime-verified taxonomy mapping differs from runtime provenance evidence;
-- a deferred mapping reaches runtime prematurely;
 - an unapproved or non-HTTPS source is used;
 - an ambiguous exact token such as AHA, BHA, PHA, Iron Oxides or 酸化鉄 enters the taxonomy.
 
@@ -78,4 +77,4 @@ node tools/_shared/check-cosmetics-category-provenance.mjs
 node tools/_shared/check-cosmetics-category-gap-inventory.mjs
 ```
 
-PR46 changes taxonomy governance only. Recognition coverage, OCR behavior, legacy safety isolation, note provenance, Amazon affiliate behavior and privacy metadata remain unchanged.
+Recognition coverage, OCR behavior, legacy safety isolation, note provenance, Amazon affiliate behavior and privacy metadata remain unchanged.
