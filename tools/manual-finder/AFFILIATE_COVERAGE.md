@@ -12,8 +12,8 @@ Current order:
 
 1. **Generic exact-model search** — active. One validated Amazon search template generates a tagged search URL from canonical ManualFinder `maker + model` metadata.
 2. **Consumer-printer ink** — active for Brother Wave 1, Epson Wave 1, and Canon Wave 1 below. Consumable codes come only from official manufacturer compatibility sources.
-3. **Office-printer toner** — active for ten OKI, five KYOCERA, eleven RICOH, and all twenty-seven current FUJIFILM Business Innovation exact-model records. Exact toner product codes are retained where the manufacturer publishes them; otherwise an explicit official manufacturer family-level toner source is retained as compatibility evidence. The Amazon handoff stays concise at one toner-search CTA per model.
-4. **Office-printer toner cross-maker expansion** — continue bounded KYOCERA / RICOH / other-maker waves only where exact official compatibility evidence is available. Current FUJIFILM BI ManualFinder records are complete.
+3. **Office-printer toner** — active for ten OKI, all eleven current KYOCERA, eleven RICOH, and all twenty-seven current FUJIFILM Business Innovation exact-model records. Exact toner product codes are retained where the manufacturer publishes them; otherwise an explicit official manufacturer family-level toner source is retained as compatibility evidence. The Amazon handoff stays concise at one toner-search CTA per model.
+4. **Office-printer toner cross-maker expansion** — continue bounded RICOH / other-maker waves only where exact official compatibility evidence is available. Current KYOCERA and FUJIFILM BI ManualFinder records are complete.
 5. **Office-printer drum / maintenance parts** — later, after toner behavior is established.
 6. **Camera batteries / chargers** — later, only for independently verified compatibility mappings.
 7. **Appliance replacement parts / filters** — later, only where exact compatibility can be proven.
@@ -112,9 +112,9 @@ OKI already has deep exact model-level ManualFinder coverage, so these affiliate
 
 The Amazon query is `OKI <model> トナー` with the fixed Associate tag. The exact toner-code list remains attached to the mapping as manufacturer evidence. C941dn's specialty white/clear toner codes are retained as evidence but do not create additional links.
 
-## Office-printer toner rule — KYOCERA Wave 1
+## Office-printer toner rule — KYOCERA Waves 1–2
 
-KYOCERA Document Solutions already has exact ManualFinder printer/MFP rows. The first bounded toner wave uses five existing printer records whose official product/specification pages state exact consumable toner codes.
+KYOCERA Document Solutions has eleven exact ManualFinder printer records. Across two bounded waves, all eleven now have exact toner mappings stated on official KYOCERA product/specification or support/manual materials. The affiliate layer does not create any additional KYOCERA model identity.
 
 | ManualFinder model | Amazon search maker | Officially verified toner codes |
 | --- | --- | --- |
@@ -123,8 +123,16 @@ KYOCERA Document Solutions already has exact ManualFinder printer/MFP rows. The 
 | FS-C5300DN | KYOCERA | TK-561K / TK-561Y / TK-561M / TK-561C |
 | FS-C5200DN | KYOCERA | TK-551K / TK-551C / TK-551M / TK-551Y |
 | LS-C8026N | KYOCERA | TK-811K / TK-811Y / TK-811M / TK-811C |
+| LS-C8100DN | KYOCERA | TK-821K / TK-821Y / TK-821M / TK-821C |
+| LS-C8008N | KYOCERA | TK-801K / TK-801Y / TK-801M / TK-801C |
+| LS-C8008DN | KYOCERA | TK-801K / TK-801Y / TK-801M / TK-801C |
+| LS-C5030N | KYOCERA | TK-511K / TK-511Y / TK-511M / TK-511C |
+| LS-C5016N | KYOCERA | TK-501K / TK-501Y / TK-501M / TK-501C |
+| LS-9520DN | KYOCERA | TK-76 |
 
-The runtime matches the canonical maker string `KYOCERA Document Solutions` but deliberately uses the shorter retail search term `KYOCERA` in Amazon queries. The generated handoff is `KYOCERA <model> トナー` with the fixed Associate tag. Exact toner codes remain attached as manufacturer evidence and do not create separate color links.
+Wave 2 activates only `LS-C8100DN`, `LS-C8008N`, `LS-C8008DN`, `LS-C5030N`, `LS-C5016N`, and `LS-9520DN`, all of which already exist as canonical ManualFinder records. The first five Wave 1 mappings remain unchanged. With Wave 2, all eleven current KYOCERA canonical records have bounded toner handoffs; any future KYOCERA identity remains fail-closed until it is first added to ManualFinder and independently backed by official compatibility evidence.
+
+The runtime matches the canonical maker string `KYOCERA Document Solutions` but deliberately uses the shorter retail search term `KYOCERA` in Amazon queries. The generated handoff is `KYOCERA <model> トナー` with the fixed Associate tag. Exact toner codes remain attached as manufacturer evidence and do not create separate color links. Manufacturer price information is not copied into the affiliate layer.
 
 ## Office-printer toner rule — RICOH Waves 1–2
 
@@ -206,4 +214,4 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 
 ## Next expansion gate
 
-FUJIFILM Business Innovation is complete for the twenty-seven exact records currently present in ManualFinder. RICOH now has eleven exact toner mappings across Waves 1–2. Continue with additional RICOH or KYOCERA records only where an official maintenance/specification page binds the toner identifier to an existing canonical model; otherwise keep the model fail-closed. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.
+FUJIFILM Business Innovation is complete for the twenty-seven exact records currently present in ManualFinder. KYOCERA is complete for all eleven current canonical records across Waves 1–2. RICOH has eleven exact toner mappings across Waves 1–2. Continue with additional RICOH or another office-printer maker only where an official maintenance/specification page binds the toner identifier to an existing canonical model; otherwise keep the model fail-closed. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.
