@@ -206,22 +206,23 @@
   function appendCanonicalCaption(slot, item) {
     const source = item.source || {};
     const author = text(source.author);
+    const attribution = text(source.attribution);
     const license = text(source.license);
     const sourcePage = text(source.source_page);
     const licenseUrl = text(source.license_url);
-    if (!author && !license && !sourcePage) return;
+    if (!attribution && !author && !license && !sourcePage) return;
 
     const current = lang();
     const figcaption = document.createElement("figcaption");
-    figcaption.append(`${current === "ja" ? "写真" : "Photo"}: ${author || "—"}`);
-    if (license) {
+    figcaption.append(`${current === "ja" ? "写真" : "Photo"}: ${attribution || author || "—"}`);
+    if (licenseUrl || (license && !attribution.includes(license))) {
       figcaption.append(" · ");
       if (licenseUrl) {
         const licenseLink = document.createElement("a");
         licenseLink.href = licenseUrl;
         licenseLink.target = "_blank";
         licenseLink.rel = "noopener noreferrer license";
-        licenseLink.textContent = license;
+        licenseLink.textContent = current === "ja" ? "利用条件" : "license";
         figcaption.appendChild(licenseLink);
       } else {
         figcaption.append(license);
@@ -236,7 +237,7 @@
       sourceLink.textContent = current === "ja" ? "出典" : "source";
       figcaption.appendChild(sourceLink);
     }
-    figcaption.append(current === "ja" ? " · リサイズ・WebP変換" : " · resized / WebP derivative");
+    figcaption.append(current === "ja" ? " · WebP派生（上記利用条件）" : " · WebP derivative (terms above)");
     slot.appendChild(figcaption);
   }
 
