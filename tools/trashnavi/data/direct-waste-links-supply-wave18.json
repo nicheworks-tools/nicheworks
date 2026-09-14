@@ -1,0 +1,27 @@
+[
+  {
+    "pref": "鳥取県",
+    "city": "鳥取市",
+    "name": "鳥取市 収集曜日一覧（鳥取地域） 令和8年度版",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.tottori.lg.jp/page/31552.html",
+    "lgcode": "312011",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "鳥取県",
+    "city": "鳥取市",
+    "name": "鳥取市 大型ごみの出し方について",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.tottori.lg.jp/page/4042.html",
+    "lgcode": "312011",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  }
+]
