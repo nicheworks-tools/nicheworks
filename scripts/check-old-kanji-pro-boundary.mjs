@@ -17,6 +17,7 @@ const cluster = [
   'name-old-kanji-checker'
 ];
 
+// Until verified billing activation, the public Old Kanji cluster must expose only its shipped free workflows.
 const unfinishedSalesPattern = /okj-pro-panel|billing-unavailable|課金未接続|課金導線[^<\n]{0,80}接続されていません|Billing unavailable|Billing is not connected yet|\$4\.99/i;
 
 for (const slug of cluster) {
