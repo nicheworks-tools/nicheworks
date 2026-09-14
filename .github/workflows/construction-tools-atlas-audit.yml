@@ -27,3 +27,6 @@ jobs:
 
       - name: Check whether data dedupe would remove records
         run: node tools/construction-tools-atlas/scripts/dedupe-quality-data.mjs --dry-run --write-report
+
+      - name: Check semantic search v2.3 regression
+        run: node tools/construction-tools-atlas/scripts/check-semantic-search-v2.3.cjs
