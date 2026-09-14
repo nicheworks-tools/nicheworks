@@ -12,7 +12,7 @@ Current order:
 
 1. **Generic exact-model search** — active. One validated Amazon search template generates a tagged search URL from canonical ManualFinder `maker + model` metadata.
 2. **Consumer-printer ink** — active for Brother Wave 1, Epson Wave 1, and Canon Wave 1 below. Consumable codes come only from official manufacturer compatibility sources.
-3. **Office-printer toner** — active for ten OKI, five KYOCERA, five RICOH, and all twenty-seven current FUJIFILM Business Innovation exact-model records. Exact toner product codes are retained where the manufacturer publishes them; otherwise an explicit official manufacturer family-level toner source is retained as compatibility evidence. The Amazon handoff stays concise at one toner-search CTA per model.
+3. **Office-printer toner** — active for ten OKI, five KYOCERA, eleven RICOH, and all twenty-seven current FUJIFILM Business Innovation exact-model records. Exact toner product codes are retained where the manufacturer publishes them; otherwise an explicit official manufacturer family-level toner source is retained as compatibility evidence. The Amazon handoff stays concise at one toner-search CTA per model.
 4. **Office-printer toner cross-maker expansion** — continue bounded KYOCERA / RICOH / other-maker waves only where exact official compatibility evidence is available. Current FUJIFILM BI ManualFinder records are complete.
 5. **Office-printer drum / maintenance parts** — later, after toner behavior is established.
 6. **Camera batteries / chargers** — later, only for independently verified compatibility mappings.
@@ -126,9 +126,9 @@ KYOCERA Document Solutions already has exact ManualFinder printer/MFP rows. The 
 
 The runtime matches the canonical maker string `KYOCERA Document Solutions` but deliberately uses the shorter retail search term `KYOCERA` in Amazon queries. The generated handoff is `KYOCERA <model> トナー` with the fixed Associate tag. Exact toner codes remain attached as manufacturer evidence and do not create separate color links.
 
-## Office-printer toner rule — RICOH Wave 1
+## Office-printer toner rule — RICOH Waves 1–2
 
-RICOH already has exact current color-MFP records in ManualFinder. The first bounded RICOH wave uses five existing model records and only mappings explicitly stated by Ricoh's official maintenance pages. Some current machine names intentionally use a toner identifier from an earlier compatible family; those relationships are stored exactly as Ricoh states them rather than inferred from model-number similarity.
+RICOH already has exact current color-MFP records in ManualFinder. The first two bounded RICOH waves use eleven existing model records and only mappings explicitly stated by Ricoh's official maintenance pages. Some current machine names intentionally use a toner identifier from an earlier compatible family; those relationships are stored exactly as Ricoh states them rather than inferred from model-number similarity.
 
 | ManualFinder model | Official toner identifiers |
 | --- | --- |
@@ -137,8 +137,16 @@ RICOH already has exact current color-MFP records in ManualFinder. The first bou
 | RICOH IM C7010 | RICOH toner IM C7010 (K/Y/M/C) |
 | RICOH IM C6011 | RICOH toner IM C6010 (K/Y/M/C) |
 | RICOH IM C3511 | RICOH toner IM C3510 (K/Y/M/C) |
+| RICOH IM C5511 | RICOH toner IM C6010 (K/Y/M/C) |
+| RICOH IM C4511 | RICOH toner IM C6010 (K/Y/M/C) |
+| RICOH IM C3011 | RICOH toner IM C3510 (K/Y/M/C) |
+| RICOH IM C2511 | RICOH toner IM C2510 (K/Y/M/C) |
+| RICOH IM C320F | RICOH P toner IM C320 (K/Y/M/C) |
+| RICOH IM C2011 | RICOH toner kit IM C2010 (K/Y/M/C) |
 
-The canonical model strings already begin with `RICOH`, so each row carries a separate retail `searchModel` to avoid generating a duplicated query such as `RICOH RICOH IM C8010`. The Amazon handoff becomes `RICOH IM C8010 トナー` while exact manufacturer toner identifiers remain attached as evidence. No separate color links are emitted.
+Wave 2 activates only `RICOH IM C5511`, `RICOH IM C4511`, `RICOH IM C3011`, `RICOH IM C2511`, `RICOH IM C320F`, and `RICOH IM C2011`, all of which already exist as canonical ManualFinder records. `RICOH IM C431` and other current RICOH records remain fail-closed until an equally explicit official toner mapping is verified.
+
+The canonical model strings already begin with `RICOH`, so each row carries a separate retail `searchModel` to avoid generating a duplicated query such as `RICOH RICOH IM C8010`. The Amazon handoff becomes `RICOH IM C8010 トナー` while exact manufacturer toner identifiers remain attached as evidence. No separate color links are emitted and no Ricoh price information is copied.
 
 ## Office-printer toner rule — FUJIFILM Business Innovation Wave 1
 
@@ -198,4 +206,4 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 
 ## Next expansion gate
 
-FUJIFILM Business Innovation is complete for the twenty-seven exact records currently present in ManualFinder: seven exact-code ApeosPort-VII mappings, seventeen family-SDS-backed Apeos mappings, and three exact-family product-page-backed Apeos 3061-series mappings. The next toner expansion should move to additional RICOH, KYOCERA, or another office-printer maker only where an exact official toner code or explicit manufacturer family source can be bound to an existing ManualFinder model. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.
+FUJIFILM Business Innovation is complete for the twenty-seven exact records currently present in ManualFinder. RICOH now has eleven exact toner mappings across Waves 1–2. Continue with additional RICOH or KYOCERA records only where an official maintenance/specification page binds the toner identifier to an existing canonical model; otherwise keep the model fail-closed. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.

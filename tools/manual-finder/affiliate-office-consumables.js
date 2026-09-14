@@ -106,6 +106,36 @@
       tonerCodes: Object.freeze(["RICOH トナー ブラック IM C3510", "RICOH トナー イエロー IM C3510", "RICOH トナー マゼンタ IM C3510", "RICOH トナー シアン IM C3510"])
     }),
     Object.freeze({
+      maker: "RICOH", searchMaker: "RICOH", searchModel: "IM C5511", model: "RICOH IM C5511", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.ricoh.co.jp/products/list/ricoh-im-c6011-c5511-c4511-c3511-c3011-c2511/maintenance",
+      tonerCodes: Object.freeze(["RICOH トナー ブラック IM C6010", "RICOH トナー イエロー IM C6010", "RICOH トナー マゼンタ IM C6010", "RICOH トナー シアン IM C6010"])
+    }),
+    Object.freeze({
+      maker: "RICOH", searchMaker: "RICOH", searchModel: "IM C4511", model: "RICOH IM C4511", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.ricoh.co.jp/products/list/ricoh-im-c6011-c5511-c4511-c3511-c3011-c2511/maintenance",
+      tonerCodes: Object.freeze(["RICOH トナー ブラック IM C6010", "RICOH トナー イエロー IM C6010", "RICOH トナー マゼンタ IM C6010", "RICOH トナー シアン IM C6010"])
+    }),
+    Object.freeze({
+      maker: "RICOH", searchMaker: "RICOH", searchModel: "IM C3011", model: "RICOH IM C3011", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.ricoh.co.jp/products/list/ricoh-im-c6011-c5511-c4511-c3511-c3011-c2511/maintenance",
+      tonerCodes: Object.freeze(["RICOH トナー ブラック IM C3510", "RICOH トナー イエロー IM C3510", "RICOH トナー マゼンタ IM C3510", "RICOH トナー シアン IM C3510"])
+    }),
+    Object.freeze({
+      maker: "RICOH", searchMaker: "RICOH", searchModel: "IM C2511", model: "RICOH IM C2511", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.ricoh.co.jp/products/list/ricoh-im-c6011-c5511-c4511-c3511-c3011-c2511/maintenance",
+      tonerCodes: Object.freeze(["RICOH トナー ブラック IM C2510", "RICOH トナー イエロー IM C2510", "RICOH トナー マゼンタ IM C2510", "RICOH トナー シアン IM C2510"])
+    }),
+    Object.freeze({
+      maker: "RICOH", searchMaker: "RICOH", searchModel: "IM C320F", model: "RICOH IM C320F", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.ricoh.co.jp/products/list/ricoh-im-c320f/maintenance",
+      tonerCodes: Object.freeze(["RICOH Pトナー ブラック IM C320", "RICOH Pトナー イエロー IM C320", "RICOH Pトナー マゼンタ IM C320", "RICOH Pトナー シアン IM C320"])
+    }),
+    Object.freeze({
+      maker: "RICOH", searchMaker: "RICOH", searchModel: "IM C2011", model: "RICOH IM C2011", verifiedAt: "2026-09-14",
+      sourceUrl: "https://www.ricoh.co.jp/products/list/ricoh-im-c2011/maintenance",
+      tonerCodes: Object.freeze(["RICOH トナーキット ブラック IM C2010", "RICOH トナーキット イエロー IM C2010", "RICOH トナーキット マゼンタ IM C2010", "RICOH トナーキット シアン IM C2010"])
+    }),
+    Object.freeze({
       maker: "FUJIFILM Business Innovation", searchMaker: "FUJIFILM", model: "ApeosPort-VII C7773", verifiedAt: "2026-09-14",
       sourceUrl: "https://opencds-fb.fujifilm.com/gen/product2_aux/prod/manual/jp/ap7_c7773/users_guide/contents/ja/UG_210100.html",
       tonerCodes: Object.freeze(["CT203138", "CT203139", "CT203140", "CT203141"])
