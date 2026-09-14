@@ -44,7 +44,7 @@ function rank(q,lang){
   return ps.map(p=>{let score=0;const add=n=>score+=n,name=norm(p.names[lang]),other=norm(p.names[lang==='ja'?'en':'ja']);
     if(nq===name)add(100);if(nq===other)add(70);
     for(const a of p.aliases[lang]||[]){const na=norm(a);if(nq===na)add(90);else if(nq.includes(na)||na.includes(nq))add(45)}
-    for(const t of p.search_terms[lang]||[]){const nt=norm(t);if(nq.includes(nt)||nt.includes(nq))add(55)}
+    for(const t of p.search_terms[lang]||[]){const nt=norm(t);if(nq.includes(nt))add(55);else if(nq.length>=4&&nt.includes(nq))add(12)}
     if(typoHit(nq,p))add(38);
     const b=bag(p,lang);for(const tok of qt)if(tok.length>1&&b.includes(tok))add(12);
     for(const x of sig){if((x.ids||[]).includes(p.id))add(72);if((x.families||[]).some(v=>p.families.includes(v)))add(45);if((x.colors||[]).some(v=>(p.colors?.primary||[]).includes(v)))add(15);if((x.culture||[]).some(v=>(p.culture||[]).includes(v)))add(35);if((x.uses||[]).some(v=>(p.uses||[]).includes(v)))add(25);for(const c of x.concepts||[])if(b.includes(norm(c)))add(35)}
