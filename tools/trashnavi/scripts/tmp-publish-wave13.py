@@ -29,7 +29,15 @@ replace_once(
     "if(outputs.length!==20) throw new Error(`municipality page count must be 20; got ${outputs.length}`);"
 )
 
-# 3) Root TrashNavi page: add Tsu and update displayed data date.
+# 3) Affiliate contract publication-count guard: 19 -> 20.
+affiliate_checker = tool / 'scripts' / 'check-affiliate-contract.mjs'
+replace_once(
+    affiliate_checker,
+    "check(manifest.length === 19, `expected 19 published municipality pages, got ${manifest.length}`);",
+    "check(manifest.length === 20, `expected 20 published municipality pages, got ${manifest.length}`);"
+)
+
+# 4) Root TrashNavi page: add Tsu and update displayed data date.
 index = tool / 'index.html'
 text = index.read_text(encoding='utf-8')
 old_tail = '<a href="/tools/trashnavi/oita/oita/">大分市</a></div>'
@@ -41,7 +49,7 @@ text = text.replace('データ更新日：2026-09-13', 'データ更新日：202
 text = text.replace('Data updated: 2026-09-13', 'Data updated: 2026-09-14', 1)
 index.write_text(text, encoding='utf-8')
 
-# 4) Root sitemap: add the canonical Tsu municipality URL exactly once.
+# 5) Root sitemap: add the canonical Tsu municipality URL exactly once.
 root_sitemap = root / 'sitemap.xml'
 text = root_sitemap.read_text(encoding='utf-8')
 tsu_loc = '<loc>https://nicheworks.app/tools/trashnavi/mie/tsu/</loc>'
@@ -53,7 +61,7 @@ if text.count(oita_block) != 1:
     raise SystemExit('Oita root-sitemap anchor missing/not unique')
 root_sitemap.write_text(text.replace(oita_block, oita_block + tsu_block, 1), encoding='utf-8')
 
-# 5) SPEC: synchronize Wave 13 publication, measured baseline and evidence.
+# 6) SPEC: synchronize Wave 13 publication, measured baseline and evidence.
 spec_path = tool / 'SPEC.md'
 spec = spec_path.read_text(encoding='utf-8')
 wave12_anchor = '- 大分県 大分市 — `/tools/trashnavi/oita/oita/`\n'
