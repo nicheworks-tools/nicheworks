@@ -455,8 +455,13 @@
     const h = dimensions?.heightMm;
     const w = dimensions?.widthMm;
     const d = dimensions?.depthMm;
+    const dMin = dimensions?.depthMmMin;
+    const dMax = dimensions?.depthMmMax;
     if (!h || !w) return '—';
-    return [h, w, d].filter((value) => value !== null && value !== undefined).map(formatNumber).join(' × ') + ' mm';
+    const hasDepth = d !== null && d !== undefined;
+    const hasDepthRange = dMin !== null && dMin !== undefined && dMax !== null && dMax !== undefined;
+    const depth = hasDepth ? formatNumber(d) : hasDepthRange ? `${formatNumber(dMin)}–${formatNumber(dMax)}` : null;
+    return [formatNumber(h), formatNumber(w), depth].filter((value) => value !== null && value !== undefined).join(' × ') + ' mm';
   }
 
   function compactDimensions(phone) {
