@@ -1,0 +1,110 @@
+{
+  "version": "2.3",
+  "signals": [
+    {
+      "id": "concrete",
+      "label": {"ja": "コンクリート", "en": "Concrete"},
+      "cues": ["コンクリ", "コンクリート", "モルタル", "ブロック", "concrete", "masonry", "mortar", "block"],
+      "boost_terms": ["コンクリート", "モルタル", "ブロック", "concrete", "masonry", "drill_masonry"],
+      "weight": 460
+    },
+    {
+      "id": "drill",
+      "label": {"ja": "穴あけ", "en": "Drilling"},
+      "cues": ["穴あけ", "穴開け", "穴をあけ", "穴を開け", "穿孔", "drill", "drilling", "make a hole", "hole"],
+      "boost_terms": ["穴あけ", "下穴", "穿孔", "drilling", "drill_hole", "drill_masonry", "core_drilling", "pilot hole"],
+      "weight": 460
+    },
+    {
+      "id": "electric",
+      "label": {"ja": "電動", "en": "Powered"},
+      "cues": ["電動", "充電", "バッテリー", "コードレス", "electric", "powered", "power tool", "cordless", "battery"],
+      "boost_terms": ["電動", "充電", "power_tool", "power tool", "cordless", "battery"],
+      "weight": 360
+    },
+    {
+      "id": "fasten",
+      "label": {"ja": "締め付け", "en": "Fastening"},
+      "cues": ["ネジ締め", "ねじ締め", "ビス締め", "締める", "締付", "固定", "drive screws", "screw driving", "fasten", "fastening"],
+      "boost_terms": ["ネジ締め", "ビス締め", "締付", "fasten", "fastening", "screw", "fasten_screw"],
+      "weight": 460
+    },
+    {
+      "id": "sand",
+      "label": {"ja": "研磨", "en": "Sanding"},
+      "cues": ["研磨", "磨く", "削る", "やすり", "サンダー", "sand", "sanding", "polish", "smooth"],
+      "boost_terms": ["研磨", "サンダー", "sanding", "sand_surface", "smooth_putty", "prepare_finish"],
+      "weight": 440
+    },
+    {
+      "id": "sealant",
+      "label": {"ja": "シーリング", "en": "Sealant"},
+      "cues": ["シリコン", "シーリング", "コーキング", "充填材", "sealant", "silicone", "caulk", "caulking"],
+      "boost_terms": ["シリコン", "シーリング", "コーキング", "sealant", "caulk", "caulking"],
+      "weight": 520
+    },
+    {
+      "id": "dispense",
+      "label": {"ja": "押し出す", "en": "Dispensing"},
+      "cues": ["押し出す", "押しだす", "絞り出す", "注入", "dispense", "squeeze out", "extrude"],
+      "boost_terms": ["ガン", "gun", "注入", "dispens", "caulking"],
+      "weight": 360
+    },
+    {
+      "id": "laser-line",
+      "label": {"ja": "レーザー線", "en": "Laser line"},
+      "cues": ["赤い線", "緑の線", "レーザー線", "レーザーの線", "laser line", "red line", "green line"],
+      "boost_terms": ["レーザー墨出し", "墨出し", "laser level", "laser line"],
+      "weight": 620
+    },
+    {
+      "id": "layout",
+      "label": {"ja": "墨出し", "en": "Layout"},
+      "cues": ["墨出し", "基準線", "水平線", "垂直線", "layout line", "reference line"],
+      "boost_terms": ["墨出し", "基準線", "水平", "垂直", "layout", "level"],
+      "weight": 440
+    },
+    {
+      "id": "hidden-wall",
+      "label": {"ja": "壁内探知", "en": "In-wall detection"},
+      "cues": ["壁の中", "壁内", "柱探す", "柱を探す", "下地探し", "stud finder", "wall scanner", "inside wall"],
+      "boost_terms": ["下地探し", "下地センサー", "stud finder", "wall scanner", "壁内", "柱"],
+      "weight": 620
+    },
+    {
+      "id": "cut",
+      "label": {"ja": "切断", "en": "Cutting"},
+      "cues": ["切る", "切断", "カット", "saw", "cut", "cutting"],
+      "boost_terms": ["切断", "切る", "saw", "cut", "cutting"],
+      "weight": 420
+    },
+    {
+      "id": "wood",
+      "label": {"ja": "木材", "en": "Wood"},
+      "cues": ["木材", "木を", "木工", "合板", "wood", "timber", "plywood"],
+      "boost_terms": ["木材", "木工", "合板", "wood", "timber", "plywood"],
+      "weight": 340
+    },
+    {
+      "id": "measure",
+      "label": {"ja": "測定", "en": "Measurement"},
+      "cues": ["測る", "測定", "寸法", "距離", "measure", "measurement", "distance"],
+      "boost_terms": ["測定", "計測", "寸法", "measure", "measurement", "distance"],
+      "weight": 420
+    },
+    {
+      "id": "level",
+      "label": {"ja": "水平・垂直", "en": "Level / plumb"},
+      "cues": ["水平", "垂直", "水平見る", "level", "plumb", "vertical"],
+      "boost_terms": ["水平", "垂直", "level", "plumb"],
+      "weight": 430
+    },
+    {
+      "id": "anchor",
+      "label": {"ja": "アンカー", "en": "Anchor"},
+      "cues": ["アンカー", "anchor", "プラグ固定", "plug anchor"],
+      "boost_terms": ["アンカー", "anchor", "install_anchor", "plug anchor"],
+      "weight": 390
+    }
+  ]
+}
