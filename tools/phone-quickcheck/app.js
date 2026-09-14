@@ -379,10 +379,12 @@
       else keys.add('charger-pd-20w');
     } else if (manufacturer === 'google' && pps === 'required' && watts) {
       keys.add(watts > 30 ? 'charger-pps-45w' : 'charger-pps-30w');
-    } else if (manufacturer === 'samsung' && watts) {
+    } else if (manufacturer === 'samsung' && watts && protocols.includes('super fast charging')) {
       if (watts >= 60) keys.add('charger-samsung-60w');
       else if (watts >= 45) keys.add('charger-samsung-45w');
       else keys.add('charger-samsung-25w');
+    } else if (manufacturer === 'samsung' && watts && (protocols.includes('adaptive fast charging') || protocols.includes('qc2.0'))) {
+      keys.add('charger-samsung-afc-15w');
     } else if (protocols.includes('usb pd') && watts) {
       if (watts <= 20) keys.add('charger-pd-20w');
       else if (watts <= 30) keys.add('charger-pd-30w');
