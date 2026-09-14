@@ -93,14 +93,16 @@ function attributionMarkdown(manifest, rows) {
     '',
     'Runtime images are local derivatives. The build may auto-orient the source, resize it, strip metadata, and convert it to WebP. The original source file is retained beside each derivative.',
     '',
-    '| Canonical entry | Author | License | Source | Source SHA-1 |',
+    'For licensed sources, each generated WebP derivative is made available under the same license shown for that source below. For the Public Domain source, NicheWorks does not assert new copyright restrictions over the mechanical WebP derivative.',
+    '',
+    '| Canonical entry | Attribution | License | Source | Source SHA-1 |',
     '| --- | --- | --- | --- | --- |'
   ];
   for (const row of rows) {
     const item = row.item;
-    const safeAuthor = item.author.replaceAll('|', '\\|');
+    const safeAttribution = item.attribution.replaceAll('|', '\\|');
     const safeLicense = item.license.replaceAll('|', '\\|');
-    lines.push(`| \`${item.entry_id}\` | ${safeAuthor} | [${safeLicense}](${item.license_url}) | [Wikimedia Commons](${item.source_page}) | \`${row.hash}\` |`);
+    lines.push(`| \`${item.entry_id}\` | ${safeAttribution} | [${safeLicense}](${item.license_url}) | [Wikimedia Commons](${item.source_page}) | \`${row.hash}\` |`);
   }
   lines.push('', `Source ledger version: \`${manifest.version}\`.`,'');
   return `${lines.join('\n')}\n`;
