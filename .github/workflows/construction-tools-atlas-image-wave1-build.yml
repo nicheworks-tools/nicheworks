@@ -1,0 +1,53 @@
+name: Construction Tools Atlas image Wave 1 build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feat/construction-atlas-image-wave1-20260914
+    paths:
+      - 'tools/construction-tools-atlas/data/image-wave1-sources-v2.3.json'
+      - 'tools/construction-tools-atlas/scripts/build-image-wave1-v2.3.mjs'
+      - '.github/workflows/construction-tools-atlas-image-wave1-build.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: construction-atlas-image-wave1-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Wave 1 branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Install image tooling
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+
+      - name: Validate builder syntax
+        run: node --check tools/construction-tools-atlas/scripts/build-image-wave1-v2.3.mjs
+
+      - name: Download reviewed sources and generate WebP derivatives
+        run: node tools/construction-tools-atlas/scripts/build-image-wave1-v2.3.mjs
+
+      - name: Commit generated local image assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add tools/construction-tools-atlas/images/
+          if git diff --cached --quiet; then
+            echo "Wave 1 image assets are already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(construction-atlas): generate Wave 1 raster images"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
