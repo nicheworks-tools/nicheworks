@@ -5826,7 +5826,7 @@
         },
         {
           "path": "scripts/check-phone-quickcheck-affiliate.mjs",
-          "classification": "affiliate contract test"
+          "classification": "regression/contract test"
         },
         {
           "path": "tools/phone-quickcheck/tests/behavior.test.mjs",
