@@ -1197,7 +1197,7 @@
       "verification_state": "qualified",
       "names": {
         "ja": "キリム柄",
-        "en": "Kilim"
+        "en": "Kilim Pattern"
       },
       "aliases": {
         "ja": [
@@ -1205,11 +1205,12 @@
           "キリム模様"
         ],
         "en": [
-          "kilim pattern",
+          "Kilim",
+          "kelim",
           "kilim rug pattern"
         ]
       },
-      "term_scope": "flat-woven textile category with varied motifs",
+      "term_scope": "flat-woven textile category and kilim-inspired visual family, not one fixed motif",
       "definition": {
         "ja": "キリムは毛足のない平織り系の敷物・織物カテゴリーで、表面には菱形、フック、帯状幾何学など多様なモチーフが用いられます。本辞典では市場でいう「キリム柄」を、その外観を指す検索ラベルとして扱います。",
         "en": "Kilim is a category of pileless flat-woven rugs and textiles that can carry many geometric motifs. Here, 'kilim pattern' is treated as a search label for that visual family rather than one single canonical motif."
@@ -1250,12 +1251,12 @@
       },
       "colors": {
         "primary": [
-          "rust",
+          "red",
           "navy",
           "cream"
         ],
         "color_role": "variable",
-        "primary_reason": "This is an editorial recognition palette; no single colorway defines kilim."
+        "primary_reason": "Kilim traditions use diverse colors and designs; this fixed palette is only an editorial recognition reference."
       }
     }
   ]
