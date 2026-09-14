@@ -26,29 +26,23 @@ const EXPECTED_WAVE1 = Object.freeze({
   phenoxyethanol: 'preservative',
   carbomer: 'thickener'
 });
-
 const EXPECTED_WAVE2 = Object.freeze({
   'citric acid': 'pH adjuster',
   tocopherol: 'antioxidant'
 });
-
 const EXPECTED_WAVE3 = Object.freeze({
   'sodium chloride': 'viscosity adjuster',
   'disodium edta': 'chelating agent'
 });
-
 const EXPECTED_WAVE4 = Object.freeze({
-  'tocopheryl acetate': 'antioxidant',
-  'sodium citrate': 'pH adjuster'
+  'tocopheryl acetate': 'antioxidant'
 });
-
 const EXPECTED_ALL = Object.freeze({
   ...EXPECTED_WAVE1,
   ...EXPECTED_WAVE2,
   ...EXPECTED_WAVE3,
   ...EXPECTED_WAVE4
 });
-
 const EXPECTED_SOURCES = Object.freeze({
   water: 'https://www.cosmeticsinfo.org/ingredient/water/',
   glycerin: 'https://www.cosmeticsinfo.org/ingredient/glycerin/',
@@ -59,26 +53,16 @@ const EXPECTED_SOURCES = Object.freeze({
   tocopherol: 'https://www.cosmeticsinfo.org/ingredient/tocopherol/',
   'sodium chloride': 'https://www.cosmeticsinfo.org/ingredient/sodium-chloride/',
   'disodium edta': 'https://www.cosmeticsinfo.org/ingredient/disodium-edta/',
-  'tocopheryl acetate': 'https://www.cosmeticsinfo.org/ingredient/tocopherol/',
-  'sodium citrate': 'https://www.cosmeticsinfo.org/ingredient/citric-acid/'
+  'tocopheryl acetate': 'https://www.cosmeticsinfo.org/ingredient/tocopherol/'
 });
-
-const ALLOWED_SOURCE_HOSTS = new Set([
-  'www.cosmeticsinfo.org',
-  'health.ec.europa.eu'
-]);
+const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu']);
 
 function normalizeText(value = '') {
   return String(value).normalize('NFKC').replace(/\s+/g, ' ').trim();
 }
-
 function splitCategory(value = '') {
-  return normalizeText(value)
-    .split(/\s*\/\s*/)
-    .map(normalizeText)
-    .filter(Boolean);
+  return normalizeText(value).split(/\s*\/\s*/).map(normalizeText).filter(Boolean);
 }
-
 function validHttpsSource(value) {
   try {
     const parsed = new URL(String(value || '').trim());
@@ -93,14 +77,12 @@ const rows = DATA_FILES.flatMap((file) => {
   if (!Array.isArray(payload)) throw new Error(`${file}: dictionary payload must be an array`);
   return payload;
 });
-
 const evidence = parser.verifiedCategoryEvidence || {};
 assert.deepEqual(
   Object.fromEntries(Object.entries(evidence).map(([key, item]) => [key, item.category])),
   EXPECTED_ALL,
   'verified category evidence must remain the reviewed cumulative wave 1 + wave 2 + wave 3 + wave 4 set'
 );
-
 for (const ambiguous of parser.ambiguousExactKeys || []) {
   assert.equal(evidence[ambiguous], undefined, `ambiguous exact token must not receive category evidence: ${ambiguous}`);
 }
@@ -112,17 +94,13 @@ for (const row of rows) {
   if (!groups.has(key)) groups.set(key, []);
   groups.get(key).push(row);
 }
-
 let rawMissingCategoryRows = 0;
-for (const row of rows) {
-  if (!normalizeText(row.category)) rawMissingCategoryRows += 1;
-}
+for (const row of rows) if (!normalizeText(row.category)) rawMissingCategoryRows += 1;
 assert.equal(rawMissingCategoryRows, 187, 'verified overlay must not hide the frozen 187 raw category gaps by rewriting recognition records');
 
 let newlyClassifiedCanonicalIdentities = 0;
 let wave4NewlyClassifiedCanonicalIdentities = 0;
 const rawCategoryInventory = {};
-
 for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
   const item = evidence[canonical];
   assert.ok(item, `missing verified category evidence: ${canonical}`);
@@ -133,28 +111,19 @@ for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
   assert.ok(item.sources.includes(EXPECTED_SOURCES[canonical]), `${canonical}: reviewed source URL must remain attached`);
   assert.ok(groups.has(canonical), `${canonical}: evidence canonical must exist in maintained dictionary`);
 
-  const rawCategories = [...new Set(
-    groups.get(canonical)
-      .flatMap((row) => splitCategory(row.category))
-      .map((category) => category.toLowerCase())
-  )];
+  const rawCategories = [...new Set(groups.get(canonical).flatMap((row) => splitCategory(row.category)).map((category) => category.toLowerCase()))];
   rawCategoryInventory[canonical] = rawCategories;
-
   if (rawCategories.length === 0) {
     newlyClassifiedCanonicalIdentities += 1;
     if (Object.hasOwn(EXPECTED_WAVE4, canonical)) wave4NewlyClassifiedCanonicalIdentities += 1;
   }
   if (rawCategories.length > 0) {
-    assert.ok(
-      rawCategories.includes(expectedCategory.toLowerCase()),
-      `${canonical}: verified category conflicts with existing raw category metadata (${rawCategories.join(', ')})`
-    );
+    assert.ok(rawCategories.includes(expectedCategory.toLowerCase()), `${canonical}: verified category conflicts with existing raw category metadata (${rawCategories.join(', ')})`);
   }
 }
 
 const merged = parser.mergeDictionaryRecords(rows);
 const mergedByCanonical = new Map(merged.map((item) => [parser.canonicalIdentityKey(item.en), item]));
-
 for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
   const item = mergedByCanonical.get(canonical);
   assert.ok(item, `${canonical}: missing from merged runtime dictionary`);
@@ -162,29 +131,25 @@ for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
   assert.ok(Array.isArray(item.category_sources) && item.category_sources.length > 0, `${canonical}: category sources must survive merge`);
   assert.ok(item.category_sources.every(validHttpsSource), `${canonical}: merged category sources must remain approved HTTPS URLs`);
   assert.ok(item.category_sources.includes(EXPECTED_SOURCES[canonical]), `${canonical}: reviewed source URL must survive merge`);
-  assert.ok(
-    Array.isArray(item.categories) && item.categories.some((category) => category.toLowerCase() === expectedCategory.toLowerCase()),
-    `${canonical}: verified category must be present in merged functional categories`
-  );
+  assert.ok(Array.isArray(item.categories) && item.categories.some((category) => category.toLowerCase() === expectedCategory.toLowerCase()), `${canonical}: verified category must be present in merged functional categories`);
 }
 
-assert.equal(Object.keys(EXPECTED_WAVE1).length, 5, 'wave 1 reviewed set must remain five canonical identities');
-assert.equal(Object.keys(EXPECTED_WAVE2).length, 2, 'wave 2 reviewed set must remain two canonical identities');
-assert.equal(Object.keys(EXPECTED_WAVE3).length, 2, 'wave 3 reviewed set must remain two canonical identities');
-assert.equal(Object.keys(EXPECTED_WAVE4).length, 2, 'wave 4 reviewed set must remain two canonical identities');
-assert.equal(wave4NewlyClassifiedCanonicalIdentities, 2, 'wave 4 must classify exactly two previously raw-missing canonical identities');
+assert.equal(Object.keys(EXPECTED_WAVE1).length, 5);
+assert.equal(Object.keys(EXPECTED_WAVE2).length, 2);
+assert.equal(Object.keys(EXPECTED_WAVE3).length, 2);
+assert.equal(Object.keys(EXPECTED_WAVE4).length, 1, 'wave 4 reviewed set must remain one nonconflicting canonical identity');
+assert.equal(wave4NewlyClassifiedCanonicalIdentities, 1, 'wave 4 must classify exactly one previously raw-missing canonical identity');
+assert.equal(evidence['sodium citrate'], undefined, 'Sodium Citrate must remain deferred until buffer vs pH-adjuster taxonomy is explicitly resolved');
 
 console.log(JSON.stringify({
   status: 'pass',
   phase: 'category-provenance-wave-4',
   raw_missing_category_rows_unchanged: rawMissingCategoryRows,
   verified_category_evidence_canonical_identities: Object.keys(EXPECTED_ALL).length,
-  wave_1_verified_canonical_identities: Object.keys(EXPECTED_WAVE1).length,
-  wave_2_verified_canonical_identities: Object.keys(EXPECTED_WAVE2).length,
-  wave_3_verified_canonical_identities: Object.keys(EXPECTED_WAVE3).length,
   wave_4_verified_canonical_identities: Object.keys(EXPECTED_WAVE4).length,
   newly_classified_canonical_identities: newlyClassifiedCanonicalIdentities,
   wave_4_newly_classified_canonical_identities: wave4NewlyClassifiedCanonicalIdentities,
+  sodium_citrate_deferred_for_taxonomy_decision: true,
   raw_category_inventory: rawCategoryInventory,
   recognition_records_rewritten: false,
   safety_contract_changed: false,
