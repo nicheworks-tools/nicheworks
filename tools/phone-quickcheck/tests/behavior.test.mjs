@@ -458,4 +458,17 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.match(html, /PPS/);
 }
 
+// Japan-market OPPO Find N6 preserves foldable dimensions and proprietary wired/wireless charging classes.
+{
+  const h = await createHarness(['oppo-find-n6']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('160 × 74 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /160 × 74 × 8\.9 mm/);
+  assert.match(html, /160 × 146 × 4\.2 mm/);
+  assert.match(html, /6000 mAh/);
+  assert.match(html, /80W/);
+  assert.match(html, /SUPERVOOC/);
+  assert.match(html, /AIRVOOC \/ 50W/);
+}
+
 console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estimates, Apple unknown capacity, Lightning guidance, proprietary charging, and mobile sheet.');
