@@ -42,7 +42,18 @@
     row("C8800-P", "https://www.oki.com/jp/printing/support/consumables-and-accessories/color/C8800-P/", ["TNR-C3FK1", "TNR-C3FY1", "TNR-C3FM1", "TNR-C3FC1"])
   ]);
 
-  const rows = Object.freeze([...wave2Rows, ...wave3Rows]);
+  const wave4Rows = Object.freeze([
+    row("MC361dn", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC361DN/", ["TNR-C4HK1", "TNR-C4HY1", "TNR-C4HM1", "TNR-C4HC1"]),
+    row("MC362dn", "https://www.oki.com/jp/printing/support/consumables-and-accessories/color/MC362DN/", ["TNR-C4KK3", "TNR-C4KY3", "TNR-C4KM3", "TNR-C4KC3", "TNR-C4KK1", "TNR-C4KY1", "TNR-C4KM1", "TNR-C4KC1"]),
+    row("MC362dnw", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC362DNW/", ["TNR-C4KK3", "TNR-C4KY3", "TNR-C4KM3", "TNR-C4KC3", "TNR-C4KK1", "TNR-C4KY1", "TNR-C4KM1", "TNR-C4KC1"]),
+    row("MC363dnw", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC363DNW/", ["TC-C4AK1", "TC-C4AY1", "TC-C4AM1", "TC-C4AC1", "TC-C4AK2", "TC-C4AY2", "TC-C4AM2", "TC-C4AC2"]),
+    row("MC561dn", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC561DN/", ["TNR-C4HK1", "TNR-C4HY1", "TNR-C4HM1", "TNR-C4HC1", "TNR-C4HK2", "TNR-C4HY2", "TNR-C4HM2", "TNR-C4HC2"]),
+    row("MC562dn", "https://www.oki.com/jp/printing/support/consumables-and-accessories/color/MC562DN/", ["TNR-C4KK1", "TNR-C4KY1", "TNR-C4KM1", "TNR-C4KC1", "TNR-C4KK2", "TNR-C4KY2", "TNR-C4KM2", "TNR-C4KC2"]),
+    row("MC562dnw", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC562DNW/", ["TNR-C4KK1", "TNR-C4KY1", "TNR-C4KM1", "TNR-C4KC1", "TNR-C4KK2", "TNR-C4KY2", "TNR-C4KM2", "TNR-C4KC2"]),
+    row("MC573dnw", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC573DNW/", ["TC-C4BK1", "TC-C4BY1", "TC-C4BM1", "TC-C4BC1", "TC-C4BK2", "TC-C4BY2", "TC-C4BM2", "TC-C4BC2"])
+  ]);
+
+  const rows = Object.freeze([...wave2Rows, ...wave3Rows, ...wave4Rows]);
 
   function buildTaggedSearchUrl(query) {
     const url = new URL("https://www.amazon.co.jp/s");
@@ -81,6 +92,7 @@
 
   window.MANUALFINDER_OKI_TONER_WAVE2_LEDGER = wave2Rows;
   window.MANUALFINDER_OKI_TONER_WAVE3_LEDGER = wave3Rows;
+  window.MANUALFINDER_OKI_TONER_WAVE4_LEDGER = wave4Rows;
   window.MANUALFINDER_AFFILIATE_CONFIG = Object.freeze({
     ...base,
     printerConsumables: Object.freeze([...(base.printerConsumables || []), ...rows]),
