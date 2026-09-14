@@ -31,8 +31,8 @@ assert.deepEqual(
   ['PC・スマホ', '家電', 'プリンター・複合機', 'カメラ・映像', 'オーディオ', 'ゲーム', 'ネットワーク機器']
 );
 assert.deepEqual(Array.from(config.modelSearchTemplate.excludedCategories), ['その他']);
-assert.equal(config.printerConsumables.length, 45, '25 consumer-printer mappings plus 20 office-toner mappings should be present');
-assert.equal(config.officePrinterConsumables.length, 20, 'OKI 10 + KYOCERA 5 + RICOH 5 office-toner mappings should be present');
+assert.equal(config.printerConsumables.length, 52, '25 consumer-printer mappings plus 27 office-toner mappings should be present');
+assert.equal(config.officePrinterConsumables.length, 27, 'OKI 10 + KYOCERA 5 + RICOH 5 + FUJIFILM BI 7 office-toner mappings should be present');
 assert.equal(Object.keys(config.targets).length, 3);
 assert.equal(config.offers.length, 1, 'dynamic searches must not create one stored Amazon URL per record');
 
@@ -43,6 +43,7 @@ for (const [maker, model, category] of [
   ['OKI', 'C650dnw', 'プリンター・複合機'],
   ['KYOCERA Document Solutions', 'ECOSYS P6026cdn', 'プリンター・複合機'],
   ['RICOH', 'RICOH IM C8010', 'プリンター・複合機'],
+  ['FUJIFILM Business Innovation', 'ApeosPort-VII C7773', 'プリンター・複合機'],
   ['Nikon', 'Z6III', 'カメラ・映像'],
   ['T-fal', 'KO4901JP', '家電'],
   ['Aterm', 'WX5400HP', 'ネットワーク機器']
@@ -122,7 +123,14 @@ const officeModels = new Map([
   ['RICOH|RICOH IM C6510', ['RICOH MP トナー ブラック C8003', 'RICOH MP トナー イエロー C8003', 'RICOH MP トナー マゼンタ C8003', 'RICOH MP トナー シアン C8003']],
   ['RICOH|RICOH IM C7010', ['RICOH トナー ブラック IM C7010', 'RICOH トナー イエロー IM C7010', 'RICOH トナー マゼンタ IM C7010', 'RICOH トナー シアン IM C7010']],
   ['RICOH|RICOH IM C6011', ['RICOH トナー ブラック IM C6010', 'RICOH トナー イエロー IM C6010', 'RICOH トナー マゼンタ IM C6010', 'RICOH トナー シアン IM C6010']],
-  ['RICOH|RICOH IM C3511', ['RICOH トナー ブラック IM C3510', 'RICOH トナー イエロー IM C3510', 'RICOH トナー マゼンタ IM C3510', 'RICOH トナー シアン IM C3510']]
+  ['RICOH|RICOH IM C3511', ['RICOH トナー ブラック IM C3510', 'RICOH トナー イエロー IM C3510', 'RICOH トナー マゼンタ IM C3510', 'RICOH トナー シアン IM C3510']],
+  ['FUJIFILM Business Innovation|ApeosPort-VII C7773', ['CT203138', 'CT203139', 'CT203140', 'CT203141']],
+  ['FUJIFILM Business Innovation|ApeosPort-VII C6673', ['CT203138', 'CT203139', 'CT203140', 'CT203141']],
+  ['FUJIFILM Business Innovation|ApeosPort-VII C5573', ['CT203138', 'CT203139', 'CT203140', 'CT203141']],
+  ['FUJIFILM Business Innovation|ApeosPort-VII C4473', ['CT203138', 'CT203139', 'CT203140', 'CT203141']],
+  ['FUJIFILM Business Innovation|ApeosPort-VII C3373', ['CT203138', 'CT203139', 'CT203140', 'CT203141']],
+  ['FUJIFILM Business Innovation|ApeosPort-VII C3372', ['CT203138', 'CT203139', 'CT203140', 'CT203141']],
+  ['FUJIFILM Business Innovation|ApeosPort-VII C2273', ['CT203138', 'CT203139', 'CT203140', 'CT203141']]
 ]);
 for (const [identity, codes] of officeModels) {
   const [maker, model] = identity.split('|');
@@ -161,6 +169,18 @@ assert.equal(
 );
 assert.ok(ricoh[0].sourceUrl.includes('ricoh.co.jp'));
 
+const fujifilm = config.getConsumableOffers({
+  maker: 'FUJIFILM Business Innovation',
+  model: 'ApeosPort-VII C7773',
+  category: 'プリンター・複合機'
+});
+assert.equal(fujifilm[0].query, 'FUJIFILM ApeosPort-VII C7773 トナー');
+assert.equal(
+  fujifilm[0].url,
+  'https://www.amazon.co.jp/s?k=FUJIFILM+ApeosPort-VII+C7773+%E3%83%88%E3%83%8A%E3%83%BC&tag=nicheworks09-22'
+);
+assert.ok(fujifilm[0].sourceUrl.includes('fujifilm.com'));
+
 for (const args of [
   { maker: 'Brother', model: 'MFC-J4440N', category: 'その他' },
   { maker: 'Nikon', model: 'Z8', category: 'カメラ・映像' },
@@ -168,7 +188,8 @@ for (const args of [
   { maker: 'Canon', model: 'UNKNOWN', category: 'プリンター・複合機' },
   { maker: 'OKI', model: 'UNKNOWN', category: 'プリンター・複合機' },
   { maker: 'KYOCERA Document Solutions', model: 'UNKNOWN', category: 'プリンター・複合機' },
-  { maker: 'RICOH', model: 'UNKNOWN', category: 'プリンター・複合機' }
+  { maker: 'RICOH', model: 'UNKNOWN', category: 'プリンター・複合機' },
+  { maker: 'FUJIFILM Business Innovation', model: 'UNKNOWN', category: 'プリンター・複合機' }
 ]) {
   assert.deepEqual(Array.from(config.getConsumableOffers(args)), []);
 }
