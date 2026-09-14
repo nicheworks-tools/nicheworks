@@ -8691,6 +8691,350 @@
         "verifiedAt": "2026-09-14"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "motorola-razr-40-ultra",
+      "manufacturer": "Motorola",
+      "model": "motorola razr 40 ultra",
+      "aliases": [
+        "Motorola razr 40 ultra",
+        "razr40ultra",
+        "razr 40 ultra",
+        "モトローラ razr 40 ultra"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 88.42,
+        "widthMm": 73.95,
+        "depthMm": 15.1
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 170.83,
+        "widthMm": 73.95,
+        "depthMm": 6.99
+      },
+      "weightG": 188.5,
+      "displayInch": 6.9,
+      "waterRating": "IP52",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 3800,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://en-us.support.motorola.com/app/answers/detail/a_id/175749/"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": 30,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 5
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/175749/",
+        "manualUrl": "https://jp-jp.support.motorola.com/",
+        "releaseUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=619",
+        "chargingUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=619",
+        "wirelessUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=619",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "motorola-razr-40",
+      "manufacturer": "Motorola",
+      "model": "motorola razr 40",
+      "aliases": [
+        "Motorola razr 40",
+        "razr40",
+        "razr 40",
+        "モトローラ razr 40"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 88.24,
+        "widthMm": 73.95,
+        "depthMm": 15.8
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 170.82,
+        "widthMm": 73.95,
+        "depthMm": 7.35
+      },
+      "weightG": 188.6,
+      "displayInch": 6.9,
+      "waterRating": "IP52",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4200,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://en-us.support.motorola.com/app/answers/detail/a_id/175748/"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": 30,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 5
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/175748/",
+        "manualUrl": "https://jp-jp.support.motorola.com/",
+        "releaseUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=718",
+        "chargingUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/175748/",
+        "wirelessUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/175748/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "zte-nubia-flip-3",
+      "manufacturer": "ZTE",
+      "model": "nubia Flip 3",
+      "aliases": [
+        "nubia Flip3",
+        "nubia Flip 3",
+        "ヌビア Flip 3",
+        "A505ZT"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 87,
+        "widthMm": 76,
+        "depthMm": 15.9
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 170,
+        "widthMm": 76,
+        "depthMm": 7.5
+      },
+      "weightG": 188,
+      "displayInch": 6.9,
+      "waterRating": "IPX4 / IP5X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4610,
+          "valueClass": "official",
+          "sourceRef": "https://www.ymobile.jp/biz/lineup/smartphone_a505zt/"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": 33,
+        "protocols": [
+          "PPS"
+        ],
+        "pps": "required",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.ymobile.jp/biz/lineup/smartphone_a505zt/",
+        "manualUrl": "https://www.ymobile.jp/biz/lineup/smartphone_a505zt/",
+        "releaseUrl": "https://www.ymobile.jp/biz/lineup/smartphone_a505zt/",
+        "chargingUrl": "https://www.ymobile.jp/biz/lineup/smartphone_a505zt/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "zte-nubia-flip-2",
+      "manufacturer": "ZTE",
+      "model": "nubia Flip 2",
+      "aliases": [
+        "nubia Flip2",
+        "nubia Flip 2",
+        "ヌビア Flip 2",
+        "A404ZT"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 87,
+        "widthMm": 76,
+        "depthMm": 15.8
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 170,
+        "widthMm": 76,
+        "depthMm": 7.5
+      },
+      "weightG": 191,
+      "displayInch": 6.9,
+      "waterRating": "IPX2 / IP4X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4300,
+          "valueClass": "official",
+          "sourceRef": "https://www.ymobile.jp/lineup/smartphone/nubiaflip2/"
+        },
+        "wiredRecommendedW": null,
+        "protocols": [
+          "PPS"
+        ],
+        "pps": "required",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.ymobile.jp/lineup/smartphone/nubiaflip2/",
+        "manualUrl": "https://www.ymobile.jp/lineup/nubiaflip2/data/nubiaflip2_userguide.pdf",
+        "releaseUrl": "https://www.ymobile.jp/lineup/smartphone/nubiaflip2/",
+        "chargingUrl": "https://www.ymobile.jp/lineup/smartphone/nubiaflip2/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "zte-nubia-flip-5g",
+      "manufacturer": "ZTE",
+      "model": "nubia Flip 5G",
+      "aliases": [
+        "nubia Flip",
+        "nubia Flip 5G",
+        "ヌビア Flip 5G"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 88,
+        "widthMm": 76,
+        "depthMm": 15.5
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 170,
+        "widthMm": 76,
+        "depthMm": 7.3
+      },
+      "weightG": 214,
+      "displayInch": 6.9,
+      "waterRating": "IPX2 / IP4X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4310,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.nubia.com/jp/products/smartphones/nubia/nubia-flip-5g"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": 33,
+        "protocols": [
+          "USB-PD",
+          "Quick Charge 4+"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.nubia.com/jp/products/smartphones/nubia/nubia-flip-5g",
+        "manualUrl": "https://www.nubia.com/jp/products/smartphones/nubia/nubia-flip-5g",
+        "releaseUrl": "https://www.nubia.com/jp/products/smartphones/nubia/nubia-flip-5g",
+        "chargingUrl": "https://www.nubia.com/jp/products/smartphones/nubia/nubia-flip-5g",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "zte-libero-flip",
+      "manufacturer": "ZTE",
+      "model": "Libero Flip",
+      "aliases": [
+        "LiberoFlip",
+        "Libero Flip",
+        "リベロ Flip",
+        "A304ZT"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 88,
+        "widthMm": 76,
+        "depthMm": 15.5
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 170,
+        "widthMm": 76,
+        "depthMm": 7.3
+      },
+      "weightG": 214,
+      "displayInch": 6.9,
+      "waterRating": "IPX2 / IP4X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4310,
+          "valueClass": "official",
+          "sourceRef": "https://www.ymobile.jp/lineup/libero_flip/"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": 33,
+        "protocols": [
+          "USB-PD",
+          "Quick Charge 4+"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.ymobile.jp/lineup/libero_flip/",
+        "manualUrl": "https://www.ymobile.jp/app/manual/libero_flip/sp/16-02.html",
+        "releaseUrl": "https://www.ymobile.jp/lineup/libero_flip/",
+        "chargingUrl": "https://www.ymobile.jp/lineup/libero_flip/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
     }
   ]
 }
