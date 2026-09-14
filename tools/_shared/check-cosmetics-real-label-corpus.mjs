@@ -69,6 +69,47 @@ const COHORT2_WAVE1_EXACT = [
   'Tapioca Starch'
 ];
 
+const COHORT3_WAVE1_EXACT = [
+  'Aqua/Water',
+  'Water (Aqua / Eau)',
+  'Ethyl Hexanediol',
+  'Jojoba Esters',
+  'Acacia Decurrens (Early Green Wattle) Flower Wax',
+  'Albizia Julibrissin Bark Extract',
+  'Avena Sativa (Oat) Kernel Oil',
+  'Betaine Salicylate',
+  'Bis-Octyldodecyl Dimer Dilinoleate/Propanediol Copolymer',
+  'Carnosine',
+  'Cera Microcristallina',
+  'Coco-Caprylate/Caprate',
+  'Cryptomeria Japonica Leaf Extract',
+  'Darutoside',
+  'Glyceryl Behenate',
+  'Glycine Soja (Soybean) Oil',
+  'Glycine Soja (Soybean) Sterols',
+  'Glycolipids',
+  'Helianthus Annuus (Sunflower) Seed Wax',
+  'Hippophae Rhamnoides (Seaberry) Fruit Oil',
+  'Isopentyldiol',
+  'Leuconostoc/Radish Root Ferment Filtrate',
+  'Nelumbo Nucifera Leaf Extract',
+  'Oenothera Biennis (Evening Primrose) Flower Extract',
+  'PEG-20 Glyceryl Triisostearate',
+  'Phytosterols',
+  'Pinus Palustris Leaf Extract',
+  'Polyacrylate Crosspolymer-11',
+  'Polyglycerin-3',
+  'Polyglyceryl-3 Beeswax',
+  'Polyglyceryl-6 Caprylate',
+  'Polyglyceryl-6 Distearate',
+  'Prunus Amygdalus Dulcis (Sweet Almond) Oil',
+  'Pueraria Lobata Root Extract',
+  'Saccharomyces Ferment',
+  'Sodium Lauroyl Methyl Isethionate',
+  'Styrax Japonicus Branch/Fruit/Leaf Extract',
+  'Ulmus Davidiana Root Extract'
+];
+
 const corpus = CORPUS_FILES.flatMap(([defaultCohort, rel]) => {
   const items = JSON.parse(read(rel));
   assert.ok(Array.isArray(items), `${rel}: real-label corpus file must be an array`);
@@ -211,20 +252,25 @@ assert.ok(cohort1 && cohort1.products === 12, `cohort 1 must remain exactly 12 f
 assert.ok(cohort2 && cohort2.products === 6, `cohort 2 must remain exactly 6 fixed products; found ${cohort2?.products || 0}`);
 assert.ok(cohort2.brands.size === 3, `cohort 2 must remain exactly 3 brands; found ${cohort2.brands.size}`);
 assert.ok(cohort2.categories.size === 5, `cohort 2 must remain exactly 5 categories; found ${cohort2.categories.size}`);
-assert.ok(cohort3 && cohort3.products === 6, `cohort 3 baseline requires exactly 6 products; found ${cohort3?.products || 0}`);
-assert.ok(cohort3.brands.size === 3, `cohort 3 baseline requires exactly 3 new brands; found ${cohort3.brands.size}`);
-assert.ok(cohort3.categories.size === 6, `cohort 3 baseline requires exactly 6 categories; found ${cohort3.categories.size}`);
+assert.ok(cohort3 && cohort3.products === 6, `cohort 3 requires exactly 6 products; found ${cohort3?.products || 0}`);
+assert.ok(cohort3.brands.size === 3, `cohort 3 requires exactly 3 new brands; found ${cohort3.brands.size}`);
+assert.ok(cohort3.categories.size === 6, `cohort 3 requires exactly 6 categories; found ${cohort3.categories.size}`);
 for (const brand of cohort3.brands) {
   assert.ok(!cohort1.brands.has(brand) && !cohort2.brands.has(brand), `cohort 3 brand must be new to the source-backed corpus: ${brand}`);
 }
 
 const cohort1Coverage = cohort1.exactKnown / cohort1.ingredients;
 const cohort2Coverage = cohort2.exactKnown / cohort2.ingredients;
+const cohort3Coverage = cohort3.exactKnown / cohort3.ingredients;
 assert.ok(cohort1Coverage >= 0.965, `cohort 1 exact coverage ${(cohort1Coverage * 100).toFixed(2)}% is below its frozen 96.5% floor`);
 assert.ok(cohort2Coverage >= 0.976, `cohort 2 exact coverage ${(cohort2Coverage * 100).toFixed(2)}% is below the 97.6% Wave 1 floor`);
+assert.ok(cohort3Coverage >= 0.992, `cohort 3 exact coverage ${(cohort3Coverage * 100).toFixed(2)}% is below the 99.2% Wave 1 floor`);
 
 for (const exactName of COHORT2_WAVE1_EXACT) {
   assert.equal(isExactKnown(exactName), true, `${exactName}: cohort 2 Wave 1 exact identity must remain recognized`);
+}
+for (const exactName of COHORT3_WAVE1_EXACT) {
+  assert.equal(isExactKnown(exactName), true, `${exactName}: cohort 3 Wave 1 exact identity must remain recognized`);
 }
 
 for (const unresolved of [
@@ -251,7 +297,7 @@ const unknownInventory = sortedUnknownInventory(unknownCounts);
 const overallCoverage = ingredientTotal ? exactKnownTotal / ingredientTotal : 0;
 const cohortSummaries = [...cohortStats.values()].map((cohort) => {
   const unknownInventoryForCohort = sortedUnknownInventory(cohort.unknownCounts);
-  const floor = cohort.cohort === 'cohort1' ? 0.965 : cohort.cohort === 'cohort2' ? 0.976 : null;
+  const floor = cohort.cohort === 'cohort1' ? 0.965 : cohort.cohort === 'cohort2' ? 0.976 : 0.992;
   return {
     cohort: cohort.cohort,
     products: cohort.products,
@@ -269,7 +315,7 @@ const cohortSummaries = [...cohortStats.values()].map((cohort) => {
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'wave4-real-label-corpus-cohort3-baseline',
+  phase: 'wave4-cohort3-dictionary-wave1',
   products: corpus.length,
   brands: brands.size,
   markets: [...markets].sort(),
@@ -281,8 +327,10 @@ console.log(JSON.stringify({
   exact_coverage: Number(overallCoverage.toFixed(4)),
   cohort1_exact_coverage_floor: 0.965,
   cohort2_exact_coverage_floor: 0.976,
+  cohort3_exact_coverage_floor: 0.992,
   cohort2_wave1_exact_names: COHORT2_WAVE1_EXACT.length,
-  cohort3_is_baseline_only: true,
+  cohort3_wave1_exact_names: COHORT3_WAVE1_EXACT.length,
+  cohort3_is_baseline_only: false,
   distinct_unknowns: unknownInventory.length,
   broad_group_labels_are_not_exact: true,
   top_unknowns: unknownInventory.slice(0, 30),
