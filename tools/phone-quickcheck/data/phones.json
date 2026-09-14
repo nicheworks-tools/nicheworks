@@ -2635,6 +2635,126 @@
       "affiliateKeys": []
     },
     {
+      "id": "samsung-galaxy-z-fold4",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Fold4",
+      "aliases": [
+        "Samsung Galaxy Z Fold4",
+        "GalaxyZFold4",
+        "Galaxy Fold4",
+        "ギャラクシーZ Fold4",
+        "ギャラクシーZフォールド4"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 155.1,
+        "widthMm": 67.1,
+        "depthMmMin": 14.2,
+        "depthMmMax": 15.8
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 155.1,
+        "widthMm": 130.1,
+        "depthMm": 6.3
+      },
+      "weightG": 263,
+      "displayInch": 7.6,
+      "waterRating": "IPX8",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4400,
+          "valueClass": "official",
+          "sourceRef": "https://www.samsung.com/jp/smartphones/galaxy-z/galaxy-z-fold4-graygreen-256gb-sm-f936jzaakdi/"
+        },
+        "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
+        "protocols": [
+          "Super Fast Charging"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 15
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-z/galaxy-z-fold4-graygreen-256gb-sm-f936jzaakdi/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F936JZAAKDI/",
+        "releaseUrl": "https://news.samsung.com/global/galaxy-fold4-flip4",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-flip4",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Flip4",
+      "aliases": [
+        "Samsung Galaxy Z Flip4",
+        "GalaxyZFlip4",
+        "Galaxy Flip4",
+        "ギャラクシーZ Flip4",
+        "ギャラクシーZフリップ4"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 84.9,
+        "widthMm": 71.9,
+        "depthMmMin": 15.9,
+        "depthMmMax": 17.1
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 165.2,
+        "widthMm": 71.9,
+        "depthMm": 6.9
+      },
+      "weightG": 187,
+      "displayInch": 6.7,
+      "waterRating": "IPX8",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 3700,
+          "valueClass": "official",
+          "sourceRef": "https://www.samsung.com/au/business/smartphones/galaxy-z/galaxy-z-flip4-sm-f721bzafats/"
+        },
+        "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
+        "protocols": [
+          "Super Fast Charging"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 15
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/au/business/smartphones/galaxy-z/galaxy-z-flip4-sm-f721bzafats/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F721JZAAKDI/",
+        "releaseUrl": "https://news.samsung.com/global/galaxy-fold4-flip4",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
       "id": "samsung-galaxy-a55-5g",
       "manufacturer": "Samsung",
       "model": "Galaxy A55 5G",
