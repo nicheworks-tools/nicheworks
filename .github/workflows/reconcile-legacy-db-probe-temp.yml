@@ -1,0 +1,47 @@
+name: Reconcile legacy DB probe temp
+
+on:
+  push:
+    branches:
+      - feat/reconcile-publication-20260912
+    paths:
+      - .github/workflows/reconcile-legacy-db-probe-temp.yml
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/reconcile-publication-20260912
+      - name: Probe legacy Pro DB binding
+        shell: bash
+        run: |
+          set -euo pipefail
+          status=$(curl -sS -o /tmp/legacy.json -w '%{http_code}' 'https://nicheworks.app/api/pro/status?session_id=cs_test_ReconcileLegacyDbProbe0001')
+          echo "legacy_status_http=$status"
+          STATUS="$status" node <<'NODE'
+          const fs = require('fs');
+          const status = Number(process.env.STATUS);
+          const data = JSON.parse(fs.readFileSync('/tmp/legacy.json', 'utf8'));
+          console.log(`legacy_result status=${data?.status || ''} ok=${Boolean(data?.ok)} message=${data?.message || ''}`);
+          if (status === 500 && data?.status === 'server_not_configured') {
+            throw new Error('legacy DB binding DB is not configured');
+          }
+          if (status !== 404 || data?.status !== 'not_found') {
+            throw new Error(`unexpected legacy probe response: ${status} ${JSON.stringify(data)}`);
+          }
+          NODE
+      - name: Remove temporary workflow
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/reconcile-legacy-db-probe-temp.yml
+          git commit -m 'Remove temporary Reconcile legacy DB probe workflow'
+          git push origin HEAD:feat/reconcile-publication-20260912
