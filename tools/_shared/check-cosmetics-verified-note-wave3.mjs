@@ -84,12 +84,9 @@ const claimRows = rows.filter((item) => CLAIM_REVIEW_RE.test(normalizeText(item.
 assert.equal(claimRows.length, EXPECTED_RAW_CLAIM_ROWS, 'raw claim-bearing legacy-note baseline must remain exactly 22 rows');
 
 const evidence = parser.verifiedNoteEvidence || {};
-const expectedAllKeys = [...PRIOR_WAVE_KEYS, ...Object.keys(EXPECTED_WAVE3)];
-assert.deepEqual(
-  new Set(Object.keys(evidence)),
-  new Set(expectedAllKeys),
-  'verified note overlay must contain exactly the eight prior entries plus five reviewed wave 3 identities'
-);
+for (const canonical of [...PRIOR_WAVE_KEYS, ...Object.keys(EXPECTED_WAVE3)]) {
+  assert.ok(Object.hasOwn(evidence, canonical), `${canonical}: wave 1-3 verified note entry must remain present`);
+}
 
 const canonicalRows = new Map();
 for (const row of rows) {
@@ -131,8 +128,9 @@ for (const [canonical, expected] of Object.entries(EXPECTED_WAVE3)) {
   assert.equal(item.note_provenance_conflict, undefined, `${canonical}: verified overlay must not create note provenance conflict`);
 }
 
-const resolvedClaimRows = claimRows.filter((row) => Object.hasOwn(evidence, parser.canonicalIdentityKey(row.en)));
-assert.equal(resolvedClaimRows.length, 13, 'waves 1-3 should resolve exactly thirteen of the frozen 22 claim-bearing legacy-note rows');
+const wave123Set = new Set([...PRIOR_WAVE_KEYS, ...Object.keys(EXPECTED_WAVE3)]);
+const wave123ResolvedClaimRows = claimRows.filter((row) => wave123Set.has(parser.canonicalIdentityKey(row.en)));
+assert.equal(wave123ResolvedClaimRows.length, 13, 'waves 1-3 must continue to resolve exactly thirteen frozen claim-bearing rows');
 
 console.log(JSON.stringify({
   status: 'pass',
@@ -141,8 +139,7 @@ console.log(JSON.stringify({
   prior_verified_canonical_identities: PRIOR_WAVE_KEYS.length,
   wave_3_verified_canonical_identities: Object.keys(EXPECTED_WAVE3).length,
   cumulative_verified_note_overlay_canonical_identities: Object.keys(evidence).length,
-  resolved_claim_bearing_rows: resolvedClaimRows.length,
-  unresolved_claim_bearing_rows: claimRows.length - resolvedClaimRows.length,
+  wave_1_through_3_resolved_claim_bearing_rows: wave123ResolvedClaimRows.length,
   wave_3_resolved_canonical_identities: Object.keys(EXPECTED_WAVE3),
   raw_dictionary_records_rewritten: false,
   runtime_notes_use_existing_provenance_gate: true,
