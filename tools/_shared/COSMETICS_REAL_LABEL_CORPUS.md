@@ -40,7 +40,7 @@ The cohort expands category coverage with serum, acne-serum, gel-moisturizer, ac
 tools/_shared/cosmetics-real-label-corpus-cohort2.json
 ```
 
-PR34 is deliberately a **baseline** for cohort 2. The existing cohort-1 quality floor is frozen and must continue to pass; cohort 2 is measured without inventing a release floor before its actual unknown inventory is observed in CI. The next dictionary wave must be driven by that measured cohort-2 inventory.
+PR34 established the independent cohort-2 baseline at `94 / 129` exact-known ingredient tokens, or `72.87%`. PR35 uses that measured unknown inventory for the first cohort-2 dictionary wave rather than adding speculative ingredients.
 
 Every record must retain:
 
@@ -108,13 +108,28 @@ The cohort-1 release floor remains frozen at:
 exact identity coverage >= 96.5%
 ```
 
-PR34 does **not** lower or replace that floor. It adds a second independently reported cohort so a new-brand/new-category baseline can be measured honestly before new dictionary work begins.
+Cohort 2 now has its own measured history:
+
+```txt
+PR34 baseline:                    94 / 129 exact identities = 72.87%
+PR35 dictionary Wave 1:          126 / 129 exact identities = 97.67%
+```
+
+PR35 freezes the cohort-2 Wave 1 floor at:
+
+```txt
+exact identity coverage >= 97.6%
+```
+
+Across both cohorts, PR35 measures `409 / 422` exact-known ingredient tokens, or `96.92%` overall. The two cohort floors remain independent so a high score in one cohort cannot hide a regression in the other.
+
+PR35 adds only exact names observed in the cohort-2 official-product labels. It also recognizes the finite display form `Aqua (Water)` as the existing `Water` identity. The checker separately freezes all 28 Wave 1 exact names so later dictionary changes cannot silently trade one recognized identity for another while preserving only the aggregate percentage.
+
+Three cohort-2 labels remain deliberately unresolved after Wave 1: `Carbomer Homopolymer Type B`, `Chondrus Crispus`, and `Phospholipids`. They are not collapsed onto broader or possibly different maintained identities merely to force 100% coverage.
 
 The score may improve only through reviewed parser/dictionary identity coverage. It must not improve by deleting hard products, rewriting source labels into already-known names, or weakening ambiguity protections.
 
-Broad, incomplete, or under-specified labels remain non-exact where one chemical identity cannot be justified. In particular, `パラベン` remains a group label rather than one paraben identity, `エデト酸塩` remains a broad salt label rather than one EDTA salt identity, the truncated `Ammonium Polyacryloyldimethyl` remains non-exact, and `POE・ジメチコン共重合体`, `POEメチルグルコシド`, and `POE水添ヒマシ油` remain unresolved until one exact maintained identity is justified.
-
-PR30–PR33 improved cohort 1 using evidence-backed Japanese/display-name mappings and reviewed canonical records. PR34 changes the optimization target by introducing genuinely new brands and categories; its checker emits overall results plus separate cohort summaries and unknown inventories so subsequent work can be selected from measured failures rather than guessed ingredients.
+Broad, incomplete, or under-specified cohort-1 labels also remain non-exact where one chemical identity cannot be justified. In particular, `パラベン` remains a group label rather than one paraben identity, `エデト酸塩` remains a broad salt label rather than one EDTA salt identity, the truncated `Ammonium Polyacryloyldimethyl` remains non-exact, and `POE・ジメチコン共重合体`, `POEメチルグルコシド`, and `POE水添ヒマシ油` remain unresolved until one exact maintained identity is justified.
 
 All dictionary additions and shared naming equivalents are available to Lite and FastScan because both tools use the maintained dictionary set and shared parser.
 
