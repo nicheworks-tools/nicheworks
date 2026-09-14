@@ -1,6 +1,6 @@
 # Cosmetics Verified Category Taxonomy
 
-PR46 defines the controlled vocabulary used only by the source-backed verified category overlay. PR47 promotes two mappings that PR46 had already reviewed. PR53 adds Tocopheryl Acetate and Sodium Citrate using already-authorized function terms; it does not expand the internal category vocabulary. The taxonomy does not rewrite or normalize legacy raw dictionary category fields.
+PR46 defines the controlled vocabulary used only by the source-backed verified category overlay. PR47 promotes two mappings that PR46 had already reviewed. PR53 adds Tocopheryl Acetate using an already-authorized function term, and PR54 adds Butylene Glycol, Dipropylene Glycol and Sodium Hydroxide using already-authorized terms. The taxonomy does not rewrite or normalize legacy raw dictionary category fields.
 
 ## Why this exists
 
@@ -16,7 +16,6 @@ The registry is `cosmetics-category-taxonomy.json`.
 - One normalized authority function term may map to only one internal category.
 - Every reviewed ingredient mapping stores the reviewed source function, source organization, and HTTPS source URL.
 - `runtime_verified: true` means the mapping must exactly match `verifiedCategoryEvidence` in `cosmetic-ingredient-parser.js`.
-- `runtime_verified: false` means the mapping has been reviewed but must not reach runtime until a dedicated provenance wave promotes it.
 - Similar wording that is not listed in the taxonomy is not accepted automatically.
 
 ## Current internal verified categories
@@ -66,19 +65,43 @@ Source: https://www.cosmeticsinfo.org/ingredient/tocopherol/
 
 No cross-terminology normalization is needed: Cosmetics Info directly states that Tocopheryl Acetate functions as an antioxidant.
 
-### Sodium Citrate
+Sodium Citrate was considered in PR53 but is intentionally not registered. Its raw canonical category is `buffer`, while the reviewed source supports `pH adjuster`; the checker fails closed until that relationship is explicitly resolved.
+
+## Direct terminology mappings added in wave 5
+
+### Butylene Glycol
+
+Authority wording: `solvent`
+
+Internal verified category: `solvent`
+
+Source: https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/
+
+Cosmetics Info groups Butylene Glycol with related glycols and states that they function as solvents and viscosity decreasing agents. Wave 5 records only the already-authorized `solvent` function.
+
+### Dipropylene Glycol
+
+Authority wording: `solvent`
+
+Internal verified category: `solvent`
+
+Source: https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/
+
+Cosmetics Info directly states that Dipropylene Glycol and related glycols are used as solvents. No taxonomy expansion is needed.
+
+### Sodium Hydroxide
 
 Authority wording: `pH adjuster`
 
 Internal verified category: `pH adjuster`
 
-Source: https://www.cosmeticsinfo.org/ingredient/citric-acid/
+Source: https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/
 
-No new taxonomy synonym is introduced. Cosmetics Info includes Sodium Citrate among citrate salts and lists pH adjuster among the functions of citric acid, its salts and esters.
+Cosmetics Info states that sodium hydroxide can be used in lesser quantities as a pH adjuster for cosmetic products. Wave 5 records only that direct function.
 
 ## Existing provenance mappings
 
-All eleven runtime-verified canonical identities from PR44-47 and PR53 are represented in the taxonomy registry. The taxonomy checker requires their category, authority and source URL to remain identical to the runtime evidence overlay.
+All thirteen runtime-verified canonical identities from waves 1-5 are represented in the taxonomy registry. The taxonomy checker requires their category, authority and source URL to remain identical to the runtime evidence overlay.
 
 ## Fail-closed behavior
 
@@ -89,7 +112,8 @@ CI fails when any of the following occurs:
 - a reviewed mapping uses an authority function term not explicitly allowed for its category;
 - a runtime-verified taxonomy mapping differs from runtime provenance evidence;
 - an unapproved or non-HTTPS source is used;
-- an ambiguous exact token such as AHA, BHA, PHA, Iron Oxides or 酸化鉄 enters the taxonomy.
+- an ambiguous exact token such as AHA, BHA, PHA, Iron Oxides or 酸化鉄 enters the taxonomy;
+- Sodium Citrate is promoted without resolving the existing raw `buffer` vs external `pH adjuster` semantic mismatch.
 
 ## Validation
 
