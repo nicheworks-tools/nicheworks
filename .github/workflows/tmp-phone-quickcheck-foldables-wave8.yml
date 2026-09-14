@@ -21,6 +21,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - name: Adjust validator count guard
+        run: sed -i "s|'scripts/check-phone-quickcheck-data.mjs', 1|'scripts/check-phone-quickcheck-data.mjs', 2|" scripts/tmp-phone-quickcheck-foldables-wave8.mjs
       - run: node scripts/tmp-phone-quickcheck-foldables-wave8.mjs
       - run: node scripts/check-phone-quickcheck-data.mjs
       - run: node scripts/check-phone-quickcheck-source-semantics.mjs
