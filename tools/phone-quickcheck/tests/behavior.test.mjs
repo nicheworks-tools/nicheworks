@@ -57,7 +57,14 @@ const syntheticFoldable = {
   charging: { connector: 'USB-C', battery: { capacityMah: 4400, valueClass: 'manufacturer', sourceRef: 'https://www.samsung.com/' }, wiredRecommendedW: 25, protocols: [], pps: 'unknown', wirelessStandard: 'Qi', wirelessMaxW: 15 },
   included: { cable: 'included', adapter: 'not_included' }, sources: { specificationsUrl: 'https://www.samsung.com/', manualUrl: 'https://www.samsung.com/', verifiedAt: '2026-09-14' }, affiliateKeys: []
 };
-const byId = new Map([...allPhones, syntheticFoldable].map((phone) => [phone.id, phone]));
+const syntheticFoldableDepthRange = {
+  id: 'synthetic-foldable-depth-range', manufacturer: 'Samsung', model: 'Synthetic Foldable Range', aliases: ['Range Fixture'], releaseYear: 2026, formFactor: 'foldable',
+  dimensionsFolded: { heightMm: 165, widthMm: 72, depthMmMin: 15.9, depthMmMax: 17.1 }, dimensionsUnfolded: { heightMm: 165, widthMm: 72, depthMm: 6.9 },
+  weightG: 187, displayInch: 6.7, waterRating: 'IPX8',
+  charging: { connector: 'USB-C', battery: { capacityMah: 3700, valueClass: 'manufacturer', sourceRef: 'https://www.samsung.com/' }, wiredRecommendedW: 25, protocols: [], pps: 'unknown', wirelessStandard: 'Qi', wirelessMaxW: 15 },
+  included: { cable: 'included', adapter: 'not_included' }, sources: { specificationsUrl: 'https://www.samsung.com/', manualUrl: 'https://www.samsung.com/', verifiedAt: '2026-09-14' }, affiliateKeys: []
+};
+const byId = new Map([...allPhones, syntheticFoldable, syntheticFoldableDepthRange].map((phone) => [phone.id, phone]));
 
 function requirePhones(ids) {
   return ids.map((id) => {
@@ -295,6 +302,16 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.match(html, /PPS/);
   assert.match(html, /Qi \/ 7\.5W/);
   assert.match(html, /PPS対応 30W以上の充電器/);
+}
+
+// Foldable depth ranges render without collapsing an official variable-thickness specification.
+{
+  const h = await createHarness(['synthetic-foldable-depth-range']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('165 × 72 mm (折りたたみ時)'));
+  assert.ok(h.elements.desktopDetail.innerHTML.includes('165 × 72 × 15.9–17.1 mm'));
+  assert.ok(h.elements.desktopDetail.innerHTML.includes('165 × 72 × 6.9 mm'));
+  h.langEn.click();
+  assert.ok(h.elements.desktopDetail.innerHTML.includes('165 × 72 × 15.9–17.1 mm'));
 }
 
 // Foldable schema renders both physical states and keeps folded dimensions in the list.
