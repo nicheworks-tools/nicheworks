@@ -77,7 +77,7 @@ has('tools/newsletter-kit-generator/app.js', '(テーマ未入力)');
 // 55. Niche Job Starter Kit — generic blank guidance, local candidate-header template, caution wording.
 has('tools/niche-job-starter-kit/app.js', 'Not specified');
 has('tools/niche-job-starter-kit/app.js', 'candidate-sheet-columns.csv');
-has('tools/niche-job-starter-kit/app.js', '\uFEFF${buildSheetColumns(lang)}\r\n');
+has('tools/niche-job-starter-kit/app.js', '\\uFEFF${buildSheetColumns(lang)}\\r\\n');
 has('tools/niche-job-starter-kit/app.js', 'discriminatory wording');
 
 // 56. Notion Form Design Kit — local drafting only, field controls drive output, no Notion API request path.
