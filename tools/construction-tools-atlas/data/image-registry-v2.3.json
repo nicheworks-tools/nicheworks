@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-registry-v2.3",
-  "version": "2026-09-14-wave1-1",
+  "version": "2026-09-14-wave2a-1",
   "policy": {
     "primary_format": "webp",
     "formal_min_state": "reviewed",
@@ -151,6 +151,150 @@
         "source_sha1": "fa474a8574f3b90ed05b3be4029d14346b0c7691"
       },
       "notes": "Wave 1 manually reviewed real-subject image."
+    },
+    {
+      "entry_id": "q013_dolly",
+      "alt_ja": "資材運搬用の平台車",
+      "alt_en": "Flatbed platform trolley used to move materials",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/q013_dolly/source.jpg",
+        "display": "./images/q013_dolly/primary.webp",
+        "thumbnail": "./images/q013_dolly/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Flatbed_trolley%2C_Novosibirsk_01.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Flatbed_trolley,_Novosibirsk_01.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "К.Артём.1",
+        "attribution": "К.Артём.1 / Wikimedia Commons, CC BY-SA 4.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "a81425c7867dd3e208abecd0371331118a2d0d4e"
+      },
+      "notes": "Wave 2A manually reviewed real-subject image; legacy Platform cart identity resolved to q013_dolly."
+    },
+    {
+      "entry_id": "q011_roof_underlayment",
+      "alt_ja": "屋根下地に施工されたルーフィング",
+      "alt_en": "Roofing felt installed as roof underlayment",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/q011_roof_underlayment/source.jpg",
+        "display": "./images/q011_roof_underlayment/primary.webp",
+        "thumbnail": "./images/q011_roof_underlayment/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/03/Roofing_felt_%28%D1%83%D0%BA%D0%BB%D0%B0%D0%B4%D0%BA%D0%B0_%D1%80%D1%83%D0%B1%D0%B5%D1%80%D0%BE%D0%B8%D0%B4%D0%B0_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%80%D0%B5%D1%88%D1%91%D1%82%D0%BA%D1%832%29.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Roofing_felt_(%D1%83%D0%BA%D0%BB%D0%B0%D0%B4%D0%BA%D0%B0_%D1%80%D1%83%D0%B1%D0%B5%D1%80%D0%BE%D0%B8%D0%B4%D0%B0_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%80%D0%B5%D1%88%D1%91%D1%82%D0%BA%D1%832).jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Андрей Перцев 1967",
+        "attribution": "Андрей Перцев 1967 / Wikimedia Commons, CC0 1.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "2783ab890c5c9eff19db307c0e10ded7030ba262"
+      },
+      "notes": "Wave 2A manually reviewed real-subject image; legacy Roofing underlayment identity resolved to q011_roof_underlayment."
+    },
+    {
+      "entry_id": "pointing_trowel",
+      "alt_ja": "れんが・モルタル作業用の目地鏝",
+      "alt_en": "Pointing trowel used for masonry work",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/pointing_trowel/source.jpg",
+        "display": "./images/pointing_trowel/primary.webp",
+        "thumbnail": "./images/pointing_trowel/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/A_scene_of_Pointing_Trowel.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:A_scene_of_Pointing_Trowel.JPG",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Thamizhpparithi Maari",
+        "attribution": "Thamizhpparithi Maari / Wikimedia Commons, CC BY-SA 3.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "edd72b5aafbbebae31c19021acaabe191527261f"
+      },
+      "notes": "Wave 2A manually reviewed real-subject image; kept distinct from the concrete groover canonical subject."
+    },
+    {
+      "entry_id": "q012_unistrut_channel",
+      "alt_ja": "スプリングナットを装着したストラットチャンネル",
+      "alt_en": "Steel strut channel with a spring nut installed",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/q012_unistrut_channel/source.jpg",
+        "display": "./images/q012_unistrut_channel/primary.webp",
+        "thumbnail": "./images/q012_unistrut_channel/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/SpringNutInPlace.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:SpringNutInPlace.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "Bob Blaylock",
+        "attribution": "Bob Blaylock / Wikimedia Commons, CC BY-SA 4.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "db1eebaa03571ffc9888c2c947d8771df7f4ddb1"
+      },
+      "notes": "Wave 2A manually reviewed real-subject image; legacy Strut channel identity resolved to q012_unistrut_channel."
+    },
+    {
+      "entry_id": "q012_japanese_plane",
+      "alt_ja": "木屑と並べた日本式の鉋",
+      "alt_en": "Japanese kanna hand plane with wood shavings",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/q012_japanese_plane/source.jpg",
+        "display": "./images/q012_japanese_plane/primary.webp",
+        "thumbnail": "./images/q012_japanese_plane/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/Japanese_handplane_%28kanna%29_with_wood_shavings.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Japanese_handplane_(kanna)_with_wood_shavings.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "Terasaface",
+        "attribution": "Terasaface / Wikimedia Commons, CC BY-SA 4.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "ab115f0857dd7012db5d72dd1994983e9c69168a"
+      },
+      "notes": "Wave 2A manually reviewed real-subject image; legacy Hand plane identity resolved to q012_japanese_plane."
+    },
+    {
+      "entry_id": "q011_float",
+      "alt_ja": "コンクリート表面を均すためのフロート",
+      "alt_en": "Concrete float hand tool for leveling surfaces",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/q011_float/source.jpg",
+        "display": "./images/q011_float/primary.webp",
+        "thumbnail": "./images/q011_float/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Concrete_float.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Concrete_float.JPG",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Richard Frantz Jr.",
+        "attribution": "Richard Frantz Jr. / Wikimedia Commons, CC0 1.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "89e3900dcd531476533674a5cc0722f598b58e25"
+      },
+      "notes": "Wave 2A manually reviewed real-subject image; legacy Float trowel identity resolved to q011_float."
     }
   ]
 }
