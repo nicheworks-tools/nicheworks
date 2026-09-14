@@ -49,8 +49,14 @@ jobs:
       - name: Check Wave 1 image builder syntax
         run: node --check tools/construction-tools-atlas/scripts/build-image-wave1-v2.3.mjs
 
+      - name: Check Wave 2 image builder syntax
+        run: node --check tools/construction-tools-atlas/scripts/build-image-wave2-v2.3.mjs
+
       - name: Check Wave 1 source checker syntax
         run: node --check tools/construction-tools-atlas/scripts/check-image-wave1-sources-v2.3.cjs
+
+      - name: Check Wave 2 source checker syntax
+        run: node --check tools/construction-tools-atlas/scripts/check-image-wave2-sources-v2.3.cjs
 
       - name: Check image runtime checker syntax
         run: node --check tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
@@ -83,6 +89,9 @@ jobs:
 
       - name: Validate Wave 1 image source ledger
         run: node tools/construction-tools-atlas/scripts/check-image-wave1-sources-v2.3.cjs
+
+      - name: Validate Wave 2 image source ledger
+        run: node tools/construction-tools-atlas/scripts/check-image-wave2-sources-v2.3.cjs
 
       - name: Validate canonical image registry
         run: node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs
