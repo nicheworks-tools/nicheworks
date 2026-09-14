@@ -4,30 +4,14 @@
   "mapping_policy": "explicit_only",
   "normalization": "NFKC, trim, lowercase, normalize Unicode dashes to ASCII hyphen, collapse whitespace",
   "categories": {
-    "solvent": {
-      "authority_functions": ["solvent"]
-    },
-    "humectant": {
-      "authority_functions": ["humectant"]
-    },
-    "preservative": {
-      "authority_functions": ["preservative"]
-    },
-    "thickener": {
-      "authority_functions": ["thickening agent", "thickening"]
-    },
-    "pH adjuster": {
-      "authority_functions": ["pH adjuster"]
-    },
-    "antioxidant": {
-      "authority_functions": ["antioxidant", "antioxidants"]
-    },
-    "viscosity adjuster": {
-      "authority_functions": ["viscosity increasing agent - aqueous"]
-    },
-    "chelating agent": {
-      "authority_functions": ["chelating agent", "chelating agents"]
-    }
+    "solvent": { "authority_functions": ["solvent"] },
+    "humectant": { "authority_functions": ["humectant"] },
+    "preservative": { "authority_functions": ["preservative"] },
+    "thickener": { "authority_functions": ["thickening agent", "thickening"] },
+    "pH adjuster": { "authority_functions": ["pH adjuster"] },
+    "antioxidant": { "authority_functions": ["antioxidant", "antioxidants"] },
+    "viscosity adjuster": { "authority_functions": ["viscosity increasing agent - aqueous"] },
+    "chelating agent": { "authority_functions": ["chelating agent", "chelating agents"] }
   },
   "reviewed_mappings": {
     "water": {
@@ -98,13 +82,6 @@
       "source_functions": ["antioxidant"],
       "authority": "Personal Care Products Council / Cosmetics Info",
       "sources": ["https://www.cosmeticsinfo.org/ingredient/tocopherol/"],
-      "runtime_verified": true
-    },
-    "sodium citrate": {
-      "category": "pH adjuster",
-      "source_functions": ["pH adjuster"],
-      "authority": "Personal Care Products Council / Cosmetics Info",
-      "sources": ["https://www.cosmeticsinfo.org/ingredient/citric-acid/"],
       "runtime_verified": true
     }
   }
