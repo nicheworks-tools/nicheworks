@@ -1,0 +1,38 @@
+[
+  {
+    "pref": "高知県",
+    "city": "高知市",
+    "name": "高知市のごみ収集日",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.kochi.kochi.jp/soshiki/64/collection-kochi2.html",
+    "lgcode": "392014",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "高知県",
+    "city": "高知市",
+    "name": "高知市 ごみの収集日検索",
+    "type": "検索ページ",
+    "link_type": "waste_search",
+    "url": "https://www.city.kochi.kochi.jp/garbage-day/search/search.php",
+    "lgcode": "392014",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "高知県",
+    "city": "高知市",
+    "name": "高知市 家庭ごみを自分で各施設に持ち込む場合",
+    "type": "持込施設",
+    "link_type": "dropoff_facility",
+    "url": "https://www.city.kochi.kochi.jp/soshiki/64/gomi1-motikomi01.html",
+    "lgcode": "392014",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  }
+]
