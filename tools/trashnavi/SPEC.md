@@ -379,3 +379,14 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `sitemap.xml` — indexable municipality URLの正規sitemap収録先。
 - `sitemap-trashnavi.xml` — TrashNavi municipality補助sitemap。
 - `.github/workflows/check-trashnavi-coverage.yml` — coverage strict audit、direct-link inventory validation、generated-page drift check。
+
+
+## Amazon affiliate monetization (2026-09-14)
+
+- Published municipality pages include one separate `[PR]` commerce block after the official municipal-information area.
+- Amazon Associates tracking uses the maintained NicheWorks tag `nicheworks09-22` and the existing `/assets/amazon-affiliate.js` helper.
+- The block is limited to four fixed, tool-owned Amazon Japan searches: sorting bins, compression bags, trash-bag storage, and packing supplies.
+- Municipality name, prefecture, `lgcode`, address, waste item, search input, link choice, and other user/runtime state must never enter the Amazon query or affiliate analytics.
+- The official municipal links remain primary and visually separate. The commerce block explicitly states that the products are general household supplies and are not evidence of compliance with municipal disposal rules.
+- Affiliate click analytics remain coarse: tool, provider, fixed target key, and placement only. Amazon price, inventory, rating, review count, seller claims, and product images are not copied into TrashNavi.
+- If the shared helper or affiliate config is unavailable/invalid, the commerce section fails closed and remains hidden.
