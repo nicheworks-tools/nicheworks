@@ -6,7 +6,7 @@ const TOOLS_DIR = path.join(ROOT, "tools");
 const INDEX_PATH = path.join(TOOLS_DIR, "tools-index.json");
 const CENTRAL_META_PATH = path.join(TOOLS_DIR, "tools-meta.json");
 
-const EXCLUDE = new Set(["_codex", "_template"]);
+const EXCLUDE = new Set(["_codex", "_template", "earth-alerts", "earth-timeseries"]);
 
 const readJson = (file, fallback) => {
   if (!existsSync(file)) return fallback;

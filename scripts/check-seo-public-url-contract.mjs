@@ -6,6 +6,7 @@ const root = process.cwd();
 const toolsDir = path.join(root, 'tools');
 const indexPath = path.join(toolsDir, 'tools-index.json');
 const sitemapPath = path.join(root, 'sitemap.xml');
+const stagedToolsPath = path.join(toolsDir, 'staged-tools.json');
 const errors = [];
 
 function fail(message) {
@@ -91,6 +92,9 @@ function exactSitemapCount(sitemap, url) {
 
 const registry = readJson(indexPath);
 const sitemap = readText(sitemapPath);
+const stagedRegistry = fs.existsSync(stagedToolsPath) ? readJson(stagedToolsPath) : { items: [] };
+const stagedItems = Array.isArray(stagedRegistry?.items) ? stagedRegistry.items : [];
+const stagedSet = new Set(stagedItems.map((item) => item?.slug).filter(Boolean));
 const items = Array.isArray(registry?.items) ? registry.items : [];
 
 if (!registry || !Array.isArray(registry.items)) fail('tools/tools-index.json must contain an items array');
@@ -162,8 +166,31 @@ if (fs.existsSync(toolsDir)) {
   for (const entry of fs.readdirSync(toolsDir, { withFileTypes: true })) {
     if (!entry.isDirectory() || entry.name.startsWith('.') || entry.name.startsWith('_')) continue;
     const landing = path.join(toolsDir, entry.name, 'index.html');
-    if (fs.existsSync(landing) && !seen.has(entry.name)) fail(`${entry.name}: public tool landing exists but slug is absent from tools/tools-index.json`);
+    if (!fs.existsSync(landing) || seen.has(entry.name)) continue;
+    if (!stagedSet.has(entry.name)) {
+      fail(`${entry.name}: public tool landing exists but slug is absent from tools/tools-index.json and tools/staged-tools.json`);
+      continue;
+    }
+    const html = readText(landing);
+    const robotsValues = [...html.matchAll(/<meta\b[^>]*>/gi)]
+      .map((match) => match[0])
+      .filter((tag) => tagAttr(tag, 'name').toLowerCase() === 'robots')
+      .map((tag) => tagAttr(tag, 'content').toLowerCase());
+    if (!robotsValues.some((value) => value.split(/[,\s]+/).includes('noindex'))) {
+      fail(`${entry.name}: staged landing must declare meta robots noindex`);
+    }
+    const stagedUrl = toolPublicUrl(entry.name);
+    const sitemapCount = exactSitemapCount(sitemap, stagedUrl);
+    if (sitemapCount !== 0) fail(`${entry.name}: staged landing must be absent from sitemap; found ${sitemapCount}`);
   }
+}
+
+for (const stagedItem of stagedItems) {
+  const slug = stagedItem?.slug;
+  try { assertToolSlug(slug); } catch (error) { fail(`tools/staged-tools.json: ${error.message}`); continue; }
+  if (seen.has(slug)) fail(`${slug}: slug cannot be both registered and staged`);
+  const landing = path.join(toolsDir, slug, 'index.html');
+  if (!fs.existsSync(landing)) fail(`${slug}: staged landing missing: tools/${slug}/index.html`);
 }
 
 for (const match of sitemap.matchAll(/<loc>\s*https:\/\/nicheworks\.app\/tools\/([^/<]+)\/\s*<\/loc>/g)) {

@@ -1,3 +1,5 @@
+> Publication status: `staged-unregistered`. This coming-soon route is intentionally excluded from the public tool registry and sitemap until the product is complete.
+
 # Earth Timeseries — canonical tool specification
 
 - **Slug:** `earth-timeseries`

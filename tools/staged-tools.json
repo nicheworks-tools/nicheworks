@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-14",
+  "items": [
+    {
+      "slug": "earth-alerts",
+      "state": "staged-unregistered",
+      "robots": "noindex,nofollow",
+      "sitemap": false,
+      "public_discovery": false,
+      "reason": "Coming-soon placeholder withheld from public discovery and AdSense review surface pending product completion"
+    },
+    {
+      "slug": "earth-timeseries",
+      "state": "staged-unregistered",
+      "robots": "noindex,nofollow",
+      "sitemap": false,
+      "public_discovery": false,
+      "reason": "Coming-soon placeholder withheld from public discovery and AdSense review surface pending product completion"
+    }
+  ]
+}

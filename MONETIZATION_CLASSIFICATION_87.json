@@ -1,7 +1,7 @@
 {
   "schemaVersion": "nicheworks-monetization-classification-v1",
   "updated": "2026-09-14",
-  "registryTotal": 90,
+  "registryTotal": 88,
   "bundleProductId": "nicheworks.pro",
   "counts": {
     "PRO_BUNDLE": 42,
@@ -9,7 +9,7 @@
     "AFFILIATE": 16,
     "ADS_DONATION": 26,
     "FREE": 0,
-    "HOLD": 5
+    "HOLD": 3
   },
   "classes": {
     "PRO_BUNDLE": [
@@ -107,9 +107,7 @@
     ],
     "FREE": [],
     "HOLD": [
-      "earth-alerts",
       "earth-map-suite",
-      "earth-timeseries",
       "old-kanji-ocr-scanner",
       "pattern-atlas"
     ]

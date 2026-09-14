@@ -1,7 +1,7 @@
 # NicheWorks 88-tool Monetization Classification
 
 Status: **canonical registered-tool monetization ledger**  
-Updated: 2026-09-13  
+Updated: 2026-09-14  
 Machine-readable source: `MONETIZATION_CLASSIFICATION_87.json`
 
 > Compatibility note: the historical `_87` filename is retained temporarily so existing repository references do not break. The contents now track the current 88-tool registry and are authoritative until a later filename migration is performed deliberately.
@@ -18,10 +18,10 @@ The earlier 87-tool ledger is extended for the now-registered Reconcile tool. Cl
 | --- | ---: | --- |
 | `PRO_BUNDLE` | 42 | Approved member of the future shared `nicheworks.pro` one-time bundle; exact Free/Pro operation boundary still must be frozen before live migration. |
 | `STANDALONE_PRO` | 1 | Registered tool with a deliberately separate paid product contract. |
-| `AFFILIATE` | 14 | Core result remains free; verified contextual commercial next actions may follow the result. |
+| `AFFILIATE` | 16 | Core result remains free; verified contextual commercial next actions may follow the result. |
 | `ADS_DONATION` | 26 | Primarily free acquisition/reference utility using baseline ads/donation/SEO/internal continuation. |
 | `FREE` | 0 | No tool currently needs a separate plain-Free primary classification; this class remains available for future deliberate use. |
-| `HOLD` | 5 | Product incomplete or insufficiently defined for active monetization rollout. |
+| `HOLD` | 3 | Product incomplete or insufficiently defined for active monetization rollout. |
 | **Total** | **88** | Must match `tools/tools-index.json`. |
 
 ## 3. `PRO_BUNDLE` — 42
@@ -133,11 +133,9 @@ ManualFinder remains the suite's reference affiliate workstream. The existence o
 
 These tools stay primarily free. A historic/staged Pro surface does not override this classification unless a future explicit re-review changes the ledger.
 
-## 7. `HOLD` — 5
+## 7. `HOLD` — 3
 
-- `earth-alerts`
 - `earth-map-suite`
-- `earth-timeseries`
 - `old-kanji-ocr-scanner`
 - `pattern-atlas`
 
