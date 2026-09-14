@@ -1,0 +1,140 @@
+name: TrashNavi Wave 17 publication temp
+
+on:
+  push:
+    branches:
+      - feat/trashnavi-saga-publication-wave17-20260914
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-saga-publication-wave17-20260914
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Apply Wave 17 publication delta
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          const manifestPath = 'tools/trashnavi/municipality-page-manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          if (manifest.some(x => x.lgcode === '412015')) throw new Error('Saga already in manifest');
+          manifest.push({lgcode:'412015', pref_slug:'saga', city_slug:'saga', publish:true});
+          fs.writeFileSync(manifestPath, '[\n' + manifest.map(x => `  ${JSON.stringify(x)}`).join(',\n') + '\n]\n');
+
+          const generatorPath = 'tools/trashnavi/scripts/generate-municipality-pages.mjs';
+          let generator = fs.readFileSync(generatorPath, 'utf8');
+          const oldGuard = "if(outputs.length!==23) throw new Error(`municipality page count must be 23; got ${outputs.length}`);";
+          const newGuard = "if(outputs.length!==24) throw new Error(`municipality page count must be 24; got ${outputs.length}`);";
+          if (!generator.includes(oldGuard)) throw new Error('generator 23-page guard not found');
+          generator = generator.replace(oldGuard, newGuard);
+          fs.writeFileSync(generatorPath, generator);
+
+          const affiliatePath = 'tools/trashnavi/scripts/check-affiliate-contract.mjs';
+          let affiliate = fs.readFileSync(affiliatePath, 'utf8');
+          const oldAffiliate = "check(manifest.length === 23, `expected 23 published municipality pages, got ${manifest.length}`);";
+          const newAffiliate = "check(manifest.length === 24, `expected 24 published municipality pages, got ${manifest.length}`);";
+          if (!affiliate.includes(oldAffiliate)) throw new Error('affiliate 23-page guard not found');
+          affiliate = affiliate.replace(oldAffiliate, newAffiliate);
+          fs.writeFileSync(affiliatePath, affiliate);
+
+          const indexPath = 'tools/trashnavi/index.html';
+          let index = fs.readFileSync(indexPath, 'utf8');
+          const matsueAnchor = '<a href="/tools/trashnavi/shimane/matsue/">松江市</a>';
+          const sagaAnchor = '<a href="/tools/trashnavi/saga/saga/">佐賀市</a>';
+          if (!index.includes(matsueAnchor) || index.includes(sagaAnchor)) throw new Error('root municipality link anchor state unexpected');
+          index = index.replace(matsueAnchor, matsueAnchor + sagaAnchor);
+          fs.writeFileSync(indexPath, index);
+
+          const aiPath = 'tools/trashnavi/ai-reference.json';
+          let ai = fs.readFileSync(aiPath, 'utf8');
+          if (!ai.includes('"published_municipality_count": 23')) throw new Error('AI reference count 23 not found');
+          ai = ai.replace('"published_municipality_count": 23', '"published_municipality_count": 24');
+          const matsueAi = '    {"lgcode":"322016","pref_slug":"shimane","city_slug":"matsue","url":"https://nicheworks.app/tools/trashnavi/shimane/matsue/"}';
+          const sagaAi = '    {"lgcode":"412015","pref_slug":"saga","city_slug":"saga","url":"https://nicheworks.app/tools/trashnavi/saga/saga/"}';
+          if (!ai.includes(matsueAi) || ai.includes('"lgcode":"412015"')) throw new Error('AI reference Matsue/Saga state unexpected');
+          ai = ai.replace(matsueAi, matsueAi + ',\n' + sagaAi);
+          fs.writeFileSync(aiPath, ai);
+
+          const specPath = 'tools/trashnavi/SPEC.md';
+          let spec = fs.readFileSync(specPath, 'utf8');
+          const wave16Entry = '- 島根県 松江市 — `/tools/trashnavi/shimane/matsue/`\n';
+          const wave17Entry = `\nWave 17では、供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から佐賀市を選定した。佐賀市公式のごみ分別導線を現行ページへ更新し、令和8年度ごみカレンダーと粗大ごみ定期収集案内を追加して、preferred candidateへ引き上げた。data enrichment検証後、公開対象を **24自治体** とする。\n\n- 佐賀県 佐賀市 — \`/tools/trashnavi/saga/saga/\`\n`;
+          if (!spec.includes(wave16Entry) || spec.includes('Wave 17では')) throw new Error('SPEC Wave 16/17 state unexpected');
+          spec = spec.replace(wave16Entry, wave16Entry + wave17Entry);
+
+          const wave16BaselineTail = '- unknown type labels: 0\n\n### Direct-link health monitoring — Phase 4';
+          const wave17Baseline = `- unknown type labels: 0\n\n### Wave 17 verified coverage baseline\n\n2026-09-14のWave 17 CI基準値は次のとおり。\n\n- municipalities: 1,916\n- records: 2,212 / 2,212 valid HTTP(S)\n- municipalities with any waste-specific direct link: 78\n- publish candidates (2+ types): 24\n- preferred candidates (3+ types): 24\n- collection calendar coverage: 24 municipalities\n- bulky-waste coverage: 23 municipalities\n- drop-off facility coverage: 1 municipality\n- waste-app coverage: 1 municipality\n- direct-link inventory: 20 datasets / 144 records / 125 unique URLs / 0 invalid URLs\n- invalid records: 0\n- unknown type labels: 0\n\n### Direct-link health monitoring — Phase 4`;
+          const tailIndex = spec.indexOf(wave16BaselineTail, spec.indexOf('### Wave 16 verified coverage baseline'));
+          if (tailIndex < 0) throw new Error('Wave 16 baseline tail not found');
+          spec = spec.slice(0, tailIndex) + wave17Baseline + spec.slice(tailIndex + wave16BaselineTail.length);
+
+          spec = spec.replace('- [x] 公開23自治体をmanifest allowlistで管理する。', '- [x] 公開24自治体をmanifest allowlistで管理する。');
+          spec = spec.replace('- [x] generator `--check` で23ページの生成driftを検出する。', '- [x] generator `--check` で24ページの生成driftを検出する。');
+          spec = spec.replace('- [x] Wave 16で松江市をpreferred candidateへ引き上げ、自治体pageを公開する。', '- [x] Wave 16で松江市をpreferred candidateへ引き上げ、自治体pageを公開する。\n- [x] Wave 17で佐賀市をpreferred candidateへ引き上げ、自治体pageを公開する。');
+          spec = spec.replace('- `tools/trashnavi/data/direct-waste-links-supply-wave16.json` — 松江市のWave 16 collection-calendar / bulky-waste enrichment。', '- `tools/trashnavi/data/direct-waste-links-supply-wave16.json` — 松江市のWave 16 collection-calendar / bulky-waste enrichment。\n- `tools/trashnavi/data/direct-waste-links-supply-wave17.json` — 佐賀市のWave 17 collection-calendar / bulky-waste enrichment。');
+          spec = spec.replace('- `tools/trashnavi/shimane/matsue/index.html` — Wave 16 municipality page。', '- `tools/trashnavi/shimane/matsue/index.html` — Wave 16 municipality page。\n- `tools/trashnavi/saga/saga/index.html` — Wave 17 municipality page。');
+          fs.writeFileSync(specPath, spec);
+          NODE
+      - name: Generate municipality pages and dedicated sitemap
+        run: node tools/trashnavi/scripts/generate-municipality-pages.mjs
+      - name: Add Saga to root sitemap
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const p = 'sitemap.xml';
+          let s = fs.readFileSync(p, 'utf8');
+          const url = 'https://nicheworks.app/tools/trashnavi/saga/saga/';
+          if (s.includes(url)) throw new Error('Saga already in root sitemap');
+          const block = `  <url>\n    <loc>${url}</loc>\n    <lastmod>2026-09-14</lastmod>\n  </url>\n`;
+          if (!s.includes('</urlset>')) throw new Error('root sitemap closing tag not found');
+          s = s.replace('</urlset>', block + '</urlset>');
+          fs.writeFileSync(p, s);
+          NODE
+      - name: Verify generated Saga and machine-readable contracts
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const p = 'tools/trashnavi/saga/saga/index.html';
+          const html = fs.readFileSync(p, 'utf8');
+          const checks = [
+            ['canonical', 'https://nicheworks.app/tools/trashnavi/saga/saga/'],
+            ['sorting', 'https://www.city.saga.lg.jp/kurashi/seikatsukankyo/1/1/3/106.html'],
+            ['calendar', 'https://www.city.saga.lg.jp/main/412.html'],
+            ['bulky', 'https://www.city.saga.lg.jp/kurashi/seikatsukankyo/1/1/5/3840.html'],
+            ['2026 callout', '2026年の収集カレンダー'],
+            ['PR block', 'ごみ出し・片付け用品 [PR]']
+          ];
+          for (const [name, needle] of checks) if (!html.includes(needle)) throw new Error(`${name} missing`);
+          if (html.includes('https://www.city.saga.lg.jp/main/245.html')) throw new Error('legacy Saga sorting URL leaked into generated page');
+          const cards = (html.match(/class="official-link-card"/g) || []).length;
+          if (cards !== 3) throw new Error(`expected exactly 3 official cards, got ${cards}`);
+          const ai = JSON.parse(fs.readFileSync('tools/trashnavi/ai-reference.json','utf8'));
+          if (ai.published_municipality_count !== 24 || ai.municipalities.length !== 24) throw new Error('AI reference is not 24/24');
+          if (ai.municipalities.filter(x => x.lgcode === '412015').length !== 1) throw new Error('AI reference Saga entry must appear exactly once');
+          NODE
+      - name: Required TrashNavi audits
+        run: |
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-affiliate-contract.mjs
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+      - name: Commit publication output and remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sitemap.xml sitemap-trashnavi.xml tools/trashnavi/SPEC.md tools/trashnavi/ai-reference.json tools/trashnavi/index.html tools/trashnavi/municipality-page-manifest.json tools/trashnavi/scripts/check-affiliate-contract.mjs tools/trashnavi/scripts/generate-municipality-pages.mjs tools/trashnavi/saga/saga/index.html
+          git commit -m 'Publish Saga as 24th TrashNavi municipality page'
+          git rm .github/workflows/trashnavi-wave17-publication-temp.yml
+          git commit -m 'Remove temporary TrashNavi Wave 17 publication workflow'
+          git push origin HEAD:feat/trashnavi-saga-publication-wave17-20260914
