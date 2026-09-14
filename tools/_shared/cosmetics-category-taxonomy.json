@@ -92,6 +92,20 @@
       "authority": "Personal Care Products Council / Cosmetics Info",
       "sources": ["https://www.cosmeticsinfo.org/ingredient/disodium-edta/"],
       "runtime_verified": true
+    },
+    "tocopheryl acetate": {
+      "category": "antioxidant",
+      "source_functions": ["antioxidant"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/ingredient/tocopherol/"],
+      "runtime_verified": true
+    },
+    "sodium citrate": {
+      "category": "pH adjuster",
+      "source_functions": ["pH adjuster"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/ingredient/citric-acid/"],
+      "runtime_verified": true
     }
   }
 }
