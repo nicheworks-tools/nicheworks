@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-15",
+  "provider": "amazon-jp",
+  "marketplace": "https://www.amazon.co.jp/",
+  "enabled": false,
+  "tracking_id": "",
+  "link_strategy": "search-results",
+  "activation_rule": "Do not enable until NicheWorks has a valid Amazon Associates tracking ID and the generated special-link format has been checked in Associates Central or SiteStripe.",
+  "disclosure": {
+    "ja": "Amazonのアソシエイトとして、NicheWorksは適格販売により収入を得ています。",
+    "en": "As an Amazon Associate, NicheWorks earns from qualifying purchases."
+  },
+  "queries": {
+    "houndstooth": {"ja": "千鳥格子", "en": "houndstooth pattern"},
+    "gingham": {"ja": "ギンガムチェック", "en": "gingham pattern"},
+    "tartan": {"ja": "タータンチェック", "en": "tartan pattern"},
+    "glen-check": {"ja": "グレンチェック", "en": "glen check pattern"},
+    "argyle": {"ja": "アーガイル柄", "en": "argyle pattern"},
+    "chevron": {"ja": "シェブロン柄", "en": "chevron pattern"},
+    "polka-dot": {"ja": "水玉柄", "en": "polka dot pattern"},
+    "moroccan-trellis": {"ja": "モロッカントレリス 柄", "en": "Moroccan trellis pattern"},
+    "seigaiha": {"ja": "青海波 柄", "en": "seigaiha pattern"},
+    "asanoha": {"ja": "麻の葉 柄", "en": "asanoha pattern"},
+    "shippo": {"ja": "七宝 柄", "en": "shippo Japanese pattern"},
+    "ichimatsu": {"ja": "市松模様", "en": "ichimatsu pattern"},
+    "kikko": {"ja": "亀甲 柄", "en": "kikko Japanese pattern"},
+    "karakusa": {"ja": "唐草模様", "en": "karakusa pattern"},
+    "damask": {"ja": "ダマスク柄", "en": "damask pattern"},
+    "arabesque": {"ja": "アラベスク柄", "en": "arabesque pattern"},
+    "paisley": {"ja": "ペイズリー柄", "en": "paisley pattern"},
+    "leopard-print": {"ja": "ヒョウ柄", "en": "leopard print pattern"},
+    "ikat": {"ja": "イカット柄", "en": "ikat pattern"},
+    "kilim": {"ja": "キリム柄", "en": "kilim pattern"}
+  }
+}
