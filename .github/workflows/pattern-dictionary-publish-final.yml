@@ -1,0 +1,159 @@
+name: Pattern Dictionary final publication
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-production-20-20260914
+    paths:
+      - .github/workflows/pattern-dictionary-publish-final.yml
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-production-20-20260914
+          fetch-depth: 2
+      - name: Promote canonical 20 to verified publication
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, re
+
+          root=Path('tools/pattern-dictionary')
+          canonical=['houndstooth','gingham','tartan','glen-check','argyle','chevron','polka-dot','moroccan-trellis','seigaiha','asanoha','shippo','ichimatsu','kikko','karakusa','damask','arabesque','paisley','leopard-print','ikat','kilim']
+
+          prod_path=root/'data'/'production-content.json'
+          prod=json.loads(prod_path.read_text())
+          if {x['pattern_id'] for x in prod['patterns']} != set(canonical):
+            raise SystemExit('production canonical set mismatch')
+          prod['phase']='verified-publication'
+          prod['updated']='2026-09-15'
+          prod.setdefault('policy',{})['review_state']='verified'
+          prod['policy']['image_state']='verified-publication'
+          for record in prod['patterns']:
+            record['review_state']='verified'
+          prod_path.write_text(json.dumps(prod,ensure_ascii=False,indent=2)+'\n')
+
+          refs_path=root/'data'/'reference-images.json'
+          refs=json.loads(refs_path.read_text())
+          if {x['pattern_id'] for x in refs['images']} != set(canonical):
+            raise SystemExit('reference canonical set mismatch')
+          refs['updated']='2026-09-15'
+          refs['status']='verified-publication'
+          refs.setdefault('policy',{})['verification_rule']='verified images passed source/content contract checks, structural visual review, search/compare regressions, and desktop/mobile Chromium publication QA'
+          for image in refs['images']:
+            image['review_state']='verified'
+          refs_path.write_text(json.dumps(refs,ensure_ascii=False,indent=2)+'\n')
+
+          app_path=root/'app.js'
+          app=app_path.read_text()
+          app,n=re.subn(r"function imageStatus\(p,lang\)\{.*?\}\nfunction bag", "function imageStatus(p,lang){return '';}\nfunction bag", app, count=1, flags=re.S)
+          if n!=1:
+            raise SystemExit('imageStatus publication replacement failed')
+          app_path.write_text(app)
+
+          home_replacements={
+            root/'index.html':(
+              '現在の20件のReference Imageは構造レビュー済みです。詳細ページは最終検証完了まで検索インデックス対象外です。',
+              '現在の20件は出典レビュー・Reference Image構造レビュー・検索/比較・デスクトップ/モバイルQAを完了し、公開検証済みです。'
+            ),
+            root/'en'/'index.html':(
+              'The 20 Reference Images have passed structural review. Detail pages remain out of the search index until final verification.',
+              'The current 20 entries have completed source review, Reference Image structural review, search/compare checks, and desktop/mobile QA and are published as verified.'
+            )
+          }
+          for file,(old,new) in home_replacements.items():
+            s=file.read_text()
+            if old not in s:
+              raise SystemExit(f'{file}: pre-publication home copy anchor missing')
+            file.write_text(s.replace(old,new,1))
+
+          ja_old='現在のデータと画像は検証中です。公開用Reference Image・出典確認後にindex対象へ昇格します。'
+          ja_new='この項目は出典レビューとReference Image構造レビューを完了し、公開QAを通過しています。'
+          en_old='Data and imagery are still under validation. This page remains noindex until source and Reference Image review are complete.'
+          en_new='This entry has completed source review and Reference Image structural review and passed publication QA.'
+          touched=0
+          for pid in canonical:
+            for prefix,old,new in [('',ja_old,ja_new),('en/',en_old,en_new)]:
+              file=root/prefix/'patterns'/pid/'index.html'
+              s=file.read_text()
+              if '<meta name="robots" content="noindex,follow">' not in s:
+                raise SystemExit(f'{file}: noindex anchor missing')
+              s=s.replace('<meta name="robots" content="noindex,follow">','<meta name="robots" content="index,follow">',1)
+              if old not in s:
+                raise SystemExit(f'{file}: old validation footer missing')
+              file.write_text(s.replace(old,new,1))
+              touched+=1
+          if touched != 40:
+            raise SystemExit(f'expected 40 detail pages, touched {touched}')
+
+          validate=root/'tests'/'validate.mjs'
+          s=validate.read_text()
+          old="if(!html.includes('noindex,follow')) errors.push(`${rel}: detail must stay noindex until image verification`);"
+          new="const shouldIndex=reviewOrder.indexOf(x.review_state)>=reviewOrder.indexOf('verified');if(shouldIndex&&!html.includes('index,follow')) errors.push(`${rel}: verified detail must be index,follow`);if(!shouldIndex&&!html.includes('noindex,follow')) errors.push(`${rel}: pre-verified detail must remain noindex,follow`);"
+          if old not in s:
+            raise SystemExit('validate.mjs index-state anchor missing')
+          validate.write_text(s.replace(old,new,1).replace('40 static noindex detail pages exist','40 static detail pages follow review-state indexing rules'))
+
+          browse=root/'tests'/'browse-mobile-test.mjs'
+          s=browse.read_text()
+          anchor="const patterns=JSON.parse(fs.readFileSync(path.join(root,'data','patterns.json'),'utf8'));"
+          if anchor not in s:
+            raise SystemExit('browse test pattern anchor missing')
+          s=s.replace(anchor,anchor+"\nconst prod=JSON.parse(fs.readFileSync(path.join(root,'data','production-content.json'),'utf8'));\nconst prodById=Object.fromEntries(prod.patterns.map(x=>[x.pattern_id,x]));",1)
+          old="if(!html.includes('noindex,follow'))throw new Error(`${prefix}${p.id}: detail page must remain noindex until final verified publication`);"
+          new="const verified=prodById[p.id]?.review_state==='verified'||prodById[p.id]?.review_state==='published';if(verified&&!html.includes('index,follow'))throw new Error(`${prefix}${p.id}: verified detail page must be index,follow`);if(!verified&&!html.includes('noindex,follow'))throw new Error(`${prefix}${p.id}: pre-verified detail page must remain noindex,follow`);"
+          if old not in s:
+            raise SystemExit('browse test index anchor missing')
+          browse.write_text(s.replace(old,new,1))
+
+          ref_test=root/'tests'/'reference-image-test.mjs'
+          s=ref_test.read_text()
+          old="['candidates-complete','structural-review-complete']"
+          if old not in s:
+            raise SystemExit('reference image status anchor missing')
+          s=s.replace(old,"['candidates-complete','structural-review-complete','verified-publication']",1)
+          s=s.replace("if (image.review_state === 'reviewed' && reviewById[image.pattern_id]?.decision !== 'pass')", "if (['reviewed','verified','published'].includes(image.review_state) && reviewById[image.pattern_id]?.decision !== 'pass')",1)
+          s=s.replace('structurally reviewed where marked reviewed','structurally reviewed for reviewed-or-later states')
+          ref_test.write_text(s)
+
+          sitemap=Path('sitemap.xml')
+          sx=sitemap.read_text()
+          entries=[]
+          for pid in canonical:
+            for prefix in ['', 'en/']:
+              url=f'https://nicheworks.app/tools/pattern-dictionary/{prefix}patterns/{pid}/'
+              if f'<loc>{url}</loc>' not in sx:
+                entries.append(f'  <url>\n    <loc>{url}</loc>\n    <lastmod>2026-09-15</lastmod>\n  </url>')
+          if entries:
+            if '</urlset>' not in sx:
+              raise SystemExit('sitemap closing tag missing')
+            sitemap.write_text(sx.replace('</urlset>','\n'.join(entries)+'\n</urlset>',1))
+          PY
+      - name: Validate final publication contract
+        run: |
+          set -euo pipefail
+          node --check tools/pattern-dictionary/app.js
+          node tools/pattern-dictionary/tests/source-verification-test.mjs
+          node tools/pattern-dictionary/tests/production-content-test.mjs
+          node tools/pattern-dictionary/tests/reference-image-test.mjs
+          node tools/pattern-dictionary/tests/search-test.mjs
+          node tools/pattern-dictionary/tests/compare-test.mjs
+          node tools/pattern-dictionary/tests/affiliate-test.mjs
+          node tools/pattern-dictionary/tests/browse-mobile-test.mjs
+          node tools/pattern-dictionary/tests/validate.mjs
+          node tools/pattern-dictionary/tests/publication-test.mjs
+      - name: Persist publication and remove one-shot workflow
+        run: |
+          git rm .github/workflows/pattern-dictionary-publish-final.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/pattern-dictionary sitemap.xml
+          git commit -m "feat: publish verified Pattern Dictionary canonical 20"
+          git push origin HEAD:feat/pattern-dictionary-production-20-20260914
