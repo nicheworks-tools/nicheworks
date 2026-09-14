@@ -6,6 +6,7 @@ on:
       - fix/phone-quickcheck-foldable-audit-wave2-20260915
     paths:
       - .github/workflows/tmp-phone-quickcheck-foldable-audit-wave2.yml
+      - scripts/tmp-phone-quickcheck-foldable-audit-wave2.mjs
 
 permissions:
   contents: write
