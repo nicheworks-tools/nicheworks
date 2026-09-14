@@ -1,0 +1,50 @@
+name: Generate Old Kanji Dictionary Audit
+
+on:
+  push:
+    branches:
+      - feat/old-kanji-dictionary-audit-20260914
+    paths:
+      - 'scripts/build-old-kanji-dictionary-audit.mjs'
+      - 'tools/old-kanji-reference/dict.json'
+      - 'tools/old-kanji-reference/meta.json'
+      - 'tools/old-kanji-reference/meta-extra-2.json'
+      - 'tools/old-kanji-reference/meta-extra-3.json'
+      - 'tools/old-kanji-reference/meta-extra-4.json'
+      - 'tools/old-kanji-reference/meta-extra-5.json'
+      - 'tools/old-kanji-reference/meta-extra-6.json'
+      - 'tools/old-kanji-reference/compatibility-notes.json'
+      - '.github/workflows/tmp-old-kanji-dictionary-audit.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout audit branch
+        uses: actions/checkout@v4
+        with:
+          ref: feat/old-kanji-dictionary-audit-20260914
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate audit artifact
+        run: node scripts/build-old-kanji-dictionary-audit.mjs
+
+      - name: Commit generated artifact
+        run: |
+          if git diff --quiet -- tools/old-kanji-reference/dictionary-audit.json; then
+            echo "Audit artifact already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/old-kanji-reference/dictionary-audit.json
+          git commit -m "Generate Old Kanji dictionary audit artifact"
+          git push origin HEAD:feat/old-kanji-dictionary-audit-20260914
