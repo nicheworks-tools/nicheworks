@@ -1,0 +1,49 @@
+name: TrashNavi Wave 14 readiness temp
+
+on:
+  push:
+    branches:
+      - feat/trashnavi-wave14-yamaguchi-readiness
+
+permissions:
+  contents: write
+
+jobs:
+  apply-and-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Add Wave 14 dataset to runtime
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('tools/trashnavi/app.js')
+          s = p.read_text()
+          old = '"data/direct-waste-links-supply-wave13.json"]'
+          new = '"data/direct-waste-links-supply-wave13.json","data/direct-waste-links-supply-wave14.json"]'
+          if new not in s:
+              if old not in s:
+                  raise SystemExit('Wave 13 runtime anchor not found')
+              s = s.replace(old, new, 1)
+              p.write_text(s)
+          PY
+      - name: Run TrashNavi audits
+        run: |
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-affiliate-contract.mjs
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+      - name: Commit verified runtime change and remove temp workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/trashnavi/app.js
+          git rm .github/workflows/trashnavi-wave14-readiness-temp.yml
+          git commit -m "Wire TrashNavi Wave 14 dataset after audits"
+          git push
