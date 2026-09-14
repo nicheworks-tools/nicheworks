@@ -16,3 +16,11 @@ jobs:
           node-version: '20'
       - name: Run data validation
         run: node tools/construction-tools-atlas/scripts/validate-data.mjs
+
+  pattern-dictionary-search-regression:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/feat/pattern-dictionary-production-20-20260914' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run mandatory search regressions
+        run: node tools/pattern-dictionary/tests/search-test.mjs
