@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 28,
+  "published_municipality_count": 29,
   "municipalities": [
     {"lgcode":"131016","pref_slug":"tokyo","city_slug":"chiyoda","url":"https://nicheworks.app/tools/trashnavi/tokyo/chiyoda/"},
     {"lgcode":"131032","pref_slug":"tokyo","city_slug":"minato","url":"https://nicheworks.app/tools/trashnavi/tokyo/minato/"},
@@ -36,6 +36,7 @@
     {"lgcode":"312011","pref_slug":"tottori","city_slug":"tottori","url":"https://nicheworks.app/tools/trashnavi/tottori/tottori/"},
     {"lgcode":"472018","pref_slug":"okinawa","city_slug":"naha","url":"https://nicheworks.app/tools/trashnavi/okinawa/naha/"},
     {"lgcode":"362018","pref_slug":"tokushima","city_slug":"tokushima","url":"https://nicheworks.app/tools/trashnavi/tokushima/tokushima/"},
-    {"lgcode":"422011","pref_slug":"nagasaki","city_slug":"nagasaki","url":"https://nicheworks.app/tools/trashnavi/nagasaki/nagasaki/"}
+    {"lgcode":"422011","pref_slug":"nagasaki","city_slug":"nagasaki","url":"https://nicheworks.app/tools/trashnavi/nagasaki/nagasaki/"},
+    {"lgcode":"392014","pref_slug":"kochi","city_slug":"kochi","url":"https://nicheworks.app/tools/trashnavi/kochi/kochi/"}
   ]
 }
