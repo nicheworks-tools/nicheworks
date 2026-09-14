@@ -139,6 +139,38 @@ for (const item of publicItems) {
   }
 }
 
+function walkHtml(dir, callback) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (['.git', 'node_modules', '_archive'].includes(entry.name)) continue;
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) walkHtml(full, callback);
+    else if (entry.isFile() && entry.name.endsWith('.html')) callback(full);
+  }
+}
+
+function placeholderOnlyText(inner) {
+  return inner.replace(/<!--[\s\S]*?-->/g, ' ').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/gi, ' ').replace(/\s+/g, ' ').trim();
+}
+
+const placeholderOnlyPattern = /^(?:(?:広告枠(?:（準備中）)?|Ad slot|Advertisement placeholder)(?:\s*(?:\/|\||・)\s*)?)+$/i;
+const placeholderElementPattern = /<(div|p|span|aside|section|li|td|th)\b([^>]*)>([\s\S]*?)<\/\1>/gi;
+walkHtml(root, (full) => {
+  const file = path.relative(root, full).replaceAll('\\', '/');
+  const html = fs.readFileSync(full, 'utf8');
+  if (metaRobots(html).includes('noindex')) return;
+  placeholderElementPattern.lastIndex = 0;
+  let match;
+  while ((match = placeholderElementPattern.exec(html))) {
+    const inner = match[3];
+    if (/<ins\b|adsbygoogle|pagead2\.googlesyndication\.com/i.test(inner)) continue;
+    if (placeholderOnlyPattern.test(placeholderOnlyText(inner))) {
+      fail(file + ': indexable public HTML must not render a placeholder-only ad element');
+      break;
+    }
+  }
+  if (/YOUR_TOKEN_HERE/i.test(html)) fail(file + ': indexable public HTML must not contain an unreplaced analytics token placeholder');
+});
+
 if (errors.length) {
   console.error(`AdSense review surface contract: FAIL (${errors.length} issue${errors.length === 1 ? '' : 's'})`);
   for (const error of errors) console.error(`- ${error}`);
