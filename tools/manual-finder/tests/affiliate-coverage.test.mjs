@@ -75,6 +75,7 @@ assert.ok(records.length > 0, 'ManualFinder canonical catalog should not be empt
 for (const name of [
   'affiliate-config.js',
   'affiliate-office-consumables.js',
+  'affiliate-oki-toner-wave2.js',
   'affiliate-ricoh-consumables-wave3.js',
   'affiliate-kyocera-toner-wave3.js',
   'affiliate-kyocera-toner-wave4.js',
