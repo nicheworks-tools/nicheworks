@@ -204,8 +204,19 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   const html = h.elements.desktopDetail.innerHTML;
   assert.match(html, /120W/);
   assert.match(html, /HyperCharge/);
+  assert.match(html, /Xiaomi HyperCharge \/ TurboCharge対応充電器/);
   assert.doesNotMatch(html, /USB-PD対応 30W以上の充電器/);
   assert.doesNotMatch(html, /USB-PD対応 45W以上の充電器/);
+}
+
+// Proprietary charger families resolve to their own accessory classes.
+{
+  const oppo = await createHarness(['oppo-a77']);
+  assert.match(oppo.elements.desktopDetail.innerHTML, /OPPO SUPERVOOC対応充電器/);
+  assert.doesNotMatch(oppo.elements.desktopDetail.innerHTML, /USB-PD対応 30W以上の充電器/);
+
+  const motorola = await createHarness(['motorola-edge-50-pro']);
+  assert.match(motorola.elements.desktopDetail.innerHTML, /Motorola TurboPower対応充電器/);
 }
 
 // On mobile, selecting another row opens the bottom sheet with that phone's real detail content; close restores it.
