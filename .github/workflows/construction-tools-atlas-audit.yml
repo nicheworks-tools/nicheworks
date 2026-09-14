@@ -51,3 +51,6 @@ jobs:
 
       - name: Check deep-link v2.3 contract
         run: node tools/construction-tools-atlas/scripts/check-deep-link-v2.3.cjs
+
+      - name: Audit image assets and canonical mappings
+        run: node tools/construction-tools-atlas/scripts/audit-image-assets-v2.3.cjs
