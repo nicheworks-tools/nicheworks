@@ -34,6 +34,37 @@ const ALLOWED_OFFICIAL_HOSTS = new Set([
   'www.eucerinus.com'
 ]);
 
+const COHORT2_WAVE1_EXACT = [
+  'Aqua (Water)',
+  'Ethoxydiglycol',
+  'Isoceteth-20',
+  'Lysine HCl',
+  'Ahnfeltiopsis Concinna Extract',
+  'Arginine HCl',
+  'Benzoyl Peroxide',
+  'Carnitine',
+  'Citrulline',
+  'Dicaprylyl Ether',
+  'Dimethicone Crosspolymer',
+  'Dimethyl Isosorbide',
+  'Glyceryl Glucoside',
+  'Glycogen',
+  'Histidine HCl',
+  'Hydrogenated Coco-Glycerides',
+  'Hydroxypropyl Methylcellulose',
+  'Maltose',
+  'Methylpropanediol',
+  'Octyldodecanol',
+  'p-Anisic Acid',
+  'Polyacrylate Crosspolymer-6',
+  'Saccharide Isomerate',
+  'Sodium Cetearyl Sulfate',
+  'Sodium Hyaluronate Crosspolymer',
+  'Synthetic Beeswax',
+  'Tamarindus Indica Seed Gum',
+  'Tapioca Starch'
+];
+
 const corpus = CORPUS_FILES.flatMap(([defaultCohort, rel]) => {
   const items = JSON.parse(read(rel));
   assert.ok(Array.isArray(items), `${rel}: real-label corpus file must be an array`);
@@ -179,7 +210,11 @@ assert.ok(cohort2.categories.size >= 5, `cohort 2 requires at least 5 categories
 const cohort1Coverage = cohort1.exactKnown / cohort1.ingredients;
 const cohort2Coverage = cohort2.exactKnown / cohort2.ingredients;
 assert.ok(cohort1Coverage >= 0.965, `cohort 1 exact coverage ${(cohort1Coverage * 100).toFixed(2)}% is below its frozen 96.5% floor`);
-assert.ok(cohort2Coverage >= 0.95, `cohort 2 exact coverage ${(cohort2Coverage * 100).toFixed(2)}% is below the 95% Wave 1 floor`);
+assert.ok(cohort2Coverage >= 0.976, `cohort 2 exact coverage ${(cohort2Coverage * 100).toFixed(2)}% is below the 97.6% Wave 1 floor`);
+
+for (const exactName of COHORT2_WAVE1_EXACT) {
+  assert.equal(isExactKnown(exactName), true, `${exactName}: cohort 2 Wave 1 exact identity must remain recognized`);
+}
 
 for (const unresolved of [
   'パラベン',
@@ -205,7 +240,7 @@ const unknownInventory = sortedUnknownInventory(unknownCounts);
 const overallCoverage = ingredientTotal ? exactKnownTotal / ingredientTotal : 0;
 const cohortSummaries = [...cohortStats.values()].map((cohort) => {
   const unknownInventoryForCohort = sortedUnknownInventory(cohort.unknownCounts);
-  const floor = cohort.cohort === 'cohort1' ? 0.965 : 0.95;
+  const floor = cohort.cohort === 'cohort1' ? 0.965 : 0.976;
   return {
     cohort: cohort.cohort,
     products: cohort.products,
@@ -234,7 +269,8 @@ console.log(JSON.stringify({
   unknown: ingredientTotal - exactKnownTotal,
   exact_coverage: Number(overallCoverage.toFixed(4)),
   cohort1_exact_coverage_floor: 0.965,
-  cohort2_exact_coverage_floor: 0.95,
+  cohort2_exact_coverage_floor: 0.976,
+  cohort2_wave1_exact_names: COHORT2_WAVE1_EXACT.length,
   cohort2_is_baseline_only: false,
   distinct_unknowns: unknownInventory.length,
   broad_group_labels_are_not_exact: true,
