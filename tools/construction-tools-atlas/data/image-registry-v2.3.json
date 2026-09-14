@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-registry-v2.3",
-  "version": "2026-09-14-wave2b-1",
+  "version": "2026-09-14-wave3a-1",
   "policy": {
     "primary_format": "webp",
     "formal_min_state": "reviewed",
@@ -439,6 +439,150 @@
         "source_sha1": "81998490514502015085394ebeeed1dfd79e51b1"
       },
       "notes": "Wave 2B manually reviewed real-subject image; legacy フルハーネス / Full body harness identity resolved to safety_harness."
+    },
+    {
+      "entry_id": "q017_workbench",
+      "alt_ja": "木工作業用の大型作業台",
+      "alt_en": "Heavy woodworking workbench with vise",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/q017_workbench/source.jpg",
+        "display": "./images/q017_workbench/primary.webp",
+        "thumbnail": "./images/q017_workbench/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Carpenter%27s_workbench.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Carpenter%27s_workbench.jpg",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Emhoo~commonswiki",
+        "attribution": "Emhoo~commonswiki / Wikimedia Commons, CC BY-SA 3.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "a9a4dfd5796cb078c9db7d05e6e542d0a79fc923"
+      },
+      "notes": "Wave 3A manually reviewed real-subject image for the q017 Workbench canonical."
+    },
+    {
+      "entry_id": "q017_toolbox",
+      "alt_ja": "持ち運び用の金属製工具箱",
+      "alt_en": "Portable metal toolbox",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/q017_toolbox/source.jpg",
+        "display": "./images/q017_toolbox/primary.webp",
+        "thumbnail": "./images/q017_toolbox/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/7/71/Metal_tool_box.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Metal_tool_box.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "Santeri Viinamäki",
+        "attribution": "Santeri Viinamäki / Wikimedia Commons, CC BY-SA 4.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "2cdef5d1e4e74ec1f72f6e79f0173d96b4999aa8"
+      },
+      "notes": "Wave 3A manually reviewed real-subject image for the q017 Toolbox canonical."
+    },
+    {
+      "entry_id": "q017_rubber_mallet",
+      "alt_ja": "黒いゴム頭のゴムハンマー",
+      "alt_en": "Rubber mallets with black non-marring heads",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/q017_rubber_mallet/source.jpg",
+        "display": "./images/q017_rubber_mallet/primary.webp",
+        "thumbnail": "./images/q017_rubber_mallet/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Rubber_mallets.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Rubber_mallets.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "MartinMerinsky",
+        "attribution": "MartinMerinsky / Wikimedia Commons, CC BY-SA 4.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "b83e39adb9f6cd6fbe22d2bf99566dcd2230fd25"
+      },
+      "notes": "Wave 3A manually reviewed real-subject image for the q017 Rubber Mallet canonical."
+    },
+    {
+      "entry_id": "q017_needle_nose_pliers",
+      "alt_ja": "細長い先端を持つラジオペンチ",
+      "alt_en": "Needle-nose pliers with long narrow jaws",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/q017_needle_nose_pliers/source.jpg",
+        "display": "./images/q017_needle_nose_pliers/primary.webp",
+        "thumbnail": "./images/q017_needle_nose_pliers/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Basic_NeedleNose_Pliers.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Basic_NeedleNose_Pliers.jpg",
+        "license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "author": "oomlout",
+        "attribution": "oomlout / Wikimedia Commons, CC BY-SA 2.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "0fd5ac2cb494254ed537ed3d76e743bdaa3d3545"
+      },
+      "notes": "Wave 3A manually reviewed real-subject image for the q017 Needle-nose Pliers canonical."
+    },
+    {
+      "entry_id": "q017_survey_tripod",
+      "alt_ja": "測量機器を載せる測量用三脚",
+      "alt_en": "Surveyor tripod with instrument head and spiked feet",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/q017_survey_tripod/source.jpg",
+        "display": "./images/q017_survey_tripod/primary.webp",
+        "thumbnail": "./images/q017_survey_tripod/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Surveyors_tripod.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Surveyors_tripod.jpg",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Michael Daly",
+        "attribution": "Michael Daly / Wikimedia Commons, CC BY-SA 3.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "2c6726e0b2baf2399c0cc13c44bd821248dd4c44"
+      },
+      "notes": "Wave 3A manually reviewed real-subject image for the q017 Survey Tripod canonical."
+    },
+    {
+      "entry_id": "q017_copper_pipe",
+      "alt_ja": "中空断面が見える銅管",
+      "alt_en": "Copper pipe section showing its hollow bore",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/q017_copper_pipe/source.png",
+        "display": "./images/q017_copper_pipe/primary.webp",
+        "thumbnail": "./images/q017_copper_pipe/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Tubo_cobre.png",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Tubo_cobre.png",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "MdeVicente",
+        "attribution": "MdeVicente / Wikimedia Commons, CC0 1.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "c43d6f238208e805362dbbef10ec57187df4265e"
+      },
+      "notes": "Wave 3A manually reviewed real-subject image for the q017 Copper Pipe canonical."
     }
   ]
 }
