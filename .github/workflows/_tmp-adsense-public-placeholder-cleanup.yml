@@ -1,0 +1,143 @@
+name: One-shot AdSense public placeholder cleanup
+
+on:
+  push:
+    branches:
+      - chore/adsense-public-placeholder-cleanup-20260915
+    paths:
+      - '.github/workflows/_tmp-adsense-public-placeholder-cleanup.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: chore/adsense-public-placeholder-cleanup-20260915
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Update AdSense review contract and clean placeholder-only UI
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          const root = process.cwd();
+          const changed = new Set();
+
+          function writeIfChanged(file, before, after) {
+            if (before === after) return false;
+            fs.writeFileSync(file, after);
+            changed.add(path.relative(root, file).replaceAll('\\', '/'));
+            return true;
+          }
+
+          // 1) Replace the obsolete global advertising contract that required placeholder UI and AdSense on every page.
+          {
+            const file = path.join(root, 'common-spec/spec-ja.md');
+            const before = fs.readFileSync(file, 'utf8');
+            const start = before.indexOf('## 1. レイアウト & 広告枠');
+            const end = before.indexOf('## 2. 共通CSS');
+            if (start < 0 || end < 0 || end <= start) throw new Error('common-spec/spec-ja.md: section 1/1.1 boundaries not found');
+            const replacement = `## 1. レイアウト & 広告\n\n基本レイアウトは、ツール本体の操作と説明を主役にする。広告のための空要素や「準備中」表示をページ構造の必須要件にしない。\n\n\`\`\`html\n<body>\n  <header class="nw-header">\n    <!-- ツールタイトル＋1行説明 -->\n  </header>\n\n  <main class="nw-main">\n    <!-- ツール固有コンテンツ -->\n\n    <!-- 寄付導線（配置ルールは第6章参照） -->\n    <!-- <div class="nw-donate">…</div> -->\n  </main>\n\n  <footer class="nw-footer">\n    <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>\n    <p class="nw-footer-line">\n      <a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a>\n    </p>\n  </footer>\n</body>\n\`\`\`\n\n注意：\n\n* **共通ナビ（他ツールへの横断リンク）は標準仕様ではないため設置しない。**\n* \`nw-nav\` を使う場合も、必要な導線だけに限定する。\n* 広告をフローティング、ポップアップ、操作UIと誤認しやすい位置に配置しない。\n* 公開ページに \`広告枠\`、\`広告枠（準備中）\`、\`Ad slot\`、\`Advertisement placeholder\` などのダミー表示を出してはならない。\n* 実広告が存在しない場所に、空の手動広告コンテナを将来用として置かない。\n\n## 1.1 AdSense 導入ルール（2026-09 AdSense再審査契約）\n\n### (1) ページ適格性を先に判定する\n\nAdSense は「全HTMLへ必須」ではない。広告コードを置く前に、そのページが公開・完成・独自価値を持つ広告適格ページかを判定する。\n\n以下のページでは AdSense を読み込まない。\n\n* \`noindex\` ページ\n* \`tools/staged-tools.json\` に登録された staged tool\n* 開発テンプレート、検証用ページ、billing success/cancel 等の結果ページ\n* Coming soon / 準備中 / mock / placeholder / 未実装を主内容とするページ\n* ツール本体や独自説明が未完成で、広告より先に公開品質を満たしていないページ\n\n完成済み・indexable・公開対象で、十分な機能または独自コンテンツを持つページでは、承認済みの AdSense publisher 設定を利用してよい。既存 publisher ID \`ca-pub-9879006623791275\` を別IDへ勝手に変更しない。\n\n### (2) 再審査中の表示契約\n\n* 広告が実際に配信されていない場所へ、ダミーの広告枠ラベルを表示しない。\n* \`ad-top\` / \`ad-bottom\` / \`ad-inline\` は必須クラスではない。実広告ユニットを意図的に実装するときだけ使用する。\n* 「広告準備中」「公開後に広告を表示予定」など、未完成の収益化状態を公開本文に出さない。\n* Auto Ads の利用可否は AdSense 側の承認状態とページ適格性に従う。Auto Ads を理由に全ページへ広告loaderを強制しない。\n\n### (3) 開発・CIルール\n\nAI / Codex / 手動修正のいずれでも、次を守る。\n\n* staged / noindex / template / billing outcome ページへ AdSense を追加しない。既にあれば削除する。\n* 完成した広告適格ページの publisher ID は不用意に変更しない。\n* 公開indexable HTMLへダミー広告枠ラベルを追加しない。\n* \`YOUR_TOKEN_HERE\` など未置換の計測テンプレートを公開HTMLへ残さない。Cloudflare Web Analytics は第5章の方式に従う。\n* 新しいページを公開対象へ昇格するときは、機能完成・indexability・sitemap・広告適格性を同時に確認する。\n* \`scripts/check-adsense-review-surface.mjs\` を回帰契約として維持する。\n\n### (4) 承認後の手動広告\n\nAdSense承認後に手動広告ユニットを追加する場合も、空のプレースホルダーではなく実ユニットとして実装し、ツール操作を妨げない位置に限定する。広告数や位置はページごとに決め、全ツールへ同じ配置を機械的に強制しない。\n\n---\n\n`;
+            writeIfChanged(file, before, before.slice(0, start) + replacement + before.slice(end));
+          }
+
+          // 2) Remove only placeholder-only ad-slot elements and stale placeholder comments/tokens.
+          const placeholderText = /^(?:広告枠(?:（準備中）)?|Ad slot|Advertisement placeholder)$/i;
+          const openClose = /<([a-z][a-z0-9:-]*)\b([^>]*\bclass=["'][^"']*\bad-slot\b[^"']*["'][^>]*)>([\s\S]*?)<\/\1>/gi;
+          const staleComments = [
+            /<!--\s*AdSense\s*\(MUST\)\s*-->/gi,
+            /<!--\s*Top Ad\s*\(required\)\s*-->/gi,
+            /<!--\s*Bottom Ad\s*\(recommended\)\s*-->/gi
+          ];
+
+          function cleanHtml(file) {
+            const before = fs.readFileSync(file, 'utf8');
+            let html = before;
+            html = html.replace(openClose, (full, tag, attrs, inner) => {
+              if (/<ins\b|adsbygoogle|pagead2\.googlesyndication\.com/i.test(inner)) return full;
+              const visible = inner
+                .replace(/<!--[\s\S]*?-->/g, ' ')
+                .replace(/<[^>]+>/g, ' ')
+                .replace(/&nbsp;/gi, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+              return placeholderText.test(visible) ? '' : full;
+            });
+            html = html.replace(/<!--[\s\S]*?YOUR_TOKEN_HERE[\s\S]*?-->/gi, '');
+            for (const re of staleComments) html = html.replace(re, '');
+            html = html.replace(/\n{4,}/g, '\n\n\n');
+            writeIfChanged(file, before, html);
+          }
+
+          function walk(dir) {
+            for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
+              if (['.git', 'node_modules', '_archive'].includes(ent.name)) continue;
+              const full = path.join(dir, ent.name);
+              if (ent.isDirectory()) walk(full);
+              else if (ent.isFile() && ent.name.endsWith('.html')) cleanHtml(full);
+            }
+          }
+          walk(root);
+
+          // 3) Remove live copy that explicitly says ad placeholders are still being prepared.
+          for (const rel of ['tools/earth-map-suite/usage.html', 'tools/earth-map-suite/usage-en.html']) {
+            const file = path.join(root, rel);
+            const before = fs.readFileSync(file, 'utf8');
+            let html = before
+              .replace(/\s*<p class="hint">広告枠は整備済みです。公開後もページ上下のみの表示を想定しています。<\/p>/, '')
+              .replace(/\s*<p class="hint">Ad slots are in preparation and planned for top\/bottom placement only\.<\/p>/, '');
+            writeIfChanged(file, before, html);
+          }
+
+          // 4) Extend the review-surface contract to every indexable HTML page.
+          {
+            const file = path.join(root, 'scripts/check-adsense-review-surface.mjs');
+            const before = fs.readFileSync(file, 'utf8');
+            const anchor = `\nif (errors.length) {`;
+            if (!before.includes(anchor)) throw new Error('check-adsense-review-surface.mjs: final error block anchor missing');
+            const addition = `\nfunction walkHtml(dir, callback) {\n  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {\n    if (['.git', 'node_modules', '_archive'].includes(entry.name)) continue;\n    const full = path.join(dir, entry.name);\n    if (entry.isDirectory()) walkHtml(full, callback);\n    else if (entry.isFile() && entry.name.endsWith('.html')) callback(full);\n  }\n}\n\nconst visibleAdPlaceholderPattern = /広告枠(?:（準備中）)?|Ad slot|Advertisement placeholder/gi;\nwalkHtml(root, (full) => {\n  const file = path.relative(root, full).replaceAll('\\\\', '/');\n  const html = fs.readFileSync(full, 'utf8');\n  if (metaRobots(html).includes('noindex')) return;\n  const visible = html\n    .replace(/<!--[\\s\\S]*?-->/g, ' ')\n    .replace(/<script\\b[\\s\\S]*?<\\/script>/gi, ' ')\n    .replace(/<style\\b[\\s\\S]*?<\\/style>/gi, ' ');\n  visibleAdPlaceholderPattern.lastIndex = 0;\n  if (visibleAdPlaceholderPattern.test(visible)) {\n    fail(\`${file}: indexable public HTML must not render a visible ad placeholder label\`);\n  }\n  if (/YOUR_TOKEN_HERE/i.test(html)) {\n    fail(\`${file}: indexable public HTML must not contain an unreplaced analytics token placeholder\`);\n  }\n});\n`;
+            writeIfChanged(file, before, before.replace(anchor, addition + anchor));
+          }
+
+          if (!changed.size) throw new Error('No files changed');
+          fs.writeFileSync('/tmp/adsense-placeholder-changed.txt', [...changed].sort().join('\n') + '\n');
+          console.log(`Changed ${changed.size} files`);
+          console.log([...changed].sort().slice(0, 250).join('\n'));
+          NODE
+
+      - name: Validate review surface and repository contracts
+        run: |
+          node scripts/check-adsense-review-surface.mjs
+          node scripts/check-seo-public-url-contract.mjs
+          node scripts/check-seo-indexable-url-identity.mjs
+          node scripts/audit-publishing-mode.mjs
+          node scripts/audit-seo.mjs --strict
+          node scripts/check-tool-runtime-contracts.mjs
+          node scripts/check-tool-runtime-contracts-wave4.mjs
+          node scripts/check-tool-runtime-contracts-wave5.mjs
+          node scripts/check-tool-runtime-contracts-wave6.mjs
+          node scripts/check-tool-runtime-contracts-wave7.mjs
+          node scripts/check-tool-spec-contract.mjs
+          node scripts/check-tool-spec-coverage.mjs
+          git diff --check
+
+      - name: Commit validated cleanup and remove one-shot workflow
+        run: |
+          rm .github/workflows/_tmp-adsense-public-placeholder-cleanup.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'chore: remove public ad placeholder UI'
+          git push origin HEAD:chore/adsense-public-placeholder-cleanup-20260915
