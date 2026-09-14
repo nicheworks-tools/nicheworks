@@ -103,6 +103,16 @@
       category: "antioxidant",
       sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/tocopherol/"]),
       authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "sodium chloride": Object.freeze({
+      category: "viscosity adjuster",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/sodium-chloride/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "disodium edta": Object.freeze({
+      category: "chelating agent",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/disodium-edta/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
     })
   });
 
@@ -426,7 +436,7 @@
   }
 
   const api = {
-    version: "1.14.0",
+    version: "1.15.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,

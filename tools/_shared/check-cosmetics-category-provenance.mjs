@@ -32,9 +32,15 @@ const EXPECTED_WAVE2 = Object.freeze({
   tocopherol: 'antioxidant'
 });
 
+const EXPECTED_WAVE3 = Object.freeze({
+  'sodium chloride': 'viscosity adjuster',
+  'disodium edta': 'chelating agent'
+});
+
 const EXPECTED_ALL = Object.freeze({
   ...EXPECTED_WAVE1,
-  ...EXPECTED_WAVE2
+  ...EXPECTED_WAVE2,
+  ...EXPECTED_WAVE3
 });
 
 const EXPECTED_SOURCES = Object.freeze({
@@ -44,7 +50,9 @@ const EXPECTED_SOURCES = Object.freeze({
   phenoxyethanol: 'https://health.ec.europa.eu/publications/phenoxyethanol_en',
   carbomer: 'https://www.cosmeticsinfo.org/ingredient/carbomer/',
   'citric acid': 'https://www.cosmeticsinfo.org/ingredient/citric-acid/',
-  tocopherol: 'https://www.cosmeticsinfo.org/ingredient/tocopherol/'
+  tocopherol: 'https://www.cosmeticsinfo.org/ingredient/tocopherol/',
+  'sodium chloride': 'https://www.cosmeticsinfo.org/ingredient/sodium-chloride/',
+  'disodium edta': 'https://www.cosmeticsinfo.org/ingredient/disodium-edta/'
 });
 
 const ALLOWED_SOURCE_HOSTS = new Set([
@@ -82,7 +90,7 @@ const evidence = parser.verifiedCategoryEvidence || {};
 assert.deepEqual(
   Object.fromEntries(Object.entries(evidence).map(([key, item]) => [key, item.category])),
   EXPECTED_ALL,
-  'verified category evidence must remain the reviewed cumulative wave 1 + wave 2 set'
+  'verified category evidence must remain the reviewed cumulative wave 1 + wave 2 + wave 3 set'
 );
 
 for (const ambiguous of parser.ambiguousExactKeys || []) {
@@ -104,7 +112,7 @@ for (const row of rows) {
 assert.equal(rawMissingCategoryRows, 187, 'verified overlay must not hide the frozen 187 raw category gaps by rewriting recognition records');
 
 let newlyClassifiedCanonicalIdentities = 0;
-let wave2NewlyClassifiedCanonicalIdentities = 0;
+let wave3NewlyClassifiedCanonicalIdentities = 0;
 const rawCategoryInventory = {};
 
 for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
@@ -126,7 +134,7 @@ for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
 
   if (rawCategories.length === 0) {
     newlyClassifiedCanonicalIdentities += 1;
-    if (Object.hasOwn(EXPECTED_WAVE2, canonical)) wave2NewlyClassifiedCanonicalIdentities += 1;
+    if (Object.hasOwn(EXPECTED_WAVE3, canonical)) wave3NewlyClassifiedCanonicalIdentities += 1;
   }
   if (rawCategories.length > 0) {
     assert.ok(
@@ -152,16 +160,9 @@ for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
   );
 }
 
-assert.equal(
-  Object.keys(EXPECTED_WAVE1).length,
-  5,
-  'wave 1 reviewed set must remain five canonical identities'
-);
-assert.equal(
-  Object.keys(EXPECTED_WAVE2).length,
-  2,
-  'wave 2 reviewed set must remain two canonical identities'
-);
+assert.equal(Object.keys(EXPECTED_WAVE1).length, 5, 'wave 1 reviewed set must remain five canonical identities');
+assert.equal(Object.keys(EXPECTED_WAVE2).length, 2, 'wave 2 reviewed set must remain two canonical identities');
+assert.equal(Object.keys(EXPECTED_WAVE3).length, 2, 'wave 3 reviewed set must remain two canonical identities');
 assert.equal(
   newlyClassifiedCanonicalIdentities >= 4,
   true,
@@ -170,13 +171,14 @@ assert.equal(
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'category-provenance-wave-2',
+  phase: 'category-provenance-wave-3',
   raw_missing_category_rows_unchanged: rawMissingCategoryRows,
   verified_category_evidence_canonical_identities: Object.keys(EXPECTED_ALL).length,
   wave_1_verified_canonical_identities: Object.keys(EXPECTED_WAVE1).length,
   wave_2_verified_canonical_identities: Object.keys(EXPECTED_WAVE2).length,
+  wave_3_verified_canonical_identities: Object.keys(EXPECTED_WAVE3).length,
   newly_classified_canonical_identities: newlyClassifiedCanonicalIdentities,
-  wave_2_newly_classified_canonical_identities: wave2NewlyClassifiedCanonicalIdentities,
+  wave_3_newly_classified_canonical_identities: wave3NewlyClassifiedCanonicalIdentities,
   raw_category_inventory: rawCategoryInventory,
   recognition_records_rewritten: false,
   safety_contract_changed: false,
