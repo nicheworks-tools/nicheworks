@@ -156,6 +156,31 @@
       note_short: "OTC acne active; FDA Monograph M006 permits sulfur at 3% to 10% as a single active ingredient.",
       note_sources: Object.freeze(["https://www.accessdata.fda.gov/drugsatfda_docs/omuf/OTC%20Monograph_M006-Topical%20Acne%20drug%20products%20for%20OTC%20Human%20Use%2011.23.2021.pdf"]),
       authority: "U.S. Food and Drug Administration"
+    }),
+    "alpha-arbutin": Object.freeze({
+      note_short: "SCCS-reviewed cosmetic ingredient; alpha-arbutin is considered safe up to 2% in face creams and 0.5% in body lotions.",
+      note_sources: Object.freeze(["https://health.ec.europa.eu/publications/safety-alpha-arbutin-and-beta-arbutin-cosmetic-products_en"]),
+      authority: "European Commission Scientific Committee on Consumer Safety"
+    }),
+    "ceteareth-20": Object.freeze({
+      note_short: "Surfactant; Cosmetics Info reports Ceteareth-20 as a solubilizing and cleansing agent.",
+      note_sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/ceteareth-20/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "steareth-21": Object.freeze({
+      note_short: "Surfactant; Cosmetics Info reports Steareth-21 as a cleansing, emulsifying and solubilizing agent.",
+      note_sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/steareth-21/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "isopropyl myristate": Object.freeze({
+      note_short: "Binder and skin-conditioning emollient; these functions are reported for isopropyl myristate by Cosmetics Info.",
+      note_sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/isopropyl-myristate/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "simmondsia chinensis jojoba seed oil": Object.freeze({
+      note_short: "Hair-conditioning and occlusive skin-conditioning ingredient; these functions are reported for jojoba seed oil by Cosmetics Info.",
+      note_sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/simmondsia-chinensis-jojoba-seed-oil/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
     })
   });
 
@@ -493,7 +518,7 @@
   }
 
   const api = {
-    version: "1.17.0",
+    version: "1.18.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
