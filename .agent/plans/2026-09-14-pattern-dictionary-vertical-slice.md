@@ -52,9 +52,9 @@ No other persistent product files are in scope for this vertical slice.
 5. Structural/search validation scripts. **Implemented.**
 6. Register the public landing and synchronize 90-tool repository contracts. **Implemented and repository contracts pass at 90/90.**
 7. Standardize tool-local and canonical docs to the 15-section SPEC contract. **Implemented.**
-8. Run repository audits and browser QA. **Repository audits pass. Browser QA found and fixed a houndstooth ranking weakness and a nonexistent `/assets/nw-base.css` reference; final four-viewport rerun remains before ready-for-review.**
+8. Run repository audits and browser QA. **Completed. Repository audits pass. Browser QA found and fixed a houndstooth ranking weakness and a nonexistent `/assets/nw-base.css` reference; the final four-viewport rerun passes.**
 
-## Current validation evidence
+## Validation evidence
 
 - Search smoke: 10/10 expectations pass; the ambiguous JA `白黒のギザギザしたチェック` and EN `black white jagged check` cases are locked to Houndstooth as Top1 regressions.
 - `node --check` passes for the static-URL `app.js` implementation.
@@ -69,13 +69,10 @@ No other persistent product files are in scope for this vertical slice.
 - Tool-local and canonical 15-section SPEC documents are present.
 - Monetization classification is `AFFILIATE`; live affiliate URLs remain disabled.
 - Publishing-mode audit itself does not need modification because it reads the manifest's `required_complete` value.
-
-## Browser verification still required
-
-- Final automated rerun at desktop 1200px, tablet 768px, mobile 390px and 320px after the broken stylesheet reference cleanup.
-- Verify visual grid, autocomplete, ambiguous JA/EN search, interpretation-chip reranking, same-ID language switching, comparison, and no horizontal overflow.
-- Verify no user search text leaves the browser.
-- Verify zero broken local HTTP references and zero page-level JavaScript exceptions.
+- Automated browser QA passes at desktop 1200×900, tablet 768×1024, mobile 390×844, and mobile 320×800.
+- Browser QA verifies the visual grid, JA/EN autocomplete, ambiguous search ranking, interpretation-chip reranking, same-ID language switching, comparison state/URL synchronization, and no horizontal overflow.
+- Browser QA verifies that typed search text is not sent in network request URLs/bodies, local routes/assets return no HTTP errors, and no page-level JavaScript exception occurs.
+- Temporary browser/repair workflows used for this validation were removed after successful verification.
 
 ## Acceptance
 
@@ -84,6 +81,6 @@ No other persistent product files are in scope for this vertical slice.
 - [x] Search, browse, autocomplete, visual filters, relationships, and compare are implemented.
 - [x] Standard 15-section tool-local and canonical SPEC coverage exists.
 - [x] Public registration and all 90-tool repository contracts pass.
-- [ ] Full repository validator/browser QA passes with zero broken local references.
+- [x] Full repository validator/browser QA passes with zero broken local references.
 - [x] DEV placeholders are visibly marked and not represented as production-verified dictionary images.
 - [x] No live affiliate URLs are introduced in this slice.
