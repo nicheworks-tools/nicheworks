@@ -1,0 +1,74 @@
+name: One-shot AdSense pre-review cleanup
+
+on:
+  push:
+    branches:
+      - chore/adsense-pre-review-cleanup-20260915
+    paths:
+      - '.github/workflows/_tmp-adsense-pre-review-cleanup.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: chore/adsense-pre-review-cleanup-20260915
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Remove noindex billing outcomes from sitemap
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'sitemap.xml';
+          const targets = new Set([
+            'https://nicheworks.app/billing/success.html',
+            'https://nicheworks.app/billing/cancel.html'
+          ]);
+          const xml = fs.readFileSync(file, 'utf8');
+          let removed = 0;
+          const next = xml.replace(/\s*<url>[\s\S]*?<\/url>/g, (block) => {
+            const match = block.match(/<loc>\s*([^<]+)\s*<\/loc>/);
+            if (match && targets.has(match[1])) {
+              removed += 1;
+              return '';
+            }
+            return block;
+          });
+          if (removed !== targets.size) {
+            throw new Error(`Expected to remove ${targets.size} billing sitemap entries, removed ${removed}`);
+          }
+          for (const target of targets) {
+            if (next.includes(`<loc>${target}</loc>`)) throw new Error(`Target still present: ${target}`);
+          }
+          fs.writeFileSync(file, `${next.trimEnd()}\n`);
+          NODE
+
+      - name: Validate review surface and SEO contracts
+        run: |
+          node scripts/check-adsense-review-surface.mjs
+          node scripts/check-seo-public-url-contract.mjs
+          node scripts/check-seo-indexable-url-identity.mjs
+          node scripts/audit-publishing-mode.mjs
+          node scripts/audit-seo.mjs --strict
+          git diff --check
+
+      - name: Commit validated cleanup and remove one-shot workflow
+        shell: bash
+        run: |
+          rm .github/workflows/_tmp-adsense-pre-review-cleanup.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sitemap.xml .github/workflows/_tmp-adsense-pre-review-cleanup.yml
+          git commit -m 'chore: remove billing outcomes from sitemap'
+          git push origin HEAD:chore/adsense-pre-review-cleanup-20260915
