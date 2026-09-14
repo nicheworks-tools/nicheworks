@@ -41,8 +41,26 @@ for (const phone of phones) {
     ? [['dimensionsFolded', phone.dimensionsFolded], ['dimensionsUnfolded', phone.dimensionsUnfolded]]
     : [['dimensions', phone.dimensions]];
   for (const [dimensionLabel, d] of dimensionSets) {
-    for (const key of ['heightMm', 'widthMm', 'depthMm']) {
+    for (const key of ['heightMm', 'widthMm']) {
       if (!finitePositive(d?.[key])) fail(`${label}: invalid ${dimensionLabel}.${key}`);
+    }
+    const hasDepth = d?.depthMm !== undefined && d?.depthMm !== null;
+    const hasDepthMin = d?.depthMmMin !== undefined && d?.depthMmMin !== null;
+    const hasDepthMax = d?.depthMmMax !== undefined && d?.depthMmMax !== null;
+    const hasDepthRange = hasDepthMin || hasDepthMax;
+    if (hasDepth && hasDepthRange) {
+      fail(`${label}: ${dimensionLabel} must not mix depthMm with depthMmMin/depthMmMax`);
+    } else if (hasDepth) {
+      if (!finitePositive(d.depthMm)) fail(`${label}: invalid ${dimensionLabel}.depthMm`);
+    } else if (hasDepthRange) {
+      if (!isFoldable) fail(`${label}: depth ranges are only supported for foldable dimensions`);
+      if (!finitePositive(d?.depthMmMin) || !finitePositive(d?.depthMmMax)) {
+        fail(`${label}: ${dimensionLabel} depth range requires positive depthMmMin and depthMmMax`);
+      } else if (Number(d.depthMmMin) > Number(d.depthMmMax)) {
+        fail(`${label}: ${dimensionLabel}.depthMmMin must be <= depthMmMax`);
+      }
+    } else {
+      fail(`${label}: ${dimensionLabel} requires depthMm or depthMmMin/depthMmMax`);
     }
   }
   if (isFoldable && phone.dimensions !== undefined) fail(`${label}: foldable records must use dimensionsFolded/dimensionsUnfolded, not dimensions`);
