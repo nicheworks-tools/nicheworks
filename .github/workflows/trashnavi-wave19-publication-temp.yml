@@ -21,7 +21,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import json, pathlib, re
+          import json, pathlib
           root = pathlib.Path('tools/trashnavi')
           manifest_path = root / 'municipality-page-manifest.json'
           manifest = json.loads(manifest_path.read_text())
@@ -77,6 +77,17 @@ jobs:
               lines.append('    ' + row + (',' if i < len(ai['municipalities'])-1 else ''))
           lines += ['  ]','}']
           ai_path.write_text('\n'.join(lines)+'\n')
+
+          root_sitemap_path = pathlib.Path('sitemap.xml')
+          root_sitemap = root_sitemap_path.read_text()
+          canonical = 'https://nicheworks.app/tools/trashnavi/okinawa/naha/'
+          if canonical in root_sitemap:
+              raise SystemExit('Naha already exists in root sitemap')
+          tblock = '  <url>\n    <loc>https://nicheworks.app/tools/trashnavi/tottori/tottori/</loc>\n    <lastmod>2026-09-14</lastmod>\n  </url>\n'
+          if tblock not in root_sitemap:
+              raise SystemExit('Tottori root sitemap anchor not found')
+          nblock = '  <url>\n    <loc>https://nicheworks.app/tools/trashnavi/okinawa/naha/</loc>\n    <lastmod>2026-09-14</lastmod>\n  </url>\n'
+          root_sitemap_path.write_text(root_sitemap.replace(tblock, tblock + nblock, 1))
 
           spec_path = root / 'SPEC.md'
           spec = spec_path.read_text()
