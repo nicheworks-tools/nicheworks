@@ -1,0 +1,38 @@
+[
+  {
+    "pref": "沖縄県",
+    "city": "那覇市",
+    "name": "那覇市 ごみ・資源分別検索",
+    "type": "検索ページ",
+    "link_type": "waste_search",
+    "url": "https://www.city.naha.okinawa.jp/kurasitetuduki/gomi-recycling/1001934/1008613.html",
+    "lgcode": "472018",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "沖縄県",
+    "city": "那覇市",
+    "name": "那覇市 ごみ収集日検索",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.naha.okinawa.jp/kurasitetuduki/gomi-recycling/1001934/1008614.html",
+    "lgcode": "472018",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "沖縄県",
+    "city": "那覇市",
+    "name": "那覇市 そ大ごみ・スプリング入り製品",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.naha.okinawa.jp/kurasitetuduki/gomi-recycling/1001934/1007525/1001941.html",
+    "lgcode": "472018",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  }
+]
