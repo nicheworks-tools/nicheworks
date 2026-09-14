@@ -41,11 +41,11 @@ The product is a practical Quick Check utility, not a comprehensive smartphone e
 - 選択機種の詳細では本体情報、充電条件、モバイルバッテリー目安、アクセサリークラス、公式情報を整理して表示する。
 - `wiredRecommendedW` は充電器の推奨／必要クラスとして扱い、端末側の実測・最大入力W数と同一視しない。
 - 端末側最大有線充電W数は、その意味を直接支える維持済み根拠がある場合のみ表示する。
-- USB PD、PPS、Samsung Super Fast Charging、Qi、Qi2等は維持済み事実から表示・分類する。
+- USB PD、PPS、Samsung Super Fast Charging、OPPO SUPERVOOC、Xiaomi HyperCharge/TurboCharge、Motorola TurboPower、Qi、Qi2等は維持済み事実から表示・分類する。
 - バッテリー容量が利用可能な場合のみ、`power_bank_mAh × 0.67 ÷ phone_battery_mAh` で5,000 / 10,000 / 20,000mAhの概算充電回数を計算し、小数1桁で表示する。
 - バッテリー容量がunknownの場合は概算を生成しない。
 - メーカーが通常仕様でmAhを公表していない機種について、第三者値を無断でメーカー公式値として扱わない。
-- アクセサリー案内は端末×個別商品マトリクスではなく、USB-Cケーブル、USB-C ⇔ Lightningケーブル、USB-PD、PPS、Samsung Super Fast Charging、Qi/Qi2、USB-Cモバイルバッテリー等の再利用可能クラスから解決する。
+- アクセサリー案内は端末×個別商品マトリクスではなく、USB-Cケーブル、USB-C ⇔ Lightningケーブル、USB-PD、PPS、Samsung Super Fast Charging、OPPO SUPERVOOC、Xiaomi HyperCharge/TurboCharge、Motorola TurboPower、Qi/Qi2、USB-Cモバイルバッテリー等の再利用可能クラスから解決する。
 - Amazon導線は共通affiliate helperと固定tracking IDを使い、維持済みアクセサリークラスごとの固定検索語だけからAmazon Japan検索URLを生成する。ユーザーの検索文字列はAmazon URLへ渡さない。
 
 ## 5. Outputs
@@ -163,5 +163,6 @@ Automated test evidence: `scripts/check-tool-runtime-contracts.mjs`, `scripts/ch
 - `tools/phone-quickcheck/affiliate-runtime.js`
 - `scripts/check-phone-quickcheck-affiliate.mjs`
 - `scripts/check-phone-quickcheck-data.mjs`
+- `scripts/check-phone-quickcheck-source-semantics.mjs`
 - `tools/phone-quickcheck/tests/behavior.test.mjs`
 - `tools/phone-quickcheck/SPEC.md`
