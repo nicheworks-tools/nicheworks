@@ -131,6 +131,7 @@ Desktop uses a wide two-pane layout: searchable/filterable list on the left and 
 - [x] Official manufacturer specification/manual links are visually/functionally separate from purchase guidance.
 - [x] Amazon accessory search CTAs use the shared helper, fixed tracking ID, visible disclosure, canonical accessory queries, and coarse analytics only; no live price or inventory is displayed.
 - [x] Phone search/filter behavior requires no application backend or user account.
+- [x] A bilingual usage/FAQ guide is available from the main Phone QuickCheck page.
 
 ## Implementation evidence
 
@@ -138,6 +139,7 @@ Production/runtime evidence:
 
 - `tools/phone-quickcheck/index.html`
 - `tools/phone-quickcheck/style.css`
+- `tools/phone-quickcheck/usage.html`
 - `tools/phone-quickcheck/app.js`
 - `tools/phone-quickcheck/data/phones.json`
 - `tools/phone-quickcheck/data/accessories.json`
@@ -159,6 +161,9 @@ Implementation history:
 - verified dataset expansion to 30 models: PR #670
 - charging semantics and reusable accessory guidance: PR #676
 - public promotion: PR #689
+- verified dataset expansion to 150 models: PR #749
+- behavior regression coverage: PR #741
+- usage / quality evidence sync: current PR
 - Amazon accessory handoff activation: PR #731
 - verified dataset expansion to 60 models: PR #736
 - verified dataset expansion to 100 models: PR #740

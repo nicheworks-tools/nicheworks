@@ -5752,6 +5752,12 @@
           "www.samsung.com",
           "www.sony.jp",
           "jp.sharp",
+          "www.oppo.com",
+          "support.oppo.com",
+          "www.mi.com",
+          "jp-jp.support.motorola.com",
+          "en-us.support.motorola.com",
+          "www.amazon.co.jp",
           "ofuse.me",
           "ko-fi.com"
         ]
@@ -5765,56 +5771,71 @@
         "download": false
       },
       "responsive_status": "no-observed-defect",
-      "usage_status": "recommended-and-missing",
-      "faq_status": "optional-absent",
+      "usage_status": "recommended-and-present",
+      "faq_status": "optional-present",
       "ga4_status": "present",
       "adsense_status": "present",
       "canonical_status": "present",
       "json_ld_status": "present",
       "donation_status": "present",
       "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
+      "functional_test_status": "behavior-test-present",
       "automated_tests": [
-        "scripts/check-tool-runtime-contracts.mjs"
+        "scripts/check-tool-runtime-contracts.mjs",
+        "scripts/check-phone-quickcheck-data.mjs",
+        "scripts/check-phone-quickcheck-affiliate.mjs",
+        "tools/phone-quickcheck/tests/behavior.test.mjs"
       ],
-      "outstanding_issues": [
-        "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent."
-      ],
+      "outstanding_issues": [],
       "final_state": "PASS",
       "evidence": [
         "tools/phone-quickcheck/index.html",
         "tools/phone-quickcheck/app.js",
         "tools/phone-quickcheck/style.css",
         "tools/phone-quickcheck/data/phones.json",
-        "tools/phone-quickcheck/data/accessories.json"
+        "tools/phone-quickcheck/data/accessories.json",
+        "tools/phone-quickcheck/usage.html",
+        "tools/phone-quickcheck/affiliate-config.js",
+        "tools/phone-quickcheck/affiliate-runtime.js",
+        "tools/phone-quickcheck/tests/behavior.test.mjs"
       ],
-      "usage_html_present": false,
+      "usage_html_present": true,
       "usage_en_html_present": false,
       "common_spec_compliance": "no-hard-gap-found",
       "obvious_broken_or_incomplete_behavior": [],
       "help_documentation": {
         "main_page_summary": "required-and-present",
-        "usage": "recommended-and-missing",
-        "faq": "optional-absent",
-        "usage_evidence": [],
+        "usage": "recommended-and-present",
+        "faq": "optional-present",
+        "usage_evidence": [
+          "tools/phone-quickcheck/usage.html"
+        ],
         "usage_language_coverage": {
-          "ja": false,
-          "en": false
+          "ja": true,
+          "en": true
         }
       },
       "test_evidence": [
         {
           "path": "scripts/check-tool-runtime-contracts.mjs",
           "classification": "regression/contract test"
+        },
+        {
+          "path": "scripts/check-phone-quickcheck-data.mjs",
+          "classification": "data validation"
+        },
+        {
+          "path": "scripts/check-phone-quickcheck-affiliate.mjs",
+          "classification": "affiliate contract test"
+        },
+        {
+          "path": "tools/phone-quickcheck/tests/behavior.test.mjs",
+          "classification": "behavior test"
         }
       ],
       "decision_gaps": [],
       "hard_compliance_gaps": [],
-      "recommendation_only_gaps": [
-        "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent."
-      ]
+      "recommendation_only_gaps": []
     },
     {
       "slug": "place-old-kanji-checker",

@@ -123,9 +123,9 @@ Current main-page donation/support evidence: **present**.
 ## 13. Help/usage/FAQ contract
 
 - **Main-page concise explanation:** `required-and-present`.
-- **Usage documentation:** `recommended-and-missing`. Missing recommended usage documentation is an improvement opportunity, not a hard compliance failure.
-- **FAQ:** `optional-absent` for the current Quick Check baseline.
-- **Language handling:** the main tool UI provides JP/EN on one page; no standalone usage pages are currently maintained.
+- **Usage documentation:** `recommended-and-present` at `tools/phone-quickcheck/usage.html`.
+- **FAQ:** `optional-present` inside the bilingual usage page.
+- **Language handling:** the main tool UI and `usage.html` both provide JP/EN on one page and share the `nw_lang` preference.
 - Any future usage/FAQ link must remain clearly separated from advertising and purchase CTAs.
 
 ## 14. Functional acceptance tests
@@ -154,6 +154,7 @@ Automated test evidence: `scripts/check-tool-runtime-contracts.mjs`, `scripts/ch
 ### Implementation evidence
 
 - `tools/phone-quickcheck/index.html`
+- `tools/phone-quickcheck/usage.html`
 - `tools/phone-quickcheck/app.js`
 - `tools/phone-quickcheck/style.css`
 - `tools/phone-quickcheck/data/phones.json`
