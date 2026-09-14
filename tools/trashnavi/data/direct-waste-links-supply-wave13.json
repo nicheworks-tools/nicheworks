@@ -1,0 +1,27 @@
+[
+  {
+    "pref": "三重県",
+    "city": "津市",
+    "name": "津市 令和8年度家庭ごみ収集カレンダー",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.info.city.tsu.mie.jp/kurashi/gomi_kankyo/1001596/1001609/index.html",
+    "lgcode": "242012",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "三重県",
+    "city": "津市",
+    "name": "津市 大型家具",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.info.city.tsu.mie.jp/kurashi/gomi_kankyo/1001596/1001597/1013452.html",
+    "lgcode": "242012",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  }
+]
