@@ -23,6 +23,7 @@ on:
       - 'scripts/check-old-kanji-measurement.mjs'
       - 'scripts/check-old-kanji-amazon.mjs'
       - 'scripts/check-old-kanji-pro-boundary.mjs'
+      - 'scripts/build-old-kanji-dictionary-audit.mjs'
       - 'scripts/run-tool-behavior-tests.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
   push:
@@ -49,6 +50,7 @@ on:
       - 'scripts/check-old-kanji-measurement.mjs'
       - 'scripts/check-old-kanji-amazon.mjs'
       - 'scripts/check-old-kanji-pro-boundary.mjs'
+      - 'scripts/build-old-kanji-dictionary-audit.mjs'
       - 'scripts/run-tool-behavior-tests.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
 
@@ -117,6 +119,9 @@ jobs:
 
       - name: Check Old Kanji Pro boundary
         run: node scripts/check-old-kanji-pro-boundary.mjs
+
+      - name: Check Old Kanji dictionary audit drift
+        run: node scripts/build-old-kanji-dictionary-audit.mjs --check
 
       - name: Verify audit is read-only
         run: |
