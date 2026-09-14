@@ -55,6 +55,12 @@ jobs:
       - name: Check image runtime checker syntax
         run: node --check tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
 
+      - name: Check image identity backlog generator syntax
+        run: node --check tools/construction-tools-atlas/scripts/generate-image-identity-backlog-v2.3.cjs
+
+      - name: Check image identity resolution checker syntax
+        run: node --check tools/construction-tools-atlas/scripts/check-image-identity-resolutions-v2.3.cjs
+
       - name: Check master-detail v2.3 contract
         run: node tools/construction-tools-atlas/scripts/check-master-detail-v2.3.cjs
 
@@ -66,6 +72,14 @@ jobs:
 
       - name: Audit image assets and canonical mappings
         run: node tools/construction-tools-atlas/scripts/audit-image-assets-v2.3.cjs
+
+      - name: Regenerate image identity backlog
+        run: |
+          node tools/construction-tools-atlas/scripts/generate-image-identity-backlog-v2.3.cjs
+          git diff --exit-code -- tools/construction-tools-atlas/data/image-identity-backlog-v2.3.json
+
+      - name: Validate image identity resolution ledger
+        run: node tools/construction-tools-atlas/scripts/check-image-identity-resolutions-v2.3.cjs
 
       - name: Validate Wave 1 image source ledger
         run: node tools/construction-tools-atlas/scripts/check-image-wave1-sources-v2.3.cjs
