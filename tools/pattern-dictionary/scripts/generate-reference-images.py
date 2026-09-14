@@ -103,28 +103,28 @@ def tartan(x, y):
     wx, wy = tartan_stripe(x), tartan_stripe(y)
     if wx == wy:
         return wx
-    # Twill-like crossing keeps both warp and weft stripe sequences visible.
     return wx if (((x // 4) + (y // 4)) % 4) < 2 else wy
 
 
 def glen_check(x, y):
-    # Fine checks grouped by heavier 96px and medium 48px divisions.
-    lx, ly = x % 96, y % 96
-    if lx < 5 or ly < 5:
-        return BLACK
-    if abs(lx - 48) < 4 or abs(ly - 48) < 4:
+    # Glen check: uneven small/large checks from 2+2 and 4+4 dark/light stripe groups.
+    # A fine 2:2 twill treatment keeps this visually distinct from flat checkerboard.
+    seq = (0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1)
+    unit = 4
+    wx = seq[(x // unit) % len(seq)] == 0
+    wy = seq[(y // unit) % len(seq)] == 0
+    warp_on_top = (((x // 3) + (y // 3)) % 4) < 2
+    dark = wx if warp_on_top else wy
+    # Subtle large overcheck reinforces the large-check reading without claiming a
+    # Prince-of-Wales colored overcheck as mandatory.
+    if (x % 96) < 2 or (y % 96) < 2:
         return GRAY
-    fine = ((x // 12) + (y // 12)) % 2
-    block = ((x // 48) + (y // 48)) % 2
-    if block:
-        return LIGHT_GRAY if fine else WHITE
-    return GRAY if fine else LIGHT_GRAY
+    return BLACK if dark else LIGHT_GRAY
 
 
 def argyle(x, y):
     base = CREAM
     best = None
-    # Staggered lozenges, alternating navy and burgundy.
     for row in range(-1, 4):
         cy = row * 96 + 48
         shift = 48 if row % 2 else 0
@@ -134,7 +134,6 @@ def argyle(x, y):
             if d <= 1 and (best is None or d < best[0]):
                 best = (d, NAVY if (row + col) % 2 == 0 else BURGUNDY)
     color = best[1] if best else base
-    # Thin crossing diagonal lattice laid over the colored diamonds.
     d1 = (y - x) % 96
     d2 = (y + x) % 96
     if min(d1, 96-d1) < 2.2 or min(d2, 96-d2) < 2.2:
@@ -158,21 +157,22 @@ def polka_dot(x, y):
     return BLACK if math.hypot(x - cx, y - cy) <= 17 else WHITE
 
 
+MOROCCAN_POINTS = [
+    (0,-48),(14,-35),(14,-27),(28,-27),(39,-13),(39,13),(28,27),(14,27),(14,35),(0,48),
+    (-14,35),(-14,27),(-28,27),(-39,13),(-39,-13),(-28,-27),(-14,-27),(-14,-35),(0,-48)
+]
+MOROCCAN_SEGMENTS = [(*MOROCCAN_POINTS[i], *MOROCCAN_POINTS[i+1]) for i in range(len(MOROCCAN_POINTS)-1)]
+
+
 def moroccan_trellis(x, y):
-    # Contemporary lantern/trellis market-label shape: rounded sides, pointed ends.
+    # Qualified contemporary market label: interlocking pointed quatrefoil/lantern cells.
     for row in range(-1, 4):
         cy = row * 96 + 48
         shift = 48 if row % 2 else 0
         for col in range(-2, 5):
             cx = col * 96 + 48 + shift
-            dy = y - cy
-            if -48 <= dy <= 48:
-                t = (dy + 48) / 96
-                half = 8 + 34 * (math.sin(math.pi * t) ** 0.68)
-                if abs(abs(x - cx) - half) <= 2.8:
-                    return TEAL
-                if abs(dy) > 44 and abs(x - cx) <= 7:
-                    return TEAL
+            if on_segments(x-cx, y-cy, MOROCCAN_SEGMENTS, 2.7):
+                return TEAL
     return WHITE
 
 
@@ -203,7 +203,7 @@ def shippo(x, y):
     return WHITE
 
 
-def hex_segments(include_star=False):
+def kikko_segments():
     segs = []
     h = 48
     v = math.sqrt(3) * h / 2
@@ -214,13 +214,25 @@ def hex_segments(include_star=False):
             cx = col * (3 * h) + offset
             pts = [(cx+h,cy),(cx+h/2,cy+v),(cx-h/2,cy+v),(cx-h,cy),(cx-h/2,cy-v),(cx+h/2,cy-v)]
             segs.extend([(pts[i][0],pts[i][1],pts[(i+1)%6][0],pts[(i+1)%6][1]) for i in range(6)])
-            if include_star:
-                segs.extend([(cx,cy,px,py) for px,py in pts])
-                segs.extend([(pts[i][0],pts[i][1],pts[i+3][0],pts[i+3][1]) for i in range(3)])
     return segs
 
-KIKKO_SEGMENTS = hex_segments(False)
-ASANOHA_SEGMENTS = hex_segments(True)
+
+def asanoha_segments():
+    # Staggered 96px rows make the reference tile seamless while preserving the
+    # six-rayed hemp-leaf/star reading at thumbnail size.
+    segs = []
+    for row in range(-1, 4):
+        cy = row * 96 + 48
+        shift = 48 if row % 2 else 0
+        for col in range(-2, 5):
+            cx = col * 96 + 48 + shift
+            pts = [(cx,cy-46),(cx+40,cy-23),(cx+40,cy+23),(cx,cy+46),(cx-40,cy+23),(cx-40,cy-23)]
+            segs.extend([(pts[i][0],pts[i][1],pts[(i+1)%6][0],pts[(i+1)%6][1]) for i in range(6)])
+            segs.extend([(cx,cy,px,py) for px,py in pts])
+    return segs
+
+KIKKO_SEGMENTS = kikko_segments()
+ASANOHA_SEGMENTS = asanoha_segments()
 
 
 def kikko(x, y):
@@ -228,7 +240,7 @@ def kikko(x, y):
 
 
 def asanoha(x, y):
-    return INDIGO if on_segments(x, y, ASANOHA_SEGMENTS, 2.2) else WHITE
+    return INDIGO if on_segments(x, y, ASANOHA_SEGMENTS, 2.5) else WHITE
 
 
 GENERATORS = {
