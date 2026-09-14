@@ -166,6 +166,6 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add sitemap-trashnavi.xml sitemap.xml tools/trashnavi/SPEC.md tools/trashnavi/ai-reference.json tools/trashnavi/index.html tools/trashnavi/municipality-page-manifest.json tools/trashnavi/okinawa/naha/index.html tools/trashnavi/scripts/check-affiliate-contract.mjs tools/trashnavi/scripts/generate-municipality-pages.mjs .github/workflows/trashnavi-wave19-publication-temp.yml
           git diff --cached --check
-          test "$(git diff --cached --name-only | wc -l)" -eq 9
+          test "$(git diff --cached --name-only | wc -l)" -eq 10
           git commit -m "Publish Naha as 26th TrashNavi municipality page"
           git push
