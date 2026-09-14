@@ -27,6 +27,26 @@ const EXPECTED_WAVE1 = Object.freeze({
   carbomer: 'thickener'
 });
 
+const EXPECTED_WAVE2 = Object.freeze({
+  'citric acid': 'pH adjuster',
+  tocopherol: 'antioxidant'
+});
+
+const EXPECTED_ALL = Object.freeze({
+  ...EXPECTED_WAVE1,
+  ...EXPECTED_WAVE2
+});
+
+const EXPECTED_SOURCES = Object.freeze({
+  water: 'https://www.cosmeticsinfo.org/ingredient/water/',
+  glycerin: 'https://www.cosmeticsinfo.org/ingredient/glycerin/',
+  'propylene glycol': 'https://www.cosmeticsinfo.org/ingredient/propylene-glycol/',
+  phenoxyethanol: 'https://health.ec.europa.eu/publications/phenoxyethanol_en',
+  carbomer: 'https://www.cosmeticsinfo.org/ingredient/carbomer/',
+  'citric acid': 'https://www.cosmeticsinfo.org/ingredient/citric-acid/',
+  tocopherol: 'https://www.cosmeticsinfo.org/ingredient/tocopherol/'
+});
+
 const ALLOWED_SOURCE_HOSTS = new Set([
   'www.cosmeticsinfo.org',
   'health.ec.europa.eu'
@@ -61,8 +81,8 @@ const rows = DATA_FILES.flatMap((file) => {
 const evidence = parser.verifiedCategoryEvidence || {};
 assert.deepEqual(
   Object.fromEntries(Object.entries(evidence).map(([key, item]) => [key, item.category])),
-  EXPECTED_WAVE1,
-  'wave 1 verified category evidence must remain the reviewed five-entry set'
+  EXPECTED_ALL,
+  'verified category evidence must remain the reviewed cumulative wave 1 + wave 2 set'
 );
 
 for (const ambiguous of parser.ambiguousExactKeys || []) {
@@ -81,16 +101,20 @@ let rawMissingCategoryRows = 0;
 for (const row of rows) {
   if (!normalizeText(row.category)) rawMissingCategoryRows += 1;
 }
-assert.equal(rawMissingCategoryRows, 187, 'wave 1 must not hide the frozen 187 raw category gaps by rewriting recognition records');
+assert.equal(rawMissingCategoryRows, 187, 'verified overlay must not hide the frozen 187 raw category gaps by rewriting recognition records');
 
 let newlyClassifiedCanonicalIdentities = 0;
-for (const [canonical, expectedCategory] of Object.entries(EXPECTED_WAVE1)) {
+let wave2NewlyClassifiedCanonicalIdentities = 0;
+const rawCategoryInventory = {};
+
+for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
   const item = evidence[canonical];
   assert.ok(item, `missing verified category evidence: ${canonical}`);
   assert.equal(normalizeText(item.category), expectedCategory, `${canonical}: unexpected verified category`);
   assert.ok(normalizeText(item.authority), `${canonical}: authority label required`);
   assert.ok(Array.isArray(item.sources) && item.sources.length > 0, `${canonical}: at least one source required`);
   assert.ok(item.sources.every(validHttpsSource), `${canonical}: sources must be approved HTTPS authority URLs`);
+  assert.ok(item.sources.includes(EXPECTED_SOURCES[canonical]), `${canonical}: reviewed source URL must remain attached`);
   assert.ok(groups.has(canonical), `${canonical}: evidence canonical must exist in maintained dictionary`);
 
   const rawCategories = [...new Set(
@@ -98,12 +122,16 @@ for (const [canonical, expectedCategory] of Object.entries(EXPECTED_WAVE1)) {
       .flatMap((row) => splitCategory(row.category))
       .map((category) => category.toLowerCase())
   )];
+  rawCategoryInventory[canonical] = rawCategories;
 
-  if (rawCategories.length === 0) newlyClassifiedCanonicalIdentities += 1;
+  if (rawCategories.length === 0) {
+    newlyClassifiedCanonicalIdentities += 1;
+    if (Object.hasOwn(EXPECTED_WAVE2, canonical)) wave2NewlyClassifiedCanonicalIdentities += 1;
+  }
   if (rawCategories.length > 0) {
     assert.ok(
       rawCategories.includes(expectedCategory.toLowerCase()),
-      `${canonical}: verified category conflicts with existing raw category metadata`
+      `${canonical}: verified category conflicts with existing raw category metadata (${rawCategories.join(', ')})`
     );
   }
 }
@@ -111,26 +139,45 @@ for (const [canonical, expectedCategory] of Object.entries(EXPECTED_WAVE1)) {
 const merged = parser.mergeDictionaryRecords(rows);
 const mergedByCanonical = new Map(merged.map((item) => [parser.canonicalIdentityKey(item.en), item]));
 
-for (const [canonical, expectedCategory] of Object.entries(EXPECTED_WAVE1)) {
+for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
   const item = mergedByCanonical.get(canonical);
   assert.ok(item, `${canonical}: missing from merged runtime dictionary`);
   assert.equal(item.category_verified, true, `${canonical}: verified category flag must survive merge`);
   assert.ok(Array.isArray(item.category_sources) && item.category_sources.length > 0, `${canonical}: category sources must survive merge`);
   assert.ok(item.category_sources.every(validHttpsSource), `${canonical}: merged category sources must remain approved HTTPS URLs`);
+  assert.ok(item.category_sources.includes(EXPECTED_SOURCES[canonical]), `${canonical}: reviewed source URL must survive merge`);
   assert.ok(
     Array.isArray(item.categories) && item.categories.some((category) => category.toLowerCase() === expectedCategory.toLowerCase()),
     `${canonical}: verified category must be present in merged functional categories`
   );
 }
 
-assert.equal(newlyClassifiedCanonicalIdentities, 4, 'wave 1 should newly classify four previously unclassified canonical identities; Water already had a duplicate solvent hint');
+assert.equal(
+  Object.keys(EXPECTED_WAVE1).length,
+  5,
+  'wave 1 reviewed set must remain five canonical identities'
+);
+assert.equal(
+  Object.keys(EXPECTED_WAVE2).length,
+  2,
+  'wave 2 reviewed set must remain two canonical identities'
+);
+assert.equal(
+  newlyClassifiedCanonicalIdentities >= 4,
+  true,
+  'cumulative verified overlay must retain the four wave 1 previously unclassified canonical identities'
+);
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'category-provenance-wave-1',
+  phase: 'category-provenance-wave-2',
   raw_missing_category_rows_unchanged: rawMissingCategoryRows,
-  verified_category_evidence_canonical_identities: Object.keys(EXPECTED_WAVE1).length,
+  verified_category_evidence_canonical_identities: Object.keys(EXPECTED_ALL).length,
+  wave_1_verified_canonical_identities: Object.keys(EXPECTED_WAVE1).length,
+  wave_2_verified_canonical_identities: Object.keys(EXPECTED_WAVE2).length,
   newly_classified_canonical_identities: newlyClassifiedCanonicalIdentities,
+  wave_2_newly_classified_canonical_identities: wave2NewlyClassifiedCanonicalIdentities,
+  raw_category_inventory: rawCategoryInventory,
   recognition_records_rewritten: false,
   safety_contract_changed: false,
   ambiguity_contract_changed: false,
