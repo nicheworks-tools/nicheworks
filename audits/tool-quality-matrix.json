@@ -2,8 +2,8 @@
   "schema_version": 1,
   "generated_from": "tools/tools-index.json",
   "common_specification": "common-spec/spec-ja.md",
-  "registered_tool_count": 89,
-  "record_count": 89,
+  "registered_tool_count": 90,
+  "record_count": 90,
   "status_enum": [
     "PASS",
     "FIX",
@@ -11,7 +11,7 @@
     "NEEDS_DECISION"
   ],
   "counts": {
-    "PASS": 89,
+    "PASS": 90,
     "FIX": 0,
     "BLOCKED": 0,
     "NEEDS_DECISION": 0
@@ -7719,6 +7719,91 @@
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
       ]
+    },
+    {
+      "slug": "pattern-dictionary",
+      "display_name": {
+        "ja": "模様辞典",
+        "en": "Pattern Dictionary"
+      },
+      "implementation": "tools/pattern-dictionary/",
+      "active_state": "active",
+      "category": [
+        "pattern",
+        "dictionary",
+        "visual-search",
+        "reference"
+      ],
+      "spec": "docs/tools/pattern-dictionary.md",
+      "spec_coverage": "complete",
+      "implementation_exists": true,
+      "layout_class": "desktop-wide",
+      "language_policy": "separate JA/EN pages",
+      "functional_completeness": "documented-current-contract",
+      "inputs_summary": "- Ambiguous natural-language pattern search in Japanese or English. - Visual pattern-card selection. - Interpretation-chip and visual-filter refinement. - Similar-pattern navigation and two-pattern comparison selections.",
+      "outputs_summary": "- Ranked visual pattern candidates with match reasons. - Static JA/EN pattern detail pages. - Similar/common-confusion navigation. - Two-pattern visual comparison. - Prototype imagery and publication-state notices until reference images are verified.",
+      "network_dependency": {
+        "status": "not-found",
+        "external_hosts": []
+      },
+      "storage": {
+        "localStorage": false,
+        "sessionStorage": false
+      },
+      "capabilities": {
+        "copy": false,
+        "download": false
+      },
+      "responsive_status": "no-observed-defect",
+      "usage_status": "optional-absent",
+      "faq_status": "optional-absent",
+      "ga4_status": "present",
+      "adsense_status": "present",
+      "canonical_status": "present",
+      "json_ld_status": "present",
+      "donation_status": "present",
+      "privacy_compliance": "documented",
+      "functional_test_status": "behavior-test-present",
+      "automated_tests": [
+        "tools/pattern-dictionary/tests/search-test.mjs",
+        "tools/pattern-dictionary/tests/validate.mjs"
+      ],
+      "outstanding_issues": [],
+      "final_state": "PASS",
+      "evidence": [
+        "tools/pattern-dictionary/index.html",
+        "tools/pattern-dictionary/app.js",
+        "tools/pattern-dictionary/style.css",
+        "tools/pattern-dictionary/README.md",
+        "tools/pattern-dictionary/SPEC.md"
+      ],
+      "usage_html_present": false,
+      "usage_en_html_present": false,
+      "common_spec_compliance": "no-hard-gap-found",
+      "obvious_broken_or_incomplete_behavior": [],
+      "help_documentation": {
+        "main_page_summary": "required-and-present",
+        "usage": "optional-absent",
+        "faq": "optional-absent",
+        "usage_evidence": [],
+        "usage_language_coverage": {
+          "ja": false,
+          "en": false
+        }
+      },
+      "test_evidence": [
+        {
+          "path": "tools/pattern-dictionary/tests/search-test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/pattern-dictionary/tests/validate.mjs",
+          "classification": "data validation"
+        }
+      ],
+      "decision_gaps": [],
+      "hard_compliance_gaps": [],
+      "recommendation_only_gaps": []
     }
   ],
   "help_status_enum": [
