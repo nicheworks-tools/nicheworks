@@ -1,0 +1,78 @@
+name: Temporary TrashNavi Wave 13 publication
+
+on:
+  push:
+    branches:
+      - 'feat/trashnavi-tsu-publication-20260914'
+    paths:
+      - '.github/workflows/tmp-trashnavi-wave13-publication.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-tsu-publication-20260914
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Stage Wave 13 publication
+        run: python3 tools/trashnavi/scripts/tmp-publish-wave13.py
+
+      - name: Generate municipality pages
+        run: node tools/trashnavi/scripts/generate-municipality-pages.mjs
+
+      - name: Validate TrashNavi contracts
+        run: |
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-affiliate-contract.mjs
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+
+      - name: Validate Tsu publication surface
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const pagePath = 'tools/trashnavi/mie/tsu/index.html';
+          if (!fs.existsSync(pagePath)) throw new Error('Tsu generated page missing');
+          const page = fs.readFileSync(pagePath, 'utf8');
+          const root = fs.readFileSync('tools/trashnavi/index.html', 'utf8');
+          const rootSitemap = fs.readFileSync('sitemap.xml', 'utf8');
+          const tnSitemap = fs.readFileSync('sitemap-trashnavi.xml', 'utf8');
+          const calendar = 'https://www.info.city.tsu.mie.jp/kurashi/gomi_kankyo/1001596/1001609/index.html';
+          const bulky = 'https://www.info.city.tsu.mie.jp/kurashi/gomi_kankyo/1001596/1001597/1013452.html';
+          const route = '/tools/trashnavi/mie/tsu/';
+          const canonical = 'https://nicheworks.app/tools/trashnavi/mie/tsu/';
+          const count = (s, needle) => s.split(needle).length - 1;
+          if (count(page, 'class="official-link-card"') !== 3) throw new Error('Tsu official link card count must be 3');
+          if (count(page, calendar) !== 2) throw new Error('Tsu calendar URL must appear in callout + card');
+          if (count(page, bulky) !== 1) throw new Error('Tsu bulky URL must appear once');
+          if (!page.includes('2026年の収集カレンダー')) throw new Error('Tsu FY2026 callout missing');
+          if (!page.includes('trashnavi-affiliate-section') || !page.includes('ごみ出し・片付け用品 [PR]')) throw new Error('Tsu affiliate block missing');
+          if (!page.includes('/assets/amazon-affiliate.js') || !page.includes('/tools/trashnavi/affiliate-runtime.js')) throw new Error('Tsu affiliate runtime missing');
+          if (count(root, `href="${route}"`) !== 1) throw new Error('Tsu root link must appear exactly once');
+          if (count(rootSitemap, `<loc>${canonical}</loc>`) !== 1) throw new Error('Tsu root sitemap URL must appear exactly once');
+          if (count(tnSitemap, `<loc>${canonical}</loc>`) !== 1) throw new Error('Tsu dedicated sitemap URL must appear exactly once');
+          console.log('Tsu publication surface: OK');
+          NODE
+
+      - name: Commit generated publication
+        run: |
+          rm tools/trashnavi/scripts/tmp-publish-wave13.py
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git add -A tools/trashnavi sitemap.xml sitemap-trashnavi.xml
+          git status --short
+          git diff --cached --check
+          git commit -m "Publish Tsu as 20th TrashNavi municipality page"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
