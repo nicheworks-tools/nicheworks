@@ -64,40 +64,60 @@ def rot_ellipse(x,y,cx,cy,rx,ry,a=0):
 
 
 def karakusa(x,y):
-    # Continuous scrolling vine with alternating leaves; green/cream editorial reference.
-    vine=96+32*math.sin(2*math.pi*x/96)
-    if abs(y-vine)<=3:return GREEN
-    for i,cx in enumerate((24,72,120,168)):
-        cy=96+32*math.sin(2*math.pi*cx/96)
-        side=-1 if i%2==0 else 1
-        ly=cy+side*19
-        if dist_segment(x,y,cx,cy,cx+side*7,ly-side*5)<=2.5:return GREEN
-        if rot_ellipse(x,y,cx+side*12,ly,15,7,side*0.55):return GREEN
-    return CREAM
+    # Recognition-oriented Japanese karakusa cue: light continuous scrolling vines
+    # over a green ground, with repeated attached curls rather than isolated waves.
+    for row in range(-1,4):
+        cy=row*96+48
+        vine=cy+23*math.sin(2*math.pi*x/96)
+        if abs(y-vine)<=3.4:return CREAM
+        for col in range(-1,5):
+            cx=col*96+24
+            base=cy+23*math.sin(2*math.pi*cx/96)
+            side=1 if (row+col)%2==0 else -1
+            ccx=cx+side*18
+            ccy=base+side*17
+            r=math.hypot(x-ccx,y-ccy)
+            # Open curl plus a small terminal leaf gives a scrolling-vine reading.
+            a=(math.atan2(y-ccy,x-ccx)+2*math.pi)%(2*math.pi)
+            target=8+2.9*a
+            if abs(r-target)<=2.6 and r<28:return CREAM
+            if rot_ellipse(x,y,ccx+side*17,ccy+side*6,9,5,side*0.45):return CREAM
+    return GREEN
 
 
 def damask(x,y):
-    # Large bilateral foliate medallion: a representative modern damask surface cue.
-    if rot_ellipse(x,y,96,96,23,52):return CHARCOAL
-    if rot_ellipse(x,y,61,92,17,42,-0.65) or rot_ellipse(x,y,131,92,17,42,0.65):return CHARCOAL
-    if rot_ellipse(x,y,66,132,14,28,0.9) or rot_ellipse(x,y,126,132,14,28,-0.9):return CHARCOAL
-    if rot_ellipse(x,y,70,52,13,27,-0.95) or rot_ellipse(x,y,122,52,13,27,0.95):return CHARCOAL
-    # Crown and pendant lobes.
-    if rot_ellipse(x,y,96,43,18,21) or rot_ellipse(x,y,96,151,18,21):return CHARCOAL
-    # Carved negative highlights stop the motif reading as one solid blob.
-    if rot_ellipse(x,y,96,96,7,25):return IVORY
-    if rot_ellipse(x,y,61,92,5,18,-0.65) or rot_ellipse(x,y,131,92,5,18,0.65):return IVORY
-    return IVORY
+    # Bilaterally symmetric foliate medallion, deliberately large enough to read
+    # as a damask-derived surface-design cue rather than a generic tiny flower.
+    for cx,cy in ((48,48),(144,144),(-48,144),(240,48)):
+        if rot_ellipse(x,y,cx,cy,13,35):return CHARCOAL
+        for side in (-1,1):
+            if rot_ellipse(x,y,cx+side*23,cy,15,28,side*0.35):return CHARCOAL
+            if rot_ellipse(x,y,cx+side*34,cy-25,11,18,side*0.75):return CHARCOAL
+            if rot_ellipse(x,y,cx+side*34,cy+25,11,18,-side*0.75):return CHARCOAL
+        if rot_ellipse(x,y,cx,cy-40,20,12):return CHARCOAL
+        if rot_ellipse(x,y,cx,cy+40,20,12):return CHARCOAL
+        # Negative slit keeps the central mass visually articulated.
+        if rot_ellipse(x,y,cx,cy,5,19):return CREAM
+    return CREAM
 
 
 def arabesque(x,y):
-    # Rhythmic continuous scrolls + loops, deliberately unlike the filled damask medallion.
-    curves=(56+22*math.sin(2*math.pi*x/96),136-22*math.sin(2*math.pi*x/96))
-    if min(abs(y-curves[0]),abs(y-curves[1]))<=2.6:return TEAL
-    for cx in (48,144):
-        r=math.hypot(x-cx,y-96)
-        if abs(r-27)<=2.5:return TEAL
-        if rot_ellipse(x,y,cx-19,96,10,5,-0.5) or rot_ellipse(x,y,cx+19,96,10,5,0.5):return TEAL
+    # Interlaced multidirectional scroll network. This stays visually separate from
+    # karakusa by using staggered teal scroll nodes and diagonal linking stems.
+    for row in range(-1,4):
+        cy=row*96+48
+        shift=48 if row%2 else 0
+        for col in range(-2,5):
+            cx=col*96+48+shift
+            dx,dy=x-cx,y-cy
+            r=math.hypot(dx,dy)
+            a=math.atan2(dy,dx)
+            target=21+5*(a/math.pi)
+            if 12<r<33 and abs(r-target)<=2.4:return TEAL
+            if dist_segment(x,y,cx+23,cy-5,cx+48,cy-29)<=2.2:return TEAL
+            if dist_segment(x,y,cx-23,cy+5,cx-48,cy+29)<=2.2:return TEAL
+            if rot_ellipse(x,y,cx+39,cy-31,10,5,-0.45):return TEAL
+            if rot_ellipse(x,y,cx-39,cy+31,10,5,-0.45):return TEAL
     return CREAM
 
 
@@ -163,18 +183,18 @@ def ikat(x,y):
 
 
 def kilim(x,y):
-    # Representative flat-woven visual family: bands, stepped diamonds and hooks.
-    yy=y%96
-    if yy<5 or 44<yy<49:return NAVY
-    for row in range(-1,4):
-        cy=row*96+25
-        shift=48 if row%2 else 0
-        for col in range(-2,5):
-            cx=col*96+48+shift
-            d=abs(x-cx)/30+abs(y-cy)/20
-            if d<=1:return RED if (row+col)%2==0 else NAVY
-            # small hook-like terminals beside diamonds
-            if 22<abs(x-cx)<30 and 12<abs(y-cy)<19:return NAVY
+    # Representative flat-woven visual family: large stepped diamonds, horizontal
+    # bands and hook-like terminals. It is explicitly not a claim of one kilim motif.
+    if y<5 or 92<=y<98:return NAVY
+    for cx,cy,color in ((48,48,RED),(144,48,NAVY),(96,144,RED)):
+        dx=abs(x-cx)
+        dy=abs(y-cy)
+        qx=(dx//8)*8
+        qy=(dy//8)*8
+        if qx/58+qy/43<=1:
+            if qx/29+qy/21<=1:return CREAM
+            return color
+        if 48<=dx<=62 and 20<=dy<=34:return color
     return CREAM
 
 
