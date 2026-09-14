@@ -211,6 +211,21 @@
       note_short: "Preservative; EU Annex V lists Imidazolidinyl Urea at up to 0.6%.",
       note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]),
       authority: "European Union / EUR-Lex"
+    }),
+    "ammonium hydroxide": Object.freeze({
+      note_short: "Buffering and denaturant ingredient; COSMILE Europe lists both functions for Ammonium Hydroxide and notes that it is subject to EU Annex III restrictions.",
+      note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/906/ammonium-hydroxide"]),
+      authority: "Cosmetics Europe / COSMILE Europe"
+    }),
+    "glutathione": Object.freeze({
+      note_short: "Reducing agent; COSMILE Europe lists Glutathione as a reducing ingredient in cosmetic products.",
+      note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5915/glutathione/"]),
+      authority: "Cosmetics Europe / COSMILE Europe"
+    }),
+    "zinc pca": Object.freeze({
+      note_short: "Humectant and skin-conditioning ingredient; COSMILE Europe lists both functions for Zinc PCA.",
+      note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/17133/zinc-pca/"]),
+      authority: "Cosmetics Europe / COSMILE Europe"
     })
   });
 
@@ -548,7 +563,7 @@
   }
 
   const api = {
-    version: "1.19.0",
+    version: "1.20.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,

@@ -20,7 +20,7 @@ const DATA_FILES = [
 ];
 
 const CLAIM_REVIEW_RE = /\b(?:safe|safety|risk|irritat|allerg|sensiti|pregnan|toxic|comedogen|acne|well tolerated|avoid)\b/i;
-const FORBIDDEN_VAGUE_CLAIM_RE = /\b(?:generally safe|well tolerated|high allergy risk|often avoided|may clog pores|avoid eye area|sensitization risk|allergy risk|staining)\b/i;
+const FORBIDDEN_LEGACY_RE = /\b(?:generally safe|well tolerated|high allergy risk|often avoided|may clog pores|avoid eye area|can be irritating|helps oil balance)\b/i;
 const EXPECTED_RAW_CLAIM_ROWS = 22;
 const PRIOR_WAVE_KEYS = Object.freeze([
   'phenoxyethanol',
@@ -35,39 +35,29 @@ const PRIOR_WAVE_KEYS = Object.freeze([
   'ceteareth-20',
   'steareth-21',
   'isopropyl myristate',
-  'simmondsia chinensis jojoba seed oil'
+  'simmondsia chinensis jojoba seed oil',
+  'aminobenzoic acid',
+  'ecamsule',
+  'octisalate',
+  'diethylamino hydroxybenzoyl hexyl benzoate',
+  'diazolidinyl urea',
+  'imidazolidinyl urea'
 ]);
-const CURRENT_EU_REGULATION = 'https://eur-lex.europa.eu/eli/reg/2009/1223';
-const EXPECTED_WAVE4 = Object.freeze({
-  'aminobenzoic acid': Object.freeze({
-    note_short: 'UV filter; EU Annex VI lists PABA (4-Aminobenzoic acid) at up to 5%.',
-    source: CURRENT_EU_REGULATION,
-    authority: 'European Union / EUR-Lex'
+const EXPECTED_WAVE5 = Object.freeze({
+  'ammonium hydroxide': Object.freeze({
+    note_short: 'Buffering and denaturant ingredient; COSMILE Europe lists both functions for Ammonium Hydroxide and notes that it is subject to EU Annex III restrictions.',
+    source: 'https://cosmileeurope.eu/inci/detail/906/ammonium-hydroxide',
+    authority: 'Cosmetics Europe / COSMILE Europe'
   }),
-  ecamsule: Object.freeze({
-    note_short: 'UV filter; EU Annex VI lists Ecamsule at up to 10% expressed as acid.',
-    source: CURRENT_EU_REGULATION,
-    authority: 'European Union / EUR-Lex'
+  glutathione: Object.freeze({
+    note_short: 'Reducing agent; COSMILE Europe lists Glutathione as a reducing ingredient in cosmetic products.',
+    source: 'https://cosmileeurope.eu/inci/detail/5915/glutathione/',
+    authority: 'Cosmetics Europe / COSMILE Europe'
   }),
-  octisalate: Object.freeze({
-    note_short: 'UV filter; EU Annex VI lists Ethylhexyl Salicylate (Octisalate) at up to 5%.',
-    source: CURRENT_EU_REGULATION,
-    authority: 'European Union / EUR-Lex'
-  }),
-  'diethylamino hydroxybenzoyl hexyl benzoate': Object.freeze({
-    note_short: 'UV filter; EU Regulation 2026/909 sets DHHB at up to 10% and limits unavoidable DnHexP impurity to 10 ppm.',
-    source: 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0909',
-    authority: 'European Union / EUR-Lex'
-  }),
-  'diazolidinyl urea': Object.freeze({
-    note_short: 'Preservative; EU Annex V lists Diazolidinyl Urea at up to 0.5%.',
-    source: CURRENT_EU_REGULATION,
-    authority: 'European Union / EUR-Lex'
-  }),
-  'imidazolidinyl urea': Object.freeze({
-    note_short: 'Preservative; EU Annex V lists Imidazolidinyl Urea at up to 0.6%.',
-    source: CURRENT_EU_REGULATION,
-    authority: 'European Union / EUR-Lex'
+  'zinc pca': Object.freeze({
+    note_short: 'Humectant and skin-conditioning ingredient; COSMILE Europe lists both functions for Zinc PCA.',
+    source: 'https://cosmileeurope.eu/inci/detail/17133/zinc-pca/',
+    authority: 'Cosmetics Europe / COSMILE Europe'
   })
 });
 
@@ -78,7 +68,7 @@ function normalizeText(value = '') {
 function validSource(value) {
   try {
     const url = new URL(String(value || '').trim());
-    return url.protocol === 'https:' && url.hostname === 'eur-lex.europa.eu';
+    return url.protocol === 'https:' && url.hostname === 'cosmileeurope.eu';
   } catch {
     return false;
   }
@@ -94,9 +84,12 @@ const claimRows = rows.filter((item) => CLAIM_REVIEW_RE.test(normalizeText(item.
 assert.equal(claimRows.length, EXPECTED_RAW_CLAIM_ROWS, 'raw claim-bearing legacy-note baseline must remain exactly 22 rows');
 
 const evidence = parser.verifiedNoteEvidence || {};
-for (const canonical of [...PRIOR_WAVE_KEYS, ...Object.keys(EXPECTED_WAVE4)]) {
-  assert.ok(Object.hasOwn(evidence, canonical), `${canonical}: wave 1-4 verified note entry must remain present`);
-}
+const expectedAllKeys = [...PRIOR_WAVE_KEYS, ...Object.keys(EXPECTED_WAVE5)];
+assert.deepEqual(
+  new Set(Object.keys(evidence)),
+  new Set(expectedAllKeys),
+  'verified note overlay must contain exactly the frozen 22 claim-bearing canonical identities after wave 5'
+);
 
 const canonicalRows = new Map();
 for (const row of rows) {
@@ -106,19 +99,19 @@ for (const row of rows) {
   canonicalRows.get(key).push(row);
 }
 
-for (const [canonical, expected] of Object.entries(EXPECTED_WAVE4)) {
+for (const [canonical, expected] of Object.entries(EXPECTED_WAVE5)) {
   const item = evidence[canonical];
-  assert.ok(item, `${canonical}: wave 4 verified note evidence missing`);
-  assert.equal(normalizeText(item.note_short), expected.note_short, `${canonical}: reviewed wave 4 note text changed unexpectedly`);
+  assert.ok(item, `${canonical}: wave 5 verified note evidence missing`);
+  assert.equal(normalizeText(item.note_short), expected.note_short, `${canonical}: reviewed wave 5 note text changed unexpectedly`);
   assert.equal(normalizeText(item.authority), expected.authority, `${canonical}: reviewed authority changed unexpectedly`);
-  assert.ok(!FORBIDDEN_VAGUE_CLAIM_RE.test(item.note_short), `${canonical}: unsupported legacy risk/tolerability wording must not return`);
-  assert.ok(Array.isArray(item.note_sources) && item.note_sources.length > 0, `${canonical}: HTTPS source required`);
-  assert.ok(item.note_sources.every(validSource), `${canonical}: wave 4 sources must be EUR-Lex HTTPS URLs`);
+  assert.ok(!FORBIDDEN_LEGACY_RE.test(item.note_short), `${canonical}: unsupported legacy wording must not return`);
+  assert.ok(Array.isArray(item.note_sources) && item.note_sources.length === 1, `${canonical}: exact reviewed source required`);
+  assert.ok(item.note_sources.every(validSource), `${canonical}: wave 5 source must use COSMILE Europe HTTPS`);
   assert.ok(item.note_sources.includes(expected.source), `${canonical}: reviewed source URL missing`);
   assert.ok(canonicalRows.has(canonical), `${canonical}: canonical identity must exist in maintained dictionary`);
   assert.ok(
     canonicalRows.get(canonical).some((row) => CLAIM_REVIEW_RE.test(normalizeText(row.note_short))),
-    `${canonical}: wave 4 must resolve an existing frozen claim-bearing legacy note`
+    `${canonical}: wave 5 must resolve an existing frozen claim-bearing legacy note`
   );
 }
 
@@ -128,32 +121,35 @@ for (const ambiguous of parser.ambiguousExactKeys || []) {
 
 const merged = parser.mergeDictionaryRecords(rows);
 const mergedByCanonical = new Map(merged.map((item) => [parser.canonicalIdentityKey(item.en), item]));
-for (const [canonical, expected] of Object.entries(EXPECTED_WAVE4)) {
+for (const [canonical, expected] of Object.entries(EXPECTED_WAVE5)) {
   const item = mergedByCanonical.get(canonical);
   assert.ok(item, `${canonical}: missing from merged runtime dictionary`);
   assert.equal(item.note_verified, true, `${canonical}: verified note flag must survive canonical merge`);
-  assert.equal(item.note_short, expected.note_short, `${canonical}: runtime note must be the reviewed wave 4 note`);
+  assert.equal(item.note_short, expected.note_short, `${canonical}: runtime note must be the reviewed wave 5 note`);
   assert.ok(Array.isArray(item.note_sources) && item.note_sources.includes(expected.source), `${canonical}: reviewed source must survive canonical merge`);
   assert.equal(item.note_authority, expected.authority, `${canonical}: note authority must survive canonical merge`);
   assert.equal(item.note_provenance_conflict, undefined, `${canonical}: verified overlay must not create note provenance conflict`);
 }
 
-const wave1234Set = new Set([...PRIOR_WAVE_KEYS, ...Object.keys(EXPECTED_WAVE4)]);
-const wave1234ResolvedClaimRows = claimRows.filter((row) => wave1234Set.has(parser.canonicalIdentityKey(row.en)));
-assert.equal(wave1234ResolvedClaimRows.length, 19, 'waves 1-4 must continue to resolve exactly nineteen frozen claim-bearing rows');
+const resolvedClaimRows = claimRows.filter((row) => Object.hasOwn(evidence, parser.canonicalIdentityKey(row.en)));
+assert.equal(resolvedClaimRows.length, EXPECTED_RAW_CLAIM_ROWS, 'wave 5 must resolve all 22 frozen claim-bearing legacy-note rows');
+
+const unresolved = claimRows.filter((row) => !Object.hasOwn(evidence, parser.canonicalIdentityKey(row.en)));
+assert.equal(unresolved.length, 0, 'no frozen claim-bearing legacy note may remain unresolved after wave 5');
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'verified-note-wave-4',
+  phase: 'verified-note-wave-5-final',
   raw_claim_bearing_legacy_note_rows: claimRows.length,
   prior_verified_canonical_identities: PRIOR_WAVE_KEYS.length,
-  wave_4_verified_canonical_identities: Object.keys(EXPECTED_WAVE4).length,
+  wave_5_verified_canonical_identities: Object.keys(EXPECTED_WAVE5).length,
   cumulative_verified_note_overlay_canonical_identities: Object.keys(evidence).length,
-  wave_1_through_4_resolved_claim_bearing_rows: wave1234ResolvedClaimRows.length,
-  wave_4_resolved_canonical_identities: Object.keys(EXPECTED_WAVE4),
+  resolved_claim_bearing_rows: resolvedClaimRows.length,
+  unresolved_claim_bearing_rows: unresolved.length,
+  wave_5_resolved_canonical_identities: Object.keys(EXPECTED_WAVE5),
   raw_dictionary_records_rewritten: false,
   runtime_notes_use_existing_provenance_gate: true,
-  unsupported_legacy_risk_language_reintroduced: false,
+  unsupported_legacy_wording_reintroduced: false,
   safety_contract_changed: false,
   recognition_contract_changed: false,
   affiliate_contract_changed: false

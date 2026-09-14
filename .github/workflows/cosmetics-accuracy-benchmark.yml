@@ -26,6 +26,7 @@ on:
       - 'tools/_shared/check-cosmetics-verified-note-wave2.mjs'
       - 'tools/_shared/check-cosmetics-verified-note-wave3.mjs'
       - 'tools/_shared/check-cosmetics-verified-note-wave4.mjs'
+      - 'tools/_shared/check-cosmetics-verified-note-wave5.mjs'
       - 'tools/_shared/check-cosmetics-claim-note-inventory.mjs'
       - 'tools/_shared/check-cosmetics-canonical-merge.mjs'
       - 'tools/_shared/check-cosmetics-canonical-equivalents.mjs'
@@ -103,6 +104,8 @@ jobs:
         run: node tools/_shared/check-cosmetics-verified-note-wave3.mjs
       - name: Verified note wave 4
         run: node tools/_shared/check-cosmetics-verified-note-wave4.mjs
+      - name: Verified note wave 5 final
+        run: node tools/_shared/check-cosmetics-verified-note-wave5.mjs
       - name: Japanese label variant regression
         run: node tools/_shared/check-cosmetics-jp-label-variants.mjs
       - name: Canonical merge regression
@@ -127,6 +130,7 @@ jobs:
           node --check tools/_shared/check-cosmetics-verified-note-wave2.mjs
           node --check tools/_shared/check-cosmetics-verified-note-wave3.mjs
           node --check tools/_shared/check-cosmetics-verified-note-wave4.mjs
+          node --check tools/_shared/check-cosmetics-verified-note-wave5.mjs
           node --check tools/_shared/check-cosmetics-jp-label-variants.mjs
           node --check tools/_shared/check-fastscan-ocr-robustness.mjs
           node --check tools/cosmetic-ingredient-checker-lite/app.js
