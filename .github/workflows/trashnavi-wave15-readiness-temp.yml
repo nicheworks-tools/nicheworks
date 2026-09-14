@@ -1,0 +1,28 @@
+name: TrashNavi Wave 15 readiness temp
+
+on:
+  push:
+    branches:
+      - feat/trashnavi-otsu-readiness-wave15-20260914
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Coverage strict
+        run: node tools/trashnavi/scripts/audit-coverage.mjs --strict
+      - name: Direct-link inventory
+        run: node scripts/check-trashnavi-direct-links.mjs --inventory
+      - name: Generated municipality pages
+        run: node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+      - name: Affiliate contract
+        run: node tools/trashnavi/scripts/check-affiliate-contract.mjs
+      - name: Runtime contract
+        run: node tools/trashnavi/scripts/check-runtime-contract.mjs
