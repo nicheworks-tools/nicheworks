@@ -68,6 +68,34 @@
   ]);
   const ambiguousExactKeySet = new Set(AMBIGUOUS_EXACT_KEYS);
 
+  const VERIFIED_CATEGORY_EVIDENCE = Object.freeze({
+    "water": Object.freeze({
+      category: "solvent",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/water/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "glycerin": Object.freeze({
+      category: "humectant",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/glycerin/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "propylene glycol": Object.freeze({
+      category: "humectant",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/propylene-glycol/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "phenoxyethanol": Object.freeze({
+      category: "preservative",
+      sources: Object.freeze(["https://health.ec.europa.eu/publications/phenoxyethanol_en"]),
+      authority: "European Commission Scientific Committee on Consumer Safety"
+    }),
+    "carbomer": Object.freeze({
+      category: "thickener",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/carbomer/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    })
+  });
+
   function canonicalIdentityKey(value = "") {
     const base = normalizeBaseKey(value);
     if (!base) return "";
@@ -222,10 +250,16 @@
       if (!current.note_short && raw.note_short) current.note_short = raw.note_short;
     }
 
+    for (const [canonicalKey, evidence] of Object.entries(VERIFIED_CATEGORY_EVIDENCE)) {
+      if (!byCanonical.has(canonicalKey)) continue;
+      addSemanticValue(semanticValues, canonicalKey, "category", evidence.category);
+    }
+
     return order.map((key) => {
       const current = byCanonical.get(key);
       const semantics = semanticValues.get(key) || { safety: [], category: [] };
       const provenanceCandidates = [...(verifiedNotes.get(key)?.values() || [])];
+      const categoryEvidence = VERIFIED_CATEGORY_EVIDENCE[key] || null;
       const conflicts = {};
 
       if (semantics.safety.length === 1) {
@@ -249,6 +283,16 @@
       } else {
         delete current.category;
         current.categories = [];
+      }
+
+      if (categoryEvidence) {
+        current.category_verified = true;
+        current.category_sources = normalizeNoteSources(categoryEvidence.sources);
+        current.category_authority = categoryEvidence.authority;
+      } else {
+        delete current.category_verified;
+        delete current.category_sources;
+        delete current.category_authority;
       }
 
       if (provenanceCandidates.length === 1) {
@@ -372,7 +416,7 @@
   }
 
   const api = {
-    version: "1.12.0",
+    version: "1.13.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
@@ -382,6 +426,7 @@
     isExactIngredientMatch,
     isAmbiguousExactName,
     mergeDictionaryRecords,
+    verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     aliasEquivalents: ALIAS_EQUIVALENTS,
     canonicalEquivalents: CANONICAL_EQUIVALENTS,
     ambiguousExactKeys: AMBIGUOUS_EXACT_KEYS
