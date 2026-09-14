@@ -9153,6 +9153,64 @@
         "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "zte-nubia-fold",
+      "manufacturer": "ZTE",
+      "model": "nubia Fold",
+      "aliases": [
+        "nubia Fold",
+        "nubiaFold",
+        "A502ZT",
+        "ヌビア Fold",
+        "ヌビア フォールド"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 160,
+        "widthMm": 73,
+        "depthMm": 11.1
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 160,
+        "widthMm": 144,
+        "depthMm": 5.4
+      },
+      "weightG": 249,
+      "displayInch": 8,
+      "waterRating": "IPX4 / IP5X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 6560,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.nubia.com/jp/products/smartphones/nubia/nubia-fold"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": 55,
+        "protocols": [
+          "PPS"
+        ],
+        "pps": "required",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.nubia.com/jp/products/smartphones/nubia/nubia-fold",
+        "manualUrl": "https://www.ymobile.jp/lineup/smartphone/nubia_fold/",
+        "releaseUrl": "https://www.softbank.jp/corp/news/press/sbkk/2025/20251202_03/",
+        "chargingUrl": "https://www.softbank.jp/corp/news/press/sbkk/2025/20251202_03/",
+        "verifiedAt": "2026-09-15"
+      },
+      "affiliateKeys": []
     }
   ]
 }
