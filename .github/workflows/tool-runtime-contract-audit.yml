@@ -21,6 +21,7 @@ on:
       - 'scripts/check-old-kanji-reference-seo.mjs'
       - 'scripts/check-old-kanji-internal-handoffs.mjs'
       - 'scripts/check-old-kanji-measurement.mjs'
+      - 'scripts/check-old-kanji-amazon.mjs'
       - 'scripts/run-tool-behavior-tests.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
   push:
@@ -45,6 +46,7 @@ on:
       - 'scripts/check-old-kanji-reference-seo.mjs'
       - 'scripts/check-old-kanji-internal-handoffs.mjs'
       - 'scripts/check-old-kanji-measurement.mjs'
+      - 'scripts/check-old-kanji-amazon.mjs'
       - 'scripts/run-tool-behavior-tests.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
 
@@ -107,6 +109,9 @@ jobs:
 
       - name: Check Old Kanji measurement contract
         run: node scripts/check-old-kanji-measurement.mjs
+
+      - name: Check Old Kanji Amazon contract
+        run: node scripts/check-old-kanji-amazon.mjs
 
       - name: Verify audit is read-only
         run: |

@@ -25,10 +25,10 @@
     const currentLang = lang();
     const heading = document.getElementById("amazonResourceHeading");
     const note = document.getElementById("amazonResourceNote");
-    if (heading) heading.textContent = currentLang === "en" ? "Useful reference tools" : "調査に役立つ道具";
+    if (heading) heading.textContent = currentLang === "en" ? "Optional tools for document research" : "必要な場合だけ使える調査用の道具";
     if (note) note.textContent = currentLang === "en"
-      ? "Optional Amazon searches related to checking old documents. Your searched kanji and page inputs are not added to these links."
-      : "古い資料を調べるときに使えるAmazon検索です。検索した漢字やページ入力内容はリンクへ追加しません。";
+      ? "Optional Amazon searches for dictionaries and physical reading aids. Your searched kanji and page inputs are never added to these links."
+      : "辞典や紙資料を見るための補助道具が必要な場合だけ使えるAmazon検索です。検索した漢字やページ入力内容はリンクへ追加しません。";
 
     rows.forEach(({ id, target }) => {
       const item = config.searches?.[target];
