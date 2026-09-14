@@ -37,7 +37,7 @@ The product is a practical Quick Check utility, not a comprehensive smartphone e
 ## 4. Processing behavior
 
 - 150機種の検証済みデータをブラウザ内で検索・絞り込み・並び替えする。
-- 一覧は走査性を優先し、モデル、発売年、サイズ、重量、端子を中心に表示する。
+- 一覧は走査性を優先し、モデル、発売年、サイズ、重量、端子を中心に表示する。通常機は `dimensions`、foldableは `dimensionsFolded` / `dimensionsUnfolded` を使い、一覧と「小さい順」は折りたたみ時寸法、詳細は折りたたみ時／展開時の両方を表示する。
 - 選択機種の詳細では本体情報、充電条件、モバイルバッテリー目安、アクセサリークラス、公式情報を整理して表示する。
 - `wiredRecommendedW` は充電器の推奨／必要クラスとして扱い、端末側の実測・最大入力W数と同一視しない。
 - 端末側最大有線充電W数は、その意味を直接支える維持済み根拠がある場合のみ表示する。
@@ -51,7 +51,7 @@ The product is a practical Quick Check utility, not a comprehensive smartphone e
 ## 5. Outputs
 
 - 検索・フィルター後のスマートフォン一覧。
-- 選択機種の高さ × 幅 × 厚さ、重量、画面サイズ等の維持済み本体情報。
+- 選択機種の高さ × 幅 × 厚さ、重量、画面サイズ等の維持済み本体情報。foldableでは折りたたみ時／展開時の外形寸法を分けて表示する。
 - 充電端子、充電器目安、充電規格、PPS状態、ワイヤレス充電情報。
 - 維持済みバッテリー容量がある場合の5,000 / 10,000 / 20,000mAh概算充電回数。
 - 互換条件から導出した再利用可能アクセサリークラス。

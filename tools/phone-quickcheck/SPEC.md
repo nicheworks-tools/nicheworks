@@ -59,14 +59,14 @@ Canonical runtime inputs are static NicheWorks-hosted JSON data:
 - `scripts/check-phone-quickcheck-source-semantics.mjs`
 - `tools/phone-quickcheck/tests/behavior.test.mjs`
 
-Phone records use stable model IDs, canonical manufacturer/model names, maintained aliases, dimensions in millimetres, mass in grams, charging facts, provenance/source URLs, verification date, and optional additive accessory keys.
+Phone records use stable model IDs, canonical manufacturer/model names, maintained aliases, dimensions in millimetres, mass in grams, charging facts, provenance/source URLs, verification date, and optional additive accessory keys. Standard phones use `dimensions`; foldables use `formFactor: foldable` plus complete `dimensionsFolded` and `dimensionsUnfolded` sets. Foldables are listed and compact-sorted by folded dimensions while detail output shows both physical states.
 
 ## Outputs
 
 The tool produces an on-screen Quick Check rather than a downloadable artifact. Outputs include:
 
 - matching phone list/cards;
-- selected phone dimensions and weight;
+- selected phone dimensions and weight; foldables show separate folded and unfolded dimensions;
 - charging connector and charger guidance;
 - protocol/PPS/wireless-charging information where verified;
 - battery capacity where accepted;
