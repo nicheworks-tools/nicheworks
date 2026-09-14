@@ -1123,6 +1123,121 @@
       "affiliateKeys": []
     },
     {
+      "id": "google-pixel-9-pro-fold",
+      "manufacturer": "Google",
+      "model": "Pixel 9 Pro Fold",
+      "aliases": [
+        "Google Pixel 9 Pro Fold",
+        "Pixel9ProFold",
+        "Pixel 9 Fold",
+        "ピクセル9 Pro Fold",
+        "ピクセル9プロFold"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 155.2,
+        "widthMm": 77.1,
+        "depthMm": 10.5
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 155.2,
+        "widthMm": 150.2,
+        "depthMm": 5.1
+      },
+      "weightG": 257,
+      "displayInch": 8,
+      "waterRating": "IPX8",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4650,
+          "valueClass": "official",
+          "sourceRef": "https://support.google.com/pixelphone/answer/7158570?hl=ja"
+        },
+        "wiredRecommendedW": 45,
+        "protocols": [
+          "PPS"
+        ],
+        "pps": "required",
+        "wirelessStandard": "Qi"
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
+        "releaseUrl": "https://blog.google/intl/ja-jp/products/devices-services/pixel-9-pro-fold/",
+        "chargingUrl": "https://support.google.com/pixelphone/answer/15205067?hl=ja",
+        "wirelessUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-fold",
+      "manufacturer": "Google",
+      "model": "Pixel Fold",
+      "aliases": [
+        "Google Pixel Fold",
+        "PixelFold",
+        "ピクセル Fold",
+        "ピクセルフォールド"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 139.7,
+        "widthMm": 79.5,
+        "depthMm": 12.1
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 139.7,
+        "widthMm": 158.7,
+        "depthMm": 5.8
+      },
+      "weightG": 283,
+      "displayInch": 7.6,
+      "waterRating": "IPX8",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4821,
+          "valueClass": "official",
+          "sourceRef": "https://support.google.com/pixelphone/answer/7158570?hl=ja"
+        },
+        "wiredRecommendedW": 30,
+        "wiredMaxW": 18,
+        "protocols": [
+          "PPS"
+        ],
+        "pps": "required",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 7.5
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
+        "releaseUrl": "https://blog.google/intl/ja-jp/products/devices-services/2023_07_pixelfoldlaunch/",
+        "chargingUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "wirelessUrl": "https://support.google.com/pixelphone/answer/9137565?hl=ja",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
       "id": "google-pixel-10a",
       "manufacturer": "Google",
       "model": "Pixel 10a",
@@ -2399,6 +2514,120 @@
         "specificationsUrl": "https://www.samsung.com/jp/business/smartphones/galaxy-z/galaxy-z-flip6-silver-shadow-256gb-sm-f741qzsasjp/",
         "manualUrl": "https://www.samsung.com/jp/support/model/SM-F741QLBASJP/",
         "releaseUrl": "https://news.samsung.com/jp/galaxy-z-flip6-fold6-launch",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-fold5",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Fold5",
+      "aliases": [
+        "Samsung Galaxy Z Fold5",
+        "GalaxyZFold5",
+        "Z Fold5",
+        "ギャラクシーZ Fold5",
+        "ギャラクシーZフォールド5"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 154.9,
+        "widthMm": 67.1,
+        "depthMm": 13.4
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 154.9,
+        "widthMm": 129.9,
+        "depthMm": 6.1
+      },
+      "weightG": 253,
+      "displayInch": 7.6,
+      "waterRating": "IPX8",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4400,
+          "valueClass": "official",
+          "sourceRef": "https://www.samsung.com/jp/explore/hint/galaxy-z-flip5-z-fold5-k-tai-watch-2308/"
+        },
+        "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 15
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/explore/hint/galaxy-z-flip5-z-fold5-k-tai-watch-2308/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F946QZUFSJP/",
+        "releaseUrl": "https://www.samsung.com/jp/explore/news/galaxy-z-flip5-z-fold5-simfree/",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-flip5",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Flip5",
+      "aliases": [
+        "Samsung Galaxy Z Flip5",
+        "GalaxyZFlip5",
+        "Z Flip5",
+        "ギャラクシーZ Flip5",
+        "ギャラクシーZフリップ5"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 85.1,
+        "widthMm": 71.9,
+        "depthMm": 15.1
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 165.1,
+        "widthMm": 71.9,
+        "depthMm": 6.9
+      },
+      "weightG": 187,
+      "displayInch": 6.7,
+      "waterRating": "IPX8",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 3700,
+          "valueClass": "official",
+          "sourceRef": "https://www.samsung.com/jp/explore/hint/galaxy-z-flip5-z-fold5-k-tai-watch-2308/"
+        },
+        "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 15
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/explore/hint/galaxy-z-flip5-z-fold5-k-tai-watch-2308/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F731QZUESJP/",
+        "releaseUrl": "https://www.samsung.com/jp/explore/news/galaxy-z-flip5-z-fold5-simfree/",
         "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
         "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
         "verifiedAt": "2026-09-14"
