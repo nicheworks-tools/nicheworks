@@ -1,0 +1,144 @@
+/* Repair dynamically injected detail blocks that previously had no layout rules. */
+.shape-note,
+.stroke-note {
+  margin: 14px 0 0;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  min-width: 0;
+}
+
+.shape-note h4,
+.stroke-note h4 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.shape-note-grid,
+.stroke-note-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.shape-note-row,
+.stroke-note-row {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--soft);
+  min-width: 0;
+}
+
+.shape-note-label,
+.stroke-note-label {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.shape-note-text,
+.stroke-note-value {
+  display: block;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.stroke-note-caution {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.shape-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.shape-tag {
+  display: inline-flex;
+  max-width: 100%;
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #f8f8f8;
+  color: var(--muted);
+  font-size: 0.8rem;
+  overflow-wrap: anywhere;
+}
+
+.amazon-resource-panel {
+  margin: 24px 0;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.amazon-resource-panel h2 {
+  margin: 0 0 6px;
+  font-size: 1.08rem;
+}
+
+.amazon-resource-note {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.amazon-resource-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.amazon-resource-slot {
+  min-width: 0;
+}
+
+.amazon-resource-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  height: 100%;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--soft);
+  color: var(--text);
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.amazon-resource-link:hover {
+  border-color: var(--accent);
+}
+
+.amazon-disclosure {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.amazon-disclosure p {
+  margin: 3px 0 0;
+}
+
+@media (max-width: 720px) {
+  .shape-note-grid,
+  .stroke-note-grid,
+  .amazon-resource-links {
+    grid-template-columns: 1fr;
+  }
+}
