@@ -5,10 +5,21 @@
 - Specification status: `complete`
 - Common specification: `common-spec/spec-ja.md`
 - Affiliate rules: `common-spec/amazon-affiliate.md`
+- Search-cluster contract: `tools/OLD_KANJI_CLUSTER.md`
 
 ## Purpose
 
 Provide a searchable bilingual reference for old Japanese kanji forms and their modern equivalents, including selected metadata, text detection, local study state, export utilities, and optional contextual Amazon search handoffs for physical reference tools.
+
+## Search cluster role
+
+- Primary intent: look up one old/new kanji pair, or browse/search the Old Kanji reference list.
+- Primary query families: `旧字体 一覧`, `旧字体 検索`, `旧字 検索`, `<漢字> 旧字体`, `<漢字> 旧字`.
+- Supporting query families: `旧字体 調べ方`, `昔の漢字 一覧`, and queries for reading/Unicode attached to a known entry.
+- The page is the generic lookup/search entry point for the Old Kanji cluster. It must not present itself as the primary full-text conversion or OCR page.
+- SERP-facing title/description should make the free searchable/list nature explicit and describe old/new-form comparison without claiming unsupported metadata coverage.
+- Primary task handoffs are limited to Kanji Modernizer (full-text conversion), Old Kanji OCR Scanner (image input), Unicode Kanji Checker, and Variant Kanji Compare.
+- Individual-kanji indexable URLs are not part of the current contract. They require a separate source/data-quality audit and standalone-value threshold; bare mapping-only records must not be mass-generated as thin SEO pages.
 
 ## Current functional contract
 
@@ -84,10 +95,16 @@ The dense searchable catalog, filters, detector, display modes, export controls,
 - Rendering can vary for compatibility ideographs, supplementary-plane characters, and variation selectors.
 - Old Kanji Toolkit billing is currently unavailable on this page; planned Pro areas are not part of the currently purchasable functional contract.
 - Amazon search links are optional shopping handoffs, not product endorsements or suitability guarantees.
+- Current mapping data can contain identity/reference records as well as genuine old→modern substitutions; those records must be audited before any per-character SEO-page rollout.
 
 ## Acceptance criteria
 
 - [ ] Search modes and filters operate on loaded reference data without inventing missing metadata.
+- [ ] SERP title/description identify this as a free old-kanji search/list reference and do not claim full-text conversion as the page's main function.
+- [ ] The visible H1 is `旧字体検索・旧字体一覧` in Japanese mode.
+- [ ] Canonical remains `https://nicheworks.app/tools/old-kanji-reference/` and WebApplication JSON-LD accurately describes current functionality.
+- [ ] Visible FAQ content and FAQPage schema remain aligned.
+- [ ] Footer-near task handoffs are limited to full-text conversion, image OCR, Unicode inspection, and variant comparison.
 - [ ] Detector text highlights registered old forms and supports copy/send-to-converter actions locally.
 - [ ] Favorites, recent entries, display mode, and quiz statistics restore from their documented localStorage keys.
 - [ ] CSV/JSON/Markdown/print actions remain functional without requiring Pro entitlement.
