@@ -93,6 +93,16 @@
       category: "thickener",
       sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/carbomer/"]),
       authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "citric acid": Object.freeze({
+      category: "pH adjuster",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/citric-acid/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "tocopherol": Object.freeze({
+      category: "antioxidant",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/tocopherol/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
     })
   });
 
@@ -416,7 +426,7 @@
   }
 
   const api = {
-    version: "1.13.0",
+    version: "1.14.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
