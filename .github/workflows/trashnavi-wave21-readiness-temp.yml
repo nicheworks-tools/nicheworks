@@ -1,0 +1,113 @@
+name: TrashNavi Wave 21 readiness temp
+
+on:
+  push:
+    branches:
+      - feat/trashnavi-nagasaki-readiness-wave21-20260914
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Promote Nagasaki readiness
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const dataDir = path.join('tools','trashnavi','data');
+          const files = fs.readdirSync(dataDir).filter(n => /^direct-waste-links.*\.json$/.test(n)).sort();
+          const code = '422011';
+          const oldUrl = 'https://www.city.nagasaki.lg.jp/shimin/140000/142000/index.html';
+          const newUrl = 'https://www.city.nagasaki.lg.jp/page/3432.html';
+          let occurrences = 0;
+          let oldUrlOccurrences = 0;
+          const occurrenceFiles = [];
+          for (const name of files) {
+            const full = path.join(dataDir, name);
+            let text = fs.readFileSync(full, 'utf8');
+            const lines = text.split('\n');
+            let touched = false;
+            for (let i = 0; i < lines.length; i++) {
+              if (!lines[i].includes(`\"lgcode\":\"${code}\"`)) continue;
+              occurrences++;
+              occurrenceFiles.push(name);
+              if (lines[i].includes(oldUrl)) {
+                oldUrlOccurrences++;
+                lines[i] = lines[i]
+                  .replace(oldUrl, newUrl)
+                  .replace('長崎市 ごみの分け方・出し方', '長崎市 家庭から出るごみの分け方・出し方');
+                touched = true;
+              }
+            }
+            if (touched) fs.writeFileSync(full, lines.join('\n'));
+          }
+          console.log(JSON.stringify({preexisting_422011_occurrences: occurrences, occurrenceFiles, oldUrlOccurrences}, null, 2));
+          if (occurrences !== 2) throw new Error(`expected exactly 2 preexisting 422011 records, got ${occurrences}`);
+          if (oldUrlOccurrences !== 2) throw new Error(`expected exactly 2 stale Nagasaki sorting URLs, got ${oldUrlOccurrences}`);
+
+          const supply = [
+            {
+              pref:'長崎県', city:'長崎市', name:'長崎市 町別のごみ収集曜日', type:'収集カレンダー',
+              link_type:'collection_calendar', url:'https://www.city.nagasaki.lg.jp/page/3223.html', lgcode:code,
+              last_checked:'2026-09-14', status:'active', language:'ja'
+            },
+            {
+              pref:'長崎県', city:'長崎市', name:'長崎市 粗大ごみの出し方', type:'粗大ごみ',
+              link_type:'bulky_waste', url:'https://www.city.nagasaki.lg.jp/page/3031.html', lgcode:code,
+              last_checked:'2026-09-14', status:'active', language:'ja'
+            }
+          ];
+          fs.writeFileSync(path.join(dataDir,'direct-waste-links-supply-wave21.json'), JSON.stringify(supply, null, 2) + '\n');
+
+          const appPath = path.join('tools','trashnavi','app.js');
+          let app = fs.readFileSync(appPath,'utf8');
+          const anchor = '"data/direct-waste-links-supply-wave20.json"]';
+          if (!app.includes(anchor)) throw new Error('Wave 20 app.js anchor missing');
+          app = app.replace(anchor, '"data/direct-waste-links-supply-wave20.json","data/direct-waste-links-supply-wave21.json"]');
+          fs.writeFileSync(appPath, app);
+
+          const allFiles = fs.readdirSync(dataDir).filter(n => /^direct-waste-links.*\.json$/.test(n)).sort();
+          const rows = [];
+          for (const name of allFiles) {
+            const parsed = JSON.parse(fs.readFileSync(path.join(dataDir,name),'utf8'));
+            for (const row of parsed) if (String(row.lgcode || '').trim() === code) rows.push({file:name, ...row});
+          }
+          const typeMap = new Map([
+            ['ごみ分別ページ','waste_sorting'],['収集カレンダー','collection_calendar'],['粗大ごみ','bulky_waste'],
+            ['粗大ごみ申込み','bulky_application'],['検索ページ','waste_search'],['持込施設','dropoff_facility'],['ごみ分別アプリ','waste_app']
+          ]);
+          const canonical = row => String(row.link_type || '').trim() || typeMap.get(String(row.type || '').trim()) || '';
+          const types = [...new Set(rows.map(canonical).filter(Boolean))].sort();
+          console.log(JSON.stringify({nagasaki_rows: rows, canonical_types: types}, null, 2));
+          if (rows.length !== 4) throw new Error(`expected 4 raw Nagasaki records after enrichment, got ${rows.length}`);
+          if (types.join(',') !== ['bulky_waste','collection_calendar','waste_sorting'].sort().join(',')) throw new Error(`unexpected Nagasaki canonical types: ${types.join(',')}`);
+          if (rows.some(r => String(r.url || '').includes('/shimin/140000/142000/index.html'))) throw new Error('stale Nagasaki sorting URL remains');
+          if (rows.filter(r => canonical(r) === 'waste_sorting' && r.url === newUrl).length !== 2) throw new Error('canonical Nagasaki sorting duplicate count must be 2');
+          NODE
+
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-affiliate-contract.mjs
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+          git diff --check
+
+          rm .github/workflows/trashnavi-wave21-readiness-temp.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/trashnavi/app.js tools/trashnavi/data/direct-waste-links.json tools/trashnavi/data/direct-waste-links-pref-capitals-extra.json tools/trashnavi/data/direct-waste-links-supply-wave21.json .github/workflows/trashnavi-wave21-readiness-temp.yml
+          git diff --cached --check
+          git commit -m "Promote Nagasaki to TrashNavi preferred candidate"
+          git push origin HEAD:feat/trashnavi-nagasaki-readiness-wave21-20260914
