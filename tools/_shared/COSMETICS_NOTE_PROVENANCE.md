@@ -81,13 +81,15 @@ Legacy unverified `note_short` values remain in raw source data for compatibilit
 
 ## PR48 wave 1
 
-PR48 verifies exactly three claim-bearing canonical notes against European Commission SCCS material:
+PR48 verifies exactly three canonical notes that are actually part of the frozen 22-row PR38 claim-bearing baseline:
 
 | Canonical identity | Reviewed runtime note | Source basis |
 | --- | --- | --- |
 | `phenoxyethanol` | `Preservative; SCCS considers it safe for use up to 1.0% in cosmetic products.` | SCCS/1575/16 concludes 2-phenoxyethanol is safe as a preservative at a maximum concentration of 1.0%, taking the supplied information into account. |
-| `limonene` | `Fragrance ingredient; oxidised limonene is an established contact allergen in the SCCS opinion.` | SCCS/1459/11 lists oxidised limonene among established fragrance contact allergens of special concern. |
-| `linalool` | `Fragrance ingredient; oxidised linalool is an established contact allergen in the SCCS opinion.` | SCCS/1459/11 lists oxidised linalool among established fragrance contact allergens of special concern. |
+| `sodium hydroxide` | `pH adjuster; EU cosmetic rules list sodium hydroxide for pH-adjusting uses subject to specified restrictions.` | Regulation (EU) 2016/622 amending Annex III of Regulation (EC) No 1223/2009 lists sodium hydroxide for pH-adjusting uses and specifies restrictions. |
+| `potassium hydroxide` | `pH adjuster; EU cosmetic rules list potassium hydroxide for pH-adjusting uses subject to specified restrictions.` | Regulation (EU) 2016/622 lists potassium hydroxide for pH-adjusting uses and specifies restrictions. |
+
+The sodium/potassium hydroxide runtime notes deliberately do **not** preserve the legacy `safe at very low levels` wording. The official EU source supports regulated pH-adjuster uses and restrictions; PR48 narrows the text to that directly supported claim rather than attaching provenance to a broader safety statement.
 
 The raw legacy notes are intentionally not rewritten. The original PR38 claim-bearing baseline therefore remains 22 raw rows, while `check-cosmetics-verified-note-wave1.mjs` reports 3 resolved rows and 19 still unresolved after wave 1.
 
@@ -132,4 +134,4 @@ node tools/_shared/check-cosmetics-verified-note-wave1.mjs
 
 The isolation regression fails if FastScan can render an unverified dictionary note, if verified notes stop requiring provenance, if the neutral fallback copy disappears, or if PR38's semantic-note/evidence inventory is removed.
 
-The schema regression validates all nine maintained dictionary files, exercises order-independent verified-note canonical merge, verifies source union behavior, and proves that conflicting or invalid provenance fails closed. The wave-1 regression additionally pins the three reviewed canonical notes, SCCS source URLs, overlay-to-runtime merge behavior, and 22 → 3 resolved / 19 unresolved claim-bearing progress accounting.
+The schema regression validates all nine maintained dictionary files, exercises order-independent verified-note canonical merge, verifies source union behavior, and proves that conflicting or invalid provenance fails closed. The wave-1 regression additionally pins the three reviewed canonical notes, their reviewed EC/EUR-Lex source URLs, overlay-to-runtime merge behavior, and 22 → 3 resolved / 19 unresolved claim-bearing progress accounting.
