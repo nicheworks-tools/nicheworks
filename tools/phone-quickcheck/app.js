@@ -363,6 +363,10 @@
     if (connector === 'usb-c') keys.add('cable-usbc-usbc');
     else if (connector === 'lightning') keys.add('cable-usbc-lightning');
 
+    if (protocols.includes('supervooc')) keys.add('charger-oppo-supervooc');
+    if (protocols.includes('hypercharge') || protocols.includes('turbocharge')) keys.add('charger-xiaomi-hypercharge');
+    if (protocols.includes('turbopower')) keys.add('charger-motorola-turbopower');
+
     if (manufacturer === 'apple' && watts) {
       if (watts >= 60) keys.add('charger-avs-60w');
       else if (watts >= 40) keys.add('charger-pd-40w');
