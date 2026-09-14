@@ -2707,8 +2707,8 @@
         "wirelessMaxW": 15
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-z/galaxy-z-fold4-graygreen-256gb-sm-f936jzaakdi/",
@@ -2716,7 +2716,7 @@
         "releaseUrl": "https://news.samsung.com/global/galaxy-fold4-flip4",
         "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
         "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
     },
@@ -2767,8 +2767,8 @@
         "wirelessMaxW": 15
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.samsung.com/au/business/smartphones/galaxy-z/galaxy-z-flip4-sm-f721bzafats/",
@@ -2776,7 +2776,7 @@
         "releaseUrl": "https://news.samsung.com/global/galaxy-fold4-flip4",
         "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
         "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
     },
@@ -2828,8 +2828,8 @@
         "wirelessMaxW": 10
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-z-fold3-5g/specs/",
@@ -2837,7 +2837,7 @@
         "releaseUrl": "https://news.samsung.com/global/the-next-chapter-in-mobile-innovation-unfold-your-world-with-galaxy-z-fold3-5g-and-galaxy-z-flip3-5g",
         "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
         "wirelessUrl": "https://news.samsung.com/global/the-next-chapter-in-mobile-innovation-unfold-your-world-with-galaxy-z-fold3-5g-and-galaxy-z-flip3-5g",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
     },
@@ -2890,8 +2890,8 @@
         "wirelessMaxW": 10
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-z-flip3-5g/specs/",
@@ -2899,7 +2899,7 @@
         "releaseUrl": "https://news.samsung.com/global/the-next-chapter-in-mobile-innovation-unfold-your-world-with-galaxy-z-fold3-5g-and-galaxy-z-flip3-5g",
         "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
         "wirelessUrl": "https://news.samsung.com/global/the-next-chapter-in-mobile-innovation-unfold-your-world-with-galaxy-z-fold3-5g-and-galaxy-z-flip3-5g",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
     },
@@ -2949,8 +2949,8 @@
         "wirelessStandard": "Qi"
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://news.samsung.com/global/introducing-the-galaxy-z-fold2-change-the-shape-of-the-future",
@@ -2958,7 +2958,7 @@
         "releaseUrl": "https://news.samsung.com/global/introducing-the-galaxy-z-fold2-change-the-shape-of-the-future",
         "chargingUrl": "https://www.samsung.com/au/smartphones/galaxy-z-fold2/design/",
         "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
     },
@@ -3009,8 +3009,8 @@
         "wirelessStandard": "Qi"
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://news.samsung.com/global/introducing-galaxy-z-flip-5g-express-yourself-with-a-stylish-5g-enabled-foldable-smartphone",
@@ -3018,7 +3018,7 @@
         "releaseUrl": "https://news.samsung.com/global/introducing-galaxy-z-flip-5g-express-yourself-with-a-stylish-5g-enabled-foldable-smartphone",
         "chargingUrl": "https://image-us.samsung.com/SamsungUS/samsungbusiness/pdfs/datasheet/Galaxy-Z-Flip_Z-Flip-5G-Datasheet-Generic.pdf",
         "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
     },
@@ -3069,8 +3069,8 @@
         "wirelessStandard": "Qi"
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://image-us.samsung.com/SamsungUS/samsungbusiness/pdfs/datasheet/Galaxy-Z-Flip_Z-Flip-5G-Datasheet-Generic.pdf",
