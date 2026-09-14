@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nicheworks.app/schemas/construction-tools-atlas-entry-v2.3.schema.json",
+  "title": "Construction Tools Atlas canonical entry v2.3",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["id", "type", "names", "aliases", "summary", "description", "relationships", "images", "commerce", "quality"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "type": {"type": "string", "minLength": 1},
+    "names": {
+      "type": "object",
+      "required": ["ja", "en"],
+      "properties": {
+        "ja": {"type": "string", "minLength": 1},
+        "en": {"type": "string", "minLength": 1},
+        "reading": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "aliases": {"$ref": "#/$defs/bilingualStringArrays"},
+    "slang": {"$ref": "#/$defs/bilingualStringArrays"},
+    "summary": {"$ref": "#/$defs/bilingualText"},
+    "description": {"$ref": "#/$defs/bilingualText"},
+    "uses": {"$ref": "#/$defs/bilingualStringArrays"},
+    "situations_text": {"$ref": "#/$defs/bilingualStringArrays"},
+    "actions": {"$ref": "#/$defs/stringArray"},
+    "materials": {"$ref": "#/$defs/stringArray"},
+    "trades": {"$ref": "#/$defs/stringArray"},
+    "tasks": {"$ref": "#/$defs/stringArray"},
+    "situations": {"$ref": "#/$defs/stringArray"},
+    "visual_cues": {"$ref": "#/$defs/stringArray"},
+    "power_types": {"$ref": "#/$defs/stringArray"},
+    "categories": {"$ref": "#/$defs/stringArray"},
+    "regions": {"$ref": "#/$defs/stringArray"},
+    "relationships": {
+      "type": "object",
+      "required": ["similar", "often_confused_with", "used_with"],
+      "properties": {
+        "similar": {"$ref": "#/$defs/idArray"},
+        "often_confused_with": {"$ref": "#/$defs/idArray"},
+        "used_with": {"$ref": "#/$defs/idArray"},
+        "parent": {"$ref": "#/$defs/idArray"},
+        "child": {"$ref": "#/$defs/idArray"}
+      },
+      "additionalProperties": true
+    },
+    "images": {
+      "type": "object",
+      "required": ["primary", "secondary"],
+      "properties": {
+        "primary": {
+          "anyOf": [
+            {"type": "null"},
+            {
+              "type": "object",
+              "required": ["display", "thumbnail", "alt_ja", "alt_en", "state", "subject_match"],
+              "properties": {
+                "original": {"type": ["string", "null"]},
+                "display": {"type": "string", "pattern": "\\.webp(?:$|\\?)"},
+                "thumbnail": {"type": "string", "pattern": "\\.webp(?:$|\\?)"},
+                "alt_ja": {"type": "string", "minLength": 1},
+                "alt_en": {"type": "string", "minLength": 1},
+                "state": {"enum": ["pilot", "reviewed", "verified"]},
+                "subject_match": {"type": "boolean"}
+              },
+              "additionalProperties": true
+            }
+          ]
+        },
+        "secondary": {
+          "type": "array",
+          "items": {"type": "object"}
+        }
+      },
+      "additionalProperties": true
+    },
+    "commerce": {
+      "type": "object",
+      "required": ["affiliate_intent", "offer_ids"],
+      "properties": {
+        "affiliate_intent": {"enum": ["high", "medium", "none"]},
+        "offer_ids": {"$ref": "#/$defs/stringArray"}
+      },
+      "additionalProperties": true
+    },
+    "quality": {
+      "type": "object",
+      "required": ["content_state", "image_state", "detail_publish_state"],
+      "properties": {
+        "content_state": {"enum": ["stub", "expanded", "reviewed", "verified"]},
+        "image_state": {"enum": ["none", "pilot", "reviewed", "verified"]},
+        "detail_publish_state": {"enum": ["inline_only", "ready"]}
+      },
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "idArray": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+      "uniqueItems": true
+    },
+    "bilingualText": {
+      "type": "object",
+      "required": ["ja", "en"],
+      "properties": {
+        "ja": {"type": "string"},
+        "en": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "bilingualStringArrays": {
+      "type": "object",
+      "required": ["ja", "en"],
+      "properties": {
+        "ja": {"$ref": "#/$defs/stringArray"},
+        "en": {"$ref": "#/$defs/stringArray"}
+      },
+      "additionalProperties": true
+    }
+  }
+}
