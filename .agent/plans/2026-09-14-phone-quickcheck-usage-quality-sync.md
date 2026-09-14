@@ -41,6 +41,7 @@ The Phone QuickCheck matrix record should end with:
 - SEO audit succeeds;
 - Phone QuickCheck data, affiliate, behavior, and runtime checks remain green;
 - no temporary workflow remains in the final PR.
+- quality-matrix test evidence classification was normalized to the repository enum and passed `scripts/check-tool-quality-contract.mjs` before the final PR CI rerun.
 
 ## Release gate
 
