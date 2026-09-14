@@ -4,7 +4,10 @@ on:
   push:
     branches:
       - feat/construction-atlas-image-wave2-20260914
+      - feat/construction-atlas-image-wave2c-20260914
     paths:
+      - tools/construction-tools-atlas/data/quality-manifest.json
+      - tools/construction-tools-atlas/data/tools.quality-017.json
       - tools/construction-tools-atlas/scripts/generate-image-identity-backlog-v2.3.cjs
       - .github/workflows/construction-tools-atlas-image-backlog.yml
   workflow_dispatch:
@@ -41,4 +44,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add tools/construction-tools-atlas/data/image-identity-backlog-v2.3.json
           git commit -m "chore(construction-atlas): materialize image identity backlog"
-          git push origin HEAD:${{ github.ref_name }}
+          git fetch origin "${GITHUB_REF_NAME}"
+          git rebase "origin/${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
