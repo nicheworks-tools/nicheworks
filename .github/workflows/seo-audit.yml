@@ -12,9 +12,12 @@ on:
       - 'en/**'
       - 'categories/**'
       - 'tools/**'
+      - 'templates/**'
+      - 'billing/**'
       - 'scripts/audit-common-breakage.mjs'
       - 'scripts/audit-seo.mjs'
       - 'scripts/audit-publishing-mode.mjs'
+      - 'scripts/check-adsense-review-surface.mjs'
       - 'scripts/check-seo-head-metadata-cardinality.mjs'
       - 'scripts/check-seo-indexable-url-identity.mjs'
       - 'scripts/check-seo-internal-link-integrity.mjs'
@@ -38,9 +41,12 @@ on:
       - 'en/**'
       - 'categories/**'
       - 'tools/**'
+      - 'templates/**'
+      - 'billing/**'
       - 'scripts/audit-common-breakage.mjs'
       - 'scripts/audit-seo.mjs'
       - 'scripts/audit-publishing-mode.mjs'
+      - 'scripts/check-adsense-review-surface.mjs'
       - 'scripts/check-seo-head-metadata-cardinality.mjs'
       - 'scripts/check-seo-indexable-url-identity.mjs'
       - 'scripts/check-seo-internal-link-integrity.mjs'
@@ -86,6 +92,9 @@ jobs:
 
       - name: Check SEO public URL contract
         run: node scripts/check-seo-public-url-contract.mjs
+
+      - name: Check AdSense review surface contract
+        run: node scripts/check-adsense-review-surface.mjs
 
       - name: Check indexable SEO URL identity
         run: node scripts/check-seo-indexable-url-identity.mjs
