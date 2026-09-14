@@ -33,7 +33,7 @@ jobs:
         run: node tools/pattern-dictionary/tests/source-verification-test.mjs
       - name: Researched content contract
         run: node tools/pattern-dictionary/tests/production-content-test.mjs
-      - name: Static/runtime contract
+      - name: Static runtime contract
         run: node tools/pattern-dictionary/tests/validate.mjs
       - name: Search regressions
         run: node tools/pattern-dictionary/tests/search-test.mjs
@@ -41,39 +41,28 @@ jobs:
         run: node --check tools/pattern-dictionary/app.js
 
   pattern-dictionary-kilim-fix:
-    if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'fix: align Kilim production record') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
         uses: actions/checkout@v4
         with:
           ref: feat/pattern-dictionary-production-20-20260914
-      - name: Align Kilim production record with source ledger
+      - name: Align Kilim production record
         run: |
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-          p=Path('tools/pattern-dictionary/data/production-content.json')
-          data=json.loads(p.read_text())
-          rec=next(x for x in data['patterns'] if x['pattern_id']=='kilim')
-          rec['names']['en']='Kilim Pattern'
-          rec['aliases']['en']=['Kilim','kelim','kilim rug pattern']
-          rec['term_scope']='flat-woven textile category and kilim-inspired visual family, not one fixed motif'
-          rec['colors']['primary']=['red','navy','cream']
-          rec['colors']['primary_reason']='Kilim traditions use diverse colors and designs; this fixed palette is only an editorial recognition reference.'
-          p.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
-          PY
-      - name: Run all Pattern Dictionary Phase 2 contracts
+          python3 -c "import json,pathlib; p=pathlib.Path('tools/pattern-dictionary/data/production-content.json'); d=json.loads(p.read_text()); r=next(x for x in d['patterns'] if x['pattern_id']=='kilim'); r['names']['en']='Kilim Pattern'; r['aliases']['en']=['Kilim','kelim','kilim rug pattern']; r['term_scope']='flat-woven textile category and kilim-inspired visual family, not one fixed motif'; r['colors']['primary']=['red','navy','cream']; r['colors']['primary_reason']='Kilim traditions use diverse colors and designs; this fixed palette is only an editorial recognition reference.'; p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\\n')"
+      - name: Run Pattern Dictionary contracts after repair
         run: |
           node tools/pattern-dictionary/tests/source-verification-test.mjs
           node tools/pattern-dictionary/tests/production-content-test.mjs
           node tools/pattern-dictionary/tests/validate.mjs
           node tools/pattern-dictionary/tests/search-test.mjs
           node --check tools/pattern-dictionary/app.js
-      - name: Commit repaired production record
+      - name: Persist repair only when changed
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add tools/pattern-dictionary/data/production-content.json
-          git commit -m 'fix: align Kilim production record with source ledger'
-          git push origin HEAD:feat/pattern-dictionary-production-20-20260914
+          if ! git diff --cached --quiet; then
+            git commit -m 'fix: align Kilim production record with source ledger'
+            git push origin HEAD:feat/pattern-dictionary-production-20-20260914
+          fi
