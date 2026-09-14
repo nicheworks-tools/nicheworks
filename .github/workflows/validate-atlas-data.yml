@@ -29,7 +29,9 @@ jobs:
         with:
           ref: feat/pattern-dictionary-production-20-20260914
       - name: Generate all twenty deterministic reference images
-        run: python3 tools/pattern-dictionary/scripts/generate-reference-images.py
+        run: |
+          python3 tools/pattern-dictionary/scripts/generate-reference-images.py
+          python3 tools/pattern-dictionary/scripts/generate-reference-images-organic.py
       - name: Advance all twenty candidates and runtime image set
         run: |
           python3 <<'PY'
