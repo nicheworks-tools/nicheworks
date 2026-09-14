@@ -1,0 +1,270 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-14",
+  "records": [
+    {
+      "id": "google-pixel-11-pro-fold",
+      "manufacturer": "Google",
+      "model": "Pixel 11 Pro Fold",
+      "aliases": ["Google Pixel 11 Pro Fold", "Pixel11ProFold", "ピクセル11 Pro Fold", "ピクセル11プロフォールド"],
+      "market": ["JP"],
+      "releaseYear": 2026,
+      "formFactor": "foldable",
+      "dimensionsFolded": {"heightMm": 155.2, "widthMm": 76, "depthMm": 10.1},
+      "dimensionsUnfolded": {"heightMm": 155.2, "widthMm": 150.4, "depthMm": 5},
+      "weightG": 239,
+      "displayInch": 8,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 30,
+        "wiredMaxW": null,
+        "protocols": ["USB PD", "PPS"],
+        "pps": "required",
+        "wirelessStandard": "Qi2.2",
+        "wirelessMaxW": 25,
+        "battery": {"capacityMah": 4806, "valueClass": "official", "sourceRef": "https://store.google.com/jp/product/pixel_11_pro_fold_specs?hl=ja"}
+      },
+      "included": {"cable": "unknown", "adapter": "not_included"},
+      "sources": {
+        "specificationsUrl": "https://store.google.com/jp/product/pixel_11_pro_fold_specs?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
+        "chargingUrl": "https://store.google.com/jp/product/pixel_11_pro_fold_specs?hl=ja",
+        "wirelessUrl": "https://store.google.com/jp/product/pixel_11_pro_fold_specs?hl=ja",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-10-pro-fold",
+      "manufacturer": "Google",
+      "model": "Pixel 10 Pro Fold",
+      "aliases": ["Google Pixel 10 Pro Fold", "Pixel10ProFold", "ピクセル10 Pro Fold", "ピクセル10プロフォールド"],
+      "market": ["JP"],
+      "releaseYear": 2025,
+      "formFactor": "foldable",
+      "dimensionsFolded": {"heightMm": 155.2, "widthMm": 76.3, "depthMm": 10.8},
+      "dimensionsUnfolded": {"heightMm": 155.2, "widthMm": 150.4, "depthMm": 5.2},
+      "weightG": 258,
+      "displayInch": 8,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 30,
+        "wiredMaxW": null,
+        "protocols": ["USB PD", "PPS"],
+        "pps": "required",
+        "wirelessStandard": "Qi2",
+        "wirelessMaxW": 15,
+        "battery": {"capacityMah": 5015, "valueClass": "official", "sourceRef": "https://store.google.com/jp/product/pixel_10_pro_fold_specs?hl=ja"}
+      },
+      "included": {"cable": "unknown", "adapter": "not_included"},
+      "sources": {
+        "specificationsUrl": "https://store.google.com/jp/product/pixel_10_pro_fold_specs?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
+        "chargingUrl": "https://store.google.com/jp/product/pixel_10_pro_fold_specs?hl=ja",
+        "wirelessUrl": "https://store.google.com/jp/product/pixel_10_pro_fold_specs?hl=ja",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-fold8",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Fold8",
+      "aliases": ["Samsung Galaxy Z Fold8", "GalaxyZFold8", "Galaxy Z Fold 8", "ギャラクシーZ Fold8"],
+      "market": ["JP"],
+      "releaseYear": 2026,
+      "formFactor": "foldable",
+      "dimensionsFolded": {"heightMm": 123.9, "widthMm": 81.9, "depthMm": 9.7},
+      "dimensionsUnfolded": {"heightMm": 123.9, "widthMm": 161.4, "depthMm": 4.5},
+      "weightG": 201,
+      "displayInch": 7.6,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": ["Super Fast Charging 2.0"],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": null,
+        "battery": {"capacityMah": 4800, "valueClass": "official", "sourceRef": "https://www.samsung.com/sec/smartphones/galaxy-z-fold8/specs/"}
+      },
+      "included": {"cable": "included", "adapter": "unknown"},
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/sec/smartphones/galaxy-z-fold8/specs/",
+        "manualUrl": "https://www.samsung.com/jp/support/",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/samsung-galaxy-z-fold8-wireless-charging-troubleshooting/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-flip8",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Flip8",
+      "aliases": ["Samsung Galaxy Z Flip8", "GalaxyZFlip8", "Galaxy Z Flip 8", "ギャラクシーZ Flip8"],
+      "market": ["JP"],
+      "releaseYear": 2026,
+      "formFactor": "foldable",
+      "dimensionsFolded": {"heightMm": 85.7, "widthMm": 75.4, "depthMm": 13.1},
+      "dimensionsUnfolded": {"heightMm": 166.9, "widthMm": 75.4, "depthMm": 6.1},
+      "weightG": 180,
+      "displayInch": 6.9,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 25,
+        "protocols": ["Super Fast Charging"],
+        "pps": "unknown",
+        "wirelessStandard": "Qi2",
+        "wirelessMaxW": null,
+        "battery": {"capacityMah": 4300, "valueClass": "official", "sourceRef": "https://www.samsung.com/sec/smartphones/galaxy-z-flip8/specs/"}
+      },
+      "included": {"cable": "included", "adapter": "unknown"},
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/sec/smartphones/galaxy-z-flip8/specs/",
+        "manualUrl": "https://www.samsung.com/jp/support/model.SM-F776QLGASJP/",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-fold7",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Fold7",
+      "aliases": ["Samsung Galaxy Z Fold7", "GalaxyZFold7", "Galaxy Z Fold 7", "ギャラクシーZ Fold7"],
+      "market": ["JP"],
+      "releaseYear": 2025,
+      "formFactor": "foldable",
+      "dimensionsFolded": {"heightMm": 158.4, "widthMm": 72.8, "depthMm": 8.9},
+      "dimensionsUnfolded": {"heightMm": 158.4, "widthMm": 143.2, "depthMm": 4.2},
+      "weightG": 215,
+      "displayInch": 8,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 25,
+        "protocols": ["Super Fast Charging"],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": null,
+        "battery": {"capacityMah": 4400, "valueClass": "official", "sourceRef": "https://www.samsung.com/jp/business/smartphones/galaxy-z/galaxy-z-fold7-silver-shadow-256gb-sm-f966qzsasjp/"}
+      },
+      "included": {"cable": "included", "adapter": "not_included"},
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/business/smartphones/galaxy-z/galaxy-z-fold7-silver-shadow-256gb-sm-f966qzsasjp/",
+        "manualUrl": "https://www.samsung.com/jp/support/",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-flip7",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Flip7",
+      "aliases": ["Samsung Galaxy Z Flip7", "GalaxyZFlip7", "Galaxy Z Flip 7", "ギャラクシーZ Flip7"],
+      "market": ["JP"],
+      "releaseYear": 2025,
+      "formFactor": "foldable",
+      "dimensionsFolded": {"heightMm": 85.5, "widthMm": 75.2, "depthMm": 13.7},
+      "dimensionsUnfolded": {"heightMm": 166.7, "widthMm": 75.2, "depthMm": 6.5},
+      "weightG": 188,
+      "displayInch": 6.9,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 25,
+        "protocols": ["Super Fast Charging"],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": null,
+        "battery": {"capacityMah": 4300, "valueClass": "official", "sourceRef": "https://www.samsung.com/jp/business/smartphones/galaxy-z/galaxy-z-flip7-jetblack-256gb-sm-f766qzkasjp/"}
+      },
+      "included": {"cable": "unknown", "adapter": "not_included"},
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/business/smartphones/galaxy-z/galaxy-z-flip7-jetblack-256gb-sm-f766qzkasjp/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F766QZRASJP/",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-fold6",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Fold6",
+      "aliases": ["Samsung Galaxy Z Fold6", "GalaxyZFold6", "Galaxy Z Fold 6", "ギャラクシーZ Fold6"],
+      "market": ["JP"],
+      "releaseYear": 2024,
+      "formFactor": "foldable",
+      "dimensionsFolded": {"heightMm": 153.5, "widthMm": 68.1, "depthMm": 12.1},
+      "dimensionsUnfolded": {"heightMm": 153.5, "widthMm": 132.6, "depthMm": 5.6},
+      "weightG": 239,
+      "displayInch": 7.6,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 25,
+        "protocols": ["Super Fast Charging"],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": null,
+        "battery": {"capacityMah": 4400, "valueClass": "official", "sourceRef": "https://www.samsung.com/jp/business/smartphones/galaxy-z/galaxy-z-fold6-navy-256gb-sm-f956qdbasjp/"}
+      },
+      "included": {"cable": "unknown", "adapter": "not_included"},
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/business/smartphones/galaxy-z/galaxy-z-fold6-navy-256gb-sm-f956qdbasjp/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F956JDBAKDI/",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-flip6",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Flip6",
+      "aliases": ["Samsung Galaxy Z Flip6", "GalaxyZFlip6", "Galaxy Z Flip 6", "ギャラクシーZ Flip6"],
+      "market": ["JP"],
+      "releaseYear": 2024,
+      "formFactor": "foldable",
+      "dimensionsFolded": {"heightMm": 85.1, "widthMm": 71.9, "depthMm": 14.9},
+      "dimensionsUnfolded": {"heightMm": 165.1, "widthMm": 71.9, "depthMm": 6.9},
+      "weightG": 187,
+      "displayInch": 6.7,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 25,
+        "protocols": ["Super Fast Charging"],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": null,
+        "battery": {"capacityMah": 4000, "valueClass": "official", "sourceRef": "https://www.samsung.com/jp/smartphones/galaxy-z-flip6/specs/"}
+      },
+      "included": {"cable": "unknown", "adapter": "not_included"},
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-z-flip6/specs/",
+        "manualUrl": "https://www.samsung.com/jp/support/",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    }
+  ]
+}
