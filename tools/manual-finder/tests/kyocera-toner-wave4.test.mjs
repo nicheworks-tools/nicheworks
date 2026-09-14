@@ -19,6 +19,7 @@ vm.runInContext(wave4Source, context, { filename: 'tools/manual-finder/affiliate
 
 const config = context.window.MANUALFINDER_AFFILIATE_CONFIG;
 const rows = Array.from(context.window.MANUALFINDER_KYOCERA_TONER_WAVE4_LEDGER || []);
+const wave5Rows = Array.from(context.window.MANUALFINDER_KYOCERA_TONER_WAVE5_LEDGER || []);
 const expected = new Map([
   ['LS-6020', ['TK-401']],
   ['LS-3830N', ['TK-66']],
@@ -28,8 +29,9 @@ const expected = new Map([
 
 assert.ok(config);
 assert.equal(rows.length, 4, 'Wave 4 must stay bounded to four exact KYOCERA models');
-assert.equal(config.officePrinterConsumables.length, 54, '39 base office mappings plus 11 Wave 3 plus 4 Wave 4 mappings');
-assert.equal(config.printerConsumables.length, 79, '64 base printer mappings plus 11 Wave 3 plus 4 Wave 4 mappings');
+assert.equal(wave5Rows.length, 9, 'The same supplemental file must expose the separate nine-model Wave 5 ledger');
+assert.equal(config.officePrinterConsumables.length, 63, '39 base office mappings plus 11 Wave 3 plus 4 Wave 4 plus 9 Wave 5 mappings');
+assert.equal(config.printerConsumables.length, 88, '64 base printer mappings plus 11 Wave 3 plus 4 Wave 4 plus 9 Wave 5 mappings');
 
 for (const [model, codes] of expected) {
   assert.ok(canonicalSource.includes(`~${model}~`), `${model} must already exist in the canonical Wave 1 dataset`);
@@ -65,7 +67,7 @@ for (const args of [
 for (const [label, html, prefix] of [['JA', jaHtml, './'], ['EN', enHtml, '../']]) {
   const officeIndex = html.indexOf(`${prefix}affiliate-office-consumables.js?v=mf-office-20260914d`);
   const wave3Index = html.indexOf(`${prefix}affiliate-kyocera-toner-wave3.js?v=mf-kyocera-toner-20260914a`);
-  const wave4Index = html.indexOf(`${prefix}affiliate-kyocera-toner-wave4.js?v=mf-kyocera-toner-20260914b`);
+  const wave4Index = html.indexOf(`${prefix}affiliate-kyocera-toner-wave4.js?v=mf-kyocera-toner-20260914c`);
   const fujiIndex = html.indexOf(`${prefix}affiliate-fujifilm-toner-wave2.js?v=mf-fuji-toner-20260914b`);
   const runtimeIndex = html.indexOf(`${prefix}affiliate-runtime.js?v=mf-affiliate-20260914c`);
   assert.ok(officeIndex >= 0 && wave3Index > officeIndex && wave4Index > wave3Index, `${label} must load KYOCERA waves after the base office ledger in order`);
@@ -74,6 +76,6 @@ for (const [label, html, prefix] of [['JA', jaHtml, './'], ['EN', enHtml, '../']
 }
 
 vm.runInContext(wave4Source, context, { filename: 'tools/manual-finder/affiliate-kyocera-toner-wave4.js#second-load' });
-assert.equal(context.window.MANUALFINDER_AFFILIATE_CONFIG.officePrinterConsumables.length, 54, 'Wave 4 must be idempotent when loaded twice');
+assert.equal(context.window.MANUALFINDER_AFFILIATE_CONFIG.officePrinterConsumables.length, 63, 'KYOCERA supplemental waves 4-5 must be idempotent when loaded twice');
 
-console.log('ManualFinder KYOCERA toner Wave 4 tests passed.');
+console.log('ManualFinder KYOCERA toner Wave 4 tests passed with Wave 5 extension present.');
