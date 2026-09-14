@@ -84,14 +84,14 @@
       "source_functions": ["viscosity increasing agent - aqueous"],
       "authority": "Personal Care Products Council / Cosmetics Info",
       "sources": ["https://www.cosmeticsinfo.org/ingredient/sodium-chloride/"],
-      "runtime_verified": false
+      "runtime_verified": true
     },
     "disodium edta": {
       "category": "chelating agent",
       "source_functions": ["chelating agents"],
       "authority": "Personal Care Products Council / Cosmetics Info",
       "sources": ["https://www.cosmeticsinfo.org/ingredient/disodium-edta/"],
-      "runtime_verified": false
+      "runtime_verified": true
     }
   }
 }
