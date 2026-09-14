@@ -24,19 +24,21 @@ const EXPECTED_RAW_CLAIM_ROWS = 22;
 const EXPECTED_WAVE1 = Object.freeze({
   phenoxyethanol: Object.freeze({
     note_short: 'Preservative; SCCS considers it safe for use up to 1.0% in cosmetic products.',
-    source: 'https://health.ec.europa.eu/publications/phenoxyethanol_en'
+    source: 'https://health.ec.europa.eu/publications/phenoxyethanol_en',
+    authority: 'European Commission Scientific Committee on Consumer Safety'
   }),
-  limonene: Object.freeze({
-    note_short: 'Fragrance ingredient; oxidised limonene is an established contact allergen in the SCCS opinion.',
-    source: 'https://health.ec.europa.eu/document/download/392a791e-d831-4bb0-a449-7031bffcd6a4_en'
+  'sodium hydroxide': Object.freeze({
+    note_short: 'pH adjuster; EU cosmetic rules list sodium hydroxide for pH-adjusting uses subject to specified restrictions.',
+    source: 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0622',
+    authority: 'European Union / EUR-Lex'
   }),
-  linalool: Object.freeze({
-    note_short: 'Fragrance ingredient; oxidised linalool is an established contact allergen in the SCCS opinion.',
-    source: 'https://health.ec.europa.eu/document/download/392a791e-d831-4bb0-a449-7031bffcd6a4_en'
+  'potassium hydroxide': Object.freeze({
+    note_short: 'pH adjuster; EU cosmetic rules list potassium hydroxide for pH-adjusting uses subject to specified restrictions.',
+    source: 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0622',
+    authority: 'European Union / EUR-Lex'
   })
 });
-const EXPECTED_AUTHORITY = 'European Commission Scientific Committee on Consumer Safety';
-const ALLOWED_SOURCE_HOSTS = new Set(['health.ec.europa.eu']);
+const ALLOWED_SOURCE_HOSTS = new Set(['health.ec.europa.eu', 'eur-lex.europa.eu']);
 
 function normalizeText(value = '') {
   return String(value).normalize('NFKC').replace(/\s+/g, ' ').trim();
@@ -68,7 +70,7 @@ const evidence = parser.verifiedNoteEvidence || {};
 assert.deepEqual(
   new Set(Object.keys(evidence)),
   new Set(Object.keys(EXPECTED_WAVE1)),
-  'verified note wave 1 must remain exactly Phenoxyethanol, Limonene and Linalool'
+  'verified note wave 1 must remain exactly Phenoxyethanol, Sodium Hydroxide and Potassium Hydroxide'
 );
 
 const canonicalRows = new Map();
@@ -83,9 +85,9 @@ for (const [canonical, expected] of Object.entries(EXPECTED_WAVE1)) {
   const item = evidence[canonical];
   assert.ok(item, `${canonical}: verified note evidence missing`);
   assert.equal(normalizeText(item.note_short), expected.note_short, `${canonical}: verified note text changed unexpectedly`);
-  assert.equal(normalizeText(item.authority), EXPECTED_AUTHORITY, `${canonical}: authority must remain SCCS`);
+  assert.equal(normalizeText(item.authority), expected.authority, `${canonical}: reviewed authority changed unexpectedly`);
   assert.ok(Array.isArray(item.note_sources) && item.note_sources.length > 0, `${canonical}: HTTPS source required`);
-  assert.ok(item.note_sources.every(validSource), `${canonical}: only reviewed SCCS HTTPS sources are allowed in wave 1`);
+  assert.ok(item.note_sources.every(validSource), `${canonical}: only reviewed EC/EUR-Lex HTTPS sources are allowed in wave 1`);
   assert.ok(item.note_sources.includes(expected.source), `${canonical}: reviewed source URL missing`);
   assert.ok(canonicalRows.has(canonical), `${canonical}: canonical identity must exist in maintained dictionary`);
   assert.ok(
@@ -106,7 +108,7 @@ for (const [canonical, expected] of Object.entries(EXPECTED_WAVE1)) {
   assert.equal(item.note_verified, true, `${canonical}: verified note flag must survive canonical merge`);
   assert.equal(item.note_short, expected.note_short, `${canonical}: runtime note must be the reviewed note`);
   assert.ok(Array.isArray(item.note_sources) && item.note_sources.includes(expected.source), `${canonical}: reviewed source must survive canonical merge`);
-  assert.equal(item.note_authority, EXPECTED_AUTHORITY, `${canonical}: note authority must survive canonical merge`);
+  assert.equal(item.note_authority, expected.authority, `${canonical}: note authority must survive canonical merge`);
   assert.equal(item.note_provenance_conflict, undefined, `${canonical}: verified overlay must not create note provenance conflict`);
 }
 
@@ -120,6 +122,7 @@ console.log(JSON.stringify({
   verified_note_overlay_canonical_identities: Object.keys(evidence).length,
   resolved_claim_bearing_rows: resolvedClaimRows.length,
   unresolved_claim_bearing_rows: claimRows.length - resolvedClaimRows.length,
+  resolved_canonical_identities: Object.keys(EXPECTED_WAVE1),
   raw_dictionary_records_rewritten: false,
   runtime_notes_use_existing_provenance_gate: true,
   safety_contract_changed: false,
