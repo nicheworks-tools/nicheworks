@@ -35,10 +35,17 @@ for (const phone of phones) {
   if (phone.market !== undefined && (!Array.isArray(phone.market) || !phone.market.includes('JP'))) fail(`${label}: maintained market must include JP when present`);
   if (!Number.isInteger(Number(phone.releaseYear)) || Number(phone.releaseYear) < 2018 || Number(phone.releaseYear) > 2026) fail(`${label}: invalid releaseYear`);
 
-  const d = phone.dimensions || {};
-  for (const key of ['heightMm', 'widthMm', 'depthMm']) {
-    if (!finitePositive(d[key])) fail(`${label}: invalid dimensions.${key}`);
+  const isFoldable = phone.formFactor === 'foldable';
+  if (phone.formFactor !== undefined && phone.formFactor !== 'foldable') fail(`${label}: unsupported formFactor`);
+  const dimensionSets = isFoldable
+    ? [['dimensionsFolded', phone.dimensionsFolded], ['dimensionsUnfolded', phone.dimensionsUnfolded]]
+    : [['dimensions', phone.dimensions]];
+  for (const [dimensionLabel, d] of dimensionSets) {
+    for (const key of ['heightMm', 'widthMm', 'depthMm']) {
+      if (!finitePositive(d?.[key])) fail(`${label}: invalid ${dimensionLabel}.${key}`);
+    }
   }
+  if (isFoldable && phone.dimensions !== undefined) fail(`${label}: foldable records must use dimensionsFolded/dimensionsUnfolded, not dimensions`);
   if (!finitePositive(phone.weightG)) fail(`${label}: invalid weightG`);
   if (phone.displayInch !== null && phone.displayInch !== undefined && !finitePositive(phone.displayInch)) fail(`${label}: invalid displayInch`);
 

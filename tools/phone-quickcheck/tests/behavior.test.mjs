@@ -50,7 +50,14 @@ class FakeElement {
 }
 
 const allPhones = phonePayload.phones || [];
-const byId = new Map(allPhones.map((phone) => [phone.id, phone]));
+const syntheticFoldable = {
+  id: 'synthetic-foldable', manufacturer: 'Samsung', model: 'Synthetic Foldable', aliases: ['Fold Fixture'], releaseYear: 2026, formFactor: 'foldable',
+  dimensionsFolded: { heightMm: 155, widthMm: 68, depthMm: 13 }, dimensionsUnfolded: { heightMm: 155, widthMm: 132, depthMm: 6 },
+  weightG: 240, displayInch: 7.6, waterRating: 'IPX8',
+  charging: { connector: 'USB-C', battery: { capacityMah: 4400, valueClass: 'manufacturer', sourceRef: 'https://www.samsung.com/' }, wiredRecommendedW: 25, protocols: [], pps: 'unknown', wirelessStandard: 'Qi', wirelessMaxW: 15 },
+  included: { cable: 'included', adapter: 'not_included' }, sources: { specificationsUrl: 'https://www.samsung.com/', manualUrl: 'https://www.samsung.com/', verifiedAt: '2026-09-14' }, affiliateKeys: []
+};
+const byId = new Map([...allPhones, syntheticFoldable].map((phone) => [phone.id, phone]));
 
 function requirePhones(ids) {
   return ids.map((id) => {
@@ -244,6 +251,19 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   const html = h.elements.desktopDetail.innerHTML;
   assert.match(html, /USB-PD対応 20W以上の充電器/);
   assert.doesNotMatch(html, /USB-PD対応 30W以上の充電器/);
+}
+
+// Foldable schema renders both physical states and keeps folded dimensions in the list.
+{
+  const h = await createHarness(['synthetic-foldable']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('155 × 68 mm (折りたたみ時)'));
+  assert.ok(h.elements.desktopDetail.innerHTML.includes('外形寸法（折りたたみ時）'));
+  assert.ok(h.elements.desktopDetail.innerHTML.includes('155 × 68 × 13 mm'));
+  assert.ok(h.elements.desktopDetail.innerHTML.includes('外形寸法（展開時）'));
+  assert.ok(h.elements.desktopDetail.innerHTML.includes('155 × 132 × 6 mm'));
+  h.langEn.click();
+  assert.ok(h.elements.desktopDetail.innerHTML.includes('Dimensions (folded)'));
+  assert.ok(h.elements.desktopDetail.innerHTML.includes('Dimensions (unfolded)'));
 }
 
 console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estimates, Apple unknown capacity, Lightning guidance, proprietary charging, and mobile sheet.');
