@@ -114,7 +114,7 @@
       "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
       "author": "Bob Harvey",
       "attribution": "Bob Harvey / Geograph via Wikimedia Commons, CC BY-SA 2.0",
-      "source_sha1": "",
+      "source_sha1": "da22e1ee5fdbd51017e26d2ad956b34db83b3ae5",
       "subject_match": "matched",
       "review_state": "reviewed",
       "review_note": "Real construction-site photograph explicitly identified by Commons as roof flashing; matches the roof/component canonical q011_flashing."
@@ -128,7 +128,7 @@
       "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-NPS",
       "author": "NPS Photo",
       "attribution": "NPS Photo / Wikimedia Commons (Public Domain)",
-      "source_sha1": "",
+      "source_sha1": "5c443430e8d49fc639f916d4c555063e64a2bc55",
       "subject_match": "matched",
       "review_state": "reviewed",
       "review_note": "National Park Service photograph explicitly documents installation of drip edge along a cedar-shingle roof edge; direct match for q014_drip_edge."
@@ -142,7 +142,7 @@
       "license_url": "https://creativecommons.org/licenses/by/2.0/",
       "author": "Bart Everson",
       "attribution": "Bart Everson / Wikimedia Commons, CC BY 2.0",
-      "source_sha1": "",
+      "source_sha1": "0ebe457e81416cf89c1a0bf3b2047713fe33b1e3",
       "subject_match": "matched",
       "review_state": "reviewed",
       "review_note": "Real paint tray containing light green paint; direct match for the roller paint-tray canonical q013_paint_tray."
@@ -156,7 +156,7 @@
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
       "author": "Pittigrilli",
       "attribution": "Pittigrilli / Wikimedia Commons, CC0 1.0",
-      "source_sha1": "",
+      "source_sha1": "23392c92ef470f0fb66fb614f552417ff633a232",
       "subject_match": "matched",
       "review_state": "reviewed",
       "review_note": "Real photograph explicitly showing square-notch adhesive trowels used to distribute tile adhesive; direct match for q011_notched_trowel."
