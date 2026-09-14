@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-12T00:00:00.000Z",
-  "total": 88,
+  "generatedAt": "2026-09-13T00:00:00.000Z",
+  "total": 90,
   "items": [
     {
       "slug": "ai-interaction-atlas",
@@ -828,6 +828,20 @@
       ]
     },
     {
+      "slug": "pattern-dictionary",
+      "title_en": "Pattern Dictionary",
+      "title_ja": "模様辞典",
+      "desc_en": "Find pattern names from visual browsing and rough everyday descriptions.",
+      "desc_ja": "名前が分からない模様を、画像一覧や曖昧な言葉から探せる視覚模様辞典です。",
+      "tags": [
+        "pattern",
+        "dictionary",
+        "visual",
+        "search",
+        "design"
+      ]
+    },
+    {
       "slug": "pdf-page-tools-mini",
       "title_en": "PDF Page Tools Mini",
       "title_ja": "PDFページ操作ミニ",
@@ -851,6 +865,20 @@
         "csv",
         "table",
         "local"
+      ]
+    },
+    {
+      "slug": "phone-quickcheck",
+      "title_en": "Phone QuickCheck",
+      "title_ja": "スマホ QuickCheck",
+      "desc_en": "Quickly check phone size, weight, charging port, charger requirements, power-bank estimates, and official information.",
+      "desc_ja": "スマホのサイズ・重さ・充電端子・充電器条件・モバイルバッテリー充電回数の目安と公式情報を素早く確認します。",
+      "tags": [
+        "phone",
+        "smartphone",
+        "charging",
+        "size",
+        "battery"
       ]
     },
     {
@@ -881,14 +909,14 @@
     },
     {
       "slug": "reconcile",
-      "title_en": "NicheWorks Reconcile",
-      "title_ja": "CSV・Excel取引照合ツール",
-      "desc_en": "Reconcile two CSV/XLSX transaction datasets locally and isolate records that require human review.",
-      "desc_ja": "2つのCSV・Excel取引データをブラウザ内で照合し、候補・重複・不一致など人が確認すべき取引だけを絞り込みます。",
+      "title_en": "CSV / Excel Reconciliation — Reconcile",
+      "title_ja": "CSV・Excel取引照合｜Reconcile",
+      "desc_en": "Reconcile two CSV or Excel transaction datasets locally in your browser and isolate exceptions for manual review.",
+      "desc_ja": "2つのCSV・Excel取引データをブラウザ内で照合し、確認が必要な差分・候補・重複を抽出します。",
       "tags": [
         "csv",
         "xlsx",
-        "reconcile",
+        "reconciliation",
         "accounting"
       ]
     },
