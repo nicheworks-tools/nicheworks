@@ -304,6 +304,37 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.match(html, /PPS対応 30W以上の充電器/);
 }
 
+// Motorola razr fold uses JP-market store charging facts and keeps TurboPower proprietary.
+{
+  const h = await createHarness(['motorola-razr-fold']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('160.05 × 73.6 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /160\.05 × 73\.6 × 9\.89 mm/);
+  assert.match(html, /160\.05 × 144\.47 × 4\.55 mm/);
+  assert.match(html, /243 g/);
+  assert.match(html, /6000 mAh/);
+  assert.match(html, /端末側の有線充電上限<\/span><b>80W/);
+  assert.match(html, /TurboPower/);
+  assert.match(html, /Qi \/ 15W/);
+  assert.match(html, /Motorola TurboPower対応充電器/);
+  assert.doesNotMatch(html, /充電器目安<\/span><b>80W\+/);
+}
+
+// Motorola razr 60 ultra preserves its 68W TurboPower and 30W Qi class.
+{
+  const h = await createHarness(['motorola-razr-60-ultra']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('88.12 × 73.99 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /88\.12 × 73\.99 × 15\.69 mm/);
+  assert.match(html, /171\.48 × 73\.99 × 7\.19 mm/);
+  assert.match(html, /199 g/);
+  assert.match(html, /4700 mAh/);
+  assert.match(html, /端末側の有線充電上限<\/span><b>68W/);
+  assert.match(html, /TurboPower/);
+  assert.match(html, /Qi \/ 30W/);
+  assert.match(html, /Motorola TurboPower対応充電器/);
+}
+
 // First-generation Galaxy Fold SCV44 keeps JP-market hardware facts and Adaptive Fast Charging distinct from SFC.
 {
   const h = await createHarness(['samsung-galaxy-fold-scv44']);
