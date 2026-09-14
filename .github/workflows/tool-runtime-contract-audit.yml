@@ -5,10 +5,26 @@ on:
     paths:
       - 'tools/**'
       - 'assets/amazon-affiliate.js'
+      - 'assets/old-kanji-analytics.js'
+      - 'assets/nw-pro-entitlement.js'
       - 'scripts/check-tool-runtime-contracts.mjs'
       - 'scripts/check-tool-runtime-contracts-wave4.mjs'
       - 'scripts/check-tool-runtime-contracts-wave5.mjs'
+      - 'scripts/check-tool-runtime-contracts-wave6.mjs'
+      - 'scripts/check-tool-runtime-contracts-wave7.mjs'
       - 'scripts/check-amazon-ready-tools.mjs'
+      - 'scripts/check-size-audio-growth-wave.mjs'
+      - 'scripts/check-size-audio-growth-wave3.mjs'
+      - 'scripts/check-size-converter-growth-wave4.mjs'
+      - 'scripts/check-old-kanji-reference-layout.mjs'
+      - 'scripts/check-old-kanji-cluster-contract.mjs'
+      - 'scripts/check-old-kanji-reference-seo.mjs'
+      - 'scripts/check-old-kanji-internal-handoffs.mjs'
+      - 'scripts/check-old-kanji-measurement.mjs'
+      - 'scripts/check-old-kanji-amazon.mjs'
+      - 'scripts/check-old-kanji-pro-boundary.mjs'
+      - 'scripts/build-old-kanji-dictionary-audit.mjs'
+      - 'scripts/run-tool-behavior-tests.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
   push:
     branches:
@@ -16,10 +32,26 @@ on:
     paths:
       - 'tools/**'
       - 'assets/amazon-affiliate.js'
+      - 'assets/old-kanji-analytics.js'
+      - 'assets/nw-pro-entitlement.js'
       - 'scripts/check-tool-runtime-contracts.mjs'
       - 'scripts/check-tool-runtime-contracts-wave4.mjs'
       - 'scripts/check-tool-runtime-contracts-wave5.mjs'
+      - 'scripts/check-tool-runtime-contracts-wave6.mjs'
+      - 'scripts/check-tool-runtime-contracts-wave7.mjs'
       - 'scripts/check-amazon-ready-tools.mjs'
+      - 'scripts/check-size-audio-growth-wave.mjs'
+      - 'scripts/check-size-audio-growth-wave3.mjs'
+      - 'scripts/check-size-converter-growth-wave4.mjs'
+      - 'scripts/check-old-kanji-reference-layout.mjs'
+      - 'scripts/check-old-kanji-cluster-contract.mjs'
+      - 'scripts/check-old-kanji-reference-seo.mjs'
+      - 'scripts/check-old-kanji-internal-handoffs.mjs'
+      - 'scripts/check-old-kanji-measurement.mjs'
+      - 'scripts/check-old-kanji-amazon.mjs'
+      - 'scripts/check-old-kanji-pro-boundary.mjs'
+      - 'scripts/build-old-kanji-dictionary-audit.mjs'
+      - 'scripts/run-tool-behavior-tests.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
 
 permissions:
@@ -46,8 +78,50 @@ jobs:
       - name: Check runtime contracts wave 5
         run: node scripts/check-tool-runtime-contracts-wave5.mjs
 
+      - name: Check runtime contracts wave 6
+        run: node scripts/check-tool-runtime-contracts-wave6.mjs
+
+      - name: Check runtime contracts wave 7
+        run: node scripts/check-tool-runtime-contracts-wave7.mjs
+
+      - name: Run discovered tool behavior tests
+        run: node scripts/run-tool-behavior-tests.mjs
+
       - name: Check Amazon-ready tool contracts
         run: node scripts/check-amazon-ready-tools.mjs
+
+      - name: Check Size and Tiny Audio growth wave
+        run: node scripts/check-size-audio-growth-wave.mjs
+
+      - name: Check Size and Tiny Audio growth wave 3
+        run: node scripts/check-size-audio-growth-wave3.mjs
+
+      - name: Check Size Converter growth wave 4
+        run: node scripts/check-size-converter-growth-wave4.mjs
+
+      - name: Check Old Kanji Reference layout
+        run: node scripts/check-old-kanji-reference-layout.mjs
+
+      - name: Check Old Kanji cluster contract
+        run: node scripts/check-old-kanji-cluster-contract.mjs
+
+      - name: Check Old Kanji Reference SEO contract
+        run: node scripts/check-old-kanji-reference-seo.mjs
+
+      - name: Check Old Kanji internal handoffs
+        run: node scripts/check-old-kanji-internal-handoffs.mjs
+
+      - name: Check Old Kanji measurement contract
+        run: node scripts/check-old-kanji-measurement.mjs
+
+      - name: Check Old Kanji Amazon contract
+        run: node scripts/check-old-kanji-amazon.mjs
+
+      - name: Check Old Kanji Pro boundary
+        run: node scripts/check-old-kanji-pro-boundary.mjs
+
+      - name: Check Old Kanji dictionary audit drift
+        run: node scripts/build-old-kanji-dictionary-audit.mjs --check
 
       - name: Verify audit is read-only
         run: |

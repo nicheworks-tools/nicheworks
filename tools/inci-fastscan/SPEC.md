@@ -19,11 +19,16 @@ Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized 
 - Show a local preview of the selected image before OCR and allow the user to remove/reselect it without uploading it.
 - Show OCR progress in the page while recognition is running.
 - Put OCR output back into the editable ingredient textarea and show a clear review cue after OCR; users review/correct OCR text before running ingredient matching.
+- Preserve OCR candidate line boundaries during label cleanup rather than guessing joins from common INCI prefixes/suffixes.
+- Conservatively repair OCR line wraps only at the dictionary-aware analysis stage, and only when adjacent fragments form an exact maintained dictionary name/alias and are not already two independently known ingredients. One fragment may itself be known when the combined identity is exact.
 - Normalize/parse OCR or pasted text and match ingredients against the local/generated dictionary and declared aliases.
 - For every exact match, retain the canonical INCI name and identify the route used: canonical INCI, Japanese name, declared alias, or shared high-confidence naming variant.
 - Show result cards with canonical INCI, original input, match route, matched spelling, Japanese names where available, category, review cue, and neutral explanatory note.
 - Display `辞書一致 / Dictionary match`, `追加確認 / Additional review`, and `未一致 / Unmatched` as reference states; these are not safety or danger grades.
+- Allow result cards to be filtered by all / dictionary match / additional review / unmatched without rerunning analysis.
+- Provide previous/next review-queue controls that navigate only currently visible `追加確認` and `未一致` cards, scroll/focus the selected card, and never modify input or rerun analysis.
 - For sufficiently close unmatched spellings, show up to three conservative near-match candidates without automatically replacing user input.
+- A user may explicitly press a candidate to replace the corresponding original spelling in the active input textarea; this action never runs automatically and does not automatically rerun ingredient analysis.
 - Treat the Japanese-label tab as Japanese-name/alias matching, not machine translation.
 - Provide JP/EN UI and explicit warnings that OCR can misread text and ingredient results are not medical or safety guarantees.
 - Link to Cosmetic Ingredient Checker Lite near the lower related-tools area for users who only need a fast paste workflow.
@@ -32,7 +37,7 @@ Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized 
 
 - Pasted English/INCI or Japanese ingredient-label text.
 - Optional local image for OCR.
-- INCI/Japanese tab, sample, OCR, reset, and check actions.
+- INCI/Japanese tab, sample, OCR, reset, check, result-filter, review-queue navigation, and explicit candidate-apply actions.
 - Optional Cmd/Ctrl + Enter check shortcut.
 - UI language.
 
@@ -43,7 +48,10 @@ Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized 
 - Post-OCR review reminder before ingredient matching.
 - Result summary for dictionary matches, additional-review entries, and unmatched items.
 - Detailed match cards exposing canonical INCI, original input spelling, match route, matched name, Japanese names where available, category, and reference note.
-- Conservative close-match suggestions for eligible unmatched entries; suggestions are display-only and never auto-applied.
+- Client-side result filtering by reference state.
+- Review-queue position for visible additional-review/unmatched cards and previous/next navigation that moves focus without changing analysis state.
+- Conservative close-match suggestions for eligible unmatched entries; no suggestion is auto-applied.
+- When a user explicitly applies a suggestion, only the corresponding source spelling in the active textarea is replaced and the user must run the check again manually.
 
 ## Match-route semantics
 
@@ -60,11 +68,13 @@ The route describes how the name was resolved. It does not imply ingredient conc
 
 ## State and persistence
 
-Ingredient text, selected image, OCR result, image preview, and scan result are current-session browser state. Preview object URLs are revoked when the image is removed/replaced. The current contract does not define saved scan history. UI language preference may be stored locally in the browser.
+Ingredient text, selected image, OCR result, image preview, scan result, current result filter, and current review-queue position are current-session browser state. Preview object URLs are revoked when the image is removed/replaced. Candidate application edits the current textarea only. Changing the result filter resets review-queue position so navigation always reflects currently visible cards. The current contract does not define saved scan history. UI language preference may be stored locally in the browser.
 
 ## Privacy and network behavior
 
-Ingredient text and selected image analysis run in the browser, but the Tesseract.js OCR library is loaded from the external `unpkg.com` CDN. Suite-wide analytics/advertising resources may also load. Raw ingredient text, OCR output, filenames, images, matched ingredients, and complete analysis results must not be added to analytics or affiliate events. The current contract does not claim a fully offline page.
+Ingredient text, result filtering, review-queue navigation, candidate application, and selected image analysis run in the browser, but the Tesseract.js OCR library is loaded from the external `unpkg.com` CDN. Suite-wide analytics/advertising resources may also load.
+
+The Amazon affiliate layer is isolated from scan state. Raw ingredient text, OCR output, filenames, images, matched ingredients, chosen correction candidates, review position, filters, and complete analysis results must not be added to analytics, affiliate events, or the Amazon destination. Affiliate analytics are limited to fixed metadata: `tool`, `provider`, `placement`, `link_key`. The current contract does not claim a fully offline page.
 
 ## Language mode
 
@@ -76,20 +86,21 @@ JP/EN controls switch the same scanner; separate INCI and Japanese-label tabs ha
 
 `hybrid`
 
-Text/OCR input and result panels work on mobile but benefit from wider space for ingredient result review. The current layout is input-first, with explanatory/FAQ content after the primary scanner workflow.
+Text/OCR input and result panels work on mobile but benefit from wider space for ingredient result review. The current layout is input-first, with mobile-scrollable result filters, compact review navigation, and explanatory/FAQ content after the primary scanner workflow.
 
-## Monetization readiness
+## Amazon affiliate contract
 
-The page includes the stable, intentionally inactive result-adjacent container:
+The existing result-adjacent slot is live through the shared cosmetics affiliate layer:
 
 ```txt
 #amazonAffiliateSlot
 provider = amazon
 placement = after-results
-state = inactive
+HTML default state = inactive (fail-closed before runtime)
+runtime state = active when the fixed Amazon search config passes validation
 ```
 
-Both cosmetics tools share these frozen runtime assets:
+Both cosmetics tools share these runtime assets:
 
 ```txt
 /tools/_shared/cosmetics-affiliate-config.js
@@ -97,28 +108,59 @@ Both cosmetics tools share these frozen runtime assets:
 /tools/_shared/cosmetics-affiliate-slot.css
 ```
 
-`cosmetics-affiliate-config.js` is the single activation point. Before Amazon Associates setup is ready it must remain:
+The current activation contract is:
 
 ```txt
-enabled = false
-associateTag = empty
-links = empty
+enabled = true
+trackingMode = tagged_search
+associateTag = nicheworks09-22
+fixed Amazon search categories = 4
+verifiedAt = 2026-09-13
+placement = after-results
 ```
 
-The shared adapter is loaded only when the stable affiliate slot exists. While disabled it clears and hides the slot and emits no affiliate impression/click event. Future activation must not require changes to OCR, ingredient parsing, dictionary matching, result rendering, or the slot ID/placement.
+The four fixed destinations are neutral Amazon Japan searches for general skincare, moisturizing skincare, ceramide skincare, and sunscreen. They are defined statically in the shared config and are not selected, rewritten, or ranked from OCR text, dictionary matches, review state, or any other scan output.
 
-When activation is eventually allowed, optional analytics are limited to `affiliate_impression` and `affiliate_click` with generic metadata only: `tool`, `provider`, `placement`, `link_key`. Raw ingredient text, OCR output, filenames, images, matched ingredients, and complete analysis results must never be attached.
+The adapter fail-closes unless a tagged-search destination is HTTPS on `amazon.co.jp` / an `amazon.co.jp` subdomain, uses the `/s` search path, contains a non-empty fixed `k` search term, and carries the exact configured Associate tag.
+
+The live CTAs are intentionally generic and not tied to scan output, for example:
+
+```txt
+スキンケアをAmazonで探す [PR]
+保湿スキンケアを探す [PR]
+セラミド系スキンケアを探す [PR]
+日焼け止めをAmazonで探す [PR]
+```
+
+The English UI uses equivalent neutral labels for the same four destinations.
+
+The affiliate card renders the Amazon Associates disclosure for the active UI language, including:
+
+```txt
+Amazonのアソシエイトとして、NicheWorksは適格販売により収入を得ています。
+```
+
+These are fixed Amazon search handoffs. They are not statements that any product is safe, suitable, recommended, cheapest, available, hypoallergenic, or medically appropriate for the scanned ingredients.
+
+Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` with `tool`, `provider`, `placement`, and `link_key`. Raw ingredient text, OCR output, filenames, images, matched ingredients, selected correction candidates, review position, and complete analysis results must never be attached.
 
 ## Limits and non-goals
 
 - OCR may be slow and can omit, split, or misrecognize characters; users must visually verify OCR text before trusting scan results.
 - Image preview is a review aid only; this wave does not rotate/crop/re-encode the selected file before OCR.
+- OCR cleanup preserves candidate boundaries; it does not heuristically join lines based on a prefix/suffix list.
+- Exact OCR line repair only joins fragments when the combined text exactly matches a maintained dictionary key and the fragments are not already two independently known ingredients; it is not fuzzy correction.
+- A fragment that is independently known may still participate in a repair only when the complete combined identity is an exact maintained dictionary name/alias.
 - Near-match suggestions are spelling/OCR repair hints only; they are not authoritative ingredient identification and are never auto-applied.
+- Applying a suggestion is an explicit user editing action, not confirmation that the candidate is correct; the original label should still be checked.
+- Result filters change visibility only and do not change result state or rerun matching.
+- Review-queue controls only move focus among visible review/unmatched cards; they do not edit text, change classifications, or rerun matching.
 - `追加確認 / Additional review` reflects existing dictionary metadata or review cues and is not a declaration that an ingredient is dangerous or unsuitable.
 - Dictionary coverage is finite; an unmatched result is not evidence that an ingredient is unsafe.
 - The tool does not provide medical/dermatological diagnosis, allergy prediction, concentration analysis, product-safety certification, pregnancy suitability, drug-interaction advice, or regulatory approval.
 - External CDN availability can affect OCR even though ingredient processing itself is browser-side.
-- Amazon Associates is not active until account setup and policy verification are complete.
+- The current Amazon links are fixed generic category searches and do not change based on OCR text, dictionary state, candidates, or analysis results.
+- The tool does not display Amazon price, availability, rating, seller status, review count, or product imagery.
 
 ## Acceptance criteria
 
@@ -127,14 +169,24 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - [x] OCR can be started from a selected image when the external Tesseract library loads and visible progress is exposed in the page.
 - [x] Selected OCR images can be previewed locally and removed/reselected without upload.
 - [x] OCR results remain editable and a review cue is shown before ingredient matching.
+- [x] OCR cleanup preserves candidate line boundaries and does not perform heuristic prefix/suffix joining.
+- [x] Adjacent OCR fragments are automatically rejoined only when their combined value is an exact maintained dictionary name/alias and they are not already two independently known ingredients.
+- [x] An exact combined identity such as `Cetearyl` + `Alcohol` may be repaired even when one fragment is independently known; non-exact combinations remain separate.
+- [x] The source-backed 12-product real-label corpus round-trips through OCR cleanup without losing or merging ingredient boundaries, and safe cleanup does not reduce exact recognition.
 - [x] Exact matched results expose canonical INCI plus canonical / Japanese / alias / shared-variant match route metadata.
 - [x] Displayed result states use neutral dictionary/review language rather than presenting a safe/unsafe score.
-- [x] Eligible unmatched spellings can show conservative candidates without auto-replacement.
+- [x] Result cards can be filtered by matched / review / unmatched state without rerunning analysis.
+- [x] Previous/next review controls navigate only currently visible additional-review/unmatched cards and never edit input or rerun analysis.
+- [x] Eligible unmatched spellings can show conservative candidates without automatic replacement.
+- [x] A candidate can modify the active input only after an explicit user action, and the analysis does not automatically rerun ingredient analysis afterward.
 - [x] Japanese-label wording describes dictionary matching rather than machine translation.
 - [x] JP/EN switching preserves text scan, OCR, dictionary status, and medical/OCR disclaimers.
 - [x] The Lite tool is linked as the paste-only alternative.
-- [x] The Amazon-ready slot exists and keeps the frozen `after-results` placement.
-- [x] Shared affiliate configuration remains disabled, empty, and non-tracking before activation.
+- [x] The Amazon slot keeps the frozen `after-results` placement and fail-closed HTML default.
+- [x] Four fixed Amazon category searches are rendered only through `tagged_search` mode with the configured Associate tag.
+- [x] Amazon destinations remain independent of OCR text, input text, dictionary matches, candidates, review state, filters, and complete analysis output.
+- [x] Amazon disclosure and `[PR]` labeling are visible with the live affiliate CTAs.
+- [x] Affiliate analytics remain coarse and contain no ingredient/OCR/analysis payload.
 
 ## Implementation evidence
 
@@ -143,6 +195,10 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - `tools/_shared/cosmetics-affiliate-slot.js`
 - `tools/_shared/cosmetics-affiliate-slot.css`
 - `tools/_shared/check-cosmetics-affiliate-contract.mjs`
+- `tools/_shared/check-fastscan-ocr-line-repair.mjs`
+- `tools/_shared/check-fastscan-ocr-robustness.mjs`
+- `tools/_shared/COSMETICS_OCR_ROBUSTNESS.md`
+- `tools/_shared/check-fastscan-review-queue.mjs`
 - `tools/inci-fastscan/index.html`
 - `tools/inci-fastscan/style.css`
 - `tools/inci-fastscan/enhancements.js`

@@ -1,12 +1,12 @@
 {
   "schemaVersion": "nicheworks-monetization-classification-v1",
-  "updated": "2026-09-13",
-  "registryTotal": 87,
+  "updated": "2026-09-14",
+  "registryTotal": 90,
   "bundleProductId": "nicheworks.pro",
   "counts": {
     "PRO_BUNDLE": 42,
-    "STANDALONE_PRO": 0,
-    "AFFILIATE": 14,
+    "STANDALONE_PRO": 1,
+    "AFFILIATE": 16,
     "ADS_DONATION": 26,
     "FREE": 0,
     "HOLD": 5
@@ -56,7 +56,9 @@
       "url-title-collector",
       "webp-avif-converter"
     ],
-    "STANDALONE_PRO": [],
+    "STANDALONE_PRO": [
+      "reconcile"
+    ],
     "AFFILIATE": [
       "construction-tools-atlas",
       "cosmetic-ingredient-checker-lite",
@@ -70,6 +72,8 @@
       "moving-checklist-generator",
       "moving-lease-final-check",
       "pages-deploy-guide",
+      "pattern-dictionary",
+      "phone-quickcheck",
       "trashnavi",
       "wifi-meter"
     ],
@@ -113,9 +117,13 @@
   "bundleBoundaryStatus": "pending-freeze",
   "notes": [
     "Every currently registered tool is classified exactly once.",
-    "The PRO_BUNDLE class means approved commercial membership in the future nicheworks.pro bundle; exact Free/Pro operation boundaries are frozen in the next phase before live migration.",
+    "The historical _87 filename is retained temporarily for compatibility; registryTotal and classifications are authoritative for the current 90-tool registry.",
+    "The PRO_BUNDLE class means approved commercial membership in the future nicheworks.pro bundle; exact Free/Pro operation boundaries are frozen before live migration.",
     "Legacy Pro code does not determine classification.",
-    "Standalone paid products such as okj.toolkit_pro and reconcile.pro_v1 are billing products and are not represented as current registered-tool classifications in this 87-tool ledger.",
-    "ManualFinder is classified AFFILIATE because its separate monetization workstream is the explicit affiliate reference implementation for the suite."
+    "Reconcile is a registered STANDALONE_PRO tool backed by the separate reconcile.pro_v1 product contract and is not part of nicheworks.pro.",
+    "The separate okj.toolkit_pro billing concept is not a registered-tool classification unless its runtime/tool registration is explicitly changed later.",
+    "ManualFinder is classified AFFILIATE because its separate monetization workstream is the explicit affiliate reference implementation for the suite.",
+    "Phone QuickCheck is classified AFFILIATE because its planned monetization path is compatible smartphone charging accessories via Amazon Associates; live affiliate URLs remain disabled until separate activation work is complete.",
+    "Pattern Dictionary is classified AFFILIATE because its intended downstream action is Amazon Associates product discovery after pattern identification; live affiliate URLs remain disabled during the prototype slice."
   ]
 }

@@ -22,6 +22,10 @@ The Lite product is intentionally distinct from INCI FastScan:
 - Fall back gracefully to the implemented lightweight exact-match rules if dictionary files cannot be loaded.
 - Show parsed count, dictionary-match count, review-candidate count, unclassified count, dictionary recognition percentage, top functional categories, and a row-per-ingredient result table.
 - Surface the current unclassified ingredient names as a compact review list so users can see coverage gaps without scanning the entire table.
+- Allow result-table filtering between all / unclassified / review-candidate / dictionary-match rows without re-running analysis.
+- Allow the status filter to be combined with a functional-category filter generated from the categories present in the current result.
+- Show the current visible-row count against the complete result count while filters are active.
+- Allow users to copy the currently visible ingredient names or only the current unclassified ingredient names; both actions are explicit local clipboard operations.
 - Keep `caution` / `risk` dictionary metadata internal to the matching layer; the Lite UI exposes only a non-diagnostic `確認候補` signal.
 - Keep unknown entries explicitly unclassified rather than inventing a diagnosis or safety conclusion.
 - Support clear/reset and copying the current result.
@@ -32,7 +36,7 @@ The Lite product is intentionally distinct from INCI FastScan:
 ## Inputs
 
 - Pasted cosmetic ingredient-list text.
-- Check, clear, and copy actions.
+- Check, clear, copy, status-filter, and category-filter actions.
 - Optional keyboard shortcut: Cmd/Ctrl + Enter.
 
 ## Outputs
@@ -43,7 +47,9 @@ The Lite product is intentionally distinct from INCI FastScan:
 - Compact list of currently unclassified ingredient names, capped in the summary while the full table remains available.
 - Up to eight prominent functional-category chips derived from matched dictionary entries.
 - Ingredient table containing the original input name, current reference status/categories, and concise explanatory note.
-- Clipboard copy of the current result.
+- Client-side filtering of the result table by status and by currently represented functional category, including horizontally scrollable mobile controls.
+- Current visible-row count versus complete result count.
+- Clipboard copy of the current full result, currently visible ingredient-name subset, or unclassified-name subset.
 
 ## Ingredient data dependency
 
@@ -62,11 +68,13 @@ The legacy `tools/cosmetic-ingredient-checker-lite/data/ingredients.json` is not
 
 ## State and persistence
 
-Input and parsed results are ephemeral current-page state. The current implementation does not define saved ingredient history or cross-session persistence.
+Input, parsed results, the current status filter, and the current category filter are ephemeral current-page state. The current implementation does not define saved ingredient history or cross-session persistence.
 
 ## Privacy and network behavior
 
-Ingredient parsing and matching run in the browser. The pasted ingredient text is not intentionally uploaded by the checker workflow. Static dictionary files are loaded from the same NicheWorks origin. Suite-wide advertising and analytics resources may load separately, but raw ingredient input must not be included in analytics or affiliate events.
+Ingredient parsing, filtering, matching, and subset-copy operations run in the browser. The pasted ingredient text is not intentionally uploaded by the checker workflow. Static dictionary files are loaded from the same NicheWorks origin. Suite-wide advertising and analytics resources may load separately.
+
+The Amazon affiliate layer is isolated from ingredient state. Raw ingredient input, parsed ingredient names, unknown names, categories, filters, complete analysis results, and copied subsets must never be attached to affiliate analytics or the Amazon destination. Affiliate analytics are limited to fixed metadata: `tool`, `provider`, `placement`, `link_key`.
 
 ## Language mode
 
@@ -78,20 +86,21 @@ The current UI explicitly labels itself Japanese-only. English UI must not be ad
 
 `mobile-oriented`
 
-The page is input-first: the first meaningful interaction after the existing top advertising slot is the ingredient input. Results use a compact summary followed by a horizontally safe detailed table.
+The page is input-first: the first meaningful interaction after the existing top advertising slot is the ingredient input. Results use a compact summary followed by mobile-friendly status/category controls and a horizontally safe detailed table.
 
-## Monetization readiness
+## Amazon affiliate contract
 
-The page includes the stable, intentionally inactive result-adjacent container:
+The existing result-adjacent slot is live through the shared cosmetics affiliate layer:
 
 ```txt
 #amazonAffiliateSlot
 provider = amazon
 placement = after-summary
-state = inactive
+HTML default state = inactive (fail-closed before runtime)
+runtime state = active when the fixed Amazon search config passes validation
 ```
 
-Both cosmetics tools share these frozen runtime assets:
+Both cosmetics tools share these runtime assets:
 
 ```txt
 /tools/_shared/cosmetics-affiliate-config.js
@@ -99,17 +108,39 @@ Both cosmetics tools share these frozen runtime assets:
 /tools/_shared/cosmetics-affiliate-slot.css
 ```
 
-`cosmetics-affiliate-config.js` is the single activation point. Before Amazon Associates setup is ready it must remain:
+The current activation contract is:
 
 ```txt
-enabled = false
-associateTag = empty
-links = empty
+enabled = true
+trackingMode = tagged_search
+associateTag = nicheworks09-22
+fixed Amazon search categories = 4
+verifiedAt = 2026-09-13
+placement = after-summary
 ```
 
-The shared adapter is loaded only when the stable affiliate slot exists. While disabled it clears and hides the slot and emits no affiliate impression/click event. Future activation must not require changes to ingredient parsing, dictionary matching, result layout, or the slot ID/placement.
+The four fixed destinations are neutral Amazon Japan searches for general skincare, moisturizing skincare, ceramide skincare, and sunscreen. They are defined statically in the shared config and are not selected, rewritten, or ranked from the ingredient analysis.
 
-When activation is eventually allowed, optional analytics are limited to `affiliate_impression` and `affiliate_click` with generic metadata only: `tool`, `provider`, `placement`, `link_key`. Pasted ingredient names, complete analysis results, or other user-entered content must never be attached.
+The adapter fail-closes unless a tagged-search destination is HTTPS on `amazon.co.jp` / an `amazon.co.jp` subdomain, uses the `/s` search path, contains a non-empty fixed `k` search term, and carries the exact configured Associate tag.
+
+The live CTAs are intentionally generic and not tied to the ingredient analysis, for example:
+
+```txt
+スキンケアをAmazonで探す [PR]
+保湿スキンケアを探す [PR]
+セラミド系スキンケアを探す [PR]
+日焼け止めをAmazonで探す [PR]
+```
+
+The affiliate card also renders the required disclosure:
+
+```txt
+Amazonのアソシエイトとして、NicheWorksは適格販売により収入を得ています。
+```
+
+These are fixed Amazon search handoffs. They are not statements that any product is safe, suitable, recommended, cheapest, available, hypoallergenic, or medically appropriate for the entered ingredients.
+
+Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` with `tool`, `provider`, `placement`, and `link_key`. Pasted ingredient names, complete analysis results, or other user-entered content must never be attached.
 
 ## Limits and non-goals
 
@@ -117,10 +148,12 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - `辞書認識率` is a dictionary coverage indicator, not a product-quality or safety score.
 - `確認候補` is a review cue, not a danger label.
 - `未分類` is not evidence that an ingredient is unsafe.
+- Result filters only change visibility; they do not change the underlying analysis.
+- Category filters are derived from the tool's existing functional classification labels and are not product-suitability recommendations.
 - The tool does not know ingredient concentration, complete formulation context, user allergies, individual skin condition, pregnancy suitability, drug interactions, or regulatory status from the pasted list alone.
 - Lite does not perform OCR; use INCI FastScan for image input.
-- This improvement wave does not attempt a full audit of every dictionary entry.
-- Amazon Associates is not active until account setup and policy verification are complete.
+- The current Amazon links are fixed generic category searches and do not change based on the ingredient list or analysis result.
+- The tool does not display Amazon price, availability, rating, seller status, review count, or product imagery.
 
 ## Acceptance criteria
 
@@ -131,12 +164,18 @@ When activation is eventually allowed, optional analytics are limited to `affili
 - [x] Unknown items remain explicitly unclassified rather than receiving fabricated safety claims.
 - [x] Dictionary recognition percentage is visible after analysis without being framed as a safety score.
 - [x] Unclassified ingredient names are surfaced compactly while the complete result table remains available.
+- [x] Result rows can be filtered by status and current functional category without changing analysis state, including on narrow mobile screens.
+- [x] Current visible-row count remains visible while result filters are active.
+- [x] Users can explicitly copy the currently visible ingredient names or only unclassified ingredient names without sending them to analytics or an external API.
 - [x] The page remains explicitly Japanese-only and retains the medical/regulatory disclaimer.
 - [x] The NicheWorks logo image is not shown in the tool header.
 - [x] The donation block appears before the footer.
 - [x] A clear INCI FastScan route exists for photo/OCR use.
-- [x] The Amazon-ready slot exists and keeps the frozen `after-summary` placement.
-- [x] Shared affiliate configuration remains disabled, empty, and non-tracking before activation.
+- [x] The Amazon slot keeps the frozen `after-summary` placement and fail-closed HTML default.
+- [x] Four fixed Amazon category searches are rendered only through `tagged_search` mode with the configured Associate tag.
+- [x] Amazon destinations remain independent of ingredient input, result categories, unknowns, filters, and analysis output.
+- [x] Amazon disclosure and `[PR]` labeling are visible with the live affiliate CTAs.
+- [x] Affiliate analytics remain coarse and contain no ingredient or analysis payload.
 
 ## Implementation evidence
 

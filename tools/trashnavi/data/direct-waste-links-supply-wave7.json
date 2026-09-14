@@ -1,0 +1,27 @@
+[
+  {
+    "pref": "愛媛県",
+    "city": "松山市",
+    "name": "松山市 地区別ごみカレンダー（2026年度）",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.matsuyama.ehime.jp/kurashi/gomi/dashikata/gomicalender/r8gomicaletikubetu.html",
+    "lgcode": "382019",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "愛媛県",
+    "city": "松山市",
+    "name": "松山市 粗大ごみの収集申込み方法",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.matsuyama.ehime.jp/kurashi/gomi/dashikata/sodaigomi.html",
+    "lgcode": "382019",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  }
+]

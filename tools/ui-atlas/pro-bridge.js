@@ -1,5 +1,6 @@
 (function () {
   const doc = document.documentElement;
+  const EXPECTED_ENTITLEMENT = 'nicheworks_pro';
   let loading = false;
   let loaded = Boolean(window.NWPro && typeof window.NWPro.getLocalStatus === 'function');
   let failed = false;
@@ -16,7 +17,7 @@
   function applyStatus() {
     try {
       const local = readLocalStatus();
-      const active = Boolean(local && local.active);
+      const active = Boolean(local && local.active && local.entitlement === EXPECTED_ENTITLEMENT);
       doc.dataset.proActive = active ? 'true' : 'false';
       failed = false;
       return { active, failed: false, status: local || null };

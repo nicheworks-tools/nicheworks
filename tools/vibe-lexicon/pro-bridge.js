@@ -4,6 +4,7 @@
   var TOOL_ID = 'vibe-lexicon';
   var LEGACY_KEY = 'nw_pro_' + TOOL_ID;
   var BUY_URL = 'https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209';
+  var EXPECTED_ENTITLEMENT = 'nicheworks_pro';
 
   function isJa() {
     return document.body && document.body.dataset.lang === 'ja';
@@ -12,18 +13,16 @@
   function localCommonActive() {
     try {
       var status = window.NWPro && typeof window.NWPro.getLocalStatus === 'function' ? window.NWPro.getLocalStatus() : null;
-      return Boolean(status && status.active);
+      return Boolean(status && status.active && status.entitlement === EXPECTED_ENTITLEMENT);
     } catch (error) {
       return false;
     }
   }
 
-  function legacyActive() {
+  function clearLegacyLocalFlag() {
     try {
-      return localStorage.getItem(LEGACY_KEY) === '1';
-    } catch (error) {
-      return false;
-    }
+      localStorage.removeItem(LEGACY_KEY);
+    } catch (error) {}
   }
 
   function updateBuyLinks() {
@@ -73,7 +72,8 @@
 
   function boot() {
     updateBuyLinks();
-    var active = localCommonActive() || legacyActive();
+    clearLegacyLocalFlag();
+    var active = localCommonActive();
     applyUI(active);
   }
 

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-13",
+  "updatedAt": "2026-09-14",
   "items": {
     "ai-project-pack": {
       "title_ja": "AIプロジェクトパック",
@@ -1033,6 +1033,18 @@
         "atlas"
       ]
     },
+    "pattern-dictionary": {
+      "title_ja": "模様辞典",
+      "title_en": "Pattern Dictionary",
+      "desc_ja": "名前が分からない模様を、曖昧な言葉や画像一覧から探し、正式名称や似た柄まで確認できる視覚模様辞典です。",
+      "desc_en": "Identify patterns from rough descriptions, image browsing, similar designs, and common look-alikes.",
+      "tags": [
+        "pattern",
+        "dictionary",
+        "visual",
+        "search"
+      ]
+    },
     "old-kanji-ocr-scanner": {
       "title_ja": "旧字体OCRスキャナー | Old Kanji OCR Scanner",
       "title_en": "Old Kanji Ocr Scanner",
@@ -1055,6 +1067,19 @@
         "xlsx",
         "reconciliation",
         "accounting"
+      ]
+    },
+    "phone-quickcheck": {
+      "title_ja": "スマホ QuickCheck",
+      "title_en": "Phone QuickCheck",
+      "desc_ja": "スマホのサイズ・重さ・充電端子・充電器条件・モバイルバッテリー充電回数の目安と公式情報を素早く確認します。",
+      "desc_en": "Quickly check phone size, weight, charging port, charger requirements, power-bank estimates, and official information.",
+      "tags": [
+        "phone",
+        "smartphone",
+        "charging",
+        "size",
+        "battery"
       ]
     }
   }

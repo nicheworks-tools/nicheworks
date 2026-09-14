@@ -9,10 +9,12 @@ function matchOne(name, exactIndex, suggestionCandidates) {
   const item = exactIndex.get(norm);
   if (item) return found(item, name);
 
+  const suggestions = findNearMatches(name, suggestionCandidates);
   return {
     found: false,
     input: name,
-    suggestions: findNearMatches(name, suggestionCandidates)
+    suggestions,
+    ocr_confusion: detectOcrCharacterConfusion(name, suggestions)
   };
 }
 
@@ -88,6 +90,53 @@ function findNearMatches(input, candidates) {
   return [...bestByIngredient.values()]
     .sort((a, b) => a.distance - b.distance || a.en.localeCompare(b.en))
     .slice(0, 3);
+}
+
+function detectOcrCharacterConfusion(input, suggestions) {
+  if (!Array.isArray(suggestions) || suggestions.length === 0) return null;
+  const inputKey = normalizeForOcrConfusion(input);
+  if (!inputKey || detectScript(inputKey) !== "latin") return null;
+
+  for (const suggestion of suggestions) {
+    const candidate = normalizeForOcrConfusion(suggestion.matchedName || suggestion.en);
+    if (!candidate || candidate.length !== inputKey.length) continue;
+
+    const mismatches = [];
+    let valid = true;
+    for (let i = 0; i < inputKey.length; i += 1) {
+      if (inputKey[i] === candidate[i]) continue;
+      if (!isCommonOcrConfusion(inputKey[i], candidate[i])) {
+        valid = false;
+        break;
+      }
+      mismatches.push({ input: inputKey[i], expected: candidate[i], index: i });
+    }
+
+    if (valid && mismatches.length > 0 && mismatches.length <= 2) {
+      return {
+        en: suggestion.en,
+        matchedName: suggestion.matchedName || suggestion.en,
+        mismatches
+      };
+    }
+  }
+
+  return null;
+}
+
+function normalizeForOcrConfusion(value) {
+  return String(value || "")
+    .normalize("NFKC")
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
+}
+
+function isCommonOcrConfusion(a, b) {
+  const pairs = new Set([
+    "i1", "1i", "l1", "1l", "il", "li",
+    "o0", "0o"
+  ]);
+  return pairs.has(`${a}${b}`);
 }
 
 function boundedLevenshtein(a, b, maxDistance) {
@@ -169,8 +218,6 @@ function classifyExactMatch(item, input) {
     }
   }
 
-  // Shared high-confidence identity equivalents intentionally normalize to the
-  // canonical key without being embedded into every dictionary record.
   if (normalize(input) && normalize(input) === normalize(item.en)) {
     return { kind: "shared_alias", matchedName: input };
   }
@@ -178,8 +225,19 @@ function classifyExactMatch(item, input) {
   return { kind: "canonical", matchedName: item.en };
 }
 
+function verifiedNote(item) {
+  if (item?.note_verified !== true) return "";
+  const note = String(item.note_short || "").trim();
+  const sources = Array.isArray(item.note_sources)
+    ? item.note_sources.filter(source => typeof source === "string" && /^https:\/\//i.test(source.trim()))
+    : [];
+  if (!note || sources.length === 0) return "";
+  return note;
+}
+
 function found(item, input) {
   const route = classifyExactMatch(item, input);
+  const note = verifiedNote(item);
   return {
     found: true,
     input,
@@ -188,8 +246,7 @@ function found(item, input) {
     alias: item.alias || [],
     match_kind: route.kind,
     matched_name: route.matchedName,
-    safety: item.safety,
     category: item.category || "general",
-    note_short: item.note_short
+    note_short: note || undefined
   };
 }

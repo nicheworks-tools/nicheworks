@@ -21,14 +21,36 @@
     });
   }
 
-  function safeLink(link) {
+  function parseAmazonHttpsUrl(value) {
+    if (typeof value !== "string" || !value.trim()) return null;
+    try {
+      const url = new URL(value, root.location?.href || "https://nicheworks.app/");
+      if (url.protocol !== "https:") return null;
+      const host = url.hostname.toLowerCase();
+      if (host !== "amzn.to" && host !== "amazon.co.jp" && !host.endsWith(".amazon.co.jp")) return null;
+      return url;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function safeLink(link, config) {
     if (!link || typeof link !== "object") return null;
     const href = String(link.href || "").trim();
     const key = String(link.key || "").trim();
     const labelJa = String(link.labelJa || "").trim();
     const labelEn = String(link.labelEn || labelJa).trim();
-    if (!href || !key || !labelJa) return null;
-    return { href, key, labelJa, labelEn };
+    const url = parseAmazonHttpsUrl(href);
+    if (!url || !key || !labelJa) return null;
+
+    if (config?.trackingMode === "tagged_search") {
+      const expectedTag = String(config.associateTag || "").trim();
+      if (!expectedTag || url.searchParams.get("tag") !== expectedTag) return null;
+      if (url.hostname.toLowerCase() !== "www.amazon.co.jp" && url.hostname.toLowerCase() !== "amazon.co.jp") return null;
+      if (url.pathname !== "/s" || !url.searchParams.get("k")) return null;
+    }
+
+    return { href: url.href, key, labelJa, labelEn };
   }
 
   function render() {
@@ -46,10 +68,12 @@
     slot.dataset.affiliatePlacement = slotConfig.placement || slot.dataset.affiliatePlacement || "";
 
     const links = Array.isArray(slotConfig.links)
-      ? slotConfig.links.map(safeLink).filter(Boolean)
+      ? slotConfig.links.map((link) => safeLink(link, config)).filter(Boolean)
       : [];
+    const trackingReady = config.trackingMode === "special_link"
+      || (config.trackingMode === "tagged_search" && Boolean(String(config.associateTag || "").trim()));
 
-    if (!config.enabled || !config.associateTag || !links.length) {
+    if (!config.enabled || !trackingReady || !links.length) {
       slot.hidden = true;
       slot.setAttribute("aria-hidden", "true");
       slot.dataset.affiliateState = "inactive";
@@ -111,7 +135,7 @@
   }
 
   root.NWCosmeticsAffiliateSlots = Object.freeze({
-    version: "1.0.0",
+    version: "1.2.0",
     events: Object.freeze({ impression: EVENT_IMPRESSION, click: EVENT_CLICK }),
     render
   });

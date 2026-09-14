@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nicheworks.app/tools/construction-tools-atlas/data/image-registry-v2.3.schema.json",
+  "title": "Construction Tools Atlas canonical image registry v2.3",
+  "type": "object",
+  "required": ["schema", "version", "policy", "items"],
+  "properties": {
+    "schema": { "const": "cta-image-registry-v2.3" },
+    "version": { "type": "string", "minLength": 1 },
+    "policy": {
+      "type": "object",
+      "required": ["primary_format", "formal_min_state", "wrong_image_behavior"],
+      "properties": {
+        "primary_format": { "const": "webp" },
+        "formal_min_state": { "const": "reviewed" },
+        "wrong_image_behavior": { "const": "omit" }
+      },
+      "additionalProperties": true
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["entry_id", "alt_ja", "alt_en", "image_state", "subject_match", "migration_state"],
+        "properties": {
+          "entry_id": { "type": "string", "minLength": 1 },
+          "alt_ja": { "type": "string", "minLength": 1 },
+          "alt_en": { "type": "string", "minLength": 1 },
+          "image_state": { "enum": ["none", "pilot", "reviewed", "verified"] },
+          "subject_match": { "enum": ["unreviewed", "matched", "rejected"] },
+          "migration_state": { "enum": ["legacy_svg", "identity_resolved", "raster_candidate", "reviewed", "verified", "promoted"] },
+          "legacy": {
+            "type": "object",
+            "properties": {
+              "src": { "type": "string", "minLength": 1 },
+              "format": { "type": "string", "minLength": 1 }
+            },
+            "additionalProperties": false
+          },
+          "primary": {
+            "type": "object",
+            "required": ["display", "thumbnail"],
+            "properties": {
+              "display": { "type": "string", "minLength": 1 },
+              "thumbnail": { "type": "string", "minLength": 1 },
+              "source": { "type": "string", "minLength": 1 }
+            },
+            "additionalProperties": false
+          },
+          "source": {
+            "type": "object",
+            "required": ["source_url", "source_page", "license", "license_url", "author", "attribution", "modifications"],
+            "properties": {
+              "source_url": { "type": "string", "minLength": 1 },
+              "source_page": { "type": "string", "minLength": 1 },
+              "license": { "type": "string", "minLength": 1 },
+              "license_url": { "type": "string", "minLength": 1 },
+              "author": { "type": "string", "minLength": 1 },
+              "attribution": { "type": "string", "minLength": 1 },
+              "modifications": { "type": "string", "minLength": 1 },
+              "source_sha1": { "type": "string", "pattern": "^[a-f0-9]{40}$" }
+            },
+            "additionalProperties": false
+          },
+          "notes": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

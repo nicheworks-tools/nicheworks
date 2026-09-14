@@ -28,7 +28,7 @@ function add(value, canonical) {
   const key = parser.normalizeKey(value);
   if (!key) return;
   if (!owners.has(key)) owners.set(key, new Set());
-  owners.get(key).add(canonical);
+  owners.get(key).add(parser.canonicalIdentityKey(canonical));
 }
 
 for (const item of records) {
@@ -44,7 +44,7 @@ function isExactKnown(value) {
   return Boolean(matches && matches.size === 1);
 }
 
-assert.ok(Array.isArray(fixtures) && fixtures.length >= 12, 'full-label benchmark requires at least 12 fixtures');
+assert.ok(Array.isArray(fixtures) && fixtures.length >= 24, 'full-label benchmark requires at least 24 fixtures');
 
 let total = 0;
 let matched = 0;
@@ -79,8 +79,11 @@ for (const fixture of fixtures) {
 const overallCoverage = matched / total;
 assert.ok(overallCoverage >= 0.95, `overall full-label coverage below 95%: ${(overallCoverage * 100).toFixed(1)}%`);
 
-const categoryCount = new Set(fixtures.map((fixture) => fixture.category)).size;
-assert.ok(categoryCount >= 6, 'full-label benchmark must cover at least six product categories');
+const categories = new Set(fixtures.map((fixture) => fixture.category));
+assert.ok(categories.size >= 12, 'full-label benchmark must cover at least twelve product categories');
+for (const category of ['sunscreen', 'conditioner', 'active-serum', 'color-cosmetic']) {
+  assert.ok(categories.has(category), `wave 3 category missing: ${category}`);
+}
 assert.ok(fixtures.some((fixture) => fixture.language === 'ja'), 'Japanese full-label coverage missing');
 assert.ok(fixtures.some((fixture) => fixture.language === 'en'), 'English full-label coverage missing');
 assert.ok(fixtures.some((fixture) => fixture.language === 'mixed'), 'mixed-language full-label coverage missing');
@@ -88,7 +91,7 @@ assert.ok(fixtures.some((fixture) => fixture.language === 'mixed'), 'mixed-langu
 console.log(JSON.stringify({
   status: 'pass',
   fixtures: fixtures.length,
-  categories: categoryCount,
+  categories: categories.size,
   ingredients: total,
   matched,
   unknown: total - matched,

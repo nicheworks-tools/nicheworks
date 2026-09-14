@@ -2,20 +2,28 @@
   'use strict';
 
   var BUY_URL = 'https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209';
+  var ENTITLEMENT = 'nicheworks_pro';
+  var PRO_ACTION_SELECTOR = 'button[data-pro-only]';
+  var lastActive = false;
 
   function status() {
     try {
       return window.NWPro && typeof window.NWPro.getLocalStatus === 'function'
         ? window.NWPro.getLocalStatus()
-        : { active: false, entitlement: 'nicheworks_pro', checkedAt: '' };
+        : { active: false, entitlement: ENTITLEMENT, checkedAt: '' };
     } catch (error) {
-      return { active: false, entitlement: 'nicheworks_pro', checkedAt: '' };
+      return { active: false, entitlement: ENTITLEMENT, checkedAt: '' };
     }
+  }
+
+  function exactActive(current) {
+    return Boolean(current && current.active === true && current.entitlement === 'nicheworks_pro');
   }
 
   function apply() {
     var current = status();
-    var active = Boolean(current && current.active && current.entitlement === 'nicheworks_pro');
+    var active = exactActive(current);
+    lastActive = active;
     document.documentElement.dataset.proActive = active ? 'true' : 'false';
 
     document.querySelectorAll('[data-pro-buy]').forEach(function (link) {
@@ -44,7 +52,19 @@
     window.dispatchEvent(new CustomEvent('nw-pro-status-change', {
       detail: { active: active, status: current }
     }));
+    return active;
   }
+
+  function recheckProAction(event) {
+    var target = event.target && event.target.closest ? event.target.closest(PRO_ACTION_SELECTOR) : null;
+    if (!target) return;
+    var active = apply();
+    if (active) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }
+
+  document.addEventListener('click', recheckProAction, true);
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', apply);
@@ -52,5 +72,8 @@
     apply();
   }
   window.addEventListener('storage', apply);
-  window.NWMinutesToOpsPro = { refresh: apply };
+  window.NWMinutesToOpsPro = {
+    refresh: apply,
+    isActive: function () { return lastActive && exactActive(status()); }
+  };
 })();

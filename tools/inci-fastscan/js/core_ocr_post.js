@@ -109,23 +109,10 @@ function postProcessOcrText(rawText, options = {}) {
     items.push(...parts);
   }
 
-  const merged = [];
-  for (const item of items) {
-    if (merged.length > 0) {
-      const prev = merged[merged.length - 1];
-      if (langHint === "en" && shouldMergeEnglish(prev, item)) {
-        merged[merged.length - 1] = `${prev} ${item}`.trim();
-        continue;
-      }
-      if (langHint === "jp" && shouldMergeJapanese(prev, item)) {
-        merged[merged.length - 1] = `${prev}${item}`.trim();
-        continue;
-      }
-    }
-    merged.push(item);
-  }
-
-  return merged.join("\n").trim();
+  // Preserve OCR candidate boundaries here. Dictionary-aware exact joining is
+  // performed later by repairWrappedIngredientFragments(). This deliberately
+  // avoids guessing that two adjacent OCR lines belong to one ingredient.
+  return items.join("\n").trim();
 }
 
 function protectNumericLocantCommas(value) {
@@ -156,7 +143,6 @@ function isNoiseLine(line) {
   if (!containsLetters(trimmed)) return true;
   if (/^\d{1,2}:\d{2}(:\d{2})?(\s?[AP]M)?$/i.test(trimmed)) return true;
   if (/^\d{1,4}[%％]$/.test(trimmed)) return true;
-  if (/^[\W_]+$/.test(trimmed)) return true;
   return false;
 }
 
@@ -176,58 +162,4 @@ function normalizeJapaneseSpacing(text) {
     .replace(/([A-Za-z0-9])\s+([ぁ-んァ-ヶ一-龠])/g, "$1$2");
 
   return normalized;
-}
-
-function shouldMergeEnglish(previous, next) {
-  if (!previous || !next) return false;
-  if (!/^[A-Za-z][A-Za-z0-9-]*$/.test(previous)) return false;
-  if (!/^[A-Za-z][A-Za-z0-9-]*$/.test(next)) return false;
-
-  const prefixes = new Set([
-    "Sodium",
-    "Potassium",
-    "Disodium",
-    "Dipotassium",
-    "Magnesium",
-    "Calcium",
-    "Hydrolyzed",
-    "Hydrogenated",
-    "Cocamidopropyl",
-    "Cocoyl",
-    "Stearyl",
-    "Cetearyl",
-    "Cetyl",
-    "Lauryl",
-    "Myristyl",
-    "PEG",
-    "PPG",
-    "Glyceryl",
-    "Sorbitan"
-  ]);
-
-  const suffixes = new Set([
-    "Acid",
-    "Hyaluronate",
-    "Chloride",
-    "Sulfate",
-    "Phosphate",
-    "Benzoate",
-    "Lactate"
-  ]);
-
-  if (previous.endsWith("-")) return true;
-  if (next.startsWith("-")) return true;
-
-  return prefixes.has(previous) || suffixes.has(next);
-}
-
-function shouldMergeJapanese(previous, next) {
-  if (!previous || !next) return false;
-  if (!containsLetters(previous) || !containsLetters(next)) return false;
-
-  const kanaOnly = /^[ぁ-んァ-ヶー]+$/;
-  if (!kanaOnly.test(previous)) return false;
-  if (previous.length > 4) return false;
-
-  return /[ぁ-んァ-ヶー一-龠]/.test(next);
 }

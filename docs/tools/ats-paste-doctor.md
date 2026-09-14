@@ -101,19 +101,7 @@ Follow common-spec sections 6 and 9-4. Current main-page donation/support eviden
 - FAQ: present under current implementation.
 - Usage links remain subdued and separated from advertising.
 
-## 14. Monetization and entitlement contract
-
-`MONETIZATION_CLASSIFICATION_87.md` classifies `ats-paste-doctor` as `PRO_BUNDLE`. Future live paid product authority is shared `nicheworks.pro`; legacy `nicheworks_pro` remains compatibility/migration state only.
-
-The five exact current additive paid operation boundaries are listed in section 5. Free formatter behavior, 30,000-character processing, copy and TXT download remain independent of billing availability.
-
-The current legacy bridge must require exact `local.active === true` plus `local.entitlement === "nicheworks_pro"`. A missing/unrelated entitlement cannot activate current paid behavior. Because the current app reads `data-pro-active` for plan checks, the bridge revalidates exact legacy state in the click capture phase before the Generate button or any `[data-pro-action]` control reaches normal application handlers. DOM-only `data-pro-active` edits therefore do not survive the ordinary UI action path.
-
-`tools/ats-paste-doctor/product-scoped-controller.mjs` is non-live staging. It requires explicit product/feature configuration and delegates server verification to `assets/nw-product-scoped-controller.mjs`. For live migration, configured product ID must be `nicheworks.pro`; no ATS-Paste-Doctor-specific product is authorized.
-
-Bundle price/currency, Stripe Product/Price, production feature IDs, restore/account policy, purchaser migration and rollout timing remain unresolved.
-
-## 15. Functional acceptance tests
+## 14. Functional acceptance tests
 
 - [ ] Each supported formatting mode generates local output, counts, warnings and preview.
 - [ ] Free copy/TXT works up to 30,000 characters regardless of billing availability.
@@ -127,11 +115,23 @@ Bundle price/currency, Stripe Product/Price, production feature IDs, restore/acc
 
 Automated evidence includes `scripts/check-tool-runtime-contracts.mjs` and `scripts/check-ats-paste-doctor-product-scoped-staging.mjs`.
 
-## 16. Explicit tool-specific exceptions
+## 15. Explicit tool-specific exceptions
 
 - No language exception beyond bilingual single-page mode.
 - No additional layout exception.
 - Historical ad-hiding copy is not a separate ATS tool-operation entitlement in this boundary contract.
+
+### Monetization and entitlement contract
+
+`MONETIZATION_CLASSIFICATION_87.md` classifies `ats-paste-doctor` as `PRO_BUNDLE`. Future live paid product authority is shared `nicheworks.pro`; legacy `nicheworks_pro` remains compatibility/migration state only.
+
+The five exact current additive paid operation boundaries are listed in section 5. Free formatter behavior, 30,000-character processing, copy and TXT download remain independent of billing availability.
+
+The current legacy bridge must require exact `local.active === true` plus `local.entitlement === "nicheworks_pro"`. A missing/unrelated entitlement cannot activate current paid behavior. Because the current app reads `data-pro-active` for plan checks, the bridge revalidates exact legacy state in the click capture phase before the Generate button or any `[data-pro-action]` control reaches normal application handlers. DOM-only `data-pro-active` edits therefore do not survive the ordinary UI action path.
+
+`tools/ats-paste-doctor/product-scoped-controller.mjs` is non-live staging. It requires explicit product/feature configuration and delegates server verification to `assets/nw-product-scoped-controller.mjs`. For live migration, configured product ID must be `nicheworks.pro`; no ATS-Paste-Doctor-specific product is authorized.
+
+Bundle price/currency, Stripe Product/Price, production feature IDs, restore/account policy, purchaser migration and rollout timing remain unresolved.
 
 ### Implementation evidence
 

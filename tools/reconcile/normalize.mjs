@@ -56,6 +56,12 @@ export function normalizeAmount(value) {
     .replace(/[¥$€£₩₹₽₺₫฿₱₪₦₴₲₡₵₸₼₾]/g, '')
     .replace(/[\s'’]/g, '');
 
+  // Some exports place a currency token before a parenthesized negative, e.g. JPY (5,000).
+  if (/^\(.*\)$/.test(text)) {
+    negative = true;
+    text = text.slice(1, -1).trim();
+  }
+
   if (/^[+-]/.test(text)) {
     if (text[0] === '-') negative = true;
     text = text.slice(1);

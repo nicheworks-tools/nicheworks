@@ -1,0 +1,70 @@
+{
+  "id": "hammer-drill",
+  "type": "tool",
+  "names": {
+    "ja": "ハンマードリル",
+    "en": "Hammer Drill",
+    "reading": "はんまーどりる"
+  },
+  "aliases": {
+    "ja": ["ロータリーハンマー"],
+    "en": ["Rotary Hammer"]
+  },
+  "slang": {
+    "ja": ["ハンマー"],
+    "en": []
+  },
+  "summary": {
+    "ja": "コンクリートなどの硬い材料への穴あけに使う電動工具。",
+    "en": "A powered drilling tool used for drilling hard materials such as concrete."
+  },
+  "description": {
+    "ja": "回転と打撃を組み合わせ、コンクリートやブロックなどへ穿孔するために使う。",
+    "en": "It combines rotation and hammering action to drill into concrete, block and similar materials."
+  },
+  "uses": {
+    "ja": ["コンクリートへの穴あけ", "アンカー施工用の下穴"],
+    "en": ["Drilling concrete", "Pilot holes for anchors"]
+  },
+  "situations_text": {
+    "ja": ["設備や金物をコンクリート面へ固定するとき"],
+    "en": ["When fixing equipment or hardware to concrete"]
+  },
+  "actions": ["drill"],
+  "materials": ["concrete", "masonry"],
+  "trades": ["general-construction"],
+  "tasks": ["anchor-installation"],
+  "situations": ["hard-material-drilling"],
+  "visual_cues": ["pistol-grip", "auxiliary-handle"],
+  "power_types": ["electric"],
+  "categories": ["power-tool"],
+  "regions": ["global"],
+  "relationships": {
+    "similar": ["impact-drill"],
+    "often_confused_with": ["impact-drill", "drill-driver"],
+    "used_with": ["concrete-drill-bit", "anchor"],
+    "parent": [],
+    "child": []
+  },
+  "images": {
+    "primary": {
+      "original": "./images/hammer-drill/source.png",
+      "display": "./images/hammer-drill/primary.webp",
+      "thumbnail": "./images/hammer-drill/thumb.webp",
+      "alt_ja": "ハンマードリル本体",
+      "alt_en": "Hammer drill",
+      "state": "reviewed",
+      "subject_match": true
+    },
+    "secondary": []
+  },
+  "commerce": {
+    "affiliate_intent": "high",
+    "offer_ids": ["hammer_drill", "concrete_drill_bit"]
+  },
+  "quality": {
+    "content_state": "reviewed",
+    "image_state": "reviewed",
+    "detail_publish_state": "inline_only"
+  }
+}

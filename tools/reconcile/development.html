@@ -100,6 +100,9 @@
         <select id="statusFilter"><option value="">All statuses</option><option value="exact_match">exact_match</option><option value="tolerant_match">tolerant_match</option><option value="candidate">candidate</option><option value="a_only">a_only</option><option value="b_only">b_only</option><option value="duplicate">duplicate</option><option value="conflict">conflict</option></select>
         <input id="resultSearch" type="search" placeholder="Search results">
         <span id="resultCount" class="muted">0 / 0</span>
+        <button class="btn" id="resultPrevBtn" type="button" disabled aria-label="Previous result page">←</button>
+        <span id="resultPage" class="muted" aria-live="polite">0 / 0</span>
+        <button class="btn" id="resultNextBtn" type="button" disabled aria-label="Next result page">→</button>
         <button class="btn" id="exportCsvBtn" type="button">CSV export</button>
         <button class="btn" id="exportXlsxBtn" data-pro-control disabled type="button">XLSX <span class="pill pro">PRO</span></button>
       </div>

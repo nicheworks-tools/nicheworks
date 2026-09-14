@@ -2,8 +2,8 @@
   "schema_version": 1,
   "generated_from": "tools/tools-index.json",
   "common_specification": "common-spec/spec-ja.md",
-  "registered_tool_count": 87,
-  "record_count": 87,
+  "registered_tool_count": 90,
+  "record_count": 90,
   "status_enum": [
     "PASS",
     "FIX",
@@ -11,7 +11,7 @@
     "NEEDS_DECISION"
   ],
   "counts": {
-    "PASS": 87,
+    "PASS": 90,
     "FIX": 0,
     "BLOCKED": 0,
     "NEEDS_DECISION": 0
@@ -1787,13 +1787,12 @@
       "json_ld_status": "present",
       "donation_status": "present",
       "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
+      "functional_test_status": "behavior-test-present",
       "automated_tests": [
-        "scripts/check-tool-runtime-contracts.mjs"
+        "scripts/check-tool-runtime-contracts.mjs",
+        "functions/api/earth-map-suite/tests/precipitation-sample-real-harness.mjs"
       ],
-      "outstanding_issues": [
-        "Behavior-level automated tests are absent."
-      ],
+      "outstanding_issues": [],
       "final_state": "PASS",
       "evidence": [
         "tools/earth-map-suite/index.html",
@@ -1824,13 +1823,15 @@
         {
           "path": "scripts/check-tool-runtime-contracts.mjs",
           "classification": "regression/contract test"
+        },
+        {
+          "path": "functions/api/earth-map-suite/tests/precipitation-sample-real-harness.mjs",
+          "classification": "behavior test"
         }
       ],
       "decision_gaps": [],
       "hard_compliance_gaps": [],
-      "recommendation_only_gaps": [
-        "Behavior-level automated tests are absent."
-      ]
+      "recommendation_only_gaps": []
     },
     {
       "slug": "earth-timeseries",
@@ -2544,15 +2545,15 @@
       "json_ld_status": "present",
       "donation_status": "present",
       "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
+      "functional_test_status": "behavior-test-present",
       "automated_tests": [
         "scripts/check-tool-runtime-contracts.mjs",
         "tools/inci-fastscan/scripts/validate_dict.js",
-        "tools/inci-fastscan/validate-dictionary.mjs"
+        "tools/inci-fastscan/validate-dictionary.mjs",
+        "tools/_shared/check-fastscan-ocr-confusion.mjs"
       ],
       "outstanding_issues": [
-        "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "Usage documentation is recommended but absent."
       ],
       "final_state": "PASS",
       "evidence": [
@@ -2586,13 +2587,16 @@
         {
           "path": "tools/inci-fastscan/validate-dictionary.mjs",
           "classification": "data validation"
+        },
+        {
+          "path": "tools/_shared/check-fastscan-ocr-confusion.mjs",
+          "classification": "behavior test"
         }
       ],
       "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
-        "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "Usage documentation is recommended but absent."
       ]
     },
     {
@@ -3251,13 +3255,12 @@
       "json_ld_status": "present",
       "donation_status": "present",
       "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
+      "functional_test_status": "behavior-test-present",
       "automated_tests": [
-        "scripts/check-tool-runtime-contracts.mjs"
+        "scripts/check-tool-runtime-contracts.mjs",
+        "tools/linebreak-doctor/tests/behavior.test.mjs"
       ],
-      "outstanding_issues": [
-        "Behavior-level automated tests are absent."
-      ],
+      "outstanding_issues": [],
       "final_state": "PASS",
       "evidence": [
         "tools/linebreak-doctor/index.html",
@@ -3282,13 +3285,15 @@
         {
           "path": "scripts/check-tool-runtime-contracts.mjs",
           "classification": "regression/contract test"
+        },
+        {
+          "path": "tools/linebreak-doctor/tests/behavior.test.mjs",
+          "classification": "behavior test"
         }
       ],
       "decision_gaps": [],
       "hard_compliance_gaps": [],
-      "recommendation_only_gaps": [
-        "Behavior-level automated tests are absent."
-      ]
+      "recommendation_only_gaps": []
     },
     {
       "slug": "log-formatter",
@@ -5535,6 +5540,91 @@
       ]
     },
     {
+      "slug": "pattern-dictionary",
+      "display_name": {
+        "ja": "模様辞典",
+        "en": "Pattern Dictionary"
+      },
+      "implementation": "tools/pattern-dictionary/",
+      "active_state": "active",
+      "category": [
+        "pattern",
+        "dictionary",
+        "visual-search",
+        "reference"
+      ],
+      "spec": "docs/tools/pattern-dictionary.md",
+      "spec_coverage": "complete",
+      "implementation_exists": true,
+      "layout_class": "desktop-wide",
+      "language_policy": "separate JA/EN pages",
+      "functional_completeness": "documented-current-contract",
+      "inputs_summary": "- Ambiguous natural-language pattern search in Japanese or English. - Visual pattern-card selection. - Interpretation-chip and visual-filter refinement. - Similar-pattern navigation and two-pattern comparison selections.",
+      "outputs_summary": "- Ranked visual pattern candidates with match reasons. - Static JA/EN pattern detail pages. - Similar/common-confusion navigation. - Two-pattern visual comparison. - Prototype imagery and publication-state notices until reference images are verified.",
+      "network_dependency": {
+        "status": "not-found",
+        "external_hosts": []
+      },
+      "storage": {
+        "localStorage": false,
+        "sessionStorage": false
+      },
+      "capabilities": {
+        "copy": false,
+        "download": false
+      },
+      "responsive_status": "no-observed-defect",
+      "usage_status": "optional-absent",
+      "faq_status": "optional-absent",
+      "ga4_status": "present",
+      "adsense_status": "present",
+      "canonical_status": "present",
+      "json_ld_status": "present",
+      "donation_status": "present",
+      "privacy_compliance": "documented",
+      "functional_test_status": "behavior-test-present",
+      "automated_tests": [
+        "tools/pattern-dictionary/tests/search-test.mjs",
+        "tools/pattern-dictionary/tests/validate.mjs"
+      ],
+      "outstanding_issues": [],
+      "final_state": "PASS",
+      "evidence": [
+        "tools/pattern-dictionary/index.html",
+        "tools/pattern-dictionary/app.js",
+        "tools/pattern-dictionary/style.css",
+        "tools/pattern-dictionary/README.md",
+        "tools/pattern-dictionary/SPEC.md"
+      ],
+      "usage_html_present": false,
+      "usage_en_html_present": false,
+      "common_spec_compliance": "no-hard-gap-found",
+      "obvious_broken_or_incomplete_behavior": [],
+      "help_documentation": {
+        "main_page_summary": "required-and-present",
+        "usage": "optional-absent",
+        "faq": "optional-absent",
+        "usage_evidence": [],
+        "usage_language_coverage": {
+          "ja": false,
+          "en": false
+        }
+      },
+      "test_evidence": [
+        {
+          "path": "tools/pattern-dictionary/tests/search-test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/pattern-dictionary/tests/validate.mjs",
+          "classification": "data validation"
+        }
+      ],
+      "decision_gaps": [],
+      "hard_compliance_gaps": [],
+      "recommendation_only_gaps": []
+    },
+    {
       "slug": "pdf-page-tools-mini",
       "display_name": {
         "ja": "PDFページ操作ミニ",
@@ -5715,6 +5805,124 @@
       ]
     },
     {
+      "slug": "phone-quickcheck",
+      "display_name": {
+        "ja": "スマホ QuickCheck",
+        "en": "Phone QuickCheck"
+      },
+      "implementation": "tools/phone-quickcheck/",
+      "active_state": "active",
+      "category": [
+        "phone",
+        "smartphone",
+        "charging",
+        "size",
+        "battery"
+      ],
+      "spec": "docs/tools/phone-quickcheck.md",
+      "spec_coverage": "complete",
+      "implementation_exists": true,
+      "layout_class": "desktop-wide",
+      "language_policy": "bilingual single-page",
+      "functional_completeness": "documented-current-contract",
+      "inputs_summary": "- Phone-model search text. - Manufacturer, charging-port, release-year, and sort selections. - Selected phone record. - JP/EN display language.",
+      "outputs_summary": "- Phone size/weight/charging quick check. - Verified charger/protocol/wireless guidance. - Approximate 5,000 / 10,000 / 20,000mAh recharge counts when battery capacity is maintained. - Reusable accessory-class guidance. - Official manufacturer specification/manual links.",
+      "network_dependency": {
+        "status": "present",
+        "external_hosts": [
+          "www.apple.com",
+          "support.apple.com",
+          "store.google.com",
+          "support.google.com",
+          "www.samsung.com",
+          "www.sony.jp",
+          "jp.sharp",
+          "www.oppo.com",
+          "support.oppo.com",
+          "www.mi.com",
+          "jp-jp.support.motorola.com",
+          "en-us.support.motorola.com",
+          "www.amazon.co.jp",
+          "ofuse.me",
+          "ko-fi.com"
+        ]
+      },
+      "storage": {
+        "localStorage": true,
+        "sessionStorage": false
+      },
+      "capabilities": {
+        "copy": false,
+        "download": false
+      },
+      "responsive_status": "no-observed-defect",
+      "usage_status": "recommended-and-present",
+      "faq_status": "optional-present",
+      "ga4_status": "present",
+      "adsense_status": "present",
+      "canonical_status": "present",
+      "json_ld_status": "present",
+      "donation_status": "present",
+      "privacy_compliance": "documented",
+      "functional_test_status": "behavior-test-present",
+      "automated_tests": [
+        "scripts/check-tool-runtime-contracts.mjs",
+        "scripts/check-phone-quickcheck-data.mjs",
+        "scripts/check-phone-quickcheck-affiliate.mjs",
+        "tools/phone-quickcheck/tests/behavior.test.mjs"
+      ],
+      "outstanding_issues": [],
+      "final_state": "PASS",
+      "evidence": [
+        "tools/phone-quickcheck/index.html",
+        "tools/phone-quickcheck/app.js",
+        "tools/phone-quickcheck/style.css",
+        "tools/phone-quickcheck/data/phones.json",
+        "tools/phone-quickcheck/data/accessories.json",
+        "tools/phone-quickcheck/usage.html",
+        "tools/phone-quickcheck/affiliate-config.js",
+        "tools/phone-quickcheck/affiliate-runtime.js",
+        "tools/phone-quickcheck/tests/behavior.test.mjs"
+      ],
+      "usage_html_present": true,
+      "usage_en_html_present": false,
+      "common_spec_compliance": "no-hard-gap-found",
+      "obvious_broken_or_incomplete_behavior": [],
+      "help_documentation": {
+        "main_page_summary": "required-and-present",
+        "usage": "recommended-and-present",
+        "faq": "optional-present",
+        "usage_evidence": [
+          "tools/phone-quickcheck/usage.html"
+        ],
+        "usage_language_coverage": {
+          "ja": true,
+          "en": true
+        }
+      },
+      "test_evidence": [
+        {
+          "path": "scripts/check-tool-runtime-contracts.mjs",
+          "classification": "regression/contract test"
+        },
+        {
+          "path": "scripts/check-phone-quickcheck-data.mjs",
+          "classification": "data validation"
+        },
+        {
+          "path": "scripts/check-phone-quickcheck-affiliate.mjs",
+          "classification": "regression/contract test"
+        },
+        {
+          "path": "tools/phone-quickcheck/tests/behavior.test.mjs",
+          "classification": "behavior test"
+        }
+      ],
+      "decision_gaps": [],
+      "hard_compliance_gaps": [],
+      "recommendation_only_gaps": []
+    },
+    {
       "slug": "place-old-kanji-checker",
       "display_name": {
         "ja": "地名旧字体チェッカー | Place Old Kanji Checker",
@@ -5880,6 +6088,136 @@
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
       ]
+    },
+    {
+      "slug": "reconcile",
+      "display_name": {
+        "ja": "NicheWorks Reconcile",
+        "en": "NicheWorks Reconcile"
+      },
+      "implementation": "tools/reconcile/",
+      "active_state": "active",
+      "category": [
+        "reconcile",
+        "finance",
+        "csv",
+        "xlsx"
+      ],
+      "spec": "docs/tools/reconcile.md",
+      "spec_coverage": "complete",
+      "implementation_exists": true,
+      "layout_class": "desktop-wide",
+      "language_policy": "bilingual single-page",
+      "functional_completeness": "documented-current-contract",
+      "inputs_summary": "Two local CSV/XLSX transaction files, CSV/XLSX parser settings, column mappings, Free date controls, and verified-Pro matching/profile settings.",
+      "outputs_summary": "Deterministic reconciliation statuses and review table, Free CSV audit export, and verified-Pro XLSX report plus saved-rule JSON/profile operations.",
+      "network_dependency": {
+        "status": "present",
+        "external_hosts": [
+          "ofuse.me",
+          "ko-fi.com"
+        ]
+      },
+      "storage": {
+        "localStorage": true,
+        "sessionStorage": false
+      },
+      "capabilities": {
+        "copy": false,
+        "download": true
+      },
+      "responsive_status": "no-observed-defect",
+      "usage_status": "recommended-and-present",
+      "faq_status": "optional-absent",
+      "ga4_status": "present",
+      "adsense_status": "present",
+      "canonical_status": "present",
+      "json_ld_status": "present",
+      "donation_status": "present",
+      "privacy_compliance": "documented",
+      "functional_test_status": "behavior-test-present",
+      "automated_tests": [
+        "tools/reconcile/tests/export.test.mjs",
+        "tools/reconcile/tests/normalize.test.mjs",
+        "tools/reconcile/tests/parser.test.mjs",
+        "tools/reconcile/tests/reconcile-engine.test.mjs",
+        "tools/reconcile/tests/reconcile-quality.test.mjs",
+        "tools/reconcile/tests/reconcile-stress.test.mjs",
+        "tools/reconcile/tests/rules-store.test.mjs",
+        "tools/reconcile/tests/xlsx-adapter.test.mjs",
+        "tools/reconcile/tests/xlsx-real-vendor.test.mjs"
+      ],
+      "outstanding_issues": [],
+      "final_state": "PASS",
+      "evidence": [
+        "tools/reconcile/index.html",
+        "tools/reconcile/app.mjs",
+        "tools/reconcile/styles.css",
+        "tools/reconcile/SPEC.md",
+        "tools/reconcile/usage.html",
+        "tools/reconcile/parser.mjs",
+        "tools/reconcile/normalize.mjs",
+        "tools/reconcile/reconcile-engine.mjs",
+        "tools/reconcile/export.mjs",
+        "tools/reconcile/xlsx-adapter.mjs"
+      ],
+      "usage_html_present": true,
+      "usage_en_html_present": false,
+      "common_spec_compliance": "no-hard-gap-found",
+      "obvious_broken_or_incomplete_behavior": [],
+      "help_documentation": {
+        "main_page_summary": "required-and-present",
+        "usage": "recommended-and-present",
+        "faq": "optional-absent",
+        "usage_evidence": [
+          "tools/reconcile/usage.html"
+        ],
+        "usage_language_coverage": {
+          "ja": true,
+          "en": false
+        }
+      },
+      "test_evidence": [
+        {
+          "path": "tools/reconcile/tests/export.test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/reconcile/tests/normalize.test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/reconcile/tests/parser.test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/reconcile/tests/reconcile-engine.test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/reconcile/tests/reconcile-quality.test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/reconcile/tests/reconcile-stress.test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/reconcile/tests/rules-store.test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/reconcile/tests/xlsx-adapter.test.mjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/reconcile/tests/xlsx-real-vendor.test.mjs",
+          "classification": "behavior test"
+        }
+      ],
+      "decision_gaps": [],
+      "hard_compliance_gaps": [],
+      "recommendation_only_gaps": []
     },
     {
       "slug": "redirect-unwrapper",
@@ -6278,7 +6616,6 @@
       "final_state": "PASS",
       "evidence": [
         "tools/size-converter/index.html",
-        "tools/size-converter/app-complete.js",
         "tools/size-converter/app.js",
         "tools/size-converter/style.css"
       ],

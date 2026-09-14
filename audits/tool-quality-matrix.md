@@ -2,16 +2,16 @@
 
 This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runtime implementation is valid contract evidence. Missing recommended help or behavior tests remain visible but do not independently force `FIX`. Final-state precedence is `BLOCKED` → `NEEDS_DECISION` → `FIX` → `PASS`.
 
-- Registered tools: **87**
-- Specifications: **87**
-- Matrix records: **87**
-- PASS: **87**
+- Registered tools: **88**
+- Specifications: **88**
+- Matrix records: **88**
+- PASS: **88**
 - FIX: **0**
 - BLOCKED: **0**
 - NEEDS_DECISION: **0**
-- Behavior-level tests missing: **85**
+- Behavior-level tests missing: **82**
 - Real responsive defects found: **0**
-- Hard common-spec violations: **8 tools**
+- Hard common-spec violations: **0 tools**
 - Recommendation-only documentation gaps: **28 tools**
 - Remaining unresolved product decision gaps: **0**
 - Error decision gaps removed as implementation-evidenced false positives: **108**
@@ -39,7 +39,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 | [design-request-builder](../docs/tools/design-request-builder.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [dry-meter](../docs/tools/dry-meter.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [earth-alerts](../docs/tools/earth-alerts.md) | mobile-oriented | not-applicable | not-applicable | behavior-test-missing | 0 | 0 | **PASS** |
-| [earth-map-suite](../docs/tools/earth-map-suite.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
+| [earth-map-suite](../docs/tools/earth-map-suite.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-present | 0 | 0 | **PASS** |
 | [earth-timeseries](../docs/tools/earth-timeseries.md) | mobile-oriented | not-applicable | not-applicable | behavior-test-missing | 0 | 0 | **PASS** |
 | [exif-cleaner-mini](../docs/tools/exif-cleaner-mini.md) | mobile-oriented | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [filetype-sniffer](../docs/tools/filetype-sniffer.md) | mobile-oriented | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
@@ -48,7 +48,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 | [habit-plan-generator](../docs/tools/habit-plan-generator.md) | mobile-oriented | optional-absent | optional-absent | behavior-test-missing | 0 | 0 | **PASS** |
 | [image-compression-inspector](../docs/tools/image-compression-inspector.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [image-redact](../docs/tools/image-redact.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
-| [inci-fastscan](../docs/tools/inci-fastscan.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
+| [inci-fastscan](../docs/tools/inci-fastscan.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-present | 0 | 0 | **PASS** |
 | [incident-update-generator](../docs/tools/incident-update-generator.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [jp-postal-lite](../docs/tools/jp-postal-lite.md) | mobile-oriented | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [json-repair](../docs/tools/json-repair.md) | desktop-wide | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
@@ -56,7 +56,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 | [kanji-modernizer](../docs/tools/kanji-modernizer.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [laundry-code-decode](../docs/tools/laundry-code-decode.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [light-check](../docs/tools/light-check.md) | mobile-oriented | optional-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
-| [linebreak-doctor](../docs/tools/linebreak-doctor.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
+| [linebreak-doctor](../docs/tools/linebreak-doctor.md) | mobile-oriented | optional-absent | optional-present | behavior-test-present | 0 | 0 | **PASS** |
 | [log-formatter](../docs/tools/log-formatter.md) | desktop-wide | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [logistics-compliance-kit-jp](../docs/tools/logistics-compliance-kit-jp.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [lp-skeleton-generator](../docs/tools/lp-skeleton-generator.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
@@ -87,6 +87,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 | [pdf2csv-local](../docs/tools/pdf2csv-local.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [place-old-kanji-checker](../docs/tools/place-old-kanji-checker.md) | mobile-oriented | recommended-and-missing | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
 | [product-founder-os](../docs/tools/product-founder-os.md) | desktop-wide | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
+| [reconcile](../docs/tools/reconcile.md) | desktop-wide | recommended-and-present | optional-absent | behavior-test-present | 0 | 0 | **PASS** |
 | [redirect-unwrapper](../docs/tools/redirect-unwrapper.md) | mobile-oriented | recommended-and-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [release-guardian](../docs/tools/release-guardian.md) | desktop-wide | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [rename-wizard](../docs/tools/rename-wizard.md) | desktop-wide | recommended-and-missing | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
@@ -116,4 +117,6 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 
 ## Wave 1 hard-gap status
 
-The mandatory donation/support shared-root-cause repair is complete for: `ats-paste-doctor`, `message-generator`, `old-document-kanji-highlighter`, `old-kanji-ocr-scanner`, `place-old-kanji-checker`, `unicode-kanji-checker`, `url-title-collector`, `variant-kanji-compare`. Their recommendation-only usage/FAQ/test gaps remain visible, but the support-block defect no longer forces `FIX`. Current matrix state after this repair: **87 PASS / 0 FIX / 0 BLOCKED / 0 NEEDS_DECISION**.
+The mandatory donation/support shared-root-cause repair is complete for: `ats-paste-doctor`, `message-generator`, `old-document-kanji-highlighter`, `old-kanji-ocr-scanner`, `place-old-kanji-checker`, `unicode-kanji-checker`, `url-title-collector`, `variant-kanji-compare`. Their recommendation-only usage/FAQ/test gaps remain visible, but the support-block defect no longer forces `FIX`. Current matrix state after this repair: **88 PASS / 0 FIX / 0 BLOCKED / 0 NEEDS_DECISION**.
+
+The 88th registered tool, `reconcile`, was added to the canonical quality baseline after publication; its missing mandatory support block was closed during the same baseline sync.

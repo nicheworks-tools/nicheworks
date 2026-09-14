@@ -27,6 +27,46 @@ const RESULT_TEXT = {
     ja: "未一致",
     en: "Unmatched"
   },
+  filterAll: {
+    ja: "すべて",
+    en: "All"
+  },
+  filterMatched: {
+    ja: "辞書一致",
+    en: "Matched"
+  },
+  filterReview: {
+    ja: "追加確認",
+    en: "Review"
+  },
+  filterUnknown: {
+    ja: "未一致",
+    en: "Unmatched"
+  },
+  filterCount: {
+    ja: (visible, total) => `${visible} / ${total} 件を表示`,
+    en: (visible, total) => `Showing ${visible} / ${total}`
+  },
+  reviewQueuePrev: {
+    ja: "前の要確認",
+    en: "Previous review item"
+  },
+  reviewQueueNext: {
+    ja: "次の要確認",
+    en: "Next review item"
+  },
+  reviewQueuePosition: {
+    ja: (current, total) => `要確認 ${current} / ${total}`,
+    en: (current, total) => `Review ${current} / ${total}`
+  },
+  reviewQueueReady: {
+    ja: total => `表示中の要確認 ${total} 件`,
+    en: total => `${total} visible review items`
+  },
+  reviewQueueEmpty: {
+    ja: "表示中の要確認項目はありません",
+    en: "No visible review items"
+  },
   unknownMany: {
     ja: "未一致の成分が多いです。OCRの誤認識、カンマ区切り、表記ゆれを確認してから再チェックしてください。",
     en: "Many items are unmatched. Check OCR mistakes, comma separation, and spelling variants before running the check again."
@@ -83,13 +123,33 @@ const RESULT_TEXT = {
     ja: "辞書に一致しませんでした。OCR崩れ、表記ゆれ、辞書未登録、または曖昧なカテゴリ名の可能性があります。",
     en: "No exact dictionary match was found. This may be an OCR issue, spelling variant, missing dictionary item, or an intentionally ambiguous group label."
   },
+  ocrSuspected: {
+    ja: "OCR文字誤認識の可能性",
+    en: "Possible OCR character confusion"
+  },
+  ocrSuspectedHint: {
+    ja: candidate => `I / l / 1 または O / 0 の読み違いだけで「${candidate}」に近づきます。元画像を確認し、必要なら入力欄を手で修正してください。`,
+    en: candidate => `Only common I / l / 1 or O / 0 OCR confusions separate this from “${candidate}”. Check the image and edit the input manually if appropriate.`
+  },
   suggestionTitle: {
     ja: "近い表記候補",
     en: "Possible close matches"
   },
   suggestionHint: {
-    ja: "候補は自動置換しません。元のラベルを見ながら入力欄を修正して再チェックしてください。",
-    en: "Suggestions are never applied automatically. Compare with the original label, edit the input, and run the check again."
+    ja: "候補は自動置換しません。元のラベルを確認し、使う候補を押した場合だけ入力欄を書き換えます。再解析も自動では行いません。",
+    en: "Suggestions are never applied automatically. Only a candidate you explicitly press can edit the input, and analysis will not rerun automatically."
+  },
+  applySuggestion: {
+    ja: "入力欄へ反映",
+    en: "Apply to input"
+  },
+  appliedSuggestion: {
+    ja: candidate => `入力欄を「${candidate}」に修正しました。確認後、もう一度チェックしてください。`,
+    en: candidate => `Updated the input to “${candidate}”. Review it, then run the check again.`
+  },
+  applyFailed: {
+    ja: "元の表記を入力欄で見つけられませんでした。入力欄を直接修正してください。",
+    en: "The original text was not found in the input. Edit the input manually."
   },
   tipSpell: {
     ja: "スペルやカンマ区切りを確認してください。",
@@ -142,6 +202,18 @@ function renderResults(container, results, lang = "ja") {
       <span>${escapeHtml(rt("unknown", uiLang))}: ${summary.unknown}</span>
     </div>
     <div class="small">${escapeHtml(rt("summaryNote", uiLang))}</div>
+    <div class="fastscan-result-filters" role="group" aria-label="Result filters">
+      <button type="button" class="fastscan-filter-btn is-active" data-result-filter="all">${escapeHtml(rt("filterAll", uiLang))}</button>
+      <button type="button" class="fastscan-filter-btn" data-result-filter="matched">${escapeHtml(rt("filterMatched", uiLang))}</button>
+      <button type="button" class="fastscan-filter-btn" data-result-filter="review">${escapeHtml(rt("filterReview", uiLang))}</button>
+      <button type="button" class="fastscan-filter-btn" data-result-filter="unknown">${escapeHtml(rt("filterUnknown", uiLang))}</button>
+    </div>
+    <div class="fastscan-review-queue" role="group" aria-label="Review queue">
+      <button type="button" class="fastscan-review-nav" data-review-nav="prev">${escapeHtml(rt("reviewQueuePrev", uiLang))}</button>
+      <span class="small fastscan-review-position" aria-live="polite"></span>
+      <button type="button" class="fastscan-review-nav" data-review-nav="next">${escapeHtml(rt("reviewQueueNext", uiLang))}</button>
+    </div>
+    <div class="small fastscan-result-action-status" aria-live="polite"></div>
   `;
   container.appendChild(summaryEl);
 
@@ -155,8 +227,11 @@ function renderResults(container, results, lang = "ja") {
   results.forEach(r => {
     const div = document.createElement("div");
     div.className = "result-card";
+    div.tabIndex = -1;
 
     if (r.found) {
+      const reviewState = isReviewState(r.safety) ? "review" : "matched";
+      div.dataset.resultState = reviewState;
       const label = getReviewLabel(r.safety, uiLang);
       const route = getMatchRouteLabel(r.match_kind, uiLang);
       div.classList.add("result-" + normalizeSafetyClass(r.safety));
@@ -174,6 +249,7 @@ function renderResults(container, results, lang = "ja") {
         <div class="result-note">${escapeHtml(r.note_short || rt("defaultNote", uiLang))}</div>
       `;
     } else {
+      div.dataset.resultState = "unknown";
       div.classList.add("result-unknown");
       div.innerHTML = `
         <div class="result-card-head">
@@ -181,7 +257,8 @@ function renderResults(container, results, lang = "ja") {
           <span class="review-label">${escapeHtml(rt("unknownLabel", uiLang))}</span>
         </div>
         <div class="result-note">${escapeHtml(rt("unknownReason", uiLang))}</div>
-        ${renderSuggestions(r.suggestions, uiLang)}
+        ${renderOcrConfusion(r.ocr_confusion, uiLang)}
+        ${renderSuggestions(r.suggestions, uiLang, r.input)}
         <ul class="unknown-tips">
           <li>${escapeHtml(rt("tipSpell", uiLang))}</li>
           <li>${escapeHtml(rt("tipOcr", uiLang))}</li>
@@ -192,14 +269,27 @@ function renderResults(container, results, lang = "ja") {
 
     container.appendChild(div);
   });
+
+  setupResultInteractions(container, uiLang);
 }
 
-function renderSuggestions(suggestions, lang) {
+function renderOcrConfusion(confusion, lang) {
+  if (!confusion?.en) return "";
+  return `
+    <div class="status-note status-warn">
+      <strong>${escapeHtml(rt("ocrSuspected", lang))}</strong>
+      <div class="small">${escapeHtml(rt("ocrSuspectedHint", lang, confusion.en))}</div>
+    </div>
+  `;
+}
+
+function renderSuggestions(suggestions, lang, originalInput) {
   if (!Array.isArray(suggestions) || suggestions.length === 0) return "";
 
   const chips = suggestions.map(item => {
+    const replacement = item.matchedName || item.en;
     const jp = Array.isArray(item.jp) && item.jp.length ? ` / ${item.jp[0]}` : "";
-    return `<span class="suggestion-chip">${escapeHtml(item.en + jp)}</span>`;
+    return `<button type="button" class="suggestion-chip suggestion-action" data-suggestion-value="${escapeHtml(replacement)}" data-original-value="${escapeHtml(originalInput)}"><span>${escapeHtml(item.en + jp)}</span><small>${escapeHtml(rt("applySuggestion", lang))}</small></button>`;
   }).join("");
 
   return `
@@ -211,6 +301,124 @@ function renderSuggestions(suggestions, lang) {
   `;
 }
 
+function setupResultInteractions(container, lang) {
+  let activeFilter = "all";
+  let reviewIndex = -1;
+  const status = container.querySelector(".fastscan-result-action-status");
+  const reviewPosition = container.querySelector(".fastscan-review-position");
+  const reviewNavButtons = [...container.querySelectorAll("[data-review-nav]")];
+  const cards = () => [...container.querySelectorAll(".result-card[data-result-state]")];
+  const reviewCards = () => cards().filter(card =>
+    !card.hidden && (card.dataset.resultState === "review" || card.dataset.resultState === "unknown")
+  );
+
+  const clearReviewHighlight = () => {
+    for (const card of cards()) card.classList.remove("is-current-review");
+  };
+
+  const syncReviewQueue = () => {
+    const queue = reviewCards();
+    const disabled = queue.length === 0;
+    for (const button of reviewNavButtons) button.disabled = disabled;
+
+    if (!queue.length) {
+      reviewIndex = -1;
+      clearReviewHighlight();
+      if (reviewPosition) reviewPosition.textContent = rt("reviewQueueEmpty", lang);
+      return;
+    }
+
+    if (reviewIndex >= queue.length) reviewIndex = -1;
+    clearReviewHighlight();
+    if (reviewIndex >= 0) {
+      queue[reviewIndex].classList.add("is-current-review");
+      if (reviewPosition) reviewPosition.textContent = rt("reviewQueuePosition", lang, reviewIndex + 1, queue.length);
+    } else if (reviewPosition) {
+      reviewPosition.textContent = rt("reviewQueueReady", lang, queue.length);
+    }
+  };
+
+  const moveReview = (direction) => {
+    const queue = reviewCards();
+    if (!queue.length) {
+      syncReviewQueue();
+      return;
+    }
+
+    if (reviewIndex < 0) {
+      reviewIndex = direction < 0 ? queue.length - 1 : 0;
+    } else {
+      reviewIndex = (reviewIndex + direction + queue.length) % queue.length;
+    }
+
+    clearReviewHighlight();
+    const card = queue[reviewIndex];
+    card.classList.add("is-current-review");
+    if (reviewPosition) reviewPosition.textContent = rt("reviewQueuePosition", lang, reviewIndex + 1, queue.length);
+    if (typeof card.scrollIntoView === "function") card.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (typeof card.focus === "function") card.focus({ preventScroll: true });
+  };
+
+  const applyFilter = () => {
+    const allCards = cards();
+    let visible = 0;
+    for (const card of allCards) {
+      const show = activeFilter === "all" || card.dataset.resultState === activeFilter;
+      card.hidden = !show;
+      if (show) visible += 1;
+    }
+    container.querySelectorAll("[data-result-filter]").forEach(button => {
+      const active = button.dataset.resultFilter === activeFilter;
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+    if (status) status.textContent = rt("filterCount", lang, visible, allCards.length);
+    syncReviewQueue();
+  };
+
+  container.querySelectorAll("[data-result-filter]").forEach(button => {
+    button.addEventListener("click", () => {
+      activeFilter = button.dataset.resultFilter || "all";
+      reviewIndex = -1;
+      applyFilter();
+    });
+  });
+
+  reviewNavButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      moveReview(button.dataset.reviewNav === "prev" ? -1 : 1);
+    });
+  });
+
+  container.querySelectorAll(".suggestion-action[data-suggestion-value]").forEach(button => {
+    button.addEventListener("click", () => {
+      const input = resultInputForContainer(container);
+      const original = button.dataset.originalValue || "";
+      const replacement = button.dataset.suggestionValue || "";
+      if (!input || !original || !replacement) return;
+      const index = input.value.indexOf(original);
+      if (index < 0) {
+        if (status) status.textContent = rt("applyFailed", lang);
+        return;
+      }
+      input.value = `${input.value.slice(0, index)}${replacement}${input.value.slice(index + original.length)}`;
+      input.focus();
+      const start = index;
+      const end = index + replacement.length;
+      if (typeof input.setSelectionRange === "function") input.setSelectionRange(start, end);
+      if (status) status.textContent = rt("appliedSuggestion", lang, replacement);
+    });
+  });
+
+  applyFilter();
+}
+
+function resultInputForContainer(container) {
+  if (container.id === "fast-results") return document.getElementById("fast-input");
+  if (container.id === "jb-results") return document.getElementById("jb-input");
+  return null;
+}
+
 function getMatchRouteLabel(kind, lang) {
   if (kind === "jp") return rt("routeJapanese", lang);
   if (kind === "alias") return rt("routeAlias", lang);
@@ -218,8 +426,9 @@ function getMatchRouteLabel(kind, lang) {
   return rt("routeCanonical", lang);
 }
 
-function rt(key, lang) {
-  return RESULT_TEXT[key]?.[lang] || RESULT_TEXT[key]?.ja || "";
+function rt(key, lang, ...args) {
+  const value = RESULT_TEXT[key]?.[lang] || RESULT_TEXT[key]?.ja || "";
+  return typeof value === "function" ? value(...args) : value;
 }
 
 function summarizeResults(results) {
@@ -228,13 +437,18 @@ function summarizeResults(results) {
       acc.unknown += 1;
       return acc;
     }
-    if (String(item.safety || "").toLowerCase() === "caution" || String(item.safety || "").toLowerCase() === "risk") {
+    if (isReviewState(item.safety)) {
       acc.review += 1;
       return acc;
     }
     acc.known += 1;
     return acc;
   }, { known: 0, review: 0, unknown: 0 });
+}
+
+function isReviewState(value) {
+  const key = String(value || "").toLowerCase();
+  return key === "caution" || key === "risk";
 }
 
 function normalizeSafetyClass(value) {

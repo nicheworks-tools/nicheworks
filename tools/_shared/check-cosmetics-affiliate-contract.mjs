@@ -12,11 +12,22 @@ const parser = read('tools/_shared/cosmetic-ingredient-parser.js');
 const lite = read('tools/cosmetic-ingredient-checker-lite/index.html');
 const fast = read('tools/inci-fastscan/index.html');
 
-check(config.includes('enabled: false'), 'affiliate config must stay disabled before activation');
-check(config.includes('associateTag: ""'), 'associate tag must be empty before activation');
-check(!/https?:\/\/[^"']*amazon\./i.test(config), 'config must not contain live Amazon URLs before activation');
+check(config.includes('enabled: true'), 'affiliate config must stay active');
+check(config.includes('trackingMode: "tagged_search"'), 'cosmetics affiliate must use explicit tagged_search mode');
+check(config.includes('associateTag: ASSOCIATE_TAG'), 'affiliate config must use the verified Associates tag constant');
+check(config.includes('const ASSOCIATE_TAG = "nicheworks09-22"'), 'verified Associates tag missing');
+check(config.includes('Amazonのアソシエイトとして、NicheWorksは適格販売により収入を得ています。'), 'required Japanese Amazon Associates disclosure missing');
+check(config.includes('As an Amazon Associate, NicheWorks earns from qualifying purchases.'), 'English Amazon Associates disclosure missing');
 check(config.includes('"cosmetic-ingredient-checker-lite"'), 'Lite slot config missing');
 check(config.includes('"inci-fastscan"'), 'FastScan slot config missing');
+check((config.match(/links: fixedSearchLinks/g) || []).length === 2, 'same fixed search set must be mapped to both cosmetics slots');
+
+for (const key of ['skincare_general', 'skincare_moisturizing', 'skincare_ceramide', 'sunscreen_general']) {
+  check(config.includes(`key: "${key}"`), `fixed affiliate category missing: ${key}`);
+}
+check((config.match(/tag=nicheworks09-22/g) || []).length === 4, 'all four fixed Amazon searches must carry the verified Associates tag');
+check((config.match(/https:\/\/www\.amazon\.co\.jp\/s\?k=/g) || []).length === 4, 'all four offers must be fixed Amazon Japan search URLs');
+check(!config.includes('amzn.to/4xNbcDO'), 'single generic Special Link should be retired after fixed-category rollout');
 
 for (const [name, html, placement] of [
   ['Lite', lite, 'after-summary'],
@@ -24,7 +35,7 @@ for (const [name, html, placement] of [
 ]) {
   check(html.includes('id="amazonAffiliateSlot"'), `${name}: stable amazonAffiliateSlot missing`);
   check(html.includes(`data-affiliate-placement="${placement}"`), `${name}: stable placement missing`);
-  check(html.includes('data-affiliate-state="inactive"'), `${name}: slot must default inactive`);
+  check(html.includes('data-affiliate-state="inactive"'), `${name}: HTML slot must remain fail-closed before runtime activation`);
 }
 
 for (const asset of [
@@ -36,14 +47,21 @@ for (const asset of [
 }
 check(parser.includes('getElementById("amazonAffiliateSlot")'), 'affiliate runtime must only bootstrap when a slot exists');
 
+check(adapter.includes('config.trackingMode === "tagged_search"'), 'adapter must explicitly enforce tagged_search mode');
+check(adapter.includes('url.searchParams.get("tag") !== expectedTag'), 'adapter must reject links with the wrong Associates tag');
+check(adapter.includes('url.pathname !== "/s"'), 'adapter must restrict tagged mode to Amazon search paths');
+check(adapter.includes('!url.searchParams.get("k")'), 'adapter must require a fixed search keyword');
+check(adapter.includes('host !== "amazon.co.jp"'), 'adapter must explicitly handle the amazon.co.jp host');
+check(adapter.includes('!host.endsWith(".amazon.co.jp")'), 'adapter must explicitly handle Amazon Japan subdomains');
+check(adapter.includes('url.protocol !== "https:"'), 'adapter must reject non-HTTPS affiliate URLs');
+check(adapter.includes('rel = "sponsored noopener noreferrer"'), 'affiliate link sponsored/noopener/noreferrer semantics missing');
+
 for (const eventName of ['affiliate_impression', 'affiliate_click']) {
   check(adapter.includes(eventName), `adapter missing event ${eventName}`);
 }
-
 for (const safeKey of ['tool', 'provider', 'placement', 'link_key']) {
   check(adapter.includes(safeKey), `adapter missing generic metadata ${safeKey}`);
 }
-
 for (const forbidden of ['inciInput', 'fast-input', 'jb-input', 'ocr-file', 'ingredients', 'analysis', 'filename']) {
   check(!adapter.includes(forbidden), `adapter must not reference raw user-data surface: ${forbidden}`);
 }

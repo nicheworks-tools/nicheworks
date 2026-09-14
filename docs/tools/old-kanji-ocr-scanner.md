@@ -7,6 +7,7 @@
 - **Registry state:** active (registered implementation present)
 - **Category:** old, kanji, ocr, scanner
 - **Common specification:** `common-spec/spec-ja.md`
+- **Affiliate specification:** `common-spec/amazon-affiliate.md`
 - **Audit state:** `PASS`
 
 ## 1. Identity
@@ -15,7 +16,7 @@ This record is the canonical per-tool contract for the registered `old-kanji-ocr
 
 ## 2. Purpose
 
-Run browser-side Japanese OCR on one selected image, let the user correct the recognized text, and detect registered old/variant kanji in the resulting text.
+Run browser-side Japanese OCR on one selected image, let the user correct the recognized text, detect registered old/variant kanji in the resulting text, and optionally expose contextual Amazon search handoffs for physical document-reading tools.
 
 ## 3. Inputs
 
@@ -35,6 +36,7 @@ Run browser-side Japanese OCR on one selected image, let the user correct the re
 - Load same-site Old Kanji mapping/metadata/compatibility assets for detection.
 - Free mode is designed for one-image review.
 - Old Kanji Toolkit Pro features such as batch OCR, saved history, crop OCR, zoom inspection, image marking, collection, and report/export are shown as planned/locked because billing is not connected.
+- The Amazon resource panel builds fixed tagged Amazon.co.jp search URLs only for `ブックスキャナー 非破壊` and `古文書 ルーペ` using tracking ID `nicheworks09-22`.
 
 ## 5. Outputs
 
@@ -43,6 +45,7 @@ Run browser-side Japanese OCR on one selected image, let the user correct the re
 - Old-kanji detection/highlighting.
 - Mechanical modern-form preview.
 - Clipboard outputs for OCR text, old forms, pairs, and preview.
+- Optional contextual Amazon search links plus the required Associates disclosure.
 
 Observed delivery capabilities: clipboard copy **present**; download/export **present**.
 
@@ -60,39 +63,50 @@ Observed delivery capabilities: clipboard copy **present**; download/export **pr
 
 The selected image is passed to Tesseract.js in the browser and is not uploaded to an external OCR API by tool code. However, the OCR engine script is loaded from jsDelivr and Tesseract may load OCR runtime/language data over the network. Same-site reference JSON, ads, and analytics may also load. Therefore the tool is browser-side OCR, not a fully offline page.
 
-Persistence evidence: no `localStorage` or `sessionStorage` reference found in inspected implementation text. Network-capable application code: **found**; non-suite hosts observed: `cdn.jsdelivr.net`.
+Amazon affiliate URLs are fixed-resource searches. OCR text, image filename/type/size, detected characters, modern-form preview, selected image state, and manually entered text are not appended to those URLs or affiliate analytics. Affiliate click events use only `tool`, `affiliate`, `target`, and `placement`.
+
+Persistence evidence: no `localStorage` or `sessionStorage` reference found in inspected implementation text. Network-capable application code: **found**; non-suite hosts include `cdn.jsdelivr.net` and Amazon.co.jp through explicit user-initiated affiliate navigation.
 
 ## 8. Responsive contract
 
-- **Layout class:** `mobile-oriented` (source classification: `mobile-oriented`).
+- **Layout class:** `mobile-oriented`.
 - Camera/image selection, OCR status, editable result text, and detected cards form a mobile-friendly vertical scan workflow.
-- The implementation must preserve its functional width class and follow common-spec section 9-2 breakpoints/adaptation rules; it must not be forced into a universal 600px layout.
-- Current audit: no concrete responsive defect was established by static inspection. Absence of a media query alone is not treated as failure; viewport, fluid sizing, wrapping, and the tool-specific interaction shape must be evaluated together.
+- The Amazon resource grid collapses to one column on narrow screens.
+- The implementation must preserve its functional width class and follow common-spec section 9-2 breakpoints/adaptation rules.
 
 ## 9. Language contract
 
 - **Policy:** `bilingual single-page`.
-- The implemented `bilingual single-page` mode above is the canonical language behavior; repository HTML/JavaScript establishes the switching or page-separation mechanism.
-- Existing languages must not be removed. English UI must not be added to an explicit Japanese-only exception without a specification change.
+- Existing languages must not be removed.
+- Affiliate resource labels follow the page language; the Associates disclosure remains bilingual.
 
 ## 10. SEO contract
 
-The main public page must meet common-spec section 9-3: a tool-specific title and meaningful description, exactly one self-referencing canonical for `https://nicheworks.app/tools/old-kanji-ocr-scanner/`, and valid `WebApplication` JSON-LD. Current audit: canonical **present**; WebApplication JSON-LD **present**. SEO prose must remain evidence-based rather than being padded arbitrarily.
+The main public page must meet common-spec section 9-3: a tool-specific title and meaningful description, exactly one self-referencing canonical for `https://nicheworks.app/tools/old-kanji-ocr-scanner/`, and valid `WebApplication` JSON-LD. SEO prose must remain evidence-based.
 
 ## 11. Advertising contract
 
-Preserve all existing GA4 and AdSense identifiers/code. Advertising must follow common-spec sections 1.1 and 9-5: no ad inserted into the input flow or directly beneath the principal action button. Current main-page evidence: GA4 **present**; AdSense **present**.
+Preserve all existing GA4 and AdSense identifiers/code. Advertising must follow common-spec sections 1.1 and 9-5: no ad inserted into the input flow or directly beneath the principal action button.
+
+### Affiliate contract
+
+- Shared `/assets/amazon-affiliate.js`, local `affiliate-config.js`, and local `affiliate.js` form the Amazon path.
+- Production tracking ID is `nicheworks09-22`.
+- Active targets are fixed searches for non-destructive book scanners and document magnifiers only.
+- Associates disclosure is visible whenever active targets are available.
+- Links use `rel="sponsored noopener"` and shared coarse `affiliate_click` metadata only.
+- No product images, prices, ratings, reviews, availability, or scraped product metadata are rendered.
+- OCR text, image metadata, detected characters, manual text, or scan state may not enter affiliate URLs or analytics.
 
 ## 12. Donation/support contract
 
-Follow common-spec sections 6 and 9-4. Current main-page donation/support evidence: **present**. Preserve the footer-near OFUSE + Ko-fi support block and shared support styling unless the suite contract intentionally changes.
+Follow common-spec sections 6 and 9-4. Preserve the footer-near OFUSE + Ko-fi support block and shared support styling unless the suite contract intentionally changes.
 
 ## 13. Help/usage/FAQ contract
 
-- **Main-page concise explanation:** `required-and-present` (the implementation provides title/lead or equivalent purpose copy).
-- **Usage documentation:** `recommended-and-missing`. Evidence: no usage page found. Missing recommended documentation is an improvement opportunity, not a hard compliance failure.
-- **FAQ:** `recommended-and-missing`. FAQ is conditional under common-spec sections 10–11; LogFormatter, Rename Wizard, and immediate formatting utilities may omit it. Missing recommended FAQ content is not a hard compliance failure.
-- **Language handling for existing usage pages:** not applicable while no usage page exists.
+- Main-page concise explanation: `required-and-present`.
+- Usage documentation: `recommended-and-missing`.
+- FAQ: `recommended-and-missing`.
 - Any usage link must remain a subdued text link, separated from advertising as required by common-spec section 10-6.
 
 ## 14. Functional acceptance tests
@@ -102,8 +116,11 @@ Follow common-spec sections 6 and 9-4. Current main-page donation/support eviden
 - [ ] Editing OCR text immediately updates old-kanji detection and the mechanical modern preview.
 - [ ] Failure to load old-kanji reference data still leaves OCR/manual text editing available with an explicit data-load warning.
 - [ ] Planned Pro controls remain locked while billing is unavailable.
+- [ ] Amazon resource configuration uses `nicheworks09-22` and only the two approved fixed queries.
+- [ ] OCR/image/user-derived values never enter Amazon URLs or affiliate analytics.
+- [ ] Associates disclosure and shared sponsored-link behavior remain active.
 
-Automated test evidence: `scripts/check-tool-runtime-contracts-wave4.mjs` (regression/contract test). Behavior-level status: **behavior-test-missing**; build, generator, data-validation, audit, and source-contract checks are not silently counted as behavior tests.
+Automated test evidence: `scripts/check-tool-runtime-contracts-wave4.mjs`. Behavior-level status remains **behavior-test-missing** for a full real-browser suite.
 
 ## 15. Explicit tool-specific exceptions
 
@@ -115,3 +132,7 @@ Automated test evidence: `scripts/check-tool-runtime-contracts-wave4.mjs` (regre
 - `tools/old-kanji-ocr-scanner/index.html`
 - `tools/old-kanji-ocr-scanner/app.js`
 - `tools/old-kanji-ocr-scanner/style.css`
+- `tools/old-kanji-ocr-scanner/amazon.css`
+- `tools/old-kanji-ocr-scanner/affiliate-config.js`
+- `tools/old-kanji-ocr-scanner/affiliate.js`
+- `assets/amazon-affiliate.js`

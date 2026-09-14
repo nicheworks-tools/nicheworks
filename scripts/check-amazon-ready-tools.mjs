@@ -161,18 +161,22 @@ function loadConfig(rel, globalName) {
   return sandbox.window[globalName];
 }
 
-// Production configs stay inert until the account/links are ready.
+// Production configs are activated only with the verified user-provided HTTPS Special Links.
 {
   const config = loadConfig('tools/size-converter/affiliate-config.js', 'NWSizeConverterAffiliate');
-  check(config?.enabled === false, 'Size Converter affiliate config must remain disabled until activation PR');
-  check(config?.targets?.shoes === '' && config?.targets?.clothing === '',
-    'Size Converter affiliate targets must remain empty until verified URLs exist');
+  check(config?.enabled === true, 'Size Converter affiliate config must be enabled after activation');
+  check(config?.targets?.shoes === 'https://amzn.to/4hnXGRb',
+    'Size Converter shoes target must match the verified activation URL');
+  check(config?.targets?.clothing === 'https://amzn.to/4dxBv8Q',
+    'Size Converter clothing target must match the verified activation URL');
 }
 {
   const config = loadConfig('tools/tiny-audio-meter/affiliate-config.js', 'NWTinyAudioAffiliate');
-  check(config?.enabled === false, 'Tiny Audio affiliate config must remain disabled until activation PR');
-  check(config?.targets?.sound_level_meter === '' && config?.targets?.usb_microphone === '',
-    'Tiny Audio affiliate targets must remain empty until verified URLs exist');
+  check(config?.enabled === true, 'Tiny Audio affiliate config must be enabled after activation');
+  check(config?.targets?.sound_level_meter === 'https://amzn.to/4xHeUyd',
+    'Tiny Audio sound-level-meter target must match the verified activation URL');
+  check(config?.targets?.usb_microphone === 'https://amzn.to/4iZFUF8',
+    'Tiny Audio USB microphone target must match the verified activation URL');
 }
 
 // Size Converter current product/affiliate contract.
@@ -221,9 +225,9 @@ lacks('tools/tiny-audio-meter/comparison.js', 'localStorage.setItem', 'baseline 
 }
 
 if (failures.length) {
-  console.error(`Amazon-ready tool contract failed (${failures.length})`);
+  console.error(`Amazon affiliate contract failed (${failures.length})`);
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
 
-console.log('Amazon-ready tool contract passed: helper behavior, disabled configs, Size Converter, Tiny Audio Meter.');
+console.log('Amazon affiliate contract passed: helper behavior, activated configs, Size Converter, Tiny Audio Meter.');

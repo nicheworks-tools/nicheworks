@@ -1,0 +1,95 @@
+{
+  "schema": "cta-image-wave2-sources-v2.3",
+  "version": "2026-09-14-wave2a-1",
+  "policy": {
+    "runtime_hotlink": false,
+    "source_provider": "Wikimedia Commons",
+    "promotion_rule": "Only sources with explicit license provenance, resolved canonical identity, and manually reviewed subject match may be promoted."
+  },
+  "items": [
+    {
+      "entry_id": "q013_dolly",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Flatbed_trolley%2C_Novosibirsk_01.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Flatbed_trolley,_Novosibirsk_01.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "К.Артём.1",
+      "attribution": "К.Артём.1 / Wikimedia Commons, CC BY-SA 4.0",
+      "source_sha1": "a81425c7867dd3e208abecd0371331118a2d0d4e",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Real hand-pushed flatbed trolley with a wheeled platform and handle; matches the resolved canonical dolly/platform-cart subject rather than a two-wheel hand truck."
+    },
+    {
+      "entry_id": "q011_roof_underlayment",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/03/Roofing_felt_%28%D1%83%D0%BA%D0%BB%D0%B0%D0%B4%D0%BA%D0%B0_%D1%80%D1%83%D0%B1%D0%B5%D1%80%D0%BE%D0%B8%D0%B4%D0%B0_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%80%D0%B5%D1%88%D1%91%D1%82%D0%BA%D1%832%29.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Roofing_felt_(%D1%83%D0%BA%D0%BB%D0%B0%D0%B4%D0%BA%D0%B0_%D1%80%D1%83%D0%B1%D0%B5%D1%80%D0%BE%D0%B8%D0%B4%D0%B0_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%80%D0%B5%D1%88%D1%91%D1%82%D0%BA%D1%832).jpg",
+      "source_filename": "source.jpg",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Андрей Перцев 1967",
+      "attribution": "Андрей Перцев 1967 / Wikimedia Commons, CC0 1.0",
+      "source_sha1": "2783ab890c5c9eff19db307c0e10ded7030ba262",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Real roofing felt being installed as roof waterproofing/underlayment; matches the resolved roof-underlayment subject."
+    },
+    {
+      "entry_id": "pointing_trowel",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/A_scene_of_Pointing_Trowel.JPG",
+      "source_page": "https://commons.wikimedia.org/wiki/File:A_scene_of_Pointing_Trowel.JPG",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "author": "Thamizhpparithi Maari",
+      "attribution": "Thamizhpparithi Maari / Wikimedia Commons, CC BY-SA 3.0",
+      "source_sha1": "edd72b5aafbbebae31c19021acaabe191527261f",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Commons identifies the photographed masonry hand tool as a pointing trowel; kept separate from the concrete groover canonical subject."
+    },
+    {
+      "entry_id": "q012_unistrut_channel",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/SpringNutInPlace.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:SpringNutInPlace.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "Bob Blaylock",
+      "attribution": "Bob Blaylock / Wikimedia Commons, CC BY-SA 4.0",
+      "source_sha1": "db1eebaa03571ffc9888c2c947d8771df7f4ddb1",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Close-up real photograph clearly shows the open profile and lips of a steel strut channel with a spring nut installed."
+    },
+    {
+      "entry_id": "q012_japanese_plane",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/Japanese_handplane_%28kanna%29_with_wood_shavings.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Japanese_handplane_(kanna)_with_wood_shavings.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "Terasaface",
+      "attribution": "Terasaface / Wikimedia Commons, CC BY-SA 4.0",
+      "source_sha1": "ab115f0857dd7012db5d72dd1994983e9c69168a",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Real Japanese kanna hand plane shown with wood shavings; direct match for the resolved Japanese Plane canonical entry."
+    },
+    {
+      "entry_id": "q011_float",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Concrete_float.JPG",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Concrete_float.JPG",
+      "source_filename": "source.jpg",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Richard Frantz Jr.",
+      "attribution": "Richard Frantz Jr. / Wikimedia Commons, CC0 1.0",
+      "source_sha1": "89e3900dcd531476533674a5cc0722f598b58e25",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Real concrete float hand tool; matches the canonical float used to level mortar or concrete surfaces."
+    }
+  ]
+}

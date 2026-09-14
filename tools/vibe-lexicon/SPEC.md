@@ -45,7 +45,7 @@
 - favoritesは`nw-vl-favorites`としてlocalStorageへ保存する。
 - recent termsは`nw-vl-recent`としてlocalStorageへ保存する。
 - search/filter/current detail/compare selectionはpage stateで、永続保存しない。
-- Pro active stateは共通`NWPro` infrastructureのcontractに従う。
+- Pro active stateは共通`NWPro` infrastructureのcontractに従い、`active && entitlement === "nicheworks_pro"`を必須とする。旧tool-local `nw_pro_vibe-lexicon` flag単独ではpaid operationを解放せず、bridge初期化時にlegacy flagを削除する。
 - favorites/recentはcross-device syncしない。
 
 ## Privacy and network behavior
@@ -82,7 +82,7 @@ desktopではfilters / catalog / detailのdashboardを主構成とし、mobile�
 - [ ] favoritesとrecent termsがそれぞれlocalStorageに保存され、再訪時に復元される。
 - [ ] compareへ最大2 termsを追加し、difference/use guidanceを表示できる。
 - [ ] 3件目をFree compareへ追加しようとすると上限案内になる。
-- [ ] Pro active時にwork-pack copy/export actionsが解放されるが、compare件数上限は現行runtimeどおり2件を維持する。
+- [ ] `active && entitlement === "nicheworks_pro"`の場合だけwork-pack copy/export actionsが解放され、別entitlementや旧tool-local flagだけでは解放されない。compare件数上限は現行runtimeどおり2件を維持する。
 
 ## Implementation evidence
 

@@ -1,0 +1,27 @@
+[
+  {
+    "pref": "佐賀県",
+    "city": "佐賀市",
+    "name": "佐賀市 ごみカレンダー",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.saga.lg.jp/main/412.html",
+    "lgcode": "412015",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "佐賀県",
+    "city": "佐賀市",
+    "name": "佐賀市 粗大ごみ定期収集（ステッカー方式）の利用方法",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.saga.lg.jp/kurashi/seikatsukankyo/1/1/5/3840.html",
+    "lgcode": "412015",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  }
+]

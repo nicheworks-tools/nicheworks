@@ -45,7 +45,7 @@
 - Workerがtarget pageへnetwork requestし、取得HTMLをbrowserへ返す構成である。
 - target URLはWorker側およびtarget website側から観測可能になり得る。
 - pageにはanalytics / ads resourceもloadされ得る。
-- 現在のpage metadata/説明に残る「ローカル処理」「Fully browser-based」という表現はruntime behaviorと一致せず、このSPECではruntimeを正とする。
+- 現在のJP/EN page metadataとvisible privacy説明は、入力URLがtitle取得のためNicheWorks Workerへ送信され、Workerからtarget siteへのnetwork requestが発生するruntime behaviorと一致している。
 
 ## Language mode
 

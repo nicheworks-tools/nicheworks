@@ -1,0 +1,27 @@
+[
+  {
+    "pref": "徳島県",
+    "city": "徳島市",
+    "name": "徳島市 令和8年度家庭ごみ収集日程表",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.tokushima.tokushima.jp/kurashi/recycle/gomi/R08gomischedule.html",
+    "lgcode": "362018",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "徳島県",
+    "city": "徳島市",
+    "name": "徳島市 粗大ごみ",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.tokushima.tokushima.jp/kurashi/recycle/gomi/sodaigomi.html",
+    "lgcode": "362018",
+    "last_checked": "2026-09-14",
+    "status": "active",
+    "language": "ja"
+  }
+]

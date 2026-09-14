@@ -1,0 +1,27 @@
+[
+  {
+    "pref": "宮崎県",
+    "city": "宮崎市",
+    "name": "宮崎市 令和8年度家庭ごみ・資源物収集日程表",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.miyazaki.miyazaki.jp/life/trash/trash_calendar/339776.html",
+    "lgcode": "452017",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "宮崎県",
+    "city": "宮崎市",
+    "name": "宮崎市 粗大ごみの出し方",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.miyazaki.miyazaki.jp/life/trash/fractionation/34204.html",
+    "lgcode": "452017",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  }
+]

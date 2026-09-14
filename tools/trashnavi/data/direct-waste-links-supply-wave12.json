@@ -1,0 +1,27 @@
+[
+  {
+    "pref": "大分県",
+    "city": "大分市",
+    "name": "大分市 2026年度（令和8年度）ごみ収集カレンダー（住所別検索）",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.oita.oita.jp/o150/kurashi/gomi/2026karenda/kensakuhyo.html",
+    "lgcode": "442011",
+    "fiscal_year": "2026",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "大分県",
+    "city": "大分市",
+    "name": "大分市 粗大ごみ・一時的多量ごみ",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.oita.oita.jp/o017/homepage/bulkygarbage.html",
+    "lgcode": "442011",
+    "last_checked": "2026-09-13",
+    "status": "active",
+    "language": "ja"
+  }
+]

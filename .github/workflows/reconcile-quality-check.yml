@@ -1,0 +1,43 @@
+name: Reconcile quality check
+
+on:
+  pull_request:
+    paths:
+      - 'tools/reconcile/**'
+      - '.agent/plans/2026-09-13-reconcile-quality-performance.md'
+      - '.github/workflows/reconcile-quality-check.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/reconcile/**'
+      - '.agent/plans/2026-09-13-reconcile-quality-performance.md'
+      - '.github/workflows/reconcile-quality-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Syntax
+        run: |
+          node --check tools/reconcile/app.mjs
+          node --check tools/reconcile/parser.mjs
+          node --check tools/reconcile/normalize.mjs
+          node --check tools/reconcile/reconcile-engine.mjs
+          node --check tools/reconcile/export.mjs
+          node --check tools/reconcile/xlsx-adapter.mjs
+          node --check tools/reconcile/rules-store.mjs
+      - name: Reconcile tests
+        run: |
+          for test in tools/reconcile/tests/*.test.mjs; do
+            echo "==> $test"
+            node "$test"
+          done

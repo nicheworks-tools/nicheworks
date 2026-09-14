@@ -217,7 +217,7 @@
       if (window.NWPro && typeof window.NWPro.getLocalStatus === 'function') {
         const local = window.NWPro.getLocalStatus();
         proStatusCheckFailed = false;
-        commonProActive = Boolean(local && local.active);
+        commonProActive = Boolean(local && local.active && local.entitlement === 'nicheworks_pro');
         document.documentElement.dataset.proActive = commonProActive ? 'true' : 'false';
         return;
       }

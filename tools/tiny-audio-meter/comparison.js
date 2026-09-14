@@ -36,7 +36,7 @@
 
         const peakHz = peakValue > 0 ? peakIndex * binHz : null;
         window.dispatchEvent(new CustomEvent(SPECTRUM_EVENT, {
-          detail: { peakHz, peakValue }
+          detail: { peakHz, peakValue, sampleRate, fftSize: analyser.fftSize }
         }));
       };
       return analyser;
@@ -188,11 +188,11 @@
     if (baseline) updateDelta();
   }
 
-  function loadRecordsExport() {
-    if (document.querySelector('script[data-tiny-audio-records-export]')) return;
+  function loadLocalExtension(src, marker) {
+    if (document.querySelector(`script[data-tiny-audio-extension="${marker}"]`)) return;
     const script = document.createElement("script");
-    script.src = "./records-export.js";
-    script.dataset.tinyAudioRecordsExport = "true";
+    script.src = src;
+    script.dataset.tinyAudioExtension = marker;
     document.head.appendChild(script);
   }
 
@@ -232,5 +232,7 @@
 
   renderBaseline();
   refresh();
-  loadRecordsExport();
+  loadLocalExtension("./records-export.js", "records-export");
+  loadLocalExtension("./ambient-reference.js", "ambient-reference");
+  loadLocalExtension("./measurement-conditions.js", "measurement-conditions");
 })();

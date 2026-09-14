@@ -29,13 +29,34 @@
     "塩化ナトリウム": "sodium chloride",
     "クエン酸ナトリウム": "sodium citrate",
     "水酸化ナトリウム": "sodium hydroxide",
+    "水酸化ナトリウム液": "sodium hydroxide",
     "エデト酸2ナトリウム": "disodium edta",
     "エデト酸二ナトリウム": "disodium edta",
     "ニコチン酸アミド": "niacinamide",
     "ヒアルロン酸ナトリウム": "sodium hyaluronate",
     "ヒアルロン酸ソーダ": "sodium hyaluronate",
     "乳酸ナトリウム": "sodium lactate",
+    "ポリアクリル酸ナトリウム": "sodium polyacrylate",
+    "ラウレス硫酸ナトリウム": "sodium laureth sulfate",
+    "安息香酸ナトリウム": "sodium benzoate",
+    "ソルビン酸カリウム": "potassium sorbate",
+    "水酸化カリウム": "potassium hydroxide",
+    "水酸化カリウム液a": "potassium hydroxide",
+    "リン酸ナトリウム": "sodium phosphate",
+    "リン酸二ナトリウム": "disodium phosphate",
+    "pcaナトリウム": "sodium pca",
+    "pg": "propylene glycol",
+    "グリセリルエチルヘキシルエーテル": "ethylhexylglycerin",
+    "ヤシ油脂肪酸アシルグルタミン酸na": "sodium cocoyl glutamate",
+    "シュガースクワラン": "squalane",
     "alcohol denat": "alcohol denat."
+  });
+
+  const CANONICAL_EQUIVALENTS = Object.freeze({
+    "bemotrizinol": "bis-ethylhexyloxyphenol methoxyphenyl triazine",
+    "bisoctrizole": "methylene bis-benzotriazolyl tetramethylbutylphenol",
+    "ci 77891": "titanium dioxide",
+    "ci 77019": "mica"
   });
 
   const AMBIGUOUS_EXACT_KEYS = Object.freeze([
@@ -47,12 +68,109 @@
   ]);
   const ambiguousExactKeySet = new Set(AMBIGUOUS_EXACT_KEYS);
 
+  const VERIFIED_CATEGORY_EVIDENCE = Object.freeze({
+    "water": Object.freeze({
+      category: "solvent",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/water/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "glycerin": Object.freeze({
+      category: "humectant",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/glycerin/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "propylene glycol": Object.freeze({
+      category: "humectant",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/propylene-glycol/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "phenoxyethanol": Object.freeze({
+      category: "preservative",
+      sources: Object.freeze(["https://health.ec.europa.eu/publications/phenoxyethanol_en"]),
+      authority: "European Commission Scientific Committee on Consumer Safety"
+    }),
+    "carbomer": Object.freeze({
+      category: "thickener",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/carbomer/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "citric acid": Object.freeze({
+      category: "pH adjuster",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/citric-acid/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "tocopherol": Object.freeze({
+      category: "antioxidant",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/tocopherol/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "sodium chloride": Object.freeze({
+      category: "viscosity adjuster",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/sodium-chloride/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "disodium edta": Object.freeze({
+      category: "chelating agent",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/disodium-edta/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    })
+  });
+
+  const VERIFIED_NOTE_EVIDENCE = Object.freeze({
+    "phenoxyethanol": Object.freeze({
+      note_short: "Preservative; SCCS considers it safe for use up to 1.0% in cosmetic products.",
+      note_sources: Object.freeze(["https://health.ec.europa.eu/publications/phenoxyethanol_en"]),
+      authority: "European Commission Scientific Committee on Consumer Safety"
+    }),
+    "sodium hydroxide": Object.freeze({
+      note_short: "pH adjuster; EU cosmetic rules list sodium hydroxide for pH-adjusting uses subject to specified restrictions.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0622"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "potassium hydroxide": Object.freeze({
+      note_short: "pH adjuster; EU cosmetic rules list potassium hydroxide for pH-adjusting uses subject to specified restrictions.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0622"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "methylisothiazolinone": Object.freeze({
+      note_short: "Preservative; EU cosmetic rules limit methylisothiazolinone to rinse-off products at up to 0.0015%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R1224"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "methylchloroisothiazolinone": Object.freeze({
+      note_short: "Preservative; in EU cosmetics, the methylchloroisothiazolinone/methylisothiazolinone 3:1 mixture is limited to rinse-off products at up to 0.0015%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32014R1003"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "sodium benzoate": Object.freeze({
+      note_short: "Preservative; EU Annex V sets sodium benzoate limits of 2.5% for rinse-off products, 1.7% for oral products and 0.5% for leave-on products, expressed as acid.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223/2026-05-18"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "sodium dehydroacetate": Object.freeze({
+      note_short: "Preservative; EU Annex V permits sodium dehydroacetate up to 0.6% expressed as acid and excludes aerosol sprays.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223/2026-05-18"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "sulfur": Object.freeze({
+      note_short: "OTC acne active; FDA Monograph M006 permits sulfur at 3% to 10% as a single active ingredient.",
+      note_sources: Object.freeze(["https://www.accessdata.fda.gov/drugsatfda_docs/omuf/OTC%20Monograph_M006-Topical%20Acne%20drug%20products%20for%20OTC%20Human%20Use%2011.23.2021.pdf"]),
+      authority: "U.S. Food and Drug Administration"
+    })
+  });
+
+  function canonicalIdentityKey(value = "") {
+    const base = normalizeBaseKey(value);
+    if (!base) return "";
+    return CANONICAL_EQUIVALENTS[base] || base;
+  }
+
   function normalizeKey(value = "") {
     const base = normalizeBaseKey(value);
     if (!base || ambiguousExactKeySet.has(base)) return "";
-    const equivalent = ALIAS_EQUIVALENTS[base] || base;
-    if (ambiguousExactKeySet.has(equivalent)) return "";
-    return equivalent;
+    const aliasEquivalent = ALIAS_EQUIVALENTS[base] || base;
+    if (ambiguousExactKeySet.has(aliasEquivalent)) return "";
+    return canonicalIdentityKey(aliasEquivalent);
   }
 
   function isAmbiguousExactName(value = "") {
@@ -74,14 +192,99 @@
     return output;
   }
 
+  function addSemanticValue(map, canonicalKey, field, value) {
+    const normalized = normalizeText(value);
+    if (!normalized) return;
+    if (!map.has(canonicalKey)) {
+      map.set(canonicalKey, { safety: [], category: [], safetySet: new Set(), categorySet: new Set() });
+    }
+    const state = map.get(canonicalKey);
+    const normalizedKey = normalized.toLowerCase();
+    const set = field === "safety" ? state.safetySet : state.categorySet;
+    const list = field === "safety" ? state.safety : state.category;
+    if (set.has(normalizedKey)) return;
+    set.add(normalizedKey);
+    list.push(field === "safety" ? normalizedKey : normalized);
+  }
+
+  function atomicCategoryValues(values) {
+    const output = [];
+    const seen = new Set();
+    for (const raw of values) {
+      for (const part of String(raw).split(/\s*\/\s*/)) {
+        const text = normalizeText(part);
+        const key = text.toLowerCase();
+        if (!text || seen.has(key)) continue;
+        seen.add(key);
+        output.push(text);
+      }
+    }
+    return output;
+  }
+
+  function normalizeHttpsSource(value = "") {
+    if (typeof value !== "string") return "";
+    const text = value.trim();
+    if (!text) return "";
+    try {
+      const parsed = new URL(text);
+      if (parsed.protocol !== "https:" || !parsed.hostname) return "";
+      return parsed.href;
+    } catch {
+      return "";
+    }
+  }
+
+  function normalizeNoteSources(values = []) {
+    const output = [];
+    const seen = new Set();
+    for (const value of Array.isArray(values) ? values : []) {
+      const source = normalizeHttpsSource(value);
+      if (!source || seen.has(source)) continue;
+      seen.add(source);
+      output.push(source);
+    }
+    return output;
+  }
+
+  function verifiedNoteCandidate(raw) {
+    if (raw?.note_verified !== true) return null;
+    const note = normalizeText(raw.note_short);
+    const sources = normalizeNoteSources(raw.note_sources);
+    if (!note || sources.length === 0) return null;
+    return { note, sources };
+  }
+
+  function addVerifiedNoteCandidate(map, canonicalKey, raw) {
+    const candidate = verifiedNoteCandidate(raw);
+    if (!candidate) return;
+    if (!map.has(canonicalKey)) map.set(canonicalKey, new Map());
+    const candidates = map.get(canonicalKey);
+    const noteKey = candidate.note;
+    if (!candidates.has(noteKey)) {
+      candidates.set(noteKey, { note: candidate.note, sources: [] });
+    }
+    candidates.get(noteKey).sources = normalizeNoteSources([
+      ...candidates.get(noteKey).sources,
+      ...candidate.sources
+    ]);
+  }
+
   function mergeDictionaryRecords(items = []) {
     const byCanonical = new Map();
+    const semanticValues = new Map();
+    const verifiedNotes = new Map();
     const order = [];
 
     for (const raw of Array.isArray(items) ? items : []) {
       if (!raw || !raw.en) continue;
-      const canonicalKey = normalizeBaseKey(raw.en);
+      const rawBaseKey = normalizeBaseKey(raw.en);
+      const canonicalKey = canonicalIdentityKey(raw.en);
       if (!canonicalKey) continue;
+
+      addSemanticValue(semanticValues, canonicalKey, "safety", raw.safety);
+      addSemanticValue(semanticValues, canonicalKey, "category", raw.category);
+      addVerifiedNoteCandidate(verifiedNotes, canonicalKey, raw);
 
       if (!byCanonical.has(canonicalKey)) {
         const first = {
@@ -95,14 +298,104 @@
       }
 
       const current = byCanonical.get(canonicalKey);
+      const currentBaseKey = normalizeBaseKey(current.en);
+      const rawIsPreferredCanonical = rawBaseKey === canonicalKey && currentBaseKey !== canonicalKey;
+
+      if (rawIsPreferredCanonical) {
+        current.alias = mergeNameLists(current.alias, [current.en], raw.alias);
+        current.en = raw.en;
+        if (raw.note_short) current.note_short = raw.note_short;
+      } else {
+        current.alias = mergeNameLists(current.alias, rawBaseKey !== currentBaseKey ? [raw.en] : [], raw.alias);
+      }
+
       current.jp = mergeNameLists(current.jp, raw.jp);
-      current.alias = mergeNameLists(current.alias, raw.alias);
-      if (!current.category && raw.category) current.category = raw.category;
       if (!current.note_short && raw.note_short) current.note_short = raw.note_short;
-      if (!current.safety && raw.safety) current.safety = raw.safety;
     }
 
-    return order.map((key) => byCanonical.get(key));
+    for (const [canonicalKey, evidence] of Object.entries(VERIFIED_CATEGORY_EVIDENCE)) {
+      if (!byCanonical.has(canonicalKey)) continue;
+      addSemanticValue(semanticValues, canonicalKey, "category", evidence.category);
+    }
+
+    for (const [canonicalKey, evidence] of Object.entries(VERIFIED_NOTE_EVIDENCE)) {
+      if (!byCanonical.has(canonicalKey)) continue;
+      addVerifiedNoteCandidate(verifiedNotes, canonicalKey, {
+        note_short: evidence.note_short,
+        note_verified: true,
+        note_sources: evidence.note_sources
+      });
+    }
+
+    return order.map((key) => {
+      const current = byCanonical.get(key);
+      const semantics = semanticValues.get(key) || { safety: [], category: [] };
+      const provenanceCandidates = [...(verifiedNotes.get(key)?.values() || [])];
+      const categoryEvidence = VERIFIED_CATEGORY_EVIDENCE[key] || null;
+      const noteEvidence = VERIFIED_NOTE_EVIDENCE[key] || null;
+      const conflicts = {};
+
+      if (semantics.safety.length === 1) {
+        current.safety = semantics.safety[0];
+      } else if (semantics.safety.length > 1) {
+        delete current.safety;
+        current.legacy_safety_values = semantics.safety.slice();
+        conflicts.safety = semantics.safety.slice();
+      } else {
+        delete current.safety;
+      }
+
+      if (semantics.category.length === 1) {
+        current.category = semantics.category[0];
+        current.categories = semantics.category.slice();
+      } else if (semantics.category.length > 1) {
+        const categories = atomicCategoryValues(semantics.category);
+        current.categories = categories;
+        current.category = categories.join(" / ");
+        conflicts.category = semantics.category.slice();
+      } else {
+        delete current.category;
+        current.categories = [];
+      }
+
+      if (categoryEvidence) {
+        current.category_verified = true;
+        current.category_sources = normalizeNoteSources(categoryEvidence.sources);
+        current.category_authority = categoryEvidence.authority;
+      } else {
+        delete current.category_verified;
+        delete current.category_sources;
+        delete current.category_authority;
+      }
+
+      if (provenanceCandidates.length === 1) {
+        current.note_short = provenanceCandidates[0].note;
+        current.note_verified = true;
+        current.note_sources = provenanceCandidates[0].sources.slice();
+        if (noteEvidence) current.note_authority = noteEvidence.authority;
+        else delete current.note_authority;
+        delete current.note_provenance_conflict;
+      } else if (provenanceCandidates.length > 1) {
+        delete current.note_verified;
+        delete current.note_sources;
+        delete current.note_authority;
+        current.note_provenance_conflict = provenanceCandidates.map((candidate) => ({
+          note_short: candidate.note,
+          note_sources: candidate.sources.slice()
+        }));
+        conflicts.note_provenance = provenanceCandidates.map((candidate) => candidate.note);
+      } else {
+        delete current.note_verified;
+        delete current.note_sources;
+        delete current.note_authority;
+        delete current.note_provenance_conflict;
+      }
+
+      if (Object.keys(conflicts).length) current.semantic_conflicts = conflicts;
+      else delete current.semantic_conflicts;
+
+      return current;
+    });
   }
 
   function protectNumericLocantCommas(value) {
@@ -200,15 +493,20 @@
   }
 
   const api = {
-    version: "1.7.0",
+    version: "1.17.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
+    canonicalIdentityKey,
+    normalizeNoteSources,
     splitIngredients,
     isExactIngredientMatch,
     isAmbiguousExactName,
     mergeDictionaryRecords,
+    verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
+    verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
     aliasEquivalents: ALIAS_EQUIVALENTS,
+    canonicalEquivalents: CANONICAL_EQUIVALENTS,
     ambiguousExactKeys: AMBIGUOUS_EXACT_KEYS
   };
 

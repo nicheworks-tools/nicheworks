@@ -91,7 +91,7 @@
     if (document.documentElement.dataset.proActive === 'true') return true;
     try {
       const status = window.NWPro && typeof window.NWPro.getLocalStatus === 'function' ? window.NWPro.getLocalStatus() : null;
-      if (status && status.active) return true;
+      if (status && status.active && status.entitlement === 'nicheworks_pro') return true;
     } catch {}
     return false;
   }

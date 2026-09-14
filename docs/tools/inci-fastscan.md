@@ -121,7 +121,7 @@ Follow common-spec sections 6 and 9-4. Current main-page donation/support eviden
 - [ ] Cosmetic Ingredient Checker Lite remains linked as the paste-only alternative.
 - [ ] The Amazon-ready slot remains inactive and hidden with no live affiliate URL/tag until explicitly configured.
 
-Automated evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/contract test), `tools/_shared/check-cosmetic-ingredient-parser.mjs` (shared-parser regression/behavior assertions), `tools/inci-fastscan/scripts/validate_dict.js` and `tools/inci-fastscan/validate-dictionary.mjs` (data validation). Phase 1 tool-level behavior-test status remains **behavior-test-missing** because these checks do not exercise the complete OCR/UI workflow.
+Automated evidence: `tools/_shared/check-fastscan-ocr-confusion.mjs` is a **behavior test**: it executes the real `core_matcher.js` in a VM with representative exact, OCR-confusion, typo-boundary, and unmatched inputs and asserts the resulting match state. `tools/_shared/check-cosmetic-ingredient-parser.mjs` supplies shared-parser behavior assertions; `scripts/check-tool-runtime-contracts.mjs` is regression/contract evidence; dictionary validators remain data validation. Tool-level behavior-test status is therefore **behavior-test-present**. This does not claim complete browser/OCR end-to-end coverage.
 
 ## 15. Explicit tool-specific exceptions
 
@@ -133,6 +133,7 @@ Automated evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/contr
 
 - `tools/_shared/cosmetic-ingredient-parser.js`
 - `tools/_shared/check-cosmetic-ingredient-parser.mjs`
+- `tools/_shared/check-fastscan-ocr-confusion.mjs`
 - `tools/inci-fastscan/index.html`
 - `tools/inci-fastscan/style.css`
 - `tools/inci-fastscan/enhancements.js`

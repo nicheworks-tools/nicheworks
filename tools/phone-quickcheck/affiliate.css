@@ -1,0 +1,9 @@
+.affiliate-grid .affiliate-slot{min-width:0}
+.affiliate-grid .affiliate-slot[hidden]{display:none}
+.affiliate-btn.amazon-cta{cursor:pointer;color:var(--text);text-decoration:none;border-color:#c4cad2;background:#fff;transition:border-color .15s,box-shadow .15s,transform .15s}
+.affiliate-btn.amazon-cta:hover{border-color:#8f99a6;box-shadow:0 2px 8px rgba(16,24,40,.08);transform:translateY(-1px)}
+.affiliate-btn.amazon-cta:focus-visible{outline:2px solid #667085;outline-offset:2px}
+.amazon-disclosure{margin-top:9px;padding-top:9px;border-top:1px solid #e5e9ee;color:#7d8794;font-size:10px;line-height:1.45}
+.amazon-disclosure p{margin:0}
+html[lang="ja"] .amazon-disclosure p[lang="en"]{display:none}
+html[lang="en"] .amazon-disclosure p[lang="ja"]{display:none}

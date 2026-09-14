@@ -10,14 +10,51 @@ on:
       - 'tools/_shared/check-cosmetics-accuracy-benchmark.mjs'
       - 'tools/_shared/check-cosmetics-full-label-benchmark.mjs'
       - 'tools/_shared/cosmetics-full-label-fixtures.json'
+      - 'tools/_shared/cosmetics-real-label-corpus.json'
+      - 'tools/_shared/check-cosmetics-real-label-corpus.mjs'
       - 'tools/_shared/check-cosmetics-dictionary-quality.mjs'
+      - 'tools/_shared/check-cosmetics-semantic-quality.mjs'
+      - 'tools/_shared/check-cosmetics-category-gap-inventory.mjs'
+      - 'tools/_shared/check-cosmetics-category-provenance.mjs'
+      - 'tools/_shared/check-cosmetics-category-taxonomy.mjs'
+      - 'tools/_shared/cosmetics-category-taxonomy.json'
+      - 'tools/_shared/check-cosmetics-legacy-safety-isolation.mjs'
+      - 'tools/_shared/check-cosmetics-runtime-semantic-merge.mjs'
+      - 'tools/_shared/check-cosmetics-note-provenance-isolation.mjs'
+      - 'tools/_shared/check-cosmetics-note-provenance-schema.mjs'
+      - 'tools/_shared/check-cosmetics-verified-note-wave1.mjs'
+      - 'tools/_shared/check-cosmetics-verified-note-wave2.mjs'
+      - 'tools/_shared/check-cosmetics-claim-note-inventory.mjs'
       - 'tools/_shared/check-cosmetics-canonical-merge.mjs'
+      - 'tools/_shared/check-cosmetics-canonical-equivalents.mjs'
+      - 'tools/_shared/check-cosmetics-jp-label-variants.mjs'
       - 'tools/_shared/check-fastscan-result-contract.mjs'
+      - 'tools/_shared/check-fastscan-ocr-confusion.mjs'
+      - 'tools/_shared/check-fastscan-ocr-line-repair.mjs'
+      - 'tools/_shared/check-fastscan-ocr-robustness.mjs'
+      - 'tools/_shared/check-fastscan-result-controls.mjs'
+      - 'tools/_shared/check-fastscan-review-queue.mjs'
+      - 'tools/_shared/check-lite-wave3-navigation.mjs'
       - 'tools/_shared/check-cosmetics-cross-tool-release.mjs'
+      - 'tools/_shared/check-cosmetics-wave2-release.mjs'
+      - 'tools/_shared/check-cosmetics-wave3-release.mjs'
       - 'tools/_shared/COSMETICS_ACCURACY_BENCHMARK.md'
       - 'tools/_shared/COSMETICS_ALIAS_POLICY.md'
       - 'tools/_shared/COSMETICS_CANONICAL_MERGE.md'
+      - 'tools/_shared/COSMETICS_CANONICAL_SEMANTICS.md'
+      - 'tools/_shared/COSMETICS_CATEGORY_GAPS.md'
+      - 'tools/_shared/COSMETICS_CATEGORY_PROVENANCE.md'
+      - 'tools/_shared/COSMETICS_CATEGORY_TAXONOMY.md'
+      - 'tools/_shared/COSMETICS_JP_LABEL_VARIANTS.md'
+      - 'tools/_shared/COSMETICS_NOTE_PROVENANCE.md'
+      - 'tools/_shared/COSMETICS_OCR_LINE_REPAIR.md'
+      - 'tools/_shared/COSMETICS_OCR_ROBUSTNESS.md'
       - 'tools/_shared/COSMETICS_RELEASE_GATE.md'
+      - 'tools/_shared/COSMETICS_WAVE2_RELEASE.md'
+      - 'tools/_shared/COSMETICS_WAVE3_RELEASE.md'
+      - 'tools/_shared/COSMETICS_REAL_LABEL_CORPUS.md'
+      - 'tools/_shared/COSMETICS_SEMANTIC_QUALITY.md'
+      - 'tools/_shared/COSMETICS_LEGACY_SAFETY_ISOLATION.md'
       - 'tools/_shared/cosmetics-affiliate-*.js'
       - 'tools/_shared/cosmetics-affiliate-*.css'
       - '.github/workflows/cosmetics-accuracy-benchmark.yml'
@@ -38,13 +75,52 @@ jobs:
         run: node tools/_shared/check-cosmetic-ingredient-parser.mjs
       - name: Dictionary and alias quality
         run: node tools/_shared/check-cosmetics-dictionary-quality.mjs
+      - name: Dictionary semantic quality audit
+        run: node tools/_shared/check-cosmetics-semantic-quality.mjs
+      - name: Category gap inventory
+        run: node tools/_shared/check-cosmetics-category-gap-inventory.mjs
+      - name: Verified category provenance
+        run: node tools/_shared/check-cosmetics-category-provenance.mjs
+      - name: Verified category taxonomy
+        run: node tools/_shared/check-cosmetics-category-taxonomy.mjs
+      - name: Legacy safety runtime isolation
+        run: node tools/_shared/check-cosmetics-legacy-safety-isolation.mjs
+      - name: Canonical runtime semantic merge
+        run: node tools/_shared/check-cosmetics-runtime-semantic-merge.mjs
+      - name: Note provenance runtime isolation
+        run: node tools/_shared/check-cosmetics-note-provenance-isolation.mjs
+      - name: Note provenance schema
+        run: node tools/_shared/check-cosmetics-note-provenance-schema.mjs
+      - name: Claim-bearing note inventory
+        run: node tools/_shared/check-cosmetics-claim-note-inventory.mjs
+      - name: Verified note wave 1
+        run: node tools/_shared/check-cosmetics-verified-note-wave1.mjs
+      - name: Verified note wave 2
+        run: node tools/_shared/check-cosmetics-verified-note-wave2.mjs
+      - name: Japanese label variant regression
+        run: node tools/_shared/check-cosmetics-jp-label-variants.mjs
       - name: Canonical merge regression
         run: node tools/_shared/check-cosmetics-canonical-merge.mjs
+      - name: Canonical equivalent regression
+        run: node tools/_shared/check-cosmetics-canonical-equivalents.mjs
       - name: Cosmetics JavaScript syntax
         run: |
           node --check tools/_shared/cosmetic-ingredient-parser.js
           node --check tools/_shared/cosmetics-affiliate-config.js
           node --check tools/_shared/cosmetics-affiliate-slot.js
+          node --check tools/_shared/check-cosmetics-semantic-quality.mjs
+          node --check tools/_shared/check-cosmetics-category-gap-inventory.mjs
+          node --check tools/_shared/check-cosmetics-category-provenance.mjs
+          node --check tools/_shared/check-cosmetics-category-taxonomy.mjs
+          node --check tools/_shared/check-cosmetics-legacy-safety-isolation.mjs
+          node --check tools/_shared/check-cosmetics-runtime-semantic-merge.mjs
+          node --check tools/_shared/check-cosmetics-note-provenance-isolation.mjs
+          node --check tools/_shared/check-cosmetics-note-provenance-schema.mjs
+          node --check tools/_shared/check-cosmetics-claim-note-inventory.mjs
+          node --check tools/_shared/check-cosmetics-verified-note-wave1.mjs
+          node --check tools/_shared/check-cosmetics-verified-note-wave2.mjs
+          node --check tools/_shared/check-cosmetics-jp-label-variants.mjs
+          node --check tools/_shared/check-fastscan-ocr-robustness.mjs
           node --check tools/cosmetic-ingredient-checker-lite/app.js
           node --check tools/cosmetic-ingredient-checker-lite/enhancements.js
           node --check tools/inci-fastscan/enhancements.js
@@ -59,11 +135,29 @@ jobs:
           node --check tools/inci-fastscan/js/generated_dictionary.js
       - name: FastScan detailed result contract
         run: node tools/_shared/check-fastscan-result-contract.mjs
+      - name: FastScan OCR confusion regression
+        run: node tools/_shared/check-fastscan-ocr-confusion.mjs
+      - name: FastScan OCR line repair regression
+        run: node tools/_shared/check-fastscan-ocr-line-repair.mjs
+      - name: FastScan source-backed OCR robustness
+        run: node tools/_shared/check-fastscan-ocr-robustness.mjs
+      - name: FastScan result controls regression
+        run: node tools/_shared/check-fastscan-result-controls.mjs
+      - name: FastScan review queue regression
+        run: node tools/_shared/check-fastscan-review-queue.mjs
+      - name: Lite wave 3 navigation regression
+        run: node tools/_shared/check-lite-wave3-navigation.mjs
       - name: Cosmetics 100-case accuracy benchmark
         run: node tools/_shared/check-cosmetics-accuracy-benchmark.mjs
       - name: Cosmetics full-label coverage benchmark
         run: node tools/_shared/check-cosmetics-full-label-benchmark.mjs
+      - name: Source-backed real-label baseline
+        run: node tools/_shared/check-cosmetics-real-label-corpus.mjs
       - name: Cross-tool release gate
         run: node tools/_shared/check-cosmetics-cross-tool-release.mjs
+      - name: Wave 2 release gate
+        run: node tools/_shared/check-cosmetics-wave2-release.mjs
+      - name: Wave 3 release gate
+        run: node tools/_shared/check-cosmetics-wave3-release.mjs
       - name: Affiliate readiness contract remains isolated
         run: node tools/_shared/check-cosmetics-affiliate-contract.mjs

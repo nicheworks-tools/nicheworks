@@ -98,7 +98,7 @@ Follow common-spec sections 6 and 9-4. Preserve and update in place rather than 
 - [ ] A metadata check uses the same-origin precipitation endpoint and failure/unavailable states are surfaced without relabeling synthetic data as observed data.
 - [ ] Invalid/out-of-bound BBox, date, preset, or frame inputs are rejected by the implemented validation path.
 
-Automated test evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/contract test). Behavior-level status: **behavior-test-missing**; build, generator, data-validation, audit, and source-contract checks are not silently counted as behavior tests.
+Automated test evidence: `functions/api/earth-map-suite/tests/precipitation-sample-real-harness.mjs` is a **behavior test**: it executes the real precipitation-sample endpoint module with request inputs and controlled upstream probe responses, asserting validation failures, method rejection, readiness blocking, upstream error propagation, provenance/debug fields, and the fail-closed public-output boundary. `scripts/check-tool-runtime-contracts.mjs` remains regression/contract evidence. Behavior-level status is **behavior-test-present**; this does not claim complete browser coverage for Storm / Compare / Card.
 
 ## 15. Explicit tool-specific exceptions
 
@@ -113,3 +113,4 @@ Automated test evidence: `scripts/check-tool-runtime-contracts.mjs` (regression/
 - `tools/earth-map-suite/style.css`
 - `tools/earth-map-suite/usage-en.html`
 - `tools/earth-map-suite/usage.html`
+- `functions/api/earth-map-suite/tests/precipitation-sample-real-harness.mjs`

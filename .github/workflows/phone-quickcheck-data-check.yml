@@ -1,0 +1,41 @@
+name: Phone QuickCheck data check
+
+on:
+  pull_request:
+    paths:
+      - 'tools/phone-quickcheck/data/**'
+      - 'tools/phone-quickcheck/app.js'
+      - 'tools/phone-quickcheck/tests/**'
+      - 'tools/phone-quickcheck/affiliate-config.js'
+      - 'scripts/check-phone-quickcheck-data.mjs'
+      - 'scripts/check-phone-quickcheck-affiliate.mjs'
+      - 'scripts/check-phone-quickcheck-source-semantics.mjs'
+      - '.github/workflows/phone-quickcheck-data-check.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/phone-quickcheck/data/**'
+      - 'tools/phone-quickcheck/app.js'
+      - 'tools/phone-quickcheck/tests/**'
+      - 'tools/phone-quickcheck/affiliate-config.js'
+      - 'scripts/check-phone-quickcheck-data.mjs'
+      - 'scripts/check-phone-quickcheck-affiliate.mjs'
+      - 'scripts/check-phone-quickcheck-source-semantics.mjs'
+      - '.github/workflows/phone-quickcheck-data-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  data-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/check-phone-quickcheck-data.mjs
+      - run: node scripts/check-phone-quickcheck-source-semantics.mjs
+      - run: node scripts/check-phone-quickcheck-affiliate.mjs
+      - run: node tools/phone-quickcheck/tests/behavior.test.mjs

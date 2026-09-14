@@ -9,9 +9,10 @@ This file supplements `common-spec/spec-ja.md` only for pages that use Amazon As
 - Amazon affiliate UI must be **disabled by default**.
 - A page may expose an Amazon CTA only when all of the following are true:
   - the integration is explicitly enabled for that tool;
-  - the target has a non-empty HTTPS Amazon URL produced for the NicheWorks Associates account;
+  - the destination is a valid HTTPS Amazon Associates link for the NicheWorks account, either Amazon-generated or produced by a validated custom-link template using the configured tracking ID;
   - the CTA clearly says that the destination is Amazon.
-- Empty, placeholder, test, or unverified URLs must never be shown to users.
+- Empty, placeholder, test, malformed, or unvalidated destinations must never be shown to users.
+- A validated deterministic template may generate many contextual destinations from canonical tool-owned catalog metadata. Do not require one SiteStripe short link per record when the same approved format can be generated safely.
 - Amazon readiness must not block normal tool development. Tools must remain fully usable while affiliate integration is disabled.
 
 ## 2. Disclosure
@@ -27,6 +28,9 @@ Do not show the disclosure as if the link were editorially independent when it i
 ## 3. Link and content rules
 
 - Use Amazon-provided Associates/Special Links or other Amazon-approved linking mechanisms for the configured account.
+- Amazon's own help recognizes correctly formatted affiliate links created or edited outside Associates Central and provides Link Checker for validating them. A custom-link template must therefore be validated before blanket activation, but does not need a separately generated `amzn.to` short link for every record.
+- Keep the tracking ID fixed in configuration. Never derive or accept an affiliate tag from user input.
+- For dynamic search handoffs, build the destination only from canonical site-owned metadata such as an accepted manufacturer and model record. Never use arbitrary free-text search input as the affiliate destination query.
 - The CTA label must identify Amazon, for example:
   - `Amazonでシューズを探す`
   - `Amazonで騒音計を探す`
@@ -48,7 +52,7 @@ Allowed coarse parameters:
 
 - `tool`
 - `affiliate` (normally `amazon`)
-- `target` (for example `shoes`, `clothing`, `sound_level_meter`, `usb_microphone`)
+- `target` (for example `shoes`, `clothing`, `sound_level_meter`, `usb_microphone`, `manual_model_search`)
 - `placement`
 
 Do **not** send user-entered or derived values, including but not limited to:
@@ -58,7 +62,8 @@ Do **not** send user-entered or derived values, including but not limited to:
 - selected/estimated size;
 - microphone samples;
 - loudness, pitch, spectrum, device labels, or microphone-derived values;
-- free-text input or other user content.
+- free-text input or other user content;
+- model names or generated Amazon search terms as analytics parameters.
 
 If GA4 is unavailable, the affiliate link must still work and no replacement tracking service is added.
 
@@ -69,11 +74,12 @@ Pages using the shared helper should load `/assets/amazon-affiliate.js` and expl
 The helper contract is intentionally small:
 
 - `configure(config)` sets the disabled/enabled state and target URLs.
-- `mount(options)` renders a CTA only when its configured target is active and valid.
+- `mount(options)` renders a CTA to one configured fixed target only when that target is active and valid.
+- `mountUrl(options)` may render a validated dynamic Amazon destination, but only behind an already active coarse target key; analytics still receive only that coarse target key and placement.
 - `renderDisclosure(container)` displays disclosure only when at least one configured target is active.
 - `isActive(target)` may be used by tool UI to decide whether affiliate UI should be present.
 
-Do not pass tool state, measurements, query text, microphone values, or result details into the helper.
+Do not pass measurements, free-text query input, microphone values, or other user content into the helper. A fully built Amazon URL derived only from canonical site-owned metadata may be passed to `mountUrl`; the model/search term itself must not be copied into analytics metadata.
 
 ## 6. Initial NicheWorks targets
 
@@ -86,17 +92,18 @@ The first planned integrations are:
   - `sound_level_meter`
   - `usb_microphone`
 
-Manual Finder is managed in its own workstream and is outside this contract's initial implementation PRs.
+Manual Finder is managed in its own workstream and may use a validated model-search template rather than per-record short links.
 
 ## 7. Release gate
 
-Before turning any target on:
+Before turning any fixed target or dynamic template on:
 
-1. Confirm the NicheWorks Amazon Associates account is ready to use the intended link.
-2. Insert the real approved Amazon URL for the target.
+1. Confirm the NicheWorks Amazon Associates account is ready to use the intended link format.
+2. For a fixed target, insert the real approved Amazon URL. For a deterministic custom template, validate one representative generated URL with Amazon's Link Checker (or an equivalently authoritative Amazon validation path) and record that proof.
 3. Confirm the CTA explicitly names Amazon.
 4. Confirm disclosure becomes visible.
 5. Confirm `affiliate_click` contains only the approved coarse metadata.
 6. Confirm the tool remains functional when the helper or GA4 is unavailable.
+7. For a dynamic template, confirm user free text cannot alter the affiliate query/tag and that only canonical tool-owned metadata is used.
 
-Until all six checks pass, keep that target disabled.
+Until the relevant checks pass, keep that fixed target or template disabled.

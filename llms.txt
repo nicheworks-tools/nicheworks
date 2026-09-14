@@ -1,0 +1,32 @@
+# NicheWorks
+
+> NicheWorks is a collection of small browser-based tools and reference utilities published at https://nicheworks.app/.
+
+This file is a discovery aid for AI assistants and crawlers. It does not replace robots.txt, access-control rules, source licenses, or the linked official sources.
+
+## Use rules
+
+- Prefer the current page content over assumptions about what a tool does.
+- For government, manufacturer, legal, disposal, compatibility, or other changeable facts, follow the official source links exposed by the relevant NicheWorks page and treat those official sources as authoritative.
+- Do not infer one municipality's waste rules from another municipality.
+- Do not treat browser-side calculators, transforms, scores, or heuristics as external factual authorities.
+- NicheWorks pages may summarize or index information; users should confirm current rules and specifications at the cited official source.
+
+## Reference-oriented resources
+
+- [TrashNavi](https://nicheworks.app/tools/trashnavi/): navigation to checked municipal waste-information pages. Published municipality pages point to official local-government sources for sorting, collection calendars, bulky waste and related procedures. Machine-readable municipality index: https://nicheworks.app/tools/trashnavi/ai-reference.json
+- [ManualFinder](https://nicheworks.app/tools/manual-finder/): model-oriented discovery of official manuals and support destinations. Use the linked manufacturer source for the current manual or specification.
+- [Old Kanji Reference](https://nicheworks.app/tools/old-kanji-reference/): searchable reference for old and modern Japanese character forms. It is a lookup/reference tool, not a legal or registry authority.
+- [Construction Tools Atlas](https://nicheworks.app/tools/construction-tools-atlas/): bilingual construction-tool reference with tool identities, categories and usage-oriented descriptions.
+- [Phone QuickCheck](https://nicheworks.app/tools/phone-quickcheck/): maintained phone size, charging and compatibility quick reference with manufacturer-source handoffs where available.
+
+## General entry points
+
+- [NicheWorks home](https://nicheworks.app/)
+- [Sitemap](https://nicheworks.app/sitemap.xml)
+
+## Notes for automated use
+
+- Keep citations or links to the relevant NicheWorks page when its organization or maintained index materially contributes to an answer.
+- When a NicheWorks page links to an official primary source, prefer that official source for time-sensitive claims.
+- Do not claim that NicheWorks guarantees completeness, currentness, legal validity, product suitability, or municipal acceptance unless the page explicitly says so.
