@@ -8,21 +8,21 @@ const failures = [];
 const check = (condition, message) => { if (!condition) failures.push(message); };
 
 const tools = [
-  'old-kanji-reference',
-  'kanji-modernizer',
-  'old-kanji-ocr-scanner',
-  'old-document-kanji-highlighter',
-  'unicode-kanji-checker',
-  'variant-kanji-compare',
-  'place-old-kanji-checker',
-  'name-old-kanji-checker',
+  ['old-kanji-reference', 'Old Kanji Reference'],
+  ['kanji-modernizer', 'Kanji Modernizer'],
+  ['old-kanji-ocr-scanner', 'Old Kanji OCR Scanner'],
+  ['old-document-kanji-highlighter', 'Old Document Kanji Highlighter'],
+  ['unicode-kanji-checker', 'Unicode Kanji Checker'],
+  ['variant-kanji-compare', 'Variant Kanji Compare'],
+  ['place-old-kanji-checker', 'Place Old Kanji Checker'],
+  ['name-old-kanji-checker', 'Name Old Kanji Checker'],
 ];
 
-for (const slug of tools) {
+for (const [slug, displayName] of tools) {
   const dir = path.join(root, 'tools', slug);
   check(fs.existsSync(dir), `missing Old Kanji cluster tool: ${slug}`);
   check(fs.existsSync(path.join(dir, 'SPEC.md')), `missing SPEC.md for Old Kanji cluster tool: ${slug}`);
-  check(contract.includes(`| ${slug === 'old-kanji-reference' ? 'Old Kanji Reference' : ''}`) || contract.includes(`\`${slug}\``) || contract.includes(slug), `cluster contract does not represent ${slug}`);
+  check(contract.includes(`| ${displayName} |`), `cluster contract does not represent ${displayName}`);
 }
 
 check(contract.includes('Only **Old Kanji Reference** targets'), 'generic lookup anti-cannibalization rule missing');
