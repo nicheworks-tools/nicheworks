@@ -16,3 +16,84 @@ jobs:
           node-version: '20'
       - name: Run data validation
         run: node tools/construction-tools-atlas/scripts/validate-data.mjs
+
+  pattern-dictionary-browse-mobile:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/feat/pattern-dictionary-production-20-20260914' }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-production-20-20260914
+          fetch-depth: 2
+      - name: Move browse filters before grid and remove stale DEV copy
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          root=Path('tools/pattern-dictionary')
+          replacements={
+            root/'index.html':(
+              '検索語はブラウザ内で処理され、外部検索サービスには送信しません。現在の20件とDEV画像は実装検証用で、辞典の最終画像ではありません。',
+              '検索語はブラウザ内で処理され、外部検索サービスには送信しません。現在の20件のReference Imageは構造レビュー済みです。詳細ページは最終検証完了まで検索インデックス対象外です。'
+            ),
+            root/'en'/'index.html':(
+              'Search terms are processed in your browser and are not sent to an external search service. The current 20 records and DEV images are implementation-test material, not final dictionary images.',
+              'Search terms are processed in your browser and are not sent to an external search service. The 20 Reference Images have passed structural review. Detail pages remain out of the search index until final verification.'
+            )
+          }
+          for file,(old_footer,new_footer) in replacements.items():
+            s=file.read_text()
+            grid=s.index('id="pattern-grid"')
+            browse_start=s.rfind('<section class="pd-section">',0,grid)
+            browse_end=s.index('</section>',grid)+len('</section>')
+            filt=s.index('data-family="check"')
+            filter_start=s.rfind('<section class="pd-section">',0,filt)
+            filter_end=s.index('</section>',filt)+len('</section>')
+            if browse_start<filter_start:
+              browse=s[browse_start:browse_end]
+              between=s[browse_end:filter_start]
+              filter_section=s[filter_start:filter_end]
+              s=s[:browse_start]+filter_section+between+browse+s[filter_end:]
+            if old_footer not in s: raise SystemExit(f'{file}: stale footer anchor missing')
+            s=s.replace(old_footer,new_footer,1)
+            file.write_text(s)
+          PY
+      - name: Validate browse, mobile and all Pattern Dictionary contracts
+        run: |
+          node --check tools/pattern-dictionary/app.js
+          node tools/pattern-dictionary/tests/browse-mobile-test.mjs
+          node tools/pattern-dictionary/tests/compare-test.mjs
+          node tools/pattern-dictionary/tests/search-test.mjs
+          node tools/pattern-dictionary/tests/reference-image-test.mjs
+          node tools/pattern-dictionary/tests/source-verification-test.mjs
+          node tools/pattern-dictionary/tests/production-content-test.mjs
+          node tools/pattern-dictionary/tests/validate.mjs
+      - name: Persist browse/mobile fixes and restore workflow
+        run: |
+          cat > .github/workflows/validate-atlas-data.yml <<'YAML'
+          name: Validate Construction Tools Atlas Data
+
+          on:
+            push:
+            pull_request:
+
+          jobs:
+            validate-data:
+              runs-on: ubuntu-latest
+              steps:
+                - name: Checkout repository
+                  uses: actions/checkout@v4
+                - name: Use Node.js
+                  uses: actions/setup-node@v4
+                  with:
+                    node-version: '20'
+                - name: Run data validation
+                  run: node tools/construction-tools-atlas/scripts/validate-data.mjs
+          YAML
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/pattern-dictionary/index.html tools/pattern-dictionary/en/index.html .github/workflows/validate-atlas-data.yml
+          git diff --cached --quiet && exit 0
+          git commit -m "fix: improve Pattern Dictionary browse flow"
+          git push origin HEAD:feat/pattern-dictionary-production-20-20260914
