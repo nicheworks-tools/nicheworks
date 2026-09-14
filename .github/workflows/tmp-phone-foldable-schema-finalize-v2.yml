@@ -1,0 +1,80 @@
+name: Temporary Phone QuickCheck foldable schema finalizer v2
+
+on:
+  push:
+    branches:
+      - feat/phone-quickcheck-foldable-schema-20260914
+    paths:
+      - '.github/workflows/tmp-phone-foldable-schema-finalize-v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/phone-quickcheck-foldable-schema-20260914
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Apply and verify foldable schema
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          const appPath = 'tools/phone-quickcheck/app.js';
+          let app = fs.readFileSync(appPath, 'utf8');
+          if (!app.includes('dimensionsFolded: "外形寸法（折りたたみ時）"')) {
+            app = app.replace('      dimensions: "外形寸法",', '      dimensions: "外形寸法",\n      dimensionsFolded: "外形寸法（折りたたみ時）",\n      dimensionsUnfolded: "外形寸法（展開時）",\n      foldedShort: "折りたたみ時",');
+            app = app.replace('      dimensions: "Dimensions",', '      dimensions: "Dimensions",\n      dimensionsFolded: "Dimensions (folded)",\n      dimensionsUnfolded: "Dimensions (unfolded)",\n      foldedShort: "folded",');
+            app = app.replace(
+              "result.sort((a, b) => numberOrInfinity(a.dimensions?.widthMm) - numberOrInfinity(b.dimensions?.widthMm) || numberOrInfinity(a.dimensions?.heightMm) - numberOrInfinity(b.dimensions?.heightMm));",
+              "result.sort((a, b) => numberOrInfinity(sortDimensions(a)?.widthMm) - numberOrInfinity(sortDimensions(b)?.widthMm) || numberOrInfinity(sortDimensions(a)?.heightMm) - numberOrInfinity(sortDimensions(b)?.heightMm));"
+            );
+            app = app.replace(
+              "      <section class=\"detail-section\"><h3>${escapeHtml(msg('device'))}</h3>${kv(msg('dimensions'), dimensions)}${kv(msg('display'), display)}${kv(msg('water'), water)}</section>",
+              "      <section class=\"detail-section\"><h3>${escapeHtml(msg('device'))}</h3>${dimensionRowsHtml(phone)}${kv(msg('display'), display)}${kv(msg('water'), water)}</section>"
+            );
+            app = app.replace(/  function compactDimensions\(phone\) \{[\s\S]*?(?=  function ppsLabel)/, `  function isFoldable(phone) {\n    return phone?.formFactor === 'foldable';\n  }\n\n  function sortDimensions(phone) {\n    return isFoldable(phone) ? phone.dimensionsFolded : phone.dimensions;\n  }\n\n  function dimensionString(dimensions) {\n    const h = dimensions?.heightMm;\n    const w = dimensions?.widthMm;\n    const d = dimensions?.depthMm;\n    if (!h || !w) return '—';\n    return [h, w, d].filter((value) => value !== null && value !== undefined).map(formatNumber).join(' × ') + ' mm';\n  }\n\n  function compactDimensions(phone) {\n    const dimensions = sortDimensions(phone);\n    const h = dimensions?.heightMm;\n    const w = dimensions?.widthMm;\n    if (!h || !w) return '—';\n    const suffix = isFoldable(phone) ? \` (\${msg('foldedShort')})\` : '';\n    return \`\${formatNumber(h)} × \${formatNumber(w)} mm\${suffix}\`;\n  }\n\n  function fullDimensions(phone) {\n    return dimensionString(sortDimensions(phone));\n  }\n\n  function dimensionRowsHtml(phone) {\n    if (isFoldable(phone)) {\n      return kv(msg('dimensionsFolded'), dimensionString(phone.dimensionsFolded))\n        + kv(msg('dimensionsUnfolded'), dimensionString(phone.dimensionsUnfolded));\n    }\n    return kv(msg('dimensions'), fullDimensions(phone));\n  }\n\n`);
+          }
+          fs.writeFileSync(appPath, app);
+
+          const validatorPath = 'scripts/check-phone-quickcheck-data.mjs';
+          let validator = fs.readFileSync(validatorPath, 'utf8');
+          if (!validator.includes("phone.formFactor === 'foldable'")) {
+            validator = validator.replace(/  const d = phone\.dimensions \|\| \{\};\n  for \(const key of \['heightMm', 'widthMm', 'depthMm'\]\) \{\n    if \(!finitePositive\(d\[key\]\)\) fail\(`\$\{label\}: invalid dimensions\.\$\{key\}`\);\n  \}/, `  const isFoldable = phone.formFactor === 'foldable';\n  if (phone.formFactor !== undefined && phone.formFactor !== 'foldable') fail(\`\${label}: unsupported formFactor\`);\n  const dimensionSets = isFoldable\n    ? [['dimensionsFolded', phone.dimensionsFolded], ['dimensionsUnfolded', phone.dimensionsUnfolded]]\n    : [['dimensions', phone.dimensions]];\n  for (const [dimensionLabel, d] of dimensionSets) {\n    for (const key of ['heightMm', 'widthMm', 'depthMm']) {\n      if (!finitePositive(d?.[key])) fail(\`\${label}: invalid \${dimensionLabel}.\${key}\`);\n    }\n  }\n  if (isFoldable && phone.dimensions !== undefined) fail(\`\${label}: foldable records must use dimensionsFolded/dimensionsUnfolded, not dimensions\`);`);
+          }
+          fs.writeFileSync(validatorPath, validator);
+
+          const testPath = 'tools/phone-quickcheck/tests/behavior.test.mjs';
+          let test = fs.readFileSync(testPath, 'utf8');
+          if (!test.includes('syntheticFoldable')) {
+            test = test.replace('const byId = new Map(allPhones.map((phone) => [phone.id, phone]));', `const syntheticFoldable = {\n  id: 'synthetic-foldable', manufacturer: 'Samsung', model: 'Synthetic Foldable', aliases: ['Fold Fixture'], releaseYear: 2026, formFactor: 'foldable',\n  dimensionsFolded: { heightMm: 155, widthMm: 68, depthMm: 13 }, dimensionsUnfolded: { heightMm: 155, widthMm: 132, depthMm: 6 },\n  weightG: 240, displayInch: 7.6, waterRating: 'IPX8',\n  charging: { connector: 'USB-C', battery: { capacityMah: 4400, valueClass: 'manufacturer', sourceRef: 'https://www.samsung.com/' }, wiredRecommendedW: 25, protocols: [], pps: 'unknown', wirelessStandard: 'Qi', wirelessMaxW: 15 },\n  included: { cable: 'included', adapter: 'not_included' }, sources: { specificationsUrl: 'https://www.samsung.com/', manualUrl: 'https://www.samsung.com/', verifiedAt: '2026-09-14' }, affiliateKeys: []\n};\nconst byId = new Map([...allPhones, syntheticFoldable].map((phone) => [phone.id, phone]));`);
+          }
+          if (!test.includes("phoneList.innerHTML.includes('155 × 68 mm (折りたたみ時)')")) {
+            const marker = "console.log('Phone QuickCheck behavior tests passed:";
+            const block = `// Foldable schema renders both physical states and keeps folded dimensions in the list.\n{\n  const h = await createHarness(['synthetic-foldable']);\n  assert.ok(h.elements.phoneList.innerHTML.includes('155 × 68 mm (折りたたみ時)'));\n  assert.ok(h.elements.desktopDetail.innerHTML.includes('外形寸法（折りたたみ時）'));\n  assert.ok(h.elements.desktopDetail.innerHTML.includes('155 × 68 × 13 mm'));\n  assert.ok(h.elements.desktopDetail.innerHTML.includes('外形寸法（展開時）'));\n  assert.ok(h.elements.desktopDetail.innerHTML.includes('155 × 132 × 6 mm'));\n  h.langEn.click();\n  assert.ok(h.elements.desktopDetail.innerHTML.includes('Dimensions (folded)'));\n  assert.ok(h.elements.desktopDetail.innerHTML.includes('Dimensions (unfolded)'));\n}\n\n`;
+            const index = test.indexOf(marker);
+            if (index < 0) throw new Error('behavior console marker missing');
+            test = test.slice(0, index) + block + test.slice(index);
+          }
+          fs.writeFileSync(testPath, test);
+          NODE
+
+          node scripts/check-phone-quickcheck-data.mjs
+          node scripts/check-phone-quickcheck-source-semantics.mjs
+          node scripts/check-phone-quickcheck-affiliate.mjs
+          node tools/phone-quickcheck/tests/behavior.test.mjs
+
+          rm -f .github/workflows/tmp-phone-foldable-schema-finalize.yml
+          rm -f .github/workflows/tmp-phone-foldable-schema-finalize-v2.yml
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git add -A
+          git commit -m "Add foldable dimension schema support"
+          git push origin HEAD:feat/phone-quickcheck-foldable-schema-20260914
