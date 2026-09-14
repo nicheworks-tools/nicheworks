@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-wave2-sources-v2.3",
-  "version": "2026-09-14-wave2a-1",
+  "version": "2026-09-14-wave2b-1",
   "policy": {
     "runtime_hotlink": false,
     "source_provider": "Wikimedia Commons",
@@ -90,6 +90,90 @@
       "subject_match": "matched",
       "review_state": "reviewed",
       "review_note": "Real concrete float hand tool; matches the canonical float used to level mortar or concrete surfaces."
+    },
+    {
+      "entry_id": "q012_cold_chisel",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/ColdChisels.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:ColdChisels.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "author": "Glenn McKechnie",
+      "attribution": "Glenn McKechnie (uploaded by Graibeard) / Wikimedia Commons, CC BY-SA 3.0",
+      "source_sha1": "db81d38d878d31a1927916342a496ab8636e7962",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Real pair of metalworking cold chisels shown from the side and top; exact match for q012_cold_chisel rather than the woodworking chisel canonical."
+    },
+    {
+      "entry_id": "q011_flashing",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Roof_flashing_-_geograph.org.uk_-_7117812.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Roof_flashing_-_geograph.org.uk_-_7117812.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "author": "Bob Harvey",
+      "attribution": "Bob Harvey / Geograph via Wikimedia Commons, CC BY-SA 2.0",
+      "source_sha1": "",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Real construction-site photograph explicitly identified by Commons as roof flashing; matches the roof/component canonical q011_flashing."
+    },
+    {
+      "entry_id": "q014_drip_edge",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/Preservationists_install_rake_boards_and_drip_edge_along_the_edge_of_the_new_cedar_shingle_roof._(29d9d9d7-7b7a-4b33-905e-afa0713314c2).jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Preservationists_install_rake_boards_and_drip_edge_along_the_edge_of_the_new_cedar_shingle_roof._(29d9d9d7-7b7a-4b33-905e-afa0713314c2).jpg",
+      "source_filename": "source.jpg",
+      "license": "Public Domain",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-NPS",
+      "author": "NPS Photo",
+      "attribution": "NPS Photo / Wikimedia Commons (Public Domain)",
+      "source_sha1": "",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "National Park Service photograph explicitly documents installation of drip edge along a cedar-shingle roof edge; direct match for q014_drip_edge."
+    },
+    {
+      "entry_id": "q013_paint_tray",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Paint_Tray_(1535689884).jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Paint_Tray_(1535689884).jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Bart Everson",
+      "attribution": "Bart Everson / Wikimedia Commons, CC BY 2.0",
+      "source_sha1": "",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Real paint tray containing light green paint; direct match for the roller paint-tray canonical q013_paint_tray."
+    },
+    {
+      "entry_id": "q011_notched_trowel",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Trowels_of_various_sizes_and_shapes%2C_square_notch_trowels%2C_in_German_hardware_store_(cropped).jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Trowels_of_various_sizes_and_shapes,_square_notch_trowels,_in_German_hardware_store_(cropped).jpg",
+      "source_filename": "source.jpg",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Pittigrilli",
+      "attribution": "Pittigrilli / Wikimedia Commons, CC0 1.0",
+      "source_sha1": "",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Real photograph explicitly showing square-notch adhesive trowels used to distribute tile adhesive; direct match for q011_notched_trowel."
+    },
+    {
+      "entry_id": "safety_harness",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Safety_Harness.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Safety_Harness.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "SafetyEdition",
+      "attribution": "SafetyEdition / Wikimedia Commons, CC0 1.0",
+      "source_sha1": "81998490514502015085394ebeeed1dfd79e51b1",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Real worker wearing a full-body fall-arrest harness with shoulder and leg straps; exact subject match for safety_harness."
     }
   ]
 }
