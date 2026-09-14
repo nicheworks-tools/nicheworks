@@ -1,0 +1,29 @@
+name: TrashNavi Wave 18 publication sync temp
+
+on:
+  push:
+    branches:
+      - feat/trashnavi-tottori-publication-wave18-20260914
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-tottori-publication-wave18-20260914
+          fetch-depth: 0
+      - name: Merge latest main and remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git merge --no-edit origin/main
+          rm .github/workflows/trashnavi-wave18-publication-sync-temp.yml
+          git add -A
+          git diff --cached --check
+          git commit -m 'Remove temporary Wave 18 publication sync workflow'
+          git push origin HEAD:feat/trashnavi-tottori-publication-wave18-20260914
