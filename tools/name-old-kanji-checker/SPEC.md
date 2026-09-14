@@ -19,7 +19,7 @@ Check characters in a name against the Old Kanji Reference data and surface old-
 - Provide copy actions for input characters, modern forms, candidates, and candidate lists.
 - Link to the full Old Kanji Reference and Kanji Modernizer for follow-up review.
 - Degrade to basic mappings when optional metadata files fail to load.
-- Show Old Kanji Toolkit Pro as billing-unavailable/locked; batch, reports, exports, saved sets, and audit-note capabilities are not currently purchasable through this page.
+- Do not render an unfinished Pro sales panel, fixed Pro price, or disabled purchase CTA while no verified purchase path is connected.
 
 ## Inputs
 
@@ -35,7 +35,7 @@ Check characters in a name against the Old Kanji Reference data and surface old-
 
 ## State and persistence
 
-Input and results are current-page state. The tool loads reference data from same-site JSON assets and does not maintain a saved name history. Pro is currently presented in a billing-unavailable state rather than as an active purchase flow.
+Input and results are current-page state. The tool loads reference data from same-site JSON assets and does not maintain a saved name history. No paid entitlement or purchase UI is part of the current public page state; future Pro scope remains outside the public free workflow until verified billing activation.
 
 ## Privacy and network behavior
 
@@ -57,7 +57,7 @@ The workflow is a short name input followed by vertically stacked per-character 
 - Family registers, residence records, banking, insurance, school, workplace, and other official uses require verification of the actually registered glyph.
 - Missing metadata does not imply a character is invalid; optional data can fail independently of the base mapping.
 - Compatibility ideographs, supplementary-plane characters, and variation selectors can render differently by environment.
-- Pro functions shown in the current page are locked because billing is not connected.
+- No fixed Pro price or unfinished purchase controls are rendered on the public page while billing is inactive.
 
 ## Acceptance criteria
 
@@ -65,7 +65,7 @@ The workflow is a short name input followed by vertically stacked per-character 
 - [ ] Failure of optional metadata files still allows base mapping checks rather than falsely reporting a total application failure.
 - [ ] Entered name text is not sent to an external character-lookup API.
 - [ ] Results retain explicit official-use cautions and do not claim legal/registry authority.
-- [ ] Billing-unavailable Pro controls remain disabled until a real entitlement/purchase path exists.
+- [ ] The public page does not expose unfinished billing/Pro sales controls until a verified entitlement/purchase path exists.
 
 ## Implementation evidence
 

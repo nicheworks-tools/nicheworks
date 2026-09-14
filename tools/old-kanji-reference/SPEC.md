@@ -33,7 +33,7 @@ Provide a searchable bilingual reference for old Japanese kanji forms and their 
 - Provide quiz modes for old→modern, modern→old, and reading→old using suitable verified data.
 - Export the currently visible entries as CSV or JSON, copy a Markdown table, and invoke browser print.
 - CSV, JSON, Markdown, and print export controls are currently Free and are not gated on Pro entitlement.
-- The Old Kanji Toolkit Pro area is visibly marked billing-unavailable. Advanced learning-history and saved-set areas are described as planned/unavailable rather than purchasable current features.
+- No unfinished public Pro sales panel is rendered. Current CSV/JSON/Markdown/print exports remain Free; future paid scope stays outside the public functional contract until verified billing activation.
 - Detail rendering may add shape and stroke-reference sections. Those sections use explicit card/grid layout, wrapping, labels, and a single-column mobile fallback instead of browser-default unstyled blocks.
 - A separate optional Amazon resource panel exposes fixed searches for old/variant-kanji dictionaries, document magnifiers, and book stands.
 
@@ -93,7 +93,7 @@ The dense searchable catalog, filters, detector, display modes, export controls,
 - The tool is not an official family-register/name authority, historical-linguistics authority, or document transcription service.
 - Full-text conversion belongs to Kanji Modernizer rather than this reference catalog.
 - Rendering can vary for compatibility ideographs, supplementary-plane characters, and variation selectors.
-- Old Kanji Toolkit billing is currently unavailable on this page; planned Pro areas are not part of the currently purchasable functional contract.
+- No fixed Pro price or unfinished purchase controls are rendered on the public page while billing is inactive.
 - Amazon search links are optional shopping handoffs, not product endorsements or suitability guarantees.
 - Current mapping data can contain identity/reference records as well as genuine old→modern substitutions; those records must be audited before any per-character SEO-page rollout.
 
@@ -109,7 +109,7 @@ The dense searchable catalog, filters, detector, display modes, export controls,
 - [ ] Favorites, recent entries, display mode, and quiz statistics restore from their documented localStorage keys.
 - [ ] CSV/JSON/Markdown/print actions remain functional without requiring Pro entitlement.
 - [ ] Public JP/EN copy explicitly identifies the current export actions as Free and does not label them Pro-only.
-- [ ] The disabled Pro panel communicates billing unavailable and does not present planned learning/saved-set features as currently purchasable.
+- [ ] The public page does not expose a fixed Pro price, disabled purchase CTA, or billing-unavailable sales panel before verified billing activation.
 - [ ] Reference results retain cautions appropriate to non-authoritative old/variant-kanji data.
 - [ ] Shape/stroke detail sections have explicit responsive layout rules and do not render as unstyled raw blocks.
 - [ ] Amazon resource links use only the three fixed search terms and `nicheworks09-22`.

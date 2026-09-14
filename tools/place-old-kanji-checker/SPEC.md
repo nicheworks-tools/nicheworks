@@ -18,7 +18,7 @@ Check place names, addresses, station names, old-map labels, and sign text for r
 - Link to Old Kanji Reference and Name Old Kanji Checker for related lookup.
 - Switch JP/EN UI on the same page.
 - Process entered text locally without an external place-name lookup API.
-- Display Old Kanji Toolkit Pro batch/report/export/saved-set/audit capabilities as locked because billing is not connected.
+- Do not render an unfinished Pro sales panel, fixed Pro price, or disabled purchase CTA while no verified purchase path is connected.
 
 ## Inputs
 
@@ -34,7 +34,7 @@ Check place names, addresses, station names, old-map labels, and sign text for r
 
 ## State and persistence
 
-Input and results are current-page state and are not persisted as place-name history. Old Kanji Toolkit Pro is currently a billing-unavailable/locked presentation rather than an active paid workflow.
+Input and results are current-page state and are not persisted as place-name history. No paid entitlement or purchase UI is part of the current public page state.
 
 ## Privacy and network behavior
 
@@ -55,14 +55,14 @@ The primary interaction is one text area followed by results and caution cards.
 - The tool is not an official address, municipal place-name, registration, postal, cadastral, or contract authority.
 - A candidate old/variant mapping does not prove historical or current official spelling.
 - Official-use cases require checking the actual registered/current spelling with authoritative sources.
-- Pro batch/report/export/saved-set/audit capabilities are not currently purchasable because billing is not connected.
+- No fixed Pro price or unfinished purchase controls are rendered on the public page while billing is inactive.
 
 ## Acceptance criteria
 
 - [ ] Entered place/address text is checked against local reference data without external lookup submission.
 - [ ] Candidate results retain official-use cautions rather than presenting mappings as authoritative address data.
 - [ ] Related-tool links support deeper reference/conversion review without changing the entered text silently.
-- [ ] Billing-unavailable Pro controls remain locked until a real purchase/entitlement path is connected.
+- [ ] The public page does not expose unfinished billing/Pro sales controls until a verified entitlement/purchase path exists.
 
 ## Implementation evidence
 

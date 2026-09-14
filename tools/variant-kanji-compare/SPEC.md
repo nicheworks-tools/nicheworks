@@ -19,7 +19,7 @@
 - comparison summaryとdifference hintsを生成する。
 - comparison全体、CSV、各character/code valueをclipboardへcopyできる。
 - Old Kanji Reference / Unicode Kanji Checkerへのlinkを提供する。
-- Old Kanji Toolkit Proは現状`billing-unavailable`でCTA disabled。
+- verified purchase pathがない間は、fixed Pro price・disabled purchase CTA・billing-unavailable sales panelをpublic pageへ表示しない。
 
 ## Inputs
 
@@ -41,7 +41,7 @@
 
 - input、comparison result、selected presetはpage memoryのみで永続保存しない。
 - reference dataはsame-site Old Kanji Reference JSONからloadする。
-- current Pro panelはbilling unavailableで、active entitlement stateをfunctional contractに含めない。
+- paid entitlement UIはcurrent public functional contractに含めない。
 
 ## Privacy and network behavior
 
@@ -67,7 +67,7 @@ comparison cardsはscreen幅に応じてgrid/stack化し、desktop/mobile双方�
 - 戸籍、登記、契約、official system registrationで利用可能な字体か判定しない。
 - similarityやvariant relationをdictionary外まで自動推論して確定しない。
 - 法的有効性、正式表記、印刷品質を保証しない。
-- Old Kanji Toolkit Proはbilling未接続である。
+- billing未接続の間はunfinished Pro sales UIをpublic pageへ表示しない。
 
 ## Acceptance criteria
 
@@ -76,10 +76,10 @@ comparison cardsはscreen幅に応じてgrid/stack化し、desktop/mobile双方�
 - [ ] 各characterについてmulti-font glyphとUnicode/HTML/UTF-16を表示する。
 - [ ] reference dataに存在するmapping、shape、stroke、metadataを補足表示する。
 - [ ] comparison結果とCSVをclipboardへcopyできる。
-- [ ] Pro panelをbilling unavailableとして扱い、disabled CTAを有効機能と誤認させない。
+- [ ] verified billing activation前にfixed Pro price、disabled purchase CTA、billing-unavailable sales panelを表示しない。
 
 ## Implementation evidence
 
-- `tools/variant-kanji-compare/index.html` — input/preset/comparison/copy/Pro-billing-unavailable UI。
+- `tools/variant-kanji-compare/index.html` — input/preset/comparison/copy UI。
 - `tools/variant-kanji-compare/app.js` — input parsing、presets、Old Kanji Reference data load、glyph/code/mapping/shape/stroke comparison、copy output。
 - `tools/old-kanji-reference/` — comparison reference datasets。

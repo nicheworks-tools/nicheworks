@@ -120,10 +120,29 @@ for (const item of stagedItems) {
   }
 }
 
+const publicRegistry = readJson('tools/tools-index.json');
+const publicItems = Array.isArray(publicRegistry?.items) ? publicRegistry.items : [];
+const unfinishedSalesPatterns = [
+  /data-okj-pro-state=["']billing-unavailable["']/i,
+  /okj-pro-state-billing-unavailable/i,
+  /課金(?:導線)?[^<\n]{0,40}(?:未接続|接続されていません)/i,
+  /billing[^<\n]{0,40}(?:unavailable|not connected)/i
+];
+for (const item of publicItems) {
+  const slug = item?.slug;
+  if (!slug) continue;
+  const file = `tools/${slug}/index.html`;
+  const html = read(file);
+  if (!html || metaRobots(html).includes('noindex')) continue;
+  if (unfinishedSalesPatterns.some((pattern) => pattern.test(html))) {
+    fail(`${file}: indexable public tool must not expose unfinished billing/Pro sales UI`);
+  }
+}
+
 if (errors.length) {
   console.error(`AdSense review surface contract: FAIL (${errors.length} issue${errors.length === 1 ? '' : 's'})`);
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log(`AdSense review surface contract: OK (${stagedItems.length} staged tools checked)`);
+  console.log(`AdSense review surface contract: OK (${stagedItems.length} staged tools, ${publicItems.length} public tools checked)`);
 }
