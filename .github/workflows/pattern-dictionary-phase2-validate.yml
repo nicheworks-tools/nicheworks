@@ -1,27 +1,18 @@
 name: Pattern Dictionary Phase 2 validation
 on:
   push:
-    branches: [feat/pattern-dictionary-production-20-20260914]
-    paths: [.github/workflows/pattern-dictionary-phase2-validate.yml]
-permissions:
-  contents: write
+    branches:
+      - feat/pattern-dictionary-production-20-20260914
+    paths:
+      - .github/workflows/pattern-dictionary-phase2-validate.yml
 jobs:
   validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: feat/pattern-dictionary-production-20-20260914
-      - run: python3 tools/pattern-dictionary/tests/apply-researched-overlay.py
       - run: node tools/pattern-dictionary/tests/source-verification-test.mjs
       - run: node tools/pattern-dictionary/tests/production-content-test.mjs
       - run: node tools/pattern-dictionary/tests/validate.mjs
       - run: node tools/pattern-dictionary/tests/search-test.mjs
       - run: node --check tools/pattern-dictionary/app.js
-      - name: Commit runtime wiring
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tools/pattern-dictionary/app.js
-          git diff --cached --quiet || git commit -m 'feat: wire researched Pattern Dictionary content into runtime'
-          git push origin HEAD:feat/pattern-dictionary-production-20-20260914
