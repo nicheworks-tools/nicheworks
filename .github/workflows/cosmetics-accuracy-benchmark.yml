@@ -13,6 +13,7 @@ on:
       - 'tools/_shared/cosmetics-real-label-corpus.json'
       - 'tools/_shared/check-cosmetics-real-label-corpus.mjs'
       - 'tools/_shared/check-cosmetics-dictionary-quality.mjs'
+      - 'tools/_shared/check-cosmetics-semantic-quality.mjs'
       - 'tools/_shared/check-cosmetics-canonical-merge.mjs'
       - 'tools/_shared/check-cosmetics-canonical-equivalents.mjs'
       - 'tools/_shared/check-cosmetics-jp-label-variants.mjs'
@@ -36,6 +37,7 @@ on:
       - 'tools/_shared/COSMETICS_WAVE2_RELEASE.md'
       - 'tools/_shared/COSMETICS_WAVE3_RELEASE.md'
       - 'tools/_shared/COSMETICS_REAL_LABEL_CORPUS.md'
+      - 'tools/_shared/COSMETICS_SEMANTIC_QUALITY.md'
       - 'tools/_shared/cosmetics-affiliate-*.js'
       - 'tools/_shared/cosmetics-affiliate-*.css'
       - '.github/workflows/cosmetics-accuracy-benchmark.yml'
@@ -56,6 +58,8 @@ jobs:
         run: node tools/_shared/check-cosmetic-ingredient-parser.mjs
       - name: Dictionary and alias quality
         run: node tools/_shared/check-cosmetics-dictionary-quality.mjs
+      - name: Dictionary semantic quality audit
+        run: node tools/_shared/check-cosmetics-semantic-quality.mjs
       - name: Japanese label variant regression
         run: node tools/_shared/check-cosmetics-jp-label-variants.mjs
       - name: Canonical merge regression
@@ -67,6 +71,7 @@ jobs:
           node --check tools/_shared/cosmetic-ingredient-parser.js
           node --check tools/_shared/cosmetics-affiliate-config.js
           node --check tools/_shared/cosmetics-affiliate-slot.js
+          node --check tools/_shared/check-cosmetics-semantic-quality.mjs
           node --check tools/_shared/check-cosmetics-jp-label-variants.mjs
           node --check tools/_shared/check-fastscan-ocr-robustness.mjs
           node --check tools/cosmetic-ingredient-checker-lite/app.js
