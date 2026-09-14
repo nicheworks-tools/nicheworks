@@ -118,6 +118,21 @@
       category: "antioxidant",
       sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/tocopherol/"]),
       authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "butylene glycol": Object.freeze({
+      category: "solvent",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "dipropylene glycol": Object.freeze({
+      category: "solvent",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "sodium hydroxide": Object.freeze({
+      category: "pH adjuster",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
     })
   });
 
@@ -568,7 +583,7 @@
   }
 
   const api = {
-    version: "1.21.0",
+    version: "1.22.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
