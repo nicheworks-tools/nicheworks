@@ -1,5 +1,5 @@
 {
-  "version": "2026-05-09-manifest-7",
+  "version": "2026-09-14-manifest-8",
   "base": [
     "./data/tools.basic.json"
   ],
@@ -19,6 +19,7 @@
     { "path": "./data/tools.quality-013.json", "quality_batch": "013" },
     { "path": "./data/tools.quality-014.json", "quality_batch": "014" },
     { "path": "./data/tools.quality-015.json", "quality_batch": "015" },
-    { "path": "./data/tools.quality-016.json", "quality_batch": "016" }
+    { "path": "./data/tools.quality-016.json", "quality_batch": "016" },
+    { "path": "./data/tools.quality-017.json", "quality_batch": "017" }
   ]
 }
