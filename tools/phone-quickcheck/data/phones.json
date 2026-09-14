@@ -3077,7 +3077,8 @@
         "manualUrl": "https://www.samsung.com/jp/support/model/SM-F700JZKAKDI/",
         "chargingUrl": "https://image-us.samsung.com/SamsungUS/samsungbusiness/pdfs/datasheet/Galaxy-Z-Flip_Z-Flip-5G-Datasheet-Generic.pdf",
         "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-15",
+        "releaseUrl": "https://news.samsung.com/global/the-future-changes-shape-express-yourself-with-galaxy-z-flip"
       },
       "affiliateKeys": []
     },
@@ -9141,15 +9142,15 @@
         "wirelessMaxW": null
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "included",
+        "adapter": "included"
       },
       "sources": {
         "specificationsUrl": "https://www.motorola.com/ru/smartphones-razr-5g/p?skuId=279",
         "manualUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/158713/~/motorola-razr-5g%C2%A0-%C2%A0-%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%AC%E3%82%A4%E3%83%89%28html%29",
         "releaseUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=95",
-        "chargingUrl": "https://www.motorola.com/ru/smartphones-razr-5g/p?skuId=279",
-        "verifiedAt": "2026-09-14"
+        "chargingUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/158957",
+        "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
     }
