@@ -2755,6 +2755,126 @@
       "affiliateKeys": []
     },
     {
+      "id": "samsung-galaxy-z-fold3-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Fold3 5G",
+      "aliases": [
+        "Samsung Galaxy Z Fold3 5G",
+        "GalaxyZFold3",
+        "Galaxy Z Fold3",
+        "Galaxy Fold3",
+        "ギャラクシーZ Fold3 5G",
+        "ギャラクシーZフォールド3"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2021,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 158.2,
+        "widthMm": 67.1,
+        "depthMmMin": 14.4,
+        "depthMmMax": 16
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 158.2,
+        "widthMm": 128.1,
+        "depthMm": 6.4
+      },
+      "weightG": 271,
+      "displayInch": 7.6,
+      "waterRating": "IPX8",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4400,
+          "valueClass": "official",
+          "sourceRef": "https://news.samsung.com/global/the-next-chapter-in-mobile-innovation-unfold-your-world-with-galaxy-z-fold3-5g-and-galaxy-z-flip3-5g"
+        },
+        "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
+        "protocols": [
+          "Super Fast Charging"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 10
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-z-fold3-5g/specs/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F926JZKAKDI/",
+        "releaseUrl": "https://news.samsung.com/global/the-next-chapter-in-mobile-innovation-unfold-your-world-with-galaxy-z-fold3-5g-and-galaxy-z-flip3-5g",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://news.samsung.com/global/the-next-chapter-in-mobile-innovation-unfold-your-world-with-galaxy-z-fold3-5g-and-galaxy-z-flip3-5g",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-flip3-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Flip3 5G",
+      "aliases": [
+        "Samsung Galaxy Z Flip3 5G",
+        "GalaxyZFlip3",
+        "Galaxy Z Flip3",
+        "Galaxy Flip3",
+        "ギャラクシーZ Flip3 5G",
+        "ギャラクシーZフリップ3"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2021,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 86.4,
+        "widthMm": 72.2,
+        "depthMmMin": 15.9,
+        "depthMmMax": 17.1
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 166,
+        "widthMm": 72.2,
+        "depthMm": 6.9
+      },
+      "weightG": 183,
+      "displayInch": 6.7,
+      "waterRating": "IPX8",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 3300,
+          "valueClass": "official",
+          "sourceRef": "https://news.samsung.com/global/the-next-chapter-in-mobile-innovation-unfold-your-world-with-galaxy-z-fold3-5g-and-galaxy-z-flip3-5g"
+        },
+        "wiredRecommendedW": 15,
+        "wiredMaxW": 15,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 10
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-z-flip3-5g/specs/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F711JZEEKDI/",
+        "releaseUrl": "https://news.samsung.com/global/the-next-chapter-in-mobile-innovation-unfold-your-world-with-galaxy-z-fold3-5g-and-galaxy-z-flip3-5g",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://news.samsung.com/global/the-next-chapter-in-mobile-innovation-unfold-your-world-with-galaxy-z-fold3-5g-and-galaxy-z-flip3-5g",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
       "id": "samsung-galaxy-a55-5g",
       "manufacturer": "Samsung",
       "model": "Galaxy A55 5G",
