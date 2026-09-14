@@ -6,7 +6,9 @@ import { fileURLToPath } from 'node:url';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, '..');
-const MANIFEST_PATH = path.join(ROOT, 'data', 'image-wave1-sources-v2.3.json');
+const DATA = path.join(ROOT, 'data');
+const MANIFEST_PATH = path.join(DATA, 'image-wave1-sources-v2.3.json');
+const WAVE2_PATH = path.join(DATA, 'image-wave2-sources-v2.3.json');
 const IMAGE_ROOT = path.join(ROOT, 'images');
 const USER_AGENT = 'NicheWorks-Construction-Tools-Atlas/2.3 (+https://nicheworks.app/tools/construction-tools-atlas/)';
 const MAX_BYTES = 25 * 1024 * 1024;
@@ -85,26 +87,41 @@ function validateItem(item, seen) {
   return id;
 }
 
-function attributionMarkdown(manifest, rows) {
+async function optionalWave2Ledger() {
+  try {
+    const ledger = JSON.parse(await fs.readFile(WAVE2_PATH, 'utf8'));
+    if (ledger.schema !== 'cta-image-wave2-sources-v2.3') fail('Unexpected Wave 2 source ledger schema.');
+    return ledger;
+  } catch (error) {
+    if (error?.code === 'ENOENT') return null;
+    throw error;
+  }
+}
+
+function attributionMarkdown(ledgers, wave1Rows) {
+  const actualWave1Hashes = new Map(wave1Rows.map((row) => [row.item.entry_id, row.hash]));
   const lines = [
     '# Construction Tools Atlas — Image attribution',
     '',
-    'This file is generated from `data/image-wave1-sources-v2.3.json` by `scripts/build-image-wave1-v2.3.mjs`.',
+    'This file is generated from the reviewed Construction Tools Atlas raster source ledgers.',
     '',
     'Runtime images are local derivatives. The build may auto-orient the source, resize it, strip metadata, and convert it to WebP. The original source file is retained beside each derivative.',
     '',
-    'For licensed sources, each generated WebP derivative is made available under the same license shown for that source below. For the Public Domain source, NicheWorks does not assert new copyright restrictions over the mechanical WebP derivative.',
+    'For licensed sources, each generated WebP derivative is made available under the same license shown for that source below. For Public Domain or CC0 sources, NicheWorks does not assert new copyright restrictions over the mechanical WebP derivative.',
     '',
     '| Canonical entry | Attribution | License | Source | Source SHA-1 |',
     '| --- | --- | --- | --- | --- |'
   ];
-  for (const row of rows) {
-    const item = row.item;
-    const safeAttribution = item.attribution.replaceAll('|', '\\|');
-    const safeLicense = item.license.replaceAll('|', '\\|');
-    lines.push(`| \`${item.entry_id}\` | ${safeAttribution} | [${safeLicense}](${item.license_url}) | [Wikimedia Commons](${item.source_page}) | \`${row.hash}\` |`);
+  for (const ledger of ledgers) {
+    for (const item of ledger.items || []) {
+      const hash = actualWave1Hashes.get(item.entry_id) || text(item.source_sha1);
+      if (!hash) fail(`${item.entry_id}: attribution generation requires a source SHA-1`);
+      const safeAttribution = item.attribution.replaceAll('|', '\\|');
+      const safeLicense = item.license.replaceAll('|', '\\|');
+      lines.push(`| \`${item.entry_id}\` | ${safeAttribution} | [${safeLicense}](${item.license_url}) | [Wikimedia Commons](${item.source_page}) | \`${hash}\` |`);
+    }
   }
-  lines.push('', `Source ledger version: \`${manifest.version}\`.`,'');
+  lines.push('', `Source ledger versions: ${ledgers.map((ledger) => `\`${ledger.version}\``).join(', ')}.`, '');
   return `${lines.join('\n')}\n`;
 }
 
@@ -142,7 +159,9 @@ async function main() {
     console.log(`${id}: source=${buffer.length}B primary=${primaryStat.size}B thumb=${thumbStat.size}B sha1=${hash}`);
   }
 
-  await fs.writeFile(path.join(IMAGE_ROOT, 'ATTRIBUTION.md'), attributionMarkdown(manifest, rows), 'utf8');
+  const wave2 = await optionalWave2Ledger();
+  const ledgers = wave2 ? [manifest, wave2] : [manifest];
+  await fs.writeFile(path.join(IMAGE_ROOT, 'ATTRIBUTION.md'), attributionMarkdown(ledgers, rows), 'utf8');
   console.log(`Wave 1 image build complete: ${rows.length} canonical entries`);
 }
 
