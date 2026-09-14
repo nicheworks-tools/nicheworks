@@ -3,12 +3,12 @@
   "algorithm": "audit-image-assets-v2.3-canonical-mapping",
   "runtime_manifest_count": 12,
   "runtime_items": 180,
-  "corpus_entries": 5497,
+  "corpus_entries": 5536,
   "counts": {
-    "mapped": 127,
-    "ambiguous": 12,
-    "unresolved": 41,
-    "backlog": 53
+    "mapped": 166,
+    "ambiguous": 10,
+    "unresolved": 4,
+    "backlog": 14
   },
   "ambiguous": [
     {
@@ -113,27 +113,6 @@
         {
           "id": "q014_drip_edge",
           "score": 9
-        }
-      ]
-    },
-    {
-      "manifest": "image-pilots-004.json",
-      "index": 3,
-      "ja": "型枠パネル",
-      "en": "Formwork panel",
-      "keys": [
-        "型枠パネル",
-        "formwork panel"
-      ],
-      "src": "./images/pilot/formwork-panel.svg?v=20260513-asset-8",
-      "candidates": [
-        {
-          "id": "term_formwork_compact_panel_cutting_1",
-          "score": 8
-        },
-        {
-          "id": "term_formwork_standard_panel_cutting_1",
-          "score": 8
         }
       ]
     },
@@ -250,90 +229,9 @@
           "score": 18
         }
       ]
-    },
-    {
-      "manifest": "image-pilots-012.json",
-      "index": 5,
-      "ja": "床スペーサー",
-      "en": "Flooring spacer",
-      "keys": [
-        "床スペーサー",
-        "flooring spacer"
-      ],
-      "src": "./images/pilot/flooring-spacer.svg?v=20260513-asset-16",
-      "candidates": [
-        {
-          "id": "term_flooring_compact_spacer_cutting_1",
-          "score": 8
-        },
-        {
-          "id": "term_flooring_standard_spacer_cutting_1",
-          "score": 8
-        }
-      ]
     }
   ],
   "unresolved": [
-    {
-      "manifest": "image-pilots.json",
-      "index": 32,
-      "ja": "作業台",
-      "en": "Workbench",
-      "keys": [
-        "作業台",
-        "workbench"
-      ],
-      "src": "./images/pilot/workbench.svg?v=20260510-asset-3",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots.json",
-      "index": 35,
-      "ja": "工具箱",
-      "en": "Toolbox",
-      "keys": [
-        "工具箱",
-        "toolbox"
-      ],
-      "src": "./images/pilot/toolbox.svg?v=20260510-asset-3",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots.json",
-      "index": 47,
-      "ja": "シーリング目地",
-      "en": "Sealant joint",
-      "keys": [
-        "シーリング目地",
-        "sealant joint"
-      ],
-      "src": "./images/pilot/sealant-joint.svg?v=20260510-asset-4",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots.json",
-      "index": 53,
-      "ja": "天井吊り金物",
-      "en": "Ceiling hanger",
-      "keys": [
-        "天井吊り金物",
-        "ceiling hanger"
-      ],
-      "src": "./images/pilot/ceiling-hanger.svg?v=20260510-asset-4",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots.json",
-      "index": 67,
-      "ja": "ゴムハンマー",
-      "en": "Rubber mallet",
-      "keys": [
-        "ゴムハンマー",
-        "rubber mallet"
-      ],
-      "src": "./images/pilot/rubber-mallet.svg?v=20260513-asset-5",
-      "candidates": []
-    },
     {
       "manifest": "image-pilots.json",
       "index": 68,
@@ -344,69 +242,6 @@
         "hand plane"
       ],
       "src": "./images/pilot/hand-plane.svg?v=20260513-asset-5",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots.json",
-      "index": 69,
-      "ja": "木工ヤスリ",
-      "en": "Wood rasp",
-      "keys": [
-        "木工ヤスリ",
-        "wood rasp"
-      ],
-      "src": "./images/pilot/wood-rasp.svg?v=20260513-asset-5",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-002.json",
-      "index": 0,
-      "ja": "ラジオペンチ",
-      "en": "Needle nose pliers",
-      "keys": [
-        "ラジオペンチ",
-        "needle nose pliers",
-        "long nose pliers"
-      ],
-      "src": "./images/pilot/needle-nose-pliers.svg?v=20260513-asset-6",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-002.json",
-      "index": 3,
-      "ja": "絶縁ドライバー",
-      "en": "Insulated screwdriver",
-      "keys": [
-        "絶縁ドライバー",
-        "insulated screwdriver",
-        "electrician screwdriver"
-      ],
-      "src": "./images/pilot/electrician-screwdriver.svg?v=20260513-asset-6",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-002.json",
-      "index": 8,
-      "ja": "ケーブルカッター",
-      "en": "Cable cutter",
-      "keys": [
-        "ケーブルカッター",
-        "cable cutter"
-      ],
-      "src": "./images/pilot/cable-cutter.svg?v=20260513-asset-6",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-002.json",
-      "index": 9,
-      "ja": "結束工具",
-      "en": "Tie fastener tool",
-      "keys": [
-        "結束工具",
-        "tie fastener tool",
-        "cable tie tool"
-      ],
-      "src": "./images/pilot/tie-fastener-tool.svg?v=20260513-asset-6",
       "candidates": []
     },
     {
@@ -423,27 +258,6 @@
     },
     {
       "manifest": "image-pilots-004.json",
-      "index": 5,
-      "ja": "型枠クランプ",
-      "en": "Form clamp",
-      "keys": [
-        "型枠クランプ",
-        "form clamp"
-      ],
-      "src": "./images/pilot/form-clamp.svg?v=20260513-asset-8",
-      "candidates": [
-        {
-          "id": "term_formwork_compact_clamp_cutting_1",
-          "score": 4
-        },
-        {
-          "id": "term_formwork_standard_clamp_cutting_1",
-          "score": 4
-        }
-      ]
-    },
-    {
-      "manifest": "image-pilots-004.json",
       "index": 8,
       "ja": "木鏝",
       "en": "Float trowel",
@@ -452,191 +266,6 @@
         "float trowel"
       ],
       "src": "./images/pilot/float-trowel.svg?v=20260513-asset-8",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-005.json",
-      "index": 1,
-      "ja": "ねじ切り機",
-      "en": "Pipe threader",
-      "keys": [
-        "ねじ切り機",
-        "pipe threader"
-      ],
-      "src": "./images/pilot/pipe-threader.svg?v=20260513-asset-9",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-005.json",
-      "index": 3,
-      "ja": "面取り器",
-      "en": "Pipe deburrer",
-      "keys": [
-        "面取り器",
-        "pipe deburrer"
-      ],
-      "src": "./images/pilot/pipe-deburrer.svg?v=20260513-asset-9",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-005.json",
-      "index": 5,
-      "ja": "銅管",
-      "en": "Copper pipe",
-      "keys": [
-        "銅管",
-        "copper pipe"
-      ],
-      "src": "./images/pilot/copper-pipe.svg?v=20260513-asset-9",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-005.json",
-      "index": 6,
-      "ja": "エルボ",
-      "en": "Pipe elbow",
-      "keys": [
-        "エルボ",
-        "pipe elbow"
-      ],
-      "src": "./images/pilot/pipe-elbow.svg?v=20260513-asset-9",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-005.json",
-      "index": 7,
-      "ja": "チーズ",
-      "en": "Pipe tee",
-      "keys": [
-        "チーズ",
-        "pipe tee"
-      ],
-      "src": "./images/pilot/pipe-tee.svg?v=20260513-asset-9",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-005.json",
-      "index": 8,
-      "ja": "ソケット",
-      "en": "Pipe coupling",
-      "keys": [
-        "ソケット",
-        "pipe coupling"
-      ],
-      "src": "./images/pilot/pipe-coupling.svg?v=20260513-asset-9",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-005.json",
-      "index": 9,
-      "ja": "止水栓",
-      "en": "Stop valve",
-      "keys": [
-        "止水栓",
-        "stop valve"
-      ],
-      "src": "./images/pilot/stop-valve.svg?v=20260513-asset-9",
-      "candidates": [
-        {
-          "id": "ball_valve",
-          "score": 4
-        }
-      ]
-    },
-    {
-      "manifest": "image-pilots-006.json",
-      "index": 4,
-      "ja": "天井ランナー",
-      "en": "Ceiling runner",
-      "keys": [
-        "天井ランナー",
-        "ceiling runner"
-      ],
-      "src": "./images/pilot/ceiling-runner.svg?v=20260513-asset-10",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-006.json",
-      "index": 8,
-      "ja": "OAフロア",
-      "en": "Access floor panel",
-      "keys": [
-        "OAフロア",
-        "access floor panel"
-      ],
-      "src": "./images/pilot/access-floor-panel.svg?v=20260513-asset-10",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-007.json",
-      "index": 2,
-      "ja": "内部コーンアンカー",
-      "en": "Drop-in anchor",
-      "keys": [
-        "内部コーンアンカー",
-        "drop-in anchor"
-      ],
-      "src": "./images/pilot/drop-in-anchor.svg?v=20260513-asset-11",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-007.json",
-      "index": 8,
-      "ja": "アイボルト",
-      "en": "Eye bolt",
-      "keys": [
-        "アイボルト",
-        "eye bolt"
-      ],
-      "src": "./images/pilot/eye-bolt.svg?v=20260513-asset-11",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-008.json",
-      "index": 2,
-      "ja": "電線管カップリング",
-      "en": "Conduit coupling",
-      "keys": [
-        "電線管カップリング",
-        "conduit coupling"
-      ],
-      "src": "./images/pilot/conduit-coupling.svg?v=20260513-asset-12",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-008.json",
-      "index": 3,
-      "ja": "電線管コネクタ",
-      "en": "Conduit connector",
-      "keys": [
-        "電線管コネクタ",
-        "conduit connector"
-      ],
-      "src": "./images/pilot/conduit-connector.svg?v=20260513-asset-12",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-008.json",
-      "index": 8,
-      "ja": "スイッチプレート",
-      "en": "Switch plate",
-      "keys": [
-        "スイッチプレート",
-        "switch plate"
-      ],
-      "src": "./images/pilot/switch-plate.svg?v=20260513-asset-12",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-008.json",
-      "index": 9,
-      "ja": "配線ダクト",
-      "en": "Wire duct",
-      "keys": [
-        "配線ダクト",
-        "wire duct"
-      ],
-      "src": "./images/pilot/electrical-wire-duct.svg?v=20260513-asset-12",
       "candidates": []
     },
     {
@@ -655,148 +284,6 @@
           "score": 4
         }
       ]
-    },
-    {
-      "manifest": "image-pilots-009.json",
-      "index": 9,
-      "ja": "バリケードバー",
-      "en": "Barricade bar",
-      "keys": [
-        "バリケードバー",
-        "barricade bar"
-      ],
-      "src": "./images/pilot/barricade-bar.svg?v=20260513-asset-13",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-010.json",
-      "index": 1,
-      "ja": "回転レーザー",
-      "en": "Rotary laser",
-      "keys": [
-        "回転レーザー",
-        "rotary laser level",
-        "rotary laser"
-      ],
-      "src": "./images/pilot/rotary-laser-level.svg?v=20260513-asset-14",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-010.json",
-      "index": 2,
-      "ja": "受光器",
-      "en": "Laser receiver",
-      "keys": [
-        "受光器",
-        "laser receiver"
-      ],
-      "src": "./images/pilot/laser-receiver.svg?v=20260513-asset-14",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-010.json",
-      "index": 3,
-      "ja": "測量三脚",
-      "en": "Survey tripod",
-      "keys": [
-        "測量三脚",
-        "survey tripod"
-      ],
-      "src": "./images/pilot/survey-tripod.svg?v=20260513-asset-14",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-010.json",
-      "index": 9,
-      "ja": "点検ミラー",
-      "en": "Inspection mirror",
-      "keys": [
-        "点検ミラー",
-        "inspection mirror"
-      ],
-      "src": "./images/pilot/inspection-mirror.svg?v=20260513-asset-14",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-011.json",
-      "index": 4,
-      "ja": "研磨ブロック",
-      "en": "Abrasive block",
-      "keys": [
-        "研磨ブロック",
-        "abrasive block"
-      ],
-      "src": "./images/pilot/abrasive-pad-block.svg?v=20260513-asset-15",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-011.json",
-      "index": 9,
-      "ja": "目地ローラー",
-      "en": "Seam roller",
-      "keys": [
-        "目地ローラー",
-        "seam roller"
-      ],
-      "src": "./images/pilot/seam-roller.svg?v=20260513-asset-15",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-012.json",
-      "index": 4,
-      "ja": "床ローラー",
-      "en": "Floor roller",
-      "keys": [
-        "床ローラー",
-        "floor roller"
-      ],
-      "src": "./images/pilot/vinyl-floor-roller.svg?v=20260513-asset-16",
-      "candidates": [
-        {
-          "id": "term_flooring_compact_roller_cutting_1",
-          "score": 4
-        },
-        {
-          "id": "term_flooring_standard_roller_cutting_1",
-          "score": 4
-        }
-      ]
-    },
-    {
-      "manifest": "image-pilots-012.json",
-      "index": 7,
-      "ja": "接着剤ヘラ",
-      "en": "Adhesive spreader",
-      "keys": [
-        "接着剤ヘラ",
-        "adhesive spreader"
-      ],
-      "src": "./images/pilot/floor-adhesive-spreader.svg?v=20260513-asset-16",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-012.json",
-      "index": 8,
-      "ja": "床材引き寄せ金具",
-      "en": "Flooring pull bar",
-      "keys": [
-        "床材引き寄せ金具",
-        "flooring pull bar"
-      ],
-      "src": "./images/pilot/flooring-pull-bar.svg?v=20260513-asset-16",
-      "candidates": []
-    },
-    {
-      "manifest": "image-pilots-012.json",
-      "index": 9,
-      "ja": "当て木",
-      "en": "Floor edge pad",
-      "keys": [
-        "当て木",
-        "floor edge pad"
-      ],
-      "src": "./images/pilot/floor-edge-pad.svg?v=20260513-asset-16",
-      "candidates": []
     }
   ]
 }
