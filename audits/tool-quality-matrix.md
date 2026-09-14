@@ -9,7 +9,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 - FIX: **0**
 - BLOCKED: **0**
 - NEEDS_DECISION: **0**
-- Behavior-level tests missing: **82**
+- Behavior-level tests missing: **80**
 - Real responsive defects found: **0**
 - Hard common-spec violations: **0 tools**
 - Recommendation-only documentation gaps: **28 tools**
@@ -38,9 +38,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 | [csv-tidy](../docs/tools/csv-tidy.md) | desktop-wide | optional-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [design-request-builder](../docs/tools/design-request-builder.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [dry-meter](../docs/tools/dry-meter.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
-| [earth-alerts](../docs/tools/earth-alerts.md) | mobile-oriented | not-applicable | not-applicable | behavior-test-missing | 0 | 0 | **PASS** |
 | [earth-map-suite](../docs/tools/earth-map-suite.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-present | 0 | 0 | **PASS** |
-| [earth-timeseries](../docs/tools/earth-timeseries.md) | mobile-oriented | not-applicable | not-applicable | behavior-test-missing | 0 | 0 | **PASS** |
 | [exif-cleaner-mini](../docs/tools/exif-cleaner-mini.md) | mobile-oriented | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [filetype-sniffer](../docs/tools/filetype-sniffer.md) | mobile-oriented | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [form-tool-selector](../docs/tools/form-tool-selector.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
