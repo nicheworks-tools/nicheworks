@@ -209,6 +209,10 @@ Wave 19では、供給側拡張方針を維持し、既存direct-link coverage�
 
 - 沖縄県 那覇市 — `/tools/trashnavi/okinawa/naha/`
 
+Wave 20では、供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から徳島市を選定した。徳島市公式のごみ分別導線を具体的な現行ページへ更新し、令和8年度家庭ごみ収集日程表と粗大ごみ案内を追加して、3種類のwaste-specific canonical typeを持つpreferred candidateへ引き上げた。data enrichment検証後、公開対象を **27自治体** とする。
+
+- 徳島県 徳島市 — `/tools/trashnavi/tokushima/tokushima/`
+
 生成器は公開対象ごとにrepository dataを再集約し、`municipal_home` を除くdistinct waste-specific canonical typeが **3種類未満なら生成を拒否**する。manifestに追加しただけでthin pageを公開してはならない。
 
 各自治体pageは最低限以下を持つ。
@@ -404,6 +408,25 @@ CIではcoverage strict auditと生成drift checkの両方を必須とし、公�
 - invalid records: 0
 - unknown type labels: 0
 
+
+### Wave 20 verified coverage baseline
+
+2026-09-14のWave 20 CI基準値は次のとおり。
+
+- municipalities: 1,916
+- records: 2,219 / 2,219 valid HTTP(S)
+- municipalities with any waste-specific direct link: 78
+- publish candidates (2+ types): 27
+- preferred candidates (3+ types): 27
+- collection-calendar coverage: 27 municipalities
+- bulky-waste coverage: 26 municipalities
+- waste-search coverage: 1 municipality
+- drop-off facility coverage: 1 municipality
+- waste-app coverage: 1 municipality
+- direct-link inventory: 23 datasets / 151 records / 132 unique URLs / 0 invalid URLs
+- invalid records: 0
+- unknown type labels: 0
+
 ### Direct-link health monitoring — Phase 4
 
 Phase 4では、単一legacy fileだけを確認していたlink checkを、`tools/trashnavi/data/direct-waste-links*.json` に一致する全direct-link datasetへ拡張する。
@@ -466,9 +489,9 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 ### Municipality page expansion
 
 - [x] preferred readiness 3種類以上を生成時に再検証する。
-- [x] 公開26自治体をmanifest allowlistで管理する。
+- [x] 公開27自治体をmanifest allowlistで管理する。
 - [x] 自治体pageをgeneratorから静的生成する。
-- [x] generator `--check` で26ページの生成driftを検出する。
+- [x] generator `--check` で27ページの生成driftを検出する。
 - [x] 公開URLをroot sitemapと専用sitemapへ収録する。
 - [x] robotsの既存root sitemap契約を維持し、sitemap indexから専用sitemapを発見可能にする。
 - [x] Wave 3で御浜町・海津市・結城市をpreferred candidateへ引き上げる。
@@ -488,6 +511,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - [x] Wave 17で佐賀市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 18で鳥取市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 19で那覇市をpreferred candidateへ引き上げ、自治体pageを公開する。
+- [x] Wave 20で徳島市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
 ### Link health Phase 4
@@ -521,6 +545,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/data/direct-waste-links-supply-wave17.json` — 佐賀市のWave 17 collection-calendar / bulky-waste enrichment。
 - `tools/trashnavi/data/direct-waste-links-supply-wave18.json` — 鳥取市のWave 18 collection-calendar / bulky-waste enrichment。
 - `tools/trashnavi/data/direct-waste-links-supply-wave19.json` — 那覇市のWave 19 waste-search / collection-calendar / bulky-waste enrichment。
+- `tools/trashnavi/data/direct-waste-links-supply-wave20.json` — 徳島市のWave 20 collection-calendar / bulky-waste enrichment。
 - `tools/trashnavi/DATA_MODEL.md` — forward schema、canonical taxonomy、landing-page readiness。
 - `tools/trashnavi/scripts/audit-coverage.mjs` — repository-local coverage/data-quality audit。
 - `tools/trashnavi/scripts/check-runtime-contract.mjs` — Current runtime 6項目と公開自治体のroot internal-link整合性をCI検証する。
@@ -545,6 +570,7 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/saga/saga/index.html` — Wave 17 municipality page。
 - `tools/trashnavi/tottori/tottori/index.html` — Wave 18 municipality page。
 - `tools/trashnavi/okinawa/naha/index.html` — Wave 19 municipality page。
+- `tools/trashnavi/tokushima/tokushima/index.html` — Wave 20 municipality page。
 - `scripts/check-trashnavi-direct-links.mjs` — all-direct-link dataset inventory / scheduled link-health checker。
 - `.github/workflows/check-trashnavi-direct-links.yml` — monthly/manual live link-health check and report artifact upload。
 - `.agent/plans/20260912-trashnavi-link-freshness-phase4.md` — Phase 4 implementation / safety contract。
