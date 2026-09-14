@@ -324,6 +324,63 @@
       "affiliateKeys": []
     },
     {
+      "id": "google-pixel-11-pro-fold",
+      "manufacturer": "Google",
+      "model": "Pixel 11 Pro Fold",
+      "aliases": [
+        "Google Pixel 11 Pro Fold",
+        "Pixel11ProFold",
+        "Pixel 11 Fold",
+        "ピクセル11 Pro Fold",
+        "ピクセル11プロFold"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 155.2,
+        "widthMm": 76,
+        "depthMm": 10.1
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 155.2,
+        "widthMm": 150.4,
+        "depthMm": 5
+      },
+      "weightG": 239,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4806,
+          "valueClass": "official",
+          "sourceRef": "https://store.google.com/jp/product/pixel_11_pro_fold_specs?hl=ja"
+        },
+        "wiredRecommendedW": 30,
+        "protocols": [
+          "PPS"
+        ],
+        "pps": "required",
+        "wirelessStandard": "Qi2.2",
+        "wirelessMaxW": 25
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://store.google.com/jp/product/pixel_11_pro_fold_specs?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
+        "releaseUrl": "https://blog.google/intl/ja-jp/products/devices-services/pixel-11-pro-fold/",
+        "chargingUrl": "https://store.google.com/jp/product/pixel_11_pro_fold_specs?hl=ja",
+        "wirelessUrl": "https://store.google.com/jp/product/pixel_11_pro_fold_specs?hl=ja",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
       "id": "samsung-galaxy-s26",
       "manufacturer": "Samsung",
       "model": "Galaxy S26",
@@ -1005,6 +1062,63 @@
         "chargingUrl": "https://store.google.com/jp/product/pixel_10_pro_specs?hl=ja",
         "wirelessUrl": "https://store.google.com/jp/product/pixel_10_pro_specs?hl=ja",
         "verifiedAt": "2026-09-13"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-10-pro-fold",
+      "manufacturer": "Google",
+      "model": "Pixel 10 Pro Fold",
+      "aliases": [
+        "Google Pixel 10 Pro Fold",
+        "Pixel10ProFold",
+        "Pixel 10 Fold",
+        "ピクセル10 Pro Fold",
+        "ピクセル10プロFold"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 155.2,
+        "widthMm": 76.3,
+        "depthMm": 10.8
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 155.2,
+        "widthMm": 150.4,
+        "depthMm": 5.2
+      },
+      "weightG": 258,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5015,
+          "valueClass": "official",
+          "sourceRef": "https://store.google.com/jp/product/pixel_10_pro_fold_specs?hl=ja"
+        },
+        "wiredRecommendedW": 30,
+        "protocols": [
+          "PPS"
+        ],
+        "pps": "required",
+        "wirelessStandard": "Qi2",
+        "wirelessMaxW": 15
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://store.google.com/jp/product/pixel_10_pro_fold_specs?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
+        "releaseUrl": "https://blog.google/intl/ja-jp/products/devices-services/google-pixel-10-pro-fold/",
+        "chargingUrl": "https://store.google.com/jp/product/pixel_10_pro_fold_specs?hl=ja",
+        "wirelessUrl": "https://store.google.com/jp/product/pixel_10_pro_fold_specs?hl=ja",
+        "verifiedAt": "2026-09-14"
       },
       "affiliateKeys": []
     },
