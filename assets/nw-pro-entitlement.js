@@ -139,17 +139,7 @@
     return refreshProState({ ...input, productId, sessionId });
   }
 
-  global.NicheWorksProEntitlement = {
-    DEFAULT_PRODUCT_ID,
-    getProState,
-    getFeatureState,
-    getProductState,
-    refreshProState,
-    activateFromSession,
-    clearProductSession
-  };
-
-  const OLD_KANJI_ANALYTICS_TOOLS = new Set([
+  const OLD_KANJI_TOOLKIT_PAGES = new Set([
     'old-kanji-reference',
     'old-kanji-ocr-scanner',
     'old-document-kanji-highlighter',
@@ -158,6 +148,105 @@
     'place-old-kanji-checker',
     'name-old-kanji-checker'
   ]);
+
+  function oldKanjiToolSlug() {
+    const parts = global.location?.pathname?.split('/').filter(Boolean) || [];
+    return parts[0] === 'tools' && OLD_KANJI_TOOLKIT_PAGES.has(parts[1]) ? parts[1] : '';
+  }
+
+  function currentLanguage() {
+    return String(global.document?.documentElement?.lang || 'ja').toLowerCase().startsWith('en') ? 'en' : 'ja';
+  }
+
+  function setLocalizedText(element, ja, en) {
+    if (!element) return;
+    const jaNode = element.querySelector?.('[data-i18n="ja"]');
+    const enNode = element.querySelector?.('[data-i18n="en"]');
+    if (jaNode && enNode) {
+      if (jaNode.textContent !== ja) jaNode.textContent = ja;
+      if (enNode.textContent !== en) enNode.textContent = en;
+      return;
+    }
+    const text = currentLanguage() === 'en' ? en : ja;
+    if (element.textContent !== text) element.textContent = text;
+    element.removeAttribute?.('data-i18n');
+  }
+
+  function normalizePlannedFeatureCopy(element) {
+    if (!element) return;
+    const before = element.textContent || '';
+    const after = before
+      .replace(/は Pro 機能です/g, 'は Pro 予定です')
+      .replace(/は Old Kanji Toolkit Pro で利用できます。/g, 'は Old Kanji Toolkit Pro での提供候補です。現在は利用できません。')
+      .replace(/は Old Kanji Toolkit Pro で利用できます/g, 'は Old Kanji Toolkit Pro での提供候補です。現在は利用できません')
+      .replace(/ are Pro features/g, ' are planned for Pro')
+      .replace(/ is a Pro feature/g, ' is planned for Pro')
+      .replace(/ are available in Old Kanji Toolkit Pro\./g, ' are planned for Old Kanji Toolkit Pro and are not currently available.')
+      .replace(/ is available in Old Kanji Toolkit Pro\./g, ' is planned for Old Kanji Toolkit Pro and is not currently available.');
+    if (after !== before) element.textContent = after;
+  }
+
+  function normalizeBillingUnavailableProUi(root) {
+    if (!oldKanjiToolSlug()) return;
+    const scope = root?.querySelectorAll ? root : global.document;
+    const panels = scope.querySelectorAll?.('[data-okj-pro-state="billing-unavailable"], .okj-pro-state-billing-unavailable') || [];
+    panels.forEach((panel) => {
+      panel.dataset.okjProState = 'billing-unavailable';
+      panel.classList.add('okj-pro-state-billing-unavailable');
+
+      panel.querySelectorAll('button').forEach((button) => {
+        button.disabled = true;
+        button.setAttribute('aria-disabled', 'true');
+      });
+
+      const price = panel.querySelector('[data-okj-pro-price], .okj-pro-price, .okj-pro-panel__price');
+      setLocalizedText(price, '課金未接続', 'Billing unavailable');
+
+      const cta = panel.querySelector('[data-okj-pro-cta], #okj-pro-cta, .okj-pro-panel__cta .okj-pro-locked-button') ||
+        Array.from(panel.children).find((child) => child.matches?.('button.okj-pro-locked-button'));
+      setLocalizedText(cta, 'Pro は現在利用できません', 'Pro currently unavailable');
+
+      const note = panel.querySelector('.okj-pro-panel__note');
+      setLocalizedText(note, 'Pro は準備中です。課金・解放導線は接続されていません。', 'Pro is planned and not currently purchasable. Billing and unlock are not connected.');
+
+      panel.querySelectorAll('[data-okj-feature-id] h3, [data-okj-feature-id] p').forEach(normalizePlannedFeatureCopy);
+    });
+  }
+
+  function installBillingUnavailableProBoundary() {
+    if (!oldKanjiToolSlug() || !global.document) return;
+    const run = () => normalizeBillingUnavailableProUi(global.document);
+    if (global.document.readyState === 'loading') global.document.addEventListener('DOMContentLoaded', run, { once: true });
+    else run();
+
+    const observer = new MutationObserver((mutations) => {
+      if (mutations.some((mutation) => mutation.type === 'childList' || mutation.type === 'characterData')) run();
+    });
+    const startObserver = () => {
+      if (global.document.body) observer.observe(global.document.body, { childList: true, characterData: true, subtree: true });
+    };
+    if (global.document.readyState === 'loading') global.document.addEventListener('DOMContentLoaded', startObserver, { once: true });
+    else startObserver();
+
+    global.document.addEventListener('click', (event) => {
+      if (event.target?.closest?.('[data-lang], .nw-lang-btn, #langJa, #langEn, #lang-ja, #lang-en')) queueMicrotask(run);
+    });
+  }
+
+  global.NicheWorksProEntitlement = {
+    DEFAULT_PRODUCT_ID,
+    getProState,
+    getFeatureState,
+    getProductState,
+    refreshProState,
+    activateFromSession,
+    clearProductSession,
+    normalizeBillingUnavailableProUi
+  };
+
+  installBillingUnavailableProBoundary();
+
+  const OLD_KANJI_ANALYTICS_TOOLS = OLD_KANJI_TOOLKIT_PAGES;
   const pathParts = global.location?.pathname?.split('/').filter(Boolean) || [];
   if (pathParts[0] === 'tools' && OLD_KANJI_ANALYTICS_TOOLS.has(pathParts[1]) && !global.__nicheworksOldKanjiAnalyticsLoading) {
     global.__nicheworksOldKanjiAnalyticsLoading = true;
