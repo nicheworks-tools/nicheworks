@@ -77,11 +77,9 @@
   }
 
   function createEngine(dictionary) {
-    const signals = toArray(dictionary?.signals).length
+    const signals = Array.isArray(dictionary?.signals)
       ? dictionary.signals.map(normalizeSignal).filter((signal) => signal.id)
-      : Array.isArray(dictionary?.signals)
-        ? dictionary.signals.map(normalizeSignal).filter((signal) => signal.id)
-        : [];
+      : [];
 
     function interpret(query, ignoredIds) {
       const normalized = normalizeText(query);
