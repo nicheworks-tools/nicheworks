@@ -6,89 +6,22 @@
     "dimensions": [1536, 1536],
     "format": "PNG",
     "purpose": "recognition-reference",
-    "requirements": [
-      "square",
-      "flat-front-on",
-      "no-text",
-      "no-frame",
-      "no-shadow",
-      "no-product-mockup",
-      "multiple-repeats-visible"
-    ],
+    "requirements": ["square","flat-front-on","no-text","no-frame","no-shadow","no-product-mockup","multiple-repeats-visible"],
     "verification_rule": "image_ready candidates must receive visual structural review before reviewed or verified"
   },
   "images": [
-    {
-      "pattern_id": "houndstooth",
-      "path": "assets/reference/houndstooth.png",
-      "review_state": "image_ready",
-      "method": "deterministic 2:2 twill simulation using alternating four-dark/four-light thread bands",
-      "has_text": false,
-      "is_mockup": false,
-      "multiple_repeats": true
-    },
-    {
-      "pattern_id": "gingham",
-      "path": "assets/reference/gingham.png",
-      "review_state": "image_ready",
-      "method": "deterministic orthogonal check construction",
-      "has_text": false,
-      "is_mockup": false,
-      "multiple_repeats": true
-    },
-    {
-      "pattern_id": "chevron",
-      "path": "assets/reference/chevron.png",
-      "review_state": "image_ready",
-      "method": "deterministic repeated V-band construction",
-      "has_text": false,
-      "is_mockup": false,
-      "multiple_repeats": true
-    },
-    {
-      "pattern_id": "seigaiha",
-      "path": "assets/reference/seigaiha.png",
-      "review_state": "image_ready",
-      "method": "deterministic staggered concentric semicircle wave construction",
-      "has_text": false,
-      "is_mockup": false,
-      "multiple_repeats": true
-    },
-    {
-      "pattern_id": "asanoha",
-      "path": "assets/reference/asanoha.png",
-      "review_state": "image_ready",
-      "method": "deterministic hexagon and radial star-line construction",
-      "has_text": false,
-      "is_mockup": false,
-      "multiple_repeats": true
-    },
-    {
-      "pattern_id": "shippo",
-      "path": "assets/reference/shippo.png",
-      "review_state": "image_ready",
-      "method": "deterministic equal interlocking-circle construction",
-      "has_text": false,
-      "is_mockup": false,
-      "multiple_repeats": true
-    },
-    {
-      "pattern_id": "ichimatsu",
-      "path": "assets/reference/ichimatsu.png",
-      "review_state": "image_ready",
-      "method": "deterministic alternating-square construction",
-      "has_text": false,
-      "is_mockup": false,
-      "multiple_repeats": true
-    },
-    {
-      "pattern_id": "kikko",
-      "path": "assets/reference/kikko.png",
-      "review_state": "image_ready",
-      "method": "deterministic regular-hexagon tortoiseshell lattice construction",
-      "has_text": false,
-      "is_mockup": false,
-      "multiple_repeats": true
-    }
+    {"pattern_id":"houndstooth","path":"assets/reference/houndstooth.png","review_state":"image_ready","method":"deterministic 2:2 twill simulation using alternating four-dark/four-light thread bands","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"pattern_id":"gingham","path":"assets/reference/gingham.png","review_state":"image_ready","method":"deterministic orthogonal check construction","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"pattern_id":"tartan","path":"assets/reference/tartan.png","review_state":"image_ready","method":"deterministic repeated sett with twill-like crossing of red, green and navy stripe bands","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"pattern_id":"glen-check","path":"assets/reference/glen-check.png","review_state":"image_ready","method":"deterministic compound check combining fine checks with larger heavy and medium divisions","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"pattern_id":"argyle","path":"assets/reference/argyle.png","review_state":"image_ready","method":"deterministic staggered colored lozenges with overlaid diagonal lattice","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"pattern_id":"chevron","path":"assets/reference/chevron.png","review_state":"image_ready","method":"deterministic repeated V-band construction","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"pattern_id":"polka-dot","path":"assets/reference/polka-dot.png","review_state":"image_ready","method":"deterministic regular equal-size round-dot grid","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"pattern_id":"moroccan-trellis","path":"assets/reference/moroccan-trellis.png","review_state":"image_ready","method":"deterministic rounded lantern-like trellis cell; represents the qualified contemporary market label only","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"pattern_id":"seigaiha","path":"assets/reference/seigaiha.png","review_state":"image_ready","method":"deterministic staggered concentric semicircle wave construction","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"pattern_id":"asanoha","path":"assets/reference/asanoha.png","review_state":"image_ready","method":"deterministic hexagon and radial star-line construction","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"pattern_id":"shippo","path":"assets/reference/shippo.png","review_state":"image_ready","method":"deterministic equal interlocking-circle construction","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"pattern_id":"ichimatsu","path":"assets/reference/ichimatsu.png","review_state":"image_ready","method":"deterministic alternating-square construction","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"pattern_id":"kikko","path":"assets/reference/kikko.png","review_state":"image_ready","method":"deterministic regular-hexagon tortoiseshell lattice construction","has_text":false,"is_mockup":false,"multiple_repeats":true}
   ]
 }
