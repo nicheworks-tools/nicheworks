@@ -35,7 +35,7 @@ Power-bank charge estimates use the maintained product approximation:
 
 The UI shows 5,000 / 10,000 / 20,000mAh estimates rounded to one decimal place and clearly labels them approximate. If battery capacity is unknown, no charge-count estimate is generated.
 
-Accessory guidance is resolved from maintained charging facts and reusable accessory classes rather than a phone × product matrix. Current classes cover USB-C cables, USB-C-to-Lightning cables, USB-PD, PPS, Samsung Super Fast Charging, Qi/Qi2, and USB-C power banks. Amazon purchase handoffs use the shared NicheWorks Associates helper and a fixed tagged-search template. Search destinations are generated only from maintained accessory-class metadata; user free-text search is never inserted into an Amazon URL. Maintained `amazonUrl` fields remain null because Phone QuickCheck uses the reviewed dynamic accessory-search template rather than per-record retail URLs.
+Accessory guidance is resolved from maintained charging facts and reusable accessory classes rather than a phone × product matrix. Current classes cover USB-C cables, USB-C-to-Lightning cables, USB-PD, PPS, Samsung Super Fast Charging, OPPO SUPERVOOC, Xiaomi HyperCharge/TurboCharge, Motorola TurboPower, Qi/Qi2, and USB-C power banks. Amazon purchase handoffs use the shared NicheWorks Associates helper and a fixed tagged-search template. Search destinations are generated only from maintained accessory-class metadata; user free-text search is never inserted into an Amazon URL. Maintained `amazonUrl` fields remain null because Phone QuickCheck uses the reviewed dynamic accessory-search template rather than per-record retail URLs.
 
 ## Inputs
 
@@ -56,6 +56,8 @@ Canonical runtime inputs are static NicheWorks-hosted JSON data:
 - `tools/phone-quickcheck/affiliate-config.js`
 - `tools/phone-quickcheck/affiliate-runtime.js`
 - `scripts/check-phone-quickcheck-affiliate.mjs`
+- `scripts/check-phone-quickcheck-source-semantics.mjs`
+- `tools/phone-quickcheck/tests/behavior.test.mjs`
 
 Phone records use stable model IDs, canonical manufacturer/model names, maintained aliases, dimensions in millimetres, mass in grams, charging facts, provenance/source URLs, verification date, and optional additive accessory keys.
 
