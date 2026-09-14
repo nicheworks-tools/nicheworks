@@ -83,6 +83,27 @@
       "authority": "Personal Care Products Council / Cosmetics Info",
       "sources": ["https://www.cosmeticsinfo.org/ingredient/tocopherol/"],
       "runtime_verified": true
+    },
+    "butylene glycol": {
+      "category": "solvent",
+      "source_functions": ["solvent"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/"],
+      "runtime_verified": true
+    },
+    "dipropylene glycol": {
+      "category": "solvent",
+      "source_functions": ["solvent"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/"],
+      "runtime_verified": true
+    },
+    "sodium hydroxide": {
+      "category": "pH adjuster",
+      "source_functions": ["pH adjuster"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/"],
+      "runtime_verified": true
     }
   }
 }
