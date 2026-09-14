@@ -35,13 +35,13 @@ jobs:
           node tools/trashnavi/scripts/check-affiliate-contract.mjs
           node tools/trashnavi/scripts/check-runtime-contract.mjs
 
-      - name: Finalize branch
+      - name: Commit implementation only
         run: |
-          rm .github/workflows/tmp-trashnavi-amazon-affiliate.yml
+          git checkout HEAD -- .github/workflows/check-trashnavi-coverage.yml
           rm tools/trashnavi/scripts/tmp-apply-affiliate.py
           git config user.name "nicheworks-tools"
           git config user.email "nicheworks.tools@gmail.com"
-          git add -A .github/workflows tools/trashnavi sitemap-trashnavi.xml
+          git add -A tools/trashnavi sitemap-trashnavi.xml
           git status --short
           git diff --cached --check
           git commit -m "Add TrashNavi Amazon affiliate layer"
