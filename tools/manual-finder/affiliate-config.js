@@ -149,8 +149,9 @@
       "ゲーム",
       "ネットワーク機器"
     ]),
+    eligibleOtherMakers: Object.freeze(["CASIO", "DJI", "Roland"]),
     excludedCategories: Object.freeze(["その他"]),
-    note: "Amazon Link Checker confirmed the representative tagged search format. The same format is enabled for exact canonical model records in product categories; heterogeneous 'その他' records remain excluded."
+    note: "Amazon Link Checker confirmed the representative tagged search format. Exact canonical model records in standard product categories are enabled; heterogeneous 'その他' records are enabled only for audited product-model makers CASIO, DJI, and Roland. Seiko caliber records and maker-index records remain excluded."
   });
 
   const consumableSearchTemplate = Object.freeze({
@@ -196,7 +197,9 @@
     const cleanModel = String(model || "").trim();
     const cleanCategory = String(category || "").trim();
     if (!cleanMaker || !cleanModel) return "";
-    if (!modelSearchTemplate.eligibleCategories.includes(cleanCategory)) return "";
+    const standardCategory = modelSearchTemplate.eligibleCategories.includes(cleanCategory);
+    const auditedOtherMaker = cleanCategory === "その他" && modelSearchTemplate.eligibleOtherMakers.includes(cleanMaker);
+    if (!standardCategory && !auditedOtherMaker) return "";
     return buildTaggedSearchUrl(`${cleanMaker} ${cleanModel}`);
   }
 

@@ -2,8 +2,8 @@
   "schema_version": 1,
   "generated_from": "tools/tools-index.json",
   "common_specification": "common-spec/spec-ja.md",
-  "registered_tool_count": 90,
-  "record_count": 90,
+  "registered_tool_count": 88,
+  "record_count": 88,
   "status_enum": [
     "PASS",
     "FIX",
@@ -11,7 +11,7 @@
     "NEEDS_DECISION"
   ],
   "counts": {
-    "PASS": 90,
+    "PASS": 88,
     "FIX": 0,
     "BLOCKED": 0,
     "NEEDS_DECISION": 0
@@ -1659,84 +1659,6 @@
       ]
     },
     {
-      "slug": "earth-alerts",
-      "display_name": {
-        "ja": "Earth Alerts",
-        "en": "Earth Alerts"
-      },
-      "implementation": "tools/earth-alerts/",
-      "active_state": "active",
-      "category": [
-        "earth",
-        "alerts"
-      ],
-      "spec": "docs/tools/earth-alerts.md",
-      "spec_coverage": "complete",
-      "implementation_exists": true,
-      "layout_class": "mobile-oriented",
-      "language_policy": "bilingual single-page",
-      "functional_completeness": "documented-current-contract",
-      "inputs_summary": "Only UI language selection and normal page navigation. There is no current alert-rule input form.",
-      "outputs_summary": "- Coming-soon/current-status information. - Link to Earth Map Suite as the related active tool.",
-      "network_dependency": {
-        "status": "not-found",
-        "external_hosts": []
-      },
-      "storage": {
-        "localStorage": false,
-        "sessionStorage": false
-      },
-      "capabilities": {
-        "copy": false,
-        "download": false
-      },
-      "responsive_status": "no-observed-defect",
-      "usage_status": "not-applicable",
-      "faq_status": "not-applicable",
-      "ga4_status": "present",
-      "adsense_status": "present",
-      "canonical_status": "present",
-      "json_ld_status": "present",
-      "donation_status": "present",
-      "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
-      "automated_tests": [
-        "scripts/check-tool-runtime-contracts.mjs"
-      ],
-      "outstanding_issues": [
-        "Behavior-level automated tests are absent."
-      ],
-      "final_state": "PASS",
-      "evidence": [
-        "tools/earth-alerts/index.html"
-      ],
-      "usage_html_present": false,
-      "usage_en_html_present": false,
-      "common_spec_compliance": "no-hard-gap-found",
-      "obvious_broken_or_incomplete_behavior": [],
-      "help_documentation": {
-        "main_page_summary": "required-and-present",
-        "usage": "not-applicable",
-        "faq": "not-applicable",
-        "usage_evidence": [],
-        "usage_language_coverage": {
-          "ja": false,
-          "en": false
-        }
-      },
-      "test_evidence": [
-        {
-          "path": "scripts/check-tool-runtime-contracts.mjs",
-          "classification": "regression/contract test"
-        }
-      ],
-      "decision_gaps": [],
-      "hard_compliance_gaps": [],
-      "recommendation_only_gaps": [
-        "Behavior-level automated tests are absent."
-      ]
-    },
-    {
       "slug": "earth-map-suite",
       "display_name": {
         "ja": "Earth Map Suite",
@@ -1832,84 +1754,6 @@
       "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": []
-    },
-    {
-      "slug": "earth-timeseries",
-      "display_name": {
-        "ja": "Earth Timeseries",
-        "en": "Earth Timeseries"
-      },
-      "implementation": "tools/earth-timeseries/",
-      "active_state": "active",
-      "category": [
-        "earth",
-        "timeseries"
-      ],
-      "spec": "docs/tools/earth-timeseries.md",
-      "spec_coverage": "complete",
-      "implementation_exists": true,
-      "layout_class": "mobile-oriented",
-      "language_policy": "bilingual single-page",
-      "functional_completeness": "documented-current-contract",
-      "inputs_summary": "Only UI language selection and normal page navigation. There is no current point/date-series input workflow.",
-      "outputs_summary": "- Coming-soon/current-status information. - Link to Earth Map Suite.",
-      "network_dependency": {
-        "status": "not-found",
-        "external_hosts": []
-      },
-      "storage": {
-        "localStorage": false,
-        "sessionStorage": false
-      },
-      "capabilities": {
-        "copy": false,
-        "download": false
-      },
-      "responsive_status": "no-observed-defect",
-      "usage_status": "not-applicable",
-      "faq_status": "not-applicable",
-      "ga4_status": "present",
-      "adsense_status": "present",
-      "canonical_status": "present",
-      "json_ld_status": "present",
-      "donation_status": "present",
-      "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
-      "automated_tests": [
-        "scripts/check-tool-runtime-contracts.mjs"
-      ],
-      "outstanding_issues": [
-        "Behavior-level automated tests are absent."
-      ],
-      "final_state": "PASS",
-      "evidence": [
-        "tools/earth-timeseries/index.html"
-      ],
-      "usage_html_present": false,
-      "usage_en_html_present": false,
-      "common_spec_compliance": "no-hard-gap-found",
-      "obvious_broken_or_incomplete_behavior": [],
-      "help_documentation": {
-        "main_page_summary": "required-and-present",
-        "usage": "not-applicable",
-        "faq": "not-applicable",
-        "usage_evidence": [],
-        "usage_language_coverage": {
-          "ja": false,
-          "en": false
-        }
-      },
-      "test_evidence": [
-        {
-          "path": "scripts/check-tool-runtime-contracts.mjs",
-          "classification": "regression/contract test"
-        }
-      ],
-      "decision_gaps": [],
-      "hard_compliance_gaps": [],
-      "recommendation_only_gaps": [
-        "Behavior-level automated tests are absent."
-      ]
     },
     {
       "slug": "exif-cleaner-mini",

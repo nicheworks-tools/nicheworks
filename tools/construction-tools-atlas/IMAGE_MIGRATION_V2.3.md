@@ -102,6 +102,42 @@ SVG remains allowed for UI icons, logos, diagrams and explanatory schematics. It
 
 Prioritize high-value, high-confusion and high-commercial-intent tools: drilling/fastening tools, hammers, wrenches, cutting/grinding/sanding tools, laser/measurement tools, caulking/sealant tools, common PPE and closely confused pairs.
 
+### Wave 1 implementation (PR7)
+
+PR7 starts the canonical raster path with a deliberately small reviewed set rather than maximizing count.
+
+Promoted canonical entries:
+
+- `rotary_hammer`
+- `impact_driver`
+- `cordless_drill`
+- `laser_level`
+- `caulking_gun`
+- `angle_grinder`
+
+Source acquisition is declared in `data/image-wave1-sources-v2.3.json`. The ledger records the canonical ID, fixed binary URL, source page, author, license, attribution, subject-review state and SHA-1. Runtime hotlinking is disabled.
+
+`scripts/build-image-wave1-v2.3.mjs` downloads only those reviewed sources, verifies pinned SHA-1 values, retains the original raster as `images/<entry_id>/source.jpg`, and generates local `primary.webp` and `thumb.webp` derivatives. `images/ATTRIBUTION.md` is generated from the same source ledger.
+
+The runtime resolution contract is:
+
+1. promoted canonical record in `data/image-registry-v2.3.json`
+2. legacy SVG pilot only when no promoted canonical record exists
+3. no image
+
+A promoted canonical entry owns its representative-image decision. If its local raster fails to load, the runtime omits the image instead of silently falling back to a potentially different legacy label-matched SVG.
+
+Formal registry promotion requires all of the following:
+
+- current canonical `entry_id`
+- `subject_match: matched`
+- `image_state: reviewed` or `verified`
+- `migration_state: promoted`
+- separate local WebP display and thumbnail files
+- retained local source raster
+- JA/EN alt text
+- source page, binary URL, author, license, attribution and modification record
+
 ### Wave 2
 
 Resolve the remaining active image records, including ambiguous/unresolved identity cases, then promote only records that satisfy the same subject-match and raster rules.

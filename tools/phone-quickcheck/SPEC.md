@@ -6,7 +6,7 @@
 - Public URL: `https://nicheworks.app/tools/phone-quickcheck/`
 - Specification status: `complete`
 - Common specification: `common-spec/spec-ja.md`
-- Current dataset: `156 verified models`
+- Current dataset: `181 verified models`
 - Public launch date: `2026-09-13`
 - Product class: `static browser utility / quick-check directory`
 
@@ -18,7 +18,7 @@ It is intentionally not a comprehensive smartphone encyclopedia, review database
 
 ## Current functional contract
 
-The maintained public dataset contains 156 verified models across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, and Motorola. Users can search by model name and maintained aliases, filter by manufacturer, charging connector, and release year, and sort by newest, lightest, or compact-size oriented order.
+The maintained public dataset contains 181 verified models across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, and Motorola. Users can search by model name and maintained aliases, filter by manufacturer, charging connector, and release year, and sort by newest, lightest, or compact-size oriented order.
 
 The list view remains deliberately compact. Selecting a phone exposes detail information including dimensions, weight, display size where maintained, charging port, charger guidance, verified protocol labels, PPS state, wireless charging standard/wattage, battery capacity where an accepted value exists, included cable/adapter state, official specification/manual links, and last verification date.
 
@@ -59,7 +59,7 @@ Canonical runtime inputs are static NicheWorks-hosted JSON data:
 - `scripts/check-phone-quickcheck-source-semantics.mjs`
 - `tools/phone-quickcheck/tests/behavior.test.mjs`
 
-Phone records use stable model IDs, canonical manufacturer/model names, maintained aliases, dimensions in millimetres, mass in grams, charging facts, provenance/source URLs, verification date, and optional additive accessory keys. Standard phones use `dimensions`; foldables use `formFactor: foldable` plus complete `dimensionsFolded` and `dimensionsUnfolded` sets. Foldables are listed and compact-sorted by folded dimensions while detail output shows both physical states.
+Phone records use stable model IDs, canonical manufacturer/model names, maintained aliases, dimensions in millimetres, mass in grams, charging facts, provenance/source URLs, verification date, and optional additive accessory keys. Standard phones use `dimensions`; foldables use `formFactor: foldable` plus complete `dimensionsFolded` and `dimensionsUnfolded` sets. Each dimension set keeps `heightMm` and `widthMm` plus either one `depthMm` value or, for a manufacturer-published variable foldable thickness, the paired `depthMmMin` / `depthMmMax` range. A range must never be collapsed into an inferred single depth. Foldables are listed and compact-sorted by folded dimensions while detail output shows both physical states.
 
 ## Outputs
 
@@ -121,7 +121,7 @@ Desktop uses a wide two-pane layout: searchable/filterable list on the left and 
 - [x] One canonical public tool page exists at `/tools/phone-quickcheck/`.
 - [x] Japanese and English UI are available on the same page.
 - [x] Desktop uses list + right detail pane and mobile uses a bottom sheet for details.
-- [x] The maintained public dataset contains 156 maintained models.
+- [x] The maintained public dataset contains 181 maintained models.
 - [x] Search matches canonical model names plus maintained aliases.
 - [x] Manufacturer, connector, and release-year filters work from canonical data.
 - [x] Device dimensions, weight, charging information, and official-source links can be displayed without converting the tool into a full specification encyclopedia.

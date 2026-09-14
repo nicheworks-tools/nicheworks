@@ -1,0 +1,49 @@
+name: Construction Tools Atlas image identity backlog
+
+on:
+  push:
+    branches:
+      - feat/construction-atlas-image-wave2-20260914
+      - feat/construction-atlas-image-wave2c-20260914
+    paths:
+      - tools/construction-tools-atlas/data/quality-manifest.json
+      - tools/construction-tools-atlas/data/tools.quality-017.json
+      - tools/construction-tools-atlas/scripts/generate-image-identity-backlog-v2.3.cjs
+      - .github/workflows/construction-tools-atlas-image-backlog.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: construction-atlas-image-identity-backlog-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Generate full identity backlog
+        run: node tools/construction-tools-atlas/scripts/generate-image-identity-backlog-v2.3.cjs
+
+      - name: Verify Construction Atlas image audit
+        run: node tools/construction-tools-atlas/scripts/audit-image-assets-v2.3.cjs
+
+      - name: Commit generated backlog
+        run: |
+          if git diff --quiet -- tools/construction-tools-atlas/data/image-identity-backlog-v2.3.json && git ls-files --error-unmatch tools/construction-tools-atlas/data/image-identity-backlog-v2.3.json >/dev/null 2>&1; then
+            echo "Identity backlog already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/construction-tools-atlas/data/image-identity-backlog-v2.3.json
+          git commit -m "chore(construction-atlas): materialize image identity backlog"
+          git fetch origin "${GITHUB_REF_NAME}"
+          git rebase "origin/${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

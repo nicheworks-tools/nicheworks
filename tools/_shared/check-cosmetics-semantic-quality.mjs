@@ -232,5 +232,6 @@ const report = {
   hard_failures: hardFailures
 };
 
+if (hardFailures.length) console.error(`SEMANTIC_HARD_FAILURES=${JSON.stringify(hardFailures)}`);
 console.log(JSON.stringify(report, null, 2));
 if (hardFailures.length) process.exit(1);

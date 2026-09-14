@@ -1,0 +1,141 @@
+{
+  "schema": "cta-image-identity-resolutions-v2.3",
+  "source_backlog": "./image-identity-backlog-v2.3.json",
+  "policy": {
+    "rule": "Resolve by canonical subject identity, not by legacy label similarity alone.",
+    "confirmed_state": "resolved_existing",
+    "hold_states": [
+      "canonical_duplicate_review",
+      "semantic_scope_review",
+      "canonical_missing",
+      "generated_variant_review"
+    ]
+  },
+  "resolutions": [
+    {
+      "manifest": "image-pilots.json",
+      "index": 33,
+      "legacy_ja": "台車",
+      "legacy_en": "Platform cart",
+      "state": "resolved_existing",
+      "entry_id": "q013_dolly",
+      "rationale": "Canonical definition is a wheeled platform used to move materials or tools; this matches the legacy Platform cart subject."
+    },
+    {
+      "manifest": "image-pilots-003.json",
+      "index": 3,
+      "legacy_ja": "ルーフィング",
+      "legacy_en": "Roofing underlayment",
+      "state": "resolved_existing",
+      "entry_id": "q011_roof_underlayment",
+      "rationale": "Canonical entry explicitly describes secondary waterproof roof underlayment beneath roofing."
+    },
+    {
+      "manifest": "image-pilots-004.json",
+      "index": 9,
+      "legacy_ja": "目地鏝",
+      "legacy_en": "Pointing trowel",
+      "state": "resolved_existing",
+      "entry_id": "pointing_trowel",
+      "rationale": "The alternate candidate is a concrete groover for control joints, which is a different tool from the legacy pointing-trowel subject."
+    },
+    {
+      "manifest": "image-pilots-007.json",
+      "index": 6,
+      "legacy_ja": "チャンネル材",
+      "legacy_en": "Strut channel",
+      "state": "resolved_existing",
+      "entry_id": "q012_unistrut_channel",
+      "rationale": "Canonical entry is explicitly Strut Channel used to support piping or equipment."
+    },
+    {
+      "manifest": "image-pilots.json",
+      "index": 68,
+      "legacy_ja": "かんな",
+      "legacy_en": "Hand plane",
+      "state": "resolved_existing",
+      "entry_id": "q012_japanese_plane",
+      "rationale": "Canonical entry is Japanese Plane, a hand plane used to smooth wood surfaces; the legacy kana spelling refers to the same tool."
+    },
+    {
+      "manifest": "image-pilots-003.json",
+      "index": 6,
+      "legacy_ja": "換気棟",
+      "legacy_en": "Roof vent",
+      "state": "resolved_existing",
+      "entry_id": "q014_roof_vent",
+      "rationale": "Canonical entry is a ridge vent that exhausts attic heat or moisture; this matches the legacy roof-vent subject."
+    },
+    {
+      "manifest": "image-pilots-004.json",
+      "index": 8,
+      "legacy_ja": "木鏝",
+      "legacy_en": "Float trowel",
+      "state": "resolved_existing",
+      "entry_id": "q011_float",
+      "rationale": "Canonical entry covers 木鏝・フロート used to level mortar or concrete surfaces."
+    },
+    {
+      "manifest": "image-pilots.json",
+      "index": 66,
+      "legacy_ja": "たがね",
+      "legacy_en": "Chisel",
+      "state": "resolved_existing",
+      "entry_id": "q012_cold_chisel",
+      "rationale": "The legacy Japanese term たがね denotes a striking chisel for hard material; q012_cold_chisel is the canonical タガネ for cutting or chipping metal or concrete, while the generic chisel candidate is explicitly a woodworking chisel (のみ)."
+    },
+    {
+      "manifest": "image-pilots-003.json",
+      "index": 2,
+      "legacy_ja": "水切り金物",
+      "legacy_en": "Flashing",
+      "state": "resolved_existing",
+      "entry_id": "q011_flashing",
+      "rationale": "q011_flashing is the roof/component canonical for 水切り / Flashing that directs water away from joints; it is more specific than the generic basic material entry."
+    },
+    {
+      "manifest": "image-pilots-003.json",
+      "index": 9,
+      "legacy_ja": "唐草",
+      "legacy_en": "Drip edge",
+      "state": "resolved_existing",
+      "entry_id": "q014_drip_edge",
+      "rationale": "The legacy 唐草 / Drip edge subject is a roof-edge water-shedding component; q014_drip_edge is the roof-component canonical, whereas the alternate drip_edge entry also spans sills, copings, and exterior transitions."
+    },
+    {
+      "manifest": "image-pilots-011.json",
+      "index": 2,
+      "legacy_ja": "塗料皿",
+      "legacy_en": "Paint tray",
+      "state": "resolved_existing",
+      "entry_id": "q013_paint_tray",
+      "rationale": "q013_paint_tray explicitly defines the roller paint tray used to load paint onto a roller and is the higher-quality canonical match for the legacy subject."
+    },
+    {
+      "manifest": "image-pilots-012.json",
+      "index": 1,
+      "legacy_ja": "くし目ごて",
+      "legacy_en": "Notched trowel",
+      "state": "resolved_existing",
+      "entry_id": "q011_notched_trowel",
+      "rationale": "q011_notched_trowel exactly matches くし目ごて / Notched Trowel and explicitly defines the notched adhesive-spreading tile tool."
+    },
+    {
+      "manifest": "image-pilots-009.json",
+      "index": 7,
+      "legacy_ja": "フルハーネス",
+      "legacy_en": "Full body harness",
+      "state": "resolved_existing",
+      "entry_id": "safety_harness",
+      "rationale": "The safety_harness canonical explicitly names 墜落制止用器具(フルハーネス) and includes Full-Body Harness as an English alias, establishing exact subject identity."
+    }
+  ],
+  "holds": [
+    {
+      "manifest": "image-pilots-004.json",
+      "index": 4,
+      "state": "semantic_scope_review",
+      "reason": "Legacy Japanese says separator while English says form tie; q011_form_tie and q011_separator are distinct formwork components, so image identity cannot be narrowed safely."
+    }
+  ]
+}

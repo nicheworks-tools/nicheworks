@@ -68,6 +68,172 @@
   ]);
   const ambiguousExactKeySet = new Set(AMBIGUOUS_EXACT_KEYS);
 
+  const VERIFIED_CATEGORY_EVIDENCE = Object.freeze({
+    "water": Object.freeze({
+      category: "solvent",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/water/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "glycerin": Object.freeze({
+      category: "humectant",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/glycerin/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "propylene glycol": Object.freeze({
+      category: "humectant",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/propylene-glycol/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "phenoxyethanol": Object.freeze({
+      category: "preservative",
+      sources: Object.freeze(["https://health.ec.europa.eu/publications/phenoxyethanol_en"]),
+      authority: "European Commission Scientific Committee on Consumer Safety"
+    }),
+    "carbomer": Object.freeze({
+      category: "thickener",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/carbomer/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "citric acid": Object.freeze({
+      category: "pH adjuster",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/citric-acid/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "tocopherol": Object.freeze({
+      category: "antioxidant",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/tocopherol/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "sodium chloride": Object.freeze({
+      category: "viscosity adjuster",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/sodium-chloride/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "disodium edta": Object.freeze({
+      category: "chelating agent",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/disodium-edta/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "tocopheryl acetate": Object.freeze({
+      category: "antioxidant",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/tocopherol/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    })
+  });
+
+  const VERIFIED_NOTE_EVIDENCE = Object.freeze({
+    "phenoxyethanol": Object.freeze({
+      note_short: "Preservative; SCCS considers it safe for use up to 1.0% in cosmetic products.",
+      note_sources: Object.freeze(["https://health.ec.europa.eu/publications/phenoxyethanol_en"]),
+      authority: "European Commission Scientific Committee on Consumer Safety"
+    }),
+    "sodium hydroxide": Object.freeze({
+      note_short: "pH adjuster; EU cosmetic rules list sodium hydroxide for pH-adjusting uses subject to specified restrictions.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0622"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "potassium hydroxide": Object.freeze({
+      note_short: "pH adjuster; EU cosmetic rules list potassium hydroxide for pH-adjusting uses subject to specified restrictions.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0622"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "methylisothiazolinone": Object.freeze({
+      note_short: "Preservative; EU cosmetic rules limit methylisothiazolinone to rinse-off products at up to 0.0015%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R1224"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "methylchloroisothiazolinone": Object.freeze({
+      note_short: "Preservative; in EU cosmetics, the methylchloroisothiazolinone/methylisothiazolinone 3:1 mixture is limited to rinse-off products at up to 0.0015%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32014R1003"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "sodium benzoate": Object.freeze({
+      note_short: "Preservative; EU Annex V sets sodium benzoate limits of 2.5% for rinse-off products, 1.7% for oral products and 0.5% for leave-on products, expressed as acid.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223/2026-05-18"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "sodium dehydroacetate": Object.freeze({
+      note_short: "Preservative; EU Annex V permits sodium dehydroacetate up to 0.6% expressed as acid and excludes aerosol sprays.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223/2026-05-18"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "sulfur": Object.freeze({
+      note_short: "OTC acne active; FDA Monograph M006 permits sulfur at 3% to 10% as a single active ingredient.",
+      note_sources: Object.freeze(["https://www.accessdata.fda.gov/drugsatfda_docs/omuf/OTC%20Monograph_M006-Topical%20Acne%20drug%20products%20for%20OTC%20Human%20Use%2011.23.2021.pdf"]),
+      authority: "U.S. Food and Drug Administration"
+    }),
+    "alpha-arbutin": Object.freeze({
+      note_short: "SCCS-reviewed cosmetic ingredient; alpha-arbutin is considered safe up to 2% in face creams and 0.5% in body lotions.",
+      note_sources: Object.freeze(["https://health.ec.europa.eu/publications/safety-alpha-arbutin-and-beta-arbutin-cosmetic-products_en"]),
+      authority: "European Commission Scientific Committee on Consumer Safety"
+    }),
+    "ceteareth-20": Object.freeze({
+      note_short: "Surfactant; Cosmetics Info reports Ceteareth-20 as a solubilizing and cleansing agent.",
+      note_sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/ceteareth-20/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "steareth-21": Object.freeze({
+      note_short: "Surfactant; Cosmetics Info reports Steareth-21 as a cleansing, emulsifying and solubilizing agent.",
+      note_sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/steareth-21/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "isopropyl myristate": Object.freeze({
+      note_short: "Binder and skin-conditioning emollient; these functions are reported for isopropyl myristate by Cosmetics Info.",
+      note_sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/isopropyl-myristate/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "simmondsia chinensis jojoba seed oil": Object.freeze({
+      note_short: "Hair-conditioning and occlusive skin-conditioning ingredient; these functions are reported for jojoba seed oil by Cosmetics Info.",
+      note_sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/simmondsia-chinensis-jojoba-seed-oil/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "aminobenzoic acid": Object.freeze({
+      note_short: "UV filter; EU Annex VI lists PABA (4-Aminobenzoic acid) at up to 5%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "ecamsule": Object.freeze({
+      note_short: "UV filter; EU Annex VI lists Ecamsule at up to 10% expressed as acid.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "octisalate": Object.freeze({
+      note_short: "UV filter; EU Annex VI lists Ethylhexyl Salicylate (Octisalate) at up to 5%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "diethylamino hydroxybenzoyl hexyl benzoate": Object.freeze({
+      note_short: "UV filter; EU Regulation 2026/909 sets DHHB at up to 10% and limits unavoidable DnHexP impurity to 10 ppm.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0909"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "diazolidinyl urea": Object.freeze({
+      note_short: "Preservative; EU Annex V lists Diazolidinyl Urea at up to 0.5%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "imidazolidinyl urea": Object.freeze({
+      note_short: "Preservative; EU Annex V lists Imidazolidinyl Urea at up to 0.6%.",
+      note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]),
+      authority: "European Union / EUR-Lex"
+    }),
+    "ammonium hydroxide": Object.freeze({
+      note_short: "Buffering and denaturant ingredient; COSMILE Europe lists both functions for Ammonium Hydroxide and notes that it is subject to EU Annex III restrictions.",
+      note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/906/ammonium-hydroxide"]),
+      authority: "Cosmetics Europe / COSMILE Europe"
+    }),
+    "glutathione": Object.freeze({
+      note_short: "Reducing agent; COSMILE Europe lists Glutathione as a reducing ingredient in cosmetic products.",
+      note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5915/glutathione/"]),
+      authority: "Cosmetics Europe / COSMILE Europe"
+    }),
+    "zinc pca": Object.freeze({
+      note_short: "Humectant and skin-conditioning ingredient; COSMILE Europe lists both functions for Zinc PCA.",
+      note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/17133/zinc-pca/"]),
+      authority: "Cosmetics Europe / COSMILE Europe"
+    })
+  });
+
   function canonicalIdentityKey(value = "") {
     const base = normalizeBaseKey(value);
     if (!base) return "";
@@ -222,10 +388,26 @@
       if (!current.note_short && raw.note_short) current.note_short = raw.note_short;
     }
 
+    for (const [canonicalKey, evidence] of Object.entries(VERIFIED_CATEGORY_EVIDENCE)) {
+      if (!byCanonical.has(canonicalKey)) continue;
+      addSemanticValue(semanticValues, canonicalKey, "category", evidence.category);
+    }
+
+    for (const [canonicalKey, evidence] of Object.entries(VERIFIED_NOTE_EVIDENCE)) {
+      if (!byCanonical.has(canonicalKey)) continue;
+      addVerifiedNoteCandidate(verifiedNotes, canonicalKey, {
+        note_short: evidence.note_short,
+        note_verified: true,
+        note_sources: evidence.note_sources
+      });
+    }
+
     return order.map((key) => {
       const current = byCanonical.get(key);
       const semantics = semanticValues.get(key) || { safety: [], category: [] };
       const provenanceCandidates = [...(verifiedNotes.get(key)?.values() || [])];
+      const categoryEvidence = VERIFIED_CATEGORY_EVIDENCE[key] || null;
+      const noteEvidence = VERIFIED_NOTE_EVIDENCE[key] || null;
       const conflicts = {};
 
       if (semantics.safety.length === 1) {
@@ -251,14 +433,27 @@
         current.categories = [];
       }
 
+      if (categoryEvidence) {
+        current.category_verified = true;
+        current.category_sources = normalizeNoteSources(categoryEvidence.sources);
+        current.category_authority = categoryEvidence.authority;
+      } else {
+        delete current.category_verified;
+        delete current.category_sources;
+        delete current.category_authority;
+      }
+
       if (provenanceCandidates.length === 1) {
         current.note_short = provenanceCandidates[0].note;
         current.note_verified = true;
         current.note_sources = provenanceCandidates[0].sources.slice();
+        if (noteEvidence) current.note_authority = noteEvidence.authority;
+        else delete current.note_authority;
         delete current.note_provenance_conflict;
       } else if (provenanceCandidates.length > 1) {
         delete current.note_verified;
         delete current.note_sources;
+        delete current.note_authority;
         current.note_provenance_conflict = provenanceCandidates.map((candidate) => ({
           note_short: candidate.note,
           note_sources: candidate.sources.slice()
@@ -267,6 +462,7 @@
       } else {
         delete current.note_verified;
         delete current.note_sources;
+        delete current.note_authority;
         delete current.note_provenance_conflict;
       }
 
@@ -372,7 +568,7 @@
   }
 
   const api = {
-    version: "1.12.0",
+    version: "1.21.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
@@ -382,6 +578,8 @@
     isExactIngredientMatch,
     isAmbiguousExactName,
     mergeDictionaryRecords,
+    verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
+    verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
     aliasEquivalents: ALIAS_EQUIVALENTS,
     canonicalEquivalents: CANONICAL_EQUIVALENTS,
     ambiguousExactKeys: AMBIGUOUS_EXACT_KEYS

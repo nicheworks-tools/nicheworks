@@ -2,13 +2,11 @@
 
 PR38 measured 22 legacy `note_short` records whose text contains safety/risk/irritation/allergy/sensitivity or similar claim-bearing wording, while the maintained nine-file dictionary set had zero explicit per-record evidence metadata.
 
-PR41 therefore made FastScan fail closed for dictionary-authored explanatory notes until a note has explicit provenance. It did not delete the legacy text from repository source data; the raw notes remain available for audit and later source-backed review.
-
-PR42 formalizes the per-record schema and makes canonical merge provenance-aware so future verified notes cannot depend on dictionary file order.
+PR41 made FastScan fail closed for dictionary-authored explanatory notes until a note has explicit provenance. PR42 formalized the per-record schema and made canonical merge provenance-aware. PR48 begins source-backed migration without rewriting the raw recognition dictionary: reviewed notes may now also enter through a canonical verified-note overlay and must pass the same runtime provenance gate.
 
 ## Runtime rule
 
-FastScan may expose a dictionary-authored `note_short` only when all of the following are true:
+FastScan may expose a dictionary-authored `note_short` only when all of the following are true after canonical merge:
 
 ```txt
 note_verified = true
@@ -27,12 +25,12 @@ This default copy describes only the name-match event. It does not make a safety
 
 ## Per-record schema
 
-The provenance fields are optional because the legacy dictionary remains intentionally unverified until individual records are reviewed.
+The provenance fields remain valid on raw dictionary records:
 
 ```json
 {
   "en": "Example Ingredient",
-  "note_short": "Reviewed neutral explanatory text.",
+  "note_short": "Reviewed explanatory text.",
   "note_verified": true,
   "note_sources": [
     "https://example.org/official-source"
@@ -53,34 +51,59 @@ Rules:
 
 Do not use `note_verified` to revive legacy `safe` / `caution` / `risk` values. Those remain isolated under the PR39 contract.
 
+## Canonical verified-note overlay
+
+PR48 adds `VERIFIED_NOTE_EVIDENCE` in the shared parser. This separates reviewed explanatory text/evidence from the raw recognition dictionary in the same way verified category evidence is separated from recognition records.
+
+Each overlay entry is keyed by canonical identity and contains:
+
+- exact reviewed `note_short` text;
+- one or more HTTPS `note_sources`;
+- `authority` identifying the source organization.
+
+The overlay does not bypass provenance handling. It is converted into an ordinary verified-note candidate and enters the same conflict-aware canonical merge as per-record verified notes. If a future per-record verified note conflicts with the overlay text, runtime exposure fails closed rather than selecting a winner.
+
 ## Canonical merge contract
 
 Raw dictionary files contain duplicate canonical identities, so provenance must not depend on which record happens to load first.
 
-The shared parser therefore applies these rules:
+The shared parser applies these rules:
 
-1. A record is a verified-note candidate only when it satisfies the runtime rule above.
-2. If one canonical identity has one verified note text, that text becomes the merged verified note regardless of raw record order.
-3. If multiple records have the same verified note text, their unique valid HTTPS sources are unioned.
-4. If one canonical identity has multiple different verified note texts, no verified winner is selected.
-5. Conflicting verified-note candidates are retained in `note_provenance_conflict` / `semantic_conflicts.note_provenance` for audit, while runtime exposure fails closed.
-6. Invalid or incomplete provenance never survives as `note_verified = true` after canonical merge.
+1. A raw record is a verified-note candidate only when it satisfies the runtime rule above.
+2. A canonical overlay entry is injected as another verified-note candidate; it has no privileged conflict bypass.
+3. If one canonical identity has one verified note text, that text becomes the merged verified note regardless of raw record order.
+4. If multiple candidates have the same verified note text, their unique valid HTTPS sources are unioned.
+5. If one canonical identity has multiple different verified note texts, no verified winner is selected.
+6. Conflicting verified-note candidates are retained in `note_provenance_conflict` / `semantic_conflicts.note_provenance` for audit, while runtime exposure fails closed.
+7. Invalid or incomplete provenance never survives as `note_verified = true` after canonical merge.
 
-Legacy unverified `note_short` values may remain in merged data for compatibility/audit, but FastScan does not display them because the verified flag is absent.
+Legacy unverified `note_short` values remain in raw source data for compatibility/audit, but FastScan does not display them because the verified flag is absent.
+
+## PR48 wave 1
+
+PR48 verifies exactly three canonical notes that are actually part of the frozen 22-row PR38 claim-bearing baseline:
+
+| Canonical identity | Reviewed runtime note | Source basis |
+| --- | --- | --- |
+| `phenoxyethanol` | `Preservative; SCCS considers it safe for use up to 1.0% in cosmetic products.` | SCCS/1575/16 concludes 2-phenoxyethanol is safe as a preservative at a maximum concentration of 1.0%, taking the supplied information into account. |
+| `sodium hydroxide` | `pH adjuster; EU cosmetic rules list sodium hydroxide for pH-adjusting uses subject to specified restrictions.` | Regulation (EU) 2016/622 amending Annex III of Regulation (EC) No 1223/2009 lists sodium hydroxide for pH-adjusting uses and specifies restrictions. |
+| `potassium hydroxide` | `pH adjuster; EU cosmetic rules list potassium hydroxide for pH-adjusting uses subject to specified restrictions.` | Regulation (EU) 2016/622 lists potassium hydroxide for pH-adjusting uses and specifies restrictions. |
+
+The sodium/potassium hydroxide runtime notes deliberately do **not** preserve the legacy `safe at very low levels` wording. The official EU source supports regulated pH-adjuster uses and restrictions; PR48 narrows the text to that directly supported claim rather than attaching provenance to a broader safety statement.
+
+The raw legacy notes are intentionally not rewritten. The original PR38 claim-bearing baseline therefore remains 22 raw rows, while `check-cosmetics-verified-note-wave1.mjs` reports 3 resolved rows and 19 still unresolved after wave 1.
 
 ## Lite
 
-Cosmetic Ingredient Checker Lite builds its displayed description from neutral match/category and explicit functional-rule text rather than rendering `note_short` directly. PR41/PR42 therefore do not make legacy dictionary notes user-visible in Lite.
+Cosmetic Ingredient Checker Lite builds its displayed description from neutral match/category and explicit functional-rule text rather than rendering `note_short` directly. PR48 does not make these reviewed FastScan notes a new Lite message surface.
 
 Both tools still use the same shared canonical identity and dictionary data for recognition.
 
 ## Provenance migration
 
-A cleanup wave may restore a dictionary-authored note to FastScan only after reviewing the text and adding explicit provenance under this schema. `note_verified = true` without at least one valid HTTPS `note_sources` entry is invalid and remains fail-closed at runtime.
+A cleanup wave may restore a dictionary-authored note to FastScan only after reviewing the exact final text against source evidence. Missing text is preferable to generated filler or an unsupported claim. Do not mass-fill the 538 missing notes identified by PR38.
 
-The purpose is not to mass-fill the 538 missing notes identified by PR38. Missing text is preferable to generated filler or an unsupported claim. Provenance work should prioritize the 22 claim-bearing legacy notes and other user-visible statements with substantive meaning.
-
-When a note is reviewed, review the exact final wording that will be stored in `note_short`; do not attach a source to a broader or stronger claim than the source actually supports.
+When a note is reviewed, do not attach a source to a broader or stronger claim than the source actually supports. Prefer authoritative or primary material, and narrow or rewrite the legacy note when needed rather than preserving unsupported wording.
 
 ## Recognition and OCR
 
@@ -91,7 +114,7 @@ The provenance work changes explanatory-note exposure only. It does not change:
 - ambiguity protections;
 - OCR processing or exact line repair;
 - near-match suggestions or explicit candidate application;
-- functional category handling introduced by PR40.
+- functional category handling.
 
 ## Privacy and Amazon
 
@@ -106,8 +129,9 @@ Run:
 ```bash
 node tools/_shared/check-cosmetics-note-provenance-isolation.mjs
 node tools/_shared/check-cosmetics-note-provenance-schema.mjs
+node tools/_shared/check-cosmetics-verified-note-wave1.mjs
 ```
 
 The isolation regression fails if FastScan can render an unverified dictionary note, if verified notes stop requiring provenance, if the neutral fallback copy disappears, or if PR38's semantic-note/evidence inventory is removed.
 
-The schema regression validates all nine maintained dictionary files, exercises order-independent verified-note canonical merge, verifies source union behavior, and proves that conflicting or invalid provenance fails closed.
+The schema regression validates all nine maintained dictionary files, exercises order-independent verified-note canonical merge, verifies source union behavior, and proves that conflicting or invalid provenance fails closed. The wave-1 regression additionally pins the three reviewed canonical notes, their reviewed EC/EUR-Lex source URLs, overlay-to-runtime merge behavior, and 22 → 3 resolved / 19 unresolved claim-bearing progress accounting.

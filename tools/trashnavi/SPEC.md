@@ -193,6 +193,34 @@ Wave 15では、供給側拡張方針を維持し、既存direct-link coverage�
 
 - 滋賀県 大津市 — `/tools/trashnavi/shiga/otsu/`
 
+Wave 16では、供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から松江市を選定した。松江市公式のごみ分別導線を現行ページへ更新し、令和8年度家庭ごみ収集日程と粗大ごみ回収申込み案内を追加して、preferred candidateへ引き上げた。data enrichment検証後、公開対象を **23自治体** とする。
+
+- 島根県 松江市 — `/tools/trashnavi/shimane/matsue/`
+
+Wave 17では、供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から佐賀市を選定した。佐賀市公式のごみ分別導線を現行ページへ更新し、令和8年度ごみカレンダーと粗大ごみ定期収集案内を追加して、preferred candidateへ引き上げた。data enrichment検証後、公開対象を **24自治体** とする。
+
+- 佐賀県 佐賀市 — `/tools/trashnavi/saga/saga/`
+
+Wave 18では、供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から鳥取市を選定した。鳥取市公式のごみ分別導線を現行ページへ更新し、令和8年度収集曜日一覧と大型ごみ案内を追加して、preferred candidateへ引き上げた。data enrichment検証後、公開対象を **25自治体** とする。
+
+- 鳥取県 鳥取市 — `/tools/trashnavi/tottori/tottori/`
+
+Wave 19では、供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から那覇市を選定した。那覇市公式の家庭ごみ分別導線を現行ページへ更新し、ごみ・資源分別検索、ごみ収集日検索、そ大ごみ案内を追加して、4種類のwaste-specific canonical typeを持つpreferred candidateへ引き上げた。data enrichment検証後、公開対象を **26自治体** とする。
+
+- 沖縄県 那覇市 — `/tools/trashnavi/okinawa/naha/`
+
+Wave 20では、供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から徳島市を選定した。徳島市公式のごみ分別導線を具体的な現行ページへ更新し、令和8年度家庭ごみ収集日程表と粗大ごみ案内を追加して、3種類のwaste-specific canonical typeを持つpreferred candidateへ引き上げた。data enrichment検証後、公開対象を **27自治体** とする。
+
+- 徳島県 徳島市 — `/tools/trashnavi/tokushima/tokushima/`
+
+Wave 21では、供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から長崎市を選定した。長崎市公式の家庭ごみ分別導線を現行ページへ更新し、町別のごみ収集曜日と粗大ごみ案内を追加して、3種類のwaste-specific canonical typeを持つpreferred candidateへ引き上げた。data enrichment検証後、公開対象を **28自治体** とする。
+
+- 長崎県 長崎市 — `/tools/trashnavi/nagasaki/nagasaki/`
+
+Wave 22では、供給側拡張方針を維持し、既存direct-link coverageが1種類止まりの県庁所在地から高知市を選定した。高知市公式の家庭ごみ分別導線を現行ページへ更新し、ごみ収集日、ごみの収集日検索、家庭ごみの自己搬入案内を追加して、4種類のwaste-specific canonical typeを持つpreferred candidateへ引き上げた。data enrichment検証後、公開対象を **29自治体** とする。
+
+- 高知県 高知市 — `/tools/trashnavi/kochi/kochi/`
+
 生成器は公開対象ごとにrepository dataを再集約し、`municipal_home` を除くdistinct waste-specific canonical typeが **3種類未満なら生成を拒否**する。manifestに追加しただけでthin pageを公開してはならない。
 
 各自治体pageは最低限以下を持つ。
@@ -318,6 +346,131 @@ CIではcoverage strict auditと生成drift checkの両方を必須とし、公�
 - invalid records: 0
 - unknown type labels: 0
 
+### Wave 16 verified coverage baseline
+
+2026-09-14のWave 16 CI基準値は次のとおり。
+
+- municipalities: 1,916
+- records: 2,210 / 2,210 valid HTTP(S)
+- municipalities with any waste-specific direct link: 78
+- publish candidates (2+ types): 23
+- preferred candidates (3+ types): 23
+- collection calendar coverage: 23 municipalities
+- bulky-waste coverage: 22 municipalities
+- drop-off facility coverage: 1 municipality
+- waste-app coverage: 1 municipality
+- direct-link inventory: 19 datasets / 142 records / 123 unique URLs / 0 invalid URLs
+- invalid records: 0
+- unknown type labels: 0
+
+### Wave 17 verified coverage baseline
+
+2026-09-14のWave 17 CI基準値は次のとおり。
+
+- municipalities: 1,916
+- records: 2,212 / 2,212 valid HTTP(S)
+- municipalities with any waste-specific direct link: 78
+- publish candidates (2+ types): 24
+- preferred candidates (3+ types): 24
+- collection calendar coverage: 24 municipalities
+- bulky-waste coverage: 23 municipalities
+- drop-off facility coverage: 1 municipality
+- waste-app coverage: 1 municipality
+- direct-link inventory: 20 datasets / 144 records / 125 unique URLs / 0 invalid URLs
+- invalid records: 0
+- unknown type labels: 0
+
+### Wave 18 verified coverage baseline
+
+2026-09-14のWave 18 CI基準値は次のとおり。
+
+- municipalities: 1,916
+- records: 2,214 / 2,214 valid HTTP(S)
+- municipalities with any waste-specific direct link: 78
+- publish candidates (2+ types): 25
+- preferred candidates (3+ types): 25
+- collection calendar coverage: 25 municipalities
+- bulky-waste coverage: 24 municipalities
+- drop-off facility coverage: 1 municipality
+- waste-app coverage: 1 municipality
+- direct-link inventory: 21 datasets / 146 records / 127 unique URLs / 0 invalid URLs
+- invalid records: 0
+- unknown type labels: 0
+
+
+### Wave 19 verified coverage baseline
+
+2026-09-14のWave 19 CI基準値は次のとおり。
+
+- municipalities: 1,916
+- records: 2,217 / 2,217 valid HTTP(S)
+- municipalities with any waste-specific direct link: 78
+- publish candidates (2+ types): 26
+- preferred candidates (3+ types): 26
+- collection-calendar coverage: 26 municipalities
+- bulky-waste coverage: 25 municipalities
+- waste-search coverage: 1 municipality
+- drop-off facility coverage: 1 municipality
+- waste-app coverage: 1 municipality
+- direct-link inventory: 22 datasets / 149 records / 130 unique URLs / 0 invalid URLs
+- invalid records: 0
+- unknown type labels: 0
+
+
+### Wave 20 verified coverage baseline
+
+2026-09-14のWave 20 CI基準値は次のとおり。
+
+- municipalities: 1,916
+- records: 2,219 / 2,219 valid HTTP(S)
+- municipalities with any waste-specific direct link: 78
+- publish candidates (2+ types): 27
+- preferred candidates (3+ types): 27
+- collection-calendar coverage: 27 municipalities
+- bulky-waste coverage: 26 municipalities
+- waste-search coverage: 1 municipality
+- drop-off facility coverage: 1 municipality
+- waste-app coverage: 1 municipality
+- direct-link inventory: 23 datasets / 151 records / 132 unique URLs / 0 invalid URLs
+- invalid records: 0
+- unknown type labels: 0
+
+### Wave 21 verified coverage baseline
+
+2026-09-14のWave 21 CI基準値は次のとおり。
+
+- municipalities: 1,916
+- records: 2,221 / 2,221 valid HTTP(S)
+- municipalities with any waste-specific direct link: 78
+- publish candidates (2+ types): 28
+- preferred candidates (3+ types): 28
+- collection calendar coverage: 28 municipalities
+- bulky-waste coverage: 27 municipalities
+- waste-search coverage: 1 municipality
+- drop-off facility coverage: 1 municipality
+- waste-app coverage: 1 municipality
+- direct-link inventory: 24 datasets / 153 records / 134 unique URLs / 0 invalid URLs
+- invalid records: 0
+- unknown type labels: 0
+
+### Wave 22 verified coverage baseline
+
+2026-09-14のWave 22 CI基準値は次のとおり。
+
+- municipalities: 1,916
+- records: 2,224 / 2,224 valid HTTP(S)
+- municipalities with any waste-specific direct link: 78
+- publish candidates (2+ types): 29
+- preferred candidates (3+ types): 29
+- collection calendar coverage: 29 municipalities
+- bulky-waste coverage: 27 municipalities
+- waste-search coverage: 2 municipalities
+- drop-off facility coverage: 2 municipalities
+- waste-app coverage: 1 municipality
+- direct-link inventory: 25 datasets / 156 records / 137 unique URLs / 0 invalid URLs
+- invalid records: 0
+- unknown type labels: 0
+
 ### Direct-link health monitoring — Phase 4
 
 Phase 4では、単一legacy fileだけを確認していたlink checkを、`tools/trashnavi/data/direct-waste-links*.json` に一致する全direct-link datasetへ拡張する。
@@ -380,9 +533,9 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 ### Municipality page expansion
 
 - [x] preferred readiness 3種類以上を生成時に再検証する。
-- [x] 公開22自治体をmanifest allowlistで管理する。
+- [x] 公開29自治体をmanifest allowlistで管理する。
 - [x] 自治体pageをgeneratorから静的生成する。
-- [x] generator `--check` で22ページの生成driftを検出する。
+- [x] generator `--check` で29ページの生成driftを検出する。
 - [x] 公開URLをroot sitemapと専用sitemapへ収録する。
 - [x] robotsの既存root sitemap契約を維持し、sitemap indexから専用sitemapを発見可能にする。
 - [x] Wave 3で御浜町・海津市・結城市をpreferred candidateへ引き上げる。
@@ -398,6 +551,13 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - [x] Wave 13で津市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 14で山口市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] Wave 15で大津市をpreferred candidateへ引き上げ、自治体pageを公開する。
+- [x] Wave 16で松江市をpreferred candidateへ引き上げ、自治体pageを公開する。
+- [x] Wave 17で佐賀市をpreferred candidateへ引き上げ、自治体pageを公開する。
+- [x] Wave 18で鳥取市をpreferred candidateへ引き上げ、自治体pageを公開する。
+- [x] Wave 19で那覇市をpreferred candidateへ引き上げ、自治体pageを公開する。
+- [x] Wave 20で徳島市をpreferred candidateへ引き上げ、自治体pageを公開する。
+- [x] Wave 21で長崎市をpreferred candidateへ引き上げ、自治体pageを公開する。
+- [x] Wave 22で高知市をpreferred candidateへ引き上げ、自治体pageを公開する。
 - [x] PR CIでcoverage strict / generated-page check / repository SEO auditがすべてgreenになる。
 
 ### Link health Phase 4
@@ -427,10 +587,18 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/data/direct-waste-links-supply-wave13.json` — 津市のWave 13 collection-calendar / bulky-waste enrichment。
 - `tools/trashnavi/data/direct-waste-links-supply-wave14.json` — 山口市のWave 14 collection-calendar / bulky-waste enrichment。
 - `tools/trashnavi/data/direct-waste-links-supply-wave15.json` — 大津市のWave 15 collection-calendar / bulky-waste enrichment。
+- `tools/trashnavi/data/direct-waste-links-supply-wave16.json` — 松江市のWave 16 collection-calendar / bulky-waste enrichment。
+- `tools/trashnavi/data/direct-waste-links-supply-wave17.json` — 佐賀市のWave 17 collection-calendar / bulky-waste enrichment。
+- `tools/trashnavi/data/direct-waste-links-supply-wave18.json` — 鳥取市のWave 18 collection-calendar / bulky-waste enrichment。
+- `tools/trashnavi/data/direct-waste-links-supply-wave19.json` — 那覇市のWave 19 waste-search / collection-calendar / bulky-waste enrichment。
+- `tools/trashnavi/data/direct-waste-links-supply-wave20.json` — 徳島市のWave 20 collection-calendar / bulky-waste enrichment。
+- `tools/trashnavi/data/direct-waste-links-supply-wave21.json` — 長崎市のWave 21 collection-calendar / bulky-waste enrichment。
+- `tools/trashnavi/data/direct-waste-links-supply-wave22.json` — 高知市のWave 22 collection-calendar / waste-search / drop-off enrichment。
 - `tools/trashnavi/DATA_MODEL.md` — forward schema、canonical taxonomy、landing-page readiness。
 - `tools/trashnavi/scripts/audit-coverage.mjs` — repository-local coverage/data-quality audit。
 - `tools/trashnavi/scripts/check-runtime-contract.mjs` — Current runtime 6項目と公開自治体のroot internal-link整合性をCI検証する。
 - `tools/trashnavi/municipality-page-manifest.json` — indexable municipality page allowlist。
+- `tools/trashnavi/ai-reference.json` — 公開自治体pageのmachine-readable discovery index。
 - `tools/trashnavi/scripts/generate-municipality-pages.mjs` — deterministic municipality page / sitemap generator and drift checker。
 - `tools/trashnavi/tokyo/*/index.html` — initial Tokyo municipality pages。
 - `tools/trashnavi/mie/mihama/index.html` / `tools/trashnavi/gifu/kaizu/index.html` / `tools/trashnavi/ibaraki/yuki/index.html` — Wave 3 municipality pages。
@@ -446,6 +614,13 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - `tools/trashnavi/mie/tsu/index.html` — Wave 13 municipality page。
 - `tools/trashnavi/yamaguchi/yamaguchi/index.html` — Wave 14 municipality page。
 - `tools/trashnavi/shiga/otsu/index.html` — Wave 15 municipality page。
+- `tools/trashnavi/shimane/matsue/index.html` — Wave 16 municipality page。
+- `tools/trashnavi/saga/saga/index.html` — Wave 17 municipality page。
+- `tools/trashnavi/tottori/tottori/index.html` — Wave 18 municipality page。
+- `tools/trashnavi/okinawa/naha/index.html` — Wave 19 municipality page。
+- `tools/trashnavi/tokushima/tokushima/index.html` — Wave 20 municipality page。
+- `tools/trashnavi/nagasaki/nagasaki/index.html` — Wave 21 municipality page。
+- `tools/trashnavi/kochi/kochi/index.html` — Wave 22 municipality page。
 - `scripts/check-trashnavi-direct-links.mjs` — all-direct-link dataset inventory / scheduled link-health checker。
 - `.github/workflows/check-trashnavi-direct-links.yml` — monthly/manual live link-health check and report artifact upload。
 - `.agent/plans/20260912-trashnavi-link-freshness-phase4.md` — Phase 4 implementation / safety contract。

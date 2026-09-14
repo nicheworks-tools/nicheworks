@@ -57,7 +57,14 @@ const syntheticFoldable = {
   charging: { connector: 'USB-C', battery: { capacityMah: 4400, valueClass: 'manufacturer', sourceRef: 'https://www.samsung.com/' }, wiredRecommendedW: 25, protocols: [], pps: 'unknown', wirelessStandard: 'Qi', wirelessMaxW: 15 },
   included: { cable: 'included', adapter: 'not_included' }, sources: { specificationsUrl: 'https://www.samsung.com/', manualUrl: 'https://www.samsung.com/', verifiedAt: '2026-09-14' }, affiliateKeys: []
 };
-const byId = new Map([...allPhones, syntheticFoldable].map((phone) => [phone.id, phone]));
+const syntheticFoldableDepthRange = {
+  id: 'synthetic-foldable-depth-range', manufacturer: 'Samsung', model: 'Synthetic Foldable Range', aliases: ['Range Fixture'], releaseYear: 2026, formFactor: 'foldable',
+  dimensionsFolded: { heightMm: 165, widthMm: 72, depthMmMin: 15.9, depthMmMax: 17.1 }, dimensionsUnfolded: { heightMm: 165, widthMm: 72, depthMm: 6.9 },
+  weightG: 187, displayInch: 6.7, waterRating: 'IPX8',
+  charging: { connector: 'USB-C', battery: { capacityMah: 3700, valueClass: 'manufacturer', sourceRef: 'https://www.samsung.com/' }, wiredRecommendedW: 25, protocols: [], pps: 'unknown', wirelessStandard: 'Qi', wirelessMaxW: 15 },
+  included: { cable: 'included', adapter: 'not_included' }, sources: { specificationsUrl: 'https://www.samsung.com/', manualUrl: 'https://www.samsung.com/', verifiedAt: '2026-09-14' }, affiliateKeys: []
+};
+const byId = new Map([...allPhones, syntheticFoldable, syntheticFoldableDepthRange].map((phone) => [phone.id, phone]));
 
 function requirePhones(ids) {
   return ids.map((id) => {
@@ -282,6 +289,137 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.match(html, /Galaxy Super Fast Charging対応 25W充電器/);
 }
 
+// Pixel Fold proves charger guidance and device-side maximum stay separate on real foldable data.
+{
+  const h = await createHarness(['google-pixel-fold']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('139.7 × 79.5 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /139\.7 × 79\.5 × 12\.1 mm/);
+  assert.match(html, /139\.7 × 158\.7 × 5\.8 mm/);
+  assert.match(html, /4821 mAh/);
+  assert.match(html, /充電器目安<\/span><b>30W\+/);
+  assert.match(html, /端末側の有線充電上限<\/span><b>18W/);
+  assert.match(html, /PPS/);
+  assert.match(html, /Qi \/ 7\.5W/);
+  assert.match(html, /PPS対応 30W以上の充電器/);
+}
+
+// Motorola razr fold uses JP-market store charging facts and keeps TurboPower proprietary.
+{
+  const h = await createHarness(['motorola-razr-fold']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('160.05 × 73.6 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /160\.05 × 73\.6 × 9\.89 mm/);
+  assert.match(html, /160\.05 × 144\.47 × 4\.55 mm/);
+  assert.match(html, /243 g/);
+  assert.match(html, /6000 mAh/);
+  assert.match(html, /端末側の有線充電上限<\/span><b>80W/);
+  assert.match(html, /TurboPower/);
+  assert.match(html, /Qi \/ 15W/);
+  assert.match(html, /Motorola TurboPower対応充電器/);
+  assert.doesNotMatch(html, /充電器目安<\/span><b>80W\+/);
+}
+
+// Motorola razr 60 ultra preserves its 68W TurboPower and 30W Qi class.
+{
+  const h = await createHarness(['motorola-razr-60-ultra']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('88.12 × 73.99 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /88\.12 × 73\.99 × 15\.69 mm/);
+  assert.match(html, /171\.48 × 73\.99 × 7\.19 mm/);
+  assert.match(html, /199 g/);
+  assert.match(html, /4700 mAh/);
+  assert.match(html, /端末側の有線充電上限<\/span><b>68W/);
+  assert.match(html, /TurboPower/);
+  assert.match(html, /Qi \/ 30W/);
+  assert.match(html, /Motorola TurboPower対応充電器/);
+}
+
+// First-generation Galaxy Fold SCV44 keeps JP-market hardware facts and Adaptive Fast Charging distinct from SFC.
+{
+  const h = await createHarness(['samsung-galaxy-fold-scv44']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('160.9 × 62.8 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /160\.9 × 62\.8 × 15\.7–17\.1 mm/);
+  assert.match(html, /160\.9 × 117\.9 × 6\.9–7\.6 mm/);
+  assert.match(html, /276 g/);
+  assert.match(html, /4380 mAh/);
+  assert.match(html, /充電器目安<\/span><b>15W\+/);
+  assert.doesNotMatch(html, /端末側の有線充電上限<\/span><b>15W/);
+  assert.ok(html.includes('Adaptive Fast Charging / QC2.0'));
+  assert.match(html, /Galaxy Adaptive Fast Charging対応 15W充電器/);
+  assert.doesNotMatch(html, /Galaxy Super Fast Charging対応 25W充電器/);
+}
+
+// Galaxy Z Fold2 5G proves production data can preserve depth ranges in both folded and unfolded states.
+{
+  const h = await createHarness(['samsung-galaxy-z-fold2-5g']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('159.2 × 68 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /159\.2 × 68 × 13\.8–16\.8 mm/);
+  assert.match(html, /159\.2 × 128\.2 × 6–6\.9 mm/);
+  assert.match(html, /282 g/);
+  assert.match(html, /4500 mAh/);
+  assert.match(html, /充電器目安<\/span><b>25W\+/);
+  assert.match(html, /Super Fast Charging/);
+  assert.doesNotMatch(html, /端末側の有線充電上限<\/span><b>25W/);
+}
+
+// Galaxy Z Fold3 5G preserves the older hinge-depth range and model-specific 10W wireless maximum.
+{
+  const h = await createHarness(['samsung-galaxy-z-fold3-5g']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('158.2 × 67.1 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /158\.2 × 67\.1 × 14\.4–16 mm/);
+  assert.match(html, /158\.2 × 128\.1 × 6\.4 mm/);
+  assert.match(html, /271 g/);
+  assert.match(html, /4400 mAh/);
+  assert.match(html, /充電器目安<\/span><b>25W\+/);
+  assert.match(html, /端末側の有線充電上限<\/span><b>25W/);
+  assert.match(html, /Super Fast Charging/);
+  assert.match(html, /Qi \/ 10W/);
+}
+
+// Galaxy Z Fold4 proves production data preserves an official folded-thickness range.
+{
+  const h = await createHarness(['samsung-galaxy-z-fold4']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('155.1 × 67.1 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /155\.1 × 67\.1 × 14\.2–15\.8 mm/);
+  assert.match(html, /155\.1 × 130\.1 × 6\.3 mm/);
+  assert.match(html, /263 g/);
+  assert.match(html, /4400 mAh/);
+  assert.match(html, /充電器目安<\/span><b>25W\+/);
+  assert.match(html, /端末側の有線充電上限<\/span><b>25W/);
+  assert.match(html, /Super Fast Charging/);
+  assert.match(html, /Qi \/ 15W/);
+}
+
+// Foldable depth ranges render without collapsing an official variable-thickness specification.
+{
+  const h = await createHarness(['synthetic-foldable-depth-range']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('165 × 72 mm (折りたたみ時)'));
+  assert.ok(h.elements.desktopDetail.innerHTML.includes('165 × 72 × 15.9–17.1 mm'));
+  assert.ok(h.elements.desktopDetail.innerHTML.includes('165 × 72 × 6.9 mm'));
+  h.langEn.click();
+  assert.ok(h.elements.desktopDetail.innerHTML.includes('165 × 72 × 15.9–17.1 mm'));
+}
+
+// Samsung charging protocol labels must come from canonical source-backed protocols, not wattage inference.
+{
+  const h = await createHarness(['synthetic-foldable']);
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /規格<\/span><b>—/);
+}
+
+// Charger guidance must never be promoted to a handset-side wired maximum without wiredMaxW.
+{
+  const h = await createHarness(['synthetic-foldable']);
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /充電器目安<\/span><b>25W\+/);
+  assert.doesNotMatch(html, /端末側の有線充電上限<\/span><b>25W/);
+}
+
 // Foldable schema renders both physical states and keeps folded dimensions in the list.
 {
   const h = await createHarness(['synthetic-foldable']);
@@ -293,6 +431,56 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   h.langEn.click();
   assert.ok(h.elements.desktopDetail.innerHTML.includes('Dimensions (folded)'));
   assert.ok(h.elements.desktopDetail.innerHTML.includes('Dimensions (unfolded)'));
+}
+
+// Legacy Japan-market Motorola foldables preserve official dimensions and proprietary TurboPower charging.
+{
+  const h = await createHarness(['motorola-razr-40-ultra']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('88.42 × 73.95 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /88\.42 × 73\.95 × 15\.1 mm/);
+  assert.match(html, /170\.83 × 73\.95 × 6\.99 mm/);
+  assert.match(html, /3800 mAh/);
+  assert.match(html, /30W/);
+  assert.match(html, /TurboPower/);
+  assert.match(html, /Qi \/ 5W/);
+}
+
+// Current Y!mobile nubia Flip generation keeps carrier-published PPS and 33W device-side charging facts.
+{
+  const h = await createHarness(['zte-nubia-flip-3']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('87 × 76 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /87 × 76 × 15\.9 mm/);
+  assert.match(html, /170 × 76 × 7\.5 mm/);
+  assert.match(html, /4610 mAh/);
+  assert.match(html, /33W/);
+  assert.match(html, /PPS/);
+}
+
+// Japan-market OPPO Find N6 preserves foldable dimensions and proprietary wired/wireless charging classes.
+{
+  const h = await createHarness(['oppo-find-n6']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('160 × 74 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /160 × 74 × 8\.9 mm/);
+  assert.match(html, /160 × 146 × 4\.2 mm/);
+  assert.match(html, /6000 mAh/);
+  assert.match(html, /80W/);
+  assert.match(html, /SUPERVOOC/);
+  assert.match(html, /AIRVOOC \/ 50W/);
+}
+
+// Japan-market motorola razr 5G preserves legacy foldable dimensions and 15W TurboPower semantics.
+{
+  const h = await createHarness(['motorola-razr-5g']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('91.7 × 72.6 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /91\.7 × 72\.6 × 16 mm/);
+  assert.match(html, /169\.2 × 72\.6 × 7\.9 mm/);
+  assert.match(html, /2800 mAh/);
+  assert.match(html, /15W/);
+  assert.match(html, /TurboPower/);
 }
 
 console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estimates, Apple unknown capacity, Lightning guidance, proprietary charging, and mobile sheet.');

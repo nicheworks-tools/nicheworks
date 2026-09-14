@@ -379,10 +379,12 @@
       else keys.add('charger-pd-20w');
     } else if (manufacturer === 'google' && pps === 'required' && watts) {
       keys.add(watts > 30 ? 'charger-pps-45w' : 'charger-pps-30w');
-    } else if (manufacturer === 'samsung' && watts) {
+    } else if (manufacturer === 'samsung' && watts && protocols.includes('super fast charging')) {
       if (watts >= 60) keys.add('charger-samsung-60w');
       else if (watts >= 45) keys.add('charger-samsung-45w');
       else keys.add('charger-samsung-25w');
+    } else if (manufacturer === 'samsung' && watts && (protocols.includes('adaptive fast charging') || protocols.includes('qc2.0'))) {
+      keys.add('charger-samsung-afc-15w');
     } else if (protocols.includes('usb pd') && watts) {
       if (watts <= 20) keys.add('charger-pd-20w');
       else if (watts <= 30) keys.add('charger-pd-30w');
@@ -418,21 +420,13 @@
       raw.push(watts && watts >= 60 ? 'USB PD 3.1 AVS' : 'USB PD');
     } else if (manufacturer === 'google' && phone.charging?.pps === 'required') {
       raw.push('USB PD', 'PPS');
-    } else if (manufacturer === 'samsung' && watts) {
-      raw.push(watts >= 60 ? 'Super Fast Charging 3.0' : watts >= 45 ? 'Super Fast Charging 2.0' : 'Super Fast Charging');
     }
     const labels = unique(raw);
     return labels.length ? labels.join(' / ') : '—';
   }
 
   function sourceBackedMaxWired(phone) {
-    const explicit = numberOrNull(phone.charging?.wiredMaxW);
-    if (explicit) return explicit;
-    const manufacturer = String(phone.manufacturer || '').toLowerCase();
-    if (manufacturer === 'samsung' || manufacturer === 'sharp') {
-      return numberOrNull(phone.charging?.wiredRecommendedW);
-    }
-    return null;
+    return numberOrNull(phone.charging?.wiredMaxW);
   }
 
   function officialLinksHtml(sources) {
@@ -455,8 +449,13 @@
     const h = dimensions?.heightMm;
     const w = dimensions?.widthMm;
     const d = dimensions?.depthMm;
+    const dMin = dimensions?.depthMmMin;
+    const dMax = dimensions?.depthMmMax;
     if (!h || !w) return '—';
-    return [h, w, d].filter((value) => value !== null && value !== undefined).map(formatNumber).join(' × ') + ' mm';
+    const hasDepth = d !== null && d !== undefined;
+    const hasDepthRange = dMin !== null && dMin !== undefined && dMax !== null && dMax !== undefined;
+    const depth = hasDepth ? formatNumber(d) : hasDepthRange ? `${formatNumber(dMin)}–${formatNumber(dMax)}` : null;
+    return [formatNumber(h), formatNumber(w), depth].filter((value) => value !== null && value !== undefined).join(' × ') + ' mm';
   }
 
   function compactDimensions(phone) {

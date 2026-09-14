@@ -11,7 +11,7 @@
 
 ## 1. Identity
 
-This record is the canonical per-tool contract for the registered `phone-quickcheck` implementation at `/tools/phone-quickcheck/`. The maintained public dataset contains 156 smartphone records across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, and Motorola.
+This record is the canonical per-tool contract for the registered `phone-quickcheck` implementation at `/tools/phone-quickcheck/`. The maintained public dataset contains 181 smartphone records across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, and Motorola.
 
 The product is a practical Quick Check utility, not a comprehensive smartphone encyclopedia, review database, benchmark service, or live retail catalog.
 
@@ -36,8 +36,8 @@ The product is a practical Quick Check utility, not a comprehensive smartphone e
 
 ## 4. Processing behavior
 
-- 156機種の検証済みデータをブラウザ内で検索・絞り込み・並び替えする。
-- 一覧は走査性を優先し、モデル、発売年、サイズ、重量、端子を中心に表示する。通常機は `dimensions`、foldableは `dimensionsFolded` / `dimensionsUnfolded` を使い、一覧と「小さい順」は折りたたみ時寸法、詳細は折りたたみ時／展開時の両方を表示する。
+- 181機種の検証済みデータをブラウザ内で検索・絞り込み・並び替えする。
+- 一覧は走査性を優先し、モデル、発売年、サイズ、重量、端子を中心に表示する。通常機は `dimensions`、foldableは `dimensionsFolded` / `dimensionsUnfolded` を使い、一覧と「小さい順」は折りたたみ時寸法、詳細は折りたたみ時／展開時の両方を表示する。メーカー公式が折りたたみ時厚さを範囲で公表する場合は `depthMmMin` / `depthMmMax` の組で保持し、単一の推測値へ潰さない。
 - 選択機種の詳細では本体情報、充電条件、モバイルバッテリー目安、アクセサリークラス、公式情報を整理して表示する。
 - `wiredRecommendedW` は充電器の推奨／必要クラスとして扱い、端末側の実測・最大入力W数と同一視しない。
 - 端末側最大有線充電W数は、その意味を直接支える維持済み根拠がある場合のみ表示する。
@@ -130,7 +130,7 @@ Current main-page donation/support evidence: **present**.
 
 ## 14. Functional acceptance tests
 
-- [x] 156 maintained models load from the static phone dataset.
+- [x] 181 maintained models load from the static phone dataset.
 - [x] Search matches canonical model names and maintained aliases.
 - [x] Manufacturer, connector, and release-year filters operate on canonical data.
 - [x] Desktop uses list + right detail pane and mobile uses a detail bottom sheet.

@@ -7,7 +7,7 @@ const phones = Array.isArray(payload.phones) ? payload.phones : [];
 const failures = [];
 const fail = (message) => failures.push(message);
 
-const officialDomains = {
+const trustedSourceDomains = {
   Apple: ['apple.com'],
   Google: ['google.com', 'google'],
   Samsung: ['samsung.com'],
@@ -15,7 +15,8 @@ const officialDomains = {
   SHARP: ['sharp.co.jp', 'jp.sharp'],
   OPPO: ['oppo.com'],
   Xiaomi: ['mi.com'],
-  Motorola: ['motorola.com', 'motorola.co.jp']
+  Motorola: ['motorola.com', 'motorola.co.jp'],
+  ZTE: ['nubia.com', 'ymobile.jp']
 };
 
 function hostnameOf(value) {
@@ -27,29 +28,29 @@ function hostAllowed(host, suffixes) {
   return suffixes.some((suffix) => host === suffix || host.endsWith(`.${suffix}`));
 }
 
-function assertOfficialUrl(phone, label, value) {
+function assertTrustedUrl(phone, label, value) {
   if (value === undefined || value === null || value === '') return;
   const host = hostnameOf(value);
-  const allowed = officialDomains[phone.manufacturer] || [];
+  const allowed = trustedSourceDomains[phone.manufacturer] || [];
   if (!host || !hostAllowed(host, allowed)) {
-    fail(`${phone.id}: ${label} host ${host || '<invalid>'} is outside ${phone.manufacturer} official domains`);
+    fail(`${phone.id}: ${label} host ${host || '<invalid>'} is outside trusted ${phone.manufacturer} primary-source domains`);
   }
 }
 
 for (const phone of phones) {
-  if (!officialDomains[phone.manufacturer]) {
-    fail(`${phone.id}: unsupported manufacturer for official-domain audit: ${phone.manufacturer}`);
+  if (!trustedSourceDomains[phone.manufacturer]) {
+    fail(`${phone.id}: unsupported manufacturer for primary-source audit: ${phone.manufacturer}`);
     continue;
   }
 
   const sources = phone.sources || {};
   for (const key of ['specificationsUrl', 'manualUrl', 'releaseUrl', 'chargingUrl', 'wirelessUrl']) {
-    assertOfficialUrl(phone, `sources.${key}`, sources[key]);
+    assertTrustedUrl(phone, `sources.${key}`, sources[key]);
   }
 
   const charging = phone.charging || {};
   const battery = charging.battery || {};
-  assertOfficialUrl(phone, 'charging.battery.sourceRef', battery.sourceRef);
+  assertTrustedUrl(phone, 'charging.battery.sourceRef', battery.sourceRef);
 
   const protocols = Array.isArray(charging.protocols)
     ? charging.protocols.map((value) => String(value).toLowerCase())
@@ -75,4 +76,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Phone QuickCheck source/semantic audit passed: ${phones.length} phones, manufacturer-controlled sources, charging semantics consistent.`);
+console.log(`Phone QuickCheck source/semantic audit passed: ${phones.length} phones, trusted manufacturer/carrier primary sources, charging semantics consistent.`);

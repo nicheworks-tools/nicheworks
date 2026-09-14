@@ -1,0 +1,289 @@
+{
+  "schema": "cta-image-identity-backlog-v2.3",
+  "algorithm": "audit-image-assets-v2.3-canonical-mapping",
+  "runtime_manifest_count": 12,
+  "runtime_items": 180,
+  "corpus_entries": 5536,
+  "counts": {
+    "mapped": 166,
+    "ambiguous": 10,
+    "unresolved": 4,
+    "backlog": 14
+  },
+  "ambiguous": [
+    {
+      "manifest": "image-pilots.json",
+      "index": 33,
+      "ja": "台車",
+      "en": "Platform cart",
+      "keys": [
+        "台車",
+        "platform cart"
+      ],
+      "src": "./images/pilot/platform-cart.svg?v=20260510-asset-3",
+      "candidates": [
+        {
+          "id": "hand_truck",
+          "score": 9
+        },
+        {
+          "id": "q013_dolly",
+          "score": 9
+        }
+      ]
+    },
+    {
+      "manifest": "image-pilots.json",
+      "index": 66,
+      "ja": "たがね",
+      "en": "Chisel",
+      "keys": [
+        "たがね",
+        "chisel"
+      ],
+      "src": "./images/pilot/chisel.svg?v=20260513-asset-5",
+      "candidates": [
+        {
+          "id": "chisel",
+          "score": 9
+        },
+        {
+          "id": "q012_cold_chisel",
+          "score": 9
+        }
+      ]
+    },
+    {
+      "manifest": "image-pilots-003.json",
+      "index": 2,
+      "ja": "水切り金物",
+      "en": "Flashing",
+      "keys": [
+        "水切り金物",
+        "flashing"
+      ],
+      "src": "./images/pilot/flashing.svg?v=20260513-asset-7",
+      "candidates": [
+        {
+          "id": "flashing",
+          "score": 9
+        },
+        {
+          "id": "q011_flashing",
+          "score": 9
+        }
+      ]
+    },
+    {
+      "manifest": "image-pilots-003.json",
+      "index": 3,
+      "ja": "ルーフィング",
+      "en": "Roofing underlayment",
+      "keys": [
+        "ルーフィング",
+        "roofing underlayment"
+      ],
+      "src": "./images/pilot/roofing-underlayment.svg?v=20260513-asset-7",
+      "candidates": [
+        {
+          "id": "q011_roof_underlayment",
+          "score": 9
+        },
+        {
+          "id": "roofing_felt",
+          "score": 9
+        }
+      ]
+    },
+    {
+      "manifest": "image-pilots-003.json",
+      "index": 9,
+      "ja": "唐草",
+      "en": "Drip edge",
+      "keys": [
+        "唐草",
+        "drip edge"
+      ],
+      "src": "./images/pilot/drip-edge.svg?v=20260513-asset-7",
+      "candidates": [
+        {
+          "id": "drip_edge",
+          "score": 9
+        },
+        {
+          "id": "q014_drip_edge",
+          "score": 9
+        }
+      ]
+    },
+    {
+      "manifest": "image-pilots-004.json",
+      "index": 4,
+      "ja": "セパレーター",
+      "en": "Form tie",
+      "keys": [
+        "セパレーター",
+        "form tie"
+      ],
+      "src": "./images/pilot/form-tie.svg?v=20260513-asset-8",
+      "candidates": [
+        {
+          "id": "form_tie",
+          "score": 9
+        },
+        {
+          "id": "q011_form_tie",
+          "score": 9
+        },
+        {
+          "id": "q011_separator",
+          "score": 9
+        },
+        {
+          "id": "separator",
+          "score": 9
+        }
+      ]
+    },
+    {
+      "manifest": "image-pilots-004.json",
+      "index": 9,
+      "ja": "目地鏝",
+      "en": "Pointing trowel",
+      "keys": [
+        "目地鏝",
+        "pointing trowel"
+      ],
+      "src": "./images/pilot/pointing-trowel.svg?v=20260513-asset-8",
+      "candidates": [
+        {
+          "id": "pointing_trowel",
+          "score": 9
+        },
+        {
+          "id": "q013_groover_trowel",
+          "score": 9
+        }
+      ]
+    },
+    {
+      "manifest": "image-pilots-007.json",
+      "index": 6,
+      "ja": "チャンネル材",
+      "en": "Strut channel",
+      "keys": [
+        "チャンネル材",
+        "strut channel",
+        "unistrut channel"
+      ],
+      "src": "./images/pilot/unistrut-channel.svg?v=20260513-asset-11",
+      "candidates": [
+        {
+          "id": "channel",
+          "score": 9
+        },
+        {
+          "id": "q012_unistrut_channel",
+          "score": 9
+        }
+      ]
+    },
+    {
+      "manifest": "image-pilots-011.json",
+      "index": 2,
+      "ja": "塗料皿",
+      "en": "Paint tray",
+      "keys": [
+        "塗料皿",
+        "paint tray"
+      ],
+      "src": "./images/pilot/finishing-paint-tray.svg?v=20260513-asset-15",
+      "candidates": [
+        {
+          "id": "paint_tray",
+          "score": 9
+        },
+        {
+          "id": "q013_paint_tray",
+          "score": 9
+        }
+      ]
+    },
+    {
+      "manifest": "image-pilots-012.json",
+      "index": 1,
+      "ja": "くし目ごて",
+      "en": "Notched trowel",
+      "keys": [
+        "くし目ごて",
+        "notched trowel"
+      ],
+      "src": "./images/pilot/notched-trowel.svg?v=20260513-asset-16",
+      "candidates": [
+        {
+          "id": "notched_trowel",
+          "score": 18
+        },
+        {
+          "id": "q011_notched_trowel",
+          "score": 18
+        }
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "manifest": "image-pilots.json",
+      "index": 68,
+      "ja": "かんな",
+      "en": "Hand plane",
+      "keys": [
+        "かんな",
+        "hand plane"
+      ],
+      "src": "./images/pilot/hand-plane.svg?v=20260513-asset-5",
+      "candidates": []
+    },
+    {
+      "manifest": "image-pilots-003.json",
+      "index": 6,
+      "ja": "換気棟",
+      "en": "Roof vent",
+      "keys": [
+        "換気棟",
+        "roof vent"
+      ],
+      "src": "./images/pilot/roof-vent.svg?v=20260513-asset-7",
+      "candidates": []
+    },
+    {
+      "manifest": "image-pilots-004.json",
+      "index": 8,
+      "ja": "木鏝",
+      "en": "Float trowel",
+      "keys": [
+        "木鏝",
+        "float trowel"
+      ],
+      "src": "./images/pilot/float-trowel.svg?v=20260513-asset-8",
+      "candidates": []
+    },
+    {
+      "manifest": "image-pilots-009.json",
+      "index": 7,
+      "ja": "フルハーネス",
+      "en": "Full body harness",
+      "keys": [
+        "フルハーネス",
+        "full body harness"
+      ],
+      "src": "./images/pilot/full-body-harness.svg?v=20260513-asset-13",
+      "candidates": [
+        {
+          "id": "safety_harness",
+          "score": 4
+        }
+      ]
+    }
+  ]
+}

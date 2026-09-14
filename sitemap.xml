@@ -9,14 +9,6 @@
     <lastmod>2026-06-16</lastmod>
   </url>
   <url>
-    <loc>https://nicheworks.app/billing/cancel.html</loc>
-    <lastmod>2026-06-16</lastmod>
-  </url>
-  <url>
-    <loc>https://nicheworks.app/billing/success.html</loc>
-    <lastmod>2026-06-16</lastmod>
-  </url>
-  <url>
     <loc>https://nicheworks.app/contact.html</loc>
     <lastmod>2026-06-16</lastmod>
   </url>
@@ -368,10 +360,7 @@
     <loc>https://nicheworks.app/tools/dry-meter/howto/en/</loc>
     <lastmod>2026-06-16</lastmod>
   </url>
-  <url>
-    <loc>https://nicheworks.app/tools/earth-alerts/</loc>
-    <lastmod>2026-06-16</lastmod>
-  </url>
+  
   <url>
     <loc>https://nicheworks.app/tools/earth-map-suite/</loc>
     <lastmod>2026-06-16</lastmod>
@@ -412,10 +401,7 @@
     <loc>https://nicheworks.app/tools/earth-map-suite/usage.html</loc>
     <lastmod>2026-06-16</lastmod>
   </url>
-  <url>
-    <loc>https://nicheworks.app/tools/earth-timeseries/</loc>
-    <lastmod>2026-06-16</lastmod>
-  </url>
+  
   <url>
     <loc>https://nicheworks.app/tools/exif-cleaner-mini/</loc>
     <lastmod>2026-06-16</lastmod>
@@ -1242,6 +1228,34 @@
   </url>
   <url>
     <loc>https://nicheworks.app/tools/pattern-dictionary/en/</loc>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/shimane/matsue/</loc>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/saga/saga/</loc>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/tottori/tottori/</loc>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/okinawa/naha/</loc>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/tokushima/tokushima/</loc>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/nagasaki/nagasaki/</loc>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/trashnavi/kochi/kochi/</loc>
     <lastmod>2026-09-14</lastmod>
   </url>
 </urlset>

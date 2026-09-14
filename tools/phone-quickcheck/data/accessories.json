@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "updatedAt": "2026-09-14",
   "accessories": [
     {
@@ -56,6 +56,14 @@
       "labelEn": "45W+ USB-PD PPS charger",
       "noteJa": "PPS対応を明記した45W以上のUSB-C充電器を選んでください。",
       "noteEn": "Choose a 45W-or-higher USB-C charger that explicitly supports PPS.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-samsung-afc-15w",
+      "labelJa": "Galaxy Adaptive Fast Charging対応 15W充電器",
+      "labelEn": "15W Galaxy Adaptive Fast Charging charger",
+      "noteJa": "15W Adaptive Fast Charging（AFC）対応を明記した充電器を選んでください。",
+      "noteEn": "Choose a charger that explicitly supports Samsung 15W Adaptive Fast Charging (AFC).",
       "amazonUrl": null
     },
     {

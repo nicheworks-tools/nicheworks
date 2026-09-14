@@ -12,7 +12,7 @@ Current order:
 
 1. **Generic exact-model search** — active. One validated Amazon search template generates a tagged search URL from canonical ManualFinder `maker + model` metadata.
 2. **Consumer-printer ink** — active for Brother Wave 1, Epson Wave 1, and Canon Wave 1 below. Consumable codes come only from official manufacturer compatibility sources.
-3. **Office-printer toner** — active for ten OKI, five KYOCERA, eleven RICOH, and all twenty-seven current FUJIFILM Business Innovation exact-model records. Exact toner product codes are retained where the manufacturer publishes them; otherwise an explicit official manufacturer family-level toner source is retained as compatibility evidence. The Amazon handoff stays concise at one toner-search CTA per model.
+3. **Office-printer toner** — active for ten OKI, forty-six of 123 KYOCERA Wave-1 canonical records, eleven RICOH, and all twenty-seven current FUJIFILM Business Innovation exact-model records. Exact toner product codes are retained where the manufacturer publishes them; otherwise an explicit official manufacturer family-level toner source is retained as compatibility evidence. The Amazon handoff stays concise at one toner-search CTA per model.
 4. **Office-printer toner cross-maker expansion** — continue bounded KYOCERA / RICOH / other-maker waves only where exact official compatibility evidence is available. Current FUJIFILM BI ManualFinder records are complete.
 5. **Office-printer drum / maintenance parts** — later, after toner behavior is established.
 6. **Camera batteries / chargers** — later, only for independently verified compatibility mappings.
@@ -112,9 +112,9 @@ OKI already has deep exact model-level ManualFinder coverage, so these affiliate
 
 The Amazon query is `OKI <model> トナー` with the fixed Associate tag. The exact toner-code list remains attached to the mapping as manufacturer evidence. C941dn's specialty white/clear toner codes are retained as evidence but do not create additional links.
 
-## Office-printer toner rule — KYOCERA Wave 1
+## Office-printer toner rule — KYOCERA Waves 1–7
 
-KYOCERA Document Solutions already has exact ManualFinder printer/MFP rows. The first bounded toner wave uses five existing printer records whose official product/specification pages state exact consumable toner codes.
+ManualFinder Wave 1 contains 123 exact KYOCERA Document Solutions canonical records, IDs 62 through 184 across `manuals.wave1.01.js`, `manuals.wave1.02.js`, and `manuals.wave1.03.js`. The first seven toner waves cover 46 of those 123 records with exact manufacturer-backed toner mappings. The affiliate layer does not create any additional KYOCERA model identity.
 
 | ManualFinder model | Amazon search maker | Officially verified toner codes |
 | --- | --- | --- |
@@ -123,8 +123,51 @@ KYOCERA Document Solutions already has exact ManualFinder printer/MFP rows. The 
 | FS-C5300DN | KYOCERA | TK-561K / TK-561Y / TK-561M / TK-561C |
 | FS-C5200DN | KYOCERA | TK-551K / TK-551C / TK-551M / TK-551Y |
 | LS-C8026N | KYOCERA | TK-811K / TK-811Y / TK-811M / TK-811C |
+| LS-C8100DN | KYOCERA | TK-821K / TK-821Y / TK-821M / TK-821C |
+| LS-C8008N | KYOCERA | TK-801K / TK-801Y / TK-801M / TK-801C |
+| LS-C8008DN | KYOCERA | TK-801K / TK-801Y / TK-801M / TK-801C |
+| LS-C5030N | KYOCERA | TK-511K / TK-511Y / TK-511M / TK-511C |
+| LS-C5016N | KYOCERA | TK-501K / TK-501Y / TK-501M / TK-501C |
+| LS-9520DN | KYOCERA | TK-76 |
+| LS-6970DN | KYOCERA | TK-451 |
+| LS-6950DN | KYOCERA | TK-441 |
+| LS-6820N | KYOCERA | TK-21 |
+| LS-6800 | KYOCERA | TK-20H |
+| LS-6020 | KYOCERA | TK-401 |
+| LS-4020DN | KYOCERA | TK-361 |
+| LS-3900DN | KYOCERA | TK-331 |
+| LS-3830N | KYOCERA | TK-66 |
+| LS-2020D | KYOCERA | TK-341 |
+| LS-2000D | KYOCERA | TK-311 |
+| LS-1820 | KYOCERA | TK-66 |
+| FS-1370DN | KYOCERA | TK-131 |
+| FS-1300D | KYOCERA | TK-131 |
+| FS-1010 | KYOCERA | TK-17 |
+| FS-920 | KYOCERA | TK-111 |
+| TASKalfa 2550ci | KYOCERA | TK-8316C / TK-8316M / TK-8316Y / TK-8316K |
+| TASKalfa 3050ci | KYOCERA | TK-8306C / TK-8306M / TK-8306Y / TK-8306K |
+| TASKalfa 3550ci | KYOCERA | TK-8306C / TK-8306M / TK-8306Y / TK-8306K |
+| TASKalfa 4550ci | KYOCERA | TK-8506C / TK-8506M / TK-8506Y / TK-8506K |
+| TASKalfa 5550ci | KYOCERA | TK-8506C / TK-8506M / TK-8506Y / TK-8506K |
+| TASKalfa 6550ci | KYOCERA | TK-8706C / TK-8706M / TK-8706Y / TK-8706K |
+| TASKalfa 7550ci | KYOCERA | TK-8706C / TK-8706M / TK-8706Y / TK-8706K |
+| ECOSYS M6526cidn | KYOCERA | TK-591K / TK-591Y / TK-591M / TK-591C |
+| ECOSYS M6526cdn | KYOCERA | TK-591K / TK-591Y / TK-591M / TK-591C |
+| TASKalfa 3500i | KYOCERA | TK-6306 |
+| TASKalfa 4500i | KYOCERA | TK-6306 |
+| TASKalfa 5500i | KYOCERA | TK-6306 |
+| TASKalfa 6500i | KYOCERA | TK-6706 |
+| TASKalfa 8000i | KYOCERA | TK-6706 |
+| LS-1135MFP | KYOCERA | TK-1141 |
+| LS-1035MFP/DP | KYOCERA | TK-1141 |
+| LS-1128MFP | KYOCERA | TK-131 |
+| LS-1028MFP | KYOCERA | TK-131 |
+| LS-3140MFP | KYOCERA | TK-361 |
+| LS-3640MFP | KYOCERA | TK-361 |
 
-The runtime matches the canonical maker string `KYOCERA Document Solutions` but deliberately uses the shorter retail search term `KYOCERA` in Amazon queries. The generated handoff is `KYOCERA <model> トナー` with the fixed Associate tag. Exact toner codes remain attached as manufacturer evidence and do not create separate color links.
+Wave 3 adds eleven existing canonical mono-printer records from `manuals.wave1.02.js`: `LS-6970DN`, `LS-6950DN`, `LS-6820N`, `LS-6800`, `LS-4020DN`, `LS-3900DN`, `LS-2020D`, `LS-2000D`, `FS-1370DN`, `FS-1300D`, and `FS-1010`. Wave 4 adds the remaining four exact old mono-printer records from that contiguous canonical block: `LS-6020`, `LS-3830N`, `LS-1820`, and `FS-920`. Wave 5 adds nine existing canonical records with direct manufacturer evidence: `TASKalfa 2550ci`, `TASKalfa 3050ci`, `TASKalfa 3550ci`, `TASKalfa 4550ci`, `TASKalfa 5550ci`, `TASKalfa 6550ci`, `TASKalfa 7550ci`, `ECOSYS M6526cidn`, and `ECOSYS M6526cdn`. Wave 6 adds five monochrome TASKalfa records backed by two official shared quick guides: `TASKalfa 3500i`, `TASKalfa 4500i`, and `TASKalfa 5500i` use TK-6306; `TASKalfa 6500i` and `TASKalfa 8000i` use TK-6706. Wave 7 adds six existing canonical monochrome MFP records with direct KYOCERA evidence: `LS-1135MFP` and `LS-1035MFP/DP` use TK-1141; `LS-1128MFP` and `LS-1028MFP` use TK-131; `LS-3140MFP` and `LS-3640MFP` use TK-361. Current verified toner coverage is therefore **46/123 KYOCERA canonical records**. The remaining 77 records stay fail-closed for toner until an explicit official compatibility source is verified for each bounded wave.
+
+The runtime matches the canonical maker string `KYOCERA Document Solutions` but deliberately uses the shorter retail search term `KYOCERA` in Amazon queries. The generated handoff is `KYOCERA <model> トナー` with the fixed Associate tag. Exact toner codes remain attached as manufacturer evidence and do not create separate color links. Manufacturer price information is not copied into the affiliate layer.
 
 ## Office-printer toner rule — RICOH Waves 1–2
 
@@ -198,7 +241,10 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 - `app.paged.js` places canonical `maker`, `model`, and `category` metadata on each result card.
 - `affiliate-config.js` owns the fixed tracking ID, generic model-search policy, and consumer-printer compatibility mappings.
 - `affiliate-office-consumables.js` extends the same fail-closed contract with verified cross-maker office-printer toner mappings without duplicating the main config.
-- `affiliate-fujifilm-toner-wave2.js` now contains all twenty non-Wave-1 FUJIFILM BI records backed by explicit family-level toner evidence: seventeen SDS-backed records plus three product-page-backed Apeos 3061-family records. SDS document identifiers are never treated as toner product codes.
+- `affiliate-kyocera-toner-wave3.js` appends the eleven Wave 3 KYOCERA mappings to the same office-consumables contract and is idempotent if loaded twice.
+- `affiliate-kyocera-toner-wave4.js` is the KYOCERA supplemental bundle for Waves 4–5: it preserves the four Wave 4 legacy mono-printer mappings, exposes a separate nine-row Wave 5 ledger, composes all thirteen supplemental rows, and remains idempotent if loaded twice.
+- `affiliate-kyocera-toner-wave6.js` is the KYOCERA supplemental bundle for Waves 6–7: it preserves the five independently evidenced Wave 6 monochrome TASKalfa mappings, exposes a separate six-row Wave 7 legacy-MFP ledger, composes all eleven rows, and remains idempotent if loaded twice.
+- `affiliate-fujifilm-toner-wave2.js` contains all twenty non-Wave-1 FUJIFILM BI records backed by explicit family-level toner evidence: seventeen SDS-backed records plus three product-page-backed Apeos 3061-family records. SDS document identifiers are never treated as toner product codes.
 - `affiliate-runtime.js` renders the generic model search plus zero or more verified consumable searches.
 - `/assets/amazon-affiliate.js` validates the Amazon destination host and records only coarse analytics targets. Model names and consumable terms are not analytics parameters.
 - Unsupported categories, empty models, malformed URLs, and unmapped consumables fail closed.
@@ -206,4 +252,4 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 
 ## Next expansion gate
 
-FUJIFILM Business Innovation is complete for the twenty-seven exact records currently present in ManualFinder. RICOH now has eleven exact toner mappings across Waves 1–2. Continue with additional RICOH or KYOCERA records only where an official maintenance/specification page binds the toner identifier to an existing canonical model; otherwise keep the model fail-closed. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.
+FUJIFILM Business Innovation is complete for the twenty-seven exact records currently present in ManualFinder. KYOCERA currently has **46/123** Wave-1 canonical records with verified toner mappings, leaving 77 fail-closed for toner; KYOCERA remains a primary expansion target. RICOH has eleven exact toner mappings across Waves 1–2. Continue bounded KYOCERA, RICOH, or other office-printer waves only where an official maintenance/specification page binds the toner identifier to an existing canonical model. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.

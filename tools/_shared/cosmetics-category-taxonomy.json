@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "scope": "verified_category_overlay_only",
+  "mapping_policy": "explicit_only",
+  "normalization": "NFKC, trim, lowercase, normalize Unicode dashes to ASCII hyphen, collapse whitespace",
+  "categories": {
+    "solvent": { "authority_functions": ["solvent"] },
+    "humectant": { "authority_functions": ["humectant"] },
+    "preservative": { "authority_functions": ["preservative"] },
+    "thickener": { "authority_functions": ["thickening agent", "thickening"] },
+    "pH adjuster": { "authority_functions": ["pH adjuster"] },
+    "antioxidant": { "authority_functions": ["antioxidant", "antioxidants"] },
+    "viscosity adjuster": { "authority_functions": ["viscosity increasing agent - aqueous"] },
+    "chelating agent": { "authority_functions": ["chelating agent", "chelating agents"] }
+  },
+  "reviewed_mappings": {
+    "water": {
+      "category": "solvent",
+      "source_functions": ["solvent"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/ingredient/water/"],
+      "runtime_verified": true
+    },
+    "glycerin": {
+      "category": "humectant",
+      "source_functions": ["humectant"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/ingredient/glycerin/"],
+      "runtime_verified": true
+    },
+    "propylene glycol": {
+      "category": "humectant",
+      "source_functions": ["humectant"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/ingredient/propylene-glycol/"],
+      "runtime_verified": true
+    },
+    "phenoxyethanol": {
+      "category": "preservative",
+      "source_functions": ["preservative"],
+      "authority": "European Commission Scientific Committee on Consumer Safety",
+      "sources": ["https://health.ec.europa.eu/publications/phenoxyethanol_en"],
+      "runtime_verified": true
+    },
+    "carbomer": {
+      "category": "thickener",
+      "source_functions": ["thickening"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/ingredient/carbomer/"],
+      "runtime_verified": true
+    },
+    "citric acid": {
+      "category": "pH adjuster",
+      "source_functions": ["pH adjuster"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/ingredient/citric-acid/"],
+      "runtime_verified": true
+    },
+    "tocopherol": {
+      "category": "antioxidant",
+      "source_functions": ["antioxidant"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/ingredient/tocopherol/"],
+      "runtime_verified": true
+    },
+    "sodium chloride": {
+      "category": "viscosity adjuster",
+      "source_functions": ["viscosity increasing agent - aqueous"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/ingredient/sodium-chloride/"],
+      "runtime_verified": true
+    },
+    "disodium edta": {
+      "category": "chelating agent",
+      "source_functions": ["chelating agents"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/ingredient/disodium-edta/"],
+      "runtime_verified": true
+    },
+    "tocopheryl acetate": {
+      "category": "antioxidant",
+      "source_functions": ["antioxidant"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/ingredient/tocopherol/"],
+      "runtime_verified": true
+    }
+  }
+}

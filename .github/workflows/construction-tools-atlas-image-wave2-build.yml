@@ -1,0 +1,84 @@
+name: Construction Tools Atlas image Wave 2 build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feat/construction-atlas-image-wave2b-20260914
+    paths:
+      - 'tools/construction-tools-atlas/data/image-wave2-sources-v2.3.json'
+      - 'tools/construction-tools-atlas/data/image-identity-resolutions-v2.3.json'
+      - 'tools/construction-tools-atlas/scripts/check-image-wave2-sources-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/build-image-wave2-v2.3.mjs'
+      - 'tools/construction-tools-atlas/scripts/promote-image-wave2b-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/sync-image-registry-sources-v2.3.cjs'
+      - '.github/workflows/construction-tools-atlas-image-wave2-build.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: construction-atlas-image-wave2-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Wave 2B branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Install image tooling
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+
+      - name: Validate reviewed Wave 2 source ledger
+        run: node tools/construction-tools-atlas/scripts/check-image-wave2-sources-v2.3.cjs
+
+      - name: Validate Wave 2B build and promotion syntax
+        run: |
+          node --check tools/construction-tools-atlas/scripts/build-image-wave2-v2.3.mjs
+          node --check tools/construction-tools-atlas/scripts/promote-image-wave2b-v2.3.cjs
+          node --check tools/construction-tools-atlas/scripts/sync-image-registry-sources-v2.3.cjs
+
+      - name: Download reviewed sources, pin hashes, and generate WebP derivatives
+        run: node tools/construction-tools-atlas/scripts/build-image-wave2-v2.3.mjs
+
+      - name: Revalidate pinned Wave 2 source ledger
+        run: node tools/construction-tools-atlas/scripts/check-image-wave2-sources-v2.3.cjs
+
+      - name: Promote Wave 2B canonical images
+        run: node tools/construction-tools-atlas/scripts/promote-image-wave2b-v2.3.cjs
+
+      - name: Synchronize canonical registry provenance
+        run: node tools/construction-tools-atlas/scripts/sync-image-registry-sources-v2.3.cjs
+
+      - name: Validate promoted registry and runtime contracts
+        run: |
+          node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-attribution-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
+
+      - name: Commit pinned ledger, promoted registry, runtime key, and local image assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add \
+            tools/construction-tools-atlas/data/image-wave2-sources-v2.3.json \
+            tools/construction-tools-atlas/data/image-registry-v2.3.json \
+            tools/construction-tools-atlas/detail-image-hotfix.js \
+            tools/construction-tools-atlas/images/
+          if git diff --cached --quiet; then
+            echo "Wave 2B image assets and registry are already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(construction-atlas): promote Wave 2B raster images"
+          git fetch origin "${GITHUB_REF_NAME}"
+          git rebase "origin/${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
