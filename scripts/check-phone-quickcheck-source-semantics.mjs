@@ -15,7 +15,7 @@ const officialDomains = {
   SHARP: ['sharp.co.jp', 'jp.sharp'],
   OPPO: ['oppo.com'],
   Xiaomi: ['mi.com'],
-  Motorola: ['motorola.com']
+  Motorola: ['motorola.com', 'motorola.co.jp']
 };
 
 function hostnameOf(value) {
@@ -62,9 +62,6 @@ for (const phone of phones) {
   const hasWirelessWattage = charging.wirelessMaxW !== null && charging.wirelessMaxW !== undefined;
   if (hasWirelessWattage && !hasWirelessStandard) {
     fail(`${phone.id}: wirelessMaxW requires wirelessStandard`);
-  }
-  if (!hasWirelessStandard && hasWirelessWattage) {
-    fail(`${phone.id}: wireless wattage cannot exist without a maintained standard`);
   }
 
   if (String(charging.connector || '').toLowerCase() === 'lightning' && phone.manufacturer !== 'Apple') {
