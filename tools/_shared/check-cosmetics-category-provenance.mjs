@@ -37,10 +37,16 @@ const EXPECTED_WAVE3 = Object.freeze({
   'disodium edta': 'chelating agent'
 });
 
+const EXPECTED_WAVE4 = Object.freeze({
+  'tocopheryl acetate': 'antioxidant',
+  'sodium citrate': 'pH adjuster'
+});
+
 const EXPECTED_ALL = Object.freeze({
   ...EXPECTED_WAVE1,
   ...EXPECTED_WAVE2,
-  ...EXPECTED_WAVE3
+  ...EXPECTED_WAVE3,
+  ...EXPECTED_WAVE4
 });
 
 const EXPECTED_SOURCES = Object.freeze({
@@ -52,7 +58,9 @@ const EXPECTED_SOURCES = Object.freeze({
   'citric acid': 'https://www.cosmeticsinfo.org/ingredient/citric-acid/',
   tocopherol: 'https://www.cosmeticsinfo.org/ingredient/tocopherol/',
   'sodium chloride': 'https://www.cosmeticsinfo.org/ingredient/sodium-chloride/',
-  'disodium edta': 'https://www.cosmeticsinfo.org/ingredient/disodium-edta/'
+  'disodium edta': 'https://www.cosmeticsinfo.org/ingredient/disodium-edta/',
+  'tocopheryl acetate': 'https://www.cosmeticsinfo.org/ingredient/tocopherol/',
+  'sodium citrate': 'https://www.cosmeticsinfo.org/ingredient/citric-acid/'
 });
 
 const ALLOWED_SOURCE_HOSTS = new Set([
@@ -90,7 +98,7 @@ const evidence = parser.verifiedCategoryEvidence || {};
 assert.deepEqual(
   Object.fromEntries(Object.entries(evidence).map(([key, item]) => [key, item.category])),
   EXPECTED_ALL,
-  'verified category evidence must remain the reviewed cumulative wave 1 + wave 2 + wave 3 set'
+  'verified category evidence must remain the reviewed cumulative wave 1 + wave 2 + wave 3 + wave 4 set'
 );
 
 for (const ambiguous of parser.ambiguousExactKeys || []) {
@@ -112,7 +120,7 @@ for (const row of rows) {
 assert.equal(rawMissingCategoryRows, 187, 'verified overlay must not hide the frozen 187 raw category gaps by rewriting recognition records');
 
 let newlyClassifiedCanonicalIdentities = 0;
-let wave3NewlyClassifiedCanonicalIdentities = 0;
+let wave4NewlyClassifiedCanonicalIdentities = 0;
 const rawCategoryInventory = {};
 
 for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
@@ -134,7 +142,7 @@ for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
 
   if (rawCategories.length === 0) {
     newlyClassifiedCanonicalIdentities += 1;
-    if (Object.hasOwn(EXPECTED_WAVE3, canonical)) wave3NewlyClassifiedCanonicalIdentities += 1;
+    if (Object.hasOwn(EXPECTED_WAVE4, canonical)) wave4NewlyClassifiedCanonicalIdentities += 1;
   }
   if (rawCategories.length > 0) {
     assert.ok(
@@ -163,22 +171,20 @@ for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
 assert.equal(Object.keys(EXPECTED_WAVE1).length, 5, 'wave 1 reviewed set must remain five canonical identities');
 assert.equal(Object.keys(EXPECTED_WAVE2).length, 2, 'wave 2 reviewed set must remain two canonical identities');
 assert.equal(Object.keys(EXPECTED_WAVE3).length, 2, 'wave 3 reviewed set must remain two canonical identities');
-assert.equal(
-  newlyClassifiedCanonicalIdentities >= 4,
-  true,
-  'cumulative verified overlay must retain the four wave 1 previously unclassified canonical identities'
-);
+assert.equal(Object.keys(EXPECTED_WAVE4).length, 2, 'wave 4 reviewed set must remain two canonical identities');
+assert.equal(wave4NewlyClassifiedCanonicalIdentities, 2, 'wave 4 must classify exactly two previously raw-missing canonical identities');
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'category-provenance-wave-3',
+  phase: 'category-provenance-wave-4',
   raw_missing_category_rows_unchanged: rawMissingCategoryRows,
   verified_category_evidence_canonical_identities: Object.keys(EXPECTED_ALL).length,
   wave_1_verified_canonical_identities: Object.keys(EXPECTED_WAVE1).length,
   wave_2_verified_canonical_identities: Object.keys(EXPECTED_WAVE2).length,
   wave_3_verified_canonical_identities: Object.keys(EXPECTED_WAVE3).length,
+  wave_4_verified_canonical_identities: Object.keys(EXPECTED_WAVE4).length,
   newly_classified_canonical_identities: newlyClassifiedCanonicalIdentities,
-  wave_3_newly_classified_canonical_identities: wave3NewlyClassifiedCanonicalIdentities,
+  wave_4_newly_classified_canonical_identities: wave4NewlyClassifiedCanonicalIdentities,
   raw_category_inventory: rawCategoryInventory,
   recognition_records_rewritten: false,
   safety_contract_changed: false,
