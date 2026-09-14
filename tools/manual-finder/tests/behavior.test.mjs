@@ -31,8 +31,8 @@ assert.deepEqual(
   ['PC・スマホ', '家電', 'プリンター・複合機', 'カメラ・映像', 'オーディオ', 'ゲーム', 'ネットワーク機器']
 );
 assert.deepEqual(Array.from(config.modelSearchTemplate.excludedCategories), ['その他']);
-assert.equal(config.printerConsumables.length, 58, '25 consumer-printer mappings plus 33 office-toner mappings should be present');
-assert.equal(config.officePrinterConsumables.length, 33, 'OKI 10 + KYOCERA 5 + RICOH 11 + FUJIFILM BI 7 office-toner mappings should be present');
+assert.equal(config.printerConsumables.length, 64, '25 consumer-printer mappings plus 39 office-toner mappings should be present');
+assert.equal(config.officePrinterConsumables.length, 39, 'OKI 10 + KYOCERA 11 + RICOH 11 + FUJIFILM BI 7 office-toner mappings should be present');
 assert.equal(Object.keys(config.targets).length, 3);
 assert.equal(config.offers.length, 1, 'dynamic searches must not create one stored Amazon URL per record');
 
@@ -119,6 +119,12 @@ const officeModels = new Map([
   ['KYOCERA Document Solutions|FS-C5300DN', ['TK-561K', 'TK-561Y', 'TK-561M', 'TK-561C']],
   ['KYOCERA Document Solutions|FS-C5200DN', ['TK-551K', 'TK-551C', 'TK-551M', 'TK-551Y']],
   ['KYOCERA Document Solutions|LS-C8026N', ['TK-811K', 'TK-811Y', 'TK-811M', 'TK-811C']],
+  ['KYOCERA Document Solutions|LS-C8100DN', ['TK-821K', 'TK-821Y', 'TK-821M', 'TK-821C']],
+  ['KYOCERA Document Solutions|LS-C8008N', ['TK-801K', 'TK-801Y', 'TK-801M', 'TK-801C']],
+  ['KYOCERA Document Solutions|LS-C8008DN', ['TK-801K', 'TK-801Y', 'TK-801M', 'TK-801C']],
+  ['KYOCERA Document Solutions|LS-C5030N', ['TK-511K', 'TK-511Y', 'TK-511M', 'TK-511C']],
+  ['KYOCERA Document Solutions|LS-C5016N', ['TK-501K', 'TK-501Y', 'TK-501M', 'TK-501C']],
+  ['KYOCERA Document Solutions|LS-9520DN', ['TK-76']],
   ['RICOH|RICOH IM C8010', ['RICOH MP トナー ブラック C8003', 'RICOH MP トナー イエロー C8003', 'RICOH MP トナー マゼンタ C8003', 'RICOH MP トナー シアン C8003']],
   ['RICOH|RICOH IM C6510', ['RICOH MP トナー ブラック C8003', 'RICOH MP トナー イエロー C8003', 'RICOH MP トナー マゼンタ C8003', 'RICOH MP トナー シアン C8003']],
   ['RICOH|RICOH IM C7010', ['RICOH トナー ブラック IM C7010', 'RICOH トナー イエロー IM C7010', 'RICOH トナー マゼンタ IM C7010', 'RICOH トナー シアン IM C7010']],
