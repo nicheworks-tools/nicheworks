@@ -41,7 +41,7 @@ jobs:
         run: node --check tools/pattern-dictionary/app.js
 
   pattern-dictionary-kilim-fix:
-    if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'fix: align Kilim production record')
+    if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'fix: align Kilim production record') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
