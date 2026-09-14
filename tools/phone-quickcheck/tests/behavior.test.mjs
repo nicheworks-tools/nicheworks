@@ -483,4 +483,17 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.match(html, /TurboPower/);
 }
 
+// Japan-market nubia Fold preserves foldable dimensions, 55W handset max, PPS, and carrier-proven package exclusions.
+{
+  const h = await createHarness(['zte-nubia-fold']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('160 × 73 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /160 × 73 × 11\.1 mm/);
+  assert.match(html, /160 × 144 × 5\.4 mm/);
+  assert.match(html, /6560 mAh/);
+  assert.match(html, /55W/);
+  assert.match(html, /PPS/);
+  assert.match(html, /IPX4 \/ IP5X/);
+}
+
 console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estimates, Apple unknown capacity, Lightning guidance, proprietary charging, and mobile sheet.');
