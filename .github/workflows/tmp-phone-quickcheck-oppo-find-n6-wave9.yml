@@ -21,6 +21,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - name: Add official OPPO Japan user guide source
+        run: sed -i "/specificationsUrl: 'https:\/\/www.oppo.com\/jp\/smartphones\/series-find-n\/find-n6\/specs\/',/a\\      manualUrl: 'https://support.oppo.com/jp/user-guide/'," scripts/tmp-phone-quickcheck-oppo-find-n6-wave9.mjs
       - run: node scripts/tmp-phone-quickcheck-oppo-find-n6-wave9.mjs
       - run: node scripts/check-phone-quickcheck-data.mjs
       - run: node scripts/check-phone-quickcheck-source-semantics.mjs
