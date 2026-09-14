@@ -73,8 +73,14 @@ jobs:
               s=file.read_text()
               if '<meta name="robots" content="noindex,follow">' not in s: raise SystemExit(f'{file}: noindex anchor missing')
               s=s.replace('<meta name="robots" content="noindex,follow">','<meta name="robots" content="index,follow">',1)
-              s,n=re.subn(r'(<footer class="pd-footer"><div class="pd-shell"><p>).*?(</p>)',lambda m:m.group(1)+status_copy[lang]+m.group(2),s,count=1)
-              if n!=1: raise SystemExit(f'{file}: footer status paragraph missing')
+              replacement=f'<footer class="pd-footer"><div class="pd-shell"><p>{status_copy[lang]}</p></div></footer>'
+              if '<footer class="pd-footer">' in s:
+                s,n=re.subn(r'<footer class="pd-footer">.*?</footer>',replacement,s,count=1,flags=re.S)
+                if n!=1: raise SystemExit(f'{file}: existing footer replacement failed')
+              else:
+                anchor='<script type="module" src="/tools/pattern-dictionary/app.js"></script>'
+                if anchor not in s: raise SystemExit(f'{file}: app script anchor missing')
+                s=s.replace(anchor,replacement+anchor,1)
               file.write_text(s)
               touched+=1
           if touched!=40: raise SystemExit(f'expected 40 detail pages, touched {touched}')
