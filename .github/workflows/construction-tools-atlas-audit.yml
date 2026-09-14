@@ -34,11 +34,20 @@ jobs:
       - name: Check active runtime syntax
         run: node --check tools/construction-tools-atlas/app.runtime.js
 
-      - name: Check dictionary presentation syntax
+      - name: Check detail bootstrap syntax
         run: node --check tools/construction-tools-atlas/detail-dictionary-fix.js
+
+      - name: Check dictionary presentation syntax
+        run: node --check tools/construction-tools-atlas/dictionary-presentation-v2.3.js
+
+      - name: Check deep-link runtime syntax
+        run: node --check tools/construction-tools-atlas/deep-link-v2.3.js
 
       - name: Check master-detail v2.3 contract
         run: node tools/construction-tools-atlas/scripts/check-master-detail-v2.3.cjs
 
       - name: Check bilingual v2.3 contract
         run: node tools/construction-tools-atlas/scripts/check-bilingual-v2.3.cjs
+
+      - name: Check deep-link v2.3 contract
+        run: node tools/construction-tools-atlas/scripts/check-deep-link-v2.3.cjs
