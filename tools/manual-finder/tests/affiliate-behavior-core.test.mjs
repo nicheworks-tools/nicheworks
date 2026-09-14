@@ -207,7 +207,10 @@ for (const args of [
 }
 
 assert.equal(config.buildModelSearchUrl({ maker: 'Seiko', model: '9F85', category: 'その他' }), '');
-assert.equal(config.buildModelSearchUrl({ maker: 'Roland', model: 'S-50', category: 'その他' }), '');
+assert.equal(
+  config.buildModelSearchUrl({ maker: 'Roland', model: 'S-50', category: 'その他' }),
+  'https://www.amazon.co.jp/s?k=Roland+S-50&tag=nicheworks09-22'
+);
 assert.equal(config.buildModelSearchUrl({ maker: 'Brother', model: '', category: 'プリンター・複合機' }), '');
 
 console.log('ManualFinder model-search and cross-maker consumable affiliate behavior tests passed.');
