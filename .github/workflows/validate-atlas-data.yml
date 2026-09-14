@@ -16,3 +16,114 @@ jobs:
           node-version: '20'
       - name: Run data validation
         run: node tools/construction-tools-atlas/scripts/validate-data.mjs
+
+  pattern-dictionary-compare-runtime:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/feat/pattern-dictionary-production-20-20260914' }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-production-20-20260914
+          fetch-depth: 2
+      - name: Wire canonical comparison guides
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('tools/pattern-dictionary/app.js')
+          s=p.read_text()
+          old="const DICT=ROOT+'data/search-dictionary.json';\nlet patternsPromise,dictPromise;"
+          new="const DICT=ROOT+'data/search-dictionary.json';\nconst COMPARE=ROOT+'data/compare-guides.json';\nlet patternsPromise,dictPromise,comparePromise;"
+          if old not in s: raise SystemExit('constants anchor not found')
+          s=s.replace(old,new,1)
+          old="async function dict(){return dictPromise||(dictPromise=fetch(DICT).then(r=>r.json()))}"
+          new="async function dict(){return dictPromise||(dictPromise=fetch(DICT).then(r=>r.json()))}\nasync function compareGuides(){return comparePromise||(comparePromise=fetch(COMPARE).then(r=>r.json()).then(x=>x.guides||[]))}"
+          if old not in s: raise SystemExit('dict anchor not found')
+          s=s.replace(old,new,1)
+          old="function patternSvg(p){\n  if(REFERENCE_IDS.has(p.id))return ROOT+'assets/reference/'+p.id+'.png';"
+          new="""function patternSvg(p){
+            if(p.id==='diamond-family'){const svg=`<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 600\"><rect width=\"600\" height=\"600\" fill=\"#f8fafc\"/><g fill=\"none\" stroke=\"#334155\" stroke-width=\"12\">${[75,225,375,525].flatMap(y=>[75,225,375,525].map(x=>`<path d=\"M${x} ${y-55}L${x+55} ${y} ${x} ${y+55} ${x-55} ${y}Z\"/>`)).join('')}</g></svg>`;return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)}
+            if(REFERENCE_IDS.has(p.id))return ROOT+'assets/reference/'+p.id+'.png';"""
+          if old not in s: raise SystemExit('patternSvg anchor not found')
+          s=s.replace(old,new,1)
+          old="""<p class=\"pd-warning\">${lang==='ja'?'この画像はUI検証用DEVプレースホルダーです。辞典用Reference Imageとして未検証です。':'This image is a DEV placeholder for UI validation, not a verified dictionary Reference Image.'}</p>"""
+          if old not in s: raise SystemExit('stale DEV detail warning not found')
+          s=s.replace(old,"${imageStatus(p,lang)}",1)
+          start=s.index('async function initCompare(lang)')
+          end=s.index('const page=',start)
+          replacement="""async function initCompare(lang){
+            const ps=await patterns(),guides=await compareGuides(),map=Object.fromEntries(ps.map(p=>[p.id,p])),concepts={};
+            for(const g of guides)if(g.right_external){const r=g.right_external;concepts[r.id]={id:r.id,names:r.names,families:[lang==='ja'?'一般概念':'general concept'],motifs:['diamond'],colors:{primary:[],color_role:'variable'},definition:r.term_scope,term_scope:r.term_scope,distinguishing_features:{ja:['菱形を反復する広い視覚カテゴリ','細い斜線格子がなくても含まれる'],en:['A broad visual family based on repeated diamonds','It does not require an overlaid thin diagonal lattice']},common_uses:{ja:[],en:[]},is_external_concept:true}}
+            const resolve=id=>map[id]||concepts[id],q=new URLSearchParams(location.search),el=$('#compare');
+            let a=resolve(q.get('a'))||map['houndstooth']||ps[0],b=resolve(q.get('b'))||map['glen-check']||ps[1];
+            if(a?.is_external_concept)a=map['argyle']||ps[0];
+            const patternOpts=s=>ps.map(p=>`<option value=\"${p.id}\" ${p.id===s?'selected':''}>${esc(p.names[lang])}</option>`).join('');
+            const rightOpts=s=>patternOpts(s)+Object.values(concepts).map(c=>`<option value=\"${c.id}\" ${c.id===s?'selected':''}>${esc(c.names[lang])} · ${lang==='ja'?'一般概念':'concept'}</option>`).join('');
+            const guideFor=(x,y)=>guides.find(g=>(g.left===x.id&&(g.right===y.id||g.right_external?.id===y.id))||(g.right===x.id&&g.left===y.id));
+            const text=(v)=>typeof v==='string'?v:(v?.[lang]||'—');
+            const featureText=x=>(x.distinguishing_features?.[lang]||[]).join(' / ')||'—';
+            const usesText=x=>(x.common_uses?.[lang]||[]).join(', ')||'—';
+            function render(){
+              const g=guideFor(a,b),presets=guides.map(x=>{const rid=x.right||x.right_external?.id,label=x.right_external?`${map[x.left].names[lang]} vs ${x.right_external.names[lang]}`:`${map[x.left].names[lang]} vs ${map[rid].names[lang]}`;return `<button type=\"button\" class=\"pd-compare-preset\" data-ca=\"${x.left}\" data-cb=\"${rid}\">${esc(label)}</button>`}).join('');
+              const externalNote=x=>x.is_external_concept?`<p class=\"pd-note\">${lang==='ja'?'比較用の一般概念です。20柄の辞典項目には追加していません。':'Comparison concept only; it is not an additional entry in the fixed 20-pattern dictionary.'}</p>`:'';
+              const detailLink=x=>x.is_external_concept?'':`<a class=\"pd-button secondary\" href=\"${detailUrl(x,lang)}\">${lang==='ja'?'辞典ページ':'Dictionary entry'}</a>`;
+              el.innerHTML=`<section class=\"pd-section\"><div class=\"pd-section-head\"><div><h2>${lang==='ja'?'定番の比較':'Canonical comparisons'}</h2><p class=\"pd-note\">${lang==='ja'?'間違えやすい組み合わせを一発で切り替えられます。':'Jump directly to the most commonly confused pairs.'}</p></div></div><div class=\"pd-compare-presets\">${presets}</div></section><div class=\"pd-filter-row pd-compare-selectors\"><label>${lang==='ja'?'左':'Left'} <select id=\"cmp-a\">${patternOpts(a.id)}</select></label><label>${lang==='ja'?'右':'Right'} <select id=\"cmp-b\">${rightOpts(b.id)}</select></label></div><div class=\"pd-compare-grid pd-section\"><article class=\"pd-compare-panel\"><img src=\"${patternSvg(a)}\" alt=\"\"><h2>${esc(a.names[lang])}</h2>${externalNote(a)}${detailLink(a)}</article><article class=\"pd-compare-panel\"><img src=\"${patternSvg(b)}\" alt=\"\"><h2>${esc(b.names[lang])}</h2>${externalNote(b)}${detailLink(b)}</article></div>${g?`<section class=\"pd-compare-guide\"><p class=\"pd-kicker\">${lang==='ja'?'見分ける決定点':'Decisive cue'}</p><h2>${esc(g.decisive_cue[lang])}</h2><p class=\"pd-copy\">${esc(g.summary[lang])}</p></section>`:`<div class=\"pd-empty\">${lang==='ja'?'この組み合わせには定番比較ガイドがありません。下の項目を見比べてください。':'This pair has no canonical confusion guide yet. Compare the fields below.'}</div>`}<div class=\"pd-table-wrap\"><table class=\"pd-table pd-compare-table\"><tr><th>${lang==='ja'?'分類':'Family'}</th><td>${esc((a.families||[]).join(', ')||'—')}</td><td>${esc((b.families||[]).join(', ')||'—')}</td></tr><tr><th>${lang==='ja'?'定義・範囲':'Definition / scope'}</th><td>${esc(text(a.definition)||text(a.term_scope))}</td><td>${esc(text(b.definition)||text(b.term_scope))}</td></tr><tr><th>${lang==='ja'?'見分け方':'Identification cues'}</th><td>${esc(featureText(a))}</td><td>${esc(featureText(b))}</td></tr><tr><th>${lang==='ja'?'代表色':'Primary colors'}</th><td>${esc((a.colors?.primary||[]).join(' + ')||'—')}</td><td>${esc((b.colors?.primary||[]).join(' + ')||'—')}</td></tr><tr><th>${lang==='ja'?'主な用途':'Common uses'}</th><td>${esc(usesText(a))}</td><td>${esc(usesText(b))}</td></tr></table></div>`;
+              $$('.pd-compare-preset',el).forEach(btn=>btn.onclick=()=>{a=resolve(btn.dataset.ca);b=resolve(btn.dataset.cb);sync()});
+              $('#cmp-a').onchange=e=>{a=resolve(e.target.value);sync()};
+              $('#cmp-b').onchange=e=>{b=resolve(e.target.value);sync()};
+            }
+            function sync(){history.replaceState(null,'',`?a=${encodeURIComponent(a.id)}&b=${encodeURIComponent(b.id)}`);render()}
+            render()
+          }
+          """
+          s=s[:start]+replacement+s[end:]
+          p.write_text(s)
+
+          css=Path('tools/pattern-dictionary/style.css')
+          c=css.read_text()
+          add=".pd-compare-presets{display:flex;flex-wrap:wrap;gap:8px}.pd-compare-preset{border:1px solid var(--pd-line);background:#fff;border-radius:999px;padding:8px 11px;cursor:pointer;font-size:13px}.pd-compare-preset:hover{border-color:#64748b;background:#f8fafc}.pd-compare-selectors{margin:14px 0 4px;gap:14px}.pd-compare-selectors label{font-size:13px;color:#475569}.pd-compare-selectors select{margin-left:5px;max-width:260px;padding:8px;border:1px solid var(--pd-line);border-radius:8px;background:#fff}.pd-compare-guide{margin:6px 0 18px;border:1px solid var(--pd-line);border-radius:12px;padding:18px;background:#f8fafc}.pd-compare-guide h2{font-size:20px;line-height:1.5;margin:0}.pd-table-wrap{overflow-x:auto}.pd-compare-table{min-width:680px}"
+          if add not in c:c=c.replace('@media(max-width:900px)',add+'\n@media(max-width:900px)',1)
+          c=c.replace('.pd-compare-grid{grid-template-columns:1fr 1fr;gap:10px}.pd-table th{width:30%}', '.pd-compare-grid{grid-template-columns:1fr;gap:12px}.pd-table th{width:30%}')
+          css.write_text(c)
+          PY
+      - name: Validate comparison and existing contracts
+        run: |
+          node --check tools/pattern-dictionary/app.js
+          node tools/pattern-dictionary/tests/compare-test.mjs
+          node tools/pattern-dictionary/tests/search-test.mjs
+          node tools/pattern-dictionary/tests/reference-image-test.mjs
+          node tools/pattern-dictionary/tests/source-verification-test.mjs
+          node tools/pattern-dictionary/tests/production-content-test.mjs
+          node tools/pattern-dictionary/tests/validate.mjs
+          ! grep -q "UI検証用DEVプレースホルダー" tools/pattern-dictionary/app.js
+          ! grep -q "This image is a DEV placeholder" tools/pattern-dictionary/app.js
+      - name: Persist comparison runtime and restore workflow
+        run: |
+          cat > .github/workflows/validate-atlas-data.yml <<'YAML'
+          name: Validate Construction Tools Atlas Data
+
+          on:
+            push:
+            pull_request:
+
+          jobs:
+            validate-data:
+              runs-on: ubuntu-latest
+              steps:
+                - name: Checkout repository
+                  uses: actions/checkout@v4
+                - name: Use Node.js
+                  uses: actions/setup-node@v4
+                  with:
+                    node-version: '20'
+                - name: Run data validation
+                  run: node tools/construction-tools-atlas/scripts/validate-data.mjs
+          YAML
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/pattern-dictionary/app.js tools/pattern-dictionary/style.css .github/workflows/validate-atlas-data.yml
+          git diff --cached --quiet && exit 0
+          git commit -m "feat: add canonical Pattern Dictionary comparisons"
+          git push origin HEAD:feat/pattern-dictionary-production-20-20260914
