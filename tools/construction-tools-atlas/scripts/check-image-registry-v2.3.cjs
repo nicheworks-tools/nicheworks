@@ -12,6 +12,7 @@ const IMAGE_STATES = new Set(['none', 'pilot', 'reviewed', 'verified']);
 const SUBJECT_STATES = new Set(['unreviewed', 'matched', 'rejected']);
 const MIGRATION_STATES = new Set(['legacy_svg', 'identity_resolved', 'raster_candidate', 'reviewed', 'verified', 'promoted']);
 const FORMAL_STATES = new Set(['reviewed', 'verified']);
+const SOURCE_FIELDS = ['source_url', 'source_page', 'license', 'license_url', 'author', 'attribution', 'modifications'];
 const errors = [];
 
 function text(value) { return typeof value === 'string' ? value.trim() : ''; }
@@ -63,6 +64,34 @@ function requireExistingLocal(src, label, entryId) {
   if (!fs.existsSync(file)) errors.push(`${entryId}: ${label} file does not exist: ${src}`);
 }
 
+function requireHttps(value, label, entryId) {
+  const raw = text(value);
+  if (!raw) {
+    errors.push(`${entryId}: ${label} is required`);
+    return;
+  }
+  try {
+    const url = new URL(raw);
+    if (url.protocol !== 'https:') errors.push(`${entryId}: ${label} must use https`);
+  } catch (_) {
+    errors.push(`${entryId}: ${label} must be a valid URL`);
+  }
+}
+
+function validateSource(source, entryId) {
+  if (!source || typeof source !== 'object' || Array.isArray(source)) {
+    errors.push(`${entryId}: formal image requires source provenance`);
+    return;
+  }
+  for (const field of SOURCE_FIELDS) {
+    if (!text(source[field])) errors.push(`${entryId}: source.${field} is required`);
+  }
+  for (const field of ['source_url', 'source_page', 'license_url']) requireHttps(source[field], `source.${field}`, entryId);
+  if (text(source.source_sha1) && !/^[a-f0-9]{40}$/.test(source.source_sha1)) {
+    errors.push(`${entryId}: source.source_sha1 must be 40 lowercase hex characters`);
+  }
+}
+
 if (registry.schema !== 'cta-image-registry-v2.3') errors.push('registry schema marker must be cta-image-registry-v2.3');
 if (!text(registry.version)) errors.push('registry version is required');
 if (registry.policy?.primary_format !== 'webp') errors.push('policy.primary_format must be webp');
@@ -90,6 +119,7 @@ for (const item of array(registry.items)) {
   if (item.primary) {
     const display = text(item.primary.display);
     const thumbnail = text(item.primary.thumbnail);
+    const source = text(item.primary.source);
     if (!display || !thumbnail) errors.push(`${id}: primary requires display and thumbnail`);
     if (display) {
       requireWebp(display, 'primary.display', id);
@@ -100,12 +130,15 @@ for (const item of array(registry.items)) {
       requireExistingLocal(thumbnail, 'primary.thumbnail', id);
     }
     if (display && thumbnail && display === thumbnail) errors.push(`${id}: display and thumbnail must be separate optimized assets`);
+    if (source) requireExistingLocal(source, 'primary.source', id);
   }
 
   if (FORMAL_STATES.has(item.image_state)) {
     if (item.subject_match !== 'matched') errors.push(`${id}: formal image_state requires subject_match=matched`);
     if (!item.primary) errors.push(`${id}: formal image_state requires primary WebP assets`);
+    if (!text(item.primary?.source)) errors.push(`${id}: formal image_state requires retained local primary.source`);
     if (!['reviewed', 'verified', 'promoted'].includes(item.migration_state)) errors.push(`${id}: formal image_state requires reviewed/verified/promoted migration_state`);
+    validateSource(item.source, id);
   }
 
   if (item.migration_state === 'promoted' && !FORMAL_STATES.has(item.image_state)) errors.push(`${id}: promoted image must be reviewed or verified`);
@@ -122,5 +155,5 @@ if (errors.length) {
 console.log('Construction Tools Atlas image registry v2.3: PASS');
 console.log(`- current corpus IDs: ${corpusIds.size}`);
 console.log(`- canonical registry items: ${array(registry.items).length}`);
-console.log('- formal primary images require matched subject + separate display/thumb WebP assets');
+console.log('- formal primary images require matched subject + separate display/thumb WebP assets + retained local source + provenance');
 console.log('- SVG is allowed only as legacy/diagram input, never as v2.3 primary display/thumbnail');
