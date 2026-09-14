@@ -16,6 +16,7 @@
       "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
       "author": "KVDP",
       "attribution": "KVDP / Wikimedia Commons (Public Domain)",
+      "source_sha1": "47d3253cbcf333a615e6659d6da021f71a1681d1",
       "subject_match": "matched",
       "review_state": "reviewed",
       "review_note": "Large construction rotary hammer with masonry bit; canonical subject is clearly distinguishable from an ordinary drill."
@@ -29,6 +30,7 @@
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
       "author": "Daraku K.",
       "attribution": "Daraku K. / Wikimedia Commons, CC BY-SA 4.0",
+      "source_sha1": "a1acb473f43effb39f799b2a4d34fa6b1c7c3d79",
       "subject_match": "matched",
       "review_state": "reviewed",
       "review_note": "Cordless impact driver kit; reviewed against the canonical impact-driver entry rather than generic drill imagery."
@@ -42,6 +44,7 @@
       "license_url": "https://creativecommons.org/licenses/by/2.0/",
       "author": "Tony Webster",
       "attribution": "Tony Webster / Wikimedia Commons, CC BY 2.0",
+      "source_sha1": "c6c28dcc42530ebc4a444088c442055b299d0ade",
       "subject_match": "matched",
       "review_state": "reviewed",
       "review_note": "Real cordless electric drill/driver image; kept separate from the impact-driver canonical entry."
