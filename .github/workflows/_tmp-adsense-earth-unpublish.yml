@@ -21,20 +21,51 @@ jobs:
           node-version: '20'
       - name: Apply transformation
         run: node scripts/_tmp-adsense-earth-unpublish.mjs
-      - name: Validate publication contracts
+      - name: Validate and capture output
+        id: validate
+        shell: bash
         run: |
-          node scripts/audit-publishing-mode.mjs
-          node scripts/check-tool-spec-contract.mjs
-          node scripts/check-tool-spec-coverage.mjs
-          node scripts/check-tool-quality-contract.mjs
-          node scripts/check-monetization-classification.mjs
-          node scripts/check-seo-public-url-contract.mjs
-          node scripts/check-seo-indexable-url-identity.mjs
-          node scripts/audit-seo.mjs --strict
-      - name: Remove one-shot files and commit final state
+          set +e
+          : > /tmp/validation.txt
+          failed=0
+          commands=(
+            "node scripts/audit-publishing-mode.mjs"
+            "node scripts/check-tool-spec-contract.mjs"
+            "node scripts/check-tool-spec-coverage.mjs"
+            "node scripts/check-tool-quality-contract.mjs"
+            "node scripts/check-monetization-classification.mjs"
+            "node scripts/check-seo-public-url-contract.mjs"
+            "node scripts/check-seo-indexable-url-identity.mjs"
+            "node scripts/audit-seo.mjs --strict"
+          )
+          for cmd in "${commands[@]}"; do
+            echo "### $cmd" | tee -a /tmp/validation.txt
+            bash -lc "$cmd" 2>&1 | tee -a /tmp/validation.txt
+            status=${PIPESTATUS[0]}
+            echo "exit=$status" | tee -a /tmp/validation.txt
+            echo | tee -a /tmp/validation.txt
+            if [ "$status" -ne 0 ]; then failed=1; fi
+          done
+          echo "failed=$failed" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist diagnostics only on failure
+        if: steps.validate.outputs.failed == '1'
+        run: |
+          cp /tmp/validation.txt /tmp/adsense-earth-validation.txt
+          git reset --hard HEAD
+          git clean -fd
+          cp /tmp/adsense-earth-validation.txt adsense-earth-validation.txt
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add adsense-earth-validation.txt
+          git commit -m "chore: capture Earth unpublish validation diagnostics"
+          git push origin HEAD:chore/adsense-prep-hide-earth-placeholders-20260914
+      - name: Commit validated final state
+        if: steps.validate.outputs.failed == '0'
         run: |
           rm -f scripts/_tmp-adsense-earth-unpublish.mjs
           rm -f .github/workflows/_tmp-adsense-earth-unpublish.yml
+          rm -f adsense-earth-validation.txt
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add -A
