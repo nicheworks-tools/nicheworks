@@ -267,6 +267,21 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.match(html, /Qi2\.2 \/ 25W/);
 }
 
+// A production clamshell foldable keeps folded height distinct and resolves Samsung charging classes.
+{
+  const h = await createHarness(['samsung-galaxy-z-flip7']);
+  assert.ok(h.elements.phoneList.innerHTML.includes('85.5 × 75.2 mm (折りたたみ時)'));
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /85\.5 × 75\.2 × 13\.7 mm/);
+  assert.match(html, /166\.7 × 75\.2 × 6\.5 mm/);
+  assert.match(html, /188 g/);
+  assert.match(html, /4300 mAh/);
+  assert.match(html, /25W/);
+  assert.match(html, /Super Fast Charging/);
+  assert.match(html, /Qi \/ 15W/);
+  assert.match(html, /Galaxy Super Fast Charging対応 25W充電器/);
+}
+
 // Foldable schema renders both physical states and keeps folded dimensions in the list.
 {
   const h = await createHarness(['synthetic-foldable']);

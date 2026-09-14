@@ -1261,6 +1261,120 @@
       "affiliateKeys": []
     },
     {
+      "id": "samsung-galaxy-z-fold7",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Fold7",
+      "aliases": [
+        "Samsung Galaxy Z Fold7",
+        "GalaxyZFold7",
+        "Z Fold7",
+        "ギャラクシーZ Fold7",
+        "ギャラクシーZフォールド7"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 158.4,
+        "widthMm": 72.8,
+        "depthMm": 8.9
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 158.4,
+        "widthMm": 143.2,
+        "depthMm": 4.2
+      },
+      "weightG": 215,
+      "displayInch": 8,
+      "waterRating": "IPX8 / IP4X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4400,
+          "valueClass": "official",
+          "sourceRef": "https://www.samsung.com/jp/business/smartphones/galaxy-z/galaxy-z-fold7-blue-shadow-256gb-sm-f966qdbasjp/"
+        },
+        "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 15
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/business/smartphones/galaxy-z/galaxy-z-fold7-blue-shadow-256gb-sm-f966qdbasjp/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F966QZKESJP/",
+        "releaseUrl": "https://news.samsung.com/jp/galaxy-fold7-launch",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-flip7",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Flip7",
+      "aliases": [
+        "Samsung Galaxy Z Flip7",
+        "GalaxyZFlip7",
+        "Z Flip7",
+        "ギャラクシーZ Flip7",
+        "ギャラクシーZフリップ7"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 85.5,
+        "widthMm": 75.2,
+        "depthMm": 13.7
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 166.7,
+        "widthMm": 75.2,
+        "depthMm": 6.5
+      },
+      "weightG": 188,
+      "displayInch": 6.9,
+      "waterRating": "IPX8 / IP4X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4300,
+          "valueClass": "official",
+          "sourceRef": "https://www.samsung.com/jp/business/smartphones/galaxy-z/galaxy-z-flip7-jetblack-256gb-sm-f766qzkasjp/"
+        },
+        "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 15
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/business/smartphones/galaxy-z/galaxy-z-flip7-jetblack-256gb-sm-f766qzkasjp/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F766QDBESJP/",
+        "releaseUrl": "https://news.samsung.com/jp/galaxy-flip7-launch",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
       "id": "sony-xperia-1-vii",
       "manufacturer": "Sony",
       "model": "Xperia 1 VII",
@@ -2173,6 +2287,120 @@
         "specificationsUrl": "https://www.samsung.com/ca/business/smartphones/galaxy-s/galaxy-s24-ultra-titanium-grey-512gb-sm-s928wztfxac/",
         "manualUrl": "https://www.samsung.com/jp/support/",
         "releaseUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-fold6",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Fold6",
+      "aliases": [
+        "Samsung Galaxy Z Fold6",
+        "GalaxyZFold6",
+        "Z Fold6",
+        "ギャラクシーZ Fold6",
+        "ギャラクシーZフォールド6"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 153.5,
+        "widthMm": 68.1,
+        "depthMm": 12.1
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 153.5,
+        "widthMm": 132.6,
+        "depthMm": 5.6
+      },
+      "weightG": 239,
+      "displayInch": 7.6,
+      "waterRating": "IP48",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4400,
+          "valueClass": "official",
+          "sourceRef": "https://www.samsung.com/jp/business/smartphones/galaxy-z/galaxy-z-fold6-silver-shadow-512gb-sm-f956qzsesjp/"
+        },
+        "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 15
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/business/smartphones/galaxy-z/galaxy-z-fold6-silver-shadow-512gb-sm-f956qzsesjp/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F956QZSASJP/",
+        "releaseUrl": "https://news.samsung.com/jp/galaxy-z-flip6-fold6-launch",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-flip6",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Flip6",
+      "aliases": [
+        "Samsung Galaxy Z Flip6",
+        "GalaxyZFlip6",
+        "Z Flip6",
+        "ギャラクシーZ Flip6",
+        "ギャラクシーZフリップ6"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 85.1,
+        "widthMm": 71.9,
+        "depthMm": 14.9
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 165.1,
+        "widthMm": 71.9,
+        "depthMm": 6.9
+      },
+      "weightG": 187,
+      "displayInch": 6.7,
+      "waterRating": "IP48",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4000,
+          "valueClass": "official",
+          "sourceRef": "https://www.samsung.com/jp/business/smartphones/galaxy-z/galaxy-z-flip6-silver-shadow-256gb-sm-f741qzsasjp/"
+        },
+        "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 15
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/business/smartphones/galaxy-z/galaxy-z-flip6-silver-shadow-256gb-sm-f741qzsasjp/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F741QLBASJP/",
+        "releaseUrl": "https://news.samsung.com/jp/galaxy-z-flip6-fold6-launch",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
         "verifiedAt": "2026-09-14"
       },
       "affiliateKeys": []
