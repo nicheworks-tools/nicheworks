@@ -1,0 +1,25 @@
+name: Pattern Dictionary sync main
+
+on:
+  push:
+    paths:
+      - '.github/workflows/pattern-dictionary-sync-main.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: ${{ github.ref == 'refs/heads/feat/pattern-dictionary-production-20-20260914' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Merge latest main
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git merge origin/main --no-edit
+          git push origin HEAD:feat/pattern-dictionary-production-20-20260914
