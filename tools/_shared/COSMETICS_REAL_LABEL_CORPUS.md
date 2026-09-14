@@ -58,7 +58,7 @@ This cohort deliberately broadens form and category coverage with essence, body-
 tools/_shared/cosmetics-real-label-corpus-cohort3.json
 ```
 
-PR36 is a baseline-only cohort expansion. CI measures cohort 3 at `91 / 132` exact-known ingredient tokens, or `68.94%`, with 41 unknown tokens representing 39 distinct names. It does not add dictionary identities to improve that newly observed score, and it does not invent a cohort-3 release floor. The next dictionary wave must be selected from this measured inventory.
+PR36 establishes the cohort-3 baseline at `91 / 132` exact-known ingredient tokens, or `68.94%`, with 41 unknown tokens representing 39 distinct names. PR37 uses that measured inventory for the first cohort-3 dictionary wave. It resolves 38 source-observed exact names while retaining `Phospholipids` as an intentionally unresolved broad group label, raising cohort 3 to `131 / 132 = 99.24%`.
 
 Every record must retain:
 
@@ -139,13 +139,24 @@ PR35 freezes the cohort-2 Wave 1 floor at:
 exact identity coverage >= 97.6%
 ```
 
-Across cohorts 1 and 2, PR35 measures `409 / 422` exact-known ingredient tokens, or `96.92%` overall. The two frozen cohort floors remain independent so a high score in one cohort cannot hide a regression in the other.
+Cohort 3 has its own measured history:
 
-PR36 expands the corpus to 24 products, 9 brands, 16 categories, and 554 ingredient tokens. With cohort 3 intentionally left at baseline, the combined measurement is `500 / 554` exact-known ingredient tokens, or `90.25%` overall. Cohort 3 itself is `91 / 132 = 68.94%`; this score is reported independently and does not lower either earlier floor.
+```txt
+PR36 baseline:                    91 / 132 exact identities = 68.94%
+PR37 dictionary Wave 1:          131 / 132 exact identities = 99.24%
+```
 
-PR35 adds only exact names observed in the cohort-2 official-product labels. It also recognizes the finite display form `Aqua (Water)` as the existing `Water` identity. The checker separately freezes all 28 Wave 1 exact names so later dictionary changes cannot silently trade one recognized identity for another while preserving only the aggregate percentage.
+PR37 freezes the cohort-3 Wave 1 floor at:
 
-Three cohort-2 labels remain deliberately unresolved after Wave 1: `Carbomer Homopolymer Type B`, `Chondrus Crispus`, and `Phospholipids`. They are not collapsed onto broader or possibly different maintained identities merely to force 100% coverage. Cohort 3 may repeat an unresolved name; repetition does not make an under-specified identity safe to guess.
+```txt
+exact identity coverage >= 99.2%
+```
+
+Across cohorts 1 and 2, PR35 measures `409 / 422` exact-known ingredient tokens, or `96.92%` overall. PR36 expands the fixed corpus to 24 products, 9 brands, 16 categories, and 554 ingredient tokens. PR37 raises the combined measurement to `540 / 554` exact-known ingredient tokens, or `97.47%` overall. Each cohort keeps its own floor so a high score in one cohort cannot hide a regression in another.
+
+PR35 adds only exact names observed in the cohort-2 official-product labels and recognizes the finite display form `Aqua (Water)` as the existing `Water` identity. PR37 follows the same rule for cohort 3: source-observed exact names are added directly, `Aqua/Water` and `Water (Aqua / Eau)` are finite aliases of `Water`, and `Cera Microcristallina` is attached to the existing `Microcrystalline Wax` identity rather than creating a conflicting second owner. The checker freezes all 28 cohort-2 Wave 1 exact names and all 38 cohort-3 Wave 1 exact names so later dictionary changes cannot silently trade recognized identities while preserving only aggregate percentages.
+
+Three cohort-2 labels remain deliberately unresolved after Wave 1: `Carbomer Homopolymer Type B`, `Chondrus Crispus`, and `Phospholipids`. Cohort 3 repeats `Phospholipids`; it remains unresolved there as well. Repetition does not make a broad group label safe to collapse into one exact identity merely to force 100% coverage.
 
 The score may improve only through reviewed parser/dictionary identity coverage. It must not improve by deleting hard products, rewriting source labels into already-known names, or weakening ambiguity protections.
 
