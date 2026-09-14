@@ -1,0 +1,34 @@
+name: Temporary Phone QuickCheck wired max contract
+
+on:
+  push:
+    branches:
+      - fix/phone-quickcheck-wired-max-contract-20260914
+    paths:
+      - '.github/workflows/tmp-phone-quickcheck-wired-max-contract.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/phone-quickcheck-wired-max-contract-20260914
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/tmp-phone-quickcheck-wired-max-contract.mjs
+      - run: node scripts/check-phone-quickcheck-data.mjs
+      - run: node scripts/check-phone-quickcheck-source-semantics.mjs
+      - run: node scripts/check-phone-quickcheck-affiliate.mjs
+      - run: node tools/phone-quickcheck/tests/behavior.test.mjs
+      - name: Commit validated canonical files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/phone-quickcheck/app.js tools/phone-quickcheck/tests/behavior.test.mjs
+          git commit -m "Phone QuickCheck: require explicit handset wired max"
+          git push origin HEAD:fix/phone-quickcheck-wired-max-contract-20260914
