@@ -1,0 +1,110 @@
+name: TrashNavi Wave 22 readiness temp
+
+on:
+  push:
+    branches:
+      - feat/trashnavi-kochi-readiness-wave22-20260914
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Promote Kochi to preferred candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const dataDir = 'tools/trashnavi/data';
+          const files = fs.readdirSync(dataDir).filter(x => /^direct-waste-links.*\.json$/.test(x));
+          const target = '392014';
+          const canonicalSorting = 'https://www.city.kochi.kochi.jp/soshiki/64/gomitop.html';
+          const found = [];
+          for (const name of files) {
+            const p = path.join(dataDir, name);
+            const text = fs.readFileSync(p, 'utf8');
+            const rows = JSON.parse(text);
+            const matches = rows.filter(r => String(r.lgcode||'') === target);
+            if (!matches.length) continue;
+            for (const r of matches) found.push({file:name,type:r.type,link_type:r.link_type||null,url:r.url});
+            let next = text;
+            for (const r of matches) {
+              const isSorting = r.link_type === 'waste_sorting' || r.type === 'ごみ分別ページ';
+              if (!isSorting) throw new Error(`unexpected existing Kochi record before Wave 22: ${name} ${JSON.stringify(r)}`);
+              if (r.url !== canonicalSorting) next = next.split(r.url).join(canonicalSorting);
+            }
+            if (next !== text) fs.writeFileSync(p, next);
+          }
+          if (!found.length) throw new Error('no existing Kochi lgcode 392014 record found');
+          console.log('Existing Kochi records before enrichment:', JSON.stringify(found, null, 2));
+
+          const supply = [
+            {
+              pref:'高知県', city:'高知市', name:'高知市のごみ収集日', type:'収集カレンダー', link_type:'collection_calendar',
+              url:'https://www.city.kochi.kochi.jp/soshiki/64/collection-kochi2.html', lgcode:'392014', last_checked:'2026-09-14', status:'active', language:'ja'
+            },
+            {
+              pref:'高知県', city:'高知市', name:'高知市 ごみの収集日検索', type:'検索ページ', link_type:'waste_search',
+              url:'https://www.city.kochi.kochi.jp/garbage-day/search/search.php', lgcode:'392014', last_checked:'2026-09-14', status:'active', language:'ja'
+            },
+            {
+              pref:'高知県', city:'高知市', name:'高知市 家庭ごみを自分で各施設に持ち込む場合', type:'持込施設', link_type:'dropoff_facility',
+              url:'https://www.city.kochi.kochi.jp/soshiki/64/gomi1-motikomi01.html', lgcode:'392014', last_checked:'2026-09-14', status:'active', language:'ja'
+            }
+          ];
+          fs.writeFileSync(path.join(dataDir,'direct-waste-links-supply-wave22.json'), JSON.stringify(supply,null,2)+'\n');
+
+          const appPath='tools/trashnavi/app.js';
+          let app=fs.readFileSync(appPath,'utf8');
+          const from='"data/direct-waste-links-supply-wave21.json"]';
+          const to='"data/direct-waste-links-supply-wave21.json","data/direct-waste-links-supply-wave22.json"]';
+          if (!app.includes(from)) throw new Error('app.js Wave 21 tail anchor missing');
+          app=app.replace(from,to);
+          fs.writeFileSync(appPath,app);
+          NODE
+
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-affiliate-contract.mjs
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+
+          node <<'NODE'
+          const fs=require('fs');
+          const path=require('path');
+          const files=fs.readdirSync('tools/trashnavi/data').filter(x=>/^direct-waste-links.*\.json$/.test(x));
+          const rows=[];
+          for(const name of files){
+            const data=JSON.parse(fs.readFileSync(path.join('tools/trashnavi/data',name),'utf8'));
+            for(const r of data) if(String(r.lgcode||'')==='392014') rows.push({...r,_file:name});
+          }
+          const typeMap=new Map([
+            ['ごみ分別ページ','waste_sorting'],['収集カレンダー','collection_calendar'],['検索ページ','waste_search'],['持込施設','dropoff_facility']
+          ]);
+          const canonicalTypes=[...new Set(rows.map(r=>r.link_type||typeMap.get(r.type)).filter(Boolean))].sort();
+          const urls=[...new Set(rows.map(r=>r.url))];
+          if(canonicalTypes.join(',')!=='collection_calendar,dropoff_facility,waste_search,waste_sorting') throw new Error(`Kochi canonical types mismatch: ${canonicalTypes}`);
+          if(rows.some(r=>r.type==='ごみ分別ページ' && r.url!=='https://www.city.kochi.kochi.jp/soshiki/64/gomitop.html')) throw new Error('stale Kochi sorting URL remains');
+          if(urls.includes('https://www.city.kochi.kochi.jp/soshiki/67/')) throw new Error('legacy Kochi department URL remains');
+          console.log(JSON.stringify({kochi_raw_records:rows.length, kochi_canonical_types:canonicalTypes, kochi_unique_urls:urls.length, rows},null,2));
+          NODE
+
+          git diff --check
+          rm .github/workflows/trashnavi-wave22-readiness-temp.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/trashnavi/app.js tools/trashnavi/data/direct-waste-links*.json .github/workflows/trashnavi-wave22-readiness-temp.yml
+          git diff --cached --check
+          git commit -m "Promote Kochi to TrashNavi preferred candidate"
+          git push origin HEAD:feat/trashnavi-kochi-readiness-wave22-20260914
