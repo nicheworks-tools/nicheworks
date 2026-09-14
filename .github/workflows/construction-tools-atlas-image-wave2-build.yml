@@ -10,6 +10,7 @@ on:
       - 'tools/construction-tools-atlas/data/image-identity-resolutions-v2.3.json'
       - 'tools/construction-tools-atlas/scripts/check-image-wave2-sources-v2.3.cjs'
       - 'tools/construction-tools-atlas/scripts/build-image-wave2-v2.3.mjs'
+      - 'tools/construction-tools-atlas/scripts/sync-image-registry-sources-v2.3.cjs'
       - '.github/workflows/construction-tools-atlas-image-wave2-build.yml'
 
 permissions:
@@ -37,24 +38,34 @@ jobs:
       - name: Validate Wave 2 source ledger
         run: node tools/construction-tools-atlas/scripts/check-image-wave2-sources-v2.3.cjs
 
-      - name: Validate builder syntax
-        run: node --check tools/construction-tools-atlas/scripts/build-image-wave2-v2.3.mjs
+      - name: Validate builder and registry sync syntax
+        run: |
+          node --check tools/construction-tools-atlas/scripts/build-image-wave2-v2.3.mjs
+          node --check tools/construction-tools-atlas/scripts/sync-image-registry-sources-v2.3.cjs
+
+      - name: Synchronize canonical registry provenance
+        run: node tools/construction-tools-atlas/scripts/sync-image-registry-sources-v2.3.cjs
 
       - name: Download reviewed sources and generate WebP derivatives
         run: node tools/construction-tools-atlas/scripts/build-image-wave2-v2.3.mjs
 
-      - name: Commit generated local image assets
+      - name: Validate synchronized canonical registry
+        run: node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs
+
+      - name: Commit synchronized registry and generated local image assets
         shell: bash
         run: |
           set -euo pipefail
-          git add tools/construction-tools-atlas/images/
+          git add \
+            tools/construction-tools-atlas/data/image-registry-v2.3.json \
+            tools/construction-tools-atlas/images/
           if git diff --cached --quiet; then
-            echo "Wave 2 image assets are already up to date."
+            echo "Wave 2 registry and image assets are already up to date."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "chore(construction-atlas): generate Wave 2 raster images"
+          git commit -m "chore(construction-atlas): synchronize Wave 2 image assets"
           git fetch origin "${GITHUB_REF_NAME}"
           git rebase "origin/${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
