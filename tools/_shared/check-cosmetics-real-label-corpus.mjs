@@ -20,17 +20,28 @@ const DATA_FILES = [
   'tools/inci-fastscan/data/ingredients-extra-8.json'
 ];
 
+const CORPUS_FILES = [
+  ['cohort1', 'tools/_shared/cosmetics-real-label-corpus.json'],
+  ['cohort2', 'tools/_shared/cosmetics-real-label-corpus-cohort2.json']
+];
+
 const ALLOWED_OFFICIAL_HOSTS = new Set([
   'www.kao-kirei.com',
   'www.cerave.com',
-  'www.laroche-posay.us'
+  'www.laroche-posay.us',
+  'theordinary.com',
+  'www.neutrogena.com',
+  'www.eucerinus.com'
 ]);
 
-const corpus = JSON.parse(read('tools/_shared/cosmetics-real-label-corpus.json'));
+const corpus = CORPUS_FILES.flatMap(([defaultCohort, rel]) => {
+  const items = JSON.parse(read(rel));
+  assert.ok(Array.isArray(items), `${rel}: real-label corpus file must be an array`);
+  return items.map((item) => ({ ...item, cohort: item.cohort || defaultCohort }));
+});
 const records = DATA_FILES.flatMap((rel) => JSON.parse(read(rel)));
 
-assert.ok(Array.isArray(corpus), 'real-label corpus must be an array');
-assert.ok(corpus.length >= 12, 'real-label corpus cohort 1 requires at least 12 source-backed products');
+assert.ok(corpus.length >= 18, 'real-label corpus requires at least 18 source-backed products after cohort 2 expansion');
 
 const ids = new Set();
 const brands = new Set();
@@ -38,6 +49,7 @@ const markets = new Set();
 const languages = new Set();
 const categories = new Set();
 const owners = new Map();
+const cohortStats = new Map();
 
 function canonicalIdentity(value) {
   if (parser?.canonicalIdentityKey) return parser.canonicalIdentityKey(value);
@@ -66,6 +78,21 @@ function isExactKnown(value) {
   return Boolean(set && set.size === 1);
 }
 
+function ensureCohortStats(cohort) {
+  if (!cohortStats.has(cohort)) {
+    cohortStats.set(cohort, {
+      cohort,
+      products: 0,
+      brands: new Set(),
+      categories: new Set(),
+      ingredients: 0,
+      exactKnown: 0,
+      unknownCounts: new Map()
+    });
+  }
+  return cohortStats.get(cohort);
+}
+
 let ingredientTotal = 0;
 let exactKnownTotal = 0;
 const unknownCounts = new Map();
@@ -73,7 +100,7 @@ const results = [];
 
 for (const item of corpus) {
   for (const field of [
-    'id', 'brand', 'product', 'market', 'category', 'label_language',
+    'id', 'cohort', 'brand', 'product', 'market', 'category', 'label_language',
     'source_type', 'source_url', 'retrieved_at', 'source_label',
     'analysis_label', 'transform_note'
   ]) {
@@ -81,6 +108,7 @@ for (const item of corpus) {
     assert.ok(item[field].trim(), `${item.id || '<missing-id>'}: ${field} must not be empty`);
   }
 
+  assert.ok(['cohort1', 'cohort2'].includes(item.cohort), `${item.id}: unsupported corpus cohort ${item.cohort}`);
   assert.ok(!ids.has(item.id), `duplicate real-label corpus id: ${item.id}`);
   ids.add(item.id);
   brands.add(item.brand);
@@ -88,14 +116,23 @@ for (const item of corpus) {
   languages.add(item.label_language);
   categories.add(item.category);
 
-  assert.equal(item.source_type, 'official_product_page', `${item.id}: source_type must be official_product_page in cohort 1`);
+  assert.equal(item.source_type, 'official_product_page', `${item.id}: source_type must be official_product_page`);
   const sourceUrl = new URL(item.source_url);
   assert.equal(sourceUrl.protocol, 'https:', `${item.id}: source URL must use https`);
   assert.ok(ALLOWED_OFFICIAL_HOSTS.has(sourceUrl.hostname), `${item.id}: source host is not an approved official host: ${sourceUrl.hostname}`);
-  assert.match(item.retrieved_at, /^2026-09-13$/, `${item.id}: cohort 1 retrieved_at must be 2026-09-13`);
+  if (item.cohort === 'cohort1') {
+    assert.match(item.retrieved_at, /^2026-09-13$/, `${item.id}: cohort 1 retrieved_at must be 2026-09-13`);
+  } else {
+    assert.match(item.retrieved_at, /^2026-09-14$/, `${item.id}: cohort 2 retrieved_at must be 2026-09-14`);
+  }
 
   const parts = parser.splitIngredients(item.analysis_label);
   assert.ok(parts.length >= 8, `${item.id}: analysis label is too small (${parts.length})`);
+
+  const cohort = ensureCohortStats(item.cohort);
+  cohort.products += 1;
+  cohort.brands.add(item.brand);
+  cohort.categories.add(item.category);
 
   const unknown = [];
   let known = 0;
@@ -106,13 +143,17 @@ for (const item of corpus) {
       unknown.push(value);
       const key = parser.normalizeBaseKey ? parser.normalizeBaseKey(value) : value.toLowerCase();
       unknownCounts.set(key, (unknownCounts.get(key) || 0) + 1);
+      cohort.unknownCounts.set(key, (cohort.unknownCounts.get(key) || 0) + 1);
     }
   }
 
   ingredientTotal += parts.length;
   exactKnownTotal += known;
+  cohort.ingredients += parts.length;
+  cohort.exactKnown += known;
   results.push({
     id: item.id,
+    cohort: item.cohort,
     brand: item.brand,
     category: item.category,
     market: item.market,
@@ -123,22 +164,21 @@ for (const item of corpus) {
   });
 }
 
-assert.ok(brands.size >= 3, `real-label corpus requires at least 3 brands; found ${brands.size}`);
+assert.ok(brands.size >= 6, `expanded real-label corpus requires at least 6 brands; found ${brands.size}`);
 assert.ok(markets.has('JP') && markets.has('US'), 'real-label corpus must include JP and US markets');
 assert.ok(languages.has('ja') && languages.has('en'), 'real-label corpus must include Japanese and English labels');
-assert.ok(categories.size >= 6, `real-label corpus requires at least 6 categories; found ${categories.size}`);
+assert.ok(categories.size >= 10, `expanded real-label corpus requires at least 10 categories; found ${categories.size}`);
 
-const unknownInventory = [...unknownCounts.entries()]
-  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-  .map(([name, count]) => ({ name, count }));
-const topUnknowns = unknownInventory.slice(0, 30);
+const cohort1 = cohortStats.get('cohort1');
+const cohort2 = cohortStats.get('cohort2');
+assert.ok(cohort1 && cohort1.products === 12, `cohort 1 must remain exactly 12 fixed products; found ${cohort1?.products || 0}`);
+assert.ok(cohort2 && cohort2.products >= 6, `cohort 2 requires at least 6 products; found ${cohort2?.products || 0}`);
+assert.ok(cohort2.brands.size >= 3, `cohort 2 requires at least 3 new brands; found ${cohort2.brands.size}`);
+assert.ok(cohort2.categories.size >= 5, `cohort 2 requires at least 5 categories; found ${cohort2.categories.size}`);
 
-const overallCoverage = ingredientTotal ? exactKnownTotal / ingredientTotal : 0;
+const cohort1Coverage = cohort1.exactKnown / cohort1.ingredients;
+assert.ok(cohort1Coverage >= 0.965, `cohort 1 exact coverage ${(cohort1Coverage * 100).toFixed(2)}% is below its frozen 96.5% floor`);
 
-// PR33 quality floor. Keep the same source-backed products and improve actual
-// exact-identity coverage; do not inflate the score by treating broad group,
-// incomplete, or under-specified legacy display labels as one exact chemical.
-assert.ok(overallCoverage >= 0.965, `real-label exact coverage ${(overallCoverage * 100).toFixed(2)}% is below the 96.5% Wave 4 floor`);
 for (const unresolved of [
   'パラベン',
   'エデト酸塩',
@@ -150,9 +190,34 @@ for (const unresolved of [
   assert.equal(isExactKnown(unresolved), false, `${unresolved}: under-specified label must remain non-exact`);
 }
 
+function sortedUnknownInventory(map) {
+  return [...map.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([name, count]) => ({ name, count }));
+}
+
+const unknownInventory = sortedUnknownInventory(unknownCounts);
+const overallCoverage = ingredientTotal ? exactKnownTotal / ingredientTotal : 0;
+const cohortSummaries = [...cohortStats.values()].map((cohort) => {
+  const unknownInventoryForCohort = sortedUnknownInventory(cohort.unknownCounts);
+  return {
+    cohort: cohort.cohort,
+    products: cohort.products,
+    brands: [...cohort.brands].sort(),
+    categories: [...cohort.categories].sort(),
+    ingredients: cohort.ingredients,
+    exact_known: cohort.exactKnown,
+    unknown: cohort.ingredients - cohort.exactKnown,
+    exact_coverage: Number((cohort.exactKnown / cohort.ingredients).toFixed(4)),
+    exact_coverage_floor: cohort.cohort === 'cohort1' ? 0.965 : null,
+    distinct_unknowns: unknownInventoryForCohort.length,
+    top_unknowns: unknownInventoryForCohort.slice(0, 30)
+  };
+});
+
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'wave4-peg-trisiloxane-wave1',
+  phase: 'wave4-real-label-corpus-cohort2-baseline',
   products: corpus.length,
   brands: brands.size,
   markets: [...markets].sort(),
@@ -162,10 +227,12 @@ console.log(JSON.stringify({
   exact_known: exactKnownTotal,
   unknown: ingredientTotal - exactKnownTotal,
   exact_coverage: Number(overallCoverage.toFixed(4)),
-  exact_coverage_floor: 0.965,
+  cohort1_exact_coverage_floor: 0.965,
+  cohort2_is_baseline_only: true,
   distinct_unknowns: unknownInventory.length,
   broad_group_labels_are_not_exact: true,
-  top_unknowns: topUnknowns,
+  top_unknowns: unknownInventory.slice(0, 30),
   unknown_inventory: unknownInventory,
+  cohorts: cohortSummaries,
   results
 }, null, 2));
