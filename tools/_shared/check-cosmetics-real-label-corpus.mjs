@@ -177,7 +177,9 @@ assert.ok(cohort2.brands.size >= 3, `cohort 2 requires at least 3 new brands; fo
 assert.ok(cohort2.categories.size >= 5, `cohort 2 requires at least 5 categories; found ${cohort2.categories.size}`);
 
 const cohort1Coverage = cohort1.exactKnown / cohort1.ingredients;
+const cohort2Coverage = cohort2.exactKnown / cohort2.ingredients;
 assert.ok(cohort1Coverage >= 0.965, `cohort 1 exact coverage ${(cohort1Coverage * 100).toFixed(2)}% is below its frozen 96.5% floor`);
+assert.ok(cohort2Coverage >= 0.95, `cohort 2 exact coverage ${(cohort2Coverage * 100).toFixed(2)}% is below the 95% Wave 1 floor`);
 
 for (const unresolved of [
   'パラベン',
@@ -185,9 +187,12 @@ for (const unresolved of [
   'Ammonium Polyacryloyldimethyl',
   'POE・ジメチコン共重合体',
   'POEメチルグルコシド',
-  'POE水添ヒマシ油'
+  'POE水添ヒマシ油',
+  'Carbomer Homopolymer Type B',
+  'Chondrus Crispus',
+  'Phospholipids'
 ]) {
-  assert.equal(isExactKnown(unresolved), false, `${unresolved}: under-specified label must remain non-exact`);
+  assert.equal(isExactKnown(unresolved), false, `${unresolved}: under-specified or deliberately deferred label must remain non-exact`);
 }
 
 function sortedUnknownInventory(map) {
@@ -200,6 +205,7 @@ const unknownInventory = sortedUnknownInventory(unknownCounts);
 const overallCoverage = ingredientTotal ? exactKnownTotal / ingredientTotal : 0;
 const cohortSummaries = [...cohortStats.values()].map((cohort) => {
   const unknownInventoryForCohort = sortedUnknownInventory(cohort.unknownCounts);
+  const floor = cohort.cohort === 'cohort1' ? 0.965 : 0.95;
   return {
     cohort: cohort.cohort,
     products: cohort.products,
@@ -209,7 +215,7 @@ const cohortSummaries = [...cohortStats.values()].map((cohort) => {
     exact_known: cohort.exactKnown,
     unknown: cohort.ingredients - cohort.exactKnown,
     exact_coverage: Number((cohort.exactKnown / cohort.ingredients).toFixed(4)),
-    exact_coverage_floor: cohort.cohort === 'cohort1' ? 0.965 : null,
+    exact_coverage_floor: floor,
     distinct_unknowns: unknownInventoryForCohort.length,
     top_unknowns: unknownInventoryForCohort.slice(0, 30)
   };
@@ -217,7 +223,7 @@ const cohortSummaries = [...cohortStats.values()].map((cohort) => {
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'wave4-real-label-corpus-cohort2-baseline',
+  phase: 'wave4-cohort2-dictionary-wave1',
   products: corpus.length,
   brands: brands.size,
   markets: [...markets].sort(),
@@ -228,7 +234,8 @@ console.log(JSON.stringify({
   unknown: ingredientTotal - exactKnownTotal,
   exact_coverage: Number(overallCoverage.toFixed(4)),
   cohort1_exact_coverage_floor: 0.965,
-  cohort2_is_baseline_only: true,
+  cohort2_exact_coverage_floor: 0.95,
+  cohort2_is_baseline_only: false,
   distinct_unknowns: unknownInventory.length,
   broad_group_labels_are_not_exact: true,
   top_unknowns: unknownInventory.slice(0, 30),
