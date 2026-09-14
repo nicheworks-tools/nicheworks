@@ -13,6 +13,8 @@ Production implementation for the fixed 20-pattern visual dictionary: visual dis
 - Search regressions cover the required natural-language Top1 cases plus mixed JA/EN, typo, confidence, and zero-result cases.
 - Six canonical comparison guides are implemented, including Argyle vs the generic Diamond family without adding a non-canonical dictionary record.
 - 20 JA + 20 EN static detail URLs exist under `patterns/{id}/` and `en/patterns/{id}/`; all 40 are `index,follow` after the publication contract passed and are listed in the root sitemap.
+- All 40 detail pages carry canonical JA/EN hreflang pairs, Open Graph and Twitter metadata, absolute production Reference Image social previews, apple-touch icon metadata, and JSON-LD containing both `WebPage` and `WebApplication` identity.
+- The 40-page detail surface passes the repository-wide indexable URL identity, head metadata cardinality, language metadata, internal-link, structured-data, and strict SEO audits.
 - Desktop and 390px mobile Chromium QA passed for browse, search, bilingual detail routes, comparison, horizontal overflow, and the disabled affiliate flow.
 - Amazon search-link metadata exists for all 20 patterns, but commerce remains safely disabled until a real Amazon Associates tracking ID is configured. No placeholder or invented tracking ID is used.
 - User search text is processed client-side only.
@@ -33,9 +35,16 @@ node tools/pattern-dictionary/tests/affiliate-test.mjs
 node tools/pattern-dictionary/tests/browse-mobile-test.mjs
 node tools/pattern-dictionary/tests/validate.mjs
 node tools/pattern-dictionary/tests/publication-test.mjs
+node tools/pattern-dictionary/tests/seo-detail-test.mjs
+node scripts/check-seo-indexable-url-identity.mjs
+node scripts/check-seo-head-metadata-cardinality.mjs
+node scripts/check-seo-language-metadata-integrity.mjs
+node scripts/check-seo-internal-link-integrity.mjs
+node scripts/check-seo-structured-data-integrity.mjs
+node scripts/audit-seo.mjs --strict
 ```
 
-The publication contract requires all 20 production records and Reference Images to be verified, preserves the three qualified term scopes, requires all 40 detail pages to be indexable, and rejects stale pre-publication messaging.
+The publication contract requires all 20 production records and Reference Images to be verified, preserves the three qualified term scopes, requires all 40 detail pages to be indexable, rejects stale pre-publication messaging, and keeps the indexable detail surface compliant with the repository-wide SEO contracts.
 
 ## Commerce activation
 
