@@ -3874,6 +3874,298 @@
       "affiliateKeys": []
     },
     {
+      "id": "motorola-razr-fold",
+      "manufacturer": "Motorola",
+      "model": "motorola razr fold",
+      "aliases": [
+        "Motorola razr fold",
+        "razr fold",
+        "motorola razr Fold",
+        "モトローラ razr fold",
+        "モトローラ razr フォールド"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 160.05,
+        "widthMm": 73.6,
+        "depthMm": 9.89
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 160.05,
+        "widthMm": 144.47,
+        "depthMm": 4.55
+      },
+      "weightG": 243,
+      "displayInch": 8.1,
+      "waterRating": "IP48 / IP49",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 6000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://store.motorola.co.jp/item/RAZRFOLD.html"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": 80,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 15
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://store.motorola.co.jp/item/RAZRFOLD.html",
+        "manualUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192470/~/ガイドとビデオ---motorola-razr-fold",
+        "releaseUrl": "https://store.motorola.co.jp/topics_list.html",
+        "chargingUrl": "https://store.motorola.co.jp/item/RAZRFOLD.html",
+        "wirelessUrl": "https://store.motorola.co.jp/item/RAZRFOLD.html",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "motorola-razr-60-ultra",
+      "manufacturer": "Motorola",
+      "model": "motorola razr 60 ultra",
+      "aliases": [
+        "Motorola razr 60 ultra",
+        "razr60ultra",
+        "razr 60 ultra",
+        "モトローラ razr 60 ultra",
+        "モトローラ razr 60 ウルトラ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 88.12,
+        "widthMm": 73.99,
+        "depthMm": 15.69
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 171.48,
+        "widthMm": 73.99,
+        "depthMm": 7.19
+      },
+      "weightG": 199,
+      "displayInch": 7,
+      "waterRating": "IP48",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4700,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://store.motorola.co.jp/category/RAZR/RAZR60ULTRA.html"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": 68,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 30
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://store.motorola.co.jp/category/RAZR/RAZR60ULTRA.html",
+        "manualUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/189480/~/ユーザーガイド(html)---motorola-razr-60-ultra",
+        "releaseUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=1115",
+        "chargingUrl": "https://store.motorola.co.jp/category/RAZR/RAZR60ULTRA.html",
+        "wirelessUrl": "https://store.motorola.co.jp/category/RAZR/RAZR60ULTRA.html",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "motorola-razr-60",
+      "manufacturer": "Motorola",
+      "model": "motorola razr 60",
+      "aliases": [
+        "Motorola razr 60",
+        "razr60",
+        "razr 60",
+        "モトローラ razr 60"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 88.08,
+        "widthMm": 73.99,
+        "depthMm": 15.85
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 171.3,
+        "widthMm": 73.99,
+        "depthMm": 7.25
+      },
+      "weightG": 188,
+      "displayInch": 6.9,
+      "waterRating": "IP48",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4500,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://store.motorola.co.jp/item/RAZR60.html"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": 30,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 15
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://store.motorola.co.jp/item/RAZR60.html",
+        "manualUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/186111/~/ユーザーガイド(html)---motorola-razr-60",
+        "chargingUrl": "https://store.motorola.co.jp/item/RAZR60.html",
+        "wirelessUrl": "https://store.motorola.co.jp/item/RAZR60.html",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "motorola-razr-50-ultra",
+      "manufacturer": "Motorola",
+      "model": "motorola razr 50 ultra",
+      "aliases": [
+        "Motorola razr 50 ultra",
+        "razr50ultra",
+        "razr 50 ultra",
+        "モトローラ razr 50 ultra",
+        "モトローラ razr 50 ウルトラ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 88.09,
+        "widthMm": 73.99,
+        "depthMm": 15.32
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 171.42,
+        "widthMm": 73.99,
+        "depthMm": 7.09
+      },
+      "weightG": 189,
+      "displayInch": 6.9,
+      "waterRating": "IPX8",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192370/~/仕様---motorola-razr-50-ultra"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": 45,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 15
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192370/~/仕様---motorola-razr-50-ultra",
+        "manualUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/180995/~/ユーザーガイド(html)---motorola-razr-50-ultra",
+        "releaseUrl": "https://store.motorola.co.jp/topics_list.html?SEARCH_MAX_ROW_LIST=100&request=max_row",
+        "chargingUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192370/~/仕様---motorola-razr-50-ultra",
+        "wirelessUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192370/~/仕様---motorola-razr-50-ultra",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "motorola-razr-50",
+      "manufacturer": "Motorola",
+      "model": "motorola razr 50",
+      "aliases": [
+        "Motorola razr 50",
+        "razr50",
+        "razr 50",
+        "モトローラ razr 50"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 88.08,
+        "widthMm": 73.99,
+        "depthMm": 15.85
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 171.3,
+        "widthMm": 73.99,
+        "depthMm": 7.25
+      },
+      "weightG": 188,
+      "displayInch": 6.9,
+      "waterRating": "IPX8",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4200,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://store.motorola.co.jp/item/RAZR50.html"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": 30,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 15
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://store.motorola.co.jp/item/RAZR50.html",
+        "manualUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/181020/~/ユーザーガイド(html)---motorola-razr-50",
+        "releaseUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=949",
+        "chargingUrl": "https://store.motorola.co.jp/item/RAZR50.html",
+        "wirelessUrl": "https://store.motorola.co.jp/item/RAZR50.html",
+        "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
       "id": "motorola-edge-60-pro",
       "manufacturer": "Motorola",
       "model": "motorola edge 60 pro",
