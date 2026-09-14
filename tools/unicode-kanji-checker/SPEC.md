@@ -17,7 +17,7 @@
 - Old Kanji Referenceのsame-site dataを読み込み、old→modern mapping、modern→old candidates、reading、meaning、category、usage、compatibility noteを補足する。
 - character / Unicode / HTML entity / UTF-16を個別copyでき、全結果とCSV形式もcopyできる。
 - Kanji Modernizerへ入力文字列をquery付きで引き継ぐlinkを提供する。
-- Old Kanji Toolkit Pro panelは現状`billing-unavailable`で、CTAはdisabled。利用可能な課金機能として扱わない。
+- verified purchase pathがない間は、fixed Pro price・disabled purchase CTA・billing-unavailable sales panelをpublic pageへ表示しない。
 
 ## Inputs
 
@@ -38,7 +38,7 @@
 
 - 入力、解析結果、copy結果はpage memoryのみで永続保存しない。
 - 辞書・metadataはNicheWorks内のstatic resourceからloadする。
-- Pro panelはbilling unavailableのため、user entitlementによる保存stateをcurrent functional contractに含めない。
+- paid entitlement UIはcurrent public functional contractに含めない。
 
 ## Privacy and network behavior
 
@@ -64,7 +64,7 @@
 - fontやOSによるglyph rendering差を解消しない。
 - compatibility characterやvariation selectorがtarget systemで利用可能か保証しない。
 - dictionaryに存在しないvariant関係を推測して確定しない。
-- Old Kanji Toolkit Proは現時点でbilling未接続である。
+- billing未接続の間はunfinished Pro sales UIをpublic pageへ表示しない。
 
 ## Acceptance criteria
 
@@ -73,10 +73,10 @@
 - [ ] Old Kanji Reference dataに対応がある文字ではold/modern mappingやmetadataを表示する。
 - [ ] 全結果とCSVをclipboardへcopyできる。
 - [ ] 入力内容をexternal character APIへ送信しない。
-- [ ] billing-unavailableのPro CTAを有効な購入済み機能として扱わない。
+- [ ] verified billing activation前にfixed Pro price、disabled purchase CTA、billing-unavailable sales panelを表示しない。
 
 ## Implementation evidence
 
-- `tools/unicode-kanji-checker/index.html` — input/copy/result/Pro-billing-unavailable UI、privacy notice。
+- `tools/unicode-kanji-checker/index.html` — input/copy/result UI、privacy notice。
 - `tools/unicode-kanji-checker/app.js` — code point/entity/UTF-16解析、range判定、Old Kanji Reference data load、copy/render logic。
 - `tools/old-kanji-reference/dict.json` and metadata files — mapping/reference source consumed by this tool。

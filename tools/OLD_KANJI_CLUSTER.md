@@ -89,7 +89,7 @@ Pro is reserved for recurring/heavy workflow value such as:
 - report/audit/export packages beyond current shipped Free exports;
 - team/business-oriented repeat workflows if introduced later.
 
-While billing is unavailable, Pro UI must remain clearly disabled/unavailable and must not imply a purchasable feature exists.
+Until a verified purchase/entitlement path is active, public tool pages must not render a fixed Pro price, disabled purchase CTA, or billing-unavailable sales panel. Future Pro scope stays documented in SPEC/planning material and is introduced publicly only when a real purchasable flow exists.
 
 ## Revenue order
 

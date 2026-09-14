@@ -95,7 +95,8 @@ has('tools/pdf2csv-local/vendor/xlsx.full.min.js', 'https://cdn.sheetjs.com/xlsx
 has('tools/place-old-kanji-checker/app.js', "fetch('../old-kanji-reference/dict.json')");
 has('tools/place-old-kanji-checker/app.js', 'ここで表示される候補は、公式な住所表記や行政上の有効性を判断するものではありません。');
 has('tools/place-old-kanji-checker/app.js', "productId: 'okj.toolkit_pro'");
-has('tools/place-old-kanji-checker/SPEC.md', 'billing-unavailable/locked');
+has('tools/place-old-kanji-checker/SPEC.md', 'No fixed Pro price or unfinished purchase controls are rendered');
+lacks('tools/place-old-kanji-checker/index.html', 'okj-pro-panel', 'unfinished public Pro panel');
 
 // 68. Product Founder OS — documentation page, repository link, no hosted product input.
 has('tools/product-founder-os/index.html', 'https://github.com/nicheworks-tools/product-founder-os/tree/main');

@@ -21,7 +21,7 @@ Run browser-side Japanese OCR on one selected image, let the user correct the re
 - Allow copying OCR text, detected old forms, correspondence table, and modern preview.
 - Load same-site Old Kanji mapping/metadata/compatibility assets for detection.
 - Free mode is designed for one-image review.
-- Old Kanji Toolkit Pro features such as batch OCR, saved history, crop OCR, zoom inspection, image marking, collection, and report/export are shown as planned/locked because billing is not connected.
+- Future batch/history/crop/report scope is not advertised through an unfinished public sales panel while no verified purchase path is connected.
 - A separate optional Amazon resource panel exposes fixed searches for non-destructive book scanners and document magnifiers.
 
 ## Amazon affiliate contract
@@ -51,7 +51,7 @@ Run browser-side Japanese OCR on one selected image, let the user correct the re
 
 ## State and persistence
 
-Selected image, OCR text, and detection results are page-memory state and are not stored as scan history. Object URLs are revoked when the selected image is cleared/replaced. Pro history/collection features are not active in the current billing-unavailable state. Amazon resource configuration is static and does not persist user state.
+Selected image, OCR text, and detection results are page-memory state and are not stored as scan history. Object URLs are revoked when the selected image is cleared/replaced. Paid history/collection scope is outside the current public free workflow; no inactive sales panel is rendered. Amazon resource configuration is static and does not persist user state.
 
 ## Privacy and network behavior
 
@@ -82,7 +82,7 @@ Camera/image selection, OCR status, editable result text, and detected cards for
 - [ ] Running OCR invokes Tesseract with Japanese language configuration and exposes progress/status feedback.
 - [ ] Editing OCR text immediately updates old-kanji detection and the mechanical modern preview.
 - [ ] Failure to load old-kanji reference data still leaves OCR/manual text editing available with an explicit data-load warning.
-- [ ] Planned Pro controls remain locked while billing is unavailable.
+- [ ] No fixed Pro price, disabled purchase CTA, or unfinished billing panel is rendered before a verified purchase path is active.
 - [ ] Amazon links use only the two fixed search terms and `nicheworks09-22`.
 - [ ] OCR/image/manual-input values never enter Amazon URLs or affiliate analytics.
 - [ ] Associates disclosure is rendered whenever active Amazon targets are available.

@@ -440,10 +440,6 @@
     el.checkButton.textContent = t('checkButton');
     el.privacyNote.textContent = t('privacyNote');
     el.relatedLinksTitle.textContent = t('relatedLinks');
-    document.getElementById('okj-pro-feature-title').textContent = t('proFeatureTitle');
-    document.getElementById('okj-pro-feature-text').textContent = t('proFeatureText');
-    document.getElementById('okj-pro-cta').textContent = t('proCta');
-    document.getElementById('okj-pro-note').textContent = t('proBillingNote');
 
     el.langButtons.forEach((button) => {
       button.classList.toggle('active', button.dataset.lang === lang);

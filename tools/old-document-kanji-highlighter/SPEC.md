@@ -19,7 +19,7 @@ Highlight registered old/variant kanji in pasted historical-style text and provi
 - Allow copying detected old forms, the pair table, and the modern-form preview.
 - Link to related Old Kanji tools for deeper lookup/conversion.
 - Process text locally and load reference data from same-site assets.
-- Display Old Kanji Toolkit Pro as billing-unavailable; batch/report/export/saved-set/audit capabilities are locked because billing is not connected.
+- Do not render an unfinished Pro sales panel, fixed Pro price, or disabled purchase CTA while no verified purchase path is connected.
 
 ## Inputs
 
@@ -36,7 +36,7 @@ Highlight registered old/variant kanji in pasted historical-style text and provi
 
 ## State and persistence
 
-Pasted text and results are current-page state. No document history is persisted by the free tool. Pro is currently a locked/billing-unavailable presentation, not an active paid workflow.
+Pasted text and results are current-page state. No document history is persisted by the free tool. No paid entitlement or purchase UI is part of the current public page state.
 
 ## Privacy and network behavior
 
@@ -57,7 +57,7 @@ Long source documents benefit from desktop width, while the input/results are ve
 - This is not translation, OCR, kuzushiji recognition, historical interpretation, or scholarly authentication.
 - Modern-form preview is mechanical replacement and can be wrong for context, proper nouns, or official spelling.
 - Only characters present in the bundled/reference mapping are detected.
-- Pro features shown in the page are not currently purchasable because the billing path is not connected.
+- No fixed Pro price or unfinished purchase controls are rendered on the public page while billing is inactive.
 
 ## Acceptance criteria
 
@@ -65,7 +65,7 @@ Long source documents benefit from desktop width, while the input/results are ve
 - [ ] The modern preview is clearly labeled as mechanical replacement rather than authoritative modernization.
 - [ ] Copy actions operate on locally derived detection/pair/preview data.
 - [ ] Pasted document text is not sent to an external analysis API.
-- [ ] Billing-unavailable Pro controls remain locked and must not be described as currently purchasable functionality.
+- [ ] The public page does not expose unfinished billing/Pro sales controls until a verified entitlement/purchase path exists.
 
 ## Implementation evidence
 

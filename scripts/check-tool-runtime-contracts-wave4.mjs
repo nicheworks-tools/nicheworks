@@ -62,11 +62,11 @@ has('tools/moving-lease-final-check/app.js', 'function requirePro(event)');
 has('tools/moving-lease-final-check/pro-bridge.js', "const EXPECTED_ENTITLEMENT = 'nicheworks_pro'");
 has('tools/moving-lease-final-check/pro-bridge.js', 'status.active && status.entitlement === EXPECTED_ENTITLEMENT');
 
-// 53. Name Old Kanji Checker — same-site mappings, optional metadata fallback, billing unavailable.
+// 53. Name Old Kanji Checker — same-site mappings, optional metadata fallback, no unfinished public sales UI.
 has('tools/name-old-kanji-checker/app.js', "const DICT_URL = '../old-kanji-reference/dict.json'");
 has('tools/name-old-kanji-checker/app.js', "state.dataStatus = optionalLoadFailed ? 'partial_error' : 'ready'");
-has('tools/name-old-kanji-checker/index.html', 'data-okj-pro-state="billing-unavailable"');
-has('tools/name-old-kanji-checker/index.html', 'aria-disabled="true" disabled id="okj-pro-cta"');
+lacks('tools/name-old-kanji-checker/index.html', 'okj-pro-panel', 'unfinished public Pro panel');
+lacks('tools/name-old-kanji-checker/index.html', '$4.99', 'unfinished fixed Pro price');
 
 // 54. Newsletter Kit Generator — deterministic local bilingual output with explicit missing placeholders.
 has('tools/newsletter-kit-generator/app.js', 'const buildKit = () =>');
@@ -98,18 +98,18 @@ has('tools/og-image-maker/pro-bridge.js', 'status.active && (!status.entitlement
   check(html.indexOf('<script src="./app.js"></script>') < html.indexOf('<script src="./pro-bridge.js"></script>'), 'tools/og-image-maker/index.html: Pro bridge must load after app.js so legacy helper cannot override the shared entitlement gate');
 }
 
-// 58. Old Document Kanji Highlighter — local mechanical mapping and locked billing-unavailable Pro surface.
+// 58. Old Document Kanji Highlighter — local mechanical mapping with no unfinished public sales surface.
 has('tools/old-document-kanji-highlighter/app.js', "fetch('../old-kanji-reference/dict.json')");
 has('tools/old-document-kanji-highlighter/app.js', 'renderModernPreview');
-has('tools/old-document-kanji-highlighter/index.html', 'data-okj-pro-state="billing-unavailable"');
-has('tools/old-document-kanji-highlighter/index.html', 'aria-disabled="true" disabled');
+lacks('tools/old-document-kanji-highlighter/index.html', 'okj-pro-panel', 'unfinished public Pro panel');
+lacks('tools/old-document-kanji-highlighter/index.html', '$4.99', 'unfinished fixed Pro price');
 
-// 59. Old Kanji OCR Scanner — Japanese Tesseract OCR, editable detection, external-runtime disclosure, locked Pro, contextual Amazon resources.
+// 59. Old Kanji OCR Scanner — Japanese Tesseract OCR, editable detection, external-runtime disclosure, no unfinished sales UI, contextual Amazon resources.
 has('tools/old-kanji-ocr-scanner/index.html', 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js');
 has('tools/old-kanji-ocr-scanner/app.js', "Tesseract.recognize(file, 'jpn'");
 has('tools/old-kanji-ocr-scanner/app.js', "document.getElementById('manual-text').value = text || ''");
 has('tools/old-kanji-ocr-scanner/index.html', '外部OCR APIには送信しません');
-has('tools/old-kanji-ocr-scanner/index.html', 'data-okj-pro-state="billing-unavailable"');
+lacks('tools/old-kanji-ocr-scanner/index.html', 'okj-pro-panel', 'unfinished public Pro panel');
 has('tools/old-kanji-ocr-scanner/index.html', '/assets/amazon-affiliate.js');
 has('tools/old-kanji-ocr-scanner/index.html', './affiliate-config.js');
 has('tools/old-kanji-ocr-scanner/index.html', './affiliate.js');
@@ -132,15 +132,15 @@ lacks('tools/old-kanji-ocr-scanner/affiliate.js', 'image-input', 'image state en
     'tools/old-kanji-ocr-scanner/index.html: Amazon helper/config/ui must load before app.js');
 }
 
-// 60. Old Kanji Reference — documented browser state, Free exports, disabled future Pro surface, repaired detail layout, contextual Amazon resources.
+// 60. Old Kanji Reference — documented browser state, Free exports, no unfinished sales UI, repaired detail layout, contextual Amazon resources.
 for (const key of ['oldKanjiReference.recent.v1', 'oldKanjiReference.displayMode.v1', 'oldKanjiReference.favorites.v1', 'oldKanjiReference.quizStats.v1']) {
   has('tools/old-kanji-reference/app-meaning-v4.js', key);
 }
 has('tools/old-kanji-reference/index.html', 'Export (currently free)');
 has('tools/old-kanji-reference/app-meaning-v4.js', 'exportCsvBtn.addEventListener("click", exportCsv)');
 has('tools/old-kanji-reference/app-meaning-v4.js', 'exportJsonBtn.addEventListener("click", exportJson)');
-has('tools/old-kanji-reference/index.html', 'data-okj-pro-state="billing-unavailable"');
-has('tools/old-kanji-reference/index.html', 'data-okj-pro-cta disabled aria-disabled="true"');
+lacks('tools/old-kanji-reference/index.html', 'okj-pro-panel', 'unfinished public Pro panel');
+lacks('tools/old-kanji-reference/index.html', '$4.99', 'unfinished fixed Pro price');
 has('tools/old-kanji-reference/index.html', './amazon-layout.css');
 has('tools/old-kanji-reference/index.html', '/assets/amazon-affiliate.js');
 has('tools/old-kanji-reference/index.html', './affiliate-config.js');
