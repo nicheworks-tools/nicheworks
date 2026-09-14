@@ -12,8 +12,8 @@ Current order:
 
 1. **Generic exact-model search** — active. One validated Amazon search template generates a tagged search URL from canonical ManualFinder `maker + model` metadata.
 2. **Consumer-printer ink** — active for Brother Wave 1, Epson Wave 1, and Canon Wave 1 below. Consumable codes come only from official manufacturer compatibility sources.
-3. **Office-printer toner** — active for ten OKI, five KYOCERA, five RICOH, and thirteen FUJIFILM Business Innovation exact-model records. Exact toner product codes are retained where the manufacturer publishes them; otherwise an explicit official manufacturer family-level toner source is retained as compatibility evidence. The Amazon handoff stays concise at one toner-search CTA per model.
-4. **Office-printer toner cross-maker expansion** — continue bounded FUJIFILM BI / KYOCERA / RICOH waves only where exact official compatibility evidence is available.
+3. **Office-printer toner** — active for ten OKI, five KYOCERA, five RICOH, and all twenty-seven current FUJIFILM Business Innovation exact-model records. Exact toner product codes are retained where the manufacturer publishes them; otherwise an explicit official manufacturer family-level toner source is retained as compatibility evidence. The Amazon handoff stays concise at one toner-search CTA per model.
+4. **Office-printer toner cross-maker expansion** — continue bounded KYOCERA / RICOH / other-maker waves only where exact official compatibility evidence is available. Current FUJIFILM BI ManualFinder records are complete.
 5. **Office-printer drum / maintenance parts** — later, after toner behavior is established.
 6. **Camera batteries / chargers** — later, only for independently verified compatibility mappings.
 7. **Appliance replacement parts / filters** — later, only where exact compatibility can be proven.
@@ -156,20 +156,22 @@ The first FUJIFILM Business Innovation toner wave reuses seven existing exact Ap
 
 The Amazon query uses the shorter retail maker token `FUJIFILM`, for example `FUJIFILM ApeosPort-VII C7773 トナー`, while matching still uses the canonical ManualFinder maker `FUJIFILM Business Innovation`. The exact CT product codes remain evidence only; the card shows one toner-search CTA rather than four color-specific links.
 
-## Office-printer toner rule — FUJIFILM Business Innovation Wave 2
+## Office-printer toner rule — FUJIFILM Business Innovation family-evidence completion
 
-Wave 2 reuses six existing Apeos C7071-family ManualFinder records: C7071, C6571, C5571, C4571, C3571, and C2571. FUJIFILM Business Innovation's official SDS page explicitly groups those models with C3071 and publishes toner entries for black, yellow, magenta, and cyan. ManualFinder deliberately activates only the six models already present in its canonical dataset; C3071 remains fail-closed rather than being created by the affiliate layer.
+The remaining twenty current FUJIFILM Business Innovation ManualFinder records are backed by explicit official family-level toner evidence. Seventeen records use official SDS family pages that name the relevant toner category. Apeos 3061 / 2561 / 2061 uses the exact official product-family feature page, which explicitly describes newly developed toner for the Apeos 3061 series. The affiliate layer activates only models that already exist in ManualFinder. Models appearing on an official family page but absent from ManualFinder, such as Apeos C3071 and Apeos C3067, remain fail-closed.
 
-| ManualFinder model | Manufacturer evidence |
+| ManualFinder family records | Manufacturer toner evidence |
 | --- | --- |
-| Apeos C7071 | official family SDS: toner black / yellow / magenta / cyan |
-| Apeos C6571 | official family SDS: toner black / yellow / magenta / cyan |
-| Apeos C5571 | official family SDS: toner black / yellow / magenta / cyan |
-| Apeos C4571 | official family SDS: toner black / yellow / magenta / cyan |
-| Apeos C3571 | official family SDS: toner black / yellow / magenta / cyan |
-| Apeos C2571 | official family SDS: toner black / yellow / magenta / cyan |
+| Apeos C7071 / C6571 / C5571 / C4571 / C3571 / C2571 | official family SDS: black / yellow / magenta / cyan toner |
+| Apeos 7580 / 6580 / 5580 | official family SDS: black toner |
+| Apeos C3061 / C2561 / C2061 | official family SDS: black / yellow / magenta / cyan toner |
+| Apeos 3060 / 2560 / 1860 | official family SDS: black toner |
+| Apeos 4570 / 3570 | official family SDS: black toner |
+| Apeos 3061 / 2561 / 2061 | official exact-family product page: newly developed toner for the Apeos 3061 series |
 
-FUJIFILM's SDS document numbers are not retail toner product codes, so Wave 2 does **not** place those SDS identifiers in `tonerCodes`. Instead each row stores `evidenceKind: official_family_toner_sds` plus the official family source URL. The Amazon handoff remains deterministic, for example `FUJIFILM Apeos C7071 トナー`, and does not claim that every Amazon result is compatible.
+FUJIFILM's SDS document identifiers are not retail toner product codes, so SDS-backed mappings do **not** place those identifiers in `tonerCodes`. The Apeos 3061 / 2561 / 2061 rows likewise do not invent a retail toner code from product-page prose. SDS rows store `evidenceKind: official_family_toner_sds`; the 3061 family stores `evidenceKind: official_family_toner_product_page`. The Amazon handoff remains deterministic, for example `FUJIFILM Apeos 7580 トナー`, and does not claim that every Amazon result is compatible.
+
+Together with Wave 1, all twenty-seven FUJIFILM Business Innovation exact model records currently present in ManualFinder now have a bounded toner handoff backed by manufacturer evidence. No extra model is created by the affiliate layer.
 
 The UI tells the user that toner compatibility was checked against an official manufacturer source and that the exact Amazon item and supported model must still be confirmed before purchase.
 
@@ -188,7 +190,7 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 - `app.paged.js` places canonical `maker`, `model`, and `category` metadata on each result card.
 - `affiliate-config.js` owns the fixed tracking ID, generic model-search policy, and consumer-printer compatibility mappings.
 - `affiliate-office-consumables.js` extends the same fail-closed contract with verified cross-maker office-printer toner mappings without duplicating the main config.
-- `affiliate-fujifilm-toner-wave2.js` adds only the six existing Apeos C7071-family records backed by FUJIFILM BI's explicit family-level toner SDS evidence; SDS document numbers are not treated as toner product codes.
+- `affiliate-fujifilm-toner-wave2.js` now contains all twenty non-Wave-1 FUJIFILM BI records backed by explicit family-level toner evidence: seventeen SDS-backed records plus three product-page-backed Apeos 3061-family records. SDS document identifiers are never treated as toner product codes.
 - `affiliate-runtime.js` renders the generic model search plus zero or more verified consumable searches.
 - `/assets/amazon-affiliate.js` validates the Amazon destination host and records only coarse analytics targets. Model names and consumable terms are not analytics parameters.
 - Unsupported categories, empty models, malformed URLs, and unmapped consumables fail closed.
@@ -196,4 +198,4 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 
 ## Next expansion gate
 
-After FUJIFILM Business Innovation Wave 2, fourteen FUJIFILM BI records remain outside the toner layer: Apeos 7580/6580/5580, Apeos C3061/C2561/C2061, Apeos 3060/2560/1860, Apeos 4570/3570, and Apeos 3061/2561/2061. Continue only where an exact official toner product code or an explicit manufacturer source binds the toner family to those exact models. Additional RICOH and KYOCERA waves remain eligible under the same evidence standard. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.
+FUJIFILM Business Innovation is complete for the twenty-seven exact records currently present in ManualFinder: seven exact-code ApeosPort-VII mappings, seventeen family-SDS-backed Apeos mappings, and three exact-family product-page-backed Apeos 3061-series mappings. The next toner expansion should move to additional RICOH, KYOCERA, or another office-printer maker only where an exact official toner code or explicit manufacturer family source can be bound to an existing ManualFinder model. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.
