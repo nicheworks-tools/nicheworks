@@ -12,8 +12,8 @@ Current order:
 
 1. **Generic exact-model search** — active. One validated Amazon search template generates a tagged search URL from canonical ManualFinder `maker + model` metadata.
 2. **Consumer-printer ink** — active for Brother Wave 1, Epson Wave 1, and Canon Wave 1 below. Consumable codes come only from official manufacturer compatibility sources.
-3. **Office-printer toner** — active for ten OKI, five KYOCERA, and five RICOH exact-model records. Exact toner codes or official toner identifiers are retained as compatibility evidence while the Amazon handoff stays concise at one toner-search CTA per model.
-4. **Office-printer toner cross-maker expansion** — next evaluate FUJIFILM Business Innovation, then continue bounded waves for existing manufacturers where evidence remains explicit.
+3. **Office-printer toner** — active for ten OKI, five KYOCERA, five RICOH, and seven FUJIFILM Business Innovation exact-model records. Exact toner codes or official toner identifiers are retained as compatibility evidence while the Amazon handoff stays concise at one toner-search CTA per model.
+4. **Office-printer toner cross-maker expansion** — continue bounded FUJIFILM BI / KYOCERA / RICOH waves only where exact official compatibility evidence is available.
 5. **Office-printer drum / maintenance parts** — later, after toner behavior is established.
 6. **Camera batteries / chargers** — later, only for independently verified compatibility mappings.
 7. **Appliance replacement parts / filters** — later, only where exact compatibility can be proven.
@@ -140,6 +140,22 @@ RICOH already has exact current color-MFP records in ManualFinder. The first bou
 
 The canonical model strings already begin with `RICOH`, so each row carries a separate retail `searchModel` to avoid generating a duplicated query such as `RICOH RICOH IM C8010`. The Amazon handoff becomes `RICOH IM C8010 トナー` while exact manufacturer toner identifiers remain attached as evidence. No separate color links are emitted.
 
+## Office-printer toner rule — FUJIFILM Business Innovation Wave 1
+
+The first FUJIFILM Business Innovation toner wave reuses seven existing exact ApeosPort-VII color-MFP records. FUJIFILM's official shared user guide explicitly lists the toner cartridge product codes for the whole C7773/C6673/C5573/C4473/C3373/C3372/C2273 family, so the same verified four-code set is attached to each existing model record.
+
+| ManualFinder model | Official toner product codes |
+| --- | --- |
+| ApeosPort-VII C7773 | CT203138 / CT203139 / CT203140 / CT203141 |
+| ApeosPort-VII C6673 | CT203138 / CT203139 / CT203140 / CT203141 |
+| ApeosPort-VII C5573 | CT203138 / CT203139 / CT203140 / CT203141 |
+| ApeosPort-VII C4473 | CT203138 / CT203139 / CT203140 / CT203141 |
+| ApeosPort-VII C3373 | CT203138 / CT203139 / CT203140 / CT203141 |
+| ApeosPort-VII C3372 | CT203138 / CT203139 / CT203140 / CT203141 |
+| ApeosPort-VII C2273 | CT203138 / CT203139 / CT203140 / CT203141 |
+
+The Amazon query uses the shorter retail maker token `FUJIFILM`, for example `FUJIFILM ApeosPort-VII C7773 トナー`, while matching still uses the canonical ManualFinder maker `FUJIFILM Business Innovation`. The exact CT product codes remain evidence only; the card shows one toner-search CTA rather than four color-specific links.
+
 The UI does not say that every Amazon result is genuine or compatible. A note tells the user that consumable identifiers were checked against an official manufacturer source and that the exact Amazon item must still be confirmed before purchase.
 
 Unmapped printer models receive only the generic exact-model Amazon search. Consumable compatibility is never guessed from model naming.
@@ -147,7 +163,7 @@ Unmapped printer models receive only the generic exact-model Amazon search. Cons
 ## Current fixed override
 
 | Maker | Model | Type | Status | Destination | Verified |
-| --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | Nikon | Z8 | Amazon search override | verified | `https://amzn.to/3T7sxbB` | 2026-09-13 |
 
 The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It is not the normal rollout mechanism.
@@ -164,4 +180,4 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 
 ## Next expansion gate
 
-After RICOH Wave 1, evaluate FUJIFILM Business Innovation using the same model-to-toner evidence standard. Additional RICOH and KYOCERA waves remain eligible only where exact existing ManualFinder models and official consumable identifiers can be matched without inference. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.
+After FUJIFILM Business Innovation Wave 1, continue only with office-printer families whose exact ManualFinder model identities and official toner product codes can be matched without inference. FUJIFILM BI's other Apeos families are the first follow-up candidate; additional RICOH and KYOCERA waves remain eligible under the same evidence standard. Drum and maintenance-part links remain a later rule so result cards do not become link-heavy. Camera battery/charger and appliance replacement rules remain behind the printer-consumable rollout.

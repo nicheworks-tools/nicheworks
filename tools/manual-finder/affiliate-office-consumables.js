@@ -104,6 +104,41 @@
       maker: "RICOH", searchMaker: "RICOH", searchModel: "IM C3511", model: "RICOH IM C3511", verifiedAt: "2026-09-14",
       sourceUrl: "https://www.ricoh.co.jp/products/list/ricoh-im-c6011-c5511-c4511-c3511-c3011-c2511/maintenance",
       tonerCodes: Object.freeze(["RICOH トナー ブラック IM C3510", "RICOH トナー イエロー IM C3510", "RICOH トナー マゼンタ IM C3510", "RICOH トナー シアン IM C3510"])
+    }),
+    Object.freeze({
+      maker: "FUJIFILM Business Innovation", searchMaker: "FUJIFILM", model: "ApeosPort-VII C7773", verifiedAt: "2026-09-14",
+      sourceUrl: "https://opencds-fb.fujifilm.com/gen/product2_aux/prod/manual/jp/ap7_c7773/users_guide/contents/ja/UG_210100.html",
+      tonerCodes: Object.freeze(["CT203138", "CT203139", "CT203140", "CT203141"])
+    }),
+    Object.freeze({
+      maker: "FUJIFILM Business Innovation", searchMaker: "FUJIFILM", model: "ApeosPort-VII C6673", verifiedAt: "2026-09-14",
+      sourceUrl: "https://opencds-fb.fujifilm.com/gen/product2_aux/prod/manual/jp/ap7_c7773/users_guide/contents/ja/UG_210100.html",
+      tonerCodes: Object.freeze(["CT203138", "CT203139", "CT203140", "CT203141"])
+    }),
+    Object.freeze({
+      maker: "FUJIFILM Business Innovation", searchMaker: "FUJIFILM", model: "ApeosPort-VII C5573", verifiedAt: "2026-09-14",
+      sourceUrl: "https://opencds-fb.fujifilm.com/gen/product2_aux/prod/manual/jp/ap7_c7773/users_guide/contents/ja/UG_210100.html",
+      tonerCodes: Object.freeze(["CT203138", "CT203139", "CT203140", "CT203141"])
+    }),
+    Object.freeze({
+      maker: "FUJIFILM Business Innovation", searchMaker: "FUJIFILM", model: "ApeosPort-VII C4473", verifiedAt: "2026-09-14",
+      sourceUrl: "https://opencds-fb.fujifilm.com/gen/product2_aux/prod/manual/jp/ap7_c7773/users_guide/contents/ja/UG_210100.html",
+      tonerCodes: Object.freeze(["CT203138", "CT203139", "CT203140", "CT203141"])
+    }),
+    Object.freeze({
+      maker: "FUJIFILM Business Innovation", searchMaker: "FUJIFILM", model: "ApeosPort-VII C3373", verifiedAt: "2026-09-14",
+      sourceUrl: "https://opencds-fb.fujifilm.com/gen/product2_aux/prod/manual/jp/ap7_c7773/users_guide/contents/ja/UG_210100.html",
+      tonerCodes: Object.freeze(["CT203138", "CT203139", "CT203140", "CT203141"])
+    }),
+    Object.freeze({
+      maker: "FUJIFILM Business Innovation", searchMaker: "FUJIFILM", model: "ApeosPort-VII C3372", verifiedAt: "2026-09-14",
+      sourceUrl: "https://opencds-fb.fujifilm.com/gen/product2_aux/prod/manual/jp/ap7_c7773/users_guide/contents/ja/UG_210100.html",
+      tonerCodes: Object.freeze(["CT203138", "CT203139", "CT203140", "CT203141"])
+    }),
+    Object.freeze({
+      maker: "FUJIFILM Business Innovation", searchMaker: "FUJIFILM", model: "ApeosPort-VII C2273", verifiedAt: "2026-09-14",
+      sourceUrl: "https://opencds-fb.fujifilm.com/gen/product2_aux/prod/manual/jp/ap7_c7773/users_guide/contents/ja/UG_210100.html",
+      tonerCodes: Object.freeze(["CT203138", "CT203139", "CT203140", "CT203141"])
     })
   ]);
 
