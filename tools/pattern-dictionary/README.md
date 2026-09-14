@@ -5,6 +5,7 @@
 ## Current state
 
 - 20 canonical prototype records under `data/patterns.json`.
+- The canonical prototype set includes Kilim; Yagasuri is outside this 20-pattern slice.
 - JA/EN top pages with image-backed visual browsing.
 - Client-side ambiguous search, Visual Autocomplete, interpretation chips, confidence handling, and comparison.
 - 20 JA + 20 EN static detail URLs under `patterns/{id}/` and `en/patterns/{id}/`.
