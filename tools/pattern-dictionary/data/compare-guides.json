@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-15",
+  "policy": {
+    "purpose": "Explain the decisive visual difference for high-confusion comparisons without adding new dictionary entries.",
+    "external_concepts_are_not_patterns": true
+  },
+  "guides": [
+    {
+      "id": "houndstooth--glen-check",
+      "left": "houndstooth",
+      "right": "glen-check",
+      "summary": {
+        "ja": "千鳥格子は尖った四方向の単位が主役です。グレンチェックは細かな格子を組み合わせ、さらに大きな格子が重なる複合チェックです。",
+        "en": "Houndstooth is defined by jagged four-pointed units. Glen Check is a compound check built from fine checks plus larger overchecks."
+      },
+      "decisive_cue": {
+        "ja": "歯のような尖りが反復するなら千鳥格子。小格子と大格子の二重構造ならグレンチェック。",
+        "en": "Repeated tooth-like points suggest Houndstooth; a small-check plus large-check structure suggests Glen Check."
+      }
+    },
+    {
+      "id": "seigaiha--shippo",
+      "left": "seigaiha",
+      "right": "shippo",
+      "summary": {
+        "ja": "青海波は同心半円を波のように重ねます。七宝は同じ大きさの円弧を四分の一ずつ重ね、四つ葉状の連続形を作ります。",
+        "en": "Seigaiha stacks concentric semicircular wave fans. Shippo overlaps equal circular arcs to create interlocking four-lobed forms."
+      },
+      "decisive_cue": {
+        "ja": "扇状の半円が一方向に波打つなら青海波。円が四方へ連結して見えるなら七宝。",
+        "en": "One-directional fan-like semicircles indicate Seigaiha; four-way interlocking circles indicate Shippo."
+      }
+    },
+    {
+      "id": "seigaiha--asanoha",
+      "left": "seigaiha",
+      "right": "asanoha",
+      "summary": {
+        "ja": "青海波は曲線の同心半円、麻の葉は正六角形を基礎にした直線の星形構成です。",
+        "en": "Seigaiha is made from curved concentric semicircles; Asanoha is a straight-line star structure based on a hexagonal grid."
+      },
+      "decisive_cue": {
+        "ja": "曲線の波なら青海波。直線で六角形と星が組み上がるなら麻の葉。",
+        "en": "Curved wave fans indicate Seigaiha; straight hexagonal star geometry indicates Asanoha."
+      }
+    },
+    {
+      "id": "damask--arabesque",
+      "left": "damask",
+      "right": "arabesque",
+      "summary": {
+        "ja": "ダマスクは本来、織り組織の表裏差で文様を出す織物概念です。アラベスクは連続する蔓・葉などの植物スクロールを指す装飾語です。見た目が似ても定義軸が異なります。",
+        "en": "Damask is fundamentally a figured textile/weave concept created by contrasting binding systems. Arabesque is an ornamental term for continuous vegetal scrollwork. Similar-looking surfaces can therefore belong to different categories."
+      },
+      "decisive_cue": {
+        "ja": "左右対称の草花形だけでダマスクとは断定しない。連続する蔓葉のスクロールそのものを説明するならアラベスク。",
+        "en": "Do not identify Damask from a symmetrical floral silhouette alone; continuous branching vegetal scrollwork is the stronger cue for Arabesque."
+      }
+    },
+    {
+      "id": "paisley--karakusa",
+      "left": "paisley",
+      "right": "karakusa",
+      "summary": {
+        "ja": "ペイズリーは勾玉・涙滴のような独立したボテ形が反復します。唐草は蔓や葉が連続して伸びるスクロール文様です。",
+        "en": "Paisley repeats discrete curved boteh/teardrop units. Karakusa is a continuous scrolling vine-and-leaf pattern."
+      },
+      "decisive_cue": {
+        "ja": "独立したしずく・勾玉形ならペイズリー。一本の蔓がつながって伸びるなら唐草。",
+        "en": "Separate teardrop/boteh units suggest Paisley; a connected growing vine suggests Karakusa."
+      }
+    },
+    {
+      "id": "argyle--diamond-family",
+      "left": "argyle",
+      "right_external": {
+        "id": "diamond-family",
+        "names": {"ja": "一般的なダイヤ柄", "en": "Generic diamond pattern"},
+        "term_scope": {"ja": "菱形を反復する広い視覚カテゴリで、Pattern Dictionaryの独立項目ではありません。", "en": "A broad visual family of repeated diamonds, not a separate Pattern Dictionary entry."}
+      },
+      "summary": {
+        "ja": "アーガイルは色付きの菱形を規則的に並べ、細い斜線が重なる構成が典型です。単に菱形が並ぶだけの柄すべてをアーガイルとは呼びません。",
+        "en": "Argyle typically combines repeated colored diamonds with a superimposed diagonal lattice. A pattern is not Argyle merely because it contains diamonds."
+      },
+      "decisive_cue": {
+        "ja": "菱形＋重なる細い斜線の格子が典型的なアーガイル。菱形だけなら一般的なダイヤ柄として扱う。",
+        "en": "Diamonds plus an overlaid thin diagonal lattice are the classic Argyle cue; diamonds alone belong to the broader diamond-pattern family."
+      }
+    }
+  ]
+}
