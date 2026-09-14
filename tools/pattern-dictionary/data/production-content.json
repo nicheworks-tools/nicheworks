@@ -16,7 +16,7 @@
   "patterns": [
     {
       "pattern_id": "houndstooth",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "千鳥格子",
@@ -79,7 +79,7 @@
     },
     {
       "pattern_id": "gingham",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "ギンガムチェック",
@@ -321,7 +321,7 @@
     },
     {
       "pattern_id": "chevron",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "シェブロン",
@@ -511,7 +511,7 @@
     },
     {
       "pattern_id": "seigaiha",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "青海波",
@@ -571,7 +571,7 @@
     },
     {
       "pattern_id": "asanoha",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "麻の葉",
@@ -631,7 +631,7 @@
     },
     {
       "pattern_id": "shippo",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "七宝",
@@ -693,7 +693,7 @@
     },
     {
       "pattern_id": "ichimatsu",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "市松",
@@ -758,7 +758,7 @@
     },
     {
       "pattern_id": "kikko",
-      "review_state": "researched",
+      "review_state": "image_ready",
       "verification_state": "verified",
       "names": {
         "ja": "亀甲",

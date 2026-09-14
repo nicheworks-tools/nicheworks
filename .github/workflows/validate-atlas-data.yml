@@ -4,9 +4,6 @@ on:
   push:
   pull_request:
 
-permissions:
-  contents: write
-
 jobs:
   validate-data:
     runs-on: ubuntu-latest
@@ -19,86 +16,3 @@ jobs:
           node-version: '20'
       - name: Run data validation
         run: node tools/construction-tools-atlas/scripts/validate-data.mjs
-
-  pattern-dictionary-phase3-install:
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/feat/pattern-dictionary-production-20-20260914' }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Checkout production branch
-        uses: actions/checkout@v4
-        with:
-          ref: feat/pattern-dictionary-production-20-20260914
-      - name: Generate eight deterministic reference images
-        run: python3 tools/pattern-dictionary/scripts/generate-reference-images.py
-      - name: Wire image_ready records into runtime
-        run: |
-          python3 <<'PY'
-          from pathlib import Path
-          import json
-          root=Path('tools/pattern-dictionary')
-          ids={'houndstooth','gingham','chevron','seigaiha','asanoha','shippo','ichimatsu','kikko'}
-
-          prod=root/'data/production-content.json'
-          d=json.loads(prod.read_text())
-          hit=0
-          for r in d['patterns']:
-              if r['pattern_id'] in ids:
-                  r['review_state']='image_ready'
-                  hit += 1
-          assert hit == 8, hit
-          prod.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
-
-          app=root/'app.js'
-          s=app.read_text()
-          anchor='let patternsPromise,dictPromise;'
-          ref_line="const REFERENCE_IDS=new Set(['houndstooth','gingham','chevron','seigaiha','asanoha','shippo','ichimatsu','kikko']);"
-          if ref_line not in s:
-              assert s.count(anchor)==1
-              s=s.replace(anchor,anchor+'\n'+ref_line,1)
-
-          old="function patternSvg(p){\n  const id=p.id, fam=p.families?.[0]||''; let body='';"
-          new="function patternSvg(p){\n  if(REFERENCE_IDS.has(p.id))return ROOT+'assets/reference/'+p.id+'.png';\n  const id=p.id, fam=p.families?.[0]||''; let body='';"
-          if "if(REFERENCE_IDS.has(p.id))return ROOT+'assets/reference/'" not in s:
-              assert s.count(old)==1
-              s=s.replace(old,new,1)
-
-          s=s.replace(' — DEV placeholder','')
-          badge='<div class="pd-dev">DEV PLACEHOLDER</div>'
-          conditional='${REFERENCE_IDS.has(p.id)?\'\':\'<div class="pd-dev">DEV PLACEHOLDER</div>\'}'
-          if conditional not in s:
-              assert badge in s
-              s=s.replace(badge,conditional,1)
-
-          status_func="function imageStatus(p,lang){if(REFERENCE_IDS.has(p.id))return `<p class=\"pd-warning\">${lang==='ja'?'Reference Image候補は1536×1536 PNGで生成済みです。現在はimage_readyで、最終reviewed/verified前です。':'A 1536×1536 PNG Reference Image candidate is generated. Status: image_ready; final reviewed/verified is still pending.'}</p>`;return `<p class=\"pd-warning\">${lang==='ja'?'この画像はUI検証用DEVプレースホルダーです。辞典用Reference Imageとして未検証です。':'This image is a DEV placeholder for UI validation, not a verified dictionary Reference Image.'}</p>`;}\n"
-          if 'function imageStatus(p,lang)' not in s:
-              assert s.count('function bag(p,lang){')==1
-              s=s.replace('function bag(p,lang){',status_func+'function bag(p,lang){',1)
-
-          if '${imageStatus(p,lang)}' not in s:
-              needle='この画像はUI検証用DEVプレースホルダーです。辞典用Reference Imageとして未検証です。'
-              idx=s.index(needle)
-              start=s.rfind('<p class="pd-warning">',0,idx)
-              end=s.find('</p>',idx)
-              assert start>=0 and end>idx
-              s=s[:start]+'${imageStatus(p,lang)}'+s[end+4:]
-          app.write_text(s)
-          PY
-      - name: Validate Pattern Dictionary Phase 2 and 3 contracts
-        run: |
-          node tools/pattern-dictionary/tests/source-verification-test.mjs
-          node tools/pattern-dictionary/tests/production-content-test.mjs
-          node tools/pattern-dictionary/tests/validate.mjs
-          node tools/pattern-dictionary/tests/search-test.mjs
-          node tools/pattern-dictionary/tests/reference-image-test.mjs
-          node --check tools/pattern-dictionary/app.js
-      - name: Persist Phase 3 and restore CI workflow
-        run: |
-          git fetch origin main --depth=1
-          git checkout origin/main -- .github/workflows/validate-atlas-data.yml
-          rm -f tools/pattern-dictionary/tests/.phase3-bundle.b64
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A .github/workflows/validate-atlas-data.yml tools/pattern-dictionary
-          git commit -m 'feat: add first 8 Pattern Dictionary reference images [phase3]'
-          git push origin HEAD:feat/pattern-dictionary-production-20-20260914
