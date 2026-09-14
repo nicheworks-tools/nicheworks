@@ -25,5 +25,6 @@
   {"lgcode":"412015","pref_slug":"saga","city_slug":"saga","publish":true},
   {"lgcode":"312011","pref_slug":"tottori","city_slug":"tottori","publish":true},
   {"lgcode":"472018","pref_slug":"okinawa","city_slug":"naha","publish":true},
-  {"lgcode":"362018","pref_slug":"tokushima","city_slug":"tokushima","publish":true}
+  {"lgcode":"362018","pref_slug":"tokushima","city_slug":"tokushima","publish":true},
+  {"lgcode":"422011","pref_slug":"nagasaki","city_slug":"nagasaki","publish":true}
 ]
