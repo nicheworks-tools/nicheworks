@@ -21,5 +21,6 @@
   {"lgcode":"242012","pref_slug":"mie","city_slug":"tsu","publish":true},
   {"lgcode":"352039","pref_slug":"yamaguchi","city_slug":"yamaguchi","publish":true},
   {"lgcode":"252018","pref_slug":"shiga","city_slug":"otsu","publish":true},
-  {"lgcode":"322016","pref_slug":"shimane","city_slug":"matsue","publish":true}
+  {"lgcode":"322016","pref_slug":"shimane","city_slug":"matsue","publish":true},
+  {"lgcode":"412015","pref_slug":"saga","city_slug":"saga","publish":true}
 ]
