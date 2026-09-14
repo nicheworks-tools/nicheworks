@@ -1,0 +1,53 @@
+.semantic-interpretation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 10px 0 4px;
+}
+.semantic-interpretation[hidden] { display: none; }
+.semantic-interpretation__label {
+  font-size: 12px;
+  font-weight: 700;
+  opacity: .72;
+}
+.semantic-interpretation__chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.semantic-interpretation__chip {
+  appearance: none;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  padding: 5px 9px;
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.1;
+  cursor: pointer;
+}
+.semantic-interpretation__chip:hover,
+.semantic-interpretation__chip:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+.semantic-confidence-note {
+  font-size: 12px;
+  opacity: .74;
+}
+@media (max-width: 640px) {
+  .semantic-interpretation {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .semantic-interpretation__chips {
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 3px;
+  }
+  .semantic-interpretation__chip { white-space: nowrap; }
+}
