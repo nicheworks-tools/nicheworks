@@ -31,9 +31,6 @@
 /tools/*/pro/*
   X-Robots-Tag: noindex, follow
 
-/tools/earth-map-suite/*
-  X-Robots-Tag: noindex, follow
-
 /tools/earth-alerts/*
   X-Robots-Tag: noindex, follow
 
