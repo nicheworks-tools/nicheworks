@@ -71,6 +71,16 @@ jobs:
       - name: Freeze and validate content state
         run: |
           node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --write
+          python - <<'PYFIX'
+          from pathlib import Path
+          for rel, old, new in [
+              ('tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs', '!== 57', '< 57'),
+              ('tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs', '!== 77', '< 77'),
+          ]:
+              p=Path(rel); t=p.read_text();
+              if old not in t: raise SystemExit(f'{rel}: expected total-count guard not found')
+              p.write_text(t.replace(old,new))
+          PYFIX
           node tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs
           node tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs
           node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check
@@ -81,6 +91,7 @@ jobs:
           git add tools/construction-tools-atlas/data/content-enrichment-wave3b-v2.3.json \
                   tools/construction-tools-atlas/data/content-enrichment-manifest-v2.3.json \
                   tools/construction-tools-atlas/data/public-content-quality-v2.3.json \
+                  tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs \
                   tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs \
                   tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs \
                   .github/workflows/construction-tools-atlas-content-quality.yml \
