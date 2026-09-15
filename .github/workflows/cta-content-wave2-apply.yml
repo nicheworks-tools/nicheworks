@@ -1,0 +1,76 @@
+name: CTA content wave2 apply
+
+on:
+  push:
+    branches:
+      - feat/construction-atlas-content-wave2-q011-20260916
+    paths:
+      - 'tools/construction-tools-atlas/data/content-enrichment-manifest-v2.3.json'
+      - 'tools/construction-tools-atlas/data/content-enrichment-wave2-v2.3.json'
+      - 'tools/construction-tools-atlas/scripts/apply-content-enrichment-manifest-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs'
+      - '.github/workflows/cta-content-wave2-apply.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/construction-atlas-content-wave2-q011-20260916
+      - name: Apply enrichment manifest migration
+        run: node tools/construction-tools-atlas/scripts/apply-content-enrichment-manifest-v2.3.cjs
+      - name: Check syntax
+        run: |
+          node --check tools/construction-tools-atlas/data/quality-loader.js
+          node --check tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs
+          node --check tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs
+      - name: Freeze content quality snapshot
+        run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --write
+      - name: Validate q011 content completion
+        run: node tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs
+      - name: Validate expected wave2 totals
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'tools/construction-tools-atlas/data/public-content-quality-v2.3.json';
+          const doc = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const s = doc.summary || {};
+          const expected = {
+            public_entries: 913,
+            fallback_independent_core: 172,
+            runtime_fallback_dependent: 741,
+            missing_core_bilingual_content: 0,
+            explicit_bilingual_detail: 393,
+            explicit_bilingual_bullets: 172,
+            explicit_bilingual_examples: 393,
+            content_enriched_entries: 32
+          };
+          for (const [key, value] of Object.entries(expected)) {
+            if (s[key] !== value) throw new Error(`${key}: ${s[key]} != ${value}`);
+          }
+          const f = doc.fallback_field_counts || {};
+          if (f.detail !== 520 || f.bullets !== 741 || f.examples !== 520) {
+            throw new Error(`Unexpected fallback field totals: ${JSON.stringify(f)}`);
+          }
+          console.log('CTA content wave2 expected totals: PASS');
+          NODE
+      - name: Recheck frozen content snapshot
+        run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check
+      - name: Commit generated runtime and snapshot changes
+        run: |
+          if git diff --quiet; then
+            echo 'No generated changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            tools/construction-tools-atlas/data/quality-loader.js \
+            tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs \
+            tools/construction-tools-atlas/data/public-content-quality-v2.3.json
+          git commit -m 'content(construction-atlas): activate q011 content wave 2'
+          git push origin HEAD:feat/construction-atlas-content-wave2-q011-20260916
