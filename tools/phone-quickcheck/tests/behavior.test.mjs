@@ -533,3 +533,16 @@ console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estim
   assert.match(html, /Qi \/ 9W/);
   assert.doesNotMatch(html, /非防水・非防塵/);
 }
+
+// Original Galaxy Z Flip renders its Samsung-source-backed 9W Qi maximum.
+{
+  const phone = byId.get('samsung-galaxy-z-flip');
+  assert.ok(phone, 'Galaxy Z Flip fixture missing');
+  assert.equal(phone.waterStatus, 'not_resistant');
+  assert.equal(phone.charging?.wirelessMaxW, 9);
+  assert.match(phone.sources?.wirelessUrl || '', /^https:\/\/news\.samsung\.com\//);
+  const h = await createHarness(['samsung-galaxy-z-flip']);
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /Qi \/ 9W/);
+  assert.match(html, /非防水・非防塵/);
+}
