@@ -95,7 +95,15 @@
     ["KM-C4035E", "2026-09-15", tonerCompatibilitySource, ["TK-825C", "TK-825K", "TK-825M", "TK-825Y"]]
   ]);
 
-  const rows = Object.freeze([...wave4Rows, ...wave5Rows, ...wave8Rows, ...wave9Rows, ...wave10Rows]);
+  const wave11Rows = rowsOf([
+    ["KM-1530", "2026-09-15", tonerCompatibilitySource, ["1T02AV0NL0"]],
+    ["KM-2030", "2026-09-15", tonerCompatibilitySource, ["1T02AV0NL0"]],
+    ["KM-3035", "2026-09-15", tonerCompatibilitySource, ["370AB000"]],
+    ["KM-4035", "2026-09-15", tonerCompatibilitySource, ["370AB000"]],
+    ["KM-5035", "2026-09-15", tonerCompatibilitySource, ["370AB000"]]
+  ]);
+
+  const rows = Object.freeze([...wave4Rows, ...wave5Rows, ...wave8Rows, ...wave9Rows, ...wave10Rows, ...wave11Rows]);
 
   function buildTaggedSearchUrl(query) {
     const url = new URL("https://www.amazon.co.jp/s");
@@ -143,6 +151,7 @@
   window.MANUALFINDER_KYOCERA_TONER_WAVE8_LEDGER = wave8Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE9_LEDGER = wave9Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE10_LEDGER = wave10Rows;
+  window.MANUALFINDER_KYOCERA_TONER_WAVE11_LEDGER = wave11Rows;
   window.MANUALFINDER_AFFILIATE_CONFIG = Object.freeze({
     ...base,
     printerConsumables: Object.freeze([...(base.printerConsumables || []), ...rows]),
