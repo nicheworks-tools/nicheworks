@@ -1,0 +1,155 @@
+from pathlib import Path
+import json
+from urllib.parse import urlencode
+
+root = Path('tools/pattern-dictionary')
+tag = 'nicheworks09-22'
+
+mapping = {
+    'houndstooth': [('broad','千鳥格子','千鳥格子の商品を探す','Shop houndstooth products'),('apparel','千鳥格子 レディース','千鳥格子のレディース服を探す','Shop houndstooth womenswear'),('apparel','千鳥格子 メンズ','千鳥格子のメンズ服を探す','Shop houndstooth menswear'),('material','千鳥格子 生地','千鳥格子の生地を探す','Shop houndstooth fabric')],
+    'gingham': [('broad','ギンガムチェック','ギンガムチェックの商品を探す','Shop gingham products'),('apparel','ギンガムチェック レディース','ギンガムチェックのレディース服を探す','Shop gingham womenswear'),('apparel','ギンガムチェック シャツ','ギンガムチェックのシャツを探す','Shop gingham shirts'),('material','ギンガムチェック 生地','ギンガムチェックの生地を探す','Shop gingham fabric')],
+    'tartan': [('broad','タータンチェック','タータンチェックの商品を探す','Shop tartan products'),('apparel','タータンチェック スカート','タータンチェックのスカートを探す','Shop tartan skirts'),('accessory','タータンチェック マフラー','タータンチェックのマフラーを探す','Shop tartan scarves'),('material','タータンチェック 生地','タータンチェックの生地を探す','Shop tartan fabric')],
+    'glen-check': [('broad','グレンチェック','グレンチェックの商品を探す','Shop glen-check products'),('apparel','グレンチェック ジャケット','グレンチェックのジャケットを探す','Shop glen-check jackets'),('apparel','グレンチェック パンツ','グレンチェックのパンツを探す','Shop glen-check trousers')],
+    'argyle': [('broad','アーガイル柄','アーガイル柄の商品を探す','Shop argyle products'),('apparel','アーガイル ニット','アーガイルのニットを探す','Shop argyle knitwear'),('accessory','アーガイル 靴下','アーガイルの靴下を探す','Shop argyle socks')],
+    'chevron': [('broad','シェブロン柄','シェブロン柄の商品を探す','Shop chevron products'),('home','シェブロン ラグ','シェブロン柄のラグを探す','Shop chevron rugs'),('home','シェブロン クッション','シェブロン柄のクッションを探す','Shop chevron cushions')],
+    'polka-dot': [('broad','水玉柄','水玉柄の商品を探す','Shop polka-dot products'),('apparel','水玉 ワンピース','水玉柄のワンピースを探す','Shop polka-dot dresses'),('material','水玉柄 生地','水玉柄の生地を探す','Shop polka-dot fabric')],
+    'moroccan-trellis': [('broad','モロッカン柄','モロッカン柄の商品を探す','Shop Moroccan-pattern products'),('home','モロッカン ラグ','モロッカン柄のラグを探す','Shop Moroccan-pattern rugs'),('home','モロッカン クッション','モロッカン柄のクッションを探す','Shop Moroccan-pattern cushions')],
+    'seigaiha': [('broad','青海波 柄','青海波柄の商品を探す','Shop seigaiha products'),('accessory','青海波 手ぬぐい','青海波柄の手ぬぐいを探す','Shop seigaiha tenugui'),('material','青海波 生地','青海波柄の生地を探す','Shop seigaiha fabric')],
+    'asanoha': [('broad','麻の葉 柄','麻の葉柄の商品を探す','Shop asanoha products'),('accessory','麻の葉 手ぬぐい','麻の葉柄の手ぬぐいを探す','Shop asanoha tenugui'),('material','麻の葉 生地','麻の葉柄の生地を探す','Shop asanoha fabric')],
+    'shippo': [('broad','七宝 柄','七宝柄の商品を探す','Shop shippo-pattern products'),('accessory','七宝柄 手ぬぐい','七宝柄の手ぬぐいを探す','Shop shippo-pattern tenugui'),('material','七宝柄 生地','七宝柄の生地を探す','Shop shippo-pattern fabric')],
+    'ichimatsu': [('broad','市松模様','市松模様の商品を探す','Shop ichimatsu products'),('accessory','市松模様 手ぬぐい','市松模様の手ぬぐいを探す','Shop ichimatsu tenugui'),('material','市松模様 生地','市松模様の生地を探す','Shop ichimatsu fabric')],
+    'kikko': [('broad','亀甲 柄','亀甲柄の商品を探す','Shop kikko-pattern products'),('accessory','亀甲柄 手ぬぐい','亀甲柄の手ぬぐいを探す','Shop kikko-pattern tenugui'),('material','亀甲柄 生地','亀甲柄の生地を探す','Shop kikko-pattern fabric')],
+    'karakusa': [('broad','唐草模様','唐草模様の商品を探す','Shop karakusa products'),('accessory','唐草 風呂敷','唐草模様の風呂敷を探す','Shop karakusa furoshiki'),('material','唐草 生地','唐草模様の生地を探す','Shop karakusa fabric')],
+    'damask': [('broad','ダマスク柄','ダマスク柄の商品を探す','Shop damask products'),('home','ダマスク カーテン','ダマスク柄のカーテンを探す','Shop damask curtains'),('home','ダマスク 壁紙','ダマスク柄の壁紙を探す','Shop damask wallpaper')],
+    'arabesque': [('broad','アラベスク柄','アラベスク柄の商品を探す','Shop arabesque products'),('home','アラベスク ラグ','アラベスク柄のラグを探す','Shop arabesque rugs'),('home','アラベスク クッション','アラベスク柄のクッションを探す','Shop arabesque cushions')],
+    'paisley': [('broad','ペイズリー柄','ペイズリー柄の商品を探す','Shop paisley products'),('apparel','ペイズリー シャツ','ペイズリー柄のシャツを探す','Shop paisley shirts'),('accessory','ペイズリー バンダナ','ペイズリー柄のバンダナを探す','Shop paisley bandanas'),('material','ペイズリー 生地','ペイズリー柄の生地を探す','Shop paisley fabric')],
+    'leopard-print': [('broad','ヒョウ柄','ヒョウ柄の商品を探す','Shop leopard-print products'),('accessory','ヒョウ柄 バッグ','ヒョウ柄のバッグを探す','Shop leopard-print bags'),('apparel','ヒョウ柄 レディース','ヒョウ柄のレディース服を探す','Shop leopard-print womenswear'),('material','ヒョウ柄 生地','ヒョウ柄の生地を探す','Shop leopard-print fabric')],
+    'ikat': [('broad','イカット柄','イカット柄の商品を探す','Shop ikat products'),('home','イカット クッション','イカット柄のクッションを探す','Shop ikat cushions'),('material','イカット 生地','イカットの生地を探す','Shop ikat fabric')],
+    'kilim': [('broad','キリム柄','キリムの商品を探す','Shop kilim products'),('home','キリム ラグ','キリムのラグを探す','Shop kilim rugs'),('home','キリム クッション','キリムのクッションを探す','Shop kilim cushions')],
+}
+
+offers = []
+for pattern_id, rows in mapping.items():
+    for priority, (intent, query, label_ja, label_en) in enumerate(rows, 1):
+        offer_id = f'amazon_{pattern_id.replace("-", "_")}_{intent}_{priority}'
+        offers.append({
+            'pattern_id': pattern_id,
+            'status': 'active',
+            'offer_id': offer_id,
+            'intent': intent,
+            'priority': priority,
+            'query': query,
+            'amazon_url': 'https://www.amazon.co.jp/s?' + urlencode({'k': query, 'tag': tag}),
+            'label_ja': label_ja,
+            'label_en': label_en,
+        })
+
+cfg = {
+    'schema': 'pattern-dictionary-affiliate-v3',
+    'version': '2026-09-15-2',
+    'provider': 'amazon.co.jp',
+    'enabled': True,
+    'tracking_id': tag,
+    'shared_helper': '/assets/amazon-affiliate.js',
+    'link_strategy': 'maintained-pattern-commerce-intents',
+    'policy': {
+        'query_source': 'maintained_canonical_mapping_only',
+        'free_text_forwarding': False,
+        'product_claims': False,
+        'price_inventory_rating_content': False,
+        'links_per_pattern': {'min': 2, 'target': 3, 'max': 4},
+    },
+    'offers': offers,
+}
+(root / 'data/affiliate-config.json').write_text(json.dumps(cfg, ensure_ascii=False, indent=2) + '\n')
+
+app_path = root / 'app.js'
+app = app_path.read_text()
+start = app.index('async function initDetail(lang){')
+end = app.index('\nasync function initCompare(lang){', start)
+detail = r'''async function initDetail(lang){
+  const [ps,cfg]=await Promise.all([patterns(),affiliateConfig()]),map=Object.fromEntries(ps.map(p=>[p.id,p])),id=document.body.dataset.patternId||new URLSearchParams(location.search).get('id'),p=map[id]||ps[0],rel=[...(p.relationships?.often_confused_with||[]),...(p.relationships?.similar||[])].filter((x,i,a)=>a.indexOf(x)===i).map(x=>map[x]).filter(Boolean),features=p.distinguishing_features?.[lang]||[],uses=p.common_uses?.[lang]||[],offers=activeAffiliateOffers(cfg).filter(x=>x.pattern_id===p.id).sort((a,b)=>(a.priority||99)-(b.priority||99)),commerce=offers.length?`<div class="pd-commerce"><h2>${lang==='ja'?'Amazonでこの柄の商品を探す':'Shop this pattern on Amazon'}</h2><p class="pd-note">${lang==='ja'?'用途別に固定した検索先です。入力した検索語はAmazonへ送信しません。':'These are maintained category searches. Your Pattern Dictionary search text is never sent to Amazon.'}</p><div id="pd-amazon-links" class="pd-amazon-links">${offers.map(o=>`<div data-amazon-offer="${esc(o.offer_id)}" hidden></div>`).join('')}</div><div id="pd-amazon-disclosure" class="pd-affiliate-disclosure" hidden></div></div>`:'';
+  document.title=`${p.names[lang]} | Pattern Dictionary | NicheWorks`;
+  $('#detail').innerHTML=`<section class="pd-detail-head"><div><img class="pd-detail-image" src="${patternSvg(p)}" alt="">${imageStatus(p,lang)}</div><div><p class="pd-kicker">${p.verification_state==='qualified'?'RESEARCHED · QUALIFIED':'RESEARCHED'}</p><h1 class="pd-title">${esc(p.names[lang])}</h1><p class="pd-enname">${esc(p.names[lang==='ja'?'en':'ja'])}</p><div class="pd-tags">${[...p.families,...p.motifs.slice(0,3)].map(x=>`<span class="pd-tag">${esc(x)}</span>`).join('')}</div><p class="pd-copy">${esc(p.definition?.[lang]||p.description?.[lang]||'')}</p><table class="pd-table"><tr><th>${lang==='ja'?'別名':'Aliases'}</th><td>${esc((p.aliases?.[lang]||[]).join(', ')||'—')}</td></tr><tr><th>${lang==='ja'?'用語の範囲':'Term scope'}</th><td>${esc(p.term_scope||'—')}</td></tr><tr><th>${lang==='ja'?'代表色':'Primary colors'}</th><td>${esc(p.colors.primary.join(' + '))}</td></tr><tr><th>${lang==='ja'?'色の扱い':'Color role'}</th><td>${esc(p.colors.color_role)}</td></tr><tr><th>${lang==='ja'?'主な用途':'Common uses'}</th><td>${esc(uses.join(', ')||'—')}</td></tr></table>${rel[0]?`<a class="pd-button secondary" href="${compareUrl(p.id,rel[0].id,lang)}">${lang==='ja'?'似た柄と比較':'Compare with a similar pattern'}</a>`:''}</div></section><section class="pd-section"><div class="pd-section-head"><h2>${lang==='ja'?'見分け方':'How to identify it'}</h2></div><ul class="pd-copy">${features.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>${p.qualification?.[lang]?`<div class="pd-warning"><strong>${lang==='ja'?'用語上の注意':'Scope note'}</strong><br>${esc(p.qualification[lang])}</div>`:''}</section><section class="pd-section"><div class="pd-section-head"><h2>${lang==='ja'?'似ている・間違えやすい模様':'Similar or commonly confused patterns'}</h2></div><div class="pd-related">${rel.map(x=>card(x,lang)).join('')}</div></section><section class="pd-section">${commerce}</section>`;
+  const langLink=$('#lang-link');if(langLink)langLink.href=ROOT+(lang==='ja'?'en/':'')+'patterns/'+encodeURIComponent(p.id)+'/';
+  if(offers.length&&cfg.enabled===true){
+    try{
+      const helper=await ensureAmazonHelper(),targets=Object.fromEntries(activeAffiliateOffers(cfg).map(x=>[x.offer_id,x.amazon_url]));
+      helper.configure({enabled:true,tool:'pattern-dictionary',targets});
+      for(const offer of offers){
+        helper.mount({container:$(`[data-amazon-offer="${offer.offer_id}"]`),target:offer.offer_id,label:lang==='ja'?offer.label_ja:offer.label_en,placement:'pattern-detail',className:'pd-button secondary pd-amazon-offer-link'});
+      }
+      helper.renderDisclosure($('#pd-amazon-disclosure'),{includeEnglish:lang==='en'});
+    }catch(err){console.warn('Pattern Dictionary Amazon helper unavailable',err)}
+  }
+}'''
+app_path.write_text(app[:start] + detail + app[end:])
+
+css_path = root / 'style.css'
+css = css_path.read_text()
+if '.pd-amazon-links{' not in css:
+    css += '\n.pd-amazon-links{display:grid;gap:9px;max-width:680px;margin:14px 0}.pd-amazon-links>div{min-width:0}.pd-amazon-offer-link{display:block;width:100%;text-align:left}.pd-affiliate-disclosure{margin-top:12px;color:var(--pd-muted);font-size:12px;line-height:1.6}.pd-affiliate-disclosure p{margin:4px 0}\n'
+css_path.write_text(css)
+
+test_source = r'''import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+
+const here=path.dirname(fileURLToPath(import.meta.url));
+const root=path.resolve(here,'..');
+const cfg=JSON.parse(fs.readFileSync(path.join(root,'data','affiliate-config.json'),'utf8'));
+const patterns=JSON.parse(fs.readFileSync(path.join(root,'data','patterns.json'),'utf8'));
+const app=fs.readFileSync(path.join(root,'app.js'),'utf8');
+const helper=fs.readFileSync(path.resolve(root,'../../assets/amazon-affiliate.js'),'utf8');
+const ids=patterns.map(x=>x.id).sort();
+const offers=cfg.offers||[];
+const patternOfferIds=[...new Set(offers.map(x=>x.pattern_id))].sort();
+const allowedIntents=new Set(['broad','apparel','material','accessory','home']);
+
+if(cfg.schema!=='pattern-dictionary-affiliate-v3')throw new Error('affiliate schema must be v3');
+if(cfg.provider!=='amazon.co.jp')throw new Error('provider must be amazon.co.jp');
+if(cfg.enabled!==true)throw new Error('canonical 20 Amazon affiliate surface must be active');
+if(cfg.tracking_id!=='nicheworks09-22')throw new Error('Pattern Dictionary must reuse the maintained NicheWorks tracking ID');
+if(cfg.shared_helper!=='/assets/amazon-affiliate.js')throw new Error('Pattern Dictionary must reuse the shared Amazon helper');
+if(cfg.policy?.query_source!=='maintained_canonical_mapping_only'||cfg.policy?.free_text_forwarding!==false)throw new Error('Amazon destinations must be canonical mappings and never user free text');
+if(JSON.stringify(ids)!==JSON.stringify(patternOfferIds))throw new Error('affiliate offers must cover exactly canonical 20 patterns');
+if(offers.length!==65)throw new Error(`expected 65 maintained intent links, got ${offers.length}`);
+if(new Set(offers.map(x=>x.offer_id)).size!==offers.length)throw new Error('offer IDs must be unique');
+if(new Set(offers.map(x=>x.amazon_url)).size!==offers.length)throw new Error('Amazon destinations must be unique');
+
+for(const id of ids){
+  const group=offers.filter(x=>x.pattern_id===id).sort((a,b)=>a.priority-b.priority);
+  if(group.length<2||group.length>4)throw new Error(`${id}: expected 2-4 commerce links, got ${group.length}`);
+  if(group.filter(x=>x.intent==='broad').length!==1)throw new Error(`${id}: exactly one broad link required`);
+  if(group[0].intent!=='broad'||group[0].priority!==1)throw new Error(`${id}: broad link must be priority 1`);
+  if(new Set(group.map(x=>x.priority)).size!==group.length)throw new Error(`${id}: priorities must be unique`);
+}
+for(const offer of offers){
+  if(offer.status!=='active')throw new Error(`${offer.offer_id}: offer must be active`);
+  if(!allowedIntents.has(offer.intent))throw new Error(`${offer.offer_id}: invalid commerce intent ${offer.intent}`);
+  if(!Number.isInteger(offer.priority)||offer.priority<1||offer.priority>4)throw new Error(`${offer.offer_id}: invalid priority`);
+  if(!offer.query||!offer.label_ja||!offer.label_en)throw new Error(`${offer.offer_id}: query and bilingual labels required`);
+  const u=new URL(offer.amazon_url);
+  if(u.protocol!=='https:'||u.hostname!=='www.amazon.co.jp'||u.pathname!=='/s')throw new Error(`${offer.offer_id}: invalid Amazon.co.jp search URL`);
+  if(u.searchParams.get('tag')!=='nicheworks09-22')throw new Error(`${offer.offer_id}: wrong tracking tag`);
+  if(u.searchParams.get('k')!==offer.query)throw new Error(`${offer.offer_id}: URL query must exactly match maintained query`);
+}
+if(!app.includes('/assets/amazon-affiliate.js'))throw new Error('runtime must load shared Amazon helper');
+if(!app.includes("tool:'pattern-dictionary'"))throw new Error('runtime must configure shared helper for Pattern Dictionary');
+if(!app.includes("placement:'pattern-detail'"))throw new Error('runtime must use coarse fixed placement analytics');
+if(!app.includes('pd-amazon-links'))throw new Error('runtime must render the multi-intent Amazon link group');
+if(!app.includes('offer.offer_id'))throw new Error('runtime must mount links by maintained offer ID');
+if(app.includes('amazonSearchUrl('))throw new Error('runtime must not construct private affiliate URLs');
+if(!helper.includes('affiliate_click'))throw new Error('shared helper must retain coarse affiliate click analytics');
+if(!helper.includes('sponsored noopener'))throw new Error('shared helper must retain sponsored link semantics');
+console.log('OK: Pattern Dictionary exposes 65 maintained Amazon intent links across 20 patterns, with 2-4 fixed links per pattern and no free-text forwarding.');
+'''
+(root / 'tests/affiliate-test.mjs').write_text(test_source)
+
+readme = root / 'README.md'
+text = readme.read_text()
+if '65 maintained Amazon' not in text:
+    text += '\n## Amazon commerce-intent mapping\n\nThe canonical 20 use **65 maintained Amazon.co.jp search destinations** rather than one generic link per pattern. Every pattern has one broad pattern search plus two or three pattern-appropriate shopping intents (apparel, accessory, material, or home). Each detail page exposes **2-4 links** with a target of three. All destinations are fixed in `data/affiliate-config.json`, share the maintained `nicheworks09-22` tracking tag, and never forward Pattern Dictionary free-text search input to Amazon.\n'
+readme.write_text(text)
+
+print(f'Generated {len(offers)} maintained Amazon intent offers across {len(mapping)} patterns.')
