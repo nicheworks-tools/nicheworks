@@ -1,0 +1,58 @@
+name: TrashNavi Wave27 readiness temp
+on:
+  push:
+    branches:
+      - feat/trashnavi-batch-wave27-readiness-20260916
+permissions:
+  contents: write
+jobs:
+  wire-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Wire Wave27 and verify readiness
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('tools/trashnavi/app.js')
+          s=p.read_text()
+          old='"data/direct-waste-links-supply-wave26.json"]'
+          new='"data/direct-waste-links-supply-wave26.json","data/direct-waste-links-supply-wave27.json"]'
+          assert s.count(old)==1
+          p.write_text(s.replace(old,new,1))
+          PY
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict | tee /tmp/coverage.txt
+          grep -F '3+ distinct waste types (preferred candidates): 54' /tmp/coverage.txt
+          node scripts/check-trashnavi-direct-links.mjs --inventory | tee /tmp/inventory.txt
+          grep -F '30 datasets, 206 records, 187 unique URLs, 0 invalid URLs' /tmp/inventory.txt
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-affiliate-contract.mjs
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          wave=json.loads(Path('tools/trashnavi/data/direct-waste-links-supply-wave27.json').read_text())
+          assert len(wave)==10
+          targets={'022012','062014','102016','111007','172014'}
+          assert {x['lgcode'] for x in wave}==targets
+          assert len({x['url'] for x in wave})==10
+          for code in targets:
+              rows=[x for x in wave if x['lgcode']==code]
+              assert {x['link_type'] for x in rows}=={'collection_calendar','bulky_waste'}
+          assert sum(1 for x in wave if x.get('fiscal_year')=='2026')==3
+          app=Path('tools/trashnavi/app.js').read_text()
+          assert app.count('data/direct-waste-links-supply-wave27.json')==1
+          print('Wave27 readiness contract: OK')
+          PY
+          git diff --check
+          git add tools/trashnavi/app.js tools/trashnavi/data/direct-waste-links-supply-wave27.json
+          git commit -m "Prepare TrashNavi Wave27 municipality batch"
+          git rm .github/workflows/trashnavi-wave27-readiness-temp.yml
+          git commit -m "Remove TrashNavi Wave27 readiness workflow"
+          git push origin HEAD:feat/trashnavi-batch-wave27-readiness-20260916
