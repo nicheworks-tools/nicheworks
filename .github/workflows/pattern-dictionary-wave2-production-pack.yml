@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Validate Wave 2 staged production pack
+      - name: Validate Wave 2 staged production pack after search-cue fix
         run: |
           node tools/pattern-dictionary/tests/canonical-100-test.mjs
           node tools/pattern-dictionary/tests/wave2-source-verification-test.mjs
