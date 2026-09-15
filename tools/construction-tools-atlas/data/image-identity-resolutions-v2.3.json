@@ -128,14 +128,16 @@
       "state": "resolved_existing",
       "entry_id": "safety_harness",
       "rationale": "The safety_harness canonical explicitly names 墜落制止用器具(フルハーネス) and includes Full-Body Harness as an English alias, establishing exact subject identity."
-    }
-  ],
-  "holds": [
+    },
     {
       "manifest": "image-pilots-004.json",
       "index": 4,
-      "state": "semantic_scope_review",
-      "reason": "Legacy Japanese says separator while English says form tie; q011_form_tie and q011_separator are distinct formwork components, so image identity cannot be narrowed safely."
+      "legacy_ja": "セパレーター",
+      "legacy_en": "Form tie",
+      "state": "resolved_existing",
+      "entry_id": "q011_separator",
+      "rationale": "The legacy subject itself says 型枠の間隔を保つための金物 and its illustration shows the spacing member spanning between the two form faces. That function matches q011_separator (型枠幅を一定に保つ間隔保持材), while q011_form_tie is separately defined as the formwork tie/clamping member that resists concrete pressure. Manufacturer terminology likewise separates form ties as 型枠緊結金具 from separators used to maintain form spacing, so the legacy English label is treated as the ambiguous field rather than the subject identity."
     }
-  ]
+  ],
+  "holds": []
 }
