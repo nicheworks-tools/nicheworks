@@ -16,29 +16,29 @@
   },
   "sources": {
     "publication_inventory_version": "2026-09-16-q011-identity-closure-1",
-    "publication_id_sha256": "9e385023a6533565a4a0542e4b858b63644316c0837d9d6cf49fb08e6aa215ac",
+    "publication_id_sha256": "50b1c798836563b0b5259d01bf15f11c999b8073be90aa03c076b6159078dfbd",
     "quality_manifest_version": "2026-09-14-manifest-8",
     "content_enrichment_version": "2026-09-16-wave3c"
   },
   "summary": {
-    "public_entries": 913,
+    "public_entries": 896,
     "fallback_independent_core": 237,
-    "runtime_fallback_dependent": 676,
+    "runtime_fallback_dependent": 659,
     "missing_core_bilingual_content": 0,
-    "explicit_bilingual_identity": 913,
-    "explicit_bilingual_definition": 913,
-    "explicit_bilingual_detail": 458,
+    "explicit_bilingual_identity": 896,
+    "explicit_bilingual_definition": 896,
+    "explicit_bilingual_detail": 456,
     "explicit_bilingual_bullets": 237,
-    "explicit_bilingual_examples": 458,
-    "explicit_bilingual_aliases": 280,
+    "explicit_bilingual_examples": 456,
+    "explicit_bilingual_aliases": 279,
     "content_enriched_entries": 97,
-    "has_category_context": 913,
-    "has_task_context": 913
+    "has_category_context": 896,
+    "has_task_context": 896
   },
   "fallback_field_counts": {
-    "detail": 455,
-    "bullets": 676,
-    "examples": 455
+    "detail": 440,
+    "bullets": 659,
+    "examples": 440
   },
   "by_type": {
     "access": {
@@ -78,9 +78,9 @@
       "missing_core_bilingual_content": 0
     },
     "equipment": {
-      "public_entries": 45,
-      "fallback_independent_core": 11,
-      "runtime_fallback_dependent": 34,
+      "public_entries": 43,
+      "fallback_independent_core": 13,
+      "runtime_fallback_dependent": 30,
       "missing_core_bilingual_content": 0
     },
     "fastener": {
@@ -114,9 +114,9 @@
       "missing_core_bilingual_content": 0
     },
     "materials": {
-      "public_entries": 16,
+      "public_entries": 15,
       "fallback_independent_core": 0,
-      "runtime_fallback_dependent": 16,
+      "runtime_fallback_dependent": 15,
       "missing_core_bilingual_content": 0
     },
     "process": {
@@ -132,9 +132,9 @@
       "missing_core_bilingual_content": 0
     },
     "safety": {
-      "public_entries": 17,
+      "public_entries": 16,
       "fallback_independent_core": 12,
-      "runtime_fallback_dependent": 5,
+      "runtime_fallback_dependent": 4,
       "missing_core_bilingual_content": 0
     },
     "sample": {
@@ -174,16 +174,16 @@
       "missing_core_bilingual_content": 0
     },
     "tool": {
-      "public_entries": 364,
-      "fallback_independent_core": 70,
-      "runtime_fallback_dependent": 294,
+      "public_entries": 351,
+      "fallback_independent_core": 68,
+      "runtime_fallback_dependent": 283,
       "missing_core_bilingual_content": 0
     }
   },
   "hashes": {
-    "content_status_sha256": "515ba5493bad8fe29804c56faf5f2a316b1278b3535fa9aec175790bbfc8bad4",
+    "content_status_sha256": "fd90451b8fd7ec17d13d6c668adad5fe94242782c743693f1e5d5d1f9c9342e3",
     "fallback_independent_id_sha256": "cab23ca97d696107733b106754980cf9bb5719832819f092967a60e0e48fc717",
-    "fallback_dependent_id_sha256": "2c5958b61dad9c455d50f1f9abbcc1317480940d85a2f357c3fd6fcd7ef909c6",
+    "fallback_dependent_id_sha256": "4cec6bc628afc82af4867db1b9a1501f910afd9b7f827a6d9d6491653b49e489",
     "missing_core_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
     "content_enriched_id_sha256": "b5be314310a0acb5878099da4d7d2148fc6e65c8d396c8004cfd611aba737233"
   },
@@ -342,57 +342,7 @@
     ],
     "runtime_fallback_dependent": [
       {
-        "id": "q012_hex_key",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
         "id": "q012_spanner",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_feeler_gauge",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_dial_gauge",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_vernier_caliper",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_builder_square",
         "source": "data/tools.quality-012.json",
         "enrichment": null,
         "fallback_fields": [
@@ -412,107 +362,7 @@
         ]
       },
       {
-        "id": "q012_diamond_blade",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
         "id": "q012_cold_chisel",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_all_thread_rod",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_concrete_cover_meter",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_rebar_locator",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_crack_scale",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_dust_collector",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_shop_vacuum",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_air_compressor",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_temporary_distribution_box",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_guardrail",
         "source": "data/tools.quality-012.json",
         "enrichment": null,
         "fallback_fields": [
@@ -583,6 +433,156 @@
       },
       {
         "id": "q013_base_plate_scaffold",
+        "source": "data/tools.quality-013.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q013_scaffold_ladder",
+        "source": "data/tools.quality-013.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q013_ladder_frame",
+        "source": "data/tools.quality-013.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q013_cross_brace",
+        "source": "data/tools.quality-013.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q013_wall_tie",
+        "source": "data/tools.quality-013.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q013_lifting_sling",
+        "source": "data/tools.quality-013.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q013_wire_rope_sling",
+        "source": "data/tools.quality-013.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q013_chain_sling",
+        "source": "data/tools.quality-013.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q013_turnbuckle",
+        "source": "data/tools.quality-013.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q013_lever_hoist",
+        "source": "data/tools.quality-013.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q013_beam_clamp",
+        "source": "data/tools.quality-013.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q013_trolley_hoist",
+        "source": "data/tools.quality-013.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q013_tag_line",
+        "source": "data/tools.quality-013.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q013_dolly",
+        "source": "data/tools.quality-013.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q013_material_cart",
+        "source": "data/tools.quality-013.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q013_mortar_pan",
         "source": "data/tools.quality-013.json",
         "enrichment": null,
         "fallback_fields": [

@@ -178,6 +178,10 @@
     return Array.isArray(raw?.entries) ? raw.entries : [];
   }
 
+  function identityNameOverrides(raw) {
+    return Array.isArray(raw?.name_overrides) ? raw.name_overrides : [];
+  }
+
   function identityTypeOverrides(raw) {
     return Array.isArray(raw?.type_overrides) ? raw.type_overrides : [];
   }
@@ -193,6 +197,40 @@
 
   function applyIdentityResolutions(merged, raw, stats) {
     const byId = new Map(merged.map((entry) => [safeText(entry?.id), entry]));
+    for (const row of identityNameOverrides(raw)) {
+      const id = safeText(row?.id);
+      const fromJa = safeText(row?.from?.ja);
+      const fromEn = safeText(row?.from?.en);
+      const toJa = safeText(row?.to?.ja);
+      const toEn = safeText(row?.to?.en);
+      if (!id || (!toJa && !toEn)) continue;
+      const target = byId.get(id);
+      if (!target) {
+        stats.identityResolutionMissingTargets += 1;
+        if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason: "missing_name_override_target" });
+        continue;
+      }
+      if (!target.term || typeof target.term !== "object") target.term = { ja: "", en: "" };
+      const currentJa = safeText(target.term.ja);
+      const currentEn = safeText(target.term.en);
+      if ((fromJa && currentJa !== fromJa && currentJa !== toJa) || (fromEn && currentEn !== fromEn && currentEn !== toEn)) {
+        stats.identityResolutionSourceMismatches += 1;
+        if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason: "unexpected_source_name", currentJa, currentEn, fromJa, fromEn, toJa, toEn });
+      }
+      if (toJa) target.term.ja = toJa;
+      if (toEn) target.term.en = toEn;
+      target.fuzzy = uniqueText([
+        ...removeIdentityVocabulary(target.fuzzy, [fromJa, fromEn]),
+        target.term.ja,
+        target.term.en
+      ]);
+      target.meta = {
+        ...(target.meta || {}),
+        canonical_name_override_from: { ja: fromJa, en: fromEn },
+        canonical_name_override_to: { ja: toJa, en: toEn }
+      };
+      stats.identityNameOverridesApplied += 1;
+    }
     for (const row of identityTypeOverrides(raw)) {
       const id = safeText(row?.id);
       const from = safeText(row?.from);
@@ -382,6 +420,7 @@
       canonicalRedirectMissingSources: 0,
       canonicalRedirectMissingTargets: 0,
       canonicalRedirectProblemSample: [],
+      identityNameOverridesApplied: 0,
       identityTypeOverridesApplied: 0,
       identityAliasRemovalsApplied: 0,
       identityResolutionMissingTargets: 0,
@@ -475,7 +514,7 @@
     stats.merged = merged.length;
     stats.removedCount = stats.raw - stats.merged;
     window.CTA_DATA_DIAGNOSTICS = stats;
-    if (stats.removedCount > 0 || stats.canonicalRedirectsApplied > 0 || stats.identityTypeOverridesApplied > 0 || stats.identityAliasRemovalsApplied > 0 || stats.favoriteIdsMigrated > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0 || stats.contentEnrichmentDuplicateTargets > 0) {
+    if (stats.removedCount > 0 || stats.canonicalRedirectsApplied > 0 || stats.identityNameOverridesApplied > 0 || stats.identityTypeOverridesApplied > 0 || stats.identityAliasRemovalsApplied > 0 || stats.favoriteIdsMigrated > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0 || stats.contentEnrichmentDuplicateTargets > 0) {
       console.info("Construction Tools Atlas data dedupe/quarantine/redirect/enrichment", stats);
     }
     return merged;
