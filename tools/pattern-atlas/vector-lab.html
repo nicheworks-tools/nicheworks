@@ -8,7 +8,8 @@
   <meta name="robots" content="noindex,nofollow">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="stylesheet" href="./css/pattern-atlas.css">
-  <link rel="stylesheet" href="./css/vector-lab.css">
+  <link rel="stylesheet" href="./css/vector-lab.css?v=20260916-2">
+  <link rel="stylesheet" href="./css/vector-lab-progress.css?v=20260916-1">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
   <script>
@@ -106,7 +107,14 @@
           <button class="pa-button pa-button-primary" type="button" data-pa-lab-run-both>2エンジンをA/B比較</button>
           <button class="pa-button pa-button-soft" type="button" data-pa-lab-run-baseline>v1全体画像と比較（重い）</button>
         </div>
-        <p class="pa-muted">VTracerは初回クリック時だけWASMを読み込みます。通常のタイル比較では元PNG全体をトレースしません。</p>
+        <div class="pa-lab-progress-wrap" data-pa-lab-progress-wrap data-state="busy" aria-live="polite" hidden>
+          <progress class="pa-lab-progress" data-pa-lab-progress max="100" value="0">0%</progress>
+          <div class="pa-lab-progress-copy">
+            <strong class="pa-lab-progress-label" data-pa-lab-progress-label>待機中</strong>
+            <span class="pa-lab-progress-detail" data-pa-lab-progress-detail></span>
+          </div>
+        </div>
+        <p class="pa-muted">A/B比較は進行状況を上のバーに表示します。処理開始・ImageTracer・VTracerの読込/変換・完了/失敗が分かるようにしました。</p>
       </section>
 
       <section class="pa-section" aria-labelledby="results-title">
@@ -137,6 +145,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/gh/jankovicsandras/imagetracerjs@cb0c84a309df5e75614d3b5166cdc77a56f12a98/imagetracer_v1.2.6.js"></script>
-  <script type="module" src="./js/vector-lab.js"></script>
+  <script type="module" src="./js/vector-lab.js?v=20260916-2"></script>
+  <script type="module" src="./js/vector-lab-runtime-progress.js?v=20260916-1"></script>
 </body>
 </html>
