@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-16",
+  "wave": 2,
+  "ordinal_range": [21, 40],
+  "status": "structural-review-complete",
+  "publication_state": "staged-not-public",
+  "policy": {
+    "dimensions": [1536, 1536],
+    "format": "PNG",
+    "purpose": "recognition-reference",
+    "requirements": ["square", "flat-front-on", "no-text", "no-frame", "no-shadow", "no-product-mockup", "multiple-repeats-visible"],
+    "verification_rule": "reviewed images have passed deterministic generation, exact PNG dimension validation, and a visual structural-recognition review. Publication verification remains gated on runtime integration, static routes, SEO, commerce, and desktop/mobile QA.",
+    "qualified_term_rule": "Broad, historical, textile, weave, or convention-dependent terms use representative recognition references and do not imply one universally canonical repeat.",
+    "review_ledger": "data/wave2-reference-image-review.json",
+    "generator": "scripts/generate-reference-images-wave2.py"
+  },
+  "images": [
+    {"ordinal":21,"pattern_id":"buffalo-check","path":"assets/reference/buffalo-check.png","review_state":"reviewed","method":"deterministic broad intersecting red/black band construction with darker overlaps","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":22,"pattern_id":"shepherd-check","path":"assets/reference/shepherd-check.png","review_state":"reviewed","method":"deterministic fine alternating black/white check construction with a woven-scale cue","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":23,"pattern_id":"windowpane-check","path":"assets/reference/windowpane-check.png","review_state":"reviewed","method":"deterministic sparse single-line orthogonal grid on a light field","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":24,"pattern_id":"madras-check","path":"assets/reference/madras-check.png","review_state":"reviewed","method":"deterministic irregular multicolor crossing bands with blended intersections","representation_scope":"representative-madras-check-reference-not-a-universal-sett","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":25,"pattern_id":"tattersall","path":"assets/reference/tattersall.png","review_state":"reviewed","method":"deterministic two-color fine line grid on a light ground","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":26,"pattern_id":"gun-club-check","path":"assets/reference/gun-club-check.png","review_state":"reviewed","method":"deterministic multitone small-check field with layered dark and brown grid lines","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":27,"pattern_id":"prince-of-wales-check","path":"assets/reference/prince-of-wales-check.png","review_state":"reviewed","method":"deterministic Glen-family fine-check field with a larger burgundy overcheck","representation_scope":"representative-overcheck-reference-with-glen-check-overlap","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":28,"pattern_id":"pinstripe","path":"assets/reference/pinstripe.png","review_state":"reviewed","method":"deterministic very fine widely spaced vertical light lines on navy","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":29,"pattern_id":"chalk-stripe","path":"assets/reference/chalk-stripe.png","review_state":"reviewed","method":"deterministic broader soft-edged pale vertical strokes on charcoal","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":30,"pattern_id":"bengal-stripe","path":"assets/reference/bengal-stripe.png","review_state":"reviewed","method":"deterministic equal-width alternating blue and white vertical bands","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":31,"pattern_id":"koushi","path":"assets/reference/koushi.png","review_state":"reviewed","method":"deterministic regular indigo orthogonal lattice on white","representation_scope":"representative-japanese-lattice-family-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":32,"pattern_id":"awning-stripe","path":"assets/reference/awning-stripe.png","review_state":"reviewed","method":"deterministic very broad alternating green and white vertical bands","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":33,"pattern_id":"regimental-stripe","path":"assets/reference/regimental-stripe.png","review_state":"reviewed","method":"deterministic repeating diagonal navy/red/gold/light band sequence","representation_scope":"representative-regimental-stripe-family-not-a-specific-regiment","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":34,"pattern_id":"breton-stripe","path":"assets/reference/breton-stripe.png","review_state":"reviewed","method":"deterministic regular navy horizontal bands on white","representation_scope":"representative-modern-breton-mariniere-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":35,"pattern_id":"swiss-dot","path":"assets/reference/swiss-dot.png","review_state":"reviewed","method":"deterministic small regularly spaced raised-dot simulation using highlight/shadow rings","representation_scope":"representative-textile-effect-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":36,"pattern_id":"herringbone","path":"assets/reference/herringbone.png","review_state":"reviewed","method":"deterministic broken alternating diagonal bars arranged around repeated central spines","representation_scope":"representative-weave-and-broken-v-visual-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":37,"pattern_id":"zigzag","path":"assets/reference/zigzag.png","review_state":"reviewed","method":"deterministic continuous angular back-and-forth black line on white","representation_scope":"structural-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":38,"pattern_id":"diamond","path":"assets/reference/diamond.png","review_state":"reviewed","method":"deterministic continuous outlined rhombus lattice with clean periodic tiling","representation_scope":"generic-diamond-family-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":39,"pattern_id":"harlequin","path":"assets/reference/harlequin.png","review_state":"reviewed","method":"deterministic filled multicolor diamond tessellation","representation_scope":"representative-harlequin-diamond-reference","has_text":false,"is_mockup":false,"multiple_repeats":true},
+    {"ordinal":40,"pattern_id":"checkerboard","path":"assets/reference/checkerboard.png","review_state":"reviewed","method":"deterministic alternating equal black and white squares","representation_scope":"structural-reference-with-contextual-overlap-to-ichimatsu","has_text":false,"is_mockup":false,"multiple_repeats":true}
+  ]
+}
