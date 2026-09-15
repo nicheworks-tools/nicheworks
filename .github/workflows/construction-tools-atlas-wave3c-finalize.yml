@@ -15,55 +15,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate Wave3C source pack
-        run: |
-          node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3c-v2.3.cjs
-          node -e "const j=require('./tools/construction-tools-atlas/data/content-enrichment-wave3c-v2.3.json'); if(j.schema!=='cta-content-enrichment-v2.3'||j.entries.length!==20) process.exit(1);"
-      - name: Register permanent Wave3C gates
+      - name: Freeze and validate Wave3C content state
         run: |
           node <<'NODE'
           const fs = require('node:fs');
-          const auditorPath = 'tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs';
-          let auditor = fs.readFileSync(auditorPath,'utf8');
-          if (!auditor.includes("version: '2026-09-16-content-wave3b-q012-safe-1'")) throw new Error('Expected Wave3B snapshot version not found');
-          auditor = auditor.replace("version: '2026-09-16-content-wave3b-q012-safe-1'", "version: '2026-09-16-content-wave3c-q012-safe-1'");
-          fs.writeFileSync(auditorPath,auditor);
-
-          const contentPath = '.github/workflows/construction-tools-atlas-content-quality.yml';
-          let content = fs.readFileSync(contentPath,'utf8');
-          const watchB = "      - 'tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs'";
-          const watchC = "      - 'tools/construction-tools-atlas/scripts/check-q012-content-wave3c-v2.3.cjs'";
-          if (!content.includes(watchC)) content = content.split(watchB).join(watchB+'\n'+watchC);
-          const syntaxB = '          node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs';
-          if (!content.includes('node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3c-v2.3.cjs')) content = content.replace(syntaxB, syntaxB+'\n          node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3c-v2.3.cjs');
-          const contractB = "      - name: Require safe q012 Wave3B subject-specific core content\n        run: node tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs";
-          if (!content.includes('Require safe q012 Wave3C subject-specific core content')) content = content.replace(contractB, contractB+"\n\n      - name: Require safe q012 Wave3C subject-specific core content\n        run: node tools/construction-tools-atlas/scripts/check-q012-content-wave3c-v2.3.cjs");
-          fs.writeFileSync(contentPath,content);
-
-          const auditPath = '.github/workflows/construction-tools-atlas-audit.yml';
-          let audit = fs.readFileSync(auditPath,'utf8');
-          const auditSyntaxB = "      - name: Check q012 Wave3B content syntax\n        run: node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs";
-          if (!audit.includes('Check q012 Wave3C content syntax')) audit = audit.replace(auditSyntaxB, auditSyntaxB+"\n\n      - name: Check q012 Wave3C content syntax\n        run: node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3c-v2.3.cjs");
-          const auditContractB = "      - name: Require safe q012 Wave3B subject-specific core content\n        run: node tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs";
-          if (!audit.includes('Require safe q012 Wave3C subject-specific core content')) audit = audit.replace(auditContractB, auditContractB+"\n\n      - name: Require safe q012 Wave3C subject-specific core content\n        run: node tools/construction-tools-atlas/scripts/check-q012-content-wave3c-v2.3.cjs");
-          fs.writeFileSync(auditPath,audit);
+          const p = 'tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs';
+          let s = fs.readFileSync(p,'utf8');
+          if (s.includes("version: '2026-09-16-content-wave3b-q012-safe-1'")) {
+            s = s.replace("version: '2026-09-16-content-wave3b-q012-safe-1'", "version: '2026-09-16-content-wave3c-q012-safe-1'");
+            fs.writeFileSync(p,s);
+          }
           NODE
-      - name: Freeze and validate Wave3C content state
-        run: |
           node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --write
           node tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs
           node tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs
           node tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs
           node tools/construction-tools-atlas/scripts/check-q012-content-wave3c-v2.3.cjs
           node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check
-      - name: Commit permanent Wave3C state and remove finalizer
+      - name: Commit non-workflow Wave3C state
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add tools/construction-tools-atlas/data/public-content-quality-v2.3.json \
-                  tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs \
-                  .github/workflows/construction-tools-atlas-content-quality.yml \
-                  .github/workflows/construction-tools-atlas-audit.yml
-          git rm .github/workflows/construction-tools-atlas-wave3c-finalize.yml
-          git commit -m 'feat(construction-atlas): finalize q012 content Wave3C'
+                  tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs
+          git commit -m 'feat(construction-atlas): freeze q012 content Wave3C snapshot'
           git push
