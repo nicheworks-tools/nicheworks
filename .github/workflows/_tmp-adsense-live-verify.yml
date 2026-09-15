@@ -20,6 +20,7 @@ jobs:
           set -euo pipefail
           base='https://nicheworks.app'
           work="$(mktemp -d)"
+          export work
           trap 'rm -rf "$work"' EXIT
 
           fetch() {
@@ -43,37 +44,59 @@ jobs:
           fetch robots "$base/robots.txt"
           fetch sitemap "$base/sitemap.xml"
 
-          # Completed public surface: indexable and no unfinished ad/template markers.
-          ! grep -Eqi '^x-robots-tag:.*noindex' "$work/earth_map.headers"
-          grep -Eqi '<meta[^>]+name=["'"']robots["'"'][^>]+content=["'"'][^"'"']*index[^"'"']*follow' "$work/earth_map.body"
-          ! grep -Eqi '広告枠（準備中）|>\s*広告枠\s*<|>\s*Ad slot\s*<|YOUR_TOKEN_HERE' "$work/earth_map.body"
-          ! grep -Eqi '広告枠（準備中）|>\s*広告枠\s*<|>\s*Ad slot\s*<|YOUR_TOKEN_HERE' "$work/root.body"
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const work = process.env.work;
+          const read = (name, kind='body') => fs.readFileSync(path.join(work, `${name}.${kind}`), 'utf8');
+          const fail = (message) => { throw new Error(message); };
+          const assert = (condition, message) => { if (!condition) fail(message); };
+          const robotsContent = (html) => {
+            const tag = html.match(/<meta\b[^>]*name=["']robots["'][^>]*>/i)?.[0] || '';
+            return tag.match(/content=["']([^"']+)["']/i)?.[1]?.toLowerCase().replace(/\s+/g, '') || '';
+          };
+          const hasAdsense = (html) => /pagead2\.googlesyndication\.com|adsbygoogle/i.test(html);
+          const hasAdPlaceholder = (html) => /広告枠（準備中）|>\s*広告枠\s*<|>\s*Ad slot\s*<|YOUR_TOKEN_HERE/i.test(html);
+          const hasHeaderNoindex = (headers) => /^x-robots-tag:.*\bnoindex\b/im.test(headers);
 
-          # Staged Earth pages: noindex + no AdSense.
-          grep -Eqi '^x-robots-tag:.*noindex' "$work/earth_alerts.headers"
-          grep -Eqi 'content=["'"']noindex,nofollow["'"']' "$work/earth_alerts.body"
-          ! grep -Eqi 'pagead2\.googlesyndication\.com|adsbygoogle' "$work/earth_alerts.body"
-          grep -Eqi '^x-robots-tag:.*noindex' "$work/earth_timeseries.headers"
-          grep -Eqi 'content=["'"']noindex,nofollow["'"']' "$work/earth_timeseries.body"
-          ! grep -Eqi 'pagead2\.googlesyndication\.com|adsbygoogle' "$work/earth_timeseries.body"
+          const root = read('root');
+          const earthMap = read('earth_map');
+          const earthMapHeaders = read('earth_map', 'headers');
+          assert(!hasHeaderNoindex(earthMapHeaders), 'Earth Map Suite must not be HTTP-noindexed');
+          assert(robotsContent(earthMap).includes('index') && robotsContent(earthMap).includes('follow') && !robotsContent(earthMap).includes('noindex'), 'Earth Map Suite must be HTML index,follow');
+          assert(!hasAdPlaceholder(earthMap), 'Earth Map Suite still exposes ad/template placeholder UI');
+          assert(!hasAdPlaceholder(root), 'Homepage still exposes ad/template placeholder UI');
 
-          # Pro support route: HTML noindex and no AdSense, irrespective of clean-URL redirect behavior.
-          grep -Eqi 'content=["'"']noindex,follow["'"']' "$work/pro.body"
-          ! grep -Eqi 'pagead2\.googlesyndication\.com|adsbygoogle' "$work/pro.body"
+          for (const name of ['earth_alerts', 'earth_timeseries']) {
+            const body = read(name);
+            const headers = read(name, 'headers');
+            assert(hasHeaderNoindex(headers), `${name} must remain HTTP-noindex`);
+            assert(robotsContent(body) === 'noindex,nofollow', `${name} must remain HTML noindex,nofollow`);
+            assert(!hasAdsense(body), `${name} must not load AdSense`);
+          }
 
-          # Development templates: noindex,nofollow and no AdSense.
-          grep -Eqi 'content=["'"']noindex,nofollow["'"']' "$work/dev_template.body"
-          ! grep -Eqi 'pagead2\.googlesyndication\.com|adsbygoogle' "$work/dev_template.body"
-          grep -Eqi 'content=["'"']noindex,nofollow["'"']' "$work/minimal_template.body"
-          ! grep -Eqi 'pagead2\.googlesyndication\.com|adsbygoogle' "$work/minimal_template.body"
+          const pro = read('pro');
+          assert(robotsContent(pro) === 'noindex,follow', 'Pro support page must be HTML noindex,follow');
+          assert(!hasAdsense(pro), 'Pro support page must not load AdSense');
 
-          # Publisher, robots and sitemap contracts.
-          grep -Fq 'google.com, pub-9879006623791275, DIRECT, f08c47fec0942fa0' "$work/ads.body"
-          grep -Fq 'Sitemap: https://nicheworks.app/sitemap.xml' "$work/robots.body"
-          ! grep -Fq 'https://nicheworks.app/tools/earth-alerts/' "$work/sitemap.body"
-          ! grep -Fq 'https://nicheworks.app/tools/earth-timeseries/' "$work/sitemap.body"
-          ! grep -Fq 'https://nicheworks.app/billing/success.html' "$work/sitemap.body"
-          ! grep -Fq 'https://nicheworks.app/billing/cancel.html' "$work/sitemap.body"
-          ! grep -Eq '<loc>https://nicheworks\.app/tools/[^<]*/pro(?:\.html|/)' "$work/sitemap.body"
+          for (const name of ['dev_template', 'minimal_template']) {
+            const body = read(name);
+            assert(robotsContent(body) === 'noindex,nofollow', `${name} must be HTML noindex,nofollow`);
+            assert(!hasAdsense(body), `${name} must not load AdSense`);
+          }
 
-          echo 'LIVE_ADSENSE_REVIEW_SURFACE_OK'
+          const ads = read('ads');
+          const robots = read('robots');
+          const sitemap = read('sitemap');
+          assert(ads.includes('google.com, pub-9879006623791275, DIRECT, f08c47fec0942fa0'), 'ads.txt publisher line missing');
+          assert(robots.includes('Sitemap: https://nicheworks.app/sitemap.xml'), 'robots.txt sitemap declaration missing');
+          for (const forbidden of [
+            'https://nicheworks.app/tools/earth-alerts/',
+            'https://nicheworks.app/tools/earth-timeseries/',
+            'https://nicheworks.app/billing/success.html',
+            'https://nicheworks.app/billing/cancel.html'
+          ]) assert(!sitemap.includes(forbidden), `sitemap still contains ${forbidden}`);
+          assert(!/<loc>https:\/\/nicheworks\.app\/tools\/[^<]*\/pro(?:\.html|\/)/i.test(sitemap), 'sitemap still contains an HTTP-noindex Pro URL');
+
+          console.log('LIVE_ADSENSE_REVIEW_SURFACE_OK');
+          NODE
