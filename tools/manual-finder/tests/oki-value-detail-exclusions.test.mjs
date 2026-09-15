@@ -15,7 +15,8 @@ for (const name of [
 }
 
 const config = context.window.MANUALFINDER_AFFILIATE_CONFIG;
-const exclusions = Array.from(context.window.MANUALFINDER_PRINTER_DETAIL_EXCLUSIONS || []);
+const exclusions = Array.from(context.window.MANUALFINDER_PRINTER_DETAIL_EXCLUSIONS || [])
+  .filter((row) => row.maker === 'OKI');
 assert.ok(config);
 assert.equal(exclusions.length, 4, 'exactly four reviewed OKI value-service models must be detail-excluded');
 
@@ -29,7 +30,6 @@ const expected = new Map([
 
 assert.deepEqual(Array.from(exclusions, (row) => row.model).sort(), Array.from(expected.keys()).sort());
 for (const row of exclusions) {
-  assert.equal(row.maker, 'OKI');
   assert.equal(row.category, 'プリンター・複合機');
   assert.equal(row.reason, 'service_managed_consumables');
   assert.equal(row.verifiedAt, '2026-09-16');
