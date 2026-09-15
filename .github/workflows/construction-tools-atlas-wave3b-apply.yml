@@ -1,0 +1,92 @@
+name: Construction Tools Atlas Wave3B apply
+
+on:
+  push:
+    branches:
+      - feat/construction-atlas-content-wave3b-q012-20260916
+    paths:
+      - '.github/workflows/construction-tools-atlas-wave3b-apply.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore Wave3B payload
+        run: |
+          cat .github/wave3b-tmp/pack.*.part | base64 -d | gzip -d > tools/construction-tools-atlas/data/content-enrichment-wave3b-v2.3.json
+          cat .github/wave3b-tmp/checker.*.part | base64 -d | gzip -d > tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs
+          node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs
+          node -e "const j=require('./tools/construction-tools-atlas/data/content-enrichment-wave3b-v2.3.json'); if(j.entries.length!==20) process.exit(1);"
+      - name: Register Wave3B and permanent CI
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const root = 'tools/construction-tools-atlas';
+          const manifestPath = path.join(root,'data/content-enrichment-manifest-v2.3.json');
+          const manifest = JSON.parse(fs.readFileSync(manifestPath,'utf8'));
+          const packPath = './data/content-enrichment-wave3b-v2.3.json';
+          if (!(manifest.packs || []).some(p => (typeof p === 'string' ? p : p.path) === packPath)) {
+            manifest.packs.push({path:packPath,wave:'content-wave-003b'});
+          }
+          manifest.version = '2026-09-16-wave3b';
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest,null,2)+'\n');
+
+          const auditorPath = path.join(root,'scripts/audit-public-content-quality-v2.3.cjs');
+          let auditor = fs.readFileSync(auditorPath,'utf8');
+          auditor = auditor.replace('2026-09-16-content-wave3a-q012-safe-1','2026-09-16-content-wave3b-q012-safe-1');
+          fs.writeFileSync(auditorPath,auditor);
+
+          const contentCiPath = '.github/workflows/construction-tools-atlas-content-quality.yml';
+          let contentCi = fs.readFileSync(contentCiPath,'utf8');
+          const watch = "      - 'tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs'";
+          const watchB = "      - 'tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs'";
+          contentCi = contentCi.split(watch).join(watch+'\n'+watchB);
+          const syntax = '          node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs';
+          if (!contentCi.includes('node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs')) {
+            contentCi = contentCi.replace(syntax, syntax+'\n          node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs');
+          }
+          const contract = "      - name: Require safe q012 Wave3A subject-specific core content\n        run: node tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs";
+          if (!contentCi.includes('Require safe q012 Wave3B subject-specific core content')) {
+            contentCi = contentCi.replace(contract, contract+"\n\n      - name: Require safe q012 Wave3B subject-specific core content\n        run: node tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs");
+          }
+          fs.writeFileSync(contentCiPath,contentCi);
+
+          const auditCiPath = '.github/workflows/construction-tools-atlas-audit.yml';
+          let auditCi = fs.readFileSync(auditCiPath,'utf8');
+          const auditSyntax = "      - name: Check q012 Wave3A content syntax\n        run: node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs";
+          if (!auditCi.includes('Check q012 Wave3B content syntax')) {
+            auditCi = auditCi.replace(auditSyntax, auditSyntax+"\n\n      - name: Check q012 Wave3B content syntax\n        run: node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs");
+          }
+          const auditContract = "      - name: Require safe q012 Wave3A subject-specific core content\n        run: node tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs";
+          if (!auditCi.includes('Require safe q012 Wave3B subject-specific core content')) {
+            auditCi = auditCi.replace(auditContract, auditContract+"\n\n      - name: Require safe q012 Wave3B subject-specific core content\n        run: node tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs");
+          }
+          fs.writeFileSync(auditCiPath,auditCi);
+          NODE
+      - name: Freeze and validate content state
+        run: |
+          node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --write
+          node tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check
+      - name: Commit permanent Wave3B files and clean temporary transport
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/construction-tools-atlas/data/content-enrichment-wave3b-v2.3.json \
+                  tools/construction-tools-atlas/data/content-enrichment-manifest-v2.3.json \
+                  tools/construction-tools-atlas/data/public-content-quality-v2.3.json \
+                  tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs \
+                  tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs \
+                  .github/workflows/construction-tools-atlas-content-quality.yml \
+                  .github/workflows/construction-tools-atlas-audit.yml
+          git rm -r .github/wave3b-tmp
+          git rm .github/workflows/construction-tools-atlas-wave3b-discovery.yml
+          git rm .github/workflows/construction-tools-atlas-wave3b-apply.yml
+          git commit -m 'feat(construction-atlas): add q012 content Wave3B'
+          git push
