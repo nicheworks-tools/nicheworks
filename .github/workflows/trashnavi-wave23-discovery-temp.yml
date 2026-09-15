@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Apply Wave23 batch readiness
+      - name: Apply and verify Wave23 batch readiness
         shell: bash
         run: |
           set -euo pipefail
@@ -21,21 +21,11 @@ jobs:
           const directPath='tools/trashnavi/data/direct-waste-links.json';
           let direct=fs.readFileSync(directPath,'utf8');
           const replacements=[
-            [
-              '{"pref":"長野県","city":"長野市","name":"長野市 ごみの出し方、分け方","type":"ごみ分別ページ","url":"https://www.city.nagano.nagano.jp/menu/2/4/1/2/index.html","lgcode":"202011"}',
-              '{"pref":"長野県","city":"長野市","name":"長野市 家庭ごみの出し方、分け方","type":"ごみ分別ページ","url":"https://www.city.nagano.nagano.jp/n121500/contents/p000504.html","lgcode":"202011"}'
-            ],
-            [
-              '{"pref":"岐阜県","city":"岐阜市","name":"岐阜市 ごみ・リサイクル","type":"ごみ分別ページ","url":"https://www.city.gifu.lg.jp/tetsuzuki/gomi/index.html","lgcode":"212016"}',
-              '{"pref":"岐阜県","city":"岐阜市","name":"岐阜市 2026年度版ごみ出しのルール","type":"ごみ分別ページ","url":"https://www.city.gifu.lg.jp/kurashi/gomi/1012143/1038453/index.html","lgcode":"212016"}'
-            ]
+            ['{"pref":"長野県","city":"長野市","name":"長野市 ごみの出し方、分け方","type":"ごみ分別ページ","url":"https://www.city.nagano.nagano.jp/menu/2/4/1/2/index.html","lgcode":"202011"}','{"pref":"長野県","city":"長野市","name":"長野市 家庭ごみの出し方、分け方","type":"ごみ分別ページ","url":"https://www.city.nagano.nagano.jp/n121500/contents/p000504.html","lgcode":"202011"}'],
+            ['{"pref":"岐阜県","city":"岐阜市","name":"岐阜市 ごみ・リサイクル","type":"ごみ分別ページ","url":"https://www.city.gifu.lg.jp/tetsuzuki/gomi/index.html","lgcode":"212016"}','{"pref":"岐阜県","city":"岐阜市","name":"岐阜市 2026年度版ごみ出しのルール","type":"ごみ分別ページ","url":"https://www.city.gifu.lg.jp/kurashi/gomi/1012143/1038453/index.html","lgcode":"212016"}']
           ];
-          for(const [oldv,newv] of replacements){
-            if(!direct.includes(oldv)) throw new Error('expected direct-link record not found: '+oldv);
-            direct=direct.replace(oldv,newv);
-          }
+          for(const [oldv,newv] of replacements){if(!direct.includes(oldv))throw new Error('expected direct record missing');direct=direct.replace(oldv,newv)}
           fs.writeFileSync(directPath,direct);
-
           const records=[
             {pref:'福井県',city:'福井市',name:'福井市 ごみの収集日',type:'収集カレンダー',link_type:'collection_calendar',url:'https://www.city.fukui.lg.jp/gomi/',lgcode:'182010',last_checked:'2026-09-15',status:'active',language:'ja'},
             {pref:'福井県',city:'福井市',name:'福井市 粗大ごみの戸別収集',type:'粗大ごみ',link_type:'bulky_waste',url:'https://www.city.fukui.lg.jp/kurasi/kankyo/kgomi/sodai_kobetu.html',lgcode:'182010',last_checked:'2026-09-15',status:'active',language:'ja'},
@@ -49,48 +39,45 @@ jobs:
             {pref:'長野県',city:'長野市',name:'長野市 資源再生センターへのごみの搬入方法及び処理手数料',type:'持込施設',link_type:'dropoff_facility',url:'https://www.city.nagano.nagano.jp/n121515/contents/p000605.html',lgcode:'202011',last_checked:'2026-09-15',status:'active',language:'ja'}
           ];
           fs.writeFileSync('tools/trashnavi/data/direct-waste-links-supply-wave23.json',JSON.stringify(records,null,2)+'\n');
-
-          const appPath='tools/trashnavi/app.js';
-          let app=fs.readFileSync(appPath,'utf8');
+          const appPath='tools/trashnavi/app.js'; let app=fs.readFileSync(appPath,'utf8');
           const needle='"data/direct-waste-links-supply-wave22.json"]';
-          if((app.match(new RegExp(needle.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'))||[]).length!==1) throw new Error('app.js wave22 tail contract changed');
-          app=app.replace(needle,'"data/direct-waste-links-supply-wave22.json","data/direct-waste-links-supply-wave23.json"]');
-          fs.writeFileSync(appPath,app);
+          if(!app.includes(needle))throw new Error('app wave22 tail changed');
+          fs.writeFileSync(appPath,app.replace(needle,'"data/direct-waste-links-supply-wave22.json","data/direct-waste-links-supply-wave23.json"]'));
           NODE
 
           node <<'NODE'
           const fs=require('fs'),path=require('path');
-          const targets={
-            '092011':['waste_sorting','collection_calendar','bulky_waste'],
-            '162019':['waste_sorting','collection_calendar','dropoff_facility'],
-            '182010':['waste_sorting','collection_calendar','bulky_waste'],
-            '202011':['waste_sorting','collection_calendar','dropoff_facility'],
-            '212016':['waste_sorting','collection_calendar','bulky_waste']
-          };
-          const typeMap={'ごみ分別ページ':'waste_sorting','収集カレンダー':'collection_calendar','粗大ごみ':'bulky_waste','粗大ごみ申込み':'bulky_application','検索ページ':'waste_search','持込施設':'dropoff_facility','ごみ分別アプリ':'waste_app'};
-          const files=fs.readdirSync('tools/trashnavi/data').filter(f=>f.startsWith('direct-waste-links')&&f.endsWith('.json'));
-          const all=[];
-          for(const f of files){const d=JSON.parse(fs.readFileSync(path.join('tools/trashnavi/data',f),'utf8'));for(const r of d)all.push({...r,_file:f});}
-          for(const [lg,expected] of Object.entries(targets)){
-            const rs=all.filter(r=>String(r.lgcode)===lg);
-            const types=[...new Set(rs.map(r=>r.link_type||typeMap[r.type]).filter(Boolean))].sort();
-            const exp=[...expected].sort();
-            if(JSON.stringify(types)!==JSON.stringify(exp)) throw new Error(`${lg}: expected ${exp}, got ${types}`);
-            console.log(lg,rs.map(r=>`${r._file}:${r.link_type||typeMap[r.type]}:${r.url}`).join('\n  '));
-          }
+          const expected={'092011':['bulky_waste','collection_calendar','waste_sorting'],'162019':['collection_calendar','dropoff_facility','waste_sorting'],'182010':['bulky_waste','collection_calendar','waste_sorting'],'202011':['collection_calendar','dropoff_facility','waste_sorting'],'212016':['bulky_waste','collection_calendar','waste_sorting']};
+          const map={'ごみ分別ページ':'waste_sorting','収集カレンダー':'collection_calendar','粗大ごみ':'bulky_waste','粗大ごみ申込み':'bulky_application','検索ページ':'waste_search','持込施設':'dropoff_facility','ごみ分別アプリ':'waste_app'};
+          const all=[];for(const f of fs.readdirSync('tools/trashnavi/data').filter(f=>f.startsWith('direct-waste-links')&&f.endsWith('.json'))){for(const r of JSON.parse(fs.readFileSync(path.join('tools/trashnavi/data',f),'utf8')))all.push({...r,_file:f})}
+          for(const [lg,exp] of Object.entries(expected)){const rows=all.filter(r=>String(r.lgcode)===lg);const types=[...new Set(rows.map(r=>r.link_type||map[r.type]).filter(Boolean))].sort();if(JSON.stringify(types)!==JSON.stringify(exp))throw new Error(`${lg}: ${types}`);console.log(lg,types.join(','))}
           const direct=fs.readFileSync('tools/trashnavi/data/direct-waste-links.json','utf8');
-          for(const stale of ['https://www.city.nagano.nagano.jp/menu/2/4/1/2/index.html','https://www.city.gifu.lg.jp/tetsuzuki/gomi/index.html']) if(direct.includes(stale)) throw new Error('stale URL remains: '+stale);
+          for(const stale of ['https://www.city.nagano.nagano.jp/menu/2/4/1/2/index.html','https://www.city.gifu.lg.jp/tetsuzuki/gomi/index.html'])if(direct.includes(stale))throw new Error('stale URL remains '+stale);
           NODE
 
           node tools/trashnavi/scripts/audit-coverage.mjs --strict
           node scripts/check-trashnavi-direct-links.mjs --inventory
+
+          echo 'Before generator:'
+          git diff --name-only | sort
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs
+          echo 'After generator:'
+          git diff --name-only | sort
+          actual="$(git diff --name-only | sort | tr '\n' ' ')"
+          expected="sitemap-trashnavi.xml tools/trashnavi/app.js tools/trashnavi/data/direct-waste-links-supply-wave23.json tools/trashnavi/data/direct-waste-links.json "
+          if [ "$actual" != "$expected" ]; then
+            echo "Unexpected generator diff set: $actual"
+            git diff --stat
+            exit 1
+          fi
+
           node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
           node tools/trashnavi/scripts/check-affiliate-contract.mjs
           node tools/trashnavi/scripts/check-runtime-contract.mjs
 
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tools/trashnavi/app.js tools/trashnavi/data/direct-waste-links.json tools/trashnavi/data/direct-waste-links-supply-wave23.json
+          git add sitemap-trashnavi.xml tools/trashnavi/app.js tools/trashnavi/data/direct-waste-links.json tools/trashnavi/data/direct-waste-links-supply-wave23.json
           git diff --cached --check
           git commit -m 'Promote five TrashNavi Wave23 municipalities to preferred candidates'
           git push origin HEAD:feat/trashnavi-batch-wave23-20260915
