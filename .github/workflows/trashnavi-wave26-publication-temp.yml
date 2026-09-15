@@ -1,0 +1,191 @@
+name: TrashNavi Wave26 publication temp
+on:
+  push:
+    branches: [feat/trashnavi-batch-wave26-publication-20260915]
+permissions:
+  contents: write
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Publish Wave26 and verify
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+
+          targets = [
+            ('221007','shizuoka','shizuoka','静岡市',False),
+            ('221309','shizuoka','hamamatsu','浜松市',True),
+            ('281000','hyogo','kobe','神戸市',True),
+            ('341002','hiroshima','hiroshima','広島市',True),
+            ('431001','kumamoto','kumamoto','熊本市',True),
+          ]
+
+          # Manifest: append five entries while preserving compact one-entry-per-line format.
+          p=Path('tools/trashnavi/municipality-page-manifest.json')
+          s=p.read_text()
+          assert all(f'"lgcode":"{lg}"' not in s for lg,_,_,_,_ in targets)
+          marker='\n]\n'
+          assert s.endswith(marker)
+          lines=[]
+          for lg,pref,city,_,_ in targets:
+              lines.append(f'  {{"lgcode":"{lg}","pref_slug":"{pref}","city_slug":"{city}","publish":true}}')
+          # Existing final object lacks a comma.
+          head=s[:-len(marker)]
+          assert head.rstrip().endswith('}')
+          s=head.rstrip()+',\n'+'\n'.join(lines)+'\n]\n'
+          p.write_text(s)
+
+          # Generator publication-count guard.
+          p=Path('tools/trashnavi/scripts/generate-municipality-pages.mjs')
+          s=p.read_text()
+          old='if(outputs.length!==44) throw new Error(`municipality page count must be 44; got ${outputs.length}`);'
+          new='if(outputs.length!==49) throw new Error(`municipality page count must be 49; got ${outputs.length}`);'
+          assert s.count(old)==1 and new not in s
+          p.write_text(s.replace(old,new,1))
+
+          # Affiliate publication-count guard.
+          p=Path('tools/trashnavi/scripts/check-affiliate-contract.mjs')
+          s=p.read_text()
+          old="check(manifest.length === 44, `expected 44 published municipality pages, got ${manifest.length}`);"
+          new="check(manifest.length === 49, `expected 49 published municipality pages, got ${manifest.length}`);"
+          assert s.count(old)==1 and new not in s
+          p.write_text(s.replace(old,new,1))
+
+          # AI reference: count + five exact entries.
+          p=Path('tools/trashnavi/ai-reference.json')
+          s=p.read_text()
+          assert s.count('"published_municipality_count": 44')==1
+          s=s.replace('"published_municipality_count": 44','"published_municipality_count": 49',1)
+          marker='\n  ]\n}\n'
+          assert s.endswith(marker)
+          head=s[:-len(marker)]
+          assert head.rstrip().endswith('}')
+          rows=[]
+          for lg,pref,city,_,_ in targets:
+              url=f'https://nicheworks.app/tools/trashnavi/{pref}/{city}/'
+              assert f'"lgcode":"{lg}"' not in head
+              rows.append(f'    {{"lgcode":"{lg}","pref_slug":"{pref}","city_slug":"{city}","url":"{url}"}}')
+          s=head.rstrip()+',\n'+'\n'.join(rows)+'\n  ]\n}\n'
+          p.write_text(s)
+
+          # Root TrashNavi page: append five municipality links to the dedicated link container.
+          p=Path('tools/trashnavi/index.html')
+          s=p.read_text()
+          start=s.index('<div class="municipality-related-links">')
+          end=s.index('</div>', start)
+          fragment=s[start:end]
+          additions=''.join(f'<a href="/tools/trashnavi/{pref}/{city}/">{name}</a>' for _,pref,city,name,_ in targets)
+          for _,pref,city,_,_ in targets:
+              assert f'/tools/trashnavi/{pref}/{city}/' not in fragment
+          s=s[:end]+additions+s[end:]
+          p.write_text(s)
+
+          # SPEC: append Wave26 contract.
+          p=Path('tools/trashnavi/SPEC.md')
+          s=p.read_text().rstrip()+"\n\n"
+          assert '## Wave 26 batch publication' not in s
+          s += '''## Wave 26 batch publication
+
+Wave 26は5自治体batch expansionを継続し、公開閾値を変更せず **44自治体から49自治体** へ拡張する。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeであり、同一のcombined pageを複数種として数えず、外部委託先を閾値の穴埋めにも使わない。
+
+- 静岡県 静岡市 — `/tools/trashnavi/shizuoka/shizuoka/` — waste sorting / waste search / bulky waste
+- 静岡県 浜松市 — `/tools/trashnavi/shizuoka/hamamatsu/` — waste sorting / collection calendar / bulky application
+- 兵庫県 神戸市 — `/tools/trashnavi/hyogo/kobe/` — waste sorting / collection calendar / bulky waste
+- 広島県 広島市 — `/tools/trashnavi/hiroshima/hiroshima/` — waste sorting / collection calendar / bulky waste
+- 熊本県 熊本市 — `/tools/trashnavi/kumamoto/kumamoto/` — waste sorting / collection calendar / bulky waste
+
+Wave 26 readiness baselineは1,916 municipalities、2,264 valid HTTP(S) records、49 preferred candidates、29 direct-link datasets / 196 records / 177 unique URLs / 0 invalid URLsとする。
+
+Publication acceptanceでは5ページすべてについてexactly 3 official cards、canonical URL、現在のofficial municipal source URL、Amazon affiliate block `[PR]`、AI reference 49/49、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する浜松市・神戸市・広島市・熊本市だけ2026 calendar calloutを表示し、静岡市には年次calloutを生成しない。現行generatorの広告プレースホルダー削除を維持し、新規ページに `ad-slot` を復活させない。Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+'''
+          p.write_text(s)
+          PY
+
+          # Generate all allowlisted pages and the TrashNavi sitemap.
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs
+
+          # Root sitemap is intentionally not written by the generator; append Wave26 URLs explicitly.
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('sitemap.xml')
+          s=p.read_text()
+          urls=[
+            'https://nicheworks.app/tools/trashnavi/shizuoka/shizuoka/',
+            'https://nicheworks.app/tools/trashnavi/shizuoka/hamamatsu/',
+            'https://nicheworks.app/tools/trashnavi/hyogo/kobe/',
+            'https://nicheworks.app/tools/trashnavi/hiroshima/hiroshima/',
+            'https://nicheworks.app/tools/trashnavi/kumamoto/kumamoto/',
+          ]
+          for url in urls:
+              assert s.count(f'<loc>{url}</loc>')==0, url
+          assert s.count('</urlset>')==1
+          blocks='\n'.join(f'  <url>\n    <loc>{url}</loc>\n    <lastmod>2026-09-15</lastmod>\n  </url>' for url in urls)
+          p.write_text(s.replace('</urlset>',blocks+'\n</urlset>'))
+          PY
+
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-affiliate-contract.mjs
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          targets=[
+            ('221007','shizuoka','shizuoka',False),
+            ('221309','shizuoka','hamamatsu',True),
+            ('281000','hyogo','kobe',True),
+            ('341002','hiroshima','hiroshima',True),
+            ('431001','kumamoto','kumamoto',True),
+          ]
+          ai=json.loads(Path('tools/trashnavi/ai-reference.json').read_text())
+          assert ai['published_municipality_count']==49
+          assert len(ai['municipalities'])==49
+          root=Path('sitemap.xml').read_text()
+          trash=Path('sitemap-trashnavi.xml').read_text()
+          index=Path('tools/trashnavi/index.html').read_text()
+          for lg,pref,city,annual in targets:
+              canonical=f'https://nicheworks.app/tools/trashnavi/{pref}/{city}/'
+              rel=f'/tools/trashnavi/{pref}/{city}/'
+              assert root.count(f'<loc>{canonical}</loc>')==1
+              assert trash.count(f'<loc>{canonical}</loc>')==1
+              assert index.count(f'href="{rel}"')>=1
+              assert sum(1 for x in ai['municipalities'] if x['lgcode']==lg and x['url']==canonical)==1
+              page=Path(f'tools/trashnavi/{pref}/{city}/index.html').read_text()
+              assert page.count('class="official-link-card"')==3
+              assert ('class="current-calendar-callout"' in page)==annual
+              assert 'id="trashnaviAmazonAffiliate"' in page
+              assert 'ごみ出し・片付け用品 [PR]' in page
+              assert 'class="ad-slot' not in page
+              assert f'<link rel="canonical" href="{canonical}">' in page
+          print('Wave26 publication acceptance: OK')
+          PY
+          git diff --check
+
+          git add \
+            sitemap.xml sitemap-trashnavi.xml \
+            tools/trashnavi/SPEC.md \
+            tools/trashnavi/ai-reference.json \
+            tools/trashnavi/index.html \
+            tools/trashnavi/municipality-page-manifest.json \
+            tools/trashnavi/scripts/generate-municipality-pages.mjs \
+            tools/trashnavi/scripts/check-affiliate-contract.mjs \
+            tools/trashnavi/shizuoka/shizuoka/index.html \
+            tools/trashnavi/shizuoka/hamamatsu/index.html \
+            tools/trashnavi/hyogo/kobe/index.html \
+            tools/trashnavi/hiroshima/hiroshima/index.html \
+            tools/trashnavi/kumamoto/kumamoto/index.html
+          git commit -m "Publish five TrashNavi Wave26 municipality pages"
+          git rm .github/workflows/trashnavi-wave26-publication-temp.yml
+          git commit -m "Remove TrashNavi Wave26 publication workflow"
+          git push origin HEAD:feat/trashnavi-batch-wave26-publication-20260915
