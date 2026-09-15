@@ -37,5 +37,10 @@
   {"lgcode":"141003","pref_slug":"kanagawa","city_slug":"yokohama","publish":true},
   {"lgcode":"192015","pref_slug":"yamanashi","city_slug":"kofu","publish":true},
   {"lgcode":"231002","pref_slug":"aichi","city_slug":"nagoya","publish":true},
-  {"lgcode":"302015","pref_slug":"wakayama","city_slug":"wakayama","publish":true}
+  {"lgcode":"302015","pref_slug":"wakayama","city_slug":"wakayama","publish":true},
+  {"lgcode":"041009","pref_slug":"miyagi","city_slug":"sendai","publish":true},
+  {"lgcode":"121002","pref_slug":"chiba","city_slug":"chiba","publish":true},
+  {"lgcode":"151009","pref_slug":"niigata","city_slug":"niigata","publish":true},
+  {"lgcode":"261009","pref_slug":"kyoto","city_slug":"kyoto","publish":true},
+  {"lgcode":"271004","pref_slug":"osaka","city_slug":"osaka","publish":true}
 ]
