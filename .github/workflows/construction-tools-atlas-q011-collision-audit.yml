@@ -1,0 +1,29 @@
+name: Construction Tools Atlas q011 canonical collision audit
+
+on:
+  push:
+    branches:
+      - audit/construction-atlas-q011-canonical-collisions-20260915
+    paths:
+      - 'tools/construction-tools-atlas/data/**'
+      - 'tools/construction-tools-atlas/scripts/audit-q011-canonical-collisions-v2.3.cjs'
+      - '.github/workflows/construction-tools-atlas-q011-collision-audit.yml'
+  pull_request:
+    paths:
+      - 'tools/construction-tools-atlas/data/**'
+      - 'tools/construction-tools-atlas/scripts/audit-q011-canonical-collisions-v2.3.cjs'
+      - '.github/workflows/construction-tools-atlas-q011-collision-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  q011-collision-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Check collision auditor syntax
+        run: node --check tools/construction-tools-atlas/scripts/audit-q011-canonical-collisions-v2.3.cjs
+      - name: Audit q011 against all canonical sources
+        run: node tools/construction-tools-atlas/scripts/audit-q011-canonical-collisions-v2.3.cjs
