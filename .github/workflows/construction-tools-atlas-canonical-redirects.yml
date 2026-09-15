@@ -6,6 +6,7 @@ on:
       - main
       - fix/construction-atlas-canonical-redirects-20260915
       - audit/construction-atlas-q011-identity-closure-20260915
+      - audit/construction-atlas-q012-identity-closure-20260916
     paths:
       - 'tools/construction-tools-atlas/**'
       - '.github/workflows/construction-tools-atlas-canonical-redirects.yml'
@@ -32,6 +33,7 @@ jobs:
           node --check tools/construction-tools-atlas/scripts/check-canonical-redirects-v2.3.cjs
           node --check tools/construction-tools-atlas/scripts/check-canonical-identity-resolutions-v2.3.cjs
           node --check tools/construction-tools-atlas/scripts/audit-q011-identity-closure-v2.3.cjs
+          node --check tools/construction-tools-atlas/scripts/audit-q012-identity-closure-v2.3.cjs
           node --check tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
           node --check tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs
           node --check tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs
@@ -45,6 +47,9 @@ jobs:
 
       - name: Require zero unresolved q011 identity collisions
         run: node tools/construction-tools-atlas/scripts/audit-q011-identity-closure-v2.3.cjs
+
+      - name: Require zero unresolved q012 identity collisions
+        run: node tools/construction-tools-atlas/scripts/audit-q012-identity-closure-v2.3.cjs
 
       - name: Validate redirect-aware canonical image runtime
         run: node tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
