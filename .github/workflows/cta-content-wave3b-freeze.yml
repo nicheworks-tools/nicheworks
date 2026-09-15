@@ -17,31 +17,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: feat/construction-atlas-content-wave3b-q012-safe-20260916
-      - name: Apply Wave3B audit and snapshot version
+      - name: Set Wave3B snapshot version
         run: |
           python3 - <<'PY'
           from pathlib import Path
-
-          audit = Path('.github/workflows/construction-tools-atlas-audit.yml')
-          s = audit.read_text()
-          a = "      - name: Check q012 Wave3A content syntax\n        run: node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs\n"
-          b = a + "\n      - name: Check q012 Wave3B content syntax\n        run: node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs\n"
-          if 'Check q012 Wave3B content syntax' not in s:
-              if s.count(a) != 1: raise SystemExit('Wave3A syntax anchor mismatch')
-              s = s.replace(a, b)
-          a = "      - name: Require safe q012 Wave3A subject-specific core content\n        run: node tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs\n"
-          b = a + "\n      - name: Require safe q012 Wave3B subject-specific core content\n        run: node tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs\n"
-          if 'Require safe q012 Wave3B subject-specific core content' not in s:
-              if s.count(a) != 1: raise SystemExit('Wave3A contract anchor mismatch')
-              s = s.replace(a, b)
-          audit.write_text(s)
-
           p = Path('tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs')
           s = p.read_text()
           old = "version: '2026-09-16-content-wave3a-q012-safe-1',"
           new = "version: '2026-09-16-content-wave3b-q012-safe-1',"
           if new not in s:
-              if s.count(old) != 1: raise SystemExit(f'content version anchor mismatch: {s.count(old)}')
+              if s.count(old) != 1:
+                  raise SystemExit(f'content version anchor mismatch: {s.count(old)}')
               s = s.replace(old, new)
           p.write_text(s)
           PY
@@ -56,16 +42,15 @@ jobs:
         run: |
           node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --write
           node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check
-      - name: Commit frozen Wave3B state
+      - name: Commit frozen Wave3B content state
         run: |
           if git diff --quiet; then
-            echo 'Wave3B state already current.'
+            echo 'Wave3B content snapshot already current.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add \
-            .github/workflows/construction-tools-atlas-audit.yml \
             tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs \
             tools/construction-tools-atlas/data/public-content-quality-v2.3.json
           git commit -m 'chore(construction-atlas): freeze q012 content wave 3b'
