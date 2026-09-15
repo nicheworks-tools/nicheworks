@@ -32,5 +32,5 @@ jobs:
       - name: Check inventory auditor syntax
         run: node --check tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs
 
-      - name: Report full canonical image inventory
-        run: node tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs
+      - name: Validate frozen full canonical image inventory
+        run: node tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs --check
