@@ -27,5 +27,5 @@ jobs:
       - name: Check content quality auditor syntax
         run: node --check tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs
 
-      - name: Report public content quality inventory
-        run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs
+      - name: Validate frozen public content quality inventory
+        run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check
