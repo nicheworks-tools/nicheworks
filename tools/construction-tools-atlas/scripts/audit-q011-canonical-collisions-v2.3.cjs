@@ -17,12 +17,13 @@ function rowsFrom(raw) {
   return [];
 }
 function idOf(row) { return text(row?.id || row?.slug); }
+function typeOf(row) { return text(row?.type || row?.t || 'unknown') || 'unknown'; }
 function jaOf(row) { return text(row?.term?.ja || row?.ja || row?.name_ja || row?.summary?.ja); }
 function enOf(row) { return text(row?.term?.en || row?.en || row?.name_en || row?.summary?.en); }
 function aliasesJa(row) { return arr(row?.aliases?.ja || row?.aj || row?.aliases_ja).map(text).filter(Boolean); }
 function aliasesEn(row) { return arr(row?.aliases?.en || row?.ae || row?.aliases_en).map(text).filter(Boolean); }
 function norm(value) {
-  return String(value || '').normalize('NFKC').toLowerCase().replace(/[\s\u3000]+/g, '').replace(/[‐‑‒–—―ー_\-・･\/]/g, '').trim();
+  return String(value || '').normalize('NFKC').toLowerCase().replace(/[\s\u3000]+/g, '').replace(/[‐‑‒–—―ー_\-・･\/()（）]/g, '').trim();
 }
 function stem(id) { return String(id || '').replace(/^q\d+_/, ''); }
 function sourcePaths() {
@@ -34,6 +35,16 @@ function sourcePaths() {
   }
   for (const p of arr(manifest.base)) if (p) out.push(String(p).replace(/^\.\/data\//, ''));
   return out;
+}
+function classify(targetType, hit) {
+  const sameType = targetType === hit.type;
+  const reasons = new Set(hit.reasons);
+  if (sameType && reasons.has('exact_bilingual_name')) return 'strong_duplicate';
+  if (sameType && reasons.has('same_id_stem') && (reasons.has('exact_ja_name') || reasons.has('exact_en_name') || [...reasons].some(r => r.includes('alias')))) return 'strong_duplicate';
+  if (!sameType && reasons.has('same_id_stem')) return 'semantic_conflict_review';
+  if (sameType && reasons.has('same_id_stem')) return 'probable_duplicate_review';
+  if (sameType && (reasons.has('exact_ja_name') || reasons.has('exact_en_name')) && [...reasons].some(r => r.includes('alias'))) return 'probable_duplicate_review';
+  return 'related_name_review';
 }
 
 const all = [];
@@ -47,6 +58,7 @@ const targets = rowsFrom(readJson(TARGET));
 const collisions = [];
 for (const target of targets) {
   const id = idOf(target);
+  const type = typeOf(target);
   const ja = jaOf(target);
   const en = enOf(target);
   const nja = norm(ja);
@@ -77,19 +89,27 @@ for (const target of targets) {
     if (noja && tAliasesJa.includes(noja)) reasons.push('other_ja_matches_target_alias');
     if (noen && tAliasesEn.includes(noen)) reasons.push('other_en_matches_target_alias');
     if (!reasons.length) continue;
-    hits.push({ id: oid, ja: oja, en: oen, source: item.source, reasons: [...new Set(reasons)] });
+    const hit = { id: oid, type: typeOf(other), ja: oja, en: oen, source: item.source, reasons: [...new Set(reasons)] };
+    hit.classification = classify(type, hit);
+    hits.push(hit);
   }
 
-  if (hits.length) collisions.push({ id, ja, en, hits });
+  if (hits.length) collisions.push({ id, type, ja, en, hits });
 }
 
+const classifications = { strong_duplicate: 0, probable_duplicate_review: 0, semantic_conflict_review: 0, related_name_review: 0 };
+for (const row of collisions) {
+  const rowClasses = new Set(row.hits.map(h => h.classification));
+  for (const key of Object.keys(classifications)) if (rowClasses.has(key)) classifications[key] += 1;
+}
 const summary = {
   q011_rows: targets.length,
   rows_with_collision_signal: collisions.length,
   exact_bilingual_name: collisions.filter(x => x.hits.some(h => h.reasons.includes('exact_bilingual_name'))).length,
   same_id_stem: collisions.filter(x => x.hits.some(h => h.reasons.includes('same_id_stem'))).length,
   exact_single_language_only: collisions.filter(x => x.hits.some(h => h.reasons.includes('exact_ja_name') || h.reasons.includes('exact_en_name')) && !x.hits.some(h => h.reasons.includes('exact_bilingual_name'))).length,
-  alias_signal: collisions.filter(x => x.hits.some(h => h.reasons.some(r => r.includes('alias')))).length
+  alias_signal: collisions.filter(x => x.hits.some(h => h.reasons.some(r => r.includes('alias')))).length,
+  classifications
 };
 console.log(`CTA_Q011_COLLISION_SUMMARY=${JSON.stringify(summary)}`);
 console.log(`CTA_Q011_COLLISIONS=${JSON.stringify(collisions)}`);
