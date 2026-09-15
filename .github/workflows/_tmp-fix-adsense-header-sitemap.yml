@@ -1,0 +1,96 @@
+name: One-shot AdSense header sitemap alignment
+
+on:
+  push:
+    branches:
+      - fix/adsense-header-sitemap-contract-20260915
+    paths:
+      - '.github/workflows/_tmp-fix-adsense-header-sitemap.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  align:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/adsense-header-sitemap-contract-20260915
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Remove HTTP-noindex URLs from sitemap
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const headers = fs.readFileSync('_headers', 'utf8');
+          let sitemap = fs.readFileSync('sitemap.xml', 'utf8');
+
+          function noindexHeaderRules(text) {
+            const rules = [];
+            let currentPath = null;
+            let currentHeaders = [];
+            const flush = () => {
+              if (currentPath && currentHeaders.some((line) => /^x-robots-tag\s*:\s*.*\bnoindex\b/i.test(line.trim()))) rules.push(currentPath);
+            };
+            for (const line of text.split(/\r?\n/)) {
+              if (line && !/^\s/.test(line)) {
+                flush();
+                currentPath = line.trim();
+                currentHeaders = [];
+              } else if (currentPath && line.trim()) currentHeaders.push(line);
+            }
+            flush();
+            return rules;
+          }
+
+          function toRegex(rule) {
+            const escaped = rule.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*');
+            return new RegExp(`^${escaped}$`);
+          }
+
+          const matchers = noindexHeaderRules(headers).map((rule) => ({rule, regex: toRegex(rule)}));
+          let removed = 0;
+          sitemap = sitemap.replace(/\s*<url>[\s\S]*?<\/url>/g, (block) => {
+            const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1];
+            if (!loc) return block;
+            const pathname = new URL(loc).pathname;
+            const match = matchers.find(({regex}) => regex.test(pathname));
+            if (!match) return block;
+            console.log(`remove ${loc} (HTTP noindex via ${match.rule})`);
+            removed += 1;
+            return '';
+          });
+          sitemap = sitemap.replace(/<urlset([^>]*)>\s*/, '<urlset$1>\n').replace(/\n{3,}/g, '\n\n');
+          fs.writeFileSync('sitemap.xml', sitemap);
+          console.log(`removed ${removed} HTTP-noindex sitemap URL(s)`);
+          NODE
+
+      - name: Validate final review surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/check-adsense-review-surface.mjs
+          node scripts/check-seo-public-url-contract.mjs
+          node scripts/check-seo-indexable-url-identity.mjs
+          node scripts/audit-publishing-mode.mjs
+          node scripts/audit-seo.mjs --strict
+          git diff --check
+
+      - name: Commit validated sitemap
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sitemap.xml
+          if git diff --cached --quiet; then
+            echo 'No sitemap changes needed.'
+            exit 0
+          fi
+          git commit -m 'fix: remove HTTP-noindex URLs from sitemap'
+          git push origin HEAD:fix/adsense-header-sitemap-contract-20260915
