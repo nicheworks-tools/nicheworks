@@ -1,0 +1,123 @@
+[
+  {
+    "pref": "宮城県",
+    "city": "仙台市",
+    "name": "仙台市 収集曜日一覧",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.sendai.jp/haiki-shido/kurashi/machi/genryo/gomi/yobi/ichiran.html",
+    "lgcode": "041009",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "宮城県",
+    "city": "仙台市",
+    "name": "仙台市 粗大ごみの出し方・受付",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.sendai.jp/haiki-kanri/kurashi/machi/genryo/gomi/wakekata/sodaigomi.html",
+    "lgcode": "041009",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "千葉県",
+    "city": "千葉市",
+    "name": "千葉市 家庭ごみ・資源物の収集日",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.chiba.jp/kankyo/junkan/shushugyomu/shushubi.html",
+    "lgcode": "121002",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "千葉県",
+    "city": "千葉市",
+    "name": "千葉市 粗大ごみの出し方",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.chiba.jp/kankyo/junkan/shushugyomu/sodaigomi.html",
+    "lgcode": "121002",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "新潟県",
+    "city": "新潟市",
+    "name": "新潟市 令和8年度版 家庭ごみ収集カレンダー",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.niigata.lg.jp/kurashi/gomi/gomishigen/gomidasi/gomi_calemder/",
+    "lgcode": "151009",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja",
+    "fiscal_year": "2026"
+  },
+  {
+    "pref": "新潟県",
+    "city": "新潟市",
+    "name": "新潟市 粗大ごみ",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.niigata.lg.jp/kurashi/gomi/gomishigen/gomidasi/niigata/discard.html",
+    "lgcode": "151009",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "京都府",
+    "city": "京都市",
+    "name": "京都市 収集日マップ",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.kyoto.lg.jp/kankyo/page/0000000509.html",
+    "lgcode": "261009",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "京都府",
+    "city": "京都市",
+    "name": "京都市 大型ごみ",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.kyoto.lg.jp/kankyo/page/0000001317.html",
+    "lgcode": "261009",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "大阪府",
+    "city": "大阪市",
+    "name": "大阪市 ごみの収集曜日・時間帯",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.osaka.lg.jp/kankyo/page/0000370521.html",
+    "lgcode": "271004",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "大阪府",
+    "city": "大阪市",
+    "name": "大阪市 粗大ごみの収集について",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.osaka.lg.jp/kankyo/page/0000369355.html",
+    "lgcode": "271004",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  }
+]
