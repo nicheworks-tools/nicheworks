@@ -1012,14 +1012,15 @@
         "cable": "included",
         "adapter": "not_included"
       },
-      "waterRating": null,
+      "waterRating": "IP68",
       "sources": {
         "specificationsUrl": "https://store.google.com/jp/product/pixel_10_pro_specs?hl=ja",
         "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
         "releaseUrl": "https://blog.google/intl/ja-jp/products/devices-services/google-pixel-10-pro-xl/",
         "chargingUrl": "https://store.google.com/jp/product/pixel_10_pro_specs?hl=ja",
         "wirelessUrl": "https://store.google.com/jp/product/pixel_10_pro_specs?hl=ja",
-        "verifiedAt": "2026-09-13"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://store.google.com/jp/product/pixel_10_pro_specs?hl=ja"
       },
       "affiliateKeys": []
     },
@@ -1060,14 +1061,15 @@
         "cable": "included",
         "adapter": "not_included"
       },
-      "waterRating": null,
+      "waterRating": "IP68",
       "sources": {
         "specificationsUrl": "https://store.google.com/jp/product/pixel_10_pro_specs?hl=ja",
         "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
         "releaseUrl": "https://blog.google/intl/ja-jp/products/devices-services/google-pixel-10-pro-xl/",
         "chargingUrl": "https://store.google.com/jp/product/pixel_10_pro_specs?hl=ja",
         "wirelessUrl": "https://store.google.com/jp/product/pixel_10_pro_specs?hl=ja",
-        "verifiedAt": "2026-09-13"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://store.google.com/jp/product/pixel_10_pro_specs?hl=ja"
       },
       "affiliateKeys": []
     },
@@ -6665,7 +6667,7 @@
       },
       "weightG": 151,
       "displayInch": 6,
-      "waterRating": null,
+      "waterRating": "IP68",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": 18,
@@ -6692,7 +6694,8 @@
         "releaseUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
         "chargingUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
         "wirelessUrl": "https://support.google.com/pixelphone/answer/9910799?hl=ja",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://support.google.com/pixelphone/answer/9910799?hl=ja"
       },
       "affiliateKeys": []
     },
@@ -6717,7 +6720,7 @@
       },
       "weightG": 183,
       "displayInch": 6.34,
-      "waterRating": null,
+      "waterRating": "IP67",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": 18,
@@ -6743,7 +6746,8 @@
         "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
         "releaseUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
         "chargingUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://support.google.com/pixelphone/answer/10331506?hl=ja"
       },
       "affiliateKeys": []
     },
@@ -7120,7 +7124,7 @@
       },
       "weightG": 187,
       "displayInch": 6.5,
-      "waterRating": null,
+      "waterRating": "IPX5/IPX8 / IP6X",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": null,
@@ -7146,7 +7150,8 @@
         "manualUrl": "https://www.samsung.com/jp/support/model/SM-A516DZWADCM/",
         "releaseUrl": "https://www.samsung.com/jp/support/mobile-devices/please-tell-us-about-the-latest-version-of-the-galaxy-device-sold-in-docomo/",
         "chargingUrl": "https://news.samsung.com/global/samsung-announces-the-new-addition-to-5g-smartphone-lineup-galaxy-a71-5g-and-galaxy-a51-5g",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://www.au.com/online-manual/scg07/scg07_01/m_01_00_04.html"
       },
       "affiliateKeys": []
     },
@@ -7170,7 +7175,7 @@
       },
       "weightG": 205,
       "displayInch": 6.5,
-      "waterRating": null,
+      "waterRating": "IPX5/IPX8 / IP6X",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": null,
@@ -7196,7 +7201,8 @@
         "manualUrl": "https://www.samsung.com/jp/support/model/SM-A326JZBNKDI/",
         "releaseUrl": "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
         "chargingUrl": "https://www.samsung.com/us/rmx/galaxy-a32-5g/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://www.au.com/content/dam/au-com/support/service/mobile/guide/manual/scg08/pdf/scg08_safety_precautions.pdf"
       },
       "affiliateKeys": []
     },
@@ -7220,7 +7226,7 @@
       },
       "weightG": 152,
       "displayInch": 6.1,
-      "waterRating": null,
+      "waterRating": "IPX5/IPX8 / IP6X",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": null,
@@ -7245,7 +7251,8 @@
         "specificationsUrl": "https://www.samsung.com/no/business/smartphones/galaxy-a/galaxy-a41-a415-sm-a415fzkdeud/",
         "manualUrl": "https://www.samsung.com/jp/support/model/SM-A415DZWADCM/",
         "releaseUrl": "https://www.samsung.com/jp/support/mobile-devices/please-tell-us-about-the-latest-version-of-the-galaxy-device-sold-in-docomo/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://www.docomo.ne.jp/support/product/sc41a/spec.html"
       },
       "affiliateKeys": []
     },
@@ -8264,7 +8271,7 @@
       },
       "weightG": 204,
       "displayInch": 6.67,
-      "waterRating": null,
+      "waterRating": "IP53",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": null,
@@ -8290,7 +8297,8 @@
         "manualUrl": "https://www.mi.com/jp/support/",
         "releaseUrl": "https://www.mi.com/jp/product/xiaomi-11t-pro/",
         "chargingUrl": "https://www.mi.com/jp/product/xiaomi-11t-pro/specs/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://www.mi.com/jp/support/faq/details/KA-09438/"
       },
       "affiliateKeys": []
     },
@@ -8313,7 +8321,7 @@
       },
       "weightG": 203,
       "displayInch": 6.67,
-      "waterRating": null,
+      "waterRating": "IP53",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": null,
@@ -8339,7 +8347,8 @@
         "manualUrl": "https://www.mi.com/jp/support/",
         "releaseUrl": "https://www.mi.com/jp/product/xiaomi-11t/",
         "chargingUrl": "https://www.mi.com/jp/product/xiaomi-11t/specs/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://www.mi.com/jp/support/faq/details/KA-09436/"
       },
       "affiliateKeys": []
     },
@@ -8363,7 +8372,7 @@
       },
       "weightG": 159,
       "displayInch": 6.55,
-      "waterRating": null,
+      "waterRating": "IP53",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": null,
@@ -8389,7 +8398,8 @@
         "manualUrl": "https://www.mi.com/jp/support/",
         "releaseUrl": "https://www.mi.com/jp/product/mi-11-lite-5g/",
         "chargingUrl": "https://www.mi.com/jp/product/mi-11-lite-5g/specs/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://www.mi.com/jp/support/faq/details/KA-09407/"
       },
       "affiliateKeys": []
     },
