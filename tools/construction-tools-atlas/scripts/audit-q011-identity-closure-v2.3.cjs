@@ -6,6 +6,7 @@ const DATA = path.join(ROOT, 'data');
 const TARGET = path.join(DATA, 'tools.quality-011.json');
 const MANIFEST = path.join(DATA, 'quality-manifest.json');
 const REDIRECTS = path.join(DATA, 'canonical-redirects-v2.3.json');
+const IDENTITY = path.join(DATA, 'canonical-identity-resolutions-v2.3.json');
 
 function readJson(file) { return JSON.parse(fs.readFileSync(file, 'utf8')); }
 function arr(value) { return Array.isArray(value) ? value : []; }
@@ -29,6 +30,7 @@ function norm(value) {
   return String(value || '').normalize('NFKC').toLowerCase().replace(/[\s\u3000]+/g, '').replace(/[‐‑‒–—―ー_\-・･\/()（）]/g, '').trim();
 }
 function stem(id) { return String(id || '').replace(/^q\d+_/, ''); }
+function pairKey(a, b) { return [a, b].sort((x, y) => x.localeCompare(y, 'en')).join('\t'); }
 function sourcePaths() {
   const manifest = readJson(MANIFEST);
   const out = [];
@@ -45,6 +47,29 @@ function redirectMap() {
 }
 
 const retired = redirectMap();
+const identity = readJson(IDENTITY);
+const reviewedDistinctPairs = new Map();
+for (const row of arr(identity?.resolved_distinct_pairs)) {
+  const a = text(row?.a);
+  const b = text(row?.b);
+  if (!a || !b) throw new Error('Resolved distinct pair requires both ids');
+  reviewedDistinctPairs.set(pairKey(a, b), row);
+}
+const aliasRemovalById = new Map();
+for (const row of arr(identity?.alias_removals)) {
+  const id = text(row?.id);
+  if (!id) throw new Error('Alias removal requires id');
+  aliasRemovalById.set(id, {
+    ja: new Set(arr(row?.ja).map(norm).filter(Boolean)),
+    en: new Set(arr(row?.en).map(norm).filter(Boolean))
+  });
+}
+function effectiveAliases(row, lang) {
+  const values = lang === 'ja' ? aliasesJa(row) : aliasesEn(row);
+  const removals = aliasRemovalById.get(idOf(row))?.[lang] || new Set();
+  return values.filter((value) => !removals.has(norm(value)));
+}
+
 const all = [];
 for (const rel of sourcePaths()) {
   const file = path.join(DATA, rel);
@@ -58,14 +83,15 @@ for (const rel of sourcePaths()) {
 
 const targets = rowsFrom(readJson(TARGET)).filter((row) => !retired.has(idOf(row)));
 const collisions = [];
+const reviewedSignals = [];
 for (const target of targets) {
   const id = idOf(target);
   const ja = jaOf(target);
   const en = enOf(target);
   const nja = norm(ja);
   const nen = norm(en);
-  const tAliasesJa = aliasesJa(target).map(norm);
-  const tAliasesEn = aliasesEn(target).map(norm);
+  const tAliasesJa = effectiveAliases(target, 'ja').map(norm);
+  const tAliasesEn = effectiveAliases(target, 'en').map(norm);
   const hits = [];
   for (const item of all) {
     const other = item.row;
@@ -75,8 +101,8 @@ for (const target of targets) {
     const oen = enOf(other);
     const noja = norm(oja);
     const noen = norm(oen);
-    const oAliasesJa = aliasesJa(other).map(norm);
-    const oAliasesEn = aliasesEn(other).map(norm);
+    const oAliasesJa = effectiveAliases(other, 'ja').map(norm);
+    const oAliasesEn = effectiveAliases(other, 'en').map(norm);
     const reasons = [];
     if (nja && nen && nja === noja && nen === noen) reasons.push('exact_bilingual_name');
     else {
@@ -89,6 +115,13 @@ for (const target of targets) {
     if (noja && tAliasesJa.includes(noja)) reasons.push('other_ja_matches_target_alias');
     if (noen && tAliasesEn.includes(noen)) reasons.push('other_en_matches_target_alias');
     if (!reasons.length) continue;
+
+    const reviewed = reviewedDistinctPairs.get(pairKey(id, oid));
+    if (reviewed) {
+      reviewedSignals.push({ a: id, b: oid, resolution: text(reviewed?.resolution), reasons: [...new Set(reasons)] });
+      continue;
+    }
+
     hits.push({
       id: oid,
       type: typeOf(other),
@@ -96,8 +129,8 @@ for (const target of targets) {
       en: oen,
       desc_ja: descJa(other),
       desc_en: descEn(other),
-      aliases_ja: aliasesJa(other),
-      aliases_en: aliasesEn(other),
+      aliases_ja: effectiveAliases(other, 'ja'),
+      aliases_en: effectiveAliases(other, 'en'),
       source: item.source,
       reasons: [...new Set(reasons)]
     });
@@ -110,15 +143,20 @@ for (const target of targets) {
       en,
       desc_ja: descJa(target),
       desc_en: descEn(target),
-      aliases_ja: aliasesJa(target),
-      aliases_en: aliasesEn(target),
+      aliases_ja: effectiveAliases(target, 'ja'),
+      aliases_en: effectiveAliases(target, 'en'),
       hits
     });
   }
 }
 
+const reviewedUnique = [...new Map(reviewedSignals.map((row) => [pairKey(row.a, row.b), row])).values()]
+  .sort((a, b) => pairKey(a.a, a.b).localeCompare(pairKey(b.a, b.b), 'en'));
+
 console.log(`CTA_Q011_RETIRED_REDIRECTS=${JSON.stringify(Object.fromEntries(retired))}`);
 console.log(`CTA_Q011_ACTIVE_ROWS=${targets.length}`);
-console.log(`CTA_Q011_REMAINING_COLLISION_ROWS=${collisions.length}`);
-console.log(`CTA_Q011_REMAINING_COLLISIONS=${JSON.stringify(collisions)}`);
+console.log(`CTA_Q011_REVIEWED_DISTINCT_SIGNALS=${JSON.stringify(reviewedUnique)}`);
+console.log(`CTA_Q011_UNRESOLVED_COLLISION_ROWS=${collisions.length}`);
+console.log(`CTA_Q011_UNRESOLVED_COLLISIONS=${JSON.stringify(collisions)}`);
+if (collisions.length) throw new Error(`q011 identity closure has ${collisions.length} unresolved collision row(s)`);
 console.log('Construction Tools Atlas q011 identity closure audit: PASS');
