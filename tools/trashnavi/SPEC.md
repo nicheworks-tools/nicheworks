@@ -666,3 +666,17 @@ Wave 24はWave 23で成立した5自治体batch expansionを継続し、公開�
 Wave 24 readiness baselineは1,916 municipalities、2,244 valid HTTP(S) records、39 preferred candidates、27 direct-link datasets / 176 records / 157 unique URLs / 0 invalid URLsとする。
 
 Publication acceptanceでは5ページすべてについてexactly 3 official cards、canonical URL、現在のofficial source URL、Amazon affiliate block `[PR]`、AI reference 39/39、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する甲府市だけ2026 calendar calloutを表示し、札幌市・横浜市・名古屋市・和歌山市には年次calloutを生成しない。甲府市はbulky sourceを持たないためmetadata/heroで粗大ごみcoverageを広告しない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+## Wave 25 batch publication
+
+Wave 25は5自治体batch expansionを継続し、公開閾値を変更せず **39自治体から44自治体** へ拡張する。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeであり、同一のcombined pageを複数種として数えず、外部委託先を閾値の穴埋めにも使わない。
+
+- 宮城県 仙台市 — `/tools/trashnavi/miyagi/sendai/` — waste sorting / collection calendar / bulky waste
+- 千葉県 千葉市 — `/tools/trashnavi/chiba/chiba/` — waste sorting / collection calendar / bulky waste
+- 新潟県 新潟市 — `/tools/trashnavi/niigata/niigata/` — waste sorting / collection calendar / bulky waste
+- 京都府 京都市 — `/tools/trashnavi/kyoto/kyoto/` — waste sorting / collection calendar / bulky waste
+- 大阪府 大阪市 — `/tools/trashnavi/osaka/osaka/` — waste sorting / collection calendar / bulky waste
+
+Wave 25 readiness baselineは1,916 municipalities、2,254 valid HTTP(S) records、44 preferred candidates、28 direct-link datasets / 186 records / 167 unique URLs / 0 invalid URLsとする。
+
+Publication acceptanceでは5ページすべてについてexactly 3 official cards、canonical URL、現在のofficial municipal source URL、Amazon affiliate block `[PR]`、AI reference 44/44、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する新潟市だけ2026 calendar calloutを表示し、仙台市・千葉市・京都市・大阪市には年次calloutを生成しない。現行generatorの広告プレースホルダー削除を維持し、新規ページに `ad-slot` を復活させない。Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
