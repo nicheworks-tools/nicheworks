@@ -76,6 +76,7 @@ for (const name of [
   'affiliate-config.js',
   'affiliate-office-consumables.js',
   'affiliate-oki-toner-wave2.js',
+  'affiliate-oki-toner-wave6.js',
   'affiliate-ricoh-consumables-wave3.js',
   'affiliate-kyocera-toner-wave3.js',
   'affiliate-kyocera-toner-wave4.js',
