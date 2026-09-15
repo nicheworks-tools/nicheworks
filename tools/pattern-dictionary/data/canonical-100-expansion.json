@@ -1,0 +1,928 @@
+{
+  "schema": "pattern-dictionary-canonical-100-v1",
+  "version": "2026-09-15",
+  "base": {
+    "source": "data/patterns.json",
+    "published_count": 20,
+    "rule": "The existing published canonical 20 remain unchanged. This file freezes ordinals 21-100 only."
+  },
+  "policy": {
+    "target_total": 100,
+    "expansion_count": 80,
+    "wave_size": 20,
+    "waves": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "name_freeze": "IDs and JA/EN display names are frozen for production unless source verification proves a factual error.",
+    "scope_rule": "Broad techniques, textile traditions, styles, weave/effect terms, and material-inspired visual families remain qualified rather than being presented as one universal fixed motif.",
+    "publication_rule": "Planned entries do not enter runtime patterns.json until their production wave completes source verification, bilingual content, reference image review, search regression, SEO, and QA.",
+    "pattern_atlas": "out-of-scope"
+  },
+  "entries": [
+    {
+      "ordinal": 21,
+      "wave": 2,
+      "id": "buffalo-check",
+      "names": {
+        "ja": "バッファローチェック",
+        "en": "Buffalo Check"
+      },
+      "family": "check",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 22,
+      "wave": 2,
+      "id": "shepherd-check",
+      "names": {
+        "ja": "シェパードチェック",
+        "en": "Shepherd's Check"
+      },
+      "family": "check",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 23,
+      "wave": 2,
+      "id": "windowpane-check",
+      "names": {
+        "ja": "ウィンドウペーンチェック",
+        "en": "Windowpane Check"
+      },
+      "family": "check",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 24,
+      "wave": 2,
+      "id": "madras-check",
+      "names": {
+        "ja": "マドラスチェック",
+        "en": "Madras Check"
+      },
+      "family": "check",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 25,
+      "wave": 2,
+      "id": "tattersall",
+      "names": {
+        "ja": "タッターソール",
+        "en": "Tattersall"
+      },
+      "family": "check",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 26,
+      "wave": 2,
+      "id": "gun-club-check",
+      "names": {
+        "ja": "ガンクラブチェック",
+        "en": "Gun Club Check"
+      },
+      "family": "check",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 27,
+      "wave": 2,
+      "id": "prince-of-wales-check",
+      "names": {
+        "ja": "プリンス・オブ・ウェールズ・チェック",
+        "en": "Prince of Wales Check"
+      },
+      "family": "check",
+      "term_scope": "qualified-variant",
+      "scope_note": "Closely related to Glen Check; production content must explain the overcheck distinction and modern interchangeable usage."
+    },
+    {
+      "ordinal": 28,
+      "wave": 2,
+      "id": "pinstripe",
+      "names": {
+        "ja": "ピンストライプ",
+        "en": "Pinstripe"
+      },
+      "family": "stripe",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 29,
+      "wave": 2,
+      "id": "chalk-stripe",
+      "names": {
+        "ja": "チョークストライプ",
+        "en": "Chalk Stripe"
+      },
+      "family": "stripe",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 30,
+      "wave": 2,
+      "id": "bengal-stripe",
+      "names": {
+        "ja": "ベンガルストライプ",
+        "en": "Bengal Stripe"
+      },
+      "family": "stripe",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 31,
+      "wave": 2,
+      "id": "koushi",
+      "names": {
+        "ja": "格子",
+        "en": "Koushi"
+      },
+      "family": "japanese",
+      "term_scope": "generic-pattern",
+      "scope_note": "A broad Japanese lattice/check family; production content must distinguish it from the alternating filled squares of Ichimatsu."
+    },
+    {
+      "ordinal": 32,
+      "wave": 2,
+      "id": "awning-stripe",
+      "names": {
+        "ja": "オーニングストライプ",
+        "en": "Awning Stripe"
+      },
+      "family": "stripe",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 33,
+      "wave": 2,
+      "id": "regimental-stripe",
+      "names": {
+        "ja": "レジメンタルストライプ",
+        "en": "Regimental Stripe"
+      },
+      "family": "stripe",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 34,
+      "wave": 2,
+      "id": "breton-stripe",
+      "names": {
+        "ja": "ブレトンストライプ",
+        "en": "Breton Stripe"
+      },
+      "family": "stripe",
+      "term_scope": "qualified-style",
+      "scope_note": "A clothing/style-associated stripe convention rather than one universal repeat specification."
+    },
+    {
+      "ordinal": 35,
+      "wave": 2,
+      "id": "swiss-dot",
+      "names": {
+        "ja": "スイスドット",
+        "en": "Swiss Dot"
+      },
+      "family": "dot",
+      "term_scope": "qualified-textile",
+      "scope_note": "Historically a dotted textile treatment/fabric category; visual references must not reduce it to generic printed polka dots."
+    },
+    {
+      "ordinal": 36,
+      "wave": 2,
+      "id": "herringbone",
+      "names": {
+        "ja": "ヘリンボーン",
+        "en": "Herringbone"
+      },
+      "family": "geometric",
+      "term_scope": "qualified-weave-visual",
+      "scope_note": "A weave/arrangement with a characteristic broken-V visual; distinguish from printed chevron."
+    },
+    {
+      "ordinal": 37,
+      "wave": 2,
+      "id": "zigzag",
+      "names": {
+        "ja": "ジグザグ",
+        "en": "Zigzag"
+      },
+      "family": "geometric",
+      "term_scope": "generic-pattern"
+    },
+    {
+      "ordinal": 38,
+      "wave": 2,
+      "id": "diamond",
+      "names": {
+        "ja": "ダイヤモンド柄",
+        "en": "Diamond Pattern"
+      },
+      "family": "geometric",
+      "term_scope": "generic-pattern"
+    },
+    {
+      "ordinal": 39,
+      "wave": 2,
+      "id": "harlequin",
+      "names": {
+        "ja": "ハーレクイン",
+        "en": "Harlequin"
+      },
+      "family": "geometric",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 40,
+      "wave": 2,
+      "id": "checkerboard",
+      "names": {
+        "ja": "チェッカーボード",
+        "en": "Checkerboard"
+      },
+      "family": "geometric",
+      "term_scope": "generic-pattern"
+    },
+    {
+      "ordinal": 41,
+      "wave": 3,
+      "id": "greek-key",
+      "names": {
+        "ja": "グリークキー",
+        "en": "Greek Key"
+      },
+      "family": "geometric",
+      "term_scope": "named-motif"
+    },
+    {
+      "ordinal": 42,
+      "wave": 3,
+      "id": "quatrefoil",
+      "names": {
+        "ja": "クアトレフォイル",
+        "en": "Quatrefoil"
+      },
+      "family": "geometric",
+      "term_scope": "named-motif"
+    },
+    {
+      "ordinal": 43,
+      "wave": 3,
+      "id": "ogee",
+      "names": {
+        "ja": "オジー",
+        "en": "Ogee"
+      },
+      "family": "geometric",
+      "term_scope": "named-motif"
+    },
+    {
+      "ordinal": 44,
+      "wave": 3,
+      "id": "lattice",
+      "names": {
+        "ja": "ラティス",
+        "en": "Lattice"
+      },
+      "family": "geometric",
+      "term_scope": "generic-pattern"
+    },
+    {
+      "ordinal": 45,
+      "wave": 3,
+      "id": "honeycomb",
+      "names": {
+        "ja": "ハニカム",
+        "en": "Honeycomb"
+      },
+      "family": "geometric",
+      "term_scope": "generic-pattern"
+    },
+    {
+      "ordinal": 46,
+      "wave": 3,
+      "id": "scallop",
+      "names": {
+        "ja": "スカラップ",
+        "en": "Scallop"
+      },
+      "family": "geometric",
+      "term_scope": "generic-pattern"
+    },
+    {
+      "ordinal": 47,
+      "wave": 3,
+      "id": "basketweave",
+      "names": {
+        "ja": "バスケットウィーブ",
+        "en": "Basketweave"
+      },
+      "family": "geometric",
+      "term_scope": "qualified-weave-visual",
+      "scope_note": "A weave/visual family; reference art must represent the interlaced appearance without claiming one canonical basketweave construction."
+    },
+    {
+      "ordinal": 48,
+      "wave": 3,
+      "id": "hexagon",
+      "names": {
+        "ja": "六角形柄",
+        "en": "Hexagon Pattern"
+      },
+      "family": "geometric",
+      "term_scope": "generic-pattern"
+    },
+    {
+      "ordinal": 49,
+      "wave": 3,
+      "id": "trellis",
+      "names": {
+        "ja": "トレリス",
+        "en": "Trellis"
+      },
+      "family": "geometric",
+      "term_scope": "generic-pattern",
+      "scope_note": "Generic trellis family; distinguish from the narrower contemporary Moroccan Trellis market label."
+    },
+    {
+      "ordinal": 50,
+      "wave": 3,
+      "id": "hishi",
+      "names": {
+        "ja": "菱文様",
+        "en": "Hishi"
+      },
+      "family": "japanese",
+      "term_scope": "named-motif",
+      "scope_note": "A Japanese diamond/rhombus motif family; production content must distinguish generic diamond geometry from Japanese hishi usage."
+    },
+    {
+      "ordinal": 51,
+      "wave": 3,
+      "id": "fleur-de-lis",
+      "names": {
+        "ja": "フルール・ド・リス",
+        "en": "Fleur-de-lis"
+      },
+      "family": "ornamental",
+      "term_scope": "named-motif"
+    },
+    {
+      "ordinal": 52,
+      "wave": 3,
+      "id": "toile-de-jouy",
+      "names": {
+        "ja": "トワル・ド・ジュイ",
+        "en": "Toile de Jouy"
+      },
+      "family": "ornamental",
+      "term_scope": "qualified-textile-style",
+      "scope_note": "A textile/design tradition commonly recognized through monochrome pastoral or narrative scenes; not one fixed repeat."
+    },
+    {
+      "ordinal": 53,
+      "wave": 3,
+      "id": "chintz",
+      "names": {
+        "ja": "チンツ",
+        "en": "Chintz"
+      },
+      "family": "floral",
+      "term_scope": "qualified-textile-style",
+      "scope_note": "Historically a textile/material and printing tradition; modern visual usage often implies dense floral prints."
+    },
+    {
+      "ordinal": 54,
+      "wave": 3,
+      "id": "ditsy-floral",
+      "names": {
+        "ja": "小花柄",
+        "en": "Ditsy Floral"
+      },
+      "family": "floral",
+      "term_scope": "generic-pattern"
+    },
+    {
+      "ordinal": 55,
+      "wave": 3,
+      "id": "jacobean-floral",
+      "names": {
+        "ja": "ジャコビアン・フローラル",
+        "en": "Jacobean Floral"
+      },
+      "family": "floral",
+      "term_scope": "qualified-style"
+    },
+    {
+      "ordinal": 56,
+      "wave": 3,
+      "id": "millefleurs",
+      "names": {
+        "ja": "ミルフルール",
+        "en": "Millefleurs"
+      },
+      "family": "floral",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 57,
+      "wave": 3,
+      "id": "botanical-print",
+      "names": {
+        "ja": "ボタニカル柄",
+        "en": "Botanical Print"
+      },
+      "family": "floral",
+      "term_scope": "generic-family"
+    },
+    {
+      "ordinal": 58,
+      "wave": 3,
+      "id": "acanthus",
+      "names": {
+        "ja": "アカンサス",
+        "en": "Acanthus"
+      },
+      "family": "ornamental",
+      "term_scope": "named-motif"
+    },
+    {
+      "ordinal": 59,
+      "wave": 3,
+      "id": "medallion",
+      "names": {
+        "ja": "メダリオン",
+        "en": "Medallion"
+      },
+      "family": "ornamental",
+      "term_scope": "generic-motif"
+    },
+    {
+      "ordinal": 60,
+      "wave": 3,
+      "id": "ivy",
+      "names": {
+        "ja": "アイビー柄",
+        "en": "Ivy Pattern"
+      },
+      "family": "floral",
+      "term_scope": "generic-motif"
+    },
+    {
+      "ordinal": 61,
+      "wave": 4,
+      "id": "baroque-scroll",
+      "names": {
+        "ja": "バロック・スクロール",
+        "en": "Baroque Scroll"
+      },
+      "family": "ornamental",
+      "term_scope": "qualified-style"
+    },
+    {
+      "ordinal": 62,
+      "wave": 4,
+      "id": "chinoiserie",
+      "names": {
+        "ja": "シノワズリ",
+        "en": "Chinoiserie"
+      },
+      "family": "ornamental",
+      "term_scope": "qualified-style",
+      "scope_note": "A broad European decorative style inspired by Chinese art, not one fixed motif; publish only with explicit scope qualification."
+    },
+    {
+      "ordinal": 63,
+      "wave": 4,
+      "id": "flame-stitch",
+      "names": {
+        "ja": "フレームステッチ",
+        "en": "Flame Stitch"
+      },
+      "family": "ornamental",
+      "term_scope": "qualified-technique-visual",
+      "scope_note": "Also associated with Bargello/Florentine work; the recognizable visual is repeated stepped peaks and valleys."
+    },
+    {
+      "ordinal": 64,
+      "wave": 4,
+      "id": "tree-of-life",
+      "names": {
+        "ja": "生命の樹",
+        "en": "Tree of Life"
+      },
+      "family": "ornamental",
+      "term_scope": "named-motif"
+    },
+    {
+      "ordinal": 65,
+      "wave": 4,
+      "id": "moire",
+      "names": {
+        "ja": "モアレ",
+        "en": "Moiré"
+      },
+      "family": "abstract",
+      "term_scope": "qualified-textile-effect",
+      "scope_note": "An optical/watered textile effect rather than one fixed printed motif."
+    },
+    {
+      "ordinal": 66,
+      "wave": 4,
+      "id": "yagasuri",
+      "names": {
+        "ja": "矢絣",
+        "en": "Yagasuri"
+      },
+      "family": "japanese",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 67,
+      "wave": 4,
+      "id": "sayagata",
+      "names": {
+        "ja": "紗綾形",
+        "en": "Sayagata"
+      },
+      "family": "japanese",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 68,
+      "wave": 4,
+      "id": "uroko",
+      "names": {
+        "ja": "鱗文様",
+        "en": "Uroko"
+      },
+      "family": "japanese",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 69,
+      "wave": 4,
+      "id": "tatewaku",
+      "names": {
+        "ja": "立涌",
+        "en": "Tatewaku"
+      },
+      "family": "japanese",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 70,
+      "wave": 4,
+      "id": "kagome",
+      "names": {
+        "ja": "籠目",
+        "en": "Kagome"
+      },
+      "family": "japanese",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 71,
+      "wave": 4,
+      "id": "kanoko",
+      "names": {
+        "ja": "鹿の子",
+        "en": "Kanoko"
+      },
+      "family": "japanese",
+      "term_scope": "qualified-technique-visual",
+      "scope_note": "Closely tied to kanoko shibori; distinguish the dotted visual convention from the resist-dye technique itself."
+    },
+    {
+      "ordinal": 72,
+      "wave": 4,
+      "id": "hanabishi",
+      "names": {
+        "ja": "花菱",
+        "en": "Hanabishi"
+      },
+      "family": "japanese",
+      "term_scope": "named-motif"
+    },
+    {
+      "ordinal": 73,
+      "wave": 4,
+      "id": "same-komon",
+      "names": {
+        "ja": "鮫小紋",
+        "en": "Same Komon"
+      },
+      "family": "japanese",
+      "term_scope": "qualified-technique-visual",
+      "scope_note": "A komon pattern created from extremely fine dots; publish with the technique/pattern distinction explicit."
+    },
+    {
+      "ordinal": 74,
+      "wave": 4,
+      "id": "nami-chidori",
+      "names": {
+        "ja": "波千鳥",
+        "en": "Nami Chidori"
+      },
+      "family": "japanese",
+      "term_scope": "named-motif"
+    },
+    {
+      "ordinal": 75,
+      "wave": 4,
+      "id": "tomoe",
+      "names": {
+        "ja": "巴",
+        "en": "Tomoe"
+      },
+      "family": "japanese",
+      "term_scope": "named-motif"
+    },
+    {
+      "ordinal": 76,
+      "wave": 4,
+      "id": "shibori",
+      "names": {
+        "ja": "絞り",
+        "en": "Shibori"
+      },
+      "family": "global-textile",
+      "term_scope": "qualified-technique",
+      "scope_note": "A family of resist-dye techniques producing many patterns; reference image is representative, never canonical."
+    },
+    {
+      "ordinal": 77,
+      "wave": 4,
+      "id": "batik",
+      "names": {
+        "ja": "バティック",
+        "en": "Batik"
+      },
+      "family": "global-textile",
+      "term_scope": "qualified-technique",
+      "scope_note": "A wax-resist dyeing tradition with many regional visual languages; not one fixed motif."
+    },
+    {
+      "ordinal": 78,
+      "wave": 4,
+      "id": "bandhani",
+      "names": {
+        "ja": "バンダニ",
+        "en": "Bandhani"
+      },
+      "family": "global-textile",
+      "term_scope": "qualified-technique",
+      "scope_note": "A tie-resist textile tradition; visual reference must represent characteristic dotted resist without claiming one universal layout."
+    },
+    {
+      "ordinal": 79,
+      "wave": 4,
+      "id": "ajrakh",
+      "names": {
+        "ja": "アジュラック",
+        "en": "Ajrakh"
+      },
+      "family": "global-textile",
+      "term_scope": "qualified-textile-tradition"
+    },
+    {
+      "ordinal": 80,
+      "wave": 4,
+      "id": "kalamkari",
+      "names": {
+        "ja": "カラムカリ",
+        "en": "Kalamkari"
+      },
+      "family": "global-textile",
+      "term_scope": "qualified-textile-tradition"
+    },
+    {
+      "ordinal": 81,
+      "wave": 5,
+      "id": "suzani",
+      "names": {
+        "ja": "スザニ",
+        "en": "Suzani"
+      },
+      "family": "global-textile",
+      "term_scope": "qualified-textile-tradition"
+    },
+    {
+      "ordinal": 82,
+      "wave": 5,
+      "id": "kente",
+      "names": {
+        "ja": "ケンテ",
+        "en": "Kente"
+      },
+      "family": "global-textile",
+      "term_scope": "qualified-textile-tradition"
+    },
+    {
+      "ordinal": 83,
+      "wave": 5,
+      "id": "bogolan",
+      "names": {
+        "ja": "ボゴラン",
+        "en": "Bogolan"
+      },
+      "family": "global-textile",
+      "term_scope": "qualified-textile-tradition",
+      "scope_note": "Also known as bogolanfini/mud cloth; a textile tradition, not one fixed motif."
+    },
+    {
+      "ordinal": 84,
+      "wave": 5,
+      "id": "adire",
+      "names": {
+        "ja": "アディレ",
+        "en": "Adire"
+      },
+      "family": "global-textile",
+      "term_scope": "qualified-textile-tradition",
+      "scope_note": "Yoruba indigo resist-dyed cloth using multiple resist methods and named patterns; not one universal repeat."
+    },
+    {
+      "ordinal": 85,
+      "wave": 5,
+      "id": "kuba-cloth",
+      "names": {
+        "ja": "クバ布",
+        "en": "Kuba Cloth"
+      },
+      "family": "global-textile",
+      "term_scope": "qualified-textile-tradition"
+    },
+    {
+      "ordinal": 86,
+      "wave": 5,
+      "id": "sashiko",
+      "names": {
+        "ja": "刺し子",
+        "en": "Sashiko"
+      },
+      "family": "global-textile",
+      "term_scope": "qualified-technique",
+      "scope_note": "A Japanese stitching/embroidery tradition with many geometric pattern vocabularies; representative visual only."
+    },
+    {
+      "ordinal": 87,
+      "wave": 5,
+      "id": "kantha",
+      "names": {
+        "ja": "カンタ",
+        "en": "Kantha"
+      },
+      "family": "global-textile",
+      "term_scope": "qualified-textile-tradition"
+    },
+    {
+      "ordinal": 88,
+      "wave": 5,
+      "id": "otomi-embroidery",
+      "names": {
+        "ja": "オトミ刺繍",
+        "en": "Otomi Embroidery"
+      },
+      "family": "global-textile",
+      "term_scope": "qualified-textile-tradition"
+    },
+    {
+      "ordinal": 89,
+      "wave": 5,
+      "id": "african-wax-print",
+      "names": {
+        "ja": "アフリカンワックスプリント",
+        "en": "African Wax Print"
+      },
+      "family": "global-textile",
+      "term_scope": "qualified-textile-style"
+    },
+    {
+      "ordinal": 90,
+      "wave": 5,
+      "id": "block-print",
+      "names": {
+        "ja": "ブロックプリント",
+        "en": "Block Print"
+      },
+      "family": "global-textile",
+      "term_scope": "qualified-technique",
+      "scope_note": "A printing technique with many motif traditions; reference image is representative, not canonical."
+    },
+    {
+      "ordinal": 91,
+      "wave": 5,
+      "id": "zebra-print",
+      "names": {
+        "ja": "ゼブラ柄",
+        "en": "Zebra Print"
+      },
+      "family": "animal",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 92,
+      "wave": 5,
+      "id": "tiger-print",
+      "names": {
+        "ja": "タイガー柄",
+        "en": "Tiger Print"
+      },
+      "family": "animal",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 93,
+      "wave": 5,
+      "id": "snake-print",
+      "names": {
+        "ja": "スネーク柄",
+        "en": "Snake Print"
+      },
+      "family": "animal",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 94,
+      "wave": 5,
+      "id": "cow-print",
+      "names": {
+        "ja": "カウ柄",
+        "en": "Cow Print"
+      },
+      "family": "animal",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 95,
+      "wave": 5,
+      "id": "giraffe-print",
+      "names": {
+        "ja": "ジラフ柄",
+        "en": "Giraffe Print"
+      },
+      "family": "animal",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 96,
+      "wave": 5,
+      "id": "dalmatian-spots",
+      "names": {
+        "ja": "ダルメシアン柄",
+        "en": "Dalmatian Spots"
+      },
+      "family": "animal",
+      "term_scope": "named-pattern"
+    },
+    {
+      "ordinal": 97,
+      "wave": 5,
+      "id": "camouflage",
+      "names": {
+        "ja": "迷彩柄",
+        "en": "Camouflage"
+      },
+      "family": "organic",
+      "term_scope": "generic-family"
+    },
+    {
+      "ordinal": 98,
+      "wave": 5,
+      "id": "tie-dye",
+      "names": {
+        "ja": "タイダイ",
+        "en": "Tie-dye"
+      },
+      "family": "abstract",
+      "term_scope": "qualified-technique"
+    },
+    {
+      "ordinal": 99,
+      "wave": 5,
+      "id": "marbling",
+      "names": {
+        "ja": "マーブル柄",
+        "en": "Marbling"
+      },
+      "family": "abstract",
+      "term_scope": "qualified-technique-visual"
+    },
+    {
+      "ordinal": 100,
+      "wave": 5,
+      "id": "terrazzo",
+      "names": {
+        "ja": "テラゾー柄",
+        "en": "Terrazzo Pattern"
+      },
+      "family": "abstract",
+      "term_scope": "qualified-material-inspired"
+    }
+  ]
+}
