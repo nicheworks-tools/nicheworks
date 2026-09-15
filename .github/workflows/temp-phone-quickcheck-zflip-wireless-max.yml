@@ -1,0 +1,37 @@
+name: Temp Phone QuickCheck Galaxy Z Flip wireless max
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch-and-validate:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'fix/phone-quickcheck-zflip-wireless-max-20260915'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/phone-quickcheck-zflip-wireless-max-20260915
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Apply patch
+        run: node scripts/temp-patch-phone-quickcheck-zflip-wireless-max.mjs
+      - name: Validate
+        run: |
+          node scripts/check-phone-quickcheck-data.mjs
+          node scripts/check-phone-quickcheck-source-semantics.mjs
+          node scripts/check-phone-quickcheck-affiliate.mjs
+          node tools/phone-quickcheck/tests/behavior.test.mjs
+          git diff --check
+      - name: Commit canonical files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/phone-quickcheck/data/phones.json tools/phone-quickcheck/tests/behavior.test.mjs
+          git commit -m "Phone QuickCheck: verify Galaxy Z Flip wireless max"
+          git push origin HEAD:fix/phone-quickcheck-zflip-wireless-max-20260915
