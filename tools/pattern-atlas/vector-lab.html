@@ -60,7 +60,6 @@
           </label>
         </div>
         <p class="pa-lab-status" data-pa-lab-status role="status">元画像を読み込み中…</p>
-        <p class="pa-lab-engine-state" data-pa-lab-image-state>ImageTracer worker: checking…</p>
         <p class="pa-lab-wasm-state" data-pa-lab-wasm-state>VTracer WASM: not loaded</p>
       </section>
 
@@ -115,7 +114,7 @@
             <span class="pa-lab-progress-detail" data-pa-lab-progress-detail></span>
           </div>
         </div>
-        <p class="pa-muted">A/B比較は進行状況を上のバーに表示します。ImageTracerはWeb Workerで実行するため、変換中も画面が固まりません。VTracerは初回だけWASMを読み込みます。</p>
+        <p class="pa-muted">A/B比較は進行状況を上のバーに表示します。処理開始・ImageTracer・VTracerの読込/変換・完了/失敗が分かるようにしました。</p>
       </section>
 
       <section class="pa-section" aria-labelledby="results-title">
@@ -145,6 +144,8 @@
     </footer>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/gh/jankovicsandras/imagetracerjs@cb0c84a309df5e75614d3b5166cdc77a56f12a98/imagetracer_v1.2.6.js"></script>
   <script type="module" src="./js/vector-lab.js?v=20260916-2"></script>
+  <script type="module" src="./js/vector-lab-runtime-progress.js?v=20260916-1"></script>
 </body>
 </html>
