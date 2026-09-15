@@ -27,5 +27,10 @@
   {"lgcode":"472018","pref_slug":"okinawa","city_slug":"naha","publish":true},
   {"lgcode":"362018","pref_slug":"tokushima","city_slug":"tokushima","publish":true},
   {"lgcode":"422011","pref_slug":"nagasaki","city_slug":"nagasaki","publish":true},
-  {"lgcode":"392014","pref_slug":"kochi","city_slug":"kochi","publish":true}
+  {"lgcode":"392014","pref_slug":"kochi","city_slug":"kochi","publish":true},
+  {"lgcode":"092011","pref_slug":"tochigi","city_slug":"utsunomiya","publish":true},
+  {"lgcode":"162019","pref_slug":"toyama","city_slug":"toyama","publish":true},
+  {"lgcode":"182010","pref_slug":"fukui","city_slug":"fukui","publish":true},
+  {"lgcode":"202011","pref_slug":"nagano","city_slug":"nagano","publish":true},
+  {"lgcode":"212016","pref_slug":"gifu","city_slug":"gifu","publish":true}
 ]
