@@ -64,7 +64,26 @@
     })
   ]);
 
-  const rows = Object.freeze([...wave6Rows, ...wave7Rows]);
+  const taskalfaAliasSource = "https://www.kyoceradocumentsolutions.com/support/mobileprint/index.html";
+  const tonerCompatibilitySource = "https://www.kyoceradocumentsolutions.de/content/dam/download-center-cf/de/documents/Others/Tonerkompatibilitaet_pdf.download.pdf";
+  const wave12Row = (model, evidenceAlias, tonerCodes) => Object.freeze({
+    maker: "KYOCERA Document Solutions",
+    searchMaker: "KYOCERA",
+    model,
+    verifiedAt: "2026-09-16",
+    sourceUrl: tonerCompatibilitySource,
+    evidenceAlias,
+    evidenceUrls: Object.freeze([taskalfaAliasSource, tonerCompatibilitySource]),
+    tonerCodes: Object.freeze(tonerCodes)
+  });
+  const wave12Rows = Object.freeze([
+    wave12Row("TASKalfa 205c", "FS-C8020MFP", ["TK-895C", "TK-895K", "TK-895M", "TK-895Y"]),
+    wave12Row("TASKalfa 255c", "FS-C8025MFP", ["TK-895C", "TK-895K", "TK-895M", "TK-895Y"]),
+    wave12Row("TASKalfa 255", "FS-6025MFP", ["TK-475"]),
+    wave12Row("TASKalfa 305", "FS-6030MFP", ["TK-475"])
+  ]);
+
+  const rows = Object.freeze([...wave6Rows, ...wave7Rows, ...wave12Rows]);
 
   function buildTaggedSearchUrl(query) {
     const url = new URL("https://www.amazon.co.jp/s");
@@ -109,6 +128,7 @@
 
   window.MANUALFINDER_KYOCERA_TONER_WAVE6_LEDGER = wave6Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE7_LEDGER = wave7Rows;
+  window.MANUALFINDER_KYOCERA_TONER_WAVE12_LEDGER = wave12Rows;
   window.MANUALFINDER_AFFILIATE_CONFIG = Object.freeze({
     ...base,
     printerConsumables: Object.freeze([...(base.printerConsumables || []), ...rows]),
