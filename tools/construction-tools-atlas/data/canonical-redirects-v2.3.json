@@ -1,6 +1,6 @@
 {
   "schema": "cta-canonical-redirects-v2.3",
-  "version": "2026-09-15-q011-identity-closure-2",
+  "version": "2026-09-16-q012-identity-closure-1",
   "policy": {
     "purpose": "Retire confirmed duplicate public canonicals without breaking legacy IDs, search vocabulary, images, or favorites.",
     "source_records_remain_stored": true,
@@ -33,6 +33,23 @@
     {"from":"q011_waterproof_tape","to":"seal_tape","reason":"same waterproof sealing tape concept"},
     {"from":"q011_drain_trap","to":"trap","reason":"same generic drain trap concept"},
     {"from":"q011_pipe_sleeve","to":"sleeve","reason":"same pipe penetration sleeve concept"},
-    {"from":"q011_safety_harness","to":"safety_harness","reason":"same full-body fall-protection harness concept"}
+    {"from":"q011_safety_harness","to":"safety_harness","reason":"same full-body fall-protection harness concept"},
+    {"from":"q012_hex_key","to":"allen_key","reason":"same hex/Allen key concept"},
+    {"from":"q012_feeler_gauge","to":"feeler_gauge","reason":"same feeler/thickness gauge concept"},
+    {"from":"q012_dial_gauge","to":"dial_gauge","reason":"same dial indicator/gauge concept"},
+    {"from":"q012_vernier_caliper","to":"caliper","reason":"same vernier-caliper canonical represented by the existing caliper entry"},
+    {"from":"q012_builder_square","to":"speed_square","reason":"same 差し金/Carpenter's Square concept; existing speed_square ID carries the maintained carpenter-square content"},
+    {"from":"q012_diamond_blade","to":"diamond_blade","reason":"same diamond masonry-cutting blade concept"},
+    {"from":"q012_all_thread_rod","to":"threaded_rod","reason":"same fully threaded rod concept"},
+    {"from":"q012_concrete_cover_meter","to":"cover_meter","reason":"same concrete cover meter concept"},
+    {"from":"q012_rebar_locator","to":"rebar_detector","reason":"same rebar locating/detection device concept"},
+    {"from":"q012_crack_scale","to":"crack_gauge","reason":"same crack-width scale/gauge concept"},
+    {"from":"q012_dust_collector","to":"dust_collection_vacuum","reason":"same jobsite dust-extraction equipment concept"},
+    {"from":"q012_shop_vacuum","to":"wet_dry_vacuum","reason":"same jobsite shop/wet-dry vacuum concept"},
+    {"from":"shop_vac","to":"wet_dry_vacuum","reason":"duplicate shop-vac canonical consolidated into wet/dry vacuum"},
+    {"from":"q012_air_compressor","to":"compressor","reason":"same compressed-air equipment concept"},
+    {"from":"air_compressor","to":"compressor","reason":"duplicate air-compressor canonical consolidated into compressor"},
+    {"from":"q012_temporary_distribution_box","to":"temporary_power_panel","reason":"same temporary site power distribution panel concept"},
+    {"from":"q012_guardrail","to":"guardrail","reason":"same temporary fall-protection guardrail concept"}
   ]
 }
