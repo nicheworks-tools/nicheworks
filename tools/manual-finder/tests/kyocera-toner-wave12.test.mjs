@@ -47,7 +47,6 @@ for (const args of [
   { maker: 'KYOCERA Document Solutions', model: 'KM-3531', category: 'プリンター・複合機' },
   { maker: 'KYOCERA Document Solutions', model: 'KM-2531', category: 'プリンター・複合機' },
   { maker: 'KYOCERA Document Solutions', model: 'KM-C870', category: 'プリンター・複合機' },
-  { maker: 'KYOCERA Document Solutions', model: 'KM-3650w', category: 'プリンター・複合機' },
   { maker: 'KYOCERA Document Solutions', model: 'TASKalfa 205c', category: 'その他' },
   { maker: 'KYOCERA', model: 'TASKalfa 205c', category: 'プリンター・複合機' }
 ]) assert.deepEqual(Array.from(config.getConsumableOffers(args)), []);

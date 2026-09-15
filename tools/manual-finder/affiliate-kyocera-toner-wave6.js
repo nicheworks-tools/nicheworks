@@ -175,7 +175,27 @@
     wave17Row("TASKalfa 4816w", taskalfa4814FamilySource, "official_family_toner_reference")
   ]);
 
-  const rows = Object.freeze([...wave6Rows, ...wave7Rows, ...wave12Rows, ...wave13Rows, ...wave14Rows, ...wave16Rows, ...wave17Rows]);
+  const wave18Source = "https://www.kyoceradocumentsolutions.co.jp/support/wt_attention.html";
+  const wave18Rows = Object.freeze([
+    "KM-3510w",
+    "KM-3650w",
+    "KM-4075w",
+    "KM-4830w",
+    "KM-5410w",
+    "TASKalfa 4812w",
+    "TASKalfa 4813w"
+  ].map((model) => Object.freeze({
+    maker: "KYOCERA Document Solutions",
+    searchMaker: "KYOCERA",
+    model,
+    verifiedAt: "2026-09-16",
+    sourceUrl: wave18Source,
+    evidenceRelation: "official_model_toner_container_reference",
+    evidenceUrls: Object.freeze([wave18Source]),
+    tonerCodes: Object.freeze([])
+  })));
+
+  const rows = Object.freeze([...wave6Rows, ...wave7Rows, ...wave12Rows, ...wave13Rows, ...wave14Rows, ...wave16Rows, ...wave17Rows, ...wave18Rows]);
 
   function buildTaggedSearchUrl(query) {
     const url = new URL("https://www.amazon.co.jp/s");
@@ -225,6 +245,7 @@
   window.MANUALFINDER_KYOCERA_TONER_WAVE14_LEDGER = wave14Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE16_LEDGER = wave16Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE17_LEDGER = wave17Rows;
+  window.MANUALFINDER_KYOCERA_TONER_WAVE18_LEDGER = wave18Rows;
   window.MANUALFINDER_AFFILIATE_CONFIG = Object.freeze({
     ...base,
     printerConsumables: Object.freeze([...(base.printerConsumables || []), ...rows]),
