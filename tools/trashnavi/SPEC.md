@@ -638,3 +638,17 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 - The official municipal links remain primary and visually separate. The commerce block explicitly states that the products are general household supplies and are not evidence of compliance with municipal disposal rules.
 - Affiliate click analytics remain coarse: tool, provider, fixed target key, and placement only. Amazon price, inventory, rating, review count, seller claims, and product images are not copied into TrashNavi.
 - If the shared helper or affiliate config is unavailable/invalid, the commerce section fails closed and remains hidden.
+
+## Wave 23 batch publication
+
+Wave 23から、1自治体ずつではなく複数自治体を同一Waveで検証・公開するbatch expansionへ移行する。公開閾値は従来どおり `municipal_home` を除く **3種類以上の異なるwaste-specific official link type** とし、速度向上のために閾値やauthority要件を緩和しない。
+
+Wave 23では次の5自治体を同時にpreferred candidateへ引き上げ、公開対象を **29自治体から34自治体** へ拡張する。
+
+- 栃木県 宇都宮市 — `/tools/trashnavi/tochigi/utsunomiya/` — waste sorting / collection calendar / bulky waste
+- 富山県 富山市 — `/tools/trashnavi/toyama/toyama/` — waste sorting / collection calendar / drop-off facility
+- 福井県 福井市 — `/tools/trashnavi/fukui/fukui/` — waste sorting / collection calendar / bulky waste
+- 長野県 長野市 — `/tools/trashnavi/nagano/nagano/` — waste sorting / collection calendar / drop-off facility
+- 岐阜県 岐阜市 — `/tools/trashnavi/gifu/gifu/` — waste sorting / collection calendar / bulky waste
+
+Wave 23 readiness baselineは、1,916 municipalities、2,234 valid HTTP(S) records、34 preferred candidates、26 direct-link datasets / 166 records / 147 unique URLs / 0 invalid URLs。publication acceptanceでは、5ページ各3 official cards、canonical、current official URLs、Amazon `[PR]` block、共有Amazon helper/config/runtime、AI reference 34/34、両sitemap canonical各1件を検証する。`fiscal_year: 2026` を持つ岐阜市・長野市だけ2026 calendar calloutを表示する。Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を変更せず継承する。

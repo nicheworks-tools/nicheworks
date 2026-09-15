@@ -1,13 +1,13 @@
 {
   "schema_version": "trashnavi-ai-reference-v1",
-  "snapshot_date": "2026-09-14",
+  "snapshot_date": "2026-09-15",
   "canonical_tool": "https://nicheworks.app/tools/trashnavi/",
   "purpose": "Machine-readable discovery index for currently published TrashNavi municipality pages.",
   "scope": "Published municipality landing pages only. This pilot index does not duplicate or replace the official municipal rules linked from each page.",
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 29,
+  "published_municipality_count": 34,
   "municipalities": [
     {"lgcode":"131016","pref_slug":"tokyo","city_slug":"chiyoda","url":"https://nicheworks.app/tools/trashnavi/tokyo/chiyoda/"},
     {"lgcode":"131032","pref_slug":"tokyo","city_slug":"minato","url":"https://nicheworks.app/tools/trashnavi/tokyo/minato/"},
@@ -37,6 +37,11 @@
     {"lgcode":"472018","pref_slug":"okinawa","city_slug":"naha","url":"https://nicheworks.app/tools/trashnavi/okinawa/naha/"},
     {"lgcode":"362018","pref_slug":"tokushima","city_slug":"tokushima","url":"https://nicheworks.app/tools/trashnavi/tokushima/tokushima/"},
     {"lgcode":"422011","pref_slug":"nagasaki","city_slug":"nagasaki","url":"https://nicheworks.app/tools/trashnavi/nagasaki/nagasaki/"},
-    {"lgcode":"392014","pref_slug":"kochi","city_slug":"kochi","url":"https://nicheworks.app/tools/trashnavi/kochi/kochi/"}
+    {"lgcode":"392014","pref_slug":"kochi","city_slug":"kochi","url":"https://nicheworks.app/tools/trashnavi/kochi/kochi/"},
+    {"lgcode":"092011","pref_slug":"tochigi","city_slug":"utsunomiya","url":"https://nicheworks.app/tools/trashnavi/tochigi/utsunomiya/"},
+    {"lgcode":"162019","pref_slug":"toyama","city_slug":"toyama","url":"https://nicheworks.app/tools/trashnavi/toyama/toyama/"},
+    {"lgcode":"182010","pref_slug":"fukui","city_slug":"fukui","url":"https://nicheworks.app/tools/trashnavi/fukui/fukui/"},
+    {"lgcode":"202011","pref_slug":"nagano","city_slug":"nagano","url":"https://nicheworks.app/tools/trashnavi/nagano/nagano/"},
+    {"lgcode":"212016","pref_slug":"gifu","city_slug":"gifu","url":"https://nicheworks.app/tools/trashnavi/gifu/gifu/"}
   ]
 }
