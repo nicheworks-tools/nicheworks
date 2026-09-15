@@ -8,6 +8,7 @@ const DATA = path.join(ROOT, 'data');
 const MANIFEST_PATH = path.join(DATA, 'quality-manifest.json');
 const LOADER_PATH = path.join(DATA, 'quality-loader.js');
 const REDIRECT_PATH = path.join(DATA, 'canonical-redirects-v2.3.json');
+const IDENTITY_PATH = path.join(DATA, 'canonical-identity-resolutions-v2.3.json');
 const SNAPSHOT_PATH = path.join(DATA, 'publication-inventory-v2.3.json');
 const GENERATED_FILLER_BATCHES = new Set(['direct-5000', 'atlas-expand-5000']);
 const GENERATED_ID_PREFIX_BY_BATCH = new Map([
@@ -91,6 +92,8 @@ function resolveRedirect(id, map) {
 function computeExpected() {
   const manifest = readJson(MANIFEST_PATH);
   const redirectMap = buildRedirectMap();
+  const identity = readJson(IDENTITY_PATH);
+  const typeOverrideMap = new Map(array(identity?.type_overrides).map((row) => [text(row?.id), text(row?.to)]).filter(([id, to]) => id && to));
   const seenIds = new Set();
   const seenTerms = new Set();
   const candidates = [];
@@ -107,7 +110,7 @@ function computeExpected() {
     for (const row of rowsFrom(readJson(file))) {
       rawEntries += 1;
       const id = text(row?.id || row?.slug);
-      const type = sourceType(row);
+      const type = typeOverrideMap.get(id) || sourceType(row);
       const batch = generatedBatch(row);
       const knownFiller = isKnownGeneratedFiller(row);
       if (!id) { skippedMissingId += 1; continue; }
@@ -155,7 +158,7 @@ function computeExpected() {
     quarantineByBatch,
     snapshot: {
       schema: 'cta-publication-inventory-v2.3',
-      version: '2026-09-15-canonical-redirects-3',
+      version: '2026-09-16-q011-identity-closure-1',
       policy: {
         generated_filler_batches: [...GENERATED_FILLER_BATCHES].sort((a, b) => a.localeCompare(b, 'en')),
         generated_filler_publication_state: 'quarantined',

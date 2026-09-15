@@ -159,7 +159,7 @@ async function compute() {
     if (!source) throw new Error(`${id}: public entry has no source row`);
     const patch = enrichment.byId.get(id) || null;
     const q = sourceQuality(source.row, patch);
-    const type = typeOf(source.row);
+    const type = typeOf(publicEntry);
     counts[q.status] += 1;
     if (q.identity) counts.explicit_bilingual_identity += 1;
     if (q.definition) counts.explicit_bilingual_definition += 1;
@@ -180,7 +180,7 @@ async function compute() {
   const sortedStatuses = statuses.sort((a, b) => a.id.localeCompare(b.id, 'en'));
   return {
     schema: 'cta-public-content-quality-v2.3',
-    version: '2026-09-15-content-wave1-2',
+    version: '2026-09-16-q011-identity-closure-1',
     policy: {
       purpose: 'Measure source-backed or canonical-ID-enriched core content separately from runtime generic fallback copy.',
       fallback_independent_core_requires: ['bilingual identity', 'bilingual definition', 'explicit bilingual detail', 'explicit bilingual bullets', 'explicit bilingual examples'],
