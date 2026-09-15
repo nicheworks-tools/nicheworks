@@ -1,0 +1,37 @@
+name: Construction Tools Atlas public image inventory
+
+on:
+  push:
+    branches:
+      - feat/construction-atlas-public-image-inventory-20260915
+    paths:
+      - 'tools/construction-tools-atlas/data/**'
+      - 'tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs'
+      - '.github/workflows/construction-tools-atlas-public-image-inventory.yml'
+  pull_request:
+    paths:
+      - 'tools/construction-tools-atlas/data/publication-inventory-v2.3.json'
+      - 'tools/construction-tools-atlas/data/image-registry-v2.3.json'
+      - 'tools/construction-tools-atlas/data/image-inventory-exceptions-v2.3.json'
+      - 'tools/construction-tools-atlas/data/public-image-inventory-v2.3.json'
+      - 'tools/construction-tools-atlas/data/quality-loader.js'
+      - 'tools/construction-tools-atlas/data/quality-manifest.json'
+      - 'tools/construction-tools-atlas/data/tools*.json'
+      - 'tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs'
+      - '.github/workflows/construction-tools-atlas-public-image-inventory.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  public-image-inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check public image inventory syntax
+        run: node --check tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs
+
+      - name: Validate frozen public image inventory
+        run: node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --check
