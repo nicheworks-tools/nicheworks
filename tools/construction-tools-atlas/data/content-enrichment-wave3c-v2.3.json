@@ -1,0 +1,226 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-16-wave3c-q012-safe-1",
+  "entries": [
+    {
+      "id": "q012_base_plate",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "柱脚や機器架台の荷重を支持面へ伝えるため、柱・支柱などの下端に設ける鋼板。アンカーボルトや溶接部、グラウト層と一体で納まりを構成し、板厚、寸法、孔位置、支持面との接触状態を図面どおりに確認する。",
+      "detail_en": "A steel plate at the base of a column, post, or equipment support that transfers load into the supporting surface. It works together with anchors, welds, and the grout layer, so plate size and thickness, hole locations, and bearing condition should match the drawings.",
+      "bullets_ja": ["板厚・外形・アンカー孔位置を図面と照合する。","設置面のレベル、接触状態、必要なグラウト厚を確認する。","アンカーボルトや溶接部との取り合いを施工前に確認する。"],
+      "bullets_en": ["Check plate thickness, dimensions, and anchor-hole locations against the drawings.","Verify support level, bearing condition, and the required grout thickness.","Confirm interfaces with anchor bolts and welds before installation."],
+      "examples_ja": ["鉄骨柱脚のベースプレートをアンカーボルト位置に合わせて据え付ける。","架台据付前にベースプレート下面と基礎天端の隙間を確認する。"],
+      "examples_en": ["Set a steel-column base plate to the specified anchor-bolt layout.","Check the gap between an equipment base plate and the foundation before grouting."]
+    },
+    {
+      "id": "q012_gusset_plate",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "ブレースや梁・柱など複数部材の接合部で、力を伝達し接合部を補強する鋼板。ボルト孔、溶接長、板厚、取付方向が接合性能に関わるため、勝手に孔を拡げたり切断したりせず、接合詳細図に従って施工する。",
+      "detail_en": "A steel connection plate used where braces, beams, columns, or other members meet to transfer forces and reinforce the joint. Bolt holes, weld length, plate thickness, and orientation are part of the connection design and should follow the connection drawings without unauthorized cutting or hole enlargement.",
+      "bullets_ja": ["板厚・形状・孔位置・取付方向を接合詳細図で確認する。","ボルト接合面や溶接部に干渉物がないか確認する。","現場合わせでの切欠きや孔拡大は設計確認なしに行わない。"],
+      "bullets_en": ["Verify thickness, shape, hole pattern, and orientation against the connection detail.","Keep bolted faying surfaces and weld zones free of unintended interference.","Do not notch the plate or enlarge holes in the field without approved design review."],
+      "examples_ja": ["ブレース端部のガセットプレートに高力ボルト孔を合わせて接合する。","溶接前にガセットプレートの向きと必要溶接長を図面で確認する。"],
+      "examples_en": ["Align brace-end bolt holes with the gusset plate before bolting the connection.","Confirm gusset orientation and required weld length before welding."]
+    },
+    {
+      "id": "q012_shim_plate",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "部材や機器の据付時に高さ、レベル、隙間を微調整する薄い鋼板。必要厚さを組み合わせて支持状態を整えるが、局部的な点支持や不安定な重ね方を避け、設計・施工要領で指定された位置と範囲に配置する。",
+      "detail_en": "A thin steel plate used to make fine adjustments to elevation, level, or clearance during installation of structural members or equipment. Shims may be stacked to obtain the required thickness, but they should provide stable bearing and be placed only at locations permitted by the design or installation procedure.",
+      "bullets_ja": ["必要調整量を測定して適切な厚さのシムを選ぶ。","重ねたシムがずれず、十分な面積で安定して支持していることを確認する。","本締め・グラウト施工後もシムの扱いが施工要領に適合するか確認する。"],
+      "bullets_en": ["Measure the required adjustment and select suitable shim thicknesses.","Ensure stacked shims remain stable and provide adequate bearing area.","Confirm the specified treatment of shims after final tightening or grouting."],
+      "examples_ja": ["鉄骨部材のレベル調整にシムプレートを支持点へ挿入する。","機器据付でベース下の高さ差を測り、必要厚さのシムを選定する。"],
+      "examples_en": ["Insert shim plates at designated bearing points to adjust a steel member level.","Measure the elevation difference under equipment and select the required shim thickness."]
+    },
+    {
+      "id": "q012_grout_under_base",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "ベースプレートや機器基礎とコンクリート支持面の隙間へグラウトを充填し、連続した支持面を形成する施工。下地清掃、型枠、所定の流動性、充填経路、空気抜き、養生を管理し、空洞や未充填を残さないことが重要。",
+      "detail_en": "The process of placing grout beneath a base plate or equipment base to fill the gap to the concrete support and create continuous bearing. Preparation, formwork, specified consistency, flow path, venting, and curing must be controlled so voids or unfilled areas are not left beneath the base.",
+      "bullets_ja": ["施工前に支持面を清掃し、型枠と漏れ止めを確認する。","一方向から連続して充填できる経路と空気の逃げ道を確保する。","材料の配合、水量、可使時間、養生条件を製品仕様に従う。"],
+      "bullets_en": ["Clean the support surface and verify formwork and leak control before placement.","Provide a continuous placement path and a route for displaced air to escape.","Follow the grout specification for mixing water, working time, placement, and curing."],
+      "examples_ja": ["鉄骨柱脚のベースプレート下面へ無収縮グラウトを連続充填する。","機械基礎のグラウト施工前に型枠の漏れと空気抜き位置を確認する。"],
+      "examples_en": ["Continuously place non-shrink grout beneath a steel-column base plate.","Check formwork leakage and vent locations before grouting an equipment base."]
+    },
+    {
+      "id": "q012_non_shrink_grout",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "ベースプレート下、機器基礎、アンカー周辺などの隙間充填に用いる、硬化時の収縮を抑えるよう設計されたグラウト材。製品ごとに適用厚さ、練混ぜ水量、流動性、可使時間、養生条件が異なるため、指定仕様とメーカー手順に従う。",
+      "detail_en": "A grout formulated to limit shrinkage for filling gaps beneath base plates, around equipment bases, or at similar load-transfer locations. Permitted thickness, mixing water, consistency, working time, and curing vary by product, so the project specification and manufacturer instructions govern its use.",
+      "bullets_ja": ["用途と充填厚さに適合する製品を選ぶ。","指定水量と練混ぜ時間を守り、任意の加水で流動性を調整しない。","充填後は乾燥や凍結などを避け、指定方法で養生する。"],
+      "bullets_en": ["Select a product approved for the intended use and placement thickness.","Use the specified water and mixing time rather than adding water arbitrarily for flow.","Protect the placed grout and cure it under the specified conditions."],
+      "examples_ja": ["柱脚ベースプレート下の隙間を指定厚さの無収縮グラウトで充填する。","グラウト練混ぜ前に製品の必要水量と可使時間を確認する。"],
+      "examples_en": ["Fill the specified gap beneath a column base plate with non-shrink grout.","Check the product water requirement and working time before mixing."]
+    },
+    {
+      "id": "q012_epoxy_anchor_adhesive",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "コンクリート等に穿孔した孔へ充填し、全ねじやアンカー筋を定着させる接着系アンカー用樹脂。母材、アンカー径、孔径・深さ、孔内清掃、施工温度、硬化時間が性能に影響するため、認定・設計条件と製品施工手順に従う。",
+      "detail_en": "A resin adhesive used in drilled holes to bond threaded rod or reinforcing-bar anchors into concrete or another approved base material. Performance depends on the base material, anchor size, hole diameter and depth, hole cleaning, installation temperature, and cure time, so the approved design and product instructions must be followed.",
+      "bullets_ja": ["指定された径・深さで穿孔し、製品手順どおり孔内を清掃する。","ノズルから出る樹脂が均一に混合されていることを確認してから充填する。","所定の硬化時間が経過するまでアンカーへ荷重をかけない。"],
+      "bullets_en": ["Drill to the specified diameter and depth and clean the hole exactly as required.","Confirm uniform mixed resin from the nozzle before injecting the anchor hole.","Do not load the anchor until the specified cure time has elapsed."],
+      "examples_ja": ["設備支持金物用の接着系アンカー孔を清掃してから樹脂を注入する。","低温時の硬化時間を製品表で確認し、所定時間後に締付けを行う。"],
+      "examples_en": ["Clean a drilled hole before injecting adhesive for an equipment-support anchor.","Check the low-temperature cure time and delay tightening until the required time has passed."]
+    },
+    {
+      "id": "q012_blow_pump",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "接着系アンカーなどの施工前に、穿孔した孔から切粉や粉じんを吹き出すための手動ポンプ。孔内ブラシと組み合わせた清掃工程の一部として使い、製品が指定する吹出し回数・順序・ノズル到達深さを守る。",
+      "detail_en": "A manual air pump used to blow drilling dust and debris out of anchor holes before installing adhesive or other specified anchors. It is commonly one step in a blow-brush-blow cleaning sequence, and the required number of cycles, order, and nozzle depth come from the anchor system instructions.",
+      "bullets_ja": ["ノズルを孔底付近まで届かせ、粉じんを孔外へ排出する。","孔内ブラシと組み合わせ、指定された清掃順序と回数を守る。","粉じんの飛散方向を管理し、保護眼鏡など適切な保護具を使用する。"],
+      "bullets_en": ["Reach near the bottom of the hole so dust is expelled outward rather than redistributed.","Combine blowing with the specified hole brush and follow the required cleaning sequence.","Control discharged dust and use suitable eye and respiratory protection."],
+      "examples_ja": ["接着系アンカー施工で、ブラッシング前後にブロワーポンプで孔内を清掃する。","深いアンカー孔ではノズルが孔底付近まで届くことを確認してから吹き出す。"],
+      "examples_en": ["Use the blow pump before and after brushing as specified for an adhesive anchor hole.","For a deep hole, confirm the nozzle reaches near the bottom before blowing out debris."]
+    },
+    {
+      "id": "q012_hole_brush",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "アンカー孔の内壁に付着した切粉や粉じんを機械的に除去する専用ブラシ。孔径に合う指定径のブラシを使い、ブロワー等による吹出しと組み合わせて、接着系アンカーが必要とする孔内清掃状態を作る。",
+      "detail_en": "A dedicated brush used to mechanically loosen drilling dust and debris from the wall of an anchor hole. The brush diameter must suit the drilled hole and is typically used with air blowing to achieve the cleaning condition required by the adhesive-anchor system.",
+      "bullets_ja": ["孔径に対応した指定ブラシ径と十分な毛の状態を確認する。","孔底まで挿入し、指定回数ブラッシングして付着粉を浮かせる。","摩耗して径が不足したブラシは交換する。"],
+      "bullets_en": ["Use the specified brush diameter and check that the bristles remain effective.","Insert to the bottom of the hole and brush for the required number of cycles.","Replace a worn brush that no longer provides the required contact with the hole wall."],
+      "examples_ja": ["接着系アンカー孔に適合する孔内ブラシで清掃する。","使用前にブラシ外径を確認し、摩耗が大きいものを交換する。"],
+      "examples_en": ["Clean an adhesive-anchor hole with the brush size specified for that drilled diameter.","Check brush diameter before use and replace a heavily worn brush."]
+    },
+    {
+      "id": "q012_embed_plate",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "コンクリート打設前に所定位置へ組み込み、硬化後に鉄骨・金物・設備支持材などを接合するための埋込鋼板。裏面のアンカーやスタッドを含め、位置、レベル、向き、固定状態を打設前に確認し、コンクリート圧で動かないよう保持する。",
+      "detail_en": "A steel plate set in position before concrete placement so structural steel, hardware, or equipment supports can be attached after the concrete hardens. Its location, elevation, orientation, embedded anchors or studs, and temporary fixation must be checked before the pour so it does not move under concrete pressure.",
+      "bullets_ja": ["通り芯・高さ・向きとアンカー側の納まりを打設前に確認する。","打設・締固めで移動しないよう、型枠や鉄筋との固定方法を確認する。","表面へのコンクリート付着や変形を防ぎ、硬化後の接合面を確保する。"],
+      "bullets_en": ["Verify grid position, elevation, orientation, and embedded anchorage before the pour.","Secure the plate so placing and consolidating concrete cannot move it.","Protect the exposed face from deformation and unwanted concrete contamination."],
+      "examples_ja": ["外装下地取付用の埋込プレートを型枠内の指定座標へ固定する。","打設前検査で埋込プレートの高さとスタッド固定状態を確認する。"],
+      "examples_en": ["Fix an embedded plate at the specified formwork location for a later support connection.","During pre-pour inspection, verify plate elevation and the condition of its studs."]
+    },
+    {
+      "id": "q012_anchor_template",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "複数のアンカーボルトを設計どおりの芯間・配置・鉛直度で保持するための位置決め治具。基礎コンクリート打設時の移動を防ぎ、後から取り付けるベースプレートの孔位置と整合させるため、基準線とレベルに対して固定する。",
+      "detail_en": "A positioning template that holds multiple anchor bolts at the designed spacing, pattern, and alignment during foundation work. It keeps the bolts from moving during concrete placement and aligns them with the future base-plate hole pattern, so the template must be set from established lines and levels.",
+      "bullets_ja": ["ベースプレート孔配置とテンプレートの芯間寸法を照合する。","通り芯・高さ・アンカーボルトの鉛直度を測定して固定する。","打設中にずれない支持方法と、コンクリート締固めへの干渉を確認する。"],
+      "bullets_en": ["Match the template spacing and pattern to the base-plate holes.","Set and secure the template using grid lines, elevation, and anchor-bolt verticality checks.","Provide enough restraint to prevent movement during concrete placement without obstructing consolidation."],
+      "examples_ja": ["柱脚アンカー4本をテンプレートで保持して基礎打設前に位置を確認する。","打設前にテンプレートの対角寸法を測り、アンカーボルト配置を確認する。"],
+      "examples_en": ["Hold four column-base anchors in a template and verify their position before the pour.","Measure template diagonals before concrete placement to confirm the anchor pattern."]
+    },
+    {
+      "id": "q012_infrared_thermometer",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "対象面から放射される赤外線を検出し、接触せずに表面温度を測る計測器。測定範囲は距離対測定径、放射率、視野内の対象占有率、反射の影響を受けるため、機器仕様と対象表面に合う測定条件を設定する。",
+      "detail_en": "A non-contact instrument that estimates surface temperature from emitted infrared radiation. Results depend on the distance-to-spot ratio, emissivity, how fully the target fills the field of view, and reflected radiation, so measurement conditions must suit both the instrument and the surface.",
+      "bullets_ja": ["測定距離とスポット径を確認し、対象面が視野を十分に満たす位置で測る。","対象材の放射率と、光沢面などの反射影響を考慮する。","接触温度計と同じ値になるとは限らないため、用途に必要な測定精度を確認する。"],
+      "bullets_en": ["Use a distance that keeps the measurement spot within the intended target area.","Account for surface emissivity and reflections from shiny materials.","Confirm that non-contact accuracy is suitable for the task rather than assuming agreement with a contact thermometer."],
+      "examples_ja": ["コンクリート養生中の表面温度を一定距離から測定する。","金属光沢面を測る前に放射率設定と測定方法を確認する。"],
+      "examples_en": ["Measure the surface temperature of curing concrete from a controlled distance.","Check emissivity settings and method before measuring a shiny metal surface."]
+    },
+    {
+      "id": "q012_concrete_test_hammer",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "ばねで駆動したハンマーをコンクリート表面へ打撃し、その反発値から表層の硬さの均一性や圧縮強度の参考値を評価する非破壊試験器。反発値は表面状態、打撃方向、材齢、含水状態などの影響を受けるため、単一打点だけで強度を断定せず、規定手順で複数点を測る。",
+      "detail_en": "A rebound hammer that impacts a concrete surface with a spring-driven mass and records rebound to assess surface hardness uniformity or estimate compressive strength. Rebound is affected by surface condition, test direction, age, moisture, and other factors, so results should follow the specified multi-point test method rather than treating one reading as definitive strength.",
+      "bullets_ja": ["試験面を適切に準備し、欠け・粗面・端部など不適切な打点を避ける。","規定された打点数、間隔、打撃方向で測定する。","強度換算を行う場合は適用する基準・補正式・校正条件を確認する。"],
+      "bullets_en": ["Prepare a suitable test surface and avoid damaged, rough, or edge locations not allowed by the method.","Take the required number of readings with specified spacing and impact direction.","When estimating strength, use the applicable standard, correlation, and calibration conditions."],
+      "examples_ja": ["既存コンクリート柱の同一区画で複数点の反発値を測定してばらつきを確認する。","上向き測定を行う前に、使用する試験方法の方向補正条件を確認する。"],
+      "examples_en": ["Take multiple rebound readings in one area of an existing concrete column to assess variation.","Check the required direction correction before performing an upward test."]
+    },
+    {
+      "id": "q012_slump_cone",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "フレッシュコンクリートのスランプ試験に用いる規定寸法の円すい台形容器。コンクリートを所定手順で詰め、型を鉛直に引き上げた後の沈下量を測定し、施工時のコンシステンシーを確認する。試験は適用規格の手順と器具条件に従う。",
+      "detail_en": "A standardized truncated-cone mold used for the slump test of fresh concrete. Concrete is placed and rodded according to the test method, the cone is lifted vertically, and the resulting subsidence is measured to assess consistency at the time of testing. The applicable test standard governs the procedure and equipment.",
+      "bullets_ja": ["コーン、突き棒、基板が規定条件を満たし、清浄であることを確認する。","充填・突き回数・型の引上げを試験規格どおりに行う。","試料採取から測定までの時間と、結果の記録条件を管理する。"],
+      "bullets_en": ["Confirm the cone, tamping rod, and base meet the test method and are clean.","Fill, rod, and lift the mold exactly as required by the applicable standard.","Control timing from sampling through measurement and record the required test information."],
+      "examples_ja": ["受入れ時のフレッシュコンクリートから試料を採取してスランプ試験を行う。","コーンを鉛直に引き上げ、コンクリートの沈下量を規定方法で測る。"],
+      "examples_en": ["Sample delivered fresh concrete and perform a slump test at acceptance.","Lift the cone vertically and measure concrete subsidence by the specified method."]
+    },
+    {
+      "id": "q012_air_meter",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "フレッシュコンクリートの空気量を測定する試験器。圧力法など機種・試験方法に応じて容器へ試料を詰め、締固め、圧力操作を行って空気量を読み取る。骨材補正や校正の扱いを含め、適用規格と機器手順に従う。",
+      "detail_en": "An instrument used to determine the air content of fresh concrete. Depending on the meter and test method, a sample is placed and consolidated in a calibrated vessel and pressure is applied to obtain the air-content reading. Calibration, aggregate correction where applicable, and operating steps follow the relevant standard and instrument procedure.",
+      "bullets_ja": ["容器・ふた・バルブの清浄状態と漏れがないことを確認する。","試料の充填と締固めを規定手順で行い、過不足のない試料状態を作る。","ゼロ調整、加圧、読取り、必要な補正を適用規格どおりに行う。"],
+      "bullets_en": ["Check that the bowl, cover, and valves are clean and leak-free.","Fill and consolidate the sample according to the specified test procedure.","Perform zeroing, pressurization, reading, and any required correction under the applicable standard."],
+      "examples_ja": ["生コン受入れ試験で圧力式空気量計を用いて空気量を測定する。","試験前に空気量計のバルブとシール部を点検する。"],
+      "examples_en": ["Use a pressure-type air meter to measure air content during fresh-concrete acceptance testing.","Inspect meter valves and seals before starting the test."]
+    },
+    {
+      "id": "q012_concrete_cylinder_mold",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "コンクリートの圧縮強度試験などに用いる円柱供試体を成形する型枠。規定寸法の型へ試料を詰めて締固め、上面を仕上げ、識別・初期養生を行う。型の寸法、変形、漏れ、再使用品の状態を試験規格に合わせて管理する。",
+      "detail_en": "A cylindrical mold used to cast concrete specimens for compressive-strength or related tests. Fresh concrete is placed and consolidated in the specified mold, the top is finished, and the specimen is identified and initially cured. Mold dimensions, deformation, leakage, and reuse condition must meet the applicable test method.",
+      "bullets_ja": ["型の寸法・清浄状態・変形や漏れの有無を確認する。","規定された層数と締固め方法でコンクリートを詰める。","供試体番号、採取情報、成形時刻を識別できるよう記録する。"],
+      "bullets_en": ["Verify mold dimensions, cleanliness, and freedom from deformation or leakage.","Place concrete in the required layers and consolidate by the specified method.","Record specimen identification, sample information, and casting time so each cylinder remains traceable."],
+      "examples_ja": ["圧縮強度試験用の円柱供試体を現場採取したコンクリートから成形する。","成形後の供試体に識別番号を付け、初期養生場所へ移す。"],
+      "examples_en": ["Cast cylindrical strength specimens from a field sample of fresh concrete.","Label each newly cast specimen and place it in the required initial-curing environment."]
+    },
+    {
+      "id": "q012_curing_tank",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "コンクリート供試体を規定温度の水中で養生するための槽。試験材齢まで供試体を適切な条件に保つため、水温、循環、槽内の配置、識別を管理し、適用試験規格の養生条件を維持する。",
+      "detail_en": "A water tank used to cure concrete specimens under controlled conditions until their test age. Water temperature, circulation where required, specimen spacing, identification, and overall storage conditions are managed to maintain the curing requirements of the applicable test standard.",
+      "bullets_ja": ["槽内水温を規定範囲に維持し、記録方法を定める。","供試体が識別でき、互いに不適切に接触しないよう配置する。","水位・水質・循環設備など、規格や試験所手順で求める条件を点検する。"],
+      "bullets_en": ["Maintain and record water temperature within the required range.","Arrange specimens so identification remains clear and unintended contact is avoided.","Check water level, water condition, and circulation or other controls required by the laboratory procedure."],
+      "examples_ja": ["脱型したコンクリート供試体を試験材齢まで養生槽で保管する。","毎日の点検で養生槽の水温と水位を記録する。"],
+      "examples_en": ["Store demolded concrete cylinders in the curing tank until their test age.","Record curing-tank water temperature and level during routine checks."]
+    },
+    {
+      "id": "q012_core_sampler",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "硬化したコンクリートや舗装などから円柱状のコア試料を採取するための穿孔機・採取装置。コア径、採取位置、鉄筋や埋設物との干渉、冷却水、機械の固定を計画し、採取後の孔処理と試料識別まで含めて管理する。",
+      "detail_en": "A coring machine or sampling setup used to remove cylindrical specimens from hardened concrete, pavement, or similar material. Core diameter and location, embedded reinforcement or services, cooling water, machine anchorage, hole repair, and specimen identification all need to be planned as part of the sampling work.",
+      "bullets_ja": ["図面や探査結果で鉄筋・配管等の位置を確認して採取位置を決める。","コア径と機械固定方法を選び、穿孔中の冷却水と排水を管理する。","採取したコアの方向・位置・番号を記録し、孔を指定方法で補修する。"],
+      "bullets_en": ["Select the sampling location after checking drawings or survey results for reinforcement and services.","Choose the required core diameter and machine restraint and control cooling water and slurry.","Record core location, orientation, and identification and repair the opening by the specified method."],
+      "examples_ja": ["既存床スラブから強度評価用コアを採取する前に鉄筋位置を探査する。","採取コアへ位置番号を付け、穿孔後の孔を補修する。"],
+      "examples_en": ["Locate reinforcement before taking a strength-evaluation core from an existing slab.","Mark the recovered core with its location ID and repair the drilled opening."]
+    },
+    {
+      "id": "q012_extension_cord_reel",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "延長ケーブルをドラムへ巻き取り、仮設電源を作業場所まで配線するための器具。定格電圧・電流、接地、防水・防じん性能、漏電保護の要否を現場条件に合わせ、使用時は巻いたままの発熱やケーブル損傷を避ける。",
+      "detail_en": "A reel-mounted extension cable used to distribute temporary power to a work area. Voltage and current rating, grounding, environmental protection, and required residual-current protection must suit the site, and the cable should be used in a way that avoids heat buildup while coiled and prevents mechanical damage.",
+      "bullets_ja": ["接続する負荷とコードリールの定格、電源電圧を確認する。","高負荷で使用する場合は製品表示に従って必要長を引き出し、巻線の発熱を防ぐ。","通路、水濡れ、鋭利な角、車両などによるケーブル損傷を防止する。"],
+      "bullets_en": ["Confirm supply voltage, connected load, and the reel's electrical rating.","For higher loads, unwind the length required by the product instructions to avoid heat buildup in the coil.","Protect the cable from traffic, water exposure, sharp edges, and vehicle damage."],
+      "examples_ja": ["仮設電源盤から作業場所へコードリールで電源を延長する。","電動工具を接続する前にリールの定格とケーブル損傷を点検する。"],
+      "examples_en": ["Run temporary power from a distribution point to the work area with an extension-cord reel.","Inspect the reel rating and cable condition before connecting a power tool."]
+    },
+    {
+      "id": "q012_warning_tape",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "危険箇所や立入制限範囲を視覚的に示すための帯状標識材。軽量で仮設しやすい一方、転落防止用の強度を持つ防護柵ではないため、必要な物理的隔離がある場所では手すり・バリケード等と使い分ける。",
+      "detail_en": "A lightweight marking tape used to make hazards or restricted areas visually obvious. It is quick to install but is not a load-bearing barrier or fall-protection guardrail, so locations requiring physical separation need appropriate barricades, rails, or other controls in addition to or instead of tape.",
+      "bullets_ja": ["規制範囲が一目で分かる高さと経路に連続して張る。","通行人が誤って入り込める重大危険箇所では、テープだけに頼らない。","表示内容や色分けを現場の安全ルールと整合させる。"],
+      "bullets_en": ["Install the tape continuously along a clear boundary at a visible height.","Do not rely on tape alone where entry could expose a person to a serious physical hazard.","Use wording and color conventions consistent with the site's safety-control system."],
+      "examples_ja": ["床補修直後の立入制限範囲を警告テープで明示する。","開口部周辺では警告テープではなく必要な防護柵を設置し、テープは補助表示に使う。"],
+      "examples_en": ["Mark a temporary no-entry zone around newly repaired flooring with warning tape.","At an opening, provide the required physical guard and use warning tape only as supplementary marking."]
+    },
+    {
+      "id": "q012_debris_net",
+      "wave": "content-wave-003c",
+      "state": "expanded",
+      "detail_ja": "足場や作業床の外周などに設置し、工具・小片・施工くず等の飛散や落下を抑えるための仮設ネット。用途に応じた網目・強度・寸法の製品を選び、支持点へ連続して固定する。人の墜落を止める安全ネットとは用途・性能が異なる。",
+      "detail_en": "A temporary net installed around scaffolds or work platforms to help contain small tools, fragments, and construction debris. Mesh size, strength, and dimensions should suit the intended containment duty and the net must be continuously secured to suitable supports. It is distinct from a personnel fall-arrest safety net.",
+      "bullets_ja": ["対象とする落下・飛散物に合う網目と仕様を選定する。","隙間が生じないよう支持部へ確実に固定し、たるみや破損を点検する。","人の墜落防止用途が必要な場合は、その用途に認められた別の安全設備を用いる。"],
+      "bullets_en": ["Select mesh and rating appropriate to the debris that must be contained.","Secure the net continuously, avoid open gaps, and inspect for looseness or damage.","Where personnel fall protection is required, use a separately approved system intended for that purpose."],
+      "examples_ja": ["外部足場の作業階周囲へ養生ネットを取り付けて小片の飛散を抑える。","強風後に固定部とネットの破れを点検し、損傷部を交換する。"],
+      "examples_en": ["Install debris netting around an exterior scaffold level to contain small fragments.","After strong wind, inspect attachments and mesh damage and replace damaged sections."]
+    }
+  ]
+}
