@@ -47,13 +47,19 @@ const EXPECTED_WAVE6 = Object.freeze({
   triethanolamine: 'pH adjuster',
   'potassium hydroxide': 'pH adjuster'
 });
+const EXPECTED_WAVE7 = Object.freeze({
+  bht: 'antioxidant',
+  betaine: 'humectant',
+  'pentylene glycol': 'solvent'
+});
 const EXPECTED_ALL = Object.freeze({
   ...EXPECTED_WAVE1,
   ...EXPECTED_WAVE2,
   ...EXPECTED_WAVE3,
   ...EXPECTED_WAVE4,
   ...EXPECTED_WAVE5,
-  ...EXPECTED_WAVE6
+  ...EXPECTED_WAVE6,
+  ...EXPECTED_WAVE7
 });
 const EXPECTED_SOURCES = Object.freeze({
   water: 'https://www.cosmeticsinfo.org/ingredient/water/',
@@ -71,9 +77,12 @@ const EXPECTED_SOURCES = Object.freeze({
   'sodium hydroxide': 'https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/',
   'aminomethyl propanol': 'https://www.cosmeticsinfo.org/ingredient/aminomethyl-propanol/',
   triethanolamine: 'https://www.cosmeticsinfo.org/ingredient/triethanolamine-and-tea-containing-ingredients/',
-  'potassium hydroxide': 'https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/'
+  'potassium hydroxide': 'https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/',
+  bht: 'https://cosmileeurope.eu/inci/detail/1672/bht/',
+  betaine: 'https://cosmileeurope.eu/inci/detail/1648/betaine/',
+  'pentylene glycol': 'https://cosmileeurope.eu/inci/detail/11416/pentylene-glycol/'
 });
-const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu']);
+const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu', 'cosmileeurope.eu']);
 
 function normalizeText(value = '') {
   return String(value).normalize('NFKC').replace(/\s+/g, ' ').trim();
@@ -99,7 +108,7 @@ const evidence = parser.verifiedCategoryEvidence || {};
 assert.deepEqual(
   Object.fromEntries(Object.entries(evidence).map(([key, item]) => [key, item.category])),
   EXPECTED_ALL,
-  'verified category evidence must remain the reviewed cumulative wave 1 through wave 6 set'
+  'verified category evidence must remain the reviewed cumulative wave 1 through wave 7 set'
 );
 for (const ambiguous of parser.ambiguousExactKeys || []) {
   assert.equal(evidence[ambiguous], undefined, `ambiguous exact token must not receive category evidence: ${ambiguous}`);
@@ -118,6 +127,7 @@ assert.equal(rawMissingCategoryRows, 187, 'verified overlay must not hide the fr
 
 let newlyClassifiedCanonicalIdentities = 0;
 let wave6RawMissingCanonicalIdentitiesResolved = 0;
+let wave7RawMissingCanonicalIdentitiesResolved = 0;
 const rawCategoryInventory = {};
 for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
   const item = evidence[canonical];
@@ -145,6 +155,12 @@ for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
     assert.deepEqual(rawCategories, [expectedCategory.toLowerCase()], `${canonical}: duplicate legacy category hint must exactly match the reviewed category`);
     wave6RawMissingCanonicalIdentitiesResolved += 1;
   }
+
+  if (Object.hasOwn(EXPECTED_WAVE7, canonical)) {
+    assert.equal(hasRawMissingCategoryRow, true, `${canonical}: wave 7 must resolve a raw missing-category row`);
+    assert.deepEqual(rawCategories, [], `${canonical}: wave 7 must be a completely category-empty canonical identity before the verified overlay`);
+    wave7RawMissingCanonicalIdentitiesResolved += 1;
+  }
 }
 
 const merged = parser.mergeDictionaryRecords(rows);
@@ -165,18 +181,22 @@ assert.equal(Object.keys(EXPECTED_WAVE3).length, 2);
 assert.equal(Object.keys(EXPECTED_WAVE4).length, 1, 'wave 4 reviewed set must remain one nonconflicting canonical identity');
 assert.equal(Object.keys(EXPECTED_WAVE5).length, 3, 'wave 5 reviewed set must remain three source-backed canonical identities');
 assert.equal(Object.keys(EXPECTED_WAVE6).length, 3, 'wave 6 reviewed set must remain three source-backed canonical identities');
+assert.equal(Object.keys(EXPECTED_WAVE7).length, 3, 'wave 7 reviewed set must remain three source-backed canonical identities');
 assert.equal(wave6RawMissingCanonicalIdentitiesResolved, 3, 'wave 6 must resolve exactly three raw missing-category canonical identities with matching duplicate hints');
+assert.equal(wave7RawMissingCanonicalIdentitiesResolved, 3, 'wave 7 must resolve exactly three completely category-empty canonical identities');
 assert.equal(evidence['sodium citrate'], undefined, 'Sodium Citrate must remain deferred until buffer vs pH-adjuster taxonomy is explicitly resolved');
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'category-provenance-wave-6',
+  phase: 'category-provenance-wave-7',
   raw_missing_category_rows_unchanged: rawMissingCategoryRows,
   verified_category_evidence_canonical_identities: Object.keys(EXPECTED_ALL).length,
-  wave_6_verified_canonical_identities: Object.keys(EXPECTED_WAVE6).length,
+  wave_7_verified_canonical_identities: Object.keys(EXPECTED_WAVE7).length,
   newly_classified_completely_category_empty_canonical_identities: newlyClassifiedCanonicalIdentities,
   wave_6_raw_missing_canonical_identities_resolved: wave6RawMissingCanonicalIdentitiesResolved,
   wave_6_duplicate_hints_required_to_match: true,
+  wave_7_raw_missing_canonical_identities_resolved: wave7RawMissingCanonicalIdentitiesResolved,
+  wave_7_requires_completely_category_empty_raw_canonical: true,
   sodium_citrate_deferred_for_taxonomy_decision: true,
   raw_category_inventory: rawCategoryInventory,
   recognition_records_rewritten: false,
