@@ -34,7 +34,9 @@
   }
 
   ensureStylesheet("./deep-link-v2.3.css?v=20260914-deeplink-1", "data-cta-deep-link-css");
+  ensureStylesheet("./ui-mock-v2-parity.css?v=20260915-mock-v2-1", "data-cta-ui-mock-v2-css");
 
   loadScript("./dictionary-presentation-v2.3.js?v=20260914-presentation-1", "data-cta-dictionary-presentation")
-    .then(() => loadScript("./deep-link-v2.3.js?v=20260914-deeplink-1", "data-cta-deep-link"));
+    .then(() => loadScript("./deep-link-v2.3.js?v=20260914-deeplink-1", "data-cta-deep-link"))
+    .then(() => loadScript("./ui-mock-v2-parity.js?v=20260915-mock-v2-1", "data-cta-ui-mock-v2"));
 })();
