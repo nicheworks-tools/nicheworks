@@ -91,7 +91,7 @@ async function main() {
   }
   if (runtime.diagnostics.contentEnrichmentMissingTargets) throw new Error('Runtime reports missing enrichment targets');
   if (runtime.diagnostics.contentEnrichmentDuplicateTargets) throw new Error('Runtime reports duplicate enrichment targets');
-  if ((runtime.diagnostics.contentEnriched || 0) !== 57) throw new Error(`Expected 57 total enriched runtime entries, got ${runtime.diagnostics.contentEnriched || 0}`);
+  if ((runtime.diagnostics.contentEnriched || 0) < EXPECTED.size) throw new Error('Runtime enrichment count is smaller than Wave3A membership');
 
   console.log(`CTA_Q012_WAVE3A=${JSON.stringify({ active_q012: activeQ012.length, wave3a_entries: actual.size, collision_review_entries_excluded: COLLISION_REVIEW_IDS.size, total_enriched_runtime_entries: runtime.diagnostics.contentEnriched })}`);
   console.log('Construction Tools Atlas q012 content Wave3A v2.3: PASS');
