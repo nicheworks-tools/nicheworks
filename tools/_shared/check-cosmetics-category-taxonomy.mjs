@@ -28,6 +28,7 @@ const EXPECTED_WAVE6_PROMOTED = new Set(['aminomethyl propanol', 'triethanolamin
 const EXPECTED_WAVE7_PROMOTED = new Set(['bht', 'betaine', 'pentylene glycol']);
 const EXPECTED_WAVE8_PROMOTED = new Set(['propanediol', '1,2-hexanediol', 'alcohol']);
 const EXPECTED_WAVE9_PROMOTED = new Set(['ascorbyl palmitate']);
+const EXPECTED_WAVE10_PROMOTED = new Set(['sodium gluconate', 'xanthan gum']);
 const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu', 'cosmileeurope.eu']);
 
 function normalize(value = '') {
@@ -87,9 +88,10 @@ for (const canonical of EXPECTED_WAVE6_PROMOTED) assert.ok(runtimeMappings[canon
 for (const canonical of EXPECTED_WAVE7_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 7 mapping must be runtime_verified`);
 for (const canonical of EXPECTED_WAVE8_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 8 mapping must be runtime_verified`);
 for (const canonical of EXPECTED_WAVE9_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 9 mapping must be runtime_verified`);
+for (const canonical of EXPECTED_WAVE10_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 10 mapping must be runtime_verified`);
+assert.equal(runtimeMappings['sodium gluconate']?.source_functions?.[0], 'chelating', 'Sodium Gluconate must use the reviewed COSMILE CHELATING authority term');
+assert.equal(runtimeMappings['xanthan gum']?.source_functions?.[0], 'viscosity controlling', 'Xanthan Gum must use the reviewed COSMILE VISCOSITY CONTROLLING authority term');
 assert.equal(runtimeMappings['sodium citrate'], undefined, 'Sodium Citrate must remain out of runtime taxonomy until buffer vs pH-adjuster semantics are explicitly resolved');
-assert.equal(runtimeMappings['sodium gluconate'], undefined, 'authority vocabulary extension must not silently promote Sodium Gluconate');
-assert.equal(runtimeMappings['xanthan gum'], undefined, 'authority vocabulary extension must not silently promote Xanthan Gum');
 
 const runtimeEvidence = parser.verifiedCategoryEvidence || {};
 assert.deepEqual(new Set(Object.keys(runtimeMappings)), new Set(Object.keys(runtimeEvidence)), 'taxonomy runtime mappings must exactly match runtime category evidence');
@@ -104,14 +106,10 @@ for (const ambiguous of parser.ambiguousExactKeys || []) assert.equal(taxonomy.r
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'category-authority-vocabulary-extension',
+  phase: 'verified-category-taxonomy-wave-10',
   mapping_policy: taxonomy.mapping_policy,
   canonical_categories: Object.keys(taxonomy.categories).length,
   unique_authority_function_terms: authorityFunctionToCategory.size,
-  newly_reviewed_authority_terms: {
-    chelating: 'chelating agent',
-    'viscosity controlling': 'viscosity adjuster'
-  },
   runtime_verified_mappings: Object.keys(runtimeMappings).length,
   wave_3_promoted_mappings: [...EXPECTED_WAVE3_PROMOTED],
   wave_4_promoted_mappings: [...EXPECTED_WAVE4_PROMOTED],
@@ -120,9 +118,8 @@ console.log(JSON.stringify({
   wave_7_promoted_mappings: [...EXPECTED_WAVE7_PROMOTED],
   wave_8_promoted_mappings: [...EXPECTED_WAVE8_PROMOTED],
   wave_9_promoted_mappings: [...EXPECTED_WAVE9_PROMOTED],
+  wave_10_promoted_mappings: [...EXPECTED_WAVE10_PROMOTED],
   sodium_citrate_deferred_for_taxonomy_decision: true,
-  sodium_gluconate_promoted: false,
-  xanthan_gum_promoted: false,
   raw_legacy_taxonomy_rewritten: false,
   safety_contract_changed: false,
   ambiguity_contract_changed: false,
