@@ -1,6 +1,6 @@
 {
   "schema": "cta-public-content-quality-v2.3",
-  "version": "2026-09-16-content-wave2-q011-1",
+  "version": "2026-09-16-content-wave3a-q012-safe-1",
   "policy": {
     "purpose": "Measure source-backed or canonical-ID-enriched core content separately from runtime generic fallback copy.",
     "fallback_independent_core_requires": [
@@ -18,27 +18,27 @@
     "publication_inventory_version": "2026-09-16-q011-identity-closure-1",
     "publication_id_sha256": "9e385023a6533565a4a0542e4b858b63644316c0837d9d6cf49fb08e6aa215ac",
     "quality_manifest_version": "2026-09-14-manifest-8",
-    "content_enrichment_version": "2026-09-16-wave2"
+    "content_enrichment_version": "2026-09-16-wave3a"
   },
   "summary": {
     "public_entries": 913,
-    "fallback_independent_core": 172,
-    "runtime_fallback_dependent": 741,
+    "fallback_independent_core": 197,
+    "runtime_fallback_dependent": 716,
     "missing_core_bilingual_content": 0,
     "explicit_bilingual_identity": 913,
     "explicit_bilingual_definition": 913,
-    "explicit_bilingual_detail": 393,
-    "explicit_bilingual_bullets": 172,
-    "explicit_bilingual_examples": 393,
+    "explicit_bilingual_detail": 418,
+    "explicit_bilingual_bullets": 197,
+    "explicit_bilingual_examples": 418,
     "explicit_bilingual_aliases": 280,
-    "content_enriched_entries": 32,
+    "content_enriched_entries": 57,
     "has_category_context": 913,
     "has_task_context": 913
   },
   "fallback_field_counts": {
-    "detail": 520,
-    "bullets": 741,
-    "examples": 520
+    "detail": 495,
+    "bullets": 716,
+    "examples": 495
   },
   "by_type": {
     "access": {
@@ -61,8 +61,8 @@
     },
     "consumable": {
       "public_entries": 14,
-      "fallback_independent_core": 0,
-      "runtime_fallback_dependent": 14,
+      "fallback_independent_core": 6,
+      "runtime_fallback_dependent": 8,
       "missing_core_bilingual_content": 0
     },
     "defect": {
@@ -175,17 +175,17 @@
     },
     "tool": {
       "public_entries": 364,
-      "fallback_independent_core": 36,
-      "runtime_fallback_dependent": 328,
+      "fallback_independent_core": 55,
+      "runtime_fallback_dependent": 309,
       "missing_core_bilingual_content": 0
     }
   },
   "hashes": {
-    "content_status_sha256": "67ad1d577545e7a7d7d676b8a894647e081c643ae95822e6d0b9e345896cd510",
-    "fallback_independent_id_sha256": "e8706933c86657fef24390ef9508c9319135432501d6cb2a0b99e0b41d1f5c4d",
-    "fallback_dependent_id_sha256": "b608ba7fe486c5f1f173b4cb6199f3f131c60efe2258aaead78a04e893a9d985",
+    "content_status_sha256": "aaf96a951009c778d386d3b80cd5e7245895eac5d7ff4065f3eac29e0cec7aff",
+    "fallback_independent_id_sha256": "75cfc57cbcb115594201a3e9a7f5d98a3c2437c6eb54c91836515ed7688c6320",
+    "fallback_dependent_id_sha256": "54578691fb74d06884e731bc0747db4e010c804a3eee95fdbba929902a5532a3",
     "missing_core_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "content_enriched_id_sha256": "b530056188c24e060d51a6bdc3369df9b87a1b2b1d8b08cf88dfcadd9a582f76"
+    "content_enriched_id_sha256": "ac1bf865a4dcf1272c4741ad9da84b5801395f99be2db40029f897f406512916"
   },
   "samples": {
     "fallback_independent_core": [
@@ -342,26 +342,6 @@
     ],
     "runtime_fallback_dependent": [
       {
-        "id": "q012_air_impact_wrench",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_ratchet_handle",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
         "id": "q012_hex_key",
         "source": "data/tools.quality-012.json",
         "enrichment": null,
@@ -373,46 +353,6 @@
       },
       {
         "id": "q012_spanner",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_combination_wrench",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_box_wrench",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_tap_die_set",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_thread_gauge",
         "source": "data/tools.quality-012.json",
         "enrichment": null,
         "fallback_fields": [
@@ -452,46 +392,6 @@
         ]
       },
       {
-        "id": "q012_micrometer",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_depth_gauge",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_digital_level",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_water_level",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
         "id": "q012_builder_square",
         "source": "data/tools.quality-012.json",
         "enrichment": null,
@@ -512,7 +412,7 @@
         ]
       },
       {
-        "id": "q012_sliding_bevel",
+        "id": "q012_diamond_blade",
         "source": "data/tools.quality-012.json",
         "enrichment": null,
         "fallback_fields": [
@@ -522,7 +422,7 @@
         ]
       },
       {
-        "id": "q012_marking_gauge",
+        "id": "q012_chisel_bit",
         "source": "data/tools.quality-012.json",
         "enrichment": null,
         "fallback_fields": [
@@ -532,7 +432,7 @@
         ]
       },
       {
-        "id": "q012_block_plane",
+        "id": "q012_bull_point",
         "source": "data/tools.quality-012.json",
         "enrichment": null,
         "fallback_fields": [
@@ -542,7 +442,7 @@
         ]
       },
       {
-        "id": "q012_japanese_plane",
+        "id": "q012_flat_chisel",
         "source": "data/tools.quality-012.json",
         "enrichment": null,
         "fallback_fields": [
@@ -552,7 +452,7 @@
         ]
       },
       {
-        "id": "q012_pull_saw",
+        "id": "q012_cold_chisel",
         "source": "data/tools.quality-012.json",
         "enrichment": null,
         "fallback_fields": [
@@ -562,7 +462,7 @@
         ]
       },
       {
-        "id": "q012_coping_saw",
+        "id": "q012_bolster_chisel",
         "source": "data/tools.quality-012.json",
         "enrichment": null,
         "fallback_fields": [
@@ -572,7 +472,7 @@
         ]
       },
       {
-        "id": "q012_step_drill",
+        "id": "q012_nail_puller",
         "source": "data/tools.quality-012.json",
         "enrichment": null,
         "fallback_fields": [
@@ -582,7 +482,107 @@
         ]
       },
       {
-        "id": "q012_countersink_bit",
+        "id": "q012_hand_shear",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_nibbler",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_sheet_metal_brake",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_pop_rivet_gun",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_blind_rivet",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_self_tapping_screw",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_washer",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_spring_washer",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_lock_nut",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_all_thread_rod",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_channel_nut",
         "source": "data/tools.quality-012.json",
         "enrichment": null,
         "fallback_fields": [

@@ -1,0 +1,281 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-16-wave3a-q012-safe",
+  "entries": [
+    {
+      "id": "q012_air_impact_wrench",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "圧縮空気で打撃トルクを発生させ、ボルトやナットを素早く締緩する空圧工具。ソケット差込角、必要空気圧・空気消費量、対象締結部のサイズに合う本体とソケットを組み合わせる。強い打撃が出るため、最終締付け値が指定される箇所は別途トルク管理が必要。",
+      "detail_en": "A pneumatic tool that delivers repeated impact torque for rapid tightening and loosening of bolts and nuts. Match the drive size, air-pressure and airflow requirements, and impact socket to the fastener. Where a specified final tightening torque is required, use an appropriate torque-control procedure rather than relying on impact time alone.",
+      "bullets_ja": ["インパクト対応ソケットを使用し、差込角と締結部サイズを合わせる。", "ホース、カプラ、供給圧力・流量が工具仕様を満たすか確認する。", "反力、騒音、飛散物に備え、締め過ぎやねじ損傷を避ける。"],
+      "bullets_en": ["Use impact-rated sockets and match both drive size and fastener size.", "Confirm that hose, coupler, supply pressure, and airflow meet the tool requirements.", "Control reaction, noise, and flying debris, and avoid over-tightening or thread damage."],
+      "examples_ja": ["仮設架台のボルトをエアインパクトで素早く仮締めし、指定箇所は後で規定方法により本締めする。", "固着したナットを緩める前に、適合するインパクトソケットと供給圧力を確認する。"],
+      "examples_en": ["Use an air impact wrench for rapid preliminary tightening of frame bolts, then complete specified final tightening by the required method.", "Before loosening a seized nut, confirm the correct impact socket and air supply."]
+    },
+    {
+      "id": "q012_ratchet_handle",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "ソケットを取り付け、往復動作のうち一方向だけを駆動に使って狭い場所でも連続してボルト・ナットを回せる手工具。差込角、ソケット寸法、ラチェット機構の切替方向を合わせて使う。高い締付けトルクの保証や測定を行う工具ではない。",
+      "detail_en": "A hand handle for sockets that drives in one direction while freewheeling on the return stroke, allowing repeated turning in confined spaces. Match the square drive and socket size and confirm the ratchet direction before loading it. A standard ratchet handle is not a torque-measuring tool.",
+      "bullets_ja": ["差込角とソケットを合わせ、ソケットが締結部へ十分に掛かっていることを確認する。", "切替レバーの方向を確認し、斜め掛けや過大な延長管で機構を傷めない。", "規定トルクが必要な最終締付けはトルクレンチ等の指定工具で行う。"],
+      "bullets_en": ["Match the drive and socket, and ensure the socket is fully seated on the fastener.", "Check the direction lever and avoid angled loading or improvised extensions that can damage the mechanism.", "Use the specified torque tool for final tightening where a controlled torque is required."],
+      "examples_ja": ["設備架台のナットをラチェットハンドルで連続して締め付ける。", "壁際の狭い場所でソケットを掛け、短い振り幅でボルトを緩める。"],
+      "examples_en": ["Use a ratchet handle to run down nuts on an equipment frame.", "Loosen a bolt near a wall using short handle strokes where swing space is limited."]
+    },
+    {
+      "id": "q012_combination_wrench",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "同じ呼び寸法の開口部（スパナ側）とめがね部を両端に持つ手工具。差し込みやすさが必要な場面では開口側、締結部を多面で囲んで力を掛けたい場面ではめがね側を使い分ける。締結部とレンチ寸法が合わない状態で使用すると角を傷めやすい。",
+      "detail_en": "A hand wrench with an open end and a box end of the same nominal size. The open end provides quick side access, while the box end surrounds more of the fastener for more secure engagement. Using the wrong size can round the fastener and damage the wrench.",
+      "bullets_ja": ["ボルト・ナットの二面幅に合う寸法を選び、奥まで掛ける。", "大きな力を掛けるときは可能な範囲でめがね側を使い、斜め掛けを避ける。", "開口部の広がり、めがね部の摩耗や割れがある工具は使用しない。"],
+      "bullets_en": ["Select the size that matches the fastener flats and seat the wrench fully.", "Where practical, use the box end for higher loads and avoid cocked engagement.", "Do not use a wrench with spread jaws, excessive wear, or cracks."],
+      "examples_ja": ["配管支持金物のナットを開口側で位置合わせし、めがね側で確実に締める。", "狭い箇所でレンチを掛け替えながらボルトを緩める。"],
+      "examples_en": ["Position a support-hardware nut with the open end, then use the box end for secure tightening.", "Reposition the wrench repeatedly to loosen a bolt in a confined location."]
+    },
+    {
+      "id": "q012_box_wrench",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "リング状のめがね部でボルト・ナットの頭を囲み、複数面に力を分散して締緩する手工具。開口レンチより外れにくく大きな力を掛けやすいが、周囲にリングを差し込む空間が必要。寸法違いや浅い掛かりは締結部の角を損傷させる。",
+      "detail_en": "A ring-ended wrench that surrounds a bolt head or nut and distributes load across multiple flats. It generally gives more secure engagement than an open-ended wrench but requires clearance to place the ring over the fastener. Incorrect size or partial engagement can damage the fastener.",
+      "bullets_ja": ["呼び寸法を締結部に合わせ、めがね部を最後まで掛ける。", "レンチを締結面に対して傾けず、安定した姿勢で荷重を掛ける。", "変形、摩耗、亀裂のあるめがね部は使用しない。"],
+      "bullets_en": ["Match the nominal size and seat the box end fully over the fastener.", "Keep the wrench aligned with the fastener and apply load from a stable position.", "Remove wrenches with deformation, excessive wear, or cracks from service."],
+      "examples_ja": ["鉄骨金物のナットにめがねレンチを深く掛けて緩める。", "機器架台のボルト締結で、周囲に十分な差込み空間がある箇所に使用する。"],
+      "examples_en": ["Seat a box-end wrench fully on a structural-hardware nut before loosening it.", "Use it on equipment-frame bolts where there is sufficient clearance around the fastener."]
+    },
+    {
+      "id": "q012_tap_die_set",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "雌ねじを加工するタップと、雄ねじを加工・修正するダイスを組み合わせたねじ加工工具セット。ねじ規格、呼び径、ピッチ、下穴径を一致させ、工具を軸に対して真っ直ぐ進めることが重要。切りくずを逃がさず無理に回すと刃欠けや折損につながる。",
+      "detail_en": "A threading set containing taps for internal threads and dies for external threads or thread repair. Thread standard, nominal diameter, pitch, and tap-drill size must match, and the tool must start square to the work. Forcing the tool without clearing chips can damage the cutting edges or break a tap.",
+      "bullets_ja": ["加工するねじ規格・径・ピッチと、必要な下穴径を事前に確認する。", "適切な切削剤を使い、切りくずを排出しながら少しずつ進める。", "斜めに食い付かせず、折損したタップを残さないよう無理なトルクを避ける。"],
+      "bullets_en": ["Confirm thread standard, diameter, pitch, and required tap-drill size before cutting.", "Use suitable cutting lubricant and advance while periodically clearing chips.", "Start square and avoid excessive torque that can break a tap in the workpiece."],
+      "examples_ja": ["鋼板の下穴に指定ピッチのタップを立てて雌ねじを加工する。", "傷んだボルトの雄ねじを適合するダイスで軽く修正する。"],
+      "examples_en": ["Tap a prepared hole in steel plate to the specified thread pitch.", "Use the matching die to clean up damaged external threads on a bolt."]
+    },
+    {
+      "id": "q012_thread_gauge",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "複数の歯形ブレードをねじ山へ当て、最も隙間なく一致する形からねじピッチを確認するゲージ。ピッチを識別する道具であり、ねじの呼び径そのものを測定するものではない。メートル・インチなど規格系を混同しないことが重要。",
+      "detail_en": "A leaf gauge with several tooth profiles used to identify thread pitch by matching a blade to the thread form. It identifies pitch rather than the nominal thread diameter. Metric and inch-series gauges or other thread systems must not be confused.",
+      "bullets_ja": ["ねじ山の汚れや傷を除き、ブレードを山形に正しく当てる。", "複数候補を比較し、光が見える隙間や山ずれがないピッチを選ぶ。", "ピッチ確認後、外径や規格表示も別途確認してねじ規格を特定する。"],
+      "bullets_en": ["Clean the thread and seat the gauge blade correctly against the thread form.", "Compare nearby pitches and select the blade without visible gaps or progressive misalignment.", "After identifying pitch, verify diameter and other specification details separately."],
+      "examples_ja": ["既設ボルトのねじピッチを確認して交換ナット選定の参考にする。", "規格不明のねじに複数ブレードを当て、最も一致するピッチを記録する。"],
+      "examples_en": ["Identify the pitch of an existing bolt before selecting a replacement nut.", "Compare several blades on an unknown thread and record the best-matching pitch."]
+    },
+    {
+      "id": "q012_micrometer",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "スピンドルの微小な送り量を利用し、外径や厚さを高い分解能で測定する精密測定工具。測定範囲に合う本体を選び、アンビルとスピンドルの測定面を清潔に保つ。締め付け力のばらつきを抑えるため、ラチェットや定圧機構を備える機種ではその機構を使う。",
+      "detail_en": "A precision measuring tool that uses fine spindle movement to measure outside diameter or thickness. Select a micrometer with the appropriate range and keep the anvil and spindle faces clean. Where fitted, use the ratchet or constant-force mechanism to reduce variation from measuring force.",
+      "bullets_ja": ["測定前にゼロ点、測定範囲、測定面の汚れを確認する。", "ワークを測定面に対して傾けず、一定の測定力で読む。", "精密測定ではワークと工具の温度差やバリの影響も考慮する。"],
+      "bullets_en": ["Check zero, measuring range, and cleanliness of the measuring faces before use.", "Keep the work square to the measuring faces and use consistent measuring force.", "For precision work, consider burrs and temperature differences between tool and workpiece."],
+      "examples_ja": ["金属板の厚さを複数位置で測り、ばらつきを確認する。", "軸の外径を測定し、図面寸法との偏差を記録する。"],
+      "examples_en": ["Measure sheet thickness at several locations to check variation.", "Measure a shaft outside diameter and record deviation from the drawing dimension."]
+    },
+    {
+      "id": "q012_depth_gauge",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "基準面にベースを当て、穴・溝・段差などの底までの距離を測定する工具。基準面のバリや傾きがそのまま測定誤差になるため、ベースを安定して密着させることが重要。測定範囲と測定子形状も対象に合わせる。",
+      "detail_en": "A gauge that rests on a reference surface and measures the distance to the bottom of a hole, groove, or step. Burrs or tilt at the reference surface directly affect the reading, so the base must sit flat and stable. The range and contact shape must suit the feature being measured.",
+      "bullets_ja": ["基準面と測定子を清掃し、バリや異物を除く。", "ベースを基準面へ均等に当て、測定子を底面へ無理なく接触させる。", "ゼロ点と単位を確認し、穴底の曲面や段差形状による誤差に注意する。"],
+      "bullets_en": ["Clean the reference base and measuring contact and remove burrs or debris.", "Seat the base evenly and bring the contact to the bottom without forcing it.", "Check zero and units, and account for curved bottoms or irregular step geometry."],
+      "examples_ja": ["アンカー孔の深さを施工管理値と照合する。", "機械部品の段差深さを基準面から測定する。"],
+      "examples_en": ["Measure an anchor-hole depth against the installation requirement.", "Measure a machined step depth from its reference surface."]
+    },
+    {
+      "id": "q012_digital_level",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "本体の基準面を対象物へ当て、水平・鉛直や傾斜角をデジタル表示する測定工具。気泡管だけでは読み取りにくい微小勾配や角度を数値で確認できる。測定前の校正状態、基準面の清潔さ、ゼロ設定が精度に影響する。",
+      "detail_en": "A measuring tool that displays level, plumb, or slope angle digitally when its reference face is placed on a surface. It makes small slopes or angles easier to quantify than a visual bubble alone. Calibration status, a clean reference face, and correct zeroing affect accuracy.",
+      "bullets_ja": ["使用前に校正・ゼロ設定方法を確認し、基準面の異物を除く。", "短い測定器で長い面を判断する場合は複数位置で確認する。", "勾配表示の単位（度、％など）を施工図・仕様と一致させる。"],
+      "bullets_en": ["Confirm calibration and zero procedure and clean the reference face before measuring.", "When a short level is used on a long surface, check several positions rather than one point.", "Match the displayed slope unit, such as degrees or percent, to the project requirement."],
+      "examples_ja": ["排水管支持の勾配をデジタル表示で確認する。", "架台据付後に水平と傾きを複数方向で記録する。"],
+      "examples_en": ["Check the installed slope of a supported drain line using the digital reading.", "Record level and inclination in multiple directions after setting an equipment frame."]
+    },
+    {
+      "id": "q012_water_level",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "透明ホース内の水面が両端で同じ高さになる性質を利用し、離れた二点間へ水平基準を移す道具。視線が通らない場所や距離がある場所でも使えるが、ホース内の気泡、折れ、端部の上下動が誤差になる。測定中は両端を安定させて水面が静止してから読む。",
+      "detail_en": "A leveling tool that transfers elevation between separated points using the equal free-surface height of water in a clear hose. It can work around obstructions, but trapped air, kinks, and movement of either end cause errors. Both ends should be held stable and read only after the water settles.",
+      "bullets_ja": ["ホース内を連続した水で満たし、気泡や折れがないことを確認する。", "両端を鉛直に保持し、水面が静止してから同じ基準位置で読む。", "水漏れや端部の高さ変化を避け、測定途中にホースを踏まない。"],
+      "bullets_en": ["Fill the hose with a continuous water column and remove trapped air and kinks.", "Hold both ends vertically and read from consistent reference points after the water settles.", "Prevent leaks, end movement, and crushing or stepping on the hose during measurement."],
+      "examples_ja": ["壁で見通せない二室間に同じ床基準高さを移す。", "離れた柱位置へ基準レベルを順番にマーキングする。"],
+      "examples_en": ["Transfer the same elevation between two rooms where there is no direct line of sight.", "Mark a common reference level at separated column locations."]
+    },
+    {
+      "id": "q012_sliding_bevel",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "可動する刃と台座を任意角度で固定し、既存の角度を別の部材へ写し取る手工具。数値角度を直接読み取る工具ではなく、形状の転写や同じ角度の反復に向く。固定ねじが緩いと移動中に角度が変わる。",
+      "detail_en": "A hand tool with an adjustable blade that locks at an arbitrary angle so an existing angle can be transferred to another workpiece. It is primarily an angle-transfer tool rather than a direct numeric angle reader. A loose locking screw can allow the setting to change during handling.",
+      "bullets_ja": ["基準面へ台座と刃を正しく当て、隙間なく角度を合わせる。", "設定後に固定ねじを締め、移動中に刃をぶつけない。", "数値角度が必要な場合は分度器や角度計と組み合わせて確認する。"],
+      "bullets_en": ["Seat the stock and blade firmly against the reference surfaces when copying an angle.", "Tighten the lock after setting and protect the blade from being knocked out of position.", "Use a protractor or angle gauge as well when a numeric angle is required."],
+      "examples_ja": ["既存枠の斜め角度を自由スコヤへ写し、見切り材の切断線へ転写する。", "同じ勾配の部材を複数加工するため、基準角を保持して繰り返し墨付けする。"],
+      "examples_en": ["Copy an angle from an existing frame and transfer it to a trim cut line.", "Lock a reference angle and repeat it while marking several matching parts."]
+    },
+    {
+      "id": "q012_marking_gauge",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "木材の基準縁に定規状の台を沿わせ、けびき針や刃で縁と平行な線を一定距離に引く墨付け工具。ほぞ・溝・板幅などの基準線を繰り返し同じ位置に出すのに向く。台が基準縁から浮くと線が蛇行する。",
+      "detail_en": "A woodworking marking tool whose fence follows a reference edge while a pin or cutter scribes a line at a fixed offset. It is useful for repeatedly laying out tenons, grooves, or width references. If the fence lifts away from the reference edge, the line will wander.",
+      "bullets_ja": ["基準縁が直線であることを確認し、台を常に密着させて動かす。", "針・刃の出量を必要最小限にし、木目に応じて無理なく引く。", "複数部材へ同じ寸法を移す間は設定を変えず、固定ねじを確認する。"],
+      "bullets_en": ["Use a straight reference edge and keep the fence in continuous contact while moving the gauge.", "Set only the necessary pin or cutter projection and scribe with control relative to the grain.", "Keep the setting locked while transferring the same dimension to multiple pieces."],
+      "examples_ja": ["ほぞ加工の肩位置に平行線を複数部材へ同じ寸法でけびく。", "板端から一定距離に溝加工の基準線を引く。"],
+      "examples_en": ["Scribe the same tenon layout offset on several timber pieces.", "Mark a groove reference line at a constant distance from a board edge."]
+    },
+    {
+      "id": "q012_block_plane",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "短い台と刃を持つ小型の鉋で、木材端部の面取り、木口の小修正、局所的な段差調整などに使う。大面積を本格的に平滑化する長台鉋とは用途が異なる。刃の出量を小さくし、木目や木口の欠けを見ながら少量ずつ削る。",
+      "detail_en": "A compact hand plane used for chamfering edges, trimming end grain, and making small local corrections. Its short sole makes it different from a longer smoothing or jointing plane used to establish a broad flat surface. Use a fine blade projection and take controlled cuts to avoid tear-out.",
+      "bullets_ja": ["刃先の状態と出量を確認し、削り過ぎない浅い設定から始める。", "木口は端部欠けを防ぐため、外側へ突き抜ける削り方を避ける。", "加工材を確実に保持し、刃の進行方向へ手を置かない。"],
+      "bullets_en": ["Check blade condition and projection, starting with a shallow cut.", "When planing end grain, avoid breaking out the far edge by controlling the direction and support.", "Secure the work and keep hands out of the blade path."],
+      "examples_ja": ["木製枠の角を豆鉋で軽く面取りする。", "建具材の木口を少量ずつ削って納まり寸法へ合わせる。"],
+      "examples_en": ["Use a block plane to make a small chamfer on a timber frame edge.", "Trim an end-grain surface gradually to fit a joinery detail."]
+    },
+    {
+      "id": "q012_japanese_plane",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "刃を木製の台に仕込み、手前へ引いて木材表面を薄く削る日本式の鉋。仕上げ削りでは刃の研ぎ、刃出し、台直し、木目方向が仕上がりを大きく左右する。無理に深く刃を出すと引き抵抗と逆目の欠けが増える。",
+      "detail_en": "A Japanese-style hand plane with a blade set in a wooden body and normally used by pulling it toward the user. For fine finishing, blade sharpness, blade projection, sole condition, and grain direction strongly affect the result. Excessive blade projection increases cutting force and tear-out.",
+      "bullets_ja": ["刃を適切に研ぎ、左右の刃出しと削り量を少しずつ調整する。", "台下面の状態を確認し、加工目的に合う接触状態を保つ。", "木目を確認して逆目を避け、加工材を安定して保持する。"],
+      "bullets_en": ["Sharpen the blade and adjust projection evenly in small increments.", "Check the wooden sole and maintain the contact condition appropriate to the intended work.", "Read the grain direction to reduce tear-out and keep the workpiece secure."],
+      "examples_ja": ["造作材の表面を仕上げ鉋で薄く削って鉋目を整える。", "組付け前に木材のわずかな厚みを鉋で調整する。"],
+      "examples_en": ["Take fine shavings from finish timber to refine the surface.", "Plane a small amount from a timber part to adjust fit before assembly."]
+    },
+    {
+      "id": "q012_pull_saw",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "引く動作で切削する細刃のこぎりのうち、背金で刃を補強して精密な直線切断に向く胴付きのこ。背金が刃の剛性を高める一方、切込み深さは背金位置に制限される。細い刃を押し込まず、引きストロークを主体に使う。",
+      "detail_en": "A fine pull saw with a rigid spine that supports the blade for accurate straight cuts, commonly known as a dozuki saw. The spine improves stiffness but limits cutting depth. The thin blade should not be forced on the push stroke; cutting is primarily on the pull stroke.",
+      "bullets_ja": ["切断線を明確にし、最初は浅い切込みで刃道を作る。", "刃をねじらず、引く方向へ真っ直ぐ動かして細刃の座屈を避ける。", "背金が材料へ当たる切込み深さを事前に確認する。"],
+      "bullets_en": ["Establish a shallow kerf on the marked line before taking longer strokes.", "Keep the blade straight and avoid twisting or buckling the thin blade.", "Confirm that the required cut depth does not exceed the clearance below the spine."],
+      "examples_ja": ["造作材のほぞ肩を胴付きのこで精密に切る。", "小さな見切り材を墨線に合わせて直角に切断する。"],
+      "examples_en": ["Cut a tenon shoulder accurately with a dozuki saw.", "Make a precise square cut in a small trim piece along the layout line."]
+    },
+    {
+      "id": "q012_coping_saw",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "細い交換刃を弓形フレームに張り、曲線や切欠き、小さな内部形状を切る手のこ。刃幅が小さいため方向転換しやすい一方、強く押したりねじったりすると刃が折れやすい。刃の張りと歯の向きを確認して使用する。",
+      "detail_en": "A frame saw using a thin replaceable blade for curves, notches, and small detailed cuts. Its narrow blade turns easily but can break if forced or twisted. Correct blade tension and tooth direction are important before cutting.",
+      "bullets_ja": ["刃を適正に張り、切削方向に合う歯の向きで取り付ける。", "急な曲線は小さなストロークで方向を変え、刃を横へこじらない。", "加工材を固定し、切断線の裏側に障害物がないことを確認する。"],
+      "bullets_en": ["Install the blade with suitable tension and the teeth facing the intended cutting direction.", "Use short controlled strokes on tight curves and do not lever the blade sideways.", "Secure the workpiece and check that the cut path is clear behind it."],
+      "examples_ja": ["木製見切り材の曲線切欠きを糸のこで加工する。", "板材に設けた下穴から刃を通し、小さな内部開口を切り抜く。"],
+      "examples_en": ["Cut a curved notch in a wood trim piece with a coping saw.", "Pass the blade through a starter hole to cut a small internal opening."]
+    },
+    {
+      "id": "q012_step_drill",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "段階的に径が大きくなる円錐状の刃で、主に薄板へ複数サイズの穴を一つのビットで加工する工具。目的径の段で送りを止める必要があり、厚い材料や深い穴には向かない。材料と径に応じた回転数で、食い付きやバリを管理する。",
+      "detail_en": "A conical stepped bit that produces several hole diameters with one tool, mainly in sheet material. Feed must stop at the step corresponding to the required diameter, and the tool is not intended for deep holes in thick stock. Speed and feed should suit the material and hole size.",
+      "bullets_ja": ["目的穴径に対応する段を確認し、貫通後に次の段まで進め過ぎない。", "板材を固定し、必要に応じて下穴やセンタリングを行う。", "加工後はバリを除去し、穴径と周囲の変形を確認する。"],
+      "bullets_en": ["Identify the step for the required diameter and avoid feeding into the next step unintentionally.", "Secure sheet material and use appropriate starting or centering methods where needed.", "Deburr the finished hole and check both diameter and surrounding distortion."],
+      "examples_ja": ["薄い制御盤板へケーブルグランド用の穴を段階的に拡大する。", "板金ブラケットの既存下穴を指定径までステップドリルで広げる。"],
+      "examples_en": ["Enlarge a hole in thin panel sheet for a cable gland.", "Open a pilot hole in a sheet-metal bracket to the specified step diameter."]
+    },
+    {
+      "id": "q012_countersink_bit",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "皿頭ねじの頭部を材料表面と同面または指定深さに収めるため、穴口へ円錐状の座面を加工する刃物。ねじ頭の角度と皿取り形状が合うことが重要で、深く削り過ぎると保持面積や仕上がりを損なう。既存穴に対して芯を合わせて加工する。",
+      "detail_en": "A cutting bit that forms a conical seat at a hole entrance so a flat-head screw can sit flush or at a specified depth. The countersink geometry must match the screw head, and excessive depth can reduce bearing area or spoil the finish. Keep the cutter centered on the existing hole.",
+      "bullets_ja": ["使用する皿ねじと適合する皿角・径の刃を選ぶ。", "低い送りから始め、びびりや偏芯を抑えて必要深さで止める。", "試し加工でねじ頭の納まりを確認してから本材を加工する。"],
+      "bullets_en": ["Choose a cutter geometry compatible with the flat-head screw being used.", "Use controlled speed and feed to limit chatter and stop at the required depth.", "Confirm screw-head fit on a test piece before machining finish work where practical."],
+      "examples_ja": ["金属ブラケットの下穴を皿取りし、皿ねじ頭を面一に納める。", "木製部材のビス頭が仕上げ面から突出しないよう座面を作る。"],
+      "examples_en": ["Countersink a hole in a metal bracket so the flat-head screw finishes flush.", "Form a seat in timber so the screw head does not project above the finish surface."]
+    },
+    {
+      "id": "q012_reamer",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "あらかじめ開けた穴へ通し、少量の材料を均一に切削して穴径・真円度・表面状態を仕上げる工具。ドリルの代わりに大きな取り代を一度に削る工具ではない。下穴径、リーマ径、加工材に適した切削条件と芯合わせが必要。",
+      "detail_en": "A finishing tool passed through a previously drilled or bored hole to remove a small, controlled amount of material and improve diameter, roundness, and surface finish. It is not intended to replace drilling by removing a large allowance in one pass. Correct pre-hole size, alignment, and cutting conditions are required.",
+      "bullets_ja": ["指定リーマに合う下穴径と必要な仕上げ代を確認する。", "穴軸に対して真っ直ぐ送り、加工材に合う潤滑・切削条件を使う。", "切りくず噛みや逆回転で刃先を傷めないよう、工具仕様に従って抜き取る。"],
+      "bullets_en": ["Confirm the pre-hole diameter and finishing allowance specified for the reamer.", "Feed in alignment with the hole and use lubrication and cutting conditions suited to the material.", "Follow the tool procedure when withdrawing it so chips or improper reverse rotation do not damage the cutting edges."],
+      "examples_ja": ["機械据付用ピン穴を下穴加工後にリーマで仕上げ寸法へ整える。", "金属ブラケットの精密穴をリーマ仕上げし、ピンとのはめあいを確認する。"],
+      "examples_en": ["Finish a predrilled locating-pin hole to its required size with a reamer.", "Ream a precision hole in a metal bracket and verify the fit with its pin."]
+    },
+    {
+      "id": "q012_grinder_disc",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "ディスクグラインダー等に装着し、主に金属や指定された石材を切断する薄い研削砥石。研削用砥石より薄く、切断方向の荷重を想定しているため、側面を押し付けて研削すると破損リスクが高まる。工具の回転数、砥石寸法、対象材料への適合確認が必須。",
+      "detail_en": "A thin abrasive cut-off wheel fitted to an angle grinder or compatible machine for cutting metal or specified masonry materials. Unlike a grinding wheel, it is designed primarily for edge cutting; heavy side loading can cause failure. Wheel size, rated speed, machine compatibility, and material suitability must be checked.",
+      "bullets_ja": ["砥石の最高使用周速度・回転数と工具仕様を照合し、指定ガードを装着する。", "欠け、亀裂、湿潤や保管不良が疑われる砥石は使用しない。", "切断線に沿って無理な横荷重を掛けず、火花・破片の飛散方向を管理する。"],
+      "bullets_en": ["Match wheel speed rating and size to the machine and keep the specified guard installed.", "Do not use wheels showing chips, cracks, or suspected storage or moisture damage.", "Cut without excessive side loading and control the direction of sparks and fragments."],
+      "examples_ja": ["鋼製アングルを切断砥石で切り、切断後にバリを別工程で処理する。", "金属パイプを切断する前に砥石の材料適合と回転数表示を確認する。"],
+      "examples_en": ["Cut a steel angle with a cut-off wheel, then deburr it in a separate operation.", "Before cutting metal pipe, verify the wheel material rating and maximum speed."]
+    },
+    {
+      "id": "q012_flap_disc",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "研磨布片を羽根状に重ねたディスクで、グラインダーに装着して研削と表面ならしを連続して行う研磨材。砥粒種類と粒度により除去量・仕上がりが変わる。局所へ強く押し続けると削り過ぎや過熱、面のうねりを招く。",
+      "detail_en": "An abrasive disc made from overlapping coated-abrasive flaps, used on a grinder for stock removal and surface blending. Abrasive type and grit determine cutting rate and finish. Excessive pressure in one location can cause over-grinding, heat buildup, and surface waviness.",
+      "bullets_ja": ["加工材と目的仕上げに合う砥粒・粒度・ディスク仕様を選ぶ。", "工具の回転数とディスク定格を合わせ、適切な当て角で連続的に動かす。", "薄板や仕上げ面では発熱と削り過ぎを避け、こまめに状態を確認する。"],
+      "bullets_en": ["Select abrasive type, grit, and disc specification for the material and finish required.", "Match disc rating to grinder speed and keep the disc moving at an appropriate working angle.", "On thin or finish-critical work, control heat and stock removal and inspect frequently."],
+      "examples_ja": ["溶接部の余盛をフラップディスクでならして周囲面へつなげる。", "塗装前の金属表面を指定粒度で軽く研磨する。"],
+      "examples_en": ["Blend a weld bead into the surrounding metal with a flap disc.", "Lightly abrade a metal surface with the specified grit before coating."]
+    },
+    {
+      "id": "q012_wire_brush_wheel",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "回転工具に装着した鋼線などのワイヤーで、金属表面の浮き錆、スケール、古い塗膜や付着物をこすり落とすブラシ。切削砥石のように寸法を大きく削る用途ではなく、表面清掃・下地処理が主目的。回転中にワイヤー片が飛散する可能性がある。",
+      "detail_en": "A rotary brush wheel using steel or other wire to remove loose rust, scale, old coating, and surface deposits. Its main purpose is cleaning and surface preparation rather than dimensional cutting like an abrasive wheel. Individual wires can be shed at operating speed.",
+      "bullets_ja": ["ブラシの許容回転数、線材、形状を加工材と工具に合わせる。", "保護カバーと眼・顔の保護具を使用し、飛散方向に人を入れない。", "過大な押付けでワイヤーを寝かせず、表面状態を見ながら軽く当てる。"],
+      "bullets_en": ["Match brush speed rating, wire material, and form to the machine and workpiece.", "Use the machine guard and suitable eye/face protection, and keep people out of the debris path.", "Avoid excessive pressure that bends the wires flat; use controlled contact while inspecting the surface."],
+      "examples_ja": ["鋼材の浮き錆をワイヤーブラシホイールで除去して塗装下地を整える。", "溶接前に接合部周辺の軽い酸化皮膜や付着物を清掃する。"],
+      "examples_en": ["Remove loose rust from steel with a wire brush wheel before coating.", "Clean light oxide and deposits around a joint before welding preparation."]
+    },
+    {
+      "id": "q012_cup_wheel",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "カップ状の基体にダイヤモンドセグメント等を配置し、グラインダーでコンクリート面の段差、レイタンス、付着物などを研削する工具。切断用ダイヤモンドブレードとは用途と当て方が異なり、面研削に用いる。大量の粉じんが発生するため集じんを含む施工方法が重要。",
+      "detail_en": "A cup-shaped grinding wheel, commonly with diamond segments, used on a grinder to remove high spots, laitance, coatings, or other material from concrete surfaces. It is for face grinding rather than the cutting action of a diamond blade. Concrete grinding can generate substantial dust, so dust-control methods are important.",
+      "bullets_ja": ["工具の回転数・取付径とカップホイールの定格を一致させ、ガードを使用する。", "セグメントの欠損や偏摩耗を点検し、面へ均一に当てながら移動する。", "適合する集じんカバー・集じん機や必要な保護具を用いて粉じんを管理する。"],
+      "bullets_en": ["Match wheel mounting and speed rating to the grinder and use the required guard.", "Inspect segments for damage or uneven wear and move the wheel evenly over the surface.", "Use compatible dust shrouds, extraction, and required protective equipment to control grinding dust."],
+      "examples_ja": ["コンクリート床の局所的な高い部分をカップホイールで研削して不陸を減らす。", "補修前に表面の脆弱層を研削し、集じんしながら下地を整える。"],
+      "examples_en": ["Grind local high spots on a concrete floor to reduce surface unevenness.", "Remove weak surface material before repair while using dust extraction."]
+    },
+    {
+      "id": "q012_sds_plus_bit",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "SDSプラス規格のシャンクを持ち、対応するロータリーハンマーでコンクリートや組積材へ穴あけするビット。打撃回転により先端の超硬チップ等で材料を破砕しながら切り進む。SDS Maxなど他規格のチャックとは直接互換ではない。",
+      "detail_en": "A masonry drill bit with an SDS Plus shank for compatible rotary hammers. Rotary hammer action drives the carbide or similar tip while the flutes remove broken material from the hole. It is not directly interchangeable with SDS Max or other shank systems.",
+      "bullets_ja": ["工具がSDSプラス対応であること、ビット径・有効長が施工条件に合うことを確認する。", "シャンクと先端の摩耗・欠損を点検し、正しくチャックへロックする。", "深い穴では切粉を排出し、必要な孔径・深さと粉じん管理を確認する。"],
+      "bullets_en": ["Confirm SDS Plus compatibility and select bit diameter and usable length for the required hole.", "Inspect the shank and tip for wear or damage and lock the bit correctly in the chuck.", "For deeper holes, clear drilling debris and control both hole depth and generated dust."],
+      "examples_ja": ["コンクリート壁へ小径アンカー用の孔をSDSプラスビットで穿孔する。", "所定深さまで穴あけした後、アンカー施工手順に従って孔内を清掃する。"],
+      "examples_en": ["Drill a small anchor hole in a concrete wall with an SDS Plus bit.", "After reaching the specified depth, clean the hole according to the anchor installation procedure."]
+    },
+    {
+      "id": "q012_sds_max_bit",
+      "wave": "content-wave-003a",
+      "state": "expanded",
+      "detail_ja": "SDS Max規格の大型シャンクを持ち、対応する大型ロータリーハンマーでコンクリートなどへ比較的大径・深い孔を穿孔するビット。SDSプラスより大型用途を想定し、工具本体・ビットとも質量と反力が大きくなりやすい。異なるSDS規格を混同しない。",
+      "detail_en": "A heavy-duty masonry bit with an SDS Max shank for compatible large rotary hammers, typically used for larger or deeper holes in concrete and similar materials. Compared with SDS Plus equipment, both bit and machine are generally larger and can produce greater reaction forces. Different SDS shank standards must not be mixed.",
+      "bullets_ja": ["使用工具がSDS Max対応で、ビット径・長さが工具の能力範囲内か確認する。", "先端・シャンクの損傷、チャックのロック、サイドハンドル等の保持条件を確認する。", "長尺・大径穿孔では姿勢、反力、粉じん・切粉排出を管理し、無理な押付けを避ける。"],
+      "bullets_en": ["Confirm SDS Max compatibility and that bit diameter and length are within the machine capacity.", "Inspect tip and shank, verify chuck locking, and use the machine's required support handles.", "For large or deep holes, manage stance, reaction, dust, and debris removal without excessive feed force."],
+      "examples_ja": ["厚いコンクリート部へ設備用アンカーの大径孔をSDS Maxビットで穿孔する。", "長いビットを使用する前に工具能力と作業スペースを確認し、安定した姿勢で施工する。"],
+      "examples_en": ["Use an SDS Max bit to drill a larger equipment-anchor hole in thick concrete.", "Before using a long bit, confirm machine capacity and working clearance and maintain a stable stance."]
+    }
+  ]
+}
