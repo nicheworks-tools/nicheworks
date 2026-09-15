@@ -37,7 +37,6 @@ jobs:
             tools/phone-quickcheck/SPEC.md \
             docs/tools/phone-quickcheck.md \
             scripts/check-phone-quickcheck-data.mjs \
-            scripts/check-phone-quickcheck-source-semantics.mjs \
             tools/phone-quickcheck/tests/behavior.test.mjs
           git diff --cached --check
           git commit -m "Phone QuickCheck: add nubia Fold"
