@@ -3073,7 +3073,8 @@
           "QC2.0"
         ],
         "pps": "unknown",
-        "wirelessStandard": "Qi"
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 9
       },
       "included": {
         "cable": "included",
@@ -3083,7 +3084,7 @@
         "specificationsUrl": "https://image-us.samsung.com/SamsungUS/samsungbusiness/pdfs/datasheet/Galaxy-Z-Flip_Z-Flip-5G-Datasheet-Generic.pdf",
         "manualUrl": "https://www.samsung.com/jp/support/model/SM-F700JZKAKDI/",
         "chargingUrl": "https://image-us.samsung.com/SamsungUS/samsungbusiness/pdfs/datasheet/Galaxy-Z-Flip_Z-Flip-5G-Datasheet-Generic.pdf",
-        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "wirelessUrl": "https://news.samsung.com/mx/comienza-en-mexico-la-preventa-online-del-nuevo-galaxy-z-flip",
         "releaseUrl": "https://news.samsung.com/global/the-future-changes-shape-express-yourself-with-galaxy-z-flip",
         "waterUrl": "https://www.samsung.com/sg/support/mobile-devices/common-questions-about-your-galaxy-z-flip/",
         "verifiedAt": "2026-09-15"
