@@ -47,7 +47,7 @@ const sourceUrls=rows.flatMap(x=>x.sources.map(s=>s.url));
 if(new Set(sourceUrls).size<18)throw new Error('Wave 2 source ledger is too concentrated; expected at least 18 distinct evidence URLs');
 
 const requiredBoundaryText={
-  'madras-check':['textile','fixed'],
+  'madras-check':['textile','single'],
   'prince-of-wales-check':['Glen Check','interchangeably'],
   'koushi':['broad','Ichimatsu'],
   'regimental-stripe':['not one universal','regiment'],
