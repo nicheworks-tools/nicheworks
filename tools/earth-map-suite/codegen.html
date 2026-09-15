@@ -47,7 +47,7 @@
     <div class="nw-lang-switch"><a href="./">Tool</a> / <a href="./datasets.html">Datasets</a> / <a href="./export.html">Export</a></div>
   </header>
   <main class="nw-main">
-    <div class="ad-slot ad-top">広告枠</div>
+
     <section class="card"><div class="card-hd"><h2 class="card-title">Codegen status</h2></div><div class="card-bd"><p class="hint">このページは metadata-only endpoint の呼び出し例だけを扱います。ラスター/COG pixel sampling のコードは未検証のため生成しません。</p></div></section>
     <div class="code-grid">
       <section class="code-box warn"><h2>Guardrails</h2><ul class="bullet"><li>metadata-only response only</li><li>do not treat synthetic preview as observed precipitation</li><li>do not generate raster sampling code here</li><li>keep endpoint errors visible</li></ul></section>
@@ -83,7 +83,7 @@ if (response.ok && payload.status === 'ok' && payload.sampling_status === 'metad
   "summary": { "mean": null, "max": null, "min": null }
 }</pre></section>
     </div>
-    <div class="ad-slot ad-bottom">広告枠</div>
+
   </main>
   <footer class="nw-footer"><div class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</div><div class="nw-footer-line">Codegen is metadata-only. Raster sampling code is not generated here.</div></footer>
   <script>document.querySelectorAll('[data-copy]').forEach((btn)=>btn.addEventListener('click',async()=>{const id=btn.getAttribute('data-copy');const text=document.getElementById(id)?.textContent||'';try{await navigator.clipboard.writeText(text);btn.textContent='Copied';}catch{btn.textContent='Copy failed';}}));</script>

@@ -47,7 +47,7 @@
     <div class="nw-lang-switch"><a href="./">Back to Earth Map Suite</a></div>
   </header>
   <main class="nw-main">
-    <div class="ad-slot ad-top">広告枠</div>
+
     <section class="card"><div class="card-hd"><h2 class="card-title">Report mode status</h2></div><div class="card-bd"><p class="hint">このページは Earth Map Suite v0.1 metadata-only MVP の状態を共有用に整理します。実測降水量レポートではありません。</p></div></section>
     <div class="report-grid">
       <section class="report-block ok"><h2>Metadata layer</h2><ul class="bullet"><li>Storm: metadata status connected</li><li>Compare: Period A/B metadata status connected</li><li>Card: point-area metadata status connected</li><li>Sampling status: metadata_only</li></ul></section>
@@ -76,7 +76,7 @@ Storm, Compare, and Card have metadata-only status checks.
 Visible maps, charts, summaries, and CSV numeric values remain synthetic preview.
 Raster precipitation values are not sampled yet.</pre><div class="actions"><button class="btn primary" id="copyReport" type="button">Copy report note</button><a class="btn" href="./">Back to tool</a><a class="btn" href="./METADATA_ONLY_MVP_STATUS.md">Status document</a></div></section>
     </div>
-    <div class="ad-slot ad-bottom">広告枠</div>
+
   </main>
   <footer class="nw-footer"><div class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</div><div class="nw-footer-line">Report Mode is metadata-only. Synthetic previews are not observed precipitation.</div><div class="nw-footer-line"><a href="/">nicheworks.app</a></div></footer>
   <script>document.getElementById('copyReport')?.addEventListener('click',async(e)=>{try{await navigator.clipboard.writeText(document.getElementById('reportText')?.textContent||'');e.currentTarget.textContent='Copied';}catch{e.currentTarget.textContent='Copy failed';}});</script>
