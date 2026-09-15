@@ -1,0 +1,40 @@
+name: Pattern Dictionary Amazon activation contract
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-amazon-activation-contract-20260915
+    paths:
+      - '.github/workflows/pattern-dictionary-amazon-contract.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-amazon-activation-contract-20260915
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate disabled and isolated active paths
+        run: |
+          node --check tools/pattern-dictionary/app.js
+          node --check tools/pattern-dictionary/scripts/activate-amazon-affiliate.mjs
+          node tools/pattern-dictionary/tests/affiliate-test.mjs
+          node tools/pattern-dictionary/tests/affiliate-activation-test.mjs
+          node tools/pattern-dictionary/tests/browse-mobile-test.mjs
+          node tools/pattern-dictionary/tests/validate.mjs
+
+      - name: Remove one-shot workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/pattern-dictionary-amazon-contract.yml
+          git commit -m 'ci: remove Pattern Dictionary Amazon contract one-shot'
+          git push origin HEAD:feat/pattern-dictionary-amazon-activation-contract-20260915
