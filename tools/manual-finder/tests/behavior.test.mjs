@@ -9,4 +9,5 @@ await import('./oki-toner-wave6.test.mjs');
 await import('./oki-ribbon-wave1.test.mjs');
 await import('./kyocera-toner-wave8.test.mjs');
 await import('./kyocera-toner-wave9.test.mjs');
+await import('./kyocera-toner-wave10.test.mjs');
 await import('./affiliate-coverage.test.mjs');
