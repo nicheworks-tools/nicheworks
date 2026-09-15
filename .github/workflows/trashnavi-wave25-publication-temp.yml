@@ -1,0 +1,16 @@
+name: TrashNavi Wave25 publication temp
+on:
+  push:
+    branches:
+      - feat/trashnavi-batch-wave25-publication-20260915
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Publish and verify Wave25 batch
+        run: python3 .github/trashnavi-wave25-publication-temp.py
