@@ -1,0 +1,79 @@
+name: One-shot live AdSense review verification
+
+on:
+  push:
+    branches:
+      - audit/adsense-live-verify-20260915
+    paths:
+      - '.github/workflows/_tmp-adsense-live-verify.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify-live:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify live review surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='https://nicheworks.app'
+          work="$(mktemp -d)"
+          trap 'rm -rf "$work"' EXIT
+
+          fetch() {
+            local name="$1" url="$2"
+            echo "=== $name $url"
+            curl --fail --silent --show-error --location \
+              --connect-timeout 10 --max-time 30 \
+              -H 'Cache-Control: no-cache' -H 'Pragma: no-cache' \
+              -D "$work/$name.headers" -o "$work/$name.body" "$url"
+            sed -n '1,30p' "$work/$name.headers"
+          }
+
+          fetch root "$base/"
+          fetch earth_map "$base/tools/earth-map-suite/"
+          fetch earth_alerts "$base/tools/earth-alerts/"
+          fetch earth_timeseries "$base/tools/earth-timeseries/"
+          fetch pro "$base/tools/command-safety-checker/pro.html"
+          fetch dev_template "$base/tools/_template/"
+          fetch minimal_template "$base/templates/nw-minimal-base/"
+          fetch ads "$base/ads.txt"
+          fetch robots "$base/robots.txt"
+          fetch sitemap "$base/sitemap.xml"
+
+          # Completed public surface: indexable and no unfinished ad/template markers.
+          ! grep -Eqi '^x-robots-tag:.*noindex' "$work/earth_map.headers"
+          grep -Eqi '<meta[^>]+name=["'"']robots["'"'][^>]+content=["'"'][^"'"']*index[^"'"']*follow' "$work/earth_map.body"
+          ! grep -Eqi '広告枠（準備中）|>\s*広告枠\s*<|>\s*Ad slot\s*<|YOUR_TOKEN_HERE' "$work/earth_map.body"
+          ! grep -Eqi '広告枠（準備中）|>\s*広告枠\s*<|>\s*Ad slot\s*<|YOUR_TOKEN_HERE' "$work/root.body"
+
+          # Staged Earth pages: noindex + no AdSense.
+          grep -Eqi '^x-robots-tag:.*noindex' "$work/earth_alerts.headers"
+          grep -Eqi 'content=["'"']noindex,nofollow["'"']' "$work/earth_alerts.body"
+          ! grep -Eqi 'pagead2\.googlesyndication\.com|adsbygoogle' "$work/earth_alerts.body"
+          grep -Eqi '^x-robots-tag:.*noindex' "$work/earth_timeseries.headers"
+          grep -Eqi 'content=["'"']noindex,nofollow["'"']' "$work/earth_timeseries.body"
+          ! grep -Eqi 'pagead2\.googlesyndication\.com|adsbygoogle' "$work/earth_timeseries.body"
+
+          # Pro support route: HTML noindex and no AdSense, irrespective of clean-URL redirect behavior.
+          grep -Eqi 'content=["'"']noindex,follow["'"']' "$work/pro.body"
+          ! grep -Eqi 'pagead2\.googlesyndication\.com|adsbygoogle' "$work/pro.body"
+
+          # Development templates: noindex,nofollow and no AdSense.
+          grep -Eqi 'content=["'"']noindex,nofollow["'"']' "$work/dev_template.body"
+          ! grep -Eqi 'pagead2\.googlesyndication\.com|adsbygoogle' "$work/dev_template.body"
+          grep -Eqi 'content=["'"']noindex,nofollow["'"']' "$work/minimal_template.body"
+          ! grep -Eqi 'pagead2\.googlesyndication\.com|adsbygoogle' "$work/minimal_template.body"
+
+          # Publisher, robots and sitemap contracts.
+          grep -Fq 'google.com, pub-9879006623791275, DIRECT, f08c47fec0942fa0' "$work/ads.body"
+          grep -Fq 'Sitemap: https://nicheworks.app/sitemap.xml' "$work/robots.body"
+          ! grep -Fq 'https://nicheworks.app/tools/earth-alerts/' "$work/sitemap.body"
+          ! grep -Fq 'https://nicheworks.app/tools/earth-timeseries/' "$work/sitemap.body"
+          ! grep -Fq 'https://nicheworks.app/billing/success.html' "$work/sitemap.body"
+          ! grep -Fq 'https://nicheworks.app/billing/cancel.html' "$work/sitemap.body"
+          ! grep -Eq '<loc>https://nicheworks\.app/tools/[^<]*/pro(?:\.html|/)' "$work/sitemap.body"
+
+          echo 'LIVE_ADSENSE_REVIEW_SURFACE_OK'
