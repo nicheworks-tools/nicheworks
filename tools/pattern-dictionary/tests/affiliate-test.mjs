@@ -4,7 +4,8 @@ import {fileURLToPath} from 'node:url';
 
 const here=path.dirname(fileURLToPath(import.meta.url));
 const root=path.resolve(here,'..');
-const cfg=JSON.parse(fs.readFileSync(path.join(root,'data','affiliate-config.json'),'utf8'));
+const configPath=process.env.PATTERN_DICTIONARY_AFFILIATE_CONFIG||path.join(root,'data','affiliate-config.json');
+const cfg=JSON.parse(fs.readFileSync(configPath,'utf8'));
 const patterns=JSON.parse(fs.readFileSync(path.join(root,'data','patterns.json'),'utf8'));
 const app=fs.readFileSync(path.join(root,'app.js'),'utf8');
 const ids=patterns.map(x=>x.id).sort();
