@@ -1,0 +1,20 @@
+{
+  "schema": "cta-affiliate-offers-v2.3",
+  "version": "2026-09-15-1",
+  "provider": "amazon.co.jp",
+  "tracking_id": "nicheworks09-22",
+  "policy": {
+    "query_source": "maintained_canonical_mapping_only",
+    "free_text_forwarding": false,
+    "product_claims": false,
+    "price_inventory_rating_content": false
+  },
+  "offers": [
+    {"entry_id":"q017_workbench","status":"active","offer_id":"amazon_workbench_search","query":"作業台 木工","amazon_url":"https://www.amazon.co.jp/s?k=%E4%BD%9C%E6%A5%AD%E5%8F%B0+%E6%9C%A8%E5%B7%A5&tag=nicheworks09-22","label_ja":"Amazonで作業台を探す","label_en":"Find workbenches on Amazon"},
+    {"entry_id":"q017_toolbox","status":"active","offer_id":"amazon_toolbox_search","query":"工具箱","amazon_url":"https://www.amazon.co.jp/s?k=%E5%B7%A5%E5%85%B7%E7%AE%B1&tag=nicheworks09-22","label_ja":"Amazonで工具箱を探す","label_en":"Find toolboxes on Amazon"},
+    {"entry_id":"q017_rubber_mallet","status":"active","offer_id":"amazon_rubber_mallet_search","query":"ゴムハンマー","amazon_url":"https://www.amazon.co.jp/s?k=%E3%82%B4%E3%83%A0%E3%83%8F%E3%83%B3%E3%83%9E%E3%83%BC&tag=nicheworks09-22","label_ja":"Amazonでゴムハンマーを探す","label_en":"Find rubber mallets on Amazon"},
+    {"entry_id":"q017_needle_nose_pliers","status":"active","offer_id":"amazon_needle_nose_pliers_search","query":"ラジオペンチ","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%A9%E3%82%B8%E3%82%AA%E3%83%9A%E3%83%B3%E3%83%81&tag=nicheworks09-22","label_ja":"Amazonでラジオペンチを探す","label_en":"Find needle-nose pliers on Amazon"},
+    {"entry_id":"q017_survey_tripod","status":"active","offer_id":"amazon_survey_tripod_search","query":"測量 三脚","amazon_url":"https://www.amazon.co.jp/s?k=%E6%B8%AC%E9%87%8F+%E4%B8%89%E8%84%9A&tag=nicheworks09-22","label_ja":"Amazonで測量用三脚を探す","label_en":"Find survey tripods on Amazon"},
+    {"entry_id":"q017_copper_pipe","status":"active","offer_id":"amazon_copper_pipe_search","query":"銅管","amazon_url":"https://www.amazon.co.jp/s?k=%E9%8A%85%E7%AE%A1&tag=nicheworks09-22","label_ja":"Amazonで銅管を探す","label_en":"Find copper pipe on Amazon"}
+  ]
+}

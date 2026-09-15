@@ -1,0 +1,42 @@
+name: Construction Tools Atlas UI Mock v2
+
+on:
+  pull_request:
+    paths:
+      - 'tools/construction-tools-atlas/**'
+      - '.github/workflows/construction-tools-atlas-ui-mock-v2.yml'
+  push:
+    paths:
+      - 'tools/construction-tools-atlas/**'
+      - '.github/workflows/construction-tools-atlas-ui-mock-v2.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  ui-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check UI parity runtime syntax
+        run: node --check tools/construction-tools-atlas/ui-mock-v2-parity.js
+
+      - name: Check UI hardening runtime syntax
+        run: node --check tools/construction-tools-atlas/ui-mock-v2-hardening.js
+
+      - name: Check detail bootstrap syntax
+        run: node --check tools/construction-tools-atlas/detail-dictionary-fix.js
+
+      - name: Validate UI Mock v2 and affiliate contract
+        run: node tools/construction-tools-atlas/scripts/check-ui-mock-v2-parity.cjs
+
+      - name: Require authoritative UI Mock v2 specification
+        run: |
+          test -f tools/construction-tools-atlas/UI_MOCK_V2_SPEC.md
+          grep -q 'authoritative UI source of truth' tools/construction-tools-atlas/UI_MOCK_V2_SPEC.md
+          grep -q 'superseded' tools/construction-tools-atlas/design-spec.md
+
+      - name: Require hidden-result hardening
+        run: grep -q '#resultList .row\[hidden\]{display:none!important}' tools/construction-tools-atlas/ui-mock-v2-hardening.css

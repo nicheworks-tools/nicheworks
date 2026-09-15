@@ -1,0 +1,2 @@
+/* UI Mock v2 hardening: hidden state must beat the grid presentation layer. */
+#resultList .row[hidden]{display:none!important}
