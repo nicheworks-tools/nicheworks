@@ -3,6 +3,7 @@ name: Construction Tools Atlas canonical redirects
 on:
   push:
     branches:
+      - main
       - fix/construction-atlas-canonical-redirects-20260915
     paths:
       - 'tools/construction-tools-atlas/**'
@@ -26,17 +27,24 @@ jobs:
         run: |
           node --check tools/construction-tools-atlas/data/quality-loader.js
           node --check tools/construction-tools-atlas/canonical-deep-link-v2.3.js
+          node --check tools/construction-tools-atlas/detail-image-hotfix.js
           node --check tools/construction-tools-atlas/scripts/check-canonical-redirects-v2.3.cjs
+          node --check tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
           node --check tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs
+          node --check tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs
+          node --check tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs
 
-      - name: Validate canonical redirects
+      - name: Validate canonical redirects and compatibility migration
         run: node tools/construction-tools-atlas/scripts/check-canonical-redirects-v2.3.cjs
 
-      - name: Report redirect-aware publication inventory
-        run: node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs
+      - name: Validate redirect-aware canonical image runtime
+        run: node tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
 
-      - name: Report redirect-aware public image inventory
-        run: node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs
+      - name: Validate redirect-aware publication inventory
+        run: node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs --check
 
-      - name: Report redirect-aware public content quality
-        run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs
+      - name: Validate redirect-aware public image inventory
+        run: node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --check
+
+      - name: Validate redirect-aware public content quality
+        run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check
