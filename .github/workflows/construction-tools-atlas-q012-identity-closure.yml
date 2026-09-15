@@ -1,0 +1,39 @@
+name: Construction Tools Atlas q012 identity closure
+
+on:
+  push:
+    branches:
+      - main
+      - audit/construction-atlas-q012-identity-closure-20260916
+    paths:
+      - 'tools/construction-tools-atlas/**'
+      - '.github/workflows/construction-tools-atlas-q012-identity-closure.yml'
+  pull_request:
+    paths:
+      - 'tools/construction-tools-atlas/**'
+      - '.github/workflows/construction-tools-atlas-q012-identity-closure.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  q012-identity-closure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check q012 identity closure syntax
+        run: |
+          node --check tools/construction-tools-atlas/data/quality-loader.js
+          node --check tools/construction-tools-atlas/scripts/check-canonical-redirects-v2.3.cjs
+          node --check tools/construction-tools-atlas/scripts/check-canonical-identity-resolutions-v2.3.cjs
+          node --check tools/construction-tools-atlas/scripts/audit-q012-identity-closure-v2.3.cjs
+      - name: Validate canonical redirects
+        run: node tools/construction-tools-atlas/scripts/check-canonical-redirects-v2.3.cjs
+      - name: Validate canonical identity resolutions
+        run: node tools/construction-tools-atlas/scripts/check-canonical-identity-resolutions-v2.3.cjs
+      - name: Require zero unresolved q012 identity collisions
+        run: node tools/construction-tools-atlas/scripts/audit-q012-identity-closure-v2.3.cjs
+      - name: Validate publication boundary
+        run: node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs --check
+      - name: Validate public content state
+        run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check

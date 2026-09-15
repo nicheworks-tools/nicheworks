@@ -51,8 +51,12 @@ async function main() {
   const runtime = await runLoader();
   const byId = new Map(runtime.entries.map((row) => [text(row?.id), row]));
   const diagnostics = runtime.windowObject.CTA_DATA_DIAGNOSTICS || {};
+  const expectedNameOverrideCount = array(identity.name_overrides).length;
   const expectedAliasRemovalCount = array(identity.alias_removals).reduce((sum, row) => sum + array(row.ja).length + array(row.en).length, 0);
 
+  if (diagnostics.identityNameOverridesApplied !== expectedNameOverrideCount) {
+    throw new Error(`Name override count mismatch: ${diagnostics.identityNameOverridesApplied} != ${expectedNameOverrideCount}`);
+  }
   if (diagnostics.identityTypeOverridesApplied !== array(identity.type_overrides).length) {
     throw new Error(`Type override count mismatch: ${diagnostics.identityTypeOverridesApplied} != ${array(identity.type_overrides).length}`);
   }
@@ -61,6 +65,21 @@ async function main() {
   }
   if (diagnostics.identityResolutionMissingTargets) throw new Error(`Missing identity targets: ${diagnostics.identityResolutionMissingTargets}`);
   if (diagnostics.identityResolutionSourceMismatches) throw new Error(`Unexpected identity source type mismatches: ${diagnostics.identityResolutionSourceMismatches}`);
+
+  for (const row of array(identity.name_overrides)) {
+    const id = text(row.id);
+    const target = byId.get(id);
+    if (!target) throw new Error(`${id}: name-override target is not public`);
+    const wantJa = text(row?.to?.ja);
+    const wantEn = text(row?.to?.en);
+    if (wantJa && text(target?.term?.ja) !== wantJa) throw new Error(`${id}: JA canonical name override not applied`);
+    if (wantEn && text(target?.term?.en) !== wantEn) throw new Error(`${id}: EN canonical name override not applied`);
+    const oldJa = text(row?.from?.ja);
+    const oldEn = text(row?.from?.en);
+    const fuzzy = array(target?.fuzzy).map(norm);
+    if (oldJa && norm(oldJa) !== norm(wantJa) && fuzzy.includes(norm(oldJa))) throw new Error(`${id}: retired JA canonical name remains in fuzzy vocabulary`);
+    if (oldEn && norm(oldEn) !== norm(wantEn) && fuzzy.includes(norm(oldEn))) throw new Error(`${id}: retired EN canonical name remains in fuzzy vocabulary`);
+  }
 
   for (const row of array(identity.type_overrides)) {
     const id = text(row.id);
@@ -97,6 +116,7 @@ async function main() {
   console.log(`CTA_IDENTITY_RUNTIME_SUMMARY=${JSON.stringify({
     public_entries: runtime.entries.length,
     redirects: redirects.size,
+    name_overrides: expectedNameOverrideCount,
     type_overrides: array(identity.type_overrides).length,
     alias_removals: expectedAliasRemovalCount,
     distinct_pairs: array(identity.resolved_distinct_pairs).length

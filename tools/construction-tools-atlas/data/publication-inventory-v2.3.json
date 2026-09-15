@@ -1,6 +1,6 @@
 {
   "schema": "cta-publication-inventory-v2.3",
-  "version": "2026-09-16-q011-identity-closure-1",
+  "version": "2026-09-16-q012-identity-closure-1",
   "policy": {
     "generated_filler_batches": [
       "atlas-expand-5000",
@@ -14,8 +14,8 @@
   "summary": {
     "stored_corpus_entries": 5536,
     "quarantined_generated_entries": 4600,
-    "redirected_duplicate_entries": 23,
-    "published_runtime_entries": 913,
+    "redirected_duplicate_entries": 40,
+    "published_runtime_entries": 896,
     "skipped_missing_id": 0,
     "duplicate_ids_removed": 0,
     "duplicate_terms_removed": 0
@@ -30,31 +30,32 @@
     "consumable": 14,
     "defect": 3,
     "document": 2,
-    "equipment": 45,
+    "equipment": 43,
     "fastener": 17,
     "fixture": 5,
     "hardware": 14,
     "inspection": 8,
     "material": 167,
-    "materials": 16,
+    "materials": 15,
     "process": 15,
     "rigging": 6,
-    "safety": 17,
+    "safety": 16,
     "sample": 1,
     "site": 2,
     "structure": 2,
     "system": 1,
     "temporary": 3,
     "test": 1,
-    "tool": 364
+    "tool": 351
   },
   "hashes": {
-    "published_id_sha256": "9e385023a6533565a4a0542e4b858b63644316c0837d9d6cf49fb08e6aa215ac",
+    "published_id_sha256": "50b1c798836563b0b5259d01bf15f11c999b8073be90aa03c076b6159078dfbd",
     "quarantined_generated_id_sha256": "ad863c921ea5d879ae7273660b9550d94b1a705541b865102b38f90668d5c9cf",
-    "canonical_redirect_sha256": "b9a8a3fd7dbc3ca025cb6dadb0ba7fb578b8805be578c065a37ba60da2a7d0d6",
-    "publication_classification_sha256": "60b7ae5efd99d8bda90a76f59dfac508e4e8460c91d3961dd85e575ec311907f"
+    "canonical_redirect_sha256": "6662fd4098edd84c60aab65761b5f85ee1e8aa70fb9e8cae14f88d0d4f737a9c",
+    "publication_classification_sha256": "4f0fbdb37429904c2c612a908eed7884be3ad43c1cf2640bcaaa54b037d02e99"
   },
   "redirected_ids": [
+    "air_compressor\tcompressor",
     "q011_chemical_anchor\tchemical_anchor",
     "q011_conduit_bender\tconduit_bender",
     "q011_drain_trap\ttrap",
@@ -77,6 +78,22 @@
     "q011_tile_spacer\ttile_spacer",
     "q011_trowel\ttrowel",
     "q011_waterproof_tape\tseal_tape",
+    "q012_air_compressor\tcompressor",
+    "q012_all_thread_rod\tthreaded_rod",
+    "q012_builder_square\tspeed_square",
+    "q012_concrete_cover_meter\tcover_meter",
+    "q012_crack_scale\tcrack_gauge",
+    "q012_dial_gauge\tdial_gauge",
+    "q012_diamond_blade\tdiamond_blade",
+    "q012_dust_collector\tdust_collection_vacuum",
+    "q012_feeler_gauge\tfeeler_gauge",
+    "q012_guardrail\tguardrail",
+    "q012_hex_key\tallen_key",
+    "q012_rebar_locator\trebar_detector",
+    "q012_shop_vacuum\twet_dry_vacuum",
+    "q012_temporary_distribution_box\ttemporary_power_panel",
+    "q012_vernier_caliper\tcaliper",
+    "shop_vac\twet_dry_vacuum",
     "tile_spacers\ttile_spacer"
   ],
   "quarantined_sample": [

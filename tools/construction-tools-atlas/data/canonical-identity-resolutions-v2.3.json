@@ -1,13 +1,22 @@
 {
   "schema": "cta-canonical-identity-resolutions-v2.3",
-  "version": "2026-09-15-q011-closure-1",
+  "version": "2026-09-16-q012-closure-1",
   "policy": {
-    "purpose": "Record reviewed taxonomy corrections and distinct-concept decisions discovered during q011 canonical identity closure.",
+    "purpose": "Record reviewed canonical naming, taxonomy, alias, and distinct-concept decisions discovered during q011/q012 identity closure.",
     "source_rows_remain_immutable_provenance": true,
     "runtime_overrides_are_canonical_taxonomy": true,
+    "name_overrides_correct_public_identity_without_rewriting_source_provenance": true,
     "alias_removal_means_not_an_equivalent_name": true,
     "related_terms_may_still_match_through_descriptions_or_search semantics": true
   },
+  "name_overrides": [
+    {
+      "id": "square_tool",
+      "from": {"ja": "差し金", "en": "Try Square"},
+      "to": {"ja": "スコヤ", "en": "Try Square"},
+      "reason": "Try Square is a スコヤ; 差し金/曲尺 is a different carpenter-square canonical handled by speed_square."
+    }
+  ],
   "type_overrides": [
     {"id":"drywall_tape","from":"tool","to":"material","reason":"record definition identifies a drywall joint reinforcement material, not a tool"},
     {"id":"form_tie","from":"tool","to":"component","reason":"form tie is a formwork spacing/tie component"},
@@ -20,7 +29,13 @@
     {"id":"safety_harness","from":"tool","to":"safety","reason":"full-body harness is fall-protection safety equipment"},
     {"id":"grout","from":"tool","to":"material","reason":"record definition identifies grout as a building material/consumable"},
     {"id":"drop_cloth","from":"tool","to":"material","reason":"record definition identifies a protective sheet/drop cloth material"},
-    {"id":"access_panel","from":"material","to":"component","reason":"access panel is an installed openable inspection component"}
+    {"id":"access_panel","from":"material","to":"component","reason":"access panel is an installed openable inspection component"},
+    {"id":"diamond_blade","from":"tool","to":"consumable","reason":"diamond blade is a replaceable cutting consumable rather than a standalone tool"},
+    {"id":"threaded_rod","from":"materials","to":"fastener","reason":"threaded rod is used as a fastening/hanging member and matches the q012 all-thread fastener concept"},
+    {"id":"dust_collection_vacuum","from":"tool","to":"equipment","reason":"powered dust extraction unit is equipment rather than a hand tool"},
+    {"id":"wet_dry_vacuum","from":"tool","to":"equipment","reason":"jobsite wet/dry vacuum is powered equipment"},
+    {"id":"shop_vac","from":"tool","to":"equipment","reason":"retired shop-vac duplicate represents powered jobsite vacuum equipment"},
+    {"id":"air_compressor","from":"tool","to":"equipment","reason":"retired air-compressor duplicate represents powered compressed-air equipment"}
   ],
   "alias_removals": [
     {"id":"furring_strip","ja":["野縁"],"en":[],"reason":"野縁 and 胴縁 are related furring members but not canonical-equivalent Japanese terms"},
@@ -29,7 +44,11 @@
     {"id":"firestop","ja":[],"en":["Firestop sealant"],"reason":"firestop sealant is one product subtype within the broader firestop system/material family"},
     {"id":"access_panel","ja":[],"en":["Inspection hatch"],"reason":"generic wall/ceiling access panel should not alias the floor-specific inspection-hatch canonical"},
     {"id":"construction_joint","ja":[],"en":["Cold joint"],"reason":"a planned construction joint is distinct from an unintended cold-joint defect"},
-    {"id":"repair_patch","ja":["補修モルタル"],"en":["Repair mortar"],"reason":"repair mortar is a specific mortar subtype, not an equivalent name for the broader repair-patch material family"}
+    {"id":"repair_patch","ja":["補修モルタル"],"en":["Repair mortar"],"reason":"repair mortar is a specific mortar subtype, not an equivalent name for the broader repair-patch material family"},
+    {"id":"wrench","ja":["スパナ"],"en":[],"reason":"generic wrench is broader than the q012 open-end spanner canonical; Japanese スパナ is retained on the specific entry"},
+    {"id":"speed_square","ja":[],"en":["Framing square","Square"],"reason":"the maintained speed_square record actually represents 差し金/Carpenter's Square; Framing Square is a separate q012 canonical and generic Square is overbroad"},
+    {"id":"square_tool","ja":["曲尺"],"en":[],"reason":"Try Square/スコヤ is distinct from 曲尺・差し金"},
+    {"id":"masonry_chisel","ja":["タガネ"],"en":["Chisel","Wood chisel"],"reason":"masonry chisel is distinct from the broader cold-chisel/taga-ne concept; Wood chisel was also an incorrect equivalent alias"}
   ],
   "resolved_distinct_pairs": [
     {"a":"q011_furring_channel","b":"furring_strip","resolution":"keep_distinct","reason":"野縁 is ceiling furring; 胴縁 is wall/backing furring. Related members, not the same canonical concept."},
@@ -40,6 +59,12 @@
     {"a":"q011_firestop_sealant","b":"firestop","resolution":"keep_distinct_parent_subtype","reason":"firestop is the broader rated penetration treatment/material system; firestop sealant is one sealant subtype."},
     {"a":"q011_inspection_hatch","b":"access_panel","resolution":"keep_distinct_scope","reason":"q011 is specifically an underfloor inspection hatch; access_panel covers wall/ceiling service access."},
     {"a":"q011_cold_joint","b":"construction_joint","resolution":"keep_distinct","reason":"cold joint is an undesirable defect from delayed placement; construction joint is a planned/formed pour joint."},
-    {"a":"q011_repair_mortar","b":"repair_patch","resolution":"keep_distinct_parent_subtype","reason":"repair mortar is a mortar subtype; repair_patch is the broader repair-material family."}
+    {"a":"q011_repair_mortar","b":"repair_patch","resolution":"keep_distinct_parent_subtype","reason":"repair mortar is a mortar subtype; repair_patch is the broader repair-material family."},
+    {"a":"q012_spanner","b":"wrench","resolution":"keep_distinct_scope","reason":"q012 is specifically an open-end wrench/spanner; wrench is the broader wrench family."},
+    {"a":"q012_framing_square","b":"speed_square","resolution":"keep_distinct_scope","reason":"q012 大矩/Framing Square is the large framing-layout square; speed_square currently carries the 差し金/Carpenter's Square canonical."},
+    {"a":"square_tool","b":"speed_square","resolution":"keep_distinct","reason":"Try Square/スコヤ is a different woodworking square from 差し金/Carpenter's Square."},
+    {"a":"q012_cold_chisel","b":"masonry_chisel","resolution":"keep_distinct_scope","reason":"Cold chisel/taga-ne and masonry chisel overlap in chipping use but are different tool concepts and material applications."},
+    {"a":"q012_toe_board","b":"baseboard","resolution":"keep_distinct_polysemy","reason":"Japanese 幅木 can mean a scaffold toe board or an architectural baseboard/skirting; the installed functions are different."},
+    {"a":"dust_collection_vacuum","b":"wet_dry_vacuum","resolution":"keep_distinct_scope","reason":"dust extraction connected to cutting/grinding is distinct from a general jobsite wet/dry cleanup vacuum."}
   ]
 }

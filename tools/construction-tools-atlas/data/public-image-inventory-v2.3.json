@@ -1,6 +1,6 @@
 {
   "schema": "cta-public-image-inventory-v2.3",
-  "version": "2026-09-16-q011-identity-closure-1",
+  "version": "2026-09-16-q012-identity-closure-1",
   "policy": {
     "publication_inventory": "publication-inventory-v2.3.json",
     "image_inventory": "image-inventory-v2.3.json",
@@ -16,19 +16,19 @@
     "quarantined_generated_records_are_not_public_image_backlog": true
   },
   "sources": {
-    "publication_inventory_version": "2026-09-16-q011-identity-closure-1",
-    "publication_id_sha256": "9e385023a6533565a4a0542e4b858b63644316c0837d9d6cf49fb08e6aa215ac",
+    "publication_inventory_version": "2026-09-16-q012-identity-closure-1",
+    "publication_id_sha256": "50b1c798836563b0b5259d01bf15f11c999b8073be90aa03c076b6159078dfbd",
     "image_registry_version": "2026-09-14-wave3a-1",
     "image_exception_ledger_version": "2026-09-15-1"
   },
   "summary": {
-    "public_entries": 913,
+    "public_entries": 896,
     "formal_image_entries": 24,
-    "missing_formal_image_entries": 889,
+    "missing_formal_image_entries": 872,
     "not_required_entries": 0,
     "unobtainable_entries": 0,
-    "classified_entries": 913,
-    "formal_coverage_percent": 2.6287,
+    "classified_entries": 896,
+    "formal_coverage_percent": 2.6786,
     "registry_items_total": 24,
     "formal_images_inherited_via_redirect": 4,
     "formal_images_outside_public": 0,
@@ -79,9 +79,9 @@
       "unobtainable": 0
     },
     "equipment": {
-      "public_entries": 45,
+      "public_entries": 43,
       "formal_image": 4,
-      "missing_formal_image": 41,
+      "missing_formal_image": 39,
       "not_required": 0,
       "unobtainable": 0
     },
@@ -121,9 +121,9 @@
       "unobtainable": 0
     },
     "materials": {
-      "public_entries": 16,
+      "public_entries": 15,
       "formal_image": 0,
-      "missing_formal_image": 16,
+      "missing_formal_image": 15,
       "not_required": 0,
       "unobtainable": 0
     },
@@ -142,9 +142,9 @@
       "unobtainable": 0
     },
     "safety": {
-      "public_entries": 17,
+      "public_entries": 16,
       "formal_image": 1,
-      "missing_formal_image": 16,
+      "missing_formal_image": 15,
       "not_required": 0,
       "unobtainable": 0
     },
@@ -191,18 +191,18 @@
       "unobtainable": 0
     },
     "tool": {
-      "public_entries": 364,
+      "public_entries": 351,
       "formal_image": 14,
-      "missing_formal_image": 350,
+      "missing_formal_image": 337,
       "not_required": 0,
       "unobtainable": 0
     }
   },
   "hashes": {
-    "public_id_sha256": "9e385023a6533565a4a0542e4b858b63644316c0837d9d6cf49fb08e6aa215ac",
+    "public_id_sha256": "50b1c798836563b0b5259d01bf15f11c999b8073be90aa03c076b6159078dfbd",
     "public_formal_image_id_sha256": "e3226d50ed8eccd6345dc24643c09e06816c1a6a1bb6738edf8d90caade241e2",
-    "public_missing_formal_image_id_sha256": "784b9f98e1564406790aa0fee2a36b3bc87fa1370246fa20e2c540ed0b0dec93",
-    "public_image_classification_sha256": "96123aea1f2f7222975b373f3ff8686a5e7d715e4d4ece0c8bc56a65311fb2a0"
+    "public_missing_formal_image_id_sha256": "5e40d04ff9f06a617ab4d1052362f9395a251520018c69b195a9ac300adace9a",
+    "public_image_classification_sha256": "2f211961b8e81bf2038ffcf4dcafeffc05acbf00f066636f1b9dd74c79b88e56"
   },
   "inherited_formal_images": [
     {
@@ -229,7 +229,6 @@
     "access_panel",
     "acoustic_panel",
     "adhesion_test",
-    "air_compressor",
     "allen_key",
     "anchor_bolt",
     "anchor_plastic_plug",
@@ -249,6 +248,7 @@
     "bolt_nut",
     "borescope",
     "brick_hammer",
-    "brick_trowel"
+    "brick_trowel",
+    "bucket"
   ]
 }

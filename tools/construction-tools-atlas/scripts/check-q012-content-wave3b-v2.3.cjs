@@ -82,7 +82,7 @@ async function main() {
   const redirects = new Set(arr(readJson(REDIRECTS)?.redirects).map((row) => text(row?.from)).filter(Boolean));
   const q012 = rowsFrom(readJson(TARGET)).map((row) => text(row?.id)).filter(Boolean);
   const activeQ012 = q012.filter((id) => !redirects.has(id));
-  if (activeQ012.length !== 84) throw new Error(`Expected 84 active q012 rows, got ${activeQ012.length}`);
+  if (activeQ012.length !== 69) throw new Error(`Expected 69 active q012 rows, got ${activeQ012.length}`);
   for (const id of EXPECTED) if (!activeQ012.includes(id)) throw new Error(`${id}: expected safe id is not an active q012 canonical`);
 
   const runtime = await runLoader();
