@@ -46,10 +46,10 @@ function loadCorpusIds() {
 }
 
 function loadSourceLedgerItems() {
-  const paths = [
-    path.join(DATA, 'image-wave1-sources-v2.3.json'),
-    path.join(DATA, 'image-wave2-sources-v2.3.json')
-  ];
+  const paths = fs.readdirSync(DATA)
+    .filter((name) => /^image-wave\d+-sources-v2\.3\.json$/.test(name))
+    .sort((a, b) => a.localeCompare(b, 'en'))
+    .map((name) => path.join(DATA, name));
   const byId = new Map();
   for (const file of paths) {
     if (!fs.existsSync(file)) continue;
