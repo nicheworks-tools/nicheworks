@@ -1,0 +1,90 @@
+name: Construction Tools Atlas q012 identity discovery
+
+on:
+  push:
+    branches:
+      - audit/construction-atlas-q012-identity-closure-20260916
+    paths:
+      - '.github/workflows/construction-tools-atlas-q012-identity-discovery.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Discover q012 collision counterparts
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const vm = require('node:vm');
+          const root = 'tools/construction-tools-atlas';
+          const data = path.join(root,'data');
+          const HELD = new Set([
+            'q012_hex_key','q012_spanner','q012_feeler_gauge','q012_dial_gauge','q012_vernier_caliper',
+            'q012_builder_square','q012_framing_square','q012_diamond_blade','q012_cold_chisel','q012_all_thread_rod',
+            'q012_concrete_cover_meter','q012_rebar_locator','q012_crack_scale','q012_dust_collector','q012_shop_vacuum',
+            'q012_air_compressor','q012_temporary_distribution_box','q012_guardrail','q012_toe_board'
+          ]);
+          const read = p => JSON.parse(fs.readFileSync(p,'utf8'));
+          const text = v => typeof v === 'string' ? v.trim() : '';
+          const arr = v => Array.isArray(v) ? v : [];
+          const normJa = v => text(v).normalize('NFKC').replace(/[\s・･\-‐‑‒–—―_()（）]/g,'').toLowerCase();
+          const normEn = v => text(v).normalize('NFKC').toLowerCase().replace(/[^a-z0-9]+/g,' ' ).trim();
+          const q012 = read(path.join(data,'tools.quality-012.json')).rows;
+          const sourceHeld = new Map(q012.filter(r=>HELD.has(r.id)).map(r=>[r.id,r]));
+          if (sourceHeld.size !== HELD.size) throw new Error(`held source mismatch ${sourceHeld.size}/${HELD.size}`);
+
+          function localFile(runtimePath) {
+            const clean = String(runtimePath||'').replace(/[?#].*$/,'').replace(/^\.\//,'');
+            return path.resolve(root,clean);
+          }
+          async function loadRuntime() {
+            const src = fs.readFileSync(path.join(data,'quality-loader.js'),'utf8');
+            const w = {};
+            w.fetch = async input => {
+              const file = localFile(typeof input === 'string' ? input : input?.url);
+              if (!fs.existsSync(file)) return {ok:false, async json(){return null;}};
+              return {ok:true, async json(){return read(file);}};
+            };
+            const d = {addEventListener(){},getElementById(){return null;},querySelector(){return null;},createElement(){return {setAttribute(){}};},head:{appendChild(){}}};
+            vm.runInNewContext(src,{window:w,document:d,console:{info(){},warn(){},error:console.error},Set,Map},{filename:'quality-loader.js'});
+            return await w.CTA_DATA_LOADER.loadEntries();
+          }
+          function names(e) {
+            return {
+              ja:text(e?.term?.ja || e?.ja || e?.name_ja),
+              en:text(e?.term?.en || e?.en || e?.name_en),
+              aja:arr(e?.aliases?.ja || e?.aliases_ja || e?.aj).map(text).filter(Boolean),
+              aen:arr(e?.aliases?.en || e?.aliases_en || e?.ae).map(text).filter(Boolean),
+              type:text(e?.type || e?.t),
+              dja:text(e?.description?.ja || e?.summary?.ja || e?.description_ja || e?.summary_ja || e?.dj),
+              den:text(e?.description?.en || e?.summary?.en || e?.description_en || e?.summary_en || e?.de)
+            };
+          }
+          (async()=>{
+            const runtime = await loadRuntime();
+            const byId = new Map(runtime.map(e=>[text(e.id),e]));
+            const reports=[];
+            for (const id of HELD) {
+              const s=sourceHeld.get(id);
+              const sj=normJa(s.ja), se=normEn(s.en);
+              const candidates=[];
+              for (const e of runtime) {
+                if (text(e.id)===id) continue;
+                const n=names(e); const reasons=[];
+                if (sj && normJa(n.ja)===sj) reasons.push('exact_ja');
+                if (se && normEn(n.en)===se) reasons.push('exact_en');
+                if (sj && n.aja.some(a=>normJa(a)===sj)) reasons.push('target_alias_ja');
+                if (se && n.aen.some(a=>normEn(a)===se)) reasons.push('target_alias_en');
+                if (reasons.length) candidates.push({id:text(e.id),...n,reasons});
+              }
+              reports.push({source:{id,type:s.t,ja:s.ja,en:s.en,dja:s.dj,den:s.de},runtime_present:byId.has(id),candidates});
+            }
+            console.log('CTA_Q012_IDENTITY_DISCOVERY='+JSON.stringify({held:HELD.size,runtime_entries:runtime.length,reports}));
+            for (const r of reports) console.log('CTA_Q012_IDENTITY_CASE='+JSON.stringify(r));
+          })().catch(e=>{console.error(e);process.exit(1);});
+          NODE
