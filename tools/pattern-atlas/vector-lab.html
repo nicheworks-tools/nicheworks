@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vector Lab｜Pattern Atlas | NicheWorks</title>
+  <meta name="description" content="Pattern AtlasのPNG模様をブラウザ内でSVGへ自動ベクター化し、品質・容量・編集性を比較する実験ページです。">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="./css/pattern-atlas.css">
+  <link rel="stylesheet" href="./css/vector-lab.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+</head>
+<body>
+  <div class="pa-tool pa-vector-lab" data-tool="pattern-atlas-vector-lab">
+    <header class="pa-header">
+      <p class="pa-kicker">NicheWorks / Pattern Atlas experiment</p>
+      <h1 class="pa-title">Vector Lab</h1>
+      <p class="pa-lead">模様辞典のPNGを、その場でSVGへトレースして品質と編集性を比較します。</p>
+      <p class="pa-muted"><a href="./">← Pattern Atlasへ戻る</a></p>
+    </header>
+
+    <main class="pa-main">
+      <section class="pa-section pa-lab-intro" aria-labelledby="lab-about">
+        <h2 class="pa-section-title" id="lab-about">今回のテスト</h2>
+        <p>麻の葉・青海波・七宝の3素材を、ImageTracerJSでクライアント側ベクター化します。元PNGは模様辞典で使用している素材と同じバイナリです。</p>
+        <p class="pa-muted">このページは実験用です。トレース処理と色編集はブラウザ内で行われます。ImageTracerJS本体のみ、固定コミットのjsDelivr配信を読み込みます。</p>
+      </section>
+
+      <section class="pa-section" aria-labelledby="controls-title">
+        <h2 class="pa-section-title" id="controls-title">変換条件</h2>
+        <div class="pa-lab-controls">
+          <label class="pa-lab-field">
+            <span>模様</span>
+            <select class="pa-select" data-pa-lab-pattern>
+              <option value="asanoha">麻の葉 / Asanoha</option>
+              <option value="seigaiha">青海波 / Seigaiha</option>
+              <option value="shippo">七宝 / Shippo</option>
+            </select>
+          </label>
+          <label class="pa-lab-field">
+            <span>プリセット</span>
+            <select class="pa-select" data-pa-lab-preset>
+              <option value="geometric">Geometric — 形状優先</option>
+              <option value="balanced" selected>Balanced — 標準</option>
+              <option value="detail">Detail — 細部優先</option>
+            </select>
+          </label>
+          <label class="pa-lab-field pa-lab-range-field">
+            <span>タイル表示 <output data-pa-lab-tile-output>220px</output></span>
+            <input data-pa-lab-tile-size type="range" min="80" max="420" value="220" step="10">
+          </label>
+        </div>
+        <div class="pa-lab-actions">
+          <button class="pa-button pa-button-primary" type="button" data-pa-lab-run>選択条件で変換</button>
+          <button class="pa-button" type="button" data-pa-lab-run-all>3プリセットを比較</button>
+        </div>
+        <p class="pa-lab-status" data-pa-lab-status role="status">準備完了</p>
+      </section>
+
+      <section class="pa-section" aria-labelledby="source-title">
+        <h2 class="pa-section-title" id="source-title">元PNG</h2>
+        <div class="pa-lab-source-wrap">
+          <img class="pa-lab-source" data-pa-lab-source src="./assets/vector-lab/asanoha.png" alt="麻の葉の元PNG">
+          <div class="pa-lab-source-meta">
+            <strong data-pa-lab-source-name>麻の葉 / Asanoha</strong>
+            <span data-pa-lab-source-path>assets/vector-lab/asanoha.png</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="pa-section" aria-labelledby="results-title">
+        <div class="pa-results-head">
+          <h2 class="pa-section-title" id="results-title">ベクター結果</h2>
+          <p class="pa-results-count" data-pa-lab-result-count>0 results</p>
+        </div>
+        <div class="pa-lab-results" data-pa-lab-results>
+          <p class="pa-muted">まだ変換していません。</p>
+        </div>
+      </section>
+
+      <section class="pa-section" aria-labelledby="criteria-title">
+        <h2 class="pa-section-title" id="criteria-title">判定ポイント</h2>
+        <div class="pa-lab-criteria">
+          <span>元PNGとの見た目</span><span>拡大時の輪郭</span><span>path数</span><span>SVG容量</span><span>継ぎ目</span><span>色編集のしやすさ</span>
+        </div>
+        <p class="pa-muted">今回の目的は「SVGが生成できるか」ではなく、Pattern Atlasで配布できる素材品質に近づけるかを確認することです。</p>
+      </section>
+    </main>
+
+    <footer class="pa-footer">
+      <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+      <p>Vector Lab is an experimental Pattern Atlas surface.</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/gh/jankovicsandras/imagetracerjs@cb0c84a309df5e75614d3b5166cdc77a56f12a98/imagetracer_v1.2.6.js"></script>
+  <script type="module" src="./js/vector-lab.js"></script>
+</body>
+</html>
