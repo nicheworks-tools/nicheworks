@@ -1,0 +1,53 @@
+name: Construction Tools Atlas Wave3B discovery
+
+on:
+  push:
+    branches:
+      - feat/construction-atlas-content-wave3b-q012-20260916
+    paths:
+      - '.github/workflows/construction-tools-atlas-wave3b-discovery.yml'
+      - 'tools/construction-tools-atlas/data/**'
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Discover remaining safe q012 content targets
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const root = 'tools/construction-tools-atlas';
+          const data = path.join(root, 'data');
+          const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const q012 = read(path.join(data, 'tools.quality-012.json')).rows;
+          const redirects = new Set((read(path.join(data, 'canonical-redirects-v2.3.json')).redirects || []).map(x => x.from));
+          const manifest = read(path.join(data, 'content-enrichment-manifest-v2.3.json'));
+          const enriched = new Set();
+          for (const pack of manifest.packs || []) {
+            const file = path.resolve(root, String(pack.path).replace(/^\.\//, ''));
+            const raw = read(file);
+            for (const row of raw.entries || []) enriched.add(row.id);
+          }
+          const collision = new Set([
+            'q012_hex_key','q012_spanner','q012_feeler_gauge','q012_dial_gauge','q012_vernier_caliper',
+            'q012_builder_square','q012_framing_square','q012_diamond_blade','q012_cold_chisel','q012_all_thread_rod',
+            'q012_concrete_cover_meter','q012_rebar_locator','q012_crack_scale','q012_dust_collector','q012_shop_vacuum',
+            'q012_air_compressor','q012_temporary_distribution_box','q012_guardrail','q012_toe_board'
+          ]);
+          const active = q012.filter(r => !redirects.has(r.id));
+          const remaining = active.filter(r => !enriched.has(r.id));
+          const safe = remaining.filter(r => !collision.has(r.id));
+          const collisionRemaining = remaining.filter(r => collision.has(r.id));
+          console.log('CTA_Q012_DISCOVERY=' + JSON.stringify({
+            q012_rows:q012.length,
+            active_q012:active.length,
+            enriched_active_q012:active.filter(r=>enriched.has(r.id)).length,
+            remaining:remaining.length,
+            safe_remaining:safe.length,
+            collision_review_remaining:collisionRemaining.length
+          }));
+          console.log('CTA_Q012_SAFE_REMAINING=' + JSON.stringify(safe.map(r => ({id:r.id,type:r.t,ja:r.ja,en:r.en,category:r.c,task:r.task}))));
+          console.log('CTA_Q012_COLLISION_REMAINING=' + JSON.stringify(collisionRemaining.map(r => ({id:r.id,type:r.t,ja:r.ja,en:r.en,category:r.c,task:r.task}))));
+          NODE
