@@ -36,6 +36,8 @@
     "propanediol": {"category":"humectant","source_functions":["humectant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/13169/propanediol/"],"runtime_verified":true},
     "1,2-hexanediol": {"category":"solvent","source_functions":["solvent"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/5/1-2-hexanediol/"],"runtime_verified":true},
     "alcohol": {"category":"solvent","source_functions":["solvent"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/590/alcohol/"],"runtime_verified":true},
-    "ascorbyl palmitate": {"category":"antioxidant","source_functions":["antioxidant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/1244/ascorbyl-palmitate/"],"runtime_verified":true}
+    "ascorbyl palmitate": {"category":"antioxidant","source_functions":["antioxidant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/1244/ascorbyl-palmitate/"],"runtime_verified":true},
+    "sodium gluconate": {"category":"chelating agent","source_functions":["chelating"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14787/sodium-gluconate/"],"runtime_verified":true},
+    "xanthan gum": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/16999/xanthan-gum/"],"runtime_verified":true}
   }
 }
