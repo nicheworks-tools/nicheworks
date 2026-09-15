@@ -34,12 +34,20 @@ def near(v,target,width,period):
     return d<=width/2
 
 def buffalo(x,y):
-    s=192
-    return BLACK if ((x//s)+(y//s))%2 else RED
+    # Broad crossing bands create the characteristic large plaid cue without collapsing into checkerboard.
+    p=256; band=68
+    vertical=(x%p)<band; horizontal=(y%p)<band
+    if vertical and horizontal:return BLACK
+    if vertical or horizontal:return DARK_RED
+    return RED
 
 def shepherd(x,y):
-    s=34
-    return BLACK if ((x//s)+(y//s))%2 else WHITE
+    # Small two-color check with subtle diagonal twill cue; deliberately much finer than Checkerboard.
+    s=40
+    cell=((x//s)+(y//s))%2
+    twill=(x+y)%12<3
+    if cell==0:return (52,53,55) if twill else BLACK
+    return (222,221,214) if twill else WHITE
 
 def windowpane(x,y):
     return NAVY if near(x,0,7,192) or near(y,0,7,192) else CREAM
@@ -65,14 +73,18 @@ def tattersall(x,y):
     return CREAM
 
 def gun_club(x,y):
-    s=40
-    qx=(x//s)%4; qy=(y//s)%4
-    if qx in (0,1) and qy in (0,1): base=CREAM
-    elif qx in (2,3) and qy in (2,3): base=TAN
-    else: base=(154,127,95)
-    if near(x,0,4,160) or near(y,0,4,160): return BLACK
-    if near(x,80,5,160) or near(y,80,5,160): return BROWN
-    return base
+    # Multitone small-check construction: broad brown pairs, fine green pairs, and a dark accent line.
+    p=160; vx=x%p; vy=y%p
+    vc=None; hc=None
+    if vx<28: vc=BROWN
+    elif 76<=vx<84: vc=GREEN
+    if vy<28: hc=BROWN
+    elif 76<=vy<84: hc=GREEN
+    if vc and hc:return mix(vc,hc,.5)
+    if vc:return mix(TAN,vc,.55)
+    if hc:return mix(TAN,hc,.55)
+    if near(x,120,3,p) or near(y,120,3,p):return (72,65,56)
+    return CREAM
 
 def prince_of_wales(x,y):
     micro=24
@@ -145,13 +157,9 @@ def zigzag(x,y):
     return BLACK if abs(yy-target)<=7 else WHITE
 
 def diamond(x,y):
-    tw=192; th=144; cx=(x//tw)*tw+tw/2; cy=(y//th)*th+th/2
-    # stagger every other row
-    row=int(y//th)
-    cx += (tw/2 if row%2 else 0)
-    dx=abs(x-cx)/(tw*.46); dy=abs(y-cy)/(th*.46)
-    d=dx+dy
-    return BLACK if .91<=d<=1.08 else CREAM
+    # Two diagonal line families make a continuous rhombus lattice with clean tile boundaries.
+    p=192
+    return BLACK if near(x+y,0,7,p) or near(x-y,0,7,p) else CREAM
 
 def harlequin(x,y):
     # diagonal coordinate cells tessellate as filled diamonds
