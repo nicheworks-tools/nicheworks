@@ -5,6 +5,7 @@
   const DEFAULT_BASE_PATHS = ["./data/tools.basic.json"];
   const DEFAULT_MANIFEST_PATH = "./data/quality-manifest.json";
   const DEFAULT_ENRICHMENT_PATH = "./data/content-enrichment-v2.3.json";
+  const DEFAULT_ENRICHMENT_MANIFEST_PATH = "./data/content-enrichment-manifest-v2.3.json";
   const DEFAULT_REDIRECT_PATH = "./data/canonical-redirects-v2.3.json";
   const DEFAULT_IDENTITY_RESOLUTION_PATH = "./data/canonical-identity-resolutions-v2.3.json";
   const GENERATED_FILLER_BATCHES = new Set(["direct-5000", "atlas-expand-5000"]);
@@ -327,11 +328,17 @@
     return appliedMap;
   }
 
-  function applyContentEnrichment(merged, raw, stats) {
+  function applyContentEnrichment(merged, raw, stats, appliedIds = new Set()) {
     const byId = new Map(merged.map((entry) => [safeText(entry?.id), entry]));
     for (const patch of enrichmentEntries(raw)) {
       const id = safeText(patch?.id);
       if (!id) continue;
+      if (appliedIds.has(id)) {
+        stats.contentEnrichmentDuplicateTargets += 1;
+        if (stats.contentEnrichmentDuplicateSample.length < 20) stats.contentEnrichmentDuplicateSample.push(id);
+        continue;
+      }
+      appliedIds.add(id);
       const target = byId.get(id);
       if (!target) {
         stats.contentEnrichmentMissingTargets += 1;
@@ -384,6 +391,8 @@
       contentEnriched: 0,
       contentEnrichmentMissingTargets: 0,
       contentEnrichmentMissingSample: [],
+      contentEnrichmentDuplicateTargets: 0,
+      contentEnrichmentDuplicateSample: [],
       removed: []
     };
   }
@@ -428,11 +437,19 @@
   async function loadEntries(options = {}) {
     const manifestPath = options.manifestPath || DEFAULT_MANIFEST_PATH;
     const enrichmentPath = options.enrichmentPath || DEFAULT_ENRICHMENT_PATH;
+    const enrichmentManifestPath = options.enrichmentManifestPath || DEFAULT_ENRICHMENT_MANIFEST_PATH;
     const redirectPath = options.redirectPath || DEFAULT_REDIRECT_PATH;
     const identityResolutionPath = options.identityResolutionPath || DEFAULT_IDENTITY_RESOLUTION_PATH;
     const basePaths = Array.isArray(options.basePaths) ? options.basePaths : DEFAULT_BASE_PATHS;
     const manifest = await fetchJson(manifestPath);
-    const enrichment = await fetchJson(enrichmentPath);
+    const enrichmentManifest = await fetchJson(enrichmentManifestPath);
+    const enrichmentPaths = manifestPaths(enrichmentManifest);
+    const enrichments = [];
+    if (enrichmentPaths.length) {
+      for (const path of enrichmentPaths) enrichments.push(await fetchJson(path));
+    } else {
+      enrichments.push(await fetchJson(enrichmentPath));
+    }
     const redirects = await fetchJson(redirectPath);
     const identityResolutions = await fetchJson(identityResolutionPath);
     const packPaths = manifestPaths(manifest);
@@ -452,12 +469,13 @@
 
     applyIdentityResolutions(merged, identityResolutions, stats);
     applyCanonicalRedirects(merged, redirects, stats);
-    applyContentEnrichment(merged, enrichment, stats);
+    const enrichedIds = new Set();
+    for (const enrichment of enrichments) applyContentEnrichment(merged, enrichment, stats, enrichedIds);
     migrateStoredFavorites(stats);
     stats.merged = merged.length;
     stats.removedCount = stats.raw - stats.merged;
     window.CTA_DATA_DIAGNOSTICS = stats;
-    if (stats.removedCount > 0 || stats.canonicalRedirectsApplied > 0 || stats.identityTypeOverridesApplied > 0 || stats.identityAliasRemovalsApplied > 0 || stats.favoriteIdsMigrated > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0) {
+    if (stats.removedCount > 0 || stats.canonicalRedirectsApplied > 0 || stats.identityTypeOverridesApplied > 0 || stats.identityAliasRemovalsApplied > 0 || stats.favoriteIdsMigrated > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0 || stats.contentEnrichmentDuplicateTargets > 0) {
       console.info("Construction Tools Atlas data dedupe/quarantine/redirect/enrichment", stats);
     }
     return merged;

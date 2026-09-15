@@ -9,6 +9,7 @@ const MANIFEST_PATH = path.join(DATA, 'quality-manifest.json');
 const LOADER_PATH = path.join(DATA, 'quality-loader.js');
 const PUBLICATION_PATH = path.join(DATA, 'publication-inventory-v2.3.json');
 const ENRICHMENT_PATH = path.join(DATA, 'content-enrichment-v2.3.json');
+const ENRICHMENT_MANIFEST_PATH = path.join(DATA, 'content-enrichment-manifest-v2.3.json');
 const SNAPSHOT_PATH = path.join(DATA, 'public-content-quality-v2.3.json');
 const args = new Set(process.argv.slice(2));
 
@@ -93,21 +94,39 @@ async function runLoader() {
 }
 
 function readEnrichment(publicIds) {
-  if (!fs.existsSync(ENRICHMENT_PATH)) return { version: '', byId: new Map(), count: 0 };
-  const raw = readJson(ENRICHMENT_PATH);
-  if (raw?.schema !== 'cta-content-enrichment-v2.3') throw new Error('Unexpected content enrichment schema');
-  const byId = new Map();
-  for (const patch of array(raw.entries)) {
-    const id = text(patch?.id);
-    if (!id) throw new Error('Content enrichment entry missing id');
-    if (byId.has(id)) throw new Error(`Duplicate content enrichment id: ${id}`);
-    if (!publicIds.has(id)) throw new Error(`Content enrichment targets non-public id: ${id}`);
-    if (!text(patch?.detail_ja) || !text(patch?.detail_en)) throw new Error(`${id}: enrichment requires bilingual detail`);
-    if (!nonEmptyArray(patch?.bullets_ja) || !nonEmptyArray(patch?.bullets_en)) throw new Error(`${id}: enrichment requires bilingual bullets`);
-    if (!nonEmptyArray(patch?.examples_ja) || !nonEmptyArray(patch?.examples_en)) throw new Error(`${id}: enrichment requires bilingual examples`);
-    byId.set(id, patch);
+  const manifest = fs.existsSync(ENRICHMENT_MANIFEST_PATH) ? readJson(ENRICHMENT_MANIFEST_PATH) : null;
+  let sources = [];
+  let version = '';
+  if (manifest) {
+    if (manifest?.schema !== 'cta-content-enrichment-manifest-v2.3') throw new Error('Unexpected content enrichment manifest schema');
+    version = text(manifest.version);
+    sources = array(manifest.packs).map((pack) => typeof pack === 'string' ? pack : pack?.path).map(text).filter(Boolean);
+    if (!sources.length) throw new Error('Content enrichment manifest has no packs');
+  } else if (fs.existsSync(ENRICHMENT_PATH)) {
+    sources = ['./data/content-enrichment-v2.3.json'];
+  } else {
+    return { version: '', byId: new Map(), count: 0 };
   }
-  return { version: text(raw.version), byId, count: byId.size };
+
+  const byId = new Map();
+  for (const source of sources) {
+    const file = path.resolve(ROOT, source.replace(/^\.\//, ''));
+    if (!fs.existsSync(file)) throw new Error(`Missing content enrichment pack: ${source}`);
+    const raw = readJson(file);
+    if (raw?.schema !== 'cta-content-enrichment-v2.3') throw new Error(`Unexpected content enrichment schema: ${source}`);
+    if (!version) version = text(raw.version);
+    for (const patch of array(raw.entries)) {
+      const id = text(patch?.id);
+      if (!id) throw new Error(`Content enrichment entry missing id in ${source}`);
+      if (byId.has(id)) throw new Error(`Duplicate content enrichment id across packs: ${id}`);
+      if (!publicIds.has(id)) throw new Error(`Content enrichment targets non-public id: ${id}`);
+      if (!text(patch?.detail_ja) || !text(patch?.detail_en)) throw new Error(`${id}: enrichment requires bilingual detail`);
+      if (!nonEmptyArray(patch?.bullets_ja) || !nonEmptyArray(patch?.bullets_en)) throw new Error(`${id}: enrichment requires bilingual bullets`);
+      if (!nonEmptyArray(patch?.examples_ja) || !nonEmptyArray(patch?.examples_en)) throw new Error(`${id}: enrichment requires bilingual examples`);
+      byId.set(id, { ...patch, __source: source });
+    }
+  }
+  return { version, byId, count: byId.size };
 }
 
 async function compute() {
@@ -122,6 +141,7 @@ async function compute() {
   const publicIds = new Set(runtimeIds);
   const enrichment = readEnrichment(publicIds);
   if (runtimeResult.diagnostics.contentEnrichmentMissingTargets) throw new Error(`Runtime reports ${runtimeResult.diagnostics.contentEnrichmentMissingTargets} missing enrichment targets`);
+  if (runtimeResult.diagnostics.contentEnrichmentDuplicateTargets) throw new Error(`Runtime reports ${runtimeResult.diagnostics.contentEnrichmentDuplicateTargets} duplicate enrichment targets`);
   if ((runtimeResult.diagnostics.contentEnriched || 0) !== enrichment.count) throw new Error(`Runtime enrichment count mismatch: ${runtimeResult.diagnostics.contentEnriched || 0} != ${enrichment.count}`);
 
   const sourceById = new Map();
@@ -174,13 +194,13 @@ async function compute() {
     byType[type].public_entries += 1;
     byType[type][q.status] += 1;
     statuses.push({ id, status: q.status, fallback: q.fallbackFields.join(',') || '-', enriched: q.enriched ? 'yes' : 'no' });
-    if (samples[q.status].length < 25) samples[q.status].push({ id, source: source.source, enrichment: q.enriched ? 'content-enrichment-v2.3.json' : null, fallback_fields: q.fallbackFields });
+    if (samples[q.status].length < 25) samples[q.status].push({ id, source: source.source, enrichment: q.enriched ? text(patch?.__source) : null, fallback_fields: q.fallbackFields });
   }
 
   const sortedStatuses = statuses.sort((a, b) => a.id.localeCompare(b.id, 'en'));
   return {
     schema: 'cta-public-content-quality-v2.3',
-    version: '2026-09-16-q011-identity-closure-1',
+    version: '2026-09-16-content-wave2-q011-1',
     policy: {
       purpose: 'Measure source-backed or canonical-ID-enriched core content separately from runtime generic fallback copy.',
       fallback_independent_core_requires: ['bilingual identity', 'bilingual definition', 'explicit bilingual detail', 'explicit bilingual bullets', 'explicit bilingual examples'],
