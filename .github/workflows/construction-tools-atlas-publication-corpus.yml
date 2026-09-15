@@ -33,5 +33,5 @@ jobs:
       - name: Check publication auditor syntax
         run: node --check tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs
 
-      - name: Audit public runtime corpus
-        run: node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs
+      - name: Validate frozen public runtime corpus
+        run: node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs --check
