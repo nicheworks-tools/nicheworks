@@ -4,22 +4,23 @@ Production implementation for the published 20-pattern visual dictionary, with t
 
 ## Current state
 
-- The **published runtime set remains exactly 20 patterns**. No planned 21-100 entry is exposed merely because it is present in the expansion manifest or a research ledger.
+- The **published runtime set remains exactly 20 patterns**. No planned 21-100 entry is exposed merely because it is present in the expansion manifest, research ledger, or staging pack.
 - Source verification is complete for all published 20 terms: 17 are verified and 3 (`moroccan-trellis`, `ikat`, `kilim`) remain qualified with explicit scope notes.
-- **Wave 2 / entries 21-40 source verification is complete as research-only:** 13 verified and 7 qualified. None of these 20 entries is public yet.
-- `data/production-content.json` is at `verified-publication` and contains JA/EN definitions, distinguishing features, common uses, color contracts, term scope, qualification notes, and verified review state for all published records.
-- All 20 primary Reference Images are deterministic 1536×1536 PNGs under `assets/reference/`, structurally reviewed, publication-verified, and runtime-wired.
+- **Wave 2 / entries 21-40 source verification is complete:** 13 verified and 7 qualified.
+- **Wave 2 production content is also complete as staged, non-public data:** 20/20 bilingual production records, 13 comparison guides, 40 staged JA/EN natural-language search regressions, resolved canonical-100 relationships, and 2-4 maintained Amazon commerce intents per pattern.
+- `data/production-content.json` is at `verified-publication` and still contains only the 20 published records; Wave 2 remains isolated in `data/wave2-production-content.json` until the remaining publication gates close.
+- All 20 published primary Reference Images are deterministic 1536×1536 PNGs under `assets/reference/`, structurally reviewed, publication-verified, and runtime-wired. Wave 2 Reference Images are the next gate.
 - Broad or technique/category terms use representative recognition references and do not claim one uniquely canonical motif.
 - JA/EN top pages provide visual browsing, client-side exact-name/alias search, ambiguous-description search, Visual Autocomplete, interpretation chips, confidence handling, typo tolerance, zero-result handling, and comparison.
-- Search regressions cover the required natural-language Top1 cases plus exact names, mixed JA/EN, typo, confidence, and zero-result cases.
-- Six canonical comparison guides are implemented, including Argyle vs the generic Diamond family.
-- 20 JA + 20 EN static detail URLs exist under `patterns/{id}/` and `en/patterns/{id}/`; all 40 are `index,follow` and are listed in the root sitemap.
-- All 40 detail pages carry canonical JA/EN hreflang pairs, Open Graph and Twitter metadata, absolute production Reference Image social previews, apple-touch icon metadata, and JSON-LD containing both `WebPage` and `WebApplication` identity.
-- The 40-page detail surface passes the repository-wide indexable URL identity, head metadata cardinality, language metadata, internal-link, structured-data, and strict SEO audits.
-- Desktop and 390px mobile Chromium QA passed for browse, search, bilingual detail routes, comparison, horizontal overflow, and the live affiliate flow.
+- Search regressions cover the required natural-language Top1 cases plus exact names, mixed JA/EN, typo, confidence, and zero-result cases. Wave 2 adds 40 staged JA/EN Top1 cases before runtime integration.
+- Six comparison guides are currently public. Wave 2 stages 13 additional canonical guides, including Glen Check vs Prince of Wales Check, Chevron vs Herringbone, Argyle vs Diamond Pattern, Koushi vs Ichimatsu, and Ichimatsu vs Checkerboard.
+- 20 JA + 20 EN static detail URLs exist under `patterns/{id}/` and `en/patterns/{id}/`; all 40 are `index,follow` and are listed in the root sitemap. Wave 2 static routes are not yet public.
+- All published detail pages carry canonical JA/EN hreflang pairs, Open Graph and Twitter metadata, absolute production Reference Image social previews, apple-touch icon metadata, and JSON-LD containing both `WebPage` and `WebApplication` identity.
+- The current 40-page detail surface passes the repository-wide indexable URL identity, head metadata cardinality, language metadata, internal-link, structured-data, and strict SEO audits.
+- Desktop and 390px mobile Chromium QA passed for the current published browse, search, bilingual detail routes, comparison, horizontal overflow, and live affiliate flow.
 - Amazon is active for all 20 published patterns using the maintained NicheWorks tag `nicheworks09-22` and shared `/assets/amazon-affiliate.js` helper.
-- The published 20 expose 65 maintained Amazon.co.jp commerce-intent searches. User free text is never forwarded to Amazon.
-- User search text is processed client-side only.
+- The published 20 expose 65 maintained Amazon.co.jp commerce-intent searches. Wave 2 staging adds 2-4 fixed canonical shopping queries per new pattern; none is exposed until publication.
+- User free text is never forwarded to Amazon. User search text is processed client-side only.
 - Pattern Atlas remains a separate product and is explicitly out of scope for this expansion.
 
 ## Canonical 100 freeze
@@ -37,7 +38,7 @@ IDs and JA/EN display names are frozen for production unless source verification
 
 The freeze also requires every `similar` and `often_confused_with` target already referenced by the published 20 to resolve within the canonical 100. This is why relationship-driven entries such as `koushi`, `hexagon`, `hishi`, and `ivy` take priority over lower-value generic candidates.
 
-A planned entry does **not** become public simply by being frozen. Each 20-entry wave must close source verification, bilingual production content, Reference Image review, search regressions, comparison/relationship work, SEO/static routes, Amazon commerce mapping where appropriate, and desktop/mobile QA before it can enter `data/patterns.json` and the public runtime.
+A planned entry does **not** become public simply by being frozen. Each 20-entry wave must close source verification, bilingual production content, Reference Image review, search regressions, comparison/relationship work, SEO/static routes, Amazon commerce mapping, and desktop/mobile QA before it can enter `data/patterns.json` and the public runtime.
 
 ## Wave 2 source verification
 
@@ -58,7 +59,19 @@ The qualified terms are deliberate, not incomplete research flags:
 - **Swiss Dot:** fundamentally a dotted textile/fabric treatment, not generic flat polka dots.
 - **Herringbone:** a weave/arrangement and broader broken-V visual family; it must be distinguished from simple printed Chevron/Zigzag.
 
-`tests/wave2-source-verification-test.mjs` enforces exact 21-40 coverage, frozen JA/EN names, the 13/7 verification split, qualified-term boundary text, evidence records, source diversity, and the critical requirement that runtime remains the published canonical 20 during this research stage.
+`tests/wave2-source-verification-test.mjs` enforces exact 21-40 coverage, frozen JA/EN names, the 13/7 verification split, qualified-term boundary text, evidence records, source diversity, and the requirement that runtime remains the published canonical 20 during staging.
+
+## Wave 2 production staging
+
+The production layer for ordinals **21-40** is curated but intentionally isolated from the live runtime until image, route, SEO, affiliate, and browser-QA gates are complete.
+
+- `data/wave2-production-content.json`: 20/20 bilingual definitions, distinguishing features, common uses, visual metadata, search terms, canonical-100 relationships, and maintained Amazon shopping intents.
+- `data/wave2-compare-guides.json`: 13 bilingual comparison guides with decisive cues. Where appearance alone cannot decide the name, such as Ichimatsu vs Checkerboard, the guide explicitly preserves that ambiguity instead of inventing a false visual distinction.
+- `data/wave2-search-dictionary.json`: staged bilingual interpretation vocabulary for exact terms and natural-language visual descriptions.
+- `tests/wave2-search-cases.json`: 40 natural-language Top1 regressions, 20 Japanese and 20 English.
+- `tests/wave2-production-content-test.mjs`: locks exact Wave 2 coverage, content completeness, relationship resolution, comparison integrity, Amazon-query policy, and all staged Top1 cases while asserting that runtime remains exactly 20 patterns.
+
+The staged search contract initially exposed several real vocabulary gaps rather than being weakened to make the test pass. Natural expressions such as `カラフルな夏シャツのチェック`, `グレンチェックに大きい格子`, and `スーツの極細縦線` were added to the interpretation layer, and the complete 40-case contract now passes.
 
 ## Validation
 
@@ -68,6 +81,7 @@ Run from the repository root:
 node --check tools/pattern-dictionary/app.js
 node tools/pattern-dictionary/tests/canonical-100-test.mjs
 node tools/pattern-dictionary/tests/wave2-source-verification-test.mjs
+node tools/pattern-dictionary/tests/wave2-production-content-test.mjs
 node tools/pattern-dictionary/tests/source-verification-test.mjs
 node tools/pattern-dictionary/tests/production-content-test.mjs
 node tools/pattern-dictionary/tests/reference-image-test.mjs
@@ -86,7 +100,7 @@ node scripts/check-seo-structured-data-integrity.mjs
 node scripts/audit-seo.mjs --strict
 ```
 
-The current publication contract still applies only to the published 20. `canonical-100-test.mjs` separately enforces the 20 + 80 taxonomy freeze, while `wave2-source-verification-test.mjs` locks the completed research boundary for 21-40 without publishing those entries.
+The current live publication contract still applies only to the published 20. `canonical-100-test.mjs` enforces the 20 + 80 taxonomy freeze, `wave2-source-verification-test.mjs` locks the evidence boundary for 21-40, and `wave2-production-content-test.mjs` locks the completed non-public production pack.
 
 ## Canonical-20 Amazon commerce contract
 
@@ -94,6 +108,8 @@ Amazon commerce is active for all 20 published patterns. Pattern Dictionary reus
 
 The published 20 use **65 maintained Amazon.co.jp search destinations**. Every pattern has one broad pattern search plus two or three pattern-appropriate shopping intents such as apparel, accessory, material, or home. All destinations are fixed in `data/affiliate-config.json`, retain the shared Associates disclosure and sponsored link semantics, and are validated independently of Pattern Dictionary free-text search.
 
+Wave 2 follows the same rule: each staged pattern already has 2-4 fixed, pattern-appropriate commerce intents, but they remain non-public until the wave publication gate closes.
+
 ## Next production unit
 
-With the canonical-100 freeze and Wave 2 source verification complete, the next unit is **Wave 2 production for entries 21-40**: bilingual dictionary content, relationships/compare decisions, search vocabulary and regressions, deterministic Reference Images and review, static JA/EN detail routes and SEO, then pattern-appropriate Amazon commerce intents and desktop/mobile publication QA. The 20 entries remain non-public until that whole wave closes.
+With the canonical-100 freeze, Wave 2 source verification, and Wave 2 production pack complete, the next unit is **Wave 2 Reference Images and publication integration**: generate and structurally review 20 deterministic 1536×1536 references, then integrate 21-40 into runtime search/compare/Amazon data, create 20 JA + 20 EN static detail routes with full SEO, update the sitemap and publication contracts from 20/40 pages to 40/80 pages, and finish desktop/mobile browser QA before publishing the wave.

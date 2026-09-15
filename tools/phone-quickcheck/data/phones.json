@@ -8222,7 +8222,7 @@
       },
       "weightG": 205,
       "displayInch": 6.7,
-      "waterRating": null,
+      "waterRating": "IP53",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": null,
@@ -8248,7 +8248,8 @@
         "manualUrl": "https://www.mi.com/jp/support/",
         "releaseUrl": "https://www.mi.com/jp/product/xiaomi-12t-pro/",
         "chargingUrl": "https://www.mi.com/jp/product/xiaomi-12t-pro/specs/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://www.mi.com/uk/support/faq/details/KA-11593/"
       },
       "affiliateKeys": []
     },
@@ -8724,7 +8725,7 @@
       },
       "weightG": 181,
       "displayInch": 6.56,
-      "waterRating": null,
+      "waterRating": "IP52",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": null,
@@ -8748,7 +8749,8 @@
         "manualUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/177512/",
         "releaseUrl": "https://store.motorola.co.jp/topics_list.html?next_page=2&request=page",
         "chargingUrl": "https://www.motorola.com/gb/en/p/phones/moto-g/24/pmipmgp37mb?pn=PB180001GB",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=784"
       },
       "affiliateKeys": []
     },
