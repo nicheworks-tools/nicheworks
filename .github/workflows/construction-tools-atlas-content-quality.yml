@@ -1,0 +1,31 @@
+name: Construction Tools Atlas content quality inventory
+
+on:
+  push:
+    branches:
+      - feat/construction-atlas-content-quality-inventory-20260915
+    paths:
+      - 'tools/construction-tools-atlas/data/**'
+      - 'tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs'
+      - '.github/workflows/construction-tools-atlas-content-quality.yml'
+  pull_request:
+    paths:
+      - 'tools/construction-tools-atlas/data/**'
+      - 'tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs'
+      - '.github/workflows/construction-tools-atlas-content-quality.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  content-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check content quality auditor syntax
+        run: node --check tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs
+
+      - name: Report public content quality inventory
+        run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs
