@@ -1,6 +1,6 @@
 {
   "schema": "cta-public-image-inventory-v2.3",
-  "version": "2026-09-15-public-image-freeze-1",
+  "version": "2026-09-15-public-image-redirects-2",
   "policy": {
     "publication_inventory": "publication-inventory-v2.3.json",
     "image_inventory": "image-inventory-v2.3.json",
@@ -9,60 +9,215 @@
       "verified"
     ],
     "formal_subject_match": "matched",
+    "canonical_redirect_image_inheritance": "retired duplicate image is inherited by its surviving canonical unless that target owns a direct formal image",
+    "acquisition_provenance_remains_on_original_registry_id": true,
     "legacy_svg_counts_as_final": false,
     "default_without_formal_image_or_exception": "missing_formal_image",
     "quarantined_generated_records_are_not_public_image_backlog": true
   },
   "sources": {
-    "publication_inventory_version": "2026-09-15-generated-quarantine-2",
-    "publication_id_sha256": "557684ba4ebfffbc2e59c67bfa2437f7275888f157afcf5456f04a97fe14859e",
+    "publication_inventory_version": "2026-09-15-canonical-redirects-3",
+    "publication_id_sha256": "5e4051bb2cb21f2c92bd3f85014983da5ac9f123c75ffb71ad11f1d15914c6f8",
     "image_registry_version": "2026-09-14-wave3a-1",
     "image_exception_ledger_version": "2026-09-15-1"
   },
   "summary": {
-    "public_entries": 936,
+    "public_entries": 926,
     "formal_image_entries": 24,
-    "missing_formal_image_entries": 912,
+    "missing_formal_image_entries": 902,
     "not_required_entries": 0,
     "unobtainable_entries": 0,
-    "classified_entries": 936,
-    "formal_coverage_percent": 2.5641,
+    "classified_entries": 926,
+    "formal_coverage_percent": 2.5918,
     "registry_items_total": 24,
+    "formal_images_inherited_via_redirect": 3,
     "formal_images_outside_public": 0,
     "image_exceptions_outside_public": 0,
     "quarantined_generated_entries": 4600
   },
   "by_type": {
-    "access": {"public_entries":1,"formal_image":0,"missing_formal_image":1,"not_required":0,"unobtainable":0},
-    "accessory": {"public_entries":1,"formal_image":0,"missing_formal_image":1,"not_required":0,"unobtainable":0},
-    "component": {"public_entries":210,"formal_image":2,"missing_formal_image":208,"not_required":0,"unobtainable":0},
-    "consumable": {"public_entries":14,"formal_image":0,"missing_formal_image":14,"not_required":0,"unobtainable":0},
-    "defect": {"public_entries":3,"formal_image":0,"missing_formal_image":3,"not_required":0,"unobtainable":0},
-    "document": {"public_entries":2,"formal_image":0,"missing_formal_image":2,"not_required":0,"unobtainable":0},
-    "equipment": {"public_entries":45,"formal_image":4,"missing_formal_image":41,"not_required":0,"unobtainable":0},
-    "fastener": {"public_entries":18,"formal_image":0,"missing_formal_image":18,"not_required":0,"unobtainable":0},
-    "fixture": {"public_entries":5,"formal_image":0,"missing_formal_image":5,"not_required":0,"unobtainable":0},
-    "hardware": {"public_entries":14,"formal_image":0,"missing_formal_image":14,"not_required":0,"unobtainable":0},
-    "inspection": {"public_entries":8,"formal_image":0,"missing_formal_image":8,"not_required":0,"unobtainable":0},
-    "material": {"public_entries":172,"formal_image":3,"missing_formal_image":169,"not_required":0,"unobtainable":0},
-    "materials": {"public_entries":16,"formal_image":0,"missing_formal_image":16,"not_required":0,"unobtainable":0},
-    "process": {"public_entries":15,"formal_image":0,"missing_formal_image":15,"not_required":0,"unobtainable":0},
-    "rigging": {"public_entries":6,"formal_image":0,"missing_formal_image":6,"not_required":0,"unobtainable":0},
-    "safety": {"public_entries":17,"formal_image":0,"missing_formal_image":17,"not_required":0,"unobtainable":0},
-    "sample": {"public_entries":1,"formal_image":0,"missing_formal_image":1,"not_required":0,"unobtainable":0},
-    "site": {"public_entries":2,"formal_image":0,"missing_formal_image":2,"not_required":0,"unobtainable":0},
-    "structure": {"public_entries":2,"formal_image":0,"missing_formal_image":2,"not_required":0,"unobtainable":0},
-    "system": {"public_entries":1,"formal_image":0,"missing_formal_image":1,"not_required":0,"unobtainable":0},
-    "temporary": {"public_entries":3,"formal_image":0,"missing_formal_image":3,"not_required":0,"unobtainable":0},
-    "test": {"public_entries":1,"formal_image":0,"missing_formal_image":1,"not_required":0,"unobtainable":0},
-    "tool": {"public_entries":379,"formal_image":15,"missing_formal_image":364,"not_required":0,"unobtainable":0}
+    "access": {
+      "public_entries": 1,
+      "formal_image": 0,
+      "missing_formal_image": 1,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "accessory": {
+      "public_entries": 1,
+      "formal_image": 0,
+      "missing_formal_image": 1,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "component": {
+      "public_entries": 209,
+      "formal_image": 2,
+      "missing_formal_image": 207,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "consumable": {
+      "public_entries": 14,
+      "formal_image": 0,
+      "missing_formal_image": 14,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "defect": {
+      "public_entries": 3,
+      "formal_image": 0,
+      "missing_formal_image": 3,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "document": {
+      "public_entries": 2,
+      "formal_image": 0,
+      "missing_formal_image": 2,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "equipment": {
+      "public_entries": 45,
+      "formal_image": 4,
+      "missing_formal_image": 41,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "fastener": {
+      "public_entries": 17,
+      "formal_image": 0,
+      "missing_formal_image": 17,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "fixture": {
+      "public_entries": 5,
+      "formal_image": 0,
+      "missing_formal_image": 5,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "hardware": {
+      "public_entries": 14,
+      "formal_image": 0,
+      "missing_formal_image": 14,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "inspection": {
+      "public_entries": 8,
+      "formal_image": 0,
+      "missing_formal_image": 8,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "material": {
+      "public_entries": 170,
+      "formal_image": 3,
+      "missing_formal_image": 167,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "materials": {
+      "public_entries": 16,
+      "formal_image": 0,
+      "missing_formal_image": 16,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "process": {
+      "public_entries": 15,
+      "formal_image": 0,
+      "missing_formal_image": 15,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "rigging": {
+      "public_entries": 6,
+      "formal_image": 0,
+      "missing_formal_image": 6,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "safety": {
+      "public_entries": 17,
+      "formal_image": 0,
+      "missing_formal_image": 17,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "sample": {
+      "public_entries": 1,
+      "formal_image": 0,
+      "missing_formal_image": 1,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "site": {
+      "public_entries": 2,
+      "formal_image": 0,
+      "missing_formal_image": 2,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "structure": {
+      "public_entries": 2,
+      "formal_image": 0,
+      "missing_formal_image": 2,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "system": {
+      "public_entries": 1,
+      "formal_image": 0,
+      "missing_formal_image": 1,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "temporary": {
+      "public_entries": 3,
+      "formal_image": 0,
+      "missing_formal_image": 3,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "test": {
+      "public_entries": 1,
+      "formal_image": 0,
+      "missing_formal_image": 1,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "tool": {
+      "public_entries": 373,
+      "formal_image": 15,
+      "missing_formal_image": 358,
+      "not_required": 0,
+      "unobtainable": 0
+    }
   },
   "hashes": {
-    "public_id_sha256": "557684ba4ebfffbc2e59c67bfa2437f7275888f157afcf5456f04a97fe14859e",
-    "public_formal_image_id_sha256": "c3a1247bdd270a30f8b845200af6a6a1c02f0fdc2ed94fb7561a55d8382e8696",
-    "public_missing_formal_image_id_sha256": "4ade2904f0c520e5a44465e66b968f4a973a4b84997bbe60823a9ebeb6657950",
-    "public_image_classification_sha256": "00ae14374540ae19296503be57628ff061bb5c8f329b8f43b30da9b4cdb89d1a"
+    "public_id_sha256": "5e4051bb2cb21f2c92bd3f85014983da5ac9f123c75ffb71ad11f1d15914c6f8",
+    "public_formal_image_id_sha256": "cf321e82cb543b6c6e532055ee5b1ccc954fe03a66d2736e6f85559335923b94",
+    "public_missing_formal_image_id_sha256": "df4dc3615ddc73dcfc9506a828db4de795a8b889017f556a5cf6f5aa285b11a7",
+    "public_image_classification_sha256": "a50e57f3a5bd77441c80b99fa50b59adf5b0c588a3d6ef70ca7592c37a1a6bf4"
   },
+  "inherited_formal_images": [
+    {
+      "from": "q011_float",
+      "to": "float"
+    },
+    {
+      "from": "q011_notched_trowel",
+      "to": "notched_trowel"
+    },
+    {
+      "from": "q011_roof_underlayment",
+      "to": "roof_underlayment"
+    }
+  ],
   "formal_images_outside_public": [],
   "image_exceptions_outside_public": [],
   "missing_sample": [
