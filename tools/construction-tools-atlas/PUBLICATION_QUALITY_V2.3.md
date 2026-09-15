@@ -11,14 +11,14 @@ The deterministic publication inventory is `data/publication-inventory-v2.3.json
 
 - stored corpus: **5,536** records
 - quarantined synthetic filler: **4,600** records
-- canonical duplicate redirects: **40** records
-- public runtime corpus: **896** records
+- canonical duplicate redirects: **55** records
+- public runtime corpus: **881** records
 - duplicate-ID removals at this publication boundary: **0**
 - duplicate-term removals at this publication boundary: **0**
 
 The 4,600 quarantined records are retained in source data for auditability and possible future curation. They are not part of the public searchable dictionary while quarantined.
 
-The 40 redirected records are also retained in source data for provenance and legacy-link compatibility, but their source IDs are not separate public dictionary entries. They resolve to one surviving canonical entry through `data/canonical-redirects-v2.3.json`.
+The 55 redirected records are also retained in source data for provenance and legacy-link compatibility, but their source IDs are not separate public dictionary entries. They resolve to one surviving canonical entry through `data/canonical-redirects-v2.3.json`.
 
 ## 2. Why synthetic filler is quarantined
 
@@ -48,7 +48,7 @@ Stored records may represent the same real-world subject under different IDs, hi
 5. taxonomy, name and alias corrections required to keep different concepts separate are recorded in `data/canonical-identity-resolutions-v2.3.json`;
 6. redirect and identity ledgers are validated against the actual public runtime.
 
-The q011 and q012 identity-closure passes established the current **40 redirects / 896 public canonicals** boundary. A future identity pass may legitimately change that number, but only through the same reviewed ledger and frozen-inventory process.
+The q011, q012 and q013 identity-closure passes established the current **55 redirects / 881 public canonicals** boundary. q013 itself contains **85 stored source rows**, of which **15 are retired through canonical redirects and 70 remain active public canonicals**. A future identity pass may legitimately change the global totals, but only through the same reviewed ledger and frozen-inventory process.
 
 ## 5. Promotion back to public corpus
 
@@ -92,4 +92,4 @@ Image migration should therefore distinguish:
 - full stored-corpus inventory, retained for auditability;
 - current public runtime corpus, used for user-facing completion work.
 
-At the q012 identity-closure boundary, the public runtime corpus is **896** records. Formal representative images cover **24** public canonicals and **872** remain without a formal image or explicit image exception. Content and image completion must be measured against the current public canonical corpus, not against the raw 5,536 stored records.
+At the q013 identity-closure boundary, the public runtime corpus is **881** records. Formal representative images cover **24** public canonicals and **857** remain without a formal image or explicit image exception. Five formal-image assignments are inherited through canonical redirects. Content and image completion must be measured against the current public canonical corpus, not against the raw 5,536 stored records.
