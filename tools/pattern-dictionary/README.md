@@ -1,6 +1,6 @@
 # Pattern Dictionary — canonical 20 verified publication
 
-Production implementation for the fixed 20-pattern visual dictionary: visual discovery, exact-name/alias search, ambiguous description search, bilingual static detail pages, comparison guidance, reviewed Reference Images, publication validation, and an Amazon Associates activation contract.
+Production implementation for the fixed 20-pattern visual dictionary: visual discovery, exact-name/alias search, ambiguous description search, bilingual static detail pages, comparison guidance, reviewed Reference Images, publication validation, and the shared live NicheWorks Amazon Associates contract.
 
 ## Current state
 
@@ -16,8 +16,7 @@ Production implementation for the fixed 20-pattern visual dictionary: visual dis
 - All 40 detail pages carry canonical JA/EN hreflang pairs, Open Graph and Twitter metadata, absolute production Reference Image social previews, apple-touch icon metadata, and JSON-LD containing both `WebPage` and `WebApplication` identity.
 - The 40-page detail surface passes the repository-wide indexable URL identity, head metadata cardinality, language metadata, internal-link, structured-data, and strict SEO audits.
 - Desktop and 390px mobile Chromium QA passed for browse, search, bilingual detail routes, comparison, horizontal overflow, and the disabled affiliate flow.
-- Amazon search-link metadata exists for all 20 patterns. The public affiliate surface stays hidden until a real Amazon Associates tracking ID is configured; no placeholder or invented tracking ID is committed.
-- `scripts/activate-amazon-affiliate.mjs` performs deterministic activation from one real tracking ID. `tests/affiliate-activation-test.mjs` tests the full ACTIVE path against an isolated temporary fixture, so no fake ID touches production config.
+- Amazon is active for all 20 patterns using the maintained NicheWorks tag `nicheworks09-22` and shared `/assets/amazon-affiliate.js` helper. Each canonical pattern has its own fixed Amazon.co.jp tagged-search destination; user free text is never forwarded to Amazon.
 - User search text is processed client-side only.
 - Expansion beyond the canonical 20 and any Pattern Atlas integration remain explicitly out of scope until the canonical-20 commerce activation gate is closed.
 
@@ -33,7 +32,6 @@ node tools/pattern-dictionary/tests/reference-image-test.mjs
 node tools/pattern-dictionary/tests/search-test.mjs
 node tools/pattern-dictionary/tests/compare-test.mjs
 node tools/pattern-dictionary/tests/affiliate-test.mjs
-node tools/pattern-dictionary/tests/affiliate-activation-test.mjs
 node tools/pattern-dictionary/tests/browse-mobile-test.mjs
 node tools/pattern-dictionary/tests/validate.mjs
 node tools/pattern-dictionary/tests/publication-test.mjs
@@ -48,17 +46,8 @@ node scripts/audit-seo.mjs --strict
 
 The publication contract requires all 20 production records and Reference Images to be verified, preserves the three qualified term scopes, requires all 40 detail pages to be indexable, rejects stale pre-publication messaging, and keeps the indexable detail surface compliant with the repository-wide SEO contracts.
 
-## Canonical-20 commerce completion gate
+## Canonical-20 Amazon commerce contract
 
-The canonical 20 are not considered commercially complete until Amazon Associates is activated with the real NicheWorks tracking ID and all 20 pattern search links are checked in production. Until that credential exists, affiliate UI remains hidden rather than exposing unfinished-status copy.
+Amazon commerce is active for all 20 canonical patterns. Pattern Dictionary reuses the site-wide `/assets/amazon-affiliate.js` helper and maintained tracking ID `nicheworks09-22`. The shared ID is common across NicheWorks, while the destination is pattern-specific: each canonical pattern maps to one fixed Amazon.co.jp search URL. Search-box text, autocomplete text, interpreted descriptions, and other user state must never be forwarded into Amazon queries.
 
-Activation is intentionally one-command and fail-closed:
-
-```bash
-node tools/pattern-dictionary/scripts/activate-amazon-affiliate.mjs <REAL_TRACKING_ID>
-node tools/pattern-dictionary/tests/affiliate-test.mjs --require-active
-```
-
-The activation script refuses an invalid-looking ID, refuses an unexpected marketplace/provider, requires exactly 20 bilingual query records, sets `enabled=true`, and writes the real tracking ID into `data/affiliate-config.json`. The active contract then requires all 20 patterns / 40 JA+EN generated Amazon.co.jp search URLs to carry the tracking tag, while runtime links remain below dictionary content with the required Associates disclosure and `sponsored nofollow noopener` relationship attributes.
-
-After activation, the release is not complete until production QA confirms all 20 canonical detail pages expose the Amazon.co.jp search action and representative JA/EN links resolve with the expected tracking tag.
+The fixed mapping is fail-closed and auditable: exactly 20 active pattern IDs, exactly 20 distinct tagged-search destinations, one fixed query per pattern, bilingual CTA labels, shared disclosure rendering, and coarse click analytics only.
