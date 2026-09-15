@@ -2,10 +2,6 @@ name: Construction Tools Atlas canonical redirects
 
 on:
   push:
-    branches:
-      - main
-      - fix/construction-atlas-canonical-redirects-20260915
-      - audit/construction-atlas-q011-identity-closure-20260915
     paths:
       - 'tools/construction-tools-atlas/**'
       - '.github/workflows/construction-tools-atlas-canonical-redirects.yml'
