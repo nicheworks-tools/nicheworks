@@ -117,7 +117,7 @@ for (const row of rows) if (!normalizeText(row.category)) rawMissingCategoryRows
 assert.equal(rawMissingCategoryRows, 187, 'verified overlay must not hide the frozen 187 raw category gaps by rewriting recognition records');
 
 let newlyClassifiedCanonicalIdentities = 0;
-let wave6NewlyClassifiedCanonicalIdentities = 0;
+let wave6RawMissingCanonicalIdentitiesResolved = 0;
 const rawCategoryInventory = {};
 for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
   const item = evidence[canonical];
@@ -129,14 +129,21 @@ for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
   assert.ok(item.sources.includes(EXPECTED_SOURCES[canonical]), `${canonical}: reviewed source URL must remain attached`);
   assert.ok(groups.has(canonical), `${canonical}: evidence canonical must exist in maintained dictionary`);
 
-  const rawCategories = [...new Set(groups.get(canonical).flatMap((row) => splitCategory(row.category)).map((category) => category.toLowerCase()))];
+  const canonicalRows = groups.get(canonical);
+  const rawCategories = [...new Set(canonicalRows.flatMap((row) => splitCategory(row.category)).map((category) => category.toLowerCase()))];
+  const hasRawMissingCategoryRow = canonicalRows.some((row) => !normalizeText(row.category));
   rawCategoryInventory[canonical] = rawCategories;
-  if (rawCategories.length === 0) {
-    newlyClassifiedCanonicalIdentities += 1;
-    if (Object.hasOwn(EXPECTED_WAVE6, canonical)) wave6NewlyClassifiedCanonicalIdentities += 1;
-  }
+
+  if (rawCategories.length === 0) newlyClassifiedCanonicalIdentities += 1;
   if (rawCategories.length > 0) {
     assert.ok(rawCategories.includes(expectedCategory.toLowerCase()), `${canonical}: verified category conflicts with existing raw category metadata (${rawCategories.join(', ')})`);
+  }
+
+  if (Object.hasOwn(EXPECTED_WAVE6, canonical)) {
+    assert.equal(hasRawMissingCategoryRow, true, `${canonical}: wave 6 must resolve at least one raw missing-category row`);
+    assert.ok(rawCategories.length > 0, `${canonical}: wave 6 is expected to be a duplicate-hint group, not a completely category-empty canonical group`);
+    assert.deepEqual(rawCategories, [expectedCategory.toLowerCase()], `${canonical}: duplicate legacy category hint must exactly match the reviewed category`);
+    wave6RawMissingCanonicalIdentitiesResolved += 1;
   }
 }
 
@@ -158,7 +165,7 @@ assert.equal(Object.keys(EXPECTED_WAVE3).length, 2);
 assert.equal(Object.keys(EXPECTED_WAVE4).length, 1, 'wave 4 reviewed set must remain one nonconflicting canonical identity');
 assert.equal(Object.keys(EXPECTED_WAVE5).length, 3, 'wave 5 reviewed set must remain three source-backed canonical identities');
 assert.equal(Object.keys(EXPECTED_WAVE6).length, 3, 'wave 6 reviewed set must remain three source-backed canonical identities');
-assert.equal(wave6NewlyClassifiedCanonicalIdentities, 3, 'wave 6 must classify exactly three previously raw-missing canonical identities');
+assert.equal(wave6RawMissingCanonicalIdentitiesResolved, 3, 'wave 6 must resolve exactly three raw missing-category canonical identities with matching duplicate hints');
 assert.equal(evidence['sodium citrate'], undefined, 'Sodium Citrate must remain deferred until buffer vs pH-adjuster taxonomy is explicitly resolved');
 
 console.log(JSON.stringify({
@@ -167,8 +174,9 @@ console.log(JSON.stringify({
   raw_missing_category_rows_unchanged: rawMissingCategoryRows,
   verified_category_evidence_canonical_identities: Object.keys(EXPECTED_ALL).length,
   wave_6_verified_canonical_identities: Object.keys(EXPECTED_WAVE6).length,
-  newly_classified_canonical_identities: newlyClassifiedCanonicalIdentities,
-  wave_6_newly_classified_canonical_identities: wave6NewlyClassifiedCanonicalIdentities,
+  newly_classified_completely_category_empty_canonical_identities: newlyClassifiedCanonicalIdentities,
+  wave_6_raw_missing_canonical_identities_resolved: wave6RawMissingCanonicalIdentitiesResolved,
+  wave_6_duplicate_hints_required_to_match: true,
   sodium_citrate_deferred_for_taxonomy_decision: true,
   raw_category_inventory: rawCategoryInventory,
   recognition_records_rewritten: false,
