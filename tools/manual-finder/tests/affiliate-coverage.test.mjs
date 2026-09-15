@@ -39,6 +39,10 @@ function normalize(rows) {
   });
 }
 
+function printerDetailKey(row) {
+  return `${row.maker}|${row.model}|${row.category}`.toLowerCase();
+}
+
 // Reproduce the production data-loading contract from app.paged.js/index.html.
 const baseRows = JSON.parse(fs.readFileSync(new URL('manuals.json', dataRoot), 'utf8'));
 
@@ -81,7 +85,8 @@ for (const name of [
   'affiliate-kyocera-toner-wave3.js',
   'affiliate-kyocera-toner-wave4.js',
   'affiliate-kyocera-toner-wave6.js',
-  'affiliate-fujifilm-toner-wave2.js'
+  'affiliate-fujifilm-toner-wave2.js',
+  'affiliate-printer-detail-exclusions.js'
 ]) run(new URL(name, root), `tools/manual-finder/${name}`);
 
 const config = context.window.MANUALFINDER_AFFILIATE_CONFIG;
@@ -91,6 +96,23 @@ const excludedCategories = new Set(Array.from(config.modelSearchTemplate?.exclud
 const staticOfferTitles = new Set(
   Array.from(config.offers || []).map((offer) => `${offer.maker} ${offer.model}`)
 );
+const printerDetailExclusions = Array.from(context.window.MANUALFINDER_PRINTER_DETAIL_EXCLUSIONS || []);
+const printerDetailExclusionKeys = new Set(printerDetailExclusions.map(printerDetailKey));
+assert.equal(
+  printerDetailExclusionKeys.size,
+  printerDetailExclusions.length,
+  'reviewed printer detail exclusions must not contain duplicate maker/model/category keys'
+);
+
+const canonicalPrinterKeys = new Set(
+  records
+    .filter((row) => row.category === 'プリンター・複合機')
+    .map(printerDetailKey)
+);
+assert.ok(
+  printerDetailExclusions.every((row) => canonicalPrinterKeys.has(printerDetailKey(row))),
+  'every reviewed printer detail exclusion must resolve to one canonical printer record'
+);
 
 const rows = records.map((record) => {
   const modelUrl = config.buildModelSearchUrl?.(record) || '';
@@ -98,6 +120,7 @@ const rows = records.map((record) => {
   const staticOffer = staticOfferTitles.has(`${record.maker} ${record.model}`);
   const basic = Boolean(modelUrl || staticOffer);
   const detail = Boolean(consumables.length || staticOffer);
+  const detailExcluded = printerDetailExclusionKeys.has(printerDetailKey(record));
   const makerIndexWithoutModel = !basic && !record.model;
   const excludedCategory = !basic && !makerIndexWithoutModel && excludedCategories.has(record.category);
   const explicitlyExcluded = excludedCategory || makerIndexWithoutModel;
@@ -111,6 +134,7 @@ const rows = records.map((record) => {
     ...record,
     basic,
     detail,
+    detailExcluded,
     explicitlyExcluded,
     exclusionReason,
     unclassified
@@ -123,6 +147,7 @@ for (const row of rows) {
     total: 0,
     basic: 0,
     detail: 0,
+    detailExcluded: 0,
     excludedCategory: 0,
     makerIndexWithoutModel: 0,
     unclassified: 0
@@ -130,6 +155,7 @@ for (const row of rows) {
   bucket.total += 1;
   if (row.basic) bucket.basic += 1;
   if (row.detail) bucket.detail += 1;
+  if (row.detailExcluded) bucket.detailExcluded += 1;
   if (row.exclusionReason === 'excluded_category') bucket.excludedCategory += 1;
   if (row.exclusionReason === 'maker_index_without_model') bucket.makerIndexWithoutModel += 1;
   if (row.unclassified) bucket.unclassified += 1;
@@ -145,8 +171,17 @@ const excludedCategoryByMaker = Object.fromEntries(
     return map;
   }, new Map())).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
 );
+const printerDetailExcludedRows = rows.filter(
+  (row) => row.category === 'プリンター・複合機' && row.basic && !row.detail && row.detailExcluded
+);
+const printerDetailExcludedByMaker = Object.fromEntries(
+  Array.from(printerDetailExcludedRows.reduce((map, row) => {
+    map.set(row.maker, (map.get(row.maker) || 0) + 1);
+    return map;
+  }, new Map())).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+);
 const printerMissingDetailRows = rows.filter(
-  (row) => row.category === 'プリンター・複合機' && row.basic && !row.detail
+  (row) => row.category === 'プリンター・複合機' && row.basic && !row.detail && !row.detailExcluded
 );
 const printerMissingDetailByMaker = Object.fromEntries(
   Array.from(printerMissingDetailRows.reduce((map, row) => {
@@ -174,12 +209,20 @@ const summary = {
   unclassified: unclassified.length,
   excludedCategories: Array.from(excludedCategories).sort(),
   excludedCategoryByMaker,
+  printerDetailExcluded: printerDetailExcludedRows.length,
+  printerDetailExcludedByMaker,
   printerMissingDetail: printerMissingDetailRows.length,
   printerMissingDetailByMaker,
   printerMissingDetailModelsByMaker,
   excludedFingerprint: crypto.createHash('sha256').update(
     explicitExclusions
       .map((row) => `${row.id}|${row.maker}|${row.model}|${row.category}|${row.exclusionReason}`)
+      .sort()
+      .join('\n')
+  ).digest('hex'),
+  printerDetailExclusionFingerprint: crypto.createHash('sha256').update(
+    printerDetailExclusions
+      .map((row) => `${row.maker}|${row.model}|${row.category}|${row.reason}|${row.sourceUrl}`)
       .sort()
       .join('\n')
   ).digest('hex'),
@@ -218,14 +261,24 @@ assert.ok(
   'all category exclusions must remain non-retail Seiko caliber identifiers'
 );
 assert.equal(
+  printerDetailExcludedRows.length,
+  printerDetailExclusions.length,
+  'every reviewed printer detail exclusion must remain a basic printer without a retail detail handoff'
+);
+assert.equal(
+  Object.values(summary.printerDetailExcludedByMaker).reduce((sum, count) => sum + count, 0),
+  summary.printerDetailExcluded,
+  'printer detail exclusion maker counts must reconcile to the audited exclusion total'
+);
+assert.equal(
   Object.values(summary.printerMissingDetailByMaker).reduce((sum, count) => sum + count, 0),
   summary.printerMissingDetail,
   'printer missing-detail maker counts must reconcile to the audited missing-detail total'
 );
 assert.equal(
-  summary.printerMissingDetail,
+  summary.printerMissingDetail + summary.printerDetailExcluded,
   summary.byCategory['プリンター・複合機'].basic - summary.byCategory['プリンター・複合機'].detail,
-  'printer missing-detail count must equal basic minus detailed printer coverage'
+  'printer detail gaps must reconcile to actionable missing detail plus reviewed detail exclusions'
 );
 
 console.log('ManualFinder affiliate coverage audit passed.');
