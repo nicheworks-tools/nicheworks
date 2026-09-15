@@ -75,7 +75,35 @@
     })
   ]);
 
-  const rows = Object.freeze([...wave4Rows, ...wave5Rows]);
+  const wave8Rows = Object.freeze([
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "FS-C2026MFP", verifiedAt: "2026-09-15",
+      sourceUrl: "https://www.kyoceradocumentsolutions.co.jp/products/ecosys/eco04/fs_c2026mfp/price_table.html",
+      tonerCodes: Object.freeze(["TK-591K", "TK-591C", "TK-591M", "TK-591Y"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "FS-C2026MFP+", verifiedAt: "2026-09-15",
+      sourceUrl: "https://www.kyoceradocumentsolutions.co.jp/products/ecosys/eco04/fs_c2026mfp_plus/price_table.html",
+      tonerCodes: Object.freeze(["TK-591K", "TK-591C", "TK-591M", "TK-591Y"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "FS-C2126MFP", verifiedAt: "2026-09-15",
+      sourceUrl: "https://www.kyoceradocumentsolutions.co.jp/products/ecosys/eco04/fs_c2126mfp/price_table.html",
+      tonerCodes: Object.freeze(["TK-591K", "TK-591C", "TK-591M", "TK-591Y"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "FS-C2126MFP+", verifiedAt: "2026-09-15",
+      sourceUrl: "https://www.kyoceradocumentsolutions.co.jp/products/ecosys/eco04/fs_c2126mfp_plus/price_table.html",
+      tonerCodes: Object.freeze(["TK-591K", "TK-591C", "TK-591M", "TK-591Y"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "FS-C2626MFP", verifiedAt: "2026-09-15",
+      sourceUrl: "https://www.kyoceradocumentsolutions.co.jp/products/ecosys/eco04/fs_c2626mfp/price_table.html",
+      tonerCodes: Object.freeze(["TK-591K", "TK-591C", "TK-591M", "TK-591Y"])
+    })
+  ]);
+
+  const rows = Object.freeze([...wave4Rows, ...wave5Rows, ...wave8Rows]);
 
   function buildTaggedSearchUrl(query) {
     const url = new URL("https://www.amazon.co.jp/s");
@@ -120,6 +148,7 @@
 
   window.MANUALFINDER_KYOCERA_TONER_WAVE4_LEDGER = wave4Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE5_LEDGER = wave5Rows;
+  window.MANUALFINDER_KYOCERA_TONER_WAVE8_LEDGER = wave8Rows;
   window.MANUALFINDER_AFFILIATE_CONFIG = Object.freeze({
     ...base,
     printerConsumables: Object.freeze([...(base.printerConsumables || []), ...rows]),
