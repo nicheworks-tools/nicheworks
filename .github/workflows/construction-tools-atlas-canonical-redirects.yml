@@ -1,0 +1,42 @@
+name: Construction Tools Atlas canonical redirects
+
+on:
+  push:
+    branches:
+      - fix/construction-atlas-canonical-redirects-20260915
+    paths:
+      - 'tools/construction-tools-atlas/**'
+      - '.github/workflows/construction-tools-atlas-canonical-redirects.yml'
+  pull_request:
+    paths:
+      - 'tools/construction-tools-atlas/**'
+      - '.github/workflows/construction-tools-atlas-canonical-redirects.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  canonical-redirects:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check redirect runtime syntax
+        run: |
+          node --check tools/construction-tools-atlas/data/quality-loader.js
+          node --check tools/construction-tools-atlas/canonical-deep-link-v2.3.js
+          node --check tools/construction-tools-atlas/scripts/check-canonical-redirects-v2.3.cjs
+          node --check tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs
+
+      - name: Validate canonical redirects
+        run: node tools/construction-tools-atlas/scripts/check-canonical-redirects-v2.3.cjs
+
+      - name: Report redirect-aware publication inventory
+        run: node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs
+
+      - name: Report redirect-aware public image inventory
+        run: node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs
+
+      - name: Report redirect-aware public content quality
+        run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs
