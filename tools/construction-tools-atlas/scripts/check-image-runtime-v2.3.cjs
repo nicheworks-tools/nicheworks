@@ -13,6 +13,10 @@ function requireText(fragment, label) {
 }
 
 requireText('image-registry-v2.3.json', 'canonical image registry is loaded');
+requireText('canonical-redirects-v2.3.json', 'canonical redirect ledger is loaded for image inheritance');
+requireText('resolveRegistryId', 'registry IDs resolve through canonical redirects');
+requireText('inherited_from', 'redirect-inherited image ownership is recorded');
+requireText('canonical-redirect-inherited', 'redirect-inherited runtime diagnostics are emitted');
 requireText('window.CTA_DEEP_LINK?.getCurrentId?.()', 'canonical ID comes from deep-link controller when available');
 requireText('meta.match(/id:', 'canonical ID falls back to rendered detail metadata');
 requireText('item.subject_match !== "matched"', 'only subject-matched canonical images are eligible');
@@ -28,6 +32,12 @@ if (!registryVersion) {
   errors.push('canonical image registry version is missing');
 } else {
   requireText(`image-registry-v2.3.json?v=${registryVersion}`, 'runtime cache key matches canonical image registry version');
+}
+
+const directOwnership = source.indexOf('if (resolved === item.id) publicRegistry.set(resolved, item);');
+const inheritedOwnership = source.indexOf('publicRegistry.set(resolved, { ...item, id: resolved, inherited_from: item.id });');
+if (directOwnership < 0 || inheritedOwnership < 0 || directOwnership > inheritedOwnership) {
+  errors.push('direct surviving-canonical image ownership must be established before redirect inheritance');
 }
 
 const renderStart = source.indexOf('async function render(');
@@ -65,5 +75,6 @@ if (errors.length) {
 
 console.log('Construction Tools Atlas canonical image runtime v2.3: PASS');
 console.log(`- registry cache key: ${registryVersion}`);
+console.log('- image ownership: direct surviving canonical first, then reviewed redirect inheritance');
 console.log('- resolution order: promoted canonical registry -> legacy SVG pilot -> no image');
 console.log('- promoted canonical ownership suppresses legacy fallback even on raster load failure');
