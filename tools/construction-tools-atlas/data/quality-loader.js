@@ -4,6 +4,7 @@
   const originalFetch = window.fetch.bind(window);
   const DEFAULT_BASE_PATHS = ["./data/tools.basic.json"];
   const DEFAULT_MANIFEST_PATH = "./data/quality-manifest.json";
+  const GENERATED_FILLER_BATCH = "atlas-expand-5000";
 
   function safeText(value) {
     return typeof value === "string" ? value.trim() : "";
@@ -120,12 +121,23 @@
     return `${ja}::${en}`;
   }
 
+  function isGeneratedFiller(entry) {
+    return entry?.meta?.generated === true && safeText(entry?.meta?.batch) === GENERATED_FILLER_BATCH;
+  }
+
   function addUnique(merged, seenIds, seenTerms, entries, stats, sourcePath) {
     asEntries(entries).forEach((entry) => {
       stats.raw += 1;
       const id = typeof entry?.id === "string" ? entry.id.trim() : "";
       if (!id) {
         stats.skippedMissingId += 1;
+        return;
+      }
+      if (isGeneratedFiller(entry)) {
+        stats.quarantinedGenerated += 1;
+        if (stats.generatedQuarantineSample.length < 20) {
+          stats.generatedQuarantineSample.push({ id, source: sourcePath });
+        }
         return;
       }
       if (seenIds.has(id)) {
@@ -154,6 +166,8 @@
       skippedMissingId: 0,
       duplicateIds: 0,
       duplicateTerms: 0,
+      quarantinedGenerated: 0,
+      generatedQuarantineSample: [],
       removed: []
     };
   }
@@ -181,7 +195,7 @@
     stats.removedCount = stats.raw - stats.merged;
     window.CTA_DATA_DIAGNOSTICS = stats;
     if (stats.removedCount > 0) {
-      console.info("Construction Tools Atlas data dedupe", stats);
+      console.info("Construction Tools Atlas data dedupe/quarantine", stats);
     }
     return merged;
   }
