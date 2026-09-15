@@ -1,0 +1,45 @@
+{
+  "schema": "cta-canonical-identity-resolutions-v2.3",
+  "version": "2026-09-15-q011-closure-1",
+  "policy": {
+    "purpose": "Record reviewed taxonomy corrections and distinct-concept decisions discovered during q011 canonical identity closure.",
+    "source_rows_remain_immutable_provenance": true,
+    "runtime_overrides_are_canonical_taxonomy": true,
+    "alias_removal_means_not_an_equivalent_name": true,
+    "related_terms_may_still_match_through_descriptions_or_search semantics": true
+  },
+  "type_overrides": [
+    {"id":"drywall_tape","from":"tool","to":"material","reason":"record definition identifies a drywall joint reinforcement material, not a tool"},
+    {"id":"form_tie","from":"tool","to":"component","reason":"form tie is a formwork spacing/tie component"},
+    {"id":"separator","from":"material","to":"component","reason":"formwork separator is a spacing component used with form ties and cones"},
+    {"id":"spacer_block","from":"material","to":"component","reason":"rebar spacer block is a cover-maintaining component"},
+    {"id":"tile_spacer","from":"tool","to":"material","reason":"tile spacer is a small spacing consumable/material rather than a tool"},
+    {"id":"tile_spacers","from":"tool","to":"material","reason":"duplicate plural tile-spacer record represents the same spacing material"},
+    {"id":"flashing","from":"tool","to":"component","reason":"record definition identifies a flashing building component, not a tool"},
+    {"id":"seal_tape","from":"tool","to":"material","reason":"record definition identifies waterproof sealing tape material"},
+    {"id":"safety_harness","from":"tool","to":"safety","reason":"full-body harness is fall-protection safety equipment"},
+    {"id":"grout","from":"tool","to":"material","reason":"record definition identifies grout as a building material/consumable"},
+    {"id":"drop_cloth","from":"tool","to":"material","reason":"record definition identifies a protective sheet/drop cloth material"},
+    {"id":"access_panel","from":"material","to":"component","reason":"access panel is an installed openable inspection component"}
+  ],
+  "alias_removals": [
+    {"id":"furring_strip","ja":["野縁"],"en":[],"reason":"野縁 and 胴縁 are related furring members but not canonical-equivalent Japanese terms"},
+    {"id":"rebar_tying_tool","ja":["結束線"],"en":["Tie wire"],"reason":"tie wire is the material used by the tying tool, not an alias of the tool"},
+    {"id":"screed","ja":[],"en":["Screeding"],"reason":"Screeding is the process; Screed is the tool/straightedge"},
+    {"id":"firestop","ja":[],"en":["Firestop sealant"],"reason":"firestop sealant is one product subtype within the broader firestop system/material family"},
+    {"id":"access_panel","ja":[],"en":["Inspection hatch"],"reason":"generic wall/ceiling access panel should not alias the floor-specific inspection-hatch canonical"},
+    {"id":"construction_joint","ja":[],"en":["Cold joint"],"reason":"a planned construction joint is distinct from an unintended cold-joint defect"},
+    {"id":"repair_patch","ja":["補修モルタル"],"en":["Repair mortar"],"reason":"repair mortar is a specific mortar subtype, not an equivalent name for the broader repair-patch material family"}
+  ],
+  "resolved_distinct_pairs": [
+    {"a":"q011_furring_channel","b":"furring_strip","resolution":"keep_distinct","reason":"野縁 is ceiling furring; 胴縁 is wall/backing furring. Related members, not the same canonical concept."},
+    {"a":"q011_curing_sheet","b":"protective_sheet","resolution":"keep_distinct_polysemy","reason":"養生シート is overloaded: q011 is curing/drying-control context; protective_sheet is finish/floor surface protection."},
+    {"a":"q011_curing_sheet","b":"drop_cloth","resolution":"keep_distinct_polysemy","reason":"curing sheet and drop cloth/protection sheet serve different site functions despite shared Japanese wording."},
+    {"a":"q011_tie_wire","b":"rebar_tying_tool","resolution":"keep_distinct","reason":"結束線 is consumable wire; rebar_tying_tool is the tool that twists/applies it."},
+    {"a":"q011_screed","b":"screed","resolution":"keep_distinct","reason":"Screeding is the leveling process; Screed is the tool/straightedge used for it."},
+    {"a":"q011_firestop_sealant","b":"firestop","resolution":"keep_distinct_parent_subtype","reason":"firestop is the broader rated penetration treatment/material system; firestop sealant is one sealant subtype."},
+    {"a":"q011_inspection_hatch","b":"access_panel","resolution":"keep_distinct_scope","reason":"q011 is specifically an underfloor inspection hatch; access_panel covers wall/ceiling service access."},
+    {"a":"q011_cold_joint","b":"construction_joint","resolution":"keep_distinct","reason":"cold joint is an undesirable defect from delayed placement; construction joint is a planned/formed pour joint."},
+    {"a":"q011_repair_mortar","b":"repair_patch","resolution":"keep_distinct_parent_subtype","reason":"repair mortar is a mortar subtype; repair_patch is the broader repair-material family."}
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "schema": "cta-publication-inventory-v2.3",
-  "version": "2026-09-15-canonical-redirects-3",
+  "version": "2026-09-16-q011-identity-closure-1",
   "policy": {
     "generated_filler_batches": [
       "atlas-expand-5000",
@@ -14,8 +14,8 @@
   "summary": {
     "stored_corpus_entries": 5536,
     "quarantined_generated_entries": 4600,
-    "redirected_duplicate_entries": 10,
-    "published_runtime_entries": 926,
+    "redirected_duplicate_entries": 23,
+    "published_runtime_entries": 913,
     "skipped_missing_id": 0,
     "duplicate_ids_removed": 0,
     "duplicate_terms_removed": 0
@@ -26,7 +26,7 @@
   "published_by_type": {
     "access": 1,
     "accessory": 1,
-    "component": 209,
+    "component": 208,
     "consumable": 14,
     "defect": 3,
     "document": 2,
@@ -35,7 +35,7 @@
     "fixture": 5,
     "hardware": 14,
     "inspection": 8,
-    "material": 170,
+    "material": 167,
     "materials": 16,
     "process": 15,
     "rigging": 6,
@@ -46,25 +46,38 @@
     "system": 1,
     "temporary": 3,
     "test": 1,
-    "tool": 373
+    "tool": 364
   },
   "hashes": {
-    "published_id_sha256": "5e4051bb2cb21f2c92bd3f85014983da5ac9f123c75ffb71ad11f1d15914c6f8",
+    "published_id_sha256": "9e385023a6533565a4a0542e4b858b63644316c0837d9d6cf49fb08e6aa215ac",
     "quarantined_generated_id_sha256": "ad863c921ea5d879ae7273660b9550d94b1a705541b865102b38f90668d5c9cf",
-    "canonical_redirect_sha256": "5d9c34f96427ecc95b621c81e493b761aeaf55e75fee7a1ab0b38bbc582b138c",
-    "publication_classification_sha256": "76c18b58a85b54142977517360af187285fd15d8af64db4c749a79eb100d4c9f"
+    "canonical_redirect_sha256": "b9a8a3fd7dbc3ca025cb6dadb0ba7fb578b8805be578c065a37ba60da2a7d0d6",
+    "publication_classification_sha256": "60b7ae5efd99d8bda90a76f59dfac508e4e8460c91d3961dd85e575ec311907f"
   },
   "redirected_ids": [
     "q011_chemical_anchor\tchemical_anchor",
     "q011_conduit_bender\tconduit_bender",
+    "q011_drain_trap\ttrap",
     "q011_expansion_joint\texpansion_joint",
+    "q011_flashing\tflashing",
     "q011_float\tfloat",
     "q011_floor_leveler\tfloor_leveler",
+    "q011_form_tie\tform_tie",
+    "q011_grout\ttile_grout",
+    "q011_joint_tape\tdrywall_tape",
     "q011_notched_trowel\tnotched_trowel",
+    "q011_pipe_sleeve\tsleeve",
+    "q011_plywood_formwork\tform_plywood",
     "q011_putty_knife\tputty_knife",
     "q011_roof_underlayment\troof_underlayment",
+    "q011_safety_harness\tsafety_harness",
+    "q011_separator\tseparator",
+    "q011_spacer_block\tspacer_block",
     "q011_stud_finder\tstud_finder",
-    "q011_trowel\ttrowel"
+    "q011_tile_spacer\ttile_spacer",
+    "q011_trowel\ttrowel",
+    "q011_waterproof_tape\tseal_tape",
+    "tile_spacers\ttile_spacer"
   ],
   "quarantined_sample": [
     "term_carpentry_compact_adhesive_cutting_1",

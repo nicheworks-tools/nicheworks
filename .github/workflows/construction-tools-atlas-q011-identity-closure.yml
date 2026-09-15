@@ -1,43 +1,39 @@
-name: Construction Tools Atlas canonical redirects
+name: Construction Tools Atlas q011 identity closure
 
 on:
   push:
     branches:
       - main
-      - fix/construction-atlas-canonical-redirects-20260915
       - audit/construction-atlas-q011-identity-closure-20260915
     paths:
       - 'tools/construction-tools-atlas/**'
-      - '.github/workflows/construction-tools-atlas-canonical-redirects.yml'
+      - '.github/workflows/construction-tools-atlas-q011-identity-closure.yml'
   pull_request:
     paths:
       - 'tools/construction-tools-atlas/**'
-      - '.github/workflows/construction-tools-atlas-canonical-redirects.yml'
+      - '.github/workflows/construction-tools-atlas-q011-identity-closure.yml'
 
 permissions:
   contents: read
 
 jobs:
-  canonical-redirects:
+  identity-closure:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check redirect and identity runtime syntax
+      - name: Check identity contract syntax
         run: |
           node --check tools/construction-tools-atlas/data/quality-loader.js
-          node --check tools/construction-tools-atlas/canonical-deep-link-v2.3.js
-          node --check tools/construction-tools-atlas/detail-image-hotfix.js
           node --check tools/construction-tools-atlas/scripts/check-canonical-redirects-v2.3.cjs
           node --check tools/construction-tools-atlas/scripts/check-canonical-identity-resolutions-v2.3.cjs
           node --check tools/construction-tools-atlas/scripts/audit-q011-identity-closure-v2.3.cjs
-          node --check tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
           node --check tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs
           node --check tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs
           node --check tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs
 
-      - name: Validate canonical redirects and compatibility migration
+      - name: Validate canonical redirects
         run: node tools/construction-tools-atlas/scripts/check-canonical-redirects-v2.3.cjs
 
       - name: Validate canonical identity resolutions
@@ -46,14 +42,11 @@ jobs:
       - name: Require zero unresolved q011 identity collisions
         run: node tools/construction-tools-atlas/scripts/audit-q011-identity-closure-v2.3.cjs
 
-      - name: Validate redirect-aware canonical image runtime
-        run: node tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
-
-      - name: Validate redirect-aware publication inventory
+      - name: Validate frozen publication inventory
         run: node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs --check
 
-      - name: Validate redirect-aware public image inventory
+      - name: Validate frozen public image inventory
         run: node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --check
 
-      - name: Validate redirect-aware public content quality
+      - name: Validate frozen public content quality
         run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check

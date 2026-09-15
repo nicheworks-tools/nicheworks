@@ -1,24 +1,38 @@
 {
   "schema": "cta-canonical-redirects-v2.3",
-  "version": "2026-09-15-q011-strong-duplicate-1",
+  "version": "2026-09-15-q011-identity-closure-2",
   "policy": {
-    "purpose": "Retire confirmed duplicate public canonicals without breaking legacy IDs, search vocabulary, or favorites.",
+    "purpose": "Retire confirmed duplicate public canonicals without breaking legacy IDs, search vocabulary, images, or favorites.",
     "source_records_remain_stored": true,
     "source_ids_are_not_public_results": true,
     "legacy_terms_are_migrated_to_target_search_vocabulary": true,
     "deep_links_resolve_to_target": true,
-    "favorites_resolve_to_target": true
+    "favorites_resolve_to_target": true,
+    "taxonomy_overrides_are_defined_in": "canonical-identity-resolutions-v2.3.json"
   },
   "redirects": [
-    {"from":"q011_floor_leveler","to":"floor_leveler","reason":"strong_duplicate_same_type"},
-    {"from":"q011_trowel","to":"trowel","reason":"strong_duplicate_same_type"},
-    {"from":"q011_float","to":"float","reason":"strong_duplicate_same_type"},
-    {"from":"q011_putty_knife","to":"putty_knife","reason":"strong_duplicate_same_type"},
-    {"from":"q011_stud_finder","to":"stud_finder","reason":"strong_duplicate_same_type"},
-    {"from":"q011_chemical_anchor","to":"chemical_anchor","reason":"strong_duplicate_same_type"},
-    {"from":"q011_notched_trowel","to":"notched_trowel","reason":"strong_duplicate_same_type"},
-    {"from":"q011_roof_underlayment","to":"roof_underlayment","reason":"strong_duplicate_same_type"},
-    {"from":"q011_conduit_bender","to":"conduit_bender","reason":"strong_duplicate_same_type"},
-    {"from":"q011_expansion_joint","to":"expansion_joint","reason":"strong_duplicate_same_type"}
+    {"from":"q011_floor_leveler","to":"floor_leveler","reason":"confirmed_duplicate"},
+    {"from":"q011_trowel","to":"trowel","reason":"confirmed_duplicate"},
+    {"from":"q011_float","to":"float","reason":"confirmed_duplicate"},
+    {"from":"q011_putty_knife","to":"putty_knife","reason":"confirmed_duplicate"},
+    {"from":"q011_stud_finder","to":"stud_finder","reason":"confirmed_duplicate"},
+    {"from":"q011_chemical_anchor","to":"chemical_anchor","reason":"confirmed_duplicate"},
+    {"from":"q011_notched_trowel","to":"notched_trowel","reason":"confirmed_duplicate"},
+    {"from":"q011_roof_underlayment","to":"roof_underlayment","reason":"confirmed_duplicate"},
+    {"from":"q011_conduit_bender","to":"conduit_bender","reason":"confirmed_duplicate"},
+    {"from":"q011_expansion_joint","to":"expansion_joint","reason":"confirmed_duplicate"},
+    {"from":"q011_joint_tape","to":"drywall_tape","reason":"same drywall joint reinforcement tape concept"},
+    {"from":"q011_form_tie","to":"form_tie","reason":"same formwork tie concept"},
+    {"from":"q011_separator","to":"separator","reason":"same formwork separator concept"},
+    {"from":"q011_plywood_formwork","to":"form_plywood","reason":"same formwork plywood concept"},
+    {"from":"q011_spacer_block","to":"spacer_block","reason":"same rebar cover spacer block concept"},
+    {"from":"q011_tile_spacer","to":"tile_spacer","reason":"same tile spacing piece concept"},
+    {"from":"tile_spacers","to":"tile_spacer","reason":"plural duplicate of tile_spacer"},
+    {"from":"q011_grout","to":"tile_grout","reason":"q011 definition is specifically tile joint grout"},
+    {"from":"q011_flashing","to":"flashing","reason":"same broad flashing component concept"},
+    {"from":"q011_waterproof_tape","to":"seal_tape","reason":"same waterproof sealing tape concept"},
+    {"from":"q011_drain_trap","to":"trap","reason":"same generic drain trap concept"},
+    {"from":"q011_pipe_sleeve","to":"sleeve","reason":"same pipe penetration sleeve concept"},
+    {"from":"q011_safety_harness","to":"safety_harness","reason":"same full-body fall-protection harness concept"}
   ]
 }

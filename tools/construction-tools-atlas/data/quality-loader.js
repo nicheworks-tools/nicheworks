@@ -6,6 +6,7 @@
   const DEFAULT_MANIFEST_PATH = "./data/quality-manifest.json";
   const DEFAULT_ENRICHMENT_PATH = "./data/content-enrichment-v2.3.json";
   const DEFAULT_REDIRECT_PATH = "./data/canonical-redirects-v2.3.json";
+  const DEFAULT_IDENTITY_RESOLUTION_PATH = "./data/canonical-identity-resolutions-v2.3.json";
   const GENERATED_FILLER_BATCHES = new Set(["direct-5000", "atlas-expand-5000"]);
   const FAVORITES_KEY = "cta_favs";
 
@@ -176,6 +177,64 @@
     return Array.isArray(raw?.entries) ? raw.entries : [];
   }
 
+  function identityTypeOverrides(raw) {
+    return Array.isArray(raw?.type_overrides) ? raw.type_overrides : [];
+  }
+
+  function identityAliasRemovals(raw) {
+    return Array.isArray(raw?.alias_removals) ? raw.alias_removals : [];
+  }
+
+  function removeIdentityVocabulary(values, removals) {
+    const removeKeys = new Set(safeArray(removals).map(normalizeTerm).filter(Boolean));
+    return uniqueText(safeArray(values).filter((value) => !removeKeys.has(normalizeTerm(value))));
+  }
+
+  function applyIdentityResolutions(merged, raw, stats) {
+    const byId = new Map(merged.map((entry) => [safeText(entry?.id), entry]));
+    for (const row of identityTypeOverrides(raw)) {
+      const id = safeText(row?.id);
+      const from = safeText(row?.from);
+      const to = safeText(row?.to);
+      if (!id || !to) continue;
+      const target = byId.get(id);
+      if (!target) {
+        stats.identityResolutionMissingTargets += 1;
+        if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason: "missing_type_override_target" });
+        continue;
+      }
+      const current = safeText(target?.type);
+      if (from && current !== from && current !== to) {
+        stats.identityResolutionSourceMismatches += 1;
+        if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason: "unexpected_source_type", expected: from, actual: current, to });
+      }
+      target.type = to;
+      target.meta = { ...(target.meta || {}), canonical_type_override_from: from, canonical_type_override_to: to };
+      stats.identityTypeOverridesApplied += 1;
+    }
+
+    for (const row of identityAliasRemovals(raw)) {
+      const id = safeText(row?.id);
+      if (!id) continue;
+      const target = byId.get(id);
+      if (!target) {
+        stats.identityResolutionMissingTargets += 1;
+        if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason: "missing_alias_removal_target" });
+        continue;
+      }
+      if (!target.aliases || typeof target.aliases !== "object") target.aliases = { ja: [], en: [] };
+      const ja = safeArray(row?.ja);
+      const en = safeArray(row?.en);
+      target.aliases.ja = removeIdentityVocabulary(target.aliases.ja, ja);
+      target.aliases.en = removeIdentityVocabulary(target.aliases.en, en);
+      target.fuzzy = removeIdentityVocabulary(target.fuzzy, [...ja, ...en]);
+      target.meta = { ...(target.meta || {}), canonical_alias_removals_applied: true };
+      stats.identityAliasRemovalsApplied += ja.length + en.length;
+    }
+
+    window.CTA_CANONICAL_IDENTITY_RESOLUTIONS = raw || {};
+  }
+
   function redirectEntries(raw) {
     return Array.isArray(raw?.redirects) ? raw.redirects : [];
   }
@@ -316,6 +375,11 @@
       canonicalRedirectMissingSources: 0,
       canonicalRedirectMissingTargets: 0,
       canonicalRedirectProblemSample: [],
+      identityTypeOverridesApplied: 0,
+      identityAliasRemovalsApplied: 0,
+      identityResolutionMissingTargets: 0,
+      identityResolutionSourceMismatches: 0,
+      identityResolutionProblemSample: [],
       favoriteIdsMigrated: 0,
       contentEnriched: 0,
       contentEnrichmentMissingTargets: 0,
@@ -365,10 +429,12 @@
     const manifestPath = options.manifestPath || DEFAULT_MANIFEST_PATH;
     const enrichmentPath = options.enrichmentPath || DEFAULT_ENRICHMENT_PATH;
     const redirectPath = options.redirectPath || DEFAULT_REDIRECT_PATH;
+    const identityResolutionPath = options.identityResolutionPath || DEFAULT_IDENTITY_RESOLUTION_PATH;
     const basePaths = Array.isArray(options.basePaths) ? options.basePaths : DEFAULT_BASE_PATHS;
     const manifest = await fetchJson(manifestPath);
     const enrichment = await fetchJson(enrichmentPath);
     const redirects = await fetchJson(redirectPath);
+    const identityResolutions = await fetchJson(identityResolutionPath);
     const packPaths = manifestPaths(manifest);
     const merged = [];
     const seenIds = new Set();
@@ -384,13 +450,14 @@
       addUnique(merged, seenIds, seenTerms, base, stats, path);
     }
 
+    applyIdentityResolutions(merged, identityResolutions, stats);
     applyCanonicalRedirects(merged, redirects, stats);
     applyContentEnrichment(merged, enrichment, stats);
     migrateStoredFavorites(stats);
     stats.merged = merged.length;
     stats.removedCount = stats.raw - stats.merged;
     window.CTA_DATA_DIAGNOSTICS = stats;
-    if (stats.removedCount > 0 || stats.canonicalRedirectsApplied > 0 || stats.favoriteIdsMigrated > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0) {
+    if (stats.removedCount > 0 || stats.canonicalRedirectsApplied > 0 || stats.identityTypeOverridesApplied > 0 || stats.identityAliasRemovalsApplied > 0 || stats.favoriteIdsMigrated > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0) {
       console.info("Construction Tools Atlas data dedupe/quarantine/redirect/enrichment", stats);
     }
     return merged;
