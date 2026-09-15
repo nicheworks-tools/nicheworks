@@ -1,0 +1,106 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-16-wave3d-q012-completion-1",
+  "entries": [
+    {
+      "id": "q012_spanner",
+      "wave": "content-wave-003d",
+      "state": "expanded",
+      "detail_ja": "先端が開いた二面幅の口でナットやボルト頭を回す手工具。一般的なレンチ類のうち、ここでは片口・両口などのオープンエンド形状を指す。適合しないサイズや斜め掛けは角を傷めやすいため、二面幅に合うサイズを奥まで掛けて使用する。",
+      "detail_en": "A hand wrench with an open-ended jaw sized to turn nuts and bolt heads. Within the broader wrench family, this entry refers specifically to open-end spanners, including single- and double-ended forms. Use the correct across-flats size and seat the jaws fully to avoid rounding the fastener.",
+      "bullets_ja": [
+        "ナット・ボルトの二面幅に合うサイズを選び、口を奥まで掛ける。",
+        "斜め掛け、延長管による過大な力、摩耗した口部での作業を避ける。",
+        "固着が強い箇所では、用途に合うメガネレンチやソケット等への変更を検討する。"
+      ],
+      "bullets_en": [
+        "Match the wrench size to the fastener and seat the open jaws fully on the flats.",
+        "Avoid angled engagement, improvised extension pipes, and heavily worn jaws.",
+        "For strongly seized fasteners, consider a ring wrench or socket suited to the task."
+      ],
+      "examples_ja": [
+        "設備架台の六角ナットを、二面幅に合うスパナで仮締めする。",
+        "ナット角を傷めないよう、口部が最後まで掛かっていることを確認して回す。"
+      ],
+      "examples_en": [
+        "Snug a hex nut on an equipment support with the correctly sized open-end wrench.",
+        "Confirm full jaw engagement before turning so the nut corners are not rounded."
+      ]
+    },
+    {
+      "id": "q012_framing_square",
+      "wave": "content-wave-003d",
+      "state": "expanded",
+      "detail_ja": "長短2本の直角な脚を持ち、大きな部材の直角確認や墨付け、木造下地の割付などに使う大型のL字定規。差し金やスコヤと用途が重なるが、大矩はより大きな基準線や部材の直角確認に使う。落下や曲がりで精度が狂うため、基準面へ密着させて状態を確認する。",
+      "detail_en": "A large L-shaped square with two perpendicular legs used for checking square, laying out large members, and framing work. It overlaps in purpose with carpenter's squares and try squares but is intended for larger layout and reference work. Bending or impact can affect accuracy, so keep both legs true and seated against the reference edges.",
+      "bullets_ja": [
+        "基準となる部材の辺へ両脚を密着させ、浮きや異物がない状態で確認する。",
+        "落下、曲がり、角部の変形がある場合は直角精度を点検する。",
+        "差し金・スコヤとの名称混同を避け、必要な寸法と用途に合う定規を選ぶ。"
+      ],
+      "bullets_en": [
+        "Seat both legs firmly against clean reference edges before checking or marking.",
+        "Recheck squareness after impact, bending, or visible corner damage.",
+        "Distinguish the framing square from smaller carpenter and try squares when selecting the tool."
+      ],
+      "examples_ja": [
+        "大きな木下地の組立前に、大矩を当てて部材同士の直角を確認する。",
+        "床上で基準線を延ばす際に、大矩の長い脚を使って直角方向を墨付けする。"
+      ],
+      "examples_en": [
+        "Check the right angle between large framing members with a framing square before fastening.",
+        "Use the long leg to mark a perpendicular layout line from an established reference."
+      ]
+    },
+    {
+      "id": "q012_cold_chisel",
+      "wave": "content-wave-003d",
+      "state": "expanded",
+      "detail_ja": "焼入れされた刃先を持ち、ハンマーで打撃して金属の切断・かしめ除去・バリ落としなどを行う手打ち用タガネ。石工ノミとは主対象材が異なる。刃先と打撃頭の欠け・まくれを点検し、対象材に合う刃幅と打撃工具を選ぶ。",
+      "detail_en": "A hardened hand chisel struck with a hammer for cutting or chipping metal, removing rivet heads, and similar work. It is distinct from a masonry chisel because its primary material and edge geometry are for metalworking. Inspect both the cutting edge and struck head and choose a suitable blade width and hammer for the job.",
+      "bullets_ja": [
+        "金属加工用のタガネとして、対象材と作業幅に合う刃幅を選ぶ。",
+        "刃先の欠け、打撃頭のまくれやきのこ状変形があるものは整備・交換する。",
+        "飛散片に備えて保護眼鏡等を使用し、手を打撃線上に置かない。"
+      ],
+      "bullets_en": [
+        "Select a cold-chisel width appropriate to the metal and the amount of material to remove.",
+        "Dress or replace chisels with a chipped edge or a mushroomed struck head.",
+        "Use suitable eye protection and keep hands clear of the hammering line."
+      ],
+      "examples_ja": [
+        "古い金属部品のかしめ頭をタガネで落として取り外す。",
+        "鋼材の局部的なバリを、適切な刃幅のコールドチゼルで打ち落とす。"
+      ],
+      "examples_en": [
+        "Cut off a riveted metal head with a cold chisel during disassembly.",
+        "Chip a localized burr from steel with a cold chisel of suitable width."
+      ]
+    },
+    {
+      "id": "q012_toe_board",
+      "wave": "content-wave-003d",
+      "state": "expanded",
+      "detail_ja": "足場や作業床の端部に立ち上げて設け、工具・資材などが外へ滑り落ちるのを抑える仮設安全部材。建築仕上げの幅木・巾木とは別物で、手すりや中さん等と組み合わせて端部防護を構成する。必要な高さ、隙間、固定方法は現場の安全基準に従う。",
+      "detail_en": "A raised edge board installed along scaffold or work-platform edges to help prevent tools and materials from sliding or falling off. It is a temporary safety component, not an architectural baseboard or skirting board. Toe boards normally form part of an edge-protection system together with guardrails and other required members.",
+      "bullets_ja": [
+        "作業床端部に連続して設け、床との隙間や途中の欠損を残さない。",
+        "手すり等の端部防護設備と一体で、外れや倒れがないよう確実に固定する。",
+        "建築仕上げの幅木と区別し、必要寸法・設置条件は適用する安全基準で確認する。"
+      ],
+      "bullets_en": [
+        "Install continuously along exposed platform edges and avoid gaps that allow objects to pass beneath.",
+        "Secure the board as part of the edge-protection system so it cannot detach or overturn.",
+        "Do not confuse it with finish baseboard; verify dimensions and installation requirements under the applicable safety rules."
+      ],
+      "examples_ja": [
+        "足場作業床の外周に幅木を取り付け、工具や小物の落下を抑える。",
+        "仮設手すりの点検時に、幅木の欠落や床との大きな隙間がないか確認する。"
+      ],
+      "examples_en": [
+        "Fit toe boards around a scaffold platform to reduce the risk of tools and small materials falling from the edge.",
+        "During guardrail inspection, check that toe boards are present, secure, and free of excessive gaps."
+      ]
+    }
+  ]
+}
