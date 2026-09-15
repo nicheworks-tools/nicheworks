@@ -1,1 +1,248 @@
-PLACEHOLDER
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-16-wave4a-q013-1",
+  "entries": [
+    {
+      "id": "q013_scaffold_board",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "足場の作業床を構成する板状部材。足場枠や支持材へ所定の方法で載せ、作業者と資材の荷重を受ける。割れ・大きな変形・腐食、支持間隔、端部の掛かり、浮きやずれを確認して使用する。",
+      "detail_en": "A plank that forms the working deck of a scaffold. It spans scaffold supports and carries workers and materials. Check for cracks, severe deformation or corrosion, correct support spacing, adequate end bearing, and secure seating before use.",
+      "bullets_ja": ["足場の種類と支持条件に適合する足場板を使い、端部の掛かりと固定を確認する。", "割れ、曲がり、腐食、著しい摩耗など耐力や歩行安全に影響する損傷を点検する。", "過積載や局部的な資材集中を避け、作業床の隙間や段差も確認する。"],
+      "bullets_en": ["Use a scaffold plank compatible with the scaffold system and verify bearing and restraint at its ends.", "Inspect for cracks, bending, corrosion, or wear that could affect strength or footing.", "Avoid overloading or concentrated material stacks and check the deck for hazardous gaps or steps."],
+      "examples_ja": ["枠組足場の作業層に足場板を敷き、端部が支持材へ確実に掛かっていることを確認する。", "始業前点検で足場板の割れや浮きを見つけ、使用前に交換・是正する。"],
+      "examples_en": ["Lay scaffold planks on a frame scaffold and confirm each end is properly supported and restrained.", "During a pre-use inspection, remove a plank that is cracked or not seated securely."]
+    },
+    {
+      "id": "q013_scaffold_clamp",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "単管足場などで鋼管同士を接続・固定する足場用クランプの総称。直交クランプや自在クランプなど接続角度と用途に応じた型式を使い分ける。ボルト・ナット、かみ合わせ部、変形や腐食を点検し、指定トルクや施工要領に従って締め付ける。",
+      "detail_en": "A general scaffold fitting used to connect and secure scaffold tubes. Fixed right-angle and swivel types are selected according to the required geometry. Inspect bolts, nuts, gripping surfaces, deformation, and corrosion, and tighten according to the specified installation procedure.",
+      "bullets_ja": ["接続角度と足場構成に合うクランプ型式を選び、他用途の一般クランプと混同しない。", "ボルト・ナットの損傷、ねじ不良、著しい腐食や変形があるものは使用しない。", "単管へ正しくかみ合わせ、施工要領で指定された締付状態を確保する。"],
+      "bullets_en": ["Select the scaffold clamp type for the required tube angle and do not substitute a general workholding clamp.", "Reject fittings with damaged threads, bolts, nuts, severe corrosion, or deformation.", "Seat the fitting correctly on the tubes and achieve the tightening condition required by the scaffold procedure."],
+      "examples_ja": ["単管足場の水平材を支柱へ接続するため、用途に合う足場クランプを取り付ける。", "組立後の点検でクランプの緩みや変形がないか確認する。"],
+      "examples_en": ["Install the appropriate scaffold clamp where a horizontal tube connects to a standard.", "Inspect completed scaffold connections for loose or visibly damaged clamps."]
+    },
+    {
+      "id": "q013_swivel_clamp",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "2本の単管を任意角度で接続できる回転式の足場クランプ。斜材や筋交いなど直角以外の接続に使う。回転部が正常に動き、締結後に各単管を確実につかんでいることを確認する。",
+      "detail_en": "A rotating scaffold clamp that connects two tubes at adjustable angles. It is used for braces and other non-90-degree connections. Verify free movement before installation and secure tube engagement after tightening.",
+      "bullets_ja": ["斜材など角度調整が必要な接続に使用し、直交固定が必要な箇所と使い分ける。", "回転部、ボルト、ナット、かみ合わせ部の摩耗・変形・腐食を点検する。", "締結後は両方の単管が確実につかまれ、意図した角度が保持されているか確認する。"],
+      "bullets_en": ["Use it where an adjustable tube angle is required, such as bracing, rather than where a fixed 90-degree connection is specified.", "Inspect the swivel, bolt, nut, and gripping surfaces for wear, deformation, or corrosion.", "After tightening, confirm both tubes are firmly gripped and the intended angle is maintained."],
+      "examples_ja": ["単管足場の斜材を支柱へ取り付ける際に自在クランプを使う。", "筋交いの角度を合わせた後、両側の締結状態を確認する。"],
+      "examples_en": ["Use swivel clamps to attach diagonal braces to scaffold standards.", "Set the brace angle and then verify both clamp jaws are fully tightened and seated."]
+    },
+    {
+      "id": "q013_right_angle_clamp",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "2本の単管を90度で固定する足場用クランプ。支柱と水平材など、直交関係を保持する接続部に使う。単管へのかみ合わせと締付状態をそろえ、クランプ本体の変形やねじ部損傷を確認する。",
+      "detail_en": "A scaffold clamp designed to hold two tubes at 90 degrees. It is used at intersections such as standards and ledgers where a fixed right angle is required. Ensure full tube engagement, proper tightening, and an undamaged fitting body and thread.",
+      "bullets_ja": ["90度接続を指定された支柱・水平材などに使用する。", "クランプが単管へ偏って掛からないよう正しく位置決めして締める。", "変形、割れ、ねじ損傷、著しい腐食があるものは交換する。"],
+      "bullets_en": ["Use it at scaffold joints that require a fixed 90-degree connection.", "Position the fitting squarely on both tubes before tightening so the jaws do not sit off-center.", "Replace clamps with cracks, deformation, thread damage, or severe corrosion."],
+      "examples_ja": ["単管支柱と水平材を直角に接続するため直交クランプを取り付ける。", "足場点検でクランプの締付けと90度の納まりを確認する。"],
+      "examples_en": ["Fit a right-angle clamp where a horizontal scaffold tube crosses a vertical standard.", "During inspection, verify the connection remains tight and square."]
+    },
+    {
+      "id": "q013_base_jack",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "足場支柱の下端に設け、ねじ機構で高さを微調整して足場を水平にするベース部材。調整可能範囲を超えて伸ばすと安定性を損なうため、メーカーや足場方式の許容範囲内で使う。接地部、ねじ、ナット、支柱との納まりを点検する。",
+      "detail_en": "An adjustable screw base fitted under a scaffold standard to level the scaffold. Excessive extension reduces stability, so adjustment must remain within the permitted range for the scaffold system. Inspect the base, screw, nut, and seating of the standard.",
+      "bullets_ja": ["敷板・ベース部の支持状態を整えたうえで、高さ調整に使用する。", "ねじの伸ばし量を許容範囲内に保ち、極端な高さ調整で不足を補わない。", "ねじ山の損傷、曲がり、沈下、支柱の偏心がないか確認する。"],
+      "bullets_en": ["Provide a stable supporting sole/base before using the jack for leveling.", "Keep screw extension within the scaffold system's permitted adjustment range.", "Check for damaged threads, bending, settlement, and eccentric seating of the standard."],
+      "examples_ja": ["不陸のある地盤上で、ジャッキベースを調整して足場の水平を合わせる。", "巡回点検で沈下した箇所のベース周りとねじ伸出量を確認する。"],
+      "examples_en": ["Adjust base jacks to level scaffold standards over slightly uneven ground.", "During inspection, check a settled base area and confirm the jack has not been overextended."]
+    },
+    {
+      "id": "q013_base_plate_scaffold",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "足場支柱から地盤へ伝わる荷重を分散するため、ベース金具の下などに敷く板材。局部沈下や支柱のめり込みを抑える役割がある。地盤の強度・平坦性、板の割れや腐朽、ベースの載り位置を確認する。",
+      "detail_en": "A sole board placed beneath scaffold bases to spread loads into the ground and reduce local settlement. It supports the base rather than adjusting scaffold height. Check ground bearing, level seating, board condition, and the position of the base on the board.",
+      "bullets_ja": ["軟弱・不陸地盤では必要な支持面積を確保し、ベースが板の端へ偏らないようにする。", "割れ、腐朽、著しい反りや損傷のある敷板は使用しない。", "雨水や掘削で地盤条件が変わった場合は沈下・洗掘を再点検する。"],
+      "bullets_en": ["Provide adequate bearing area and keep the scaffold base away from the edge of the sole board.", "Do not use boards that are cracked, decayed, severely warped, or otherwise damaged.", "Reinspect for settlement or washout when rain or excavation changes the ground condition."],
+      "examples_ja": ["土の上に足場を組む前に敷板を配置し、その中央付近へベースを載せる。", "降雨後に敷板周辺の沈下や地盤の流出がないか確認する。"],
+      "examples_en": ["Place sole boards on soil before erecting the scaffold and center the bases on them.", "After heavy rain, inspect the ground and sole boards for settlement or erosion."]
+    },
+    {
+      "id": "q013_scaffold_ladder",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "足場内で作業床間を安全に上下移動するための仮設階段・階段ユニット。通常の立て掛けはしごとは異なり、足場構造へ所定の方法で取り付けて使用する。踏板、手すり、取付部、出入口の障害物を点検する。",
+      "detail_en": "A temporary stair or stair unit installed within scaffolding to provide access between working levels. It differs from a portable leaning ladder because it is integrated and secured to the scaffold. Inspect treads, handrails, connections, and clear access at landings.",
+      "bullets_ja": ["足場方式に適合する階段を所定位置へ固定し、移動中にずれない状態にする。", "踏板の損傷・滑り、手すりの欠落、取付部の緩みを点検する。", "出入口や踊り場に資材を置かず、昇降経路を常時確保する。"],
+      "bullets_en": ["Secure a stair unit compatible with the scaffold system so it cannot shift during use.", "Inspect treads for damage or slip hazards, handrails for completeness, and connections for looseness.", "Keep landings and access openings free of stored materials and obstructions."],
+      "examples_ja": ["足場の上下階を結ぶ昇降設備として足場階段を取り付ける。", "始業前に階段の踏板、手すり、固定部と出入口の障害物を確認する。"],
+      "examples_en": ["Install a scaffold stair unit to provide access between adjacent working lifts.", "Before use, inspect treads, guard components, attachment points, and clear access."]
+    },
+    {
+      "id": "q013_ladder_frame",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "枠組足場を構成する門型の主要フレームで、作業床や筋交いなどを支持する骨組み部材。規格・寸法の異なる建枠を混在させず、脚部・接続ピン・ロック部・溶接部の損傷を確認する。",
+      "detail_en": "A portal-shaped main frame used in frame scaffolding to support decks, braces, and connected members. Frames of incompatible size or system should not be mixed. Inspect legs, connection pins, locking features, welds, and overall straightness.",
+      "bullets_ja": ["同一足場方式・規格に適合する建枠を使用し、異種部材を安易に混用しない。", "曲がり、溶接割れ、脚部損傷、接続部の変形を点検する。", "上下の建枠を所定のジョイント・ロックで確実に接続する。"],
+      "bullets_en": ["Use frames compatible with the same scaffold system and do not casually mix incompatible members.", "Inspect for bent legs, cracked welds, damaged feet, and deformed connection points.", "Connect stacked frames with the specified joints and locking devices."],
+      "examples_ja": ["枠組足場の各スパンに建枠を建て、筋交いと作業床を組み付ける。", "解体後の建枠を整理し、曲がりや溶接部損傷のあるものを選別する。"],
+      "examples_en": ["Erect scaffold frames at each bay and connect the required braces and platform members.", "After dismantling, segregate frames with bent members or damaged welds."]
+    },
+    {
+      "id": "q013_cross_brace",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "足場や仮設フレームの対角線方向に取り付け、平行四辺形状の変形や横揺れを抑える斜材。指定された位置・本数を省略せず、端部のピンやロックへ確実に掛ける。曲がりや端部金具の損傷も確認する。",
+      "detail_en": "A diagonal brace installed across scaffold or temporary frames to resist racking and lateral movement. Required braces should not be omitted, and each end must fully engage its pin or lock. Inspect the brace for bending and damaged end fittings.",
+      "bullets_ja": ["足場計画・組立手順で指定されたスパンと位置に筋交いを設置する。", "端部をピンやロックへ確実に掛け、外れ止めが機能していることを確認する。", "著しい曲がり、亀裂、端部穴の変形がある筋交いは使用しない。"],
+      "bullets_en": ["Install braces in the bays and locations required by the scaffold plan or system instructions.", "Fully engage both ends on their pins or locks and verify any retention feature.", "Reject braces with severe bending, cracks, or deformed end holes or fittings."],
+      "examples_ja": ["建枠を立てた後、各スパンに筋交いを取り付けて足場の横揺れを抑える。", "点検で外れかけた筋交い端部を見つけ、作業前に正しく掛け直す。"],
+      "examples_en": ["Fit cross braces between erected frames to stabilize each scaffold bay.", "During inspection, correct a brace end that is not fully engaged before the platform is used."]
+    },
+    {
+      "id": "q013_wall_tie",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "足場を建物側へ連結し、風や偏荷重による足場の面外変位・転倒を抑えるための壁つなぎ部材。取付位置と間隔、躯体側アンカー、足場側接続は足場計画に従う。改修作業などで無断撤去すると安定性を大きく損なう。",
+      "detail_en": "A tie that connects scaffolding to the building to control out-of-plane movement and overturning from wind and eccentric loads. Tie locations, spacing, building anchors, and scaffold connections must follow the scaffold design. Removing ties without an approved alternative can seriously reduce stability.",
+      "bullets_ja": ["足場計画で指定された位置・間隔に設置し、必要本数を勝手に省略しない。", "建物側の固定部と足場側の接続部の緩み・抜け・腐食を点検する。", "外装工事の干渉で一時撤去する場合は、代替措置を含む承認された手順に従う。"],
+      "bullets_en": ["Install ties at the locations and spacing required by the scaffold design and do not omit them arbitrarily.", "Inspect both the building anchor and scaffold connection for looseness, pullout, damage, or corrosion.", "If a tie conflicts with facade work, follow an approved procedure that provides any required temporary alternative."],
+      "examples_ja": ["外壁沿いの足場を所定間隔で壁つなぎし、建物へ固定する。", "仕上げ作業前に撤去された壁つなぎがないか巡回点検する。"],
+      "examples_en": ["Tie a facade scaffold back to the building at the specified intervals.", "Inspect the scaffold before work to ensure required wall ties have not been removed."]
+    },
+    {
+      "id": "q013_lifting_sling",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "荷をクレーンやホイストで吊るために用いるスリング類の総称で、繊維、ワイヤーロープ、チェーンなど複数方式がある。荷重、掛け方、吊り角度、重心、端部形状に合う種類と定格を選び、損傷品を使用しない。",
+      "detail_en": "A general class of sling used to connect a load to a crane or hoist, including textile, wire-rope, and chain types. Select the sling material, capacity, hitch, angle, and length for the load and its center of gravity. Damaged or unidentified slings must not be used.",
+      "bullets_ja": ["荷重、吊り角度、掛け方を考慮した定格荷重のスリングを選ぶ。", "繊維の切れ、ワイヤの損傷、チェーンの伸び、金具の変形など種類ごとの廃棄基準を確認する。", "鋭利な角部には必要な当て物を使い、吊荷の重心と滑りを確認する。"],
+      "bullets_en": ["Select sling capacity using the load, hitch configuration, and sling angle rather than load weight alone.", "Inspect each sling type for its relevant rejection defects, such as cuts, broken wires, stretched links, or deformed fittings.", "Protect slings from sharp edges and verify the load center of gravity and resistance to slipping."],
+      "examples_ja": ["設備機器を吊る前に重量と吊点を確認し、適切なスリング構成を選定する。", "吊上げ前点検で損傷のあるスリングを除外し、識別可能な適合品へ交換する。"],
+      "examples_en": ["Before lifting equipment, confirm its weight and lifting points and choose an appropriate sling arrangement.", "Remove a damaged sling during pre-lift inspection and replace it with an identifiable rated sling."]
+    },
+    {
+      "id": "q013_wire_rope_sling",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "鋼線をより合わせたワイヤーロープで構成する吊りスリング。耐熱性や耐摩耗性などの特性を持つ一方、素線切れ、キンク、つぶれ、腐食、端末部の異常を重点的に確認する。吊り角度や曲げ半径も能力に影響する。",
+      "detail_en": "A lifting sling made from steel wire rope. It offers characteristics such as abrasion and heat resistance, but must be inspected for broken wires, kinks, crushing, corrosion, and damaged terminations. Sling angle and bending around small radii also affect performance.",
+      "bullets_ja": ["素線切れ、キンク、つぶれ、著しい腐食、端末金具や圧着部の異常を点検する。", "吊り角度と使用荷重に合う定格を確認し、過小な曲げ半径や鋭角部を避ける。", "識別タグや定格情報が確認できないスリングは使用判断を保留する。"],
+      "bullets_en": ["Inspect for broken wires, kinks, crushing, severe corrosion, and damaged end fittings or sleeves.", "Verify capacity for the sling angle and avoid tight bends or unprotected sharp edges.", "Do not use a sling when its identification and working-load information cannot be verified."],
+      "examples_ja": ["鋼材を玉掛けする前にワイヤーロープスリングの素線切れと端末部を点検する。", "角張った荷には保護材を当て、ワイヤーロープが鋭角へ直接当たらないようにする。"],
+      "examples_en": ["Inspect a wire-rope sling for broken wires and termination damage before rigging steel.", "Use edge protection so the rope does not bear directly on a sharp load corner."]
+    },
+    {
+      "id": "q013_chain_sling",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "合金鋼などのチェーンとマスターリンク、フック等で構成する吊り具。重量物や耐摩耗性が必要な玉掛けで使われる。リンクの伸び・摩耗・割れ・ねじれ、フック開き、接続金具の変形を点検し、指定グレードと定格を守る。",
+      "detail_en": "A lifting sling assembled from chain, master links, hooks, and related fittings. It is commonly used for heavy loads and demanding rigging conditions. Inspect links for stretch, wear, cracks, or twist and check hooks and connectors for deformation while maintaining the required grade and rated capacity.",
+      "bullets_ja": ["チェーンのグレード、径、脚数、吊り角度に対応する定格荷重を確認する。", "リンクの伸び・摩耗・亀裂・ねじれ、フックの開きや変形を点検する。", "チェーンを結んで短くしたり、無許可の金具を組み合わせたりしない。"],
+      "bullets_en": ["Verify capacity for the chain grade, size, number of legs, and sling angle.", "Inspect links for stretch, wear, cracks, and twist and inspect hooks for throat opening or deformation.", "Do not shorten a sling by knotting chain or add unapproved fittings."],
+      "examples_ja": ["重量鋼材の吊上げにチェーンスリングを使い、各脚へ均等に荷重がかかるよう掛ける。", "点検で伸びたリンクを見つけたチェーンスリングを使用停止にする。"],
+      "examples_en": ["Rig a heavy steel member with a chain sling arranged so its legs share the load appropriately.", "Remove a chain sling from service when inspection finds a stretched or damaged link."]
+    },
+    {
+      "id": "q013_turnbuckle",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "中央胴を回して左右のねじ端を出入りさせ、ワイヤー、ロッド、ブレースなどの張力や長さを調整する金具。ねじのかかり代を確保し、曲げ荷重を与えず軸方向に使う。端部形状と定格も接続用途に合わせる。",
+      "detail_en": "A fitting with opposite threaded ends that adjusts tension or effective length in wire, rod, or bracing by rotating its body. Maintain adequate thread engagement and load it axially rather than in bending. End fittings and capacity must match the connection.",
+      "bullets_ja": ["両端のねじ込み量を十分に確保し、片側だけ極端に抜けた状態にしない。", "アイ・フック・シャックル等の端部形式と定格を接続先に合わせる。", "調整後は必要な緩み止めを行い、曲げや横引きが生じない配置を確認する。"],
+      "bullets_en": ["Maintain adequate thread engagement at both ends and avoid excessive extension on only one side.", "Match eye, hook, jaw, or other end fittings and their rating to the connection.", "After adjustment, apply any required locking and confirm the turnbuckle is loaded along its axis."],
+      "examples_ja": ["仮設ブレースの張りをターンバックルで調整して所定の張力に近づける。", "調整後にねじのかかり代と緩み止めを確認する。"],
+      "examples_en": ["Adjust a temporary brace with a turnbuckle to take up slack and establish the required tension.", "After adjustment, verify thread engagement and the specified locking arrangement."]
+    },
+    {
+      "id": "q013_beam_clamp",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "H形鋼などのフランジを把持して、ホイストや吊具用の吊点を設けるクランプ。梁材の寸法、フランジ厚、取付方向、定格荷重に合う製品を選ぶ。構造用の配管支持クランプや加工用クランプとは用途が異なる。",
+      "detail_en": "A clamp attached to a structural beam flange to provide a suspension or lifting point for a hoist or rigging. Select it for beam size, flange thickness, orientation, and rated load. It is distinct from workholding clamps and pipe-support clamps.",
+      "bullets_ja": ["梁フランジ寸法とクランプの適用範囲、定格荷重を照合する。", "取付面の障害物や著しい塗膜・変形を確認し、指定方法で締結する。", "斜め引きや想定外方向の荷重を避け、吊点となる梁側の強度も確認する。"],
+      "bullets_en": ["Match the clamp's flange range and rated capacity to the beam and intended load.", "Check the contact area and install and tighten the clamp using its specified method.", "Avoid unapproved side loading and verify that the supporting beam is suitable for the imposed load."],
+      "examples_ja": ["H形鋼フランジへビームクランプを取り付け、チェーンブロックの吊点を設ける。", "使用前にフランジへの掛かり、締結状態、定格表示を確認する。"],
+      "examples_en": ["Fit a beam clamp to an H-beam flange to create a suspension point for a chain hoist.", "Before loading, verify flange engagement, tightening, and the clamp's rating."]
+    },
+    {
+      "id": "q013_trolley_hoist",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "I形・H形梁などの下フランジを走行し、吊下げたホイストと荷を梁方向へ横移動させるトロリー。梁幅に合わせた車輪間隔と定格荷重を設定し、ストッパー、車輪、軸、吊下げ部を点検する。",
+      "detail_en": "A trolley that runs along the lower flange of a beam and carries a suspended hoist so the load can move horizontally along the beam. Adjust it to the beam flange width and rated load, and inspect wheels, axles, suspension, and end-stop arrangements.",
+      "bullets_ja": ["梁幅とトロリーの調整範囲を合わせ、車輪が適正にフランジへ掛かるよう設定する。", "トロリー、ホイスト、梁の各定格のうち最も低い能力を超えない。", "梁端ストッパー、車輪、軸、吊下げ部の損傷や緩みを点検する。"],
+      "bullets_en": ["Adjust wheel spacing to the beam flange so the trolley is correctly seated and guided.", "Do not exceed the lowest rated capacity of the trolley, hoist, supporting beam, or associated rigging.", "Inspect end stops, wheels, axles, and the hoist suspension connection for damage or looseness."],
+      "examples_ja": ["梁へトロリーを設置し、チェーンホイストで吊った機器を据付位置まで横移動する。", "使用前に梁端ストッパーとトロリー車輪の状態を確認する。"],
+      "examples_en": ["Use a beam trolley with a chain hoist to move suspended equipment along a runway beam.", "Before use, inspect the beam end stops and trolley wheels."]
+    },
+    {
+      "id": "q013_tag_line",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "吊荷へ取り付け、地上の作業者が安全な位置から荷の回転・振れ・向きを補助制御するためのロープ。吊荷を直接手で押さえる代わりの補助手段として用いる。ロープを身体へ巻き付けたり、吊荷の真下へ入ったりしない。",
+      "detail_en": "A rope attached to a suspended load so workers can help control rotation, swing, and orientation from a safer position. It reduces the need to touch the load directly but does not make standing beneath a suspended load acceptable. Keep the line clear of entanglement hazards.",
+      "bullets_ja": ["吊荷の形状と作業計画に応じて、操作しやすく十分な長さの介錯ロープを取り付ける。", "ロープを手や身体へ巻き付けず、引き込まれや挟まれの危険位置を避ける。", "吊荷の真下や進行方向へ入らず、クレーン合図者・操作者と連携する。"],
+      "bullets_en": ["Use a tag line of suitable length and attachment location for the load and lifting plan.", "Never wrap the line around hands or the body, and stay clear of entanglement and pinch zones.", "Do not enter beneath the load or its travel path; coordinate with the signaler and crane operator."],
+      "examples_ja": ["長尺材を旋回させずに吊り上げるため、端部へ介錯ロープを取り付ける。", "据付直前に地上から介錯ロープで向きを微調整する。"],
+      "examples_en": ["Attach a tag line to a long load to limit uncontrolled rotation during lifting.", "Use the line from the ground to fine-tune load orientation as it approaches the set position."]
+    },
+    {
+      "id": "q013_dolly",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "資材や工具を載せて人力搬送する低床の平台車。二輪のハンドトラックとは異なり、荷を平台上へ載せ、複数のキャスターで支持して移動する。積載能力、荷の重心、キャスター、床の段差や勾配を確認する。",
+      "detail_en": "A low platform dolly used to move tools and materials manually. Unlike an upright two-wheel hand truck, it supports the load on a flat deck with multiple casters. Check rated load, center of gravity, caster condition, floor steps, and slopes.",
+      "bullets_ja": ["積載能力を超えず、荷を平台中央付近へ安定して載せる。", "キャスターの破損・固着、床の段差、傾斜、走行経路の障害物を確認する。", "視界を遮る高積みや、停止中に勝手に動き出す不安定な置き方を避ける。"],
+      "bullets_en": ["Stay within the rated capacity and distribute the load stably over the platform.", "Inspect casters and the travel route for damage, steps, slopes, and obstructions.", "Avoid stacking loads so high that visibility is blocked or leaving the dolly unstable on a slope."],
+      "examples_ja": ["箱入りの仕上げ材を平台車へ載せ、平坦な通路を使って作業場所へ運ぶ。", "搬送前にキャスターの回転と荷崩れの可能性を確認する。"],
+      "examples_en": ["Load boxed finish materials onto a platform dolly and move them along a clear level route.", "Before moving, check caster operation and make sure the load cannot shift or topple."]
+    },
+    {
+      "id": "q013_material_cart",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "長尺材、箱物、工具など現場資材の運搬に使う専用カート。平台車より荷姿に合わせた枠・棚・受けを備えるものが多い。積載重量と寸法、荷崩れ、重心、走行経路、ストッパーやキャスターを確認する。",
+      "detail_en": "A site cart intended for transporting construction materials such as long items, boxes, or tools. Many versions have frames, shelves, or supports tailored to the load. Verify capacity, load dimensions, restraint, center of gravity, route condition, brakes, and casters.",
+      "bullets_ja": ["カートの積載能力と荷受け形状に合う資材を載せ、突出や偏荷重を管理する。", "長尺材や転がりやすい荷は必要に応じて固定し、荷崩れを防ぐ。", "通路幅、段差、勾配、人との交差箇所を確認して搬送経路を決める。"],
+      "bullets_en": ["Match the material and its dimensions to the cart's rated capacity and support arrangement.", "Restrain long or rolling items when needed so they cannot shift or fall from the cart.", "Plan the route around width restrictions, steps, slopes, and pedestrian crossings."],
+      "examples_ja": ["ボード材を専用カートへ立てて載せ、荷崩れしないよう保持して搬送する。", "長尺配管を資材カートで運ぶ前に突出長さと通路幅を確認する。"],
+      "examples_en": ["Transport sheet material on a dedicated cart with the load restrained against tipping.", "Before moving long pipe on a material cart, check overhang and available aisle width."]
+    },
+    {
+      "id": "q013_mortar_pan",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "モルタル、左官材、補修材などを少量練ったり仮置きしたりする浅く広い容器。トロ舟とも呼ばれ、材料を取り出しやすい形状を持つ。材料の種類を混在させず、硬化物や汚れを除去して容量内で使用する。",
+      "detail_en": "A shallow, wide pan used to mix or hold small batches of mortar, plastering compounds, and repair materials. Its open shape makes material easy to mix and scoop. Keep incompatible materials separate, remove hardened residue, and work within the pan's practical capacity.",
+      "bullets_ja": ["材料の配合量と作業時間に合う容量を選び、一度に過量を練らない。", "異なる材料や硬化物が残らないよう使用前後に清掃する。", "セメント系材料では粉じん・アルカリ刺激を考慮して必要な保護具を使用する。"],
+      "bullets_en": ["Choose a pan size that suits the batch quantity and working time rather than overfilling it.", "Clean out hardened residue and avoid contaminating one material with another.", "For cementitious mixes, control dust and skin contact with appropriate protective measures."],
+      "examples_ja": ["少量の補修モルタルをトロ舟で練り、必要箇所へ順次運ぶ。", "前の材料が硬化して残っていないことを確認してから新しい左官材を練る。"],
+      "examples_en": ["Mix a small batch of repair mortar in a mortar pan and use it progressively at the repair area.", "Remove hardened residue before mixing a different plastering material in the pan."]
+    },
+    {
+      "id": "q013_mix_bucket",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "接着剤、補修材、塗材などを少量から中量で練り混ぜるためのバケツ型容器。撹拌羽根を使う場合は飛散を抑えられる深さと十分な容量を確保する。材料ごとの可使時間を意識し、硬化残渣や水分混入を避ける。",
+      "detail_en": "A bucket used to mix adhesives, repair compounds, coatings, and similar materials in small to medium batches. When power mixing, adequate depth and free volume help contain splashing. Respect each material's working time and avoid contamination by hardened residue or unintended water.",
+      "bullets_ja": ["材料量に対して余裕のある容量を選び、撹拌時のあふれ・飛散を防ぐ。", "配合比と投入順序を材料仕様に合わせ、勝手な加水や希釈を避ける。", "硬化物を除去し、異種材料用の容器を必要に応じて分ける。"],
+      "bullets_en": ["Use a bucket with enough free volume to prevent overflow and splashing during mixing.", "Follow the material's specified mix ratio and addition sequence and avoid unapproved dilution.", "Remove hardened residue and separate buckets for incompatible materials where necessary."],
+      "examples_ja": ["タイル接着材を練りバケツへ計量投入し、撹拌機で均一に混ぜる。", "補修材を練る前にバケツ内の硬化物と余分な水を除去する。"],
+      "examples_en": ["Measure tile adhesive into a mixing bucket and blend it uniformly with a paddle mixer.", "Before mixing repair compound, remove hardened residue and unintended water from the bucket."]
+    },
+    {
+      "id": "q013_paddle_mixer",
+      "wave": "content-wave-004a",
+      "state": "expanded",
+      "detail_ja": "モルタル、接着材、塗材などを撹拌羽根で混合する手持ち式の電動撹拌機。材料粘度と量に合う回転数・羽根形状を選び、低速から始めて飛散や急な反力を抑える。回転中の羽根へ手や衣服を近づけない。",
+      "detail_en": "A handheld powered mixer that drives a paddle to blend mortar, adhesive, coatings, and similar compounds. Match paddle shape and speed to material viscosity and batch size, starting at low speed to limit splash and reaction torque. Keep hands and loose clothing clear of the rotating paddle.",
+      "bullets_ja": ["材料と容量に合う撹拌羽根・回転速度を選び、過負荷を避ける。", "容器内へ羽根を入れてから低速で始動し、飛散と急な反力を抑える。", "電源、スイッチ、チャック・接続部、羽根の曲がりや緩みを使用前に点検する。"],
+      "bullets_en": ["Select paddle geometry and speed for the material and batch size so the mixer is not overloaded.", "Place the paddle in the mix and start at low speed to reduce splash and sudden torque reaction.", "Inspect the power supply, switch, chuck or coupling, and paddle for looseness or damage before use."],
+      "examples_ja": ["高粘度の接着材を指定時間撹拌するため、適合する羽根を付けた撹拌機を使う。", "撹拌開始時は低速で回し、材料がなじんでから必要な速度へ上げる。"],
+      "examples_en": ["Mix a high-viscosity adhesive for the specified time using a suitable paddle on a powered mixer.", "Start slowly until the dry and wet components combine, then increase to the required mixing speed."]
+    }
+  ]
+}
