@@ -4,8 +4,9 @@ Production implementation for the published 20-pattern visual dictionary, with t
 
 ## Current state
 
-- The **published runtime set remains exactly 20 patterns**. No planned 21-100 entry is exposed merely because it is present in the expansion manifest.
+- The **published runtime set remains exactly 20 patterns**. No planned 21-100 entry is exposed merely because it is present in the expansion manifest or a research ledger.
 - Source verification is complete for all published 20 terms: 17 are verified and 3 (`moroccan-trellis`, `ikat`, `kilim`) remain qualified with explicit scope notes.
+- **Wave 2 / entries 21-40 source verification is complete as research-only:** 13 verified and 7 qualified. None of these 20 entries is public yet.
 - `data/production-content.json` is at `verified-publication` and contains JA/EN definitions, distinguishing features, common uses, color contracts, term scope, qualification notes, and verified review state for all published records.
 - All 20 primary Reference Images are deterministic 1536×1536 PNGs under `assets/reference/`, structurally reviewed, publication-verified, and runtime-wired.
 - Broad or technique/category terms use representative recognition references and do not claim one uniquely canonical motif.
@@ -38,6 +39,27 @@ The freeze also requires every `similar` and `often_confused_with` target alread
 
 A planned entry does **not** become public simply by being frozen. Each 20-entry wave must close source verification, bilingual production content, Reference Image review, search regressions, comparison/relationship work, SEO/static routes, Amazon commerce mapping where appropriate, and desktop/mobile QA before it can enter `data/patterns.json` and the public runtime.
 
+## Wave 2 source verification
+
+`data/wave2-source-verification.json` is the research ledger for ordinals **21-40**. It freezes evidence-backed terminology, visual structure, aliases, color guidance, and the exact semantic boundary that production copy must preserve.
+
+Current result:
+
+- **Verified (13):** Buffalo Check, Shepherd's Check, Windowpane Check, Tattersall, Gun Club Check, Pinstripe, Chalk Stripe, Bengal Stripe, Awning Stripe, Zigzag, Diamond Pattern, Harlequin, Checkerboard.
+- **Qualified (7):** Madras Check, Prince of Wales Check, Koushi, Regimental Stripe, Breton Stripe, Swiss Dot, Herringbone.
+
+The qualified terms are deliberate, not incomplete research flags:
+
+- **Madras Check:** Madras is also a textile/style tradition, not one immutable check repeat.
+- **Prince of Wales Check:** modern usage overlaps with Glen Check; the practical overcheck distinction and historical relationship must both be explained.
+- **Koushi:** 格子 is a broad Japanese lattice/check family and must not be collapsed into Ichimatsu.
+- **Regimental Stripe:** a family tied to regimental neckwear conventions, not one universal color sequence or stripe direction.
+- **Breton Stripe:** modern fashion usage is broader than the historically specified French naval marinière.
+- **Swiss Dot:** fundamentally a dotted textile/fabric treatment, not generic flat polka dots.
+- **Herringbone:** a weave/arrangement and broader broken-V visual family; it must be distinguished from simple printed Chevron/Zigzag.
+
+`tests/wave2-source-verification-test.mjs` enforces exact 21-40 coverage, frozen JA/EN names, the 13/7 verification split, qualified-term boundary text, evidence records, source diversity, and the critical requirement that runtime remains the published canonical 20 during this research stage.
+
 ## Validation
 
 Run from the repository root:
@@ -45,6 +67,7 @@ Run from the repository root:
 ```bash
 node --check tools/pattern-dictionary/app.js
 node tools/pattern-dictionary/tests/canonical-100-test.mjs
+node tools/pattern-dictionary/tests/wave2-source-verification-test.mjs
 node tools/pattern-dictionary/tests/source-verification-test.mjs
 node tools/pattern-dictionary/tests/production-content-test.mjs
 node tools/pattern-dictionary/tests/reference-image-test.mjs
@@ -63,7 +86,7 @@ node scripts/check-seo-structured-data-integrity.mjs
 node scripts/audit-seo.mjs --strict
 ```
 
-The current publication contract still applies only to the published 20. `canonical-100-test.mjs` separately enforces the 20 + 80 taxonomy freeze, unique IDs, contiguous ordinals, four 20-entry waves, qualified broad-term handling, and complete resolution of the current relationship targets.
+The current publication contract still applies only to the published 20. `canonical-100-test.mjs` separately enforces the 20 + 80 taxonomy freeze, while `wave2-source-verification-test.mjs` locks the completed research boundary for 21-40 without publishing those entries.
 
 ## Canonical-20 Amazon commerce contract
 
@@ -73,4 +96,4 @@ The published 20 use **65 maintained Amazon.co.jp search destinations**. Every p
 
 ## Next production unit
 
-After the canonical-100 freeze is merged, the next unit is **Wave 2 source verification for entries 21-40**. No Wave 2 runtime publication should occur until that research ledger is complete enough to determine which terms are verified and which must remain qualified.
+With the canonical-100 freeze and Wave 2 source verification complete, the next unit is **Wave 2 production for entries 21-40**: bilingual dictionary content, relationships/compare decisions, search vocabulary and regressions, deterministic Reference Images and review, static JA/EN detail routes and SEO, then pattern-appropriate Amazon commerce intents and desktop/mobile publication QA. The 20 entries remain non-public until that whole wave closes.
