@@ -21,12 +21,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Remove HTTP-noindex URLs from sitemap
+      - name: Align HTTP-noindex HTML and sitemap
         shell: bash
         run: |
           set -euo pipefail
           node <<'NODE'
           const fs = require('fs');
+          const path = require('path');
           const headers = fs.readFileSync('_headers', 'utf8');
           let sitemap = fs.readFileSync('sitemap.xml', 'utf8');
 
@@ -53,7 +54,49 @@ jobs:
             return new RegExp(`^${escaped}$`);
           }
 
+          function publicPathForHtml(file) {
+            const normalized = file.replaceAll('\\', '/');
+            if (normalized === 'index.html') return '/';
+            if (normalized.endsWith('/index.html')) return `/${normalized.slice(0, -'index.html'.length)}`;
+            return `/${normalized}`;
+          }
+
           const matchers = noindexHeaderRules(headers).map((rule) => ({rule, regex: toRegex(rule)}));
+          const skip = new Set(['.git', 'node_modules', '_archive']);
+          let alignedHtml = 0;
+
+          function walk(dir) {
+            for (const entry of fs.readdirSync(dir, {withFileTypes: true})) {
+              if (skip.has(entry.name)) continue;
+              const full = path.join(dir, entry.name);
+              if (entry.isDirectory()) walk(full);
+              else if (entry.isFile() && entry.name.endsWith('.html')) {
+                const file = path.relative(process.cwd(), full).replaceAll('\\', '/');
+                const publicPath = publicPathForHtml(file);
+                const match = matchers.find(({regex}) => regex.test(publicPath));
+                if (!match) continue;
+                const before = fs.readFileSync(full, 'utf8');
+                let after = before;
+                const robotsRe = /<meta\b[^>]*name=["']robots["'][^>]*>/i;
+                if (robotsRe.test(after)) {
+                  after = after.replace(robotsRe, '<meta name="robots" content="noindex,follow">');
+                } else {
+                  after = after.replace(/<\/head>/i, '  <meta name="robots" content="noindex,follow">\n</head>');
+                }
+                after = after.replace(/\s*<script\b[^>]*src=["'][^"']*pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js[^"']*["'][^>]*><\/script>\s*/gi, '\n');
+                after = after.replace(/\s*<ins\b[^>]*\badsbygoogle\b[^>]*>[\s\S]*?<\/ins>\s*/gi, '\n');
+                after = after.replace(/\s*<script\b[^>]*>\s*\(adsbygoogle\s*=\s*window\.adsbygoogle\s*\|\|\s*\[\]\)\.push\([\s\S]*?\);?\s*<\/script>\s*/gi, '\n');
+                after = after.replace(/[ \t]+$/gm, '');
+                if (after !== before) {
+                  fs.writeFileSync(full, after);
+                  alignedHtml += 1;
+                  console.log(`align ${file} (HTTP noindex via ${match.rule})`);
+                }
+              }
+            }
+          }
+          walk(process.cwd());
+
           let removed = 0;
           sitemap = sitemap.replace(/\s*<url>[\s\S]*?<\/url>/g, (block) => {
             const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1];
@@ -67,7 +110,7 @@ jobs:
           });
           sitemap = sitemap.replace(/<urlset([^>]*)>\s*/, '<urlset$1>\n').replace(/\n{3,}/g, '\n\n');
           fs.writeFileSync('sitemap.xml', sitemap);
-          console.log(`removed ${removed} HTTP-noindex sitemap URL(s)`);
+          console.log(`aligned ${alignedHtml} HTML file(s); removed ${removed} HTTP-noindex sitemap URL(s)`);
           NODE
 
       - name: Validate final review surface
@@ -81,16 +124,16 @@ jobs:
           node scripts/audit-seo.mjs --strict
           git diff --check
 
-      - name: Commit validated sitemap
+      - name: Commit validated alignment
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add sitemap.xml
+          git add sitemap.xml tools
           if git diff --cached --quiet; then
-            echo 'No sitemap changes needed.'
+            echo 'No HTML/sitemap changes needed.'
             exit 0
           fi
-          git commit -m 'fix: remove HTTP-noindex URLs from sitemap'
+          git commit -m 'fix: align HTTP-noindex pages with HTML and sitemap'
           git push origin HEAD:fix/adsense-header-sitemap-contract-20260915
