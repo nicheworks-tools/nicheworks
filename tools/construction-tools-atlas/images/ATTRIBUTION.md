@@ -26,6 +26,12 @@ For licensed sources, each generated WebP derivative is made available under the
 | `q013_paint_tray` | Bart Everson / Wikimedia Commons, CC BY 2.0 | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Paint_Tray_(1535689884).jpg) | `0ebe457e81416cf89c1a0bf3b2047713fe33b1e3` |
 | `q011_notched_trowel` | Pittigrilli / Wikimedia Commons, CC0 1.0 | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Trowels_of_various_sizes_and_shapes,_square_notch_trowels,_in_German_hardware_store_(cropped).jpg) | `23392c92ef470f0fb66fb614f552417ff633a232` |
 | `safety_harness` | SafetyEdition / Wikimedia Commons, CC0 1.0 | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Safety_Harness.jpg) | `81998490514502015085394ebeeed1dfd79e51b1` |
+| `q017_workbench` | Emhoo~commonswiki / Wikimedia Commons, CC BY-SA 3.0 | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Carpenter%27s_workbench.jpg) | `a9a4dfd5796cb078c9db7d05e6e542d0a79fc923` |
+| `q017_toolbox` | Santeri Viinamäki / Wikimedia Commons, CC BY-SA 4.0 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Metal_tool_box.jpg) | `2cdef5d1e4e74ec1f72f6e79f0173d96b4999aa8` |
+| `q017_rubber_mallet` | MartinMerinsky / Wikimedia Commons, CC BY-SA 4.0 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Rubber_mallets.jpg) | `b83e39adb9f6cd6fbe22d2bf99566dcd2230fd25` |
+| `q017_needle_nose_pliers` | oomlout / Wikimedia Commons, CC BY-SA 2.0 | [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Basic_NeedleNose_Pliers.jpg) | `0fd5ac2cb494254ed537ed3d76e743bdaa3d3545` |
+| `q017_survey_tripod` | Michael Daly / Wikimedia Commons, CC BY-SA 3.0 | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Surveyors_tripod.jpg) | `2c6726e0b2baf2399c0cc13c44bd821248dd4c44` |
+| `q017_copper_pipe` | MdeVicente / Wikimedia Commons, CC0 1.0 | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Tubo_cobre.png) | `c43d6f238208e805362dbbef10ec57187df4265e` |
 
-Source ledger versions: `2026-09-14-wave1-1`, `2026-09-14-wave2b-1`.
+Source ledger versions: `2026-09-14-wave1-1`, `2026-09-14-wave2b-1`, `2026-09-14-wave3a-1`.
 
