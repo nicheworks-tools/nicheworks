@@ -546,3 +546,16 @@ console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estim
   assert.match(html, /Qi \/ 9W/);
   assert.match(html, /非防水・非防塵/);
 }
+
+// nubia Flip 2 domestic package excludes both USB cable and AC adapter per Y!mobile.
+{
+  const phone = byId.get('zte-nubia-flip-2');
+  assert.ok(phone, 'nubia Flip 2 fixture missing');
+  assert.equal(phone.included?.cable, 'not_included');
+  assert.equal(phone.included?.adapter, 'not_included');
+  assert.match(phone.sources?.releaseUrl || '', /^https:\/\/www\.ymobile\.jp\//);
+  const h = await createHarness(['zte-nubia-flip-2']);
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /同梱ケーブル<\/span><b>別売/);
+  assert.match(html, /ACアダプター<\/span><b>別売/);
+}
