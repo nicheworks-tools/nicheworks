@@ -1,6 +1,6 @@
 {
   "schema": "cta-content-enrichment-manifest-v2.3",
-  "version": "2026-09-16-wave3b",
+  "version": "2026-09-16-wave3c",
   "packs": [
     {
       "path": "./data/content-enrichment-v2.3.json",
@@ -17,6 +17,10 @@
     {
       "path": "./data/content-enrichment-wave3b-v2.3.json",
       "wave": "content-wave-003b"
+    },
+    {
+      "path": "./data/content-enrichment-wave3c-v2.3.json",
+      "wave": "content-wave-003c"
     }
   ]
 }
