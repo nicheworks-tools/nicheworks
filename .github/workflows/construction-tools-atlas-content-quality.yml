@@ -46,3 +46,5 @@ jobs:
 
       - name: Require safe q012 Wave3B subject-specific core content
         run: node tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs
+
+# validation trigger
