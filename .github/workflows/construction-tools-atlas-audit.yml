@@ -73,6 +73,9 @@ jobs:
       - name: Check q012 Wave3C content syntax
         run: node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3c-v2.3.cjs
 
+      - name: Check q012 content completion syntax
+        run: node --check tools/construction-tools-atlas/scripts/check-q012-content-completion-v2.3.cjs
+
       - name: Check Wave 1 image builder syntax
         run: node --check tools/construction-tools-atlas/scripts/build-image-wave1-v2.3.mjs
 
@@ -156,6 +159,9 @@ jobs:
 
       - name: Require safe q012 Wave3C subject-specific core content
         run: node tools/construction-tools-atlas/scripts/check-q012-content-wave3c-v2.3.cjs
+
+      - name: Require complete q012 subject-specific core content
+        run: node tools/construction-tools-atlas/scripts/check-q012-content-completion-v2.3.cjs
 
       - name: Audit image assets and canonical mappings
         run: node tools/construction-tools-atlas/scripts/audit-image-assets-v2.3.cjs
