@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "phase": "wave2-source-verification",
+  "updated": "2026-09-15",
+  "wave": 2,
+  "ordinal_range": [21, 40],
+  "policy": {
+    "purpose": "Evidence ledger for canonical Pattern Dictionary Wave 2 before any runtime publication.",
+    "publication_state": "research-only",
+    "primary_palette_rule": "A fixed primary palette is an editorial recognition reference unless a source establishes color as identity-relevant. It is never presented as the only valid colorway.",
+    "relationship_rule": "similar and often_confused_with are visual-discovery relationships, not claims of shared historical origin unless explicitly sourced.",
+    "qualification_rule": "Use qualified when the market term, textile/style convention, weave/effect category, or modern usage does not resolve to one uniquely fixed motif.",
+    "states": ["verified", "qualified"]
+  },
+  "patterns": [
+    {
+      "ordinal": 21,
+      "pattern_id": "buffalo-check",
+      "verification_state": "verified",
+      "term_scope": "named large-scale red-and-black check convention",
+      "verified_names": {"ja": "バッファローチェック", "en": "Buffalo Check"},
+      "verified_aliases": {"ja": ["バッファローチェック柄"], "en": ["buffalo plaid"]},
+      "structure": "A large, evenly spaced two-color check; the canonical recognition reference is the familiar red-and-black version.",
+      "color_guidance": {"color_role": "strong-convention", "primary": ["red", "black"], "primary_status": "source-aligned-reference", "reason": "Red-and-black is the historically documented and dominant recognition convention, while the geometry remains the key structural cue."},
+      "sources": [
+        {"publisher": "Permanent Style", "url": "https://www.permanentstyle.com/2021/01/check-mate-a-guide-to-checked-shirt-patterns.html", "supports": ["Buffalo Check name", "large-scale check relationship to gingham", "red-and-black convention", "Woolrich/Rob Roy historical context"]}
+      ]
+    },
+    {
+      "ordinal": 22,
+      "pattern_id": "shepherd-check",
+      "verification_state": "verified",
+      "term_scope": "small even check family",
+      "verified_names": {"ja": "シェパードチェック", "en": "Shepherd's Check"},
+      "verified_aliases": {"ja": ["シェパードチェック柄"], "en": ["shepherd check", "shepherd's plaid"]},
+      "structure": "Small, even checks formed by contrasting stripes, classically black and white.",
+      "color_guidance": {"color_role": "traditional-reference", "primary": ["black", "white"], "primary_status": "source-aligned-reference", "reason": "Black-and-white is explicitly documented as a classic construction, but the pattern family is not restricted to one palette."},
+      "sources": [
+        {"publisher": "Collins English Dictionary", "url": "https://www.collinsdictionary.com/us/dictionary/english/shepherds-check", "supports": ["English term and aliases", "small/even check structure", "black-and-white stripe construction"]},
+        {"publisher": "Permanent Style", "url": "https://www.permanentstyle.com/2025/12/the-origins-of-tweed-patterns-scottish-estates-and-district-checks.html", "supports": ["relationship to later district and gun-club checks"]}
+      ]
+    },
+    {
+      "ordinal": 23,
+      "pattern_id": "windowpane-check",
+      "verification_state": "verified",
+      "term_scope": "large-scale thin-line check",
+      "verified_names": {"ja": "ウィンドウペーンチェック", "en": "Windowpane Check"},
+      "verified_aliases": {"ja": ["ウィンドーペーン"], "en": ["windowpane"]},
+      "structure": "Thin horizontal and vertical lines intersect at wide intervals to form large square or rectangular panes.",
+      "color_guidance": {"color_role": "non-essential", "primary": ["navy", "white"], "primary_status": "editorial-reference", "reason": "The pane-like grid and large scale define the recognition target, not a fixed color."},
+      "sources": [
+        {"publisher": "Permanent Style", "url": "https://www.permanentstyle.com/2021/01/check-mate-a-guide-to-checked-shirt-patterns.html", "supports": ["Windowpane Check name", "thin-line construction", "large scale", "use as overcheck in Prince of Wales/tartan"]},
+        {"publisher": "Kotobank / Heibonsha encyclopedia excerpt", "url": "https://kotobank.jp/word/%E3%81%B7%E3%82%89%E3%81%A4%E3%81%A9-3217792", "supports": ["Japanese windowpane terminology", "window-frame-like partitioned check"]}
+      ]
+    },
+    {
+      "ordinal": 24,
+      "pattern_id": "madras-check",
+      "verification_state": "qualified",
+      "term_scope": "Madras textile/check style rather than one fixed grid specification",
+      "verified_names": {"ja": "マドラスチェック", "en": "Madras Check"},
+      "verified_aliases": {"ja": ["マドラス"], "en": ["madras plaid", "madras"]},
+      "structure": "A woven cotton check/plaid style associated with Madras/Chennai textiles, commonly recognized through relatively large multicolor crossing stripes.",
+      "color_guidance": {"color_role": "strong-convention", "primary": ["red", "blue", "yellow", "white"], "primary_status": "editorial-reference", "reason": "Multicolor plaid is a strong modern recognition cue, but sources do not support one exclusive palette."},
+      "qualification": "Madras is also a cloth/textile term and historical textile tradition, not a single immutable check geometry. Detail copy must not present one reference repeat as the only authentic Madras pattern.",
+      "sources": [
+        {"publisher": "Kotobank / Shogakukan", "url": "https://kotobank.jp/word/%E3%81%BE%E3%81%A9%E3%82%89%E3%81%99%E3%81%A1%E3%81%88%E3%81%A4%E3%81%8F-635299", "supports": ["Japanese term", "Madras/Chennai association", "large check cotton textile"]},
+        {"publisher": "Smithsonian National Museum of African American History and Culture", "url": "https://nmaahc.si.edu/object/nmaahc_2015.153", "supports": ["Madras-style plaid cotton", "multicolor woven example"]},
+        {"publisher": "Collins English Dictionary", "url": "https://www.collinsdictionary.com/dictionary/english/madras", "supports": ["madras as cotton/silk fabric term", "woven stripe context"]}
+      ]
+    },
+    {
+      "ordinal": 25,
+      "pattern_id": "tattersall",
+      "verification_state": "verified",
+      "term_scope": "thin-line multicolor check on a light ground",
+      "verified_names": {"ja": "タッターソール", "en": "Tattersall"},
+      "verified_aliases": {"ja": ["タッターソールチェック", "タッタソールチェック"], "en": ["tattersall check"]},
+      "structure": "Thin colored crossbars form repeated squares on a solid, usually light background; multiple stripe colors are common.",
+      "color_guidance": {"color_role": "variable", "primary": ["navy", "burgundy", "cream"], "primary_status": "editorial-reference", "reason": "Light ground plus multiple thin colored lines is a stronger recognition cue than any one palette."},
+      "sources": [
+        {"publisher": "Collins English Dictionary", "url": "https://www.collinsdictionary.com/us/dictionary/english/tattersall", "supports": ["English term", "crossbar/square structure", "light background", "Tattersall horse-market naming"]},
+        {"publisher": "Permanent Style", "url": "https://www.permanentstyle.com/2021/01/check-mate-a-guide-to-checked-shirt-patterns.html", "supports": ["thin-line multicolor distinction", "country-shirt usage", "Tattersall naming context"]},
+        {"publisher": "Kotobank / encyclopedia excerpt", "url": "https://kotobank.jp/word/%E3%81%A1%E3%81%88%E3%81%A4%E3%81%8F-1561696", "supports": ["Japanese Tattersall terminology", "check-family context"]}
+      ]
+    },
+    {
+      "ordinal": 26,
+      "pattern_id": "gun-club-check",
+      "verification_state": "verified",
+      "term_scope": "multicolor district-check family derived from shepherd-check variation",
+      "verified_names": {"ja": "ガンクラブチェック", "en": "Gun Club Check"},
+      "verified_aliases": {"ja": ["ガンクラブチェック柄"], "en": ["gun check"]},
+      "structure": "A small repeating check using multiple tones/colors, commonly understood as a shepherd-check or related base varied with additional colors/check layers.",
+      "color_guidance": {"color_role": "family-relevant", "primary": ["brown", "black", "cream"], "primary_status": "editorial-reference", "reason": "Multiple contrasting tones are characteristic, but exact colors vary across gun-club checks."},
+      "sources": [
+        {"publisher": "Kotobank / Shogakukan and Heibonsha", "url": "https://kotobank.jp/word/%E3%81%8C%E3%82%93%E3%81%8F%E3%82%89%E3%81%B6%E3%81%A1%E3%81%88%E3%81%A4%E3%81%8F-469579", "supports": ["Japanese/English term", "combined check construction", "relationship to shepherd check", "historical naming context"]},
+        {"publisher": "Permanent Style", "url": "https://www.permanentstyle.com/2025/12/the-origins-of-tweed-patterns-scottish-estates-and-district-checks.html", "supports": ["Coigach/Gun Club historical relationship", "shepherd-check base", "multi-tone structure"]}
+      ]
+    },
+    {
+      "ordinal": 27,
+      "pattern_id": "prince-of-wales-check",
+      "verification_state": "qualified",
+      "term_scope": "glen-check-derived check convention with modern naming overlap",
+      "verified_names": {"ja": "プリンス・オブ・ウェールズ・チェック", "en": "Prince of Wales Check"},
+      "verified_aliases": {"ja": ["プリンスオブウェールズチェック"], "en": ["Prince-of-Wales check", "Prince of Wales plaid"]},
+      "structure": "A glen-check-like tight compound check commonly distinguished by a larger contrasting windowpane overcheck.",
+      "color_guidance": {"color_role": "variable", "primary": ["gray", "black", "white", "burgundy"], "primary_status": "editorial-reference", "reason": "Neutral glen-like base plus a contrasting overcheck is a useful recognition reference, not a universal color rule."},
+      "qualification": "Modern sources often use Prince of Wales Check and Glen Check interchangeably, while historical and tailoring references distinguish Prince of Wales through an added overcheck or specific lineage. Detail copy must state both the practical distinction and the naming overlap.",
+      "sources": [
+        {"publisher": "Permanent Style", "url": "https://www.permanentstyle.com/2017/01/the-guide-to-cloth-weaves-and-designs.html", "supports": ["modern naming overlap with glen check", "distinct historical lineages"]},
+        {"publisher": "Permanent Style", "url": "https://www.permanentstyle.com/2021/01/check-mate-a-guide-to-checked-shirt-patterns.html", "supports": ["glen-check base plus windowpane overcheck as practical distinction", "Edward VII naming context"]},
+        {"publisher": "Permanent Style", "url": "https://www.permanentstyle.com/2025/12/the-origins-of-tweed-patterns-scottish-estates-and-district-checks.html", "supports": ["current overcheck distinction", "historical relationship"]}
+      ]
+    },
+    {
+      "ordinal": 28,
+      "pattern_id": "pinstripe",
+      "verification_state": "verified",
+      "term_scope": "very narrow parallel stripe pattern in cloth",
+      "verified_names": {"ja": "ピンストライプ", "en": "Pinstripe"},
+      "verified_aliases": {"ja": ["ピンストライプ柄"], "en": ["pin-stripe"]},
+      "structure": "Very narrow, usually pale parallel stripes on a darker cloth, especially associated with tailoring.",
+      "color_guidance": {"color_role": "traditional-reference", "primary": ["navy", "white"], "primary_status": "source-aligned-reference", "reason": "Pale narrow lines on a dark ground are well documented, but exact colors are variable."},
+      "sources": [
+        {"publisher": "Cambridge Dictionary", "url": "https://dictionary.cambridge.org/dictionary/english/pinstripe", "supports": ["English term", "narrow pale parallel-line structure", "dark-cloth convention"]},
+        {"publisher": "Collins English Dictionary", "url": "https://www.collinsdictionary.com/dictionary/english/pinstripe", "supports": ["very narrow stripe definition", "parallel fabric pattern", "suiting use"]}
+      ]
+    },
+    {
+      "ordinal": 29,
+      "pattern_id": "chalk-stripe",
+      "verification_state": "verified",
+      "term_scope": "wider softer parallel stripe convention used in suiting",
+      "verified_names": {"ja": "チョークストライプ", "en": "Chalk Stripe"},
+      "verified_aliases": {"ja": ["チョークストライプ柄"], "en": ["chalk-stripe", "chalkstripe"]},
+      "structure": "Parallel pale stripes on a dark ground, wider and generally softer/more muted in appearance than pinstripes.",
+      "color_guidance": {"color_role": "traditional-reference", "primary": ["navy", "white"], "primary_status": "source-aligned-reference", "reason": "White/pale lines on dark cloth are conventional; width/softness relative to pinstripe is the stronger distinction."},
+      "sources": [
+        {"publisher": "Collins English Dictionary", "url": "https://www.collinsdictionary.com/dictionary/english/chalk-stripe", "supports": ["English term", "wider/more muted than pinstripe", "parallel stripe structure", "light-on-dark convention"]},
+        {"publisher": "Kotobank / Nipponica", "url": "https://kotobank.jp/word/%E3%81%99%E3%81%A8%E3%82%89%E3%81%84%E3%81%B7-3156416", "supports": ["Japanese term", "chalk-like stripe appearance", "dark-ground/light-line convention"]}
+      ]
+    },
+    {
+      "ordinal": 30,
+      "pattern_id": "bengal-stripe",
+      "verification_state": "verified",
+      "term_scope": "balanced alternating colored-and-white stripe convention",
+      "verified_names": {"ja": "ベンガルストライプ", "en": "Bengal Stripe"},
+      "verified_aliases": {"ja": ["ベンガルストライプ柄"], "en": ["bengal"]},
+      "structure": "Evenly spaced stripes of alternating color and white, typically broader than fine pin/pencil stripes.",
+      "color_guidance": {"color_role": "variable", "primary": ["blue", "white"], "primary_status": "editorial-reference", "reason": "Alternating white and color is structural; blue is only a familiar recognition reference."},
+      "sources": [
+        {"publisher": "Permanent Style", "url": "https://www.permanentstyle.com/2020/10/name-that-stripe-a-guide-to-shirt-stripe-patterns.html", "supports": ["Bengal Stripe name", "even spacing", "alternating color and white", "relative stripe width", "shirt usage"]}
+      ]
+    },
+    {
+      "ordinal": 31,
+      "pattern_id": "koushi",
+      "verification_state": "qualified",
+      "term_scope": "broad Japanese lattice/check family",
+      "verified_names": {"ja": "格子", "en": "Koushi"},
+      "verified_aliases": {"ja": ["格子文", "格子文様"], "en": ["koushi pattern", "Japanese lattice pattern"]},
+      "structure": "Vertical and horizontal stripes/lines intersect to form a lattice of rectangular or square cells; many named subtypes vary line weight, count, and spacing.",
+      "color_guidance": {"color_role": "non-essential", "primary": ["indigo", "white"], "primary_status": "editorial-reference", "reason": "Line intersection defines the family; color is not intrinsic."},
+      "qualification": "Koushi/格子 is a broad Japanese pattern family with many variants, not one unique repeat. Detail copy must distinguish this line-based lattice family from Ichimatsu's alternating filled squares.",
+      "sources": [
+        {"publisher": "Agency for Cultural Affairs / Cultural Heritage Online", "url": "https://online.bunka.go.jp/heritages/detail/651646", "supports": ["格子 term", "vertical/horizontal stripe intersection", "multiple named variants", "historical Japanese use"]},
+        {"publisher": "National Diet Library Search", "url": "https://ndlsearch.ndl.go.jp/books/R100000002-I034012068", "supports": ["格子 included among Japanese geometric continuous patterns"]},
+        {"publisher": "National Diet Library Collaborative Reference Database", "url": "https://crd.ndl.go.jp/reference/entry/index.php?id=1000289587&page=ref_view", "supports": ["Ichimatsu as alternating squares", "boundary distinction from generic lattice/check"]}
+      ]
+    },
+    {
+      "ordinal": 32,
+      "pattern_id": "awning-stripe",
+      "verification_state": "verified",
+      "term_scope": "very broad stripe convention named after awnings",
+      "verified_names": {"ja": "オーニングストライプ", "en": "Awning Stripe"},
+      "verified_aliases": {"ja": ["オーニングストライプ柄"], "en": ["awning stripes"]},
+      "structure": "Bold, broad, regularly repeated stripes recalling traditional shop or outdoor awnings.",
+      "color_guidance": {"color_role": "variable", "primary": ["green", "white"], "primary_status": "editorial-reference", "reason": "Large stripe scale is defining; exact color is variable."},
+      "sources": [
+        {"publisher": "Permanent Style", "url": "https://www.permanentstyle.com/2020/10/name-that-stripe-a-guide-to-shirt-stripe-patterns.html", "supports": ["Awning Stripe name", "largest/common broad shirting stripe", "awning naming reference"]},
+        {"publisher": "TextileGlossary", "url": "https://www.textileglossary.com/terms/awning-stripe.html", "supports": ["bold broad stripe definition", "regular spacing", "awning inspiration"]}
+      ]
+    },
+    {
+      "ordinal": 33,
+      "pattern_id": "regimental-stripe",
+      "verification_state": "qualified",
+      "term_scope": "stripe style associated with English/British regimental ties rather than one fixed repeat",
+      "verified_names": {"ja": "レジメンタルストライプ", "en": "Regimental Stripe"},
+      "verified_aliases": {"ja": ["レジメンタル"], "en": ["regimental"]},
+      "structure": "A repeated stripe arrangement recognizable through its relationship to striped British regimental neckwear; exact widths, colors, and direction vary.",
+      "color_guidance": {"color_role": "identity-variable", "primary": ["navy", "red", "gold"], "primary_status": "editorial-reference", "reason": "Specific color sequences may carry organizational meaning, so the reference palette must not be presented as universal."},
+      "qualification": "Regimental Stripe is a style/family label tied to regimental neckwear conventions, not one universal color sequence, stripe width, or direction. The dictionary must avoid assigning one generic stripe as an authentic regiment-specific design.",
+      "sources": [
+        {"publisher": "Permanent Style", "url": "https://www.permanentstyle.com/2020/10/name-that-stripe-a-guide-to-shirt-stripe-patterns.html", "supports": ["Regimental Stripe name", "relationship to English regimental ties", "family-level usage"]},
+        {"publisher": "Artlandia Pattern Design Glossary", "url": "https://artlandia.com/wonderland/glossary/", "supports": ["colors originating from British regiments", "neckwear use", "regimental/regimentals naming"]}
+      ]
+    },
+    {
+      "ordinal": 34,
+      "pattern_id": "breton-stripe",
+      "verification_state": "qualified",
+      "term_scope": "French maritime clothing/style convention derived from striped naval knitwear",
+      "verified_names": {"ja": "ブレトンストライプ", "en": "Breton Stripe"},
+      "verified_aliases": {"ja": ["ブレトンボーダー"], "en": ["Breton top", "marinière", "tricot rayé"]},
+      "structure": "Horizontal contrasting stripes, classically blue/navy and white, strongly associated with the French maritime/Breton top tradition.",
+      "color_guidance": {"color_role": "strong-convention", "primary": ["navy", "white"], "primary_status": "source-aligned-reference", "reason": "Blue-and-white horizontal striping is central to the historic naval reference, while modern Breton-style garments vary spacing and colors."},
+      "qualification": "The historic French naval garment had specific uniform dimensions, but modern 'Breton stripe' is a broader fashion convention. Detail copy must distinguish the historical marinière specification from contemporary Breton-style stripes.",
+      "sources": [
+        {"publisher": "Royal Museums Greenwich", "url": "https://www.rmg.co.uk/stories/maritime-history/stripes-sea-history-breton-top", "supports": ["Breton Top terminology", "French naval uniform adoption in 1858", "maritime striped-shirt context"]},
+        {"publisher": "France Today", "url": "https://francetoday.com/culture/a-history-of-the-breton-stripe/", "supports": ["blue-and-white marinière convention", "historic French Navy stripe specification"]}
+      ]
+    },
+    {
+      "ordinal": 35,
+      "pattern_id": "swiss-dot",
+      "verification_state": "qualified",
+      "term_scope": "dotted Swiss textile/fabric category, not generic printed polka dots",
+      "verified_names": {"ja": "スイスドット", "en": "Swiss Dot"},
+      "verified_aliases": {"ja": ["ドッテッドスイス"], "en": ["dotted Swiss", "Swiss muslin"]},
+      "structure": "Fine, sheer, crisp fabric carrying small dots on its surface; the dots may be woven, embroidered, flocked, or otherwise applied depending on the textile.",
+      "color_guidance": {"color_role": "non-essential", "primary": ["white", "white"], "primary_status": "editorial-reference", "reason": "Texture and dotted surface treatment matter more than color; white-on-white is a neutral recognition reference."},
+      "qualification": "Swiss Dot/Dotted Swiss fundamentally names a dotted fabric/textile treatment. The dictionary must not collapse it into ordinary flat printed polka dots, and the reference image should convey textile surface/relief.",
+      "sources": [
+        {"publisher": "Collins English Dictionary", "url": "https://www.collinsdictionary.com/us/dictionary/english/dotted-swiss", "supports": ["Dotted Swiss term", "fine sheer crisp fabric", "surface dots", "blouse/curtain uses"]}
+      ]
+    },
+    {
+      "ordinal": 36,
+      "pattern_id": "herringbone",
+      "verification_state": "qualified",
+      "term_scope": "herringbone weave/arrangement and its broken-V visual family",
+      "verified_names": {"ja": "ヘリンボーン", "en": "Herringbone"},
+      "verified_aliases": {"ja": ["杉綾", "ヘリンボーン柄"], "en": ["herringbone pattern", "herringbone weave"]},
+      "structure": "Adjacent rows of short slanting strokes reverse direction to form repeated broken V shapes or zigzag columns.",
+      "color_guidance": {"color_role": "non-essential", "primary": ["gray", "charcoal"], "primary_status": "editorial-reference", "reason": "Direction reversal and broken-V structure define recognition; color is variable."},
+      "qualification": "Herringbone can denote a textile weave, a broader visual arrangement, embroidery, brickwork, and other constructions. In Pattern Dictionary it is represented as the visual family while clearly distinguishing the common woven form from a simple printed Chevron/Zigzag.",
+      "sources": [
+        {"publisher": "Collins English Dictionary", "url": "https://www.collinsdictionary.com/dictionary/english/herringbone", "supports": ["English term", "alternating slanted rows", "parallel V/zigzag structure", "textile/twill use"]},
+        {"publisher": "Permanent Style", "url": "https://www.permanentstyle.com/2017/01/the-guide-to-cloth-weaves-and-designs.html", "supports": ["herringbone as a weave variation on twill"]}
+      ]
+    },
+    {
+      "ordinal": 37,
+      "pattern_id": "zigzag",
+      "verification_state": "verified",
+      "term_scope": "generic angular line/pattern family",
+      "verified_names": {"ja": "ジグザグ", "en": "Zigzag"},
+      "verified_aliases": {"ja": ["ジグザグ柄"], "en": ["zig-zag", "zigzag pattern"]},
+      "structure": "A line or repeated pattern that changes direction at sharp angles, visually resembling joined Z shapes.",
+      "color_guidance": {"color_role": "non-essential", "primary": ["black", "white"], "primary_status": "editorial-reference", "reason": "Angular path geometry, not color, defines the generic family."},
+      "sources": [
+        {"publisher": "Cambridge Dictionary", "url": "https://dictionary.cambridge.org/dictionary/english/zigzag", "supports": ["English term", "Z/row-of-Z visual definition", "fabric pattern usage"]},
+        {"publisher": "Cambridge English-Japanese Dictionary", "url": "https://dictionary.cambridge.org/ja/dictionary/english-japanese/zigzag", "supports": ["Japanese zigzag equivalence", "sharp-angle repeated direction change"]}
+      ]
+    },
+    {
+      "ordinal": 38,
+      "pattern_id": "diamond",
+      "verification_state": "verified",
+      "term_scope": "generic repeated diamond/rhombus geometric family",
+      "verified_names": {"ja": "ダイヤモンド柄", "en": "Diamond Pattern"},
+      "verified_aliases": {"ja": ["菱形柄", "ダイヤ柄"], "en": ["diamond pattern", "rhombus pattern", "lozenge pattern"]},
+      "structure": "Repeated diamond/rhombus shapes, typically four-sided forms with equal sides and acute/obtuse opposite angles rather than a required color or internal line system.",
+      "color_guidance": {"color_role": "non-essential", "primary": ["black", "white"], "primary_status": "editorial-reference", "reason": "The repeated rhombus geometry defines the family."},
+      "sources": [
+        {"publisher": "Cambridge Dictionary", "url": "https://dictionary.cambridge.org/dictionary/english/rhombus", "supports": ["rhombus geometry", "diamond synonym"]},
+        {"publisher": "The Metropolitan Museum of Art", "url": "https://www.metmuseum.org/art/collection/search/314528", "supports": ["historic textile use of a repeated/stepped diamond pattern"]}
+      ]
+    },
+    {
+      "ordinal": 39,
+      "pattern_id": "harlequin",
+      "verification_state": "verified",
+      "term_scope": "diamond-block pattern convention associated with Harlequin costume",
+      "verified_names": {"ja": "ハーレクイン", "en": "Harlequin"},
+      "verified_aliases": {"ja": ["ハーレクイン柄"], "en": ["harlequin pattern", "harlequin diamonds"]},
+      "structure": "A repeated field of contrasting diamond-shaped blocks, drawing its recognition identity from Harlequin's diamond-patterned costume tradition.",
+      "color_guidance": {"color_role": "variable-contrast", "primary": ["red", "black", "white"], "primary_status": "editorial-reference", "reason": "Contrasting diamond blocks are characteristic; no single modern palette is universal."},
+      "sources": [
+        {"publisher": "The Metropolitan Museum of Art", "url": "https://www.metmuseum.org/ko/perspectives/harley-quinn", "supports": ["Harlequin character origin", "diamond-patterned costume association", "16th-century commedia dell'arte context"]},
+        {"publisher": "The Metropolitan Museum of Art", "url": "https://www.metmuseum.org/ko/met-publications/watteau-music-and-theater", "supports": ["traditional Harlequin diamond-pattern costume"]}
+      ]
+    },
+    {
+      "ordinal": 40,
+      "pattern_id": "checkerboard",
+      "verification_state": "verified",
+      "term_scope": "generic alternating dark/light square pattern",
+      "verified_names": {"ja": "チェッカーボード", "en": "Checkerboard"},
+      "verified_aliases": {"ja": ["チェッカーボード柄", "ブロックチェック"], "en": ["checkerboard pattern", "block check"]},
+      "structure": "Dark and light squares alternate in a regular grid like a board used for checkers/draughts.",
+      "color_guidance": {"color_role": "contrast-essential", "primary": ["black", "white"], "primary_status": "editorial-reference", "reason": "Alternation of contrasting square values is defining, while black/white is only the clearest reference."},
+      "sources": [
+        {"publisher": "Cambridge Dictionary", "url": "https://dictionary.cambridge.org/us/dictionary/english/checkerboard", "supports": ["English term", "alternating dark/light square pattern"]},
+        {"publisher": "Kotobank / MyPedia and Japanese dictionaries", "url": "https://kotobank.jp/word/%E3%81%A1%E3%81%88%E3%81%A4%E3%81%8F-1561696", "supports": ["block check / checkerboard equivalence", "Japanese check-family context"]}
+      ]
+    }
+  ]
+}
