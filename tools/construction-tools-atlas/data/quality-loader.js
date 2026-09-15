@@ -7,6 +7,7 @@
   const DEFAULT_ENRICHMENT_PATH = "./data/content-enrichment-v2.3.json";
   const DEFAULT_REDIRECT_PATH = "./data/canonical-redirects-v2.3.json";
   const GENERATED_FILLER_BATCHES = new Set(["direct-5000", "atlas-expand-5000"]);
+  const FAVORITES_KEY = "cta_favs";
 
   function safeText(value) {
     return typeof value === "string" ? value.trim() : "";
@@ -315,6 +316,7 @@
       canonicalRedirectMissingSources: 0,
       canonicalRedirectMissingTargets: 0,
       canonicalRedirectProblemSample: [],
+      favoriteIdsMigrated: 0,
       contentEnriched: 0,
       contentEnrichmentMissingTargets: 0,
       contentEnrichmentMissingSample: [],
@@ -332,6 +334,31 @@
       current = safeText(redirects[current]);
     }
     return current;
+  }
+
+  function resolveCanonicalIds(ids) {
+    return uniqueText(safeArray(ids).map((id) => resolveCanonicalId(id)).filter(Boolean));
+  }
+
+  function migrateStoredFavorites(stats) {
+    try {
+      const storage = window.localStorage;
+      if (!storage?.getItem || !storage?.setItem) return;
+      const raw = storage.getItem(FAVORITES_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) return;
+      const before = uniqueText(parsed);
+      const after = resolveCanonicalIds(before);
+      const beforeJson = JSON.stringify(before);
+      const afterJson = JSON.stringify(after);
+      if (beforeJson !== afterJson) {
+        storage.setItem(FAVORITES_KEY, afterJson);
+        stats.favoriteIdsMigrated = before.filter((id) => resolveCanonicalId(id) !== id).length;
+      }
+    } catch (_) {
+      // Favorites migration is best effort and must not block dictionary loading.
+    }
   }
 
   async function loadEntries(options = {}) {
@@ -359,10 +386,11 @@
 
     applyCanonicalRedirects(merged, redirects, stats);
     applyContentEnrichment(merged, enrichment, stats);
+    migrateStoredFavorites(stats);
     stats.merged = merged.length;
     stats.removedCount = stats.raw - stats.merged;
     window.CTA_DATA_DIAGNOSTICS = stats;
-    if (stats.removedCount > 0 || stats.canonicalRedirectsApplied > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0) {
+    if (stats.removedCount > 0 || stats.canonicalRedirectsApplied > 0 || stats.favoriteIdsMigrated > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0) {
       console.info("Construction Tools Atlas data dedupe/quarantine/redirect/enrichment", stats);
     }
     return merged;
@@ -386,19 +414,20 @@
       script.setAttribute(attr, value);
       document.head.appendChild(script);
     } catch (_) {
-      // Optional image pilot must not stop the dictionary.
+      // Optional runtime extension must not stop the dictionary.
     }
   }
 
-  function loadLatestImageHotfix() {
+  function loadLatestRuntimeExtensions() {
     appendScriptOnce("./detail-image-hotfix.js?v=20260510-image-6", "data-cta-image-hotfix", "20260510-image-6");
     appendScriptOnce("./detail-image-hotfix-extra.js?v=20260510-extra-1", "data-cta-image-hotfix-extra", "20260510-extra-1");
+    appendScriptOnce("./canonical-deep-link-v2.3.js?v=20260915-canonical-1", "data-cta-canonical-deep-link", "v2.3");
   }
 
-  window.CTA_DATA_LOADER = { loadEntries, resolveCanonicalId };
+  window.CTA_DATA_LOADER = { loadEntries, resolveCanonicalId, resolveCanonicalIds };
 
   document.addEventListener("DOMContentLoaded", () => {
     fixSearchInput();
-    loadLatestImageHotfix();
+    loadLatestRuntimeExtensions();
   });
 })();
