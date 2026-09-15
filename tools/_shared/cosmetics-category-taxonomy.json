@@ -14,138 +14,27 @@
     "chelating agent": { "authority_functions": ["chelating agent", "chelating agents"] }
   },
   "reviewed_mappings": {
-    "water": {
-      "category": "solvent",
-      "source_functions": ["solvent"],
-      "authority": "Personal Care Products Council / Cosmetics Info",
-      "sources": ["https://www.cosmeticsinfo.org/ingredient/water/"],
-      "runtime_verified": true
-    },
-    "glycerin": {
-      "category": "humectant",
-      "source_functions": ["humectant"],
-      "authority": "Personal Care Products Council / Cosmetics Info",
-      "sources": ["https://www.cosmeticsinfo.org/ingredient/glycerin/"],
-      "runtime_verified": true
-    },
-    "propylene glycol": {
-      "category": "humectant",
-      "source_functions": ["humectant"],
-      "authority": "Personal Care Products Council / Cosmetics Info",
-      "sources": ["https://www.cosmeticsinfo.org/ingredient/propylene-glycol/"],
-      "runtime_verified": true
-    },
-    "phenoxyethanol": {
-      "category": "preservative",
-      "source_functions": ["preservative"],
-      "authority": "European Commission Scientific Committee on Consumer Safety",
-      "sources": ["https://health.ec.europa.eu/publications/phenoxyethanol_en"],
-      "runtime_verified": true
-    },
-    "carbomer": {
-      "category": "thickener",
-      "source_functions": ["thickening"],
-      "authority": "Personal Care Products Council / Cosmetics Info",
-      "sources": ["https://www.cosmeticsinfo.org/ingredient/carbomer/"],
-      "runtime_verified": true
-    },
-    "citric acid": {
-      "category": "pH adjuster",
-      "source_functions": ["pH adjuster"],
-      "authority": "Personal Care Products Council / Cosmetics Info",
-      "sources": ["https://www.cosmeticsinfo.org/ingredient/citric-acid/"],
-      "runtime_verified": true
-    },
-    "tocopherol": {
-      "category": "antioxidant",
-      "source_functions": ["antioxidant"],
-      "authority": "Personal Care Products Council / Cosmetics Info",
-      "sources": ["https://www.cosmeticsinfo.org/ingredient/tocopherol/"],
-      "runtime_verified": true
-    },
-    "sodium chloride": {
-      "category": "viscosity adjuster",
-      "source_functions": ["viscosity increasing agent - aqueous"],
-      "authority": "Personal Care Products Council / Cosmetics Info",
-      "sources": ["https://www.cosmeticsinfo.org/ingredient/sodium-chloride/"],
-      "runtime_verified": true
-    },
-    "disodium edta": {
-      "category": "chelating agent",
-      "source_functions": ["chelating agents"],
-      "authority": "Personal Care Products Council / Cosmetics Info",
-      "sources": ["https://www.cosmeticsinfo.org/ingredient/disodium-edta/"],
-      "runtime_verified": true
-    },
-    "tocopheryl acetate": {
-      "category": "antioxidant",
-      "source_functions": ["antioxidant"],
-      "authority": "Personal Care Products Council / Cosmetics Info",
-      "sources": ["https://www.cosmeticsinfo.org/ingredient/tocopherol/"],
-      "runtime_verified": true
-    },
-    "butylene glycol": {
-      "category": "solvent",
-      "source_functions": ["solvent"],
-      "authority": "Personal Care Products Council / Cosmetics Info",
-      "sources": ["https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/"],
-      "runtime_verified": true
-    },
-    "dipropylene glycol": {
-      "category": "solvent",
-      "source_functions": ["solvent"],
-      "authority": "Personal Care Products Council / Cosmetics Info",
-      "sources": ["https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/"],
-      "runtime_verified": true
-    },
-    "sodium hydroxide": {
-      "category": "pH adjuster",
-      "source_functions": ["pH adjuster"],
-      "authority": "Personal Care Products Council / Cosmetics Info",
-      "sources": ["https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/"],
-      "runtime_verified": true
-    },
-    "aminomethyl propanol": {
-      "category": "pH adjuster",
-      "source_functions": ["pH adjuster"],
-      "authority": "Personal Care Products Council / Cosmetics Info",
-      "sources": ["https://www.cosmeticsinfo.org/ingredient/aminomethyl-propanol/"],
-      "runtime_verified": true
-    },
-    "triethanolamine": {
-      "category": "pH adjuster",
-      "source_functions": ["pH adjuster"],
-      "authority": "Personal Care Products Council / Cosmetics Info",
-      "sources": ["https://www.cosmeticsinfo.org/ingredient/triethanolamine-and-tea-containing-ingredients/"],
-      "runtime_verified": true
-    },
-    "potassium hydroxide": {
-      "category": "pH adjuster",
-      "source_functions": ["pH adjuster"],
-      "authority": "Personal Care Products Council / Cosmetics Info",
-      "sources": ["https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/"],
-      "runtime_verified": true
-    },
-    "bht": {
-      "category": "antioxidant",
-      "source_functions": ["antioxidant"],
-      "authority": "Cosmetics Europe / COSMILE Europe",
-      "sources": ["https://cosmileeurope.eu/inci/detail/1672/bht/"],
-      "runtime_verified": true
-    },
-    "betaine": {
-      "category": "humectant",
-      "source_functions": ["humectant"],
-      "authority": "Cosmetics Europe / COSMILE Europe",
-      "sources": ["https://cosmileeurope.eu/inci/detail/1648/betaine/"],
-      "runtime_verified": true
-    },
-    "pentylene glycol": {
-      "category": "solvent",
-      "source_functions": ["solvent"],
-      "authority": "Cosmetics Europe / COSMILE Europe",
-      "sources": ["https://cosmileeurope.eu/inci/detail/11416/pentylene-glycol/"],
-      "runtime_verified": true
-    }
+    "water": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/water/"],"runtime_verified":true},
+    "glycerin": {"category":"humectant","source_functions":["humectant"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/glycerin/"],"runtime_verified":true},
+    "propylene glycol": {"category":"humectant","source_functions":["humectant"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/propylene-glycol/"],"runtime_verified":true},
+    "phenoxyethanol": {"category":"preservative","source_functions":["preservative"],"authority":"European Commission Scientific Committee on Consumer Safety","sources":["https://health.ec.europa.eu/publications/phenoxyethanol_en"],"runtime_verified":true},
+    "carbomer": {"category":"thickener","source_functions":["thickening"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/carbomer/"],"runtime_verified":true},
+    "citric acid": {"category":"pH adjuster","source_functions":["pH adjuster"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/citric-acid/"],"runtime_verified":true},
+    "tocopherol": {"category":"antioxidant","source_functions":["antioxidant"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/tocopherol/"],"runtime_verified":true},
+    "sodium chloride": {"category":"viscosity adjuster","source_functions":["viscosity increasing agent - aqueous"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/sodium-chloride/"],"runtime_verified":true},
+    "disodium edta": {"category":"chelating agent","source_functions":["chelating agents"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/disodium-edta/"],"runtime_verified":true},
+    "tocopheryl acetate": {"category":"antioxidant","source_functions":["antioxidant"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/tocopherol/"],"runtime_verified":true},
+    "butylene glycol": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/"],"runtime_verified":true},
+    "dipropylene glycol": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/"],"runtime_verified":true},
+    "sodium hydroxide": {"category":"pH adjuster","source_functions":["pH adjuster"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/"],"runtime_verified":true},
+    "aminomethyl propanol": {"category":"pH adjuster","source_functions":["pH adjuster"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/aminomethyl-propanol/"],"runtime_verified":true},
+    "triethanolamine": {"category":"pH adjuster","source_functions":["pH adjuster"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/triethanolamine-and-tea-containing-ingredients/"],"runtime_verified":true},
+    "potassium hydroxide": {"category":"pH adjuster","source_functions":["pH adjuster"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/"],"runtime_verified":true},
+    "bht": {"category":"antioxidant","source_functions":["antioxidant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/1672/bht/"],"runtime_verified":true},
+    "betaine": {"category":"humectant","source_functions":["humectant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/1648/betaine/"],"runtime_verified":true},
+    "pentylene glycol": {"category":"solvent","source_functions":["solvent"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/11416/pentylene-glycol/"],"runtime_verified":true},
+    "propanediol": {"category":"humectant","source_functions":["humectant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/13169/propanediol/"],"runtime_verified":true},
+    "1,2-hexanediol": {"category":"solvent","source_functions":["solvent"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/5/1-2-hexanediol/"],"runtime_verified":true},
+    "alcohol": {"category":"solvent","source_functions":["solvent"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/590/alcohol/"],"runtime_verified":true}
   }
 }
