@@ -16,7 +16,7 @@ const trustedSourceDomains = {
   OPPO: ['oppo.com'],
   Xiaomi: ['mi.com'],
   Motorola: ['motorola.com', 'motorola.co.jp'],
-  ZTE: ['nubia.com', 'ymobile.jp', 'softbank.jp']
+  ZTE: ['nubia.com', 'ymobile.jp']
 };
 
 function hostnameOf(value) {
