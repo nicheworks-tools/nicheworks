@@ -104,6 +104,27 @@
       "authority": "Personal Care Products Council / Cosmetics Info",
       "sources": ["https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/"],
       "runtime_verified": true
+    },
+    "aminomethyl propanol": {
+      "category": "pH adjuster",
+      "source_functions": ["pH adjuster"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/ingredient/aminomethyl-propanol/"],
+      "runtime_verified": true
+    },
+    "triethanolamine": {
+      "category": "pH adjuster",
+      "source_functions": ["pH adjuster"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/ingredient/triethanolamine-and-tea-containing-ingredients/"],
+      "runtime_verified": true
+    },
+    "potassium hydroxide": {
+      "category": "pH adjuster",
+      "source_functions": ["pH adjuster"],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": ["https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/"],
+      "runtime_verified": true
     }
   }
 }
