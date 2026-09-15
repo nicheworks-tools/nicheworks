@@ -103,7 +103,58 @@
     })
   ]);
 
-  const rows = Object.freeze([...wave4Rows, ...wave5Rows, ...wave8Rows]);
+  const taskalfa180SeriesSource = "https://www.kyoceradocumentsolutions.eu/en/support/downloads.name-L2V1L2VuL21mcC9UQVNLQUxGQTIyMA%3D%3D.html";
+  const taskalfa420SeriesSource = "https://www.kyoceradocumentsolutions.co.uk/en/support/downloads.name-L2diL2VuL21mcC9UQVNLQUxGQTUyMEk%3D.html";
+  const km2560SeriesSource = "https://www.kyoceradocumentsolutions.be/nl/support/downloads.name-L2JlL25sL21mcC9LTTI1NjA%3D.html";
+  const km8030SeriesSource = "https://www.kyoceradocumentsolutions.pt/pt/support/downloads.name-L3B0L3B0L21mcC9LTTgwMzA%3D.html";
+  const wave9Rows = Object.freeze([
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "TASKalfa 180", verifiedAt: "2026-09-15",
+      sourceUrl: taskalfa180SeriesSource, tonerCodes: Object.freeze(["TK-435"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "TASKalfa 181", verifiedAt: "2026-09-15",
+      sourceUrl: taskalfa180SeriesSource, tonerCodes: Object.freeze(["TK-435"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "TASKalfa 221", verifiedAt: "2026-09-15",
+      sourceUrl: taskalfa180SeriesSource, tonerCodes: Object.freeze(["TK-435"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "TASKalfa 420i", verifiedAt: "2026-09-15",
+      sourceUrl: taskalfa420SeriesSource, tonerCodes: Object.freeze(["TK-725"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "TASKalfa 520i", verifiedAt: "2026-09-15",
+      sourceUrl: taskalfa420SeriesSource, tonerCodes: Object.freeze(["TK-725"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "KM-2540", verifiedAt: "2026-09-15",
+      sourceUrl: km2560SeriesSource, tonerCodes: Object.freeze(["TK-675"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "KM-2560", verifiedAt: "2026-09-15",
+      sourceUrl: km2560SeriesSource, tonerCodes: Object.freeze(["TK-675"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "KM-3040", verifiedAt: "2026-09-15",
+      sourceUrl: km2560SeriesSource, tonerCodes: Object.freeze(["TK-675"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "KM-3060", verifiedAt: "2026-09-15",
+      sourceUrl: km2560SeriesSource, tonerCodes: Object.freeze(["TK-675"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "KM-6030", verifiedAt: "2026-09-15",
+      sourceUrl: km8030SeriesSource, tonerCodes: Object.freeze(["TK-655"])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions", searchMaker: "KYOCERA", model: "KM-8030", verifiedAt: "2026-09-15",
+      sourceUrl: km8030SeriesSource, tonerCodes: Object.freeze(["TK-655"])
+    })
+  ]);
+
+  const rows = Object.freeze([...wave4Rows, ...wave5Rows, ...wave8Rows, ...wave9Rows]);
 
   function buildTaggedSearchUrl(query) {
     const url = new URL("https://www.amazon.co.jp/s");
@@ -149,6 +200,7 @@
   window.MANUALFINDER_KYOCERA_TONER_WAVE4_LEDGER = wave4Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE5_LEDGER = wave5Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE8_LEDGER = wave8Rows;
+  window.MANUALFINDER_KYOCERA_TONER_WAVE9_LEDGER = wave9Rows;
   window.MANUALFINDER_AFFILIATE_CONFIG = Object.freeze({
     ...base,
     printerConsumables: Object.freeze([...(base.printerConsumables || []), ...rows]),
