@@ -1,0 +1,69 @@
+name: CTA q011 freeze identity snapshots
+
+on:
+  push:
+    branches:
+      - audit/construction-atlas-q011-identity-closure-20260915
+    paths:
+      - 'tools/construction-tools-atlas/data/canonical-redirects-v2.3.json'
+      - 'tools/construction-tools-atlas/data/canonical-identity-resolutions-v2.3.json'
+      - 'tools/construction-tools-atlas/data/quality-loader.js'
+      - 'tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/audit-q011-identity-closure-v2.3.cjs'
+      - '.github/workflows/cta-q011-freeze-identity-snapshots.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/construction-atlas-q011-identity-closure-20260915
+      - name: Stamp public-image inventory version
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs';
+          let s = fs.readFileSync(file, 'utf8');
+          const oldText = "    version: '2026-09-15-public-image-redirects-2',";
+          const newText = "    version: '2026-09-16-q011-identity-closure-1',";
+          if (!s.includes(newText)) {
+            if (!s.includes(oldText)) throw new Error('public-image version anchor missing');
+            s = s.replace(oldText, newText);
+            fs.writeFileSync(file, s);
+          }
+          NODE
+      - name: Freeze publication snapshot
+        run: node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs --write
+      - name: Freeze public image snapshot
+        run: node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --write
+      - name: Freeze public content snapshot
+        run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --write
+      - name: Recheck frozen snapshots and identity closure
+        run: |
+          node tools/construction-tools-atlas/scripts/check-canonical-redirects-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-canonical-identity-resolutions-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/audit-q011-identity-closure-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs --check
+          node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --check
+          node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check
+      - name: Commit frozen identity snapshots
+        run: |
+          if git diff --quiet; then
+            echo 'No snapshot changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs \
+            tools/construction-tools-atlas/data/publication-inventory-v2.3.json \
+            tools/construction-tools-atlas/data/public-image-inventory-v2.3.json \
+            tools/construction-tools-atlas/data/public-content-quality-v2.3.json
+          git commit -m 'audit(construction-atlas): freeze q011 identity closure state'
+          git push origin HEAD:audit/construction-atlas-q011-identity-closure-20260915
