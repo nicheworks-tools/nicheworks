@@ -132,7 +132,24 @@
     })
   ]);
 
-  const rows = Object.freeze([...wave6Rows, ...wave7Rows, ...wave12Rows, ...wave13Rows, ...wave14Rows]);
+  const wave16Rows = Object.freeze([
+    Object.freeze({
+      maker: "KYOCERA Document Solutions",
+      searchMaker: "KYOCERA",
+      model: "KM-C850D",
+      verifiedAt: "2026-09-16",
+      sourceUrl: tonerCompatibilitySource,
+      evidenceAlias: "KM-C850",
+      evidenceRelation: "official_same_family_variant",
+      evidenceUrls: Object.freeze([
+        "https://www.kyoceradocumentsolutions.co.jp/products/past/copy01/km_c850/specs.html",
+        tonerCompatibilitySource
+      ]),
+      tonerCodes: Object.freeze(["TK-805C", "TK-805K", "TK-805M", "TK-805Y"])
+    })
+  ]);
+
+  const rows = Object.freeze([...wave6Rows, ...wave7Rows, ...wave12Rows, ...wave13Rows, ...wave14Rows, ...wave16Rows]);
 
   function buildTaggedSearchUrl(query) {
     const url = new URL("https://www.amazon.co.jp/s");
@@ -180,6 +197,7 @@
   window.MANUALFINDER_KYOCERA_TONER_WAVE12_LEDGER = wave12Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE13_LEDGER = wave13Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE14_LEDGER = wave14Rows;
+  window.MANUALFINDER_KYOCERA_TONER_WAVE16_LEDGER = wave16Rows;
   window.MANUALFINDER_AFFILIATE_CONFIG = Object.freeze({
     ...base,
     printerConsumables: Object.freeze([...(base.printerConsumables || []), ...rows]),
