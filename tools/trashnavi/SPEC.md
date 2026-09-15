@@ -694,3 +694,7 @@ Wave 26は5自治体batch expansionを継続し、公開閾値を変更せず **
 Wave 26 readiness baselineは1,916 municipalities、2,264 valid HTTP(S) records、49 preferred candidates、29 direct-link datasets / 196 records / 177 unique URLs / 0 invalid URLsとする。
 
 Publication acceptanceでは5ページすべてについてexactly 3 official cards、canonical URL、現在のofficial municipal source URL、Amazon affiliate block `[PR]`、AI reference 49/49、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する浜松市・神戸市・広島市・熊本市だけ2026 calendar calloutを表示し、静岡市には年次calloutを生成しない。現行generatorの広告プレースホルダー削除を維持し、新規ページに `ad-slot` を復活させない。Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+## Wave27 publication (2026-09-16)
+
+Published five additional municipality pages in one batch: Aomori City, Yamagata City, Maebashi City, Saitama City, and Kanazawa City. The fixed publication threshold remains at three or more distinct waste-specific official link types. All five pages use verified municipal sorting, collection-calendar, and bulky-waste routes. FY2026 calendar callouts are shown only where the source explicitly carries 2026 fiscal-year metadata (Aomori, Maebashi, Kanazawa). Existing Amazon affiliate isolation and fixed-category query contracts remain unchanged.
