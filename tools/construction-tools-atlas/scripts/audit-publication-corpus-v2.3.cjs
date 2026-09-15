@@ -158,7 +158,7 @@ function computeExpected() {
     quarantineByBatch,
     snapshot: {
       schema: 'cta-publication-inventory-v2.3',
-      version: '2026-09-16-q012-identity-closure-1',
+      version: '2026-09-16-q013-identity-closure-1',
       policy: {
         generated_filler_batches: [...GENERATED_FILLER_BATCHES].sort((a, b) => a.localeCompare(b, 'en')),
         generated_filler_publication_state: 'quarantined',

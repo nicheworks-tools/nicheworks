@@ -1,6 +1,6 @@
 {
   "schema": "cta-public-content-quality-v2.3",
-  "version": "2026-09-16-q012-content-complete-1",
+  "version": "2026-09-16-q013-identity-closure-1",
   "policy": {
     "purpose": "Measure source-backed or canonical-ID-enriched core content separately from runtime generic fallback copy.",
     "fallback_independent_core_requires": [
@@ -15,30 +15,30 @@
     "aliases_and_relationships_require_subject_specific_review": true
   },
   "sources": {
-    "publication_inventory_version": "2026-09-16-q012-identity-closure-1",
-    "publication_id_sha256": "50b1c798836563b0b5259d01bf15f11c999b8073be90aa03c076b6159078dfbd",
+    "publication_inventory_version": "2026-09-16-q013-identity-closure-1",
+    "publication_id_sha256": "177a014ef6de2e56988ed1031b273494fbfa18350e096ffbc2ee8a29343328c5",
     "quality_manifest_version": "2026-09-14-manifest-8",
     "content_enrichment_version": "2026-09-16-wave3d"
   },
   "summary": {
-    "public_entries": 896,
+    "public_entries": 881,
     "fallback_independent_core": 241,
-    "runtime_fallback_dependent": 655,
+    "runtime_fallback_dependent": 640,
     "missing_core_bilingual_content": 0,
-    "explicit_bilingual_identity": 896,
-    "explicit_bilingual_definition": 896,
+    "explicit_bilingual_identity": 881,
+    "explicit_bilingual_definition": 881,
     "explicit_bilingual_detail": 460,
     "explicit_bilingual_bullets": 241,
     "explicit_bilingual_examples": 460,
     "explicit_bilingual_aliases": 279,
     "content_enriched_entries": 101,
-    "has_category_context": 896,
-    "has_task_context": 896
+    "has_category_context": 881,
+    "has_task_context": 881
   },
   "fallback_field_counts": {
-    "detail": 436,
-    "bullets": 655,
-    "examples": 436
+    "detail": 421,
+    "bullets": 640,
+    "examples": 421
   },
   "by_type": {
     "access": {
@@ -48,9 +48,9 @@
       "missing_core_bilingual_content": 0
     },
     "accessory": {
-      "public_entries": 1,
+      "public_entries": 2,
       "fallback_independent_core": 0,
-      "runtime_fallback_dependent": 1,
+      "runtime_fallback_dependent": 2,
       "missing_core_bilingual_content": 0
     },
     "component": {
@@ -60,9 +60,9 @@
       "missing_core_bilingual_content": 0
     },
     "consumable": {
-      "public_entries": 14,
+      "public_entries": 13,
       "fallback_independent_core": 9,
-      "runtime_fallback_dependent": 5,
+      "runtime_fallback_dependent": 4,
       "missing_core_bilingual_content": 0
     },
     "defect": {
@@ -79,8 +79,8 @@
     },
     "equipment": {
       "public_entries": 43,
-      "fallback_independent_core": 13,
-      "runtime_fallback_dependent": 30,
+      "fallback_independent_core": 14,
+      "runtime_fallback_dependent": 29,
       "missing_core_bilingual_content": 0
     },
     "fastener": {
@@ -108,9 +108,9 @@
       "missing_core_bilingual_content": 0
     },
     "material": {
-      "public_entries": 167,
+      "public_entries": 166,
       "fallback_independent_core": 54,
-      "runtime_fallback_dependent": 113,
+      "runtime_fallback_dependent": 112,
       "missing_core_bilingual_content": 0
     },
     "materials": {
@@ -126,8 +126,8 @@
       "missing_core_bilingual_content": 0
     },
     "rigging": {
-      "public_entries": 6,
-      "fallback_independent_core": 0,
+      "public_entries": 7,
+      "fallback_independent_core": 1,
       "runtime_fallback_dependent": 6,
       "missing_core_bilingual_content": 0
     },
@@ -174,16 +174,16 @@
       "missing_core_bilingual_content": 0
     },
     "tool": {
-      "public_entries": 351,
-      "fallback_independent_core": 71,
-      "runtime_fallback_dependent": 280,
+      "public_entries": 336,
+      "fallback_independent_core": 69,
+      "runtime_fallback_dependent": 267,
       "missing_core_bilingual_content": 0
     }
   },
   "hashes": {
-    "content_status_sha256": "9e2743261c3d390a221a91e9968036abfafd5f48850b7cb2f9ec7380b3c3c232",
+    "content_status_sha256": "665d99ff24cc483ace3841afed91a9d624906974fe360517b425d4c2fffe00f3",
     "fallback_independent_id_sha256": "371c09754ee9a7e331988098d30521afc4a91d0e6c7d204ec2abc514c3bace85",
-    "fallback_dependent_id_sha256": "3666e042980ae13aade2cbbc8570eccc5679357c5f07c73cfd2b8c6a15371345",
+    "fallback_dependent_id_sha256": "5de0e006caabc46edaf819f954a55e37bcfe1778d6262c2a3f375a31af4d3b15",
     "missing_core_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
     "content_enriched_id_sha256": "c19cd06e43754ea104040f8fbf4e250e5b3ff635348f06ca172ee01c1cf46da4"
   },
@@ -482,16 +482,6 @@
         ]
       },
       {
-        "id": "q013_lever_hoist",
-        "source": "data/tools.quality-013.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
         "id": "q013_beam_clamp",
         "source": "data/tools.quality-013.json",
         "enrichment": null,
@@ -572,7 +562,7 @@
         ]
       },
       {
-        "id": "q013_mixing_paddle",
+        "id": "q013_concrete_rake",
         "source": "data/tools.quality-013.json",
         "enrichment": null,
         "fallback_fields": [
@@ -582,7 +572,17 @@
         ]
       },
       {
-        "id": "q013_concrete_rake",
+        "id": "q013_bull_float",
+        "source": "data/tools.quality-013.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q013_edger_trowel",
         "source": "data/tools.quality-013.json",
         "enrichment": null,
         "fallback_fields": [

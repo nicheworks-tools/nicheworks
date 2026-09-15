@@ -1,6 +1,6 @@
 {
   "schema": "cta-public-image-inventory-v2.3",
-  "version": "2026-09-16-q012-identity-closure-1",
+  "version": "2026-09-16-q013-identity-closure-1",
   "policy": {
     "publication_inventory": "publication-inventory-v2.3.json",
     "image_inventory": "image-inventory-v2.3.json",
@@ -16,21 +16,21 @@
     "quarantined_generated_records_are_not_public_image_backlog": true
   },
   "sources": {
-    "publication_inventory_version": "2026-09-16-q012-identity-closure-1",
-    "publication_id_sha256": "50b1c798836563b0b5259d01bf15f11c999b8073be90aa03c076b6159078dfbd",
+    "publication_inventory_version": "2026-09-16-q013-identity-closure-1",
+    "publication_id_sha256": "177a014ef6de2e56988ed1031b273494fbfa18350e096ffbc2ee8a29343328c5",
     "image_registry_version": "2026-09-14-wave3a-1",
     "image_exception_ledger_version": "2026-09-15-1"
   },
   "summary": {
-    "public_entries": 896,
+    "public_entries": 881,
     "formal_image_entries": 24,
-    "missing_formal_image_entries": 872,
+    "missing_formal_image_entries": 857,
     "not_required_entries": 0,
     "unobtainable_entries": 0,
-    "classified_entries": 896,
-    "formal_coverage_percent": 2.6786,
+    "classified_entries": 881,
+    "formal_coverage_percent": 2.7242,
     "registry_items_total": 24,
-    "formal_images_inherited_via_redirect": 4,
+    "formal_images_inherited_via_redirect": 5,
     "formal_images_outside_public": 0,
     "image_exceptions_outside_public": 0,
     "quarantined_generated_entries": 4600
@@ -44,9 +44,9 @@
       "unobtainable": 0
     },
     "accessory": {
-      "public_entries": 1,
+      "public_entries": 2,
       "formal_image": 0,
-      "missing_formal_image": 1,
+      "missing_formal_image": 2,
       "not_required": 0,
       "unobtainable": 0
     },
@@ -58,9 +58,9 @@
       "unobtainable": 0
     },
     "consumable": {
-      "public_entries": 14,
+      "public_entries": 13,
       "formal_image": 0,
-      "missing_formal_image": 14,
+      "missing_formal_image": 13,
       "not_required": 0,
       "unobtainable": 0
     },
@@ -114,9 +114,9 @@
       "unobtainable": 0
     },
     "material": {
-      "public_entries": 167,
+      "public_entries": 166,
       "formal_image": 3,
-      "missing_formal_image": 164,
+      "missing_formal_image": 163,
       "not_required": 0,
       "unobtainable": 0
     },
@@ -135,9 +135,9 @@
       "unobtainable": 0
     },
     "rigging": {
-      "public_entries": 6,
+      "public_entries": 7,
       "formal_image": 0,
-      "missing_formal_image": 6,
+      "missing_formal_image": 7,
       "not_required": 0,
       "unobtainable": 0
     },
@@ -191,18 +191,18 @@
       "unobtainable": 0
     },
     "tool": {
-      "public_entries": 351,
+      "public_entries": 336,
       "formal_image": 14,
-      "missing_formal_image": 337,
+      "missing_formal_image": 322,
       "not_required": 0,
       "unobtainable": 0
     }
   },
   "hashes": {
-    "public_id_sha256": "50b1c798836563b0b5259d01bf15f11c999b8073be90aa03c076b6159078dfbd",
-    "public_formal_image_id_sha256": "e3226d50ed8eccd6345dc24643c09e06816c1a6a1bb6738edf8d90caade241e2",
-    "public_missing_formal_image_id_sha256": "5e40d04ff9f06a617ab4d1052362f9395a251520018c69b195a9ac300adace9a",
-    "public_image_classification_sha256": "2f211961b8e81bf2038ffcf4dcafeffc05acbf00f066636f1b9dd74c79b88e56"
+    "public_id_sha256": "177a014ef6de2e56988ed1031b273494fbfa18350e096ffbc2ee8a29343328c5",
+    "public_formal_image_id_sha256": "bb53e760b8f134c096a765f823553b19fad355ff84a753a3493c4261aec97a32",
+    "public_missing_formal_image_id_sha256": "29871348a8d5746e177866dd998f0319d1db8a846f84ee085fa295fa0564544a",
+    "public_image_classification_sha256": "4ec91692a9cab5f4ec709397c51f88eb581d2629879b6712a1fee5eedc1972a2"
   },
   "inherited_formal_images": [
     {
@@ -216,6 +216,10 @@
     {
       "from": "q011_notched_trowel",
       "to": "notched_trowel"
+    },
+    {
+      "from": "q013_paint_tray",
+      "to": "paint_tray"
     },
     {
       "from": "q011_roof_underlayment",

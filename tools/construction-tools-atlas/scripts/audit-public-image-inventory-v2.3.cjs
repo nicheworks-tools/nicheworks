@@ -207,7 +207,7 @@ async function compute() {
   const missingIds = rows.filter((row) => row.status === 'missing_formal_image').map((row) => row.id);
   return {
     schema: 'cta-public-image-inventory-v2.3',
-    version: '2026-09-16-q012-identity-closure-1',
+    version: '2026-09-16-q013-identity-closure-1',
     policy: {
       publication_inventory: 'publication-inventory-v2.3.json',
       image_inventory: 'image-inventory-v2.3.json',
