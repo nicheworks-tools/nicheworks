@@ -680,3 +680,17 @@ Wave 25は5自治体batch expansionを継続し、公開閾値を変更せず **
 Wave 25 readiness baselineは1,916 municipalities、2,254 valid HTTP(S) records、44 preferred candidates、28 direct-link datasets / 186 records / 167 unique URLs / 0 invalid URLsとする。
 
 Publication acceptanceでは5ページすべてについてexactly 3 official cards、canonical URL、現在のofficial municipal source URL、Amazon affiliate block `[PR]`、AI reference 44/44、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する新潟市だけ2026 calendar calloutを表示し、仙台市・千葉市・京都市・大阪市には年次calloutを生成しない。現行generatorの広告プレースホルダー削除を維持し、新規ページに `ad-slot` を復活させない。Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+## Wave 26 batch publication
+
+Wave 26は5自治体batch expansionを継続し、公開閾値を変更せず **44自治体から49自治体** へ拡張する。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeであり、同一のcombined pageを複数種として数えず、外部委託先を閾値の穴埋めにも使わない。
+
+- 静岡県 静岡市 — `/tools/trashnavi/shizuoka/shizuoka/` — waste sorting / waste search / bulky waste
+- 静岡県 浜松市 — `/tools/trashnavi/shizuoka/hamamatsu/` — waste sorting / collection calendar / bulky application
+- 兵庫県 神戸市 — `/tools/trashnavi/hyogo/kobe/` — waste sorting / collection calendar / bulky waste
+- 広島県 広島市 — `/tools/trashnavi/hiroshima/hiroshima/` — waste sorting / collection calendar / bulky waste
+- 熊本県 熊本市 — `/tools/trashnavi/kumamoto/kumamoto/` — waste sorting / collection calendar / bulky waste
+
+Wave 26 readiness baselineは1,916 municipalities、2,264 valid HTTP(S) records、49 preferred candidates、29 direct-link datasets / 196 records / 177 unique URLs / 0 invalid URLsとする。
+
+Publication acceptanceでは5ページすべてについてexactly 3 official cards、canonical URL、現在のofficial municipal source URL、Amazon affiliate block `[PR]`、AI reference 49/49、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する浜松市・神戸市・広島市・熊本市だけ2026 calendar calloutを表示し、静岡市には年次calloutを生成しない。現行generatorの広告プレースホルダー削除を維持し、新規ページに `ad-slot` を復活させない。Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
