@@ -1,6 +1,6 @@
 # Pattern Dictionary — canonical 20 verified publication
 
-Production implementation for the fixed 20-pattern visual dictionary: visual discovery, ambiguous search, bilingual static detail pages, comparison guidance, reviewed Reference Images, and publication validation.
+Production implementation for the fixed 20-pattern visual dictionary: visual discovery, exact-name/alias search, ambiguous description search, bilingual static detail pages, comparison guidance, reviewed Reference Images, and publication validation.
 
 ## Current state
 
@@ -9,16 +9,16 @@ Production implementation for the fixed 20-pattern visual dictionary: visual dis
 - `data/production-content.json` is at `verified-publication` and contains JA/EN definitions, distinguishing features, common uses, color contracts, term scope, qualification notes, and verified review state for all 20 records.
 - All 20 primary Reference Images are deterministic 1536×1536 PNGs under `assets/reference/`, structurally reviewed, publication-verified, and runtime-wired.
 - Broad or technique/category terms use representative recognition references and do not claim one uniquely canonical motif.
-- JA/EN top pages provide visual browsing, client-side ambiguous search, Visual Autocomplete, interpretation chips, confidence handling, typo tolerance, zero-result handling, and comparison.
-- Search regressions cover the required natural-language Top1 cases plus mixed JA/EN, typo, confidence, and zero-result cases.
+- JA/EN top pages provide visual browsing, client-side exact-name/alias search, ambiguous-description search, Visual Autocomplete, interpretation chips, confidence handling, typo tolerance, zero-result handling, and comparison.
+- Search regressions cover the required natural-language Top1 cases plus exact names, mixed JA/EN, typo, confidence, and zero-result cases.
 - Six canonical comparison guides are implemented, including Argyle vs the generic Diamond family without adding a non-canonical dictionary record.
 - 20 JA + 20 EN static detail URLs exist under `patterns/{id}/` and `en/patterns/{id}/`; all 40 are `index,follow` after the publication contract passed and are listed in the root sitemap.
 - All 40 detail pages carry canonical JA/EN hreflang pairs, Open Graph and Twitter metadata, absolute production Reference Image social previews, apple-touch icon metadata, and JSON-LD containing both `WebPage` and `WebApplication` identity.
 - The 40-page detail surface passes the repository-wide indexable URL identity, head metadata cardinality, language metadata, internal-link, structured-data, and strict SEO audits.
 - Desktop and 390px mobile Chromium QA passed for browse, search, bilingual detail routes, comparison, horizontal overflow, and the disabled affiliate flow.
-- Amazon search-link metadata exists for all 20 patterns, but commerce remains safely disabled until a real Amazon Associates tracking ID is configured. No placeholder or invented tracking ID is used.
+- Amazon search-link metadata exists for all 20 patterns. The public affiliate surface stays hidden until a real Amazon Associates tracking ID is configured; no placeholder or invented tracking ID is used.
 - User search text is processed client-side only.
-- Expansion beyond the canonical 20 and any Pattern Atlas integration remain explicitly out of scope for this publication.
+- Expansion beyond the canonical 20 and any Pattern Atlas integration remain explicitly out of scope until the canonical-20 commerce activation gate is closed.
 
 ## Validation
 
@@ -46,6 +46,6 @@ node scripts/audit-seo.mjs --strict
 
 The publication contract requires all 20 production records and Reference Images to be verified, preserves the three qualified term scopes, requires all 40 detail pages to be indexable, rejects stale pre-publication messaging, and keeps the indexable detail surface compliant with the repository-wide SEO contracts.
 
-## Commerce activation
+## Canonical-20 commerce completion gate
 
-Amazon affiliate links must remain disabled until the real Associates tracking ID is available. When configured, links stay below dictionary content, use pattern-specific search queries rather than invented SKUs, and render with the required disclosure and sponsored/nofollow relationship attributes.
+The canonical 20 are not considered commercially complete until Amazon Associates is activated with a real NicheWorks tracking ID and all 20 pattern search links are checked in production. Until that credential exists, affiliate UI must remain hidden rather than exposing unfinished-status copy. Once configured, each detail page must render its pattern-specific Amazon.co.jp search link below dictionary content, include the required Associates disclosure, and use sponsored/nofollow/noopener relationship attributes.
