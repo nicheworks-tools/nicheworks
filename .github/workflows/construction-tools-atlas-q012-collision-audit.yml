@@ -1,0 +1,22 @@
+name: Construction Tools Atlas q012 collision audit
+
+on:
+  push:
+    branches:
+      - audit/construction-atlas-q012-canonical-collisions-20260916
+    paths:
+      - 'tools/construction-tools-atlas/**'
+      - '.github/workflows/construction-tools-atlas-q012-collision-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check reporter syntax
+        run: node --check tools/construction-tools-atlas/scripts/report-quality-pack-collisions-v2.3.cjs
+      - name: Report q012 collision candidates
+        run: node tools/construction-tools-atlas/scripts/report-quality-pack-collisions-v2.3.cjs 012
