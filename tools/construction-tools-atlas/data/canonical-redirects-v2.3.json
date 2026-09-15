@@ -1,0 +1,24 @@
+{
+  "schema": "cta-canonical-redirects-v2.3",
+  "version": "2026-09-15-q011-strong-duplicate-1",
+  "policy": {
+    "purpose": "Retire confirmed duplicate public canonicals without breaking legacy IDs, search vocabulary, or favorites.",
+    "source_records_remain_stored": true,
+    "source_ids_are_not_public_results": true,
+    "legacy_terms_are_migrated_to_target_search_vocabulary": true,
+    "deep_links_resolve_to_target": true,
+    "favorites_resolve_to_target": true
+  },
+  "redirects": [
+    {"from":"q011_floor_leveler","to":"floor_leveler","reason":"strong_duplicate_same_type"},
+    {"from":"q011_trowel","to":"trowel","reason":"strong_duplicate_same_type"},
+    {"from":"q011_float","to":"float","reason":"strong_duplicate_same_type"},
+    {"from":"q011_putty_knife","to":"putty_knife","reason":"strong_duplicate_same_type"},
+    {"from":"q011_stud_finder","to":"stud_finder","reason":"strong_duplicate_same_type"},
+    {"from":"q011_chemical_anchor","to":"chemical_anchor","reason":"strong_duplicate_same_type"},
+    {"from":"q011_notched_trowel","to":"notched_trowel","reason":"strong_duplicate_same_type"},
+    {"from":"q011_roof_underlayment","to":"roof_underlayment","reason":"strong_duplicate_same_type"},
+    {"from":"q011_conduit_bender","to":"conduit_bender","reason":"strong_duplicate_same_type"},
+    {"from":"q011_expansion_joint","to":"expansion_joint","reason":"strong_duplicate_same_type"}
+  ]
+}

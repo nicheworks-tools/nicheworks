@@ -1,19 +1,21 @@
 {
   "schema": "cta-publication-inventory-v2.3",
-  "version": "2026-09-15-generated-quarantine-2",
+  "version": "2026-09-15-canonical-redirects-3",
   "policy": {
     "generated_filler_batches": [
       "atlas-expand-5000",
       "direct-5000"
     ],
     "generated_filler_publication_state": "quarantined",
+    "canonical_duplicate_publication_state": "redirected_to_single_canonical",
     "unknown_generated_provenance": "fail_closed",
-    "promotion_rule": "A quarantined generated filler may return to the public corpus only after explicit curation removes generated provenance and gives it a maintained entry type/content."
+    "redirect_contract": "Stored duplicate source rows remain available for provenance, but only redirect targets are public canonicals."
   },
   "summary": {
     "stored_corpus_entries": 5536,
     "quarantined_generated_entries": 4600,
-    "published_runtime_entries": 936,
+    "redirected_duplicate_entries": 10,
+    "published_runtime_entries": 926,
     "skipped_missing_id": 0,
     "duplicate_ids_removed": 0,
     "duplicate_terms_removed": 0
@@ -24,16 +26,16 @@
   "published_by_type": {
     "access": 1,
     "accessory": 1,
-    "component": 210,
+    "component": 209,
     "consumable": 14,
     "defect": 3,
     "document": 2,
     "equipment": 45,
-    "fastener": 18,
+    "fastener": 17,
     "fixture": 5,
     "hardware": 14,
     "inspection": 8,
-    "material": 172,
+    "material": 170,
     "materials": 16,
     "process": 15,
     "rigging": 6,
@@ -44,13 +46,26 @@
     "system": 1,
     "temporary": 3,
     "test": 1,
-    "tool": 379
+    "tool": 373
   },
   "hashes": {
-    "published_id_sha256": "557684ba4ebfffbc2e59c67bfa2437f7275888f157afcf5456f04a97fe14859e",
+    "published_id_sha256": "5e4051bb2cb21f2c92bd3f85014983da5ac9f123c75ffb71ad11f1d15914c6f8",
     "quarantined_generated_id_sha256": "ad863c921ea5d879ae7273660b9550d94b1a705541b865102b38f90668d5c9cf",
-    "publication_classification_sha256": "bce38397839d901bb652ff4583055724feb852beb233dd55ff55156454424489"
+    "canonical_redirect_sha256": "5d9c34f96427ecc95b621c81e493b761aeaf55e75fee7a1ab0b38bbc582b138c",
+    "publication_classification_sha256": "76c18b58a85b54142977517360af187285fd15d8af64db4c749a79eb100d4c9f"
   },
+  "redirected_ids": [
+    "q011_chemical_anchor\tchemical_anchor",
+    "q011_conduit_bender\tconduit_bender",
+    "q011_expansion_joint\texpansion_joint",
+    "q011_float\tfloat",
+    "q011_floor_leveler\tfloor_leveler",
+    "q011_notched_trowel\tnotched_trowel",
+    "q011_putty_knife\tputty_knife",
+    "q011_roof_underlayment\troof_underlayment",
+    "q011_stud_finder\tstud_finder",
+    "q011_trowel\ttrowel"
+  ],
   "quarantined_sample": [
     "term_carpentry_compact_adhesive_cutting_1",
     "term_carpentry_compact_anchor_cutting_1",

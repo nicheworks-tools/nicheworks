@@ -43,8 +43,14 @@ jobs:
       - name: Check dictionary presentation syntax
         run: node --check tools/construction-tools-atlas/dictionary-presentation-v2.3.js
 
-      - name: Check deep-link runtime syntax
+      - name: Check legacy deep-link runtime syntax
         run: node --check tools/construction-tools-atlas/deep-link-v2.3.js
+
+      - name: Check canonical deep-link runtime syntax
+        run: node --check tools/construction-tools-atlas/canonical-deep-link-v2.3.js
+
+      - name: Check canonical redirect auditor syntax
+        run: node --check tools/construction-tools-atlas/scripts/check-canonical-redirects-v2.3.cjs
 
       - name: Check Wave 1 image builder syntax
         run: node --check tools/construction-tools-atlas/scripts/build-image-wave1-v2.3.mjs
@@ -103,8 +109,11 @@ jobs:
       - name: Check bilingual v2.3 contract
         run: node tools/construction-tools-atlas/scripts/check-bilingual-v2.3.cjs
 
-      - name: Check deep-link v2.3 contract
+      - name: Check legacy deep-link v2.3 contract
         run: node tools/construction-tools-atlas/scripts/check-deep-link-v2.3.cjs
+
+      - name: Validate canonical redirect and deep-link migration contract
+        run: node tools/construction-tools-atlas/scripts/check-canonical-redirects-v2.3.cjs
 
       - name: Audit image assets and canonical mappings
         run: node tools/construction-tools-atlas/scripts/audit-image-assets-v2.3.cjs
@@ -135,7 +144,7 @@ jobs:
       - name: Validate generated image attribution
         run: node tools/construction-tools-atlas/scripts/check-image-attribution-v2.3.cjs
 
-      - name: Validate canonical image runtime priority
+      - name: Validate canonical image runtime priority and redirect inheritance
         run: node tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
 
       - name: Validate frozen full canonical image inventory
