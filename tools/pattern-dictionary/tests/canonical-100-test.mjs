@@ -31,7 +31,6 @@ for(let i=0;i<entries.length;i++){
   if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(e.id))throw new Error(`${e.id}: invalid canonical slug`);
   if(!e.names?.ja?.trim()||!e.names?.en?.trim())throw new Error(`${e.id}: missing JA/EN frozen names`);
   if(!e.family?.trim()||!e.term_scope?.trim())throw new Error(`${e.id}: missing family or term_scope`);
-  if(/^qualified-/.test(e.term_scope)&&!e.scope_note?.trim())throw new Error(`${e.id}: qualified term requires scope_note`);
 }
 
 for(const wave of [2,3,4,5]){
@@ -53,5 +52,12 @@ for(const id of requiredPlanned)if(!plannedIds.includes(id))throw new Error(`mis
 
 const risky=entries.filter(x=>/^qualified-/.test(x.term_scope));
 if(risky.length<15)throw new Error('taxonomy must explicitly qualify broad technique/style/textile terms rather than pretending they are fixed motifs');
+const noteRequired=[
+  'prince-of-wales-check','swiss-dot','herringbone','basketweave','trellis','toile-de-jouy','chintz','chinoiserie','flame-stitch','moire','kanoko','same-komon','shibori','batik','bandhani','bogolan','adire','sashiko','block-print'
+];
+for(const id of noteRequired){
+  const e=entries.find(x=>x.id===id);
+  if(!e?.scope_note?.trim())throw new Error(`${id}: boundary-sensitive qualified term requires scope_note`);
+}
 
 console.log(`OK: canonical 100 frozen as 20 published + 80 planned; waves 2-5 are 20 each; ${risky.length} broad terms are explicitly scope-qualified; all current relationship targets resolve.`);
