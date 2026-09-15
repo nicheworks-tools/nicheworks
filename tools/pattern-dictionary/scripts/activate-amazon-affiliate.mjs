@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url';
 
 const here=path.dirname(fileURLToPath(import.meta.url));
 const root=path.resolve(here,'..');
-const configPath=path.join(root,'data','affiliate-config.json');
+const configPath=process.env.PATTERN_DICTIONARY_AFFILIATE_CONFIG||path.join(root,'data','affiliate-config.json');
 const trackingId=(process.argv[2]||'').trim();
 const trackingIdPattern=/^[A-Za-z0-9][A-Za-z0-9_-]*-\d{2}$/;
 
