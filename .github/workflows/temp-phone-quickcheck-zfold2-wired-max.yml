@@ -2,7 +2,7 @@ name: Temp Phone QuickCheck Z Fold2 wired max
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
     branches: [main]
 
 permissions:
@@ -28,10 +28,10 @@ jobs:
           node scripts/check-phone-quickcheck-affiliate.mjs
           node tools/phone-quickcheck/tests/behavior.test.mjs
           git diff --check
-      - name: Commit canonical file
+      - name: Commit canonical files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tools/phone-quickcheck/data/phones.json
+          git add tools/phone-quickcheck/data/phones.json tools/phone-quickcheck/tests/behavior.test.mjs
           git commit -m "Phone QuickCheck: verify Galaxy Z Fold2 wired max"
           git push origin HEAD:fix/phone-quickcheck-zfold2-wired-max-20260915
