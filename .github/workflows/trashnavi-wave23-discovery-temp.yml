@@ -1,0 +1,46 @@
+name: TrashNavi Wave23 discovery temp
+on:
+  push:
+    branches:
+      - feat/trashnavi-batch-wave23-20260915
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect Wave23 candidates
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const path=require('path');
+          const targets=['福井市','富山市','宇都宮市','岐阜市','長野市'];
+          const dataDir='tools/trashnavi/data';
+          const jsonFiles=fs.readdirSync(dataDir).filter(f=>f.endsWith('.json'));
+          const rows=[];
+          for(const file of jsonFiles){
+            let d; try{d=JSON.parse(fs.readFileSync(path.join(dataDir,file),'utf8'));}catch{continue}
+            if(!Array.isArray(d)) continue;
+            for(const r of d){ if(r&&targets.includes(String(r.city||''))) rows.push({file,...r}); }
+          }
+          console.log('=== DIRECT/ALL DATA ROWS FOR TARGETS ===');
+          for(const city of targets){
+            const rs=rows.filter(r=>r.city===city);
+            console.log('\n## '+city+' ('+rs.length+' rows)');
+            for(const r of rs) console.log(JSON.stringify(r));
+          }
+          const masters=['localgovjp-lite.json','municipalities.json','municipalities-extra.json'];
+          console.log('\n=== MASTER MATCHES ===');
+          for(const m of masters){
+            const p=path.join(dataDir,m); if(!fs.existsSync(p)) continue;
+            let d=JSON.parse(fs.readFileSync(p,'utf8')); if(!Array.isArray(d)) continue;
+            for(const r of d.filter(x=>targets.includes(String(x.city||'')))) console.log(m,JSON.stringify(r));
+          }
+          console.log('\n=== DIRECT LINK FILE OCCURRENCES ===');
+          for(const file of jsonFiles.filter(f=>f.startsWith('direct-waste-links'))){
+            const d=JSON.parse(fs.readFileSync(path.join(dataDir,file),'utf8'));
+            if(!Array.isArray(d)) continue;
+            const hit=d.filter(r=>targets.includes(String(r.city||'')));
+            if(hit.length) console.log(file,JSON.stringify(hit));
+          }
+          NODE
