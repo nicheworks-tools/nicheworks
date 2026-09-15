@@ -1,0 +1,38 @@
+name: TrashNavi Wave24 candidates temp
+on:
+  push:
+    branches:
+      - feat/trashnavi-batch-wave24-readiness-20260915
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect unpublished candidate coverage
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs=require('fs'),path=require('path');
+          const dir='tools/trashnavi/data';
+          const files=fs.readdirSync(dir).filter(f=>/^direct-waste-links.*\.json$/.test(f)).sort();
+          const manifest=JSON.parse(fs.readFileSync('tools/trashnavi/municipality-page-manifest.json','utf8'));
+          const published=new Set(manifest.filter(x=>x.publish).map(x=>x.lgcode));
+          const by=new Map();
+          for(const file of files){
+            const rows=JSON.parse(fs.readFileSync(path.join(dir,file),'utf8'));
+            for(const r of rows){
+              if(!r.lgcode||published.has(r.lgcode)) continue;
+              if(r.type==='自治体公式ページ') continue;
+              let x=by.get(r.lgcode); if(!x){x={lgcode:r.lgcode,pref:r.pref,city:r.city,types:new Set(),rows:[]};by.set(r.lgcode,x)}
+              x.types.add(r.type); x.rows.push({type:r.type,url:r.url,name:r.name,file});
+            }
+          }
+          const arr=[...by.values()].sort((a,b)=>b.types.size-a.types.size||a.pref.localeCompare(b.pref,'ja')||a.city.localeCompare(b.city,'ja'));
+          console.log('UNPUBLISHED CANDIDATES',arr.length);
+          for(const x of arr){
+            console.log(`CANDIDATE ${x.lgcode} ${x.pref} ${x.city} TYPES=${x.types.size} [${[...x.types].join(' | ')}]`);
+            for(const r of x.rows) console.log(`  ${r.type}\t${r.url}\t${r.file}`);
+          }
+          NODE
