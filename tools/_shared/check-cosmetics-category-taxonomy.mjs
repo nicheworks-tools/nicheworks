@@ -14,6 +14,7 @@ const EXPECTED_CATEGORIES = new Set([
 const EXPECTED_WAVE3_PROMOTED = new Set(['sodium chloride', 'disodium edta']);
 const EXPECTED_WAVE4_PROMOTED = new Set(['tocopheryl acetate']);
 const EXPECTED_WAVE5_PROMOTED = new Set(['butylene glycol', 'dipropylene glycol', 'sodium hydroxide']);
+const EXPECTED_WAVE6_PROMOTED = new Set(['aminomethyl propanol', 'triethanolamine', 'potassium hydroxide']);
 const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu']);
 
 function normalize(value = '') {
@@ -62,7 +63,8 @@ for (const [canonical, mapping] of Object.entries(taxonomy.reviewed_mappings)) {
 
 for (const canonical of EXPECTED_WAVE3_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 3 mapping must remain runtime_verified`);
 for (const canonical of EXPECTED_WAVE4_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 4 mapping must remain runtime_verified`);
-for (const canonical of EXPECTED_WAVE5_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 5 mapping must be runtime_verified`);
+for (const canonical of EXPECTED_WAVE5_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 5 mapping must remain runtime_verified`);
+for (const canonical of EXPECTED_WAVE6_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 6 mapping must be runtime_verified`);
 assert.equal(runtimeMappings['sodium citrate'], undefined, 'Sodium Citrate must remain out of runtime taxonomy until buffer vs pH-adjuster semantics are explicitly resolved');
 
 const runtimeEvidence = parser.verifiedCategoryEvidence || {};
@@ -78,7 +80,7 @@ for (const ambiguous of parser.ambiguousExactKeys || []) assert.equal(taxonomy.r
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'verified-category-taxonomy-wave-5',
+  phase: 'verified-category-taxonomy-wave-6',
   mapping_policy: taxonomy.mapping_policy,
   canonical_categories: Object.keys(taxonomy.categories).length,
   unique_authority_function_terms: authorityFunctionToCategory.size,
@@ -86,6 +88,7 @@ console.log(JSON.stringify({
   wave_3_promoted_mappings: [...EXPECTED_WAVE3_PROMOTED],
   wave_4_promoted_mappings: [...EXPECTED_WAVE4_PROMOTED],
   wave_5_promoted_mappings: [...EXPECTED_WAVE5_PROMOTED],
+  wave_6_promoted_mappings: [...EXPECTED_WAVE6_PROMOTED],
   sodium_citrate_deferred_for_taxonomy_decision: true,
   raw_legacy_taxonomy_rewritten: false,
   safety_contract_changed: false,
