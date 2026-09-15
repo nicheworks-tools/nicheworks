@@ -63,8 +63,9 @@ jobs:
           let gen = fs.readFileSync(genFile,'utf8');
           gen = gen
             .replace('<nav class="municipality-breadcrumb" aria-label="Breadcrumb"><a href="/tools/trashnavi/">TrashNavi</a><span>›</span><span>${esc(pref)}</span><span>›</span><span>${esc(city)}</span></nav><div class="ad-slot ad-top">広告枠</div>', '<nav class="municipality-breadcrumb" aria-label="Breadcrumb"><a href="/tools/trashnavi/">TrashNavi</a><span>›</span><span>${esc(pref)}</span><span>›</span><span>${esc(city)}</span></nav>')
-            .replace('</div></section><div class="ad-slot ad-inline">広告枠</div>\n<section class="municipality-guide">', '</div></section>\n<section class="municipality-guide">');
-          if (/class="ad-slot ad-(?:top|inline)">広告枠/.test(gen)) throw new Error('TrashNavi generator still emits placeholder ad UI');
+            .replace('</div></section><div class="ad-slot ad-inline">広告枠</div>\n<section class="municipality-guide">', '</div></section>\n<section class="municipality-guide">')
+            .replace('</section><div class="ad-slot ad-bottom">広告枠</div>\n<section class="municipality-related">', '</section>\n<section class="municipality-related">');
+          if (/class="ad-slot ad-(?:top|inline|bottom)">広告枠/.test(gen)) throw new Error('TrashNavi generator still emits placeholder ad UI');
           fs.writeFileSync(genFile,gen);
           NODE
 
