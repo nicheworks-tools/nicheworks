@@ -58,53 +58,94 @@ async function runPublicLoader() {
     window: windowObject,
     document: documentStub,
     console: { info() {}, log() {}, warn() {}, error: console.error },
-    Set
+    Set,
+    Map
   };
   vm.runInNewContext(loaderSource, sandbox, { filename: 'quality-loader.js' });
   if (!windowObject.CTA_DATA_LOADER?.loadEntries) throw new Error('quality-loader did not expose CTA_DATA_LOADER.loadEntries');
+  const entries = await windowObject.CTA_DATA_LOADER.loadEntries();
   return {
-    entries: await windowObject.CTA_DATA_LOADER.loadEntries(),
-    diagnostics: windowObject.CTA_DATA_DIAGNOSTICS || {}
+    entries,
+    diagnostics: windowObject.CTA_DATA_DIAGNOSTICS || {},
+    resolveCanonicalId: windowObject.CTA_DATA_LOADER.resolveCanonicalId || ((id) => id)
   };
 }
 
-function formalRegistryIds(publicIds) {
+function isFormal(item) {
+  return FORMAL_STATES.has(item?.image_state)
+    && item?.subject_match === 'matched'
+    && text(item?.primary?.display)
+    && text(item?.primary?.thumbnail)
+    && text(item?.primary?.source);
+}
+
+function formalRegistryIds(publicIds, resolveCanonicalId) {
   const registry = readJson(REGISTRY_PATH);
   if (registry.schema !== 'cta-image-registry-v2.3' || !Array.isArray(registry.items)) {
     throw new Error('Unexpected image registry schema');
   }
+
   const formalPublic = new Set();
   const formalOutsidePublic = [];
+  const inheritedByTarget = new Map();
+  const directPublic = new Set();
+
+  // Direct ownership takes precedence if a surviving canonical already owns
+  // a reviewed/verified image.
   for (const item of registry.items) {
-    const id = text(item?.entry_id);
-    if (!id) continue;
-    const formal = FORMAL_STATES.has(item.image_state)
-      && item.subject_match === 'matched'
-      && text(item.primary?.display)
-      && text(item.primary?.thumbnail)
-      && text(item.primary?.source);
-    if (!formal) continue;
-    if (publicIds.has(id)) formalPublic.add(id);
-    else formalOutsidePublic.push(id);
+    if (!isFormal(item)) continue;
+    const rawId = text(item.entry_id);
+    const resolvedId = text(resolveCanonicalId(rawId)) || rawId;
+    if (rawId === resolvedId && publicIds.has(rawId)) {
+      directPublic.add(rawId);
+      formalPublic.add(rawId);
+    }
   }
-  return { registry, formalPublic, formalOutsidePublic: formalOutsidePublic.sort((a, b) => a.localeCompare(b, 'en')) };
+
+  for (const item of registry.items) {
+    if (!isFormal(item)) continue;
+    const rawId = text(item.entry_id);
+    const resolvedId = text(resolveCanonicalId(rawId)) || rawId;
+    if (!publicIds.has(resolvedId)) {
+      formalOutsidePublic.push(rawId);
+      continue;
+    }
+    if (rawId === resolvedId) continue;
+    if (directPublic.has(resolvedId)) continue;
+    if (!inheritedByTarget.has(resolvedId)) {
+      inheritedByTarget.set(resolvedId, rawId);
+      formalPublic.add(resolvedId);
+    }
+  }
+
+  const inheritedPairs = [...inheritedByTarget]
+    .map(([to, from]) => ({ from, to }))
+    .sort((a, b) => a.to.localeCompare(b.to, 'en'));
+
+  return {
+    registry,
+    formalPublic,
+    inheritedPairs,
+    formalOutsidePublic: formalOutsidePublic.sort((a, b) => a.localeCompare(b, 'en'))
+  };
 }
 
-function exceptionStates(publicIds, formalPublic) {
+function exceptionStates(publicIds, formalPublic, resolveCanonicalId) {
   const raw = readJson(EXCEPTIONS_PATH);
   if (raw.schema !== 'cta-image-inventory-exceptions-v2.3') throw new Error('Unexpected image exception schema');
   const byId = new Map();
   const outsidePublic = [];
   for (const item of array(raw.items)) {
-    const id = text(item?.entry_id);
+    const rawId = text(item?.entry_id);
+    const id = text(resolveCanonicalId(rawId)) || rawId;
     const state = text(item?.state);
     if (!id || !EXCEPTION_STATES.has(state)) throw new Error(`Invalid image exception record: ${id || '<missing>'}`);
     if (!publicIds.has(id)) {
-      outsidePublic.push({ entry_id: id, state });
+      outsidePublic.push({ entry_id: rawId, resolved_entry_id: id, state });
       continue;
     }
     if (formalPublic.has(id)) throw new Error(`${id}: public formal image cannot also be an image exception`);
-    if (byId.has(id)) throw new Error(`${id}: duplicate public image exception`);
+    if (byId.has(id)) throw new Error(`${id}: duplicate public image exception after canonical redirect resolution`);
     byId.set(id, state);
   }
   return { raw, byId, outsidePublic };
@@ -127,8 +168,8 @@ async function compute() {
     throw new Error(`Public runtime ID hash mismatch with publication snapshot: runtime=${runtimeHash}, snapshot=${publication.hashes?.published_id_sha256}`);
   }
 
-  const { registry, formalPublic, formalOutsidePublic } = formalRegistryIds(publicIds);
-  const { raw: exceptions, byId: exceptionById, outsidePublic: exceptionsOutsidePublic } = exceptionStates(publicIds, formalPublic);
+  const { registry, formalPublic, inheritedPairs, formalOutsidePublic } = formalRegistryIds(publicIds, runtime.resolveCanonicalId);
+  const { raw: exceptions, byId: exceptionById, outsidePublic: exceptionsOutsidePublic } = exceptionStates(publicIds, formalPublic, runtime.resolveCanonicalId);
 
   const rows = [];
   const byType = {};
@@ -155,6 +196,7 @@ async function compute() {
     classified_entries: formal + missing + notRequired + unobtainable,
     formal_coverage_percent: Number(((formal / rows.length) * 100).toFixed(4)),
     registry_items_total: registry.items.length,
+    formal_images_inherited_via_redirect: inheritedPairs.length,
     formal_images_outside_public: formalOutsidePublic.length,
     image_exceptions_outside_public: exceptionsOutsidePublic.length,
     quarantined_generated_entries: Number(publication.summary?.quarantined_generated_entries || 0)
@@ -165,12 +207,14 @@ async function compute() {
   const missingIds = rows.filter((row) => row.status === 'missing_formal_image').map((row) => row.id);
   return {
     schema: 'cta-public-image-inventory-v2.3',
-    version: '2026-09-15-public-image-freeze-1',
+    version: '2026-09-15-public-image-redirects-2',
     policy: {
       publication_inventory: 'publication-inventory-v2.3.json',
       image_inventory: 'image-inventory-v2.3.json',
       formal_image_states: ['reviewed', 'verified'],
       formal_subject_match: 'matched',
+      canonical_redirect_image_inheritance: 'retired duplicate image is inherited by its surviving canonical unless that target owns a direct formal image',
+      acquisition_provenance_remains_on_original_registry_id: true,
       legacy_svg_counts_as_final: false,
       default_without_formal_image_or_exception: 'missing_formal_image',
       quarantined_generated_records_are_not_public_image_backlog: true
@@ -189,6 +233,7 @@ async function compute() {
       public_missing_formal_image_id_sha256: hashLines(missingIds),
       public_image_classification_sha256: hashLines(rows.map((row) => `${row.id}\t${row.status}`))
     },
+    inherited_formal_images: inheritedPairs,
     formal_images_outside_public: formalOutsidePublic,
     image_exceptions_outside_public: exceptionsOutsidePublic,
     missing_sample: missingIds.slice(0, 25)
@@ -199,6 +244,7 @@ async function main() {
   const computed = await compute();
   console.log(`CTA_PUBLIC_IMAGE_SUMMARY=${JSON.stringify(computed.summary)}`);
   console.log(`CTA_PUBLIC_IMAGE_HASHES=${JSON.stringify(computed.hashes)}`);
+  console.log(`CTA_PUBLIC_IMAGE_INHERITED=${JSON.stringify(computed.inherited_formal_images)}`);
   console.log(`CTA_PUBLIC_IMAGE_BY_TYPE=${JSON.stringify(computed.by_type)}`);
   console.log(`CTA_PUBLIC_IMAGE_SNAPSHOT=${JSON.stringify(computed)}`);
 
@@ -214,6 +260,7 @@ async function main() {
 
   console.log('Construction Tools Atlas public image inventory v2.3: PASS');
   console.log(`- formal images: ${computed.summary.formal_image_entries}/${computed.summary.public_entries}`);
+  console.log(`- inherited formal images: ${computed.summary.formal_images_inherited_via_redirect}`);
   console.log(`- public image backlog: ${computed.summary.missing_formal_image_entries}`);
   console.log(`- quarantined generated excluded from public backlog: ${computed.summary.quarantined_generated_entries}`);
 }
