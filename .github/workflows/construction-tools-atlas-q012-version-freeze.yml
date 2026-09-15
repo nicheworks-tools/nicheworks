@@ -1,0 +1,51 @@
+name: Construction Tools Atlas q012 version freeze
+
+on:
+  push:
+    branches:
+      - audit/construction-atlas-q012-identity-closure-20260916
+    paths:
+      - '.github/workflows/construction-tools-atlas-q012-version-freeze.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update q012 closure snapshot versions
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const files = [
+            ['tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs', "version: '2026-09-16-q011-identity-closure-1'", "version: '2026-09-16-q012-identity-closure-1'"],
+            ['tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs', "version: '2026-09-16-q011-identity-closure-1'", "version: '2026-09-16-q012-identity-closure-1'"],
+            ['tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs', "version: '2026-09-16-content-wave3c-q012-safe-1'", "version: '2026-09-16-content-wave3c-q012-identity-closure-1'"]
+          ];
+          for (const [file, from, to] of files) {
+            let s = fs.readFileSync(file,'utf8');
+            if (!s.includes(from)) throw new Error(`${file}: expected version marker missing`);
+            fs.writeFileSync(file, s.replace(from,to));
+          }
+          NODE
+          node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs --write
+          node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --write
+          node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --write
+          node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs --check
+          node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --check
+          node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check
+          node tools/construction-tools-atlas/scripts/audit-q012-identity-closure-v2.3.cjs
+      - name: Commit non-workflow versioned snapshots
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs \
+                  tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs \
+                  tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs \
+                  tools/construction-tools-atlas/data/publication-inventory-v2.3.json \
+                  tools/construction-tools-atlas/data/public-image-inventory-v2.3.json \
+                  tools/construction-tools-atlas/data/public-content-quality-v2.3.json
+          git commit -m 'chore(construction-atlas): version q012 identity snapshots'
+          git push
