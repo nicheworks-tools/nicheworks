@@ -4,10 +4,10 @@ const path = require('node:path');
 const ROOT = path.resolve(__dirname, '..');
 const DATA = path.join(ROOT, 'data');
 const ATTRIBUTION_PATH = path.join(ROOT, 'images', 'ATTRIBUTION.md');
-const LEDGER_PATHS = [
-  path.join(DATA, 'image-wave1-sources-v2.3.json'),
-  path.join(DATA, 'image-wave2-sources-v2.3.json')
-];
+const LEDGER_PATHS = fs.readdirSync(DATA)
+  .filter((name) => /^image-wave\d+-sources-v2\.3\.json$/.test(name))
+  .sort((a, b) => a.localeCompare(b, 'en'))
+  .map((name) => path.join(DATA, name));
 const errors = [];
 
 function text(value) {
