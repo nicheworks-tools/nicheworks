@@ -345,7 +345,7 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.match(html, /276 g/);
   assert.match(html, /4380 mAh/);
   assert.match(html, /充電器目安<\/span><b>15W\+/);
-  assert.doesNotMatch(html, /端末側の有線充電上限<\/span><b>15W/);
+  assert.match(html, /端末側の有線充電上限<\/span><b>15W/);
   assert.ok(html.includes('Adaptive Fast Charging / QC2.0'));
   assert.match(html, /Galaxy Adaptive Fast Charging対応 15W充電器/);
   assert.doesNotMatch(html, /Galaxy Super Fast Charging対応 25W充電器/);
