@@ -1,0 +1,51 @@
+name: TrashNavi Wave25 readiness temp
+on:
+  push:
+    branches:
+      - feat/trashnavi-batch-wave25-readiness-20260915
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify Wave25 readiness
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-affiliate-contract.mjs
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+          python3 - <<'PY'
+          import json, glob
+          targets={
+            '041009':{'waste_sorting','collection_calendar','bulky_waste'},
+            '121002':{'waste_sorting','collection_calendar','bulky_waste'},
+            '151009':{'waste_sorting','collection_calendar','bulky_waste'},
+            '261009':{'waste_sorting','collection_calendar','bulky_waste'},
+            '271004':{'waste_sorting','collection_calendar','bulky_waste'},
+          }
+          type_map={'ごみ分別ページ':'waste_sorting','収集カレンダー':'collection_calendar','粗大ごみ':'bulky_waste','粗大ごみ申込み':'bulky_application','検索ページ':'waste_search','持込施設':'dropoff_facility','ごみ分別アプリ':'waste_app'}
+          rows=[]
+          for p in glob.glob('tools/trashnavi/data/direct-waste-links*.json'):
+            with open(p,encoding='utf-8') as f:
+              data=json.load(f)
+            for r in data:
+              if r.get('lgcode') in targets:
+                rows.append((p,r))
+          for lg,expected in targets.items():
+            own=[r for _,r in rows if r.get('lgcode')==lg]
+            types={r.get('link_type') or type_map.get(r.get('type')) for r in own}
+            types.discard(None)
+            urls=[r.get('url') for r in own]
+            assert expected.issubset(types),(lg,types)
+            assert len(set(urls))==len(urls),(lg,'duplicate URL',urls)
+            print(lg, sorted(types), len(own), 'records')
+          app=open('tools/trashnavi/app.js',encoding='utf-8').read()
+          assert app.count('data/direct-waste-links-supply-wave25.json')==1
+          print('Wave25 target contract: OK')
+          PY
+          git diff --check
