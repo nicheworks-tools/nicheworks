@@ -1,6 +1,6 @@
 {
   "schema": "cta-publication-inventory-v2.3",
-  "version": "2026-09-16-q011-identity-closure-1",
+  "version": "2026-09-16-q012-identity-closure-1",
   "policy": {
     "generated_filler_batches": [
       "atlas-expand-5000",

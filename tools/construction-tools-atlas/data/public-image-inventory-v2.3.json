@@ -1,6 +1,6 @@
 {
   "schema": "cta-public-image-inventory-v2.3",
-  "version": "2026-09-16-q011-identity-closure-1",
+  "version": "2026-09-16-q012-identity-closure-1",
   "policy": {
     "publication_inventory": "publication-inventory-v2.3.json",
     "image_inventory": "image-inventory-v2.3.json",
@@ -16,7 +16,7 @@
     "quarantined_generated_records_are_not_public_image_backlog": true
   },
   "sources": {
-    "publication_inventory_version": "2026-09-16-q011-identity-closure-1",
+    "publication_inventory_version": "2026-09-16-q012-identity-closure-1",
     "publication_id_sha256": "50b1c798836563b0b5259d01bf15f11c999b8073be90aa03c076b6159078dfbd",
     "image_registry_version": "2026-09-14-wave3a-1",
     "image_exception_ledger_version": "2026-09-15-1"

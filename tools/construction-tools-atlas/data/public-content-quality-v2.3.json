@@ -1,6 +1,6 @@
 {
   "schema": "cta-public-content-quality-v2.3",
-  "version": "2026-09-16-content-wave3c-q012-safe-1",
+  "version": "2026-09-16-content-wave3c-q012-identity-closure-1",
   "policy": {
     "purpose": "Measure source-backed or canonical-ID-enriched core content separately from runtime generic fallback copy.",
     "fallback_independent_core_requires": [
@@ -15,7 +15,7 @@
     "aliases_and_relationships_require_subject_specific_review": true
   },
   "sources": {
-    "publication_inventory_version": "2026-09-16-q011-identity-closure-1",
+    "publication_inventory_version": "2026-09-16-q012-identity-closure-1",
     "publication_id_sha256": "50b1c798836563b0b5259d01bf15f11c999b8073be90aa03c076b6159078dfbd",
     "quality_manifest_version": "2026-09-14-manifest-8",
     "content_enrichment_version": "2026-09-16-wave3c"
