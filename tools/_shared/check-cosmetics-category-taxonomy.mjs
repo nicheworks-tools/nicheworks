@@ -16,6 +16,7 @@ const EXPECTED_WAVE4_PROMOTED = new Set(['tocopheryl acetate']);
 const EXPECTED_WAVE5_PROMOTED = new Set(['butylene glycol', 'dipropylene glycol', 'sodium hydroxide']);
 const EXPECTED_WAVE6_PROMOTED = new Set(['aminomethyl propanol', 'triethanolamine', 'potassium hydroxide']);
 const EXPECTED_WAVE7_PROMOTED = new Set(['bht', 'betaine', 'pentylene glycol']);
+const EXPECTED_WAVE8_PROMOTED = new Set(['propanediol', '1,2-hexanediol', 'alcohol']);
 const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu', 'cosmileeurope.eu']);
 
 function normalize(value = '') {
@@ -67,6 +68,7 @@ for (const canonical of EXPECTED_WAVE4_PROMOTED) assert.ok(runtimeMappings[canon
 for (const canonical of EXPECTED_WAVE5_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 5 mapping must remain runtime_verified`);
 for (const canonical of EXPECTED_WAVE6_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 6 mapping must be runtime_verified`);
 for (const canonical of EXPECTED_WAVE7_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 7 mapping must be runtime_verified`);
+for (const canonical of EXPECTED_WAVE8_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 8 mapping must be runtime_verified`);
 assert.equal(runtimeMappings['sodium citrate'], undefined, 'Sodium Citrate must remain out of runtime taxonomy until buffer vs pH-adjuster semantics are explicitly resolved');
 
 const runtimeEvidence = parser.verifiedCategoryEvidence || {};
@@ -82,7 +84,7 @@ for (const ambiguous of parser.ambiguousExactKeys || []) assert.equal(taxonomy.r
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'verified-category-taxonomy-wave-7',
+  phase: 'verified-category-taxonomy-wave-8',
   mapping_policy: taxonomy.mapping_policy,
   canonical_categories: Object.keys(taxonomy.categories).length,
   unique_authority_function_terms: authorityFunctionToCategory.size,
@@ -92,6 +94,7 @@ console.log(JSON.stringify({
   wave_5_promoted_mappings: [...EXPECTED_WAVE5_PROMOTED],
   wave_6_promoted_mappings: [...EXPECTED_WAVE6_PROMOTED],
   wave_7_promoted_mappings: [...EXPECTED_WAVE7_PROMOTED],
+  wave_8_promoted_mappings: [...EXPECTED_WAVE8_PROMOTED],
   sodium_citrate_deferred_for_taxonomy_decision: true,
   raw_legacy_taxonomy_rewritten: false,
   safety_contract_changed: false,
