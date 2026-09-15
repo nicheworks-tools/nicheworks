@@ -1,0 +1,54 @@
+name: CTA freeze canonical redirect snapshots
+
+on:
+  push:
+    branches:
+      - fix/construction-atlas-canonical-redirects-20260915
+    paths:
+      - '.github/workflows/cta-freeze-canonical-redirect-snapshots.yml'
+      - 'tools/construction-tools-atlas/data/publication-inventory-v2.3.json'
+      - 'tools/construction-tools-atlas/data/public-image-inventory-v2.3.json'
+      - 'tools/construction-tools-atlas/data/public-content-quality-v2.3.json'
+      - 'tools/construction-tools-atlas/data/canonical-redirects-v2.3.json'
+      - 'tools/construction-tools-atlas/data/quality-loader.js'
+      - 'tools/construction-tools-atlas/detail-image-hotfix.js'
+      - 'tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs'
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/construction-atlas-canonical-redirects-20260915
+
+      - name: Regenerate canonical snapshots
+        run: |
+          node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs --write
+          node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --write
+          node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --write
+
+      - name: Validate regenerated snapshots
+        run: |
+          node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs --check
+          node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --check
+          node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check
+
+      - name: Commit frozen snapshots
+        run: |
+          if git diff --quiet -- tools/construction-tools-atlas/data/publication-inventory-v2.3.json tools/construction-tools-atlas/data/public-image-inventory-v2.3.json tools/construction-tools-atlas/data/public-content-quality-v2.3.json; then
+            echo 'Snapshots already current.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/construction-tools-atlas/data/publication-inventory-v2.3.json tools/construction-tools-atlas/data/public-image-inventory-v2.3.json tools/construction-tools-atlas/data/public-content-quality-v2.3.json
+          git commit -m 'data(construction-atlas): freeze canonical redirect snapshots'
+          git push origin HEAD:fix/construction-atlas-canonical-redirects-20260915
