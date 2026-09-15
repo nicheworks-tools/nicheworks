@@ -20,7 +20,7 @@ It is intentionally not a comprehensive smartphone encyclopedia, review database
 
 The maintained public dataset contains 182 verified models across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, and Motorola. Users can search by model name and maintained aliases, filter by manufacturer, charging connector, and release year, and sort by newest, lightest, or compact-size oriented order.
 
-The list view remains deliberately compact. Selecting a phone exposes detail information including dimensions, weight, display size where maintained, charging port, charger guidance, verified protocol labels, PPS state, wireless charging standard/wattage, battery capacity where an accepted value exists, included cable/adapter state, official specification/manual links, and last verification date.
+The list view remains deliberately compact. Selecting a phone exposes detail information including dimensions, weight, display size where maintained, water/dust rating or an explicitly source-backed non-resistant state, charging port, charger guidance, verified protocol labels, PPS state, wireless charging standard/wattage, battery capacity where an accepted value exists, included cable/adapter state, official specification/manual links, and last verification date.
 
 Charging semantics must remain explicit:
 
@@ -60,6 +60,8 @@ Canonical runtime inputs are static NicheWorks-hosted JSON data:
 - `tools/phone-quickcheck/tests/behavior.test.mjs`
 
 Phone records use stable model IDs, canonical manufacturer/model names, maintained aliases, dimensions in millimetres, mass in grams, charging facts, provenance/source URLs, verification date, and optional additive accessory keys. Standard phones use `dimensions`; foldables use `formFactor: foldable` plus complete `dimensionsFolded` and `dimensionsUnfolded` sets. Each dimension set keeps `heightMm` and `widthMm` plus either one `depthMm` value or, for a manufacturer-published variable foldable thickness, the paired `depthMmMin` / `depthMmMax` range. A range must never be collapsed into an inferred single depth. Foldables are listed and compact-sorted by folded dimensions while detail output shows both physical states.
+
+`waterRating` stores a published IP rating when one is maintained. An explicit negative state uses `waterStatus: not_resistant` plus a manufacturer-controlled `sources.waterUrl`; a missing/null `waterRating` without that status remains unknown/unverified. The absence of an IP rating must never be inferred as proof that a device is not water resistant.
 
 ## Outputs
 
@@ -126,6 +128,7 @@ Desktop uses a wide two-pane layout: searchable/filterable list on the left and 
 - [x] Manufacturer, connector, and release-year filters work from canonical data.
 - [x] Device dimensions, weight, charging information, and official-source links can be displayed without converting the tool into a full specification encyclopedia.
 - [x] Manufacturer-nonpublic battery capacity is not silently presented as official.
+- [x] Missing water ratings remain unknown; an explicit non-resistant state requires primary-source evidence and renders bilingually.
 - [x] Unknown battery capacity produces no fabricated recharge estimate.
 - [x] 5,000 / 10,000 / 20,000mAh recharge estimates use the single maintained 0.67 efficiency constant and one-decimal approximate display.
 - [x] Charger guidance and device-side maximum charging are not intentionally conflated.
