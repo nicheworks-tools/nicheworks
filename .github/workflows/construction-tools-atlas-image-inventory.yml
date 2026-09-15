@@ -1,0 +1,36 @@
+name: Construction Tools Atlas image inventory
+
+on:
+  push:
+    branches:
+      - feat/construction-atlas-image-inventory-freeze-20260915
+    paths:
+      - 'tools/construction-tools-atlas/data/**'
+      - 'tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs'
+      - '.github/workflows/construction-tools-atlas-image-inventory.yml'
+  pull_request:
+    paths:
+      - 'tools/construction-tools-atlas/data/image-inventory-v2.3.json'
+      - 'tools/construction-tools-atlas/data/image-inventory-exceptions-v2.3.json'
+      - 'tools/construction-tools-atlas/data/image-registry-v2.3.json'
+      - 'tools/construction-tools-atlas/data/image-wave*-sources-v2.3.json'
+      - 'tools/construction-tools-atlas/data/quality-manifest.json'
+      - 'tools/construction-tools-atlas/data/tools*.json'
+      - 'tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs'
+      - '.github/workflows/construction-tools-atlas-image-inventory.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check inventory auditor syntax
+        run: node --check tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs
+
+      - name: Report full canonical image inventory
+        run: node tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs
