@@ -65,6 +65,13 @@ function headerRuleRegex(rule) {
   return new RegExp(`^${escaped}$`);
 }
 
+function publicPathForHtml(file) {
+  const normalized = file.replaceAll('\\', '/');
+  if (normalized === 'index.html') return '/';
+  if (normalized.endsWith('/index.html')) return `/${normalized.slice(0, -'index.html'.length)}`;
+  return `/${normalized}`;
+}
+
 const developmentTemplates = [
   'tools/_template/index.html',
   'templates/nw-minimal-base/index.html'
@@ -210,7 +217,18 @@ const placeholderElementPattern = /<(div|p|span|aside|section|li|td|th)\b([^>]*)
 walkHtml(root, (full) => {
   const file = path.relative(root, full).replaceAll('\\', '/');
   const html = fs.readFileSync(full, 'utf8');
-  if (metaRobots(html).includes('noindex')) return;
+  const robots = metaRobots(html);
+  const publicPath = publicPathForHtml(file);
+  const headerNoindexRule = noindexMatchers.find(({ regex }) => regex.test(publicPath));
+  if (headerNoindexRule) {
+    if (!robots.includes('noindex')) {
+      fail(`${file}: _headers marks ${headerNoindexRule.rule} noindex, so HTML must also declare noindex`);
+    }
+    if (hasAdsense(html)) {
+      fail(`${file}: HTTP-noindex page must not load AdSense`);
+    }
+  }
+  if (robots.includes('noindex')) return;
   placeholderElementPattern.lastIndex = 0;
   let match;
   while ((match = placeholderElementPattern.exec(html))) {
