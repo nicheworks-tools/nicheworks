@@ -1,0 +1,34 @@
+name: Pattern Dictionary canonical 100 freeze
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-canonical-100-taxonomy-20260915
+    paths:
+      - '.github/workflows/pattern-dictionary-canonical-100-freeze.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-canonical-100-taxonomy-20260915
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate canonical 100 taxonomy
+        run: |
+          node tools/pattern-dictionary/tests/canonical-100-test.mjs
+          node tools/pattern-dictionary/tests/affiliate-test.mjs
+          node tools/pattern-dictionary/tests/validate.mjs
+      - name: Remove one-shot workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/pattern-dictionary-canonical-100-freeze.yml
+          git commit -m 'ci: remove Pattern Dictionary canonical 100 freeze one-shot'
+          git push origin HEAD:feat/pattern-dictionary-canonical-100-taxonomy-20260915
