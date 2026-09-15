@@ -3130,6 +3130,7 @@
           "sourceRef": "https://news.samsung.com/global/samsung-galaxy-fold-now-available"
         },
         "wiredRecommendedW": 15,
+        "wiredMaxW": 15,
         "protocols": [
           "Adaptive Fast Charging",
           "QC2.0"
@@ -3145,7 +3146,7 @@
         "specificationsUrl": "https://news.samsung.com/global/samsung-galaxy-fold-now-available",
         "manualUrl": "https://www.samsung.com/jp/support/model/SM-F900JZSAKDI/",
         "releaseUrl": "https://news.samsung.com/global/samsung-galaxy-fold-now-available",
-        "chargingUrl": "https://www.samsung.com/ca/support/mobile-devices/galaxy-phone-wall-chargers-and-charging/",
+        "chargingUrl": "https://news.samsung.com/br/samsung-anuncia-inicio-das-vendas-do-galaxy-fold-no-brasil",
         "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
         "waterUrl": "https://www.samsung.com/sg/support/mobile-devices/what-are-the-screen-precautions-for-samsung-galaxy-fold/",
         "verifiedAt": "2026-09-15"
