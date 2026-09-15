@@ -9187,12 +9187,13 @@
         "connector": "USB-C",
         "battery": {
           "capacityMah": 6560,
-          "valueClass": "manufacturer",
-          "sourceRef": "https://www.nubia.com/jp/products/smartphones/nubia/nubia-fold"
+          "valueClass": "official",
+          "sourceRef": "https://www.ymobile.jp/biz/lineup/smartphone_a502zt/"
         },
         "wiredRecommendedW": null,
         "wiredMaxW": 55,
         "protocols": [
+          "USB-PD",
           "PPS"
         ],
         "pps": "required",
@@ -9204,10 +9205,10 @@
         "adapter": "not_included"
       },
       "sources": {
-        "specificationsUrl": "https://www.nubia.com/jp/products/smartphones/nubia/nubia-fold",
-        "manualUrl": "https://www.ymobile.jp/lineup/smartphone/nubia_fold/",
-        "releaseUrl": "https://www.softbank.jp/corp/news/press/sbkk/2025/20251202_03/",
-        "chargingUrl": "https://www.softbank.jp/corp/news/press/sbkk/2025/20251202_03/",
+        "specificationsUrl": "https://www.ymobile.jp/biz/lineup/smartphone_a502zt/",
+        "manualUrl": "https://www.ymobile.jp/lineup/nubia_fold/data/nubia_fold_quickstart.pdf",
+        "releaseUrl": "https://www.nubia.com/jp/products/smartphones/nubia/nubia-fold",
+        "chargingUrl": "https://www.nubia.com/jp/products/smartphones/nubia/nubia-fold",
         "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
