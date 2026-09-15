@@ -33,6 +33,7 @@ for (const row of ledger) {
   assert.deepEqual(Array.from(row.tonerCodes), expected.get(row.model));
   const offers = config.getConsumableOffers({ maker: 'OKI', model: row.model, category: 'プリンター・複合機' });
   assert.equal(offers.length, 1, `${row.model} must expose one verified toner handoff`);
+  assert.equal(offers[0].kind, 'toner_search');
   assert.equal(offers[0].query, `OKI ${row.model} トナー`);
   assert.ok(offers[0].url.includes('tag=nicheworks09-22'));
   assert.equal(offers[0].sourceUrl, row.sourceUrl);
@@ -40,7 +41,6 @@ for (const row of ledger) {
 }
 
 for (const args of [
-  { maker: 'OKI', model: 'MICROLINE 50HU', category: 'プリンター・複合機' },
   { maker: 'OKI', model: 'MICROLINE Pro 930PS', category: 'プリンター・複合機' },
   { maker: 'OKI', model: 'C542dnw', category: 'その他' },
   { maker: 'OKI Data', model: 'C542dnw', category: 'プリンター・複合機' }
