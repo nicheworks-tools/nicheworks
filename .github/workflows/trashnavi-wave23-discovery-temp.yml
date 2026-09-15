@@ -1,46 +1,101 @@
-name: TrashNavi Wave23 discovery temp
+name: TrashNavi Wave23 readiness temp
 on:
   push:
     branches:
       - feat/trashnavi-batch-wave23-20260915
+permissions:
+  contents: write
 jobs:
-  discover:
+  readiness:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inspect Wave23 candidates
+        with:
+          fetch-depth: 0
+      - name: Apply Wave23 batch readiness
         shell: bash
         run: |
+          set -euo pipefail
           node <<'NODE'
           const fs=require('fs');
-          const path=require('path');
-          const targets=['福井市','富山市','宇都宮市','岐阜市','長野市'];
-          const dataDir='tools/trashnavi/data';
-          const jsonFiles=fs.readdirSync(dataDir).filter(f=>f.endsWith('.json'));
-          const rows=[];
-          for(const file of jsonFiles){
-            let d; try{d=JSON.parse(fs.readFileSync(path.join(dataDir,file),'utf8'));}catch{continue}
-            if(!Array.isArray(d)) continue;
-            for(const r of d){ if(r&&targets.includes(String(r.city||''))) rows.push({file,...r}); }
+          const directPath='tools/trashnavi/data/direct-waste-links.json';
+          let direct=fs.readFileSync(directPath,'utf8');
+          const replacements=[
+            [
+              '{"pref":"長野県","city":"長野市","name":"長野市 ごみの出し方、分け方","type":"ごみ分別ページ","url":"https://www.city.nagano.nagano.jp/menu/2/4/1/2/index.html","lgcode":"202011"}',
+              '{"pref":"長野県","city":"長野市","name":"長野市 家庭ごみの出し方、分け方","type":"ごみ分別ページ","url":"https://www.city.nagano.nagano.jp/n121500/contents/p000504.html","lgcode":"202011"}'
+            ],
+            [
+              '{"pref":"岐阜県","city":"岐阜市","name":"岐阜市 ごみ・リサイクル","type":"ごみ分別ページ","url":"https://www.city.gifu.lg.jp/tetsuzuki/gomi/index.html","lgcode":"212016"}',
+              '{"pref":"岐阜県","city":"岐阜市","name":"岐阜市 2026年度版ごみ出しのルール","type":"ごみ分別ページ","url":"https://www.city.gifu.lg.jp/kurashi/gomi/1012143/1038453/index.html","lgcode":"212016"}'
+            ]
+          ];
+          for(const [oldv,newv] of replacements){
+            if(!direct.includes(oldv)) throw new Error('expected direct-link record not found: '+oldv);
+            direct=direct.replace(oldv,newv);
           }
-          console.log('=== DIRECT/ALL DATA ROWS FOR TARGETS ===');
-          for(const city of targets){
-            const rs=rows.filter(r=>r.city===city);
-            console.log('\n## '+city+' ('+rs.length+' rows)');
-            for(const r of rs) console.log(JSON.stringify(r));
-          }
-          const masters=['localgovjp-lite.json','municipalities.json','municipalities-extra.json'];
-          console.log('\n=== MASTER MATCHES ===');
-          for(const m of masters){
-            const p=path.join(dataDir,m); if(!fs.existsSync(p)) continue;
-            let d=JSON.parse(fs.readFileSync(p,'utf8')); if(!Array.isArray(d)) continue;
-            for(const r of d.filter(x=>targets.includes(String(x.city||'')))) console.log(m,JSON.stringify(r));
-          }
-          console.log('\n=== DIRECT LINK FILE OCCURRENCES ===');
-          for(const file of jsonFiles.filter(f=>f.startsWith('direct-waste-links'))){
-            const d=JSON.parse(fs.readFileSync(path.join(dataDir,file),'utf8'));
-            if(!Array.isArray(d)) continue;
-            const hit=d.filter(r=>targets.includes(String(r.city||'')));
-            if(hit.length) console.log(file,JSON.stringify(hit));
-          }
+          fs.writeFileSync(directPath,direct);
+
+          const records=[
+            {pref:'福井県',city:'福井市',name:'福井市 ごみの収集日',type:'収集カレンダー',link_type:'collection_calendar',url:'https://www.city.fukui.lg.jp/gomi/',lgcode:'182010',last_checked:'2026-09-15',status:'active',language:'ja'},
+            {pref:'福井県',city:'福井市',name:'福井市 粗大ごみの戸別収集',type:'粗大ごみ',link_type:'bulky_waste',url:'https://www.city.fukui.lg.jp/kurasi/kankyo/kgomi/sodai_kobetu.html',lgcode:'182010',last_checked:'2026-09-15',status:'active',language:'ja'},
+            {pref:'富山県',city:'富山市',name:'富山市 ごみ・資源物収集カレンダー',type:'収集カレンダー',link_type:'collection_calendar',url:'https://www.city.toyama.lg.jp/kurashi/gomi/1010228/1010232/index.html',lgcode:'162019',last_checked:'2026-09-15',status:'active',language:'ja'},
+            {pref:'富山県',city:'富山市',name:'富山市 ごみを処理施設へ直接持ち込む場合',type:'持込施設',link_type:'dropoff_facility',url:'https://www.city.toyama.lg.jp/kurashi/gomi/1010228/1005384.html',lgcode:'162019',last_checked:'2026-09-15',status:'active',language:'ja'},
+            {pref:'栃木県',city:'宇都宮市',name:'宇都宮市 ごみ収集曜日一覧',type:'収集カレンダー',link_type:'collection_calendar',url:'https://www.city.utsunomiya.lg.jp/kurashi/gomi/kateigomi/dashikata/1004984.html',lgcode:'092011',last_checked:'2026-09-15',status:'active',language:'ja'},
+            {pref:'栃木県',city:'宇都宮市',name:'宇都宮市 粗大ごみ受付センターに申し込む場合',type:'粗大ごみ',link_type:'bulky_waste',url:'https://www.city.utsunomiya.lg.jp/kurashi/gomi/kateigomi/dashikata/1017157/1004986.html',lgcode:'092011',last_checked:'2026-09-15',status:'active',language:'ja'},
+            {pref:'岐阜県',city:'岐阜市',name:'岐阜市 ごみ出しのルール（住所別収集曜日一覧）',type:'収集カレンダー',link_type:'collection_calendar',url:'https://www.city.gifu.lg.jp/kurashi/gomi/1012143/1038453/1038463.html',lgcode:'212016',last_checked:'2026-09-15',status:'active',language:'ja',fiscal_year:'2026'},
+            {pref:'岐阜県',city:'岐阜市',name:'岐阜市 粗大ごみの排出について',type:'粗大ごみ',link_type:'bulky_waste',url:'https://www.city.gifu.lg.jp/kurashi/gomi/1020035/1020039.html',lgcode:'212016',last_checked:'2026-09-15',status:'active',language:'ja'},
+            {pref:'長野県',city:'長野市',name:'長野市 令和8年度 家庭用資源物・ごみ収集カレンダー',type:'収集カレンダー',link_type:'collection_calendar',url:'https://www.city.nagano.nagano.jp/n121500/contents/p006210.html',lgcode:'202011',last_checked:'2026-09-15',status:'active',language:'ja',fiscal_year:'2026'},
+            {pref:'長野県',city:'長野市',name:'長野市 資源再生センターへのごみの搬入方法及び処理手数料',type:'持込施設',link_type:'dropoff_facility',url:'https://www.city.nagano.nagano.jp/n121515/contents/p000605.html',lgcode:'202011',last_checked:'2026-09-15',status:'active',language:'ja'}
+          ];
+          fs.writeFileSync('tools/trashnavi/data/direct-waste-links-supply-wave23.json',JSON.stringify(records,null,2)+'\n');
+
+          const appPath='tools/trashnavi/app.js';
+          let app=fs.readFileSync(appPath,'utf8');
+          const needle='"data/direct-waste-links-supply-wave22.json"]';
+          if((app.match(new RegExp(needle.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'))||[]).length!==1) throw new Error('app.js wave22 tail contract changed');
+          app=app.replace(needle,'"data/direct-waste-links-supply-wave22.json","data/direct-waste-links-supply-wave23.json"]');
+          fs.writeFileSync(appPath,app);
           NODE
+
+          node <<'NODE'
+          const fs=require('fs'),path=require('path');
+          const targets={
+            '092011':['waste_sorting','collection_calendar','bulky_waste'],
+            '162019':['waste_sorting','collection_calendar','dropoff_facility'],
+            '182010':['waste_sorting','collection_calendar','bulky_waste'],
+            '202011':['waste_sorting','collection_calendar','dropoff_facility'],
+            '212016':['waste_sorting','collection_calendar','bulky_waste']
+          };
+          const typeMap={'ごみ分別ページ':'waste_sorting','収集カレンダー':'collection_calendar','粗大ごみ':'bulky_waste','粗大ごみ申込み':'bulky_application','検索ページ':'waste_search','持込施設':'dropoff_facility','ごみ分別アプリ':'waste_app'};
+          const files=fs.readdirSync('tools/trashnavi/data').filter(f=>f.startsWith('direct-waste-links')&&f.endsWith('.json'));
+          const all=[];
+          for(const f of files){const d=JSON.parse(fs.readFileSync(path.join('tools/trashnavi/data',f),'utf8'));for(const r of d)all.push({...r,_file:f});}
+          for(const [lg,expected] of Object.entries(targets)){
+            const rs=all.filter(r=>String(r.lgcode)===lg);
+            const types=[...new Set(rs.map(r=>r.link_type||typeMap[r.type]).filter(Boolean))].sort();
+            const exp=[...expected].sort();
+            if(JSON.stringify(types)!==JSON.stringify(exp)) throw new Error(`${lg}: expected ${exp}, got ${types}`);
+            console.log(lg,rs.map(r=>`${r._file}:${r.link_type||typeMap[r.type]}:${r.url}`).join('\n  '));
+          }
+          const direct=fs.readFileSync('tools/trashnavi/data/direct-waste-links.json','utf8');
+          for(const stale of ['https://www.city.nagano.nagano.jp/menu/2/4/1/2/index.html','https://www.city.gifu.lg.jp/tetsuzuki/gomi/index.html']) if(direct.includes(stale)) throw new Error('stale URL remains: '+stale);
+          NODE
+
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-affiliate-contract.mjs
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/trashnavi/app.js tools/trashnavi/data/direct-waste-links.json tools/trashnavi/data/direct-waste-links-supply-wave23.json
+          git diff --cached --check
+          git commit -m 'Promote five TrashNavi Wave23 municipalities to preferred candidates'
+          git push origin HEAD:feat/trashnavi-batch-wave23-20260915
+
+          rm .github/workflows/trashnavi-wave23-discovery-temp.yml
+          git add .github/workflows/trashnavi-wave23-discovery-temp.yml
+          git commit -m 'Remove TrashNavi Wave23 readiness workflow'
+          git push origin HEAD:feat/trashnavi-batch-wave23-20260915
