@@ -4,7 +4,7 @@
   const originalFetch = window.fetch.bind(window);
   const DEFAULT_BASE_PATHS = ["./data/tools.basic.json"];
   const DEFAULT_MANIFEST_PATH = "./data/quality-manifest.json";
-  const GENERATED_FILLER_BATCH = "atlas-expand-5000";
+  const GENERATED_FILLER_BATCHES = new Set(["direct-5000", "atlas-expand-5000"]);
 
   function safeText(value) {
     return typeof value === "string" ? value.trim() : "";
@@ -121,8 +121,10 @@
     return `${ja}::${en}`;
   }
 
-  function isGeneratedFiller(entry) {
-    return entry?.meta?.generated === true && safeText(entry?.meta?.batch) === GENERATED_FILLER_BATCH;
+  function generatedFillerBatch(entry) {
+    if (entry?.meta?.generated !== true) return "";
+    const batch = safeText(entry?.meta?.batch);
+    return GENERATED_FILLER_BATCHES.has(batch) ? batch : "";
   }
 
   function addUnique(merged, seenIds, seenTerms, entries, stats, sourcePath) {
@@ -133,13 +135,17 @@
         stats.skippedMissingId += 1;
         return;
       }
-      if (isGeneratedFiller(entry)) {
+
+      const fillerBatch = generatedFillerBatch(entry);
+      if (fillerBatch) {
         stats.quarantinedGenerated += 1;
+        stats.quarantinedGeneratedByBatch[fillerBatch] = (stats.quarantinedGeneratedByBatch[fillerBatch] || 0) + 1;
         if (stats.generatedQuarantineSample.length < 20) {
-          stats.generatedQuarantineSample.push({ id, source: sourcePath });
+          stats.generatedQuarantineSample.push({ id, batch: fillerBatch, source: sourcePath });
         }
         return;
       }
+
       if (seenIds.has(id)) {
         stats.duplicateIds += 1;
         stats.removed.push({ reason: "duplicate_id", id, key: "", source: sourcePath });
@@ -167,6 +173,7 @@
       duplicateIds: 0,
       duplicateTerms: 0,
       quarantinedGenerated: 0,
+      quarantinedGeneratedByBatch: {},
       generatedQuarantineSample: [],
       removed: []
     };
