@@ -53,7 +53,24 @@
     row("MC573dnw", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC573DNW/", ["TC-C4BK1", "TC-C4BY1", "TC-C4BM1", "TC-C4BC1", "TC-C4BK2", "TC-C4BY2", "TC-C4BM2", "TC-C4BC2"])
   ]);
 
-  const rows = Object.freeze([...wave2Rows, ...wave3Rows, ...wave4Rows]);
+  const wave5Rows = Object.freeze([
+    row("MC780dn", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC780DN/", ["TNR-C4RK2", "TNR-C4RY2", "TNR-C4RM2", "TNR-C4RC2", "TNR-C4RK1", "TNR-C4RY1", "TNR-C4RM1", "TNR-C4RC1"]),
+    row("MC780dnf", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC780DNF/", ["TNR-C4RK2", "TNR-C4RY2", "TNR-C4RM2", "TNR-C4RC2", "TNR-C4RK1", "TNR-C4RY1", "TNR-C4RM1", "TNR-C4RC1"]),
+    row("MC780dnl", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC780DNL/", ["TNR-C4RK2", "TNR-C4RY2", "TNR-C4RM2", "TNR-C4RC2", "TNR-C4RK1", "TNR-C4RY1", "TNR-C4RM1", "TNR-C4RC1"]),
+    row("MC843dnw", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC843DNW/", ["TNR-C3LK1", "TNR-C3LY1", "TNR-C3LM1", "TNR-C3LC1", "TNR-C3LK2", "TNR-C3LY2", "TNR-C3LM2", "TNR-C3LC2", "TNR-C3LK4"]),
+    row("MC843dnwv", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC843DNWV/", ["TNR-C3LK1", "TNR-C3LY1", "TNR-C3LM1", "TNR-C3LC1", "TNR-C3LK2", "TNR-C3LY2", "TNR-C3LM2", "TNR-C3LC2", "TNR-C3LK4"]),
+    row("MC852dn", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC852DN/", ["TNR-C3MK1", "TNR-C3MY1", "TNR-C3MM1", "TNR-C3MC1"]),
+    row("MC860dn", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC860DN/", ["TNR-C3KK3", "TNR-C3KY3", "TNR-C3KM3", "TNR-C3KC3", "TNR-C3KK1", "TNR-C3KY1", "TNR-C3KM1", "TNR-C3KC1"]),
+    row("MC860dtn", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC860DTN/", ["TNR-C3KK3", "TNR-C3KY3", "TNR-C3KM3", "TNR-C3KC3", "TNR-C3KK1", "TNR-C3KY1", "TNR-C3KM1", "TNR-C3KC1"]),
+    row("MC862dn", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC862DN/", ["TNR-C3PK1", "TNR-C3PY1", "TNR-C3PM1", "TNR-C3PC1", "TNR-C3PK2", "TNR-C3PY2", "TNR-C3PM2", "TNR-C3PC2"]),
+    row("MC862dn-T", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC862DN-T/", ["TNR-C3PK1", "TNR-C3PY1", "TNR-C3PM1", "TNR-C3PC1", "TNR-C3PK2", "TNR-C3PY2", "TNR-C3PM2", "TNR-C3PC2"]),
+    row("MC863dnw", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC863DNW/", ["TNR-C3LK1", "TNR-C3LY1", "TNR-C3LM1", "TNR-C3LC1", "TNR-C3LK2", "TNR-C3LY2", "TNR-C3LM2", "TNR-C3LC2", "TNR-C3LK4"]),
+    row("MC863dnwv", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC863DNWV/", ["TNR-C3LK1", "TNR-C3LY1", "TNR-C3LM1", "TNR-C3LC1", "TNR-C3LK2", "TNR-C3LY2", "TNR-C3LM2", "TNR-C3LC2", "TNR-C3LK4"]),
+    row("MC883dnw", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC883DNW/", ["TNR-C3LK1", "TNR-C3LY1", "TNR-C3LM1", "TNR-C3LC1", "TNR-C3LK2", "TNR-C3LY2", "TNR-C3LM2", "TNR-C3LC2", "TNR-C3LK4"]),
+    row("MC883dnwv", "https://www.oki.com/jp/printing/support/consumables-and-accessories/colormfp/MC883DNWV/", ["TNR-C3LK1", "TNR-C3LY1", "TNR-C3LM1", "TNR-C3LC1", "TNR-C3LK2", "TNR-C3LY2", "TNR-C3LM2", "TNR-C3LC2", "TNR-C3LK4"])
+  ]);
+
+  const rows = Object.freeze([...wave2Rows, ...wave3Rows, ...wave4Rows, ...wave5Rows]);
 
   function buildTaggedSearchUrl(query) {
     const url = new URL("https://www.amazon.co.jp/s");
@@ -93,6 +110,7 @@
   window.MANUALFINDER_OKI_TONER_WAVE2_LEDGER = wave2Rows;
   window.MANUALFINDER_OKI_TONER_WAVE3_LEDGER = wave3Rows;
   window.MANUALFINDER_OKI_TONER_WAVE4_LEDGER = wave4Rows;
+  window.MANUALFINDER_OKI_TONER_WAVE5_LEDGER = wave5Rows;
   window.MANUALFINDER_AFFILIATE_CONFIG = Object.freeze({
     ...base,
     printerConsumables: Object.freeze([...(base.printerConsumables || []), ...rows]),

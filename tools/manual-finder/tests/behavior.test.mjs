@@ -4,4 +4,5 @@ await import('./ricoh-consumables-wave3.test.mjs');
 await import('./oki-toner-wave2.test.mjs');
 await import('./oki-toner-wave3.test.mjs');
 await import('./oki-toner-wave4.test.mjs');
+await import('./oki-toner-wave5.test.mjs');
 await import('./affiliate-coverage.test.mjs');
