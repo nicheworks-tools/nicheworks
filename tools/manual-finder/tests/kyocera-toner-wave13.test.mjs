@@ -9,18 +9,28 @@ for (const name of ['affiliate-config.js', 'affiliate-office-consumables.js', 'a
 }
 
 const config = context.window.MANUALFINDER_AFFILIATE_CONFIG;
-const ledger = context.window.MANUALFINDER_KYOCERA_TONER_WAVE12_LEDGER;
+const ledger = context.window.MANUALFINDER_KYOCERA_TONER_WAVE13_LEDGER;
 assert.ok(config);
 assert.ok(Array.isArray(ledger));
-assert.equal(ledger.length, 4, 'KYOCERA Wave 12 must contain exactly four audited TASKalfa models');
+assert.equal(ledger.length, 3, 'KYOCERA Wave 13 must contain exactly three audited same-engine variants');
 
-const aliasSource = 'https://www.kyoceradocumentsolutions.com/support/mobileprint/index.html';
 const compatibilitySource = 'https://www.kyoceradocumentsolutions.de/content/dam/download-center-cf/de/documents/Others/Tonerkompatibilitaet_pdf.download.pdf';
 const expected = new Map([
-  ['TASKalfa 205c', { alias: 'FS-C8020MFP', codes: ['TK-895C', 'TK-895K', 'TK-895M', 'TK-895Y'] }],
-  ['TASKalfa 255c', { alias: 'FS-C8025MFP', codes: ['TK-895C', 'TK-895K', 'TK-895M', 'TK-895Y'] }],
-  ['TASKalfa 255', { alias: 'FS-6025MFP', codes: ['TK-475'] }],
-  ['TASKalfa 305', { alias: 'FS-6030MFP', codes: ['TK-475'] }]
+  ['KM-1570', {
+    alias: 'KM-1530',
+    relation: 'https://www.kyoceradocumentsolutions.co.jp/products/past/copy02/km_1570/specs.html',
+    codes: ['1T02AV0NL0']
+  }],
+  ['KM-2070', {
+    alias: 'KM-2030',
+    relation: 'https://www.kyoceradocumentsolutions.co.jp/products/past/copy02/km_2030/specs.html',
+    codes: ['1T02AV0NL0']
+  }],
+  ['KM-C2630D', {
+    alias: 'KM-C2630',
+    relation: 'https://www.kyoceradocumentsolutions.co.jp/products/past/copy01/km_c2630/specs.html',
+    codes: ['TK-815C', 'TK-815K', 'TK-815M', 'TK-815Y']
+  }]
 ]);
 
 assert.deepEqual(Array.from(ledger, (row) => row.model).sort(), Array.from(expected.keys()).sort());
@@ -31,7 +41,8 @@ for (const row of ledger) {
   assert.equal(row.verifiedAt, '2026-09-16');
   assert.equal(row.sourceUrl, compatibilitySource);
   assert.equal(row.evidenceAlias, target.alias);
-  assert.deepEqual(Array.from(row.evidenceUrls), [aliasSource, compatibilitySource]);
+  assert.equal(row.evidenceRelation, 'official_same_engine_variant');
+  assert.deepEqual(Array.from(row.evidenceUrls), [target.relation, compatibilitySource]);
   assert.deepEqual(Array.from(row.tonerCodes), target.codes);
 
   const offers = config.getConsumableOffers({ maker: row.maker, model: row.model, category: 'プリンター・複合機' });
@@ -44,12 +55,13 @@ for (const row of ledger) {
 }
 
 for (const args of [
-  { maker: 'KYOCERA Document Solutions', model: 'KM-3531', category: 'プリンター・複合機' },
-  { maker: 'KYOCERA Document Solutions', model: 'KM-2531', category: 'プリンター・複合機' },
   { maker: 'KYOCERA Document Solutions', model: 'KM-C850D', category: 'プリンター・複合機' },
+  { maker: 'KYOCERA Document Solutions', model: 'KM-C3225E', category: 'プリンター・複合機' },
+  { maker: 'KYOCERA Document Solutions', model: 'KM-2531', category: 'プリンター・複合機' },
+  { maker: 'KYOCERA Document Solutions', model: 'KM-6230RM', category: 'プリンター・複合機' },
   { maker: 'KYOCERA Document Solutions', model: 'TASKalfa 4811w', category: 'プリンター・複合機' },
-  { maker: 'KYOCERA Document Solutions', model: 'TASKalfa 205c', category: 'その他' },
-  { maker: 'KYOCERA', model: 'TASKalfa 205c', category: 'プリンター・複合機' }
+  { maker: 'KYOCERA Document Solutions', model: 'KM-1570', category: 'その他' },
+  { maker: 'KYOCERA', model: 'KM-1570', category: 'プリンター・複合機' }
 ]) assert.deepEqual(Array.from(config.getConsumableOffers(args)), []);
 
-console.log('ManualFinder KYOCERA toner Wave 12 tests passed.');
+console.log('ManualFinder KYOCERA toner Wave 13 tests passed.');

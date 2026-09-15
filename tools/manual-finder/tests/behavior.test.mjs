@@ -13,4 +13,5 @@ await import('./kyocera-toner-wave9.test.mjs');
 await import('./kyocera-toner-wave10.test.mjs');
 await import('./kyocera-toner-wave11.test.mjs');
 await import('./kyocera-toner-wave12.test.mjs');
+await import('./kyocera-toner-wave13.test.mjs');
 await import('./affiliate-coverage.test.mjs');

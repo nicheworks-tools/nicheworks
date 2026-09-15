@@ -83,7 +83,39 @@
     wave12Row("TASKalfa 305", "FS-6030MFP", ["TK-475"])
   ]);
 
-  const rows = Object.freeze([...wave6Rows, ...wave7Rows, ...wave12Rows]);
+  const wave13Row = (model, evidenceAlias, relationSource, tonerCodes) => Object.freeze({
+    maker: "KYOCERA Document Solutions",
+    searchMaker: "KYOCERA",
+    model,
+    verifiedAt: "2026-09-16",
+    sourceUrl: tonerCompatibilitySource,
+    evidenceAlias,
+    evidenceRelation: "official_same_engine_variant",
+    evidenceUrls: Object.freeze([relationSource, tonerCompatibilitySource]),
+    tonerCodes: Object.freeze(tonerCodes)
+  });
+  const wave13Rows = Object.freeze([
+    wave13Row(
+      "KM-1570",
+      "KM-1530",
+      "https://www.kyoceradocumentsolutions.co.jp/products/past/copy02/km_1570/specs.html",
+      ["1T02AV0NL0"]
+    ),
+    wave13Row(
+      "KM-2070",
+      "KM-2030",
+      "https://www.kyoceradocumentsolutions.co.jp/products/past/copy02/km_2030/specs.html",
+      ["1T02AV0NL0"]
+    ),
+    wave13Row(
+      "KM-C2630D",
+      "KM-C2630",
+      "https://www.kyoceradocumentsolutions.co.jp/products/past/copy01/km_c2630/specs.html",
+      ["TK-815C", "TK-815K", "TK-815M", "TK-815Y"]
+    )
+  ]);
+
+  const rows = Object.freeze([...wave6Rows, ...wave7Rows, ...wave12Rows, ...wave13Rows]);
 
   function buildTaggedSearchUrl(query) {
     const url = new URL("https://www.amazon.co.jp/s");
@@ -129,6 +161,7 @@
   window.MANUALFINDER_KYOCERA_TONER_WAVE6_LEDGER = wave6Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE7_LEDGER = wave7Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE12_LEDGER = wave12Rows;
+  window.MANUALFINDER_KYOCERA_TONER_WAVE13_LEDGER = wave13Rows;
   window.MANUALFINDER_AFFILIATE_CONFIG = Object.freeze({
     ...base,
     printerConsumables: Object.freeze([...(base.printerConsumables || []), ...rows]),
