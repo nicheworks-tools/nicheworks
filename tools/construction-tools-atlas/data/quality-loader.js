@@ -4,6 +4,7 @@
   const originalFetch = window.fetch.bind(window);
   const DEFAULT_BASE_PATHS = ["./data/tools.basic.json"];
   const DEFAULT_MANIFEST_PATH = "./data/quality-manifest.json";
+  const GENERATED_FILLER_BATCHES = new Set(["direct-5000", "atlas-expand-5000"]);
 
   function safeText(value) {
     return typeof value === "string" ? value.trim() : "";
@@ -120,6 +121,12 @@
     return `${ja}::${en}`;
   }
 
+  function generatedFillerBatch(entry) {
+    if (entry?.meta?.generated !== true) return "";
+    const batch = safeText(entry?.meta?.batch);
+    return GENERATED_FILLER_BATCHES.has(batch) ? batch : "";
+  }
+
   function addUnique(merged, seenIds, seenTerms, entries, stats, sourcePath) {
     asEntries(entries).forEach((entry) => {
       stats.raw += 1;
@@ -128,6 +135,17 @@
         stats.skippedMissingId += 1;
         return;
       }
+
+      const fillerBatch = generatedFillerBatch(entry);
+      if (fillerBatch) {
+        stats.quarantinedGenerated += 1;
+        stats.quarantinedGeneratedByBatch[fillerBatch] = (stats.quarantinedGeneratedByBatch[fillerBatch] || 0) + 1;
+        if (stats.generatedQuarantineSample.length < 20) {
+          stats.generatedQuarantineSample.push({ id, batch: fillerBatch, source: sourcePath });
+        }
+        return;
+      }
+
       if (seenIds.has(id)) {
         stats.duplicateIds += 1;
         stats.removed.push({ reason: "duplicate_id", id, key: "", source: sourcePath });
@@ -154,6 +172,9 @@
       skippedMissingId: 0,
       duplicateIds: 0,
       duplicateTerms: 0,
+      quarantinedGenerated: 0,
+      quarantinedGeneratedByBatch: {},
+      generatedQuarantineSample: [],
       removed: []
     };
   }
@@ -181,7 +202,7 @@
     stats.removedCount = stats.raw - stats.merged;
     window.CTA_DATA_DIAGNOSTICS = stats;
     if (stats.removedCount > 0) {
-      console.info("Construction Tools Atlas data dedupe", stats);
+      console.info("Construction Tools Atlas data dedupe/quarantine", stats);
     }
     return merged;
   }

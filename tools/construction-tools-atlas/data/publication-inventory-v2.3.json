@@ -1,0 +1,81 @@
+{
+  "schema": "cta-publication-inventory-v2.3",
+  "version": "2026-09-15-generated-quarantine-2",
+  "policy": {
+    "generated_filler_batches": [
+      "atlas-expand-5000",
+      "direct-5000"
+    ],
+    "generated_filler_publication_state": "quarantined",
+    "unknown_generated_provenance": "fail_closed",
+    "promotion_rule": "A quarantined generated filler may return to the public corpus only after explicit curation removes generated provenance and gives it a maintained entry type/content."
+  },
+  "summary": {
+    "stored_corpus_entries": 5536,
+    "quarantined_generated_entries": 4600,
+    "published_runtime_entries": 936,
+    "skipped_missing_id": 0,
+    "duplicate_ids_removed": 0,
+    "duplicate_terms_removed": 0
+  },
+  "quarantine_by_batch": {
+    "direct-5000": 4600
+  },
+  "published_by_type": {
+    "access": 1,
+    "accessory": 1,
+    "component": 210,
+    "consumable": 14,
+    "defect": 3,
+    "document": 2,
+    "equipment": 45,
+    "fastener": 18,
+    "fixture": 5,
+    "hardware": 14,
+    "inspection": 8,
+    "material": 172,
+    "materials": 16,
+    "process": 15,
+    "rigging": 6,
+    "safety": 17,
+    "sample": 1,
+    "site": 2,
+    "structure": 2,
+    "system": 1,
+    "temporary": 3,
+    "test": 1,
+    "tool": 379
+  },
+  "hashes": {
+    "published_id_sha256": "557684ba4ebfffbc2e59c67bfa2437f7275888f157afcf5456f04a97fe14859e",
+    "quarantined_generated_id_sha256": "ad863c921ea5d879ae7273660b9550d94b1a705541b865102b38f90668d5c9cf",
+    "publication_classification_sha256": "bce38397839d901bb652ff4583055724feb852beb233dd55ff55156454424489"
+  },
+  "quarantined_sample": [
+    "term_carpentry_compact_adhesive_cutting_1",
+    "term_carpentry_compact_anchor_cutting_1",
+    "term_carpentry_compact_backing_cutting_1",
+    "term_carpentry_compact_baseboard_cutting_1",
+    "term_carpentry_compact_board_cutting_1",
+    "term_carpentry_compact_bolt_cutting_1",
+    "term_carpentry_compact_bracket_cutting_1",
+    "term_carpentry_compact_brush_cutting_1",
+    "term_carpentry_compact_cable_cutting_1",
+    "term_carpentry_compact_cap_cutting_1",
+    "term_carpentry_compact_chain_cutting_1",
+    "term_carpentry_compact_chalk_line_cutting_1",
+    "term_carpentry_compact_circular_saw_cutting_1",
+    "term_carpentry_compact_clamp_cutting_1",
+    "term_carpentry_compact_component_cutting_1",
+    "term_carpentry_compact_concrete_cutting_1",
+    "term_carpentry_compact_coping_cutting_1",
+    "term_carpentry_compact_corner_bead_cutting_1",
+    "term_carpentry_compact_cover_cutting_1",
+    "term_carpentry_compact_drill_cutting_1",
+    "term_carpentry_compact_drywall_board_cutting_1",
+    "term_carpentry_compact_duct_cutting_1",
+    "term_carpentry_compact_filter_cutting_1",
+    "term_carpentry_compact_finish_cutting_1",
+    "term_carpentry_compact_fitting_cutting_1"
+  ]
+}
