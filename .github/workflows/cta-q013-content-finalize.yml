@@ -19,24 +19,10 @@ jobs:
           ref: feat/construction-atlas-q013-content-completion-20260916
           fetch-depth: 0
 
-      - name: Patch permanent audit and snapshot version
+      - name: Patch content snapshot version
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          audit = Path('.github/workflows/construction-tools-atlas-audit.yml')
-          s = audit.read_text()
-          syntax_anchor = "      - name: Check q012 content completion syntax\n        run: node --check tools/construction-tools-atlas/scripts/check-q012-content-completion-v2.3.cjs\n"
-          syntax_add = syntax_anchor + "\n      - name: Check q013 content completion syntax\n        run: node --check tools/construction-tools-atlas/scripts/check-q013-content-completion-v2.3.cjs\n"
-          run_anchor = "      - name: Require complete q012 subject-specific core content\n        run: node tools/construction-tools-atlas/scripts/check-q012-content-completion-v2.3.cjs\n"
-          run_add = run_anchor + "\n      - name: Require complete q013 subject-specific core content\n        run: node tools/construction-tools-atlas/scripts/check-q013-content-completion-v2.3.cjs\n"
-          if 'Check q013 content completion syntax' not in s:
-              if syntax_anchor not in s: raise SystemExit('syntax anchor missing')
-              s = s.replace(syntax_anchor, syntax_add, 1)
-          if 'Require complete q013 subject-specific core content' not in s:
-              if run_anchor not in s: raise SystemExit('run anchor missing')
-              s = s.replace(run_anchor, run_add, 1)
-          audit.write_text(s)
-
           auditor = Path('tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs')
           a = auditor.read_text()
           old = "version: '2026-09-16-q013-identity-closure-1'"
@@ -71,10 +57,11 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add .github/workflows/construction-tools-atlas-audit.yml tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs tools/construction-tools-atlas/data/public-content-quality-v2.3.json
+          git add tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs tools/construction-tools-atlas/data/public-content-quality-v2.3.json
           if git diff --cached --quiet; then
             echo 'No finalize changes required'
           else
             git commit -m 'feat(construction-atlas): freeze q013 content completion'
+            git pull --rebase origin feat/construction-atlas-q013-content-completion-20260916
             git push origin HEAD:feat/construction-atlas-q013-content-completion-20260916
           fi
