@@ -5,6 +5,7 @@
   const DEFAULT_BASE_PATHS = ["./data/tools.basic.json"];
   const DEFAULT_MANIFEST_PATH = "./data/quality-manifest.json";
   const DEFAULT_ENRICHMENT_PATH = "./data/content-enrichment-v2.3.json";
+  const DEFAULT_REDIRECT_PATH = "./data/canonical-redirects-v2.3.json";
   const GENERATED_FILLER_BATCHES = new Set(["direct-5000", "atlas-expand-5000"]);
 
   function safeText(value) {
@@ -174,6 +175,98 @@
     return Array.isArray(raw?.entries) ? raw.entries : [];
   }
 
+  function redirectEntries(raw) {
+    return Array.isArray(raw?.redirects) ? raw.redirects : [];
+  }
+
+  function buildRedirectMap(raw) {
+    const map = new Map();
+    for (const row of redirectEntries(raw)) {
+      const from = safeText(row?.from);
+      const to = safeText(row?.to);
+      if (!from || !to || from === to || map.has(from)) continue;
+      map.set(from, to);
+    }
+    return map;
+  }
+
+  function resolveWithMap(id, redirectMap) {
+    let current = safeText(id);
+    const seen = new Set();
+    while (current && redirectMap.has(current) && !seen.has(current)) {
+      seen.add(current);
+      current = redirectMap.get(current);
+    }
+    return current;
+  }
+
+  function mergeRedirectVocabulary(target, source, fromId) {
+    if (!target.aliases || typeof target.aliases !== "object") target.aliases = { ja: [], en: [] };
+    const targetJa = safeText(target?.term?.ja);
+    const targetEn = safeText(target?.term?.en);
+    const sourceJa = safeText(source?.term?.ja);
+    const sourceEn = safeText(source?.term?.en);
+    target.aliases.ja = uniqueText([
+      ...safeArray(target.aliases.ja),
+      ...(sourceJa && sourceJa !== targetJa ? [sourceJa] : []),
+      ...safeArray(source?.aliases?.ja)
+    ]);
+    target.aliases.en = uniqueText([
+      ...safeArray(target.aliases.en),
+      ...(sourceEn && sourceEn !== targetEn ? [sourceEn] : []),
+      ...safeArray(source?.aliases?.en)
+    ]);
+    target.fuzzy = uniqueText([
+      ...safeArray(target.fuzzy),
+      fromId,
+      sourceJa,
+      sourceEn,
+      ...safeArray(source?.aliases?.ja),
+      ...safeArray(source?.aliases?.en),
+      ...safeArray(source?.fuzzy)
+    ]);
+    target.meta = {
+      ...(target.meta || {}),
+      canonical_redirect_sources: uniqueText([...(target.meta?.canonical_redirect_sources || []), fromId])
+    };
+  }
+
+  function applyCanonicalRedirects(merged, raw, stats) {
+    const redirectMap = buildRedirectMap(raw);
+    const byId = new Map(merged.map((entry) => [safeText(entry?.id), entry]));
+    const removeIds = new Set();
+    const appliedMap = new Map();
+
+    for (const [from, directTo] of redirectMap) {
+      const to = resolveWithMap(directTo, redirectMap);
+      const source = byId.get(from);
+      const target = byId.get(to);
+      if (!source) {
+        stats.canonicalRedirectMissingSources += 1;
+        if (stats.canonicalRedirectProblemSample.length < 20) stats.canonicalRedirectProblemSample.push({ from, to, reason: "missing_source" });
+        continue;
+      }
+      if (!target || from === to) {
+        stats.canonicalRedirectMissingTargets += 1;
+        if (stats.canonicalRedirectProblemSample.length < 20) stats.canonicalRedirectProblemSample.push({ from, to, reason: "missing_target" });
+        continue;
+      }
+      mergeRedirectVocabulary(target, source, from);
+      removeIds.add(from);
+      appliedMap.set(from, to);
+      stats.canonicalRedirectsApplied += 1;
+    }
+
+    if (removeIds.size) {
+      const kept = merged.filter((entry) => !removeIds.has(safeText(entry?.id)));
+      merged.splice(0, merged.length, ...kept);
+    }
+
+    const redirectObject = Object.fromEntries(appliedMap);
+    window.CTA_CANONICAL_REDIRECTS = Object.freeze(redirectObject);
+    return appliedMap;
+  }
+
   function applyContentEnrichment(merged, raw, stats) {
     const byId = new Map(merged.map((entry) => [safeText(entry?.id), entry]));
     for (const patch of enrichmentEntries(raw)) {
@@ -218,6 +311,10 @@
       quarantinedGenerated: 0,
       quarantinedGeneratedByBatch: {},
       generatedQuarantineSample: [],
+      canonicalRedirectsApplied: 0,
+      canonicalRedirectMissingSources: 0,
+      canonicalRedirectMissingTargets: 0,
+      canonicalRedirectProblemSample: [],
       contentEnriched: 0,
       contentEnrichmentMissingTargets: 0,
       contentEnrichmentMissingSample: [],
@@ -225,12 +322,26 @@
     };
   }
 
+  function resolveCanonicalId(id) {
+    const value = safeText(id);
+    const redirects = window.CTA_CANONICAL_REDIRECTS || {};
+    let current = value;
+    const seen = new Set();
+    while (current && Object.prototype.hasOwnProperty.call(redirects, current) && !seen.has(current)) {
+      seen.add(current);
+      current = safeText(redirects[current]);
+    }
+    return current;
+  }
+
   async function loadEntries(options = {}) {
     const manifestPath = options.manifestPath || DEFAULT_MANIFEST_PATH;
     const enrichmentPath = options.enrichmentPath || DEFAULT_ENRICHMENT_PATH;
+    const redirectPath = options.redirectPath || DEFAULT_REDIRECT_PATH;
     const basePaths = Array.isArray(options.basePaths) ? options.basePaths : DEFAULT_BASE_PATHS;
     const manifest = await fetchJson(manifestPath);
     const enrichment = await fetchJson(enrichmentPath);
+    const redirects = await fetchJson(redirectPath);
     const packPaths = manifestPaths(manifest);
     const merged = [];
     const seenIds = new Set();
@@ -246,12 +357,13 @@
       addUnique(merged, seenIds, seenTerms, base, stats, path);
     }
 
+    applyCanonicalRedirects(merged, redirects, stats);
     applyContentEnrichment(merged, enrichment, stats);
     stats.merged = merged.length;
     stats.removedCount = stats.raw - stats.merged;
     window.CTA_DATA_DIAGNOSTICS = stats;
-    if (stats.removedCount > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0) {
-      console.info("Construction Tools Atlas data dedupe/quarantine/enrichment", stats);
+    if (stats.removedCount > 0 || stats.canonicalRedirectsApplied > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0) {
+      console.info("Construction Tools Atlas data dedupe/quarantine/redirect/enrichment", stats);
     }
     return merged;
   }
@@ -283,7 +395,7 @@
     appendScriptOnce("./detail-image-hotfix-extra.js?v=20260510-extra-1", "data-cta-image-hotfix-extra", "20260510-extra-1");
   }
 
-  window.CTA_DATA_LOADER = { loadEntries };
+  window.CTA_DATA_LOADER = { loadEntries, resolveCanonicalId };
 
   document.addEventListener("DOMContentLoaded", () => {
     fixSearchInput();
