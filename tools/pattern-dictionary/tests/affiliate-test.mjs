@@ -25,4 +25,5 @@ if(!app.includes("data/affiliate-config.json"))throw new Error('runtime must loa
 if(!app.includes('affiliateActive'))throw new Error('runtime must gate Amazon links on explicit activation');
 if(!app.includes('amazon.co.jp/s?k='))throw new Error('runtime must build Amazon search-result links');
 if(!app.includes('cfg.disclosure'))throw new Error('runtime must show disclosure when affiliate links are active');
-console.log('OK: Amazon affiliate flow is 20/20 query-covered, search-link based, disclosure-gated, and disabled without a real tracking ID.');
+if(app.includes('Amazonアソシエイトはまだ有効化していません')||app.includes('Amazon Associates links are not active yet'))throw new Error('public runtime must not expose unfinished affiliate-status copy while disabled');
+console.log('OK: Amazon affiliate flow covers 20/20 patterns, stays hidden while disabled, and is ready for activation with a real tracking ID.');
