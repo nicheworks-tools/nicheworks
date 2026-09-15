@@ -1,0 +1,18 @@
+name: Temp Phone QuickCheck full gap audit
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [main]
+
+jobs:
+  audit:
+    if: github.event.pull_request.head.ref == 'audit/phone-quickcheck-all-gaps-20260915'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Audit all canonical gaps
+        run: node scripts/temp-audit-phone-quickcheck-all-gaps.mjs
