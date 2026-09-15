@@ -1,0 +1,104 @@
+name: TrashNavi Wave23 publication v2 temp
+on:
+  push:
+    branches: [feat/trashnavi-batch-wave23-publication-20260915]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Publish and verify batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          import json, pathlib
+          R=pathlib.Path('.')
+          T=[('092011','tochigi','utsunomiya','宇都宮市'),('162019','toyama','toyama','富山市'),('182010','fukui','fukui','福井市'),('202011','nagano','nagano','長野市'),('212016','gifu','gifu','岐阜市')]
+
+          p=R/'tools/trashnavi/municipality-page-manifest.json'; s=p.read_text(); assert s.count('"publish":true')==29
+          rows=[f'  {{"lgcode":"{lg}","pref_slug":"{pr}","city_slug":"{ci}","publish":true}}' for lg,pr,ci,n in T]
+          assert all(f'"lgcode":"{lg}"' not in s for lg,pr,ci,n in T)
+          s=s.rstrip(); s=s[:-1].rstrip()+',\n'+',\n'.join(rows)+'\n]\n'; p.write_text(s)
+
+          p=R/'tools/trashnavi/scripts/generate-municipality-pages.mjs'; s=p.read_text(); old='if(outputs.length!==29) throw new Error(`municipality page count must be 29; got ${outputs.length}`);'; assert s.count(old)==1; p.write_text(s.replace(old,'if(outputs.length!==34) throw new Error(`municipality page count must be 34; got ${outputs.length}`);'))
+          p=R/'tools/trashnavi/scripts/check-affiliate-contract.mjs'; s=p.read_text(); old='check(manifest.length === 29, `expected 29 published municipality pages, got ${manifest.length}`);'; assert s.count(old)==1; p.write_text(s.replace(old,'check(manifest.length === 34, `expected 34 published municipality pages, got ${manifest.length}`);'))
+
+          p=R/'tools/trashnavi/index.html'; s=p.read_text(); a='<a href="/tools/trashnavi/kochi/kochi/">高知市</a>'; assert s.count(a)==1
+          s=s.replace(a,a+''.join(f'<a href="/tools/trashnavi/{pr}/{ci}/">{n}</a>' for lg,pr,ci,n in T)).replace('データ更新日：2026-09-14','データ更新日：2026-09-15').replace('Data updated: 2026-09-14','Data updated: 2026-09-15'); p.write_text(s)
+
+          p=R/'tools/trashnavi/ai-reference.json'; d=json.loads(p.read_text()); assert d['published_municipality_count']==29 and len(d['municipalities'])==29
+          for lg,pr,ci,n in T: d['municipalities'].append({'lgcode':lg,'pref_slug':pr,'city_slug':ci,'url':f'https://nicheworks.app/tools/trashnavi/{pr}/{ci}/'})
+          d['published_municipality_count']=34; d['snapshot_date']='2026-09-15'
+          lines=['{']; base={k:v for k,v in d.items() if k!='municipalities'}
+          for k,v in base.items(): lines.append(f'  {json.dumps(k,ensure_ascii=False)}: {json.dumps(v,ensure_ascii=False)},')
+          lines.append('  "municipalities": [')
+          for i,x in enumerate(d['municipalities']): lines.append('    '+json.dumps(x,ensure_ascii=False,separators=(',',':'))+(',' if i<33 else ''))
+          lines+=['  ]','}']; p.write_text('\n'.join(lines)+'\n')
+
+          p=R/'sitemap.xml'; s=p.read_text(); blocks=[]
+          for lg,pr,ci,n in T:
+            u=f'https://nicheworks.app/tools/trashnavi/{pr}/{ci}/'; assert s.count(f'<loc>{u}</loc>')==0; blocks.append(f'  <url>\n    <loc>{u}</loc>\n    <lastmod>2026-09-15</lastmod>\n  </url>')
+          assert s.count('</urlset>')==1; p.write_text(s.replace('</urlset>','\n'.join(blocks)+'\n</urlset>'))
+
+          p=R/'tools/trashnavi/SPEC.md'; s=p.read_text(); assert '## Wave 23 batch publication' not in s
+          block='''\n\n## Wave 23 batch publication\n\nWave 23から、1自治体ずつではなく複数自治体を同一Waveで検証・公開するbatch expansionへ移行する。公開閾値は従来どおり `municipal_home` を除く **3種類以上の異なるwaste-specific official link type** とし、速度向上のために閾値やauthority要件を緩和しない。\n\nWave 23では次の5自治体を同時にpreferred candidateへ引き上げ、公開対象を **29自治体から34自治体** へ拡張する。\n\n- 栃木県 宇都宮市 — `/tools/trashnavi/tochigi/utsunomiya/` — waste sorting / collection calendar / bulky waste\n- 富山県 富山市 — `/tools/trashnavi/toyama/toyama/` — waste sorting / collection calendar / drop-off facility\n- 福井県 福井市 — `/tools/trashnavi/fukui/fukui/` — waste sorting / collection calendar / bulky waste\n- 長野県 長野市 — `/tools/trashnavi/nagano/nagano/` — waste sorting / collection calendar / drop-off facility\n- 岐阜県 岐阜市 — `/tools/trashnavi/gifu/gifu/` — waste sorting / collection calendar / bulky waste\n\nWave 23 readiness baselineは、1,916 municipalities、2,234 valid HTTP(S) records、34 preferred candidates、26 direct-link datasets / 166 records / 147 unique URLs / 0 invalid URLs。publication acceptanceでは、5ページ各3 official cards、canonical、current official URLs、Amazon `[PR]` block、共有Amazon helper/config/runtime、AI reference 34/34、両sitemap canonical各1件を検証する。`fiscal_year: 2026` を持つ岐阜市・長野市だけ2026 calendar calloutを表示する。Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を変更せず継承する。\n'''
+          p.write_text((s.rstrip()+block).rstrip()+'\n')
+          PY
+
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs
+          node <<'NODE'
+          const fs=require('fs');
+          const T=[
+            ['tools/trashnavi/tochigi/utsunomiya/index.html','https://nicheworks.app/tools/trashnavi/tochigi/utsunomiya/',false,['https://www.city.utsunomiya.lg.jp/kurashi/gomi/kateigomi/dashikata/index.html','https://www.city.utsunomiya.lg.jp/kurashi/gomi/kateigomi/dashikata/1004984.html','https://www.city.utsunomiya.lg.jp/kurashi/gomi/kateigomi/dashikata/1017157/1004986.html']],
+            ['tools/trashnavi/toyama/toyama/index.html','https://nicheworks.app/tools/trashnavi/toyama/toyama/',false,['https://www.city.toyama.lg.jp/kurashi/gomi/1010228/1010229/index.html','https://www.city.toyama.lg.jp/kurashi/gomi/1010228/1010232/index.html','https://www.city.toyama.lg.jp/kurashi/gomi/1010228/1005384.html']],
+            ['tools/trashnavi/fukui/fukui/index.html','https://nicheworks.app/tools/trashnavi/fukui/fukui/',false,['https://www.city.fukui.lg.jp/kurasi/kankyo/kgomi/','https://www.city.fukui.lg.jp/gomi/','https://www.city.fukui.lg.jp/kurasi/kankyo/kgomi/sodai_kobetu.html']],
+            ['tools/trashnavi/nagano/nagano/index.html','https://nicheworks.app/tools/trashnavi/nagano/nagano/',true,['https://www.city.nagano.nagano.jp/n121500/contents/p000504.html','https://www.city.nagano.nagano.jp/n121500/contents/p006210.html','https://www.city.nagano.nagano.jp/n121515/contents/p000605.html']],
+            ['tools/trashnavi/gifu/gifu/index.html','https://nicheworks.app/tools/trashnavi/gifu/gifu/',true,['https://www.city.gifu.lg.jp/kurashi/gomi/1012143/1038453/index.html','https://www.city.gifu.lg.jp/kurashi/gomi/1012143/1038453/1038463.html','https://www.city.gifu.lg.jp/kurashi/gomi/1020035/1020039.html']]
+          ];
+          for(const [file,url,cal,links] of T){const p=fs.readFileSync(file,'utf8');if((p.match(/class="official-link-card"/g)||[]).length!==3)throw Error(file+' cards');for(const x of links)if(!p.includes(x))throw Error(file+' missing '+x);for(const x of ['id="trashnaviAmazonAffiliate"','ごみ出し・片付け用品 [PR]','/assets/amazon-affiliate.js','/tools/trashnavi/affiliate-config.js','/tools/trashnavi/affiliate-runtime.js'])if(!p.includes(x))throw Error(file+' affiliate');if(p.includes('class="current-calendar-callout"')!==cal)throw Error(file+' calendar');for(const sm of ['sitemap.xml','sitemap-trashnavi.xml'])if(fs.readFileSync(sm,'utf8').split(`<loc>${url}</loc>`).length-1!==1)throw Error(sm+' '+url)}
+          if(fs.readFileSync('tools/trashnavi/nagano/nagano/index.html','utf8').includes('/menu/2/4/1/2/index.html'))throw Error('Nagano stale');
+          if(fs.readFileSync('tools/trashnavi/gifu/gifu/index.html','utf8').includes('/tetsuzuki/gomi/index.html'))throw Error('Gifu stale');
+          const a=JSON.parse(fs.readFileSync('tools/trashnavi/ai-reference.json','utf8'));if(a.published_municipality_count!==34||a.municipalities.length!==34)throw Error('AI 34/34');
+          NODE
+
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/check-affiliate-contract.mjs
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+          git diff --check
+
+          python3 <<'PY'
+          import subprocess
+          expected=set('''sitemap-trashnavi.xml
+          sitemap.xml
+          tools/trashnavi/SPEC.md
+          tools/trashnavi/ai-reference.json
+          tools/trashnavi/index.html
+          tools/trashnavi/municipality-page-manifest.json
+          tools/trashnavi/scripts/check-affiliate-contract.mjs
+          tools/trashnavi/scripts/generate-municipality-pages.mjs
+          tools/trashnavi/tochigi/utsunomiya/index.html
+          tools/trashnavi/toyama/toyama/index.html
+          tools/trashnavi/fukui/fukui/index.html
+          tools/trashnavi/nagano/nagano/index.html
+          tools/trashnavi/gifu/gifu/index.html'''.split())
+          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).split())|set(subprocess.check_output(['git','ls-files','--others','--exclude-standard'],text=True).split())
+          assert changed==expected,(changed-expected,expected-changed)
+          print('Publication files:',len(changed))
+          PY
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sitemap-trashnavi.xml sitemap.xml tools/trashnavi/SPEC.md tools/trashnavi/ai-reference.json tools/trashnavi/index.html tools/trashnavi/municipality-page-manifest.json tools/trashnavi/scripts/check-affiliate-contract.mjs tools/trashnavi/scripts/generate-municipality-pages.mjs tools/trashnavi/tochigi/utsunomiya/index.html tools/trashnavi/toyama/toyama/index.html tools/trashnavi/fukui/fukui/index.html tools/trashnavi/nagano/nagano/index.html tools/trashnavi/gifu/gifu/index.html
+          git diff --cached --check
+          git commit -m 'Publish five TrashNavi Wave23 municipality pages'
+          git push origin HEAD:feat/trashnavi-batch-wave23-publication-20260915
+          rm .github/workflows/trashnavi-wave23-publication-v2-temp.yml
+          git add .github/workflows/trashnavi-wave23-publication-v2-temp.yml
+          git commit -m 'Remove TrashNavi Wave23 publication workflow'
+          git push origin HEAD:feat/trashnavi-batch-wave23-publication-20260915
