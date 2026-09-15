@@ -32,5 +32,10 @@
   {"lgcode":"162019","pref_slug":"toyama","city_slug":"toyama","publish":true},
   {"lgcode":"182010","pref_slug":"fukui","city_slug":"fukui","publish":true},
   {"lgcode":"202011","pref_slug":"nagano","city_slug":"nagano","publish":true},
-  {"lgcode":"212016","pref_slug":"gifu","city_slug":"gifu","publish":true}
+  {"lgcode":"212016","pref_slug":"gifu","city_slug":"gifu","publish":true},
+  {"lgcode":"011002","pref_slug":"hokkaido","city_slug":"sapporo","publish":true},
+  {"lgcode":"141003","pref_slug":"kanagawa","city_slug":"yokohama","publish":true},
+  {"lgcode":"192015","pref_slug":"yamanashi","city_slug":"kofu","publish":true},
+  {"lgcode":"231002","pref_slug":"aichi","city_slug":"nagoya","publish":true},
+  {"lgcode":"302015","pref_slug":"wakayama","city_slug":"wakayama","publish":true}
 ]

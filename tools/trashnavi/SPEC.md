@@ -652,3 +652,17 @@ Wave 23では次の5自治体を同時にpreferred candidateへ引き上げ、�
 - 岐阜県 岐阜市 — `/tools/trashnavi/gifu/gifu/` — waste sorting / collection calendar / bulky waste
 
 Wave 23 readiness baselineは、1,916 municipalities、2,234 valid HTTP(S) records、34 preferred candidates、26 direct-link datasets / 166 records / 147 unique URLs / 0 invalid URLs。publication acceptanceでは、5ページ各3 official cards、canonical、current official URLs、Amazon `[PR]` block、共有Amazon helper/config/runtime、AI reference 34/34、両sitemap canonical各1件を検証する。`fiscal_year: 2026` を持つ岐阜市・長野市だけ2026 calendar calloutを表示する。Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を変更せず継承する。
+
+## Wave 24 batch publication
+
+Wave 24はWave 23で成立した5自治体batch expansionを継続し、公開閾値を変更せず **34自治体から39自治体** へ拡張する。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeであり、外部委託先を閾値の穴埋めには使わない。
+
+- 北海道 札幌市 — `/tools/trashnavi/hokkaido/sapporo/` — waste sorting / collection calendar / bulky waste
+- 神奈川県 横浜市 — `/tools/trashnavi/kanagawa/yokohama/` — waste sorting / collection calendar / bulky waste
+- 山梨県 甲府市 — `/tools/trashnavi/yamanashi/kofu/` — waste sorting / collection calendar / waste app
+- 愛知県 名古屋市 — `/tools/trashnavi/aichi/nagoya/` — waste sorting / collection calendar / bulky waste
+- 和歌山県 和歌山市 — `/tools/trashnavi/wakayama/wakayama/` — waste sorting / bulky waste / drop-off facility
+
+Wave 24 readiness baselineは1,916 municipalities、2,244 valid HTTP(S) records、39 preferred candidates、27 direct-link datasets / 176 records / 157 unique URLs / 0 invalid URLsとする。
+
+Publication acceptanceでは5ページすべてについてexactly 3 official cards、canonical URL、現在のofficial source URL、Amazon affiliate block `[PR]`、AI reference 39/39、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する甲府市だけ2026 calendar calloutを表示し、札幌市・横浜市・名古屋市・和歌山市には年次calloutを生成しない。甲府市はbulky sourceを持たないためmetadata/heroで粗大ごみcoverageを広告しない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
