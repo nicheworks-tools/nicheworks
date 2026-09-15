@@ -125,6 +125,27 @@
       "authority": "Personal Care Products Council / Cosmetics Info",
       "sources": ["https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/"],
       "runtime_verified": true
+    },
+    "bht": {
+      "category": "antioxidant",
+      "source_functions": ["antioxidant"],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": ["https://cosmileeurope.eu/inci/detail/1672/bht/"],
+      "runtime_verified": true
+    },
+    "betaine": {
+      "category": "humectant",
+      "source_functions": ["humectant"],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": ["https://cosmileeurope.eu/inci/detail/1648/betaine/"],
+      "runtime_verified": true
+    },
+    "pentylene glycol": {
+      "category": "solvent",
+      "source_functions": ["solvent"],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": ["https://cosmileeurope.eu/inci/detail/11416/pentylene-glycol/"],
+      "runtime_verified": true
     }
   }
 }
