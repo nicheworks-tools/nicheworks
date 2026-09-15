@@ -19,188 +19,96 @@ const DATA_FILES = [
   'tools/inci-fastscan/data/ingredients-extra-8.json'
 ];
 
-const EXPECTED_WAVE1 = Object.freeze({
-  water: 'solvent',
-  glycerin: 'humectant',
-  'propylene glycol': 'humectant',
-  phenoxyethanol: 'preservative',
-  carbomer: 'thickener'
-});
-const EXPECTED_WAVE2 = Object.freeze({
-  'citric acid': 'pH adjuster',
-  tocopherol: 'antioxidant'
-});
-const EXPECTED_WAVE3 = Object.freeze({
-  'sodium chloride': 'viscosity adjuster',
-  'disodium edta': 'chelating agent'
-});
-const EXPECTED_WAVE4 = Object.freeze({
-  'tocopheryl acetate': 'antioxidant'
-});
-const EXPECTED_WAVE5 = Object.freeze({
-  'butylene glycol': 'solvent',
-  'dipropylene glycol': 'solvent',
-  'sodium hydroxide': 'pH adjuster'
-});
-const EXPECTED_WAVE6 = Object.freeze({
-  'aminomethyl propanol': 'pH adjuster',
-  triethanolamine: 'pH adjuster',
-  'potassium hydroxide': 'pH adjuster'
-});
-const EXPECTED_WAVE7 = Object.freeze({
-  bht: 'antioxidant',
-  betaine: 'humectant',
-  'pentylene glycol': 'solvent'
-});
-const EXPECTED_ALL = Object.freeze({
-  ...EXPECTED_WAVE1,
-  ...EXPECTED_WAVE2,
-  ...EXPECTED_WAVE3,
-  ...EXPECTED_WAVE4,
-  ...EXPECTED_WAVE5,
-  ...EXPECTED_WAVE6,
-  ...EXPECTED_WAVE7
-});
+const EXPECTED_WAVE1 = Object.freeze({ water:'solvent', glycerin:'humectant', 'propylene glycol':'humectant', phenoxyethanol:'preservative', carbomer:'thickener' });
+const EXPECTED_WAVE2 = Object.freeze({ 'citric acid':'pH adjuster', tocopherol:'antioxidant' });
+const EXPECTED_WAVE3 = Object.freeze({ 'sodium chloride':'viscosity adjuster', 'disodium edta':'chelating agent' });
+const EXPECTED_WAVE4 = Object.freeze({ 'tocopheryl acetate':'antioxidant' });
+const EXPECTED_WAVE5 = Object.freeze({ 'butylene glycol':'solvent', 'dipropylene glycol':'solvent', 'sodium hydroxide':'pH adjuster' });
+const EXPECTED_WAVE6 = Object.freeze({ 'aminomethyl propanol':'pH adjuster', triethanolamine:'pH adjuster', 'potassium hydroxide':'pH adjuster' });
+const EXPECTED_WAVE7 = Object.freeze({ bht:'antioxidant', betaine:'humectant', 'pentylene glycol':'solvent' });
+const EXPECTED_WAVE8 = Object.freeze({ propanediol:'humectant', '1,2-hexanediol':'solvent', alcohol:'solvent' });
+const EXPECTED_ALL = Object.freeze({ ...EXPECTED_WAVE1, ...EXPECTED_WAVE2, ...EXPECTED_WAVE3, ...EXPECTED_WAVE4, ...EXPECTED_WAVE5, ...EXPECTED_WAVE6, ...EXPECTED_WAVE7, ...EXPECTED_WAVE8 });
+
 const EXPECTED_SOURCES = Object.freeze({
-  water: 'https://www.cosmeticsinfo.org/ingredient/water/',
-  glycerin: 'https://www.cosmeticsinfo.org/ingredient/glycerin/',
-  'propylene glycol': 'https://www.cosmeticsinfo.org/ingredient/propylene-glycol/',
-  phenoxyethanol: 'https://health.ec.europa.eu/publications/phenoxyethanol_en',
-  carbomer: 'https://www.cosmeticsinfo.org/ingredient/carbomer/',
-  'citric acid': 'https://www.cosmeticsinfo.org/ingredient/citric-acid/',
-  tocopherol: 'https://www.cosmeticsinfo.org/ingredient/tocopherol/',
-  'sodium chloride': 'https://www.cosmeticsinfo.org/ingredient/sodium-chloride/',
-  'disodium edta': 'https://www.cosmeticsinfo.org/ingredient/disodium-edta/',
-  'tocopheryl acetate': 'https://www.cosmeticsinfo.org/ingredient/tocopherol/',
-  'butylene glycol': 'https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/',
-  'dipropylene glycol': 'https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/',
-  'sodium hydroxide': 'https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/',
-  'aminomethyl propanol': 'https://www.cosmeticsinfo.org/ingredient/aminomethyl-propanol/',
-  triethanolamine: 'https://www.cosmeticsinfo.org/ingredient/triethanolamine-and-tea-containing-ingredients/',
-  'potassium hydroxide': 'https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/',
-  bht: 'https://cosmileeurope.eu/inci/detail/1672/bht/',
-  betaine: 'https://cosmileeurope.eu/inci/detail/1648/betaine/',
-  'pentylene glycol': 'https://cosmileeurope.eu/inci/detail/11416/pentylene-glycol/'
+  water:'https://www.cosmeticsinfo.org/ingredient/water/', glycerin:'https://www.cosmeticsinfo.org/ingredient/glycerin/', 'propylene glycol':'https://www.cosmeticsinfo.org/ingredient/propylene-glycol/',
+  phenoxyethanol:'https://health.ec.europa.eu/publications/phenoxyethanol_en', carbomer:'https://www.cosmeticsinfo.org/ingredient/carbomer/', 'citric acid':'https://www.cosmeticsinfo.org/ingredient/citric-acid/', tocopherol:'https://www.cosmeticsinfo.org/ingredient/tocopherol/',
+  'sodium chloride':'https://www.cosmeticsinfo.org/ingredient/sodium-chloride/', 'disodium edta':'https://www.cosmeticsinfo.org/ingredient/disodium-edta/', 'tocopheryl acetate':'https://www.cosmeticsinfo.org/ingredient/tocopherol/',
+  'butylene glycol':'https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/', 'dipropylene glycol':'https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/', 'sodium hydroxide':'https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/',
+  'aminomethyl propanol':'https://www.cosmeticsinfo.org/ingredient/aminomethyl-propanol/', triethanolamine:'https://www.cosmeticsinfo.org/ingredient/triethanolamine-and-tea-containing-ingredients/', 'potassium hydroxide':'https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/',
+  bht:'https://cosmileeurope.eu/inci/detail/1672/bht/', betaine:'https://cosmileeurope.eu/inci/detail/1648/betaine/', 'pentylene glycol':'https://cosmileeurope.eu/inci/detail/11416/pentylene-glycol/',
+  propanediol:'https://cosmileeurope.eu/inci/detail/13169/propanediol/', '1,2-hexanediol':'https://cosmileeurope.eu/inci/detail/5/1-2-hexanediol/', alcohol:'https://cosmileeurope.eu/inci/detail/590/alcohol/'
 });
-const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu', 'cosmileeurope.eu']);
+const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org','health.ec.europa.eu','cosmileeurope.eu']);
 
-function normalizeText(value = '') {
-  return String(value).normalize('NFKC').replace(/\s+/g, ' ').trim();
-}
-function splitCategory(value = '') {
-  return normalizeText(value).split(/\s*\/\s*/).map(normalizeText).filter(Boolean);
-}
-function validHttpsSource(value) {
-  try {
-    const parsed = new URL(String(value || '').trim());
-    return parsed.protocol === 'https:' && Boolean(parsed.hostname) && ALLOWED_SOURCE_HOSTS.has(parsed.hostname);
-  } catch {
-    return false;
+function normalizeText(value=''){ return String(value).normalize('NFKC').replace(/\s+/g,' ').trim(); }
+function splitCategory(value=''){ return normalizeText(value).split(/\s*\/\s*/).map(normalizeText).filter(Boolean); }
+function validHttpsSource(value){ try { const u=new URL(String(value||'').trim()); return u.protocol==='https:' && ALLOWED_SOURCE_HOSTS.has(u.hostname); } catch { return false; } }
+
+const rows=DATA_FILES.flatMap((file)=>{ const payload=JSON.parse(fs.readFileSync(path.join(root,file),'utf8')); if(!Array.isArray(payload)) throw new Error(`${file}: dictionary payload must be an array`); return payload; });
+const evidence=parser.verifiedCategoryEvidence||{};
+assert.deepEqual(Object.fromEntries(Object.entries(evidence).map(([key,item])=>[key,item.category])),EXPECTED_ALL,'verified category evidence must remain the reviewed cumulative wave 1 through wave 8 set');
+for(const ambiguous of parser.ambiguousExactKeys||[]) assert.equal(evidence[ambiguous],undefined,`ambiguous exact token must not receive category evidence: ${ambiguous}`);
+
+const groups=new Map();
+for(const row of rows){ const key=parser.canonicalIdentityKey(row.en); if(!key) continue; if(!groups.has(key)) groups.set(key,[]); groups.get(key).push(row); }
+const rawMissingCategoryRows=rows.filter((row)=>!normalizeText(row.category)).length;
+assert.equal(rawMissingCategoryRows,187,'verified overlay must not hide the frozen 187 raw category gaps by rewriting recognition records');
+
+let newlyClassifiedCanonicalIdentities=0;
+let wave6Resolved=0;
+let wave7Resolved=0;
+let wave8Resolved=0;
+const rawCategoryInventory={};
+for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
+  const item=evidence[canonical];
+  assert.ok(item,`missing verified category evidence: ${canonical}`);
+  assert.equal(normalizeText(item.category),expectedCategory,`${canonical}: unexpected verified category`);
+  assert.ok(normalizeText(item.authority),`${canonical}: authority label required`);
+  assert.ok(Array.isArray(item.sources)&&item.sources.length>0,`${canonical}: at least one source required`);
+  assert.ok(item.sources.every(validHttpsSource),`${canonical}: sources must be approved HTTPS authority URLs`);
+  assert.ok(item.sources.includes(EXPECTED_SOURCES[canonical]),`${canonical}: reviewed source URL must remain attached`);
+  assert.ok(groups.has(canonical),`${canonical}: evidence canonical must exist in maintained dictionary`);
+
+  const canonicalRows=groups.get(canonical);
+  const rawCategories=[...new Set(canonicalRows.flatMap((row)=>splitCategory(row.category)).map((category)=>category.toLowerCase()))];
+  const hasRawMissing=canonicalRows.some((row)=>!normalizeText(row.category));
+  rawCategoryInventory[canonical]=rawCategories;
+  if(rawCategories.length===0) newlyClassifiedCanonicalIdentities+=1;
+  if(rawCategories.length>0) assert.ok(rawCategories.includes(expectedCategory.toLowerCase()),`${canonical}: verified category conflicts with existing raw category metadata (${rawCategories.join(', ')})`);
+
+  if(Object.hasOwn(EXPECTED_WAVE6,canonical)){
+    assert.equal(hasRawMissing,true,`${canonical}: wave 6 must resolve at least one raw missing-category row`);
+    assert.deepEqual(rawCategories,[expectedCategory.toLowerCase()],`${canonical}: duplicate legacy category hint must exactly match reviewed category`);
+    wave6Resolved+=1;
+  }
+  if(Object.hasOwn(EXPECTED_WAVE7,canonical)){
+    assert.equal(hasRawMissing,true,`${canonical}: wave 7 must resolve a raw missing-category row`);
+    assert.deepEqual(rawCategories,[],`${canonical}: wave 7 must be completely category-empty before overlay`);
+    wave7Resolved+=1;
+  }
+  if(Object.hasOwn(EXPECTED_WAVE8,canonical)){
+    assert.equal(hasRawMissing,true,`${canonical}: wave 8 must resolve a raw missing-category row`);
+    assert.deepEqual(rawCategories,[],`${canonical}: wave 8 must be completely category-empty before overlay`);
+    wave8Resolved+=1;
   }
 }
 
-const rows = DATA_FILES.flatMap((file) => {
-  const payload = JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
-  if (!Array.isArray(payload)) throw new Error(`${file}: dictionary payload must be an array`);
-  return payload;
-});
-const evidence = parser.verifiedCategoryEvidence || {};
-assert.deepEqual(
-  Object.fromEntries(Object.entries(evidence).map(([key, item]) => [key, item.category])),
-  EXPECTED_ALL,
-  'verified category evidence must remain the reviewed cumulative wave 1 through wave 7 set'
-);
-for (const ambiguous of parser.ambiguousExactKeys || []) {
-  assert.equal(evidence[ambiguous], undefined, `ambiguous exact token must not receive category evidence: ${ambiguous}`);
+const merged=parser.mergeDictionaryRecords(rows);
+const mergedByCanonical=new Map(merged.map((item)=>[parser.canonicalIdentityKey(item.en),item]));
+for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
+  const item=mergedByCanonical.get(canonical);
+  assert.ok(item,`${canonical}: missing from merged runtime dictionary`);
+  assert.equal(item.category_verified,true,`${canonical}: verified category flag must survive merge`);
+  assert.ok(Array.isArray(item.category_sources)&&item.category_sources.length>0,`${canonical}: category sources must survive merge`);
+  assert.ok(item.category_sources.every(validHttpsSource),`${canonical}: merged category sources must remain approved HTTPS URLs`);
+  assert.ok(item.category_sources.includes(EXPECTED_SOURCES[canonical]),`${canonical}: reviewed source URL must survive merge`);
+  assert.ok(Array.isArray(item.categories)&&item.categories.some((category)=>category.toLowerCase()===expectedCategory.toLowerCase()),`${canonical}: verified category must be present in merged functional categories`);
 }
 
-const groups = new Map();
-for (const row of rows) {
-  const key = parser.canonicalIdentityKey(row.en);
-  if (!key) continue;
-  if (!groups.has(key)) groups.set(key, []);
-  groups.get(key).push(row);
-}
-let rawMissingCategoryRows = 0;
-for (const row of rows) if (!normalizeText(row.category)) rawMissingCategoryRows += 1;
-assert.equal(rawMissingCategoryRows, 187, 'verified overlay must not hide the frozen 187 raw category gaps by rewriting recognition records');
+assert.equal(Object.keys(EXPECTED_WAVE8).length,3);
+assert.equal(wave6Resolved,3);
+assert.equal(wave7Resolved,3);
+assert.equal(wave8Resolved,3,'wave 8 must resolve exactly three completely category-empty canonical identities');
+assert.equal(evidence['sodium citrate'],undefined,'Sodium Citrate must remain deferred until buffer vs pH-adjuster taxonomy is explicitly resolved');
 
-let newlyClassifiedCanonicalIdentities = 0;
-let wave6RawMissingCanonicalIdentitiesResolved = 0;
-let wave7RawMissingCanonicalIdentitiesResolved = 0;
-const rawCategoryInventory = {};
-for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
-  const item = evidence[canonical];
-  assert.ok(item, `missing verified category evidence: ${canonical}`);
-  assert.equal(normalizeText(item.category), expectedCategory, `${canonical}: unexpected verified category`);
-  assert.ok(normalizeText(item.authority), `${canonical}: authority label required`);
-  assert.ok(Array.isArray(item.sources) && item.sources.length > 0, `${canonical}: at least one source required`);
-  assert.ok(item.sources.every(validHttpsSource), `${canonical}: sources must be approved HTTPS authority URLs`);
-  assert.ok(item.sources.includes(EXPECTED_SOURCES[canonical]), `${canonical}: reviewed source URL must remain attached`);
-  assert.ok(groups.has(canonical), `${canonical}: evidence canonical must exist in maintained dictionary`);
-
-  const canonicalRows = groups.get(canonical);
-  const rawCategories = [...new Set(canonicalRows.flatMap((row) => splitCategory(row.category)).map((category) => category.toLowerCase()))];
-  const hasRawMissingCategoryRow = canonicalRows.some((row) => !normalizeText(row.category));
-  rawCategoryInventory[canonical] = rawCategories;
-
-  if (rawCategories.length === 0) newlyClassifiedCanonicalIdentities += 1;
-  if (rawCategories.length > 0) {
-    assert.ok(rawCategories.includes(expectedCategory.toLowerCase()), `${canonical}: verified category conflicts with existing raw category metadata (${rawCategories.join(', ')})`);
-  }
-
-  if (Object.hasOwn(EXPECTED_WAVE6, canonical)) {
-    assert.equal(hasRawMissingCategoryRow, true, `${canonical}: wave 6 must resolve at least one raw missing-category row`);
-    assert.ok(rawCategories.length > 0, `${canonical}: wave 6 is expected to be a duplicate-hint group, not a completely category-empty canonical group`);
-    assert.deepEqual(rawCategories, [expectedCategory.toLowerCase()], `${canonical}: duplicate legacy category hint must exactly match the reviewed category`);
-    wave6RawMissingCanonicalIdentitiesResolved += 1;
-  }
-
-  if (Object.hasOwn(EXPECTED_WAVE7, canonical)) {
-    assert.equal(hasRawMissingCategoryRow, true, `${canonical}: wave 7 must resolve a raw missing-category row`);
-    assert.deepEqual(rawCategories, [], `${canonical}: wave 7 must be a completely category-empty canonical identity before the verified overlay`);
-    wave7RawMissingCanonicalIdentitiesResolved += 1;
-  }
-}
-
-const merged = parser.mergeDictionaryRecords(rows);
-const mergedByCanonical = new Map(merged.map((item) => [parser.canonicalIdentityKey(item.en), item]));
-for (const [canonical, expectedCategory] of Object.entries(EXPECTED_ALL)) {
-  const item = mergedByCanonical.get(canonical);
-  assert.ok(item, `${canonical}: missing from merged runtime dictionary`);
-  assert.equal(item.category_verified, true, `${canonical}: verified category flag must survive merge`);
-  assert.ok(Array.isArray(item.category_sources) && item.category_sources.length > 0, `${canonical}: category sources must survive merge`);
-  assert.ok(item.category_sources.every(validHttpsSource), `${canonical}: merged category sources must remain approved HTTPS URLs`);
-  assert.ok(item.category_sources.includes(EXPECTED_SOURCES[canonical]), `${canonical}: reviewed source URL must survive merge`);
-  assert.ok(Array.isArray(item.categories) && item.categories.some((category) => category.toLowerCase() === expectedCategory.toLowerCase()), `${canonical}: verified category must be present in merged functional categories`);
-}
-
-assert.equal(Object.keys(EXPECTED_WAVE1).length, 5);
-assert.equal(Object.keys(EXPECTED_WAVE2).length, 2);
-assert.equal(Object.keys(EXPECTED_WAVE3).length, 2);
-assert.equal(Object.keys(EXPECTED_WAVE4).length, 1, 'wave 4 reviewed set must remain one nonconflicting canonical identity');
-assert.equal(Object.keys(EXPECTED_WAVE5).length, 3, 'wave 5 reviewed set must remain three source-backed canonical identities');
-assert.equal(Object.keys(EXPECTED_WAVE6).length, 3, 'wave 6 reviewed set must remain three source-backed canonical identities');
-assert.equal(Object.keys(EXPECTED_WAVE7).length, 3, 'wave 7 reviewed set must remain three source-backed canonical identities');
-assert.equal(wave6RawMissingCanonicalIdentitiesResolved, 3, 'wave 6 must resolve exactly three raw missing-category canonical identities with matching duplicate hints');
-assert.equal(wave7RawMissingCanonicalIdentitiesResolved, 3, 'wave 7 must resolve exactly three completely category-empty canonical identities');
-assert.equal(evidence['sodium citrate'], undefined, 'Sodium Citrate must remain deferred until buffer vs pH-adjuster taxonomy is explicitly resolved');
-
-console.log(JSON.stringify({
-  status: 'pass',
-  phase: 'category-provenance-wave-7',
-  raw_missing_category_rows_unchanged: rawMissingCategoryRows,
-  verified_category_evidence_canonical_identities: Object.keys(EXPECTED_ALL).length,
-  wave_7_verified_canonical_identities: Object.keys(EXPECTED_WAVE7).length,
-  newly_classified_completely_category_empty_canonical_identities: newlyClassifiedCanonicalIdentities,
-  wave_6_raw_missing_canonical_identities_resolved: wave6RawMissingCanonicalIdentitiesResolved,
-  wave_6_duplicate_hints_required_to_match: true,
-  wave_7_raw_missing_canonical_identities_resolved: wave7RawMissingCanonicalIdentitiesResolved,
-  wave_7_requires_completely_category_empty_raw_canonical: true,
-  sodium_citrate_deferred_for_taxonomy_decision: true,
-  raw_category_inventory: rawCategoryInventory,
-  recognition_records_rewritten: false,
-  safety_contract_changed: false,
-  ambiguity_contract_changed: false,
-  affiliate_contract_changed: false
-}, null, 2));
+console.log(JSON.stringify({ status:'pass', phase:'category-provenance-wave-8', raw_missing_category_rows_unchanged:rawMissingCategoryRows, verified_category_evidence_canonical_identities:Object.keys(EXPECTED_ALL).length, wave_8_verified_canonical_identities:Object.keys(EXPECTED_WAVE8).length, newly_classified_completely_category_empty_canonical_identities:newlyClassifiedCanonicalIdentities, wave_6_raw_missing_canonical_identities_resolved:wave6Resolved, wave_7_raw_missing_canonical_identities_resolved:wave7Resolved, wave_8_raw_missing_canonical_identities_resolved:wave8Resolved, wave_8_requires_completely_category_empty_raw_canonical:true, sodium_citrate_deferred_for_taxonomy_decision:true, raw_category_inventory:rawCategoryInventory, recognition_records_rewritten:false, safety_contract_changed:false, ambiguity_contract_changed:false, affiliate_contract_changed:false },null,2));
