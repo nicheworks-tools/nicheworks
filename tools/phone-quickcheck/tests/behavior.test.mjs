@@ -362,7 +362,7 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.match(html, /4500 mAh/);
   assert.match(html, /充電器目安<\/span><b>25W\+/);
   assert.match(html, /Super Fast Charging/);
-  assert.doesNotMatch(html, /端末側の有線充電上限<\/span><b>25W/);
+  assert.match(html, /端末側の有線充電上限<\/span><b>25W/);
 }
 
 // Galaxy Z Fold3 5G preserves the older hinge-depth range and model-specific 10W wireless maximum.
