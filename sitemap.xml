@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
+<url>
     <loc>https://nicheworks.app/</loc>
     <lastmod>2026-06-16</lastmod>
   </url>
@@ -69,10 +69,6 @@
     <lastmod>2026-06-16</lastmod>
   </url>
   <url>
-    <loc>https://nicheworks.app/tools/ai-interaction-atlas/ja/pro/</loc>
-    <lastmod>2026-06-16</lastmod>
-  </url>
-  <url>
     <loc>https://nicheworks.app/tools/ai-interaction-atlas/ja/search/</loc>
     <lastmod>2026-06-16</lastmod>
   </url>
@@ -86,10 +82,6 @@
   </url>
   <url>
     <loc>https://nicheworks.app/tools/ai-interaction-atlas/patterns/</loc>
-    <lastmod>2026-06-16</lastmod>
-  </url>
-  <url>
-    <loc>https://nicheworks.app/tools/ai-interaction-atlas/pro/</loc>
     <lastmod>2026-06-16</lastmod>
   </url>
   <url>
@@ -242,10 +234,6 @@
   </url>
   <url>
     <loc>https://nicheworks.app/tools/command-safety-checker/howto/en/</loc>
-    <lastmod>2026-06-16</lastmod>
-  </url>
-  <url>
-    <loc>https://nicheworks.app/tools/command-safety-checker/pro.html</loc>
     <lastmod>2026-06-16</lastmod>
   </url>
   <url>
@@ -595,10 +583,6 @@
     <lastmod>2026-06-16</lastmod>
   </url>
   <url>
-    <loc>https://nicheworks.app/tools/logistics-compliance-kit-jp/pro.html</loc>
-    <lastmod>2026-06-16</lastmod>
-  </url>
-  <url>
     <loc>https://nicheworks.app/tools/logistics-compliance-kit-jp/usage.html</loc>
     <lastmod>2026-06-16</lastmod>
   </url>
@@ -719,15 +703,7 @@
     <lastmod>2026-06-16</lastmod>
   </url>
   <url>
-    <loc>https://nicheworks.app/tools/motion-atlas/ja/pro/</loc>
-    <lastmod>2026-06-16</lastmod>
-  </url>
-  <url>
     <loc>https://nicheworks.app/tools/motion-atlas/ja/usage/</loc>
-    <lastmod>2026-06-16</lastmod>
-  </url>
-  <url>
-    <loc>https://nicheworks.app/tools/motion-atlas/pro/</loc>
     <lastmod>2026-06-16</lastmod>
   </url>
   <url>
@@ -1039,15 +1015,7 @@
     <lastmod>2026-06-16</lastmod>
   </url>
   <url>
-    <loc>https://nicheworks.app/tools/ui-atlas/ja/pro/</loc>
-    <lastmod>2026-06-16</lastmod>
-  </url>
-  <url>
     <loc>https://nicheworks.app/tools/ui-atlas/ja/usage/</loc>
-    <lastmod>2026-06-16</lastmod>
-  </url>
-  <url>
-    <loc>https://nicheworks.app/tools/ui-atlas/pro/</loc>
     <lastmod>2026-06-16</lastmod>
   </url>
   <url>
@@ -1111,15 +1079,7 @@
     <lastmod>2026-06-16</lastmod>
   </url>
   <url>
-    <loc>https://nicheworks.app/tools/vibe-lexicon/ja/pro/</loc>
-    <lastmod>2026-06-16</lastmod>
-  </url>
-  <url>
     <loc>https://nicheworks.app/tools/vibe-lexicon/ja/usage/</loc>
-    <lastmod>2026-06-16</lastmod>
-  </url>
-  <url>
-    <loc>https://nicheworks.app/tools/vibe-lexicon/pro/</loc>
     <lastmod>2026-06-16</lastmod>
   </url>
   <url>
