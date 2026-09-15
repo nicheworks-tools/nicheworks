@@ -88,6 +88,9 @@ jobs:
       - name: Check full image inventory auditor syntax
         run: node --check tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs
 
+      - name: Check publication corpus auditor syntax
+        run: node --check tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs
+
       - name: Check master-detail v2.3 contract
         run: node tools/construction-tools-atlas/scripts/check-master-detail-v2.3.cjs
 
@@ -131,3 +134,6 @@ jobs:
 
       - name: Validate frozen full canonical image inventory
         run: node tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs --check
+
+      - name: Validate frozen public publication corpus
+        run: node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs --check
