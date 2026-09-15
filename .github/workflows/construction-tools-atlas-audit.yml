@@ -58,6 +58,9 @@ jobs:
       - name: Check q011 identity closure syntax
         run: node --check tools/construction-tools-atlas/scripts/audit-q011-identity-closure-v2.3.cjs
 
+      - name: Check q011 content completion syntax
+        run: node --check tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs
+
       - name: Check Wave 1 image builder syntax
         run: node --check tools/construction-tools-atlas/scripts/build-image-wave1-v2.3.mjs
 
@@ -126,6 +129,9 @@ jobs:
 
       - name: Require zero unresolved q011 identity collisions
         run: node tools/construction-tools-atlas/scripts/audit-q011-identity-closure-v2.3.cjs
+
+      - name: Require complete q011 subject-specific core content
+        run: node tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs
 
       - name: Audit image assets and canonical mappings
         run: node tools/construction-tools-atlas/scripts/audit-image-assets-v2.3.cjs

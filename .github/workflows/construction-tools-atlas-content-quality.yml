@@ -5,11 +5,13 @@ on:
     paths:
       - 'tools/construction-tools-atlas/data/**'
       - 'tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs'
       - '.github/workflows/construction-tools-atlas-content-quality.yml'
   pull_request:
     paths:
       - 'tools/construction-tools-atlas/data/**'
       - 'tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs'
       - '.github/workflows/construction-tools-atlas-content-quality.yml'
 
 permissions:
@@ -22,8 +24,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check content quality auditor syntax
-        run: node --check tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs
+      - name: Check content quality syntax
+        run: |
+          node --check tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs
+          node --check tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs
 
       - name: Validate frozen public content quality inventory
         run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check
+
+      - name: Require complete q011 subject-specific core content
+        run: node tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs

@@ -1,0 +1,94 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-16-wave2-q011",
+  "entries": [
+    {
+      "id": "q011_furring_channel",
+      "wave": "content-wave-002",
+      "state": "expanded",
+      "detail_ja": "天井や壁の仕上げ材を受ける細長い下地材。本項の「野縁」は主に天井下地を構成する部材として扱い、壁面に仕上げ材を留める「胴縁」とは別の概念として区別する。木製・軽量鋼製など下地方式により断面、支持方法、間隔が異なる。",
+      "detail_en": "A narrow framing member that supports ceiling or wall finishes. In this entry, Japanese nokibuchi refers primarily to a ceiling-furring member and is kept distinct from a wall furring strip (dobuchi). Section, support method, and spacing vary with the framing system and material.",
+      "bullets_ja": ["採用する下地方式に応じて材質、断面、支持間隔、固定方法を確認する。", "仕上げ面の不陸につながらないよう通りと高さをそろえる。", "開口部や設備取合いでは必要な補強と端部支持を別途確認する。"],
+      "bullets_en": ["Confirm material, section, support spacing, and fixing method for the selected framing system.", "Keep alignment and elevation consistent so the finished surface does not become uneven.", "Check required edge support or reinforcement separately around openings and service interfaces."],
+      "examples_ja": ["天井ボードを受ける野縁を所定の間隔で配置する。", "点検口や照明開口の周囲で野縁の端部支持と補強を確認する。"],
+      "examples_en": ["Install ceiling furring members at the specified spacing to support board finishes.", "Check edge support and reinforcement around access hatches and lighting openings."]
+    },
+    {
+      "id": "q011_curing_sheet",
+      "wave": "content-wave-002",
+      "state": "expanded",
+      "detail_ja": "コンクリートやモルタルなどの養生中に表面を覆い、急激な乾燥を抑えて所定の養生状態を保つためのシート。本項では硬化・養生を目的とするシートを指し、搬入や内装作業で床や仕上げ面を傷・汚れから守る保護シートとは区別する。",
+      "detail_en": "A sheet used during curing of concrete, mortar, or similar materials to cover the surface and limit rapid moisture loss. This entry refers to curing control, not a protective floor or finish covering used against dirt and physical damage during other work.",
+      "bullets_ja": ["材料と施工仕様に合う養生方法・期間・シート材を確認する。", "風でめくれたり隙間ができたりしないよう重ねと端部を保持する。", "必要な養生期間が終わる前に外したり、表面を傷めたりしないよう管理する。"],
+      "bullets_en": ["Confirm the curing method, duration, and sheet material required for the work specification.", "Secure laps and edges so wind or movement does not leave unintended gaps.", "Avoid premature removal or surface damage before the required curing period is complete."],
+      "examples_ja": ["コンクリート床の仕上げ後に養生シートで表面を覆い、急乾燥を抑える。", "補修モルタルの施工後、指定された養生条件を保つためにシートを使用する。"],
+      "examples_en": ["Cover a finished concrete slab with curing sheet to reduce rapid surface drying.", "Use a sheet after repair-mortar placement when the specified curing method requires covered curing."]
+    },
+    {
+      "id": "q011_tie_wire",
+      "wave": "content-wave-002",
+      "state": "expanded",
+      "detail_ja": "鉄筋の交点などを仮固定して配筋位置を保持するために巻き付けてねじる細い線材。結束に使うハッカーや鉄筋結束機などの工具とは別物で、結束線そのものを指す。構造上の鉄筋継手の代わりになる部材でもない。",
+      "detail_en": "Thin wire twisted around reinforcement intersections to hold bars in position during reinforcement work. It is the consumable wire itself, distinct from a tying hook or powered rebar-tying tool, and it is not a substitute for a structural reinforcement splice.",
+      "bullets_ja": ["配筋仕様や使用環境に合う線径・材質の結束線を使う。", "配筋を保持できる程度に結束し、締め過ぎによる線切れを避ける。", "突出した線端は作業者や後工程の妨げにならないよう処理する。"],
+      "bullets_en": ["Use tie-wire diameter and material suited to the reinforcement specification and environment.", "Tighten enough to hold bar position without repeatedly over-twisting and breaking the wire.", "Manage projecting wire ends so they do not create hazards or interfere with later work."],
+      "examples_ja": ["梁の主筋とあばら筋の交点を結束線で固定する。", "壁配筋の検査前に結束の緩みと突出した線端を確認する。"],
+      "examples_en": ["Tie reinforcement intersections with tie wire so the bars remain positioned during installation.", "Before reinforcement inspection, check loose ties and unnecessarily projecting wire ends."]
+    },
+    {
+      "id": "q011_screed",
+      "wave": "content-wave-002",
+      "state": "expanded",
+      "detail_ja": "打設・敷設したコンクリートやモルタルなどの表面を定規や直線材でならし、所定の高さや勾配へ整える作業。ここでは工程としての「定規ずり」を指し、ならしに使うScreed（定規・トンボ等）の工具そのものとは区別する。",
+      "detail_en": "The operation of striking off and leveling freshly placed concrete, mortar, or similar material with a straightedge or screed to establish the required elevation or slope. This entry describes the screeding process, not the screed tool itself.",
+      "bullets_ja": ["基準高さ、勾配、見切り位置を確認してからならす。", "材料の施工可能時間内に作業し、過度な加水で表面だけを調整しない。", "一度で決めず高低差や欠損を確認しながら連続した面に整える。"],
+      "bullets_en": ["Confirm reference elevations, slopes, and boundaries before screeding.", "Work within the material's workable period and do not correct the surface by adding uncontrolled water.", "Check for high spots, low spots, and voids while establishing a continuous plane."],
+      "examples_ja": ["床コンクリートを基準レベルに合わせて定規ずりする。", "排水勾配を設けるモルタル下地を、基準点を見ながらならす。"],
+      "examples_en": ["Screed a concrete floor to the established level references.", "Strike off a mortar bed while maintaining the required drainage slope."]
+    },
+    {
+      "id": "q011_firestop_sealant",
+      "wave": "content-wave-002",
+      "state": "expanded",
+      "detail_ja": "防火区画を貫通する配管・配線の周囲や指定された目地部で、隙間を充填するために使う耐火性能を持つシーリング材。防火区画貫通処理というシステム全体ではなく、その構成材料の一つを指す。要求性能は貫通物、開口、下地、充填深さなどを含む認定・指定仕様との組合せで確認する。",
+      "detail_en": "A fire-rated sealant used to fill specified gaps around penetrations or joints in fire-resistance-rated assemblies. It is one component of a firestop system rather than the whole firestopping method; suitability depends on the approved or specified assembly, including penetrant, opening, substrate, and required sealant depth.",
+      "bullets_ja": ["対象の区画、貫通物、開口寸法に適合する指定システムを確認する。", "必要な充填深さ、バックアップ材、下地処理を製品・認定仕様に合わせる。", "単に隙間を埋めただけで所定の防火性能が成立すると判断しない。"],
+      "bullets_en": ["Confirm that the specified firestop system matches the rated assembly, penetrant, and opening size.", "Follow the required sealant depth, backing material, and substrate preparation for that system.", "Do not assume that filling a visible gap alone establishes the required fire-resistance performance."],
+      "examples_ja": ["防火区画を通る配管まわりを、指定されたシステムの耐火シーリング材で処理する。", "施工後に充填深さや連続性が指定納まりと一致しているか確認する。"],
+      "examples_en": ["Seal around a pipe penetration with the firestop sealant specified for the approved system.", "After installation, verify sealant depth and continuity against the specified detail."]
+    },
+    {
+      "id": "q011_inspection_hatch",
+      "wave": "content-wave-002",
+      "state": "expanded",
+      "detail_ja": "床下の配管、基礎まわり、床下空間などを点検・保守するため、床に設ける開閉式の点検口。本項は床下点検口を対象とし、天井や壁に設ける一般的なAccess Panelとは設置部位と要求条件を分けて扱う。",
+      "detail_en": "An openable floor hatch that provides access for inspection or maintenance of underfloor services, foundations, or crawl spaces. This entry specifically covers an underfloor inspection hatch and is kept distinct from a general wall or ceiling access panel.",
+      "bullets_ja": ["点検対象へ無理なく到達できる開口位置と寸法を確認する。", "床仕上げ、下地補強、ふたの支持・がたつきなど周囲の納まりを確認する。", "設置場所に応じて必要な荷重、気密・断熱、防湿などの条件を個別に確認する。"],
+      "bullets_en": ["Confirm an opening location and size that allows practical access to the item being inspected.", "Check floor finish integration, framing reinforcement, lid support, and unwanted movement.", "Verify any required load, air-sealing, insulation, or moisture-control conditions for the installation location."],
+      "examples_ja": ["床下配管の点検位置に合わせて床下点検口を配置する。", "床仕上げ施工前に点検口枠の高さと周囲下地を確認する。"],
+      "examples_en": ["Locate an underfloor inspection hatch where plumbing can be reached for maintenance.", "Before finishing the floor, check hatch-frame elevation and surrounding support."]
+    },
+    {
+      "id": "q011_cold_joint",
+      "wave": "content-wave-002",
+      "state": "expanded",
+      "detail_ja": "コンクリートの打込みが長く中断し、先に打った部分と後から打った部分が十分に一体化しにくくなって生じる意図しない打継ぎ状の境界。計画して位置と処理方法を定めるConstruction Joint（施工上の打継ぎ）とは区別する。影響は位置や構造・防水条件によって異なる。",
+      "detail_en": "An unintended joint-like interface that can form when concrete placement is delayed long enough for the earlier lift to lose the condition needed for proper integration with later concrete. It is distinct from a planned construction joint whose location and treatment are specified in advance. Consequences depend on location and structural or watertightness requirements.",
+      "bullets_ja": ["打込み計画と供給を調整し、意図しない長時間中断を避ける。", "中断が生じた場合は現場判断だけで表面を隠さず、仕様・管理手順に従って状態を確認する。", "発生箇所の補修や評価は構造・防水上の要求と原因を踏まえて決める。"],
+      "bullets_en": ["Coordinate placing and concrete supply to avoid unintended extended interruptions.", "If a significant delay occurs, assess the interface under the applicable site procedure instead of merely hiding the surface.", "Determine evaluation or repair from the cause, location, and structural or watertightness requirements."],
+      "examples_ja": ["打設中断後の境界がコールドジョイントに当たる可能性を確認し、記録と処置判断につなげる。", "計画された打継ぎ位置と、予期しない中断で生じた境界を区別して扱う。"],
+      "examples_en": ["Evaluate and record an interface created after an unplanned placing delay as a possible cold joint.", "Distinguish a specified construction-joint location from an interface caused by an unexpected interruption."]
+    },
+    {
+      "id": "q011_repair_mortar",
+      "wave": "content-wave-002",
+      "state": "expanded",
+      "detail_ja": "コンクリートやモルタルの欠け、はつり跡、断面欠損などを埋めて形状を復旧するためのモルタル系補修材。補修材全般を指すRepair Patchより対象をモルタル系材料へ限定し、施工厚、下地状態、付着、収縮、養生条件を製品仕様に合わせて確認する。",
+      "detail_en": "A mortar-based repair material used to rebuild chipped, removed, or otherwise lost sections of concrete or mortar. It is narrower than a generic repair patch material and requires product-specific control of repair depth, substrate preparation, bond, shrinkage behavior, and curing.",
+      "bullets_ja": ["脆弱部、粉じん、油分などを除去し、製品指定の下地条件を整える。", "一回の施工厚や必要なプライマー・接着処理を製品仕様で確認する。", "充填後は急乾燥や早期荷重を避け、指定された養生を行う。"],
+      "bullets_en": ["Remove unsound material, dust, oil, and other contaminants and prepare the substrate as specified.", "Confirm permitted lift thickness and any required primer or bonding treatment for the product.", "After placement, avoid rapid drying or premature loading and provide the specified curing."],
+      "examples_ja": ["コンクリート端部の欠けを整形・清掃してから補修モルタルで断面を復旧する。", "はつり補修部で施工厚と養生条件を確認しながら補修モルタルを充填する。"],
+      "examples_en": ["Prepare and clean a chipped concrete edge before rebuilding the section with repair mortar.", "Place repair mortar in a chipped-out repair area while observing the specified lift thickness and curing conditions."]
+    }
+  ]
+}
