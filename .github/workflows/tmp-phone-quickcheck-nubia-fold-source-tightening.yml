@@ -1,0 +1,36 @@
+name: Temporary Phone QuickCheck nubia Fold source tightening
+
+on:
+  push:
+    branches:
+      - fix/phone-quickcheck-nubia-fold-source-tightening-20260915
+    paths:
+      - .github/workflows/tmp-phone-quickcheck-nubia-fold-source-tightening.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/phone-quickcheck-nubia-fold-source-tightening-20260915
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/tmp-phone-quickcheck-nubia-fold-source-tightening.mjs
+      - run: node scripts/check-phone-quickcheck-data.mjs
+      - run: node scripts/check-phone-quickcheck-source-semantics.mjs
+      - run: node scripts/check-phone-quickcheck-affiliate.mjs
+      - run: node tools/phone-quickcheck/tests/behavior.test.mjs
+      - name: Commit validated canonical files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/phone-quickcheck/data/phones.json scripts/check-phone-quickcheck-source-semantics.mjs
+          git diff --cached --check
+          git commit -m "Phone QuickCheck: tighten nubia Fold source evidence"
+          git push origin HEAD:fix/phone-quickcheck-nubia-fold-source-tightening-20260915
