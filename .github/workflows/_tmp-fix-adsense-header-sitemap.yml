@@ -78,10 +78,13 @@ jobs:
                 const before = fs.readFileSync(full, 'utf8');
                 let after = before;
                 const robotsRe = /<meta\b[^>]*name=["']robots["'][^>]*>/i;
+                const robotsTag = robotsRe.exec(after)?.[0] || '';
+                const preserveNofollow = /nofollow/i.test(robotsTag);
+                const desiredRobots = preserveNofollow ? 'noindex,nofollow' : 'noindex,follow';
                 if (robotsRe.test(after)) {
-                  after = after.replace(robotsRe, '<meta name="robots" content="noindex,follow">');
+                  after = after.replace(robotsRe, `<meta name="robots" content="${desiredRobots}">`);
                 } else {
-                  after = after.replace(/<\/head>/i, '  <meta name="robots" content="noindex,follow">\n</head>');
+                  after = after.replace(/<\/head>/i, `  <meta name="robots" content="${desiredRobots}">\n</head>`);
                 }
                 after = after.replace(/\s*<script\b[^>]*src=["'][^"']*pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js[^"']*["'][^>]*><\/script>\s*/gi, '\n');
                 after = after.replace(/\s*<ins\b[^>]*\badsbygoogle\b[^>]*>[\s\S]*?<\/ins>\s*/gi, '\n');
