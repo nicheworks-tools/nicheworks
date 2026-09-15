@@ -19,8 +19,8 @@ fs.writeFileSync(dataPath, `${JSON.stringify(payload, null, 2)}\n`);
 
 const testPath = 'tools/phone-quickcheck/tests/behavior.test.mjs';
 const testText = fs.readFileSync(testPath, 'utf8');
-const before = "  assert.doesNotMatch(html, /端末側の有線充電上限<\\/span><b>25W/);";
-const after = "  assert.match(html, /端末側の有線充電上限<\\/span><b>25W/);";
+const before = `  assert.match(html, /4500 mAh/);\n  assert.match(html, /充電器目安<\\/span><b>25W\\+/);\n  assert.match(html, /Super Fast Charging/);\n  assert.doesNotMatch(html, /端末側の有線充電上限<\\/span><b>25W/);`;
+const after = `  assert.match(html, /4500 mAh/);\n  assert.match(html, /充電器目安<\\/span><b>25W\\+/);\n  assert.match(html, /Super Fast Charging/);\n  assert.match(html, /端末側の有線充電上限<\\/span><b>25W/);`;
 const matches = testText.split(before).length - 1;
-if (matches !== 1) throw new Error(`expected one Z Fold2 wired-max regression target, got ${matches}`);
+if (matches !== 1) throw new Error(`expected one Z Fold2 regression block, got ${matches}`);
 fs.writeFileSync(testPath, testText.replace(before, after));
