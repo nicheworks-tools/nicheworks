@@ -5971,7 +5971,7 @@
       },
       "weightG": 187,
       "displayInch": 6.5,
-      "waterRating": null,
+      "waterRating": "IPX4 / IP5X",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": null,
@@ -5997,7 +5997,8 @@
         "manualUrl": "https://support.oppo.com/jp/",
         "chargingUrl": "https://www.oppo.com/jp/smartphones/series-a/a77/specs/",
         "verifiedAt": "2026-09-16",
-        "releaseUrl": "https://www.oppo.com/jp/newsroom/press/oppo-a77-launch/"
+        "releaseUrl": "https://www.oppo.com/jp/newsroom/press/oppo-a77-launch/",
+        "waterUrl": "https://www.oppo.com/jp/smartphones/series-a/a77/"
       },
       "affiliateKeys": []
     },
@@ -7655,7 +7656,7 @@
       },
       "weightG": 178,
       "displayInch": 5.8,
-      "waterRating": null,
+      "waterRating": "IPX5/IPX8 / IP6X",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": null,
@@ -7681,7 +7682,8 @@
         "manualUrl": "https://k-tai.sharp.co.jp/support/",
         "releaseUrl": "https://jp.sharp/products/aquos-sense5g/",
         "chargingUrl": "https://jp.sharp/products/aquos-sense5g/spec.html",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://jp.sharp/products/aquos-sense5g/spec.html"
       },
       "affiliateKeys": []
     },
@@ -7705,7 +7707,7 @@
       },
       "weightG": 177,
       "displayInch": 5.8,
-      "waterRating": null,
+      "waterRating": "IPX5/IPX8 / IP6X",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": null,
@@ -7731,7 +7733,8 @@
         "manualUrl": "https://k-tai.sharp.co.jp/support/",
         "releaseUrl": "https://jp.sharp/products/shm15/",
         "chargingUrl": "https://jp.sharp/products/shm15/spec.html",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://jp.sharp/products/shm15/spec.html"
       },
       "affiliateKeys": []
     },
@@ -7755,7 +7758,7 @@
       },
       "weightG": 162,
       "displayInch": 5.7,
-      "waterRating": null,
+      "waterRating": "IPX5/IPX7 / IP6X",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": null,
@@ -7781,7 +7784,8 @@
         "manualUrl": "https://k-tai.sharp.co.jp/support/",
         "releaseUrl": "https://jp.sharp/products/aquos-wish/",
         "chargingUrl": "https://jp.sharp/products/aquos-wish-biz/s/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://jp.sharp/products/aquos-wish/a/"
       },
       "affiliateKeys": []
     },
@@ -7805,7 +7809,7 @@
       },
       "weightG": 207,
       "displayInch": 6.6,
-      "waterRating": null,
+      "waterRating": "IPX5/IPX8 / IP6X",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": null,
@@ -7831,7 +7835,8 @@
         "manualUrl": "https://k-tai.sharp.co.jp/support/",
         "releaseUrl": "https://jp.sharp/products/aquos-r6/",
         "chargingUrl": "https://jp.sharp/products/aquos-r6/spec.html",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://jp.sharp/products/aquos-r6/spec.html"
       },
       "affiliateKeys": []
     },
@@ -7855,7 +7860,7 @@
       },
       "weightG": 146,
       "displayInch": 6.4,
-      "waterRating": null,
+      "waterRating": "IPX5/IPX8 / IP6X",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": null,
@@ -7881,7 +7886,8 @@
         "manualUrl": "https://k-tai.sharp.co.jp/support/",
         "releaseUrl": "https://jp.sharp/products/aquos-zero6/",
         "chargingUrl": "https://jp.sharp/products/aquos-zero6/s/index.html",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://jp.sharp/products/aquos-zero6/"
       },
       "affiliateKeys": []
     },
@@ -7905,7 +7911,7 @@
       },
       "weightG": 189,
       "displayInch": 6.5,
-      "waterRating": null,
+      "waterRating": "IPX5/IPX8 / IP6X",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": null,
@@ -7931,7 +7937,8 @@
         "manualUrl": "https://k-tai.sharp.co.jp/support/",
         "releaseUrl": "https://jp.sharp/products/aquos-r5g/",
         "chargingUrl": "https://jp.sharp/products/aquos-r5g/spec.html",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://jp.sharp/products/aquos-r5g/spec.html"
       },
       "affiliateKeys": []
     },
@@ -8106,7 +8113,7 @@
       },
       "weightG": 178,
       "displayInch": 6.5,
-      "waterRating": null,
+      "waterRating": "IP68",
       "charging": {
         "connector": "USB-C",
         "wiredRecommendedW": null,
@@ -8130,7 +8137,8 @@
         "manualUrl": "https://support.oppo.com/jp/",
         "releaseUrl": "https://www.oppo.com/jp/smartphones/series-a/a55s-5g/specs/",
         "chargingUrl": "https://www.oppo.com/jp/smartphones/series-a/a55s-5g/specs/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://www.oppo.com/jp/smartphones/series-a/a55s-5g/"
       },
       "affiliateKeys": []
     },
