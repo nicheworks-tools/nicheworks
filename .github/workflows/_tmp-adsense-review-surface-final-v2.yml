@@ -46,7 +46,7 @@ jobs:
               if (ent.isDirectory()) walk(full);
               else if (ent.isFile() && ent.name.endsWith('.html')) {
                 const before = fs.readFileSync(full,'utf8');
-                let after = before.replace(/<!--[\s\S]*?YOUR_TOKEN_HERE[\s\S]*?-->/gi,'');
+                let after = before.replace(/<!--[\s\S]*?-->/g, comment => comment.includes('YOUR_TOKEN_HERE') ? '' : comment);
                 after = after.replace(elementRe,(all,tag,attrs,inner) => {
                   if (/<ins\b|adsbygoogle|pagead2\.googlesyndication\.com/i.test(inner)) return all;
                   return placeholderText.test(plain(inner)) ? '' : all;
