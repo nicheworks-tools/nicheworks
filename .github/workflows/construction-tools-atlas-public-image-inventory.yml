@@ -33,5 +33,5 @@ jobs:
       - name: Check public image inventory syntax
         run: node --check tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs
 
-      - name: Report public image inventory
-        run: node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs
+      - name: Validate frozen public image inventory
+        run: node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --check
