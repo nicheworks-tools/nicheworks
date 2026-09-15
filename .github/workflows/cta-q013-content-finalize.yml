@@ -1,0 +1,80 @@
+name: CTA q013 content finalize
+
+on:
+  push:
+    branches:
+      - feat/construction-atlas-q013-content-completion-20260916
+    paths:
+      - '.github/workflows/cta-q013-content-finalize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/construction-atlas-q013-content-completion-20260916
+          fetch-depth: 0
+
+      - name: Patch permanent audit and snapshot version
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          audit = Path('.github/workflows/construction-tools-atlas-audit.yml')
+          s = audit.read_text()
+          syntax_anchor = "      - name: Check q012 content completion syntax\n        run: node --check tools/construction-tools-atlas/scripts/check-q012-content-completion-v2.3.cjs\n"
+          syntax_add = syntax_anchor + "\n      - name: Check q013 content completion syntax\n        run: node --check tools/construction-tools-atlas/scripts/check-q013-content-completion-v2.3.cjs\n"
+          run_anchor = "      - name: Require complete q012 subject-specific core content\n        run: node tools/construction-tools-atlas/scripts/check-q012-content-completion-v2.3.cjs\n"
+          run_add = run_anchor + "\n      - name: Require complete q013 subject-specific core content\n        run: node tools/construction-tools-atlas/scripts/check-q013-content-completion-v2.3.cjs\n"
+          if 'Check q013 content completion syntax' not in s:
+              if syntax_anchor not in s: raise SystemExit('syntax anchor missing')
+              s = s.replace(syntax_anchor, syntax_add, 1)
+          if 'Require complete q013 subject-specific core content' not in s:
+              if run_anchor not in s: raise SystemExit('run anchor missing')
+              s = s.replace(run_anchor, run_add, 1)
+          audit.write_text(s)
+
+          auditor = Path('tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs')
+          a = auditor.read_text()
+          old = "version: '2026-09-16-q013-identity-closure-1'"
+          new = "version: '2026-09-16-q013-content-complete-1'"
+          if old not in a and new not in a: raise SystemExit('snapshot version anchor missing')
+          auditor.write_text(a.replace(old, new, 1))
+          PY
+
+      - name: Validate q013 packs and completion contract
+        run: |
+          node -e "for (const f of ['wave4a','wave4b','wave4c']) JSON.parse(require('fs').readFileSync('tools/construction-tools-atlas/data/content-enrichment-'+f+'-v2.3.json','utf8')); console.log('q013 pack JSON: PASS')"
+          node --check tools/construction-tools-atlas/scripts/check-q013-content-completion-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-q013-content-completion-v2.3.cjs
+
+      - name: Refresh public content snapshot
+        run: |
+          node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --write
+          node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check
+
+      - name: Assert q013 completion metrics
+        run: |
+          node <<'NODE'
+          const s=require('./tools/construction-tools-atlas/data/public-content-quality-v2.3.json');
+          const x=s.summary;
+          const expected={public_entries:881,fallback_independent_core:311,runtime_fallback_dependent:570,missing_core_bilingual_content:0,explicit_bilingual_detail:530,explicit_bilingual_bullets:311,explicit_bilingual_examples:530,content_enriched_entries:171};
+          for(const [k,v] of Object.entries(expected)) if(x[k]!==v) throw new Error(`${k}: expected ${v}, got ${x[k]}`);
+          if(s.version!=='2026-09-16-q013-content-complete-1') throw new Error(`snapshot version ${s.version}`);
+          console.log('CTA_Q013_CONTENT_METRICS='+JSON.stringify(expected));
+          NODE
+
+      - name: Commit finalized q013 content state
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/construction-tools-atlas-audit.yml tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs tools/construction-tools-atlas/data/public-content-quality-v2.3.json
+          if git diff --cached --quiet; then
+            echo 'No finalize changes required'
+          else
+            git commit -m 'feat(construction-atlas): freeze q013 content completion'
+            git push origin HEAD:feat/construction-atlas-q013-content-completion-20260916
+          fi
