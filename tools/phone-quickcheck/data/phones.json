@@ -1,6 +1,6 @@
 {
   "version": 7,
-  "updatedAt": "2026-09-15",
+  "updatedAt": "2026-09-16",
   "phones": [
     {
       "id": "apple-iphone-18-pro",
@@ -5899,7 +5899,8 @@
         "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno9-a/specs/",
         "manualUrl": "https://support.oppo.com/jp/",
         "chargingUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno9-a/specs/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "releaseUrl": "https://www.oppo.com/jp/newsroom/press/oppo-tv-reno9a/"
       },
       "affiliateKeys": []
     },
@@ -5946,7 +5947,8 @@
         "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno7-a/specs/",
         "manualUrl": "https://support.oppo.com/jp/",
         "chargingUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno7-a/specs/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "releaseUrl": "https://www.oppo.com/jp/newsroom/press/opporeno7a-conceptvideo/"
       },
       "affiliateKeys": []
     },
@@ -5994,7 +5996,8 @@
         "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-a/a77/specs/",
         "manualUrl": "https://support.oppo.com/jp/",
         "chargingUrl": "https://www.oppo.com/jp/smartphones/series-a/a77/specs/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "releaseUrl": "https://www.oppo.com/jp/newsroom/press/oppo-a77-launch/"
       },
       "affiliateKeys": []
     },
@@ -6044,7 +6047,8 @@
         "specificationsUrl": "https://www.mi.com/jp/product/redmi-note-13-pro-plus-5g/specs/",
         "manualUrl": "https://www.mi.com/jp/support/",
         "chargingUrl": "https://www.mi.com/jp/product/redmi-note-13-pro-plus-5g/specs/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "releaseUrl": "https://www.mi.com/jp/support/policy/redminote13proplus-5g-premium-service/"
       },
       "affiliateKeys": []
     },
@@ -6093,7 +6097,8 @@
         "specificationsUrl": "https://www.mi.com/jp/product/redmi-note-13-pro-5g/specs/",
         "manualUrl": "https://www.mi.com/jp/support/",
         "chargingUrl": "https://www.mi.com/jp/product/redmi-note-13-pro-5g/specs/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "releaseUrl": "https://www.mi.com/jp/support/terms/redmi-note-13-pro-5g-event-terms/"
       },
       "affiliateKeys": []
     },
@@ -6142,7 +6147,8 @@
         "specificationsUrl": "https://www.mi.com/jp/product/redmi-note-11-pro-5g/specs/",
         "manualUrl": "https://www.mi.com/jp/support/",
         "chargingUrl": "https://www.mi.com/jp/product/redmi-note-11-pro-5g/specs/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "releaseUrl": "https://www.mi.com/jp/service/support/imei-redemption.html"
       },
       "affiliateKeys": []
     },
@@ -6192,7 +6198,8 @@
         "specificationsUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192474/",
         "manualUrl": "https://jp-jp.support.motorola.com/",
         "chargingUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192474/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "releaseUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=883"
       },
       "affiliateKeys": []
     },
@@ -6242,7 +6249,8 @@
         "manualUrl": "https://jp-jp.support.motorola.com/",
         "chargingUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192373/",
         "wirelessUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/178982/~/specifications---motorola-edge-50-pro/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "releaseUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=916"
       },
       "affiliateKeys": []
     },
