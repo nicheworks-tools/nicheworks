@@ -3979,8 +3979,8 @@
         "wirelessMaxW": 30
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://store.motorola.co.jp/category/RAZR/RAZR60ULTRA.html",
@@ -3988,7 +3988,7 @@
         "releaseUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=1115",
         "chargingUrl": "https://store.motorola.co.jp/category/RAZR/RAZR60ULTRA.html",
         "wirelessUrl": "https://store.motorola.co.jp/category/RAZR/RAZR60ULTRA.html",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
     },
@@ -8903,6 +8903,7 @@
         },
         "wiredRecommendedW": null,
         "protocols": [
+          "USB-PD",
           "PPS"
         ],
         "pps": "required",
@@ -8917,8 +8918,8 @@
         "specificationsUrl": "https://www.ymobile.jp/lineup/smartphone/nubiaflip2/",
         "manualUrl": "https://www.ymobile.jp/lineup/nubiaflip2/data/nubiaflip2_userguide.pdf",
         "releaseUrl": "https://www.ymobile.jp/lineup/smartphone/nubiaflip2/",
-        "chargingUrl": "https://www.ymobile.jp/lineup/smartphone/nubiaflip2/",
-        "verifiedAt": "2026-09-14"
+        "chargingUrl": "https://www.nubia.com/jp/products/smartphones/nubia/nubia-flip-2.html",
+        "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
     },
