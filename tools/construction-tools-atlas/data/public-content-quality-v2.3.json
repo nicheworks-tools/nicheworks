@@ -1,6 +1,6 @@
 {
   "schema": "cta-public-content-quality-v2.3",
-  "version": "2026-09-16-q013-identity-closure-1",
+  "version": "2026-09-16-q013-content-complete-1",
   "policy": {
     "purpose": "Measure source-backed or canonical-ID-enriched core content separately from runtime generic fallback copy.",
     "fallback_independent_core_requires": [
@@ -18,27 +18,27 @@
     "publication_inventory_version": "2026-09-16-q013-identity-closure-1",
     "publication_id_sha256": "177a014ef6de2e56988ed1031b273494fbfa18350e096ffbc2ee8a29343328c5",
     "quality_manifest_version": "2026-09-14-manifest-8",
-    "content_enrichment_version": "2026-09-16-wave3d"
+    "content_enrichment_version": "2026-09-16-wave4c"
   },
   "summary": {
     "public_entries": 881,
-    "fallback_independent_core": 241,
-    "runtime_fallback_dependent": 640,
+    "fallback_independent_core": 311,
+    "runtime_fallback_dependent": 570,
     "missing_core_bilingual_content": 0,
     "explicit_bilingual_identity": 881,
     "explicit_bilingual_definition": 881,
-    "explicit_bilingual_detail": 460,
-    "explicit_bilingual_bullets": 241,
-    "explicit_bilingual_examples": 460,
+    "explicit_bilingual_detail": 530,
+    "explicit_bilingual_bullets": 311,
+    "explicit_bilingual_examples": 530,
     "explicit_bilingual_aliases": 279,
-    "content_enriched_entries": 101,
+    "content_enriched_entries": 171,
     "has_category_context": 881,
     "has_task_context": 881
   },
   "fallback_field_counts": {
-    "detail": 421,
-    "bullets": 640,
-    "examples": 421
+    "detail": 351,
+    "bullets": 570,
+    "examples": 351
   },
   "by_type": {
     "access": {
@@ -55,14 +55,14 @@
     },
     "component": {
       "public_entries": 208,
-      "fallback_independent_core": 51,
-      "runtime_fallback_dependent": 157,
+      "fallback_independent_core": 65,
+      "runtime_fallback_dependent": 143,
       "missing_core_bilingual_content": 0
     },
     "consumable": {
       "public_entries": 13,
-      "fallback_independent_core": 9,
-      "runtime_fallback_dependent": 4,
+      "fallback_independent_core": 10,
+      "runtime_fallback_dependent": 3,
       "missing_core_bilingual_content": 0
     },
     "defect": {
@@ -79,8 +79,8 @@
     },
     "equipment": {
       "public_entries": 43,
-      "fallback_independent_core": 14,
-      "runtime_fallback_dependent": 29,
+      "fallback_independent_core": 23,
+      "runtime_fallback_dependent": 20,
       "missing_core_bilingual_content": 0
     },
     "fastener": {
@@ -109,8 +109,8 @@
     },
     "material": {
       "public_entries": 166,
-      "fallback_independent_core": 54,
-      "runtime_fallback_dependent": 112,
+      "fallback_independent_core": 65,
+      "runtime_fallback_dependent": 101,
       "missing_core_bilingual_content": 0
     },
     "materials": {
@@ -127,8 +127,8 @@
     },
     "rigging": {
       "public_entries": 7,
-      "fallback_independent_core": 1,
-      "runtime_fallback_dependent": 6,
+      "fallback_independent_core": 7,
+      "runtime_fallback_dependent": 0,
       "missing_core_bilingual_content": 0
     },
     "safety": {
@@ -163,8 +163,8 @@
     },
     "temporary": {
       "public_entries": 3,
-      "fallback_independent_core": 0,
-      "runtime_fallback_dependent": 3,
+      "fallback_independent_core": 2,
+      "runtime_fallback_dependent": 1,
       "missing_core_bilingual_content": 0
     },
     "test": {
@@ -175,17 +175,17 @@
     },
     "tool": {
       "public_entries": 336,
-      "fallback_independent_core": 69,
-      "runtime_fallback_dependent": 267,
+      "fallback_independent_core": 96,
+      "runtime_fallback_dependent": 240,
       "missing_core_bilingual_content": 0
     }
   },
   "hashes": {
-    "content_status_sha256": "665d99ff24cc483ace3841afed91a9d624906974fe360517b425d4c2fffe00f3",
-    "fallback_independent_id_sha256": "371c09754ee9a7e331988098d30521afc4a91d0e6c7d204ec2abc514c3bace85",
-    "fallback_dependent_id_sha256": "5de0e006caabc46edaf819f954a55e37bcfe1778d6262c2a3f375a31af4d3b15",
+    "content_status_sha256": "026271b36bd8aaa637fe6c04a67d53e67bd58d4a776e326bb2578a0a6491d933",
+    "fallback_independent_id_sha256": "3b420d13684b71399b70e1a82e366da0d9152235d2a1cd689690d7845e4c7301",
+    "fallback_dependent_id_sha256": "d28e63dfacb0e5496a1fcc4c746d8f7f3193c5e8fa3131f53e26cec1c0564bf1",
     "missing_core_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "content_enriched_id_sha256": "c19cd06e43754ea104040f8fbf4e250e5b3ff635348f06ca172ee01c1cf46da4"
+    "content_enriched_id_sha256": "5d6d4d78a740056532b416744c0f5252e278fddc28f109d8d86620ccc89877d5"
   },
   "samples": {
     "fallback_independent_core": [
@@ -342,8 +342,8 @@
     ],
     "runtime_fallback_dependent": [
       {
-        "id": "q013_scaffold_board",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_roof_tile",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -352,8 +352,8 @@
         ]
       },
       {
-        "id": "q013_scaffold_clamp",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_galvalume_roof",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -362,8 +362,8 @@
         ]
       },
       {
-        "id": "q013_swivel_clamp",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_standing_seam_roof",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -372,8 +372,8 @@
         ]
       },
       {
-        "id": "q013_right_angle_clamp",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_corrugated_roof_sheet",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -382,8 +382,8 @@
         ]
       },
       {
-        "id": "q013_base_jack",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_roof_batten",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -392,8 +392,8 @@
         ]
       },
       {
-        "id": "q013_base_plate_scaffold",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_eave_flashing",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -402,8 +402,8 @@
         ]
       },
       {
-        "id": "q013_scaffold_ladder",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_valley_flashing",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -412,8 +412,8 @@
         ]
       },
       {
-        "id": "q013_ladder_frame",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_drip_edge",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -422,8 +422,8 @@
         ]
       },
       {
-        "id": "q013_cross_brace",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_snow_guard",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -432,8 +432,8 @@
         ]
       },
       {
-        "id": "q013_wall_tie",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_roof_vent",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -442,8 +442,8 @@
         ]
       },
       {
-        "id": "q013_lifting_sling",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_roof_sealant",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -452,8 +452,8 @@
         ]
       },
       {
-        "id": "q013_wire_rope_sling",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_roof_screw",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -462,8 +462,8 @@
         ]
       },
       {
-        "id": "q013_chain_sling",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_roofing_nail",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -472,8 +472,8 @@
         ]
       },
       {
-        "id": "q013_turnbuckle",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_bitumen_primer",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -482,8 +482,8 @@
         ]
       },
       {
-        "id": "q013_beam_clamp",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_urethane_waterproofing",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -492,8 +492,8 @@
         ]
       },
       {
-        "id": "q013_trolley_hoist",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_frp_waterproofing",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -502,8 +502,8 @@
         ]
       },
       {
-        "id": "q013_tag_line",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_sheet_membrane",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -512,8 +512,8 @@
         ]
       },
       {
-        "id": "q013_dolly",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_torch_on_membrane",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -522,8 +522,8 @@
         ]
       },
       {
-        "id": "q013_material_cart",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_waterproof_topcoat",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -532,8 +532,8 @@
         ]
       },
       {
-        "id": "q013_mortar_pan",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_drain_strainer",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -542,8 +542,8 @@
         ]
       },
       {
-        "id": "q013_mix_bucket",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_roof_drain",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -552,8 +552,8 @@
         ]
       },
       {
-        "id": "q013_paddle_mixer",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_overflow_drain",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -562,8 +562,8 @@
         ]
       },
       {
-        "id": "q013_concrete_rake",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_parapet_cap",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -572,8 +572,8 @@
         ]
       },
       {
-        "id": "q013_bull_float",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_coping_joint",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -582,8 +582,8 @@
         ]
       },
       {
-        "id": "q013_edger_trowel",
-        "source": "data/tools.quality-013.json",
+        "id": "q014_exterior_siding",
+        "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
