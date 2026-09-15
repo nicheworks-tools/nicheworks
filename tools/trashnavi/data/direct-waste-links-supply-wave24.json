@@ -1,0 +1,123 @@
+[
+  {
+    "pref": "北海道",
+    "city": "札幌市",
+    "name": "札幌市 家庭ごみ収集日カレンダー",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.sapporo.jp/seiso/kaisyu/",
+    "lgcode": "011002",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "北海道",
+    "city": "札幌市",
+    "name": "札幌市 大型ごみ",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.sapporo.jp/seiso/gomi/oogatagomi.html",
+    "lgcode": "011002",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "神奈川県",
+    "city": "横浜市",
+    "name": "横浜市 ごみと資源の収集曜日",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.yokohama.lg.jp/kurashi/sumai-kurashi/gomi-recycle/gomi/shushuyobi/",
+    "lgcode": "141003",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "神奈川県",
+    "city": "横浜市",
+    "name": "横浜市 粗大ごみの収集をしてほしい",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.yokohama.lg.jp/kurashi/sumai-kurashi/gomi-recycle/gomi/shushu/sodaigomi/dashikata/shuushuu.html",
+    "lgcode": "141003",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "山梨県",
+    "city": "甲府市",
+    "name": "甲府市 令和8年度地区別日程表PDF",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.kofu.yamanashi.jp/shushu/tikubetunitteihyou/r4nitteihyou/20240129.html",
+    "lgcode": "192015",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja",
+    "fiscal_year": "2026"
+  },
+  {
+    "pref": "山梨県",
+    "city": "甲府市",
+    "name": "甲府市ごみ分別アプリ",
+    "type": "ごみ分別アプリ",
+    "link_type": "waste_app",
+    "url": "https://www.city.kofu.yamanashi.jp/genryo/apuri.html",
+    "lgcode": "192015",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "愛知県",
+    "city": "名古屋市",
+    "name": "名古屋市 ごみ収集日検索",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.nagoya.jp/kurashi/gomi/1012183/1037098.html",
+    "lgcode": "231002",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "愛知県",
+    "city": "名古屋市",
+    "name": "名古屋市 粗大ごみの分け方・出し方について",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.nagoya.jp/kurashi/gomi/1012183/1035058/1012184/1033988.html",
+    "lgcode": "231002",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "和歌山県",
+    "city": "和歌山市",
+    "name": "和歌山市 粗大ごみ等の処分方法について",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.wakayama.wakayama.jp/kurashi/gomi_kankyo/1001113/1005184/1037075/1037074.html",
+    "lgcode": "302015",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "和歌山県",
+    "city": "和歌山市",
+    "name": "和歌山市 青岸ストックヤードの受入基準について",
+    "type": "持込施設",
+    "link_type": "dropoff_facility",
+    "url": "https://www.city.wakayama.wakayama.jp/kurashi/gomi_kankyo/1001113/1019036/1019037.html",
+    "lgcode": "302015",
+    "last_checked": "2026-09-15",
+    "status": "active",
+    "language": "ja"
+  }
+]
