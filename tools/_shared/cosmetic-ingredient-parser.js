@@ -148,6 +148,21 @@
       category: "pH adjuster",
       sources: Object.freeze(["https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/"]),
       authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "bht": Object.freeze({
+      category: "antioxidant",
+      sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1672/bht/"]),
+      authority: "Cosmetics Europe / COSMILE Europe"
+    }),
+    "betaine": Object.freeze({
+      category: "humectant",
+      sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1648/betaine/"]),
+      authority: "Cosmetics Europe / COSMILE Europe"
+    }),
+    "pentylene glycol": Object.freeze({
+      category: "solvent",
+      sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11416/pentylene-glycol/"]),
+      authority: "Cosmetics Europe / COSMILE Europe"
     })
   });
 
@@ -598,7 +613,7 @@
   }
 
   const api = {
-    version: "1.23.0",
+    version: "1.24.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
