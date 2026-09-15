@@ -149,7 +149,33 @@
     })
   ]);
 
-  const rows = Object.freeze([...wave6Rows, ...wave7Rows, ...wave12Rows, ...wave13Rows, ...wave14Rows, ...wave16Rows]);
+  const wave17Row = (model, sourceUrl, evidenceRelation) => Object.freeze({
+    maker: "KYOCERA Document Solutions",
+    searchMaker: "KYOCERA",
+    model,
+    verifiedAt: "2026-09-16",
+    sourceUrl,
+    evidenceRelation,
+    evidenceUrls: Object.freeze([sourceUrl]),
+    tonerCodes: Object.freeze([])
+  });
+  const km4010FamilySource = "https://www.kyoceradocumentsolutions.co.jp/products/copy/copy03/km_4010w/option.html";
+  const km4015Source = "https://www.kyoceradocumentsolutions.co.jp/products/copy/copy03/km_4015w/option.html";
+  const km4850Source = "https://www.kyoceradocumentsolutions.co.jp/products/copy/copy03/km_4850w/option.html";
+  const taskalfa4811Source = "https://www.kyoceradocumentsolutions.co.jp/products/copy/copy03/4811w/option.html";
+  const taskalfa4814FamilySource = "https://www.kyoceradocumentsolutions.co.jp/products/wide-format-multifunction/taskalfa-4814w-4815w-4816w/";
+  const wave17Rows = Object.freeze([
+    wave17Row("KM-4010w", km4010FamilySource, "official_family_toner_reference"),
+    wave17Row("KM-4070w", km4010FamilySource, "official_family_toner_reference"),
+    wave17Row("KM-4015w", km4015Source, "official_model_toner_reference"),
+    wave17Row("KM-4850w", km4850Source, "official_model_toner_reference"),
+    wave17Row("TASKalfa 4811w", taskalfa4811Source, "official_model_toner_reference"),
+    wave17Row("TASKalfa 4814w", taskalfa4814FamilySource, "official_family_toner_reference"),
+    wave17Row("TASKalfa 4815w", taskalfa4814FamilySource, "official_family_toner_reference"),
+    wave17Row("TASKalfa 4816w", taskalfa4814FamilySource, "official_family_toner_reference")
+  ]);
+
+  const rows = Object.freeze([...wave6Rows, ...wave7Rows, ...wave12Rows, ...wave13Rows, ...wave14Rows, ...wave16Rows, ...wave17Rows]);
 
   function buildTaggedSearchUrl(query) {
     const url = new URL("https://www.amazon.co.jp/s");
@@ -198,6 +224,7 @@
   window.MANUALFINDER_KYOCERA_TONER_WAVE13_LEDGER = wave13Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE14_LEDGER = wave14Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE16_LEDGER = wave16Rows;
+  window.MANUALFINDER_KYOCERA_TONER_WAVE17_LEDGER = wave17Rows;
   window.MANUALFINDER_AFFILIATE_CONFIG = Object.freeze({
     ...base,
     printerConsumables: Object.freeze([...(base.printerConsumables || []), ...rows]),
