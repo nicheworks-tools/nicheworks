@@ -1,6 +1,6 @@
 {
   "schema": "cta-public-content-quality-v2.3",
-  "version": "2026-09-16-content-wave3a-q012-safe-1",
+  "version": "2026-09-16-content-wave3b-q012-safe-1",
   "policy": {
     "purpose": "Measure source-backed or canonical-ID-enriched core content separately from runtime generic fallback copy.",
     "fallback_independent_core_requires": [
@@ -18,27 +18,27 @@
     "publication_inventory_version": "2026-09-16-q011-identity-closure-1",
     "publication_id_sha256": "9e385023a6533565a4a0542e4b858b63644316c0837d9d6cf49fb08e6aa215ac",
     "quality_manifest_version": "2026-09-14-manifest-8",
-    "content_enrichment_version": "2026-09-16-wave3a"
+    "content_enrichment_version": "2026-09-16-wave3b"
   },
   "summary": {
     "public_entries": 913,
-    "fallback_independent_core": 197,
-    "runtime_fallback_dependent": 716,
+    "fallback_independent_core": 217,
+    "runtime_fallback_dependent": 696,
     "missing_core_bilingual_content": 0,
     "explicit_bilingual_identity": 913,
     "explicit_bilingual_definition": 913,
-    "explicit_bilingual_detail": 418,
-    "explicit_bilingual_bullets": 197,
-    "explicit_bilingual_examples": 418,
+    "explicit_bilingual_detail": 438,
+    "explicit_bilingual_bullets": 217,
+    "explicit_bilingual_examples": 438,
     "explicit_bilingual_aliases": 280,
-    "content_enriched_entries": 57,
+    "content_enriched_entries": 77,
     "has_category_context": 913,
     "has_task_context": 913
   },
   "fallback_field_counts": {
-    "detail": 495,
-    "bullets": 716,
-    "examples": 495
+    "detail": 475,
+    "bullets": 696,
+    "examples": 475
   },
   "by_type": {
     "access": {
@@ -55,14 +55,14 @@
     },
     "component": {
       "public_entries": 208,
-      "fallback_independent_core": 43,
-      "runtime_fallback_dependent": 165,
+      "fallback_independent_core": 47,
+      "runtime_fallback_dependent": 161,
       "missing_core_bilingual_content": 0
     },
     "consumable": {
       "public_entries": 14,
-      "fallback_independent_core": 6,
-      "runtime_fallback_dependent": 8,
+      "fallback_independent_core": 9,
+      "runtime_fallback_dependent": 5,
       "missing_core_bilingual_content": 0
     },
     "defect": {
@@ -85,8 +85,8 @@
     },
     "fastener": {
       "public_entries": 17,
-      "fallback_independent_core": 3,
-      "runtime_fallback_dependent": 14,
+      "fallback_independent_core": 9,
+      "runtime_fallback_dependent": 8,
       "missing_core_bilingual_content": 0
     },
     "fixture": {
@@ -109,8 +109,8 @@
     },
     "material": {
       "public_entries": 167,
-      "fallback_independent_core": 51,
-      "runtime_fallback_dependent": 116,
+      "fallback_independent_core": 52,
+      "runtime_fallback_dependent": 115,
       "missing_core_bilingual_content": 0
     },
     "materials": {
@@ -175,17 +175,17 @@
     },
     "tool": {
       "public_entries": 364,
-      "fallback_independent_core": 55,
-      "runtime_fallback_dependent": 309,
+      "fallback_independent_core": 61,
+      "runtime_fallback_dependent": 303,
       "missing_core_bilingual_content": 0
     }
   },
   "hashes": {
-    "content_status_sha256": "aaf96a951009c778d386d3b80cd5e7245895eac5d7ff4065f3eac29e0cec7aff",
-    "fallback_independent_id_sha256": "75cfc57cbcb115594201a3e9a7f5d98a3c2437c6eb54c91836515ed7688c6320",
-    "fallback_dependent_id_sha256": "54578691fb74d06884e731bc0747db4e010c804a3eee95fdbba929902a5532a3",
+    "content_status_sha256": "132edaacc00df4204bf7249aa30469fc3a96ff4fc6f38482a110721e7264af3a",
+    "fallback_independent_id_sha256": "78e52ae30786e75d4cf1bb9baea8cadf9b1f849b512d344a4b24483f851df1a4",
+    "fallback_dependent_id_sha256": "f69f415ba24804fa3a9fd46e82407ab723fa4043f5fe4f741c2423f3f8278183",
     "missing_core_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "content_enriched_id_sha256": "ac1bf865a4dcf1272c4741ad9da84b5801395f99be2db40029f897f406512916"
+    "content_enriched_id_sha256": "8516c2ba8e0bd39bdd863262c1280fdbc5d9691fda3866d14ce32a8f6cb9452f"
   },
   "samples": {
     "fallback_independent_core": [
@@ -422,147 +422,7 @@
         ]
       },
       {
-        "id": "q012_chisel_bit",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_bull_point",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_flat_chisel",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
         "id": "q012_cold_chisel",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_bolster_chisel",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_nail_puller",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_hand_shear",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_nibbler",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_sheet_metal_brake",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_pop_rivet_gun",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_blind_rivet",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_self_tapping_screw",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_washer",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_spring_washer",
-        "source": "data/tools.quality-012.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q012_lock_nut",
         "source": "data/tools.quality-012.json",
         "enrichment": null,
         "fallback_fields": [
@@ -582,7 +442,147 @@
         ]
       },
       {
-        "id": "q012_channel_nut",
+        "id": "q012_base_plate",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_gusset_plate",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_shim_plate",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_grout_under_base",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_non_shrink_grout",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_epoxy_anchor_adhesive",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_blow_pump",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_hole_brush",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_embed_plate",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_anchor_template",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_concrete_cover_meter",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_rebar_locator",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_infrared_thermometer",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_crack_scale",
+        "source": "data/tools.quality-012.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q012_concrete_test_hammer",
         "source": "data/tools.quality-012.json",
         "enrichment": null,
         "fallback_fields": [

@@ -1,0 +1,506 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-16-wave3b-q012-safe-1",
+  "entries": [
+    {
+      "id": "q012_chisel_bit",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "ハンマードリルや電動ハンマーに装着し、打撃力でコンクリートやモルタルをはつる交換刃。先端形状とシャンク規格で用途が変わるため、機械のチャック規格、対象材、作業幅に合うビットを選ぶ。回転を止めたはつりモードで使う機種では、指定された運転モードと装着方法を守る。",
+      "detail_en": "A replaceable chisel attachment for rotary hammers or demolition hammers that uses impact energy to chip concrete or mortar. Select the tip shape and shank system to match the machine, material, and required working width. On tools with a dedicated chiseling mode, use the specified non-rotary mode and installation method.",
+      "bullets_ja": [
+        "本体のシャンク規格とビット規格を一致させ、確実にロックする。",
+        "用途に合う先端形状を選び、摩耗・欠け・曲がりを点検する。",
+        "破片の飛散と粉じんに備え、保護具と周囲の養生を行う。"
+      ],
+      "bullets_en": [
+        "Match the bit shank to the hammer and confirm that it locks securely.",
+        "Choose a tip shape suited to the task and inspect for wear, chipping, or bending.",
+        "Control flying debris and dust with suitable PPE and work-area protection."
+      ],
+      "examples_ja": [
+        "コンクリート壁の局部的なはつりに、適合する平形チゼルビットを装着する。",
+        "モルタル除去作業の前に、ビットのシャンク規格と本体のはつりモードを確認する。"
+      ],
+      "examples_en": [
+        "Fit a compatible flat chisel bit for localized chipping of a concrete wall.",
+        "Before removing mortar, confirm the shank system and the hammer's chiseling mode."
+      ]
+    },
+    {
+      "id": "q012_bull_point",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "先端が一点に尖ったはつり用ビットで、打撃力を狭い範囲へ集中させてコンクリートや硬い材料へ亀裂の起点を作る。面を仕上げる用途より、破砕開始や厚い部分を割る作業に向く。使用する電動ハンマーのシャンク規格と出力に適合するものを選ぶ。",
+      "detail_en": "A pointed demolition bit that concentrates impact energy at one spot to initiate cracks in concrete or other hard material. It is suited to starting break-up work or penetrating thick sections rather than producing a finished flat surface. Match the shank and size to the demolition hammer.",
+      "bullets_ja": [
+        "本体に合うシャンク規格を選び、装着後の抜け止めを確認する。",
+        "先端の極端な摩耗、欠け、曲がりがあるものは交換する。",
+        "埋設配管・配線の位置を確認し、破片の飛散範囲を管理する。"
+      ],
+      "bullets_en": [
+        "Use the correct shank system and verify secure retention in the hammer.",
+        "Replace points with severe wear, damage, or bending.",
+        "Check for embedded services and control the area exposed to flying fragments."
+      ],
+      "examples_ja": [
+        "厚いコンクリートの解体開始部にブルポイントで亀裂を入れる。",
+        "床スラブの局部撤去で、平チゼルを入れる前に破砕の起点を作る。"
+      ],
+      "examples_en": [
+        "Use a bull point to start cracks in a thick concrete section.",
+        "Create a break point in a slab before switching to a flat chisel for broader removal."
+      ]
+    },
+    {
+      "id": "q012_flat_chisel",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "幅のある平らな刃先で打撃を面状に伝え、コンクリート表面、モルタル、タイル下地などをはつるビット。ブルポイントより広い範囲を削りやすく、表層除去や溝の拡幅に使われる。シャンク規格、刃幅、対象材を本体と作業に合わせる。",
+      "detail_en": "A chisel bit with a flat cutting edge that spreads impact across a wider area for chipping concrete surfaces, mortar, or tile bedding. It removes surface material more broadly than a bull point and is useful for stripping or widening channels. Match the shank, blade width, and material to the hammer and task.",
+      "bullets_ja": [
+        "刃幅とシャンク規格を本体・作業内容に合わせる。",
+        "刃先の欠けや偏摩耗を確認し、無理にこじってビットを曲げない。",
+        "粉じん・飛散物を抑え、周囲の仕上げ面を傷めないよう養生する。"
+      ],
+      "bullets_en": [
+        "Match blade width and shank type to the hammer and task.",
+        "Inspect the edge for damage or uneven wear and avoid using the bit as a pry bar.",
+        "Control dust and debris and protect adjacent finished surfaces."
+      ],
+      "examples_ja": [
+        "タイル下のモルタルを平チゼルで面状に除去する。",
+        "コンクリート表面の局部的な浮き部分を薄くはつる。"
+      ],
+      "examples_en": [
+        "Use a flat chisel to remove mortar beneath tile over a broad area.",
+        "Chip away a localized defective surface layer of concrete."
+      ]
+    },
+    {
+      "id": "q012_bolster_chisel",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "手ハンマーで打撃して使う幅広のタガネで、レンガ、モルタル、タイルなどを切断・剥離するときに刃幅を利用して力を広く伝える。電動ハンマー用ビットではなく手工具として扱い、刃先の状態と打撃頭部の変形を確認して使う。",
+      "detail_en": "A wide hand chisel struck with a hammer for cutting or separating masonry, mortar, or tile. Its broad edge spreads the blow across a larger line. It is a hand tool rather than a powered-hammer bit, so the cutting edge and struck head should be inspected before use.",
+      "bullets_ja": [
+        "対象材に合う刃幅を選び、刃先を作業線へ安定して当てる。",
+        "打撃頭部のまくれや亀裂、刃先の大きな欠けを点検する。",
+        "手を打撃線から離し、必要に応じてハンドガードを使う。"
+      ],
+      "bullets_en": [
+        "Choose a suitable blade width and place the edge securely on the work line.",
+        "Inspect the struck head for mushrooming or cracks and the edge for serious damage.",
+        "Keep hands clear of the striking path and use a hand guard where appropriate."
+      ],
+      "examples_ja": [
+        "モルタル目地に沿って幅広タガネを当て、レンガを傷めにくい位置から除去する。",
+        "床タイルの端部へ刃を入れ、下地から剥がす。"
+      ],
+      "examples_en": [
+        "Set the bolster along a mortar joint and remove material while minimizing damage to adjacent brick.",
+        "Work the broad edge under a floor tile to separate it from the bedding."
+      ]
+    },
+    {
+      "id": "q012_nail_puller",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "木材などに打ち込まれた釘の頭や軸をつかみ、てこの力で引き抜く手工具。形状にはくぎ抜き専用タイプや狭い隙間へ入るタイプがあり、仕上げ面を傷めたくない場合は当て板を併用する。釘の位置と周辺材の状態を確認してから力を掛ける。",
+      "detail_en": "A hand tool that grips a nail head or shank and uses leverage to extract it from timber or similar material. Designs vary from dedicated pullers to narrow claws for confined access. Use a protective pad or block where the finished surface must not be marked.",
+      "bullets_ja": [
+        "釘頭または軸に爪を確実に掛け、滑りを確認してから荷重を掛ける。",
+        "仕上げ面を保護する必要がある場合は支点に当て板を入れる。",
+        "錆びた釘や折れた釘では急な抜けや工具の滑りに注意する。"
+      ],
+      "bullets_en": [
+        "Engage the claw securely on the nail head or shank before applying leverage.",
+        "Place a protective block under the fulcrum when the surface must be preserved.",
+        "With corroded or broken nails, anticipate sudden release or tool slip."
+      ],
+      "examples_ja": [
+        "型枠解体後の木材から再利用前に釘を抜く。",
+        "仕上げ材を残したまま古い釘を抜くため、支点に当て板を入れて作業する。"
+      ],
+      "examples_en": [
+        "Remove nails from timber after formwork stripping before the timber is reused.",
+        "Use a protective block under the puller while extracting an old nail from a surface to be retained."
+      ]
+    },
+    {
+      "id": "q012_hand_shear",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "薄い金属板を手力で切断する板金ばさみ。直線用・左右曲線用など刃形状があり、切断可能な材質と板厚を超えて使うと刃の変形や危険な反力につながる。切断端は鋭利になるため、材料保持と手袋の扱いにも注意する。",
+      "detail_en": "Manual sheet-metal shears used to cut thin metal sheet. Blade patterns are available for straight, left, or right cuts, and the rated material and thickness must not be exceeded. Cut edges can be very sharp, so workpiece control and hand protection are important.",
+      "bullets_ja": [
+        "材質・板厚と切断方向に合うはさみを選ぶ。",
+        "刃を深くかみ合わせ過ぎず、材料を無理にねじらずに切り進める。",
+        "切断後のバリや鋭利な端部を管理し、端材を安全に処理する。"
+      ],
+      "bullets_en": [
+        "Choose snips suited to the sheet material, thickness, and cut direction.",
+        "Advance the cut without excessive blade overlap or twisting the workpiece.",
+        "Control burrs and sharp edges and dispose of offcuts safely."
+      ],
+      "examples_ja": [
+        "薄鋼板の端部を金切りばさみで寸法線に沿って切る。",
+        "ダクト板の曲線切りで、曲がり方向に合う板金ばさみを使う。"
+      ],
+      "examples_en": [
+        "Cut the edge of thin steel sheet along a marked line with tin snips.",
+        "Use direction-specific snips for a curved cut in duct sheet."
+      ]
+    },
+    {
+      "id": "q012_nibbler",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "薄板を小さく連続して打ち抜くことで切断する電動・空圧工具。材料を大きく変形させにくく、曲線や切り抜きに向く一方、細かな切りくずが多数発生する。最大板厚、材質、ダイとパンチの状態を確認して使う。",
+      "detail_en": "A powered or pneumatic sheet-metal tool that cuts by repeatedly punching out small pieces. It can make curves and cutouts with relatively little distortion, but it produces many sharp chips. Check the rated material and thickness and inspect the punch and die before use.",
+      "bullets_ja": [
+        "工具の最大板厚と対象材を確認し、パンチ・ダイの摩耗を点検する。",
+        "切断線を見失わない姿勢で進め、無理な横荷重を掛けない。",
+        "発生する鋭利な切りくずを回収し、周囲へ残さない。"
+      ],
+      "bullets_en": [
+        "Confirm the tool's material and thickness rating and inspect the punch and die.",
+        "Follow the cut line without forcing excessive side load into the cutter.",
+        "Collect the sharp punched chips and keep them out of the work area."
+      ],
+      "examples_ja": [
+        "制御盤開口の輪郭をニブラーで切り抜く。",
+        "薄板ダクトの曲線部を、材料を大きく変形させずに切断する。"
+      ],
+      "examples_en": [
+        "Use a nibbler to cut the outline of an opening in a control-panel sheet.",
+        "Cut a curved section in thin duct sheet while minimizing distortion."
+      ]
+    },
+    {
+      "id": "q012_sheet_metal_brake",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "板金を直線に沿って所定角度へ折り曲げる機械。クランプで材料を保持し、曲げ葉やビームを動かして成形する。機械ごとに最大板厚、曲げ幅、最小フランジ寸法などの能力があるため、材質と寸法を能力範囲内に収める。",
+      "detail_en": "A machine used to bend sheet metal along a straight line. The sheet is clamped and a bending leaf or beam forms the bend to the required angle. Each brake has limits for material, thickness, bend width, and minimum flange size that must be respected.",
+      "bullets_ja": [
+        "材質・板厚・曲げ長さが機械能力内か確認する。",
+        "曲げ線を基準へ合わせ、クランプ部に手を入れない。",
+        "スプリングバックを見込み、試し曲げで角度を確認する。"
+      ],
+      "bullets_en": [
+        "Confirm that material, thickness, and bend length are within machine capacity.",
+        "Align the bend line to the reference and keep hands clear of the clamping zone.",
+        "Allow for springback and verify the angle with a trial bend when needed."
+      ],
+      "examples_ja": [
+        "薄鋼板の端部を90度に折り、ダクト部材のフランジを作る。",
+        "カバー板の曲げ線をブレーキへ合わせ、複数枚を同じ寸法で成形する。"
+      ],
+      "examples_en": [
+        "Bend the edge of thin steel sheet to 90 degrees to form a duct flange.",
+        "Align a cover plate to the brake and produce repeated bends to the same dimension."
+      ]
+    },
+    {
+      "id": "q012_pop_rivet_gun",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "ブラインドリベットのマンドレルを引いてリベット本体を変形・締結し、マンドレルを破断させる工具。片側から施工できるのが特徴で、手動・空圧・電動タイプがある。リベット径に合うノーズピースと工具能力を選ぶ。",
+      "detail_en": "A tool that pulls the mandrel of a blind rivet so the rivet body expands and clamps the joint, after which the mandrel breaks. It enables fastening from one side and is available in manual, pneumatic, and powered versions. Match the nosepiece and tool capacity to the rivet diameter.",
+      "bullets_ja": [
+        "リベット径に合うノーズピースを装着し、マンドレルを真っ直ぐ差し込む。",
+        "母材の合計厚さがリベットのグリップ範囲内か確認する。",
+        "破断したマンドレルを回収し、工具内部の詰まりを防ぐ。"
+      ],
+      "bullets_en": [
+        "Fit the correct nosepiece and insert the mandrel straight into the tool.",
+        "Confirm that total material thickness falls within the rivet grip range.",
+        "Collect broken mandrels and prevent them from accumulating in the tool."
+      ],
+      "examples_ja": [
+        "薄板2枚を重ね、片側からブラインドリベットをリベッターで締結する。",
+        "既設パネルの裏側へ手が入らない箇所でリベットを施工する。"
+      ],
+      "examples_en": [
+        "Join two overlapping sheets with a blind rivet installed from one side.",
+        "Fasten a panel where the back side of the joint is inaccessible."
+      ]
+    },
+    {
+      "id": "q012_blind_rivet",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "接合部の片側から施工できるリベットで、筒状のリベット本体とマンドレルで構成される。マンドレルを引くと本体の裏側が変形して母材を挟み込み、所定位置でマンドレルが破断する。材質、径、長さ、グリップ範囲を接合材に合わせる。",
+      "detail_en": "A rivet fastener installed from one side, consisting of a tubular rivet body and a mandrel. Pulling the mandrel expands the blind side of the body to clamp the materials, then the mandrel breaks at a designed point. Select material, diameter, length, and grip range for the joint.",
+      "bullets_ja": [
+        "母材厚さの合計に合うグリップ範囲のリベットを選ぶ。",
+        "下穴径をリベット仕様に合わせ、穴のバリを除去する。",
+        "異種金属の組合せでは腐食条件と仕様上の適合を確認する。"
+      ],
+      "bullets_en": [
+        "Select a rivet whose grip range matches the combined material thickness.",
+        "Use the specified hole diameter and remove burrs before installation.",
+        "Check specification and corrosion compatibility when dissimilar metals are involved."
+      ],
+      "examples_ja": [
+        "薄板カバーをフレームへ片側施工で固定する。",
+        "ダクト部材の重ね継ぎに、板厚に合うブラインドリベットを選ぶ。"
+      ],
+      "examples_en": [
+        "Fasten a thin-sheet cover to a frame from the accessible side only.",
+        "Select a blind rivet with the correct grip range for an overlapped duct joint."
+      ]
+    },
+    {
+      "id": "q012_self_tapping_screw",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "下穴または適合する母材へねじ込みながら、自身のねじ山で相手材にねじを形成するねじ。先端にドリル刃を持つセルフドリリングねじとは区別が必要で、種類によっては適切な下穴を要する。母材、板厚、下穴径、締付け条件を仕様に合わせる。",
+      "detail_en": "A screw that forms mating threads in the work as it is driven into a prepared hole or suitable material. It is distinct from a self-drilling screw with an integral drill point, and many self-tapping types require a correctly sized pilot hole. Match the screw to material, thickness, pilot-hole size, and tightening requirements.",
+      "bullets_ja": [
+        "セルフタッピングとセルフドリリングを混同せず、指定された下穴条件を確認する。",
+        "母材厚さとねじ径・長さを合わせ、十分なかかり長さを確保する。",
+        "締め過ぎで形成したねじ山をつぶさないよう工具設定を管理する。"
+      ],
+      "bullets_en": [
+        "Do not confuse self-tapping with self-drilling screws; follow the specified pilot-hole condition.",
+        "Match screw diameter and length to material thickness and required thread engagement.",
+        "Control driver settings to avoid stripping the threads formed in the base material."
+      ],
+      "examples_ja": [
+        "薄板金物の下穴へタッピングビスを締め込み、ねじ山を形成して固定する。",
+        "交換時に既存ねじ穴が損傷していないか確認してから同規格のビスを施工する。"
+      ],
+      "examples_en": [
+        "Drive a self-tapping screw into a prepared hole in thin metal to form the mating thread.",
+        "Before replacement, check that the existing formed thread is not damaged and use the specified screw size."
+      ]
+    },
+    {
+      "id": "q012_washer",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "ボルトやナットの座面の下に入れる薄い環状部品で、締付け荷重の分散、座面保護、穴まわりの支持などに用いる。内径・外径・厚さ・材質には種類があり、締結部の設計や指定に合う座金を選ぶ。単独で必ず緩み止めになる部品ではない。",
+      "detail_en": "A thin ring placed under a bolt head or nut to distribute bearing load, protect the seating surface, or support the area around a hole. Washers vary in inside diameter, outside diameter, thickness, and material and should match the joint specification. A plain washer by itself is not necessarily a locking device.",
+      "bullets_ja": [
+        "ボルト径と穴条件に合う内径・外径の座金を選ぶ。",
+        "変形、割れ、著しい腐食のある座金は再使用しない。",
+        "座金の向きや組合せに指定がある締結部では図面・仕様を優先する。"
+      ],
+      "bullets_en": [
+        "Select washer dimensions that match the bolt and hole condition.",
+        "Do not reuse washers that are deformed, cracked, or severely corroded.",
+        "Follow drawing or specification requirements where washer orientation or stacking is controlled."
+      ],
+      "examples_ja": [
+        "長穴付き金物をボルト締結するとき、指定寸法の平座金で座面を確保する。",
+        "塗装面をナットで直接傷めないよう、仕様に従って座金を入れる。"
+      ],
+      "examples_en": [
+        "Use the specified plain washer to provide bearing area over a slotted connection.",
+        "Install a washer as specified to avoid direct bearing of a nut on a finished surface."
+      ]
+    },
+    {
+      "id": "q012_spring_washer",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "切れ目を持つばね状の座金で、締付け時の弾性や座面への作用を利用する締結部品。用途や有効性は締結条件・設計仕様に依存し、すべての振動環境で緩みを防げるものではない。使用可否や組合せは図面・メーカー仕様に従う。",
+      "detail_en": "A split spring washer used as an elastic element in some bolted joints. Its suitability and locking effect depend on the joint design and service conditions, and it should not be assumed to prevent loosening in every vibration environment. Use it only where the drawing or specified fastening system calls for it.",
+      "bullets_ja": [
+        "ばね座金が指定された締結部かを図面・仕様で確認する。",
+        "扁平化、割れ、著しい腐食のあるものは使用しない。",
+        "重要締結では指定された別の緩み止め方法やトルク管理を省略しない。"
+      ],
+      "bullets_en": [
+        "Confirm that a spring washer is specified for the joint.",
+        "Do not use washers that are flattened, cracked, or severely corroded.",
+        "For critical joints, do not omit specified locking methods or torque control."
+      ],
+      "examples_ja": [
+        "設備カバーのボルトで、図面指定がある箇所にばね座金を組み込む。",
+        "既設締結を復旧するとき、変形したばね座金を新品へ交換する。"
+      ],
+      "examples_en": [
+        "Install a spring washer on an equipment-cover bolt where the drawing specifies it.",
+        "Replace a deformed spring washer when restoring an existing joint."
+      ]
+    },
+    {
+      "id": "q012_lock_nut",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "ねじ部の摩擦増加、樹脂リング、変形ねじ、二重構造などで緩みにくくする機能を持つナットの総称。方式ごとに再使用可否、温度範囲、必要な突出ねじ山、締付け方法が異なる。設計で指定された種類を使用する。",
+      "detail_en": "A general term for nuts designed to resist loosening by features such as prevailing torque, polymer inserts, distorted threads, or other locking mechanisms. Reuse limits, temperature capability, required thread protrusion, and tightening procedure vary by type. Use the locking nut specified for the joint.",
+      "bullets_ja": [
+        "ロック方式とねじ規格を確認し、指定された向きや締付け方法を守る。",
+        "樹脂インサート型などは温度条件と再使用可否を確認する。",
+        "ボルトのねじ突出量と完全ねじかかりを確認する。"
+      ],
+      "bullets_en": [
+        "Confirm the locking type and thread specification and follow the required orientation and tightening method.",
+        "For polymer-insert and similar types, check temperature limits and reuse rules.",
+        "Verify full thread engagement and the required bolt thread protrusion."
+      ],
+      "examples_ja": [
+        "振動を受ける機器固定部で、図面指定のロックナットを使用する。",
+        "既設ナット交換時に、元のロック方式とねじ規格を確認して同等品へ交換する。"
+      ],
+      "examples_en": [
+        "Use the specified lock nut on an equipment joint subject to vibration.",
+        "When replacing an existing nut, match both the locking system and thread specification."
+      ]
+    },
+    {
+      "id": "q012_channel_nut",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "ストラットチャンネルの内部へ入れ、溝形状にかみ合わせてボルト固定点を作る専用ナット。ばね付きや位置保持機構付きなどの種類があり、チャンネル形状・幅・ボルトねじ規格との適合が必要。溝内で正しく回転・着座していることを確認する。",
+      "detail_en": "A nut designed to fit inside strut channel and engage the channel lips to create a threaded fixing point. Versions may include springs or other positioning features. The nut must match the channel profile, width, and bolt thread and must seat correctly against the channel lips.",
+      "bullets_ja": [
+        "使用するストラットの規格とナット形状・ねじ径を一致させる。",
+        "ナットが溝内で正しい向きに回転し、チャンネル縁へ確実にかかっているか確認する。",
+        "腐食環境ではチャンネル・ボルトを含めた表面処理の適合を確認する。"
+      ],
+      "bullets_en": [
+        "Match the nut profile and thread to the strut channel system.",
+        "Verify that the nut rotates and seats correctly against the channel lips.",
+        "For corrosive environments, check coating compatibility across channel, nut, and bolt."
+      ],
+      "examples_ja": [
+        "支持チャンネル内へチャンネルナットを入れ、配管ブラケットをボルト固定する。",
+        "機器支持材の位置変更に合わせてナット位置を溝内で調整する。"
+      ],
+      "examples_en": [
+        "Insert a channel nut in strut to bolt on a pipe-support bracket.",
+        "Reposition the nut within the channel when adjusting equipment-support layout."
+      ]
+    },
+    {
+      "id": "q012_unistrut_channel",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "設備・配管・電気支持などに使う溝形のストラットチャンネル。専用ナットや金物を溝へ組み合わせることで、溶接せずに支持位置を調整しやすい骨組みを構成できる。断面寸法、板厚、材質・表面処理、許容荷重を支持設計に合わせる。",
+      "detail_en": "A slotted strut channel used to build adjustable supports for mechanical, piping, and electrical installations. Channel nuts and fittings engage the slot to create bolted frames without welding. Section size, gauge, material or coating, and allowable load must match the support design.",
+      "bullets_ja": [
+        "支持荷重とスパンに対してチャンネル断面・板厚を選定する。",
+        "切断端や穴あけ部は必要な防食処理を行い、変形した溝を使用しない。",
+        "専用ナット・金物の適合とボルトの締結状態を確認する。"
+      ],
+      "bullets_en": [
+        "Select channel section and thickness for the support load and span.",
+        "Protect cut ends or drilled areas as required and do not use badly deformed channel.",
+        "Confirm compatibility of channel nuts and fittings and verify bolt tightening."
+      ],
+      "examples_ja": [
+        "天井内で配管支持用の横架材をストラットチャンネルで組む。",
+        "機器まわりの支持フレームをボルト接合で組み、取付位置を調整する。"
+      ],
+      "examples_en": [
+        "Build a cross-member from strut channel for overhead pipe supports.",
+        "Assemble a bolted equipment-support frame and adjust attachment positions along the channel."
+      ]
+    },
+    {
+      "id": "q012_pipe_clamp",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "配管を支持材や壁面へ固定するため、管の外周を保持するクランプ。二つ割り、片サドル、ゴムライニング付きなど形状があり、管径、材質、温度、振動、腐食条件に合わせて選ぶ。締め過ぎによる管の変形やライニング損傷を避ける。",
+      "detail_en": "A clamp that grips the outside of a pipe to secure it to a support or surface. Designs include split clamps, saddles, and lined clamps. Select for pipe diameter, material, temperature, vibration, and corrosion conditions, and avoid over-tightening that can deform the pipe or damage the lining.",
+      "bullets_ja": [
+        "管外径とクランプ呼び径を一致させ、支持方式に合う形状を選ぶ。",
+        "ゴムライニングの有無や材質を温度・防振・絶縁条件に合わせる。",
+        "ボルトを均等に締め、管をつぶすほど締め付けない。"
+      ],
+      "bullets_en": [
+        "Match the clamp size to the pipe outside diameter and support arrangement.",
+        "Select lining type and material for temperature, vibration, or isolation requirements.",
+        "Tighten bolts evenly without crushing or distorting the pipe."
+      ],
+      "examples_ja": [
+        "立て配管を支持架台へ二つ割りバンドで固定する。",
+        "振動を抑えたい小口径管にライニング付き配管バンドを使う。"
+      ],
+      "examples_en": [
+        "Secure a vertical pipe to a support frame with a split pipe clamp.",
+        "Use a lined clamp on small-bore pipe where vibration isolation is required."
+      ]
+    },
+    {
+      "id": "q012_hanger_clamp",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "配管を上部構造から吊り下げて支持するためのバンド・ハンガー部品。吊りボルトなどと組み合わせ、管の荷重を支持点へ伝える。管径、支持間隔、吊り材の強度、熱伸縮や防振条件を含めて支持計画に合わせる。",
+      "detail_en": "A hanger component used to suspend pipe from overhead structure, commonly with threaded rod or other suspension hardware. It transfers pipe load to the support point. Pipe size, hanger spacing, rod capacity, thermal movement, and vibration requirements must be considered.",
+      "bullets_ja": [
+        "管径と荷重に合うハンガーを選び、吊りボルトなど関連部材の強度も確認する。",
+        "支持間隔と固定・可動の区分を配管支持計画に合わせる。",
+        "締結後に管が偏って保持されていないか確認する。"
+      ],
+      "bullets_en": [
+        "Select a hanger and suspension hardware sized for the pipe load.",
+        "Follow the support plan for spacing and for fixed versus movable supports.",
+        "After tightening, verify that the pipe is not held off-center or twisted."
+      ],
+      "examples_ja": [
+        "天井スラブから吊りボルトを下ろし、吊りバンドで横引き配管を支持する。",
+        "保温管の支持で、保温材をつぶさない指定金物と組み合わせる。"
+      ],
+      "examples_en": [
+        "Suspend a horizontal pipe from threaded rod using a pipe hanger.",
+        "For insulated pipe, use the specified support arrangement that avoids crushing the insulation."
+      ]
+    },
+    {
+      "id": "q012_rubber_mount",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "機器と架台・床の間に入れ、ゴムの弾性で振動や固体伝搬音を低減する防振支持部品。ゴム硬度、形状、荷重範囲、たわみ量で防振特性が変わるため、機器重量と使用条件に合わせて選定する。過大圧縮や油・熱などの環境劣化にも注意する。",
+      "detail_en": "A resilient rubber isolator placed between equipment and its support to reduce transmitted vibration and structure-borne noise. Isolation performance depends on rubber stiffness, geometry, load range, and deflection. Select it for equipment weight and environment and avoid excessive compression or incompatible exposure to heat or oils.",
+      "bullets_ja": [
+        "各支持点の荷重を見積もり、適正荷重範囲の防振ゴムを選ぶ。",
+        "取付面を平坦にし、偏荷重や過大圧縮を避ける。",
+        "ひび割れ、硬化、膨潤などの劣化を定期的に点検する。"
+      ],
+      "bullets_en": [
+        "Estimate the load at each support point and select an isolator within its rated load range.",
+        "Provide flat bearing surfaces and avoid eccentric loading or excessive compression.",
+        "Inspect periodically for cracking, hardening, swelling, or other deterioration."
+      ],
+      "examples_ja": [
+        "小型ポンプのベース下へ防振ゴムを入れて架台への振動伝達を抑える。",
+        "ファン支持部で各脚の荷重を確認し、同じ高さになるよう防振ゴムを配置する。"
+      ],
+      "examples_en": [
+        "Install rubber mounts under a small pump base to reduce vibration transmitted to the frame.",
+        "Check leg loads on a fan and place isolators so the equipment remains level."
+      ]
+    },
+    {
+      "id": "q012_leveling_mount",
+      "wave": "content-wave-003b",
+      "state": "expanded",
+      "detail_ja": "機器や架台の脚部に取り付け、ねじ機構などで高さを微調整して水平を出す支持部品。床への荷重分散や防振要素を兼ねる製品もある。機器重量、ねじ径、調整量、ベース径、固定方法を確認し、調整後はロック機構を確実にする。",
+      "detail_en": "An adjustable equipment foot or mount used to fine-tune height and level, often by a threaded stem. Some designs also spread floor load or include vibration isolation. Check equipment load, thread size, adjustment range, base size, and anchoring method, and secure the adjustment after leveling.",
+      "bullets_ja": [
+        "各脚にかかる荷重と調整範囲に合うレベリングマウントを選ぶ。",
+        "床面の強度と平坦性を確認し、ねじのかかりを十分に残して調整する。",
+        "水平調整後はロックナット等を締め、再沈下や緩みを点検する。"
+      ],
+      "bullets_en": [
+        "Select mounts with adequate load capacity and adjustment range for each equipment foot.",
+        "Check floor condition and retain sufficient thread engagement during adjustment.",
+        "After leveling, tighten the locking feature and inspect for settlement or loosening."
+      ],
+      "examples_ja": [
+        "制御盤の四隅のレベル調整脚を調整して扉の建付けを整える。",
+        "小型機器架台を水平にした後、各脚のロックナットを締める。"
+      ],
+      "examples_en": [
+        "Adjust the four leveling feet of a cabinet so the enclosure is level and doors align.",
+        "Level a small equipment frame and then tighten the lock nuts on each mount."
+      ]
+    }
+  ]
+}

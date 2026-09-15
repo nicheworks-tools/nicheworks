@@ -7,6 +7,7 @@ on:
       - 'tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs'
       - 'tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs'
       - 'tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs'
       - '.github/workflows/construction-tools-atlas-content-quality.yml'
   pull_request:
     paths:
@@ -14,6 +15,7 @@ on:
       - 'tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs'
       - 'tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs'
       - 'tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs'
       - '.github/workflows/construction-tools-atlas-content-quality.yml'
 
 permissions:
@@ -31,6 +33,7 @@ jobs:
           node --check tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs
           node --check tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs
           node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs
+          node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs
 
       - name: Validate frozen public content quality inventory
         run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check
@@ -40,3 +43,6 @@ jobs:
 
       - name: Require safe q012 Wave3A subject-specific core content
         run: node tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs
+
+      - name: Require safe q012 Wave3B subject-specific core content
+        run: node tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs
