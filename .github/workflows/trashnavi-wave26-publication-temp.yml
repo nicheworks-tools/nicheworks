@@ -36,7 +36,7 @@ jobs:
           lines=[f'  {{"lgcode":"{lg}","pref_slug":"{pref}","city_slug":"{city}","publish":true}}' for lg,pref,city,_,_ in targets]
           head=s[:-len(marker)]
           assert head.rstrip().endswith('}')
-          p.write_text(head.rstrip()+',\n'+'\n'.join(lines)+'\n]\n')
+          p.write_text(head.rstrip()+',\n'+',\n'.join(lines)+'\n]\n')
 
           p=Path('tools/trashnavi/scripts/generate-municipality-pages.mjs')
           s=p.read_text()
@@ -65,7 +65,7 @@ jobs:
               url=f'https://nicheworks.app/tools/trashnavi/{pref}/{city}/'
               assert f'"lgcode":"{lg}"' not in head
               rows.append(f'    {{"lgcode":"{lg}","pref_slug":"{pref}","city_slug":"{city}","url":"{url}"}}')
-          p.write_text(head.rstrip()+',\n'+'\n'.join(rows)+'\n  ]\n}\n')
+          p.write_text(head.rstrip()+',\n'+',\n'.join(rows)+'\n  ]\n}\n')
 
           p=Path('tools/trashnavi/index.html')
           s=p.read_text()
