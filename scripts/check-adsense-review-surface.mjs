@@ -38,6 +38,33 @@ function hasAdsense(html) {
   return /pagead2\.googlesyndication\.com|adsbygoogle/i.test(html);
 }
 
+function noindexHeaderRules(text) {
+  const rules = [];
+  let currentPath = null;
+  let currentHeaders = [];
+  const flush = () => {
+    if (currentPath && currentHeaders.some((line) => /^x-robots-tag\s*:\s*.*\bnoindex\b/i.test(line.trim()))) {
+      rules.push(currentPath);
+    }
+  };
+  for (const line of text.split(/\r?\n/)) {
+    if (line && !/^\s/.test(line)) {
+      flush();
+      currentPath = line.trim();
+      currentHeaders = [];
+    } else if (currentPath && line.trim()) {
+      currentHeaders.push(line);
+    }
+  }
+  flush();
+  return rules;
+}
+
+function headerRuleRegex(rule) {
+  const escaped = rule.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*');
+  return new RegExp(`^${escaped}$`);
+}
+
 const developmentTemplates = [
   'tools/_template/index.html',
   'templates/nw-minimal-base/index.html'
@@ -78,6 +105,25 @@ const forbiddenSitemapUrls = [
 for (const url of forbiddenSitemapUrls) {
   if (sitemap.includes(`<loc>${url}</loc>`)) {
     fail(`sitemap.xml must not publish ${url}`);
+  }
+}
+
+const headersText = read('_headers');
+const noindexRules = noindexHeaderRules(headersText);
+const noindexMatchers = noindexRules.map((rule) => ({ rule, regex: headerRuleRegex(rule) }));
+const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+for (const url of sitemapUrls) {
+  let pathname;
+  try {
+    pathname = new URL(url).pathname;
+  } catch {
+    continue;
+  }
+  for (const { rule, regex } of noindexMatchers) {
+    if (regex.test(pathname)) {
+      fail(`sitemap.xml publishes ${url}, but _headers marks matching route ${rule} noindex`);
+      break;
+    }
   }
 }
 
@@ -136,6 +182,13 @@ for (const item of publicItems) {
   if (!html || metaRobots(html).includes('noindex')) continue;
   if (unfinishedSalesPatterns.some((pattern) => pattern.test(html))) {
     fail(`${file}: indexable public tool must not expose unfinished billing/Pro sales UI`);
+  }
+  const publicPath = `/tools/${slug}/`;
+  for (const { rule, regex } of noindexMatchers) {
+    if (regex.test(publicPath)) {
+      fail(`${file}: registered public tool root is HTTP-noindexed by _headers route ${rule}`);
+      break;
+    }
   }
 }
 
