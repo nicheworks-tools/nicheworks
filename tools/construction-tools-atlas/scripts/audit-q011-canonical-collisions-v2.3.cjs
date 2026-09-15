@@ -97,6 +97,10 @@ for (const target of targets) {
   if (hits.length) collisions.push({ id, type, ja, en, hits });
 }
 
+const collisionIds = new Set(collisions.map(row => row.id));
+const collisionFree = targets
+  .filter(row => !collisionIds.has(idOf(row)))
+  .map(row => ({ id: idOf(row), type: typeOf(row), ja: jaOf(row), en: enOf(row) }));
 const classifications = { strong_duplicate: 0, probable_duplicate_review: 0, semantic_conflict_review: 0, related_name_review: 0 };
 for (const row of collisions) {
   const rowClasses = new Set(row.hits.map(h => h.classification));
@@ -105,6 +109,7 @@ for (const row of collisions) {
 const summary = {
   q011_rows: targets.length,
   rows_with_collision_signal: collisions.length,
+  collision_free_rows: collisionFree.length,
   exact_bilingual_name: collisions.filter(x => x.hits.some(h => h.reasons.includes('exact_bilingual_name'))).length,
   same_id_stem: collisions.filter(x => x.hits.some(h => h.reasons.includes('same_id_stem'))).length,
   exact_single_language_only: collisions.filter(x => x.hits.some(h => h.reasons.includes('exact_ja_name') || h.reasons.includes('exact_en_name')) && !x.hits.some(h => h.reasons.includes('exact_bilingual_name'))).length,
@@ -112,5 +117,6 @@ const summary = {
   classifications
 };
 console.log(`CTA_Q011_COLLISION_SUMMARY=${JSON.stringify(summary)}`);
+console.log(`CTA_Q011_COLLISION_FREE=${JSON.stringify(collisionFree)}`);
 console.log(`CTA_Q011_COLLISIONS=${JSON.stringify(collisions)}`);
 console.log('Construction Tools Atlas q011 canonical collision audit: PASS');
