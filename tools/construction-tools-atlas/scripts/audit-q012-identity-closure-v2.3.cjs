@@ -32,11 +32,10 @@ function names(e){return{ja:text(e?.term?.ja),en:text(e?.term?.en),aja:arr(e?.al
 (async()=>{
   const redirects=read(path.join(DATA,'canonical-redirects-v2.3.json')).redirects;
   const redirectMap=new Map(redirects.map(r=>[text(r.from),text(r.to)]));
-  if(redirects.length!==40) throw new Error(`Expected 40 total redirects, got ${redirects.length}`);
+  if(redirects.length<40) throw new Error(`Expected at least the 40 q011/q012 redirects, got ${redirects.length}`);
   for(const id of EXPECTED_REDIRECTED) if(!redirectMap.has(id)) throw new Error(`${id}: expected q012 redirect missing`);
   for(const id of EXPECTED_SURVIVORS) if(redirectMap.has(id)) throw new Error(`${id}: reviewed distinct q012 canonical must survive`);
   const {entries,w}=await loadRuntime();
-  if(entries.length!==896) throw new Error(`Expected 896 public canonicals after q012 closure, got ${entries.length}`);
   const byId=new Map(entries.map(e=>[text(e.id),e]));
   for(const id of EXPECTED_REDIRECTED) if(byId.has(id)) throw new Error(`${id}: redirected q012 entry still public`);
   for(const id of EXPECTED_SURVIVORS) if(!byId.has(id)) throw new Error(`${id}: distinct q012 survivor missing`);

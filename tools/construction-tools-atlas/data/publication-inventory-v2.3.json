@@ -1,6 +1,6 @@
 {
   "schema": "cta-publication-inventory-v2.3",
-  "version": "2026-09-16-q012-identity-closure-1",
+  "version": "2026-09-16-q013-identity-closure-1",
   "policy": {
     "generated_filler_batches": [
       "atlas-expand-5000",
@@ -14,8 +14,8 @@
   "summary": {
     "stored_corpus_entries": 5536,
     "quarantined_generated_entries": 4600,
-    "redirected_duplicate_entries": 40,
-    "published_runtime_entries": 896,
+    "redirected_duplicate_entries": 55,
+    "published_runtime_entries": 881,
     "skipped_missing_id": 0,
     "duplicate_ids_removed": 0,
     "duplicate_terms_removed": 0
@@ -25,9 +25,9 @@
   },
   "published_by_type": {
     "access": 1,
-    "accessory": 1,
+    "accessory": 2,
     "component": 208,
-    "consumable": 14,
+    "consumable": 13,
     "defect": 3,
     "document": 2,
     "equipment": 43,
@@ -35,10 +35,10 @@
     "fixture": 5,
     "hardware": 14,
     "inspection": 8,
-    "material": 167,
+    "material": 166,
     "materials": 15,
     "process": 15,
-    "rigging": 6,
+    "rigging": 7,
     "safety": 16,
     "sample": 1,
     "site": 2,
@@ -46,13 +46,13 @@
     "system": 1,
     "temporary": 3,
     "test": 1,
-    "tool": 351
+    "tool": 336
   },
   "hashes": {
-    "published_id_sha256": "50b1c798836563b0b5259d01bf15f11c999b8073be90aa03c076b6159078dfbd",
+    "published_id_sha256": "177a014ef6de2e56988ed1031b273494fbfa18350e096ffbc2ee8a29343328c5",
     "quarantined_generated_id_sha256": "ad863c921ea5d879ae7273660b9550d94b1a705541b865102b38f90668d5c9cf",
-    "canonical_redirect_sha256": "6662fd4098edd84c60aab65761b5f85ee1e8aa70fb9e8cae14f88d0d4f737a9c",
-    "publication_classification_sha256": "4f0fbdb37429904c2c612a908eed7884be3ad43c1cf2640bcaaa54b037d02e99"
+    "canonical_redirect_sha256": "c5676db0cd0147e198b7a83a12a79fa912e71d93e137a74addc1adc956bdf7af",
+    "publication_classification_sha256": "4f600a1bdf7fcfdab3e7d2ca1f1e0ef53044d322da2d4898e9c7f6b85f086ce5"
   },
   "redirected_ids": [
     "air_compressor\tcompressor",
@@ -93,6 +93,21 @@
     "q012_shop_vacuum\twet_dry_vacuum",
     "q012_temporary_distribution_box\ttemporary_power_panel",
     "q012_vernier_caliper\tcaliper",
+    "q013_carpenter_pencil\tmarking_pencil",
+    "q013_crowbar\tpry_bar",
+    "q013_level_staff\tleveling_staff",
+    "q013_lever_hoist\tlever_hoist",
+    "q013_line_level\tline_level",
+    "q013_marker_pen\tmarker",
+    "q013_marking_paint\tmarking_spray",
+    "q013_mixing_paddle\tmixing_paddle",
+    "q013_paint_roller\tpaint_roller",
+    "q013_paint_tray\tpaint_tray",
+    "q013_putty_scraper\tcaulking_scraper",
+    "q013_screed_board\tscreed",
+    "q013_soil_tamper\ttamper",
+    "q013_tape_measure\ttape_measure",
+    "q013_utility_knife\tutility_knife",
     "shop_vac\twet_dry_vacuum",
     "tile_spacers\ttile_spacer"
   ],

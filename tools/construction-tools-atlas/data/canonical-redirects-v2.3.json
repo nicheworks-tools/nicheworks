@@ -1,6 +1,6 @@
 {
   "schema": "cta-canonical-redirects-v2.3",
-  "version": "2026-09-16-q012-identity-closure-1",
+  "version": "2026-09-16-q013-identity-closure-1",
   "policy": {
     "purpose": "Retire confirmed duplicate public canonicals without breaking legacy IDs, search vocabulary, images, or favorites.",
     "source_records_remain_stored": true,
@@ -11,45 +11,280 @@
     "taxonomy_overrides_are_defined_in": "canonical-identity-resolutions-v2.3.json"
   },
   "redirects": [
-    {"from":"q011_floor_leveler","to":"floor_leveler","reason":"confirmed_duplicate"},
-    {"from":"q011_trowel","to":"trowel","reason":"confirmed_duplicate"},
-    {"from":"q011_float","to":"float","reason":"confirmed_duplicate"},
-    {"from":"q011_putty_knife","to":"putty_knife","reason":"confirmed_duplicate"},
-    {"from":"q011_stud_finder","to":"stud_finder","reason":"confirmed_duplicate"},
-    {"from":"q011_chemical_anchor","to":"chemical_anchor","reason":"confirmed_duplicate"},
-    {"from":"q011_notched_trowel","to":"notched_trowel","reason":"confirmed_duplicate"},
-    {"from":"q011_roof_underlayment","to":"roof_underlayment","reason":"confirmed_duplicate"},
-    {"from":"q011_conduit_bender","to":"conduit_bender","reason":"confirmed_duplicate"},
-    {"from":"q011_expansion_joint","to":"expansion_joint","reason":"confirmed_duplicate"},
-    {"from":"q011_joint_tape","to":"drywall_tape","reason":"same drywall joint reinforcement tape concept"},
-    {"from":"q011_form_tie","to":"form_tie","reason":"same formwork tie concept"},
-    {"from":"q011_separator","to":"separator","reason":"same formwork separator concept"},
-    {"from":"q011_plywood_formwork","to":"form_plywood","reason":"same formwork plywood concept"},
-    {"from":"q011_spacer_block","to":"spacer_block","reason":"same rebar cover spacer block concept"},
-    {"from":"q011_tile_spacer","to":"tile_spacer","reason":"same tile spacing piece concept"},
-    {"from":"tile_spacers","to":"tile_spacer","reason":"plural duplicate of tile_spacer"},
-    {"from":"q011_grout","to":"tile_grout","reason":"q011 definition is specifically tile joint grout"},
-    {"from":"q011_flashing","to":"flashing","reason":"same broad flashing component concept"},
-    {"from":"q011_waterproof_tape","to":"seal_tape","reason":"same waterproof sealing tape concept"},
-    {"from":"q011_drain_trap","to":"trap","reason":"same generic drain trap concept"},
-    {"from":"q011_pipe_sleeve","to":"sleeve","reason":"same pipe penetration sleeve concept"},
-    {"from":"q011_safety_harness","to":"safety_harness","reason":"same full-body fall-protection harness concept"},
-    {"from":"q012_hex_key","to":"allen_key","reason":"same hex/Allen key concept"},
-    {"from":"q012_feeler_gauge","to":"feeler_gauge","reason":"same feeler/thickness gauge concept"},
-    {"from":"q012_dial_gauge","to":"dial_gauge","reason":"same dial indicator/gauge concept"},
-    {"from":"q012_vernier_caliper","to":"caliper","reason":"same vernier-caliper canonical represented by the existing caliper entry"},
-    {"from":"q012_builder_square","to":"speed_square","reason":"same 差し金/Carpenter's Square concept; existing speed_square ID carries the maintained carpenter-square content"},
-    {"from":"q012_diamond_blade","to":"diamond_blade","reason":"same diamond masonry-cutting blade concept"},
-    {"from":"q012_all_thread_rod","to":"threaded_rod","reason":"same fully threaded rod concept"},
-    {"from":"q012_concrete_cover_meter","to":"cover_meter","reason":"same concrete cover meter concept"},
-    {"from":"q012_rebar_locator","to":"rebar_detector","reason":"same rebar locating/detection device concept"},
-    {"from":"q012_crack_scale","to":"crack_gauge","reason":"same crack-width scale/gauge concept"},
-    {"from":"q012_dust_collector","to":"dust_collection_vacuum","reason":"same jobsite dust-extraction equipment concept"},
-    {"from":"q012_shop_vacuum","to":"wet_dry_vacuum","reason":"same jobsite shop/wet-dry vacuum concept"},
-    {"from":"shop_vac","to":"wet_dry_vacuum","reason":"duplicate shop-vac canonical consolidated into wet/dry vacuum"},
-    {"from":"q012_air_compressor","to":"compressor","reason":"same compressed-air equipment concept"},
-    {"from":"air_compressor","to":"compressor","reason":"duplicate air-compressor canonical consolidated into compressor"},
-    {"from":"q012_temporary_distribution_box","to":"temporary_power_panel","reason":"same temporary site power distribution panel concept"},
-    {"from":"q012_guardrail","to":"guardrail","reason":"same temporary fall-protection guardrail concept"}
+    {
+      "from": "q011_floor_leveler",
+      "to": "floor_leveler",
+      "reason": "confirmed_duplicate"
+    },
+    {
+      "from": "q011_trowel",
+      "to": "trowel",
+      "reason": "confirmed_duplicate"
+    },
+    {
+      "from": "q011_float",
+      "to": "float",
+      "reason": "confirmed_duplicate"
+    },
+    {
+      "from": "q011_putty_knife",
+      "to": "putty_knife",
+      "reason": "confirmed_duplicate"
+    },
+    {
+      "from": "q011_stud_finder",
+      "to": "stud_finder",
+      "reason": "confirmed_duplicate"
+    },
+    {
+      "from": "q011_chemical_anchor",
+      "to": "chemical_anchor",
+      "reason": "confirmed_duplicate"
+    },
+    {
+      "from": "q011_notched_trowel",
+      "to": "notched_trowel",
+      "reason": "confirmed_duplicate"
+    },
+    {
+      "from": "q011_roof_underlayment",
+      "to": "roof_underlayment",
+      "reason": "confirmed_duplicate"
+    },
+    {
+      "from": "q011_conduit_bender",
+      "to": "conduit_bender",
+      "reason": "confirmed_duplicate"
+    },
+    {
+      "from": "q011_expansion_joint",
+      "to": "expansion_joint",
+      "reason": "confirmed_duplicate"
+    },
+    {
+      "from": "q011_joint_tape",
+      "to": "drywall_tape",
+      "reason": "same drywall joint reinforcement tape concept"
+    },
+    {
+      "from": "q011_form_tie",
+      "to": "form_tie",
+      "reason": "same formwork tie concept"
+    },
+    {
+      "from": "q011_separator",
+      "to": "separator",
+      "reason": "same formwork separator concept"
+    },
+    {
+      "from": "q011_plywood_formwork",
+      "to": "form_plywood",
+      "reason": "same formwork plywood concept"
+    },
+    {
+      "from": "q011_spacer_block",
+      "to": "spacer_block",
+      "reason": "same rebar cover spacer block concept"
+    },
+    {
+      "from": "q011_tile_spacer",
+      "to": "tile_spacer",
+      "reason": "same tile spacing piece concept"
+    },
+    {
+      "from": "tile_spacers",
+      "to": "tile_spacer",
+      "reason": "plural duplicate of tile_spacer"
+    },
+    {
+      "from": "q011_grout",
+      "to": "tile_grout",
+      "reason": "q011 definition is specifically tile joint grout"
+    },
+    {
+      "from": "q011_flashing",
+      "to": "flashing",
+      "reason": "same broad flashing component concept"
+    },
+    {
+      "from": "q011_waterproof_tape",
+      "to": "seal_tape",
+      "reason": "same waterproof sealing tape concept"
+    },
+    {
+      "from": "q011_drain_trap",
+      "to": "trap",
+      "reason": "same generic drain trap concept"
+    },
+    {
+      "from": "q011_pipe_sleeve",
+      "to": "sleeve",
+      "reason": "same pipe penetration sleeve concept"
+    },
+    {
+      "from": "q011_safety_harness",
+      "to": "safety_harness",
+      "reason": "same full-body fall-protection harness concept"
+    },
+    {
+      "from": "q012_hex_key",
+      "to": "allen_key",
+      "reason": "same hex/Allen key concept"
+    },
+    {
+      "from": "q012_feeler_gauge",
+      "to": "feeler_gauge",
+      "reason": "same feeler/thickness gauge concept"
+    },
+    {
+      "from": "q012_dial_gauge",
+      "to": "dial_gauge",
+      "reason": "same dial indicator/gauge concept"
+    },
+    {
+      "from": "q012_vernier_caliper",
+      "to": "caliper",
+      "reason": "same vernier-caliper canonical represented by the existing caliper entry"
+    },
+    {
+      "from": "q012_builder_square",
+      "to": "speed_square",
+      "reason": "same 差し金/Carpenter's Square concept; existing speed_square ID carries the maintained carpenter-square content"
+    },
+    {
+      "from": "q012_diamond_blade",
+      "to": "diamond_blade",
+      "reason": "same diamond masonry-cutting blade concept"
+    },
+    {
+      "from": "q012_all_thread_rod",
+      "to": "threaded_rod",
+      "reason": "same fully threaded rod concept"
+    },
+    {
+      "from": "q012_concrete_cover_meter",
+      "to": "cover_meter",
+      "reason": "same concrete cover meter concept"
+    },
+    {
+      "from": "q012_rebar_locator",
+      "to": "rebar_detector",
+      "reason": "same rebar locating/detection device concept"
+    },
+    {
+      "from": "q012_crack_scale",
+      "to": "crack_gauge",
+      "reason": "same crack-width scale/gauge concept"
+    },
+    {
+      "from": "q012_dust_collector",
+      "to": "dust_collection_vacuum",
+      "reason": "same jobsite dust-extraction equipment concept"
+    },
+    {
+      "from": "q012_shop_vacuum",
+      "to": "wet_dry_vacuum",
+      "reason": "same jobsite shop/wet-dry vacuum concept"
+    },
+    {
+      "from": "shop_vac",
+      "to": "wet_dry_vacuum",
+      "reason": "duplicate shop-vac canonical consolidated into wet/dry vacuum"
+    },
+    {
+      "from": "q012_air_compressor",
+      "to": "compressor",
+      "reason": "same compressed-air equipment concept"
+    },
+    {
+      "from": "air_compressor",
+      "to": "compressor",
+      "reason": "duplicate air-compressor canonical consolidated into compressor"
+    },
+    {
+      "from": "q012_temporary_distribution_box",
+      "to": "temporary_power_panel",
+      "reason": "same temporary site power distribution panel concept"
+    },
+    {
+      "from": "q012_guardrail",
+      "to": "guardrail",
+      "reason": "same temporary fall-protection guardrail concept"
+    },
+    {
+      "from": "q013_lever_hoist",
+      "to": "lever_hoist",
+      "reason": "same lever-hoist concept"
+    },
+    {
+      "from": "q013_mixing_paddle",
+      "to": "mixing_paddle",
+      "reason": "same mixer-paddle attachment concept"
+    },
+    {
+      "from": "q013_soil_tamper",
+      "to": "tamper",
+      "reason": "same manual hand-tamper concept"
+    },
+    {
+      "from": "q013_crowbar",
+      "to": "pry_bar",
+      "reason": "same crowbar/pry-bar concept"
+    },
+    {
+      "from": "q013_level_staff",
+      "to": "leveling_staff",
+      "reason": "same leveling-staff concept"
+    },
+    {
+      "from": "q013_marking_paint",
+      "to": "marking_spray",
+      "reason": "same temporary marking-spray paint concept"
+    },
+    {
+      "from": "q013_line_level",
+      "to": "line_level",
+      "reason": "same string-line level concept"
+    },
+    {
+      "from": "q013_utility_knife",
+      "to": "utility_knife",
+      "reason": "same utility-knife concept"
+    },
+    {
+      "from": "q013_tape_measure",
+      "to": "tape_measure",
+      "reason": "same retractable tape-measure concept"
+    },
+    {
+      "from": "q013_carpenter_pencil",
+      "to": "marking_pencil",
+      "reason": "same carpenter/marking pencil concept"
+    },
+    {
+      "from": "q013_putty_scraper",
+      "to": "caulking_scraper",
+      "reason": "same paint/putty scraper concept"
+    },
+    {
+      "from": "q013_paint_roller",
+      "to": "paint_roller",
+      "reason": "same paint-roller concept"
+    },
+    {
+      "from": "q013_paint_tray",
+      "to": "paint_tray",
+      "reason": "same paint-tray concept"
+    },
+    {
+      "from": "q013_screed_board",
+      "to": "screed",
+      "reason": "same concrete/mortar screed straightedge tool concept"
+    },
+    {
+      "from": "q013_marker_pen",
+      "to": "marker",
+      "reason": "same general site marker-pen concept"
+    }
   ]
 }
