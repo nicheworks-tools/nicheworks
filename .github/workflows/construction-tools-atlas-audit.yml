@@ -85,6 +85,9 @@ jobs:
       - name: Check image identity review reporter syntax
         run: node --check tools/construction-tools-atlas/scripts/report-image-identity-review-v2.3.cjs
 
+      - name: Check full image inventory auditor syntax
+        run: node --check tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs
+
       - name: Check master-detail v2.3 contract
         run: node tools/construction-tools-atlas/scripts/check-master-detail-v2.3.cjs
 
@@ -125,3 +128,6 @@ jobs:
 
       - name: Validate canonical image runtime priority
         run: node tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
+
+      - name: Validate frozen full canonical image inventory
+        run: node tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs --check
