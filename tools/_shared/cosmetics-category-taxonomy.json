@@ -10,8 +10,8 @@
     "thickener": { "authority_functions": ["thickening agent", "thickening"] },
     "pH adjuster": { "authority_functions": ["pH adjuster"] },
     "antioxidant": { "authority_functions": ["antioxidant", "antioxidants"] },
-    "viscosity adjuster": { "authority_functions": ["viscosity increasing agent - aqueous"] },
-    "chelating agent": { "authority_functions": ["chelating agent", "chelating agents"] }
+    "viscosity adjuster": { "authority_functions": ["viscosity increasing agent - aqueous", "viscosity controlling"] },
+    "chelating agent": { "authority_functions": ["chelating agent", "chelating agents", "chelating"] }
   },
   "reviewed_mappings": {
     "water": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/water/"],"runtime_verified":true},
