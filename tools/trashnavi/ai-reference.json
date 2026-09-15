@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 44,
+  "published_municipality_count": 49,
   "municipalities": [
     {"lgcode":"131016","pref_slug":"tokyo","city_slug":"chiyoda","url":"https://nicheworks.app/tools/trashnavi/tokyo/chiyoda/"},
     {"lgcode":"131032","pref_slug":"tokyo","city_slug":"minato","url":"https://nicheworks.app/tools/trashnavi/tokyo/minato/"},
@@ -52,6 +52,11 @@
     {"lgcode":"121002","pref_slug":"chiba","city_slug":"chiba","url":"https://nicheworks.app/tools/trashnavi/chiba/chiba/"},
     {"lgcode":"151009","pref_slug":"niigata","city_slug":"niigata","url":"https://nicheworks.app/tools/trashnavi/niigata/niigata/"},
     {"lgcode":"261009","pref_slug":"kyoto","city_slug":"kyoto","url":"https://nicheworks.app/tools/trashnavi/kyoto/kyoto/"},
-    {"lgcode":"271004","pref_slug":"osaka","city_slug":"osaka","url":"https://nicheworks.app/tools/trashnavi/osaka/osaka/"}
+    {"lgcode":"271004","pref_slug":"osaka","city_slug":"osaka","url":"https://nicheworks.app/tools/trashnavi/osaka/osaka/"},
+    {"lgcode":"221007","pref_slug":"shizuoka","city_slug":"shizuoka","url":"https://nicheworks.app/tools/trashnavi/shizuoka/shizuoka/"},
+    {"lgcode":"221309","pref_slug":"shizuoka","city_slug":"hamamatsu","url":"https://nicheworks.app/tools/trashnavi/shizuoka/hamamatsu/"},
+    {"lgcode":"281000","pref_slug":"hyogo","city_slug":"kobe","url":"https://nicheworks.app/tools/trashnavi/hyogo/kobe/"},
+    {"lgcode":"341002","pref_slug":"hiroshima","city_slug":"hiroshima","url":"https://nicheworks.app/tools/trashnavi/hiroshima/hiroshima/"},
+    {"lgcode":"431001","pref_slug":"kumamoto","city_slug":"kumamoto","url":"https://nicheworks.app/tools/trashnavi/kumamoto/kumamoto/"}
   ]
 }

@@ -42,7 +42,7 @@ for (const asset of ['/assets/amazon-affiliate.js', '/tools/trashnavi/affiliate-
   check(generator.includes(asset), `generated page asset missing: ${asset}`);
 }
 check(generator.includes('自治体の収集ルールとは別に'), 'municipal-rule separation copy missing');
-check(manifest.length === 44, `expected 44 published municipality pages, got ${manifest.length}`);
+check(manifest.length === 49, `expected 49 published municipality pages, got ${manifest.length}`);
 
 for (const entry of manifest) {
   const relative = path.join('tools', 'trashnavi', entry.pref_slug, entry.city_slug, 'index.html');
