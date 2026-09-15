@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-16",
+  "review_type": "visual-structural-recognition-review",
+  "scope": "wave2-21-40",
+  "publication_state": "staged-not-public",
+  "decision_rule": "Pass only when the image is recognizable at browse-card scale, materially distinguishes the entry from its common confusions, and preserves any qualified semantic boundary from source verification.",
+  "verification_boundary": "A structural-review pass advances the staged reference image to reviewed. It does not publish the pattern; runtime integration, static routes, SEO, commerce wiring, and browser QA remain separate gates.",
+  "review_history": "The first generated contact sheet was not accepted wholesale. Buffalo Check, Shepherd's Check, Gun Club Check, and Diamond Pattern were regenerated after visual review found insufficient differentiation or edge/tessellation problems. The refined 20-image set was then reviewed again.",
+  "records": [
+    {"pattern_id":"buffalo-check","decision":"pass","note":"Regenerated after review. Broad intersecting red/black bands now read as Buffalo plaid rather than a flat checkerboard."},
+    {"pattern_id":"shepherd-check","decision":"pass","note":"Regenerated after review. Fine alternating black/white check structure reads distinctly from the larger Buffalo and multitone Gun Club references."},
+    {"pattern_id":"windowpane-check","decision":"pass","note":"Sparse single-line orthogonal grid with large open cells is immediately distinct from dense checks."},
+    {"pattern_id":"madras-check","decision":"pass","note":"Irregular multicolor crossing bands provide the intended representative Madras visual cue without claiming one immutable sett."},
+    {"pattern_id":"tattersall","decision":"pass","note":"Two-color fine line grid on a light ground reads as Tattersall and remains distinct from single-line Windowpane."},
+    {"pattern_id":"gun-club-check","decision":"pass","note":"Regenerated after review. Multitone small-check and overlaid line structure now reads as a textile check rather than a block mosaic."},
+    {"pattern_id":"prince-of-wales-check","decision":"pass","note":"Fine Glen-family structure plus a clearly larger contrasting overcheck communicates the practical Prince of Wales distinction while preserving naming overlap."},
+    {"pattern_id":"pinstripe","decision":"pass","note":"Very fine, widely spaced vertical light lines on a dark ground are distinct from the wider Chalk and Bengal stripes."},
+    {"pattern_id":"chalk-stripe","decision":"pass","note":"Soft-edged broader pale vertical strokes on charcoal distinguish Chalk Stripe from crisp Pinstripe."},
+    {"pattern_id":"bengal-stripe","decision":"pass","note":"Balanced equal-width blue/white vertical bands are structurally unambiguous."},
+    {"pattern_id":"koushi","decision":"pass","note":"Regular Japanese lattice/grid reference is clear while remaining broader than the alternating-square Ichimatsu convention."},
+    {"pattern_id":"awning-stripe","decision":"pass","note":"Very broad alternating vertical bands communicate the awning-market stripe family clearly."},
+    {"pattern_id":"regimental-stripe","decision":"pass","note":"Repeated diagonal multicolor bands provide a representative neckwear/regimental-stripe cue without asserting one universal regiment sequence."},
+    {"pattern_id":"breton-stripe","decision":"pass","note":"Regular navy horizontal bands on light ground read clearly as the modern Breton/mariniere visual family while retaining the historical qualification in content."},
+    {"pattern_id":"swiss-dot","decision":"pass","note":"Small raised/shadowed dot treatment distinguishes Swiss Dot as a textile effect from flat Polka Dot."},
+    {"pattern_id":"herringbone","decision":"pass","note":"Broken alternating diagonal bars around a spine read as herringbone and remain visibly discontinuous from continuous Chevron/Zigzag bands."},
+    {"pattern_id":"zigzag","decision":"pass","note":"Continuous angular back-and-forth line is structurally distinct from filled Chevron bands and broken Herringbone."},
+    {"pattern_id":"diamond","decision":"pass","note":"Regenerated after review. Continuous outlined rhombus lattice now tiles cleanly across boundaries without clipped or malformed edge diamonds."},
+    {"pattern_id":"harlequin","decision":"pass","note":"Filled alternating multicolor diamond tessellation reads distinctly from generic outlined Diamond Pattern."},
+    {"pattern_id":"checkerboard","decision":"pass","note":"Alternating equal black/white squares are structurally unambiguous; comparison copy handles the contextual naming overlap with Ichimatsu rather than inventing a false visual distinction."}
+  ]
+}
