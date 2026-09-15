@@ -38,6 +38,40 @@ function hasAdsense(html) {
   return /pagead2\.googlesyndication\.com|adsbygoogle/i.test(html);
 }
 
+function noindexHeaderRules(text) {
+  const rules = [];
+  let currentPath = null;
+  let currentHeaders = [];
+  const flush = () => {
+    if (currentPath && currentHeaders.some((line) => /^x-robots-tag\s*:\s*.*\bnoindex\b/i.test(line.trim()))) {
+      rules.push(currentPath);
+    }
+  };
+  for (const line of text.split(/\r?\n/)) {
+    if (line && !/^\s/.test(line)) {
+      flush();
+      currentPath = line.trim();
+      currentHeaders = [];
+    } else if (currentPath && line.trim()) {
+      currentHeaders.push(line);
+    }
+  }
+  flush();
+  return rules;
+}
+
+function headerRuleRegex(rule) {
+  const escaped = rule.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*');
+  return new RegExp(`^${escaped}$`);
+}
+
+function publicPathForHtml(file) {
+  const normalized = file.replaceAll('\\', '/');
+  if (normalized === 'index.html') return '/';
+  if (normalized.endsWith('/index.html')) return `/${normalized.slice(0, -'index.html'.length)}`;
+  return `/${normalized}`;
+}
+
 const developmentTemplates = [
   'tools/_template/index.html',
   'templates/nw-minimal-base/index.html'
@@ -78,6 +112,25 @@ const forbiddenSitemapUrls = [
 for (const url of forbiddenSitemapUrls) {
   if (sitemap.includes(`<loc>${url}</loc>`)) {
     fail(`sitemap.xml must not publish ${url}`);
+  }
+}
+
+const headersText = read('_headers');
+const noindexRules = noindexHeaderRules(headersText);
+const noindexMatchers = noindexRules.map((rule) => ({ rule, regex: headerRuleRegex(rule) }));
+const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+for (const url of sitemapUrls) {
+  let pathname;
+  try {
+    pathname = new URL(url).pathname;
+  } catch {
+    continue;
+  }
+  for (const { rule, regex } of noindexMatchers) {
+    if (regex.test(pathname)) {
+      fail(`sitemap.xml publishes ${url}, but _headers marks matching route ${rule} noindex`);
+      break;
+    }
   }
 }
 
@@ -137,6 +190,13 @@ for (const item of publicItems) {
   if (unfinishedSalesPatterns.some((pattern) => pattern.test(html))) {
     fail(`${file}: indexable public tool must not expose unfinished billing/Pro sales UI`);
   }
+  const publicPath = `/tools/${slug}/`;
+  for (const { rule, regex } of noindexMatchers) {
+    if (regex.test(publicPath)) {
+      fail(`${file}: registered public tool root is HTTP-noindexed by _headers route ${rule}`);
+      break;
+    }
+  }
 }
 
 function walkHtml(dir, callback) {
@@ -157,7 +217,18 @@ const placeholderElementPattern = /<(div|p|span|aside|section|li|td|th)\b([^>]*)
 walkHtml(root, (full) => {
   const file = path.relative(root, full).replaceAll('\\', '/');
   const html = fs.readFileSync(full, 'utf8');
-  if (metaRobots(html).includes('noindex')) return;
+  const robots = metaRobots(html);
+  const publicPath = publicPathForHtml(file);
+  const headerNoindexRule = noindexMatchers.find(({ regex }) => regex.test(publicPath));
+  if (headerNoindexRule) {
+    if (!robots.includes('noindex')) {
+      fail(`${file}: _headers marks ${headerNoindexRule.rule} noindex, so HTML must also declare noindex`);
+    }
+    if (hasAdsense(html)) {
+      fail(`${file}: HTTP-noindex page must not load AdSense`);
+    }
+  }
+  if (robots.includes('noindex')) return;
   placeholderElementPattern.lastIndex = 0;
   let match;
   while ((match = placeholderElementPattern.exec(html))) {
