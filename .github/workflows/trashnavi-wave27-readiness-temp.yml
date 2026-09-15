@@ -31,6 +31,11 @@ jobs:
           grep -F '3+ distinct waste types (preferred candidates): 54' /tmp/coverage.txt
           node scripts/check-trashnavi-direct-links.mjs --inventory | tee /tmp/inventory.txt
           grep -F '30 datasets, 206 records, 187 unique URLs, 0 invalid URLs' /tmp/inventory.txt
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs
+          if git diff --name-only | grep -E '^tools/trashnavi/[^/]+/[^/]+/index\.html$'; then
+            echo 'Unexpected municipality-page drift during readiness' >&2
+            exit 1
+          fi
           node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
           node tools/trashnavi/scripts/check-affiliate-contract.mjs
           node tools/trashnavi/scripts/check-runtime-contract.mjs
@@ -51,7 +56,7 @@ jobs:
           print('Wave27 readiness contract: OK')
           PY
           git diff --check
-          git add tools/trashnavi/app.js tools/trashnavi/data/direct-waste-links-supply-wave27.json
+          git add tools/trashnavi/app.js tools/trashnavi/data/direct-waste-links-supply-wave27.json sitemap-trashnavi.xml
           git commit -m "Prepare TrashNavi Wave27 municipality batch"
           git rm .github/workflows/trashnavi-wave27-readiness-temp.yml
           git commit -m "Remove TrashNavi Wave27 readiness workflow"
