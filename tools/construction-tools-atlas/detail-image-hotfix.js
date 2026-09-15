@@ -2,6 +2,7 @@
   "use strict";
 
   const REGISTRY_URL = "./data/image-registry-v2.3.json?v=2026-09-14-wave3a-1";
+  const REDIRECT_URL = "./data/canonical-redirects-v2.3.json?v=2026-09-15-canonical-1";
   const MANIFEST_URLS = [
     "./data/image-pilots.json?v=20260513-asset-5",
     "./data/image-pilots-002.json?v=20260513-asset-6",
@@ -21,6 +22,9 @@
   const state = {
     pilots: [],
     registry: new Map(),
+    redirects: new Map(),
+    registrySourceItems: 0,
+    redirectInherited: 0,
     loaded: false,
     loading: null,
     lastSignature: "",
@@ -75,7 +79,8 @@
       alt_en: text(item.alt_en),
       display,
       thumbnail: text(item?.primary?.thumbnail),
-      source: item?.source && typeof item.source === "object" ? item.source : {}
+      source: item?.source && typeof item.source === "object" ? item.source : {},
+      inherited_from: ""
     };
   }
 
@@ -102,10 +107,58 @@
     }
   }
 
+  async function fetchRedirects() {
+    try {
+      const res = await fetch(REDIRECT_URL, { cache: "no-store" });
+      if (!res.ok) return new Map();
+      const json = await res.json();
+      if (json?.schema !== "cta-canonical-redirects-v2.3" || !Array.isArray(json.redirects)) return new Map();
+      return new Map(json.redirects.map((row) => [text(row?.from), text(row?.to)]).filter(([from, to]) => from && to && from !== to));
+    } catch (_) {
+      return new Map();
+    }
+  }
+
+  function resolveRegistryId(id) {
+    let current = text(id);
+    const seen = new Set();
+    while (current && state.redirects.has(current) && !seen.has(current)) {
+      seen.add(current);
+      current = state.redirects.get(current);
+    }
+    return current;
+  }
+
+  function buildPublicRegistry(items) {
+    const formal = items.map(toCanonical).filter(Boolean);
+    const publicRegistry = new Map();
+    state.registrySourceItems = formal.length;
+    state.redirectInherited = 0;
+
+    // A direct image owned by the surviving canonical always wins.
+    formal.forEach((item) => {
+      const resolved = resolveRegistryId(item.id);
+      if (resolved === item.id) publicRegistry.set(resolved, item);
+    });
+
+    // A reviewed image owned by a retired duplicate is inherited only when
+    // the surviving canonical has no direct reviewed image of its own.
+    formal.forEach((item) => {
+      const resolved = resolveRegistryId(item.id);
+      if (!resolved || resolved === item.id || publicRegistry.has(resolved)) return;
+      publicRegistry.set(resolved, { ...item, id: resolved, inherited_from: item.id });
+      state.redirectInherited += 1;
+    });
+    return publicRegistry;
+  }
+
   function updateDiagnostics() {
     window.CTA_IMAGE_DIAGNOSTICS = {
       registry: REGISTRY_URL,
+      redirects: REDIRECT_URL,
+      registrySourceItems: state.registrySourceItems,
       registryPromoted: state.registry.size,
+      redirectInherited: state.redirectInherited,
       manifests: MANIFEST_URLS.length,
       pilots: state.pilots.length,
       lastSource: state.lastSource
@@ -117,14 +170,11 @@
     if (state.loading) return state.loading;
     state.loading = Promise.all([
       fetchRegistry(),
+      fetchRedirects(),
       Promise.all(MANIFEST_URLS.map(fetchManifest))
-    ]).then(([registryItems, groups]) => {
-      state.registry = new Map(
-        registryItems
-          .map(toCanonical)
-          .filter(Boolean)
-          .map((item) => [item.id, item])
-      );
+    ]).then(([registryItems, redirects, groups]) => {
+      state.redirects = redirects;
+      state.registry = buildPublicRegistry(registryItems);
 
       const seen = new Set();
       state.pilots = groups
@@ -142,6 +192,7 @@
       return state;
     }).catch(() => {
       state.registry = new Map();
+      state.redirects = new Map();
       state.pilots = [];
       state.loaded = true;
       updateDiagnostics();
@@ -250,6 +301,7 @@
     img.loading = "lazy";
     img.decoding = "async";
     img.dataset.imageSource = "canonical-registry";
+    if (item.inherited_from) img.dataset.imageInheritedFrom = item.inherited_from;
     img.addEventListener("error", () => {
       clear(slot);
       slot.hidden = true;
@@ -259,7 +311,7 @@
     slot.appendChild(img);
     appendCanonicalCaption(slot, item);
     slot.hidden = false;
-    state.lastSource = "canonical";
+    state.lastSource = item.inherited_from ? "canonical-redirect-inherited" : "canonical";
     updateDiagnostics();
   }
 
@@ -303,8 +355,9 @@
     const slot = ensureSlot();
     if (!slot) return;
 
-    // Canonical ID ownership is authoritative. A promoted registry item suppresses
-    // the legacy label-based SVG path even if its raster file later fails to load.
+    // Canonical ID ownership is authoritative. A promoted registry item, including
+    // an image inherited from a retired duplicate through the canonical redirect
+    // ledger, suppresses the legacy label-based SVG path.
     const canonical = matchCanonical();
     if (canonical) {
       renderCanonical(slot, canonical);
