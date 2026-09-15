@@ -47,5 +47,10 @@
   {"lgcode":"221309","pref_slug":"shizuoka","city_slug":"hamamatsu","publish":true},
   {"lgcode":"281000","pref_slug":"hyogo","city_slug":"kobe","publish":true},
   {"lgcode":"341002","pref_slug":"hiroshima","city_slug":"hiroshima","publish":true},
-  {"lgcode":"431001","pref_slug":"kumamoto","city_slug":"kumamoto","publish":true}
+  {"lgcode":"431001","pref_slug":"kumamoto","city_slug":"kumamoto","publish":true},
+  {"lgcode":"022012","pref_slug":"aomori","city_slug":"aomori","publish":true},
+  {"lgcode":"062014","pref_slug":"yamagata","city_slug":"yamagata","publish":true},
+  {"lgcode":"102016","pref_slug":"gunma","city_slug":"maebashi","publish":true},
+  {"lgcode":"111007","pref_slug":"saitama","city_slug":"saitama","publish":true},
+  {"lgcode":"172014","pref_slug":"ishikawa","city_slug":"kanazawa","publish":true}
 ]
