@@ -51,3 +51,7 @@ The publication contract requires all 20 production records and Reference Images
 Amazon commerce is active for all 20 canonical patterns. Pattern Dictionary reuses the site-wide `/assets/amazon-affiliate.js` helper and maintained tracking ID `nicheworks09-22`. The shared ID is common across NicheWorks, while the destination is pattern-specific: each canonical pattern maps to one fixed Amazon.co.jp search URL. Search-box text, autocomplete text, interpreted descriptions, and other user state must never be forwarded into Amazon queries.
 
 The fixed mapping is fail-closed and auditable: exactly 20 active pattern IDs, exactly 20 distinct tagged-search destinations, one fixed query per pattern, bilingual CTA labels, shared disclosure rendering, and coarse click analytics only.
+
+## Amazon commerce-intent mapping
+
+The canonical 20 use **65 maintained Amazon.co.jp search destinations** rather than one generic link per pattern. Every pattern has one broad pattern search plus two or three pattern-appropriate shopping intents (apparel, accessory, material, or home). Each detail page exposes **2-4 links** with a target of three. All destinations are fixed in `data/affiliate-config.json`, share the maintained `nicheworks09-22` tracking tag, and never forward Pattern Dictionary free-text search input to Amazon.

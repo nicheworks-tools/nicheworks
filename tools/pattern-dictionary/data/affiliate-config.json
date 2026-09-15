@@ -1,197 +1,737 @@
 {
-  "schema": "pattern-dictionary-affiliate-v2",
-  "version": "2026-09-15-1",
+  "schema": "pattern-dictionary-affiliate-v3",
+  "version": "2026-09-15-2",
   "provider": "amazon.co.jp",
   "enabled": true,
   "tracking_id": "nicheworks09-22",
   "shared_helper": "/assets/amazon-affiliate.js",
-  "link_strategy": "maintained-canonical-tagged-search",
+  "link_strategy": "maintained-pattern-commerce-intents",
   "policy": {
     "query_source": "maintained_canonical_mapping_only",
     "free_text_forwarding": false,
     "product_claims": false,
-    "price_inventory_rating_content": false
+    "price_inventory_rating_content": false,
+    "links_per_pattern": {
+      "min": 2,
+      "target": 3,
+      "max": 4
+    }
   },
   "offers": [
     {
       "pattern_id": "houndstooth",
       "status": "active",
-      "offer_id": "amazon_houndstooth_search",
+      "offer_id": "amazon_houndstooth_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "千鳥格子",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E5%8D%83%E9%B3%A5%E6%A0%BC%E5%AD%90&tag=nicheworks09-22",
-      "label_ja": "千鳥格子の商品をAmazonで探す",
-      "label_en": "Find houndstooth products on Amazon"
+      "label_ja": "千鳥格子の商品を探す",
+      "label_en": "Shop houndstooth products"
+    },
+    {
+      "pattern_id": "houndstooth",
+      "status": "active",
+      "offer_id": "amazon_houndstooth_apparel_2",
+      "intent": "apparel",
+      "priority": 2,
+      "query": "千鳥格子 レディース",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E5%8D%83%E9%B3%A5%E6%A0%BC%E5%AD%90+%E3%83%AC%E3%83%87%E3%82%A3%E3%83%BC%E3%82%B9&tag=nicheworks09-22",
+      "label_ja": "千鳥格子のレディース服を探す",
+      "label_en": "Shop houndstooth womenswear"
+    },
+    {
+      "pattern_id": "houndstooth",
+      "status": "active",
+      "offer_id": "amazon_houndstooth_apparel_3",
+      "intent": "apparel",
+      "priority": 3,
+      "query": "千鳥格子 メンズ",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E5%8D%83%E9%B3%A5%E6%A0%BC%E5%AD%90+%E3%83%A1%E3%83%B3%E3%82%BA&tag=nicheworks09-22",
+      "label_ja": "千鳥格子のメンズ服を探す",
+      "label_en": "Shop houndstooth menswear"
+    },
+    {
+      "pattern_id": "houndstooth",
+      "status": "active",
+      "offer_id": "amazon_houndstooth_material_4",
+      "intent": "material",
+      "priority": 4,
+      "query": "千鳥格子 生地",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E5%8D%83%E9%B3%A5%E6%A0%BC%E5%AD%90+%E7%94%9F%E5%9C%B0&tag=nicheworks09-22",
+      "label_ja": "千鳥格子の生地を探す",
+      "label_en": "Shop houndstooth fabric"
     },
     {
       "pattern_id": "gingham",
       "status": "active",
-      "offer_id": "amazon_gingham_search",
+      "offer_id": "amazon_gingham_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "ギンガムチェック",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%AE%E3%83%B3%E3%82%AC%E3%83%A0%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF&tag=nicheworks09-22",
-      "label_ja": "ギンガムチェックの商品をAmazonで探す",
-      "label_en": "Find gingham products on Amazon"
+      "label_ja": "ギンガムチェックの商品を探す",
+      "label_en": "Shop gingham products"
+    },
+    {
+      "pattern_id": "gingham",
+      "status": "active",
+      "offer_id": "amazon_gingham_apparel_2",
+      "intent": "apparel",
+      "priority": 2,
+      "query": "ギンガムチェック レディース",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%AE%E3%83%B3%E3%82%AC%E3%83%A0%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF+%E3%83%AC%E3%83%87%E3%82%A3%E3%83%BC%E3%82%B9&tag=nicheworks09-22",
+      "label_ja": "ギンガムチェックのレディース服を探す",
+      "label_en": "Shop gingham womenswear"
+    },
+    {
+      "pattern_id": "gingham",
+      "status": "active",
+      "offer_id": "amazon_gingham_apparel_3",
+      "intent": "apparel",
+      "priority": 3,
+      "query": "ギンガムチェック シャツ",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%AE%E3%83%B3%E3%82%AC%E3%83%A0%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF+%E3%82%B7%E3%83%A3%E3%83%84&tag=nicheworks09-22",
+      "label_ja": "ギンガムチェックのシャツを探す",
+      "label_en": "Shop gingham shirts"
+    },
+    {
+      "pattern_id": "gingham",
+      "status": "active",
+      "offer_id": "amazon_gingham_material_4",
+      "intent": "material",
+      "priority": 4,
+      "query": "ギンガムチェック 生地",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%AE%E3%83%B3%E3%82%AC%E3%83%A0%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF+%E7%94%9F%E5%9C%B0&tag=nicheworks09-22",
+      "label_ja": "ギンガムチェックの生地を探す",
+      "label_en": "Shop gingham fabric"
     },
     {
       "pattern_id": "tartan",
       "status": "active",
-      "offer_id": "amazon_tartan_search",
+      "offer_id": "amazon_tartan_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "タータンチェック",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%BF%E3%83%BC%E3%82%BF%E3%83%B3%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF&tag=nicheworks09-22",
-      "label_ja": "タータンの商品をAmazonで探す",
-      "label_en": "Find tartan products on Amazon"
+      "label_ja": "タータンチェックの商品を探す",
+      "label_en": "Shop tartan products"
+    },
+    {
+      "pattern_id": "tartan",
+      "status": "active",
+      "offer_id": "amazon_tartan_apparel_2",
+      "intent": "apparel",
+      "priority": 2,
+      "query": "タータンチェック スカート",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%BF%E3%83%BC%E3%82%BF%E3%83%B3%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF+%E3%82%B9%E3%82%AB%E3%83%BC%E3%83%88&tag=nicheworks09-22",
+      "label_ja": "タータンチェックのスカートを探す",
+      "label_en": "Shop tartan skirts"
+    },
+    {
+      "pattern_id": "tartan",
+      "status": "active",
+      "offer_id": "amazon_tartan_accessory_3",
+      "intent": "accessory",
+      "priority": 3,
+      "query": "タータンチェック マフラー",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%BF%E3%83%BC%E3%82%BF%E3%83%B3%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF+%E3%83%9E%E3%83%95%E3%83%A9%E3%83%BC&tag=nicheworks09-22",
+      "label_ja": "タータンチェックのマフラーを探す",
+      "label_en": "Shop tartan scarves"
+    },
+    {
+      "pattern_id": "tartan",
+      "status": "active",
+      "offer_id": "amazon_tartan_material_4",
+      "intent": "material",
+      "priority": 4,
+      "query": "タータンチェック 生地",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%BF%E3%83%BC%E3%82%BF%E3%83%B3%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF+%E7%94%9F%E5%9C%B0&tag=nicheworks09-22",
+      "label_ja": "タータンチェックの生地を探す",
+      "label_en": "Shop tartan fabric"
     },
     {
       "pattern_id": "glen-check",
       "status": "active",
-      "offer_id": "amazon_glen_check_search",
+      "offer_id": "amazon_glen_check_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "グレンチェック",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%B0%E3%83%AC%E3%83%B3%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF&tag=nicheworks09-22",
-      "label_ja": "グレンチェックの商品をAmazonで探す",
-      "label_en": "Find glen-check products on Amazon"
+      "label_ja": "グレンチェックの商品を探す",
+      "label_en": "Shop glen-check products"
+    },
+    {
+      "pattern_id": "glen-check",
+      "status": "active",
+      "offer_id": "amazon_glen_check_apparel_2",
+      "intent": "apparel",
+      "priority": 2,
+      "query": "グレンチェック ジャケット",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%B0%E3%83%AC%E3%83%B3%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF+%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88&tag=nicheworks09-22",
+      "label_ja": "グレンチェックのジャケットを探す",
+      "label_en": "Shop glen-check jackets"
+    },
+    {
+      "pattern_id": "glen-check",
+      "status": "active",
+      "offer_id": "amazon_glen_check_apparel_3",
+      "intent": "apparel",
+      "priority": 3,
+      "query": "グレンチェック パンツ",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%B0%E3%83%AC%E3%83%B3%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF+%E3%83%91%E3%83%B3%E3%83%84&tag=nicheworks09-22",
+      "label_ja": "グレンチェックのパンツを探す",
+      "label_en": "Shop glen-check trousers"
     },
     {
       "pattern_id": "argyle",
       "status": "active",
-      "offer_id": "amazon_argyle_search",
+      "offer_id": "amazon_argyle_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "アーガイル柄",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%A2%E3%83%BC%E3%82%AC%E3%82%A4%E3%83%AB%E6%9F%84&tag=nicheworks09-22",
-      "label_ja": "アーガイル柄の商品をAmazonで探す",
-      "label_en": "Find argyle products on Amazon"
+      "label_ja": "アーガイル柄の商品を探す",
+      "label_en": "Shop argyle products"
+    },
+    {
+      "pattern_id": "argyle",
+      "status": "active",
+      "offer_id": "amazon_argyle_apparel_2",
+      "intent": "apparel",
+      "priority": 2,
+      "query": "アーガイル ニット",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%A2%E3%83%BC%E3%82%AC%E3%82%A4%E3%83%AB+%E3%83%8B%E3%83%83%E3%83%88&tag=nicheworks09-22",
+      "label_ja": "アーガイルのニットを探す",
+      "label_en": "Shop argyle knitwear"
+    },
+    {
+      "pattern_id": "argyle",
+      "status": "active",
+      "offer_id": "amazon_argyle_accessory_3",
+      "intent": "accessory",
+      "priority": 3,
+      "query": "アーガイル 靴下",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%A2%E3%83%BC%E3%82%AC%E3%82%A4%E3%83%AB+%E9%9D%B4%E4%B8%8B&tag=nicheworks09-22",
+      "label_ja": "アーガイルの靴下を探す",
+      "label_en": "Shop argyle socks"
     },
     {
       "pattern_id": "chevron",
       "status": "active",
-      "offer_id": "amazon_chevron_search",
+      "offer_id": "amazon_chevron_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "シェブロン柄",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%B7%E3%82%A7%E3%83%96%E3%83%AD%E3%83%B3%E6%9F%84&tag=nicheworks09-22",
-      "label_ja": "シェブロン柄の商品をAmazonで探す",
-      "label_en": "Find chevron products on Amazon"
+      "label_ja": "シェブロン柄の商品を探す",
+      "label_en": "Shop chevron products"
+    },
+    {
+      "pattern_id": "chevron",
+      "status": "active",
+      "offer_id": "amazon_chevron_home_2",
+      "intent": "home",
+      "priority": 2,
+      "query": "シェブロン ラグ",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%B7%E3%82%A7%E3%83%96%E3%83%AD%E3%83%B3+%E3%83%A9%E3%82%B0&tag=nicheworks09-22",
+      "label_ja": "シェブロン柄のラグを探す",
+      "label_en": "Shop chevron rugs"
+    },
+    {
+      "pattern_id": "chevron",
+      "status": "active",
+      "offer_id": "amazon_chevron_home_3",
+      "intent": "home",
+      "priority": 3,
+      "query": "シェブロン クッション",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%B7%E3%82%A7%E3%83%96%E3%83%AD%E3%83%B3+%E3%82%AF%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3&tag=nicheworks09-22",
+      "label_ja": "シェブロン柄のクッションを探す",
+      "label_en": "Shop chevron cushions"
     },
     {
       "pattern_id": "polka-dot",
       "status": "active",
-      "offer_id": "amazon_polka_dot_search",
+      "offer_id": "amazon_polka_dot_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "水玉柄",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E6%B0%B4%E7%8E%89%E6%9F%84&tag=nicheworks09-22",
-      "label_ja": "水玉柄の商品をAmazonで探す",
-      "label_en": "Find polka-dot products on Amazon"
+      "label_ja": "水玉柄の商品を探す",
+      "label_en": "Shop polka-dot products"
+    },
+    {
+      "pattern_id": "polka-dot",
+      "status": "active",
+      "offer_id": "amazon_polka_dot_apparel_2",
+      "intent": "apparel",
+      "priority": 2,
+      "query": "水玉 ワンピース",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E6%B0%B4%E7%8E%89+%E3%83%AF%E3%83%B3%E3%83%94%E3%83%BC%E3%82%B9&tag=nicheworks09-22",
+      "label_ja": "水玉柄のワンピースを探す",
+      "label_en": "Shop polka-dot dresses"
+    },
+    {
+      "pattern_id": "polka-dot",
+      "status": "active",
+      "offer_id": "amazon_polka_dot_material_3",
+      "intent": "material",
+      "priority": 3,
+      "query": "水玉柄 生地",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E6%B0%B4%E7%8E%89%E6%9F%84+%E7%94%9F%E5%9C%B0&tag=nicheworks09-22",
+      "label_ja": "水玉柄の生地を探す",
+      "label_en": "Shop polka-dot fabric"
     },
     {
       "pattern_id": "moroccan-trellis",
       "status": "active",
-      "offer_id": "amazon_moroccan_trellis_search",
-      "query": "モロッカントレリス 柄",
-      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%83%A2%E3%83%AD%E3%83%83%E3%82%AB%E3%83%B3%E3%83%88%E3%83%AC%E3%83%AA%E3%82%B9+%E6%9F%84&tag=nicheworks09-22",
-      "label_ja": "モロッカントレリス柄の商品をAmazonで探す",
-      "label_en": "Find Moroccan-trellis products on Amazon"
+      "offer_id": "amazon_moroccan_trellis_broad_1",
+      "intent": "broad",
+      "priority": 1,
+      "query": "モロッカン柄",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%83%A2%E3%83%AD%E3%83%83%E3%82%AB%E3%83%B3%E6%9F%84&tag=nicheworks09-22",
+      "label_ja": "モロッカン柄の商品を探す",
+      "label_en": "Shop Moroccan-pattern products"
+    },
+    {
+      "pattern_id": "moroccan-trellis",
+      "status": "active",
+      "offer_id": "amazon_moroccan_trellis_home_2",
+      "intent": "home",
+      "priority": 2,
+      "query": "モロッカン ラグ",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%83%A2%E3%83%AD%E3%83%83%E3%82%AB%E3%83%B3+%E3%83%A9%E3%82%B0&tag=nicheworks09-22",
+      "label_ja": "モロッカン柄のラグを探す",
+      "label_en": "Shop Moroccan-pattern rugs"
+    },
+    {
+      "pattern_id": "moroccan-trellis",
+      "status": "active",
+      "offer_id": "amazon_moroccan_trellis_home_3",
+      "intent": "home",
+      "priority": 3,
+      "query": "モロッカン クッション",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%83%A2%E3%83%AD%E3%83%83%E3%82%AB%E3%83%B3+%E3%82%AF%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3&tag=nicheworks09-22",
+      "label_ja": "モロッカン柄のクッションを探す",
+      "label_en": "Shop Moroccan-pattern cushions"
     },
     {
       "pattern_id": "seigaiha",
       "status": "active",
-      "offer_id": "amazon_seigaiha_search",
+      "offer_id": "amazon_seigaiha_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "青海波 柄",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E9%9D%92%E6%B5%B7%E6%B3%A2+%E6%9F%84&tag=nicheworks09-22",
-      "label_ja": "青海波柄の商品をAmazonで探す",
-      "label_en": "Find seigaiha products on Amazon"
+      "label_ja": "青海波柄の商品を探す",
+      "label_en": "Shop seigaiha products"
+    },
+    {
+      "pattern_id": "seigaiha",
+      "status": "active",
+      "offer_id": "amazon_seigaiha_accessory_2",
+      "intent": "accessory",
+      "priority": 2,
+      "query": "青海波 手ぬぐい",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E9%9D%92%E6%B5%B7%E6%B3%A2+%E6%89%8B%E3%81%AC%E3%81%90%E3%81%84&tag=nicheworks09-22",
+      "label_ja": "青海波柄の手ぬぐいを探す",
+      "label_en": "Shop seigaiha tenugui"
+    },
+    {
+      "pattern_id": "seigaiha",
+      "status": "active",
+      "offer_id": "amazon_seigaiha_material_3",
+      "intent": "material",
+      "priority": 3,
+      "query": "青海波 生地",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E9%9D%92%E6%B5%B7%E6%B3%A2+%E7%94%9F%E5%9C%B0&tag=nicheworks09-22",
+      "label_ja": "青海波柄の生地を探す",
+      "label_en": "Shop seigaiha fabric"
     },
     {
       "pattern_id": "asanoha",
       "status": "active",
-      "offer_id": "amazon_asanoha_search",
+      "offer_id": "amazon_asanoha_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "麻の葉 柄",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E9%BA%BB%E3%81%AE%E8%91%89+%E6%9F%84&tag=nicheworks09-22",
-      "label_ja": "麻の葉柄の商品をAmazonで探す",
-      "label_en": "Find asanoha products on Amazon"
+      "label_ja": "麻の葉柄の商品を探す",
+      "label_en": "Shop asanoha products"
+    },
+    {
+      "pattern_id": "asanoha",
+      "status": "active",
+      "offer_id": "amazon_asanoha_accessory_2",
+      "intent": "accessory",
+      "priority": 2,
+      "query": "麻の葉 手ぬぐい",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E9%BA%BB%E3%81%AE%E8%91%89+%E6%89%8B%E3%81%AC%E3%81%90%E3%81%84&tag=nicheworks09-22",
+      "label_ja": "麻の葉柄の手ぬぐいを探す",
+      "label_en": "Shop asanoha tenugui"
+    },
+    {
+      "pattern_id": "asanoha",
+      "status": "active",
+      "offer_id": "amazon_asanoha_material_3",
+      "intent": "material",
+      "priority": 3,
+      "query": "麻の葉 生地",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E9%BA%BB%E3%81%AE%E8%91%89+%E7%94%9F%E5%9C%B0&tag=nicheworks09-22",
+      "label_ja": "麻の葉柄の生地を探す",
+      "label_en": "Shop asanoha fabric"
     },
     {
       "pattern_id": "shippo",
       "status": "active",
-      "offer_id": "amazon_shippo_search",
+      "offer_id": "amazon_shippo_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "七宝 柄",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E4%B8%83%E5%AE%9D+%E6%9F%84&tag=nicheworks09-22",
-      "label_ja": "七宝柄の商品をAmazonで探す",
-      "label_en": "Find shippo-pattern products on Amazon"
+      "label_ja": "七宝柄の商品を探す",
+      "label_en": "Shop shippo-pattern products"
+    },
+    {
+      "pattern_id": "shippo",
+      "status": "active",
+      "offer_id": "amazon_shippo_accessory_2",
+      "intent": "accessory",
+      "priority": 2,
+      "query": "七宝柄 手ぬぐい",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E4%B8%83%E5%AE%9D%E6%9F%84+%E6%89%8B%E3%81%AC%E3%81%90%E3%81%84&tag=nicheworks09-22",
+      "label_ja": "七宝柄の手ぬぐいを探す",
+      "label_en": "Shop shippo-pattern tenugui"
+    },
+    {
+      "pattern_id": "shippo",
+      "status": "active",
+      "offer_id": "amazon_shippo_material_3",
+      "intent": "material",
+      "priority": 3,
+      "query": "七宝柄 生地",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E4%B8%83%E5%AE%9D%E6%9F%84+%E7%94%9F%E5%9C%B0&tag=nicheworks09-22",
+      "label_ja": "七宝柄の生地を探す",
+      "label_en": "Shop shippo-pattern fabric"
     },
     {
       "pattern_id": "ichimatsu",
       "status": "active",
-      "offer_id": "amazon_ichimatsu_search",
+      "offer_id": "amazon_ichimatsu_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "市松模様",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E5%B8%82%E6%9D%BE%E6%A8%A1%E6%A7%98&tag=nicheworks09-22",
-      "label_ja": "市松模様の商品をAmazonで探す",
-      "label_en": "Find ichimatsu products on Amazon"
+      "label_ja": "市松模様の商品を探す",
+      "label_en": "Shop ichimatsu products"
+    },
+    {
+      "pattern_id": "ichimatsu",
+      "status": "active",
+      "offer_id": "amazon_ichimatsu_accessory_2",
+      "intent": "accessory",
+      "priority": 2,
+      "query": "市松模様 手ぬぐい",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E5%B8%82%E6%9D%BE%E6%A8%A1%E6%A7%98+%E6%89%8B%E3%81%AC%E3%81%90%E3%81%84&tag=nicheworks09-22",
+      "label_ja": "市松模様の手ぬぐいを探す",
+      "label_en": "Shop ichimatsu tenugui"
+    },
+    {
+      "pattern_id": "ichimatsu",
+      "status": "active",
+      "offer_id": "amazon_ichimatsu_material_3",
+      "intent": "material",
+      "priority": 3,
+      "query": "市松模様 生地",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E5%B8%82%E6%9D%BE%E6%A8%A1%E6%A7%98+%E7%94%9F%E5%9C%B0&tag=nicheworks09-22",
+      "label_ja": "市松模様の生地を探す",
+      "label_en": "Shop ichimatsu fabric"
     },
     {
       "pattern_id": "kikko",
       "status": "active",
-      "offer_id": "amazon_kikko_search",
+      "offer_id": "amazon_kikko_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "亀甲 柄",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E4%BA%80%E7%94%B2+%E6%9F%84&tag=nicheworks09-22",
-      "label_ja": "亀甲柄の商品をAmazonで探す",
-      "label_en": "Find kikko-pattern products on Amazon"
+      "label_ja": "亀甲柄の商品を探す",
+      "label_en": "Shop kikko-pattern products"
+    },
+    {
+      "pattern_id": "kikko",
+      "status": "active",
+      "offer_id": "amazon_kikko_accessory_2",
+      "intent": "accessory",
+      "priority": 2,
+      "query": "亀甲柄 手ぬぐい",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E4%BA%80%E7%94%B2%E6%9F%84+%E6%89%8B%E3%81%AC%E3%81%90%E3%81%84&tag=nicheworks09-22",
+      "label_ja": "亀甲柄の手ぬぐいを探す",
+      "label_en": "Shop kikko-pattern tenugui"
+    },
+    {
+      "pattern_id": "kikko",
+      "status": "active",
+      "offer_id": "amazon_kikko_material_3",
+      "intent": "material",
+      "priority": 3,
+      "query": "亀甲柄 生地",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E4%BA%80%E7%94%B2%E6%9F%84+%E7%94%9F%E5%9C%B0&tag=nicheworks09-22",
+      "label_ja": "亀甲柄の生地を探す",
+      "label_en": "Shop kikko-pattern fabric"
     },
     {
       "pattern_id": "karakusa",
       "status": "active",
-      "offer_id": "amazon_karakusa_search",
+      "offer_id": "amazon_karakusa_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "唐草模様",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E5%94%90%E8%8D%89%E6%A8%A1%E6%A7%98&tag=nicheworks09-22",
-      "label_ja": "唐草模様の商品をAmazonで探す",
-      "label_en": "Find karakusa products on Amazon"
+      "label_ja": "唐草模様の商品を探す",
+      "label_en": "Shop karakusa products"
+    },
+    {
+      "pattern_id": "karakusa",
+      "status": "active",
+      "offer_id": "amazon_karakusa_accessory_2",
+      "intent": "accessory",
+      "priority": 2,
+      "query": "唐草 風呂敷",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E5%94%90%E8%8D%89+%E9%A2%A8%E5%91%82%E6%95%B7&tag=nicheworks09-22",
+      "label_ja": "唐草模様の風呂敷を探す",
+      "label_en": "Shop karakusa furoshiki"
+    },
+    {
+      "pattern_id": "karakusa",
+      "status": "active",
+      "offer_id": "amazon_karakusa_material_3",
+      "intent": "material",
+      "priority": 3,
+      "query": "唐草 生地",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E5%94%90%E8%8D%89+%E7%94%9F%E5%9C%B0&tag=nicheworks09-22",
+      "label_ja": "唐草模様の生地を探す",
+      "label_en": "Shop karakusa fabric"
     },
     {
       "pattern_id": "damask",
       "status": "active",
-      "offer_id": "amazon_damask_search",
+      "offer_id": "amazon_damask_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "ダマスク柄",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E3%83%80%E3%83%9E%E3%82%B9%E3%82%AF%E6%9F%84&tag=nicheworks09-22",
-      "label_ja": "ダマスク柄の商品をAmazonで探す",
-      "label_en": "Find damask products on Amazon"
+      "label_ja": "ダマスク柄の商品を探す",
+      "label_en": "Shop damask products"
+    },
+    {
+      "pattern_id": "damask",
+      "status": "active",
+      "offer_id": "amazon_damask_home_2",
+      "intent": "home",
+      "priority": 2,
+      "query": "ダマスク カーテン",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%83%80%E3%83%9E%E3%82%B9%E3%82%AF+%E3%82%AB%E3%83%BC%E3%83%86%E3%83%B3&tag=nicheworks09-22",
+      "label_ja": "ダマスク柄のカーテンを探す",
+      "label_en": "Shop damask curtains"
+    },
+    {
+      "pattern_id": "damask",
+      "status": "active",
+      "offer_id": "amazon_damask_home_3",
+      "intent": "home",
+      "priority": 3,
+      "query": "ダマスク 壁紙",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%83%80%E3%83%9E%E3%82%B9%E3%82%AF+%E5%A3%81%E7%B4%99&tag=nicheworks09-22",
+      "label_ja": "ダマスク柄の壁紙を探す",
+      "label_en": "Shop damask wallpaper"
     },
     {
       "pattern_id": "arabesque",
       "status": "active",
-      "offer_id": "amazon_arabesque_search",
+      "offer_id": "amazon_arabesque_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "アラベスク柄",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%A2%E3%83%A9%E3%83%99%E3%82%B9%E3%82%AF%E6%9F%84&tag=nicheworks09-22",
-      "label_ja": "アラベスク柄の商品をAmazonで探す",
-      "label_en": "Find arabesque products on Amazon"
+      "label_ja": "アラベスク柄の商品を探す",
+      "label_en": "Shop arabesque products"
+    },
+    {
+      "pattern_id": "arabesque",
+      "status": "active",
+      "offer_id": "amazon_arabesque_home_2",
+      "intent": "home",
+      "priority": 2,
+      "query": "アラベスク ラグ",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%A2%E3%83%A9%E3%83%99%E3%82%B9%E3%82%AF+%E3%83%A9%E3%82%B0&tag=nicheworks09-22",
+      "label_ja": "アラベスク柄のラグを探す",
+      "label_en": "Shop arabesque rugs"
+    },
+    {
+      "pattern_id": "arabesque",
+      "status": "active",
+      "offer_id": "amazon_arabesque_home_3",
+      "intent": "home",
+      "priority": 3,
+      "query": "アラベスク クッション",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%A2%E3%83%A9%E3%83%99%E3%82%B9%E3%82%AF+%E3%82%AF%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3&tag=nicheworks09-22",
+      "label_ja": "アラベスク柄のクッションを探す",
+      "label_en": "Shop arabesque cushions"
     },
     {
       "pattern_id": "paisley",
       "status": "active",
-      "offer_id": "amazon_paisley_search",
+      "offer_id": "amazon_paisley_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "ペイズリー柄",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E3%83%9A%E3%82%A4%E3%82%BA%E3%83%AA%E3%83%BC%E6%9F%84&tag=nicheworks09-22",
-      "label_ja": "ペイズリー柄の商品をAmazonで探す",
-      "label_en": "Find paisley products on Amazon"
+      "label_ja": "ペイズリー柄の商品を探す",
+      "label_en": "Shop paisley products"
+    },
+    {
+      "pattern_id": "paisley",
+      "status": "active",
+      "offer_id": "amazon_paisley_apparel_2",
+      "intent": "apparel",
+      "priority": 2,
+      "query": "ペイズリー シャツ",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%83%9A%E3%82%A4%E3%82%BA%E3%83%AA%E3%83%BC+%E3%82%B7%E3%83%A3%E3%83%84&tag=nicheworks09-22",
+      "label_ja": "ペイズリー柄のシャツを探す",
+      "label_en": "Shop paisley shirts"
+    },
+    {
+      "pattern_id": "paisley",
+      "status": "active",
+      "offer_id": "amazon_paisley_accessory_3",
+      "intent": "accessory",
+      "priority": 3,
+      "query": "ペイズリー バンダナ",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%83%9A%E3%82%A4%E3%82%BA%E3%83%AA%E3%83%BC+%E3%83%90%E3%83%B3%E3%83%80%E3%83%8A&tag=nicheworks09-22",
+      "label_ja": "ペイズリー柄のバンダナを探す",
+      "label_en": "Shop paisley bandanas"
+    },
+    {
+      "pattern_id": "paisley",
+      "status": "active",
+      "offer_id": "amazon_paisley_material_4",
+      "intent": "material",
+      "priority": 4,
+      "query": "ペイズリー 生地",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%83%9A%E3%82%A4%E3%82%BA%E3%83%AA%E3%83%BC+%E7%94%9F%E5%9C%B0&tag=nicheworks09-22",
+      "label_ja": "ペイズリー柄の生地を探す",
+      "label_en": "Shop paisley fabric"
     },
     {
       "pattern_id": "leopard-print",
       "status": "active",
-      "offer_id": "amazon_leopard_print_search",
+      "offer_id": "amazon_leopard_print_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "ヒョウ柄",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E3%83%92%E3%83%A7%E3%82%A6%E6%9F%84&tag=nicheworks09-22",
-      "label_ja": "ヒョウ柄の商品をAmazonで探す",
-      "label_en": "Find leopard-print products on Amazon"
+      "label_ja": "ヒョウ柄の商品を探す",
+      "label_en": "Shop leopard-print products"
+    },
+    {
+      "pattern_id": "leopard-print",
+      "status": "active",
+      "offer_id": "amazon_leopard_print_accessory_2",
+      "intent": "accessory",
+      "priority": 2,
+      "query": "ヒョウ柄 バッグ",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%83%92%E3%83%A7%E3%82%A6%E6%9F%84+%E3%83%90%E3%83%83%E3%82%B0&tag=nicheworks09-22",
+      "label_ja": "ヒョウ柄のバッグを探す",
+      "label_en": "Shop leopard-print bags"
+    },
+    {
+      "pattern_id": "leopard-print",
+      "status": "active",
+      "offer_id": "amazon_leopard_print_apparel_3",
+      "intent": "apparel",
+      "priority": 3,
+      "query": "ヒョウ柄 レディース",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%83%92%E3%83%A7%E3%82%A6%E6%9F%84+%E3%83%AC%E3%83%87%E3%82%A3%E3%83%BC%E3%82%B9&tag=nicheworks09-22",
+      "label_ja": "ヒョウ柄のレディース服を探す",
+      "label_en": "Shop leopard-print womenswear"
+    },
+    {
+      "pattern_id": "leopard-print",
+      "status": "active",
+      "offer_id": "amazon_leopard_print_material_4",
+      "intent": "material",
+      "priority": 4,
+      "query": "ヒョウ柄 生地",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%83%92%E3%83%A7%E3%82%A6%E6%9F%84+%E7%94%9F%E5%9C%B0&tag=nicheworks09-22",
+      "label_ja": "ヒョウ柄の生地を探す",
+      "label_en": "Shop leopard-print fabric"
     },
     {
       "pattern_id": "ikat",
       "status": "active",
-      "offer_id": "amazon_ikat_search",
+      "offer_id": "amazon_ikat_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "イカット柄",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%A4%E3%82%AB%E3%83%83%E3%83%88%E6%9F%84&tag=nicheworks09-22",
-      "label_ja": "イカット柄の商品をAmazonで探す",
-      "label_en": "Find ikat products on Amazon"
+      "label_ja": "イカット柄の商品を探す",
+      "label_en": "Shop ikat products"
+    },
+    {
+      "pattern_id": "ikat",
+      "status": "active",
+      "offer_id": "amazon_ikat_home_2",
+      "intent": "home",
+      "priority": 2,
+      "query": "イカット クッション",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%A4%E3%82%AB%E3%83%83%E3%83%88+%E3%82%AF%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3&tag=nicheworks09-22",
+      "label_ja": "イカット柄のクッションを探す",
+      "label_en": "Shop ikat cushions"
+    },
+    {
+      "pattern_id": "ikat",
+      "status": "active",
+      "offer_id": "amazon_ikat_material_3",
+      "intent": "material",
+      "priority": 3,
+      "query": "イカット 生地",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%A4%E3%82%AB%E3%83%83%E3%83%88+%E7%94%9F%E5%9C%B0&tag=nicheworks09-22",
+      "label_ja": "イカットの生地を探す",
+      "label_en": "Shop ikat fabric"
     },
     {
       "pattern_id": "kilim",
       "status": "active",
-      "offer_id": "amazon_kilim_search",
+      "offer_id": "amazon_kilim_broad_1",
+      "intent": "broad",
+      "priority": 1,
       "query": "キリム柄",
       "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%AD%E3%83%AA%E3%83%A0%E6%9F%84&tag=nicheworks09-22",
-      "label_ja": "キリム柄の商品をAmazonで探す",
-      "label_en": "Find kilim products on Amazon"
+      "label_ja": "キリムの商品を探す",
+      "label_en": "Shop kilim products"
+    },
+    {
+      "pattern_id": "kilim",
+      "status": "active",
+      "offer_id": "amazon_kilim_home_2",
+      "intent": "home",
+      "priority": 2,
+      "query": "キリム ラグ",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%AD%E3%83%AA%E3%83%A0+%E3%83%A9%E3%82%B0&tag=nicheworks09-22",
+      "label_ja": "キリムのラグを探す",
+      "label_en": "Shop kilim rugs"
+    },
+    {
+      "pattern_id": "kilim",
+      "status": "active",
+      "offer_id": "amazon_kilim_home_3",
+      "intent": "home",
+      "priority": 3,
+      "query": "キリム クッション",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%AD%E3%83%AA%E3%83%A0+%E3%82%AF%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3&tag=nicheworks09-22",
+      "label_ja": "キリムのクッションを探す",
+      "label_en": "Shop kilim cushions"
     }
   ]
 }
