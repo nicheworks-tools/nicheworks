@@ -115,7 +115,24 @@
     )
   ]);
 
-  const rows = Object.freeze([...wave6Rows, ...wave7Rows, ...wave12Rows, ...wave13Rows]);
+  const wave14Rows = Object.freeze([
+    Object.freeze({
+      maker: "KYOCERA Document Solutions",
+      searchMaker: "KYOCERA",
+      model: "KM-6230RM",
+      verifiedAt: "2026-09-16",
+      sourceUrl: tonerCompatibilitySource,
+      evidenceAlias: "KM-6230",
+      evidenceRelation: "official_remanufactured_base_model",
+      evidenceUrls: Object.freeze([
+        "https://www.kyoceradocumentsolutions.co.jp/support/prod_inf/pdf_c/km_6230rm.pdf",
+        tonerCompatibilitySource
+      ]),
+      tonerCodes: Object.freeze(["37026000"])
+    })
+  ]);
+
+  const rows = Object.freeze([...wave6Rows, ...wave7Rows, ...wave12Rows, ...wave13Rows, ...wave14Rows]);
 
   function buildTaggedSearchUrl(query) {
     const url = new URL("https://www.amazon.co.jp/s");
@@ -162,6 +179,7 @@
   window.MANUALFINDER_KYOCERA_TONER_WAVE7_LEDGER = wave7Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE12_LEDGER = wave12Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE13_LEDGER = wave13Rows;
+  window.MANUALFINDER_KYOCERA_TONER_WAVE14_LEDGER = wave14Rows;
   window.MANUALFINDER_AFFILIATE_CONFIG = Object.freeze({
     ...base,
     printerConsumables: Object.freeze([...(base.printerConsumables || []), ...rows]),
