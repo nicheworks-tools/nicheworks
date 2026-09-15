@@ -133,6 +133,21 @@
       category: "pH adjuster",
       sources: Object.freeze(["https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/"]),
       authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "aminomethyl propanol": Object.freeze({
+      category: "pH adjuster",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/aminomethyl-propanol/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "triethanolamine": Object.freeze({
+      category: "pH adjuster",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/ingredient/triethanolamine-and-tea-containing-ingredients/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
+    }),
+    "potassium hydroxide": Object.freeze({
+      category: "pH adjuster",
+      sources: Object.freeze(["https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/"]),
+      authority: "Personal Care Products Council / Cosmetics Info"
     })
   });
 
@@ -583,7 +598,7 @@
   }
 
   const api = {
-    version: "1.22.0",
+    version: "1.23.0",
     normalizeText,
     normalizeBaseKey,
     normalizeKey,
