@@ -1,0 +1,27 @@
+name: Construction Tools Atlas q011 identity closure
+
+on:
+  push:
+    branches:
+      - audit/construction-atlas-q011-identity-closure-20260915
+    paths:
+      - 'tools/construction-tools-atlas/**'
+      - '.github/workflows/construction-tools-atlas-q011-identity-closure.yml'
+  pull_request:
+    paths:
+      - 'tools/construction-tools-atlas/**'
+      - '.github/workflows/construction-tools-atlas-q011-identity-closure.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  identity-closure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Check auditor syntax
+        run: node --check tools/construction-tools-atlas/scripts/audit-q011-identity-closure-v2.3.cjs
+      - name: Report remaining q011 identity collisions
+        run: node tools/construction-tools-atlas/scripts/audit-q011-identity-closure-v2.3.cjs
