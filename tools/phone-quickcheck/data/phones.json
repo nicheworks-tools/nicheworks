@@ -3010,7 +3010,8 @@
           "QC2.0"
         ],
         "pps": "unknown",
-        "wirelessStandard": "Qi"
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 9
       },
       "included": {
         "cable": "included",
@@ -3021,7 +3022,7 @@
         "manualUrl": "https://www.samsung.com/jp/support/model/SM-F707JZNAKDI/",
         "releaseUrl": "https://news.samsung.com/global/introducing-galaxy-z-flip-5g-express-yourself-with-a-stylish-5g-enabled-foldable-smartphone",
         "chargingUrl": "https://image-us.samsung.com/SamsungUS/samsungbusiness/pdfs/datasheet/Galaxy-Z-Flip_Z-Flip-5G-Datasheet-Generic.pdf",
-        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "wirelessUrl": "https://www.samsung.com/hk_en/news/product/introducing-galaxy-z-flip-5g/",
         "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
