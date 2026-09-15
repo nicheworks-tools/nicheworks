@@ -1,6 +1,6 @@
 {
-  "version": 6,
-  "updatedAt": "2026-09-14",
+  "version": 7,
+  "updatedAt": "2026-09-15",
   "phones": [
     {
       "id": "apple-iphone-18-pro",
@@ -2934,6 +2934,8 @@
       },
       "weightG": 282,
       "displayInch": 7.6,
+      "waterRating": null,
+      "waterStatus": "not_resistant",
       "charging": {
         "connector": "USB-C",
         "battery": {
@@ -2958,6 +2960,7 @@
         "releaseUrl": "https://news.samsung.com/global/introducing-the-galaxy-z-fold2-change-the-shape-of-the-future",
         "chargingUrl": "https://www.samsung.com/au/smartphones/galaxy-z-fold2/design/",
         "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "waterUrl": "https://www.samsung.com/hk_en/support/mobile-devices/precautions-when-using-the-galaxy-z-fold2-device/",
         "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
@@ -3052,6 +3055,8 @@
       },
       "weightG": 183,
       "displayInch": 6.7,
+      "waterRating": null,
+      "waterStatus": "not_resistant",
       "charging": {
         "connector": "USB-C",
         "battery": {
@@ -3077,8 +3082,9 @@
         "manualUrl": "https://www.samsung.com/jp/support/model/SM-F700JZKAKDI/",
         "chargingUrl": "https://image-us.samsung.com/SamsungUS/samsungbusiness/pdfs/datasheet/Galaxy-Z-Flip_Z-Flip-5G-Datasheet-Generic.pdf",
         "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
-        "verifiedAt": "2026-09-15",
-        "releaseUrl": "https://news.samsung.com/global/the-future-changes-shape-express-yourself-with-galaxy-z-flip"
+        "releaseUrl": "https://news.samsung.com/global/the-future-changes-shape-express-yourself-with-galaxy-z-flip",
+        "waterUrl": "https://www.samsung.com/sg/support/mobile-devices/common-questions-about-your-galaxy-z-flip/",
+        "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
     },
@@ -3113,6 +3119,8 @@
       },
       "weightG": 276,
       "displayInch": 7.3,
+      "waterRating": null,
+      "waterStatus": "not_resistant",
       "charging": {
         "connector": "USB-C",
         "battery": {
@@ -3138,7 +3146,8 @@
         "releaseUrl": "https://news.samsung.com/global/samsung-galaxy-fold-now-available",
         "chargingUrl": "https://www.samsung.com/ca/support/mobile-devices/galaxy-phone-wall-chargers-and-charging/",
         "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
-        "verifiedAt": "2026-09-14"
+        "waterUrl": "https://www.samsung.com/sg/support/mobile-devices/what-are-the-screen-precautions-for-samsung-galaxy-fold/",
+        "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
     },

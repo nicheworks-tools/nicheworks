@@ -51,6 +51,7 @@
       included: "同梱",
       notIncluded: "別売",
       unknown: "不明",
+      notWaterDustResistant: "非防水・非防塵",
       supported: "対応",
       required: "必須",
       notSupported: "非対応",
@@ -107,6 +108,7 @@
       included: "Included",
       notIncluded: "Not included",
       unknown: "Unknown",
+      notWaterDustResistant: "Not water or dust resistant",
       supported: "Supported",
       required: "Required",
       notSupported: "Not supported",
@@ -317,7 +319,7 @@
     const weight = phone.weightG ? `${formatNumber(phone.weightG)} g` : '—';
     const connector = phone.charging?.connector || '—';
     const display = phone.displayInch ? `${formatNumber(phone.displayInch)} in` : '—';
-    const water = phone.waterRating || '—';
+    const water = waterLabel(phone);
     const protocols = protocolLabel(phone);
     const guidanceW = numberOrNull(phone.charging?.wiredRecommendedW);
     const charger = guidanceW ? `${formatNumber(guidanceW)}W+` : '—';
@@ -341,6 +343,12 @@
       <section class="detail-section"><h3>${escapeHtml(msg('whatYouNeed'))}</h3>${accessoryHtml(accessories)}</section>
       <section class="detail-section"><h3>${escapeHtml(msg('officialInfo'))}</h3>${officialLinksHtml(phone.sources || {})}</section>
     </div>`;
+  }
+
+  function waterLabel(phone) {
+    if (typeof phone.waterRating === 'string' && phone.waterRating.trim()) return phone.waterRating;
+    if (phone.waterStatus === 'not_resistant') return msg('notWaterDustResistant');
+    return '—';
   }
 
   function kv(label, value) {

@@ -497,3 +497,26 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
 }
 
 console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estimates, Apple unknown capacity, Lightning guidance, proprietary charging, and mobile sheet.');
+
+// Explicit manufacturer-backed non-resistance is localized; model-specific unknown remains unknown.
+{
+  const explicitIds = ['samsung-galaxy-z-fold2-5g', 'samsung-galaxy-z-flip', 'samsung-galaxy-fold-scv44'];
+  for (const id of explicitIds) {
+    const phone = byId.get(id);
+    assert.ok(phone, `fixture phone missing: ${id}`);
+    assert.equal(phone.waterRating, null);
+    assert.equal(phone.waterStatus, 'not_resistant');
+    assert.match(phone.sources?.waterUrl || '', /^https:\/\/www\.samsung\.com\//);
+    const h = await createHarness([id]);
+    assert.match(h.elements.desktopDetail.innerHTML, /非防水・非防塵/);
+    h.langEn.click();
+    assert.match(h.elements.desktopDetail.innerHTML, /Not water or dust resistant/);
+  }
+
+  const unresolved = byId.get('samsung-galaxy-z-flip-5g');
+  assert.ok(unresolved, 'Galaxy Z Flip 5G fixture missing');
+  assert.notEqual(unresolved.waterStatus, 'not_resistant');
+  assert.equal(unresolved.sources?.waterUrl, undefined);
+  const h = await createHarness(['samsung-galaxy-z-flip-5g']);
+  assert.doesNotMatch(h.elements.desktopDetail.innerHTML, /非防水・非防塵/);
+}

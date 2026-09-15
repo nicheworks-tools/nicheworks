@@ -66,6 +66,9 @@ for (const phone of phones) {
   if (isFoldable && phone.dimensions !== undefined) fail(`${label}: foldable records must use dimensionsFolded/dimensionsUnfolded, not dimensions`);
   if (!finitePositive(phone.weightG)) fail(`${label}: invalid weightG`);
   if (phone.displayInch !== null && phone.displayInch !== undefined && !finitePositive(phone.displayInch)) fail(`${label}: invalid displayInch`);
+  if (phone.waterRating !== null && phone.waterRating !== undefined && (typeof phone.waterRating !== 'string' || !phone.waterRating.trim())) fail(`${label}: invalid waterRating`);
+  if (phone.waterStatus !== null && phone.waterStatus !== undefined && phone.waterStatus !== 'not_resistant') fail(`${label}: unsupported waterStatus`);
+  if (phone.waterStatus === 'not_resistant' && phone.waterRating !== null && phone.waterRating !== undefined && phone.waterRating !== '') fail(`${label}: not_resistant must not carry waterRating`);
 
   const charging = phone.charging || {};
   if (!charging.connector || typeof charging.connector !== 'string') fail(`${label}: charging.connector required`);
@@ -85,6 +88,8 @@ for (const phone of phones) {
   }
 
   const sources = phone.sources || {};
+  if (sources.waterUrl !== null && sources.waterUrl !== undefined && !isHttps(sources.waterUrl)) fail(`${label}: waterUrl must be HTTPS when present`);
+  if (phone.waterStatus === 'not_resistant' && !isHttps(sources.waterUrl)) fail(`${label}: not_resistant requires HTTPS sources.waterUrl`);
   if (!isHttps(sources.specificationsUrl)) fail(`${label}: HTTPS specificationsUrl required`);
   if (!isHttps(sources.manualUrl)) fail(`${label}: HTTPS manualUrl required`);
   if (sources.releaseUrl !== undefined && sources.releaseUrl !== null && !isHttps(sources.releaseUrl)) fail(`${label}: releaseUrl must be HTTPS when present`);

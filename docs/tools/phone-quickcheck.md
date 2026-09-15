@@ -42,6 +42,7 @@ The product is a practical Quick Check utility, not a comprehensive smartphone e
 - `wiredRecommendedW` は充電器の推奨／必要クラスとして扱い、端末側の実測・最大入力W数と同一視しない。
 - 端末側最大有線充電W数は、その意味を直接支える維持済み根拠がある場合のみ表示する。
 - USB PD、PPS、Samsung Super Fast Charging、OPPO SUPERVOOC、Xiaomi HyperCharge/TurboCharge、Motorola TurboPower、Qi、Qi2等は維持済み事実から表示・分類する。
+- `waterRating` は維持済みIP等級のみを保持する。メーカー一次資料が明示的に非防水・非防塵とする場合だけ `waterStatus: not_resistant` と `sources.waterUrl` を記録し、単なる `waterRating` 欠落/nullは未確認のまま扱う。
 - バッテリー容量が利用可能な場合のみ、`power_bank_mAh × 0.67 ÷ phone_battery_mAh` で5,000 / 10,000 / 20,000mAhの概算充電回数を計算し、小数1桁で表示する。
 - バッテリー容量がunknownの場合は概算を生成しない。
 - メーカーが通常仕様でmAhを公表していない機種について、第三者値を無断でメーカー公式値として扱わない。
@@ -52,6 +53,7 @@ The product is a practical Quick Check utility, not a comprehensive smartphone e
 
 - 検索・フィルター後のスマートフォン一覧。
 - 選択機種の高さ × 幅 × 厚さ、重量、画面サイズ等の維持済み本体情報。foldableでは折りたたみ時／展開時の外形寸法を分けて表示する。
+- 防水・防塵等級、またはメーカー一次資料で明示された非防水・非防塵状態。未確認は `—` のまま表示する。
 - 充電端子、充電器目安、充電規格、PPS状態、ワイヤレス充電情報。
 - 維持済みバッテリー容量がある場合の5,000 / 10,000 / 20,000mAh概算充電回数。
 - 互換条件から導出した再利用可能アクセサリークラス。
@@ -68,6 +70,7 @@ Observed delivery capabilities: clipboard copy **not found**; download/export **
 - `phones.json` または `accessories.json` の取得に失敗した場合は、正常な空一覧として扱わず、データ読込失敗を明示する。
 - 検索条件に該当する機種がない場合は、条件変更を促す空状態を表示する。
 - バッテリー容量が不明な場合は0回や推測mAhを作らず、算出不可／未確認として扱う。
+- `waterRating` が不明なだけでは非防水と断定しない。明示的な `not_resistant` はメーカー一次資料URLがある場合だけ許可する。
 - 根拠のない充電規格、最大W数、同梱状態を推測で補完しない。
 - 外部リンクが未設定または不正な場合は、ダミーURLへ遷移させない。
 - アクセサリー定義が解決できない場合でも、端末スペックと公式情報の表示は可能な範囲で継続する。
