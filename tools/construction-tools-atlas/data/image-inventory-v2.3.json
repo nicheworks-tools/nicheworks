@@ -1,0 +1,255 @@
+{
+  "schema": "cta-image-inventory-v2.3",
+  "version": "2026-09-15-freeze-1",
+  "policy": {
+    "formal_image_states": [
+      "reviewed",
+      "verified"
+    ],
+    "formal_subject_match": "matched",
+    "requires_local_source_and_separate_webp_derivatives": true,
+    "legacy_svg_counts_as_final": false,
+    "default_without_formal_image_or_exception": "missing_formal_image",
+    "exception_states": [
+      "not_required",
+      "unobtainable"
+    ]
+  },
+  "sources": {
+    "quality_manifest_version": "2026-09-14-manifest-8",
+    "image_registry_version": "2026-09-14-wave3a-1",
+    "exception_ledger_version": "2026-09-15-1",
+    "source_ledgers": [
+      {
+        "file": "image-wave1-sources-v2.3.json",
+        "version": "2026-09-14-wave1-1",
+        "items": 6
+      },
+      {
+        "file": "image-wave2-sources-v2.3.json",
+        "version": "2026-09-14-wave2b-1",
+        "items": 12
+      },
+      {
+        "file": "image-wave3-sources-v2.3.json",
+        "version": "2026-09-14-wave3a-1",
+        "items": 6
+      }
+    ]
+  },
+  "summary": {
+    "corpus_entries": 5536,
+    "formal_image_entries": 24,
+    "missing_formal_image_entries": 5512,
+    "not_required_entries": 0,
+    "unobtainable_entries": 0,
+    "classified_entries": 5536,
+    "formal_coverage_percent": 0.4335,
+    "registry_items": 24,
+    "source_ledger_items": 24,
+    "identity_holds": 0
+  },
+  "by_type": {
+    "access": {
+      "corpus": 1,
+      "formal_image": 0,
+      "missing_formal_image": 1,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "accessory": {
+      "corpus": 1,
+      "formal_image": 0,
+      "missing_formal_image": 1,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "component": {
+      "corpus": 210,
+      "formal_image": 2,
+      "missing_formal_image": 208,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "consumable": {
+      "corpus": 14,
+      "formal_image": 0,
+      "missing_formal_image": 14,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "defect": {
+      "corpus": 3,
+      "formal_image": 0,
+      "missing_formal_image": 3,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "document": {
+      "corpus": 2,
+      "formal_image": 0,
+      "missing_formal_image": 2,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "equipment": {
+      "corpus": 45,
+      "formal_image": 4,
+      "missing_formal_image": 41,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "fastener": {
+      "corpus": 18,
+      "formal_image": 0,
+      "missing_formal_image": 18,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "fixture": {
+      "corpus": 5,
+      "formal_image": 0,
+      "missing_formal_image": 5,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "generated_term": {
+      "corpus": 4600,
+      "formal_image": 0,
+      "missing_formal_image": 4600,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "hardware": {
+      "corpus": 14,
+      "formal_image": 0,
+      "missing_formal_image": 14,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "inspection": {
+      "corpus": 8,
+      "formal_image": 0,
+      "missing_formal_image": 8,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "material": {
+      "corpus": 172,
+      "formal_image": 3,
+      "missing_formal_image": 169,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "materials": {
+      "corpus": 16,
+      "formal_image": 0,
+      "missing_formal_image": 16,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "process": {
+      "corpus": 15,
+      "formal_image": 0,
+      "missing_formal_image": 15,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "rigging": {
+      "corpus": 6,
+      "formal_image": 0,
+      "missing_formal_image": 6,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "safety": {
+      "corpus": 17,
+      "formal_image": 0,
+      "missing_formal_image": 17,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "sample": {
+      "corpus": 1,
+      "formal_image": 0,
+      "missing_formal_image": 1,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "site": {
+      "corpus": 2,
+      "formal_image": 0,
+      "missing_formal_image": 2,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "structure": {
+      "corpus": 2,
+      "formal_image": 0,
+      "missing_formal_image": 2,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "system": {
+      "corpus": 1,
+      "formal_image": 0,
+      "missing_formal_image": 1,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "temporary": {
+      "corpus": 3,
+      "formal_image": 0,
+      "missing_formal_image": 3,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "test": {
+      "corpus": 1,
+      "formal_image": 0,
+      "missing_formal_image": 1,
+      "not_required": 0,
+      "unobtainable": 0
+    },
+    "tool": {
+      "corpus": 379,
+      "formal_image": 15,
+      "missing_formal_image": 364,
+      "not_required": 0,
+      "unobtainable": 0
+    }
+  },
+  "hashes": {
+    "corpus_id_sha256": "bff8aae6f75c763415864d81b9b2686131a2964b60bc354e85f84d64e3433f31",
+    "formal_image_id_sha256": "c3a1247bdd270a30f8b845200af6a6a1c02f0fdc2ed94fb7561a55d8382e8696",
+    "missing_formal_image_id_sha256": "99ecb4af09b12b1121a09f9e0678dcac9be8b80178b872924aaedaf783d59267",
+    "classification_sha256": "da99500fa9f8f71f0c74e3764bea30a7fb936ae51dd12f52588f4833f52c03ea"
+  },
+  "missing_sample": [
+    "access_door",
+    "access_panel",
+    "acoustic_panel",
+    "adhesion_test",
+    "air_compressor",
+    "allen_key",
+    "anchor_bolt",
+    "anchor_plastic_plug",
+    "angle_finder",
+    "as_built",
+    "as_built_drawing",
+    "asphalt_felt",
+    "auto_level",
+    "backer_rod",
+    "backhoe_loader",
+    "ball_valve",
+    "barricade",
+    "base_trim",
+    "baseboard",
+    "beam",
+    "bolt_cutter",
+    "bolt_nut",
+    "borescope",
+    "brick_hammer",
+    "brick_trowel"
+  ]
+}
