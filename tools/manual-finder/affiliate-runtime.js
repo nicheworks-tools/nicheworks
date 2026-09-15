@@ -50,8 +50,8 @@
     const note = document.createElement("p");
     note.className = "mf-commerce-note";
     note.textContent = currentLang() === "en"
-      ? "Toner compatibility was checked against an official manufacturer source. Confirm the exact item and supported model on Amazon before purchase."
-      : "対応トナーはメーカー公式情報で対象機種との対応を確認済みです。Amazon上では購入前に商品型番と対応機種をご確認ください。";
+      ? "Consumable compatibility was checked against an official manufacturer source. Confirm the exact item and supported model on Amazon before purchase."
+      : "対応消耗品はメーカー公式情報で対象機種との対応を確認済みです。Amazon上では購入前に商品型番と対応機種をご確認ください。";
     wrapper.appendChild(note);
   }
 
