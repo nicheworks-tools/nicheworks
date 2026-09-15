@@ -4,6 +4,7 @@
   const originalFetch = window.fetch.bind(window);
   const DEFAULT_BASE_PATHS = ["./data/tools.basic.json"];
   const DEFAULT_MANIFEST_PATH = "./data/quality-manifest.json";
+  const DEFAULT_ENRICHMENT_PATH = "./data/content-enrichment-v2.3.json";
   const GENERATED_FILLER_BATCHES = new Set(["direct-5000", "atlas-expand-5000"]);
 
   function safeText(value) {
@@ -14,6 +15,10 @@
     if (Array.isArray(value)) return value.filter(Boolean).map(String);
     if (typeof value === "string" && value.trim()) return [value.trim()];
     return [];
+  }
+
+  function uniqueText(values) {
+    return [...new Set(safeArray(values).map((value) => value.trim()).filter(Boolean))];
   }
 
   function compactToFull(row, qualityBatch) {
@@ -165,6 +170,44 @@
     });
   }
 
+  function enrichmentEntries(raw) {
+    return Array.isArray(raw?.entries) ? raw.entries : [];
+  }
+
+  function applyContentEnrichment(merged, raw, stats) {
+    const byId = new Map(merged.map((entry) => [safeText(entry?.id), entry]));
+    for (const patch of enrichmentEntries(raw)) {
+      const id = safeText(patch?.id);
+      if (!id) continue;
+      const target = byId.get(id);
+      if (!target) {
+        stats.contentEnrichmentMissingTargets += 1;
+        if (stats.contentEnrichmentMissingSample.length < 20) stats.contentEnrichmentMissingSample.push(id);
+        continue;
+      }
+      const detailJa = safeText(patch?.detail_ja);
+      const detailEn = safeText(patch?.detail_en);
+      const bulletsJa = uniqueText(patch?.bullets_ja);
+      const bulletsEn = uniqueText(patch?.bullets_en);
+      const examplesJa = uniqueText(patch?.examples_ja);
+      const examplesEn = uniqueText(patch?.examples_en);
+      if (detailJa) target.detail_ja = detailJa;
+      if (detailEn) target.detail_en = detailEn;
+      if (bulletsJa.length) target.bullets_ja = bulletsJa;
+      if (bulletsEn.length) target.bullets_en = bulletsEn;
+      target.bullets = { ja: target.bullets_ja || [], en: target.bullets_en || [] };
+      if (!target.examples || typeof target.examples !== "object") target.examples = { ja: [], en: [] };
+      if (examplesJa.length) target.examples.ja = examplesJa;
+      if (examplesEn.length) target.examples.en = examplesEn;
+      target.meta = {
+        ...(target.meta || {}),
+        content_enrichment_wave: safeText(patch?.wave),
+        content_enrichment_state: safeText(patch?.state) || "expanded"
+      };
+      stats.contentEnriched += 1;
+    }
+  }
+
   function createStats() {
     return {
       raw: 0,
@@ -175,14 +218,19 @@
       quarantinedGenerated: 0,
       quarantinedGeneratedByBatch: {},
       generatedQuarantineSample: [],
+      contentEnriched: 0,
+      contentEnrichmentMissingTargets: 0,
+      contentEnrichmentMissingSample: [],
       removed: []
     };
   }
 
   async function loadEntries(options = {}) {
     const manifestPath = options.manifestPath || DEFAULT_MANIFEST_PATH;
+    const enrichmentPath = options.enrichmentPath || DEFAULT_ENRICHMENT_PATH;
     const basePaths = Array.isArray(options.basePaths) ? options.basePaths : DEFAULT_BASE_PATHS;
     const manifest = await fetchJson(manifestPath);
+    const enrichment = await fetchJson(enrichmentPath);
     const packPaths = manifestPaths(manifest);
     const merged = [];
     const seenIds = new Set();
@@ -198,11 +246,12 @@
       addUnique(merged, seenIds, seenTerms, base, stats, path);
     }
 
+    applyContentEnrichment(merged, enrichment, stats);
     stats.merged = merged.length;
     stats.removedCount = stats.raw - stats.merged;
     window.CTA_DATA_DIAGNOSTICS = stats;
-    if (stats.removedCount > 0) {
-      console.info("Construction Tools Atlas data dedupe/quarantine", stats);
+    if (stats.removedCount > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0) {
+      console.info("Construction Tools Atlas data dedupe/quarantine/enrichment", stats);
     }
     return merged;
   }
