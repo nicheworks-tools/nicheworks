@@ -1,0 +1,37 @@
+name: Construction Tools Atlas publication corpus
+
+on:
+  push:
+    branches:
+      - fix/construction-atlas-generated-term-quarantine-20260915
+    paths:
+      - 'tools/construction-tools-atlas/data/quality-loader.js'
+      - 'tools/construction-tools-atlas/data/quality-manifest.json'
+      - 'tools/construction-tools-atlas/data/tools*.json'
+      - 'tools/construction-tools-atlas/data/publication-inventory-v2.3.json'
+      - 'tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs'
+      - '.github/workflows/construction-tools-atlas-publication-corpus.yml'
+  pull_request:
+    paths:
+      - 'tools/construction-tools-atlas/data/quality-loader.js'
+      - 'tools/construction-tools-atlas/data/quality-manifest.json'
+      - 'tools/construction-tools-atlas/data/tools*.json'
+      - 'tools/construction-tools-atlas/data/publication-inventory-v2.3.json'
+      - 'tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs'
+      - '.github/workflows/construction-tools-atlas-publication-corpus.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  publication-corpus:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check publication auditor syntax
+        run: node --check tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs
+
+      - name: Audit public runtime corpus
+        run: node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs
