@@ -11,6 +11,16 @@ const taxonomy = JSON.parse(fs.readFileSync(path.join(root, 'tools/_shared/cosme
 const EXPECTED_CATEGORIES = new Set([
   'solvent', 'humectant', 'preservative', 'thickener', 'pH adjuster', 'antioxidant', 'viscosity adjuster', 'chelating agent'
 ]);
+const EXPECTED_AUTHORITY_FUNCTIONS = Object.freeze({
+  'solvent': ['solvent'],
+  'humectant': ['humectant'],
+  'preservative': ['preservative'],
+  'thickener': ['thickening agent', 'thickening'],
+  'pH adjuster': ['pH adjuster'],
+  'antioxidant': ['antioxidant', 'antioxidants'],
+  'viscosity adjuster': ['viscosity increasing agent - aqueous', 'viscosity controlling'],
+  'chelating agent': ['chelating agent', 'chelating agents', 'chelating']
+});
 const EXPECTED_WAVE3_PROMOTED = new Set(['sodium chloride', 'disodium edta']);
 const EXPECTED_WAVE4_PROMOTED = new Set(['tocopheryl acetate']);
 const EXPECTED_WAVE5_PROMOTED = new Set(['butylene glycol', 'dipropylene glycol', 'sodium hydroxide']);
@@ -38,6 +48,9 @@ assert.equal(taxonomy.mapping_policy, 'explicit_only', 'authority-function mappi
 assert.ok(taxonomy.categories && typeof taxonomy.categories === 'object');
 assert.ok(taxonomy.reviewed_mappings && typeof taxonomy.reviewed_mappings === 'object');
 assert.deepEqual(new Set(Object.keys(taxonomy.categories)), EXPECTED_CATEGORIES, 'verified category taxonomy set changed unexpectedly');
+for (const [category, functions] of Object.entries(EXPECTED_AUTHORITY_FUNCTIONS)) {
+  assert.deepEqual(taxonomy.categories[category]?.authority_functions, functions, `${category}: authority function vocabulary changed without review`);
+}
 
 const authorityFunctionToCategory = new Map();
 for (const [category, contract] of Object.entries(taxonomy.categories)) {
@@ -49,6 +62,9 @@ for (const [category, contract] of Object.entries(taxonomy.categories)) {
     authorityFunctionToCategory.set(key, category);
   }
 }
+assert.equal(authorityFunctionToCategory.get('chelating'), 'chelating agent', 'COSMILE CHELATING must map explicitly to chelating agent');
+assert.equal(authorityFunctionToCategory.get('viscosity controlling'), 'viscosity adjuster', 'COSMILE VISCOSITY CONTROLLING must map explicitly to viscosity adjuster');
+assert.equal(authorityFunctionToCategory.size, 13, 'authority function vocabulary must contain exactly 13 reviewed terms');
 
 const runtimeMappings = {};
 for (const [canonical, mapping] of Object.entries(taxonomy.reviewed_mappings)) {
@@ -72,6 +88,8 @@ for (const canonical of EXPECTED_WAVE7_PROMOTED) assert.ok(runtimeMappings[canon
 for (const canonical of EXPECTED_WAVE8_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 8 mapping must be runtime_verified`);
 for (const canonical of EXPECTED_WAVE9_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 9 mapping must be runtime_verified`);
 assert.equal(runtimeMappings['sodium citrate'], undefined, 'Sodium Citrate must remain out of runtime taxonomy until buffer vs pH-adjuster semantics are explicitly resolved');
+assert.equal(runtimeMappings['sodium gluconate'], undefined, 'authority vocabulary extension must not silently promote Sodium Gluconate');
+assert.equal(runtimeMappings['xanthan gum'], undefined, 'authority vocabulary extension must not silently promote Xanthan Gum');
 
 const runtimeEvidence = parser.verifiedCategoryEvidence || {};
 assert.deepEqual(new Set(Object.keys(runtimeMappings)), new Set(Object.keys(runtimeEvidence)), 'taxonomy runtime mappings must exactly match runtime category evidence');
@@ -86,10 +104,14 @@ for (const ambiguous of parser.ambiguousExactKeys || []) assert.equal(taxonomy.r
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'verified-category-taxonomy-wave-9',
+  phase: 'category-authority-vocabulary-extension',
   mapping_policy: taxonomy.mapping_policy,
   canonical_categories: Object.keys(taxonomy.categories).length,
   unique_authority_function_terms: authorityFunctionToCategory.size,
+  newly_reviewed_authority_terms: {
+    chelating: 'chelating agent',
+    'viscosity controlling': 'viscosity adjuster'
+  },
   runtime_verified_mappings: Object.keys(runtimeMappings).length,
   wave_3_promoted_mappings: [...EXPECTED_WAVE3_PROMOTED],
   wave_4_promoted_mappings: [...EXPECTED_WAVE4_PROMOTED],
@@ -99,6 +121,8 @@ console.log(JSON.stringify({
   wave_8_promoted_mappings: [...EXPECTED_WAVE8_PROMOTED],
   wave_9_promoted_mappings: [...EXPECTED_WAVE9_PROMOTED],
   sodium_citrate_deferred_for_taxonomy_decision: true,
+  sodium_gluconate_promoted: false,
+  xanthan_gum_promoted: false,
   raw_legacy_taxonomy_rewritten: false,
   safety_contract_changed: false,
   ambiguity_contract_changed: false,
