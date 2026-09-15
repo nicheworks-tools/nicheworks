@@ -8,7 +8,11 @@ const DATA = path.join(ROOT, 'data');
 const MANIFEST_PATH = path.join(DATA, 'quality-manifest.json');
 const LOADER_PATH = path.join(DATA, 'quality-loader.js');
 const SNAPSHOT_PATH = path.join(DATA, 'publication-inventory-v2.3.json');
-const GENERATED_FILLER_BATCH = 'atlas-expand-5000';
+const GENERATED_FILLER_BATCHES = new Set(['direct-5000', 'atlas-expand-5000']);
+const GENERATED_ID_PREFIX_BY_BATCH = new Map([
+  ['direct-5000', 'term_'],
+  ['atlas-expand-5000', 'generated_']
+]);
 const args = new Set(process.argv.slice(2));
 
 function text(value) { return typeof value === 'string' ? value.trim() : ''; }
@@ -39,14 +43,11 @@ function termKey(row) {
   const en = normalizeTerm(sourceEn(row));
   return ja || en ? `${ja}::${en}` : '';
 }
-function isKnownGeneratedFiller(row) {
-  return row?.meta?.generated === true && text(row?.meta?.batch) === GENERATED_FILLER_BATCH;
+function generatedBatch(row) {
+  return row?.meta?.generated === true ? text(row?.meta?.batch) : '';
 }
-function isTemplateLike(row) {
-  const ja = text(row?.description?.ja || row?.detail_ja || row?.summary_ja);
-  const en = text(row?.description?.en || row?.detail_en || row?.summary_en);
-  return ja.includes('現場用語です。用途、材料、周辺部材、安全条件を合わせて確認します。')
-    && en.includes('is a construction reference term used around');
+function isKnownGeneratedFiller(row) {
+  return GENERATED_FILLER_BATCHES.has(generatedBatch(row));
 }
 function manifestSources(manifest) {
   const out = [];
@@ -63,19 +64,29 @@ function localFileFromRuntimePath(runtimePath) {
   const clean = String(runtimePath || '').replace(/[?#].*$/, '').replace(/^\.\//, '');
   return path.resolve(ROOT, clean);
 }
+function increment(object, key) {
+  object[key] = (object[key] || 0) + 1;
+}
+function pushSample(list, value, limit = 20) {
+  if (list.length < limit) list.push(value);
+}
 
 function computeExpected() {
   const manifest = readJson(MANIFEST_PATH);
-  const errors = [];
   const seenIds = new Set();
   const seenTerms = new Set();
   const published = [];
   const generated = [];
+  const quarantineByBatch = {};
+  const unknownGeneratedByBatch = {};
+  const unknownGeneratedSample = [];
+  const malformedKnownGeneratedSample = [];
   let rawEntries = 0;
   let duplicateIds = 0;
   let duplicateTerms = 0;
   let skippedMissingId = 0;
-  let templateLikeGenerated = 0;
+  let unknownGeneratedCount = 0;
+  let malformedKnownGeneratedCount = 0;
 
   for (const rel of manifestSources(manifest)) {
     const file = path.resolve(ROOT, rel);
@@ -84,25 +95,32 @@ function computeExpected() {
       rawEntries += 1;
       const id = text(row?.id || row?.slug);
       const type = sourceType(row);
-      const generatedMarker = row?.meta?.generated === true;
-      const generatedBatch = text(row?.meta?.batch);
+      const batch = generatedBatch(row);
       const knownFiller = isKnownGeneratedFiller(row);
 
       if (!id) {
         skippedMissingId += 1;
         continue;
       }
-      if (type === 'generated_term' && !knownFiller) {
-        errors.push(`${id}: generated_term lacks the reviewed ${GENERATED_FILLER_BATCH} quarantine provenance`);
+
+      if (type === 'generated_term' || row?.meta?.generated === true) {
+        if (!knownFiller) {
+          unknownGeneratedCount += 1;
+          increment(unknownGeneratedByBatch, batch || '<missing>');
+          pushSample(unknownGeneratedSample, { id, type, batch: batch || null, source: rel });
+          continue;
+        }
       }
-      if (generatedMarker && generatedBatch !== GENERATED_FILLER_BATCH) {
-        errors.push(`${id}: unknown generated provenance batch ${generatedBatch || '<missing>'}`);
-      }
+
       if (knownFiller) {
-        if (type !== 'generated_term') errors.push(`${id}: ${GENERATED_FILLER_BATCH} filler must remain type=generated_term until explicitly curated`);
-        if (!id.startsWith('generated_')) errors.push(`${id}: ${GENERATED_FILLER_BATCH} filler must use generated_ ID provenance`);
-        if (isTemplateLike(row)) templateLikeGenerated += 1;
-        generated.push({ id, type });
+        const expectedPrefix = GENERATED_ID_PREFIX_BY_BATCH.get(batch);
+        if (type !== 'generated_term' || !expectedPrefix || !id.startsWith(expectedPrefix)) {
+          malformedKnownGeneratedCount += 1;
+          pushSample(malformedKnownGeneratedSample, { id, type, batch, expected_prefix: expectedPrefix || null, source: rel });
+          continue;
+        }
+        increment(quarantineByBatch, batch);
+        generated.push({ id, type, batch });
         continue;
       }
 
@@ -121,10 +139,12 @@ function computeExpected() {
     }
   }
 
-  if (errors.length) throw new Error(`Publication provenance audit failed:\n- ${errors.join('\n- ')}`);
+  if (unknownGeneratedCount || malformedKnownGeneratedCount) {
+    throw new Error(`Publication provenance audit failed: unknown_generated=${unknownGeneratedCount}, malformed_known_generated=${malformedKnownGeneratedCount}, unknown_by_batch=${JSON.stringify(unknownGeneratedByBatch)}, unknown_sample=${JSON.stringify(unknownGeneratedSample)}, malformed_sample=${JSON.stringify(malformedKnownGeneratedSample)}`);
+  }
 
   const byType = {};
-  for (const row of published) byType[row.type] = (byType[row.type] || 0) + 1;
+  for (const row of published) increment(byType, row.type);
   const publishedIds = published.map((row) => row.id).sort((a, b) => a.localeCompare(b, 'en'));
   const generatedIds = generated.map((row) => row.id).sort((a, b) => a.localeCompare(b, 'en'));
 
@@ -132,23 +152,25 @@ function computeExpected() {
     manifest,
     publishedIds,
     generatedIds,
+    quarantineByBatch,
     snapshot: {
       schema: 'cta-publication-inventory-v2.3',
-      version: '2026-09-15-generated-quarantine-1',
+      version: '2026-09-15-generated-quarantine-2',
       policy: {
-        generated_filler_batch: GENERATED_FILLER_BATCH,
+        generated_filler_batches: [...GENERATED_FILLER_BATCHES].sort((a, b) => a.localeCompare(b, 'en')),
         generated_filler_publication_state: 'quarantined',
+        unknown_generated_provenance: 'fail_closed',
         promotion_rule: 'A quarantined generated filler may return to the public corpus only after explicit curation removes generated provenance and gives it a maintained entry type/content.'
       },
       summary: {
         stored_corpus_entries: rawEntries,
         quarantined_generated_entries: generated.length,
         published_runtime_entries: published.length,
-        template_like_generated_entries: templateLikeGenerated,
         skipped_missing_id: skippedMissingId,
         duplicate_ids_removed: duplicateIds,
         duplicate_terms_removed: duplicateTerms
       },
+      quarantine_by_batch: Object.fromEntries(Object.entries(quarantineByBatch).sort(([a], [b]) => a.localeCompare(b, 'en'))),
       published_by_type: Object.fromEntries(Object.entries(byType).sort(([a], [b]) => a.localeCompare(b, 'en'))),
       hashes: {
         published_id_sha256: hashLines(publishedIds),
@@ -181,7 +203,8 @@ async function runLoader() {
   const sandbox = {
     window: windowObject,
     document: documentStub,
-    console: { info() {}, log() {}, warn() {}, error: console.error }
+    console: { info() {}, log() {}, warn() {}, error: console.error },
+    Set
   };
   vm.runInNewContext(loaderSource, sandbox, { filename: 'quality-loader.js' });
   if (!windowObject.CTA_DATA_LOADER?.loadEntries) throw new Error('quality-loader did not expose CTA_DATA_LOADER.loadEntries');
@@ -195,18 +218,22 @@ async function main() {
   const expected = computeExpected();
   const runtime = await runLoader();
   const runtimeIds = runtime.entries.map((entry) => text(entry?.id)).filter(Boolean).sort((a, b) => a.localeCompare(b, 'en'));
-  const runtimeGenerated = runtime.entries.filter((entry) => isKnownGeneratedFiller(entry) || sourceType(entry) === 'generated_term');
+  const runtimeGenerated = runtime.entries.filter((entry) => sourceType(entry) === 'generated_term' || entry?.meta?.generated === true);
 
-  if (runtimeGenerated.length) throw new Error(`Public runtime still exposes ${runtimeGenerated.length} generated filler entries`);
+  if (runtimeGenerated.length) throw new Error(`Public runtime still exposes ${runtimeGenerated.length} generated entries`);
   if (JSON.stringify(runtimeIds) !== JSON.stringify(expected.publishedIds)) {
     throw new Error(`Public runtime ID set does not match audited publication set: runtime=${runtimeIds.length}, expected=${expected.publishedIds.length}`);
   }
   if (runtime.diagnostics.quarantinedGenerated !== expected.generatedIds.length) {
     throw new Error(`Loader quarantine count mismatch: runtime=${runtime.diagnostics.quarantinedGenerated}, expected=${expected.generatedIds.length}`);
   }
+  if (JSON.stringify(runtime.diagnostics.quarantinedGeneratedByBatch || {}) !== JSON.stringify(expected.quarantineByBatch)) {
+    throw new Error(`Loader quarantine-by-batch mismatch: runtime=${JSON.stringify(runtime.diagnostics.quarantinedGeneratedByBatch || {})}, expected=${JSON.stringify(expected.quarantineByBatch)}`);
+  }
 
   const snapshot = expected.snapshot;
   console.log(`CTA_PUBLICATION_SUMMARY=${JSON.stringify(snapshot.summary)}`);
+  console.log(`CTA_PUBLICATION_QUARANTINE_BY_BATCH=${JSON.stringify(snapshot.quarantine_by_batch)}`);
   console.log(`CTA_PUBLICATION_HASHES=${JSON.stringify(snapshot.hashes)}`);
   console.log(`CTA_PUBLICATION_BY_TYPE=${JSON.stringify(snapshot.published_by_type)}`);
   console.log(`CTA_PUBLICATION_SNAPSHOT=${JSON.stringify(snapshot)}`);
