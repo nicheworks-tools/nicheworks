@@ -1,0 +1,270 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-15-wave1",
+  "entries": [
+    {
+      "id": "q011_mortar_mixer",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "モルタル、グラウト、補修材などを均一に練り混ぜるための機械。ドラム式やパン式などがあり、材料量や粘度に合う容量・方式を選ぶ。混練時間や投入順序は使用する材料の仕様に従う。",
+      "detail_en": "A powered mixer used to produce a uniform batch of mortar, grout, repair compounds, and similar materials. Drum and pan-type designs are common; capacity and mixing method should suit the material, with mixing time and loading sequence following the material specification.",
+      "bullets_ja": ["材料の種類と一回の練り量に合う容量を使う。", "過負荷や固着した材料は混練品質と機械寿命に影響する。", "使用後は硬化前に付着物を除去し、次の配合へ持ち込まない。"],
+      "bullets_en": ["Match mixer capacity to the material and batch size.", "Overloading or hardened buildup can affect mixing quality and equipment life.", "Remove residue before it hardens so it does not contaminate the next batch."],
+      "examples_ja": ["補修モルタルを規定量ずつ練るためにモルタルミキサーを使う。", "連続施工では一回の練り量と混練時間をそろえて品質のばらつきを抑える。"],
+      "examples_en": ["Use a mortar mixer to prepare specified batches of repair mortar.", "On repetitive work, keep batch size and mixing time consistent to reduce variation."]
+    },
+    {
+      "id": "q011_sanding_paper",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "紙や布などの基材に砥粒を固定した研磨材。番手が小さいほど一般に粗く削る量が多く、番手を上げると仕上げ向きになる。木材、塗膜、パテ、金属など対象に合う砥粒と番手を選ぶ。",
+      "detail_en": "An abrasive sheet or cloth with grit bonded to a backing. Lower grit numbers are generally coarser for faster stock removal, while higher grits are used for finer finishing. Abrasive type and grit should match the substrate such as wood, coatings, filler, or metal.",
+      "bullets_ja": ["粗削りと仕上げで番手を使い分ける。", "目詰まりや砥粒の摩耗が進んだものは研磨効率が落ちる。", "粉じんが出る材料では適切な集じん・保護措置を確認する。"],
+      "bullets_en": ["Use different grits for stock removal and finishing.", "Clogged or worn abrasive loses cutting efficiency.", "Confirm appropriate dust control and protection for dusty materials."],
+      "examples_ja": ["パテ乾燥後の段差をならしてから仕上げ番手へ移る。", "塗装前の足付けに対象面へ適したサンドペーパーを使う。"],
+      "examples_en": ["Level dried filler with a coarser grit before moving to a finishing grit.", "Use suitable sanding paper to key a surface before coating."]
+    },
+    {
+      "id": "q011_concrete_slump",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "フレッシュコンクリートのコンシステンシーを、所定のスランプ試験で沈下量として表した値。施工時の扱いやすさを確認する代表的な指標だが、スランプ値だけでコンクリートの強度や品質全体が決まるわけではない。",
+      "detail_en": "A value obtained by the standardized slump test to indicate the consistency of fresh concrete as a measured drop. It is a common field indicator of handling consistency, but slump alone does not determine concrete strength or overall quality.",
+      "bullets_ja": ["受入時は指定された試験方法と判定基準で確認する。", "値は配合、温度、時間経過などの影響を受ける。", "強度試験や空気量など他の品質確認とは別の指標として扱う。"],
+      "bullets_en": ["Check it using the specified test method and acceptance criteria.", "Mix design, temperature, and elapsed time can influence the result.", "Treat slump separately from strength, air content, and other quality checks."],
+      "examples_ja": ["打設前の受入検査でスランプを測定し、指定範囲と照合する。", "同じ配合でも到着時刻や気温の違いを含めて試験記録を確認する。"],
+      "examples_en": ["Measure slump during delivery inspection and compare it with the specified range.", "Review test records together with delivery time and temperature conditions."]
+    },
+    {
+      "id": "q011_chair_bar",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "スラブなどで上端筋の高さを保持するために配置する鉄筋製の支持材。配筋中だけでなく、歩行や打設時にも所定位置を保てるよう、形状・高さ・配置間隔を配筋計画に合わせる。",
+      "detail_en": "A reinforcing-steel support used to hold upper reinforcement at the required elevation, commonly in slabs. Its height, shape, and spacing are coordinated with the reinforcement layout so the bars remain positioned during placing and construction traffic.",
+      "bullets_ja": ["上端筋の設計高さとかぶりを損なわない寸法を確認する。", "転倒や沈み込みで配筋高さが変わらないよう配置する。", "スペーサーなど他のかぶり保持材とは役割を分けて確認する。"],
+      "bullets_en": ["Confirm dimensions against the required reinforcement elevation and cover.", "Place supports so tipping or settlement does not change bar elevation.", "Distinguish its role from cover spacers and other reinforcement supports."],
+      "examples_ja": ["スラブ上端筋を所定高さに保持するため馬筋を配置する。", "打設前検査で馬筋の高さと安定性を確認する。"],
+      "examples_en": ["Place chair bars to support the upper reinforcement in a slab.", "Before concrete placement, check chair height and stability."]
+    },
+    {
+      "id": "q011_wire_twister",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "鉄筋の交点などに掛けた結束線を、先端のフックで引っ掛けてねじる手工具。現場ではハッカーなどと呼ばれ、配筋を所定位置に保持するための結束作業に使う。",
+      "detail_en": "A hand tool with a hooked end for twisting tie wire around reinforcement intersections. Often used for manual rebar tying, it helps hold bars in their intended position during reinforcement work.",
+      "bullets_ja": ["結束線の太さや作業姿勢に合う形状を使う。", "締め過ぎによる線切れや、突出した線端による引っ掛かりに注意する。", "結束は配筋位置保持のための作業で、構造上の継手そのものとは区別する。"],
+      "bullets_en": ["Choose a hook and handle suited to the tie wire and working position.", "Avoid breaking the wire by over-twisting and manage sharp projecting ends.", "Rebar tying holds placement; it is distinct from a structural bar splice or connection."],
+      "examples_ja": ["梁配筋の交点で結束線をハッカーでねじって固定する。", "結束後に線端が大きく突出していないか確認する。"],
+      "examples_en": ["Twist tie wire with a wire twister at reinforcement intersections.", "After tying, check that sharp wire ends are not left projecting unnecessarily."]
+    },
+    {
+      "id": "q011_grout_float",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "タイル目地材を目地へ押し込み、表面へ広げるためのゴム面を持つ工具。硬い金属鏝よりタイル表面へ追従しやすく、目地を充填した後の余分な材料をかき取る作業にも使う。",
+      "detail_en": "A rubber-faced hand tool used to press tile grout into joints and spread it across the tile surface. Its resilient face follows the surface better than a rigid metal trowel and also helps remove excess grout after filling.",
+      "bullets_ja": ["目地幅やタイル表面に合う硬さ・大きさを選ぶ。", "目地へ十分に材料が入っているか確認しながら作業する。", "材料が硬化する前の清掃時期は使用する目地材の仕様に合わせる。"],
+      "bullets_en": ["Choose a size and firmness suited to the joint and tile surface.", "Work the grout into the joints rather than only coating the surface.", "Time cleanup according to the grout manufacturer's requirements."],
+      "examples_ja": ["目地材を目地ゴテで押し込み、タイル面の余分な材料をかき取る。", "小さなタイルでは扱いやすいサイズのグラウトフロートを使う。"],
+      "examples_en": ["Pack grout into tile joints with a grout float and remove excess from the face.", "Use a manageable float size when working with small-format tile."]
+    },
+    {
+      "id": "q011_thinset_mortar",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "タイルや石材を下地へ薄い接着層で張り付けるためのセメント系接着モルタル。製品ごとに対応下地、タイル種類、塗布厚、可使時間が異なるため、対象条件に合う材料を選ぶ。",
+      "detail_en": "A cementitious bonding mortar used to set tile or stone in a relatively thin adhesive bed. Products differ in suitable substrates, tile types, bed thickness, and open or working time, so selection must match the installation conditions.",
+      "bullets_ja": ["下地とタイルの種類に適合する製品を選ぶ。", "所定の水量・練り方・可使時間を守る。", "必要な接着面積を得られる塗布方法とこて目を確認する。"],
+      "bullets_en": ["Select a product compatible with both substrate and tile.", "Follow specified water ratio, mixing method, and working time.", "Use an application method and notch size that provide the required mortar coverage."],
+      "examples_ja": ["磁器質タイルを下地へ張るため、適合するタイル接着モルタルを使う。", "施工条件に応じて指定されたくし目ごてと塗布厚を確認する。"],
+      "examples_en": ["Use compatible thinset mortar to bond porcelain tile to the substrate.", "Confirm the specified notch and bed thickness for the installation conditions."]
+    },
+    {
+      "id": "q011_bitumen_membrane",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "アスファルトにポリマーなどを加えて性能を調整したシート状防水材。屋根や地下外壁などの防水層に使われ、工法によりトーチ、粘着、接着など施工方式が異なる。",
+      "detail_en": "A sheet waterproofing material made from asphalt modified with polymers or similar additives. It is used in roof and below-grade waterproofing systems, with installation methods varying by product, including torch-applied, self-adhered, or bonded systems.",
+      "bullets_ja": ["製品ごとの下地条件と施工方式を確認する。", "重ね幅、端部、立上り、貫通部などディテール部の連続性が重要になる。", "下地の水分や凹凸など、接着を妨げる条件を施工前に確認する。"],
+      "bullets_en": ["Confirm substrate requirements and installation method for the specific product.", "Continuity at laps, edges, upstands, and penetrations is critical.", "Check moisture, irregularities, and other substrate conditions that can affect adhesion."],
+      "examples_ja": ["屋上防水で改質アスファルトシートを連続した防水層として施工する。", "立上りや排水口まわりは一般部と分けて納まりを確認する。"],
+      "examples_en": ["Install modified bitumen membrane as a continuous roof waterproofing layer.", "Check detailing separately at upstands and drains rather than treating them like field areas."]
+    },
+    {
+      "id": "q011_drainage_mat",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "壁面や床下などで水を排水先へ導く空隙層をつくるマット材。防水層の外側や保護層と組み合わせて使われ、圧力を受けても排水経路が連続するよう納める。",
+      "detail_en": "A mat that creates a voided drainage layer to route water toward an outlet, often used outside waterproofing or with protection layers. The drainage path must remain continuous and functional under the expected loading and surrounding construction.",
+      "bullets_ja": ["排水方向と出口までの連続性を確認する。", "防水層を傷付けない納まりと保護方法を確認する。", "土圧や仕上げ材で排水空間がつぶれない製品・配置を選ぶ。"],
+      "bullets_en": ["Confirm drainage direction and continuity to the outlet.", "Detail the mat so it does not damage the waterproofing layer.", "Use a product and arrangement that preserve drainage space under expected loads."],
+      "examples_ja": ["地下外壁の防水層外側に排水マットを設けて水を下部へ導く。", "端部や排水口でマット内の水が確実に抜ける納まりを確認する。"],
+      "examples_en": ["Place a drainage mat outside below-grade waterproofing to route water downward.", "Check edge and outlet details so water can leave the drainage layer."]
+    },
+    {
+      "id": "q011_knockout_punch",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "分電盤、ボックス、薄板などに配管・配線用の丸穴を開けるパンチとダイスの工具。下穴へ軸を通して締め込み、板をせん断して比較的きれいな開口を作る。手動式と油圧式などがある。",
+      "detail_en": "A punch-and-die tool for making round conduit or cable-entry holes in panels, boxes, and sheet material. A draw stud passes through a pilot hole and pulls the punch through the sheet; manual and hydraulic versions are common.",
+      "bullets_ja": ["必要な開口径と板厚に対応するパンチ・ダイスを使う。", "穴位置が内部機器や補強材と干渉しないか事前に確認する。", "電気設備では対象を適切に安全な状態へしたうえで作業条件を確認する。"],
+      "bullets_en": ["Use a punch and die rated for the required hole size and material thickness.", "Check that the opening will not interfere with internal equipment or reinforcement.", "For electrical equipment, confirm the required safe work condition before punching the enclosure."],
+      "examples_ja": ["盤へ電線管を引き込む位置にノックアウトパンチで丸穴を設ける。", "コネクタ径に合うダイスを選び、既設部品との干渉を確認する。"],
+      "examples_en": ["Punch a round entry hole in a panel for an electrical conduit.", "Select the die for the connector size and check clearance from installed components."]
+    },
+    {
+      "id": "q011_terminal_block",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "複数の電線を端子で接続・中継・分岐するための絶縁された端子部品。ねじ式、ばね式など接続方式があり、盤内配線や制御回路で配線を整理し、保守しやすくするために使う。",
+      "detail_en": "An insulated terminal assembly used to connect, terminate, or distribute conductors. Screw-clamp and spring-clamp styles are common, and terminal blocks are widely used to organize panel and control wiring for installation and maintenance.",
+      "bullets_ja": ["定格電圧・電流、適合電線サイズ、接続方式を確認する。", "端子番号や回路表示を図面と対応させる。", "締付けや導体処理は端子メーカーの指定方法に従う。"],
+      "bullets_en": ["Confirm voltage/current rating, conductor range, and termination method.", "Keep terminal numbering and circuit labels consistent with the drawings.", "Prepare and tighten conductors according to the terminal manufacturer's instructions."],
+      "examples_ja": ["制御盤内で外部配線と内部配線を端子台で中継する。", "保守時に追跡できるよう端子番号を配線図と合わせる。"],
+      "examples_en": ["Use a terminal block to interface field wiring with internal control-panel wiring.", "Match terminal numbers to the wiring diagram for easier maintenance and tracing."]
+    },
+    {
+      "id": "q011_clamp_meter",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "導体をクランプで囲み、回路を切り離さずに電流を測定できる計測器。機種によって交流・直流電流のほか、電圧、抵抗、周波数などを測れる。測定方式と定格は機種ごとに異なる。",
+      "detail_en": "A meter that measures current by clamping around a conductor without opening the circuit. Depending on the model it may measure AC and/or DC current as well as voltage, resistance, frequency, and other quantities; measurement method and ratings vary by instrument.",
+      "bullets_ja": ["測定対象に対する機器の定格と測定カテゴリを確認する。", "電流測定では原則として対象の一導体をクランプする。", "直流対応や低電流精度など必要な測定性能を機種仕様で確認する。"],
+      "bullets_en": ["Confirm instrument rating and measurement category for the circuit being tested.", "For current measurement, the clamp normally surrounds a single conductor.", "Check model specifications for DC capability, low-current accuracy, and other required functions."],
+      "examples_ja": ["設備運転中の負荷電流を確認するためクランプメーターを使う。", "複数回路を比較するときは同じ測定条件で記録する。"],
+      "examples_en": ["Use a clamp meter to check load current while equipment is operating.", "When comparing circuits, record readings under consistent measurement conditions."]
+    },
+    {
+      "id": "q011_insulation_tester",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "配線や電気機器の絶縁抵抗を確認するため、規定の試験電圧を印加して抵抗値を測る計測器。一般の抵抗計とは用途と試験電圧が異なり、設備条件に合う試験方法を選ぶ必要がある。",
+      "detail_en": "An instrument that applies a specified test voltage to measure insulation resistance of wiring and electrical equipment. It differs from an ordinary resistance meter in purpose and test voltage, so the test method must suit the equipment and applicable requirements.",
+      "bullets_ja": ["対象設備に適した試験電圧と判定基準を確認する。", "電子機器や接続機器への試験電圧の影響を事前に確認する。", "試験前後の安全措置、隔離、放電などは適用手順に従う。"],
+      "bullets_en": ["Confirm the test voltage and acceptance criterion for the equipment.", "Check whether connected electronics or equipment can be exposed to the test voltage.", "Follow applicable procedures for isolation, safety controls, and discharge before and after testing."],
+      "examples_ja": ["新設回路の絶縁状態を確認するため絶縁抵抗計で規定試験を行う。", "機器接続前後で試験条件が変わる場合は図面と手順を確認する。"],
+      "examples_en": ["Perform the specified insulation-resistance test on a newly installed circuit.", "If test conditions change after equipment is connected, check the drawings and test procedure first."]
+    },
+    {
+      "id": "q011_distribution_board",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "受けた電源を複数の分岐回路へ配分し、主幹・分岐の遮断器などを収納する盤。住宅・建物設備では回路ごとの保護、開閉、識別をまとめる中核部となる。",
+      "detail_en": "A panel that receives an electrical supply and distributes it to multiple branch circuits while housing main and branch protective devices. In building installations it provides a central point for circuit protection, switching, and identification.",
+      "bullets_ja": ["盤の定格、回路数、保護方式を設計図書と照合する。", "分岐回路の名称・番号を明確に表示する。", "盤内作業や改修は電気設備の適用基準と安全手順に従う。"],
+      "bullets_en": ["Check panel rating, circuit count, and protection scheme against the design documents.", "Clearly identify branch-circuit names and numbers.", "Follow applicable electrical requirements and safe work procedures for installation or modification."],
+      "examples_ja": ["各室の照明・コンセント回路を分電盤から分岐する。", "竣工時に回路表示と実際の分岐先が一致しているか確認する。"],
+      "examples_en": ["Distribute lighting and receptacle circuits from the distribution board.", "At completion, verify that circuit labels match the actual branch destinations."]
+    },
+    {
+      "id": "q011_check_valve",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "流体を原則一方向にだけ流し、逆方向の流れを自動的に抑える弁。給排水、ポンプ吐出側、空調配管などで逆流防止に使われ、スイング式、リフト式、ばね式など構造がある。",
+      "detail_en": "A valve that permits flow primarily in one direction and automatically restricts reverse flow. It is used in water, pump discharge, HVAC, and other piping systems, with swing, lift, spring-loaded, and other designs available.",
+      "bullets_ja": ["本体の流れ方向表示を配管方向と合わせる。", "流体、圧力、温度、取付姿勢に適合する形式を選ぶ。", "圧力損失や作動音、保守スペースも系統条件として確認する。"],
+      "bullets_en": ["Align the valve's flow-direction marking with the piping direction.", "Select a type compatible with the fluid, pressure, temperature, and mounting orientation.", "Consider pressure loss, operating noise, and maintenance access as system conditions."],
+      "examples_ja": ["ポンプ停止時の逆流を防ぐため吐出配管に逆止弁を設ける。", "交換時は既設弁の口径だけでなく流れ方向と仕様を確認する。"],
+      "examples_en": ["Install a check valve on pump discharge piping to prevent reverse flow when the pump stops.", "When replacing one, verify direction and service conditions as well as nominal size."]
+    },
+    {
+      "id": "q011_flange",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "配管、バルブ、機器などをボルトで着脱可能に接続するためのつば状接続部。フランジ面の形式、呼び径、圧力等級、材質、ボルト穴配置などを相互に適合させ、必要に応じてガスケットを挟む。",
+      "detail_en": "A rimmed connection used to bolt piping, valves, and equipment together so the joint can be assembled and dismantled. Facing, nominal size, pressure class, material, and bolt pattern must be compatible, with a gasket used where required by the joint design.",
+      "bullets_ja": ["規格、呼び径、圧力等級、材質の適合を確認する。", "接合面の傷・汚れやガスケットの種類を確認する。", "ボルト締付けは使用するフランジ・ガスケット系の指定手順に従う。"],
+      "bullets_en": ["Verify standard, nominal size, pressure class, and material compatibility.", "Inspect facing condition and confirm the specified gasket type.", "Tighten bolts according to the procedure for the flange and gasket system."],
+      "examples_ja": ["ポンプ交換ができるよう機器接続部をフランジ接続にする。", "配管更新時に既設フランジの規格とボルト穴配置を確認する。"],
+      "examples_en": ["Use a flanged connection at a pump so the equipment can be removed for replacement.", "During piping renewal, verify the existing flange standard and bolt pattern."]
+    },
+    {
+      "id": "q011_union_joint",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "配管の途中を分解しやすくするため、中央のナット状部を緩めて両側を切り離せる継手。長い配管全体を回転させずに着脱できるため、機器まわりや保守が必要な箇所に使われる。",
+      "detail_en": "A detachable pipe fitting that can be separated by loosening its central union nut, allowing a line to be disconnected without rotating long pipe runs. It is commonly used near equipment and locations expected to require maintenance.",
+      "bullets_ja": ["配管材、ねじ・接続方式、圧力・温度条件に合う製品を使う。", "シート面やパッキン部の傷・異物は漏れの原因になる。", "分解時に周辺配管へ無理な力が掛からない配置を確認する。"],
+      "bullets_en": ["Match the fitting to pipe material, connection type, pressure, and temperature.", "Damage or debris on the sealing surfaces can lead to leakage.", "Locate the union so disassembly does not impose excessive force on adjacent piping."],
+      "examples_ja": ["保守で外す機器の近くにユニオン継手を設ける。", "再組立て時にシール面を確認してから接続する。"],
+      "examples_en": ["Install a union near equipment that will need to be removed for service.", "Inspect the sealing surfaces before reconnecting a disassembled union."]
+    },
+    {
+      "id": "q011_sleeve_opening",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "コンクリート打設前に、配管・ダクトなどの将来の貫通位置へスリーブや箱抜きを設置して開口を確保する作業。構造体ができた後の不要なはつりやコア抜きを避けるため、設備図と構造図の調整が重要になる。",
+      "detail_en": "The work of setting sleeves or blockouts before concrete placement to reserve future pipe, duct, or service penetrations. Coordination between building-services and structural drawings is important so later coring or demolition can be avoided where possible.",
+      "bullets_ja": ["位置、径・寸法、高さ、勾配を図面と照合する。", "鉄筋や埋設物との干渉を打設前に調整する。", "貫通後に必要な防火・防水・防音処理は別途納まりを確認する。"],
+      "bullets_en": ["Check position, size, elevation, and required slope against the drawings.", "Resolve clashes with reinforcement and embedded items before concrete placement.", "Coordinate later firestopping, waterproofing, or acoustic treatment separately where required."],
+      "examples_ja": ["配管立て管の位置に打設前からスリーブを固定する。", "設備図と配筋図を重ねて梁・鉄筋との干渉を確認する。"],
+      "examples_en": ["Fix a sleeve in place before the pour for a future vertical pipe.", "Overlay services and reinforcement information to check for clashes before placing concrete."]
+    },
+    {
+      "id": "q011_core_sleeve",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "設備貫通部やコア開口に関連して用いられるスリーブ・筒状部材の呼称。現場や仕様書によって、先行して埋め込むスリーブ、開口の内周を形成する部材など指す範囲が異なるため、図面上の定義を確認して扱う。",
+      "detail_en": "A project-dependent term for a sleeve or tubular piece associated with service penetrations or core openings. It may refer to a pre-set embedded sleeve or a liner defining an opening, so the intended meaning should be confirmed from the project drawings and specification.",
+      "bullets_ja": ["プロジェクトごとの呼称と図面記号を確認する。", "開口径だけでなく仕上げ後の有効寸法と位置を確認する。", "構造、防火、防水など周辺条件との取り合いを確認する。"],
+      "bullets_en": ["Confirm the project-specific terminology and drawing symbol.", "Check finished clear size and position, not only nominal opening diameter.", "Coordinate the penetration with structural, fire, and waterproofing requirements."],
+      "examples_ja": ["設備図のコアスリーブ指示が先行埋込みを意味するか担当図で確認する。", "貫通部まわりの仕上げを含めて必要な有効径を確認する。"],
+      "examples_en": ["Check whether a drawing note for a core sleeve means a pre-installed embedded sleeve.", "Confirm the required clear opening after accounting for finishes around the penetration."]
+    },
+    {
+      "id": "q011_honeycomb_concrete",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "硬化したコンクリート表面や内部に空隙が残り、粗骨材が蜂の巣状に露出して見える欠陥。材料分離、締固め不足、型枠からのモルタル漏れ、打込み条件など複数の要因で生じる。程度により補修方法や評価が異なる。",
+      "detail_en": "A concrete defect in which voids remain and coarse aggregate is visibly exposed in a honeycomb-like pattern. It can result from poor consolidation, segregation, grout loss through formwork, or placing conditions; assessment and repair depend on severity and location.",
+      "bullets_ja": ["表面だけでなく欠陥の深さ・範囲を確認する。", "原因と構造上の影響を確認してから補修方針を決める。", "単純な化粧補修で済むかは外観だけで判断しない。"],
+      "bullets_en": ["Assess the depth and extent, not only the visible surface.", "Determine repair approach after considering cause and structural significance.", "Do not assume a cosmetic patch is sufficient based on appearance alone."],
+      "examples_ja": ["脱型後にジャンカを見つけたら位置と範囲を記録して評価する。", "補修前に脆弱部の広がりと設計上の重要度を確認する。"],
+      "examples_en": ["If honeycombing is found after stripping forms, record its location and extent for assessment.", "Before repair, evaluate the extent of unsound concrete and the significance of the affected area."]
+    },
+    {
+      "id": "q011_laitance",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "コンクリートやモルタルの表面に生じる、セメント微粒分などを多く含む脆弱な薄層。ブリーディングなどに伴って形成されることがあり、そのまま上塗り・接着・打継ぎを行うと付着性能を妨げる場合がある。",
+      "detail_en": "A weak, fine-rich surface layer that can form on concrete or mortar, often associated with bleeding and settlement. If left in place it may interfere with adhesion of coatings, bonded toppings, repair materials, or subsequent concrete work.",
+      "bullets_ja": ["健全部と比べて粉っぽい・脆い表面層がないか確認する。", "接着や仕上げ前に要求される下地処理方法を確認する。", "除去範囲や処理方法は後工程の材料仕様に合わせる。"],
+      "bullets_en": ["Check for a powdery or weak surface layer compared with sound concrete.", "Confirm required substrate preparation before bonding or finishing.", "Match removal extent and preparation method to the following material system."],
+      "examples_ja": ["打継ぎ面のレイタンスを確認し、指定された下地処理を行う。", "床仕上げ前に脆弱表面が残っていないか確認する。"],
+      "examples_en": ["Check a construction-joint surface for laitance and carry out the specified preparation.", "Before flooring work, verify that weak surface material has not been left in place."]
+    },
+    {
+      "id": "q011_epoxy_putty",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "エポキシ樹脂を主成分とする、充填・成形・接着補修用のパテ状材料。一般に主剤と硬化剤を混合して使用し、欠損部の充填、すき間調整、部材補修などに用いる。製品によって硬化時間や対応下地が大きく異なる。",
+      "detail_en": "A putty-like epoxy material used for filling, shaping, bonding, and repair. Many products use a resin and hardener mixed before application and are used for void filling, gap adjustment, and localized repairs; cure time and compatible substrates vary substantially by product.",
+      "bullets_ja": ["下地の材質、含水状態、清掃・粗面化条件を確認する。", "主剤と硬化剤の配合比・混合方法・可使時間を守る。", "硬化温度や後工程までの養生時間を製品仕様で確認する。"],
+      "bullets_en": ["Confirm substrate material, moisture condition, and required surface preparation.", "Follow the specified resin/hardener ratio, mixing method, and working time.", "Check cure temperature and required time before subsequent work."],
+      "examples_ja": ["小さな欠損部を成形補修するためエポキシパテを使う。", "接着補修では施工前に対象下地への適合性と可使時間を確認する。"],
+      "examples_en": ["Use epoxy putty to shape and fill a localized defect.", "For a bonded repair, verify substrate compatibility and working time before application."]
+    },
+    {
+      "id": "q011_rust_inhibitive_primer",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "鉄鋼面の腐食を抑え、上塗り塗装の下地をつくるための防錆性を持つ下塗り塗料。さび転換材とは別の材料で、要求される素地調整、膜厚、上塗りとの組合せは塗装仕様によって決まる。",
+      "detail_en": "A corrosion-inhibiting primer applied to ferrous surfaces before subsequent coating. It is distinct from a rust converter; required surface preparation, film build, and compatibility with topcoats are defined by the coating system.",
+      "bullets_ja": ["既存さび、油分、旧塗膜などの素地調整条件を確認する。", "上塗り塗料と適合するプライマーを選ぶ。", "塗布量、乾燥・再塗装時間、施工環境は製品仕様に従う。"],
+      "bullets_en": ["Confirm required preparation for rust, oil, and existing coatings.", "Use a primer compatible with the specified topcoat system.", "Follow product requirements for application rate, drying/recoat time, and environmental conditions."],
+      "examples_ja": ["補修した鉄部を上塗りする前に指定の錆止め塗料を施工する。", "既存塗膜へ重ねる場合は付着性と塗料系の適合を確認する。"],
+      "examples_en": ["Apply the specified rust-inhibitive primer before recoating repaired steelwork.", "When coating over an existing finish, confirm adhesion and coating-system compatibility."]
+    },
+    {
+      "id": "q011_anti_slip_tape",
+      "wave": "content-wave-001",
+      "state": "expanded",
+      "detail_ja": "表面に砥粒や凹凸を持たせ、階段踏面や床の滑りを抑える粘着テープ。既存床へ後施工しやすい一方、下地の汚れ・水分・凹凸や端部の浮きが接着耐久性に影響する。",
+      "detail_en": "A self-adhesive tape with an abrasive or textured surface used to increase traction on stair treads and floors. It is easy to retrofit, but contamination, moisture, surface irregularity, and lifting edges can reduce adhesion and service life.",
+      "bullets_ja": ["使用場所の屋内外条件と下地材に適合する製品を選ぶ。", "貼付面の汚れ・油分・水分を除き、必要な下地処理を行う。", "摩耗、剥離、端部浮きを定期的に確認する。"],
+      "bullets_en": ["Choose a product suited to indoor/outdoor exposure and the substrate.", "Remove dirt, oil, and moisture and carry out required surface preparation before application.", "Inspect periodically for wear, peeling, and lifted edges."],
+      "examples_ja": ["階段の踏面先端に滑り止めテープを貼って歩行時のグリップを補う。", "清掃時に端部の浮きや表面摩耗を確認し、劣化した部分を交換する。"],
+      "examples_en": ["Apply anti-slip tape near the front of a stair tread to improve traction.", "During cleaning, check for lifted edges and worn texture and replace deteriorated sections."]
+    }
+  ]
+}
