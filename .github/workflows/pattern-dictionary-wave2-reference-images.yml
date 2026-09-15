@@ -1,0 +1,48 @@
+name: Pattern Dictionary Wave 2 Reference Images
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-wave2-reference-images-20260916
+    paths:
+      - '.github/workflows/pattern-dictionary-wave2-reference-images.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave2-reference-images-20260916
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Generate deterministic 1536px Wave 2 PNGs
+        run: python tools/pattern-dictionary/scripts/generate-reference-images-wave2.py
+      - name: Validate generated PNG headers and exact image set
+        run: |
+          python - <<'PY'
+          import os, struct
+          root='tools/pattern-dictionary/assets/reference'
+          ids=['buffalo-check','shepherd-check','windowpane-check','madras-check','tattersall','gun-club-check','prince-of-wales-check','pinstripe','chalk-stripe','bengal-stripe','koushi','awning-stripe','regimental-stripe','breton-stripe','swiss-dot','herringbone','zigzag','diamond','harlequin','checkerboard']
+          for pid in ids:
+              path=f'{root}/{pid}.png'
+              if not os.path.exists(path): raise SystemExit(f'missing {path}')
+              with open(path,'rb') as f:
+                  sig=f.read(24)
+              if sig[:8]!=b'\x89PNG\r\n\x1a\n': raise SystemExit(f'bad PNG {pid}')
+              w,h=struct.unpack('>II',sig[16:24])
+              if (w,h)!=(1536,1536): raise SystemExit(f'bad dimensions {pid}: {w}x{h}')
+          print('OK: 20/20 Wave 2 reference PNGs are 1536x1536')
+          PY
+      - name: Commit generated references and remove one-shot workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/pattern-dictionary/assets/reference/*.png
+          git rm .github/workflows/pattern-dictionary-wave2-reference-images.yml
+          git commit -m 'assets: generate Wave 2 Pattern Dictionary reference images'
+          git push origin HEAD:feat/pattern-dictionary-wave2-reference-images-20260916
