@@ -5,6 +5,7 @@ const vm = require('node:vm');
 const ROOT = path.resolve(__dirname, '..');
 const DATA = path.join(ROOT, 'data');
 const REDIRECT_PATH = path.join(DATA, 'canonical-redirects-v2.3.json');
+const IDENTITY_PATH = path.join(DATA, 'canonical-identity-resolutions-v2.3.json');
 const MANIFEST_PATH = path.join(DATA, 'quality-manifest.json');
 const LOADER_PATH = path.join(DATA, 'quality-loader.js');
 const DEEP_LINK_PATH = path.join(ROOT, 'canonical-deep-link-v2.3.js');
@@ -63,8 +64,11 @@ async function runLoader(favoriteIds) {
 
 async function main() {
   const redirectDoc = readJson(REDIRECT_PATH);
+  const identityDoc = readJson(IDENTITY_PATH);
   const redirects = array(redirectDoc.redirects);
-  if (redirects.length !== 10) throw new Error(`Expected 10 confirmed redirects, got ${redirects.length}`);
+  if (!redirects.length) throw new Error('No canonical redirects configured');
+  const typeOverrideMap = new Map(array(identityDoc.type_overrides).map((row) => [text(row?.id), text(row?.to)]).filter(([id, to]) => id && to));
+  const effectiveType = (row) => typeOverrideMap.get(idOf(row)) || typeOf(row);
 
   const sourceById = new Map();
   for (const rel of manifestSources()) {
@@ -87,7 +91,7 @@ async function main() {
     const target = sourceById.get(to);
     if (!source) throw new Error(`${from}: source record missing`);
     if (!target) throw new Error(`${from}: target ${to} missing`);
-    if (typeOf(source) !== typeOf(target)) throw new Error(`${from}: type mismatch ${typeOf(source)} -> ${typeOf(target)}`);
+    if (effectiveType(source) !== effectiveType(target)) throw new Error(`${from}: effective type mismatch ${effectiveType(source)} -> ${effectiveType(target)}`);
     fromIds.add(from);
     toIds.add(to);
   }
@@ -95,6 +99,8 @@ async function main() {
   const favoriteProbe = [...fromIds, 'drill_driver'];
   const runtime = await runLoader(favoriteProbe);
   const runtimeById = new Map(runtime.entries.map((row) => [idOf(row), row]));
+  if (runtime.windowObject.CTA_DATA_DIAGNOSTICS?.identityTypeOverridesApplied !== array(identityDoc.type_overrides).length) throw new Error('Loader identity type override count mismatch');
+  if (runtime.windowObject.CTA_DATA_DIAGNOSTICS?.identityResolutionMissingTargets) throw new Error('Loader reports missing identity resolution targets');
   if (runtime.windowObject.CTA_DATA_DIAGNOSTICS?.canonicalRedirectsApplied !== redirects.length) throw new Error('Loader redirect count mismatch');
   if (runtime.windowObject.CTA_DATA_DIAGNOSTICS?.canonicalRedirectMissingSources) throw new Error('Loader reports missing redirect sources');
   if (runtime.windowObject.CTA_DATA_DIAGNOSTICS?.canonicalRedirectMissingTargets) throw new Error('Loader reports missing redirect targets');
