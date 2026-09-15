@@ -6,11 +6,9 @@ const LOADER = path.join(ROOT, 'data', 'quality-loader.js');
 const CHECKER = path.join(ROOT, 'scripts', 'check-canonical-redirects-v2.3.cjs');
 
 function replaceOnce(source, before, after, label) {
+  if (source.includes(after)) return source;
   const count = source.split(before).length - 1;
-  if (count === 0) {
-    if (source.includes(after)) return source;
-    throw new Error(`${label}: anchor not found`);
-  }
+  if (count === 0) throw new Error(`${label}: anchor not found`);
   if (count !== 1) throw new Error(`${label}: expected one anchor, found ${count}`);
   return source.replace(before, after);
 }
