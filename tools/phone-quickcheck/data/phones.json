@@ -2944,6 +2944,7 @@
           "sourceRef": "https://news.samsung.com/global/introducing-the-galaxy-z-fold2-change-the-shape-of-the-future"
         },
         "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
         "protocols": [
           "Super Fast Charging"
         ],
