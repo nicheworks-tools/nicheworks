@@ -21,9 +21,11 @@ const requiredFiles = [
   'tools/cosmetic-ingredient-checker-lite/index.html',
   'tools/cosmetic-ingredient-checker-lite/app.js',
   'tools/cosmetic-ingredient-checker-lite/enhancements.js',
+  'tools/cosmetic-ingredient-checker-lite/ui-v2.css',
   'tools/cosmetic-ingredient-checker-lite/SPEC.md',
   'tools/inci-fastscan/index.html',
   'tools/inci-fastscan/enhancements.js',
+  'tools/inci-fastscan/ui-v2.css',
   'tools/inci-fastscan/js/app.js',
   'tools/inci-fastscan/js/core_parser.js',
   'tools/inci-fastscan/js/core_matcher.js',
@@ -37,9 +39,11 @@ for (const file of requiredFiles) check(exists(file), `required cosmetics file m
 
 const liteHtml = read('tools/cosmetic-ingredient-checker-lite/index.html');
 const liteApp = read('tools/cosmetic-ingredient-checker-lite/app.js');
+const liteUiCss = read('tools/cosmetic-ingredient-checker-lite/ui-v2.css');
 const liteSpec = read('tools/cosmetic-ingredient-checker-lite/SPEC.md');
 const fastHtml = read('tools/inci-fastscan/index.html');
 const fastApp = read('tools/inci-fastscan/js/app.js');
+const fastUiCss = read('tools/inci-fastscan/ui-v2.css');
 const fastSpec = read('tools/inci-fastscan/SPEC.md');
 const parser = read('tools/_shared/cosmetic-ingredient-parser.js');
 const matcher = read('tools/inci-fastscan/js/core_matcher.js');
@@ -47,8 +51,29 @@ const resultUi = read('tools/inci-fastscan/js/web_ui.js');
 const affiliateConfig = read('tools/_shared/cosmetics-affiliate-config.js');
 const fixtures = JSON.parse(read('tools/_shared/cosmetics-full-label-fixtures.json'));
 
-check(liteHtml.includes('id="inciInput"'), 'Lite must remain paste-first');
+// Approved UI v2 contract from the cosmetics refresh: white surfaces, direct tool switching,
+// bilingual controls, paste-first Lite, and photo/OCR-first FastScan without the old NicheWorks logo header.
+check(liteHtml.includes('<body class="lite-v2">'), 'Lite UI v2 body contract missing');
+check(liteHtml.includes('class="tool-switch"'), 'Lite tool switch missing');
+check(liteHtml.includes('data-lang="ja"') && liteHtml.includes('data-lang="en"'), 'Lite JP/EN controls missing');
+check(liteHtml.includes('PASTE → CHECK → REVIEW'), 'Lite paste-first hero contract missing');
 check(liteHtml.includes('/tools/inci-fastscan/'), 'Lite must link to FastScan for OCR/detail');
+check(!liteHtml.includes('/assets/nicheworks-logo.png'), 'Lite must not restore the old NicheWorks logo header');
+check(liteUiCss.includes('body.lite-v2 {\n  background: #fff;'), 'Lite UI v2 must retain a white page background');
+check(liteUiCss.includes('body.lite-v2 .result-table tr,') && liteUiCss.includes('display: block;'), 'Lite mobile results must retain stacked/card-like rows');
+
+check(fastHtml.includes('<body class="fastscan-v2 input-photo">'), 'FastScan UI v2/photo-default body contract missing');
+check(fastHtml.includes('class="tool-switch"'), 'FastScan tool switch missing');
+check(fastHtml.includes('data-lang="ja"') && fastHtml.includes('data-lang="en"'), 'FastScan JP/EN controls missing');
+check(fastHtml.includes('PHOTO / OCR / DETAIL'), 'FastScan photo/OCR-first hero contract missing');
+check(fastHtml.includes('data-input-mode="photo"') && fastHtml.includes('data-input-mode="text"'), 'FastScan photo/text mode controls missing');
+check(fastHtml.includes("setMode('photo');"), 'FastScan must initialize in photo mode');
+check(fastHtml.includes('機械翻訳ではありません') && fastHtml.includes('this is not machine translation'), 'FastScan Japanese-label mode must remain explicitly non-translation');
+check(fastHtml.includes('/tools/cosmetic-ingredient-checker-lite/'), 'FastScan must link back to Lite');
+check(!fastHtml.includes('/assets/nicheworks-logo.png'), 'FastScan must not restore the old NicheWorks logo header');
+check(fastUiCss.includes('body.fastscan-v2 {\n  background: #fff;'), 'FastScan UI v2 must retain a white page background');
+
+check(liteHtml.includes('id="inciInput"'), 'Lite must remain paste-first');
 check(!/tesseract/i.test(liteHtml + liteApp), 'Lite must not absorb the OCR engine');
 check(!liteHtml.includes('id="ocr-file"'), 'Lite must remain OCR-free');
 
@@ -57,7 +82,6 @@ check(fastHtml.includes('id="ocr-file"'), 'FastScan JP OCR input missing');
 check(fastHtml.includes('id="fast-ocr-progress"'), 'FastScan EN OCR progress missing');
 check(fastHtml.includes('id="jb-ocr-progress"'), 'FastScan JP OCR progress missing');
 check(/tesseract\.js/i.test(fastHtml), 'FastScan OCR library reference missing');
-check(fastHtml.includes('/tools/cosmetic-ingredient-checker-lite/'), 'FastScan must link back to Lite');
 check(parser.includes('/tools/inci-fastscan/enhancements.js'), 'FastScan OCR enhancement bootstrap missing');
 check(parser.includes('/tools/cosmetic-ingredient-checker-lite/enhancements.js'), 'Lite result enhancement bootstrap missing');
 
@@ -85,6 +109,9 @@ for (const [name, spec] of [['Lite', liteSpec], ['FastScan', fastSpec]]) {
   check(/raw ingredient|raw analysis|raw ingredient text|pasted ingredient/i.test(spec), `${name} SPEC must retain raw-input privacy language`);
   check(/tagged_search|fixed Amazon search/i.test(spec), `${name} SPEC must document the live fixed-search contract`);
 }
+check(liteSpec.includes('bilingual single-page'), 'Lite SPEC must retain bilingual single-page language mode');
+check(fastSpec.includes('bilingual single-page'), 'FastScan SPEC must retain bilingual single-page language mode');
+check(fastSpec.includes('photo/OCR') || fastSpec.includes('photo/image OCR'), 'FastScan SPEC must retain photo/OCR-first purpose');
 
 check(affiliateConfig.includes('enabled: true'), 'Amazon config must be active');
 check(affiliateConfig.includes('trackingMode: "tagged_search"'), 'Amazon config must use tagged_search mode');
@@ -111,6 +138,12 @@ if (failures.length) {
 console.log(JSON.stringify({
   status: 'pass',
   tools: ['cosmetic-ingredient-checker-lite', 'inci-fastscan'],
+  ui_contract: 'cosmetics-v2',
+  lite_paste_first: true,
+  fastscan_photo_first: true,
+  bilingual_ui: true,
+  white_background: true,
+  legacy_logo_header: false,
   shared_dictionary_files: dictFiles.length,
   full_label_fixtures: fixtures.length,
   amazon_enabled: true,
