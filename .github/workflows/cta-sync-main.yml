@@ -1,0 +1,22 @@
+name: CTA sync structural UI branch
+on:
+  push:
+    branches: ['fix/construction-atlas-ui-structural-prod-20260916']
+    paths: ['.github/workflows/cta-sync-main.yml']
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/construction-atlas-ui-structural-prod-20260916
+          fetch-depth: 0
+      - name: Merge latest main
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git merge --no-edit origin/main
+          git push origin HEAD:fix/construction-atlas-ui-structural-prod-20260916
