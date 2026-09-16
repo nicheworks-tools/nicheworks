@@ -18,11 +18,46 @@ jobs:
         with:
           ref: feat/pattern-dictionary-wave4-production-staging-20260916
           fetch-depth: 0
-      - name: Merge latest main and push
+      - name: Merge latest main, preserve main sitemap, and re-add Wave 4 URLs
         run: |
           set -euo pipefail
           git config user.name nicheworks-tools
           git config user.email nicheworks.tools@gmail.com
           git fetch origin main
+          set +e
           git merge --no-edit origin/main
+          rc=$?
+          set -e
+          if [ "$rc" -ne 0 ]; then
+            conflicts="$(git diff --name-only --diff-filter=U)"
+            if [ "$conflicts" != "sitemap.xml" ]; then
+              echo "Unexpected merge conflicts:"
+              printf '%s\n' "$conflicts"
+              exit 1
+            fi
+            git checkout --theirs sitemap.xml
+            git add sitemap.xml
+          fi
+          node <<'NODE'
+          const fs=require('fs');
+          const path='sitemap.xml';
+          let s=fs.readFileSync(path,'utf8');
+          const ids=['baroque-scroll','chinoiserie','flame-stitch','tree-of-life','moire','yagasuri','tatewaku','uroko','sayagata','kagome','kanoko','hanabishi','same-komon','nami-chidori','tomoe','shibori','batik','bandhani','ajrakh','kalamkari'];
+          const add=[];
+          for(const id of ids){
+            for(const prefix of ['', 'en/']){
+              const url=`https://nicheworks.app/tools/pattern-dictionary/${prefix}patterns/${id}/`;
+              if(!s.includes(`<loc>${url}</loc>`)) add.push(`  <url>\n    <loc>${url}</loc>\n    <lastmod>2026-09-16</lastmod>\n  </url>`);
+            }
+          }
+          if(add.length) s=s.replace('</urlset>',add.join('\n')+'\n</urlset>');
+          fs.writeFileSync(path,s);
+          console.log(`Wave 4 sitemap URLs re-added: ${add.length}`);
+          NODE
+          git add sitemap.xml
+          if git rev-parse -q --verify MERGE_HEAD >/dev/null; then
+            git commit --no-edit
+          elif ! git diff --cached --quiet; then
+            git commit -m "Pattern Dictionary: preserve Wave 4 sitemap after main sync"
+          fi
           git push origin HEAD:feat/pattern-dictionary-wave4-production-staging-20260916
