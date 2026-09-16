@@ -1,0 +1,86 @@
+{
+  "count": 9,
+  "rows": [
+    {
+      "id": "samsung-galaxy-s24",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S24",
+      "wirelessStandard": "Qi",
+      "wirelessMaxW": 15,
+      "specificationsUrl": "https://www.samsung.com/in/smartphones/galaxy-s/galaxy-s24-onyx-black-128gb-sm-s921ezkiins/",
+      "chargingUrl": "https://news.samsung.com/global/enter-the-new-era-of-mobile-ai-with-samsung-galaxy-s24-series"
+    },
+    {
+      "id": "samsung-galaxy-s24-ultra",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S24 Ultra",
+      "wirelessStandard": "Qi",
+      "wirelessMaxW": 15,
+      "specificationsUrl": "https://www.samsung.com/ca/business/smartphones/galaxy-s/galaxy-s24-ultra-titanium-grey-512gb-sm-s928wztfxac/",
+      "chargingUrl": "https://news.samsung.com/global/enter-the-new-era-of-mobile-ai-with-samsung-galaxy-s24-series"
+    },
+    {
+      "id": "samsung-galaxy-s23",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S23",
+      "wirelessStandard": "Qi",
+      "wirelessMaxW": 15,
+      "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-s/galaxy-s23-cream-256gb-docomo-sm-s911dzeedcm/",
+      "chargingUrl": "https://www.samsung.com/jp/explore/news/galaxy-unpacked-2023/"
+    },
+    {
+      "id": "sony-xperia-1-vi",
+      "manufacturer": "Sony",
+      "model": "Xperia 1 VI",
+      "wirelessStandard": "Qi",
+      "wirelessMaxW": null,
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia1m6/spec.html",
+      "chargingUrl": null
+    },
+    {
+      "id": "sony-xperia-5-v",
+      "manufacturer": "Sony",
+      "model": "Xperia 5 V",
+      "wirelessStandard": "Qi",
+      "wirelessMaxW": null,
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia5m5/spec.html",
+      "chargingUrl": null
+    },
+    {
+      "id": "samsung-galaxy-s20-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S20 5G",
+      "wirelessStandard": "Qi",
+      "wirelessMaxW": null,
+      "specificationsUrl": "https://news.samsung.com/global/introducing-the-samsung-galaxy-s20-change-the-way-you-experience-the-world",
+      "chargingUrl": "https://news.samsung.com/global/introducing-the-samsung-galaxy-s20-change-the-way-you-experience-the-world"
+    },
+    {
+      "id": "samsung-galaxy-s20-plus-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S20+ 5G",
+      "wirelessStandard": "Qi",
+      "wirelessMaxW": null,
+      "specificationsUrl": "https://news.samsung.com/global/introducing-the-samsung-galaxy-s20-change-the-way-you-experience-the-world",
+      "chargingUrl": "https://news.samsung.com/global/introducing-the-samsung-galaxy-s20-change-the-way-you-experience-the-world"
+    },
+    {
+      "id": "samsung-galaxy-s20-ultra-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S20 Ultra 5G",
+      "wirelessStandard": "Qi",
+      "wirelessMaxW": null,
+      "specificationsUrl": "https://news.samsung.com/global/introducing-the-samsung-galaxy-s20-change-the-way-you-experience-the-world",
+      "chargingUrl": "https://news.samsung.com/global/introducing-the-samsung-galaxy-s20-change-the-way-you-experience-the-world"
+    },
+    {
+      "id": "samsung-galaxy-note20-ultra-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Note20 Ultra 5G",
+      "wirelessStandard": "Qi",
+      "wirelessMaxW": null,
+      "specificationsUrl": "https://news.samsung.com/global/samsung-unveils-five-new-power-devices-in-the-galaxy-ecosystem-to-empower-your-work-and-play",
+      "chargingUrl": "https://news.samsung.com/global/samsung-unveils-five-new-power-devices-in-the-galaxy-ecosystem-to-empower-your-work-and-play"
+    }
+  ]
+}
