@@ -39,7 +39,7 @@ function signalNegated(nq,nk,lang){return lang==='en'?(nq.includes('not '+nk)||n
 function interpret(q,lang){
   const nq=norm(q),out=[],seen=new Set();
   for(const l of [lang,lang==='ja'?'en':'ja'])for(const[k,v]of Object.entries(dict[l]||{})){const nk=norm(k);if(nq.includes(nk)&&!signalNegated(nq,nk,l)&&!seen.has(nk)){seen.add(nk);out.push({label:k,...v});}}
-  return out;
+  return out.filter((x,i,a)=>!a.some((y,j)=>j!==i&&norm(y.label).length>norm(x.label).length&&norm(y.label).includes(norm(x.label))));
 }
 function rank(q,lang){
   const nq=norm(q),sig=interpret(q,lang),qt=tokens(nq);
@@ -53,7 +53,7 @@ function rank(q,lang){
     return{pattern:p,score};
   }).sort((a,b)=>b.score-a.score||a.pattern.id.localeCompare(b.pattern.id));
 }
-function confidence(r,q='',lang='en'){if(!r.length||r[0].score<MATCH_THRESHOLD)return'LOW';const nq=norm(q),p=r[0].pattern,other=lang==='ja'?'en':'ja',exact=[p.names?.[lang],p.names?.[other],...(p.aliases?.[lang]||[]),...(p.aliases?.[other]||[])].some(v=>norm(v)===nq),d=r[0].score-(r[1]?.score||0);if(tokens(nq).length===1&&!exact&&r[0].score>=35)return'MEDIUM';if(r[0].score>=70&&d>=20)return'HIGH';if(r[0].score>=35)return'MEDIUM';return'LOW'}
+function confidence(r,q='',lang='en'){if(!r.length||r[0].score<MATCH_THRESHOLD)return'LOW';const nq=norm(q),p=r[0].pattern,other=lang==='ja'?'en':'ja',exact=[p.names?.[lang],p.names?.[other],...(p.aliases?.[lang]||[]),...(p.aliases?.[other]||[])].some(v=>norm(v)===nq)||typoHit(nq,p),d=r[0].score-(r[1]?.score||0);if(tokens(nq).length===1&&!exact&&r[0].score>=35)return'MEDIUM';if(r[0].score>=70&&d>=20)return'HIGH';if(r[0].score>=35)return'MEDIUM';return'LOW'}
 
 let fail=0;
 for(const c of cases){
