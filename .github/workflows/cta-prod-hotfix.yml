@@ -1,0 +1,95 @@
+name: CTA production UI hotfix
+on:
+  push:
+    branches: ['fix/construction-atlas-ui-prod-hotfix-20260916']
+    paths: ['.github/workflows/cta-prod-hotfix.yml']
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/construction-atlas-ui-prod-hotfix-20260916
+      - name: Remove header badge and suppress unknown enums
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('tools/construction-tools-atlas/ui-mock-v2-parity.js')
+          s=p.read_text()
+
+          old='''    const spaced = raw.replace(/[_-]+/g, " ").replace(/\\s+/g, " ").trim();\n    return isEnglish() ? spaced.replace(/\\b\\w/g, (c) => c.toUpperCase()) : spaced;'''
+          new='''    return "";'''
+          if old not in s: raise SystemExit('humanize fallback anchor missing')
+          s=s.replace(old,new,1)
+
+          start=s.index('  function ensureBrand() {')
+          end=s.index('\n  function ensureFavoriteProxy()', start)
+          replacement='''  function ensureBrand() {\n    const row = $(".topbar__row");\n    const brand = $("#brandTitle");\n    if (!row || !brand) return;\n    let wrap = $(".ctaMockBrand", row);\n    if (!wrap) {\n      wrap = document.createElement("div");\n      wrap.className = "ctaMockBrand";\n      const copy = document.createElement("div");\n      copy.className = "ctaMockBrandCopy";\n      const subtitle = document.createElement("p");\n      subtitle.className = "ctaMockSubtitle";\n      brand.parentNode.insertBefore(wrap, brand);\n      copy.appendChild(brand);\n      copy.appendChild(subtitle);\n      wrap.appendChild(copy);\n    }\n    $(".ctaMockHome", wrap)?.remove();\n  }\n'''
+          s=s[:start]+replacement+s[end:]
+
+          old='''    chips.forEach((chip) => {\n      if (!chip.dataset.taxonomyKey) chip.dataset.taxonomyKey = chip.textContent.trim();\n      setText(chip, humanize(chip.dataset.taxonomyKey));\n    });'''
+          new='''    chips.forEach((chip) => {\n      if (!chip.dataset.taxonomyKey) chip.dataset.taxonomyKey = chip.textContent.trim();\n      const label = humanize(chip.dataset.taxonomyKey);\n      if (chip.hidden !== !label) chip.hidden = !label;\n      if (label) setText(chip, label);\n    });'''
+          if old not in s: raise SystemExit('decorate taxonomy anchor missing')
+          s=s.replace(old,new,1)
+
+          old='''    const sources = $$(".row__meta .chip", row).slice(0, 6);'''
+          new='''    const sources = $$(".row__meta .chip", row).slice(0, 6).filter((source) => humanize(source.dataset.taxonomyKey || source.textContent));'''
+          if old not in s: raise SystemExit('detail sources anchor missing')
+          s=s.replace(old,new,1)
+
+          old='''        chip.dataset.taxonomyKey = raw;\n        chip.textContent = humanize(raw);\n        section.appendChild(chip);'''
+          new='''        const label = humanize(raw);\n        if (!label) return;\n        chip.dataset.taxonomyKey = raw;\n        chip.textContent = label;\n        section.appendChild(chip);'''
+          if old not in s: raise SystemExit('detail chip anchor missing')
+          s=s.replace(old,new,1)
+
+          old='''    $$("[data-taxonomy-key]").forEach((chip) => setText(chip, humanize(chip.dataset.taxonomyKey)));'''
+          new='''    $$("[data-taxonomy-key]").forEach((chip) => {\n      const label = humanize(chip.dataset.taxonomyKey);\n      if (chip.hidden !== !label) chip.hidden = !label;\n      if (label) setText(chip, label);\n    });'''
+          if old not in s: raise SystemExit('localize taxonomy anchor missing')
+          s=s.replace(old,new,1)
+          p.write_text(s)
+
+          css=Path('tools/construction-tools-atlas/ui-mock-v2-hardening.css')
+          c=css.read_text()
+          marker='.ctaMockBrand img,.ctaMockBrand svg,.ctaMockBrand picture{display:none!important}\n'
+          if marker not in c: raise SystemExit('css brand anchor missing')
+          c=c.replace(marker, marker+'.ctaMockHome{display:none!important}\n',1)
+          css.write_text(c)
+
+          boot=Path('tools/construction-tools-atlas/detail-dictionary-fix.js')
+          b=boot.read_text()
+          if '20260916-mock-v2-fix-1' not in b: raise SystemExit('bootstrap cache marker missing')
+          b=b.replace('20260916-mock-v2-fix-1','20260916-mock-v2-hotfix-2')
+          boot.write_text(b)
+
+          idx=Path('tools/construction-tools-atlas/index.html')
+          i=idx.read_text()
+          if './detail-dictionary-fix.js?v=20260510-detail-5' not in i: raise SystemExit('index bootstrap marker missing')
+          i=i.replace('./detail-dictionary-fix.js?v=20260510-detail-5','./detail-dictionary-fix.js?v=20260916-prod-hotfix-2',1)
+          idx.write_text(i)
+
+          check=Path('tools/construction-tools-atlas/scripts/check-ui-mock-v2-parity.cjs')
+          q=check.read_text()
+          old="ok(hardening.includes('.ctaMockHome::before') && hardening.includes('content:none!important'), 'header must suppress faux logo/decorative marks');"
+          new="ok(hardening.includes('.ctaMockHome{display:none!important}') && runtime.includes('$(\".ctaMockHome\", wrap)?.remove()'), 'header must not render the NicheWorks badge/link');"
+          if old not in q: raise SystemExit('checker brand anchor missing')
+          q=q.replace(old,new,1)
+          q=q.replace("ok(runtime.includes('humanize('), 'taxonomy UI must humanize raw enum values');", "ok(runtime.includes('humanize(') && runtime.includes('return \"\";'), 'taxonomy UI must suppress unknown raw enum values instead of displaying them');",1)
+          q=q.replace("ok(bootstrap.includes('20260916-mock-v2-fix-1'), 'UI parity cache bust must be current');", "ok(bootstrap.includes('20260916-mock-v2-hotfix-2'), 'UI parity cache bust must be current');",1)
+          check.write_text(q)
+          PY
+      - name: Validate hotfix
+        run: |
+          node --check tools/construction-tools-atlas/ui-mock-v2-parity.js
+          node --check tools/construction-tools-atlas/detail-dictionary-fix.js
+          node tools/construction-tools-atlas/scripts/check-ui-mock-v2-parity.cjs
+          ! grep -q 'home.textContent = "NicheWorks"' tools/construction-tools-atlas/ui-mock-v2-parity.js
+          grep -q 'detail-dictionary-fix.js?v=20260916-prod-hotfix-2' tools/construction-tools-atlas/index.html
+      - name: Commit hotfix
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/construction-tools-atlas/ui-mock-v2-parity.js tools/construction-tools-atlas/ui-mock-v2-hardening.css tools/construction-tools-atlas/detail-dictionary-fix.js tools/construction-tools-atlas/index.html tools/construction-tools-atlas/scripts/check-ui-mock-v2-parity.cjs
+          git commit -m 'fix(construction-atlas): remove badge and suppress raw enum leaks'
+          git push origin HEAD:fix/construction-atlas-ui-prod-hotfix-20260916
