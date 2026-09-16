@@ -14,6 +14,7 @@ Replace a selected color in a local image with another color using an adjustable
 - Load PNG, JPEG, or WebP images into browser canvas processing.
 - Let the user click the source preview to pick the color to replace or select the source color manually.
 - Let the user choose a destination color and tolerance from 0 to 100.
+- Tolerance `0` is a valid exact-RGB-match setting and must not fall back to the default tolerance.
 - Apply RGB color replacement while generally preserving alpha/transparency.
 - Show before/after canvases and a replacement-result summary.
 - Reset the working result and save an applied result as PNG.
@@ -64,6 +65,7 @@ The dual before/after canvas workspace benefits from width, while controls and p
 
 - [ ] A supported image can be loaded and clicking the source canvas can populate the source-color selection.
 - [ ] Applying a destination color and tolerance updates the processed canvas without modifying the source file on disk.
+- [ ] Tolerance `0` remains `0` and therefore matches only pixels with exact RGB distance `0`; it is not replaced by the default `20`.
 - [ ] PNG download is available after processing and uses the processed canvas dimensions/content.
 - [ ] JP/EN switching preserves all image controls and privacy/format notices.
 
@@ -71,4 +73,5 @@ The dual before/after canvas workspace benefits from width, while controls and p
 
 - `tools/color-replace/index.html`
 - `tools/color-replace/app.js`
+- `tools/color-replace/tests/behavior.test.mjs`
 - `tools/color-replace/style.css`
