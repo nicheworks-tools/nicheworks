@@ -63,14 +63,14 @@ jobs:
             ok(await page.locator('#pattern-grid .pd-card').count()===100,'JA home must render 100 cards');
             ok((await page.locator('body').innerText()).includes('現在の100件'),'JA home must expose 100 publication copy');
 
-            await page.locator('[data-family="animal"]').click();
+            await page.locator('button.pd-filter[data-family="animal"]').click();
             await page.waitForTimeout(100);
             const animalText=await page.locator('#pattern-grid').innerText();
             for(const s of ['ゼブラ柄','タイガー柄','スネーク柄','カウ柄','ジラフ柄','ダルメシアン柄'])ok(animalText.includes(s),`animal filter missing ${s}`);
             const visibleAnimal=await page.locator('#pattern-grid .pd-card').evaluateAll(xs=>xs.filter(x=>getComputedStyle(x).display!=='none').length);
             ok(visibleAnimal>=6,'animal filter must expose Wave 5 animal set');
 
-            await page.locator('[data-family="global-textile"]').click();
+            await page.locator('button.pd-filter[data-family="global-textile"]').click();
             await page.waitForTimeout(100);
             const textileText=await page.locator('#pattern-grid').innerText();
             for(const s of ['スザニ','ケンテ','ボゴラン','アディレ','クバ布','刺し子','カンタ','オトミ刺繍','アフリカンワックスプリント','ブロックプリント'])ok(textileText.includes(s),`global-textile filter missing ${s}`);
