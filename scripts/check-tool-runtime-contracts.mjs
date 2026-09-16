@@ -103,9 +103,11 @@ has('tools/contract-risk-highlighter/index.html', '/assets/nw-pro.js');
 has('tools/contract-risk-highlighter/index.html', './pro-bridge.js');
 has('tools/contract-risk-highlighter/pro-bridge.js', 'NWPro.getLocalStatus');
 
-// 15. Cosmetic Ingredient Checker Lite — unknown entries must stay explicitly unclassified.
+// 15. Cosmetic Ingredient Checker Lite — unknown entries stay explicitly unclassified and the public UI is bilingual.
 has('tools/cosmetic-ingredient-checker-lite/app.js', 'この簡易辞書では分類できません');
-has('tools/cosmetic-ingredient-checker-lite/index.html', '日本語のみ');
+has('tools/cosmetic-ingredient-checker-lite/index.html', 'data-lang="ja"', 'JP language control');
+has('tools/cosmetic-ingredient-checker-lite/index.html', 'data-lang="en"', 'EN language control');
+has('tools/cosmetic-ingredient-checker-lite/app.js', "currentLang = lang === 'en' ? 'en' : 'ja'", 'dynamic bilingual result runtime');
 
 // 16. Cover Letter Lite — deterministic local template system, not an AI request path.
 has('tools/cover-letter-lite/app.js', 'TEMPLATE_STYLES');
@@ -200,7 +202,8 @@ has('tools/image-redact/index.html', 'Use EXIF Cleaner Mini as well if you need 
 
 // 30. INCI FastScan — external OCR library is disclosed and image recognition stays browser-side.
 has('tools/inci-fastscan/index.html', 'https://unpkg.com/tesseract.js@5.0.3/dist/tesseract.min.js');
-has('tools/inci-fastscan/index.html', 'OCR runs in your browser, but the OCR library is loaded from an external CDN.');
+has('tools/inci-fastscan/index.html', 'Ingredient text and image recognition run in your browser.', 'browser-side image/text processing disclosure');
+has('tools/inci-fastscan/index.html', 'The OCR library is loaded from an external CDN.', 'external OCR library disclosure');
 has('tools/inci-fastscan/js/web_ocr.js', 'Tesseract.recognize');
 has('tools/inci-fastscan/index.html', 'unknown items');
 has('tools/inci-fastscan/index.html', 'not medical advice or a safety guarantee');
@@ -253,7 +256,7 @@ has('tools/light-check/app.js', 'track.stop()');
 
 // 38. LineBreak Doctor — platform-safe invisible-character behavior stays explicit and local.
 has('tools/linebreak-doctor/app.js', 'platform-safe');
-has('tools/linebreak-doctor/app.js', '\\u200B');
+has('tools/linebreak-doctor/app.js', '\u200B');
 for (const platform of ['X', 'Instagram', 'LINE', 'Facebook', 'LinkedIn']) {
   has('tools/linebreak-doctor/app.js', `name: "${platform}"`);
 }
