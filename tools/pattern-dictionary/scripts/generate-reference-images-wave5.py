@@ -261,7 +261,38 @@ def write_png_scaled(path,fn,scale=1):
     png=b'\x89PNG\r\n\x1a\n'+chunk(b'IHDR',struct.pack('>IIBBBBB',SIZE,SIZE,8,2,0,0,0))+chunk(b'IDAT',zlib.compress(bytes(raw),9))+chunk(b'IEND',b'')
     path.write_bytes(png)
 
-FUN['tie-dye']=tie_dye_v2; FUN['marbling']=marbling_v2
-SCALE2={'suzani','sashiko','kantha','otomi-embroidery','block-print','snake-print','cow-print','giraffe-print','dalmatian-spots','camouflage','tie-dye','marbling','terrazzo'}
+def sashiko_v3(x,y):
+    xx,yy=x%192,y%192
+    on1=line_mod(xx+yy,48,1.7); on2=line_mod(xx-yy,48,1.7)
+    if (on1 or on2) and ((int(xx/5)+int(yy/5))%2==0):return WHITE
+    # secondary dashed square grid emphasizes visible running stitches
+    if (line_mod(xx,96,1.4) or line_mod(yy,96,1.4)) and ((int(xx/6)+int(yy/6))%2==0):return PALE
+    return INDIGO
+
+def snake_v3(x,y):
+    xx,yy=x%192,y%192; row=int(round(yy/20)); cy=row*20
+    off=12 if row%2 else 0; col=int(round((xx-off)/24)); cx=col*24+off
+    dx,dy=xx-cx,yy-cy; v=(dx/11.5)**2+(dy/8.5)**2
+    if abs(v-1)<.20:return DARK_BROWN
+    if v<.78:
+        key=(row*7+col*11)%5
+        return [TAN,CREAM,BROWN,TAN,PALE][key]
+    # longitudinal darker blotches over the scale field
+    if row%5==2 and abs(dx)<5 and abs(dy)<5:return BROWN
+    return CREAM
+
+def giraffe_v3(x,y):
+    xx,yy=x%192,y%192; pts=[]
+    for gy in range(-1,6):
+        for gx in range(-1,6):
+            bx=gx%4; by=gy%4; hv=hsh(bx,by,31)
+            cx=gx*48+24+((hv%15)-7); cy=gy*48+24+(((hv>>8)%15)-7)
+            d=(xx-cx)**2+(yy-cy)**2; pts.append((d,hv))
+    pts.sort(key=lambda t:t[0]); d1,h1=pts[0]; d2,_=pts[1]
+    if math.sqrt(d2)-math.sqrt(d1)<5.5:return CREAM
+    return BROWN if (h1%3) else TAN
+
+FUN['tie-dye']=tie_dye_v2; FUN['marbling']=marbling_v2; FUN['sashiko']=sashiko_v3; FUN['snake-print']=snake_v3; FUN['giraffe-print']=giraffe_v3
+SCALE2={'suzani','adire','sashiko','kantha','otomi-embroidery','block-print','snake-print','cow-print','giraffe-print','dalmatian-spots','camouflage','tie-dye','marbling','terrazzo'}
 for pid,fn in FUN.items():
     write_png_scaled(OUT/f'{pid}.png',fn,2 if pid in SCALE2 else 1); print(pid)

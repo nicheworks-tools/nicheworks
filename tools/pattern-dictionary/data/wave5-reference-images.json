@@ -28,7 +28,7 @@
     "qualified_term_rule": "Qualified terms use representative recognition references and do not imply one universally canonical repeat.",
     "source_ledger": "data/wave5-source-verification.json",
     "review_ledger": "data/wave5-reference-image-review.json",
-    "generator": "scripts/generate-reference-images-wave5.py (v2 scale/fluid refinement)"
+    "generator": "scripts/generate-reference-images-wave5.py (v3 focused structural refinement)"
   },
   "images": [
     {
