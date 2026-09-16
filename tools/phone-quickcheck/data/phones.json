@@ -6275,8 +6275,8 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192474/",
@@ -8859,8 +8859,8 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.motorola.com/gb/en/p/phones/moto-g/24/pmipmgp37mb?pn=PB180001GB",
