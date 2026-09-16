@@ -17,5 +17,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: audit/construction-atlas-q014-identity-closure-20260916
+      - name: Check generic batch identity auditor syntax
+        run: node --check tools/construction-tools-atlas/scripts/audit-quality-batch-identity-candidates-v2.3.cjs
       - name: Run q014 identity candidate audit
         run: node tools/construction-tools-atlas/scripts/audit-quality-batch-identity-candidates-v2.3.cjs --batch=014
+      - name: Check q014 identity closure syntax
+        run: node --check tools/construction-tools-atlas/scripts/audit-q014-identity-closure-v2.3.cjs
+      - name: Require zero unresolved q014 identity collisions
+        run: node tools/construction-tools-atlas/scripts/audit-q014-identity-closure-v2.3.cjs
