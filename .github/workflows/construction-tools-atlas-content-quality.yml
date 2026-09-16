@@ -5,6 +5,7 @@ on:
     paths:
       - 'tools/construction-tools-atlas/data/**'
       - 'tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/audit-affiliate-coverage-v2.3.cjs'
       - 'tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs'
       - 'tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs'
       - 'tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs'
@@ -16,6 +17,7 @@ on:
     paths:
       - 'tools/construction-tools-atlas/data/**'
       - 'tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/audit-affiliate-coverage-v2.3.cjs'
       - 'tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs'
       - 'tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs'
       - 'tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs'
@@ -37,6 +39,7 @@ jobs:
       - name: Check content quality syntax
         run: |
           node --check tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs
+          node --check tools/construction-tools-atlas/scripts/audit-affiliate-coverage-v2.3.cjs
           node --check tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs
           node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3a-v2.3.cjs
           node --check tools/construction-tools-atlas/scripts/check-q012-content-wave3b-v2.3.cjs
@@ -46,6 +49,9 @@ jobs:
 
       - name: Validate frozen public content quality inventory
         run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check
+
+      - name: Validate maintained affiliate mappings and coverage floor
+        run: node tools/construction-tools-atlas/scripts/audit-affiliate-coverage-v2.3.cjs
 
       - name: Require complete q011 subject-specific core content
         run: node tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs
