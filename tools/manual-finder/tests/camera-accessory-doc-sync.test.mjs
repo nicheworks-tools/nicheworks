@@ -105,12 +105,14 @@ for (const path of [
   'affiliate-dji-camera-accessories-wave1.js',
   'affiliate-dji-camera-accessories-wave2.js',
   'affiliate-dji-camera-accessories-wave3.js',
+  'affiliate-dji-camera-accessories-wave4.js',
   'affiliate-camera-detail-exclusions.js',
   'CAMERA_ACCESSORY_COVERAGE.md',
   'tests/nikon-camera-accessory-wave2.test.mjs',
   'tests/dji-osmo-action-accessory-wave1.test.mjs',
   'tests/dji-air-accessory-wave2.test.mjs',
   'tests/dji-mini-accessory-wave3.test.mjs',
+  'tests/dji-mavic3-accessory-wave4.test.mjs',
   'tests/camera-accessory-coverage.test.mjs',
   'tests/camera-accessory-doc-sync.test.mjs'
 ]) {
