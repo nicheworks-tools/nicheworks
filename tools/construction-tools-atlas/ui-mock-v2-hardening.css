@@ -5,6 +5,7 @@
 .ctaMockBrand,.ctaMockHome,.ctaMockBrandCopy,.topbar .brand{position:relative!important}
 .ctaMockBrand::before,.ctaMockBrand::after,.ctaMockHome::before,.ctaMockHome::after,.ctaMockBrandCopy::before,.ctaMockBrandCopy::after,.topbar .brand::before,.topbar .brand::after{content:none!important;display:none!important;background:none!important}
 .ctaMockBrand img,.ctaMockBrand svg,.ctaMockBrand picture{display:none!important}
+.ctaMockHome{display:none!important}
 .ctaMockHome{display:inline!important;border:0!important;border-radius:0!important;padding:0!important;background:transparent!important;box-shadow:none!important;color:#344054!important;font-size:13px!important;font-weight:800!important;letter-spacing:.01em!important}
 .ctaMockBrand{gap:18px!important}
 
