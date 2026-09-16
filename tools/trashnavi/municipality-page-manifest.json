@@ -62,5 +62,15 @@
   {"lgcode":"271403","pref_slug":"osaka","city_slug":"sakai","publish":true},
   {"lgcode":"331007","pref_slug":"okayama","city_slug":"okayama","publish":true},
   {"lgcode":"401307","pref_slug":"fukuoka","city_slug":"fukuoka","publish":true},
-  {"lgcode":"401005","pref_slug":"fukuoka","city_slug":"kitakyushu","publish":true}
+  {"lgcode":"401005","pref_slug":"fukuoka","city_slug":"kitakyushu","publish":true},
+  {"lgcode":"131113","pref_slug":"tokyo","city_slug":"ota","publish":true},
+  {"lgcode":"131237","pref_slug":"tokyo","city_slug":"edogawa","publish":true},
+  {"lgcode":"131211","pref_slug":"tokyo","city_slug":"adachi","publish":true},
+  {"lgcode":"131199","pref_slug":"tokyo","city_slug":"itabashi","publish":true},
+  {"lgcode":"131083","pref_slug":"tokyo","city_slug":"koto","publish":true},
+  {"lgcode":"131091","pref_slug":"tokyo","city_slug":"shinagawa","publish":true},
+  {"lgcode":"131172","pref_slug":"tokyo","city_slug":"kita","publish":true},
+  {"lgcode":"131148","pref_slug":"tokyo","city_slug":"nakano","publish":true},
+  {"lgcode":"131164","pref_slug":"tokyo","city_slug":"toshima","publish":true},
+  {"lgcode":"131105","pref_slug":"tokyo","city_slug":"meguro","publish":true}
 ]
