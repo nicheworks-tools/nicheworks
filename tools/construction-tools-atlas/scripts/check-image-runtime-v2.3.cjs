@@ -18,7 +18,11 @@ requireText('resolveRegistryId', 'registry IDs resolve through canonical redirec
 requireText('inherited_from', 'redirect-inherited image ownership is recorded');
 requireText('canonical-redirect-inherited', 'redirect-inherited runtime diagnostics are emitted');
 requireText('window.CTA_DEEP_LINK?.getCurrentId?.()', 'canonical ID comes from deep-link controller when available');
-requireText('meta.match(/id:', 'canonical ID falls back to rendered detail metadata');
+requireText('#resultList .row--selected[data-entry-id]', 'canonical ID falls back to the selected canonical result row');
+requireText('new URL(window.location.href).searchParams.get("entry")', 'canonical ID falls back to the canonical entry URL');
+if (source.includes('meta.match(/id:') || source.includes('getElementById("tabMeta")?.textContent')) {
+  errors.push('canonical image runtime must not depend on rendered internal Meta text');
+}
 requireText('item.subject_match !== "matched"', 'only subject-matched canonical images are eligible');
 requireText('item.migration_state !== "promoted"', 'only promoted canonical images are eligible');
 requireText('FORMAL_STATES.has(item.image_state)', 'only reviewed/verified canonical images are eligible');
@@ -76,5 +80,6 @@ if (errors.length) {
 console.log('Construction Tools Atlas canonical image runtime v2.3: PASS');
 console.log(`- registry cache key: ${registryVersion}`);
 console.log('- image ownership: direct surviving canonical first, then reviewed redirect inheritance');
+console.log('- canonical ID source: deep-link controller -> selected canonical row -> entry URL; no internal Meta dependency');
 console.log('- resolution order: promoted canonical registry -> legacy SVG pilot -> no image');
 console.log('- promoted canonical ownership suppresses legacy fallback even on raster load failure');

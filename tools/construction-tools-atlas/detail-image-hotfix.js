@@ -208,9 +208,10 @@
     } catch (_) {
       // Fall through to the canonical ID already rendered in the detail metadata.
     }
-    const meta = document.getElementById("tabMeta")?.textContent || "";
-    const found = meta.match(/id:\s*([^\n]+)/);
-    return found ? found[1].trim() : "";
+    const selected = document.querySelector("#resultList .row--selected[data-entry-id]");
+    if (text(selected?.dataset.entryId)) return text(selected.dataset.entryId);
+    try { return text(new URL(window.location.href).searchParams.get("entry")); }
+    catch (_) { return ""; }
   }
 
   function currentRaw() {
