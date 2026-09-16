@@ -228,5 +228,40 @@ def terrazzo(x,y):
     return bg
 
 FUN={'suzani':suzani,'kente':kente,'bogolan':bogolan,'adire':adire,'kuba-cloth':kuba,'sashiko':sashiko,'kantha':kantha,'otomi-embroidery':otomi,'african-wax-print':african_wax,'block-print':block_print,'zebra-print':zebra,'tiger-print':tiger,'snake-print':snake,'cow-print':cow,'giraffe-print':giraffe,'dalmatian-spots':dalmatian,'camouflage':camouflage,'tie-dye':tie_dye,'marbling':marbling,'terrazzo':terrazzo}
+def tie_dye_v2(x,y):
+    xx,yy=x%192,y%192; cx,cy=96,96; dx,dy=xx-cx,yy-cy; d=math.hypot(dx,dy); a=math.atan2(dy,dx)
+    if d<9:return WHITE
+    phase=(a+d/22+0.18*math.sin(d/9))%(2*math.pi)
+    sector=int(phase/(2*math.pi/8))%8
+    cols=[BLUE,WHITE,PURPLE,WHITE,PINK,WHITE,BLUE,WHITE]
+    c=cols[sector]
+    # pale resisted rings break the spiral organically
+    if abs((d+5*math.sin(3*a))%38-19)<2.8:return WHITE
+    return c
+
+def marbling_v2(x,y):
+    xx,yy=x%192,y%192
+    u=xx+25*math.sin(yy/31)+8*math.sin((xx+yy)/17)+5*math.sin(yy/7)
+    v=yy+13*math.sin(xx/29)
+    z=(u+0.18*v)%76
+    if z<10:return NAVY
+    if z<18:return CREAM
+    if z<32:return BLUE
+    if z<39:return WHITE
+    if z<52:return DARK_RED
+    if z<60:return GOLD
+    return CREAM
+
+def write_png_scaled(path,fn,scale=1):
+    tile_size=TILE*scale; rep=SIZE//tile_size
+    tile=[[fn(x//scale,y//scale) for x in range(tile_size)] for y in range(tile_size)]
+    raw=bytearray()
+    for y in range(SIZE):
+        raw.append(0); row=tile[y%tile_size]; raw.extend(bytes(c for rgb in row for c in rgb)*rep)
+    png=b'\x89PNG\r\n\x1a\n'+chunk(b'IHDR',struct.pack('>IIBBBBB',SIZE,SIZE,8,2,0,0,0))+chunk(b'IDAT',zlib.compress(bytes(raw),9))+chunk(b'IEND',b'')
+    path.write_bytes(png)
+
+FUN['tie-dye']=tie_dye_v2; FUN['marbling']=marbling_v2
+SCALE2={'suzani','sashiko','kantha','otomi-embroidery','block-print','snake-print','cow-print','giraffe-print','dalmatian-spots','camouflage','tie-dye','marbling','terrazzo'}
 for pid,fn in FUN.items():
-    write_png(OUT/f'{pid}.png',fn); print(pid)
+    write_png_scaled(OUT/f'{pid}.png',fn,2 if pid in SCALE2 else 1); print(pid)
