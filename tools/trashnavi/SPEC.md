@@ -837,3 +837,23 @@ Wave 34は10自治体batch scaling ruleを継続し、公開閾値を変更せ�
 Wave 34 readiness baselineは1,916 municipalities、2,460 valid HTTP(S) records、124 preferred candidates、37 direct-link datasets / 392 records / 373 unique URLs / 0 invalid URLsとする。
 
 Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 124/124、両sitemapへのcanonical 1件ずつを検証する。10自治体すべてのcollection sourceが2026 / 令和8年を明示しているため、10ページすべてに2026 calendar calloutを表示する。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+
+## Wave 35 ten-municipality publication
+
+Wave 35は10自治体batch scaling ruleを継続し、公開閾値を変更せず **124自治体から134自治体** へ拡張する。対象は熊谷市・新座市・流山市・八千代市・習志野市・西東京市・小平市・立川市・厚木市・小田原市。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeとし、同一combined pageの二重計上や外部委託先による閾値補完は行わない。
+
+- 熊谷市 — `/tools/trashnavi/saitama/kumagaya/` — waste sorting / collection calendar / bulky waste
+- 新座市 — `/tools/trashnavi/saitama/niiza/` — waste sorting / collection calendar / bulky waste
+- 流山市 — `/tools/trashnavi/chiba/nagareyama/` — waste sorting / collection calendar / bulky waste
+- 八千代市 — `/tools/trashnavi/chiba/yachiyo/` — waste sorting / collection calendar / bulky waste
+- 習志野市 — `/tools/trashnavi/chiba/narashino/` — waste sorting / collection calendar / bulky waste
+- 西東京市 — `/tools/trashnavi/tokyo/nishitokyo/` — waste sorting / collection calendar / bulky waste
+- 小平市 — `/tools/trashnavi/tokyo/kodaira/` — waste sorting / collection calendar / bulky waste
+- 立川市 — `/tools/trashnavi/tokyo/tachikawa/` — waste sorting / collection calendar / bulky waste
+- 厚木市 — `/tools/trashnavi/kanagawa/atsugi/` — waste sorting / collection calendar / bulky waste
+- 小田原市 — `/tools/trashnavi/kanagawa/odawara/` — waste sorting / collection calendar / bulky waste
+
+Wave 35 readiness baselineは1,916 municipalities、2,490 valid HTTP(S) records、134 preferred candidates、38 direct-link datasets / 422 records / 403 unique URLs / 0 invalid URLsとする。
+
+Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 134/134、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する流山市・八千代市・習志野市・小平市・小田原市だけ2026 calendar calloutを表示し、熊谷市・新座市・西東京市・立川市・厚木市には年次calloutを生成しない。西東京市のcurrent calendarは令和7年10月から令和8年9月までの跨年期間なので、単一2026 calendarとして扱わない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
