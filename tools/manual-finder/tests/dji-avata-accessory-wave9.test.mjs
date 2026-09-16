@@ -54,12 +54,20 @@ assert.equal(offers[1].url, 'https://www.amazon.co.jp/s?k=DJI+Avata+Battery+Char
 assert.equal(offers[0].sourceUrl, source);
 assert.equal(offers[1].sourceUrl, source);
 
+const avata2Offers = Array.from(config.getAccessoryOffers({ maker: 'DJI', model: 'DJI Avata 2', category: 'カメラ・映像' }));
+assert.equal(avata2Offers.length, 2, 'DJI Avata 2 must retain its previously reviewed Wave 6 handoffs');
+assert.deepEqual(avata2Offers.map((offer) => offer.query), [
+  'DJI Avata 2 Intelligent Flight Battery',
+  'DJI Avata 2 Two-Way Charging Hub'
+]);
+assert.ok(avata2Offers.every((offer) => offer.sourceUrl !== source), 'Wave 9 evidence must not be reused for DJI Avata 2');
+
 for (const args of [
   { maker: 'dji', model: 'DJI Avata', category: 'カメラ・映像' },
   { maker: 'Nikon', model: 'DJI Avata', category: 'カメラ・映像' },
   { maker: 'DJI', model: 'DJI Avata', category: 'その他' },
-  { maker: 'DJI', model: 'DJI Avata 2', category: 'カメラ・映像' },
   { maker: 'DJI', model: 'DJI Avata 360', category: 'カメラ・映像' },
+  { maker: 'DJI', model: 'DJI Avata Pro', category: 'カメラ・映像' },
   { maker: 'DJI', model: '', category: 'カメラ・映像' }
 ]) {
   assert.deepEqual(Array.from(config.getAccessoryOffers(args)), [], `unreviewed DJI Avata mapping must fail closed: ${JSON.stringify(args)}`);
