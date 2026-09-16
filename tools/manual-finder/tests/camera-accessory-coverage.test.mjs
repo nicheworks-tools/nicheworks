@@ -101,6 +101,7 @@ assert.ok(cameraRecords.length > 0, 'ManualFinder camera catalog should not be e
 for (const name of [
   'affiliate-config.js',
   'affiliate-camera-accessories.js',
+  'affiliate-nikon-camera-accessories-wave2.js',
   'affiliate-camera-detail-exclusions.js'
 ]) run(new URL(name, root), `tools/manual-finder/${name}`);
 
