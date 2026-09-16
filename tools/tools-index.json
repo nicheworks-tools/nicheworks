@@ -237,15 +237,15 @@
     },
     {
       "slug": "dry-meter",
-      "title_en": "Dry Meter",
-      "title_ja": "乾燥目安メーター",
-      "desc_en": "Estimate indoor dryness from simple weather-style inputs.",
-      "desc_ja": "天気や室内条件から乾燥の目安を確認します。",
+      "title_en": "Laundry Drying Checker",
+      "title_ja": "洗濯物の乾きやすさ判定",
+      "desc_en": "Estimate laundry drying conditions from temperature, humidity, wind, rain, and cloud cover.",
+      "desc_ja": "気温・湿度・風速などから、洗濯物が今どれくらい乾きやすいかを確認します。",
       "tags": [
-        "dryness",
+        "laundry",
+        "drying",
         "weather",
-        "home",
-        "life"
+        "home"
       ]
     },
     {
