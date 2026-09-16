@@ -52,5 +52,15 @@
   {"lgcode":"062014","pref_slug":"yamagata","city_slug":"yamagata","publish":true},
   {"lgcode":"102016","pref_slug":"gunma","city_slug":"maebashi","publish":true},
   {"lgcode":"111007","pref_slug":"saitama","city_slug":"saitama","publish":true},
-  {"lgcode":"172014","pref_slug":"ishikawa","city_slug":"kanazawa","publish":true}
+  {"lgcode":"172014","pref_slug":"ishikawa","city_slug":"kanazawa","publish":true},
+  {"lgcode":"032018","pref_slug":"iwate","city_slug":"morioka","publish":true},
+  {"lgcode":"052019","pref_slug":"akita","city_slug":"akita","publish":true},
+  {"lgcode":"072010","pref_slug":"fukushima","city_slug":"fukushima","publish":true},
+  {"lgcode":"082015","pref_slug":"ibaraki","city_slug":"mito","publish":true},
+  {"lgcode":"141305","pref_slug":"kanagawa","city_slug":"kawasaki","publish":true},
+  {"lgcode":"141500","pref_slug":"kanagawa","city_slug":"sagamihara","publish":true},
+  {"lgcode":"271403","pref_slug":"osaka","city_slug":"sakai","publish":true},
+  {"lgcode":"331007","pref_slug":"okayama","city_slug":"okayama","publish":true},
+  {"lgcode":"401307","pref_slug":"fukuoka","city_slug":"fukuoka","publish":true},
+  {"lgcode":"401005","pref_slug":"fukuoka","city_slug":"kitakyushu","publish":true}
 ]
