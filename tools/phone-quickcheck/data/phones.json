@@ -7500,8 +7500,8 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia5m3/spec_docomo.html",
@@ -7550,8 +7550,8 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia10m3/spec_docomo.html",
@@ -7600,8 +7600,8 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.sony.jp/xperia/xperia/acem2/spec.html",
