@@ -1,0 +1,79 @@
+name: CTA q014 content generate fix
+
+on:
+  push:
+    branches:
+      - feat/construction-atlas-q014-content-completion-20260916
+    paths:
+      - '.github/workflows/cta-q014-content-generate-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/construction-atlas-q014-content-completion-20260916
+          fetch-depth: 0
+      - name: Extract and correct q014 generator
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          src = Path('.github/workflows/cta-q014-content-generate.yml').read_text()
+          marker = "          node <<'NODE'\n"
+          start = src.index(marker) + len(marker)
+          end = src.index("\n          NODE", start)
+          js = src[start:end]
+          old_decl = "const expected={ '5a':30,'5b':21,'5c':18,'5d':29 };"
+          old_assert = "for(const [g,n] of Object.entries(expected)) if((groups[g]||[]).length!==n) throw new Error(`${g}: expected ${n}, got ${(groups[g]||[]).length}`);"
+          new_decl = "const groupNames=['5a','5b','5c','5d']; const groupCounts=Object.fromEntries(groupNames.map(g=>[g,(groups[g]||[]).length]));"
+          new_assert = "if(groupNames.some(g=>groupCounts[g]===0)) throw new Error(`empty pack: ${JSON.stringify(groupCounts)}`); if(Object.values(groupCounts).reduce((a,b)=>a+b,0)!==98) throw new Error(`pack total: ${JSON.stringify(groupCounts)}`);"
+          if old_decl not in js or old_assert not in js:
+              raise SystemExit('generator count anchors not found')
+          js = js.replace(old_decl, new_decl, 1).replace(old_assert, new_assert, 1)
+          js = js.replace('Object.keys(expected)', 'groupNames')
+          js = js.replace("console.log('CTA_Q014_PACK_COUNTS='+JSON.stringify(Object.fromEntries(Object.entries(groups).map(([k,v])=>[k,v.length]))));", "console.log('CTA_Q014_PACK_COUNTS='+JSON.stringify(groupCounts));")
+          Path('/tmp/q014-generate.js').write_text(js)
+          PY
+          node /tmp/q014-generate.js
+      - name: Validate generated q014 packs exactly cover active canonicals
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const base='tools/construction-tools-atlas/data';
+          const source=JSON.parse(fs.readFileSync(`${base}/tools.quality-014.json`,'utf8')).rows;
+          const redirects=JSON.parse(fs.readFileSync(`${base}/canonical-redirects-v2.3.json`,'utf8')).redirects;
+          const redirected=new Set(redirects.map(r=>r.from));
+          const expected=source.filter(r=>!redirected.has(r.id)).map(r=>r.id).sort();
+          const ids=[]; const counts={};
+          for(const g of ['5a','5b','5c','5d']){
+            const d=JSON.parse(fs.readFileSync(`${base}/content-enrichment-wave${g}-v2.3.json`,'utf8'));
+            counts[g]=d.entries.length;
+            if(d.schema!=='cta-content-enrichment-v2.3') throw new Error(`${g}: bad schema`);
+            for(const e of d.entries){
+              ids.push(e.id);
+              if(e.state!=='expanded'||e.wave!==`content-wave-00${g}`) throw new Error(`${e.id}: wave/state`);
+              for(const k of ['detail_ja','detail_en']) if(typeof e[k]!=='string'||e[k].trim().length<30) throw new Error(`${e.id}: ${k}`);
+              for(const k of ['bullets_ja','bullets_en']) if(!Array.isArray(e[k])||e[k].length<3||e[k].some(x=>!String(x).trim())) throw new Error(`${e.id}: ${k}`);
+              for(const k of ['examples_ja','examples_en']) if(!Array.isArray(e[k])||e[k].length<2||e[k].some(x=>!String(x).trim())) throw new Error(`${e.id}: ${k}`);
+            }
+          }
+          const actual=[...ids].sort();
+          if(ids.length!==98||new Set(ids).size!==98) throw new Error(`coverage ${ids.length}/${new Set(ids).size}`);
+          if(JSON.stringify(actual)!==JSON.stringify(expected)) throw new Error('q014 active ID set mismatch');
+          const manifest=JSON.parse(fs.readFileSync(`${base}/content-enrichment-manifest-v2.3.json`,'utf8'));
+          for(const g of ['5a','5b','5c','5d']) if(!manifest.packs.some(p=>p.wave===`content-wave-00${g}`&&p.path===`./data/content-enrichment-wave${g}-v2.3.json`)) throw new Error(`manifest missing ${g}`);
+          console.log('CTA_Q014_PACK_COUNTS='+JSON.stringify(counts));
+          console.log('CTA_Q014_GENERATED_CONTENT=98/98');
+          NODE
+      - name: Commit q014 content packs
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/construction-tools-atlas/data/content-enrichment-manifest-v2.3.json tools/construction-tools-atlas/data/content-enrichment-wave5*-v2.3.json
+          git commit -m 'feat(construction-atlas): add q014 content completion packs'
+          git pull --rebase origin feat/construction-atlas-q014-content-completion-20260916
+          git push origin HEAD:feat/construction-atlas-q014-content-completion-20260916
