@@ -7,6 +7,8 @@ const matcher = read('tools/inci-fastscan/js/core_matcher.js');
 const ui = read('tools/inci-fastscan/js/web_ui.js');
 const fastscanGuideJa = read('tools/inci-fastscan/howto/index.html');
 const fastscanGuideEn = read('tools/inci-fastscan/howto/en/index.html');
+const dictionaryPolicy = read('tools/inci-fastscan/DICTIONARY.md');
+const testingGuide = read('tools/inci-fastscan/docs/testing.md');
 const contract = read('tools/_shared/COSMETICS_LEGACY_SAFETY_ISOLATION.md');
 
 const liteReviewStart = lite.indexOf('function isReviewCandidate');
@@ -66,6 +68,26 @@ for (const forbidden of [
   assert.ok(!fastscanGuideEn.includes(forbidden), `FastScan English public guide revived legacy safety/translation copy: ${forbidden}`);
 }
 
+for (const required of [
+  'legacy `safety` field',
+  'not the current FastScan or Lite user-facing classification contract',
+  'must not be presented as a product or ingredient safety verdict',
+  'FastScan result objects do not expose legacy `safety` metadata',
+  'Lite review state is not driven by legacy `safety` metadata'
+]) {
+  assert.ok(dictionaryPolicy.includes(required), `FastScan dictionary policy missing legacy-safety isolation rule: ${required}`);
+}
+assert.ok(!dictionaryPolicy.includes('Labels mean:\n\n- `safe`: generally common ingredient'), 'FastScan dictionary policy must not define legacy safety values as current user-facing labels');
+
+for (const required of [
+  'current user-facing contract is neutral dictionary/reference state',
+  'No SAFE / CAUTION / RISK safety ranking is shown as the current result contract',
+  'It is not a machine-translation test.',
+  'legacy `safety` field remains part of the stored dictionary schema for compatibility'
+]) {
+  assert.ok(testingGuide.includes(required), `FastScan testing guide missing current neutral contract: ${required}`);
+}
+
 for (const token of [
   'legacy `safety` metadata',
   'does not drive',
@@ -85,6 +107,7 @@ console.log(JSON.stringify({
   fastscan_legacy_safety_exposed_to_results: false,
   fastscan_public_guides_use_neutral_contract: true,
   fastscan_public_guides_revive_legacy_safety_or_translation: false,
+  fastscan_internal_docs_isolate_legacy_safety: true,
   recognition_contract_changed: false,
   affiliate_contract_changed: false
 }, null, 2));

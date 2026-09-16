@@ -1,10 +1,10 @@
 # INCI FastScan dictionary policy
 
-INCI FastScan is not complete just because the page UI works. The dictionary must be treated as a maintained data asset.
+INCI FastScan is not complete just because the page UI works. The dictionary is a maintained data asset shared by the current FastScan matching workflow and Cosmetic Ingredient Checker Lite.
 
 ## Current dictionary sources
 
-The app loads static JSON files first:
+The app loads these static JSON files:
 
 ```txt
 data/ingredients.json
@@ -36,17 +36,17 @@ node tools/inci-fastscan/validate-dictionary.mjs
 
 ## Minimum acceptance line
 
-The current v1 target is:
+The current baseline remains:
 
 ```txt
 uniqueEnglishIngredients >= 1000
 ```
 
-This is a practical v1 threshold, not a final dictionary ceiling.
+This is a dictionary-coverage floor, not a product-quality or safety score.
 
-## Required fields
+## Current record shape
 
-Each item should have:
+The maintained schema currently includes fields such as:
 
 ```json
 {
@@ -59,31 +59,54 @@ Each item should have:
 }
 ```
 
-## Important rule
+`id`, `en`, and the legacy `safety` field are currently validated as required strings by `validate-dictionary.mjs`; `jp` is an array and `alias` is an optional array.
 
-The dictionary does not guarantee safety. Labels mean:
+## Legacy `safety` metadata isolation
 
-- `safe`: generally common ingredient, not a safety guarantee
-- `caution`: review if sensitive, allergic, pregnant, using acids/retinoids, etc.
-- `risk`: higher review priority, not a medical diagnosis
+The `safety` field remains in the stored dictionary schema for compatibility with the existing data asset and validator. It is **legacy metadata** and is not the current FastScan or Lite user-facing classification contract.
+
+Current runtime/UI rules:
+
+- FastScan result objects do not expose legacy `safety` metadata.
+- FastScan presents neutral reference states such as `Dictionary match`, `Additional review`, and `Unmatched`.
+- Lite review state is not driven by legacy `safety` metadata.
+- A stored value of `safe`, `caution`, or `risk` must not be presented as a product or ingredient safety verdict.
+- Legacy `safety` metadata must not select, rank, or rewrite Amazon affiliate destinations.
+
+Do not reinterpret the legacy field as a medical, dermatological, regulatory, allergy, irritation, pregnancy, concentration, or product-suitability judgment.
+
+## Matching and semantic priorities
+
+Dictionary maintenance should prioritize:
+
+1. Correct canonical INCI identity.
+2. Reviewed Japanese label names and aliases.
+3. Exact and high-confidence naming equivalence.
+4. Neutral functional category consistency.
+5. Provenance for claim-bearing notes/categories where required by the cosmetics quality contracts.
+6. Avoiding duplicate or colliding canonical/alias identities.
+
+Unknown or unmatched input must remain explicit rather than being force-matched to a plausible ingredient.
 
 ## Completion standard for this tool
 
-INCI FastScan can be treated as v1-complete only when:
+INCI FastScan can be treated as current-contract complete only when:
 
-1. The UI, OCR notes, donation links, SEO, and language switching are in place.
-2. `node tools/inci-fastscan/validate-dictionary.mjs` passes.
-3. `uniqueEnglishIngredients >= 1000` is reported.
-4. The result cards show category and do not imply medical diagnosis or safety guarantees.
-5. Common ingredient-list samples produce mostly known/review results rather than mostly unknown results.
+1. Photo/OCR and direct-text workflows remain usable in JP/EN.
+2. OCR output is editable and users are prompted to review it before matching.
+3. `node tools/inci-fastscan/validate-dictionary.mjs` passes.
+4. `uniqueEnglishIngredients >= 1000` is reported.
+5. Result cards expose canonical/name-match/category/reference information without reviving SAFE / CAUTION / RISK as user-facing safety ranks.
+6. Unmatched entries remain visible, and conservative correction candidates are never auto-applied.
+7. The cross-tool cosmetics release gates and accuracy/real-label benchmarks pass.
 
-## Next dictionary work after v1
+## Next dictionary work
 
 Priorities:
 
-1. Remove duplicate/overlapping English names.
-2. Normalize categories further.
-3. Add more Japanese label variants.
-4. Add more common J-beauty ingredients.
-5. Add sample product ingredient-list test cases.
-6. Add CI automation so dictionary regressions fail before merge.
+1. Remove or resolve duplicate/overlapping English identities.
+2. Normalize categories further under the maintained taxonomy.
+3. Add reviewed Japanese label variants and aliases.
+4. Improve coverage using source-backed real product labels and regression fixtures.
+5. Expand provenance coverage for claim-bearing metadata.
+6. Keep shared parser, canonical merge, semantic-quality, and real-label regressions passing before merge.
