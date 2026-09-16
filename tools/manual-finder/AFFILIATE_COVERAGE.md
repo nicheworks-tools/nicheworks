@@ -23,9 +23,9 @@ The required reconciliation is therefore:
 
 The camera accessory audit is independently tracked and currently reconciles as:
 
-`camera basic 185 = detail 31 + reviewed exclusion 0 + missing 154`
+`camera basic 185 = detail 34 + reviewed exclusion 0 + missing 151`
 
-All 14 actionable Nikon camera records are closed. DJI Waves 1–6 add seventeen reviewed detail rows, leaving DJI 79, OM SYSTEM 37, GoPro 31, and Insta360 7 missing accessory-detail rows.
+All 14 actionable Nikon camera records are closed. DJI Waves 1–7 add twenty reviewed detail rows, leaving DJI 76, OM SYSTEM 37, GoPro 31, and Insta360 7 missing accessory-detail rows.
 
 The printer coverage audit must also report:
 
@@ -59,7 +59,7 @@ Current state:
 2. **Consumer-printer ink** — active for the verified Brother, Epson, and Canon mappings.
 3. **Office-printer toner** — the current printer-detail audit is complete. Verified mappings exist across the maintained OKI, KYOCERA, RICOH, and FUJIFILM Business Innovation ledgers; reviewed non-retail/service-managed cases are explicit exclusions.
 4. **Office-printer drum / maintenance parts** — optional future expansion, not part of the completed toner-detail audit.
-5. **Camera batteries / chargers** — Nikon is complete at 14/14 detail. DJI has seventeen reviewed rows across Osmo Action Wave 1, Air Wave 2, Mini Wave 3, Mavic 3 Wave 4, Air 2S/Mavic Air 2 Wave 5, and compact power Wave 6; the remaining camera backlog is measured separately and must continue in bounded reviewed waves.
+5. **Camera batteries / chargers** — Nikon is complete at 14/14 detail. DJI has twenty reviewed rows across Osmo Action Wave 1, Air Wave 2, Mini Wave 3, Mavic 3 Wave 4, Air 2S/Mavic Air 2 Wave 5, compact power Wave 6, and Mini 2 Wave 7; the remaining camera backlog is measured separately and must continue in bounded reviewed waves.
 6. **Appliance replacement parts / filters** — future work only where exact compatibility can be proven.
 7. Additional accessory families require a clear user need and a verified mapping source.
 
@@ -233,11 +233,26 @@ DJI compact power Wave 6 activates exactly three canonical records, each with it
 
 Wave 6 does not infer cross-model compatibility among those three products and does not extend to `DJI Avata`, future similarly named products, or any unreviewed DJI model.
 
-After DJI Waves 1–6 the maker reconciliation is:
+## Camera accessory rule — DJI Mini 2 family Wave 7
 
-`DJI camera 96 = detail 17 + reviewed exclusion 0 + missing 79`
+DJI Mini 2 family Wave 7 activates exactly three canonical rows:
 
-The catalog-wide camera audit now reports 185 actionable basic records, 31 detail mappings, 0 reviewed exclusions, and 154 missing accessory-detail rows. The remaining missing counts are DJI 79, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing model arrays remain machine-readable in `tests/camera-accessory-coverage.test.mjs` output and are summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
+- `DJI Mini 2`
+- `DJI Mini 4K | DJI Mini 2 SE`
+- `DJI Mini SE`
+
+DJI official Store compatibility information explicitly lists DJI Mini 4K, DJI Mini 2 SE, DJI Mini 2, and DJI Mini SE for both reviewed accessories:
+
+- `DJI Mini 2 Intelligent Flight Battery`
+- `DJI Mini 2 Two-Way Charging Hub`
+
+The compound canonical row is valid because both `DJI Mini 4K` and `DJI Mini 2 SE` are named by DJI's compatibility list. Wave 7 remains exact-canonical-row only and does not infer compatibility for `Mavic Mini` or other Mini-family records.
+
+After DJI Waves 1–7 the maker reconciliation is:
+
+`DJI camera 96 = detail 20 + reviewed exclusion 0 + missing 76`
+
+The catalog-wide camera audit now reports 185 actionable basic records, 34 detail mappings, 0 reviewed exclusions, and 151 missing accessory-detail rows. The remaining missing counts are DJI 76, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing model arrays remain machine-readable in `tests/camera-accessory-coverage.test.mjs` output and are summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## Current fixed override
 
@@ -264,9 +279,10 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 - `affiliate-dji-camera-accessories-wave3.js` adds the three reviewed DJI Mini rows.
 - `affiliate-dji-camera-accessories-wave4.js` adds the three reviewed DJI Mavic 3 consumer rows.
 - `affiliate-dji-camera-accessories-wave5.js` adds the two reviewed DJI Air 2S/Mavic Air 2 rows.
-- `affiliate-dji-camera-accessories-wave6.js` adds the three reviewed DJI Avata 2 / Flip / Neo rows and exposes the merged 31-row camera detail ledger.
+- `affiliate-dji-camera-accessories-wave6.js` adds the three reviewed DJI Avata 2 / Flip / Neo rows.
+- `affiliate-dji-camera-accessories-wave7.js` adds the three reviewed DJI Mini 2-family canonical rows and exposes the merged 34-row camera detail ledger.
 - `affiliate-camera-detail-exclusions.js` is the reviewed camera-detail exclusion ledger and is currently empty.
-- `affiliate-runtime.js` renders the generic/body search plus zero or more verified consumable or camera-accessory searches. It loads Nikon Wave 1, Nikon Wave 2, and DJI Waves 1–6 before initial affiliate rendering so the final config is complete before cards are mounted.
+- `affiliate-runtime.js` renders the generic/body search plus zero or more verified consumable or camera-accessory searches. It loads Nikon Wave 1, Nikon Wave 2, and DJI Waves 1–7 before initial affiliate rendering so the final config is complete before cards are mounted.
 - `/assets/amazon-affiliate.js` validates Amazon destinations and records only coarse analytics targets. Model names and consumable/accessory terms are not analytics parameters.
 - `tests/affiliate-coverage.test.mjs` is the catalog-wide reconciliation gate for basic/detail/exclusion/missing printer coverage.
 - `tests/nikon-camera-accessory-wave1.test.mjs` locks the original four-model Nikon Wave 1 boundary.
@@ -277,6 +293,7 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 - `tests/dji-mavic3-accessory-wave4.test.mjs` locks the exact three-model DJI Mavic 3 Wave 4 boundary.
 - `tests/dji-air2-accessory-wave5.test.mjs` locks the exact two-model DJI Air 2S/Mavic Air 2 Wave 5 boundary.
 - `tests/dji-compact-power-wave6.test.mjs` locks the exact three-model DJI Avata 2 / Flip / Neo Wave 6 boundary.
+- `tests/dji-mini2-accessory-wave7.test.mjs` locks the exact three-row DJI Mini 2-family Wave 7 boundary.
 - `tests/camera-accessory-coverage.test.mjs` is the catalog-wide camera reconciliation and missing-model diagnostic gate.
 - `tests/camera-accessory-doc-sync.test.mjs` prevents the measured camera baseline documentation from drifting from runtime data.
 - `CAMERA_ACCESSORY_COVERAGE.md` records the current measured camera baseline and remaining maker backlog.
@@ -308,9 +325,9 @@ The Nikon camera subphase is closed only while all of the following remain true:
 The DJI camera phase is currently partial and must reconcile at:
 
 - DJI camera basic = 96
-- DJI camera detail = 17
+- DJI camera detail = 20
 - DJI reviewed camera exclusions = 0
-- DJI camera missing accessory detail = 79
+- DJI camera missing accessory detail = 76
 
 If the canonical catalog changes, numeric values may legitimately change, but each reconciliation invariant remains mandatory.
 
@@ -318,4 +335,4 @@ If the canonical catalog changes, numeric values may legitimately change, but ea
 
 The printer-detail Amazon handoff audit is no longer an open expansion target. Further printer work should be triggered by newly added canonical models, newly discovered evidence that changes an explicit exclusion, or a separately approved accessory family such as drums/maintenance parts.
 
-Nikon camera coverage is closed. The measured camera backlog continues with DJI 79 actionable records, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded reviewed product-family waves and exact manufacturer evidence. Appliance replacement-part rules remain a separate future phase.
+Nikon camera coverage is closed. The measured camera backlog continues with DJI 76 actionable records, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded reviewed product-family waves and exact manufacturer evidence. Appliance replacement-part rules remain a separate future phase.
