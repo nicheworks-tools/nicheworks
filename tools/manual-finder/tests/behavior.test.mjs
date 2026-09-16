@@ -34,5 +34,6 @@ await import('./dji-mini2-accessory-wave7.test.mjs');
 await import('./dji-fpv-accessory-wave8.test.mjs');
 await import('./dji-avata-accessory-wave9.test.mjs');
 await import('./dji-mavic2-accessory-wave10.test.mjs');
+await import('./dji-mavic-mini-accessory-wave11.test.mjs');
 await import('./camera-accessory-coverage.test.mjs');
 await import('./camera-accessory-doc-sync.test.mjs');
