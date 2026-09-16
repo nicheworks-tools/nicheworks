@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "nicheworks-non-affiliate-audit-plan-v1",
+  "updated": "2026-09-16",
+  "scopeSource": "audits/non-affiliate-scope.json",
+  "registrySource": "tools/tools-index.json",
+  "classificationSource": "MONETIZATION_CLASSIFICATION.json",
+  "existingEvidenceSource": "audits/tool-quality-matrix.json",
+  "standard": "docs/non-affiliate-audit-standard.md",
+  "totalTools": 72,
+  "waveSize": 12,
+  "waveCount": 6,
+  "assignment": "registry_order_excluding_affiliate",
+  "auditMode": "audit_only",
+  "categoryStatusEnum": [
+    "PASS",
+    "ISSUE_MINOR",
+    "ISSUE_MAJOR",
+    "BLOCKED",
+    "NOT_APPLICABLE"
+  ],
+  "overallStatusEnum": [
+    "PASS",
+    "MINOR_FIX",
+    "MAJOR_FIX",
+    "BLOCKED",
+    "HOLD_REVIEW"
+  ],
+  "categories": [
+    "identity_spec",
+    "core_behavior",
+    "error_empty_states",
+    "data_correctness",
+    "privacy_network",
+    "persistence",
+    "responsive_ui",
+    "accessibility",
+    "language",
+    "seo_technical",
+    "seo_content",
+    "analytics",
+    "monetization_contract",
+    "regression_tests"
+  ],
+  "waveResultPathPattern": "audits/non-affiliate-waves/wave-{NN}.json",
+  "completionRules": [
+    "Every one of the 72 in-scope tools must appear exactly once across the six deterministic waves.",
+    "Every audited record must contain every required category.",
+    "PASS requires every category to be PASS or justified NOT_APPLICABLE and requires zero open findings.",
+    "Audit waves do not repair production behavior; defects are recorded for later repair PRs.",
+    "HOLD_REVIEW is reserved for canonical HOLD tools after substantive audit.",
+    "An existing PASS in audits/tool-quality-matrix.json is evidence only and does not automatically satisfy this stricter audit."
+  ]
+}
