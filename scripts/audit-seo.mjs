@@ -81,7 +81,7 @@ function stableMeta(slug) {
   return !!(item?.title_ja && item?.title_en && item?.desc_ja && item?.desc_en && Array.isArray(item.tags) && item.tags.length >= 2);
 }
 function internalLinks(html) {
-  return [...html.matchAll(/href=["'](\/tools\/([^/"'#?]+)\/?[^"']*)["']/gi)]
+  return [...html.matchAll(/<a\b[^>]*href=["'](\/tools\/([^/"'#?]+)\/?[^"']*)["'][^>]*>/gi)]
     .map((match) => ({ href: match[1], slug: match[2] }))
     .filter((link) => !link.href.includes('${'));
 }
