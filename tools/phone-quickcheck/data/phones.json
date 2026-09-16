@@ -34,7 +34,7 @@
       },
       "included": {
         "cable": "included",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "waterRating": "IP68",
       "sources": {
@@ -43,7 +43,7 @@
         "releaseUrl": "https://www.apple.com/jp/newsroom/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/",
         "chargingUrl": "https://www.apple.com/jp/iphone-18-pro/specs/",
         "wirelessUrl": "https://www.apple.com/jp/iphone-18-pro/specs/",
-        "verifiedAt": "2026-09-13"
+        "verifiedAt": "2026-09-16"
       },
       "affiliateKeys": []
     },
@@ -79,7 +79,7 @@
       },
       "included": {
         "cable": "included",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "waterRating": "IP68",
       "sources": {
@@ -88,7 +88,7 @@
         "releaseUrl": "https://www.apple.com/jp/newsroom/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/",
         "chargingUrl": "https://www.apple.com/jp/iphone-18-pro/specs/",
         "wirelessUrl": "https://www.apple.com/jp/iphone-18-pro/specs/",
-        "verifiedAt": "2026-09-13"
+        "verifiedAt": "2026-09-16"
       },
       "affiliateKeys": []
     },
