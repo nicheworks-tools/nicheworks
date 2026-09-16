@@ -1,0 +1,1595 @@
+{
+  "schemaVersion": "nicheworks-non-affiliate-wave-result-v1",
+  "wave": 1,
+  "auditMode": "audit_only",
+  "auditedAt": "2026-09-16T13:40:00+09:00",
+  "baseSha": "6b1c74016e4a48c2cec5e366be69fe78e5badf0f",
+  "records": [
+    {
+      "slug": "ai-interaction-atlas",
+      "monetization_class": "PRO_BUNDLE",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "6b1c74016e4a48c2cec5e366be69fe78e5badf0f",
+      "audited_at": "2026-09-16T13:40:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-interaction-atlas/SPEC.md",
+            "tools/tools-index.json"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-interaction-atlas/SPEC.md",
+            "tools/ai-interaction-atlas/index.html"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-interaction-atlas/SPEC.md",
+            "tools/ai-interaction-atlas/index.html"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-interaction-atlas/SPEC.md",
+            "tools/ai-interaction-atlas/index.html"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-interaction-atlas/SPEC.md",
+            "tools/ai-interaction-atlas/index.html"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-interaction-atlas/SPEC.md",
+            "tools/ai-interaction-atlas/index.html"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-interaction-atlas/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-interaction-atlas/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-interaction-atlas/SPEC.md",
+            "tools/ai-interaction-atlas/index.html"
+          ]
+        },
+        "seo_technical": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-interaction-atlas/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "seo_content": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-interaction-atlas/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-interaction-atlas/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "monetization_contract": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "tools/ai-interaction-atlas/SPEC.md",
+            "tools/ai-interaction-atlas/index.html",
+            "MONETIZATION_CLASSIFICATION.json"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "scripts/check-tool-runtime-contracts.mjs"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "id": "NW-AUD-W01-001",
+          "severity": "MAJOR",
+          "status": "OPEN",
+          "summary": "Public Pro purchase/activation copy presents a live shared checkout/activation path while the current spec keeps the product-scoped nicheworks.pro migration staged and unresolved.",
+          "repair_direction": "Remove or clearly stage definitive purchase/activation claims until purchase verification, entitlement grant, restore, and tool unlock are authoritative; then bind the UI to the verified product-scoped contract.",
+          "evidence": [
+            "tools/ai-interaction-atlas/SPEC.md",
+            "tools/ai-interaction-atlas/index.html"
+          ]
+        },
+        {
+          "id": "NW-AUD-W01-002",
+          "severity": "MAJOR",
+          "status": "OPEN",
+          "summary": "Core filtering, comparison, favorites, copy/download, and Pro-gating behavior has no behavior-level automated regression coverage.",
+          "repair_direction": "Add deterministic tests for core filter/search/comparison flows, storage state, empty states, exports, and entitlement gating.",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/ai-interaction-atlas/app.js"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ai-project-pack",
+      "monetization_class": "PRO_BUNDLE",
+      "overall_state": "MINOR_FIX",
+      "last_audited_sha": "6b1c74016e4a48c2cec5e366be69fe78e5badf0f",
+      "audited_at": "2026-09-16T13:40:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-project-pack/SPEC.md",
+            "tools/tools-index.json"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-project-pack/SPEC.md",
+            "tools/ai-project-pack/index.html"
+          ]
+        },
+        "error_empty_states": {
+          "state": "NOT_APPLICABLE",
+          "evidence": [
+            "tools/ai-project-pack/SPEC.md",
+            "tools/ai-project-pack/index.html"
+          ],
+          "reason": "Read-only documentation surface has no user-input processing or generated empty/error state; broken links and factual guide claims are covered by core_behavior/data_correctness."
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-project-pack/index.html",
+            "https://github.com/nicheworks-tools/ai-project-pack"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-project-pack/SPEC.md",
+            "tools/ai-project-pack/index.html"
+          ]
+        },
+        "persistence": {
+          "state": "NOT_APPLICABLE",
+          "evidence": [
+            "tools/ai-project-pack/SPEC.md",
+            "tools/ai-project-pack/index.html"
+          ],
+          "reason": "Read-only guide does not maintain tool-specific browser state."
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-project-pack/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-project-pack/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-project-pack/SPEC.md",
+            "tools/ai-project-pack/index.html"
+          ]
+        },
+        "seo_technical": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "tools/ai-project-pack/index.html",
+            "Live on-page SEO audit 2026-09-16: indexable, title 61 chars"
+          ]
+        },
+        "seo_content": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "tools/ai-project-pack/index.html",
+            "tools/ai-project-pack/SPEC.md"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-project-pack/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ai-project-pack/SPEC.md",
+            "MONETIZATION_CLASSIFICATION.json",
+            "tools/ai-project-pack/index.html"
+          ]
+        },
+        "regression_tests": {
+          "state": "NOT_APPLICABLE",
+          "evidence": [
+            "tools/ai-project-pack/SPEC.md",
+            "tools/ai-project-pack/index.html"
+          ],
+          "reason": "The public surface is a non-interactive guide; repository/content validity is audited directly rather than through behavior-level UI tests."
+        }
+      },
+      "findings": [
+        {
+          "id": "NW-AUD-W01-003",
+          "severity": "MINOR",
+          "status": "OPEN",
+          "summary": "The English root source uses generic/Japanese browser-tool metadata that does not accurately describe the read-only repository guide; the live audit also flags a slightly long title.",
+          "repair_direction": "Replace the root description/OG/Twitter copy with concise English repository-guide metadata aligned with the implemented job and keep the title within the intended SERP range.",
+          "evidence": [
+            "tools/ai-project-pack/index.html",
+            "tools/ai-project-pack/SPEC.md"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "analytics-privacy-kit",
+      "monetization_class": "PRO_BUNDLE",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "6b1c74016e4a48c2cec5e366be69fe78e5badf0f",
+      "audited_at": "2026-09-16T13:40:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "tools/analytics-privacy-kit/SPEC.md",
+            "tools/tools-index.json"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "tools/analytics-privacy-kit/SPEC.md",
+            "tools/analytics-privacy-kit/index.html"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "tools/analytics-privacy-kit/SPEC.md",
+            "tools/analytics-privacy-kit/index.html"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "tools/analytics-privacy-kit/SPEC.md",
+            "tools/analytics-privacy-kit/app.js"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "tools/analytics-privacy-kit/SPEC.md",
+            "tools/analytics-privacy-kit/app.js"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "tools/analytics-privacy-kit/SPEC.md",
+            "tools/analytics-privacy-kit/app.js"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "tools/analytics-privacy-kit/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "tools/analytics-privacy-kit/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "tools/analytics-privacy-kit/SPEC.md",
+            "tools/analytics-privacy-kit/app.js"
+          ]
+        },
+        "seo_technical": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "tools/analytics-privacy-kit/index.html",
+            "Live on-page SEO audit 2026-09-16: title 63 chars, H1 count 2"
+          ]
+        },
+        "seo_content": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "tools/analytics-privacy-kit/index.html",
+            "Live on-page SEO audit 2026-09-16: 273 words"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "tools/analytics-privacy-kit/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "tools/analytics-privacy-kit/SPEC.md",
+            "MONETIZATION_CLASSIFICATION.json",
+            "tools/analytics-privacy-kit/index.html"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/analytics-privacy-kit/app.js"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "id": "NW-AUD-W01-004",
+          "severity": "MAJOR",
+          "status": "OPEN",
+          "summary": "Provider selection, URL/email validation, three output modes, copy/download, clear, and language behavior lack behavior-level regression coverage.",
+          "repair_direction": "Add deterministic tests for valid/invalid URL/email input, provider combinations, JA/EN outputs, copy/download guards, clear behavior, and language persistence.",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/analytics-privacy-kit/app.js"
+          ]
+        },
+        {
+          "id": "NW-AUD-W01-005",
+          "severity": "MINOR",
+          "status": "OPEN",
+          "summary": "Live on-page audit reports two H1 elements and a slightly long title; the landing copy is also light for search intent.",
+          "repair_direction": "Use one semantic H1 while switching language content without duplicate top-level headings, tighten the title, and add concise intent-specific explanatory copy only where it improves the page.",
+          "evidence": [
+            "tools/analytics-privacy-kit/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "api-key-token-redactor",
+      "monetization_class": "PRO_BUNDLE",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "6b1c74016e4a48c2cec5e366be69fe78e5badf0f",
+      "audited_at": "2026-09-16T13:40:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "tools/api-key-token-redactor/SPEC.md",
+            "tools/tools-index.json"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "tools/api-key-token-redactor/SPEC.md",
+            "tools/api-key-token-redactor/index.html"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "tools/api-key-token-redactor/SPEC.md",
+            "tools/api-key-token-redactor/index.html"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "tools/api-key-token-redactor/SPEC.md",
+            "tools/api-key-token-redactor/app.js"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "tools/api-key-token-redactor/SPEC.md",
+            "tools/api-key-token-redactor/index.html"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "tools/api-key-token-redactor/SPEC.md",
+            "tools/api-key-token-redactor/app.js"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "tools/api-key-token-redactor/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "tools/api-key-token-redactor/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "tools/api-key-token-redactor/SPEC.md",
+            "tools/api-key-token-redactor/app.js"
+          ]
+        },
+        "seo_technical": {
+          "state": "PASS",
+          "evidence": [
+            "tools/api-key-token-redactor/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "seo_content": {
+          "state": "PASS",
+          "evidence": [
+            "tools/api-key-token-redactor/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "tools/api-key-token-redactor/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "tools/api-key-token-redactor/SPEC.md",
+            "MONETIZATION_CLASSIFICATION.json",
+            "tools/api-key-token-redactor/index.html"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/api-key-token-redactor/app.js"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "id": "NW-AUD-W01-006",
+          "severity": "MAJOR",
+          "status": "OPEN",
+          "summary": "The secret-detection/redaction engine has no behavior-level automated coverage despite handling overlapping regex findings, residual rescans, masking, modes, custom rules, copy, and export.",
+          "repair_direction": "Add a fixture corpus covering every built-in secret class, overlap handling, false-positive boundaries, keep-length mode, residual secret detection, export safeguards, and custom rules.",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/api-key-token-redactor/app.js"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ats-paste-doctor",
+      "monetization_class": "PRO_BUNDLE",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "6b1c74016e4a48c2cec5e366be69fe78e5badf0f",
+      "audited_at": "2026-09-16T13:40:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ats-paste-doctor/SPEC.md",
+            "tools/tools-index.json"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ats-paste-doctor/SPEC.md",
+            "tools/ats-paste-doctor/index.html"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ats-paste-doctor/SPEC.md",
+            "tools/ats-paste-doctor/index.html"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ats-paste-doctor/SPEC.md",
+            "tools/ats-paste-doctor/index.html"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ats-paste-doctor/SPEC.md",
+            "tools/ats-paste-doctor/index.html"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ats-paste-doctor/SPEC.md",
+            "tools/ats-paste-doctor/index.html"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ats-paste-doctor/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ats-paste-doctor/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ats-paste-doctor/SPEC.md",
+            "tools/ats-paste-doctor/index.html"
+          ]
+        },
+        "seo_technical": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ats-paste-doctor/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "seo_content": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ats-paste-doctor/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "tools/ats-paste-doctor/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "monetization_contract": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "tools/ats-paste-doctor/SPEC.md",
+            "tools/ats-paste-doctor/index.html",
+            "MONETIZATION_CLASSIFICATION.json"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/ats-paste-doctor/index.html"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "id": "NW-AUD-W01-007",
+          "severity": "MAJOR",
+          "status": "OPEN",
+          "summary": "The public page exposes fixed shared-Pro checkout links and definitive post-purchase activation/persistence copy while the current product-scoped Pro rollout remains staged; the page also advertises ad hiding outside the tool-operation entitlement boundary described by the spec.",
+          "repair_direction": "Align public Pro copy and checkout behavior with the authoritative product-scoped contract; remove unsupported activation/ad-hiding promises until the verified entitlement flow and suite-level ad policy are complete.",
+          "evidence": [
+            "tools/ats-paste-doctor/SPEC.md",
+            "tools/ats-paste-doctor/index.html"
+          ]
+        },
+        {
+          "id": "NW-AUD-W01-008",
+          "severity": "MAJOR",
+          "status": "OPEN",
+          "summary": "Text normalization, invisible/control-character handling, limits, warnings, preview, exports, templates/history and entitlement boundaries lack behavior-level automated coverage.",
+          "repair_direction": "Add free-path and Pro-gated behavior tests for normalization modes, character limits, warnings, error states, copy/download, history/templates, and entitlement gating.",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/ats-paste-doctor/index.html"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "codex-product-shipping-playbooks",
+      "monetization_class": "PRO_BUNDLE",
+      "overall_state": "MINOR_FIX",
+      "last_audited_sha": "6b1c74016e4a48c2cec5e366be69fe78e5badf0f",
+      "audited_at": "2026-09-16T13:40:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-product-shipping-playbooks/SPEC.md",
+            "tools/tools-index.json"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-product-shipping-playbooks/SPEC.md",
+            "tools/codex-product-shipping-playbooks/index.html"
+          ]
+        },
+        "error_empty_states": {
+          "state": "NOT_APPLICABLE",
+          "evidence": [
+            "tools/codex-product-shipping-playbooks/SPEC.md",
+            "tools/codex-product-shipping-playbooks/index.html"
+          ],
+          "reason": "Read-only repository guide has no user-input/process empty state; link/content validity is covered elsewhere."
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-product-shipping-playbooks/index.html",
+            "https://github.com/nicheworks-tools/codex-product-shipping-playbooks",
+            "External repo verified: playbooks/artifacts/gates/flows/examples and filter-persistence example exist"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-product-shipping-playbooks/SPEC.md",
+            "tools/codex-product-shipping-playbooks/index.html"
+          ]
+        },
+        "persistence": {
+          "state": "NOT_APPLICABLE",
+          "evidence": [
+            "tools/codex-product-shipping-playbooks/SPEC.md",
+            "tools/codex-product-shipping-playbooks/index.html"
+          ],
+          "reason": "Read-only guide maintains no tool-specific browser state."
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-product-shipping-playbooks/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-product-shipping-playbooks/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-product-shipping-playbooks/SPEC.md",
+            "tools/codex-product-shipping-playbooks/index.html"
+          ]
+        },
+        "seo_technical": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "tools/codex-product-shipping-playbooks/index.html",
+            "Live on-page SEO audit 2026-09-16: title 71, meta 251, Organization logo missing"
+          ]
+        },
+        "seo_content": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-product-shipping-playbooks/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-product-shipping-playbooks/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-product-shipping-playbooks/SPEC.md",
+            "MONETIZATION_CLASSIFICATION.json",
+            "tools/codex-product-shipping-playbooks/index.html"
+          ]
+        },
+        "regression_tests": {
+          "state": "NOT_APPLICABLE",
+          "evidence": [
+            "tools/codex-product-shipping-playbooks/SPEC.md",
+            "tools/codex-product-shipping-playbooks/index.html"
+          ],
+          "reason": "The public surface is non-interactive; its factual repository claims and links are checked directly against the linked repository."
+        }
+      },
+      "findings": [
+        {
+          "id": "NW-AUD-W01-009",
+          "severity": "MINOR",
+          "status": "OPEN",
+          "summary": "Live SEO audit flags an overlong title and meta description plus Organization structured-data entries without a logo.",
+          "repair_direction": "Tighten title/meta without reducing guide accuracy and add the suite Organization logo through the shared structured-data contract.",
+          "evidence": [
+            "tools/codex-product-shipping-playbooks/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "codex-usage-forecaster",
+      "monetization_class": "PRO_BUNDLE",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "6b1c74016e4a48c2cec5e366be69fe78e5badf0f",
+      "audited_at": "2026-09-16T13:40:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-usage-forecaster/SPEC.md",
+            "tools/tools-index.json"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-usage-forecaster/SPEC.md",
+            "tools/codex-usage-forecaster/index.html"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-usage-forecaster/SPEC.md",
+            "tools/codex-usage-forecaster/index.html"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-usage-forecaster/SPEC.md",
+            "tools/codex-usage-forecaster/app-fixed.js"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-usage-forecaster/SPEC.md",
+            "tools/codex-usage-forecaster/index.html"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-usage-forecaster/SPEC.md",
+            "tools/codex-usage-forecaster/app-fixed.js"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-usage-forecaster/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-usage-forecaster/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-usage-forecaster/SPEC.md",
+            "tools/codex-usage-forecaster/index.html"
+          ]
+        },
+        "seo_technical": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-usage-forecaster/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "seo_content": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "tools/codex-usage-forecaster/index.html",
+            "Live on-page SEO audit 2026-09-16: 140 words"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-usage-forecaster/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-usage-forecaster/SPEC.md",
+            "MONETIZATION_CLASSIFICATION.json",
+            "tools/codex-usage-forecaster/index.html"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/codex-usage-forecaster/app-fixed.js"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "id": "NW-AUD-W01-010",
+          "severity": "MAJOR",
+          "status": "OPEN",
+          "summary": "Forecast math, reset inference, filters, profiles, local persistence, destructive clear, and import/export have no behavior-level automated regression coverage.",
+          "repair_direction": "Add deterministic tests for rate/median/ETA/reset logic, 0-100 validation, filters, profile overwrite/delete, import schema rejection, replacement semantics, and double-confirm clear.",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/codex-usage-forecaster/app-fixed.js"
+          ]
+        },
+        {
+          "id": "NW-AUD-W01-011",
+          "severity": "MINOR",
+          "status": "OPEN",
+          "summary": "Live SEO audit reports a thin root landing surface despite a substantive interactive workflow.",
+          "repair_direction": "Add concise explanatory copy around how the estimate works, required log history, limitations, and local persistence without turning the tool into generic long-form content.",
+          "evidence": [
+            "tools/codex-usage-forecaster/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "codex-work-os",
+      "monetization_class": "PRO_BUNDLE",
+      "overall_state": "MINOR_FIX",
+      "last_audited_sha": "6b1c74016e4a48c2cec5e366be69fe78e5badf0f",
+      "audited_at": "2026-09-16T13:40:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-work-os/SPEC.md",
+            "tools/tools-index.json"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-work-os/SPEC.md",
+            "tools/codex-work-os/index.html"
+          ]
+        },
+        "error_empty_states": {
+          "state": "NOT_APPLICABLE",
+          "evidence": [
+            "tools/codex-work-os/SPEC.md",
+            "tools/codex-work-os/index.html"
+          ],
+          "reason": "Read-only repository guide has no user-input/process empty state; link/content validity is covered elsewhere."
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-work-os/index.html",
+            "https://github.com/nicheworks-tools/codex-work-os",
+            "External repo verified: skills/flows/gates/artifacts/examples and pilot-rollout example exist"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-work-os/SPEC.md",
+            "tools/codex-work-os/index.html"
+          ]
+        },
+        "persistence": {
+          "state": "NOT_APPLICABLE",
+          "evidence": [
+            "tools/codex-work-os/SPEC.md",
+            "tools/codex-work-os/index.html"
+          ],
+          "reason": "Read-only guide maintains no tool-specific browser state."
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-work-os/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-work-os/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-work-os/SPEC.md",
+            "tools/codex-work-os/index.html"
+          ]
+        },
+        "seo_technical": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "tools/codex-work-os/index.html",
+            "Live on-page SEO audit 2026-09-16: Organization logo missing"
+          ]
+        },
+        "seo_content": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-work-os/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-work-os/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "tools/codex-work-os/SPEC.md",
+            "MONETIZATION_CLASSIFICATION.json",
+            "tools/codex-work-os/index.html"
+          ]
+        },
+        "regression_tests": {
+          "state": "NOT_APPLICABLE",
+          "evidence": [
+            "tools/codex-work-os/SPEC.md",
+            "tools/codex-work-os/index.html"
+          ],
+          "reason": "The public surface is non-interactive; its factual repository claims and links are checked directly against the linked repository."
+        }
+      },
+      "findings": [
+        {
+          "id": "NW-AUD-W01-012",
+          "severity": "MINOR",
+          "status": "OPEN",
+          "summary": "Live SEO audit reports Organization structured-data entries without a logo.",
+          "repair_direction": "Add the suite Organization logo through the shared structured-data contract and keep the current canonical/hreflang setup intact.",
+          "evidence": [
+            "tools/codex-work-os/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cold-email-requirement-checker",
+      "monetization_class": "PRO_BUNDLE",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "6b1c74016e4a48c2cec5e366be69fe78e5badf0f",
+      "audited_at": "2026-09-16T13:40:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "tools/cold-email-requirement-checker/SPEC.md",
+            "tools/tools-index.json"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "tools/cold-email-requirement-checker/SPEC.md",
+            "tools/cold-email-requirement-checker/index.html"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "tools/cold-email-requirement-checker/SPEC.md",
+            "tools/cold-email-requirement-checker/index.html"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "tools/cold-email-requirement-checker/SPEC.md",
+            "tools/cold-email-requirement-checker/index.html"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "tools/cold-email-requirement-checker/SPEC.md",
+            "tools/cold-email-requirement-checker/index.html"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "tools/cold-email-requirement-checker/SPEC.md",
+            "tools/cold-email-requirement-checker/index.html"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "tools/cold-email-requirement-checker/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "tools/cold-email-requirement-checker/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "tools/cold-email-requirement-checker/SPEC.md",
+            "tools/cold-email-requirement-checker/index.html"
+          ]
+        },
+        "seo_technical": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "tools/cold-email-requirement-checker/index.html",
+            "Live on-page SEO audit 2026-09-16: H1 count 2"
+          ]
+        },
+        "seo_content": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "tools/cold-email-requirement-checker/index.html",
+            "Live on-page SEO audit 2026-09-16: 199 words"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "tools/cold-email-requirement-checker/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "monetization_contract": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "tools/cold-email-requirement-checker/SPEC.md",
+            "tools/cold-email-requirement-checker/pro-addon.js",
+            "MONETIZATION_CLASSIFICATION.json"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/cold-email-requirement-checker/app.js",
+            "tools/cold-email-requirement-checker/pro-addon.js"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "id": "NW-AUD-W01-013",
+          "severity": "MAJOR",
+          "status": "OPEN",
+          "summary": "The runtime injects a fixed Stripe checkout and shared legacy `nicheworks_pro` activation path while the product-scoped Pro commercialization flow is not yet authoritative end to end.",
+          "repair_direction": "Keep free behavior intact, but route paid UI through the verified product-scoped entitlement contract only after purchase verification/grant/restore/unlock is complete; otherwise label the paid path as non-live.",
+          "evidence": [
+            "tools/cold-email-requirement-checker/SPEC.md",
+            "tools/cold-email-requirement-checker/pro-addon.js"
+          ]
+        },
+        {
+          "id": "NW-AUD-W01-014",
+          "severity": "MAJOR",
+          "status": "OPEN",
+          "summary": "Checklist heuristics, structure score/suggestions, presets, language switching, Pro visibility, compare/export, and entitlement gating lack behavior-level automated coverage.",
+          "repair_direction": "Add fixture-based JA/EN checker tests plus Pro-gating and shared-entitlement tests; include empty drafts and borderline phrase cases.",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/cold-email-requirement-checker/app.js",
+            "tools/cold-email-requirement-checker/pro-addon.js"
+          ]
+        },
+        {
+          "id": "NW-AUD-W01-015",
+          "severity": "MINOR",
+          "status": "OPEN",
+          "summary": "Live SEO audit reports duplicate H1s and thin root content.",
+          "repair_direction": "Use one semantic H1 for the active language and add only the explanatory copy needed to clarify checklist scope, limitations, and intended use.",
+          "evidence": [
+            "tools/cold-email-requirement-checker/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "color-replace",
+      "monetization_class": "ADS_DONATION",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "6b1c74016e4a48c2cec5e366be69fe78e5badf0f",
+      "audited_at": "2026-09-16T13:40:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "tools/color-replace/SPEC.md",
+            "tools/tools-index.json"
+          ]
+        },
+        "core_behavior": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "tools/color-replace/SPEC.md",
+            "tools/color-replace/app.js"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "tools/color-replace/SPEC.md",
+            "tools/color-replace/index.html"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "tools/color-replace/SPEC.md",
+            "tools/color-replace/index.html"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "tools/color-replace/SPEC.md",
+            "tools/color-replace/index.html"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "tools/color-replace/SPEC.md",
+            "tools/color-replace/index.html"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "tools/color-replace/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "tools/color-replace/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "tools/color-replace/SPEC.md",
+            "tools/color-replace/index.html"
+          ]
+        },
+        "seo_technical": {
+          "state": "PASS",
+          "evidence": [
+            "tools/color-replace/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "seo_content": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "tools/color-replace/index.html",
+            "Live on-page SEO audit 2026-09-16: 69 words"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "tools/color-replace/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "tools/color-replace/SPEC.md",
+            "MONETIZATION_CLASSIFICATION.json",
+            "tools/color-replace/index.html"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/color-replace/app.js"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "id": "NW-AUD-W01-016",
+          "severity": "MAJOR",
+          "status": "OPEN",
+          "summary": "Tolerance value 0 is not respected: `Number.parseInt(..., 10) || defaults.tolerance` converts a valid zero setting to the default 20.",
+          "repair_direction": "Parse tolerance explicitly and fall back only on NaN/invalid values; preserve 0. Add regression cases for 0, 1, 20, and 100.",
+          "evidence": [
+            "tools/color-replace/SPEC.md",
+            "tools/color-replace/app.js"
+          ]
+        },
+        {
+          "id": "NW-AUD-W01-017",
+          "severity": "MAJOR",
+          "status": "OPEN",
+          "summary": "Image loading/downscaling, color picking, tolerance matching, alpha preservation, stale-result handling, no-match behavior and PNG export lack behavior-level automated coverage.",
+          "repair_direction": "Add deterministic canvas/image fixtures and tests for scale limits, exact/near color matching, zero tolerance, transparent pixels, stale results, errors, and export guards.",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/color-replace/app.js"
+          ]
+        },
+        {
+          "id": "NW-AUD-W01-018",
+          "severity": "MINOR",
+          "status": "OPEN",
+          "summary": "Live SEO audit reports only 69 words on the indexable landing page.",
+          "repair_direction": "Add concise search-intent copy covering click-to-pick color, tolerance semantics, 4MP downscaling and PNG-only output without bloating the tool UI.",
+          "evidence": [
+            "tools/color-replace/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "command-safety-checker",
+      "monetization_class": "PRO_BUNDLE",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "6b1c74016e4a48c2cec5e366be69fe78e5badf0f",
+      "audited_at": "2026-09-16T13:40:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "tools/command-safety-checker/SPEC.md",
+            "tools/tools-index.json"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "tools/command-safety-checker/SPEC.md",
+            "tools/command-safety-checker/index.html"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "tools/command-safety-checker/SPEC.md",
+            "tools/command-safety-checker/index.html"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "tools/command-safety-checker/SPEC.md",
+            "tools/command-safety-checker/app-core.js"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "tools/command-safety-checker/SPEC.md",
+            "tools/command-safety-checker/index.html"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "tools/command-safety-checker/SPEC.md",
+            "tools/command-safety-checker/index.html"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "tools/command-safety-checker/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "tools/command-safety-checker/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "tools/command-safety-checker/SPEC.md",
+            "tools/command-safety-checker/index.html"
+          ]
+        },
+        "seo_technical": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "tools/command-safety-checker/index.html",
+            "Live on-page SEO audit 2026-09-16: Organization logo missing"
+          ]
+        },
+        "seo_content": {
+          "state": "PASS",
+          "evidence": [
+            "tools/command-safety-checker/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "tools/command-safety-checker/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "monetization_contract": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "tools/command-safety-checker/SPEC.md",
+            "tools/command-safety-checker/index.html",
+            "MONETIZATION_CLASSIFICATION.json"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/command-safety-checker/app-core.js"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "id": "NW-AUD-W01-019",
+          "severity": "MAJOR",
+          "status": "OPEN",
+          "summary": "Public structured data and UI hard-code a USD 2.99 Offer, Stripe Buy Pro link, and post-purchase activation behavior even though the current spec leaves product ID/price/currency/Stripe Price/feature namespace unresolved and the product-scoped migration non-live.",
+          "repair_direction": "Remove the hard-coded commercial Offer/price and definitive activation claims until the authoritative product-scoped contract is frozen and verified end to end; then generate structured data/UI from that contract.",
+          "evidence": [
+            "tools/command-safety-checker/SPEC.md",
+            "tools/command-safety-checker/index.html"
+          ]
+        },
+        {
+          "id": "NW-AUD-W01-020",
+          "severity": "MAJOR",
+          "status": "OPEN",
+          "summary": "The high-impact Unix/PowerShell risk rule engine and its severity/category/output behavior lack behavior-level automated coverage.",
+          "repair_direction": "Build a command corpus for every rule plus non-matching controls, overlap/priority cases, Unix/PowerShell mode differences, multiline input, clear/copy, and Pro export gating.",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/command-safety-checker/app-core.js"
+          ]
+        },
+        {
+          "id": "NW-AUD-W01-021",
+          "severity": "MINOR",
+          "status": "OPEN",
+          "summary": "Live SEO audit reports Organization structured data without a logo.",
+          "repair_direction": "Add the suite Organization logo through the shared structured-data contract.",
+          "evidence": [
+            "tools/command-safety-checker/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "contract-cleaner",
+      "monetization_class": "PRO_BUNDLE",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "6b1c74016e4a48c2cec5e366be69fe78e5badf0f",
+      "audited_at": "2026-09-16T13:40:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "tools/contract-cleaner/SPEC.md",
+            "tools/tools-index.json"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "tools/contract-cleaner/SPEC.md",
+            "tools/contract-cleaner/index.html"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "tools/contract-cleaner/SPEC.md",
+            "tools/contract-cleaner/index.html"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "tools/contract-cleaner/SPEC.md",
+            "tools/contract-cleaner/app.js"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "tools/contract-cleaner/SPEC.md",
+            "tools/contract-cleaner/index.html"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "tools/contract-cleaner/SPEC.md",
+            "tools/contract-cleaner/index.html"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "tools/contract-cleaner/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "tools/contract-cleaner/index.html",
+            "audits/tool-quality-matrix.json"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "tools/contract-cleaner/SPEC.md",
+            "tools/contract-cleaner/index.html"
+          ]
+        },
+        "seo_technical": {
+          "state": "PASS",
+          "evidence": [
+            "tools/contract-cleaner/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "seo_content": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "tools/contract-cleaner/index.html",
+            "Live on-page SEO audit 2026-09-16: 91 words"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "tools/contract-cleaner/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "tools/contract-cleaner/SPEC.md",
+            "MONETIZATION_CLASSIFICATION.json",
+            "tools/contract-cleaner/index.html"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/contract-cleaner/app.js"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "id": "NW-AUD-W01-022",
+          "severity": "MAJOR",
+          "status": "OPEN",
+          "summary": "The legal-adjacent keyword/rule engine, priority summaries, snippet/highlight generation, question templates, no-match state, copies and downloads lack behavior-level automated coverage.",
+          "repair_direction": "Add bilingual fixture contracts that exercise every category/severity, overlapping terms, no-match disclaimers, snippet caps, highlighted output, question generation, copy and download.",
+          "evidence": [
+            "audits/tool-quality-matrix.json",
+            "tools/contract-cleaner/app.js"
+          ]
+        },
+        {
+          "id": "NW-AUD-W01-023",
+          "severity": "MINOR",
+          "status": "OPEN",
+          "summary": "Live SEO audit reports only 91 words on the indexable root page.",
+          "repair_direction": "Add concise scope/limitation and supported-category copy that clarifies mechanical term detection without implying legal analysis.",
+          "evidence": [
+            "tools/contract-cleaner/index.html",
+            "Live on-page SEO audit 2026-09-16"
+          ]
+        }
+      ]
+    }
+  ]
+}
