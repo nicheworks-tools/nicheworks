@@ -1,6 +1,6 @@
 # ManualFinder Camera Accessory Coverage
 
-Updated: 2026-09-16
+Updated: 2026-09-17
 
 This document is the audited baseline for compatibility-sensitive camera battery/charger Amazon handoffs. It is separate from the completed printer-detail audit.
 
@@ -10,28 +10,28 @@ This document is the audited baseline for compatibility-sensitive camera battery
 | --- | ---: |
 | Canonical `カメラ・映像` records | **192** |
 | Camera records with a basic Amazon path | **185** |
-| Camera records with verified accessory detail | **36** |
+| Camera records with verified accessory detail | **37** |
 | Reviewed camera-detail exclusions | **0** |
-| Actionable camera records still missing accessory detail | **149** |
+| Actionable camera records still missing accessory detail | **148** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 185 = detail 36 + reviewed exclusion 0 + missing 149`
+`camera basic 185 = detail 37 + reviewed exclusion 0 + missing 148`
 
-The current detail ledger contains all 14 actionable Nikon records plus twenty-two reviewed DJI records across Osmo Action Wave 1, Air Wave 2, Mini Wave 3, Mavic 3 Wave 4, Air 2S/Mavic Air 2 Wave 5, compact power Wave 6, Mini 2 Wave 7, FPV Wave 8, and Avata Wave 9.
+The current detail ledger contains all 14 actionable Nikon records plus twenty-three reviewed DJI records across Osmo Action Wave 1, Air Wave 2, Mini Wave 3, Mavic 3 Wave 4, Air 2S/Mavic Air 2 Wave 5, compact power Wave 6, Mini 2 Wave 7, FPV Wave 8, Avata Wave 9, and Mavic 2 Wave 10.
 
 ## Actionable coverage by maker
 
 | Maker | Basic | Detail | Reviewed exclusion | Missing |
 | --- | ---: | ---: | ---: | ---: |
-| DJI | 96 | 22 | 0 | 74 |
+| DJI | 96 | 23 | 0 | 73 |
 | OM SYSTEM | 37 | 0 | 0 | 37 |
 | GoPro | 31 | 0 | 0 | 31 |
 | Nikon | 14 | 14 | 0 | 0 |
 | Insta360 | 7 | 0 | 0 | 7 |
 
-The exact missing model arrays are emitted by `tests/camera-accessory-coverage.test.mjs` as `MANUALFINDER_CAMERA_ACCESSORY_COVERAGE`. They are intentionally not duplicated here as a 149-model prose ledger.
+The exact missing model arrays are emitted by `tests/camera-accessory-coverage.test.mjs` as `MANUALFINDER_CAMERA_ACCESSORY_COVERAGE`. They are intentionally not duplicated here as a 148-model prose ledger.
 
 ## Nikon completion — Waves 1–2
 
@@ -165,11 +165,20 @@ The canonical `DJI Avata` record has two reviewed DJI power-accessory handoffs:
 - `DJI Avata Intelligent Flight Battery` — battery search handoff.
 - `DJI Avata Battery Charging Hub` — charging-hub search handoff.
 
-The DJI official `DJI Avata Fly More Kit` page explicitly identifies the kit as compatible with DJI Avata and lists two DJI Avata Intelligent Flight Batteries plus one DJI Avata Battery Charging Hub in the box. Wave 9 therefore uses one exact-model official source for both handoffs. `DJI Avata 2`, future similarly named products, and other records are not inferred into this compatibility set.
+The DJI official `DJI Avata Fly More Kit` page explicitly identifies the kit as compatible with DJI Avata and lists two DJI Avata Intelligent Flight Batteries plus one DJI Avata Battery Charging Hub in the box. Wave 9 therefore uses one exact-model official source for both handoffs. `DJI Avata 2` remains separately reviewed in Wave 6; Wave 9 evidence is not reused for it.
 
-After DJI Waves 1–9 the maker-level reconciliation is:
+## DJI Mavic 2 — Wave 10
 
-`DJI camera 96 = detail 22 + reviewed exclusion 0 + missing 74`
+The canonical `Mavic 2` record has two reviewed DJI power-accessory handoffs:
+
+- `Mavic 2 Intelligent Flight Battery` — DJI Store explicitly marks the battery as compatible with Mavic 2.
+- `Mavic 2 Battery Charging Hub` — the official DJI Mavic 2 support page describes the hub's charging logic and its use with Mavic 2 Intelligent Flight Batteries.
+
+Wave 10 remains exact-canonical-row only. `Mavic 2 Enterprise Advanced`, `Mavic 2 Enterprise Series`, `Mavic 2 Pro`, `Mavic 2 Zoom`, and other Mavic records are not inferred into this mapping; enterprise variants require their own review.
+
+After DJI Waves 1–10 the maker-level reconciliation is:
+
+`DJI camera 96 = detail 23 + reviewed exclusion 0 + missing 73`
 
 ## Non-actionable camera records
 
@@ -198,7 +207,7 @@ Seven camera-category records are maker/index entries without an actionable exac
 
 The measured remaining backlog determines the work order rather than assumptions about brand prominence:
 
-1. Continue DJI from the remaining 74 actionable records in bounded product-family waves.
+1. Continue DJI from the remaining 73 actionable records in bounded product-family waves.
 2. Review OM SYSTEM 37 actionable records.
 3. Review GoPro 31 actionable records.
 4. Review Insta360 7 actionable records.
@@ -211,7 +220,7 @@ The camera accessory phase is complete only when:
 
 `camera basic = detail + reviewed exclusion + missing 0`
 
-The current baseline is not complete: `149` actionable records remain missing accessory detail. Counts may change when the canonical catalog changes, but the reconciliation invariant and zero-unreviewed-missing completion target do not change.
+The current baseline is not complete: `148` actionable records remain missing accessory detail. Counts may change when the canonical catalog changes, but the reconciliation invariant and zero-unreviewed-missing completion target do not change.
 
 ## Source of truth
 
@@ -226,6 +235,7 @@ The current baseline is not complete: `149` actionable records remain missing ac
 - `affiliate-dji-camera-accessories-wave7.js` — reviewed shared Mini 2 power mappings for `DJI Mini 2`, `DJI Mini 4K | DJI Mini 2 SE`, and `DJI Mini SE`.
 - `affiliate-dji-camera-accessories-wave8.js` — exact reviewed DJI FPV battery and AC power-adapter mapping.
 - `affiliate-dji-camera-accessories-wave9.js` — exact reviewed DJI Avata battery and charging-hub mapping.
+- `affiliate-dji-camera-accessories-wave10.js` — exact reviewed Mavic 2 battery and charging-hub mapping.
 - `affiliate-camera-detail-exclusions.js` — reviewed explicit exclusions; currently empty.
 - `tests/nikon-camera-accessory-wave1.test.mjs` — Nikon Wave 1 compatibility boundary.
 - `tests/nikon-camera-accessory-wave2.test.mjs` — Nikon Wave 2 compatibility boundary and fourteen-record Nikon completion.
@@ -238,5 +248,6 @@ The current baseline is not complete: `149` actionable records remain missing ac
 - `tests/dji-mini2-accessory-wave7.test.mjs` — exact canonical DJI Mini 2-family Wave 7 boundary.
 - `tests/dji-fpv-accessory-wave8.test.mjs` — exact DJI FPV Wave 8 compatibility boundary.
 - `tests/dji-avata-accessory-wave9.test.mjs` — exact DJI Avata Wave 9 compatibility boundary.
+- `tests/dji-mavic2-accessory-wave10.test.mjs` — exact canonical Mavic 2 Wave 10 compatibility boundary.
 - `tests/camera-accessory-coverage.test.mjs` — catalog-wide camera coverage computation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` — documentation drift guard for this audited baseline.
