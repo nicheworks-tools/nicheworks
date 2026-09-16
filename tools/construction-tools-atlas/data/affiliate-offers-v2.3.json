@@ -1,14 +1,9 @@
 {
   "schema": "cta-affiliate-offers-v2.3",
-  "version": "2026-09-16-affiliate-quality-1",
+  "version": "2026-09-16-wave5e-affiliate-1",
   "provider": "amazon.co.jp",
   "tracking_id": "nicheworks09-22",
-  "policy": {
-    "query_source": "maintained_canonical_mapping_only",
-    "free_text_forwarding": false,
-    "product_claims": false,
-    "price_inventory_rating_content": false
-  },
+  "policy": {"query_source":"maintained_canonical_mapping_only","free_text_forwarding":false,"product_claims":false,"price_inventory_rating_content":false},
   "offers": [
     {"entry_id":"impact_driver","status":"active","offer_id":"amazon_impact_driver_search","query":"インパクトドライバー","amazon_url":"https://www.amazon.co.jp/s?k=%E3%82%A4%E3%83%B3%E3%83%91%E3%82%AF%E3%83%88%E3%83%89%E3%83%A9%E3%82%A4%E3%83%90%E3%83%BC&tag=nicheworks09-22","label_ja":"Amazonでインパクトドライバーを探す","label_en":"Find impact drivers on Amazon"},
     {"entry_id":"drill_driver","status":"active","offer_id":"amazon_drill_driver_search","query":"ドリルドライバー","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%89%E3%83%AA%E3%83%AB%E3%83%89%E3%83%A9%E3%82%A4%E3%83%90%E3%83%BC&tag=nicheworks09-22","label_ja":"Amazonでドリルドライバーを探す","label_en":"Find drill drivers on Amazon"},
@@ -57,6 +52,10 @@
     {"entry_id":"q014_backer_tape","status":"active","offer_id":"amazon_q014_backer_tape_search","query":"ボンドブレーカー テープ","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%9C%E3%83%B3%E3%83%89%E3%83%96%E3%83%AC%E3%83%BC%E3%82%AB%E3%83%BC+%E3%83%86%E3%83%BC%E3%83%97&tag=nicheworks09-22","label_ja":"Amazonでボンドブレーカーテープを探す","label_en":"Find bond breaker tape on Amazon"},
     {"entry_id":"q014_glass_suction_cup","status":"active","offer_id":"amazon_q014_glass_suction_cup_search","query":"ガラス 吸盤","amazon_url":"https://www.amazon.co.jp/s?k=%E3%82%AC%E3%83%A9%E3%82%B9+%E5%90%B8%E7%9B%A4&tag=nicheworks09-22","label_ja":"Amazonでガラス吸盤を探す","label_en":"Find glass suction cups on Amazon"},
     {"entry_id":"q014_panel_lifter_exterior","status":"active","offer_id":"amazon_q014_panel_lifter_exterior_search","query":"パネル リフター 外壁","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%91%E3%83%8D%E3%83%AB+%E3%83%AA%E3%83%95%E3%82%BF%E3%83%BC+%E5%A4%96%E5%A3%81&tag=nicheworks09-22","label_ja":"Amazonでパネルリフターを探す","label_en":"Find panel lifters on Amazon"},
-    {"entry_id":"q014_exterior_fence","status":"active","offer_id":"amazon_q014_exterior_fence_search","query":"外構 フェンス","amazon_url":"https://www.amazon.co.jp/s?k=%E5%A4%96%E6%A7%8B+%E3%83%95%E3%82%A7%E3%83%B3%E3%82%B9&tag=nicheworks09-22","label_ja":"Amazonで外構フェンスを探す","label_en":"Find exterior fences on Amazon"}
+    {"entry_id":"q014_exterior_fence","status":"active","offer_id":"amazon_q014_exterior_fence_search","query":"外構 フェンス","amazon_url":"https://www.amazon.co.jp/s?k=%E5%A4%96%E6%A7%8B+%E3%83%95%E3%82%A7%E3%83%B3%E3%82%B9&tag=nicheworks09-22","label_ja":"Amazonで外構フェンスを探す","label_en":"Find exterior fences on Amazon"},
+    {"entry_id":"q014_guard_post","status":"active","offer_id":"amazon_q014_guard_post_search","query":"手すり 支柱","amazon_url":"https://www.amazon.co.jp/s?k=%E6%89%8B%E3%81%99%E3%82%8A+%E6%94%AF%E6%9F%B1&tag=nicheworks09-22","label_ja":"Amazonで手すり支柱を探す","label_en":"Find guardrail posts on Amazon"},
+    {"entry_id":"q014_baluster","status":"active","offer_id":"amazon_q014_baluster_search","query":"手すり 縦格子","amazon_url":"https://www.amazon.co.jp/s?k=%E6%89%8B%E3%81%99%E3%82%8A+%E7%B8%A6%E6%A0%BC%E5%AD%90&tag=nicheworks09-22","label_ja":"Amazonで手すり縦格子を探す","label_en":"Find balusters on Amazon"},
+    {"entry_id":"q014_fence_post","status":"active","offer_id":"amazon_q014_fence_post_search","query":"フェンス 支柱","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%95%E3%82%A7%E3%83%B3%E3%82%B9+%E6%94%AF%E6%9F%B1&tag=nicheworks09-22","label_ja":"Amazonでフェンス支柱を探す","label_en":"Find fence posts on Amazon"},
+    {"entry_id":"q014_gate","status":"active","offer_id":"amazon_q014_gate_search","query":"門扉","amazon_url":"https://www.amazon.co.jp/s?k=%E9%96%80%E6%89%89&tag=nicheworks09-22","label_ja":"Amazonで門扉を探す","label_en":"Find gates on Amazon"}
   ]
 }
