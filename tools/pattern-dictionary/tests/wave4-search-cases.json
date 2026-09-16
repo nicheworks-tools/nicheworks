@@ -1,0 +1,332 @@
+[
+  {
+    "lang": "ja",
+    "query": "バロックの巻き葉模様",
+    "top1": "baroque-scroll"
+  },
+  {
+    "lang": "en",
+    "query": "baroque scrolling foliage",
+    "top1": "baroque-scroll"
+  },
+  {
+    "lang": "ja",
+    "query": "中国風の楼閣と鳥の壁紙",
+    "top1": "chinoiserie"
+  },
+  {
+    "lang": "en",
+    "query": "chinoiserie garden pattern",
+    "top1": "chinoiserie"
+  },
+  {
+    "lang": "ja",
+    "query": "炎みたいな階段ジグザグ",
+    "top1": "flame-stitch"
+  },
+  {
+    "lang": "en",
+    "query": "stepped flame zigzag",
+    "top1": "flame-stitch"
+  },
+  {
+    "lang": "ja",
+    "query": "一本の木から花が広がる柄",
+    "top1": "tree-of-life"
+  },
+  {
+    "lang": "en",
+    "query": "tree of life textile motif",
+    "top1": "tree-of-life"
+  },
+  {
+    "lang": "ja",
+    "query": "水面みたいに揺れる光沢生地",
+    "top1": "moire"
+  },
+  {
+    "lang": "en",
+    "query": "watered silk effect",
+    "top1": "moire"
+  },
+  {
+    "lang": "ja",
+    "query": "矢羽根が並ぶ和柄",
+    "top1": "yagasuri"
+  },
+  {
+    "lang": "en",
+    "query": "Japanese arrow feather pattern",
+    "top1": "yagasuri"
+  },
+  {
+    "lang": "ja",
+    "query": "卍がつながる和柄",
+    "top1": "sayagata"
+  },
+  {
+    "lang": "en",
+    "query": "interlocking manji fret",
+    "top1": "sayagata"
+  },
+  {
+    "lang": "ja",
+    "query": "三角が並ぶ鱗の和柄",
+    "top1": "uroko"
+  },
+  {
+    "lang": "en",
+    "query": "Japanese triangle scale pattern",
+    "top1": "uroko"
+  },
+  {
+    "lang": "ja",
+    "query": "縦に湧き上がる曲線の和柄",
+    "top1": "tatewaku"
+  },
+  {
+    "lang": "en",
+    "query": "Japanese vertical swelling curves",
+    "top1": "tatewaku"
+  },
+  {
+    "lang": "ja",
+    "query": "竹かごみたいな三角格子",
+    "top1": "kagome"
+  },
+  {
+    "lang": "en",
+    "query": "Japanese basket lattice pattern",
+    "top1": "kagome"
+  },
+  {
+    "lang": "ja",
+    "query": "小さい絞りの点が並ぶ和柄",
+    "top1": "kanoko"
+  },
+  {
+    "lang": "en",
+    "query": "kanoko shibori dots",
+    "top1": "kanoko"
+  },
+  {
+    "lang": "ja",
+    "query": "花が菱形になった和柄",
+    "top1": "hanabishi"
+  },
+  {
+    "lang": "en",
+    "query": "Japanese floral diamond motif",
+    "top1": "hanabishi"
+  },
+  {
+    "lang": "ja",
+    "query": "遠目で無地に見える細かい点の和柄",
+    "top1": "same-komon"
+  },
+  {
+    "lang": "en",
+    "query": "same komon fine dots",
+    "top1": "same-komon"
+  },
+  {
+    "lang": "ja",
+    "query": "波の上を小鳥が飛ぶ和柄",
+    "top1": "nami-chidori"
+  },
+  {
+    "lang": "en",
+    "query": "Japanese waves with plovers",
+    "top1": "nami-chidori"
+  },
+  {
+    "lang": "ja",
+    "query": "勾玉みたいな渦の和柄",
+    "top1": "tomoe"
+  },
+  {
+    "lang": "en",
+    "query": "Japanese comma swirl motif",
+    "top1": "tomoe"
+  },
+  {
+    "lang": "ja",
+    "query": "白抜きの輪がにじむ絞り染め",
+    "top1": "shibori"
+  },
+  {
+    "lang": "en",
+    "query": "Japanese shibori resist dye",
+    "top1": "shibori"
+  },
+  {
+    "lang": "ja",
+    "query": "蝋染めの細かい柄",
+    "top1": "batik"
+  },
+  {
+    "lang": "en",
+    "query": "wax resist batik pattern",
+    "top1": "batik"
+  },
+  {
+    "lang": "ja",
+    "query": "小さい白い点で菱形を作る染め布",
+    "top1": "bandhani"
+  },
+  {
+    "lang": "en",
+    "query": "bandhani tiny resist dots",
+    "top1": "bandhani"
+  },
+  {
+    "lang": "ja",
+    "query": "藍と赤の細かい木版柄",
+    "top1": "ajrakh"
+  },
+  {
+    "lang": "en",
+    "query": "ajrakh block print",
+    "top1": "ajrakh"
+  },
+  {
+    "lang": "ja",
+    "query": "手描きの花唐草インド布",
+    "top1": "kalamkari"
+  },
+  {
+    "lang": "en",
+    "query": "kalamkari hand painted textile",
+    "top1": "kalamkari"
+  },
+  {
+    "lang": "ja",
+    "query": "シェブロンではなく矢羽根の和柄",
+    "top1": "yagasuri"
+  },
+  {
+    "lang": "en",
+    "query": "not generic chevron arrow feather Japanese",
+    "top1": "yagasuri"
+  },
+  {
+    "lang": "ja",
+    "query": "ジグザグではなく階段状の炎",
+    "top1": "flame-stitch"
+  },
+  {
+    "lang": "en",
+    "query": "stair stepped flame not simple zigzag",
+    "top1": "flame-stitch"
+  },
+  {
+    "lang": "ja",
+    "query": "一般ラティスではなく竹籠の三方向格子",
+    "top1": "kagome"
+  },
+  {
+    "lang": "en",
+    "query": "three direction basket lattice not simple lattice",
+    "top1": "kagome"
+  },
+  {
+    "lang": "ja",
+    "query": "水玉ではなく絞りの輪点",
+    "top1": "kanoko"
+  },
+  {
+    "lang": "en",
+    "query": "resist rings not polka dots",
+    "top1": "kanoko"
+  },
+  {
+    "lang": "ja",
+    "query": "青海波ではなく波に小鳥が飛ぶ",
+    "top1": "nami-chidori"
+  },
+  {
+    "lang": "en",
+    "query": "waves plus birds not seigaiha",
+    "top1": "nami-chidori"
+  },
+  {
+    "lang": "ja",
+    "query": "バティックではなく藍赤の木版ロゼット",
+    "top1": "ajrakh"
+  },
+  {
+    "lang": "en",
+    "query": "indigo red block rosettes not batik",
+    "top1": "ajrakh"
+  },
+  {
+    "lang": "ja",
+    "query": "一般オジーではなく縦に立ち上る和柄",
+    "top1": "tatewaku"
+  },
+  {
+    "lang": "en",
+    "query": "Japanese vertical rising curves not generic ogee",
+    "top1": "tatewaku"
+  },
+  {
+    "lang": "ja",
+    "query": "グリークキーではなく卍形が連結した地文",
+    "top1": "sayagata"
+  },
+  {
+    "lang": "en",
+    "query": "interlocking manji field not Greek key band",
+    "top1": "sayagata"
+  },
+  {
+    "lang": "ja",
+    "query": "菱形ではなく三角セルの鱗文様",
+    "top1": "uroko"
+  },
+  {
+    "lang": "en",
+    "query": "triangle scale cells not diamond",
+    "top1": "uroko"
+  },
+  {
+    "lang": "ja",
+    "query": "普通の植物柄ではなく中央に一本の生命の樹",
+    "top1": "tree-of-life"
+  },
+  {
+    "lang": "en",
+    "query": "central tree structure not generic botanical print",
+    "top1": "tree-of-life"
+  },
+  {
+    "lang": "ja",
+    "query": "鹿の子よりさらに細かい扇状点群",
+    "top1": "same-komon"
+  },
+  {
+    "lang": "en",
+    "query": "ultra fine fan dots not kanoko rings",
+    "top1": "same-komon"
+  },
+  {
+    "lang": "ja",
+    "query": "絞り全般ではなく微細点が大群になるバンダニ",
+    "top1": "bandhani"
+  },
+  {
+    "lang": "en",
+    "query": "masses of tiny tie resist dots bandhani",
+    "top1": "bandhani"
+  },
+  {
+    "lang": "ja",
+    "query": "楼閣と鳥のヨーロッパ中国趣味",
+    "top1": "chinoiserie"
+  },
+  {
+    "lang": "en",
+    "query": "European Chinese inspired pavilion bird decor",
+    "top1": "chinoiserie"
+  }
+]

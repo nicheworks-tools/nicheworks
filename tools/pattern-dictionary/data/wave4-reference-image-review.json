@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-16",
+  "wave": 4,
+  "ordinal_range": [
+    61,
+    80
+  ],
+  "scope": "wave4-staged-not-public",
+  "status": "pending-structural-review",
+  "review_policy": {
+    "dimensions": [
+      1536,
+      1536
+    ],
+    "required_checks": [
+      "file-exists",
+      "png-1536x1536",
+      "flat-front-on",
+      "no-text",
+      "no-frame",
+      "no-shadow",
+      "no-product-mockup",
+      "multiple-repeats-visible",
+      "recognition-cue-matches-source-scope",
+      "qualified-term-does-not-imply-universal-canonical-repeat"
+    ]
+  },
+  "records": [
+    {
+      "ordinal": 61,
+      "pattern_id": "baroque-scroll",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending.",
+        "Qualified term: representative reference only; must not imply one universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 62,
+      "pattern_id": "chinoiserie",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending.",
+        "Qualified term: representative reference only; must not imply one universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 63,
+      "pattern_id": "flame-stitch",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending.",
+        "Qualified term: representative reference only; must not imply one universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 64,
+      "pattern_id": "tree-of-life",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending."
+      ]
+    },
+    {
+      "ordinal": 65,
+      "pattern_id": "moire",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending.",
+        "Qualified term: representative reference only; must not imply one universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 66,
+      "pattern_id": "yagasuri",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending."
+      ]
+    },
+    {
+      "ordinal": 67,
+      "pattern_id": "sayagata",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending."
+      ]
+    },
+    {
+      "ordinal": 68,
+      "pattern_id": "uroko",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending."
+      ]
+    },
+    {
+      "ordinal": 69,
+      "pattern_id": "tatewaku",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending."
+      ]
+    },
+    {
+      "ordinal": 70,
+      "pattern_id": "kagome",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending."
+      ]
+    },
+    {
+      "ordinal": 71,
+      "pattern_id": "kanoko",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending.",
+        "Qualified term: representative reference only; must not imply one universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 72,
+      "pattern_id": "hanabishi",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending."
+      ]
+    },
+    {
+      "ordinal": 73,
+      "pattern_id": "same-komon",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending.",
+        "Qualified term: representative reference only; must not imply one universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 74,
+      "pattern_id": "nami-chidori",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending."
+      ]
+    },
+    {
+      "ordinal": 75,
+      "pattern_id": "tomoe",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending."
+      ]
+    },
+    {
+      "ordinal": 76,
+      "pattern_id": "shibori",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending.",
+        "Qualified term: representative reference only; must not imply one universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 77,
+      "pattern_id": "batik",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending.",
+        "Qualified term: representative reference only; must not imply one universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 78,
+      "pattern_id": "bandhani",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending.",
+        "Qualified term: representative reference only; must not imply one universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 79,
+      "pattern_id": "ajrakh",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending.",
+        "Qualified term: representative reference only; must not imply one universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 80,
+      "pattern_id": "kalamkari",
+      "status": "pending",
+      "notes": [
+        "Generated deterministic 1536x1536 RGB PNG; contact-sheet structural review pending.",
+        "Qualified term: representative reference only; must not imply one universal canonical repeat."
+      ]
+    }
+  ],
+  "review_history": []
+}

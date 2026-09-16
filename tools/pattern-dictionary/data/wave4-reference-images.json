@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-16",
+  "wave": 4,
+  "ordinal_range": [
+    61,
+    80
+  ],
+  "status": "generated-pending-structural-review",
+  "publication_state": "staged-not-public",
+  "policy": {
+    "dimensions": [
+      1536,
+      1536
+    ],
+    "format": "PNG",
+    "purpose": "recognition-reference",
+    "requirements": [
+      "square",
+      "flat-front-on",
+      "no-text",
+      "no-frame",
+      "no-shadow",
+      "no-product-mockup",
+      "multiple-repeats-visible"
+    ],
+    "verification_rule": "Generated images must pass exact 1536x1536 RGB PNG validation and contact-sheet structural-recognition review before publication.",
+    "qualified_term_rule": "Qualified terms use representative recognition references and do not imply one universally canonical repeat.",
+    "source_ledger": "data/wave4-source-verification.json",
+    "review_ledger": "data/wave4-reference-image-review.json",
+    "generator": "scripts/generate-reference-images-wave4.py"
+  },
+  "images": [
+    {
+      "ordinal": 61,
+      "pattern_id": "baroque-scroll",
+      "path": "assets/reference/baroque-scroll.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic mirrored C/S scrolling foliage with leaf terminals",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 62,
+      "pattern_id": "chinoiserie",
+      "path": "assets/reference/chinoiserie.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic pavilion, bird, branch, and flowering-tree vignettes",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 63,
+      "pattern_id": "flame-stitch",
+      "path": "assets/reference/flame-stitch.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic stepped multiband peaks and valleys",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 64,
+      "pattern_id": "tree-of-life",
+      "path": "assets/reference/tree-of-life.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic central trunk with branching floral canopy",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 65,
+      "pattern_id": "moire",
+      "path": "assets/reference/moire.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic interference-like watered sinusoidal bands",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 66,
+      "pattern_id": "yagasuri",
+      "path": "assets/reference/yagasuri.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic elongated arrow-feather chevrons",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 67,
+      "pattern_id": "sayagata",
+      "path": "assets/reference/sayagata.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic interlocking right-angled continuous fret field",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 68,
+      "pattern_id": "uroko",
+      "path": "assets/reference/uroko.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic alternating upright and inverted triangle scales",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 69,
+      "pattern_id": "tatewaku",
+      "path": "assets/reference/tatewaku.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic opposed vertical swelling curves",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 70,
+      "pattern_id": "kagome",
+      "path": "assets/reference/kagome.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic three-direction basket lattice",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 71,
+      "pattern_id": "kanoko",
+      "path": "assets/reference/kanoko.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic small resist rings in diamond groupings",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 72,
+      "pattern_id": "hanabishi",
+      "path": "assets/reference/hanabishi.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic four-petal flowers integrated into lozenges",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 73,
+      "pattern_id": "same-komon",
+      "path": "assets/reference/same-komon.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic extremely fine dot arcs in fan groupings",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 74,
+      "pattern_id": "nami-chidori",
+      "path": "assets/reference/nami-chidori.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic stylized waves paired with flying plovers",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 75,
+      "pattern_id": "tomoe",
+      "path": "assets/reference/tomoe.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic three comma-like radial tomoe units",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 76,
+      "pattern_id": "shibori",
+      "path": "assets/reference/shibori.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic representative resist rings and bound/fold marks",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 77,
+      "pattern_id": "batik",
+      "path": "assets/reference/batik.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic wax-resist-style floral and geometric outlines",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 78,
+      "pattern_id": "bandhani",
+      "path": "assets/reference/bandhani.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic tiny resist dots grouped into diamonds",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 79,
+      "pattern_id": "ajrakh",
+      "path": "assets/reference/ajrakh.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic dense block-print rosettes and geometry in indigo/red",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 80,
+      "pattern_id": "kalamkari",
+      "path": "assets/reference/kalamkari.png",
+      "review_state": "generated-pending-review",
+      "method": "deterministic hand-drawn-style floral vine and pictorial motifs",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    }
+  ]
+}
