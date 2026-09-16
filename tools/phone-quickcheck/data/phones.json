@@ -3874,8 +3874,8 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "included",
+        "adapter": "included"
       },
       "sources": {
         "specificationsUrl": "https://www.mi.com/jp/product/xiaomi-15-ultra/specs/",
@@ -3926,8 +3926,8 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "included",
+        "adapter": "included"
       },
       "sources": {
         "specificationsUrl": "https://www.mi.com/jp/product/xiaomi-14t-pro/specs/",
