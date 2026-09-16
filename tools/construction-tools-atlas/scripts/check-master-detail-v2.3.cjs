@@ -3,45 +3,51 @@ const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..');
 const read = (rel) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
-const runtime = read('app.runtime.js');
-const css = read('master-detail-v2.3.css');
 const html = read('index.html');
+const runtime = read('app.runtime.js');
+const css = read('style.css');
 
-let failed = false;
-function requireText(haystack, needle, label) {
-  if (!haystack.includes(needle)) {
-    console.error(`ERROR: missing ${label}: ${needle}`);
-    failed = true;
-  } else {
-    console.log(`OK: ${label}`);
-  }
+const errors = [];
+const requireText = (source, token, message) => { if (!source.includes(token)) errors.push(message || `missing ${token}`); };
+const forbidText = (source, token, message) => { if (source.includes(token)) errors.push(message || `forbidden ${token}`); };
+
+requireText(html, 'id="atlasWorkspace"', 'authoritative master-detail workspace must exist in HTML before runtime');
+requireText(html, 'id="detailPanel"', 'one authoritative detail panel must exist in HTML');
+requireText(html, 'id="detailContent"', 'detail content surface must exist in HTML');
+requireText(html, 'id="mobileBackdrop"', 'mobile sheet backdrop must exist in HTML');
+
+const detailPanels = (html.match(/id="detailPanel"/g) || []).length;
+if (detailPanels !== 1) errors.push(`expected exactly one #detailPanel, found ${detailPanels}`);
+
+requireText(css, 'grid-template-columns:minmax(360px,43fr) minmax(0,57fr)', 'desktop master/detail proportions must remain approximately 43/57');
+requireText(css, 'height:clamp(660px,calc(100vh - 255px),920px)', 'workspace must own a real desktop height');
+requireText(css, '.detailPanel{position:relative;display:grid;grid-template-rows:minmax(0,1fr)}', 'visible detail panel must fill the workspace');
+requireText(css, '.detailContent{height:100%;min-height:0;display:flex;flex-direction:column}', 'detail content must fill the panel');
+requireText(css, '.detailScroll{flex:1;min-height:0;overflow:auto', 'detail body must use the remaining panel height');
+requireText(css, '@media(max-width:899px)', 'mobile breakpoint is missing');
+requireText(css, 'position:fixed;z-index:50', 'mobile detail must become a fixed bottom sheet');
+requireText(css, 'height:min(88dvh,820px)', 'mobile bottom sheet height guard is missing');
+
+requireText(runtime, 'const MOBILE_QUERY = "(max-width: 899px)"', 'runtime mobile breakpoint must align with CSS');
+requireText(runtime, 'els.detailPanel.dataset.open = "true"', 'detail opener must expose mobile open state');
+requireText(runtime, 'els.detailPanel.dataset.open = "false"', 'detail closer must clear mobile open state');
+requireText(runtime, 'row.dataset.entryId = entry.id', 'result rows must preserve canonical selection identity');
+requireText(runtime, 'aria-current', 'selected result state must be accessible');
+requireText(runtime, 'els.detailClose.addEventListener("click"', 'dedicated mobile detail close behavior is missing');
+requireText(runtime, 'window.matchMedia(MOBILE_QUERY)', 'runtime must synchronize mobile backdrop behavior');
+
+forbidText(runtime, 'appendChild(detail)', 'authoritative detail DOM must not be re-parented at runtime');
+forbidText(runtime, 'detailPanel--desktop', 'legacy desktop detail mode class must not return');
+forbidText(runtime, 'detailPanel--mobile', 'legacy mobile detail mode class must not return');
+forbidText(html, 'master-detail-v2.3.css', 'legacy master-detail patch stylesheet must not be in the production entrypoint');
+
+if (errors.length) {
+  console.error('Construction Tools Atlas master-detail v2.3 contract: FAIL');
+  errors.forEach((error) => console.error(`- ${error}`));
+  process.exit(1);
 }
 
-requireText(html, 'id="detailSheet"', 'single canonical detail surface');
-requireText(runtime, 'const DETAIL_MEDIA = "(min-width: 900px)"', 'desktop detail breakpoint');
-requireText(runtime, 'id = "atlasWorkspace"', 'runtime master-detail workspace');
-requireText(runtime, 'id = "atlasDetailHost"', 'desktop detail host');
-requireText(runtime, 'detailPanel--desktop', 'desktop detail mode');
-requireText(runtime, 'detailPanel--mobile', 'mobile detail mode');
-requireText(runtime, 'document.body.appendChild(detail)', 'mobile detail re-parenting');
-requireText(runtime, 'host.appendChild(detail)', 'desktop detail re-parenting');
-requireText(runtime, 'row.dataset.entryId = e.id', 'canonical result row selection state');
-requireText(runtime, 'row--selected', 'selected result styling hook');
-requireText(runtime, 'els.detailClose?.addEventListener("click", closeDetail)', 'dedicated detail close behavior');
-requireText(runtime, 'detailMedia?.addEventListener?.("change"', 'responsive mode synchronization');
-requireText(css, '@media (min-width: 900px)', 'desktop CSS contract');
-requireText(css, 'grid-template-columns: minmax(360px, 44%) minmax(0, 56%)', 'desktop master/detail proportions');
-requireText(css, '@media (max-width: 899px)', 'mobile CSS contract');
-requireText(css, 'position: fixed', 'mobile sheet positioning');
-requireText(css, 'max-height: min(86dvh', 'mobile sheet height guard');
-
-const detailIds = (html.match(/id="detailSheet"/g) || []).length;
-if (detailIds !== 1) {
-  console.error(`ERROR: expected exactly one #detailSheet in HTML, found ${detailIds}`);
-  failed = true;
-} else {
-  console.log('OK: one canonical #detailSheet is shared by PC and mobile');
-}
-
-if (failed) process.exit(1);
 console.log('Construction Tools Atlas master-detail v2.3 contract: PASS');
+console.log('- one authoritative master-detail DOM from initial HTML');
+console.log('- desktop 43/57 workspace with actual detail surface height');
+console.log('- same detail surface becomes a mobile bottom sheet without re-parenting');
