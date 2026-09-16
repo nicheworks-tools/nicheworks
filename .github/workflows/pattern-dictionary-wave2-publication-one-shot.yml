@@ -21,6 +21,43 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Harden search for expanded taxonomy
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          app_path=Path('tools/pattern-dictionary/app.js')
+          app=app_path.read_text()
+          old="function nearTypo(a,b){a=norm(a);b=norm(b);if(!a||!b||a===b||Math.min(a.length,b.length)<5||Math.abs(a.length-b.length)>1)return false;if(a.length===b.length){const d=[];for(let i=0;i<a.length;i++)if(a[i]!==b[i])d.push(i);if(d.length===2&&d[1]===d[0]+1&&a[d[0]]===b[d[1]]&&a[d[1]]===b[d[0]])return true}return editDistance(a,b)<=1}"
+          new="const TYPO_GENERIC=new Set(['check','checks','stripe','stripes','pattern','patterns','plaid','dot','dots','print','prints']);\nfunction nearTypo(a,b){a=norm(a);b=norm(b);if(!a||!b||a===b||Math.min(a.length,b.length)<5||Math.abs(a.length-b.length)>1||TYPO_GENERIC.has(a)||TYPO_GENERIC.has(b)||a+'s'===b||b+'s'===a)return false;if(a.length===b.length){const d=[];for(let i=0;i<a.length;i++)if(a[i]!==b[i])d.push(i);if(d.length===2&&d[1]===d[0]+1&&a[d[0]]===b[d[1]]&&a[d[1]]===b[d[0]])return true}return editDistance(a,b)<=1}"
+          assert old in app, 'app nearTypo anchor missing'
+          app=app.replace(old,new,1)
+          old="async function interpret(q,lang){const all=await dict(),nq=norm(q),out=[],seen=new Set();for(const l of [lang,lang==='ja'?'en':'ja'])for(const [k,v] of Object.entries(all[l]||{})){const nk=norm(k);if(nq.includes(nk)&&!seen.has(nk)){seen.add(nk);out.push({label:k,...v})}}return out}"
+          new="function signalNegated(nq,nk,lang){return lang==='en'?(nq.includes('not '+nk)||nq.includes('without '+nk)):(nq.includes(nk+'じゃない')||nq.includes(nk+'ではない'))}\nasync function interpret(q,lang){const all=await dict(),nq=norm(q),out=[],seen=new Set();for(const l of [lang,lang==='ja'?'en':'ja'])for(const [k,v] of Object.entries(all[l]||{})){const nk=norm(k);if(nq.includes(nk)&&!signalNegated(nq,nk,l)&&!seen.has(nk)){seen.add(nk);out.push({label:k,...v})}}return out}"
+          assert old in app, 'app interpret anchor missing'
+          app=app.replace(old,new,1)
+          old="else if(nq.length>=4&&nt.includes(nq))add(12,lang==='ja'?'説明語の一部':'partial descriptive phrase')"
+          new="else if(tokens.length>=2&&nq.length>=4&&nt.includes(nq))add(12,lang==='ja'?'説明語の一部':'partial descriptive phrase')"
+          assert old in app, 'app partial phrase anchor missing'
+          app=app.replace(old,new,1)
+          app_path.write_text(app)
+
+          test_path=Path('tools/pattern-dictionary/tests/search-test.mjs')
+          test=test_path.read_text()
+          old="function nearTypo(a,b){\n  a=norm(a);b=norm(b);\n  if(!a||!b||a===b||Math.min(a.length,b.length)<5||Math.abs(a.length-b.length)>1)return false;"
+          new="const TYPO_GENERIC=new Set(['check','checks','stripe','stripes','pattern','patterns','plaid','dot','dots','print','prints']);\nfunction nearTypo(a,b){\n  a=norm(a);b=norm(b);\n  if(!a||!b||a===b||Math.min(a.length,b.length)<5||Math.abs(a.length-b.length)>1||TYPO_GENERIC.has(a)||TYPO_GENERIC.has(b)||a+'s'===b||b+'s'===a)return false;"
+          assert old in test, 'test nearTypo anchor missing'
+          test=test.replace(old,new,1)
+          old="function interpret(q,lang){\n  const nq=norm(q),out=[],seen=new Set();\n  for(const l of [lang,lang==='ja'?'en':'ja'])for(const[k,v]of Object.entries(dict[l]||{})){const nk=norm(k);if(nq.includes(nk)&&!seen.has(nk)){seen.add(nk);out.push({label:k,...v});}}\n  return out;\n}"
+          new="function signalNegated(nq,nk,lang){return lang==='en'?(nq.includes('not '+nk)||nq.includes('without '+nk)):(nq.includes(nk+'じゃない')||nq.includes(nk+'ではない'))}\nfunction interpret(q,lang){\n  const nq=norm(q),out=[],seen=new Set();\n  for(const l of [lang,lang==='ja'?'en':'ja'])for(const[k,v]of Object.entries(dict[l]||{})){const nk=norm(k);if(nq.includes(nk)&&!signalNegated(nq,nk,l)&&!seen.has(nk)){seen.add(nk);out.push({label:k,...v});}}\n  return out;\n}"
+          assert old in test, 'test interpret anchor missing'
+          test=test.replace(old,new,1)
+          old="else if(nq.length>=4&&nt.includes(nq))add(12)"
+          new="else if(qt.length>=2&&nq.length>=4&&nt.includes(nq))add(12)"
+          assert old in test, 'test partial phrase anchor missing'
+          test=test.replace(old,new,1)
+          test_path.write_text(test)
+          PY
       - name: Publish Wave 2 into canonical runtime
         run: node tools/pattern-dictionary/scripts/publish-wave2.mjs
       - name: Validate publication contracts
@@ -48,4 +85,3 @@ jobs:
           git add -A
           git commit -m 'publish: promote Pattern Dictionary Wave 2 to canonical 40'
           git push origin HEAD:feat/pattern-dictionary-wave2-publication-r2-20260916
-# rerun after publication-contract fix
