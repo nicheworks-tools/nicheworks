@@ -2,7 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const ids=['houndstooth','gingham','tartan','glen-check','argyle','chevron','polka-dot','moroccan-trellis','seigaiha','asanoha','shippo','ichimatsu','kikko','karakusa','damask','arabesque','paisley','leopard-print','ikat','kilim'];
+const ids=JSON.parse(fs.readFileSync(path.join(root,'data','patterns.json'),'utf8')).map(x=>x.id);
+if(ids.length!==40)throw new Error(`expected 40 published patterns, got ${ids.length}`);
 function count(s,re){return [...s.matchAll(re)].length}
 for(const id of ids){
   const ja=`https://nicheworks.app/tools/pattern-dictionary/patterns/${id}/`;
@@ -31,4 +32,4 @@ for(const id of ids){
     if(!s.includes(`"inLanguage":"${lang}"`))throw new Error(`${prefix}${id}: JSON-LD language mismatch`);
   }
 }
-console.log('OK: 40/40 Pattern Dictionary detail pages carry canonical social, language, icon, and structured-data publication metadata.');
+console.log('OK: 80/80 JA+EN Pattern Dictionary detail pages carry canonical social, language, icon, and structured-data publication metadata.');
