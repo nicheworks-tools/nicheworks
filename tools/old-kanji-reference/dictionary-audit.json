@@ -2,7 +2,7 @@
   "version": "2026-09-14-okj-dictionary-audit-1",
   "basis": "repository_only",
   "sourceDigests": {
-    "dict.json": "759344a766fefca6f25a1a943f2bea6aaa701359302109747493cd760c0e8aa3",
+    "dict.json": "703d8dd068ad8083af9f5a112bb1d94c37cb43641964145521ed69f8c1df842c",
     "meta.json": "091fe92b82a548c8f66913d6f2b7af011db149b6703b99e6d8ef2d6f8af5c985",
     "meta-extra-2.json": "774659f70b7e9e3355fbd11d9466580f72cf3ef0762c647afb90631c0cd592b0",
     "meta-extra-3.json": "f761a5ccbaa72cda584c93bd6f82bb89a85e5f89756d449a911a83543bc3cc26",
@@ -28,23 +28,23 @@
     "seoCandidate": "non-identity/non-unresolved classification + no issues + verified matching metadata + at least two standalone repository signals; publication still requires actual search demand"
   },
   "summary": {
-    "canonicalOldToNewRecords": 358,
-    "rawOldToNewEntries": 367,
+    "canonicalOldToNewRecords": 356,
+    "rawOldToNewEntries": 364,
     "classes": {
-      "old_to_modern": 153,
+      "old_to_modern": 163,
       "variant": 1,
-      "compatibility": 21,
+      "compatibility": 22,
       "identity": 115,
-      "unresolved": 68
+      "unresolved": 55
     },
     "identityMappings": 115,
-    "unresolvedRecords": 68,
-    "rawDuplicateKeys": 9,
-    "conflictingRawDuplicateKeys": 1,
+    "unresolvedRecords": 55,
+    "rawDuplicateKeys": 8,
+    "conflictingRawDuplicateKeys": 0,
     "metadataDuplicateKeys": 61,
-    "reverseIssues": 53,
-    "issueRecords": 17,
-    "seoCandidates": 158
+    "reverseIssues": 35,
+    "issueRecords": 0,
+    "seoCandidates": 168
   },
   "rawDuplicateKeys": [
     {
@@ -64,15 +64,6 @@
         "芸"
       ],
       "conflicting": false
-    },
-    {
-      "key": "據",
-      "occurrences": 2,
-      "values": [
-        "拠",
-        "据"
-      ],
-      "conflicting": true
     },
     {
       "key": "擊",
@@ -438,85 +429,9 @@
   ],
   "reverseIssues": [
     {
-      "type": "forward_missing_from_reverse",
-      "source": "淚",
-      "target": "涙"
-    },
-    {
-      "type": "forward_missing_from_reverse",
-      "source": "髓",
-      "target": "髄"
-    },
-    {
-      "type": "forward_missing_from_reverse",
-      "source": "虜",
-      "target": "虜"
-    },
-    {
-      "type": "forward_missing_from_reverse",
-      "source": "躰",
-      "target": "体"
-    },
-    {
-      "type": "forward_missing_from_reverse",
-      "source": "邨",
-      "target": "村"
-    },
-    {
-      "type": "forward_missing_from_reverse",
-      "source": "霸",
-      "target": "覇"
-    },
-    {
-      "type": "forward_missing_from_reverse",
-      "source": "雜",
-      "target": "雑"
-    },
-    {
-      "type": "forward_missing_from_reverse",
-      "source": "頰",
-      "target": "頬"
-    },
-    {
-      "type": "forward_missing_from_reverse",
-      "source": "顏",
-      "target": "顔"
-    },
-    {
-      "type": "forward_missing_from_reverse",
-      "source": "顯",
-      "target": "顕"
-    },
-    {
-      "type": "forward_missing_from_reverse",
-      "source": "驪",
-      "target": "麗"
-    },
-    {
-      "type": "forward_missing_from_reverse",
-      "source": "齋",
-      "target": "斎"
-    },
-    {
-      "type": "forward_missing_from_reverse",
-      "source": "齡",
-      "target": "齢"
-    },
-    {
-      "type": "forward_missing_from_reverse",
-      "source": "齒",
-      "target": "歯"
-    },
-    {
       "type": "reverse_source_missing_forward",
       "source": "鄉",
       "target": "郷"
-    },
-    {
-      "type": "reverse_target_mismatch",
-      "source": "據",
-      "target": "拠",
-      "forwardTarget": "据"
     },
     {
       "type": "reverse_source_missing_forward",
@@ -524,21 +439,9 @@
       "target": "偽"
     },
     {
-      "type": "reverse_target_mismatch",
-      "source": "淚",
-      "target": "淚",
-      "forwardTarget": "涙"
-    },
-    {
       "type": "reverse_source_missing_forward",
       "source": "聯",
       "target": "連"
-    },
-    {
-      "type": "reverse_target_mismatch",
-      "source": "虜",
-      "target": "魯",
-      "forwardTarget": "虜"
     },
     {
       "type": "reverse_source_missing_forward",
@@ -554,12 +457,6 @@
       "type": "reverse_source_missing_forward",
       "source": "福",
       "target": "福"
-    },
-    {
-      "type": "reverse_target_mismatch",
-      "source": "藝",
-      "target": "藝",
-      "forwardTarget": "芸"
     },
     {
       "type": "reverse_source_missing_forward",
@@ -1169,148 +1066,7 @@
       "target": "鶴"
     }
   ],
-  "issueRecords": [
-    {
-      "source": "藝",
-      "target": "芸",
-      "classification": "unresolved",
-      "issues": [
-        "reverse_target_mismatch"
-      ]
-    },
-    {
-      "source": "據",
-      "target": "据",
-      "classification": "unresolved",
-      "issues": [
-        "reverse_target_mismatch",
-        "conflicting_duplicate_key",
-        "metadata_modern_mismatch"
-      ]
-    },
-    {
-      "source": "淚",
-      "target": "涙",
-      "classification": "unresolved",
-      "issues": [
-        "reverse_mapping_missing",
-        "reverse_target_mismatch"
-      ]
-    },
-    {
-      "source": "獨",
-      "target": "獨",
-      "classification": "unresolved",
-      "issues": [
-        "metadata_modern_mismatch"
-      ]
-    },
-    {
-      "source": "髓",
-      "target": "髄",
-      "classification": "unresolved",
-      "issues": [
-        "reverse_mapping_missing"
-      ]
-    },
-    {
-      "source": "虜",
-      "target": "虜",
-      "classification": "unresolved",
-      "issues": [
-        "reverse_mapping_missing",
-        "reverse_target_mismatch"
-      ]
-    },
-    {
-      "source": "躰",
-      "target": "体",
-      "classification": "unresolved",
-      "issues": [
-        "reverse_mapping_missing"
-      ]
-    },
-    {
-      "source": "邨",
-      "target": "村",
-      "classification": "unresolved",
-      "issues": [
-        "reverse_mapping_missing"
-      ]
-    },
-    {
-      "source": "霸",
-      "target": "覇",
-      "classification": "unresolved",
-      "issues": [
-        "reverse_mapping_missing"
-      ]
-    },
-    {
-      "source": "雜",
-      "target": "雑",
-      "classification": "unresolved",
-      "issues": [
-        "reverse_mapping_missing"
-      ]
-    },
-    {
-      "source": "頰",
-      "target": "頬",
-      "classification": "unresolved",
-      "issues": [
-        "reverse_mapping_missing"
-      ]
-    },
-    {
-      "source": "顏",
-      "target": "顔",
-      "classification": "unresolved",
-      "issues": [
-        "reverse_mapping_missing"
-      ]
-    },
-    {
-      "source": "顯",
-      "target": "顕",
-      "classification": "unresolved",
-      "issues": [
-        "reverse_mapping_missing"
-      ]
-    },
-    {
-      "source": "驪",
-      "target": "麗",
-      "classification": "unresolved",
-      "issues": [
-        "reverse_mapping_missing"
-      ]
-    },
-    {
-      "source": "齋",
-      "target": "斎",
-      "classification": "unresolved",
-      "issues": [
-        "reverse_mapping_missing"
-      ]
-    },
-    {
-      "source": "齡",
-      "target": "齢",
-      "classification": "unresolved",
-      "issues": [
-        "reverse_mapping_missing"
-      ]
-    },
-    {
-      "source": "齒",
-      "target": "歯",
-      "classification": "unresolved",
-      "issues": [
-        "reverse_mapping_missing"
-      ]
-    }
-  ],
+  "issueRecords": [],
   "unresolvedRecords": [
     {
       "source": "鋪",
@@ -1328,33 +1084,6 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
-      "source": "藝",
-      "target": "芸",
-      "evidence": [
-        "raw_duplicate_same_value",
-        "mapping_changes_character",
-        "verified_metadata_old_to_modern"
-      ],
-      "issues": [
-        "reverse_target_mismatch"
-      ],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
-      "source": "據",
-      "target": "据",
-      "evidence": [
-        "raw_conflicting_duplicate",
-        "mapping_changes_character"
-      ],
-      "issues": [
-        "reverse_target_mismatch",
-        "conflicting_duplicate_key",
-        "metadata_modern_mismatch"
-      ],
       "seoGate": "blocked_unresolved_classification"
     },
     {
@@ -1508,10 +1237,7 @@
       "evidence": [
         "mapping_changes_character"
       ],
-      "issues": [
-        "reverse_mapping_missing",
-        "reverse_target_mismatch"
-      ],
+      "issues": [],
       "seoGate": "blocked_unresolved_classification"
     },
     {
@@ -1548,17 +1274,6 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
-      "source": "獨",
-      "target": "獨",
-      "evidence": [
-        "mapping_identity"
-      ],
-      "issues": [
-        "metadata_modern_mismatch"
-      ],
       "seoGate": "blocked_unresolved_classification"
     },
     {
@@ -1778,37 +1493,12 @@
       "seoGate": "blocked_unresolved_classification"
     },
     {
-      "source": "髓",
-      "target": "髄",
-      "evidence": [
-        "mapping_changes_character",
-        "verified_metadata_old_to_modern"
-      ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
       "source": "鬧",
       "target": "騒",
       "evidence": [
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
-      "source": "虜",
-      "target": "虜",
-      "evidence": [
-        "mapping_changes_character",
-        "unicode_cjk_compatibility_range"
-      ],
-      "issues": [
-        "reverse_mapping_missing",
-        "reverse_target_mismatch"
-      ],
       "seoGate": "blocked_unresolved_classification"
     },
     {
@@ -1835,9 +1525,7 @@
       "evidence": [
         "mapping_changes_character"
       ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
+      "issues": [],
       "seoGate": "blocked_unresolved_classification"
     },
     {
@@ -1846,9 +1534,7 @@
       "evidence": [
         "mapping_changes_character"
       ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
+      "issues": [],
       "seoGate": "blocked_unresolved_classification"
     },
     {
@@ -1866,68 +1552,7 @@
       "evidence": [
         "mapping_changes_character"
       ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
-      "source": "雜",
-      "target": "雑",
-      "evidence": [
-        "mapping_changes_character",
-        "verified_metadata_old_to_modern"
-      ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
-      "source": "頰",
-      "target": "頬",
-      "evidence": [
-        "mapping_changes_character",
-        "verified_metadata_old_to_modern"
-      ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
-      "source": "顏",
-      "target": "顔",
-      "evidence": [
-        "mapping_changes_character",
-        "verified_metadata_old_to_modern"
-      ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
-      "source": "顯",
-      "target": "顕",
-      "evidence": [
-        "mapping_changes_character",
-        "verified_metadata_old_to_modern"
-      ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
-      "source": "驪",
-      "target": "麗",
-      "evidence": [
-        "mapping_changes_character"
-      ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
+      "issues": [],
       "seoGate": "blocked_unresolved_classification"
     },
     {
@@ -1937,42 +1562,6 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
-      "source": "齋",
-      "target": "斎",
-      "evidence": [
-        "mapping_changes_character",
-        "verified_metadata_old_to_modern"
-      ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
-      "source": "齡",
-      "target": "齢",
-      "evidence": [
-        "mapping_changes_character",
-        "verified_metadata_old_to_modern"
-      ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
-      "source": "齒",
-      "target": "歯",
-      "evidence": [
-        "mapping_changes_character",
-        "verified_metadata_old_to_modern"
-      ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
       "seoGate": "blocked_unresolved_classification"
     }
   ],
@@ -2030,6 +1619,7 @@
     "觀",
     "嚴",
     "鐵",
+    "藝",
     "爭",
     "靈",
     "靜",
@@ -2038,6 +1628,7 @@
     "榮",
     "爲",
     "攝",
+    "據",
     "賴",
     "覽",
     "遲",
@@ -2103,6 +1694,7 @@
     "斷",
     "滿",
     "燒",
+    "獨",
     "獻",
     "疊",
     "祕",
@@ -2118,6 +1710,7 @@
     "轉",
     "輕",
     "驗",
+    "髓",
     "鬪",
     "鷄",
     "麥",
@@ -2133,8 +1726,14 @@
     "釋",
     "隱",
     "險",
+    "雜",
+    "顏",
+    "顯",
     "髮",
-    "麴"
+    "麴",
+    "齋",
+    "齡",
+    "齒"
   ],
   "records": [
     {
@@ -3743,15 +3342,13 @@
     {
       "source": "藝",
       "target": "芸",
-      "classification": "unresolved",
+      "classification": "old_to_modern",
       "evidence": [
         "raw_duplicate_same_value",
         "mapping_changes_character",
         "verified_metadata_old_to_modern"
       ],
-      "issues": [
-        "reverse_target_mismatch"
-      ],
+      "issues": [],
       "metadata": {
         "sourceFile": "meta-extra-5.json",
         "verified": true,
@@ -3767,8 +3364,8 @@
         "usage",
         "source_note"
       ],
-      "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
+      "seoCandidate": true,
+      "seoGate": "candidate_requires_search_demand"
     },
     {
       "source": "爭",
@@ -3985,24 +3582,20 @@
     },
     {
       "source": "據",
-      "target": "据",
-      "classification": "unresolved",
+      "target": "拠",
+      "classification": "old_to_modern",
       "evidence": [
-        "raw_conflicting_duplicate",
-        "mapping_changes_character"
+        "mapping_changes_character",
+        "verified_metadata_old_to_modern"
       ],
-      "issues": [
-        "reverse_target_mismatch",
-        "conflicting_duplicate_key",
-        "metadata_modern_mismatch"
-      ],
+      "issues": [],
       "metadata": {
         "sourceFile": "meta-extra-5.json",
         "verified": true,
         "dataStatus": "verified",
         "confidence": "medium",
         "category": "document",
-        "modernMatchesMapping": false
+        "modernMatchesMapping": true
       },
       "compatibility": null,
       "standaloneSignals": [
@@ -4011,8 +3604,8 @@
         "usage",
         "source_note"
       ],
-      "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
+      "seoCandidate": true,
+      "seoGate": "candidate_requires_search_demand"
     },
     {
       "source": "擊",
@@ -6320,10 +5913,7 @@
       "evidence": [
         "mapping_changes_character"
       ],
-      "issues": [
-        "reverse_mapping_missing",
-        "reverse_target_mismatch"
-      ],
+      "issues": [],
       "metadata": {
         "sourceFile": "meta-extra-6.json",
         "verified": false,
@@ -6497,21 +6087,20 @@
     },
     {
       "source": "獨",
-      "target": "獨",
-      "classification": "unresolved",
+      "target": "独",
+      "classification": "old_to_modern",
       "evidence": [
-        "mapping_identity"
+        "mapping_changes_character",
+        "verified_metadata_old_to_modern"
       ],
-      "issues": [
-        "metadata_modern_mismatch"
-      ],
+      "issues": [],
       "metadata": {
         "sourceFile": "meta.json",
         "verified": true,
         "dataStatus": "verified",
         "confidence": "high",
         "category": "popular",
-        "modernMatchesMapping": false
+        "modernMatchesMapping": true
       },
       "compatibility": null,
       "standaloneSignals": [
@@ -6520,8 +6109,8 @@
         "usage",
         "source_note"
       ],
-      "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
+      "seoCandidate": true,
+      "seoGate": "candidate_requires_search_demand"
     },
     {
       "source": "獵",
@@ -7856,14 +7445,12 @@
     {
       "source": "髓",
       "target": "髄",
-      "classification": "unresolved",
+      "classification": "old_to_modern",
       "evidence": [
         "mapping_changes_character",
         "verified_metadata_old_to_modern"
       ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
+      "issues": [],
       "metadata": {
         "sourceFile": "meta-extra-4.json",
         "verified": true,
@@ -7879,8 +7466,8 @@
         "usage",
         "source_note"
       ],
-      "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
+      "seoCandidate": true,
+      "seoGate": "candidate_requires_search_demand"
     },
     {
       "source": "鬧",
@@ -7932,15 +7519,12 @@
     {
       "source": "虜",
       "target": "虜",
-      "classification": "unresolved",
+      "classification": "compatibility",
       "evidence": [
         "mapping_changes_character",
         "unicode_cjk_compatibility_range"
       ],
-      "issues": [
-        "reverse_mapping_missing",
-        "reverse_target_mismatch"
-      ],
+      "issues": [],
       "metadata": {
         "sourceFile": "meta-extra-6.json",
         "verified": false,
@@ -7952,7 +7536,7 @@
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_insufficient_standalone_data"
     },
     {
       "source": "魯",
@@ -9463,9 +9047,7 @@
       "evidence": [
         "mapping_changes_character"
       ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
+      "issues": [],
       "metadata": {
         "sourceFile": "meta-extra-6.json",
         "verified": false,
@@ -9612,9 +9194,7 @@
       "evidence": [
         "mapping_changes_character"
       ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
+      "issues": [],
       "metadata": {
         "sourceFile": "meta-extra-6.json",
         "verified": false,
@@ -9909,9 +9489,7 @@
       "evidence": [
         "mapping_changes_character"
       ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
+      "issues": [],
       "metadata": {
         "sourceFile": "meta-extra-6.json",
         "verified": false,
@@ -9928,14 +9506,12 @@
     {
       "source": "雜",
       "target": "雑",
-      "classification": "unresolved",
+      "classification": "old_to_modern",
       "evidence": [
         "mapping_changes_character",
         "verified_metadata_old_to_modern"
       ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
+      "issues": [],
       "metadata": {
         "sourceFile": "meta-extra-3.json",
         "verified": true,
@@ -9950,8 +9526,8 @@
         "meaning",
         "source_note"
       ],
-      "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
+      "seoCandidate": true,
+      "seoGate": "candidate_requires_search_demand"
     },
     {
       "source": "難",
@@ -10186,45 +9762,14 @@
       "seoGate": "blocked_identity_mapping"
     },
     {
-      "source": "頰",
-      "target": "頬",
-      "classification": "unresolved",
-      "evidence": [
-        "mapping_changes_character",
-        "verified_metadata_old_to_modern"
-      ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
-      "metadata": {
-        "sourceFile": "meta-extra-4.json",
-        "verified": true,
-        "dataStatus": "verified",
-        "confidence": "medium",
-        "category": "document",
-        "modernMatchesMapping": true
-      },
-      "compatibility": null,
-      "standaloneSignals": [
-        "reading",
-        "meaning",
-        "usage",
-        "source_note"
-      ],
-      "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
       "source": "顏",
       "target": "顔",
-      "classification": "unresolved",
+      "classification": "old_to_modern",
       "evidence": [
         "mapping_changes_character",
         "verified_metadata_old_to_modern"
       ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
+      "issues": [],
       "metadata": {
         "sourceFile": "meta-extra-4.json",
         "verified": true,
@@ -10240,8 +9785,8 @@
         "usage",
         "source_note"
       ],
-      "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
+      "seoCandidate": true,
+      "seoGate": "candidate_requires_search_demand"
     },
     {
       "source": "願",
@@ -10288,14 +9833,12 @@
     {
       "source": "顯",
       "target": "顕",
-      "classification": "unresolved",
+      "classification": "old_to_modern",
       "evidence": [
         "mapping_changes_character",
         "verified_metadata_old_to_modern"
       ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
+      "issues": [],
       "metadata": {
         "sourceFile": "meta-extra-3.json",
         "verified": true,
@@ -10310,8 +9853,8 @@
         "meaning",
         "source_note"
       ],
-      "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
+      "seoCandidate": true,
+      "seoGate": "candidate_requires_search_demand"
     },
     {
       "source": "飾",
@@ -10459,29 +10002,6 @@
       "standaloneSignals": [],
       "seoCandidate": false,
       "seoGate": "blocked_identity_mapping"
-    },
-    {
-      "source": "驪",
-      "target": "麗",
-      "classification": "unresolved",
-      "evidence": [
-        "mapping_changes_character"
-      ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
-      "metadata": {
-        "sourceFile": "meta-extra-6.json",
-        "verified": false,
-        "dataStatus": "pair_only",
-        "confidence": "low",
-        "category": "rare",
-        "modernMatchesMapping": true
-      },
-      "compatibility": null,
-      "standaloneSignals": [],
-      "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
     },
     {
       "source": "髮",
@@ -10750,14 +10270,12 @@
     {
       "source": "齋",
       "target": "斎",
-      "classification": "unresolved",
+      "classification": "old_to_modern",
       "evidence": [
         "mapping_changes_character",
         "verified_metadata_old_to_modern"
       ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
+      "issues": [],
       "metadata": {
         "sourceFile": "meta-extra-4.json",
         "verified": true,
@@ -10781,20 +10299,18 @@
         "source_note",
         "compatibility_note"
       ],
-      "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
+      "seoCandidate": true,
+      "seoGate": "candidate_requires_search_demand"
     },
     {
       "source": "齡",
       "target": "齢",
-      "classification": "unresolved",
+      "classification": "old_to_modern",
       "evidence": [
         "mapping_changes_character",
         "verified_metadata_old_to_modern"
       ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
+      "issues": [],
       "metadata": {
         "sourceFile": "meta-extra-2.json",
         "verified": true,
@@ -10809,20 +10325,18 @@
         "meaning",
         "source_note"
       ],
-      "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
+      "seoCandidate": true,
+      "seoGate": "candidate_requires_search_demand"
     },
     {
       "source": "齒",
       "target": "歯",
-      "classification": "unresolved",
+      "classification": "old_to_modern",
       "evidence": [
         "mapping_changes_character",
         "verified_metadata_old_to_modern"
       ],
-      "issues": [
-        "reverse_mapping_missing"
-      ],
+      "issues": [],
       "metadata": {
         "sourceFile": "meta-extra-4.json",
         "verified": true,
@@ -10838,8 +10352,8 @@
         "usage",
         "source_note"
       ],
-      "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
+      "seoCandidate": true,
+      "seoGate": "candidate_requires_search_demand"
     }
   ]
 }
