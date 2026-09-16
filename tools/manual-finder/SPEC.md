@@ -70,7 +70,7 @@ ManualFinder is an `AFFILIATE` tool, but its official manual directory remains t
 - KYOCERA Waves 1–19 close the current KYOCERA catalog at **123 = 120 detail + 3 reviewed exclusions + 0 missing**. Wave 19 adds the final `KM-C3225E` and `KM-C870` handoffs with `tonerCodes: []` because no public retail toner SKU was verified from the official evidence.
 - The Wave 19 Amazon queries remain model-specific: `KYOCERA KM-C3225E トナー` and `KYOCERA KM-C870 トナー`.
 - Camera accessory coverage is governed by a separate catalog-wide reconciliation contract: every actionable `カメラ・映像` record with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or an explicit missing-accessory diagnostic.
-- The current camera state is **185 basic = 35 detail + 0 reviewed exclusions + 150 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
+- The current camera state is **185 basic = 36 detail + 0 reviewed exclusions + 149 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
 - Nikon camera-accessory Waves 1–2 close all 14 actionable Nikon camera records at **14 detail + 0 reviewed exclusions + 0 missing**.
 - Nikon Wave 1 remains exactly `Z8`, `Z6III`, `Z5II`, and `Zf`, each mapped to `EN-EL15c` rechargeable battery and `MH-25a` battery charger from model-specific Nikon official evidence.
 - Nikon Wave 2 explicitly closes the remaining ten models: `Z9` → `EN-EL18d` / `MH-33`; `Z7II`, `Z6II`, `Z5` → `EN-EL15c` / `MH-25a`; `Z7`, `Z6` → `EN-EL15b` / `MH-25a`; `Z50II`, `Z50`, `Z30`, `Zfc` → `EN-EL25a` / `MH-32`.
@@ -90,9 +90,11 @@ ManualFinder is an `AFFILIATE` tool, but its official manual directory remains t
 - The compound Wave 7 canonical row is permitted only because DJI explicitly names both `DJI Mini 4K` and `DJI Mini 2 SE`; Wave 7 does not infer compatibility for `Mavic Mini` or other Mini-family records.
 - DJI FPV Wave 8 activates exactly `DJI FPV`, mapped to `DJI FPV Intelligent Flight Battery` and `DJI FPV AC Power Adapter` from explicit DJI official Store compatibility information. The adapter evidence also explicitly states that it charges the DJI FPV Intelligent Flight Battery.
 - DJI FPV Wave 8 must not infer compatibility for `DJI Digital FPV System`, `DJI Avata`, `DJI Avata 2`, goggles, or other FPV-related records.
-- The measured DJI state after Waves 1–8 is **96 basic = 21 detail + 0 reviewed exclusions + 75 missing accessory detail**.
+- DJI Avata Wave 9 activates exactly `DJI Avata`, mapped to `DJI Avata Intelligent Flight Battery` and `DJI Avata Battery Charging Hub` from the official DJI Avata Fly More Kit page, which explicitly identifies DJI Avata compatibility and lists both products in the kit.
+- DJI Avata Wave 9 must not infer compatibility for `DJI Avata 2`, future similarly named products, or unrelated DJI records.
+- The measured DJI state after Waves 1–9 is **96 basic = 22 detail + 0 reviewed exclusions + 74 missing accessory detail**.
 - Camera detail exclusions are stored separately in `affiliate-camera-detail-exclusions.js`; the ledger is currently empty and must not be used to hide unreviewed missing rows.
-- The measured remaining camera backlog is DJI 75, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized by `CAMERA_ACCESSORY_COVERAGE.md`.
+- The measured remaining camera backlog is DJI 74, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized by `CAMERA_ACCESSORY_COVERAGE.md`.
 - Wrong maker, wrong category, nonexistent model, malformed URL, unsupported category, and unreviewed compatibility cases must fail closed.
 - Printer consumable CTAs use one coarse analytics target (`printer_consumable_search_template`). Camera accessory CTAs use a separate coarse target (`camera_accessory_search_template`). Amazon search terms are constructed only from verified compatibility mappings or exact canonical model identities, never arbitrary user text.
 - Compatibility-sensitive CTA wording does not claim that every Amazon result is genuine, recommended, or compatible. The UI states that compatibility evidence was checked against a manufacturer source and asks the user to confirm the exact Amazon item before purchase.
@@ -159,8 +161,9 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] DJI compact power Wave 6 activates exactly `DJI Avata 2`, `DJI Flip`, and `DJI Neo`, with two individually evidenced DJI-backed power-accessory handoffs per model and no cross-model inference.
 - [x] DJI Mini 2 family Wave 7 activates exactly `DJI Mini 2`, `DJI Mini 4K | DJI Mini 2 SE`, and `DJI Mini SE`, with two DJI-backed shared power-accessory handoffs per canonical row and no inference to `Mavic Mini`.
 - [x] DJI FPV Wave 8 activates exactly `DJI FPV` with a reviewed DJI FPV battery and AC Power Adapter handoff, and does not infer compatibility to other FPV-related canonical records.
-- [x] DJI Waves 1–8 reconcile to **96 basic = 21 detail + 0 reviewed exclusions + 75 missing accessory detail**.
-- [x] The catalog-wide camera audit reconciles to **185 basic = 35 detail + 0 reviewed exclusions + 150 missing accessory detail**, while seven maker/index rows remain explicitly non-actionable.
+- [x] DJI Avata Wave 9 activates exactly `DJI Avata` with reviewed DJI Avata Intelligent Flight Battery and DJI Avata Battery Charging Hub handoffs from the official Fly More Kit compatibility page.
+- [x] DJI Waves 1–9 reconcile to **96 basic = 22 detail + 0 reviewed exclusions + 74 missing accessory detail**.
+- [x] The catalog-wide camera audit reconciles to **185 basic = 36 detail + 0 reviewed exclusions + 149 missing accessory detail**, while seven maker/index rows remain explicitly non-actionable.
 - [x] `cameraMissingAccessoryByMaker` and `cameraMissingAccessoryModelsByMaker` expose the remaining backlog and the documentation sync test prevents the camera baseline from drifting silently.
 - [x] The Nikon Z8 fixed body-search override coexists with its reviewed battery/charger handoffs instead of short-circuiting them.
 - [x] Nonexistent models, wrong maker/category combinations, and other unreviewed cases remain fail-closed.
@@ -192,6 +195,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave6.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave7.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave8.js`
+- `tools/manual-finder/affiliate-dji-camera-accessories-wave9.js`
 - `tools/manual-finder/affiliate-camera-detail-exclusions.js`
 - `tools/manual-finder/affiliate-runtime.js`
 - `tools/manual-finder/affiliate.css`
@@ -209,6 +213,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - `tools/manual-finder/tests/dji-compact-power-wave6.test.mjs`
 - `tools/manual-finder/tests/dji-mini2-accessory-wave7.test.mjs`
 - `tools/manual-finder/tests/dji-fpv-accessory-wave8.test.mjs`
+- `tools/manual-finder/tests/dji-avata-accessory-wave9.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-coverage.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs`
 - `tools/manual-finder/tests/behavior.test.mjs`
