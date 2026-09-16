@@ -64,7 +64,7 @@ for (const row of ledger) {
 }
 
 for (const args of [
-  { maker: 'KYOCERA Document Solutions', model: 'KM-C3225E', category: 'プリンター・複合機' },
+  { maker: 'KYOCERA Document Solutions', model: 'KM-C9999', category: 'プリンター・複合機' },
   { maker: 'KYOCERA Document Solutions', model: 'KM-C2630D', category: 'プリンター・複合機' },
   { maker: 'KYOCERA Document Solutions', model: 'KM-C850D', category: 'プリンター・複合機' },
   { maker: 'KYOCERA Document Solutions', model: 'TASKalfa 255', category: 'プリンター・複合機' },

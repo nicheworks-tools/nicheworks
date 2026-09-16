@@ -195,7 +195,36 @@
     tonerCodes: Object.freeze([])
   })));
 
-  const rows = Object.freeze([...wave6Rows, ...wave7Rows, ...wave12Rows, ...wave13Rows, ...wave14Rows, ...wave16Rows, ...wave17Rows, ...wave18Rows]);
+  const wave19Rows = Object.freeze([
+    Object.freeze({
+      maker: "KYOCERA Document Solutions",
+      searchMaker: "KYOCERA",
+      model: "KM-C3225E",
+      verifiedAt: "2026-09-16",
+      sourceUrl: "https://www.kyoceradocumentsolutions.co.jp/support/prod_inf/pdf_m/m_km_2525e_3225e_3232e_4035e_bsc.pdf",
+      evidenceRelation: "official_model_manual_toner_reference",
+      evidenceUrls: Object.freeze([
+        "https://www.kyoceradocumentsolutions.co.jp/products/copy/copy01/km_c3225e/",
+        "https://www.kyoceradocumentsolutions.co.jp/support/prod_inf/pdf_m/m_km_2525e_3225e_3232e_4035e_bsc.pdf"
+      ]),
+      tonerCodes: Object.freeze([])
+    }),
+    Object.freeze({
+      maker: "KYOCERA Document Solutions",
+      searchMaker: "KYOCERA",
+      model: "KM-C870",
+      verifiedAt: "2026-09-16",
+      sourceUrl: "https://www.kyoceradocumentsolutions.co.jp/support/prod_inf/pdf_m/m_km_c870.pdf",
+      evidenceRelation: "official_model_manual_toner_reference",
+      evidenceUrls: Object.freeze([
+        "https://www.kyoceradocumentsolutions.co.jp/support/prod_inf/pdf_m/m_km_c870.pdf",
+        "https://www.kyoceradocumentsolutions.co.jp/support/prod_inf/pdf_c/km_c870.pdf"
+      ]),
+      tonerCodes: Object.freeze([])
+    })
+  ]);
+
+  const rows = Object.freeze([...wave6Rows, ...wave7Rows, ...wave12Rows, ...wave13Rows, ...wave14Rows, ...wave16Rows, ...wave17Rows, ...wave18Rows, ...wave19Rows]);
 
   function buildTaggedSearchUrl(query) {
     const url = new URL("https://www.amazon.co.jp/s");
@@ -246,6 +275,7 @@
   window.MANUALFINDER_KYOCERA_TONER_WAVE16_LEDGER = wave16Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE17_LEDGER = wave17Rows;
   window.MANUALFINDER_KYOCERA_TONER_WAVE18_LEDGER = wave18Rows;
+  window.MANUALFINDER_KYOCERA_TONER_WAVE19_LEDGER = wave19Rows;
   window.MANUALFINDER_AFFILIATE_CONFIG = Object.freeze({
     ...base,
     printerConsumables: Object.freeze([...(base.printerConsumables || []), ...rows]),
