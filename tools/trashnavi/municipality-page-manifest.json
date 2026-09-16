@@ -142,5 +142,15 @@
   {"lgcode":"142158","pref_slug":"kanagawa","city_slug":"ebina","publish":true},
   {"lgcode":"142166","pref_slug":"kanagawa","city_slug":"zama","publish":true},
   {"lgcode":"122122","pref_slug":"chiba","city_slug":"sakura","publish":true},
-  {"lgcode":"122114","pref_slug":"chiba","city_slug":"narita","publish":true}
+  {"lgcode":"122114","pref_slug":"chiba","city_slug":"narita","publish":true},
+  {"lgcode":"132101","pref_slug":"tokyo","city_slug":"koganei","publish":true},
+  {"lgcode":"132071","pref_slug":"tokyo","city_slug":"akishima","publish":true},
+  {"lgcode":"132152","pref_slug":"tokyo","city_slug":"kunitachi","publish":true},
+  {"lgcode":"132250","pref_slug":"tokyo","city_slug":"inagi","publish":true},
+  {"lgcode":"132195","pref_slug":"tokyo","city_slug":"komae","publish":true},
+  {"lgcode":"132217","pref_slug":"tokyo","city_slug":"kiyose","publish":true},
+  {"lgcode":"132225","pref_slug":"tokyo","city_slug":"higashikurume","publish":true},
+  {"lgcode":"142140","pref_slug":"kanagawa","city_slug":"isehara","publish":true},
+  {"lgcode":"132209","pref_slug":"tokyo","city_slug":"higashiyamato","publish":true},
+  {"lgcode":"122220","pref_slug":"chiba","city_slug":"abiko","publish":true}
 ]
