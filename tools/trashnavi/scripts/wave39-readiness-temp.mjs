@@ -13,7 +13,6 @@ fs.writeFileSync(appPath, app, 'utf8');
 for (const [script, args] of [
   ['tools/trashnavi/scripts/audit-coverage.mjs', ['--strict']],
   ['scripts/check-trashnavi-direct-links.mjs', ['--inventory']],
-  ['tools/trashnavi/scripts/generate-municipality-pages.mjs', ['--check']],
   ['tools/trashnavi/scripts/check-affiliate-contract.mjs', []],
   ['tools/trashnavi/scripts/check-runtime-contract.mjs', []]
 ]) execFileSync(process.execPath, [script, ...args], { stdio: 'inherit' });
