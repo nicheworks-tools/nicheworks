@@ -7,7 +7,13 @@
 
 ## Purpose
 
-Provide a final pre-move/pre-vacate checklist for common cancellation, address-change, inspection, photo, meter, and key-return tasks.
+Provide a final pre-move/pre-vacate checklist for common cancellation, inspection, photo, meter, key-return, and handoff tasks immediately around move-out.
+
+### Search and product scope boundary
+
+This tool is the final-stage move-out / pre-vacate surface. Its primary intent is the last checks around inspection, photo records, utility-meter records, key return, cancellation confirmation, and handoff notes.
+
+`moving-checklist-generator` is the separate broad moving-timeline surface covering planning from 30 days before the move through post-move follow-up, including address changes, government procedures, utilities, packing, and moving-day preparation. The two tools may reference overlapping moving-day tasks, but their primary search intent and product role MUST remain distinct.
 
 ## Current functional contract
 
@@ -56,6 +62,7 @@ The primary experience is a short form followed by a checklist, progress bar, ou
 
 ## Limits and non-goals
 
+- This is not the broad 30-day moving planner; use `moving-checklist-generator` for the full preparation-through-post-move timeline.
 - The tool does not determine legal responsibility, lease interpretation, restoration obligations, deposit settlement, repair charges, or dispute outcomes.
 - Contract documents and property-management guidance take precedence.
 - PDF save is provided by the browser print dialog, not server-side PDF generation.
@@ -69,6 +76,8 @@ The primary experience is a short form followed by a checklist, progress bar, ou
 - [ ] Free TXT copy/download and browser print remain usable independently of Pro.
 - [ ] The UI does not present checklist completion as a guarantee about restoration costs, deposits, or legal obligations.
 - [ ] A cached active entitlement other than `nicheworks_pro` does not unlock the Pro pack or Pro copy/save/print actions.
+- [ ] Public positioning remains final-stage move-out / pre-vacate checking rather than a broad moving timeline.
+- [ ] The page continues to link to `moving-checklist-generator` for earlier preparation.
 
 ## Implementation evidence
 
