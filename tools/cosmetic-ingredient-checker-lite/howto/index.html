@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>化粧品成分チェッカー｜Cosmetic Ingredient Checker Lite ガイド | NicheWorks</title>
-  <meta name="description" content="INCI/日本語の成分表示を貼り付け、香料・防腐剤・アルコールなどのフラグを確認できる軽量チェッカー。ブラウザ完結・保存なし。">
+  <meta name="description" content="化粧品の全成分表示を貼り付け、ローカル辞書との一致・確認候補・未分類を整理するCosmetic Ingredient Checker Liteの使い方と注意点。">
   <link rel="canonical" href="https://nicheworks.app/tools/cosmetic-ingredient-checker-lite/howto/">
 
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/cosmetic-ingredient-checker-lite/howto/" />
@@ -50,11 +50,11 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
   <meta property="og:title" content="化粧品成分チェッカー｜Cosmetic Ingredient Checker Lite ガイド | NicheWorks">
-  <meta property="og:description" content="INCI/日本語の成分表示を貼り付け、香料・防腐剤・アルコールなどのフラグを確認できる軽量チェッカー。ブラウザ完結・保存なし。">
+  <meta property="og:description" content="化粧品の全成分表示を貼り付け、ローカル辞書との一致・確認候補・未分類を整理するLite版の使い方と注意点。">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="化粧品成分チェッカー｜Cosmetic Ingredient Checker Lite ガイド | NicheWorks">
-  <meta name="twitter:description" content="INCI/日本語の成分表示を貼り付け、香料・防腐剤・アルコールなどのフラグを確認できる軽量チェッカー。ブラウザ完結・保存なし。">
+  <meta name="twitter:description" content="化粧品の全成分表示を貼り付け、ローカル辞書との一致・確認候補・未分類を整理するLite版の使い方と注意点。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <script type="application/ld+json">
   {
@@ -64,7 +64,7 @@
     "url": "https://nicheworks.app/tools/cosmetic-ingredient-checker-lite/howto/",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
-    "description": "INCI/日本語の成分表示を貼り付け、香料・防腐剤・アルコールなどのフラグを確認できる軽量チェッカー。ブラウザ完結・保存なし。",
+    "description": "化粧品の全成分表示を貼り付け、ローカル辞書との一致・確認候補・未分類を整理するLite版の使い方と注意点。",
     "inLanguage": [
       "ja",
       "en"
@@ -84,19 +84,19 @@
       <a href="./en/">EN</a>
       <a href="../">Tool</a>
     </div>
-    <h1 style="margin:10px 0 6px">化粧品成分チェッカー：使い方</h1>
-    <p class="muted" style="margin:0">成分表示を貼り付け、フラグと簡易メモを確認（保存なし）。</p>
+    <h1 style="margin:10px 0 6px">Cosmetic Ingredient Checker Lite：使い方</h1>
+    <p class="muted" style="margin:0">全成分表示を貼り付け、辞書照合結果を素早く整理するLite版のガイドです。</p>
   </header>
 
   <main class="nw-main">
 
-
     <section class="card">
       <h2 style="margin:0 0 8px">このツールでできること</h2>
       <ul>
-        <li>INCI/日本語混在の成分表を分割し、成分名ごとに表示</li>
-        <li>香料・防腐剤・アルコール・酸系成分などのフラグを整理</li>
-        <li>ブラウザ完結・保存なし</li>
+        <li>INCI名・日本語名が混在した全成分表示を入力順のまま分割</li>
+        <li>ローカル辞書と照合し、「辞書一致」「確認候補」「未分類」に整理</li>
+        <li>現在の結果を状態・主な分類で絞り込み、表示中または未分類の成分名をコピー</li>
+        <li>JP / ENを切り替えて同じ解析結果を表示</li>
       </ul>
       <div class="btns">
         <a class="btn primary" href="../">ツールを開く</a>
@@ -107,34 +107,53 @@
     <section class="card">
       <h2 style="margin:0 0 8px">使い方</h2>
       <ol>
-        <li>パッケージや公式ページの成分表示（テキスト）をコピー</li>
-        <li>ツールに貼り付けて <code>チェック</code> を押す</li>
-        <li>フラグと簡易メモを見て、気になる成分を確認</li>
+        <li>パッケージや公式商品ページの全成分表示をコピー</li>
+        <li>入力欄へ貼り付けて <code>成分を確認</code> を押す</li>
+        <li>まず全体の「辞書一致」「確認候補」「未分類」を確認</li>
+        <li>必要に応じて状態・分類フィルターを使い、各成分の簡易メモを見る</li>
       </ol>
-      <p class="muted" style="margin:0">コツ：成分表の前半ほど配合量が多い傾向があります。</p>
+      <p class="muted" style="margin:0">写真から読み取りたい場合は、LiteではなくINCI FastScanを使用してください。</p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">表示の意味</h2>
+      <ul>
+        <li><strong>辞書一致：</strong>入力した成分名がローカル辞書のINCI名・日本語名・登録済み別名のいずれかと一致した状態です。</li>
+        <li><strong>確認候補：</strong>追加の確認に使う目印です。危険判定ではありません。</li>
+        <li><strong>未分類：</strong>現在の辞書で分類できなかった状態です。安全・危険の意味はありません。</li>
+      </ul>
     </section>
 
     <section class="card">
       <h2 style="margin:0 0 8px">注意（できないこと・限界）</h2>
       <ul>
-        <li>医療・薬機法上の判断や、肌トラブルの診断を行うツールではありません。</li>
-        <li>成分の「良し悪し」は個人差があります。気になる場合はパッチテストや専門家の相談を推奨します。</li>
-        <li>表記ゆれ（別名・略称）によっては、フラグが出ない場合があります。</li>
+        <li>成分の濃度、処方全体、個人差、アレルギー、妊娠中の適否、薬との相互作用などは判定できません。</li>
+        <li>医学的・皮膚科的な診断、薬機法上の判断、製品全体の安全性保証は行いません。</li>
+        <li>辞書未登録や表記ゆれによって、既知の成分でも未分類になる場合があります。</li>
+        <li>結果の絞り込みは表示だけを変えるもので、解析結果そのものは変更しません。</li>
       </ul>
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">よくある使い方</h2>
+      <h2 style="margin:0 0 8px">データと保存について</h2>
       <ul>
-        <li>香料が苦手な方は「香料・アレルゲン指標」のフラグを確認</li>
-        <li>乾燥しやすい方は「アルコール」フラグを目安に比較</li>
-        <li>敏感肌の方は酸系成分の有無をチェック</li>
+        <li>成分の解析・照合・フィルター処理はブラウザ内で行います。</li>
+        <li>入力した成分リストや解析結果を履歴として保存する機能はありません。</li>
+        <li>JP / ENの表示設定だけは、利用できる場合にブラウザのローカルストレージへ保存されます。</li>
+        <li>成分辞書はNicheWorks内の静的ファイルから読み込みます。</li>
       </ul>
-      <p class="muted" style="margin:8px 0 0">
-        関連キーワード：化粧品 成分 チェック / ingredient checker / INCI / 敏感肌 成分 / 成分表示 読み方
-      </p>
     </section>
 
+    <section class="card">
+      <h2 style="margin:0 0 8px">LiteとFastScanの使い分け</h2>
+      <ul>
+        <li><strong>Lite：</strong>全成分表示のテキストを貼って、すぐ整理したい場合</li>
+        <li><strong>FastScan：</strong>商品ラベルの写真/OCRから始めたい場合、または確認候補を詳しく追いたい場合</li>
+      </ul>
+      <div class="btns">
+        <a class="btn" href="/tools/inci-fastscan/">INCI FastScanを開く</a>
+      </div>
+    </section>
 
   </main>
 

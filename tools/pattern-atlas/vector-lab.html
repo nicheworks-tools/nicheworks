@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vector Lab v2｜Pattern Atlas | NicheWorks</title>
-  <meta name="description" content="Pattern AtlasのPNG模様から反復単位を検出し、ImageTracerJSとVTracer WASMでSVG品質・容量・編集性を比較する実験ページです。">
+  <meta name="description" content="Pattern AtlasのPNG模様から反復単位を検出し、境界補完・色整理・中心線再構成を比較する実験ページです。">
   <meta name="robots" content="noindex,nofollow">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="stylesheet" href="./css/pattern-atlas.css">
@@ -23,16 +23,16 @@
   <div class="pa-tool pa-vector-lab" data-tool="pattern-atlas-vector-lab">
     <header class="pa-header">
       <p class="pa-kicker">NicheWorks / Pattern Atlas experiment</p>
-      <h1 class="pa-title">Vector Lab v2</h1>
-      <p class="pa-lead">PNG全体をトレースせず、まず反復単位を切り出してからSVG化します。</p>
+      <h1 class="pa-title">Vector Lab v2.1</h1>
+      <p class="pa-lead">最小タイル化に加え、境界の外側を補完してからトレースし、線模様は中心線＋uniform strokeでも再構成します。</p>
       <p class="pa-muted"><a href="./">← Pattern Atlasへ戻る</a></p>
     </header>
 
     <main class="pa-main">
       <section class="pa-section pa-lab-intro" aria-labelledby="lab-about">
-        <h2 class="pa-section-title" id="lab-about">v2で変えたこと</h2>
-        <p>v1では1536×1536の模様画像全体をベクター化したため、麻の葉 Balanced だけで数千path・1MB超になりました。v2では画像の反復周期を検出し、最小タイル候補だけをトレースします。</p>
-        <p class="pa-muted">ImageTracerJSとVTracer WASMを同じタイルにかけてA/B比較できます。既存Pattern Atlasの本番レンダラーはまだ置き換えません。</p>
+        <h2 class="pa-section-title" id="lab-about">v2.1で検証すること</h2>
+        <p>v2で1536×1536全体トレースをやめ、最小反復タイルまで縮小できました。一方、タイル境界での欠けと、輪郭トレース由来の線幅ばらつきが残りました。</p>
+        <p class="pa-muted">v2.1では二値化・色整理とwrapped paddingで境界の外側も見せてからImageTracerJSへ渡します。さらに実験的にスケルトン化した中心線をSVG strokeとして再構成し、線幅を明示的に統一します。VTracer比較も残します。</p>
       </section>
 
       <section class="pa-section" aria-labelledby="controls-title">
@@ -94,7 +94,8 @@
             </div>
             <p class="pa-lab-tile-meta" data-pa-lab-tile-meta>—</p>
             <p class="pa-lab-period-meta" data-pa-lab-period-meta>—</p>
-            <p class="pa-muted">自動検出がずれた場合は X / Y / 幅 / 高さを手動で調整できます。値を変えると左のタイル候補が即更新されます。</p>
+            <p class="pa-lab-period-meta" data-pa-lab-quality-meta>—</p>
+            <p class="pa-muted">v2.1 preflightは継ぎ目不一致率、推定線幅、線幅CVを表示します。自動検出がずれた場合は X / Y / 幅 / 高さを手動調整できます。</p>
           </div>
         </div>
       </section>
@@ -102,9 +103,10 @@
       <section class="pa-section" aria-labelledby="engine-title">
         <h2 class="pa-section-title" id="engine-title">3. ベクター化</h2>
         <div class="pa-lab-engine-actions">
+          <button class="pa-button pa-button-primary" type="button" data-pa-lab-run-quality>v2.1品質改善を3方式比較</button>
           <button class="pa-button" type="button" data-pa-lab-run-imagetracer>ImageTracerでタイル変換</button>
           <button class="pa-button" type="button" data-pa-lab-run-vtracer>VTracer WASMでタイル変換</button>
-          <button class="pa-button pa-button-primary" type="button" data-pa-lab-run-both>2エンジンをA/B比較</button>
+          <button class="pa-button" type="button" data-pa-lab-run-both>2エンジンをA/B比較</button>
           <button class="pa-button pa-button-soft" type="button" data-pa-lab-run-baseline>v1全体画像と比較（重い）</button>
         </div>
         <div class="pa-lab-progress-wrap" data-pa-lab-progress-wrap data-state="busy" aria-live="polite" hidden>
@@ -114,7 +116,7 @@
             <span class="pa-lab-progress-detail" data-pa-lab-progress-detail></span>
           </div>
         </div>
-        <p class="pa-muted">A/B比較は進行状況を上のバーに表示します。処理開始・ImageTracer・VTracerの読込/変換・完了/失敗が分かるようにしました。</p>
+        <p class="pa-muted">品質改善比較は「現行raw」「二値化＋wrapped padding」「中心線＋uniform stroke」の3結果を同じタイルで並べます。中心線方式は実験段階で、特に麻の葉のような線主体の幾何学模様を対象に評価します。</p>
       </section>
 
       <section class="pa-section" aria-labelledby="results-title">
@@ -130,9 +132,9 @@
       <section class="pa-section" aria-labelledby="criteria-title">
         <h2 class="pa-section-title" id="criteria-title">判定ポイント</h2>
         <div class="pa-lab-criteria">
-          <span>元PNGとの見た目</span><span>拡大時の輪郭</span><span>path数</span><span>path命令数</span><span>SVG容量</span><span>反復継ぎ目</span><span>色編集</span><span>元画像に対するタイル面積</span>
+          <span>元PNGとの見た目</span><span>境界欠け</span><span>線幅CV</span><span>拡大時の輪郭</span><span>path数</span><span>path命令数</span><span>SVG容量</span><span>反復継ぎ目</span><span>色編集</span><span>元画像に対するタイル面積</span>
         </div>
-        <p class="pa-muted">Tile SVGは切り出した1単位だけ、Pattern SVGはそのタイルをSVG &lt;pattern&gt;として反復する素材です。全カタログへ展開するかは、この3模様の品質を見てから決めます。</p>
+        <p class="pa-muted">Tile SVGは切り出した1単位だけ、Pattern SVGはそのタイルをSVG &lt;pattern&gt;として反復する素材です。中心線方式はfill輪郭ではなくstrokeを持つため、線色の編集にも対応します。</p>
       </section>
     </main>
 
@@ -145,7 +147,17 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/gh/jankovicsandras/imagetracerjs@cb0c84a309df5e75614d3b5166cdc77a56f12a98/imagetracer_v1.2.6.js"></script>
-  <script type="module" src="./js/vector-lab.js?v=20260916-2"></script>
-  <script type="module" src="./js/vector-lab-runtime-progress.js?v=20260916-1"></script>
+  <script>
+    (() => {
+      const fn = window.ImageTracer && window.ImageTracer.imagedataToSVG;
+      if (!fn) return;
+      const toHex = (_, r, g, b) => '#' + [r, g, b].map((v) => Number(v).toString(16).padStart(2, '0')).join('');
+      window.ImageTracer.imagedataToSVG = function(...args) {
+        return fn.apply(this, args).replace(/rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/gi, toHex);
+      };
+    })();
+  </script>
+  <script type="module" src="./js/vector-lab.js?v=20260916-3"></script>
+  <script type="module" src="./js/vector-lab-runtime-progress.js?v=20260916-2"></script>
 </body>
 </html>

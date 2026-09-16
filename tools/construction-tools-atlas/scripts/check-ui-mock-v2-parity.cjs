@@ -7,26 +7,55 @@ const fail = (message) => { console.error(`FAIL: ${message}`); process.exitCode 
 const ok = (condition, message) => { if (!condition) fail(message); };
 
 const css = read('ui-mock-v2-parity.css');
+const hardening = read('ui-mock-v2-hardening.css');
 const runtime = read('ui-mock-v2-parity.js');
 const bootstrap = read('detail-dictionary-fix.js');
+const appRuntime = read('app.runtime.js');
+const presentation = read('dictionary-presentation-v2.3.js');
+const deepLink = read('deep-link-v2.3.js');
+const imageRuntime = read('detail-image-hotfix.js');
+const indexHtml = read('index.html');
 const offers = JSON.parse(read('data/affiliate-offers-v2.3.json'));
 
-ok(css.includes('grid-template-columns:minmax(380px,43%) minmax(0,57%)'), 'desktop master-detail must remain ~43/57');
+ok(css.includes('grid-template-columns:minmax(380px,43%) minmax(0,57%)'), 'desktop master-detail base must remain ~43/57');
+ok(hardening.includes('grid-template-columns:minmax(0,43fr) minmax(0,57fr)'), 'desktop hardening must preserve a larger right detail pane');
+ok(hardening.includes('align-items:stretch!important'), 'desktop master-detail panes must stretch to the same grid-row height');
+ok(hardening.includes('.atlasDetailHost{width:100%!important') && hardening.includes('display:grid!important;grid-template-rows:minmax(0,1fr)!important') && hardening.includes('background:transparent!important;border:0!important'), 'detail host must be transparent layout only');
+ok(hardening.includes('#detailSheet.detailPanel--desktop{position:relative!important') && hardening.includes('height:100%!important;min-height:100%!important') && hardening.includes('border:1px solid #e2e5e9!important;border-radius:16px!important'), 'actual detail sheet must own the full-height visible panel');
+ok(hardening.includes('max-width:none!important;max-height:none!important'), 'desktop detail must not retain legacy size caps');
+ok(hardening.includes('flex:1 1 0%!important;width:100%!important;height:100%!important;min-height:100%!important'), 'detail sheet body itself must fill the visible panel height');
 ok(css.includes('@media(max-width:899px)'), 'mobile breakpoint must be below 900px');
 ok(css.includes('.ctaResultThumb'), 'result-image styling must exist');
 ok(css.includes('#detailTabs{display:none!important}'), 'legacy tabs must not be the primary detail IA');
+ok(hardening.includes('#detailSheet #tabMeta') && hardening.includes('#detailSheet #tabMeta[hidden]'), 'legacy Meta/internal-record panel must stay hidden with higher specificity than legacy tabpanel rules');
+ok(hardening.includes('#detailSheet .supportInline,#supportInlineBtn{display:none!important}'), 'donation CTA must not appear inside dictionary detail');
+ok(hardening.includes('.ctaMockHome{display:none!important}') && runtime.includes('$(".ctaMockHome", wrap)?.remove()'), 'header must not render the NicheWorks badge/link');
 ok(css.includes('.ctaAffiliateBox'), 'affiliate surface must be styled');
+ok(hardening.includes('.ctaAffiliateMount a'), 'affiliate CTA must have visible hardening styles');
+
 ok(runtime.includes('REGISTRY_URL'), 'parity runtime must use canonical image registry');
 ok(runtime.includes('OFFER_URL'), 'parity runtime must use maintained affiliate mappings');
 ok(runtime.includes('/assets/amazon-affiliate.js'), 'shared Amazon helper must be reused');
-ok(runtime.includes('offerById.get(selectedEntryId())'), 'affiliate lookup must be canonical-ID based');
+ok(runtime.includes('offerById.get(id)'), 'affiliate lookup must be selected canonical-ID based');
+ok(runtime.includes('resolveCanonicalId'), 'affiliate/detail IDs must normalize through canonical redirects');
+ok(runtime.includes('dataset.taxonomyKey'), 'taxonomy UI must preserve raw keys internally while rendering display labels');
+ok(runtime.includes('humanize(') && runtime.includes('return "";'), 'taxonomy UI must suppress unknown raw enum values instead of displaying them');
+ok(runtime.includes('removeLegacyDetailSupport'), 'parity runtime must remove legacy detail support CTA');
+ok(!runtime.includes('match(/id:'), 'selected entry resolution must not depend on visible raw Meta text');
+ok(!appRuntime.includes('`id: ${e.id}`') && !presentation.includes('`id: ${entry.id}`'), 'runtime and presentation must not render internal record metadata as bullet lists');
+ok(!presentation.includes('.match(/id:') && !deepLink.includes('.match(/id:') && !imageRuntime.includes('meta.match(/id:'), 'canonical selection must not use Meta text as application state');
 ok(bootstrap.includes('ui-mock-v2-parity.css'), 'detail bootstrap must load parity CSS');
 ok(bootstrap.includes('ui-mock-v2-parity.js'), 'detail bootstrap must load parity runtime');
+ok(bootstrap.includes('20260916-pane-height-4'), 'UI parity cache bust must be current');
 
 ok(offers.schema === 'cta-affiliate-offers-v2.3', 'affiliate offer schema must be v2.3');
 ok(offers.policy?.query_source === 'maintained_canonical_mapping_only', 'affiliate query source must be maintained canonical mapping only');
 ok(offers.policy?.free_text_forwarding === false, 'free-text forwarding must stay disabled');
-ok(Array.isArray(offers.offers) && offers.offers.length > 0, 'at least one maintained canonical offer is required');
+ok(Array.isArray(offers.offers) && offers.offers.length >= 24, 'maintained affiliate coverage must include common purchase-intent entries');
+ok(offers.offers.some((offer) => offer.entry_id === 'impact_driver'), 'Impact Driver must have an active maintained Amazon mapping');
+ok(offers.offers.some((offer) => offer.entry_id === 'q017_access_floor_panel'), 'Access Floor Panel must have an active maintained Amazon mapping');
+ok(indexHtml.includes('detail-dictionary-fix.js?v=20260916-pane-height-4'), 'detail bootstrap must be cache-busted in production HTML');
+ok(indexHtml.includes('app.runtime.js?v=20260916-structural-3') && indexHtml.includes('detail-image-hotfix.js?v=20260916-structural-3'), 'other changed runtimes must retain current cache keys');
 
 const ids = new Set();
 for (const offer of offers.offers) {

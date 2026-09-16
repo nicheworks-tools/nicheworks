@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 64,
+  "published_municipality_count": 84,
   "municipalities": [
     {
       "lgcode": "131016",
@@ -392,6 +392,126 @@
       "pref_slug": "fukuoka",
       "city_slug": "kitakyushu",
       "url": "https://nicheworks.app/tools/trashnavi/fukuoka/kitakyushu/"
+    },
+    {
+      "lgcode": "131113",
+      "pref_slug": "tokyo",
+      "city_slug": "ota",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/ota/"
+    },
+    {
+      "lgcode": "131237",
+      "pref_slug": "tokyo",
+      "city_slug": "edogawa",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/edogawa/"
+    },
+    {
+      "lgcode": "131211",
+      "pref_slug": "tokyo",
+      "city_slug": "adachi",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/adachi/"
+    },
+    {
+      "lgcode": "131199",
+      "pref_slug": "tokyo",
+      "city_slug": "itabashi",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/itabashi/"
+    },
+    {
+      "lgcode": "131083",
+      "pref_slug": "tokyo",
+      "city_slug": "koto",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/koto/"
+    },
+    {
+      "lgcode": "131091",
+      "pref_slug": "tokyo",
+      "city_slug": "shinagawa",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/shinagawa/"
+    },
+    {
+      "lgcode": "131172",
+      "pref_slug": "tokyo",
+      "city_slug": "kita",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/kita/"
+    },
+    {
+      "lgcode": "131148",
+      "pref_slug": "tokyo",
+      "city_slug": "nakano",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/nakano/"
+    },
+    {
+      "lgcode": "131164",
+      "pref_slug": "tokyo",
+      "city_slug": "toshima",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/toshima/"
+    },
+    {
+      "lgcode": "131105",
+      "pref_slug": "tokyo",
+      "city_slug": "meguro",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/meguro/"
+    },
+    {
+      "lgcode": "131059",
+      "pref_slug": "tokyo",
+      "city_slug": "bunkyo",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/bunkyo/"
+    },
+    {
+      "lgcode": "131067",
+      "pref_slug": "tokyo",
+      "city_slug": "taito",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/taito/"
+    },
+    {
+      "lgcode": "131075",
+      "pref_slug": "tokyo",
+      "city_slug": "sumida",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/sumida/"
+    },
+    {
+      "lgcode": "131181",
+      "pref_slug": "tokyo",
+      "city_slug": "arakawa",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/arakawa/"
+    },
+    {
+      "lgcode": "132012",
+      "pref_slug": "tokyo",
+      "city_slug": "hachioji",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/hachioji/"
+    },
+    {
+      "lgcode": "122041",
+      "pref_slug": "chiba",
+      "city_slug": "funabashi",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/funabashi/"
+    },
+    {
+      "lgcode": "112038",
+      "pref_slug": "saitama",
+      "city_slug": "kawaguchi",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/kawaguchi/"
+    },
+    {
+      "lgcode": "122076",
+      "pref_slug": "chiba",
+      "city_slug": "matsudo",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/matsudo/"
+    },
+    {
+      "lgcode": "122033",
+      "pref_slug": "chiba",
+      "city_slug": "ichikawa",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/ichikawa/"
+    },
+    {
+      "lgcode": "132098",
+      "pref_slug": "tokyo",
+      "city_slug": "machida",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/machida/"
     }
   ]
 }

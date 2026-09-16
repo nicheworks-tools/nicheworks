@@ -236,9 +236,10 @@
   function selectedId() {
     const sheet = byDomId("detailSheet");
     if (!sheet || sheet.hidden) return "";
-    const meta = byDomId("tabMeta");
-    const found = (meta?.textContent || "").match(/id:\s*([^\n]+)/);
-    return found ? found[1].trim() : "";
+    const selected = document.querySelector("#resultList .row--selected[data-entry-id]");
+    if (selected?.dataset.entryId) return selected.dataset.entryId;
+    try { return new URL(window.location.href).searchParams.get("entry") || ""; }
+    catch (_) { return ""; }
   }
 
   function appendLanguageCopy(parent, langCode, content, isList) {
@@ -379,30 +380,7 @@
 
     const meta = byDomId("tabMeta");
     clear(meta);
-    if (meta) {
-      const section = document.createElement("section");
-      section.className = "dictionaryBlock dictionaryBlock--record";
-      const heading = document.createElement("h3");
-      heading.className = "dictionaryBlock__label";
-      heading.textContent = current === "ja" ? "分類・管理情報" : "Classification / record";
-      section.appendChild(heading);
-      const list = document.createElement("ul");
-      list.className = "dictionaryBlock__list";
-      [
-        `id: ${entry.id}`,
-        `type: ${entry.type}`,
-        `categories: ${entry.categories.join(", ")}`,
-        `tasks: ${entry.tasks.join(", ")}`,
-        `region: ${entry.region.join(", ")}`,
-        `quality_batch: ${entry.meta?.quality_batch || ""}`
-      ].forEach((value) => {
-        const li = document.createElement("li");
-        li.textContent = value;
-        list.appendChild(li);
-      });
-      section.appendChild(list);
-      meta.appendChild(section);
-    }
+    if (meta) meta.hidden = true;
   }
 
   function hideLegacyTopMeta() {

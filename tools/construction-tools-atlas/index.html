@@ -144,7 +144,6 @@
       <div id="tabExamples" class="tabpanel" hidden></div>
       <div id="tabAliases" class="tabpanel" hidden></div>
       <div id="tabMeta" class="tabpanel" hidden></div>
-      <div class="supportInline"><button id="supportInlineBtn" class="pillbtn" type="button">支援する</button></div>
     </div>
   </aside>
 
@@ -182,7 +181,7 @@
 
   <aside id="howtoSheet" class="sheet sheet--bottom" hidden>
     <div class="sheet__top"><button id="howtoClose" class="iconbtn" type="button">×</button><h2 class="sheet__title" id="howtoSheetTitle">使い方</h2><span aria-hidden="true"></span></div>
-    <div class="sheet__body sheet__body--compact"><ul id="howtoList" class="howtoList"><li>検索欄に工具名・作業名・別名・英語名を入力します。</li><li>結果の用語をタップすると、意味・例・別名・分類を確認できます。</li><li>★を押すとお気に入りに保存できます。</li><li>メニュー内の「お気に入りのみ表示」で保存済み用語だけに絞れます。</li><li>JA / EN で表示言語を切り替えられます。</li><li>カテゴリ・作業フィルタで絞り込めます。</li></ul></div>
+    <div class="sheet__body sheet__body--compact"><ul id="howtoList" class="howtoList"><li>検索欄に工具名・作業名・別名・英語名を入力します。</li><li>結果の用語をタップすると、概要・用途・例・別名・関連情報を縦に確認できます。</li><li>★を押すとお気に入りに保存できます。</li><li>メニュー内の「お気に入りのみ表示」で保存済み用語だけに絞れます。</li><li>JA / EN で表示言語を切り替えられます。</li><li>カテゴリ・作業フィルタで絞り込めます。</li></ul></div>
   </aside>
 
   <aside id="filterSheet" class="sheet" hidden>
@@ -198,9 +197,9 @@
   <footer><p id="footerDisclaimer">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p></footer>
 
   <script src="./data/quality-loader.js?v=20260513-dedupe-1"></script>
-  <script src="./app.runtime.js?v=20260513-runtime-1"></script>
-  <script src="./detail-dictionary-fix.js?v=20260510-detail-5"></script>
-  <script src="./detail-image-hotfix.js?v=20260914-image-wave1-1"></script>
+  <script src="./app.runtime.js?v=20260916-structural-3"></script>
+  <script src="./detail-dictionary-fix.js?v=20260916-pane-height-4"></script>
+  <script src="./detail-image-hotfix.js?v=20260916-structural-3"></script>
   <script>
     (() => {
       const closeMenu = () => document.getElementById('menuClose')?.click();

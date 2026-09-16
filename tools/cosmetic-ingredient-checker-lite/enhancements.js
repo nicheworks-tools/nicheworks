@@ -15,12 +15,14 @@
 
     let activeFilter = 'all';
     let activeCategory = 'all';
+    const lang = () => document.documentElement.lang === 'en' ? 'en' : 'ja';
+    const t = (ja, en) => lang() === 'en' ? en : ja;
 
     let coverageValue = document.getElementById('dictionaryCoveragePercent');
     if (!coverageValue) {
       const card = document.createElement('div');
       card.className = 'metric-card metric-coverage';
-      card.innerHTML = '<span class="metric-label">辞書認識率</span><strong id="dictionaryCoveragePercent" class="metric-value">0%</strong>';
+      card.innerHTML = '<span id="dictionaryCoverageLabel" class="metric-label"></span><strong id="dictionaryCoveragePercent" class="metric-value">0%</strong>';
       metricGrid.appendChild(card);
       coverageValue = card.querySelector('#dictionaryCoveragePercent');
     }
@@ -40,7 +42,7 @@
       unknownPanel.id = 'liteUnknownPanel';
       unknownPanel.className = 'lite-unknown-panel';
       unknownPanel.hidden = true;
-      unknownPanel.innerHTML = '<p class="summary-title">未分類の成分</p><div id="liteUnknownList" class="lite-unknown-list"></div><p class="coverage-note">未分類は危険判定ではありません。辞書未登録や表記揺れの可能性があります。</p>';
+      unknownPanel.innerHTML = '<p id="liteUnknownTitle" class="summary-title"></p><div id="liteUnknownList" class="lite-unknown-list"></div><p id="liteUnknownNote" class="coverage-note"></p>';
       (categoryBlock || summaryBox).insertAdjacentElement('afterend', unknownPanel);
     }
 
@@ -54,21 +56,21 @@
       filterBar.hidden = true;
       filterBar.innerHTML = `
         <div class="lite-filter-row">
-          <span class="lite-filter-label">状態</span>
-          <div class="lite-filter-scroll" role="group" aria-label="状態で結果を絞り込む">
-            <button type="button" class="lite-filter-btn is-active" data-lite-filter="all">すべて</button>
-            <button type="button" class="lite-filter-btn" data-lite-filter="unknown">未分類</button>
-            <button type="button" class="lite-filter-btn" data-lite-filter="review">確認候補</button>
-            <button type="button" class="lite-filter-btn" data-lite-filter="matched">辞書一致</button>
+          <span id="liteStateFilterLabel" class="lite-filter-label"></span>
+          <div class="lite-filter-scroll" role="group" aria-label="Result status filter">
+            <button type="button" class="lite-filter-btn is-active" data-lite-filter="all"></button>
+            <button type="button" class="lite-filter-btn" data-lite-filter="unknown"></button>
+            <button type="button" class="lite-filter-btn" data-lite-filter="review"></button>
+            <button type="button" class="lite-filter-btn" data-lite-filter="matched"></button>
           </div>
         </div>
         <div class="lite-filter-row" id="liteCategoryFilterRow" hidden>
-          <span class="lite-filter-label">分類</span>
-          <div id="liteCategoryFilter" class="lite-filter-scroll" role="group" aria-label="分類で結果を絞り込む"></div>
+          <span id="liteCategoryFilterLabel" class="lite-filter-label"></span>
+          <div id="liteCategoryFilter" class="lite-filter-scroll" role="group" aria-label="Category filter"></div>
         </div>
         <div class="lite-copy-actions">
-          <button type="button" id="liteCopyVisibleBtn" class="lite-copy-unknown-btn">表示中をコピー</button>
-          <button type="button" id="liteCopyUnknownBtn" class="lite-copy-unknown-btn">未分類をコピー</button>
+          <button type="button" id="liteCopyVisibleBtn" class="lite-copy-unknown-btn"></button>
+          <button type="button" id="liteCopyUnknownBtn" class="lite-copy-unknown-btn"></button>
         </div>
         <span id="liteFilterStatus" class="lite-filter-status" aria-live="polite"></span>
       `;
@@ -82,16 +84,15 @@
     const categoryFilterRow = document.getElementById('liteCategoryFilterRow');
 
     function rowKind(row) {
-      const cells = row.querySelectorAll('td');
-      const statusText = cells[1]?.textContent || '';
-      if (statusText.includes('未分類')) return 'unknown';
-      if (statusText.includes('確認候補')) return 'review';
+      const kind = row.dataset.resultKind || '';
+      if (kind === 'unknown') return 'unknown';
+      if (kind === 'review') return 'review';
       return 'matched';
     }
 
     function rowCategoryMatches(row) {
       if (activeCategory === 'all') return true;
-      return row.textContent.includes(`分類: ${activeCategory}`);
+      return (row.dataset.category || '') === activeCategory;
     }
 
     function currentCategories() {
@@ -100,20 +101,42 @@
         .filter(Boolean);
     }
 
+    function syncStaticLabels() {
+      const coverageLabel = document.getElementById('dictionaryCoverageLabel');
+      const unknownTitle = document.getElementById('liteUnknownTitle');
+      const unknownNote = document.getElementById('liteUnknownNote');
+      const stateLabel = document.getElementById('liteStateFilterLabel');
+      const categoryLabel = document.getElementById('liteCategoryFilterLabel');
+      if (coverageLabel) coverageLabel.textContent = t('辞書認識率', 'Dictionary coverage');
+      if (unknownTitle) unknownTitle.textContent = t('未分類の成分', 'Unclassified ingredients');
+      if (unknownNote) unknownNote.textContent = t('未分類は危険判定ではありません。辞書未登録や表記揺れの可能性があります。', 'Unclassified does not mean dangerous. The term may be absent from the dictionary or use a spelling variation.');
+      if (stateLabel) stateLabel.textContent = t('状態', 'Status');
+      if (categoryLabel) categoryLabel.textContent = t('分類', 'Category');
+      const labels = {
+        all: t('すべて', 'All'),
+        unknown: t('未分類', 'Unclassified'),
+        review: t('確認候補', 'Review'),
+        matched: t('辞書一致', 'Matched')
+      };
+      filterBar.querySelectorAll('[data-lite-filter]').forEach((button) => {
+        button.textContent = labels[button.dataset.liteFilter] || button.dataset.liteFilter;
+      });
+      if (copyVisibleBtn) copyVisibleBtn.textContent = t('表示中をコピー', 'Copy visible');
+      if (copyUnknownBtn) copyUnknownBtn.textContent = t('未分類をコピー', 'Copy unclassified');
+    }
+
     function syncCategoryFilters() {
       if (!categoryFilter || !categoryFilterRow) return;
       const categories = currentCategories();
       if (activeCategory !== 'all' && !categories.includes(activeCategory)) activeCategory = 'all';
       categoryFilterRow.hidden = categories.length === 0;
       categoryFilter.innerHTML = '';
-
-      const values = ['all', ...categories];
-      for (const value of values) {
+      for (const value of ['all', ...categories]) {
         const button = document.createElement('button');
         button.type = 'button';
         button.className = 'lite-filter-btn';
         button.dataset.liteCategory = value;
-        button.textContent = value === 'all' ? 'すべて' : value;
+        button.textContent = value === 'all' ? t('すべて', 'All') : value;
         const active = value === activeCategory;
         button.classList.toggle('is-active', active);
         button.setAttribute('aria-pressed', active ? 'true' : 'false');
@@ -136,7 +159,9 @@
         if (show) visible += 1;
       }
       filterBar.hidden = rows.length === 0;
-      if (filterStatus) filterStatus.textContent = rows.length ? `${visible} / ${rows.length} 件を表示` : '';
+      if (filterStatus) filterStatus.textContent = rows.length
+        ? t(`${visible} / ${rows.length} 件を表示`, `Showing ${visible} / ${rows.length}`)
+        : '';
       filterBar.querySelectorAll('[data-lite-filter]').forEach((button) => {
         const active = button.dataset.liteFilter === activeFilter;
         button.classList.toggle('is-active', active);
@@ -151,40 +176,39 @@
       });
     });
 
-    async function copyNames(rows, emptyMessage, successPrefix) {
-      const names = rows
-        .map((row) => row.querySelector('td')?.textContent?.trim())
-        .filter(Boolean);
+    async function copyNames(rows, emptyJa, emptyEn, successJa, successEn) {
+      const names = rows.map((row) => row.querySelector('td')?.textContent?.trim()).filter(Boolean);
       if (!names.length) {
-        if (filterStatus) filterStatus.textContent = emptyMessage;
+        if (filterStatus) filterStatus.textContent = t(emptyJa, emptyEn);
         return;
       }
       try {
         await navigator.clipboard.writeText(names.join('\n'));
-        if (filterStatus) filterStatus.textContent = `${successPrefix} ${names.length} 件をコピーしました。`;
-      } catch (error) {
-        if (filterStatus) filterStatus.textContent = 'コピーに失敗しました。';
+        if (filterStatus) filterStatus.textContent = t(`${successJa} ${names.length} 件をコピーしました。`, `${successEn}: ${names.length} copied.`);
+      } catch {
+        if (filterStatus) filterStatus.textContent = t('コピーに失敗しました。', 'Copy failed.');
       }
     }
 
     copyVisibleBtn?.addEventListener('click', () => {
       const rows = [...tableBody.querySelectorAll('tr')].filter((row) => !row.hidden);
-      return copyNames(rows, '表示中の成分はありません。', '表示中');
+      return copyNames(rows, '表示中の成分はありません。', 'No visible ingredients.', '表示中', 'Visible');
     });
 
     copyUnknownBtn?.addEventListener('click', () => {
       const rows = [...tableBody.querySelectorAll('tr')].filter((row) => rowKind(row) === 'unknown');
-      return copyNames(rows, '未分類の成分はありません。', '未分類');
+      return copyNames(rows, '未分類の成分はありません。', 'No unclassified ingredients.', '未分類', 'Unclassified');
     });
 
     function update() {
+      syncStaticLabels();
       const total = Number(parsedCount.textContent || 0);
       const matched = Number(matchedCount.textContent || 0);
       const pct = total > 0 ? Math.round((matched / total) * 100) : 0;
       coverageValue.textContent = `${pct}%`;
       coverageNote.textContent = total > 0
-        ? `入力 ${total} 成分のうち ${matched} 成分がローカル辞書に一致しました。`
-        : '成分を確認すると辞書認識率が表示されます。';
+        ? t(`入力 ${total} 成分のうち ${matched} 成分がローカル辞書に一致しました。`, `${matched} of ${total} input ingredients matched the local dictionary.`)
+        : t('成分を確認すると辞書認識率が表示されます。', 'Dictionary coverage appears after you check ingredients.');
 
       if (unknownList) {
         unknownList.innerHTML = '';
@@ -194,7 +218,6 @@
           const name = row.querySelector('td')?.textContent?.trim();
           if (name) names.push(name);
         }
-
         unknownPanel.hidden = !names.length;
         for (const name of names.slice(0, 12)) {
           const chip = document.createElement('span');
@@ -205,7 +228,7 @@
         if (names.length > 12) {
           const more = document.createElement('span');
           more.className = 'lite-unknown-more';
-          more.textContent = `ほか ${names.length - 12} 件`;
+          more.textContent = t(`ほか ${names.length - 12} 件`, `${names.length - 12} more`);
           unknownList.appendChild(more);
         }
       }
@@ -219,6 +242,7 @@
     observer.observe(matchedCount, { childList: true, characterData: true, subtree: true });
     observer.observe(unknownCount, { childList: true, characterData: true, subtree: true });
     observer.observe(tableBody, { childList: true, subtree: true });
+    document.addEventListener('nw-lite-languagechange', update);
     update();
   }
 

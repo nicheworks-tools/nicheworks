@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Cosmetic Ingredient Checker Lite | Guide | NicheWorks</title>
-  <meta name="description" content="Paste an INCI/JP ingredient list and check quick flags (fragrance, preservatives, alcohols). Lightweight, browser-only, no storage.">
+  <meta name="description" content="How to use Cosmetic Ingredient Checker Lite to paste a full ingredient list and organize dictionary matches, review items, and unclassified entries in your browser.">
   <link rel="canonical" href="https://nicheworks.app/tools/cosmetic-ingredient-checker-lite/howto/en/">
 
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/cosmetic-ingredient-checker-lite/howto/en/" />
@@ -50,11 +50,11 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
   <meta property="og:title" content="Cosmetic Ingredient Checker Lite | Guide | NicheWorks">
-  <meta property="og:description" content="Paste an INCI/JP ingredient list and check quick flags (fragrance, preservatives, alcohols). Lightweight, browser-only, no storage.">
+  <meta property="og:description" content="Paste a full cosmetic ingredient list and organize dictionary matches, review items, and unclassified entries with Cosmetic Ingredient Checker Lite.">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cosmetic Ingredient Checker Lite | Guide | NicheWorks">
-  <meta name="twitter:description" content="Paste an INCI/JP ingredient list and check quick flags (fragrance, preservatives, alcohols). Lightweight, browser-only, no storage.">
+  <meta name="twitter:description" content="Paste a full cosmetic ingredient list and organize dictionary matches, review items, and unclassified entries with Cosmetic Ingredient Checker Lite.">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <script type="application/ld+json">
   {
@@ -64,7 +64,7 @@
     "url": "https://nicheworks.app/tools/cosmetic-ingredient-checker-lite/howto/en/",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
-    "description": "Paste an INCI/JP ingredient list and check quick flags (fragrance, preservatives, alcohols). Lightweight, browser-only, no storage.",
+    "description": "Paste a full cosmetic ingredient list and organize dictionary matches, review items, and unclassified entries with Cosmetic Ingredient Checker Lite.",
     "inLanguage": [
       "ja",
       "en"
@@ -85,7 +85,7 @@
       <a href="../../">Tool</a>
     </div>
     <h1 style="margin:10px 0 6px">Cosmetic Ingredient Checker Lite: Guide</h1>
-    <p class="muted" style="margin:0">Paste an ingredient list and review quick flags and short notes (no storage).</p>
+    <p class="muted" style="margin:0">Paste a full ingredient list and quickly organize the dictionary-match results.</p>
   </header>
 
   <main class="nw-main">
@@ -94,9 +94,10 @@
     <section class="card">
       <h2 style="margin:0 0 8px">What it does</h2>
       <ul>
-        <li>Splits an INCI/JP ingredient list into individual items</li>
-        <li>Shows quick flags for fragrance, preservatives, alcohols, and acids</li>
-        <li>Runs locally in your browser, no storage</li>
+        <li>Splits a mixed INCI/Japanese ingredient list while preserving input order</li>
+        <li>Matches names against the local dictionary and groups them as Matched, Review, or Unclassified</li>
+        <li>Filters the current result by status or main category and lets you copy visible or unclassified ingredient names</li>
+        <li>Switches the same analysis view between JP and EN</li>
       </ul>
       <div class="btns">
         <a class="btn primary" href="../../">Open the tool</a>
@@ -107,32 +108,52 @@
     <section class="card">
       <h2 style="margin:0 0 8px">How to use</h2>
       <ol>
-        <li>Copy the ingredient list from the package or official site</li>
-        <li>Paste it into the tool and click <code>Check</code></li>
-        <li>Review flags and short notes for the ingredients you care about</li>
+        <li>Copy the full ingredient list from the package or official product page</li>
+        <li>Paste it into the tool and click <code>Check ingredients</code></li>
+        <li>Review the overall Matched, Review, and Unclassified counts first</li>
+        <li>Use the status/category filters when you want to inspect a smaller subset</li>
       </ol>
-      <p class="muted" style="margin:0">Tip: ingredients listed earlier are often present in higher amounts.</p>
+      <p class="muted" style="margin:0">Use INCI FastScan instead if you want to start from a product-label photo or OCR.</p>
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">Notes (limits)</h2>
+      <h2 style="margin:0 0 8px">What the statuses mean</h2>
       <ul>
-        <li>This is not medical advice or a diagnosis tool.</li>
-        <li>“Good/bad” depends on individual skin; patch testing is recommended if unsure.</li>
-        <li>Variant names and synonyms may result in missing flags for some ingredients.</li>
+        <li><strong>Matched:</strong> the entered name matched a maintained INCI name, Japanese name, or registered alias in the local dictionary.</li>
+        <li><strong>Review:</strong> a cue for additional checking. It is not a danger rating.</li>
+        <li><strong>Unclassified:</strong> the current dictionary could not classify the entry. It does not mean the ingredient is unsafe.</li>
       </ul>
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">Common checks</h2>
+      <h2 style="margin:0 0 8px">Limits</h2>
       <ul>
-        <li>If you dislike fragrance, look for the fragrance/allergen flag</li>
-        <li>If you dry out easily, compare alcohol flags between products</li>
-        <li>Sensitive skin may want to note acid-based actives</li>
+        <li>The tool cannot determine concentration, the complete formulation, individual suitability, allergies, pregnancy suitability, drug interactions, or regulatory status from the ingredient list alone.</li>
+        <li>It does not provide medical/dermatological diagnosis or certify the safety of a product.</li>
+        <li>Known ingredients can still appear as Unclassified when the spelling or name is not represented in the maintained dictionary.</li>
+        <li>Result filters change only what is visible; they do not alter the underlying analysis.</li>
       </ul>
-      <p class="muted" style="margin:8px 0 0">
-        Keywords: cosmetic ingredients, ingredient checker, INCI list, sensitive skin ingredients
-      </p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">Data and storage</h2>
+      <ul>
+        <li>Ingredient parsing, matching, and filtering run in your browser.</li>
+        <li>The tool does not provide saved ingredient-history or saved-result features.</li>
+        <li>The JP/EN display preference may be stored in browser local storage when available.</li>
+        <li>The maintained ingredient dictionary is loaded from static files on the NicheWorks origin.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">Lite vs FastScan</h2>
+      <ul>
+        <li><strong>Lite:</strong> for quickly pasting and organizing a full ingredient list</li>
+        <li><strong>FastScan:</strong> for starting from a product-label photo/OCR or following a more detailed review workflow</li>
+      </ul>
+      <div class="btns">
+        <a class="btn" href="/tools/inci-fastscan/">Open INCI FastScan</a>
+      </div>
     </section>
 
     <div class="ad-slot ad-bottom">Ad slot (stable content)</div>

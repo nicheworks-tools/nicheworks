@@ -40,8 +40,9 @@
   }
 
   function selectedId() {
-    const match = ($("#tabMeta")?.textContent || "").match(/id:\s*([^\n]+)/);
-    return match ? match[1].trim() : "";
+    const selected = $("#resultList .row--selected[data-entry-id]");
+    if (selected?.dataset.entryId) return selected.dataset.entryId;
+    return currentId || requestedEntryId();
   }
 
   function sleep(ms = 0) {
