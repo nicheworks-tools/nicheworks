@@ -7849,8 +7849,8 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/shm15/spec.html",
