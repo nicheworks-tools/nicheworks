@@ -122,5 +122,15 @@
   {"lgcode":"112194","pref_slug":"saitama","city_slug":"ageo","publish":true},
   {"lgcode":"282146","pref_slug":"hyogo","city_slug":"takarazuka","publish":true},
   {"lgcode":"272159","pref_slug":"osaka","city_slug":"neyagawa","publish":true},
-  {"lgcode":"282073","pref_slug":"hyogo","city_slug":"itami","publish":true}
+  {"lgcode":"282073","pref_slug":"hyogo","city_slug":"itami","publish":true},
+  {"lgcode":"112020","pref_slug":"saitama","city_slug":"kumagaya","publish":true},
+  {"lgcode":"112305","pref_slug":"saitama","city_slug":"niiza","publish":true},
+  {"lgcode":"122203","pref_slug":"chiba","city_slug":"nagareyama","publish":true},
+  {"lgcode":"122211","pref_slug":"chiba","city_slug":"yachiyo","publish":true},
+  {"lgcode":"122165","pref_slug":"chiba","city_slug":"narashino","publish":true},
+  {"lgcode":"132292","pref_slug":"tokyo","city_slug":"nishitokyo","publish":true},
+  {"lgcode":"132110","pref_slug":"tokyo","city_slug":"kodaira","publish":true},
+  {"lgcode":"132021","pref_slug":"tokyo","city_slug":"tachikawa","publish":true},
+  {"lgcode":"142123","pref_slug":"kanagawa","city_slug":"atsugi","publish":true},
+  {"lgcode":"142069","pref_slug":"kanagawa","city_slug":"odawara","publish":true}
 ]

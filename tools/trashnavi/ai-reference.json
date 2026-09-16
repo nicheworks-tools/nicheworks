@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 124,
+  "published_municipality_count": 134,
   "municipalities": [
     {
       "lgcode": "131016",
@@ -752,6 +752,66 @@
       "pref_slug": "hyogo",
       "city_slug": "itami",
       "url": "https://nicheworks.app/tools/trashnavi/hyogo/itami/"
+    },
+    {
+      "lgcode": "112020",
+      "pref_slug": "saitama",
+      "city_slug": "kumagaya",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/kumagaya/"
+    },
+    {
+      "lgcode": "112305",
+      "pref_slug": "saitama",
+      "city_slug": "niiza",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/niiza/"
+    },
+    {
+      "lgcode": "122203",
+      "pref_slug": "chiba",
+      "city_slug": "nagareyama",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/nagareyama/"
+    },
+    {
+      "lgcode": "122211",
+      "pref_slug": "chiba",
+      "city_slug": "yachiyo",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/yachiyo/"
+    },
+    {
+      "lgcode": "122165",
+      "pref_slug": "chiba",
+      "city_slug": "narashino",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/narashino/"
+    },
+    {
+      "lgcode": "132292",
+      "pref_slug": "tokyo",
+      "city_slug": "nishitokyo",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/nishitokyo/"
+    },
+    {
+      "lgcode": "132110",
+      "pref_slug": "tokyo",
+      "city_slug": "kodaira",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/kodaira/"
+    },
+    {
+      "lgcode": "132021",
+      "pref_slug": "tokyo",
+      "city_slug": "tachikawa",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/tachikawa/"
+    },
+    {
+      "lgcode": "142123",
+      "pref_slug": "kanagawa",
+      "city_slug": "atsugi",
+      "url": "https://nicheworks.app/tools/trashnavi/kanagawa/atsugi/"
+    },
+    {
+      "lgcode": "142069",
+      "pref_slug": "kanagawa",
+      "city_slug": "odawara",
+      "url": "https://nicheworks.app/tools/trashnavi/kanagawa/odawara/"
     }
   ]
 }
