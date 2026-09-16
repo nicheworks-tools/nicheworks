@@ -1,252 +1,26 @@
 {
   "schema": "pattern-dictionary-canonical-100-v1",
-  "version": "2026-09-15",
+  "version": "2026-09-16",
   "base": {
     "source": "data/patterns.json",
-    "published_count": 20,
-    "rule": "The existing published canonical 20 remain unchanged. This file freezes ordinals 21-100 only."
+    "published_count": 40,
+    "rule": "The published canonical 40 remain in data/patterns.json. This file now tracks only remaining ordinals 41-100."
   },
   "policy": {
     "target_total": 100,
-    "expansion_count": 80,
+    "expansion_count": 60,
     "wave_size": 20,
     "waves": [
-      2,
       3,
       4,
       5
     ],
     "name_freeze": "IDs and JA/EN display names are frozen for production unless source verification proves a factual error.",
     "scope_rule": "Broad techniques, textile traditions, styles, weave/effect terms, and material-inspired visual families remain qualified rather than being presented as one universal fixed motif.",
-    "publication_rule": "Planned entries do not enter runtime patterns.json until their production wave completes source verification, bilingual content, reference image review, search regression, SEO, and QA.",
+    "publication_rule": "Remaining planned entries do not enter runtime patterns.json until their production wave completes source verification, bilingual content, reference image review, search regression, SEO, commerce mapping, and QA.",
     "pattern_atlas": "out-of-scope"
   },
   "entries": [
-    {
-      "ordinal": 21,
-      "wave": 2,
-      "id": "buffalo-check",
-      "names": {
-        "ja": "バッファローチェック",
-        "en": "Buffalo Check"
-      },
-      "family": "check",
-      "term_scope": "named-pattern"
-    },
-    {
-      "ordinal": 22,
-      "wave": 2,
-      "id": "shepherd-check",
-      "names": {
-        "ja": "シェパードチェック",
-        "en": "Shepherd's Check"
-      },
-      "family": "check",
-      "term_scope": "named-pattern"
-    },
-    {
-      "ordinal": 23,
-      "wave": 2,
-      "id": "windowpane-check",
-      "names": {
-        "ja": "ウィンドウペーンチェック",
-        "en": "Windowpane Check"
-      },
-      "family": "check",
-      "term_scope": "named-pattern"
-    },
-    {
-      "ordinal": 24,
-      "wave": 2,
-      "id": "madras-check",
-      "names": {
-        "ja": "マドラスチェック",
-        "en": "Madras Check"
-      },
-      "family": "check",
-      "term_scope": "named-pattern"
-    },
-    {
-      "ordinal": 25,
-      "wave": 2,
-      "id": "tattersall",
-      "names": {
-        "ja": "タッターソール",
-        "en": "Tattersall"
-      },
-      "family": "check",
-      "term_scope": "named-pattern"
-    },
-    {
-      "ordinal": 26,
-      "wave": 2,
-      "id": "gun-club-check",
-      "names": {
-        "ja": "ガンクラブチェック",
-        "en": "Gun Club Check"
-      },
-      "family": "check",
-      "term_scope": "named-pattern"
-    },
-    {
-      "ordinal": 27,
-      "wave": 2,
-      "id": "prince-of-wales-check",
-      "names": {
-        "ja": "プリンス・オブ・ウェールズ・チェック",
-        "en": "Prince of Wales Check"
-      },
-      "family": "check",
-      "term_scope": "qualified-variant",
-      "scope_note": "Closely related to Glen Check; production content must explain the overcheck distinction and modern interchangeable usage."
-    },
-    {
-      "ordinal": 28,
-      "wave": 2,
-      "id": "pinstripe",
-      "names": {
-        "ja": "ピンストライプ",
-        "en": "Pinstripe"
-      },
-      "family": "stripe",
-      "term_scope": "named-pattern"
-    },
-    {
-      "ordinal": 29,
-      "wave": 2,
-      "id": "chalk-stripe",
-      "names": {
-        "ja": "チョークストライプ",
-        "en": "Chalk Stripe"
-      },
-      "family": "stripe",
-      "term_scope": "named-pattern"
-    },
-    {
-      "ordinal": 30,
-      "wave": 2,
-      "id": "bengal-stripe",
-      "names": {
-        "ja": "ベンガルストライプ",
-        "en": "Bengal Stripe"
-      },
-      "family": "stripe",
-      "term_scope": "named-pattern"
-    },
-    {
-      "ordinal": 31,
-      "wave": 2,
-      "id": "koushi",
-      "names": {
-        "ja": "格子",
-        "en": "Koushi"
-      },
-      "family": "japanese",
-      "term_scope": "generic-pattern",
-      "scope_note": "A broad Japanese lattice/check family; production content must distinguish it from the alternating filled squares of Ichimatsu."
-    },
-    {
-      "ordinal": 32,
-      "wave": 2,
-      "id": "awning-stripe",
-      "names": {
-        "ja": "オーニングストライプ",
-        "en": "Awning Stripe"
-      },
-      "family": "stripe",
-      "term_scope": "named-pattern"
-    },
-    {
-      "ordinal": 33,
-      "wave": 2,
-      "id": "regimental-stripe",
-      "names": {
-        "ja": "レジメンタルストライプ",
-        "en": "Regimental Stripe"
-      },
-      "family": "stripe",
-      "term_scope": "named-pattern"
-    },
-    {
-      "ordinal": 34,
-      "wave": 2,
-      "id": "breton-stripe",
-      "names": {
-        "ja": "ブレトンストライプ",
-        "en": "Breton Stripe"
-      },
-      "family": "stripe",
-      "term_scope": "qualified-style",
-      "scope_note": "A clothing/style-associated stripe convention rather than one universal repeat specification."
-    },
-    {
-      "ordinal": 35,
-      "wave": 2,
-      "id": "swiss-dot",
-      "names": {
-        "ja": "スイスドット",
-        "en": "Swiss Dot"
-      },
-      "family": "dot",
-      "term_scope": "qualified-textile",
-      "scope_note": "Historically a dotted textile treatment/fabric category; visual references must not reduce it to generic printed polka dots."
-    },
-    {
-      "ordinal": 36,
-      "wave": 2,
-      "id": "herringbone",
-      "names": {
-        "ja": "ヘリンボーン",
-        "en": "Herringbone"
-      },
-      "family": "geometric",
-      "term_scope": "qualified-weave-visual",
-      "scope_note": "A weave/arrangement with a characteristic broken-V visual; distinguish from printed chevron."
-    },
-    {
-      "ordinal": 37,
-      "wave": 2,
-      "id": "zigzag",
-      "names": {
-        "ja": "ジグザグ",
-        "en": "Zigzag"
-      },
-      "family": "geometric",
-      "term_scope": "generic-pattern"
-    },
-    {
-      "ordinal": 38,
-      "wave": 2,
-      "id": "diamond",
-      "names": {
-        "ja": "ダイヤモンド柄",
-        "en": "Diamond Pattern"
-      },
-      "family": "geometric",
-      "term_scope": "generic-pattern"
-    },
-    {
-      "ordinal": 39,
-      "wave": 2,
-      "id": "harlequin",
-      "names": {
-        "ja": "ハーレクイン",
-        "en": "Harlequin"
-      },
-      "family": "geometric",
-      "term_scope": "named-pattern"
-    },
-    {
-      "ordinal": 40,
-      "wave": 2,
-      "id": "checkerboard",
-      "names": {
-        "ja": "チェッカーボード",
-        "en": "Checkerboard"
-      },
-      "family": "geometric",
-      "term_scope": "generic-pattern"
-    },
     {
       "ordinal": 41,
       "wave": 3,

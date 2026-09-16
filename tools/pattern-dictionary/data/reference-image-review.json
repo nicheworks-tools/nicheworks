@@ -1,30 +1,211 @@
 {
   "schema_version": 1,
-  "updated": "2026-09-14",
+  "updated": "2026-09-16",
   "review_type": "visual-structural-recognition-review",
-  "scope": "canonical-20",
+  "scope": "canonical-40",
   "decision_rule": "Pass only when the image is recognizable at browse-card scale, materially distinguishes the entry from its common confusions, and does not overclaim a unique canonical motif for broad terms.",
   "verification_boundary": "A structural-review pass advances an image to reviewed, not verified. Source/content verification and final browser QA remain separate gates.",
   "records": [
-    {"pattern_id":"houndstooth","decision":"pass","note":"Broken/jagged check reading is distinct from flat checks and chevrons."},
-    {"pattern_id":"gingham","decision":"pass","note":"Regular equal orthogonal checks with crossing color are immediately recognizable."},
-    {"pattern_id":"tartan","decision":"pass","note":"Repeated multicolor sett is recognizable; representation does not claim a registered tartan identity."},
-    {"pattern_id":"glen-check","decision":"pass","note":"Regenerated after review to emphasize fine checks, unequal grouped stripes and larger overcheck structure without houndstooth-like jagged diagonals."},
-    {"pattern_id":"argyle","decision":"pass","note":"Staggered lozenges plus diagonal lattice read clearly at thumbnail scale."},
-    {"pattern_id":"chevron","decision":"pass","note":"Repeated V bands are structurally unambiguous."},
-    {"pattern_id":"polka-dot","decision":"pass","note":"Equal round dots on a regular field are structurally unambiguous."},
-    {"pattern_id":"moroccan-trellis","decision":"pass","note":"Regenerated after review to use an interlocking pointed lantern/quatrefoil cue; retained as a qualified contemporary market label."},
-    {"pattern_id":"seigaiha","decision":"pass","note":"Staggered concentric semicircle waves are distinct from Shippo and generic scales."},
-    {"pattern_id":"asanoha","decision":"pass","note":"Regenerated after review from a subdivided triangular/hexagonal lattice so the six-rayed hemp-leaf star reads distinctly from Kikko."},
-    {"pattern_id":"shippo","decision":"pass","note":"Equal interlocking circles clearly express the linked-circle structure."},
-    {"pattern_id":"ichimatsu","decision":"pass","note":"Alternating equal squares are structurally unambiguous; black/white remains editorial identification color only."},
-    {"pattern_id":"kikko","decision":"pass","note":"Regular hexagonal tortoiseshell lattice is distinct from Asanoha after the latter was regenerated."},
-    {"pattern_id":"karakusa","decision":"pass","note":"Regenerated after review to strengthen continuous scrolling-vine and attached-curl recognition."},
-    {"pattern_id":"damask","decision":"pass","note":"Regenerated after review to strengthen a large bilateral foliate medallion cue while remaining explicitly representative rather than a definition of damask weave."},
-    {"pattern_id":"arabesque","decision":"pass","note":"Regenerated after review to strengthen continuous multidirectional vegetal scrolls and separate it visually from the Karakusa cue."},
-    {"pattern_id":"paisley","decision":"pass","note":"Curved boteh/teardrop units with hooked tips remain distinct from generic leaves and Karakusa."},
-    {"pattern_id":"leopard-print","decision":"pass","note":"Irregular rosettes plus solid spots provide a clear natural-marking cue."},
-    {"pattern_id":"ikat","decision":"pass","note":"Feathered/misregistered edges communicate the resist-dyed-yarn visual cue; manifest keeps the technique-category qualification."},
-    {"pattern_id":"kilim","decision":"pass","note":"Regenerated after review to use larger stepped diamonds, bands and hook-like terminals; retained as a representative flat-woven visual family rather than a fixed motif."}
-  ]
+    {
+      "pattern_id": "houndstooth",
+      "decision": "pass",
+      "note": "Broken/jagged check reading is distinct from flat checks and chevrons."
+    },
+    {
+      "pattern_id": "gingham",
+      "decision": "pass",
+      "note": "Regular equal orthogonal checks with crossing color are immediately recognizable."
+    },
+    {
+      "pattern_id": "tartan",
+      "decision": "pass",
+      "note": "Repeated multicolor sett is recognizable; representation does not claim a registered tartan identity."
+    },
+    {
+      "pattern_id": "glen-check",
+      "decision": "pass",
+      "note": "Regenerated after review to emphasize fine checks, unequal grouped stripes and larger overcheck structure without houndstooth-like jagged diagonals."
+    },
+    {
+      "pattern_id": "argyle",
+      "decision": "pass",
+      "note": "Staggered lozenges plus diagonal lattice read clearly at thumbnail scale."
+    },
+    {
+      "pattern_id": "chevron",
+      "decision": "pass",
+      "note": "Repeated V bands are structurally unambiguous."
+    },
+    {
+      "pattern_id": "polka-dot",
+      "decision": "pass",
+      "note": "Equal round dots on a regular field are structurally unambiguous."
+    },
+    {
+      "pattern_id": "moroccan-trellis",
+      "decision": "pass",
+      "note": "Regenerated after review to use an interlocking pointed lantern/quatrefoil cue; retained as a qualified contemporary market label."
+    },
+    {
+      "pattern_id": "seigaiha",
+      "decision": "pass",
+      "note": "Staggered concentric semicircle waves are distinct from Shippo and generic scales."
+    },
+    {
+      "pattern_id": "asanoha",
+      "decision": "pass",
+      "note": "Regenerated after review from a subdivided triangular/hexagonal lattice so the six-rayed hemp-leaf star reads distinctly from Kikko."
+    },
+    {
+      "pattern_id": "shippo",
+      "decision": "pass",
+      "note": "Equal interlocking circles clearly express the linked-circle structure."
+    },
+    {
+      "pattern_id": "ichimatsu",
+      "decision": "pass",
+      "note": "Alternating equal squares are structurally unambiguous; black/white remains editorial identification color only."
+    },
+    {
+      "pattern_id": "kikko",
+      "decision": "pass",
+      "note": "Regular hexagonal tortoiseshell lattice is distinct from Asanoha after the latter was regenerated."
+    },
+    {
+      "pattern_id": "karakusa",
+      "decision": "pass",
+      "note": "Regenerated after review to strengthen continuous scrolling-vine and attached-curl recognition."
+    },
+    {
+      "pattern_id": "damask",
+      "decision": "pass",
+      "note": "Regenerated after review to strengthen a large bilateral foliate medallion cue while remaining explicitly representative rather than a definition of damask weave."
+    },
+    {
+      "pattern_id": "arabesque",
+      "decision": "pass",
+      "note": "Regenerated after review to strengthen continuous multidirectional vegetal scrolls and separate it visually from the Karakusa cue."
+    },
+    {
+      "pattern_id": "paisley",
+      "decision": "pass",
+      "note": "Curved boteh/teardrop units with hooked tips remain distinct from generic leaves and Karakusa."
+    },
+    {
+      "pattern_id": "leopard-print",
+      "decision": "pass",
+      "note": "Irregular rosettes plus solid spots provide a clear natural-marking cue."
+    },
+    {
+      "pattern_id": "ikat",
+      "decision": "pass",
+      "note": "Feathered/misregistered edges communicate the resist-dyed-yarn visual cue; manifest keeps the technique-category qualification."
+    },
+    {
+      "pattern_id": "kilim",
+      "decision": "pass",
+      "note": "Regenerated after review to use larger stepped diamonds, bands and hook-like terminals; retained as a representative flat-woven visual family rather than a fixed motif."
+    },
+    {
+      "pattern_id": "buffalo-check",
+      "decision": "pass",
+      "note": "Regenerated after review. Broad intersecting red/black bands now read as Buffalo plaid rather than a flat checkerboard."
+    },
+    {
+      "pattern_id": "shepherd-check",
+      "decision": "pass",
+      "note": "Regenerated after review. Fine alternating black/white check structure reads distinctly from the larger Buffalo and multitone Gun Club references."
+    },
+    {
+      "pattern_id": "windowpane-check",
+      "decision": "pass",
+      "note": "Sparse single-line orthogonal grid with large open cells is immediately distinct from dense checks."
+    },
+    {
+      "pattern_id": "madras-check",
+      "decision": "pass",
+      "note": "Irregular multicolor crossing bands provide the intended representative Madras visual cue without claiming one immutable sett."
+    },
+    {
+      "pattern_id": "tattersall",
+      "decision": "pass",
+      "note": "Two-color fine line grid on a light ground reads as Tattersall and remains distinct from single-line Windowpane."
+    },
+    {
+      "pattern_id": "gun-club-check",
+      "decision": "pass",
+      "note": "Regenerated after review. Multitone small-check and overlaid line structure now reads as a textile check rather than a block mosaic."
+    },
+    {
+      "pattern_id": "prince-of-wales-check",
+      "decision": "pass",
+      "note": "Fine Glen-family structure plus a clearly larger contrasting overcheck communicates the practical Prince of Wales distinction while preserving naming overlap."
+    },
+    {
+      "pattern_id": "pinstripe",
+      "decision": "pass",
+      "note": "Very fine, widely spaced vertical light lines on a dark ground are distinct from the wider Chalk and Bengal stripes."
+    },
+    {
+      "pattern_id": "chalk-stripe",
+      "decision": "pass",
+      "note": "Soft-edged broader pale vertical strokes on charcoal distinguish Chalk Stripe from crisp Pinstripe."
+    },
+    {
+      "pattern_id": "bengal-stripe",
+      "decision": "pass",
+      "note": "Balanced equal-width blue/white vertical bands are structurally unambiguous."
+    },
+    {
+      "pattern_id": "koushi",
+      "decision": "pass",
+      "note": "Regular Japanese lattice/grid reference is clear while remaining broader than the alternating-square Ichimatsu convention."
+    },
+    {
+      "pattern_id": "awning-stripe",
+      "decision": "pass",
+      "note": "Very broad alternating vertical bands communicate the awning-market stripe family clearly."
+    },
+    {
+      "pattern_id": "regimental-stripe",
+      "decision": "pass",
+      "note": "Repeated diagonal multicolor bands provide a representative neckwear/regimental-stripe cue without asserting one universal regiment sequence."
+    },
+    {
+      "pattern_id": "breton-stripe",
+      "decision": "pass",
+      "note": "Regular navy horizontal bands on light ground read clearly as the modern Breton/mariniere visual family while retaining the historical qualification in content."
+    },
+    {
+      "pattern_id": "swiss-dot",
+      "decision": "pass",
+      "note": "Small raised/shadowed dot treatment distinguishes Swiss Dot as a textile effect from flat Polka Dot."
+    },
+    {
+      "pattern_id": "herringbone",
+      "decision": "pass",
+      "note": "Broken alternating diagonal bars around a spine read as herringbone and remain visibly discontinuous from continuous Chevron/Zigzag bands."
+    },
+    {
+      "pattern_id": "zigzag",
+      "decision": "pass",
+      "note": "Continuous angular back-and-forth line is structurally distinct from filled Chevron bands and broken Herringbone."
+    },
+    {
+      "pattern_id": "diamond",
+      "decision": "pass",
+      "note": "Regenerated after review. Continuous outlined rhombus lattice now tiles cleanly across boundaries without clipped or malformed edge diamonds."
+    },
+    {
+      "pattern_id": "harlequin",
+      "decision": "pass",
+      "note": "Filled alternating multicolor diamond tessellation reads distinctly from generic outlined Diamond Pattern."
+    },
+    {
+      "pattern_id": "checkerboard",
+      "decision": "pass",
+      "note": "Alternating equal black/white squares are structurally unambiguous; comparison copy handles the contextual naming overlap with Ichimatsu rather than inventing a false visual distinction."
+    }
+  ],
+  "wave2_review_history": "The first generated contact sheet was not accepted wholesale. Buffalo Check, Shepherd's Check, Gun Club Check, and Diamond Pattern were regenerated after visual review found insufficient differentiation or edge/tessellation problems. The refined 20-image set was then reviewed again."
 }
