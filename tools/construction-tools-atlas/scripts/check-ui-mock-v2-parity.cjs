@@ -20,9 +20,10 @@ const offers = JSON.parse(read('data/affiliate-offers-v2.3.json'));
 ok(css.includes('grid-template-columns:minmax(380px,43%) minmax(0,57%)'), 'desktop master-detail base must remain ~43/57');
 ok(hardening.includes('grid-template-columns:minmax(0,43fr) minmax(0,57fr)'), 'desktop hardening must preserve a larger right detail pane');
 ok(hardening.includes('align-items:stretch!important'), 'desktop master-detail panes must stretch to the same grid-row height');
-ok(hardening.includes('.atlasDetailHost{display:flex!important;flex-direction:column!important'), 'detail host must fill the stretched desktop row');
-ok(hardening.includes('#detailSheet.detailPanel--desktop{position:relative!important'), 'desktop detail must fill the host instead of retaining sticky viewport height');
-ok(hardening.includes('#detailSheet.detailPanel--desktop{width:100%!important;min-width:0!important;max-width:none!important'), 'desktop detail must not retain a legacy max-width cap');
+ok(hardening.includes('.atlasDetailHost{width:100%!important') && hardening.includes('display:grid!important;grid-template-rows:minmax(0,1fr)!important') && hardening.includes('background:transparent!important;border:0!important'), 'detail host must be transparent layout only');
+ok(hardening.includes('#detailSheet.detailPanel--desktop{position:relative!important') && hardening.includes('height:100%!important;min-height:100%!important') && hardening.includes('border:1px solid #e2e5e9!important;border-radius:16px!important'), 'actual detail sheet must own the full-height visible panel');
+ok(hardening.includes('max-width:none!important;max-height:none!important'), 'desktop detail must not retain legacy size caps');
+ok(hardening.includes('flex:1 1 0%!important;width:100%!important;height:100%!important;min-height:100%!important'), 'detail sheet body itself must fill the visible panel height');
 ok(css.includes('@media(max-width:899px)'), 'mobile breakpoint must be below 900px');
 ok(css.includes('.ctaResultThumb'), 'result-image styling must exist');
 ok(css.includes('#detailTabs{display:none!important}'), 'legacy tabs must not be the primary detail IA');
@@ -45,7 +46,7 @@ ok(!appRuntime.includes('`id: ${e.id}`') && !presentation.includes('`id: ${entry
 ok(!presentation.includes('.match(/id:') && !deepLink.includes('.match(/id:') && !imageRuntime.includes('meta.match(/id:'), 'canonical selection must not use Meta text as application state');
 ok(bootstrap.includes('ui-mock-v2-parity.css'), 'detail bootstrap must load parity CSS');
 ok(bootstrap.includes('ui-mock-v2-parity.js'), 'detail bootstrap must load parity runtime');
-ok(bootstrap.includes('20260916-structural-3'), 'UI parity cache bust must be current');
+ok(bootstrap.includes('20260916-pane-height-4'), 'UI parity cache bust must be current');
 
 ok(offers.schema === 'cta-affiliate-offers-v2.3', 'affiliate offer schema must be v2.3');
 ok(offers.policy?.query_source === 'maintained_canonical_mapping_only', 'affiliate query source must be maintained canonical mapping only');
@@ -53,7 +54,8 @@ ok(offers.policy?.free_text_forwarding === false, 'free-text forwarding must sta
 ok(Array.isArray(offers.offers) && offers.offers.length >= 24, 'maintained affiliate coverage must include common purchase-intent entries');
 ok(offers.offers.some((offer) => offer.entry_id === 'impact_driver'), 'Impact Driver must have an active maintained Amazon mapping');
 ok(offers.offers.some((offer) => offer.entry_id === 'q017_access_floor_panel'), 'Access Floor Panel must have an active maintained Amazon mapping');
-ok(indexHtml.includes('app.runtime.js?v=20260916-structural-3') && indexHtml.includes('detail-image-hotfix.js?v=20260916-structural-3'), 'changed runtimes must be cache-busted in production HTML');
+ok(indexHtml.includes('detail-dictionary-fix.js?v=20260916-pane-height-4'), 'detail bootstrap must be cache-busted in production HTML');
+ok(indexHtml.includes('app.runtime.js?v=20260916-structural-3') && indexHtml.includes('detail-image-hotfix.js?v=20260916-structural-3'), 'other changed runtimes must retain current cache keys');
 
 const ids = new Set();
 for (const offer of offers.offers) {
