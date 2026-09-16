@@ -13,11 +13,10 @@
 @media(min-width:900px){
   .wrap{box-sizing:border-box!important;width:100%!important;max-width:1600px!important;padding-left:24px!important;padding-right:24px!important}
   .atlasWorkspace{display:grid!important;grid-template-columns:minmax(0,43fr) minmax(0,57fr)!important;width:100%!important;max-width:none!important;gap:16px!important;align-items:stretch!important}
-  .atlasWorkspace>.results,.atlasDetailHost{width:100%!important;max-width:none!important;min-width:0!important;box-sizing:border-box!important;align-self:stretch!important}
-  .atlasDetailHost{display:flex!important;flex-direction:column!important;height:auto!important;min-height:0!important}
-  .atlasDetailHost>#detailSheet,#detailSheet.detailPanel--desktop{width:100%!important;min-width:0!important;max-width:none!important;box-sizing:border-box!important}
-  #detailSheet.detailPanel--desktop{position:relative!important;inset:auto!important;top:auto!important;max-height:none!important;flex:1 1 auto!important;overflow:auto!important}
-  #detailSheet.detailPanel--desktop .sheet__body,#detailSheet.detailPanel--desktop .sheet__body--compact{width:100%!important;max-width:none!important;margin:0!important;padding:24px 28px 32px!important;box-sizing:border-box!important}
+  .atlasWorkspace>.results{width:100%!important;max-width:none!important;min-width:0!important;box-sizing:border-box!important;align-self:stretch!important}
+  .atlasDetailHost{width:100%!important;max-width:none!important;min-width:0!important;box-sizing:border-box!important;align-self:stretch!important;display:grid!important;grid-template-rows:minmax(0,1fr)!important;height:100%!important;min-height:100%!important;background:transparent!important;border:0!important;border-radius:0!important;overflow:visible!important}
+  .atlasDetailHost>#detailSheet,#detailSheet.detailPanel--desktop{position:relative!important;inset:auto!important;top:auto!important;width:100%!important;height:100%!important;min-height:100%!important;max-width:none!important;max-height:none!important;box-sizing:border-box!important;align-self:stretch!important;overflow:hidden!important;background:#fff!important;border:1px solid #e2e5e9!important;border-radius:16px!important;box-shadow:none!important}
+  #detailSheet.detailPanel--desktop .sheet__body,#detailSheet.detailPanel--desktop .sheet__body--compact{flex:1 1 0%!important;width:100%!important;height:100%!important;min-height:100%!important;max-width:none!important;margin:0!important;padding:24px 28px 32px!important;box-sizing:border-box!important;overflow:auto!important;background:#fff!important}
   #detailSheet.detailPanel--desktop .detailImagePilot{width:100%!important;max-width:none!important;min-height:300px!important;height:min(36vw,390px)!important}
 }
 
