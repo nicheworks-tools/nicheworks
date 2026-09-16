@@ -917,3 +917,23 @@ Wave 38は10自治体batch scaling ruleを継続し、公開閾値を変更せ�
 Wave 38 readiness baselineは1,916 municipalities、2,580 valid HTTP(S) records、164 preferred candidates、41 direct-link datasets / 512 records / 493 unique URLs / 0 invalid URLsとする。
 
 Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 164/164、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する羽村市・木更津市・鎌ケ谷市・戸田市だけ2026 calendar calloutを表示する。あきる野市・武蔵村山市のcollection sourceは複数年または跨年期間なので単一2026 calendarとして扱わず、野田市・浦安市・朝霞市・和光市も選択したcollection source自体に単年2026表記がないため年次calloutを生成しない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+
+## Wave 39 ten-municipality publication
+
+Wave 39は10自治体batch scaling ruleを継続し、公開閾値を変更せず **164自治体から174自治体** へ拡張する。対象は青梅市・福生市・入間市・狭山市・飯能市・三郷市・八潮市・富士見市・坂戸市・東松山市。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeとし、同一combined pageの二重計上や外部委託先による閾値補完は行わない。
+
+- 青梅市 — `/tools/trashnavi/tokyo/ome/` — waste sorting / collection calendar / bulky waste
+- 福生市 — `/tools/trashnavi/tokyo/fussa/` — waste sorting / collection calendar / bulky waste
+- 入間市 — `/tools/trashnavi/saitama/iruma/` — waste sorting / collection calendar / bulky waste
+- 狭山市 — `/tools/trashnavi/saitama/sayama/` — waste sorting / collection calendar / bulky waste
+- 飯能市 — `/tools/trashnavi/saitama/hanno/` — waste sorting / collection calendar / bulky waste
+- 三郷市 — `/tools/trashnavi/saitama/misato/` — waste sorting / collection calendar / bulky waste
+- 八潮市 — `/tools/trashnavi/saitama/yashio/` — waste sorting / collection calendar / bulky waste
+- 富士見市 — `/tools/trashnavi/saitama/fujimi/` — waste sorting / waste app / bulky waste
+- 坂戸市 — `/tools/trashnavi/saitama/sakado/` — waste sorting / collection calendar / bulky waste
+- 東松山市 — `/tools/trashnavi/saitama/higashimatsuyama/` — waste sorting / collection calendar / bulky waste
+
+Wave 39 readiness baselineは1,916 municipalities、2,610 valid HTTP(S) records、174 preferred candidates、42 direct-link datasets / 542 records / 523 unique URLs / 0 invalid URLsとする。ReadinessではWave39の `last_checked: 2026-09-17` に合わせ、未公開URLを追加せず既存164件の専用TrashNavi sitemap `lastmod` のみ同期した。
+
+Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 174/174、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する青梅市・入間市・狭山市・飯能市・三郷市・八潮市・坂戸市・東松山市だけ2026 calendar calloutを表示し、福生市・富士見市には年次calloutを生成しない。富士見市はcollection calendarではなく自治体公式ごみ分別アプリを第三の独立typeとして採用する。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。

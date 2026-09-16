@@ -162,5 +162,15 @@
   {"lgcode":"122246","pref_slug":"chiba","city_slug":"kamagaya","publish":true},
   {"lgcode":"112275","pref_slug":"saitama","city_slug":"asaka","publish":true},
   {"lgcode":"112291","pref_slug":"saitama","city_slug":"wako","publish":true},
-  {"lgcode":"112241","pref_slug":"saitama","city_slug":"toda","publish":true}
+  {"lgcode":"112241","pref_slug":"saitama","city_slug":"toda","publish":true},
+  {"lgcode":"132055","pref_slug":"tokyo","city_slug":"ome","publish":true},
+  {"lgcode":"132187","pref_slug":"tokyo","city_slug":"fussa","publish":true},
+  {"lgcode":"112259","pref_slug":"saitama","city_slug":"iruma","publish":true},
+  {"lgcode":"112151","pref_slug":"saitama","city_slug":"sayama","publish":true},
+  {"lgcode":"112097","pref_slug":"saitama","city_slug":"hanno","publish":true},
+  {"lgcode":"112372","pref_slug":"saitama","city_slug":"misato","publish":true},
+  {"lgcode":"112348","pref_slug":"saitama","city_slug":"yashio","publish":true},
+  {"lgcode":"112356","pref_slug":"saitama","city_slug":"fujimi","publish":true},
+  {"lgcode":"112399","pref_slug":"saitama","city_slug":"sakado","publish":true},
+  {"lgcode":"112127","pref_slug":"saitama","city_slug":"higashimatsuyama","publish":true}
 ]
