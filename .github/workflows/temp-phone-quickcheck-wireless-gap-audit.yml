@@ -1,0 +1,29 @@
+name: Temp Phone QuickCheck wireless gap audit
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'audit/phone-quickcheck-wireless-gaps-20260916'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/phone-quickcheck-wireless-gaps-20260916
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/temp-audit-phone-quickcheck-wireless-gaps.mjs
+      - name: Commit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add phone-quickcheck-wireless-gap-audit.json
+          git commit -m "Phone QuickCheck: snapshot wireless provenance gaps"
+          git push origin HEAD:audit/phone-quickcheck-wireless-gaps-20260916
