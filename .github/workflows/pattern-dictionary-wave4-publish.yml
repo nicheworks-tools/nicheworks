@@ -49,7 +49,7 @@ jobs:
               text=text.replace(old,new)
             p.write_text(text)
           PY
-      - name: Normalize and validate Wave 4 staging
+      - name: Normalize and validate Wave 4 staging with pattern-specific cues
         run: |
           node tools/pattern-dictionary/scripts/normalize-wave4-staging.mjs
           node tools/pattern-dictionary/scripts/check-wave4-staging.mjs
