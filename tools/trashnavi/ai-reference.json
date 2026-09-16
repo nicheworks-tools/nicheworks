@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 184,
+  "published_municipality_count": 194,
   "municipalities": [
     {
       "lgcode": "131016",
@@ -1112,6 +1112,66 @@
       "pref_slug": "saitama",
       "city_slug": "kitamoto",
       "url": "https://nicheworks.app/tools/trashnavi/saitama/kitamoto/"
+    },
+    {
+      "lgcode": "112071",
+      "pref_slug": "saitama",
+      "city_slug": "chichibu",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/chichibu/"
+    },
+    {
+      "lgcode": "112160",
+      "pref_slug": "saitama",
+      "city_slug": "hanyu",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/hanyu/"
+    },
+    {
+      "lgcode": "112186",
+      "pref_slug": "saitama",
+      "city_slug": "fukaya",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/fukaya/"
+    },
+    {
+      "lgcode": "112402",
+      "pref_slug": "saitama",
+      "city_slug": "satte",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/satte/"
+    },
+    {
+      "lgcode": "112411",
+      "pref_slug": "saitama",
+      "city_slug": "tsurugashima",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/tsurugashima/"
+    },
+    {
+      "lgcode": "112429",
+      "pref_slug": "saitama",
+      "city_slug": "hidaka",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/hidaka/"
+    },
+    {
+      "lgcode": "112437",
+      "pref_slug": "saitama",
+      "city_slug": "yoshikawa",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/yoshikawa/"
+    },
+    {
+      "lgcode": "113247",
+      "pref_slug": "saitama",
+      "city_slug": "miyoshi",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/miyoshi/"
+    },
+    {
+      "lgcode": "113018",
+      "pref_slug": "saitama",
+      "city_slug": "ina",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/ina/"
+    },
+    {
+      "lgcode": "114421",
+      "pref_slug": "saitama",
+      "city_slug": "miyashiro",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/miyashiro/"
     }
   ]
 }
