@@ -8,7 +8,7 @@ const published=JSON.parse(fs.readFileSync(path.join(root,'data','patterns.json'
 const canonical=JSON.parse(fs.readFileSync(path.join(root,'data','canonical-100-expansion.json'),'utf8'));
 const ledger=JSON.parse(fs.readFileSync(path.join(root,'data','wave4-source-verification.json'),'utf8'));
 
-if(![60,80].includes(published.length))throw new Error(`Wave 4 provenance expects runtime 60 before publication or 80 after publication, got ${published.length}`);
+if(![60,80,100].includes(published.length))throw new Error(`Wave 4 provenance expects runtime 60 before publication, 80 after Wave 4, or 100 after canonical completion, got ${published.length}`);
 if(ledger.phase!=='wave4-source-verification'||ledger.wave!==4)throw new Error('unexpected Wave 4 source-verification metadata');
 if(ledger.policy?.publication_state!=='research-only')throw new Error('Wave 4 source ledger must remain immutable research provenance');
 if(!String(ledger.policy?.runtime_lock||'').includes('60'))throw new Error('Wave 4 provenance must retain its original runtime-60 staging lock');
@@ -16,7 +16,7 @@ if(JSON.stringify(ledger.ordinal_range)!==JSON.stringify([61,80]))throw new Erro
 
 const planned=(canonical.entries||[]).filter(x=>x.wave===4).slice().sort((a,b)=>a.ordinal-b.ordinal);
 if(published.length===60&&planned.length!==20)throw new Error(`pre-publication canonical-100 Wave 4 must contain exactly 20 rows, got ${planned.length}`);
-if(published.length===80&&planned.length!==0)throw new Error('post-publication canonical-100 expansion must no longer retain Wave 4 rows');
+if(published.length>=80&&planned.length!==0)throw new Error('post-publication canonical-100 expansion must no longer retain Wave 4 rows');
 if(published.length===60)for(let i=0;i<20;i++)if(planned[i].ordinal!==i+61)throw new Error(`canonical Wave 4 ordinal gap at ${i+61}`);
 
 const rows=(ledger.patterns||[]).slice().sort((a,b)=>a.ordinal-b.ordinal);
