@@ -1,6 +1,6 @@
 name: Pattern Dictionary Wave 3 publish
 
-# retry: search-disambiguation-r2
+# retry: search-specificity-r3
 on:
   push:
     branches:
