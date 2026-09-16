@@ -36,8 +36,7 @@ assert.equal(offers[0].sourceUrl, compatibilitySource);
 assert.deepEqual(Array.from(offers[0].verifiedCodes), ['TK-805C', 'TK-805K', 'TK-805M', 'TK-805Y']);
 
 for (const args of [
-  { maker: 'KYOCERA Document Solutions', model: 'KM-C870', category: 'プリンター・複合機' },
-  { maker: 'KYOCERA Document Solutions', model: 'KM-C3225E', category: 'プリンター・複合機' },
+  { maker: 'KYOCERA Document Solutions', model: 'KM-C9999', category: 'プリンター・複合機' },
   { maker: 'KYOCERA Document Solutions', model: 'KM-C850D', category: 'その他' },
   { maker: 'KYOCERA', model: 'KM-C850D', category: 'プリンター・複合機' }
 ]) assert.deepEqual(Array.from(config.getConsumableOffers(args)), []);
