@@ -39,7 +39,7 @@ jobs:
           const {chromium}=require(process.cwd()+'/node_modules/playwright');
           const base='https://nicheworks.app/tools/pattern-dictionary/';
           const wave2=['buffalo-check','shepherd-check','windowpane-check','madras-check','tattersall','gun-club-check','prince-of-wales-check','pinstripe','chalk-stripe','bengal-stripe','koushi','awning-stripe','regimental-stripe','breton-stripe','swiss-dot','herringbone','zigzag','diamond','harlequin','checkerboard'];
-          const searches=[['ja','赤黒の大きいチェック','バッファローチェック'],['ja','グレンチェックに大きい格子','プリンス・オブ・ウェールズチェック'],['ja','スーツの極細縦線','ピンストライプ'],['ja','フランス海軍みたいな横縞','ブレトンストライプ'],['ja','ぽこぽこ小ドット','スイスドット'],['ja','ピエロみたいな赤黒ダイヤ','ハーレクイン'],['en','Japanese lattice not alternating squares','Koushi']];
+          const searches=[['ja','赤黒の大きいチェック','バッファローチェック'],['ja','グレンチェックに大きい格子','プリンス・オブ・ウェールズ・チェック'],['ja','スーツの極細縦線','ピンストライプ'],['ja','フランス海軍みたいな横縞','ブレトンストライプ'],['ja','ぽこぽこ小ドット','スイスドット'],['ja','ピエロみたいな赤黒ダイヤ','ハーレクイン'],['en','Japanese lattice not alternating squares','Koushi']];
           const fail=m=>{throw new Error(m)};
           (async()=>{
             const browser=await chromium.launch({headless:true});
