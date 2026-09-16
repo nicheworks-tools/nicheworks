@@ -39,6 +39,7 @@ for (const file of requiredFiles) check(exists(file), `required cosmetics file m
 
 const liteHtml = read('tools/cosmetic-ingredient-checker-lite/index.html');
 const liteApp = read('tools/cosmetic-ingredient-checker-lite/app.js');
+const liteEnhancements = read('tools/cosmetic-ingredient-checker-lite/enhancements.js');
 const liteUiCss = read('tools/cosmetic-ingredient-checker-lite/ui-v2.css');
 const liteSpec = read('tools/cosmetic-ingredient-checker-lite/SPEC.md');
 const fastHtml = read('tools/inci-fastscan/index.html');
@@ -75,6 +76,9 @@ check(fastUiCss.includes('body.fastscan-v2 {\n  background: #fff;'), 'FastScan U
 check(liteHtml.includes('id="inciInput"'), 'Lite must remain paste-first');
 check(!/tesseract/i.test(liteHtml + liteApp), 'Lite must not absorb the OCR engine');
 check(!liteHtml.includes('id="ocr-file"'), 'Lite must remain OCR-free');
+check(liteApp.includes('ROLE_DESCRIPTIONS'), 'Lite must expose role descriptions');
+check(liteEnhancements.includes('役割情報あり'), 'Lite public summary must be role-oriented');
+check(!liteEnhancements.includes('辞書認識率'), 'Lite dictionary-coverage metric must not return');
 
 check(fastHtml.includes('id="ocr-file-fast"'), 'FastScan EN OCR input missing');
 check(fastHtml.includes('id="ocr-file"'), 'FastScan JP OCR input missing');
@@ -94,12 +98,14 @@ for (const file of dictFiles) {
 check(parser.includes('mergeDictionaryRecords'), 'shared canonical merge helper missing');
 check(parser.includes('ambiguousExactKeys'), 'ambiguous exact-name protection missing');
 
-check(matcher.includes('match_kind'), 'FastScan exact match route metadata missing');
-check(matcher.includes('matched_name'), 'FastScan matched-name metadata missing');
-check(resultUi.includes('辞書一致'), 'FastScan dictionary-match label missing');
-check(resultUi.includes('追加確認'), 'FastScan additional-review label missing');
-check(resultUi.includes('未一致'), 'FastScan unmatched label missing');
-check(resultUi.includes('安全性・刺激性・製品適合性の判定ではありません'), 'FastScan non-safety result disclaimer missing');
+check(matcher.includes('match_kind'), 'FastScan exact match route metadata missing internally');
+check(matcher.includes('matched_name'), 'FastScan matched-name metadata missing internally');
+check(resultUi.includes('主な役割'), 'FastScan role-first public result label missing');
+check(resultUi.includes('情報未登録'), 'FastScan unavailable-information label missing');
+check(resultUi.includes('ROLE_DESCRIPTIONS'), 'FastScan role descriptions missing');
+check(!resultUi.includes('function getMatchRouteLabel'), 'FastScan must not expose match route as public result value');
+check(!resultUi.includes('rt("matchRoute"'), 'FastScan must not render match route');
+check(!resultUi.includes('rt("matchedName"'), 'FastScan must not render matched spelling debug detail');
 check(!resultUi.includes('一般的に使用'), 'legacy safety-framed common label returned');
 check(!resultUi.includes('注意して確認'), 'legacy safety-framed caution label returned');
 
@@ -120,9 +126,7 @@ check(affiliateConfig.includes('placement: "after-summary"'), 'Lite affiliate pl
 check(affiliateConfig.includes('placement: "after-results"'), 'FastScan affiliate placement changed');
 check((affiliateConfig.match(/links: fixedSearchLinks/g) || []).length === 2, 'both cosmetics tools must use the fixed search set');
 const affiliateCategoryKeys = ['toner', 'serum', 'moisturizer', 'cleanser', 'cleansing', 'sunscreen', 'bodycare'];
-for (const key of affiliateCategoryKeys) {
-  check(affiliateConfig.includes(`key: "${key}"`), `fixed affiliate category missing: ${key}`);
-}
+for (const key of affiliateCategoryKeys) check(affiliateConfig.includes(`key: "${key}"`), `fixed affiliate category missing: ${key}`);
 check(affiliateAdapter.includes('function resultsReady(tool)'), 'affiliate chooser must remain result-gated');
 check(affiliateAdapter.includes('#itemsTableBody tr'), 'Lite result gate missing');
 check(affiliateAdapter.includes('#fast-results .result-card, #jb-results .result-card'), 'FastScan result gate missing');
@@ -142,9 +146,10 @@ if (failures.length) {
 console.log(JSON.stringify({
   status: 'pass',
   tools: ['cosmetic-ingredient-checker-lite', 'inci-fastscan'],
-  ui_contract: 'cosmetics-v2',
+  ui_contract: 'cosmetics-v2-role-first',
   lite_paste_first: true,
   fastscan_photo_first: true,
+  public_results: 'ingredient-role-first',
   bilingual_ui: true,
   white_background: true,
   legacy_logo_header: false,

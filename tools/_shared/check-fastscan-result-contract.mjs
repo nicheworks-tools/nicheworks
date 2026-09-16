@@ -10,15 +10,19 @@ const spec = read('tools/inci-fastscan/SPEC.md');
 const failures = [];
 const check = (condition, message) => { if (!condition) failures.push(message); };
 
+// Exact match-route metadata remains available internally for QA and alias debugging.
 for (const token of ['match_kind', 'matched_name', 'shared_alias', 'classifyExactMatch']) {
   check(matcher.includes(token), `matcher missing detailed route token: ${token}`);
 }
-for (const token of ['照合方法', '辞書一致', '追加確認', '安全性・刺激性・製品適合性の判定ではありません']) {
-  check(ui.includes(token), `result UI missing neutral detail text: ${token}`);
+
+// Public results must explain ingredients instead of surfacing matching-engine internals as the product value.
+for (const token of ['主な役割', '情報未登録', 'ROLE_LABELS', 'ROLE_DESCRIPTIONS', 'ingredientDescription']) {
+  check(ui.includes(token), `role-first public result contract missing: ${token}`);
 }
-for (const route of ['canonical', 'jp', 'alias', 'shared_alias']) {
-  check(spec.includes(route), `SPEC missing match route: ${route}`);
-}
+check(ui.includes('INCI'), 'FastScan may retain INCI as useful ingredient identity context');
+check(!ui.includes('function getMatchRouteLabel'), 'public result UI must not restore match-route rendering');
+check(!ui.includes('rt("matchRoute"'), 'public result UI must not render match-route labels');
+check(!ui.includes('rt("matchedName"'), 'public result UI must not render matched-name debug detail');
 check(ui.includes('renderSuggestions'), 'near-match suggestion rendering must remain available');
 check(ui.includes('候補は自動置換しません'), 'suggestions must remain explicitly non-auto-applied');
 check(!ui.includes('一般的に使用'), 'old safety-framed common label must not remain in result UI');
@@ -43,4 +47,4 @@ if (failures.length) {
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
-console.log('FastScan detailed result and bilingual contract check passed');
+console.log('FastScan role-first result and bilingual contract check passed');
