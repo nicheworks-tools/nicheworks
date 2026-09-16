@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vector Lab v2.1｜Pattern Atlas | NicheWorks</title>
+  <title>Vector Lab v2｜Pattern Atlas | NicheWorks</title>
   <meta name="description" content="Pattern AtlasのPNG模様から反復単位を検出し、境界補完・色整理・中心線再構成を比較する実験ページです。">
   <meta name="robots" content="noindex,nofollow">
   <link rel="icon" href="/assets/favicon.ico">
@@ -147,6 +147,16 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/gh/jankovicsandras/imagetracerjs@cb0c84a309df5e75614d3b5166cdc77a56f12a98/imagetracer_v1.2.6.js"></script>
+  <script>
+    (() => {
+      const fn = window.ImageTracer && window.ImageTracer.imagedataToSVG;
+      if (!fn) return;
+      const toHex = (_, r, g, b) => '#' + [r, g, b].map((v) => Number(v).toString(16).padStart(2, '0')).join('');
+      window.ImageTracer.imagedataToSVG = function(...args) {
+        return fn.apply(this, args).replace(/rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/gi, toHex);
+      };
+    })();
+  </script>
   <script type="module" src="./js/vector-lab.js?v=20260916-3"></script>
   <script type="module" src="./js/vector-lab-runtime-progress.js?v=20260916-2"></script>
 </body>
