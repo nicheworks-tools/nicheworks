@@ -1,0 +1,24 @@
+name: Pattern Dictionary Wave 4 source gate
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-wave4-source-verification-20260916
+    paths:
+      - tools/pattern-dictionary/data/wave4-source-verification.json
+      - tools/pattern-dictionary/tests/wave4-source-verification-test.mjs
+      - .github/workflows/pattern-dictionary-wave4-source-gate.yml
+
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave4-source-verification-20260916
+      - name: Verify Wave 4 provenance
+        run: node tools/pattern-dictionary/tests/wave4-source-verification-test.mjs
+      - name: Verify canonical 100 contract
+        run: node tools/pattern-dictionary/tests/canonical-100-test.mjs
+      - name: Verify published runtime remains valid
+        run: node tools/pattern-dictionary/tests/validate.mjs
