@@ -1,0 +1,21 @@
+name: CTA q014 identity discovery
+
+on:
+  push:
+    branches:
+      - audit/construction-atlas-q014-identity-closure-20260916
+    paths:
+      - '.github/workflows/cta-q014-identity-discovery.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/construction-atlas-q014-identity-closure-20260916
+      - name: Run q014 identity candidate audit
+        run: node tools/construction-tools-atlas/scripts/audit-quality-batch-identity-candidates-v2.3.cjs --batch=014
