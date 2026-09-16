@@ -1,0 +1,72 @@
+name: CTA UI stability patch
+on:
+  push:
+    branches: ['fix/construction-atlas-ui-mock-v2-parity-20260916']
+    paths: ['.github/workflows/cta-ui-stability-patch.yml']
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/construction-atlas-ui-mock-v2-parity-20260916
+      - name: Make Mock v2 enhancer idempotent and remove legacy detail support markup
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('tools/construction-tools-atlas/ui-mock-v2-parity.js')
+          s=p.read_text()
+          reps=[
+          ('  let applying = false;\n  let lastSelectedId = "";', '  let applying = false;\n  let scheduled = false;\n  let affiliateRenderKey = "";\n  let lastSelectedId = "";'),
+          ('  const labelIndex = () => isEnglish() ? 1 : 0;\n', '  const labelIndex = () => isEnglish() ? 1 : 0;\n  const setText = (node, value) => { if (node && node.textContent !== value) node.textContent = value; };\n'),
+          ('      chip.textContent = humanize(chip.dataset.taxonomyKey);', '      setText(chip, humanize(chip.dataset.taxonomyKey));'),
+          ('      button.classList.toggle("is-active", button.dataset.typeFilter === typeFilter);\n      button.textContent = isEnglish() ? button.dataset.labelEn : button.dataset.labelJa;', '      const active = button.dataset.typeFilter === typeFilter;\n      if (button.classList.contains("is-active") !== active) button.classList.toggle("is-active", active);\n      setText(button, isEnglish() ? button.dataset.labelEn : button.dataset.labelJa);'),
+          ('      row.hidden = typeFilter !== "all" && row.dataset.entryType !== typeFilter;', '      const shouldHide = typeFilter !== "all" && row.dataset.entryType !== typeFilter;\n      if (row.hidden !== shouldHide) row.hidden = shouldHide;'),
+          ('    if (buttons[0]) buttons[0].textContent = isEnglish() ? "☆ Favorite" : "☆ お気に入り";\n    if (buttons[1]) buttons[1].textContent = isEnglish() ? "Share ↗" : "共有 ↗";', '    setText(buttons[0], isEnglish() ? "☆ Favorite" : "☆ お気に入り");\n    setText(buttons[1], isEnglish() ? "Share ↗" : "共有 ↗");'),
+          ('    section.replaceChildren();\n    const id = selectedEntryId();\n    const row = id ? $$("#resultList .row[data-entry-id]").find((item) => resolveId(item.dataset.entryId) === id) : null;\n    if (!row) { section.hidden = true; return; }\n    $$(".row__meta .chip", row).slice(0, 6).forEach((source) => {\n      const chip = document.createElement("span");\n      chip.className = "ctaDetailTaxonomy__chip";\n      const raw = source.dataset.taxonomyKey || source.textContent;\n      chip.dataset.taxonomyKey = raw;\n      chip.textContent = humanize(raw);\n      section.appendChild(chip);\n    });\n    section.hidden = section.children.length === 0;', '    const id = selectedEntryId();\n    const row = id ? $$("#resultList .row[data-entry-id]").find((item) => resolveId(item.dataset.entryId) === id) : null;\n    if (!row) { if (!section.hidden) section.hidden = true; return; }\n    const sources = $$(".row__meta .chip", row).slice(0, 6);\n    const signature = `${id}|${langMode()}|${sources.map((source) => source.dataset.taxonomyKey || source.textContent).join("|")}`;\n    if (section.dataset.signature !== signature) {\n      section.replaceChildren();\n      sources.forEach((source) => {\n        const chip = document.createElement("span");\n        chip.className = "ctaDetailTaxonomy__chip";\n        const raw = source.dataset.taxonomyKey || source.textContent;\n        chip.dataset.taxonomyKey = raw;\n        chip.textContent = humanize(raw);\n        section.appendChild(chip);\n      });\n      section.dataset.signature = signature;\n    }\n    const shouldHide = section.children.length === 0;\n    if (section.hidden !== shouldHide) section.hidden = shouldHide;'),
+          ('    const offer = offerById.get(id);\n    const mount = $("#ctaAffiliateMount", box);', '    const offer = offerById.get(id);\n    const renderKey = `${id}|${langMode()}|${offer?.offer_id || "none"}`;\n    if (affiliateRenderKey === renderKey) return;\n    affiliateRenderKey = renderKey;\n    const mount = $("#ctaAffiliateMount", box);'),
+          ('      box.hidden = true;\n      mount?.replaceChildren();', '      if (!box.hidden) box.hidden = true;\n      mount?.replaceChildren();'),
+          ('    $(".ctaAffiliateBox__title", box).textContent = isEnglish() ? "Related tools / materials" : "関連する工具・材料";\n    $(".ctaAffiliateBox__copy", box).textContent = isEnglish() ? "Amazon Japan handoff for this maintained dictionary entry." : "この辞典項目に対応するAmazon.co.jpの固定リンクです。";', '    setText($(".ctaAffiliateBox__title", box), isEnglish() ? "Related tools / materials" : "関連する工具・材料");\n    setText($(".ctaAffiliateBox__copy", box), isEnglish() ? "Amazon Japan handoff for this maintained dictionary entry." : "この辞典項目に対応するAmazon.co.jpの固定リンクです。");'),
+          ('    box.hidden = !mounted;', '    if (box.hidden === Boolean(mounted)) box.hidden = !mounted;'),
+          ('    if (tabs) tabs.hidden = true;', '    if (tabs && !tabs.hidden) tabs.hidden = true;'),
+          ('      if (panel) panel.hidden = false;', '      if (panel?.hidden) panel.hidden = false;'),
+          ('    if (meta) meta.hidden = true;', '    if (meta && !meta.hidden) meta.hidden = true;'),
+          ('    if (subtitle) subtitle.textContent = isEnglish() ? "Find tools and jobsite terms by name, purpose, appearance, or task." : "名前が分からなくても、用途・見た目・作業から探せます。";\n    const fav = $("#ctaFavOnlyTop");\n    if (fav) fav.textContent = `${$("#favsOnly")?.checked ? "★" : "☆"} ${isEnglish() ? "Favorites" : "お気に入り"}`;\n    $$("[data-type-filter]").forEach((button) => { button.textContent = isEnglish() ? button.dataset.labelEn : button.dataset.labelJa; });\n    $$("[data-taxonomy-key]").forEach((chip) => { chip.textContent = humanize(chip.dataset.taxonomyKey); });', '    setText(subtitle, isEnglish() ? "Find tools and jobsite terms by name, purpose, appearance, or task." : "名前が分からなくても、用途・見た目・作業から探せます。");\n    const fav = $("#ctaFavOnlyTop");\n    setText(fav, `${$("#favsOnly")?.checked ? "★" : "☆"} ${isEnglish() ? "Favorites" : "お気に入り"}`);\n    $$("[data-type-filter]").forEach((button) => setText(button, isEnglish() ? button.dataset.labelEn : button.dataset.labelJa));\n    $$("[data-taxonomy-key]").forEach((chip) => setText(chip, humanize(chip.dataset.taxonomyKey)));'),
+          ('  async function init() {', '  function scheduleApply() {\n    if (scheduled) return;\n    scheduled = true;\n    requestAnimationFrame(() => { scheduled = false; apply(); });\n  }\n\n  function isOwnedMutationTarget(target) {\n    const element = target?.nodeType === 1 ? target : target?.parentElement;\n    return Boolean(element?.closest?.(".ctaMockBrand,.ctaMockTypeFilters,.ctaResultThumb,.ctaDetailTaxonomy,.ctaMockDetailActions,.ctaAffiliateBox"));\n  }\n\n  async function init() {'),
+          ('    const observer = new MutationObserver(() => requestAnimationFrame(apply));\n    observer.observe(document.body, { subtree:true, childList:true, attributes:true, attributeFilter:["hidden","class"] });\n    window.addEventListener("cta:language-mode", () => requestAnimationFrame(apply));\n    window.addEventListener("popstate", () => requestAnimationFrame(apply));', '    const observer = new MutationObserver((mutations) => {\n      if (mutations.every((mutation) => isOwnedMutationTarget(mutation.target))) return;\n      scheduleApply();\n    });\n    observer.observe(document.body, { subtree:true, childList:true, attributes:true, attributeFilter:["hidden","class"] });\n    window.addEventListener("cta:language-mode", scheduleApply);\n    window.addEventListener("popstate", scheduleApply);')
+          ]
+          for old,new in reps:
+            if old not in s:
+              raise SystemExit('anchor missing:\n'+old[:180])
+            s=s.replace(old,new,1)
+          p.write_text(s)
+
+          hp=Path('tools/construction-tools-atlas/ui-mock-v2-hardening.css')
+          h=hp.read_text()
+          anchor='#detailTabs,#tabMeta,#tabMeta[hidden],#detailSheet .supportInline,#supportInlineBtn{display:none!important}'
+          repl='#detailTabs,#tabMeta,#tabMeta[hidden],#detailChips,#detailSheet .supportInline,#supportInlineBtn{display:none!important}'
+          if anchor not in h: raise SystemExit('css anchor missing')
+          hp.write_text(h.replace(anchor,repl,1))
+
+          ip=Path('tools/construction-tools-atlas/index.html')
+          i=ip.read_text()
+          support='      <div class="supportInline"><button id="supportInlineBtn" class="pillbtn" type="button">支援する</button></div>\n'
+          if support not in i: raise SystemExit('support markup anchor missing')
+          i=i.replace(support,'',1)
+          i=i.replace('結果の用語をタップすると、意味・例・別名・分類を確認できます。','結果の用語をタップすると、概要・用途・例・別名・関連情報を縦に確認できます。',1)
+          ip.write_text(i)
+          PY
+      - name: Syntax and parity checks
+        run: |
+          node --check tools/construction-tools-atlas/ui-mock-v2-parity.js
+          node tools/construction-tools-atlas/scripts/check-ui-mock-v2-parity.cjs
+          ! grep -q 'id="supportInlineBtn"' tools/construction-tools-atlas/index.html
+      - name: Commit patch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/construction-tools-atlas/ui-mock-v2-parity.js tools/construction-tools-atlas/ui-mock-v2-hardening.css tools/construction-tools-atlas/index.html
+          git commit -m 'fix(construction-atlas): stabilize Mock v2 UI rendering'
+          git push origin HEAD:fix/construction-atlas-ui-mock-v2-parity-20260916
