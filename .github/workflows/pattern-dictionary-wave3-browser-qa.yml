@@ -1,0 +1,102 @@
+name: Pattern Dictionary Wave 3 browser QA
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-wave3-production-staging-20260916
+    paths:
+      - .github/workflows/pattern-dictionary-wave3-browser-qa.yml
+
+jobs:
+  chromium-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave3-production-staging-20260916
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save --package-lock=false playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start static server
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/pd-http.log 2>&1 &
+          echo $! >/tmp/pd-http.pid
+          for i in {1..20}; do
+            curl -fsS http://127.0.0.1:8000/tools/pattern-dictionary/ >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/pd-http.log
+          exit 1
+      - name: Run desktop and 390px Chromium QA
+        run: |
+          cat >/tmp/pd-qa.cjs <<'NODE'
+          const {chromium}=require('playwright');
+          const assert=require('node:assert/strict');
+          const base='http://127.0.0.1:8000/tools/pattern-dictionary/';
+          const browser=await chromium.launch({headless:true});
+          const page=await browser.newPage({viewport:{width:1440,height:1000}});
+          const goto=async url=>{await page.goto(url,{waitUntil:'domcontentloaded'});};
+          const waitCards=async()=>page.waitForFunction(()=>document.querySelectorAll('#pattern-grid .pd-card').length===60);
+          const overflow=async()=>page.evaluate(()=>({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth}));
+
+          await goto(base); await waitCards();
+          assert.equal(await page.locator('#pattern-grid .pd-card').count(),60,'JA home must render 60 cards');
+          assert.equal(await page.locator('[data-family="floral"]').count(),1,'JA home must expose floral filter');
+          let ov=await overflow(); assert.ok(ov.scroll<=ov.client+1,`desktop JA overflow ${ov.scroll}/${ov.client}`);
+
+          await goto(base+'en/'); await waitCards();
+          assert.equal(await page.locator('#pattern-grid .pd-card').count(),60,'EN home must render 60 cards');
+          assert.equal(await page.locator('[data-family="floral"]').count(),1,'EN home must expose floral filter');
+
+          await goto(base+'patterns/honeycomb/');
+          await page.waitForSelector('.pd-title');
+          assert.equal((await page.locator('.pd-title').innerText()).trim(),'ハニカム');
+          assert.ok((await page.locator('.pd-detail-image').getAttribute('src')).includes('/assets/reference/honeycomb.png'));
+          assert.equal(await page.locator('#lang-link').getAttribute('href'),'/tools/pattern-dictionary/en/patterns/honeycomb/');
+          await page.waitForSelector('.pd-amazon-offer-link');
+          const amazonHref=await page.locator('.pd-amazon-offer-link').first().getAttribute('href');
+          const amazon=new URL(amazonHref);
+          assert.equal(amazon.hostname,'www.amazon.co.jp');
+          assert.equal(amazon.searchParams.get('tag'),'nicheworks09-22');
+          assert.ok(amazon.searchParams.get('k'),'Amazon link must use maintained fixed query');
+
+          const userPhrase='蜂の巣みたいな柄';
+          await goto(base+'search.html?q='+encodeURIComponent(userPhrase));
+          await page.waitForSelector('.pd-top-result .pd-title');
+          assert.equal((await page.locator('.pd-top-result .pd-title').innerText()).trim(),'ハニカム');
+          const detailHref=await page.locator('.pd-top-result .pd-button').getAttribute('href');
+          assert.ok(!detailHref.includes(encodeURIComponent(userPhrase))&&!detailHref.includes(userPhrase),'user free text must not propagate into detail URL');
+          await page.click('.pd-top-result .pd-button');
+          await page.waitForSelector('.pd-amazon-offer-link');
+          const flowedHref=await page.locator('.pd-amazon-offer-link').first().getAttribute('href');
+          assert.ok(!decodeURIComponent(flowedHref).includes(userPhrase),'user free text must not propagate into Amazon URL');
+
+          await goto(base+'en/search.html?q=curved');
+          await page.waitForSelector('.pd-top-result .pd-title');
+          assert.equal((await page.locator('.pd-top-result .pd-title').innerText()).trim(),'Ogee');
+          assert.equal((await page.locator('.pd-top-result .pd-kicker').innerText()).trim(),'MEDIUM confidence');
+
+          await goto(base+'search.html?q='+encodeURIComponent('ギンガムチェク'));
+          await page.waitForSelector('.pd-top-result .pd-title');
+          assert.equal((await page.locator('.pd-top-result .pd-title').innerText()).trim(),'ギンガムチェック');
+          assert.equal((await page.locator('.pd-top-result .pd-kicker').innerText()).trim(),'HIGH confidence');
+
+          await goto(base+'compare.html?a=honeycomb&b=hexagon');
+          await page.waitForSelector('.pd-compare-guide');
+          const compareText=await page.locator('body').innerText();
+          assert.ok(compareText.includes('ハニカム')&&compareText.includes('六角形'),'compare page must render Honeycomb vs Hexagon');
+
+          await page.setViewportSize({width:390,height:844});
+          for(const url of [base,base+'en/',base+'patterns/chintz/',base+'compare.html?a=honeycomb&b=hexagon']){
+            await goto(url);
+            if(url===base||url===base+'en/')await waitCards();
+            else await page.waitForSelector(url.includes('compare')?'.pd-compare-guide':'.pd-title');
+            ov=await overflow(); assert.ok(ov.scroll<=ov.client+1,`390px overflow at ${url}: ${ov.scroll}/${ov.client}`);
+          }
+          assert.equal(await page.locator('.pd-compare-grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length),1,'compare panels must stack at 390px');
+
+          await browser.close();
+          console.log('OK: Chromium desktop + 390px QA passed for 60-card JA/EN browse, Wave 3 detail, search confidence, compare, fixed Amazon flow, language link, and overflow.');
+          NODE
+          node /tmp/pd-qa.cjs
