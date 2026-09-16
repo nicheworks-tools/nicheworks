@@ -2,14 +2,14 @@
   "version": "2026-09-14-okj-dictionary-audit-1",
   "basis": "repository_only",
   "sourceDigests": {
-    "dict.json": "703d8dd068ad8083af9f5a112bb1d94c37cb43641964145521ed69f8c1df842c",
+    "dict.json": "d0dc1d71cd536012e8ef343a88889862b4883bd6724b23e3083e80467e76ec80",
     "meta.json": "091fe92b82a548c8f66913d6f2b7af011db149b6703b99e6d8ef2d6f8af5c985",
-    "meta-extra-2.json": "774659f70b7e9e3355fbd11d9466580f72cf3ef0762c647afb90631c0cd592b0",
+    "meta-extra-2.json": "389773b8e6853ea20c485390de5a0c692fd1484cf4d2b5c969bbf39dd2a61698",
     "meta-extra-3.json": "f761a5ccbaa72cda584c93bd6f82bb89a85e5f89756d449a911a83543bc3cc26",
     "meta-extra-4.json": "da9e9686ba8bf6253ce028491622966f33d52665a36be8b2955f1bd7b9667fb6",
     "meta-extra-5.json": "593f1cb3bf775ec262d745fbf5bcf3b6651e9221b9206a30ff564eb577e6480d",
     "meta-extra-6.json": "99c1c03c5e5487b74af4d952230c246b4b289cef89525233c0cf7b8fb3862e40",
-    "compatibility-notes.json": "107ab15612e8994835bc20dd16921054720e1d46e1f3a5efae889ee0889c793b"
+    "compatibility-notes.json": "5d46b496f1cade5cc711fd7a31a694a3e54c104d153c649acf55fef7fa11ddcb"
   },
   "classificationRules": {
     "precedence": [
@@ -28,12 +28,12 @@
     "seoCandidate": "non-identity/non-unresolved classification + no issues + verified matching metadata + at least two standalone repository signals; publication still requires actual search demand"
   },
   "summary": {
-    "canonicalOldToNewRecords": 356,
-    "rawOldToNewEntries": 364,
+    "canonicalOldToNewRecords": 357,
+    "rawOldToNewEntries": 365,
     "classes": {
       "old_to_modern": 163,
       "variant": 1,
-      "compatibility": 22,
+      "compatibility": 23,
       "identity": 115,
       "unresolved": 55
     },
@@ -44,7 +44,7 @@
     "metadataDuplicateKeys": 61,
     "reverseIssues": 35,
     "issueRecords": 0,
-    "seoCandidates": 168
+    "seoCandidates": 169
   },
   "rawDuplicateKeys": [
     {
@@ -1722,6 +1722,7 @@
     "莊",
     "藏",
     "譽",
+    "贈",
     "鄰",
     "釋",
     "隱",
@@ -8997,6 +8998,44 @@
       "standaloneSignals": [],
       "seoCandidate": false,
       "seoGate": "blocked_identity_mapping"
+    },
+    {
+      "source": "贈",
+      "target": "贈",
+      "classification": "compatibility",
+      "evidence": [
+        "mapping_changes_character",
+        "unicode_cjk_compatibility_range",
+        "repository_compatibility_note",
+        "verified_metadata_old_to_modern"
+      ],
+      "issues": [],
+      "metadata": {
+        "sourceFile": "meta-extra-2.json",
+        "verified": true,
+        "dataStatus": "verified",
+        "confidence": "high",
+        "category": "document",
+        "modernMatchesMapping": true
+      },
+      "compatibility": {
+        "riskLevel": "high",
+        "riskTypes": [
+          "compatibility-ideograph",
+          "font-dependent",
+          "copy-destination"
+        ],
+        "modernMatchesMapping": true
+      },
+      "standaloneSignals": [
+        "reading",
+        "meaning",
+        "usage",
+        "source_note",
+        "compatibility_note"
+      ],
+      "seoCandidate": true,
+      "seoGate": "candidate_requires_search_demand"
     },
     {
       "source": "赦",
