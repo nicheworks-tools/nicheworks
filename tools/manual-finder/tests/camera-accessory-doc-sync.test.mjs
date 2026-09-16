@@ -13,6 +13,8 @@ assert.ok(line, 'camera accessory coverage test must emit a machine-readable sum
 const summary = JSON.parse(line.slice(prefix.length));
 
 const doc = fs.readFileSync(new URL('../CAMERA_ACCESSORY_COVERAGE.md', import.meta.url), 'utf8');
+const affiliateDoc = fs.readFileSync(new URL('../AFFILIATE_COVERAGE.md', import.meta.url), 'utf8');
+const spec = fs.readFileSync(new URL('../SPEC.md', import.meta.url), 'utf8');
 
 for (const [label, value] of [
   ['Canonical `カメラ・映像` records', summary.cameraTotal],
@@ -28,11 +30,16 @@ for (const [label, value] of [
   );
 }
 
+const reconciliation = `camera basic ${summary.cameraBasic} = detail ${summary.cameraDetail} + reviewed exclusion ${summary.cameraDetailExcluded} + missing ${summary.cameraMissingAccessory}`;
+assert.ok(doc.includes(reconciliation), 'camera reconciliation text must match the live audit');
+assert.ok(affiliateDoc.includes(reconciliation), 'affiliate coverage camera reconciliation must match the live audit');
 assert.ok(
-  doc.includes(
-    `camera basic ${summary.cameraBasic} = detail ${summary.cameraDetail} + reviewed exclusion ${summary.cameraDetailExcluded} + missing ${summary.cameraMissingAccessory}`
-  ),
-  'camera reconciliation text must match the live audit'
+  spec.includes(`**${summary.cameraBasic} basic = ${summary.cameraDetail} detail + ${summary.cameraDetailExcluded} reviewed exclusions + ${summary.cameraMissingAccessory} missing accessory detail**`),
+  'ManualFinder spec camera reconciliation must match the live audit'
+);
+assert.ok(
+  spec.includes(`across ${summary.cameraTotal} canonical camera-category records; ${summary.cameraNonActionable} maker/index rows are non-actionable`),
+  'ManualFinder spec camera total/non-actionable counts must match the live audit'
 );
 
 const makers = new Set([
@@ -63,5 +70,33 @@ assert.ok(
   doc.includes(`The current baseline is not complete: \`${summary.cameraMissingAccessory}\` actionable records remain missing accessory detail.`),
   'camera completion statement must match the live missing count'
 );
+
+const nikonBasic = summary.cameraBasicByMaker.Nikon || 0;
+const nikonDetail = summary.cameraDetailByMaker.Nikon || 0;
+const nikonExcluded = summary.cameraDetailExcludedByMaker.Nikon || 0;
+const nikonMissing = summary.cameraMissingAccessoryByMaker.Nikon || 0;
+assert.ok(
+  doc.includes(`Nikon camera ${nikonBasic} = detail ${nikonDetail} + reviewed exclusion ${nikonExcluded} + missing ${nikonMissing}`),
+  'Nikon camera completion line must match the live audit'
+);
+assert.ok(
+  affiliateDoc.includes(`Nikon camera ${nikonBasic} = detail ${nikonDetail} + reviewed exclusion ${nikonExcluded} + missing ${nikonMissing}`),
+  'affiliate coverage Nikon completion line must match the live audit'
+);
+assert.ok(
+  spec.includes(`**${nikonDetail} detail + ${nikonExcluded} reviewed exclusions + ${nikonMissing} missing**`),
+  'ManualFinder spec Nikon completion values must match the live audit'
+);
+
+for (const path of [
+  'affiliate-nikon-camera-accessories-wave2.js',
+  'affiliate-camera-detail-exclusions.js',
+  'CAMERA_ACCESSORY_COVERAGE.md',
+  'tests/nikon-camera-accessory-wave2.test.mjs',
+  'tests/camera-accessory-coverage.test.mjs',
+  'tests/camera-accessory-doc-sync.test.mjs'
+]) {
+  assert.ok(spec.includes(path), `ManualFinder spec implementation evidence must include ${path}`);
+}
 
 console.log('ManualFinder camera accessory documentation sync audit passed.');
