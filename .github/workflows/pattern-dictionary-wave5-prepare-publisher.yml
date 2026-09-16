@@ -1,0 +1,77 @@
+name: Pattern Dictionary Wave 5 prepare publisher
+on:
+  push:
+    branches: [feat/pattern-dictionary-wave5-production-staging-20260916]
+    paths: [.github/workflows/pattern-dictionary-wave5-prepare-publisher.yml]
+permissions:
+  contents: write
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave5-production-staging-20260916
+          fetch-depth: 0
+      - name: Build publish-wave5 from proven Wave 4 publisher
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          src=Path('tools/pattern-dictionary/scripts/publish-wave4.mjs').read_text()
+          s=src.replace('wave4-','wave5-').replace('Wave 4','Wave 5').replace('wave4_review_history','wave5_review_history')
+          s=s.replace("Array.from({length:20},(_,i)=>61+i)","Array.from({length:20},(_,i)=>81+i)")
+          s=s.replace('Wave 5 ordinals must be 61..80','Wave 5 ordinals must be 81..100')
+          s=s.replace("if(base.length===80&&waveIds.every(id=>base.some(x=>x.id===id))){console.log('Wave 5 already published; no transform needed.');process.exit(0)}","if(base.length===100&&waveIds.every(id=>base.some(x=>x.id===id))){console.log('Wave 5 already published; no transform needed.');process.exit(0)}")
+          s=s.replace("if(base.length!==60)throw new Error(`expected pre-publication runtime count 60, got ${base.length}`);","if(base.length!==80)throw new Error(`expected pre-publication runtime count 80, got ${base.length}`);")
+          s=s.replace('record_count:80','record_count:100')
+          s=s.replace('published canonical 80-pattern production set','published canonical 100-pattern production set')
+          s=s.replace("review.scope='canonical-80'","review.scope='canonical-100'")
+          s=s.replace('published canonical 80.','published canonical 100.')
+          s=s.replace("const ids80=[...base.map(x=>x.id),...waveIds];","const ids100=[...base.map(x=>x.id),...waveIds];")
+          s=s.replace("ids80.map(x=>`'${x}'`)","ids100.map(x=>`'${x}'`)")
+          old=re.search(r"expansion\.version=today;expansion\.base=\{[\s\S]*?write\('data/canonical-100-expansion\.json',expansion\);",s)
+          if not old: raise SystemExit('expansion block not found')
+          final="""expansion.version=today;
+          expansion.base={...expansion.base,published_count:100,rule:'The full frozen canonical 100 is published in data/patterns.json; no planned canonical entries remain.'};
+          expansion.policy={...expansion.policy,expansion_count:0,waves:[],publication_rule:'Canonical 100 publication is complete. Any future growth requires a new explicitly versioned expansion plan rather than silently extending this frozen set.'};
+          expansion.entries=[];write('data/canonical-100-expansion.json',expansion);"""
+          s=s[:old.start()]+final+s[old.end():]
+          s=s.replace("html=html.replace(/現在の60件/g,'現在の80件');","html=html.replace(/現在の80件/g,'現在の100件');")
+          s=s.replace("html=html.replace(/The current 60 entries/g,'The current 80 entries');","html=html.replace(/The current 80 entries/g,'The current 100 entries');")
+          # Final-wave search page footer counts.
+          marker="for(const rel of ['index.html','en/index.html']){"
+          idx=s.find(marker)
+          # Search-page update is inserted after the home-page loop by locating detailHtml declaration.
+          detail=s.find('function detailHtml')
+          insert="""for(const rel of ['search.html','en/search.html']){const file=path.join(root,rel);let html=fs.readFileSync(file,'utf8');html=html.replace(/80件の検証済みデータ/g,'100件の検証済みデータ').replace(/80-record verified dataset/g,'100-record verified dataset');fs.writeFileSync(file,html);}\n\n"""
+          if detail<0: raise SystemExit('detailHtml marker not found')
+          s=s[:detail]+insert+s[detail:]
+          # Replace the Wave 4 README tail logic with final canonical-100 closure wording.
+          readme_start=s.find("const readmePath=path.join(root,'README.md')")
+          log_start=s.find('console.log(`Published Wave 5 transform:',readme_start)
+          if readme_start<0 or log_start<0: raise SystemExit('README/log block not found')
+          readme="""const readmePath=path.join(root,'README.md');let readme=fs.readFileSync(readmePath,'utf8');
+          readme=readme.replace(/^# Pattern Dictionary[^\\n]*/,'# Pattern Dictionary — canonical 100 verified publication');
+          readme=readme.replace(/published 80-pattern visual dictionary/g,'published 100-pattern visual dictionary');
+          readme=readme.replace(/remaining 20 canonical entries/g,'no remaining canonical entries');
+          readme=readme.replace(/published runtime set is exactly 80 patterns/g,'published runtime set is exactly 100 patterns');
+          readme=readme.replace(/all 80 published terms/g,'all 100 published terms');
+          readme=readme.replace(/remaining ordinals \\*\\*81-100\\*\\*/g,'no remaining ordinals in the frozen canonical 100');
+          if(!readme.includes('Wave 5 / entries 81-100 is published'))readme+='\\n- **Wave 5 / entries 81-100 is published:** the frozen canonical 100 is now complete. Wave 5 adds 20 source-reviewed records, 20 three-pass reviewed deterministic Reference Images, high-confusion compare guides, search regressions, and 60 fixed Amazon commerce intents.\\n';
+          fs.writeFileSync(readmePath,readme);
+
+          """
+          s=s[:readme_start]+readme+s[log_start:]
+          s=s.replace('runtime 60 -> 80','runtime 80 -> 100').replace('remaining canonical expansion ${expansion.entries.length}','remaining canonical expansion ${expansion.entries.length}')
+          Path('tools/pattern-dictionary/scripts/publish-wave5.mjs').write_text(s)
+          PY
+      - name: Syntax-check publisher
+        run: node --check tools/pattern-dictionary/scripts/publish-wave5.mjs
+      - name: Commit publisher
+        run: |
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git add tools/pattern-dictionary/scripts/publish-wave5.mjs
+          git commit -m "Pattern Dictionary: add Wave 5 canonical-100 publisher"
+          git push origin HEAD:feat/pattern-dictionary-wave5-production-staging-20260916
