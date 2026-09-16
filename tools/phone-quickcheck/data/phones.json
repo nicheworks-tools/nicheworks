@@ -8811,15 +8811,15 @@
         }
       },
       "included": {
-        "cable": "unknown",
+        "cable": "not_included",
         "adapter": "not_included"
       },
       "sources": {
-        "specificationsUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192476/",
+        "specificationsUrl": "https://store.motorola.co.jp/item/MOTO_G13.html",
         "manualUrl": "https://jp-jp.support.motorola.com/",
-        "releaseUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192476/",
+        "releaseUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=520",
         "chargingUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192476/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16"
       },
       "affiliateKeys": []
     },
