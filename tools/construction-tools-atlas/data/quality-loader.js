@@ -2,517 +2,268 @@
   "use strict";
 
   const originalFetch = window.fetch.bind(window);
-  const DEFAULT_BASE_PATHS = ["./data/tools.basic.json"];
-  const DEFAULT_MANIFEST_PATH = "./data/quality-manifest.json";
-  const DEFAULT_ENRICHMENT_PATH = "./data/content-enrichment-v2.3.json";
-  const DEFAULT_ENRICHMENT_MANIFEST_PATH = "./data/content-enrichment-manifest-v2.3.json";
-  const DEFAULT_REDIRECT_PATH = "./data/canonical-redirects-v2.3.json";
-  const DEFAULT_IDENTITY_RESOLUTION_PATH = "./data/canonical-identity-resolutions-v2.3.json";
+  const BASE_PATHS = ["./data/tools.basic.json"];
+  const MANIFEST_PATH = "./data/quality-manifest.json";
+  const ENRICHMENT_PATH = "./data/content-enrichment-v2.3.json";
+  const ENRICHMENT_MANIFEST_PATH = "./data/content-enrichment-manifest-v2.3.json";
+  const REDIRECT_PATH = "./data/canonical-redirects-v2.3.json";
+  const IDENTITY_PATH = "./data/canonical-identity-resolutions-v2.3.json";
   const GENERATED_FILLER_BATCHES = new Set(["direct-5000", "atlas-expand-5000"]);
   const FAVORITES_KEY = "cta_favs";
 
-  function safeText(value) {
-    return typeof value === "string" ? value.trim() : "";
-  }
-
-  function safeArray(value) {
-    if (Array.isArray(value)) return value.filter(Boolean).map(String);
-    if (typeof value === "string" && value.trim()) return [value.trim()];
-    return [];
-  }
-
-  function uniqueText(values) {
-    return [...new Set(safeArray(values).map((value) => value.trim()).filter(Boolean))];
-  }
-
-  function compactToFull(row, qualityBatch) {
-    const id = safeText(row?.id);
-    const type = safeText(row?.t || row?.type);
-    const ja = safeText(row?.ja || row?.term?.ja);
-    const en = safeText(row?.en || row?.term?.en);
-    const cat = safeText(row?.c || row?.category);
-    const task = safeText(row?.task || row?.tsk);
-    const descJa = safeText(row?.dj || row?.description_ja || row?.summary_ja);
-    const descEn = safeText(row?.de || row?.description_en || row?.summary_en);
-    const detailJa = safeText(row?.nj || row?.detail_ja) || `${ja}は仕様、下地条件、周辺部材との取り合いを確認して使う。施工前後の確認を省くと不具合や手戻りの原因になる。`;
-    const detailEn = safeText(row?.ne || row?.detail_en) || `Use ${en} after checking the specification, substrate, and adjacent details. Missing checks can cause defects or rework.`;
-    const bulletsJa = safeArray(row?.bj || row?.bullets_ja);
-    const bulletsEn = safeArray(row?.be || row?.bullets_en);
-    const finalBulletsJa = bulletsJa.length ? bulletsJa : ["仕様と下地条件を確認する。", "周辺部材との取り合いを確認する。"];
-    const finalBulletsEn = bulletsEn.length ? bulletsEn : ["Check the specification and substrate conditions.", "Confirm adjacent details before finishing."];
-    const aliasesJa = safeArray(row?.aj || row?.aliases_ja);
-    const aliasesEn = safeArray(row?.ae || row?.aliases_en);
-    const categories = safeArray(row?.categories || cat);
-    const tasks = safeArray(row?.tasks || task);
-    const fuzzy = safeArray(row?.fuzzy).concat([ja, en, cat, task]).filter(Boolean);
-    const examplesJa = safeArray(row?.ej || row?.examples_ja);
-    const examplesEn = safeArray(row?.ee || row?.examples_en);
-
-    return {
-      id,
-      type,
-      term: { ja, en },
-      aliases: { ja: aliasesJa, en: aliasesEn },
-      description: { ja: descJa, en: descEn },
-      categories,
-      tasks,
-      fuzzy: [...new Set(fuzzy)],
-      region: safeArray(row?.region).length ? safeArray(row.region) : ["global", "jp"],
-      summary_ja: descJa,
-      summary_en: descEn,
-      detail_ja: detailJa,
-      detail_en: detailEn,
-      bullets_ja: finalBulletsJa,
-      bullets_en: finalBulletsEn,
-      examples: {
-        ja: examplesJa.length ? examplesJa : [`${ja}を使う前に寸法と仕様を確認する。`],
-        en: examplesEn.length ? examplesEn : [`Check dimensions and specifications before using ${en}.`],
-      },
-      summary: { ja: descJa, en: descEn },
-      bullets: { ja: finalBulletsJa, en: finalBulletsEn },
-      meta: { quality_batch: safeText(row?.quality_batch || qualityBatch) },
-    };
-  }
-
-  function asEntries(raw) {
-    if (Array.isArray(raw)) return raw;
-    if (raw?.schema === "cta-compact-v1" && Array.isArray(raw?.rows)) {
-      const qualityBatch = safeText(raw?.quality_batch);
-      return raw.rows.map((row) => compactToFull(row, qualityBatch));
-    }
-    if (Array.isArray(raw?.entries)) return raw.entries;
-    if (Array.isArray(raw?.data)) return raw.data;
-    return [];
-  }
-
-  function packPath(item) {
-    if (typeof item === "string") return item.trim();
-    if (item && typeof item.path === "string") return item.path.trim();
-    return "";
-  }
+  const text = (value) => typeof value === "string" ? value.trim() : "";
+  const arr = (value) => Array.isArray(value) ? value.filter(Boolean).map(String) : (typeof value === "string" && value.trim() ? [value.trim()] : []);
+  const unique = (values) => [...new Set(values.map((value) => String(value || "").trim()).filter(Boolean))];
+  const normalize = (value) => String(value || "").toLowerCase().replace(/[\s\u3000]+/g, " ").replace(/[／]/g, "/").trim();
 
   async function fetchJson(path) {
     if (!path) return null;
     try {
-      const response = await originalFetch(path, { cache: "no-store" });
+      const response = await originalFetch(path);
       if (!response.ok) return null;
       return await response.json();
-    } catch (_) {
-      return null;
-    }
+    } catch (_) { return null; }
   }
 
-  function manifestPaths(manifest) {
-    const packs = Array.isArray(manifest?.packs) ? manifest.packs : [];
-    const paths = [];
-    const seen = new Set();
-    packs.forEach((pack) => {
-      const path = packPath(pack);
-      if (!path || seen.has(path)) return;
-      seen.add(path);
-      paths.push(path);
-    });
-    return paths;
-  }
-
-  function normalizeTerm(value) {
-    return String(value || "")
-      .toLowerCase()
-      .replace(/[\s\u3000]+/g, " ")
-      .replace(/[／]/g, "/")
-      .trim();
-  }
-
-  function termKey(entry) {
-    const ja = normalizeTerm(entry?.term?.ja || entry?.ja || entry?.summary?.ja || "");
-    const en = normalizeTerm(entry?.term?.en || entry?.en || entry?.summary?.en || "");
-    if (!ja && !en) return "";
-    return `${ja}::${en}`;
-  }
-
-  function generatedFillerBatch(entry) {
-    if (entry?.meta?.generated !== true) return "";
-    const batch = safeText(entry?.meta?.batch);
-    return GENERATED_FILLER_BATCHES.has(batch) ? batch : "";
-  }
-
-  function addUnique(merged, seenIds, seenTerms, entries, stats, sourcePath) {
-    asEntries(entries).forEach((entry) => {
-      stats.raw += 1;
-      const id = typeof entry?.id === "string" ? entry.id.trim() : "";
-      if (!id) {
-        stats.skippedMissingId += 1;
-        return;
-      }
-
-      const fillerBatch = generatedFillerBatch(entry);
-      if (fillerBatch) {
-        stats.quarantinedGenerated += 1;
-        stats.quarantinedGeneratedByBatch[fillerBatch] = (stats.quarantinedGeneratedByBatch[fillerBatch] || 0) + 1;
-        if (stats.generatedQuarantineSample.length < 20) {
-          stats.generatedQuarantineSample.push({ id, batch: fillerBatch, source: sourcePath });
-        }
-        return;
-      }
-
-      if (seenIds.has(id)) {
-        stats.duplicateIds += 1;
-        stats.removed.push({ reason: "duplicate_id", id, key: "", source: sourcePath });
-        return;
-      }
-
-      const key = termKey(entry);
-      if (key && seenTerms.has(key)) {
-        stats.duplicateTerms += 1;
-        stats.removed.push({ reason: "duplicate_term", id, key, source: sourcePath });
-        return;
-      }
-
-      seenIds.add(id);
-      if (key) seenTerms.add(key);
-      merged.push(entry);
-    });
-  }
-
-  function enrichmentEntries(raw) {
-    return Array.isArray(raw?.entries) ? raw.entries : [];
-  }
-
-  function identityNameOverrides(raw) {
-    return Array.isArray(raw?.name_overrides) ? raw.name_overrides : [];
-  }
-
-  function identityTypeOverrides(raw) {
-    return Array.isArray(raw?.type_overrides) ? raw.type_overrides : [];
-  }
-
-  function identityAliasRemovals(raw) {
-    return Array.isArray(raw?.alias_removals) ? raw.alias_removals : [];
-  }
-
-  function removeIdentityVocabulary(values, removals) {
-    const removeKeys = new Set(safeArray(removals).map(normalizeTerm).filter(Boolean));
-    return uniqueText(safeArray(values).filter((value) => !removeKeys.has(normalizeTerm(value))));
-  }
-
-  function applyIdentityResolutions(merged, raw, stats) {
-    const byId = new Map(merged.map((entry) => [safeText(entry?.id), entry]));
-    for (const row of identityNameOverrides(raw)) {
-      const id = safeText(row?.id);
-      const fromJa = safeText(row?.from?.ja);
-      const fromEn = safeText(row?.from?.en);
-      const toJa = safeText(row?.to?.ja);
-      const toEn = safeText(row?.to?.en);
-      if (!id || (!toJa && !toEn)) continue;
-      const target = byId.get(id);
-      if (!target) {
-        stats.identityResolutionMissingTargets += 1;
-        if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason: "missing_name_override_target" });
-        continue;
-      }
-      if (!target.term || typeof target.term !== "object") target.term = { ja: "", en: "" };
-      const currentJa = safeText(target.term.ja);
-      const currentEn = safeText(target.term.en);
-      if ((fromJa && currentJa !== fromJa && currentJa !== toJa) || (fromEn && currentEn !== fromEn && currentEn !== toEn)) {
-        stats.identityResolutionSourceMismatches += 1;
-        if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason: "unexpected_source_name", currentJa, currentEn, fromJa, fromEn, toJa, toEn });
-      }
-      if (toJa) target.term.ja = toJa;
-      if (toEn) target.term.en = toEn;
-      target.fuzzy = uniqueText([
-        ...removeIdentityVocabulary(target.fuzzy, [fromJa, fromEn]),
-        target.term.ja,
-        target.term.en
-      ]);
-      target.meta = {
-        ...(target.meta || {}),
-        canonical_name_override_from: { ja: fromJa, en: fromEn },
-        canonical_name_override_to: { ja: toJa, en: toEn }
-      };
-      stats.identityNameOverridesApplied += 1;
-    }
-    for (const row of identityTypeOverrides(raw)) {
-      const id = safeText(row?.id);
-      const from = safeText(row?.from);
-      const to = safeText(row?.to);
-      if (!id || !to) continue;
-      const target = byId.get(id);
-      if (!target) {
-        stats.identityResolutionMissingTargets += 1;
-        if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason: "missing_type_override_target" });
-        continue;
-      }
-      const current = safeText(target?.type);
-      if (from && current !== from && current !== to) {
-        stats.identityResolutionSourceMismatches += 1;
-        if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason: "unexpected_source_type", expected: from, actual: current, to });
-      }
-      target.type = to;
-      target.meta = { ...(target.meta || {}), canonical_type_override_from: from, canonical_type_override_to: to };
-      stats.identityTypeOverridesApplied += 1;
-    }
-
-    for (const row of identityAliasRemovals(raw)) {
-      const id = safeText(row?.id);
-      if (!id) continue;
-      const target = byId.get(id);
-      if (!target) {
-        stats.identityResolutionMissingTargets += 1;
-        if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason: "missing_alias_removal_target" });
-        continue;
-      }
-      if (!target.aliases || typeof target.aliases !== "object") target.aliases = { ja: [], en: [] };
-      const ja = safeArray(row?.ja);
-      const en = safeArray(row?.en);
-      target.aliases.ja = removeIdentityVocabulary(target.aliases.ja, ja);
-      target.aliases.en = removeIdentityVocabulary(target.aliases.en, en);
-      target.fuzzy = removeIdentityVocabulary(target.fuzzy, [...ja, ...en]);
-      target.meta = { ...(target.meta || {}), canonical_alias_removals_applied: true };
-      stats.identityAliasRemovalsApplied += ja.length + en.length;
-    }
-
-    window.CTA_CANONICAL_IDENTITY_RESOLUTIONS = raw || {};
-  }
-
-  function redirectEntries(raw) {
-    return Array.isArray(raw?.redirects) ? raw.redirects : [];
-  }
-
-  function buildRedirectMap(raw) {
-    const map = new Map();
-    for (const row of redirectEntries(raw)) {
-      const from = safeText(row?.from);
-      const to = safeText(row?.to);
-      if (!from || !to || from === to || map.has(from)) continue;
-      map.set(from, to);
-    }
-    return map;
-  }
-
-  function resolveWithMap(id, redirectMap) {
-    let current = safeText(id);
-    const seen = new Set();
-    while (current && redirectMap.has(current) && !seen.has(current)) {
-      seen.add(current);
-      current = redirectMap.get(current);
-    }
-    return current;
-  }
-
-  function mergeRedirectVocabulary(target, source, fromId) {
-    if (!target.aliases || typeof target.aliases !== "object") target.aliases = { ja: [], en: [] };
-    const targetJa = safeText(target?.term?.ja);
-    const targetEn = safeText(target?.term?.en);
-    const sourceJa = safeText(source?.term?.ja);
-    const sourceEn = safeText(source?.term?.en);
-    target.aliases.ja = uniqueText([
-      ...safeArray(target.aliases.ja),
-      ...(sourceJa && sourceJa !== targetJa ? [sourceJa] : []),
-      ...safeArray(source?.aliases?.ja)
-    ]);
-    target.aliases.en = uniqueText([
-      ...safeArray(target.aliases.en),
-      ...(sourceEn && sourceEn !== targetEn ? [sourceEn] : []),
-      ...safeArray(source?.aliases?.en)
-    ]);
-    target.fuzzy = uniqueText([
-      ...safeArray(target.fuzzy),
-      fromId,
-      sourceJa,
-      sourceEn,
-      ...safeArray(source?.aliases?.ja),
-      ...safeArray(source?.aliases?.en),
-      ...safeArray(source?.fuzzy)
-    ]);
-    target.meta = {
-      ...(target.meta || {}),
-      canonical_redirect_sources: uniqueText([...(target.meta?.canonical_redirect_sources || []), fromId])
+  function compactToFull(row, qualityBatch) {
+    const id = text(row?.id);
+    const type = text(row?.t || row?.type);
+    const ja = text(row?.ja || row?.term?.ja);
+    const en = text(row?.en || row?.term?.en);
+    const cat = text(row?.c || row?.category);
+    const task = text(row?.task || row?.tsk);
+    const descJa = text(row?.dj || row?.description_ja || row?.summary_ja);
+    const descEn = text(row?.de || row?.description_en || row?.summary_en);
+    const detailJa = text(row?.nj || row?.detail_ja) || `${ja}は仕様、下地条件、周辺部材との取り合いを確認して使う。施工前後の確認を省くと不具合や手戻りの原因になる。`;
+    const detailEn = text(row?.ne || row?.detail_en) || `Use ${en} after checking the specification, substrate, and adjacent details. Missing checks can cause defects or rework.`;
+    const bulletsJa = arr(row?.bj || row?.bullets_ja);
+    const bulletsEn = arr(row?.be || row?.bullets_en);
+    const examplesJa = arr(row?.ej || row?.examples_ja);
+    const examplesEn = arr(row?.ee || row?.examples_en);
+    return {
+      id, type, term: { ja, en },
+      aliases: { ja: arr(row?.aj || row?.aliases_ja), en: arr(row?.ae || row?.aliases_en) },
+      description: { ja: descJa, en: descEn },
+      categories: arr(row?.categories || cat), tasks: arr(row?.tasks || task),
+      fuzzy: unique([...arr(row?.fuzzy), ja, en, cat, task]),
+      region: arr(row?.region).length ? arr(row?.region) : ["global", "jp"],
+      summary_ja: descJa, summary_en: descEn, summary: { ja: descJa, en: descEn },
+      detail_ja: detailJa, detail_en: detailEn,
+      bullets_ja: bulletsJa.length ? bulletsJa : ["仕様と下地条件を確認する。", "周辺部材との取り合いを確認する。"],
+      bullets_en: bulletsEn.length ? bulletsEn : ["Check the specification and substrate conditions.", "Confirm adjacent details before finishing."],
+      bullets: {
+        ja: bulletsJa.length ? bulletsJa : ["仕様と下地条件を確認する。", "周辺部材との取り合いを確認する。"],
+        en: bulletsEn.length ? bulletsEn : ["Check the specification and substrate conditions.", "Confirm adjacent details before finishing."]
+      },
+      examples: {
+        ja: examplesJa.length ? examplesJa : [`${ja}を使う前に寸法と仕様を確認する。`],
+        en: examplesEn.length ? examplesEn : [`Check dimensions and specifications before using ${en}.`]
+      },
+      meta: { quality_batch: text(row?.quality_batch || qualityBatch) }
     };
   }
 
-  function applyCanonicalRedirects(merged, raw, stats) {
-    const redirectMap = buildRedirectMap(raw);
-    const byId = new Map(merged.map((entry) => [safeText(entry?.id), entry]));
-    const removeIds = new Set();
-    const appliedMap = new Map();
-
-    for (const [from, directTo] of redirectMap) {
-      const to = resolveWithMap(directTo, redirectMap);
-      const source = byId.get(from);
-      const target = byId.get(to);
-      if (!source) {
-        stats.canonicalRedirectMissingSources += 1;
-        if (stats.canonicalRedirectProblemSample.length < 20) stats.canonicalRedirectProblemSample.push({ from, to, reason: "missing_source" });
-        continue;
-      }
-      if (!target || from === to) {
-        stats.canonicalRedirectMissingTargets += 1;
-        if (stats.canonicalRedirectProblemSample.length < 20) stats.canonicalRedirectProblemSample.push({ from, to, reason: "missing_target" });
-        continue;
-      }
-      mergeRedirectVocabulary(target, source, from);
-      removeIds.add(from);
-      appliedMap.set(from, to);
-      stats.canonicalRedirectsApplied += 1;
-    }
-
-    if (removeIds.size) {
-      const kept = merged.filter((entry) => !removeIds.has(safeText(entry?.id)));
-      merged.splice(0, merged.length, ...kept);
-    }
-
-    const redirectObject = Object.fromEntries(appliedMap);
-    window.CTA_CANONICAL_REDIRECTS = Object.freeze(redirectObject);
-    return appliedMap;
+  function entries(raw) {
+    if (Array.isArray(raw)) return raw;
+    if (raw?.schema === "cta-compact-v1" && Array.isArray(raw.rows)) return raw.rows.map((row) => compactToFull(row, text(raw.quality_batch)));
+    if (Array.isArray(raw?.entries)) return raw.entries;
+    if (Array.isArray(raw?.data)) return raw.data;
+    return [];
   }
-
-  function applyContentEnrichment(merged, raw, stats, appliedIds = new Set()) {
-    const byId = new Map(merged.map((entry) => [safeText(entry?.id), entry]));
-    for (const patch of enrichmentEntries(raw)) {
-      const id = safeText(patch?.id);
-      if (!id) continue;
-      if (appliedIds.has(id)) {
-        stats.contentEnrichmentDuplicateTargets += 1;
-        if (stats.contentEnrichmentDuplicateSample.length < 20) stats.contentEnrichmentDuplicateSample.push(id);
-        continue;
-      }
-      appliedIds.add(id);
-      const target = byId.get(id);
-      if (!target) {
-        stats.contentEnrichmentMissingTargets += 1;
-        if (stats.contentEnrichmentMissingSample.length < 20) stats.contentEnrichmentMissingSample.push(id);
-        continue;
-      }
-      const detailJa = safeText(patch?.detail_ja);
-      const detailEn = safeText(patch?.detail_en);
-      const bulletsJa = uniqueText(patch?.bullets_ja);
-      const bulletsEn = uniqueText(patch?.bullets_en);
-      const examplesJa = uniqueText(patch?.examples_ja);
-      const examplesEn = uniqueText(patch?.examples_en);
-      if (detailJa) target.detail_ja = detailJa;
-      if (detailEn) target.detail_en = detailEn;
-      if (bulletsJa.length) target.bullets_ja = bulletsJa;
-      if (bulletsEn.length) target.bullets_en = bulletsEn;
-      target.bullets = { ja: target.bullets_ja || [], en: target.bullets_en || [] };
-      if (!target.examples || typeof target.examples !== "object") target.examples = { ja: [], en: [] };
-      if (examplesJa.length) target.examples.ja = examplesJa;
-      if (examplesEn.length) target.examples.en = examplesEn;
-      target.meta = {
-        ...(target.meta || {}),
-        content_enrichment_wave: safeText(patch?.wave),
-        content_enrichment_state: safeText(patch?.state) || "expanded"
-      };
-      stats.contentEnriched += 1;
-    }
+  function manifestPaths(raw) {
+    const seen = new Set();
+    return (Array.isArray(raw?.packs) ? raw.packs : []).map((item) => typeof item === "string" ? item.trim() : text(item?.path)).filter((path) => path && !seen.has(path) && seen.add(path));
+  }
+  function termKey(entry) {
+    const ja = normalize(entry?.term?.ja || entry?.ja || entry?.summary?.ja || "");
+    const en = normalize(entry?.term?.en || entry?.en || entry?.summary?.en || "");
+    return ja || en ? `${ja}::${en}` : "";
   }
 
   function createStats() {
     return {
-      raw: 0,
-      merged: 0,
-      skippedMissingId: 0,
-      duplicateIds: 0,
-      duplicateTerms: 0,
-      quarantinedGenerated: 0,
-      quarantinedGeneratedByBatch: {},
-      generatedQuarantineSample: [],
-      canonicalRedirectsApplied: 0,
-      canonicalRedirectMissingSources: 0,
-      canonicalRedirectMissingTargets: 0,
-      canonicalRedirectProblemSample: [],
-      identityNameOverridesApplied: 0,
-      identityTypeOverridesApplied: 0,
-      identityAliasRemovalsApplied: 0,
-      identityResolutionMissingTargets: 0,
-      identityResolutionSourceMismatches: 0,
-      identityResolutionProblemSample: [],
-      favoriteIdsMigrated: 0,
-      contentEnriched: 0,
-      contentEnrichmentMissingTargets: 0,
-      contentEnrichmentMissingSample: [],
-      contentEnrichmentDuplicateTargets: 0,
-      contentEnrichmentDuplicateSample: [],
-      removed: []
+      raw:0, merged:0, skippedMissingId:0, duplicateIds:0, duplicateTerms:0,
+      quarantinedGenerated:0, quarantinedGeneratedByBatch:{}, generatedQuarantineSample:[],
+      canonicalRedirectsApplied:0, canonicalRedirectMissingSources:0, canonicalRedirectMissingTargets:0, canonicalRedirectProblemSample:[],
+      identityNameOverridesApplied:0, identityTypeOverridesApplied:0, identityAliasRemovalsApplied:0,
+      identityResolutionMissingTargets:0, identityResolutionSourceMismatches:0, identityResolutionProblemSample:[],
+      favoriteIdsMigrated:0, contentEnriched:0, contentEnrichmentMissingTargets:0, contentEnrichmentMissingSample:[],
+      contentEnrichmentDuplicateTargets:0, contentEnrichmentDuplicateSample:[], removed:[]
     };
   }
 
-  function resolveCanonicalId(id) {
-    const value = safeText(id);
-    const redirects = window.CTA_CANONICAL_REDIRECTS || {};
-    let current = value;
-    const seen = new Set();
-    while (current && Object.prototype.hasOwnProperty.call(redirects, current) && !seen.has(current)) {
-      seen.add(current);
-      current = safeText(redirects[current]);
+  function addUnique(merged, seenIds, seenTerms, raw, stats, source) {
+    entries(raw).forEach((entry) => {
+      stats.raw += 1;
+      const id = text(entry?.id);
+      if (!id) { stats.skippedMissingId += 1; return; }
+      const batch = entry?.meta?.generated === true ? text(entry?.meta?.batch) : "";
+      if (GENERATED_FILLER_BATCHES.has(batch)) {
+        stats.quarantinedGenerated += 1;
+        stats.quarantinedGeneratedByBatch[batch] = (stats.quarantinedGeneratedByBatch[batch] || 0) + 1;
+        if (stats.generatedQuarantineSample.length < 20) stats.generatedQuarantineSample.push({ id, batch, source });
+        return;
+      }
+      if (seenIds.has(id)) { stats.duplicateIds += 1; stats.removed.push({ reason:"duplicate_id", id, key:"", source }); return; }
+      const key = termKey(entry);
+      if (key && seenTerms.has(key)) { stats.duplicateTerms += 1; stats.removed.push({ reason:"duplicate_term", id, key, source }); return; }
+      seenIds.add(id); if (key) seenTerms.add(key); merged.push(entry);
+    });
+  }
+
+  function removeVocabulary(values, removals) {
+    const blocked = new Set(arr(removals).map(normalize));
+    return unique(arr(values).filter((value) => !blocked.has(normalize(value))));
+  }
+
+  function applyIdentityResolutions(merged, raw, stats) {
+    const byId = new Map(merged.map((entry) => [text(entry?.id), entry]));
+    for (const row of Array.isArray(raw?.name_overrides) ? raw.name_overrides : []) {
+      const id = text(row?.id); const target = byId.get(id); const toJa = text(row?.to?.ja); const toEn = text(row?.to?.en);
+      if (!id || (!toJa && !toEn)) continue;
+      if (!target) { stats.identityResolutionMissingTargets += 1; if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason:"missing_name_override_target" }); continue; }
+      const fromJa = text(row?.from?.ja); const fromEn = text(row?.from?.en);
+      target.term ||= { ja:"", en:"" };
+      const currentJa = text(target.term.ja); const currentEn = text(target.term.en);
+      if ((fromJa && currentJa !== fromJa && currentJa !== toJa) || (fromEn && currentEn !== fromEn && currentEn !== toEn)) {
+        stats.identityResolutionSourceMismatches += 1;
+        if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason:"unexpected_source_name", currentJa, currentEn, fromJa, fromEn, toJa, toEn });
+      }
+      if (toJa) target.term.ja = toJa; if (toEn) target.term.en = toEn;
+      target.fuzzy = unique([...removeVocabulary(target.fuzzy, [fromJa, fromEn]), target.term.ja, target.term.en]);
+      target.meta = { ...(target.meta || {}), canonical_name_override_from:{ ja:fromJa, en:fromEn }, canonical_name_override_to:{ ja:toJa, en:toEn } };
+      stats.identityNameOverridesApplied += 1;
     }
+    for (const row of Array.isArray(raw?.type_overrides) ? raw.type_overrides : []) {
+      const id = text(row?.id); const target = byId.get(id); const from = text(row?.from); const to = text(row?.to);
+      if (!id || !to) continue;
+      if (!target) { stats.identityResolutionMissingTargets += 1; if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason:"missing_type_override_target" }); continue; }
+      const current = text(target?.type);
+      if (from && current !== from && current !== to) {
+        stats.identityResolutionSourceMismatches += 1;
+        if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason:"unexpected_source_type", expected:from, actual:current, to });
+      }
+      target.type = to; target.meta = { ...(target.meta || {}), canonical_type_override_from:from, canonical_type_override_to:to };
+      stats.identityTypeOverridesApplied += 1;
+    }
+    for (const row of Array.isArray(raw?.alias_removals) ? raw.alias_removals : []) {
+      const id = text(row?.id); const target = byId.get(id);
+      if (!id) continue;
+      if (!target) { stats.identityResolutionMissingTargets += 1; if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason:"missing_alias_removal_target" }); continue; }
+      target.aliases ||= { ja:[], en:[] };
+      const ja = arr(row?.ja); const en = arr(row?.en);
+      target.aliases.ja = removeVocabulary(target.aliases.ja, ja);
+      target.aliases.en = removeVocabulary(target.aliases.en, en);
+      target.fuzzy = removeVocabulary(target.fuzzy, [...ja, ...en]);
+      target.meta = { ...(target.meta || {}), canonical_alias_removals_applied:true };
+      stats.identityAliasRemovalsApplied += ja.length + en.length;
+    }
+    window.CTA_CANONICAL_IDENTITY_RESOLUTIONS = raw || {};
+  }
+
+  function buildRedirectMap(raw) {
+    const map = new Map();
+    for (const row of Array.isArray(raw?.redirects) ? raw.redirects : []) {
+      const from = text(row?.from); const to = text(row?.to);
+      if (from && to && from !== to && !map.has(from)) map.set(from, to);
+    }
+    return map;
+  }
+  function resolveWithMap(id, map) {
+    let current = text(id); const seen = new Set();
+    while (current && map.has(current) && !seen.has(current)) { seen.add(current); current = map.get(current); }
     return current;
   }
-
-  function resolveCanonicalIds(ids) {
-    return uniqueText(safeArray(ids).map((id) => resolveCanonicalId(id)).filter(Boolean));
+  function mergeRedirectVocabulary(target, source, fromId) {
+    target.aliases ||= { ja:[], en:[] };
+    const sourceJa = text(source?.term?.ja); const sourceEn = text(source?.term?.en);
+    const targetJa = text(target?.term?.ja); const targetEn = text(target?.term?.en);
+    target.aliases.ja = unique([...arr(target.aliases.ja), ...(sourceJa && sourceJa !== targetJa ? [sourceJa] : []), ...arr(source?.aliases?.ja)]);
+    target.aliases.en = unique([...arr(target.aliases.en), ...(sourceEn && sourceEn !== targetEn ? [sourceEn] : []), ...arr(source?.aliases?.en)]);
+    target.fuzzy = unique([...arr(target.fuzzy), fromId, sourceJa, sourceEn, ...arr(source?.aliases?.ja), ...arr(source?.aliases?.en), ...arr(source?.fuzzy)]);
+    target.meta = { ...(target.meta || {}), canonical_redirect_sources:unique([...(target.meta?.canonical_redirect_sources || []), fromId]) };
+  }
+  function applyRedirects(merged, raw, stats) {
+    const map = buildRedirectMap(raw); const byId = new Map(merged.map((entry) => [text(entry?.id), entry])); const remove = new Set(); const applied = new Map();
+    for (const [from, directTo] of map) {
+      const to = resolveWithMap(directTo, map); const source = byId.get(from); const target = byId.get(to);
+      if (!source) { stats.canonicalRedirectMissingSources += 1; if (stats.canonicalRedirectProblemSample.length < 20) stats.canonicalRedirectProblemSample.push({ from, to, reason:"missing_source" }); continue; }
+      if (!target || from === to) { stats.canonicalRedirectMissingTargets += 1; if (stats.canonicalRedirectProblemSample.length < 20) stats.canonicalRedirectProblemSample.push({ from, to, reason:"missing_target" }); continue; }
+      mergeRedirectVocabulary(target, source, from); remove.add(from); applied.set(from, to); stats.canonicalRedirectsApplied += 1;
+    }
+    if (remove.size) merged.splice(0, merged.length, ...merged.filter((entry) => !remove.has(text(entry?.id))));
+    window.CTA_CANONICAL_REDIRECTS = Object.freeze(Object.fromEntries(applied));
+    return applied;
   }
 
-  function migrateStoredFavorites(stats) {
+  function applyEnrichment(merged, raw, stats, appliedIds) {
+    const byId = new Map(merged.map((entry) => [text(entry?.id), entry]));
+    for (const patch of Array.isArray(raw?.entries) ? raw.entries : []) {
+      const id = text(patch?.id);
+      if (!id) continue;
+      if (appliedIds.has(id)) { stats.contentEnrichmentDuplicateTargets += 1; if (stats.contentEnrichmentDuplicateSample.length < 20) stats.contentEnrichmentDuplicateSample.push(id); continue; }
+      appliedIds.add(id);
+      const target = byId.get(id);
+      if (!target) { stats.contentEnrichmentMissingTargets += 1; if (stats.contentEnrichmentMissingSample.length < 20) stats.contentEnrichmentMissingSample.push(id); continue; }
+      const detailJa = text(patch?.detail_ja); const detailEn = text(patch?.detail_en);
+      const bulletsJa = unique(arr(patch?.bullets_ja)); const bulletsEn = unique(arr(patch?.bullets_en));
+      const examplesJa = unique(arr(patch?.examples_ja)); const examplesEn = unique(arr(patch?.examples_en));
+      if (detailJa) target.detail_ja = detailJa; if (detailEn) target.detail_en = detailEn;
+      if (bulletsJa.length) target.bullets_ja = bulletsJa; if (bulletsEn.length) target.bullets_en = bulletsEn;
+      target.bullets = { ja:target.bullets_ja || [], en:target.bullets_en || [] };
+      target.examples ||= { ja:[], en:[] };
+      if (examplesJa.length) target.examples.ja = examplesJa; if (examplesEn.length) target.examples.en = examplesEn;
+      target.meta = { ...(target.meta || {}), content_enrichment_wave:text(patch?.wave), content_enrichment_state:text(patch?.state) || "expanded" };
+      stats.contentEnriched += 1;
+    }
+  }
+
+  function resolveCanonicalId(id) {
+    let current = text(id); const redirects = window.CTA_CANONICAL_REDIRECTS || {}; const seen = new Set();
+    while (current && Object.prototype.hasOwnProperty.call(redirects, current) && !seen.has(current)) { seen.add(current); current = text(redirects[current]); }
+    return current;
+  }
+  function resolveCanonicalIds(ids) { return unique(arr(ids).map(resolveCanonicalId).filter(Boolean)); }
+  function migrateFavorites(stats) {
     try {
       const storage = window.localStorage;
       if (!storage?.getItem || !storage?.setItem) return;
-      const raw = storage.getItem(FAVORITES_KEY);
-      if (!raw) return;
-      const parsed = JSON.parse(raw);
-      if (!Array.isArray(parsed)) return;
-      const before = uniqueText(parsed);
-      const after = resolveCanonicalIds(before);
-      const beforeJson = JSON.stringify(before);
-      const afterJson = JSON.stringify(after);
-      if (beforeJson !== afterJson) {
-        storage.setItem(FAVORITES_KEY, afterJson);
+      const raw = storage.getItem(FAVORITES_KEY); if (!raw) return;
+      const parsed = JSON.parse(raw); if (!Array.isArray(parsed)) return;
+      const before = unique(parsed); const after = resolveCanonicalIds(before);
+      if (JSON.stringify(before) !== JSON.stringify(after)) {
+        storage.setItem(FAVORITES_KEY, JSON.stringify(after));
         stats.favoriteIdsMigrated = before.filter((id) => resolveCanonicalId(id) !== id).length;
       }
-    } catch (_) {
-      // Favorites migration is best effort and must not block dictionary loading.
-    }
+    } catch (_) { }
   }
 
   async function loadEntries(options = {}) {
-    const manifestPath = options.manifestPath || DEFAULT_MANIFEST_PATH;
-    const enrichmentPath = options.enrichmentPath || DEFAULT_ENRICHMENT_PATH;
-    const enrichmentManifestPath = options.enrichmentManifestPath || DEFAULT_ENRICHMENT_MANIFEST_PATH;
-    const redirectPath = options.redirectPath || DEFAULT_REDIRECT_PATH;
-    const identityResolutionPath = options.identityResolutionPath || DEFAULT_IDENTITY_RESOLUTION_PATH;
-    const basePaths = Array.isArray(options.basePaths) ? options.basePaths : DEFAULT_BASE_PATHS;
-    const manifest = await fetchJson(manifestPath);
-    const enrichmentManifest = await fetchJson(enrichmentManifestPath);
-    const enrichmentPaths = manifestPaths(enrichmentManifest);
-    const enrichments = [];
-    if (enrichmentPaths.length) {
-      for (const path of enrichmentPaths) enrichments.push(await fetchJson(path));
-    } else {
-      enrichments.push(await fetchJson(enrichmentPath));
-    }
-    const redirects = await fetchJson(redirectPath);
-    const identityResolutions = await fetchJson(identityResolutionPath);
+    const manifestPath = options.manifestPath || MANIFEST_PATH;
+    const enrichmentManifestPath = options.enrichmentManifestPath || ENRICHMENT_MANIFEST_PATH;
+    const redirectPath = options.redirectPath || REDIRECT_PATH;
+    const identityPath = options.identityResolutionPath || IDENTITY_PATH;
+    const basePaths = Array.isArray(options.basePaths) ? options.basePaths : BASE_PATHS;
+
+    const [manifest, enrichmentManifest, redirects, identity] = await Promise.all([
+      fetchJson(manifestPath), fetchJson(enrichmentManifestPath), fetchJson(redirectPath), fetchJson(identityPath)
+    ]);
     const packPaths = manifestPaths(manifest);
-    const merged = [];
-    const seenIds = new Set();
-    const seenTerms = new Set();
-    const stats = createStats();
+    const enrichmentPaths = manifestPaths(enrichmentManifest);
+    const [packs, bases, enrichments] = await Promise.all([
+      Promise.all(packPaths.map(fetchJson)),
+      Promise.all(basePaths.map(fetchJson)),
+      enrichmentPaths.length ? Promise.all(enrichmentPaths.map(fetchJson)) : Promise.all([fetchJson(options.enrichmentPath || ENRICHMENT_PATH)])
+    ]);
 
-    for (const path of packPaths) {
-      const pack = await fetchJson(path);
-      addUnique(merged, seenIds, seenTerms, pack, stats, path);
-    }
-    for (const path of basePaths) {
-      const base = await fetchJson(path);
-      addUnique(merged, seenIds, seenTerms, base, stats, path);
-    }
-
-    applyIdentityResolutions(merged, identityResolutions, stats);
-    applyCanonicalRedirects(merged, redirects, stats);
-    const enrichedIds = new Set();
-    for (const enrichment of enrichments) applyContentEnrichment(merged, enrichment, stats, enrichedIds);
-    migrateStoredFavorites(stats);
-    stats.merged = merged.length;
-    stats.removedCount = stats.raw - stats.merged;
+    const merged = []; const seenIds = new Set(); const seenTerms = new Set(); const stats = createStats();
+    packs.forEach((pack, index) => addUnique(merged, seenIds, seenTerms, pack, stats, packPaths[index]));
+    bases.forEach((base, index) => addUnique(merged, seenIds, seenTerms, base, stats, basePaths[index]));
+    applyIdentityResolutions(merged, identity, stats);
+    applyRedirects(merged, redirects, stats);
+    const enrichedIds = new Set(); enrichments.forEach((enrichment) => applyEnrichment(merged, enrichment, stats, enrichedIds));
+    migrateFavorites(stats);
+    stats.merged = merged.length; stats.removedCount = stats.raw - stats.merged;
     window.CTA_DATA_DIAGNOSTICS = stats;
     if (stats.removedCount > 0 || stats.canonicalRedirectsApplied > 0 || stats.identityNameOverridesApplied > 0 || stats.identityTypeOverridesApplied > 0 || stats.identityAliasRemovalsApplied > 0 || stats.favoriteIdsMigrated > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0 || stats.contentEnrichmentDuplicateTargets > 0) {
       console.info("Construction Tools Atlas data dedupe/quarantine/redirect/enrichment", stats);
@@ -520,38 +271,5 @@
     return merged;
   }
 
-  function fixSearchInput() {
-    const input = document.getElementById("searchInput");
-    if (!input) return;
-    const example = input.getAttribute("content") || input.getAttribute("stable") || "例：インパクト / 石膏ボード / 床レベラー / torque wrench";
-    input.removeAttribute("stable");
-    input.removeAttribute("content");
-    input.setAttribute("placeholder", example);
-  }
-
-  function appendScriptOnce(src, attr, value) {
-    try {
-      if (document.querySelector(`script[${attr}=\"${value}\"]`)) return;
-      const script = document.createElement("script");
-      script.src = src;
-      script.defer = true;
-      script.setAttribute(attr, value);
-      document.head.appendChild(script);
-    } catch (_) {
-      // Optional runtime extension must not stop the dictionary.
-    }
-  }
-
-  function loadLatestRuntimeExtensions() {
-    appendScriptOnce("./detail-image-hotfix.js?v=20260510-image-6", "data-cta-image-hotfix", "20260510-image-6");
-    appendScriptOnce("./detail-image-hotfix-extra.js?v=20260510-extra-1", "data-cta-image-hotfix-extra", "20260510-extra-1");
-    appendScriptOnce("./canonical-deep-link-v2.3.js?v=20260915-canonical-1", "data-cta-canonical-deep-link", "v2.3");
-  }
-
-  window.CTA_DATA_LOADER = { loadEntries, resolveCanonicalId, resolveCanonicalIds };
-
-  document.addEventListener("DOMContentLoaded", () => {
-    fixSearchInput();
-    loadLatestRuntimeExtensions();
-  });
+  window.CTA_DATA_LOADER = Object.freeze({ loadEntries, resolveCanonicalId, resolveCanonicalIds });
 })();
