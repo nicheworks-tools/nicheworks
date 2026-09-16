@@ -1,0 +1,30 @@
+name: Temp Phone QuickCheck gap audit
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Generate gap report
+        run: node scripts/temp-audit-phone-quickcheck-gaps.mjs
+      - name: Commit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .tmp-phone-quickcheck-gaps.json
+          git diff --cached --quiet && exit 0
+          git commit -m "chore: record temporary Phone QuickCheck gap audit"
+          git push
