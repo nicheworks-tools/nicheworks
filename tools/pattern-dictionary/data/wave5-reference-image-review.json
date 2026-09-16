@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-16",
+  "wave": 5,
+  "ordinal_range": [
+    81,
+    100
+  ],
+  "scope": "wave5-staged-not-public",
+  "status": "structural-review-complete",
+  "review_policy": {
+    "dimensions": [
+      1536,
+      1536
+    ],
+    "required_checks": [
+      "file-exists",
+      "png-1536x1536",
+      "flat-front-on",
+      "no-text",
+      "no-frame",
+      "no-shadow",
+      "no-product-mockup",
+      "multiple-repeats-visible",
+      "recognition-cue-matches-source-scope",
+      "qualified-term-does-not-imply-universal-canonical-repeat"
+    ]
+  },
+  "records": [
+    {
+      "ordinal": 81,
+      "pattern_id": "suzani",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 82,
+      "pattern_id": "kente",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 83,
+      "pattern_id": "bogolan",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 84,
+      "pattern_id": "adire",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 85,
+      "pattern_id": "kuba-cloth",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 86,
+      "pattern_id": "sashiko",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 87,
+      "pattern_id": "kantha",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 88,
+      "pattern_id": "otomi-embroidery",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 89,
+      "pattern_id": "african-wax-print",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 90,
+      "pattern_id": "block-print",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 91,
+      "pattern_id": "zebra-print",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes."
+      ]
+    },
+    {
+      "ordinal": 92,
+      "pattern_id": "tiger-print",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes."
+      ]
+    },
+    {
+      "ordinal": 93,
+      "pattern_id": "snake-print",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes."
+      ]
+    },
+    {
+      "ordinal": 94,
+      "pattern_id": "cow-print",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes."
+      ]
+    },
+    {
+      "ordinal": 95,
+      "pattern_id": "giraffe-print",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes."
+      ]
+    },
+    {
+      "ordinal": 96,
+      "pattern_id": "dalmatian-spots",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes."
+      ]
+    },
+    {
+      "ordinal": 97,
+      "pattern_id": "camouflage",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes."
+      ]
+    },
+    {
+      "ordinal": 98,
+      "pattern_id": "tie-dye",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 99,
+      "pattern_id": "marbling",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 100,
+      "pattern_id": "terrazzo",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    }
+  ],
+  "review_history": [
+    {
+      "pass": 1,
+      "result": "regenerate",
+      "note": "Initial sheet exposed underscaled Suzani/animal/camouflage cues and overly geometric Tie-dye/Marbling."
+    },
+    {
+      "pass": 2,
+      "result": "targeted-regenerate",
+      "note": "Scale/fluid refinement accepted broadly; Snake, Giraffe, Sashiko, and Adire required one focused pass."
+    },
+    {
+      "pass": 3,
+      "result": "accepted",
+      "note": "Focused review confirmed Adire resist geometry, visible Sashiko running-stitch paths, connected Snake scale cells, and Giraffe polygon patches with pale channels."
+    }
+  ]
+}

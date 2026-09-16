@@ -8,8 +8,8 @@ const prod=JSON.parse(fs.readFileSync(path.join(r,'data/production-content.json'
 const om=Object.fromEntries(prod.patterns.map(x=>[x.pattern_id,x]));
 const p=base.map(x=>({...x,...(om[x.id]||{}),id:x.id,names:{...x.names,...(om[x.id]?.names||{})},colors:{...x.colors,...(om[x.id]?.colors||{})}}));
 const errors=[];const reviewOrder=['draft','researched','image_ready','reviewed','verified','published'];
-if(p.length!==80)errors.push(`expected 80 patterns, got ${p.length}`);
-if(new Set(p.map(x=>x.id)).size!==80)errors.push('duplicate pattern ids');
+if(p.length!==100)errors.push(`expected 100 patterns, got ${p.length}`);
+if(new Set(p.map(x=>x.id)).size!==100)errors.push('duplicate pattern ids');
 let detailCount=0;
 for(const x of p){
   if(!x.names?.ja||!x.names?.en)errors.push(`${x.id}: missing JA/EN names`);
@@ -23,11 +23,11 @@ for(const x of p){
     if(!html.includes('index,follow')||html.includes('noindex'))errors.push(`${rel}: published detail must be index,follow only`);
   }
 }
-if(detailCount!==160)errors.push(`expected 160 static detail pages, got ${detailCount}`);
+if(detailCount!==200)errors.push(`expected 200 static detail pages, got ${detailCount}`);
 for(const f of ['data/production-content.json','data/source-verification.json','data/reference-images.json','data/reference-image-review.json','index.html','search.html','compare.html','en/index.html','en/search.html','en/compare.html','app.js','style.css','data/search-dictionary.json','data/compare-guides.json','data/affiliate-config.json'])if(!fs.existsSync(path.join(r,f)))errors.push(`missing ${f}`);
 const app=fs.readFileSync(path.join(r,'app.js'),'utf8');
 if(app.includes('pattern.html?id='))errors.push('app.js still links to legacy query detail URL');
 if(!app.includes("'patterns/'+encodeURIComponent(p.id)+'/'"))errors.push('app.js static detail URL contract missing');
 if(!app.includes('data/production-content.json'))errors.push('app.js production overlay is not wired');
 if(errors.length){console.error(errors.join('\n'));process.exit(1)}
-console.log('OK: 80 published records, 160 static detail pages, and all required runtime/production files satisfy the publication structure contract.');
+console.log('OK: 100 published records, 200 static detail pages, and all required runtime/production files satisfy the publication structure contract.');

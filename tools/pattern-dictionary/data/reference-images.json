@@ -882,6 +882,226 @@
       "has_text": false,
       "is_mockup": false,
       "multiple_repeats": true
+    },
+    {
+      "ordinal": 81,
+      "pattern_id": "suzani",
+      "path": "assets/reference/suzani.png",
+      "review_state": "verified",
+      "method": "deterministic rosettes, palmettes, leaves and scrolling stems",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 82,
+      "pattern_id": "kente",
+      "path": "assets/reference/kente.png",
+      "review_state": "verified",
+      "method": "deterministic narrow strip weave with alternating color blocks",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 83,
+      "pattern_id": "bogolan",
+      "path": "assets/reference/bogolan.png",
+      "review_state": "verified",
+      "method": "deterministic dark mud-cloth bands, dots and chevrons",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 84,
+      "pattern_id": "adire",
+      "path": "assets/reference/adire.png",
+      "review_state": "verified",
+      "method": "deterministic indigo resist dots, rings and grid units",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 85,
+      "pattern_id": "kuba-cloth",
+      "path": "assets/reference/kuba-cloth.png",
+      "review_state": "verified",
+      "method": "deterministic raffia-toned angular applique geometry",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 86,
+      "pattern_id": "sashiko",
+      "path": "assets/reference/sashiko.png",
+      "review_state": "verified",
+      "method": "deterministic indigo field with white running-stitch geometry",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 87,
+      "pattern_id": "kantha",
+      "path": "assets/reference/kantha.png",
+      "review_state": "verified",
+      "method": "deterministic dense running-stitch field with floral/figurative accents",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 88,
+      "pattern_id": "otomi-embroidery",
+      "path": "assets/reference/otomi-embroidery.png",
+      "review_state": "verified",
+      "method": "deterministic brightly filled animal and plant silhouettes",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 89,
+      "pattern_id": "african-wax-print",
+      "path": "assets/reference/african-wax-print.png",
+      "review_state": "verified",
+      "method": "deterministic saturated outlined multicolor motifs",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 90,
+      "pattern_id": "block-print",
+      "path": "assets/reference/block-print.png",
+      "review_state": "verified",
+      "method": "deterministic repeated carved-block floral units with registration cues",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 91,
+      "pattern_id": "zebra-print",
+      "path": "assets/reference/zebra-print.png",
+      "review_state": "verified",
+      "method": "deterministic irregular black-white tapering stripes",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 92,
+      "pattern_id": "tiger-print",
+      "path": "assets/reference/tiger-print.png",
+      "review_state": "verified",
+      "method": "deterministic tapered black stripes over orange ground",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 93,
+      "pattern_id": "snake-print",
+      "path": "assets/reference/snake-print.png",
+      "review_state": "verified",
+      "method": "deterministic connected scale cells with larger mottling",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 94,
+      "pattern_id": "cow-print",
+      "path": "assets/reference/cow-print.png",
+      "review_state": "verified",
+      "method": "deterministic large irregular black patches on white",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 95,
+      "pattern_id": "giraffe-print",
+      "path": "assets/reference/giraffe-print.png",
+      "review_state": "verified",
+      "method": "deterministic brown polygon patches separated by pale channels",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 96,
+      "pattern_id": "dalmatian-spots",
+      "path": "assets/reference/dalmatian-spots.png",
+      "review_state": "verified",
+      "method": "deterministic scattered small irregular black spots",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 97,
+      "pattern_id": "camouflage",
+      "path": "assets/reference/camouflage.png",
+      "review_state": "verified",
+      "method": "deterministic overlapping earth-tone organic blotches",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 98,
+      "pattern_id": "tie-dye",
+      "path": "assets/reference/tie-dye.png",
+      "review_state": "verified",
+      "method": "deterministic soft concentric resisted rings and radial bursts",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 99,
+      "pattern_id": "marbling",
+      "path": "assets/reference/marbling.png",
+      "review_state": "verified",
+      "method": "deterministic fluid interwoven sinusoidal veins",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 100,
+      "pattern_id": "terrazzo",
+      "path": "assets/reference/terrazzo.png",
+      "review_state": "verified",
+      "method": "deterministic random-looking multisize aggregate chips",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
     }
   ]
 }

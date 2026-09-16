@@ -1,11 +1,11 @@
-# Pattern Dictionary — canonical 80 verified publication / canonical 100 freeze
+# Pattern Dictionary — canonical 100 verified publication
 
-Production implementation for the published 80-pattern visual dictionary, with the remaining 20 canonical entries frozen for staged expansion to 100. The live product provides visual discovery, exact-name/alias search, ambiguous description search, bilingual static detail pages, comparison guidance, reviewed Reference Images, publication validation, and the shared live NicheWorks Amazon Associates contract.
+Production implementation for the published 100-pattern visual dictionary, with the no remaining canonical entries frozen for staged expansion to 100. The live product provides visual discovery, exact-name/alias search, ambiguous description search, bilingual static detail pages, comparison guidance, reviewed Reference Images, publication validation, and the shared live NicheWorks Amazon Associates contract.
 
 ## Current state
 
-- The **published runtime set is exactly 80 patterns** after Wave 3 (entries 41-60) completed source verification, bilingual production content, Reference Image generation/review, runtime search/compare integration, maintained Amazon commerce mapping, static-route SEO, and publication validation.
-- Source verification is complete for all 80 published terms. Qualified terms remain explicitly scoped rather than being presented as one universal fixed motif.
+- The **published runtime set is exactly 100 patterns** after Wave 3 (entries 41-60) completed source verification, bilingual production content, Reference Image generation/review, runtime search/compare integration, maintained Amazon commerce mapping, static-route SEO, and publication validation.
+- Source verification is complete for all 100 published terms. Qualified terms remain explicitly scoped rather than being presented as one universal fixed motif.
 - **Wave 2 / entries 21-40 is published and remains part of the canonical 60.**
 - **Wave 3 / entries 41-60 is published in the branch transform:** 20 bilingual production records, 17 additional comparison guides, 52 staged natural-language search regressions, and 60 fixed Amazon commerce intents.
 - `data/production-content.json` is at `verified-publication` and still contains only the 20 published records; Wave 2 remains isolated in `data/wave2-production-content.json` until the remaining publication gates close.
@@ -25,7 +25,7 @@ Production implementation for the published 80-pattern visual dictionary, with t
 
 ## Canonical 100 freeze
 
-`data/canonical-100-expansion.json` is the planning source of truth for the remaining ordinals **81-100**. Together with the published `data/patterns.json` canonical 20, it defines a unique 100-entry target taxonomy.
+`data/canonical-100-expansion.json` is the planning source of truth for the no remaining ordinals in the frozen canonical 100. Together with the published `data/patterns.json` canonical 20, it defines a unique 100-entry target taxonomy.
 
 The 100-entry plan is split into fixed 20-entry production waves; Waves 1-3 are published and Waves 4-5 remain planned:
 
@@ -116,3 +116,5 @@ Wave 3 is the current publication unit. After branch-level validation and deskto
 
 - **Wave 4 / entries 61-80 is published:** 20 source-verified records, 20 reviewed deterministic Reference Images, 23 additional comparison guides, 66 staged search regressions, and 60 fixed Amazon commerce intents.
 - **Wave 5 / entries 81-100** is the final remaining production unit.
+
+- **Wave 5 / entries 81-100 is published:** the frozen canonical 100 is now complete. Wave 5 adds 20 source-reviewed records, 20 three-pass reviewed deterministic Reference Images, high-confusion compare guides, search regressions, and 60 fixed Amazon commerce intents.

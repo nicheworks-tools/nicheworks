@@ -6555,5 +6555,1607 @@
       "ja": "筆描きや木版を用いて布に絵付けするインドの染織・絵画伝統です。花唐草、樹木、人物、物語場面など幅広く、一つの固定モチーフではありません。",
       "en": "An Indian textile-painting and printing tradition using hand-drawn pen work and/or blocks, with floral vines, trees, figures, and narrative scenes."
     }
+  },
+  {
+    "id": "suzani",
+    "names": {
+      "ja": "スザニ",
+      "en": "Suzani"
+    },
+    "aliases": {
+      "ja": [
+        "スーザニ"
+      ],
+      "en": [
+        "suzani embroidery"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "大きな赤い花の中央アジア刺繍",
+        "ロゼットが並ぶスザニ布"
+      ],
+      "en": [
+        "central asian embroidered rosettes",
+        "large floral suzani textile"
+      ]
+    },
+    "families": [
+      "global-textile"
+    ],
+    "motifs": [
+      "ロゼット",
+      "花",
+      "巻き茎"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "red",
+        "gold",
+        "green"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Floral embroidery structure is the recognition cue; palettes vary."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "otomi-embroidery"
+      ],
+      "often_confused_with": [
+        "otomi-embroidery"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "中央アジアの刺繍布スザニを、ロゼットや花、葉、茎の大きな刺繍構成として扱います。地域や制作例で構図が変わるため、固定リピートではありません。",
+      "en": "A Central Asian embroidered-textile tradition recognized by bold rosettes, flowers, leaves, and scrolling stems. Layouts vary, so it is not one fixed repeat."
+    }
+  },
+  {
+    "id": "kente",
+    "names": {
+      "ja": "ケンテ",
+      "en": "Kente"
+    },
+    "aliases": {
+      "ja": [
+        "ケンテ布"
+      ],
+      "en": [
+        "kente cloth"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "細い帯をつないだガーナのカラフル布",
+        "色ブロックが切り替わるケンテ"
+      ],
+      "en": [
+        "ghana narrow strip woven cloth",
+        "color blocks kente strips"
+      ]
+    },
+    "families": [
+      "global-textile"
+    ],
+    "motifs": [
+      "ストリップ",
+      "色ブロック",
+      "幾何学帯"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "gold",
+        "green",
+        "red",
+        "black"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Bright sectional strip-weave patterning is a common recognition cue, but no single palette defines kente."
+    },
+    "uses": [
+      "textile"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "kuba-cloth"
+      ],
+      "often_confused_with": [
+        "kuba-cloth"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "ガーナのケンテを、細幅の織り帯をつなぎ、色のブロックや幾何学帯が切り替わる染織として扱います。単一柄ではありません。",
+      "en": "A Ghanaian strip-woven textile tradition built from narrow patterned bands sewn together. Color blocks and geometric sections vary across many kente designs."
+    }
+  },
+  {
+    "id": "bogolan",
+    "names": {
+      "ja": "ボゴラン",
+      "en": "Bogolan"
+    },
+    "aliases": {
+      "ja": [
+        "ボゴランフィニ",
+        "泥染め布"
+      ],
+      "en": [
+        "bogolanfini",
+        "mud cloth",
+        "mud-dyed cloth"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "黒と生成りの泥染め幾何学布",
+        "マリの泥染め柄"
+      ],
+      "en": [
+        "mali mud cloth geometric pattern",
+        "black cream bogolanfini"
+      ]
+    },
+    "families": [
+      "global-textile"
+    ],
+    "motifs": [
+      "幾何学記号",
+      "帯"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "black",
+        "cream",
+        "brown"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Dark mud-dyed marks against pale cloth are a strong recognition cue; exact motifs vary."
+    },
+    "uses": [
+      "fashion",
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "adire"
+      ],
+      "often_confused_with": [
+        "adire"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "マリの泥染め布ボゴランを、黒〜茶の幾何学記号と生成り地の強い対比として扱います。記号や配置は多様で、単一の固定柄ではありません。",
+      "en": "A Malian mud-dyed textile tradition using dark geometric marks against lighter cloth. Motifs and arrangements vary, so this is a representative family rather than one fixed pattern."
+    }
+  },
+  {
+    "id": "adire",
+    "names": {
+      "ja": "アディレ",
+      "en": "Adire"
+    },
+    "aliases": {
+      "ja": [
+        "アディレ布",
+        "ヨルバ藍染め"
+      ],
+      "en": [
+        "adire cloth",
+        "Yoruba indigo resist cloth"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "藍色に白い防染模様のヨルバ布",
+        "青と白のアディレ"
+      ],
+      "en": [
+        "yoruba indigo resist cloth",
+        "blue white adire pattern"
+      ]
+    },
+    "families": [
+      "global-textile"
+    ],
+    "motifs": [
+      "防染点",
+      "格子",
+      "円"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "indigo",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "traditional",
+      "primary_reason": "Indigo-and-resist contrast is historically central to recognition, while exact designs vary."
+    },
+    "uses": [
+      "fashion",
+      "textile"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "bogolan",
+        "tie-dye"
+      ],
+      "often_confused_with": [
+        "tie-dye"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "ヨルバの藍染めアディレを、藍地に防染で白〜淡青の点・線・円・格子が現れる染織として扱います。技法も図柄も複数あります。",
+      "en": "A Yoruba indigo resist-dyed textile tradition producing pale dots, lines, circles, grids, and named designs on blue cloth through several resist methods."
+    }
+  },
+  {
+    "id": "kuba-cloth",
+    "names": {
+      "ja": "クバ布",
+      "en": "Kuba Cloth"
+    },
+    "aliases": {
+      "ja": [
+        "クバクロス",
+        "クバ族の布"
+      ],
+      "en": [
+        "Kuba textile",
+        "Kuba raffia cloth"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "茶色いラフィアに幾何学刺繍の布",
+        "アフリカの角張ったクバ布"
+      ],
+      "en": [
+        "raffia geometric kuba cloth",
+        "angular african raffia textile"
+      ]
+    },
+    "families": [
+      "global-textile"
+    ],
+    "motifs": [
+      "ラフィア",
+      "幾何学"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "tan",
+        "black",
+        "brown"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Raffia-toned ground and bold geometric interventions are common recognition cues, not a fixed palette."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "kente"
+      ],
+      "often_confused_with": [
+        "kente"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "クバ布を、ラフィア地に角張った幾何学模様を刺繍・アップリケなどで重ねる広い染織伝統として扱います。固定の一柄ではありません。",
+      "en": "A broad Kuba raffia-textile tradition recognized by bold angular geometry created through embroidery, applique, pile, dye, and related techniques."
+    }
+  },
+  {
+    "id": "sashiko",
+    "names": {
+      "ja": "刺し子",
+      "en": "Sashiko"
+    },
+    "aliases": {
+      "ja": [
+        "刺子",
+        "刺し子模様"
+      ],
+      "en": [
+        "sashiko stitching",
+        "Japanese sashiko"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "藍地に白い点線の和風刺繍",
+        "細かい運針で幾何学を作る布"
+      ],
+      "en": [
+        "indigo white running stitch geometry",
+        "japanese dotted stitch pattern"
+      ]
+    },
+    "families": [
+      "global-textile"
+    ],
+    "motifs": [
+      "運針",
+      "幾何学"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "indigo",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "traditional",
+      "primary_reason": "White running stitches on indigo are a strong traditional recognition cue, but sashiko exists in other colors."
+    },
+    "uses": [
+      "fashion",
+      "textile"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "kantha"
+      ],
+      "often_confused_with": [
+        "kantha"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "刺し子を、短い運針が点線状につながって幾何学を作る日本の縫い・刺繍技法として扱います。模様語彙は多数あり、一柄ではありません。",
+      "en": "A Japanese running-stitch reinforcement and embroidery tradition in which short stitches form dotted geometric lines. It includes many named motifs rather than one fixed pattern."
+    }
+  },
+  {
+    "id": "kantha",
+    "names": {
+      "ja": "カンタ",
+      "en": "Kantha"
+    },
+    "aliases": {
+      "ja": [
+        "カンタ刺繍"
+      ],
+      "en": [
+        "kantha embroidery",
+        "kantha quilt"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "細かい運針で面を埋めるインドの刺繍布",
+        "ベンガルのカンタキルト"
+      ],
+      "en": [
+        "bengal running stitch quilt",
+        "dense kantha embroidery cloth"
+      ]
+    },
+    "families": [
+      "global-textile"
+    ],
+    "motifs": [
+      "運針",
+      "花",
+      "人物"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "cream",
+        "red",
+        "black"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Running-stitch texture is important; color and motif layouts are highly variable."
+    },
+    "uses": [
+      "textile"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "sashiko"
+      ],
+      "often_confused_with": [
+        "sashiko"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "カンタを、重ねた布を細かな運針でキルティングし、人物・花・幾何学などを自由に刺すベンガル地域の染織伝統として扱います。",
+      "en": "A Bengal and Bangladesh quilting/embroidery tradition using dense running stitches across layered cloth, often with varied figures, flowers, borders, and geometry."
+    }
+  },
+  {
+    "id": "otomi-embroidery",
+    "names": {
+      "ja": "オトミ刺繍",
+      "en": "Otomi Embroidery"
+    },
+    "aliases": {
+      "ja": [
+        "テナンゴ刺繍",
+        "オトミ刺しゅう"
+      ],
+      "en": [
+        "Tenango embroidery",
+        "Otomí embroidery"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "白地にカラフルな動物のメキシコ刺繍",
+        "動物と花が密に並ぶテナンゴ"
+      ],
+      "en": [
+        "mexican colorful animal embroidery",
+        "tenango animals flowers textile"
+      ]
+    },
+    "families": [
+      "global-textile"
+    ],
+    "motifs": [
+      "動物",
+      "鳥",
+      "植物"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "red",
+        "blue",
+        "green",
+        "yellow"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Multicolor filled silhouettes are a common recognition cue, while palettes vary."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "suzani"
+      ],
+      "often_confused_with": [
+        "suzani"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "メキシコ・イダルゴ州のオトミ／テナンゴ刺繍を、動物・鳥・植物の色鮮やかなシルエットを密に刺した構成として扱います。",
+      "en": "An Otomí/Tenango embroidery tradition from Hidalgo, Mexico, recognized by brightly filled animal, bird, plant, and floral silhouettes arranged across cloth."
+    }
+  },
+  {
+    "id": "african-wax-print",
+    "names": {
+      "ja": "アフリカンワックスプリント",
+      "en": "African Wax Print"
+    },
+    "aliases": {
+      "ja": [
+        "アフリカンプリント",
+        "ワックスプリント"
+      ],
+      "en": [
+        "Ankara print",
+        "African print",
+        "Dutch wax print"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "派手な多色のアフリカンプリント布",
+        "大柄のワックスプリント"
+      ],
+      "en": [
+        "bold multicolor african wax cotton",
+        "ankara large repeat print"
+      ]
+    },
+    "families": [
+      "global-textile"
+    ],
+    "motifs": [
+      "多色プリント",
+      "大柄"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "blue",
+        "red",
+        "yellow",
+        "green"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "High-saturation flat multicolor printing is a common visual cue but no palette is definitional."
+    },
+    "uses": [
+      "fashion",
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "batik"
+      ],
+      "often_confused_with": [
+        "batik"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "アフリカンワックスプリントを、強い多色と輪郭のはっきりした反復モチーフを持つプリント綿布の広い系統として扱います。図柄は非常に多様です。",
+      "en": "A broad wax-print cotton style recognized by saturated flat colors and crisp repeated motifs. Geometric, floral, figurative, and symbolic designs vary widely."
+    }
+  },
+  {
+    "id": "block-print",
+    "names": {
+      "ja": "ブロックプリント",
+      "en": "Block Print"
+    },
+    "aliases": {
+      "ja": [
+        "木版プリント",
+        "木版捺染"
+      ],
+      "en": [
+        "block printing",
+        "woodblock print textile"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "木版を何度も押した布柄",
+        "少し版ズレがあるインドのプリント"
+      ],
+      "en": [
+        "repeated carved block textile",
+        "indian block print fabric"
+      ]
+    },
+    "families": [
+      "global-textile"
+    ],
+    "motifs": [
+      "版反復",
+      "花",
+      "幾何学"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "indigo",
+        "red",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Palette varies by workshop and dye process; repeated block impressions are the recognition cue."
+    },
+    "uses": [
+      "fashion",
+      "textile"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "kalamkari"
+      ],
+      "often_confused_with": [
+        "kalamkari"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "ブロックプリントを、彫った版を繰り返し捺してモチーフを構成する印刷技法として扱います。花・幾何学など図柄自体は多様です。",
+      "en": "A relief-printing technique in which carved blocks are repeatedly impressed onto cloth. The modular block repeat is the cue; motif families vary widely."
+    }
+  },
+  {
+    "id": "zebra-print",
+    "names": {
+      "ja": "ゼブラ柄",
+      "en": "Zebra Print"
+    },
+    "aliases": {
+      "ja": [
+        "シマウマ柄"
+      ],
+      "en": [
+        "zebra stripe",
+        "zebra pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "白黒のシマウマみたいな柄",
+        "不規則な黒白の動物縞"
+      ],
+      "en": [
+        "black white zebra stripes",
+        "irregular animal stripe print"
+      ]
+    },
+    "families": [
+      "animal"
+    ],
+    "motifs": [
+      "縞"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "black",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "identity-relevant",
+      "primary_reason": "Black-and-white irregular striping is identity-relevant to the common zebra-print visual."
+    },
+    "uses": [
+      "fashion",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "tiger-print"
+      ],
+      "often_confused_with": [
+        "tiger-print"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "シマウマの体表を模した、不規則な黒白の縞が太さや向きを変えながら走るアニマル柄です。",
+      "en": "An animal print imitating zebra striping, with irregular high-contrast bands that change width, direction, and continuity."
+    }
+  },
+  {
+    "id": "tiger-print",
+    "names": {
+      "ja": "タイガー柄",
+      "en": "Tiger Print"
+    },
+    "aliases": {
+      "ja": [
+        "虎柄",
+        "トラ柄"
+      ],
+      "en": [
+        "tiger stripe",
+        "tiger pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "オレンジ地に黒い虎の縞",
+        "トラみたいなアニマル柄"
+      ],
+      "en": [
+        "orange black tiger stripes",
+        "tapered tiger animal print"
+      ]
+    },
+    "families": [
+      "animal"
+    ],
+    "motifs": [
+      "縞"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "orange",
+        "black",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "identity-relevant",
+      "primary_reason": "Orange/tan ground with dark tapered stripes is identity-relevant to conventional tiger print."
+    },
+    "uses": [
+      "fashion",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "zebra-print"
+      ],
+      "often_confused_with": [
+        "zebra-print"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "トラの体表を模した、橙〜黄褐色の地に黒い細長い縞が湾曲・先細りして走るアニマル柄です。",
+      "en": "An animal print imitating tiger coats, with dark tapered stripes curving across an orange or tan ground, often with light areas."
+    }
+  },
+  {
+    "id": "snake-print",
+    "names": {
+      "ja": "スネーク柄",
+      "en": "Snake Print"
+    },
+    "aliases": {
+      "ja": [
+        "ヘビ柄",
+        "蛇柄",
+        "パイソン柄"
+      ],
+      "en": [
+        "snakeskin print",
+        "snake skin pattern",
+        "python print"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "細かい鱗がつながるヘビ柄",
+        "茶色いパイソン風プリント"
+      ],
+      "en": [
+        "connected snake scale print",
+        "brown python skin pattern"
+      ]
+    },
+    "families": [
+      "animal"
+    ],
+    "motifs": [
+      "鱗",
+      "斑紋"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "brown",
+        "tan",
+        "black"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Scale-cell texture is identity-relevant; natural and fashion colorways vary widely."
+    },
+    "uses": [
+      "fashion"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "giraffe-print"
+      ],
+      "often_confused_with": [
+        "giraffe-print"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "ヘビの鱗や皮の見え方を模した、細かな連結セルと斑紋を重ねるアニマル柄です。",
+      "en": "An animal print imitating snake skin through dense connected scale cells, often overlaid with mottled or longitudinal markings."
+    }
+  },
+  {
+    "id": "cow-print",
+    "names": {
+      "ja": "カウ柄",
+      "en": "Cow Print"
+    },
+    "aliases": {
+      "ja": [
+        "牛柄",
+        "ホルスタイン柄"
+      ],
+      "en": [
+        "cowhide print",
+        "Holstein print",
+        "cow pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "白地に大きな黒い牛の斑点",
+        "ホルスタインみたいな柄"
+      ],
+      "en": [
+        "black white cow patches",
+        "holstein animal print"
+      ]
+    },
+    "families": [
+      "animal"
+    ],
+    "motifs": [
+      "斑"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "black",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "identity-relevant",
+      "primary_reason": "Black-and-white piebald patches are identity-relevant to the common Holstein-inspired cow print."
+    },
+    "uses": [
+      "fashion"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "dalmatian-spots",
+        "camouflage"
+      ],
+      "often_confused_with": [
+        "dalmatian-spots"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "ホルスタインなどの牛の斑を模した、白地に大きく不規則な黒斑を散らすアニマル柄です。",
+      "en": "An animal print inspired by piebald cattle such as Holsteins, using large irregular solid patches separated by open contrasting ground."
+    }
+  },
+  {
+    "id": "giraffe-print",
+    "names": {
+      "ja": "ジラフ柄",
+      "en": "Giraffe Print"
+    },
+    "aliases": {
+      "ja": [
+        "キリン柄"
+      ],
+      "en": [
+        "giraffe pattern",
+        "giraffe spots"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "茶色い多角形が並ぶキリン柄",
+        "薄い線で区切られた動物斑"
+      ],
+      "en": [
+        "brown polygon giraffe spots",
+        "giraffe cellular animal print"
+      ]
+    },
+    "families": [
+      "animal"
+    ],
+    "motifs": [
+      "多角形斑"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "brown",
+        "tan",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "identity-relevant",
+      "primary_reason": "Brown polygonal patches separated by pale channels are identity-relevant to the conventional giraffe-print visual."
+    },
+    "uses": [
+      "fashion",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "snake-print"
+      ],
+      "often_confused_with": [
+        "snake-print"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "キリンの体表を模した、茶〜黄褐色の大きな多角形斑を淡色の細い境界が区切るアニマル柄です。",
+      "en": "An animal print imitating giraffe coats, with large brown or tan polygonal patches separated by a pale narrow network."
+    }
+  },
+  {
+    "id": "dalmatian-spots",
+    "names": {
+      "ja": "ダルメシアン柄",
+      "en": "Dalmatian Spots"
+    },
+    "aliases": {
+      "ja": [
+        "ダルメシアンスポット",
+        "犬の黒斑柄"
+      ],
+      "en": [
+        "dalmatian print",
+        "dalmatian pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "白地に小さい黒斑が散る犬柄",
+        "ダルメシアンみたいな斑点"
+      ],
+      "en": [
+        "small black dalmatian spots",
+        "white dog spot print"
+      ]
+    },
+    "families": [
+      "animal"
+    ],
+    "motifs": [
+      "スポット"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "black",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "identity-relevant",
+      "primary_reason": "Black/liver isolated spots on white are identity-relevant to the Dalmatian coat cue."
+    },
+    "uses": [
+      "fashion",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "cow-print",
+        "polka-dot"
+      ],
+      "often_confused_with": [
+        "cow-print",
+        "polka-dot"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "ダルメシアン犬の斑点を模した、白地に小〜中サイズの黒い不規則スポットを散らすアニマル柄です。",
+      "en": "An animal print imitating Dalmatian spotting, with isolated small-to-medium dark spots scattered across a light ground."
+    }
+  },
+  {
+    "id": "camouflage",
+    "names": {
+      "ja": "迷彩柄",
+      "en": "Camouflage"
+    },
+    "aliases": {
+      "ja": [
+        "カモフラ柄",
+        "カモ柄"
+      ],
+      "en": [
+        "camo",
+        "camouflage print"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "緑と茶色の不規則な迷彩斑",
+        "輪郭を崩すカモフラ柄"
+      ],
+      "en": [
+        "green brown irregular camouflage",
+        "woodland camo blotches"
+      ]
+    },
+    "families": [
+      "organic"
+    ],
+    "motifs": [
+      "不定形斑"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "green",
+        "brown",
+        "tan",
+        "black"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Earth-tone irregular disruptive patches are a common recognition cue, while camouflage systems vary."
+    },
+    "uses": [
+      "fashion"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "cow-print",
+        "terrazzo"
+      ],
+      "often_confused_with": [
+        "cow-print"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "輪郭を分断するための不規則な有機形の斑を複数色で重ねる迷彩の視覚系統です。軍用規格ごとに柄は異なります。",
+      "en": "A camouflage visual family built from overlapping irregular patches intended to disrupt outlines. Exact systems vary; woodland palettes are only one common form."
+    }
+  },
+  {
+    "id": "tie-dye",
+    "names": {
+      "ja": "タイダイ",
+      "en": "Tie-dye"
+    },
+    "aliases": {
+      "ja": [
+        "絞り染め風タイダイ"
+      ],
+      "en": [
+        "tie dye",
+        "tied resist dye"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "中心から色がにじむタイダイ",
+        "縛って染めた放射模様"
+      ],
+      "en": [
+        "bound dye radiating rings",
+        "soft tie dye burst"
+      ]
+    },
+    "families": [
+      "abstract"
+    ],
+    "motifs": [
+      "放射",
+      "輪",
+      "にじみ"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "blue",
+        "purple",
+        "pink"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Multicolor radiating effects are a common editorial cue, but tie-dye can be monochrome or many palettes."
+    },
+    "uses": [
+      "textile"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "shibori",
+        "adire"
+      ],
+      "often_confused_with": [
+        "shibori",
+        "adire"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "布をつまみ、縛ってから染めることで防染部を残すタイダイ技法を、放射・輪・帯などのにじんだ色境界として扱います。一柄ではありません。",
+      "en": "A resist-dye technique family made by binding or pinching cloth before dyeing, producing radiating rings, bands, diamonds, and soft-edged color transitions."
+    }
+  },
+  {
+    "id": "marbling",
+    "names": {
+      "ja": "マーブル柄",
+      "en": "Marbling"
+    },
+    "aliases": {
+      "ja": [
+        "マーブリング",
+        "墨流し風"
+      ],
+      "en": [
+        "marbled pattern",
+        "marbled paper",
+        "marbling pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "水に絵具を浮かべたような渦模様",
+        "流れる筋が混ざるマーブル柄"
+      ],
+      "en": [
+        "floating paint swirl marbling",
+        "fluid colored marble veins"
+      ]
+    },
+    "families": [
+      "abstract"
+    ],
+    "motifs": [
+      "渦",
+      "流線"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "blue",
+        "red",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Flowing multicolor veins are an editorial recognition cue; marbling palettes and tools vary."
+    },
+    "uses": [
+      "textile"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "moire"
+      ],
+      "often_confused_with": [
+        "moire"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "液面に浮かべた色を移し取るマーブリングを、互いに流れ込む筋・渦・羽根状の帯として扱います。固定リピートではありません。",
+      "en": "A marbling technique and visual family made by floating color on a bath and transferring flowing veins, swirls, and combed bands. It has no single fixed repeat."
+    }
+  },
+  {
+    "id": "terrazzo",
+    "names": {
+      "ja": "テラゾー柄",
+      "en": "Terrazzo Pattern"
+    },
+    "aliases": {
+      "ja": [
+        "テラゾ柄",
+        "テラゾ"
+      ],
+      "en": [
+        "terrazzo print",
+        "terrazzo effect"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "細かい石チップが散った柄",
+        "カラフルな骨材みたいなテラゾー"
+      ],
+      "en": [
+        "scattered aggregate chip pattern",
+        "terrazzo stone chip print"
+      ]
+    },
+    "families": [
+      "abstract"
+    ],
+    "motifs": [
+      "チップ",
+      "粒"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "cream",
+        "gray",
+        "black",
+        "tan"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Multisize chips on a contrasting ground are the key cue; actual terrazzo materials use many aggregate palettes."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "dalmatian-spots",
+        "camouflage"
+      ],
+      "often_confused_with": [
+        "dalmatian-spots"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "テラゾーの骨材チップを模した、大小の不定形片を地の上へランダムに散らす素材由来の柄です。固定リピートではありません。",
+      "en": "A material-inspired pattern family based on terrazzo aggregate: irregular chips of different sizes and colors scattered through a contrasting matrix."
+    }
   }
 ]

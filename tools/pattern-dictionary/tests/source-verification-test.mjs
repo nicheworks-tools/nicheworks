@@ -6,9 +6,9 @@ const ledger=JSON.parse(fs.readFileSync(new URL('../data/source-verification.jso
 const canonical=base.map(x=>x.id).sort();
 const fail=m=>{console.error(`FAIL: ${m}`);process.exitCode=1};
 const ids=patterns.map(p=>p.pattern_id).sort(),ledgerIds=ledger.patterns.map(p=>p.pattern_id).sort();
-if(canonical.length!==80)fail(`runtime canonical set must be 80, got ${canonical.length}`);
-if(JSON.stringify(ids)!==JSON.stringify(canonical))fail('production ID set differs from runtime canonical 80');
-if(JSON.stringify(ledgerIds)!==JSON.stringify(canonical))fail('source ledger ID set differs from runtime canonical 80');
+if(canonical.length!==100)fail(`runtime canonical set must be 100, got ${canonical.length}`);
+if(JSON.stringify(ids)!==JSON.stringify(canonical))fail('production ID set differs from runtime canonical 100');
+if(JSON.stringify(ledgerIds)!==JSON.stringify(canonical))fail('source ledger ID set differs from runtime canonical 100');
 for(const record of ledger.patterns){
   const p=patterns.find(x=>x.pattern_id===record.pattern_id);
   if(!p){fail(`${record.pattern_id}: missing production record`);continue}
@@ -20,6 +20,6 @@ for(const record of ledger.patterns){
   if(record.verification_state==='qualified'&&!record.qualification)fail(`${record.pattern_id}: missing source qualification`);
 }
 const qualified=ledger.patterns.filter(p=>p.verification_state==='qualified').map(p=>p.pattern_id).sort();
-const expected=['ajrakh','bandhani','baroque-scroll','basketweave','batik','botanical-print','breton-stripe','chinoiserie','chintz','flame-stitch','herringbone','ikat','ivy','jacobean-floral','kalamkari','kanoko','kilim','koushi','madras-check','moire','moroccan-trellis','ogee','prince-of-wales-check','regimental-stripe','same-komon','shibori','swiss-dot','toile-de-jouy'].sort();
+const expected=['ajrakh','bandhani','baroque-scroll','basketweave','batik','botanical-print','breton-stripe','chinoiserie','chintz','flame-stitch','herringbone','ikat','ivy','jacobean-floral','kalamkari','kanoko','kilim','koushi','madras-check','moire','moroccan-trellis','ogee','prince-of-wales-check','regimental-stripe','same-komon','shibori','swiss-dot','toile-de-jouy','suzani','kente','bogolan','adire','kuba-cloth','sashiko','kantha','otomi-embroidery','african-wax-print','block-print','tie-dye','marbling','terrazzo'].sort();
 if(JSON.stringify(qualified)!==JSON.stringify(expected))fail(`qualified set changed: ${qualified.join(', ')}`);
-if(!process.exitCode)console.log(`OK: source verification ledger covers exactly 80 published patterns; verified=${80-qualified.length} qualified=${qualified.length}.`);
+if(!process.exitCode)console.log(`OK: source verification ledger covers exactly 100 published patterns; verified=${100-qualified.length} qualified=${qualified.length}.`);
