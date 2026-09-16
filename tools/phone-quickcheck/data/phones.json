@@ -3572,7 +3572,8 @@
         "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-sense9/specs/",
         "manualUrl": "https://k-tai.sharp.co.jp/support/",
         "releaseUrl": "https://www.sharp.co.jp/k-tai/products/aquos-sense9/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "chargingUrl": "https://jp.sharp/k-tai/products/aquos-sense9/specs/"
       },
       "affiliateKeys": []
     },
@@ -3621,7 +3622,8 @@
         "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-r9/specs/",
         "manualUrl": "https://k-tai.sharp.co.jp/support/",
         "releaseUrl": "https://www.sharp.co.jp/k-tai/products/aquos-r9/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "chargingUrl": "https://cgi.jp.sharp/k-tai/products/aquos-r9/specs/"
       },
       "affiliateKeys": []
     },
@@ -3670,7 +3672,8 @@
         "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-wish4/specs/",
         "manualUrl": "https://k-tai.sharp.co.jp/support/",
         "releaseUrl": "https://www.sharp.co.jp/k-tai/products/aquos-wish4/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "chargingUrl": "https://jp.sharp/k-tai/products/aquos-wish4/specs/"
       },
       "affiliateKeys": []
     },
@@ -8074,7 +8077,8 @@
         "specificationsUrl": "https://jp.sharp/products/aquos-zero5g-basic/spec.html",
         "manualUrl": "https://k-tai.sharp.co.jp/support/",
         "releaseUrl": "https://corporate.jp.sharp/news/201001-a.html",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "chargingUrl": "https://jp.sharp/products/aquos-zero5g-basic/spec.html"
       },
       "affiliateKeys": []
     },
