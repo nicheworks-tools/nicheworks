@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+const dataPath = 'tools/phone-quickcheck/data/phones.json';
+const payload = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+const phone = payload.phones.find((item) => item.id === 'samsung-galaxy-s24-ultra');
+if (!phone) throw new Error('Galaxy S24 Ultra missing');
+if (phone.sources?.wirelessUrl) throw new Error('Galaxy S24 Ultra wirelessUrl already present');
+if (phone.charging?.wirelessMaxW !== 15) throw new Error(`Unexpected wirelessMaxW: ${phone.charging?.wirelessMaxW}`);
+phone.sources.wirelessUrl = 'https://www.samsung.com/ae/support/mobile-devices/compatibility-of-samsung-smartphones-with-third-party-wireless-chargers/';
+phone.sources.verifiedAt = '2026-09-16';
+payload.updatedAt = '2026-09-16';
+fs.writeFileSync(dataPath, `${JSON.stringify(payload, null, 2)}\n`);
