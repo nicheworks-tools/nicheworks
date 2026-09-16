@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "nicheworks-non-affiliate-audit-summary-v1",
+  "updatedAt": "2026-09-16T21:55:00+09:00",
+  "scope": {
+    "registeredTools": 88,
+    "excludedAffiliateWorkstream": 16,
+    "auditedNonAffiliateTools": 72,
+    "waves": 6,
+    "toolsPerWave": 12
+  },
+  "overall": {
+    "MAJOR_FIX": 57,
+    "MINOR_FIX": 12,
+    "HOLD_REVIEW": 3,
+    "PASS": 0,
+    "total": 72
+  },
+  "waveResults": [
+    {"wave": 1, "pr": 1021, "MAJOR_FIX": 9, "MINOR_FIX": 3, "HOLD_REVIEW": 0, "PASS": 0},
+    {"wave": 2, "pr": 1030, "MAJOR_FIX": 9, "MINOR_FIX": 2, "HOLD_REVIEW": 1, "PASS": 0},
+    {"wave": 3, "pr": 1033, "MAJOR_FIX": 10, "MINOR_FIX": 2, "HOLD_REVIEW": 0, "PASS": 0},
+    {"wave": 4, "pr": 1038, "MAJOR_FIX": 10, "MINOR_FIX": 1, "HOLD_REVIEW": 1, "PASS": 0},
+    {"wave": 5, "pr": 1043, "MAJOR_FIX": 10, "MINOR_FIX": 1, "HOLD_REVIEW": 1, "PASS": 0},
+    {"wave": 6, "pr": 1048, "MAJOR_FIX": 9, "MINOR_FIX": 3, "HOLD_REVIEW": 0, "PASS": 0}
+  ],
+  "holdQueue": [
+    "earth-map-suite",
+    "old-kanji-ocr-scanner",
+    "pattern-atlas"
+  ],
+  "repairTracks": [
+    {
+      "id": "functional_and_safety_p0",
+      "priority": "P0",
+      "description": "Repair confirmed behavior defects or safety-critical regression gaps before cosmetic work.",
+      "knownExamples": ["color-replace", "sql-db-risk-checker"]
+    },
+    {
+      "id": "commercial_ssot_p0",
+      "priority": "P0",
+      "description": "Align public purchase/activation claims, billing configuration, entitlement authority, and canonical monetization classification. Do not expand Pro rollout while product-scoped authority is staged or billing is unavailable.",
+      "knownExamples": ["reconcile", "command-safety-checker", "ai-interaction-atlas", "motion-atlas", "old-kanji-reference", "size-converter", "tiny-audio-meter", "vibe-lexicon"]
+    },
+    {
+      "id": "regression_coverage_p1",
+      "priority": "P1",
+      "description": "Add behavior-level automated coverage for defining transforms, failure paths, storage boundaries, network contracts, exports, and entitlement gates where required by the strict audit standard."
+    },
+    {
+      "id": "shared_seo_semantics_p2",
+      "priority": "P2",
+      "description": "Repair recurring shared on-page issues such as Organization logo schema omissions, duplicate H1s, metadata length, and genuinely thin intent copy without mass-padding every tool."
+    },
+    {
+      "id": "hold_disposition",
+      "priority": "DECISION",
+      "description": "Give each HOLD tool an explicit KEEP, PROMOTE, REBUILD, or ARCHIVE disposition before it can leave HOLD_REVIEW."
+    }
+  ],
+  "completionGate": "All non-HOLD tools must reach strict PASS after repair and re-audit; each HOLD tool must receive an explicit disposition."
+}
