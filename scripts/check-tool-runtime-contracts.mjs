@@ -256,7 +256,7 @@ has('tools/light-check/app.js', 'track.stop()');
 
 // 38. LineBreak Doctor — platform-safe invisible-character behavior stays explicit and local.
 has('tools/linebreak-doctor/app.js', 'platform-safe');
-has('tools/linebreak-doctor/app.js', '\u200B');
+has('tools/linebreak-doctor/app.js', '\\u200B');
 for (const platform of ['X', 'Instagram', 'LINE', 'Facebook', 'LinkedIn']) {
   has('tools/linebreak-doctor/app.js', `name: "${platform}"`);
 }
