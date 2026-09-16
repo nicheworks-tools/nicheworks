@@ -7587,7 +7587,9 @@
         "connector": "USB-C",
         "wiredRecommendedW": null,
         "wiredMaxW": null,
-        "protocols": [],
+        "protocols": [
+          "USB PD 3.0"
+        ],
         "pps": "unknown",
         "wirelessStandard": null,
         "wirelessMaxW": null,
@@ -7605,7 +7607,8 @@
         "specificationsUrl": "https://www.sony.jp/xperia/xperia/acem2/spec.html",
         "manualUrl": "https://www.sony.jp/support/xperia/",
         "releaseUrl": "https://www.sony.jp/xperia/xperia/acem2/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "chargingUrl": "https://www.docomo.ne.jp/support/product/so41b/spec.html"
       },
       "affiliateKeys": []
     },
