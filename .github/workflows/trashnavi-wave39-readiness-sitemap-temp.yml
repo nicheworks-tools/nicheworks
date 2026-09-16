@@ -1,0 +1,34 @@
+name: TrashNavi Wave39 readiness sitemap temporary
+on:
+  push:
+    branches:
+      - feat/trashnavi-wave39-readiness-20260917
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-wave39-readiness-20260917
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Regenerate dedicated TrashNavi sitemap only
+        run: |
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs
+          changed="$(git diff --name-only)"
+          unexpected="$(printf '%s\n' "$changed" | grep -v '^sitemap-trashnavi.xml$' || true)"
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected generator changes:"
+            echo "$unexpected"
+            exit 1
+          fi
+          rm .github/workflows/trashnavi-wave39-readiness-sitemap-temp.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sitemap-trashnavi.xml .github/workflows/trashnavi-wave39-readiness-sitemap-temp.yml
+          git commit -m 'chore(trashnavi): sync Wave39 readiness sitemap date'
+          git push origin HEAD:feat/trashnavi-wave39-readiness-20260917
