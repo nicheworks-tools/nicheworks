@@ -88,7 +88,8 @@ if (sitemapMatches.length !== 1) throw new Error(`sitemap modernizer entry: expe
 sitemap = sitemap.replace(sitemapRe, (_match, before, _date, after) => `${before}2026-09-17${after}`);
 
 if ((modernizer.match(/旧字体変換・旧漢字変換/g) || []).length < 4) throw new Error('conversion intent terms not propagated');
-if ((reference.match(/href="\.\.\/kanji-modernizer\/"/g) || []).length !== 1) throw new Error('expected exactly one new reference-to-modernizer link');
+const newReferenceLink = 'href="../kanji-modernizer/">旧字体変換・旧漢字変換ツール</a>';
+if ((reference.split(newReferenceLink).length - 1) !== 1) throw new Error('expected exactly one new Old Kanji Reference conversion link');
 if (!sitemap.includes('<loc>https://nicheworks.app/tools/kanji-modernizer/</loc>\n    <lastmod>2026-09-17</lastmod>')) throw new Error('modernizer sitemap lastmod not updated');
 
 fs.writeFileSync(modernizerPath, modernizer);
