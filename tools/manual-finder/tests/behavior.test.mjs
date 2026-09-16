@@ -22,3 +22,4 @@ await import('./kyocera-toner-wave18.test.mjs');
 await import('./kyocera-toner-wave19.test.mjs');
 await import('./affiliate-coverage.test.mjs');
 await import('./affiliate-doc-sync.test.mjs');
+await import('./nikon-camera-accessory-wave1.test.mjs');
