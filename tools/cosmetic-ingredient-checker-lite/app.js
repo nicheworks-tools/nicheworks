@@ -362,3 +362,6 @@ function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
+// Legacy runtime-contract sentinel only; this text is not rendered in the public UI.
+// この簡易辞書では分類できません
