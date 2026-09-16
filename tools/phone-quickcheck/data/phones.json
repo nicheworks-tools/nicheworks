@@ -7169,11 +7169,11 @@
       ],
       "releaseYear": 2021,
       "dimensions": {
-        "heightMm": 159.9,
-        "widthMm": 75.1,
+        "heightMm": 160,
+        "widthMm": 75,
         "depthMm": 8.4
       },
-      "weightG": 189,
+      "weightG": 188,
       "displayInch": 6.5,
       "waterRating": "IP67",
       "charging": {
@@ -7181,6 +7181,7 @@
         "wiredRecommendedW": 25,
         "wiredMaxW": 25,
         "protocols": [
+          "USB PD 3.0",
           "Super Fast Charging"
         ],
         "pps": "unknown",
@@ -7189,7 +7190,7 @@
         "battery": {
           "capacityMah": 4500,
           "valueClass": "official",
-          "sourceRef": "https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%EA%B0%A4%EB%9F%AD%EC%8B%9C-a52%C2%B7a52-5g%C2%B7a72-%EA%B3%B5%EA%B0%9C"
+          "sourceRef": "https://www.docomo.ne.jp/support/product/sc53b/spec.html"
         }
       },
       "included": {
@@ -7197,11 +7198,11 @@
         "adapter": "unknown"
       },
       "sources": {
-        "specificationsUrl": "https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%EA%B0%A4%EB%9F%AD%EC%8B%9C-a52%C2%B7a52-5g%C2%B7a72-%EA%B3%B5%EA%B0%9C",
+        "specificationsUrl": "https://www.docomo.ne.jp/support/product/sc53b/spec.html",
         "manualUrl": "https://www.samsung.com/jp/support/model/SM-A526DLVADCM/",
         "releaseUrl": "https://www.samsung.com/jp/support/mobile-devices/please-tell-us-about-the-latest-version-of-the-galaxy-device-sold-in-docomo/",
         "chargingUrl": "https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%EA%B0%A4%EB%9F%AD%EC%8B%9C-a52%C2%B7a52-5g%C2%B7a72-%EA%B3%B5%EA%B0%9C",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16"
       },
       "affiliateKeys": []
     },
@@ -7219,11 +7220,11 @@
       ],
       "releaseYear": 2020,
       "dimensions": {
-        "heightMm": 158.9,
-        "widthMm": 73.6,
-        "depthMm": 8.7
+        "heightMm": 159,
+        "widthMm": 74,
+        "depthMm": 8.8
       },
-      "weightG": 187,
+      "weightG": 189,
       "displayInch": 6.5,
       "waterRating": "IPX5/IPX8 / IP6X",
       "charging": {
@@ -7231,6 +7232,7 @@
         "wiredRecommendedW": null,
         "wiredMaxW": 15,
         "protocols": [
+          "USB PD 2.0",
           "Adaptive Fast Charging"
         ],
         "pps": "unknown",
@@ -7239,7 +7241,7 @@
         "battery": {
           "capacityMah": 4500,
           "valueClass": "official",
-          "sourceRef": "https://news.samsung.com/global/samsung-announces-the-new-addition-to-5g-smartphone-lineup-galaxy-a71-5g-and-galaxy-a51-5g"
+          "sourceRef": "https://www.docomo.ne.jp/support/product/sc54a/spec.html"
         }
       },
       "included": {
@@ -7247,7 +7249,7 @@
         "adapter": "unknown"
       },
       "sources": {
-        "specificationsUrl": "https://news.samsung.com/global/samsung-announces-the-new-addition-to-5g-smartphone-lineup-galaxy-a71-5g-and-galaxy-a51-5g",
+        "specificationsUrl": "https://www.docomo.ne.jp/support/product/sc54a/spec.html",
         "manualUrl": "https://www.samsung.com/jp/support/model/SM-A516DZWADCM/",
         "releaseUrl": "https://www.samsung.com/jp/support/mobile-devices/please-tell-us-about-the-latest-version-of-the-galaxy-device-sold-in-docomo/",
         "chargingUrl": "https://news.samsung.com/global/samsung-announces-the-new-addition-to-5g-smartphone-lineup-galaxy-a71-5g-and-galaxy-a51-5g",
