@@ -1,0 +1,58 @@
+name: Construction Tools Atlas q014 identity closure
+
+on:
+  pull_request:
+    paths:
+      - 'tools/construction-tools-atlas/data/tools.quality-014.json'
+      - 'tools/construction-tools-atlas/data/canonical-redirects-v2.3.json'
+      - 'tools/construction-tools-atlas/data/canonical-identity-resolutions-v2.3.json'
+      - 'tools/construction-tools-atlas/data/quality-loader.js'
+      - 'tools/construction-tools-atlas/data/publication-inventory-v2.3.json'
+      - 'tools/construction-tools-atlas/data/public-image-inventory-v2.3.json'
+      - 'tools/construction-tools-atlas/data/public-content-quality-v2.3.json'
+      - 'tools/construction-tools-atlas/scripts/audit-quality-batch-identity-candidates-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/audit-q014-identity-closure-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs'
+      - '.github/workflows/construction-tools-atlas-q014-identity.yml'
+  push:
+    paths:
+      - 'tools/construction-tools-atlas/data/tools.quality-014.json'
+      - 'tools/construction-tools-atlas/data/canonical-redirects-v2.3.json'
+      - 'tools/construction-tools-atlas/data/canonical-identity-resolutions-v2.3.json'
+      - 'tools/construction-tools-atlas/data/quality-loader.js'
+      - 'tools/construction-tools-atlas/data/publication-inventory-v2.3.json'
+      - 'tools/construction-tools-atlas/data/public-image-inventory-v2.3.json'
+      - 'tools/construction-tools-atlas/data/public-content-quality-v2.3.json'
+      - 'tools/construction-tools-atlas/scripts/audit-quality-batch-identity-candidates-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/audit-q014-identity-closure-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs'
+      - '.github/workflows/construction-tools-atlas-q014-identity.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  q014-identity-closure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check generic batch identity auditor syntax
+        run: node --check tools/construction-tools-atlas/scripts/audit-quality-batch-identity-candidates-v2.3.cjs
+      - name: Check q014 identity closure syntax
+        run: node --check tools/construction-tools-atlas/scripts/audit-q014-identity-closure-v2.3.cjs
+      - name: Validate canonical redirects
+        run: node tools/construction-tools-atlas/scripts/check-canonical-redirects-v2.3.cjs
+      - name: Validate canonical identity resolutions
+        run: node tools/construction-tools-atlas/scripts/check-canonical-identity-resolutions-v2.3.cjs
+      - name: Require zero unresolved q014 identity collisions
+        run: node tools/construction-tools-atlas/scripts/audit-q014-identity-closure-v2.3.cjs
+      - name: Validate publication boundary
+        run: node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs --check
+      - name: Validate public image state
+        run: node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --check
+      - name: Validate public content state
+        run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check

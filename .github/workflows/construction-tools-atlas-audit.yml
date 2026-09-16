@@ -55,6 +55,9 @@ jobs:
       - name: Check canonical identity resolution syntax
         run: node --check tools/construction-tools-atlas/scripts/check-canonical-identity-resolutions-v2.3.cjs
 
+      - name: Check reusable batch identity auditor syntax
+        run: node --check tools/construction-tools-atlas/scripts/audit-quality-batch-identity-candidates-v2.3.cjs
+
       - name: Check q011 identity closure syntax
         run: node --check tools/construction-tools-atlas/scripts/audit-q011-identity-closure-v2.3.cjs
 
@@ -63,6 +66,9 @@ jobs:
 
       - name: Check q013 identity closure syntax
         run: node --check tools/construction-tools-atlas/scripts/audit-q013-identity-closure-v2.3.cjs
+
+      - name: Check q014 identity closure syntax
+        run: node --check tools/construction-tools-atlas/scripts/audit-q014-identity-closure-v2.3.cjs
 
       - name: Check q011 content completion syntax
         run: node --check tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs
@@ -156,6 +162,9 @@ jobs:
 
       - name: Require zero unresolved q013 identity collisions
         run: node tools/construction-tools-atlas/scripts/audit-q013-identity-closure-v2.3.cjs
+
+      - name: Require zero unresolved q014 identity collisions
+        run: node tools/construction-tools-atlas/scripts/audit-q014-identity-closure-v2.3.cjs
 
       - name: Require complete q011 subject-specific core content
         run: node tools/construction-tools-atlas/scripts/check-q011-content-completion-v2.3.cjs

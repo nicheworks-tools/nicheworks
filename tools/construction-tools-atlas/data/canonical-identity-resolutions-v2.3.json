@@ -1,8 +1,8 @@
 {
   "schema": "cta-canonical-identity-resolutions-v2.3",
-  "version": "2026-09-16-q013-closure-1",
+  "version": "2026-09-16-q014-identity-closure-1",
   "policy": {
-    "purpose": "Record reviewed canonical naming, taxonomy, alias, and distinct-concept decisions discovered during q011/q012/q013 identity closure.",
+    "purpose": "Record reviewed canonical naming, taxonomy, alias, and distinct-concept decisions discovered during q011/q012/q013/q014 identity closure.",
     "source_rows_remain_immutable_provenance": true,
     "runtime_overrides_are_canonical_taxonomy": true,
     "name_overrides_correct_public_identity_without_rewriting_source_provenance": true,
@@ -81,6 +81,30 @@
         "en": "Screed"
       },
       "reason": "The canonical is the straightedge/screed tool, distinct from q011 Screeding process."
+    },
+    {
+      "id": "guardrail",
+      "from": {
+        "ja": "手すり",
+        "en": "Guardrail"
+      },
+      "to": {
+        "ja": "墜落防止手すり",
+        "en": "Guardrail"
+      },
+      "reason": "Reserve generic 手すり/Handrail for the grasp/support rail; this canonical is the fall-protection barrier system."
+    },
+    {
+      "id": "q014_fascia_board",
+      "from": {
+        "ja": "破風板",
+        "en": "Fascia Board"
+      },
+      "to": {
+        "ja": "破風板",
+        "en": "Bargeboard"
+      },
+      "reason": "破風板 is the gable-edge bargeboard; fascia/nose board is a separate eaves-edge canonical."
     }
   ],
   "type_overrides": [
@@ -215,16 +239,82 @@
       "from": "tool",
       "to": "accessory",
       "reason": "The existing mixing-paddle canonical is an attachment/accessory for a powered mixer."
+    },
+    {
+      "id": "roof_batten",
+      "from": "material",
+      "to": "component",
+      "reason": "Roof batten is an installed support member/component."
+    },
+    {
+      "id": "drip_edge",
+      "from": "material",
+      "to": "component",
+      "reason": "Drip edge is installed edge flashing/trim, not a bulk material."
+    },
+    {
+      "id": "caulking_sealant",
+      "from": "tool",
+      "to": "material",
+      "reason": "Sealant is a joint-sealing material, not a tool."
+    },
+    {
+      "id": "screw_set",
+      "from": "tool",
+      "to": "fastener",
+      "reason": "The canonical represents screws/fasteners rather than a tool."
+    },
+    {
+      "id": "flashing_tape",
+      "from": "materials",
+      "to": "material",
+      "reason": "Normalize flashing tape to the singular material taxonomy."
+    },
+    {
+      "id": "masking_tape",
+      "from": "tool",
+      "to": "material",
+      "reason": "Masking tape is a consumable material rather than a tool."
+    },
+    {
+      "id": "q014_urethane_waterproofing",
+      "from": "material",
+      "to": "process",
+      "reason": "The entry describes a liquid-applied waterproofing method/system."
+    },
+    {
+      "id": "q014_frp_waterproofing",
+      "from": "material",
+      "to": "process",
+      "reason": "The entry describes an FRP waterproofing method/system."
+    },
+    {
+      "id": "q014_sheet_membrane",
+      "from": "material",
+      "to": "process",
+      "reason": "シート防水/Sheet Membrane Waterproofing is a waterproofing method, not the membrane material itself."
+    },
+    {
+      "id": "q014_torch_on_membrane",
+      "from": "material",
+      "to": "process",
+      "reason": "Torch-on membrane entry describes the torch-applied waterproofing method."
+    },
+    {
+      "id": "q014_vented_rainscreen",
+      "from": "system",
+      "to": "component",
+      "reason": "The entry describes the ventilation/rainscreen batten member itself."
     }
   ],
   "alias_removals": [
     {
       "id": "furring_strip",
       "ja": [
-        "野縁"
+        "通気胴縁"
       ],
       "en": [],
-      "reason": "野縁 and 胴縁 are related furring members but not canonical-equivalent Japanese terms"
+      "reason": "Vented rainscreen batten is a specific exterior-cavity member retained separately from generic furring strip."
     },
     {
       "id": "rebar_tying_tool",
@@ -346,6 +436,41 @@
       ],
       "en": [],
       "reason": "Reserve 巻尺 here for the long reel tape canonical; pocket/retractable tape measure remains a separate entry."
+    },
+    {
+      "id": "metal_roof_panel",
+      "ja": [
+        "ガルバリウム鋼板屋根"
+      ],
+      "en": [],
+      "reason": "Galvalume steel roofing is a specific metal-roof subtype retained as q014_galvalume_roof."
+    },
+    {
+      "id": "drain",
+      "ja": [
+        "ルーフドレン"
+      ],
+      "en": [
+        "Roof drain"
+      ],
+      "reason": "Roof drain is a roof-specific drain canonical retained separately from the generic drain family."
+    },
+    {
+      "id": "siding",
+      "ja": [
+        "窯業系サイディング",
+        "金属サイディング"
+      ],
+      "en": [],
+      "reason": "Fiber-cement and metal siding are specific siding subtypes retained as separate q014 canonicals."
+    },
+    {
+      "id": "sill",
+      "ja": [],
+      "en": [
+        "Sill pan"
+      ],
+      "reason": "Sill pan is a specific drainage flashing component, not a synonym for the broader sill canonical."
     }
   ],
   "resolved_distinct_pairs": [
@@ -462,6 +587,276 @@
       "b": "tape_measure",
       "resolution": "keep_distinct_scope",
       "reason": "Long reel tape is for longer site dimensions; tape_measure is the pocket/retractable tape canonical."
+    },
+    {
+      "a": "q014_galvalume_roof",
+      "b": "metal_roof_panel",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Galvalume steel roofing is a specific metal-roof subtype; the existing metal-roof canonical remains the broader family."
+    },
+    {
+      "a": "q014_roof_drain",
+      "b": "drain",
+      "resolution": "keep_distinct_scope",
+      "reason": "Roof drain is the roof/balcony drainage fitting; drain is the broader drain family."
+    },
+    {
+      "a": "q014_fiber_cement_siding",
+      "b": "siding",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Fiber-cement siding is a specific siding material subtype."
+    },
+    {
+      "a": "q014_metal_siding",
+      "b": "siding",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Metal siding is a specific siding material subtype."
+    },
+    {
+      "a": "q014_vented_rainscreen",
+      "b": "furring_strip",
+      "resolution": "keep_distinct_scope",
+      "reason": "The q014 member specifically forms an exterior ventilation/rainscreen cavity; generic furring strip is broader."
+    },
+    {
+      "a": "q014_fascia_board",
+      "b": "fascia_board",
+      "resolution": "keep_distinct",
+      "reason": "q014 破風板 is Bargeboard at the gable edge; fascia_board is 鼻隠し/Fascia at the eaves edge."
+    },
+    {
+      "a": "q014_sill_pan",
+      "b": "sill",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Sill pan is drainage flashing beneath an opening; sill is the broader lower-window member."
+    },
+    {
+      "a": "q014_handrail",
+      "b": "guardrail",
+      "resolution": "keep_distinct",
+      "reason": "Handrail is grasp/support rail for walking; guardrail is a fall-protection barrier."
+    },
+    {
+      "a": "q014_eave_flashing",
+      "b": "flashing",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Eave flashing is a location-specific flashing detail; flashing is the broad component family."
+    },
+    {
+      "a": "q014_roof_sealant",
+      "b": "caulking_sealant",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Roof sealant is an exterior roofing-use subtype of generic sealant."
+    },
+    {
+      "a": "q014_roof_screw",
+      "b": "screw_set",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Roofing screw is a sealing-washer roofing fastener subtype; screw_set is generic screws."
+    },
+    {
+      "a": "q014_bitumen_primer",
+      "b": "primer_003",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Bitumen primer is a waterproofing-specific primer subtype."
+    },
+    {
+      "a": "q014_bitumen_primer",
+      "b": "primer",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Bitumen primer is a waterproofing-specific primer subtype."
+    },
+    {
+      "a": "q014_sheet_membrane",
+      "b": "waterproof_membrane",
+      "resolution": "keep_distinct_process_material",
+      "reason": "q014 is the sheet-waterproofing method; waterproof_membrane is the membrane material."
+    },
+    {
+      "a": "q014_drain_strainer",
+      "b": "q015_strainer",
+      "resolution": "keep_distinct_scope",
+      "reason": "Roof drain strainer screens debris at a roof drain; q015 strainer is an inline piping fitting."
+    },
+    {
+      "a": "q014_overflow_drain",
+      "b": "drain",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Overflow drain is a secondary emergency drainage fitting."
+    },
+    {
+      "a": "q014_siding_starter",
+      "b": "siding",
+      "resolution": "keep_distinct_part_parent",
+      "reason": "Starter strip is a supporting installation component, not siding material itself."
+    },
+    {
+      "a": "q014_siding_clip",
+      "b": "siding",
+      "resolution": "keep_distinct_part_parent",
+      "reason": "Siding clip is fastening hardware, not siding material."
+    },
+    {
+      "a": "q014_siding_joint",
+      "b": "siding",
+      "resolution": "keep_distinct_part_parent",
+      "reason": "Siding joint is the weather-sealed interface between panels."
+    },
+    {
+      "a": "q014_housewrap_tape",
+      "b": "housewrap",
+      "resolution": "keep_distinct_part_parent",
+      "reason": "Housewrap tape seals the membrane; it is not the membrane itself."
+    },
+    {
+      "a": "q014_soffit_vent",
+      "b": "soffit",
+      "resolution": "keep_distinct_part_parent",
+      "reason": "Soffit vent is a ventilation component installed in/through the soffit."
+    },
+    {
+      "a": "q014_aluminum_sash",
+      "b": "window_sash",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Aluminum sash is a material-specific window-sash subtype."
+    },
+    {
+      "a": "q014_resin_sash",
+      "b": "window_sash",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Vinyl/resin sash is a material-specific window-frame subtype."
+    },
+    {
+      "a": "q014_door_hinge",
+      "b": "q014_gate_hinge",
+      "resolution": "keep_distinct_scope",
+      "reason": "Door hinge and gate hinge serve different assemblies despite sharing hinge mechanics."
+    },
+    {
+      "a": "q014_sealer_coat",
+      "b": "q016_concrete_sealer",
+      "resolution": "keep_distinct_scope",
+      "reason": "Sealer coat here is an adhesion/absorption-control undercoat; concrete sealer is a protective surface treatment."
+    },
+    {
+      "a": "q014_sealer_coat",
+      "b": "q016_grout_sealer",
+      "resolution": "keep_distinct_scope",
+      "reason": "Sealer coat here is an undercoat; grout sealer is a protective treatment for grout."
+    },
+    {
+      "a": "q014_scaffold_sheet",
+      "b": "scaffold",
+      "resolution": "keep_distinct_part_parent",
+      "reason": "Scaffold mesh sheet is containment sheeting attached to a scaffold, not the scaffold structure."
+    },
+    {
+      "a": "q014_handrail",
+      "b": "handrail_bracket",
+      "resolution": "keep_distinct_part_parent",
+      "reason": "Handrail is the grasp rail; handrail bracket is its support hardware."
+    },
+    {
+      "a": "q014_guard_post",
+      "b": "guardrail",
+      "resolution": "keep_distinct_part_parent",
+      "reason": "Guardrail post supports the barrier system; it is not the complete guardrail."
+    },
+    {
+      "a": "q014_exterior_fence",
+      "b": "temporary_fence",
+      "resolution": "keep_distinct_scope",
+      "reason": "Exterior fence is permanent/general site boundary work; temporary fence is construction-site temporary enclosure."
+    },
+    {
+      "a": "q014_gate",
+      "b": "q015_gate_valve",
+      "resolution": "keep_distinct_polysemy",
+      "reason": "Site gate and gate valve are unrelated meanings of gate."
+    },
+    {
+      "a": "q014_concrete_paver",
+      "b": "concrete",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Concrete paver slab is a precast paving product; concrete is the broad material."
+    },
+    {
+      "a": "q014_curb_block",
+      "b": "q014_granite_curb",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Granite curb is a material-specific curb subtype."
+    },
+    {
+      "a": "q014_vibratory_roller",
+      "b": "paint_roller",
+      "resolution": "keep_distinct_polysemy",
+      "reason": "Compaction roller and paint roller are unrelated equipment/tool meanings."
+    },
+    {
+      "a": "q014_hand_roller",
+      "b": "paint_roller",
+      "resolution": "keep_distinct_polysemy",
+      "reason": "Walk-behind compaction roller and paint roller are unrelated meanings."
+    },
+    {
+      "a": "q014_asphalt_rake",
+      "b": "q013_soil_rake",
+      "resolution": "keep_distinct_scope",
+      "reason": "Asphalt rake is specialized for hot-mix paving; soil rake is for soil/gravel grading."
+    },
+    {
+      "a": "q014_trench_drain",
+      "b": "drain",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Trench drain is a linear surface-water drainage system; drain is broader."
+    },
+    {
+      "a": "q014_drain_channel",
+      "b": "channel",
+      "resolution": "keep_distinct_polysemy",
+      "reason": "Drainage channel conveys water; structural/metal channel is a framing section."
+    },
+    {
+      "a": "q014_sediment_trap",
+      "b": "trap",
+      "resolution": "keep_distinct_polysemy",
+      "reason": "Sediment trap captures solids; plumbing trap maintains a water seal against sewer gas."
+    },
+    {
+      "a": "q014_drain_cover",
+      "b": "drain",
+      "resolution": "keep_distinct_part_parent",
+      "reason": "Drain cover protects the opening; drain is the drainage fitting/system."
+    },
+    {
+      "a": "q014_expansion_joint_filler",
+      "b": "expansion_joint",
+      "resolution": "keep_distinct_part_parent",
+      "reason": "Joint filler is compressible fill material installed inside an expansion joint."
+    },
+    {
+      "a": "q014_joint_sealant_exterior",
+      "b": "caulking_sealant",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Exterior joint sealant is an exterior-joint application subtype of generic sealant."
+    },
+    {
+      "a": "q014_polyurethane_sealant",
+      "b": "caulking_sealant",
+      "resolution": "keep_distinct_parent_subtype",
+      "reason": "Polyurethane sealant is a chemistry-specific sealant subtype."
+    },
+    {
+      "a": "q014_modified_silicone_sealant",
+      "b": "silicone_sealant",
+      "resolution": "keep_distinct",
+      "reason": "Modified-silicone/MS sealant and silicone sealant are different sealant chemistries."
+    },
+    {
+      "a": "q014_sealant_spatula",
+      "b": "caulking_sealant",
+      "resolution": "keep_distinct_tool_material",
+      "reason": "Sealant spatula is the tooling instrument; sealant is the material being tooled."
     }
   ]
 }

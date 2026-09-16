@@ -1,15 +1,22 @@
 {
   "schema_version": 1,
   "phase": "verified-publication",
-  "updated": "2026-09-15",
+  "updated": "2026-09-16",
   "policy": {
-    "record_count": 20,
+    "record_count": 40,
     "runtime_merge": "Overlay these fields on data/patterns.json by matching pattern_id.",
     "review_state": "verified",
     "qualified_terms": [
-      "moroccan-trellis",
+      "breton-stripe",
+      "herringbone",
       "ikat",
-      "kilim"
+      "kilim",
+      "koushi",
+      "madras-check",
+      "moroccan-trellis",
+      "prince-of-wales-check",
+      "regimental-stripe",
+      "swiss-dot"
     ],
     "image_state": "verified-publication"
   },
@@ -1257,6 +1264,1221 @@
         ],
         "color_role": "variable",
         "primary_reason": "Kilim traditions use diverse colors and designs; this fixed palette is only an editorial recognition reference."
+      }
+    },
+    {
+      "pattern_id": "buffalo-check",
+      "review_state": "verified",
+      "verification_state": "verified",
+      "names": {
+        "ja": "バッファローチェック",
+        "en": "Buffalo Check"
+      },
+      "aliases": {
+        "ja": [
+          "バッファローチェック柄"
+        ],
+        "en": [
+          "buffalo plaid"
+        ]
+      },
+      "term_scope": "named large-scale red-and-black check convention",
+      "definition": {
+        "ja": "大きく均等な二色の格子を反復するチェック柄です。赤と黒の組み合わせが代表的ですが、識別の中心は大きな等間隔の格子です。",
+        "en": "A large, evenly spaced two-color check. Red and black are the best-known combination, but the key cue is the bold regular grid."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "ギンガムより大きな格子として見えることが多い",
+          "縦横の帯幅がそろった単純な二色格子",
+          "赤黒は代表的だが必須条件ではない"
+        ],
+        "en": [
+          "Usually reads at a larger scale than gingham",
+          "Uses a simple regular grid of equal-width crossing bands",
+          "Red and black are conventional rather than mandatory"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "シャツ",
+          "ジャケット",
+          "ブランケット",
+          "バッグ",
+          "インテリア生地"
+        ],
+        "en": [
+          "shirts",
+          "jackets",
+          "blankets",
+          "bags",
+          "furnishing textiles"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "red",
+          "black"
+        ],
+        "color_role": "traditional",
+        "primary_reason": "Red-and-black is the historically documented and dominant recognition convention, while the geometry remains the key structural cue."
+      }
+    },
+    {
+      "pattern_id": "shepherd-check",
+      "review_state": "verified",
+      "verification_state": "verified",
+      "names": {
+        "ja": "シェパードチェック",
+        "en": "Shepherd's Check"
+      },
+      "aliases": {
+        "ja": [
+          "シェパードチェック柄"
+        ],
+        "en": [
+          "shepherd check",
+          "shepherd's plaid"
+        ]
+      },
+      "term_scope": "small even check family",
+      "definition": {
+        "ja": "細かな二色の線を等間隔で交差させ、小さく均一な格子を作るチェック柄です。黒白が古典的な認識例です。",
+        "en": "A small, even check formed by crossing contrasting stripes at regular intervals, classically in black and white."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "小さく均一な格子が連続する",
+          "千鳥格子のような尖った崩れがない",
+          "ガンクラブチェックより配色と構造が単純"
+        ],
+        "en": [
+          "Repeats small even check cells",
+          "Lacks the jagged tooth-like breakup of houndstooth",
+          "Is simpler in color and layering than gun-club checks"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ジャケット",
+          "スーツ",
+          "パンツ",
+          "スカート",
+          "帽子"
+        ],
+        "en": [
+          "jackets",
+          "suits",
+          "trousers",
+          "skirts",
+          "hats"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "black",
+          "white"
+        ],
+        "color_role": "traditional",
+        "primary_reason": "Black-and-white is explicitly documented as a classic construction, but the pattern family is not restricted to one palette."
+      }
+    },
+    {
+      "pattern_id": "windowpane-check",
+      "review_state": "verified",
+      "verification_state": "verified",
+      "names": {
+        "ja": "ウィンドウペーンチェック",
+        "en": "Windowpane Check"
+      },
+      "aliases": {
+        "ja": [
+          "ウィンドーペーン"
+        ],
+        "en": [
+          "windowpane"
+        ]
+      },
+      "term_scope": "large-scale thin-line check",
+      "definition": {
+        "ja": "細い縦線と横線を広い間隔で交差させ、窓枠のような大きな四角を作るチェック柄です。",
+        "en": "A large-scale check made from thin horizontal and vertical lines spaced widely apart, resembling window panes."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "線が細く、格子の空白が大きい",
+          "タッターソールより色数が少なく単純に見えやすい",
+          "グレンチェックの細かな複合格子とはスケールが異なる"
+        ],
+        "en": [
+          "Uses thin lines around large open cells",
+          "Usually reads more simply than multicolor Tattersall",
+          "Operates at a much larger scale than the fine compound base of Glen Check"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "スーツ",
+          "ジャケット",
+          "シャツ",
+          "パンツ",
+          "インテリア生地"
+        ],
+        "en": [
+          "suits",
+          "jackets",
+          "shirts",
+          "trousers",
+          "furnishing textiles"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "navy",
+          "white"
+        ],
+        "color_role": "non-essential",
+        "primary_reason": "The pane-like grid and large scale define the recognition target, not a fixed color."
+      }
+    },
+    {
+      "pattern_id": "madras-check",
+      "review_state": "verified",
+      "verification_state": "qualified",
+      "names": {
+        "ja": "マドラスチェック",
+        "en": "Madras Check"
+      },
+      "aliases": {
+        "ja": [
+          "マドラス"
+        ],
+        "en": [
+          "madras plaid",
+          "madras"
+        ]
+      },
+      "term_scope": "Madras textile/check style rather than one fixed grid specification",
+      "definition": {
+        "ja": "マドラス／チェンナイの綿織物文化と結びつく、多色の縦横線が交差するチェック系の見た目です。ひとつの固定格子を指す語ではありません。",
+        "en": "A multicolor woven check/plaid appearance associated with Madras/Chennai cotton textiles. It is a textile tradition and style, not one immutable grid."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "複数色の帯が縦横に交差する",
+          "明るい多色使いが現代の強い認識手掛かり",
+          "特定の一種類の格子だけを正解としない"
+        ],
+        "en": [
+          "Uses crossing bands in multiple colors",
+          "Bright multicolor combinations are a strong modern cue",
+          "Should not be reduced to one supposedly authentic repeat"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "シャツ",
+          "ショーツ",
+          "ワンピース",
+          "スカーフ",
+          "パッチワーク"
+        ],
+        "en": [
+          "shirts",
+          "shorts",
+          "dresses",
+          "scarves",
+          "patchwork"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "red",
+          "blue",
+          "yellow",
+          "white"
+        ],
+        "color_role": "traditional",
+        "primary_reason": "Multicolor plaid is a strong modern recognition cue, but sources do not support one exclusive palette."
+      },
+      "qualification": {
+        "ja": "マドラス／チェンナイの綿織物文化と結びつく、多色の縦横線が交差するチェック系の見た目です。ひとつの固定格子を指す語ではありません。",
+        "en": "Madras is also a cloth/textile term and historical textile tradition, not a single immutable check geometry. Detail copy must not present one reference repeat as the only authentic Madras pattern."
+      }
+    },
+    {
+      "pattern_id": "tattersall",
+      "review_state": "verified",
+      "verification_state": "verified",
+      "names": {
+        "ja": "タッターソール",
+        "en": "Tattersall"
+      },
+      "aliases": {
+        "ja": [
+          "タッターソールチェック",
+          "タッタソールチェック"
+        ],
+        "en": [
+          "tattersall check"
+        ]
+      },
+      "term_scope": "thin-line multicolor check on a light ground",
+      "definition": {
+        "ja": "明るい地色の上に、複数色の細い線を縦横に交差させて四角を作るチェック柄です。",
+        "en": "A check of thin colored crossbars forming repeated squares on a usually light ground, often using more than one stripe color."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "地色が広く見える細線中心の格子",
+          "二色以上の細い線を使うことが多い",
+          "ウィンドウペーンより線と色の組み合わせが細かい"
+        ],
+        "en": [
+          "Leaves substantial light ground visible between thin lines",
+          "Often combines two or more stripe colors",
+          "Is usually finer and more multicolor than Windowpane"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "シャツ",
+          "ジャケット",
+          "ネクタイ",
+          "パンツ",
+          "インテリア生地"
+        ],
+        "en": [
+          "shirts",
+          "jackets",
+          "ties",
+          "trousers",
+          "furnishing textiles"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "navy",
+          "burgundy",
+          "cream"
+        ],
+        "color_role": "variable",
+        "primary_reason": "Light ground plus multiple thin colored lines is a stronger recognition cue than any one palette."
+      }
+    },
+    {
+      "pattern_id": "gun-club-check",
+      "review_state": "verified",
+      "verification_state": "verified",
+      "names": {
+        "ja": "ガンクラブチェック",
+        "en": "Gun Club Check"
+      },
+      "aliases": {
+        "ja": [
+          "ガンクラブチェック柄"
+        ],
+        "en": [
+          "gun check"
+        ]
+      },
+      "term_scope": "multicolor district-check family derived from shepherd-check variation",
+      "definition": {
+        "ja": "シェパードチェック系の細かな格子を基礎に、複数の色調や格子層を組み合わせるチェック柄です。",
+        "en": "A multitone district-check family built from a small shepherd-check-like base with added colors or check layers."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "小格子を基礎に複数色が見える",
+          "シェパードチェックより色調と層が複雑",
+          "遠目では細かな混色の格子として見える"
+        ],
+        "en": [
+          "Starts from a small-check base and introduces multiple tones",
+          "Is more layered and colorful than Shepherd's Check",
+          "Can read as a fine blended check from a distance"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ジャケット",
+          "スーツ",
+          "コート",
+          "パンツ",
+          "帽子"
+        ],
+        "en": [
+          "jackets",
+          "suits",
+          "coats",
+          "trousers",
+          "hats"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "brown",
+          "black",
+          "cream"
+        ],
+        "color_role": "traditional",
+        "primary_reason": "Multiple contrasting tones are characteristic, but exact colors vary across gun-club checks."
+      }
+    },
+    {
+      "pattern_id": "prince-of-wales-check",
+      "review_state": "verified",
+      "verification_state": "qualified",
+      "names": {
+        "ja": "プリンス・オブ・ウェールズ・チェック",
+        "en": "Prince of Wales Check"
+      },
+      "aliases": {
+        "ja": [
+          "プリンスオブウェールズチェック"
+        ],
+        "en": [
+          "Prince-of-Wales check",
+          "Prince of Wales plaid"
+        ]
+      },
+      "term_scope": "glen-check-derived check convention with modern naming overlap",
+      "definition": {
+        "ja": "グレンチェック系の細かな複合格子に、より大きな対比色のオーバーチェックを重ねる形で説明されることが多いチェックです。現代ではグレンチェックと同義的に使われる場合もあります。",
+        "en": "A Glen-Check-like compound check commonly distinguished by a larger contrasting overcheck, although modern usage often overlaps with the term Glen Check."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "細かなグレン系格子の上に大きな線格子が見える",
+          "実用上はオーバーチェックの有無が重要な手掛かり",
+          "名称はグレンチェックと重なって使われることがある"
+        ],
+        "en": [
+          "Shows a fine Glen-like base plus a larger overcheck",
+          "The overcheck is the most useful practical cue",
+          "Naming can overlap with Glen Check in modern usage"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "スーツ",
+          "ジャケット",
+          "コート",
+          "パンツ",
+          "ネクタイ"
+        ],
+        "en": [
+          "suits",
+          "jackets",
+          "coats",
+          "trousers",
+          "ties"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "gray",
+          "black",
+          "white",
+          "burgundy"
+        ],
+        "color_role": "variable",
+        "primary_reason": "Neutral glen-like base plus a contrasting overcheck is a useful recognition reference, not a universal color rule."
+      },
+      "qualification": {
+        "ja": "グレンチェック系の細かな複合格子に、より大きな対比色のオーバーチェックを重ねる形で説明されることが多いチェックです。現代ではグレンチェックと同義的に使われる場合もあります。",
+        "en": "Modern sources often use Prince of Wales Check and Glen Check interchangeably, while historical and tailoring references distinguish Prince of Wales through an added overcheck or specific lineage. Detail copy must state both the practical distinction and the naming overlap."
+      }
+    },
+    {
+      "pattern_id": "pinstripe",
+      "review_state": "verified",
+      "verification_state": "verified",
+      "names": {
+        "ja": "ピンストライプ",
+        "en": "Pinstripe"
+      },
+      "aliases": {
+        "ja": [
+          "ピンストライプ柄"
+        ],
+        "en": [
+          "pin-stripe"
+        ]
+      },
+      "term_scope": "very narrow parallel stripe pattern in cloth",
+      "definition": {
+        "ja": "暗い地の上に、ごく細い淡色の平行線を一定間隔で並べるストライプです。",
+        "en": "A stripe pattern of very narrow, usually pale parallel lines set at regular intervals on darker cloth."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "線が非常に細い",
+          "線同士の間隔が広く地色が大きく見える",
+          "チョークストライプより細く輪郭がシャープ"
+        ],
+        "en": [
+          "Uses extremely narrow lines",
+          "Leaves substantial ground visible between stripes",
+          "Is finer and sharper than Chalk Stripe"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "スーツ",
+          "ジャケット",
+          "パンツ",
+          "スカート",
+          "シャツ"
+        ],
+        "en": [
+          "suits",
+          "jackets",
+          "trousers",
+          "skirts",
+          "shirts"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "navy",
+          "white"
+        ],
+        "color_role": "traditional",
+        "primary_reason": "Pale narrow lines on a dark ground are well documented, but exact colors are variable."
+      }
+    },
+    {
+      "pattern_id": "chalk-stripe",
+      "review_state": "verified",
+      "verification_state": "verified",
+      "names": {
+        "ja": "チョークストライプ",
+        "en": "Chalk Stripe"
+      },
+      "aliases": {
+        "ja": [
+          "チョークストライプ柄"
+        ],
+        "en": [
+          "chalk-stripe",
+          "chalkstripe"
+        ]
+      },
+      "term_scope": "wider softer parallel stripe convention used in suiting",
+      "definition": {
+        "ja": "暗い地に淡い平行線を並べるストライプで、ピンストライプより線が太く、チョークで引いたように柔らかく見えるのが特徴です。",
+        "en": "A pale-on-dark parallel stripe that is wider and usually softer or more muted in appearance than a pinstripe."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "ピンストライプより線幅が太い",
+          "線の輪郭がやや柔らかく見える",
+          "暗色地に淡色線のスーツ地でよく見られる"
+        ],
+        "en": [
+          "Uses wider lines than Pinstripe",
+          "The stripe edge often reads softer or chalkier",
+          "Commonly appears as pale lines on dark suiting"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "スーツ",
+          "ジャケット",
+          "パンツ",
+          "コート",
+          "ベスト"
+        ],
+        "en": [
+          "suits",
+          "jackets",
+          "trousers",
+          "coats",
+          "waistcoats"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "navy",
+          "white"
+        ],
+        "color_role": "traditional",
+        "primary_reason": "White/pale lines on dark cloth are conventional; width/softness relative to pinstripe is the stronger distinction."
+      }
+    },
+    {
+      "pattern_id": "bengal-stripe",
+      "review_state": "verified",
+      "verification_state": "verified",
+      "names": {
+        "ja": "ベンガルストライプ",
+        "en": "Bengal Stripe"
+      },
+      "aliases": {
+        "ja": [
+          "ベンガルストライプ柄"
+        ],
+        "en": [
+          "bengal"
+        ]
+      },
+      "term_scope": "balanced alternating colored-and-white stripe convention",
+      "definition": {
+        "ja": "色帯と白帯をほぼ同じ幅で交互に並べる、均等で明快なストライプです。",
+        "en": "A balanced stripe of alternating colored and white bands, generally broader than fine pin or pencil stripes."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "色帯と白帯の幅が近い",
+          "細いピンストライプより面として見える",
+          "シャツ地でよく使われる明快な反復"
+        ],
+        "en": [
+          "Colored and white bands are close in width",
+          "Reads as alternating bands rather than hairline marks",
+          "Commonly associated with shirting"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "シャツ",
+          "ブラウス",
+          "ワンピース",
+          "パジャマ",
+          "寝具"
+        ],
+        "en": [
+          "shirts",
+          "blouses",
+          "dresses",
+          "sleepwear",
+          "bedding"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "blue",
+          "white"
+        ],
+        "color_role": "variable",
+        "primary_reason": "Alternating white and color is structural; blue is only a familiar recognition reference."
+      }
+    },
+    {
+      "pattern_id": "koushi",
+      "review_state": "verified",
+      "verification_state": "qualified",
+      "names": {
+        "ja": "格子",
+        "en": "Koushi"
+      },
+      "aliases": {
+        "ja": [
+          "格子文",
+          "格子文様"
+        ],
+        "en": [
+          "koushi pattern",
+          "Japanese lattice pattern"
+        ]
+      },
+      "term_scope": "broad Japanese lattice/check family",
+      "definition": {
+        "ja": "縦線と横線を交差させて四角・長方形の区画を作る、日本の広い格子文様群です。線幅や本数、間隔によって多くの派生があります。",
+        "en": "A broad Japanese lattice/check family formed by intersecting vertical and horizontal lines, with many variants in spacing, line weight, and count."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "線そのものが交差して格子を作る",
+          "市松のように塗りつぶした正方形を交互に置く構造とは異なる",
+          "ひとつの固定反復ではなく多数の格子系を含む"
+        ],
+        "en": [
+          "The lattice is constructed from crossing lines",
+          "It differs from Ichimatsu's alternating filled squares",
+          "It is a family of lattice variants rather than one fixed repeat"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "浴衣",
+          "手ぬぐい",
+          "建具",
+          "工芸品"
+        ],
+        "en": [
+          "kimono",
+          "yukata",
+          "tenugui",
+          "architectural latticework",
+          "crafts"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "indigo",
+          "white"
+        ],
+        "color_role": "non-essential",
+        "primary_reason": "Line intersection defines the family; color is not intrinsic."
+      },
+      "qualification": {
+        "ja": "縦線と横線を交差させて四角・長方形の区画を作る、日本の広い格子文様群です。線幅や本数、間隔によって多くの派生があります。",
+        "en": "Koushi/格子 is a broad Japanese pattern family with many variants, not one unique repeat. Detail copy must distinguish this line-based lattice family from Ichimatsu's alternating filled squares."
+      }
+    },
+    {
+      "pattern_id": "awning-stripe",
+      "review_state": "verified",
+      "verification_state": "verified",
+      "names": {
+        "ja": "オーニングストライプ",
+        "en": "Awning Stripe"
+      },
+      "aliases": {
+        "ja": [
+          "オーニングストライプ柄"
+        ],
+        "en": [
+          "awning stripes"
+        ]
+      },
+      "term_scope": "very broad stripe convention named after awnings",
+      "definition": {
+        "ja": "店舗や屋外の日よけを思わせる、太く大胆な帯を規則的に反復するストライプです。",
+        "en": "A bold, broad, regularly repeated stripe named for the large-scale bands seen on traditional awnings."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "帯幅が大きく遠目でも強く見える",
+          "ベンガルストライプより大判に見えやすい",
+          "色よりも太い規則反復が識別の中心"
+        ],
+        "en": [
+          "Uses broad bands that remain obvious at a distance",
+          "Usually reads larger in scale than Bengal Stripe",
+          "The bold regular banding matters more than a specific color"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "日よけ",
+          "屋外布",
+          "クッション",
+          "カーテン",
+          "シャツ"
+        ],
+        "en": [
+          "awnings",
+          "outdoor textiles",
+          "cushions",
+          "curtains",
+          "shirts"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "green",
+          "white"
+        ],
+        "color_role": "variable",
+        "primary_reason": "Large stripe scale is defining; exact color is variable."
+      }
+    },
+    {
+      "pattern_id": "regimental-stripe",
+      "review_state": "verified",
+      "verification_state": "qualified",
+      "names": {
+        "ja": "レジメンタルストライプ",
+        "en": "Regimental Stripe"
+      },
+      "aliases": {
+        "ja": [
+          "レジメンタル"
+        ],
+        "en": [
+          "regimental"
+        ]
+      },
+      "term_scope": "stripe style associated with English/British regimental ties rather than one fixed repeat",
+      "definition": {
+        "ja": "英国の連隊ネクタイなどと結びつく斜め縞のスタイル群です。特定の一色順・線幅・方向だけをレジメンタルの正解とはできません。",
+        "en": "A family of diagonal stripe conventions associated with British regimental neckwear. No single color sequence, width, or direction defines the whole category."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "ネクタイで見られる斜めの反復縞が代表的",
+          "色の組み合わせが所属や伝統と結びつく場合がある",
+          "一般化した参考柄を特定連隊の真正柄とは扱わない"
+        ],
+        "en": [
+          "Diagonal repeated bands are the common neckwear cue",
+          "Color combinations may carry organizational meaning",
+          "A generic reference must not be presented as an authentic design for a specific regiment"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ネクタイ",
+          "スカーフ",
+          "リボン",
+          "ジャケット裏地",
+          "小物"
+        ],
+        "en": [
+          "ties",
+          "scarves",
+          "ribbons",
+          "jacket linings",
+          "accessories"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "navy",
+          "red",
+          "gold"
+        ],
+        "color_role": "identity-relevant",
+        "primary_reason": "Specific color sequences may carry organizational meaning, so the reference palette must not be presented as universal."
+      },
+      "qualification": {
+        "ja": "英国の連隊ネクタイなどと結びつく斜め縞のスタイル群です。特定の一色順・線幅・方向だけをレジメンタルの正解とはできません。",
+        "en": "Regimental Stripe is a style/family label tied to regimental neckwear conventions, not one universal color sequence, stripe width, or direction. The dictionary must avoid assigning one generic stripe as an authentic regiment-specific design."
+      }
+    },
+    {
+      "pattern_id": "breton-stripe",
+      "review_state": "verified",
+      "verification_state": "qualified",
+      "names": {
+        "ja": "ブレトンストライプ",
+        "en": "Breton Stripe"
+      },
+      "aliases": {
+        "ja": [
+          "ブレトンボーダー"
+        ],
+        "en": [
+          "Breton top",
+          "marinière",
+          "tricot rayé"
+        ]
+      },
+      "term_scope": "French maritime clothing/style convention derived from striped naval knitwear",
+      "definition": {
+        "ja": "フランスの海軍・海洋服の歴史と結びつく、青や紺と白の横縞を代表例とするスタイルです。現代のブレトン柄は歴史的制服仕様より広い概念です。",
+        "en": "A maritime clothing convention associated with the French naval/Breton-top tradition, classically using blue or navy horizontal stripes on white. Modern usage is broader than the historic uniform specification."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "横方向の青・紺と白の縞が強い認識手掛かり",
+          "衣服、とくにボートネック系トップスとの結びつきが強い",
+          "現代品の線幅や本数は歴史的制服仕様に限定されない"
+        ],
+        "en": [
+          "Blue/navy horizontal stripes on white are the strongest cue",
+          "Strongly associated with maritime tops",
+          "Modern stripe count and spacing need not match the historic naval uniform"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "Tシャツ",
+          "ニット",
+          "カットソー",
+          "ワンピース",
+          "バッグ"
+        ],
+        "en": [
+          "T-shirts",
+          "knitwear",
+          "jersey tops",
+          "dresses",
+          "bags"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "navy",
+          "white"
+        ],
+        "color_role": "traditional",
+        "primary_reason": "Blue-and-white horizontal striping is central to the historic naval reference, while modern Breton-style garments vary spacing and colors."
+      },
+      "qualification": {
+        "ja": "フランスの海軍・海洋服の歴史と結びつく、青や紺と白の横縞を代表例とするスタイルです。現代のブレトン柄は歴史的制服仕様より広い概念です。",
+        "en": "The historic French naval garment had specific uniform dimensions, but modern 'Breton stripe' is a broader fashion convention. Detail copy must distinguish the historical marinière specification from contemporary Breton-style stripes."
+      }
+    },
+    {
+      "pattern_id": "swiss-dot",
+      "review_state": "verified",
+      "verification_state": "qualified",
+      "names": {
+        "ja": "スイスドット",
+        "en": "Swiss Dot"
+      },
+      "aliases": {
+        "ja": [
+          "ドッテッドスイス"
+        ],
+        "en": [
+          "dotted Swiss",
+          "Swiss muslin"
+        ]
+      },
+      "term_scope": "dotted Swiss textile/fabric category, not generic printed polka dots",
+      "definition": {
+        "ja": "薄く張りのある生地の表面に小さな点を持つドッテッドスイス系の生地表現です。単なる平面印刷の水玉とは区別します。",
+        "en": "A dotted-Swiss textile appearance: fine, sheer, crisp fabric carrying small surface dots. It is a fabric/treatment category, not simply flat printed polka dots."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "小さな点が生地表面の織り・刺繍・フロックなどとして見える",
+          "水玉より点が小さく繊細なことが多い",
+          "点そのものだけでなく薄地の質感が識別に重要"
+        ],
+        "en": [
+          "Dots appear as a surface treatment such as woven, embroidered, or flocked detail",
+          "The dots are often smaller and subtler than ordinary polka dots",
+          "Sheer crisp textile character is part of the recognition cue"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ブラウス",
+          "ワンピース",
+          "子供服",
+          "カーテン",
+          "ベール"
+        ],
+        "en": [
+          "blouses",
+          "dresses",
+          "childrenswear",
+          "curtains",
+          "veils"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "white",
+          "white"
+        ],
+        "color_role": "non-essential",
+        "primary_reason": "Texture and dotted surface treatment matter more than color; white-on-white is a neutral recognition reference."
+      },
+      "qualification": {
+        "ja": "薄く張りのある生地の表面に小さな点を持つドッテッドスイス系の生地表現です。単なる平面印刷の水玉とは区別します。",
+        "en": "Swiss Dot/Dotted Swiss fundamentally names a dotted fabric/textile treatment. The dictionary must not collapse it into ordinary flat printed polka dots, and the reference image should convey textile surface/relief."
+      }
+    },
+    {
+      "pattern_id": "herringbone",
+      "review_state": "verified",
+      "verification_state": "qualified",
+      "names": {
+        "ja": "ヘリンボーン",
+        "en": "Herringbone"
+      },
+      "aliases": {
+        "ja": [
+          "杉綾",
+          "ヘリンボーン柄"
+        ],
+        "en": [
+          "herringbone pattern",
+          "herringbone weave"
+        ]
+      },
+      "term_scope": "herringbone weave/arrangement and its broken-V visual family",
+      "definition": {
+        "ja": "短い斜線の列が途中で向きを反転し、折れたV字や魚の骨のような連続列を作る構造です。織りとしても広い視覚配置としても使われます。",
+        "en": "An arrangement in which rows of short diagonal strokes reverse direction to form repeated broken V shapes, widely used as a weave and broader visual construction."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "V字の頂点で斜線が切り替わり、連続線にならない",
+          "シェブロンより魚骨状の細かな構造が見える",
+          "織物ではツイル方向の反転として現れる"
+        ],
+        "en": [
+          "Diagonal strokes reverse at the center instead of forming one continuous chevron band",
+          "Shows a finer fish-bone structure than simple Chevron",
+          "In cloth it commonly appears through reversing twill direction"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ジャケット",
+          "コート",
+          "パンツ",
+          "床材",
+          "タイル"
+        ],
+        "en": [
+          "jackets",
+          "coats",
+          "trousers",
+          "flooring",
+          "tile layouts"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "gray",
+          "charcoal"
+        ],
+        "color_role": "non-essential",
+        "primary_reason": "Direction reversal and broken-V structure define recognition; color is variable."
+      },
+      "qualification": {
+        "ja": "短い斜線の列が途中で向きを反転し、折れたV字や魚の骨のような連続列を作る構造です。織りとしても広い視覚配置としても使われます。",
+        "en": "Herringbone can denote a textile weave, a broader visual arrangement, embroidery, brickwork, and other constructions. In Pattern Dictionary it is represented as the visual family while clearly distinguishing the common woven form from a simple printed Chevron/Zigzag."
+      }
+    },
+    {
+      "pattern_id": "zigzag",
+      "review_state": "verified",
+      "verification_state": "verified",
+      "names": {
+        "ja": "ジグザグ",
+        "en": "Zigzag"
+      },
+      "aliases": {
+        "ja": [
+          "ジグザグ柄"
+        ],
+        "en": [
+          "zig-zag",
+          "zigzag pattern"
+        ]
+      },
+      "term_scope": "generic angular line/pattern family",
+      "definition": {
+        "ja": "直線が鋭い角度で交互に方向を変え、Z字が連なるように見える広い幾何学パターンです。",
+        "en": "A broad geometric pattern in which a line repeatedly changes direction at sharp angles, resembling a row of joined Z shapes."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "鋭角で左右へ折れ返す線が主役",
+          "V字単位を帯として反復するシェブロンより広い概念",
+          "ヘリンボーンのような短い斜線列の反転を必要としない"
+        ],
+        "en": [
+          "Defined by repeated sharp directional changes",
+          "Broader than Chevron, which emphasizes repeated V-shaped bands",
+          "Does not require Herringbone's rows of short reversing strokes"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "テキスタイル",
+          "ラグ",
+          "壁紙",
+          "包装紙",
+          "グラフィック"
+        ],
+        "en": [
+          "textiles",
+          "rugs",
+          "wallpaper",
+          "wrapping paper",
+          "graphics"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "black",
+          "white"
+        ],
+        "color_role": "non-essential",
+        "primary_reason": "Angular path geometry, not color, defines the generic family."
+      }
+    },
+    {
+      "pattern_id": "diamond",
+      "review_state": "verified",
+      "verification_state": "verified",
+      "names": {
+        "ja": "ダイヤモンド柄",
+        "en": "Diamond Pattern"
+      },
+      "aliases": {
+        "ja": [
+          "菱形柄",
+          "ダイヤ柄"
+        ],
+        "en": [
+          "diamond pattern",
+          "rhombus pattern",
+          "lozenge pattern"
+        ]
+      },
+      "term_scope": "generic repeated diamond/rhombus geometric family",
+      "definition": {
+        "ja": "菱形・ダイヤ形を規則的に反復する広い幾何学パターンです。色や内部の線構造は定義条件ではありません。",
+        "en": "A broad geometric family built from repeated diamond or rhombus shapes; color and internal line systems are not required parts of the definition."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "菱形そのものの反復が中心",
+          "アーガイルのような重なる斜線格子を必要としない",
+          "ハーレクインのような塗り分けた衣装的ダイヤ群より広い概念"
+        ],
+        "en": [
+          "The repeated rhombus itself is the core cue",
+          "Does not require Argyle's superimposed diagonal lattice",
+          "Is broader than Harlequin's contrasting costume-like diamond blocks"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "テキスタイル",
+          "ラグ",
+          "壁紙",
+          "タイル",
+          "ニット"
+        ],
+        "en": [
+          "textiles",
+          "rugs",
+          "wallpaper",
+          "tiles",
+          "knitwear"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "black",
+          "white"
+        ],
+        "color_role": "non-essential",
+        "primary_reason": "The repeated rhombus geometry defines the family."
+      }
+    },
+    {
+      "pattern_id": "harlequin",
+      "review_state": "verified",
+      "verification_state": "verified",
+      "names": {
+        "ja": "ハーレクイン",
+        "en": "Harlequin"
+      },
+      "aliases": {
+        "ja": [
+          "ハーレクイン柄"
+        ],
+        "en": [
+          "harlequin pattern",
+          "harlequin diamonds"
+        ]
+      },
+      "term_scope": "diamond-block pattern convention associated with Harlequin costume",
+      "definition": {
+        "ja": "ハーレクインの衣装と結びつく、対比色のダイヤ形ブロックを反復する柄です。",
+        "en": "A repeated field of contrasting diamond-shaped blocks associated with the diamond-patterned costume tradition of Harlequin."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "塗り分けられたダイヤ形ブロックが主役",
+          "一般的なダイヤ柄より強い配色対比を伴うことが多い",
+          "アーガイルのような細い斜線格子を重ねない"
+        ],
+        "en": [
+          "Uses filled contrasting diamond blocks",
+          "Usually relies more heavily on color contrast than a generic diamond repeat",
+          "Does not require Argyle's thin overlaid diagonal lattice"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "舞台衣装",
+          "テキスタイル",
+          "壁紙",
+          "パーティー装飾",
+          "小物"
+        ],
+        "en": [
+          "costume",
+          "textiles",
+          "wallpaper",
+          "party decor",
+          "accessories"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "red",
+          "black",
+          "white"
+        ],
+        "color_role": "variable",
+        "primary_reason": "Contrasting diamond blocks are characteristic; no single modern palette is universal."
+      }
+    },
+    {
+      "pattern_id": "checkerboard",
+      "review_state": "verified",
+      "verification_state": "verified",
+      "names": {
+        "ja": "チェッカーボード",
+        "en": "Checkerboard"
+      },
+      "aliases": {
+        "ja": [
+          "チェッカーボード柄",
+          "ブロックチェック"
+        ],
+        "en": [
+          "checkerboard pattern",
+          "block check"
+        ]
+      },
+      "term_scope": "generic alternating dark/light square pattern",
+      "definition": {
+        "ja": "濃色と淡色の正方形を交互に並べ、チェッカー盤のような規則格子を作る柄です。",
+        "en": "A regular grid of alternating dark and light squares, like the board used for checkers or draughts."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "隣り合う正方形が交互に明暗を変える",
+          "線だけの格子ではなく面が塗り分けられる",
+          "市松と見た目が一致する場合があり、名称は文脈で区別する"
+        ],
+        "en": [
+          "Adjacent squares alternate in value or color",
+          "The cells are filled blocks rather than merely crossing lines",
+          "It can be visually identical to Ichimatsu, so naming may depend on cultural/contextual framing"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "床材",
+          "タイル",
+          "衣類",
+          "バッグ",
+          "グラフィック"
+        ],
+        "en": [
+          "flooring",
+          "tiles",
+          "clothing",
+          "bags",
+          "graphics"
+        ]
+      },
+      "colors": {
+        "primary": [
+          "black",
+          "white"
+        ],
+        "color_role": "non-essential",
+        "primary_reason": "Alternation of contrasting square values is defining, while black/white is only the clearest reference."
       }
     }
   ]

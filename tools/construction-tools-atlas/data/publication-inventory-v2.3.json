@@ -1,6 +1,6 @@
 {
   "schema": "cta-publication-inventory-v2.3",
-  "version": "2026-09-16-q013-identity-closure-1",
+  "version": "2026-09-16-q014-identity-closure-1",
   "policy": {
     "generated_filler_batches": [
       "atlas-expand-5000",
@@ -14,8 +14,8 @@
   "summary": {
     "stored_corpus_entries": 5536,
     "quarantined_generated_entries": 4600,
-    "redirected_duplicate_entries": 55,
-    "published_runtime_entries": 881,
+    "redirected_duplicate_entries": 66,
+    "published_runtime_entries": 870,
     "skipped_missing_id": 0,
     "duplicate_ids_removed": 0,
     "duplicate_terms_removed": 0
@@ -26,33 +26,32 @@
   "published_by_type": {
     "access": 1,
     "accessory": 2,
-    "component": 208,
+    "component": 205,
     "consumable": 13,
     "defect": 3,
     "document": 2,
     "equipment": 43,
-    "fastener": 17,
+    "fastener": 18,
     "fixture": 5,
     "hardware": 14,
     "inspection": 8,
-    "material": 166,
-    "materials": 15,
-    "process": 15,
+    "material": 158,
+    "materials": 14,
+    "process": 19,
     "rigging": 7,
     "safety": 16,
     "sample": 1,
     "site": 2,
     "structure": 2,
-    "system": 1,
     "temporary": 3,
     "test": 1,
-    "tool": 336
+    "tool": 333
   },
   "hashes": {
-    "published_id_sha256": "177a014ef6de2e56988ed1031b273494fbfa18350e096ffbc2ee8a29343328c5",
+    "published_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
     "quarantined_generated_id_sha256": "ad863c921ea5d879ae7273660b9550d94b1a705541b865102b38f90668d5c9cf",
-    "canonical_redirect_sha256": "c5676db0cd0147e198b7a83a12a79fa912e71d93e137a74addc1adc956bdf7af",
-    "publication_classification_sha256": "4f600a1bdf7fcfdab3e7d2ca1f1e0ef53044d322da2d4898e9c7f6b85f086ce5"
+    "canonical_redirect_sha256": "8900fb8773cdf066ca878aaa38b1c6afc281f9214c3bf6e032e430c3a2de02ad",
+    "publication_classification_sha256": "6a8f953fd760192adc5785b4fe74644d2403781b8d26701b20c6246dc2787392"
   },
   "redirected_ids": [
     "air_compressor\tcompressor",
@@ -108,6 +107,17 @@
     "q013_soil_tamper\ttamper",
     "q013_tape_measure\ttape_measure",
     "q013_utility_knife\tutility_knife",
+    "q014_drip_edge\tdrip_edge",
+    "q014_exterior_siding\tsiding",
+    "q014_masking_for_sealant\tmasking_tape",
+    "q014_roof_batten\troof_batten",
+    "q014_roof_tile\troof_tile",
+    "q014_soffit_board\tsoffit",
+    "q014_threshold\tthreshold",
+    "q014_valley_flashing\tvalley_flashing",
+    "q014_weather_barrier\thousewrap",
+    "q014_window_flashing_tape\tflashing_tape",
+    "q014_window_sash\twindow_sash",
     "shop_vac\twet_dry_vacuum",
     "tile_spacers\ttile_spacer"
   ],

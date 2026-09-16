@@ -1,28 +1,396 @@
 [
-  {"lang":"ja","query":"犬の歯みたいな白黒チェック","expected":"houndstooth"},
-  {"lang":"ja","query":"白黒のギザギザしたチェック","expected":"houndstooth","top1":true},
-  {"lang":"ja","query":"セーターのダイヤ柄","expected":"argyle","top1":true},
-  {"lang":"ja","query":"青い波みたいな和柄","expected":"seigaiha","top1":true},
-  {"lang":"ja","query":"豪華な壁紙みたいな柄","expected":"damask","top1":true},
-  {"lang":"ja","query":"勾玉みたいな柄","expected":"paisley","top1":true},
-  {"lang":"ja","query":"ヒョウ柄","expected":"leopard-print","top1":true},
-  {"lang":"ja","query":"丸が重なる和柄","expected":"shippo"},
-  {"lang":"ja","query":"しずくみたいな柄","expected":"paisley"},
-  {"lang":"ja","query":"幾何学の絨毯柄","expected":"kilim","top1":true},
-  {"lang":"ja","query":"ギンガムチェク","expected":"gingham","top1":true,"confidence":"HIGH"},
-  {"lang":"ja","query":"damask 壁紙","expected":"damask","top1":true,"confidence":"HIGH"},
-  {"lang":"ja","query":"青 seigaiha 和柄","expected":"seigaiha","top1":true},
-  {"lang":"ja","query":"紫のバーコード縦縞","zero":true},
-  {"lang":"en","query":"black white jagged check","expected":"houndstooth","top1":true,"confidence":"HIGH"},
-  {"lang":"en","query":"diamond sweater pattern","expected":"argyle","top1":true},
-  {"lang":"en","query":"Japanese wave pattern","expected":"seigaiha","top1":true},
-  {"lang":"en","query":"teardrop pattern","expected":"paisley"},
-  {"lang":"en","query":"kilim rug pattern","expected":"kilim","top1":true},
-  {"lang":"en","query":"houndtooth check","expected":"houndstooth","top1":true,"confidence":"HIGH"},
-  {"lang":"en","query":"arglye sweater pattern","expected":"argyle","top1":true,"confidence":"HIGH"},
-  {"lang":"en","query":"pasiley teardrop","expected":"paisley","top1":true,"confidence":"HIGH"},
-  {"lang":"en","query":"damask 壁紙","expected":"damask","top1":true},
-  {"lang":"en","query":"curved","confidence":"MEDIUM"},
-  {"lang":"en","query":"black","confidence":"LOW"},
-  {"lang":"en","query":"purple barcode stripes","zero":true}
+  {
+    "lang": "ja",
+    "query": "犬の歯みたいな白黒チェック",
+    "expected": "houndstooth"
+  },
+  {
+    "lang": "ja",
+    "query": "白黒のギザギザしたチェック",
+    "expected": "houndstooth",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "セーターのダイヤ柄",
+    "expected": "argyle",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "青い波みたいな和柄",
+    "expected": "seigaiha",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "豪華な壁紙みたいな柄",
+    "expected": "damask",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "勾玉みたいな柄",
+    "expected": "paisley",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "ヒョウ柄",
+    "expected": "leopard-print",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "丸が重なる和柄",
+    "expected": "shippo"
+  },
+  {
+    "lang": "ja",
+    "query": "しずくみたいな柄",
+    "expected": "paisley"
+  },
+  {
+    "lang": "ja",
+    "query": "幾何学の絨毯柄",
+    "expected": "kilim",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "ギンガムチェク",
+    "expected": "gingham",
+    "top1": true,
+    "confidence": "HIGH"
+  },
+  {
+    "lang": "ja",
+    "query": "damask 壁紙",
+    "expected": "damask",
+    "top1": true,
+    "confidence": "HIGH"
+  },
+  {
+    "lang": "ja",
+    "query": "青 seigaiha 和柄",
+    "expected": "seigaiha",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "紫のバーコード縦縞",
+    "zero": true
+  },
+  {
+    "lang": "en",
+    "query": "black white jagged check",
+    "expected": "houndstooth",
+    "top1": true,
+    "confidence": "HIGH"
+  },
+  {
+    "lang": "en",
+    "query": "diamond sweater pattern",
+    "expected": "argyle",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "Japanese wave pattern",
+    "expected": "seigaiha",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "teardrop pattern",
+    "expected": "paisley"
+  },
+  {
+    "lang": "en",
+    "query": "kilim rug pattern",
+    "expected": "kilim",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "houndtooth check",
+    "expected": "houndstooth",
+    "top1": true,
+    "confidence": "HIGH"
+  },
+  {
+    "lang": "en",
+    "query": "arglye sweater pattern",
+    "expected": "argyle",
+    "top1": true,
+    "confidence": "HIGH"
+  },
+  {
+    "lang": "en",
+    "query": "pasiley teardrop",
+    "expected": "paisley",
+    "top1": true,
+    "confidence": "HIGH"
+  },
+  {
+    "lang": "en",
+    "query": "damask 壁紙",
+    "expected": "damask",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "curved",
+    "confidence": "MEDIUM"
+  },
+  {
+    "lang": "en",
+    "query": "black",
+    "confidence": "LOW"
+  },
+  {
+    "lang": "en",
+    "query": "purple barcode stripes",
+    "zero": true
+  },
+  {
+    "lang": "ja",
+    "query": "赤黒の大きいチェック",
+    "expected": "buffalo-check",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "細かい白黒チェック",
+    "expected": "shepherd-check",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "窓枠みたいなチェック",
+    "expected": "windowpane-check",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "カラフルな夏シャツのチェック",
+    "expected": "madras-check",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "白地に細い赤青チェック",
+    "expected": "tattersall",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "茶色の細かいツイードチェック",
+    "expected": "gun-club-check",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "グレンチェックに大きい格子",
+    "expected": "prince-of-wales-check",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "スーツの極細縦線",
+    "expected": "pinstripe",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "チョークみたいな太い縦線",
+    "expected": "chalk-stripe",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "青白の等幅シャツストライプ",
+    "expected": "bengal-stripe",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "市松じゃない縦横線の和柄",
+    "expected": "koushi",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "テントみたいな太い縞",
+    "expected": "awning-stripe",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "ネクタイの斜め縞",
+    "expected": "regimental-stripe",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "フランス海軍みたいな横縞",
+    "expected": "breton-stripe",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "白い薄布のぽこぽこ小ドット",
+    "expected": "swiss-dot",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "魚の骨みたいな織り",
+    "expected": "herringbone",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "Z字が続く柄",
+    "expected": "zigzag",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "菱形が並ぶだけの柄",
+    "expected": "diamond",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "ピエロみたいな赤黒ダイヤ",
+    "expected": "harlequin",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "チェス盤みたいな白黒四角",
+    "expected": "checkerboard",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "large red black flannel check",
+    "expected": "buffalo-check",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "small even black white check",
+    "expected": "shepherd-check",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "thin line window frame check",
+    "expected": "windowpane-check",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "bright colorful summer plaid",
+    "expected": "madras-check",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "thin multicolor check on light ground",
+    "expected": "tattersall",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "brown multitone small tweed check",
+    "expected": "gun-club-check",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "glen check with large overcheck",
+    "expected": "prince-of-wales-check",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "very thin suit stripe",
+    "expected": "pinstripe",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "wide soft chalky suit stripe",
+    "expected": "chalk-stripe",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "balanced blue white shirt stripe",
+    "expected": "bengal-stripe",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "Japanese lattice not alternating squares",
+    "expected": "koushi",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "very broad outdoor canopy stripe",
+    "expected": "awning-stripe",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "British diagonal tie stripe",
+    "expected": "regimental-stripe",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "French sailor navy white horizontal stripe",
+    "expected": "breton-stripe",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "tiny raised dots on sheer fabric",
+    "expected": "swiss-dot",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "fish bone broken v weave",
+    "expected": "herringbone",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "repeating z angular line",
+    "expected": "zigzag",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "plain repeating rhombus pattern",
+    "expected": "diamond",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "Harlequin costume diamond blocks",
+    "expected": "harlequin",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "checker board alternating black white squares",
+    "expected": "checkerboard",
+    "top1": true
+  }
 ]
