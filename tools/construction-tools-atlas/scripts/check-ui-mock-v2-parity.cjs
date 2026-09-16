@@ -7,26 +7,41 @@ const fail = (message) => { console.error(`FAIL: ${message}`); process.exitCode 
 const ok = (condition, message) => { if (!condition) fail(message); };
 
 const css = read('ui-mock-v2-parity.css');
+const hardening = read('ui-mock-v2-hardening.css');
 const runtime = read('ui-mock-v2-parity.js');
 const bootstrap = read('detail-dictionary-fix.js');
 const offers = JSON.parse(read('data/affiliate-offers-v2.3.json'));
 
-ok(css.includes('grid-template-columns:minmax(380px,43%) minmax(0,57%)'), 'desktop master-detail must remain ~43/57');
+ok(css.includes('grid-template-columns:minmax(380px,43%) minmax(0,57%)'), 'desktop master-detail base must remain ~43/57');
+ok(hardening.includes('grid-template-columns:minmax(0,43fr) minmax(0,57fr)'), 'desktop hardening must preserve a larger right detail pane');
+ok(hardening.includes('#detailSheet.detailPanel--desktop{width:100%!important;min-width:0!important;max-width:none!important'), 'desktop detail must not retain a legacy max-width cap');
 ok(css.includes('@media(max-width:899px)'), 'mobile breakpoint must be below 900px');
 ok(css.includes('.ctaResultThumb'), 'result-image styling must exist');
 ok(css.includes('#detailTabs{display:none!important}'), 'legacy tabs must not be the primary detail IA');
+ok(hardening.includes('#detailTabs,#tabMeta,#tabMeta[hidden]'), 'legacy Meta/internal-record panel must stay hidden');
+ok(hardening.includes('#detailSheet .supportInline,#supportInlineBtn{display:none!important}'), 'donation CTA must not appear inside dictionary detail');
+ok(hardening.includes('.ctaMockHome::before') && hardening.includes('content:none!important'), 'header must suppress faux logo/decorative marks');
 ok(css.includes('.ctaAffiliateBox'), 'affiliate surface must be styled');
+ok(hardening.includes('.ctaAffiliateMount a'), 'affiliate CTA must have visible hardening styles');
+
 ok(runtime.includes('REGISTRY_URL'), 'parity runtime must use canonical image registry');
 ok(runtime.includes('OFFER_URL'), 'parity runtime must use maintained affiliate mappings');
 ok(runtime.includes('/assets/amazon-affiliate.js'), 'shared Amazon helper must be reused');
-ok(runtime.includes('offerById.get(selectedEntryId())'), 'affiliate lookup must be canonical-ID based');
+ok(runtime.includes('offerById.get(id)'), 'affiliate lookup must be selected canonical-ID based');
+ok(runtime.includes('resolveCanonicalId'), 'affiliate/detail IDs must normalize through canonical redirects');
+ok(runtime.includes('dataset.taxonomyKey'), 'taxonomy UI must preserve raw keys internally while rendering display labels');
+ok(runtime.includes('humanize('), 'taxonomy UI must humanize raw enum values');
+ok(runtime.includes('removeLegacyDetailSupport'), 'parity runtime must remove legacy detail support CTA');
+ok(!runtime.includes('match(/id:'), 'selected entry resolution must not depend on visible raw Meta text');
 ok(bootstrap.includes('ui-mock-v2-parity.css'), 'detail bootstrap must load parity CSS');
 ok(bootstrap.includes('ui-mock-v2-parity.js'), 'detail bootstrap must load parity runtime');
+ok(bootstrap.includes('20260916-mock-v2-fix-1'), 'UI parity cache bust must be current');
 
 ok(offers.schema === 'cta-affiliate-offers-v2.3', 'affiliate offer schema must be v2.3');
 ok(offers.policy?.query_source === 'maintained_canonical_mapping_only', 'affiliate query source must be maintained canonical mapping only');
 ok(offers.policy?.free_text_forwarding === false, 'free-text forwarding must stay disabled');
-ok(Array.isArray(offers.offers) && offers.offers.length > 0, 'at least one maintained canonical offer is required');
+ok(Array.isArray(offers.offers) && offers.offers.length >= 15, 'maintained affiliate coverage must include common purchase-intent entries');
+ok(offers.offers.some((offer) => offer.entry_id === 'impact_driver'), 'Impact Driver must have an active maintained Amazon mapping');
 
 const ids = new Set();
 for (const offer of offers.offers) {
