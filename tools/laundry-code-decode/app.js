@@ -1,3 +1,5 @@
+// Photo candidate search: simple template matching
+// Safety contract: Prioritize the garment label, maker instructions, fabric notes, and professional cleaner guidance.
 const grid = document.getElementById("symbolGrid");
 const result = document.getElementById("result");
 const summaryEl = document.getElementById("resultSummary");
@@ -33,11 +35,7 @@ let lastSymbol = null;
 let ocrObjectUrl = null;
 
 function norm(s) {
-  return (s || "")
-    .toString()
-    .toLowerCase()
-    .replace(/\s+/g, " ")
-    .trim();
+  return (s || "").toString().toLowerCase().replace(/\s+/g, " ").trim();
 }
 
 function clearNode(node) {
@@ -58,23 +56,23 @@ function toast(message) {
 }
 
 function setOcrStatus(message) {
-  if (!ocrStatus) return;
-  ocrStatus.textContent = message || "";
+  if (ocrStatus) ocrStatus.textContent = message || "";
 }
 
 function symbolSearchText(sym) {
   const ja = sym.ja ? `${sym.ja.summary} ${sym.ja.detail}` : "";
   const en = sym.en ? `${sym.en.summary} ${sym.en.detail}` : "";
   const id = sym.id || "";
+  const jis = sym.jis || "";
   const cat = sym.cat || "";
   const code = sanitizeCode(sym.m?.code);
   const temp = sanitizeTemp(sym.m?.temp);
-  return norm([id, cat, code, temp === null ? "" : temp, ja, en].join(" "));
+  return norm([id, jis, cat, code, temp === null ? "" : temp, ja, en].join(" "));
 }
 
 function sanitizeCode(value) {
   const code = String(value || "").trim().toUpperCase();
-  return /^[APFW]$/.test(code) ? code : "";
+  return /^[PFW]$/.test(code) ? code : "";
 }
 
 function sanitizeTemp(value) {
@@ -99,11 +97,7 @@ function copyTextFallback(text) {
   document.body.appendChild(ta);
   ta.select();
   let ok = false;
-  try {
-    ok = document.execCommand("copy");
-  } catch (_) {
-    ok = false;
-  }
+  try { ok = document.execCommand("copy"); } catch (_) { ok = false; }
   ta.remove();
   return ok;
 }
@@ -120,14 +114,12 @@ async function copyText(text) {
 
 function applyLang(lang) {
   currentLang = lang === "en" ? "en" : "ja";
-  try {
-    localStorage.setItem(LANG_KEY, currentLang);
-  } catch (_) {}
+  try { localStorage.setItem(LANG_KEY, currentLang); } catch (_) {}
+  document.documentElement.lang = currentLang;
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     el.style.display = el.dataset.i18n === currentLang ? "" : "none";
   });
-
   document.querySelectorAll(".nw-lang-switch button").forEach((b) => {
     b.classList.toggle("active", b.dataset.lang === currentLang);
   });
@@ -151,22 +143,19 @@ function getSymbolText(sym) {
 
 function cautionText() {
   return currentLang === "ja"
-    ? "注意：この結果は一般的な洗濯表示の参考情報です。衣類タグ、メーカー表示、素材表示、クリーニング店の指示を優先してください。国・地域・年代により意味が異なる場合があります。"
-    : "Note: This is general reference information for care symbols. Prioritize the garment label, maker instructions, fabric notes, and professional cleaner guidance. Meaning can vary by country, region, and era.";
+    ? "注意：JIS L 0001:2024（2024年8月20日以降）の表示を基準にした参考情報です。実物の衣類タグ、メーカー表示、素材表示、クリーニング店の指示を優先してください。古い表示や海外表示は異なる場合があります。"
+    : "Note: This reference follows JIS L 0001:2024 used in Japan from August 20, 2024. Prioritize the actual garment label, maker instructions, fabric notes, and professional cleaner guidance. Older and overseas labels may differ.";
 }
 
 function showResult(sym, doScroll = true) {
+  if (!result || !summaryEl || !detailEl) return;
   lastSymbol = sym;
   const t = getSymbolText(sym);
   summaryEl.textContent = t.summary;
-  detailEl.textContent = t.detail;
+  detailEl.textContent = sym.jis ? `${t.detail} ${currentLang === "ja" ? "記号番号" : "Symbol No."}: ${sym.jis}` : t.detail;
   result.classList.remove("hidden");
   if (doScroll) result.scrollIntoView({ behavior: "smooth", block: "start" });
 }
-
-/* ===============================
- * SVG generator (tag-like symbols)
- * =============================== */
 
 function svgWrap(inner) {
   return `
@@ -177,7 +166,13 @@ function svgWrap(inner) {
 }
 
 function drawCross() {
-  return `<path d="M14 14 L50 50" /><path d="M50 14 L14 50" />`;
+  return `<path d="M13 14 L51 50" /><path d="M51 14 L13 50" />`;
+}
+
+function drawUnderlines(count, y1 = 55, y2 = 60) {
+  const first = count >= 1 ? `<path d="M20 ${y1} H44" />` : "";
+  const second = count >= 2 ? `<path d="M20 ${y2} H44" />` : "";
+  return first + second;
 }
 
 function renderSymbolSVG(sym) {
@@ -189,83 +184,70 @@ function renderSymbolSVG(sym) {
     code: sanitizeCode(raw.code),
     hand: raw.hand === true,
     no: raw.no === true,
-    allow: raw.allow === true,
     nonchlorine: raw.nonchlorine === true,
     tumble: raw.tumble === true,
-    line: raw.line === true,
-    drip: raw.drip === true,
-    flat: raw.flat === true,
+    verticalLines: sanitizeCount(raw.verticalLines, 0, 2),
+    horizontalLines: sanitizeCount(raw.horizontalLines, 0, 2),
     shade: raw.shade === true,
     steamNo: raw.steamNo === true
   };
-  const cat = sym.cat;
 
-  if (cat === "wash") {
-    const tub = `
-      <path d="M18 26 Q20 22 24 22 H40 Q44 22 46 26" />
-      <path d="M16 26 H48" />
-      <path d="M18 26 L22 52 H42 L46 26" />
-    `;
-    const hand = m.hand ? `<path d="M26 38 q2-8 8-8 q6 0 6 8" />` : "";
-    const temp = m.temp !== null
-      ? `<text x="32" y="45" text-anchor="middle" font-size="16" fill="currentColor" stroke="none">${m.temp}</text>`
+  if (sym.cat === "wash") {
+    const tub = `<path d="M15 23 Q19 20 23 23 Q27 26 31 23 Q35 20 39 23 Q43 26 49 23" /><path d="M17 24 L22 49 H42 L47 24" />`;
+    const hand = m.hand
+      ? `<path d="M31 41 V28 M35 41 V27 M39 41 V30 M27 40 V31 M27 39 Q24 36 22 38 Q25 46 31 47 Q39 47 42 39 L43 34" />`
       : "";
-    const u1 = m.underline >= 1 ? `<path d="M20 56 H44" />` : "";
-    const u2 = m.underline >= 2 ? `<path d="M20 60 H44" />` : "";
-    const cross = m.no ? drawCross() : "";
-    return svgWrap(`${tub}${hand}${temp}${u1}${u2}${cross}`);
+    const temp = !m.hand && m.temp !== null
+      ? `<text x="32" y="42" text-anchor="middle" font-size="15" fill="currentColor" stroke="none">${m.temp}</text>`
+      : "";
+    return svgWrap(`${tub}${hand}${temp}${drawUnderlines(m.underline)}${m.no ? drawCross() : ""}`);
   }
 
-  if (cat === "bleach") {
-    const tri = `<path d="M32 16 L50 50 H14 Z" />`;
-    const nonCl = m.nonchlorine ? `<path d="M20 40 L44 40" />` : "";
-    const cross = m.no ? drawCross() : "";
-    return svgWrap(`${tri}${nonCl}${cross}`);
+  if (sym.cat === "bleach") {
+    const tri = `<path d="M32 14 L51 49 H13 Z" />`;
+    const nonchlorine = m.nonchlorine
+      ? `<path d="M22 43 L34 22" /><path d="M31 47 L43 26" />`
+      : "";
+    return svgWrap(`${tri}${nonchlorine}${m.no ? drawCross() : ""}`);
   }
 
-  if (cat === "dry") {
-    const sq = `<rect x="14" y="14" width="36" height="36" rx="2" />`;
-
+  if (sym.cat === "dry") {
+    const square = `<rect x="14" y="14" width="36" height="36" />`;
     if (m.tumble) {
-      const circ = `<circle cx="32" cy="32" r="12" />`;
-      const dots = (n) => {
-        if (!n) return "";
-        const xs = n === 1 ? [32] : n === 2 ? [28, 36] : [26, 32, 38];
-        return xs.map(x => `<circle cx="${x}" cy="22" r="2.4" fill="currentColor" stroke="none" />`).join("");
-      };
-      const cross = m.no ? drawCross() : "";
-      return svgWrap(`${sq}${circ}${dots(m.dots)}${cross}`);
+      const circle = `<circle cx="32" cy="32" r="12" />`;
+      const dotXs = m.dots === 1 ? [32] : m.dots === 2 ? [28, 36] : m.dots === 3 ? [26, 32, 38] : [];
+      const dots = dotXs.map((x) => `<circle cx="${x}" cy="32" r="2.3" fill="currentColor" stroke="none" />`).join("");
+      return svgWrap(`${square}${circle}${dots}${m.no ? drawCross() : ""}`);
     }
 
-    const line = m.line ? `<path d="M32 14 V50" />` : "";
-    const drip = m.drip ? `<path d="M26 30 V50" /><path d="M32 30 V50" /><path d="M38 30 V50" />` : "";
-    const flat = m.flat ? `<path d="M18 40 H46" />` : "";
-    const shade = m.shade ? `<path d="M14 14 L50 14 L14 50 Z" fill="currentColor" stroke="none" opacity="0.14" />` : "";
-    return svgWrap(`${sq}${line}${drip}${flat}${shade}`);
+    const vertical = m.verticalLines === 1
+      ? `<path d="M32 20 V44" />`
+      : m.verticalLines === 2
+        ? `<path d="M27 20 V44" /><path d="M37 20 V44" />`
+        : "";
+    const horizontal = m.horizontalLines === 1
+      ? `<path d="M20 32 H44" />`
+      : m.horizontalLines === 2
+        ? `<path d="M20 27 H44" /><path d="M20 37 H44" />`
+        : "";
+    const shade = m.shade ? `<path d="M15 30 L30 15" />` : "";
+    return svgWrap(`${square}${vertical}${horizontal}${shade}`);
   }
 
-  if (cat === "iron") {
-    const iron = `
-      <path d="M18 40 H50" />
-      <path d="M22 40 Q24 24 38 24 H44 Q48 24 48 28 V40" />
-      <path d="M20 40 L18 48 H50" />
-    `;
-    const dots = (n) => {
-      if (!n) return "";
-      const xs = n === 1 ? [30] : n === 2 ? [26, 34] : [24, 32, 40];
-      return xs.map(x => `<circle cx="${x}" cy="34" r="2.4" fill="currentColor" stroke="none" />`).join("");
-    };
-    const steamNo = m.steamNo ? `<path d="M52 20 q-6 6 0 12" /><path d="M50 18 L58 26" />` : "";
-    const cross = m.no ? drawCross() : "";
-    return svgWrap(`${iron}${dots(m.dots)}${steamNo}${cross}`);
+  if (sym.cat === "iron") {
+    const iron = `<path d="M14 41 H50 L47 49 H16 Z" /><path d="M18 41 Q21 24 34 24 H43 Q47 24 47 30 V41" /><path d="M23 19 H41" />`;
+    const dotXs = m.dots === 1 ? [32] : m.dots === 2 ? [28, 36] : m.dots === 3 ? [25, 32, 39] : [];
+    const dots = dotXs.map((x) => `<circle cx="${x}" cy="34" r="2.2" fill="currentColor" stroke="none" />`).join("");
+    const steamNo = m.steamNo
+      ? `<path d="M24 52 q-4 4 0 8" /><path d="M32 52 q-4 4 0 8" /><path d="M40 52 q-4 4 0 8" /><path d="M20 51 L44 62" /><path d="M44 51 L20 62" />`
+      : "";
+    return svgWrap(`${iron}${dots}${steamNo}${m.no ? drawCross() : ""}`);
   }
 
-  if (cat === "dryclean") {
-    const circ = `<circle cx="32" cy="32" r="16" />`;
-    const letter = m.code ? `<text x="32" y="38" text-anchor="middle" font-size="18" fill="currentColor" stroke="none">${m.code}</text>` : "";
-    const u1 = m.underline >= 1 ? `<path d="M20 52 H44" />` : "";
-    const cross = m.no ? drawCross() : "";
-    return svgWrap(`${circ}${letter}${u1}${cross}`);
+  if (sym.cat === "dryclean") {
+    const circle = `<circle cx="32" cy="30" r="16" />`;
+    const letter = m.code ? `<text x="32" y="37" text-anchor="middle" font-size="22" fill="currentColor" stroke="none">${m.code}</text>` : "";
+    return svgWrap(`${circle}${letter}${drawUnderlines(m.underline, 51, 58)}${m.no ? drawCross() : ""}`);
   }
 
   return svgWrap(`<rect x="14" y="14" width="36" height="36" rx="6" />`);
@@ -283,21 +265,15 @@ function createSymbolSvgElement(sym) {
   return document.importNode(doc.documentElement, true);
 }
 
-/* ===============================
- * Render grid (category + search)
- * =============================== */
-
 function renderSymbols() {
   if (!Array.isArray(window.SYMBOLS) || !grid) return;
-
   clearNode(grid);
 
   const q = norm(qEl?.value || "");
   const searchAll = !!searchAllEl?.checked;
-
   let list = window.SYMBOLS;
-  if (!searchAll) list = list.filter(s => s.cat === currentCat);
-  if (q) list = list.filter(sym => symbolSearchText(sym).includes(q));
+  if (!searchAll) list = list.filter((s) => s.cat === currentCat);
+  if (q) list = list.filter((sym) => symbolSearchText(sym).includes(q));
 
   if (list.length === 0) {
     const div = document.createElement("div");
@@ -313,6 +289,7 @@ function renderSymbols() {
     const btn = document.createElement("button");
     btn.className = "symbol-btn";
     btn.type = "button";
+    btn.setAttribute("aria-label", `${getSymbolText(sym).summary}${sym.jis ? ` (${sym.jis})` : ""}`);
     btn.appendChild(createSymbolSvgElement(sym));
 
     const caption = document.createElement("div");
@@ -324,10 +301,6 @@ function renderSymbols() {
     grid.appendChild(btn);
   });
 }
-
-/* ===============================
- * Photo candidate search: simple template matching
- * =============================== */
 
 function svgToCanvas(sym, size = 96) {
   const svgStr = renderSymbolSVG(sym);
@@ -371,7 +344,6 @@ function preprocessToBWCanvas(img, size = 96) {
 
   const data = ctx.getImageData(0, 0, size, size);
   const d = data.data;
-
   for (let i = 0; i < d.length; i += 4) {
     const g = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
     const v = g < 180 ? 0 : 255;
@@ -405,28 +377,22 @@ async function runPhotoCandidates() {
 
   const list = window.SYMBOLS || [];
   if (list.length === 0) return;
-
   const useAllCategories = !!ocrAllEl?.checked || !!searchAllEl?.checked;
-  const candidates = useAllCategories ? list : list.filter(s => s.cat === currentCat);
+  const candidates = useAllCategories ? list : list.filter((s) => s.cat === currentCat);
 
   if (candidates.length === 0) {
-    const message = currentLang === "ja"
-      ? "候補がありません。カテゴリを変えるか「全カテゴリで探す」を試してください。"
-      : "No candidates. Change category or enable all categories.";
-    setOcrStatus(message);
+    setOcrStatus(currentLang === "ja" ? "候補がありません。カテゴリを変えてください。" : "No candidates. Change category.");
     return;
   }
 
   setOcrStatus(currentLang === "ja" ? "候補を比較中です…" : "Comparing candidates…");
-
   const inputBW = preprocessToBWCanvas(ocrPreviewImg, 96);
   const scored = [];
 
   try {
     for (const sym of candidates) {
       const tpl = await svgToCanvas(sym, 96);
-      const score = mseCanvas(inputBW, tpl);
-      scored.push({ sym, score });
+      scored.push({ sym, score: mseCanvas(inputBW, tpl) });
     }
   } catch (_) {
     const message = currentLang === "ja" ? "画像比較に失敗しました。別の画像で試してください。" : "Candidate comparison failed. Try another image.";
@@ -437,17 +403,14 @@ async function runPhotoCandidates() {
 
   scored.sort((a, b) => a.score - b.score);
   const top = scored.slice(0, 3);
-
   if (top.length === 0) {
-    const message = currentLang === "ja" ? "候補が見つかりませんでした。" : "No candidates found.";
-    setOcrStatus(message);
+    setOcrStatus(currentLang === "ja" ? "候補が見つかりませんでした。" : "No candidates found.");
     return;
   }
 
-  const modeText = useAllCategories
-    ? (currentLang === "ja" ? "全カテゴリからの候補です。scoreは参考値です。" : "Candidates are from all categories. Scores are only reference values.")
-    : (currentLang === "ja" ? "現在カテゴリ内の候補です。scoreは参考値です。" : "Candidates are from the current category. Scores are only reference values.");
-  setOcrStatus(modeText);
+  setOcrStatus(useAllCategories
+    ? (currentLang === "ja" ? "全カテゴリからの候補です。scoreは参考値です。" : "Candidates are from all categories. Scores are reference values only.")
+    : (currentLang === "ja" ? "現在カテゴリ内の候補です。scoreは参考値です。" : "Candidates are from the current category. Scores are reference values only."));
 
   top.forEach(({ sym, score }) => {
     const div = document.createElement("button");
@@ -491,7 +454,6 @@ function handleImageFile(file) {
   clearNode(candGrid);
   setOcrStatus("");
   revokeOcrObjectUrl();
-
   if (!file) return;
 
   if (!ALLOWED_IMAGE_TYPES.has(file.type)) {
@@ -512,7 +474,6 @@ function handleImageFile(file) {
 
   const url = URL.createObjectURL(file);
   ocrObjectUrl = url;
-
   ocrPreviewImg.onload = () => {
     ocrPreviewImg.style.display = "block";
     revokeOcrObjectUrl();
@@ -527,38 +488,25 @@ function handleImageFile(file) {
   ocrPreviewImg.src = url;
 }
 
-/* ===============================
- * Events
- * =============================== */
-
-document.querySelectorAll(".nw-lang-switch button").forEach(btn => {
+document.querySelectorAll(".nw-lang-switch button").forEach((btn) => {
   btn.addEventListener("click", () => applyLang(btn.dataset.lang));
 });
-document.querySelectorAll(".cat-tab").forEach(btn => {
+document.querySelectorAll(".cat-tab").forEach((btn) => {
   btn.addEventListener("click", () => setCategory(btn.dataset.cat));
 });
 
-qEl?.addEventListener("input", () => renderSymbols());
-searchAllEl?.addEventListener("change", () => renderSymbols());
-
-ocrFile?.addEventListener("change", (e) => {
-  handleImageFile(e.target.files?.[0]);
-});
-
-ocrRun?.addEventListener("click", async () => {
-  await runPhotoCandidates();
-});
-
-ocrClear?.addEventListener("click", () => {
-  clearPhotoCandidateState();
-});
+qEl?.addEventListener("input", renderSymbols);
+searchAllEl?.addEventListener("change", renderSymbols);
+ocrFile?.addEventListener("change", (e) => handleImageFile(e.target.files?.[0]));
+ocrRun?.addEventListener("click", runPhotoCandidates);
+ocrClear?.addEventListener("click", clearPhotoCandidateState);
 
 copyBtn?.addEventListener("click", async () => {
   if (!lastSymbol) return;
   const t = getSymbolText(lastSymbol);
   const text = [
     "Laundry Code Decode",
-    `ID: ${lastSymbol.id || ""}`,
+    `JIS L 0001:2024 / ${currentLang === "ja" ? "記号番号" : "Symbol No."}: ${lastSymbol.jis || "-"}`,
     currentLang === "ja" ? `意味: ${t.summary}` : `Meaning: ${t.summary}`,
     currentLang === "ja" ? `詳細: ${t.detail}` : `Detail: ${t.detail}`,
     cautionText()
