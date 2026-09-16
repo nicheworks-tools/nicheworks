@@ -1,0 +1,20 @@
+name: TrashNavi Wave40 readiness temporary
+on:
+  push:
+    branches:
+      - feat/trashnavi-wave40-readiness-20260917
+permissions:
+  contents: write
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-wave40-readiness-20260917
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Register and validate Wave40 readiness
+        run: node tools/trashnavi/scripts/wave40-readiness-temp.mjs
