@@ -3247,5 +3247,1641 @@
       "ja": "濃色と淡色の正方形を交互に並べ、チェッカー盤のような規則格子を作る柄です。",
       "en": "A regular grid of alternating dark and light squares, like the board used for checkers or draughts."
     }
+  },
+  {
+    "id": "greek-key",
+    "names": {
+      "ja": "グリークキー",
+      "en": "Greek Key"
+    },
+    "aliases": {
+      "ja": [
+        "メアンダー"
+      ],
+      "en": [
+        "Greek fret",
+        "meander"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "直角が連続する柄",
+        "メアンダー模様",
+        "四角く曲がるボーダー"
+      ],
+      "en": [
+        "right angle meander",
+        "continuous Greek fret",
+        "square turning border"
+      ]
+    },
+    "families": [
+      "geometric"
+    ],
+    "motifs": [
+      "直角メアンダー",
+      "連続線"
+    ],
+    "visual": {
+      "geometry": [
+        "angular",
+        "grid"
+      ],
+      "line": [
+        "straight"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "high"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "black",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The right-angled meander geometry carries recognition; color is not intrinsic to the motif."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "zigzag"
+      ],
+      "often_confused_with": [
+        "zigzag"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "直線が直角に折れながら連続し、帯状に反復するメアンダー文様です。色ではなく、途切れず続く直角の折れ線構造が識別の中心です。",
+      "en": "A continuous rectilinear meander that turns at right angles and repeats as a band. The defining cue is the unbroken angular path rather than any fixed color."
+    }
+  },
+  {
+    "id": "quatrefoil",
+    "names": {
+      "ja": "クアトレフォイル",
+      "en": "Quatrefoil"
+    },
+    "aliases": {
+      "ja": [],
+      "en": []
+    },
+    "search_terms": {
+      "ja": [
+        "四つ葉みたいな幾何学柄",
+        "丸い四葉形",
+        "四つのローブ柄"
+      ],
+      "en": [
+        "four lobed pattern",
+        "rounded quatrefoil",
+        "four leaf geometric motif"
+      ]
+    },
+    "families": [
+      "geometric",
+      "ornamental"
+    ],
+    "motifs": [
+      "四葉",
+      "四ローブ"
+    ],
+    "visual": {
+      "geometry": [
+        "geometric"
+      ],
+      "line": [
+        "curved"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "green",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Recognition depends on the four-lobed outline rather than a fixed palette."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "trellis",
+        "medallion"
+      ],
+      "often_confused_with": [
+        "trellis"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "四つの丸い葉・ローブが中心を囲む、左右上下対称の四葉形モチーフです。四つのふくらみと、その間のくびれが識別の手掛かりです。",
+      "en": "A symmetrical four-lobed motif formed by four rounded leaves or lobes around a center. The four bulges and intervening cusps are the key cues."
+    }
+  },
+  {
+    "id": "ogee",
+    "names": {
+      "ja": "オジー",
+      "en": "Ogee"
+    },
+    "aliases": {
+      "ja": [],
+      "en": [
+        "ogee curve"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "S字が向かい合う柄",
+        "尖った曲線の連続柄",
+        "オジー曲線"
+      ],
+      "en": [
+        "interlocking s curve pattern",
+        "pointed curved repeat",
+        "ogee curve repeat"
+      ]
+    },
+    "families": [
+      "geometric",
+      "ornamental"
+    ],
+    "motifs": [
+      "S字曲線",
+      "尖った区画"
+    ],
+    "visual": {
+      "geometry": [
+        "geometric"
+      ],
+      "line": [
+        "curved"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "navy",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The double-curve silhouette is the recognition cue; color is not definitional."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "trellis",
+        "quatrefoil"
+      ],
+      "often_confused_with": [
+        "trellis"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "凹凸を反転させたS字状の二重曲線を向かい合わせたり連結したりして、尖った区画を反復する柄です。オジーは本来ひとつの固定柄ではなく、曲線形式を指します。",
+      "en": "A repeating family built from opposed or interlocking S-shaped double curves that form pointed or bulbous compartments. Ogee is a curve form, not one universal repeat."
+    }
+  },
+  {
+    "id": "lattice",
+    "names": {
+      "ja": "ラティス",
+      "en": "Lattice"
+    },
+    "aliases": {
+      "ja": [
+        "格子模様"
+      ],
+      "en": [
+        "latticework"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "斜め格子柄",
+        "交差する線の格子",
+        "網目みたいな幾何学柄"
+      ],
+      "en": [
+        "diagonal lattice pattern",
+        "crossed line grid",
+        "open crisscross pattern"
+      ]
+    },
+    "families": [
+      "geometric"
+    ],
+    "motifs": [
+      "交差格子",
+      "開いた区画"
+    ],
+    "visual": {
+      "geometry": [
+        "grid"
+      ],
+      "line": [
+        "straight"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "black",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The crossed open-grid structure defines the visual family; color is variable."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "koushi",
+        "trellis"
+      ],
+      "often_confused_with": [
+        "koushi",
+        "trellis"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "帯や線を交差させ、間に空いた区画を作る格子系の柄です。斜め格子が代表的ですが、ラティスは広い格子構造を指します。",
+      "en": "A lattice family made from crossing strips or lines that leave open compartments between intersections. Diagonal grids are common, but the term is broader than one layout."
+    }
+  },
+  {
+    "id": "honeycomb",
+    "names": {
+      "ja": "ハニカム",
+      "en": "Honeycomb"
+    },
+    "aliases": {
+      "ja": [
+        "蜂の巣柄"
+      ],
+      "en": [
+        "honeycomb pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "蜂の巣みたいな柄",
+        "六角形が隙間なく並ぶ",
+        "ハニカム模様"
+      ],
+      "en": [
+        "bee honeycomb pattern",
+        "edge sharing hexagon cells",
+        "packed hexagonal cells"
+      ]
+    },
+    "families": [
+      "geometric"
+    ],
+    "motifs": [
+      "六辺セル",
+      "蜂の巣"
+    ],
+    "visual": {
+      "geometry": [
+        "hexagon",
+        "grid"
+      ],
+      "line": [
+        "straight"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "gold",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Six-sided cellular repetition is structural; honey-like colors are only a recognition aid."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "hexagon",
+        "kikko"
+      ],
+      "often_confused_with": [
+        "hexagon",
+        "kikko"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "蜂の巣のように六辺のセルが隙間なく隣接して続くセル状の柄です。単に六角形があるだけでなく、共有辺を持つ密な連結構造が重要です。",
+      "en": "A honeycomb-derived field of adjacent six-sided cells packed edge to edge. The decisive cue is the shared-edge cellular network, not merely the presence of hexagons."
+    }
+  },
+  {
+    "id": "scallop",
+    "names": {
+      "ja": "スカラップ",
+      "en": "Scallop"
+    },
+    "aliases": {
+      "ja": [
+        "波形模様"
+      ],
+      "en": [
+        "scallop pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "半円が重なる柄",
+        "貝殻みたいな波柄",
+        "扇形が並ぶ模様"
+      ],
+      "en": [
+        "overlapping semicircle pattern",
+        "shell arc repeat",
+        "scalloped wave pattern"
+      ]
+    },
+    "families": [
+      "geometric"
+    ],
+    "motifs": [
+      "半円弧",
+      "貝殻"
+    ],
+    "visual": {
+      "geometry": [
+        "arc"
+      ],
+      "line": [
+        "curved"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "teal",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The repeated rounded shell-like arcs carry recognition; palette is variable."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "seigaiha"
+      ],
+      "often_confused_with": [
+        "seigaiha"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "丸い半円弧や扇形を繰り返し、貝殻や波形の縁のように見せる柄です。上下に重なる弧の反復が強い識別手掛かりです。",
+      "en": "A repeat of rounded semicircular or fan-like arcs that reads like scallop shells or a wave-edged field. Repeated overlapping arcs are the main cue."
+    }
+  },
+  {
+    "id": "basketweave",
+    "names": {
+      "ja": "バスケットウィーブ",
+      "en": "Basketweave"
+    },
+    "aliases": {
+      "ja": [
+        "バスケット織"
+      ],
+      "en": [
+        "basket weave",
+        "matt weave",
+        "mat weave",
+        "hopsack"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "かご編みみたいな生地",
+        "縦横の帯が編まれた柄",
+        "バスケット織"
+      ],
+      "en": [
+        "basket woven texture",
+        "interlaced grouped strips",
+        "basket weave fabric"
+      ]
+    },
+    "families": [
+      "geometric",
+      "weave"
+    ],
+    "motifs": [
+      "交差する帯",
+      "ブロック織り"
+    ],
+    "visual": {
+      "geometry": [
+        "grid"
+      ],
+      "line": [
+        "straight"
+      ],
+      "density": [
+        "high"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "low"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "tan",
+        "brown"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Interlaced grouped structure is the key cue; natural basket colors are only illustrative."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "checkerboard",
+        "lattice"
+      ],
+      "often_confused_with": [
+        "checkerboard"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "複数本の糸や帯をまとまりとして交互に組み、かご編みのようなブロック状の表面を作る織り・見た目の系統です。特定の一本のプリント柄を指す語ではありません。",
+      "en": "A weave structure and visual family in which grouped threads or strips interlace as units, creating a blocky basket-like surface. It is not one universal printed motif."
+    }
+  },
+  {
+    "id": "hexagon",
+    "names": {
+      "ja": "六角形柄",
+      "en": "Hexagon Pattern"
+    },
+    "aliases": {
+      "ja": [
+        "ヘキサゴン柄"
+      ],
+      "en": [
+        "hexagonal pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "六角形が並ぶ柄",
+        "ヘキサゴン模様",
+        "蜂の巣ではない六角形"
+      ],
+      "en": [
+        "repeating hexagon shapes",
+        "spaced hexagon pattern",
+        "six sided polygon repeat"
+      ]
+    },
+    "families": [
+      "geometric"
+    ],
+    "motifs": [
+      "六角形",
+      "ポリゴン"
+    ],
+    "visual": {
+      "geometry": [
+        "hexagon"
+      ],
+      "line": [
+        "straight"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "black",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The six-sided polygon geometry defines the pattern; color is variable."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "honeycomb",
+        "kikko"
+      ],
+      "often_confused_with": [
+        "honeycomb",
+        "kikko"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "六本の直線辺を持つ六角形を、独立したモチーフや連結図形として反復する幾何学柄です。蜂の巣のように全セルが共有辺で密着している必要はありません。",
+      "en": "A geometric pattern that repeats six-sided polygons as isolated motifs, linked shapes, or a tessellated field. Unlike Honeycomb, the hexagons need not form a fully shared-edge cell network."
+    }
+  },
+  {
+    "id": "trellis",
+    "names": {
+      "ja": "トレリス",
+      "en": "Trellis"
+    },
+    "aliases": {
+      "ja": [
+        "トレリス柄"
+      ],
+      "en": [
+        "trellis pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "連結した格子柄",
+        "菱形の枠が続く柄",
+        "トレリス模様"
+      ],
+      "en": [
+        "linked trellis framework",
+        "open compartment repeat",
+        "diamond trellis pattern"
+      ]
+    },
+    "families": [
+      "geometric",
+      "ornamental"
+    ],
+    "motifs": [
+      "連結枠",
+      "開いた区画"
+    ],
+    "visual": {
+      "geometry": [
+        "grid",
+        "geometric"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "blue",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The open framework/repeat structure is the cue; no one palette defines trellis patterns."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "lattice",
+        "koushi",
+        "ogee"
+      ],
+      "often_confused_with": [
+        "lattice",
+        "koushi",
+        "ogee"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "帯や枠を連結して、四角・菱形・曲線形などの開いた区画を繰り返すトレリス由来の柄です。単純な交差線だけでなく、枠組みとして連結して見えることがポイントです。",
+      "en": "A trellis-derived repeat in which linked bands or framework form open square, diamond, curved, or ornamented compartments. The linked framework matters more than simple line crossings."
+    }
+  },
+  {
+    "id": "hishi",
+    "names": {
+      "ja": "菱文様",
+      "en": "Hishi"
+    },
+    "aliases": {
+      "ja": [
+        "菱形文様",
+        "菱紋"
+      ],
+      "en": [
+        "hishi motif",
+        "hishigata"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "和柄の菱形",
+        "菱が連続する日本文様",
+        "菱継ぎみたいな柄"
+      ],
+      "en": [
+        "Japanese diamond motif",
+        "hishi pattern",
+        "linked Japanese rhombus"
+      ]
+    },
+    "families": [
+      "japanese",
+      "geometric"
+    ],
+    "motifs": [
+      "菱形",
+      "菱継ぎ"
+    ],
+    "visual": {
+      "geometry": [
+        "diamond"
+      ],
+      "line": [
+        "straight"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "indigo",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Rhombus geometry and Japanese motif context define recognition; indigo/white is illustrative only."
+    },
+    "uses": [
+      "fashion",
+      "textile",
+      "interior"
+    ],
+    "culture": [
+      "Japanese"
+    ],
+    "relationships": {
+      "similar": [
+        "diamond",
+        "argyle"
+      ],
+      "often_confused_with": [
+        "diamond"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "菱形を単独または連結して反復する日本の文様群です。単なる幾何学的なダイヤ柄ではなく、日本文様としての文脈を持つ菱・菱形の系統を指します。",
+      "en": "A Japanese motif family based on rhombus or diamond forms repeated singly or in linked arrangements. It is distinguished from generic Diamond Pattern by its Japanese decorative context."
+    }
+  },
+  {
+    "id": "fleur-de-lis",
+    "names": {
+      "ja": "フルール・ド・リス",
+      "en": "Fleur-de-lis"
+    },
+    "aliases": {
+      "ja": [
+        "フルールドリス"
+      ],
+      "en": [
+        "fleur-de-lys"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "三つの花弁の紋章みたいな柄",
+        "フランス百合みたいな模様",
+        "左右対称のユリ紋"
+      ],
+      "en": [
+        "three petal emblem pattern",
+        "stylized lily motif",
+        "fleur de lys repeat"
+      ]
+    },
+    "families": [
+      "ornamental",
+      "floral"
+    ],
+    "motifs": [
+      "三弁花",
+      "対称花形"
+    ],
+    "visual": {
+      "geometry": [
+        "ornamental"
+      ],
+      "line": [
+        "curved"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "gold",
+        "navy"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The stylized symmetric floral silhouette defines the motif; heraldic colorways vary."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "medallion"
+      ],
+      "often_confused_with": []
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "中央の花弁を高く、左右の花弁を外側へ湾曲させた、三つの主要ローブからなる左右対称の花形モチーフです。",
+      "en": "A vertically symmetrical stylized flower, usually with three principal petals or lobes: a taller center and two outward-curving side lobes."
+    }
+  },
+  {
+    "id": "toile-de-jouy",
+    "names": {
+      "ja": "トワル・ド・ジュイ",
+      "en": "Toile de Jouy"
+    },
+    "aliases": {
+      "ja": [
+        "トワルドジュイ"
+      ],
+      "en": []
+    },
+    "search_terms": {
+      "ja": [
+        "青一色の人物風景柄",
+        "フランス風の物語絵の布",
+        "牧歌的な人物柄"
+      ],
+      "en": [
+        "monochrome pictorial toile",
+        "pastoral figure fabric",
+        "Jouy narrative print"
+      ]
+    },
+    "families": [
+      "ornamental",
+      "pictorial"
+    ],
+    "motifs": [
+      "人物風景",
+      "物語場面"
+    ],
+    "visual": {
+      "geometry": [
+        "organic"
+      ],
+      "line": [
+        "curved"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "irregular"
+      ],
+      "contrast": [
+        "low"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "blue",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "traditional",
+      "primary_reason": "Single-color pictorial printing on a light ground is a strong recognition convention, but historical examples use multiple ink colors and subjects."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "chintz",
+        "botanical-print"
+      ],
+      "often_confused_with": [
+        "chintz"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "明るい地に人物・風景・牧歌的または物語的な場面を一色中心で描くことが多い、ジュイ＝アン＝ジョザスと結びつくプリント布の伝統です。ひとつの固定リピートではありません。",
+      "en": "A printed-textile/design tradition associated with Jouy-en-Josas, often recognized by pictorial figures, landscapes, or narrative scenes in one contrasting color on a light ground. It is not one fixed repeat."
+    }
+  },
+  {
+    "id": "chintz",
+    "names": {
+      "ja": "チンツ",
+      "en": "Chintz"
+    },
+    "aliases": {
+      "ja": [
+        "チンツ柄"
+      ],
+      "en": [
+        "chintz fabric"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "密な花柄のチンツ",
+        "多色の花と枝の布",
+        "クラシックな花柄プリント"
+      ],
+      "en": [
+        "dense floral chintz",
+        "multicolor flower branch fabric",
+        "classic chintz print"
+      ]
+    },
+    "families": [
+      "floral"
+    ],
+    "motifs": [
+      "密な花",
+      "枝葉"
+    ],
+    "visual": {
+      "geometry": [
+        "organic"
+      ],
+      "line": [
+        "curved"
+      ],
+      "density": [
+        "high"
+      ],
+      "repetition": [
+        "irregular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "red",
+        "green",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "variable",
+      "primary_reason": "Multicolor floral imagery is a strong recognition convention, but chintz is not defined by one palette or one repeat."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "botanical-print",
+        "jacobean-floral",
+        "ditsy-floral"
+      ],
+      "often_confused_with": [
+        "botanical-print",
+        "jacobean-floral"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "花・葉・枝などを密に配した多色のプリントで認識されることが多い綿布・染織の伝統です。チンツは本来ひとつの固定花柄名ではありません。",
+      "en": "A printed or painted cotton/textile tradition commonly recognized through dense multicolor flowers, foliage, and branches. Chintz is not the name of one fixed floral motif."
+    }
+  },
+  {
+    "id": "ditsy-floral",
+    "names": {
+      "ja": "小花柄",
+      "en": "Ditsy Floral"
+    },
+    "aliases": {
+      "ja": [
+        "小花模様"
+      ],
+      "en": [
+        "ditsy print",
+        "ditsy pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "小さい花が散った柄",
+        "細かい小花プリント",
+        "大きい花がない花柄"
+      ],
+      "en": [
+        "tiny scattered floral",
+        "small flower print",
+        "fine ditsy flowers"
+      ]
+    },
+    "families": [
+      "floral"
+    ],
+    "motifs": [
+      "小花",
+      "散らし"
+    ],
+    "visual": {
+      "geometry": [
+        "organic"
+      ],
+      "line": [
+        "curved"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "irregular"
+      ],
+      "contrast": [
+        "low"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "pink",
+        "green",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "variable",
+      "primary_reason": "Small-scale scattered floral density matters more than a particular colorway."
+    },
+    "uses": [
+      "fashion",
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "millefleurs",
+        "chintz"
+      ],
+      "often_confused_with": [
+        "millefleurs"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "小さな花や同程度の小モチーフを地全体に散らした細かな花柄です。大きな主役花を置かず、小スケールの散らしが続くことが特徴です。",
+      "en": "A fine-scale floral print with many small flowers or similarly small motifs scattered across the ground, without a dominant large bloom."
+    }
+  },
+  {
+    "id": "jacobean-floral",
+    "names": {
+      "ja": "ジャコビアン・フローラル",
+      "en": "Jacobean Floral"
+    },
+    "aliases": {
+      "ja": [
+        "ジャコビアン柄"
+      ],
+      "en": [
+        "Jacobean floral pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "曲がる茎のクラシック花柄",
+        "大きい様式花と葉の柄",
+        "クルーエル刺繍みたいな花柄"
+      ],
+      "en": [
+        "scrolling stem floral",
+        "crewel style floral pattern",
+        "large stylized Jacobean flowers"
+      ]
+    },
+    "families": [
+      "floral",
+      "ornamental"
+    ],
+    "motifs": [
+      "スクロール茎",
+      "様式花"
+    ],
+    "visual": {
+      "geometry": [
+        "organic"
+      ],
+      "line": [
+        "curved"
+      ],
+      "density": [
+        "high"
+      ],
+      "repetition": [
+        "irregular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "green",
+        "red",
+        "blue"
+      ],
+      "variants": [],
+      "color_role": "variable",
+      "primary_reason": "Botanical scroll structure and stylization are stronger identifiers than any fixed palette."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "chintz",
+        "botanical-print",
+        "acanthus"
+      ],
+      "often_confused_with": [
+        "chintz",
+        "botanical-print"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "スクロールする茎に、様式化した花・葉・果実などを密に組み合わせる装飾的な植物柄の系統です。歴史的なジャコビアン刺繍・クルーエルワークに由来する現代的な分類で、固定柄ではありません。",
+      "en": "A modern floral surface-design family derived from Jacobean/crewelwork conventions, using scrolling stems with stylized flowers, leaves, fruit, and related ornament. It is not one fixed motif."
+    }
+  },
+  {
+    "id": "millefleurs",
+    "names": {
+      "ja": "ミルフルール",
+      "en": "Millefleurs"
+    },
+    "aliases": {
+      "ja": [
+        "ミルフルール柄"
+      ],
+      "en": [
+        "mille-fleurs",
+        "thousand flowers"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "小花で埋め尽くされた柄",
+        "千の花みたいな柄",
+        "密集した小花模様"
+      ],
+      "en": [
+        "thousand flowers pattern",
+        "dense tiny flower field",
+        "millefleurs floral field"
+      ]
+    },
+    "families": [
+      "floral"
+    ],
+    "motifs": [
+      "多数の小花",
+      "花野"
+    ],
+    "visual": {
+      "geometry": [
+        "organic"
+      ],
+      "line": [
+        "curved"
+      ],
+      "density": [
+        "high"
+      ],
+      "repetition": [
+        "irregular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "green",
+        "red",
+        "yellow"
+      ],
+      "variants": [],
+      "color_role": "variable",
+      "primary_reason": "Dense multiplicity of small flowers is the core cue; historical palettes and media vary."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "ditsy-floral",
+        "botanical-print"
+      ],
+      "often_confused_with": [
+        "ditsy-floral"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "多数の小さな草花を密に敷き詰め、画面全体を花で満たす「千の花」の系統です。小花柄よりも花の密度と連続した花野の印象が強くなります。",
+      "en": "A dense field of numerous small flowering plants and blossoms—the 'thousand flowers' effect—so the surface reads as continuously flower-strewn rather than simply scattered."
+    }
+  },
+  {
+    "id": "botanical-print",
+    "names": {
+      "ja": "ボタニカル柄",
+      "en": "Botanical Print"
+    },
+    "aliases": {
+      "ja": [
+        "ボタニカルプリント"
+      ],
+      "en": [
+        "botanical pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "葉っぱ中心の植物柄",
+        "植物図みたいなプリント",
+        "花だけじゃないボタニカル柄"
+      ],
+      "en": [
+        "leaf botanical print",
+        "plant illustration pattern",
+        "botanical leaves and stems"
+      ]
+    },
+    "families": [
+      "floral",
+      "organic"
+    ],
+    "motifs": [
+      "葉",
+      "茎",
+      "植物"
+    ],
+    "visual": {
+      "geometry": [
+        "organic"
+      ],
+      "line": [
+        "curved"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "irregular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "green",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "variable",
+      "primary_reason": "Plant-form subject matter defines the family; palette and level of naturalism vary widely."
+    },
+    "uses": [
+      "fashion",
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "chintz",
+        "jacobean-floral",
+        "ivy",
+        "millefleurs"
+      ],
+      "often_confused_with": [
+        "chintz",
+        "jacobean-floral",
+        "ivy"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "葉・茎・花・実など、植物の形を主題にした広いプリント柄の分類です。写実的な植物図から抽象化した反復まで含み、ひとつの固定モチーフではありません。",
+      "en": "A broad surface-print family organized around plant forms such as leaves, stems, flowers, and seedpods, ranging from naturalistic illustration to stylized repeats. It is not one fixed motif."
+    }
+  },
+  {
+    "id": "acanthus",
+    "names": {
+      "ja": "アカンサス",
+      "en": "Acanthus"
+    },
+    "aliases": {
+      "ja": [
+        "アカンサス文様"
+      ],
+      "en": [
+        "acanthus motif",
+        "acanthus leaf"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "ギザギザ葉のクラシック文様",
+        "巻いた大きな葉柄",
+        "アカンサス葉模様"
+      ],
+      "en": [
+        "scrolling jagged leaf motif",
+        "acanthus leaf pattern",
+        "ornamental curled leaf"
+      ]
+    },
+    "families": [
+      "ornamental",
+      "floral"
+    ],
+    "motifs": [
+      "ギザギザ葉",
+      "スクロール"
+    ],
+    "visual": {
+      "geometry": [
+        "organic"
+      ],
+      "line": [
+        "curved"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "green",
+        "gold"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Leaf form and ornamental curling define recognition; color depends on medium and period."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "jacobean-floral",
+        "botanical-print"
+      ],
+      "often_confused_with": [
+        "jacobean-floral"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "ギザギザしたアカンサスの葉を様式化し、外側へ巻き込む曲線やスクロールとして組む装飾文様です。花よりも大きく裂けた葉形が識別の中心です。",
+      "en": "An ornamental motif based on stylized, jagged acanthus leaves that curl outward in scrolling, symmetrical, or repeating compositions. The large serrated leaf form is the key cue."
+    }
+  },
+  {
+    "id": "medallion",
+    "names": {
+      "ja": "メダリオン",
+      "en": "Medallion"
+    },
+    "aliases": {
+      "ja": [
+        "メダリオン柄"
+      ],
+      "en": [
+        "medallion pattern",
+        "medallion motif"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "丸い飾り枠が並ぶ柄",
+        "円形の装飾モチーフ",
+        "楕円メダリオン模様"
+      ],
+      "en": [
+        "framed circular ornament",
+        "oval medallion repeat",
+        "decorative round motif"
+      ]
+    },
+    "families": [
+      "ornamental"
+    ],
+    "motifs": [
+      "円形枠",
+      "楕円枠"
+    ],
+    "visual": {
+      "geometry": [
+        "circle",
+        "oval"
+      ],
+      "line": [
+        "curved"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "burgundy",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The framed circular/oval ornament area defines the motif family; contents and colors vary."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "quatrefoil",
+        "fleur-de-lis"
+      ],
+      "often_confused_with": [
+        "quatrefoil"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "円形または楕円形の枠の中に花・図形・人物などの装飾を収め、その単位を中心配置または反復するモチーフ群です。枠で囲まれた円・楕円の「島」が識別の中心です。",
+      "en": "A motif family built from circular or oval framed units containing floral, geometric, figural, or other ornament, used singly, centrally, or as a repeat."
+    }
+  },
+  {
+    "id": "ivy",
+    "names": {
+      "ja": "アイビー柄",
+      "en": "Ivy Pattern"
+    },
+    "aliases": {
+      "ja": [
+        "アイビーパターン"
+      ],
+      "en": [
+        "ivy motif",
+        "ivy leaf pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "つる性のアイビー葉柄",
+        "切れ込み葉の植物柄",
+        "アイビーの葉が続く模様"
+      ],
+      "en": [
+        "trailing ivy leaf pattern",
+        "lobed ivy vine print",
+        "repeating ivy leaves"
+      ]
+    },
+    "families": [
+      "floral",
+      "organic"
+    ],
+    "motifs": [
+      "アイビー葉",
+      "つる"
+    ],
+    "visual": {
+      "geometry": [
+        "organic"
+      ],
+      "line": [
+        "curved"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "irregular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "green",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "traditional",
+      "primary_reason": "Green supports immediate ivy recognition, but leaf silhouette and vine organization are the real cues and other palettes are valid."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "botanical-print"
+      ],
+      "often_confused_with": [
+        "botanical-print"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "切れ込みのあるアイビーの葉を、単独または茎・つるに沿って反復する植物柄の系統です。ひとつの標準リピートではなく、葉形とつるの組み合わせを主な手掛かりにします。",
+      "en": "A broad botanical motif family using recognizable lobed ivy leaves, repeated alone or along trailing stems and vines. It is not one standardized repeat."
+    }
   }
 ]

@@ -1,13 +1,13 @@
-# Pattern Dictionary — canonical 20 verified publication / canonical 100 freeze
+# Pattern Dictionary — canonical 60 verified publication / canonical 100 freeze
 
-Production implementation for the published 20-pattern visual dictionary, with the next 80 canonical entries frozen for staged expansion to 100. The live product provides visual discovery, exact-name/alias search, ambiguous description search, bilingual static detail pages, comparison guidance, reviewed Reference Images, publication validation, and the shared live NicheWorks Amazon Associates contract.
+Production implementation for the published 60-pattern visual dictionary, with the remaining 40 canonical entries frozen for staged expansion to 100. The live product provides visual discovery, exact-name/alias search, ambiguous description search, bilingual static detail pages, comparison guidance, reviewed Reference Images, publication validation, and the shared live NicheWorks Amazon Associates contract.
 
 ## Current state
 
-- The **published runtime set remains exactly 20 patterns**. No planned 21-100 entry is exposed merely because it is present in the expansion manifest, research ledger, or staging pack.
-- Source verification is complete for all published 20 terms: 17 are verified and 3 (`moroccan-trellis`, `ikat`, `kilim`) remain qualified with explicit scope notes.
-- **Wave 2 / entries 21-40 source verification is complete:** 13 verified and 7 qualified.
-- **Wave 2 production content is also complete as staged, non-public data:** 20/20 bilingual production records, 13 comparison guides, 40 staged JA/EN natural-language search regressions, resolved canonical-100 relationships, and 2-4 maintained Amazon commerce intents per pattern.
+- The **published runtime set is exactly 60 patterns** after Wave 3 (entries 41-60) completed source verification, bilingual production content, Reference Image generation/review, runtime search/compare integration, maintained Amazon commerce mapping, static-route SEO, and publication validation.
+- Source verification is complete for all 60 published terms. Qualified terms remain explicitly scoped rather than being presented as one universal fixed motif.
+- **Wave 2 / entries 21-40 is published and remains part of the canonical 60.**
+- **Wave 3 / entries 41-60 is published in the branch transform:** 20 bilingual production records, 17 additional comparison guides, 52 staged natural-language search regressions, and 60 fixed Amazon commerce intents.
 - `data/production-content.json` is at `verified-publication` and still contains only the 20 published records; Wave 2 remains isolated in `data/wave2-production-content.json` until the remaining publication gates close.
 - All 20 published primary Reference Images are deterministic 1536×1536 PNGs under `assets/reference/`, structurally reviewed, publication-verified, and runtime-wired. Wave 2 Reference Images are the next gate.
 - Broad or technique/category terms use representative recognition references and do not claim one uniquely canonical motif.
@@ -25,9 +25,9 @@ Production implementation for the published 20-pattern visual dictionary, with t
 
 ## Canonical 100 freeze
 
-`data/canonical-100-expansion.json` is the planning source of truth for ordinals **21-100**. Together with the published `data/patterns.json` canonical 20, it defines a unique 100-entry target taxonomy.
+`data/canonical-100-expansion.json` is the planning source of truth for the remaining ordinals **61-100**. Together with the published `data/patterns.json` canonical 20, it defines a unique 100-entry target taxonomy.
 
-The expansion is split into four fixed 20-entry production waves:
+The 100-entry plan is split into fixed 20-entry production waves; Waves 1-3 are published and Waves 4-5 remain planned:
 
 - **Wave 2 / 21-40:** checks, stripes, dots, and core geometric distinctions, including relationship-driven entries such as Buffalo Check, Shepherd's Check, Prince of Wales Check, Koushi, Herringbone, Diamond, Harlequin, and Checkerboard.
 - **Wave 3 / 41-60:** geometric, floral, and ornamental families, including Hexagon, Hishi, Trellis, Toile de Jouy, Chintz, Acanthus, Medallion, and Ivy.
@@ -112,4 +112,4 @@ Wave 2 follows the same rule: each staged pattern already has 2-4 fixed, pattern
 
 ## Next production unit
 
-With the canonical-100 freeze, Wave 2 source verification, and Wave 2 production pack complete, the next unit is **Wave 2 Reference Images and publication integration**: generate and structurally review 20 deterministic 1536×1536 references, then integrate 21-40 into runtime search/compare/Amazon data, create 20 JA + 20 EN static detail routes with full SEO, update the sitemap and publication contracts from 20/40 pages to 40/80 pages, and finish desktop/mobile browser QA before publishing the wave.
+Wave 3 is the current publication unit. After branch-level validation and desktop/mobile Chromium QA close, the next production unit is **Wave 4 / entries 61-80**. Wave 4 remains non-public until source verification, bilingual production content, Reference Image review, search/compare work, commerce mapping, SEO/static routes, and browser QA all close.

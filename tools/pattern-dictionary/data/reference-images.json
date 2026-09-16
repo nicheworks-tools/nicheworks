@@ -442,6 +442,226 @@
       "has_text": false,
       "is_mockup": false,
       "multiple_repeats": true
+    },
+    {
+      "ordinal": 41,
+      "pattern_id": "greek-key",
+      "path": "assets/reference/greek-key.png",
+      "review_state": "verified",
+      "method": "deterministic continuous right-angle meander bands with repeated rectangular returns",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 42,
+      "pattern_id": "quatrefoil",
+      "path": "assets/reference/quatrefoil.png",
+      "review_state": "verified",
+      "method": "deterministic four-lobed rounded motifs repeated on a regular grid",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 43,
+      "pattern_id": "ogee",
+      "path": "assets/reference/ogee.png",
+      "review_state": "verified",
+      "method": "deterministic opposed S-curve ogee compartments with pointed vertical joins",
+      "representation_scope": "representative-ogee-curve-family-reference-not-a-universal-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 44,
+      "pattern_id": "lattice",
+      "path": "assets/reference/lattice.png",
+      "review_state": "verified",
+      "method": "deterministic thin diagonal crossed-strip lattice with open diamond cells",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 45,
+      "pattern_id": "honeycomb",
+      "path": "assets/reference/honeycomb.png",
+      "review_state": "verified",
+      "method": "deterministic edge-sharing six-sided honeycomb cell network",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 46,
+      "pattern_id": "scallop",
+      "path": "assets/reference/scallop.png",
+      "review_state": "verified",
+      "method": "deterministic offset rows of overlapping rounded scallop arcs",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 47,
+      "pattern_id": "basketweave",
+      "path": "assets/reference/basketweave.png",
+      "review_state": "verified",
+      "method": "deterministic grouped horizontal/vertical strip interlacing with alternating over-under blocks",
+      "representation_scope": "representative-basketweave-visual-reference-not-a-canonical-weave-construction",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 48,
+      "pattern_id": "hexagon",
+      "path": "assets/reference/hexagon.png",
+      "review_state": "verified",
+      "method": "deterministic separated outlined six-sided polygons with visible ground between motifs",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 49,
+      "pattern_id": "trellis",
+      "path": "assets/reference/trellis.png",
+      "review_state": "verified",
+      "method": "deterministic thick linked trellis bands forming repeated open diamond compartments",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 50,
+      "pattern_id": "hishi",
+      "path": "assets/reference/hishi.png",
+      "review_state": "verified",
+      "method": "deterministic indigo Japanese hishi field with linked/nested rhombi",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 51,
+      "pattern_id": "fleur-de-lis",
+      "path": "assets/reference/fleur-de-lis.png",
+      "review_state": "verified",
+      "method": "deterministic repeated symmetrical three-lobed fleur-de-lis silhouettes",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 52,
+      "pattern_id": "toile-de-jouy",
+      "path": "assets/reference/toile-de-jouy.png",
+      "review_state": "verified",
+      "method": "deterministic monochrome blue-on-cream pictorial vignettes with figures, trees, and small architecture",
+      "representation_scope": "representative-toile-de-jouy-pictorial-reference-not-a-universal-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 53,
+      "pattern_id": "chintz",
+      "path": "assets/reference/chintz.png",
+      "review_state": "verified",
+      "method": "deterministic dense multicolor flowers, leaves, and branching stems on cream",
+      "representation_scope": "representative-chintz-floral-textile-reference-not-a-universal-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 54,
+      "pattern_id": "ditsy-floral",
+      "path": "assets/reference/ditsy-floral.png",
+      "review_state": "verified",
+      "method": "deterministic small separated scattered flowers with ample visible ground",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 55,
+      "pattern_id": "jacobean-floral",
+      "path": "assets/reference/jacobean-floral.png",
+      "review_state": "verified",
+      "method": "deterministic scrolling stems with large stylized flowers and leaves",
+      "representation_scope": "representative-jacobean-floral-style-reference-not-a-universal-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 56,
+      "pattern_id": "millefleurs",
+      "path": "assets/reference/millefleurs.png",
+      "review_state": "verified",
+      "method": "deterministic very dense field of varied small flowers and stems",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 57,
+      "pattern_id": "botanical-print",
+      "path": "assets/reference/botanical-print.png",
+      "review_state": "verified",
+      "method": "deterministic larger leaf-and-stem botanical specimens with varied naturalistic silhouettes",
+      "representation_scope": "representative-botanical-print-family-reference-not-a-universal-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 58,
+      "pattern_id": "acanthus",
+      "path": "assets/reference/acanthus.png",
+      "review_state": "verified",
+      "method": "deterministic large jagged curling acanthus leaves in mirrored ornamental repeats",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 59,
+      "pattern_id": "medallion",
+      "path": "assets/reference/medallion.png",
+      "review_state": "verified",
+      "method": "deterministic repeated framed circular/oval medallions with inner floral-geometric ornament",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 60,
+      "pattern_id": "ivy",
+      "path": "assets/reference/ivy.png",
+      "review_state": "verified",
+      "method": "deterministic trailing vines with repeated lobed ivy leaves",
+      "representation_scope": "representative-ivy-motif-family-reference-not-a-universal-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
     }
   ]
 }
