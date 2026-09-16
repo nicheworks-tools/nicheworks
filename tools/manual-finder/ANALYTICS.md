@@ -48,7 +48,17 @@ Parameters:
 
 ## Amazon affiliate clicks
 
-Do not duplicate Amazon click telemetry here. `/assets/amazon-affiliate.js` already emits `affiliate_click` with `tool`, `affiliate`, `target`, and `placement` for mounted affiliate links.
+Do not duplicate Amazon click telemetry here. `/assets/amazon-affiliate.js` emits the canonical `affiliate_outbound` event defined by `common-spec/affiliate-outbound.md`.
+
+For ManualFinder-mounted Amazon links, the shared helper sends only:
+- `tool_slug`: fixed `manual-finder`
+- `affiliate_id`: stable link/placement identifier
+- `placement`: stable UI placement
+- `merchant`: fixed `amazon`
+- `destination_key`: stable configured Amazon target key
+- `language`: `ja` or `en`
+
+The model string, generated Amazon search term, full destination URL, affiliate tag, and raw search input MUST NOT be sent.
 
 ## Privacy boundary
 

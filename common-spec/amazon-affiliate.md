@@ -2,7 +2,7 @@
 
 Status: active implementation contract, integration disabled until valid Associate links are configured.
 
-This file supplements `common-spec/spec-ja.md` only for pages that use Amazon Associates links. It does not replace the canonical NicheWorks common specification.
+This file supplements `common-spec/spec-ja.md` only for pages that use Amazon Associates links. It does not replace the canonical NicheWorks common specification. Affiliate click measurement is governed by `common-spec/affiliate-outbound.md`.
 
 ## 1. Activation model
 
@@ -42,18 +42,22 @@ Do not show the disclosure as if the link were editorially independent when it i
 
 ## 4. Privacy and analytics
 
-Affiliate analytics must follow the NicheWorks privacy contract.
+Affiliate analytics must follow `common-spec/affiliate-outbound.md`.
 
-Allowed GA4 event:
+Canonical GA4 event:
 
-`affiliate_click`
+`affiliate_outbound`
 
-Allowed coarse parameters:
+The shared Amazon helper may send only these parameters:
 
-- `tool`
-- `affiliate` (normally `amazon`)
-- `target` (for example `shoes`, `clothing`, `sound_level_meter`, `usb_microphone`, `manual_model_search`)
-- `placement`
+- `tool_slug`: fixed canonical tool slug;
+- `affiliate_id`: stable affiliate link or recommendation-slot identifier;
+- `placement`: stable UI placement identifier;
+- `merchant`: fixed `amazon`;
+- `destination_key`: stable internal target key, never the full URL;
+- `language`: `ja` or `en`.
+
+For the shared helper, the configured Amazon target key is the default `destination_key`. Unless a tool provides a more specific stable `affiliate_id`, the helper derives one from the target key and placement. These identifiers must remain tool-owned fixed metadata.
 
 Do **not** send user-entered or derived values, including but not limited to:
 
@@ -63,7 +67,8 @@ Do **not** send user-entered or derived values, including but not limited to:
 - microphone samples;
 - loudness, pitch, spectrum, device labels, or microphone-derived values;
 - free-text input or other user content;
-- model names or generated Amazon search terms as analytics parameters.
+- model names or generated Amazon search terms as analytics parameters;
+- full destination URLs, query strings, affiliate tags, or arbitrary DOM text.
 
 If GA4 is unavailable, the affiliate link must still work and no replacement tracking service is added.
 
@@ -75,11 +80,13 @@ The helper contract is intentionally small:
 
 - `configure(config)` sets the disabled/enabled state and target URLs.
 - `mount(options)` renders a CTA to one configured fixed target only when that target is active and valid.
-- `mountUrl(options)` may render a validated dynamic Amazon destination, but only behind an already active coarse target key; analytics still receive only that coarse target key and placement.
+- `mountUrl(options)` may render a validated dynamic Amazon destination, but only behind an already active coarse target key; analytics still receive only stable internal metadata and placement.
 - `renderDisclosure(container)` displays disclosure only when at least one configured target is active.
 - `isActive(target)` may be used by tool UI to decide whether affiliate UI should be present.
 
-Do not pass measurements, free-text query input, microphone values, or other user content into the helper. A fully built Amazon URL derived only from canonical site-owned metadata may be passed to `mountUrl`; the model/search term itself must not be copied into analytics metadata.
+Optional `mount` / `mountUrl` analytics metadata is limited to fixed `affiliateId`, `destinationKey`, `placement`, and `language` values that comply with `common-spec/affiliate-outbound.md`. Do not pass measurements, free-text query input, microphone values, model names, generated search terms, or other user content into those fields.
+
+A fully built Amazon URL derived only from canonical site-owned metadata may be passed to `mountUrl`; neither that URL nor its model/search term may be copied into analytics metadata.
 
 ## 6. Initial NicheWorks targets
 
@@ -102,7 +109,7 @@ Before turning any fixed target or dynamic template on:
 2. For a fixed target, insert the real approved Amazon URL. For a deterministic custom template, validate one representative generated URL with Amazon's Link Checker (or an equivalently authoritative Amazon validation path) and record that proof.
 3. Confirm the CTA explicitly names Amazon.
 4. Confirm disclosure becomes visible.
-5. Confirm `affiliate_click` contains only the approved coarse metadata.
+5. Confirm `affiliate_outbound` contains only the six parameters allowed by `common-spec/affiliate-outbound.md` and contains no user data or outbound URL.
 6. Confirm the tool remains functional when the helper or GA4 is unavailable.
 7. For a dynamic template, confirm user free text cannot alter the affiliate query/tag and that only canonical tool-owned metadata is used.
 
