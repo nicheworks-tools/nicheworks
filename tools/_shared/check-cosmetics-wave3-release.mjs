@@ -67,7 +67,8 @@ for (const token of [
   'dataset.liteCategory',
   'rowCategoryMatches',
   '表示中をコピー',
-  '未分類をコピー'
+  '情報不足をコピー',
+  'Copy needs-info'
 ]) {
   check(liteEnhancements.includes(token), `Lite wave 3 navigation missing: ${token}`);
 }
