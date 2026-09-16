@@ -1,0 +1,27 @@
+name: Pattern Dictionary Wave 4 sync main
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-wave4-production-staging-20260916
+    paths:
+      - .github/workflows/pattern-dictionary-wave4-sync-main.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync-main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave4-production-staging-20260916
+          fetch-depth: 0
+      - name: Merge current main
+        run: |
+          git config user.name nicheworks-tools
+          git config user.email nicheworks.tools@gmail.com
+          git fetch origin main
+          git merge --no-edit origin/main
+          git push origin HEAD:feat/pattern-dictionary-wave4-production-staging-20260916
