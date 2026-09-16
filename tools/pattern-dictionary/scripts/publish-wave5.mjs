@@ -92,7 +92,7 @@ write('tests/search-cases.json',uniq([...searchCases,...stageCases.map(c=>({lang
 const labels={broad:(ja,en)=>[`${ja}の商品を探す`,`Shop ${en} products`],apparel:(ja,en)=>[`${ja}の衣類を探す`,`Shop ${en} apparel`],material:(ja,en)=>[`${ja}の生地を探す`,`Shop ${en} fabric`],accessory:(ja,en)=>[`${ja}の小物を探す`,`Shop ${en} accessories`],home:(ja,en)=>[`${ja}のインテリア用品を探す`,`Shop ${en} home items`]};
 const offers=[];
 for(const id of waveIds){const p=pById[id],s=sById[id];if(p.commerce_intents?.length!==3)throw new Error(`${id}: exactly 3 commerce intents required`);p.commerce_intents.forEach((o,i)=>{if(!labels[o.intent])throw new Error(`${id}: unsupported commerce intent ${o.intent}`);const [label_ja,label_en]=labels[o.intent](s.verified_names.ja,s.verified_names.en);const params=new URLSearchParams({k:o.query,tag:affiliate.tracking_id});offers.push({pattern_id:id,status:'active',offer_id:`amazon_${slugOffer(id)}_${o.intent}_${i+1}`,intent:o.intent,priority:i+1,query:o.query,amazon_url:`https://www.amazon.co.jp/s?${params.toString()}`,label_ja,label_en});});}
-affiliate.version=`${today}-wave4`;affiliate.offers=uniq([...affiliate.offers,...offers],x=>x.offer_id);write('data/affiliate-config.json',affiliate);
+affiliate.version=`${today}-wave5`; affiliate.offers=uniq([...affiliate.offers,...offers],x=>x.offer_id);write('data/affiliate-config.json',affiliate);
 
 expansion.version=today;
 expansion.base={...expansion.base,published_count:100,rule:'The full frozen canonical 100 is published in data/patterns.json; no planned canonical entries remain.'};

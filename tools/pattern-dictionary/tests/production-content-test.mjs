@@ -9,9 +9,9 @@ const canonical=base.map(x=>x.id).sort();
 const reviewOrder=['draft','researched','image_ready','reviewed','verified','published'];
 const fail=m=>{console.error(`FAIL: ${m}`);process.exitCode=1};
 const pmap=Object.fromEntries(prod.patterns.map(x=>[x.pattern_id,x]));
-if(canonical.length!==80)fail(`expected runtime 80, got ${canonical.length}`);
-if(prod.patterns.length!==80)fail(`expected 80 production records, got ${prod.patterns.length}`);
-if(prod.policy?.record_count!==80)fail('production policy record_count must be 80');
+if(canonical.length!==100)fail(`expected runtime 100, got ${canonical.length}`);
+if(prod.patterns.length!==100)fail(`expected 100 production records, got ${prod.patterns.length}`);
+if(prod.policy?.record_count!==100)fail('production policy record_count must be 100');
 if(JSON.stringify(Object.keys(pmap).sort())!==JSON.stringify(canonical))fail('production content canonical ID set differs');
 for(const id of canonical){
   const p=pmap[id],source=ledger.patterns.find(x=>x.pattern_id===id),raw=base.find(x=>x.id===id);
@@ -27,6 +27,6 @@ for(const id of canonical){
   if(p.verification_state==='qualified'&&(!p.qualification?.ja||!p.qualification?.en))fail(`${id}: qualified term requires JA/EN scope note`);
 }
 const qualified=prod.patterns.filter(x=>x.verification_state==='qualified').map(x=>x.pattern_id).sort();
-const expected=['ajrakh','bandhani','baroque-scroll','basketweave','batik','botanical-print','breton-stripe','chinoiserie','chintz','flame-stitch','herringbone','ikat','ivy','jacobean-floral','kalamkari','kanoko','kilim','koushi','madras-check','moire','moroccan-trellis','ogee','prince-of-wales-check','regimental-stripe','same-komon','shibori','swiss-dot','toile-de-jouy'].sort();
+const expected=['ajrakh','bandhani','baroque-scroll','basketweave','batik','botanical-print','breton-stripe','chinoiserie','chintz','flame-stitch','herringbone','ikat','ivy','jacobean-floral','kalamkari','kanoko','kilim','koushi','madras-check','moire','moroccan-trellis','ogee','prince-of-wales-check','regimental-stripe','same-komon','shibori','swiss-dot','toile-de-jouy','suzani','kente','bogolan','adire','kuba-cloth','sashiko','kantha','otomi-embroidery','african-wax-print','block-print','tie-dye','marbling','terrazzo'].sort();
 if(JSON.stringify(qualified)!==JSON.stringify(expected))fail(`qualified set changed: ${qualified.join(', ')}`);
-if(!process.exitCode)console.log('OK: 80/80 production content records are source-ledger aligned and verified for publication.');
+if(!process.exitCode)console.log('OK: 100/100 production content records are source-ledger aligned and verified for publication.');

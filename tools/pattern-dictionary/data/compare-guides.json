@@ -2,7 +2,7 @@
   "schema_version": 1,
   "updated": "2026-09-16",
   "policy": {
-    "purpose": "Explain decisive visual differences for high-confusion comparisons across the published canonical 80.",
+    "purpose": "Explain decisive visual differences for high-confusion comparisons across the published canonical 100.",
     "external_concepts_are_not_patterns": true
   },
   "guides": [
@@ -758,6 +758,188 @@
       "decisive_cue": {
         "ja": "インド布の手描き花唐草ならKalamkari。",
         "en": "Indian hand-drawn floral textile context suggests Kalamkari."
+      }
+    },
+    {
+      "id": "suzani--otomi-embroidery",
+      "left": "suzani",
+      "right": "otomi-embroidery",
+      "summary": {
+        "ja": "Suzaniは大きなロゼットと巻き茎、Otomiは動物・鳥・植物の塗りつぶしシルエットが主役です。",
+        "en": "Suzani centers on large rosettes and scrolling stems; Otomi centers on filled animal, bird, and plant silhouettes."
+      },
+      "decisive_cue": {
+        "ja": "Suzaniは大きなロゼットと巻き茎を確認。",
+        "en": "Suzani centers on large rosettes and scrolling stems; Otomi centers on filled animal, bird, and plant silhouettes."
+      }
+    },
+    {
+      "id": "kente--kuba-cloth",
+      "left": "kente",
+      "right": "kuba-cloth",
+      "summary": {
+        "ja": "Kenteは細幅の織り帯を接ぐ構造、Kubaはラフィア地の角張った刺繍・アップリケが手掛かりです。",
+        "en": "Kente shows joined narrow woven strips; Kuba shows angular embroidery/applique on raffia."
+      },
+      "decisive_cue": {
+        "ja": "Kenteは細幅の織り帯を接ぐ構造を確認。",
+        "en": "Kente shows joined narrow woven strips; Kuba shows angular embroidery/applique on raffia."
+      }
+    },
+    {
+      "id": "bogolan--adire",
+      "left": "bogolan",
+      "right": "adire",
+      "summary": {
+        "ja": "Bogolanは黒〜茶の泥染め記号、Adireは藍地の白い防染が中心です。",
+        "en": "Bogolan uses dark mud-dyed geometry; Adire uses pale resisted marks on indigo."
+      },
+      "decisive_cue": {
+        "ja": "Bogolanは黒〜茶の泥染め記号を確認。",
+        "en": "Bogolan uses dark mud-dyed geometry; Adire uses pale resisted marks on indigo."
+      }
+    },
+    {
+      "id": "adire--tie-dye",
+      "left": "adire",
+      "right": "tie-dye",
+      "summary": {
+        "ja": "Adireは藍染めの多様な防染語彙、Tie-dyeは縛り点から放射する輪やにじみが強い手掛かりです。",
+        "en": "Adire spans Yoruba indigo resist vocabularies; Tie-dye is strongly cued by bound radial rings and soft bursts."
+      },
+      "decisive_cue": {
+        "ja": "Adireは藍染めの多様な防染語彙を確認。",
+        "en": "Adire spans Yoruba indigo resist vocabularies; Tie-dye is strongly cued by bound radial rings and soft bursts."
+      }
+    },
+    {
+      "id": "sashiko--kantha",
+      "left": "sashiko",
+      "right": "kantha",
+      "summary": {
+        "ja": "Sashikoは幾何学を作る規則的な運針、Kanthaは面全体のキルティング運針と自由な具象刺繍が目立ちます。",
+        "en": "Sashiko commonly organizes running stitches into geometry; Kantha emphasizes quilted running-stitch fields and freer imagery."
+      },
+      "decisive_cue": {
+        "ja": "Sashikoは幾何学を作る規則的な運針を確認。",
+        "en": "Sashiko commonly organizes running stitches into geometry; Kantha emphasizes quilted running-stitch fields and freer imagery."
+      }
+    },
+    {
+      "id": "african-wax-print--batik",
+      "left": "african-wax-print",
+      "right": "batik",
+      "summary": {
+        "ja": "African Wax Printは高彩度で輪郭が明瞭なプリント、Batikは蝋防染由来の境界や染めの表情が手掛かりです。",
+        "en": "African Wax Print favors crisp saturated printed motifs; Batik is cued by wax-resist boundaries and dyed effects."
+      },
+      "decisive_cue": {
+        "ja": "African Wax Printは高彩度で輪郭が明瞭なプリントを確認。",
+        "en": "African Wax Print favors crisp saturated printed motifs; Batik is cued by wax-resist boundaries and dyed effects."
+      }
+    },
+    {
+      "id": "block-print--kalamkari",
+      "left": "block-print",
+      "right": "kalamkari",
+      "summary": {
+        "ja": "Block Printは版単位の反復と位置ずれ、Kalamkariは描画的な植物・物語線が手掛かりです。",
+        "en": "Block Print shows modular repeated impressions; Kalamkari is more drawing-led and flowing."
+      },
+      "decisive_cue": {
+        "ja": "Block Printは版単位の反復と位置ずれを確認。",
+        "en": "Block Print shows modular repeated impressions; Kalamkari is more drawing-led and flowing."
+      }
+    },
+    {
+      "id": "zebra-print--tiger-print",
+      "left": "zebra-print",
+      "right": "tiger-print",
+      "summary": {
+        "ja": "Zebraは黒白の不規則縞、Tigerは橙地に黒い先細り縞です。",
+        "en": "Zebra uses irregular black-white bands; Tiger uses dark tapered stripes on orange/tan."
+      },
+      "decisive_cue": {
+        "ja": "Zebraは黒白の不規則縞を確認。",
+        "en": "Zebra uses irregular black-white bands; Tiger uses dark tapered stripes on orange/tan."
+      }
+    },
+    {
+      "id": "snake-print--giraffe-print",
+      "left": "snake-print",
+      "right": "giraffe-print",
+      "summary": {
+        "ja": "Snakeは細かな鱗セル、Giraffeは大きな多角形斑を淡色の網目が区切ります。",
+        "en": "Snake shows dense scale cells; Giraffe shows large polygonal patches separated by pale channels."
+      },
+      "decisive_cue": {
+        "ja": "Snakeは細かな鱗セルを確認。",
+        "en": "Snake shows dense scale cells; Giraffe shows large polygonal patches separated by pale channels."
+      }
+    },
+    {
+      "id": "cow-print--dalmatian-spots",
+      "left": "cow-print",
+      "right": "dalmatian-spots",
+      "summary": {
+        "ja": "Cowは大きな塊状斑、Dalmatianは小〜中の孤立スポットが多数です。",
+        "en": "Cow uses large blob-like patches; Dalmatian uses many smaller isolated spots."
+      },
+      "decisive_cue": {
+        "ja": "Cowは大きな塊状斑を確認。",
+        "en": "Cow uses large blob-like patches; Dalmatian uses many smaller isolated spots."
+      }
+    },
+    {
+      "id": "tie-dye--shibori",
+      "left": "tie-dye",
+      "right": "shibori",
+      "summary": {
+        "ja": "Tie-dyeは放射・輪・にじみを広く含み、Shiboriは日本の絞り技法としてより多様な縫い・折り・締めの痕跡を持ちます。",
+        "en": "Tie-dye is broadly cued by bound radial effects; Shibori covers Japanese resist methods with varied stitched, folded, and bound structures."
+      },
+      "decisive_cue": {
+        "ja": "Tie-dyeは放射・輪・にじみを広く含みを確認。",
+        "en": "Tie-dye is broadly cued by bound radial effects; Shibori covers Japanese resist methods with varied stitched, folded, and bound structures."
+      }
+    },
+    {
+      "id": "marbling--moire",
+      "left": "marbling",
+      "right": "moire",
+      "summary": {
+        "ja": "Marblingは色筋が液体のように交差し、Moiréは平行気味の水紋・木目状バンドが続きます。",
+        "en": "Marbling has interwoven fluid color veins; Moiré has more parallel watered or woodgrain-like bands."
+      },
+      "decisive_cue": {
+        "ja": "Marblingは色筋が液体のように交差しを確認。",
+        "en": "Marbling has interwoven fluid color veins; Moiré has more parallel watered or woodgrain-like bands."
+      }
+    },
+    {
+      "id": "terrazzo--dalmatian-spots",
+      "left": "terrazzo",
+      "right": "dalmatian-spots",
+      "summary": {
+        "ja": "Terrazzoは大小・多色の骨材チップ、Dalmatianは同系色の孤立スポットが中心です。",
+        "en": "Terrazzo uses multisize aggregate chips; Dalmatian uses mostly same-color isolated spots."
+      },
+      "decisive_cue": {
+        "ja": "Terrazzoは大小・多色の骨材チップを確認。",
+        "en": "Terrazzo uses multisize aggregate chips; Dalmatian uses mostly same-color isolated spots."
+      }
+    },
+    {
+      "id": "camouflage--cow-print",
+      "left": "camouflage",
+      "right": "cow-print",
+      "summary": {
+        "ja": "Camouflageは複数色の斑が重なって輪郭を分断し、Cowは白地に単色の大きな斑が独立します。",
+        "en": "Camouflage overlaps several patch colors to disrupt outlines; Cow usually isolates one dark patch color on a light ground."
+      },
+      "decisive_cue": {
+        "ja": "Camouflageは複数色の斑が重なって輪郭を分断しを確認。",
+        "en": "Camouflage overlaps several patch colors to disrupt outlines; Cow usually isolates one dark patch color on a light ground."
       }
     }
   ]

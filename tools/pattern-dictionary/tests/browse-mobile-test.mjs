@@ -12,8 +12,8 @@ const app=fs.readFileSync(path.join(root,'app.js'),'utf8');
 const indexes=[path.join(root,'index.html'),path.join(root,'en','index.html')];
 const expectedFamilies=['check','stripe','dot','geometric','japanese','floral','ornamental','animal','global-textile'];
 
-if(patterns.length!==80)throw new Error(`expected 80 patterns, got ${patterns.length}`);
-if(new Set(patterns.map(x=>x.id)).size!==80)throw new Error('pattern ids must be unique');
+if(patterns.length!==100)throw new Error(`expected 100 patterns, got ${patterns.length}`);
+if(new Set(patterns.map(x=>x.id)).size!==100)throw new Error('pattern ids must be unique');
 for(const family of expectedFamilies){
   const count=patterns.filter(p=>(p.families||[]).includes(family)).length;
   if(!count)throw new Error(`browse family ${family} has zero patterns`);
@@ -21,7 +21,7 @@ for(const family of expectedFamilies){
 for(const file of indexes){
   const html=fs.readFileSync(file,'utf8');
   for(const family of expectedFamilies)if(!html.includes(`data-family="${family}"`))throw new Error(`${path.relative(root,file)} missing ${family} filter`);
-  if(html.indexOf('data-family="check"')>html.indexOf('id="pattern-grid"'))throw new Error(`${path.relative(root,file)} filters must appear before the 80-image browse grid`);
+  if(html.indexOf('data-family="check"')>html.indexOf('id="pattern-grid"'))throw new Error(`${path.relative(root,file)} filters must appear before the 100-image browse grid`);
   if(/DEV images|DEV画像|実装検証用/.test(html))throw new Error(`${path.relative(root,file)} contains stale DEV-image messaging`);
 }
 if(!css.includes('@media(max-width:680px)'))throw new Error('missing mobile breakpoint');
@@ -39,4 +39,4 @@ for(const p of patterns){
     if(!verified&&!html.includes('noindex,follow'))throw new Error(`${prefix}${p.id}: pre-verified detail page must remain noindex,follow`);
   }
 }
-console.log('OK: browse families, 160 detail wrappers, stale messaging, and mobile comparison/filter contracts passed.');
+console.log('OK: browse families, 200 detail wrappers, stale messaging, and mobile comparison/filter contracts passed.');
