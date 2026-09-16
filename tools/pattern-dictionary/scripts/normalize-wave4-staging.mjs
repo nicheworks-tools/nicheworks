@@ -5,7 +5,9 @@ import {fileURLToPath} from 'node:url';
 const here=path.dirname(fileURLToPath(import.meta.url));
 const root=path.resolve(here,'..');
 const file=path.join(root,'data','wave4-production-content.json');
+const dictFile=path.join(root,'data','wave4-search-dictionary.json');
 const data=JSON.parse(fs.readFileSync(file,'utf8'));
+const dict=JSON.parse(fs.readFileSync(dictFile,'utf8'));
 const map={
 '壁紙':'wallpaper','生地':'textiles','家具装飾':'furnishing ornament','陶磁器':'ceramics','刺繍':'embroidery','椅子張り':'upholstery','クッション':'cushions','タペストリー':'tapestries','シルク':'silk','リボン':'ribbon','ドレス生地':'dress fabric','着物':'kimono','帯':'obi','和小物':'Japanese accessories','和装小物':'Japanese accessories','能装束':'Noh costume','有職文様':'courtly Japanese patterning','竹工芸':'bamboo craft','絞り染め':'shibori textiles','江戸小紋':'Edo komon','手ぬぐい':'tenugui','社寺装飾':'shrine and temple ornament','家紋':'heraldry','衣料':'apparel','サロン':'sarongs','サリー':'saris','ドゥパッタ':'dupattas','ショール':'shawls','寺院布':'temple cloths','壁掛け':'wall hangings'};
 
@@ -42,5 +44,13 @@ for(const p of data.patterns){
   if(p.distinguishing_features.en.length<3)p.distinguishing_features.en.push(cue.en);
   if(p.distinguishing_features.ja.length<3||p.distinguishing_features.en.length<3)throw new Error(`${p.pattern_id}: 3+ distinguishing features required after normalization`);
 }
+
+const kanoko=data.patterns.find(p=>p.pattern_id==='kanoko');
+if(!kanoko)throw new Error('kanoko staging record missing');
+if(!kanoko.search_terms.ja.includes('絞りの輪点'))kanoko.search_terms.ja.push('絞りの輪点');
+dict.ja=dict.ja||{};
+dict.ja['絞りの輪点']={ids:['kanoko']};
+
 fs.writeFileSync(file,JSON.stringify(data,null,2)+'\n');
-console.log('Wave 4 staging normalized: English common uses and 3+ pattern-specific distinguishing cues for 20 records.');
+fs.writeFileSync(dictFile,JSON.stringify(dict,null,2)+'\n');
+console.log('Wave 4 staging normalized: English common uses, 3+ pattern-specific distinguishing cues, and Kanoko resist-ring search signal.');
