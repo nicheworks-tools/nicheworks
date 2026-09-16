@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8');
+const app = read('tools/inci-fastscan/js/app.js');
 const matcher = read('tools/inci-fastscan/js/core_matcher.js');
 const ui = read('tools/inci-fastscan/js/web_ui.js');
 const spec = read('tools/inci-fastscan/SPEC.md');
@@ -23,9 +24,23 @@ check(ui.includes('候補は自動置換しません'), 'suggestions must remain
 check(!ui.includes('一般的に使用'), 'old safety-framed common label must not remain in result UI');
 check(!ui.includes('注意して確認'), 'old safety-framed caution label must not remain in result UI');
 
+// FastScan JP/EN must behave like one bilingual workflow, including dynamic rerendering of existing results.
+for (const token of [
+  'safeStorageGet("inci-fastscan-lang")',
+  'safeStorageSet("inci-fastscan-lang", currentLang)',
+  'browserLang.startsWith("ja") ? "ja" : "en"',
+  'document.documentElement.lang = currentLang',
+  'if (lastFastResults) renderResults(document.getElementById("fast-results"), lastFastResults, currentLang)',
+  'if (lastJbResults) renderResults(document.getElementById("jb-results"), lastJbResults, currentLang)',
+  'function setupJapaneseCheck()'
+]) {
+  check(app.includes(token), `FastScan bilingual/current Japanese matching contract missing: ${token}`);
+}
+check(!app.includes('setupJBTranslator'), 'obsolete Japanese-translator runtime naming returned');
+
 if (failures.length) {
   console.error(`FastScan result contract check failed (${failures.length})`);
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
-console.log('FastScan detailed result contract check passed');
+console.log('FastScan detailed result and bilingual contract check passed');
