@@ -10,11 +10,11 @@ const helper=fs.readFileSync(path.resolve(root,'../../assets/amazon-affiliate.js
 const ids=patterns.map(x=>x.id).sort(),offers=cfg.offers||[],patternOfferIds=[...new Set(offers.map(x=>x.pattern_id))].sort();
 const allowedIntents=new Set(['broad','apparel','material','accessory','home']);
 
-if(patterns.length!==60)throw new Error(`runtime must contain 60 patterns, got ${patterns.length}`);
+if(patterns.length!==80)throw new Error(`runtime must contain 80 patterns, got ${patterns.length}`);
 if(cfg.schema!=='pattern-dictionary-affiliate-v3'||cfg.provider!=='amazon.co.jp'||cfg.enabled!==true)throw new Error('affiliate contract/provider/enabled state invalid');
 if(cfg.tracking_id!=='nicheworks09-22'||cfg.shared_helper!=='/assets/amazon-affiliate.js')throw new Error('Pattern Dictionary must reuse the maintained NicheWorks Amazon helper/tag');
 if(cfg.policy?.query_source!=='maintained_canonical_mapping_only'||cfg.policy?.free_text_forwarding!==false)throw new Error('Amazon destinations must be maintained mappings and never user free text');
-if(JSON.stringify(ids)!==JSON.stringify(patternOfferIds))throw new Error('affiliate offers must cover exactly the published 60 patterns');
+if(JSON.stringify(ids)!==JSON.stringify(patternOfferIds))throw new Error('affiliate offers must cover exactly the published 80 patterns');
 if(new Set(offers.map(x=>x.offer_id)).size!==offers.length)throw new Error('offer IDs must be unique');
 if(new Set(offers.map(x=>x.amazon_url)).size!==offers.length)throw new Error('Amazon destinations must be unique');
 for(const id of ids){
@@ -30,8 +30,10 @@ for(const offer of offers){
   if(u.protocol!=='https:'||u.hostname!=='www.amazon.co.jp'||u.pathname!=='/s')throw new Error(`${offer.offer_id}: invalid Amazon.co.jp search URL`);
   if(u.searchParams.get('tag')!=='nicheworks09-22'||u.searchParams.get('k')!==offer.query)throw new Error(`${offer.offer_id}: URL query/tag mismatch`);
 }
-if(offers.length<165)throw new Error(`60-pattern publication should materially expand the Wave 2 link set; got only ${offers.length}`);
+const wave4=new Set(['baroque-scroll','chinoiserie','flame-stitch','tree-of-life','moire','yagasuri','sayagata','uroko','tatewaku','kagome','kanoko','hanabishi','same-komon','nami-chidori','tomoe','shibori','batik','bandhani','ajrakh','kalamkari']);
+for(const id of wave4)if(offers.filter(x=>x.pattern_id===id).length!==3)throw new Error(`${id}: Wave 4 must publish exactly three maintained commerce intents`);
+if(offers.length<225)throw new Error(`80-pattern publication should add 60 Wave 4 links to the canonical-60 set; got only ${offers.length}`);
 if(!app.includes('/assets/amazon-affiliate.js')||!app.includes("tool:'pattern-dictionary'")||!app.includes("placement:'pattern-detail'")||!app.includes('pd-amazon-links')||!app.includes('offer.offer_id'))throw new Error('runtime Amazon wiring incomplete');
 if(app.includes('amazonSearchUrl('))throw new Error('runtime must not construct private affiliate URLs');
 if(!helper.includes('affiliate_click')||!helper.includes('sponsored noopener'))throw new Error('shared helper analytics/sponsored semantics changed');
-console.log(`OK: Pattern Dictionary exposes ${offers.length} maintained Amazon intent links across 60 published patterns, with no free-text forwarding.`);
+console.log(`OK: Pattern Dictionary exposes ${offers.length} maintained Amazon intent links across 80 published patterns, including exactly 60 Wave 4 links, with no free-text forwarding.`);
