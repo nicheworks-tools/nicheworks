@@ -61,7 +61,7 @@ const sourceUrls=rows.flatMap(x=>x.sources.map(s=>s.url));
 if(new Set(sourceUrls).size<20)throw new Error(`Wave 4 source ledger is too concentrated; got ${new Set(sourceUrls).size} distinct evidence URLs`);
 
 const requiredBoundaryText={
-  'baroque-scroll':['historical decorative style','running scrolls','not one universal pattern'],
+  'baroque-scroll':['historical decorative style','running scrolls','rather than one universal pattern'],
   'chinoiserie':['broad European decorative style','one canonical repeat','representative'],
   'flame-stitch':['Bargello','technique/visual','one universal'],
   'moire':['watered textile surface effect','not one fixed'],
