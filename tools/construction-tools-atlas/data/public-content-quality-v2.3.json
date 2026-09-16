@@ -1,6 +1,6 @@
 {
   "schema": "cta-public-content-quality-v2.3",
-  "version": "2026-09-16-q014-identity-closure-1",
+  "version": "2026-09-16-q014-content-complete-1",
   "policy": {
     "purpose": "Measure source-backed or canonical-ID-enriched core content separately from runtime generic fallback copy.",
     "fallback_independent_core_requires": [
@@ -18,27 +18,27 @@
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
     "quality_manifest_version": "2026-09-14-manifest-8",
-    "content_enrichment_version": "2026-09-16-wave4c"
+    "content_enrichment_version": "2026-09-16-wave5d"
   },
   "summary": {
     "public_entries": 870,
-    "fallback_independent_core": 311,
-    "runtime_fallback_dependent": 559,
+    "fallback_independent_core": 409,
+    "runtime_fallback_dependent": 461,
     "missing_core_bilingual_content": 0,
     "explicit_bilingual_identity": 870,
     "explicit_bilingual_definition": 870,
-    "explicit_bilingual_detail": 530,
-    "explicit_bilingual_bullets": 311,
-    "explicit_bilingual_examples": 530,
+    "explicit_bilingual_detail": 628,
+    "explicit_bilingual_bullets": 409,
+    "explicit_bilingual_examples": 628,
     "explicit_bilingual_aliases": 279,
-    "content_enriched_entries": 171,
+    "content_enriched_entries": 269,
     "has_category_context": 870,
     "has_task_context": 870
   },
   "fallback_field_counts": {
-    "detail": 340,
-    "bullets": 559,
-    "examples": 340
+    "detail": 242,
+    "bullets": 461,
+    "examples": 242
   },
   "by_type": {
     "access": {
@@ -55,8 +55,8 @@
     },
     "component": {
       "public_entries": 205,
-      "fallback_independent_core": 67,
-      "runtime_fallback_dependent": 138,
+      "fallback_independent_core": 104,
+      "runtime_fallback_dependent": 101,
       "missing_core_bilingual_content": 0
     },
     "consumable": {
@@ -79,14 +79,14 @@
     },
     "equipment": {
       "public_entries": 43,
-      "fallback_independent_core": 23,
-      "runtime_fallback_dependent": 20,
+      "fallback_independent_core": 28,
+      "runtime_fallback_dependent": 15,
       "missing_core_bilingual_content": 0
     },
     "fastener": {
       "public_entries": 18,
-      "fallback_independent_core": 9,
-      "runtime_fallback_dependent": 9,
+      "fallback_independent_core": 12,
+      "runtime_fallback_dependent": 6,
       "missing_core_bilingual_content": 0
     },
     "fixture": {
@@ -97,8 +97,8 @@
     },
     "hardware": {
       "public_entries": 14,
-      "fallback_independent_core": 1,
-      "runtime_fallback_dependent": 13,
+      "fallback_independent_core": 13,
+      "runtime_fallback_dependent": 1,
       "missing_core_bilingual_content": 0
     },
     "inspection": {
@@ -109,8 +109,8 @@
     },
     "material": {
       "public_entries": 158,
-      "fallback_independent_core": 63,
-      "runtime_fallback_dependent": 95,
+      "fallback_independent_core": 94,
+      "runtime_fallback_dependent": 64,
       "missing_core_bilingual_content": 0
     },
     "materials": {
@@ -121,8 +121,8 @@
     },
     "process": {
       "public_entries": 19,
-      "fallback_independent_core": 3,
-      "runtime_fallback_dependent": 16,
+      "fallback_independent_core": 8,
+      "runtime_fallback_dependent": 11,
       "missing_core_bilingual_content": 0
     },
     "rigging": {
@@ -169,17 +169,17 @@
     },
     "tool": {
       "public_entries": 333,
-      "fallback_independent_core": 96,
-      "runtime_fallback_dependent": 237,
+      "fallback_independent_core": 101,
+      "runtime_fallback_dependent": 232,
       "missing_core_bilingual_content": 0
     }
   },
   "hashes": {
-    "content_status_sha256": "69522938d97a2109b0d8f50494cefbe7466953e79f19094a256725b29214cd5d",
-    "fallback_independent_id_sha256": "3b420d13684b71399b70e1a82e366da0d9152235d2a1cd689690d7845e4c7301",
-    "fallback_dependent_id_sha256": "37b053b3c0b35907c3559f55c1bcf1e82717e7f349dfeacb5a01d07de334df00",
+    "content_status_sha256": "0b86b4e1be1d0276e1bf4bbb91dd75fa54b2f952717b0855c698bff4add50dca",
+    "fallback_independent_id_sha256": "653ab6e51acc734689e683978b201f6696f67835529cb83e1202f6841218c3c3",
+    "fallback_dependent_id_sha256": "bb7561bd5b56125f5bf058da57938b0b1b015606e84a836f6f735a23e3566442",
     "missing_core_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "content_enriched_id_sha256": "5d6d4d78a740056532b416744c0f5252e278fddc28f109d8d86620ccc89877d5"
+    "content_enriched_id_sha256": "b3ceccda5f818211dec97568a2e6d68ed0fb2ed5f0e9ccf6cdc42feaeb5b90f9"
   },
   "samples": {
     "fallback_independent_core": [
@@ -336,8 +336,8 @@
     ],
     "runtime_fallback_dependent": [
       {
-        "id": "q014_galvalume_roof",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_cable_ladder",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -346,8 +346,8 @@
         ]
       },
       {
-        "id": "q014_standing_seam_roof",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_ladder_rack_connector",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -356,8 +356,8 @@
         ]
       },
       {
-        "id": "q014_corrugated_roof_sheet",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_cable_tray_cover",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -366,8 +366,8 @@
         ]
       },
       {
-        "id": "q014_eave_flashing",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_cable_gland",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -376,8 +376,8 @@
         ]
       },
       {
-        "id": "q014_snow_guard",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_cable_lug",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -386,8 +386,8 @@
         ]
       },
       {
-        "id": "q014_roof_vent",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_ring_terminal",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -396,8 +396,8 @@
         ]
       },
       {
-        "id": "q014_roof_sealant",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_spade_terminal",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -406,8 +406,8 @@
         ]
       },
       {
-        "id": "q014_roof_screw",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_ferrule_terminal",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -416,8 +416,8 @@
         ]
       },
       {
-        "id": "q014_roofing_nail",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_heat_shrink_tube",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -426,8 +426,8 @@
         ]
       },
       {
-        "id": "q014_bitumen_primer",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_wire_marker",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -436,8 +436,8 @@
         ]
       },
       {
-        "id": "q014_urethane_waterproofing",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_cable_label",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -446,8 +446,8 @@
         ]
       },
       {
-        "id": "q014_frp_waterproofing",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_junction_box",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -456,8 +456,8 @@
         ]
       },
       {
-        "id": "q014_sheet_membrane",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_pull_box",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -466,8 +466,8 @@
         ]
       },
       {
-        "id": "q014_torch_on_membrane",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_switch_box",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -476,8 +476,8 @@
         ]
       },
       {
-        "id": "q014_waterproof_topcoat",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_grounding_busbar",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -486,8 +486,8 @@
         ]
       },
       {
-        "id": "q014_drain_strainer",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_ground_rod",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -496,8 +496,8 @@
         ]
       },
       {
-        "id": "q014_roof_drain",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_ground_wire",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -506,8 +506,8 @@
         ]
       },
       {
-        "id": "q014_overflow_drain",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_light_fixture",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -516,8 +516,8 @@
         ]
       },
       {
-        "id": "q014_parapet_cap",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_led_downlight",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -526,8 +526,8 @@
         ]
       },
       {
-        "id": "q014_coping_joint",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_emergency_light",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -536,8 +536,8 @@
         ]
       },
       {
-        "id": "q014_fiber_cement_siding",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_exit_sign",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -546,8 +546,8 @@
         ]
       },
       {
-        "id": "q014_metal_siding",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_occupancy_sensor",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -556,8 +556,8 @@
         ]
       },
       {
-        "id": "q014_siding_starter",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_photoelectric_sensor",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -566,8 +566,8 @@
         ]
       },
       {
-        "id": "q014_siding_clip",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_earth_leakage_breaker",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
@@ -576,8 +576,8 @@
         ]
       },
       {
-        "id": "q014_siding_joint",
-        "source": "data/tools.quality-014.json",
+        "id": "q015_mccb",
+        "source": "data/tools.quality-015.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
