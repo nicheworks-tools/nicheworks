@@ -1,15 +1,58 @@
 {
   "schema": "cta-content-enrichment-manifest-v2.3",
-  "version": "2026-09-16-wave4c",
+  "version": "2026-09-16-wave5d",
   "packs": [
-    {"path":"./data/content-enrichment-v2.3.json","wave":"content-wave-001"},
-    {"path":"./data/content-enrichment-wave2-v2.3.json","wave":"content-wave-002"},
-    {"path":"./data/content-enrichment-wave3a-v2.3.json","wave":"content-wave-003a"},
-    {"path":"./data/content-enrichment-wave3b-v2.3.json","wave":"content-wave-003b"},
-    {"path":"./data/content-enrichment-wave3c-v2.3.json","wave":"content-wave-003c"},
-    {"path":"./data/content-enrichment-wave3d-v2.3.json","wave":"content-wave-003d"},
-    {"path":"./data/content-enrichment-wave4a-v2.3.json","wave":"content-wave-004a"},
-    {"path":"./data/content-enrichment-wave4b-v2.3.json","wave":"content-wave-004b"},
-    {"path":"./data/content-enrichment-wave4c-v2.3.json","wave":"content-wave-004c"}
+    {
+      "path": "./data/content-enrichment-v2.3.json",
+      "wave": "content-wave-001"
+    },
+    {
+      "path": "./data/content-enrichment-wave2-v2.3.json",
+      "wave": "content-wave-002"
+    },
+    {
+      "path": "./data/content-enrichment-wave3a-v2.3.json",
+      "wave": "content-wave-003a"
+    },
+    {
+      "path": "./data/content-enrichment-wave3b-v2.3.json",
+      "wave": "content-wave-003b"
+    },
+    {
+      "path": "./data/content-enrichment-wave3c-v2.3.json",
+      "wave": "content-wave-003c"
+    },
+    {
+      "path": "./data/content-enrichment-wave3d-v2.3.json",
+      "wave": "content-wave-003d"
+    },
+    {
+      "path": "./data/content-enrichment-wave4a-v2.3.json",
+      "wave": "content-wave-004a"
+    },
+    {
+      "path": "./data/content-enrichment-wave4b-v2.3.json",
+      "wave": "content-wave-004b"
+    },
+    {
+      "path": "./data/content-enrichment-wave4c-v2.3.json",
+      "wave": "content-wave-004c"
+    },
+    {
+      "path": "./data/content-enrichment-wave5a-v2.3.json",
+      "wave": "content-wave-005a"
+    },
+    {
+      "path": "./data/content-enrichment-wave5b-v2.3.json",
+      "wave": "content-wave-005b"
+    },
+    {
+      "path": "./data/content-enrichment-wave5c-v2.3.json",
+      "wave": "content-wave-005c"
+    },
+    {
+      "path": "./data/content-enrichment-wave5d-v2.3.json",
+      "wave": "content-wave-005d"
+    }
   ]
 }

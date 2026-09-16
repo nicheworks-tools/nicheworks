@@ -1,0 +1,456 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-16-wave5c-q014-1",
+  "entries": [
+    {
+      "id": "q014_exterior_paint",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "外壁を保護し仕上げる屋外用塗料。 下地種類と既存塗膜に適合する塗料体系を選び、洗浄・補修・下塗りから規定膜厚まで一連で管理する。",
+      "detail_en": "Paint used to protect and finish exterior walls. Select a coating system compatible with the substrate and existing finish, controlling cleaning, repairs, priming, and specified film build.",
+      "bullets_ja": [
+        "外壁塗料を外装塗装に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地状態、既存塗膜、温湿度と使用材料の適合を塗装前に確認する。",
+        "規定の塗布量・乾燥時間・塗重ね間隔を守り、膜厚むらや付着不良を点検する。"
+      ],
+      "bullets_en": [
+        "Before using Exterior Paint for exterior coating, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check substrate condition, existing coatings, ambient conditions, and material compatibility before coating.",
+        "Follow specified coverage, drying, and recoat intervals and inspect for poor adhesion or uneven film build."
+      ],
+      "examples_ja": [
+        "外装塗装で外壁塗料を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に外壁塗料の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Exterior Paint during exterior coating and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Exterior Paint and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_elastomeric_paint",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "伸縮性を持つ外装用塗膜材。 弾性は下地の微細な動きへ追従するための特性であり、大きな構造ひび割れを塗膜だけで解決しない。",
+      "detail_en": "Flexible coating used on exterior surfaces. Flexibility can bridge minor substrate movement, but it should not be used as a substitute for repairing significant structural cracking.",
+      "bullets_ja": [
+        "弾性塗料を外装塗装に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地状態、既存塗膜、温湿度と使用材料の適合を塗装前に確認する。",
+        "規定の塗布量・乾燥時間・塗重ね間隔を守り、膜厚むらや付着不良を点検する。"
+      ],
+      "bullets_en": [
+        "Before using Elastomeric Paint for exterior coating, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check substrate condition, existing coatings, ambient conditions, and material compatibility before coating.",
+        "Follow specified coverage, drying, and recoat intervals and inspect for poor adhesion or uneven film build."
+      ],
+      "examples_ja": [
+        "外装塗装で弾性塗料を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に弾性塗料の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Elastomeric Paint during exterior coating and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Elastomeric Paint and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_sealer_coat",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "下地の吸い込みを抑え密着を高める下塗り材。 これは仕上げ保護用のコンクリートシーラーではなく、吸込み調整と上塗り密着を目的とする下塗りとして扱う。",
+      "detail_en": "Base coat used to seal porous substrates and improve adhesion. This is a preparatory sealer coat for suction control and adhesion, not a final protective concrete sealer.",
+      "bullets_ja": [
+        "シーラーを塗装下塗りに使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地状態、既存塗膜、温湿度と使用材料の適合を塗装前に確認する。",
+        "規定の塗布量・乾燥時間・塗重ね間隔を守り、膜厚むらや付着不良を点検する。"
+      ],
+      "bullets_en": [
+        "Before using Sealer Coat for surface priming, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check substrate condition, existing coatings, ambient conditions, and material compatibility before coating.",
+        "Follow specified coverage, drying, and recoat intervals and inspect for poor adhesion or uneven film build."
+      ],
+      "examples_ja": [
+        "塗装下塗りでシーラーを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にシーラーの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Sealer Coat during surface priming and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Sealer Coat and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_filler_coat",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "外壁下地の細かな凹凸を埋める下塗り材。 細かな凹凸や巣穴を調整して上塗り面を整える用途で、深い欠損や動くひび割れは別途補修する。",
+      "detail_en": "Coating used to fill minor surface irregularities. Use it to level minor texture and pores before finish coats; deep defects or moving cracks need separate repair.",
+      "bullets_ja": [
+        "フィラーを塗装下地調整に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地状態、既存塗膜、温湿度と使用材料の適合を塗装前に確認する。",
+        "規定の塗布量・乾燥時間・塗重ね間隔を守り、膜厚むらや付着不良を点検する。"
+      ],
+      "bullets_en": [
+        "Before using Filler Coat for surface preparation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check substrate condition, existing coatings, ambient conditions, and material compatibility before coating.",
+        "Follow specified coverage, drying, and recoat intervals and inspect for poor adhesion or uneven film build."
+      ],
+      "examples_ja": [
+        "塗装下地調整でフィラーを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にフィラーの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Filler Coat during surface preparation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Filler Coat and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_spray_gun",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "塗料を霧状に吹き付ける工具。 ノズル口径、空気圧、塗料粘度と吹付距離を合わせ、オーバースプレーと膜厚むらを管理する。",
+      "detail_en": "Tool that sprays paint or coating in a fine mist. Match nozzle size, air pressure, coating viscosity, and spray distance to control overspray and film-build variation.",
+      "bullets_ja": [
+        "スプレーガンを吹付塗装に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地状態、既存塗膜、温湿度と使用材料の適合を塗装前に確認する。",
+        "規定の塗布量・乾燥時間・塗重ね間隔を守り、膜厚むらや付着不良を点検する。"
+      ],
+      "bullets_en": [
+        "Before using Spray Gun for spray coating, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check substrate condition, existing coatings, ambient conditions, and material compatibility before coating.",
+        "Follow specified coverage, drying, and recoat intervals and inspect for poor adhesion or uneven film build."
+      ],
+      "examples_ja": [
+        "吹付塗装でスプレーガンを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にスプレーガンの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Spray Gun during spray coating and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Spray Gun and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_airless_sprayer",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "高圧で塗料を吹き付ける塗装機。 高圧噴射のためノズル詰まりを手で確認せず、圧力解除手順とガードを守って適正チップを使用する。",
+      "detail_en": "High-pressure sprayer used for coating application. Because the fluid is highly pressurized, never clear a tip by hand; follow pressure-relief procedures, use guards, and fit the correct tip.",
+      "bullets_ja": [
+        "エアレス塗装機を吹付塗装に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地状態、既存塗膜、温湿度と使用材料の適合を塗装前に確認する。",
+        "規定の塗布量・乾燥時間・塗重ね間隔を守り、膜厚むらや付着不良を点検する。"
+      ],
+      "bullets_en": [
+        "Before using Airless Sprayer for spray coating, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check substrate condition, existing coatings, ambient conditions, and material compatibility before coating.",
+        "Follow specified coverage, drying, and recoat intervals and inspect for poor adhesion or uneven film build."
+      ],
+      "examples_ja": [
+        "吹付塗装でエアレス塗装機を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にエアレス塗装機の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Airless Sprayer during spray coating and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Airless Sprayer and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_scaffold_sheet",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "足場外周に張る飛散防止用シート。 足場の全面を覆うと風荷重が増えるため、取付ピッチ・開口率・足場補強を計画条件に合わせる。",
+      "detail_en": "Mesh sheet attached to scaffolding to contain debris or dust. Enclosing scaffolding increases wind load, so match tie spacing, mesh openness, and scaffold bracing to the temporary-works design.",
+      "bullets_ja": [
+        "養生メッシュシートを現場飛散防止に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "仮設材は本設材と異なり、設置期間中の風・落下物・作業動線まで含めて計画する。",
+        "固定部の緩み、破れ、ずれを定期点検し、条件変化時は再評価する。"
+      ],
+      "bullets_en": [
+        "Before using Scaffold Mesh Sheet for site containment, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Temporary materials must be planned for wind, falling debris, and work access throughout the temporary period.",
+        "Inspect fixings, tears, and displacement regularly and reassess when site conditions change."
+      ],
+      "examples_ja": [
+        "現場飛散防止で養生メッシュシートを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に養生メッシュシートの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Scaffold Mesh Sheet during site containment and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Scaffold Mesh Sheet and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_poly_curing_sheet",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "養生や防湿に使う薄い樹脂シート。 用途に応じて防湿・養生・汚れ防止を使い分け、継ぎ目や端部から水分・粉じんが回り込まないよう重ねる。",
+      "detail_en": "Plastic sheet used for curing, protection, or moisture control. Use the sheet appropriately for moisture control, curing, or protection and overlap edges so water or debris cannot readily bypass the barrier.",
+      "bullets_ja": [
+        "ポリシートを養生・防湿に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "保護対象を傷めない材質と固定方法を選び、継ぎ目や端部からの侵入・めくれを防ぐ。",
+        "作業動線や台車荷重で養生がずれていないか施工中も継続確認する。"
+      ],
+      "bullets_en": [
+        "Before using Poly Sheet for surface protection, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Choose materials and fixings that do not damage the protected finish and secure laps and edges against lifting or intrusion.",
+        "Continue checking protection during work for movement caused by traffic, carts, or equipment."
+      ],
+      "examples_ja": [
+        "養生・防湿でポリシートを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にポリシートの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Poly Sheet during surface protection and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Poly Sheet and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_floor_protection_board",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "仕上げ床を傷や汚れから守る養生板。 床材に傷を付けない表面を下側にし、継ぎ目を固定して台車や脚立でずれ・めくれが起きないようにする。",
+      "detail_en": "Board used to protect finished floors during work. Place a non-damaging face against the finished floor and secure joints so carts or ladders do not shift or lift the protection.",
+      "bullets_ja": [
+        "床養生ボードを床養生に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "保護対象を傷めない材質と固定方法を選び、継ぎ目や端部からの侵入・めくれを防ぐ。",
+        "作業動線や台車荷重で養生がずれていないか施工中も継続確認する。"
+      ],
+      "bullets_en": [
+        "Before using Floor Protection Board for floor protection, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Choose materials and fixings that do not damage the protected finish and secure laps and edges against lifting or intrusion.",
+        "Continue checking protection during work for movement caused by traffic, carts, or equipment."
+      ],
+      "examples_ja": [
+        "床養生で床養生ボードを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に床養生ボードの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Floor Protection Board during floor protection and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Floor Protection Board and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_corner_guard",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "柱や壁角を衝撃から守る保護材。 衝突が想定される高さと範囲を覆い、接着・ビス固定を下地に合わせて端部が引っ掛からないよう納める。",
+      "detail_en": "Protector installed on wall or column corners. Cover the likely impact zone and choose adhesive or mechanical fixing for the substrate, finishing edges so they do not create snag points.",
+      "bullets_ja": [
+        "コーナーガードを角部保護に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。",
+        "固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。"
+      ],
+      "bullets_en": [
+        "Before using Corner Guard for corner protection, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Select hardware for the supported component’s weight, dimensions, and service duty.",
+        "Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference."
+      ],
+      "examples_ja": [
+        "角部保護でコーナーガードを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にコーナーガードの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Corner Guard during corner protection and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Corner Guard and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_handrail",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "歩行や昇降を補助する握り部材。 歩行・昇降時に握る支持部材であり墜落防止柵全体とは別物なので、握りやすい高さ・連続性・壁とのクリアランスを確保する。",
+      "detail_en": "Rail used for support while walking or climbing. A handrail is the graspable support for walking or stairs, not the whole fall-protection guardrail; maintain usable height, continuity, and hand clearance.",
+      "bullets_ja": [
+        "手すりを手すり施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。",
+        "固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。"
+      ],
+      "bullets_en": [
+        "Before using Handrail for handrail installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Select hardware for the supported component’s weight, dimensions, and service duty.",
+        "Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference."
+      ],
+      "examples_ja": [
+        "手すり施工で手すりを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に手すりの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Handrail during handrail installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Handrail and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_guard_post",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "手すりや柵を支える縦部材。 手すり・柵の荷重を基部へ伝える支柱なので、取付間隔とアンカー強度をシステム全体の設計に合わせる。",
+      "detail_en": "Vertical post supporting a guardrail or handrail. As the post transfers railing loads into the base, its spacing and anchors must satisfy the capacity of the complete barrier system.",
+      "bullets_ja": [
+        "手すり支柱を柵支柱施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。",
+        "固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。"
+      ],
+      "bullets_en": [
+        "Before using Guardrail Post for guard-post installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Select hardware for the supported component’s weight, dimensions, and service duty.",
+        "Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference."
+      ],
+      "examples_ja": [
+        "柵支柱施工で手すり支柱を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に手すり支柱の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Guardrail Post during guard-post installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Guardrail Post and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_baluster",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "手すりや柵の間を埋める縦材。 縦格子の間隔と固定強度をそろえ、開口寸法やよじ登り防止など用途に応じた安全条件を満たす。",
+      "detail_en": "Vertical member between handrail and base. Maintain consistent baluster spacing and fixing strength, meeting applicable opening-size and climbing-safety requirements.",
+      "bullets_ja": [
+        "縦格子を手すり・柵施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。",
+        "固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。"
+      ],
+      "bullets_en": [
+        "Before using Baluster for railing installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Select hardware for the supported component’s weight, dimensions, and service duty.",
+        "Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference."
+      ],
+      "examples_ja": [
+        "手すり・柵施工で縦格子を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に縦格子の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Baluster during railing installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Baluster and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_exterior_fence",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "敷地境界や安全区画を示す外構部材。 恒久・一般外構の境界フェンスとして、風荷重、基礎、支柱間隔、隣地や通路への張り出しを確認する。",
+      "detail_en": "Exterior barrier used for boundaries or safety zones. For a permanent/general site fence, consider wind load, foundations, post spacing, and encroachment into adjacent property or circulation.",
+      "bullets_ja": [
+        "フェンスをフェンス施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "基礎・支柱・固定部を地盤条件と風荷重・使用荷重に合わせて設計どおり施工する。",
+        "通行、境界、開閉範囲、隣接物との干渉を完成時に確認する。"
+      ],
+      "bullets_en": [
+        "Before using Fence for fence installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Install foundations, posts, and fixings for the ground condition and specified wind/service loads.",
+        "At completion, check circulation, boundaries, operating clearance, and interference with adjacent work."
+      ],
+      "examples_ja": [
+        "フェンス施工でフェンスを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にフェンスの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Fence during fence installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Fence and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_fence_post",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "フェンス本体を支える柱。 パネル荷重と風荷重を受けるため、根入れ・基礎寸法・柱間隔をフェンス仕様に合わせて通りを出す。",
+      "detail_en": "Post that supports fence panels. Because posts resist panel and wind loads, coordinate embedment, footing size, spacing, and alignment with the fence system.",
+      "bullets_ja": [
+        "フェンス支柱をフェンス施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "基礎・支柱・固定部を地盤条件と風荷重・使用荷重に合わせて設計どおり施工する。",
+        "通行、境界、開閉範囲、隣接物との干渉を完成時に確認する。"
+      ],
+      "bullets_en": [
+        "Before using Fence Post for fence installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Install foundations, posts, and fixings for the ground condition and specified wind/service loads.",
+        "At completion, check circulation, boundaries, operating clearance, and interference with adjacent work."
+      ],
+      "examples_ja": [
+        "フェンス施工でフェンス支柱を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にフェンス支柱の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Fence Post during fence installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Fence Post and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_gate",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "敷地や通路の出入口に設ける開閉扉。 開閉軌跡と地面勾配、通行幅、施錠位置を確認し、閉止時にフェンスや柱へ荷重が適切に伝わるようにする。",
+      "detail_en": "Movable entrance panel for a site or path. Check swing path, ground slope, clear width, and latching position so the closed gate bears correctly against posts and fence components.",
+      "bullets_ja": [
+        "門扉を門扉施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "基礎・支柱・固定部を地盤条件と風荷重・使用荷重に合わせて設計どおり施工する。",
+        "通行、境界、開閉範囲、隣接物との干渉を完成時に確認する。"
+      ],
+      "bullets_en": [
+        "Before using Gate for gate installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Install foundations, posts, and fixings for the ground condition and specified wind/service loads.",
+        "At completion, check circulation, boundaries, operating clearance, and interference with adjacent work."
+      ],
+      "examples_ja": [
+        "門扉施工で門扉を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に門扉の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Gate during gate installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Gate and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_gate_hinge",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "門扉を回転支持する金物。 門扉重量と開閉頻度に合う丁番を選び、柱側の補強と上下軸を合わせて垂れ下がりを防ぐ。",
+      "detail_en": "Hinge used to support and swing a gate. Select hinges for gate weight and duty, reinforce the post connection, and align hinge axes to prevent sagging.",
+      "bullets_ja": [
+        "門扉丁番を門扉施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。",
+        "固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。"
+      ],
+      "bullets_en": [
+        "Before using Gate Hinge for gate installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Select hardware for the supported component’s weight, dimensions, and service duty.",
+        "Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference."
+      ],
+      "examples_ja": [
+        "門扉施工で門扉丁番を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に門扉丁番の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Gate Hinge during gate installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Gate Hinge and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_gate_latch",
+      "wave": "content-wave-005c",
+      "state": "expanded",
+      "detail_ja": "門扉を閉じた状態で保持する金物。 閉位置で自然に掛かり、風や振動で外れない方式を選び、必要に応じて施錠機能と避難上の操作性を両立させる。",
+      "detail_en": "Latch used to keep a gate closed. Use a latch that engages naturally and resists wind or vibration, balancing locking needs with required emergency egress operation.",
+      "bullets_ja": [
+        "門扉ラッチを門扉施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。",
+        "固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。"
+      ],
+      "bullets_en": [
+        "Before using Gate Latch for gate installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Select hardware for the supported component’s weight, dimensions, and service duty.",
+        "Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference."
+      ],
+      "examples_ja": [
+        "門扉施工で門扉ラッチを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に門扉ラッチの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Gate Latch during gate installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Gate Latch and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    }
+  ]
+}

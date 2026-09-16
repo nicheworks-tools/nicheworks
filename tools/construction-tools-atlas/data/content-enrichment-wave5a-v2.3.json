@@ -1,0 +1,781 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-16-wave5a-q014-1",
+  "entries": [
+    {
+      "id": "q014_galvalume_roof",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "アルミ亜鉛めっき鋼板を使う金属屋根。 切断端部や異種金属との接触部は防食上の弱点になりやすいため、板厚・表面処理・固定金物の適合も確認する。",
+      "detail_en": "Metal roofing made from aluminum-zinc coated steel sheet. Cut edges and contact with dissimilar metals can become corrosion weak points, so verify sheet thickness, coating condition, and compatible fasteners.",
+      "bullets_ja": [
+        "ガルバリウム鋼板屋根を屋根材の施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "製品仕様に指定された下地、勾配、重ね、固定条件を確認する。",
+        "完成後は端部・貫通部・固定部を中心に雨仕舞と浮き・変形を点検する。"
+      ],
+      "bullets_en": [
+        "Before using Galvalume Steel Roofing for roofing installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Verify the specified substrate, roof slope, laps, and fastening conditions.",
+        "After installation, inspect edges, penetrations, and fixings for weathering defects, lifting, or distortion."
+      ],
+      "examples_ja": [
+        "屋根材の施工でガルバリウム鋼板屋根を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にガルバリウム鋼板屋根の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Galvalume Steel Roofing during roofing installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Galvalume Steel Roofing and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_standing_seam_roof",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "縦方向のはぜで接合する金属屋根工法。 縦はぜの成形・かみ合わせと熱伸縮を妨げない固定方法が、止水性と長期挙動を左右する。",
+      "detail_en": "Metal roofing system joined by raised vertical seams. Seam formation, full engagement, and fastening that accommodates thermal movement are central to watertightness and long-term performance.",
+      "bullets_ja": [
+        "立平葺きを金属屋根の施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "製品仕様に指定された下地、勾配、重ね、固定条件を確認する。",
+        "完成後は端部・貫通部・固定部を中心に雨仕舞と浮き・変形を点検する。"
+      ],
+      "bullets_en": [
+        "Before using Standing Seam Roof for metal-roof installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Verify the specified substrate, roof slope, laps, and fastening conditions.",
+        "After installation, inspect edges, penetrations, and fixings for weathering defects, lifting, or distortion."
+      ],
+      "examples_ja": [
+        "金属屋根の施工で立平葺きを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に立平葺きの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Standing Seam Roof during metal-roof installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Standing Seam Roof and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_corrugated_roof_sheet",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "波形断面の軽量屋根・外装材。 波形の重ね方向・重ね幅と山部／谷部の固定位置を製品仕様に合わせ、風雨の吹込みを抑える。",
+      "detail_en": "Corrugated sheet used for lightweight roofing or cladding. Follow the specified lap direction, lap width, and crest/valley fastening position to limit wind-driven rain entry.",
+      "bullets_ja": [
+        "波板屋根材を屋根・外装シートの施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "製品仕様に指定された下地、勾配、重ね、固定条件を確認する。",
+        "完成後は端部・貫通部・固定部を中心に雨仕舞と浮き・変形を点検する。"
+      ],
+      "bullets_en": [
+        "Before using Corrugated Roof Sheet for roof-sheet installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Verify the specified substrate, roof slope, laps, and fastening conditions.",
+        "After installation, inspect edges, penetrations, and fixings for weathering defects, lifting, or distortion."
+      ],
+      "examples_ja": [
+        "屋根・外装シートの施工で波板屋根材を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に波板屋根材の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Corrugated Roof Sheet during roof-sheet installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Corrugated Roof Sheet and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_eave_flashing",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "軒先で雨水を外へ逃がす金属部材。 屋根下葺きや雨樋との上下関係を誤ると水を裏側へ導くため、水の流れが外へ連続する納まりを確認する。",
+      "detail_en": "Flashing at the eave that directs rainwater outward. Incorrect sequencing with underlayment or gutters can direct water behind the assembly, so maintain a continuous outward drainage path.",
+      "bullets_ja": [
+        "軒先水切りを水切り施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "製品仕様に指定された下地、勾配、重ね、固定条件を確認する。",
+        "完成後は端部・貫通部・固定部を中心に雨仕舞と浮き・変形を点検する。"
+      ],
+      "bullets_en": [
+        "Before using Eave Flashing for flashing installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Verify the specified substrate, roof slope, laps, and fastening conditions.",
+        "After installation, inspect edges, penetrations, and fixings for weathering defects, lifting, or distortion."
+      ],
+      "examples_ja": [
+        "水切り施工で軒先水切りを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に軒先水切りの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Eave Flashing during flashing installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Eave Flashing and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_snow_guard",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "屋根からの落雪を抑える金具。 屋根材の種類、勾配、積雪条件に合う方式と配置を選び、局部荷重を屋根材だけへ集中させない。",
+      "detail_en": "Roof hardware that reduces sudden snow sliding. Select a system and spacing suited to roof type, slope, and snow load, and avoid concentrating loads into unsupported roofing material.",
+      "bullets_ja": [
+        "雪止め金具を落雪対策に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "製品仕様に指定された下地、勾配、重ね、固定条件を確認する。",
+        "完成後は端部・貫通部・固定部を中心に雨仕舞と浮き・変形を点検する。"
+      ],
+      "bullets_en": [
+        "Before using Snow Guard for snow-retention work, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Verify the specified substrate, roof slope, laps, and fastening conditions.",
+        "After installation, inspect edges, penetrations, and fixings for weathering defects, lifting, or distortion."
+      ],
+      "examples_ja": [
+        "落雪対策で雪止め金具を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に雪止め金具の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Snow Guard during snow-retention work and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Snow Guard and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_roof_vent",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "屋根裏の湿気や熱を棟から排出する換気部材。 棟換気は排気口だけでなく軒天などの給気経路と組み合わせ、雨雪侵入を防ぐ防水層の連続性も確保する。",
+      "detail_en": "Vent installed at the ridge to exhaust attic heat or moisture. A ridge vent needs a matching intake path such as soffit vents, while the weather barrier must remain continuous against rain and snow entry.",
+      "bullets_ja": [
+        "棟換気を屋根換気施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "製品仕様に指定された下地、勾配、重ね、固定条件を確認する。",
+        "完成後は端部・貫通部・固定部を中心に雨仕舞と浮き・変形を点検する。"
+      ],
+      "bullets_en": [
+        "Before using Ridge Vent for roof ventilation work, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Verify the specified substrate, roof slope, laps, and fastening conditions.",
+        "After installation, inspect edges, penetrations, and fixings for weathering defects, lifting, or distortion."
+      ],
+      "examples_ja": [
+        "屋根換気施工で棟換気を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に棟換気の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Ridge Vent during roof ventilation work and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Ridge Vent and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_roof_sealant",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "屋根の取り合いやビス周りを止水する材料。 シーリングだけを一次防水に頼らず、適合する下地・プライマー・目地寸法と屋根ディテール全体で止水する。",
+      "detail_en": "Sealant used around roof joints and fasteners. Do not rely on sealant alone as primary waterproofing; confirm substrate compatibility, primer, joint geometry, and the complete roofing detail.",
+      "bullets_ja": [
+        "屋根用シーリング材を屋根止水に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "製品仕様に指定された下地、勾配、重ね、固定条件を確認する。",
+        "完成後は端部・貫通部・固定部を中心に雨仕舞と浮き・変形を点検する。"
+      ],
+      "bullets_en": [
+        "Before using Roof Sealant for roof sealing, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Verify the specified substrate, roof slope, laps, and fastening conditions.",
+        "After installation, inspect edges, penetrations, and fixings for weathering defects, lifting, or distortion."
+      ],
+      "examples_ja": [
+        "屋根止水で屋根用シーリング材を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に屋根用シーリング材の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Roof Sealant during roof sealing and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Roof Sealant and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_roof_screw",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "金属屋根や外装材を固定する防水座金付きビス。 座金の圧縮不足は漏水、締め過ぎは座金や板の損傷につながるため、母材への掛かりと締付け状態をそろえる。",
+      "detail_en": "Screw with sealing washer used for roofing sheets. Under-compressed washers can leak while overtightening can damage the washer or sheet, so control embedment and tightening consistently.",
+      "bullets_ja": [
+        "屋根ビスを屋根材の固定に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "製品仕様に指定された下地、勾配、重ね、固定条件を確認する。",
+        "完成後は端部・貫通部・固定部を中心に雨仕舞と浮き・変形を点検する。"
+      ],
+      "bullets_en": [
+        "Before using Roofing Screw for roof fastening, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Verify the specified substrate, roof slope, laps, and fastening conditions.",
+        "After installation, inspect edges, penetrations, and fixings for weathering defects, lifting, or distortion."
+      ],
+      "examples_ja": [
+        "屋根材の固定で屋根ビスを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に屋根ビスの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Roofing Screw during roof fastening and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Roofing Screw and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_roofing_nail",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "屋根材や下葺き材を固定する釘。 釘種・長さ・頭径を屋根材と下地に合わせ、打ち過ぎや浮きを避けて所定の固定ピッチを守る。",
+      "detail_en": "Nail used to fasten roof materials or underlayment. Match nail type, length, and head size to the roofing and substrate, avoiding overdriving or proud nails and following the required spacing.",
+      "bullets_ja": [
+        "屋根釘を屋根材の固定に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "製品仕様に指定された下地、勾配、重ね、固定条件を確認する。",
+        "完成後は端部・貫通部・固定部を中心に雨仕舞と浮き・変形を点検する。"
+      ],
+      "bullets_en": [
+        "Before using Roofing Nail for roof fastening, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Verify the specified substrate, roof slope, laps, and fastening conditions.",
+        "After installation, inspect edges, penetrations, and fixings for weathering defects, lifting, or distortion."
+      ],
+      "examples_ja": [
+        "屋根材の固定で屋根釘を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に屋根釘の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Roofing Nail during roof fastening and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Roofing Nail and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_bitumen_primer",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "アスファルト防水材の密着を高める下塗り材。 下地の乾燥・清掃と塗布量を管理し、プライマーが十分乾いてからアスファルト系防水層を施工する。",
+      "detail_en": "Primer used to improve adhesion of bituminous waterproofing. Control substrate dryness, cleanliness, and application rate, and allow the primer to dry as specified before applying bituminous waterproofing.",
+      "bullets_ja": [
+        "アスファルトプライマーを下地プライマー施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地の乾燥・清掃・不陸と材料同士の適合を施工前に確認する。",
+        "立上り、端末、貫通部、ドレン周りなど防水の弱点を重点的に検査する。"
+      ],
+      "bullets_en": [
+        "Before using Bitumen Primer for substrate priming, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check substrate dryness, cleanliness, flatness, and material compatibility before work.",
+        "Inspect waterproofing weak points such as upstands, terminations, penetrations, and drains closely."
+      ],
+      "examples_ja": [
+        "下地プライマー施工でアスファルトプライマーを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にアスファルトプライマーの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Bitumen Primer during substrate priming and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Bitumen Primer and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_urethane_waterproofing",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "液状ウレタンを塗って作る塗膜防水。 膜厚の不足やピンホールを避けるため、下地処理、補強、規定塗布量、層間乾燥を一連で管理する。",
+      "detail_en": "Liquid-applied urethane membrane waterproofing. Manage substrate preparation, reinforcement, specified coverage, and intercoat curing to avoid thin film areas and pinholes.",
+      "bullets_ja": [
+        "ウレタン防水を防水層形成に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地の乾燥・清掃・不陸と材料同士の適合を施工前に確認する。",
+        "立上り、端末、貫通部、ドレン周りなど防水の弱点を重点的に検査する。"
+      ],
+      "bullets_en": [
+        "Before using Urethane Waterproofing for waterproof membrane application, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check substrate dryness, cleanliness, flatness, and material compatibility before work.",
+        "Inspect waterproofing weak points such as upstands, terminations, penetrations, and drains closely."
+      ],
+      "examples_ja": [
+        "防水層形成でウレタン防水を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にウレタン防水の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Urethane Waterproofing during waterproof membrane application and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Urethane Waterproofing and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_frp_waterproofing",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "樹脂とガラス繊維で作る硬質な防水層。 樹脂の配合・硬化条件とガラスマットの含浸を管理し、気泡や未含浸部を残さない。",
+      "detail_en": "Rigid waterproofing system made with resin and glass fiber. Control resin mix and cure conditions and fully wet out the glass reinforcement so voids and dry fibers are not left in the laminate.",
+      "bullets_ja": [
+        "FRP防水を防水層形成に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地の乾燥・清掃・不陸と材料同士の適合を施工前に確認する。",
+        "立上り、端末、貫通部、ドレン周りなど防水の弱点を重点的に検査する。"
+      ],
+      "bullets_en": [
+        "Before using FRP Waterproofing for waterproof membrane application, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check substrate dryness, cleanliness, flatness, and material compatibility before work.",
+        "Inspect waterproofing weak points such as upstands, terminations, penetrations, and drains closely."
+      ],
+      "examples_ja": [
+        "防水層形成でFRP防水を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にFRP防水の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use FRP Waterproofing during waterproof membrane application and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed FRP Waterproofing and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_sheet_membrane",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "防水シートを貼って作る防水工法。 継ぎ目、立上り、端末、貫通部の処理が弱点になりやすく、シート本体だけでなく接合部を重点確認する。",
+      "detail_en": "Waterproofing made by laying membrane sheets. Laps, upstands, terminations, and penetrations are common weak points, so inspect joints as closely as the membrane field.",
+      "bullets_ja": [
+        "シート防水を防水シート施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地の乾燥・清掃・不陸と材料同士の適合を施工前に確認する。",
+        "立上り、端末、貫通部、ドレン周りなど防水の弱点を重点的に検査する。"
+      ],
+      "bullets_en": [
+        "Before using Sheet Membrane Waterproofing for sheet-membrane installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check substrate dryness, cleanliness, flatness, and material compatibility before work.",
+        "Inspect waterproofing weak points such as upstands, terminations, penetrations, and drains closely."
+      ],
+      "examples_ja": [
+        "防水シート施工でシート防水を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にシート防水の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Sheet Membrane Waterproofing during sheet-membrane installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Sheet Membrane Waterproofing and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_torch_on_membrane",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "バーナーで加熱して貼り付ける防水シート工法。 加熱不足による接着不良と過熱による材料損傷を避け、溶融状態とラップ部の連続接着を確認する。",
+      "detail_en": "Waterproofing membrane applied with torch heat. Avoid both underheating that causes poor bonding and overheating that damages the sheet; verify continuous fusion at laps.",
+      "bullets_ja": [
+        "トーチ工法防水を防水シート施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地の乾燥・清掃・不陸と材料同士の適合を施工前に確認する。",
+        "立上り、端末、貫通部、ドレン周りなど防水の弱点を重点的に検査する。"
+      ],
+      "bullets_en": [
+        "Before using Torch-On Membrane for sheet-membrane installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check substrate dryness, cleanliness, flatness, and material compatibility before work.",
+        "Inspect waterproofing weak points such as upstands, terminations, penetrations, and drains closely."
+      ],
+      "examples_ja": [
+        "防水シート施工でトーチ工法防水を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にトーチ工法防水の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Torch-On Membrane during sheet-membrane installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Torch-On Membrane and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_waterproof_topcoat",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "防水層を紫外線や摩耗から守る仕上げ塗膜。 トップコートは主防水層ではなく保護層なので、既存防水層の劣化・汚れ・含水状態を確認して適合品を塗る。",
+      "detail_en": "Protective coating applied over waterproofing membranes. A topcoat protects rather than replaces the primary membrane, so assess membrane condition, contamination, moisture, and product compatibility first.",
+      "bullets_ja": [
+        "防水トップコートを防水層保護に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地の乾燥・清掃・不陸と材料同士の適合を施工前に確認する。",
+        "立上り、端末、貫通部、ドレン周りなど防水の弱点を重点的に検査する。"
+      ],
+      "bullets_en": [
+        "Before using Waterproofing Topcoat for membrane protection, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check substrate dryness, cleanliness, flatness, and material compatibility before work.",
+        "Inspect waterproofing weak points such as upstands, terminations, penetrations, and drains closely."
+      ],
+      "examples_ja": [
+        "防水層保護で防水トップコートを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に防水トップコートの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Waterproofing Topcoat during membrane protection and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Waterproofing Topcoat and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_drain_strainer",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "屋上ドレンにごみが入るのを防ぐ部材。 通水断面を確保しつつ落葉やごみを捕捉できる形状を選び、清掃できる状態を維持する。",
+      "detail_en": "Screen used to keep debris out of roof drains. Choose a form that retains debris without choking the drainage area and keep it accessible for cleaning.",
+      "bullets_ja": [
+        "ドレンストレーナーをドレン保護に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地の乾燥・清掃・不陸と材料同士の適合を施工前に確認する。",
+        "立上り、端末、貫通部、ドレン周りなど防水の弱点を重点的に検査する。"
+      ],
+      "bullets_en": [
+        "Before using Drain Strainer for drain protection, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check substrate dryness, cleanliness, flatness, and material compatibility before work.",
+        "Inspect waterproofing weak points such as upstands, terminations, penetrations, and drains closely."
+      ],
+      "examples_ja": [
+        "ドレン保護でドレンストレーナーを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にドレンストレーナーの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Drain Strainer during drain protection and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Drain Strainer and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_roof_drain",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "屋上やバルコニーの雨水を排水する部材。 防水層とドレン本体の取り合いを連続させ、周囲に水が残らない勾配と排水能力を確保する。",
+      "detail_en": "Drain fitting used to discharge water from roofs or balconies. Integrate the membrane continuously with the drain body and provide adequate slope and capacity so water does not pond around the inlet.",
+      "bullets_ja": [
+        "ルーフドレンを屋根排水に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地の乾燥・清掃・不陸と材料同士の適合を施工前に確認する。",
+        "立上り、端末、貫通部、ドレン周りなど防水の弱点を重点的に検査する。"
+      ],
+      "bullets_en": [
+        "Before using Roof Drain for roof drainage, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check substrate dryness, cleanliness, flatness, and material compatibility before work.",
+        "Inspect waterproofing weak points such as upstands, terminations, penetrations, and drains closely."
+      ],
+      "examples_ja": [
+        "屋根排水でルーフドレンを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にルーフドレンの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Roof Drain during roof drainage and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Roof Drain and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_overflow_drain",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "排水不良時に水位上昇を逃がす予備排水口。 主排水が詰まったときの安全余裕として、設定高さと排出先を主ドレンとは独立して確認する。",
+      "detail_en": "Secondary drain used when primary drainage is blocked. Treat it as emergency capacity when the primary drain is blocked, verifying its inlet elevation and discharge path independently.",
+      "bullets_ja": [
+        "オーバーフロードレンを非常排水に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地の乾燥・清掃・不陸と材料同士の適合を施工前に確認する。",
+        "立上り、端末、貫通部、ドレン周りなど防水の弱点を重点的に検査する。"
+      ],
+      "bullets_en": [
+        "Before using Overflow Drain for overflow drainage, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check substrate dryness, cleanliness, flatness, and material compatibility before work.",
+        "Inspect waterproofing weak points such as upstands, terminations, penetrations, and drains closely."
+      ],
+      "examples_ja": [
+        "非常排水でオーバーフロードレンを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にオーバーフロードレンの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Overflow Drain during overflow drainage and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Overflow Drain and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_parapet_cap",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "パラペットや手すり壁の上端を保護する部材。 笠木の継手・端部・固定部で雨水を壁内へ入れないよう、排水勾配と水切りを連続させる。",
+      "detail_en": "Cap installed on parapet tops to protect the edge. At joints, ends, and fixings, maintain drainage slope and drip details so water is not driven into the parapet wall.",
+      "bullets_ja": [
+        "笠木を笠木施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地への荷重伝達と外装材の伸縮を考慮し、固定・クリアランスを仕様どおりにする。",
+        "雨水が裏側へ回らず、必要な通気・排水経路が連続しているか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Parapet Cap for parapet coping work, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide specified fixing and movement clearance while transferring loads correctly to the substrate.",
+        "Confirm rain is shed outward and required ventilation or drainage paths remain continuous."
+      ],
+      "examples_ja": [
+        "笠木施工で笠木を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に笠木の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Parapet Cap during parapet coping work and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Parapet Cap and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_coping_joint",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "笠木同士の接続部。止水と伸縮処理が必要。 温度伸縮を吸収できるクリアランスを確保し、ジョイント部の止水材やカバーを連続させる。",
+      "detail_en": "Joint between coping caps requiring sealing and movement allowance. Provide movement allowance for thermal expansion and keep joint seals or covers continuous across the coping connection.",
+      "bullets_ja": [
+        "笠木ジョイントを目地施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地への荷重伝達と外装材の伸縮を考慮し、固定・クリアランスを仕様どおりにする。",
+        "雨水が裏側へ回らず、必要な通気・排水経路が連続しているか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Coping Joint for joint sealing, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide specified fixing and movement clearance while transferring loads correctly to the substrate.",
+        "Confirm rain is shed outward and required ventilation or drainage paths remain continuous."
+      ],
+      "examples_ja": [
+        "目地施工で笠木ジョイントを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に笠木ジョイントの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Coping Joint during joint sealing and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Coping Joint and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_fiber_cement_siding",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "セメント質と繊維を主材とする外壁板。 割付、通気層、留付け位置、目地処理を製品仕様に合わせ、切断端部や開口部の防水処理も行う。",
+      "detail_en": "Exterior board made from cementitious and fiber materials. Follow product requirements for layout, cavity ventilation, fastener locations, and joints, including weather treatment at cut edges and openings.",
+      "bullets_ja": [
+        "窯業系サイディングを外壁材施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地への荷重伝達と外装材の伸縮を考慮し、固定・クリアランスを仕様どおりにする。",
+        "雨水が裏側へ回らず、必要な通気・排水経路が連続しているか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Fiber Cement Siding for siding installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide specified fixing and movement clearance while transferring loads correctly to the substrate.",
+        "Confirm rain is shed outward and required ventilation or drainage paths remain continuous."
+      ],
+      "examples_ja": [
+        "外壁材施工で窯業系サイディングを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に窯業系サイディングの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Fiber Cement Siding during siding installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Fiber Cement Siding and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_metal_siding",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "断熱材付き鋼板などの外壁パネル。 熱伸縮と板金端部の変形を考慮し、役物・重ね・固定ピッチをそろえて雨仕舞を確保する。",
+      "detail_en": "Metal wall siding panel, often with insulation backing. Allow for thermal movement and edge deformation, coordinating trims, laps, and fastening spacing for a weather-tight assembly.",
+      "bullets_ja": [
+        "金属サイディングを外壁材施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地への荷重伝達と外装材の伸縮を考慮し、固定・クリアランスを仕様どおりにする。",
+        "雨水が裏側へ回らず、必要な通気・排水経路が連続しているか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Metal Siding for siding installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide specified fixing and movement clearance while transferring loads correctly to the substrate.",
+        "Confirm rain is shed outward and required ventilation or drainage paths remain continuous."
+      ],
+      "examples_ja": [
+        "外壁材施工で金属サイディングを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に金属サイディングの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Metal Siding during siding installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Metal Siding and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_siding_starter",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "サイディングの最下段を受ける開始部材。 最初の一段の水平と掛かりを決める基準部材なので、レベルと連続性を先に確保する。",
+      "detail_en": "Starter strip used to support the first siding course. Because it establishes the level and engagement of the first siding course, verify its alignment and continuity before panels are installed.",
+      "bullets_ja": [
+        "スターター金物を外壁材施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地への荷重伝達と外装材の伸縮を考慮し、固定・クリアランスを仕様どおりにする。",
+        "雨水が裏側へ回らず、必要な通気・排水経路が連続しているか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Siding Starter Strip for siding installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide specified fixing and movement clearance while transferring loads correctly to the substrate.",
+        "Confirm rain is shed outward and required ventilation or drainage paths remain continuous."
+      ],
+      "examples_ja": [
+        "外壁材施工でスターター金物を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にスターター金物の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Siding Starter Strip during siding installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Siding Starter Strip and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_siding_clip",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "サイディングを下地へ留める専用金物。 対応するサイディング厚・形状と下地への固定方法を守り、クリップの浮きや過締めでパネルを拘束しない。",
+      "detail_en": "Clip used to fasten siding panels to the substrate. Use clips compatible with the panel profile and substrate, avoiding loose seating or overtightening that restricts panel movement.",
+      "bullets_ja": [
+        "サイディング金具を外壁材固定に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地への荷重伝達と外装材の伸縮を考慮し、固定・クリアランスを仕様どおりにする。",
+        "雨水が裏側へ回らず、必要な通気・排水経路が連続しているか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Siding Clip for siding fastening, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide specified fixing and movement clearance while transferring loads correctly to the substrate.",
+        "Confirm rain is shed outward and required ventilation or drainage paths remain continuous."
+      ],
+      "examples_ja": [
+        "外壁材固定でサイディング金具を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にサイディング金具の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Siding Clip during siding fastening and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Siding Clip and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_siding_joint",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "サイディング板同士の継ぎ目。防水処理が必要。 目地幅、バックアップ材、シーリングの二面接着などを管理し、パネルの伸縮を吸収できる目地にする。",
+      "detail_en": "Joint between siding panels that requires weather sealing. Control joint width, backing material, and two-sided sealant adhesion so the joint can accommodate panel movement.",
+      "bullets_ja": [
+        "サイディング目地をseal_sidingに使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地への荷重伝達と外装材の伸縮を考慮し、固定・クリアランスを仕様どおりにする。",
+        "雨水が裏側へ回らず、必要な通気・排水経路が連続しているか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Siding Joint for seal_siding, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide specified fixing and movement clearance while transferring loads correctly to the substrate.",
+        "Confirm rain is shed outward and required ventilation or drainage paths remain continuous."
+      ],
+      "examples_ja": [
+        "seal_sidingでサイディング目地を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にサイディング目地の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Siding Joint during seal_siding and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Siding Joint and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_vented_rainscreen",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "外壁裏に通気層を作る下地材。 通気胴縁は外装材の固定下地と通気経路を兼ねるため、上下の通気開口を塞がず荷重を下地へ伝える配置にする。",
+      "detail_en": "Batten used to create a ventilated cavity behind cladding. Rainscreen battens provide both cladding support and an air path, so keep inlet/outlet ventilation open while transferring cladding loads to the substrate.",
+      "bullets_ja": [
+        "通気胴縁を外壁通気層施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地への荷重伝達と外装材の伸縮を考慮し、固定・クリアランスを仕様どおりにする。",
+        "雨水が裏側へ回らず、必要な通気・排水経路が連続しているか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Vented Rainscreen Batten for rainscreen cavity work, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide specified fixing and movement clearance while transferring loads correctly to the substrate.",
+        "Confirm rain is shed outward and required ventilation or drainage paths remain continuous."
+      ],
+      "examples_ja": [
+        "外壁通気層施工で通気胴縁を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に通気胴縁の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Vented Rainscreen Batten during rainscreen cavity work and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Vented Rainscreen Batten and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_housewrap_tape",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "透湿防水シートの重ねや開口部を処理するテープ。 透湿防水シートの重ね・端部・開口補強に使い、濡れた面や粉じん面へ貼らず圧着して連続した止水線を作る。",
+      "detail_en": "Tape used to seal laps and openings in housewrap. Use it at membrane laps, edges, and opening details, applying to clean dry surfaces and rolling it firmly into a continuous weather seal.",
+      "bullets_ja": [
+        "防水気密テープを透湿防水層の止水に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地への荷重伝達と外装材の伸縮を考慮し、固定・クリアランスを仕様どおりにする。",
+        "雨水が裏側へ回らず、必要な通気・排水経路が連続しているか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Housewrap Tape for weather-barrier sealing, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide specified fixing and movement clearance while transferring loads correctly to the substrate.",
+        "Confirm rain is shed outward and required ventilation or drainage paths remain continuous."
+      ],
+      "examples_ja": [
+        "透湿防水層の止水で防水気密テープを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に防水気密テープの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Housewrap Tape during weather-barrier sealing and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Housewrap Tape and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_exterior_corner_trim",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "外壁の出隅・入隅を仕上げる部材。 出隅・入隅の寸法と外装材の伸縮クリアランスを取り、雨水が裏へ回らない重ね順序にする。",
+      "detail_en": "Trim used to finish outside or inside wall corners. Set corner geometry and movement clearance for the cladding and sequence overlaps so rainwater is shed outward rather than behind the finish.",
+      "bullets_ja": [
+        "外壁コーナー材を外壁コーナー納めに使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地への荷重伝達と外装材の伸縮を考慮し、固定・クリアランスを仕様どおりにする。",
+        "雨水が裏側へ回らず、必要な通気・排水経路が連続しているか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Exterior Corner Trim for exterior corner finishing, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide specified fixing and movement clearance while transferring loads correctly to the substrate.",
+        "Confirm rain is shed outward and required ventilation or drainage paths remain continuous."
+      ],
+      "examples_ja": [
+        "外壁コーナー納めで外壁コーナー材を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に外壁コーナー材の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Exterior Corner Trim during exterior corner finishing and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Exterior Corner Trim and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_fascia_board",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "屋根端部に取り付ける横板状部材。 この項目は鼻隠しではなく妻側の破風板（Bargeboard）として扱い、屋根端部の防水・見切り・下地納まりを確認する。",
+      "detail_en": "Board installed along roof edges. This canonical is the gable-edge bargeboard, not the eaves fascia; check weathering, edge finish, and substrate support at the roof verge.",
+      "bullets_ja": [
+        "破風板を屋根端部仕上げに使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地への荷重伝達と外装材の伸縮を考慮し、固定・クリアランスを仕様どおりにする。",
+        "雨水が裏側へ回らず、必要な通気・排水経路が連続しているか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Bargeboard for roof-edge finishing, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide specified fixing and movement clearance while transferring loads correctly to the substrate.",
+        "Confirm rain is shed outward and required ventilation or drainage paths remain continuous."
+      ],
+      "examples_ja": [
+        "屋根端部仕上げで破風板を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に破風板の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Bargeboard during roof-edge finishing and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Bargeboard and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_soffit_vent",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "軒天から小屋裏へ空気を入れる換気部材。 必要な有効開口面積を確保し、断熱材や防虫網で通気を塞がないよう棟換気との給排気バランスを取る。",
+      "detail_en": "Vent installed in soffits to admit attic air. Provide the required net free area and keep insulation or insect screens from blocking airflow, balancing intake with ridge exhaust.",
+      "bullets_ja": [
+        "軒天換気口を軒天換気施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地への荷重伝達と外装材の伸縮を考慮し、固定・クリアランスを仕様どおりにする。",
+        "雨水が裏側へ回らず、必要な通気・排水経路が連続しているか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Soffit Vent for soffit ventilation work, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide specified fixing and movement clearance while transferring loads correctly to the substrate.",
+        "Confirm rain is shed outward and required ventilation or drainage paths remain continuous."
+      ],
+      "examples_ja": [
+        "軒天換気施工で軒天換気口を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に軒天換気口の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Soffit Vent during soffit ventilation work and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Soffit Vent and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_panel_lifter_exterior",
+      "wave": "content-wave-005a",
+      "state": "expanded",
+      "detail_ja": "外壁パネルを持ち上げて位置合わせする機器。 パネル重量・寸法・吸着／クランプ方式に合う機器を選び、吊上げ中の風荷重と作業員の挟まれ範囲を管理する。",
+      "detail_en": "Lifter used to position exterior panels. Select lifting equipment for panel weight, size, and gripping method, controlling wind exposure and worker pinch/crush zones during positioning.",
+      "bullets_ja": [
+        "外装パネルリフターを外装パネル施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "下地への荷重伝達と外装材の伸縮を考慮し、固定・クリアランスを仕様どおりにする。",
+        "雨水が裏側へ回らず、必要な通気・排水経路が連続しているか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Panel Lifter for exterior-panel installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide specified fixing and movement clearance while transferring loads correctly to the substrate.",
+        "Confirm rain is shed outward and required ventilation or drainage paths remain continuous."
+      ],
+      "examples_ja": [
+        "外装パネル施工で外装パネルリフターを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に外装パネルリフターの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Panel Lifter during exterior-panel installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Panel Lifter and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    }
+  ]
+}

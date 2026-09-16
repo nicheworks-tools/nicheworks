@@ -1,0 +1,506 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-16-wave5b-q014-1",
+  "entries": [
+    {
+      "id": "q014_aluminum_sash",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "アルミ製の窓枠・建具。 開口の水平・垂直、アンカー固定、周囲の防水層とシーリングを一体で確認し、枠をねじらない。",
+      "detail_en": "Aluminum window sash or frame. Check opening plumb/level, anchors, perimeter flashing and sealant together, and avoid racking or twisting the aluminum frame.",
+      "bullets_ja": [
+        "アルミサッシを窓施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "開口寸法、水平・垂直、周囲防水との接続を施工前後で確認する。",
+        "可動部やガラスへ無理な拘束を与えず、排水・気密・止水経路を塞がない。"
+      ],
+      "bullets_en": [
+        "Before using Aluminum Sash for window installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check opening dimensions, plumb/level, and integration with perimeter weatherproofing.",
+        "Avoid stressing moving parts or glazing and keep drainage, air-seal, and weather-seal paths functional."
+      ],
+      "examples_ja": [
+        "窓施工でアルミサッシを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にアルミサッシの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Aluminum Sash during window installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Aluminum Sash and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_resin_sash",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "断熱性の高い樹脂製サッシ。 樹脂枠は熱変形や固定時の歪みに配慮し、指定クリアランスと固定位置を守って断熱・防水層へ接続する。",
+      "detail_en": "Vinyl window frame with higher thermal performance. Vinyl frames need allowance for thermal movement and fastening distortion; follow specified clearances and tie the frame into insulation and weather layers.",
+      "bullets_ja": [
+        "樹脂サッシを窓施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "開口寸法、水平・垂直、周囲防水との接続を施工前後で確認する。",
+        "可動部やガラスへ無理な拘束を与えず、排水・気密・止水経路を塞がない。"
+      ],
+      "bullets_en": [
+        "Before using Vinyl Window Frame for window installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check opening dimensions, plumb/level, and integration with perimeter weatherproofing.",
+        "Avoid stressing moving parts or glazing and keep drainage, air-seal, and weather-seal paths functional."
+      ],
+      "examples_ja": [
+        "窓施工で樹脂サッシを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に樹脂サッシの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Vinyl Window Frame during window installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Vinyl Window Frame and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_double_glazing",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "二枚以上のガラスで断熱層を持つガラス。 ガラス端部やスペーサーを傷めず、支持ブロックとガスケットで荷重を受けてシール部へ過大な力を掛けない。",
+      "detail_en": "Glazing unit with multiple panes and insulating space. Protect sealed edges and spacers, support the unit on setting blocks, and avoid transferring excessive load into the edge seal.",
+      "bullets_ja": [
+        "複層ガラスをガラス施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "開口寸法、水平・垂直、周囲防水との接続を施工前後で確認する。",
+        "可動部やガラスへ無理な拘束を与えず、排水・気密・止水経路を塞がない。"
+      ],
+      "bullets_en": [
+        "Before using Insulated Glass Unit for glazing installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check opening dimensions, plumb/level, and integration with perimeter weatherproofing.",
+        "Avoid stressing moving parts or glazing and keep drainage, air-seal, and weather-seal paths functional."
+      ],
+      "examples_ja": [
+        "ガラス施工で複層ガラスを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に複層ガラスの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Insulated Glass Unit during glazing installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Insulated Glass Unit and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_low_e_glass",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "熱の出入りを抑える低放射膜付きガラス。 Low-E膜の面位置は製品仕様と用途で決まるため、表裏やガラス構成を取り違えずに施工する。",
+      "detail_en": "Glass with low-emissivity coating to reduce heat transfer. The Low-E coating surface depends on the glazing build-up and product design, so verify orientation and pane configuration before installation.",
+      "bullets_ja": [
+        "Low-Eガラスをガラス施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "開口寸法、水平・垂直、周囲防水との接続を施工前後で確認する。",
+        "可動部やガラスへ無理な拘束を与えず、排水・気密・止水経路を塞がない。"
+      ],
+      "bullets_en": [
+        "Before using Low-E Glass for glazing installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check opening dimensions, plumb/level, and integration with perimeter weatherproofing.",
+        "Avoid stressing moving parts or glazing and keep drainage, air-seal, and weather-seal paths functional."
+      ],
+      "examples_ja": [
+        "ガラス施工でLow-Eガラスを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にLow-Eガラスの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Low-E Glass during glazing installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Low-E Glass and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_sill_pan",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "窓下端から侵入した水を外へ逃がす部材。 窓周りへ侵入した水を外へ排出する二次防水なので、立上り・端部ダム・外向き勾配を連続させる。",
+      "detail_en": "Flashing pan that drains water at the window sill. As secondary drainage beneath a window, maintain end dams, upstands, and outward slope so incidental water is directed outdoors.",
+      "bullets_ja": [
+        "水返し皿板を窓周り排水に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "開口寸法、水平・垂直、周囲防水との接続を施工前後で確認する。",
+        "可動部やガラスへ無理な拘束を与えず、排水・気密・止水経路を塞がない。"
+      ],
+      "bullets_en": [
+        "Before using Sill Pan for window drainage detailing, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check opening dimensions, plumb/level, and integration with perimeter weatherproofing.",
+        "Avoid stressing moving parts or glazing and keep drainage, air-seal, and weather-seal paths functional."
+      ],
+      "examples_ja": [
+        "窓周り排水で水返し皿板を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に水返し皿板の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Sill Pan during window drainage detailing and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Sill Pan and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_door_leaf",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "開閉する板状の建具本体。 枠とのクリアランス、建付け、重量に合う丁番・金物を確認し、開閉時に床や枠へ干渉しないよう調整する。",
+      "detail_en": "The movable panel of a door assembly. Check frame clearances, alignment, and hardware capacity for the door weight, adjusting the leaf so it operates without binding.",
+      "bullets_ja": [
+        "ドア本体をドア施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "開口寸法、水平・垂直、周囲防水との接続を施工前後で確認する。",
+        "可動部やガラスへ無理な拘束を与えず、排水・気密・止水経路を塞がない。"
+      ],
+      "bullets_en": [
+        "Before using Door Leaf for door installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check opening dimensions, plumb/level, and integration with perimeter weatherproofing.",
+        "Avoid stressing moving parts or glazing and keep drainage, air-seal, and weather-seal paths functional."
+      ],
+      "examples_ja": [
+        "ドア施工でドア本体を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にドア本体の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Door Leaf during door installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Door Leaf and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_door_hinge",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "ドアを回転支持する金物。 扉重量と使用頻度に合う丁番を選び、軸位置と複数丁番の芯を合わせてビスを確実に固定する。",
+      "detail_en": "Hardware that allows a door to swing. Select hinges for door weight and duty, align hinge axes, and secure fasteners into suitable backing.",
+      "bullets_ja": [
+        "丁番を扉吊込みに使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。",
+        "固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。"
+      ],
+      "bullets_en": [
+        "Before using Door Hinge for door hanging, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Select hardware for the supported component’s weight, dimensions, and service duty.",
+        "Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference."
+      ],
+      "examples_ja": [
+        "扉吊込みで丁番を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に丁番の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Door Hinge during door hanging and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Door Hinge and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_door_closer",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "ドアを自動で閉じる装置。 扉重量・幅に合う能力を選び、閉じ速度・ラッチ速度・バックチェックを現場条件に合わせて調整する。",
+      "detail_en": "Device that automatically closes a door. Select a closer sized for door mass and width, then adjust closing, latching, and backcheck functions for the installation.",
+      "bullets_ja": [
+        "ドアクローザーをドア金物施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。",
+        "固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。"
+      ],
+      "bullets_en": [
+        "Before using Door Closer for door-hardware installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Select hardware for the supported component’s weight, dimensions, and service duty.",
+        "Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference."
+      ],
+      "examples_ja": [
+        "ドア金物施工でドアクローザーを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にドアクローザーの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Door Closer during door-hardware installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Door Closer and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_door_stop",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "扉の開きすぎや壁への衝突を防ぐ金物。 戸先やハンドルが壁へ当たる前に確実に受ける位置へ設け、床・壁下地へ十分に固定する。",
+      "detail_en": "Hardware that stops a door from over-opening. Locate the stop so it catches the door before the leaf or handle strikes the wall, and anchor it to adequate backing.",
+      "bullets_ja": [
+        "戸当たりをドア金物施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。",
+        "固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。"
+      ],
+      "bullets_en": [
+        "Before using Door Stop for door-hardware installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Select hardware for the supported component’s weight, dimensions, and service duty.",
+        "Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference."
+      ],
+      "examples_ja": [
+        "ドア金物施工で戸当たりを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に戸当たりの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Door Stop during door-hardware installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Door Stop and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_door_lockset",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "扉を施錠・解錠する金物一式。 バックセット、扉厚、勝手、用途に合う錠前を選び、ラッチとストライクが無理なく噛み合うよう調整する。",
+      "detail_en": "Door hardware set used for locking and latching. Match backset, door thickness, handing, and security function, then align latch and strike for smooth engagement.",
+      "bullets_ja": [
+        "錠前を錠前施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。",
+        "固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。"
+      ],
+      "bullets_en": [
+        "Before using Lockset for lock installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Select hardware for the supported component’s weight, dimensions, and service duty.",
+        "Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference."
+      ],
+      "examples_ja": [
+        "錠前施工で錠前を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に錠前の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Lockset during lock installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Lockset and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_cylinder_lock",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "鍵で回す円筒形の施錠部品。 シリンダーだけで扉全体の防犯性能は決まらないため、錠ケース・ストライク・キーシステムとの適合を確認する。",
+      "detail_en": "Key-operated cylindrical lock component. The cylinder alone does not determine door security, so verify compatibility with the lock body, strike, and keying system.",
+      "bullets_ja": [
+        "シリンダー錠を錠前施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。",
+        "固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。"
+      ],
+      "bullets_en": [
+        "Before using Cylinder Lock for lock installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Select hardware for the supported component’s weight, dimensions, and service duty.",
+        "Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference."
+      ],
+      "examples_ja": [
+        "錠前施工でシリンダー錠を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にシリンダー錠の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Cylinder Lock during lock installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Cylinder Lock and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_door_handle",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "扉を開閉するための取っ手。 操作高さ、扉厚、錠ケースとの軸位置を合わせ、がたつきや回転抵抗が出ないよう両側を固定する。",
+      "detail_en": "Handle used to operate a door. Align handle height, door thickness, and spindle with the lock case, securing both sides without looseness or binding.",
+      "bullets_ja": [
+        "ドアハンドルをハンドル施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。",
+        "固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。"
+      ],
+      "bullets_en": [
+        "Before using Door Handle for handle installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Select hardware for the supported component’s weight, dimensions, and service duty.",
+        "Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference."
+      ],
+      "examples_ja": [
+        "ハンドル施工でドアハンドルを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にドアハンドルの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Door Handle during handle installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Door Handle and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_push_plate",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "扉を押して開けるための保護板。 人が押す位置に合わせて貼付・固定し、扉表面を傷や汚れから守りつつ他の金物と干渉させない。",
+      "detail_en": "Plate used to push a door open and protect its surface. Place it at the natural push zone to protect the door face while keeping clear of locks, handles, and other hardware.",
+      "bullets_ja": [
+        "押板をドア金物施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。",
+        "固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。"
+      ],
+      "bullets_en": [
+        "Before using Push Plate for door-hardware installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Select hardware for the supported component’s weight, dimensions, and service duty.",
+        "Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference."
+      ],
+      "examples_ja": [
+        "ドア金物施工で押板を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に押板の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Push Plate during door-hardware installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Push Plate and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_pull_handle",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "扉や引戸を引くための金物。 引張荷重を受けるため、扉材だけでなく補強下地へ確実に固定し、手指のクリアランスを確保する。",
+      "detail_en": "Handle used to pull a door or sliding panel. Because it carries pulling loads, fasten into reinforced backing and maintain adequate hand clearance from the door face.",
+      "bullets_ja": [
+        "引手をハンドル施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。",
+        "固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。"
+      ],
+      "bullets_en": [
+        "Before using Pull Handle for handle installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Select hardware for the supported component’s weight, dimensions, and service duty.",
+        "Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference."
+      ],
+      "examples_ja": [
+        "ハンドル施工で引手を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に引手の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Pull Handle during handle installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Pull Handle and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_sliding_door_rail",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "引戸を走らせるためのレール。 レールの直線・水平と支持間隔を確保し、戸車荷重を受けてもたわみや継ぎ目段差が出ないようにする。",
+      "detail_en": "Rail that guides a sliding door. Keep the track straight, level, and adequately supported so roller loads do not create sag or steps at joints.",
+      "bullets_ja": [
+        "引戸レールを引戸施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。",
+        "固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。"
+      ],
+      "bullets_en": [
+        "Before using Sliding Door Rail for sliding-door installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Select hardware for the supported component’s weight, dimensions, and service duty.",
+        "Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference."
+      ],
+      "examples_ja": [
+        "引戸施工で引戸レールを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に引戸レールの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Sliding Door Rail during sliding-door installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Sliding Door Rail and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_door_roller",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "引戸を滑らかに動かす車輪部品。 扉重量に合う戸車を使い、左右高さとレールへの掛かりを調整して偏摩耗や脱輪を防ぐ。",
+      "detail_en": "Roller used to move a sliding door smoothly. Use rollers rated for the door weight and adjust both sides for even engagement to prevent skewed wear or derailment.",
+      "bullets_ja": [
+        "戸車を引戸施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。",
+        "固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。"
+      ],
+      "bullets_en": [
+        "Before using Door Roller for sliding-door installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Select hardware for the supported component’s weight, dimensions, and service duty.",
+        "Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference."
+      ],
+      "examples_ja": [
+        "引戸施工で戸車を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に戸車の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Door Roller during sliding-door installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Door Roller and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_glazing_gasket",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "ガラスと枠の隙間を保持・止水するゴム材。 ガラス厚と溝寸法に合う断面を選び、継ぎ目・角部を浮かせず連続して押し込んで保持と止水を確保する。",
+      "detail_en": "Rubber gasket used between glass and frame. Match the gasket profile to glass and groove dimensions and seat it continuously through corners and joints for retention and weather sealing.",
+      "bullets_ja": [
+        "グレージングガスケットをガラス施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "開口寸法、水平・垂直、周囲防水との接続を施工前後で確認する。",
+        "可動部やガラスへ無理な拘束を与えず、排水・気密・止水経路を塞がない。"
+      ],
+      "bullets_en": [
+        "Before using Glazing Gasket for glazing installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check opening dimensions, plumb/level, and integration with perimeter weatherproofing.",
+        "Avoid stressing moving parts or glazing and keep drainage, air-seal, and weather-seal paths functional."
+      ],
+      "examples_ja": [
+        "ガラス施工でグレージングガスケットを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にグレージングガスケットの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Glazing Gasket during glazing installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Glazing Gasket and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_glazing_bead",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "ガラスを枠に押さえる細長い部材。 ガラスを過度に締め付けず均等に保持し、脱落防止の固定とガスケットの圧縮状態を確認する。",
+      "detail_en": "Strip that holds glazing in a frame. Retain the glazing evenly without excessive clamping, verifying bead security and correct gasket compression.",
+      "bullets_ja": [
+        "押縁をガラス固定に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "開口寸法、水平・垂直、周囲防水との接続を施工前後で確認する。",
+        "可動部やガラスへ無理な拘束を与えず、排水・気密・止水経路を塞がない。"
+      ],
+      "bullets_en": [
+        "Before using Glazing Bead for glazing retention, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check opening dimensions, plumb/level, and integration with perimeter weatherproofing.",
+        "Avoid stressing moving parts or glazing and keep drainage, air-seal, and weather-seal paths functional."
+      ],
+      "examples_ja": [
+        "ガラス固定で押縁を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に押縁の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Glazing Bead during glazing retention and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Glazing Bead and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_expansion_foam",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "隙間充填や断熱補助に使う発泡材。 発泡量を見込んで充填し、窓枠などを押し曲げない低膨張品の選定や余剰部の処理を行う。",
+      "detail_en": "Expanding foam used to fill gaps or improve insulation. Allow for expansion and, around frames, use suitable low-expansion foam so curing pressure does not distort the assembly.",
+      "bullets_ja": [
+        "発泡ウレタンフォームを隙間充填に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "開口寸法、水平・垂直、周囲防水との接続を施工前後で確認する。",
+        "可動部やガラスへ無理な拘束を与えず、排水・気密・止水経路を塞がない。"
+      ],
+      "bullets_en": [
+        "Before using Expanding Foam for gap filling, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check opening dimensions, plumb/level, and integration with perimeter weatherproofing.",
+        "Avoid stressing moving parts or glazing and keep drainage, air-seal, and weather-seal paths functional."
+      ],
+      "examples_ja": [
+        "隙間充填で発泡ウレタンフォームを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に発泡ウレタンフォームの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Expanding Foam during gap filling and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Expanding Foam and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_glass_suction_cup",
+      "wave": "content-wave-005b",
+      "state": "expanded",
+      "detail_ja": "ガラスやパネルを持ち運ぶ吸着工具。 ガラス重量に対する定格と吸着面の清潔さを確認し、吸盤だけを恒久吊り具や頭上保持に流用しない。",
+      "detail_en": "Suction tool used to carry glass or panels. Check rated capacity and clean contact surfaces, and do not treat a hand suction cup as a permanent lifting or overhead suspension device.",
+      "bullets_ja": [
+        "ガラス吸盤をガラス運搬に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "開口寸法、水平・垂直、周囲防水との接続を施工前後で確認する。",
+        "可動部やガラスへ無理な拘束を与えず、排水・気密・止水経路を塞がない。"
+      ],
+      "bullets_en": [
+        "Before using Glass Suction Cup for glass handling, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check opening dimensions, plumb/level, and integration with perimeter weatherproofing.",
+        "Avoid stressing moving parts or glazing and keep drainage, air-seal, and weather-seal paths functional."
+      ],
+      "examples_ja": [
+        "ガラス運搬でガラス吸盤を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にガラス吸盤の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Glass Suction Cup during glass handling and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Glass Suction Cup and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    }
+  ]
+}

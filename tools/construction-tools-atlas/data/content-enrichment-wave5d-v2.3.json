@@ -1,0 +1,731 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-16-wave5d-q014-1",
+  "entries": [
+    {
+      "id": "q014_interlocking_paver",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "舗装面に敷き並べる噛み合わせ式ブロック。 路盤の締固め、敷砂厚、目地砂、端部拘束を一体で管理し、ブロック単体ではなく舗装層として安定させる。",
+      "detail_en": "Paving block installed in interlocking patterns. Treat it as a pavement system: compact the base, control bedding sand, fill joints, and provide edge restraint for overall stability.",
+      "bullets_ja": [
+        "インターロッキングブロックを舗装ブロック施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "路盤の支持力・締固め・高さを整え、仕上げ厚と勾配を施工中に管理する。",
+        "完成後は不陸、段差、沈下、排水不良がないか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Interlocking Paver for paver installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Prepare base support, compaction, and elevation and control finished thickness and slope during placement.",
+        "After completion, inspect for unevenness, steps, settlement, and poor drainage."
+      ],
+      "examples_ja": [
+        "舗装ブロック施工でインターロッキングブロックを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にインターロッキングブロックの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Interlocking Paver during paver installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Interlocking Paver and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_concrete_paver",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "歩道や庭に敷くコンクリート平板。 平板の厚さと支持層を荷重条件に合わせ、不陸やがたつきを防ぐため全面で均等に支持する。",
+      "detail_en": "Concrete slab used for paths and exterior paving. Match slab thickness and base support to loading and provide uniform bearing to prevent rocking or differential settlement.",
+      "bullets_ja": [
+        "平板ブロックを舗装ブロック施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "路盤の支持力・締固め・高さを整え、仕上げ厚と勾配を施工中に管理する。",
+        "完成後は不陸、段差、沈下、排水不良がないか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Concrete Paver Slab for paver installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Prepare base support, compaction, and elevation and control finished thickness and slope during placement.",
+        "After completion, inspect for unevenness, steps, settlement, and poor drainage."
+      ],
+      "examples_ja": [
+        "舗装ブロック施工で平板ブロックを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に平板ブロックの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Concrete Paver Slab during paver installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Concrete Paver Slab and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_paving_stone",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "外構舗装に使う石材。 天然石は厚さや吸水性にばらつきがあるため、選別・割付と下地調整を行い、目地幅を整える。",
+      "detail_en": "Stone used for exterior paving. Natural stone varies in thickness and absorption, so sort pieces, adjust bedding, plan layout, and maintain controlled joint widths.",
+      "bullets_ja": [
+        "舗石を石舗装に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "路盤の支持力・締固め・高さを整え、仕上げ厚と勾配を施工中に管理する。",
+        "完成後は不陸、段差、沈下、排水不良がないか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Paving Stone for stone paving, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Prepare base support, compaction, and elevation and control finished thickness and slope during placement.",
+        "After completion, inspect for unevenness, steps, settlement, and poor drainage."
+      ],
+      "examples_ja": [
+        "石舗装で舗石を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に舗石の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Paving Stone during stone paving and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Paving Stone and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_curb_block",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "車道や歩道の端部を区切るブロック。 通り・高さ・勾配を基準に据え、背面拘束や基礎で車両・舗装からの横荷重に耐えるようにする。",
+      "detail_en": "Block used to define the edge of pavement or sidewalk. Set line, elevation, and slope accurately and provide bedding/back restraint to resist lateral loads from paving or vehicles.",
+      "bullets_ja": [
+        "縁石を縁石施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "路盤の支持力・締固め・高さを整え、仕上げ厚と勾配を施工中に管理する。",
+        "完成後は不陸、段差、沈下、排水不良がないか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Curb Block for curb installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Prepare base support, compaction, and elevation and control finished thickness and slope during placement.",
+        "After completion, inspect for unevenness, steps, settlement, and poor drainage."
+      ],
+      "examples_ja": [
+        "縁石施工で縁石を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に縁石の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Curb Block during curb installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Curb Block and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_granite_curb",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "石材でできた耐久性の高い縁石。 重量と寸法誤差を考慮して吊り・据付方法を選び、目地と基礎で石同士の段差を抑える。",
+      "detail_en": "Durable curb made from granite. Allow for unit weight and dimensional variation when handling and setting, using joints and bedding to control steps between stones.",
+      "bullets_ja": [
+        "御影石縁石を縁石施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "路盤の支持力・締固め・高さを整え、仕上げ厚と勾配を施工中に管理する。",
+        "完成後は不陸、段差、沈下、排水不良がないか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Granite Curb for curb installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Prepare base support, compaction, and elevation and control finished thickness and slope during placement.",
+        "After completion, inspect for unevenness, steps, settlement, and poor drainage."
+      ],
+      "examples_ja": [
+        "縁石施工で御影石縁石を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に御影石縁石の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Granite Curb during curb installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Granite Curb and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_asphalt_mix",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "道路や駐車場舗装に使うアスファルト材料。 混合物の種類、出荷温度、運搬時間、敷均し・転圧温度を管理し、冷え過ぎた材料を無理に締め固めない。",
+      "detail_en": "Asphalt material used for roads or parking surfaces. Control mix type, delivery temperature, haul time, placement, and compaction temperature rather than trying to compact material that has cooled excessively.",
+      "bullets_ja": [
+        "アスファルト合材をアスファルト舗装に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "路盤の支持力・締固め・高さを整え、仕上げ厚と勾配を施工中に管理する。",
+        "完成後は不陸、段差、沈下、排水不良がないか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Asphalt Mix for asphalt paving, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Prepare base support, compaction, and elevation and control finished thickness and slope during placement.",
+        "After completion, inspect for unevenness, steps, settlement, and poor drainage."
+      ],
+      "examples_ja": [
+        "アスファルト舗装でアスファルト合材を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にアスファルト合材の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Asphalt Mix during asphalt paving and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Asphalt Mix and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_asphalt_tack_coat",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "アスファルト層同士の接着を高める乳剤。 既設・下層舗装面を清掃し、薄く均一に散布して破断面なく層間接着させる。",
+      "detail_en": "Bituminous emulsion used to bond asphalt layers. Clean the underlying asphalt surface and apply a thin uniform film so the new lift bonds continuously to the existing layer.",
+      "bullets_ja": [
+        "タックコートを舗装層間接着に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "路盤の支持力・締固め・高さを整え、仕上げ厚と勾配を施工中に管理する。",
+        "完成後は不陸、段差、沈下、排水不良がないか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Tack Coat for asphalt interlayer bonding, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Prepare base support, compaction, and elevation and control finished thickness and slope during placement.",
+        "After completion, inspect for unevenness, steps, settlement, and poor drainage."
+      ],
+      "examples_ja": [
+        "舗装層間接着でタックコートを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にタックコートの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Tack Coat during asphalt interlayer bonding and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Tack Coat and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_asphalt_primer",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "路盤と舗装層の接着や防水を助ける乳剤。 粒状路盤へ浸透させるプライムコートであり、舗装層間のタックコートと用途を分けて散布量・養生を管理する。",
+      "detail_en": "Bituminous coat applied to a base before asphalt paving. Prime coat penetrates a granular base; distinguish it from tack coat between asphalt lifts and control application rate and cure time accordingly.",
+      "bullets_ja": [
+        "プライムコートを舗装路盤処理に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "路盤の支持力・締固め・高さを整え、仕上げ厚と勾配を施工中に管理する。",
+        "完成後は不陸、段差、沈下、排水不良がないか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Prime Coat for pavement-base preparation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Prepare base support, compaction, and elevation and control finished thickness and slope during placement.",
+        "After completion, inspect for unevenness, steps, settlement, and poor drainage."
+      ],
+      "examples_ja": [
+        "舗装路盤処理でプライムコートを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にプライムコートの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Prime Coat during pavement-base preparation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Prime Coat and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_vibratory_roller",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "舗装や路盤を振動で締め固める機械。 層厚・材料・周辺構造物に応じて振動数や走行回数を調整し、過転圧や振動影響を避ける。",
+      "detail_en": "Roller used to compact pavement or base layers by vibration. Adjust vibration and pass count to material, lift thickness, and nearby structures, avoiding overcompaction or harmful vibration.",
+      "bullets_ja": [
+        "振動ローラーを舗装転圧に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "路盤の支持力・締固め・高さを整え、仕上げ厚と勾配を施工中に管理する。",
+        "完成後は不陸、段差、沈下、排水不良がないか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Vibratory Roller for pavement compaction, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Prepare base support, compaction, and elevation and control finished thickness and slope during placement.",
+        "After completion, inspect for unevenness, steps, settlement, and poor drainage."
+      ],
+      "examples_ja": [
+        "舗装転圧で振動ローラーを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に振動ローラーの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Vibratory Roller during pavement compaction and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Vibratory Roller and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_hand_roller",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "小規模舗装を締め固める手押しローラー。 狭所や端部の小規模転圧に使い、旋回時の押し出しや段差を避けながら所定密度まで均一に締める。",
+      "detail_en": "Walk-behind roller used for small paving areas. Use it for confined areas and edges, compacting uniformly while avoiding material shoving or steps during turns.",
+      "bullets_ja": [
+        "ハンドローラーを舗装転圧に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "路盤の支持力・締固め・高さを整え、仕上げ厚と勾配を施工中に管理する。",
+        "完成後は不陸、段差、沈下、排水不良がないか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Walk-Behind Roller for pavement compaction, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Prepare base support, compaction, and elevation and control finished thickness and slope during placement.",
+        "After completion, inspect for unevenness, steps, settlement, and poor drainage."
+      ],
+      "examples_ja": [
+        "舗装転圧でハンドローラーを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にハンドローラーの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Walk-Behind Roller during pavement compaction and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Walk-Behind Roller and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_asphalt_rake",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "アスファルト合材をならすレーキ。 高温合材を配るための専用形状を使い、粗骨材を分離させず必要厚さへ素早く敷き均す。",
+      "detail_en": "Rake used to spread and level asphalt mix. Use the paving-specific rake to distribute hot mix quickly to the required depth without segregating coarse aggregate.",
+      "bullets_ja": [
+        "アスファルトレーキを合材敷均しに使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "路盤の支持力・締固め・高さを整え、仕上げ厚と勾配を施工中に管理する。",
+        "完成後は不陸、段差、沈下、排水不良がないか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Asphalt Rake for asphalt spreading, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Prepare base support, compaction, and elevation and control finished thickness and slope during placement.",
+        "After completion, inspect for unevenness, steps, settlement, and poor drainage."
+      ],
+      "examples_ja": [
+        "合材敷均しでアスファルトレーキを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にアスファルトレーキの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Asphalt Rake during asphalt spreading and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Asphalt Rake and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_lute_rake",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "舗装面を平滑にならす長柄の工具。 レーキより最終面の微調整に使い、合材を引き過ぎて粗骨材を分離させないよう平滑に整える。",
+      "detail_en": "Long-handled tool used to smooth asphalt surfaces. Use the lute for final surface adjustment rather than bulk spreading, smoothing without overworking and segregating the mix.",
+      "bullets_ja": [
+        "ルートレーキを舗装面仕上げに使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "路盤の支持力・締固め・高さを整え、仕上げ厚と勾配を施工中に管理する。",
+        "完成後は不陸、段差、沈下、排水不良がないか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Asphalt Lute for asphalt finishing, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Prepare base support, compaction, and elevation and control finished thickness and slope during placement.",
+        "After completion, inspect for unevenness, steps, settlement, and poor drainage."
+      ],
+      "examples_ja": [
+        "舗装面仕上げでルートレーキを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にルートレーキの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Asphalt Lute during asphalt finishing and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Asphalt Lute and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_paver_machine",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "アスファルトを敷き均す舗装機械。 スクリード設定、敷幅、速度、材料供給を安定させ、停止や供給むらによる段差・密度差を抑える。",
+      "detail_en": "Machine used to place and level asphalt pavement. Stabilize screed settings, paving width, speed, and material feed to minimize bumps or density variation from stops and starvation.",
+      "bullets_ja": [
+        "アスファルトフィニッシャーをアスファルト舗装に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "路盤の支持力・締固め・高さを整え、仕上げ厚と勾配を施工中に管理する。",
+        "完成後は不陸、段差、沈下、排水不良がないか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Asphalt Paver for asphalt paving, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Prepare base support, compaction, and elevation and control finished thickness and slope during placement.",
+        "After completion, inspect for unevenness, steps, settlement, and poor drainage."
+      ],
+      "examples_ja": [
+        "アスファルト舗装でアスファルトフィニッシャーを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にアスファルトフィニッシャーの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Asphalt Paver during asphalt paving and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Asphalt Paver and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_line_marking_paint",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "駐車場や道路のラインを描く塗料。 路面の乾燥・清掃と交通開放までの乾燥時間を確保し、規定幅・膜厚・視認性をそろえる。",
+      "detail_en": "Paint used for road or parking lot line marking. Apply to a clean dry surface, allow sufficient cure before reopening traffic, and control line width, film build, and visibility.",
+      "bullets_ja": [
+        "路面標示塗料を路面標示に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "路盤の支持力・締固め・高さを整え、仕上げ厚と勾配を施工中に管理する。",
+        "完成後は不陸、段差、沈下、排水不良がないか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Line Marking Paint for pavement marking, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Prepare base support, compaction, and elevation and control finished thickness and slope during placement.",
+        "After completion, inspect for unevenness, steps, settlement, and poor drainage."
+      ],
+      "examples_ja": [
+        "路面標示で路面標示塗料を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に路面標示塗料の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Line Marking Paint during pavement marking and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Line Marking Paint and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_trench_drain",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "地表水を線状に集めて流す排水溝。 線状に集水する側溝として、流末へ向かう勾配、支持基礎、グレーチング荷重区分を合わせる。",
+      "detail_en": "Linear drain used to collect surface water. As a linear collector, coordinate channel slope to the outlet, structural bedding, and grate load class with the installation.",
+      "bullets_ja": [
+        "側溝を側溝施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "設計流量に合う断面と流末までの連続勾配を確保する。",
+        "土砂・ごみの堆積や詰まりを点検・清掃できるアクセスを残す。"
+      ],
+      "bullets_en": [
+        "Before using Trench Drain for trench-drain installation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide hydraulic capacity and continuous fall to the intended outlet.",
+        "Maintain access so sediment and debris accumulation can be inspected and cleaned."
+      ],
+      "examples_ja": [
+        "側溝施工で側溝を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に側溝の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Trench Drain during trench-drain installation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Trench Drain and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_grating",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "側溝や排水桝を覆う格子状の蓋。 歩行・車両荷重に合う耐荷重と目幅を選び、受枠への掛かりと浮き止めを確保してがたつきを防ぐ。",
+      "detail_en": "Grid cover used over drains or pits. Select load rating and opening size for pedestrian or vehicle use and provide full frame bearing and restraint against uplift or rocking.",
+      "bullets_ja": [
+        "グレーチングを排水開口保護に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "設計流量に合う断面と流末までの連続勾配を確保する。",
+        "土砂・ごみの堆積や詰まりを点検・清掃できるアクセスを残す。"
+      ],
+      "bullets_en": [
+        "Before using Grating for drain-opening protection, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide hydraulic capacity and continuous fall to the intended outlet.",
+        "Maintain access so sediment and debris accumulation can be inspected and cleaned."
+      ],
+      "examples_ja": [
+        "排水開口保護でグレーチングを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にグレーチングの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Grating during drain-opening protection and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Grating and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_drain_channel",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "水を一定方向へ流すU字状の排水部材。 排水量に合う断面と連続勾配を確保し、継手や端部から漏水・土砂流入が起きないよう接続する。",
+      "detail_en": "Channel used to convey surface water. Provide adequate hydraulic section and continuous fall, sealing joints and ends against leakage or soil intrusion.",
+      "bullets_ja": [
+        "排水チャンネルを表面排水に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "設計流量に合う断面と流末までの連続勾配を確保する。",
+        "土砂・ごみの堆積や詰まりを点検・清掃できるアクセスを残す。"
+      ],
+      "bullets_en": [
+        "Before using Drainage Channel for surface drainage, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide hydraulic capacity and continuous fall to the intended outlet.",
+        "Maintain access so sediment and debris accumulation can be inspected and cleaned."
+      ],
+      "examples_ja": [
+        "表面排水で排水チャンネルを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に排水チャンネルの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Drainage Channel during surface drainage and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Drainage Channel and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_stormwater_inlet",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "雨水を集めて排水管へ流す桝。 流入口高さを周囲舗装の低点へ合わせ、堆積物を清掃できる桝深さと配管接続を確保する。",
+      "detail_en": "Inlet that collects stormwater into drainage piping. Set the inlet at the pavement low point and provide accessible sump depth and pipe connections for maintenance.",
+      "bullets_ja": [
+        "雨水桝を集水設備施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "設計流量に合う断面と流末までの連続勾配を確保する。",
+        "土砂・ごみの堆積や詰まりを点検・清掃できるアクセスを残す。"
+      ],
+      "bullets_en": [
+        "Before using Stormwater Inlet for stormwater collection, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide hydraulic capacity and continuous fall to the intended outlet.",
+        "Maintain access so sediment and debris accumulation can be inspected and cleaned."
+      ],
+      "examples_ja": [
+        "集水設備施工で雨水桝を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に雨水桝の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Stormwater Inlet during stormwater collection and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Stormwater Inlet and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_catchpit",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "排水や土砂を一時的に受ける桝。 水と土砂を一時受けるため、流入・流出管より下に泥溜め容量を確保し、清掃アクセスを残す。",
+      "detail_en": "Pit used to collect water or sediment. Provide sump volume below connecting pipes so sediment can settle, while retaining access for periodic cleaning.",
+      "bullets_ja": [
+        "集水ピットを集水設備施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "設計流量に合う断面と流末までの連続勾配を確保する。",
+        "土砂・ごみの堆積や詰まりを点検・清掃できるアクセスを残す。"
+      ],
+      "bullets_en": [
+        "Before using Catch Pit for stormwater collection, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide hydraulic capacity and continuous fall to the intended outlet.",
+        "Maintain access so sediment and debris accumulation can be inspected and cleaned."
+      ],
+      "examples_ja": [
+        "集水設備施工で集水ピットを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に集水ピットの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Catch Pit during stormwater collection and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Catch Pit and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_sediment_trap",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "土砂を沈めて排水管への流入を抑える部分。 配管トラップの水封とは別物で、流速を落として土砂を沈降させ、堆積物を除去できる構造にする。",
+      "detail_en": "Trap that captures sediment before water enters drainage lines. This is not a plumbing water-seal trap; it slows flow to settle solids and must permit removal of accumulated sediment.",
+      "bullets_ja": [
+        "泥溜めを土砂捕捉に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "設計流量に合う断面と流末までの連続勾配を確保する。",
+        "土砂・ごみの堆積や詰まりを点検・清掃できるアクセスを残す。"
+      ],
+      "bullets_en": [
+        "Before using Sediment Trap for sediment control, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide hydraulic capacity and continuous fall to the intended outlet.",
+        "Maintain access so sediment and debris accumulation can be inspected and cleaned."
+      ],
+      "examples_ja": [
+        "土砂捕捉で泥溜めを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に泥溜めの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Sediment Trap during sediment control and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Sediment Trap and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_drain_cover",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "排水口を保護する蓋。 開口寸法・荷重条件に合う蓋を使い、ずれ・落下・つまずきを防ぎながら点検時に取り外せるようにする。",
+      "detail_en": "Cover installed over a drain opening. Match cover size and load rating to the opening, preventing displacement or trip hazards while retaining maintenance access.",
+      "bullets_ja": [
+        "排水蓋を排水開口保護に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "設計流量に合う断面と流末までの連続勾配を確保する。",
+        "土砂・ごみの堆積や詰まりを点検・清掃できるアクセスを残す。"
+      ],
+      "bullets_en": [
+        "Before using Drain Cover for drain-opening protection, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide hydraulic capacity and continuous fall to the intended outlet.",
+        "Maintain access so sediment and debris accumulation can be inspected and cleaned."
+      ],
+      "examples_ja": [
+        "排水開口保護で排水蓋を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に排水蓋の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Drain Cover during drain-opening protection and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Drain Cover and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_permeable_paver",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "雨水を地中へ浸透させる舗装材。 透水性能は表面材だけでなく目地と透水性路盤に依存するため、細粒分による目詰まりを抑える構成にする。",
+      "detail_en": "Paver that allows water to pass through the surface. Permeability depends on joints and the open-graded base as well as the paver, so detail the system to limit clogging by fines.",
+      "bullets_ja": [
+        "透水性舗装材を雨水浸透舗装に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "路盤の支持力・締固め・高さを整え、仕上げ厚と勾配を施工中に管理する。",
+        "完成後は不陸、段差、沈下、排水不良がないか確認する。"
+      ],
+      "bullets_en": [
+        "Before using Permeable Paver for permeable paving, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Prepare base support, compaction, and elevation and control finished thickness and slope during placement.",
+        "After completion, inspect for unevenness, steps, settlement, and poor drainage."
+      ],
+      "examples_ja": [
+        "雨水浸透舗装で透水性舗装材を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に透水性舗装材の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Permeable Paver during permeable paving and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Permeable Paver and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_drainage_slope",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "水を流すために設ける床や舗装の傾き。 仕上げ面で必要勾配を連続させ、局部的な逆勾配や水溜まりがないか散水・測定で確認する。",
+      "detail_en": "Slope provided to direct water toward drainage. Maintain continuous fall on the finished surface and check for local backfall or ponding by measurement or water testing.",
+      "bullets_ja": [
+        "排水勾配を排水勾配形成に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "設計流量に合う断面と流末までの連続勾配を確保する。",
+        "土砂・ごみの堆積や詰まりを点検・清掃できるアクセスを残す。"
+      ],
+      "bullets_en": [
+        "Before using Drainage Slope for drainage grading, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Provide hydraulic capacity and continuous fall to the intended outlet.",
+        "Maintain access so sediment and debris accumulation can be inspected and cleaned."
+      ],
+      "examples_ja": [
+        "排水勾配形成で排水勾配を使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に排水勾配の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Drainage Slope during drainage grading and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Drainage Slope and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_expansion_joint_filler",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "伸縮目地に入れる圧縮性の充填材。 伸縮目地内で圧縮変形を受ける充填材で、シーリング深さを確保しつつ硬いモルタルなどで目地を拘束しない。",
+      "detail_en": "Compressible filler used in expansion joints. The filler compresses within a movement joint; maintain sealant depth and do not bridge the joint with rigid mortar or debris.",
+      "bullets_ja": [
+        "目地材フォームを伸縮目地施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "目地幅・深さと周囲材料の伸縮量を確認し、硬い材料で動きを拘束しない。",
+        "シーリング等の仕上げ材と組み合わせる場合は所定の断面を確保する。"
+      ],
+      "bullets_en": [
+        "Before using Expansion Joint Filler for movement-joint filling, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check joint width, depth, and expected movement and avoid bridging it with rigid material.",
+        "When used with sealant, maintain the specified joint geometry."
+      ],
+      "examples_ja": [
+        "伸縮目地施工で目地材フォームを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に目地材フォームの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Expansion Joint Filler during movement-joint filling and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Expansion Joint Filler and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_joint_sealant_exterior",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "外壁や建具まわりの目地を防水する材料。 外壁・開口部の動きを吸収できる目地寸法と二面接着を確保し、下地・プライマーの適合を確認する。",
+      "detail_en": "Sealant used for exterior wall or opening joints. Provide joint geometry and two-sided adhesion that accommodate façade movement, with compatible substrate preparation and primer.",
+      "bullets_ja": [
+        "外装目地シーリングを外装目地止水に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "目地寸法、下地清掃、プライマー、バックアップ材の適合を施工前に確認する。",
+        "充填後は空洞・はく離・三面接着を避け、連続した仕上げ面を確認する。"
+      ],
+      "bullets_en": [
+        "Before using Exterior Joint Sealant for exterior joint sealing, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check joint geometry, substrate cleaning, primer, and backing-material compatibility before application.",
+        "After filling, inspect for voids, loss of adhesion, three-sided bonding, and discontinuous tooling."
+      ],
+      "examples_ja": [
+        "外装目地止水で外装目地シーリングを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に外装目地シーリングの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Exterior Joint Sealant during exterior joint sealing and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Exterior Joint Sealant and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_polyurethane_sealant",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "外装目地に使う弾性シーリング材。 ポリウレタン特有の塗装性・耐候性・下地適合を確認し、用途に合わないシリコーン系と安易に置き換えない。",
+      "detail_en": "Elastic sealant commonly used for exterior joints. Verify polyurethane-specific paintability, weather exposure, and substrate compatibility rather than treating it as interchangeable with silicone sealants.",
+      "bullets_ja": [
+        "ポリウレタンシーリングを目地施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "目地寸法、下地清掃、プライマー、バックアップ材の適合を施工前に確認する。",
+        "充填後は空洞・はく離・三面接着を避け、連続した仕上げ面を確認する。"
+      ],
+      "bullets_en": [
+        "Before using Polyurethane Sealant for joint sealing, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check joint geometry, substrate cleaning, primer, and backing-material compatibility before application.",
+        "After filling, inspect for voids, loss of adhesion, three-sided bonding, and discontinuous tooling."
+      ],
+      "examples_ja": [
+        "目地施工でポリウレタンシーリングを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にポリウレタンシーリングの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Polyurethane Sealant during joint sealing and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Polyurethane Sealant and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_modified_silicone_sealant",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "塗装性や耐候性を持つシーリング材。 変成シリコーン/MS系として塗装性や接着対象を確認し、純シリコーンシーラントと化学系を混同しない。",
+      "detail_en": "Weather-resistant sealant with paintable properties. Treat modified-silicone/MS polymer sealant as a distinct chemistry and verify paintability and substrate adhesion rather than confusing it with silicone.",
+      "bullets_ja": [
+        "変成シリコーンシーリングを目地施工に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "目地寸法、下地清掃、プライマー、バックアップ材の適合を施工前に確認する。",
+        "充填後は空洞・はく離・三面接着を避け、連続した仕上げ面を確認する。"
+      ],
+      "bullets_en": [
+        "Before using Modified Silicone Sealant for joint sealing, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check joint geometry, substrate cleaning, primer, and backing-material compatibility before application.",
+        "After filling, inspect for voids, loss of adhesion, three-sided bonding, and discontinuous tooling."
+      ],
+      "examples_ja": [
+        "目地施工で変成シリコーンシーリングを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後に変成シリコーンシーリングの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Modified Silicone Sealant during joint sealing and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Modified Silicone Sealant and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_sealant_spatula",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "シーリング材を押さえ均す工具。 目地幅と仕上げ形状に合うヘラを選び、シーリングを下地へ押し付けながら表面を連続して均す。",
+      "detail_en": "Spatula used to tool and smooth sealant. Choose a spatula profile for the joint width and finish, tooling the bead continuously while pressing sealant against the joint faces.",
+      "bullets_ja": [
+        "シーリングヘラをシーリング仕上げに使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "目地寸法、下地清掃、プライマー、バックアップ材の適合を施工前に確認する。",
+        "充填後は空洞・はく離・三面接着を避け、連続した仕上げ面を確認する。"
+      ],
+      "bullets_en": [
+        "Before using Sealant Spatula for sealant tooling, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check joint geometry, substrate cleaning, primer, and backing-material compatibility before application.",
+        "After filling, inspect for voids, loss of adhesion, three-sided bonding, and discontinuous tooling."
+      ],
+      "examples_ja": [
+        "シーリング仕上げでシーリングヘラを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にシーリングヘラの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Sealant Spatula during sealant tooling and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Sealant Spatula and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    },
+    {
+      "id": "q014_backer_tape",
+      "wave": "content-wave-005d",
+      "state": "expanded",
+      "detail_ja": "三面接着を避けるために目地底へ貼るテープ。 目地底へ貼ってシーリングの三面接着を防ぎ、二面接着で伸縮できる断面を作る。",
+      "detail_en": "Tape used to prevent three-sided sealant adhesion. Apply it to the joint base as a bond breaker so sealant adheres to two sides and can deform properly.",
+      "bullets_ja": [
+        "ボンドブレーカーをシーリング目地準備に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。",
+        "目地寸法、下地清掃、プライマー、バックアップ材の適合を施工前に確認する。",
+        "充填後は空洞・はく離・三面接着を避け、連続した仕上げ面を確認する。"
+      ],
+      "bullets_en": [
+        "Before using Bond Breaker Tape for sealant-joint preparation, verify its dimensions, material, and specification suit the location and design requirements.",
+        "Check joint geometry, substrate cleaning, primer, and backing-material compatibility before application.",
+        "After filling, inspect for voids, loss of adhesion, three-sided bonding, and discontinuous tooling."
+      ],
+      "examples_ja": [
+        "シーリング目地準備でボンドブレーカーを使用し、取付け・納まりが仕様どおりか確認する。",
+        "施工後にボンドブレーカーの周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。"
+      ],
+      "examples_en": [
+        "Use Bond Breaker Tape during sealant-joint preparation and verify the installed detail matches the specified arrangement.",
+        "Inspect the completed Bond Breaker Tape and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function."
+      ]
+    }
+  ]
+}
