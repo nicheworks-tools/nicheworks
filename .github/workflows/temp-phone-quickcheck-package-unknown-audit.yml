@@ -1,0 +1,30 @@
+name: Temp Phone QuickCheck package unknown audit
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/temp-phone-quickcheck-package-unknown-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Print package unknowns
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('tools/phone-quickcheck/data/phones.json','utf8'));
+          const adapter = data.phones.filter(p => p.included?.adapter === 'unknown').map(p => p.id);
+          const cable = data.phones.filter(p => p.included?.cable === 'unknown').map(p => p.id);
+          console.log('ADAPTER_COUNT=' + adapter.length);
+          console.log('ADAPTER_IDS=' + JSON.stringify(adapter));
+          console.log('CABLE_COUNT=' + cable.length);
+          console.log('CABLE_IDS=' + JSON.stringify(cable));
+          NODE
