@@ -1,4 +1,4 @@
-name: Old Kanji Wave 5 guarded patch
+name: Old Kanji Wave 5 guarded patch retry
 
 on:
   push:
