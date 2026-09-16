@@ -7,7 +7,13 @@
 
 ## Purpose
 
-Generate a chronological moving checklist from a move date and household/home conditions, with browser-local completion tracking and print/PDF support.
+Generate a chronological moving checklist from 30 days before the move through post-move follow-up, based on a move date and household/home conditions, with browser-local completion tracking and print/PDF support.
+
+### Search and product scope boundary
+
+This tool is the broad moving-timeline surface. Its primary intent is planning and tracking the whole move across preparation, address/government procedures, utilities, packing, moving day, and post-move follow-up.
+
+`moving-lease-final-check` is the separate final-stage surface for move-out / pre-vacate checking such as inspection, photo evidence, meter photos, key return, cancellation confirmation, and handoff notes. The two tools may reference overlapping moving-day tasks, but their primary search intent and product role MUST remain distinct.
 
 ## Current functional contract
 
@@ -57,6 +63,7 @@ The core interaction is a compact form followed by a chronological checklist; a 
 ## Limits and non-goals
 
 - The checklist is a general reference and is not guaranteed to cover every municipality, contract, utility, or personal situation.
+- This tool is not the dedicated lease-exit evidence / inspection workflow; use `moving-lease-final-check` for that final-stage use case.
 - PDF output is provided through the browser print dialog rather than a dedicated PDF generator.
 - The print memo can appear in printed/PDF output even though it is not stored; users should avoid personal information.
 - Official municipality, landlord/management, utility, and contract guidance takes precedence.
@@ -68,6 +75,8 @@ The core interaction is a compact form followed by a chronological checklist; a 
 - [ ] The optional print memo is not written to persistent storage.
 - [ ] Delete-current and delete-all actions remove the corresponding saved checklist state.
 - [ ] Print/PDF uses the browser print flow and does not claim server-generated PDF storage.
+- [ ] Public metadata describes the broad 30-days-before-through-post-move timeline rather than presenting this as the dedicated lease-exit final check.
+- [ ] The page links to `moving-lease-final-check` as the dedicated final-stage companion.
 
 ## Implementation evidence
 
