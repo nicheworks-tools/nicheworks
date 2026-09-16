@@ -957,3 +957,23 @@ Wave 40は10自治体batch scaling ruleを継続し、公開閾値を変更せ�
 Wave 40 readiness baselineは1,916 municipalities、2,640 valid HTTP(S) records、184 preferred candidates、43 direct-link datasets / 572 records / 553 unique URLs / 0 invalid URLsとする。Wave40の `last_checked: 2026-09-17` はWave39と同日なので、Readinessではsitemapを変更せず、未公開Wave40 URLも先出ししていない。
 
 Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 184/184、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する久喜市・鴻巣市・加須市・ふじみ野市・行田市・桶川市・北本市だけ2026 calendar calloutを表示し、本庄市・志木市・蕨市には年次calloutを生成しない。本庄市はcollection calendarではなく自治体公式ごみ分別アプリを第三の独立typeとして採用する。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+
+## Wave 41 ten-municipality publication
+
+Wave 41は10自治体batch scaling ruleを継続し、公開閾値を変更せず **184自治体から194自治体** へ拡張する。対象は秩父市・羽生市・深谷市・幸手市・鶴ヶ島市・日高市・吉川市・三芳町・伊奈町・宮代町。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeとし、同一combined pageの二重計上や外部衛生組合等による閾値補完は行わない。
+
+- 秩父市 — `/tools/trashnavi/saitama/chichibu/` — collection calendar / waste sorting / waste app
+- 羽生市 — `/tools/trashnavi/saitama/hanyu/` — waste search / waste sorting / collection calendar
+- 深谷市 — `/tools/trashnavi/saitama/fukaya/` — waste search / waste sorting / waste app
+- 幸手市 — `/tools/trashnavi/saitama/satte/` — collection calendar / drop-off facility / waste sorting
+- 鶴ヶ島市 — `/tools/trashnavi/saitama/tsurugashima/` — waste search / bulky waste / drop-off facility
+- 日高市 — `/tools/trashnavi/saitama/hidaka/` — collection calendar / bulky waste / waste sorting
+- 吉川市 — `/tools/trashnavi/saitama/yoshikawa/` — collection calendar / bulky waste / drop-off facility
+- 三芳町 — `/tools/trashnavi/saitama/miyoshi/` — collection calendar / waste app / bulky waste
+- 伊奈町 — `/tools/trashnavi/saitama/ina/` — collection calendar / waste app / bulky waste
+- 宮代町 — `/tools/trashnavi/saitama/miyashiro/` — collection calendar / waste app / bulky waste
+
+Wave 41 readiness baselineは1,916 municipalities、2,670 valid HTTP(S) records、194 preferred candidates、44 direct-link datasets / 602 records / 583 unique URLs / 0 invalid URLsとする。Wave41の `last_checked: 2026-09-17` はWave40と同日なので、Readinessではsitemapを変更せず、未公開Wave41 URLも先出ししていない。
+
+Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 194/194、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する秩父市・羽生市・幸手市・日高市・吉川市・三芳町・伊奈町・宮代町だけ2026 calendar calloutを表示し、深谷市・鶴ヶ島市には年次calloutを生成しない。深谷市はcollection calendarではなく自治体公式ごみ分別アプリを第三の独立typeとして採用する。鶴ヶ島市はwaste search / bulky waste / drop-off facilityの3独立typeで公開条件を満たす。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
