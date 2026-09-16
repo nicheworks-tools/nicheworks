@@ -21,19 +21,17 @@ const targets = [
   { lgcode: '131105', pref_slug: 'tokyo', city_slug: 'meguro', city: '目黒区' }
 ];
 
-// Manifest: preserve compact one-entry-per-line style and append only missing Wave29 targets.
+// Manifest: parse the canonical file, append only missing targets, then preserve the compact one-entry-per-line convention.
 const manifestPath = 'tools/trashnavi/municipality-page-manifest.json';
-let manifestText = read(manifestPath);
-const manifest = JSON.parse(manifestText);
+const manifest = JSON.parse(read(manifestPath));
 const existingCodes = new Set(manifest.map((x) => String(x.lgcode)));
-const missing = targets.filter((x) => !existingCodes.has(x.lgcode));
-if (missing.length) {
-  const addition = missing.map((x) => `  {"lgcode":"${x.lgcode}","pref_slug":"${x.pref_slug}","city_slug":"${x.city_slug}","publish":true}`).join(',\n');
-  manifestText = manifestText.replace(/\n\]$/, `,\n${addition}\n]`);
-  write(manifestPath, manifestText);
+for (const t of targets) {
+  if (!existingCodes.has(t.lgcode)) manifest.push({ lgcode: t.lgcode, pref_slug: t.pref_slug, city_slug: t.city_slug, publish: true });
 }
+const compactManifest = `[\n${manifest.map((x) => `  ${JSON.stringify(x)}`).join(',\n')}\n]\n`;
+write(manifestPath, compactManifest);
 const updatedManifest = JSON.parse(read(manifestPath));
-if (updatedManifest.filter((x) => x.publish).length !== 74) throw new Error('Wave29 manifest must contain 74 published municipalities');
+if (updatedManifest.filter((x) => x.publish).length !== 74) throw new Error(`Wave29 manifest must contain 74 published municipalities; got ${updatedManifest.filter((x) => x.publish).length}`);
 
 // Lock generated-page and affiliate acceptance counts to the new publication total.
 const generatorPath = 'tools/trashnavi/scripts/generate-municipality-pages.mjs';
