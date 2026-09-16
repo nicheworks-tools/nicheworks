@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 164,
+  "published_municipality_count": 174,
   "municipalities": [
     {
       "lgcode": "131016",
@@ -992,6 +992,66 @@
       "pref_slug": "saitama",
       "city_slug": "toda",
       "url": "https://nicheworks.app/tools/trashnavi/saitama/toda/"
+    },
+    {
+      "lgcode": "132055",
+      "pref_slug": "tokyo",
+      "city_slug": "ome",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/ome/"
+    },
+    {
+      "lgcode": "132187",
+      "pref_slug": "tokyo",
+      "city_slug": "fussa",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/fussa/"
+    },
+    {
+      "lgcode": "112259",
+      "pref_slug": "saitama",
+      "city_slug": "iruma",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/iruma/"
+    },
+    {
+      "lgcode": "112151",
+      "pref_slug": "saitama",
+      "city_slug": "sayama",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/sayama/"
+    },
+    {
+      "lgcode": "112097",
+      "pref_slug": "saitama",
+      "city_slug": "hanno",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/hanno/"
+    },
+    {
+      "lgcode": "112372",
+      "pref_slug": "saitama",
+      "city_slug": "misato",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/misato/"
+    },
+    {
+      "lgcode": "112348",
+      "pref_slug": "saitama",
+      "city_slug": "yashio",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/yashio/"
+    },
+    {
+      "lgcode": "112356",
+      "pref_slug": "saitama",
+      "city_slug": "fujimi",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/fujimi/"
+    },
+    {
+      "lgcode": "112399",
+      "pref_slug": "saitama",
+      "city_slug": "sakado",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/sakado/"
+    },
+    {
+      "lgcode": "112127",
+      "pref_slug": "saitama",
+      "city_slug": "higashimatsuyama",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/higashimatsuyama/"
     }
   ]
 }
