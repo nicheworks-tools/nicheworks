@@ -27,6 +27,14 @@ assert.ok(app.includes('row.dataset.category = categoryLabel(item.match?.categor
 assert.ok(app.includes('row.dataset.resultKind = item.statusKey;'), 'result rows must expose status data for filtering');
 assert.ok(html.includes('data-lang="ja"') && html.includes('data-lang="en"'), 'Lite must expose JP/EN UI language controls');
 assert.ok(app.includes("currentLang = lang === 'en' ? 'en' : 'ja'"), 'Lite runtime must switch dynamic result language');
+assert.ok(app.includes("safeStorageSet('cosmetic-lite-lang', currentLang)"), 'Lite must persist the selected UI language locally');
+assert.ok(app.includes("safeStorageGet('cosmetic-lite-lang')"), 'Lite must restore the stored UI language when available');
+assert.ok(app.includes("browserLang.startsWith('ja') ? 'ja' : 'en'"), 'Lite must fall back to browser language when no stored preference exists');
+assert.ok(app.includes('refreshDictionaryStatus();'), 'Lite language changes must refresh the dynamic dictionary status');
+assert.ok(app.includes('renderSummary(lastItems);'), 'Lite language changes must rerender the existing summary without rerunning analysis');
+assert.ok(app.includes('renderTable(lastItems);'), 'Lite language changes must rerender existing result rows without rerunning analysis');
+assert.ok(app.includes("document.dispatchEvent(new CustomEvent('nw-lite-languagechange'"), 'Lite runtime must notify enhancement UI after language changes');
+assert.ok(js.includes("document.addEventListener('nw-lite-languagechange', update);"), 'Lite enhancements must rerender filters and coverage after language changes');
 assert.ok(css.includes('.lite-filter-row'), 'Lite filter-row styling missing');
 assert.ok(css.includes('.lite-copy-actions'), 'Lite copy-action styling missing');
 
