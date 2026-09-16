@@ -12,15 +12,17 @@ const dictionaryPolicy = read('tools/inci-fastscan/DICTIONARY.md');
 const testingGuide = read('tools/inci-fastscan/docs/testing.md');
 const contract = read('tools/_shared/COSMETICS_LEGACY_SAFETY_ISOLATION.md');
 
-// Lite now exposes ingredient role/information availability, not a legacy safety-derived review state.
+// Lite now exposes ingredient role/explanation availability, not a legacy safety-derived review state.
 assert.ok(lite.includes('ROLE_DESCRIPTIONS'), 'Lite role descriptions must exist');
 assert.ok(lite.includes('function roleLabel'), 'Lite role label function must exist');
-assert.ok(lite.includes("statusKey: !match && !flags.length ? 'unknown' : 'matched'"), 'Lite public state must be role-information availability only');
+assert.ok(lite.includes('function hasBilingualRoleExplanation'), 'Lite must explicitly validate bilingual role explanations');
+assert.ok(lite.includes('function hasPublicExplanation'), 'Lite must explicitly validate public explanation completeness');
+assert.ok(lite.includes("statusKey: complete ? 'matched' : 'unknown'"), 'Lite public state must be role/explanation availability only');
 assert.ok(!lite.includes('function isReviewCandidate'), 'Lite must not restore the obsolete public review-candidate state');
 assert.ok(!/match\.safety|item\.safety/.test(lite), 'Lite public results must not be driven by legacy safety metadata');
 assert.ok(lite.includes('sharedParser.mergeDictionaryRecords(loaded)'), 'Lite must use the same canonical merge layer as FastScan');
 assert.ok(liteEnhancements.includes('役割情報あり'), 'Lite public UI must describe available role information');
-assert.ok(liteEnhancements.includes('情報未登録'), 'Lite public UI must describe unavailable role information');
+assert.ok(liteEnhancements.includes('情報未登録') || liteEnhancements.includes('情報不足'), 'Lite public UI must describe incomplete role information');
 assert.ok(!liteEnhancements.includes('辞書認識率'), 'Lite public UI must not restore dictionary coverage as user value');
 
 const foundStart = matcher.indexOf('function found');
@@ -93,7 +95,8 @@ for (const token of [
 console.log(JSON.stringify({
   status: 'pass',
   phase: 'legacy-safety-runtime-isolation',
-  lite_public_result_model: 'ingredient-role-first',
+  lite_public_result_model: 'ingredient-role-explanation-availability',
+  lite_incomplete_role_metadata_is_explicit: true,
   lite_legacy_safety_drives_results: false,
   lite_shared_canonical_merge: true,
   fastscan_legacy_safety_exposed_to_results: false,
