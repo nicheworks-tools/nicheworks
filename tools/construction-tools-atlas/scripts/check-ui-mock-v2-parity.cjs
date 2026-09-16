@@ -20,7 +20,7 @@ ok(css.includes('.ctaResultThumb'), 'result-image styling must exist');
 ok(css.includes('#detailTabs{display:none!important}'), 'legacy tabs must not be the primary detail IA');
 ok(hardening.includes('#detailTabs,#tabMeta,#tabMeta[hidden]'), 'legacy Meta/internal-record panel must stay hidden');
 ok(hardening.includes('#detailSheet .supportInline,#supportInlineBtn{display:none!important}'), 'donation CTA must not appear inside dictionary detail');
-ok(hardening.includes('.ctaMockHome::before') && hardening.includes('content:none!important'), 'header must suppress faux logo/decorative marks');
+ok(hardening.includes('.ctaMockHome{display:none!important}') && runtime.includes('$(".ctaMockHome", wrap)?.remove()'), 'header must not render the NicheWorks badge/link');
 ok(css.includes('.ctaAffiliateBox'), 'affiliate surface must be styled');
 ok(hardening.includes('.ctaAffiliateMount a'), 'affiliate CTA must have visible hardening styles');
 
@@ -30,12 +30,12 @@ ok(runtime.includes('/assets/amazon-affiliate.js'), 'shared Amazon helper must b
 ok(runtime.includes('offerById.get(id)'), 'affiliate lookup must be selected canonical-ID based');
 ok(runtime.includes('resolveCanonicalId'), 'affiliate/detail IDs must normalize through canonical redirects');
 ok(runtime.includes('dataset.taxonomyKey'), 'taxonomy UI must preserve raw keys internally while rendering display labels');
-ok(runtime.includes('humanize('), 'taxonomy UI must humanize raw enum values');
+ok(runtime.includes('humanize(') && runtime.includes('return "";'), 'taxonomy UI must suppress unknown raw enum values instead of displaying them');
 ok(runtime.includes('removeLegacyDetailSupport'), 'parity runtime must remove legacy detail support CTA');
 ok(!runtime.includes('match(/id:'), 'selected entry resolution must not depend on visible raw Meta text');
 ok(bootstrap.includes('ui-mock-v2-parity.css'), 'detail bootstrap must load parity CSS');
 ok(bootstrap.includes('ui-mock-v2-parity.js'), 'detail bootstrap must load parity runtime');
-ok(bootstrap.includes('20260916-mock-v2-fix-1'), 'UI parity cache bust must be current');
+ok(bootstrap.includes('20260916-mock-v2-hotfix-2'), 'UI parity cache bust must be current');
 
 ok(offers.schema === 'cta-affiliate-offers-v2.3', 'affiliate offer schema must be v2.3');
 ok(offers.policy?.query_source === 'maintained_canonical_mapping_only', 'affiliate query source must be maintained canonical mapping only');

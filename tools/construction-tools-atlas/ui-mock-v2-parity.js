@@ -46,8 +46,7 @@
     if (!raw) return "";
     const key = cleanKey(raw);
     if (LABELS[key]) return LABELS[key][labelIndex()];
-    const spaced = raw.replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim();
-    return isEnglish() ? spaced.replace(/\b\w/g, (c) => c.toUpperCase()) : spaced;
+    return "";
   }
 
   function loadScript(src, marker) {
@@ -105,10 +104,6 @@
     if (!wrap) {
       wrap = document.createElement("div");
       wrap.className = "ctaMockBrand";
-      const home = document.createElement("a");
-      home.className = "ctaMockHome";
-      home.href = "https://nicheworks.app/";
-      home.textContent = "NicheWorks";
       const copy = document.createElement("div");
       copy.className = "ctaMockBrandCopy";
       const subtitle = document.createElement("p");
@@ -116,10 +111,9 @@
       brand.parentNode.insertBefore(wrap, brand);
       copy.appendChild(brand);
       copy.appendChild(subtitle);
-      wrap.appendChild(home);
       wrap.appendChild(copy);
     }
-    $(".ctaMockHome", wrap)?.querySelectorAll("img,svg,picture").forEach((node) => node.remove());
+    $(".ctaMockHome", wrap)?.remove();
   }
 
   function ensureFavoriteProxy() {
@@ -193,7 +187,9 @@
     const chips = $$(".row__meta .chip", row);
     chips.forEach((chip) => {
       if (!chip.dataset.taxonomyKey) chip.dataset.taxonomyKey = chip.textContent.trim();
-      setText(chip, humanize(chip.dataset.taxonomyKey));
+      const label = humanize(chip.dataset.taxonomyKey);
+      if (chip.hidden !== !label) chip.hidden = !label;
+      if (label) setText(chip, label);
     });
     if (chips[0]) row.dataset.entryType = normalizedType(chips[0].dataset.taxonomyKey);
   }
@@ -280,7 +276,7 @@
     const id = selectedEntryId();
     const row = id ? $$("#resultList .row[data-entry-id]").find((item) => resolveId(item.dataset.entryId) === id) : null;
     if (!row) { if (!section.hidden) section.hidden = true; return; }
-    const sources = $$(".row__meta .chip", row).slice(0, 6);
+    const sources = $$(".row__meta .chip", row).slice(0, 6).filter((source) => humanize(source.dataset.taxonomyKey || source.textContent));
     const signature = `${id}|${langMode()}|${sources.map((source) => source.dataset.taxonomyKey || source.textContent).join("|")}`;
     if (section.dataset.signature !== signature) {
       section.replaceChildren();
@@ -288,8 +284,10 @@
         const chip = document.createElement("span");
         chip.className = "ctaDetailTaxonomy__chip";
         const raw = source.dataset.taxonomyKey || source.textContent;
+        const label = humanize(raw);
+        if (!label) return;
         chip.dataset.taxonomyKey = raw;
-        chip.textContent = humanize(raw);
+        chip.textContent = label;
         section.appendChild(chip);
       });
       section.dataset.signature = signature;
@@ -372,7 +370,11 @@
     const fav = $("#ctaFavOnlyTop");
     setText(fav, `${$("#favsOnly")?.checked ? "★" : "☆"} ${isEnglish() ? "Favorites" : "お気に入り"}`);
     $$("[data-type-filter]").forEach((button) => setText(button, isEnglish() ? button.dataset.labelEn : button.dataset.labelJa));
-    $$("[data-taxonomy-key]").forEach((chip) => setText(chip, humanize(chip.dataset.taxonomyKey)));
+    $$("[data-taxonomy-key]").forEach((chip) => {
+      const label = humanize(chip.dataset.taxonomyKey);
+      if (chip.hidden !== !label) chip.hidden = !label;
+      if (label) setText(chip, label);
+    });
     ensureDetailActions();
   }
 
