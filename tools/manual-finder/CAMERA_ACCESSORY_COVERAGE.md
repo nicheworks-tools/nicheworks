@@ -10,16 +10,16 @@ This document is the audited baseline for compatibility-sensitive camera battery
 | --- | ---: |
 | Canonical `カメラ・映像` records | **192** |
 | Camera records with a basic Amazon path | **185** |
-| Camera records with verified accessory detail | **4** |
+| Camera records with verified accessory detail | **14** |
 | Reviewed camera-detail exclusions | **0** |
-| Actionable camera records still missing accessory detail | **181** |
+| Actionable camera records still missing accessory detail | **171** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 185 = detail 4 + reviewed exclusion 0 + missing 181`
+`camera basic 185 = detail 14 + reviewed exclusion 0 + missing 171`
 
-The four current detail rows are Nikon Wave 1: `Z8`, `Z6III`, `Z5II`, and `Zf`.
+The fourteen current detail rows are all actionable Nikon camera records. Wave 1 covers `Z8`, `Z6III`, `Z5II`, and `Zf`; Wave 2 closes `Z9`, `Z7II`, `Z6II`, `Z7`, `Z6`, `Z5`, `Z50II`, `Z50`, `Z30`, and `Zfc`.
 
 ## Actionable coverage by maker
 
@@ -28,10 +28,26 @@ The four current detail rows are Nikon Wave 1: `Z8`, `Z6III`, `Z5II`, and `Zf`.
 | DJI | 96 | 0 | 0 | 96 |
 | OM SYSTEM | 37 | 0 | 0 | 37 |
 | GoPro | 31 | 0 | 0 | 31 |
-| Nikon | 14 | 4 | 0 | 10 |
+| Nikon | 14 | 14 | 0 | 0 |
 | Insta360 | 7 | 0 | 0 | 7 |
 
-The exact missing model arrays are emitted by `tests/camera-accessory-coverage.test.mjs` as `MANUALFINDER_CAMERA_ACCESSORY_COVERAGE`. They are intentionally not duplicated here as a 181-model prose ledger.
+The exact missing model arrays are emitted by `tests/camera-accessory-coverage.test.mjs` as `MANUALFINDER_CAMERA_ACCESSORY_COVERAGE`. They are intentionally not duplicated here as a 171-model prose ledger.
+
+## Nikon completion — Waves 1–2
+
+All fourteen actionable Nikon camera records now have reviewed battery/charger detail mappings:
+
+`Nikon camera 14 = detail 14 + reviewed exclusion 0 + missing 0`
+
+The reviewed power-accessory groups are:
+
+- Wave 1: `Z8`, `Z6III`, `Z5II`, `Zf` → `EN-EL15c` battery / `MH-25a` charger.
+- Wave 2: `Z9` → `EN-EL18d` / `MH-33`.
+- Wave 2: `Z7II`, `Z6II`, `Z5` → `EN-EL15c` / `MH-25a`.
+- Wave 2: `Z7`, `Z6` → `EN-EL15b` / `MH-25a`.
+- Wave 2: `Z50II`, `Z50`, `Z30`, `Zfc` → `EN-EL25a` / `MH-32`.
+
+Every mapping is tied to an exact Nikon official model/manual source. Shared accessory families are not inferred from name similarity; the exact model rows are reviewed explicitly.
 
 ## Non-actionable camera records
 
@@ -58,15 +74,14 @@ Seven camera-category records are maker/index entries without an actionable exac
 
 ## Expansion order
 
-The measured backlog determines the work order rather than assumptions about brand prominence:
+The measured remaining backlog determines the work order rather than assumptions about brand prominence:
 
-1. Close the remaining Nikon 10 exact-model gaps using official Nikon compatibility evidence.
-2. Review DJI 96 actionable records in bounded product-family waves.
-3. Review OM SYSTEM 37 actionable records.
-4. Review GoPro 31 actionable records.
-5. Review Insta360 7 actionable records.
+1. Review DJI 96 actionable records in bounded product-family waves.
+2. Review OM SYSTEM 37 actionable records.
+3. Review GoPro 31 actionable records.
+4. Review Insta360 7 actionable records.
 
-A later wave may alter this order only when evidence quality or product-family structure makes another bounded batch materially safer to close first.
+Nikon is closed at zero missing. A later wave may alter the remaining order only when evidence quality or product-family structure makes another bounded batch materially safer to close first.
 
 ## Completion target
 
@@ -74,12 +89,14 @@ The camera accessory phase is complete only when:
 
 `camera basic = detail + reviewed exclusion + missing 0`
 
-The current baseline is not complete: `181` actionable records remain missing accessory detail. Counts may change when the canonical catalog changes, but the reconciliation invariant and zero-unreviewed-missing completion target do not change.
+The current baseline is not complete: `171` actionable records remain missing accessory detail. Counts may change when the canonical catalog changes, but the reconciliation invariant and zero-unreviewed-missing completion target do not change.
 
 ## Source of truth
 
-- `affiliate-camera-accessories.js` — reviewed active accessory mappings.
+- `affiliate-camera-accessories.js` — Nikon Wave 1 reviewed active accessory mappings.
+- `affiliate-nikon-camera-accessories-wave2.js` — Nikon Wave 2 mappings that close the remaining ten actionable Nikon records.
 - `affiliate-camera-detail-exclusions.js` — reviewed explicit exclusions; currently empty.
 - `tests/nikon-camera-accessory-wave1.test.mjs` — Nikon Wave 1 compatibility boundary.
+- `tests/nikon-camera-accessory-wave2.test.mjs` — Nikon Wave 2 compatibility boundary and fourteen-record Nikon completion.
 - `tests/camera-accessory-coverage.test.mjs` — catalog-wide camera coverage computation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` — documentation drift guard for this audited baseline.
