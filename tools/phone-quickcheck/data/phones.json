@@ -2388,7 +2388,7 @@
         ],
         "pps": "unknown",
         "wirelessStandard": "Qi",
-        "wirelessMaxW": 15,
+        "wirelessMaxW": null,
         "battery": {
           "capacityMah": 4000,
           "valueClass": "manufacturer",
@@ -2404,7 +2404,8 @@
         "manualUrl": "https://www.samsung.com/jp/support/",
         "releaseUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
         "verifiedAt": "2026-09-16",
-        "chargingUrl": "https://news.samsung.com/global/enter-the-new-era-of-mobile-ai-with-samsung-galaxy-s24-series"
+        "chargingUrl": "https://news.samsung.com/global/enter-the-new-era-of-mobile-ai-with-samsung-galaxy-s24-series",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/"
       },
       "affiliateKeys": []
     },
@@ -3320,7 +3321,7 @@
         ],
         "pps": "unknown",
         "wirelessStandard": "Qi",
-        "wirelessMaxW": 15,
+        "wirelessMaxW": null,
         "battery": {
           "capacityMah": 3900,
           "valueClass": "manufacturer",
@@ -3336,7 +3337,8 @@
         "manualUrl": "https://www.samsung.com/jp/support/",
         "releaseUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
         "verifiedAt": "2026-09-16",
-        "chargingUrl": "https://www.samsung.com/jp/explore/news/galaxy-unpacked-2023/"
+        "chargingUrl": "https://www.samsung.com/jp/explore/news/galaxy-unpacked-2023/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/"
       },
       "affiliateKeys": []
     },
