@@ -1,0 +1,53 @@
+{
+  "version": "2026-09-16-wave2-zou-1",
+  "basis": "gsc_demand_plus_authoritative_external_verification",
+  "records": [
+    {
+      "source": "贈",
+      "target": "贈",
+      "action": "add_missing_compatibility_old_form_mapping",
+      "relation": "old_form_cjk_compatibility_ideograph",
+      "demand": {
+        "property": "sc-domain:nicheworks.app",
+        "query": "贈 旧字",
+        "provider": "Google Search Console via authenticated Supermetrics connector",
+        "finalizedWindow180d": {
+          "start": "2026-03-18",
+          "end": "2026-09-13",
+          "clicks": 0,
+          "impressions": 1,
+          "averagePosition": 20
+        },
+        "finalizedWindow30d": {
+          "start": "2026-08-15",
+          "end": "2026-09-13",
+          "clicks": 0,
+          "impressions": 1,
+          "averagePosition": 20
+        }
+      },
+      "authorities": [
+        {
+          "authority": "文化庁",
+          "source": "常用漢字表・音訓索引",
+          "url": "https://www.bunka.go.jp/kokugo_nihongo/sisaku/joho/joho/kijun/naikaku/kanji/index.html",
+          "locator": "贈（贈）",
+          "establishes": "The current form 贈 is listed with parenthesized historical form 贈."
+        },
+        {
+          "authority": "Unicode Consortium",
+          "source": "Unicode NamesList, CJK Compatibility Ideographs Supplement",
+          "url": "https://www.unicode.org/charts/nameslist/n_FA00.html",
+          "locator": "U+FA65 CJK COMPATIBILITY IDEOGRAPH-FA65 ≡ U+8D08",
+          "establishes": "贈 (U+FA65) is compatibility-equivalent to 贈 (U+8D08)."
+        }
+      ],
+      "repositoryBefore": {
+        "forwardIdentity": "贈→贈",
+        "missingForward": "贈→贈",
+        "missingReverseCandidate": "贈→[贈]"
+      },
+      "publicationGate": "Dictionary repair first. Individual SEO publication requires the repaired audit to pass before a separate SEO PR."
+    }
+  ]
+}
