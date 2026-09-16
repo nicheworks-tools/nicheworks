@@ -11,7 +11,7 @@ const trustedSourceDomains = {
   Apple: ['apple.com'],
   Google: ['google.com', 'google'],
   Samsung: ['samsung.com', 'au.com', 'docomo.ne.jp'],
-  Sony: ['sony.jp', 'sony.com'],
+  Sony: ['sony.jp', 'sony.com', 'docomo.ne.jp'],
   SHARP: ['sharp.co.jp', 'jp.sharp'],
   OPPO: ['oppo.com'],
   Xiaomi: ['mi.com'],

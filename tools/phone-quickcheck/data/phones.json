@@ -7484,8 +7484,11 @@
         "connector": "USB-C",
         "wiredRecommendedW": null,
         "wiredMaxW": null,
-        "protocols": [],
-        "pps": "unknown",
+        "protocols": [
+          "USB PD 3.0",
+          "PPS"
+        ],
+        "pps": "supported",
         "wirelessStandard": null,
         "wirelessMaxW": null,
         "battery": {
@@ -7502,7 +7505,8 @@
         "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia5m3/spec_docomo.html",
         "manualUrl": "https://www.sony.jp/support/xperia/",
         "releaseUrl": "https://www.sony.jp/xperia/xperia/xperia5m3/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-16",
+        "chargingUrl": "https://www.docomo.ne.jp/support/product/so53b/spec.html"
       },
       "affiliateKeys": []
     },
