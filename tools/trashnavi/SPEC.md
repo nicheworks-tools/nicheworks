@@ -877,3 +877,23 @@ Wave 36は10自治体batch scaling ruleを継続し、公開閾値を変更せ�
 Wave 36 readiness baselineは1,916 municipalities、2,520 valid HTTP(S) records、144 preferred candidates、39 direct-link datasets / 452 records / 433 unique URLs / 0 invalid URLsとする。
 
 Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 144/144、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する三鷹市・武蔵野市・日野市・国分寺市・多摩市・鎌倉市・成田市だけ2026 calendar calloutを表示し、海老名市・座間市・佐倉市には年次calloutを生成しない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+
+## Wave 37 ten-municipality publication
+
+Wave 37は10自治体batch scaling ruleを継続し、公開閾値を変更せず **144自治体から154自治体** へ拡張する。対象は小金井市・昭島市・国立市・稲城市・狛江市・清瀬市・東久留米市・伊勢原市・東大和市・我孫子市。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeとし、同一combined pageの二重計上や外部委託先による閾値補完は行わない。
+
+- 小金井市 — `/tools/trashnavi/tokyo/koganei/` — waste sorting / collection calendar / bulky waste
+- 昭島市 — `/tools/trashnavi/tokyo/akishima/` — waste sorting / collection calendar / bulky waste
+- 国立市 — `/tools/trashnavi/tokyo/kunitachi/` — waste sorting / collection calendar / bulky waste
+- 稲城市 — `/tools/trashnavi/tokyo/inagi/` — waste sorting / collection calendar / bulky waste
+- 狛江市 — `/tools/trashnavi/tokyo/komae/` — waste sorting / collection calendar / bulky waste
+- 清瀬市 — `/tools/trashnavi/tokyo/kiyose/` — waste sorting / collection calendar / bulky waste
+- 東久留米市 — `/tools/trashnavi/tokyo/higashikurume/` — waste sorting / collection calendar / bulky waste
+- 伊勢原市 — `/tools/trashnavi/kanagawa/isehara/` — waste sorting / collection calendar / bulky waste
+- 東大和市 — `/tools/trashnavi/tokyo/higashiyamato/` — waste sorting / collection calendar / bulky waste
+- 我孫子市 — `/tools/trashnavi/chiba/abiko/` — waste sorting / collection calendar / bulky waste
+
+Wave 37 readiness baselineは1,916 municipalities、2,550 valid HTTP(S) records、154 preferred candidates、40 direct-link datasets / 482 records / 463 unique URLs / 0 invalid URLsとする。
+
+Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 154/154、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する小金井市・昭島市・国立市・稲城市・狛江市・清瀬市・伊勢原市・我孫子市だけ2026 calendar calloutを表示し、東久留米市・東大和市には年次calloutを生成しない。東大和市のcollection sourceは令和8年10月から令和9年9月までの跨年期間なので、単一2026 calendarとして扱わない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
