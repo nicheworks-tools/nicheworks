@@ -1,19 +1,18 @@
 (function () {
   'use strict';
 
-  var BUY_URL = 'https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209';
   var ENTITLEMENT = 'nicheworks_pro';
 
   var TEXT = {
     en: {
-      active: 'Pro unlocked. Common Pro is active in this browser.',
-      preview: 'Preview mode. Common Pro is not active in this browser yet.',
-      failed: 'Could not check Pro status. Free features remain available.'
+      active: 'Legacy Pro compatibility entitlement detected. Paid features are available in this browser.',
+      preview: 'Paid bundle migration is not live. No purchase path is offered from this tool.',
+      failed: 'Could not check legacy Pro status. Free features remain available.'
     },
     ja: {
-      active: 'Pro解放済み。このブラウザでは共通Proが有効です。',
-      preview: 'Previewモードです。このブラウザでは共通Proがまだ有効ではありません。',
-      failed: 'Pro状態を確認できませんでした。無料機能は引き続き利用できます。'
+      active: '旧Pro互換entitlementを確認しました。このブラウザでは有料機能を利用できます。',
+      preview: '有料bundle移行はまだ本番化されていません。このツールから購入はできません。',
+      failed: '旧Pro状態を確認できませんでした。無料機能は引き続き利用できます。'
     }
   };
 
@@ -45,6 +44,17 @@
     });
   }
 
+  function retireBuyLinks() {
+    document.querySelectorAll('[data-pro-buy]').forEach(function (link) {
+      link.removeAttribute('href');
+      link.removeAttribute('target');
+      link.removeAttribute('rel');
+      link.setAttribute('aria-disabled', 'true');
+      link.setAttribute('role', 'link');
+      link.hidden = true;
+    });
+  }
+
   function apply() {
     var current = readStatus();
     var active = current.active === true;
@@ -64,12 +74,7 @@
 
     setHidden(Array.from(document.querySelectorAll('[data-pro-preview]')), active);
     setHidden(Array.from(document.querySelectorAll('[data-pro-only]')), !active);
-
-    document.querySelectorAll('[data-pro-buy]').forEach(function (link) {
-      link.setAttribute('href', BUY_URL);
-      link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener noreferrer');
-    });
+    retireBuyLinks();
 
     document.querySelectorAll('[data-pro-action]').forEach(function (node) {
       if ('disabled' in node) node.disabled = !active;
@@ -82,7 +87,7 @@
     window.dispatchEvent(new CustomEvent('nwpro:state', { detail: detail }));
   }
 
-  window.NWAIIAProBridge = { refresh: apply, paymentLink: BUY_URL };
+  window.NWAIIAProBridge = { refresh: apply };
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', apply, { once: true });
