@@ -77,7 +77,7 @@
       const headers = table.querySelectorAll('thead th');
       setBilingualText(headers[0], '成分', 'Ingredient');
       setBilingualText(headers[1], '主な役割', 'Main role');
-      setBilingualText(headers[2], '説明', 'What it does');
+      setBilingualText(headers[2], '役割の説明', 'Role explanation');
 
       setBilingualText(document.getElementById('about-title'), 'このLite版で分かること', 'What the Lite tool shows');
       const about = document.querySelector('.about-card');
