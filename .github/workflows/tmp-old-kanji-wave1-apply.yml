@@ -1,0 +1,34 @@
+name: Temporary Old Kanji Wave 1 patch
+
+on:
+  push:
+    branches:
+      - seo/old-kanji-wave1-ga-kaku-20260916
+    paths:
+      - .github/workflows/tmp-old-kanji-wave1-apply.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: seo/old-kanji-wave1-ga-kaku-20260916
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Apply guarded insertions
+        run: node scripts/tmp-old-kanji-wave1-apply.mjs
+      - name: Commit final Wave 1 files and remove temporary helper
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git diff --cached --quiet && { echo "No changes to commit"; exit 1; }
+          git commit -m "Add Old Kanji SEO Wave 1 internal discovery"
+          git push origin HEAD:seo/old-kanji-wave1-ga-kaku-20260916
