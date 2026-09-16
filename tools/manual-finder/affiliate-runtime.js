@@ -26,7 +26,13 @@
         loadScript(
           "affiliate-nikon-camera-accessories-wave2.js?v=mf-nikon-camera-accessory-wave2-20260916a",
           () => Boolean(window.MANUALFINDER_NIKON_CAMERA_ACCESSORY_WAVE2_LEDGER),
-          done
+          () => {
+            loadScript(
+              "affiliate-dji-camera-accessories-wave1.js?v=mf-dji-camera-accessory-wave1-20260916a",
+              () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE1_LEDGER),
+              done
+            );
+          }
         );
       }
     );
