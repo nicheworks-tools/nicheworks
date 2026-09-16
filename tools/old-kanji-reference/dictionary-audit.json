@@ -4,7 +4,7 @@
   "sourceDigests": {
     "dict.json": "d0dc1d71cd536012e8ef343a88889862b4883bd6724b23e3083e80467e76ec80",
     "meta.json": "091fe92b82a548c8f66913d6f2b7af011db149b6703b99e6d8ef2d6f8af5c985",
-    "meta-extra-2.json": "99e49f52c6bf82be6da1368d719212b8adf9137f6b52d9e07fb5f46f2c73e6c5",
+    "meta-extra-2.json": "389773b8e6853ea20c485390de5a0c692fd1484cf4d2b5c969bbf39dd2a61698",
     "meta-extra-3.json": "f761a5ccbaa72cda584c93bd6f82bb89a85e5f89756d449a911a83543bc3cc26",
     "meta-extra-4.json": "da9e9686ba8bf6253ce028491622966f33d52665a36be8b2955f1bd7b9667fb6",
     "meta-extra-5.json": "593f1cb3bf775ec262d745fbf5bcf3b6651e9221b9206a30ff564eb577e6480d",
@@ -9028,6 +9028,9 @@
         "modernMatchesMapping": true
       },
       "standaloneSignals": [
+        "reading",
+        "meaning",
+        "usage",
         "source_note",
         "compatibility_note"
       ],
