@@ -49,10 +49,9 @@ const parser = read('tools/_shared/cosmetic-ingredient-parser.js');
 const matcher = read('tools/inci-fastscan/js/core_matcher.js');
 const resultUi = read('tools/inci-fastscan/js/web_ui.js');
 const affiliateConfig = read('tools/_shared/cosmetics-affiliate-config.js');
+const affiliateAdapter = read('tools/_shared/cosmetics-affiliate-slot.js');
 const fixtures = JSON.parse(read('tools/_shared/cosmetics-full-label-fixtures.json'));
 
-// Approved UI v2 contract from the cosmetics refresh: white surfaces, direct tool switching,
-// bilingual controls, paste-first Lite, and photo/OCR-first FastScan without the old NicheWorks logo header.
 check(liteHtml.includes('<body class="lite-v2">'), 'Lite UI v2 body contract missing');
 check(liteHtml.includes('class="tool-switch"'), 'Lite tool switch missing');
 check(liteHtml.includes('data-lang="ja"') && liteHtml.includes('data-lang="en"'), 'Lite JP/EN controls missing');
@@ -115,13 +114,18 @@ check(fastSpec.includes('photo/OCR') || fastSpec.includes('photo/image OCR'), 'F
 
 check(affiliateConfig.includes('enabled: true'), 'Amazon config must be active');
 check(affiliateConfig.includes('trackingMode: "tagged_search"'), 'Amazon config must use tagged_search mode');
+check(affiliateConfig.includes('displayMode: "post_result_category_choice"'), 'Amazon config must remain post-result category choice');
 check(affiliateConfig.includes('const ASSOCIATE_TAG = "nicheworks09-22"'), 'verified Associates tag missing');
 check(affiliateConfig.includes('placement: "after-summary"'), 'Lite affiliate placement changed');
 check(affiliateConfig.includes('placement: "after-results"'), 'FastScan affiliate placement changed');
 check((affiliateConfig.match(/links: fixedSearchLinks/g) || []).length === 2, 'both cosmetics tools must use the fixed search set');
-for (const key of ['skincare_general', 'skincare_moisturizing', 'skincare_ceramide', 'sunscreen_general']) {
+const affiliateCategoryKeys = ['toner', 'serum', 'moisturizer', 'cleanser', 'cleansing', 'sunscreen', 'bodycare'];
+for (const key of affiliateCategoryKeys) {
   check(affiliateConfig.includes(`key: "${key}"`), `fixed affiliate category missing: ${key}`);
 }
+check(affiliateAdapter.includes('function resultsReady(tool)'), 'affiliate chooser must remain result-gated');
+check(affiliateAdapter.includes('#itemsTableBody tr'), 'Lite result gate missing');
+check(affiliateAdapter.includes('#fast-results .result-card, #jb-results .result-card'), 'FastScan result gate missing');
 
 check(Array.isArray(fixtures) && fixtures.length >= 12, 'full-label fixture set must retain at least 12 cases');
 check(new Set(fixtures.map((item) => item.category)).size >= 6, 'full-label fixtures must retain at least six product categories');
@@ -148,6 +152,7 @@ console.log(JSON.stringify({
   full_label_fixtures: fixtures.length,
   amazon_enabled: true,
   amazon_tracking_mode: 'tagged_search',
-  amazon_fixed_categories: 4,
+  amazon_display_mode: 'post_result_category_choice',
+  amazon_fixed_categories: affiliateCategoryKeys.length,
   release_gate: 'amazon-live-quality-wave'
 }, null, 2));
