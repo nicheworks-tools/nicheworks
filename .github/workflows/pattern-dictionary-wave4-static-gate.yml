@@ -1,0 +1,48 @@
+name: Pattern Dictionary Wave 4 static gate
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-wave4-production-staging-20260916
+    paths:
+      - .github/workflows/pattern-dictionary-wave4-static-gate.yml
+
+permissions:
+  contents: read
+
+jobs:
+  static-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave4-production-staging-20260916
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run Pattern Dictionary publication suite
+        run: |
+          set -euo pipefail
+          tests=(
+            validate.mjs
+            source-verification-test.mjs
+            production-content-test.mjs
+            reference-image-test.mjs
+            search-test.mjs
+            compare-test.mjs
+            affiliate-test.mjs
+            canonical-100-test.mjs
+            browse-mobile-test.mjs
+            seo-detail-test.mjs
+            publication-test.mjs
+            wave2-source-verification-test.mjs
+            wave2-production-content-test.mjs
+            wave2-reference-image-test.mjs
+            wave3-source-verification-test.mjs
+            wave4-source-verification-test.mjs
+          )
+          for test in "${tests[@]}"; do
+            echo "=== $test ==="
+            node "tools/pattern-dictionary/tests/$test"
+          done
+          git diff --check
