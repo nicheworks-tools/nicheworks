@@ -1,0 +1,56 @@
+name: Pattern Dictionary Wave 3 search refinement r3
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-wave3-production-staging-20260916
+    paths:
+      - .github/workflows/pattern-dictionary-wave3-search-refine-r3.yml
+
+permissions:
+  contents: write
+
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave3-production-staging-20260916
+          fetch-depth: 0
+      - name: Restrict confidence typo exception to whole names and aliases
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          for(const [file,tokenFn] of [
+            ['tools/pattern-dictionary/app.js','queryTokens'],
+            ['tools/pattern-dictionary/tests/search-test.mjs','tokens']
+          ]){
+            let s=fs.readFileSync(file,'utf8');
+            const typoFn=file.endsWith('app.js')
+              ? "function typoHit(q,p){const qt=queryTokens(q),ct=[p.names?.ja,p.names?.en,...(p.aliases?.ja||[]),...(p.aliases?.en||[])].flatMap(queryTokens);return qt.some(a=>ct.some(b=>nearTypo(a,b)))}"
+              : `function typoHit(q,p){\n  const qt=tokens(q),ct=[p.names?.ja,p.names?.en,...(p.aliases?.ja||[]),...(p.aliases?.en||[])].flatMap(tokens);\n  return qt.some(a=>ct.some(b=>nearTypo(a,b)));\n}`;
+            if(!s.includes(typoFn))throw new Error(`${file}: typoHit insertion point missing`);
+            const helper=file.endsWith('app.js')
+              ? "function confidenceNameMatch(q,p,lang){const nq=norm(q),other=lang==='ja'?'en':'ja',c=[p.names?.[lang],p.names?.[other],...(p.aliases?.[lang]||[]),...(p.aliases?.[other]||[])].map(norm).filter(Boolean);return c.some(v=>v===nq||nearTypo(nq,v))}"
+              : `function confidenceNameMatch(q,p,lang){\n  const nq=norm(q),other=lang==='ja'?'en':'ja';\n  const c=[p.names?.[lang],p.names?.[other],...(p.aliases?.[lang]||[]),...(p.aliases?.[other]||[])].map(norm).filter(Boolean);\n  return c.some(v=>v===nq||nearTypo(nq,v));\n}`;
+            if(!s.includes('function confidenceNameMatch('))s=s.replace(typoFn,typoFn+'\n'+helper);
+            const old="exact=[p.names?.[lang],p.names?.[other],...(p.aliases?.[lang]||[]),...(p.aliases?.[other]||[])].some(v=>norm(v)===nq)||typoHit(nq,p),d=";
+            const replacement="exact=confidenceNameMatch(nq,p,lang),d=";
+            if(!s.includes(old))throw new Error(`${file}: confidence exact expression missing`);
+            s=s.replace(old,replacement);
+            fs.writeFileSync(file,s);
+          }
+          NODE
+      - name: Verify syntax and staging lock
+        run: |
+          node --check tools/pattern-dictionary/app.js
+          node --check tools/pattern-dictionary/tests/search-test.mjs
+          node tools/pattern-dictionary/scripts/check-wave3-staging.mjs
+      - name: Commit refinement
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/pattern-dictionary/app.js tools/pattern-dictionary/tests/search-test.mjs
+          git commit -m "Pattern Dictionary: narrow typo confidence matching"
+          git push origin HEAD:feat/pattern-dictionary-wave3-production-staging-20260916
