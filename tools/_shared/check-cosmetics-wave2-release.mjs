@@ -15,6 +15,7 @@ const matcher = read('tools/inci-fastscan/js/core_matcher.js');
 const fastUi = read('tools/inci-fastscan/js/web_ui.js');
 const fastSpec = read('tools/inci-fastscan/SPEC.md');
 const affiliateConfig = read('tools/_shared/cosmetics-affiliate-config.js');
+const affiliateAdapter = read('tools/_shared/cosmetics-affiliate-slot.js');
 const workflow = read('.github/workflows/cosmetics-accuracy-benchmark.yml');
 
 const wave2Ingredients = [
@@ -76,16 +77,18 @@ check(fastUi.includes('再解析も自動では行いません'), 'FastScan Japa
 check(fastUi.includes('analysis will not rerun automatically'), 'FastScan English no-auto-rerun statement missing');
 check(fastSpec.includes('does not automatically rerun ingredient analysis'), 'FastScan SPEC must retain no-auto-rerun contract');
 
-// Post-activation Amazon invariant: four fixed, non-input-driven tagged searches.
 check(affiliateConfig.includes('enabled: true'), 'Amazon config must stay active');
 check(affiliateConfig.includes('trackingMode: "tagged_search"'), 'Amazon tracking mode must be tagged_search');
+check(affiliateConfig.includes('displayMode: "post_result_category_choice"'), 'Amazon chooser must remain post-result only');
 check(affiliateConfig.includes('const ASSOCIATE_TAG = "nicheworks09-22"'), 'verified Associates tag missing');
 check(affiliateConfig.includes('placement: "after-summary"'), 'Lite Amazon placement changed');
 check(affiliateConfig.includes('placement: "after-results"'), 'FastScan Amazon placement changed');
 check((affiliateConfig.match(/links: fixedSearchLinks/g) || []).length === 2, 'both cosmetics tools must use the fixed category searches');
-for (const key of ['skincare_general', 'skincare_moisturizing', 'skincare_ceramide', 'sunscreen_general']) {
+const affiliateCategoryKeys = ['toner', 'serum', 'moisturizer', 'cleanser', 'cleansing', 'sunscreen', 'bodycare'];
+for (const key of affiliateCategoryKeys) {
   check(affiliateConfig.includes(`key: "${key}"`), `fixed affiliate category missing: ${key}`);
 }
+check(affiliateAdapter.includes('function resultsReady(tool)'), 'Amazon chooser must remain result-gated');
 for (const spec of [liteSpec, fastSpec]) {
   check(/tagged_search|fixed Amazon search/i.test(spec), 'tool SPEC lost active fixed-search contract');
   check(/raw ingredient|pasted ingredient|OCR output/i.test(spec), 'tool SPEC lost input privacy contract');
@@ -117,5 +120,6 @@ console.log(JSON.stringify({
   ocr_auto_correction: false,
   amazon_enabled: true,
   amazon_tracking_mode: 'tagged_search',
-  amazon_fixed_categories: 4
+  amazon_display_mode: 'post_result_category_choice',
+  amazon_fixed_categories: affiliateCategoryKeys.length
 }, null, 2));
