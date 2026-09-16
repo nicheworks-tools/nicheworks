@@ -1,0 +1,103 @@
+name: CTA q014 inventory finalize
+
+on:
+  push:
+    branches:
+      - audit/construction-atlas-q014-identity-closure-20260916
+    paths:
+      - '.github/workflows/cta-q014-inventory-finalize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/construction-atlas-q014-identity-closure-20260916
+          fetch-depth: 0
+
+      - name: Patch q014 public inventory versions
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          replacements = {
+            'tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs': (
+              "version: '2026-09-16-q013-identity-closure-1'",
+              "version: '2026-09-16-q014-identity-closure-1'"
+            ),
+            'tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs': (
+              "version: '2026-09-16-q013-identity-closure-1'",
+              "version: '2026-09-16-q014-identity-closure-1'"
+            ),
+            'tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs': (
+              "version: '2026-09-16-q013-content-complete-1'",
+              "version: '2026-09-16-q014-identity-closure-1'"
+            )
+          }
+          for name, (old, new) in replacements.items():
+            p = Path(name)
+            s = p.read_text()
+            if old not in s and new not in s:
+              raise SystemExit(f'version anchor missing: {name}')
+            p.write_text(s.replace(old, new, 1))
+          PY
+
+      - name: Validate q014 identity closure
+        run: node tools/construction-tools-atlas/scripts/audit-q014-identity-closure-v2.3.cjs
+
+      - name: Refresh publication inventory
+        run: |
+          node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs --write
+          node tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs --check
+
+      - name: Refresh public image inventory
+        run: |
+          node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --write
+          node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --check
+
+      - name: Refresh public content inventory
+        run: |
+          node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --write
+          node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check
+
+      - name: Assert q014 public state
+        run: |
+          node <<'NODE'
+          const p=require('./tools/construction-tools-atlas/data/publication-inventory-v2.3.json');
+          const i=require('./tools/construction-tools-atlas/data/public-image-inventory-v2.3.json');
+          const c=require('./tools/construction-tools-atlas/data/public-content-quality-v2.3.json');
+          if(p.version!=='2026-09-16-q014-identity-closure-1') throw new Error('publication version');
+          if(i.version!=='2026-09-16-q014-identity-closure-1') throw new Error('image version');
+          if(c.version!=='2026-09-16-q014-identity-closure-1') throw new Error('content version');
+          if(p.summary.published_runtime_entries!==870) throw new Error(`public=${p.summary.published_runtime_entries}`);
+          if(p.summary.redirected_duplicate_entries!==66) throw new Error(`redirects=${p.summary.redirected_duplicate_entries}`);
+          if(i.summary.public_entries!==870) throw new Error(`image public=${i.summary.public_entries}`);
+          if(c.summary.public_entries!==870) throw new Error(`content public=${c.summary.public_entries}`);
+          if(c.summary.missing_core_bilingual_content!==0) throw new Error(`missing core=${c.summary.missing_core_bilingual_content}`);
+          console.log('CTA_Q014_PUBLICATION_SUMMARY='+JSON.stringify(p.summary));
+          console.log('CTA_Q014_PUBLIC_IMAGE_SUMMARY='+JSON.stringify(i.summary));
+          console.log('CTA_Q014_PUBLIC_CONTENT_SUMMARY='+JSON.stringify(c.summary));
+          console.log('CTA_Q014_PUBLIC_CONTENT_FALLBACK_FIELDS='+JSON.stringify(c.fallback_field_counts));
+          NODE
+
+      - name: Commit q014 public inventories
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            tools/construction-tools-atlas/scripts/audit-publication-corpus-v2.3.cjs \
+            tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs \
+            tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs \
+            tools/construction-tools-atlas/data/publication-inventory-v2.3.json \
+            tools/construction-tools-atlas/data/public-image-inventory-v2.3.json \
+            tools/construction-tools-atlas/data/public-content-quality-v2.3.json
+          if git diff --cached --quiet; then
+            echo 'No inventory changes required'
+          else
+            git commit -m 'feat(construction-atlas): freeze q014 identity inventories'
+            git pull --rebase origin audit/construction-atlas-q014-identity-closure-20260916
+            git push origin HEAD:audit/construction-atlas-q014-identity-closure-20260916
+          fi
