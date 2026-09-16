@@ -9,7 +9,7 @@
 
 Let users identify the meaning of current Japanese textile care-label symbols without uploading the label to a server. The canonical data set is the Consumer Affairs Agency overview of JIS L 0001:2024 used for Japanese care labels from 2024-08-20 onward.
 
-## Canonical reference and scope
+### Canonical reference and scope
 
 Primary reference:
 
@@ -55,6 +55,12 @@ The canonical set MUST NOT contain duplicate convenience records, invented combi
 - JIS symbol number.
 - Up to three visual candidates for the experimental photo comparison.
 
+## State and persistence
+
+- UI language may be persisted in the shared `nw_lang` localStorage key.
+- Selected symbol, search query, image bytes, candidate scores, and uploaded image content are not persisted by this tool.
+- The image object URL is revoked after loading and again on page unload as a cleanup safeguard.
+
 ## Privacy and network behavior
 
 Symbol browsing, search, SVG rendering, image preprocessing, and photo candidate comparison run in the browser. Uploaded image content is not sent by the tool. Advertising and analytics resources required by the site may load independently.
@@ -67,9 +73,9 @@ JP/EN controls switch the same canonical symbol set and tool behavior.
 
 ## Layout class
 
-`mobile-friendly utility`
+`mobile-oriented`
 
-The symbol grid and result areas reflow for narrow screens.
+The symbol grid and result areas reflow for narrow screens while retaining usable desktop widths.
 
 ## Limits and non-goals
 
@@ -80,7 +86,7 @@ The symbol grid and result areas reflow for narrow screens.
 - The photo feature performs simple visual template comparison only. It is not OCR, computer vision certification, or a substitute for manually checking the symbol.
 - Optional supplementary wording such as laundry-net use, inside-out washing, weak wringing, pressing cloth, or decoration-specific instructions is not represented as separate JIS symbols.
 
-## Rendering contract
+### Rendering contract
 
 - Machine-wash temperatures are only 30, 40, 50, 60, 70, or 95 where defined by the current table.
 - 40°C hand wash is symbol 110; 30°C hand wash is symbol 111. These use the current hand-wash graphics and must not invent printed 40/30 numerals inside the tub.
