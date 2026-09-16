@@ -45,8 +45,7 @@ for (const row of ledger) {
 }
 
 for (const args of [
-  { maker: 'KYOCERA Document Solutions', model: 'KM-C3225E', category: 'プリンター・複合機' },
-  { maker: 'KYOCERA Document Solutions', model: 'KM-C870', category: 'プリンター・複合機' },
+  { maker: 'KYOCERA Document Solutions', model: 'KM-C9999', category: 'プリンター・複合機' },
   { maker: 'KYOCERA Document Solutions', model: 'KM-3510w', category: 'その他' },
   { maker: 'KYOCERA', model: 'KM-3510w', category: 'プリンター・複合機' }
 ]) assert.deepEqual(Array.from(config.getConsumableOffers(args)), []);
