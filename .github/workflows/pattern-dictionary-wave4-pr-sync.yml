@@ -1,0 +1,56 @@
+name: Pattern Dictionary Wave 4 PR main sync
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-wave4-production-staging-20260916
+    paths:
+      - .github/workflows/pattern-dictionary-wave4-pr-sync.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync-main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave4-production-staging-20260916
+          fetch-depth: 0
+      - name: Merge current main and preserve Wave 4 sitemap entries
+        run: |
+          set -euo pipefail
+          git config user.name nicheworks-tools
+          git config user.email nicheworks.tools@gmail.com
+          git fetch origin main
+          set +e
+          git merge --no-edit origin/main
+          rc=$?
+          set -e
+          if [ "$rc" -ne 0 ]; then
+            conflicts="$(git diff --name-only --diff-filter=U)"
+            if [ "$conflicts" != "sitemap.xml" ]; then
+              echo "Unexpected merge conflicts:"
+              printf '%s\n' "$conflicts"
+              exit 1
+            fi
+            git checkout --theirs sitemap.xml
+            git add sitemap.xml
+          fi
+          node <<'NODE'
+          const fs=require('fs');
+          let s=fs.readFileSync('sitemap.xml','utf8');
+          const ids=['baroque-scroll','chinoiserie','flame-stitch','tree-of-life','moire','yagasuri','tatewaku','uroko','sayagata','kagome','kanoko','hanabishi','same-komon','nami-chidori','tomoe','shibori','batik','bandhani','ajrakh','kalamkari'];
+          const add=[];
+          for(const id of ids) for(const prefix of ['', 'en/']) {
+            const url=`https://nicheworks.app/tools/pattern-dictionary/${prefix}patterns/${id}/`;
+            if(!s.includes(`<loc>${url}</loc>`)) add.push(`  <url>\n    <loc>${url}</loc>\n    <lastmod>2026-09-16</lastmod>\n  </url>`);
+          }
+          if(add.length) s=s.replace('</urlset>',add.join('\n')+'\n</urlset>');
+          fs.writeFileSync('sitemap.xml',s);
+          console.log(`Wave 4 sitemap URLs re-added: ${add.length}`);
+          NODE
+          git add sitemap.xml
+          if git rev-parse -q --verify MERGE_HEAD >/dev/null; then git commit --no-edit; fi
+          git push origin HEAD:feat/pattern-dictionary-wave4-production-staging-20260916
