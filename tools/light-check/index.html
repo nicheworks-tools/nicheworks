@@ -4,19 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>照明チェック｜Light Check | NicheWorks</title>
-  <meta name="description" content="カメラ映像から明るさ、色かぶり、コントラスト、明るさ変動を相対評価する無料ツールです。照度計やフリッカーメーターの代替ではなく、撮影・配信前の比較確認用です。">
+  <title>撮影・配信の照明チェック｜Camera Lighting Check | NicheWorks</title>
+  <meta name="description" content="撮影・配信前に、カメラ映像から明るさ、色かぶり、コントラスト、明るさ変動を相対比較する無料のCamera Lighting Check。照度計やフリッカーメーターの代替ではありません。">
   <link rel="canonical" href="https://nicheworks.app/tools/light-check/">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
-  <meta property="og:title" content="照明チェック｜Light Check | NicheWorks">
-  <meta property="og:description" content="カメラ映像から明るさ、色かぶり、コントラスト、明るさ変動を相対評価する無料ツールです。照度計やフリッカーメーターの代替ではなく、撮影・配信前の比較確認用です。">
+  <meta property="og:title" content="撮影・配信の照明チェック｜Camera Lighting Check | NicheWorks">
+  <meta property="og:description" content="撮影・配信前に、カメラ映像から明るさ、色かぶり、コントラスト、明るさ変動を相対比較する無料のCamera Lighting Check。照度計やフリッカーメーターの代替ではありません。">
   <meta property="og:url" content="https://nicheworks.app/tools/light-check/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="照明チェック｜Light Check | NicheWorks">
-  <meta name="twitter:description" content="カメラ映像から明るさ、色かぶり、コントラスト、明るさ変動を相対評価する無料ツールです。照度計やフリッカーメーターの代替ではなく、撮影・配信前の比較確認用です。">
+  <meta name="twitter:title" content="撮影・配信の照明チェック｜Camera Lighting Check | NicheWorks">
+  <meta name="twitter:description" content="撮影・配信前に、カメラ映像から明るさ、色かぶり、コントラスト、明るさ変動を相対比較する無料のCamera Lighting Check。照度計やフリッカーメーターの代替ではありません。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="robots" content="index,follow">
 
@@ -27,7 +27,7 @@
     "name":"Light Check",
     "url":"https://nicheworks.app/tools/light-check/",
     "applicationCategory":"UtilityApplication",
-    "description":"A free browser tool that uses camera video to compare brightness, color cast, contrast, and brightness variation. It is not a replacement for a lux meter or flicker meter.",
+    "description":"A free camera lighting check for comparing brightness, color cast, contrast, and brightness variation before shooting or streaming. It is not a replacement for a lux meter or flicker meter.",
     "operatingSystem":"All"
   }
   </script>
@@ -36,6 +36,7 @@
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
+      {"@type":"Question","name":"何に使うツールですか？","acceptedAnswer":{"@type":"Answer","text":"撮影や配信の前に、同じカメラ・同じ構図で照明条件を変え、明るさ、色かぶり、コントラスト、明るさ変動の差を相対比較するためのツールです。"}},
       {"@type":"Question","name":"luxを測れますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。照度計ではありません。カメラ映像からの相対評価です。"}},
       {"@type":"Question","name":"カメラ映像はアップロードされますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。解析処理はブラウザ内で行います。ただし広告・アクセス解析タグは読み込まれます。"}},
       {"@type":"Question","name":"フリッカーを正確に測れますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。Fはカメラ映像上の明るさ変動の簡易指標です。端末FPSや露出制御の影響を受けます。"}},
@@ -62,8 +63,8 @@
   <header class="nw-header">
     <div class="nw-headrow">
       <div>
-        <h1 class="nw-title"><span data-i18n="ja">ライトチェック</span><span data-i18n="en">Light Check</span></h1>
-        <p class="nw-subtitle"><span data-i18n="ja">明るさ・色かぶり・影・明るさ変動を、カメラ映像から相対比較します。</span><span data-i18n="en">Compare brightness, color cast, shadows, and brightness variation from camera video.</span></p>
+        <h1 class="nw-title"><span data-i18n="ja">撮影・配信のライトチェック</span><span data-i18n="en">Camera Lighting Check</span></h1>
+        <p class="nw-subtitle"><span data-i18n="ja">撮影や配信の前に、明るさ・色かぶり・影・明るさ変動をカメラ映像から相対比較します。</span><span data-i18n="en">Compare camera lighting before a shoot or stream: brightness, color cast, shadows, and brightness variation.</span></p>
       </div>
       <div class="nw-lang-switch" aria-label="Language switch">
         <button type="button" data-lang="ja">JP</button>
@@ -80,6 +81,12 @@
       <p class="nw-note" style="margin:0 0 8px"><span data-i18n="ja">カメラ映像の解析処理はブラウザ内で行います。映像ファイルをアップロードするものではありません。ただし、ページ表示のため広告・アクセス解析タグは読み込まれます。</span><span data-i18n="en">Camera analysis runs in your browser. This tool does not upload video files. However, ads and analytics tags may load for page operation.</span></p>
       <p class="nw-note" style="margin:0 0 8px"><span data-i18n="ja">人の顔、個人情報、未公開資料、画面内の機密情報が映らないよう注意してください。終了時は「停止」を押すとカメラ利用を停止します。</span><span data-i18n="en">Avoid showing faces, personal information, unpublished materials, or confidential information on screen. Use “Stop” to stop camera use when finished.</span></p>
       <p class="nw-note" style="margin:0"><span data-i18n="ja">Fは「ちらつきそのもの」ではなく、カメラ映像上の明るさ変動の簡易指標です。端末FPS・露出制御・シャッター・照明PWMに強く影響されます。</span><span data-i18n="en">F is not flicker itself. It is a simple camera-based brightness-variation indicator affected by device FPS, exposure control, shutter behavior, and PWM lighting.</span></p>
+    </section>
+
+    <section class="lc-card" style="padding:12px; margin-bottom:12px" aria-label="Camera lighting comparison use cases">
+      <h2 style="margin:0 0 8px; font-size:15px"><span data-i18n="ja">撮影・配信前の照明比較に</span><span data-i18n="en">Camera lighting check before shooting or streaming</span></h2>
+      <p class="nw-note" style="margin:0 0 8px"><span data-i18n="ja">ライトを近づける・離す、左右へ動かす、色味を変えるなど、照明Aと照明Bの差を同じカメラ・同じ構図で比べる用途に向いています。</span><span data-i18n="en">Use the same camera and framing to compare lighting A vs. B after moving a light, changing distance, or adjusting its color.</span></p>
+      <p class="nw-note" style="margin:0"><span data-i18n="ja">表示するB/C/S/Fは絶対値の測定ではありません。撮影・配信・ビデオ通話などで「どちらの照明条件がよいか」を比較するための相対指標です。</span><span data-i18n="en">B/C/S/F are relative indicators, not calibrated measurements. They are intended to help compare lighting choices for video shoots, streaming, or video calls.</span></p>
     </section>
 
     <section class="lc-card" aria-label="Light Check Tool">
@@ -180,7 +187,8 @@
 
     <section class="lc-card" style="padding:12px; margin-top:12px" aria-label="FAQ">
       <h2 style="margin:0 0 8px; font-size:15px">FAQ</h2>
-      <details class="lc-accordion" open><summary><span data-i18n="ja">Q. luxを測れますか？</span><span data-i18n="en">Q. Can it measure lux?</span></summary><div class="lc-accBody"><div class="lc-small"><span data-i18n="ja">いいえ。照度計ではありません。カメラ映像からの相対評価です。</span><span data-i18n="en">No. It is not a lux meter. It provides relative camera-based estimates.</span></div></div></details>
+      <details class="lc-accordion" open><summary><span data-i18n="ja">Q. 何に使うツールですか？</span><span data-i18n="en">Q. What is this tool for?</span></summary><div class="lc-accBody"><div class="lc-small"><span data-i18n="ja">撮影や配信の前に、同じカメラ・同じ構図で照明条件を変え、明るさ、色かぶり、コントラスト、明るさ変動の差を相対比較するためのツールです。</span><span data-i18n="en">It compares lighting conditions before shooting or streaming by keeping the same camera and framing while you change the light.</span></div></div></details>
+      <details class="lc-accordion"><summary><span data-i18n="ja">Q. luxを測れますか？</span><span data-i18n="en">Q. Can it measure lux?</span></summary><div class="lc-accBody"><div class="lc-small"><span data-i18n="ja">いいえ。照度計ではありません。カメラ映像からの相対評価です。</span><span data-i18n="en">No. It is not a lux meter. It provides relative camera-based estimates.</span></div></div></details>
       <details class="lc-accordion"><summary><span data-i18n="ja">Q. カメラ映像はアップロードされますか？</span><span data-i18n="en">Q. Is camera video uploaded?</span></summary><div class="lc-accBody"><div class="lc-small"><span data-i18n="ja">いいえ。解析処理はブラウザ内で行います。ただし広告・アクセス解析タグは読み込まれます。</span><span data-i18n="en">No. Analysis runs in your browser. Ads and analytics tags may still load.</span></div></div></details>
       <details class="lc-accordion"><summary><span data-i18n="ja">Q. フリッカーを正確に測れますか？</span><span data-i18n="en">Q. Can it measure flicker accurately?</span></summary><div class="lc-accBody"><div class="lc-small"><span data-i18n="ja">いいえ。Fはカメラ映像上の明るさ変動の簡易指標です。端末FPSや露出制御の影響を受けます。</span><span data-i18n="en">No. F is a simple brightness-variation indicator affected by FPS and exposure behavior.</span></div></div></details>
       <details class="lc-accordion"><summary><span data-i18n="ja">Q. 業務用の照明検査に使えますか？</span><span data-i18n="en">Q. Can it be used for professional lighting inspection?</span></summary><div class="lc-accBody"><div class="lc-small"><span data-i18n="ja">推奨しません。業務撮影、建築照明、労働安全、検査用途では専用機器を使ってください。</span><span data-i18n="en">Not recommended. Use dedicated equipment for professional shooting, architectural lighting, workplace safety, or inspection use.</span></div></div></details>
