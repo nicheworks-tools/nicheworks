@@ -21,6 +21,24 @@
     "鐵": {"old":"鐵","modern":"鉄","riskLevel":"medium","riskTypes":["font-dependent","copy-destination"],"summaryJa":"細かい部品が多く、環境によって見え方が変わります。","summaryEn":"With many fine components, rendering differs by environment.","copyNoteJa":"帳票出力ではフォント埋め込み有無にも注意してください。","copyNoteEn":"For exported documents, font embedding can affect appearance.","technicalJa":"複雑字形の旧字体です。","technicalEn":"This is a complex old-form glyph.","recommendedCheckJa":"出力先フォーマットでも確認してください。","recommendedCheckEn":"Also verify in the final output format."},
     "廣": {"old":"廣","modern":"広","riskLevel":"medium","riskTypes":["font-dependent","name-glyph"],"summaryJa":"フォントによって内部構造の線が異なって見える場合があります。","summaryEn":"Internal strokes may differ across fonts.","copyNoteJa":"名前用途では使用先での表示確認を推奨します。","copyNoteEn":"For name use, check rendering in the destination system.","technicalJa":"旧字特有の構成差がある文字です。","technicalEn":"This old form has structural differences from the modern glyph.","recommendedCheckJa":"入力先での再表示結果を確認してください。","recommendedCheckEn":"Confirm the re-rendered result in the input destination."},
     "亞": {"old":"亞","modern":"亜","riskLevel":"low","riskTypes":["font-dependent"],"summaryJa":"端末により線の太さや間隔が異なる場合があります。","summaryEn":"Stroke weight and spacing can vary by device.","copyNoteJa":"長文中では判別しづらくなる場合があります。","copyNoteEn":"In long text, visual distinction may become subtle.","technicalJa":"旧字体のためフォント実装差が出ることがあります。","technicalEn":"As an old form, font implementation differences may appear.","recommendedCheckJa":"使用フォントで見比べてください。","recommendedCheckEn":"Compare it in the font you plan to use."},
-    "驛": {"old":"驛","modern":"駅","riskLevel":"medium","riskTypes":["font-dependent","copy-destination"],"summaryJa":"画数が多く、低解像度では潰れて見えることがあります。","summaryEn":"With many strokes, it may blur at lower resolutions.","copyNoteJa":"表示サイズが小さいUIでは特に確認してください。","copyNoteEn":"Check carefully in small-size UI contexts.","technicalJa":"旧字体の複雑字形です。","technicalEn":"This is a complex old-form character.","recommendedCheckJa":"最終画面サイズで可読性を確認してください。","recommendedCheckEn":"Verify readability at the final display size."}
+    "驛": {"old":"驛","modern":"駅","riskLevel":"medium","riskTypes":["font-dependent","copy-destination"],"summaryJa":"画数が多く、低解像度では潰れて見えることがあります。","summaryEn":"With many strokes, it may blur at lower resolutions.","copyNoteJa":"表示サイズが小さいUIでは特に確認してください。","copyNoteEn":"Check carefully in small-size UI contexts.","technicalJa":"旧字体の複雑字形です。","technicalEn":"This is a complex old-form character.","recommendedCheckJa":"最終画面サイズで可読性を確認してください。","recommendedCheckEn":"Verify readability at the final display size."},
+    "贈": {
+      "old": "贈",
+      "modern": "贈",
+      "riskLevel": "high",
+      "riskTypes": [
+        "compatibility-ideograph",
+        "font-dependent",
+        "copy-destination"
+      ],
+      "summaryJa": "CJK互換漢字のため、環境によって通常の「贈」と同じ字形で表示されることがあります。",
+      "summaryEn": "As a CJK compatibility ideograph, this character may render identically to 贈 depending on the environment.",
+      "copyNoteJa": "貼り付け先で通常の「贈」に正規化・置換される場合があります。",
+      "copyNoteEn": "The destination may normalize or replace it with the regular character 贈.",
+      "technicalJa": "Unicode U+FA65のCJK互換漢字で、U+8D08「贈」と互換等価です。",
+      "technicalEn": "This is CJK Compatibility Ideograph U+FA65, compatibility-equivalent to U+8D08 贈.",
+      "recommendedCheckJa": "字形だけでなくUnicodeコードポイントも確認してください。",
+      "recommendedCheckEn": "Check the Unicode code point as well as the rendered glyph."
+    }
   }
 }

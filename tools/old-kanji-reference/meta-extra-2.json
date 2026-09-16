@@ -660,6 +660,14 @@
       "dataStatus": "verified",
       "confidence": "high",
       "sourceNote": "一般的な旧字体・新字体対応として扱う"
+    },
+    "贈": {
+      "modern": "贈",
+      "category": "document",
+      "verified": true,
+      "dataStatus": "verified",
+      "confidence": "high",
+      "sourceNote": "文化庁「常用漢字表」の「贈（贈）」に基づく旧字体・新字体対応"
     }
   }
 }
