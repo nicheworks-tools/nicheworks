@@ -61,8 +61,15 @@ ManualFinder is an `AFFILIATE` tool, but its official manual directory remains t
 - Generic exact-model search is enabled for `PC・スマホ`, `家電`, `プリンター・複合機`, `カメラ・映像`, `オーディオ`, `ゲーム`, and `ネットワーク機器`, provided the record has a non-empty canonical model.
 - `その他` is deliberately excluded from the generic rule because it mixes materially different identity types such as Seiko watch calibers and Roland legacy products. Any future commerce rule for an `その他` family must be narrowly scoped and independently justified.
 - Compatibility-sensitive accessory offers require separate verified mapping data and must not be inferred from model names.
-- Consumer-printer ink mappings are active for verified Brother, Epson, and Canon model batches. Exact ink-family mappings retain an official manufacturer source URL and verification date; unmapped printer models receive no consumable CTA.
-- Office-printer toner mappings may extend the same consumable runtime only for existing exact ManualFinder model records with explicit official manufacturer compatibility evidence. The first OKI toner wave stores exact toner codes for five models and renders one concise model-specific toner search per result rather than one link per color cartridge.
+- Consumer-printer ink mappings are active for verified Brother, Epson, and Canon model batches. Exact ink-family mappings retain an official manufacturer source URL and verification date; unmapped compatibility must fail closed.
+- Office-printer toner mappings extend the same consumable runtime only for existing exact ManualFinder model records with explicit official manufacturer evidence. Maintained OKI, KYOCERA, RICOH, and FUJIFILM Business Innovation ledgers are covered by this rule.
+- A manufacturer-published retail toner code is retained when verified. If the official source establishes the exact model/toner relationship but no public retail SKU can be verified, an empty code list is valid; the runtime must not invent a SKU.
+- Printer-detail coverage is governed by a catalog-wide reconciliation contract: every canonical printer with a basic Amazon path must have either a verified detail handoff or an explicit reviewed exclusion.
+- The current audited printer state is **291 basic = 284 detail + 7 reviewed exclusions + 0 missing detail**.
+- The reviewed exclusions are evidence-backed service-managed-consumables cases and are stored in `affiliate-printer-detail-exclusions.js`; they are not unresolved mappings to be filled speculatively.
+- KYOCERA Waves 1–19 close the current KYOCERA catalog at **123 = 120 detail + 3 reviewed exclusions + 0 missing**. Wave 19 adds the final `KM-C3225E` and `KM-C870` handoffs with `tonerCodes: []` because no public retail toner SKU was verified from the official evidence.
+- The Wave 19 Amazon queries remain model-specific: `KYOCERA KM-C3225E トナー` and `KYOCERA KM-C870 トナー`.
+- Wrong maker, wrong category, nonexistent model, malformed URL, unsupported category, and unreviewed compatibility cases must fail closed.
 - Printer consumable CTAs use one coarse analytics target (`printer_consumable_search_template`). Amazon search terms are constructed only from verified compatibility mappings or exact canonical model identities, never arbitrary user text.
 - Consumable CTA wording does not claim that every Amazon result is genuine, recommended, or compatible. The UI states that compatibility evidence was checked against a manufacturer source and asks the user to confirm the exact Amazon item before purchase.
 - Amazon search CTAs are handoffs (`Amazonで <maker> <model> を探す` / `Find <maker> <model> on Amazon`), not claims that any listing is official, recommended, cheapest, available, or compatible.
@@ -112,8 +119,12 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] The Nikon Z8 result may show the verified Amazon search override only after the official manual links.
 - [x] The validated dynamic model-search builder generates deterministic tagged URLs from canonical maker/model metadata without requiring a per-model stored link for eligible product categories.
 - [x] Generic manufacturer entrances and `その他` records do not receive the generic Amazon model-search CTA.
-- [x] Verified Brother/Epson/Canon ink mappings expose only their manufacturer-backed searches; unknown or unmapped models fail closed for consumables.
-- [x] The first OKI toner wave applies only to five existing exact model records, retains exact manufacturer toner-code evidence, and renders one concise tagged toner handoff per model.
+- [x] Verified Brother/Epson/Canon ink mappings expose only their manufacturer-backed searches; unknown or unmapped compatibility fails closed.
+- [x] Maintained office-printer toner mappings activate only for reviewed exact model/maker/category contracts and retain manufacturer evidence without inventing unverified SKUs.
+- [x] The catalog-wide printer audit reconciles to **291 basic = 284 detail + 7 reviewed exclusions + 0 missing detail**.
+- [x] `printerMissingDetail`, `printerMissingDetailByMaker`, and `printerMissingDetailModelsByMaker` are empty at the completed audit baseline.
+- [x] KYOCERA closes at **123 = 120 detail + 3 reviewed exclusions + 0 missing**, including the final Wave 19 `KM-C3225E` and `KM-C870` rows with no inferred toner SKU.
+- [x] Nonexistent models, wrong maker/category combinations, and other unreviewed cases remain fail-closed.
 - [x] Consumable searches use the fixed NicheWorks tracking ID while analytics receive only the coarse consumable target, not the ink/toner/model query.
 - [x] The Amazon disclosure and sponsored link semantics are supplied by the shared affiliate helper, with only coarse fixed click metadata.
 
@@ -124,9 +135,20 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - `tools/manual-finder/app.paged.js`
 - `tools/manual-finder/affiliate-config.js`
 - `tools/manual-finder/affiliate-office-consumables.js`
+- `tools/manual-finder/affiliate-oki-toner-wave2.js`
+- `tools/manual-finder/affiliate-oki-toner-wave6.js`
+- `tools/manual-finder/affiliate-ricoh-consumables-wave3.js`
+- `tools/manual-finder/affiliate-kyocera-toner-wave3.js`
+- `tools/manual-finder/affiliate-kyocera-toner-wave4.js`
+- `tools/manual-finder/affiliate-kyocera-toner-wave6.js`
+- `tools/manual-finder/affiliate-fujifilm-toner-wave2.js`
+- `tools/manual-finder/affiliate-printer-detail-exclusions.js`
 - `tools/manual-finder/affiliate-runtime.js`
 - `tools/manual-finder/affiliate.css`
 - `tools/manual-finder/AFFILIATE_COVERAGE.md`
+- `tools/manual-finder/tests/affiliate-coverage.test.mjs`
+- `tools/manual-finder/tests/behavior.test.mjs`
+- maker/wave-specific affiliate tests, including `tools/manual-finder/tests/kyocera-toner-wave19.test.mjs`
 - `tools/manual-finder/data/manuals.json`
 - `tools/manual-finder/data/manuals.full.js`
 - `tools/manual-finder/data/manuals.wave1.01.js` through `manuals.wave1.06.js`
