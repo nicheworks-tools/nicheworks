@@ -1,0 +1,38 @@
+name: Monetization classification check
+
+on:
+  pull_request:
+    paths:
+      - 'MONETIZATION_CLASSIFICATION.json'
+      - 'MONETIZATION_CLASSIFICATION_87.json'
+      - 'tools/tools-index.json'
+      - 'tools/tool-spec-manifest.json'
+      - 'audits/tool-quality-matrix.json'
+      - 'tools/*/affiliate-config.js'
+      - 'scripts/check-monetization-classification.mjs'
+      - '.github/workflows/monetization-classification-check.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'MONETIZATION_CLASSIFICATION.json'
+      - 'MONETIZATION_CLASSIFICATION_87.json'
+      - 'tools/tools-index.json'
+      - 'tools/tool-spec-manifest.json'
+      - 'audits/tool-quality-matrix.json'
+      - 'tools/*/affiliate-config.js'
+      - 'scripts/check-monetization-classification.mjs'
+      - '.github/workflows/monetization-classification-check.yml'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check canonical monetization classification and runtime guardrails
+        run: node scripts/check-monetization-classification.mjs
