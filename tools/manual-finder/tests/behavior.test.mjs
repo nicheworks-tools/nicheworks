@@ -24,5 +24,6 @@ await import('./affiliate-coverage.test.mjs');
 await import('./affiliate-doc-sync.test.mjs');
 await import('./nikon-camera-accessory-wave1.test.mjs');
 await import('./nikon-camera-accessory-wave2.test.mjs');
+await import('./dji-osmo-action-accessory-wave1.test.mjs');
 await import('./camera-accessory-coverage.test.mjs');
 await import('./camera-accessory-doc-sync.test.mjs');
