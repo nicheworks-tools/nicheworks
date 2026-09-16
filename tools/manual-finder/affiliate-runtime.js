@@ -4,18 +4,32 @@
   const runtimeScriptUrl = document.currentScript?.src || "";
   let initialized = false;
 
-  function loadCameraAccessoryLayer(done) {
-    if (window.MANUALFINDER_CAMERA_ACCESSORY_LEDGER || !runtimeScriptUrl) {
+  function loadScript(relativeUrl, isLoaded, done) {
+    if (isLoaded() || !runtimeScriptUrl) {
       done();
       return;
     }
 
     const script = document.createElement("script");
-    script.src = new URL("affiliate-camera-accessories.js?v=mf-camera-accessory-20260916a", runtimeScriptUrl).toString();
+    script.src = new URL(relativeUrl, runtimeScriptUrl).toString();
     script.async = false;
     script.onload = done;
     script.onerror = done;
     document.head.appendChild(script);
+  }
+
+  function loadCameraAccessoryLayers(done) {
+    loadScript(
+      "affiliate-camera-accessories.js?v=mf-camera-accessory-20260916a",
+      () => Boolean(window.MANUALFINDER_CAMERA_ACCESSORY_LEDGER),
+      () => {
+        loadScript(
+          "affiliate-nikon-camera-accessories-wave2.js?v=mf-nikon-camera-accessory-wave2-20260916a",
+          () => Boolean(window.MANUALFINDER_NIKON_CAMERA_ACCESSORY_WAVE2_LEDGER),
+          done
+        );
+      }
+    );
   }
 
   function init() {
@@ -209,5 +223,5 @@
     refresh();
   }
 
-  loadCameraAccessoryLayer(init);
+  loadCameraAccessoryLayers(init);
 })();
