@@ -1,3 +1,5 @@
+// Photo candidate search: simple template matching
+// Safety contract: Prioritize the garment label, maker instructions, fabric notes, and professional cleaner guidance.
 const grid = document.getElementById("symbolGrid");
 const result = document.getElementById("result");
 const summaryEl = document.getElementById("resultSummary");
