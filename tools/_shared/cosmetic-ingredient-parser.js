@@ -49,7 +49,10 @@
     "グリセリルエチルヘキシルエーテル": "ethylhexylglycerin",
     "ヤシ油脂肪酸アシルグルタミン酸na": "sodium cocoyl glutamate",
     "シュガースクワラン": "squalane",
-    "alcohol denat": "alcohol denat."
+    "alcohol denat": "alcohol denat.",
+    "panthenol vitamin b5": "panthenol",
+    "tocopheryl acetate vitamin e acetate": "tocopheryl acetate",
+    "guar hydroxypropyl-trimonium chloride": "guar hydroxypropyltrimonium chloride"
   });
 
   const CANONICAL_EQUIVALENTS = Object.freeze({
