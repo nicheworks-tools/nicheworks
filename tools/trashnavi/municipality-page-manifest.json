@@ -82,5 +82,15 @@
   {"lgcode":"112038","pref_slug":"saitama","city_slug":"kawaguchi","publish":true},
   {"lgcode":"122076","pref_slug":"chiba","city_slug":"matsudo","publish":true},
   {"lgcode":"122033","pref_slug":"chiba","city_slug":"ichikawa","publish":true},
-  {"lgcode":"132098","pref_slug":"tokyo","city_slug":"machida","publish":true}
+  {"lgcode":"132098","pref_slug":"tokyo","city_slug":"machida","publish":true},
+  {"lgcode":"272272","pref_slug":"osaka","city_slug":"higashiosaka","publish":true},
+  {"lgcode":"282022","pref_slug":"hyogo","city_slug":"amagasaki","publish":true},
+  {"lgcode":"142051","pref_slug":"kanagawa","city_slug":"fujisawa","publish":true},
+  {"lgcode":"112011","pref_slug":"saitama","city_slug":"kawagoe","publish":true},
+  {"lgcode":"232114","pref_slug":"aichi","city_slug":"toyota","publish":true},
+  {"lgcode":"272035","pref_slug":"osaka","city_slug":"toyonaka","publish":true},
+  {"lgcode":"142018","pref_slug":"kanagawa","city_slug":"yokosuka","publish":true},
+  {"lgcode":"232025","pref_slug":"aichi","city_slug":"okazaki","publish":true},
+  {"lgcode":"232033","pref_slug":"aichi","city_slug":"ichinomiya","publish":true},
+  {"lgcode":"102024","pref_slug":"gunma","city_slug":"takasaki","publish":true}
 ]

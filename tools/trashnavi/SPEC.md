@@ -757,3 +757,23 @@ Wave 30は10自治体batch scaling ruleを継続し、公開閾値を変更せ�
 Wave 30 readiness baselineは1,916 municipalities、2,340 valid HTTP(S) records、84 preferred candidates、33 direct-link datasets / 272 records / 253 unique URLs / 0 invalid URLsとする。東京都のpreferred candidatesは25となり、23特別区に八王子市・町田市を加えた状態である。
 
 Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 84/84、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する台東区・墨田区・八王子市・川口市・松戸市・市川市だけ2026 calendar calloutを表示し、文京区・荒川区・船橋市・町田市には年次calloutを生成しない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+
+## Wave 31 ten-municipality publication
+
+Wave 31は10自治体batch scaling ruleを継続し、公開閾値を変更せず **84自治体から94自治体** へ拡張する。人口規模と利用需要が大きい未公開の一般市を優先し、東大阪市・尼崎市・藤沢市・川越市・豊田市・豊中市・横須賀市・岡崎市・一宮市・高崎市を追加する。柏市は柏地域と沼南地域でごみルールが分かれるため、単一自治体ページへ一般化せず今回のbatchから除外する。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeとし、同一combined pageの二重計上や外部委託先による閾値補完は行わない。
+
+- 大阪府 東大阪市 — `/tools/trashnavi/osaka/higashiosaka/` — waste sorting / collection calendar / bulky waste
+- 兵庫県 尼崎市 — `/tools/trashnavi/hyogo/amagasaki/` — waste sorting / collection calendar / bulky waste
+- 神奈川県 藤沢市 — `/tools/trashnavi/kanagawa/fujisawa/` — waste sorting / collection calendar / bulky waste
+- 埼玉県 川越市 — `/tools/trashnavi/saitama/kawagoe/` — waste sorting / collection calendar / bulky waste
+- 愛知県 豊田市 — `/tools/trashnavi/aichi/toyota/` — waste sorting / collection calendar / bulky waste
+- 大阪府 豊中市 — `/tools/trashnavi/osaka/toyonaka/` — waste sorting / collection calendar / bulky waste
+- 神奈川県 横須賀市 — `/tools/trashnavi/kanagawa/yokosuka/` — waste sorting / collection calendar / bulky waste
+- 愛知県 岡崎市 — `/tools/trashnavi/aichi/okazaki/` — waste sorting / collection calendar / bulky waste
+- 愛知県 一宮市 — `/tools/trashnavi/aichi/ichinomiya/` — waste sorting / collection calendar / bulky waste
+- 群馬県 高崎市 — `/tools/trashnavi/gunma/takasaki/` — waste sorting / collection calendar / bulky waste
+
+Wave 31 readiness baselineは1,916 municipalities、2,370 valid HTTP(S) records、94 preferred candidates、34 direct-link datasets / 302 records / 283 unique URLs / 0 invalid URLsとする。
+
+Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 94/94、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する川越市・豊中市・横須賀市・岡崎市・一宮市だけ2026 calendar calloutを表示し、東大阪市・尼崎市・藤沢市・豊田市・高崎市には年次calloutを生成しない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。

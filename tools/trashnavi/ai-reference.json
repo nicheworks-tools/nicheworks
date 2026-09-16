@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 84,
+  "published_municipality_count": 94,
   "municipalities": [
     {
       "lgcode": "131016",
@@ -512,6 +512,66 @@
       "pref_slug": "tokyo",
       "city_slug": "machida",
       "url": "https://nicheworks.app/tools/trashnavi/tokyo/machida/"
+    },
+    {
+      "lgcode": "272272",
+      "pref_slug": "osaka",
+      "city_slug": "higashiosaka",
+      "url": "https://nicheworks.app/tools/trashnavi/osaka/higashiosaka/"
+    },
+    {
+      "lgcode": "282022",
+      "pref_slug": "hyogo",
+      "city_slug": "amagasaki",
+      "url": "https://nicheworks.app/tools/trashnavi/hyogo/amagasaki/"
+    },
+    {
+      "lgcode": "142051",
+      "pref_slug": "kanagawa",
+      "city_slug": "fujisawa",
+      "url": "https://nicheworks.app/tools/trashnavi/kanagawa/fujisawa/"
+    },
+    {
+      "lgcode": "112011",
+      "pref_slug": "saitama",
+      "city_slug": "kawagoe",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/kawagoe/"
+    },
+    {
+      "lgcode": "232114",
+      "pref_slug": "aichi",
+      "city_slug": "toyota",
+      "url": "https://nicheworks.app/tools/trashnavi/aichi/toyota/"
+    },
+    {
+      "lgcode": "272035",
+      "pref_slug": "osaka",
+      "city_slug": "toyonaka",
+      "url": "https://nicheworks.app/tools/trashnavi/osaka/toyonaka/"
+    },
+    {
+      "lgcode": "142018",
+      "pref_slug": "kanagawa",
+      "city_slug": "yokosuka",
+      "url": "https://nicheworks.app/tools/trashnavi/kanagawa/yokosuka/"
+    },
+    {
+      "lgcode": "232025",
+      "pref_slug": "aichi",
+      "city_slug": "okazaki",
+      "url": "https://nicheworks.app/tools/trashnavi/aichi/okazaki/"
+    },
+    {
+      "lgcode": "232033",
+      "pref_slug": "aichi",
+      "city_slug": "ichinomiya",
+      "url": "https://nicheworks.app/tools/trashnavi/aichi/ichinomiya/"
+    },
+    {
+      "lgcode": "102024",
+      "pref_slug": "gunma",
+      "city_slug": "takasaki",
+      "url": "https://nicheworks.app/tools/trashnavi/gunma/takasaki/"
     }
   ]
 }
