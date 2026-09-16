@@ -66,14 +66,18 @@ async function runtime() {
   const redirected = new Set(redirects.map((r) => text(r?.from)).filter(Boolean));
   const active = sourceRows.filter((r) => !redirected.has(text(r?.id)));
   const rt = await runtime();
+  const runtimeById = new Map(rt.map((entry) => [text(entry?.id), entry]));
   const exactReports = [];
   const nearReports = [];
 
   for (const s of active) {
     const sid = text(s?.id);
-    const sj = normJa(s?.ja || s?.term?.ja);
-    const se = normEn(s?.en || s?.term?.en);
-    const sw = words(s?.en || s?.term?.en);
+    const resolved = runtimeById.get(sid);
+    if (!resolved) throw new Error(`${sid}: active batch canonical missing from resolved runtime`);
+    const sn = names(resolved);
+    const sj = normJa(sn.ja);
+    const se = normEn(sn.en);
+    const sw = words(sn.en);
     const sit = idTokens(sid);
     const exact = [];
     const near = [];
@@ -108,10 +112,22 @@ async function runtime() {
       if (!reasons.length && score >= 4) near.push({ id, ...n, score: Number(score.toFixed(2)), reasons: nearReasons });
     }
 
-    if (exact.length) exactReports.push({ source: { id: sid, type: text(s?.t || s?.type), ja: text(s?.ja || s?.term?.ja), en: text(s?.en || s?.term?.en), dja: text(s?.dj || s?.description?.ja), den: text(s?.de || s?.description?.en) }, candidates: exact });
+    const raw = names(s);
+    const source = {
+      id: sid,
+      type: sn.type,
+      ja: sn.ja,
+      en: sn.en,
+      dja: raw.dja,
+      den: raw.den,
+      raw_type: raw.type,
+      raw_ja: raw.ja,
+      raw_en: raw.en
+    };
+    if (exact.length) exactReports.push({ source, candidates: exact });
     if (near.length) {
       near.sort((a, b) => b.score - a.score || a.id.localeCompare(b.id));
-      nearReports.push({ source: { id: sid, type: text(s?.t || s?.type), ja: text(s?.ja || s?.term?.ja), en: text(s?.en || s?.term?.en), dja: text(s?.dj || s?.description?.ja), den: text(s?.de || s?.description?.en) }, candidates: near.slice(0, 8) });
+      nearReports.push({ source, candidates: near.slice(0, 8) });
     }
   }
 
