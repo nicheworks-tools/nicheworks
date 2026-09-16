@@ -1,106 +1,70 @@
-const root = document.querySelector('[data-tool="pattern-atlas-vector-lab"]');
+const root=document.querySelector('[data-tool="pattern-atlas-vector-lab"]');
+if(root){
+  root.dataset.runtimePatch='20260916-2';
+  document.title=document.title.replace('Vector Lab v2','Vector Lab v2.1');
+  const title=root.querySelector('.pa-title'); if(title) title.textContent='Vector Lab v2.1';
+  const lead=root.querySelector('.pa-lead'); if(lead) lead.textContent='最小タイル化に加え、境界補完と中心線＋uniform strokeで欠け・線幅ばらつきを検証します。';
+  const q=n=>root.querySelector(`[data-pa-lab-${n}]`), status=q('status'), wasmState=q('wasm-state'), resultCount=q('result-count'), results=q('results'), tileSize=q('tile-size');
+  const progressWrap=q('progress-wrap'),progress=q('progress'),progressLabel=q('progress-label'),progressDetail=q('progress-detail');
+  const pattern=q('pattern'),preset=q('preset'),source=q('source'),xInput=q('x'),yInput=q('y'),wInput=q('width'),hInput=q('height'),periodMeta=q('period-meta');
+  const actionsBox=root.querySelector('.pa-lab-engine-actions');
+  let qualityMeta=q('quality-meta'),qualityButton=q('run-quality');
+  if(!qualityMeta&&periodMeta){qualityMeta=document.createElement('p');qualityMeta.className='pa-lab-period-meta';qualityMeta.dataset.paLabQualityMeta='';periodMeta.after(qualityMeta);}
+  if(!qualityButton&&actionsBox){qualityButton=document.createElement('button');qualityButton.className='pa-button pa-button-primary';qualityButton.type='button';qualityButton.dataset.paLabRunQuality='';qualityButton.textContent='v2.1品質改善を3方式比較';actionsBox.prepend(qualityButton);}
+  const about=root.querySelector('#lab-about'); if(about){about.textContent='v2.1 品質改善テスト';const note=document.createElement('p');note.className='pa-muted';note.textContent='追加比較: raw輪郭トレース / 二値化＋wrapped padding / スケルトン中心線＋uniform stroke。境界欠けと線幅ばらつきを重点確認します。';about.parentElement?.append(note);}
 
-if (root) {
-  root.dataset.runtimePatch = '20260916-1';
-
-  const progressWrap = root.querySelector('[data-pa-lab-progress-wrap]');
-  const progress = root.querySelector('[data-pa-lab-progress]');
-  const progressLabel = root.querySelector('[data-pa-lab-progress-label]');
-  const progressDetail = root.querySelector('[data-pa-lab-progress-detail]');
-  const status = root.querySelector('[data-pa-lab-status]');
-  const wasmState = root.querySelector('[data-pa-lab-wasm-state]');
-  const resultCount = root.querySelector('[data-pa-lab-result-count]');
-
-  const setProgress = (value, label, detail = '', state = 'busy') => {
-    if (!progressWrap || !progress || !progressLabel || !progressDetail) return;
-    progressWrap.hidden = false;
-    progress.value = Math.max(0, Math.min(100, value));
-    progressLabel.textContent = label;
-    progressDetail.textContent = detail;
-    progressWrap.dataset.state = state;
+  const setProgress=(value,label,detail='',state='busy')=>{if(!progressWrap||!progress||!progressLabel||!progressDetail)return;progressWrap.hidden=false;progress.value=Math.max(0,Math.min(100,value));progressLabel.textContent=label;progressDetail.textContent=detail;progressWrap.dataset.state=state;};
+  const updateFromRuntime=()=>{const message=status?.textContent?.trim()||'',wasm=wasmState?.textContent?.trim()||'',count=parseInt(resultCount?.textContent||'0',10)||0,state=status?.dataset?.state||'';
+    if(state==='error'||/失敗|error/i.test(message)||/load failed/i.test(wasm)){setProgress(100,'処理に失敗しました',message||wasm,'error');return;}
+    if(state==='ok'||/完了/.test(message)){setProgress(100,'処理完了',message,'ok');return;}
+    if(/中心線|uniform stroke/.test(message)){setProgress(Math.max(+progress?.value||0,78),'中心線SVGを再構成中',message);return;}
+    if(/wrapped padding|二値化/.test(message)){setProgress(Math.max(+progress?.value||0,48),'境界補完トレース中',message);return;}
+    if(/v2\.1品質改善/.test(message)){setProgress(Math.max(+progress?.value||0,15),'v2.1品質改善を実行中',message);return;}
+    if(/VTracer WASM: fetching binary/i.test(wasm)){setProgress(Math.max(+progress?.value||0,58),'VTracer WASMを取得中',wasm);return;}
+    if(/VTracer WASM: loading/i.test(wasm)){setProgress(Math.max(+progress?.value||0,52),'VTracer WASMを読み込み中',wasm);return;}
+    if(/VTracer WASM: ready/i.test(wasm)&&count>=1){setProgress(Math.max(+progress?.value||0,65),'VTracer WASMで変換中',`${count}/2 engine result`);return;}
+    if(/VTracer/.test(message)){setProgress(Math.max(+progress?.value||0,68),'VTracer WASMで変換中',message);return;}
+    if(/ImageTracer/.test(message)){setProgress(Math.max(+progress?.value||0,18),'ImageTracerJSで変換中',message);return;}
   };
+  const deferClickForPaint=(button,label)=>{button.addEventListener('click',e=>{if(button.dataset.paProgressRedispatched==='1')return;e.preventDefault();e.stopImmediatePropagation();setProgress(3,label,'処理を開始しています。');if(status){status.textContent=`${label}を開始…`;status.dataset.state='busy';}requestAnimationFrame(()=>requestAnimationFrame(()=>{button.dataset.paProgressRedispatched='1';button.click();delete button.dataset.paProgressRedispatched;}));},true);};
+  [['run-quality','v2.1品質改善比較'],['run-imagetracer','ImageTracerJS変換'],['run-vtracer','VTracer WASM変換'],['run-both','A/B比較'],['run-baseline','v1/v2比較']].forEach(([name,label])=>{const b=q(name);if(b)deferClickForPaint(b,label);});
+  const observer=new MutationObserver(updateFromRuntime);[status,wasmState,resultCount].filter(Boolean).forEach(n=>observer.observe(n,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['data-state']}));
 
-  const updateFromRuntime = () => {
-    const message = status?.textContent?.trim() || '';
-    const wasm = wasmState?.textContent?.trim() || '';
-    const count = Number.parseInt(resultCount?.textContent || '0', 10) || 0;
-    const state = status?.dataset?.state || '';
-
-    if (state === 'error' || /失敗|error/i.test(message) || /load failed/i.test(wasm)) {
-      setProgress(100, '処理に失敗しました', message || wasm, 'error');
-      return;
-    }
-    if (state === 'ok' || /完了/.test(message)) {
-      setProgress(100, '処理完了', message, 'ok');
-      return;
-    }
-    if (/VTracer WASM: fetching binary/i.test(wasm)) {
-      setProgress(Math.max(Number(progress?.value) || 0, 58), 'VTracer WASMを取得中', wasm);
-      return;
-    }
-    if (/VTracer WASM: loading/i.test(wasm)) {
-      setProgress(Math.max(Number(progress?.value) || 0, 52), 'VTracer WASMを読み込み中', wasm);
-      return;
-    }
-    if (/VTracer WASM: ready/i.test(wasm) && count >= 1) {
-      setProgress(Math.max(Number(progress?.value) || 0, 65), 'VTracer WASMで変換中', `${count}/2 engine result`);
-      return;
-    }
-    if (/VTracer/.test(message)) {
-      setProgress(Math.max(Number(progress?.value) || 0, 68), 'VTracer WASMで変換中', message);
-      return;
-    }
-    if (/ImageTracer/.test(message)) {
-      setProgress(Math.max(Number(progress?.value) || 0, 18), 'ImageTracerJSで変換中', message);
-      return;
-    }
-    if (count === 1) {
-      setProgress(Math.max(Number(progress?.value) || 0, 48), '1/2 エンジン完了', '次のエンジンを実行しています。');
-    }
+  const presets={
+    geometric:{ltres:.45,qtres:1.4,pathomit:6,rightangleenhance:true,colorsampling:2,numberofcolors:5,colorquantcycles:3,layering:0,strokewidth:0,linefilter:false,scale:1,roundcoords:2,viewbox:true,desc:false,blurradius:0,blurdelta:20},
+    balanced:{ltres:.75,qtres:.75,pathomit:3,rightangleenhance:true,colorsampling:2,numberofcolors:8,colorquantcycles:3,layering:0,strokewidth:0,linefilter:false,scale:1,roundcoords:2,viewbox:true,desc:false,blurradius:0,blurdelta:20},
+    detail:{ltres:.25,qtres:.25,pathomit:1,rightangleenhance:false,colorsampling:2,numberofcolors:16,colorquantcycles:4,layering:0,strokewidth:0,linefilter:false,scale:1,roundcoords:3,viewbox:true,desc:false,blurradius:0,blurdelta:20}
   };
-
-  const deferClickForPaint = (button, label) => {
-    button.addEventListener('click', (event) => {
-      if (button.dataset.paProgressRedispatched === '1') return;
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      setProgress(3, label, '処理を開始しています。');
-      if (status) {
-        status.textContent = `${label}を開始…`;
-        status.dataset.state = 'busy';
-      }
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        button.dataset.paProgressRedispatched = '1';
-        button.click();
-        delete button.dataset.paProgressRedispatched;
-      }));
-    }, true);
-  };
-
-  const actions = [
-    ['run-imagetracer', 'ImageTracerJS変換'],
-    ['run-vtracer', 'VTracer WASM変換'],
-    ['run-both', 'A/B比較'],
-    ['run-baseline', 'v1/v2比較']
-  ];
-
-  actions.forEach(([name, label]) => {
-    const button = root.querySelector(`[data-pa-lab-${name}]`);
-    if (button) deferClickForPaint(button, label);
-  });
-
-  const observer = new MutationObserver(updateFromRuntime);
-  [status, wasmState, resultCount].filter(Boolean).forEach((node) => {
-    observer.observe(node, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['data-state'] });
-  });
-
-  window.addEventListener('error', (event) => {
-    setProgress(100, 'JavaScriptエラー', event.message || 'unknown error', 'error');
-  });
-  window.addEventListener('unhandledrejection', (event) => {
-    const message = String(event.reason?.message || event.reason || 'unknown error');
-    setProgress(100, '実行エラー', message, 'error');
-  });
-
-  updateFromRuntime();
+  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v)),median=v=>{if(!v.length)return 0;const a=[...v].sort((x,y)=>x-y),m=Math.floor(a.length/2);return a.length%2?a[m]:(a[m-1]+a[m])/2;},mean=v=>v.length?v.reduce((a,b)=>a+b,0)/v.length:0;
+  const serialize=svg=>new XMLSerializer().serializeToString(svg),dataUrl=s=>`data:image/svg+xml;charset=utf-8,${encodeURIComponent(s)}`,byteSize=s=>new TextEncoder().encode(s).byteLength,pretty=b=>b<1024?`${b} B`:`${(b/1024).toFixed(b<10240?1:0)} KB`;
+  const cropBox=()=>({x:Math.max(0,+xInput.value||0),y:Math.max(0,+yInput.value||0),width:Math.max(1,+wInput.value||1),height:Math.max(1,+hInput.value||1)});
+  async function tilePixels(){await source.decode();const box=cropBox(),c=document.createElement('canvas');c.width=box.width;c.height=box.height;const ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(source,box.x,box.y,box.width,box.height,0,0,box.width,box.height);return ctx.getImageData(0,0,box.width,box.height);}
+  function bgColor(im){const {width:w,height:h,data:d}=im,s=Math.max(2,Math.min(10,Math.floor(Math.min(w,h)/8)));let r=0,g=0,b=0,n=0;for(const [sx,sy] of [[0,0],[w-s,0],[0,h-s],[w-s,h-s]])for(let y=sy;y<sy+s;y++)for(let x=sx;x<sx+s;x++){const i=(y*w+x)*4;if(d[i+3]<16)continue;r+=d[i];g+=d[i+1];b+=d[i+2];n++;}return n?[r/n,g/n,b/n].map(Math.round):[255,255,255];}
+  function otsu(hist,total){let sum=0;for(let i=0;i<256;i++)sum+=i*hist[i];let sumB=0,wB=0,max=-1,t=0;for(let i=0;i<256;i++){wB+=hist[i];if(!wB)continue;const wF=total-wB;if(!wF)break;sumB+=i*hist[i];const mB=sumB/wB,mF=(sum-sumB)/wF,v=wB*wF*(mB-mF)**2;if(v>max){max=v;t=i;}}return t;}
+  function cleanMask(mask,w,h){const out=new Uint8Array(mask);for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){const i=y*w+x;let n=0;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++)if(dx||dy)n+=mask[(y+dy)*w+x+dx];if(mask[i]&&n<=1)out[i]=0;else if(!mask[i]&&n>=7)out[i]=1;}return out;}
+  function seam(mask,w,h){let x=0,y=0;for(let j=0;j<h;j++)x+=mask[j*w]!==mask[j*w+w-1];for(let i=0;i<w;i++)y+=mask[i]!==mask[(h-1)*w+i];return{x:x/h*100,y:y/w*100};}
+  function distTransform(mask,w,h){const d=new Float32Array(w*h),inf=1e6,diag=Math.SQRT2;for(let i=0;i<d.length;i++)d[i]=mask[i]?inf:0;for(let y=0;y<h;y++)for(let x=0;x<w;x++){const i=y*w+x;if(!mask[i])continue;let v=d[i];if(x)v=Math.min(v,d[i-1]+1);if(y)v=Math.min(v,d[i-w]+1);if(x&&y)v=Math.min(v,d[i-w-1]+diag);if(x<w-1&&y)v=Math.min(v,d[i-w+1]+diag);d[i]=v;}for(let y=h-1;y>=0;y--)for(let x=w-1;x>=0;x--){const i=y*w+x;if(!mask[i])continue;let v=d[i];if(x<w-1)v=Math.min(v,d[i+1]+1);if(y<h-1)v=Math.min(v,d[i+w]+1);if(x<w-1&&y<h-1)v=Math.min(v,d[i+w+1]+diag);if(x&&y<h-1)v=Math.min(v,d[i+w-1]+diag);d[i]=v;}return d;}
+  function strokeStats(mask,w,h){const d=distTransform(mask,w,h),r=[];for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){const i=y*w+x;if(!mask[i]||d[i]<1)continue;let peak=true;for(let dy=-1;dy<=1&&peak;dy++)for(let dx=-1;dx<=1;dx++)if((dx||dy)&&d[(y+dy)*w+x+dx]>d[i]+.01){peak=false;break;}if(peak)r.push(d[i]);}if(!r.length)return{width:1,cv:0};const m=median(r),f=r.filter(v=>v>=m*.55&&v<=m*1.55),ws=(f.length?f:r).map(v=>Math.max(1,2*v-1)),avg=mean(ws),variance=mean(ws.map(v=>(v-avg)**2));return{width:avg,cv:avg?Math.sqrt(variance)/avg:0};}
+  function analyze(im){const {width:w,height:h,data:d}=im,bg=bgColor(im),hist=new Uint32Array(256),ds=new Float32Array(w*h);for(let i=0,p=0;i<d.length;i+=4,p++){const v=Math.hypot(d[i]-bg[0],d[i+1]-bg[1],d[i+2]-bg[2]);ds[p]=v;hist[clamp(Math.round(v/441.7*255),0,255)]++;}const threshold=Math.max(10,otsu(hist,w*h)/255*441.7),raw=new Uint8Array(w*h);let fr=0,fg=0,fb=0,n=0;for(let p=0;p<raw.length;p++)if(ds[p]>=threshold){raw[p]=1;const i=p*4;fr+=d[i];fg+=d[i+1];fb+=d[i+2];n++;}const mask=cleanMask(raw,w,h),fore=n?[fr/n,fg/n,fb/n].map(Math.round):[30,57,138],clean=new ImageData(w,h);for(let p=0;p<mask.length;p++){const c=mask[p]?fore:bg,i=p*4;clean.data[i]=c[0];clean.data[i+1]=c[1];clean.data[i+2]=c[2];clean.data[i+3]=255;}return{clean,mask,bg,fore,threshold,seam:seam(mask,w,h),stroke:strokeStats(mask,w,h)};}
+  const hex=c=>`#${c.map(v=>clamp(Math.round(v),0,255).toString(16).padStart(2,'0')).join('')}`;
+  function padImage(im,pad){const w=im.width,h=im.height,out=new ImageData(w+2*pad,h+2*pad),ow=out.width;for(let y=0;y<out.height;y++)for(let x=0;x<out.width;x++){const sx=((x-pad)%w+w)%w,sy=((y-pad)%h+h)%h,si=(sy*w+sx)*4,di=(y*ow+x)*4;out.data.set(im.data.subarray(si,si+4),di);}return out;}
+  function padMask(mask,w,h,pad){const ow=w+2*pad,oh=h+2*pad,out=new Uint8Array(ow*oh);for(let y=0;y<oh;y++)for(let x=0;x<ow;x++)out[y*ow+x]=mask[((y-pad)%h+h)%h*w+((x-pad)%w+w)%w];return{mask:out,width:ow,height:oh};}
+  function trace(im){if(!window.ImageTracer?.imagedataToSVG)throw new Error('ImageTracerJSを読み込めませんでした');const start=performance.now(),svgText=window.ImageTracer.imagedataToSVG(im,{...presets[preset.value]});return{svgText,elapsed:performance.now()-start};}
+  function cropPadded(svgText,w,h,pad){const p=new DOMParser().parseFromString(svgText,'image/svg+xml'),src=p.documentElement,id=`clip-${Date.now()}-${Math.random().toString(36).slice(2)}`,doc=document.implementation.createDocument('http://www.w3.org/2000/svg','svg',null),out=doc.documentElement;out.setAttribute('xmlns',out.namespaceURI);out.setAttribute('viewBox',`0 0 ${w} ${h}`);const defs=doc.createElementNS(out.namespaceURI,'defs'),clip=doc.createElementNS(out.namespaceURI,'clipPath'),rect=doc.createElementNS(out.namespaceURI,'rect');clip.id=id;rect.setAttribute('width',w);rect.setAttribute('height',h);clip.append(rect);defs.append(clip);out.append(defs);const g=doc.createElementNS(out.namespaceURI,'g'),m=doc.createElementNS(out.namespaceURI,'g');g.setAttribute('clip-path',`url(#${id})`);m.setAttribute('transform',`translate(${-pad} ${-pad})`);[...src.children].forEach(c=>m.append(doc.importNode(c,true)));g.append(m);out.append(g);return serialize(out);}
+  function zhang(input,w,h){const m=new Uint8Array(input),at=(x,y)=>m[y*w+x];let changed=true,round=0;while(changed&&round++<100){changed=false;for(let phase=0;phase<2;phase++){const rm=[];for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){const i=y*w+x;if(!m[i])continue;const p=[at(x,y-1),at(x+1,y-1),at(x+1,y),at(x+1,y+1),at(x,y+1),at(x-1,y+1),at(x-1,y),at(x-1,y-1)],B=p.reduce((a,b)=>a+b,0);if(B<2||B>6)continue;let A=0;for(let k=0;k<8;k++)A+=p[k]===0&&p[(k+1)%8]===1;if(A!==1)continue;if(!phase?(p[0]*p[2]*p[4]||p[2]*p[4]*p[6]):(p[0]*p[2]*p[6]||p[0]*p[4]*p[6]))continue;rm.push(i);}if(rm.length){changed=true;rm.forEach(i=>m[i]=0);}}}return m;}
+  const dirs=[[-1,-1],[0,-1],[1,-1],[-1,0],[1,0],[-1,1],[0,1],[1,1]];
+  function neighbours(mask,w,h,i){const x=i%w,y=Math.floor(i/w),a=[];for(const[dx,dy]of dirs){const nx=x+dx,ny=y+dy;if(nx<0||ny<0||nx>=w||ny>=h)continue;const ni=ny*w+nx;if(!mask[ni])continue;if(dx&&dy&&(mask[y*w+nx]||mask[ny*w+x]))continue;a.push(ni);}return a;}
+  function rdp(ps,e){if(ps.length<3)return ps;const a=ps[0],b=ps.at(-1),dx=b[0]-a[0],dy=b[1]-a[1],den=Math.hypot(dx,dy)||1;let max=0,idx=0;for(let i=1;i<ps.length-1;i++){const p=ps[i],d=Math.abs(dy*p[0]-dx*p[1]+b[0]*a[1]-b[1]*a[0])/den;if(d>max){max=d;idx=i;}}if(max>e){const l=rdp(ps.slice(0,idx+1),e),r=rdp(ps.slice(idx),e);return l.slice(0,-1).concat(r);}return[a,b];}
+  function skeletonPaths(mask,w,h){const active=[];for(let i=0;i<mask.length;i++)if(mask[i])active.push(i);const cache=new Map(),ns=i=>{if(!cache.has(i))cache.set(i,neighbours(mask,w,h,i));return cache.get(i)},nodes=new Set(active.filter(i=>ns(i).length!==2&&ns(i).length)),seen=new Set(),key=(a,b)=>a<b?`${a}:${b}`:`${b}:${a}`,paths=[];function walk(start,next){if(seen.has(key(start,next)))return;seen.add(key(start,next));const pts=[[start%w,Math.floor(start/w)]];let prev=start,cur=next;while(true){pts.push([cur%w,Math.floor(cur/w)]);const n=ns(cur);if(nodes.has(cur)&&cur!==start)break;const cand=n.filter(v=>v!==prev&&!seen.has(key(cur,v)));if(!cand.length)break;const nx=cand[0];seen.add(key(cur,nx));prev=cur;cur=nx;if(cur===start)break;}if(pts.length>1)paths.push(pts);}nodes.forEach(n=>ns(n).forEach(v=>walk(n,v)));active.forEach(n=>ns(n).forEach(v=>walk(n,v)));return paths;}
+  function centerline(im,a){const pad=clamp(Math.round(Math.min(im.width,im.height)*.18),10,32),wrapped=padMask(a.mask,im.width,im.height,pad),sk=zhang(wrapped.mask,wrapped.width,wrapped.height);let paths=skeletonPaths(sk,wrapped.width,wrapped.height).map(p=>rdp(p,pattern.value==='asanoha'?.7:1.15).map(([x,y])=>[x-pad,y-pad]));if(pattern.value==='asanoha'){const xs=[0,im.width/2,im.width],ys=Array.from({length:9},(_,i)=>im.height*i/8),tol=Math.max(1.5,Math.min(im.width,im.height)*.025);paths=paths.map(p=>p.map(([x,y])=>{const sx=xs.reduce((b,v)=>Math.abs(v-x)<Math.abs(b-x)?v:b,x),sy=ys.reduce((b,v)=>Math.abs(v-y)<Math.abs(b-y)?v:b,y);return[Math.abs(sx-x)<=tol?sx:x,Math.abs(sy-y)<=tol?sy:y];}));}const min=Math.max(2,a.stroke.width*.7);paths=paths.filter(p=>{let l=0;for(let i=1;i<p.length;i++)l+=Math.hypot(p[i][0]-p[i-1][0],p[i][1]-p[i-1][1]);return l>=min;});const d=paths.map(p=>'M'+p.map(([x,y])=>`${x.toFixed(2)} ${y.toFixed(2)}`).join(' L')).join(' '),sw=clamp(a.stroke.width,1.5,Math.min(im.width,im.height)*.12),id=`center-${Date.now()}`;return{svgText:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${im.width} ${im.height}"><defs><clipPath id="${id}"><rect width="${im.width}" height="${im.height}"/></clipPath></defs><rect width="${im.width}" height="${im.height}" fill="${hex(a.bg)}"/><g clip-path="url(#${id})"><path d="${d}" fill="none" stroke="${hex(a.fore)}" stroke-width="${sw.toFixed(2)}" stroke-linecap="square" stroke-linejoin="miter"/></g></svg>`,stroke:sw,segments:paths.length};}
+  function colors(svg){const set=new Set();svg.querySelectorAll('[fill],[stroke]').forEach(n=>['fill','stroke'].forEach(a=>{const v=n.getAttribute(a);if(v&&/^#[0-9a-f]{6}$/i.test(v))set.add(v.toLowerCase());}));return[...set];}
+  function setColor(svg,from,to){svg.querySelectorAll('[fill],[stroke]').forEach(n=>['fill','stroke'].forEach(a=>{if((n.getAttribute(a)||'').toLowerCase()===from)n.setAttribute(a,to);}));}
+  function patternSvg(svg,w,h){return`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800"><defs><pattern id="p" patternUnits="userSpaceOnUse" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${svg.innerHTML}</pattern></defs><rect width="800" height="800" fill="url(#p)"/></svg>`;}
+  function download(name,text){const u=URL.createObjectURL(new Blob([text],{type:'image/svg+xml'})),a=document.createElement('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();URL.revokeObjectURL(u);}
+  const repeats=new Set(); if(tileSize)tileSize.addEventListener('input',()=>repeats.forEach(r=>r.style.backgroundSize=`${tileSize.value}px auto`));
+  function render(engine,svgText,w,h,metrics=[]){const p=new DOMParser().parseFromString(svgText,'image/svg+xml'),svg=p.documentElement;if(p.querySelector('parsererror'))throw new Error('SVG parse failed');svg.removeAttribute('width');svg.removeAttribute('height');if(!svg.getAttribute('viewBox'))svg.setAttribute('viewBox',`0 0 ${w} ${h}`);const card=document.createElement('article');card.className='pa-lab-result';const head=document.createElement('div');head.className='pa-lab-result-head';const label=document.createElement('div');label.innerHTML=`<h3 class="pa-lab-result-title">${engine}</h3><p class="pa-lab-result-sub">v2.1 quality / ${w}×${h}px</p>`;const ms=document.createElement('p');ms.className='pa-lab-metrics';[`SVG ${pretty(byteSize(svgText))}`,`colors ${colors(svg).length}`,...metrics].forEach(t=>{const s=document.createElement('span');s.className='pa-lab-metric';s.textContent=t;ms.append(s);});head.append(label,ms);const grid=document.createElement('div');grid.className='pa-lab-result-grid';const stage=document.createElement('div');stage.className='pa-lab-svg-stage';stage.append(svg);const repeat=document.createElement('div');repeat.className='pa-lab-repeat-stage';repeat.style.backgroundImage=`url("${dataUrl(serialize(svg))}")`;repeat.style.backgroundSize=`${tileSize?.value||220}px auto`;repeats.add(repeat);const p1=document.createElement('div');p1.className='pa-lab-panel';p1.innerHTML='<h4>単体SVG</h4>';p1.append(stage);const p2=document.createElement('div');p2.className='pa-lab-panel';p2.innerHTML='<h4>反復プレビュー</h4>';p2.append(repeat);grid.append(p1,p2);const editor=document.createElement('div');editor.className='pa-lab-editor';colors(svg).forEach(c=>{const lab=document.createElement('label');lab.className='pa-lab-color';const input=document.createElement('input');input.type='color';input.value=c;const text=document.createElement('span');text.textContent=c;let current=c;input.addEventListener('input',()=>{setColor(svg,current,input.value);current=input.value;text.textContent=input.value;repeat.style.backgroundImage=`url("${dataUrl(serialize(svg))}")`;});lab.append(input,text);editor.append(lab);});const acts=document.createElement('div');acts.className='pa-lab-editor-actions';for(const [name,fn,primary]of[['Tile SVG保存',()=>download(`${pattern.value}-${engine.toLowerCase().replace(/[^a-z0-9]+/g,'-')}.svg`,serialize(svg)),false],['Pattern SVG保存',()=>download(`${pattern.value}-${engine.toLowerCase().replace(/[^a-z0-9]+/g,'-')}-pattern.svg`,patternSvg(svg,w,h)),true]]){const b=document.createElement('button');b.type='button';b.className=`pa-button${primary?' pa-button-primary':''}`;b.textContent=name;b.addEventListener('click',fn);acts.append(b);}editor.append(acts);card.append(head,grid,editor);results.append(card);const count=results.querySelectorAll('.pa-lab-result').length;resultCount.textContent=`${count} results`;}
+  async function preflight(){try{const im=await tilePixels(),a=analyze(im);if(qualityMeta)qualityMeta.textContent=`v2.1 preflight: seam X ${a.seam.x.toFixed(1)}% / Y ${a.seam.y.toFixed(1)}% · estimated stroke ${a.stroke.width.toFixed(1)}px · width CV ${(a.stroke.cv*100).toFixed(1)}% · threshold ${a.threshold.toFixed(0)}`;}catch(e){if(qualityMeta)qualityMeta.textContent='v2.1 preflight: —';}}
+  [xInput,yInput,wInput,hInput,pattern].filter(Boolean).forEach(n=>n.addEventListener('change',()=>setTimeout(preflight,0)));[xInput,yInput,wInput,hInput].filter(Boolean).forEach(n=>n.addEventListener('input',()=>setTimeout(preflight,0)));if(q('detect'))q('detect').addEventListener('click',()=>setTimeout(preflight,100));setTimeout(preflight,250);
+  if(qualityButton)qualityButton.addEventListener('click',async()=>{if(qualityButton.dataset.paQualityRunning==='1')return;qualityButton.dataset.paQualityRunning='1';try{results.innerHTML='';repeats.clear();resultCount.textContent='0 results';status.textContent='v2.1品質改善: rawタイルを変換中…';status.dataset.state='busy';await new Promise(r=>setTimeout(r,0));const im=await tilePixels(),a=analyze(im),raw=trace(im);render('ImageTracerJS raw',raw.svgText,im.width,im.height,[`${raw.elapsed.toFixed(0)} ms`]);status.textContent='v2.1品質改善: 二値化 + wrapped paddingで変換中…';await new Promise(r=>setTimeout(r,0));const pad=clamp(Math.round(Math.min(im.width,im.height)*.16),8,28),padded=padImage(a.clean,pad),better=trace(padded),cropped=cropPadded(better.svgText,im.width,im.height,pad);render('ImageTracerJS v2.1',cropped,im.width,im.height,[`pad ${pad}px`,`seam ${a.seam.x.toFixed(1)}%/${a.seam.y.toFixed(1)}%`,`stroke ${a.stroke.width.toFixed(1)}px`,`width CV ${(a.stroke.cv*100).toFixed(1)}%`]);status.textContent='v2.1品質改善: 中心線 + uniform strokeを再構成中…';await new Promise(r=>setTimeout(r,0));const center=centerline(im,a);render('Centerline Stroke exp',center.svgText,im.width,im.height,[`uniform ${center.stroke.toFixed(1)}px`,`segments ${center.segments}`,pattern.value==='asanoha'?'grid snap on':'grid snap off']);status.textContent='v2.1品質改善比較が完了しました。raw / wrapped trace / centerline strokeを比較してください。';status.dataset.state='ok';}catch(e){status.textContent=`v2.1品質改善比較に失敗しました: ${e.message||e}`;status.dataset.state='error';}finally{delete qualityButton.dataset.paQualityRunning;}});
+  window.addEventListener('error',e=>setProgress(100,'JavaScriptエラー',e.message||'unknown error','error'));window.addEventListener('unhandledrejection',e=>setProgress(100,'実行エラー',String(e.reason?.message||e.reason||'unknown error'),'error'));updateFromRuntime();
 }
