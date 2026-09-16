@@ -1,0 +1,62 @@
+name: Pattern Dictionary Wave 5 visual review
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-wave5-production-staging-20260916
+    paths:
+      - .github/workflows/pattern-dictionary-wave5-visual-review.yml
+
+permissions:
+  contents: read
+
+jobs:
+  review-sheet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave5-production-staging-20260916
+      - name: Install Pillow
+        run: python3 -m pip install --quiet pillow
+      - name: Build contact sheet
+        run: |
+          python3 - <<'PY'
+          from PIL import Image,ImageDraw
+          from pathlib import Path
+          ids=['suzani','kente','bogolan','adire','kuba-cloth','sashiko','kantha','otomi-embroidery','african-wax-print','block-print','zebra-print','tiger-print','snake-print','cow-print','giraffe-print','dalmatian-spots','camouflage','tie-dye','marbling','terrazzo']
+          root=Path('tools/pattern-dictionary/assets/reference')
+          cellw,cellh=320,350; thumb=288
+          sheet=Image.new('RGB',(cellw*4,cellh*5),'white')
+          d=ImageDraw.Draw(sheet)
+          for i,pid in enumerate(ids):
+              im=Image.open(root/f'{pid}.png').convert('RGB'); im.thumbnail((thumb,thumb))
+              x=(i%4)*cellw+16; y=(i//4)*cellh+16
+              sheet.paste(im,(x,y)); d.text((x,y+thumb+8),f'{81+i:03d} {pid}',fill='black')
+          sheet.save('wave5-contact-sheet.jpg',quality=92)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pattern-dictionary-wave5-visual-review
+          path: |
+            wave5-contact-sheet.jpg
+            tools/pattern-dictionary/assets/reference/suzani.png
+            tools/pattern-dictionary/assets/reference/kente.png
+            tools/pattern-dictionary/assets/reference/bogolan.png
+            tools/pattern-dictionary/assets/reference/adire.png
+            tools/pattern-dictionary/assets/reference/kuba-cloth.png
+            tools/pattern-dictionary/assets/reference/sashiko.png
+            tools/pattern-dictionary/assets/reference/kantha.png
+            tools/pattern-dictionary/assets/reference/otomi-embroidery.png
+            tools/pattern-dictionary/assets/reference/african-wax-print.png
+            tools/pattern-dictionary/assets/reference/block-print.png
+            tools/pattern-dictionary/assets/reference/zebra-print.png
+            tools/pattern-dictionary/assets/reference/tiger-print.png
+            tools/pattern-dictionary/assets/reference/snake-print.png
+            tools/pattern-dictionary/assets/reference/cow-print.png
+            tools/pattern-dictionary/assets/reference/giraffe-print.png
+            tools/pattern-dictionary/assets/reference/dalmatian-spots.png
+            tools/pattern-dictionary/assets/reference/camouflage.png
+            tools/pattern-dictionary/assets/reference/tie-dye.png
+            tools/pattern-dictionary/assets/reference/marbling.png
+            tools/pattern-dictionary/assets/reference/terrazzo.png
