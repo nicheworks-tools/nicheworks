@@ -200,7 +200,7 @@ async function compute() {
   const sortedStatuses = statuses.sort((a, b) => a.id.localeCompare(b.id, 'en'));
   return {
     schema: 'cta-public-content-quality-v2.3',
-    version: '2026-09-16-q013-content-complete-1',
+    version: '2026-09-16-q014-identity-closure-1',
     policy: {
       purpose: 'Measure source-backed or canonical-ID-enriched core content separately from runtime generic fallback copy.',
       fallback_independent_core_requires: ['bilingual identity', 'bilingual definition', 'explicit bilingual detail', 'explicit bilingual bullets', 'explicit bilingual examples'],
