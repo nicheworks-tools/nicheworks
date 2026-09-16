@@ -1,0 +1,92 @@
+name: CTA real detail pane height fix
+on:
+  push:
+    branches: ['fix/construction-atlas-detail-pane-real-height-20260916']
+    paths: ['.github/workflows/cta-detail-pane-real-height-fix.yml']
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/construction-atlas-detail-pane-real-height-20260916
+      - name: Patch actual detail pane height ownership
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          root=Path('tools/construction-tools-atlas')
+
+          # Base parity: stop making the host the visible panel. The actual detail sheet owns the panel.
+          p=root/'ui-mock-v2-parity.css'
+          s=p.read_text()
+          old='.atlasWorkspace{display:grid!important;grid-template-columns:minmax(380px,43%) minmax(0,57%)!important;gap:15px!important;margin-top:15px!important;min-height:720px!important;align-items:start!important}'
+          new='.atlasWorkspace{display:grid!important;grid-template-columns:minmax(380px,43%) minmax(0,57%)!important;gap:15px!important;margin-top:15px!important;min-height:720px!important;align-items:stretch!important}'
+          if old not in s: raise SystemExit('parity workspace anchor missing')
+          s=s.replace(old,new,1)
+          old='.atlasWorkspace>.results,.atlasDetailHost{background:#fff!important;border:1px solid #e2e5e9!important;border-radius:16px!important;overflow:hidden!important;min-width:0!important}'
+          new='.atlasWorkspace>.results{background:#fff!important;border:1px solid #e2e5e9!important;border-radius:16px!important;overflow:hidden!important;min-width:0!important}.atlasDetailHost{background:transparent!important;border:0!important;border-radius:0!important;overflow:visible!important;min-width:0!important;display:grid!important;grid-template-rows:minmax(0,1fr)!important;align-self:stretch!important;height:100%!important}'
+          if old not in s: raise SystemExit('parity shared panel anchor missing')
+          s=s.replace(old,new,1)
+          old='#detailSheet.detailPanel--desktop{position:sticky!important;top:82px!important;width:100%!important;max-height:850px!important;border:0!important;border-radius:0!important;background:#fff!important;box-shadow:none!important;overflow:auto!important}'
+          new='#detailSheet.detailPanel--desktop{position:relative!important;inset:auto!important;top:auto!important;width:100%!important;height:100%!important;min-height:100%!important;max-height:none!important;border:1px solid #e2e5e9!important;border-radius:16px!important;background:#fff!important;box-shadow:none!important;overflow:hidden!important;align-self:stretch!important}'
+          if old not in s: raise SystemExit('parity detail panel anchor missing')
+          s=s.replace(old,new,1)
+          old='#detailSheet .sheet__body,#detailSheet .sheet__body--compact{padding:21px 23px 28px!important;background:#fff!important}'
+          new='#detailSheet .sheet__body,#detailSheet .sheet__body--compact{flex:1 1 0%!important;min-height:100%!important;height:100%!important;overflow:auto!important;padding:21px 23px 28px!important;background:#fff!important;box-sizing:border-box!important}'
+          if old not in s: raise SystemExit('parity detail body anchor missing')
+          s=s.replace(old,new,1)
+          p.write_text(s)
+
+          # Hardening: make the same ownership explicit at highest precedence.
+          p=root/'ui-mock-v2-hardening.css'
+          s=p.read_text()
+          old='''  .atlasWorkspace>.results,.atlasDetailHost{width:100%!important;max-width:none!important;min-width:0!important;box-sizing:border-box!important;align-self:stretch!important}\n  .atlasDetailHost{display:flex!important;flex-direction:column!important;height:auto!important;min-height:0!important}\n  .atlasDetailHost>#detailSheet,#detailSheet.detailPanel--desktop{width:100%!important;min-width:0!important;max-width:none!important;box-sizing:border-box!important}\n  #detailSheet.detailPanel--desktop{position:relative!important;inset:auto!important;top:auto!important;max-height:none!important;flex:1 1 auto!important;overflow:auto!important}\n  #detailSheet.detailPanel--desktop .sheet__body,#detailSheet.detailPanel--desktop .sheet__body--compact{width:100%!important;max-width:none!important;margin:0!important;padding:24px 28px 32px!important;box-sizing:border-box!important}\n'''
+          new='''  .atlasWorkspace>.results{width:100%!important;max-width:none!important;min-width:0!important;box-sizing:border-box!important;align-self:stretch!important}\n  .atlasDetailHost{width:100%!important;max-width:none!important;min-width:0!important;box-sizing:border-box!important;align-self:stretch!important;display:grid!important;grid-template-rows:minmax(0,1fr)!important;height:100%!important;min-height:100%!important;background:transparent!important;border:0!important;border-radius:0!important;overflow:visible!important}\n  .atlasDetailHost>#detailSheet,#detailSheet.detailPanel--desktop{position:relative!important;inset:auto!important;top:auto!important;width:100%!important;height:100%!important;min-height:100%!important;max-width:none!important;max-height:none!important;box-sizing:border-box!important;align-self:stretch!important;overflow:hidden!important;background:#fff!important;border:1px solid #e2e5e9!important;border-radius:16px!important;box-shadow:none!important}\n  #detailSheet.detailPanel--desktop .sheet__body,#detailSheet.detailPanel--desktop .sheet__body--compact{flex:1 1 0%!important;width:100%!important;height:100%!important;min-height:100%!important;max-width:none!important;margin:0!important;padding:24px 28px 32px!important;box-sizing:border-box!important;overflow:auto!important;background:#fff!important}\n'''
+          if old not in s: raise SystemExit('hardening desktop pane block anchor missing')
+          s=s.replace(old,new,1)
+          p.write_text(s)
+
+          # Cache bust the bootstrap and its injected parity layers.
+          p=root/'detail-dictionary-fix.js'
+          s=p.read_text().replace('20260916-structural-3','20260916-pane-height-4')
+          p.write_text(s)
+          p=root/'index.html'
+          s=p.read_text().replace('./detail-dictionary-fix.js?v=20260916-structural-3','./detail-dictionary-fix.js?v=20260916-pane-height-4')
+          p.write_text(s)
+
+          # Regression contract: visible pane must be the actual detail sheet, not a stretched host background.
+          p=root/'scripts/check-ui-mock-v2-parity.cjs'
+          s=p.read_text()
+          s=s.replace("ok(hardening.includes('.atlasDetailHost{display:flex!important;flex-direction:column!important'), 'detail host must fill the stretched desktop row');", "ok(hardening.includes('.atlasDetailHost{width:100%!important') && hardening.includes('display:grid!important;grid-template-rows:minmax(0,1fr)!important') && hardening.includes('background:transparent!important;border:0!important'), 'detail host must be a transparent layout host rather than the visible stretched panel');")
+          s=s.replace("ok(hardening.includes('#detailSheet.detailPanel--desktop{position:relative!important'), 'desktop detail must fill the host instead of retaining sticky viewport height');", "ok(hardening.includes('#detailSheet.detailPanel--desktop{position:relative!important') && hardening.includes('height:100%!important;min-height:100%!important') && hardening.includes('border:1px solid #e2e5e9!important;border-radius:16px!important'), 'the actual desktop detail sheet must own the full-height visible panel');")
+          marker="ok(hardening.includes('#detailSheet.detailPanel--desktop{width:100%!important;min-width:0!important;max-width:none!important'), 'desktop detail must not retain a legacy max-width cap');"
+          if marker in s:
+            s=s.replace(marker, "ok(hardening.includes('max-width:none!important;max-height:none!important'), 'desktop detail must not retain legacy size caps');")
+          else:
+            # structural-3 has the width assertion in a combined selector; replace that exact test.
+            s=s.replace("ok(hardening.includes('#detailSheet.detailPanel--desktop{width:100%!important;min-width:0!important;max-width:none!important'), 'desktop detail must not retain a legacy max-width cap');", "ok(hardening.includes('max-width:none!important;max-height:none!important'), 'desktop detail must not retain legacy size caps');")
+          insert="ok(hardening.includes('flex:1 1 0%!important;width:100%!important;height:100%!important;min-height:100%!important'), 'detail sheet body itself must fill the visible panel height; stretching only the host is not acceptable');\n"
+          anchor="ok(css.includes('@media(max-width:899px)'), 'mobile breakpoint must be below 900px');"
+          if insert not in s:
+            s=s.replace(anchor, insert+anchor,1)
+          s=s.replace("ok(bootstrap.includes('20260916-structural-3'), 'UI parity cache bust must be current');", "ok(bootstrap.includes('20260916-pane-height-4'), 'UI parity cache bust must be current');")
+          s=s.replace("ok(indexHtml.includes('app.runtime.js?v=20260916-structural-3') && indexHtml.includes('detail-image-hotfix.js?v=20260916-structural-3'), 'changed runtimes must be cache-busted in production HTML');", "ok(indexHtml.includes('detail-dictionary-fix.js?v=20260916-pane-height-4'), 'detail bootstrap must be cache-busted in production HTML');\nok(indexHtml.includes('app.runtime.js?v=20260916-structural-3') && indexHtml.includes('detail-image-hotfix.js?v=20260916-structural-3'), 'other changed runtimes must remain on their current cache key');")
+          p.write_text(s)
+          PY
+      - name: Validate real pane ownership
+        run: |
+          node --check tools/construction-tools-atlas/detail-dictionary-fix.js
+          node tools/construction-tools-atlas/scripts/check-ui-mock-v2-parity.cjs
+          grep -q 'height:100%!important;min-height:100%!important' tools/construction-tools-atlas/ui-mock-v2-hardening.css
+          grep -q 'background:transparent!important;border:0!important' tools/construction-tools-atlas/ui-mock-v2-hardening.css
+          grep -q 'flex:1 1 0%!important' tools/construction-tools-atlas/ui-mock-v2-hardening.css
+          ! grep -q 'align-items:start!important' tools/construction-tools-atlas/ui-mock-v2-parity.css
+      - name: Commit permanent fix
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/construction-tools-atlas/ui-mock-v2-parity.css tools/construction-tools-atlas/ui-mock-v2-hardening.css tools/construction-tools-atlas/detail-dictionary-fix.js tools/construction-tools-atlas/index.html tools/construction-tools-atlas/scripts/check-ui-mock-v2-parity.cjs
+          git commit -m 'fix(construction-atlas): make actual detail pane fill desktop height'
+          git push origin HEAD:fix/construction-atlas-detail-pane-real-height-20260916
