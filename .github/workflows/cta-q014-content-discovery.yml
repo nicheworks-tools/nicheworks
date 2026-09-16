@@ -1,0 +1,30 @@
+name: CTA q014 content discovery
+
+on:
+  push:
+    branches:
+      - feat/construction-atlas-q014-content-completion-20260916
+    paths:
+      - '.github/workflows/cta-q014-content-discovery.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/construction-atlas-q014-content-completion-20260916
+      - name: List active q014 targets
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const source=JSON.parse(fs.readFileSync('tools/construction-tools-atlas/data/tools.quality-014.json','utf8')).rows;
+          const redirects=JSON.parse(fs.readFileSync('tools/construction-tools-atlas/data/canonical-redirects-v2.3.json','utf8')).redirects;
+          const redir=new Set(redirects.map(r=>r.from));
+          const active=source.filter(r=>!redir.has(r.id));
+          console.log('CTA_Q014_ACTIVE_COUNT='+active.length);
+          for(const r of active) console.log('CTA_Q014_TARGET='+JSON.stringify({id:r.id,type:r.t,ja:r.ja,en:r.en,dj:r.dj,de:r.de,c:r.c,task:r.task}));
+          NODE
