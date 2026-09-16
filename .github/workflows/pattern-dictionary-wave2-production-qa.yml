@@ -7,35 +7,76 @@ on:
     paths:
       - '.github/workflows/pattern-dictionary-wave2-production-qa.yml'
 
+permissions:
+  contents: write
+
 jobs:
   production-qa:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: qa/pattern-dictionary-wave2-production-20260916
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Compare custom domain and deployment HTML
+      - name: Require canonical 40 production HTML and data
         run: |
           node <<'NODE'
-          const urls=[
-            'https://nicheworks.app/tools/pattern-dictionary/',
-            'https://nicheworks.app/tools/pattern-dictionary/?qa=21ca4fe7',
-            'https://203f283a.nicheworks.pages.dev/tools/pattern-dictionary/'
-          ];
-          for(const url of urls){
-            const r=await fetch(url,{headers:{'cache-control':'no-cache','user-agent':'NicheWorks-production-QA'}});
-            const s=await r.text();
-            console.log(JSON.stringify({
-              url,
-              status:r.status,
-              cfCache:r.headers.get('cf-cache-status'),
-              age:r.headers.get('age'),
-              etag:r.headers.get('etag'),
-              stripe:s.includes('data-family="stripe"'),
-              dot:s.includes('data-family="dot"'),
-              footer40:s.includes('現在の40件'),
-              footer20:s.includes('現在の20件'),
-              length:s.length
-            }));
-          }
+          const root=await fetch('https://nicheworks.app/tools/pattern-dictionary/',{headers:{'cache-control':'no-cache'}}).then(r=>r.text());
+          if(!root.includes('data-family="stripe"')||!root.includes('data-family="dot"')||!root.includes('現在の40件'))throw new Error('Production HTML has not converged to canonical 40');
+          const j=await fetch('https://nicheworks.app/tools/pattern-dictionary/data/patterns.json',{headers:{'cache-control':'no-cache'}}).then(r=>r.json());
+          if(!Array.isArray(j)||j.length!==40)throw new Error(`Production data count ${Array.isArray(j)?j.length:'not-array'}`);
+          console.log('Production HTML/data canonical 40 detected.');
           NODE
+      - name: Install Chromium QA runtime
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Run production Chromium QA
+        run: |
+          cat > /tmp/pd-prod-qa.cjs <<'NODE'
+          const {chromium}=require(process.cwd()+'/node_modules/playwright');
+          const base='https://nicheworks.app/tools/pattern-dictionary/';
+          const wave2=['buffalo-check','shepherd-check','windowpane-check','madras-check','tattersall','gun-club-check','prince-of-wales-check','pinstripe','chalk-stripe','bengal-stripe','koushi','awning-stripe','regimental-stripe','breton-stripe','swiss-dot','herringbone','zigzag','diamond','harlequin','checkerboard'];
+          const searches=[['ja','赤黒の大きいチェック','バッファローチェック'],['ja','グレンチェックに大きい格子','プリンス・オブ・ウェールズチェック'],['ja','スーツの極細縦線','ピンストライプ'],['ja','フランス海軍みたいな横縞','ブレトンストライプ'],['ja','ぽこぽこ小ドット','スイスドット'],['ja','ピエロみたいな赤黒ダイヤ','ハーレクイン'],['en','Japanese lattice not alternating squares','Koushi']];
+          const fail=m=>{throw new Error(m)};
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            try{
+              const page=await browser.newPage({viewport:{width:1365,height:900},extraHTTPHeaders:{'cache-control':'no-cache'}});
+              await page.goto(base,{waitUntil:'domcontentloaded'}); await page.waitForFunction(()=>document.querySelectorAll('.pd-card').length===40);
+              if(await page.locator('.pd-card').count()!==40||(await page.locator('#pattern-count').textContent()).trim()!=='40件')fail('JA home canonical 40 mismatch');
+              for(const family of ['stripe','dot'])if(await page.locator(`[data-family="${family}"]`).count()!==1)fail(`JA missing ${family} filter`);
+              await page.goto(base+'en/',{waitUntil:'domcontentloaded'}); await page.waitForFunction(()=>document.querySelectorAll('.pd-card').length===40);
+              if(await page.locator('.pd-card').count()!==40||!(await page.locator('#pattern-count').textContent()).includes('40'))fail('EN home canonical 40 mismatch');
+              let affiliateTotal=0;
+              for(const id of wave2)for(const lang of ['ja','en']){
+                await page.goto(base+(lang==='en'?'en/':'')+'patterns/'+id+'/',{waitUntil:'domcontentloaded'});
+                if(await page.locator(`body[data-pattern-id="${id}"]`).count()!==1)fail(`${lang}/${id}: body id mismatch`);
+                await page.waitForSelector('.pd-detail-image');
+                if(!await page.locator('.pd-detail-image').evaluate(img=>img.complete&&img.naturalWidth>0))fail(`${lang}/${id}: image failed`);
+                await page.waitForFunction(()=>document.querySelectorAll('a.pd-amazon-offer-link').length>=2,{timeout:15000});
+                const links=page.locator('a.pd-amazon-offer-link'),n=await links.count();
+                if(n<2||n>4)fail(`${lang}/${id}: expected 2-4 Amazon links, got ${n}`); if(lang==='ja')affiliateTotal+=n;
+                for(let i=0;i<n;i++){const a=links.nth(i),href=await a.getAttribute('href'),rel=await a.getAttribute('rel'),u=new URL(href);if(u.hostname!=='www.amazon.co.jp'||u.pathname!=='/s'||u.searchParams.get('tag')!=='nicheworks09-22'||!u.searchParams.get('k'))fail(`${lang}/${id}: malformed Amazon URL`);if(!(rel||'').includes('sponsored')||!(rel||'').includes('noopener'))fail(`${lang}/${id}: rel semantics missing`)}
+                await page.waitForFunction(()=>{const x=document.querySelector('#pd-amazon-disclosure');return x&&!x.hidden&&x.textContent.trim().length>0},{timeout:10000});
+              }
+              if(affiliateTotal!==60)fail(`Wave 2 JA affiliate total expected 60, got ${affiliateTotal}`);
+              for(const [lang,q,expected] of searches){await page.goto(base+(lang==='en'?'en/':'')+'search.html?q='+encodeURIComponent(q),{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>document.querySelector('.pd-top-result')||document.querySelector('.pd-empty'));const title=await page.locator('.pd-title').count()?((await page.locator('.pd-title').textContent())||'').trim():'';if(title!==expected)fail(`${lang} search ${q}: expected ${expected}, got ${title||'ZERO'}`)}
+              for(const q of ['black','purple barcode stripes']){await page.goto(base+'en/search.html?q='+encodeURIComponent(q),{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>document.querySelector('.pd-top-result')||document.querySelector('.pd-empty'));if(await page.locator('.pd-top-result').count()){const conf=((await page.locator('.pd-top-result .pd-kicker').textContent())||'').trim();if(/MEDIUM|HIGH/.test(conf))fail(`${q}: false confident match remains`)}}
+              for(const [a,b] of [['glen-check','prince-of-wales-check'],['chevron','herringbone'],['ichimatsu','checkerboard']]){await page.goto(base+'compare.html?a='+a+'&b='+b,{waitUntil:'domcontentloaded'});await page.waitForSelector('.pd-compare-guide');if(((await page.locator('.pd-compare-guide').textContent())||'').trim().length<40)fail(`${a}/${b}: guide missing`)}
+              const mobile=await browser.newPage({viewport:{width:390,height:844},extraHTTPHeaders:{'cache-control':'no-cache'}});await mobile.goto(base,{waitUntil:'domcontentloaded'});await mobile.waitForFunction(()=>document.querySelectorAll('.pd-card').length===40);if(await mobile.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)>2)fail('390px home overflow');if(!await mobile.locator('.pd-filter-row').first().evaluate(x=>x.scrollWidth>x.clientWidth))fail('390px filters not scrollable');await mobile.goto(base+'patterns/prince-of-wales-check/',{waitUntil:'domcontentloaded'});await mobile.waitForFunction(()=>document.querySelectorAll('a.pd-amazon-offer-link').length>=2);if(await mobile.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)>2)fail('390px detail overflow');await mobile.close();
+              const sitemap=await fetch('https://nicheworks.app/sitemap.xml',{headers:{'cache-control':'no-cache'}}).then(r=>r.text());for(const id of wave2)for(const p of [`/tools/pattern-dictionary/patterns/${id}/`,`/tools/pattern-dictionary/en/patterns/${id}/`])if(!sitemap.includes(p))fail(`sitemap missing ${p}`);
+              console.log('PRODUCTION QA PASS: canonical 40; Wave 2 JA+EN routes/images; 60 JA Amazon intent links; search/compare/mobile/sitemap passed.');
+            } finally {await browser.close()}
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+          node /tmp/pd-prod-qa.cjs
+      - name: Remove one-shot QA workflow
+        if: success()
+        run: |
+          rm .github/workflows/pattern-dictionary-wave2-production-qa.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A && git commit -m 'ci: remove Pattern Dictionary Wave 2 production QA' && git push origin HEAD:qa/pattern-dictionary-wave2-production-20260916
