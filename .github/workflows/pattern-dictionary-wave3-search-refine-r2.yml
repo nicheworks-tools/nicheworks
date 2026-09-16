@@ -1,0 +1,58 @@
+name: Pattern Dictionary Wave 3 search refinement r2
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-wave3-production-staging-20260916
+    paths:
+      - .github/workflows/pattern-dictionary-wave3-search-refine-r2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave3-production-staging-20260916
+          fetch-depth: 0
+      - name: Make confidence typo-aware and prefer longest matched signal
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const appPath='tools/pattern-dictionary/app.js';
+          let app=fs.readFileSync(appPath,'utf8');
+          const confidenceNeedle=".some(v=>norm(v)===nq),d=r[0].score-(r[1]?.score||0);";
+          const confidenceReplacement=".some(v=>norm(v)===nq)||typoHit(nq,p),d=r[0].score-(r[1]?.score||0);";
+          if(!app.includes(confidenceNeedle))throw new Error('app typo-aware confidence insertion point missing');
+          app=app.replace(confidenceNeedle,confidenceReplacement);
+          const appReturn="return out}\nasync function rank";
+          const appReturnReplacement="return out.filter((x,i,a)=>!a.some((y,j)=>j!==i&&norm(y.label).length>norm(x.label).length&&norm(y.label).includes(norm(x.label))))}\nasync function rank";
+          if(!app.includes(appReturn))throw new Error('app interpret return insertion point missing');
+          app=app.replace(appReturn,appReturnReplacement);
+          fs.writeFileSync(appPath,app);
+
+          const testPath='tools/pattern-dictionary/tests/search-test.mjs';
+          let test=fs.readFileSync(testPath,'utf8');
+          if(!test.includes(confidenceNeedle))throw new Error('test typo-aware confidence insertion point missing');
+          test=test.replace(confidenceNeedle,confidenceReplacement);
+          const testReturn='  return out;\n}\nfunction rank';
+          const testReturnReplacement='  return out.filter((x,i,a)=>!a.some((y,j)=>j!==i&&norm(y.label).length>norm(x.label).length&&norm(y.label).includes(norm(x.label))));\n}\nfunction rank';
+          if(!test.includes(testReturn))throw new Error('test interpret return insertion point missing');
+          test=test.replace(testReturn,testReturnReplacement);
+          fs.writeFileSync(testPath,test);
+          NODE
+      - name: Verify syntax and staging lock
+        run: |
+          node --check tools/pattern-dictionary/app.js
+          node --check tools/pattern-dictionary/tests/search-test.mjs
+          node tools/pattern-dictionary/scripts/check-wave3-staging.mjs
+      - name: Commit refinement
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/pattern-dictionary/app.js tools/pattern-dictionary/tests/search-test.mjs
+          git commit -m "Pattern Dictionary: prioritize specific search signals"
+          git push origin HEAD:feat/pattern-dictionary-wave3-production-staging-20260916
