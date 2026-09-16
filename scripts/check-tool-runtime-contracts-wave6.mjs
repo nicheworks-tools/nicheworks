@@ -33,7 +33,7 @@ has('tools/sukima-baito-income/app.js', /navigator\.onLine/);
 has('tools/sukima-baito-income/app.js', 'date,workplace,category,amount,memo');
 lacks('tools/sukima-baito-income/app.js', /localStorage\.setItem\([^\n]*(?:entries|income)/i, 'persistent income-entry storage');
 
-// 77. Tiny Audio Meter — measurement-oriented input, bounded pitch/snapshots, local records, verified affiliate activation.
+// 77. Tiny Audio Meter — measurement-oriented input, bounded pitch/snapshots, local records, ADS_DONATION affiliate runtime fail-closed.
 hasScript('tools/tiny-audio-meter/index.html', 'app.js');
 has('tools/tiny-audio-meter/app.js', 'navigator.mediaDevices.getUserMedia');
 has('tools/tiny-audio-meter/app.js', 'echoCancellation: false');
@@ -43,9 +43,9 @@ has('tools/tiny-audio-meter/app.js', /PITCH_MIN_HZ\s*=\s*60/,'60 Hz pitch lower 
 has('tools/tiny-audio-meter/app.js', /100|PITCH.*INTERVAL/i, 'pitch analysis cadence');
 has('tools/tiny-audio-meter/app.js', /20|MAX_.*SNAP|SNAP_MAX/i, 'snapshot bound');
 has('tools/tiny-audio-meter/records-export.js', /csv|CSV/);
-has('tools/tiny-audio-meter/affiliate-config.js', 'enabled: true', 'enabled Amazon config');
-has('tools/tiny-audio-meter/affiliate-config.js', 'sound_level_meter: "https://amzn.to/4xHeUyd"', 'verified sound-level-meter Amazon target');
-has('tools/tiny-audio-meter/affiliate-config.js', 'usb_microphone: "https://amzn.to/4iZFUF8"', 'verified USB-microphone Amazon target');
+has('tools/tiny-audio-meter/affiliate-config.js', 'enabled: false', 'disabled affiliate config');
+lacks('tools/tiny-audio-meter/affiliate-config.js', 'amzn.to', 'live Amazon short destination');
+lacks('tools/tiny-audio-meter/affiliate-config.js', 'amazon.co.jp', 'live Amazon destination');
 
 // 78. TrashNavi — live directory stays repository-data-driven and municipality publication stays gated.
 hasScript('tools/trashnavi/index.html', 'app.js');
