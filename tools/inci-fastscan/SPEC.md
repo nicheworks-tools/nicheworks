@@ -7,12 +7,14 @@
 
 ## Purpose
 
-Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized ingredients with the local/generated INCI dictionary so dictionary matches, additional-review entries, and unmatched items can be inspected quickly. INCI FastScan is the photo/OCR and detailed-review member of the NicheWorks cosmetics pair; Cosmetic Ingredient Checker Lite remains the faster paste-only Japanese entry point.
+Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized ingredients with the local/generated INCI dictionary so dictionary matches, additional-review entries, and unmatched items can be inspected quickly. INCI FastScan is the photo/OCR and detailed-review member of the NicheWorks cosmetics pair; Cosmetic Ingredient Checker Lite remains the faster paste-only bilingual entry point.
 
 ## Current functional contract
 
 - Provide INCI/English-label and Japanese-label scan tabs in one bilingual page.
-- Put the working text/OCR interface before long explanatory content so the scanner is immediately usable.
+- Keep Lite / FastScan switching visible in the tool header without the old NicheWorks logo/title branding.
+- Make photo/image OCR the primary FastScan entry path while retaining direct pasted-text input as an explicit alternative.
+- Put the working photo/OCR/text interface before long explanatory content so the scanner is immediately usable.
 - Accept pasted comma/line-separated ingredient text and built-in samples.
 - Preserve legitimate ingredient punctuation such as `/`, `・`, and numeric locant commas such as `1,2-Hexanediol` through parsing and OCR cleanup.
 - Accept an image and run browser-side OCR using Tesseract.js loaded from an external CDN, with separate English and Japanese+English OCR actions.
@@ -31,12 +33,13 @@ Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized 
 - A user may explicitly press a candidate to replace the corresponding original spelling in the active input textarea; this action never runs automatically and does not automatically rerun ingredient analysis.
 - Treat the Japanese-label tab as Japanese-name/alias matching, not machine translation.
 - Provide JP/EN UI and explicit warnings that OCR can misread text and ingredient results are not medical or safety guarantees.
-- Link to Cosmetic Ingredient Checker Lite near the lower related-tools area for users who only need a fast paste workflow.
+- Link to Cosmetic Ingredient Checker Lite as the paste-only alternative.
 
 ## Inputs
 
 - Pasted English/INCI or Japanese ingredient-label text.
 - Optional local image for OCR.
+- Photo/image or direct-text input mode.
 - INCI/Japanese tab, sample, OCR, reset, check, result-filter, review-queue navigation, and explicit candidate-apply actions.
 - Optional Cmd/Ctrl + Enter check shortcut.
 - UI language.
@@ -68,7 +71,7 @@ The route describes how the name was resolved. It does not imply ingredient conc
 
 ## State and persistence
 
-Ingredient text, selected image, OCR result, image preview, scan result, current result filter, and current review-queue position are current-session browser state. Preview object URLs are revoked when the image is removed/replaced. Candidate application edits the current textarea only. Changing the result filter resets review-queue position so navigation always reflects currently visible cards. The current contract does not define saved scan history. UI language preference may be stored locally in the browser.
+Ingredient text, selected image, OCR result, image preview, scan result, current input mode, current result filter, and current review-queue position are current-session browser state. Preview object URLs are revoked when the image is removed/replaced. Candidate application edits the current textarea only. Changing the result filter resets review-queue position so navigation always reflects currently visible cards. The current contract does not define saved scan history. UI language preference may be stored locally in the browser.
 
 ## Privacy and network behavior
 
@@ -86,7 +89,7 @@ JP/EN controls switch the same scanner; separate INCI and Japanese-label tabs ha
 
 `hybrid`
 
-Text/OCR input and result panels work on mobile but benefit from wider space for ingredient result review. The current layout is input-first, with mobile-scrollable result filters, compact review navigation, and explanatory/FAQ content after the primary scanner workflow.
+The approved v2 layout uses a white page background and makes the photo/OCR workflow explicit in the first view. The page starts in photo mode, provides direct-text input as a peer alternative, and keeps OCR correction before ingredient matching. Text/OCR input and result panels work on mobile but benefit from wider space for ingredient result review. Result filters remain mobile-scrollable, review navigation stays compact, and explanatory/FAQ content follows the primary scanner workflow.
 
 ## Amazon affiliate contract
 
@@ -165,6 +168,7 @@ Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` 
 ## Acceptance criteria
 
 - [x] Pasted INCI/English and Japanese-label text can be parsed and checked against the current generated dictionary/rules.
+- [x] The first-view FastScan workflow makes photo/image OCR the default entry mode while keeping direct pasted-text input available.
 - [x] Slash / middle-dot names and numeric locant commas survive the current parsing/OCR cleanup path.
 - [x] OCR can be started from a selected image when the external Tesseract library loads and visible progress is exposed in the page.
 - [x] Selected OCR images can be previewed locally and removed/reselected without upload.
@@ -181,6 +185,7 @@ Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` 
 - [x] A candidate can modify the active input only after an explicit user action, and the analysis does not automatically rerun ingredient analysis afterward.
 - [x] Japanese-label wording describes dictionary matching rather than machine translation.
 - [x] JP/EN switching preserves text scan, OCR, dictionary status, and medical/OCR disclaimers.
+- [x] The header exposes Lite / FastScan switching without the NicheWorks logo/title branding used by the old UI.
 - [x] The Lite tool is linked as the paste-only alternative.
 - [x] The Amazon slot keeps the frozen `after-results` placement and fail-closed HTML default.
 - [x] Four fixed Amazon category searches are rendered only through `tagged_search` mode with the configured Associate tag.
@@ -201,6 +206,7 @@ Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` 
 - `tools/_shared/check-fastscan-review-queue.mjs`
 - `tools/inci-fastscan/index.html`
 - `tools/inci-fastscan/style.css`
+- `tools/inci-fastscan/ui-v2.css`
 - `tools/inci-fastscan/enhancements.js`
 - `tools/inci-fastscan/enhancements.css`
 - `tools/inci-fastscan/js/core_parser.js`
