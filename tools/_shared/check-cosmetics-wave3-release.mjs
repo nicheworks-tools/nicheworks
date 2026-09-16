@@ -14,9 +14,9 @@ const fastAnalyze = read('tools/inci-fastscan/js/core_analyze.js');
 const fastUi = read('tools/inci-fastscan/js/web_ui.js');
 const fastSpec = read('tools/inci-fastscan/SPEC.md');
 const affiliateConfig = read('tools/_shared/cosmetics-affiliate-config.js');
+const affiliateAdapter = read('tools/_shared/cosmetics-affiliate-slot.js');
 const workflow = read('.github/workflows/cosmetics-accuracy-benchmark.yml');
 
-// PR19: broadened complete-label coverage must remain representative and measurable.
 check(fixtures.length >= 24, 'wave 3 must retain at least 24 complete-label fixtures');
 const categories = new Set(fixtures.map((fixture) => fixture.category));
 check(categories.size >= 12, 'wave 3 must retain at least 12 product categories');
@@ -36,7 +36,6 @@ for (const id of [
   check(fixtures.some((fixture) => fixture.id === id), `wave 3 fixture missing: ${id}`);
 }
 
-// PR20: maintained equivalent canonical identities must resolve to one shared key.
 for (const token of [
   'CANONICAL_EQUIVALENTS',
   '"bemotrizinol": "bis-ethylhexyloxyphenol methoxyphenyl triazine"',
@@ -51,7 +50,6 @@ for (const ambiguous of ['"aha"', '"bha"', '"pha"', '"iron oxides"', '"酸化鉄
   check(parser.includes(ambiguous), `ambiguous exact-key protection missing: ${ambiguous}`);
 }
 
-// PR21/PR28: OCR line-wrap repair remains exact-only and never becomes fuzzy auto-correction.
 for (const token of [
   'repairWrappedIngredientFragments',
   'buildKnownIngredientNameMap',
@@ -64,7 +62,6 @@ for (const token of [
 check(fastSpec.includes('OCR cleanup preserves candidate boundaries'), 'FastScan SPEC lost conservative OCR-boundary contract');
 check(fastSpec.includes('Exact OCR line repair only joins fragments when the combined text exactly matches a maintained dictionary key'), 'FastScan SPEC lost exact-only OCR line repair contract');
 
-// PR22: Lite remains a fast long-result review surface.
 for (const token of [
   'liteCategoryFilter',
   'dataset.liteCategory',
@@ -76,7 +73,6 @@ for (const token of [
 }
 check(liteSpec.includes('functional-category filter') || liteSpec.includes('functional category'), 'Lite SPEC lost category-filter contract');
 
-// PR23: FastScan review queue moves focus only among visible review/unmatched cards.
 for (const token of [
   'fastscan-review-queue',
   'data-review-nav="prev"',
@@ -92,25 +88,26 @@ check(!fastUi.includes('btn-fast-check.click('), 'review queue must not auto-rer
 check(!fastUi.includes('btn-jb-check.click('), 'review queue must not auto-rerun Japanese analysis');
 check(fastSpec.includes('Review-queue controls only move focus'), 'FastScan SPEC lost review-queue no-edit contract');
 
-// Post-activation Amazon invariant: four fixed, non-input-driven tagged searches.
 check(affiliateConfig.includes('enabled: true'), 'Amazon config must stay active');
 check(affiliateConfig.includes('trackingMode: "tagged_search"'), 'Amazon tracking mode must be tagged_search');
+check(affiliateConfig.includes('displayMode: "post_result_category_choice"'), 'Amazon chooser must remain post-result only');
 check(affiliateConfig.includes('const ASSOCIATE_TAG = "nicheworks09-22"'), 'verified Associates tag missing');
 check(affiliateConfig.includes('associateTag: ASSOCIATE_TAG'), 'affiliate config must use the verified Associates tag constant');
 check(affiliateConfig.includes('placement: "after-summary"'), 'Lite Amazon placement changed');
 check(affiliateConfig.includes('placement: "after-results"'), 'FastScan Amazon placement changed');
 check((affiliateConfig.match(/links: fixedSearchLinks/g) || []).length === 2, 'both cosmetics tools must retain the fixed search set');
-for (const key of ['skincare_general', 'skincare_moisturizing', 'skincare_ceramide', 'sunscreen_general']) {
+const affiliateCategoryKeys = ['toner', 'serum', 'moisturizer', 'cleanser', 'cleansing', 'sunscreen', 'bodycare'];
+for (const key of affiliateCategoryKeys) {
   check(affiliateConfig.includes(`key: "${key}"`), `fixed affiliate category missing: ${key}`);
 }
-check((affiliateConfig.match(/tag=nicheworks09-22/g) || []).length === 4, 'all four fixed searches must carry the configured Associates tag');
+check((affiliateConfig.match(/tag=nicheworks09-22/g) || []).length === affiliateCategoryKeys.length, 'every fixed search must carry the configured Associates tag');
+check(affiliateAdapter.includes('function resultsReady(tool)'), 'affiliate chooser must remain result-gated');
 check(!affiliateConfig.includes('amzn.to/4xNbcDO'), 'retired single Special Link returned');
 for (const spec of [liteSpec, fastSpec]) {
   check(/tagged_search|fixed Amazon search/i.test(spec), 'tool SPEC lost active fixed-search contract');
   check(/raw ingredient|pasted ingredient|OCR output/i.test(spec), 'tool SPEC lost input privacy contract');
 }
 
-// CI must continuously enforce every Wave 3 regression plus the OCR robustness and live affiliate contracts.
 for (const checkFile of [
   'check-cosmetics-full-label-benchmark.mjs',
   'check-cosmetics-canonical-equivalents.mjs',
@@ -143,5 +140,6 @@ console.log(JSON.stringify({
   fastscan_review_queue: true,
   amazon_enabled: true,
   amazon_tracking_mode: 'tagged_search',
-  amazon_fixed_categories: 4
+  amazon_display_mode: 'post_result_category_choice',
+  amazon_fixed_categories: affiliateCategoryKeys.length
 }, null, 2));
