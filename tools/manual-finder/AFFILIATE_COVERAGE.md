@@ -23,9 +23,9 @@ The required reconciliation is therefore:
 
 The camera accessory audit is independently tracked and currently reconciles as:
 
-`camera basic 185 = detail 23 + reviewed exclusion 0 + missing 162`
+`camera basic 185 = detail 26 + reviewed exclusion 0 + missing 159`
 
-All 14 actionable Nikon camera records are closed. DJI Waves 1–3 add nine reviewed detail rows, leaving DJI 87, OM SYSTEM 37, GoPro 31, and Insta360 7 missing accessory-detail rows.
+All 14 actionable Nikon camera records are closed. DJI Waves 1–4 add twelve reviewed detail rows, leaving DJI 84, OM SYSTEM 37, GoPro 31, and Insta360 7 missing accessory-detail rows.
 
 The printer coverage audit must also report:
 
@@ -59,7 +59,7 @@ Current state:
 2. **Consumer-printer ink** — active for the verified Brother, Epson, and Canon mappings.
 3. **Office-printer toner** — the current printer-detail audit is complete. Verified mappings exist across the maintained OKI, KYOCERA, RICOH, and FUJIFILM Business Innovation ledgers; reviewed non-retail/service-managed cases are explicit exclusions.
 4. **Office-printer drum / maintenance parts** — optional future expansion, not part of the completed toner-detail audit.
-5. **Camera batteries / chargers** — Nikon is complete at 14/14 detail. DJI has nine reviewed rows across Osmo Action Wave 1, Air Wave 2, and Mini Wave 3; the remaining camera backlog is measured separately and must continue in bounded reviewed waves.
+5. **Camera batteries / chargers** — Nikon is complete at 14/14 detail. DJI has twelve reviewed rows across Osmo Action Wave 1, Air Wave 2, Mini Wave 3, and Mavic 3 Wave 4; the remaining camera backlog is measured separately and must continue in bounded reviewed waves.
 6. **Appliance replacement parts / filters** — future work only where exact compatibility can be proven.
 7. Additional accessory families require a clear user need and a verified mapping source.
 
@@ -194,11 +194,26 @@ The battery mapping follows DJI's exact reviewed compatibility boundary:
 
 Wave 3 does not infer compatibility for `DJI Mini 2`, `DJI Mini SE`, `Mavic Mini`, or other Mini-family records.
 
-After DJI Waves 1–3 the maker reconciliation is:
+## Camera accessory rule — DJI Mavic 3 Wave 4
 
-`DJI camera 96 = detail 9 + reviewed exclusion 0 + missing 87`
+DJI Mavic 3 Wave 4 activates exactly three canonical consumer records:
 
-The catalog-wide camera audit now reports 185 actionable basic records, 23 detail mappings, 0 reviewed exclusions, and 162 missing accessory-detail rows. The remaining missing counts are DJI 87, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing model arrays remain machine-readable in `tests/camera-accessory-coverage.test.mjs` output and are summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
+- `DJI Mavic 3`
+- `DJI Mavic 3 Classic`
+- `DJI Mavic 3 Pro`
+
+DJI official Store compatibility information explicitly supports both reviewed handoffs for all three models:
+
+- `DJI Mavic 3 Series Intelligent Flight Battery`
+- `DJI Mavic 3 Series Battery Charging Hub`
+
+Wave 4 does not infer compatibility for `DJI Mavic 3 Enterprise`, `DJI Mavic 3M`, `DJI Mavic 3 Cine`, `Mavic 2`, or other Mavic-family records.
+
+After DJI Waves 1–4 the maker reconciliation is:
+
+`DJI camera 96 = detail 12 + reviewed exclusion 0 + missing 84`
+
+The catalog-wide camera audit now reports 185 actionable basic records, 26 detail mappings, 0 reviewed exclusions, and 159 missing accessory-detail rows. The remaining missing counts are DJI 84, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing model arrays remain machine-readable in `tests/camera-accessory-coverage.test.mjs` output and are summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## Current fixed override
 
@@ -222,9 +237,10 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 - `affiliate-nikon-camera-accessories-wave2.js` extends the camera resolver with the remaining ten Nikon records.
 - `affiliate-dji-camera-accessories-wave1.js` adds the four reviewed DJI Osmo Action rows.
 - `affiliate-dji-camera-accessories-wave2.js` adds the two reviewed DJI Air rows.
-- `affiliate-dji-camera-accessories-wave3.js` adds the three reviewed DJI Mini rows and exposes the merged 23-row camera detail ledger.
+- `affiliate-dji-camera-accessories-wave3.js` adds the three reviewed DJI Mini rows.
+- `affiliate-dji-camera-accessories-wave4.js` adds the three reviewed DJI Mavic 3 consumer rows and exposes the merged 26-row camera detail ledger.
 - `affiliate-camera-detail-exclusions.js` is the reviewed camera-detail exclusion ledger and is currently empty.
-- `affiliate-runtime.js` renders the generic/body search plus zero or more verified consumable or camera-accessory searches. It loads Nikon Wave 1, Nikon Wave 2, and DJI Waves 1–3 before initial affiliate rendering so the final config is complete before cards are mounted.
+- `affiliate-runtime.js` renders the generic/body search plus zero or more verified consumable or camera-accessory searches. It loads Nikon Wave 1, Nikon Wave 2, and DJI Waves 1–4 before initial affiliate rendering so the final config is complete before cards are mounted.
 - `/assets/amazon-affiliate.js` validates Amazon destinations and records only coarse analytics targets. Model names and consumable/accessory terms are not analytics parameters.
 - `tests/affiliate-coverage.test.mjs` is the catalog-wide reconciliation gate for basic/detail/exclusion/missing printer coverage.
 - `tests/nikon-camera-accessory-wave1.test.mjs` locks the original four-model Nikon Wave 1 boundary.
@@ -232,6 +248,7 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 - `tests/dji-osmo-action-accessory-wave1.test.mjs` locks the exact four-model DJI Osmo Action Wave 1 boundary.
 - `tests/dji-air-accessory-wave2.test.mjs` locks the exact two-model DJI Air Wave 2 boundary.
 - `tests/dji-mini-accessory-wave3.test.mjs` locks the exact three-model DJI Mini Wave 3 boundary.
+- `tests/dji-mavic3-accessory-wave4.test.mjs` locks the exact three-model DJI Mavic 3 Wave 4 boundary.
 - `tests/camera-accessory-coverage.test.mjs` is the catalog-wide camera reconciliation and missing-model diagnostic gate.
 - `tests/camera-accessory-doc-sync.test.mjs` prevents the measured camera baseline documentation from drifting from runtime data.
 - `CAMERA_ACCESSORY_COVERAGE.md` records the current measured camera baseline and remaining maker backlog.
@@ -263,9 +280,9 @@ The Nikon camera subphase is closed only while all of the following remain true:
 The DJI camera phase is currently partial and must reconcile at:
 
 - DJI camera basic = 96
-- DJI camera detail = 9
+- DJI camera detail = 12
 - DJI reviewed camera exclusions = 0
-- DJI camera missing accessory detail = 87
+- DJI camera missing accessory detail = 84
 
 If the canonical catalog changes, numeric values may legitimately change, but each reconciliation invariant remains mandatory.
 
@@ -273,4 +290,4 @@ If the canonical catalog changes, numeric values may legitimately change, but ea
 
 The printer-detail Amazon handoff audit is no longer an open expansion target. Further printer work should be triggered by newly added canonical models, newly discovered evidence that changes an explicit exclusion, or a separately approved accessory family such as drums/maintenance parts.
 
-Nikon camera coverage is closed. The measured camera backlog continues with DJI 87 actionable records, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded reviewed product-family waves and exact manufacturer evidence. Appliance replacement-part rules remain a separate future phase.
+Nikon camera coverage is closed. The measured camera backlog continues with DJI 84 actionable records, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded reviewed product-family waves and exact manufacturer evidence. Appliance replacement-part rules remain a separate future phase.
