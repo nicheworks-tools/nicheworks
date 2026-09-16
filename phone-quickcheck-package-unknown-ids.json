@@ -1,0 +1,660 @@
+{
+  "adapter_unknown": [
+    {
+      "id": "sony-xperia-1-vii",
+      "manufacturer": "Sony",
+      "model": "Xperia 1 VII",
+      "specificationsUrl": "https://www.sony.jp/xperia/products/xperia1m7/spec.html"
+    },
+    {
+      "id": "sony-xperia-10-vii",
+      "manufacturer": "Sony",
+      "model": "Xperia 10 VII",
+      "specificationsUrl": "https://www.sony.jp/xperia/products/xperia10m7/spec.html"
+    },
+    {
+      "id": "sharp-aquos-r10",
+      "manufacturer": "SHARP",
+      "model": "AQUOS R10",
+      "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-r10/specs/"
+    },
+    {
+      "id": "sharp-aquos-sense10",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense10",
+      "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-sense10/specs/"
+    },
+    {
+      "id": "sharp-aquos-wish5",
+      "manufacturer": "SHARP",
+      "model": "AQUOS wish5",
+      "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-wish5/specs/"
+    },
+    {
+      "id": "sony-xperia-1-vi",
+      "manufacturer": "Sony",
+      "model": "Xperia 1 VI",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia1m6/spec.html"
+    },
+    {
+      "id": "sony-xperia-10-vi",
+      "manufacturer": "Sony",
+      "model": "Xperia 10 VI",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia10m6/compare.html"
+    },
+    {
+      "id": "sony-xperia-5-v",
+      "manufacturer": "Sony",
+      "model": "Xperia 5 V",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia5m5/spec.html"
+    },
+    {
+      "id": "sony-xperia-10-v",
+      "manufacturer": "Sony",
+      "model": "Xperia 10 V",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia10m5/spec.html"
+    },
+    {
+      "id": "sharp-aquos-sense9",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense9",
+      "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-sense9/specs/"
+    },
+    {
+      "id": "sharp-aquos-r9",
+      "manufacturer": "SHARP",
+      "model": "AQUOS R9",
+      "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-r9/specs/"
+    },
+    {
+      "id": "sharp-aquos-wish4",
+      "manufacturer": "SHARP",
+      "model": "AQUOS wish4",
+      "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-wish4/specs/"
+    },
+    {
+      "id": "xiaomi-15-ultra",
+      "manufacturer": "Xiaomi",
+      "model": "Xiaomi 15 Ultra",
+      "specificationsUrl": "https://www.mi.com/jp/product/xiaomi-15-ultra/specs/"
+    },
+    {
+      "id": "xiaomi-14t-pro",
+      "manufacturer": "Xiaomi",
+      "model": "Xiaomi 14T Pro",
+      "specificationsUrl": "https://www.mi.com/jp/product/xiaomi-14t-pro/specs/"
+    },
+    {
+      "id": "apple-iphone-11",
+      "manufacturer": "Apple",
+      "model": "iPhone 11",
+      "specificationsUrl": "https://support.apple.com/ja-jp/111865"
+    },
+    {
+      "id": "apple-iphone-se-2",
+      "manufacturer": "Apple",
+      "model": "iPhone SE (2nd generation)",
+      "specificationsUrl": "https://support.apple.com/ja-jp/111882"
+    },
+    {
+      "id": "sharp-aquos-sense8",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense8",
+      "specificationsUrl": "https://jp.sharp/products/aquos-sense8/simfree/"
+    },
+    {
+      "id": "sharp-aquos-sense7",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense7",
+      "specificationsUrl": "https://jp.sharp/k-tai/22winter/spec-sense7.html"
+    },
+    {
+      "id": "sharp-aquos-sense6",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense6",
+      "specificationsUrl": "https://jp.sharp/products/aquos-sense6/simfree/"
+    },
+    {
+      "id": "sharp-aquos-wish3",
+      "manufacturer": "SHARP",
+      "model": "AQUOS wish3",
+      "specificationsUrl": "https://jp.sharp/products/aquos-wish3/d/"
+    },
+    {
+      "id": "sharp-aquos-wish2",
+      "manufacturer": "SHARP",
+      "model": "AQUOS wish2",
+      "specificationsUrl": "https://jp.sharp/products/aquos-wish2/d/"
+    },
+    {
+      "id": "sharp-aquos-r8",
+      "manufacturer": "SHARP",
+      "model": "AQUOS R8",
+      "specificationsUrl": "https://jp.sharp/products/aquos-r8/simfree/"
+    },
+    {
+      "id": "sharp-aquos-r8-pro",
+      "manufacturer": "SHARP",
+      "model": "AQUOS R8 pro",
+      "specificationsUrl": "https://jp.sharp/products/aquos-r8-pro/simfree/"
+    },
+    {
+      "id": "motorola-moto-g64-5g",
+      "manufacturer": "Motorola",
+      "model": "moto g64 5G",
+      "specificationsUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192474/"
+    },
+    {
+      "id": "samsung-galaxy-a52-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A52 5G",
+      "specificationsUrl": "https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%EA%B0%A4%EB%9F%AD%EC%8B%9C-a52%C2%B7a52-5g%C2%B7a72-%EA%B3%B5%EA%B0%9C"
+    },
+    {
+      "id": "samsung-galaxy-a51-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A51 5G",
+      "specificationsUrl": "https://news.samsung.com/global/samsung-announces-the-new-addition-to-5g-smartphone-lineup-galaxy-a71-5g-and-galaxy-a51-5g"
+    },
+    {
+      "id": "samsung-galaxy-a32-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A32 5G",
+      "specificationsUrl": "https://www.samsung.com/sg/business/smartphones/galaxy-a/galaxy-a32-5g-sm-a326blvhxsp/"
+    },
+    {
+      "id": "samsung-galaxy-a41",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A41",
+      "specificationsUrl": "https://www.samsung.com/no/business/smartphones/galaxy-a/galaxy-a41-a415-sm-a415fzkdeud/"
+    },
+    {
+      "id": "sony-xperia-5-iii",
+      "manufacturer": "Sony",
+      "model": "Xperia 5 III",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia5m3/spec_docomo.html"
+    },
+    {
+      "id": "sony-xperia-10-iii",
+      "manufacturer": "Sony",
+      "model": "Xperia 10 III",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia10m3/spec_docomo.html"
+    },
+    {
+      "id": "sony-xperia-ace-ii",
+      "manufacturer": "Sony",
+      "model": "Xperia Ace II",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/acem2/spec.html"
+    },
+    {
+      "id": "sony-xperia-1-ii",
+      "manufacturer": "Sony",
+      "model": "Xperia 1 II",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia1m2/spec_docomo.html"
+    },
+    {
+      "id": "sony-xperia-5-ii",
+      "manufacturer": "Sony",
+      "model": "Xperia 5 II",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia5m2/spec_docomo.html"
+    },
+    {
+      "id": "sony-xperia-10-ii",
+      "manufacturer": "Sony",
+      "model": "Xperia 10 II",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia10m2/spec_au.html"
+    },
+    {
+      "id": "sharp-aquos-sense5g",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense5G",
+      "specificationsUrl": "https://jp.sharp/products/aquos-sense5g/spec.html"
+    },
+    {
+      "id": "sharp-aquos-sense4",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense4",
+      "specificationsUrl": "https://jp.sharp/products/shm15/spec.html"
+    },
+    {
+      "id": "sharp-aquos-wish",
+      "manufacturer": "SHARP",
+      "model": "AQUOS wish",
+      "specificationsUrl": "https://jp.sharp/products/aquos-wish-biz/s/"
+    },
+    {
+      "id": "sharp-aquos-r6",
+      "manufacturer": "SHARP",
+      "model": "AQUOS R6",
+      "specificationsUrl": "https://jp.sharp/products/aquos-r6/spec.html"
+    },
+    {
+      "id": "sharp-aquos-zero6",
+      "manufacturer": "SHARP",
+      "model": "AQUOS zero6",
+      "specificationsUrl": "https://jp.sharp/products/aquos-zero6/s/index.html"
+    },
+    {
+      "id": "sharp-aquos-r5g",
+      "manufacturer": "SHARP",
+      "model": "AQUOS R5G",
+      "specificationsUrl": "https://jp.sharp/products/aquos-r5g/spec.html"
+    },
+    {
+      "id": "sharp-aquos-zero5g-basic",
+      "manufacturer": "SHARP",
+      "model": "AQUOS zero5G basic",
+      "specificationsUrl": "https://jp.sharp/products/aquos-zero5g-basic/spec.html"
+    },
+    {
+      "id": "motorola-moto-g24",
+      "manufacturer": "Motorola",
+      "model": "moto g24",
+      "specificationsUrl": "https://www.motorola.com/gb/en/p/phones/moto-g/24/pmipmgp37mb?pn=PB180001GB"
+    },
+    {
+      "id": "motorola-razr-40",
+      "manufacturer": "Motorola",
+      "model": "motorola razr 40",
+      "specificationsUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/175748/"
+    },
+    {
+      "id": "zte-nubia-flip-5g",
+      "manufacturer": "ZTE",
+      "model": "nubia Flip 5G",
+      "specificationsUrl": "https://www.nubia.com/jp/products/smartphones/nubia/nubia-flip-5g"
+    }
+  ],
+  "cable_unknown": [
+    {
+      "id": "sony-xperia-1-vii",
+      "manufacturer": "Sony",
+      "model": "Xperia 1 VII",
+      "specificationsUrl": "https://www.sony.jp/xperia/products/xperia1m7/spec.html"
+    },
+    {
+      "id": "sony-xperia-10-vii",
+      "manufacturer": "Sony",
+      "model": "Xperia 10 VII",
+      "specificationsUrl": "https://www.sony.jp/xperia/products/xperia10m7/spec.html"
+    },
+    {
+      "id": "sharp-aquos-r10",
+      "manufacturer": "SHARP",
+      "model": "AQUOS R10",
+      "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-r10/specs/"
+    },
+    {
+      "id": "sharp-aquos-sense10",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense10",
+      "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-sense10/specs/"
+    },
+    {
+      "id": "sharp-aquos-wish5",
+      "manufacturer": "SHARP",
+      "model": "AQUOS wish5",
+      "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-wish5/specs/"
+    },
+    {
+      "id": "samsung-galaxy-s24",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S24",
+      "specificationsUrl": "https://www.samsung.com/in/smartphones/galaxy-s/galaxy-s24-onyx-black-128gb-sm-s921ezkiins/"
+    },
+    {
+      "id": "samsung-galaxy-s24-ultra",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S24 Ultra",
+      "specificationsUrl": "https://www.samsung.com/ca/business/smartphones/galaxy-s/galaxy-s24-ultra-titanium-grey-512gb-sm-s928wztfxac/"
+    },
+    {
+      "id": "samsung-galaxy-a55-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A55 5G",
+      "specificationsUrl": "https://www.samsung.com/jp/business/smartphones/galaxy-a/galaxy-a55-5g-awesome-navy-128gb-sm-a556jzkbkdi/"
+    },
+    {
+      "id": "samsung-galaxy-a36-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A36 5G",
+      "specificationsUrl": "https://www.samsung.com/jp/business/smartphones/galaxy-a/galaxy-a36-5g-awesome-white-128gb-sm-a366qzaasjp/"
+    },
+    {
+      "id": "samsung-galaxy-s23",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S23",
+      "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-s/galaxy-s23-cream-256gb-docomo-sm-s911dzeedcm/"
+    },
+    {
+      "id": "sony-xperia-1-vi",
+      "manufacturer": "Sony",
+      "model": "Xperia 1 VI",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia1m6/spec.html"
+    },
+    {
+      "id": "sony-xperia-10-vi",
+      "manufacturer": "Sony",
+      "model": "Xperia 10 VI",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia10m6/compare.html"
+    },
+    {
+      "id": "sony-xperia-5-v",
+      "manufacturer": "Sony",
+      "model": "Xperia 5 V",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia5m5/spec.html"
+    },
+    {
+      "id": "sony-xperia-10-v",
+      "manufacturer": "Sony",
+      "model": "Xperia 10 V",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia10m5/spec.html"
+    },
+    {
+      "id": "sharp-aquos-sense9",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense9",
+      "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-sense9/specs/"
+    },
+    {
+      "id": "sharp-aquos-r9",
+      "manufacturer": "SHARP",
+      "model": "AQUOS R9",
+      "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-r9/specs/"
+    },
+    {
+      "id": "sharp-aquos-wish4",
+      "manufacturer": "SHARP",
+      "model": "AQUOS wish4",
+      "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-wish4/specs/"
+    },
+    {
+      "id": "xiaomi-15-ultra",
+      "manufacturer": "Xiaomi",
+      "model": "Xiaomi 15 Ultra",
+      "specificationsUrl": "https://www.mi.com/jp/product/xiaomi-15-ultra/specs/"
+    },
+    {
+      "id": "xiaomi-14t-pro",
+      "manufacturer": "Xiaomi",
+      "model": "Xiaomi 14T Pro",
+      "specificationsUrl": "https://www.mi.com/jp/product/xiaomi-14t-pro/specs/"
+    },
+    {
+      "id": "motorola-razr-50-ultra",
+      "manufacturer": "Motorola",
+      "model": "motorola razr 50 ultra",
+      "specificationsUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192370/~/仕様---motorola-razr-50-ultra"
+    },
+    {
+      "id": "samsung-galaxy-s22",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S22",
+      "specificationsUrl": "https://www.samsung.com/sg/business/smartphones/galaxy-s/galaxy-s22-for-business-sm-s901-sm-s901ezagxsp/"
+    },
+    {
+      "id": "samsung-galaxy-s22-ultra",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S22 Ultra",
+      "specificationsUrl": "https://www.samsung.com/au/business/smartphones/galaxy-s/galaxy-s22-ultra-for-business-sm-s908-sm-s908ezwnats/"
+    },
+    {
+      "id": "samsung-galaxy-s21-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S21 5G",
+      "specificationsUrl": "https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%EA%B0%A4%EB%9F%AD%EC%8B%9C-s21-3%EC%A2%85-%EC%A0%84%EA%B2%A9-%EA%B3%B5%EA%B0%9C"
+    },
+    {
+      "id": "samsung-galaxy-s21-ultra-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S21 Ultra 5G",
+      "specificationsUrl": "https://www.samsung.com/sg/business/smartphones/galaxy-s/galaxy-s21-ultra-5g-g988-sm-g998bzkhxsp/"
+    },
+    {
+      "id": "samsung-galaxy-a54-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A54 5G",
+      "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-a/galaxy-a54-5g-awesome-graphite-128gb-docomo-sm-a546dzkbdcm/"
+    },
+    {
+      "id": "samsung-galaxy-a53-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A53 5G",
+      "specificationsUrl": "https://news.samsung.com/global/galaxy-a53-5g-and-galaxy-a33-5g-awesome-mobile-experiences-open-to-everyone"
+    },
+    {
+      "id": "samsung-galaxy-a35-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A35 5G",
+      "specificationsUrl": "https://news.samsung.com/global/samsung-galaxy-a55-5g-and-galaxy-a35-5g-awesome-innovations-and-security-engineered-for-everyone"
+    },
+    {
+      "id": "sony-xperia-1-v",
+      "manufacturer": "Sony",
+      "model": "Xperia 1 V",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia1m5/compare.html"
+    },
+    {
+      "id": "sony-xperia-1-iv",
+      "manufacturer": "Sony",
+      "model": "Xperia 1 IV",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia1m4/spec_sony.html"
+    },
+    {
+      "id": "sony-xperia-5-iv",
+      "manufacturer": "Sony",
+      "model": "Xperia 5 IV",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia5m4/spec_sony.html"
+    },
+    {
+      "id": "sony-xperia-10-iv",
+      "manufacturer": "Sony",
+      "model": "Xperia 10 IV",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia10m4/spec_sony.html"
+    },
+    {
+      "id": "sony-xperia-ace-iii",
+      "manufacturer": "Sony",
+      "model": "Xperia Ace III",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/acem3/spec_docomo.html"
+    },
+    {
+      "id": "sharp-aquos-sense8",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense8",
+      "specificationsUrl": "https://jp.sharp/products/aquos-sense8/simfree/"
+    },
+    {
+      "id": "sharp-aquos-sense7",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense7",
+      "specificationsUrl": "https://jp.sharp/k-tai/22winter/spec-sense7.html"
+    },
+    {
+      "id": "sharp-aquos-sense6",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense6",
+      "specificationsUrl": "https://jp.sharp/products/aquos-sense6/simfree/"
+    },
+    {
+      "id": "sharp-aquos-wish3",
+      "manufacturer": "SHARP",
+      "model": "AQUOS wish3",
+      "specificationsUrl": "https://jp.sharp/products/aquos-wish3/d/"
+    },
+    {
+      "id": "sharp-aquos-wish2",
+      "manufacturer": "SHARP",
+      "model": "AQUOS wish2",
+      "specificationsUrl": "https://jp.sharp/products/aquos-wish2/d/"
+    },
+    {
+      "id": "sharp-aquos-r8",
+      "manufacturer": "SHARP",
+      "model": "AQUOS R8",
+      "specificationsUrl": "https://jp.sharp/products/aquos-r8/simfree/"
+    },
+    {
+      "id": "sharp-aquos-r8-pro",
+      "manufacturer": "SHARP",
+      "model": "AQUOS R8 pro",
+      "specificationsUrl": "https://jp.sharp/products/aquos-r8-pro/simfree/"
+    },
+    {
+      "id": "oppo-reno9-a",
+      "manufacturer": "OPPO",
+      "model": "Reno9 A",
+      "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno9-a/specs/"
+    },
+    {
+      "id": "oppo-reno7-a",
+      "manufacturer": "OPPO",
+      "model": "Reno7 A",
+      "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno7-a/specs/"
+    },
+    {
+      "id": "oppo-a77",
+      "manufacturer": "OPPO",
+      "model": "A77",
+      "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-a/a77/specs/"
+    },
+    {
+      "id": "xiaomi-redmi-note-13-pro-5g",
+      "manufacturer": "Xiaomi",
+      "model": "Redmi Note 13 Pro 5G",
+      "specificationsUrl": "https://www.mi.com/jp/product/redmi-note-13-pro-5g/specs/"
+    },
+    {
+      "id": "motorola-moto-g64-5g",
+      "manufacturer": "Motorola",
+      "model": "moto g64 5G",
+      "specificationsUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192474/"
+    },
+    {
+      "id": "motorola-edge-50-pro",
+      "manufacturer": "Motorola",
+      "model": "motorola edge 50 pro",
+      "specificationsUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/178982/~/specifications---motorola-edge-50-pro/"
+    },
+    {
+      "id": "samsung-galaxy-m23-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy M23 5G",
+      "specificationsUrl": "https://www.samsung.com/jp/business/galaxy-m23-5g/"
+    },
+    {
+      "id": "sony-xperia-1-iii",
+      "manufacturer": "Sony",
+      "model": "Xperia 1 III",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia1m3/spec_docomo.html"
+    },
+    {
+      "id": "sony-xperia-5-iii",
+      "manufacturer": "Sony",
+      "model": "Xperia 5 III",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia5m3/spec_docomo.html"
+    },
+    {
+      "id": "sony-xperia-10-iii",
+      "manufacturer": "Sony",
+      "model": "Xperia 10 III",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia10m3/spec_docomo.html"
+    },
+    {
+      "id": "sony-xperia-ace-ii",
+      "manufacturer": "Sony",
+      "model": "Xperia Ace II",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/acem2/spec.html"
+    },
+    {
+      "id": "sony-xperia-1-ii",
+      "manufacturer": "Sony",
+      "model": "Xperia 1 II",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia1m2/spec_docomo.html"
+    },
+    {
+      "id": "sony-xperia-5-ii",
+      "manufacturer": "Sony",
+      "model": "Xperia 5 II",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia5m2/spec_docomo.html"
+    },
+    {
+      "id": "sony-xperia-10-ii",
+      "manufacturer": "Sony",
+      "model": "Xperia 10 II",
+      "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia10m2/spec_au.html"
+    },
+    {
+      "id": "sharp-aquos-sense5g",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense5G",
+      "specificationsUrl": "https://jp.sharp/products/aquos-sense5g/spec.html"
+    },
+    {
+      "id": "sharp-aquos-sense4",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense4",
+      "specificationsUrl": "https://jp.sharp/products/shm15/spec.html"
+    },
+    {
+      "id": "sharp-aquos-wish",
+      "manufacturer": "SHARP",
+      "model": "AQUOS wish",
+      "specificationsUrl": "https://jp.sharp/products/aquos-wish-biz/s/"
+    },
+    {
+      "id": "sharp-aquos-r6",
+      "manufacturer": "SHARP",
+      "model": "AQUOS R6",
+      "specificationsUrl": "https://jp.sharp/products/aquos-r6/spec.html"
+    },
+    {
+      "id": "sharp-aquos-zero6",
+      "manufacturer": "SHARP",
+      "model": "AQUOS zero6",
+      "specificationsUrl": "https://jp.sharp/products/aquos-zero6/s/index.html"
+    },
+    {
+      "id": "sharp-aquos-r5g",
+      "manufacturer": "SHARP",
+      "model": "AQUOS R5G",
+      "specificationsUrl": "https://jp.sharp/products/aquos-r5g/spec.html"
+    },
+    {
+      "id": "sharp-aquos-zero5g-basic",
+      "manufacturer": "SHARP",
+      "model": "AQUOS zero5G basic",
+      "specificationsUrl": "https://jp.sharp/products/aquos-zero5g-basic/spec.html"
+    },
+    {
+      "id": "motorola-moto-g32",
+      "manufacturer": "Motorola",
+      "model": "moto g32",
+      "specificationsUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192477/"
+    },
+    {
+      "id": "motorola-moto-g13",
+      "manufacturer": "Motorola",
+      "model": "moto g13",
+      "specificationsUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192476/"
+    },
+    {
+      "id": "motorola-moto-g24",
+      "manufacturer": "Motorola",
+      "model": "moto g24",
+      "specificationsUrl": "https://www.motorola.com/gb/en/p/phones/moto-g/24/pmipmgp37mb?pn=PB180001GB"
+    },
+    {
+      "id": "motorola-razr-40",
+      "manufacturer": "Motorola",
+      "model": "motorola razr 40",
+      "specificationsUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/175748/"
+    },
+    {
+      "id": "zte-nubia-flip-5g",
+      "manufacturer": "ZTE",
+      "model": "nubia Flip 5G",
+      "specificationsUrl": "https://www.nubia.com/jp/products/smartphones/nubia/nubia-flip-5g"
+    }
+  ]
+}
