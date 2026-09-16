@@ -1,0 +1,25 @@
+name: Temp Phone QuickCheck moto g32 audit
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/temp-phone-quickcheck-moto-g32-audit.yml'
+      - 'tools/phone-quickcheck/data/phones.json'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print moto g32 record
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('tools/phone-quickcheck/data/phones.json', 'utf8'));
+          const phone = data.phones.find(p => p.id === 'motorola-moto-g32');
+          if (!phone) throw new Error('motorola-moto-g32 not found');
+          console.log(JSON.stringify(phone, null, 2));
+          NODE
