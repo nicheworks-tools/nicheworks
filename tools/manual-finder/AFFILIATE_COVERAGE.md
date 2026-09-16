@@ -53,11 +53,11 @@ Current state:
 2. **Consumer-printer ink** — active for the verified Brother, Epson, and Canon mappings.
 3. **Office-printer toner** — the current printer-detail audit is complete. Verified mappings exist across the maintained OKI, KYOCERA, RICOH, and FUJIFILM Business Innovation ledgers; reviewed non-retail/service-managed cases are explicit exclusions.
 4. **Office-printer drum / maintenance parts** — optional future expansion, not part of the completed toner-detail audit.
-5. **Camera batteries / chargers** — future work only where compatibility can be independently verified.
+5. **Camera batteries / chargers** — active for Nikon Wave 1 (`Z8`, `Z6III`, `Z5II`, `Zf`) only. The exact EN-EL15c battery and MH-25a charger relationship is backed by Nikon official model documentation for every activated model.
 6. **Appliance replacement parts / filters** — future work only where exact compatibility can be proven.
 7. Additional accessory families require a clear user need and a verified mapping source.
 
-There is no remaining printer-detail backlog in the current catalog. New printer records added later must satisfy the same fail-closed audit contract.
+There is no remaining printer-detail backlog in the current catalog. New printer records added later must satisfy the same fail-closed audit contract. Camera accessory expansion is independently bounded and does not change the completed printer reconciliation.
 
 ## Amazon tagged-search format
 
@@ -69,7 +69,7 @@ There is no remaining printer-detail backlog in the current catalog. New printer
 - representative proof URL: `https://www.amazon.co.jp/s?k=Brother+MFC-J4440N&tag=nicheworks09-22`
 - user-entered ManualFinder search text is never used in the Amazon destination
 
-The same validated `s?k=...&tag=nicheworks09-22` format is used for exact-model and verified-consumable searches. No per-model SiteStripe operation is required.
+The same validated `s?k=...&tag=nicheworks09-22` format is used for exact-model and verified compatibility-sensitive accessory searches. No per-model SiteStripe operation is required.
 
 ## Generic model-search rule
 
@@ -123,13 +123,26 @@ The completed detail audit includes the maintained Brother, Epson, Canon, OKI, R
 
 FUJIFILM Business Innovation family-level evidence remains intentionally distinguished from exact retail toner codes. SDS identifiers are not treated as product SKUs. The same principle applies to every maker: evidence proves the handoff boundary; it does not authorize SKU invention.
 
+## Camera accessory rule — Nikon Wave 1
+
+The first camera-accessory wave is deliberately limited to four existing canonical Nikon mirrorless-camera records: `Z8`, `Z6III`, `Z5II`, and `Zf`.
+
+For each of these four models, Nikon official model documentation explicitly identifies the EN-EL15c rechargeable battery and MH-25a battery charger. ManualFinder therefore exposes exactly two compatibility-sensitive Amazon handoffs per activated model:
+
+- `Nikon EN-EL15c`
+- `Nikon MH-25a`
+
+The mapping is model-specific even though the same accessories are shared. `Z6II`, `Z7II`, `Z6`, `Z7`, `Z5`, and other Nikon records are **not** activated by family-name or battery-family inference in this wave. They remain eligible only for the generic exact-model Amazon search until a later reviewed accessory wave explicitly adds them.
+
+Wrong maker, wrong category, empty model, nonexistent model, and any Nikon model outside this four-record ledger fail closed for camera accessory offers.
+
 ## Current fixed override
 
 | Maker | Model | Type | Status | Destination | Verified |
 | --- | --- | --- | --- | --- | --- |
 | Nikon | Z8 | Amazon search override | verified | `https://amzn.to/3T7sxbB` | 2026-09-13 |
 
-The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It is not the normal rollout mechanism.
+The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It is not the normal rollout mechanism. The fixed Z8 body-search override may coexist with its separately verified battery/charger handoffs; it does not suppress them.
 
 ## Runtime boundary and source of truth
 
@@ -141,12 +154,14 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 - `affiliate-kyocera-toner-wave3.js`, `affiliate-kyocera-toner-wave4.js`, and `affiliate-kyocera-toner-wave6.js` contain the KYOCERA supplemental ledgers. The last bundle exposes the later ledgers through Wave 19, including the final `KM-C3225E` and `KM-C870` rows.
 - `affiliate-fujifilm-toner-wave2.js` contains the supplemental FUJIFILM Business Innovation family-evidence mappings.
 - `affiliate-printer-detail-exclusions.js` is the explicit reviewed-exclusion ledger.
-- `affiliate-runtime.js` renders the generic model search plus zero or more verified consumable searches.
-- `/assets/amazon-affiliate.js` validates Amazon destinations and records only coarse analytics targets. Model names and consumable terms are not analytics parameters.
-- `tests/affiliate-coverage.test.mjs` is the catalog-wide reconciliation gate for basic/detail/exclusion/missing coverage.
+- `affiliate-camera-accessories.js` owns the bounded Nikon camera accessory ledger, its dedicated coarse Amazon target, and exact accessory lookup.
+- `affiliate-runtime.js` renders the generic/body search plus zero or more verified consumable or camera-accessory searches. It loads the camera accessory layer before initial affiliate rendering so the Z8 fixed override and accessory offers can coexist.
+- `/assets/amazon-affiliate.js` validates Amazon destinations and records only coarse analytics targets. Model names and consumable/accessory terms are not analytics parameters.
+- `tests/affiliate-coverage.test.mjs` is the catalog-wide reconciliation gate for basic/detail/exclusion/missing printer coverage.
+- `tests/nikon-camera-accessory-wave1.test.mjs` locks the four-model camera boundary, exact accessory identities, source URLs, tagged-search output, and fail-closed cases.
 - Maker/wave-specific tests enforce exact evidence boundaries and fail-closed behavior.
 
-Unsupported categories, empty models, malformed URLs, wrong makers, wrong categories, nonexistent model IDs, and unreviewed consumable mappings must fail closed. Official manual/support links always remain above the commercial block.
+Unsupported categories, empty models, malformed URLs, wrong makers, wrong categories, nonexistent model IDs, and unreviewed compatibility mappings must fail closed. Official manual/support links always remain above the commercial block.
 
 ## Audit completion gate
 
@@ -167,4 +182,4 @@ If the canonical catalog changes, these numeric values may legitimately change, 
 
 The printer-detail Amazon handoff audit is no longer an open expansion target. Further printer work should be triggered by newly added canonical models, newly discovered evidence that changes an explicit exclusion, or a separately approved accessory family such as drums/maintenance parts.
 
-Camera battery/charger and appliance replacement-part rules remain separate future phases. They must not weaken the completed printer fail-closed contract.
+Camera accessory expansion may continue in bounded reviewed waves only where an official manufacturer source ties the exact camera model to the exact battery or charger identity. Nikon Wave 1 must not be generalized automatically to the rest of the Z family. Appliance replacement-part rules remain a separate future phase.
