@@ -1,0 +1,745 @@
+{
+  "schema_version": 1,
+  "phase": "wave4-staged-search",
+  "updated": "2026-09-16",
+  "publication_state": "staged-not-public",
+  "ja": {
+    "バロックの巻き葉模様": {
+      "ids": [
+        "baroque-scroll"
+      ]
+    },
+    "C字S字のスクロール柄": {
+      "ids": [
+        "baroque-scroll"
+      ]
+    },
+    "豪華な渦巻き装飾": {
+      "ids": [
+        "baroque-scroll"
+      ]
+    },
+    "中国風の楼閣と鳥の壁紙": {
+      "ids": [
+        "chinoiserie"
+      ]
+    },
+    "シノワズリ柄": {
+      "ids": [
+        "chinoiserie"
+      ]
+    },
+    "花木と庭園の洋風装飾": {
+      "ids": [
+        "chinoiserie"
+      ]
+    },
+    "炎みたいな階段ジグザグ": {
+      "ids": [
+        "flame-stitch"
+      ]
+    },
+    "バルジェロ風の尖った柄": {
+      "ids": [
+        "flame-stitch"
+      ]
+    },
+    "フレームステッチ模様": {
+      "ids": [
+        "flame-stitch"
+      ]
+    },
+    "一本の木から花が広がる柄": {
+      "ids": [
+        "tree-of-life"
+      ]
+    },
+    "生命の樹 模様": {
+      "ids": [
+        "tree-of-life"
+      ]
+    },
+    "中央の幹がある植物柄": {
+      "ids": [
+        "tree-of-life"
+      ]
+    },
+    "水面みたいに揺れる光沢生地": {
+      "ids": [
+        "moire"
+      ]
+    },
+    "木目みたいな波の布": {
+      "ids": [
+        "moire"
+      ]
+    },
+    "モアレ効果": {
+      "ids": [
+        "moire"
+      ]
+    },
+    "矢羽根が並ぶ和柄": {
+      "ids": [
+        "yagasuri"
+      ]
+    },
+    "矢絣 模様": {
+      "ids": [
+        "yagasuri"
+      ]
+    },
+    "細長いV字の着物柄": {
+      "ids": [
+        "yagasuri"
+      ]
+    },
+    "卍がつながる和柄": {
+      "ids": [
+        "sayagata"
+      ]
+    },
+    "迷路みたいな直角の地紋": {
+      "ids": [
+        "sayagata"
+      ]
+    },
+    "紗綾形 模様": {
+      "ids": [
+        "sayagata"
+      ]
+    },
+    "三角が並ぶ鱗の和柄": {
+      "ids": [
+        "uroko"
+      ]
+    },
+    "鱗文様": {
+      "ids": [
+        "uroko"
+      ]
+    },
+    "上下反転三角の模様": {
+      "ids": [
+        "uroko"
+      ]
+    },
+    "縦に湧き上がる曲線の和柄": {
+      "ids": [
+        "tatewaku"
+      ]
+    },
+    "立涌 文様": {
+      "ids": [
+        "tatewaku"
+      ]
+    },
+    "縦長オジーみたいな和柄": {
+      "ids": [
+        "tatewaku"
+      ]
+    },
+    "竹かごみたいな三角格子": {
+      "ids": [
+        "kagome"
+      ]
+    },
+    "籠目 文様": {
+      "ids": [
+        "kagome"
+      ]
+    },
+    "星が見える和風ラティス": {
+      "ids": [
+        "kagome"
+      ]
+    },
+    "小さい絞りの点が並ぶ和柄": {
+      "ids": [
+        "kanoko"
+      ]
+    },
+    "鹿の子 模様": {
+      "ids": [
+        "kanoko"
+      ]
+    },
+    "白い輪点の着物柄": {
+      "ids": [
+        "kanoko"
+      ]
+    },
+    "花が菱形になった和柄": {
+      "ids": [
+        "hanabishi"
+      ]
+    },
+    "花菱 文様": {
+      "ids": [
+        "hanabishi"
+      ]
+    },
+    "四弁のダイヤ花": {
+      "ids": [
+        "hanabishi"
+      ]
+    },
+    "遠目で無地に見える細かい点の和柄": {
+      "ids": [
+        "same-komon"
+      ]
+    },
+    "鮫小紋": {
+      "ids": [
+        "same-komon"
+      ]
+    },
+    "扇形に並ぶ極小ドット": {
+      "ids": [
+        "same-komon"
+      ]
+    },
+    "波の上を小鳥が飛ぶ和柄": {
+      "ids": [
+        "nami-chidori"
+      ]
+    },
+    "波千鳥 文様": {
+      "ids": [
+        "nami-chidori"
+      ]
+    },
+    "千鳥と波の模様": {
+      "ids": [
+        "nami-chidori"
+      ]
+    },
+    "勾玉みたいな渦の和柄": {
+      "ids": [
+        "tomoe"
+      ]
+    },
+    "巴 文様": {
+      "ids": [
+        "tomoe"
+      ]
+    },
+    "三つのコンマが回る模様": {
+      "ids": [
+        "tomoe"
+      ]
+    },
+    "白抜きの輪がにじむ絞り染め": {
+      "ids": [
+        "shibori"
+      ]
+    },
+    "絞り 染め 模様": {
+      "ids": [
+        "shibori"
+      ]
+    },
+    "括って染めた布": {
+      "ids": [
+        "shibori"
+      ]
+    },
+    "蝋染めの細かい柄": {
+      "ids": [
+        "batik"
+      ]
+    },
+    "バティック 模様": {
+      "ids": [
+        "batik"
+      ]
+    },
+    "インドネシアのワックス防染布": {
+      "ids": [
+        "batik"
+      ]
+    },
+    "小さい白い点で菱形を作る染め布": {
+      "ids": [
+        "bandhani"
+      ]
+    },
+    "バンダニ 絞り": {
+      "ids": [
+        "bandhani"
+      ]
+    },
+    "インドの細かいタイダイ点": {
+      "ids": [
+        "bandhani"
+      ]
+    },
+    "藍と赤の細かい木版柄": {
+      "ids": [
+        "ajrakh"
+      ]
+    },
+    "アジュラック 布": {
+      "ids": [
+        "ajrakh"
+      ]
+    },
+    "ロゼットが密に並ぶプリント": {
+      "ids": [
+        "ajrakh"
+      ]
+    },
+    "手描きの花唐草インド布": {
+      "ids": [
+        "kalamkari"
+      ]
+    },
+    "カラムカリ 生地": {
+      "ids": [
+        "kalamkari"
+      ]
+    },
+    "物語絵みたいな植物染め布": {
+      "ids": [
+        "kalamkari"
+      ]
+    },
+    "シェブロンではなく矢羽根の和柄": {
+      "ids": [
+        "yagasuri"
+      ]
+    },
+    "ジグザグではなく階段状の炎": {
+      "ids": [
+        "flame-stitch"
+      ]
+    },
+    "一般ラティスではなく竹籠の三方向格子": {
+      "ids": [
+        "kagome"
+      ]
+    },
+    "水玉ではなく絞りの輪点": {
+      "ids": [
+        "kanoko"
+      ]
+    },
+    "青海波ではなく波に小鳥が飛ぶ": {
+      "ids": [
+        "nami-chidori"
+      ]
+    },
+    "バティックではなく藍赤の木版ロゼット": {
+      "ids": [
+        "ajrakh"
+      ]
+    },
+    "一般オジーではなく縦に立ち上る和柄": {
+      "ids": [
+        "tatewaku"
+      ]
+    },
+    "グリークキーではなく卍形が連結した地文": {
+      "ids": [
+        "sayagata"
+      ]
+    },
+    "菱形ではなく三角セルの鱗文様": {
+      "ids": [
+        "uroko"
+      ]
+    },
+    "普通の植物柄ではなく中央に一本の生命の樹": {
+      "ids": [
+        "tree-of-life"
+      ]
+    },
+    "鹿の子よりさらに細かい扇状点群": {
+      "ids": [
+        "same-komon"
+      ]
+    },
+    "絞り全般ではなく微細点が大群になるバンダニ": {
+      "ids": [
+        "bandhani"
+      ]
+    },
+    "楼閣と鳥のヨーロッパ中国趣味": {
+      "ids": [
+        "chinoiserie"
+      ]
+    },
+    "絞りの輪点": {
+      "ids": [
+        "kanoko"
+      ]
+    }
+  },
+  "en": {
+    "baroque scrolling foliage": {
+      "ids": [
+        "baroque-scroll"
+      ]
+    },
+    "ornate c scroll pattern": {
+      "ids": [
+        "baroque-scroll"
+      ]
+    },
+    "s curve scroll ornament": {
+      "ids": [
+        "baroque-scroll"
+      ]
+    },
+    "chinoiserie garden pattern": {
+      "ids": [
+        "chinoiserie"
+      ]
+    },
+    "pavilion birds floral wallpaper": {
+      "ids": [
+        "chinoiserie"
+      ]
+    },
+    "European Chinese inspired decor": {
+      "ids": [
+        "chinoiserie"
+      ]
+    },
+    "stepped flame zigzag": {
+      "ids": [
+        "flame-stitch"
+      ]
+    },
+    "bargello flame pattern": {
+      "ids": [
+        "flame-stitch"
+      ]
+    },
+    "needlepoint flame stitch": {
+      "ids": [
+        "flame-stitch"
+      ]
+    },
+    "tree of life textile motif": {
+      "ids": [
+        "tree-of-life"
+      ]
+    },
+    "central tree floral pattern": {
+      "ids": [
+        "tree-of-life"
+      ]
+    },
+    "branching symbolic tree design": {
+      "ids": [
+        "tree-of-life"
+      ]
+    },
+    "watered silk effect": {
+      "ids": [
+        "moire"
+      ]
+    },
+    "moire rippled fabric": {
+      "ids": [
+        "moire"
+      ]
+    },
+    "optical wavy textile": {
+      "ids": [
+        "moire"
+      ]
+    },
+    "Japanese arrow feather pattern": {
+      "ids": [
+        "yagasuri"
+      ]
+    },
+    "yagasuri kimono motif": {
+      "ids": [
+        "yagasuri"
+      ]
+    },
+    "elongated chevron fletching": {
+      "ids": [
+        "yagasuri"
+      ]
+    },
+    "interlocking manji fret": {
+      "ids": [
+        "sayagata"
+      ]
+    },
+    "Japanese key fret pattern": {
+      "ids": [
+        "sayagata"
+      ]
+    },
+    "sayagata textile": {
+      "ids": [
+        "sayagata"
+      ]
+    },
+    "Japanese triangle scale pattern": {
+      "ids": [
+        "uroko"
+      ]
+    },
+    "uroko motif": {
+      "ids": [
+        "uroko"
+      ]
+    },
+    "alternating triangle textile": {
+      "ids": [
+        "uroko"
+      ]
+    },
+    "Japanese vertical swelling curves": {
+      "ids": [
+        "tatewaku"
+      ]
+    },
+    "tatewaku motif": {
+      "ids": [
+        "tatewaku"
+      ]
+    },
+    "rising opposed curve pattern": {
+      "ids": [
+        "tatewaku"
+      ]
+    },
+    "Japanese basket lattice pattern": {
+      "ids": [
+        "kagome"
+      ]
+    },
+    "kagome geometric motif": {
+      "ids": [
+        "kagome"
+      ]
+    },
+    "triangular bamboo lattice": {
+      "ids": [
+        "kagome"
+      ]
+    },
+    "kanoko shibori dots": {
+      "ids": [
+        "kanoko"
+      ]
+    },
+    "Japanese resist dot pattern": {
+      "ids": [
+        "kanoko"
+      ]
+    },
+    "small ring dot kimono": {
+      "ids": [
+        "kanoko"
+      ]
+    },
+    "Japanese floral diamond motif": {
+      "ids": [
+        "hanabishi"
+      ]
+    },
+    "hanabishi pattern": {
+      "ids": [
+        "hanabishi"
+      ]
+    },
+    "four petal lozenge flower": {
+      "ids": [
+        "hanabishi"
+      ]
+    },
+    "same komon fine dots": {
+      "ids": [
+        "same-komon"
+      ]
+    },
+    "Japanese sharkskin komon pattern": {
+      "ids": [
+        "same-komon"
+      ]
+    },
+    "tiny fan dot stencil": {
+      "ids": [
+        "same-komon"
+      ]
+    },
+    "Japanese waves with plovers": {
+      "ids": [
+        "nami-chidori"
+      ]
+    },
+    "nami chidori pattern": {
+      "ids": [
+        "nami-chidori"
+      ]
+    },
+    "flying birds wave motif": {
+      "ids": [
+        "nami-chidori"
+      ]
+    },
+    "Japanese comma swirl motif": {
+      "ids": [
+        "tomoe"
+      ]
+    },
+    "tomoe pattern": {
+      "ids": [
+        "tomoe"
+      ]
+    },
+    "three rotating comma shapes": {
+      "ids": [
+        "tomoe"
+      ]
+    },
+    "Japanese shibori resist dye": {
+      "ids": [
+        "shibori"
+      ]
+    },
+    "bound resist circles fabric": {
+      "ids": [
+        "shibori"
+      ]
+    },
+    "shibori dyed textile": {
+      "ids": [
+        "shibori"
+      ]
+    },
+    "wax resist batik pattern": {
+      "ids": [
+        "batik"
+      ]
+    },
+    "Indonesian batik textile": {
+      "ids": [
+        "batik"
+      ]
+    },
+    "fine wax outline fabric": {
+      "ids": [
+        "batik"
+      ]
+    },
+    "bandhani tiny resist dots": {
+      "ids": [
+        "bandhani"
+      ]
+    },
+    "Indian tie dye dot textile": {
+      "ids": [
+        "bandhani"
+      ]
+    },
+    "diamond grid resist dots": {
+      "ids": [
+        "bandhani"
+      ]
+    },
+    "ajrakh block print": {
+      "ids": [
+        "ajrakh"
+      ]
+    },
+    "indigo red geometric textile": {
+      "ids": [
+        "ajrakh"
+      ]
+    },
+    "Kutch Ajrakh fabric": {
+      "ids": [
+        "ajrakh"
+      ]
+    },
+    "kalamkari hand painted textile": {
+      "ids": [
+        "kalamkari"
+      ]
+    },
+    "Indian floral pen work fabric": {
+      "ids": [
+        "kalamkari"
+      ]
+    },
+    "narrative kalamkari cloth": {
+      "ids": [
+        "kalamkari"
+      ]
+    },
+    "not generic chevron arrow feather Japanese": {
+      "ids": [
+        "yagasuri"
+      ]
+    },
+    "stair stepped flame not simple zigzag": {
+      "ids": [
+        "flame-stitch"
+      ]
+    },
+    "three direction basket lattice not simple lattice": {
+      "ids": [
+        "kagome"
+      ]
+    },
+    "resist rings not polka dots": {
+      "ids": [
+        "kanoko"
+      ]
+    },
+    "waves plus birds not seigaiha": {
+      "ids": [
+        "nami-chidori"
+      ]
+    },
+    "indigo red block rosettes not batik": {
+      "ids": [
+        "ajrakh"
+      ]
+    },
+    "Japanese vertical rising curves not generic ogee": {
+      "ids": [
+        "tatewaku"
+      ]
+    },
+    "interlocking manji field not Greek key band": {
+      "ids": [
+        "sayagata"
+      ]
+    },
+    "triangle scale cells not diamond": {
+      "ids": [
+        "uroko"
+      ]
+    },
+    "central tree structure not generic botanical print": {
+      "ids": [
+        "tree-of-life"
+      ]
+    },
+    "ultra fine fan dots not kanoko rings": {
+      "ids": [
+        "same-komon"
+      ]
+    },
+    "masses of tiny tie resist dots bandhani": {
+      "ids": [
+        "bandhani"
+      ]
+    },
+    "European Chinese inspired pavilion bird decor": {
+      "ids": [
+        "chinoiserie"
+      ]
+    }
+  }
+}

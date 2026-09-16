@@ -2,7 +2,7 @@
   "schema_version": 1,
   "updated": "2026-09-16",
   "review_type": "visual-structural-recognition-review",
-  "scope": "canonical-60",
+  "scope": "canonical-80",
   "decision_rule": "Pass only when the image is recognizable at browse-card scale, materially distinguishes the entry from its common confusions, and does not overclaim a unique canonical motif for broad terms.",
   "verification_boundary": "A structural-review pass advances an image to reviewed, not verified. Source/content verification and final browser QA remain separate gates.",
   "records": [
@@ -305,6 +305,106 @@
       "pattern_id": "ivy",
       "decision": "pass",
       "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in pass 2. Qualified term: image accepted only as a representative recognition reference, not a universal canonical repeat."
+    },
+    {
+      "pattern_id": "baroque-scroll",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1. Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+    },
+    {
+      "pattern_id": "chinoiserie",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2. Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+    },
+    {
+      "pattern_id": "flame-stitch",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2. Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+    },
+    {
+      "pattern_id": "tree-of-life",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2."
+    },
+    {
+      "pattern_id": "moire",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2. Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+    },
+    {
+      "pattern_id": "yagasuri",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2."
+    },
+    {
+      "pattern_id": "sayagata",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1."
+    },
+    {
+      "pattern_id": "uroko",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2."
+    },
+    {
+      "pattern_id": "tatewaku",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1."
+    },
+    {
+      "pattern_id": "kagome",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 3."
+    },
+    {
+      "pattern_id": "kanoko",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1. Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+    },
+    {
+      "pattern_id": "hanabishi",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1."
+    },
+    {
+      "pattern_id": "same-komon",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1. Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+    },
+    {
+      "pattern_id": "nami-chidori",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 3."
+    },
+    {
+      "pattern_id": "tomoe",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2."
+    },
+    {
+      "pattern_id": "shibori",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1. Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+    },
+    {
+      "pattern_id": "batik",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1. Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+    },
+    {
+      "pattern_id": "bandhani",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1. Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+    },
+    {
+      "pattern_id": "ajrakh",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1. Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+    },
+    {
+      "pattern_id": "kalamkari",
+      "decision": "pass",
+      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2. Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
     }
   ],
   "wave2_review_history": "The first generated contact sheet was not accepted wholesale. Buffalo Check, Shepherd's Check, Gun Club Check, and Diamond Pattern were regenerated after visual review found insufficient differentiation or edge/tessellation problems. The refined 20-image set was then reviewed again.",
@@ -327,6 +427,33 @@
         "Botanical leaves enlarged and given visible midribs.",
         "Acanthus and Ivy leaves enlarged for thumbnail recognition.",
         "All 20 files validated as 1536x1536 RGB PNG and reviewed together as a contact sheet."
+      ]
+    }
+  ],
+  "wave4_review_history": [
+    {
+      "pass": 1,
+      "result": "revisions-required",
+      "notes": [
+        "Flame Stitch read too much like ordinary chevrons; Tree of Life read as a small sprig; Moire was too faint; Yagasuri read as X/braid columns; Uroko read as diamonds; Kagome lacked recognizable basket-eye structure; Tomoe units were too small.",
+        "Chinoiserie and Kalamkari were too icon-like and needed stronger pictorial/style cues."
+      ]
+    },
+    {
+      "pass": 2,
+      "result": "revisions-required",
+      "notes": [
+        "Flame Stitch, Tree of Life, Moire, Yagasuri, Uroko, Tomoe, Chinoiserie, and Kalamkari improved to acceptable recognition strength.",
+        "Kagome still read as isolated six-point stars and Nami Chidori waves read too much like horizontal ornament bands."
+      ]
+    },
+    {
+      "pass": 3,
+      "result": "accepted",
+      "notes": [
+        "Kagome rebuilt as a tighter connected staggered basket-eye network.",
+        "Nami Chidori rebuilt with nested semicircle waves and larger plover silhouettes.",
+        "All 20 images reviewed together at thumbnail scale and retained as deterministic 1536x1536 RGB recognition references."
       ]
     }
   ]

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-16",
+  "wave": 4,
+  "ordinal_range": [
+    61,
+    80
+  ],
+  "scope": "wave4-staged-not-public",
+  "status": "structural-review-complete",
+  "review_policy": {
+    "dimensions": [
+      1536,
+      1536
+    ],
+    "required_checks": [
+      "file-exists",
+      "png-1536x1536",
+      "flat-front-on",
+      "no-text",
+      "no-frame",
+      "no-shadow",
+      "no-product-mockup",
+      "multiple-repeats-visible",
+      "recognition-cue-matches-source-scope",
+      "qualified-term-does-not-imply-universal-canonical-repeat"
+    ]
+  },
+  "records": [
+    {
+      "ordinal": 61,
+      "pattern_id": "baroque-scroll",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 62,
+      "pattern_id": "chinoiserie",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 63,
+      "pattern_id": "flame-stitch",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 64,
+      "pattern_id": "tree-of-life",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2."
+      ]
+    },
+    {
+      "ordinal": 65,
+      "pattern_id": "moire",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 66,
+      "pattern_id": "yagasuri",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2."
+      ]
+    },
+    {
+      "ordinal": 67,
+      "pattern_id": "sayagata",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1."
+      ]
+    },
+    {
+      "ordinal": 68,
+      "pattern_id": "uroko",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2."
+      ]
+    },
+    {
+      "ordinal": 69,
+      "pattern_id": "tatewaku",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1."
+      ]
+    },
+    {
+      "ordinal": 70,
+      "pattern_id": "kagome",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 3."
+      ]
+    },
+    {
+      "ordinal": 71,
+      "pattern_id": "kanoko",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 72,
+      "pattern_id": "hanabishi",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1."
+      ]
+    },
+    {
+      "ordinal": 73,
+      "pattern_id": "same-komon",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 74,
+      "pattern_id": "nami-chidori",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 3."
+      ]
+    },
+    {
+      "ordinal": 75,
+      "pattern_id": "tomoe",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2."
+      ]
+    },
+    {
+      "ordinal": 76,
+      "pattern_id": "shibori",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 77,
+      "pattern_id": "batik",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 78,
+      "pattern_id": "bandhani",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 79,
+      "pattern_id": "ajrakh",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 80,
+      "pattern_id": "kalamkari",
+      "status": "accepted",
+      "notes": [
+        "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2.",
+        "Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      ]
+    }
+  ],
+  "review_history": [
+    {
+      "pass": 1,
+      "result": "revisions-required",
+      "notes": [
+        "Flame Stitch read too much like ordinary chevrons; Tree of Life read as a small sprig; Moire was too faint; Yagasuri read as X/braid columns; Uroko read as diamonds; Kagome lacked recognizable basket-eye structure; Tomoe units were too small.",
+        "Chinoiserie and Kalamkari were too icon-like and needed stronger pictorial/style cues."
+      ]
+    },
+    {
+      "pass": 2,
+      "result": "revisions-required",
+      "notes": [
+        "Flame Stitch, Tree of Life, Moire, Yagasuri, Uroko, Tomoe, Chinoiserie, and Kalamkari improved to acceptable recognition strength.",
+        "Kagome still read as isolated six-point stars and Nami Chidori waves read too much like horizontal ornament bands."
+      ]
+    },
+    {
+      "pass": 3,
+      "result": "accepted",
+      "notes": [
+        "Kagome rebuilt as a tighter connected staggered basket-eye network.",
+        "Nami Chidori rebuilt with nested semicircle waves and larger plover silhouettes.",
+        "All 20 images reviewed together at thumbnail scale and retained as deterministic 1536x1536 RGB recognition references."
+      ]
+    }
+  ]
+}

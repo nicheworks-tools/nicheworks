@@ -18,7 +18,7 @@ function pngSize(buf){
   return [buf.readUInt32BE(16),buf.readUInt32BE(20)];
 }
 
-if(![20,40].includes(published.length))throw new Error(`unexpected runtime count ${published.length}`);
+if(![20,40,60,80,100].includes(published.length))throw new Error(`unexpected runtime count ${published.length}`);
 if(manifest.wave!==2||manifest.publication_state!=='staged-not-public'||manifest.status!=='structural-review-complete')throw new Error('Wave 2 image manifest must remain immutable reviewed provenance');
 if(manifest.images.length!==20)throw new Error(`expected 20 Wave 2 image records, got ${manifest.images.length}`);
 if(review.scope!=='wave2-21-40'||review.publication_state!=='staged-not-public'||review.records.length!==20)throw new Error('Wave 2 review ledger contract invalid');
@@ -48,7 +48,7 @@ for(let i=0;i<20;i++){
   if(w!==1536||h!==1536)throw new Error(`${id}: ${w}x${h}, expected 1536x1536`);
   if(!generator.includes(`'${id}'`))throw new Error(`${id}: deterministic generator mapping missing`);
   if(src.verification_state==='qualified'&&!image.representation_scope.includes('representative'))throw new Error(`${id}: qualified term must use an explicitly representative image scope`);
-  if(published.length===40&&!published.some(x=>x.id===id))throw new Error(`${id}: published runtime missing Wave 2 image row`);
+  if(published.length>=40&&!published.some(x=>x.id===id))throw new Error(`${id}: published runtime missing Wave 2 image row`);
 }
 
 for(const id of ['buffalo-check','shepherd-check','gun-club-check','diamond'])if(!reviewById[id].note.includes('Regenerated after review'))throw new Error(`${id}: regeneration history must remain explicit`);

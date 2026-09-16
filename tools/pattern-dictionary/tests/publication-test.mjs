@@ -11,16 +11,18 @@ const source=JSON.parse(fs.readFileSync(path.join(root,'data','source-verificati
 const app=fs.readFileSync(path.join(root,'app.js'),'utf8');
 const homeJa=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const homeEn=fs.readFileSync(path.join(root,'en','index.html'),'utf8');
+const searchJa=fs.readFileSync(path.join(root,'search.html'),'utf8');
+const searchEn=fs.readFileSync(path.join(root,'en','search.html'),'utf8');
 const sitemap=fs.readFileSync(path.join(repoRoot,'sitemap.xml'),'utf8');
 const canonical=base.map(x=>x.id);
-if(canonical.length!==60)throw new Error(`published runtime must be 60, got ${canonical.length}`);
-if(prod.phase!=='verified-publication'||prod.policy?.review_state!=='verified'||prod.policy?.record_count!==60)throw new Error('production publication metadata must declare verified 60');
-if(prod.patterns.length!==60)throw new Error(`expected 60 production patterns, got ${prod.patterns.length}`);
+if(canonical.length!==80)throw new Error(`published runtime must be 80, got ${canonical.length}`);
+if(prod.phase!=='verified-publication'||prod.policy?.review_state!=='verified'||prod.policy?.record_count!==80)throw new Error('production publication metadata must declare verified 80');
+if(prod.patterns.length!==80)throw new Error(`expected 80 production patterns, got ${prod.patterns.length}`);
 for(const id of canonical){const p=prod.patterns.find(x=>x.pattern_id===id);if(!p||p.review_state!=='verified')throw new Error(`${id}: production record must be verified`);}
-if(refs.status!=='verified-publication'||refs.images.length!==60)throw new Error(`reference image publication set must contain verified 60`);
+if(refs.status!=='verified-publication'||refs.images.length!==80)throw new Error('reference image publication set must contain verified 80');
 for(const id of canonical){const image=refs.images.find(x=>x.pattern_id===id);if(!image||image.review_state!=='verified')throw new Error(`${id}: reference image must be verified`);}
 const qualified=source.patterns.filter(x=>x.verification_state==='qualified').map(x=>x.pattern_id).sort();
-const expectedQualified=['basketweave','botanical-print','breton-stripe','chintz','herringbone','ikat','ivy','jacobean-floral','kilim','koushi','madras-check','moroccan-trellis','ogee','prince-of-wales-check','regimental-stripe','swiss-dot','toile-de-jouy'].sort();
+const expectedQualified=['ajrakh','bandhani','baroque-scroll','basketweave','batik','botanical-print','breton-stripe','chinoiserie','chintz','flame-stitch','herringbone','ikat','ivy','jacobean-floral','kalamkari','kanoko','kilim','koushi','madras-check','moire','moroccan-trellis','ogee','prince-of-wales-check','regimental-stripe','same-komon','shibori','swiss-dot','toile-de-jouy'].sort();
 if(JSON.stringify(qualified)!==JSON.stringify(expectedQualified))throw new Error(`qualified source scopes changed unexpectedly: ${qualified.join(', ')}`);
 let detailCount=0;
 for(const id of canonical)for(const prefix of ['', 'en/']){
@@ -29,8 +31,9 @@ for(const id of canonical)for(const prefix of ['', 'en/']){
   if(/検証中です。公開用Reference Image|remains noindex until source and Reference Image review/.test(html))throw new Error(`${prefix}${id}: stale pre-publication footer remains`);
   const url=`https://nicheworks.app/tools/pattern-dictionary/${prefix}patterns/${id}/`;if(!sitemap.includes(`<loc>${url}</loc>`))throw new Error(`${prefix}${id}: missing from sitemap`);detailCount++;
 }
-if(detailCount!==120)throw new Error(`expected 120 detail pages, got ${detailCount}`);
+if(detailCount!==160)throw new Error(`expected 160 detail pages, got ${detailCount}`);
 if(/final verification is still pending|最終verified前|現在はreviewed/.test(app))throw new Error('runtime still exposes pre-publication review messaging');
-if(!homeJa.includes('現在の60件')||!homeEn.includes('The current 60 entries'))throw new Error('home publication count must be 60 in JA/EN');
-for(const family of ['stripe','dot','floral'])if(!homeJa.includes(`data-family="${family}"`)||!homeEn.includes(`data-family="${family}"`))throw new Error(`JA/EN home must expose ${family} visual filter`);
-console.log('OK: 60/60 patterns and Reference Images are verified, 120/120 detail pages are indexable and in sitemap, and JA/EN homes expose the expanded visual filters.');
+if(!homeJa.includes('現在の80件')||!homeEn.includes('The current 80 entries'))throw new Error('home publication count must be 80 in JA/EN');
+if(!searchJa.includes('80件の検証済みデータ')||!searchEn.includes('80-record verified dataset'))throw new Error('search publication count must be 80 in JA/EN');
+for(const family of ['stripe','dot','floral','global-textile'])if(!homeJa.includes(`data-family="${family}"`)||!homeEn.includes(`data-family="${family}"`))throw new Error(`JA/EN home must expose ${family} visual filter`);
+console.log('OK: 80/80 patterns and Reference Images are verified, 160/160 detail pages are indexable and in sitemap, and JA/EN home/search surfaces expose the 80-pattern publication state.');

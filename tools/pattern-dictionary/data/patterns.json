@@ -4883,5 +4883,1677 @@
       "ja": "切れ込みのあるアイビーの葉を、単独または茎・つるに沿って反復する植物柄の系統です。ひとつの標準リピートではなく、葉形とつるの組み合わせを主な手掛かりにします。",
       "en": "A broad botanical motif family using recognizable lobed ivy leaves, repeated alone or along trailing stems and vines. It is not one standardized repeat."
     }
+  },
+  {
+    "id": "baroque-scroll",
+    "names": {
+      "ja": "バロック・スクロール",
+      "en": "Baroque Scroll"
+    },
+    "aliases": {
+      "ja": [
+        "バロック調スクロール",
+        "バロック唐草"
+      ],
+      "en": [
+        "Baroque scrollwork",
+        "Baroque floral scroll",
+        "Baroque acanthus scroll"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "バロックの巻き葉模様",
+        "C字S字のスクロール柄",
+        "豪華な渦巻き装飾"
+      ],
+      "en": [
+        "baroque scrolling foliage",
+        "ornate c scroll pattern",
+        "s curve scroll ornament"
+      ]
+    },
+    "families": [
+      "ornamental"
+    ],
+    "motifs": [
+      "スクロール",
+      "巻き葉"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "gold",
+        "deep red"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Scroll structure and historical ornamental treatment carry recognition; no fixed Baroque palette defines the family."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "acanthus"
+      ],
+      "often_confused_with": [
+        "acanthus"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "C字・S字に巻き上がるスクロールへ葉や花を絡める、バロック装飾由来の広い様式です。一本の固定リピートではなく、連続する巻き線が識別の中心です。",
+      "en": "A broad Baroque-derived ornamental style built from rolling C- and S-shaped scrolls, often with foliage or flowers. It is not one fixed repeat."
+    }
+  },
+  {
+    "id": "chinoiserie",
+    "names": {
+      "ja": "シノワズリ",
+      "en": "Chinoiserie"
+    },
+    "aliases": {
+      "ja": [
+        "中国趣味"
+      ],
+      "en": [
+        "Chinese taste",
+        "Chinese-style decoration"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "中国風の楼閣と鳥の壁紙",
+        "シノワズリ柄",
+        "花木と庭園の洋風装飾"
+      ],
+      "en": [
+        "chinoiserie garden pattern",
+        "pavilion birds floral wallpaper",
+        "European Chinese inspired decor"
+      ]
+    },
+    "families": [
+      "ornamental"
+    ],
+    "motifs": [
+      "楼閣",
+      "鳥",
+      "花木"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "blue",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Chinoiserie is identified by its decorative vocabulary and historical styling rather than a fixed color scheme."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "toile-de-jouy",
+        "botanical-print"
+      ],
+      "often_confused_with": [
+        "toile-de-jouy",
+        "botanical-print"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "中国美術へのヨーロッパ的な憧憬から展開した装飾様式で、楼閣、鳥、花木、庭園などを幻想的に組み合わせます。単一の固定柄ではありません。",
+      "en": "A broad European decorative style inspired by Chinese art, often combining pavilions, birds, flowering plants, and gardens. It is not one canonical repeat."
+    }
+  },
+  {
+    "id": "flame-stitch",
+    "names": {
+      "ja": "フレームステッチ",
+      "en": "Flame Stitch"
+    },
+    "aliases": {
+      "ja": [
+        "バルジェロ",
+        "フロレンティン・ステッチ"
+      ],
+      "en": [
+        "Bargello",
+        "Florentine work",
+        "Florentine stitch"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "炎みたいな階段ジグザグ",
+        "バルジェロ風の尖った柄",
+        "フレームステッチ模様"
+      ],
+      "en": [
+        "stepped flame zigzag",
+        "bargello flame pattern",
+        "needlepoint flame stitch"
+      ]
+    },
+    "families": [
+      "ornamental"
+    ],
+    "motifs": [
+      "炎状ピーク",
+      "階段ジグザグ"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "red",
+        "orange",
+        "gold"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The stepped stitch geometry identifies the visual; vivid gradients are common recognition cues but are not definitional."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "zigzag",
+        "chevron"
+      ],
+      "often_confused_with": [
+        "zigzag",
+        "chevron"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "階段状に上下する尖った山と谷を連続させ、炎のような動きを作る意匠です。Bargelloなどの刺繍技法と強く結びつくため、技法由来の視覚系として扱います。",
+      "en": "A stepped sequence of pointed peaks and valleys creating a flame-like rhythm, strongly associated with Bargello and related needlework."
+    }
+  },
+  {
+    "id": "tree-of-life",
+    "names": {
+      "ja": "生命の樹",
+      "en": "Tree of Life"
+    },
+    "aliases": {
+      "ja": [
+        "生命樹",
+        "ツリー・オブ・ライフ"
+      ],
+      "en": [
+        "Tree of Life motif"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "一本の木から花が広がる柄",
+        "生命の樹 模様",
+        "中央の幹がある植物柄"
+      ],
+      "en": [
+        "tree of life textile motif",
+        "central tree floral pattern",
+        "branching symbolic tree design"
+      ]
+    },
+    "families": [
+      "ornamental",
+      "floral"
+    ],
+    "motifs": [
+      "樹木",
+      "枝葉"
+    ],
+    "visual": {
+      "geometry": [
+        "organic"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "green",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Recognition comes from the central branching tree composition; colors and accompanying fauna vary widely."
+    },
+    "uses": [
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "botanical-print",
+        "jacobean-floral"
+      ],
+      "often_confused_with": [
+        "botanical-print",
+        "jacobean-floral"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "一本の幹から枝葉・花・果実などが広がる「生命の樹」を主題にした装飾モチーフです。中央の樹木構造が全体をまとめます。",
+      "en": "A decorative Tree of Life motif organized around a central trunk from which branches, leaves, flowers, or fruit spread."
+    }
+  },
+  {
+    "id": "moire",
+    "names": {
+      "ja": "モアレ",
+      "en": "Moiré"
+    },
+    "aliases": {
+      "ja": [
+        "モワレ",
+        "木目模様"
+      ],
+      "en": [
+        "moire",
+        "watered silk",
+        "watered effect"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "水面みたいに揺れる光沢生地",
+        "木目みたいな波の布",
+        "モアレ効果"
+      ],
+      "en": [
+        "watered silk effect",
+        "moire rippled fabric",
+        "optical wavy textile"
+      ]
+    },
+    "families": [
+      "abstract"
+    ],
+    "motifs": [
+      "水紋",
+      "干渉帯"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "silver",
+        "blue"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The shifting watered surface effect is the identifying cue; moiré occurs in many colors and fibers."
+    },
+    "uses": [
+      "fashion",
+      "textile"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "marbling"
+      ],
+      "often_confused_with": [
+        "marbling"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "水面や木目のような揺らぐ帯が見えるモアレ効果です。固定された線画ではなく、光沢や組織の干渉による表面効果を指します。",
+      "en": "A watered or rippled moire effect resembling flowing water or wood grain. It is a textile/surface effect rather than one fixed drawn motif."
+    }
+  },
+  {
+    "id": "yagasuri",
+    "names": {
+      "ja": "矢絣",
+      "en": "Yagasuri"
+    },
+    "aliases": {
+      "ja": [
+        "矢羽根",
+        "矢羽根模様"
+      ],
+      "en": [
+        "arrow-feather pattern",
+        "arrow pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "矢羽根が並ぶ和柄",
+        "矢絣 模様",
+        "細長いV字の着物柄"
+      ],
+      "en": [
+        "Japanese arrow feather pattern",
+        "yagasuri kimono motif",
+        "elongated chevron fletching"
+      ]
+    },
+    "families": [
+      "japanese"
+    ],
+    "motifs": [
+      "矢羽",
+      "V字"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "navy",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Arrow-feather geometry carries recognition; palette varies across textiles."
+    },
+    "uses": [
+      "fashion"
+    ],
+    "culture": [
+      "Japanese"
+    ],
+    "relationships": {
+      "similar": [
+        "chevron",
+        "herringbone"
+      ],
+      "often_confused_with": [
+        "chevron",
+        "herringbone"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "矢の羽根を連ねた日本文様で、細長いV字が方向性を持って規則的に並びます。一般的なシェブロンより矢羽の単位が明確です。",
+      "en": "A Japanese pattern based on arrow feathers, repeating elongated V-shaped units with a clear directional rhythm."
+    }
+  },
+  {
+    "id": "sayagata",
+    "names": {
+      "ja": "紗綾形",
+      "en": "Sayagata"
+    },
+    "aliases": {
+      "ja": [
+        "卍繋ぎ",
+        "さや形"
+      ],
+      "en": [
+        "continuous fret pattern",
+        "fylfot pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "卍がつながる和柄",
+        "迷路みたいな直角の地紋",
+        "紗綾形 模様"
+      ],
+      "en": [
+        "interlocking manji fret",
+        "Japanese key fret pattern",
+        "sayagata textile"
+      ]
+    },
+    "families": [
+      "japanese",
+      "geometric"
+    ],
+    "motifs": [
+      "連続卍形",
+      "鍵文"
+    ],
+    "visual": {
+      "geometry": [
+        "geometric"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "red",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The continuous angular fret construction defines the pattern; color is variable."
+    },
+    "uses": [
+      "fashion"
+    ],
+    "culture": [
+      "Japanese"
+    ],
+    "relationships": {
+      "similar": [
+        "greek-key"
+      ],
+      "often_confused_with": [
+        "greek-key"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "卍形の鍵状線を途切れなく連結し、迷路のような連続地文を作る日本文様です。単独記号ではなく、直角の折れ線が面を埋める構造が識別点です。",
+      "en": "A Japanese continuous fret pattern formed by interlocking manji-shaped right-angled lines, read as a linked field rather than isolated symbols."
+    }
+  },
+  {
+    "id": "uroko",
+    "names": {
+      "ja": "鱗文様",
+      "en": "Uroko"
+    },
+    "aliases": {
+      "ja": [
+        "鱗文",
+        "鱗形"
+      ],
+      "en": [
+        "uroko pattern",
+        "scale pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "三角が並ぶ鱗の和柄",
+        "鱗文様",
+        "上下反転三角の模様"
+      ],
+      "en": [
+        "Japanese triangle scale pattern",
+        "uroko motif",
+        "alternating triangle textile"
+      ]
+    },
+    "families": [
+      "japanese",
+      "geometric"
+    ],
+    "motifs": [
+      "三角形",
+      "鱗"
+    ],
+    "visual": {
+      "geometry": [
+        "geometric"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "gold",
+        "black"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Repeated triangular scale geometry identifies the motif; historical uses span many palettes."
+    },
+    "uses": [
+      "fashion"
+    ],
+    "culture": [
+      "Japanese"
+    ],
+    "relationships": {
+      "similar": [
+        "hishi",
+        "diamond"
+      ],
+      "often_confused_with": [
+        "hishi",
+        "diamond"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "三角形を規則的に反復し、鱗の連なりに見立てる日本文様です。菱形ではなく、明確な三角単位が識別の中心です。",
+      "en": "A Japanese scale pattern made from regular repeating triangles, with the triangle as the decisive unit rather than the diamond."
+    }
+  },
+  {
+    "id": "tatewaku",
+    "names": {
+      "ja": "立涌",
+      "en": "Tatewaku"
+    },
+    "aliases": {
+      "ja": [
+        "立湧",
+        "立涌文"
+      ],
+      "en": [
+        "tatewaku pattern",
+        "rising-steam pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "縦に湧き上がる曲線の和柄",
+        "立涌 文様",
+        "縦長オジーみたいな和柄"
+      ],
+      "en": [
+        "Japanese vertical swelling curves",
+        "tatewaku motif",
+        "rising opposed curve pattern"
+      ]
+    },
+    "families": [
+      "japanese",
+      "ornamental"
+    ],
+    "motifs": [
+      "立ち上る曲線",
+      "縦長区画"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "gold",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The vertically repeated swelling curves carry recognition; inserted motifs and colors vary."
+    },
+    "uses": [
+      "fashion"
+    ],
+    "culture": [
+      "Japanese"
+    ],
+    "relationships": {
+      "similar": [
+        "ogee"
+      ],
+      "often_confused_with": [
+        "ogee"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "向かい合う曲線が縦方向にふくらみとくびれを繰り返し、立ち上るような縦長区画を作る日本文様です。",
+      "en": "A Japanese pattern of opposed vertical curves that repeatedly swell and narrow, forming rising elongated compartments."
+    }
+  },
+  {
+    "id": "kagome",
+    "names": {
+      "ja": "籠目",
+      "en": "Kagome"
+    },
+    "aliases": {
+      "ja": [
+        "籠目文",
+        "かごめ"
+      ],
+      "en": [
+        "kagome pattern",
+        "wickerwork pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "竹かごみたいな三角格子",
+        "籠目 文様",
+        "星が見える和風ラティス"
+      ],
+      "en": [
+        "Japanese basket lattice pattern",
+        "kagome geometric motif",
+        "triangular bamboo lattice"
+      ]
+    },
+    "families": [
+      "japanese",
+      "geometric"
+    ],
+    "motifs": [
+      "籠目",
+      "三角格子"
+    ],
+    "visual": {
+      "geometry": [
+        "geometric"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "tan",
+        "indigo"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The interlaced basket lattice defines the motif; natural basket colors are only illustrative."
+    },
+    "uses": [
+      "fashion"
+    ],
+    "culture": [
+      "Japanese"
+    ],
+    "relationships": {
+      "similar": [
+        "lattice",
+        "trellis"
+      ],
+      "often_confused_with": [
+        "lattice",
+        "trellis"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "竹籠の編み目に由来し、複数方向の斜線が交差して三角・六角・星状の開口を作る日本の籠目文様です。",
+      "en": "A Japanese basket-eye pattern derived from woven bamboo, where crossing diagonals create triangular, hexagonal, and star-like openings."
+    }
+  },
+  {
+    "id": "kanoko",
+    "names": {
+      "ja": "鹿の子",
+      "en": "Kanoko"
+    },
+    "aliases": {
+      "ja": [
+        "鹿の子絞り",
+        "疋田鹿の子"
+      ],
+      "en": [
+        "kanoko shibori",
+        "spotted dyeing",
+        "fawn-spot pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "小さい絞りの点が並ぶ和柄",
+        "鹿の子 模様",
+        "白い輪点の着物柄",
+        "絞りの輪点"
+      ],
+      "en": [
+        "kanoko shibori dots",
+        "Japanese resist dot pattern",
+        "small ring dot kimono"
+      ]
+    },
+    "families": [
+      "japanese",
+      "dot"
+    ],
+    "motifs": [
+      "鹿の子点",
+      "輪点"
+    ],
+    "visual": {
+      "geometry": [
+        "dot"
+      ],
+      "line": [
+        "curved"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "red",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The dense resist-spotted visual is the recognition cue; the technique appears in many colorways."
+    },
+    "uses": [
+      "fashion",
+      "textile"
+    ],
+    "culture": [
+      "Japanese"
+    ],
+    "relationships": {
+      "similar": [
+        "polka-dot",
+        "shibori"
+      ],
+      "often_confused_with": [
+        "polka-dot",
+        "shibori"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "鹿の子絞りと結びつく、小さな点・輪点を規則的または菱状に並べた視覚表現です。点柄一般ではなく、絞り由来の輪点が重要です。",
+      "en": "A dotted visual convention associated with kanoko shibori, using small resist dots or rings arranged regularly or in diamond groupings."
+    }
+  },
+  {
+    "id": "hanabishi",
+    "names": {
+      "ja": "花菱",
+      "en": "Hanabishi"
+    },
+    "aliases": {
+      "ja": [
+        "花菱文"
+      ],
+      "en": [
+        "floral lozenge",
+        "hanabishi motif"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "花が菱形になった和柄",
+        "花菱 文様",
+        "四弁のダイヤ花"
+      ],
+      "en": [
+        "Japanese floral diamond motif",
+        "hanabishi pattern",
+        "four petal lozenge flower"
+      ]
+    },
+    "families": [
+      "japanese",
+      "floral"
+    ],
+    "motifs": [
+      "四弁花",
+      "菱"
+    ],
+    "visual": {
+      "geometry": [
+        "organic"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "purple",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The floral lozenge construction defines the motif; color is not intrinsic."
+    },
+    "uses": [
+      "fashion"
+    ],
+    "culture": [
+      "Japanese"
+    ],
+    "relationships": {
+      "similar": [
+        "hishi",
+        "quatrefoil"
+      ],
+      "often_confused_with": [
+        "hishi",
+        "quatrefoil"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "四弁の花を菱形に整えた花菱モチーフを反復する日本文様です。単なる菱形ではなく、花弁として読めることが識別点です。",
+      "en": "A Japanese motif that organizes a four-petaled flower into a lozenge form; the diamond unit itself reads as a flower."
+    }
+  },
+  {
+    "id": "same-komon",
+    "names": {
+      "ja": "鮫小紋",
+      "en": "Same Komon"
+    },
+    "aliases": {
+      "ja": [
+        "鮫",
+        "鮫小紋柄"
+      ],
+      "en": [
+        "sharkskin komon",
+        "same pattern",
+        "sharkskin pattern"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "遠目で無地に見える細かい点の和柄",
+        "鮫小紋",
+        "扇形に並ぶ極小ドット"
+      ],
+      "en": [
+        "same komon fine dots",
+        "Japanese sharkskin komon pattern",
+        "tiny fan dot stencil"
+      ]
+    },
+    "families": [
+      "japanese",
+      "dot"
+    ],
+    "motifs": [
+      "微細点",
+      "扇状点群"
+    ],
+    "visual": {
+      "geometry": [
+        "dot"
+      ],
+      "line": [
+        "curved"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "indigo",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Minute dotted arc structure defines the visual; Edo/Tokyo komon is produced in many colors."
+    },
+    "uses": [
+      "fashion",
+      "textile"
+    ],
+    "culture": [
+      "Japanese"
+    ],
+    "relationships": {
+      "similar": [
+        "kanoko",
+        "polka-dot"
+      ],
+      "often_confused_with": [
+        "kanoko",
+        "polka-dot"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "極小の点を弧・扇状に密集させ、遠目には無地に近く見える鮫小紋の視覚表現です。固定された一点密度を唯一の正解とはしません。",
+      "en": "A Same Komon visual convention made from extremely fine dots grouped in arc or fan-like formations, often reading nearly solid from a distance."
+    }
+  },
+  {
+    "id": "nami-chidori",
+    "names": {
+      "ja": "波千鳥",
+      "en": "Nami Chidori"
+    },
+    "aliases": {
+      "ja": [
+        "波に千鳥",
+        "千鳥に波"
+      ],
+      "en": [
+        "plovers and waves",
+        "plovers over waves",
+        "wave-and-plover motif"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "波の上を小鳥が飛ぶ和柄",
+        "波千鳥 文様",
+        "千鳥と波の模様"
+      ],
+      "en": [
+        "Japanese waves with plovers",
+        "nami chidori pattern",
+        "flying birds wave motif"
+      ]
+    },
+    "families": [
+      "japanese"
+    ],
+    "motifs": [
+      "波",
+      "千鳥"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "indigo",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The pairing of plovers and waves is the identifying cue; palette varies by medium."
+    },
+    "uses": [
+      "fashion"
+    ],
+    "culture": [
+      "Japanese"
+    ],
+    "relationships": {
+      "similar": [
+        "seigaiha"
+      ],
+      "often_confused_with": [
+        "seigaiha"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "波と千鳥を組み合わせた日本文様です。波だけではなく、飛ぶ小鳥の簡略シルエットが一緒に現れることが決め手です。",
+      "en": "A Japanese motif combining waves with chidori, small plover-like birds; the decisive cue is birds appearing together with the water motif."
+    }
+  },
+  {
+    "id": "tomoe",
+    "names": {
+      "ja": "巴",
+      "en": "Tomoe"
+    },
+    "aliases": {
+      "ja": [
+        "巴文",
+        "巴紋"
+      ],
+      "en": [
+        "comma pattern",
+        "tomoe pattern",
+        "tomoe crest"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "勾玉みたいな渦の和柄",
+        "巴 文様",
+        "三つのコンマが回る模様"
+      ],
+      "en": [
+        "Japanese comma swirl motif",
+        "tomoe pattern",
+        "three rotating comma shapes"
+      ]
+    },
+    "families": [
+      "japanese"
+    ],
+    "motifs": [
+      "巴",
+      "回転"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "black",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "The curved comma form carries recognition; historical and modern examples use many palettes."
+    },
+    "uses": [
+      "textile"
+    ],
+    "culture": [
+      "Japanese"
+    ],
+    "relationships": {
+      "similar": [],
+      "often_confused_with": []
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "勾玉・コンマのように曲がる巴形を中心の周囲へ回転させて構成する日本文様です。一つ巴・二つ巴・三つ巴など複数構成があります。",
+      "en": "A Japanese tomoe motif formed from one or more comma-like curved shapes rotating around a center."
+    }
+  },
+  {
+    "id": "shibori",
+    "names": {
+      "ja": "絞り",
+      "en": "Shibori"
+    },
+    "aliases": {
+      "ja": [
+        "絞り染め"
+      ],
+      "en": [
+        "shibori resist dyeing",
+        "Japanese tie-dye"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "白抜きの輪がにじむ絞り染め",
+        "絞り 染め 模様",
+        "括って染めた布"
+      ],
+      "en": [
+        "Japanese shibori resist dye",
+        "bound resist circles fabric",
+        "shibori dyed textile"
+      ]
+    },
+    "families": [
+      "global-textile"
+    ],
+    "motifs": [
+      "抵抗染め",
+      "絞り痕"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "indigo",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Indigo-and-white is a strong recognition convention, but shibori technique is not color-defined."
+    },
+    "uses": [
+      "fashion"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "bandhani",
+        "tie-dye"
+      ],
+      "often_confused_with": [
+        "bandhani",
+        "tie-dye"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "布を括る・縫う・折る・締めるなどして染料を防ぐ、日本の絞り染め技法群です。結果の模様は多様で、代表画像は技法の一例に限ります。",
+      "en": "A Japanese family of resist-dye techniques that bind, stitch, fold, clamp, or otherwise restrict cloth before dyeing; resulting patterns vary widely."
+    }
+  },
+  {
+    "id": "batik",
+    "names": {
+      "ja": "バティック",
+      "en": "Batik"
+    },
+    "aliases": {
+      "ja": [
+        "ろうけつ染め"
+      ],
+      "en": [
+        "wax-resist batik",
+        "Indonesian batik"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "蝋染めの細かい柄",
+        "バティック 模様",
+        "インドネシアのワックス防染布"
+      ],
+      "en": [
+        "wax resist batik pattern",
+        "Indonesian batik textile",
+        "fine wax outline fabric"
+      ]
+    },
+    "families": [
+      "global-textile"
+    ],
+    "motifs": [
+      "蝋防染",
+      "植物・幾何"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "indigo",
+        "brown"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Traditional palettes vary by region and practice; wax-resist construction is more fundamental than any color pair."
+    },
+    "uses": [
+      "fashion",
+      "textile"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "ajrakh",
+        "kalamkari"
+      ],
+      "often_confused_with": [
+        "ajrakh",
+        "kalamkari"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "蝋で防染して染め分けるバティックの技法・伝統で、地域ごとに植物・幾何・象徴文様が多様に展開します。一つの固定柄ではありません。",
+      "en": "A wax-resist textile technique and tradition encompassing many regional floral, geometric, and symbolic patterns; Batik is not one fixed motif."
+    }
+  },
+  {
+    "id": "bandhani",
+    "names": {
+      "ja": "バンダニ",
+      "en": "Bandhani"
+    },
+    "aliases": {
+      "ja": [
+        "バンダニ染め",
+        "バンデジ"
+      ],
+      "en": [
+        "Bandhej",
+        "Bandhni",
+        "tie-and-dye"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "小さい白い点で菱形を作る染め布",
+        "バンダニ 絞り",
+        "インドの細かいタイダイ点"
+      ],
+      "en": [
+        "bandhani tiny resist dots",
+        "Indian tie dye dot textile",
+        "diamond grid resist dots"
+      ]
+    },
+    "families": [
+      "global-textile",
+      "dot"
+    ],
+    "motifs": [
+      "微細な絞り点",
+      "点群"
+    ],
+    "visual": {
+      "geometry": [
+        "dot"
+      ],
+      "line": [
+        "curved"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "red",
+        "yellow"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Bright contrasting colors are common recognition cues, but tying method and dotted resist structure define the craft more than palette."
+    },
+    "uses": [
+      "fashion",
+      "textile"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "shibori",
+        "kanoko"
+      ],
+      "often_confused_with": [
+        "shibori",
+        "kanoko"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "布の小点を多数つまんで括り、防染する南アジアのタイ・レジスト染色伝統です。微細な白抜き点が菱・円・格子などを作りますが、配置は多様です。",
+      "en": "A South Asian tie-resist tradition made by tying many tiny points before dyeing; small resist dots may form grids, diamonds, circles, or larger motifs."
+    }
+  },
+  {
+    "id": "ajrakh",
+    "names": {
+      "ja": "アジュラック",
+      "en": "Ajrakh"
+    },
+    "aliases": {
+      "ja": [
+        "アジュラク"
+      ],
+      "en": [
+        "Ajrak",
+        "Ajrakh block print"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "藍と赤の細かい木版柄",
+        "アジュラック 布",
+        "ロゼットが密に並ぶプリント"
+      ],
+      "en": [
+        "ajrakh block print",
+        "indigo red geometric textile",
+        "Kutch Ajrakh fabric"
+      ]
+    },
+    "families": [
+      "global-textile"
+    ],
+    "motifs": [
+      "木版幾何",
+      "ロゼット"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "indigo",
+        "madder red",
+        "black",
+        "white"
+      ],
+      "variants": [],
+      "color_role": "identity-relevant",
+      "primary_reason": "Government of Kachchh describes Ajrakh geometry across indigo, madder, black, and white, while individual textiles still vary."
+    },
+    "uses": [
+      "fashion",
+      "textile"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "batik",
+        "block-print"
+      ],
+      "often_confused_with": [
+        "batik",
+        "block-print"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "シンド・カッチ地方などと結びつく多工程の木版染色・捺染伝統で、反復する幾何や花文を深い藍・赤などで構成します。単一モチーフ名ではありません。",
+      "en": "A multi-stage South Asian block-printing and dyeing tradition associated especially with Sindh and Kutch, often using dense geometric or floral repeats in indigo and red."
+    }
+  },
+  {
+    "id": "kalamkari",
+    "names": {
+      "ja": "カラムカリ",
+      "en": "Kalamkari"
+    },
+    "aliases": {
+      "ja": [
+        "カラムカーリ"
+      ],
+      "en": [
+        "qalamkari",
+        "pen-work textile"
+      ]
+    },
+    "search_terms": {
+      "ja": [
+        "手描きの花唐草インド布",
+        "カラムカリ 生地",
+        "物語絵みたいな植物染め布"
+      ],
+      "en": [
+        "kalamkari hand painted textile",
+        "Indian floral pen work fabric",
+        "narrative kalamkari cloth"
+      ]
+    },
+    "families": [
+      "global-textile"
+    ],
+    "motifs": [
+      "花唐草",
+      "絵画的場面"
+    ],
+    "visual": {
+      "geometry": [
+        "mixed"
+      ],
+      "line": [
+        "mixed"
+      ],
+      "density": [
+        "medium"
+      ],
+      "repetition": [
+        "regular"
+      ],
+      "contrast": [
+        "medium"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "red",
+        "indigo",
+        "cream"
+      ],
+      "variants": [],
+      "color_role": "non-essential",
+      "primary_reason": "Historic kalamkari uses characteristic natural-dye families, but technique and regional practice are broader than one palette."
+    },
+    "uses": [
+      "fashion",
+      "textile",
+      "interior"
+    ],
+    "culture": [],
+    "relationships": {
+      "similar": [
+        "batik",
+        "block-print"
+      ],
+      "often_confused_with": [
+        "batik",
+        "block-print"
+      ]
+    },
+    "shopping_intent": "high",
+    "review_state": "verified",
+    "description": {
+      "ja": "筆描きや木版を用いて布に絵付けするインドの染織・絵画伝統です。花唐草、樹木、人物、物語場面など幅広く、一つの固定モチーフではありません。",
+      "en": "An Indian textile-painting and printing tradition using hand-drawn pen work and/or blocks, with floral vines, trees, figures, and narrative scenes."
+    }
   }
 ]
