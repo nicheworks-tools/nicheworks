@@ -1,0 +1,136 @@
+name: Pattern Dictionary Wave 5 browser QA
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-wave5-production-staging-20260916
+    paths:
+      - .github/workflows/pattern-dictionary-wave5-browser-qa.yml
+
+permissions:
+  contents: read
+
+jobs:
+  chromium-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave5-production-staging-20260916
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Chromium QA runtime
+        run: |
+          mkdir -p /tmp/pdqa
+          cd /tmp/pdqa
+          npm init -y >/dev/null 2>&1
+          npm install --silent playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start static server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/pd-http.log 2>&1 &
+          echo $! >/tmp/pd-http.pid
+          for i in {1..20}; do
+            if curl -fsS http://127.0.0.1:4173/tools/pattern-dictionary/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/pd-http.log
+          exit 1
+      - name: Run Chromium publication QA
+        run: |
+          cat >/tmp/pdqa/qa.cjs <<'JS'
+          const {chromium}=require('playwright');
+          const base='http://127.0.0.1:4173/tools/pattern-dictionary/';
+          function ok(v,msg){if(!v)throw new Error(msg)}
+          async function localOnly(page){
+            await page.route('**/*',route=>{
+              try{const u=new URL(route.request().url());if(u.hostname==='127.0.0.1')return route.continue();}catch{}
+              return route.abort();
+            });
+          }
+          async function noOverflow(page,label){
+            const dims=await page.evaluate(()=>({sw:document.documentElement.scrollWidth,cw:document.documentElement.clientWidth}));
+            ok(dims.sw<=dims.cw,`${label}: horizontal overflow ${dims.sw}>${dims.cw}`);
+          }
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const context=await browser.newContext({viewport:{width:1365,height:900}});
+            const page=await context.newPage(); await localOnly(page);
+
+            await page.goto(base,{waitUntil:'domcontentloaded'});
+            await page.waitForSelector('#pattern-grid .pd-card');
+            ok(await page.locator('#pattern-grid .pd-card').count()===100,'JA home must render 100 cards');
+            ok((await page.locator('body').innerText()).includes('現在の100件'),'JA home must expose 100 publication copy');
+
+            await page.locator('[data-family="animal"]').click();
+            await page.waitForTimeout(100);
+            const animalText=await page.locator('#pattern-grid').innerText();
+            for(const s of ['ゼブラ柄','タイガー柄','スネーク柄','カウ柄','ジラフ柄','ダルメシアン柄'])ok(animalText.includes(s),`animal filter missing ${s}`);
+            const visibleAnimal=await page.locator('#pattern-grid .pd-card').evaluateAll(xs=>xs.filter(x=>getComputedStyle(x).display!=='none').length);
+            ok(visibleAnimal>=6,'animal filter must expose Wave 5 animal set');
+
+            await page.locator('[data-family="global-textile"]').click();
+            await page.waitForTimeout(100);
+            const textileText=await page.locator('#pattern-grid').innerText();
+            for(const s of ['スザニ','ケンテ','ボゴラン','アディレ','クバ布','刺し子','カンタ','オトミ刺繍','アフリカンワックスプリント','ブロックプリント'])ok(textileText.includes(s),`global-textile filter missing ${s}`);
+
+            await page.goto(base+'en/',{waitUntil:'domcontentloaded'});
+            await page.waitForSelector('#pattern-grid .pd-card');
+            ok(await page.locator('#pattern-grid .pd-card').count()===100,'EN home must render 100 cards');
+            ok((await page.locator('body').innerText()).includes('The current 100 entries'),'EN home must expose 100 publication copy');
+
+            await page.goto(base+'patterns/sashiko/',{waitUntil:'domcontentloaded'});
+            await page.waitForSelector('#detail img');
+            const sashikoSrc=await page.locator('#detail img').first().getAttribute('src');
+            ok(sashikoSrc&&sashikoSrc.includes('/assets/reference/sashiko.png'),'Sashiko detail must use reviewed reference image');
+            const langHref=await page.locator('#lang-link').getAttribute('href');
+            ok(langHref==='/tools/pattern-dictionary/en/patterns/sashiko/','Sashiko EN language link mismatch');
+            const natural=await page.locator('#detail img').first().evaluate(img=>({w:img.naturalWidth,h:img.naturalHeight}));
+            ok(natural.w===1536&&natural.h===1536,`Sashiko reference natural size ${natural.w}x${natural.h}`);
+
+            const q='白地に大きな黒い牛の斑点';
+            await page.goto(base+'search.html?q='+encodeURIComponent(q),{waitUntil:'domcontentloaded'});
+            await page.waitForSelector('#results a[href*="/patterns/"]');
+            const firstHref=await page.locator('#results a[href*="/patterns/"]').first().getAttribute('href');
+            ok(firstHref&&firstHref.endsWith('/patterns/cow-print/'),`cow phrase top result mismatch: ${firstHref}`);
+            ok(!decodeURIComponent(firstHref).includes(q),'free-text query leaked into detail URL');
+
+            await page.goto(base+'patterns/cow-print/',{waitUntil:'domcontentloaded'});
+            await page.waitForSelector('.pd-amazon-links a');
+            const amazonHref=await page.locator('.pd-amazon-links a').first().getAttribute('href');
+            const au=new URL(amazonHref);
+            ok(au.hostname==='www.amazon.co.jp','Amazon hostname mismatch');
+            ok(au.searchParams.get('tag')==='nicheworks09-22','Amazon tracking tag mismatch');
+            ok(au.searchParams.get('k')&&au.searchParams.get('k')!==q,'Amazon must use maintained canonical k, not free text');
+            ok(!decodeURIComponent(amazonHref).includes(q),'free-text query leaked into Amazon URL');
+
+            await page.goto(base+'en/search.html?q='+encodeURIComponent('Tie-dye'),{waitUntil:'domcontentloaded'});
+            await page.waitForSelector('#results');
+            const tieText=(await page.locator('body').innerText()).toUpperCase();
+            ok(tieText.includes('TIE-DYE'),'Tie-dye exact search missing result');
+            ok(tieText.includes('HIGH CONFIDENCE'),'Tie-dye exact search must render HIGH CONFIDENCE');
+
+            await page.goto(base+'compare.html?a=cow-print&b=dalmatian-spots',{waitUntil:'domcontentloaded'});
+            await page.waitForSelector('.pd-compare-grid');
+            const compareText=await page.locator('body').innerText();
+            ok(compareText.includes('カウ柄')&&compareText.includes('ダルメシアン柄'),'Cow vs Dalmatian comparison not rendered');
+
+            await context.close();
+            const mobile=await browser.newContext({viewport:{width:390,height:844}});
+            const mp=await mobile.newPage(); await localOnly(mp);
+            for(const [url,label] of [[base,'JA home'],[base+'en/','EN home'],[base+'patterns/terrazzo/','Terrazzo detail'],[base+'compare.html?a=cow-print&b=dalmatian-spots','compare']]){
+              await mp.goto(url,{waitUntil:'domcontentloaded'});await mp.waitForTimeout(150);await noOverflow(mp,label);
+            }
+            await mp.goto(base+'compare.html?a=cow-print&b=dalmatian-spots',{waitUntil:'domcontentloaded'});
+            await mp.waitForSelector('.pd-compare-grid');
+            const cols=await mp.locator('.pd-compare-grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns);
+            const children=await mp.locator('.pd-compare-grid').evaluate(el=>el.children.length);
+            ok(children>=2,'compare grid must have two comparison panels');
+            ok(!cols.includes(' '),`mobile compare grid must stack in one column, got ${cols}`);
+            await mobile.close(); await browser.close();
+            console.log('OK: Chromium QA passed canonical 100 home/filter/detail/search/Amazon/compare/mobile contracts.');
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
+          cd /tmp/pdqa
+          node qa.cjs
