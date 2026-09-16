@@ -109,6 +109,7 @@ for (const path of [
   'affiliate-dji-camera-accessories-wave5.js',
   'affiliate-dji-camera-accessories-wave6.js',
   'affiliate-dji-camera-accessories-wave7.js',
+  'affiliate-dji-camera-accessories-wave8.js',
   'affiliate-camera-detail-exclusions.js',
   'CAMERA_ACCESSORY_COVERAGE.md',
   'tests/nikon-camera-accessory-wave2.test.mjs',
@@ -119,6 +120,7 @@ for (const path of [
   'tests/dji-air2-accessory-wave5.test.mjs',
   'tests/dji-compact-power-wave6.test.mjs',
   'tests/dji-mini2-accessory-wave7.test.mjs',
+  'tests/dji-fpv-accessory-wave8.test.mjs',
   'tests/camera-accessory-coverage.test.mjs',
   'tests/camera-accessory-doc-sync.test.mjs'
 ]) {
