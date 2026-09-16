@@ -3,6 +3,9 @@
 
   const EVENT_IMPRESSION = "affiliate_impression";
   const EVENT_CLICK = "affiliate_click";
+  let started = false;
+  let active = false;
+  let activeLang = "";
 
   function getToolKey() {
     const path = String(root.location?.pathname || "");
@@ -53,42 +56,41 @@
     return { href: url.href, key, labelJa, labelEn };
   }
 
-  function render() {
-    const config = root.NWCosmeticsAffiliateConfig;
-    const tool = getToolKey();
-    if (!config || !tool) return;
-
-    const slotConfig = config.slots?.[tool];
-    if (!slotConfig) return;
-
-    const slot = document.getElementById(slotConfig.slotId);
-    if (!slot) return;
-
-    slot.dataset.affiliateProvider = config.provider || "amazon";
-    slot.dataset.affiliatePlacement = slotConfig.placement || slot.dataset.affiliatePlacement || "";
-
-    const links = Array.isArray(slotConfig.links)
-      ? slotConfig.links.map((link) => safeLink(link, config)).filter(Boolean)
-      : [];
-    const trackingReady = config.trackingMode === "special_link"
-      || (config.trackingMode === "tagged_search" && Boolean(String(config.associateTag || "").trim()));
-
-    if (!config.enabled || !trackingReady || !links.length) {
-      slot.hidden = true;
-      slot.setAttribute("aria-hidden", "true");
-      slot.dataset.affiliateState = "inactive";
-      slot.replaceChildren();
-      return;
+  function resultsReady(tool) {
+    if (tool === "cosmetic-ingredient-checker-lite") {
+      const count = Number.parseInt(document.getElementById("parsedCount")?.textContent || "0", 10);
+      return Number.isFinite(count) && count > 0 && Boolean(document.querySelector("#itemsTableBody tr"));
     }
+    if (tool === "inci-fastscan") {
+      return Boolean(document.querySelector("#fast-results .result-card, #jb-results .result-card"));
+    }
+    return false;
+  }
 
-    const lang = document.documentElement.lang === "en" ? "en" : "ja";
+  function hideSlot(slot) {
+    slot.hidden = true;
+    slot.setAttribute("aria-hidden", "true");
+    slot.dataset.affiliateState = "inactive";
+    if (active || slot.childElementCount) slot.replaceChildren();
+    active = false;
+    activeLang = "";
+  }
+
+  function renderCard(slot, slotConfig, config, tool, links, lang) {
     const wrapper = document.createElement("div");
     wrapper.className = "nw-affiliate-card";
 
     const heading = document.createElement("p");
     heading.className = "nw-affiliate-title";
-    heading.textContent = lang === "en" ? "Related products [PR]" : "関連商品を探す [PR]";
+    heading.textContent = lang === "en" ? "Compare products next [PR]" : "次に商品を比較する [PR]";
     wrapper.appendChild(heading);
+
+    const intro = document.createElement("p");
+    intro.className = "nw-affiliate-intro";
+    intro.textContent = lang === "en"
+      ? "After checking the label, choose the product category you want to compare on Amazon. The category is selected by you, not by the check result."
+      : "成分表示を確認したら、次に比較したい商品カテゴリを選べます。カテゴリは照合結果ではなく、あなた自身の選択で決まります。";
+    wrapper.appendChild(intro);
 
     const linkWrap = document.createElement("div");
     linkWrap.className = "nw-affiliate-links";
@@ -122,27 +124,92 @@
     }
 
     slot.replaceChildren(wrapper);
+  }
+
+  function sync() {
+    const config = root.NWCosmeticsAffiliateConfig;
+    const tool = getToolKey();
+    if (!config || !tool) return;
+
+    const slotConfig = config.slots?.[tool];
+    if (!slotConfig) return;
+
+    const slot = document.getElementById(slotConfig.slotId);
+    if (!slot) return;
+
+    slot.dataset.affiliateProvider = config.provider || "amazon";
+    slot.dataset.affiliatePlacement = slotConfig.placement || slot.dataset.affiliatePlacement || "";
+
+    const links = Array.isArray(slotConfig.links)
+      ? slotConfig.links.map((link) => safeLink(link, config)).filter(Boolean)
+      : [];
+    const trackingReady = config.trackingMode === "special_link"
+      || (config.trackingMode === "tagged_search" && Boolean(String(config.associateTag || "").trim()));
+
+    if (!config.enabled || !trackingReady || !links.length || !resultsReady(tool)) {
+      hideSlot(slot);
+      return;
+    }
+
+    const lang = document.documentElement.lang === "en" ? "en" : "ja";
+    const wasActive = active;
+    if (!active || activeLang !== lang) {
+      renderCard(slot, slotConfig, config, tool, links, lang);
+    }
+
     slot.hidden = false;
     slot.setAttribute("aria-hidden", "false");
     slot.dataset.affiliateState = "active";
+    active = true;
+    activeLang = lang;
 
-    track(EVENT_IMPRESSION, {
-      tool,
-      provider: config.provider,
-      placement: slotConfig.placement,
-      linkKey: ""
-    });
+    if (!wasActive) {
+      track(EVENT_IMPRESSION, {
+        tool,
+        provider: config.provider,
+        placement: slotConfig.placement,
+        linkKey: ""
+      });
+    }
+  }
+
+  function observe(target) {
+    if (!target) return;
+    const observer = new MutationObserver(sync);
+    observer.observe(target, { childList: true, subtree: true, characterData: true });
+  }
+
+  function start() {
+    if (started) {
+      sync();
+      return;
+    }
+    started = true;
+
+    const tool = getToolKey();
+    if (tool === "cosmetic-ingredient-checker-lite") {
+      observe(document.getElementById("itemsTableBody"));
+      observe(document.getElementById("parsedCount"));
+    } else if (tool === "inci-fastscan") {
+      observe(document.getElementById("fast-results"));
+      observe(document.getElementById("jb-results"));
+    }
+
+    const langObserver = new MutationObserver(sync);
+    langObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+    sync();
   }
 
   root.NWCosmeticsAffiliateSlots = Object.freeze({
-    version: "1.2.0",
+    version: "1.3.0",
     events: Object.freeze({ impression: EVENT_IMPRESSION, click: EVENT_CLICK }),
-    render
+    render: sync,
+    sync
   });
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", render, { once: true });
+    document.addEventListener("DOMContentLoaded", start, { once: true });
   } else {
-    render();
+    start();
   }
 })(typeof globalThis !== "undefined" ? globalThis : this);
