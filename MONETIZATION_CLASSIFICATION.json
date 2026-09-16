@@ -115,8 +115,8 @@
   "bundleBoundaryStatus": "pending-freeze",
   "notes": [
     "Every currently registered tool is classified exactly once.",
-    "This historical _87 file is compatibility-only; MONETIZATION_CLASSIFICATION.json is canonical.",
-    "registryTotal and classifications track the current 88-tool registry.",
+    "registryTotal and classifications are authoritative for the current 88-tool registry.",
+    "MONETIZATION_CLASSIFICATION.json is the canonical machine-readable classification file; the historical _87 file is compatibility-only.",
     "The PRO_BUNDLE class means approved commercial membership in the future nicheworks.pro bundle; exact Free/Pro operation boundaries are frozen before live migration.",
     "Legacy Pro code does not determine classification.",
     "Reconcile is a registered STANDALONE_PRO tool backed by the separate reconcile.pro_v1 product contract and is not part of nicheworks.pro.",

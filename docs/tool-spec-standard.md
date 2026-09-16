@@ -101,7 +101,7 @@ List the repository files that were inspected to write the spec, usually `index.
 
 ## Coverage manifest
 
-`tools/tool-spec-manifest.json` is the complete 87-tool inventory.
+`tools/tool-spec-manifest.json` is the complete 88-tool inventory.
 
 Each registered tool has exactly one manifest record:
 
@@ -125,6 +125,6 @@ Do **not** create placeholder `SPEC.md` files for pending tools.
 ## Change discipline
 
 - A production behavior change that intentionally changes the contract should update the affected `SPEC.md` in the same PR.
-- Cross-cutting common rules belong in `common-spec/spec-ja.md`, not duplicated in 87 files.
+- Cross-cutting common rules belong in `common-spec/spec-ja.md`, not duplicated in 88 files.
 - A SPEC-only wave should not change production HTML/JS/CSS merely to make prose easier to write. Implementation defects discovered while specifying should be logged for a later repair PR unless they block truthful specification.
 - Keep acceptance criteria tool-specific. Generic SEO/AdSense/GA4 requirements are already covered by the common specification and repository CI.

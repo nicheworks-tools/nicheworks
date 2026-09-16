@@ -1,14 +1,15 @@
 {
-  "schemaVersion": "nicheworks-monetization-classification-v1",
+  "schemaVersion": "nicheworks-non-affiliate-scope-v1",
   "updated": "2026-09-16",
   "registryTotal": 88,
-  "bundleProductId": "nicheworks.pro",
+  "excludedClass": "AFFILIATE",
+  "excludedCount": 16,
+  "inScopeCount": 72,
+  "source": "MONETIZATION_CLASSIFICATION.json",
   "counts": {
     "PRO_BUNDLE": 42,
     "STANDALONE_PRO": 1,
-    "AFFILIATE": 16,
     "ADS_DONATION": 26,
-    "FREE": 0,
     "HOLD": 3
   },
   "classes": {
@@ -59,24 +60,6 @@
     "STANDALONE_PRO": [
       "reconcile"
     ],
-    "AFFILIATE": [
-      "construction-tools-atlas",
-      "cosmetic-ingredient-checker-lite",
-      "cover-letter-lite",
-      "dry-meter",
-      "form-tool-selector",
-      "inci-fastscan",
-      "laundry-code-decode",
-      "light-check",
-      "manual-finder",
-      "moving-checklist-generator",
-      "moving-lease-final-check",
-      "pages-deploy-guide",
-      "pattern-dictionary",
-      "phone-quickcheck",
-      "trashnavi",
-      "wifi-meter"
-    ],
     "ADS_DONATION": [
       "color-replace",
       "exif-cleaner-mini",
@@ -105,24 +88,35 @@
       "vibe-lexicon",
       "weatherdiff"
     ],
-    "FREE": [],
     "HOLD": [
       "earth-map-suite",
       "old-kanji-ocr-scanner",
       "pattern-atlas"
     ]
   },
-  "bundleBoundaryStatus": "pending-freeze",
-  "notes": [
-    "Every currently registered tool is classified exactly once.",
-    "This historical _87 file is compatibility-only; MONETIZATION_CLASSIFICATION.json is canonical.",
-    "registryTotal and classifications track the current 88-tool registry.",
-    "The PRO_BUNDLE class means approved commercial membership in the future nicheworks.pro bundle; exact Free/Pro operation boundaries are frozen before live migration.",
-    "Legacy Pro code does not determine classification.",
-    "Reconcile is a registered STANDALONE_PRO tool backed by the separate reconcile.pro_v1 product contract and is not part of nicheworks.pro.",
-    "The separate okj.toolkit_pro billing concept is not a registered-tool classification unless its runtime/tool registration is explicitly changed later.",
-    "ManualFinder is classified AFFILIATE because its separate monetization workstream is the explicit affiliate reference implementation for the suite.",
-    "Phone QuickCheck is classified AFFILIATE because its planned monetization path is compatible smartphone charging accessories via Amazon Associates; live affiliate URLs remain disabled until separate activation work is complete.",
-    "Pattern Dictionary is classified AFFILIATE because its intended downstream action is Amazon Associates product discovery after pattern identification."
+  "excludedAffiliateSlugs": [
+    "construction-tools-atlas",
+    "cosmetic-ingredient-checker-lite",
+    "cover-letter-lite",
+    "dry-meter",
+    "form-tool-selector",
+    "inci-fastscan",
+    "laundry-code-decode",
+    "light-check",
+    "manual-finder",
+    "moving-checklist-generator",
+    "moving-lease-final-check",
+    "pages-deploy-guide",
+    "pattern-dictionary",
+    "phone-quickcheck",
+    "trashnavi",
+    "wifi-meter"
+  ],
+  "rules": [
+    "This scope is for the non-affiliate quality/SEO/monetization workstream only.",
+    "AFFILIATE-class tools are intentionally excluded and handled in a separate parallel workstream.",
+    "Every in-scope slug must exist in tools/tools-index.json and MONETIZATION_CLASSIFICATION.json.",
+    "The in-scope set must equal the registered tool set minus the AFFILIATE class.",
+    "Changes to registry or monetization classification must update this scope in the same pull request."
   ]
 }
