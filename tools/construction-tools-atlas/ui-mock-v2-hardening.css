@@ -1,2 +1,57 @@
-/* UI Mock v2 hardening: hidden state must beat the grid presentation layer. */
+/* Construction Tools Atlas — Mock v2 hardening / 2026-09-16 */
 #resultList .row[hidden]{display:none!important}
+
+/* Header: text-only NicheWorks identity. No faux logo, badge, or decorative mark. */
+.ctaMockBrand,.ctaMockHome,.ctaMockBrandCopy,.topbar .brand{position:relative!important}
+.ctaMockBrand::before,.ctaMockBrand::after,.ctaMockHome::before,.ctaMockHome::after,.ctaMockBrandCopy::before,.ctaMockBrandCopy::after,.topbar .brand::before,.topbar .brand::after{content:none!important;display:none!important;background:none!important}
+.ctaMockBrand img,.ctaMockBrand svg,.ctaMockBrand picture{display:none!important}
+.ctaMockHome{display:inline!important;border:0!important;border-radius:0!important;padding:0!important;background:transparent!important;box-shadow:none!important;color:#344054!important;font-size:13px!important;font-weight:800!important;letter-spacing:.01em!important}
+.ctaMockBrand{gap:18px!important}
+
+/* Desktop really is master-detail: right detail gets the larger share and cannot retain legacy sheet caps. */
+@media(min-width:900px){
+  .wrap{box-sizing:border-box!important;width:100%!important;max-width:1600px!important;padding-left:24px!important;padding-right:24px!important}
+  .atlasWorkspace{display:grid!important;grid-template-columns:minmax(0,43fr) minmax(0,57fr)!important;width:100%!important;max-width:none!important;gap:16px!important}
+  .atlasWorkspace>.results,.atlasDetailHost{width:100%!important;max-width:none!important;min-width:0!important;box-sizing:border-box!important}
+  .atlasDetailHost>#detailSheet,#detailSheet.detailPanel--desktop{width:100%!important;min-width:0!important;max-width:none!important;box-sizing:border-box!important}
+  #detailSheet.detailPanel--desktop .sheet__body,#detailSheet.detailPanel--desktop .sheet__body--compact{width:100%!important;max-width:none!important;margin:0!important;padding:24px 28px 32px!important;box-sizing:border-box!important}
+  #detailSheet.detailPanel--desktop .detailImagePilot{width:100%!important;max-width:none!important;min-height:300px!important;height:min(36vw,390px)!important}
+}
+
+/* Detail IA is vertical. Never expose the legacy tabs or internal record/debug enum panel. */
+#detailTabs,#tabMeta,#tabMeta[hidden],#detailChips,#detailSheet .supportInline,#supportInlineBtn{display:none!important}
+#detailSheet #tabMeaning,#detailSheet #tabExamples,#detailSheet #tabAliases{display:block!important}
+#detailSheet .tabpanel{min-height:0!important}
+#detailSheet .dictionaryBlock--record{display:none!important}
+#detailSheet .termblock{padding-bottom:2px!important}
+#detailSheet .termblock__title{font-weight:850!important}
+#detailSheet .termblock__secondaryName{margin-top:5px!important;color:#667085!important;font-size:15px!important;font-weight:600!important}
+
+/* Human-readable taxonomy only. Raw snake_case remains internal in data attributes. */
+.ctaDetailTaxonomy{display:flex;gap:7px;flex-wrap:wrap;margin:4px 0 14px;padding:0}
+.ctaDetailTaxonomy[hidden]{display:none!important}
+.ctaDetailTaxonomy__chip{display:inline-flex;align-items:center;min-height:28px;padding:4px 9px;border:1px solid #e2e5e9;border-radius:999px;background:#f8fafb;color:#4d5966;font-size:11.5px;font-weight:650;line-height:1.2}
+.row__meta .chip{text-transform:none!important;letter-spacing:0!important}
+
+/* Favorite/share belong to the entry header; donation does not. */
+.ctaMockDetailActions{justify-content:flex-start!important;margin:12px 0 8px!important}
+.ctaMockDetailActions button{min-height:34px!important;padding:7px 11px!important;font-weight:700!important}
+
+/* Affiliate handoff is an explicit related-tools block, not a hidden footer afterthought. */
+.ctaAffiliateBox{margin:20px 0 4px!important;padding:16px!important;border:1px solid #e5d7af!important;border-radius:13px!important;background:#fffaf0!important}
+.ctaAffiliateBox__title{font-size:16px!important;font-weight:800!important;margin:0 0 5px!important;color:#28231a!important}
+.ctaAffiliateBox__copy{font-size:12px!important;line-height:1.6!important;margin:0 0 10px!important;color:#6f654f!important}
+.ctaAffiliateMount a,.ctaAffiliateLink{display:flex!important;align-items:center!important;justify-content:space-between!important;min-height:42px!important;padding:10px 12px!important;border:1px solid #dbc994!important;border-radius:9px!important;background:#fff!important;color:#30291e!important;text-decoration:none!important;font-size:13px!important;font-weight:800!important}
+.ctaAffiliateMount a::after,.ctaAffiliateLink::after{content:'↗';font-size:13px}
+.ctaAffiliateDisclosure{margin-top:9px!important;font-size:10.5px!important;line-height:1.5!important;color:#7c725e!important}
+
+/* Keep content readable across the whole wider detail pane. */
+#detailSheet .dictionaryBlock{max-width:920px!important}
+#detailSheet .dictionaryBlock__text,#detailSheet .dictionaryBlock__list{font-size:14px!important;line-height:1.75!important}
+#detailSheet .bilingualCopy{max-width:920px!important}
+
+@media(max-width:899px){
+  .ctaMockBrand{gap:8px!important}
+  #detailSheet.detailPanel--mobile .sheet__body,#detailSheet.detailPanel--mobile .sheet__body--compact{width:100%!important;max-width:none!important;margin:0!important}
+  .ctaDetailTaxonomy{margin-bottom:10px}
+}

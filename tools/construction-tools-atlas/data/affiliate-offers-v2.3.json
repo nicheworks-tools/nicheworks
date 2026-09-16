@@ -1,6 +1,6 @@
 {
   "schema": "cta-affiliate-offers-v2.3",
-  "version": "2026-09-15-1",
+  "version": "2026-09-16-ui-parity-1",
   "provider": "amazon.co.jp",
   "tracking_id": "nicheworks09-22",
   "policy": {
@@ -10,6 +10,21 @@
     "price_inventory_rating_content": false
   },
   "offers": [
+    {"entry_id":"impact_driver","status":"active","offer_id":"amazon_impact_driver_search","query":"インパクトドライバー","amazon_url":"https://www.amazon.co.jp/s?k=%E3%82%A4%E3%83%B3%E3%83%91%E3%82%AF%E3%83%88%E3%83%89%E3%83%A9%E3%82%A4%E3%83%90%E3%83%BC&tag=nicheworks09-22","label_ja":"Amazonでインパクトドライバーを探す","label_en":"Find impact drivers on Amazon"},
+    {"entry_id":"drill_driver","status":"active","offer_id":"amazon_drill_driver_search","query":"ドリルドライバー","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%89%E3%83%AA%E3%83%AB%E3%83%89%E3%83%A9%E3%82%A4%E3%83%90%E3%83%BC&tag=nicheworks09-22","label_ja":"Amazonでドリルドライバーを探す","label_en":"Find drill drivers on Amazon"},
+    {"entry_id":"hammer_drill","status":"active","offer_id":"amazon_hammer_drill_search","query":"振動ドリル","amazon_url":"https://www.amazon.co.jp/s?k=%E6%8C%AF%E5%8B%95%E3%83%89%E3%83%AA%E3%83%AB&tag=nicheworks09-22","label_ja":"Amazonで振動ドリルを探す","label_en":"Find hammer drills on Amazon"},
+    {"entry_id":"rotary_hammer","status":"active","offer_id":"amazon_rotary_hammer_search","query":"ハンマードリル","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%8F%E3%83%B3%E3%83%9E%E3%83%BC%E3%83%89%E3%83%AA%E3%83%AB&tag=nicheworks09-22","label_ja":"Amazonでハンマードリルを探す","label_en":"Find rotary hammers on Amazon"},
+    {"entry_id":"core_drill","status":"active","offer_id":"amazon_core_drill_search","query":"コアドリル","amazon_url":"https://www.amazon.co.jp/s?k=%E3%82%B3%E3%82%A2%E3%83%89%E3%83%AA%E3%83%AB&tag=nicheworks09-22","label_ja":"Amazonでコアドリルを探す","label_en":"Find core drills on Amazon"},
+    {"entry_id":"random_orbit_sander","status":"active","offer_id":"amazon_random_orbit_sander_search","query":"ランダムサンダー","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%A9%E3%83%B3%E3%83%80%E3%83%A0%E3%82%B5%E3%83%B3%E3%83%80%E3%83%BC&tag=nicheworks09-22","label_ja":"Amazonでランダムサンダーを探す","label_en":"Find random orbit sanders on Amazon"},
+    {"entry_id":"speed_square","status":"active","offer_id":"amazon_speed_square_search","query":"スピードスクエア","amazon_url":"https://www.amazon.co.jp/s?k=%E3%82%B9%E3%83%94%E3%83%BC%E3%83%89%E3%82%B9%E3%82%AF%E3%82%A8%E3%82%A2&tag=nicheworks09-22","label_ja":"Amazonでスピードスクエアを探す","label_en":"Find speed squares on Amazon"},
+    {"entry_id":"chisel","status":"active","offer_id":"amazon_chisel_search","query":"のみ 大工","amazon_url":"https://www.amazon.co.jp/s?k=%E3%81%AE%E3%81%BF+%E5%A4%A7%E5%B7%A5&tag=nicheworks09-22","label_ja":"Amazonでのみを探す","label_en":"Find chisels on Amazon"},
+    {"entry_id":"hand_saw","status":"active","offer_id":"amazon_hand_saw_search","query":"手のこ","amazon_url":"https://www.amazon.co.jp/s?k=%E6%89%8B%E3%81%AE%E3%81%93&tag=nicheworks09-22","label_ja":"Amazonで手のこを探す","label_en":"Find hand saws on Amazon"},
+    {"entry_id":"stepladder","status":"active","offer_id":"amazon_stepladder_search","query":"脚立","amazon_url":"https://www.amazon.co.jp/s?k=%E8%84%9A%E7%AB%8B&tag=nicheworks09-22","label_ja":"Amazonで脚立を探す","label_en":"Find stepladders on Amazon"},
+    {"entry_id":"laser_distance_meter","status":"active","offer_id":"amazon_laser_distance_meter_search","query":"レーザー距離計","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%AC%E3%83%BC%E3%82%B6%E3%83%BC%E8%B7%9D%E9%9B%A2%E8%A8%88&tag=nicheworks09-22","label_ja":"Amazonでレーザー距離計を探す","label_en":"Find laser distance meters on Amazon"},
+    {"entry_id":"auto_level","status":"active","offer_id":"amazon_auto_level_search","query":"オートレベル 測量","amazon_url":"https://www.amazon.co.jp/s?k=%E3%82%AA%E3%83%BC%E3%83%88%E3%83%AC%E3%83%99%E3%83%AB+%E6%B8%AC%E9%87%8F&tag=nicheworks09-22","label_ja":"Amazonでオートレベルを探す","label_en":"Find automatic levels on Amazon"},
+    {"entry_id":"dust_mask","status":"active","offer_id":"amazon_dust_mask_search","query":"防じんマスク","amazon_url":"https://www.amazon.co.jp/s?k=%E9%98%B2%E3%81%98%E3%82%93%E3%83%9E%E3%82%B9%E3%82%AF&tag=nicheworks09-22","label_ja":"Amazonで防じんマスクを探す","label_en":"Find dust masks on Amazon"},
+    {"entry_id":"cut_resistant_gloves","status":"active","offer_id":"amazon_cut_resistant_gloves_search","query":"耐切創手袋","amazon_url":"https://www.amazon.co.jp/s?k=%E8%80%90%E5%88%87%E5%89%B5%E6%89%8B%E8%A2%8B&tag=nicheworks09-22","label_ja":"Amazonで耐切創手袋を探す","label_en":"Find cut-resistant gloves on Amazon"},
+    {"entry_id":"safety_shoes","status":"active","offer_id":"amazon_safety_shoes_search","query":"安全靴","amazon_url":"https://www.amazon.co.jp/s?k=%E5%AE%89%E5%85%A8%E9%9D%B4&tag=nicheworks09-22","label_ja":"Amazonで安全靴を探す","label_en":"Find safety shoes on Amazon"},
     {"entry_id":"q017_workbench","status":"active","offer_id":"amazon_workbench_search","query":"作業台 木工","amazon_url":"https://www.amazon.co.jp/s?k=%E4%BD%9C%E6%A5%AD%E5%8F%B0+%E6%9C%A8%E5%B7%A5&tag=nicheworks09-22","label_ja":"Amazonで作業台を探す","label_en":"Find workbenches on Amazon"},
     {"entry_id":"q017_toolbox","status":"active","offer_id":"amazon_toolbox_search","query":"工具箱","amazon_url":"https://www.amazon.co.jp/s?k=%E5%B7%A5%E5%85%B7%E7%AE%B1&tag=nicheworks09-22","label_ja":"Amazonで工具箱を探す","label_en":"Find toolboxes on Amazon"},
     {"entry_id":"q017_rubber_mallet","status":"active","offer_id":"amazon_rubber_mallet_search","query":"ゴムハンマー","amazon_url":"https://www.amazon.co.jp/s?k=%E3%82%B4%E3%83%A0%E3%83%8F%E3%83%B3%E3%83%9E%E3%83%BC&tag=nicheworks09-22","label_ja":"Amazonでゴムハンマーを探す","label_en":"Find rubber mallets on Amazon"},
