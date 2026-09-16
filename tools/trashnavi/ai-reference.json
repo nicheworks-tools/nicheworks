@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 94,
+  "published_municipality_count": 104,
   "municipalities": [
     {
       "lgcode": "131016",
@@ -572,6 +572,66 @@
       "pref_slug": "gunma",
       "city_slug": "takasaki",
       "url": "https://nicheworks.app/tools/trashnavi/gunma/takasaki/"
+    },
+    {
+      "lgcode": "012041",
+      "pref_slug": "hokkaido",
+      "city_slug": "asahikawa",
+      "url": "https://nicheworks.app/tools/trashnavi/hokkaido/asahikawa/"
+    },
+    {
+      "lgcode": "112224",
+      "pref_slug": "saitama",
+      "city_slug": "koshigaya",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/koshigaya/"
+    },
+    {
+      "lgcode": "112089",
+      "pref_slug": "saitama",
+      "city_slug": "tokorozawa",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/tokorozawa/"
+    },
+    {
+      "lgcode": "072036",
+      "pref_slug": "fukushima",
+      "city_slug": "koriyama",
+      "url": "https://nicheworks.app/tools/trashnavi/fukushima/koriyama/"
+    },
+    {
+      "lgcode": "282049",
+      "pref_slug": "hyogo",
+      "city_slug": "nishinomiya",
+      "url": "https://nicheworks.app/tools/trashnavi/hyogo/nishinomiya/"
+    },
+    {
+      "lgcode": "272108",
+      "pref_slug": "osaka",
+      "city_slug": "hirakata",
+      "url": "https://nicheworks.app/tools/trashnavi/osaka/hirakata/"
+    },
+    {
+      "lgcode": "272051",
+      "pref_slug": "osaka",
+      "city_slug": "suita",
+      "url": "https://nicheworks.app/tools/trashnavi/osaka/suita/"
+    },
+    {
+      "lgcode": "272078",
+      "pref_slug": "osaka",
+      "city_slug": "takatsuki",
+      "url": "https://nicheworks.app/tools/trashnavi/osaka/takatsuki/"
+    },
+    {
+      "lgcode": "232017",
+      "pref_slug": "aichi",
+      "city_slug": "toyohashi",
+      "url": "https://nicheworks.app/tools/trashnavi/aichi/toyohashi/"
+    },
+    {
+      "lgcode": "282031",
+      "pref_slug": "hyogo",
+      "city_slug": "akashi",
+      "url": "https://nicheworks.app/tools/trashnavi/hyogo/akashi/"
     }
   ]
 }
