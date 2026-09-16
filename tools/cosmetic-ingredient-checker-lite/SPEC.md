@@ -16,6 +16,22 @@ Lite and FastScan remain separate workflows:
 - Lite = paste text and review immediately.
 - INCI FastScan = photo/image OCR plus detailed review.
 
+## Inputs
+
+Primary input is pasted cosmetic ingredient text. The checker accepts INCI names, Japanese ingredient names, aliases, and mixed full-label lists separated by commas, Japanese punctuation, semicolons, or line breaks. Numeric locant punctuation such as `1,2-Hexanediol` is preserved by the shared parser.
+
+The Lite workflow does not accept or process product-label images; photo/OCR input belongs to INCI FastScan.
+
+## Outputs
+
+For every parsed ingredient, the public result shows:
+
+- the original ingredient text,
+- a supported main role, or `情報不足 / Information incomplete`,
+- a role explanation, or an explicit incomplete-information explanation.
+
+For multi-ingredient input only, Lite may additionally show result filters and an aggregate role summary. Affiliate content is not part of the result and appears only after useful result content.
+
 ## Public result contract
 
 The result experience is **answer-first**.
