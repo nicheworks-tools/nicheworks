@@ -9,9 +9,9 @@ const canonical=base.map(x=>x.id).sort();
 const reviewOrder=['draft','researched','image_ready','reviewed','verified','published'];
 const fail=m=>{console.error(`FAIL: ${m}`);process.exitCode=1};
 const pmap=Object.fromEntries(prod.patterns.map(x=>[x.pattern_id,x]));
-if(canonical.length!==40)fail(`expected runtime 40, got ${canonical.length}`);
-if(prod.patterns.length!==40)fail(`expected 40 production records, got ${prod.patterns.length}`);
-if(prod.policy?.record_count!==40)fail(`production policy record_count must be 40`);
+if(canonical.length!==60)fail(`expected runtime 60, got ${canonical.length}`);
+if(prod.patterns.length!==60)fail(`expected 60 production records, got ${prod.patterns.length}`);
+if(prod.policy?.record_count!==60)fail('production policy record_count must be 60');
 if(JSON.stringify(Object.keys(pmap).sort())!==JSON.stringify(canonical))fail('production content canonical ID set differs');
 for(const id of canonical){
   const p=pmap[id],source=ledger.patterns.find(x=>x.pattern_id===id),raw=base.find(x=>x.id===id);
@@ -27,6 +27,6 @@ for(const id of canonical){
   if(p.verification_state==='qualified'&&(!p.qualification?.ja||!p.qualification?.en))fail(`${id}: qualified term requires JA/EN scope note`);
 }
 const qualified=prod.patterns.filter(x=>x.verification_state==='qualified').map(x=>x.pattern_id).sort();
-const expected=['breton-stripe','herringbone','ikat','kilim','koushi','madras-check','moroccan-trellis','prince-of-wales-check','regimental-stripe','swiss-dot'].sort();
+const expected=['basketweave','botanical-print','breton-stripe','chintz','herringbone','ikat','ivy','jacobean-floral','kilim','koushi','madras-check','moroccan-trellis','ogee','prince-of-wales-check','regimental-stripe','swiss-dot','toile-de-jouy'].sort();
 if(JSON.stringify(qualified)!==JSON.stringify(expected))fail(`qualified set changed: ${qualified.join(', ')}`);
-if(!process.exitCode)console.log('OK: 40/40 production content records are source-ledger aligned and verified for publication.');
+if(!process.exitCode)console.log('OK: 60/60 production content records are source-ledger aligned and verified for publication.');
