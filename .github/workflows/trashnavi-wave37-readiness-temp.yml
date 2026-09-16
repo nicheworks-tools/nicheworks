@@ -1,0 +1,24 @@
+name: TrashNavi Wave37 readiness temporary
+
+on:
+  push:
+    branches:
+      - feat/trashnavi-wave37-readiness-20260916
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-wave37-readiness-20260916
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Register and validate Wave37 readiness
+        run: node tools/trashnavi/scripts/wave37-readiness-temp.mjs
