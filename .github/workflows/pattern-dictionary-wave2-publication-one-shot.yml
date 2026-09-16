@@ -40,6 +40,10 @@ jobs:
           new="else if(tokens.length>=2&&nq.length>=4&&nt.includes(nq))add(12,lang==='ja'?'説明語の一部':'partial descriptive phrase')"
           assert old in app, 'app partial phrase anchor missing'
           app=app.replace(old,new,1)
+          old="if(nq===na)add(90,lang==='ja'?'別名':'alias');else if(nq.includes(na)||na.includes(nq))add(45,lang==='ja'?'別名':'alias')"
+          new="if(nq===na)add(90,lang==='ja'?'別名':'alias');else if(nq.includes(na)||(tokens.length>=2&&na.includes(nq)))add(45,lang==='ja'?'別名':'alias')"
+          assert old in app, 'app alias fragment anchor missing'
+          app=app.replace(old,new,1)
           app_path.write_text(app)
 
           test_path=Path('tools/pattern-dictionary/tests/search-test.mjs')
@@ -55,6 +59,10 @@ jobs:
           old="else if(nq.length>=4&&nt.includes(nq))add(12)"
           new="else if(qt.length>=2&&nq.length>=4&&nt.includes(nq))add(12)"
           assert old in test, 'test partial phrase anchor missing'
+          test=test.replace(old,new,1)
+          old="if(nq===na)add(90);else if(nq.includes(na)||na.includes(nq))add(45)"
+          new="if(nq===na)add(90);else if(nq.includes(na)||(qt.length>=2&&na.includes(nq)))add(45)"
+          assert old in test, 'test alias fragment anchor missing'
           test=test.replace(old,new,1)
           test_path.write_text(test)
           PY
