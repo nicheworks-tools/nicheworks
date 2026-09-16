@@ -1,0 +1,40 @@
+name: Pattern Dictionary Wave 5 staging
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-wave5-production-staging-20260916
+    paths:
+      - .github/workflows/pattern-dictionary-wave5-staging.yml
+
+permissions:
+  contents: write
+
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave5-production-staging-20260916
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build Wave 5 staging data
+        run: node tools/pattern-dictionary/scripts/build-wave5-staging.mjs
+      - name: Generate Wave 5 reference images
+        run: python3 tools/pattern-dictionary/scripts/generate-reference-images-wave5.py
+      - name: Validate Wave 5 staging
+        run: node tools/pattern-dictionary/scripts/check-wave5-staging.mjs
+      - name: Commit generated staging artifacts
+        run: |
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git add tools/pattern-dictionary/data/wave5-*.json tools/pattern-dictionary/tests/wave5-search-cases.json tools/pattern-dictionary/assets/reference/*.png
+          if git diff --cached --quiet; then
+            echo "No staging changes to commit"
+          else
+            git commit -m "Pattern Dictionary: build Wave 5 staging artifacts"
+            git push origin HEAD:feat/pattern-dictionary-wave5-production-staging-20260916
+          fi
