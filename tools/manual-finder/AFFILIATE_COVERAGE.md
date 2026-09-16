@@ -23,9 +23,9 @@ The required reconciliation is therefore:
 
 The camera accessory audit is independently tracked and currently reconciles as:
 
-`camera basic 185 = detail 20 + reviewed exclusion 0 + missing 165`
+`camera basic 185 = detail 23 + reviewed exclusion 0 + missing 162`
 
-All 14 actionable Nikon camera records are closed. DJI Waves 1–2 add six reviewed detail rows, leaving DJI 90, OM SYSTEM 37, GoPro 31, and Insta360 7 missing accessory-detail rows.
+All 14 actionable Nikon camera records are closed. DJI Waves 1–3 add nine reviewed detail rows, leaving DJI 87, OM SYSTEM 37, GoPro 31, and Insta360 7 missing accessory-detail rows.
 
 The printer coverage audit must also report:
 
@@ -59,7 +59,7 @@ Current state:
 2. **Consumer-printer ink** — active for the verified Brother, Epson, and Canon mappings.
 3. **Office-printer toner** — the current printer-detail audit is complete. Verified mappings exist across the maintained OKI, KYOCERA, RICOH, and FUJIFILM Business Innovation ledgers; reviewed non-retail/service-managed cases are explicit exclusions.
 4. **Office-printer drum / maintenance parts** — optional future expansion, not part of the completed toner-detail audit.
-5. **Camera batteries / chargers** — Nikon is complete at 14/14 detail. DJI has six reviewed rows across Osmo Action Wave 1 and Air Wave 2; the remaining camera backlog is measured separately and must continue in bounded reviewed waves.
+5. **Camera batteries / chargers** — Nikon is complete at 14/14 detail. DJI has nine reviewed rows across Osmo Action Wave 1, Air Wave 2, and Mini Wave 3; the remaining camera backlog is measured separately and must continue in bounded reviewed waves.
 6. **Appliance replacement parts / filters** — future work only where exact compatibility can be proven.
 7. Additional accessory families require a clear user need and a verified mapping source.
 
@@ -162,7 +162,7 @@ DJI official compatibility evidence explicitly supports both reviewed handoffs f
 - `DJI Osmo Action Extreme Battery Plus`
 - `DJI Osmo Action Multifunctional Battery Case 2`
 
-The Wave 1 contract is exact-model only. The older `Osmo Action` and `DJI Action 2` records remain fail-closed for accessory detail until separately reviewed. This reduces DJI missing accessory detail from 96 to 92 without generalizing compatibility across the Osmo Action family.
+The Wave 1 contract is exact-model only. The older `Osmo Action` and `DJI Action 2` records remain fail-closed for accessory detail until separately reviewed.
 
 ## Camera accessory rule — DJI Air Wave 2
 
@@ -176,11 +176,29 @@ DJI official compatibility information explicitly supports both reviewed handoff
 - `DJI Air 3 Intelligent Flight Battery`
 - `DJI Air 3 Series Battery Charging Hub`
 
-The Wave 2 contract is exact-model only. `DJI Air 2S`, `Mavic Air 2`, and `Mavic Air` remain fail-closed for accessory detail until separately reviewed. DJI now reconciles at:
+The Wave 2 contract is exact-model only. `DJI Air 2S`, `Mavic Air 2`, and `Mavic Air` remain fail-closed for accessory detail until separately reviewed.
 
-`DJI camera 96 = detail 6 + reviewed exclusion 0 + missing 90`
+## Camera accessory rule — DJI Mini Wave 3
 
-The catalog-wide camera audit now reports 185 actionable basic records, 20 detail mappings, 0 reviewed exclusions, and 165 missing accessory-detail rows. The remaining missing counts are DJI 90, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing model arrays remain machine-readable in `tests/camera-accessory-coverage.test.mjs` output and are summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
+DJI Mini Wave 3 activates exactly three canonical records:
+
+- `DJI Mini 3`
+- `DJI Mini 3 Pro`
+- `DJI Mini 4 Pro`
+
+The battery mapping follows DJI's exact reviewed compatibility boundary:
+
+- `DJI Mini 3` and `DJI Mini 3 Pro` → `DJI Mini 3 Series Intelligent Flight Battery`.
+- `DJI Mini 4 Pro` → `DJI Mini 4 Pro Intelligent Flight Battery`.
+- all three → `DJI Mini 4 Pro/Mini 3 Series Two-Way Charging Hub`.
+
+Wave 3 does not infer compatibility for `DJI Mini 2`, `DJI Mini SE`, `Mavic Mini`, or other Mini-family records.
+
+After DJI Waves 1–3 the maker reconciliation is:
+
+`DJI camera 96 = detail 9 + reviewed exclusion 0 + missing 87`
+
+The catalog-wide camera audit now reports 185 actionable basic records, 23 detail mappings, 0 reviewed exclusions, and 162 missing accessory-detail rows. The remaining missing counts are DJI 87, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing model arrays remain machine-readable in `tests/camera-accessory-coverage.test.mjs` output and are summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## Current fixed override
 
@@ -203,15 +221,17 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 - `affiliate-camera-accessories.js` owns Nikon Wave 1 and the dedicated coarse camera-accessory Amazon target.
 - `affiliate-nikon-camera-accessories-wave2.js` extends the camera resolver with the remaining ten Nikon records.
 - `affiliate-dji-camera-accessories-wave1.js` adds the four reviewed DJI Osmo Action rows.
-- `affiliate-dji-camera-accessories-wave2.js` adds the two reviewed DJI Air rows and exposes the merged 20-row camera detail ledger.
+- `affiliate-dji-camera-accessories-wave2.js` adds the two reviewed DJI Air rows.
+- `affiliate-dji-camera-accessories-wave3.js` adds the three reviewed DJI Mini rows and exposes the merged 23-row camera detail ledger.
 - `affiliate-camera-detail-exclusions.js` is the reviewed camera-detail exclusion ledger and is currently empty.
-- `affiliate-runtime.js` renders the generic/body search plus zero or more verified consumable or camera-accessory searches. It loads Nikon Wave 1, Nikon Wave 2, DJI Wave 1, and DJI Wave 2 before initial affiliate rendering so the final config is complete before cards are mounted.
+- `affiliate-runtime.js` renders the generic/body search plus zero or more verified consumable or camera-accessory searches. It loads Nikon Wave 1, Nikon Wave 2, and DJI Waves 1–3 before initial affiliate rendering so the final config is complete before cards are mounted.
 - `/assets/amazon-affiliate.js` validates Amazon destinations and records only coarse analytics targets. Model names and consumable/accessory terms are not analytics parameters.
 - `tests/affiliate-coverage.test.mjs` is the catalog-wide reconciliation gate for basic/detail/exclusion/missing printer coverage.
 - `tests/nikon-camera-accessory-wave1.test.mjs` locks the original four-model Nikon Wave 1 boundary.
 - `tests/nikon-camera-accessory-wave2.test.mjs` locks the ten Nikon Wave 2 records and 14-record Nikon completion.
 - `tests/dji-osmo-action-accessory-wave1.test.mjs` locks the exact four-model DJI Osmo Action Wave 1 boundary.
 - `tests/dji-air-accessory-wave2.test.mjs` locks the exact two-model DJI Air Wave 2 boundary.
+- `tests/dji-mini-accessory-wave3.test.mjs` locks the exact three-model DJI Mini Wave 3 boundary.
 - `tests/camera-accessory-coverage.test.mjs` is the catalog-wide camera reconciliation and missing-model diagnostic gate.
 - `tests/camera-accessory-doc-sync.test.mjs` prevents the measured camera baseline documentation from drifting from runtime data.
 - `CAMERA_ACCESSORY_COVERAGE.md` records the current measured camera baseline and remaining maker backlog.
@@ -243,9 +263,9 @@ The Nikon camera subphase is closed only while all of the following remain true:
 The DJI camera phase is currently partial and must reconcile at:
 
 - DJI camera basic = 96
-- DJI camera detail = 6
+- DJI camera detail = 9
 - DJI reviewed camera exclusions = 0
-- DJI camera missing accessory detail = 90
+- DJI camera missing accessory detail = 87
 
 If the canonical catalog changes, numeric values may legitimately change, but each reconciliation invariant remains mandatory.
 
@@ -253,4 +273,4 @@ If the canonical catalog changes, numeric values may legitimately change, but ea
 
 The printer-detail Amazon handoff audit is no longer an open expansion target. Further printer work should be triggered by newly added canonical models, newly discovered evidence that changes an explicit exclusion, or a separately approved accessory family such as drums/maintenance parts.
 
-Nikon camera coverage is closed. The measured camera backlog continues with DJI 90 actionable records, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded reviewed product-family waves and exact manufacturer evidence. Appliance replacement-part rules remain a separate future phase.
+Nikon camera coverage is closed. The measured camera backlog continues with DJI 87 actionable records, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded reviewed product-family waves and exact manufacturer evidence. Appliance replacement-part rules remain a separate future phase.

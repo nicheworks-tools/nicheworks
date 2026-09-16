@@ -65,7 +65,6 @@ function modelsByMaker(rows) {
   return result;
 }
 
-// Reproduce the production data-loading contract from app.paged.js/index.html.
 const baseRows = JSON.parse(fs.readFileSync(new URL('manuals.json', dataRoot), 'utf8'));
 
 runData('manuals.full.js');
@@ -104,6 +103,7 @@ for (const name of [
   'affiliate-nikon-camera-accessories-wave2.js',
   'affiliate-dji-camera-accessories-wave1.js',
   'affiliate-dji-camera-accessories-wave2.js',
+  'affiliate-dji-camera-accessories-wave3.js',
   'affiliate-camera-detail-exclusions.js'
 ]) run(new URL(name, root), `tools/manual-finder/${name}`);
 
