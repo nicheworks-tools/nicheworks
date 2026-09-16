@@ -1,0 +1,61 @@
+name: Pattern Dictionary Wave 4 materialize
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-wave4-production-staging-20260916
+    paths:
+      - .github/workflows/pattern-dictionary-wave4-materialize.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave4-production-staging-20260916
+      - name: Syntax check generators
+        run: |
+          node --check tools/pattern-dictionary/scripts/build-wave4-staging.mjs
+          node --check tools/pattern-dictionary/scripts/normalize-wave4-staging.mjs
+          python -m py_compile tools/pattern-dictionary/scripts/generate-reference-images-wave4.py
+      - name: Build Wave 4 text staging
+        run: |
+          node tools/pattern-dictionary/scripts/build-wave4-staging.mjs
+          node tools/pattern-dictionary/scripts/normalize-wave4-staging.mjs
+      - name: Generate Wave 4 reference PNGs
+        run: python tools/pattern-dictionary/scripts/generate-reference-images-wave4.py
+      - name: Mechanical validation
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'); const p='tools/pattern-dictionary/';
+          const prod=JSON.parse(fs.readFileSync(p+'data/wave4-production-content.json'));
+          const comp=JSON.parse(fs.readFileSync(p+'data/wave4-compare-guides.json'));
+          const cases=JSON.parse(fs.readFileSync(p+'tests/wave4-search-cases.json'));
+          const refs=JSON.parse(fs.readFileSync(p+'data/wave4-reference-images.json'));
+          if(prod.patterns.length!==20)throw Error('production count');
+          if(comp.guides.length!==23)throw Error('compare count');
+          if(cases.length!==66)throw Error('search case count');
+          if(prod.patterns.reduce((n,x)=>n+x.commerce_intents.length,0)!==60)throw Error('commerce count');
+          if(refs.images.length!==20)throw Error('reference metadata count');
+          for(const r of refs.images){const f=fs.readFileSync(p+r.path);if(f.toString('hex',0,8)!=='89504e470d0a1a0a'||f.readUInt32BE(16)!==1536||f.readUInt32BE(20)!==1536)throw Error(r.pattern_id+' bad png');}
+          const runtime=JSON.parse(fs.readFileSync(p+'data/patterns.json')); if(runtime.length!==60)throw Error('runtime changed');
+          console.log('Mechanical Wave 4 staging validation OK');
+          NODE
+      - name: Commit generated staging
+        run: |
+          git config user.name nicheworks-tools
+          git config user.email nicheworks.tools@gmail.com
+          git add tools/pattern-dictionary/data/wave4-production-content.json \
+                  tools/pattern-dictionary/data/wave4-search-dictionary.json \
+                  tools/pattern-dictionary/data/wave4-compare-guides.json \
+                  tools/pattern-dictionary/data/wave4-reference-images.json \
+                  tools/pattern-dictionary/data/wave4-reference-image-review.json \
+                  tools/pattern-dictionary/tests/wave4-search-cases.json \
+                  tools/pattern-dictionary/assets/reference/*.png
+          if git diff --cached --quiet; then echo 'Nothing to commit'; exit 0; fi
+          git commit -m 'Pattern Dictionary: materialize Wave 4 production staging'
+          git push origin HEAD:feat/pattern-dictionary-wave4-production-staging-20260916
