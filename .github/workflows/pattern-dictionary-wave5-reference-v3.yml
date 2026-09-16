@@ -1,0 +1,69 @@
+name: Pattern Dictionary Wave 5 reference v3
+on:
+  push:
+    branches: [feat/pattern-dictionary-wave5-production-staging-20260916]
+    paths: [.github/workflows/pattern-dictionary-wave5-reference-v3.yml]
+permissions:
+  contents: write
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave5-production-staging-20260916
+          fetch-depth: 0
+      - name: Patch focused v3 cues
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('tools/pattern-dictionary/scripts/generate-reference-images-wave5.py'); s=p.read_text()
+          needle="FUN['tie-dye']=tie_dye_v2; FUN['marbling']=marbling_v2\nSCALE2={'suzani','sashiko','kantha','otomi-embroidery','block-print','snake-print','cow-print','giraffe-print','dalmatian-spots','camouflage','tie-dye','marbling','terrazzo'}"
+          repl="""def sashiko_v3(x,y):
+              xx,yy=x%192,y%192
+              on1=line_mod(xx+yy,48,1.7); on2=line_mod(xx-yy,48,1.7)
+              if (on1 or on2) and ((int(xx/5)+int(yy/5))%2==0):return WHITE
+              # secondary dashed square grid emphasizes visible running stitches
+              if (line_mod(xx,96,1.4) or line_mod(yy,96,1.4)) and ((int(xx/6)+int(yy/6))%2==0):return PALE
+              return INDIGO
+
+          def snake_v3(x,y):
+              xx,yy=x%192,y%192; row=int(round(yy/20)); cy=row*20
+              off=12 if row%2 else 0; col=int(round((xx-off)/24)); cx=col*24+off
+              dx,dy=xx-cx,yy-cy; v=(dx/11.5)**2+(dy/8.5)**2
+              if abs(v-1)<.20:return DARK_BROWN
+              if v<.78:
+                  key=(row*7+col*11)%5
+                  return [TAN,CREAM,BROWN,TAN,PALE][key]
+              # longitudinal darker blotches over the scale field
+              if row%5==2 and abs(dx)<5 and abs(dy)<5:return BROWN
+              return CREAM
+
+          def giraffe_v3(x,y):
+              xx,yy=x%192,y%192; pts=[]
+              for gy in range(-1,6):
+                  for gx in range(-1,6):
+                      bx=gx%4; by=gy%4; hv=hsh(bx,by,31)
+                      cx=gx*48+24+((hv%15)-7); cy=gy*48+24+(((hv>>8)%15)-7)
+                      d=(xx-cx)**2+(yy-cy)**2; pts.append((d,hv))
+              pts.sort(key=lambda t:t[0]); d1,h1=pts[0]; d2,_=pts[1]
+              if math.sqrt(d2)-math.sqrt(d1)<5.5:return CREAM
+              return BROWN if (h1%3) else TAN
+
+          FUN['tie-dye']=tie_dye_v2; FUN['marbling']=marbling_v2; FUN['sashiko']=sashiko_v3; FUN['snake-print']=snake_v3; FUN['giraffe-print']=giraffe_v3
+          SCALE2={'suzani','adire','sashiko','kantha','otomi-embroidery','block-print','snake-print','cow-print','giraffe-print','dalmatian-spots','camouflage','tie-dye','marbling','terrazzo'}"""
+          if needle not in s: raise SystemExit('v2 override block not found')
+          p.write_text(s.replace(needle,repl))
+          q=Path('tools/pattern-dictionary/data/wave5-reference-images.json'); q.write_text(q.read_text().replace('(v2 scale/fluid refinement)','(v3 focused structural refinement)'))
+          PY
+      - name: Regenerate and validate
+        run: |
+          python3 tools/pattern-dictionary/scripts/generate-reference-images-wave5.py
+          node tools/pattern-dictionary/scripts/check-wave5-staging.mjs
+      - name: Commit v3
+        run: |
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git add tools/pattern-dictionary/scripts/generate-reference-images-wave5.py tools/pattern-dictionary/data/wave5-reference-images.json tools/pattern-dictionary/assets/reference/*.png
+          git commit -m "Pattern Dictionary: refine Wave 5 recognition cues"
+          git push origin HEAD:feat/pattern-dictionary-wave5-production-staging-20260916
