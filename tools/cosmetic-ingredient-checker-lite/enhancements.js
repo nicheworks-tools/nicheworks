@@ -3,38 +3,97 @@
 
   function init() {
     const summaryBox = document.getElementById('summaryBox');
-    const metricGrid = summaryBox?.querySelector('.metric-grid');
     const categoryBlock = summaryBox?.querySelector('.category-block');
     const categoryGrid = document.getElementById('categoryGrid');
     const parsedCount = document.getElementById('parsedCount');
     const matchedCount = document.getElementById('matchedCount');
+    const reviewCount = document.getElementById('reviewCount');
     const unknownCount = document.getElementById('unknownCount');
+    const dictionaryStatus = document.getElementById('dictionaryStatus');
     const tableBody = document.getElementById('itemsTableBody');
     const table = document.getElementById('itemsTable');
-    if (!summaryBox || !metricGrid || !categoryGrid || !parsedCount || !matchedCount || !unknownCount || !tableBody || !table) return;
+    if (!summaryBox || !categoryGrid || !parsedCount || !matchedCount || !unknownCount || !tableBody || !table) return;
 
     let activeFilter = 'all';
     let activeCategory = 'all';
     const lang = () => document.documentElement.lang === 'en' ? 'en' : 'ja';
     const t = (ja, en) => lang() === 'en' ? en : ja;
 
-    let coverageValue = document.getElementById('dictionaryCoveragePercent');
-    if (!coverageValue) {
-      const card = document.createElement('div');
-      card.className = 'metric-card metric-coverage';
-      card.innerHTML = '<span id="dictionaryCoverageLabel" class="metric-label"></span><strong id="dictionaryCoveragePercent" class="metric-value">0%</strong>';
-      metricGrid.appendChild(card);
-      coverageValue = card.querySelector('#dictionaryCoveragePercent');
+    function setBilingualText(el, ja, en) {
+      if (!el) return;
+      el.dataset.ja = ja;
+      el.dataset.en = en;
+      el.setAttribute('data-lang-text', '');
+      el.textContent = t(ja, en);
     }
 
-    let coverageNote = document.getElementById('dictionaryCoverageNote');
-    if (!coverageNote) {
-      coverageNote = document.createElement('p');
-      coverageNote.id = 'dictionaryCoverageNote';
-      coverageNote.className = 'coverage-note';
-      coverageNote.setAttribute('aria-live', 'polite');
-      metricGrid.insertAdjacentElement('afterend', coverageNote);
+    function syncRoleFirstCopy() {
+      if (dictionaryStatus) dictionaryStatus.hidden = true;
+      const reviewMetric = reviewCount?.closest('.metric-card');
+      if (reviewMetric) reviewMetric.hidden = true;
+
+      setBilingualText(document.getElementById('tool-title'), '化粧品の全成分表示を、役割ごとに整理。', 'Understand what each cosmetic ingredient does.');
+      setBilingualText(
+        document.querySelector('.tool-hero-lead'),
+        '全成分表示を貼り付けると、それぞれの成分が何のために使われるのかを整理し、主な役割と説明を表示します。',
+        'Paste a full ingredient list to see the main role and explanation for each ingredient.'
+      );
+      setBilingualText(
+        document.querySelector('.tool-hero-sub'),
+        '成分の役割を把握するための参考ツールです。濃度や製品全体の安全性を判定するものではありません。',
+        'This is a reference tool for understanding ingredient roles; it does not determine concentration or overall product safety.'
+      );
+
+      const purposeItems = [...document.querySelectorAll('.purpose-item')];
+      if (purposeItems[1]) {
+        setBilingualText(purposeItems[1].querySelector('strong'), '確認', 'Check');
+        setBilingualText(purposeItems[1].querySelector('span'), '各成分の主な役割と説明', 'See each ingredient’s role and explanation');
+      }
+
+      const disclaimer = document.getElementById('disclaimerBox');
+      if (disclaimer) {
+        disclaimer.dataset.ja = '<strong>情報提供のみ：</strong>成分の主な役割を整理する参考ツールです。濃度・処方全体・個人差は判定できず、医学的・薬機法上の診断や安全性保証は行いません。';
+        disclaimer.dataset.en = '<strong>For reference only:</strong> This tool organizes the main roles of cosmetic ingredients. It cannot determine concentration, the full formulation, individual suitability, medical diagnosis, or guarantee safety.';
+        disclaimer.innerHTML = lang() === 'en' ? disclaimer.dataset.en : disclaimer.dataset.ja;
+      }
+
+      setBilingualText(document.getElementById('results-title'), 'この成分表から分かること', 'What this ingredient list contains');
+      setBilingualText(
+        document.querySelector('#results .section-desc'),
+        'まず主な役割の内訳を確認し、その下で各成分の役割と説明を見られます。',
+        'Start with the role overview, then review what each ingredient does below.'
+      );
+
+      const matchedLabel = matchedCount?.closest('.metric-card')?.querySelector('.metric-label');
+      if (matchedLabel) setBilingualText(matchedLabel, '役割情報あり', 'Role identified');
+      const unknownLabel = unknownCount?.closest('.metric-card')?.querySelector('.metric-label');
+      if (unknownLabel) setBilingualText(unknownLabel, '情報未登録', 'Information unavailable');
+      const categoryTitle = categoryBlock?.querySelector('.summary-title');
+      if (categoryTitle) setBilingualText(categoryTitle, '主な役割', 'Main roles');
+
+      const headers = table.querySelectorAll('thead th');
+      setBilingualText(headers[0], '成分', 'Ingredient');
+      setBilingualText(headers[1], '主な役割', 'Main role');
+      setBilingualText(headers[2], '説明', 'What it does');
+
+      setBilingualText(document.getElementById('about-title'), 'このLite版で分かること', 'What the Lite tool shows');
+      const about = document.querySelector('.about-card');
+      const aboutParagraphs = about ? [...about.querySelectorAll('p')] : [];
+      if (aboutParagraphs[0]) setBilingualText(
+        aboutParagraphs[0],
+        '全成分表示から、それぞれの成分の主な役割と簡単な説明を確認できます。さらに、保湿・洗浄・乳化など、成分表全体の役割の内訳もまとめます。',
+        'See the main role and a short explanation for each ingredient, plus an overview of roles such as hydration, cleansing, and emulsifying across the full list.'
+      );
+      if (aboutParagraphs[1]) setBilingualText(
+        aboutParagraphs[1],
+        '画像から読み取りたい場合や、OCR結果を確認しながら詳しく見たい場合はINCI FastScanを利用してください。',
+        'Use INCI FastScan when you want to read a label from an image and review OCR output in more detail.'
+      );
     }
+
+    if (dictionaryStatus) dictionaryStatus.hidden = true;
+    const reviewMetric = reviewCount?.closest('.metric-card');
+    if (reviewMetric) reviewMetric.hidden = true;
 
     let unknownPanel = document.getElementById('liteUnknownPanel');
     if (!unknownPanel) {
@@ -45,7 +104,6 @@
       unknownPanel.innerHTML = '<p id="liteUnknownTitle" class="summary-title"></p><div id="liteUnknownList" class="lite-unknown-list"></div><p id="liteUnknownNote" class="coverage-note"></p>';
       (categoryBlock || summaryBox).insertAdjacentElement('afterend', unknownPanel);
     }
-
     const unknownList = document.getElementById('liteUnknownList');
 
     let filterBar = document.getElementById('liteResultFilterBar');
@@ -59,9 +117,9 @@
           <span id="liteStateFilterLabel" class="lite-filter-label"></span>
           <div class="lite-filter-scroll" role="group" aria-label="Result status filter">
             <button type="button" class="lite-filter-btn is-active" data-lite-filter="all"></button>
-            <button type="button" class="lite-filter-btn" data-lite-filter="unknown"></button>
-            <button type="button" class="lite-filter-btn" data-lite-filter="review"></button>
             <button type="button" class="lite-filter-btn" data-lite-filter="matched"></button>
+            <button type="button" class="lite-filter-btn" data-lite-filter="unknown"></button>
+            <button type="button" class="lite-filter-btn" data-lite-filter="review" hidden></button>
           </div>
         </div>
         <div class="lite-filter-row" id="liteCategoryFilterRow" hidden>
@@ -80,14 +138,11 @@
     const filterStatus = document.getElementById('liteFilterStatus');
     const copyVisibleBtn = document.getElementById('liteCopyVisibleBtn');
     const copyUnknownBtn = document.getElementById('liteCopyUnknownBtn');
-    const categoryFilter = document.getElementById('liteCategoryFilter');
+    const liteCategoryFilter = document.getElementById('liteCategoryFilter');
     const categoryFilterRow = document.getElementById('liteCategoryFilterRow');
 
     function rowKind(row) {
-      const kind = row.dataset.resultKind || '';
-      if (kind === 'unknown') return 'unknown';
-      if (kind === 'review') return 'review';
-      return 'matched';
+      return row.dataset.resultKind === 'unknown' ? 'unknown' : 'matched';
     }
 
     function rowCategoryMatches(row) {
@@ -102,35 +157,34 @@
     }
 
     function syncStaticLabels() {
-      const coverageLabel = document.getElementById('dictionaryCoverageLabel');
+      syncRoleFirstCopy();
       const unknownTitle = document.getElementById('liteUnknownTitle');
       const unknownNote = document.getElementById('liteUnknownNote');
       const stateLabel = document.getElementById('liteStateFilterLabel');
       const categoryLabel = document.getElementById('liteCategoryFilterLabel');
-      if (coverageLabel) coverageLabel.textContent = t('辞書認識率', 'Dictionary coverage');
-      if (unknownTitle) unknownTitle.textContent = t('未分類の成分', 'Unclassified ingredients');
-      if (unknownNote) unknownNote.textContent = t('未分類は危険判定ではありません。辞書未登録や表記揺れの可能性があります。', 'Unclassified does not mean dangerous. The term may be absent from the dictionary or use a spelling variation.');
-      if (stateLabel) stateLabel.textContent = t('状態', 'Status');
-      if (categoryLabel) categoryLabel.textContent = t('分類', 'Category');
+      if (unknownTitle) unknownTitle.textContent = t('役割情報がない成分', 'Ingredients without role information');
+      if (unknownNote) unknownNote.textContent = t('表記ゆれや未登録の可能性があります。必要なら商品ラベルやメーカー公式情報で確認してください。', 'The spelling may vary or the ingredient may not yet be covered. Check the product label or manufacturer information when needed.');
+      if (stateLabel) stateLabel.textContent = t('表示', 'Show');
+      if (categoryLabel) categoryLabel.textContent = t('役割', 'Role');
       const labels = {
         all: t('すべて', 'All'),
-        unknown: t('未分類', 'Unclassified'),
-        review: t('確認候補', 'Review'),
-        matched: t('辞書一致', 'Matched')
+        matched: t('役割あり', 'Role identified'),
+        unknown: t('情報未登録', 'Information unavailable'),
+        review: t('補足確認', 'Additional review')
       };
       filterBar.querySelectorAll('[data-lite-filter]').forEach((button) => {
         button.textContent = labels[button.dataset.liteFilter] || button.dataset.liteFilter;
       });
       if (copyVisibleBtn) copyVisibleBtn.textContent = t('表示中をコピー', 'Copy visible');
-      if (copyUnknownBtn) copyUnknownBtn.textContent = t('未分類をコピー', 'Copy unclassified');
+      if (copyUnknownBtn) copyUnknownBtn.textContent = t('情報未登録をコピー', 'Copy unavailable');
     }
 
     function syncCategoryFilters() {
-      if (!categoryFilter || !categoryFilterRow) return;
+      if (!liteCategoryFilter || !categoryFilterRow) return;
       const categories = currentCategories();
       if (activeCategory !== 'all' && !categories.includes(activeCategory)) activeCategory = 'all';
       categoryFilterRow.hidden = categories.length === 0;
-      categoryFilter.innerHTML = '';
+      liteCategoryFilter.innerHTML = '';
       for (const value of ['all', ...categories]) {
         const button = document.createElement('button');
         button.type = 'button';
@@ -145,7 +199,7 @@
           syncCategoryFilters();
           applyFilter();
         });
-        categoryFilter.appendChild(button);
+        liteCategoryFilter.appendChild(button);
       }
     }
 
@@ -159,9 +213,7 @@
         if (show) visible += 1;
       }
       filterBar.hidden = rows.length === 0;
-      if (filterStatus) filterStatus.textContent = rows.length
-        ? t(`${visible} / ${rows.length} 件を表示`, `Showing ${visible} / ${rows.length}`)
-        : '';
+      if (filterStatus) filterStatus.textContent = rows.length ? t(`${visible} / ${rows.length} 件を表示`, `Showing ${visible} / ${rows.length}`) : '';
       filterBar.querySelectorAll('[data-lite-filter]').forEach((button) => {
         const active = button.dataset.liteFilter === activeFilter;
         button.classList.toggle('is-active', active);
@@ -170,6 +222,7 @@
     }
 
     filterBar.querySelectorAll('[data-lite-filter]').forEach((button) => {
+      if (button.hidden) return;
       button.addEventListener('click', () => {
         activeFilter = button.dataset.liteFilter || 'all';
         applyFilter();
@@ -197,19 +250,11 @@
 
     copyUnknownBtn?.addEventListener('click', () => {
       const rows = [...tableBody.querySelectorAll('tr')].filter((row) => rowKind(row) === 'unknown');
-      return copyNames(rows, '未分類の成分はありません。', 'No unclassified ingredients.', '未分類', 'Unclassified');
+      return copyNames(rows, '情報未登録の成分はありません。', 'No unavailable ingredients.', '情報未登録', 'Unavailable');
     });
 
     function update() {
       syncStaticLabels();
-      const total = Number(parsedCount.textContent || 0);
-      const matched = Number(matchedCount.textContent || 0);
-      const pct = total > 0 ? Math.round((matched / total) * 100) : 0;
-      coverageValue.textContent = `${pct}%`;
-      coverageNote.textContent = total > 0
-        ? t(`入力 ${total} 成分のうち ${matched} 成分がローカル辞書に一致しました。`, `${matched} of ${total} input ingredients matched the local dictionary.`)
-        : t('成分を確認すると辞書認識率が表示されます。', 'Dictionary coverage appears after you check ingredients.');
-
       if (unknownList) {
         unknownList.innerHTML = '';
         const names = [];
@@ -232,7 +277,6 @@
           unknownList.appendChild(more);
         }
       }
-
       syncCategoryFilters();
       applyFilter();
     }

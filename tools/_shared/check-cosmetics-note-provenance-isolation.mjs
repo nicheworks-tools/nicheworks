@@ -12,9 +12,16 @@ assert.ok(matcher.includes('item?.note_verified !== true'), 'unverified notes mu
 assert.ok(matcher.includes('Array.isArray(item.note_sources)'), 'verified notes must require source metadata');
 assert.ok(matcher.includes('/^https:\\/\\//i.test(source.trim())'), 'note provenance must require HTTPS source URLs');
 assert.ok(matcher.includes('note_short: note || undefined'), 'only verified notes may enter FastScan result objects');
-assert.ok(ui.includes('r.note_short || rt("defaultNote", uiLang)'), 'FastScan must fall back to neutral local copy when no verified note is available');
-assert.ok(ui.includes('Matched the local dictionary. Check official manufacturer information when needed.'), 'English neutral fallback note missing');
-assert.ok(ui.includes('ローカル辞書に一致しました。必要に応じてメーカー等の公式情報も確認してください。'), 'Japanese neutral fallback note missing');
+
+// Public role-first results may use a verified note when one reaches the result object;
+// otherwise they fall back to maintained local role descriptions, never to raw legacy notes.
+assert.ok(ui.includes('function ingredientDescription(item, lang)'), 'FastScan must centralize public ingredient descriptions');
+assert.ok(ui.includes('if (lang === "en" && item?.note_short) return item.note_short;'), 'FastScan may use only the verified note already gated by the matcher');
+assert.ok(ui.includes('const description = ROLE_DESCRIPTIONS[key] || ROLE_DESCRIPTIONS.general;'), 'FastScan must fall back to maintained neutral role copy');
+assert.ok(ui.includes('この成分の主な役割情報は現在整理中です。'), 'Japanese neutral role fallback missing');
+assert.ok(ui.includes('The primary role for this ingredient is still being organized.'), 'English neutral role fallback missing');
+assert.ok(!ui.includes('r.note_short || rt("defaultNote", uiLang)'), 'obsolete dictionary-match fallback must not return');
+assert.ok(!ui.includes('ローカル辞書に一致しました。必要に応じてメーカー等の公式情報も確認してください。'), 'dictionary-match copy must not be the public fallback');
 
 assert.ok(semanticAudit.includes('records_with_claim_bearing_note_for_review'), 'semantic audit must keep claim-bearing legacy note inventory');
 assert.ok(semanticAudit.includes('records_with_explicit_evidence_metadata'), 'semantic audit must keep evidence metadata inventory');
@@ -37,7 +44,7 @@ console.log(JSON.stringify({
   raw_claim_bearing_notes_in_pr38_baseline: 22,
   unverified_dictionary_notes_rendered_by_fastscan: false,
   verified_note_requires_https_source: true,
-  lite_runtime_changed: false,
+  public_fallback: 'maintained-role-description',
   recognition_contract_changed: false,
   affiliate_contract_changed: false
 }, null, 2));

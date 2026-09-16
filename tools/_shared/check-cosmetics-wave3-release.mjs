@@ -67,10 +67,12 @@ for (const token of [
   'dataset.liteCategory',
   'rowCategoryMatches',
   '表示中をコピー',
-  '未分類をコピー'
+  '情報未登録をコピー'
 ]) {
   check(liteEnhancements.includes(token), `Lite wave 3 navigation missing: ${token}`);
 }
+check(!liteEnhancements.includes('辞書認識率'), 'Lite Wave 3 UI must not restore dictionary-recognition percentage');
+check(liteEnhancements.includes('役割情報あり'), 'Lite Wave 3 UI must remain role-first');
 check(liteSpec.includes('functional-category filter') || liteSpec.includes('functional category'), 'Lite SPEC lost category-filter contract');
 
 for (const token of [
@@ -84,6 +86,8 @@ for (const token of [
 ]) {
   check(fastUi.includes(token), `FastScan review queue missing: ${token}`);
 }
+check(fastUi.includes('ROLE_DESCRIPTIONS'), 'FastScan Wave 3 public result must remain role-first');
+check(!fastUi.includes('function getMatchRouteLabel'), 'FastScan must not restore public match-route debugging');
 check(!fastUi.includes('btn-fast-check.click('), 'review queue must not auto-rerun FastScan analysis');
 check(!fastUi.includes('btn-jb-check.click('), 'review queue must not auto-rerun Japanese analysis');
 check(fastSpec.includes('Review-queue controls only move focus'), 'FastScan SPEC lost review-queue no-edit contract');
@@ -138,6 +142,7 @@ console.log(JSON.stringify({
   ocr_source_backed_robustness: true,
   lite_long_result_navigation: true,
   fastscan_review_queue: true,
+  public_results: 'ingredient-role-first',
   amazon_enabled: true,
   amazon_tracking_mode: 'tagged_search',
   amazon_display_mode: 'post_result_category_choice',

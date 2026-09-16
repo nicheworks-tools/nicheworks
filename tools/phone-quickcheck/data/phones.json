@@ -5975,7 +5975,7 @@
         }
       },
       "included": {
-        "cable": "unknown",
+        "cable": "not_included",
         "adapter": "not_included"
       },
       "sources": {
@@ -6023,7 +6023,7 @@
         }
       },
       "included": {
-        "cable": "unknown",
+        "cable": "not_included",
         "adapter": "not_included"
       },
       "sources": {
@@ -6072,7 +6072,7 @@
         }
       },
       "included": {
-        "cable": "unknown",
+        "cable": "included",
         "adapter": "included"
       },
       "sources": {
@@ -6174,7 +6174,7 @@
         }
       },
       "included": {
-        "cable": "unknown",
+        "cable": "not_included",
         "adapter": "not_included"
       },
       "sources": {

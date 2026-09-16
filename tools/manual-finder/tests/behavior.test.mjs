@@ -27,5 +27,8 @@ await import('./nikon-camera-accessory-wave2.test.mjs');
 await import('./dji-osmo-action-accessory-wave1.test.mjs');
 await import('./dji-air-accessory-wave2.test.mjs');
 await import('./dji-mini-accessory-wave3.test.mjs');
+await import('./dji-mavic3-accessory-wave4.test.mjs');
+await import('./dji-air2-accessory-wave5.test.mjs');
+await import('./dji-compact-power-wave6.test.mjs');
 await import('./camera-accessory-coverage.test.mjs');
 await import('./camera-accessory-doc-sync.test.mjs');
