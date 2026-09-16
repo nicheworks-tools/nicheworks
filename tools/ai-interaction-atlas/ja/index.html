@@ -68,24 +68,24 @@
         <button id="clear-compare" type="button">クリア</button>
       </div>
       <div id="compare-content"></div>
-      <p class="pro-note">無料比較は2件までです。Proでは3〜4件比較と比較結果のhandoff packが使えます。</p>
+      <p class="pro-note">無料比較は2件までです。旧Pro互換entitlementでは3〜4件比較を利用できますが、product-scoped bundle移行はまだ本番化されていません。</p>
     </section>
-    <section class="pro-handoff-pack" aria-label="Pro handoff pack">
+    <section class="pro-handoff-pack" aria-label="有料handoff packプレビュー">
       <div class="pro-pack-head">
         <div>
-          <p class="eyebrow">NicheWorks 共通Pro</p>
-          <h2>Pro handoff pack</h2>
-          <p data-pro-status>Previewモードです。このブラウザでは共通Proがまだ有効ではありません。</p>
+          <p class="eyebrow">PRO_BUNDLE migration</p>
+          <h2>Paid handoff pack</h2>
+          <p data-pro-status>有料bundle移行はまだ本番化されていません。このツールから購入はできません。</p>
         </div>
-        <p><a class="btn" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener noreferrer">Proを購入</a></p>
+        <p><span class="btn" aria-disabled="true">移行完了まで購入不可</span></p>
       </div>
       <div data-pro-preview class="pro-preview-note">
         <strong>無料機能は引き続き利用できます。</strong>
-        <p>Product spec handoff、Codex実装依頼文、GitHub Issue形式、UX risk checklist、Safety / fallback checklist、Markdown / JSON export のサンプルを表示します。Pro専用copy/export/saveボタンは共通Proが有効になるまでロックされます。</p>
+        <p>Product spec handoff、Codex実装依頼文、GitHub Issue形式、UX risk checklist、Safety / fallback checklist、Markdown / JSON export のサンプルを表示します。既存の旧entitlementでは互換機能が解放される場合がありますが、新規購入はproduct-scoped bundle移行を正式公開するまで行えません。</p>
       </div>
       <div data-pro-only class="pro-unlocked-note" hidden>
-        <strong>Pro解放済み。</strong>
-        <p>Pro出力のコピー、Markdown / JSON export、3〜4件比較が使えます。</p>
+        <strong>旧Pro互換entitlementが有効です。</strong>
+        <p>既存互換entitlementで、有料出力のコピー、Markdown / JSON export、3〜4件比較を利用できます。</p>
       </div>
       <div id="pro-handoff-content"></div>
     </section>
@@ -93,8 +93,8 @@
       <h2>FAQ</h2>
       <details><summary>AI APIを呼び出しますか？</summary><p>いいえ。このページは静的でクライアント側のみ動作します。表示されるプレビューは説明用UI例で、実際のAI出力ではありません。</p></details>
       <details><summary>無料版で何ができますか？</summary><p>全パターン、検索、フィルタ、詳細、best for / not for、failure states、trust notes、implementation notes、common mistakes、2件比較、最近見た項目、お気に入り5件、関連リンク、基本AI依頼文コピーが無料です。</p></details>
-      <details><summary>Proは何のためですか？</summary><p>選択中のAI UIパターンを Product spec handoff、Codex task、GitHub Issue、UX risk checklist、Safety / fallback checklist、Markdown / JSON export、3〜4件比較に変換するための機能です。</p></details>
-      <details><summary>購入後はどうなりますか？</summary><p>購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。</p></details>
+      <details><summary>予定している有料bundleは何のためですか？</summary><p>Product spec handoff、Codex task、GitHub Issue、UX risk checklist、Safety / fallback checklist、Markdown / JSON export、3〜4件比較を有料境界として予定しています。</p></details>
+      <details><summary>今ここから購入できますか？</summary><p>できません。このツールではproduct-scoped bundle移行がまだ本番化されていないため、購入リンクを提供していません。既存の旧entitlementは互換状態としてのみ扱います。</p></details>
     </section>
     <div class="ad-slot ad-bottom">広告スペース</div>
     <div class="nw-donate"><p>このツールが役立ったら、開発継続を応援できます。</p><p><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a> <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></p></div>
