@@ -7,7 +7,7 @@
 
 ## Purpose
 
-Provide a fast Japanese paste-first cosmetic ingredient checker that normalizes an ingredient list, matches exact INCI / Japanese / alias names against the local NicheWorks ingredient data, and summarizes useful reference categories without presenting medical, diagnostic, regulatory, allergy, concentration, or product-safety conclusions.
+Provide a fast bilingual paste-first cosmetic ingredient checker that normalizes an ingredient list, matches exact INCI / Japanese / alias names against the local NicheWorks ingredient data, and summarizes useful reference categories without presenting medical, diagnostic, regulatory, allergy, concentration, or product-safety conclusions.
 
 The Lite product is intentionally distinct from INCI FastScan:
 
@@ -16,6 +16,8 @@ The Lite product is intentionally distinct from INCI FastScan:
 
 ## Current functional contract
 
+- Provide JP/EN switching on the same page, including static copy, dynamic dictionary state, analysis results, filter labels, copy states, category labels, notes, and disclaimers.
+- Keep Lite / FastScan switching visible in the tool header so users can move between the paste-first and OCR-first workflows without NicheWorks logo/title branding in the header.
 - Accept ingredient text containing INCI names, Japanese names, or a mixture.
 - Parse explicit list separators while preserving legitimate ingredient-name punctuation such as `/`, `・`, and numeric locant commas such as `1,2-Hexanediol`.
 - Match normalized input by exact INCI name, Japanese name, or declared alias against the existing local INCI FastScan dictionary files.
@@ -26,17 +28,18 @@ The Lite product is intentionally distinct from INCI FastScan:
 - Allow the status filter to be combined with a functional-category filter generated from the categories present in the current result.
 - Show the current visible-row count against the complete result count while filters are active.
 - Allow users to copy the currently visible ingredient names or only the current unclassified ingredient names; both actions are explicit local clipboard operations.
-- Keep `caution` / `risk` dictionary metadata internal to the matching layer; the Lite UI exposes only a non-diagnostic `確認候補` signal.
+- Keep `caution` / `risk` dictionary metadata internal to the matching layer; the Lite UI exposes only a non-diagnostic `確認候補 / Review` signal.
 - Keep unknown entries explicitly unclassified rather than inventing a diagnosis or safety conclusion.
 - Support clear/reset and copying the current result.
 - Support Cmd/Ctrl + Enter as a convenience check action.
-- Present explicit information-only and non-diagnostic disclaimers.
+- Present explicit information-only and non-diagnostic disclaimers in both UI languages.
 - Link to INCI FastScan when the user needs photo/OCR input.
 
 ## Inputs
 
 - Pasted cosmetic ingredient-list text.
 - Check, clear, copy, status-filter, and category-filter actions.
+- UI language (JP / EN).
 - Optional keyboard shortcut: Cmd/Ctrl + Enter.
 
 ## Outputs
@@ -47,9 +50,10 @@ The Lite product is intentionally distinct from INCI FastScan:
 - Compact list of currently unclassified ingredient names, capped in the summary while the full table remains available.
 - Up to eight prominent functional-category chips derived from matched dictionary entries.
 - Ingredient table containing the original input name, current reference status/categories, and concise explanatory note.
-- Client-side filtering of the result table by status and by currently represented functional category, including horizontally scrollable mobile controls.
+- Client-side filtering of the result table by status and by currently represented functional category, including horizontally safe controls on narrow screens.
 - Current visible-row count versus complete result count.
 - Clipboard copy of the current full result, currently visible ingredient-name subset, or unclassified-name subset.
+- The same result state can be re-rendered in JP or EN without rerunning ingredient analysis.
 
 ## Ingredient data dependency
 
@@ -68,25 +72,25 @@ The legacy `tools/cosmetic-ingredient-checker-lite/data/ingredients.json` is not
 
 ## State and persistence
 
-Input, parsed results, the current status filter, and the current category filter are ephemeral current-page state. The current implementation does not define saved ingredient history or cross-session persistence.
+Input, parsed results, the current status filter, and the current category filter are ephemeral current-page state. UI language preference is stored locally under `cosmetic-lite-lang` when browser storage is available. The current implementation does not define saved ingredient history or cross-session result persistence.
 
 ## Privacy and network behavior
 
-Ingredient parsing, filtering, matching, and subset-copy operations run in the browser. The pasted ingredient text is not intentionally uploaded by the checker workflow. Static dictionary files are loaded from the same NicheWorks origin. Suite-wide advertising and analytics resources may load separately.
+Ingredient parsing, filtering, matching, language re-rendering, and subset-copy operations run in the browser. The pasted ingredient text is not intentionally uploaded by the checker workflow. Static dictionary files are loaded from the same NicheWorks origin. Suite-wide advertising and analytics resources may load separately.
 
-The Amazon affiliate layer is isolated from ingredient state. Raw ingredient input, parsed ingredient names, unknown names, categories, filters, complete analysis results, and copied subsets must never be attached to affiliate analytics or the Amazon destination. Affiliate analytics are limited to fixed metadata: `tool`, `provider`, `placement`, `link_key`.
+The Amazon affiliate layer is isolated from ingredient state. Raw ingredient input, parsed ingredient names, unknown names, categories, filters, complete analysis results, copied subsets, and UI language state must never be attached to affiliate analytics or the Amazon destination. Affiliate analytics are limited to fixed metadata: `tool`, `provider`, `placement`, `link_key`.
 
 ## Language mode
 
-`Japanese-only`
+`bilingual single-page`
 
-The current UI explicitly labels itself Japanese-only. English UI must not be added merely to satisfy a suite-wide default unless the product contract is intentionally changed.
+JP/EN controls switch the same Lite workflow. The initial language follows the stored local preference when available, otherwise the browser language (`ja` -> Japanese, other languages -> English). Switching language re-renders the visible static and dynamic UI without changing or rerunning the ingredient analysis.
 
 ## Layout class
 
 `mobile-oriented`
 
-The page is input-first: the first meaningful interaction after the existing top advertising slot is the ingredient input. Results use a compact summary followed by mobile-friendly status/category controls and a horizontally safe detailed table.
+The page is paste-first and uses the approved v2 white-background presentation with spacing, typography, and thin borders rather than gray page/card surfaces. The purpose of Lite is stated in the first view before the workspace. On narrow mobile screens, result rows are presented as card-like stacked records while preserving the existing result-table DOM contract; desktop keeps the detailed tabular presentation.
 
 ## Amazon affiliate contract
 
@@ -132,7 +136,7 @@ The live CTAs are intentionally generic and not tied to the ingredient analysis,
 日焼け止めをAmazonで探す [PR]
 ```
 
-The affiliate card also renders the required disclosure:
+The affiliate card also renders the required disclosure for the active UI language, including:
 
 ```txt
 Amazonのアソシエイトとして、NicheWorksは適格販売により収入を得ています。
@@ -144,10 +148,10 @@ Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` 
 
 ## Limits and non-goals
 
-- `辞書一致` means only that the normalized name matched a local dictionary entry; it is not a safety guarantee.
-- `辞書認識率` is a dictionary coverage indicator, not a product-quality or safety score.
-- `確認候補` is a review cue, not a danger label.
-- `未分類` is not evidence that an ingredient is unsafe.
+- `辞書一致 / Matched` means only that the normalized name matched a local dictionary entry; it is not a safety guarantee.
+- `辞書認識率 / Dictionary recognition` is a dictionary coverage indicator, not a product-quality or safety score.
+- `確認候補 / Review` is a review cue, not a danger label.
+- `未分類 / Unclassified` is not evidence that an ingredient is unsafe.
 - Result filters only change visibility; they do not change the underlying analysis.
 - Category filters are derived from the tool's existing functional classification labels and are not product-suitability recommendations.
 - The tool does not know ingredient concentration, complete formulation context, user allergies, individual skin condition, pregnancy suitability, drug interactions, or regulatory status from the pasted list alone.
@@ -167,8 +171,10 @@ Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` 
 - [x] Result rows can be filtered by status and current functional category without changing analysis state, including on narrow mobile screens.
 - [x] Current visible-row count remains visible while result filters are active.
 - [x] Users can explicitly copy the currently visible ingredient names or only unclassified ingredient names without sending them to analytics or an external API.
-- [x] The page remains explicitly Japanese-only and retains the medical/regulatory disclaimer.
+- [x] JP/EN switching covers static and dynamic Lite UI, preserves the current analysis state, and retains the medical/regulatory disclaimer in both languages.
+- [x] The header exposes Lite / FastScan switching without the NicheWorks logo/title branding used by the old UI.
 - [x] The NicheWorks logo image is not shown in the tool header.
+- [x] The mobile result presentation avoids a mandatory horizontal table-scroll experience by rendering table rows as card-like stacked records while preserving the DOM contract.
 - [x] The donation block appears before the footer.
 - [x] A clear INCI FastScan route exists for photo/OCR use.
 - [x] The Amazon slot keeps the frozen `after-summary` placement and fail-closed HTML default.
@@ -188,6 +194,7 @@ Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` 
 - `tools/cosmetic-ingredient-checker-lite/index.html`
 - `tools/cosmetic-ingredient-checker-lite/app.js`
 - `tools/cosmetic-ingredient-checker-lite/style.css`
+- `tools/cosmetic-ingredient-checker-lite/ui-v2.css`
 - `tools/cosmetic-ingredient-checker-lite/enhancements.js`
 - `tools/cosmetic-ingredient-checker-lite/enhancements.css`
 - `tools/cosmetic-ingredient-checker-lite/qa.json`
