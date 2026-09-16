@@ -698,3 +698,22 @@ Publication acceptanceでは5ページすべてについてexactly 3 official ca
 ## Wave27 publication (2026-09-16)
 
 Published five additional municipality pages in one batch: Aomori City, Yamagata City, Maebashi City, Saitama City, and Kanazawa City. The fixed publication threshold remains at three or more distinct waste-specific official link types. All five pages use verified municipal sorting, collection-calendar, and bulky-waste routes. FY2026 calendar callouts are shown only where the source explicitly carries 2026 fiscal-year metadata (Aomori, Maebashi, Kanazawa). Existing Amazon affiliate isolation and fixed-category query contracts remain unchanged.
+
+## Wave 28 ten-municipality publication
+
+Wave 28は50自治体到達後のbatch scaling ruleに従い、公開閾値を変更せず **54自治体から64自治体** へ10自治体一括で拡張する。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeとし、同一combined pageの二重計上や外部委託先による閾値補完は行わない。
+
+- 岩手県 盛岡市 — `/tools/trashnavi/iwate/morioka/` — waste sorting / waste app / drop-off facility
+- 秋田県 秋田市 — `/tools/trashnavi/akita/akita/` — waste sorting / collection calendar / bulky waste
+- 福島県 福島市 — `/tools/trashnavi/fukushima/fukushima/` — waste sorting / collection calendar / waste app
+- 茨城県 水戸市 — `/tools/trashnavi/ibaraki/mito/` — waste sorting / collection calendar / bulky waste
+- 神奈川県 川崎市 — `/tools/trashnavi/kanagawa/kawasaki/` — waste sorting / collection calendar / bulky waste
+- 神奈川県 相模原市 — `/tools/trashnavi/kanagawa/sagamihara/` — waste sorting / collection calendar / bulky waste
+- 大阪府 堺市 — `/tools/trashnavi/osaka/sakai/` — waste sorting / collection calendar / bulky waste
+- 岡山県 岡山市 — `/tools/trashnavi/okayama/okayama/` — waste sorting / collection calendar / bulky waste
+- 福岡県 福岡市 — `/tools/trashnavi/fukuoka/fukuoka/` — waste sorting / bulky waste / drop-off facility
+- 福岡県 北九州市 — `/tools/trashnavi/fukuoka/kitakyushu/` — waste sorting / collection calendar / bulky waste
+
+Wave 28 readiness baselineは1,916 municipalities、2,294 valid HTTP(S) records、64 preferred candidates、31 direct-link datasets / 226 records / 207 unique URLs / 0 invalid URLsとする。
+
+Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 64/64、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する福島市・水戸市だけ2026 calendar calloutを表示する。盛岡市と福島市はbulky sourceを持たないためmetadata/heroで粗大ごみcoverageを広告しない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
