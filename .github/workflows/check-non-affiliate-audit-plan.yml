@@ -1,0 +1,45 @@
+name: Non-affiliate strict audit plan
+
+on:
+  pull_request:
+    paths:
+      - 'tools/tools-index.json'
+      - 'MONETIZATION_CLASSIFICATION.json'
+      - 'audits/non-affiliate-scope.json'
+      - 'audits/non-affiliate-audit-plan.json'
+      - 'audits/non-affiliate-waves/**'
+      - 'docs/non-affiliate-audit-standard.md'
+      - 'scripts/list-non-affiliate-audit-wave.mjs'
+      - 'scripts/check-non-affiliate-audit-plan.mjs'
+      - '.github/workflows/check-non-affiliate-audit-plan.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/tools-index.json'
+      - 'MONETIZATION_CLASSIFICATION.json'
+      - 'audits/non-affiliate-scope.json'
+      - 'audits/non-affiliate-audit-plan.json'
+      - 'audits/non-affiliate-waves/**'
+      - 'docs/non-affiliate-audit-standard.md'
+      - 'scripts/list-non-affiliate-audit-wave.mjs'
+      - 'scripts/check-non-affiliate-audit-plan.mjs'
+      - '.github/workflows/check-non-affiliate-audit-plan.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate strict audit contract
+        run: node scripts/check-non-affiliate-audit-plan.mjs
+      - name: Render deterministic wave assignments
+        run: node scripts/list-non-affiliate-audit-wave.mjs
