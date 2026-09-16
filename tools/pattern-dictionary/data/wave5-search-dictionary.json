@@ -1,0 +1,1000 @@
+{
+  "schema_version": 1,
+  "phase": "wave5-staged-search",
+  "updated": "2026-09-16",
+  "publication_state": "staged-not-public",
+  "ja": {
+    "スザニ": {
+      "ids": [
+        "suzani"
+      ]
+    },
+    "スーザニ": {
+      "ids": [
+        "suzani"
+      ]
+    },
+    "大きな赤い花の中央アジア刺繍": {
+      "ids": [
+        "suzani"
+      ]
+    },
+    "ロゼットが並ぶスザニ布": {
+      "ids": [
+        "suzani"
+      ]
+    },
+    "ケンテ": {
+      "ids": [
+        "kente"
+      ]
+    },
+    "ケンテ布": {
+      "ids": [
+        "kente"
+      ]
+    },
+    "細い帯をつないだガーナのカラフル布": {
+      "ids": [
+        "kente"
+      ]
+    },
+    "色ブロックが切り替わるケンテ": {
+      "ids": [
+        "kente"
+      ]
+    },
+    "ボゴラン": {
+      "ids": [
+        "bogolan"
+      ]
+    },
+    "ボゴランフィニ": {
+      "ids": [
+        "bogolan"
+      ]
+    },
+    "泥染め布": {
+      "ids": [
+        "bogolan"
+      ]
+    },
+    "黒と生成りの泥染め幾何学布": {
+      "ids": [
+        "bogolan"
+      ]
+    },
+    "マリの泥染め柄": {
+      "ids": [
+        "bogolan"
+      ]
+    },
+    "アディレ": {
+      "ids": [
+        "adire"
+      ]
+    },
+    "アディレ布": {
+      "ids": [
+        "adire"
+      ]
+    },
+    "ヨルバ藍染め": {
+      "ids": [
+        "adire"
+      ]
+    },
+    "藍色に白い防染模様のヨルバ布": {
+      "ids": [
+        "adire"
+      ]
+    },
+    "青と白のアディレ": {
+      "ids": [
+        "adire"
+      ]
+    },
+    "クバ布": {
+      "ids": [
+        "kuba-cloth"
+      ]
+    },
+    "クバクロス": {
+      "ids": [
+        "kuba-cloth"
+      ]
+    },
+    "クバ族の布": {
+      "ids": [
+        "kuba-cloth"
+      ]
+    },
+    "茶色いラフィアに幾何学刺繍の布": {
+      "ids": [
+        "kuba-cloth"
+      ]
+    },
+    "アフリカの角張ったクバ布": {
+      "ids": [
+        "kuba-cloth"
+      ]
+    },
+    "刺し子": {
+      "ids": [
+        "sashiko"
+      ]
+    },
+    "刺子": {
+      "ids": [
+        "sashiko"
+      ]
+    },
+    "刺し子模様": {
+      "ids": [
+        "sashiko"
+      ]
+    },
+    "藍地に白い点線の和風刺繍": {
+      "ids": [
+        "sashiko"
+      ]
+    },
+    "細かい運針で幾何学を作る布": {
+      "ids": [
+        "sashiko"
+      ]
+    },
+    "カンタ": {
+      "ids": [
+        "kantha"
+      ]
+    },
+    "カンタ刺繍": {
+      "ids": [
+        "kantha"
+      ]
+    },
+    "細かい運針で面を埋めるインドの刺繍布": {
+      "ids": [
+        "kantha"
+      ]
+    },
+    "ベンガルのカンタキルト": {
+      "ids": [
+        "kantha"
+      ]
+    },
+    "オトミ刺繍": {
+      "ids": [
+        "otomi-embroidery"
+      ]
+    },
+    "テナンゴ刺繍": {
+      "ids": [
+        "otomi-embroidery"
+      ]
+    },
+    "オトミ刺しゅう": {
+      "ids": [
+        "otomi-embroidery"
+      ]
+    },
+    "白地にカラフルな動物のメキシコ刺繍": {
+      "ids": [
+        "otomi-embroidery"
+      ]
+    },
+    "動物と花が密に並ぶテナンゴ": {
+      "ids": [
+        "otomi-embroidery"
+      ]
+    },
+    "アフリカンワックスプリント": {
+      "ids": [
+        "african-wax-print"
+      ]
+    },
+    "アフリカンプリント": {
+      "ids": [
+        "african-wax-print"
+      ]
+    },
+    "ワックスプリント": {
+      "ids": [
+        "african-wax-print"
+      ]
+    },
+    "派手な多色のアフリカンプリント布": {
+      "ids": [
+        "african-wax-print"
+      ]
+    },
+    "大柄のワックスプリント": {
+      "ids": [
+        "african-wax-print"
+      ]
+    },
+    "ブロックプリント": {
+      "ids": [
+        "block-print"
+      ]
+    },
+    "木版プリント": {
+      "ids": [
+        "block-print"
+      ]
+    },
+    "木版捺染": {
+      "ids": [
+        "block-print"
+      ]
+    },
+    "木版を何度も押した布柄": {
+      "ids": [
+        "block-print"
+      ]
+    },
+    "少し版ズレがあるインドのプリント": {
+      "ids": [
+        "block-print"
+      ]
+    },
+    "ゼブラ柄": {
+      "ids": [
+        "zebra-print"
+      ]
+    },
+    "シマウマ柄": {
+      "ids": [
+        "zebra-print"
+      ]
+    },
+    "白黒のシマウマみたいな柄": {
+      "ids": [
+        "zebra-print"
+      ]
+    },
+    "不規則な黒白の動物縞": {
+      "ids": [
+        "zebra-print"
+      ]
+    },
+    "タイガー柄": {
+      "ids": [
+        "tiger-print"
+      ]
+    },
+    "虎柄": {
+      "ids": [
+        "tiger-print"
+      ]
+    },
+    "トラ柄": {
+      "ids": [
+        "tiger-print"
+      ]
+    },
+    "オレンジ地に黒い虎の縞": {
+      "ids": [
+        "tiger-print"
+      ]
+    },
+    "トラみたいなアニマル柄": {
+      "ids": [
+        "tiger-print"
+      ]
+    },
+    "スネーク柄": {
+      "ids": [
+        "snake-print"
+      ]
+    },
+    "ヘビ柄": {
+      "ids": [
+        "snake-print"
+      ]
+    },
+    "蛇柄": {
+      "ids": [
+        "snake-print"
+      ]
+    },
+    "パイソン柄": {
+      "ids": [
+        "snake-print"
+      ]
+    },
+    "細かい鱗がつながるヘビ柄": {
+      "ids": [
+        "snake-print"
+      ]
+    },
+    "茶色いパイソン風プリント": {
+      "ids": [
+        "snake-print"
+      ]
+    },
+    "カウ柄": {
+      "ids": [
+        "cow-print"
+      ]
+    },
+    "牛柄": {
+      "ids": [
+        "cow-print"
+      ]
+    },
+    "ホルスタイン柄": {
+      "ids": [
+        "cow-print"
+      ]
+    },
+    "白地に大きな黒い牛の斑点": {
+      "ids": [
+        "cow-print"
+      ]
+    },
+    "ホルスタインみたいな柄": {
+      "ids": [
+        "cow-print"
+      ]
+    },
+    "ジラフ柄": {
+      "ids": [
+        "giraffe-print"
+      ]
+    },
+    "キリン柄": {
+      "ids": [
+        "giraffe-print"
+      ]
+    },
+    "茶色い多角形が並ぶキリン柄": {
+      "ids": [
+        "giraffe-print"
+      ]
+    },
+    "薄い線で区切られた動物斑": {
+      "ids": [
+        "giraffe-print"
+      ]
+    },
+    "ダルメシアン柄": {
+      "ids": [
+        "dalmatian-spots"
+      ]
+    },
+    "ダルメシアンスポット": {
+      "ids": [
+        "dalmatian-spots"
+      ]
+    },
+    "犬の黒斑柄": {
+      "ids": [
+        "dalmatian-spots"
+      ]
+    },
+    "白地に小さい黒斑が散る犬柄": {
+      "ids": [
+        "dalmatian-spots"
+      ]
+    },
+    "ダルメシアンみたいな斑点": {
+      "ids": [
+        "dalmatian-spots"
+      ]
+    },
+    "迷彩柄": {
+      "ids": [
+        "camouflage"
+      ]
+    },
+    "カモフラ柄": {
+      "ids": [
+        "camouflage"
+      ]
+    },
+    "カモ柄": {
+      "ids": [
+        "camouflage"
+      ]
+    },
+    "緑と茶色の不規則な迷彩斑": {
+      "ids": [
+        "camouflage"
+      ]
+    },
+    "輪郭を崩すカモフラ柄": {
+      "ids": [
+        "camouflage"
+      ]
+    },
+    "タイダイ": {
+      "ids": [
+        "tie-dye"
+      ]
+    },
+    "絞り染め風タイダイ": {
+      "ids": [
+        "tie-dye"
+      ]
+    },
+    "中心から色がにじむタイダイ": {
+      "ids": [
+        "tie-dye"
+      ]
+    },
+    "縛って染めた放射模様": {
+      "ids": [
+        "tie-dye"
+      ]
+    },
+    "マーブル柄": {
+      "ids": [
+        "marbling"
+      ]
+    },
+    "マーブリング": {
+      "ids": [
+        "marbling"
+      ]
+    },
+    "墨流し風": {
+      "ids": [
+        "marbling"
+      ]
+    },
+    "水に絵具を浮かべたような渦模様": {
+      "ids": [
+        "marbling"
+      ]
+    },
+    "流れる筋が混ざるマーブル柄": {
+      "ids": [
+        "marbling"
+      ]
+    },
+    "テラゾー柄": {
+      "ids": [
+        "terrazzo"
+      ]
+    },
+    "テラゾ柄": {
+      "ids": [
+        "terrazzo"
+      ]
+    },
+    "テラゾ": {
+      "ids": [
+        "terrazzo"
+      ]
+    },
+    "細かい石チップが散った柄": {
+      "ids": [
+        "terrazzo"
+      ]
+    },
+    "カラフルな骨材みたいなテラゾー": {
+      "ids": [
+        "terrazzo"
+      ]
+    }
+  },
+  "en": {
+    "Suzani": {
+      "ids": [
+        "suzani"
+      ]
+    },
+    "suzani embroidery": {
+      "ids": [
+        "suzani"
+      ]
+    },
+    "central asian embroidered rosettes": {
+      "ids": [
+        "suzani"
+      ]
+    },
+    "large floral suzani textile": {
+      "ids": [
+        "suzani"
+      ]
+    },
+    "Kente": {
+      "ids": [
+        "kente"
+      ]
+    },
+    "kente cloth": {
+      "ids": [
+        "kente"
+      ]
+    },
+    "ghana narrow strip woven cloth": {
+      "ids": [
+        "kente"
+      ]
+    },
+    "color blocks kente strips": {
+      "ids": [
+        "kente"
+      ]
+    },
+    "Bogolan": {
+      "ids": [
+        "bogolan"
+      ]
+    },
+    "bogolanfini": {
+      "ids": [
+        "bogolan"
+      ]
+    },
+    "mud cloth": {
+      "ids": [
+        "bogolan"
+      ]
+    },
+    "mud-dyed cloth": {
+      "ids": [
+        "bogolan"
+      ]
+    },
+    "mali mud cloth geometric pattern": {
+      "ids": [
+        "bogolan"
+      ]
+    },
+    "black cream bogolanfini": {
+      "ids": [
+        "bogolan"
+      ]
+    },
+    "Adire": {
+      "ids": [
+        "adire"
+      ]
+    },
+    "adire cloth": {
+      "ids": [
+        "adire"
+      ]
+    },
+    "Yoruba indigo resist cloth": {
+      "ids": [
+        "adire"
+      ]
+    },
+    "yoruba indigo resist cloth": {
+      "ids": [
+        "adire"
+      ]
+    },
+    "blue white adire pattern": {
+      "ids": [
+        "adire"
+      ]
+    },
+    "Kuba Cloth": {
+      "ids": [
+        "kuba-cloth"
+      ]
+    },
+    "Kuba textile": {
+      "ids": [
+        "kuba-cloth"
+      ]
+    },
+    "Kuba raffia cloth": {
+      "ids": [
+        "kuba-cloth"
+      ]
+    },
+    "raffia geometric kuba cloth": {
+      "ids": [
+        "kuba-cloth"
+      ]
+    },
+    "angular african raffia textile": {
+      "ids": [
+        "kuba-cloth"
+      ]
+    },
+    "Sashiko": {
+      "ids": [
+        "sashiko"
+      ]
+    },
+    "sashiko stitching": {
+      "ids": [
+        "sashiko"
+      ]
+    },
+    "Japanese sashiko": {
+      "ids": [
+        "sashiko"
+      ]
+    },
+    "indigo white running stitch geometry": {
+      "ids": [
+        "sashiko"
+      ]
+    },
+    "japanese dotted stitch pattern": {
+      "ids": [
+        "sashiko"
+      ]
+    },
+    "Kantha": {
+      "ids": [
+        "kantha"
+      ]
+    },
+    "kantha embroidery": {
+      "ids": [
+        "kantha"
+      ]
+    },
+    "kantha quilt": {
+      "ids": [
+        "kantha"
+      ]
+    },
+    "bengal running stitch quilt": {
+      "ids": [
+        "kantha"
+      ]
+    },
+    "dense kantha embroidery cloth": {
+      "ids": [
+        "kantha"
+      ]
+    },
+    "Otomi Embroidery": {
+      "ids": [
+        "otomi-embroidery"
+      ]
+    },
+    "Tenango embroidery": {
+      "ids": [
+        "otomi-embroidery"
+      ]
+    },
+    "Otomí embroidery": {
+      "ids": [
+        "otomi-embroidery"
+      ]
+    },
+    "mexican colorful animal embroidery": {
+      "ids": [
+        "otomi-embroidery"
+      ]
+    },
+    "tenango animals flowers textile": {
+      "ids": [
+        "otomi-embroidery"
+      ]
+    },
+    "African Wax Print": {
+      "ids": [
+        "african-wax-print"
+      ]
+    },
+    "Ankara print": {
+      "ids": [
+        "african-wax-print"
+      ]
+    },
+    "African print": {
+      "ids": [
+        "african-wax-print"
+      ]
+    },
+    "Dutch wax print": {
+      "ids": [
+        "african-wax-print"
+      ]
+    },
+    "bold multicolor african wax cotton": {
+      "ids": [
+        "african-wax-print"
+      ]
+    },
+    "ankara large repeat print": {
+      "ids": [
+        "african-wax-print"
+      ]
+    },
+    "Block Print": {
+      "ids": [
+        "block-print"
+      ]
+    },
+    "block printing": {
+      "ids": [
+        "block-print"
+      ]
+    },
+    "woodblock print textile": {
+      "ids": [
+        "block-print"
+      ]
+    },
+    "repeated carved block textile": {
+      "ids": [
+        "block-print"
+      ]
+    },
+    "indian block print fabric": {
+      "ids": [
+        "block-print"
+      ]
+    },
+    "Zebra Print": {
+      "ids": [
+        "zebra-print"
+      ]
+    },
+    "zebra stripe": {
+      "ids": [
+        "zebra-print"
+      ]
+    },
+    "zebra pattern": {
+      "ids": [
+        "zebra-print"
+      ]
+    },
+    "black white zebra stripes": {
+      "ids": [
+        "zebra-print"
+      ]
+    },
+    "irregular animal stripe print": {
+      "ids": [
+        "zebra-print"
+      ]
+    },
+    "Tiger Print": {
+      "ids": [
+        "tiger-print"
+      ]
+    },
+    "tiger stripe": {
+      "ids": [
+        "tiger-print"
+      ]
+    },
+    "tiger pattern": {
+      "ids": [
+        "tiger-print"
+      ]
+    },
+    "orange black tiger stripes": {
+      "ids": [
+        "tiger-print"
+      ]
+    },
+    "tapered tiger animal print": {
+      "ids": [
+        "tiger-print"
+      ]
+    },
+    "Snake Print": {
+      "ids": [
+        "snake-print"
+      ]
+    },
+    "snakeskin print": {
+      "ids": [
+        "snake-print"
+      ]
+    },
+    "snake skin pattern": {
+      "ids": [
+        "snake-print"
+      ]
+    },
+    "python print": {
+      "ids": [
+        "snake-print"
+      ]
+    },
+    "connected snake scale print": {
+      "ids": [
+        "snake-print"
+      ]
+    },
+    "brown python skin pattern": {
+      "ids": [
+        "snake-print"
+      ]
+    },
+    "Cow Print": {
+      "ids": [
+        "cow-print"
+      ]
+    },
+    "cowhide print": {
+      "ids": [
+        "cow-print"
+      ]
+    },
+    "Holstein print": {
+      "ids": [
+        "cow-print"
+      ]
+    },
+    "cow pattern": {
+      "ids": [
+        "cow-print"
+      ]
+    },
+    "black white cow patches": {
+      "ids": [
+        "cow-print"
+      ]
+    },
+    "holstein animal print": {
+      "ids": [
+        "cow-print"
+      ]
+    },
+    "Giraffe Print": {
+      "ids": [
+        "giraffe-print"
+      ]
+    },
+    "giraffe pattern": {
+      "ids": [
+        "giraffe-print"
+      ]
+    },
+    "giraffe spots": {
+      "ids": [
+        "giraffe-print"
+      ]
+    },
+    "brown polygon giraffe spots": {
+      "ids": [
+        "giraffe-print"
+      ]
+    },
+    "giraffe cellular animal print": {
+      "ids": [
+        "giraffe-print"
+      ]
+    },
+    "Dalmatian Spots": {
+      "ids": [
+        "dalmatian-spots"
+      ]
+    },
+    "dalmatian print": {
+      "ids": [
+        "dalmatian-spots"
+      ]
+    },
+    "dalmatian pattern": {
+      "ids": [
+        "dalmatian-spots"
+      ]
+    },
+    "small black dalmatian spots": {
+      "ids": [
+        "dalmatian-spots"
+      ]
+    },
+    "white dog spot print": {
+      "ids": [
+        "dalmatian-spots"
+      ]
+    },
+    "Camouflage": {
+      "ids": [
+        "camouflage"
+      ]
+    },
+    "camo": {
+      "ids": [
+        "camouflage"
+      ]
+    },
+    "camouflage print": {
+      "ids": [
+        "camouflage"
+      ]
+    },
+    "green brown irregular camouflage": {
+      "ids": [
+        "camouflage"
+      ]
+    },
+    "woodland camo blotches": {
+      "ids": [
+        "camouflage"
+      ]
+    },
+    "Tie-dye": {
+      "ids": [
+        "tie-dye"
+      ]
+    },
+    "tie dye": {
+      "ids": [
+        "tie-dye"
+      ]
+    },
+    "tied resist dye": {
+      "ids": [
+        "tie-dye"
+      ]
+    },
+    "bound dye radiating rings": {
+      "ids": [
+        "tie-dye"
+      ]
+    },
+    "soft tie dye burst": {
+      "ids": [
+        "tie-dye"
+      ]
+    },
+    "Marbling": {
+      "ids": [
+        "marbling"
+      ]
+    },
+    "marbled pattern": {
+      "ids": [
+        "marbling"
+      ]
+    },
+    "marbled paper": {
+      "ids": [
+        "marbling"
+      ]
+    },
+    "marbling pattern": {
+      "ids": [
+        "marbling"
+      ]
+    },
+    "floating paint swirl marbling": {
+      "ids": [
+        "marbling"
+      ]
+    },
+    "fluid colored marble veins": {
+      "ids": [
+        "marbling"
+      ]
+    },
+    "Terrazzo Pattern": {
+      "ids": [
+        "terrazzo"
+      ]
+    },
+    "terrazzo print": {
+      "ids": [
+        "terrazzo"
+      ]
+    },
+    "terrazzo effect": {
+      "ids": [
+        "terrazzo"
+      ]
+    },
+    "scattered aggregate chip pattern": {
+      "ids": [
+        "terrazzo"
+      ]
+    },
+    "terrazzo stone chip print": {
+      "ids": [
+        "terrazzo"
+      ]
+    }
+  }
+}

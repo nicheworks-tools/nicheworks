@@ -1,0 +1,402 @@
+[
+  {
+    "lang": "ja",
+    "query": "スザニ",
+    "top1": "suzani"
+  },
+  {
+    "lang": "ja",
+    "query": "大きな赤い花の中央アジア刺繍",
+    "top1": "suzani"
+  },
+  {
+    "lang": "en",
+    "query": "Suzani",
+    "top1": "suzani"
+  },
+  {
+    "lang": "en",
+    "query": "central asian embroidered rosettes",
+    "top1": "suzani"
+  },
+  {
+    "lang": "ja",
+    "query": "ケンテ",
+    "top1": "kente"
+  },
+  {
+    "lang": "ja",
+    "query": "細い帯をつないだガーナのカラフル布",
+    "top1": "kente"
+  },
+  {
+    "lang": "en",
+    "query": "Kente",
+    "top1": "kente"
+  },
+  {
+    "lang": "en",
+    "query": "ghana narrow strip woven cloth",
+    "top1": "kente"
+  },
+  {
+    "lang": "ja",
+    "query": "ボゴラン",
+    "top1": "bogolan"
+  },
+  {
+    "lang": "ja",
+    "query": "黒と生成りの泥染め幾何学布",
+    "top1": "bogolan"
+  },
+  {
+    "lang": "en",
+    "query": "Bogolan",
+    "top1": "bogolan"
+  },
+  {
+    "lang": "en",
+    "query": "mali mud cloth geometric pattern",
+    "top1": "bogolan"
+  },
+  {
+    "lang": "ja",
+    "query": "アディレ",
+    "top1": "adire"
+  },
+  {
+    "lang": "ja",
+    "query": "藍色に白い防染模様のヨルバ布",
+    "top1": "adire"
+  },
+  {
+    "lang": "en",
+    "query": "Adire",
+    "top1": "adire"
+  },
+  {
+    "lang": "en",
+    "query": "yoruba indigo resist cloth",
+    "top1": "adire"
+  },
+  {
+    "lang": "ja",
+    "query": "クバ布",
+    "top1": "kuba-cloth"
+  },
+  {
+    "lang": "ja",
+    "query": "茶色いラフィアに幾何学刺繍の布",
+    "top1": "kuba-cloth"
+  },
+  {
+    "lang": "en",
+    "query": "Kuba Cloth",
+    "top1": "kuba-cloth"
+  },
+  {
+    "lang": "en",
+    "query": "raffia geometric kuba cloth",
+    "top1": "kuba-cloth"
+  },
+  {
+    "lang": "ja",
+    "query": "刺し子",
+    "top1": "sashiko"
+  },
+  {
+    "lang": "ja",
+    "query": "藍地に白い点線の和風刺繍",
+    "top1": "sashiko"
+  },
+  {
+    "lang": "en",
+    "query": "Sashiko",
+    "top1": "sashiko"
+  },
+  {
+    "lang": "en",
+    "query": "indigo white running stitch geometry",
+    "top1": "sashiko"
+  },
+  {
+    "lang": "ja",
+    "query": "カンタ",
+    "top1": "kantha"
+  },
+  {
+    "lang": "ja",
+    "query": "細かい運針で面を埋めるインドの刺繍布",
+    "top1": "kantha"
+  },
+  {
+    "lang": "en",
+    "query": "Kantha",
+    "top1": "kantha"
+  },
+  {
+    "lang": "en",
+    "query": "bengal running stitch quilt",
+    "top1": "kantha"
+  },
+  {
+    "lang": "ja",
+    "query": "オトミ刺繍",
+    "top1": "otomi-embroidery"
+  },
+  {
+    "lang": "ja",
+    "query": "白地にカラフルな動物のメキシコ刺繍",
+    "top1": "otomi-embroidery"
+  },
+  {
+    "lang": "en",
+    "query": "Otomi Embroidery",
+    "top1": "otomi-embroidery"
+  },
+  {
+    "lang": "en",
+    "query": "mexican colorful animal embroidery",
+    "top1": "otomi-embroidery"
+  },
+  {
+    "lang": "ja",
+    "query": "アフリカンワックスプリント",
+    "top1": "african-wax-print"
+  },
+  {
+    "lang": "ja",
+    "query": "派手な多色のアフリカンプリント布",
+    "top1": "african-wax-print"
+  },
+  {
+    "lang": "en",
+    "query": "African Wax Print",
+    "top1": "african-wax-print"
+  },
+  {
+    "lang": "en",
+    "query": "bold multicolor african wax cotton",
+    "top1": "african-wax-print"
+  },
+  {
+    "lang": "ja",
+    "query": "ブロックプリント",
+    "top1": "block-print"
+  },
+  {
+    "lang": "ja",
+    "query": "木版を何度も押した布柄",
+    "top1": "block-print"
+  },
+  {
+    "lang": "en",
+    "query": "Block Print",
+    "top1": "block-print"
+  },
+  {
+    "lang": "en",
+    "query": "repeated carved block textile",
+    "top1": "block-print"
+  },
+  {
+    "lang": "ja",
+    "query": "ゼブラ柄",
+    "top1": "zebra-print"
+  },
+  {
+    "lang": "ja",
+    "query": "白黒のシマウマみたいな柄",
+    "top1": "zebra-print"
+  },
+  {
+    "lang": "en",
+    "query": "Zebra Print",
+    "top1": "zebra-print"
+  },
+  {
+    "lang": "en",
+    "query": "black white zebra stripes",
+    "top1": "zebra-print"
+  },
+  {
+    "lang": "ja",
+    "query": "タイガー柄",
+    "top1": "tiger-print"
+  },
+  {
+    "lang": "ja",
+    "query": "オレンジ地に黒い虎の縞",
+    "top1": "tiger-print"
+  },
+  {
+    "lang": "en",
+    "query": "Tiger Print",
+    "top1": "tiger-print"
+  },
+  {
+    "lang": "en",
+    "query": "orange black tiger stripes",
+    "top1": "tiger-print"
+  },
+  {
+    "lang": "ja",
+    "query": "スネーク柄",
+    "top1": "snake-print"
+  },
+  {
+    "lang": "ja",
+    "query": "細かい鱗がつながるヘビ柄",
+    "top1": "snake-print"
+  },
+  {
+    "lang": "en",
+    "query": "Snake Print",
+    "top1": "snake-print"
+  },
+  {
+    "lang": "en",
+    "query": "connected snake scale print",
+    "top1": "snake-print"
+  },
+  {
+    "lang": "ja",
+    "query": "カウ柄",
+    "top1": "cow-print"
+  },
+  {
+    "lang": "ja",
+    "query": "白地に大きな黒い牛の斑点",
+    "top1": "cow-print"
+  },
+  {
+    "lang": "en",
+    "query": "Cow Print",
+    "top1": "cow-print"
+  },
+  {
+    "lang": "en",
+    "query": "black white cow patches",
+    "top1": "cow-print"
+  },
+  {
+    "lang": "ja",
+    "query": "ジラフ柄",
+    "top1": "giraffe-print"
+  },
+  {
+    "lang": "ja",
+    "query": "茶色い多角形が並ぶキリン柄",
+    "top1": "giraffe-print"
+  },
+  {
+    "lang": "en",
+    "query": "Giraffe Print",
+    "top1": "giraffe-print"
+  },
+  {
+    "lang": "en",
+    "query": "brown polygon giraffe spots",
+    "top1": "giraffe-print"
+  },
+  {
+    "lang": "ja",
+    "query": "ダルメシアン柄",
+    "top1": "dalmatian-spots"
+  },
+  {
+    "lang": "ja",
+    "query": "白地に小さい黒斑が散る犬柄",
+    "top1": "dalmatian-spots"
+  },
+  {
+    "lang": "en",
+    "query": "Dalmatian Spots",
+    "top1": "dalmatian-spots"
+  },
+  {
+    "lang": "en",
+    "query": "small black dalmatian spots",
+    "top1": "dalmatian-spots"
+  },
+  {
+    "lang": "ja",
+    "query": "迷彩柄",
+    "top1": "camouflage"
+  },
+  {
+    "lang": "ja",
+    "query": "緑と茶色の不規則な迷彩斑",
+    "top1": "camouflage"
+  },
+  {
+    "lang": "en",
+    "query": "Camouflage",
+    "top1": "camouflage"
+  },
+  {
+    "lang": "en",
+    "query": "green brown irregular camouflage",
+    "top1": "camouflage"
+  },
+  {
+    "lang": "ja",
+    "query": "タイダイ",
+    "top1": "tie-dye"
+  },
+  {
+    "lang": "ja",
+    "query": "中心から色がにじむタイダイ",
+    "top1": "tie-dye"
+  },
+  {
+    "lang": "en",
+    "query": "Tie-dye",
+    "top1": "tie-dye"
+  },
+  {
+    "lang": "en",
+    "query": "bound dye radiating rings",
+    "top1": "tie-dye"
+  },
+  {
+    "lang": "ja",
+    "query": "マーブル柄",
+    "top1": "marbling"
+  },
+  {
+    "lang": "ja",
+    "query": "水に絵具を浮かべたような渦模様",
+    "top1": "marbling"
+  },
+  {
+    "lang": "en",
+    "query": "Marbling",
+    "top1": "marbling"
+  },
+  {
+    "lang": "en",
+    "query": "floating paint swirl marbling",
+    "top1": "marbling"
+  },
+  {
+    "lang": "ja",
+    "query": "テラゾー柄",
+    "top1": "terrazzo"
+  },
+  {
+    "lang": "ja",
+    "query": "細かい石チップが散った柄",
+    "top1": "terrazzo"
+  },
+  {
+    "lang": "en",
+    "query": "Terrazzo Pattern",
+    "top1": "terrazzo"
+  },
+  {
+    "lang": "en",
+    "query": "scattered aggregate chip pattern",
+    "top1": "terrazzo"
+  }
+]

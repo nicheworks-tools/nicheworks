@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-16",
+  "wave": 5,
+  "ordinal_range": [
+    81,
+    100
+  ],
+  "scope": "wave5-staged-not-public",
+  "status": "awaiting-structural-review",
+  "review_policy": {
+    "dimensions": [
+      1536,
+      1536
+    ],
+    "required_checks": [
+      "file-exists",
+      "png-1536x1536",
+      "flat-front-on",
+      "no-text",
+      "no-frame",
+      "no-shadow",
+      "no-product-mockup",
+      "multiple-repeats-visible",
+      "recognition-cue-matches-source-scope",
+      "qualified-term-does-not-imply-universal-canonical-repeat"
+    ]
+  },
+  "records": [
+    {
+      "ordinal": 81,
+      "pattern_id": "suzani",
+      "status": "pending",
+      "notes": [
+        "Qualified term: review must confirm this is only a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 82,
+      "pattern_id": "kente",
+      "status": "pending",
+      "notes": [
+        "Qualified term: review must confirm this is only a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 83,
+      "pattern_id": "bogolan",
+      "status": "pending",
+      "notes": [
+        "Qualified term: review must confirm this is only a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 84,
+      "pattern_id": "adire",
+      "status": "pending",
+      "notes": [
+        "Qualified term: review must confirm this is only a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 85,
+      "pattern_id": "kuba-cloth",
+      "status": "pending",
+      "notes": [
+        "Qualified term: review must confirm this is only a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 86,
+      "pattern_id": "sashiko",
+      "status": "pending",
+      "notes": [
+        "Qualified term: review must confirm this is only a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 87,
+      "pattern_id": "kantha",
+      "status": "pending",
+      "notes": [
+        "Qualified term: review must confirm this is only a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 88,
+      "pattern_id": "otomi-embroidery",
+      "status": "pending",
+      "notes": [
+        "Qualified term: review must confirm this is only a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 89,
+      "pattern_id": "african-wax-print",
+      "status": "pending",
+      "notes": [
+        "Qualified term: review must confirm this is only a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 90,
+      "pattern_id": "block-print",
+      "status": "pending",
+      "notes": [
+        "Qualified term: review must confirm this is only a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 91,
+      "pattern_id": "zebra-print",
+      "status": "pending",
+      "notes": [
+        "Awaiting structural recognition review."
+      ]
+    },
+    {
+      "ordinal": 92,
+      "pattern_id": "tiger-print",
+      "status": "pending",
+      "notes": [
+        "Awaiting structural recognition review."
+      ]
+    },
+    {
+      "ordinal": 93,
+      "pattern_id": "snake-print",
+      "status": "pending",
+      "notes": [
+        "Awaiting structural recognition review."
+      ]
+    },
+    {
+      "ordinal": 94,
+      "pattern_id": "cow-print",
+      "status": "pending",
+      "notes": [
+        "Awaiting structural recognition review."
+      ]
+    },
+    {
+      "ordinal": 95,
+      "pattern_id": "giraffe-print",
+      "status": "pending",
+      "notes": [
+        "Awaiting structural recognition review."
+      ]
+    },
+    {
+      "ordinal": 96,
+      "pattern_id": "dalmatian-spots",
+      "status": "pending",
+      "notes": [
+        "Awaiting structural recognition review."
+      ]
+    },
+    {
+      "ordinal": 97,
+      "pattern_id": "camouflage",
+      "status": "pending",
+      "notes": [
+        "Awaiting structural recognition review."
+      ]
+    },
+    {
+      "ordinal": 98,
+      "pattern_id": "tie-dye",
+      "status": "pending",
+      "notes": [
+        "Qualified term: review must confirm this is only a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 99,
+      "pattern_id": "marbling",
+      "status": "pending",
+      "notes": [
+        "Qualified term: review must confirm this is only a representative recognition reference, not a universal canonical repeat."
+      ]
+    },
+    {
+      "ordinal": 100,
+      "pattern_id": "terrazzo",
+      "status": "pending",
+      "notes": [
+        "Qualified term: review must confirm this is only a representative recognition reference, not a universal canonical repeat."
+      ]
+    }
+  ],
+  "review_history": []
+}

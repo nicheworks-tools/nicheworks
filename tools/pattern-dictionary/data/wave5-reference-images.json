@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-16",
+  "wave": 5,
+  "ordinal_range": [
+    81,
+    100
+  ],
+  "status": "generated-awaiting-structural-review",
+  "publication_state": "staged-not-public",
+  "policy": {
+    "dimensions": [
+      1536,
+      1536
+    ],
+    "format": "PNG",
+    "purpose": "recognition-reference",
+    "requirements": [
+      "square",
+      "flat-front-on",
+      "no-text",
+      "no-frame",
+      "no-shadow",
+      "no-product-mockup",
+      "multiple-repeats-visible"
+    ],
+    "verification_rule": "Generated images must pass exact 1536x1536 RGB PNG validation and contact-sheet structural-recognition review before publication.",
+    "qualified_term_rule": "Qualified terms use representative recognition references and do not imply one universally canonical repeat.",
+    "source_ledger": "data/wave5-source-verification.json",
+    "review_ledger": "data/wave5-reference-image-review.json",
+    "generator": "scripts/generate-reference-images-wave5.py"
+  },
+  "images": [
+    {
+      "ordinal": 81,
+      "pattern_id": "suzani",
+      "path": "assets/reference/suzani.png",
+      "review_state": "generated",
+      "method": "deterministic rosettes, palmettes, leaves and scrolling stems",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 82,
+      "pattern_id": "kente",
+      "path": "assets/reference/kente.png",
+      "review_state": "generated",
+      "method": "deterministic narrow strip weave with alternating color blocks",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 83,
+      "pattern_id": "bogolan",
+      "path": "assets/reference/bogolan.png",
+      "review_state": "generated",
+      "method": "deterministic dark mud-cloth bands, dots and chevrons",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 84,
+      "pattern_id": "adire",
+      "path": "assets/reference/adire.png",
+      "review_state": "generated",
+      "method": "deterministic indigo resist dots, rings and grid units",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 85,
+      "pattern_id": "kuba-cloth",
+      "path": "assets/reference/kuba-cloth.png",
+      "review_state": "generated",
+      "method": "deterministic raffia-toned angular applique geometry",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 86,
+      "pattern_id": "sashiko",
+      "path": "assets/reference/sashiko.png",
+      "review_state": "generated",
+      "method": "deterministic indigo field with white running-stitch geometry",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 87,
+      "pattern_id": "kantha",
+      "path": "assets/reference/kantha.png",
+      "review_state": "generated",
+      "method": "deterministic dense running-stitch field with floral/figurative accents",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 88,
+      "pattern_id": "otomi-embroidery",
+      "path": "assets/reference/otomi-embroidery.png",
+      "review_state": "generated",
+      "method": "deterministic brightly filled animal and plant silhouettes",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 89,
+      "pattern_id": "african-wax-print",
+      "path": "assets/reference/african-wax-print.png",
+      "review_state": "generated",
+      "method": "deterministic saturated outlined multicolor motifs",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 90,
+      "pattern_id": "block-print",
+      "path": "assets/reference/block-print.png",
+      "review_state": "generated",
+      "method": "deterministic repeated carved-block floral units with registration cues",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 91,
+      "pattern_id": "zebra-print",
+      "path": "assets/reference/zebra-print.png",
+      "review_state": "generated",
+      "method": "deterministic irregular black-white tapering stripes",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 92,
+      "pattern_id": "tiger-print",
+      "path": "assets/reference/tiger-print.png",
+      "review_state": "generated",
+      "method": "deterministic tapered black stripes over orange ground",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 93,
+      "pattern_id": "snake-print",
+      "path": "assets/reference/snake-print.png",
+      "review_state": "generated",
+      "method": "deterministic connected scale cells with larger mottling",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 94,
+      "pattern_id": "cow-print",
+      "path": "assets/reference/cow-print.png",
+      "review_state": "generated",
+      "method": "deterministic large irregular black patches on white",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 95,
+      "pattern_id": "giraffe-print",
+      "path": "assets/reference/giraffe-print.png",
+      "review_state": "generated",
+      "method": "deterministic brown polygon patches separated by pale channels",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 96,
+      "pattern_id": "dalmatian-spots",
+      "path": "assets/reference/dalmatian-spots.png",
+      "review_state": "generated",
+      "method": "deterministic scattered small irregular black spots",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 97,
+      "pattern_id": "camouflage",
+      "path": "assets/reference/camouflage.png",
+      "review_state": "generated",
+      "method": "deterministic overlapping earth-tone organic blotches",
+      "representation_scope": "structural-reference",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 98,
+      "pattern_id": "tie-dye",
+      "path": "assets/reference/tie-dye.png",
+      "review_state": "generated",
+      "method": "deterministic soft concentric resisted rings and radial bursts",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 99,
+      "pattern_id": "marbling",
+      "path": "assets/reference/marbling.png",
+      "review_state": "generated",
+      "method": "deterministic fluid interwoven sinusoidal veins",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    },
+    {
+      "ordinal": 100,
+      "pattern_id": "terrazzo",
+      "path": "assets/reference/terrazzo.png",
+      "review_state": "generated",
+      "method": "deterministic random-looking multisize aggregate chips",
+      "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
+      "has_text": false,
+      "is_mockup": false,
+      "multiple_repeats": true
+    }
+  ]
+}

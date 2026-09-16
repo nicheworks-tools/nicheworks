@@ -1,0 +1,893 @@
+{
+  "schema_version": 1,
+  "phase": "wave5-source-verification",
+  "updated": "2026-09-16",
+  "wave": 5,
+  "ordinal_range": [
+    81,
+    100
+  ],
+  "policy": {
+    "purpose": "Evidence ledger for canonical Pattern Dictionary Wave 5 before runtime publication.",
+    "publication_state": "research-only",
+    "runtime_lock": "data/patterns.json remains canonical 80 throughout this source-verification gate.",
+    "primary_palette_rule": "A fixed primary palette is an editorial recognition reference unless a source establishes color as identity-relevant. It is never presented as the only valid colorway.",
+    "relationship_rule": "similar and often_confused_with are visual-discovery relationships, not claims of shared historical origin unless explicitly sourced.",
+    "qualification_rule": "Use qualified when the term is fundamentally a technique, textile tradition, textile style, or material-inspired visual family that does not resolve to one uniquely fixed motif.",
+    "states": [
+      "verified",
+      "qualified"
+    ]
+  },
+  "patterns": [
+    {
+      "ordinal": 81,
+      "pattern_id": "suzani",
+      "verification_state": "qualified",
+      "term_scope": "Central Asian embroidered textile tradition with many regional compositions rather than one fixed repeat",
+      "verified_names": {
+        "ja": "スザニ",
+        "en": "Suzani"
+      },
+      "verified_aliases": {
+        "ja": [
+          "スーザニ"
+        ],
+        "en": [
+          "suzani embroidery"
+        ]
+      },
+      "structure": "Large embroidered rosettes, palmettes, flowers, stems and scrolling foliage are arranged across joined cotton or silk panels; composition varies by region and workshop.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "red",
+          "gold",
+          "green"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Floral embroidery structure is the recognition cue; palettes vary."
+      },
+      "qualification": "Suzani is a Central Asian embroidered textile tradition, not one universal repeat. The reference image is a representative recognition aid.",
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/447384",
+          "supports": [
+            "suzani terminology and Central Asian textile context",
+            "joined fabric strips",
+            "rosettes, palmettes, stems and scrolls"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 82,
+      "pattern_id": "kente",
+      "verification_state": "qualified",
+      "term_scope": "Ghanaian strip-woven textile tradition with many named arrangements rather than one fixed motif",
+      "verified_names": {
+        "ja": "ケンテ",
+        "en": "Kente"
+      },
+      "verified_aliases": {
+        "ja": [
+          "ケンテ布"
+        ],
+        "en": [
+          "kente cloth"
+        ]
+      },
+      "structure": "Narrow woven strips with colored warp/weft patterning are sewn edge-to-edge into larger cloths; blocks and bands of geometric color vary among designs.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "gold",
+          "green",
+          "red",
+          "black"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Bright sectional strip-weave patterning is a common recognition cue, but no single palette defines kente."
+      },
+      "qualification": "Kente is a Ghanaian strip-woven textile tradition with many designs and meanings, not one canonical repeat.",
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/894795",
+          "supports": [
+            "Asante/Ghana kente cloth",
+            "narrow strips sewn edge-to-edge",
+            "silk and cotton colored patterning"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 83,
+      "pattern_id": "bogolan",
+      "verification_state": "qualified",
+      "term_scope": "Malian bogolanfini mud-dyed textile tradition with varied symbolic pattern vocabularies",
+      "verified_names": {
+        "ja": "ボゴラン",
+        "en": "Bogolan"
+      },
+      "verified_aliases": {
+        "ja": [
+          "ボゴランフィニ",
+          "泥染め布"
+        ],
+        "en": [
+          "bogolanfini",
+          "mud cloth",
+          "mud-dyed cloth"
+        ]
+      },
+      "structure": "High-contrast dark and light fields use repeated lines, dots, chevrons and symbolic geometric units produced in a mud-dye textile tradition; exact layouts vary.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "black",
+          "cream",
+          "brown"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Dark mud-dyed marks against pale cloth are a strong recognition cue; exact motifs vary."
+      },
+      "qualification": "Bogolan/bogolanfini is a mud-dyed Malian textile tradition with many encoded or named pattern arrangements, not one fixed motif.",
+      "sources": [
+        {
+          "publisher": "Smithsonian National Museum of African Art",
+          "url": "https://www.si.edu/object/nmafa_2012-9-1",
+          "supports": [
+            "bogolan/bogolanfini terminology",
+            "mud-dyed cloth tradition",
+            "patterned surface with cultural meaning"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 84,
+      "pattern_id": "adire",
+      "verification_state": "qualified",
+      "term_scope": "Yoruba indigo resist-dyed textile tradition using multiple resist methods and named patterns",
+      "verified_names": {
+        "ja": "アディレ",
+        "en": "Adire"
+      },
+      "verified_aliases": {
+        "ja": [
+          "アディレ布",
+          "ヨルバ藍染め"
+        ],
+        "en": [
+          "adire cloth",
+          "Yoruba indigo resist cloth"
+        ]
+      },
+      "structure": "Indigo fields are patterned by tied, stitched, folded, stencilled, or starch-resist methods, yielding white-to-blue dots, lines, grids, circles and named compositions.",
+      "color_guidance": {
+        "color_role": "traditional",
+        "primary": [
+          "indigo",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Indigo-and-resist contrast is historically central to recognition, while exact designs vary."
+      },
+      "qualification": "Adire is a Yoruba indigo resist-dyed textile tradition encompassing multiple methods and many named patterns, not one universal repeat.",
+      "sources": [
+        {
+          "publisher": "Victoria and Albert Museum",
+          "url": "https://www.vam.ac.uk/articles/adire-tied-and-dyed-indigo-textiles",
+          "supports": [
+            "Yoruba adire terminology",
+            "indigo-dyed cotton",
+            "resist techniques and blue/white patterning"
+          ]
+        },
+        {
+          "publisher": "The British Museum",
+          "url": "https://www.britishmuseum.org/collection/term/x112724",
+          "supports": [
+            "multiple resist methods including tying, stitching, folding, starch and stencil"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 85,
+      "pattern_id": "kuba-cloth",
+      "verification_state": "qualified",
+      "term_scope": "Kuba textile tradition using raffia and varied geometric embroidery/applique rather than one fixed motif",
+      "verified_names": {
+        "ja": "クバ布",
+        "en": "Kuba Cloth"
+      },
+      "verified_aliases": {
+        "ja": [
+          "クバクロス",
+          "クバ族の布"
+        ],
+        "en": [
+          "Kuba textile",
+          "Kuba raffia cloth"
+        ]
+      },
+      "structure": "Raffia panels carry angular, interlocking, interrupted, asymmetric geometric motifs made with embroidery, cut pile, applique, dyeing, or combinations.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "tan",
+          "black",
+          "brown"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Raffia-toned ground and bold geometric interventions are common recognition cues, not a fixed palette."
+      },
+      "qualification": "Kuba cloth denotes a broad Central African raffia textile tradition with many techniques and patterns, not one universal repeat.",
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/318398",
+          "supports": [
+            "Kuba prestige textile",
+            "raffia palm fiber",
+            "applique and embroidered geometric design"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 86,
+      "pattern_id": "sashiko",
+      "verification_state": "qualified",
+      "term_scope": "Japanese running-stitch reinforcement and embroidery tradition with many geometric motifs",
+      "verified_names": {
+        "ja": "刺し子",
+        "en": "Sashiko"
+      },
+      "verified_aliases": {
+        "ja": [
+          "刺子",
+          "刺し子模様"
+        ],
+        "en": [
+          "sashiko stitching",
+          "Japanese sashiko"
+        ]
+      },
+      "structure": "Repeated running stitches form dotted white lines on cloth, often organized into grids, waves, diamonds, hemp-leaf-like geometry, or other named Japanese motifs.",
+      "color_guidance": {
+        "color_role": "traditional",
+        "primary": [
+          "indigo",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "White running stitches on indigo are a strong traditional recognition cue, but sashiko exists in other colors."
+      },
+      "qualification": "Sashiko is a Japanese stitching and reinforcement tradition with many patterns, not one fixed motif.",
+      "sources": [
+        {
+          "publisher": "Cooper Hewitt, Smithsonian Design Museum",
+          "url": "https://www.si.edu/object/sashiko-motifs%3Achndm_1948-128-18",
+          "supports": [
+            "sashiko as traditional Japanese folk embroidery",
+            "running-stitch construction",
+            "variety of traditional motifs"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 87,
+      "pattern_id": "kantha",
+      "verification_state": "qualified",
+      "term_scope": "Bengal/Bangladesh layered-cloth running-stitch embroidery and quilting tradition with varied personal designs",
+      "verified_names": {
+        "ja": "カンタ",
+        "en": "Kantha"
+      },
+      "verified_aliases": {
+        "ja": [
+          "カンタ刺繍"
+        ],
+        "en": [
+          "kantha embroidery",
+          "kantha quilt"
+        ]
+      },
+      "structure": "Layers of reused cloth are quilted with dense running stitches; embroidered figures, flowers, borders, spirals, and geometric fields may be added in highly varied compositions.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "cream",
+          "red",
+          "black"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Running-stitch texture is important; color and motif layouts are highly variable."
+      },
+      "qualification": "Kantha is a Bengal/Bangladesh quilting and embroidery tradition with diverse individual compositions, not one fixed repeat.",
+      "sources": [
+        {
+          "publisher": "Victoria and Albert Museum",
+          "url": "https://www.vam.ac.uk/articles/indian-embroidery",
+          "supports": [
+            "kantha from Bengal/Bangladesh",
+            "layers of old garments quilted with running stitch",
+            "varied personal embroidered designs"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 88,
+      "pattern_id": "otomi-embroidery",
+      "verification_state": "qualified",
+      "term_scope": "Otomí/Tenango embroidery tradition with varied densely filled animal and plant figures",
+      "verified_names": {
+        "ja": "オトミ刺繍",
+        "en": "Otomi Embroidery"
+      },
+      "verified_aliases": {
+        "ja": [
+          "テナンゴ刺繍",
+          "オトミ刺しゅう"
+        ],
+        "en": [
+          "Tenango embroidery",
+          "Otomí embroidery"
+        ]
+      },
+      "structure": "Bright outlined animal, bird, plant and floral silhouettes are densely filled with embroidery and arranged as lively all-over scenes on plain cloth.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "red",
+          "blue",
+          "green",
+          "yellow"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Multicolor filled silhouettes are a common recognition cue, while palettes vary."
+      },
+      "qualification": "Otomi/Tenango embroidery is a living textile tradition with diverse compositions, not one fixed repeat.",
+      "sources": [
+        {
+          "publisher": "National Museum of the American Indian, Smithsonian",
+          "url": "https://americanindian.si.edu/collections-search/object/NMAI_281114",
+          "supports": [
+            "Otomí attribution",
+            "Tenango de Doria, Hidalgo",
+            "cotton embroidered/sewn textile"
+          ]
+        },
+        {
+          "publisher": "Museo Nacional de Culturas Populares / Google Arts & Culture",
+          "url": "https://artsandculture.google.com/story/yAVx8DqM0sentQ",
+          "supports": [
+            "Tenango embroidery tradition",
+            "characteristic animal and plant figures",
+            "dense filled embroidery"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 89,
+      "pattern_id": "african-wax-print",
+      "verification_state": "qualified",
+      "term_scope": "Commercial wax-print textile style with many polychromatic motifs and complex transnational history",
+      "verified_names": {
+        "ja": "アフリカンワックスプリント",
+        "en": "African Wax Print"
+      },
+      "verified_aliases": {
+        "ja": [
+          "アフリカンプリント",
+          "ワックスプリント"
+        ],
+        "en": [
+          "Ankara print",
+          "African print",
+          "Dutch wax print"
+        ]
+      },
+      "structure": "Strong flat colors, outlined motifs, and repeating geometric, floral, figurative or symbolic units appear on printed cotton; motif vocabularies are extremely diverse.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "blue",
+          "red",
+          "yellow",
+          "green"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "High-saturation flat multicolor printing is a common visual cue but no palette is definitional."
+      },
+      "qualification": "African wax print/Ankara names a broad printed-textile style and trade history with many motifs, not one fixed pattern.",
+      "sources": [
+        {
+          "publisher": "Victoria and Albert Museum",
+          "url": "https://www.vam.ac.uk/articles/cloth-of-a-continent-africa-fashion",
+          "supports": [
+            "Ankara/African/Dutch wax terminology",
+            "printed cotton",
+            "many layered polychromatic patterns and complex history"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 90,
+      "pattern_id": "block-print",
+      "verification_state": "qualified",
+      "term_scope": "Relief block-printing technique capable of many textile motifs rather than one fixed visual pattern",
+      "verified_names": {
+        "ja": "ブロックプリント",
+        "en": "Block Print"
+      },
+      "verified_aliases": {
+        "ja": [
+          "木版プリント",
+          "木版捺染"
+        ],
+        "en": [
+          "block printing",
+          "woodblock print textile"
+        ]
+      },
+      "structure": "Repeated impressions from carved blocks create visible modular repeats; slight registration variation and block boundaries may remain, across floral, geometric and figurative designs.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "indigo",
+          "red",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Palette varies by workshop and dye process; repeated block impressions are the recognition cue."
+      },
+      "qualification": "Block print is a printing technique with many motif traditions, not one canonical motif.",
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/es/perspectives/indian-block-printed-textiles",
+          "supports": [
+            "Indian block-printed textiles",
+            "carved blocks and mordant/resist printing",
+            "many designs and repeated block footprints"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 91,
+      "pattern_id": "zebra-print",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating zebra striping",
+      "verified_names": {
+        "ja": "ゼブラ柄",
+        "en": "Zebra Print"
+      },
+      "verified_aliases": {
+        "ja": [
+          "シマウマ柄"
+        ],
+        "en": [
+          "zebra stripe",
+          "zebra pattern"
+        ]
+      },
+      "structure": "Irregular high-contrast stripes run across the field, changing width and direction and often tapering or branching rather than forming uniform parallel bands.",
+      "color_guidance": {
+        "color_role": "identity-relevant",
+        "primary": [
+          "black",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Black-and-white irregular striping is identity-relevant to the common zebra-print visual."
+      },
+      "sources": [
+        {
+          "publisher": "Smithsonian Institution",
+          "url": "https://www.si.edu/object/zebra-fur-records-big-game-their-distribution-characteristics-dimensions-weights-and-horn-tusk%3Asilgoi_68432",
+          "supports": [
+            "zebra print as striped visual",
+            "stripes described as noncontinuous, unpredictable and changing direction"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 92,
+      "pattern_id": "tiger-print",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating tiger coat stripes",
+      "verified_names": {
+        "ja": "タイガー柄",
+        "en": "Tiger Print"
+      },
+      "verified_aliases": {
+        "ja": [
+          "虎柄",
+          "トラ柄"
+        ],
+        "en": [
+          "tiger stripe",
+          "tiger pattern"
+        ]
+      },
+      "structure": "Dark narrow-to-medium stripes curve and taper across a warm orange/tan field, frequently with lighter or white areas.",
+      "color_guidance": {
+        "color_role": "identity-relevant",
+        "primary": [
+          "orange",
+          "black",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Orange/tan ground with dark tapered stripes is identity-relevant to conventional tiger print."
+      },
+      "sources": [
+        {
+          "publisher": "Smithsonian National Zoo",
+          "url": "https://nationalzoo.si.edu/animals/tiger",
+          "supports": [
+            "reddish-orange coat",
+            "prominent dark stripes",
+            "white areas and individual stripe patterns"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 93,
+      "pattern_id": "snake-print",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating patterned snake scales or skin",
+      "verified_names": {
+        "ja": "スネーク柄",
+        "en": "Snake Print"
+      },
+      "verified_aliases": {
+        "ja": [
+          "ヘビ柄",
+          "蛇柄",
+          "パイソン柄"
+        ],
+        "en": [
+          "snakeskin print",
+          "snake skin pattern",
+          "python print"
+        ]
+      },
+      "structure": "Small connected scale cells form a dense network, often with darker borders, mottled centers, or larger longitudinal patches layered over the scale texture.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "brown",
+          "tan",
+          "black"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Scale-cell texture is identity-relevant; natural and fashion colorways vary widely."
+      },
+      "sources": [
+        {
+          "publisher": "Smithsonian Institution",
+          "url": "https://www.si.edu/object/snake-skin-reptiles-western-north-america%3Asilgoi_68433",
+          "supports": [
+            "snake scales form intricate patterns",
+            "imitation snake-skin use in fashion accessories"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 94,
+      "pattern_id": "cow-print",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating piebald cattle markings",
+      "verified_names": {
+        "ja": "カウ柄",
+        "en": "Cow Print"
+      },
+      "verified_aliases": {
+        "ja": [
+          "牛柄",
+          "ホルスタイン柄"
+        ],
+        "en": [
+          "cowhide print",
+          "Holstein print",
+          "cow pattern"
+        ]
+      },
+      "structure": "Large irregular solid patches are scattered across a contrasting field, with soft organic edges and substantial open background between patches.",
+      "color_guidance": {
+        "color_role": "identity-relevant",
+        "primary": [
+          "black",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Black-and-white piebald patches are identity-relevant to the common Holstein-inspired cow print."
+      },
+      "sources": [
+        {
+          "publisher": "Smithsonian National Zoo",
+          "url": "https://nationalzoo.si.edu/animals/cow",
+          "supports": [
+            "Holstein cattle black-and-white coat example"
+          ]
+        },
+        {
+          "publisher": "Smithsonian Institution",
+          "url": "https://www.si.edu/newsdesk/releases/smithsonian-s-national-zoo-asks-public-name-female-holstein-calf",
+          "supports": [
+            "Holsteins recognized by distinctive black-and-white or red-and-white markings"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 95,
+      "pattern_id": "giraffe-print",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating giraffe coat patches",
+      "verified_names": {
+        "ja": "ジラフ柄",
+        "en": "Giraffe Print"
+      },
+      "verified_aliases": {
+        "ja": [
+          "キリン柄"
+        ],
+        "en": [
+          "giraffe pattern",
+          "giraffe spots"
+        ]
+      },
+      "structure": "Large tan-to-brown polygonal patches are separated by a lighter network of narrow channels, creating a cellular mosaic.",
+      "color_guidance": {
+        "color_role": "identity-relevant",
+        "primary": [
+          "brown",
+          "tan",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Brown polygonal patches separated by pale channels are identity-relevant to the conventional giraffe-print visual."
+      },
+      "sources": [
+        {
+          "publisher": "Smithsonian Conservation Biology Institute",
+          "url": "https://nationalzoo.si.edu/conservation-ecology-center/giraffe-conservation",
+          "supports": [
+            "individual giraffes identified by unique spot patterns",
+            "giraffe coat spot pattern as recognition feature"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 96,
+      "pattern_id": "dalmatian-spots",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating Dalmatian dog spotting",
+      "verified_names": {
+        "ja": "ダルメシアン柄",
+        "en": "Dalmatian Spots"
+      },
+      "verified_aliases": {
+        "ja": [
+          "ダルメシアンスポット",
+          "犬の黒斑柄"
+        ],
+        "en": [
+          "dalmatian print",
+          "dalmatian pattern"
+        ]
+      },
+      "structure": "Numerous small-to-medium dark rounded or irregular spots are scattered individually across a light ground, with more open spacing than dense polka dots.",
+      "color_guidance": {
+        "color_role": "identity-relevant",
+        "primary": [
+          "black",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Black/liver isolated spots on white are identity-relevant to the Dalmatian coat cue."
+      },
+      "sources": [
+        {
+          "publisher": "American Kennel Club",
+          "url": "https://www.akc.org/expert-advice/dog-breeding/what-makes-dalmatian-spots/",
+          "supports": [
+            "distinctive Dalmatian spots",
+            "black or liver spotting",
+            "spot size and distribution compared with patches"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 97,
+      "pattern_id": "camouflage",
+      "verification_state": "verified",
+      "term_scope": "camouflage visual family based on disruptive irregular patches rather than one single standardized repeat",
+      "verified_names": {
+        "ja": "迷彩柄",
+        "en": "Camouflage"
+      },
+      "verified_aliases": {
+        "ja": [
+          "カモフラ柄",
+          "カモ柄"
+        ],
+        "en": [
+          "camo",
+          "camouflage print"
+        ]
+      },
+      "structure": "Overlapping irregular organic patches in several tones break up continuous contours; woodland-like versions often use greens, browns, tan and black.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "green",
+          "brown",
+          "tan",
+          "black"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Earth-tone irregular disruptive patches are a common recognition cue, while camouflage systems vary."
+      },
+      "sources": [
+        {
+          "publisher": "Smithsonian National Museum of American History",
+          "url": "https://www.si.edu/object/wm-skinner-and-sons-camouflage-pattern-nylon-parachute-cloth-sample-1945%3Anmah_1162117",
+          "supports": [
+            "camouflage-pattern textile",
+            "irregular blotch patterns",
+            "green tones simulating foliage/protective coloring"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 98,
+      "pattern_id": "tie-dye",
+      "verification_state": "qualified",
+      "term_scope": "resist-dye technique family created by binding cloth before dyeing rather than one fixed motif",
+      "verified_names": {
+        "ja": "タイダイ",
+        "en": "Tie-dye"
+      },
+      "verified_aliases": {
+        "ja": [
+          "絞り染め風タイダイ"
+        ],
+        "en": [
+          "tie dye",
+          "tied resist dye"
+        ]
+      },
+      "structure": "Bound or pinched areas resist dye, creating radiating rings, bursts, bands, diamonds, or irregular color transitions with soft feathered edges.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "blue",
+          "purple",
+          "pink"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Multicolor radiating effects are a common editorial cue, but tie-dye can be monochrome or many palettes."
+      },
+      "qualification": "Tie-dye is a resist-dye technique family; rings, spirals, diamonds and other effects depend on how cloth is bound and dyed.",
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/exhibitions/listings/2011/the-andean-tunic-400-bce1800-ce/photo-gallery",
+          "supports": [
+            "tie-dyed fabrics made by pinching and binding before dyeing",
+            "bound areas resist color",
+            "diamond design as one tie-dye outcome"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 99,
+      "pattern_id": "marbling",
+      "verification_state": "qualified",
+      "term_scope": "marbling technique and visual family made by floating color on a bath and transferring flowing patterns",
+      "verified_names": {
+        "ja": "マーブル柄",
+        "en": "Marbling"
+      },
+      "verified_aliases": {
+        "ja": [
+          "マーブリング",
+          "墨流し風"
+        ],
+        "en": [
+          "marbled pattern",
+          "marbled paper",
+          "marbling pattern"
+        ]
+      },
+      "structure": "Flowing veins, swirls and feathered bands intermix without a fixed repeat; combing or stylus movement can organize the floating colors before transfer.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "blue",
+          "red",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Flowing multicolor veins are an editorial recognition cue; marbling palettes and tools vary."
+      },
+      "qualification": "Marbling is a technique and visual family, not one fixed motif. The reference image represents flowing and combed color behavior.",
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/ja/perspectives/marbled-paper",
+          "supports": [
+            "colors floated on a bath and transferred",
+            "swirling and combed marbling patterns",
+            "many marbling variants"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 100,
+      "pattern_id": "terrazzo",
+      "verification_state": "qualified",
+      "term_scope": "material-inspired pattern family derived from terrazzo composite chips rather than one fixed printed motif",
+      "verified_names": {
+        "ja": "テラゾー柄",
+        "en": "Terrazzo Pattern"
+      },
+      "verified_aliases": {
+        "ja": [
+          "テラゾ柄",
+          "テラゾ"
+        ],
+        "en": [
+          "terrazzo print",
+          "terrazzo effect"
+        ]
+      },
+      "structure": "Irregular chips of varied sizes, shapes and colors are scattered densely in a contrasting matrix, creating a non-directional granular field.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "cream",
+          "gray",
+          "black",
+          "tan"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Multisize chips on a contrasting ground are the key cue; actual terrazzo materials use many aggregate palettes."
+      },
+      "qualification": "Terrazzo is a composite material; “terrazzo pattern” is a material-inspired visual family based on scattered aggregate chips, not one fixed repeat.",
+      "sources": [
+        {
+          "publisher": "National Park Service",
+          "url": "https://www.nps.gov/articles/000/preserving-the-texaco-road-map-pavement-at-the-new-york-state-pavilion.htm",
+          "supports": [
+            "terrazzo as composite of marble/quartz/granite/glass chips with binder",
+            "ground and polished surface",
+            "random aggregate pieces"
+          ]
+        }
+      ]
+    }
+  ]
+}
