@@ -7,7 +7,7 @@ const root=path.resolve(here,'..');
 const published=JSON.parse(fs.readFileSync(path.join(root,'data','patterns.json'),'utf8'));
 const ledger=JSON.parse(fs.readFileSync(path.join(root,'data','wave2-source-verification.json'),'utf8'));
 
-if(![20,40].includes(published.length))throw new Error(`unexpected runtime count ${published.length}`);
+if(![20,40,60].includes(published.length))throw new Error(`unexpected runtime count ${published.length}`);
 if(ledger.phase!=='wave2-source-verification'||ledger.wave!==2)throw new Error('unexpected Wave 2 source-verification metadata');
 if(ledger.policy?.publication_state!=='research-only')throw new Error('Wave 2 source ledger remains immutable research provenance');
 if(JSON.stringify(ledger.ordinal_range)!==JSON.stringify([21,40]))throw new Error('Wave 2 ordinal range must be 21-40');
@@ -24,7 +24,7 @@ for(let i=0;i<20;i++){
   if(!Array.isArray(r.sources)||r.sources.length<1)throw new Error(`${r.pattern_id}: at least one evidence source is required`);
   for(const s of r.sources)if(!s.publisher?.trim()||!/^https:\/\//.test(s.url||'')||!Array.isArray(s.supports)||s.supports.length<1)throw new Error(`${r.pattern_id}: malformed source record`);
   if(r.verification_state==='qualified'&&!r.qualification?.trim())throw new Error(`${r.pattern_id}: qualified row requires explicit qualification text`);
-  if(published.length===40&&!published.some(x=>x.id===r.pattern_id))throw new Error(`${r.pattern_id}: published runtime missing Wave 2 row`);
+  if(published.length>=40&&!published.some(x=>x.id===r.pattern_id))throw new Error(`${r.pattern_id}: published runtime missing Wave 2 row`);
 }
 
 const expectedQualified=['breton-stripe','herringbone','koushi','madras-check','prince-of-wales-check','regimental-stripe','swiss-dot'].sort();
