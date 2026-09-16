@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T04:23:52.912Z",
+  "generatedAt": "2026-09-16T04:24:08.984Z",
   "total": 182,
   "adapterUnknown": [
     "apple-iphone-11",
@@ -468,6 +468,173 @@
     "samsung-galaxy-z-flip-5g",
     "samsung-galaxy-z-fold2-5g"
   ],
+  "candidates": {
+    "motorola-moto-g24": {
+      "model": "moto g24",
+      "market": [
+        "JP"
+      ],
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 15,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "official",
+          "sourceRef": "https://www.motorola.com/gb/en/p/phones/moto-g/24/pmipmgp37mb?pn=PB180001GB"
+        }
+      },
+      "sources": {
+        "specificationsUrl": "https://www.motorola.com/gb/en/p/phones/moto-g/24/pmipmgp37mb?pn=PB180001GB",
+        "manualUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/177512/",
+        "releaseUrl": "https://store.motorola.co.jp/topics_list.html?next_page=2&request=page",
+        "chargingUrl": "https://www.motorola.com/gb/en/p/phones/moto-g/24/pmipmgp37mb?pn=PB180001GB",
+        "verifiedAt": "2026-09-16",
+        "waterUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=784"
+      }
+    },
+    "motorola-moto-g64-5g": {
+      "model": "moto g64 5G",
+      "market": [
+        "JP"
+      ],
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 30,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192474/"
+        }
+      },
+      "sources": {
+        "specificationsUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192474/",
+        "manualUrl": "https://jp-jp.support.motorola.com/",
+        "chargingUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192474/",
+        "verifiedAt": "2026-09-16",
+        "releaseUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=883"
+      }
+    },
+    "motorola-moto-g13": {
+      "model": "moto g13",
+      "market": [
+        "JP"
+      ],
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 30,
+        "wiredMaxW": 20,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "official",
+          "sourceRef": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192476/"
+        }
+      },
+      "sources": {
+        "specificationsUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192476/",
+        "manualUrl": "https://jp-jp.support.motorola.com/",
+        "releaseUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192476/",
+        "chargingUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192476/",
+        "verifiedAt": "2026-09-14"
+      }
+    },
+    "motorola-moto-g32": {
+      "model": "moto g32",
+      "market": [
+        "JP"
+      ],
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 30,
+        "wiredMaxW": 30,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "official",
+          "sourceRef": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192477/"
+        }
+      },
+      "sources": {
+        "specificationsUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192477/",
+        "manualUrl": "https://jp-jp.support.motorola.com/",
+        "releaseUrl": "https://moto-bu.motorola.co.jp/products/g32/",
+        "chargingUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192477/",
+        "verifiedAt": "2026-09-14"
+      }
+    },
+    "motorola-razr-40": {
+      "model": "motorola razr 40",
+      "market": [
+        "JP"
+      ],
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4200,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://en-us.support.motorola.com/app/answers/detail/a_id/175748/"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": 30,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": 5
+      },
+      "sources": {
+        "specificationsUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/175748/",
+        "manualUrl": "https://jp-jp.support.motorola.com/",
+        "releaseUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=718",
+        "chargingUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/175748/",
+        "wirelessUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/175748/",
+        "verifiedAt": "2026-09-14"
+      }
+    }
+  },
   "counts": {
     "adapterUnknown": 42,
     "cableUnknown": 62,
