@@ -1,6 +1,6 @@
 {
   "schema": "cta-affiliate-offers-v2.3",
-  "version": "2026-09-16-wave5e-affiliate-1",
+  "version": "2026-09-17-wave5g-affiliate-1",
   "provider": "amazon.co.jp",
   "tracking_id": "nicheworks09-22",
   "policy": {"query_source":"maintained_canonical_mapping_only","free_text_forwarding":false,"product_claims":false,"price_inventory_rating_content":false},
@@ -56,6 +56,12 @@
     {"entry_id":"q014_guard_post","status":"active","offer_id":"amazon_q014_guard_post_search","query":"手すり 支柱","amazon_url":"https://www.amazon.co.jp/s?k=%E6%89%8B%E3%81%99%E3%82%8A+%E6%94%AF%E6%9F%B1&tag=nicheworks09-22","label_ja":"Amazonで手すり支柱を探す","label_en":"Find guardrail posts on Amazon"},
     {"entry_id":"q014_baluster","status":"active","offer_id":"amazon_q014_baluster_search","query":"手すり 縦格子","amazon_url":"https://www.amazon.co.jp/s?k=%E6%89%8B%E3%81%99%E3%82%8A+%E7%B8%A6%E6%A0%BC%E5%AD%90&tag=nicheworks09-22","label_ja":"Amazonで手すり縦格子を探す","label_en":"Find balusters on Amazon"},
     {"entry_id":"q014_fence_post","status":"active","offer_id":"amazon_q014_fence_post_search","query":"フェンス 支柱","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%95%E3%82%A7%E3%83%B3%E3%82%B9+%E6%94%AF%E6%9F%B1&tag=nicheworks09-22","label_ja":"Amazonでフェンス支柱を探す","label_en":"Find fence posts on Amazon"},
-    {"entry_id":"q014_gate","status":"active","offer_id":"amazon_q014_gate_search","query":"門扉","amazon_url":"https://www.amazon.co.jp/s?k=%E9%96%80%E6%89%89&tag=nicheworks09-22","label_ja":"Amazonで門扉を探す","label_en":"Find gates on Amazon"}
+    {"entry_id":"q014_gate","status":"active","offer_id":"amazon_q014_gate_search","query":"門扉","amazon_url":"https://www.amazon.co.jp/s?k=%E9%96%80%E6%89%89&tag=nicheworks09-22","label_ja":"Amazonで門扉を探す","label_en":"Find gates on Amazon"},
+    {"entry_id":"q014_paving_stone","status":"active","offer_id":"amazon_q014_paving_stone_search","query":"敷石 舗装","amazon_url":"https://www.amazon.co.jp/s?k=%E6%95%B7%E7%9F%B3+%E8%88%97%E8%A3%85&tag=nicheworks09-22","label_ja":"Amazonで舗装用の敷石を探す","label_en":"Find paving stones on Amazon"},
+    {"entry_id":"q014_hand_roller","status":"active","offer_id":"amazon_q014_hand_roller_search","query":"ハンドローラー 舗装","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%8F%E3%83%B3%E3%83%89%E3%83%AD%E3%83%BC%E3%83%A9%E3%83%BC+%E8%88%97%E8%A3%85&tag=nicheworks09-22","label_ja":"Amazonで舗装用ハンドローラーを探す","label_en":"Find walk-behind paving rollers on Amazon"},
+    {"entry_id":"q014_asphalt_rake","status":"active","offer_id":"amazon_q014_asphalt_rake_search","query":"アスファルト レーキ","amazon_url":"https://www.amazon.co.jp/s?k=%E3%82%A2%E3%82%B9%E3%83%95%E3%82%A1%E3%83%AB%E3%83%88+%E3%83%AC%E3%83%BC%E3%82%AD&tag=nicheworks09-22","label_ja":"Amazonでアスファルトレーキを探す","label_en":"Find asphalt rakes on Amazon"},
+    {"entry_id":"q014_lute_rake","status":"active","offer_id":"amazon_q014_lute_rake_search","query":"アスファルト ルートレーキ","amazon_url":"https://www.amazon.co.jp/s?k=%E3%82%A2%E3%82%B9%E3%83%95%E3%82%A1%E3%83%AB%E3%83%88+%E3%83%AB%E3%83%BC%E3%83%88%E3%83%AC%E3%83%BC%E3%82%AD&tag=nicheworks09-22","label_ja":"Amazonでアスファルト用ルートレーキを探す","label_en":"Find asphalt lutes on Amazon"},
+    {"entry_id":"q014_drain_cover","status":"active","offer_id":"amazon_q014_drain_cover_search","query":"排水口 蓋 屋外","amazon_url":"https://www.amazon.co.jp/s?k=%E6%8E%92%E6%B0%B4%E5%8F%A3+%E8%93%8B+%E5%B1%8B%E5%A4%96&tag=nicheworks09-22","label_ja":"Amazonで屋外用排水蓋を探す","label_en":"Find outdoor drain covers on Amazon"},
+    {"entry_id":"q014_permeable_paver","status":"active","offer_id":"amazon_q014_permeable_paver_search","query":"透水性 舗装 ブロック","amazon_url":"https://www.amazon.co.jp/s?k=%E9%80%8F%E6%B0%B4%E6%80%A7+%E8%88%97%E8%A3%85+%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF&tag=nicheworks09-22","label_ja":"Amazonで透水性舗装ブロックを探す","label_en":"Find permeable paving blocks on Amazon"}
   ]
 }
