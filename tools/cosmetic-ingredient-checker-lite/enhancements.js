@@ -12,7 +12,10 @@
     const dictionaryStatus = document.getElementById('dictionaryStatus');
     const tableBody = document.getElementById('itemsTableBody');
     const table = document.getElementById('itemsTable');
-    if (!summaryBox || !categoryGrid || !parsedCount || !matchedCount || !unknownCount || !tableBody || !table) return;
+    const tableWrapper = table?.closest('.table-wrapper');
+    const itemsEmpty = document.getElementById('itemsEmpty');
+    const affiliateSlot = document.getElementById('amazonAffiliateSlot');
+    if (!summaryBox || !categoryGrid || !parsedCount || !matchedCount || !unknownCount || !tableBody || !table || !tableWrapper) return;
 
     let activeFilter = 'all';
     let activeCategory = 'all';
@@ -57,11 +60,11 @@
         disclaimer.innerHTML = lang() === 'en' ? disclaimer.dataset.en : disclaimer.dataset.ja;
       }
 
-      setBilingualText(document.getElementById('results-title'), 'この成分表から分かること', 'What this ingredient list contains');
+      setBilingualText(document.getElementById('results-title'), '成分ごとの役割と説明', 'Ingredient roles and explanations');
       setBilingualText(
         document.querySelector('#results .section-desc'),
-        'まず主な役割の内訳を確認し、その下で各成分の役割と説明を見られます。',
-        'Start with the role overview, then review what each ingredient does below.'
+        '結果は成分ごとに表示します。複数成分を調べた場合だけ、絞り込みと全体の役割構成も使えます。',
+        'Results are shown ingredient by ingredient. Filters and the overall role summary appear only when they are useful for multiple ingredients.'
       );
 
       const matchedLabel = matchedCount?.closest('.metric-card')?.querySelector('.metric-label');
@@ -69,7 +72,7 @@
       const unknownLabel = unknownCount?.closest('.metric-card')?.querySelector('.metric-label');
       if (unknownLabel) setBilingualText(unknownLabel, '情報未登録', 'Information unavailable');
       const categoryTitle = categoryBlock?.querySelector('.summary-title');
-      if (categoryTitle) setBilingualText(categoryTitle, '主な役割', 'Main roles');
+      if (categoryTitle) setBilingualText(categoryTitle, '全体の主な役割', 'Overall main roles');
 
       const headers = table.querySelectorAll('thead th');
       setBilingualText(headers[0], '成分', 'Ingredient');
@@ -81,8 +84,8 @@
       const aboutParagraphs = about ? [...about.querySelectorAll('p')] : [];
       if (aboutParagraphs[0]) setBilingualText(
         aboutParagraphs[0],
-        '全成分表示から、それぞれの成分の主な役割と簡単な説明を確認できます。さらに、保湿・洗浄・乳化など、成分表全体の役割の内訳もまとめます。',
-        'See the main role and a short explanation for each ingredient, plus an overview of roles such as hydration, cleansing, and emulsifying across the full list.'
+        '全成分表示から、それぞれの成分の主な役割と簡単な説明を確認できます。複数成分では、保湿・洗浄・乳化など、成分表全体の役割構成もまとめます。',
+        'See the main role and a short explanation for each ingredient. For multi-ingredient lists, the tool also summarizes roles such as hydration, cleansing, and emulsifying.'
       );
       if (aboutParagraphs[1]) setBilingualText(
         aboutParagraphs[1],
@@ -102,7 +105,7 @@
       unknownPanel.className = 'lite-unknown-panel';
       unknownPanel.hidden = true;
       unknownPanel.innerHTML = '<p id="liteUnknownTitle" class="summary-title"></p><div id="liteUnknownList" class="lite-unknown-list"></div><p id="liteUnknownNote" class="coverage-note"></p>';
-      (categoryBlock || summaryBox).insertAdjacentElement('afterend', unknownPanel);
+      summaryBox.insertAdjacentElement('afterend', unknownPanel);
     }
     const unknownList = document.getElementById('liteUnknownList');
 
@@ -132,7 +135,7 @@
         </div>
         <span id="liteFilterStatus" class="lite-filter-status" aria-live="polite"></span>
       `;
-      table.parentElement?.insertAdjacentElement('beforebegin', filterBar);
+      tableWrapper.insertAdjacentElement('beforebegin', filterBar);
     }
 
     const filterStatus = document.getElementById('liteFilterStatus');
@@ -162,28 +165,28 @@
       const unknownNote = document.getElementById('liteUnknownNote');
       const stateLabel = document.getElementById('liteStateFilterLabel');
       const categoryLabel = document.getElementById('liteCategoryFilterLabel');
-      if (unknownTitle) unknownTitle.textContent = t('役割情報がない成分', 'Ingredients without role information');
-      if (unknownNote) unknownNote.textContent = t('表記ゆれや未登録の可能性があります。必要なら商品ラベルやメーカー公式情報で確認してください。', 'The spelling may vary or the ingredient may not yet be covered. Check the product label or manufacturer information when needed.');
+      if (unknownTitle) unknownTitle.textContent = t('役割・説明情報が不足している成分', 'Ingredients with incomplete role or explanation data');
+      if (unknownNote) unknownNote.textContent = t('表記ゆれや未登録の可能性があります。商品ラベルやメーカー公式情報も確認してください。', 'The spelling may vary or the ingredient may not yet be fully covered. Check the product label or manufacturer information as well.');
       if (stateLabel) stateLabel.textContent = t('表示', 'Show');
       if (categoryLabel) categoryLabel.textContent = t('役割', 'Role');
       const labels = {
         all: t('すべて', 'All'),
-        matched: t('役割あり', 'Role identified'),
-        unknown: t('情報未登録', 'Information unavailable'),
+        matched: t('役割・説明あり', 'Role and explanation available'),
+        unknown: t('情報不足', 'Information incomplete'),
         review: t('補足確認', 'Additional review')
       };
       filterBar.querySelectorAll('[data-lite-filter]').forEach((button) => {
         button.textContent = labels[button.dataset.liteFilter] || button.dataset.liteFilter;
       });
       if (copyVisibleBtn) copyVisibleBtn.textContent = t('表示中をコピー', 'Copy visible');
-      if (copyUnknownBtn) copyUnknownBtn.textContent = t('情報未登録をコピー', 'Copy unavailable');
+      if (copyUnknownBtn) copyUnknownBtn.textContent = t('情報不足をコピー', 'Copy incomplete');
     }
 
-    function syncCategoryFilters() {
+    function syncCategoryFilters(rowCount) {
       if (!liteCategoryFilter || !categoryFilterRow) return;
       const categories = currentCategories();
       if (activeCategory !== 'all' && !categories.includes(activeCategory)) activeCategory = 'all';
-      categoryFilterRow.hidden = categories.length === 0;
+      categoryFilterRow.hidden = rowCount < 2 || categories.length < 2;
       liteCategoryFilter.innerHTML = '';
       for (const value of ['all', ...categories]) {
         const button = document.createElement('button');
@@ -196,7 +199,7 @@
         button.setAttribute('aria-pressed', active ? 'true' : 'false');
         button.addEventListener('click', () => {
           activeCategory = value;
-          syncCategoryFilters();
+          syncCategoryFilters(tableBody.querySelectorAll('tr').length);
           applyFilter();
         });
         liteCategoryFilter.appendChild(button);
@@ -205,6 +208,10 @@
 
     function applyFilter() {
       const rows = [...tableBody.querySelectorAll('tr')];
+      if (rows.length < 2) {
+        activeFilter = 'all';
+        activeCategory = 'all';
+      }
       let visible = 0;
       for (const row of rows) {
         const stateMatches = activeFilter === 'all' || rowKind(row) === activeFilter;
@@ -212,13 +219,21 @@
         row.hidden = !show;
         if (show) visible += 1;
       }
-      filterBar.hidden = rows.length === 0;
-      if (filterStatus) filterStatus.textContent = rows.length ? t(`${visible} / ${rows.length} 件を表示`, `Showing ${visible} / ${rows.length}`) : '';
+      filterBar.hidden = rows.length < 2;
+      if (filterStatus) filterStatus.textContent = rows.length >= 2 ? t(`${visible} / ${rows.length} 件を表示`, `Showing ${visible} / ${rows.length}`) : '';
       filterBar.querySelectorAll('[data-lite-filter]').forEach((button) => {
         const active = button.dataset.liteFilter === activeFilter;
         button.classList.toggle('is-active', active);
         button.setAttribute('aria-pressed', active ? 'true' : 'false');
       });
+    }
+
+    function arrangeAnswerFirstLayout(rowCount) {
+      const answerAnchor = itemsEmpty || tableWrapper;
+      answerAnchor.insertAdjacentElement('afterend', summaryBox);
+      summaryBox.hidden = rowCount < 2;
+      summaryBox.insertAdjacentElement('afterend', unknownPanel);
+      if (affiliateSlot) unknownPanel.insertAdjacentElement('afterend', affiliateSlot);
     }
 
     filterBar.querySelectorAll('[data-lite-filter]').forEach((button) => {
@@ -250,15 +265,16 @@
 
     copyUnknownBtn?.addEventListener('click', () => {
       const rows = [...tableBody.querySelectorAll('tr')].filter((row) => rowKind(row) === 'unknown');
-      return copyNames(rows, '情報未登録の成分はありません。', 'No unavailable ingredients.', '情報未登録', 'Unavailable');
+      return copyNames(rows, '情報不足の成分はありません。', 'No incomplete ingredients.', '情報不足', 'Incomplete');
     });
 
     function update() {
       syncStaticLabels();
+      const rows = [...tableBody.querySelectorAll('tr')];
       if (unknownList) {
         unknownList.innerHTML = '';
         const names = [];
-        for (const row of tableBody.querySelectorAll('tr')) {
+        for (const row of rows) {
           if (rowKind(row) !== 'unknown') continue;
           const name = row.querySelector('td')?.textContent?.trim();
           if (name) names.push(name);
@@ -277,8 +293,9 @@
           unknownList.appendChild(more);
         }
       }
-      syncCategoryFilters();
+      syncCategoryFilters(rows.length);
       applyFilter();
+      arrangeAnswerFirstLayout(rows.length);
     }
 
     const observer = new MutationObserver(update);

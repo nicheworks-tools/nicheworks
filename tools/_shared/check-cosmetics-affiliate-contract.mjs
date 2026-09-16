@@ -22,6 +22,7 @@ check(config.includes('As an Amazon Associate, NicheWorks earns from qualifying 
 check(config.includes('"cosmetic-ingredient-checker-lite"'), 'Lite slot config missing');
 check(config.includes('"inci-fastscan"'), 'FastScan slot config missing');
 check((config.match(/links: fixedSearchLinks/g) || []).length === 2, 'same fixed search set must be mapped to both cosmetics slots');
+check((config.match(/placement: "after-results"/g) || []).length === 2, 'both cosmetics affiliate slots must stay after the useful result output');
 
 const categoryKeys = ['toner', 'serum', 'moisturizer', 'cleanser', 'cleansing', 'sunscreen', 'bodycare'];
 for (const key of categoryKeys) {
@@ -33,14 +34,18 @@ check(!config.includes('skincare_general'), 'generic skincare category should no
 check(!config.includes('skincare_ceramide'), 'ingredient-themed ceramide category should not return');
 check(!config.includes('amzn.to/4xNbcDO'), 'single generic Special Link should remain retired');
 
-for (const [name, html, placement] of [
-  ['Lite', lite, 'after-summary'],
-  ['FastScan', fast, 'after-results']
+for (const [name, html] of [
+  ['Lite', lite],
+  ['FastScan', fast]
 ]) {
   check(html.includes('id="amazonAffiliateSlot"'), `${name}: stable amazonAffiliateSlot missing`);
-  check(html.includes(`data-affiliate-placement="${placement}"`), `${name}: stable placement missing`);
+  check(html.includes('data-affiliate-placement="after-results"'), `${name}: affiliate slot must be placed after results`);
   check(html.includes('data-affiliate-state="inactive"'), `${name}: HTML slot must remain fail-closed before runtime activation`);
 }
+
+const liteTableAt = lite.indexOf('id="itemsTable"');
+const liteAffiliateAt = lite.indexOf('id="amazonAffiliateSlot"');
+check(liteTableAt >= 0 && liteAffiliateAt > liteTableAt, 'Lite affiliate markup must come after the ingredient result table');
 
 for (const asset of [
   '/tools/_shared/cosmetics-affiliate-slot.css',
@@ -85,6 +90,8 @@ if (failures.length) {
 console.log(JSON.stringify({
   status: 'pass',
   display_mode: 'post_result_category_choice',
+  lite_placement: 'after-results',
+  fastscan_placement: 'after-results',
   fixed_categories: categoryKeys.length,
   result_driven_destination: false,
   raw_user_data_in_affiliate_adapter: false
