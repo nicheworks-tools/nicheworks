@@ -1,4 +1,4 @@
-name: Pattern Dictionary Wave 4 sync main
+name: Pattern Dictionary Wave 4 final sync
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  sync-main:
+  final-sync:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,4 +24,59 @@ jobs:
           git config user.email nicheworks.tools@gmail.com
           git fetch origin main
           git merge --no-edit origin/main
+      - name: Make Wave 4 publisher reproduce search publication copy
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('tools/pattern-dictionary/scripts/publish-wave4.mjs')
+          text=p.read_text()
+          marker='const searchCopyPages='
+          if marker not in text:
+            needle='\nfunction detailHtml(id,lang){'
+            if needle not in text:
+              raise SystemExit('publish-wave4 detailHtml insertion point missing')
+            block=r'''
+const searchCopyPages=[
+  ['search.html',/現在の検索順位は\d+件の検証済みデータに基づきます。/,'現在の検索順位は80件の検証済みデータに基づきます。'],
+  ['en/search.html',/Ranking currently uses the \d+-record verified dataset\./,'Ranking currently uses the 80-record verified dataset.']
+];
+for(const [rel,re,replacement] of searchCopyPages){
+  const file=path.join(root,rel);let html=fs.readFileSync(file,'utf8');html=html.replace(re,replacement);fs.writeFileSync(file,html);
+}
+'''
+            text=text.replace(needle,'\n'+block+needle,1)
+            p.write_text(text)
+          PY
+      - name: Run final Pattern Dictionary static suite
+        run: |
+          set -euo pipefail
+          tests=(
+            validate.mjs
+            source-verification-test.mjs
+            production-content-test.mjs
+            reference-image-test.mjs
+            search-test.mjs
+            compare-test.mjs
+            affiliate-test.mjs
+            canonical-100-test.mjs
+            browse-mobile-test.mjs
+            seo-detail-test.mjs
+            publication-test.mjs
+            wave2-source-verification-test.mjs
+            wave2-production-content-test.mjs
+            wave2-reference-image-test.mjs
+            wave3-source-verification-test.mjs
+            wave4-source-verification-test.mjs
+          )
+          for test in "${tests[@]}"; do
+            echo "=== $test ==="
+            node "tools/pattern-dictionary/tests/$test"
+          done
+          git diff --check
+      - name: Commit reproducibility fix and push final sync
+        run: |
+          git add tools/pattern-dictionary/scripts/publish-wave4.mjs
+          if ! git diff --cached --quiet; then
+            git commit -m "Pattern Dictionary: make Wave 4 search copy reproducible"
+          fi
           git push origin HEAD:feat/pattern-dictionary-wave4-production-staging-20260916
