@@ -36,34 +36,22 @@ has('tools/outsource-spec-generator/app.js', 'function buildFreeSpec');
 has('tools/outsource-spec-generator/pro-bridge.js', "const EXPECTED_ENTITLEMENT = 'nicheworks_pro'");
 has('tools/outsource-spec-generator/pro-bridge.js', 'status.active && status.entitlement === EXPECTED_ENTITLEMENT');
 
-// 63. Pages Deploy Guide — Free checklist stays local; forgeable legacy code is not authoritative.
+// 63. Pages Deploy Guide — all deployment outputs are free; legacy Pro runtime is retired.
 has('tools/pages-deploy-guide/app.js', 'function platformItems(s)');
 has('tools/pages-deploy-guide/app.js', 'copyAll');
-has('tools/pages-deploy-guide/index.html', '<script src="/assets/nw-pro.js"></script>');
-has('tools/pages-deploy-guide/index.html', '<script src="./pro-bridge.js"></script>');
-has('tools/pages-deploy-guide/pro-bridge.js', 'const EXPECTED_ENTITLEMENT = "nicheworks_pro"');
-has('tools/pages-deploy-guide/pro-bridge.js', 'status.active && status.entitlement === EXPECTED_ENTITLEMENT');
-has('tools/pages-deploy-guide/pro-bridge.js', 'localStorage.removeItem(LEGACY_KEY)');
-has('tools/pages-deploy-guide/SPEC.md', 'a legacy `NW-PDG-...` code or `pdg_pro_key` alone cannot unlock them');
-{
-  const html = read('tools/pages-deploy-guide/index.html');
-  const nwPro = html.indexOf('<script src="/assets/nw-pro.js"></script>');
-  const bridge = html.indexOf('<script src="./pro-bridge.js"></script>');
-  const app = html.indexOf('<script src="./app.js"></script>');
-  check(nwPro >= 0 && nwPro < bridge && bridge < app, 'tools/pages-deploy-guide/index.html: shared Pro scripts must load before legacy app.js');
-
-  const bridgeText = read('tools/pages-deploy-guide/pro-bridge.js');
-  const code = bridgeText.match(/BRIDGE_CODE = "([^"]+)"/)?.[1] || '';
-  const match = /^NW-PDG-([A-Z0-9]{4})-([A-Z0-9]{4})-([A-Z0-9]{2})$/.exec(code);
-  check(Boolean(match), 'tools/pages-deploy-guide/pro-bridge.js: compatibility bridge code must keep legacy shape');
-  if (match) {
-    const raw = `${match[1]}${match[2]}PDG`;
-    let sum = 0;
-    for (const ch of raw) sum = (sum + ch.charCodeAt(0)) % 97;
-    const expected = sum.toString(36).toUpperCase().padStart(2, '0').slice(-2);
-    check(match[3] === expected, 'tools/pages-deploy-guide/pro-bridge.js: compatibility bridge code checksum must match legacy validator');
-  }
-}
+has('tools/pages-deploy-guide/app.js', 'handoffPack');
+has('tools/pages-deploy-guide/app.js', 'downloadMd');
+has('tools/pages-deploy-guide/index.html', 'id="diagnosis"');
+has('tools/pages-deploy-guide/index.html', 'id="handoffPack"');
+has('tools/pages-deploy-guide/index.html', 'id="downloadMd"');
+lacks('tools/pages-deploy-guide/index.html', '<script src="/assets/nw-pro.js"></script>', 'legacy shared Pro helper');
+lacks('tools/pages-deploy-guide/index.html', '<script src="./pro-bridge.js"></script>', 'legacy Pages Deploy Guide Pro bridge');
+lacks('tools/pages-deploy-guide/index.html', '/pro/unlock/', 'legacy Pro unlock CTA');
+lacks('tools/pages-deploy-guide/app.js', 'NW-PDG-', 'legacy local Pro code');
+lacks('tools/pages-deploy-guide/app.js', 'buy.stripe.com', 'historical shared Payment Link');
+has('tools/pages-deploy-guide/SPEC.md', 'canonical primary monetization classification is `AFFILIATE`');
+has('tools/pages-deploy-guide/SPEC.md', 'Without verified configuration, the correct affiliate state is no offer');
+check(!exists('tools/pages-deploy-guide/pro-bridge.js'), 'tools/pages-deploy-guide/pro-bridge.js: obsolete Pro bridge must remain removed');
 
 // 64. Pattern Atlas — dataset-driven rendering, current edited export, cultural acknowledgement.
 has('tools/pattern-atlas/js/app.js', "import { patterns } from './data/patterns-all.js';");
