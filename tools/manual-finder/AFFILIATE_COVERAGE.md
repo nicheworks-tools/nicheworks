@@ -21,7 +21,13 @@ The required reconciliation is therefore:
 
 `printer basic 291 = detail 284 + reviewed exclusion 7 + missing 0`
 
-The coverage audit must also report:
+The camera accessory audit is independently tracked and currently reconciles as:
+
+`camera basic 185 = detail 14 + reviewed exclusion 0 + missing 171`
+
+All 14 actionable Nikon camera records now have reviewed battery/charger detail mappings. The remaining camera backlog is DJI 96, OM SYSTEM 37, GoPro 31, and Insta360 7.
+
+The printer coverage audit must also report:
 
 - `printerMissingDetail: 0`
 - `printerMissingDetailByMaker: {}`
@@ -53,7 +59,7 @@ Current state:
 2. **Consumer-printer ink** — active for the verified Brother, Epson, and Canon mappings.
 3. **Office-printer toner** — the current printer-detail audit is complete. Verified mappings exist across the maintained OKI, KYOCERA, RICOH, and FUJIFILM Business Innovation ledgers; reviewed non-retail/service-managed cases are explicit exclusions.
 4. **Office-printer drum / maintenance parts** — optional future expansion, not part of the completed toner-detail audit.
-5. **Camera batteries / chargers** — active for Nikon Wave 1 (`Z8`, `Z6III`, `Z5II`, `Zf`) only. The exact EN-EL15c battery and MH-25a charger relationship is backed by Nikon official model documentation for every activated model.
+5. **Camera batteries / chargers** — active for all 14 actionable Nikon camera records across Waves 1–2. The remaining camera backlog is measured separately and must continue in bounded reviewed waves.
 6. **Appliance replacement parts / filters** — future work only where exact compatibility can be proven.
 7. Additional accessory families require a clear user need and a verified mapping source.
 
@@ -123,18 +129,26 @@ The completed detail audit includes the maintained Brother, Epson, Canon, OKI, R
 
 FUJIFILM Business Innovation family-level evidence remains intentionally distinguished from exact retail toner codes. SDS identifiers are not treated as product SKUs. The same principle applies to every maker: evidence proves the handoff boundary; it does not authorize SKU invention.
 
-## Camera accessory rule — Nikon Wave 1
+## Camera accessory rule — Nikon Waves 1–2
 
-The first camera-accessory wave is deliberately limited to four existing canonical Nikon mirrorless-camera records: `Z8`, `Z6III`, `Z5II`, and `Zf`.
+Nikon camera accessory coverage is complete for all 14 actionable Nikon camera records:
 
-For each of these four models, Nikon official model documentation explicitly identifies the EN-EL15c rechargeable battery and MH-25a battery charger. ManualFinder therefore exposes exactly two compatibility-sensitive Amazon handoffs per activated model:
+`Nikon camera 14 = detail 14 + reviewed exclusion 0 + missing 0`
 
-- `Nikon EN-EL15c`
-- `Nikon MH-25a`
+Wave 1 remains the original four-row contract:
 
-The mapping is model-specific even though the same accessories are shared. `Z6II`, `Z7II`, `Z6`, `Z7`, `Z5`, and other Nikon records are **not** activated by family-name or battery-family inference in this wave. They remain eligible only for the generic exact-model Amazon search until a later reviewed accessory wave explicitly adds them.
+- `Z8`, `Z6III`, `Z5II`, `Zf` → `EN-EL15c` rechargeable battery / `MH-25a` battery charger.
 
-Wrong maker, wrong category, empty model, nonexistent model, and any Nikon model outside this four-record ledger fail closed for camera accessory offers.
+Wave 2 explicitly reviews and closes the remaining ten canonical Nikon models:
+
+- `Z9` → `EN-EL18d` / `MH-33`.
+- `Z7II`, `Z6II`, `Z5` → `EN-EL15c` / `MH-25a`.
+- `Z7`, `Z6` → `EN-EL15b` / `MH-25a`.
+- `Z50II`, `Z50`, `Z30`, `Zfc` → `EN-EL25a` / `MH-32`.
+
+Every mapping is tied to an exact Nikon official model/manual source. Shared battery or charger families are not generalized by model-name similarity. Wrong maker, wrong category, empty model, nonexistent model, and models outside an explicit reviewed ledger fail closed for camera accessory offers.
+
+The catalog-wide camera audit now reports 185 actionable basic records, 14 detail mappings, 0 reviewed exclusions, and 171 missing accessory-detail rows. The remaining missing counts are DJI 96, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing model arrays remain machine-readable in `tests/camera-accessory-coverage.test.mjs` output and are summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## Current fixed override
 
@@ -153,12 +167,18 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 - `affiliate-ricoh-consumables-wave3.js` extends reviewed RICOH consumable coverage.
 - `affiliate-kyocera-toner-wave3.js`, `affiliate-kyocera-toner-wave4.js`, and `affiliate-kyocera-toner-wave6.js` contain the KYOCERA supplemental ledgers. The last bundle exposes the later ledgers through Wave 19, including the final `KM-C3225E` and `KM-C870` rows.
 - `affiliate-fujifilm-toner-wave2.js` contains the supplemental FUJIFILM Business Innovation family-evidence mappings.
-- `affiliate-printer-detail-exclusions.js` is the explicit reviewed-exclusion ledger.
-- `affiliate-camera-accessories.js` owns the bounded Nikon camera accessory ledger, its dedicated coarse Amazon target, and exact accessory lookup.
-- `affiliate-runtime.js` renders the generic/body search plus zero or more verified consumable or camera-accessory searches. It loads the camera accessory layer before initial affiliate rendering so the Z8 fixed override and accessory offers can coexist.
+- `affiliate-printer-detail-exclusions.js` is the explicit reviewed printer exclusion ledger.
+- `affiliate-camera-accessories.js` owns Nikon Wave 1 and the dedicated coarse camera-accessory Amazon target.
+- `affiliate-nikon-camera-accessories-wave2.js` extends the camera resolver with the remaining ten Nikon records and exposes the merged 14-row camera ledger.
+- `affiliate-camera-detail-exclusions.js` is the reviewed camera-detail exclusion ledger and is currently empty.
+- `affiliate-runtime.js` renders the generic/body search plus zero or more verified consumable or camera-accessory searches. It loads Nikon Wave 1 and Wave 2 before initial affiliate rendering so the final config is complete before cards are mounted.
 - `/assets/amazon-affiliate.js` validates Amazon destinations and records only coarse analytics targets. Model names and consumable/accessory terms are not analytics parameters.
 - `tests/affiliate-coverage.test.mjs` is the catalog-wide reconciliation gate for basic/detail/exclusion/missing printer coverage.
-- `tests/nikon-camera-accessory-wave1.test.mjs` locks the four-model camera boundary, exact accessory identities, source URLs, tagged-search output, and fail-closed cases.
+- `tests/nikon-camera-accessory-wave1.test.mjs` locks the original four-model Wave 1 boundary.
+- `tests/nikon-camera-accessory-wave2.test.mjs` locks the ten Wave 2 records and 14-record Nikon completion.
+- `tests/camera-accessory-coverage.test.mjs` is the catalog-wide camera reconciliation and missing-model diagnostic gate.
+- `tests/camera-accessory-doc-sync.test.mjs` prevents the measured camera baseline documentation from drifting from runtime data.
+- `CAMERA_ACCESSORY_COVERAGE.md` records the current measured camera baseline and remaining maker backlog.
 - Maker/wave-specific tests enforce exact evidence boundaries and fail-closed behavior.
 
 Unsupported categories, empty models, malformed URLs, wrong makers, wrong categories, nonexistent model IDs, and unreviewed compatibility mappings must fail closed. Official manual/support links always remain above the commercial block.
@@ -176,10 +196,18 @@ The current printer phase is closed only while all of the following remain true:
 - no empty/unknown SKU is replaced by a guessed SKU
 - model-specific Amazon queries are derived only from canonical model metadata and reviewed mappings
 
-If the canonical catalog changes, these numeric values may legitimately change, but the invariant remains: every basic printer record must reconcile to either a verified detail handoff or a reviewed exclusion, with zero unreviewed missing detail.
+The Nikon camera subphase is closed only while all of the following remain true:
+
+- Nikon camera basic = 14
+- Nikon camera detail = 14
+- Nikon reviewed camera exclusions = 0
+- Nikon camera missing accessory detail = 0
+- every Nikon accessory row resolves to a canonical Nikon camera record and an official Nikon source
+
+If the canonical catalog changes, numeric values may legitimately change, but each reconciliation invariant remains mandatory.
 
 ## Next expansion gate
 
 The printer-detail Amazon handoff audit is no longer an open expansion target. Further printer work should be triggered by newly added canonical models, newly discovered evidence that changes an explicit exclusion, or a separately approved accessory family such as drums/maintenance parts.
 
-Camera accessory expansion may continue in bounded reviewed waves only where an official manufacturer source ties the exact camera model to the exact battery or charger identity. Nikon Wave 1 must not be generalized automatically to the rest of the Z family. Appliance replacement-part rules remain a separate future phase.
+Nikon camera coverage is closed. The measured camera backlog now moves to DJI 96 actionable records, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded reviewed product-family waves and exact manufacturer evidence. Appliance replacement-part rules remain a separate future phase.
