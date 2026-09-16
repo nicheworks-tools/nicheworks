@@ -7,7 +7,7 @@ const root=path.resolve(here,'..');
 const published=JSON.parse(fs.readFileSync(path.join(root,'data','patterns.json'),'utf8'));
 const ledger=JSON.parse(fs.readFileSync(path.join(root,'data','wave2-source-verification.json'),'utf8'));
 
-if(![20,40,60].includes(published.length))throw new Error(`unexpected runtime count ${published.length}`);
+if(![20,40,60,80,100].includes(published.length))throw new Error(`unexpected runtime count ${published.length}`);
 if(ledger.phase!=='wave2-source-verification'||ledger.wave!==2)throw new Error('unexpected Wave 2 source-verification metadata');
 if(ledger.policy?.publication_state!=='research-only')throw new Error('Wave 2 source ledger remains immutable research provenance');
 if(JSON.stringify(ledger.ordinal_range)!==JSON.stringify([21,40]))throw new Error('Wave 2 ordinal range must be 21-40');
