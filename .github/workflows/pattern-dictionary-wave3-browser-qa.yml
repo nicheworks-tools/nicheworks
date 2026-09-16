@@ -1,5 +1,6 @@
 name: Pattern Dictionary Wave 3 browser QA
 
+# retry: async-iife-r2
 on:
   push:
     branches:
@@ -30,11 +31,13 @@ jobs:
           exit 1
       - name: Run desktop and 390px Chromium QA
         run: |
-          cat >/tmp/pd-qa.cjs <<'NODE'
+          cat >.pd-qa.cjs <<'NODE'
           const {chromium}=require('playwright');
           const assert=require('node:assert/strict');
+          (async()=>{
           const base='http://127.0.0.1:8000/tools/pattern-dictionary/';
           const browser=await chromium.launch({headless:true});
+          try{
           const page=await browser.newPage({viewport:{width:1440,height:1000}});
           const goto=async url=>{await page.goto(url,{waitUntil:'domcontentloaded'});};
           const waitCards=async()=>page.waitForFunction(()=>document.querySelectorAll('#pattern-grid .pd-card').length===60);
@@ -96,7 +99,8 @@ jobs:
           }
           assert.equal(await page.locator('.pd-compare-grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length),1,'compare panels must stack at 390px');
 
-          await browser.close();
           console.log('OK: Chromium desktop + 390px QA passed for 60-card JA/EN browse, Wave 3 detail, search confidence, compare, fixed Amazon flow, language link, and overflow.');
+          } finally { await browser.close(); }
+          })().catch(err=>{console.error(err);process.exit(1)});
           NODE
-          node /tmp/pd-qa.cjs
+          node .pd-qa.cjs
