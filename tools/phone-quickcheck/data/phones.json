@@ -4525,7 +4525,7 @@
       },
       "included": {
         "cable": "included",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://support.apple.com/ja-jp/111865",
@@ -4576,7 +4576,7 @@
       },
       "included": {
         "cable": "included",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://support.apple.com/ja-jp/111882",
