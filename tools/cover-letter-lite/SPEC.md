@@ -9,6 +9,18 @@
 
 Create an editable English cover-letter draft from structured role information using deterministic templates rather than an AI API.
 
+### Search intent contract
+
+The public search intent is a free English cover-letter template generator for job applications. The page SHOULD make the differentiators explicit: deterministic template generation, browser-local draft generation, five template styles, editable output, and no AI API.
+
+The page MUST NOT imply job-placement, hiring, immigration, or career-advice outcomes. It MUST NOT claim that the generated draft is personalized from a job description unless the user actually supplies and reviews that information.
+
+### Affiliate boundary
+
+The current primary monetization classification is `AFFILIATE`, but no commercial block may be invented merely because of that classification. A career/job-service next action may be shown only after the free draft when a verified partner/offer configuration exists and is contextually relevant. Without verified configuration, the correct affiliate state is no offer.
+
+Affiliate content must never be presented as required to complete the cover letter, as a hiring recommendation, or as evidence that a service improves interview/hiring probability.
+
 ## Current functional contract
 
 - Accept applicant name, company, role/title, key skills, and optional experience summary.
@@ -61,6 +73,8 @@ The primary workflow is a vertical form followed by a generated draft and checkl
 - [ ] Tone, length, and template-style selections affect the generated draft without an AI API request.
 - [ ] Copy and TXT save operate on the currently generated draft.
 - [ ] The page remains explicitly English-only and retains the review/privacy warnings.
+- [ ] Public title, description, H1, and intro state that the tool is a free English cover-letter template generator and that no AI API is used.
+- [ ] No affiliate offer is rendered unless a verified contextual partner/offer configuration exists.
 
 ## Implementation evidence
 
