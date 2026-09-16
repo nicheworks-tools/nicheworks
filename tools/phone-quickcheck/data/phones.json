@@ -1539,8 +1539,8 @@
         "wirelessMaxW": null
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "waterRating": "IPX5/IPX8 / IP6X",
       "sources": {
@@ -1549,7 +1549,7 @@
         "releaseUrl": "https://www.sony.jp/CorporateCruise/Press/202505/25-0513/",
         "chargingUrl": "https://knowledge.support.sony.jp/electronics/support/articles/00302662",
         "wirelessUrl": "https://www.sony.jp/xperia/products/xperia1m7/",
-        "verifiedAt": "2026-09-13"
+        "verifiedAt": "2026-09-16"
       },
       "affiliateKeys": []
     },
@@ -1587,8 +1587,8 @@
         "wirelessMaxW": null
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "waterRating": "IPX5/IPX8 / IP6X",
       "sources": {
@@ -1597,7 +1597,7 @@
         "releaseUrl": "https://www.sony.jp/CorporateCruise/Press/2025.html",
         "chargingUrl": "https://knowledge.support.sony.jp/electronics/support/articles/00302662",
         "wirelessUrl": "https://www.sony.jp/xperia/products/xperia10m7/spec.html",
-        "verifiedAt": "2026-09-13"
+        "verifiedAt": "2026-09-16"
       },
       "affiliateKeys": []
     },
