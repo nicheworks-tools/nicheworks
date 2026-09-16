@@ -1,1 +1,966 @@
-{"schema_version":1,"phase":"wave3-staged-search","updated":"2026-09-16","publication_state":"staged-not-public","ja":{"直角が連続する柄":{"ids":["greek-key"]},"メアンダー模様":{"ids":["greek-key"]},"四角く曲がるボーダー":{"ids":["greek-key"]},"四つ葉みたいな幾何学柄":{"ids":["quatrefoil"]},"丸い四葉形":{"ids":["quatrefoil"]},"四つのローブ柄":{"ids":["quatrefoil"]},"S字が向かい合う柄":{"ids":["ogee"]},"尖った曲線の連続柄":{"ids":["ogee"]},"オジー曲線":{"ids":["ogee"]},"斜め格子柄":{"ids":["lattice"]},"交差する線の格子":{"ids":["lattice"]},"網目みたいな幾何学柄":{"ids":["lattice"]},"蜂の巣みたいな柄":{"ids":["honeycomb"]},"六角形が隙間なく並ぶ":{"ids":["honeycomb"]},"ハニカム模様":{"ids":["honeycomb"]},"半円が重なる柄":{"ids":["scallop"]},"貝殻みたいな波柄":{"ids":["scallop"]},"扇形が並ぶ模様":{"ids":["scallop"]},"かご編みみたいな生地":{"ids":["basketweave"]},"縦横の帯が編まれた柄":{"ids":["basketweave"]},"バスケット織":{"ids":["basketweave"]},"六角形が並ぶ柄":{"ids":["hexagon"]},"ヘキサゴン模様":{"ids":["hexagon"]},"蜂の巣ではない六角形":{"ids":["hexagon"]},"連結した格子柄":{"ids":["trellis"]},"菱形の枠が続く柄":{"ids":["trellis"]},"トレリス模様":{"ids":["trellis"]},"和柄の菱形":{"ids":["hishi"]},"菱が連続する日本文様":{"ids":["hishi"]},"菱継ぎみたいな柄":{"ids":["hishi"]},"三つの花弁の紋章みたいな柄":{"ids":["fleur-de-lis"]},"フランス百合みたいな模様":{"ids":["fleur-de-lis"]},"左右対称のユリ紋":{"ids":["fleur-de-lis"]},"青一色の人物風景柄":{"ids":["toile-de-jouy"]},"フランス風の物語絵の布":{"ids":["toile-de-jouy"]},"牧歌的な人物柄":{"ids":["toile-de-jouy"]},"密な花柄のチンツ":{"ids":["chintz"]},"多色の花と枝の布":{"ids":["chintz"]},"クラシックな花柄プリント":{"ids":["chintz"]},"小さい花が散った柄":{"ids":["ditsy-floral"]},"細かい小花プリント":{"ids":["ditsy-floral"]},"大きい花がない花柄":{"ids":["ditsy-floral"]},"曲がる茎のクラシック花柄":{"ids":["jacobean-floral"]},"大きい様式花と葉の柄":{"ids":["jacobean-floral"]},"クルーエル刺繍みたいな花柄":{"ids":["jacobean-floral"]},"小花で埋め尽くされた柄":{"ids":["millefleurs"]},"千の花みたいな柄":{"ids":["millefleurs"]},"密集した小花模様":{"ids":["millefleurs"]},"葉っぱ中心の植物柄":{"ids":["botanical-print"]},"植物図みたいなプリント":{"ids":["botanical-print"]},"花だけじゃないボタニカル柄":{"ids":["botanical-print"]},"ギザギザ葉のクラシック文様":{"ids":["acanthus"]},"巻いた大きな葉柄":{"ids":["acanthus"]},"アカンサス葉模様":{"ids":["acanthus"]},"丸い飾り枠が並ぶ柄":{"ids":["medallion"]},"円形の装飾モチーフ":{"ids":["medallion"]},"楕円メダリオン模様":{"ids":["medallion"]},"つる性のアイビー葉柄":{"ids":["ivy"]},"切れ込み葉の植物柄":{"ids":["ivy"]},"アイビーの葉が続く模様":{"ids":["ivy"]},"メアンダー":{"ids":["greek-key"]},"四葉形":{"ids":["quatrefoil"]},"斜め格子":{"ids":["lattice"],"concepts":["grid"]},"蜂の巣":{"ids":["honeycomb"],"concepts":["hexagon"]},"六角形":{"ids":["hexagon","honeycomb","kikko"],"concepts":["hexagon"]},"隙間のある六角形":{"ids":["hexagon"]},"共有辺の六角形セル":{"ids":["honeycomb"]},"亀甲文様":{"ids":["kikko"],"culture":["Japanese"]},"日本の六角文様":{"ids":["kikko"],"culture":["Japanese"]},"格子":{"ids":["lattice","koushi","trellis"],"concepts":["grid"]},"日本の縦横格子":{"ids":["koushi"],"culture":["Japanese"]},"連結した枠格子":{"ids":["trellis"]},"菱文様":{"ids":["hishi"],"culture":["Japanese"]},"単なる菱形":{"ids":["diamond"],"concepts":["diamond"]},"小花柄":{"ids":["ditsy-floral","millefleurs"],"families":["floral"]},"散った小花":{"ids":["ditsy-floral"]},"小花で埋め尽くす":{"ids":["millefleurs"]},"密な多色花柄":{"ids":["chintz"]},"植物全般":{"ids":["botanical-print"]},"人物風景の単色プリント":{"ids":["toile-de-jouy"]},"スクロールする茎の花柄":{"ids":["jacobean-floral"]},"ギザギザの巻き葉":{"ids":["acanthus"]},"丸い装飾枠":{"ids":["medallion"]},"つる性のアイビー葉":{"ids":["ivy"]}},"en":{"right angle meander":{"ids":["greek-key"]},"continuous Greek fret":{"ids":["greek-key"]},"square turning border":{"ids":["greek-key"]},"four lobed pattern":{"ids":["quatrefoil"]},"rounded quatrefoil":{"ids":["quatrefoil"]},"four leaf geometric motif":{"ids":["quatrefoil"]},"interlocking s curve pattern":{"ids":["ogee"]},"pointed curved repeat":{"ids":["ogee"]},"ogee curve repeat":{"ids":["ogee"]},"diagonal lattice pattern":{"ids":["lattice"]},"crossed line grid":{"ids":["lattice"]},"open crisscross pattern":{"ids":["lattice"]},"bee honeycomb pattern":{"ids":["honeycomb"]},"edge sharing hexagon cells":{"ids":["honeycomb"]},"packed hexagonal cells":{"ids":["honeycomb"]},"overlapping semicircle pattern":{"ids":["scallop"]},"shell arc repeat":{"ids":["scallop"]},"scalloped wave pattern":{"ids":["scallop"]},"basket woven texture":{"ids":["basketweave"]},"interlaced grouped strips":{"ids":["basketweave"]},"basket weave fabric":{"ids":["basketweave"]},"repeating hexagon shapes":{"ids":["hexagon"]},"spaced hexagon pattern":{"ids":["hexagon"]},"six sided polygon repeat":{"ids":["hexagon"]},"linked trellis framework":{"ids":["trellis"]},"open compartment repeat":{"ids":["trellis"]},"diamond trellis pattern":{"ids":["trellis"]},"Japanese diamond motif":{"ids":["hishi"]},"hishi pattern":{"ids":["hishi"]},"linked Japanese rhombus":{"ids":["hishi"]},"three petal emblem pattern":{"ids":["fleur-de-lis"]},"stylized lily motif":{"ids":["fleur-de-lis"]},"fleur de lys repeat":{"ids":["fleur-de-lis"]},"monochrome pictorial toile":{"ids":["toile-de-jouy"]},"pastoral figure fabric":{"ids":["toile-de-jouy"]},"Jouy narrative print":{"ids":["toile-de-jouy"]},"dense floral chintz":{"ids":["chintz"]},"multicolor flower branch fabric":{"ids":["chintz"]},"classic chintz print":{"ids":["chintz"]},"tiny scattered floral":{"ids":["ditsy-floral"]},"small flower print":{"ids":["ditsy-floral"]},"fine ditsy flowers":{"ids":["ditsy-floral"]},"scrolling stem floral":{"ids":["jacobean-floral"]},"crewel style floral pattern":{"ids":["jacobean-floral"]},"large stylized Jacobean flowers":{"ids":["jacobean-floral"]},"thousand flowers pattern":{"ids":["millefleurs"]},"dense tiny flower field":{"ids":["millefleurs"]},"millefleurs floral field":{"ids":["millefleurs"]},"leaf botanical print":{"ids":["botanical-print"]},"plant illustration pattern":{"ids":["botanical-print"]},"botanical leaves and stems":{"ids":["botanical-print"]},"scrolling jagged leaf motif":{"ids":["acanthus"]},"acanthus leaf pattern":{"ids":["acanthus"]},"ornamental curled leaf":{"ids":["acanthus"]},"framed circular ornament":{"ids":["medallion"]},"oval medallion repeat":{"ids":["medallion"]},"decorative round motif":{"ids":["medallion"]},"trailing ivy leaf pattern":{"ids":["ivy"]},"lobed ivy vine print":{"ids":["ivy"]},"repeating ivy leaves":{"ids":["ivy"]},"meander":{"ids":["greek-key"]},"four lobed":{"ids":["quatrefoil"]},"ogee curve":{"ids":["ogee"]},"diagonal lattice":{"ids":["lattice"],"concepts":["grid"]},"honeycomb cells":{"ids":["honeycomb"],"concepts":["hexagon"]},"hexagon":{"ids":["hexagon","honeycomb","kikko"],"concepts":["hexagon"]},"spaced hexagons":{"ids":["hexagon"]},"shared edge hexagon cells":{"ids":["honeycomb"]},"Japanese tortoise shell hexagon":{"ids":["kikko"],"culture":["Japanese"]},"lattice grid":{"ids":["lattice","koushi","trellis"],"concepts":["grid"]},"Japanese orthogonal lattice":{"ids":["koushi"],"culture":["Japanese"]},"linked trellis frame":{"ids":["trellis"]},"Japanese hishi diamond":{"ids":["hishi"],"culture":["Japanese"]},"generic diamond":{"ids":["diamond"],"concepts":["diamond"]},"small floral":{"ids":["ditsy-floral","millefleurs"],"families":["floral"]},"scattered tiny flowers":{"ids":["ditsy-floral"]},"dense thousand flowers":{"ids":["millefleurs"]},"dense multicolor floral":{"ids":["chintz"]},"general plant print":{"ids":["botanical-print"]},"monochrome pictorial figures":{"ids":["toile-de-jouy"]},"jagged scrolling leaf":{"ids":["acanthus"]},"framed round ornament":{"ids":["medallion"]},"trailing ivy leaves":{"ids":["ivy"]}}}
+{
+  "schema_version": 1,
+  "phase": "wave3-staged-search",
+  "updated": "2026-09-16",
+  "publication_state": "staged-not-public",
+  "ja": {
+    "直角が連続する柄": {
+      "ids": [
+        "greek-key"
+      ]
+    },
+    "メアンダー模様": {
+      "ids": [
+        "greek-key"
+      ]
+    },
+    "四角く曲がるボーダー": {
+      "ids": [
+        "greek-key"
+      ]
+    },
+    "四つ葉みたいな幾何学柄": {
+      "ids": [
+        "quatrefoil"
+      ]
+    },
+    "丸い四葉形": {
+      "ids": [
+        "quatrefoil"
+      ]
+    },
+    "四つのローブ柄": {
+      "ids": [
+        "quatrefoil"
+      ]
+    },
+    "S字が向かい合う柄": {
+      "ids": [
+        "ogee"
+      ]
+    },
+    "尖った曲線の連続柄": {
+      "ids": [
+        "ogee"
+      ]
+    },
+    "オジー曲線": {
+      "ids": [
+        "ogee"
+      ]
+    },
+    "斜め格子柄": {
+      "ids": [
+        "lattice"
+      ]
+    },
+    "交差する線の格子": {
+      "ids": [
+        "lattice"
+      ]
+    },
+    "網目みたいな幾何学柄": {
+      "ids": [
+        "lattice"
+      ]
+    },
+    "蜂の巣みたいな柄": {
+      "ids": [
+        "honeycomb"
+      ]
+    },
+    "六角形が隙間なく並ぶ": {
+      "ids": [
+        "honeycomb"
+      ]
+    },
+    "ハニカム模様": {
+      "ids": [
+        "honeycomb"
+      ]
+    },
+    "半円が重なる柄": {
+      "ids": [
+        "scallop"
+      ]
+    },
+    "貝殻みたいな波柄": {
+      "ids": [
+        "scallop"
+      ]
+    },
+    "扇形が並ぶ模様": {
+      "ids": [
+        "scallop"
+      ]
+    },
+    "かご編みみたいな生地": {
+      "ids": [
+        "basketweave"
+      ]
+    },
+    "縦横の帯が編まれた柄": {
+      "ids": [
+        "basketweave"
+      ]
+    },
+    "バスケット織": {
+      "ids": [
+        "basketweave"
+      ]
+    },
+    "六角形が並ぶ柄": {
+      "ids": [
+        "hexagon"
+      ]
+    },
+    "ヘキサゴン模様": {
+      "ids": [
+        "hexagon"
+      ]
+    },
+    "蜂の巣ではない六角形": {
+      "ids": [
+        "hexagon"
+      ]
+    },
+    "連結した格子柄": {
+      "ids": [
+        "trellis"
+      ]
+    },
+    "菱形の枠が続く柄": {
+      "ids": [
+        "trellis"
+      ]
+    },
+    "トレリス模様": {
+      "ids": [
+        "trellis"
+      ]
+    },
+    "和柄の菱形": {
+      "ids": [
+        "hishi"
+      ]
+    },
+    "菱が連続する日本文様": {
+      "ids": [
+        "hishi"
+      ]
+    },
+    "菱継ぎみたいな柄": {
+      "ids": [
+        "hishi"
+      ]
+    },
+    "三つの花弁の紋章みたいな柄": {
+      "ids": [
+        "fleur-de-lis"
+      ]
+    },
+    "フランス百合みたいな模様": {
+      "ids": [
+        "fleur-de-lis"
+      ]
+    },
+    "左右対称のユリ紋": {
+      "ids": [
+        "fleur-de-lis"
+      ]
+    },
+    "青一色の人物風景柄": {
+      "ids": [
+        "toile-de-jouy"
+      ]
+    },
+    "フランス風の物語絵の布": {
+      "ids": [
+        "toile-de-jouy"
+      ]
+    },
+    "牧歌的な人物柄": {
+      "ids": [
+        "toile-de-jouy"
+      ]
+    },
+    "密な花柄のチンツ": {
+      "ids": [
+        "chintz"
+      ]
+    },
+    "多色の花と枝の布": {
+      "ids": [
+        "chintz"
+      ]
+    },
+    "クラシックな花柄プリント": {
+      "ids": [
+        "chintz"
+      ]
+    },
+    "小さい花が散った柄": {
+      "ids": [
+        "ditsy-floral"
+      ]
+    },
+    "細かい小花プリント": {
+      "ids": [
+        "ditsy-floral"
+      ]
+    },
+    "大きい花がない花柄": {
+      "ids": [
+        "ditsy-floral"
+      ]
+    },
+    "曲がる茎のクラシック花柄": {
+      "ids": [
+        "jacobean-floral"
+      ]
+    },
+    "大きい様式花と葉の柄": {
+      "ids": [
+        "jacobean-floral"
+      ]
+    },
+    "クルーエル刺繍みたいな花柄": {
+      "ids": [
+        "jacobean-floral"
+      ]
+    },
+    "小花で埋め尽くされた柄": {
+      "ids": [
+        "millefleurs"
+      ]
+    },
+    "千の花みたいな柄": {
+      "ids": [
+        "millefleurs"
+      ]
+    },
+    "密集した小花模様": {
+      "ids": [
+        "millefleurs"
+      ]
+    },
+    "葉っぱ中心の植物柄": {
+      "ids": [
+        "botanical-print"
+      ]
+    },
+    "植物図みたいなプリント": {
+      "ids": [
+        "botanical-print"
+      ]
+    },
+    "花だけじゃないボタニカル柄": {
+      "ids": [
+        "botanical-print"
+      ]
+    },
+    "ギザギザ葉のクラシック文様": {
+      "ids": [
+        "acanthus"
+      ]
+    },
+    "巻いた大きな葉柄": {
+      "ids": [
+        "acanthus"
+      ]
+    },
+    "アカンサス葉模様": {
+      "ids": [
+        "acanthus"
+      ]
+    },
+    "丸い飾り枠が並ぶ柄": {
+      "ids": [
+        "medallion"
+      ]
+    },
+    "円形の装飾モチーフ": {
+      "ids": [
+        "medallion"
+      ]
+    },
+    "楕円メダリオン模様": {
+      "ids": [
+        "medallion"
+      ]
+    },
+    "つる性のアイビー葉柄": {
+      "ids": [
+        "ivy"
+      ]
+    },
+    "切れ込み葉の植物柄": {
+      "ids": [
+        "ivy"
+      ]
+    },
+    "アイビーの葉が続く模様": {
+      "ids": [
+        "ivy"
+      ]
+    },
+    "メアンダー": {
+      "ids": [
+        "greek-key"
+      ]
+    },
+    "四葉形": {
+      "ids": [
+        "quatrefoil"
+      ]
+    },
+    "斜め格子": {
+      "ids": [
+        "lattice"
+      ],
+      "concepts": [
+        "grid"
+      ]
+    },
+    "蜂の巣": {
+      "ids": [
+        "honeycomb"
+      ],
+      "concepts": [
+        "hexagon"
+      ]
+    },
+    "六角形": {
+      "ids": [
+        "hexagon",
+        "honeycomb",
+        "kikko"
+      ],
+      "concepts": [
+        "hexagon"
+      ]
+    },
+    "隙間のある六角形": {
+      "ids": [
+        "hexagon"
+      ]
+    },
+    "共有辺の六角形セル": {
+      "ids": [
+        "honeycomb"
+      ]
+    },
+    "亀甲文様": {
+      "ids": [
+        "kikko"
+      ],
+      "culture": [
+        "Japanese"
+      ]
+    },
+    "日本の六角文様": {
+      "ids": [
+        "kikko"
+      ],
+      "culture": [
+        "Japanese"
+      ]
+    },
+    "格子": {
+      "ids": [
+        "lattice",
+        "koushi",
+        "trellis"
+      ],
+      "concepts": [
+        "grid"
+      ]
+    },
+    "日本の縦横格子": {
+      "ids": [
+        "koushi"
+      ],
+      "culture": [
+        "Japanese"
+      ]
+    },
+    "連結した枠格子": {
+      "ids": [
+        "trellis"
+      ]
+    },
+    "菱文様": {
+      "ids": [
+        "hishi"
+      ],
+      "culture": [
+        "Japanese"
+      ]
+    },
+    "単なる菱形": {
+      "ids": [
+        "diamond"
+      ],
+      "concepts": [
+        "diamond"
+      ]
+    },
+    "小花柄": {
+      "ids": [
+        "ditsy-floral",
+        "millefleurs"
+      ],
+      "families": [
+        "floral"
+      ]
+    },
+    "散った小花": {
+      "ids": [
+        "ditsy-floral"
+      ]
+    },
+    "小花で埋め尽くす": {
+      "ids": [
+        "millefleurs"
+      ]
+    },
+    "密な多色花柄": {
+      "ids": [
+        "chintz"
+      ]
+    },
+    "植物全般": {
+      "ids": [
+        "botanical-print"
+      ]
+    },
+    "人物風景の単色プリント": {
+      "ids": [
+        "toile-de-jouy"
+      ]
+    },
+    "スクロールする茎の花柄": {
+      "ids": [
+        "jacobean-floral"
+      ]
+    },
+    "ギザギザの巻き葉": {
+      "ids": [
+        "acanthus"
+      ]
+    },
+    "丸い装飾枠": {
+      "ids": [
+        "medallion"
+      ]
+    },
+    "つる性のアイビー葉": {
+      "ids": [
+        "ivy"
+      ]
+    },
+    "グレンチェックに大きい格子": {
+      "ids": [
+        "prince-of-wales-check"
+      ]
+    },
+    "日本の亀甲六角文様": {
+      "ids": [
+        "kikko"
+      ],
+      "culture": [
+        "Japanese"
+      ]
+    },
+    "斜め線が交差する一般格子": {
+      "ids": [
+        "lattice"
+      ],
+      "concepts": [
+        "grid"
+      ]
+    },
+    "連結した菱形の枠組み柄": {
+      "ids": [
+        "trellis"
+      ]
+    },
+    "単なる幾何学の菱形反復": {
+      "ids": [
+        "diamond"
+      ],
+      "concepts": [
+        "diamond"
+      ]
+    },
+    "地が見える散らし小花": {
+      "ids": [
+        "ditsy-floral"
+      ]
+    },
+    "小花で地面を埋め尽くす柄": {
+      "ids": [
+        "millefleurs"
+      ]
+    },
+    "密な多色の花と枝のチンツ": {
+      "ids": [
+        "chintz"
+      ]
+    },
+    "葉っぱ中心の植物プリント": {
+      "ids": [
+        "botanical-print"
+      ]
+    }
+  },
+  "en": {
+    "right angle meander": {
+      "ids": [
+        "greek-key"
+      ]
+    },
+    "continuous Greek fret": {
+      "ids": [
+        "greek-key"
+      ]
+    },
+    "square turning border": {
+      "ids": [
+        "greek-key"
+      ]
+    },
+    "four lobed pattern": {
+      "ids": [
+        "quatrefoil"
+      ]
+    },
+    "rounded quatrefoil": {
+      "ids": [
+        "quatrefoil"
+      ]
+    },
+    "four leaf geometric motif": {
+      "ids": [
+        "quatrefoil"
+      ]
+    },
+    "interlocking s curve pattern": {
+      "ids": [
+        "ogee"
+      ]
+    },
+    "pointed curved repeat": {
+      "ids": [
+        "ogee"
+      ]
+    },
+    "ogee curve repeat": {
+      "ids": [
+        "ogee"
+      ]
+    },
+    "diagonal lattice pattern": {
+      "ids": [
+        "lattice"
+      ]
+    },
+    "crossed line grid": {
+      "ids": [
+        "lattice"
+      ]
+    },
+    "open crisscross pattern": {
+      "ids": [
+        "lattice"
+      ]
+    },
+    "bee honeycomb pattern": {
+      "ids": [
+        "honeycomb"
+      ]
+    },
+    "edge sharing hexagon cells": {
+      "ids": [
+        "honeycomb"
+      ]
+    },
+    "packed hexagonal cells": {
+      "ids": [
+        "honeycomb"
+      ]
+    },
+    "overlapping semicircle pattern": {
+      "ids": [
+        "scallop"
+      ]
+    },
+    "shell arc repeat": {
+      "ids": [
+        "scallop"
+      ]
+    },
+    "scalloped wave pattern": {
+      "ids": [
+        "scallop"
+      ]
+    },
+    "basket woven texture": {
+      "ids": [
+        "basketweave"
+      ]
+    },
+    "interlaced grouped strips": {
+      "ids": [
+        "basketweave"
+      ]
+    },
+    "basket weave fabric": {
+      "ids": [
+        "basketweave"
+      ]
+    },
+    "repeating hexagon shapes": {
+      "ids": [
+        "hexagon"
+      ]
+    },
+    "spaced hexagon pattern": {
+      "ids": [
+        "hexagon"
+      ]
+    },
+    "six sided polygon repeat": {
+      "ids": [
+        "hexagon"
+      ]
+    },
+    "linked trellis framework": {
+      "ids": [
+        "trellis"
+      ]
+    },
+    "open compartment repeat": {
+      "ids": [
+        "trellis"
+      ]
+    },
+    "diamond trellis pattern": {
+      "ids": [
+        "trellis"
+      ]
+    },
+    "Japanese diamond motif": {
+      "ids": [
+        "hishi"
+      ]
+    },
+    "hishi pattern": {
+      "ids": [
+        "hishi"
+      ]
+    },
+    "linked Japanese rhombus": {
+      "ids": [
+        "hishi"
+      ]
+    },
+    "three petal emblem pattern": {
+      "ids": [
+        "fleur-de-lis"
+      ]
+    },
+    "stylized lily motif": {
+      "ids": [
+        "fleur-de-lis"
+      ]
+    },
+    "fleur de lys repeat": {
+      "ids": [
+        "fleur-de-lis"
+      ]
+    },
+    "monochrome pictorial toile": {
+      "ids": [
+        "toile-de-jouy"
+      ]
+    },
+    "pastoral figure fabric": {
+      "ids": [
+        "toile-de-jouy"
+      ]
+    },
+    "Jouy narrative print": {
+      "ids": [
+        "toile-de-jouy"
+      ]
+    },
+    "dense floral chintz": {
+      "ids": [
+        "chintz"
+      ]
+    },
+    "multicolor flower branch fabric": {
+      "ids": [
+        "chintz"
+      ]
+    },
+    "classic chintz print": {
+      "ids": [
+        "chintz"
+      ]
+    },
+    "tiny scattered floral": {
+      "ids": [
+        "ditsy-floral"
+      ]
+    },
+    "small flower print": {
+      "ids": [
+        "ditsy-floral"
+      ]
+    },
+    "fine ditsy flowers": {
+      "ids": [
+        "ditsy-floral"
+      ]
+    },
+    "scrolling stem floral": {
+      "ids": [
+        "jacobean-floral"
+      ]
+    },
+    "crewel style floral pattern": {
+      "ids": [
+        "jacobean-floral"
+      ]
+    },
+    "large stylized Jacobean flowers": {
+      "ids": [
+        "jacobean-floral"
+      ]
+    },
+    "thousand flowers pattern": {
+      "ids": [
+        "millefleurs"
+      ]
+    },
+    "dense tiny flower field": {
+      "ids": [
+        "millefleurs"
+      ]
+    },
+    "millefleurs floral field": {
+      "ids": [
+        "millefleurs"
+      ]
+    },
+    "leaf botanical print": {
+      "ids": [
+        "botanical-print"
+      ]
+    },
+    "plant illustration pattern": {
+      "ids": [
+        "botanical-print"
+      ]
+    },
+    "botanical leaves and stems": {
+      "ids": [
+        "botanical-print"
+      ]
+    },
+    "scrolling jagged leaf motif": {
+      "ids": [
+        "acanthus"
+      ]
+    },
+    "acanthus leaf pattern": {
+      "ids": [
+        "acanthus"
+      ]
+    },
+    "ornamental curled leaf": {
+      "ids": [
+        "acanthus"
+      ]
+    },
+    "framed circular ornament": {
+      "ids": [
+        "medallion"
+      ]
+    },
+    "oval medallion repeat": {
+      "ids": [
+        "medallion"
+      ]
+    },
+    "decorative round motif": {
+      "ids": [
+        "medallion"
+      ]
+    },
+    "trailing ivy leaf pattern": {
+      "ids": [
+        "ivy"
+      ]
+    },
+    "lobed ivy vine print": {
+      "ids": [
+        "ivy"
+      ]
+    },
+    "repeating ivy leaves": {
+      "ids": [
+        "ivy"
+      ]
+    },
+    "meander": {
+      "ids": [
+        "greek-key"
+      ]
+    },
+    "four lobed": {
+      "ids": [
+        "quatrefoil"
+      ]
+    },
+    "ogee curve": {
+      "ids": [
+        "ogee"
+      ]
+    },
+    "diagonal lattice": {
+      "ids": [
+        "lattice"
+      ],
+      "concepts": [
+        "grid"
+      ]
+    },
+    "honeycomb cells": {
+      "ids": [
+        "honeycomb"
+      ],
+      "concepts": [
+        "hexagon"
+      ]
+    },
+    "hexagon": {
+      "ids": [
+        "hexagon",
+        "honeycomb",
+        "kikko"
+      ],
+      "concepts": [
+        "hexagon"
+      ]
+    },
+    "spaced hexagons": {
+      "ids": [
+        "hexagon"
+      ]
+    },
+    "shared edge hexagon cells": {
+      "ids": [
+        "honeycomb"
+      ]
+    },
+    "Japanese tortoise shell hexagon": {
+      "ids": [
+        "kikko"
+      ],
+      "culture": [
+        "Japanese"
+      ]
+    },
+    "lattice grid": {
+      "ids": [
+        "lattice",
+        "koushi",
+        "trellis"
+      ],
+      "concepts": [
+        "grid"
+      ]
+    },
+    "Japanese orthogonal lattice": {
+      "ids": [
+        "koushi"
+      ],
+      "culture": [
+        "Japanese"
+      ]
+    },
+    "linked trellis frame": {
+      "ids": [
+        "trellis"
+      ]
+    },
+    "Japanese hishi diamond": {
+      "ids": [
+        "hishi"
+      ],
+      "culture": [
+        "Japanese"
+      ]
+    },
+    "generic diamond": {
+      "ids": [
+        "diamond"
+      ],
+      "concepts": [
+        "diamond"
+      ]
+    },
+    "small floral": {
+      "ids": [
+        "ditsy-floral",
+        "millefleurs"
+      ],
+      "families": [
+        "floral"
+      ]
+    },
+    "scattered tiny flowers": {
+      "ids": [
+        "ditsy-floral"
+      ]
+    },
+    "dense thousand flowers": {
+      "ids": [
+        "millefleurs"
+      ]
+    },
+    "dense multicolor floral": {
+      "ids": [
+        "chintz"
+      ]
+    },
+    "general plant print": {
+      "ids": [
+        "botanical-print"
+      ]
+    },
+    "monochrome pictorial figures": {
+      "ids": [
+        "toile-de-jouy"
+      ]
+    },
+    "jagged scrolling leaf": {
+      "ids": [
+        "acanthus"
+      ]
+    },
+    "framed round ornament": {
+      "ids": [
+        "medallion"
+      ]
+    },
+    "trailing ivy leaves": {
+      "ids": [
+        "ivy"
+      ]
+    }
+  }
+}

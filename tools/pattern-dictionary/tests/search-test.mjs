@@ -53,11 +53,11 @@ function rank(q,lang){
     return{pattern:p,score};
   }).sort((a,b)=>b.score-a.score||a.pattern.id.localeCompare(b.pattern.id));
 }
-function confidence(r){if(!r.length||r[0].score<MATCH_THRESHOLD)return'LOW';const d=r[0].score-(r[1]?.score||0);if(r[0].score>=70&&d>=20)return'HIGH';if(r[0].score>=35)return'MEDIUM';return'LOW'}
+function confidence(r,q='',lang='en'){if(!r.length||r[0].score<MATCH_THRESHOLD)return'LOW';const nq=norm(q),p=r[0].pattern,other=lang==='ja'?'en':'ja',exact=[p.names?.[lang],p.names?.[other],...(p.aliases?.[lang]||[]),...(p.aliases?.[other]||[])].some(v=>norm(v)===nq),d=r[0].score-(r[1]?.score||0);if(tokens(nq).length===1&&!exact&&r[0].score>=35)return'MEDIUM';if(r[0].score>=70&&d>=20)return'HIGH';if(r[0].score>=35)return'MEDIUM';return'LOW'}
 
 let fail=0;
 for(const c of cases){
-  const ranked=rank(c.query,c.lang),vis=ranked.filter(x=>x.score>=MATCH_THRESHOLD),top=vis[0]?.pattern.id,top3=vis.slice(0,3).map(x=>x.pattern.id),conf=confidence(vis);
+  const ranked=rank(c.query,c.lang),vis=ranked.filter(x=>x.score>=MATCH_THRESHOLD),top=vis[0]?.pattern.id,top3=vis.slice(0,3).map(x=>x.pattern.id),conf=confidence(vis,c.query,c.lang);
   let ok=true,expect=[];
   if(c.zero){ok=vis.length===0;expect.push('zero-result');}
   if(c.expected){const hit=c.top1?top===c.expected:top3.includes(c.expected);ok=ok&&hit;expect.push(`${c.expected} ${c.top1?'Top1':'Top3'}`);}
