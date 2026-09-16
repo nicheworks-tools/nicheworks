@@ -1,0 +1,114 @@
+{
+  "version": "2026-09-16-wave1",
+  "status": "published_allowlist",
+  "selectionPolicy": {
+    "requiresGscDemand": true,
+    "requiresAuthoritativeCharacterEvidence": true,
+    "requiresStandaloneValue": true,
+    "identityBlocked": true,
+    "unresolvedBlocked": true,
+    "massGenerationBlocked": true
+  },
+  "gsc": {
+    "property": "sc-domain:nicheworks.app",
+    "windowStart": "2026-03-18",
+    "windowEnd": "2026-09-13",
+    "note": "Settled Search Console query/page data reviewed before publication. Counts are selection evidence, not evergreen page copy."
+  },
+  "records": [
+    {
+      "modern": "画",
+      "old": "畫",
+      "relation": "old_to_modern",
+      "url": "https://nicheworks.app/tools/old-kanji-reference/kanji/u753b/",
+      "gscEvidence": {
+        "query": "計画 旧字体",
+        "impressions": 11,
+        "clicks": 0,
+        "averagePosition": 9.09,
+        "observedLandingPage": "https://nicheworks.app/tools/old-kanji-reference/"
+      },
+      "repositoryEvidence": {
+        "mapping": "畫 -> 画",
+        "metadataFile": "tools/old-kanji-reference/meta-extra-5.json",
+        "metadataStatus": "verified"
+      },
+      "authoritativeEvidence": [
+        {
+          "authority": "文化庁",
+          "source": "常用漢字表（平成22年内閣告示第2号）",
+          "url": "https://www.bunka.go.jp/kokugo_nihongo/sisaku/joho/joho/kijun/naikaku/pdf/joyokanjihyo_20101130.pdf",
+          "establishes": "常用漢字表で画（畫）を対応掲載し、例語に計画を掲載。"
+        },
+        {
+          "authority": "Unicode Consortium",
+          "source": "Unihan/CJK data",
+          "url": "https://www.unicode.org/charts/",
+          "establishes": "画はU+753B、畫はU+756B。Unicode/Unihan data records their traditional-variant relationship."
+        }
+      ]
+    },
+    {
+      "modern": "将",
+      "old": "將",
+      "relation": "old_to_modern",
+      "url": "https://nicheworks.app/tools/old-kanji-reference/kanji/u5c06/",
+      "gscEvidence": {
+        "query": "将 旧字体",
+        "impressions": 1,
+        "clicks": 0,
+        "averagePosition": 2.0,
+        "observedLandingPage": "https://nicheworks.app/tools/old-kanji-reference/"
+      },
+      "repositoryEvidence": {
+        "mapping": "將 -> 将",
+        "metadataFile": "tools/old-kanji-reference/meta.json",
+        "metadataStatus": "verified"
+      },
+      "authoritativeEvidence": [
+        {
+          "authority": "文化庁",
+          "source": "常用漢字表（平成22年内閣告示第2号）",
+          "url": "https://www.bunka.go.jp/kokugo_nihongo/sisaku/joho/joho/kijun/naikaku/pdf/joyokanjihyo_20101130.pdf",
+          "establishes": "常用漢字表で将（將）を対応掲載し、例語に将来・将棋・大将を掲載。"
+        },
+        {
+          "authority": "Unicode Consortium",
+          "source": "CJK/Unihan data",
+          "url": "https://www.unicode.org/charts/",
+          "establishes": "将はU+5C06、將はU+5C07。Unicode CJK data identifies the distinct unified ideograph code points and variant relationship."
+        }
+      ]
+    }
+  ],
+  "blockedObservedQueries": [
+    {
+      "query": "臨 旧字体",
+      "reason": "current repository record is identity/reference, not an approved old-to-modern substitution"
+    },
+    {
+      "query": "霧 旧字体",
+      "reason": "current repository record is identity/reference, not an approved old-to-modern substitution"
+    },
+    {
+      "query": "魂 旧字体",
+      "reason": "current repository record is identity/reference, not an approved old-to-modern substitution"
+    },
+    {
+      "query": "鯨 旧字体",
+      "reason": "current repository record is identity/reference, not an approved old-to-modern substitution"
+    },
+    {
+      "query": "倉 旧字",
+      "reason": "current repository record is identity/reference, not an approved old-to-modern substitution"
+    },
+    {
+      "query": "贈 旧字",
+      "reason": "current repository record is identity/reference, not an approved old-to-modern substitution"
+    },
+    {
+      "query": "輝 旧字",
+      "reason": "current repository record is identity/reference, not an approved old-to-modern substitution"
+    }
+  ]
+}
