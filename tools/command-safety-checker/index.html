@@ -13,17 +13,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AIコマンド実行前チェック｜Command Safety Checker | NicheWorks</title>
-  <meta name="description" content="AIが生成したbash、zsh、PowerShellコマンドを実行前に貼り付けて、削除、外部スクリプト実行、権限昇格、秘密情報漏洩などの危険パターンをブラウザ内で検出する無料ツールです。Proでレビュー、Codex確認依頼、GitHub Issue下書き、JSON/Markdown出力に対応します。">
+  <meta name="description" content="AIが生成したbash、zsh、PowerShellコマンドを実行前に貼り付けて、削除、外部スクリプト実行、権限昇格、秘密情報漏洩などの危険パターンをブラウザ内で検出する無料ツールです。有料レビュー出力はproduct-scoped移行準備中です。">
   <link rel="canonical" href="https://nicheworks.app/tools/command-safety-checker/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="AIコマンド実行前チェック｜Command Safety Checker | NicheWorks">
-  <meta property="og:description" content="AIが生成したbash、zsh、PowerShellコマンドを実行前に貼り付けて、削除、外部スクリプト実行、権限昇格、秘密情報漏洩などの危険パターンをブラウザ内で検出する無料ツールです。Proでレビュー、Codex確認依頼、GitHub Issue下書き、JSON/Markdown出力に対応します。">
+  <meta property="og:description" content="AIが生成したbash、zsh、PowerShellコマンドを実行前に貼り付けて、削除、外部スクリプト実行、権限昇格、秘密情報漏洩などの危険パターンをブラウザ内で検出する無料ツールです。">
   <meta property="og:url" content="https://nicheworks.app/tools/command-safety-checker/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta property="og:site_name" content="NicheWorks">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AIコマンド実行前チェック｜Command Safety Checker | NicheWorks">
-  <meta name="twitter:description" content="AIが生成したbash、zsh、PowerShellコマンドを実行前に貼り付けて、削除、外部スクリプト実行、権限昇格、秘密情報漏洩などの危険パターンをブラウザ内で検出する無料ツールです。Proでレビュー、Codex確認依頼、GitHub Issue下書き、JSON/Markdown出力に対応します。">
+  <meta name="twitter:description" content="AIが生成したbash、zsh、PowerShellコマンドを実行前に貼り付けて、危険パターンをブラウザ内で検出します。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="robots" content="index,follow">
   <link rel="icon" href="/assets/favicon.ico">
@@ -39,9 +39,8 @@
     "url": "https://nicheworks.app/tools/command-safety-checker/",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
-    "description": "AIが生成したbash、zsh、PowerShellコマンドを実行前に貼り付けて、削除、外部スクリプト実行、権限昇格、秘密情報漏洩などの危険パターンをブラウザ内で検出する無料ツールです。Proでレビュー、Codex確認依頼、GitHub Issue下書き、JSON/Markdown出力に対応します。",
+    "description": "AIが生成したbash、zsh、PowerShellコマンドを実行前に貼り付けて危険パターンをブラウザ内で検出する無料ツールです。",
     "inLanguage": ["ja", "en"],
-    "offers": { "@type": "Offer", "price": "2.99", "priceCurrency": "USD" },
     "publisher": { "@type": "Organization", "name": "NicheWorks", "url": "https://nicheworks.app/" }
   }
   </script>
@@ -53,8 +52,8 @@
       { "@type": "Question", "name": "このツールはコマンドの安全を保証しますか？", "acceptedAnswer": { "@type": "Answer", "text": "いいえ。危険パターンを検出する補助ツールです。実行可否は内容を確認したうえで自己判断してください。" } },
       { "@type": "Question", "name": "貼り付けたコマンドはサーバーに送信されますか？", "acceptedAnswer": { "@type": "Answer", "text": "いいえ。チェック処理はブラウザ内で完結し、入力内容を保存・送信しません。" } },
       { "@type": "Question", "name": "PowerShellにも対応していますか？", "acceptedAnswer": { "@type": "Answer", "text": "一部対応しています。Remove-Item、Invoke-WebRequest、iwr、iex、ExecutionPolicy、Clear-Diskなどの危険パターンを検出します。" } },
-      { "@type": "Question", "name": "Proでは何ができますか？", "acceptedAnswer": { "@type": "Answer", "text": "Proではレビュー用レポート、Markdown handoff、Codex確認依頼文、GitHub Issue下書き、JSON/Markdown exportを生成できます。" } },
-      { "@type": "Question", "name": "購入後はどう有効になりますか？", "acceptedAnswer": { "@type": "Answer", "text": "購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。" } }
+      { "@type": "Question", "name": "予定している有料機能は何ですか？", "acceptedAnswer": { "@type": "Answer", "text": "レビュー用レポート、Markdown handoff、Codex確認依頼文、GitHub Issue下書き、JSON/Markdown exportを有料境界として予定しています。" } },
+      { "@type": "Question", "name": "今ここから購入できますか？", "acceptedAnswer": { "@type": "Answer", "text": "いいえ。product-scoped移行はまだ本番化されておらず、このページでは購入リンクを提供していません。" } }
     ]
   }
   </script>
@@ -70,8 +69,6 @@
   </header>
 
   <main class="nw-main">
-
-
     <section class="card intro-card">
       <h2 class="h2"><span data-i18n="ja">まず無料でチェック</span><span data-i18n="en">Run a free check first</span></h2>
       <p class="lead" data-i18n="ja">OSを選び、コマンドを貼って「チェックする」を押してください。結果にはリスク、カテゴリ、理由、確認方法、簡易代替案が表示されます。</p>
@@ -93,28 +90,17 @@
 
     <section class="card pro-block" id="topProBlock" aria-labelledby="topProTitle">
       <div class="pro-head">
-        <div class="pro-title" id="topProTitle">
-          <span class="badge badge-pro">PRO</span>
-          <span data-pro-status>Previewモード / Preview mode</span>
-        </div>
-        <a class="btn btn-primary" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener">
-          <span data-i18n="ja">Buy Pro（$2.99）</span>
-          <span data-i18n="en">Buy Pro ($2.99)</span>
-        </a>
+        <div class="pro-title" id="topProTitle"><span class="badge badge-pro">PRO_BUNDLE</span><span data-pro-status>Migration pending / 移行準備中</span></div>
+        <span class="btn btn-primary" aria-disabled="true"><span data-i18n="ja">移行完了まで購入不可</span><span data-i18n="en">Purchase unavailable while migration is pending</span></span>
       </div>
-      <p class="pro-note" data-i18n="ja">無料チェックはそのまま使えます。Proでは、検出結果を開発者・Codex・GitHub Issue・作業ログへ渡せるレビュー成果物に変換できます。</p>
-      <p class="pro-note" data-i18n="en">The free checker remains available. Pro turns findings into review deliverables for developers, Codex, GitHub Issues, and work logs.</p>
+      <p class="pro-note" data-i18n="ja">無料チェックはそのまま使えます。有料境界はレビュー成果物ですが、product-scoped移行はまだ本番化されていません。</p>
+      <p class="pro-note" data-i18n="en">The free checker remains available. Review deliverables are the planned paid boundary, but product-scoped migration is not live yet.</p>
       <div class="pro-preview" data-pro-preview>
-        <p><b data-i18n="ja">Previewモード</b><b data-i18n="en">Preview mode</b></p>
-        <p data-i18n="ja">Pro未有効時は、無料チェックはそのまま使えます。Pro専用ボタンはロックされ、下のような出力サンプルだけを表示します。</p>
-        <p data-i18n="en">When Pro is not active, free checks still work. Pro-only buttons stay locked and this sample shows what active Pro exports generate.</p>
-        <div class="pro-actions pro-actions-locked" aria-label="Locked Pro actions">
-          <button class="btn" type="button" disabled>Copy Pro Review Report</button>
-          <button class="btn" type="button" disabled>Save Markdown Review</button>
-          <button class="btn" type="button" disabled>Copy Codex Safety Check Task</button>
-          <button class="btn" type="button" disabled>Copy GitHub Issue</button>
-          <button class="btn" type="button" disabled>Export JSON</button>
-          <button class="btn" type="button" disabled>Export Markdown</button>
+        <p><b data-i18n="ja">移行準備中</b><b data-i18n="en">Migration pending</b></p>
+        <p data-i18n="ja">無料チェックはそのまま使えます。既存の旧entitlementでは互換機能が解放される場合がありますが、新規購入リンクは提供していません。</p>
+        <p data-i18n="en">Free checks remain available. Existing legacy entitlements may still unlock compatibility features, but no new purchase link is offered.</p>
+        <div class="pro-actions pro-actions-locked" aria-label="Locked paid actions">
+          <button class="btn" type="button" disabled>Copy Pro Review Report</button><button class="btn" type="button" disabled>Save Markdown Review</button><button class="btn" type="button" disabled>Copy Codex Safety Check Task</button><button class="btn" type="button" disabled>Copy GitHub Issue</button><button class="btn" type="button" disabled>Export JSON</button><button class="btn" type="button" disabled>Export Markdown</button>
         </div>
         <pre class="code-block pro-sample-code"># Command Safety Pro Review
 
@@ -142,8 +128,8 @@ JSON export excerpt:
 {"tool_id":"command-safety-checker","summary":{"overall_risk":"HIGH"},"final_note":"This report is a review aid only. It does not certify that a command is safe."}</pre>
       </div>
       <div class="pro-active-note" data-pro-only hidden>
-        <p data-i18n="ja"><b>Pro解放済み:</b> 現在のチェック結果から、レビュー用Markdown、Codex確認依頼、GitHub Issue、JSON/Markdown exportを生成できます。</p>
-        <p data-i18n="en"><b>Pro unlocked:</b> Generate review Markdown, Codex tasks, GitHub Issues, and JSON/Markdown exports from the current check result.</p>
+        <p data-i18n="ja"><b>旧Pro互換entitlement有効:</b> 現在のチェック結果からレビュー用Markdown、Codex確認依頼、GitHub Issue、JSON/Markdown exportを生成できます。</p>
+        <p data-i18n="en"><b>Legacy Pro compatibility entitlement active:</b> Generate review Markdown, Codex tasks, GitHub Issues, and JSON/Markdown exports from the current check result.</p>
       </div>
     </section>
 
@@ -163,21 +149,11 @@ JSON export excerpt:
       <div class="divider"></div><h2 class="h2"><span data-i18n="ja">安全に寄せるチェックリスト</span><span data-i18n="en">Safer steps checklist</span></h2><ol id="saferSteps" class="ul"></ol>
       <div class="divider"></div><div class="normalized-block" id="normalizedWrap" hidden><h2 class="h2"><span data-i18n="ja">正規化コマンド（確認用）</span><span data-i18n="en">Normalized command</span></h2><pre id="normalizedCmd" class="code-block"></pre></div>
       <div class="pro-block" id="proBlock">
-        <div class="pro-head">
-          <div class="pro-title"><span class="badge badge-pro">PRO</span><span data-pro-status>Previewモード / Preview mode</span></div>
-          <a class="btn btn-primary" data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener"><span data-i18n="ja">Buy Pro（$2.99）</span><span data-i18n="en">Buy Pro ($2.99)</span></a>
-        </div>
-        <p class="pro-note" data-i18n="ja">Proは無料チェック結果を、実行前レビュー用の整理済みレポートやhandoff packへ変換します。</p>
-        <p class="pro-note" data-i18n="en">Pro converts free check results into structured pre-run review reports and handoff packs.</p>
+        <div class="pro-head"><div class="pro-title"><span class="badge badge-pro">PRO_BUNDLE</span><span data-pro-status>Migration pending / 移行準備中</span></div><span class="btn btn-primary" aria-disabled="true"><span data-i18n="ja">移行完了まで購入不可</span><span data-i18n="en">Purchase unavailable while migration is pending</span></span></div>
+        <p class="pro-note" data-i18n="ja">有料境界は、無料チェック結果を実行前レビュー用の整理済みレポートやhandoff packへ変換する機能です。</p>
+        <p class="pro-note" data-i18n="en">The planned paid boundary converts free check results into structured pre-run review reports and handoff packs.</p>
         <div class="pro-preview" data-pro-preview>
-          <div class="pro-actions pro-actions-locked" aria-label="Locked Pro actions">
-            <button class="btn" type="button" disabled>Copy Pro Review Report</button>
-            <button class="btn" type="button" disabled>Save Markdown Review</button>
-            <button class="btn" type="button" disabled>Copy Codex Safety Check Task</button>
-            <button class="btn" type="button" disabled>Copy GitHub Issue</button>
-            <button class="btn" type="button" disabled>Export JSON</button>
-            <button class="btn" type="button" disabled>Export Markdown</button>
-          </div>
+          <div class="pro-actions pro-actions-locked" aria-label="Locked paid actions"><button class="btn" type="button" disabled>Copy Pro Review Report</button><button class="btn" type="button" disabled>Save Markdown Review</button><button class="btn" type="button" disabled>Copy Codex Safety Check Task</button><button class="btn" type="button" disabled>Copy GitHub Issue</button><button class="btn" type="button" disabled>Export JSON</button><button class="btn" type="button" disabled>Export Markdown</button></div>
           <pre class="code-block pro-sample-code">Pro Review Report sample:
 ## 4. Findings
 - Severity: HIGH
@@ -201,48 +177,24 @@ Title: Review HIGH command before execution
 JSON export excerpt:
 {"tool_id":"command-safety-checker","os_mode":"unix","priority_checklist":["P0-1: ..."]}</pre>
         </div>
-        <div class="pro-actions" data-pro-only hidden>
-          <button class="btn" type="button" data-pro-action="copy-report">Copy Pro Review Report</button>
-          <button class="btn" type="button" data-pro-action="save-markdown">Save Markdown Review</button>
-          <button class="btn" type="button" data-pro-action="copy-codex">Copy Codex Safety Check Task</button>
-          <button class="btn" type="button" data-pro-action="copy-issue">Copy GitHub Issue</button>
-          <button class="btn" type="button" data-pro-action="export-json">Export JSON</button>
-          <button class="btn" type="button" data-pro-action="export-markdown">Export Markdown</button>
-        </div>
+        <div class="pro-actions" data-pro-only hidden><button class="btn" type="button" data-pro-action="copy-report">Copy Pro Review Report</button><button class="btn" type="button" data-pro-action="save-markdown">Save Markdown Review</button><button class="btn" type="button" data-pro-action="copy-codex">Copy Codex Safety Check Task</button><button class="btn" type="button" data-pro-action="copy-issue">Copy GitHub Issue</button><button class="btn" type="button" data-pro-action="export-json">Export JSON</button><button class="btn" type="button" data-pro-action="export-markdown">Export Markdown</button></div>
       </div>
     </section>
 
     <section class="card faq-section" id="faq">
       <h2 class="h2">FAQ</h2>
-      <div class="faq-item">
-        <h3 data-i18n="ja">無料版でできることは？</h3><h3 data-i18n="en">What can I do for free?</h3>
-        <p data-i18n="ja">コマンド貼り付け、OS別チェック、危険度・カテゴリ・理由・確認方法・簡易代替案の表示、結果コピーは無料のまま使えます。</p>
-        <p data-i18n="en">Pasting commands, OS-specific checks, risk/category/reason/check/quick alternative display, and free result copy remain available without Pro.</p>
-      </div>
-      <div class="faq-item">
-        <h3 data-i18n="ja">Proで解放されることは？</h3><h3 data-i18n="en">What does Pro unlock?</h3>
-        <p data-i18n="ja">Pro Review Report、Markdown保存、Codex安全確認依頼文、GitHub Issue下書き、優先度付きチェックリスト、安全寄りのコマンド提案、JSON/Markdown exportを生成できます。</p>
-        <p data-i18n="en">Pro unlocks Pro Review Reports, Markdown saving, Codex safety-check tasks, GitHub Issue drafts, priority checklists, safer command suggestions, and JSON/Markdown exports.</p>
-      </div>
-      <div class="faq-item">
-        <h3 data-i18n="ja">PreviewモードとActiveモードの違いは？</h3><h3 data-i18n="en">What is the difference between Preview and Active mode?</h3>
-        <p data-i18n="ja">Previewモードでは出力サンプルと購入ボタンを表示し、Pro専用ボタンはロックされます。Activeモードではサンプルを隠し、無料チェック実行後にPro出力ボタンを有効化します。</p>
-        <p data-i18n="en">Preview mode shows samples and the buy button while locking Pro-only buttons. Active mode hides samples and enables Pro export actions after a free check has run.</p>
-      </div>
-      <div class="faq-item">
-        <h3 data-i18n="ja">購入後の流れと注意点は？</h3><h3 data-i18n="en">What happens after purchase?</h3>
-        <p data-i18n="ja">購入後は共通NicheWorks Proの有効化ページを経由して、このブラウザでProが有効になります。別端末・別ブラウザ・シークレットモード・サイトデータ削除後は、同じ状態が引き継がれないため再有効化が必要です。</p>
-        <p data-i18n="en">After purchase, the shared NicheWorks Pro unlock page activates Pro in this browser. Another device, another browser, private browsing, or deleted site data does not carry the same local state and requires activation again.</p>
-        <p><a data-pro-buy href="https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209" target="_blank" rel="noopener">Buy Pro / Proを購入</a></p>
-      </div>
-      <div class="faq-item">
-        <h3 data-i18n="ja">このツールは安全を保証しますか？</h3><h3 data-i18n="en">Does this tool guarantee safety?</h3>
-        <p data-i18n="ja">いいえ。無料チェックもProレポートも実行前レビュー補助です。安全保証ではないため、URL・パス・秘密情報・権限・ディスク影響・残リスクを必ず人が確認してください。</p>
-        <p data-i18n="en">No. Free checks and Pro reports are pre-run review aids, not safety guarantees. A human must verify URLs, paths, secrets, permissions, disk impact, and residual risk.</p>
-      </div>
+      <div class="faq-item"><h3 data-i18n="ja">無料版でできることは？</h3><h3 data-i18n="en">What can I do for free?</h3><p data-i18n="ja">コマンド貼り付け、OS別チェック、危険度・カテゴリ・理由・確認方法・簡易代替案の表示、結果コピーは無料のまま使えます。</p><p data-i18n="en">Pasting commands, OS-specific checks, risk/category/reason/check/quick alternative display, and free result copy remain available without Pro.</p></div>
+      <div class="faq-item"><h3 data-i18n="ja">予定している有料機能は？</h3><h3 data-i18n="en">What is the planned paid boundary?</h3><p data-i18n="ja">Pro Review Report、Markdown保存、Codex安全確認依頼文、GitHub Issue下書き、優先度付きチェックリスト、安全寄りのコマンド提案、JSON/Markdown exportです。</p><p data-i18n="en">The planned paid boundary covers Pro Review Reports, Markdown saving, Codex safety-check tasks, GitHub Issue drafts, priority checklists, safer command suggestions, and JSON/Markdown exports.</p></div>
+      <div class="faq-item"><h3 data-i18n="ja">Previewと互換Activeの違いは？</h3><h3 data-i18n="en">What is the difference between Preview and legacy compatibility Active?</h3><p data-i18n="ja">Previewでは出力サンプルのみを表示します。旧Pro互換entitlementが厳密に確認できた場合だけ、既存の有料出力操作を互換機能として解放します。</p><p data-i18n="en">Preview shows output samples only. Existing paid output actions unlock only when the exact legacy compatibility entitlement is present.</p></div>
+      <div class="faq-item"><h3 data-i18n="ja">今ここから購入できますか？</h3><h3 data-i18n="en">Can I buy the paid bundle here now?</h3><p data-i18n="ja">できません。product-scoped移行はまだ本番化されておらず、価格・Stripe Price・production feature namespaceも未承認です。</p><p data-i18n="en">No. Product-scoped migration is not live, and price, Stripe Price mapping, and the production feature namespace are not yet authorized.</p></div>
+      <div class="faq-item"><h3 data-i18n="ja">このツールは安全を保証しますか？</h3><h3 data-i18n="en">Does this tool guarantee safety?</h3><p data-i18n="ja">いいえ。無料チェックもレビュー出力も実行前レビュー補助です。安全保証ではないため、URL・パス・秘密情報・権限・ディスク影響・残リスクを必ず人が確認してください。</p><p data-i18n="en">No. Free checks and review outputs are pre-run review aids, not safety guarantees. A human must verify URLs, paths, secrets, permissions, disk impact, and residual risk.</p></div>
     </section>
 
     <div class="nw-donate"><p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><p class="nw-donate-text" data-i18n="en">If this tool helped, consider supporting development.</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div><div class="nw-links"><a href="/tools/api-key-token-redactor/">API Key Token Redactor</a> / <a href="/tools/log-formatter/">LogFormatter</a> / <a href="/tools/json-repair/">JSON Repair</a> / <a href="/tools/sql-db-risk-checker/">SQL DB Risk Checker</a></div>
   </main>
 
-  <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer><div id="toast" class="toast" hidden></div><script src="/assets/nw-pro.js"></script><script src="./app-core.js"></script><script src="./pro-bridge.js"></script></body></html>
+  <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
+  <div id="toast" class="toast" hidden></div>
+  <script src="/assets/nw-pro.js"></script><script src="./app-core.js"></script><script src="./pro-bridge.js"></script><script src="./pro-authority-guard.js"></script>
+</body>
+</html>
