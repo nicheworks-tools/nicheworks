@@ -88,11 +88,26 @@ assert.ok(
   'ManualFinder spec Nikon completion values must match the live audit'
 );
 
+const djiBasic = summary.cameraBasicByMaker.DJI || 0;
+const djiDetail = summary.cameraDetailByMaker.DJI || 0;
+const djiExcluded = summary.cameraDetailExcludedByMaker.DJI || 0;
+const djiMissing = summary.cameraMissingAccessoryByMaker.DJI || 0;
+assert.ok(
+  doc.includes(`DJI camera ${djiBasic} = detail ${djiDetail} + reviewed exclusion ${djiExcluded} + missing ${djiMissing}`),
+  'DJI camera progress line must match the live audit'
+);
+assert.ok(
+  spec.includes(`**${djiBasic} basic = ${djiDetail} detail + ${djiExcluded} reviewed exclusions + ${djiMissing} missing accessory detail**`),
+  'ManualFinder spec DJI progress values must match the live audit'
+);
+
 for (const path of [
   'affiliate-nikon-camera-accessories-wave2.js',
+  'affiliate-dji-camera-accessories-wave1.js',
   'affiliate-camera-detail-exclusions.js',
   'CAMERA_ACCESSORY_COVERAGE.md',
   'tests/nikon-camera-accessory-wave2.test.mjs',
+  'tests/dji-osmo-action-accessory-wave1.test.mjs',
   'tests/camera-accessory-coverage.test.mjs',
   'tests/camera-accessory-doc-sync.test.mjs'
 ]) {
