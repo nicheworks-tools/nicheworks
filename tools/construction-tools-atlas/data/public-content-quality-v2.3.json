@@ -1,6 +1,6 @@
 {
   "schema": "cta-public-content-quality-v2.3",
-  "version": "2026-09-16-q013-content-complete-1",
+  "version": "2026-09-16-q014-identity-closure-1",
   "policy": {
     "purpose": "Measure source-backed or canonical-ID-enriched core content separately from runtime generic fallback copy.",
     "fallback_independent_core_requires": [
@@ -15,30 +15,30 @@
     "aliases_and_relationships_require_subject_specific_review": true
   },
   "sources": {
-    "publication_inventory_version": "2026-09-16-q013-identity-closure-1",
-    "publication_id_sha256": "177a014ef6de2e56988ed1031b273494fbfa18350e096ffbc2ee8a29343328c5",
+    "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
+    "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
     "quality_manifest_version": "2026-09-14-manifest-8",
     "content_enrichment_version": "2026-09-16-wave4c"
   },
   "summary": {
-    "public_entries": 881,
+    "public_entries": 870,
     "fallback_independent_core": 311,
-    "runtime_fallback_dependent": 570,
+    "runtime_fallback_dependent": 559,
     "missing_core_bilingual_content": 0,
-    "explicit_bilingual_identity": 881,
-    "explicit_bilingual_definition": 881,
+    "explicit_bilingual_identity": 870,
+    "explicit_bilingual_definition": 870,
     "explicit_bilingual_detail": 530,
     "explicit_bilingual_bullets": 311,
     "explicit_bilingual_examples": 530,
     "explicit_bilingual_aliases": 279,
     "content_enriched_entries": 171,
-    "has_category_context": 881,
-    "has_task_context": 881
+    "has_category_context": 870,
+    "has_task_context": 870
   },
   "fallback_field_counts": {
-    "detail": 351,
-    "bullets": 570,
-    "examples": 351
+    "detail": 340,
+    "bullets": 559,
+    "examples": 340
   },
   "by_type": {
     "access": {
@@ -54,9 +54,9 @@
       "missing_core_bilingual_content": 0
     },
     "component": {
-      "public_entries": 208,
-      "fallback_independent_core": 65,
-      "runtime_fallback_dependent": 143,
+      "public_entries": 205,
+      "fallback_independent_core": 67,
+      "runtime_fallback_dependent": 138,
       "missing_core_bilingual_content": 0
     },
     "consumable": {
@@ -84,9 +84,9 @@
       "missing_core_bilingual_content": 0
     },
     "fastener": {
-      "public_entries": 17,
+      "public_entries": 18,
       "fallback_independent_core": 9,
-      "runtime_fallback_dependent": 8,
+      "runtime_fallback_dependent": 9,
       "missing_core_bilingual_content": 0
     },
     "fixture": {
@@ -108,21 +108,21 @@
       "missing_core_bilingual_content": 0
     },
     "material": {
-      "public_entries": 166,
-      "fallback_independent_core": 65,
-      "runtime_fallback_dependent": 101,
+      "public_entries": 158,
+      "fallback_independent_core": 63,
+      "runtime_fallback_dependent": 95,
       "missing_core_bilingual_content": 0
     },
     "materials": {
-      "public_entries": 15,
+      "public_entries": 14,
       "fallback_independent_core": 0,
-      "runtime_fallback_dependent": 15,
+      "runtime_fallback_dependent": 14,
       "missing_core_bilingual_content": 0
     },
     "process": {
-      "public_entries": 15,
+      "public_entries": 19,
       "fallback_independent_core": 3,
-      "runtime_fallback_dependent": 12,
+      "runtime_fallback_dependent": 16,
       "missing_core_bilingual_content": 0
     },
     "rigging": {
@@ -155,12 +155,6 @@
       "runtime_fallback_dependent": 0,
       "missing_core_bilingual_content": 0
     },
-    "system": {
-      "public_entries": 1,
-      "fallback_independent_core": 0,
-      "runtime_fallback_dependent": 1,
-      "missing_core_bilingual_content": 0
-    },
     "temporary": {
       "public_entries": 3,
       "fallback_independent_core": 2,
@@ -174,16 +168,16 @@
       "missing_core_bilingual_content": 0
     },
     "tool": {
-      "public_entries": 336,
+      "public_entries": 333,
       "fallback_independent_core": 96,
-      "runtime_fallback_dependent": 240,
+      "runtime_fallback_dependent": 237,
       "missing_core_bilingual_content": 0
     }
   },
   "hashes": {
-    "content_status_sha256": "026271b36bd8aaa637fe6c04a67d53e67bd58d4a776e326bb2578a0a6491d933",
+    "content_status_sha256": "69522938d97a2109b0d8f50494cefbe7466953e79f19094a256725b29214cd5d",
     "fallback_independent_id_sha256": "3b420d13684b71399b70e1a82e366da0d9152235d2a1cd689690d7845e4c7301",
-    "fallback_dependent_id_sha256": "d28e63dfacb0e5496a1fcc4c746d8f7f3193c5e8fa3131f53e26cec1c0564bf1",
+    "fallback_dependent_id_sha256": "37b053b3c0b35907c3559f55c1bcf1e82717e7f349dfeacb5a01d07de334df00",
     "missing_core_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
     "content_enriched_id_sha256": "5d6d4d78a740056532b416744c0f5252e278fddc28f109d8d86620ccc89877d5"
   },
@@ -342,16 +336,6 @@
     ],
     "runtime_fallback_dependent": [
       {
-        "id": "q014_roof_tile",
-        "source": "data/tools.quality-014.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
         "id": "q014_galvalume_roof",
         "source": "data/tools.quality-014.json",
         "enrichment": null,
@@ -382,37 +366,7 @@
         ]
       },
       {
-        "id": "q014_roof_batten",
-        "source": "data/tools.quality-014.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
         "id": "q014_eave_flashing",
-        "source": "data/tools.quality-014.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q014_valley_flashing",
-        "source": "data/tools.quality-014.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q014_drip_edge",
         "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [
@@ -582,7 +536,47 @@
         ]
       },
       {
-        "id": "q014_exterior_siding",
+        "id": "q014_fiber_cement_siding",
+        "source": "data/tools.quality-014.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q014_metal_siding",
+        "source": "data/tools.quality-014.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q014_siding_starter",
+        "source": "data/tools.quality-014.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q014_siding_clip",
+        "source": "data/tools.quality-014.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q014_siding_joint",
         "source": "data/tools.quality-014.json",
         "enrichment": null,
         "fallback_fields": [

@@ -1,6 +1,6 @@
 {
   "schema": "cta-canonical-redirects-v2.3",
-  "version": "2026-09-16-q013-identity-closure-1",
+  "version": "2026-09-16-q014-identity-closure-1",
   "policy": {
     "purpose": "Retire confirmed duplicate public canonicals without breaking legacy IDs, search vocabulary, images, or favorites.",
     "source_records_remain_stored": true,
@@ -285,6 +285,61 @@
       "from": "q013_marker_pen",
       "to": "marker",
       "reason": "same general site marker-pen concept"
+    },
+    {
+      "from": "q014_roof_tile",
+      "to": "roof_tile",
+      "reason": "same roof-tile canonical concept"
+    },
+    {
+      "from": "q014_roof_batten",
+      "to": "roof_batten",
+      "reason": "same roof/tile batten canonical concept"
+    },
+    {
+      "from": "q014_valley_flashing",
+      "to": "valley_flashing",
+      "reason": "same roof-valley flashing canonical concept"
+    },
+    {
+      "from": "q014_drip_edge",
+      "to": "drip_edge",
+      "reason": "same drip-edge flashing canonical concept"
+    },
+    {
+      "from": "q014_exterior_siding",
+      "to": "siding",
+      "reason": "same generic exterior-siding canonical concept"
+    },
+    {
+      "from": "q014_weather_barrier",
+      "to": "housewrap",
+      "reason": "same weather-resistive housewrap membrane concept"
+    },
+    {
+      "from": "q014_soffit_board",
+      "to": "soffit",
+      "reason": "same soffit-board/eaves-soffit canonical concept"
+    },
+    {
+      "from": "q014_window_sash",
+      "to": "window_sash",
+      "reason": "same operable window-sash canonical concept"
+    },
+    {
+      "from": "q014_threshold",
+      "to": "threshold",
+      "reason": "same doorway-threshold canonical concept"
+    },
+    {
+      "from": "q014_window_flashing_tape",
+      "to": "flashing_tape",
+      "reason": "same opening/window flashing-tape concept"
+    },
+    {
+      "from": "q014_masking_for_sealant",
+      "to": "masking_tape",
+      "reason": "same masking-tape material; q014 only narrows the use case"
     }
   ]
 }
