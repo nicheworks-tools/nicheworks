@@ -3570,12 +3570,12 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-sense9/specs/",
-        "manualUrl": "https://k-tai.sharp.co.jp/support/",
+        "manualUrl": "https://k-tai.sharp.co.jp/support/other/sense9_simfree/manual/index.html",
         "releaseUrl": "https://www.sharp.co.jp/k-tai/products/aquos-sense9/",
         "verifiedAt": "2026-09-16",
         "chargingUrl": "https://jp.sharp/k-tai/products/aquos-sense9/specs/"
@@ -3620,12 +3620,12 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-r9/specs/",
-        "manualUrl": "https://k-tai.sharp.co.jp/support/",
+        "manualUrl": "https://k-tai.sharp.co.jp/support/other/r9_simfree/manual/index.html",
         "releaseUrl": "https://www.sharp.co.jp/k-tai/products/aquos-r9/",
         "verifiedAt": "2026-09-16",
         "chargingUrl": "https://cgi.jp.sharp/k-tai/products/aquos-r9/specs/"
@@ -3670,12 +3670,12 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-wish4/specs/",
-        "manualUrl": "https://k-tai.sharp.co.jp/support/",
+        "manualUrl": "https://k-tai.sharp.co.jp/support/other/wish4_simfree/manual/index.html",
         "releaseUrl": "https://www.sharp.co.jp/k-tai/products/aquos-wish4/",
         "verifiedAt": "2026-09-16",
         "chargingUrl": "https://jp.sharp/k-tai/products/aquos-wish4/specs/"
