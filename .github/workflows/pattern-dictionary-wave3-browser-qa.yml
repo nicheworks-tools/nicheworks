@@ -1,6 +1,6 @@
 name: Pattern Dictionary Wave 3 browser QA
 
-# retry: floral-filter-selector-r3
+# retry: confidence-label-case-r4
 on:
   push:
     branches:
@@ -78,12 +78,12 @@ jobs:
           await goto(base+'en/search.html?q=curved');
           await page.waitForSelector('.pd-top-result .pd-title');
           assert.equal((await page.locator('.pd-top-result .pd-title').innerText()).trim(),'Ogee');
-          assert.equal((await page.locator('.pd-top-result .pd-kicker').innerText()).trim(),'MEDIUM confidence');
+          assert.equal((await page.locator('.pd-top-result .pd-kicker').innerText()).trim(),'MEDIUM CONFIDENCE');
 
           await goto(base+'search.html?q='+encodeURIComponent('ギンガムチェク'));
           await page.waitForSelector('.pd-top-result .pd-title');
           assert.equal((await page.locator('.pd-top-result .pd-title').innerText()).trim(),'ギンガムチェック');
-          assert.equal((await page.locator('.pd-top-result .pd-kicker').innerText()).trim(),'HIGH confidence');
+          assert.equal((await page.locator('.pd-top-result .pd-kicker').innerText()).trim(),'HIGH CONFIDENCE');
 
           await goto(base+'compare.html?a=honeycomb&b=hexagon');
           await page.waitForSelector('.pd-compare-guide');
