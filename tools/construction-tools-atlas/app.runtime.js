@@ -1,462 +1,686 @@
 (() => {
   "use strict";
-  const $ = (s, r = document) => r.querySelector(s);
-  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
-  const LS = { theme: "cta_theme", lang: "cta_uilang", favs: "cta_favs", action: "cta_action", category: "cta_category", task: "cta_task" };
+
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+  const MOBILE_QUERY = "(max-width: 899px)";
+  const PAGE_SIZE = 50;
+  const LS = {
+    lang: "cta_uilang",
+    favs: "cta_favs",
+    action: "cta_action",
+    type: "cta_type",
+    category: "cta_category",
+    task: "cta_task",
+    favOnly: "cta_favs_only"
+  };
+
   const ACTIONS = [
-    { id: "all", label: "All", tokens: [] },
-    { id: "cut", label: "Cut", tokens: ["cut", "cutting", "saw", "切断", "切る"] },
-    { id: "fasten", label: "Fasten", tokens: ["fasten", "fastening", "bolt", "screw", "締付", "固定"] },
-    { id: "measure", label: "Measure", tokens: ["measure", "measurement", "level", "計測", "測定"] },
-    { id: "drill", label: "Drill", tokens: ["drill", "hole", "穴あけ", "穿孔"] }
+    { id: "all", ja: "すべて", en: "All", tokens: [] },
+    { id: "cut", ja: "切る", en: "Cut", tokens: ["cut", "cutting", "saw", "切断", "切る"] },
+    { id: "fasten", ja: "固定", en: "Fasten", tokens: ["fasten", "fastening", "bolt", "screw", "締付", "固定"] },
+    { id: "measure", ja: "測る", en: "Measure", tokens: ["measure", "measurement", "level", "計測", "測定"] },
+    { id: "drill", ja: "穴あけ", en: "Drill", tokens: ["drill", "hole", "穴あけ", "穿孔"] }
   ];
-  const DETAIL_MEDIA = "(min-width: 900px)";
-  const els = {};
+  const TYPES = [
+    { id: "all", ja: "すべて", en: "All" },
+    { id: "tool", ja: "工具", en: "Tools" },
+    { id: "material", ja: "材料", en: "Materials" },
+    { id: "task", ja: "作業", en: "Tasks" },
+    { id: "term", ja: "用語", en: "Terms" }
+  ];
+
   const state = {
-    theme: localStorage.getItem(LS.theme) || "light",
-    lang: localStorage.getItem(LS.lang) || "ja",
+    lang: initialLang(),
     q: "",
     action: localStorage.getItem(LS.action) || "all",
+    type: localStorage.getItem(LS.type) || "all",
     category: localStorage.getItem(LS.category) || "all",
     task: localStorage.getItem(LS.task) || "all",
-    favs: new Set(json(localStorage.getItem(LS.favs), [])),
-    entries: [], filtered: [], visibleCount: 50, pageSize: 50, current: null,
-    searchDictionary: { version: "", signals: [] },
+    favOnly: localStorage.getItem(LS.favOnly) === "true",
+    favs: new Set(readJson(localStorage.getItem(LS.favs), [])),
+    entries: [],
+    entryById: new Map(),
+    filtered: [],
+    visibleCount: PAGE_SIZE,
+    current: null,
+    images: new Map(),
+    offers: new Map(),
     searchEngine: null,
-    ignoredSignals: new Set(),
     interpretations: [],
-    confidence: "low"
+    ignoredSignals: new Set(),
+    ready: false
   };
-  let draft = { action: state.action, category: state.category, task: state.task };
 
-  function bindEls() {
-    ["overlay","themeBtn","langBtn","menuBtn","supportBtn","searchInput","clearBtn","actionChips","filterOpenBtn","categoryBtn","taskBtn","resultCount","hintText","resultList","loadMoreWrap","loadMoreBtn","loadMoreHint","statusArea","detailSheet","detailClose","detailTitle","detailStar","detailChips","detailTerms","detailDesc","detailBullets","detailTabs","tabMeaning","tabExamples","tabAliases","tabMeta","supportInlineBtn","supportSheet","supportClose","menuSheet","menuClose","howtoOpen","howtoSheet","howtoClose","favsOnly","importFavsBtn","exportFavsBtn","filterSheet","filterClose","filterActionItems","filterCategoryItems","filterTaskItems","filterApplyBtn","filterResetBtn","interpretationBar","interpretationLabel","interpretationChips"].forEach((id) => { els[id] = $("#" + id); });
-  }
-  function json(s, f) { try { return s ? JSON.parse(s) : f; } catch (_) { return f; } }
-  function str(v) { return typeof v === "string" ? v.trim() : ""; }
-  function arr(v) { if (Array.isArray(v)) return v.filter(Boolean).map(String); if (typeof v === "string" && v.trim()) return [v.trim()]; return []; }
-  function loc(obj, ja, en) { return { ja: str(obj?.ja) || str(ja), en: str(obj?.en) || str(en) }; }
-  function pick(pair) { return state.lang === "ja" ? (pair?.ja || pair?.en || "") : (pair?.en || pair?.ja || ""); }
-  function clear(n) { if (!n) return; while (n.firstChild) n.removeChild(n.firstChild); }
-  function div(text, cls) { const el = document.createElement("div"); if (cls) el.className = cls; el.textContent = text || ""; return el; }
-  function chip(parent, text) { const t = str(text); if (!parent || !t) return; const s = document.createElement("span"); s.className = "chip"; s.textContent = t; parent.appendChild(s); }
-  function ul(parent, items, empty) { clear(parent); if (!parent) return; const values = arr(items); if (!values.length) { if (empty) parent.appendChild(div(empty, "muted")); return; } const list = document.createElement("ul"); values.forEach((v) => { const li = document.createElement("li"); li.textContent = v; list.appendChild(li); }); parent.appendChild(list); }
-  function isDesktopDetail() { return window.matchMedia?.(DETAIL_MEDIA)?.matches === true; }
-  function transientSheets() { return [els.supportSheet, els.menuSheet, els.howtoSheet, els.filterSheet].filter(Boolean); }
-  function anyTransientOpen() { return transientSheets().some((sheet) => !sheet.hidden); }
-  function norm(v) {
-    if (state.searchEngine?.normalizeText) return state.searchEngine.normalizeText(v);
-    return String(v || "").normalize("NFKC").trim().toLowerCase().replace(/[\s\u3000]+/g, " ");
-  }
-  function normTerm(v) { return norm(v).replace(/[／]/g, "/").trim(); }
-  function entryTermKey(e) { const ja = normTerm(e?.term?.ja); const en = normTerm(e?.term?.en); return ja || en ? `${ja}::${en}` : ""; }
+  const els = {};
 
-  function normalize(raw, i) {
-    const description = loc(raw?.description, raw?.description_ja, raw?.description_en);
-    const detail = loc(raw?.detail, raw?.detail_ja, raw?.detail_en);
-    const summary = loc(raw?.summary, raw?.summary_ja, raw?.summary_en);
+  function initialLang() {
+    const stored = localStorage.getItem(LS.lang);
+    if (["ja", "en", "both"].includes(stored)) return stored;
+    return (navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en";
+  }
+  function readJson(value, fallback) { try { return value ? JSON.parse(value) : fallback; } catch (_) { return fallback; } }
+  function text(value) { return typeof value === "string" ? value.trim() : ""; }
+  function list(value) {
+    if (Array.isArray(value)) return value.flatMap((v) => typeof v === "string" ? [v.trim()] : []).filter(Boolean);
+    if (typeof value === "string" && value.trim()) return [value.trim()];
+    return [];
+  }
+  function unique(values) { return [...new Set(values.filter(Boolean))]; }
+  function pair(value, jaFallback = "", enFallback = "") {
+    return { ja: text(value?.ja) || text(jaFallback), en: text(value?.en) || text(enFallback) };
+  }
+  function clear(node) { if (node) node.replaceChildren(); }
+  function isMobile() { return window.matchMedia(MOBILE_QUERY).matches; }
+  function normalized(value) {
+    if (state.searchEngine?.normalizeText) return state.searchEngine.normalizeText(value);
+    return String(value || "").normalize("NFKC").trim().toLowerCase().replace(/[\s\u3000]+/g, " ");
+  }
+  function entryTermKey(entry) { return `${normalized(entry.term.ja)}::${normalized(entry.term.en)}`; }
+
+  function bindElements() {
+    [
+      "langControl","favoritesToggle","pageTitle","pageLead","privacyNote","searchInput","clearSearch","autocomplete",
+      "interpretationBar","interpretationLabel","interpretationChips","actionLabel","actionFilters","typeLabel","typeFilters",
+      "openFilters","atlasWorkspace","resultCount","resultHint","loadingState","resultList","loadMoreWrap","loadMore","loadMoreHint",
+      "detailPanel","detailEmpty","detailContent","detailClose","detailFavorite","detailCopy","detailShare","detailEyebrow","detailTitle",
+      "detailSecondary","detailTaxonomy","detailImage","detailImageMissing","whatHeading","detailDefinition","notesSection","notesHeading",
+      "detailNotes","detailBullets","examplesSection","examplesHeading","detailExamples","aliasesSection","aliasesHeading","detailAliases",
+      "relatedSection","relatedHeading","detailRelated","affiliateSection","affiliateHeading","affiliateLead","affiliateMount","affiliateDisclosure",
+      "detailLink","mobileBackdrop","filterDialog","filterDialogTitle","categoryHeading","categoryFilters","taskHeading","taskFilters","resetFilters"
+    ].forEach((id) => { els[id] = document.getElementById(id); });
+  }
+
+  function normalizeEntry(raw, index) {
+    const description = pair(raw?.description, raw?.description_ja, raw?.description_en);
+    const summary = pair(raw?.summary, raw?.summary_ja, raw?.summary_en);
+    const detail = pair(raw?.detail, raw?.detail_ja, raw?.detail_en);
     return {
-      id: str(raw?.id || raw?.slug) || `entry_${i}`,
-      type: str(raw?.type),
-      term: loc(raw?.term, raw?.ja || raw?.jp, raw?.en),
-      aliases: { ja: arr(raw?.aliases?.ja || raw?.alias?.ja || raw?.aliases_ja), en: arr(raw?.aliases?.en || raw?.alias?.en || raw?.aliases_en) },
+      id: text(raw?.id || raw?.slug) || `entry_${index}`,
+      type: text(raw?.type),
+      term: pair(raw?.term, raw?.ja || raw?.jp, raw?.en),
+      aliases: {
+        ja: list(raw?.aliases?.ja || raw?.alias?.ja || raw?.aliases_ja),
+        en: list(raw?.aliases?.en || raw?.alias?.en || raw?.aliases_en)
+      },
       description: { ja: description.ja || summary.ja || detail.ja, en: description.en || summary.en || detail.en },
       summary: { ja: summary.ja || description.ja, en: summary.en || description.en },
-      detail: { ja: detail.ja, en: detail.en },
-      bullets: { ja: arr(raw?.bullets?.ja || raw?.bullets_ja), en: arr(raw?.bullets?.en || raw?.bullets_en) },
-      examples: { ja: arr(raw?.examples?.ja || raw?.example?.ja || raw?.examples_ja || raw?.usage?.ja), en: arr(raw?.examples?.en || raw?.example?.en || raw?.examples_en || raw?.usage?.en) },
-      categories: arr(raw?.categories || raw?.category), tasks: arr(raw?.tasks || raw?.task), fuzzy: arr(raw?.fuzzy), region: arr(raw?.region),
-      meta: raw?.meta && typeof raw.meta === "object" ? raw.meta : {}
+      detail,
+      bullets: { ja: list(raw?.bullets?.ja || raw?.bullets_ja), en: list(raw?.bullets?.en || raw?.bullets_en) },
+      examples: { ja: list(raw?.examples?.ja || raw?.examples_ja || raw?.usage?.ja), en: list(raw?.examples?.en || raw?.examples_en || raw?.usage?.en) },
+      categories: list(raw?.categories || raw?.category),
+      tasks: list(raw?.tasks || raw?.task),
+      fuzzy: list(raw?.fuzzy),
+      region: list(raw?.region),
+      relationIds: extractRelationIds(raw)
     };
   }
-  function title(e) { return `${e.term.en || "—"} / ${e.term.ja || "—"}`; }
-  function aliasLine(e) { return [...e.aliases.ja, ...e.aliases.en].filter(Boolean).join(" / "); }
-  function hay(e) { return [e.id,e.type,e.term.ja,e.term.en,e.description.ja,e.description.en,e.summary.ja,e.summary.en,e.detail.ja,e.detail.en,...e.aliases.ja,...e.aliases.en,...e.categories,...e.tasks,...e.fuzzy,...e.region].join("\n").toLowerCase(); }
-  function queryParts() { return norm(state.q).split(/\s+/).filter(Boolean); }
-  function refreshInterpretations() { state.interpretations = state.searchEngine?.interpret?.(state.q, state.ignoredSignals) || []; }
-  function matchQuery(e) {
-    if (!norm(state.q)) return true;
-    if (state.searchEngine) return queryScore(e) > 0;
-    const parts = queryParts();
-    const h = hay(e);
-    return parts.every((p) => h.includes(p));
+
+  function extractRelationIds(raw) {
+    const candidates = [
+      raw?.related, raw?.related_ids, raw?.similar, raw?.similar_ids, raw?.used_with, raw?.used_with_ids,
+      raw?.often_confused_with, raw?.often_confused_with_ids, raw?.relationships?.related, raw?.relationships?.similar,
+      raw?.relationships?.used_with, raw?.relationships?.often_confused_with, raw?.meta?.related, raw?.meta?.used_with
+    ];
+    const ids = [];
+    candidates.forEach((candidate) => {
+      if (!Array.isArray(candidate)) return;
+      candidate.forEach((item) => {
+        const id = typeof item === "string" ? item : text(item?.id || item?.entry_id || item?.target);
+        if (id) ids.push(id);
+      });
+    });
+    return unique(ids);
   }
+
+  function languageLabel(item) {
+    if (state.lang === "en") return item.en || item.ja || item.id;
+    if (state.lang === "both" && item.ja && item.en) return `${item.ja} / ${item.en}`;
+    return item.ja || item.en || item.id;
+  }
+  function primaryTerm(entry) {
+    if (state.lang === "en") return entry.term.en || entry.term.ja || "—";
+    return entry.term.ja || entry.term.en || "—";
+  }
+  function secondaryTerm(entry) {
+    if (state.lang === "en") return entry.term.ja || "";
+    return entry.term.en || "";
+  }
+  function primaryPair(value) {
+    if (state.lang === "en") return value.en || value.ja || "";
+    return value.ja || value.en || "";
+  }
+
+  function humanize(value) {
+    const raw = text(value);
+    if (!raw || /^q\d+[_-]/i.test(raw)) return "";
+    const known = {
+      tool: { ja: "工具", en: "Tool" }, tools: { ja: "工具", en: "Tools" },
+      material: { ja: "材料", en: "Material" }, materials: { ja: "材料", en: "Materials" },
+      task: { ja: "作業", en: "Task" }, term: { ja: "用語", en: "Term" },
+      safety: { ja: "安全", en: "Safety" }, measuring: { ja: "測定", en: "Measuring" },
+      cutting: { ja: "切断", en: "Cutting" }, fastening: { ja: "固定・締結", en: "Fastening" }
+    };
+    const key = normalized(raw).replace(/[\s-]+/g, "_");
+    if (known[key]) return state.lang === "en" ? known[key].en : known[key].ja;
+    if (/^[a-z0-9_-]+$/i.test(raw)) {
+      const words = raw.replace(/[_-]+/g, " ").trim();
+      return words.replace(/\b\w/g, (m) => m.toUpperCase());
+    }
+    return raw;
+  }
+
+  function entryKind(entry) {
+    const value = normalized(entry.type);
+    if (/material|材|部材|塗料|接着/.test(value)) return "material";
+    if (/task|work|operation|施工|工事|作業/.test(value)) return "task";
+    if (/tool|equipment|machine|instrument|工具|機械|器具|測定/.test(value)) return "tool";
+    return "term";
+  }
+
+  function haystack(entry) {
+    return [
+      entry.id, entry.type, entry.term.ja, entry.term.en, entry.description.ja, entry.description.en,
+      entry.summary.ja, entry.summary.en, entry.detail.ja, entry.detail.en,
+      ...entry.aliases.ja, ...entry.aliases.en, ...entry.categories, ...entry.tasks, ...entry.fuzzy, ...entry.region
+    ].join("\n").toLowerCase();
+  }
+  function queryParts() { return normalized(state.q).split(/\s+/).filter(Boolean); }
   function scoreField(value, part, exact, starts, includes) {
-    const v = norm(value);
-    if (!v || !part) return 0;
-    if (v === part) return exact;
-    if (v.startsWith(part)) return starts;
-    if (v.includes(part)) return includes;
+    const candidate = normalized(value);
+    if (!candidate || !part) return 0;
+    if (candidate === part) return exact;
+    if (candidate.startsWith(part)) return starts;
+    if (candidate.includes(part)) return includes;
     return 0;
   }
-  function queryScore(e) {
-    if (state.searchEngine) return state.searchEngine.scoreEntry(e, state.q, state.interpretations);
+  function queryScore(entry) {
+    if (!normalized(state.q)) return 0;
+    if (state.searchEngine) return state.searchEngine.scoreEntry(entry, state.q, state.interpretations);
     const parts = queryParts();
-    if (!parts.length) return 0;
+    const full = normalized(state.q);
+    const termFields = [entry.term.ja, entry.term.en];
+    const aliasFields = [...entry.aliases.ja, ...entry.aliases.en];
+    const taxonomyFields = [entry.type, ...entry.categories, ...entry.tasks];
+    const bodyFields = [entry.summary.ja, entry.summary.en, entry.description.ja, entry.description.en, entry.detail.ja, entry.detail.en];
     let score = 0;
-    const termFields = [e.term.ja, e.term.en];
-    const aliasFields = [...e.aliases.ja, ...e.aliases.en];
-    const taxonomyFields = [e.type, ...e.categories, ...e.tasks];
-    const fuzzyFields = [...e.fuzzy, ...e.region];
-    const bodyFields = [e.summary.ja, e.summary.en, e.description.ja, e.description.en, e.detail.ja, e.detail.en];
-    const fullQuery = norm(state.q);
-    termFields.forEach((f) => { if (norm(f) === fullQuery) score += 5000; });
-    aliasFields.forEach((f) => { if (norm(f) === fullQuery) score += 4200; });
-    termFields.forEach((f) => { if (norm(f).includes(fullQuery)) score += 1800; });
-    aliasFields.forEach((f) => { if (norm(f).includes(fullQuery)) score += 1400; });
-    parts.forEach((p) => {
-      termFields.forEach((f) => { score += scoreField(f, p, 1200, 950, 750); });
-      aliasFields.forEach((f) => { score += scoreField(f, p, 1000, 800, 620); });
-      taxonomyFields.forEach((f) => { score += scoreField(f, p, 420, 320, 240); });
-      fuzzyFields.forEach((f) => { score += scoreField(f, p, 320, 240, 180); });
-      bodyFields.forEach((f) => { score += scoreField(f, p, 120, 80, 45); });
-      score += scoreField(e.id, p, 80, 60, 30);
+    termFields.forEach((v) => { if (normalized(v) === full) score += 5000; else if (normalized(v).includes(full)) score += 1800; });
+    aliasFields.forEach((v) => { if (normalized(v) === full) score += 4200; else if (normalized(v).includes(full)) score += 1400; });
+    parts.forEach((part) => {
+      termFields.forEach((v) => { score += scoreField(v, part, 1200, 950, 750); });
+      aliasFields.forEach((v) => { score += scoreField(v, part, 1000, 800, 620); });
+      taxonomyFields.forEach((v) => { score += scoreField(v, part, 420, 320, 240); });
+      bodyFields.forEach((v) => { score += scoreField(v, part, 120, 80, 45); });
     });
     return score;
   }
-  function compareResult(a, b) {
-    const q = norm(state.q);
-    if (q) {
-      const scoreDiff = queryScore(b) - queryScore(a);
-      if (scoreDiff !== 0) return scoreDiff;
-    }
-    return title(a).localeCompare(title(b), state.lang === "ja" ? "ja" : "en");
-  }
-  function actionMatch(e) { const a = ACTIONS.find((x) => x.id === state.action) || ACTIONS[0]; if (!a.tokens.length) return true; const h = hay(e); return a.tokens.some((t) => h.includes(String(t).toLowerCase())); }
-
-  function ensureMasterDetailUi() {
-    if (!document.querySelector('link[data-cta-master-detail="v2.3"]')) {
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = "./master-detail-v2.3.css?v=20260914-master-detail-1";
-      link.setAttribute("data-cta-master-detail", "v2.3");
-      document.head.appendChild(link);
-    }
-    if (!$("#atlasWorkspace")) {
-      const results = els.resultList?.closest(".results");
-      if (results?.parentNode) {
-        const workspace = document.createElement("div");
-        workspace.id = "atlasWorkspace";
-        workspace.className = "atlasWorkspace";
-        results.parentNode.insertBefore(workspace, results);
-        workspace.appendChild(results);
-
-        const host = document.createElement("div");
-        host.id = "atlasDetailHost";
-        host.className = "atlasDetailHost";
-        const empty = document.createElement("div");
-        empty.id = "atlasDetailEmpty";
-        empty.className = "atlasDetailEmpty";
-        empty.textContent = state.lang === "ja" ? "左の候補を選ぶと、ここに詳細が表示されます。" : "Select a result to view its details here.";
-        host.appendChild(empty);
-        workspace.appendChild(host);
-      }
-    }
+  function actionMatch(entry) {
+    const action = ACTIONS.find((item) => item.id === state.action) || ACTIONS[0];
+    if (!action.tokens.length) return true;
+    const hay = haystack(entry);
+    return action.tokens.some((token) => hay.includes(String(token).toLowerCase()));
   }
 
-  function syncDetailContainer() {
-    ensureMasterDetailUi();
-    bindEls();
-    const host = $("#atlasDetailHost");
-    const empty = $("#atlasDetailEmpty");
-    const detail = els.detailSheet;
-    if (!detail) return;
-
-    if (isDesktopDetail()) {
-      if (host && detail.parentElement !== host) host.appendChild(detail);
-      detail.classList.add("detailPanel--desktop");
-      detail.classList.remove("detailPanel--mobile");
-      if (state.current) {
-        detail.hidden = false;
-        if (empty) empty.hidden = true;
-      } else {
-        detail.hidden = true;
-        if (empty) {
-          empty.hidden = false;
-          empty.textContent = state.lang === "ja" ? "左の候補を選ぶと、ここに詳細が表示されます。" : "Select a result to view its details here.";
-        }
-      }
-      if (els.overlay) els.overlay.hidden = !anyTransientOpen();
-    } else {
-      if (detail.parentElement !== document.body) document.body.appendChild(detail);
-      detail.classList.remove("detailPanel--desktop");
-      detail.classList.add("detailPanel--mobile");
-      if (empty) empty.hidden = true;
-      if (els.overlay && !anyTransientOpen()) els.overlay.hidden = detail.hidden || !state.current;
-    }
-  }
-
-  function openSheet(sheet) {
-    if (!sheet) return;
-    transientSheets().forEach((x) => { x.hidden = true; });
-    if (sheet === els.detailSheet) {
-      syncDetailContainer();
-      sheet.hidden = false;
-      if (els.overlay) els.overlay.hidden = isDesktopDetail();
-      return;
-    }
-    if (!isDesktopDetail() && els.detailSheet) els.detailSheet.hidden = true;
-    if (els.overlay) els.overlay.hidden = false;
-    sheet.hidden = false;
-  }
-
-  function closeSheets() {
-    transientSheets().forEach((x) => { x.hidden = true; });
-    if (!isDesktopDetail() && els.detailSheet) els.detailSheet.hidden = true;
-    if (els.overlay) els.overlay.hidden = true;
-    syncDetailContainer();
-  }
-
-  function closeDetail() {
-    if (els.detailSheet) els.detailSheet.hidden = true;
-    state.current = null;
-    if (els.overlay) els.overlay.hidden = true;
-    renderList();
-    syncDetailContainer();
-  }
-
-  function setTheme(theme) { state.theme = theme; document.documentElement.setAttribute("data-theme", theme); localStorage.setItem(LS.theme, theme); if (els.themeBtn) els.themeBtn.textContent = theme === "light" ? "☼" : "☾"; }
-  function setLang(lang) { state.lang = lang; document.documentElement.lang = lang; localStorage.setItem(LS.lang, lang); render(); if (state.current) renderDetail(state.current); syncDetailContainer(); }
-  function saveFavs() { localStorage.setItem(LS.favs, JSON.stringify([...state.favs])); }
-  function filter() {
-    refreshInterpretations();
-    state.filtered = state.entries.filter((e) => {
-      if (els.favsOnly?.checked && !state.favs.has(e.id)) return false;
-      if (!matchQuery(e)) return false;
-      if (!actionMatch(e)) return false;
-      if (state.category !== "all" && !e.categories.includes(state.category)) return false;
-      if (state.task !== "all" && !e.tasks.includes(state.task)) return false;
+  function refreshFiltered() {
+    state.interpretations = state.searchEngine?.interpret?.(state.q, state.ignoredSignals) || [];
+    state.filtered = state.entries.filter((entry) => {
+      if (state.favOnly && !state.favs.has(entry.id)) return false;
+      if (normalized(state.q) && queryScore(entry) <= 0) return false;
+      if (!actionMatch(entry)) return false;
+      if (state.type !== "all" && entryKind(entry) !== state.type) return false;
+      if (state.category !== "all" && !entry.categories.includes(state.category)) return false;
+      if (state.task !== "all" && !entry.tasks.includes(state.task)) return false;
       return true;
-    }).sort(compareResult);
-    if (state.current && !state.filtered.some((entry) => entry.id === state.current.id)) {
-      state.current = null;
-      if (els.detailSheet) els.detailSheet.hidden = true;
-    }
-  }
-  function ensureSemanticUi() {
-    if (!document.querySelector('link[data-cta-semantic-css="v2.3"]')) {
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = "./semantic-search.css?v=20260914-semantic-1";
-      link.setAttribute("data-cta-semantic-css", "v2.3");
-      document.head.appendChild(link);
-    }
-    if (!$("#interpretationBar")) {
-      const search = $(".search");
-      if (search?.parentNode) {
-        const bar = document.createElement("section");
-        bar.id = "interpretationBar";
-        bar.className = "semantic-interpretation";
-        bar.hidden = true;
-        bar.setAttribute("aria-live", "polite");
-        const label = document.createElement("span");
-        label.id = "interpretationLabel";
-        label.className = "semantic-interpretation__label";
-        const chips = document.createElement("div");
-        chips.id = "interpretationChips";
-        chips.className = "semantic-interpretation__chips";
-        bar.append(label, chips);
-        search.parentNode.insertBefore(bar, search.nextSibling);
+    }).sort((a, b) => {
+      if (normalized(state.q)) {
+        const delta = queryScore(b) - queryScore(a);
+        if (delta) return delta;
       }
-    }
-    bindEls();
+      return primaryTerm(a).localeCompare(primaryTerm(b), state.lang === "en" ? "en" : "ja");
+    });
   }
+
+  function makeChip(label, pressed, onClick) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "chip chipButton";
+    button.textContent = label;
+    button.setAttribute("aria-pressed", String(Boolean(pressed)));
+    button.addEventListener("click", onClick);
+    return button;
+  }
+
+  function renderPrimaryFilters() {
+    clear(els.actionFilters);
+    ACTIONS.forEach((action) => {
+      els.actionFilters.appendChild(makeChip(languageLabel(action), state.action === action.id, () => {
+        state.action = action.id; localStorage.setItem(LS.action, state.action); state.visibleCount = PAGE_SIZE; render();
+      }));
+    });
+    clear(els.typeFilters);
+    TYPES.forEach((type) => {
+      els.typeFilters.appendChild(makeChip(languageLabel(type), state.type === type.id, () => {
+        state.type = type.id; localStorage.setItem(LS.type, state.type); state.visibleCount = PAGE_SIZE; render();
+      }));
+    });
+  }
+
+  function renderDialogFilters() {
+    const categories = [...new Set(state.entries.flatMap((entry) => entry.categories).filter(Boolean))].sort();
+    const tasks = [...new Set(state.entries.flatMap((entry) => entry.tasks).filter(Boolean))].sort();
+    const renderGroup = (node, values, key) => {
+      clear(node);
+      node.appendChild(makeChip(state.lang === "en" ? "All" : "すべて", state[key] === "all", () => {
+        state[key] = "all"; localStorage.setItem(key === "category" ? LS.category : LS.task, "all"); renderDialogFilters(); render();
+      }));
+      values.forEach((value) => {
+        node.appendChild(makeChip(humanize(value), state[key] === value, () => {
+          state[key] = value; localStorage.setItem(key === "category" ? LS.category : LS.task, value); renderDialogFilters(); render();
+        }));
+      });
+    };
+    renderGroup(els.categoryFilters, categories, "category");
+    renderGroup(els.taskFilters, tasks, "task");
+  }
+
+  function createThumb(entry, className) {
+    const image = state.images.get(entry.id);
+    if (!image) {
+      const missing = document.createElement("div");
+      missing.className = className === "resultThumb" ? "resultThumbMissing" : "thumbMissing";
+      missing.textContent = state.lang === "en" ? "No image" : "画像なし";
+      return missing;
+    }
+    const img = document.createElement("img");
+    img.className = className;
+    img.src = image.thumbnail || image.display;
+    img.alt = state.lang === "en" ? (image.alt_en || entry.term.en || "") : (image.alt_ja || entry.term.ja || "");
+    img.loading = "lazy";
+    img.decoding = "async";
+    return img;
+  }
+
+  function renderAutocomplete() {
+    if (!els.autocomplete) return;
+    clear(els.autocomplete);
+    const active = document.activeElement === els.searchInput && normalized(state.q) && state.filtered.length;
+    if (!active) { els.autocomplete.hidden = true; return; }
+    state.filtered.slice(0, 7).forEach((entry) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.appendChild(createThumb(entry, "autocompleteThumb"));
+      const copy = document.createElement("div");
+      const strong = document.createElement("strong"); strong.textContent = primaryTerm(entry);
+      const sub = document.createElement("span"); sub.textContent = secondaryTerm(entry) || primaryPair(entry.summary);
+      copy.append(strong, sub); button.appendChild(copy);
+      button.addEventListener("mousedown", (event) => event.preventDefault());
+      button.addEventListener("click", () => { openDetail(entry.id, "push"); els.searchInput.blur(); els.autocomplete.hidden = true; });
+      els.autocomplete.appendChild(button);
+    });
+    els.autocomplete.hidden = false;
+  }
+
   function renderInterpretations() {
-    if (!els.interpretationBar || !els.interpretationChips) return;
     clear(els.interpretationChips);
     const signals = state.interpretations || [];
-    els.interpretationBar.hidden = !state.q || signals.length === 0;
-    if (els.interpretationLabel) els.interpretationLabel.textContent = state.lang === "ja" ? "検索の解釈" : "Interpreted as";
+    els.interpretationBar.hidden = !normalized(state.q) || !signals.length;
     signals.forEach((signal) => {
-      const b = document.createElement("button");
-      b.type = "button";
-      b.className = "semantic-interpretation__chip";
-      const label = state.lang === "ja" ? (signal.label?.ja || signal.id) : (signal.label?.en || signal.id);
-      b.textContent = `${label} ×`;
-      b.setAttribute("aria-label", state.lang === "ja" ? `${label} の解釈を外す` : `Remove ${label} interpretation`);
-      b.addEventListener("click", () => { state.ignoredSignals.add(signal.id); state.visibleCount = state.pageSize; render(); });
-      els.interpretationChips.appendChild(b);
+      const ja = text(signal?.label?.ja) || signal.id;
+      const en = text(signal?.label?.en) || signal.id;
+      const label = state.lang === "en" ? en : state.lang === "both" ? `${ja} / ${en}` : ja;
+      const chip = makeChip(`${label} ×`, true, () => {
+        state.ignoredSignals.add(signal.id); state.visibleCount = PAGE_SIZE; render();
+      });
+      els.interpretationChips.appendChild(chip);
     });
   }
-  function renderActions() {
-    clear(els.actionChips);
-    ACTIONS.forEach((a) => {
-      const b = document.createElement("button"); b.type = "button"; b.className = "pillbtn" + (state.action === a.id ? " pillbtn--accent" : ""); b.textContent = a.label;
-      b.addEventListener("click", () => { state.action = a.id; localStorage.setItem(LS.action, a.id); state.visibleCount = state.pageSize; render(); });
-      els.actionChips?.appendChild(b);
-    });
-  }
+
   function renderList() {
     clear(els.resultList);
-    const frag = document.createDocumentFragment();
-    state.filtered.slice(0, state.visibleCount).forEach((e) => {
+    const fragment = document.createDocumentFragment();
+    state.filtered.slice(0, state.visibleCount).forEach((entry) => {
       const row = document.createElement("div");
-      row.className = "row" + (state.current?.id === e.id ? " row--selected" : "");
-      row.dataset.entryId = e.id;
+      row.className = "resultRow";
+      row.dataset.entryId = entry.id;
       row.setAttribute("role", "button");
-      row.setAttribute("aria-pressed", state.current?.id === e.id ? "true" : "false");
       row.tabIndex = 0;
-      const main = document.createElement("div"); main.className = "row__main";
-      main.appendChild(div(title(e), "row__title"));
-      main.appendChild(div(pick(e.summary) || pick(e.description) || (state.lang === "ja" ? "説明なし" : "No description"), "row__desc"));
-      const meta = document.createElement("div"); meta.className = "row__meta"; [e.type,...e.categories.slice(0,2),...e.tasks.slice(0,1)].forEach((x) => chip(meta, x)); main.appendChild(meta);
-      const star = document.createElement("button"); star.type = "button"; star.className = "starbtn"; star.textContent = state.favs.has(e.id) ? "★" : "☆";
-      star.setAttribute("aria-label", state.favs.has(e.id) ? (state.lang === "ja" ? "お気に入りから削除" : "Remove favorite") : (state.lang === "ja" ? "お気に入りに追加" : "Add favorite"));
-      star.addEventListener("click", (ev) => { ev.stopPropagation(); state.favs.has(e.id) ? state.favs.delete(e.id) : state.favs.add(e.id); saveFavs(); renderList(); });
-      const open = () => openDetail(e.id); row.addEventListener("click", open); row.addEventListener("keydown", (ev) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); open(); } });
-      row.appendChild(main); row.appendChild(star); frag.appendChild(row);
-    });
-    els.resultList?.appendChild(frag);
-    if (els.resultCount) els.resultCount.textContent = `Results: ${state.filtered.length}`;
-    if (norm(state.q) && state.searchEngine && state.filtered.length) {
-      const scores = state.filtered.slice(0, 2).map(queryScore);
-      state.confidence = state.searchEngine.confidence(scores);
-    } else state.confidence = "low";
-    if (els.hintText) {
-      if (!state.filtered.length) els.hintText.textContent = state.lang === "ja" ? "一致する用語がありません" : "No matches";
-      else if (norm(state.q) && state.confidence === "low") els.hintText.textContent = state.lang === "ja" ? "一致を特定できません。近い候補を表示しています。" : "No confident match. Showing nearby candidates.";
-      else els.hintText.textContent = "";
-    }
-    const shown = Math.min(state.visibleCount, state.filtered.length);
-    const more = state.filtered.length > shown;
-    if (els.loadMoreWrap) els.loadMoreWrap.hidden = !more;
-    if (els.loadMoreBtn) els.loadMoreBtn.hidden = !more;
-    if (els.loadMoreHint) els.loadMoreHint.textContent = more ? (state.lang === "ja" ? `表示中: ${shown} / ${state.filtered.length}` : `Showing ${shown} / ${state.filtered.length}`) : "";
-  }
-  function tab(name) { $$(".tab", els.detailTabs || document).forEach((b) => b.classList.toggle("tab--active", b.dataset.tab === name)); if (els.tabMeaning) els.tabMeaning.hidden = name !== "meaning"; if (els.tabExamples) els.tabExamples.hidden = name !== "examples"; if (els.tabAliases) els.tabAliases.hidden = name !== "aliases"; if (els.tabMeta) { clear(els.tabMeta); els.tabMeta.hidden = true; } }
-  function labeled(parent, label, body, cls) { if (!parent || !body) return; const wrap = div("", cls || "dictionaryBlock"); wrap.appendChild(div(label, "tabpanel__label")); wrap.appendChild(div(body, "tabpanel__text")); parent.appendChild(wrap); }
-  function reorderDetailTop() {
-    const block = els.detailTerms?.parentElement;
-    if (!block) return;
-    if (els.detailTerms) block.appendChild(els.detailTerms);
-    if (els.detailDesc) block.appendChild(els.detailDesc);
-    if (els.detailBullets) block.appendChild(els.detailBullets);
-    if (els.detailChips) block.appendChild(els.detailChips);
-  }
-  function renderDetail(e) {
-    if (!e) return;
-    reorderDetailTop();
-    if (els.detailTitle) els.detailTitle.textContent = state.lang === "ja" ? "詳細" : "Detail";
-    if (els.detailStar) els.detailStar.textContent = state.favs.has(e.id) ? "★" : "☆";
-    const definition = pick(e.description) || pick(e.summary);
-    const note = pick(e.detail);
-    const aliases = aliasLine(e);
-    clear(els.detailTerms);
-    els.detailTerms?.appendChild(div(title(e), "termblock__title"));
-    if (aliases) els.detailTerms?.appendChild(div(aliases, "termblock__sub"));
-    if (els.detailDesc) els.detailDesc.textContent = definition;
-    ul(els.detailBullets, state.lang === "ja" ? e.bullets.ja : e.bullets.en, "");
-    clear(els.detailChips);
-    if (els.detailChips) { els.detailChips.hidden = true; els.detailChips.style.display = "none"; }
-    clear(els.tabMeaning);
-    labeled(els.tabMeaning, state.lang === "ja" ? "意味" : "Meaning", definition, "dictionaryBlock dictionaryBlock--definition");
-    if (note && note !== definition) labeled(els.tabMeaning, state.lang === "ja" ? "使い方・注意" : "Use / notes", note, "dictionaryBlock dictionaryBlock--notes");
-    ul(els.tabExamples, state.lang === "ja" ? e.examples.ja : e.examples.en, state.lang === "ja" ? "例はまだありません。" : "No examples yet.");
-    ul(els.tabAliases, [...e.aliases.ja,...e.aliases.en].filter(Boolean), state.lang === "ja" ? "別名はまだありません。" : "No aliases yet.");
-    clear(els.tabMeta);
-    if (els.tabMeta) els.tabMeta.hidden = true;
-  }
-  function openDetail(id) {
-    const e = state.entries.find((x) => x.id === id);
-    if (!e) return;
-    state.current = e;
-    renderDetail(e);
-    tab("meaning");
-    renderList();
-    openSheet(els.detailSheet);
-    syncDetailContainer();
-  }
-  function renderFilters() {
-    draft = { action: state.action, category: state.category, task: state.task };
-    const group = (node, values, key) => { clear(node); values.forEach((v) => { const b = document.createElement("button"); b.type = "button"; b.className = "pillbtn" + (draft[key] === v ? " pillbtn--accent" : ""); b.textContent = v; b.addEventListener("click", () => { draft[key] = v; group(node, values, key); }); node?.appendChild(b); }); };
-    const cats = [...new Set(state.entries.flatMap((e) => e.categories).filter(Boolean))].sort();
-    const tasks = [...new Set(state.entries.flatMap((e) => e.tasks).filter(Boolean))].sort();
-    group(els.filterActionItems, ACTIONS.map((a) => a.id), "action"); group(els.filterCategoryItems, ["all",...cats], "category"); group(els.filterTaskItems, ["all",...tasks], "task");
-  }
-  function render() {
-    filter();
-    renderInterpretations();
-    renderActions();
-    renderList();
-    if (state.current) renderDetail(state.current);
-    syncDetailContainer();
-    if (els.statusArea) els.statusArea.hidden = true;
-  }
-  async function loadSemanticCore() {
-    if (window.CTA_SEMANTIC_SEARCH?.createEngine) return window.CTA_SEMANTIC_SEARCH;
-    return new Promise((resolve) => {
-      const existing = document.querySelector('script[data-cta-semantic-core="v2.3"]');
-      if (existing) {
-        existing.addEventListener("load", () => resolve(window.CTA_SEMANTIC_SEARCH || null), { once: true });
-        existing.addEventListener("error", () => resolve(null), { once: true });
-        return;
-      }
-      const script = document.createElement("script");
-      script.src = "./semantic-search-core.js?v=20260914-semantic-1";
-      script.async = false;
-      script.setAttribute("data-cta-semantic-core", "v2.3");
-      script.addEventListener("load", () => resolve(window.CTA_SEMANTIC_SEARCH || null), { once: true });
-      script.addEventListener("error", () => resolve(null), { once: true });
-      document.head.appendChild(script);
-    });
-  }
-  async function loadSearchDictionary() {
-    try {
-      const response = await window.fetch("./data/search-dictionary-v2.3.json", { cache: "no-store" });
-      if (!response.ok) return;
-      const dictionary = await response.json();
-      state.searchDictionary = dictionary && Array.isArray(dictionary.signals) ? dictionary : { version: "", signals: [] };
-      const core = await loadSemanticCore();
-      state.searchEngine = core?.createEngine?.(state.searchDictionary) || null;
-      window.CTA_SEARCH_DIAGNOSTICS = { dictionaryVersion: state.searchDictionary.version || "", signalCount: state.searchDictionary.signals.length, semanticEnabled: Boolean(state.searchEngine) };
-    } catch (err) {
-      console.warn("CTA semantic search unavailable; using literal fallback", err);
-      state.searchEngine = null;
-    }
-  }
-  async function load() {
-    if (els.statusArea) { clear(els.statusArea); els.statusArea.hidden = false; els.statusArea.appendChild(div(state.lang === "ja" ? "読み込み中" : "Loading", "status__title")); }
-    try {
-      await loadSearchDictionary();
-      const raw = await window.CTA_DATA_LOADER?.loadEntries?.();
-      const seenIds = new Set();
-      const seenTerms = new Set();
-      state.entries = (Array.isArray(raw) ? raw : []).map(normalize).filter((e) => {
-        if (!e.id || seenIds.has(e.id)) return false;
-        const key = entryTermKey(e);
-        if (key && seenTerms.has(key)) return false;
-        seenIds.add(e.id);
-        if (key) seenTerms.add(key);
-        return true;
+      row.setAttribute("aria-current", String(state.current?.id === entry.id));
+      row.appendChild(createThumb(entry, "resultThumb"));
+
+      const copy = document.createElement("div"); copy.className = "resultText";
+      const title = document.createElement("div"); title.className = "resultTitle"; title.textContent = primaryTerm(entry);
+      const secondary = document.createElement("div"); secondary.className = "resultSecondary"; secondary.textContent = secondaryTerm(entry);
+      const summary = document.createElement("div"); summary.className = "resultSummary"; summary.textContent = primaryPair(entry.summary) || primaryPair(entry.description);
+      const meta = document.createElement("div"); meta.className = "resultMeta";
+      [humanize(entry.type), ...entry.categories.slice(0, 1).map(humanize)].filter(Boolean).forEach((value) => {
+        const span = document.createElement("span"); span.className = "chip"; span.textContent = value; meta.appendChild(span);
       });
-      render();
-    } catch (err) { console.error("CTA data load failed", err); if (els.statusArea) { clear(els.statusArea); els.statusArea.hidden = false; els.statusArea.appendChild(div(state.lang === "ja" ? "読み込みに失敗しました" : "Failed to load data", "status__title")); } }
+      copy.append(title); if (secondary.textContent) copy.append(secondary); copy.append(summary, meta);
+
+      const star = document.createElement("button"); star.type = "button"; star.className = `starButton${state.favs.has(entry.id) ? " active" : ""}`; star.textContent = state.favs.has(entry.id) ? "★" : "☆";
+      star.setAttribute("aria-label", state.favs.has(entry.id) ? "Remove favorite" : "Add favorite");
+      star.addEventListener("click", (event) => { event.stopPropagation(); toggleFavorite(entry.id); });
+      const open = () => openDetail(entry.id, "push");
+      row.addEventListener("click", open);
+      row.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(); } });
+      row.append(copy, star); fragment.appendChild(row);
+    });
+    els.resultList.appendChild(fragment);
+
+    els.resultCount.textContent = state.lang === "en" ? `${state.filtered.length} results` : `${state.filtered.length}件`;
+    els.resultHint.textContent = normalized(state.q) && !state.filtered.length ? (state.lang === "en" ? "No matches" : "一致する用語がありません") : "";
+    const shown = Math.min(state.visibleCount, state.filtered.length);
+    const more = shown < state.filtered.length;
+    els.loadMoreWrap.hidden = !more;
+    els.loadMoreHint.textContent = more ? `${shown} / ${state.filtered.length}` : "";
+    renderAutocomplete();
   }
+
+  function renderPair(node, value) {
+    clear(node);
+    if (state.lang !== "both") { node.textContent = primaryPair(value); return; }
+    const wrap = document.createElement("div"); wrap.className = "dual";
+    [["JA", value.ja], ["EN", value.en]].forEach(([label, body]) => {
+      if (!body) return;
+      const item = document.createElement("div");
+      const tag = document.createElement("span"); tag.className = "langTag"; tag.textContent = label;
+      const content = document.createElement("div"); content.textContent = body;
+      item.append(tag, content); wrap.appendChild(item);
+    });
+    node.appendChild(wrap);
+  }
+
+  function renderArray(node, value) {
+    clear(node);
+    const values = state.lang === "en" ? value.en : state.lang === "both" ? unique([...value.ja, ...value.en]) : value.ja;
+    values.forEach((item) => { const li = document.createElement("li"); li.textContent = item; node.appendChild(li); });
+    return values.length;
+  }
+
+  function imageCaption(item) {
+    const source = item.source || {};
+    const bits = [];
+    if (text(source.attribution || source.author)) bits.push(text(source.attribution || source.author));
+    if (text(source.license)) bits.push(text(source.license));
+    return bits.join(" · ");
+  }
+
+  function renderImage(entry) {
+    clear(els.detailImage);
+    const image = state.images.get(entry.id);
+    els.detailImage.hidden = !image;
+    els.detailImageMissing.hidden = Boolean(image);
+    if (!image) return;
+    const img = document.createElement("img");
+    img.src = image.display;
+    img.alt = state.lang === "en" ? (image.alt_en || entry.term.en || "") : (image.alt_ja || entry.term.ja || "");
+    img.decoding = "async";
+    const captionText = imageCaption(image);
+    els.detailImage.appendChild(img);
+    if (captionText || image.source?.source_page) {
+      const caption = document.createElement("figcaption");
+      if (captionText) caption.append(captionText);
+      if (image.source?.source_page) {
+        if (captionText) caption.append(" · ");
+        const link = document.createElement("a"); link.href = image.source.source_page; link.target = "_blank"; link.rel = "noopener noreferrer"; link.textContent = state.lang === "en" ? "source" : "出典"; caption.appendChild(link);
+      }
+      els.detailImage.appendChild(caption);
+    }
+  }
+
+  function renderTaxonomy(entry) {
+    clear(els.detailTaxonomy);
+    const labels = unique([humanize(entry.type), ...entry.categories.map(humanize), ...entry.tasks.map(humanize)]).filter(Boolean).slice(0, 8);
+    labels.forEach((label) => { const span = document.createElement("span"); span.className = "chip"; span.textContent = label; els.detailTaxonomy.appendChild(span); });
+  }
+
+  function renderRelated(entry) {
+    clear(els.detailRelated);
+    const related = entry.relationIds.map((id) => state.entryById.get(resolveId(id))).filter(Boolean).filter((item, index, arr) => arr.findIndex((x) => x.id === item.id) === index).slice(0, 12);
+    els.relatedSection.hidden = !related.length;
+    related.forEach((item) => {
+      const button = document.createElement("button"); button.type = "button"; button.textContent = primaryTerm(item); button.addEventListener("click", () => openDetail(item.id, "push")); els.detailRelated.appendChild(button);
+    });
+  }
+
+  function renderAffiliate(entry) {
+    clear(els.affiliateMount); clear(els.affiliateDisclosure);
+    const offer = state.offers.get(entry.id);
+    const helper = window.NWAmazonAffiliate;
+    if (!offer || offer.status !== "active" || !helper) { els.affiliateSection.hidden = true; return; }
+    const label = state.lang === "en" ? offer.label_en : offer.label_ja;
+    const mounted = helper.mountUrl({ container: els.affiliateMount, target: entry.id, url: offer.amazon_url, label: label || "Amazon", placement: "detail" });
+    if (!mounted) { els.affiliateSection.hidden = true; return; }
+    helper.renderDisclosure(els.affiliateDisclosure, { includeEnglish: state.lang !== "ja" });
+    if (state.lang === "en") els.affiliateDisclosure.querySelectorAll('[lang="ja"]').forEach((node) => node.hidden = true);
+    els.affiliateSection.hidden = false;
+  }
+
+  function renderDetail(entry) {
+    if (!entry) return;
+    els.detailEyebrow.textContent = humanize(entry.type) || (state.lang === "en" ? "Dictionary entry" : "辞書項目");
+    els.detailTitle.textContent = primaryTerm(entry);
+    els.detailSecondary.textContent = secondaryTerm(entry);
+    renderTaxonomy(entry);
+    renderImage(entry);
+    renderPair(els.detailDefinition, entry.description);
+
+    const hasNotes = Boolean(entry.detail.ja || entry.detail.en || entry.bullets.ja.length || entry.bullets.en.length);
+    els.notesSection.hidden = !hasNotes;
+    renderPair(els.detailNotes, entry.detail);
+    renderArray(els.detailBullets, entry.bullets);
+
+    const hasExamples = renderArray(els.detailExamples, entry.examples);
+    els.examplesSection.hidden = !hasExamples;
+
+    clear(els.detailAliases);
+    const aliases = state.lang === "en" ? entry.aliases.en : state.lang === "both" ? unique([...entry.aliases.ja, ...entry.aliases.en]) : entry.aliases.ja;
+    aliases.forEach((alias) => { const span = document.createElement("span"); span.textContent = alias; els.detailAliases.appendChild(span); });
+    els.aliasesSection.hidden = !aliases.length;
+
+    renderRelated(entry);
+    renderAffiliate(entry);
+    els.detailLink.textContent = canonicalUrl(entry.id);
+    els.detailFavorite.textContent = state.favs.has(entry.id) ? (state.lang === "en" ? "★ Favorited" : "★ お気に入り") : (state.lang === "en" ? "☆ Favorite" : "☆ お気に入り");
+  }
+
+  function resolveId(id) { return window.CTA_DATA_LOADER?.resolveCanonicalId?.(id) || id; }
+  function canonicalUrl(id) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("entry", id);
+    url.hash = "";
+    return url.toString();
+  }
+  function setEntryInUrl(id, mode) {
+    const url = new URL(window.location.href);
+    if (id) url.searchParams.set("entry", id); else url.searchParams.delete("entry");
+    const method = mode === "replace" ? "replaceState" : "pushState";
+    history[method]({ entry: id || null }, "", url);
+  }
+
+  function openDetail(id, historyMode = "none") {
+    const canonicalId = resolveId(id);
+    const entry = state.entryById.get(canonicalId);
+    if (!entry) return false;
+    state.current = entry;
+    els.detailEmpty.hidden = true;
+    els.detailContent.hidden = false;
+    els.detailPanel.dataset.open = "true";
+    if (isMobile()) els.mobileBackdrop.hidden = false;
+    renderDetail(entry); renderList();
+    if (historyMode === "push" || historyMode === "replace") setEntryInUrl(entry.id, historyMode);
+    return true;
+  }
+  function closeDetail(updateUrl = true) {
+    state.current = null;
+    els.detailContent.hidden = true;
+    els.detailEmpty.hidden = false;
+    els.detailPanel.dataset.open = "false";
+    els.mobileBackdrop.hidden = true;
+    renderList();
+    if (updateUrl) setEntryInUrl("", "replace");
+  }
+
+  function toggleFavorite(id) {
+    if (state.favs.has(id)) state.favs.delete(id); else state.favs.add(id);
+    localStorage.setItem(LS.favs, JSON.stringify([...state.favs]));
+    if (state.current?.id === id) renderDetail(state.current);
+    render();
+  }
+
+  function applyLanguageChrome() {
+    document.documentElement.lang = state.lang === "en" ? "en" : "ja";
+    $$('[data-lang]', els.langControl).forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.lang === state.lang)));
+    const en = state.lang === "en";
+    els.pageTitle.textContent = en ? "Construction Tools Atlas" : "建設工具・現場用語辞典";
+    els.pageLead.textContent = en ? "Search construction tools, materials, tasks and site terminology by English, Japanese or aliases." : "工具名・材料名・作業名・現場用語を、日本語・英語・別名から検索できます。";
+    els.privacyNote.textContent = en ? "Dictionary search runs in your browser; search terms are not sent to an external search service." : "検索はブラウザ内で処理され、検索語は外部の検索サービスへ送信しません。";
+    els.searchInput.placeholder = en ? "e.g. impact driver / drywall / drill holes in concrete" : "例：インパクト / 石膏ボード / コンクリに穴あける電動のやつ";
+    els.actionLabel.textContent = en ? "Action" : "動作";
+    els.typeLabel.textContent = en ? "Type" : "種類";
+    els.openFilters.textContent = en ? "More filters" : "詳細フィルター";
+    els.interpretationLabel.textContent = en ? "Interpreted as" : "検索の解釈";
+    els.filterDialogTitle.textContent = en ? "More filters" : "詳細フィルター";
+    els.categoryHeading.textContent = en ? "Category" : "カテゴリ";
+    els.taskHeading.textContent = en ? "Task" : "作業";
+    els.resetFilters.textContent = en ? "Reset" : "リセット";
+    els.whatHeading.textContent = en ? "What is it?" : "これは何？";
+    els.notesHeading.textContent = en ? "Main uses / notes" : "主な用途・注意";
+    els.examplesHeading.textContent = en ? "Typical use" : "よく使われる場面";
+    els.aliasesHeading.textContent = en ? "Aliases" : "別名・呼び方";
+    els.relatedHeading.textContent = en ? "Related tools / materials" : "関連する工具・材料";
+    els.affiliateHeading.textContent = en ? "Find related tools / materials" : "関連する工具・材料を探す";
+    els.affiliateLead.textContent = en ? "Amazon links are shown only for explicitly maintained canonical mappings." : "購入先の参考として、管理済みの項目だけAmazonへのリンクを表示します。";
+    els.loadMore.textContent = en ? "Load more" : "さらに表示";
+    els.detailImageMissing.textContent = en ? "Reviewed image not available yet." : "確認済み画像はまだありません。";
+    els.favoritesToggle.textContent = state.favOnly ? (en ? "★ Favorites" : "★ お気に入り") : (en ? "☆ Favorites" : "☆ お気に入り");
+  }
+
+  function render() {
+    if (!state.ready) return;
+    applyLanguageChrome();
+    refreshFiltered();
+    renderPrimaryFilters();
+    renderDialogFilters();
+    renderInterpretations();
+    renderList();
+    els.favoritesToggle.setAttribute("aria-pressed", String(state.favOnly));
+    if (state.current) renderDetail(state.current);
+  }
+
+  async function fetchJson(url) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (_) { return null; }
+  }
+
+  function buildImageMap(registry) {
+    const formalStates = new Set(["reviewed", "verified"]);
+    const direct = new Map();
+    const inherited = [];
+    for (const row of Array.isArray(registry?.items) ? registry.items : []) {
+      if (!formalStates.has(row?.image_state) || row?.subject_match !== "matched" || row?.migration_state !== "promoted") continue;
+      const id = text(row?.entry_id); const display = text(row?.primary?.display);
+      if (!id || !display) continue;
+      const item = { id, display, thumbnail: text(row?.primary?.thumbnail), alt_ja: text(row?.alt_ja), alt_en: text(row?.alt_en), source: row?.source || {} };
+      const resolved = resolveId(id);
+      if (resolved === id) direct.set(id, item); else inherited.push([resolved, item]);
+    }
+    inherited.forEach(([resolved, item]) => { if (resolved && !direct.has(resolved)) direct.set(resolved, { ...item, id: resolved }); });
+    return direct;
+  }
+
+  function buildOfferMap(payload) {
+    const map = new Map();
+    const targets = {};
+    for (const offer of Array.isArray(payload?.offers) ? payload.offers : []) {
+      const id = resolveId(text(offer?.entry_id));
+      if (!id || offer?.status !== "active" || map.has(id)) continue;
+      map.set(id, { ...offer, entry_id: id });
+      targets[id] = offer.amazon_url;
+    }
+    window.NWAmazonAffiliate?.configure?.({ enabled: true, tool: "construction-tools-atlas", targets });
+    return map;
+  }
+
+  async function loadData() {
+    els.loadingState.hidden = false;
+    const [rawEntries, dictionary, registry, offers] = await Promise.all([
+      window.CTA_DATA_LOADER?.loadEntries?.() || Promise.resolve([]),
+      fetchJson("./data/search-dictionary-v2.3.json"),
+      fetchJson("./data/image-registry-v2.3.json"),
+      fetchJson("./data/affiliate-offers-v2.3.json")
+    ]);
+    const seenIds = new Set(); const seenTerms = new Set();
+    state.entries = (Array.isArray(rawEntries) ? rawEntries : []).map(normalizeEntry).filter((entry) => {
+      const key = entryTermKey(entry);
+      if (!entry.id || seenIds.has(entry.id) || (key !== "::" && seenTerms.has(key))) return false;
+      seenIds.add(entry.id); if (key !== "::") seenTerms.add(key); return true;
+    });
+    state.entryById = new Map(state.entries.map((entry) => [entry.id, entry]));
+    if (dictionary && window.CTA_SEMANTIC_SEARCH?.createEngine) state.searchEngine = window.CTA_SEMANTIC_SEARCH.createEngine(dictionary);
+    state.images = buildImageMap(registry);
+    state.offers = buildOfferMap(offers);
+    state.ready = true;
+    els.loadingState.hidden = true;
+    render();
+
+    const requested = new URL(window.location.href).searchParams.get("entry");
+    if (requested) {
+      if (!openDetail(requested, "none")) setEntryInUrl("", "replace");
+      else if (resolveId(requested) !== requested) setEntryInUrl(state.current.id, "replace");
+    }
+  }
+
+  function copyCurrentLink() {
+    if (!state.current) return;
+    const url = canonicalUrl(state.current.id);
+    navigator.clipboard?.writeText(url).then(() => {
+      const original = els.detailCopy.textContent;
+      els.detailCopy.textContent = state.lang === "en" ? "Copied" : "コピー済み";
+      setTimeout(() => { els.detailCopy.textContent = original; }, 1200);
+    }).catch(() => {});
+  }
+  async function shareCurrent() {
+    if (!state.current) return;
+    const url = canonicalUrl(state.current.id);
+    if (navigator.share) {
+      try { await navigator.share({ title: primaryTerm(state.current), url }); return; } catch (_) { }
+    }
+    copyCurrentLink();
+  }
+
   function wire() {
-    bindEls();
-    ensureSemanticUi();
-    ensureMasterDetailUi();
-    bindEls();
-    setTheme(state.theme);
-    document.documentElement.lang = state.lang;
-    syncDetailContainer();
-    els.searchInput?.removeAttribute("stable"); els.searchInput?.removeAttribute("content"); if (els.searchInput) els.searchInput.placeholder = "例：コンクリに穴あける電動のやつ / インパクト / torque wrench";
-    els.themeBtn?.addEventListener("click", () => setTheme(state.theme === "light" ? "dark" : "light")); els.langBtn?.addEventListener("click", () => setLang(state.lang === "ja" ? "en" : "ja"));
-    els.searchInput?.addEventListener("input", () => { state.q = els.searchInput.value || ""; state.ignoredSignals.clear(); state.visibleCount = state.pageSize; render(); }); els.clearBtn?.addEventListener("click", () => { if (els.searchInput) els.searchInput.value = ""; state.q = ""; state.ignoredSignals.clear(); render(); });
-    els.loadMoreBtn?.addEventListener("click", () => { state.visibleCount += state.pageSize; renderList(); });
-    els.detailClose?.addEventListener("click", closeDetail);
-    [els.supportClose,els.menuClose,els.howtoClose,els.filterClose,els.overlay].forEach((x) => x?.addEventListener("click", closeSheets));
-    els.menuBtn?.addEventListener("click", () => openSheet(els.menuSheet)); els.supportBtn?.addEventListener("click", () => openSheet(els.supportSheet)); els.supportInlineBtn?.addEventListener("click", () => openSheet(els.supportSheet)); els.howtoOpen?.addEventListener("click", () => openSheet(els.howtoSheet));
-    [els.filterOpenBtn,els.categoryBtn,els.taskBtn].forEach((x) => x?.addEventListener("click", () => { renderFilters(); openSheet(els.filterSheet); }));
-    els.filterApplyBtn?.addEventListener("click", () => { state.action = draft.action; state.category = draft.category; state.task = draft.task; localStorage.setItem(LS.action,state.action); localStorage.setItem(LS.category,state.category); localStorage.setItem(LS.task,state.task); state.visibleCount = state.pageSize; closeSheets(); render(); });
-    els.filterResetBtn?.addEventListener("click", () => { state.action = state.category = state.task = "all"; localStorage.setItem(LS.action,"all"); localStorage.setItem(LS.category,"all"); localStorage.setItem(LS.task,"all"); closeSheets(); render(); });
-    els.detailTabs?.addEventListener("click", (ev) => { const b = ev.target.closest(".tab"); if (b) tab(b.dataset.tab || "meaning"); });
-    els.detailStar?.addEventListener("click", () => { if (!state.current) return; state.favs.has(state.current.id) ? state.favs.delete(state.current.id) : state.favs.add(state.current.id); saveFavs(); renderDetail(state.current); renderList(); });
-    els.favsOnly?.addEventListener("change", () => { state.visibleCount = state.pageSize; render(); });
-    els.exportFavsBtn?.addEventListener("click", () => navigator.clipboard?.writeText(JSON.stringify({ v:1, tool:"construction-tools-atlas", type:"favorites", ids:[...state.favs] }, null, 2)).catch(() => {}));
-    els.importFavsBtn?.addEventListener("click", () => { const data = json(prompt("Paste favorites JSON:"), null); if (!data || !Array.isArray(data.ids)) return; const ids = new Set(state.entries.map((e) => e.id)); state.favs = new Set(data.ids.filter((id) => ids.has(id))); saveFavs(); render(); });
-    const detailMedia = window.matchMedia?.(DETAIL_MEDIA);
-    detailMedia?.addEventListener?.("change", () => { syncDetailContainer(); if (state.current) renderList(); });
+    bindElements();
+    $$('[data-lang]', els.langControl).forEach((button) => button.addEventListener("click", () => {
+      state.lang = button.dataset.lang; localStorage.setItem(LS.lang, state.lang); render();
+    }));
+    els.favoritesToggle.addEventListener("click", () => { state.favOnly = !state.favOnly; localStorage.setItem(LS.favOnly, String(state.favOnly)); state.visibleCount = PAGE_SIZE; render(); });
+    els.searchInput.addEventListener("input", () => { state.q = els.searchInput.value; state.ignoredSignals.clear(); state.visibleCount = PAGE_SIZE; els.clearSearch.hidden = !state.q; render(); });
+    els.searchInput.addEventListener("focus", renderAutocomplete);
+    els.searchInput.addEventListener("blur", () => setTimeout(() => { els.autocomplete.hidden = true; }, 100));
+    els.clearSearch.addEventListener("click", () => { state.q = ""; els.searchInput.value = ""; els.clearSearch.hidden = true; state.ignoredSignals.clear(); state.visibleCount = PAGE_SIZE; render(); els.searchInput.focus(); });
+    els.loadMore.addEventListener("click", () => { state.visibleCount += PAGE_SIZE; renderList(); });
+    els.openFilters.addEventListener("click", () => els.filterDialog.showModal());
+    els.resetFilters.addEventListener("click", () => { state.action = state.type = state.category = state.task = "all"; [LS.action,LS.type,LS.category,LS.task].forEach((key) => localStorage.setItem(key,"all")); state.visibleCount = PAGE_SIZE; render(); });
+    els.detailClose.addEventListener("click", () => closeDetail(true));
+    els.mobileBackdrop.addEventListener("click", () => closeDetail(true));
+    els.detailFavorite.addEventListener("click", () => state.current && toggleFavorite(state.current.id));
+    els.detailCopy.addEventListener("click", copyCurrentLink);
+    els.detailShare.addEventListener("click", shareCurrent);
+    window.addEventListener("popstate", () => {
+      const id = new URL(window.location.href).searchParams.get("entry");
+      if (id) openDetail(id, "none"); else closeDetail(false);
+    });
+    window.matchMedia(MOBILE_QUERY).addEventListener?.("change", () => {
+      els.mobileBackdrop.hidden = !(state.current && isMobile());
+    });
   }
-  document.addEventListener("DOMContentLoaded", () => { wire(); load(); });
+
+  document.addEventListener("DOMContentLoaded", () => { wire(); applyLanguageChrome(); loadData().catch((error) => {
+    console.error("Construction Tools Atlas load failed", error);
+    els.loadingState.textContent = state.lang === "en" ? "Failed to load dictionary." : "辞書の読み込みに失敗しました。";
+  }); });
 })();
