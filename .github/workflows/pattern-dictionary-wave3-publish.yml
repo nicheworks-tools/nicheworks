@@ -1,0 +1,59 @@
+name: Pattern Dictionary Wave 3 publish
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-wave3-production-staging-20260916
+    paths:
+      - .github/workflows/pattern-dictionary-wave3-publish.yml
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave3-production-staging-20260916
+          fetch-depth: 0
+      - name: Publish Wave 3 transform
+        run: node tools/pattern-dictionary/scripts/publish-wave3.mjs
+      - name: Validate Pattern Dictionary canonical 60
+        run: |
+          node --check tools/pattern-dictionary/app.js
+          node tools/pattern-dictionary/tests/canonical-100-test.mjs
+          node tools/pattern-dictionary/tests/wave2-source-verification-test.mjs
+          node tools/pattern-dictionary/tests/wave2-production-content-test.mjs
+          node tools/pattern-dictionary/tests/wave3-source-verification-test.mjs
+          node tools/pattern-dictionary/tests/source-verification-test.mjs
+          node tools/pattern-dictionary/tests/production-content-test.mjs
+          node tools/pattern-dictionary/tests/reference-image-test.mjs
+          node tools/pattern-dictionary/tests/search-test.mjs
+          node tools/pattern-dictionary/tests/compare-test.mjs
+          node tools/pattern-dictionary/tests/affiliate-test.mjs
+          node tools/pattern-dictionary/tests/browse-mobile-test.mjs
+          node tools/pattern-dictionary/tests/validate.mjs
+          node tools/pattern-dictionary/tests/publication-test.mjs
+          node tools/pattern-dictionary/tests/seo-detail-test.mjs
+      - name: Run repository SEO contracts
+        run: |
+          node scripts/check-seo-indexable-url-identity.mjs
+          node scripts/check-seo-head-metadata-cardinality.mjs
+          node scripts/check-seo-language-metadata-integrity.mjs
+          node scripts/check-seo-internal-link-integrity.mjs
+          node scripts/check-seo-structured-data-integrity.mjs
+          node scripts/audit-seo.mjs --strict
+      - name: Commit canonical 60 publication
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/pattern-dictionary sitemap.xml
+          if git diff --cached --quiet; then
+            echo "No publication changes to commit"
+          else
+            git commit -m "Pattern Dictionary: publish Wave 3 canonical 60"
+            git push origin HEAD:feat/pattern-dictionary-wave3-production-staging-20260916
+          fi
