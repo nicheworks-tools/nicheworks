@@ -7701,8 +7701,8 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia5m2/spec_docomo.html",
