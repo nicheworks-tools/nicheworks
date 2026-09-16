@@ -152,5 +152,15 @@
   {"lgcode":"132225","pref_slug":"tokyo","city_slug":"higashikurume","publish":true},
   {"lgcode":"142140","pref_slug":"kanagawa","city_slug":"isehara","publish":true},
   {"lgcode":"132209","pref_slug":"tokyo","city_slug":"higashiyamato","publish":true},
-  {"lgcode":"122220","pref_slug":"chiba","city_slug":"abiko","publish":true}
+  {"lgcode":"122220","pref_slug":"chiba","city_slug":"abiko","publish":true},
+  {"lgcode":"132276","pref_slug":"tokyo","city_slug":"hamura","publish":true},
+  {"lgcode":"132284","pref_slug":"tokyo","city_slug":"akiruno","publish":true},
+  {"lgcode":"132233","pref_slug":"tokyo","city_slug":"musashimurayama","publish":true},
+  {"lgcode":"122068","pref_slug":"chiba","city_slug":"kisarazu","publish":true},
+  {"lgcode":"122084","pref_slug":"chiba","city_slug":"noda","publish":true},
+  {"lgcode":"122271","pref_slug":"chiba","city_slug":"urayasu","publish":true},
+  {"lgcode":"122246","pref_slug":"chiba","city_slug":"kamagaya","publish":true},
+  {"lgcode":"112275","pref_slug":"saitama","city_slug":"asaka","publish":true},
+  {"lgcode":"112291","pref_slug":"saitama","city_slug":"wako","publish":true},
+  {"lgcode":"112241","pref_slug":"saitama","city_slug":"toda","publish":true}
 ]
