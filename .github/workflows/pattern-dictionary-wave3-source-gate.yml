@@ -1,0 +1,40 @@
+name: Pattern Dictionary Wave 3 source gate
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-wave3-source-verification-20260916
+    paths:
+      - 'tools/pattern-dictionary/data/wave3-source-verification.json'
+      - 'tools/pattern-dictionary/tests/wave3-source-verification-test.mjs'
+      - '.github/workflows/pattern-dictionary-wave3-source-gate.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave3-source-verification-20260916
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate Wave 3 evidence contract
+        run: |
+          node tools/pattern-dictionary/tests/wave3-source-verification-test.mjs
+          node tools/pattern-dictionary/tests/canonical-100-test.mjs
+          node tools/pattern-dictionary/tests/validate.mjs
+          node tools/pattern-dictionary/tests/source-verification-test.mjs
+          node tools/pattern-dictionary/tests/wave2-source-verification-test.mjs
+      - name: Remove one-shot source gate workflow
+        if: success()
+        run: |
+          rm .github/workflows/pattern-dictionary-wave3-source-gate.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'ci: remove Pattern Dictionary Wave 3 source gate'
+          git push origin HEAD:feat/pattern-dictionary-wave3-source-verification-20260916
