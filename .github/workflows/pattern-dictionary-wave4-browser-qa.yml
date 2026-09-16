@@ -50,7 +50,7 @@ jobs:
             await page.goto(BASE+'/tools/pattern-dictionary/',{waitUntil:'domcontentloaded'});
             await expect(page.locator('#pattern-grid .pd-card')).toHaveCount(80);
             await expect(page.locator('footer')).toContainText('現在の80件');
-            await page.locator('[data-family="global-textile"]').click();
+            await page.locator('.pd-filter[data-family="global-textile"]').click();
             const visible=page.locator('#pattern-grid .pd-card:visible');
             expect(await visible.count()).toBeGreaterThanOrEqual(5);
             const hrefs=await visible.locator('a').evaluateAll(as=>as.map(a=>a.getAttribute('href')));
@@ -94,7 +94,7 @@ jobs:
             const dims=await row.evaluate(el=>({scroll:el.scrollWidth,client:el.clientWidth,overflow:getComputedStyle(el).overflowX}));
             expect(dims.scroll).toBeGreaterThan(dims.client);
             expect(['auto','scroll']).toContain(dims.overflow);
-            await page.locator('[data-family="global-textile"]').click();
+            await page.locator('.pd-filter[data-family="global-textile"]').click();
             expect(await page.locator('#pattern-grid .pd-card:visible').count()).toBeGreaterThanOrEqual(5);
 
             await page.goto(BASE+'/tools/pattern-dictionary/compare.html?a=kanoko&b=polka-dot',{waitUntil:'domcontentloaded'});
