@@ -717,3 +717,23 @@ Wave 28は50自治体到達後のbatch scaling ruleに従い、公開閾値を�
 Wave 28 readiness baselineは1,916 municipalities、2,294 valid HTTP(S) records、64 preferred candidates、31 direct-link datasets / 226 records / 207 unique URLs / 0 invalid URLsとする。
 
 Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 64/64、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する福島市・水戸市だけ2026 calendar calloutを表示する。盛岡市と福島市はbulky sourceを持たないためmetadata/heroで粗大ごみcoverageを広告しない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+
+## Wave 29 ten-municipality publication
+
+Wave 29は50自治体到達後の10自治体batch scaling ruleを継続し、公開閾値を変更せず **64自治体から74自治体** へ拡張する。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeとし、同一combined pageの二重計上や外部委託先による閾値補完は行わない。
+
+- 東京都 大田区 — `/tools/trashnavi/tokyo/ota/` — waste sorting / collection calendar / bulky waste
+- 東京都 江戸川区 — `/tools/trashnavi/tokyo/edogawa/` — waste sorting / collection calendar / bulky waste
+- 東京都 足立区 — `/tools/trashnavi/tokyo/adachi/` — waste sorting / collection calendar / bulky waste
+- 東京都 板橋区 — `/tools/trashnavi/tokyo/itabashi/` — waste sorting / collection calendar / bulky waste
+- 東京都 江東区 — `/tools/trashnavi/tokyo/koto/` — waste sorting / collection calendar / bulky waste
+- 東京都 品川区 — `/tools/trashnavi/tokyo/shinagawa/` — waste sorting / collection calendar / bulky waste
+- 東京都 北区 — `/tools/trashnavi/tokyo/kita/` — waste sorting / collection calendar / bulky waste
+- 東京都 中野区 — `/tools/trashnavi/tokyo/nakano/` — waste sorting / collection calendar / bulky waste
+- 東京都 豊島区 — `/tools/trashnavi/tokyo/toshima/` — waste sorting / collection calendar / bulky waste
+- 東京都 目黒区 — `/tools/trashnavi/tokyo/meguro/` — waste sorting / collection calendar / bulky waste
+
+Wave 29 readiness baselineは1,916 municipalities、2,314 valid HTTP(S) records、74 preferred candidates、32 direct-link datasets / 246 records / 227 unique URLs / 0 invalid URLsとする。
+
+Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 74/74、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する大田区・足立区・板橋区・江東区・品川区・目黒区だけ2026 calendar calloutを表示し、江戸川区・北区・中野区・豊島区には年次calloutを生成しない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
