@@ -1,0 +1,52 @@
+name: Pattern Dictionary Wave 5 accept review
+on:
+  push:
+    branches: [feat/pattern-dictionary-wave5-production-staging-20260916]
+    paths: [.github/workflows/pattern-dictionary-wave5-accept-review.yml]
+permissions:
+  contents: write
+jobs:
+  accept:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave5-production-staging-20260916
+          fetch-depth: 0
+      - name: Record accepted structural review
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const base='tools/pattern-dictionary/data/';
+          const review=JSON.parse(fs.readFileSync(base+'wave5-reference-image-review.json','utf8'));
+          const refs=JSON.parse(fs.readFileSync(base+'wave5-reference-images.json','utf8'));
+          const src=JSON.parse(fs.readFileSync(base+'wave5-source-verification.json','utf8'));
+          const qualified=new Set(src.patterns.filter(x=>x.verification_state==='qualified').map(x=>x.pattern_id));
+          review.status='structural-review-complete';
+          review.records=review.records.map(r=>({
+            ...r,status:'accepted',notes:[
+              '1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes.',
+              ...(qualified.has(r.pattern_id)?['Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat.']:[])
+            ]
+          }));
+          review.review_history=[
+            {pass:1,result:'regenerate',note:'Initial sheet exposed underscaled Suzani/animal/camouflage cues and overly geometric Tie-dye/Marbling.'},
+            {pass:2,result:'targeted-regenerate',note:'Scale/fluid refinement accepted broadly; Snake, Giraffe, Sashiko, and Adire required one focused pass.'},
+            {pass:3,result:'accepted',note:'Focused review confirmed Adire resist geometry, visible Sashiko running-stitch paths, connected Snake scale cells, and Giraffe polygon patches with pale channels.'}
+          ];
+          refs.status='structural-review-complete';
+          refs.policy.generator='scripts/generate-reference-images-wave5.py';
+          refs.policy.generation_revision='v3-focused-structural-refinement';
+          refs.images=refs.images.map(x=>({...x,review_state:'reviewed'}));
+          fs.writeFileSync(base+'wave5-reference-image-review.json',JSON.stringify(review,null,2)+'\n');
+          fs.writeFileSync(base+'wave5-reference-images.json',JSON.stringify(refs,null,2)+'\n');
+          NODE
+      - name: Validate accepted staging
+        run: node tools/pattern-dictionary/scripts/check-wave5-staging.mjs
+      - name: Commit review ledger
+        run: |
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git add tools/pattern-dictionary/data/wave5-reference-image-review.json tools/pattern-dictionary/data/wave5-reference-images.json
+          git commit -m "Pattern Dictionary: accept Wave 5 reference images"
+          git push origin HEAD:feat/pattern-dictionary-wave5-production-staging-20260916
