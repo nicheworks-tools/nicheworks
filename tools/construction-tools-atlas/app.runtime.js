@@ -1,7 +1,6 @@
 (() => {
   "use strict";
 
-  const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
   const MOBILE_QUERY = "(max-width: 899px)";
   const PAGE_SIZE = 50;
@@ -87,7 +86,8 @@
       "detailSecondary","detailTaxonomy","detailImage","detailImageMissing","whatHeading","detailDefinition","notesSection","notesHeading",
       "detailNotes","detailBullets","examplesSection","examplesHeading","detailExamples","aliasesSection","aliasesHeading","detailAliases",
       "relatedSection","relatedHeading","detailRelated","affiliateSection","affiliateHeading","affiliateLead","affiliateMount","affiliateDisclosure",
-      "detailLink","mobileBackdrop","filterDialog","filterDialogTitle","categoryHeading","categoryFilters","taskHeading","taskFilters","resetFilters"
+      "detailLink","mobileBackdrop","filterDialog","filterDialogTitle","categoryHeading","categoryFilters","taskHeading","taskFilters",
+      "favoritesTransferHeading","exportFavsBtn","importFavsBtn","resetFilters"
     ].forEach((id) => { els[id] = document.getElementById(id); });
   }
 
@@ -301,7 +301,6 @@
   }
 
   function renderAutocomplete() {
-    if (!els.autocomplete) return;
     clear(els.autocomplete);
     const active = document.activeElement === els.searchInput && normalized(state.q) && state.filtered.length;
     if (!active) { els.autocomplete.hidden = true; return; }
@@ -328,10 +327,9 @@
       const ja = text(signal?.label?.ja) || signal.id;
       const en = text(signal?.label?.en) || signal.id;
       const label = state.lang === "en" ? en : state.lang === "both" ? `${ja} / ${en}` : ja;
-      const chip = makeChip(`${label} ×`, true, () => {
+      els.interpretationChips.appendChild(makeChip(`${label} ×`, true, () => {
         state.ignoredSignals.add(signal.id); state.visibleCount = PAGE_SIZE; render();
-      });
-      els.interpretationChips.appendChild(chip);
+      }));
     });
   }
 
@@ -521,10 +519,33 @@
     if (updateUrl) setEntryInUrl("", "replace");
   }
 
+  function saveFavorites() {
+    localStorage.setItem(LS.favs, JSON.stringify([...state.favs]));
+  }
   function toggleFavorite(id) {
     if (state.favs.has(id)) state.favs.delete(id); else state.favs.add(id);
-    localStorage.setItem(LS.favs, JSON.stringify([...state.favs]));
+    saveFavorites();
     if (state.current?.id === id) renderDetail(state.current);
+    render();
+  }
+  async function exportFavorites() {
+    const payload = JSON.stringify({ v: 1, tool: "construction-tools-atlas", type: "favorites", ids: [...state.favs] }, null, 2);
+    try {
+      await navigator.clipboard.writeText(payload);
+      const original = els.exportFavsBtn.textContent;
+      els.exportFavsBtn.textContent = state.lang === "en" ? "Copied" : "コピー済み";
+      setTimeout(() => { els.exportFavsBtn.textContent = original; }, 1200);
+    } catch (_) { window.prompt(state.lang === "en" ? "Copy favorites JSON:" : "お気に入りJSONをコピーしてください:", payload); }
+  }
+  function importFavorites() {
+    const raw = window.prompt(state.lang === "en" ? "Paste favorites JSON:" : "お気に入りJSONを貼り付けてください:");
+    if (!raw) return;
+    const payload = readJson(raw, null);
+    if (!payload || !Array.isArray(payload.ids)) return;
+    const valid = unique(payload.ids.map(resolveId)).filter((id) => state.entryById.has(id));
+    state.favs = new Set(valid);
+    saveFavorites();
+    state.visibleCount = PAGE_SIZE;
     render();
   }
 
@@ -543,6 +564,9 @@
     els.filterDialogTitle.textContent = en ? "More filters" : "詳細フィルター";
     els.categoryHeading.textContent = en ? "Category" : "カテゴリ";
     els.taskHeading.textContent = en ? "Task" : "作業";
+    els.favoritesTransferHeading.textContent = en ? "Favorites data" : "お気に入りデータ";
+    els.exportFavsBtn.textContent = en ? "Export" : "エクスポート";
+    els.importFavsBtn.textContent = en ? "Import" : "インポート";
     els.resetFilters.textContent = en ? "Reset" : "リセット";
     els.whatHeading.textContent = en ? "What is it?" : "これは何？";
     els.notesHeading.textContent = en ? "Main uses / notes" : "主な用途・注意";
@@ -561,7 +585,6 @@
     applyLanguageChrome();
     refreshFiltered();
     renderPrimaryFilters();
-    renderDialogFilters();
     renderInterpretations();
     renderList();
     els.favoritesToggle.setAttribute("aria-pressed", String(state.favOnly));
@@ -570,7 +593,7 @@
 
   async function fetchJson(url) {
     try {
-      const response = await fetch(url);
+      const response = await window.fetch(url);
       if (!response.ok) return null;
       return await response.json();
     } catch (_) { return null; }
@@ -655,7 +678,10 @@
   function wire() {
     bindElements();
     $$('[data-lang]', els.langControl).forEach((button) => button.addEventListener("click", () => {
-      state.lang = button.dataset.lang; localStorage.setItem(LS.lang, state.lang); render();
+      state.lang = button.dataset.lang;
+      localStorage.setItem(LS.lang, state.lang);
+      render();
+      if (els.filterDialog.open) renderDialogFilters();
     }));
     els.favoritesToggle.addEventListener("click", () => { state.favOnly = !state.favOnly; localStorage.setItem(LS.favOnly, String(state.favOnly)); state.visibleCount = PAGE_SIZE; render(); });
     els.searchInput.addEventListener("input", () => { state.q = els.searchInput.value; state.ignoredSignals.clear(); state.visibleCount = PAGE_SIZE; els.clearSearch.hidden = !state.q; render(); });
@@ -663,8 +689,16 @@
     els.searchInput.addEventListener("blur", () => setTimeout(() => { els.autocomplete.hidden = true; }, 100));
     els.clearSearch.addEventListener("click", () => { state.q = ""; els.searchInput.value = ""; els.clearSearch.hidden = true; state.ignoredSignals.clear(); state.visibleCount = PAGE_SIZE; render(); els.searchInput.focus(); });
     els.loadMore.addEventListener("click", () => { state.visibleCount += PAGE_SIZE; renderList(); });
-    els.openFilters.addEventListener("click", () => els.filterDialog.showModal());
-    els.resetFilters.addEventListener("click", () => { state.action = state.type = state.category = state.task = "all"; [LS.action,LS.type,LS.category,LS.task].forEach((key) => localStorage.setItem(key,"all")); state.visibleCount = PAGE_SIZE; render(); });
+    els.openFilters.addEventListener("click", () => { renderDialogFilters(); els.filterDialog.showModal(); });
+    els.resetFilters.addEventListener("click", () => {
+      state.action = state.type = state.category = state.task = "all";
+      [LS.action,LS.type,LS.category,LS.task].forEach((key) => localStorage.setItem(key,"all"));
+      state.visibleCount = PAGE_SIZE;
+      render();
+      renderDialogFilters();
+    });
+    els.exportFavsBtn.addEventListener("click", exportFavorites);
+    els.importFavsBtn.addEventListener("click", importFavorites);
     els.detailClose.addEventListener("click", () => closeDetail(true));
     els.mobileBackdrop.addEventListener("click", () => closeDetail(true));
     els.detailFavorite.addEventListener("click", () => state.current && toggleFavorite(state.current.id));
@@ -679,8 +713,12 @@
     });
   }
 
-  document.addEventListener("DOMContentLoaded", () => { wire(); applyLanguageChrome(); loadData().catch((error) => {
-    console.error("Construction Tools Atlas load failed", error);
-    els.loadingState.textContent = state.lang === "en" ? "Failed to load dictionary." : "辞書の読み込みに失敗しました。";
-  }); });
+  document.addEventListener("DOMContentLoaded", () => {
+    wire();
+    applyLanguageChrome();
+    loadData().catch((error) => {
+      console.error("Construction Tools Atlas load failed", error);
+      els.loadingState.textContent = state.lang === "en" ? "Failed to load dictionary." : "辞書の読み込みに失敗しました。";
+    });
+  });
 })();
