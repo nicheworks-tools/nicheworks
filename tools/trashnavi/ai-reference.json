@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 104,
+  "published_municipality_count": 114,
   "municipalities": [
     {
       "lgcode": "131016",
@@ -632,6 +632,66 @@
       "pref_slug": "hyogo",
       "city_slug": "akashi",
       "url": "https://nicheworks.app/tools/trashnavi/hyogo/akashi/"
+    },
+    {
+      "lgcode": "332020",
+      "pref_slug": "okayama",
+      "city_slug": "kurashiki",
+      "url": "https://nicheworks.app/tools/trashnavi/okayama/kurashiki/"
+    },
+    {
+      "lgcode": "342076",
+      "pref_slug": "hiroshima",
+      "city_slug": "fukuyama",
+      "url": "https://nicheworks.app/tools/trashnavi/hiroshima/fukuyama/"
+    },
+    {
+      "lgcode": "272124",
+      "pref_slug": "osaka",
+      "city_slug": "yao",
+      "url": "https://nicheworks.app/tools/trashnavi/osaka/yao/"
+    },
+    {
+      "lgcode": "272116",
+      "pref_slug": "osaka",
+      "city_slug": "ibaraki",
+      "url": "https://nicheworks.app/tools/trashnavi/osaka/ibaraki/"
+    },
+    {
+      "lgcode": "282103",
+      "pref_slug": "hyogo",
+      "city_slug": "kakogawa",
+      "url": "https://nicheworks.app/tools/trashnavi/hyogo/kakogawa/"
+    },
+    {
+      "lgcode": "152021",
+      "pref_slug": "niigata",
+      "city_slug": "nagaoka",
+      "url": "https://nicheworks.app/tools/trashnavi/niigata/nagaoka/"
+    },
+    {
+      "lgcode": "202029",
+      "pref_slug": "nagano",
+      "city_slug": "matsumoto",
+      "url": "https://nicheworks.app/tools/trashnavi/nagano/matsumoto/"
+    },
+    {
+      "lgcode": "222101",
+      "pref_slug": "shizuoka",
+      "city_slug": "fuji",
+      "url": "https://nicheworks.app/tools/trashnavi/shizuoka/fuji/"
+    },
+    {
+      "lgcode": "112216",
+      "pref_slug": "saitama",
+      "city_slug": "soka",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/soka/"
+    },
+    {
+      "lgcode": "232068",
+      "pref_slug": "aichi",
+      "city_slug": "kasugai",
+      "url": "https://nicheworks.app/tools/trashnavi/aichi/kasugai/"
     }
   ]
 }
