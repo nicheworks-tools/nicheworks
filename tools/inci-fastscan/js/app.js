@@ -103,7 +103,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   setupLanguageSwitch();
   setupTabs();
   setupFastCheck();
-  setupJBTranslator();
+  setupJapaneseCheck();
   setupResets();
   setupSamples();
   setupCheckShortcuts();
@@ -322,7 +322,7 @@ function setupFastCheck() {
   };
 }
 
-function setupJBTranslator() {
+function setupJapaneseCheck() {
   document.getElementById("btn-jb-check").onclick = async () => {
     const text = document.getElementById("jb-input").value;
     if (!dictReady) return;
