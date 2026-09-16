@@ -777,3 +777,23 @@ Wave 31は10自治体batch scaling ruleを継続し、公開閾値を変更せ�
 Wave 31 readiness baselineは1,916 municipalities、2,370 valid HTTP(S) records、94 preferred candidates、34 direct-link datasets / 302 records / 283 unique URLs / 0 invalid URLsとする。
 
 Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 94/94、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する川越市・豊中市・横須賀市・岡崎市・一宮市だけ2026 calendar calloutを表示し、東大阪市・尼崎市・藤沢市・豊田市・高崎市には年次calloutを生成しない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+
+## Wave 32 ten-municipality publication
+
+Wave 32は10自治体batch scaling ruleを継続し、公開閾値を変更せず **94自治体から104自治体** へ拡張する。対象は旭川市・越谷市・所沢市・郡山市・西宮市・枚方市・吹田市・高槻市・豊橋市・明石市。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeとし、同一combined pageの二重計上や外部委託先による閾値補完は行わない。
+
+- 北海道 旭川市 — `/tools/trashnavi/hokkaido/asahikawa/` — waste sorting / collection calendar / bulky waste
+- 埼玉県 越谷市 — `/tools/trashnavi/saitama/koshigaya/` — waste sorting / collection calendar / bulky waste
+- 埼玉県 所沢市 — `/tools/trashnavi/saitama/tokorozawa/` — waste sorting / collection calendar / bulky waste
+- 福島県 郡山市 — `/tools/trashnavi/fukushima/koriyama/` — waste sorting / collection calendar / bulky waste
+- 兵庫県 西宮市 — `/tools/trashnavi/hyogo/nishinomiya/` — waste sorting / collection calendar / bulky waste
+- 大阪府 枚方市 — `/tools/trashnavi/osaka/hirakata/` — waste sorting / collection calendar / bulky waste
+- 大阪府 吹田市 — `/tools/trashnavi/osaka/suita/` — waste sorting / collection calendar / bulky waste
+- 大阪府 高槻市 — `/tools/trashnavi/osaka/takatsuki/` — waste sorting / collection calendar / bulky waste
+- 愛知県 豊橋市 — `/tools/trashnavi/aichi/toyohashi/` — waste sorting / collection calendar / bulky waste
+- 兵庫県 明石市 — `/tools/trashnavi/hyogo/akashi/` — waste sorting / collection calendar / bulky waste
+
+Wave 32 readiness baselineは1,916 municipalities、2,400 valid HTTP(S) records、104 preferred candidates、35 direct-link datasets / 332 records / 313 unique URLs / 0 invalid URLsとする。
+
+Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 104/104、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する旭川市・郡山市・枚方市・豊橋市・明石市だけ2026 calendar calloutを表示し、越谷市・所沢市・西宮市・吹田市・高槻市には年次calloutを生成しない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
