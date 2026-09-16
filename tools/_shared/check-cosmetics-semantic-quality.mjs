@@ -93,7 +93,9 @@ const rows = DATA_FILES.flatMap((file) => {
 });
 
 const hardFailures = [];
+const allGroups = new Map();
 const groups = new Map();
+const aliasOnlyRows = [];
 const categoryCounts = new Map();
 const safetyCounts = new Map();
 
@@ -116,6 +118,20 @@ for (const item of rows) {
     hardFailures.push(`${item.__file}[${item.__index}]: canonical identity normalizes to empty for ${en}`);
     continue;
   }
+
+  if (!allGroups.has(key)) allGroups.set(key, []);
+  allGroups.get(key).push(item);
+
+  if (Object.prototype.hasOwnProperty.call(item, 'alias_only') && item.alias_only !== true) {
+    hardFailures.push(`${en}: alias_only must be true when present`);
+  }
+  if (item.alias_only === true) {
+    const aliases = Array.isArray(item.alias) ? item.alias.map(normalizeText).filter(Boolean) : [];
+    if (aliases.length === 0) hardFailures.push(`${en}: alias_only record requires at least one finite alias`);
+    aliasOnlyRows.push(item);
+    continue;
+  }
+
   if (!groups.has(key)) groups.set(key, []);
   groups.get(key).push(item);
 
@@ -144,6 +160,14 @@ for (const item of rows) {
   if (hasEvidence(item)) evidenceBackedRecords += 1;
 }
 
+for (const item of aliasOnlyRows) {
+  const key = canonicalKey(item.en);
+  const peers = allGroups.get(key) || [];
+  if (!peers.some((peer) => peer !== item && peer.alias_only !== true)) {
+    hardFailures.push(`${item.en}: alias_only record must point at an existing non-alias canonical record`);
+  }
+}
+
 const duplicateGroups = [];
 const safetyConflicts = [];
 const categoryConflicts = [];
@@ -165,9 +189,10 @@ for (const group of groups.values()) {
   if (missingKinds.length) incompleteDuplicateSemantics.push({ ...summary, missing_fields: missingKinds });
 }
 
+const semanticRows = rows.length - aliasOnlyRows.length;
 const measured = {
   duplicate_canonical_groups: duplicateGroups.length,
-  duplicate_canonical_records_beyond_first: rows.length - groups.size,
+  duplicate_canonical_records_beyond_first: semanticRows - groups.size,
   records_missing_category: missingCategory,
   records_missing_safety: missingSafety,
   records_missing_note_short: missingNote,
@@ -219,6 +244,8 @@ const report = {
   phase: 'semantic-quality-baseline-frozen',
   dictionary_files: DATA_FILES.length,
   dictionary_records: rows.length,
+  alias_only_records: aliasOnlyRows.length,
+  semantic_dictionary_records: semanticRows,
   canonical_identities: groups.size,
   ...measured,
   records_with_explicit_evidence_metadata: evidenceBackedRecords,
