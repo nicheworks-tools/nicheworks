@@ -1,0 +1,227 @@
+name: CTA q014 content generate
+
+on:
+  push:
+    branches:
+      - feat/construction-atlas-q014-content-completion-20260916
+    paths:
+      - '.github/workflows/cta-q014-content-generate.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/construction-atlas-q014-content-completion-20260916
+          fetch-depth: 0
+      - name: Generate Wave5 q014 packs
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const path=require('path');
+          const root='tools/construction-tools-atlas';
+          const data=path.join(root,'data');
+          const source=JSON.parse(fs.readFileSync(path.join(data,'tools.quality-014.json'),'utf8')).rows;
+          const redirects=JSON.parse(fs.readFileSync(path.join(data,'canonical-redirects-v2.3.json'),'utf8')).redirects;
+          const redirected=new Set(redirects.map(r=>r.from));
+          const active=source.filter(r=>!redirected.has(r.id));
+          const identity=JSON.parse(fs.readFileSync(path.join(data,'canonical-identity-resolutions-v2.3.json'),'utf8'));
+          const nameOverrides=new Map((identity.name_overrides||[]).map(x=>[x.id,x.to]));
+
+          const notes={
+            q014_galvalume_roof:['切断端部や異種金属との接触部は防食上の弱点になりやすいため、板厚・表面処理・固定金物の適合も確認する。','Cut edges and contact with dissimilar metals can become corrosion weak points, so verify sheet thickness, coating condition, and compatible fasteners.'],
+            q014_standing_seam_roof:['縦はぜの成形・かみ合わせと熱伸縮を妨げない固定方法が、止水性と長期挙動を左右する。','Seam formation, full engagement, and fastening that accommodates thermal movement are central to watertightness and long-term performance.'],
+            q014_corrugated_roof_sheet:['波形の重ね方向・重ね幅と山部／谷部の固定位置を製品仕様に合わせ、風雨の吹込みを抑える。','Follow the specified lap direction, lap width, and crest/valley fastening position to limit wind-driven rain entry.'],
+            q014_eave_flashing:['屋根下葺きや雨樋との上下関係を誤ると水を裏側へ導くため、水の流れが外へ連続する納まりを確認する。','Incorrect sequencing with underlayment or gutters can direct water behind the assembly, so maintain a continuous outward drainage path.'],
+            q014_snow_guard:['屋根材の種類、勾配、積雪条件に合う方式と配置を選び、局部荷重を屋根材だけへ集中させない。','Select a system and spacing suited to roof type, slope, and snow load, and avoid concentrating loads into unsupported roofing material.'],
+            q014_roof_vent:['棟換気は排気口だけでなく軒天などの給気経路と組み合わせ、雨雪侵入を防ぐ防水層の連続性も確保する。','A ridge vent needs a matching intake path such as soffit vents, while the weather barrier must remain continuous against rain and snow entry.'],
+            q014_roof_sealant:['シーリングだけを一次防水に頼らず、適合する下地・プライマー・目地寸法と屋根ディテール全体で止水する。','Do not rely on sealant alone as primary waterproofing; confirm substrate compatibility, primer, joint geometry, and the complete roofing detail.'],
+            q014_roof_screw:['座金の圧縮不足は漏水、締め過ぎは座金や板の損傷につながるため、母材への掛かりと締付け状態をそろえる。','Under-compressed washers can leak while overtightening can damage the washer or sheet, so control embedment and tightening consistently.'],
+            q014_roofing_nail:['釘種・長さ・頭径を屋根材と下地に合わせ、打ち過ぎや浮きを避けて所定の固定ピッチを守る。','Match nail type, length, and head size to the roofing and substrate, avoiding overdriving or proud nails and following the required spacing.'],
+            q014_bitumen_primer:['下地の乾燥・清掃と塗布量を管理し、プライマーが十分乾いてからアスファルト系防水層を施工する。','Control substrate dryness, cleanliness, and application rate, and allow the primer to dry as specified before applying bituminous waterproofing.'],
+            q014_urethane_waterproofing:['膜厚の不足やピンホールを避けるため、下地処理、補強、規定塗布量、層間乾燥を一連で管理する。','Manage substrate preparation, reinforcement, specified coverage, and intercoat curing to avoid thin film areas and pinholes.'],
+            q014_frp_waterproofing:['樹脂の配合・硬化条件とガラスマットの含浸を管理し、気泡や未含浸部を残さない。','Control resin mix and cure conditions and fully wet out the glass reinforcement so voids and dry fibers are not left in the laminate.'],
+            q014_sheet_membrane:['継ぎ目、立上り、端末、貫通部の処理が弱点になりやすく、シート本体だけでなく接合部を重点確認する。','Laps, upstands, terminations, and penetrations are common weak points, so inspect joints as closely as the membrane field.'],
+            q014_torch_on_membrane:['加熱不足による接着不良と過熱による材料損傷を避け、溶融状態とラップ部の連続接着を確認する。','Avoid both underheating that causes poor bonding and overheating that damages the sheet; verify continuous fusion at laps.'],
+            q014_waterproof_topcoat:['トップコートは主防水層ではなく保護層なので、既存防水層の劣化・汚れ・含水状態を確認して適合品を塗る。','A topcoat protects rather than replaces the primary membrane, so assess membrane condition, contamination, moisture, and product compatibility first.'],
+            q014_drain_strainer:['通水断面を確保しつつ落葉やごみを捕捉できる形状を選び、清掃できる状態を維持する。','Choose a form that retains debris without choking the drainage area and keep it accessible for cleaning.'],
+            q014_roof_drain:['防水層とドレン本体の取り合いを連続させ、周囲に水が残らない勾配と排水能力を確保する。','Integrate the membrane continuously with the drain body and provide adequate slope and capacity so water does not pond around the inlet.'],
+            q014_overflow_drain:['主排水が詰まったときの安全余裕として、設定高さと排出先を主ドレンとは独立して確認する。','Treat it as emergency capacity when the primary drain is blocked, verifying its inlet elevation and discharge path independently.'],
+            q014_parapet_cap:['笠木の継手・端部・固定部で雨水を壁内へ入れないよう、排水勾配と水切りを連続させる。','At joints, ends, and fixings, maintain drainage slope and drip details so water is not driven into the parapet wall.'],
+            q014_coping_joint:['温度伸縮を吸収できるクリアランスを確保し、ジョイント部の止水材やカバーを連続させる。','Provide movement allowance for thermal expansion and keep joint seals or covers continuous across the coping connection.'],
+            q014_fiber_cement_siding:['割付、通気層、留付け位置、目地処理を製品仕様に合わせ、切断端部や開口部の防水処理も行う。','Follow product requirements for layout, cavity ventilation, fastener locations, and joints, including weather treatment at cut edges and openings.'],
+            q014_metal_siding:['熱伸縮と板金端部の変形を考慮し、役物・重ね・固定ピッチをそろえて雨仕舞を確保する。','Allow for thermal movement and edge deformation, coordinating trims, laps, and fastening spacing for a weather-tight assembly.'],
+            q014_siding_starter:['最初の一段の水平と掛かりを決める基準部材なので、レベルと連続性を先に確保する。','Because it establishes the level and engagement of the first siding course, verify its alignment and continuity before panels are installed.'],
+            q014_siding_clip:['対応するサイディング厚・形状と下地への固定方法を守り、クリップの浮きや過締めでパネルを拘束しない。','Use clips compatible with the panel profile and substrate, avoiding loose seating or overtightening that restricts panel movement.'],
+            q014_siding_joint:['目地幅、バックアップ材、シーリングの二面接着などを管理し、パネルの伸縮を吸収できる目地にする。','Control joint width, backing material, and two-sided sealant adhesion so the joint can accommodate panel movement.'],
+            q014_vented_rainscreen:['通気胴縁は外装材の固定下地と通気経路を兼ねるため、上下の通気開口を塞がず荷重を下地へ伝える配置にする。','Rainscreen battens provide both cladding support and an air path, so keep inlet/outlet ventilation open while transferring cladding loads to the substrate.'],
+            q014_housewrap_tape:['透湿防水シートの重ね・端部・開口補強に使い、濡れた面や粉じん面へ貼らず圧着して連続した止水線を作る。','Use it at membrane laps, edges, and opening details, applying to clean dry surfaces and rolling it firmly into a continuous weather seal.'],
+            q014_exterior_corner_trim:['出隅・入隅の寸法と外装材の伸縮クリアランスを取り、雨水が裏へ回らない重ね順序にする。','Set corner geometry and movement clearance for the cladding and sequence overlaps so rainwater is shed outward rather than behind the finish.'],
+            q014_fascia_board:['この項目は鼻隠しではなく妻側の破風板（Bargeboard）として扱い、屋根端部の防水・見切り・下地納まりを確認する。','This canonical is the gable-edge bargeboard, not the eaves fascia; check weathering, edge finish, and substrate support at the roof verge.'],
+            q014_soffit_vent:['必要な有効開口面積を確保し、断熱材や防虫網で通気を塞がないよう棟換気との給排気バランスを取る。','Provide the required net free area and keep insulation or insect screens from blocking airflow, balancing intake with ridge exhaust.'],
+            q014_aluminum_sash:['開口の水平・垂直、アンカー固定、周囲の防水層とシーリングを一体で確認し、枠をねじらない。','Check opening plumb/level, anchors, perimeter flashing and sealant together, and avoid racking or twisting the aluminum frame.'],
+            q014_resin_sash:['樹脂枠は熱変形や固定時の歪みに配慮し、指定クリアランスと固定位置を守って断熱・防水層へ接続する。','Vinyl frames need allowance for thermal movement and fastening distortion; follow specified clearances and tie the frame into insulation and weather layers.'],
+            q014_double_glazing:['ガラス端部やスペーサーを傷めず、支持ブロックとガスケットで荷重を受けてシール部へ過大な力を掛けない。','Protect sealed edges and spacers, support the unit on setting blocks, and avoid transferring excessive load into the edge seal.'],
+            q014_low_e_glass:['Low-E膜の面位置は製品仕様と用途で決まるため、表裏やガラス構成を取り違えずに施工する。','The Low-E coating surface depends on the glazing build-up and product design, so verify orientation and pane configuration before installation.'],
+            q014_sill_pan:['窓周りへ侵入した水を外へ排出する二次防水なので、立上り・端部ダム・外向き勾配を連続させる。','As secondary drainage beneath a window, maintain end dams, upstands, and outward slope so incidental water is directed outdoors.'],
+            q014_door_leaf:['枠とのクリアランス、建付け、重量に合う丁番・金物を確認し、開閉時に床や枠へ干渉しないよう調整する。','Check frame clearances, alignment, and hardware capacity for the door weight, adjusting the leaf so it operates without binding.'],
+            q014_door_hinge:['扉重量と使用頻度に合う丁番を選び、軸位置と複数丁番の芯を合わせてビスを確実に固定する。','Select hinges for door weight and duty, align hinge axes, and secure fasteners into suitable backing.'],
+            q014_door_closer:['扉重量・幅に合う能力を選び、閉じ速度・ラッチ速度・バックチェックを現場条件に合わせて調整する。','Select a closer sized for door mass and width, then adjust closing, latching, and backcheck functions for the installation.'],
+            q014_door_stop:['戸先やハンドルが壁へ当たる前に確実に受ける位置へ設け、床・壁下地へ十分に固定する。','Locate the stop so it catches the door before the leaf or handle strikes the wall, and anchor it to adequate backing.'],
+            q014_door_lockset:['バックセット、扉厚、勝手、用途に合う錠前を選び、ラッチとストライクが無理なく噛み合うよう調整する。','Match backset, door thickness, handing, and security function, then align latch and strike for smooth engagement.'],
+            q014_cylinder_lock:['シリンダーだけで扉全体の防犯性能は決まらないため、錠ケース・ストライク・キーシステムとの適合を確認する。','The cylinder alone does not determine door security, so verify compatibility with the lock body, strike, and keying system.'],
+            q014_door_handle:['操作高さ、扉厚、錠ケースとの軸位置を合わせ、がたつきや回転抵抗が出ないよう両側を固定する。','Align handle height, door thickness, and spindle with the lock case, securing both sides without looseness or binding.'],
+            q014_push_plate:['人が押す位置に合わせて貼付・固定し、扉表面を傷や汚れから守りつつ他の金物と干渉させない。','Place it at the natural push zone to protect the door face while keeping clear of locks, handles, and other hardware.'],
+            q014_pull_handle:['引張荷重を受けるため、扉材だけでなく補強下地へ確実に固定し、手指のクリアランスを確保する。','Because it carries pulling loads, fasten into reinforced backing and maintain adequate hand clearance from the door face.'],
+            q014_sliding_door_rail:['レールの直線・水平と支持間隔を確保し、戸車荷重を受けてもたわみや継ぎ目段差が出ないようにする。','Keep the track straight, level, and adequately supported so roller loads do not create sag or steps at joints.'],
+            q014_door_roller:['扉重量に合う戸車を使い、左右高さとレールへの掛かりを調整して偏摩耗や脱輪を防ぐ。','Use rollers rated for the door weight and adjust both sides for even engagement to prevent skewed wear or derailment.'],
+            q014_glazing_gasket:['ガラス厚と溝寸法に合う断面を選び、継ぎ目・角部を浮かせず連続して押し込んで保持と止水を確保する。','Match the gasket profile to glass and groove dimensions and seat it continuously through corners and joints for retention and weather sealing.'],
+            q014_glazing_bead:['ガラスを過度に締め付けず均等に保持し、脱落防止の固定とガスケットの圧縮状態を確認する。','Retain the glazing evenly without excessive clamping, verifying bead security and correct gasket compression.'],
+            q014_expansion_foam:['発泡量を見込んで充填し、窓枠などを押し曲げない低膨張品の選定や余剰部の処理を行う。','Allow for expansion and, around frames, use suitable low-expansion foam so curing pressure does not distort the assembly.'],
+            q014_exterior_paint:['下地種類と既存塗膜に適合する塗料体系を選び、洗浄・補修・下塗りから規定膜厚まで一連で管理する。','Select a coating system compatible with the substrate and existing finish, controlling cleaning, repairs, priming, and specified film build.'],
+            q014_elastomeric_paint:['弾性は下地の微細な動きへ追従するための特性であり、大きな構造ひび割れを塗膜だけで解決しない。','Flexibility can bridge minor substrate movement, but it should not be used as a substitute for repairing significant structural cracking.'],
+            q014_sealer_coat:['これは仕上げ保護用のコンクリートシーラーではなく、吸込み調整と上塗り密着を目的とする下塗りとして扱う。','This is a preparatory sealer coat for suction control and adhesion, not a final protective concrete sealer.'],
+            q014_filler_coat:['細かな凹凸や巣穴を調整して上塗り面を整える用途で、深い欠損や動くひび割れは別途補修する。','Use it to level minor texture and pores before finish coats; deep defects or moving cracks need separate repair.'],
+            q014_spray_gun:['ノズル口径、空気圧、塗料粘度と吹付距離を合わせ、オーバースプレーと膜厚むらを管理する。','Match nozzle size, air pressure, coating viscosity, and spray distance to control overspray and film-build variation.'],
+            q014_airless_sprayer:['高圧噴射のためノズル詰まりを手で確認せず、圧力解除手順とガードを守って適正チップを使用する。','Because the fluid is highly pressurized, never clear a tip by hand; follow pressure-relief procedures, use guards, and fit the correct tip.'],
+            q014_scaffold_sheet:['足場の全面を覆うと風荷重が増えるため、取付ピッチ・開口率・足場補強を計画条件に合わせる。','Enclosing scaffolding increases wind load, so match tie spacing, mesh openness, and scaffold bracing to the temporary-works design.'],
+            q014_poly_curing_sheet:['用途に応じて防湿・養生・汚れ防止を使い分け、継ぎ目や端部から水分・粉じんが回り込まないよう重ねる。','Use the sheet appropriately for moisture control, curing, or protection and overlap edges so water or debris cannot readily bypass the barrier.'],
+            q014_floor_protection_board:['床材に傷を付けない表面を下側にし、継ぎ目を固定して台車や脚立でずれ・めくれが起きないようにする。','Place a non-damaging face against the finished floor and secure joints so carts or ladders do not shift or lift the protection.'],
+            q014_corner_guard:['衝突が想定される高さと範囲を覆い、接着・ビス固定を下地に合わせて端部が引っ掛からないよう納める。','Cover the likely impact zone and choose adhesive or mechanical fixing for the substrate, finishing edges so they do not create snag points.'],
+            q014_handrail:['歩行・昇降時に握る支持部材であり墜落防止柵全体とは別物なので、握りやすい高さ・連続性・壁とのクリアランスを確保する。','A handrail is the graspable support for walking or stairs, not the whole fall-protection guardrail; maintain usable height, continuity, and hand clearance.'],
+            q014_guard_post:['手すり・柵の荷重を基部へ伝える支柱なので、取付間隔とアンカー強度をシステム全体の設計に合わせる。','As the post transfers railing loads into the base, its spacing and anchors must satisfy the capacity of the complete barrier system.'],
+            q014_baluster:['縦格子の間隔と固定強度をそろえ、開口寸法やよじ登り防止など用途に応じた安全条件を満たす。','Maintain consistent baluster spacing and fixing strength, meeting applicable opening-size and climbing-safety requirements.'],
+            q014_exterior_fence:['恒久・一般外構の境界フェンスとして、風荷重、基礎、支柱間隔、隣地や通路への張り出しを確認する。','For a permanent/general site fence, consider wind load, foundations, post spacing, and encroachment into adjacent property or circulation.'],
+            q014_fence_post:['パネル荷重と風荷重を受けるため、根入れ・基礎寸法・柱間隔をフェンス仕様に合わせて通りを出す。','Because posts resist panel and wind loads, coordinate embedment, footing size, spacing, and alignment with the fence system.'],
+            q014_gate:['開閉軌跡と地面勾配、通行幅、施錠位置を確認し、閉止時にフェンスや柱へ荷重が適切に伝わるようにする。','Check swing path, ground slope, clear width, and latching position so the closed gate bears correctly against posts and fence components.'],
+            q014_gate_hinge:['門扉重量と開閉頻度に合う丁番を選び、柱側の補強と上下軸を合わせて垂れ下がりを防ぐ。','Select hinges for gate weight and duty, reinforce the post connection, and align hinge axes to prevent sagging.'],
+            q014_gate_latch:['閉位置で自然に掛かり、風や振動で外れない方式を選び、必要に応じて施錠機能と避難上の操作性を両立させる。','Use a latch that engages naturally and resists wind or vibration, balancing locking needs with required emergency egress operation.'],
+            q014_interlocking_paver:['路盤の締固め、敷砂厚、目地砂、端部拘束を一体で管理し、ブロック単体ではなく舗装層として安定させる。','Treat it as a pavement system: compact the base, control bedding sand, fill joints, and provide edge restraint for overall stability.'],
+            q014_concrete_paver:['平板の厚さと支持層を荷重条件に合わせ、不陸やがたつきを防ぐため全面で均等に支持する。','Match slab thickness and base support to loading and provide uniform bearing to prevent rocking or differential settlement.'],
+            q014_paving_stone:['天然石は厚さや吸水性にばらつきがあるため、選別・割付と下地調整を行い、目地幅を整える。','Natural stone varies in thickness and absorption, so sort pieces, adjust bedding, plan layout, and maintain controlled joint widths.'],
+            q014_curb_block:['通り・高さ・勾配を基準に据え、背面拘束や基礎で車両・舗装からの横荷重に耐えるようにする。','Set line, elevation, and slope accurately and provide bedding/back restraint to resist lateral loads from paving or vehicles.'],
+            q014_granite_curb:['重量と寸法誤差を考慮して吊り・据付方法を選び、目地と基礎で石同士の段差を抑える。','Allow for unit weight and dimensional variation when handling and setting, using joints and bedding to control steps between stones.'],
+            q014_asphalt_mix:['混合物の種類、出荷温度、運搬時間、敷均し・転圧温度を管理し、冷え過ぎた材料を無理に締め固めない。','Control mix type, delivery temperature, haul time, placement, and compaction temperature rather than trying to compact material that has cooled excessively.'],
+            q014_asphalt_tack_coat:['既設・下層舗装面を清掃し、薄く均一に散布して破断面なく層間接着させる。','Clean the underlying asphalt surface and apply a thin uniform film so the new lift bonds continuously to the existing layer.'],
+            q014_asphalt_primer:['粒状路盤へ浸透させるプライムコートであり、舗装層間のタックコートと用途を分けて散布量・養生を管理する。','Prime coat penetrates a granular base; distinguish it from tack coat between asphalt lifts and control application rate and cure time accordingly.'],
+            q014_vibratory_roller:['層厚・材料・周辺構造物に応じて振動数や走行回数を調整し、過転圧や振動影響を避ける。','Adjust vibration and pass count to material, lift thickness, and nearby structures, avoiding overcompaction or harmful vibration.'],
+            q014_hand_roller:['狭所や端部の小規模転圧に使い、旋回時の押し出しや段差を避けながら所定密度まで均一に締める。','Use it for confined areas and edges, compacting uniformly while avoiding material shoving or steps during turns.'],
+            q014_asphalt_rake:['高温合材を配るための専用形状を使い、粗骨材を分離させず必要厚さへ素早く敷き均す。','Use the paving-specific rake to distribute hot mix quickly to the required depth without segregating coarse aggregate.'],
+            q014_lute_rake:['レーキより最終面の微調整に使い、合材を引き過ぎて粗骨材を分離させないよう平滑に整える。','Use the lute for final surface adjustment rather than bulk spreading, smoothing without overworking and segregating the mix.'],
+            q014_paver_machine:['スクリード設定、敷幅、速度、材料供給を安定させ、停止や供給むらによる段差・密度差を抑える。','Stabilize screed settings, paving width, speed, and material feed to minimize bumps or density variation from stops and starvation.'],
+            q014_line_marking_paint:['路面の乾燥・清掃と交通開放までの乾燥時間を確保し、規定幅・膜厚・視認性をそろえる。','Apply to a clean dry surface, allow sufficient cure before reopening traffic, and control line width, film build, and visibility.'],
+            q014_trench_drain:['線状に集水する側溝として、流末へ向かう勾配、支持基礎、グレーチング荷重区分を合わせる。','As a linear collector, coordinate channel slope to the outlet, structural bedding, and grate load class with the installation.'],
+            q014_grating:['歩行・車両荷重に合う耐荷重と目幅を選び、受枠への掛かりと浮き止めを確保してがたつきを防ぐ。','Select load rating and opening size for pedestrian or vehicle use and provide full frame bearing and restraint against uplift or rocking.'],
+            q014_drain_channel:['排水量に合う断面と連続勾配を確保し、継手や端部から漏水・土砂流入が起きないよう接続する。','Provide adequate hydraulic section and continuous fall, sealing joints and ends against leakage or soil intrusion.'],
+            q014_stormwater_inlet:['流入口高さを周囲舗装の低点へ合わせ、堆積物を清掃できる桝深さと配管接続を確保する。','Set the inlet at the pavement low point and provide accessible sump depth and pipe connections for maintenance.'],
+            q014_catchpit:['水と土砂を一時受けるため、流入・流出管より下に泥溜め容量を確保し、清掃アクセスを残す。','Provide sump volume below connecting pipes so sediment can settle, while retaining access for periodic cleaning.'],
+            q014_sediment_trap:['配管トラップの水封とは別物で、流速を落として土砂を沈降させ、堆積物を除去できる構造にする。','This is not a plumbing water-seal trap; it slows flow to settle solids and must permit removal of accumulated sediment.'],
+            q014_drain_cover:['開口寸法・荷重条件に合う蓋を使い、ずれ・落下・つまずきを防ぎながら点検時に取り外せるようにする。','Match cover size and load rating to the opening, preventing displacement or trip hazards while retaining maintenance access.'],
+            q014_permeable_paver:['透水性能は表面材だけでなく目地と透水性路盤に依存するため、細粒分による目詰まりを抑える構成にする。','Permeability depends on joints and the open-graded base as well as the paver, so detail the system to limit clogging by fines.'],
+            q014_drainage_slope:['仕上げ面で必要勾配を連続させ、局部的な逆勾配や水溜まりがないか散水・測定で確認する。','Maintain continuous fall on the finished surface and check for local backfall or ponding by measurement or water testing.'],
+            q014_expansion_joint_filler:['伸縮目地内で圧縮変形を受ける充填材で、シーリング深さを確保しつつ硬いモルタルなどで目地を拘束しない。','The filler compresses within a movement joint; maintain sealant depth and do not bridge the joint with rigid mortar or debris.'],
+            q014_joint_sealant_exterior:['外壁・開口部の動きを吸収できる目地寸法と二面接着を確保し、下地・プライマーの適合を確認する。','Provide joint geometry and two-sided adhesion that accommodate façade movement, with compatible substrate preparation and primer.'],
+            q014_polyurethane_sealant:['ポリウレタン特有の塗装性・耐候性・下地適合を確認し、用途に合わないシリコーン系と安易に置き換えない。','Verify polyurethane-specific paintability, weather exposure, and substrate compatibility rather than treating it as interchangeable with silicone sealants.'],
+            q014_modified_silicone_sealant:['変成シリコーン/MS系として塗装性や接着対象を確認し、純シリコーンシーラントと化学系を混同しない。','Treat modified-silicone/MS polymer sealant as a distinct chemistry and verify paintability and substrate adhesion rather than confusing it with silicone.'],
+            q014_sealant_spatula:['目地幅と仕上げ形状に合うヘラを選び、シーリングを下地へ押し付けながら表面を連続して均す。','Choose a spatula profile for the joint width and finish, tooling the bead continuously while pressing sealant against the joint faces.'],
+            q014_backer_tape:['目地底へ貼ってシーリングの三面接着を防ぎ、二面接着で伸縮できる断面を作る。','Apply it to the joint base as a bond breaker so sealant adheres to two sides and can deform properly.'],
+            q014_glass_suction_cup:['ガラス重量に対する定格と吸着面の清潔さを確認し、吸盤だけを恒久吊り具や頭上保持に流用しない。','Check rated capacity and clean contact surfaces, and do not treat a hand suction cup as a permanent lifting or overhead suspension device.'],
+            q014_panel_lifter_exterior:['パネル重量・寸法・吸着／クランプ方式に合う機器を選び、吊上げ中の風荷重と作業員の挟まれ範囲を管理する。','Select lifting equipment for panel weight, size, and gripping method, controlling wind exposure and worker pinch/crush zones during positioning.']
+          };
+
+          if(active.length!==98) throw new Error(`Expected 98 active q014 rows, got ${active.length}`);
+          const missing=active.filter(r=>!notes[r.id]);
+          const extra=Object.keys(notes).filter(id=>!active.some(r=>r.id===id));
+          if(missing.length||extra.length) throw new Error(`note coverage mismatch missing=${missing.map(x=>x.id)} extra=${extra}`);
+
+          const groupFor=(r)=>{
+            if(['roof','waterproofing','exterior'].includes(r.c)) return '5a';
+            if(['opening','hardware'].includes(r.c) && !['q014_corner_guard','q014_handrail','q014_guard_post','q014_baluster','q014_gate_hinge','q014_gate_latch'].includes(r.id)) return '5b';
+            if(['paint','temporary_work','curing','exterior_site'].includes(r.c) || ['q014_corner_guard','q014_handrail','q014_guard_post','q014_baluster','q014_gate_hinge','q014_gate_latch'].includes(r.id)) return '5c';
+            return '5d';
+          };
+          const taskJa={install_roofing:'屋根材の施工',install_metal_roof:'金属屋根の施工',install_roof_sheet:'屋根・外装シートの施工',install_flashing:'水切り施工',snow_protection:'落雪対策',vent_roof:'屋根換気施工',seal_roof:'屋根止水',fasten_roof:'屋根材の固定',prime_substrate:'下地プライマー施工',apply_membrane:'防水層形成',install_membrane:'防水シート施工',protect_membrane:'防水層保護',protect_drain:'ドレン保護',drain_roof:'屋根排水',drain_overflow:'非常排水',cap_parapet:'笠木施工',seal_joint:'目地施工',install_siding:'外壁材施工',fasten_siding:'外壁材固定',vent_wall:'外壁通気層施工',seal_weather_barrier:'透湿防水層の止水',finish_corner:'外壁コーナー納め',finish_eave:'屋根端部仕上げ',vent_eave:'軒天換気施工',install_window:'窓施工',install_glazing:'ガラス施工',drain_window:'窓周り排水',install_door:'ドア施工',hang_door:'扉吊込み',install_door_hardware:'ドア金物施工',install_lock:'錠前施工',install_handle:'ハンドル施工',install_sliding_door:'引戸施工',secure_glass:'ガラス固定',fill_gap:'隙間充填',paint_exterior:'外装塗装',prime_surface:'塗装下塗り',prepare_surface:'塗装下地調整',spray_paint:'吹付塗装',protect_site:'現場飛散防止',protect_surface:'養生・防湿',protect_floor:'床養生',protect_corner:'角部保護',install_handrail:'手すり施工',install_guardrail:'柵支柱施工',install_railing:'手すり・柵施工',install_fence:'フェンス施工',install_gate:'門扉施工',lay_paver:'舗装ブロック施工',lay_stone:'石舗装',install_curb:'縁石施工',pave_asphalt:'アスファルト舗装',bond_asphalt:'舗装層間接着',prepare_base:'舗装路盤処理',compact_pavement:'舗装転圧',spread_asphalt:'合材敷均し',level_asphalt:'舗装面仕上げ',mark_pavement:'路面標示',install_drain:'側溝施工',cover_drain:'排水開口保護',drain_surface:'表面排水',collect_water:'集水設備施工',control_sediment:'土砂捕捉',manage_runoff:'雨水浸透舗装',set_slope:'排水勾配形成',fill_joint:'伸縮目地施工',seal_exterior_joint:'外装目地止水',tool_sealant:'シーリング仕上げ',prepare_joint:'シーリング目地準備',handle_glass:'ガラス運搬',install_panel:'外装パネル施工'};
+          const taskEn={install_roofing:'roofing installation',install_metal_roof:'metal-roof installation',install_roof_sheet:'roof-sheet installation',install_flashing:'flashing installation',snow_protection:'snow-retention work',vent_roof:'roof ventilation work',seal_roof:'roof sealing',fasten_roof:'roof fastening',prime_substrate:'substrate priming',apply_membrane:'waterproof membrane application',install_membrane:'sheet-membrane installation',protect_membrane:'membrane protection',protect_drain:'drain protection',drain_roof:'roof drainage',drain_overflow:'overflow drainage',cap_parapet:'parapet coping work',seal_joint:'joint sealing',install_siding:'siding installation',fasten_siding:'siding fastening',vent_wall:'rainscreen cavity work',seal_weather_barrier:'weather-barrier sealing',finish_corner:'exterior corner finishing',finish_eave:'roof-edge finishing',vent_eave:'soffit ventilation work',install_window:'window installation',install_glazing:'glazing installation',drain_window:'window drainage detailing',install_door:'door installation',hang_door:'door hanging',install_door_hardware:'door-hardware installation',install_lock:'lock installation',install_handle:'handle installation',install_sliding_door:'sliding-door installation',secure_glass:'glazing retention',fill_gap:'gap filling',paint_exterior:'exterior coating',prime_surface:'surface priming',prepare_surface:'surface preparation',spray_paint:'spray coating',protect_site:'site containment',protect_surface:'surface protection',protect_floor:'floor protection',protect_corner:'corner protection',install_handrail:'handrail installation',install_guardrail:'guard-post installation',install_railing:'railing installation',install_fence:'fence installation',install_gate:'gate installation',lay_paver:'paver installation',lay_stone:'stone paving',install_curb:'curb installation',pave_asphalt:'asphalt paving',bond_asphalt:'asphalt interlayer bonding',prepare_base:'pavement-base preparation',compact_pavement:'pavement compaction',spread_asphalt:'asphalt spreading',level_asphalt:'asphalt finishing',mark_pavement:'pavement marking',install_drain:'trench-drain installation',cover_drain:'drain-opening protection',drain_surface:'surface drainage',collect_water:'stormwater collection',control_sediment:'sediment control',manage_runoff:'permeable paving',set_slope:'drainage grading',fill_joint:'movement-joint filling',seal_exterior_joint:'exterior joint sealing',tool_sealant:'sealant tooling',prepare_joint:'sealant-joint preparation',handle_glass:'glass handling',install_panel:'exterior-panel installation'};
+
+          const categoryRules={
+            roof:{ja:['製品仕様に指定された下地、勾配、重ね、固定条件を確認する。','完成後は端部・貫通部・固定部を中心に雨仕舞と浮き・変形を点検する。'],en:['Verify the specified substrate, roof slope, laps, and fastening conditions.','After installation, inspect edges, penetrations, and fixings for weathering defects, lifting, or distortion.']},
+            waterproofing:{ja:['下地の乾燥・清掃・不陸と材料同士の適合を施工前に確認する。','立上り、端末、貫通部、ドレン周りなど防水の弱点を重点的に検査する。'],en:['Check substrate dryness, cleanliness, flatness, and material compatibility before work.','Inspect waterproofing weak points such as upstands, terminations, penetrations, and drains closely.']},
+            exterior:{ja:['下地への荷重伝達と外装材の伸縮を考慮し、固定・クリアランスを仕様どおりにする。','雨水が裏側へ回らず、必要な通気・排水経路が連続しているか確認する。'],en:['Provide specified fixing and movement clearance while transferring loads correctly to the substrate.','Confirm rain is shed outward and required ventilation or drainage paths remain continuous.']},
+            opening:{ja:['開口寸法、水平・垂直、周囲防水との接続を施工前後で確認する。','可動部やガラスへ無理な拘束を与えず、排水・気密・止水経路を塞がない。'],en:['Check opening dimensions, plumb/level, and integration with perimeter weatherproofing.','Avoid stressing moving parts or glazing and keep drainage, air-seal, and weather-seal paths functional.']},
+            hardware:{ja:['扉・柵など対象部材の重量、寸法、使用頻度に合う金物を選ぶ。','固定下地、ビス・アンカー、可動クリアランスを確認し、緩みや干渉を残さない。'],en:['Select hardware for the supported component’s weight, dimensions, and service duty.','Verify backing, screws or anchors, and movement clearance so the assembly is secure and free of interference.']},
+            paint:{ja:['下地状態、既存塗膜、温湿度と使用材料の適合を塗装前に確認する。','規定の塗布量・乾燥時間・塗重ね間隔を守り、膜厚むらや付着不良を点検する。'],en:['Check substrate condition, existing coatings, ambient conditions, and material compatibility before coating.','Follow specified coverage, drying, and recoat intervals and inspect for poor adhesion or uneven film build.']},
+            temporary_work:{ja:['仮設材は本設材と異なり、設置期間中の風・落下物・作業動線まで含めて計画する。','固定部の緩み、破れ、ずれを定期点検し、条件変化時は再評価する。'],en:['Temporary materials must be planned for wind, falling debris, and work access throughout the temporary period.','Inspect fixings, tears, and displacement regularly and reassess when site conditions change.']},
+            curing:{ja:['保護対象を傷めない材質と固定方法を選び、継ぎ目や端部からの侵入・めくれを防ぐ。','作業動線や台車荷重で養生がずれていないか施工中も継続確認する。'],en:['Choose materials and fixings that do not damage the protected finish and secure laps and edges against lifting or intrusion.','Continue checking protection during work for movement caused by traffic, carts, or equipment.']},
+            exterior_site:{ja:['基礎・支柱・固定部を地盤条件と風荷重・使用荷重に合わせて設計どおり施工する。','通行、境界、開閉範囲、隣接物との干渉を完成時に確認する。'],en:['Install foundations, posts, and fixings for the ground condition and specified wind/service loads.','At completion, check circulation, boundaries, operating clearance, and interference with adjacent work.']},
+            paving:{ja:['路盤の支持力・締固め・高さを整え、仕上げ厚と勾配を施工中に管理する。','完成後は不陸、段差、沈下、排水不良がないか確認する。'],en:['Prepare base support, compaction, and elevation and control finished thickness and slope during placement.','After completion, inspect for unevenness, steps, settlement, and poor drainage.']},
+            drainage:{ja:['設計流量に合う断面と流末までの連続勾配を確保する。','土砂・ごみの堆積や詰まりを点検・清掃できるアクセスを残す。'],en:['Provide hydraulic capacity and continuous fall to the intended outlet.','Maintain access so sediment and debris accumulation can be inspected and cleaned.']},
+            joint:{ja:['目地幅・深さと周囲材料の伸縮量を確認し、硬い材料で動きを拘束しない。','シーリング等の仕上げ材と組み合わせる場合は所定の断面を確保する。'],en:['Check joint width, depth, and expected movement and avoid bridging it with rigid material.','When used with sealant, maintain the specified joint geometry.']},
+            sealant:{ja:['目地寸法、下地清掃、プライマー、バックアップ材の適合を施工前に確認する。','充填後は空洞・はく離・三面接着を避け、連続した仕上げ面を確認する。'],en:['Check joint geometry, substrate cleaning, primer, and backing-material compatibility before application.','After filling, inspect for voids, loss of adhesion, three-sided bonding, and discontinuous tooling.']}
+          };
+
+          function entry(row, wave){
+            const over=nameOverrides.get(row.id)||{};
+            const ja=over.ja||row.ja, en=over.en||row.en;
+            const [nja,nen]=notes[row.id];
+            const rules=categoryRules[row.c]||categoryRules.hardware;
+            const tja=taskJa[row.task]||row.task, ten=taskEn[row.task]||row.task;
+            return {
+              id:row.id,wave,state:'expanded',
+              detail_ja:`${row.dj} ${nja}`,
+              detail_en:`${row.de} ${nen}`,
+              bullets_ja:[`${ja}を${tja}に使う前に、寸法・材質・仕様が対象部位と設計条件に適合するか確認する。`,...rules.ja],
+              bullets_en:[`Before using ${en} for ${ten}, verify its dimensions, material, and specification suit the location and design requirements.`,...rules.en],
+              examples_ja:[`${tja}で${ja}を使用し、取付け・納まりが仕様どおりか確認する。`,`施工後に${ja}の周囲を点検し、固定不良、隙間、干渉など機能を損なう異常がないか確認する。`],
+              examples_en:[`Use ${en} during ${ten} and verify the installed detail matches the specified arrangement.`,`Inspect the completed ${en} and surrounding work for loose fixing, gaps, interference, or other defects that could impair its function.`]
+            };
+          }
+          const groups={};
+          for(const row of active){const g=groupFor(row);(groups[g]??=[]).push(row);}
+          const expected={ '5a':30,'5b':21,'5c':18,'5d':29 };
+          for(const [g,n] of Object.entries(expected)) if((groups[g]||[]).length!==n) throw new Error(`${g}: expected ${n}, got ${(groups[g]||[]).length}`);
+          const versions={ '5a':'2026-09-16-wave5a-q014-1','5b':'2026-09-16-wave5b-q014-1','5c':'2026-09-16-wave5c-q014-1','5d':'2026-09-16-wave5d-q014-1'};
+          for(const g of Object.keys(expected)){
+            const wave=`content-wave-00${g}`;
+            const doc={schema:'cta-content-enrichment-v2.3',version:versions[g],entries:groups[g].map(r=>entry(r,wave))};
+            fs.writeFileSync(path.join(data,`content-enrichment-wave${g}-v2.3.json`),JSON.stringify(doc,null,2)+'\n');
+          }
+          const mp=path.join(data,'content-enrichment-manifest-v2.3.json');
+          const manifest=JSON.parse(fs.readFileSync(mp,'utf8'));
+          manifest.version='2026-09-16-wave5d';
+          manifest.packs=manifest.packs.filter(p=>!['content-wave-005a','content-wave-005b','content-wave-005c','content-wave-005d'].includes(p.wave));
+          for(const g of Object.keys(expected)) manifest.packs.push({path:`./data/content-enrichment-wave${g}-v2.3.json`,wave:`content-wave-00${g}`});
+          fs.writeFileSync(mp,JSON.stringify(manifest,null,2)+'\n');
+          console.log('CTA_Q014_PACK_COUNTS='+JSON.stringify(Object.fromEntries(Object.entries(groups).map(([k,v])=>[k,v.length]))));
+          console.log('CTA_Q014_CONTENT_TARGETS='+active.length);
+          NODE
+      - name: Validate generated q014 packs
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const ids=[];
+          for(const g of ['5a','5b','5c','5d']){
+            const p=`tools/construction-tools-atlas/data/content-enrichment-wave${g}-v2.3.json`;
+            const d=JSON.parse(fs.readFileSync(p,'utf8'));
+            if(d.schema!=='cta-content-enrichment-v2.3') throw new Error(`${g}: schema`);
+            for(const e of d.entries){
+              ids.push(e.id);
+              for(const k of ['detail_ja','detail_en']) if(!e[k]||e[k].length<30) throw new Error(`${e.id}: ${k}`);
+              for(const k of ['bullets_ja','bullets_en']) if(!Array.isArray(e[k])||e[k].length<3) throw new Error(`${e.id}: ${k}`);
+              for(const k of ['examples_ja','examples_en']) if(!Array.isArray(e[k])||e[k].length<2) throw new Error(`${e.id}: ${k}`);
+            }
+          }
+          if(ids.length!==98||new Set(ids).size!==98) throw new Error(`q014 ids ${ids.length}/${new Set(ids).size}`);
+          console.log('CTA_Q014_GENERATED_CONTENT=98/98');
+          NODE
+      - name: Commit q014 content packs
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/construction-tools-atlas/data/content-enrichment-manifest-v2.3.json tools/construction-tools-atlas/data/content-enrichment-wave5*-v2.3.json
+          git commit -m 'feat(construction-atlas): add q014 content completion packs'
+          git pull --rebase origin feat/construction-atlas-q014-content-completion-20260916
+          git push origin HEAD:feat/construction-atlas-q014-content-completion-20260916
