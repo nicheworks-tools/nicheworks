@@ -1,0 +1,12 @@
+{
+  "title_ja": "撮影・配信の照明チェック",
+  "title_en": "Camera Lighting Check",
+  "desc_ja": "撮影・配信前に、カメラ映像から明るさ・色かぶり・コントラスト・明るさ変動を相対比較します。照度計ではありません。",
+  "desc_en": "Compare camera-derived brightness, color cast, contrast, and brightness variation before shooting or streaming. Not a lux meter.",
+  "tags": [
+    "camera",
+    "lighting",
+    "video",
+    "streaming"
+  ]
+}
