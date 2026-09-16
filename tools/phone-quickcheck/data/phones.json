@@ -6072,7 +6072,7 @@
         }
       },
       "included": {
-        "cable": "unknown",
+        "cable": "included",
         "adapter": "included"
       },
       "sources": {
