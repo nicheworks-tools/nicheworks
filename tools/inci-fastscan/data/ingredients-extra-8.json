@@ -150,5 +150,17 @@
 {"id":"wave4_c3_saccharomyces_ferment","en":"Saccharomyces Ferment","jp":[],"alias":[],"safety":"safe","category":"ferment"},
 {"id":"wave4_c3_sodium_lauroyl_methyl_isethionate","en":"Sodium Lauroyl Methyl Isethionate","jp":[],"alias":[],"safety":"safe","category":"surfactant"},
 {"id":"wave4_c3_styrax_japonicus_extract","en":"Styrax Japonicus Branch/Fruit/Leaf Extract","jp":[],"alias":[],"safety":"safe","category":"plant extract"},
-{"id":"wave4_c3_ulmus_davidiana_root_extract","en":"Ulmus Davidiana Root Extract","jp":[],"alias":[],"safety":"safe","category":"plant extract"}
+{"id":"wave4_c3_ulmus_davidiana_root_extract","en":"Ulmus Davidiana Root Extract","jp":[],"alias":[],"safety":"safe","category":"plant extract"},
+{"id":"wave5_c4_algin","en":"Algin","jp":[],"alias":[],"safety":"safe","category":"general"},
+{"id":"wave5_c4_ananas_sativus_pineapple_fruit_extract","en":"Ananas Sativus (Pineapple) Fruit Extract","jp":[],"alias":[],"safety":"safe","category":"general"},
+{"id":"wave5_c4_dipentaerythrityl_hexa_c5_9_acid_esters","en":"Dipentaerythrityl Hexa C5-9 Acid Esters","jp":[],"alias":[],"safety":"safe","category":"general"},
+{"id":"wave5_c4_leontopodium_edelweiss_extract","en":"Leontopodium (Edelweiss) Extract","jp":[],"alias":[],"safety":"safe","category":"general"},
+{"id":"wave5_c4_oryza_sativa_rice_lees_extract","en":"Oryza Sativa (Rice) Lees Extract","jp":[],"alias":[],"safety":"safe","category":"general"},
+{"id":"wave5_c4_pleiogynium_timoriense_fruit_extract","en":"Pleiogynium Timoriense Fruit Extract","jp":[],"alias":[],"safety":"safe","category":"general"},
+{"id":"wave5_c4_podocarpus_elatus_fruit_extract","en":"Podocarpus Elatus Fruit Extract","jp":[],"alias":[],"safety":"safe","category":"general"},
+{"id":"wave5_c4_terminalia_ferdinandiana_fruit_extract","en":"Terminalia Ferdinandiana Fruit Extract","jp":[],"alias":[],"safety":"safe","category":"general"},
+{"id":"wave5_c4_thymus_vulgaris_thyme_leaf_extract","en":"Thymus Vulgaris (Thyme) Leaf Extract","jp":[],"alias":[],"safety":"safe","category":"general"},
+{"id":"wave5_c4_panthenol_display","en":"Panthenol","jp":[],"alias":["Panthenol (Vitamin B5)"],"safety":"safe","category":"soothing"},
+{"id":"wave5_c4_tocopheryl_acetate_display","en":"Tocopheryl Acetate","jp":[],"alias":["Tocopheryl Acetate (Vitamin E Acetate)"],"safety":"safe","category":"antioxidant"},
+{"id":"wave5_c4_guar_hydroxypropyltrimonium_display","en":"Guar Hydroxypropyltrimonium Chloride","jp":[],"alias":["Guar Hydroxypropyl-Trimonium Chloride"],"safety":"safe","category":"conditioning polymer"}
 ]
