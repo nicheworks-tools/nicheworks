@@ -7,16 +7,14 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-57QT78M3JB');
 </script>
-
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>化粧品成分の安全性チェック＆翻訳｜INCI FastScan ガイド | NicheWorks</title>
-  <meta name="description" content="成分を貼るだけで SAFE/CAUTION/RISK を高速表示。日本語成分は英語に翻訳して同じ基準で判定。OCR（写真読み取り）にも対応した軽量ツール。ブラウザ完結・保存なし。">
+  <title>化粧品成分チェック・OCR｜INCI FastScan ガイド | NicheWorks</title>
+  <meta name="description" content="化粧品ラベルの写真OCRまたはテキスト入力から、成分名をローカル辞書と照合して辞書一致・追加確認・未一致を整理するINCI FastScanの使い方と注意点。">
   <link rel="canonical" href="https://nicheworks.app/tools/inci-fastscan/howto/">
 
   <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/inci-fastscan/howto/" />
@@ -41,7 +39,6 @@
     .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
     .nw-footer a{color:inherit}
     code{background:#f3f4f6;border:1px solid #e5e7eb;padding:2px 6px;border-radius:8px}
-    .pill{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:2px 10px;font-size:12px;margin-right:6px}
   </style>
 
   <meta property="og:url" content="https://nicheworks.app/tools/inci-fastscan/howto/">
@@ -50,26 +47,23 @@
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
-  <meta property="og:title" content="化粧品成分の安全性チェック＆翻訳｜INCI FastScan ガイド | NicheWorks">
-  <meta property="og:description" content="成分を貼るだけで SAFE/CAUTION/RISK を高速表示。日本語成分は英語に翻訳して同じ基準で判定。OCR（写真読み取り）にも対応した軽量ツール。ブラウザ完結・保存なし。">
+  <meta property="og:title" content="化粧品成分チェック・OCR｜INCI FastScan ガイド | NicheWorks">
+  <meta property="og:description" content="写真OCRまたはテキスト入力から、成分名をローカル辞書と照合して辞書一致・追加確認・未一致を整理するFastScanのガイドです。">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="化粧品成分の安全性チェック＆翻訳｜INCI FastScan ガイド | NicheWorks">
-  <meta name="twitter:description" content="成分を貼るだけで SAFE/CAUTION/RISK を高速表示。日本語成分は英語に翻訳して同じ基準で判定。OCR（写真読み取り）にも対応した軽量ツール。ブラウザ完結・保存なし。">
+  <meta name="twitter:title" content="化粧品成分チェック・OCR｜INCI FastScan ガイド | NicheWorks">
+  <meta name="twitter:description" content="写真OCRまたはテキスト入力から、成分名をローカル辞書と照合して辞書一致・追加確認・未一致を整理するFastScanのガイドです。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "化粧品成分の安全性チェック＆翻訳｜INCI FastScan ガイド",
+    "name": "INCI FastScan ガイド",
     "url": "https://nicheworks.app/tools/inci-fastscan/howto/",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
-    "description": "成分を貼るだけで SAFE/CAUTION/RISK を高速表示。日本語成分は英語に翻訳して同じ基準で判定。OCR（写真読み取り）にも対応した軽量ツール。ブラウザ完結・保存なし。",
-    "inLanguage": [
-      "ja",
-      "en"
-    ],
+    "description": "写真OCRまたはテキスト入力から、成分名をローカル辞書と照合して辞書一致・追加確認・未一致を整理するFastScanのガイドです。",
+    "inLanguage": ["ja", "en"],
     "publisher": {
       "@type": "Organization",
       "name": "NicheWorks",
@@ -86,65 +80,89 @@
       <a href="../">Tool</a>
     </div>
     <h1 style="margin:10px 0 6px">INCI FastScan：使い方</h1>
-    <p class="muted" style="margin:0">成分を貼る / 撮る → 翻訳 → 安全性の目安（SAFE/CAUTION/RISK）を表示します。</p>
+    <p class="muted" style="margin:0">写真/OCRまたはテキストから成分表示を読み取り、確認してから辞書照合するためのガイドです。</p>
   </header>
 
   <main class="nw-main">
 
-
     <section class="card">
       <h2 style="margin:0 0 8px">このツールでできること</h2>
       <ul>
-        <li><span class="pill">TAB1</span>英語成分を貼り付けて、一括で安全性ランクを表示（高速チェック）</li>
-        <li><span class="pill">TAB2</span>日本語成分を英語に翻訳し、同じ基準で安全性ランクを表示（J-Beauty翻訳）</li>
-        <li>写真から成分を読み取るOCRに対応（対応している場合）</li>
-        <li>一致しない成分は Unknown として分けて表示</li>
-        <li>ブラウザ完結・保存なし</li>
+        <li>商品ラベルの写真・画像を選び、ブラウザ上のOCRで成分表示を読み取る</li>
+        <li>OCR結果を自分で確認・修正してから成分名を照合する</li>
+        <li>写真を使わず、INCI名や日本語成分表示を直接貼り付ける</li>
+        <li>ローカル辞書との照合結果を「辞書一致」「追加確認」「未一致」に整理する</li>
+        <li>結果を状態で絞り込み、追加確認・未一致を順番にレビューする</li>
+        <li>未一致の表記に近い候補がある場合、候補を確認して明示的に入力へ反映する</li>
       </ul>
       <div class="btns">
-        <a class="btn primary" href="../">ツールを開く</a>
+        <a class="btn primary" href="../">FastScanを開く</a>
         <a class="btn" href="./en/">English guide</a>
       </div>
-      <p class="muted" style="margin:10px 0 0">
-        ランクは 3段階：<code>SAFE</code> / <code>CAUTION</code> / <code>RISK</code>（短い一言メモ付き）。
-      </p>
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">こんなときに使う</h2>
-      <ul>
-        <li>海外コスメの成分を「貼るだけで」ざっくり確認したい</li>
-        <li>日本の化粧品の裏面（日本語成分）を英語にして把握したい</li>
-        <li>香料・酸・刺激になりやすい成分が入っていないか先に見たい</li>
-        <li>写真しかなくてコピペできないのでOCRで拾いたい</li>
-      </ul>
-      <p class="muted" style="margin:8px 0 0">
-        関連キーワード：INCI 安全性 / 成分 解析 / 日本語成分 英語 翻訳 / cosmetic ingredient safety / j-beauty ingredients translator
-      </p>
-    </section>
-
-    <section class="card">
-      <h2 style="margin:0 0 8px">使い方（最短）</h2>
+      <h2 style="margin:0 0 8px">使い方</h2>
       <ol>
-        <li><b>TAB1（Fast Safety Check）</b>：成分を貼り付け → <code>Check Safety</code></li>
-        <li><b>TAB2（J-Beauty Translator）</b>：日本語成分を貼り付け（または写真アップロード→OCR）→ <code>Translate &amp; Check Safety</code></li>
-        <li>結果の <code>SAFE/CAUTION/RISK</code> と短いメモ、Unknown を確認する</li>
+        <li><strong>入力方法</strong>で「写真・画像から」または「テキストから」を選びます。初期状態は写真モードです。</li>
+        <li><strong>ラベルの言語</strong>で「INCI / 英語」または「日本語成分」を選びます。</li>
+        <li>写真モードでは画像を選択してOCRを実行し、読み取られた文字を必ず目視で確認・修正します。</li>
+        <li>テキストモードでは成分表示をそのまま入力欄へ貼り付けます。</li>
+        <li><code>成分名を照合</code> を押して結果を表示します。</li>
+        <li>必要に応じて結果フィルター、確認対象の前後移動、未一致候補の反映を使います。</li>
       </ol>
-      <p class="muted" style="margin:0">
-        補足：TAB1で日本語成分が混ざった場合、TAB2への切替提案が出る想定です（対応している場合）。
-      </p>
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">注意（できないこと・限界）</h2>
+      <h2 style="margin:0 0 8px">結果表示の意味</h2>
       <ul>
-        <li>これは医療判断ではなく、成分辞書ベースの「目安」です。</li>
-        <li>同じ成分でも濃度・配合目的・個人差で反応は変わります。</li>
-        <li>OCRは写真の画質に依存します。文字化けや読み取り漏れは Unknown 扱いになる場合があります。</li>
-        <li>Unknown が出たら「未収載/表記ゆれ」の可能性があるため、表記を短くして再入力すると改善することがあります。</li>
+        <li><strong>辞書一致：</strong>入力した表記が、管理しているINCI名・日本語名・登録済み別名などと一致した状態です。</li>
+        <li><strong>追加確認：</strong>既存の辞書情報などから、さらに公式情報や使用条件を確認するための目印です。危険判定ではありません。</li>
+        <li><strong>未一致：</strong>現在の辞書で入力表記を特定できなかった状態です。安全・危険の意味はありません。</li>
+      </ul>
+      <p class="muted" style="margin:0">日本語成分タブは、日本語名や登録済み別名を辞書照合するためのものです。日本語を英語へ機械翻訳する機能ではありません。</p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">OCRを使うときの注意</h2>
+      <ul>
+        <li>OCRは画像の画質、傾き、反射、文字サイズなどによって誤認識・欠落・行分割が起こります。</li>
+        <li>OCR結果はそのまま正しいものとして扱わず、商品ラベルと見比べて修正してください。</li>
+        <li>候補表示はOCRや綴りの修正候補であり、自動的に成分を確定するものではありません。</li>
+        <li>候補を入力へ反映しても解析は自動再実行されません。必要ならもう一度照合してください。</li>
       </ul>
     </section>
 
+    <section class="card">
+      <h2 style="margin:0 0 8px">できないこと・限界</h2>
+      <ul>
+        <li>成分や製品をSAFE / CAUTION / RISKのような安全性ランクで判定するツールではありません。</li>
+        <li>成分の濃度、処方全体、個人差、アレルギー、妊娠中の適否、薬との相互作用、規制上の適否などは判定できません。</li>
+        <li>医学的・皮膚科的な診断や、製品全体の安全性保証は行いません。</li>
+        <li>辞書にない表記は、既知の成分でも未一致になる場合があります。</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">データと通信について</h2>
+      <ul>
+        <li>選択した画像のプレビュー、OCR後の文字編集、成分照合、結果フィルターなどはブラウザ上で処理します。</li>
+        <li>OCRに使うTesseract.jsライブラリは外部CDN（unpkg.com）から読み込みます。そのためページ全体が完全オフラインで動作するわけではありません。</li>
+        <li>成分テキスト・OCR結果・解析結果を履歴として保存する機能はありません。</li>
+        <li>UIの言語設定は、利用できる場合にブラウザ内へ保存されることがあります。</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">LiteとFastScanの使い分け</h2>
+      <ul>
+        <li><strong>FastScan：</strong>写真/OCRから始めたい、または確認対象を詳しく追いたい場合</li>
+        <li><strong>Lite：</strong>すでに全成分表示のテキストがあり、貼り付けて素早く整理したい場合</li>
+      </ul>
+      <div class="btns">
+        <a class="btn" href="/tools/cosmetic-ingredient-checker-lite/">Cosmetic Ingredient Checker Liteを開く</a>
+      </div>
+    </section>
 
   </main>
 
