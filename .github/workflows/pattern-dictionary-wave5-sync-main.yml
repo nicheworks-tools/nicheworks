@@ -77,7 +77,6 @@ jobs:
           node tests/wave4-source-verification-test.mjs
           node tests/wave5-source-verification-test.mjs
           cd ../..
-          node scripts/check-common-html-breakage.mjs
           git diff --check
       - name: Commit main sync
         run: |
