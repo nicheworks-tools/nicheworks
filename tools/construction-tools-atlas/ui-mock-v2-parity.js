@@ -10,11 +10,42 @@
   let typeFilter = "all";
   let sharedAffiliatePromise = null;
   let applying = false;
+  let lastSelectedId = "";
+
+  const LABELS = {
+    tool:["工具","Tool"], tools:["工具","Tool"], material:["材料","Material"], materials:["材料","Material"],
+    component:["部材","Component"], accessory:["付属品","Accessory"], equipment:["機器","Equipment"], safety:["安全用品","Safety"],
+    consumable:["消耗品","Consumable"], fastener:["締結材","Fastener"], hardware:["金物","Hardware"], fixture:["器具","Fixture"],
+    inspection:["検査","Inspection"], process:["作業・工程","Process"], rigging:["玉掛け・揚重","Rigging"], temporary:["仮設","Temporary"],
+    structure:["構造","Structure"], defect:["不具合","Defect"], document:["書類","Document"], test:["試験","Test"], site:["現場","Site"],
+    power_tool:["電動工具","Power tool"], hand_tool:["手工具","Hand tool"], measuring:["測定","Measuring"], measuring_tool:["測定工具","Measuring tool"],
+    fastening:["締結","Fastening"], drilling:["穴あけ","Drilling"], cutting:["切断","Cutting"], grinding:["研削","Grinding"], sanding:["研磨","Sanding"],
+    high_torque:["高トルク","High torque"], carpentry:["大工","Carpentry"], interior:["内装","Interior"], exterior:["外装","Exterior"],
+    electrical:["電気","Electrical"], plumbing:["配管","Plumbing"], hvac:["空調","HVAC"], mep:["設備","MEP"], concrete:["コンクリート","Concrete"],
+    masonry:["石工・組積","Masonry"], formwork:["型枠","Formwork"], rebar:["鉄筋","Rebar"], roofing:["屋根","Roofing"], waterproofing:["防水","Waterproofing"],
+    painting:["塗装","Painting"], flooring:["床","Flooring"], ceiling:["天井","Ceiling"], wall:["壁","Wall"], surveying:["測量","Surveying"],
+    layout:["墨出し","Layout"], install:["取付","Installation"], installation:["取付","Installation"], repair:["補修","Repair"], demolition:["解体","Demolition"],
+    earthwork:["土工","Earthwork"], drainage:["排水","Drainage"], joint:["目地","Joint"], sealant:["シーリング","Sealant"], scaffold:["足場","Scaffold"], scaffolding:["足場","Scaffolding"]
+  };
 
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
   const langMode = () => localStorage.getItem(MODE_KEY) || (document.documentElement.lang === "en" ? "en" : "ja");
   const isEnglish = () => langMode() === "en";
+  const labelIndex = () => isEnglish() ? 1 : 0;
+
+  function cleanKey(value) {
+    return String(value || "").trim().toLowerCase().replace(/[\s-]+/g, "_");
+  }
+
+  function humanize(value) {
+    const raw = String(value || "").trim();
+    if (!raw) return "";
+    const key = cleanKey(raw);
+    if (LABELS[key]) return LABELS[key][labelIndex()];
+    const spaced = raw.replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim();
+    return isEnglish() ? spaced.replace(/\b\w/g, (c) => c.toUpperCase()) : spaced;
+  }
 
   function loadScript(src, marker) {
     if (window.NWAmazonAffiliate) return Promise.resolve(window.NWAmazonAffiliate);
@@ -56,26 +87,36 @@
     });
   }
 
+  function resolveId(id) {
+    const value = String(id || "").trim();
+    if (!value) return "";
+    try { return window.CTA_DATA_LOADER?.resolveCanonicalId?.(value) || value; }
+    catch (_) { return value; }
+  }
+
   function ensureBrand() {
     const row = $(".topbar__row");
     const brand = $("#brandTitle");
-    if (!row || !brand || $(".ctaMockBrand", row)) return;
-    const wrap = document.createElement("div");
-    wrap.className = "ctaMockBrand";
-    const home = document.createElement("a");
-    home.className = "ctaMockHome";
-    home.href = "https://nicheworks.app/";
-    home.textContent = "NicheWorks";
-    const copy = document.createElement("div");
-    copy.className = "ctaMockBrandCopy";
-    const subtitle = document.createElement("p");
-    subtitle.className = "ctaMockSubtitle";
-    subtitle.textContent = isEnglish() ? "Find tools and jobsite terms by name, purpose, appearance, or task." : "名前が分からなくても、用途・見た目・作業から探せます。";
-    brand.parentNode.insertBefore(wrap, brand);
-    copy.appendChild(brand);
-    copy.appendChild(subtitle);
-    wrap.appendChild(home);
-    wrap.appendChild(copy);
+    if (!row || !brand) return;
+    let wrap = $(".ctaMockBrand", row);
+    if (!wrap) {
+      wrap = document.createElement("div");
+      wrap.className = "ctaMockBrand";
+      const home = document.createElement("a");
+      home.className = "ctaMockHome";
+      home.href = "https://nicheworks.app/";
+      home.textContent = "NicheWorks";
+      const copy = document.createElement("div");
+      copy.className = "ctaMockBrandCopy";
+      const subtitle = document.createElement("p");
+      subtitle.className = "ctaMockSubtitle";
+      brand.parentNode.insertBefore(wrap, brand);
+      copy.appendChild(brand);
+      copy.appendChild(subtitle);
+      wrap.appendChild(home);
+      wrap.appendChild(copy);
+    }
+    $(".ctaMockHome", wrap)?.querySelectorAll("img,svg,picture").forEach((node) => node.remove());
   }
 
   function ensureFavoriteProxy() {
@@ -129,7 +170,6 @@
       button.dataset.typeFilter = value;
       button.dataset.labelJa = ja;
       button.dataset.labelEn = en;
-      button.textContent = isEnglish() ? en : ja;
       button.addEventListener("click", () => { typeFilter = value; applyTypeFilter(); });
       row.appendChild(button);
     });
@@ -138,12 +178,21 @@
   }
 
   function normalizedType(value) {
-    const raw = String(value || "").trim().toLowerCase();
-    if (["tool","tools","工具"].includes(raw)) return "tool";
-    if (["material","materials","材料","資材"].includes(raw)) return "material";
-    if (["task","work","作業","工法"].includes(raw)) return "task";
-    if (["term","slang","現場用語","用語"].includes(raw)) return "term";
+    const raw = cleanKey(value);
+    if (["tool","tools"].includes(raw)) return "tool";
+    if (["material","materials"].includes(raw)) return "material";
+    if (["task","work","process"].includes(raw)) return "task";
+    if (["term","slang"].includes(raw)) return "term";
     return raw;
+  }
+
+  function decorateTaxonomy(row) {
+    const chips = $$(".row__meta .chip", row);
+    chips.forEach((chip) => {
+      if (!chip.dataset.taxonomyKey) chip.dataset.taxonomyKey = chip.textContent.trim();
+      chip.textContent = humanize(chip.dataset.taxonomyKey);
+    });
+    if (chips[0]) row.dataset.entryType = normalizedType(chips[0].dataset.taxonomyKey);
   }
 
   function applyTypeFilter() {
@@ -152,17 +201,18 @@
       button.textContent = isEnglish() ? button.dataset.labelEn : button.dataset.labelJa;
     });
     $$("#resultList .row").forEach((row) => {
-      const rowType = normalizedType($(".row__meta .chip", row)?.textContent);
-      row.hidden = typeFilter !== "all" && rowType !== typeFilter;
+      decorateTaxonomy(row);
+      row.hidden = typeFilter !== "all" && row.dataset.entryType !== typeFilter;
     });
   }
 
   function decorateResultRows() {
     $$("#resultList .row[data-entry-id]").forEach((row) => {
+      decorateTaxonomy(row);
       if (!$(".ctaResultThumb", row)) {
         const holder = document.createElement("div");
         holder.className = "ctaResultThumb";
-        const image = imageById.get(row.dataset.entryId);
+        const image = imageById.get(resolveId(row.dataset.entryId)) || imageById.get(row.dataset.entryId);
         if (image?.thumbnail) {
           const img = document.createElement("img");
           img.src = image.thumbnail;
@@ -178,32 +228,68 @@
 
   function selectedEntryId() {
     const selected = $("#resultList .row--selected[data-entry-id]");
-    if (selected?.dataset.entryId) return selected.dataset.entryId;
+    if (selected?.dataset.entryId) return resolveId(selected.dataset.entryId);
     const urlId = new URL(location.href).searchParams.get("entry");
-    if (urlId) return urlId;
-    const match = ($("#tabMeta")?.textContent || "").match(/id:\s*([^\s,]+)/i);
-    return match ? match[1].trim() : "";
+    if (urlId) return resolveId(urlId);
+    return resolveId(lastSelectedId);
   }
 
   function ensureDetailActions() {
     const body = $("#detailSheet .sheet__body");
-    if (!body || $(".ctaMockDetailActions", body)) return;
-    const actions = document.createElement("div");
-    actions.className = "ctaMockDetailActions";
-    const fav = document.createElement("button");
-    fav.type = "button";
-    fav.textContent = isEnglish() ? "☆ Favorite" : "☆ お気に入り";
-    fav.addEventListener("click", () => $("#detailStar")?.click());
-    const share = document.createElement("button");
-    share.type = "button";
-    share.textContent = isEnglish() ? "Share ↗" : "共有 ↗";
-    share.addEventListener("click", () => {
-      const button = $("#detailSheet [data-cta-share], #detailSheet .ctaShareButton, #detailSheet [data-share-entry]");
-      if (button) button.click();
-      else navigator.clipboard?.writeText(location.href).catch(() => {});
+    const term = $("#detailSheet .termblock");
+    if (!body || !term) return;
+    let actions = $(".ctaMockDetailActions", body);
+    if (!actions) {
+      actions = document.createElement("div");
+      actions.className = "ctaMockDetailActions";
+      const fav = document.createElement("button");
+      fav.type = "button";
+      fav.dataset.ctaMockFavorite = "true";
+      fav.addEventListener("click", () => $("#detailStar")?.click());
+      const share = document.createElement("button");
+      share.type = "button";
+      share.dataset.ctaMockShare = "true";
+      share.addEventListener("click", async () => {
+        if (window.CTA_DEEP_LINK?.shareCurrentEntry) await window.CTA_DEEP_LINK.shareCurrentEntry();
+        else navigator.clipboard?.writeText(location.href).catch(() => {});
+      });
+      actions.append(fav, share);
+      term.insertAdjacentElement("afterend", actions);
+    }
+    const buttons = $$('button', actions);
+    if (buttons[0]) buttons[0].textContent = isEnglish() ? "☆ Favorite" : "☆ お気に入り";
+    if (buttons[1]) buttons[1].textContent = isEnglish() ? "Share ↗" : "共有 ↗";
+  }
+
+  function ensureDetailTaxonomy() {
+    const body = $("#detailSheet .sheet__body");
+    const actions = $(".ctaMockDetailActions", body);
+    if (!body || !actions) return;
+    let section = $("#ctaDetailTaxonomy", body);
+    if (!section) {
+      section = document.createElement("div");
+      section.id = "ctaDetailTaxonomy";
+      section.className = "ctaDetailTaxonomy";
+      actions.insertAdjacentElement("afterend", section);
+    }
+    section.replaceChildren();
+    const id = selectedEntryId();
+    const row = id ? $$("#resultList .row[data-entry-id]").find((item) => resolveId(item.dataset.entryId) === id) : null;
+    if (!row) { section.hidden = true; return; }
+    $$(".row__meta .chip", row).slice(0, 6).forEach((source) => {
+      const chip = document.createElement("span");
+      chip.className = "ctaDetailTaxonomy__chip";
+      const raw = source.dataset.taxonomyKey || source.textContent;
+      chip.dataset.taxonomyKey = raw;
+      chip.textContent = humanize(raw);
+      section.appendChild(chip);
     });
-    actions.append(fav, share);
-    body.insertBefore(actions, body.firstChild);
+    section.hidden = section.children.length === 0;
+  }
+
+  function removeLegacyDetailSupport() {
+    $("#detailSheet .supportInline")?.remove();
+    $("#supportInlineBtn")?.remove();
   }
 
   function ensureAffiliateBox() {
@@ -215,7 +301,7 @@
     box.id = "ctaAffiliateBox";
     box.className = "ctaAffiliateBox";
     box.hidden = true;
-    box.innerHTML = '<h3 class="ctaAffiliateBox__title">Amazon</h3><p class="ctaAffiliateBox__copy">関連する工具・材料</p><div id="ctaAffiliateMount" class="ctaAffiliateMount"></div><div id="ctaAffiliateDisclosure" class="ctaAffiliateDisclosure"></div>';
+    box.innerHTML = '<h3 class="ctaAffiliateBox__title"></h3><p class="ctaAffiliateBox__copy"></p><div id="ctaAffiliateMount" class="ctaAffiliateMount"></div><div id="ctaAffiliateDisclosure" class="ctaAffiliateDisclosure"></div>';
     body.appendChild(box);
     return box;
   }
@@ -223,7 +309,8 @@
   async function renderAffiliate() {
     const box = ensureAffiliateBox();
     if (!box) return;
-    const offer = offerById.get(selectedEntryId());
+    const id = selectedEntryId();
+    const offer = offerById.get(id);
     const mount = $("#ctaAffiliateMount", box);
     const disclosure = $("#ctaAffiliateDisclosure", box);
     if (!offer) {
@@ -232,11 +319,20 @@
       disclosure?.replaceChildren();
       return;
     }
+    $(".ctaAffiliateBox__title", box).textContent = isEnglish() ? "Related tools / materials" : "関連する工具・材料";
+    $(".ctaAffiliateBox__copy", box).textContent = isEnglish() ? "Amazon Japan handoff for this maintained dictionary entry." : "この辞典項目に対応するAmazon.co.jpの固定リンクです。";
+    mount?.replaceChildren();
+    disclosure?.replaceChildren();
     sharedAffiliatePromise ||= loadScript(SHARED_AFFILIATE, "data-nw-amazon-affiliate");
     const helper = await sharedAffiliatePromise;
     if (!helper) { box.hidden = true; return; }
     helper.configure({ enabled: true, tool: "construction-tools-atlas", targets: { canonical_entry: offer.amazon_url } });
-    const mounted = helper.mount({ container: mount, target: "canonical_entry", label: isEnglish() ? (offer.label_en || "Find on Amazon") : (offer.label_ja || "Amazonで探す"), placement: "detail_related_tools" });
+    const mounted = helper.mount({
+      container: mount,
+      target: "canonical_entry",
+      label: isEnglish() ? (offer.label_en || "Find on Amazon") : (offer.label_ja || "Amazonで探す"),
+      placement: "detail_related_tools"
+    });
     helper.renderDisclosure(disclosure, { includeEnglish: langMode() === "both" });
     box.hidden = !mounted;
   }
@@ -244,8 +340,15 @@
   function flattenDetail() {
     const tabs = $("#detailTabs");
     if (tabs) tabs.hidden = true;
-    ["tabMeaning","tabExamples","tabAliases","tabMeta"].forEach((id) => { const panel = document.getElementById(id); if (panel) panel.hidden = false; });
+    ["tabMeaning","tabExamples","tabAliases"].forEach((id) => {
+      const panel = document.getElementById(id);
+      if (panel) panel.hidden = false;
+    });
+    const meta = $("#tabMeta");
+    if (meta) meta.hidden = true;
+    removeLegacyDetailSupport();
     ensureDetailActions();
+    ensureDetailTaxonomy();
     renderAffiliate();
   }
 
@@ -255,18 +358,33 @@
     const fav = $("#ctaFavOnlyTop");
     if (fav) fav.textContent = `${$("#favsOnly")?.checked ? "★" : "☆"} ${isEnglish() ? "Favorites" : "お気に入り"}`;
     $$("[data-type-filter]").forEach((button) => { button.textContent = isEnglish() ? button.dataset.labelEn : button.dataset.labelJa; });
+    $$("[data-taxonomy-key]").forEach((chip) => { chip.textContent = humanize(chip.dataset.taxonomyKey); });
+    ensureDetailActions();
   }
 
   function apply() {
     if (applying) return;
     applying = true;
-    try { ensureBrand(); ensureFavoriteProxy(); ensureSearchCard(); decorateResultRows(); flattenDetail(); localizeStatic(); }
-    finally { applying = false; }
+    try {
+      ensureBrand();
+      ensureFavoriteProxy();
+      ensureSearchCard();
+      decorateResultRows();
+      flattenDetail();
+      localizeStatic();
+    } finally { applying = false; }
   }
 
   async function init() {
     await loadData();
     apply();
+    document.addEventListener("click", (event) => {
+      const row = event.target.closest("#resultList .row[data-entry-id]");
+      if (!row) return;
+      lastSelectedId = row.dataset.entryId || "";
+      setTimeout(() => { ensureDetailTaxonomy(); renderAffiliate(); }, 0);
+      setTimeout(() => { ensureDetailTaxonomy(); renderAffiliate(); }, 90);
+    }, true);
     const observer = new MutationObserver(() => requestAnimationFrame(apply));
     observer.observe(document.body, { subtree:true, childList:true, attributes:true, attributeFilter:["hidden","class"] });
     window.addEventListener("cta:language-mode", () => requestAnimationFrame(apply));
