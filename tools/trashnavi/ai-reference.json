@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 134,
+  "published_municipality_count": 144,
   "municipalities": [
     {
       "lgcode": "131016",
@@ -812,6 +812,66 @@
       "pref_slug": "kanagawa",
       "city_slug": "odawara",
       "url": "https://nicheworks.app/tools/trashnavi/kanagawa/odawara/"
+    },
+    {
+      "lgcode": "132047",
+      "pref_slug": "tokyo",
+      "city_slug": "mitaka",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/mitaka/"
+    },
+    {
+      "lgcode": "132039",
+      "pref_slug": "tokyo",
+      "city_slug": "musashino",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/musashino/"
+    },
+    {
+      "lgcode": "132128",
+      "pref_slug": "tokyo",
+      "city_slug": "hino",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/hino/"
+    },
+    {
+      "lgcode": "132144",
+      "pref_slug": "tokyo",
+      "city_slug": "kokubunji",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/kokubunji/"
+    },
+    {
+      "lgcode": "132241",
+      "pref_slug": "tokyo",
+      "city_slug": "tama",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/tama/"
+    },
+    {
+      "lgcode": "142042",
+      "pref_slug": "kanagawa",
+      "city_slug": "kamakura",
+      "url": "https://nicheworks.app/tools/trashnavi/kanagawa/kamakura/"
+    },
+    {
+      "lgcode": "142158",
+      "pref_slug": "kanagawa",
+      "city_slug": "ebina",
+      "url": "https://nicheworks.app/tools/trashnavi/kanagawa/ebina/"
+    },
+    {
+      "lgcode": "142166",
+      "pref_slug": "kanagawa",
+      "city_slug": "zama",
+      "url": "https://nicheworks.app/tools/trashnavi/kanagawa/zama/"
+    },
+    {
+      "lgcode": "122122",
+      "pref_slug": "chiba",
+      "city_slug": "sakura",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/sakura/"
+    },
+    {
+      "lgcode": "122114",
+      "pref_slug": "chiba",
+      "city_slug": "narita",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/narita/"
     }
   ]
 }

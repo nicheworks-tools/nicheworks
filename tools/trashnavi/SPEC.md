@@ -857,3 +857,23 @@ Wave 35は10自治体batch scaling ruleを継続し、公開閾値を変更せ�
 Wave 35 readiness baselineは1,916 municipalities、2,490 valid HTTP(S) records、134 preferred candidates、38 direct-link datasets / 422 records / 403 unique URLs / 0 invalid URLsとする。
 
 Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 134/134、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する流山市・八千代市・習志野市・小平市・小田原市だけ2026 calendar calloutを表示し、熊谷市・新座市・西東京市・立川市・厚木市には年次calloutを生成しない。西東京市のcurrent calendarは令和7年10月から令和8年9月までの跨年期間なので、単一2026 calendarとして扱わない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+
+## Wave 36 ten-municipality publication
+
+Wave 36は10自治体batch scaling ruleを継続し、公開閾値を変更せず **134自治体から144自治体** へ拡張する。対象は三鷹市・武蔵野市・日野市・国分寺市・多摩市・鎌倉市・海老名市・座間市・佐倉市・成田市。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeとし、同一combined pageの二重計上や外部委託先による閾値補完は行わない。
+
+- 三鷹市 — `/tools/trashnavi/tokyo/mitaka/` — waste sorting / collection calendar / bulky waste
+- 武蔵野市 — `/tools/trashnavi/tokyo/musashino/` — waste sorting / collection calendar / bulky waste
+- 日野市 — `/tools/trashnavi/tokyo/hino/` — waste sorting / collection calendar / bulky waste
+- 国分寺市 — `/tools/trashnavi/tokyo/kokubunji/` — waste sorting / collection calendar / bulky waste
+- 多摩市 — `/tools/trashnavi/tokyo/tama/` — waste sorting / collection calendar / bulky waste
+- 鎌倉市 — `/tools/trashnavi/kanagawa/kamakura/` — waste sorting / collection calendar / bulky waste
+- 海老名市 — `/tools/trashnavi/kanagawa/ebina/` — waste sorting / collection calendar / bulky waste
+- 座間市 — `/tools/trashnavi/kanagawa/zama/` — waste sorting / collection calendar / bulky waste
+- 佐倉市 — `/tools/trashnavi/chiba/sakura/` — waste sorting / collection calendar / bulky waste
+- 成田市 — `/tools/trashnavi/chiba/narita/` — waste sorting / collection calendar / bulky waste
+
+Wave 36 readiness baselineは1,916 municipalities、2,520 valid HTTP(S) records、144 preferred candidates、39 direct-link datasets / 452 records / 433 unique URLs / 0 invalid URLsとする。
+
+Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 144/144、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する三鷹市・武蔵野市・日野市・国分寺市・多摩市・鎌倉市・成田市だけ2026 calendar calloutを表示し、海老名市・座間市・佐倉市には年次calloutを生成しない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
