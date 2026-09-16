@@ -1,0 +1,64 @@
+name: CTA q014 content finalize
+
+on:
+  push:
+    branches:
+      - feat/construction-atlas-q014-content-completion-20260916
+    paths:
+      - '.github/workflows/cta-q014-content-finalize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/construction-atlas-q014-content-completion-20260916
+          fetch-depth: 0
+      - name: Patch content snapshot version
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs')
+          s=p.read_text()
+          old="version: '2026-09-16-q014-identity-closure-1'"
+          new="version: '2026-09-16-q014-content-complete-1'"
+          if old not in s and new not in s: raise SystemExit('content version anchor missing')
+          p.write_text(s.replace(old,new,1))
+          PY
+      - name: Validate q014 content completion
+        run: |
+          node --check tools/construction-tools-atlas/scripts/check-q014-content-completion-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-q014-content-completion-v2.3.cjs
+      - name: Refresh public content snapshot
+        run: |
+          node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --write
+          node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --check
+      - name: Assert invariant state and print actual metrics
+        run: |
+          node <<'NODE'
+          const s=require('./tools/construction-tools-atlas/data/public-content-quality-v2.3.json');
+          if(s.version!=='2026-09-16-q014-content-complete-1') throw new Error(`version ${s.version}`);
+          if(s.summary.public_entries!==870) throw new Error(`public ${s.summary.public_entries}`);
+          if(s.summary.missing_core_bilingual_content!==0) throw new Error(`missing ${s.summary.missing_core_bilingual_content}`);
+          if(s.summary.content_enriched_entries<269) throw new Error(`enriched ${s.summary.content_enriched_entries}`);
+          if(s.summary.fallback_independent_core+s.summary.runtime_fallback_dependent!==870) throw new Error('status partition');
+          console.log('CTA_Q014_CONTENT_ACTUAL_SUMMARY='+JSON.stringify(s.summary));
+          console.log('CTA_Q014_CONTENT_ACTUAL_FALLBACK_FIELDS='+JSON.stringify(s.fallback_field_counts));
+          console.log('CTA_Q014_CONTENT_ACTUAL_HASHES='+JSON.stringify(s.hashes));
+          NODE
+      - name: Commit q014 content snapshot
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs tools/construction-tools-atlas/data/public-content-quality-v2.3.json
+          if git diff --cached --quiet; then
+            echo 'No content snapshot changes required'
+          else
+            git commit -m 'feat(construction-atlas): freeze q014 content completion'
+            git pull --rebase origin feat/construction-atlas-q014-content-completion-20260916
+            git push origin HEAD:feat/construction-atlas-q014-content-completion-20260916
+          fi
