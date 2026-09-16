@@ -1,0 +1,40 @@
+name: Temp Phone QuickCheck Xperia PD3 truth
+
+on:
+  push:
+    branches:
+      - fix/phone-quickcheck-xperia-pd3-truth-20260916
+
+permissions:
+  contents: write
+
+jobs:
+  patch-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/phone-quickcheck-xperia-pd3-truth-20260916
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Apply patch
+        run: node scripts/temp-patch-phone-quickcheck-xperia-pd3-truth.mjs
+      - name: Validate
+        run: |
+          node scripts/check-phone-quickcheck-data.mjs
+          node scripts/check-phone-quickcheck-source-semantics.mjs
+          node scripts/check-phone-quickcheck-affiliate.mjs
+          node tools/phone-quickcheck/tests/behavior.test.mjs
+          git diff --check
+      - name: Commit canonical data
+        run: |
+          if git diff --quiet -- tools/phone-quickcheck/data/phones.json; then
+            echo 'No canonical data change produced.' >&2
+            exit 1
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/phone-quickcheck/data/phones.json
+          git commit -m 'Phone QuickCheck: verify Xperia 5 II and 10 III USB PD 3.0'
+          git push origin HEAD:fix/phone-quickcheck-xperia-pd3-truth-20260916
