@@ -6,6 +6,7 @@ const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(root, rel), 'utf8
 
 const registry = readJson('tools/tools-index.json');
 const classification = readJson('MONETIZATION_CLASSIFICATION.json');
+const legacyClassification = readJson('MONETIZATION_CLASSIFICATION_87.json');
 const scope = readJson('audits/non-affiliate-scope.json');
 
 const fail = (message) => {
@@ -63,6 +64,18 @@ if (!sameSet(classifiedSet, registrySet)) {
   const missing = registrySlugs.filter((slug) => !classifiedSet.has(slug));
   const extra = classifiedSlugs.filter((slug) => !registrySet.has(slug));
   fail(`classification does not equal registry; missing=[${missing.join(', ')}] extra=[${extra.join(', ')}]`);
+}
+
+if (legacyClassification.registryTotal !== classification.registryTotal) {
+  fail(`legacy compatibility classification registryTotal=${legacyClassification.registryTotal} but canonical=${classification.registryTotal}`);
+}
+for (const className of classNames) {
+  if (legacyClassification.counts[className] !== classification.counts[className]) {
+    fail(`legacy compatibility classification count mismatch for ${className}`);
+  }
+  if (!sameSet(new Set(legacyClassification.classes[className] ?? []), new Set(classification.classes[className]))) {
+    fail(`legacy compatibility classification list mismatch for ${className}`);
+  }
 }
 
 if (scope.registryTotal !== registry.total) {
