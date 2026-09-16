@@ -5567,14 +5567,14 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/aquos-sense8/simfree/",
-        "manualUrl": "https://jp.sharp/support/aquos/",
+        "manualUrl": "https://k-tai.sharp.co.jp/support/other/sense8_simfree/manual/index.html",
         "chargingUrl": "https://jp.sharp/products/aquos-sense8/simfree/",
-        "verifiedAt": "2026-09-15",
+        "verifiedAt": "2026-09-16",
         "releaseUrl": "https://corporate.jp.sharp/news/231003-e.html"
       },
       "affiliateKeys": []
@@ -5821,14 +5821,14 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/aquos-r8/simfree/",
-        "manualUrl": "https://jp.sharp/support/aquos/",
+        "manualUrl": "https://k-tai.sharp.co.jp/support/other/r8_simfree/manual/index.html",
         "chargingUrl": "https://jp.sharp/products/aquos-r8/simfree/",
-        "verifiedAt": "2026-09-15",
+        "verifiedAt": "2026-09-16",
         "releaseUrl": "https://corporate.jp.sharp/news/230509-i.html"
       },
       "affiliateKeys": []
@@ -5872,15 +5872,15 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/aquos-r8-pro/simfree/",
-        "manualUrl": "https://jp.sharp/support/aquos/",
+        "manualUrl": "https://k-tai.sharp.co.jp/support/other/r8-pro_simfree/manual/index.html",
         "chargingUrl": "https://jp.sharp/products/aquos-r8-pro/simfree/",
         "wirelessUrl": "https://jp.sharp/products/aquos-r8-pro/simfree/",
-        "verifiedAt": "2026-09-15",
+        "verifiedAt": "2026-09-16",
         "releaseUrl": "https://corporate.jp.sharp/news/230509-j.html"
       },
       "affiliateKeys": []
