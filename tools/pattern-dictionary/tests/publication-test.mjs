@@ -11,6 +11,8 @@ const source=JSON.parse(fs.readFileSync(path.join(root,'data','source-verificati
 const app=fs.readFileSync(path.join(root,'app.js'),'utf8');
 const homeJa=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const homeEn=fs.readFileSync(path.join(root,'en','index.html'),'utf8');
+const searchJa=fs.readFileSync(path.join(root,'search.html'),'utf8');
+const searchEn=fs.readFileSync(path.join(root,'en','search.html'),'utf8');
 const sitemap=fs.readFileSync(path.join(repoRoot,'sitemap.xml'),'utf8');
 const canonical=base.map(x=>x.id);
 if(canonical.length!==80)throw new Error(`published runtime must be 80, got ${canonical.length}`);
@@ -32,5 +34,6 @@ for(const id of canonical)for(const prefix of ['', 'en/']){
 if(detailCount!==160)throw new Error(`expected 160 detail pages, got ${detailCount}`);
 if(/final verification is still pending|最終verified前|現在はreviewed/.test(app))throw new Error('runtime still exposes pre-publication review messaging');
 if(!homeJa.includes('現在の80件')||!homeEn.includes('The current 80 entries'))throw new Error('home publication count must be 80 in JA/EN');
+if(!searchJa.includes('80件の検証済みデータ')||!searchEn.includes('80-record verified dataset'))throw new Error('search publication count must be 80 in JA/EN');
 for(const family of ['stripe','dot','floral','global-textile'])if(!homeJa.includes(`data-family="${family}"`)||!homeEn.includes(`data-family="${family}"`))throw new Error(`JA/EN home must expose ${family} visual filter`);
-console.log('OK: 80/80 patterns and Reference Images are verified, 160/160 detail pages are indexable and in sitemap, and JA/EN homes expose the expanded visual filters.');
+console.log('OK: 80/80 patterns and Reference Images are verified, 160/160 detail pages are indexable and in sitemap, and JA/EN home/search surfaces expose the 80-pattern publication state.');
