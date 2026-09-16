@@ -1,6 +1,6 @@
 name: Pattern Dictionary Wave 3 publish
 
-# retry: search-specificity-r3
+# retry: final-confidence-r4
 on:
   push:
     branches:
