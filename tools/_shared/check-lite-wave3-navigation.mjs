@@ -12,8 +12,8 @@ for (const required of [
   'rowCategoryMatches',
   '表示中をコピー',
   'Copy visible',
-  '未分類をコピー',
-  'Copy unclassified',
+  '情報不足をコピー',
+  'Copy needs-info',
   'navigator.clipboard.writeText',
   'nw-lite-languagechange'
 ]) {
@@ -34,7 +34,7 @@ assert.ok(app.includes('refreshDictionaryStatus();'), 'Lite language changes mus
 assert.ok(app.includes('renderSummary(lastItems);'), 'Lite language changes must rerender the existing summary without rerunning analysis');
 assert.ok(app.includes('renderTable(lastItems);'), 'Lite language changes must rerender existing result rows without rerunning analysis');
 assert.ok(app.includes("document.dispatchEvent(new CustomEvent('nw-lite-languagechange'"), 'Lite runtime must notify enhancement UI after language changes');
-assert.ok(js.includes("document.addEventListener('nw-lite-languagechange', update);"), 'Lite enhancements must rerender filters and coverage after language changes');
+assert.ok(js.includes("document.addEventListener('nw-lite-languagechange', update);"), 'Lite enhancements must rerender filters and result-role UI after language changes');
 assert.ok(css.includes('.lite-filter-row'), 'Lite filter-row styling missing');
 assert.ok(css.includes('.lite-copy-actions'), 'Lite copy-action styling missing');
 
