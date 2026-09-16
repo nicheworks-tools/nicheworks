@@ -7,16 +7,14 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-57QT78M3JB');
 </script>
-
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>INCI FastScan | Ingredient Safety Check &amp; J-Beauty Translator | Guide | NicheWorks</title>
-  <meta name="description" content="Paste ingredients and get SAFE/CAUTION/RISK results fast. Translate Japanese (J-Beauty) ingredients to English and run the same safety check. OCR photo input supported (if enabled). Browser-only, no storage.">
+  <title>INCI FastScan | Cosmetic Ingredient OCR &amp; Review Guide | NicheWorks</title>
+  <meta name="description" content="How to use INCI FastScan to OCR a cosmetic label or paste ingredient text, then organize local-dictionary matches, additional-review items, and unmatched entries.">
   <link rel="canonical" href="https://nicheworks.app/tools/inci-fastscan/howto/en/">
 
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/inci-fastscan/howto/en/" />
@@ -41,7 +39,6 @@
     .nw-footer{margin-top:24px;padding:16px 8px 12px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
     .nw-footer a{color:inherit}
     code{background:#f3f4f6;border:1px solid #e5e7eb;padding:2px 6px;border-radius:8px}
-    .pill{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:2px 10px;font-size:12px;margin-right:6px}
   </style>
 
   <meta property="og:url" content="https://nicheworks.app/tools/inci-fastscan/howto/en/">
@@ -50,26 +47,23 @@
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
-  <meta property="og:title" content="INCI FastScan | Ingredient Safety Check &amp; J-Beauty Translator | Guide | NicheWorks">
-  <meta property="og:description" content="Paste ingredients and get SAFE/CAUTION/RISK results fast. Translate Japanese (J-Beauty) ingredients to English and run the same safety check. OCR photo input supported (if enabled). Browser-only, no storage.">
+  <meta property="og:title" content="INCI FastScan | Cosmetic Ingredient OCR &amp; Review Guide | NicheWorks">
+  <meta property="og:description" content="OCR a cosmetic label or paste ingredient text, then organize local-dictionary matches, additional-review items, and unmatched entries with INCI FastScan.">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="INCI FastScan | Ingredient Safety Check &amp; J-Beauty Translator | Guide | NicheWorks">
-  <meta name="twitter:description" content="Paste ingredients and get SAFE/CAUTION/RISK results fast. Translate Japanese (J-Beauty) ingredients to English and run the same safety check. OCR photo input supported (if enabled). Browser-only, no storage.">
+  <meta name="twitter:title" content="INCI FastScan | Cosmetic Ingredient OCR &amp; Review Guide | NicheWorks">
+  <meta name="twitter:description" content="OCR a cosmetic label or paste ingredient text, then organize local-dictionary matches, additional-review items, and unmatched entries with INCI FastScan.">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "INCI FastScan | Ingredient Safety Check &amp;amp;amp; J-Beauty Translator | Guide",
+    "name": "INCI FastScan Guide",
     "url": "https://nicheworks.app/tools/inci-fastscan/howto/en/",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
-    "description": "Paste ingredients and get SAFE/CAUTION/RISK results fast. Translate Japanese (J-Beauty) ingredients to English and run the same safety check. OCR photo input supported (if enabled). Browser-only, no storage.",
-    "inLanguage": [
-      "ja",
-      "en"
-    ],
+    "description": "OCR a cosmetic label or paste ingredient text, then organize local-dictionary matches, additional-review items, and unmatched entries with INCI FastScan.",
+    "inLanguage": ["ja", "en"],
     "publisher": {
       "@type": "Organization",
       "name": "NicheWorks",
@@ -86,7 +80,7 @@
       <a href="../../">Tool</a>
     </div>
     <h1 style="margin:10px 0 6px">INCI FastScan: Guide</h1>
-    <p class="muted" style="margin:0">Paste (or OCR) ingredients → translate if needed → get SAFE/CAUTION/RISK hints.</p>
+    <p class="muted" style="margin:0">Use a photo/OCR or pasted text, review the recognized label, then match ingredient names against the local dictionary.</p>
   </header>
 
   <main class="nw-main">
@@ -95,52 +89,80 @@
     <section class="card">
       <h2 style="margin:0 0 8px">What it does</h2>
       <ul>
-        <li><span class="pill">TAB 1</span>Fast safety check for English ingredient lists</li>
-        <li><span class="pill">TAB 2</span>Translate Japanese (J-Beauty) ingredients to English, then check safety</li>
-        <li>OCR photo input is supported (if enabled in the tool)</li>
-        <li>Unknown ingredients are listed separately</li>
-        <li>Browser-only, no storage</li>
+        <li>Selects a product-label photo/image and reads ingredient text with in-browser OCR</li>
+        <li>Lets you review and correct OCR text before ingredient matching</li>
+        <li>Also accepts pasted INCI/English or Japanese ingredient text without a photo</li>
+        <li>Organizes local-dictionary results as Dictionary match, Additional review, or Unmatched</li>
+        <li>Filters results by state and lets you move through review/unmatched items</li>
+        <li>Shows conservative spelling/OCR candidates for eligible unmatched entries and applies one only after an explicit user action</li>
       </ul>
       <div class="btns">
-        <a class="btn primary" href="../../">Open the tool</a>
+        <a class="btn primary" href="../../">Open FastScan</a>
         <a class="btn" href="../">日本語ガイド</a>
       </div>
-      <p class="muted" style="margin:10px 0 0">
-        Ranks: <code>SAFE</code> / <code>CAUTION</code> / <code>RISK</code> with a short note.
-      </p>
-    </section>
-
-    <section class="card">
-      <h2 style="margin:0 0 8px">Use this when</h2>
-      <ul>
-        <li>You want a quick “paste → scan” ingredient safety hint</li>
-        <li>You have Japanese ingredient labels and need English mapping</li>
-        <li>You can’t copy text and want to OCR from a photo</li>
-        <li>You want to spot common irritants before buying/using</li>
-      </ul>
-      <p class="muted" style="margin:8px 0 0">
-        Keywords: ingredient safety checker, INCI analyzer, J-beauty ingredient translator, OCR ingredients
-      </p>
     </section>
 
     <section class="card">
       <h2 style="margin:0 0 8px">How to use</h2>
       <ol>
-        <li><b>TAB 1</b>: paste ingredients → hit <code>Check Safety</code></li>
-        <li><b>TAB 2</b>: paste Japanese ingredients (or upload a photo for OCR) → <code>Translate &amp; Check Safety</code></li>
-        <li>Review the <code>SAFE/CAUTION/RISK</code> results and the Unknown list</li>
+        <li>Choose <strong>From photo/image</strong> or <strong>From text</strong>. Photo mode is the default.</li>
+        <li>Choose the source-label type: <strong>INCI / English</strong> or <strong>Japanese label</strong>.</li>
+        <li>In photo mode, select an image, run OCR, and visually review/correct the recognized text.</li>
+        <li>In text mode, paste the ingredient label directly into the textarea.</li>
+        <li>Click <code>Check ingredients</code> to match the names.</li>
+        <li>Use result filters, previous/next review navigation, or an explicit unmatched-name candidate when useful.</li>
       </ol>
-      <p class="muted" style="margin:0">If Japanese is detected in TAB 1, the tool may suggest switching to TAB 2 (if implemented).</p>
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">Notes (limits)</h2>
+      <h2 style="margin:0 0 8px">What the result states mean</h2>
       <ul>
-        <li>This is a dictionary-based hint, not medical advice.</li>
-        <li>Reactions depend on concentration, usage, and individual sensitivity.</li>
-        <li>OCR quality depends on the photo; unreadable items can become Unknown.</li>
-        <li>If you see Unknown, try simplifying the name (remove extra symbols) and retry.</li>
+        <li><strong>Dictionary match:</strong> the entered spelling matched a maintained INCI name, Japanese name, registered alias, or other reviewed exact naming route.</li>
+        <li><strong>Additional review:</strong> a cue to check more official information or usage context. It is not a danger rating.</li>
+        <li><strong>Unmatched:</strong> the current dictionary could not identify the entered spelling. It does not mean the ingredient is unsafe.</li>
       </ul>
+      <p class="muted" style="margin:0">The Japanese-label tab performs Japanese-name/alias dictionary matching. It is not a machine-translation feature.</p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">OCR notes</h2>
+      <ul>
+        <li>OCR can omit, split, or misread text depending on image quality, angle, glare, and text size.</li>
+        <li>Always compare recognized text with the actual product label and correct it before relying on the match result.</li>
+        <li>Near-match candidates are spelling/OCR repair hints only; they do not automatically identify an ingredient.</li>
+        <li>Applying a candidate edits the input but does not automatically rerun the analysis. Run the check again when needed.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">Limits</h2>
+      <ul>
+        <li>FastScan does not assign SAFE / CAUTION / RISK safety ranks to ingredients or products.</li>
+        <li>It cannot determine concentration, the complete formulation, individual suitability, allergies, pregnancy suitability, drug interactions, or regulatory status from the label alone.</li>
+        <li>It does not provide medical/dermatological diagnosis or certify product safety.</li>
+        <li>A known ingredient may still appear as Unmatched when its spelling is not represented in the maintained dictionary.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">Data and network behavior</h2>
+      <ul>
+        <li>Selected-image preview, OCR-text editing, ingredient matching, and result filtering are handled in the browser.</li>
+        <li>The Tesseract.js OCR library is loaded from the external unpkg.com CDN, so the page is not fully offline.</li>
+        <li>The tool does not provide saved scan-history or saved-result features.</li>
+        <li>The UI language preference may be stored locally in the browser when available.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px">Lite vs FastScan</h2>
+      <ul>
+        <li><strong>FastScan:</strong> when you want to start from a product-label photo/OCR or use the more detailed review workflow</li>
+        <li><strong>Lite:</strong> when you already have the full ingredient text and want a faster paste-first workflow</li>
+      </ul>
+      <div class="btns">
+        <a class="btn" href="/tools/cosmetic-ingredient-checker-lite/">Open Cosmetic Ingredient Checker Lite</a>
+      </div>
     </section>
 
     <div class="ad-slot ad-bottom">Ad slot (stable content)</div>
