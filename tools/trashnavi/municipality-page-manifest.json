@@ -132,5 +132,15 @@
   {"lgcode":"132110","pref_slug":"tokyo","city_slug":"kodaira","publish":true},
   {"lgcode":"132021","pref_slug":"tokyo","city_slug":"tachikawa","publish":true},
   {"lgcode":"142123","pref_slug":"kanagawa","city_slug":"atsugi","publish":true},
-  {"lgcode":"142069","pref_slug":"kanagawa","city_slug":"odawara","publish":true}
+  {"lgcode":"142069","pref_slug":"kanagawa","city_slug":"odawara","publish":true},
+  {"lgcode":"132047","pref_slug":"tokyo","city_slug":"mitaka","publish":true},
+  {"lgcode":"132039","pref_slug":"tokyo","city_slug":"musashino","publish":true},
+  {"lgcode":"132128","pref_slug":"tokyo","city_slug":"hino","publish":true},
+  {"lgcode":"132144","pref_slug":"tokyo","city_slug":"kokubunji","publish":true},
+  {"lgcode":"132241","pref_slug":"tokyo","city_slug":"tama","publish":true},
+  {"lgcode":"142042","pref_slug":"kanagawa","city_slug":"kamakura","publish":true},
+  {"lgcode":"142158","pref_slug":"kanagawa","city_slug":"ebina","publish":true},
+  {"lgcode":"142166","pref_slug":"kanagawa","city_slug":"zama","publish":true},
+  {"lgcode":"122122","pref_slug":"chiba","city_slug":"sakura","publish":true},
+  {"lgcode":"122114","pref_slug":"chiba","city_slug":"narita","publish":true}
 ]
