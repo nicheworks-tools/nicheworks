@@ -27,8 +27,8 @@ sitemap = sitemap.replace(oldSitemap, newSitemap);
 if ((root.match(/href="\.\/howto\/">旧字体の調べ方<\/a>/g) || []).length !== 1) {
   throw new Error('Expected exactly one new Old Kanji how-to root link');
 }
-if ((sitemap.match(/https:\/\/nicheworks\.app\/tools\/old-kanji-reference\/howto\//g) || []).length !== 1) {
-  throw new Error('Old Kanji how-to URL must appear exactly once in sitemap');
+if ((sitemap.match(/<loc>https:\/\/nicheworks\.app\/tools\/old-kanji-reference\/howto\/<\/loc>/g) || []).length !== 1) {
+  throw new Error('Old Kanji Japanese how-to URL must appear exactly once in sitemap');
 }
 
 fs.writeFileSync(rootPath, root);
