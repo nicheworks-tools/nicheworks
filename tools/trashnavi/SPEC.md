@@ -817,3 +817,23 @@ Wave 33は10自治体batch scaling ruleを継続し、公開閾値を変更せ�
 Wave 33 readiness baselineは1,916 municipalities、2,430 valid HTTP(S) records、114 preferred candidates、36 direct-link datasets / 362 records / 343 unique URLs / 0 invalid URLsとする。
 
 Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 114/114、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する福山市・八尾市・加古川市・松本市・富士市・草加市・春日井市だけ2026 calendar calloutを表示し、倉敷市・茨木市・長岡市には年次calloutを生成しない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+
+## Wave 34 ten-municipality publication
+
+Wave 34は10自治体batch scaling ruleを継続し、公開閾値を変更せず **114自治体から124自治体** へ拡張する。対象は府中市・調布市・平塚市・茅ヶ崎市・大和市・春日部市・上尾市・宝塚市・寝屋川市・伊丹市。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeとし、同一combined pageの二重計上や外部委託先による閾値補完は行わない。
+
+- 府中市 — `/tools/trashnavi/tokyo/fuchu/` — waste sorting / collection calendar / bulky waste
+- 調布市 — `/tools/trashnavi/tokyo/chofu/` — waste sorting / collection calendar / bulky waste
+- 平塚市 — `/tools/trashnavi/kanagawa/hiratsuka/` — waste sorting / collection calendar / bulky waste
+- 茅ヶ崎市 — `/tools/trashnavi/kanagawa/chigasaki/` — waste sorting / collection calendar / bulky waste
+- 大和市 — `/tools/trashnavi/kanagawa/yamato/` — waste sorting / collection calendar / bulky waste
+- 春日部市 — `/tools/trashnavi/saitama/kasukabe/` — waste sorting / collection calendar / bulky waste
+- 上尾市 — `/tools/trashnavi/saitama/ageo/` — waste sorting / collection calendar / bulky waste
+- 宝塚市 — `/tools/trashnavi/hyogo/takarazuka/` — waste sorting / collection calendar / bulky waste
+- 寝屋川市 — `/tools/trashnavi/osaka/neyagawa/` — waste sorting / collection calendar / bulky waste
+- 伊丹市 — `/tools/trashnavi/hyogo/itami/` — waste sorting / collection calendar / bulky waste
+
+Wave 34 readiness baselineは1,916 municipalities、2,460 valid HTTP(S) records、124 preferred candidates、37 direct-link datasets / 392 records / 373 unique URLs / 0 invalid URLsとする。
+
+Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 124/124、両sitemapへのcanonical 1件ずつを検証する。10自治体すべてのcollection sourceが2026 / 令和8年を明示しているため、10ページすべてに2026 calendar calloutを表示する。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。

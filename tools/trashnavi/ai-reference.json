@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 114,
+  "published_municipality_count": 124,
   "municipalities": [
     {
       "lgcode": "131016",
@@ -692,6 +692,66 @@
       "pref_slug": "aichi",
       "city_slug": "kasugai",
       "url": "https://nicheworks.app/tools/trashnavi/aichi/kasugai/"
+    },
+    {
+      "lgcode": "132063",
+      "pref_slug": "tokyo",
+      "city_slug": "fuchu",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/fuchu/"
+    },
+    {
+      "lgcode": "132080",
+      "pref_slug": "tokyo",
+      "city_slug": "chofu",
+      "url": "https://nicheworks.app/tools/trashnavi/tokyo/chofu/"
+    },
+    {
+      "lgcode": "142034",
+      "pref_slug": "kanagawa",
+      "city_slug": "hiratsuka",
+      "url": "https://nicheworks.app/tools/trashnavi/kanagawa/hiratsuka/"
+    },
+    {
+      "lgcode": "142077",
+      "pref_slug": "kanagawa",
+      "city_slug": "chigasaki",
+      "url": "https://nicheworks.app/tools/trashnavi/kanagawa/chigasaki/"
+    },
+    {
+      "lgcode": "142131",
+      "pref_slug": "kanagawa",
+      "city_slug": "yamato",
+      "url": "https://nicheworks.app/tools/trashnavi/kanagawa/yamato/"
+    },
+    {
+      "lgcode": "112143",
+      "pref_slug": "saitama",
+      "city_slug": "kasukabe",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/kasukabe/"
+    },
+    {
+      "lgcode": "112194",
+      "pref_slug": "saitama",
+      "city_slug": "ageo",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/ageo/"
+    },
+    {
+      "lgcode": "282146",
+      "pref_slug": "hyogo",
+      "city_slug": "takarazuka",
+      "url": "https://nicheworks.app/tools/trashnavi/hyogo/takarazuka/"
+    },
+    {
+      "lgcode": "272159",
+      "pref_slug": "osaka",
+      "city_slug": "neyagawa",
+      "url": "https://nicheworks.app/tools/trashnavi/osaka/neyagawa/"
+    },
+    {
+      "lgcode": "282073",
+      "pref_slug": "hyogo",
+      "city_slug": "itami",
+      "url": "https://nicheworks.app/tools/trashnavi/hyogo/itami/"
     }
   ]
 }
