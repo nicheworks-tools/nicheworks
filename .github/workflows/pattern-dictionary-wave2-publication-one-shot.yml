@@ -48,3 +48,4 @@ jobs:
           git add -A
           git commit -m 'publish: promote Pattern Dictionary Wave 2 to canonical 40'
           git push origin HEAD:feat/pattern-dictionary-wave2-publication-r2-20260916
+# rerun after publication-contract fix
