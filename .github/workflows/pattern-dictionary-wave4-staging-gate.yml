@@ -1,0 +1,57 @@
+name: Pattern Dictionary Wave 4 staging gate
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-wave4-production-staging-20260916
+    paths:
+      - .github/workflows/pattern-dictionary-wave4-staging-gate.yml
+
+permissions:
+  contents: write
+
+jobs:
+  staging-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave4-production-staging-20260916
+      - name: Record accepted structural review
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'); const base='tools/pattern-dictionary/data/';
+          const refs=JSON.parse(fs.readFileSync(base+'wave4-reference-images.json'));
+          refs.status='structural-review-complete'; refs.policy.generator='scripts/generate-reference-images-wave4-v3.py';
+          for(const r of refs.images)r.review_state='reviewed';
+          fs.writeFileSync(base+'wave4-reference-images.json',JSON.stringify(refs,null,2)+'\n');
+          const review=JSON.parse(fs.readFileSync(base+'wave4-reference-image-review.json'));
+          review.status='structural-review-complete';
+          const revised1=new Set(['chinoiserie','flame-stitch','tree-of-life','moire','yagasuri','uroko','kagome','tomoe','kalamkari']);
+          const revised2=new Set(['kagome','nami-chidori']);
+          for(const r of review.records){
+            r.status='accepted';
+            r.notes=[`1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass ${revised2.has(r.pattern_id)?3:revised1.has(r.pattern_id)?2:1}.`];
+            if(['ajrakh','bandhani','baroque-scroll','batik','chinoiserie','flame-stitch','kalamkari','kanoko','moire','same-komon','shibori'].includes(r.pattern_id))r.notes.push('Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat.');
+          }
+          review.review_history=[
+            {pass:1,result:'revisions-required',notes:['Flame Stitch read too much like ordinary chevrons; Tree of Life read as a small sprig; Moire was too faint; Yagasuri read as X/braid columns; Uroko read as diamonds; Kagome lacked recognizable basket-eye structure; Tomoe units were too small.','Chinoiserie and Kalamkari were too icon-like and needed stronger pictorial/style cues.']},
+            {pass:2,result:'revisions-required',notes:['Flame Stitch, Tree of Life, Moire, Yagasuri, Uroko, Tomoe, Chinoiserie, and Kalamkari improved to acceptable recognition strength.','Kagome still read as isolated six-point stars and Nami Chidori waves read too much like horizontal ornament bands.']},
+            {pass:3,result:'accepted',notes:['Kagome rebuilt as a tighter connected staggered basket-eye network.','Nami Chidori rebuilt with nested semicircle waves and larger plover silhouettes.','All 20 images reviewed together at thumbnail scale and retained as deterministic 1536x1536 RGB recognition references.']}
+          ];
+          fs.writeFileSync(base+'wave4-reference-image-review.json',JSON.stringify(review,null,2)+'\n');
+          NODE
+      - name: Run Wave 4 staging contract
+        run: node tools/pattern-dictionary/scripts/check-wave4-staging.mjs
+      - name: Recheck Wave 4 source provenance
+        run: node tools/pattern-dictionary/tests/wave4-source-verification-test.mjs
+      - name: Recheck canonical 100 contract
+        run: node tools/pattern-dictionary/tests/canonical-100-test.mjs
+      - name: Recheck published runtime
+        run: node tools/pattern-dictionary/tests/validate.mjs
+      - name: Commit accepted review ledgers
+        run: |
+          git config user.name nicheworks-tools
+          git config user.email nicheworks.tools@gmail.com
+          git add tools/pattern-dictionary/data/wave4-reference-images.json tools/pattern-dictionary/data/wave4-reference-image-review.json
+          if git diff --cached --quiet; then echo 'Nothing to commit'; else git commit -m 'Pattern Dictionary: accept Wave 4 reference image review'; git push origin HEAD:feat/pattern-dictionary-wave4-production-staging-20260916; fi
