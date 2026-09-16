@@ -19,6 +19,7 @@
   <link rel="canonical" href="https://nicheworks.app/tools/cosmetic-ingredient-checker-lite/">
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./ui-v2.css">
 
   <meta property="og:title" content="化粧品成分チェッカー｜INCI・日本語成分名を照合 | NicheWorks">
   <meta property="og:description" content="全成分表示を貼り付け、INCI名・日本語成分名をローカル辞書と照合して主な分類や確認候補を整理できる無料ツールです。">
@@ -40,7 +41,7 @@
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
     "description": "化粧品の全成分表示を貼り付け、INCI名・日本語成分名をローカル辞書と照合して主な分類や確認候補を整理できる無料の化粧品成分チェッカーです。",
-    "inLanguage": "ja",
+    "inLanguage": ["ja", "en"],
     "publisher": { "@type": "Organization", "name": "NicheWorks", "url": "https://nicheworks.app/" }
   }
   </script>
@@ -55,130 +56,197 @@
   <meta name="robots" content="index,follow">
 </head>
 
-<body>
-  <header class="nw-header">
-    <div class="nw-header-inner">
-      <div class="nw-header-top">
-        <div class="nw-header-titles">
-          <h1 class="nw-title">化粧品成分チェッカー Lite</h1>
-          <p class="nw-subtitle">全成分表示を貼るだけ。INCI / 日本語の成分名をすばやく整理します。</p>
+<body class="lite-v2">
+  <header class="nw-header tool-header">
+    <div class="nw-header-inner tool-header-inner">
+      <div class="tool-header-name">Cosmetic Ingredient Checker Lite</div>
+      <div class="tool-header-actions">
+        <nav class="tool-switch" aria-label="Cosmetics tools">
+          <a class="active" href="/tools/cosmetic-ingredient-checker-lite/">Lite</a>
+          <a href="/tools/inci-fastscan/">FastScan</a>
+        </nav>
+        <div class="nw-lang-switch" aria-label="Language switch">
+          <button type="button" data-lang="ja">JP</button>
+          <button type="button" data-lang="en">EN</button>
         </div>
-        <div class="nw-lang-switch">日本語のみ</div>
       </div>
     </div>
   </header>
 
   <main class="nw-main">
+    <section class="tool-hero" aria-labelledby="tool-title">
+      <p class="eyebrow">PASTE → CHECK → REVIEW</p>
+      <h1 id="tool-title" data-lang-text
+        data-ja="化粧品の全成分表示を、貼るだけで整理。"
+        data-en="Paste a cosmetic ingredient list and organize it instantly.">化粧品の全成分表示を、貼るだけで整理。</h1>
+      <p class="tool-hero-lead" data-lang-text
+        data-ja="パッケージや公式サイトの全成分表示を貼り付けると、成分名を辞書と照合し、認識できた成分・確認候補・未分類に分けて表示します。"
+        data-en="Paste the full ingredient list from a package or official product page. The tool matches ingredient names and separates recognized, review, and unclassified items.">パッケージや公式サイトの全成分表示を貼り付けると、成分名を辞書と照合し、認識できた成分・確認候補・未分類に分けて表示します。</p>
+      <p class="tool-hero-sub" data-lang-text
+        data-ja="安全性を採点するツールではありません。成分名と、追加確認が必要な項目を整理するためのツールです。"
+        data-en="This is not a safety scoring tool. It helps organize ingredient names and items that may need further review.">安全性を採点するツールではありません。成分名と、追加確認が必要な項目を整理するためのツールです。</p>
 
-
-    <section class="tool-card workspace-card" id="input" aria-labelledby="input-title">
-      <div class="workspace-heading">
-        <div>
-          <p class="eyebrow">PASTE &amp; CHECK</p>
-          <h2 id="input-title" class="section-title">成分リストを貼り付け</h2>
-          <p class="section-desc">カンマ / 「、」 / セミコロン / 改行区切りに対応。入力内容はブラウザ内で処理します。</p>
+      <div class="purpose-strip" aria-label="Tool purpose">
+        <div class="purpose-item">
+          <strong data-lang-text data-ja="入力" data-en="Input">入力</strong>
+          <span data-lang-text data-ja="全成分表示をそのまま貼る" data-en="Paste the full ingredient list">全成分表示をそのまま貼る</span>
         </div>
-        <a class="ocr-link" href="/tools/inci-fastscan/">写真・OCRで確認 → INCI FastScan</a>
-      </div>
-
-      <textarea id="inciInput" class="cic-textarea" rows="7" autocomplete="off" spellcheck="false" placeholder="例：水、グリセリン、ナイアシンアミド、ヒアルロン酸Na、フェノキシエタノール"></textarea>
-      <div class="actions">
-        <button id="checkBtn" class="btn btn-primary" type="button">成分を確認</button>
-        <button id="clearBtn" class="btn btn-ghost" type="button">クリア</button>
-        <button id="copyBtn" class="btn" type="button">結果をコピー</button>
-      </div>
-      <div class="input-meta">
-        <span id="dictionaryStatus" class="dictionary-status" aria-live="polite">成分辞書を準備しています。</span>
-        <span class="keyboard-hint">⌘ / Ctrl + Enter でも確認</span>
-      </div>
-      <div id="copyStatus" class="copy-status" aria-live="polite"></div>
-      <div id="disclaimerBox" class="disclaimer-box">
-        <strong>情報提供のみ：</strong>成分名をローカル辞書と照合して整理する参考ツールです。濃度・処方全体・個人差は判定できず、医学的・薬機法上の診断や安全性保証は行いません。
+        <div class="purpose-item">
+          <strong data-lang-text data-ja="確認" data-en="Check">確認</strong>
+          <span data-lang-text data-ja="辞書一致・確認候補・未分類を分離" data-en="Separate matched, review, and unclassified items">辞書一致・確認候補・未分類を分離</span>
+        </div>
+        <div class="purpose-item">
+          <strong data-lang-text data-ja="向いている使い方" data-en="Best for">向いている使い方</strong>
+          <span data-lang-text data-ja="OCR不要で素早く見たいとき" data-en="Quick checks when OCR is not needed">OCR不要で素早く見たいとき</span>
+        </div>
       </div>
     </section>
 
-    <section class="tool-card results-card" id="results" aria-labelledby="results-title">
-      <div class="results-header">
-        <div>
-          <p class="eyebrow">RESULT</p>
-          <h2 id="results-title" class="section-title">解析結果</h2>
-          <p class="section-desc">入力順を維持します。「確認候補」は危険判定ではなく、使用条件や公式情報を追加確認するための目印です。</p>
-        </div>
-        <div class="parsed-count">解析数 <strong id="parsedCount">0</strong></div>
+    <div class="tool-layout">
+      <div class="tool-primary">
+        <section class="tool-card workspace-card" id="input" aria-labelledby="input-title">
+          <div class="workspace-heading">
+            <div>
+              <p class="eyebrow">STEP 1</p>
+              <h2 id="input-title" class="section-title" data-lang-text data-ja="全成分表示を貼り付ける" data-en="Paste the full ingredient list">全成分表示を貼り付ける</h2>
+              <p class="section-desc" data-lang-text
+                data-ja="カンマ / 「、」 / セミコロン / 改行区切りに対応。入力内容はブラウザ内で処理します。"
+                data-en="Comma, Japanese punctuation, semicolon, and line breaks are supported. Input is processed in your browser.">カンマ / 「、」 / セミコロン / 改行区切りに対応。入力内容はブラウザ内で処理します。</p>
+            </div>
+          </div>
+
+          <textarea id="inciInput" class="cic-textarea" rows="7" autocomplete="off" spellcheck="false"
+            placeholder="例：水、グリセリン、ナイアシンアミド、ヒアルロン酸Na、フェノキシエタノール"
+            data-placeholder-ja="例：水、グリセリン、ナイアシンアミド、ヒアルロン酸Na、フェノキシエタノール"
+            data-placeholder-en="Example: Water, Glycerin, Niacinamide, Sodium Hyaluronate, Phenoxyethanol"></textarea>
+          <div class="actions">
+            <button id="checkBtn" class="btn btn-primary" type="button" data-lang-text data-ja="成分を確認" data-en="Check ingredients">成分を確認</button>
+            <button id="clearBtn" class="btn btn-ghost" type="button" data-lang-text data-ja="クリア" data-en="Clear">クリア</button>
+            <button id="copyBtn" class="btn" type="button" data-lang-text data-ja="結果をコピー" data-en="Copy results">結果をコピー</button>
+          </div>
+          <div class="input-meta">
+            <span id="dictionaryStatus" class="dictionary-status" aria-live="polite">成分辞書を準備しています。</span>
+            <span class="keyboard-hint" data-lang-text data-ja="⌘ / Ctrl + Enter でも確認" data-en="Use Cmd / Ctrl + Enter to check">⌘ / Ctrl + Enter でも確認</span>
+          </div>
+          <div id="copyStatus" class="copy-status" aria-live="polite"></div>
+          <div id="disclaimerBox" class="disclaimer-box" data-lang-text
+            data-ja="<strong>情報提供のみ：</strong>成分名をローカル辞書と照合して整理する参考ツールです。濃度・処方全体・個人差は判定できず、医学的・薬機法上の診断や安全性保証は行いません。"
+            data-en="<strong>For reference only:</strong> This tool organizes ingredient names by matching them against a local dictionary. It cannot determine concentration, the full formulation, individual suitability, medical diagnosis, or guarantee safety."><strong>情報提供のみ：</strong>成分名をローカル辞書と照合して整理する参考ツールです。濃度・処方全体・個人差は判定できず、医学的・薬機法上の診断や安全性保証は行いません。</div>
+        </section>
+
+        <section class="tool-card results-card" id="results" aria-labelledby="results-title">
+          <div class="results-header">
+            <div>
+              <p class="eyebrow">STEP 2</p>
+              <h2 id="results-title" class="section-title" data-lang-text data-ja="全体を見てから、各成分を確認" data-en="See the overview, then review each ingredient">全体を見てから、各成分を確認</h2>
+              <p class="section-desc" data-lang-text
+                data-ja="入力順を維持します。「確認候補」は危険判定ではなく、使用条件や公式情報を追加確認するための目印です。"
+                data-en="Input order is preserved. “Review” is not a danger label; it marks items that may need additional official information or usage-condition checks.">入力順を維持します。「確認候補」は危険判定ではなく、使用条件や公式情報を追加確認するための目印です。</p>
+            </div>
+            <div class="parsed-count"><span data-lang-text data-ja="解析数" data-en="Parsed">解析数</span> <strong id="parsedCount">0</strong></div>
+          </div>
+
+          <div id="summaryBox" class="summary-box" hidden>
+            <div class="metric-grid" aria-label="解析サマリー">
+              <div class="metric-card">
+                <span class="metric-label" data-lang-text data-ja="辞書一致" data-en="Matched">辞書一致</span>
+                <strong id="matchedCount" class="metric-value">0</strong>
+              </div>
+              <div class="metric-card metric-review">
+                <span class="metric-label" data-lang-text data-ja="確認候補" data-en="Review">確認候補</span>
+                <strong id="reviewCount" class="metric-value">0</strong>
+              </div>
+              <div class="metric-card">
+                <span class="metric-label" data-lang-text data-ja="未分類" data-en="Unclassified">未分類</span>
+                <strong id="unknownCount" class="metric-value">0</strong>
+              </div>
+            </div>
+            <div class="category-block">
+              <p class="summary-title" data-lang-text data-ja="主な分類" data-en="Main categories">主な分類</p>
+              <div id="categoryGrid" class="category-grid"></div>
+            </div>
+          </div>
+
+          <section
+            id="amazonAffiliateSlot"
+            class="affiliate-slot"
+            data-affiliate-provider="amazon"
+            data-affiliate-placement="after-summary"
+            data-affiliate-state="inactive"
+            hidden
+            aria-hidden="true"></section>
+
+          <div class="table-wrapper">
+            <table id="itemsTable" class="result-table">
+              <thead>
+                <tr>
+                  <th data-lang-text data-ja="入力成分" data-en="Input ingredient">入力成分</th>
+                  <th data-lang-text data-ja="状態 / 分類" data-en="Status / category">状態 / 分類</th>
+                  <th data-lang-text data-ja="簡易メモ" data-en="Quick note">簡易メモ</th>
+                </tr>
+              </thead>
+              <tbody id="itemsTableBody"></tbody>
+            </table>
+          </div>
+          <div id="itemsEmpty" class="empty-state" data-lang-text
+            data-ja="成分リストを貼り付けて「成分を確認」を押すと、ここに結果が表示されます。"
+            data-en="Paste an ingredient list and press “Check ingredients” to see results here.">成分リストを貼り付けて「成分を確認」を押すと、ここに結果が表示されます。</div>
+        </section>
       </div>
 
-      <div id="summaryBox" class="summary-box" hidden>
-        <div class="metric-grid" aria-label="解析サマリー">
-          <div class="metric-card">
-            <span class="metric-label">辞書一致</span>
-            <strong id="matchedCount" class="metric-value">0</strong>
-          </div>
-          <div class="metric-card metric-review">
-            <span class="metric-label">確認候補</span>
-            <strong id="reviewCount" class="metric-value">0</strong>
-          </div>
-          <div class="metric-card">
-            <span class="metric-label">未分類</span>
-            <strong id="unknownCount" class="metric-value">0</strong>
-          </div>
-        </div>
-        <div class="category-block">
-          <p class="summary-title">主な分類</p>
-          <div id="categoryGrid" class="category-grid"></div>
-        </div>
-      </div>
-
-      <!-- Amazon Associates is intentionally inactive until the account/tracking setup is ready. -->
-      <section
-        id="amazonAffiliateSlot"
-        class="affiliate-slot"
-        data-affiliate-provider="amazon"
-        data-affiliate-placement="after-summary"
-        data-affiliate-state="inactive"
-        hidden
-        aria-hidden="true"></section>
-
-      <div class="table-wrapper">
-        <table id="itemsTable" class="result-table">
-          <thead>
-            <tr>
-              <th>入力成分</th>
-              <th>状態 / 分類</th>
-              <th>簡易メモ</th>
-            </tr>
-          </thead>
-          <tbody id="itemsTableBody"></tbody>
-        </table>
-      </div>
-      <div id="itemsEmpty" class="empty-state">成分リストを貼り付けて「成分を確認」を押すと、ここに結果が表示されます。</div>
-    </section>
+      <aside class="tool-side" aria-label="Tool guidance">
+        <section class="side-block">
+          <h2 data-lang-text data-ja="写真から確認したい場合" data-en="Need to scan a photo?">写真から確認したい場合</h2>
+          <p data-lang-text
+            data-ja="商品ラベルの写真・画像から成分表示を読み取りたい場合はFastScanを使います。"
+            data-en="Use FastScan if you want to read a product-label photo with OCR.">商品ラベルの写真・画像から成分表示を読み取りたい場合はFastScanを使います。</p>
+          <a class="route-card" href="/tools/inci-fastscan/">
+            <strong>INCI FastScan →</strong>
+            <span data-lang-text data-ja="写真 / OCR / 詳細確認" data-en="Photo / OCR / detailed review">写真 / OCR / 詳細確認</span>
+          </a>
+        </section>
+        <section class="side-block">
+          <h2 data-lang-text data-ja="このツールがしないこと" data-en="What this tool does not do">このツールがしないこと</h2>
+          <ul>
+            <li data-lang-text data-ja="安全性の採点" data-en="Safety scoring">安全性の採点</li>
+            <li data-lang-text data-ja="医学的な診断" data-en="Medical diagnosis">医学的な診断</li>
+            <li data-lang-text data-ja="成分濃度の推定" data-en="Ingredient concentration estimates">成分濃度の推定</li>
+            <li data-lang-text data-ja="写真OCR" data-en="Photo OCR">写真OCR</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
 
     <section class="tool-card about-card" aria-labelledby="about-title">
-      <h2 id="about-title" class="section-title">このLite版で分かること</h2>
-      <p>成分名をローカル辞書へ照合し、INCI名・日本語名の表記ゆれをまとめながら、保湿・エモリエント・香料・保存系などの主な分類を確認できます。</p>
-      <p>画像から読み取りたい場合や、英語 / 日本語の成分表示をより詳しく確認したい場合は <a href="/tools/inci-fastscan/">INCI FastScan</a> を利用してください。</p>
-      <p class="small-note">未分類は「危険」という意味ではありません。辞書未登録、表記ゆれ、製品固有の名称などが考えられます。</p>
+      <h2 id="about-title" class="section-title" data-lang-text data-ja="このLite版で分かること" data-en="What the Lite tool shows">このLite版で分かること</h2>
+      <p data-lang-text
+        data-ja="成分名をローカル辞書へ照合し、INCI名・日本語名の表記ゆれをまとめながら、確認できた主な分類を表示します。"
+        data-en="The tool matches ingredient names against a local dictionary, normalizes INCI/Japanese name variants, and shows verified main categories where available.">成分名をローカル辞書へ照合し、INCI名・日本語名の表記ゆれをまとめながら、確認できた主な分類を表示します。</p>
+      <p data-lang-text
+        data-ja="画像から読み取りたい場合や、確認候補を詳しく追いたい場合はINCI FastScanを利用してください。"
+        data-en="Use INCI FastScan if you need photo OCR or a more detailed review workflow.">画像から読み取りたい場合や、確認候補を詳しく追いたい場合はINCI FastScanを利用してください。</p>
+      <p class="small-note" data-lang-text
+        data-ja="未分類は「危険」という意味ではありません。辞書未登録、表記ゆれ、製品固有の名称などが考えられます。"
+        data-en="Unclassified does not mean dangerous. It may indicate an unregistered term, spelling variation, or product-specific wording.">未分類は「危険」という意味ではありません。辞書未登録、表記ゆれ、製品固有の名称などが考えられます。</p>
     </section>
 
-
-
     <div class="nw-donate">
-      <p class="nw-donate-text">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
+      <p class="nw-donate-text" data-lang-text data-ja="このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。" data-en="If this tool helped, support helps keep NicheWorks running.">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p>
       <div class="nw-donate-links">
         <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
         <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
       </div>
     </div>
 
-    <div class="nw-links" aria-label="関連ツール">
-      <a href="/tools/inci-fastscan/">INCI FastScan — 写真・OCR対応の詳しい成分確認</a>
-      <a href="./howto/">使い方・注意事項</a>
+    <div class="nw-links" aria-label="Related tools">
+      <a href="/tools/inci-fastscan/" data-lang-text data-ja="INCI FastScan — 写真・OCR対応の詳しい成分確認" data-en="INCI FastScan — photo/OCR and detailed ingredient review">INCI FastScan — 写真・OCR対応の詳しい成分確認</a>
+      <a href="./howto/" data-lang-text data-ja="使い方・注意事項" data-en="How to use / notes">使い方・注意事項</a>
     </div>
   </main>
 
   <footer class="nw-footer">
     <p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p>
-    <p class="nw-footer-line">このツールは参考情報を提供するものであり、医学的な診断や完全な安全性を保証するものではありません。</p>
+    <p class="nw-footer-line" data-lang-text data-ja="このツールは参考情報を提供するものであり、医学的な診断や完全な安全性を保証するものではありません。" data-en="This tool provides reference information and does not provide medical diagnosis or a complete safety guarantee.">このツールは参考情報を提供するものであり、医学的な診断や完全な安全性を保証するものではありません。</p>
     <p class="nw-footer-line"><a href="https://nicheworks.app/">nicheworks.app</a></p>
   </footer>
 
