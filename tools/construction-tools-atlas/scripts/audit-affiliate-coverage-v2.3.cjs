@@ -7,6 +7,7 @@ const path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const DATA = path.join(ROOT, "data");
 const MIN_ACTIVE_OFFERS = 40;
+const AFFILIATE_REVIEW_START_WAVE = "content-wave-005e";
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(path.join(DATA, file), "utf8"));
@@ -45,6 +46,7 @@ function fail(message) {
 const qualityManifest = readJson("quality-manifest.json");
 const redirects = readJson("canonical-redirects-v2.3.json");
 const affiliate = readJson("affiliate-offers-v2.3.json");
+const enrichmentManifest = readJson("content-enrichment-manifest-v2.3.json");
 
 const activeIds = new Set();
 const typeById = new Map();
@@ -105,6 +107,46 @@ for (const offer of Array.isArray(affiliate?.offers) ? affiliate.offers : []) {
 
 if (activeOffers < MIN_ACTIVE_OFFERS) fail(`active offers ${activeOffers} is below floor ${MIN_ACTIVE_OFFERS}`);
 
+if (enrichmentManifest?.schema !== "cta-content-enrichment-manifest-v2.3") fail("unexpected content enrichment manifest schema");
+let reviewPolicyActive = false;
+let reviewStartSeen = false;
+const affiliateReviewedRows = [];
+for (const pack of Array.isArray(enrichmentManifest?.packs) ? enrichmentManifest.packs : []) {
+  const wave = text(typeof pack === "string" ? "" : pack?.wave);
+  const source = text(typeof pack === "string" ? pack : pack?.path);
+  if (wave === AFFILIATE_REVIEW_START_WAVE) {
+    reviewPolicyActive = true;
+    reviewStartSeen = true;
+  }
+  if (!reviewPolicyActive || !source) continue;
+  const raw = readJson(source.replace(/^\.\/data\//, ""));
+  for (const row of entries(raw)) {
+    const id = text(row?.id);
+    const review = text(row?.affiliate_review);
+    if (!id) { fail(`${source}: enrichment row missing id`); continue; }
+    if (!review) { fail(`${id}: affiliate_review is required for ${AFFILIATE_REVIEW_START_WAVE} and later`); continue; }
+    if (review !== "mapped" && review !== "not_applicable") {
+      fail(`${id}: affiliate_review must be mapped or not_applicable, got ${review}`);
+      continue;
+    }
+    affiliateReviewedRows.push({ id, review, wave: wave || source });
+  }
+}
+if (!reviewStartSeen) fail(`content enrichment manifest is missing ${AFFILIATE_REVIEW_START_WAVE}`);
+
+let reviewedMapped = 0;
+let reviewedNotApplicable = 0;
+for (const row of affiliateReviewedRows) {
+  if (!activeIds.has(row.id)) fail(`${row.id}: affiliate-reviewed enrichment target is not an active public canonical`);
+  if (row.review === "mapped") {
+    reviewedMapped += 1;
+    if (!seenEntries.has(row.id)) fail(`${row.id}: affiliate_review=mapped but no active Amazon mapping exists`);
+  } else {
+    reviewedNotApplicable += 1;
+    if (seenEntries.has(row.id)) fail(`${row.id}: affiliate_review=not_applicable conflicts with an active Amazon mapping`);
+  }
+}
+
 const productLikeTypes = new Set(["tool","equipment","material","materials","consumable","component","hardware","fastener","accessory","safety","fixture","access"]);
 const eligibleIds = [...activeIds].filter((id) => productLikeTypes.has(typeById.get(id)));
 const eligibleMapped = eligibleIds.filter((id) => seenEntries.has(id)).length;
@@ -115,7 +157,10 @@ console.log(JSON.stringify({
   product_like_canonicals: eligibleIds.length,
   active_affiliate_offers: activeOffers,
   product_like_offer_coverage: Number((ratio * 100).toFixed(2)),
-  policy: "maintained canonical Amazon search mappings only"
+  affiliate_reviewed_entries: affiliateReviewedRows.length,
+  affiliate_review_mapped: reviewedMapped,
+  affiliate_review_not_applicable: reviewedNotApplicable,
+  policy: "maintained canonical Amazon search mappings only; content waves 5e+ require explicit affiliate review"
 }, null, 2));
 
 if (process.exitCode) process.exit(process.exitCode);
