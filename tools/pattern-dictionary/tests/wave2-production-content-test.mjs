@@ -12,7 +12,7 @@ const compare=read('data/wave2-compare-guides.json');
 const dict=read('data/wave2-search-dictionary.json');
 const cases=read('tests/wave2-search-cases.json');
 
-if(![20,40].includes(published.length))throw new Error(`unexpected runtime count ${published.length}`);
+if(![20,40,60].includes(published.length))throw new Error(`unexpected runtime count ${published.length}`);
 if(prod.phase!=='wave2-production-content'||prod.publication_state!=='staged-not-public')throw new Error('Wave 2 production pack remains immutable staging provenance');
 const ledger=source.patterns.slice().sort((a,b)=>a.ordinal-b.ordinal);
 const rows=prod.patterns.slice().sort((a,b)=>a.ordinal-b.ordinal);
@@ -32,7 +32,7 @@ for(let i=0;i<20;i++){
     if(!offer.intent||!offer.query?.trim())throw new Error(`${r.pattern_id}: malformed commerce intent`);
     if(/[?&](q|k)=/i.test(offer.query))throw new Error(`${r.pattern_id}: commerce intent must store canonical query text, not a URL`);
   }
-  if(published.length===40&&!allIds.has(r.pattern_id))throw new Error(`${r.pattern_id}: published runtime missing Wave 2 production row`);
+  if(published.length>=40&&!allIds.has(r.pattern_id))throw new Error(`${r.pattern_id}: published runtime missing Wave 2 production row`);
 }
 
 if(compare.publication_state!=='staged-not-public'||compare.guides.length<10)throw new Error('Wave 2 compare provenance must contain at least 10 guides');

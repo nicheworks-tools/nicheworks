@@ -34,12 +34,17 @@ function typoHit(q,p){
   const qt=tokens(q),ct=[p.names?.ja,p.names?.en,...(p.aliases?.ja||[]),...(p.aliases?.en||[])].flatMap(tokens);
   return qt.some(a=>ct.some(b=>nearTypo(a,b)));
 }
+function confidenceNameMatch(q,p,lang){
+  const nq=norm(q),other=lang==='ja'?'en':'ja';
+  const c=[p.names?.[lang],p.names?.[other],...(p.aliases?.[lang]||[]),...(p.aliases?.[other]||[])].map(norm).filter(Boolean);
+  return c.some(v=>v===nq||nearTypo(nq,v));
+}
 function bag(p,lang){return norm([p.names?.[lang],p.names?.[lang==='ja'?'en':'ja'],...(p.aliases?.[lang]||[]),...(p.search_terms?.[lang]||[]),...(p.motifs||[]),...(p.families||[]),...(p.visual?.geometry||[]),...(p.visual?.line||[]),...(p.colors?.primary||[]),...(p.uses||[]),...(p.culture||[]),p.term_scope,p.definition?.[lang],...(p.distinguishing_features?.[lang]||[]),...(p.common_uses?.[lang]||[])].join(' '))}
 function signalNegated(nq,nk,lang){return lang==='en'?(nq.includes('not '+nk)||nq.includes('without '+nk)):(nq.includes(nk+'じゃない')||nq.includes(nk+'ではない'))}
 function interpret(q,lang){
   const nq=norm(q),out=[],seen=new Set();
   for(const l of [lang,lang==='ja'?'en':'ja'])for(const[k,v]of Object.entries(dict[l]||{})){const nk=norm(k);if(nq.includes(nk)&&!signalNegated(nq,nk,l)&&!seen.has(nk)){seen.add(nk);out.push({label:k,...v});}}
-  return out;
+  return out.filter((x,i,a)=>!a.some((y,j)=>j!==i&&norm(y.label).length>norm(x.label).length&&norm(y.label).includes(norm(x.label))));
 }
 function rank(q,lang){
   const nq=norm(q),sig=interpret(q,lang),qt=tokens(nq);
@@ -53,11 +58,11 @@ function rank(q,lang){
     return{pattern:p,score};
   }).sort((a,b)=>b.score-a.score||a.pattern.id.localeCompare(b.pattern.id));
 }
-function confidence(r){if(!r.length||r[0].score<MATCH_THRESHOLD)return'LOW';const d=r[0].score-(r[1]?.score||0);if(r[0].score>=70&&d>=20)return'HIGH';if(r[0].score>=35)return'MEDIUM';return'LOW'}
+function confidence(r,q='',lang='en'){if(!r.length||r[0].score<MATCH_THRESHOLD)return'LOW';const nq=norm(q),p=r[0].pattern,other=lang==='ja'?'en':'ja',exact=confidenceNameMatch(nq,p,lang),d=r[0].score-(r[1]?.score||0);if(tokens(nq).length===1&&!exact&&r[0].score>=35)return'MEDIUM';if(r[0].score>=70&&d>=20)return'HIGH';if(r[0].score>=35)return'MEDIUM';return'LOW'}
 
 let fail=0;
 for(const c of cases){
-  const ranked=rank(c.query,c.lang),vis=ranked.filter(x=>x.score>=MATCH_THRESHOLD),top=vis[0]?.pattern.id,top3=vis.slice(0,3).map(x=>x.pattern.id),conf=confidence(vis);
+  const ranked=rank(c.query,c.lang),vis=ranked.filter(x=>x.score>=MATCH_THRESHOLD),top=vis[0]?.pattern.id,top3=vis.slice(0,3).map(x=>x.pattern.id),conf=confidence(vis,c.query,c.lang);
   let ok=true,expect=[];
   if(c.zero){ok=vis.length===0;expect.push('zero-result');}
   if(c.expected){const hit=c.top1?top===c.expected:top3.includes(c.expected);ok=ok&&hit;expect.push(`${c.expected} ${c.top1?'Top1':'Top3'}`);}

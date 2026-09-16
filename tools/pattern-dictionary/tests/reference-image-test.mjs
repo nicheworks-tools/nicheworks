@@ -16,11 +16,11 @@ function pngSize(buf){
 }
 const ids=patterns.map(x=>x.id).sort();
 const images=manifest.images||[],records=review.records||[];
-if(patterns.length!==40)throw new Error(`runtime must contain 40 patterns, got ${patterns.length}`);
+if(patterns.length!==60)throw new Error(`runtime must contain 60 patterns, got ${patterns.length}`);
 if(manifest.status!=='verified-publication')throw new Error(`reference image manifest must be verified-publication, got ${manifest.status}`);
-if(images.length!==40||records.length!==40)throw new Error(`expected 40 image/review records, got ${images.length}/${records.length}`);
-if(JSON.stringify(images.map(x=>x.pattern_id).sort())!==JSON.stringify(ids))throw new Error('reference image IDs must exactly match runtime 40');
-if(JSON.stringify(records.map(x=>x.pattern_id).sort())!==JSON.stringify(ids))throw new Error('reference review IDs must exactly match runtime 40');
+if(images.length!==60||records.length!==60)throw new Error(`expected 60 image/review records, got ${images.length}/${records.length}`);
+if(JSON.stringify(images.map(x=>x.pattern_id).sort())!==JSON.stringify(ids))throw new Error('reference image IDs must exactly match runtime 60');
+if(JSON.stringify(records.map(x=>x.pattern_id).sort())!==JSON.stringify(ids))throw new Error('reference review IDs must exactly match runtime 60');
 const byId=Object.fromEntries(images.map(x=>[x.pattern_id,x]));
 const reviewById=Object.fromEntries(records.map(x=>[x.pattern_id,x]));
 for(const id of ids){
@@ -32,4 +32,4 @@ for(const id of ids){
   const [w,h]=pngSize(fs.readFileSync(file));if(w!==1536||h!==1536)throw new Error(`${id}: ${w}x${h}, expected 1536x1536`);
   if(!app.includes(`'${id}'`))throw new Error(`${id}: runtime Reference Image allowlist missing`);
 }
-console.log('OK: 40/40 published patterns have verified deterministic 1536x1536 Reference Images and passing review records.');
+console.log('OK: 60/60 published patterns have verified deterministic 1536x1536 Reference Images and passing review records.');

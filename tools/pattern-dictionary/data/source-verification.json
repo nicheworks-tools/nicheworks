@@ -3,14 +3,14 @@
   "phase": "source-verification",
   "updated": "2026-09-16",
   "policy": {
-    "purpose": "Evidence ledger for the published canonical 40-pattern production set.",
+    "purpose": "Evidence ledger for the published canonical 60-pattern production set.",
     "primary_palette_rule": "A fixed primary palette is an editorial recognition reference unless a source establishes color as identity-relevant. The palette itself is never presented as the only valid colorway.",
     "relationship_rule": "similar and often_confused_with are visual-discovery relationships, not claims of shared historical origin unless explicitly sourced.",
     "states": [
       "verified",
       "qualified"
     ],
-    "qualification_rule": "Use qualified when the market term, textile/style convention, weave/effect category, or modern usage does not resolve to one uniquely fixed motif."
+    "qualification_rule": "Use qualified when the term is fundamentally a form, weave, textile/style tradition, broad market/discovery label, or modern usage that does not resolve to one uniquely fixed motif."
   },
   "patterns": [
     {
@@ -1910,6 +1910,893 @@
           "supports": [
             "block check / checkerboard equivalence",
             "Japanese check-family context"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 41,
+      "pattern_id": "greek-key",
+      "verification_state": "verified",
+      "term_scope": "named rectilinear meander motif",
+      "verified_names": {
+        "ja": "グリークキー",
+        "en": "Greek Key"
+      },
+      "verified_aliases": {
+        "ja": [
+          "メアンダー"
+        ],
+        "en": [
+          "Greek fret",
+          "meander"
+        ]
+      },
+      "structure": "A continuous rectilinear line turns at right angles to form a repeated meander, commonly used as a border or band.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "black",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The right-angled meander geometry carries recognition; color is not intrinsic to the motif."
+      },
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/toah/hd/god5/ho_C.I.53.40.5a-e.htm",
+          "supports": [
+            "Greek key terminology",
+            "rectilinear meander structure",
+            "repeated border use"
+          ]
+        },
+        {
+          "publisher": "Delphi Archaeological Museum",
+          "url": "https://www.delphimuseum.gr/2025/03/the-meander.html",
+          "supports": [
+            "meander/Greek key terminology",
+            "continuous-line repeated motif context"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 42,
+      "pattern_id": "quatrefoil",
+      "verification_state": "verified",
+      "term_scope": "named four-lobed motif",
+      "verified_names": {
+        "ja": "クアトレフォイル",
+        "en": "Quatrefoil"
+      },
+      "verified_aliases": {
+        "ja": [],
+        "en": []
+      },
+      "structure": "A symmetrical four-lobed figure with four rounded leaves or lobes separated by cusps.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "green",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Recognition depends on the four-lobed outline rather than a fixed palette."
+      },
+      "sources": [
+        {
+          "publisher": "Getty Research Institute, Art & Architecture Thesaurus",
+          "url": "https://www.getty.edu/vow/AATFullDisplay?find=&logic=&note=&subjectid=300009784",
+          "supports": [
+            "quatrefoil term",
+            "four equal lobes",
+            "cusped four-part form"
+          ]
+        },
+        {
+          "publisher": "The National Gallery, London",
+          "url": "https://www.nationalgallery.org.uk/paintings/glossary/quatrefoils",
+          "supports": [
+            "four-leaved ornamental form",
+            "historical decorative usage"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 43,
+      "pattern_id": "ogee",
+      "verification_state": "qualified",
+      "term_scope": "ogee double-curve form used as a repeating surface-design family",
+      "verified_names": {
+        "ja": "オジー",
+        "en": "Ogee"
+      },
+      "verified_aliases": {
+        "ja": [],
+        "en": [
+          "ogee curve"
+        ]
+      },
+      "structure": "Opposed or interlocking S-shaped double curves repeat to create pointed, bulbous, or lozenge-like compartments.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "navy",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The double-curve silhouette is the recognition cue; color is not definitional."
+      },
+      "qualification": "Ogee is fundamentally an S-shaped or double-curved profile used in architecture and design, not one universal textile motif. Pattern Dictionary treats repeated opposed or interlocking ogee curves as a qualified surface-design family.",
+      "sources": [
+        {
+          "publisher": "Collins English Dictionary",
+          "url": "https://www.collinsdictionary.com/dictionary/english/ogee",
+          "supports": [
+            "ogee term",
+            "S-shaped/double curve definition",
+            "concave and convex curvature"
+          ]
+        },
+        {
+          "publisher": "Getty Research Institute, Art & Architecture Thesaurus",
+          "url": "https://www.getty.edu/vow/AATFullDisplay?find=&logic=&note=&page=1&subjectid=300003522",
+          "supports": [
+            "cyma/ogee double-curvature terminology",
+            "concave-convex profile"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 44,
+      "pattern_id": "lattice",
+      "verification_state": "verified",
+      "term_scope": "generic crossed-strip or crisscross pattern family",
+      "verified_names": {
+        "ja": "ラティス",
+        "en": "Lattice"
+      },
+      "verified_aliases": {
+        "ja": [
+          "格子模様"
+        ],
+        "en": [
+          "latticework"
+        ]
+      },
+      "structure": "Crossing strips or lines form an open grid, commonly diagonal, with repeated spaces between the crossings.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "black",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The crossed open-grid structure defines the visual family; color is variable."
+      },
+      "sources": [
+        {
+          "publisher": "Collins English Dictionary",
+          "url": "https://www.collinsdictionary.com/dictionary/english/lattice",
+          "supports": [
+            "lattice term",
+            "crossing-strip structure",
+            "open ornamental pattern",
+            "diagonal crossing convention"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 45,
+      "pattern_id": "honeycomb",
+      "verification_state": "verified",
+      "term_scope": "generic honeycomb-derived cellular pattern",
+      "verified_names": {
+        "ja": "ハニカム",
+        "en": "Honeycomb"
+      },
+      "verified_aliases": {
+        "ja": [
+          "蜂の巣柄"
+        ],
+        "en": [
+          "honeycomb pattern"
+        ]
+      },
+      "structure": "Adjacent six-sided cells repeat in a tightly packed cellular field resembling a bee honeycomb.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "gold",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Six-sided cellular repetition is structural; honey-like colors are only a recognition aid."
+      },
+      "sources": [
+        {
+          "publisher": "Collins English Dictionary",
+          "url": "https://www.collinsdictionary.com/dictionary/english/honeycomb",
+          "supports": [
+            "honeycomb term",
+            "adjacent hexagonal/six-sided cells",
+            "patterned-after-honeycomb usage",
+            "textile pattern context"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 46,
+      "pattern_id": "scallop",
+      "verification_state": "verified",
+      "term_scope": "generic repeated scalloped-arc pattern family",
+      "verified_names": {
+        "ja": "スカラップ",
+        "en": "Scallop"
+      },
+      "verified_aliases": {
+        "ja": [
+          "波形模様"
+        ],
+        "en": [
+          "scallop pattern"
+        ]
+      },
+      "structure": "Repeated rounded or fan-like semicircular arcs create overlapping rows or a wave-edged field reminiscent of scallop shells.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "teal",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The repeated rounded shell-like arcs carry recognition; palette is variable."
+      },
+      "sources": [
+        {
+          "publisher": "Kotobank / Shogakukan Progressive English-Japanese Dictionary",
+          "url": "https://kotobank.jp/ejword/scallop",
+          "supports": [
+            "scallop terminology",
+            "wave-shaped decorative edge",
+            "shell-derived form",
+            "Japanese wave-pattern meaning"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 47,
+      "pattern_id": "basketweave",
+      "verification_state": "qualified",
+      "term_scope": "weave structure and basket-like visual family",
+      "verified_names": {
+        "ja": "バスケットウィーブ",
+        "en": "Basketweave"
+      },
+      "verified_aliases": {
+        "ja": [
+          "バスケット織"
+        ],
+        "en": [
+          "basket weave",
+          "matt weave",
+          "mat weave",
+          "hopsack"
+        ]
+      },
+      "structure": "Groups of two or more threads interlace as units, creating a blocky checked surface that resembles woven basket strips.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "tan",
+          "brown"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Interlaced grouped structure is the key cue; natural basket colors are only illustrative."
+      },
+      "qualification": "Basketweave is a weave structure and visual effect, not one universal printed motif. The reference image may depict the interlaced basket-like appearance but must not imply one canonical thread count or construction.",
+      "sources": [
+        {
+          "publisher": "Museum of Fine Arts Boston, CAMEO",
+          "url": "https://cameo.mfa.org/wiki/Basket_weave",
+          "supports": [
+            "basket weave term",
+            "plain-weave family",
+            "grouped-thread interlacing",
+            "basket-like/checkered appearance",
+            "matt/mat/hopsack aliases"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 48,
+      "pattern_id": "hexagon",
+      "verification_state": "verified",
+      "term_scope": "generic repeated six-sided polygon pattern",
+      "verified_names": {
+        "ja": "六角形柄",
+        "en": "Hexagon Pattern"
+      },
+      "verified_aliases": {
+        "ja": [
+          "ヘキサゴン柄"
+        ],
+        "en": [
+          "hexagonal pattern"
+        ]
+      },
+      "structure": "Six-sided polygons repeat as isolated motifs, linked cells, or a tessellated field.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "black",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The six-sided polygon geometry defines the pattern; color is variable."
+      },
+      "sources": [
+        {
+          "publisher": "Cambridge Dictionary",
+          "url": "https://dictionary.cambridge.org/dictionary/english/hexagon",
+          "supports": [
+            "hexagon term",
+            "six straight sides",
+            "geometric definition"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 49,
+      "pattern_id": "trellis",
+      "verification_state": "verified",
+      "term_scope": "generic trellis-derived repeat family",
+      "verified_names": {
+        "ja": "トレリス",
+        "en": "Trellis"
+      },
+      "verified_aliases": {
+        "ja": [
+          "トレリス柄"
+        ],
+        "en": [
+          "trellis pattern"
+        ]
+      },
+      "structure": "A repeated framework of intersecting or linked bands creates open compartments, which may be square, diamond, curved, or ornamented.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "blue",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The open framework/repeat structure is the cue; no one palette defines trellis patterns."
+      },
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/384020",
+          "supports": [
+            "Trellis design title",
+            "repeating trellis motif in wallpaper",
+            "William Morris example"
+          ]
+        },
+        {
+          "publisher": "Cooper Hewitt, Smithsonian Design Museum",
+          "url": "https://www.cooperhewitt.org/2016/08/26/trellis-by-william-morris/",
+          "supports": [
+            "trellis motif terminology",
+            "framework-derived pattern",
+            "historical wallpaper design context"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 50,
+      "pattern_id": "hishi",
+      "verification_state": "verified",
+      "term_scope": "Japanese diamond/rhombus motif family",
+      "verified_names": {
+        "ja": "菱文様",
+        "en": "Hishi"
+      },
+      "verified_aliases": {
+        "ja": [
+          "菱形文様",
+          "菱紋"
+        ],
+        "en": [
+          "hishi motif",
+          "hishigata"
+        ]
+      },
+      "structure": "Rhombus or diamond forms repeat singly or in linked arrangements; hishitsunagi is a connected-diamond variant.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "indigo",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Rhombus geometry and Japanese motif context define recognition; indigo/white is illustrative only."
+      },
+      "sources": [
+        {
+          "publisher": "JAANUS (Japanese Architecture and Art Net Users System)",
+          "url": "https://www.aisf.or.jp/~jaanus/deta/h/hishi.htm",
+          "supports": [
+            "hishi/hishigata terminology",
+            "diamond/lozenge form",
+            "hishimon/hishi mon'you terminology",
+            "hishitsunagi repeated-diamond variant",
+            "Japanese decorative uses"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 51,
+      "pattern_id": "fleur-de-lis",
+      "verification_state": "verified",
+      "term_scope": "named stylized lily/iris motif",
+      "verified_names": {
+        "ja": "フルール・ド・リス",
+        "en": "Fleur-de-lis"
+      },
+      "verified_aliases": {
+        "ja": [
+          "フルールドリス"
+        ],
+        "en": [
+          "fleur-de-lys"
+        ]
+      },
+      "structure": "A vertically symmetrical stylized flower commonly built from three principal petals or lobes, with the center rising above the side lobes.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "gold",
+          "navy"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The stylized symmetric floral silhouette defines the motif; heraldic colorways vary."
+      },
+      "sources": [
+        {
+          "publisher": "Getty Research Institute, Art & Architecture Thesaurus",
+          "url": "https://www.getty.edu/vow/AATFullDisplay?find=&logic=&note=&subjectid=300009966",
+          "supports": [
+            "fleur-de-lis term",
+            "stylized iris/lily motif",
+            "three curled petals",
+            "symmetrical design"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 52,
+      "pattern_id": "toile-de-jouy",
+      "verification_state": "qualified",
+      "term_scope": "printed-textile/design tradition associated with pictorial figural scenes",
+      "verified_names": {
+        "ja": "トワル・ド・ジュイ",
+        "en": "Toile de Jouy"
+      },
+      "verified_aliases": {
+        "ja": [
+          "トワルドジュイ"
+        ],
+        "en": []
+      },
+      "structure": "Pictorial figures, landscapes, pastoral or narrative scenes are printed across a light ground, often in a single contrasting color.",
+      "color_guidance": {
+        "color_role": "strong-convention",
+        "primary": [
+          "blue",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Single-color pictorial printing on a light ground is a strong recognition convention, but historical examples use multiple ink colors and subjects."
+      },
+      "qualification": "Toile de Jouy is a textile and printing/design tradition associated with Jouy-en-Josas and pictorial printed cottons, not one fixed repeat or exclusively pastoral scene. The reference image is a representative recognition example only.",
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/226246",
+          "supports": [
+            "toile de Jouy terminology",
+            "printed cotton context",
+            "figural/pictorial pattern usage",
+            "Jouy manufacture context"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/208809",
+          "supports": [
+            "monochromatic pictorial cotton example",
+            "Jouy-en-Josas naming context",
+            "single-color copperplate-printing convention"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 53,
+      "pattern_id": "chintz",
+      "verification_state": "qualified",
+      "term_scope": "printed cotton/textile tradition commonly associated with floral patterning",
+      "verified_names": {
+        "ja": "チンツ",
+        "en": "Chintz"
+      },
+      "verified_aliases": {
+        "ja": [
+          "チンツ柄"
+        ],
+        "en": [
+          "chintz fabric"
+        ]
+      },
+      "structure": "Printed or painted cotton commonly presents dense flowers, foliage, branches, and other decorative motifs across the surface; glazed finishes are historically common.",
+      "color_guidance": {
+        "color_role": "variable",
+        "primary": [
+          "red",
+          "green",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Multicolor floral imagery is a strong recognition convention, but chintz is not defined by one palette or one repeat."
+      },
+      "qualification": "Chintz is historically a cotton textile/material and printing or painting tradition, not one fixed floral motif. Modern visual discovery often uses the word for dense floral prints, so Pattern Dictionary keeps that usage explicitly qualified.",
+      "sources": [
+        {
+          "publisher": "Cambridge Dictionary",
+          "url": "https://dictionary.cambridge.org/dictionary/english/chintz",
+          "supports": [
+            "chintz term",
+            "cotton cloth",
+            "usual flower-pattern association",
+            "slightly shiny/glazed convention"
+          ]
+        },
+        {
+          "publisher": "Europeana",
+          "url": "https://www.europeana.eu/en/stories/what-is-chintz",
+          "supports": [
+            "Indian textile origin/context",
+            "painted/printed/stained cotton tradition",
+            "floral pattern history"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 54,
+      "pattern_id": "ditsy-floral",
+      "verification_state": "verified",
+      "term_scope": "generic small-flower print pattern",
+      "verified_names": {
+        "ja": "小花柄",
+        "en": "Ditsy Floral"
+      },
+      "verified_aliases": {
+        "ja": [
+          "小花模様"
+        ],
+        "en": [
+          "ditsy print",
+          "ditsy pattern"
+        ]
+      },
+      "structure": "Many small flowers or similarly small motifs are scattered across the ground, typically at a fine scale and without a dominant large bloom.",
+      "color_guidance": {
+        "color_role": "variable",
+        "primary": [
+          "pink",
+          "green",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Small-scale scattered floral density matters more than a particular colorway."
+      },
+      "sources": [
+        {
+          "publisher": "Cambridge Dictionary",
+          "url": "https://dictionary.cambridge.org/dictionary/english/ditsy",
+          "supports": [
+            "ditsy textile/design usage",
+            "small flowers or shapes",
+            "irregular-looking printed pattern"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 55,
+      "pattern_id": "jacobean-floral",
+      "verification_state": "qualified",
+      "term_scope": "modern floral surface-design family derived from Jacobean/crewelwork conventions",
+      "verified_names": {
+        "ja": "ジャコビアン・フローラル",
+        "en": "Jacobean Floral"
+      },
+      "verified_aliases": {
+        "ja": [
+          "ジャコビアン柄"
+        ],
+        "en": [
+          "Jacobean floral pattern"
+        ]
+      },
+      "structure": "Scrolling stems carry stylized flowers, leaves, fruit, and sometimes animals or tree-like compositions in a dense ornamental arrangement.",
+      "color_guidance": {
+        "color_role": "variable",
+        "primary": [
+          "green",
+          "red",
+          "blue"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Botanical scroll structure and stylization are stronger identifiers than any fixed palette."
+      },
+      "qualification": "Jacobean Floral is a modern surface-design label derived from a broader historical Jacobean embroidery and crewelwork style, not one fixed motif. The reference repeat must represent characteristic scrolling botanical forms without claiming a universal Jacobean pattern.",
+      "sources": [
+        {
+          "publisher": "National Gallery of Victoria",
+          "url": "https://www.ngv.vic.gov.au/wp-content/uploads/2014/08/ExquisiteThreads_Labels.pdf",
+          "supports": [
+            "Jacobean embroidery historical context",
+            "scrollwork",
+            "flowers and leaves",
+            "later animal and vegetal forms"
+          ]
+        },
+        {
+          "publisher": "Textile Research Centre Leiden",
+          "url": "https://trc-leiden.org/trc-needles/regional-traditions/europe-and-north-america/embroideries/crewel-embroidery",
+          "supports": [
+            "crewel embroidery context",
+            "17th-century Britain",
+            "Jacobean work terminology"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 56,
+      "pattern_id": "millefleurs",
+      "verification_state": "verified",
+      "term_scope": "named dense field of many small flowers",
+      "verified_names": {
+        "ja": "ミルフルール",
+        "en": "Millefleurs"
+      },
+      "verified_aliases": {
+        "ja": [
+          "ミルフルール柄"
+        ],
+        "en": [
+          "mille-fleurs",
+          "thousand flowers"
+        ]
+      },
+      "structure": "Numerous small flowering plants and blossoms densely fill the field so that the surface reads as a continuous flower-strewn ground.",
+      "color_guidance": {
+        "color_role": "variable",
+        "primary": [
+          "green",
+          "red",
+          "yellow"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Dense multiplicity of small flowers is the core cue; historical palettes and media vary."
+      },
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/459953",
+          "supports": [
+            "millefleurs terminology",
+            "thousand flowers meaning",
+            "lush flower-strewn background",
+            "historical tapestry context"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/451982",
+          "supports": [
+            "millefleurs carpet context",
+            "densely arranged flowers",
+            "variation across media"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 57,
+      "pattern_id": "botanical-print",
+      "verification_state": "qualified",
+      "term_scope": "broad plant-form surface-print family",
+      "verified_names": {
+        "ja": "ボタニカル柄",
+        "en": "Botanical Print"
+      },
+      "verified_aliases": {
+        "ja": [
+          "ボタニカルプリント"
+        ],
+        "en": [
+          "botanical pattern"
+        ]
+      },
+      "structure": "Leaves, stems, flowers, seedpods, or other recognizable or abstracted plant forms organize the surface, ranging from naturalistic illustration to stylized repeats.",
+      "color_guidance": {
+        "color_role": "variable",
+        "primary": [
+          "green",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Plant-form subject matter defines the family; palette and level of naturalism vary widely."
+      },
+      "qualification": "Botanical Print is a broad modern discovery label for plant-based imagery rather than one historically fixed motif or repeat. Sources support botanical forms as textile-pattern subject matter and current botanical-print usage, so the reference image is representative rather than canonical.",
+      "sources": [
+        {
+          "publisher": "Victoria and Albert Museum",
+          "url": "https://www.vam.ac.uk/articles/post-war-textiles",
+          "supports": [
+            "botanical form as textile-design inspiration",
+            "botanical pattern terminology",
+            "naturalistic and abstract plant-form pattern examples"
+          ]
+        },
+        {
+          "publisher": "KEITA MARUYAMA Textile Museum",
+          "url": "https://www.keitamaruyama.com/blog/125",
+          "supports": [
+            "Botanical print terminology in fashion/textile context",
+            "flower-rich botanical surface-design example"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 58,
+      "pattern_id": "acanthus",
+      "verification_state": "verified",
+      "term_scope": "named stylized acanthus-leaf ornamental motif",
+      "verified_names": {
+        "ja": "アカンサス",
+        "en": "Acanthus"
+      },
+      "verified_aliases": {
+        "ja": [
+          "アカンサス文様"
+        ],
+        "en": [
+          "acanthus motif",
+          "acanthus leaf"
+        ]
+      },
+      "structure": "Stylized serrated or jagged acanthus leaves curl outward in scrolling, symmetrical, or repeating ornamental compositions.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "green",
+          "gold"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Leaf form and ornamental curling define recognition; color depends on medium and period."
+      },
+      "sources": [
+        {
+          "publisher": "Getty Research Institute, Art & Architecture Thesaurus",
+          "url": "https://www.getty.edu/vow/AATFullDisplay?find=&logic=&note=&subjectid=300164902",
+          "supports": [
+            "acanthus motif term",
+            "stylized Acanthus spinosus leaf basis",
+            "jagged leaf form",
+            "ornamental decorative-arts use"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 59,
+      "pattern_id": "medallion",
+      "verification_state": "verified",
+      "term_scope": "generic framed circular or oval ornamental motif family",
+      "verified_names": {
+        "ja": "メダリオン",
+        "en": "Medallion"
+      },
+      "verified_aliases": {
+        "ja": [
+          "メダリオン柄"
+        ],
+        "en": [
+          "medallion pattern",
+          "medallion motif"
+        ]
+      },
+      "structure": "Circular or oval framed units contain figures, flowers, geometry, or other ornament and may appear singly, centrally, or as a repeated field.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "burgundy",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The framed circular/oval ornament area defines the motif family; contents and colors vary."
+      },
+      "sources": [
+        {
+          "publisher": "Getty Research Institute, Art & Architecture Thesaurus",
+          "url": "https://www.getty.edu/vow/AATFullDisplay?find=&logic=&note=&subjectid=300077354",
+          "supports": [
+            "medallions as ornament areas",
+            "circular or oval framed form",
+            "figural or ornamental contents",
+            "two-dimensional textile use",
+            "medallion pattern terminology"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 60,
+      "pattern_id": "ivy",
+      "verification_state": "qualified",
+      "term_scope": "generic ivy-leaf botanical motif family",
+      "verified_names": {
+        "ja": "アイビー柄",
+        "en": "Ivy Pattern"
+      },
+      "verified_aliases": {
+        "ja": [
+          "アイビーパターン"
+        ],
+        "en": [
+          "ivy motif",
+          "ivy leaf pattern"
+        ]
+      },
+      "structure": "Recognizable lobed ivy leaves repeat alone or along stems and vines, often layered or trailing across the surface.",
+      "color_guidance": {
+        "color_role": "traditional-reference",
+        "primary": [
+          "green",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Green supports immediate ivy recognition, but leaf silhouette and vine organization are the real cues and other palettes are valid."
+      },
+      "qualification": "Ivy Pattern is a broad botanical motif family, not one standardized repeat. The museum source verifies an ivy textile pattern and layered-leaf treatment, but Pattern Dictionary must not present that one arrangement as the universal ivy pattern.",
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/13998",
+          "supports": [
+            "Ivy textile/pattern terminology",
+            "repeated ivy leaves",
+            "layered leaf treatment",
+            "textile surface-design context"
           ]
         }
       ]

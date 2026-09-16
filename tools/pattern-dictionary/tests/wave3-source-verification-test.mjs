@@ -8,29 +8,36 @@ const published=JSON.parse(fs.readFileSync(path.join(root,'data','patterns.json'
 const canonical=JSON.parse(fs.readFileSync(path.join(root,'data','canonical-100-expansion.json'),'utf8'));
 const ledger=JSON.parse(fs.readFileSync(path.join(root,'data','wave3-source-verification.json'),'utf8'));
 
-if(published.length!==40)throw new Error(`Wave 3 source gate requires runtime canonical 40, got ${published.length}`);
+if(![40,60].includes(published.length))throw new Error(`Wave 3 provenance expects runtime 40 before publication or 60 after publication, got ${published.length}`);
 if(ledger.phase!=='wave3-source-verification'||ledger.wave!==3)throw new Error('unexpected Wave 3 source-verification metadata');
-if(ledger.policy?.publication_state!=='research-only')throw new Error('Wave 3 source ledger must remain research-only');
-if(!String(ledger.policy?.runtime_lock||'').includes('40'))throw new Error('Wave 3 runtime lock must explicitly preserve canonical 40');
+if(ledger.policy?.publication_state!=='research-only')throw new Error('Wave 3 source ledger must remain immutable research provenance');
+if(!String(ledger.policy?.runtime_lock||'').includes('40'))throw new Error('Wave 3 provenance must retain its original runtime-40 staging lock');
 if(JSON.stringify(ledger.ordinal_range)!==JSON.stringify([41,60]))throw new Error('Wave 3 ordinal range must be 41-60');
 
 const planned=(canonical.entries||[]).filter(x=>x.wave===3).slice().sort((a,b)=>a.ordinal-b.ordinal);
-if(planned.length!==20)throw new Error(`canonical-100 Wave 3 must contain exactly 20 rows, got ${planned.length}`);
-for(let i=0;i<20;i++)if(planned[i].ordinal!==i+41)throw new Error(`canonical Wave 3 ordinal gap at ${i+41}`);
+if(published.length===40&&planned.length!==20)throw new Error(`pre-publication canonical-100 Wave 3 must contain exactly 20 rows, got ${planned.length}`);
+if(published.length===60&&planned.length!==0)throw new Error('post-publication canonical-100 expansion must no longer retain Wave 3 rows');
+if(published.length===40)for(let i=0;i<20;i++)if(planned[i].ordinal!==i+41)throw new Error(`canonical Wave 3 ordinal gap at ${i+41}`);
 
 const rows=(ledger.patterns||[]).slice().sort((a,b)=>a.ordinal-b.ordinal);
 if(rows.length!==20)throw new Error(`Wave 3 source ledger must contain exactly 20 rows, got ${rows.length}`);
-const runtimeIds=new Set(published.map(x=>x.id));
+const runtimeById=new Map(published.map(x=>[x.id,x]));
 const plannedById=new Map(planned.map(x=>[x.id,x]));
 
 for(let i=0;i<20;i++){
   const r=rows[i],ordinal=i+41;
   if(r.ordinal!==ordinal)throw new Error(`${r.pattern_id}: expected ordinal ${ordinal}, got ${r.ordinal}`);
-  const p=plannedById.get(r.pattern_id);
-  if(!p)throw new Error(`${r.pattern_id}: not in canonical-100 Wave 3`);
-  if(p.ordinal!==r.ordinal)throw new Error(`${r.pattern_id}: canonical ordinal mismatch`);
-  if(r.verified_names?.ja!==p.names?.ja||r.verified_names?.en!==p.names?.en)throw new Error(`${r.pattern_id}: verified names diverge from frozen canonical names`);
-  if(runtimeIds.has(r.pattern_id))throw new Error(`${r.pattern_id}: Wave 3 leaked into runtime before publication gate`);
+  if(published.length===40){
+    const p=plannedById.get(r.pattern_id);
+    if(!p)throw new Error(`${r.pattern_id}: not in canonical-100 Wave 3`);
+    if(p.ordinal!==r.ordinal)throw new Error(`${r.pattern_id}: canonical ordinal mismatch`);
+    if(r.verified_names?.ja!==p.names?.ja||r.verified_names?.en!==p.names?.en)throw new Error(`${r.pattern_id}: verified names diverge from frozen canonical names`);
+    if(runtimeById.has(r.pattern_id))throw new Error(`${r.pattern_id}: Wave 3 leaked into runtime before publication gate`);
+  }else{
+    const p=runtimeById.get(r.pattern_id);
+    if(!p)throw new Error(`${r.pattern_id}: published runtime missing Wave 3 row`);
+    if(r.verified_names?.ja!==p.names?.ja||r.verified_names?.en!==p.names?.en)throw new Error(`${r.pattern_id}: runtime names diverge from verified Wave 3 provenance`);
+  }
   if(!['verified','qualified'].includes(r.verification_state))throw new Error(`${r.pattern_id}: invalid verification_state`);
   if(!r.term_scope?.trim()||!r.structure?.trim())throw new Error(`${r.pattern_id}: missing term scope or structure`);
   if(!Array.isArray(r.verified_aliases?.ja)||!Array.isArray(r.verified_aliases?.en))throw new Error(`${r.pattern_id}: aliases must be explicit arrays`);
@@ -67,18 +74,14 @@ for(const [id,needles] of Object.entries(requiredBoundaryText)){
   for(const needle of needles)if(!q.toLowerCase().includes(needle.toLowerCase()))throw new Error(`${id}: qualification must preserve boundary cue "${needle}"`);
 }
 
-const specialBoundaries={
-  trellis:['Moroccan Trellis'],
-  hishi:['diamond'],
-  hexagon:['six-sided'],
-  honeycomb:['six-sided']
-};
-const canonicalById=new Map(planned.map(x=>[x.id,x]));
-if(!String(canonicalById.get('trellis')?.scope_note||'').includes('Moroccan Trellis'))throw new Error('trellis: canonical boundary vs Moroccan Trellis missing');
-if(!String(canonicalById.get('hishi')?.scope_note||'').includes('diamond'))throw new Error('hishi: canonical boundary vs generic diamond missing');
-for(const [id,needles] of Object.entries(specialBoundaries)){
-  const text=`${rows.find(x=>x.pattern_id===id)?.term_scope||''} ${rows.find(x=>x.pattern_id===id)?.structure||''} ${canonicalById.get(id)?.scope_note||''}`.toLowerCase();
-  for(const needle of needles)if(!text.includes(needle.toLowerCase()))throw new Error(`${id}: required semantic boundary cue "${needle}" missing`);
+if(published.length===40){
+  const canonicalById=new Map(planned.map(x=>[x.id,x]));
+  if(!String(canonicalById.get('trellis')?.scope_note||'').includes('Moroccan Trellis'))throw new Error('trellis: canonical boundary vs Moroccan Trellis missing');
+  if(!String(canonicalById.get('hishi')?.scope_note||'').includes('diamond'))throw new Error('hishi: canonical boundary vs generic diamond missing');
+}
+for(const [id,needle] of [['hexagon','six-sided'],['honeycomb','six-sided']]){
+  const text=`${rows.find(x=>x.pattern_id===id)?.term_scope||''} ${rows.find(x=>x.pattern_id===id)?.structure||''}`.toLowerCase();
+  if(!text.includes(needle))throw new Error(`${id}: required semantic boundary cue "${needle}" missing`);
 }
 
-console.log(`OK: Wave 3 source provenance covers 41-60 exactly; ${rows.filter(x=>x.verification_state==='verified').length} verified / ${actualQualified.length} qualified; ${new Set(sourceUrls).size} distinct evidence URLs; runtime locked at 40.`);
+console.log(`OK: Wave 3 source provenance covers 41-60 exactly; ${rows.filter(x=>x.verification_state==='verified').length} verified / ${actualQualified.length} qualified; ${new Set(sourceUrls).size} distinct evidence URLs; runtime state ${published.length}.`);

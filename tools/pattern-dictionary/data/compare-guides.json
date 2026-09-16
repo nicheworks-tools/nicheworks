@@ -2,7 +2,7 @@
   "schema_version": 1,
   "updated": "2026-09-16",
   "policy": {
-    "purpose": "Explain decisive visual differences for high-confusion comparisons across the published canonical 40.",
+    "purpose": "Explain decisive visual differences for high-confusion comparisons across the published canonical 60.",
     "external_concepts_are_not_patterns": true
   },
   "guides": [
@@ -238,6 +238,227 @@
       "decisive_cue": {
         "ja": "形だけで無理に判定しない。日本文様・和装の文脈なら市松、一般的な盤面・グラフィック文脈ならチェッカーボードが自然。",
         "en": "Do not force a visual-only distinction. Japanese traditional context favors Ichimatsu; generic board/graphic context favors Checkerboard."
+      }
+    },
+    {
+      "id": "honeycomb--hexagon",
+      "left": "honeycomb",
+      "right": "hexagon",
+      "summary": {
+        "ja": "どちらも六角形を使いますが、ハニカムはセル同士が辺を共有して蜂の巣状に密結合し、六角形柄は独立配置や間隔のある反復も含みます。",
+        "en": "Both use six-sided geometry, but Honeycomb forms a packed shared-edge cell network while Hexagon Pattern can use isolated or spaced polygons."
+      },
+      "decisive_cue": {
+        "ja": "六角形同士が共有辺で全面につながるならハニカム。六角形そのものが独立して見えるなら六角形柄。",
+        "en": "Shared-edge cells across the field indicate Honeycomb; visibly independent hexagons indicate Hexagon Pattern."
+      }
+    },
+    {
+      "id": "honeycomb--kikko",
+      "left": "honeycomb",
+      "right": "kikko",
+      "summary": {
+        "ja": "ハニカムは蜂の巣由来の一般的なセル構造、亀甲は日本文様として扱われる六角系モチーフです。",
+        "en": "Honeycomb is a generic honeycomb-derived cellular structure; Kikko is a Japanese hexagonal/tortoiseshell motif family."
+      },
+      "decisive_cue": {
+        "ja": "見た目だけでなく文脈を見る。蜂の巣セルならハニカム、日本文様としての六角構成なら亀甲。",
+        "en": "Use context as well as shape: bee-like cellular structure suggests Honeycomb; Japanese decorative context suggests Kikko."
+      }
+    },
+    {
+      "id": "hexagon--kikko",
+      "left": "hexagon",
+      "right": "kikko",
+      "summary": {
+        "ja": "六角形柄は六辺形反復の一般カテゴリ、亀甲は日本文様としての六角・亀甲形を指します。",
+        "en": "Hexagon Pattern is the generic category of repeated six-sided polygons; Kikko is the Japanese tortoiseshell/hexagonal motif tradition."
+      },
+      "decisive_cue": {
+        "ja": "単なる幾何学六角形なら六角形柄。和柄・日本文様の文脈が明確なら亀甲。",
+        "en": "Generic six-sided geometry suggests Hexagon Pattern; explicit Japanese-pattern context suggests Kikko."
+      }
+    },
+    {
+      "id": "lattice--koushi",
+      "left": "lattice",
+      "right": "koushi",
+      "summary": {
+        "ja": "ラティスは斜めを含む広い交差格子、格子文様（Koushi）は日本文様としての縦横格子を中心に扱います。",
+        "en": "Lattice is a broad crossed-grid family that often includes diagonals; Koushi centers on Japanese orthogonal lattice usage."
+      },
+      "decisive_cue": {
+        "ja": "斜めを含む一般的な交差格子ならラティス。日本文様として縦横線が整然と交差するなら格子文様。",
+        "en": "Generic crossed or diagonal grid suggests Lattice; a Japanese orthogonal grid suggests Koushi."
+      }
+    },
+    {
+      "id": "lattice--trellis",
+      "left": "lattice",
+      "right": "trellis",
+      "summary": {
+        "ja": "ラティスは交差する線・帯そのものが主役。トレリスは帯や枠が連結して開いた区画を作る「枠組み」として見えます。",
+        "en": "Lattice emphasizes crossing lines or strips; Trellis reads as a linked framework that encloses repeated open compartments."
+      },
+      "decisive_cue": {
+        "ja": "単純な交差線ならラティス。連結した枠が明確な区画を囲むならトレリス。",
+        "en": "Simple crossings suggest Lattice; linked bands enclosing clear compartments suggest Trellis."
+      }
+    },
+    {
+      "id": "koushi--trellis",
+      "left": "koushi",
+      "right": "trellis",
+      "summary": {
+        "ja": "格子文様は日本文様の縦横格子が中心。トレリスは菱形・曲線形なども含む連結フレームの反復です。",
+        "en": "Koushi centers on Japanese orthogonal lattice; Trellis can use linked diamond, curved, or ornamental framework cells."
+      },
+      "decisive_cue": {
+        "ja": "日本文様の直交格子なら格子文様。区画を囲う装飾的な連結フレームならトレリス。",
+        "en": "Japanese orthogonal grid points to Koushi; ornamental linked compartment frames point to Trellis."
+      }
+    },
+    {
+      "id": "hishi--diamond",
+      "left": "hishi",
+      "right": "diamond",
+      "summary": {
+        "ja": "どちらも菱形ですが、菱文様は日本の装飾文様としての菱・菱継ぎを指し、ダイヤモンド柄は菱形反復の一般カテゴリです。",
+        "en": "Both use rhombi, but Hishi is the Japanese decorative motif family while Diamond Pattern is the generic category of repeated diamonds."
+      },
+      "decisive_cue": {
+        "ja": "形だけで無理に分けない。日本文様・和装文脈なら菱、一般幾何学ならダイヤモンド柄。",
+        "en": "Do not force a shape-only distinction: Japanese decorative context favors Hishi; generic geometry favors Diamond Pattern."
+      }
+    },
+    {
+      "id": "ditsy-floral--millefleurs",
+      "left": "ditsy-floral",
+      "right": "millefleurs",
+      "summary": {
+        "ja": "小花柄は小さな花を地に散らす細かなプリント。ミルフルールは多数の小花で地を埋め、連続する花野として見える密度が特徴です。",
+        "en": "Ditsy Floral scatters small flowers across visible ground; Millefleurs fills the field much more densely so it reads as a continuous flower-strewn ground."
+      },
+      "decisive_cue": {
+        "ja": "地が十分見える散らし小花ならDitsy。小花が面を埋めるほど密ならMillefleurs。",
+        "en": "Visible ground between scattered tiny flowers suggests Ditsy; a densely flower-filled field suggests Millefleurs."
+      }
+    },
+    {
+      "id": "chintz--botanical-print",
+      "left": "chintz",
+      "right": "botanical-print",
+      "summary": {
+        "ja": "チンツは綿布・染織の伝統で、現代では密な多色花柄として認識されやすい語です。ボタニカル柄は葉・茎・花など植物全般を含む広い現代分類です。",
+        "en": "Chintz is a textile/printing tradition commonly recognized through dense multicolor florals; Botanical Print is the broader modern category for plant imagery of many kinds."
+      },
+      "decisive_cue": {
+        "ja": "密な花・枝の古典的プリントならチンツ候補。葉や茎を含む植物主題全般ならボタニカル。",
+        "en": "Dense classic floral branches suggest Chintz; broader plant imagery including leaf-led designs suggests Botanical Print."
+      }
+    },
+    {
+      "id": "quatrefoil--trellis",
+      "left": "quatrefoil",
+      "right": "trellis",
+      "summary": {
+        "ja": "クアトレフォイルは四つの丸いローブを持つ一つの形。トレリスは複数の枠を連結して区画を反復する構造です。",
+        "en": "Quatrefoil is a specific four-lobed shape; Trellis is a linked framework of repeated compartments."
+      },
+      "decisive_cue": {
+        "ja": "四つの丸いローブそのものが主役ならクアトレフォイル。連結枠のネットワークならトレリス。",
+        "en": "A four-lobed unit points to Quatrefoil; a network of linked frames points to Trellis."
+      }
+    },
+    {
+      "id": "ogee--trellis",
+      "left": "ogee",
+      "right": "trellis",
+      "summary": {
+        "ja": "オジーはS字状の二重曲線の反復、トレリスは区画を囲う連結フレームの反復です。曲線トレリスでは重なって見える場合があります。",
+        "en": "Ogee repeats S-shaped double curves; Trellis repeats linked compartment frames. Curved trellis designs can visually overlap."
+      },
+      "decisive_cue": {
+        "ja": "S字の凹凸曲線が連続して尖りを作るならオジー。枠そのものが区画を囲うならトレリス。",
+        "en": "Alternating concave/convex S-curves forming points suggest Ogee; enclosing framework cells suggest Trellis."
+      }
+    },
+    {
+      "id": "scallop--seigaiha",
+      "left": "scallop",
+      "right": "seigaiha",
+      "summary": {
+        "ja": "どちらも弧が重なりますが、スカラップは半円・扇形の波縁反復。青海波は同心円弧を重ねた日本の波文様です。",
+        "en": "Both use repeated arcs, but Scallop uses rounded semicircle/fan rows, while Seigaiha is the Japanese wave motif built from nested concentric arcs."
+      },
+      "decisive_cue": {
+        "ja": "単純な半円弧の列ならスカラップ。各扇の中に複数の同心円弧が入るなら青海波。",
+        "en": "Simple semicircular rows suggest Scallop; multiple nested concentric arcs inside each fan suggest Seigaiha."
+      }
+    },
+    {
+      "id": "toile-de-jouy--chintz",
+      "left": "toile-de-jouy",
+      "right": "chintz",
+      "summary": {
+        "ja": "トワル・ド・ジュイは人物・風景などの絵画的場面が強い手掛かり。チンツは花・葉・枝を中心とする装飾的なプリントとして認識されやすい語です。",
+        "en": "Toile de Jouy is strongly cued by pictorial figures and landscapes; Chintz is more commonly recognized through decorative flowers, foliage, and branches."
+      },
+      "decisive_cue": {
+        "ja": "人物・建物・風景の物語場面ならToile候補。植物装飾が画面を支配するならChintz候補。",
+        "en": "Narrative figures/buildings/landscape suggest Toile; plant ornament dominating the field suggests Chintz."
+      }
+    },
+    {
+      "id": "chintz--jacobean-floral",
+      "left": "chintz",
+      "right": "jacobean-floral",
+      "summary": {
+        "ja": "どちらも装飾的な花柄になり得ますが、ジャコビアン・フローラルは長くスクロールする茎と大きく様式化した花・葉がより明確です。",
+        "en": "Both can be ornate florals, but Jacobean Floral more clearly emphasizes long scrolling stems and large stylized flowers/leaves."
+      },
+      "decisive_cue": {
+        "ja": "太いスクロール茎が構図を導くならJacobean。密な花枝プリント全体の印象ならChintz候補。",
+        "en": "Strong scrolling stems structuring the composition suggest Jacobean; an overall dense floral branch print suggests Chintz."
+      }
+    },
+    {
+      "id": "jacobean-floral--botanical-print",
+      "left": "jacobean-floral",
+      "right": "botanical-print",
+      "summary": {
+        "ja": "ジャコビアン・フローラルはスクロール茎と様式花による装飾性が強く、ボタニカル柄は写実的な葉・茎を含む植物主題全般です。",
+        "en": "Jacobean Floral is strongly ornamental with scrolling stems and stylized blooms; Botanical Print is the broader plant-image family, including naturalistic leaves and stems."
+      },
+      "decisive_cue": {
+        "ja": "様式化した大花とスクロール茎ならJacobean。植物そのものの描写が主役ならBotanical。",
+        "en": "Stylized large blooms plus scrolling stems suggest Jacobean; plant depiction itself as subject suggests Botanical."
+      }
+    },
+    {
+      "id": "acanthus--jacobean-floral",
+      "left": "acanthus",
+      "right": "jacobean-floral",
+      "summary": {
+        "ja": "アカンサスは大きく裂けたギザギザ葉と巻き込みが主役。ジャコビアン・フローラルは花・葉・果実などをスクロール茎に組み合わせます。",
+        "en": "Acanthus centers on large jagged curling leaves; Jacobean Floral combines scrolling stems with stylized flowers, leaves, fruit, and related forms."
+      },
+      "decisive_cue": {
+        "ja": "花より大きな裂け葉が主役ならAcanthus。花と茎の複合構成ならJacobean。",
+        "en": "Large deeply cut leaves dominating the design suggest Acanthus; a mixed flower-and-stem composition suggests Jacobean."
+      }
+    },
+    {
+      "id": "ivy--botanical-print",
+      "left": "ivy",
+      "right": "botanical-print",
+      "summary": {
+        "ja": "アイビー柄は切れ込みのあるアイビー葉とつるが主役。ボタニカル柄は植物全般を含むため、アイビーも包含し得る広い分類です。",
+        "en": "Ivy Pattern specifically centers on lobed ivy leaves and trailing vines; Botanical Print is the broader plant-image family and can include ivy."
+      },
+      "decisive_cue": {
+        "ja": "葉が一貫してアイビー形でつるに沿うならIvy。複数植物や別種の葉まで含むならBotanical。",
+        "en": "Consistent ivy-shaped leaves along vines suggest Ivy; mixed or broader plant forms suggest Botanical."
       }
     }
   ]

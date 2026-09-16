@@ -392,5 +392,317 @@
     "query": "checker board alternating black white squares",
     "expected": "checkerboard",
     "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "直角が連続する柄",
+    "expected": "greek-key",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "right angle meander",
+    "expected": "greek-key",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "四つ葉みたいな幾何学柄",
+    "expected": "quatrefoil",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "four lobed pattern",
+    "expected": "quatrefoil",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "S字が向かい合う柄",
+    "expected": "ogee",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "interlocking s curve pattern",
+    "expected": "ogee",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "斜め格子柄",
+    "expected": "lattice",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "diagonal lattice pattern",
+    "expected": "lattice",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "蜂の巣みたいな柄",
+    "expected": "honeycomb",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "bee honeycomb pattern",
+    "expected": "honeycomb",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "半円が重なる柄",
+    "expected": "scallop",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "overlapping semicircle pattern",
+    "expected": "scallop",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "かご編みみたいな生地",
+    "expected": "basketweave",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "basket woven texture",
+    "expected": "basketweave",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "六角形が並ぶ柄",
+    "expected": "hexagon",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "repeating hexagon shapes",
+    "expected": "hexagon",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "連結した格子柄",
+    "expected": "trellis",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "linked trellis framework",
+    "expected": "trellis",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "和柄の菱形",
+    "expected": "hishi",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "Japanese diamond motif",
+    "expected": "hishi",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "三つの花弁の紋章みたいな柄",
+    "expected": "fleur-de-lis",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "three petal emblem pattern",
+    "expected": "fleur-de-lis",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "青一色の人物風景柄",
+    "expected": "toile-de-jouy",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "monochrome pictorial toile",
+    "expected": "toile-de-jouy",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "密な花柄のチンツ",
+    "expected": "chintz",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "dense floral chintz",
+    "expected": "chintz",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "小さい花が散った柄",
+    "expected": "ditsy-floral",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "tiny scattered floral",
+    "expected": "ditsy-floral",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "曲がる茎のクラシック花柄",
+    "expected": "jacobean-floral",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "scrolling stem floral",
+    "expected": "jacobean-floral",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "小花で埋め尽くされた柄",
+    "expected": "millefleurs",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "thousand flowers pattern",
+    "expected": "millefleurs",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "葉っぱ中心の植物柄",
+    "expected": "botanical-print",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "leaf botanical print",
+    "expected": "botanical-print",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "ギザギザ葉のクラシック文様",
+    "expected": "acanthus",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "scrolling jagged leaf motif",
+    "expected": "acanthus",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "丸い飾り枠が並ぶ柄",
+    "expected": "medallion",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "framed circular ornament",
+    "expected": "medallion",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "つる性のアイビー葉柄",
+    "expected": "ivy",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "trailing ivy leaf pattern",
+    "expected": "ivy",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "六角形が隙間なくつながる蜂の巣柄",
+    "expected": "honeycomb",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "隙間をあけて六角形が並ぶ柄",
+    "expected": "hexagon",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "日本の亀甲六角文様",
+    "expected": "kikko",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "斜め線が交差する一般格子",
+    "expected": "lattice",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "日本文様の縦横格子",
+    "expected": "koushi",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "連結した菱形の枠組み柄",
+    "expected": "trellis",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "和柄の菱文様",
+    "expected": "hishi",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "単なる幾何学の菱形反復",
+    "expected": "diamond",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "地が見える散らし小花",
+    "expected": "ditsy-floral",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "小花で地面を埋め尽くす柄",
+    "expected": "millefleurs",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "密な多色の花と枝のチンツ",
+    "expected": "chintz",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "葉っぱ中心の植物プリント",
+    "expected": "botanical-print",
+    "top1": true
   }
 ]
