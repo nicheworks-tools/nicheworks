@@ -1,0 +1,54 @@
+name: Pattern Dictionary Wave 3 materialize
+
+on:
+  push:
+    branches:
+      - feat/pattern-dictionary-wave3-production-staging-20260916
+    paths:
+      - .github/workflows/pattern-dictionary-wave3-materialize.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave3-production-staging-20260916
+          fetch-depth: 0
+      - name: Generate Wave 3 reference PNGs
+        run: python3 tools/pattern-dictionary/scripts/generate-reference-images-wave3.py
+      - name: Validate staged Wave 3
+        run: node tools/pattern-dictionary/scripts/check-wave3-staging.mjs
+      - name: Commit generated PNGs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            tools/pattern-dictionary/assets/reference/greek-key.png \
+            tools/pattern-dictionary/assets/reference/quatrefoil.png \
+            tools/pattern-dictionary/assets/reference/ogee.png \
+            tools/pattern-dictionary/assets/reference/lattice.png \
+            tools/pattern-dictionary/assets/reference/honeycomb.png \
+            tools/pattern-dictionary/assets/reference/scallop.png \
+            tools/pattern-dictionary/assets/reference/basketweave.png \
+            tools/pattern-dictionary/assets/reference/hexagon.png \
+            tools/pattern-dictionary/assets/reference/trellis.png \
+            tools/pattern-dictionary/assets/reference/hishi.png \
+            tools/pattern-dictionary/assets/reference/fleur-de-lis.png \
+            tools/pattern-dictionary/assets/reference/toile-de-jouy.png \
+            tools/pattern-dictionary/assets/reference/chintz.png \
+            tools/pattern-dictionary/assets/reference/ditsy-floral.png \
+            tools/pattern-dictionary/assets/reference/jacobean-floral.png \
+            tools/pattern-dictionary/assets/reference/millefleurs.png \
+            tools/pattern-dictionary/assets/reference/botanical-print.png \
+            tools/pattern-dictionary/assets/reference/acanthus.png \
+            tools/pattern-dictionary/assets/reference/medallion.png \
+            tools/pattern-dictionary/assets/reference/ivy.png
+          if ! git diff --cached --quiet; then
+            git commit -m "Pattern Dictionary: materialize Wave 3 reference images"
+            git push origin HEAD:feat/pattern-dictionary-wave3-production-staging-20260916
+          fi
