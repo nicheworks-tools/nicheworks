@@ -1,6 +1,6 @@
 name: Pattern Dictionary Wave 3 browser QA
 
-# retry: async-iife-r2
+# retry: floral-filter-selector-r3
 on:
   push:
     branches:
@@ -45,12 +45,12 @@ jobs:
 
           await goto(base); await waitCards();
           assert.equal(await page.locator('#pattern-grid .pd-card').count(),60,'JA home must render 60 cards');
-          assert.equal(await page.locator('[data-family="floral"]').count(),1,'JA home must expose floral filter');
+          assert.equal(await page.locator('button.pd-filter[data-family="floral"]').count(),1,'JA home must expose floral filter');
           let ov=await overflow(); assert.ok(ov.scroll<=ov.client+1,`desktop JA overflow ${ov.scroll}/${ov.client}`);
 
           await goto(base+'en/'); await waitCards();
           assert.equal(await page.locator('#pattern-grid .pd-card').count(),60,'EN home must render 60 cards');
-          assert.equal(await page.locator('[data-family="floral"]').count(),1,'EN home must expose floral filter');
+          assert.equal(await page.locator('button.pd-filter[data-family="floral"]').count(),1,'EN home must expose floral filter');
 
           await goto(base+'patterns/honeycomb/');
           await page.waitForSelector('.pd-title');
