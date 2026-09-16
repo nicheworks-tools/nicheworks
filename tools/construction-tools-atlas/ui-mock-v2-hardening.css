@@ -19,7 +19,7 @@
 }
 
 /* Detail IA is vertical. Never expose the legacy tabs or internal record/debug enum panel. */
-#detailTabs,#tabMeta,#tabMeta[hidden],#detailSheet .supportInline,#supportInlineBtn{display:none!important}
+#detailTabs,#tabMeta,#tabMeta[hidden],#detailChips,#detailSheet .supportInline,#supportInlineBtn{display:none!important}
 #detailSheet #tabMeaning,#detailSheet #tabExamples,#detailSheet #tabAliases{display:block!important}
 #detailSheet .tabpanel{min-height:0!important}
 #detailSheet .dictionaryBlock--record{display:none!important}

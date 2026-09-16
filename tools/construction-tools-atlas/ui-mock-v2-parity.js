@@ -10,6 +10,8 @@
   let typeFilter = "all";
   let sharedAffiliatePromise = null;
   let applying = false;
+  let scheduled = false;
+  let affiliateRenderKey = "";
   let lastSelectedId = "";
 
   const LABELS = {
@@ -33,6 +35,7 @@
   const langMode = () => localStorage.getItem(MODE_KEY) || (document.documentElement.lang === "en" ? "en" : "ja");
   const isEnglish = () => langMode() === "en";
   const labelIndex = () => isEnglish() ? 1 : 0;
+  const setText = (node, value) => { if (node && node.textContent !== value) node.textContent = value; };
 
   function cleanKey(value) {
     return String(value || "").trim().toLowerCase().replace(/[\s-]+/g, "_");
@@ -190,19 +193,21 @@
     const chips = $$(".row__meta .chip", row);
     chips.forEach((chip) => {
       if (!chip.dataset.taxonomyKey) chip.dataset.taxonomyKey = chip.textContent.trim();
-      chip.textContent = humanize(chip.dataset.taxonomyKey);
+      setText(chip, humanize(chip.dataset.taxonomyKey));
     });
     if (chips[0]) row.dataset.entryType = normalizedType(chips[0].dataset.taxonomyKey);
   }
 
   function applyTypeFilter() {
     $$("[data-type-filter]").forEach((button) => {
-      button.classList.toggle("is-active", button.dataset.typeFilter === typeFilter);
-      button.textContent = isEnglish() ? button.dataset.labelEn : button.dataset.labelJa;
+      const active = button.dataset.typeFilter === typeFilter;
+      if (button.classList.contains("is-active") !== active) button.classList.toggle("is-active", active);
+      setText(button, isEnglish() ? button.dataset.labelEn : button.dataset.labelJa);
     });
     $$("#resultList .row").forEach((row) => {
       decorateTaxonomy(row);
-      row.hidden = typeFilter !== "all" && row.dataset.entryType !== typeFilter;
+      const shouldHide = typeFilter !== "all" && row.dataset.entryType !== typeFilter;
+      if (row.hidden !== shouldHide) row.hidden = shouldHide;
     });
   }
 
@@ -257,8 +262,8 @@
       term.insertAdjacentElement("afterend", actions);
     }
     const buttons = $$('button', actions);
-    if (buttons[0]) buttons[0].textContent = isEnglish() ? "☆ Favorite" : "☆ お気に入り";
-    if (buttons[1]) buttons[1].textContent = isEnglish() ? "Share ↗" : "共有 ↗";
+    setText(buttons[0], isEnglish() ? "☆ Favorite" : "☆ お気に入り");
+    setText(buttons[1], isEnglish() ? "Share ↗" : "共有 ↗");
   }
 
   function ensureDetailTaxonomy() {
@@ -272,19 +277,25 @@
       section.className = "ctaDetailTaxonomy";
       actions.insertAdjacentElement("afterend", section);
     }
-    section.replaceChildren();
     const id = selectedEntryId();
     const row = id ? $$("#resultList .row[data-entry-id]").find((item) => resolveId(item.dataset.entryId) === id) : null;
-    if (!row) { section.hidden = true; return; }
-    $$(".row__meta .chip", row).slice(0, 6).forEach((source) => {
-      const chip = document.createElement("span");
-      chip.className = "ctaDetailTaxonomy__chip";
-      const raw = source.dataset.taxonomyKey || source.textContent;
-      chip.dataset.taxonomyKey = raw;
-      chip.textContent = humanize(raw);
-      section.appendChild(chip);
-    });
-    section.hidden = section.children.length === 0;
+    if (!row) { if (!section.hidden) section.hidden = true; return; }
+    const sources = $$(".row__meta .chip", row).slice(0, 6);
+    const signature = `${id}|${langMode()}|${sources.map((source) => source.dataset.taxonomyKey || source.textContent).join("|")}`;
+    if (section.dataset.signature !== signature) {
+      section.replaceChildren();
+      sources.forEach((source) => {
+        const chip = document.createElement("span");
+        chip.className = "ctaDetailTaxonomy__chip";
+        const raw = source.dataset.taxonomyKey || source.textContent;
+        chip.dataset.taxonomyKey = raw;
+        chip.textContent = humanize(raw);
+        section.appendChild(chip);
+      });
+      section.dataset.signature = signature;
+    }
+    const shouldHide = section.children.length === 0;
+    if (section.hidden !== shouldHide) section.hidden = shouldHide;
   }
 
   function removeLegacyDetailSupport() {
@@ -311,16 +322,19 @@
     if (!box) return;
     const id = selectedEntryId();
     const offer = offerById.get(id);
+    const renderKey = `${id}|${langMode()}|${offer?.offer_id || "none"}`;
+    if (affiliateRenderKey === renderKey) return;
+    affiliateRenderKey = renderKey;
     const mount = $("#ctaAffiliateMount", box);
     const disclosure = $("#ctaAffiliateDisclosure", box);
     if (!offer) {
-      box.hidden = true;
+      if (!box.hidden) box.hidden = true;
       mount?.replaceChildren();
       disclosure?.replaceChildren();
       return;
     }
-    $(".ctaAffiliateBox__title", box).textContent = isEnglish() ? "Related tools / materials" : "関連する工具・材料";
-    $(".ctaAffiliateBox__copy", box).textContent = isEnglish() ? "Amazon Japan handoff for this maintained dictionary entry." : "この辞典項目に対応するAmazon.co.jpの固定リンクです。";
+    setText($(".ctaAffiliateBox__title", box), isEnglish() ? "Related tools / materials" : "関連する工具・材料");
+    setText($(".ctaAffiliateBox__copy", box), isEnglish() ? "Amazon Japan handoff for this maintained dictionary entry." : "この辞典項目に対応するAmazon.co.jpの固定リンクです。");
     mount?.replaceChildren();
     disclosure?.replaceChildren();
     sharedAffiliatePromise ||= loadScript(SHARED_AFFILIATE, "data-nw-amazon-affiliate");
@@ -334,18 +348,18 @@
       placement: "detail_related_tools"
     });
     helper.renderDisclosure(disclosure, { includeEnglish: langMode() === "both" });
-    box.hidden = !mounted;
+    if (box.hidden === Boolean(mounted)) box.hidden = !mounted;
   }
 
   function flattenDetail() {
     const tabs = $("#detailTabs");
-    if (tabs) tabs.hidden = true;
+    if (tabs && !tabs.hidden) tabs.hidden = true;
     ["tabMeaning","tabExamples","tabAliases"].forEach((id) => {
       const panel = document.getElementById(id);
-      if (panel) panel.hidden = false;
+      if (panel?.hidden) panel.hidden = false;
     });
     const meta = $("#tabMeta");
-    if (meta) meta.hidden = true;
+    if (meta && !meta.hidden) meta.hidden = true;
     removeLegacyDetailSupport();
     ensureDetailActions();
     ensureDetailTaxonomy();
@@ -354,11 +368,11 @@
 
   function localizeStatic() {
     const subtitle = $(".ctaMockSubtitle");
-    if (subtitle) subtitle.textContent = isEnglish() ? "Find tools and jobsite terms by name, purpose, appearance, or task." : "名前が分からなくても、用途・見た目・作業から探せます。";
+    setText(subtitle, isEnglish() ? "Find tools and jobsite terms by name, purpose, appearance, or task." : "名前が分からなくても、用途・見た目・作業から探せます。");
     const fav = $("#ctaFavOnlyTop");
-    if (fav) fav.textContent = `${$("#favsOnly")?.checked ? "★" : "☆"} ${isEnglish() ? "Favorites" : "お気に入り"}`;
-    $$("[data-type-filter]").forEach((button) => { button.textContent = isEnglish() ? button.dataset.labelEn : button.dataset.labelJa; });
-    $$("[data-taxonomy-key]").forEach((chip) => { chip.textContent = humanize(chip.dataset.taxonomyKey); });
+    setText(fav, `${$("#favsOnly")?.checked ? "★" : "☆"} ${isEnglish() ? "Favorites" : "お気に入り"}`);
+    $$("[data-type-filter]").forEach((button) => setText(button, isEnglish() ? button.dataset.labelEn : button.dataset.labelJa));
+    $$("[data-taxonomy-key]").forEach((chip) => setText(chip, humanize(chip.dataset.taxonomyKey)));
     ensureDetailActions();
   }
 
@@ -375,6 +389,17 @@
     } finally { applying = false; }
   }
 
+  function scheduleApply() {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => { scheduled = false; apply(); });
+  }
+
+  function isOwnedMutationTarget(target) {
+    const element = target?.nodeType === 1 ? target : target?.parentElement;
+    return Boolean(element?.closest?.(".ctaMockBrand,.ctaMockTypeFilters,.ctaResultThumb,.ctaDetailTaxonomy,.ctaMockDetailActions,.ctaAffiliateBox"));
+  }
+
   async function init() {
     await loadData();
     apply();
@@ -385,10 +410,13 @@
       setTimeout(() => { ensureDetailTaxonomy(); renderAffiliate(); }, 0);
       setTimeout(() => { ensureDetailTaxonomy(); renderAffiliate(); }, 90);
     }, true);
-    const observer = new MutationObserver(() => requestAnimationFrame(apply));
+    const observer = new MutationObserver((mutations) => {
+      if (mutations.every((mutation) => isOwnedMutationTarget(mutation.target))) return;
+      scheduleApply();
+    });
     observer.observe(document.body, { subtree:true, childList:true, attributes:true, attributeFilter:["hidden","class"] });
-    window.addEventListener("cta:language-mode", () => requestAnimationFrame(apply));
-    window.addEventListener("popstate", () => requestAnimationFrame(apply));
+    window.addEventListener("cta:language-mode", scheduleApply);
+    window.addEventListener("popstate", scheduleApply);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once:true });
