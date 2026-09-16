@@ -1,0 +1,37 @@
+name: Non-affiliate scope integrity
+
+on:
+  pull_request:
+    paths:
+      - 'tools/tools-index.json'
+      - 'MONETIZATION_CLASSIFICATION.json'
+      - 'MONETIZATION_CLASSIFICATION_87.json'
+      - 'audits/non-affiliate-scope.json'
+      - 'scripts/check-non-affiliate-scope.mjs'
+      - '.github/workflows/check-non-affiliate-scope.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/tools-index.json'
+      - 'MONETIZATION_CLASSIFICATION.json'
+      - 'MONETIZATION_CLASSIFICATION_87.json'
+      - 'audits/non-affiliate-scope.json'
+      - 'scripts/check-non-affiliate-scope.mjs'
+      - '.github/workflows/check-non-affiliate-scope.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate registry, classification, and non-affiliate scope
+        run: node scripts/check-non-affiliate-scope.mjs
