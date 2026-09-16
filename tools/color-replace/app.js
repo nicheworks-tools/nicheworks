@@ -209,6 +209,12 @@ function hexToRgb(hex) {
   };
 }
 
+function parseTolerance(value) {
+  const parsed = Number.parseInt(value, 10);
+  if (!Number.isFinite(parsed)) return defaults.tolerance;
+  return Math.min(100, Math.max(0, parsed));
+}
+
 function formatNumber(value) {
   return Number(value).toLocaleString(currentLang === 'ja' ? 'ja-JP' : 'en-US');
 }
@@ -391,7 +397,7 @@ function applyReplacement() {
   const dstHex = dstColorInput.value || defaults.dst;
   const src = hexToRgb(srcHex);
   const dst = hexToRgb(dstHex);
-  const tolerance = Number.parseInt(toleranceInput.value, 10) || defaults.tolerance;
+  const tolerance = parseTolerance(toleranceInput.value);
   const maxDistance = Math.sqrt(3 * 255 * 255);
   const threshold = (tolerance / 100) * maxDistance;
 

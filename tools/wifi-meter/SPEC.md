@@ -7,7 +7,13 @@
 
 ## Purpose
 
-browserのNetwork Information APIが提供する推定RTTと推定downlinkを定期的に読み、通信状態の変化を簡易表示する。Wi-Fi電波強度、RSSI、実ping、実speed testを測定するtoolではない。
+browserのNetwork Information APIが提供する推定RTTと推定downlinkを定期的に読み、Wi-Fiや回線の通信状態の変化を簡易表示する。Wi-Fi電波強度、RSSI、実ping、実speed testを測定するtoolではない。
+
+### Search intent contract
+
+Public search intent is "Wi-Fi / connection status check" only in the limited sense supported by browser-estimated RTT/downlink. Metadata and visible copy MAY use Wi-Fi / connection-status wording to match how users search, but MUST immediately distinguish the tool from signal-strength/RSSI measurement, real ping, packet-loss/jitter testing, and download/upload speed testing.
+
+The tool MUST NOT target or imply accurate "Wi-Fi speed test", "Wi-Fi signal strength", or "RSSI meter" functionality.
 
 ## Current functional contract
 
@@ -78,6 +84,8 @@ Start/Stop、current values、graph、Resetを縦方向中心に配置する。
 - [ ] thresholdに従ってLow / Medium / Highのconnection estimateを表示する。
 - [ ] API非対応時は架空の測定値を生成せずNot supportedを表示する。
 - [ ] tool独自のping/speed-test requestやSSID/RSSI取得を行わない。
+- [ ] Public title/description/H1 use connection-status language while explicitly stating that RSSI, real ping, and real speed are not measured.
+- [ ] The public page has one H1 element while preserving JA/EN language switching inside that heading.
 
 ## Implementation evidence
 

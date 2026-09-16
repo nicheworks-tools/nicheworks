@@ -1,0 +1,27 @@
+name: Color Replace behavior check
+
+on:
+  pull_request:
+    paths:
+      - 'tools/color-replace/**'
+      - '.github/workflows/color-replace-behavior-check.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/color-replace/**'
+      - '.github/workflows/color-replace-behavior-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  behavior:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run Color Replace behavior test
+        run: node tools/color-replace/tests/behavior.test.mjs
