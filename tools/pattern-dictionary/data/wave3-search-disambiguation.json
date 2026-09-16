@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-16",
+  "purpose": "Targeted long-phrase disambiguation added after canonical-60 integration exposed collisions between broad Wave 3 vocabulary and existing published terms.",
+  "ja": {
+    "グレンチェックに大きい格子": {"ids": ["prince-of-wales-check"]},
+    "日本の亀甲六角文様": {"ids": ["kikko"], "culture": ["Japanese"]},
+    "斜め線が交差する一般格子": {"ids": ["lattice"], "concepts": ["grid"]},
+    "連結した菱形の枠組み柄": {"ids": ["trellis"]},
+    "単なる幾何学の菱形反復": {"ids": ["diamond"], "concepts": ["diamond"]},
+    "地が見える散らし小花": {"ids": ["ditsy-floral"]},
+    "小花で地面を埋め尽くす柄": {"ids": ["millefleurs"]},
+    "密な多色の花と枝のチンツ": {"ids": ["chintz"]},
+    "葉っぱ中心の植物プリント": {"ids": ["botanical-print"]}
+  },
+  "en": {}
+}
