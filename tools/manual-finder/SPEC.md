@@ -69,10 +69,15 @@ ManualFinder is an `AFFILIATE` tool, but its official manual directory remains t
 - The reviewed exclusions are evidence-backed service-managed-consumables cases and are stored in `affiliate-printer-detail-exclusions.js`; they are not unresolved mappings to be filled speculatively.
 - KYOCERA Waves 1–19 close the current KYOCERA catalog at **123 = 120 detail + 3 reviewed exclusions + 0 missing**. Wave 19 adds the final `KM-C3225E` and `KM-C870` handoffs with `tonerCodes: []` because no public retail toner SKU was verified from the official evidence.
 - The Wave 19 Amazon queries remain model-specific: `KYOCERA KM-C3225E トナー` and `KYOCERA KM-C870 トナー`.
-- Nikon camera-accessory Wave 1 is active only for exact canonical `Z8`, `Z6III`, `Z5II`, and `Zf` records in `カメラ・映像`.
-- Each Nikon Wave 1 mapping is backed by a model-specific Nikon official source that explicitly identifies the EN-EL15c rechargeable battery and MH-25a battery charger. The emitted accessory searches are exactly `Nikon EN-EL15c` and `Nikon MH-25a`.
-- The shared EN-EL15c/MH-25a relationship must not be generalized by family or model-name similarity. Nikon models outside the four-row Wave 1 ledger receive no camera-accessory CTA until separately reviewed.
+- Camera accessory coverage is governed by a separate catalog-wide reconciliation contract: every actionable `カメラ・映像` record with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or an explicit missing-accessory diagnostic.
+- The current camera state is **185 basic = 14 detail + 0 reviewed exclusions + 171 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
+- Nikon camera-accessory Waves 1–2 close all 14 actionable Nikon camera records at **14 detail + 0 reviewed exclusions + 0 missing**.
+- Nikon Wave 1 remains exactly `Z8`, `Z6III`, `Z5II`, and `Zf`, each mapped to `EN-EL15c` rechargeable battery and `MH-25a` battery charger from model-specific Nikon official evidence.
+- Nikon Wave 2 explicitly closes the remaining ten models: `Z9` → `EN-EL18d` / `MH-33`; `Z7II`, `Z6II`, `Z5` → `EN-EL15c` / `MH-25a`; `Z7`, `Z6` → `EN-EL15b` / `MH-25a`; `Z50II`, `Z50`, `Z30`, `Zfc` → `EN-EL25a` / `MH-32`.
+- Shared Nikon power-accessory families must not be generalized by family or model-name similarity. Every active Nikon row must exist explicitly in a reviewed mapping ledger with an official Nikon model/manual source.
 - The existing Nikon Z8 fixed body-search override may coexist with verified accessory handoffs; a fixed body override must not suppress separately reviewed accessory offers.
+- Camera detail exclusions are stored separately in `affiliate-camera-detail-exclusions.js`; the ledger is currently empty and must not be used to hide unreviewed missing rows.
+- The measured remaining camera backlog is DJI 96, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized by `CAMERA_ACCESSORY_COVERAGE.md`.
 - Wrong maker, wrong category, nonexistent model, malformed URL, unsupported category, and unreviewed compatibility cases must fail closed.
 - Printer consumable CTAs use one coarse analytics target (`printer_consumable_search_template`). Camera accessory CTAs use a separate coarse target (`camera_accessory_search_template`). Amazon search terms are constructed only from verified compatibility mappings or exact canonical model identities, never arbitrary user text.
 - Compatibility-sensitive CTA wording does not claim that every Amazon result is genuine, recommended, or compatible. The UI states that compatibility evidence was checked against a manufacturer source and asks the user to confirm the exact Amazon item before purchase.
@@ -128,8 +133,11 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] The catalog-wide printer audit reconciles to **291 basic = 284 detail + 7 reviewed exclusions + 0 missing detail**.
 - [x] `printerMissingDetail`, `printerMissingDetailByMaker`, and `printerMissingDetailModelsByMaker` are empty at the completed audit baseline.
 - [x] KYOCERA closes at **123 = 120 detail + 3 reviewed exclusions + 0 missing**, including the final Wave 19 `KM-C3225E` and `KM-C870` rows with no inferred toner SKU.
-- [x] Nikon camera-accessory Wave 1 activates exactly `Z8`, `Z6III`, `Z5II`, and `Zf`, with exactly two manufacturer-backed handoffs per model: EN-EL15c battery and MH-25a charger.
-- [x] Nikon models outside Wave 1, wrong maker/category combinations, empty/nonexistent models, and all other unreviewed camera accessory cases remain fail-closed.
+- [x] Nikon camera-accessory Wave 1 activates exactly `Z8`, `Z6III`, `Z5II`, and `Zf`, with exactly two manufacturer-backed handoffs per model.
+- [x] Nikon camera-accessory Wave 2 adds exactly the remaining ten actionable Nikon records and closes Nikon at **14 detail + 0 reviewed exclusions + 0 missing** without modifying the Wave 1 boundary.
+- [x] Each active Nikon camera row uses the reviewed battery/charger pair from its exact official Nikon evidence rather than family-name inference.
+- [x] The catalog-wide camera audit reconciles to **185 basic = 14 detail + 0 reviewed exclusions + 171 missing accessory detail**, while seven maker/index rows remain explicitly non-actionable.
+- [x] `cameraMissingAccessoryByMaker` and `cameraMissingAccessoryModelsByMaker` expose the remaining backlog and the documentation sync test prevents the camera baseline from drifting silently.
 - [x] The Nikon Z8 fixed body-search override coexists with its reviewed battery/charger handoffs instead of short-circuiting them.
 - [x] Nonexistent models, wrong maker/category combinations, and other unreviewed cases remain fail-closed.
 - [x] Compatibility-sensitive searches use the fixed NicheWorks tracking ID while analytics receive only coarse fixed targets/placements, not the accessory/consumable/model query.
@@ -151,12 +159,18 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - `tools/manual-finder/affiliate-fujifilm-toner-wave2.js`
 - `tools/manual-finder/affiliate-printer-detail-exclusions.js`
 - `tools/manual-finder/affiliate-camera-accessories.js`
+- `tools/manual-finder/affiliate-nikon-camera-accessories-wave2.js`
+- `tools/manual-finder/affiliate-camera-detail-exclusions.js`
 - `tools/manual-finder/affiliate-runtime.js`
 - `tools/manual-finder/affiliate.css`
 - `tools/manual-finder/AFFILIATE_COVERAGE.md`
+- `tools/manual-finder/CAMERA_ACCESSORY_COVERAGE.md`
 - `tools/manual-finder/tests/affiliate-coverage.test.mjs`
 - `tools/manual-finder/tests/affiliate-doc-sync.test.mjs`
 - `tools/manual-finder/tests/nikon-camera-accessory-wave1.test.mjs`
+- `tools/manual-finder/tests/nikon-camera-accessory-wave2.test.mjs`
+- `tools/manual-finder/tests/camera-accessory-coverage.test.mjs`
+- `tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs`
 - `tools/manual-finder/tests/behavior.test.mjs`
 - maker/wave-specific affiliate tests, including `tools/manual-finder/tests/kyocera-toner-wave19.test.mjs`
 - `tools/manual-finder/data/manuals.json`
