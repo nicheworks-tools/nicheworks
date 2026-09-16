@@ -1,4 +1,4 @@
-name: Pattern Dictionary Wave 3 search refinement r3b
+name: Pattern Dictionary Wave 3 search refinement r3c
 
 on:
   push:
@@ -24,8 +24,8 @@ jobs:
           const fs=require('fs');
           for(const file of ['tools/pattern-dictionary/app.js','tools/pattern-dictionary/tests/search-test.mjs']){
             let s=fs.readFileSync(file,'utf8');
-            const old="] .some(v=>norm(v)===nq)||typoHit(nq,p),d=".replace('] ',']');
-            const replacement="] .some(v=>{const nv=norm(v);return nv===nq||nearTypo(nq,nv)}),d=".replace('] ',']');
+            const old='||typoHit(nq,p),d=';
+            const replacement="||[p.names?.[lang],p.names?.[other],...(p.aliases?.[lang]||[]),...(p.aliases?.[other]||[])].some(v=>nearTypo(nq,norm(v))),d=";
             if(!s.includes(old))throw new Error(`${file}: typo confidence suffix missing`);
             s=s.replace(old,replacement);
             fs.writeFileSync(file,s);
