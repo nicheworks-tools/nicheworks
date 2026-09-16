@@ -109,15 +109,22 @@ has('tools/variant-kanji-compare/app.js', /HTML|html/i);
 has('tools/variant-kanji-compare/app.js', /old-kanji-reference|dict\.json/i);
 lacks('tools/variant-kanji-compare/app.js', /fetch\(['"]https?:\/\//, 'external input-processing API');
 
-// 84. Vibe Lexicon — compare stays 2, paid copy/export requires exact shared entitlement, legacy local flag is not authority.
+// 84. Vibe Lexicon — ADS_DONATION free mode keeps two-term compare and all work-pack copy/export ungated.
 hasScript('tools/vibe-lexicon/index.html', 'app.js');
 has('tools/vibe-lexicon/app.js', 'const maxCompare = 2;');
-has('tools/vibe-lexicon/app.js', "status.entitlement === 'nicheworks_pro'");
-has('tools/vibe-lexicon/pro-bridge.js', "var EXPECTED_ENTITLEMENT = 'nicheworks_pro'");
-has('tools/vibe-lexicon/pro-bridge.js', 'status.entitlement === EXPECTED_ENTITLEMENT');
-has('tools/vibe-lexicon/pro-bridge.js', 'localStorage.removeItem(LEGACY_KEY)');
-lacks('tools/vibe-lexicon/pro-bridge.js', 'legacyActive()', 'legacy tool-local self-unlock');
-lacks('tools/vibe-lexicon/pro-bridge.js', 'localCommonActive() ||', 'legacy OR entitlement bypass');
+has('tools/vibe-lexicon/app.js', "monetization: 'ADS_DONATION'");
+has('tools/vibe-lexicon/app.js', 'paidEntitlementRequired: false');
+has('tools/vibe-lexicon/app.js', "document.documentElement.dataset.proActive = 'true'");
+lacks('tools/vibe-lexicon/app.js', 'buy.stripe.com', 'Stripe acquisition URL');
+lacks('tools/vibe-lexicon/app.js', 'nicheworks_pro', 'legacy paid entitlement authority');
+lacks('tools/vibe-lexicon/index.html', '/assets/nw-pro.js', 'shared paid-entitlement client');
+lacks('tools/vibe-lexicon/ja/index.html', '/assets/nw-pro.js', 'shared paid-entitlement client');
+lacks('tools/vibe-lexicon/index.html', 'href="pro/"', 'public Pro navigation');
+lacks('tools/vibe-lexicon/ja/index.html', 'href="pro/"', 'public Pro navigation');
+lacks('tools/vibe-lexicon/pro/index.html', 'buy.stripe.com', 'historical Pro sales URL');
+lacks('tools/vibe-lexicon/ja/pro/index.html', 'buy.stripe.com', 'historical Japanese Pro sales URL');
+has('tools/vibe-lexicon/pro/index.html', 'Work-pack outputs are now free');
+has('tools/vibe-lexicon/ja/pro/index.html', '実務用出力は無料で利用できます');
 
 // 85. WeatherDiff — explicit live network sources, HTTPS geolocation guard, bounded geolocation wait, safety warning.
 hasScript('tools/weatherdiff/index.html', 'app.js');

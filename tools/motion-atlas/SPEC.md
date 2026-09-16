@@ -3,6 +3,7 @@
 - Slug: `motion-atlas`
 - Public URL: `https://nicheworks.app/tools/motion-atlas/`
 - Specification status: `complete`
+- Monetization class: `ADS_DONATION`
 - Common specification: `common-spec/spec-ja.md`
 
 ## Purpose
@@ -14,36 +15,37 @@ Provide a visual UI-motion reference and decision tool where users can search mo
 - Provide a searchable motion catalog with live demos and detail panels.
 - Filter by category, motion type, trigger, intensity, speed feel, mobile fit, and accessibility load.
 - Support reduced-motion mode with safer demo fallback behavior.
-- Allow free comparison of up to two motions.
+- Allow comparison of up to four motions without payment or entitlement.
 - Keep favorites, recent history, and compare choices in the browser.
-- Free usage includes search, demos, details, two-motion compare, basic prompt copy, favorites, recent history, and reduced-motion checks.
-- Pro adds motion decision memo, Framer Motion prompt, CSS prompt, Tailwind/React prompt, Codex task, GitHub Issue, reduced-motion checklist, compare handoff, and Markdown/JSON export.
+- All implemented output tools are free: motion decision memo, Framer Motion prompt, CSS prompt, Tailwind/React prompt, Codex task, GitHub Issue, reduced-motion checklist, compare handoff, and Markdown/JSON export.
 - Provide separate English and Japanese public pages.
+- Monetization is ads plus optional donations. Donations do not unlock features.
+- The historical `/pro/` pages are compatibility notices only and must not contain a purchase path.
 
 ## Inputs
 
 - Search text.
 - Catalog filter selections.
 - Selected motion/detail item.
-- Up to two free compare selections.
+- Up to four compare selections.
 - Reduced-motion toggle.
-- Favorite/recent interactions and Pro actions.
+- Favorite/recent interactions and implementation-output actions.
 
 ## Outputs
 
 - Filtered motion catalog and live motion demonstrations.
 - Detail guidance and basic implementation prompt text.
-- Two-motion comparison output.
+- Up to four-motion comparison output.
 - Browser-local favorites/recent lists.
-- Pro implementation handoff artifacts and Markdown/JSON exports.
+- Implementation handoff artifacts and Markdown/JSON exports.
 
 ## State and persistence
 
-Favorites, recent motion history, and compare choices are stored in browser-local state. Shared NicheWorks Pro entitlement is also browser-bound. Search text is transient and is not stored as a server-side search history by the tool.
+Favorites, recent motion history, and compare choices are stored in browser-local state. Search text is transient and is not stored as a server-side search history by the tool. No paid entitlement is required by Motion Atlas.
 
 ## Privacy and network behavior
 
-Catalog search and motion decision logic are client-side; entered search text is not sent to an application search backend. Page analytics/ads and the external Pro purchase flow can communicate independently.
+Catalog search and motion decision logic are client-side; entered search text is not sent to an application search backend. Page analytics, ads, and optional external donation links can communicate independently. Motion Atlas must not send users to a Stripe purchase flow.
 
 ## Language mode
 
@@ -55,24 +57,25 @@ The English canonical root and Japanese `/ja/` page are separate public language
 
 `pc-oriented`
 
-The primary interface is a three-column filter/catalog/detail workspace plus compare and Pro handoff panels.
+The primary interface is a three-column filter/catalog/detail workspace plus compare and implementation-handoff panels.
 
 ## Limits and non-goals
 
 - Motion Atlas is a decision aid, not an accessibility diagnosis or implementation guarantee.
 - Live demos illustrate patterns and do not guarantee equivalent behavior in every framework/browser.
 - Reduced-motion guidance does not replace product-specific accessibility review.
-- Free compare is limited to two motions.
-- Pro outputs are implementation drafts and require project-specific review.
-- Until product-scoped billing migration is explicitly completed for this tool, its legacy paid gate accepts only the shared `nicheworks_pro` entitlement; an active entitlement for another product must not unlock Motion Atlas.
+- Compare is capped at four motions.
+- Generated implementation outputs are drafts and require project-specific review.
+- Historical Pro infrastructure must not become an authorization gate or purchase surface for this `ADS_DONATION` tool.
 
 ## Acceptance criteria
 
 - [ ] Search and all documented catalog filters operate without sending user search text to a tool backend.
-- [ ] Free compare rejects or prevents a third simultaneous motion selection.
+- [ ] Compare permits up to four simultaneous motion selections and prevents a fifth.
 - [ ] Reduced-motion mode changes demo behavior without removing the underlying catalog decision context.
-- [ ] Pro handoff copy/export actions remain gated while the free catalog, demos, detail pages, favorites, recent history, and two-motion compare remain usable.
-- [ ] A cached active entitlement other than `nicheworks_pro` does not unlock Motion Atlas Pro actions.
+- [ ] Decision memo, framework prompts, Codex/GitHub handoff, reduced-motion checklist, compare handoff, Markdown export, and JSON export work without a paid entitlement.
+- [ ] Main and historical `/pro/` pages contain no Stripe purchase URL, fixed paid price, or purchase-to-unlock claim.
+- [ ] Ads and optional donation links do not gate or unlock product features.
 
 ## Implementation evidence
 
@@ -81,3 +84,5 @@ The primary interface is a three-column filter/catalog/detail workspace plus com
 - `tools/motion-atlas/app.js`
 - `tools/motion-atlas/pro-bridge.js`
 - `tools/motion-atlas/styles.css`
+- `tools/motion-atlas/pro/index.html`
+- `tools/motion-atlas/ja/pro/index.html`

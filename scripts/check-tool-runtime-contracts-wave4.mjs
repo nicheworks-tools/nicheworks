@@ -43,12 +43,21 @@ has('tools/money-template-checker/app.js', 'summary.canJudgeRatios && summary.fi
 has('tools/money-template-checker/app.js', 'Income is 0, so percentage-based checks are unavailable');
 has('tools/money-template-checker/app.js', 'localStorage.setItem("nw_lang", lang)');
 
-// 50. Motion Atlas — Free compare 2, Pro compare 4, and legacy shared entitlement isolation.
+// 50. Motion Atlas — ADS_DONATION free mode keeps advanced compare/handoff available without entitlement or Stripe.
 has('tools/motion-atlas/app.js', 'function compareLimit(){ return proActive ? 4 : 2; }');
 has('tools/motion-atlas/app.js', 'motionAtlasFavorites');
 has('tools/motion-atlas/app.js', 'motionAtlasRecent');
-has('tools/motion-atlas/pro-bridge.js', 'const EXPECTED_ENTITLEMENT = "nicheworks_pro"');
-has('tools/motion-atlas/pro-bridge.js', 'status.active && status.entitlement === EXPECTED_ENTITLEMENT');
+has('tools/motion-atlas/pro-bridge.js', 'document.documentElement.dataset.proActive = "true"');
+has('tools/motion-atlas/pro-bridge.js', 'entitlement: "free"');
+has('tools/motion-atlas/pro-bridge.js', 'source: "ads_donation"');
+lacks('tools/motion-atlas/pro-bridge.js', 'nicheworks_pro', 'legacy paid entitlement authority');
+lacks('tools/motion-atlas/pro-bridge.js', 'buy.stripe.com', 'Stripe acquisition URL');
+lacks('tools/motion-atlas/index.html', 'buy.stripe.com', 'Stripe acquisition URL');
+lacks('tools/motion-atlas/ja/index.html', 'buy.stripe.com', 'Stripe acquisition URL');
+lacks('tools/motion-atlas/pro/index.html', 'buy.stripe.com', 'historical Pro sales URL');
+lacks('tools/motion-atlas/ja/pro/index.html', 'buy.stripe.com', 'historical Japanese Pro sales URL');
+has('tools/motion-atlas/pro/index.html', 'Advanced outputs are now free');
+has('tools/motion-atlas/ja/pro/index.html', '高度出力は無料で利用できます');
 
 // 51. Moving Checklist — condition-keyed check persistence, memo excluded, browser print only.
 has('tools/moving-checklist-generator/app.js', 'const STORAGE_PREFIX = "moveChecklist:v2:"');

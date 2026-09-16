@@ -1,27 +1,9 @@
 (() => {
-  const PAYMENT_LINK = "https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209";
-  const EXPECTED_ENTITLEMENT = "nicheworks_pro";
-  const lang = document.body?.dataset.lang === "ja" || document.documentElement.lang === "ja" ? "ja" : "en";
-  const copy = {
-    en: {
-      previewTitle: "Preview mode",
-      previewBody: "Pro output samples are shown below. Unlock Pro to copy and export these outputs.",
-      activeTitle: "Pro unlocked",
-      activeBody: "Common NicheWorks Pro is active in this browser."
-    },
-    ja: {
-      previewTitle: "Previewモード",
-      previewBody: "Pro出力サンプルを表示しています。コピーや書き出しにはProの有効化が必要です。",
-      activeTitle: "Pro解放済み",
-      activeBody: "このブラウザではNicheWorks共通Proが有効です。"
-    }
-  }[lang];
+  "use strict";
 
-  function localStatus() {
-    if (window.NWPro && typeof window.NWPro.getLocalStatus === "function") {
-      return window.NWPro.getLocalStatus();
-    }
-    return { active: false, entitlement: EXPECTED_ENTITLEMENT, checkedAt: "" };
+  function setFreeActive() {
+    document.documentElement.dataset.proActive = "true";
+    if (document.body) document.body.dataset.proActive = "true";
   }
 
   function setHidden(nodes, hidden) {
@@ -32,36 +14,40 @@
   }
 
   function render() {
-    const status = localStatus();
-    const active = Boolean(status.active && status.entitlement === EXPECTED_ENTITLEMENT);
-    document.documentElement.dataset.proActive = active ? "true" : "false";
-    if (document.body) document.body.dataset.proActive = active ? "true" : "false";
+    setFreeActive();
 
     document.querySelectorAll("[data-pro-status]").forEach((node) => {
-      node.dataset.proActive = active ? "true" : "false";
-      node.innerHTML = active
-        ? `<strong>${copy.activeTitle}</strong><span>${copy.activeBody}</span>`
-        : `<strong>${copy.previewTitle}</strong><span>${copy.previewBody}</span>`;
+      node.dataset.proActive = "true";
+      node.innerHTML = document.documentElement.lang === "ja"
+        ? "<strong>無料で利用できます</strong><span>比較・実装ハンドオフ・Markdown / JSON出力を含む全機能を利用できます。</span>"
+        : "<strong>Available for free</strong><span>All features are available, including expanded compare, implementation handoff, and Markdown / JSON export.</span>";
     });
 
-    setHidden(Array.from(document.querySelectorAll("[data-pro-preview]")), active);
-    setHidden(Array.from(document.querySelectorAll("[data-pro-only]")), !active);
+    setHidden(Array.from(document.querySelectorAll("[data-pro-preview]")), true);
+    setHidden(Array.from(document.querySelectorAll("[data-pro-only]")), false);
 
-    document.querySelectorAll("[data-pro-buy]").forEach((node) => {
-      if (node instanceof HTMLAnchorElement) {
-        node.href = PAYMENT_LINK;
-        node.target = "_blank";
-        node.rel = "noopener noreferrer";
+    document.querySelectorAll("[data-pro-buy]").forEach((node) => node.remove());
+    document.querySelectorAll("[data-pro-action]").forEach((node) => {
+      if ("disabled" in node) node.disabled = false;
+      node.removeAttribute("aria-disabled");
+    });
+
+    window.dispatchEvent(new CustomEvent("nwpro:state", {
+      detail: {
+        active: true,
+        free: true,
+        status: { active: true, entitlement: "free", source: "ads_donation" }
       }
-    });
-
-    window.dispatchEvent(new CustomEvent("nwpro:state", { detail: { active, status } }));
+    }));
   }
 
-  window.NWMotionAtlasProBridge = { render, paymentLink: PAYMENT_LINK };
+  // This script is loaded before app.js. Set the data flag synchronously so
+  // the existing app initializes with its former advanced path already open.
+  setFreeActive();
+  render();
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", render, { once: true });
-  } else {
-    render();
   }
+
+  window.NWMotionAtlasProBridge = Object.freeze({ render, mode: "free" });
 })();
