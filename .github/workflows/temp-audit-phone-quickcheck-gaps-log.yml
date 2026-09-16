@@ -1,0 +1,38 @@
+name: Temp Phone QuickCheck gap audit log
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/temp-audit-phone-quickcheck-gaps-log.yml'
+      - 'tools/phone-quickcheck/data/phones.json'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Print remaining gaps
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('tools/phone-quickcheck/data/phones.json', 'utf8'));
+          const phones = data.phones || [];
+          const ids = (pred) => phones.filter(pred).map(p => p.id).sort();
+          const groups = {
+            adapterUnknown: ids(p => p.included?.adapter === 'unknown'),
+            cableUnknown: ids(p => p.included?.cable === 'unknown'),
+            wiredMaxUnknown: ids(p => p.charging?.wiredMaxW == null),
+            ppsUnknown: ids(p => p.charging?.pps === 'unknown'),
+            waterUnknown: ids(p => p.waterRating == null || p.waterRating === 'unknown')
+          };
+          for (const [name, values] of Object.entries(groups)) {
+            console.log(`@@${name} count=${values.length}`);
+            console.log(values.join('\n'));
+          }
+          NODE
