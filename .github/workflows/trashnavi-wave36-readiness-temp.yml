@@ -1,0 +1,39 @@
+name: TrashNavi Wave36 readiness temporary
+on:
+  push:
+    branches:
+      - feat/trashnavi-wave36-readiness-20260916
+permissions:
+  contents: write
+jobs:
+  prepare:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-wave36-readiness-20260916
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Register Wave36 dataset and validate readiness
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const path='tools/trashnavi/app.js';
+          let s=fs.readFileSync(path,'utf8');
+          const old='"data/direct-waste-links-supply-wave35.json"]';
+          const next='"data/direct-waste-links-supply-wave35.json","data/direct-waste-links-supply-wave36.json"]';
+          if (!s.includes(old)) throw new Error('Wave35 app.js registration anchor not found');
+          s=s.replace(old,next);
+          fs.writeFileSync(path,s);
+          NODE
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          rm .github/workflows/trashnavi-wave36-readiness-temp.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/trashnavi/app.js .github/workflows/trashnavi-wave36-readiness-temp.yml
+          git commit -m 'feat(trashnavi): register Wave36 readiness dataset'
+          git push origin HEAD:feat/trashnavi-wave36-readiness-20260916
