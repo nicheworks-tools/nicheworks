@@ -69,14 +69,18 @@ ManualFinder is an `AFFILIATE` tool, but its official manual directory remains t
 - The reviewed exclusions are evidence-backed service-managed-consumables cases and are stored in `affiliate-printer-detail-exclusions.js`; they are not unresolved mappings to be filled speculatively.
 - KYOCERA Waves 1–19 close the current KYOCERA catalog at **123 = 120 detail + 3 reviewed exclusions + 0 missing**. Wave 19 adds the final `KM-C3225E` and `KM-C870` handoffs with `tonerCodes: []` because no public retail toner SKU was verified from the official evidence.
 - The Wave 19 Amazon queries remain model-specific: `KYOCERA KM-C3225E トナー` and `KYOCERA KM-C870 トナー`.
+- Nikon camera-accessory Wave 1 is active only for exact canonical `Z8`, `Z6III`, `Z5II`, and `Zf` records in `カメラ・映像`.
+- Each Nikon Wave 1 mapping is backed by a model-specific Nikon official source that explicitly identifies the EN-EL15c rechargeable battery and MH-25a battery charger. The emitted accessory searches are exactly `Nikon EN-EL15c` and `Nikon MH-25a`.
+- The shared EN-EL15c/MH-25a relationship must not be generalized by family or model-name similarity. Nikon models outside the four-row Wave 1 ledger receive no camera-accessory CTA until separately reviewed.
+- The existing Nikon Z8 fixed body-search override may coexist with verified accessory handoffs; a fixed body override must not suppress separately reviewed accessory offers.
 - Wrong maker, wrong category, nonexistent model, malformed URL, unsupported category, and unreviewed compatibility cases must fail closed.
-- Printer consumable CTAs use one coarse analytics target (`printer_consumable_search_template`). Amazon search terms are constructed only from verified compatibility mappings or exact canonical model identities, never arbitrary user text.
-- Consumable CTA wording does not claim that every Amazon result is genuine, recommended, or compatible. The UI states that compatibility evidence was checked against a manufacturer source and asks the user to confirm the exact Amazon item before purchase.
+- Printer consumable CTAs use one coarse analytics target (`printer_consumable_search_template`). Camera accessory CTAs use a separate coarse target (`camera_accessory_search_template`). Amazon search terms are constructed only from verified compatibility mappings or exact canonical model identities, never arbitrary user text.
+- Compatibility-sensitive CTA wording does not claim that every Amazon result is genuine, recommended, or compatible. The UI states that compatibility evidence was checked against a manufacturer source and asks the user to confirm the exact Amazon item before purchase.
 - Amazon search CTAs are handoffs (`Amazonで <maker> <model> を探す` / `Find <maker> <model> on Amazon`), not claims that any listing is official, recommended, cheapest, available, or compatible.
 - Amazon commerce UI appears after official links, is visually distinct, explicitly identifies Amazon/affiliate status, and uses the shared `/assets/amazon-affiliate.js` helper.
 - The required Amazon Associates disclosure is rendered whenever an Amazon target is active.
 - Do not display copied/scraped Amazon price, availability, rating, review count, seller claim, or product imagery.
-- Affiliate analytics may emit only the shared coarse `affiliate_click` metadata (`tool`, `affiliate`, `target`, `placement`). Model names, generated Amazon query terms, consumable codes, search text, selected filters, and other user input must not be sent through the affiliate analytics path.
+- Affiliate analytics may emit only the shared coarse `affiliate_click` metadata (`tool`, `affiliate`, `target`, `placement`). Model names, generated Amazon query terms, consumable/accessory codes, search text, selected filters, and other user input must not be sent through the affiliate analytics path.
 - Future expansion should add a small number of verified offer rules/templates, not thousands of individually maintained URLs.
 
 ## State and persistence
@@ -124,8 +128,11 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] The catalog-wide printer audit reconciles to **291 basic = 284 detail + 7 reviewed exclusions + 0 missing detail**.
 - [x] `printerMissingDetail`, `printerMissingDetailByMaker`, and `printerMissingDetailModelsByMaker` are empty at the completed audit baseline.
 - [x] KYOCERA closes at **123 = 120 detail + 3 reviewed exclusions + 0 missing**, including the final Wave 19 `KM-C3225E` and `KM-C870` rows with no inferred toner SKU.
+- [x] Nikon camera-accessory Wave 1 activates exactly `Z8`, `Z6III`, `Z5II`, and `Zf`, with exactly two manufacturer-backed handoffs per model: EN-EL15c battery and MH-25a charger.
+- [x] Nikon models outside Wave 1, wrong maker/category combinations, empty/nonexistent models, and all other unreviewed camera accessory cases remain fail-closed.
+- [x] The Nikon Z8 fixed body-search override coexists with its reviewed battery/charger handoffs instead of short-circuiting them.
 - [x] Nonexistent models, wrong maker/category combinations, and other unreviewed cases remain fail-closed.
-- [x] Consumable searches use the fixed NicheWorks tracking ID while analytics receive only the coarse consumable target, not the ink/toner/model query.
+- [x] Compatibility-sensitive searches use the fixed NicheWorks tracking ID while analytics receive only coarse fixed targets/placements, not the accessory/consumable/model query.
 - [x] The Amazon disclosure and sponsored link semantics are supplied by the shared affiliate helper, with only coarse fixed click metadata.
 
 ## Implementation evidence
@@ -143,10 +150,13 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - `tools/manual-finder/affiliate-kyocera-toner-wave6.js`
 - `tools/manual-finder/affiliate-fujifilm-toner-wave2.js`
 - `tools/manual-finder/affiliate-printer-detail-exclusions.js`
+- `tools/manual-finder/affiliate-camera-accessories.js`
 - `tools/manual-finder/affiliate-runtime.js`
 - `tools/manual-finder/affiliate.css`
 - `tools/manual-finder/AFFILIATE_COVERAGE.md`
 - `tools/manual-finder/tests/affiliate-coverage.test.mjs`
+- `tools/manual-finder/tests/affiliate-doc-sync.test.mjs`
+- `tools/manual-finder/tests/nikon-camera-accessory-wave1.test.mjs`
 - `tools/manual-finder/tests/behavior.test.mjs`
 - maker/wave-specific affiliate tests, including `tools/manual-finder/tests/kyocera-toner-wave19.test.mjs`
 - `tools/manual-finder/data/manuals.json`
