@@ -1,0 +1,30 @@
+name: Pattern Dictionary Wave 5 visual review v3
+on:
+  push:
+    branches: [feat/pattern-dictionary-wave5-production-staging-20260916]
+    paths: [.github/workflows/pattern-dictionary-wave5-visual-review-v3.yml]
+permissions:
+  contents: read
+jobs:
+  sheet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/pattern-dictionary-wave5-production-staging-20260916
+      - run: python3 -m pip install --quiet pillow
+      - run: |
+          python3 - <<'PY'
+          from PIL import Image,ImageDraw
+          from pathlib import Path
+          ids=['adire','sashiko','snake-print','giraffe-print']; root=Path('tools/pattern-dictionary/assets/reference')
+          out=Image.new('RGB',(720,720),'white'); d=ImageDraw.Draw(out)
+          for i,pid in enumerate(ids):
+            im=Image.open(root/f'{pid}.png').convert('RGB'); im.thumbnail((320,320)); x=(i%2)*360+20; y=(i//2)*360+20
+            out.paste(im,(x,y)); d.text((x,y+325),pid,fill='black')
+          out.save('wave5-focused-v3.jpg',quality=94)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pattern-dictionary-wave5-focused-v3
+          path: wave5-focused-v3.jpg
