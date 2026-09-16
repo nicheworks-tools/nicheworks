@@ -70,7 +70,7 @@ ManualFinder is an `AFFILIATE` tool, but its official manual directory remains t
 - KYOCERA Waves 1–19 close the current KYOCERA catalog at **123 = 120 detail + 3 reviewed exclusions + 0 missing**. Wave 19 adds the final `KM-C3225E` and `KM-C870` handoffs with `tonerCodes: []` because no public retail toner SKU was verified from the official evidence.
 - The Wave 19 Amazon queries remain model-specific: `KYOCERA KM-C3225E トナー` and `KYOCERA KM-C870 トナー`.
 - Camera accessory coverage is governed by a separate catalog-wide reconciliation contract: every actionable `カメラ・映像` record with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or an explicit missing-accessory diagnostic.
-- The current camera state is **185 basic = 18 detail + 0 reviewed exclusions + 167 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
+- The current camera state is **185 basic = 20 detail + 0 reviewed exclusions + 165 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
 - Nikon camera-accessory Waves 1–2 close all 14 actionable Nikon camera records at **14 detail + 0 reviewed exclusions + 0 missing**.
 - Nikon Wave 1 remains exactly `Z8`, `Z6III`, `Z5II`, and `Zf`, each mapped to `EN-EL15c` rechargeable battery and `MH-25a` battery charger from model-specific Nikon official evidence.
 - Nikon Wave 2 explicitly closes the remaining ten models: `Z9` → `EN-EL18d` / `MH-33`; `Z7II`, `Z6II`, `Z5` → `EN-EL15c` / `MH-25a`; `Z7`, `Z6` → `EN-EL15b` / `MH-25a`; `Z50II`, `Z50`, `Z30`, `Zfc` → `EN-EL25a` / `MH-32`.
@@ -78,9 +78,11 @@ ManualFinder is an `AFFILIATE` tool, but its official manual directory remains t
 - The existing Nikon Z8 fixed body-search override may coexist with verified accessory handoffs; a fixed body override must not suppress separately reviewed accessory offers.
 - DJI Osmo Action Wave 1 activates exactly `Osmo Action 3`, `Osmo Action 4`, `Osmo Action 5 Pro`, and `Osmo Action 6`. Each receives a battery handoff for `DJI Osmo Action Extreme Battery Plus` and a charger/battery-case handoff for `DJI Osmo Action Multifunctional Battery Case 2`, each backed by explicit DJI official compatibility information.
 - DJI Osmo Action Wave 1 must not infer compatibility for the older `Osmo Action`, `DJI Action 2`, or any future similarly named model. Those remain missing until separately reviewed.
-- The measured DJI state after Wave 1 is **96 basic = 4 detail + 0 reviewed exclusions + 92 missing accessory detail**.
+- DJI Air Wave 2 activates exactly `DJI Air 3` and `DJI Air 3S`. Each receives a battery handoff for `DJI Air 3 Intelligent Flight Battery` and a charging-hub handoff for `DJI Air 3 Series Battery Charging Hub`, backed by explicit DJI official compatibility information.
+- DJI Air Wave 2 must not infer compatibility for `DJI Air 2S`, `Mavic Air 2`, `Mavic Air`, or any other DJI Air/Mavic model.
+- The measured DJI state after Waves 1–2 is **96 basic = 6 detail + 0 reviewed exclusions + 90 missing accessory detail**.
 - Camera detail exclusions are stored separately in `affiliate-camera-detail-exclusions.js`; the ledger is currently empty and must not be used to hide unreviewed missing rows.
-- The measured remaining camera backlog is DJI 92, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized by `CAMERA_ACCESSORY_COVERAGE.md`.
+- The measured remaining camera backlog is DJI 90, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized by `CAMERA_ACCESSORY_COVERAGE.md`.
 - Wrong maker, wrong category, nonexistent model, malformed URL, unsupported category, and unreviewed compatibility cases must fail closed.
 - Printer consumable CTAs use one coarse analytics target (`printer_consumable_search_template`). Camera accessory CTAs use a separate coarse target (`camera_accessory_search_template`). Amazon search terms are constructed only from verified compatibility mappings or exact canonical model identities, never arbitrary user text.
 - Compatibility-sensitive CTA wording does not claim that every Amazon result is genuine, recommended, or compatible. The UI states that compatibility evidence was checked against a manufacturer source and asks the user to confirm the exact Amazon item before purchase.
@@ -141,7 +143,9 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] Each active Nikon camera row uses the reviewed battery/charger pair from its exact official Nikon evidence rather than family-name inference.
 - [x] DJI Osmo Action Wave 1 activates exactly `Osmo Action 3`, `Osmo Action 4`, `Osmo Action 5 Pro`, and `Osmo Action 6`, with exactly two DJI-backed handoffs per model.
 - [x] DJI Osmo Action Wave 1 leaves `Osmo Action` and `DJI Action 2` fail-closed and reduces DJI missing accessory detail from 96 to 92.
-- [x] The catalog-wide camera audit reconciles to **185 basic = 18 detail + 0 reviewed exclusions + 167 missing accessory detail**, while seven maker/index rows remain explicitly non-actionable.
+- [x] DJI Air Wave 2 activates exactly `DJI Air 3` and `DJI Air 3S`, with exactly two DJI-backed power-accessory handoffs per model and no inference to Air 2/Mavic Air records.
+- [x] DJI Waves 1–2 reconcile to **96 basic = 6 detail + 0 reviewed exclusions + 90 missing accessory detail**.
+- [x] The catalog-wide camera audit reconciles to **185 basic = 20 detail + 0 reviewed exclusions + 165 missing accessory detail**, while seven maker/index rows remain explicitly non-actionable.
 - [x] `cameraMissingAccessoryByMaker` and `cameraMissingAccessoryModelsByMaker` expose the remaining backlog and the documentation sync test prevents the camera baseline from drifting silently.
 - [x] The Nikon Z8 fixed body-search override coexists with its reviewed battery/charger handoffs instead of short-circuiting them.
 - [x] Nonexistent models, wrong maker/category combinations, and other unreviewed cases remain fail-closed.
@@ -166,6 +170,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - `tools/manual-finder/affiliate-camera-accessories.js`
 - `tools/manual-finder/affiliate-nikon-camera-accessories-wave2.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave1.js`
+- `tools/manual-finder/affiliate-dji-camera-accessories-wave2.js`
 - `tools/manual-finder/affiliate-camera-detail-exclusions.js`
 - `tools/manual-finder/affiliate-runtime.js`
 - `tools/manual-finder/affiliate.css`
@@ -176,6 +181,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - `tools/manual-finder/tests/nikon-camera-accessory-wave1.test.mjs`
 - `tools/manual-finder/tests/nikon-camera-accessory-wave2.test.mjs`
 - `tools/manual-finder/tests/dji-osmo-action-accessory-wave1.test.mjs`
+- `tools/manual-finder/tests/dji-air-accessory-wave2.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-coverage.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs`
 - `tools/manual-finder/tests/behavior.test.mjs`

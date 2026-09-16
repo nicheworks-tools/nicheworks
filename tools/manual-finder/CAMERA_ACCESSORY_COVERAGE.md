@@ -10,28 +10,28 @@ This document is the audited baseline for compatibility-sensitive camera battery
 | --- | ---: |
 | Canonical `カメラ・映像` records | **192** |
 | Camera records with a basic Amazon path | **185** |
-| Camera records with verified accessory detail | **18** |
+| Camera records with verified accessory detail | **20** |
 | Reviewed camera-detail exclusions | **0** |
-| Actionable camera records still missing accessory detail | **167** |
+| Actionable camera records still missing accessory detail | **165** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 185 = detail 18 + reviewed exclusion 0 + missing 167`
+`camera basic 185 = detail 20 + reviewed exclusion 0 + missing 165`
 
-The current detail ledger contains all 14 actionable Nikon records plus DJI Osmo Action Wave 1 for `Osmo Action 3`, `Osmo Action 4`, `Osmo Action 5 Pro`, and `Osmo Action 6`.
+The current detail ledger contains all 14 actionable Nikon records, DJI Osmo Action Wave 1 for `Osmo Action 3`, `Osmo Action 4`, `Osmo Action 5 Pro`, and `Osmo Action 6`, plus DJI Air Wave 2 for `DJI Air 3` and `DJI Air 3S`.
 
 ## Actionable coverage by maker
 
 | Maker | Basic | Detail | Reviewed exclusion | Missing |
 | --- | ---: | ---: | ---: | ---: |
-| DJI | 96 | 4 | 0 | 92 |
+| DJI | 96 | 6 | 0 | 90 |
 | OM SYSTEM | 37 | 0 | 0 | 37 |
 | GoPro | 31 | 0 | 0 | 31 |
 | Nikon | 14 | 14 | 0 | 0 |
 | Insta360 | 7 | 0 | 0 | 7 |
 
-The exact missing model arrays are emitted by `tests/camera-accessory-coverage.test.mjs` as `MANUALFINDER_CAMERA_ACCESSORY_COVERAGE`. They are intentionally not duplicated here as a 167-model prose ledger.
+The exact missing model arrays are emitted by `tests/camera-accessory-coverage.test.mjs` as `MANUALFINDER_CAMERA_ACCESSORY_COVERAGE`. They are intentionally not duplicated here as a 165-model prose ledger.
 
 ## Nikon completion — Waves 1–2
 
@@ -51,9 +51,7 @@ Every mapping is tied to an exact Nikon official model/manual source. Shared acc
 
 ## DJI Osmo Action — Wave 1
 
-Four current Osmo Action records have reviewed DJI power-accessory detail mappings:
-
-`DJI camera 96 = detail 4 + reviewed exclusion 0 + missing 92`
+Four current Osmo Action records have reviewed DJI power-accessory detail mappings.
 
 Wave 1 contains exactly:
 
@@ -68,6 +66,24 @@ For each of those four models, DJI's official store compatibility information su
 - `Osmo Action Multifunctional Battery Case 2` — charger/battery-case search handoff.
 
 The older `Osmo Action` and `DJI Action 2` records are deliberately not inferred into this wave. They remain missing until their own official compatibility boundary is reviewed.
+
+## DJI Air — Wave 2
+
+Two current DJI Air records have reviewed DJI power-accessory detail mappings:
+
+- `DJI Air 3`
+- `DJI Air 3S`
+
+DJI official compatibility information explicitly supports both reviewed handoffs for both models:
+
+- `DJI Air 3 Intelligent Flight Battery` — battery search handoff.
+- `DJI Air 3 Series Battery Charging Hub` — charging-hub search handoff.
+
+The Wave 2 contract is exact-model only. `DJI Air 2S`, `Mavic Air 2`, and `Mavic Air` are not inferred into the same compatibility set and remain missing until separately reviewed.
+
+After DJI Waves 1–2 the maker-level reconciliation is:
+
+`DJI camera 96 = detail 6 + reviewed exclusion 0 + missing 90`
 
 ## Non-actionable camera records
 
@@ -96,7 +112,7 @@ Seven camera-category records are maker/index entries without an actionable exac
 
 The measured remaining backlog determines the work order rather than assumptions about brand prominence:
 
-1. Continue DJI from the remaining 92 actionable records in bounded product-family waves.
+1. Continue DJI from the remaining 90 actionable records in bounded product-family waves.
 2. Review OM SYSTEM 37 actionable records.
 3. Review GoPro 31 actionable records.
 4. Review Insta360 7 actionable records.
@@ -109,16 +125,18 @@ The camera accessory phase is complete only when:
 
 `camera basic = detail + reviewed exclusion + missing 0`
 
-The current baseline is not complete: `167` actionable records remain missing accessory detail. Counts may change when the canonical catalog changes, but the reconciliation invariant and zero-unreviewed-missing completion target do not change.
+The current baseline is not complete: `165` actionable records remain missing accessory detail. Counts may change when the canonical catalog changes, but the reconciliation invariant and zero-unreviewed-missing completion target do not change.
 
 ## Source of truth
 
 - `affiliate-camera-accessories.js` — Nikon Wave 1 reviewed active accessory mappings.
 - `affiliate-nikon-camera-accessories-wave2.js` — Nikon Wave 2 mappings that close the remaining ten actionable Nikon records.
 - `affiliate-dji-camera-accessories-wave1.js` — DJI Osmo Action Wave 1 mappings for four reviewed models.
+- `affiliate-dji-camera-accessories-wave2.js` — DJI Air Wave 2 mappings for `DJI Air 3` and `DJI Air 3S`.
 - `affiliate-camera-detail-exclusions.js` — reviewed explicit exclusions; currently empty.
 - `tests/nikon-camera-accessory-wave1.test.mjs` — Nikon Wave 1 compatibility boundary.
 - `tests/nikon-camera-accessory-wave2.test.mjs` — Nikon Wave 2 compatibility boundary and fourteen-record Nikon completion.
 - `tests/dji-osmo-action-accessory-wave1.test.mjs` — exact DJI Osmo Action Wave 1 compatibility boundary.
+- `tests/dji-air-accessory-wave2.test.mjs` — exact DJI Air Wave 2 compatibility boundary.
 - `tests/camera-accessory-coverage.test.mjs` — catalog-wide camera coverage computation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` — documentation drift guard for this audited baseline.

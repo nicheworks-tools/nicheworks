@@ -92,9 +92,14 @@ const djiBasic = summary.cameraBasicByMaker.DJI || 0;
 const djiDetail = summary.cameraDetailByMaker.DJI || 0;
 const djiExcluded = summary.cameraDetailExcludedByMaker.DJI || 0;
 const djiMissing = summary.cameraMissingAccessoryByMaker.DJI || 0;
+const djiReconciliation = `DJI camera ${djiBasic} = detail ${djiDetail} + reviewed exclusion ${djiExcluded} + missing ${djiMissing}`;
 assert.ok(
-  doc.includes(`DJI camera ${djiBasic} = detail ${djiDetail} + reviewed exclusion ${djiExcluded} + missing ${djiMissing}`),
+  doc.includes(djiReconciliation),
   'DJI camera progress line must match the live audit'
+);
+assert.ok(
+  affiliateDoc.includes(djiReconciliation),
+  'affiliate coverage DJI progress line must match the live audit'
 );
 assert.ok(
   spec.includes(`**${djiBasic} basic = ${djiDetail} detail + ${djiExcluded} reviewed exclusions + ${djiMissing} missing accessory detail**`),
@@ -104,10 +109,12 @@ assert.ok(
 for (const path of [
   'affiliate-nikon-camera-accessories-wave2.js',
   'affiliate-dji-camera-accessories-wave1.js',
+  'affiliate-dji-camera-accessories-wave2.js',
   'affiliate-camera-detail-exclusions.js',
   'CAMERA_ACCESSORY_COVERAGE.md',
   'tests/nikon-camera-accessory-wave2.test.mjs',
   'tests/dji-osmo-action-accessory-wave1.test.mjs',
+  'tests/dji-air-accessory-wave2.test.mjs',
   'tests/camera-accessory-coverage.test.mjs',
   'tests/camera-accessory-doc-sync.test.mjs'
 ]) {
