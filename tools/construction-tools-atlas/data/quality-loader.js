@@ -1,6 +1,7 @@
 (() => {
   "use strict";
 
+  const originalFetch = window.fetch.bind(window);
   const BASE_PATHS = ["./data/tools.basic.json"];
   const MANIFEST_PATH = "./data/quality-manifest.json";
   const ENRICHMENT_PATH = "./data/content-enrichment-v2.3.json";
@@ -18,7 +19,7 @@
   async function fetchJson(path) {
     if (!path) return null;
     try {
-      const response = await fetch(path);
+      const response = await originalFetch(path);
       if (!response.ok) return null;
       return await response.json();
     } catch (_) { return null; }
@@ -74,8 +75,8 @@
     return (Array.isArray(raw?.packs) ? raw.packs : []).map((item) => typeof item === "string" ? item.trim() : text(item?.path)).filter((path) => path && !seen.has(path) && seen.add(path));
   }
   function termKey(entry) {
-    const ja = normalize(entry?.term?.ja || entry?.ja || "");
-    const en = normalize(entry?.term?.en || entry?.en || "");
+    const ja = normalize(entry?.term?.ja || entry?.ja || entry?.summary?.ja || "");
+    const en = normalize(entry?.term?.en || entry?.en || entry?.summary?.en || "");
     return ja || en ? `${ja}::${en}` : "";
   }
 
@@ -103,7 +104,7 @@
         if (stats.generatedQuarantineSample.length < 20) stats.generatedQuarantineSample.push({ id, batch, source });
         return;
       }
-      if (seenIds.has(id)) { stats.duplicateIds += 1; stats.removed.push({ reason:"duplicate_id", id, source }); return; }
+      if (seenIds.has(id)) { stats.duplicateIds += 1; stats.removed.push({ reason:"duplicate_id", id, key:"", source }); return; }
       const key = termKey(entry);
       if (key && seenTerms.has(key)) { stats.duplicateTerms += 1; stats.removed.push({ reason:"duplicate_term", id, key, source }); return; }
       seenIds.add(id); if (key) seenTerms.add(key); merged.push(entry);
@@ -120,30 +121,41 @@
     for (const row of Array.isArray(raw?.name_overrides) ? raw.name_overrides : []) {
       const id = text(row?.id); const target = byId.get(id); const toJa = text(row?.to?.ja); const toEn = text(row?.to?.en);
       if (!id || (!toJa && !toEn)) continue;
-      if (!target) { stats.identityResolutionMissingTargets += 1; continue; }
+      if (!target) { stats.identityResolutionMissingTargets += 1; if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason:"missing_name_override_target" }); continue; }
       const fromJa = text(row?.from?.ja); const fromEn = text(row?.from?.en);
       target.term ||= { ja:"", en:"" };
+      const currentJa = text(target.term.ja); const currentEn = text(target.term.en);
+      if ((fromJa && currentJa !== fromJa && currentJa !== toJa) || (fromEn && currentEn !== fromEn && currentEn !== toEn)) {
+        stats.identityResolutionSourceMismatches += 1;
+        if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason:"unexpected_source_name", currentJa, currentEn, fromJa, fromEn, toJa, toEn });
+      }
       if (toJa) target.term.ja = toJa; if (toEn) target.term.en = toEn;
       target.fuzzy = unique([...removeVocabulary(target.fuzzy, [fromJa, fromEn]), target.term.ja, target.term.en]);
       target.meta = { ...(target.meta || {}), canonical_name_override_from:{ ja:fromJa, en:fromEn }, canonical_name_override_to:{ ja:toJa, en:toEn } };
       stats.identityNameOverridesApplied += 1;
     }
     for (const row of Array.isArray(raw?.type_overrides) ? raw.type_overrides : []) {
-      const id = text(row?.id); const target = byId.get(id); const to = text(row?.to);
+      const id = text(row?.id); const target = byId.get(id); const from = text(row?.from); const to = text(row?.to);
       if (!id || !to) continue;
-      if (!target) { stats.identityResolutionMissingTargets += 1; continue; }
-      target.type = to; target.meta = { ...(target.meta || {}), canonical_type_override_to:to };
+      if (!target) { stats.identityResolutionMissingTargets += 1; if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason:"missing_type_override_target" }); continue; }
+      const current = text(target?.type);
+      if (from && current !== from && current !== to) {
+        stats.identityResolutionSourceMismatches += 1;
+        if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason:"unexpected_source_type", expected:from, actual:current, to });
+      }
+      target.type = to; target.meta = { ...(target.meta || {}), canonical_type_override_from:from, canonical_type_override_to:to };
       stats.identityTypeOverridesApplied += 1;
     }
     for (const row of Array.isArray(raw?.alias_removals) ? raw.alias_removals : []) {
       const id = text(row?.id); const target = byId.get(id);
       if (!id) continue;
-      if (!target) { stats.identityResolutionMissingTargets += 1; continue; }
+      if (!target) { stats.identityResolutionMissingTargets += 1; if (stats.identityResolutionProblemSample.length < 20) stats.identityResolutionProblemSample.push({ id, reason:"missing_alias_removal_target" }); continue; }
       target.aliases ||= { ja:[], en:[] };
       const ja = arr(row?.ja); const en = arr(row?.en);
       target.aliases.ja = removeVocabulary(target.aliases.ja, ja);
       target.aliases.en = removeVocabulary(target.aliases.en, en);
       target.fuzzy = removeVocabulary(target.fuzzy, [...ja, ...en]);
+      target.meta = { ...(target.meta || {}), canonical_alias_removals_applied:true };
       stats.identityAliasRemovalsApplied += ja.length + en.length;
     }
     window.CTA_CANONICAL_IDENTITY_RESOLUTIONS = raw || {};
@@ -175,8 +187,8 @@
     const map = buildRedirectMap(raw); const byId = new Map(merged.map((entry) => [text(entry?.id), entry])); const remove = new Set(); const applied = new Map();
     for (const [from, directTo] of map) {
       const to = resolveWithMap(directTo, map); const source = byId.get(from); const target = byId.get(to);
-      if (!source) { stats.canonicalRedirectMissingSources += 1; continue; }
-      if (!target || from === to) { stats.canonicalRedirectMissingTargets += 1; continue; }
+      if (!source) { stats.canonicalRedirectMissingSources += 1; if (stats.canonicalRedirectProblemSample.length < 20) stats.canonicalRedirectProblemSample.push({ from, to, reason:"missing_source" }); continue; }
+      if (!target || from === to) { stats.canonicalRedirectMissingTargets += 1; if (stats.canonicalRedirectProblemSample.length < 20) stats.canonicalRedirectProblemSample.push({ from, to, reason:"missing_target" }); continue; }
       mergeRedirectVocabulary(target, source, from); remove.add(from); applied.set(from, to); stats.canonicalRedirectsApplied += 1;
     }
     if (remove.size) merged.splice(0, merged.length, ...merged.filter((entry) => !remove.has(text(entry?.id))));
@@ -189,7 +201,7 @@
     for (const patch of Array.isArray(raw?.entries) ? raw.entries : []) {
       const id = text(patch?.id);
       if (!id) continue;
-      if (appliedIds.has(id)) { stats.contentEnrichmentDuplicateTargets += 1; continue; }
+      if (appliedIds.has(id)) { stats.contentEnrichmentDuplicateTargets += 1; if (stats.contentEnrichmentDuplicateSample.length < 20) stats.contentEnrichmentDuplicateSample.push(id); continue; }
       appliedIds.add(id);
       const target = byId.get(id);
       if (!target) { stats.contentEnrichmentMissingTargets += 1; if (stats.contentEnrichmentMissingSample.length < 20) stats.contentEnrichmentMissingSample.push(id); continue; }
@@ -214,11 +226,13 @@
   function resolveCanonicalIds(ids) { return unique(arr(ids).map(resolveCanonicalId).filter(Boolean)); }
   function migrateFavorites(stats) {
     try {
-      const raw = localStorage.getItem(FAVORITES_KEY); if (!raw) return;
+      const storage = window.localStorage;
+      if (!storage?.getItem || !storage?.setItem) return;
+      const raw = storage.getItem(FAVORITES_KEY); if (!raw) return;
       const parsed = JSON.parse(raw); if (!Array.isArray(parsed)) return;
       const before = unique(parsed); const after = resolveCanonicalIds(before);
       if (JSON.stringify(before) !== JSON.stringify(after)) {
-        localStorage.setItem(FAVORITES_KEY, JSON.stringify(after));
+        storage.setItem(FAVORITES_KEY, JSON.stringify(after));
         stats.favoriteIdsMigrated = before.filter((id) => resolveCanonicalId(id) !== id).length;
       }
     } catch (_) { }
@@ -251,6 +265,9 @@
     migrateFavorites(stats);
     stats.merged = merged.length; stats.removedCount = stats.raw - stats.merged;
     window.CTA_DATA_DIAGNOSTICS = stats;
+    if (stats.removedCount > 0 || stats.canonicalRedirectsApplied > 0 || stats.identityNameOverridesApplied > 0 || stats.identityTypeOverridesApplied > 0 || stats.identityAliasRemovalsApplied > 0 || stats.favoriteIdsMigrated > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0 || stats.contentEnrichmentDuplicateTargets > 0) {
+      console.info("Construction Tools Atlas data dedupe/quarantine/redirect/enrichment", stats);
+    }
     return merged;
   }
 
