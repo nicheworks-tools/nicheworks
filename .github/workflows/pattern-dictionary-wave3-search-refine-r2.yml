@@ -1,4 +1,4 @@
-name: Pattern Dictionary Wave 3 search refinement r2
+name: Pattern Dictionary Wave 3 search refinement r3
 
 on:
   push:
@@ -18,31 +18,26 @@ jobs:
         with:
           ref: feat/pattern-dictionary-wave3-production-staging-20260916
           fetch-depth: 0
-      - name: Make confidence typo-aware and prefer longest matched signal
+      - name: Restrict confidence typo exception to whole names and aliases
         run: |
           node <<'NODE'
           const fs=require('fs');
-          const appPath='tools/pattern-dictionary/app.js';
-          let app=fs.readFileSync(appPath,'utf8');
-          const confidenceNeedle=".some(v=>norm(v)===nq),d=r[0].score-(r[1]?.score||0);";
-          const confidenceReplacement=".some(v=>norm(v)===nq)||typoHit(nq,p),d=r[0].score-(r[1]?.score||0);";
-          if(!app.includes(confidenceNeedle))throw new Error('app typo-aware confidence insertion point missing');
-          app=app.replace(confidenceNeedle,confidenceReplacement);
-          const appReturn="return out}\nasync function rank";
-          const appReturnReplacement="return out.filter((x,i,a)=>!a.some((y,j)=>j!==i&&norm(y.label).length>norm(x.label).length&&norm(y.label).includes(norm(x.label))))}\nasync function rank";
-          if(!app.includes(appReturn))throw new Error('app interpret return insertion point missing');
-          app=app.replace(appReturn,appReturnReplacement);
-          fs.writeFileSync(appPath,app);
-
-          const testPath='tools/pattern-dictionary/tests/search-test.mjs';
-          let test=fs.readFileSync(testPath,'utf8');
-          if(!test.includes(confidenceNeedle))throw new Error('test typo-aware confidence insertion point missing');
-          test=test.replace(confidenceNeedle,confidenceReplacement);
-          const testReturn='  return out;\n}\nfunction rank';
-          const testReturnReplacement='  return out.filter((x,i,a)=>!a.some((y,j)=>j!==i&&norm(y.label).length>norm(x.label).length&&norm(y.label).includes(norm(x.label))));\n}\nfunction rank';
-          if(!test.includes(testReturn))throw new Error('test interpret return insertion point missing');
-          test=test.replace(testReturn,testReturnReplacement);
-          fs.writeFileSync(testPath,test);
+          for(const file of ['tools/pattern-dictionary/app.js','tools/pattern-dictionary/tests/search-test.mjs']){
+            let s=fs.readFileSync(file,'utf8');
+            const typoFn=file.endsWith('app.js')
+              ? "function typoHit(q,p){const qt=queryTokens(q),ct=[p.names?.ja,p.names?.en,...(p.aliases?.ja||[]),...(p.aliases?.en||[])].flatMap(queryTokens);return qt.some(a=>ct.some(b=>nearTypo(a,b)))}"
+              : `function typoHit(q,p){\n  const qt=tokens(q),ct=[p.names?.ja,p.names?.en,...(p.aliases?.ja||[]),...(p.aliases?.en||[])].flatMap(tokens);\n  return qt.some(a=>ct.some(b=>nearTypo(a,b)));\n}`;
+            if(!s.includes(typoFn))throw new Error(`${file}: typoHit insertion point missing`);
+            const helper=file.endsWith('app.js')
+              ? "function confidenceNameMatch(q,p,lang){const nq=norm(q),other=lang==='ja'?'en':'ja',c=[p.names?.[lang],p.names?.[other],...(p.aliases?.[lang]||[]),...(p.aliases?.[other]||[])].map(norm).filter(Boolean);return c.some(v=>v===nq||nearTypo(nq,v))}"
+              : `function confidenceNameMatch(q,p,lang){\n  const nq=norm(q),other=lang==='ja'?'en':'ja';\n  const c=[p.names?.[lang],p.names?.[other],...(p.aliases?.[lang]||[]),...(p.aliases?.[other]||[])].map(norm).filter(Boolean);\n  return c.some(v=>v===nq||nearTypo(nq,v));\n}`;
+            if(!s.includes('function confidenceNameMatch('))s=s.replace(typoFn,typoFn+'\n'+helper);
+            const old="exact=[p.names?.[lang],p.names?.[other],...(p.aliases?.[lang]||[]),...(p.aliases?.[other]||[])].some(v=>norm(v)===nq)||typoHit(nq,p),d=";
+            const replacement="exact=confidenceNameMatch(nq,p,lang),d=";
+            if(!s.includes(old))throw new Error(`${file}: confidence exact expression missing`);
+            s=s.replace(old,replacement);
+            fs.writeFileSync(file,s);
+          }
           NODE
       - name: Verify syntax and staging lock
         run: |
@@ -54,5 +49,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add tools/pattern-dictionary/app.js tools/pattern-dictionary/tests/search-test.mjs
-          git commit -m "Pattern Dictionary: prioritize specific search signals"
+          git commit -m "Pattern Dictionary: narrow typo confidence matching"
           git push origin HEAD:feat/pattern-dictionary-wave3-production-staging-20260916
