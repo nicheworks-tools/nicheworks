@@ -3,14 +3,14 @@
   "phase": "source-verification",
   "updated": "2026-09-16",
   "policy": {
-    "purpose": "Evidence ledger for the published canonical 60-pattern production set.",
+    "purpose": "Evidence ledger for the published canonical 80-pattern production set.",
     "primary_palette_rule": "A fixed primary palette is an editorial recognition reference unless a source establishes color as identity-relevant. The palette itself is never presented as the only valid colorway.",
     "relationship_rule": "similar and often_confused_with are visual-discovery relationships, not claims of shared historical origin unless explicitly sourced.",
     "states": [
       "verified",
       "qualified"
     ],
-    "qualification_rule": "Use qualified when the term is fundamentally a form, weave, textile/style tradition, broad market/discovery label, or modern usage that does not resolve to one uniquely fixed motif."
+    "qualification_rule": "Use qualified when the term is fundamentally a technique, textile effect, historical decorative style, textile tradition, or other broad family that does not resolve to one uniquely fixed motif."
   },
   "patterns": [
     {
@@ -2797,6 +2797,975 @@
             "repeated ivy leaves",
             "layered leaf treatment",
             "textile surface-design context"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 61,
+      "pattern_id": "baroque-scroll",
+      "verification_state": "qualified",
+      "term_scope": "Baroque running-scroll ornamental family rather than one uniquely fixed repeat",
+      "verified_names": {
+        "ja": "バロック・スクロール",
+        "en": "Baroque Scroll"
+      },
+      "verified_aliases": {
+        "ja": [
+          "バロック調スクロール",
+          "バロック唐草"
+        ],
+        "en": [
+          "Baroque scrollwork",
+          "Baroque floral scroll",
+          "Baroque acanthus scroll"
+        ]
+      },
+      "structure": "Running foliate scrolls repeat or extend through a field, often using acanthus-derived foliage and curved stems; exact scroll shape, density, and symmetry vary across Baroque ornament.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "gold",
+          "deep red"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Scroll structure and historical ornamental treatment carry recognition; no fixed Baroque palette defines the family."
+      },
+      "qualification": "Baroque is a historical decorative style, and running scrolls were a widespread form of Baroque floral ornament rather than one universal pattern. Pattern Dictionary therefore treats Baroque Scroll as a qualified discovery family built around running foliate scrollwork.",
+      "sources": [
+        {
+          "publisher": "Victoria and Albert Museum",
+          "url": "https://www.vam.ac.uk/articles/the-baroque-style",
+          "supports": [
+            "Baroque ornament context",
+            "running scroll as a widespread form of Baroque floral decoration",
+            "frequent combination with acanthus"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/26786",
+          "supports": [
+            "seventeenth-century Baroque taste",
+            "heavy foliate scroll ornament"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 62,
+      "pattern_id": "chinoiserie",
+      "verification_state": "qualified",
+      "term_scope": "European decorative style adapting imagined or interpreted East Asian motifs, not one fixed motif",
+      "verified_names": {
+        "ja": "シノワズリ",
+        "en": "Chinoiserie"
+      },
+      "verified_aliases": {
+        "ja": [
+          "中国趣味"
+        ],
+        "en": [
+          "Chinese taste",
+          "Chinese-style decoration"
+        ]
+      },
+      "structure": "Decorative compositions combine varied motifs such as pagodas, pavilions, figures, flowering plants, birds, landscapes, and other East Asian-inspired imagery; layouts range from scenic panels to repeated surface decoration.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "blue",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Chinoiserie is identified by its decorative vocabulary and historical styling rather than a fixed color scheme."
+      },
+      "qualification": "Chinoiserie is a broad European decorative style that adapted and reimagined East Asian motifs across many media. It does not resolve to one canonical repeat or one stable motif inventory, so the reference image must be explicitly representative.",
+      "sources": [
+        {
+          "publisher": "Victoria and Albert Museum",
+          "url": "https://www.vam.ac.uk/articles/chinoiserie-an-introduction",
+          "supports": [
+            "chinoiserie as a European decorative style",
+            "adaptation of East Asian motifs",
+            "varied recurring motif vocabulary rather than one fixed pattern"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/exhibitions/listings/2015/china-through-the-looking-glass/exhibition-galleries",
+          "supports": [
+            "late-seventeenth-century chinoiserie style",
+            "Chinese figures, pagodas, landscapes, birds and flowering plants as varied elements"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 63,
+      "pattern_id": "flame-stitch",
+      "verification_state": "qualified",
+      "term_scope": "Bargello or flame-stitch counted-thread embroidery technique and its characteristic stepped zigzag visual",
+      "verified_names": {
+        "ja": "フレームステッチ",
+        "en": "Flame Stitch"
+      },
+      "verified_aliases": {
+        "ja": [
+          "バルジェロ",
+          "フロレンティン・ステッチ"
+        ],
+        "en": [
+          "Bargello",
+          "Florentine work",
+          "Florentine stitch"
+        ]
+      },
+      "structure": "Rows of vertical stitches step up and down in counted increments, producing regular peaks and valleys or sharper flame-like zigzags; different step sequences can produce multiple Bargello motifs.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "red",
+          "orange",
+          "gold"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The stepped stitch geometry identifies the visual; vivid gradients are common recognition cues but are not definitional."
+      },
+      "qualification": "Flame stitch is closely tied to Bargello counted-thread embroidery and describes a technique/visual construction rather than one universal printed repeat. Pattern Dictionary represents the characteristic stepped peaks and valleys without claiming a canonical stitch count or color sequence.",
+      "sources": [
+        {
+          "publisher": "Victoria and Albert Museum",
+          "url": "https://www.vam.ac.uk/articles/embroidery-styles-an-illustrated-guide",
+          "supports": [
+            "Bargello counted-thread embroidery",
+            "flame stitch as a name for Bargello work",
+            "vertical stitches stepped to create regular peaks and valleys"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/156124",
+          "supports": [
+            "Bargello or flame stitch terminology",
+            "historical embroidery use",
+            "typical zigzag visual"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 64,
+      "pattern_id": "tree-of-life",
+      "verification_state": "verified",
+      "term_scope": "named tree-centered symbolic motif with many historical variants",
+      "verified_names": {
+        "ja": "生命の樹",
+        "en": "Tree of Life"
+      },
+      "verified_aliases": {
+        "ja": [
+          "生命樹",
+          "ツリー・オブ・ライフ"
+        ],
+        "en": [
+          "Tree of Life motif"
+        ]
+      },
+      "structure": "A prominent stylized tree forms the central motif, often with branching foliage, flowers, fruit, birds, or animals arranged around or flanking it; details vary by period and culture.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "green",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Recognition comes from the central branching tree composition; colors and accompanying fauna vary widely."
+      },
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/451090",
+          "supports": [
+            "Tree of Life terminology",
+            "tree-centered motif",
+            "animals flanking a tree as a long-standing composition"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/229006",
+          "supports": [
+            "Tree of Life textile title",
+            "fruit-bearing tree and wildlife pattern usage"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 65,
+      "pattern_id": "moire",
+      "verification_state": "qualified",
+      "term_scope": "watered or rippled textile surface effect rather than one fixed motif",
+      "verified_names": {
+        "ja": "モアレ",
+        "en": "Moiré"
+      },
+      "verified_aliases": {
+        "ja": [
+          "モワレ",
+          "木目模様"
+        ],
+        "en": [
+          "moire",
+          "watered silk",
+          "watered effect"
+        ]
+      },
+      "structure": "Undulating, rippled, woodgrain-like or watered bands appear across the textile surface through finishing, pressure, weave interaction, or related processes; exact wave geometry is inherently variable.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "silver",
+          "blue"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The shifting watered surface effect is the identifying cue; moiré occurs in many colors and fibers."
+      },
+      "qualification": "Moiré denotes a watered textile surface effect produced by several methods, not one fixed printed motif. The reference image therefore represents characteristic rippled bands without implying a universal wave layout.",
+      "sources": [
+        {
+          "publisher": "Smithsonian Museum Conservation Institute",
+          "url": "https://mci.si.edu/node/1317445",
+          "supports": [
+            "moiré as several methods affecting a fabric surface",
+            "wavy designs",
+            "multiple fibers and production methods"
+          ]
+        },
+        {
+          "publisher": "National Museum of American History, Smithsonian Institution",
+          "url": "https://americanhistory.si.edu/collections/object/nmah_624411",
+          "supports": [
+            "watered moiré effect",
+            "pressed textile surface",
+            "moire as production method/effect"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 66,
+      "pattern_id": "yagasuri",
+      "verification_state": "verified",
+      "term_scope": "named Japanese arrow-feather or arrow design",
+      "verified_names": {
+        "ja": "矢絣",
+        "en": "Yagasuri"
+      },
+      "verified_aliases": {
+        "ja": [
+          "矢羽根",
+          "矢羽根模様"
+        ],
+        "en": [
+          "arrow-feather pattern",
+          "arrow pattern"
+        ]
+      },
+      "structure": "Repeated arrow or arrow-feather forms align in rows, commonly as pointed chevrons or paired feather shapes that can alternate direction.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "navy",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Arrow-feather geometry carries recognition; palette varies across textiles."
+      },
+      "sources": [
+        {
+          "publisher": "Cooper Hewitt, Smithsonian Design Museum",
+          "url": "https://collections.si.edu/search/detail/edanmdm%3Achndm_1976-103-289",
+          "supports": [
+            "yagasuri terminology",
+            "Japanese arrow design",
+            "rows of large and small arrows",
+            "alternating direction"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 67,
+      "pattern_id": "sayagata",
+      "verification_state": "verified",
+      "term_scope": "named continuous interlocking fret pattern",
+      "verified_names": {
+        "ja": "紗綾形",
+        "en": "Sayagata"
+      },
+      "verified_aliases": {
+        "ja": [
+          "卍繋ぎ",
+          "さや形"
+        ],
+        "en": [
+          "continuous fret pattern",
+          "fylfot pattern"
+        ]
+      },
+      "structure": "Interlocking angular manji-derived fret lines tessellate continuously, creating a repeated rectilinear field of hooked and H-like forms.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "red",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The continuous angular fret construction defines the pattern; color is variable."
+      },
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/65305",
+          "supports": [
+            "sayagata terminology",
+            "continuous fret pattern",
+            "common Japanese dress use in the Edo period"
+          ]
+        },
+        {
+          "publisher": "Cooper Hewitt, Smithsonian Design Museum",
+          "url": "https://www.si.edu/object/chndm_1976-103-215",
+          "supports": [
+            "fylfot/sayagata terminology",
+            "popular Japanese geometric design"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 68,
+      "pattern_id": "uroko",
+      "verification_state": "verified",
+      "term_scope": "named Japanese scale pattern based on repeated triangles",
+      "verified_names": {
+        "ja": "鱗文様",
+        "en": "Uroko"
+      },
+      "verified_aliases": {
+        "ja": [
+          "鱗文",
+          "鱗形"
+        ],
+        "en": [
+          "uroko pattern",
+          "scale pattern"
+        ]
+      },
+      "structure": "Triangles repeat edge-to-edge as a geometric field, traditionally read as stylized scales; regular equilateral or near-equilateral triangular units are a common formulation.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "gold",
+          "black"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Repeated triangular scale geometry identifies the motif; historical uses span many palettes."
+      },
+      "sources": [
+        {
+          "publisher": "Agency for Cultural Affairs, Japan — Cultural Heritage Online",
+          "url": "https://online.bunka.go.jp/heritages/detail/523613",
+          "supports": [
+            "uroko/scale pattern terminology",
+            "continuous equilateral triangles",
+            "dragon-scale interpretation",
+            "textile use"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 69,
+      "pattern_id": "tatewaku",
+      "verification_state": "verified",
+      "term_scope": "named Japanese vertically rising paired-curve pattern",
+      "verified_names": {
+        "ja": "立涌",
+        "en": "Tatewaku"
+      },
+      "verified_aliases": {
+        "ja": [
+          "立湧",
+          "立涌文"
+        ],
+        "en": [
+          "tatewaku pattern",
+          "rising-steam pattern"
+        ]
+      },
+      "structure": "Paired curving lines swell and narrow repeatedly as they rise vertically, creating hourglass or gourd-like compartments that may contain secondary motifs.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "gold",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The vertically repeated swelling curves carry recognition; inserted motifs and colors vary."
+      },
+      "sources": [
+        {
+          "publisher": "Agency for Cultural Affairs, Japan — Cultural Heritage Online",
+          "url": "https://online.bunka.go.jp/heritages/detail/427076",
+          "supports": [
+            "tatewaku terminology",
+            "continuous curves forming vertically repeated gourd-like shapes",
+            "named variants based on inserted motifs"
+          ]
+        },
+        {
+          "publisher": "Nezu Museum",
+          "url": "https://www.nezu-muse.or.jp/jp/exhibitions/view-88.html",
+          "supports": [
+            "tatewaku as a rising-steam-like pattern",
+            "textile use"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 70,
+      "pattern_id": "kagome",
+      "verification_state": "verified",
+      "term_scope": "named Japanese basket-weave-derived lattice pattern",
+      "verified_names": {
+        "ja": "籠目",
+        "en": "Kagome"
+      },
+      "verified_aliases": {
+        "ja": [
+          "籠目文",
+          "かごめ"
+        ],
+        "en": [
+          "kagome pattern",
+          "wickerwork pattern"
+        ]
+      },
+      "structure": "Diagonal strips or lines interlace into a repeating basket-derived lattice of triangular and hexagonal openings, commonly read as the geometry of woven bamboo.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "tan",
+          "indigo"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The interlaced basket lattice defines the motif; natural basket colors are only illustrative."
+      },
+      "sources": [
+        {
+          "publisher": "Cooper Hewitt, Smithsonian Design Museum",
+          "url": "https://www.si.edu/object/wicker-work-pattern%3Achndm_1948-128-74",
+          "supports": [
+            "kagome/wickerwork terminology",
+            "origin in bamboo basket structure",
+            "Japanese textile-design context"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 71,
+      "pattern_id": "kanoko",
+      "verification_state": "qualified",
+      "term_scope": "kanoko spotted visual convention closely tied to kanoko shibori resist-dye technique",
+      "verified_names": {
+        "ja": "鹿の子",
+        "en": "Kanoko"
+      },
+      "verified_aliases": {
+        "ja": [
+          "鹿の子絞り",
+          "疋田鹿の子"
+        ],
+        "en": [
+          "kanoko shibori",
+          "spotted dyeing",
+          "fawn-spot pattern"
+        ]
+      },
+      "structure": "Many small tied or resist-dyed spots repeat across the cloth; a common kanoko unit reads as a small undyed square or spot with a tiny center mark, but scale and arrangement vary with technique and design.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "red",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The dense resist-spotted visual is the recognition cue; the technique appears in many colorways."
+      },
+      "qualification": "Kanoko is inseparable from kanoko shibori in many historical textiles: the dotted visual is produced by a resist-dye process and does not define one universal repeat. Pattern Dictionary therefore separates the recognizable spotted visual convention from the broader dyeing technique.",
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/74585",
+          "supports": [
+            "kanoko shibori terminology",
+            "spotted resist dyeing",
+            "Japanese textile context"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/45399",
+          "supports": [
+            "kanoko as a popular shibori variation",
+            "small tied pinches",
+            "typical small square with center dot",
+            "variation in shape"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 72,
+      "pattern_id": "hanabishi",
+      "verification_state": "verified",
+      "term_scope": "named Japanese floral-lozenge motif",
+      "verified_names": {
+        "ja": "花菱",
+        "en": "Hanabishi"
+      },
+      "verified_aliases": {
+        "ja": [
+          "花菱文"
+        ],
+        "en": [
+          "floral lozenge",
+          "hanabishi motif"
+        ]
+      },
+      "structure": "A stylized flower is organized within a diamond or lozenge outline, repeated singly or as a field; petal treatment can vary while the floral-lozenge identity remains.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "purple",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The floral lozenge construction defines the motif; color is not intrinsic."
+      },
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/74544",
+          "supports": [
+            "hanabishi terminology",
+            "floral lozenge identification",
+            "Japanese textile use"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 73,
+      "pattern_id": "same-komon",
+      "verification_state": "qualified",
+      "term_scope": "same or sharkskin fine-dot komon visual produced within a fine-pattern dyeing tradition",
+      "verified_names": {
+        "ja": "鮫小紋",
+        "en": "Same Komon"
+      },
+      "verified_aliases": {
+        "ja": [
+          "鮫",
+          "鮫小紋柄"
+        ],
+        "en": [
+          "sharkskin komon",
+          "same pattern",
+          "sharkskin pattern"
+        ]
+      },
+      "structure": "Extremely fine dots form repeated overlapping or arcing semicircular units, producing a sharkskin-like field that can read as nearly solid from a distance.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "indigo",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Minute dotted arc structure defines the visual; Edo/Tokyo komon is produced in many colors."
+      },
+      "qualification": "Same Komon is a named fine-dot pattern, but it is also embedded in the stencil-dyed komon technique and craft tradition. Pattern Dictionary therefore qualifies the entry so the dotted sharkskin visual is not confused with all Edo/Tokyo Some-Komon or with one fixed stencil density.",
+      "sources": [
+        {
+          "publisher": "Bureau of Industrial and Labor Affairs, Tokyo Metropolitan Government",
+          "url": "https://www.dento-tokyo.metro.tokyo.lg.jp/english/items/02.html",
+          "supports": [
+            "Tokyo Some-Komon as repeated minute-pattern dyeing",
+            "gokuzame/fine sharkskin as a representative pattern",
+            "very fine dot scale"
+          ]
+        },
+        {
+          "publisher": "University of Michigan Museum of Art",
+          "url": "https://umma.umich.edu/objects/kimono-2013-2-477/",
+          "supports": [
+            "same-komon terminology",
+            "minute white dots",
+            "hill-like repeated forms",
+            "same meaning shark",
+            "Edo komon context"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 74,
+      "pattern_id": "nami-chidori",
+      "verification_state": "verified",
+      "term_scope": "named Japanese motif pairing plovers with waves",
+      "verified_names": {
+        "ja": "波千鳥",
+        "en": "Nami Chidori"
+      },
+      "verified_aliases": {
+        "ja": [
+          "波に千鳥",
+          "千鳥に波"
+        ],
+        "en": [
+          "plovers and waves",
+          "plovers over waves",
+          "wave-and-plover motif"
+        ]
+      },
+      "structure": "Small stylized plovers fly above, beside, or through repeated wave forms; exact bird count and wave rendering vary while the wave-plus-plover pairing remains the motif.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "indigo",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The pairing of plovers and waves is the identifying cue; palette varies by medium."
+      },
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/25740",
+          "supports": [
+            "波千鳥 / plovers and waves motif terminology",
+            "Japanese decorative use",
+            "stylized plovers paired with waves"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/44576",
+          "supports": [
+            "plovers and waves textile design",
+            "chidori terminology and Japanese cultural context"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 75,
+      "pattern_id": "tomoe",
+      "verification_state": "verified",
+      "term_scope": "named Japanese comma-shaped tomoe motif",
+      "verified_names": {
+        "ja": "巴",
+        "en": "Tomoe"
+      },
+      "verified_aliases": {
+        "ja": [
+          "巴文",
+          "巴紋"
+        ],
+        "en": [
+          "comma pattern",
+          "tomoe pattern",
+          "tomoe crest"
+        ]
+      },
+      "structure": "One or more rounded comma-like forms curve around a common center or repeat across a field; single, double, and triple arrangements exist.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "black",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "The curved comma form carries recognition; historical and modern examples use many palettes."
+      },
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/846698",
+          "supports": [
+            "traditional comma/tomoe terminology",
+            "Japanese pattern use",
+            "association with crests and samurai culture"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 76,
+      "pattern_id": "shibori",
+      "verification_state": "qualified",
+      "term_scope": "family of Japanese resist-dye techniques producing many different patterns",
+      "verified_names": {
+        "ja": "絞り",
+        "en": "Shibori"
+      },
+      "verified_aliases": {
+        "ja": [
+          "絞り染め"
+        ],
+        "en": [
+          "shibori resist dyeing",
+          "Japanese tie-dye"
+        ]
+      },
+      "structure": "Fabric is folded, stitched, bound, sheathed, knotted, twisted, compressed, or otherwise resisted before dyeing, producing varied rings, spots, lines, grids, and pictorial compositions depending on method.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "indigo",
+          "white"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Indigo-and-white is a strong recognition convention, but shibori technique is not color-defined."
+      },
+      "qualification": "Shibori is a family of resist-dye techniques, not one pattern. Any reference image is necessarily representative of one shibori visual outcome and must not be presented as canonical for the entire tradition.",
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/79595",
+          "supports": [
+            "shibori as resist-dye art",
+            "folding, stitching, binding, sheathing and knotting as resist methods",
+            "technique produces complex varied designs"
+          ]
+        },
+        {
+          "publisher": "Kyoto Shibori Museum",
+          "url": "https://en.shibori.jp/shibori-exhibition",
+          "supports": [
+            "shibori as a specialized textile-art field",
+            "Kyoto Kanoko Shibori as one refined technique within the broader practice"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 77,
+      "pattern_id": "batik",
+      "verification_state": "qualified",
+      "term_scope": "wax-resist dyeing textile tradition with a wide diversity of patterns",
+      "verified_names": {
+        "ja": "バティック",
+        "en": "Batik"
+      },
+      "verified_aliases": {
+        "ja": [
+          "ろうけつ染め"
+        ],
+        "en": [
+          "wax-resist batik",
+          "Indonesian batik"
+        ]
+      },
+      "structure": "Hot wax is applied as resist in dots, lines, or drawn/printed areas before dyeing; repeated waxing and dyeing can build geometric, floral, figurative, or symbolic patterns.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "indigo",
+          "brown"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Traditional palettes vary by region and practice; wax-resist construction is more fundamental than any color pair."
+      },
+      "qualification": "Batik is a wax-resist dyeing technique and living textile tradition with a wide diversity of regional patterns and symbols. It is not one fixed repeat, so the reference image is representative only.",
+      "sources": [
+        {
+          "publisher": "UNESCO Intangible Cultural Heritage",
+          "url": "https://ich.unesco.org/en/RL/batik-a-masterpiece-of-the-oral-and-intangible-heritage-of-humanity-00170",
+          "supports": [
+            "Indonesian Batik as techniques, symbolism and culture",
+            "hot-wax resist dyeing process",
+            "wide diversity of patterns and influences"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 78,
+      "pattern_id": "bandhani",
+      "verification_state": "qualified",
+      "term_scope": "South Asian tie-resist textile technique and tradition characterized by numerous tied points",
+      "verified_names": {
+        "ja": "バンダニ",
+        "en": "Bandhani"
+      },
+      "verified_aliases": {
+        "ja": [
+          "バンダニ染め",
+          "バンデジ"
+        ],
+        "en": [
+          "Bandhej",
+          "Bandhni",
+          "tie-and-dye"
+        ]
+      },
+      "structure": "Small points of cloth are tightly tied before dyeing, creating many resist dots that can be arranged into geometric, figurative, clustered, border, or field patterns; related tying methods produce different named outcomes.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "red",
+          "yellow"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Bright contrasting colors are common recognition cues, but tying method and dotted resist structure define the craft more than palette."
+      },
+      "qualification": "Bandhani is a tie-resist technique and textile tradition capable of producing many named layouts, not one universal dotted repeat. Pattern Dictionary uses a characteristic dotted resist field as a representative visual only.",
+      "sources": [
+        {
+          "publisher": "Government of Rajasthan — Handmade in Rajasthan",
+          "url": "https://handmadeinrajasthan.rajasthan.gov.in/content/industries/handmadeinrajasthandepartment/artandcraft/textilework/bandhani.html",
+          "supports": [
+            "Bandhani as tie-dye textile",
+            "tiny bindings and tied-point process",
+            "multiple named patterns depending on tying method"
+          ]
+        },
+        {
+          "publisher": "Government of Rajasthan — Handmade in Rajasthan",
+          "url": "https://handmadeinrajasthan.rajasthan.gov.in/content/industries/handmadeinrajasthandepartment/artandcraft/textilework/tyeanddyetobereplacedwithbandhejandlehriya.html",
+          "supports": [
+            "Bandhej/Bandhani as resist dyeing",
+            "small tied dots",
+            "variety of patterns from different tying methods"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 79,
+      "pattern_id": "ajrakh",
+      "verification_state": "qualified",
+      "term_scope": "Kachchh/Sindh-linked resist and block-print textile tradition with complex geometric pattern vocabularies",
+      "verified_names": {
+        "ja": "アジュラック",
+        "en": "Ajrakh"
+      },
+      "verified_aliases": {
+        "ja": [
+          "アジュラク"
+        ],
+        "en": [
+          "Ajrak",
+          "Ajrakh block print"
+        ]
+      },
+      "structure": "Precisely registered block-printed repeats commonly combine geometric stars, medallions, grids, borders, and floral elements through repeated resist, mordant, dye, wash, and drying stages.",
+      "color_guidance": {
+        "color_role": "identity-associated-not-exclusive",
+        "primary": [
+          "indigo",
+          "madder red",
+          "black",
+          "white"
+        ],
+        "primary_status": "source-grounded-recognition",
+        "reason": "Government of Kachchh describes Ajrakh geometry across indigo, madder, black, and white, while individual textiles still vary."
+      },
+      "qualification": "Ajrakh is a textile-printing tradition and process, not one fixed motif. Its recognizable geometric vocabulary and common dye family can guide discovery, but no single star, medallion, grid, or layout is canonical for all Ajrakh.",
+      "sources": [
+        {
+          "publisher": "District Kachchh, Government of Gujarat",
+          "url": "https://kachchh.nic.in/handicraft/",
+          "supports": [
+            "Ajrakh as printed textile craft",
+            "complex geometry and starry constellations",
+            "indigo, madder, black and white palette",
+            "multi-stage washing, dyeing, printing and drying process"
+          ]
+        },
+        {
+          "publisher": "Gujarat Tourism",
+          "url": "https://gujarattourism.com/handicrafts/ajrakh.html",
+          "supports": [
+            "Ajrakh as hand block printing tradition in Kutch",
+            "resist-printing and dyeing process",
+            "multiple blocks and varied textile uses"
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 80,
+      "pattern_id": "kalamkari",
+      "verification_state": "qualified",
+      "term_scope": "Indian painted, mordant-dyed and resist-dyed textile process/tradition rather than one fixed pattern",
+      "verified_names": {
+        "ja": "カラムカリ",
+        "en": "Kalamkari"
+      },
+      "verified_aliases": {
+        "ja": [
+          "カラムカーリ"
+        ],
+        "en": [
+          "qalamkari",
+          "pen-work textile"
+        ]
+      },
+      "structure": "Designs are built through multistep drawing, mordant application, resist, dye baths, and hand painting or related block-print processes, supporting floral, figurative, narrative, and geometric compositions.",
+      "color_guidance": {
+        "color_role": "non-essential",
+        "primary": [
+          "red",
+          "indigo",
+          "cream"
+        ],
+        "primary_status": "editorial-reference",
+        "reason": "Historic kalamkari uses characteristic natural-dye families, but technique and regional practice are broader than one palette."
+      },
+      "qualification": "Kalamkari names a textile-making process and regional tradition spanning hand-painted and related printed works with many compositions. It is not one universal motif, so the reference image must be presented as representative rather than canonical.",
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/ko/essays/indian-textiles-trade-and-production",
+          "supports": [
+            "kalamkari meaning pen-worked",
+            "multistep mordant, wax-resist and dye process",
+            "process used to create varied designs"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/447118",
+          "supports": [
+            "kalamkari as multistep textile-dyeing process",
+            "stylus and resist application",
+            "regional production of many textile types"
+          ]
+        },
+        {
+          "publisher": "Government of India — National Portal / ODOP",
+          "url": "https://www.india.gov.in/explore-india/odop/details/srikalahasthi-kalamkari",
+          "supports": [
+            "Srikalahasti Kalamkari as hand-painted or block-printed cotton textile craft",
+            "intricate designs, traditional motifs and natural dyes"
           ]
         }
       ]

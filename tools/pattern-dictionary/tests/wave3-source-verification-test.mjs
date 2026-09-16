@@ -8,7 +8,7 @@ const published=JSON.parse(fs.readFileSync(path.join(root,'data','patterns.json'
 const canonical=JSON.parse(fs.readFileSync(path.join(root,'data','canonical-100-expansion.json'),'utf8'));
 const ledger=JSON.parse(fs.readFileSync(path.join(root,'data','wave3-source-verification.json'),'utf8'));
 
-if(![40,60].includes(published.length))throw new Error(`Wave 3 provenance expects runtime 40 before publication or 60 after publication, got ${published.length}`);
+if(![40,60,80,100].includes(published.length))throw new Error(`Wave 3 provenance expects runtime 40 before publication or 60 after publication, got ${published.length}`);
 if(ledger.phase!=='wave3-source-verification'||ledger.wave!==3)throw new Error('unexpected Wave 3 source-verification metadata');
 if(ledger.policy?.publication_state!=='research-only')throw new Error('Wave 3 source ledger must remain immutable research provenance');
 if(!String(ledger.policy?.runtime_lock||'').includes('40'))throw new Error('Wave 3 provenance must retain its original runtime-40 staging lock');
@@ -16,7 +16,7 @@ if(JSON.stringify(ledger.ordinal_range)!==JSON.stringify([41,60]))throw new Erro
 
 const planned=(canonical.entries||[]).filter(x=>x.wave===3).slice().sort((a,b)=>a.ordinal-b.ordinal);
 if(published.length===40&&planned.length!==20)throw new Error(`pre-publication canonical-100 Wave 3 must contain exactly 20 rows, got ${planned.length}`);
-if(published.length===60&&planned.length!==0)throw new Error('post-publication canonical-100 expansion must no longer retain Wave 3 rows');
+if(published.length>=60&&planned.length!==0)throw new Error('post-publication canonical-100 expansion must no longer retain Wave 3 rows');
 if(published.length===40)for(let i=0;i<20;i++)if(planned[i].ordinal!==i+41)throw new Error(`canonical Wave 3 ordinal gap at ${i+41}`);
 
 const rows=(ledger.patterns||[]).slice().sort((a,b)=>a.ordinal-b.ordinal);

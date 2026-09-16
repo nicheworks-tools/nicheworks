@@ -2,7 +2,7 @@
   "schema_version": 1,
   "updated": "2026-09-16",
   "policy": {
-    "purpose": "Explain decisive visual differences for high-confusion comparisons across the published canonical 60.",
+    "purpose": "Explain decisive visual differences for high-confusion comparisons across the published canonical 80.",
     "external_concepts_are_not_patterns": true
   },
   "guides": [
@@ -459,6 +459,305 @@
       "decisive_cue": {
         "ja": "葉が一貫してアイビー形でつるに沿うならIvy。複数植物や別種の葉まで含むならBotanical。",
         "en": "Consistent ivy-shaped leaves along vines suggest Ivy; mixed or broader plant forms suggest Botanical."
+      }
+    },
+    {
+      "id": "baroque-scroll--acanthus",
+      "left": "baroque-scroll",
+      "right": "acanthus",
+      "summary": {
+        "ja": "どちらも巻き葉装飾ですが、バロック・スクロールは巻き線全体、アカンサスは裂けた葉が主役です。",
+        "en": "Both can use scrolling foliage; Baroque Scroll centers on scroll paths, Acanthus on deeply cut leaves."
+      },
+      "decisive_cue": {
+        "ja": "巻き線が主役ならBaroque Scroll。大きな裂け葉ならAcanthus。",
+        "en": "Dominant scroll paths suggest Baroque Scroll; dominant cut leaves suggest Acanthus."
+      }
+    },
+    {
+      "id": "chinoiserie--toile-de-jouy",
+      "left": "chinoiserie",
+      "right": "toile-de-jouy",
+      "summary": {
+        "ja": "シノワズリは楼閣・鳥・花木など中国趣味の装飾、トワルは人物・田園場面が強い手掛かりです。",
+        "en": "Chinoiserie uses fanciful Chinese-inspired pavilions, birds and flora; Toile is cued by pastoral narrative scenes."
+      },
+      "decisive_cue": {
+        "ja": "楼閣や鳥ならChinoiserie。単色の人物・田園場面ならToile。",
+        "en": "Pavilions/birds suggest Chinoiserie; monochrome pastoral scenes suggest Toile."
+      }
+    },
+    {
+      "id": "flame-stitch--zigzag",
+      "left": "flame-stitch",
+      "right": "zigzag",
+      "summary": {
+        "ja": "Flame Stitchは階段状の山谷、Zigzagは単純な折れ線です。",
+        "en": "Flame Stitch uses stepped peaks; Zigzag uses a simpler angular line."
+      },
+      "decisive_cue": {
+        "ja": "階段状ならFlame Stitch。一本の折れ線ならZigzag。",
+        "en": "Stepped construction indicates Flame Stitch."
+      }
+    },
+    {
+      "id": "flame-stitch--chevron",
+      "left": "flame-stitch",
+      "right": "chevron",
+      "summary": {
+        "ja": "Flame Stitchは多段ピーク、Chevronは直線V字です。",
+        "en": "Flame Stitch has stepped multi-level peaks; Chevron has straight V bands."
+      },
+      "decisive_cue": {
+        "ja": "輪郭が階段ならFlame Stitch。",
+        "en": "Stepped edges indicate Flame Stitch."
+      }
+    },
+    {
+      "id": "tree-of-life--botanical-print",
+      "left": "tree-of-life",
+      "right": "botanical-print",
+      "summary": {
+        "ja": "生命の樹は中央の幹が全体を統合し、Botanicalは植物全般です。",
+        "en": "Tree of Life is organized around one trunk; Botanical Print is broader plant imagery."
+      },
+      "decisive_cue": {
+        "ja": "一本の幹が全体をまとめるならTree of Life。",
+        "en": "One organizing trunk indicates Tree of Life."
+      }
+    },
+    {
+      "id": "yagasuri--chevron",
+      "left": "yagasuri",
+      "right": "chevron",
+      "summary": {
+        "ja": "矢絣は矢羽単位、Chevronは一般V字帯です。",
+        "en": "Yagasuri uses arrow-feather units; Chevron is generic V-banding."
+      },
+      "decisive_cue": {
+        "ja": "矢羽として読めるならYagasuri。",
+        "en": "Legible arrow fletching indicates Yagasuri."
+      }
+    },
+    {
+      "id": "yagasuri--herringbone",
+      "left": "yagasuri",
+      "right": "herringbone",
+      "summary": {
+        "ja": "矢絣は矢羽モチーフ、Herringboneは斜線列の噛み合わせです。",
+        "en": "Yagasuri repeats arrow feathers; Herringbone interlocks diagonal segments."
+      },
+      "decisive_cue": {
+        "ja": "閉じた矢羽単位ならYagasuri。",
+        "en": "Closed arrow-feather units indicate Yagasuri."
+      }
+    },
+    {
+      "id": "sayagata--greek-key",
+      "left": "sayagata",
+      "right": "greek-key",
+      "summary": {
+        "ja": "紗綾形は卍形の鍵線が面を埋め、Greek Keyはメアンダー帯が典型です。",
+        "en": "Sayagata interlocks manji-derived frets across a field; Greek Key commonly runs as a band."
+      },
+      "decisive_cue": {
+        "ja": "面全体の連鎖ならSayagata。",
+        "en": "All-over interlocking field indicates Sayagata."
+      }
+    },
+    {
+      "id": "uroko--hishi",
+      "left": "uroko",
+      "right": "hishi",
+      "summary": {
+        "ja": "Urokoは三角、Hishiは菱が主単位です。",
+        "en": "Uroko uses triangles; Hishi uses rhombi."
+      },
+      "decisive_cue": {
+        "ja": "独立セルが三角ならUroko。",
+        "en": "Triangle cells indicate Uroko."
+      }
+    },
+    {
+      "id": "tatewaku--ogee",
+      "left": "tatewaku",
+      "right": "ogee",
+      "summary": {
+        "ja": "立涌は縦に立ち上る日本文様、Ogeeは広い二重曲線形式です。",
+        "en": "Tatewaku is a vertically rising Japanese convention; Ogee is the broader double-curve family."
+      },
+      "decisive_cue": {
+        "ja": "縦長の和柄列ならTatewaku。",
+        "en": "Vertically rising Japanese rows indicate Tatewaku."
+      }
+    },
+    {
+      "id": "kagome--lattice",
+      "left": "kagome",
+      "right": "lattice",
+      "summary": {
+        "ja": "籠目は三方向線で三角・六角を作り、Latticeは広い交差格子です。",
+        "en": "Kagome uses three directions creating triangle/hexagon openings; Lattice is broader."
+      },
+      "decisive_cue": {
+        "ja": "三角と六角が同時に見えるならKagome。",
+        "en": "Triangle and hexagon openings indicate Kagome."
+      }
+    },
+    {
+      "id": "kagome--trellis",
+      "left": "kagome",
+      "right": "trellis",
+      "summary": {
+        "ja": "籠目は編み線の交差、Trellisは区画を囲う連結フレームです。",
+        "en": "Kagome is crossed basket lattice; Trellis is enclosing framework."
+      },
+      "decisive_cue": {
+        "ja": "編み線の交差が主役ならKagome。",
+        "en": "Crossed weaving lines suggest Kagome."
+      }
+    },
+    {
+      "id": "kanoko--polka-dot",
+      "left": "kanoko",
+      "right": "polka-dot",
+      "summary": {
+        "ja": "鹿の子は絞り由来の輪点、水玉は均一な丸です。",
+        "en": "Kanoko uses resist-derived rings; Polka Dot uses generic circles."
+      },
+      "decisive_cue": {
+        "ja": "白抜き輪ならKanoko。",
+        "en": "Resist rings indicate Kanoko."
+      }
+    },
+    {
+      "id": "kanoko--shibori",
+      "left": "kanoko",
+      "right": "shibori",
+      "summary": {
+        "ja": "鹿の子は細かな輪点型、Shiboriはより広い絞り技法群です。",
+        "en": "Kanoko is a dotted/ring convention within the broader Shibori family."
+      },
+      "decisive_cue": {
+        "ja": "規則的な輪点ならKanoko。",
+        "en": "Regular tiny rings indicate Kanoko."
+      }
+    },
+    {
+      "id": "hanabishi--hishi",
+      "left": "hanabishi",
+      "right": "hishi",
+      "summary": {
+        "ja": "花菱は四弁花が菱形になり、Hishiは花を必要としません。",
+        "en": "Hanabishi integrates a four-petal flower into a lozenge; Hishi does not require floral structure."
+      },
+      "decisive_cue": {
+        "ja": "花弁が読める菱ならHanabishi。",
+        "en": "A floral diamond indicates Hanabishi."
+      }
+    },
+    {
+      "id": "same-komon--kanoko",
+      "left": "same-komon",
+      "right": "kanoko",
+      "summary": {
+        "ja": "鮫小紋は極小点の面、鹿の子は輪点が一粒ずつ読めます。",
+        "en": "Same Komon packs ultra-fine dots; Kanoko has larger legible rings."
+      },
+      "decisive_cue": {
+        "ja": "遠目で面になる極小点ならSame Komon。",
+        "en": "Near-solid fine dots indicate Same Komon."
+      }
+    },
+    {
+      "id": "nami-chidori--seigaiha",
+      "left": "nami-chidori",
+      "right": "seigaiha",
+      "summary": {
+        "ja": "波千鳥は波と小鳥、青海波は波だけです。",
+        "en": "Nami Chidori combines waves with birds; Seigaiha is wave-only."
+      },
+      "decisive_cue": {
+        "ja": "鳥がいるならNami Chidori。",
+        "en": "Visible birds indicate Nami Chidori."
+      }
+    },
+    {
+      "id": "shibori--bandhani",
+      "left": "shibori",
+      "right": "bandhani",
+      "summary": {
+        "ja": "Shiboriは多様な日本の絞り、Bandhaniは微細な結び点を大量に使います。",
+        "en": "Shibori covers diverse Japanese resist methods; Bandhani characteristically uses masses of tiny tied points."
+      },
+      "decisive_cue": {
+        "ja": "極小点群ならBandhani。",
+        "en": "Masses of tiny tied dots suggest Bandhani."
+      }
+    },
+    {
+      "id": "shibori--batik",
+      "left": "shibori",
+      "right": "batik",
+      "summary": {
+        "ja": "Shiboriは括り・縫い・折り、Batikは蝋で防染します。",
+        "en": "Shibori resists by binding/folding/stitching; Batik uses wax."
+      },
+      "decisive_cue": {
+        "ja": "描画的な蝋輪郭ならBatik。",
+        "en": "Drawn wax-resist outlines suggest Batik."
+      }
+    },
+    {
+      "id": "batik--ajrakh",
+      "left": "batik",
+      "right": "ajrakh",
+      "summary": {
+        "ja": "Batikは蝋防染、Ajrakhは藍赤の多工程木版幾何が強い手掛かりです。",
+        "en": "Batik centers on wax resist; Ajrakh is cued by dense indigo/red block geometry."
+      },
+      "decisive_cue": {
+        "ja": "藍赤の木版ロゼット反復ならAjrakh。",
+        "en": "Indigo/red block rosettes suggest Ajrakh."
+      }
+    },
+    {
+      "id": "ajrakh--kalamkari",
+      "left": "ajrakh",
+      "right": "kalamkari",
+      "summary": {
+        "ja": "Ajrakhは幾何木版反復、Kalamkariは手描き風の花唐草や物語絵が代表的です。",
+        "en": "Ajrakh reads as geometric block repeats; Kalamkari is more pictorial and hand-drawn."
+      },
+      "decisive_cue": {
+        "ja": "手描き花唐草ならKalamkari。",
+        "en": "Hand-drawn floral imagery suggests Kalamkari."
+      }
+    },
+    {
+      "id": "bandhani--kanoko",
+      "left": "bandhani",
+      "right": "kanoko",
+      "summary": {
+        "ja": "どちらも絞り点ですが、Bandhaniは極小点の大群、鹿の子は輪点の規則配列です。",
+        "en": "Both use resist dots; Bandhani uses masses of tiny points while Kanoko uses regular legible rings."
+      },
+      "decisive_cue": {
+        "ja": "極小点で大図形を作るならBandhani。",
+        "en": "Masses of tiny points forming larger figures suggest Bandhani."
+      }
+    },
+    {
+      "id": "kalamkari--chinoiserie",
+      "left": "kalamkari",
+      "right": "chinoiserie",
+      "summary": {
+        "ja": "Kalamkariはインドの染織制作伝統、Chinoiserieはヨーロッパの中国趣味装飾様式です。",
+        "en": "Kalamkari is an Indian textile-making tradition; Chinoiserie is a European Chinese-inspired decorative style."
+      },
+      "decisive_cue": {
+        "ja": "インド布の手描き花唐草ならKalamkari。",
+        "en": "Indian hand-drawn floral textile context suggests Kalamkari."
       }
     }
   ]

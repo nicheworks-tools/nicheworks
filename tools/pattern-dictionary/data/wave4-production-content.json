@@ -30,11 +30,13 @@
       "distinguishing_features": {
         "ja": [
           "C字・S字の巻き線",
-          "葉や花を伴う装飾的な連続"
+          "葉や花を伴う装飾的な連続",
+          "巻き線が横方向へ連続して走る反復リズム"
         ],
         "en": [
           "Rolling C/S scrollwork",
-          "Often entwined with foliage or flowers"
+          "Often entwined with foliage or flowers",
+          "A running scroll rhythm that continues laterally across the repeat"
         ]
       },
       "common_uses": {
@@ -123,11 +125,13 @@
       "distinguishing_features": {
         "ja": [
           "楼閣・鳥・花木などの東アジア風情景",
-          "一つのモチーフではなく様式全体"
+          "一つのモチーフではなく様式全体",
+          "情景要素を余白とともに非対称に配置する構成"
         ],
         "en": [
           "Pavilions, birds, and flowering plants",
-          "A broad style rather than one motif"
+          "A broad style rather than one motif",
+          "Scenic motifs commonly arranged asymmetrically with open space between them"
         ]
       },
       "common_uses": {
@@ -219,11 +223,13 @@
       "distinguishing_features": {
         "ja": [
           "階段状の山と谷",
-          "単純なジグザグより多段の尖り"
+          "単純なジグザグより多段の尖り",
+          "段階的に上下するジグザグが炎状の峰をつくる"
         ],
         "en": [
           "Stepped peaks and valleys",
-          "More stair-stepped than a simple zigzag"
+          "More stair-stepped than a simple zigzag",
+          "Stepped zigzags rise and fall into flame-like peaks"
         ]
       },
       "common_uses": {
@@ -314,11 +320,13 @@
       "distinguishing_features": {
         "ja": [
           "中心となる幹",
-          "枝葉が一体の樹木として広がる"
+          "枝葉が一体の樹木として広がる",
+          "中央の幹から左右へ枝葉が展開する樹形"
         ],
         "en": [
           "A central trunk",
-          "Branches and foliage form one coherent tree"
+          "Branches and foliage form one coherent tree",
+          "A central trunk expands outward into branching foliage"
         ]
       },
       "common_uses": {
@@ -409,11 +417,13 @@
       "distinguishing_features": {
         "ja": [
           "水面のような揺らぐ帯",
-          "間隔や太さが局所的に変化"
+          "間隔や太さが局所的に変化",
+          "水面のような波紋が重なって流れる光沢線"
         ],
         "en": [
           "Watered flowing bands",
-          "Local shifts in spacing and thickness"
+          "Local shifts in spacing and thickness",
+          "Overlapping watered ripples create a flowing, lustrous surface effect"
         ]
       },
       "common_uses": {
@@ -502,11 +512,13 @@
       "distinguishing_features": {
         "ja": [
           "矢羽を思わせる細長いV字",
-          "同じ方向へ規則的に連続"
+          "同じ方向へ規則的に連続",
+          "矢羽根形のV字単位が同方向へ整列する"
         ],
         "en": [
           "Elongated arrow-feather V units",
-          "Strong repeated direction"
+          "Strong repeated direction",
+          "Arrow-feather V units align in a consistent directional repeat"
         ]
       },
       "common_uses": {
@@ -596,11 +608,13 @@
       "distinguishing_features": {
         "ja": [
           "直角で折れる鍵状線",
-          "線が連結して面を埋める"
+          "線が連結して面を埋める",
+          "卍を崩した鍵形の線が途切れず連結する"
         ],
         "en": [
           "Right-angled key-like lines",
-          "Interlocks into a continuous field"
+          "Interlocks into a continuous field",
+          "Interlocking key-fret lines derived from manji forms connect continuously"
         ]
       },
       "common_uses": {
@@ -689,11 +703,13 @@
       "distinguishing_features": {
         "ja": [
           "三角形が主単位",
-          "上下反転した三角が規則的に続く"
+          "上下反転した三角が規則的に続く",
+          "三角形が上下反転しながら規則的に並ぶ"
         ],
         "en": [
           "Triangles are the primary unit",
-          "Alternating upright and inverted triangles"
+          "Alternating upright and inverted triangles",
+          "Triangles alternate orientation in a regular scale-like repeat"
         ]
       },
       "common_uses": {
@@ -784,11 +800,13 @@
       "distinguishing_features": {
         "ja": [
           "縦方向に連続する曲線",
-          "左右の線がふくらみとくびれを作る"
+          "左右の線がふくらみとくびれを作る",
+          "平行する波状線が縦方向へ立ち上がる"
         ],
         "en": [
           "Curves run vertically",
-          "Opposed lines swell and narrow"
+          "Opposed lines swell and narrow",
+          "Parallel undulating lines rise vertically through the repeat"
         ]
       },
       "common_uses": {
@@ -877,11 +895,13 @@
       "distinguishing_features": {
         "ja": [
           "三方向の斜線が交差",
-          "三角・六角・星状の開口"
+          "三角・六角・星状の開口",
+          "斜線が交差して三角形と六角形を連結する籠目格子"
         ],
         "en": [
           "Three directional sets of diagonals",
-          "Triangle, hexagon, and star-like openings"
+          "Triangle, hexagon, and star-like openings",
+          "Interlaced diagonals form a connected lattice of triangles and hexagons"
         ]
       },
       "common_uses": {
@@ -972,11 +992,13 @@
       "distinguishing_features": {
         "ja": [
           "小さな点または輪点",
-          "点が菱状・格子状にまとまる"
+          "点が菱状・格子状にまとまる",
+          "小さな結び防染の点が群として反復する"
         ],
         "en": [
           "Small dots or resist rings",
-          "Often grouped in diamond or grid arrangements"
+          "Often grouped in diamond or grid arrangements",
+          "Small tied-resist dots repeat in clustered formations"
         ]
       },
       "common_uses": {
@@ -1020,7 +1042,8 @@
         "ja": [
           "小さい絞りの点が並ぶ和柄",
           "鹿の子 模様",
-          "白い輪点の着物柄"
+          "白い輪点の着物柄",
+          "絞りの輪点"
         ],
         "en": [
           "kanoko shibori dots",
@@ -1068,11 +1091,13 @@
       "distinguishing_features": {
         "ja": [
           "四弁花が菱形に収まる",
-          "花と菱が一体化した輪郭"
+          "花と菱が一体化した輪郭",
+          "菱形の輪郭内に四弁の花形が収まる"
         ],
         "en": [
           "Four petals organized as a lozenge",
-          "Flower and diamond form are integrated"
+          "Flower and diamond form are integrated",
+          "A four-petal floral unit is contained within a lozenge-shaped structure"
         ]
       },
       "common_uses": {
@@ -1163,11 +1188,13 @@
       "distinguishing_features": {
         "ja": [
           "非常に細かい点",
-          "点が弧・扇状にまとまる"
+          "点が弧・扇状にまとまる",
+          "極小の点が高密度に集まり鮫肌状の面をつくる"
         ],
         "en": [
           "Extremely fine dots",
-          "Dots form arc or fan-like groupings"
+          "Dots form arc or fan-like groupings",
+          "Extremely fine dense dots create the characteristic shark-skin-like field"
         ]
       },
       "common_uses": {
@@ -1259,11 +1286,13 @@
       "distinguishing_features": {
         "ja": [
           "波と小鳥が同じ構図にある",
-          "千鳥は翼を広げた簡略シルエット"
+          "千鳥は翼を広げた簡略シルエット",
+          "波の曲線と飛ぶ千鳥を一組として読む"
         ],
         "en": [
           "Waves and small birds share the composition",
-          "Chidori appear as simplified flying silhouettes"
+          "Chidori appear as simplified flying silhouettes",
+          "Curving waves and flying plovers are read together as the defining motif pair"
         ]
       },
       "common_uses": {
@@ -1351,11 +1380,13 @@
       "distinguishing_features": {
         "ja": [
           "コンマ・勾玉状の曲形",
-          "中心の周囲に回転配置"
+          "中心の周囲に回転配置",
+          "勾玉状の曲線単位が中心の周囲を旋回する"
         ],
         "en": [
           "Comma-like curved units",
-          "Arranged rotationally around a center"
+          "Arranged rotationally around a center",
+          "Comma-shaped curved units revolve around a shared center"
         ]
       },
       "common_uses": {
@@ -1439,11 +1470,13 @@
       "distinguishing_features": {
         "ja": [
           "染まらない白抜き部分",
-          "輪・線・しわ状など多様な絞り痕"
+          "輪・線・しわ状など多様な絞り痕",
+          "防染部のにじみや輪郭の揺らぎが反復に残る"
         ],
         "en": [
           "Undyed resist areas",
-          "Rings, lines, or fold marks vary by method"
+          "Rings, lines, or fold marks vary by method",
+          "Resist-dyed edges retain characteristic soft halos and irregularity"
         ]
       },
       "common_uses": {
@@ -1534,11 +1567,13 @@
       "distinguishing_features": {
         "ja": [
           "蝋防染による細い輪郭",
-          "植物・幾何など多様なモチーフ"
+          "植物・幾何など多様なモチーフ",
+          "蝋防染による輪郭と細かなひび割れ状の線が現れる"
         ],
         "en": [
           "Fine wax-resist boundaries",
-          "Wide range of floral and geometric motifs"
+          "Wide range of floral and geometric motifs",
+          "Wax-resist contours may be accompanied by fine crackle-like lines"
         ]
       },
       "common_uses": {
@@ -1629,11 +1664,13 @@
       "distinguishing_features": {
         "ja": [
           "非常に小さな白抜き点",
-          "多数の点で大きな図形を作る"
+          "多数の点で大きな図形を作る",
+          "結び防染の小点が列や幾何・花形を組み立てる"
         ],
         "en": [
           "Very small resist dots",
-          "Many dots combine into larger figures"
+          "Many dots combine into larger figures",
+          "Tiny tied-resist dots assemble into rows, geometric forms, or floral motifs"
         ]
       },
       "common_uses": {
@@ -1725,11 +1762,13 @@
       "distinguishing_features": {
         "ja": [
           "木版由来の反復幾何",
-          "藍・赤系の深い配色が代表的"
+          "藍・赤系の深い配色が代表的",
+          "幾何と植物要素を対称的なブロック反復へ組み込む"
         ],
         "en": [
           "Repeating block-printed geometry",
-          "Deep indigo/red palettes are characteristic references"
+          "Deep indigo/red palettes are characteristic references",
+          "Geometric and vegetal motifs are organized into strongly ordered block repeats"
         ]
       },
       "common_uses": {
@@ -1820,11 +1859,13 @@
       "distinguishing_features": {
         "ja": [
           "手描き感のある細い輪郭",
-          "花唐草・樹木・物語場面など多様"
+          "花唐草・樹木・物語場面など多様",
+          "植物の蔓や花を流れる線でつなぐ描画的構成"
         ],
         "en": [
           "Fine hand-drawn-looking outlines",
-          "Floral vines, trees, or narrative imagery"
+          "Floral vines, trees, or narrative imagery",
+          "Flowing drawn or printed lines connect vines, flowers, and other pictorial motifs"
         ]
       },
       "common_uses": {

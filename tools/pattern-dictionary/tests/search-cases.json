@@ -704,5 +704,401 @@
     "query": "葉っぱ中心の植物プリント",
     "expected": "botanical-print",
     "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "バロックの巻き葉模様",
+    "expected": "baroque-scroll",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "baroque scrolling foliage",
+    "expected": "baroque-scroll",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "中国風の楼閣と鳥の壁紙",
+    "expected": "chinoiserie",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "chinoiserie garden pattern",
+    "expected": "chinoiserie",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "炎みたいな階段ジグザグ",
+    "expected": "flame-stitch",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "stepped flame zigzag",
+    "expected": "flame-stitch",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "一本の木から花が広がる柄",
+    "expected": "tree-of-life",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "tree of life textile motif",
+    "expected": "tree-of-life",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "水面みたいに揺れる光沢生地",
+    "expected": "moire",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "watered silk effect",
+    "expected": "moire",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "矢羽根が並ぶ和柄",
+    "expected": "yagasuri",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "Japanese arrow feather pattern",
+    "expected": "yagasuri",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "卍がつながる和柄",
+    "expected": "sayagata",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "interlocking manji fret",
+    "expected": "sayagata",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "三角が並ぶ鱗の和柄",
+    "expected": "uroko",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "Japanese triangle scale pattern",
+    "expected": "uroko",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "縦に湧き上がる曲線の和柄",
+    "expected": "tatewaku",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "Japanese vertical swelling curves",
+    "expected": "tatewaku",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "竹かごみたいな三角格子",
+    "expected": "kagome",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "Japanese basket lattice pattern",
+    "expected": "kagome",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "小さい絞りの点が並ぶ和柄",
+    "expected": "kanoko",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "kanoko shibori dots",
+    "expected": "kanoko",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "花が菱形になった和柄",
+    "expected": "hanabishi",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "Japanese floral diamond motif",
+    "expected": "hanabishi",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "遠目で無地に見える細かい点の和柄",
+    "expected": "same-komon",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "same komon fine dots",
+    "expected": "same-komon",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "波の上を小鳥が飛ぶ和柄",
+    "expected": "nami-chidori",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "Japanese waves with plovers",
+    "expected": "nami-chidori",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "勾玉みたいな渦の和柄",
+    "expected": "tomoe",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "Japanese comma swirl motif",
+    "expected": "tomoe",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "白抜きの輪がにじむ絞り染め",
+    "expected": "shibori",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "Japanese shibori resist dye",
+    "expected": "shibori",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "蝋染めの細かい柄",
+    "expected": "batik",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "wax resist batik pattern",
+    "expected": "batik",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "小さい白い点で菱形を作る染め布",
+    "expected": "bandhani",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "bandhani tiny resist dots",
+    "expected": "bandhani",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "藍と赤の細かい木版柄",
+    "expected": "ajrakh",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "ajrakh block print",
+    "expected": "ajrakh",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "手描きの花唐草インド布",
+    "expected": "kalamkari",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "kalamkari hand painted textile",
+    "expected": "kalamkari",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "シェブロンではなく矢羽根の和柄",
+    "expected": "yagasuri",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "not generic chevron arrow feather Japanese",
+    "expected": "yagasuri",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "ジグザグではなく階段状の炎",
+    "expected": "flame-stitch",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "stair stepped flame not simple zigzag",
+    "expected": "flame-stitch",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "一般ラティスではなく竹籠の三方向格子",
+    "expected": "kagome",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "three direction basket lattice not simple lattice",
+    "expected": "kagome",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "水玉ではなく絞りの輪点",
+    "expected": "kanoko",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "resist rings not polka dots",
+    "expected": "kanoko",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "青海波ではなく波に小鳥が飛ぶ",
+    "expected": "nami-chidori",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "waves plus birds not seigaiha",
+    "expected": "nami-chidori",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "バティックではなく藍赤の木版ロゼット",
+    "expected": "ajrakh",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "indigo red block rosettes not batik",
+    "expected": "ajrakh",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "一般オジーではなく縦に立ち上る和柄",
+    "expected": "tatewaku",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "Japanese vertical rising curves not generic ogee",
+    "expected": "tatewaku",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "グリークキーではなく卍形が連結した地文",
+    "expected": "sayagata",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "interlocking manji field not Greek key band",
+    "expected": "sayagata",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "菱形ではなく三角セルの鱗文様",
+    "expected": "uroko",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "triangle scale cells not diamond",
+    "expected": "uroko",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "普通の植物柄ではなく中央に一本の生命の樹",
+    "expected": "tree-of-life",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "central tree structure not generic botanical print",
+    "expected": "tree-of-life",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "鹿の子よりさらに細かい扇状点群",
+    "expected": "same-komon",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "ultra fine fan dots not kanoko rings",
+    "expected": "same-komon",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "絞り全般ではなく微細点が大群になるバンダニ",
+    "expected": "bandhani",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "masses of tiny tie resist dots bandhani",
+    "expected": "bandhani",
+    "top1": true
+  },
+  {
+    "lang": "ja",
+    "query": "楼閣と鳥のヨーロッパ中国趣味",
+    "expected": "chinoiserie",
+    "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "European Chinese inspired pavilion bird decor",
+    "expected": "chinoiserie",
+    "top1": true
   }
 ]
