@@ -1,13 +1,14 @@
 import fs from 'node:fs';
 
+const base=JSON.parse(fs.readFileSync(new URL('../data/patterns.json',import.meta.url),'utf8'));
 const patterns=JSON.parse(fs.readFileSync(new URL('../data/production-content.json',import.meta.url),'utf8')).patterns;
 const ledger=JSON.parse(fs.readFileSync(new URL('../data/source-verification.json',import.meta.url),'utf8'));
-const canonical=['houndstooth','gingham','tartan','glen-check','argyle','chevron','polka-dot','moroccan-trellis','seigaiha','asanoha','shippo','ichimatsu','kikko','karakusa','damask','arabesque','paisley','leopard-print','ikat','kilim'].sort();
+const canonical=base.map(x=>x.id).sort();
 const fail=m=>{console.error(`FAIL: ${m}`);process.exitCode=1};
-const ids=patterns.map(p=>p.pattern_id).sort();
-const ledgerIds=ledger.patterns.map(p=>p.pattern_id).sort();
-if(JSON.stringify(ids)!==JSON.stringify(canonical))fail('production canonical ID set differs from fixed 20');
-if(JSON.stringify(ledgerIds)!==JSON.stringify(canonical))fail('source ledger canonical ID set differs from fixed 20');
+const ids=patterns.map(p=>p.pattern_id).sort(),ledgerIds=ledger.patterns.map(p=>p.pattern_id).sort();
+if(canonical.length!==40)fail(`runtime canonical set must be 40, got ${canonical.length}`);
+if(JSON.stringify(ids)!==JSON.stringify(canonical))fail('production ID set differs from runtime canonical 40');
+if(JSON.stringify(ledgerIds)!==JSON.stringify(canonical))fail('source ledger ID set differs from runtime canonical 40');
 for(const record of ledger.patterns){
   const p=patterns.find(x=>x.pattern_id===record.pattern_id);
   if(!p){fail(`${record.pattern_id}: missing production record`);continue}
@@ -19,5 +20,6 @@ for(const record of ledger.patterns){
   if(record.verification_state==='qualified'&&!record.qualification)fail(`${record.pattern_id}: missing source qualification`);
 }
 const qualified=ledger.patterns.filter(p=>p.verification_state==='qualified').map(p=>p.pattern_id).sort();
-if(JSON.stringify(qualified)!==JSON.stringify(['ikat','kilim','moroccan-trellis']))fail(`qualified set changed: ${qualified.join(', ')}`);
-if(!process.exitCode)console.log(`OK: source verification ledger covers exactly 20 canonical patterns; verified=${20-qualified.length} qualified=${qualified.length}.`);
+const expected=['breton-stripe','herringbone','ikat','kilim','koushi','madras-check','moroccan-trellis','prince-of-wales-check','regimental-stripe','swiss-dot'].sort();
+if(JSON.stringify(qualified)!==JSON.stringify(expected))fail(`qualified set changed: ${qualified.join(', ')}`);
+if(!process.exitCode)console.log(`OK: source verification ledger covers exactly 40 published patterns; verified=${40-qualified.length} qualified=${qualified.length}.`);
