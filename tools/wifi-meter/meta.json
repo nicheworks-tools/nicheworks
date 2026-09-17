@@ -1,0 +1,12 @@
+{
+  "title_ja": "Wi-Fi通信状態の目安",
+  "title_en": "Connection Status Estimate",
+  "desc_ja": "ブラウザのNetwork Information APIが返す推定RTT・推定帯域から通信状態の変化を確認します。RSSI・実ping・速度測定ではありません。",
+  "desc_en": "Check connection-status changes from browser-estimated RTT and downlink values. This is not an RSSI meter, real ping test, or speed test.",
+  "tags": [
+    "wifi",
+    "network",
+    "rtt",
+    "connection"
+  ]
+}
