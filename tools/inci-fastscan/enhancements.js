@@ -1,6 +1,12 @@
 (function enhanceFastScan(root) {
   'use strict';
 
+  function extendRoleTaxonomy() {
+    if (typeof ROLE_LABELS === 'undefined' || typeof ROLE_DESCRIPTIONS === 'undefined') return;
+    ROLE_LABELS['plant extract'] = { ja: '植物エキス', en: 'Plant extract' };
+    ROLE_DESCRIPTIONS['plant extract'] = { ja: '植物から得られたエキス成分です。', en: 'A plant-derived extract ingredient.' };
+  }
+
   const workflows = [
     {
       fileId: 'ocr-file-fast',
@@ -168,6 +174,7 @@
   }
 
   function init() {
+    extendRoleTaxonomy();
     syncRoleFirstCopy();
     for (const workflow of workflows) setupWorkflow(workflow);
     document.addEventListener('click', (event) => {
