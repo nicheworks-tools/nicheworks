@@ -1,0 +1,60 @@
+name: Pattern Dictionary content audit temp
+
+on:
+  push:
+    branches:
+      - audit/pattern-dictionary-content-quality-20260917
+    paths:
+      - .github/workflows/pattern-dictionary-content-audit-temp.yml
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/pattern-dictionary-content-quality-20260917
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Compare source verification and production content
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const root='tools/pattern-dictionary/data/';
+          const src=JSON.parse(fs.readFileSync(root+'source-verification.json','utf8'));
+          const prod=JSON.parse(fs.readFileSync(root+'production-content.json','utf8'));
+          const base=JSON.parse(fs.readFileSync(root+'patterns.json','utf8'));
+          const S=new Map(src.patterns.map(x=>[x.pattern_id,x]));
+          const P=new Map(prod.patterns.map(x=>[x.pattern_id,x]));
+          const B=new Map(base.map(x=>[x.id,x]));
+          const findings=[];
+          const norm=x=>JSON.stringify(x??null);
+          for(const id of [...S.keys()]){
+            const s=S.get(id),p=P.get(id),b=B.get(id);
+            if(!p){findings.push({id,severity:'error',field:'record',issue:'missing production record'});continue}
+            if(norm(s.verified_names)!==norm(p.names))findings.push({id,severity:'error',field:'names',source:s.verified_names,production:p.names});
+            if(norm(s.verified_aliases)!==norm(p.aliases))findings.push({id,severity:'warn',field:'aliases',source:s.verified_aliases,production:p.aliases});
+            if(s.verification_state!==p.verification_state)findings.push({id,severity:'error',field:'verification_state',source:s.verification_state,production:p.verification_state});
+            if(s.term_scope!==p.term_scope)findings.push({id,severity:'warn',field:'term_scope',source:s.term_scope,production:p.term_scope});
+            const srole=s.color_guidance?.color_role, prole=p.colors?.color_role;
+            if(srole&&prole&&srole!==prole)findings.push({id,severity:'warn',field:'color_role',source:srole,production:prole});
+            const qualified=s.verification_state==='qualified';
+            if(qualified && !prod.policy.qualified_terms.includes(id))findings.push({id,severity:'error',field:'qualified_terms',issue:'source qualified but policy omits id'});
+            if(!qualified && prod.policy.qualified_terms.includes(id))findings.push({id,severity:'warn',field:'qualified_terms',issue:'policy qualified but source is verified'});
+            if(!p.definition?.ja||!p.definition?.en)findings.push({id,severity:'error',field:'definition',issue:'missing bilingual definition'});
+            if((p.distinguishing_features?.ja||[]).length<2||(p.distinguishing_features?.en||[]).length<2)findings.push({id,severity:'error',field:'features',issue:'insufficient bilingual distinguishing features'});
+            if((p.common_uses?.ja||[]).length<1||(p.common_uses?.en||[]).length<1)findings.push({id,severity:'warn',field:'common_uses',issue:'missing uses'});
+            if(b?.review_state==='prototype-curated') findings.push({id,severity:'info',field:'base_review_state',issue:'base remains prototype-curated; production overlay is verified'});
+          }
+          const missingSource=[...P.keys()].filter(id=>!S.has(id));
+          const missingProd=[...S.keys()].filter(id=>!P.has(id));
+          const counts={source:S.size,production:P.size,base:B.size,qualified_source:[...S.values()].filter(x=>x.verification_state==='qualified').length,qualified_policy:prod.policy.qualified_terms.length,findings:findings.length,errors:findings.filter(x=>x.severity==='error').length,warnings:findings.filter(x=>x.severity==='warn').length,info:findings.filter(x=>x.severity==='info').length,missingSource,missingProd};
+          console.log('COUNTS',JSON.stringify(counts,null,2));
+          console.log('NON_INFO_FINDINGS',JSON.stringify(findings.filter(x=>x.severity!=='info'),null,2));
+          console.log('QUALIFIED_IDS',JSON.stringify([...S.values()].filter(x=>x.verification_state==='qualified').map(x=>x.pattern_id),null,2));
+          console.log('QUALIFIED_DETAILS',JSON.stringify([...S.values()].filter(x=>x.verification_state==='qualified').map(s=>({id:s.pattern_id,scope:s.term_scope,qualification:s.qualification||null,structure:s.structure,sources:(s.sources||[]).map(x=>({publisher:x.publisher,url:x.url,supports:x.supports}))})),null,2));
+          NODE
