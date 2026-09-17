@@ -1,0 +1,37 @@
+name: Old Kanji Wave 6 guarded patch
+
+on:
+  push:
+    branches:
+      - seo/old-kanji-wave6-ga-discovery-20260917
+    paths:
+      - scripts/tmp-old-kanji-wave6-patch.mjs
+      - .github/workflows/old-kanji-wave6-patch.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: seo/old-kanji-wave6-ga-discovery-20260917
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Apply guarded patch
+        run: node scripts/tmp-old-kanji-wave6-patch.mjs
+      - name: Remove temporary patch files
+        run: |
+          rm scripts/tmp-old-kanji-wave6-patch.mjs
+          rm .github/workflows/old-kanji-wave6-patch.yml
+      - name: Commit patch
+        run: |
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git add .
+          git commit -m "Old Kanji Wave 6: consolidate 計画 old-form intent"
+          git push origin HEAD:seo/old-kanji-wave6-ga-discovery-20260917
