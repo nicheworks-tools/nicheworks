@@ -88,6 +88,8 @@ When two or more result rows exist, Lite may show:
 
 These controls are secondary to the ingredient-level answer and must not displace a single-result answer.
 
+Result filters only change visibility; they do not change the underlying analysis or rerun ingredient matching.
+
 ## Ingredient data dependency
 
 Lite reuses the maintained static data shipped with INCI FastScan:
