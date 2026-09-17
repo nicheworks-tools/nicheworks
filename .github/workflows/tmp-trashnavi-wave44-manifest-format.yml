@@ -1,0 +1,38 @@
+name: tmp TrashNavi Wave44 manifest format
+on:
+  push:
+    branches: [feat/trashnavi-wave44-publication-20260918]
+permissions:
+  contents: write
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-wave44-publication-20260918
+          fetch-depth: 0
+      - name: Restore compact manifest format
+        run: |
+          git show 7e517e07d407eb4e358efba95214d46c03f4add8:tools/trashnavi/municipality-page-manifest.json > /tmp/manifest.json
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('/tmp/manifest.json')
+          s=p.read_text().rstrip()
+          entries=[('122254','kimitsu'),('122262','futtsu'),('122297','sodegaura'),('122106','mobara'),('122131','togane'),('122301','yachimata'),('122319','inzai'),('122327','shiroi'),('122289','yotsukaido'),('122335','tomisato')]
+          assert s.endswith(']')
+          body=s[:-1].rstrip()
+          assert body.endswith('}')
+          body += ',\n' + ',\n'.join(f'  {{"lgcode":"{code}","pref_slug":"chiba","city_slug":"{slug}","publish":true}}' for code,slug in entries) + '\n]\n'
+          Path('tools/trashnavi/municipality-page-manifest.json').write_text(body)
+          import json
+          assert len(json.loads(body))==224
+          PY
+          rm .github/workflows/tmp-trashnavi-wave44-manifest-format.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/trashnavi/municipality-page-manifest.json .github/workflows/tmp-trashnavi-wave44-manifest-format.yml
+          git diff --cached --check
+          git commit -m "chore(trashnavi): preserve compact municipality manifest format"
+          git push origin HEAD:feat/trashnavi-wave44-publication-20260918
