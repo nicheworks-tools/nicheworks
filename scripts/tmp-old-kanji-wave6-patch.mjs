@@ -53,12 +53,9 @@ ga = replaceOnce(
   'ga h1 lead'
 );
 
-root = replaceOnce(
-  root,
-  '<a href="./kanji/ga-kaku/">「画」の旧字体「畫」と「計画→計畫」</a>',
-  '<a href="./kanji/ga-kaku/">「計画」の旧字体は「計畫」（画→畫）</a>',
-  'root ga anchor'
-);
+const rootOldAnchor = '<a href="./kanji/ga-kaku/">「画」の旧字体「畫」と「計画→計畫」</a>';
+const rootNewAnchor = '<a href="./kanji/ga-kaku/">「計画」の旧字体は「計畫」（画→畫）</a>';
+root = replaceOnce(root, rootOldAnchor, rootNewAnchor, 'root ga anchor');
 
 modernizer = replaceOnce(
   modernizer,
@@ -72,7 +69,7 @@ const sitemapReplacement = '    <loc>https://nicheworks.app/tools/old-kanji-refe
 sitemap = replaceOnce(sitemap, sitemapAnchor, sitemapReplacement, 'ga sitemap lastmod');
 
 if ((ga.match(/「計画」の旧字体は「計畫」/g) || []).length < 4) throw new Error('ga intent wording not propagated');
-if ((root.match(/href="\.\/kanji\/ga-kaku\/"/g) || []).length !== 1) throw new Error('root ga link count mismatch');
+if (root.split(rootNewAnchor).length - 1 !== 1) throw new Error('root new ga anchor count mismatch');
 if ((modernizer.match(/href="\.\.\/old-kanji-reference\/kanji\/ga-kaku\/"/g) || []).length !== 1) throw new Error('modernizer ga link count mismatch');
 if ((sitemap.match(/https:\/\/nicheworks\.app\/tools\/old-kanji-reference\/kanji\/ga-kaku\//g) || []).length !== 1) throw new Error('ga sitemap URL count mismatch');
 if (!sitemap.includes(sitemapReplacement)) throw new Error('ga sitemap lastmod missing');
