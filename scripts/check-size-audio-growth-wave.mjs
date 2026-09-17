@@ -79,13 +79,13 @@ has('tools/tiny-audio-meter/SPEC.md', 'Ambient referenceはactivity threshold、
 has('tools/tiny-audio-meter/SPEC.md', 'Baselineやmicrophone-derived valuesは永続保存・affiliate analytics送信されない。');
 syntax('tools/tiny-audio-meter/comparison.js');
 
-// Amazon activation is live only through the four verified user-provided targets.
-has('tools/size-converter/affiliate-config.js', 'enabled: true', 'enabled Size Converter Amazon config');
-has('tools/size-converter/affiliate-config.js', 'https://amzn.to/4hnXGRb', 'Size Converter shoes target');
-has('tools/size-converter/affiliate-config.js', 'https://amzn.to/4dxBv8Q', 'Size Converter clothing target');
-has('tools/tiny-audio-meter/affiliate-config.js', 'enabled: true', 'enabled Tiny Audio Amazon config');
-has('tools/tiny-audio-meter/affiliate-config.js', 'https://amzn.to/4xHeUyd', 'Tiny Audio sound-level-meter target');
-has('tools/tiny-audio-meter/affiliate-config.js', 'https://amzn.to/4iZFUF8', 'Tiny Audio USB microphone target');
+// Both tools are canonical ADS_DONATION; dormant Amazon compatibility must stay fail-closed.
+has('tools/size-converter/affiliate-config.js', 'enabled: false', 'disabled Size Converter affiliate config');
+lacks('tools/size-converter/affiliate-config.js', 'amzn.to', 'Size Converter live Amazon target');
+lacks('tools/size-converter/affiliate-config.js', 'amazon.co.jp', 'Size Converter live Amazon destination');
+has('tools/tiny-audio-meter/affiliate-config.js', 'enabled: false', 'disabled Tiny Audio affiliate config');
+lacks('tools/tiny-audio-meter/affiliate-config.js', 'amzn.to', 'Tiny Audio live Amazon target');
+lacks('tools/tiny-audio-meter/affiliate-config.js', 'amazon.co.jp', 'Tiny Audio live Amazon destination');
 
 if (failures.length) {
   console.error(`Size/Tiny Audio growth-wave contract failed (${failures.length})`);
@@ -97,5 +97,5 @@ console.log(JSON.stringify({
   status: 'pass',
   size_converter: ['US4-context', 'range-resolution', 'compare-tray-4'],
   tiny_audio: ['numeric-csv-summary', 'segment-copy', 'ambient-relative-reference'],
-  amazon_enabled: true
+  amazon_enabled: false
 }, null, 2));

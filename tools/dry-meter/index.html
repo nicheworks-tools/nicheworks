@@ -13,19 +13,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="index,follow">
-  <title>洗濯物・布団の乾きやすさ判定｜Dry Meter | NicheWorks</title>
-  <meta name="description" content="現在の気温・湿度・風速・降水・雲量から、洗濯物・厚手衣類・布団の乾きやすさをDry Scoreで確認できる無料ツール。現在地・緯度経度・手動入力に対応。天気予報ではありません。">
+  <title>洗濯物が乾くか判定｜Dry Meter | NicheWorks</title>
+  <meta name="description" content="気温・湿度・風速・降水・雲量から、洗濯物が乾きやすいかをDry Scoreで判定する無料ツール。厚手衣類・布団・部屋干しにも対応し、現在地または手動入力で今の乾燥条件を確認できます。">
   <link rel="canonical" href="https://nicheworks.app/tools/dry-meter/">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
-  <meta property="og:title" content="洗濯物・布団の乾きやすさ判定｜Dry Meter | NicheWorks">
-  <meta property="og:description" content="現在の気温・湿度・風速・降水・雲量から、洗濯物・厚手衣類・布団の乾きやすさをDry Scoreで確認できる無料ツール。現在地・緯度経度・手動入力に対応。天気予報ではありません。">
+  <meta property="og:title" content="洗濯物が乾くか判定｜Dry Meter | NicheWorks">
+  <meta property="og:description" content="気温・湿度・風速・降水・雲量から、洗濯物が乾きやすいかをDry Scoreで判定する無料ツール。厚手衣類・布団・部屋干しにも対応し、現在地または手動入力で今の乾燥条件を確認できます。">
   <meta property="og:url" content="https://nicheworks.app/tools/dry-meter/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="洗濯物・布団の乾きやすさ判定｜Dry Meter | NicheWorks">
-  <meta name="twitter:description" content="現在の気温・湿度・風速・降水・雲量から、洗濯物・厚手衣類・布団の乾きやすさをDry Scoreで確認できる無料ツール。現在地・緯度経度・手動入力に対応。天気予報ではありません。">
+  <meta name="twitter:title" content="洗濯物が乾くか判定｜Dry Meter | NicheWorks">
+  <meta name="twitter:description" content="気温・湿度・風速・降水・雲量から、洗濯物が乾きやすいかをDry Scoreで判定する無料ツール。厚手衣類・布団・部屋干しにも対応し、現在地または手動入力で今の乾燥条件を確認できます。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <link rel="icon" href="/assets/favicon.ico">
@@ -42,7 +42,7 @@
     "name": "Dry Meter",
     "url": "https://nicheworks.app/tools/dry-meter/",
     "applicationCategory": "UtilityApplication",
-    "description": "現在の気温・湿度・風速・降水・雲量から、洗濯物・厚手衣類・布団の乾きやすさをDry Scoreで確認できる無料ツール。現在地・緯度経度・手動入力に対応し、天気予報ではなく現在条件の目安を示します。",
+    "description": "気温・湿度・風速・降水・雲量から、洗濯物が乾きやすいかをDry Scoreで判定する無料ツール。厚手衣類・布団・部屋干しにも対応し、現在地または手動入力で今の乾燥条件を確認できます。",
     "operatingSystem": "All"
   }
   </script>
@@ -63,9 +63,9 @@
 
 <body>
   <header class="nw-header">
-    <h1 class="nw-title"><span data-i18n="ja">洗濯物・布団の乾きやすさ判定（Dry Meter）</span><span data-i18n="en">Dry Meter: Laundry Drying Conditions</span></h1>
-    <p class="nw-subtitle" data-i18n="ja">現在地または緯度経度から現在の天気を取得し、洗濯物・厚手衣類・布団の乾きやすさを簡易チェックします。</p>
-    <p class="nw-subtitle" data-i18n="en">Fetch current weather from your location or coordinates and estimate drying conditions for laundry, thick items and bedding.</p>
+    <h1 class="nw-title"><span data-i18n="ja">洗濯物が乾くか判定（Dry Meter）</span><span data-i18n="en">Laundry Drying Conditions Checker (Dry Meter)</span></h1>
+    <p class="nw-subtitle" data-i18n="ja">気温・湿度・風速などから、洗濯物・厚手衣類・布団が今どれくらい乾きやすいかを確認します。</p>
+    <p class="nw-subtitle" data-i18n="en">Check how favorable the current temperature, humidity, wind and weather are for drying laundry, thick items and bedding.</p>
     <div class="nw-lang-switch" aria-label="Language switch">
       <button type="button" data-lang="ja">JP</button> /
       <button type="button" data-lang="en">EN</button>
@@ -75,8 +75,8 @@
   <main class="nw-main">
 
     <section class="intro-card" aria-label="Tool notes">
-      <p data-i18n="ja">Dry Meterは、Open-Meteoの現在天気データ、または手動入力した気温・湿度・風速をもとにDry Scoreを計算します。外干し・部屋干し・厚手衣類・布団などを「いま干すか」の判断材料にするための目安です。</p>
-      <p data-i18n="en">Dry Meter calculates a Dry Score from Open-Meteo current weather data, or from manually entered temperature, humidity and wind. It is intended as a current-condition guide for outdoor or indoor drying, thick items and bedding.</p>
+      <p data-i18n="ja">Dry Meterは湿度計・水分計そのものではなく、現在の天気データまたは手動入力した気温・湿度・風速から、洗濯物が「いま乾きやすいか」をDry Scoreで判定するツールです。外干し・部屋干し・厚手衣類・布団の目安に使えます。</p>
+      <p data-i18n="en">Dry Meter is not a humidity or moisture meter. It estimates how favorable current conditions are for drying laundry from current weather data or manually entered temperature, humidity and wind. Use it as a guide for outdoor or indoor drying, thick items and bedding.</p>
       <p data-i18n="ja">天気予報ではありません。将来の天気や乾燥状態は予測せず、実際の乾燥結果は日照、素材、厚み、干す間隔、屋根、時間帯、取り込み時間などで変わります。</p>
       <p data-i18n="en">This is not a weather forecast. It does not predict future weather or drying, and actual results depend on sunlight, material, thickness, spacing, cover, time of day and retrieval timing.</p>
       <p data-i18n="ja">部屋干しを選んで現在天気を取得した場合も、取得値は屋外の現在気象です。室温・室内湿度・室内の風速が分かる場合は、手動入力へ合わせると室内条件に近い目安になります。</p>
@@ -157,7 +157,6 @@
         </div>
       </section>
     </section>
-
     <section class="note-card" aria-label="Privacy and storage"><h2 data-i18n="ja">データ処理と保存</h2><h2 data-i18n="en">Data handling and storage</h2><p data-i18n="ja">現在地機能を使う場合、ブラウザの位置情報許可が必要です。天気取得時には緯度・経度がOpen-Meteoへ送信されます。手動入力だけの場合、入力値はこのブラウザ内で処理されます。</p><p data-i18n="en">Using current location requires browser geolocation permission. Latitude and longitude are sent to Open-Meteo when fetching weather. Manual-only inputs are processed in this browser.</p><p data-i18n="ja"><code>nw_drymeter_v1</code> には対象・干し方・気温・湿度・風速・緯度経度などを保存します。言語設定は共通キー <code>nw_lang</code> に保存します。別端末には同期されず、ブラウザデータ削除で消えます。</p><p data-i18n="en"><code>nw_drymeter_v1</code> stores target, method, temperature, humidity, wind and coordinates. Language is stored in <code>nw_lang</code>. They do not sync across devices and are removed when browser data is cleared.</p></section>
     <section class="note-card" aria-label="Drying caveats"><h2 data-i18n="ja">部屋干し・布団の注意</h2><h2 data-i18n="en">Indoor drying and bedding notes</h2><p data-i18n="ja">部屋干し結果は、部屋の広さ、換気、除湿機、サーキュレーター、洗濯物の量、干す間隔で変わります。高湿度時はカビ・臭いのリスクにも注意してください。取得天気を使う場合は屋外の現在気象なので、室内実測値がある場合は手動入力を優先してください。</p><p data-i18n="en">Indoor drying depends on room size, ventilation, dehumidifiers, air circulators, load size and spacing. High humidity can increase mold and odor risk. Fetched weather is outdoor current weather, so use manual values when indoor measurements are available.</p><p data-i18n="ja">布団や寝具は素材、厚み、干す面、取り込み時間で変わります。湿ったまま収納しないでください。</p><p data-i18n="en">Bedding depends on material, thickness, exposed side and retrieval time. Do not store bedding while it is still damp.</p></section>
 

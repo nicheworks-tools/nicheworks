@@ -12,7 +12,7 @@ const readJson = (relativePath) => JSON.parse(
 const registry = readJson('tools/tools-index.json');
 const manifest = readJson('tools/tool-spec-manifest.json');
 const quality = readJson('audits/tool-quality-matrix.json');
-const ledger = readJson('MONETIZATION_CLASSIFICATION_87.json');
+const ledger = readJson('MONETIZATION_CLASSIFICATION.json');
 
 const allowedClasses = [
   'PRO_BUNDLE',
@@ -132,10 +132,28 @@ if (registrySet.has('reconcile')) {
   }
 }
 
+// A tool outside the canonical AFFILIATE class must not ship an enabled
+// affiliate-config runtime or direct Amazon Associates destination in that
+// config. Dormant compatibility files are allowed only when explicitly
+// disabled and stripped of outbound affiliate destinations.
+for (const className of ['ADS_DONATION', 'FREE', 'HOLD']) {
+  for (const slug of ledger.classes?.[className] || []) {
+    const configPath = path.join(root, 'tools', slug, 'affiliate-config.js');
+    if (!fs.existsSync(configPath)) continue;
+    const source = fs.readFileSync(configPath, 'utf8');
+    if (/\benabled\s*:\s*true\b/i.test(source)) {
+      fail(`${slug} is ${className} but affiliate-config.js is enabled`);
+    }
+    if (/https?:\/\/(?:www\.)?amazon\.|https?:\/\/amzn\.to\/|[?&]tag=/i.test(source)) {
+      fail(`${slug} is ${className} but affiliate-config.js contains an Amazon affiliate destination`);
+    }
+  }
+}
+
 if (!process.exitCode) {
   console.log(
     `monetization classification OK: ${registry.total} tools; ` +
     allowedClasses.map((key) => `${key}=${ledger.classes[key].length}`).join(', ') +
-    '; registry/spec/quality/monetization denominators agree',
+    '; canonical ledger + registry/spec/quality/monetization denominators agree; non-affiliate affiliate-config runtimes are fail-closed',
   );
 }

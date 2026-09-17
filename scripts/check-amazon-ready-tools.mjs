@@ -37,6 +37,7 @@ class FakeElement {
     if (!this.listeners[type]) this.listeners[type] = [];
     this.listeners[type].push(listener);
   }
+  closest() { return null; }
   click() {
     for (const listener of this.listeners.click || []) listener({ type: 'click', currentTarget: this });
   }
@@ -44,7 +45,10 @@ class FakeElement {
 
 function loadAffiliateHelper() {
   const events = [];
-  const document = { createElement: (tag) => new FakeElement(tag) };
+  const document = {
+    createElement: (tag) => new FakeElement(tag),
+    documentElement: { lang: 'ja' }
+  };
   const window = {
     location: { href: 'https://nicheworks.app/tools/size-converter/' },
     gtag: (...args) => events.push(args)
@@ -101,7 +105,7 @@ function loadAffiliateHelper() {
     'Amazon helper: no valid target must not render disclosure');
 }
 
-// Enabled + valid Amazon HTTPS target must mount, disclose, and emit one coarse click event.
+// Enabled + valid Amazon HTTPS target must mount, disclose, and emit one canonical outbound event.
 {
   const { helper, events } = loadAffiliateHelper();
   const cta = new FakeElement('div');
@@ -137,12 +141,21 @@ function loadAffiliateHelper() {
   check(events.length === 1, 'Amazon helper: one CTA click must emit exactly one analytics call');
   if (events.length === 1) {
     const [command, eventName, params] = events[0];
-    check(command === 'event' && eventName === 'affiliate_click',
-      'Amazon helper: click must emit affiliate_click event');
-    check(JSON.stringify(Object.keys(params).sort()) === JSON.stringify(['affiliate', 'placement', 'target', 'tool']),
-      'Amazon helper: affiliate_click must contain only coarse contract keys');
-    check(params.tool === 'size-converter' && params.affiliate === 'amazon' && params.target === 'shoes' && params.placement === 'quick_result',
-      'Amazon helper: affiliate_click coarse values mismatch');
+    check(command === 'event' && eventName === 'affiliate_outbound',
+      'Amazon helper: click must emit affiliate_outbound event');
+    check(JSON.stringify(Object.keys(params).sort()) === JSON.stringify(['affiliate_id', 'destination_key', 'language', 'merchant', 'placement', 'tool_slug']),
+      'Amazon helper: affiliate_outbound must contain only canonical contract keys');
+    check(
+      params.tool_slug === 'size-converter' &&
+      params.affiliate_id === 'shoes_quick_result' &&
+      params.placement === 'quick_result' &&
+      params.merchant === 'amazon' &&
+      params.destination_key === 'shoes' &&
+      params.language === 'ja',
+      'Amazon helper: affiliate_outbound canonical values mismatch'
+    );
+    check(!JSON.stringify(params).includes('amazon.co.jp'),
+      'Amazon helper: affiliate_outbound must not contain the destination URL');
   }
 }
 
@@ -161,25 +174,21 @@ function loadConfig(rel, globalName) {
   return sandbox.window[globalName];
 }
 
-// Production configs are activated only with the verified user-provided HTTPS Special Links.
+// These tools are canonical ADS_DONATION, so retained affiliate compatibility must stay fail-closed.
 {
   const config = loadConfig('tools/size-converter/affiliate-config.js', 'NWSizeConverterAffiliate');
-  check(config?.enabled === true, 'Size Converter affiliate config must be enabled after activation');
-  check(config?.targets?.shoes === 'https://amzn.to/4hnXGRb',
-    'Size Converter shoes target must match the verified activation URL');
-  check(config?.targets?.clothing === 'https://amzn.to/4dxBv8Q',
-    'Size Converter clothing target must match the verified activation URL');
+  check(config?.enabled === false, 'Size Converter affiliate config must stay disabled outside AFFILIATE classification');
+  check(Object.keys(config?.targets || {}).length === 0,
+    'Size Converter disabled affiliate config must not retain outbound Amazon targets');
 }
 {
   const config = loadConfig('tools/tiny-audio-meter/affiliate-config.js', 'NWTinyAudioAffiliate');
-  check(config?.enabled === true, 'Tiny Audio affiliate config must be enabled after activation');
-  check(config?.targets?.sound_level_meter === 'https://amzn.to/4xHeUyd',
-    'Tiny Audio sound-level-meter target must match the verified activation URL');
-  check(config?.targets?.usb_microphone === 'https://amzn.to/4iZFUF8',
-    'Tiny Audio USB microphone target must match the verified activation URL');
+  check(config?.enabled === false, 'Tiny Audio affiliate config must stay disabled outside AFFILIATE classification');
+  check(Object.keys(config?.targets || {}).length === 0,
+    'Tiny Audio disabled affiliate config must not retain outbound Amazon targets');
 }
 
-// Size Converter current product/affiliate contract.
+// Size Converter current product contract; dormant affiliate wiring remains inert.
 has('tools/size-converter/index.html', '/assets/amazon-affiliate.js');
 has('tools/size-converter/index.html', './affiliate-config.js');
 has('tools/size-converter/app.js', 'function parseSizeEntry(raw)');
@@ -187,10 +196,11 @@ has('tools/size-converter/app.js', 'outOfRange: true');
 has('tools/size-converter/app.js', 'function chartEnvelope(chart, key)');
 has('tools/size-converter/app.js', 'placement: "quick_result"');
 has('tools/size-converter/SPEC.md', 'Measurement inputs/results are never encoded into affiliate URLs or affiliate analytics.');
-lacks('tools/size-converter/app.js', 'gtag("event", "affiliate_click"', 'tool-owned affiliate analytics payload');
+lacks('tools/size-converter/app.js', 'gtag("event", "affiliate_outbound"', 'tool-owned affiliate analytics payload');
+lacks('tools/size-converter/app.js', 'gtag("event", "affiliate_click"', 'legacy tool-owned affiliate analytics payload');
 lacks('tools/size-converter/app.js', 'length_offset_cm', 'brand-wide numeric offset');
 
-// Tiny Audio current product/affiliate contract.
+// Tiny Audio current product contract; dormant affiliate wiring remains inert.
 has('tools/tiny-audio-meter/index.html', './comparison.js');
 has('tools/tiny-audio-meter/app.js', 'echoCancellation: false');
 has('tools/tiny-audio-meter/app.js', 'noiseSuppression: false');
@@ -205,7 +215,7 @@ has('tools/tiny-audio-meter/SPEC.md', 'Baselineやmicrophone-derived valuesは�
 lacks('tools/tiny-audio-meter/comparison.js', 'gtag(', 'comparison analytics payload');
 lacks('tools/tiny-audio-meter/comparison.js', 'localStorage.setItem', 'baseline persistence');
 
-// Load order: helper/config before tool runtime; comparison hook before audio runtime.
+// Load order remains deterministic; disabled configs make the shared helper fail closed.
 {
   const html = read('tools/size-converter/index.html');
   const helper = html.indexOf('/assets/amazon-affiliate.js');
@@ -230,4 +240,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log('Amazon affiliate contract passed: helper behavior, activated configs, Size Converter, Tiny Audio Meter.');
+console.log('Amazon affiliate contract passed: canonical outbound analytics helper behavior plus fail-closed non-affiliate compatibility configs.');

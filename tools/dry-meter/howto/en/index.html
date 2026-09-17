@@ -15,8 +15,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>DryMeter | Outdoor Drying Risk (Laundry/Bedding) | Guide | NicheWorks</title>
-  <meta name="description" content="Uses local weather (rain, humidity, wind, temperature) to estimate outdoor drying failure risk for laundry/bedding with 🟢🟡🔴 and short reasons. Browser-only, no storage.">
+  <title>How to Check Laundry Drying Conditions | Dry Meter | NicheWorks</title>
+  <meta name="description" content="How to use Dry Meter to estimate current laundry, thick-item, and bedding drying conditions from current weather or manually entered temperature, humidity, and wind.">
   <link rel="canonical" href="https://nicheworks.app/tools/dry-meter/howto/en/">
 
   <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/dry-meter/howto/en/" />
@@ -49,22 +49,22 @@
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
-  <meta property="og:title" content="DryMeter | Outdoor Drying Risk (Laundry/Bedding) | Guide | NicheWorks">
-  <meta property="og:description" content="Uses local weather (rain, humidity, wind, temperature) to estimate outdoor drying failure risk for laundry/bedding with 🟢🟡🔴 and short reasons. Browser-only, no storage.">
+  <meta property="og:title" content="How to Check Laundry Drying Conditions | Dry Meter | NicheWorks">
+  <meta property="og:description" content="How to use Dry Meter to estimate current laundry, thick-item, and bedding drying conditions from current weather or manually entered temperature, humidity, and wind.">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="DryMeter | Outdoor Drying Risk (Laundry/Bedding) | Guide | NicheWorks">
-  <meta name="twitter:description" content="Uses local weather (rain, humidity, wind, temperature) to estimate outdoor drying failure risk for laundry/bedding with 🟢🟡🔴 and short reasons. Browser-only, no storage.">
+  <meta name="twitter:title" content="How to Check Laundry Drying Conditions | Dry Meter | NicheWorks">
+  <meta name="twitter:description" content="How to use Dry Meter to estimate current laundry, thick-item, and bedding drying conditions from current weather or manually entered temperature, humidity, and wind.">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "DryMeter | Outdoor Drying Risk (Laundry/Bedding) | Guide",
+    "name": "Dry Meter Guide",
     "url": "https://nicheworks.app/tools/dry-meter/howto/en/",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
-    "description": "Uses local weather (rain, humidity, wind, temperature) to estimate outdoor drying failure risk for laundry/bedding with 🟢🟡🔴 and short reasons. Browser-only, no storage.",
+    "description": "A guide to using Dry Meter to estimate current laundry, thick-item, and bedding drying conditions from current weather or manual temperature, humidity, and wind inputs.",
     "inLanguage": [
       "ja",
       "en"
@@ -84,20 +84,18 @@
       <a href="../">JA</a>
       <a href="../../">Tool</a>
     </div>
-    <h1 style="margin:10px 0 6px">DryMeter: Guide</h1>
-    <p class="muted" style="margin:0">Quickly estimate outdoor drying “failure risk” using rain/humidity/wind/temperature (no storage).</p>
+    <h1 style="margin:10px 0 6px">Dry Meter: Guide</h1>
+    <p class="muted" style="margin:0">Use current temperature, humidity, wind, and weather to check how favorable conditions are for drying laundry.</p>
   </header>
 
   <main class="nw-main">
-    <div class="ad-slot ad-top">Ad slot (stable content)</div>
-
     <section class="card">
       <h2 style="margin:0 0 8px">What it does</h2>
       <ul>
-        <li>Uses local weather (rain / humidity / wind / temperature) to estimate outdoor drying risk as <code>🟢🟡🔴</code></li>
-        <li>If the tool supports Laundry/Bedding modes, it adjusts the judgement for the use case</li>
-        <li>Shows short reasons (e.g., high humidity, weak wind, rain risk)</li>
-        <li>Browser-only, no storage</li>
+        <li>Fetches current weather from Open-Meteo using your current location or entered coordinates</li>
+        <li>Also works with manually entered temperature, humidity, and wind without fetching weather</li>
+        <li>Supports Laundry / Thick items / Bedding and Outdoor / Indoor drying modes</li>
+        <li>Shows a Dry Score from 0 to 100, key reasons, and practical guidance for each use case</li>
       </ul>
       <div class="btns">
         <a class="btn primary" href="../../">Open the tool</a>
@@ -108,35 +106,42 @@
     <section class="card">
       <h2 style="margin:0 0 8px">Use this when</h2>
       <ul>
-        <li>You want a quick “can I dry outside today?” check</li>
-        <li>You’re deciding whether to dry bedding outside</li>
-        <li>It’s not clearly rainy, but humidity/wind feel borderline</li>
+        <li>You want to check whether laundry is likely to dry well if you start now</li>
+        <li>You are deciding whether to dry thick clothing or bedding outside</li>
+        <li>You know your indoor temperature, humidity, and airflow and want a rough indoor-drying guide</li>
       </ul>
-      <p class="muted" style="margin:8px 0 0">
-        Keywords: outdoor drying risk, laundry drying forecast, humidity wind, bedding drying outside
-      </p>
+      <p class="muted" style="margin:8px 0 0">Dry Meter is not a humidity meter or moisture meter. It estimates drying conditions.</p>
     </section>
 
     <section class="card">
       <h2 style="margin:0 0 8px">How to use</h2>
       <ol>
-        <li>Open the tool and allow location access (to fetch local weather)</li>
-        <li>If available, choose Laundry or Bedding</li>
-        <li>Check the 🟢🟡🔴 result and short reasons, then decide</li>
+        <li>Set current conditions by using your location, entering coordinates, or using the manual controls.</li>
+        <li>Choose Laundry, Thick items, or Bedding.</li>
+        <li>Choose Outdoor or Indoor drying.</li>
+        <li>Read the Dry Score and reasons. 70+ means easier drying, 40–69 average, and 39 or less harder to dry.</li>
+        <li>Review the practical guidance and copy the result if needed.</li>
       </ol>
-      <p class="muted" style="margin:0">Tip: on 🟡 days, shorten drying time or switch to indoor drying to avoid regrets.</p>
     </section>
 
     <section class="card">
-      <h2 style="margin:0 0 8px">Notes (limits)</h2>
+      <h2 style="margin:0 0 8px">Data handling and storage</h2>
       <ul>
-        <li>Weather APIs and microclimates can differ from your exact spot.</li>
-        <li>Even 🟢 can’t guarantee “no sudden rain.” Consider earlier pickup time.</li>
-        <li>If you deny location, results may be unavailable or less accurate.</li>
+        <li>Using current location requires browser geolocation permission.</li>
+        <li>When weather is fetched, latitude and longitude are sent to Open-Meteo. Manual-only use does not call the weather API.</li>
+        <li>Target, method, temperature, humidity, wind, and coordinates are stored in this browser's <code>localStorage</code>.</li>
+        <li>Stored settings do not sync to other devices and disappear when browser data is cleared.</li>
       </ul>
     </section>
 
-    <div class="ad-slot ad-bottom">Ad slot (stable content)</div>
+    <section class="card">
+      <h2 style="margin:0 0 8px">Notes and limits</h2>
+      <ul>
+        <li>This is not a weather forecast. It uses current fetched conditions or your manual inputs.</li>
+        <li>If you select Indoor while using fetched weather, the fetched values are still outdoor current weather. Prefer manual indoor measurements when available.</li>
+        <li>Actual drying also depends on sunlight, material, thickness, spacing, ventilation, dehumidifiers, and retrieval time.</li>
+      </ul>
+    </section>
   </main>
 
   <footer class="nw-footer">

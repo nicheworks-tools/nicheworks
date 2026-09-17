@@ -237,15 +237,15 @@
     },
     {
       "slug": "dry-meter",
-      "title_en": "Dry Meter",
-      "title_ja": "乾燥目安メーター",
-      "desc_en": "Estimate indoor dryness from simple weather-style inputs.",
-      "desc_ja": "天気や室内条件から乾燥の目安を確認します。",
+      "title_en": "Laundry Drying Checker",
+      "title_ja": "洗濯物の乾きやすさ判定",
+      "desc_en": "Estimate laundry drying conditions from temperature, humidity, wind, rain, and cloud cover.",
+      "desc_ja": "気温・湿度・風速などから、洗濯物が今どれくらい乾きやすいかを確認します。",
       "tags": [
-        "dryness",
+        "laundry",
+        "drying",
         "weather",
-        "home",
-        "life"
+        "home"
       ]
     },
     {
@@ -445,15 +445,15 @@
     },
     {
       "slug": "light-check",
-      "title_en": "Light Check",
-      "title_ja": "照明・光環境チェック",
-      "desc_en": "Check simple lighting conditions for rooms or workspaces.",
-      "desc_ja": "室内や作業場の照明環境を簡易確認します。",
+      "title_en": "Camera Lighting Check",
+      "title_ja": "撮影・配信の照明チェック",
+      "desc_en": "Compare camera-derived brightness, color cast, contrast, and brightness variation before shooting or streaming. Not a lux meter.",
+      "desc_ja": "撮影・配信前に、カメラ映像から明るさ・色かぶり・コントラスト・明るさ変動を相対比較します。照度計ではありません。",
       "tags": [
-        "light",
-        "room",
-        "check",
-        "environment"
+        "camera",
+        "lighting",
+        "video",
+        "streaming"
       ]
     },
     {

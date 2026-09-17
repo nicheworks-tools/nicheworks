@@ -10,11 +10,12 @@
   document.documentElement.dataset.tool = tool;
   document.documentElement.dataset.page = page;
   document.documentElement.dataset.lang = lang;
+  document.documentElement.dataset.proActive = 'true';
+  root.dataset.proActive = 'true';
   if (page !== 'index') return;
 
   const terms = Array.isArray(window.VIBE_LEXICON_TERMS) ? window.VIBE_LEXICON_TERMS : [];
   const maxCompare = 2;
-  const commonProBuyUrl = 'https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209';
   const confirmTimers = new Map();
 
   const state = {
@@ -51,50 +52,40 @@
   const txt = lang === 'ja' ? jaText() : enText();
 
   cleanBrokenSearchAttributes();
-  injectProStyles();
-  injectProPanel();
+  injectOutputStyles();
+  injectOutputPanel();
 
   function enText() {
     return {
       results: 'results', noResults: 'No terms match current filters.', addCompare: 'Add compare', compared: 'In compare', favorite: 'Favorite', favorited: 'Favorited',
-      favorites: 'Favorites', recent: 'Recent', clear: 'Clear', copied: 'Copied to clipboard', copyFailed: 'Copy failed. Please copy manually.', compareLimit: 'Free version supports up to 2 compare terms.',
+      favorites: 'Favorites', recent: 'Recent', clear: 'Clear', copied: 'Copied to clipboard', copyFailed: 'Copy failed. Please copy manually.', compareLimit: 'Compare supports up to 2 terms.',
       details: 'Details', open: 'Open', compareHint: 'Select 2 terms to see difference, when-to-use guidance, and practicality comparison.', showMore: 'Show more', showLess: 'Show less', compareStatus: 'In compare', confirmClear: 'Press again to clear', cleared: 'Cleared',
       noFavorites: 'No favorites yet.', noRecent: 'No recent terms yet.', showMoreResults: (n) => `Show ${n} more`, beginner: 'Beginner wording', practicalIntent: 'Practical intent', useCaseWording: 'Use case wording', commonMisuse: 'Common misuse',
       difference: 'Difference', whenToUseWhich: 'When to use which', practicalVsVague: 'Practical vs vague', useWhen: 'Use when', badRequest: 'Bad request', betterRequest: 'Better request',
-      proTitle: 'NicheWorks Pro outputs', proLead: 'Free lookup, compare, favorites, recent history, and basic AI copy stay free. Pro unlocks copy/export work packs for real handoff tasks.',
-      proPreview: 'Preview mode', proUnlocked: 'Pro unlocked', buyPro: 'Buy Pro',
-      purchaseNote: 'After purchase, NicheWorks Pro is enabled in this browser. It usually remains active after closing the tab or browser. You may need to unlock again on another device, another browser, private mode, or after clearing site data.',
+      outputTitle: 'Free work-pack outputs', outputLead: 'Lookup, compare, favorites, recent history, full style prompts, decision memos, avoid lists, compare handoff, and Markdown/JSON export are available without payment.',
+      available: 'Available for free', supportNote: 'No purchase or entitlement is required. Optional support does not unlock features.',
       fullPrompt: 'Copy full style prompt', memo: 'Copy brand tone memo', avoid: 'Copy avoid list', handoff: 'Copy compare handoff', markdown: 'Export Markdown', json: 'Export JSON',
       promptPack: 'AI style prompt pack', memoTitle: 'Brand tone decision memo', avoidTitle: 'NG / avoid list', usePrompts: 'Use-case prompts', handoffTitle: 'Compare handoff', exportTitle: 'Markdown / JSON export',
-      lockedToast: 'NicheWorks Pro is required for this copy/export action. Preview is visible below.', selectTwo: 'Add two terms to the compare tray first.'
+      selectTwo: 'Add two terms to the compare tray first.'
     };
   }
   function jaText() {
     return {
       results: '件表示', noResults: '条件に一致する語がありません。', addCompare: '比較に追加', compared: '比較中', favorite: 'お気に入り', favorited: 'お気に入り済み',
-      favorites: 'お気に入り', recent: '最近見た語', clear: 'クリア', copied: 'コピーしました', copyFailed: 'コピーに失敗しました。手動でコピーしてください。', compareLimit: '無料版は2語まで比較できます。',
+      favorites: 'お気に入り', recent: '最近見た語', clear: 'クリア', copied: 'コピーしました', copyFailed: 'コピーに失敗しました。手動でコピーしてください。', compareLimit: '比較は2語までです。',
       details: '詳細', open: '開く', compareHint: '2語を選ぶと、違い・使い分け・実務性の比較が表示されます。', showMore: 'もっと見る', showLess: '閉じる', compareStatus: '比較中', confirmClear: 'もう一度押すと削除します', cleared: '削除しました',
       noFavorites: 'お気に入りはまだありません。', noRecent: '最近見た語はまだありません。', showMoreResults: (n) => `さらに${n}件表示`, beginner: '初心者向け', practicalIntent: '実務意図', useCaseWording: '使いどころ', commonMisuse: 'よくある誤用',
       difference: '違い', whenToUseWhich: '使い分け', practicalVsVague: '実務性の比較', useWhen: '使い分けの目安', badRequest: '悪い依頼', betterRequest: '良い依頼',
-      proTitle: 'NicheWorks Pro出力', proLead: '無料の検索・比較・お気に入り・履歴・基本AI短文コピーは維持し、Proでは実務用のcopy/exportパックを解放します。',
-      proPreview: 'Previewモード', proUnlocked: 'Pro解放済み', buyPro: 'Buy Pro',
-      purchaseNote: '購入後、このブラウザではNicheWorks Proが有効になります。タブやブラウザを閉じても通常は維持されます。ただし、別端末・別ブラウザ・シークレットモード・サイトデータ削除後は再度有効化が必要です。',
+      outputTitle: '無料の実務用出力', outputLead: '検索・比較・お気に入り・履歴・Full style prompt・判断メモ・avoid list・compare handoff・Markdown/JSON出力を、購入なしで利用できます。',
+      available: '無料で利用可能', supportNote: '購入やentitlementは不要です。任意の支援によって機能が解放される仕組みではありません。',
       fullPrompt: 'Full style promptをコピー', memo: 'Brand tone memoをコピー', avoid: 'Avoid listをコピー', handoff: 'Compare handoffをコピー', markdown: 'Markdown export', json: 'JSON export',
       promptPack: 'AI生成用style prompt pack', memoTitle: 'Brand tone decision memo', avoidTitle: 'NG表現 / avoid list', usePrompts: '用途別プロンプト', handoffTitle: '類似vibe比較handoff', exportTitle: 'Markdown / JSON export',
-      lockedToast: 'このcopy/export操作にはNicheWorks Proが必要です。Previewは下に表示しています。', selectTwo: '先に比較トレイへ2語追加してください。'
+      selectTwo: '先に比較トレイへ2語追加してください。'
     };
   }
 
   function readArray(key) { try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch { return []; } }
   function writeArray(key, arr) { try { localStorage.setItem(key, JSON.stringify(arr)); } catch {} }
-  function isPro() {
-    if (document.documentElement.dataset.proActive === 'true') return true;
-    try {
-      const status = window.NWPro && typeof window.NWPro.getLocalStatus === 'function' ? window.NWPro.getLocalStatus() : null;
-      if (status && status.active && status.entitlement === 'nicheworks_pro') return true;
-    } catch {}
-    return false;
-  }
   function localized(value) { return value?.[lang] ?? value?.en ?? ''; }
   function localizedArray(value) { const v = localized(value); return Array.isArray(v) ? v : []; }
   function byId(id) { return terms.find((t) => t.id === id); }
@@ -114,18 +105,18 @@
     els.searchInput.autocomplete = 'off';
   }
 
-  function injectProStyles() {
-    if (document.getElementById('vl-pro-live-style')) return;
+  function injectOutputStyles() {
+    if (document.getElementById('vl-output-live-style')) return;
     const style = document.createElement('style');
-    style.id = 'vl-pro-live-style';
+    style.id = 'vl-output-live-style';
     style.textContent = `
       .vl-pro-live-panel{margin:14px 0 18px;padding:16px 18px;border-color:#bfdbfe;background:linear-gradient(135deg,#ffffff 0%,#eff6ff 100%)}
-      .vl-pro-live-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}.vl-pro-live-head h2{margin:0 0 4px;font-size:22px}.vl-pro-live-head p{margin:0;color:#374151;font-size:14px;max-width:840px}.vl-pro-badge{display:inline-flex;align-items:center;border:1px solid #93c5fd;background:#dbeafe;color:#1d4ed8;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700}.vl-pro-badge.active{background:#dcfce7;border-color:#86efac;color:#166534}.vl-pro-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0}.vl-pro-card{border:1px solid #dbeafe;background:#fff;border-radius:14px;padding:11px}.vl-pro-card strong{display:block;margin-bottom:4px}.vl-pro-card span{font-size:12px;color:#4b5563}.vl-pro-actions,.vl-pro-output-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.vl-pro-status{margin:10px 0 0;color:#374151;font-size:13px}.vl-pro-note{font-size:12px;color:#4b5563;margin:8px 0 0}.vl-pro-preview-box,.vl-pro-only-box{border:1px dashed #93c5fd;background:#f8fbff;border-radius:14px;padding:12px;margin-top:12px}.vl-pro-output{white-space:pre-wrap;font-size:12px;line-height:1.5;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px;max-height:220px;overflow:auto}.vl-pro-output-actions .btn[aria-disabled="true"]{opacity:.72;background:#f9fafb;color:#6b7280}.vl-pro-output-actions .btn[aria-disabled="true"]::after{content:' 🔒'}html[data-pro-active="true"] [data-pro-preview]{display:none!important}html:not([data-pro-active="true"]) [data-pro-only]{display:none!important}@media(max-width:720px){.vl-pro-grid{grid-template-columns:1fr}.vl-pro-live-panel{padding:12px}.vl-pro-live-head h2{font-size:18px}.vl-pro-actions .btn,.vl-pro-output-actions .btn{width:100%}}
+      .vl-pro-live-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}.vl-pro-live-head h2{margin:0 0 4px;font-size:22px}.vl-pro-live-head p{margin:0;color:#374151;font-size:14px;max-width:840px}.vl-pro-badge{display:inline-flex;align-items:center;border:1px solid #86efac;background:#dcfce7;color:#166534;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700}.vl-pro-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0}.vl-pro-card{border:1px solid #dbeafe;background:#fff;border-radius:14px;padding:11px}.vl-pro-card strong{display:block;margin-bottom:4px}.vl-pro-card span{font-size:12px;color:#4b5563}.vl-pro-output-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.vl-pro-status{margin:10px 0 0;color:#374151;font-size:13px}.vl-pro-note{font-size:12px;color:#4b5563;margin:8px 0 0}.vl-pro-only-box{border:1px dashed #93c5fd;background:#f8fbff;border-radius:14px;padding:12px;margin-top:12px}.vl-pro-output{white-space:pre-wrap;font-size:12px;line-height:1.5;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px;max-height:220px;overflow:auto}@media(max-width:720px){.vl-pro-grid{grid-template-columns:1fr}.vl-pro-live-panel{padding:12px}.vl-pro-live-head h2{font-size:18px}.vl-pro-output-actions .btn{width:100%}}
     `;
     document.head.appendChild(style);
   }
 
-  function injectProPanel() {
+  function injectOutputPanel() {
     if (document.getElementById('vlProLivePanel')) return;
     const anchor = document.querySelector('.dashboard') || els.mobileCompareBar;
     if (!anchor?.parentNode) return;
@@ -134,34 +125,31 @@
     panel.className = 'panel vl-pro-live-panel';
     panel.innerHTML = `
       <div class="vl-pro-live-head">
-        <div><h2>${txt.proTitle}</h2><p>${txt.proLead}</p></div>
-        <span id="vlProBadge" class="vl-pro-badge"></span>
+        <div><h2>${txt.outputTitle}</h2><p>${txt.outputLead}</p></div>
+        <span id="vlProBadge" class="vl-pro-badge">${txt.available}</span>
       </div>
-      <p id="vlProStatus" class="vl-pro-status" data-pro-status></p>
-      <p class="vl-pro-note">${txt.purchaseNote}</p>
+      <p id="vlProStatus" class="vl-pro-status" data-pro-status>${txt.available}</p>
+      <p class="vl-pro-note">${txt.supportNote}</p>
       <div class="vl-pro-grid">
         <div class="vl-pro-card"><strong>${txt.memoTitle}</strong><span>${lang === 'ja' ? '選択語からブランド判断メモを生成します。' : 'Generate a brand decision memo from the selected term.'}</span></div>
         <div class="vl-pro-card"><strong>${txt.promptPack}</strong><span>${lang === 'ja' ? 'LP / UI / SNS / Product Hunt / App copy向けに展開します。' : 'Expand into LP / UI / SNS / Product Hunt / App copy prompts.'}</span></div>
         <div class="vl-pro-card"><strong>${txt.exportTitle}</strong><span>${lang === 'ja' ? 'handoffしやすいMarkdownとJSONを書き出します。' : 'Export handoff-ready Markdown and JSON.'}</span></div>
       </div>
-      <div class="vl-pro-actions" data-pro-preview><a class="btn primary" href="${commonProBuyUrl}" target="_blank" rel="noopener noreferrer" data-pro-buy>${txt.buyPro}</a></div>
       <div class="vl-pro-output-actions"><button class="btn" type="button" data-pro-action="fullPrompt">${txt.fullPrompt}</button><button class="btn" type="button" data-pro-action="memo">${txt.memo}</button><button class="btn" type="button" data-pro-action="avoid">${txt.avoid}</button><button class="btn" type="button" data-pro-action="handoff">${txt.handoff}</button><button class="btn" type="button" data-pro-action="markdown">${txt.markdown}</button><button class="btn" type="button" data-pro-action="json">${txt.json}</button></div>
-      <div class="vl-pro-preview-box" data-pro-preview><strong>${txt.proPreview}</strong><div id="vlProPreview" class="vl-pro-output"></div></div>
-      <div class="vl-pro-only-box" data-pro-only hidden><strong>${txt.proUnlocked}</strong><div id="vlProUnlockedOutput" class="vl-pro-output"></div></div>
+      <div class="vl-pro-only-box"><strong>${txt.available}</strong><div id="vlProUnlockedOutput" class="vl-pro-output"></div></div>
     `;
     anchor.parentNode.insertBefore(panel, anchor);
-    updateProPanel();
+    updateOutputPanel();
   }
 
-  function updateProPanel() {
-    const active = isPro();
+  function updateOutputPanel() {
+    document.documentElement.dataset.proActive = 'true';
+    root.dataset.proActive = 'true';
     const badge = $('vlProBadge');
-    if (badge) { badge.textContent = active ? txt.proUnlocked : txt.proPreview; badge.classList.toggle('active', active); }
-    document.querySelectorAll('[data-pro-action]').forEach((btn) => { btn.setAttribute('aria-disabled', active ? 'false' : 'true'); });
-    const preview = $('vlProPreview');
-    if (preview) preview.textContent = buildProPreview();
-    const unlocked = $('vlProUnlockedOutput');
-    if (unlocked) unlocked.textContent = active ? buildMarkdownExport() : '';
+    if (badge) { badge.textContent = txt.available; badge.classList.add('active'); }
+    document.querySelectorAll('[data-pro-action]').forEach((btn) => { btn.setAttribute('aria-disabled', 'false'); if ('disabled' in btn) btn.disabled = false; });
+    const output = $('vlProUnlockedOutput');
+    if (output) output.textContent = buildMarkdownExport();
   }
 
   function termSearchCorpus(term) {
@@ -268,7 +256,7 @@
     renderChips(els.categoryChips, [...new Set(terms.map((t) => localized(t.category)))], 'category'); renderChips(els.useChips, [...new Set(terms.map((t) => localized(t.useCase)))], 'useCase'); renderChips(els.typeChips, [...new Set(terms.map((t) => localized(t.termType)))], 'termType');
     renderFilterToggle('category', els.categoryChips, els.categoryToggleBtn, 6); renderFilterToggle('useCase', els.useChips, els.useToggleBtn, 4); renderFilterToggle('termType', els.typeChips, els.typeToggleBtn, 4);
     els.statTotal.textContent = String(terms.length); els.statCompare.textContent = String(state.compare.length); els.statFav.textContent = String(state.favorites.length); els.resultCount.textContent = `${list.length} ${txt.results}`;
-    renderGrid(list); renderDetail(selected); renderCompare(); renderMobileCompareBar(); renderSaved(); renderSuggestions(list); updateProPanel();
+    renderGrid(list); renderDetail(selected); renderCompare(); renderMobileCompareBar(); renderSaved(); renderSuggestions(list); updateOutputPanel();
   }
 
   function useCasePromptPack(term) {
@@ -298,15 +286,13 @@
   function buildAvoidList() { const term = currentTerm(); if (!term) return ''; return [`# ${txt.avoidTitle}`, `Term: ${localized(term.term)}`, '', `- ${localized(term.commonMisuse)}`, `- ${localized(term.badRequest)}`, `- Vague adjectives without a target surface, audience, constraint, or acceptance check.`, `- Decoration-only changes that do not improve readability, hierarchy, trust, or task success.`].join('\n'); }
   function buildCompareHandoff(sampleIfMissing) { const pair = state.compare.length >= 2 ? state.compare : (sampleIfMissing ? terms.slice(0, 2).map((term) => term.id) : []); if (pair.length < 2) return txt.selectTwo; const a = byId(pair[0]); const b = byId(pair[1]); if (!a || !b) return txt.selectTwo; const insight = pairInsight(a, b); return [`# ${txt.handoffTitle}`, `${localized(a.term)} vs ${localized(b.term)}`, '', `${txt.difference}: ${insight.difference}`, `${txt.whenToUseWhich}: ${insight.whenToUse}`, `${txt.practicalVsVague}: ${insight.practicality}`, '', `Option A better request: ${localized(a.betterRequest)}`, `Option B better request: ${localized(b.betterRequest)}`, '', `Handoff note: choose one vibe before production, then review against audience, context, and conversion or usability goal.`].join('\n'); }
   function buildMarkdownExport() { return [buildBrandToneMemo(), buildStylePromptPack(), buildAvoidList(), buildCompareHandoff()].join('\n\n---\n\n'); }
-  function buildJsonExport() { const term = currentTerm(); const prompts = term ? useCasePromptPack(term) : {}; return JSON.stringify({ tool: 'vibe-lexicon', entitlement: 'nicheworks_pro', language: lang, term: term ? { id: term.id, label: localized(term.term), useCase: localized(term.useCase), practicalIntent: localized(term.practicalIntent), avoid: localized(term.commonMisuse), betterRequest: localized(term.betterRequest) } : null, promptPack: prompts, brandToneMemo: buildBrandToneMemo(), avoidList: buildAvoidList().split('\n').filter((line) => line.startsWith('- ')).map((line) => line.slice(2)), compareHandoff: buildCompareHandoff() }, null, 2); }
-  function buildProPreview() { return [buildBrandToneMemo(), buildStylePromptPack(), buildAvoidList(), buildCompareHandoff(true), '# Markdown export sample', buildMarkdownExport().slice(0, 700) + '...', '# JSON export sample', buildJsonExport().slice(0, 700) + '...'].join('\n\n'); }
+  function buildJsonExport() { const term = currentTerm(); const prompts = term ? useCasePromptPack(term) : {}; return JSON.stringify({ tool: 'vibe-lexicon', monetization: 'ADS_DONATION', paidEntitlementRequired: false, language: lang, term: term ? { id: term.id, label: localized(term.term), useCase: localized(term.useCase), practicalIntent: localized(term.practicalIntent), avoid: localized(term.commonMisuse), betterRequest: localized(term.betterRequest) } : null, promptPack: prompts, brandToneMemo: buildBrandToneMemo(), avoidList: buildAvoidList().split('\n').filter((line) => line.startsWith('- ')).map((line) => line.slice(2)), compareHandoff: buildCompareHandoff() }, null, 2); }
   function downloadText(filename, mime, text) { const blob = new Blob([text], { type: mime }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url); }
 
   async function copyText(text) { if (!text) return false; try { if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(text); return true; } } catch {} const textarea = document.createElement('textarea'); textarea.value = text; textarea.setAttribute('readonly', ''); textarea.style.position = 'fixed'; textarea.style.left = '-9999px'; document.body.appendChild(textarea); textarea.focus(); textarea.select(); let ok = false; try { ok = document.execCommand('copy'); } catch { ok = false; } document.body.removeChild(textarea); return ok; }
-  async function handleProAction(action) {
-    if (!isPro()) { showToast(txt.lockedToast); document.getElementById('vlProLivePanel')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
-    if (action === 'markdown') { downloadText('vibe-lexicon-pro.md', 'text/markdown;charset=utf-8', buildMarkdownExport()); showToast(txt.copied); return; }
-    if (action === 'json') { downloadText('vibe-lexicon-pro.json', 'application/json;charset=utf-8', buildJsonExport()); showToast(txt.copied); return; }
+  async function handleOutputAction(action) {
+    if (action === 'markdown') { downloadText('vibe-lexicon.md', 'text/markdown;charset=utf-8', buildMarkdownExport()); showToast(txt.copied); return; }
+    if (action === 'json') { downloadText('vibe-lexicon.json', 'application/json;charset=utf-8', buildJsonExport()); showToast(txt.copied); return; }
     const payload = action === 'memo' ? buildBrandToneMemo() : action === 'avoid' ? buildAvoidList() : action === 'handoff' ? buildCompareHandoff() : buildStylePromptPack();
     const ok = await copyText(payload); showToast(ok ? txt.copied : txt.copyFailed);
     const output = $('vlProUnlockedOutput'); if (output) output.textContent = payload;
@@ -319,7 +305,7 @@
   function syncDesktopState() { if (!isMobileViewport()) { root.classList.remove('filters-open'); root.classList.remove('detail-open'); } }
 
   document.addEventListener('click', (event) => {
-    const proAction = event.target.closest('[data-pro-action]')?.dataset.proAction; if (proAction) { handleProAction(proAction); return; }
+    const outputAction = event.target.closest('[data-pro-action]')?.dataset.proAction; if (outputAction) { handleOutputAction(outputAction); return; }
     const selectId = event.target.closest('[data-select]')?.dataset.select; const relatedId = event.target.closest('[data-related]')?.dataset.related; const openId = event.target.closest('[data-open]')?.dataset.open;
     if (selectId || relatedId || openId) { state.selectedId = selectId || relatedId || openId; render(); openDetail(); return; }
     const compareId = event.target.closest('[data-compare]')?.dataset.compare; if (compareId) { if (state.compare.includes(compareId)) state.compare = state.compare.filter((x) => x !== compareId); else if (state.compare.length >= maxCompare) showToast(txt.compareLimit); else state.compare.push(compareId); render(); return; }
@@ -338,8 +324,8 @@
   els.categoryToggleBtn?.addEventListener('click', () => { state.filterExpanded.category = !state.filterExpanded.category; render(); }); els.useToggleBtn?.addEventListener('click', () => { state.filterExpanded.useCase = !state.filterExpanded.useCase; render(); }); els.typeToggleBtn?.addEventListener('click', () => { state.filterExpanded.termType = !state.filterExpanded.termType; render(); });
   els.mobileCompareJumpBtn?.addEventListener('click', () => els.compareTray?.scrollIntoView({ behavior: 'smooth', block: 'start' })); els.mobileCompareClearBtn?.addEventListener('click', () => { state.compare = []; render(); });
   mobileQuery.addEventListener('change', syncDesktopState);
-  window.addEventListener('storage', updateProPanel);
-  window.addEventListener('nw-pro-status-change', updateProPanel);
+  window.addEventListener('storage', updateOutputPanel);
+  window.addEventListener('nw-pro-status-change', updateOutputPanel);
   syncDesktopState();
   render();
 })();
