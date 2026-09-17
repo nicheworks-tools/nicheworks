@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "phase": "verified-publication",
-  "updated": "2026-09-16",
+  "updated": "2026-09-18",
   "policy": {
     "record_count": 100,
     "runtime_merge": "Overlay these fields on data/patterns.json by matching pattern_id.",
@@ -4911,21 +4911,21 @@
           "kente cloth"
         ]
       },
-      "term_scope": "Ghanaian strip-woven textile tradition with many named arrangements rather than one fixed motif",
+      "term_scope": "Asante/Akan and Ewe strip-woven kente traditions of Ghana and western Togo, with many named designs rather than one fixed motif",
       "definition": {
-        "ja": "ガーナのケンテを、細幅の織り帯をつなぎ、色のブロックや幾何学帯が切り替わる染織として扱います。単一柄ではありません。",
-        "en": "A Ghanaian strip-woven textile tradition built from narrow patterned bands sewn together. Color blocks and geometric sections vary across many kente designs."
+        "ja": "ケンテを、ガーナのアサンテ／アカンと、ガーナからトーゴ西部にかけてのエウェに受け継がれる細幅織りの染織伝統として扱います。細い織り帯を接ぎ合わせ、色面・縞・幾何や具象モチーフを組み合わせますが、単一の固定柄ではありません。",
+        "en": "Kente is treated here as a strip-woven textile tradition associated especially with Asante/Akan communities in Ghana and Ewe communities in Ghana and western Togo. Narrow woven strips are joined into larger cloths carrying varied color blocks, stripes, geometric, and representational motifs; it is not one fixed pattern."
       },
       "distinguishing_features": {
         "ja": [
           "細い織り帯を接ぎ合わせた構造",
-          "色ブロックと幾何学帯の切り替え",
-          "縦方向のストリップ境界が見える"
+          "色ブロック・縞・幾何や具象モチーフが帯ごとに変化する",
+          "アサンテ／アカンとエウェの複数の織り伝統を含み、一つの固定柄として扱わない"
         ],
         "en": [
-          "Narrow strip-woven construction",
-          "Alternating color blocks and geometric bands",
-          "Visible longitudinal strip boundaries"
+          "Narrow woven strips are sewn together to build the full cloth",
+          "Color blocks, stripes, geometric motifs, and representational motifs can vary from strip to strip",
+          "The label spans related Asante/Akan and Ewe weaving traditions rather than one immutable pattern"
         ]
       },
       "common_uses": {
@@ -5339,21 +5339,21 @@
           "Dutch wax print"
         ]
       },
-      "term_scope": "Commercial wax-print textile style with many polychromatic motifs and complex transnational history",
+      "term_scope": "Commercial wax-print / ankara textile style with transnational Indonesian, European industrial, and African histories; many motifs and often no literal wax in modern manufacture",
       "definition": {
-        "ja": "アフリカンワックスプリントを、強い多色と輪郭のはっきりした反復モチーフを持つプリント綿布の広い系統として扱います。図柄は非常に多様です。",
-        "en": "A broad wax-print cotton style recognized by saturated flat colors and crisp repeated motifs. Geometric, floral, figurative, and symbolic designs vary widely."
+        "ja": "「アフリカンワックス」「ダッチワックス」「アンカラ」などと呼ばれるプリント綿布の広い系統です。インドネシアのバティックを工業的に模倣した欧州生産と、19世紀末以降の西・東アフリカでの流通・受容が交差して発展しました。現代製品では名称に反して実際の蝋を使わないことも多く、図柄も幾何・植物・具象・象徴モチーフまで非常に多様です。",
+        "en": "A broad printed-cotton family also known as African wax, Dutch wax, or ankara. Its history links European industrial attempts to reproduce Indonesian batik with later circulation and adoption in West and East Africa. Despite the name, modern manufacture often uses little or no literal wax, and the motifs range widely across geometric, floral, figurative, and symbolic designs."
       },
       "distinguishing_features": {
         "ja": [
-          "高彩度の多色面",
-          "輪郭のはっきりした大柄モチーフ",
-          "幾何学・植物・具象を大胆に反復"
+          "高彩度の平面的な多色面と輪郭の明瞭な反復が多い",
+          "幾何・植物・具象・象徴など図柄の種類は固定されない",
+          "「wax」という名称だけで製造法を断定せず、現代品では蝋をほとんど使わない場合もある"
         ],
         "en": [
-          "Saturated flat color areas",
-          "Crisp large-scale motifs",
-          "Bold repeats spanning geometry, flora, and figurative imagery"
+          "Saturated flat colors and crisp repeated motifs are common visual cues",
+          "Geometric, floral, figurative, and symbolic designs vary widely",
+          "Do not infer a literal wax process from the name alone; modern production often uses little or no wax"
         ]
       },
       "common_uses": {

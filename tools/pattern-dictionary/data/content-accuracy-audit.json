@@ -1,0 +1,729 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-09-18",
+  "scope": "canonical-100 bilingual production content",
+  "method": [
+    "Reviewed all 100 published records against the existing source-verification contract for name, scope, definition, distinguishing features, and common-use consistency.",
+    "Applied deeper term-scope review to all qualified terms so techniques, textile traditions, material effects, and market labels are not presented as one universal fixed motif.",
+    "Performed targeted external re-verification where the qualified-term review exposed a material scope issue."
+  ],
+  "counts": {
+    "total": 100,
+    "qualified_term_reviewed": 41,
+    "source_contract_reviewed": 59,
+    "corrected": 2,
+    "unresolved": 0
+  },
+  "corrections": [
+    {
+      "pattern_id": "kente",
+      "reason": "Previous wording was too Ghana-only; authoritative museum material includes Asante/Akan and Ewe traditions in Ghana and western Togo."
+    },
+    {
+      "pattern_id": "african-wax-print",
+      "reason": "Previous wording underrepresented the transnational history and could imply a literal wax process despite modern wax print often using little or no wax."
+    }
+  ],
+  "patterns": [
+    {
+      "pattern_id": "houndstooth",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "two-color broken twill/check pattern",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "gingham",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "checked cloth / regular two-color check appearance",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "tartan",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "woven design / repeated sett",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "glen-check",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "compound check / glen plaid",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "argyle",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "diamond-pattern family used especially in knitwear",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "chevron",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "geometric V/zigzag motif family",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "polka-dot",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "regular repeated round-dot surface pattern",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "moroccan-trellis",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "contemporary decorative/design-market descriptor",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "seigaiha",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named Japanese traditional motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "asanoha",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named Japanese traditional geometric motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "shippo",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named Japanese interlocking-circle motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "ichimatsu",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "Japanese name for alternating-square/checker motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "kikko",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named Japanese hexagonal tortoiseshell motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "karakusa",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "Japanese scrolling-vine motif family",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "damask",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "reversible figured weave / damask-derived ornamental surface pattern",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "arabesque",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "scrolling vegetal and geometric ornamental tradition",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "paisley",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "boteh-based ornamental repeat",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "leopard-print",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "animal-print imitation of leopard coat markings",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "ikat",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "resist-dyeing technique applied to yarn before weaving",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "kilim",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "flat-woven textile category and kilim-inspired visual family, not one fixed motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "buffalo-check",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named large-scale red-and-black check convention",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "shepherd-check",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "small even check family",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "windowpane-check",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "large-scale thin-line check",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "madras-check",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "Madras textile/check style rather than one fixed grid specification",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "tattersall",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "thin-line multicolor check on a light ground",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "gun-club-check",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "multicolor district-check family derived from shepherd-check variation",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "prince-of-wales-check",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "glen-check-derived check convention with modern naming overlap",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "pinstripe",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "very narrow parallel stripe pattern in cloth",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "chalk-stripe",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "wider softer parallel stripe convention used in suiting",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "bengal-stripe",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "balanced alternating colored-and-white stripe convention",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "koushi",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "broad Japanese lattice/check family",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "awning-stripe",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "very broad stripe convention named after awnings",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "regimental-stripe",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "stripe style associated with English/British regimental ties rather than one fixed repeat",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "breton-stripe",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "French maritime clothing/style convention derived from striped naval knitwear",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "swiss-dot",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "dotted Swiss textile/fabric category, not generic printed polka dots",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "herringbone",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "herringbone weave/arrangement and its broken-V visual family",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "zigzag",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "generic angular line/pattern family",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "diamond",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "generic repeated diamond/rhombus geometric family",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "harlequin",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "diamond-block pattern convention associated with Harlequin costume",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "checkerboard",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "generic alternating dark/light square pattern",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "greek-key",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named rectilinear meander motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "quatrefoil",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named four-lobed motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "ogee",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "ogee double-curve form used as a repeating surface-design family",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "lattice",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "generic crossed-strip or crisscross pattern family",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "honeycomb",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "generic honeycomb-derived cellular pattern",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "scallop",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "generic repeated scalloped-arc pattern family",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "basketweave",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "weave structure and basket-like visual family",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "hexagon",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "generic repeated six-sided polygon pattern",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "trellis",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "generic trellis-derived repeat family",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "hishi",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "Japanese diamond/rhombus motif family",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "fleur-de-lis",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named stylized lily/iris motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "toile-de-jouy",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "printed-textile/design tradition associated with pictorial figural scenes",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "chintz",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "printed cotton/textile tradition commonly associated with floral patterning",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "ditsy-floral",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "generic small-flower print pattern",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "jacobean-floral",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "modern floral surface-design family derived from Jacobean/crewelwork conventions",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "millefleurs",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named dense field of many small flowers",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "botanical-print",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "broad plant-form surface-print family",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "acanthus",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named stylized acanthus-leaf ornamental motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "medallion",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "generic framed circular or oval ornamental motif family",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "ivy",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "generic ivy-leaf botanical motif family",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "baroque-scroll",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "Baroque running-scroll ornamental family rather than one uniquely fixed repeat",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "chinoiserie",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "European decorative style adapting imagined or interpreted East Asian motifs, not one fixed motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "flame-stitch",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "Bargello or flame-stitch counted-thread embroidery technique and its characteristic stepped zigzag visual",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "tree-of-life",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named tree-centered symbolic motif with many historical variants",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "moire",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "watered or rippled textile surface effect rather than one fixed motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "yagasuri",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named Japanese arrow-feather or arrow design",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "sayagata",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named continuous interlocking fret pattern",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "uroko",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named Japanese scale pattern based on repeated triangles",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "tatewaku",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named Japanese vertically rising paired-curve pattern",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "kagome",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named Japanese basket-weave-derived lattice pattern",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "kanoko",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "kanoko spotted visual convention closely tied to kanoko shibori resist-dye technique",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "hanabishi",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named Japanese floral-lozenge motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "same-komon",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "same or sharkskin fine-dot komon visual produced within a fine-pattern dyeing tradition",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "nami-chidori",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named Japanese motif pairing plovers with waves",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "tomoe",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named Japanese comma-shaped tomoe motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "shibori",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "family of Japanese resist-dye techniques producing many different patterns",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "batik",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "wax-resist dyeing textile tradition with a wide diversity of patterns",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "bandhani",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "South Asian tie-resist textile technique and tradition characterized by numerous tied points",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "ajrakh",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "Kachchh/Sindh-linked resist and block-print textile tradition with complex geometric pattern vocabularies",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "kalamkari",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "Indian painted, mordant-dyed and resist-dyed textile process/tradition rather than one fixed pattern",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "suzani",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "Central Asian embroidered textile tradition with many regional compositions rather than one fixed repeat",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "kente",
+      "content_state": "corrected",
+      "verification_state": "qualified",
+      "term_scope": "Asante/Akan and Ewe strip-woven kente traditions of Ghana and western Togo, with many named designs rather than one fixed motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "bogolan",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "Malian bogolanfini mud-dyed textile tradition with varied symbolic pattern vocabularies",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "adire",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "Yoruba indigo resist-dyed textile tradition using multiple resist methods and named patterns",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "kuba-cloth",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "Kuba textile tradition using raffia and varied geometric embroidery/applique rather than one fixed motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "sashiko",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "Japanese running-stitch reinforcement and embroidery tradition with many geometric motifs",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "kantha",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "Bengal/Bangladesh layered-cloth running-stitch embroidery and quilting tradition with varied personal designs",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "otomi-embroidery",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "Otomí/Tenango embroidery tradition with varied densely filled animal and plant figures",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "african-wax-print",
+      "content_state": "corrected",
+      "verification_state": "qualified",
+      "term_scope": "Commercial wax-print / ankara textile style with transnational Indonesian, European industrial, and African histories; many motifs and often no literal wax in modern manufacture",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "block-print",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "Relief block-printing technique capable of many textile motifs rather than one fixed visual pattern",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "zebra-print",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating zebra striping",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "tiger-print",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating tiger coat stripes",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "snake-print",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating patterned snake scales or skin",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "cow-print",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating piebald cattle markings",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "giraffe-print",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating giraffe coat patches",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "dalmatian-spots",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating Dalmatian dog spotting",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "camouflage",
+      "content_state": "reviewed",
+      "verification_state": "verified",
+      "term_scope": "camouflage visual family based on disruptive irregular patches rather than one single standardized repeat",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "tie-dye",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "resist-dye technique family created by binding cloth before dyeing rather than one fixed motif",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "marbling",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "marbling technique and visual family made by floating color on a bath and transferring flowing patterns",
+      "unresolved": false
+    },
+    {
+      "pattern_id": "terrazzo",
+      "content_state": "qualified-reviewed",
+      "verification_state": "qualified",
+      "term_scope": "material-inspired pattern family derived from terrazzo composite chips rather than one fixed printed motif",
+      "unresolved": false
+    }
+  ]
+}
