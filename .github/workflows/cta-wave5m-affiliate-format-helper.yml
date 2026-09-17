@@ -1,0 +1,45 @@
+name: CTA Wave5M affiliate format helper
+
+on:
+  push:
+    branches:
+      - content/construction-atlas-wave5m-q015-firestop-support-20260917
+
+permissions:
+  contents: write
+
+jobs:
+  normalize-affiliate-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/construction-atlas-wave5m-q015-firestop-support-20260917
+      - name: Restore compact offer formatting
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'tools/construction-tools-atlas/data/affiliate-offers-v2.3.json';
+          const d = JSON.parse(fs.readFileSync(file, 'utf8'));
+          if (d.offers.length !== 127) throw new Error(`expected 127 offers, got ${d.offers.length}`);
+          const lines = [
+            '{',
+            `  "schema": ${JSON.stringify(d.schema)},`,
+            `  "version": ${JSON.stringify(d.version)},`,
+            `  "provider": ${JSON.stringify(d.provider)},`,
+            `  "tracking_id": ${JSON.stringify(d.tracking_id)},`,
+            `  "policy": ${JSON.stringify(d.policy)},`,
+            '  "offers": ['
+          ];
+          d.offers.forEach((offer, i) => lines.push(`    ${JSON.stringify(offer)}${i === d.offers.length - 1 ? '' : ','}`));
+          lines.push('  ]', '}', '');
+          fs.writeFileSync(file, lines.join('\n'));
+          NODE
+      - name: Commit formatting normalization if needed
+        run: |
+          if git diff --quiet -- tools/construction-tools-atlas/data/affiliate-offers-v2.3.json; then exit 0; fi
+          git config user.name 'nicheworks-tools'
+          git config user.email 'nicheworks.tools@gmail.com'
+          git add tools/construction-tools-atlas/data/affiliate-offers-v2.3.json
+          git commit -m 'Construction Atlas: normalize Wave5M affiliate diff'
+          git push origin HEAD:content/construction-atlas-wave5m-q015-firestop-support-20260917
