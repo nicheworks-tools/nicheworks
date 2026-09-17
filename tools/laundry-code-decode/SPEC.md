@@ -44,6 +44,7 @@ The standardized symbol meaning, the physical garment label, manufacturer instru
 - Render the 43 current JIS L 0001:2024 care symbols as local SVG templates.
 - Group symbols into Wash, Bleach, Dry, Iron, and Professional UI categories while preserving the seven-table canonical classification in the data contract.
 - Search by Japanese/English meaning, internal ID, professional-care letter, temperature where applicable, and official JIS symbol number.
+- Keep a crawlable static overview of the five basic care-symbol shapes, official reading order, seven-table/43-symbol scope, and representative symbol-number examples so the core meaning is available before JavaScript renders the interactive grid.
 - Show a bilingual meaning and official symbol number when a symbol is selected.
 - Provide an experimental photo candidate search by comparing an uploaded image with the local SVG templates.
 - Photo candidate search is not OCR and is not an authoritative automatic classifier.
@@ -110,6 +111,7 @@ The symbol grid and result areas reflow for narrow screens while retaining usabl
 - [ ] P/F professional dry-clean records never use the very-gentle two-line modifier.
 - [ ] Natural-dry one/two line geometry and shade marker are distinguishable.
 - [ ] Search accepts official symbol numbers such as `141` and `511`.
+- [ ] Public H1 and static overview describe the page as a guide to the meaning of laundry care symbols and expose the basic symbol families without requiring the JavaScript grid.
 - [ ] Selecting a symbol displays its meaning and official symbol number.
 - [ ] Photo candidate search compares only against the canonical 43-symbol set.
 - [ ] Unsupported or malformed images fail safely without sending the image to a server.
