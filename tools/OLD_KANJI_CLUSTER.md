@@ -47,22 +47,33 @@ The page must keep a self-canonical URL and WebApplication structured data. FAQ 
 
 CTR work is a separate acceptance target from ranking work. The title/description should optimize clarity of task and free availability before brand language.
 
-## Individual-kanji search demand
+## Individual-kanji search demand and allowlist
 
-Do **not** mass-generate thin pages for every mapping.
+Do **not** mass-generate thin pages for every mapping. `dictionary-audit.json` may expose many repository-side `seoCandidate` records, but that field is only a dictionary/data-quality gate and is not publication approval.
 
-An indexable per-kanji URL may be introduced later only when its source record can support standalone value such as:
+The current production allowlist contains exactly three evidence-gated individual pages:
+
+- `/tools/old-kanji-reference/kanji/ga-kaku/` — `画 / 畫`, with the observed `計画 旧字体` intent and `計画 → 計畫` answer;
+- `/tools/old-kanji-reference/kanji/sho-shou/` — `将 / 將`;
+- `/tools/old-kanji-reference/kanji/kyu-old/` — `旧 / 舊`.
+
+An additional indexable per-kanji URL may be introduced only when **both** publication gates pass:
+
+1. **dictionary/source gate** — the current record is not `identity` or `unresolved`, has no blocking data-quality issue, and the page's old/new or variant claim is supported by an authoritative source;
+2. **demand gate** — actual settled Search Console evidence demonstrates a relevant query/landing need worth a standalone page.
+
+Standalone value should include more than a bare mapping where the evidence supports it, such as:
 - modern form;
 - old/variant form(s);
-- Unicode/code point information;
+- verified example words or usage;
+- Unicode/code point information when relevant;
 - reading when verified;
-- usage/caution or compatibility note when supported;
-- related characters where the bundled data supports the relation;
+- caution or compatibility notes when supported;
 - direct handoff to the relevant lookup/conversion tool.
 
-If a record only contains a bare pair, it remains inside the searchable Reference UI and must not become an SEO landing page solely to create inventory.
+If a record only contains a bare pair, is `identity`, is `unresolved`, or lacks observed demand, it remains inside the searchable Reference UI and must not become an indexable page solely to create inventory.
 
-The first candidate wave, if implemented, must be small and evidence-led by actual Search Console demand (for example observed `<漢字> 旧字体` queries), then evaluated before expansion.
+Publication is allowlist-only. A generator, audit count, or keyword list must never turn the full candidate set into pages automatically. Existing pages are re-audited in Completion Wave 18 before any expansion is considered.
 
 ## Internal journey contract
 
