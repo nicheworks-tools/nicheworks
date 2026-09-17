@@ -25,7 +25,7 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           import struct
-          ids=['shepherd-check','glen-check','prince-of-wales-check','gun-club-check','herringbone','kagome','same-komon','tomoe','fleur-de-lis','marbling','giraffe-print','zebra-print']
+          ids=['shepherd-check','glen-check','prince-of-wales-check','gun-club-check','herringbone','kagome','same-komon','tomoe','fleur-de-lis','marbling','sayagata','giraffe-print','zebra-print']
           root=Path('tools/pattern-dictionary/assets/reference')
           for pid in ids:
               p=root/f'{pid}.png'; b=p.read_bytes()
@@ -47,5 +47,6 @@ jobs:
             tools/pattern-dictionary/assets/reference/tomoe.png
             tools/pattern-dictionary/assets/reference/fleur-de-lis.png
             tools/pattern-dictionary/assets/reference/marbling.png
+            tools/pattern-dictionary/assets/reference/sayagata.png
             tools/pattern-dictionary/assets/reference/giraffe-print.png
             tools/pattern-dictionary/assets/reference/zebra-print.png
