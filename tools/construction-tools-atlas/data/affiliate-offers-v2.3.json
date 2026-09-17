@@ -1,6 +1,6 @@
 {
   "schema": "cta-affiliate-offers-v2.3",
-  "version": "2026-09-17-wave5j-affiliate-1",
+  "version": "2026-09-17-wave5k-affiliate-1",
   "provider": "amazon.co.jp",
   "tracking_id": "nicheworks09-22",
   "policy": {"query_source":"maintained_canonical_mapping_only","free_text_forwarding":false,"product_claims":false,"price_inventory_rating_content":false},
@@ -101,6 +101,16 @@
     {"entry_id":"q015_solenoid_valve","status":"active","offer_id":"amazon_q015_solenoid_valve_search","query":"電磁弁","amazon_url":"https://www.amazon.co.jp/s?k=%E9%9B%BB%E7%A3%81%E5%BC%81&tag=nicheworks09-22","label_ja":"Amazonで電磁弁を探す","label_en":"Find solenoid valves on Amazon"},
     {"entry_id":"q015_gate_valve","status":"active","offer_id":"amazon_q015_gate_valve_search","query":"仕切弁","amazon_url":"https://www.amazon.co.jp/s?k=%E4%BB%95%E5%88%87%E5%BC%81&tag=nicheworks09-22","label_ja":"Amazonで仕切弁を探す","label_en":"Find gate valves on Amazon"},
     {"entry_id":"q015_globe_valve","status":"active","offer_id":"amazon_q015_globe_valve_search","query":"玉形弁","amazon_url":"https://www.amazon.co.jp/s?k=%E7%8E%89%E5%BD%A2%E5%BC%81&tag=nicheworks09-22","label_ja":"Amazonで玉形弁を探す","label_en":"Find globe valves on Amazon"},
-    {"entry_id":"q015_butterfly_valve","status":"active","offer_id":"amazon_q015_butterfly_valve_search","query":"バタフライ弁","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%90%E3%82%BF%E3%83%95%E3%83%A9%E3%82%A4%E5%BC%81&tag=nicheworks09-22","label_ja":"Amazonでバタフライ弁を探す","label_en":"Find butterfly valves on Amazon"}
+    {"entry_id":"q015_butterfly_valve","status":"active","offer_id":"amazon_q015_butterfly_valve_search","query":"バタフライ弁","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%90%E3%82%BF%E3%83%95%E3%83%A9%E3%82%A4%E5%BC%81&tag=nicheworks09-22","label_ja":"Amazonでバタフライ弁を探す","label_en":"Find butterfly valves on Amazon"},
+    {"entry_id":"q015_faucet","status":"active","offer_id":"amazon_q015_faucet_search","query":"水栓","amazon_url":"https://www.amazon.co.jp/s?k=%E6%B0%B4%E6%A0%93&tag=nicheworks09-22","label_ja":"Amazonで水栓を探す","label_en":"Find faucets on Amazon"},
+    {"entry_id":"q015_mixer_faucet","status":"active","offer_id":"amazon_q015_mixer_faucet_search","query":"混合水栓","amazon_url":"https://www.amazon.co.jp/s?k=%E6%B7%B7%E5%90%88%E6%B0%B4%E6%A0%93&tag=nicheworks09-22","label_ja":"Amazonで混合水栓を探す","label_en":"Find mixer faucets on Amazon"},
+    {"entry_id":"q015_floor_drain","status":"active","offer_id":"amazon_q015_floor_drain_search","query":"床排水金物","amazon_url":"https://www.amazon.co.jp/s?k=%E5%BA%8A%E6%8E%92%E6%B0%B4%E9%87%91%E7%89%A9&tag=nicheworks09-22","label_ja":"Amazonで床排水金物を探す","label_en":"Find floor drains on Amazon"},
+    {"entry_id":"q015_trap_primer","status":"active","offer_id":"amazon_q015_trap_primer_search","query":"トラップ 給水装置","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%88%E3%83%A9%E3%83%83%E3%83%97+%E7%B5%A6%E6%B0%B4%E8%A3%85%E7%BD%AE&tag=nicheworks09-22","label_ja":"Amazonでトラップ給水装置を探す","label_en":"Find trap primers on Amazon"},
+    {"entry_id":"q015_cleanout_plug","status":"active","offer_id":"amazon_q015_cleanout_plug_search","query":"掃除口 プラグ","amazon_url":"https://www.amazon.co.jp/s?k=%E6%8E%83%E9%99%A4%E5%8F%A3+%E3%83%97%E3%83%A9%E3%82%B0&tag=nicheworks09-22","label_ja":"Amazonで掃除口プラグを探す","label_en":"Find cleanout plugs on Amazon"},
+    {"entry_id":"q015_pipe_insulation","status":"active","offer_id":"amazon_q015_pipe_insulation_search","query":"配管 保温材","amazon_url":"https://www.amazon.co.jp/s?k=%E9%85%8D%E7%AE%A1+%E4%BF%9D%E6%B8%A9%E6%9D%90&tag=nicheworks09-22","label_ja":"Amazonで配管保温材を探す","label_en":"Find pipe insulation on Amazon"},
+    {"entry_id":"q015_glass_wool_pipe_cover","status":"active","offer_id":"amazon_q015_glass_wool_pipe_cover_search","query":"グラスウール 保温筒","amazon_url":"https://www.amazon.co.jp/s?k=%E3%82%B0%E3%83%A9%E3%82%B9%E3%82%A6%E3%83%BC%E3%83%AB+%E4%BF%9D%E6%B8%A9%E7%AD%92&tag=nicheworks09-22","label_ja":"Amazonでグラスウール保温筒を探す","label_en":"Find glass-wool pipe covers on Amazon"},
+    {"entry_id":"q015_polyethylene_pipe_cover","status":"active","offer_id":"amazon_q015_polyethylene_pipe_cover_search","query":"ポリエチレン 保温筒","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%9D%E3%83%AA%E3%82%A8%E3%83%81%E3%83%AC%E3%83%B3+%E4%BF%9D%E6%B8%A9%E7%AD%92&tag=nicheworks09-22","label_ja":"Amazonでポリエチレン保温筒を探す","label_en":"Find polyethylene pipe covers on Amazon"},
+    {"entry_id":"q015_aluminum_jacket","status":"active","offer_id":"amazon_q015_aluminum_jacket_search","query":"配管 アルミ 外装材","amazon_url":"https://www.amazon.co.jp/s?k=%E9%85%8D%E7%AE%A1+%E3%82%A2%E3%83%AB%E3%83%9F+%E5%A4%96%E8%A3%85%E6%9D%90&tag=nicheworks09-22","label_ja":"Amazonで配管用アルミ外装材を探す","label_en":"Find aluminum pipe jacketing on Amazon"},
+    {"entry_id":"q015_insulation_tape","status":"active","offer_id":"amazon_q015_insulation_tape_search","query":"保温 テープ 配管","amazon_url":"https://www.amazon.co.jp/s?k=%E4%BF%9D%E6%B8%A9+%E3%83%86%E3%83%BC%E3%83%97+%E9%85%8D%E7%AE%A1&tag=nicheworks09-22","label_ja":"Amazonで配管保温テープを探す","label_en":"Find pipe insulation tape on Amazon"}
   ]
 }
