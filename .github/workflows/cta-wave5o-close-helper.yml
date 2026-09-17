@@ -1,0 +1,67 @@
+name: CTA Wave5O close helper
+on:
+  push:
+    branches:
+      - content/construction-atlas-wave5o-q015-close-q016-flooring-20260917
+permissions:
+  contents: write
+jobs:
+  close:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/construction-atlas-wave5o-q015-close-q016-flooring-20260917
+      - name: Append Wave5O affiliate mappings
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const file='tools/construction-tools-atlas/data/affiliate-offers-v2.3.json';
+          let text=fs.readFileSync(file,'utf8');
+          const data=JSON.parse(text);
+          if(![141,152].includes(data.offers.length)) throw new Error(`expected 141 or 152 offers, got ${data.offers.length}`);
+          const rows=[
+            ['q015_leak_detector','冷媒 漏れ検知器','冷媒漏れ検知器','refrigerant leak detectors'],
+            ['q015_smoke_tester','スモークテスター 気流','気流確認用スモークテスター','airflow smoke testers'],
+            ['q015_anemometer','風速計','風速計','anemometers'],
+            ['q015_airflow_hood','風量測定 フード','風量測定フード','airflow hoods'],
+            ['q015_manometer','差圧計','差圧計','manometers'],
+            ['q015_access_panel_duct','ダクト 点検口','ダクト点検口','duct access panels'],
+            ['q015_louver','換気 ルーバー','換気ルーバー','ventilation louvers'],
+            ['q015_backdraft_damper','逆止ダンパー 換気','逆止ダンパー','backdraft dampers'],
+            ['q015_flexible_connector','ダクト キャンバス継手','ダクト用キャンバス継手','duct flexible connectors'],
+            ['q016_vinyl_floor_tile','ビニル床タイル','ビニル床タイル','vinyl floor tiles'],
+            ['q016_vinyl_sheet_flooring','長尺シート 床','長尺シート床材','vinyl sheet flooring']
+          ];
+          const ids=new Set(data.offers.map(o=>o.entry_id));
+          const additions=[];
+          for(const [entryId,query,ja,en] of rows){
+            if(ids.has(entryId)) continue;
+            const suffix=entryId.replace(/^q0\d+_/,'');
+            const prefix=entryId.split('_')[0];
+            const params=new URLSearchParams({k:query,tag:data.tracking_id});
+            additions.push({entry_id:entryId,status:'active',offer_id:`amazon_${prefix}_${suffix}_search`,query,amazon_url:`https://www.amazon.co.jp/s?${params.toString()}`,label_ja:`Amazonで${ja}を探す`,label_en:`Find ${en} on Amazon`});
+          }
+          if(![0,11].includes(additions.length)) throw new Error(`expected 0 or 11 new mappings, got ${additions.length}`);
+          text=text.replace(/"version":\s*"[^"]+"/, '"version": "2026-09-17-wave5o-affiliate-1"');
+          if(additions.length){
+            const marker='\n  ]\n}';
+            if(!text.includes(marker)) throw new Error('affiliate closing marker not found');
+            const rendered=additions.map(o=>'    '+JSON.stringify(o)).join(',\n');
+            text=text.replace(marker, ',\n'+rendered+'\n  ]\n}');
+          }
+          const out=JSON.parse(text);
+          if(out.offers.length!==152) throw new Error(`expected 152 offers, got ${out.offers.length}`);
+          if(new Set(out.offers.map(o=>o.entry_id)).size!==152) throw new Error('duplicate affiliate entry_id');
+          fs.writeFileSync(file,text.endsWith('\n')?text:text+'\n');
+          NODE
+      - name: Refresh content snapshot
+        run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --write
+      - name: Commit generated Wave5O state
+        run: |
+          git config user.name 'nicheworks-tools'
+          git config user.email 'nicheworks.tools@gmail.com'
+          git add tools/construction-tools-atlas/data/affiliate-offers-v2.3.json tools/construction-tools-atlas/data/public-content-quality-v2.3.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Construction Atlas: refresh Wave5O generated state'
+          git push origin HEAD:content/construction-atlas-wave5o-q015-close-q016-flooring-20260917
