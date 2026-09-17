@@ -24,16 +24,16 @@ const GENERATED_NOTE_RE = /generated dictionary entry|use official ingredient la
 const CLAIM_REVIEW_RE = /\b(?:safe|safety|risk|irritat|allerg|sensiti|pregnan|toxic|comedogen|acne|well tolerated|avoid)\b/i;
 
 // Categories that currently have a bilingual public role label and role-level
-// explanation in the answer-first cosmetics UI. This is intentionally narrower
-// than the raw dictionary taxonomy: unsupported categories remain explicit
+// explanation in both cosmetics tools. Unsupported categories remain explicit
 // Information incomplete debt instead of receiving a fabricated explanation.
 const PUBLIC_ROLE_CATEGORIES = new Set([
   'humectant', 'moisturizer', 'soothing', 'active', 'amino acid', 'silicone',
   'film former', 'emollient', 'oil', 'solvent', 'preservative', 'fragrance',
   'surfactant', 'cleanser', 'uv filter', 'sunscreen', 'colorant', 'pigment',
-  'antioxidant', 'botanical', 'extract', 'peptide', 'ferment', 'thickener',
-  'emulsifier', 'chelator', 'chelating agent', 'ph', 'ph adjuster',
-  'viscosity adjuster'
+  'antioxidant', 'botanical', 'extract', 'plant extract', 'peptide', 'ferment',
+  'thickener', 'emulsifier', 'chelator', 'chelating agent', 'ph', 'ph adjuster',
+  'viscosity adjuster', 'buffer', 'conditioning', 'skin conditioning',
+  'hair conditioning'
 ]);
 
 // Existing semantic-debt ceilings. These are ceilings, not targets: cleanup may

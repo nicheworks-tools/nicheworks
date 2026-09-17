@@ -19,13 +19,13 @@ try {
 }
 
 const CEILINGS = Object.freeze({
-  records_without_public_role_explanation: 366,
-  canonical_identities_without_public_role_explanation: 247
+  records_without_public_role_explanation: 309,
+  canonical_identities_without_public_role_explanation: 191
 });
 
 const FLOORS = Object.freeze({
-  records_with_public_role_explanation: 359,
-  canonical_identities_with_public_role_explanation: 352
+  records_with_public_role_explanation: 416,
+  canonical_identities_with_public_role_explanation: 408
 });
 
 const failures = [];
