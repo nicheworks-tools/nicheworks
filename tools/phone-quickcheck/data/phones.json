@@ -5153,7 +5153,7 @@
         }
       },
       "included": {
-        "cable": "unknown",
+        "cable": "not_included",
         "adapter": "not_included"
       },
       "sources": {
@@ -7195,7 +7195,7 @@
       },
       "included": {
         "cable": "included",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.docomo.ne.jp/support/product/sc53b/spec.html",
@@ -7246,7 +7246,7 @@
       },
       "included": {
         "cable": "included",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.docomo.ne.jp/support/product/sc54a/spec.html",
@@ -7799,7 +7799,7 @@
       },
       "included": {
         "cable": "unknown",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/aquos-sense5g/spec.html",
@@ -7901,7 +7901,7 @@
       },
       "included": {
         "cable": "unknown",
-        "adapter": "unknown"
+        "adapter": "included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/aquos-wish-biz/s/",
@@ -7952,7 +7952,7 @@
       },
       "included": {
         "cable": "unknown",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/aquos-r6/spec.html",
@@ -8054,7 +8054,7 @@
       },
       "included": {
         "cable": "unknown",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/aquos-r5g/spec.html",
@@ -8105,7 +8105,7 @@
       },
       "included": {
         "cable": "unknown",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/aquos-zero5g-basic/spec.html",

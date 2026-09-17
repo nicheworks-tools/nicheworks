@@ -18,27 +18,27 @@
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
     "quality_manifest_version": "2026-09-14-manifest-8",
-    "content_enrichment_version": "2026-09-17-wave5o"
+    "content_enrichment_version": "2026-09-17-wave5p"
   },
   "summary": {
     "public_entries": 870,
-    "fallback_independent_core": 526,
-    "runtime_fallback_dependent": 344,
+    "fallback_independent_core": 541,
+    "runtime_fallback_dependent": 329,
     "missing_core_bilingual_content": 0,
     "explicit_bilingual_identity": 870,
     "explicit_bilingual_definition": 870,
-    "explicit_bilingual_detail": 745,
-    "explicit_bilingual_bullets": 526,
-    "explicit_bilingual_examples": 745,
+    "explicit_bilingual_detail": 760,
+    "explicit_bilingual_bullets": 541,
+    "explicit_bilingual_examples": 760,
     "explicit_bilingual_aliases": 279,
-    "content_enriched_entries": 386,
+    "content_enriched_entries": 401,
     "has_category_context": 870,
     "has_task_context": 870
   },
   "fallback_field_counts": {
-    "detail": 125,
-    "bullets": 344,
-    "examples": 125
+    "detail": 110,
+    "bullets": 329,
+    "examples": 110
   },
   "by_type": {
     "access": {
@@ -55,8 +55,8 @@
     },
     "component": {
       "public_entries": 205,
-      "fallback_independent_core": 178,
-      "runtime_fallback_dependent": 27,
+      "fallback_independent_core": 181,
+      "runtime_fallback_dependent": 24,
       "missing_core_bilingual_content": 0
     },
     "consumable": {
@@ -109,8 +109,8 @@
     },
     "material": {
       "public_entries": 158,
-      "fallback_independent_core": 109,
-      "runtime_fallback_dependent": 49,
+      "fallback_independent_core": 118,
+      "runtime_fallback_dependent": 40,
       "missing_core_bilingual_content": 0
     },
     "materials": {
@@ -169,17 +169,17 @@
     },
     "tool": {
       "public_entries": 333,
-      "fallback_independent_core": 111,
-      "runtime_fallback_dependent": 222,
+      "fallback_independent_core": 114,
+      "runtime_fallback_dependent": 219,
       "missing_core_bilingual_content": 0
     }
   },
   "hashes": {
-    "content_status_sha256": "8d40a1e9a5a3251c2a209a9a28e4f965e5045dac0af18ebe85d392d96a6da49a",
-    "fallback_independent_id_sha256": "30da44be7ffed710882a960197cbd21437ecdedf68b13d2bcf6085020ccd811d",
-    "fallback_dependent_id_sha256": "825fb0d58ff07b4460283cdc5b1130d3fdcd84b27df8214189c7368822f0e329",
+    "content_status_sha256": "cc087ea94eb830c494e0bd87895e34390d4e56a452a1f2ac28090b14fd2cd5a8",
+    "fallback_independent_id_sha256": "5cb56e9fd002a8f368a62d661e00f5fbefbbbc9e20daeb9206ff7925d0975897",
+    "fallback_dependent_id_sha256": "74b6437d7222104906680c8c0c21277ab387f2f10123449c4a9d2c19eec48c80",
     "missing_core_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "content_enriched_id_sha256": "c70958b1525634d029b053d067ca981841ad1b4004413454402a3909f1bc70aa"
+    "content_enriched_id_sha256": "f05f22f1228fb9ef3e494ca489ca8e24ba0f166f4dbdced48db3d8700653694f"
   },
   "samples": {
     "fallback_independent_core": [
@@ -336,156 +336,6 @@
     ],
     "runtime_fallback_dependent": [
       {
-        "id": "q016_flooring_board",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_laminate_flooring",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_floor_underlayment",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_floor_adhesive",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_floor_weld_rod",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_floor_joint_strip",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_soft_baseboard",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_cove_base",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_carpet_adhesive",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_tack_strip",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_floor_sander",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_floor_scraper",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_wallpaper",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_wallpaper_adhesive",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_wallpaper_brush",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
         "id": "q016_wallpaper_seam_roller",
         "source": "data/tools.quality-016.json",
         "enrichment": null,
@@ -577,6 +427,156 @@
       },
       {
         "id": "q016_main_tee",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_cross_tee",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_ceiling_hanger_wire",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_access_ceiling_panel",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_paint_primer_interior",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_interior_paint",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_water_based_paint",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_oil_based_paint",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_paint_putty",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_paint_roller_cover",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_paint_extension_pole",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_drop_cloth",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_masking_film",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_tile_backer_board",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_tile_leveling_clip",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_tile_wedge",
         "source": "data/tools.quality-016.json",
         "enrichment": null,
         "fallback_fields": [
