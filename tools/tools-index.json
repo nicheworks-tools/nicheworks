@@ -783,15 +783,15 @@
     },
     {
       "slug": "pages-deploy-guide",
-      "title_en": "Pages Deploy Guide",
-      "title_ja": "Pages公開ガイド",
-      "desc_en": "A lightweight guide for deploying static tools.",
-      "desc_ja": "静的ツールを公開するための軽量ガイドです。",
+      "title_en": "Cloudflare & GitHub Pages Deploy Guide",
+      "title_ja": "Cloudflare Pages・GitHub Pages デプロイ確認",
+      "desc_en": "Generate pre-deploy checks, troubleshooting notes, and a handoff pack for Cloudflare Pages and GitHub Pages.",
+      "desc_ja": "Cloudflare Pages / GitHub Pagesの公開前チェック、404・DNS・SSLなどの症状別診断、引き継ぎメモを生成します。",
       "tags": [
-        "pages",
-        "deploy",
-        "cloudflare",
-        "guide"
+        "cloudflare-pages",
+        "github-pages",
+        "deployment",
+        "troubleshooting"
       ]
     },
     {
