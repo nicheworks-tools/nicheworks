@@ -289,15 +289,15 @@
     },
     {
       "slug": "form-tool-selector",
-      "title_en": "Form Tool Selector",
-      "title_ja": "フォームツール選定補助",
-      "desc_en": "Compare form tool needs and choose a setup direction.",
-      "desc_ja": "用途に合うフォームツールや構成方針を整理します。",
+      "title_en": "Form Builder Requirements Selector",
+      "title_ja": "フォーム作成ツールの選び方",
+      "desc_en": "Use requirements such as file uploads, payments, integrations, multilingual support, free-first, and privacy-first to narrow which form-builder categories to compare.",
+      "desc_ja": "ファイル添付・決済・通知連携・多言語・無料優先・プライバシーなどの要件から、比較すべきフォーム作成ツールの種類を整理します。",
       "tags": [
-        "form",
-        "tool",
-        "selector",
-        "planning"
+        "forms",
+        "form-builder",
+        "requirements",
+        "selection"
       ]
     },
     {
@@ -1132,15 +1132,15 @@
     },
     {
       "slug": "wifi-meter",
-      "title_en": "Wi-Fi Meter",
-      "title_ja": "Wi-Fi目安メーター",
-      "desc_en": "Check simple Wi-Fi speed or signal notes.",
-      "desc_ja": "Wi-Fi速度や電波状態のメモ整理を補助します。",
+      "title_en": "Connection Status Estimate",
+      "title_ja": "Wi-Fi通信状態の目安",
+      "desc_en": "Check connection-status changes from browser-estimated RTT and downlink values. This is not an RSSI meter, real ping test, or speed test.",
+      "desc_ja": "ブラウザのNetwork Information APIが返す推定RTT・推定帯域から通信状態の変化を確認します。RSSI・実ping・速度測定ではありません。",
       "tags": [
         "wifi",
         "network",
-        "speed",
-        "life"
+        "rtt",
+        "connection"
       ]
     }
   ]
