@@ -1,0 +1,37 @@
+name: Temp Phone QuickCheck SHARP package audit
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/temp-phone-quickcheck-sharp-package-audit.yml'
+      - 'tools/phone-quickcheck/data/phones.json'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print SHARP package unknowns
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('tools/phone-quickcheck/data/phones.json','utf8'));
+          const adapter = data.phones.filter(p => p.included?.adapter === 'unknown');
+          const cable = data.phones.filter(p => p.included?.cable === 'unknown');
+          console.log('ADAPTER_COUNT=' + adapter.length);
+          console.log('CABLE_COUNT=' + cable.length);
+          const sharp = data.phones.filter(p => String(p.manufacturer || '').toLowerCase() === 'sharp' && (p.included?.adapter === 'unknown' || p.included?.cable === 'unknown')).map(p => ({
+            id: p.id,
+            model: p.model,
+            market: p.market ?? null,
+            included: p.included,
+            specificationsUrl: p.sources?.specificationsUrl ?? null,
+            manualUrl: p.sources?.manualUrl ?? null,
+            releaseUrl: p.sources?.releaseUrl ?? null,
+            chargingUrl: p.sources?.chargingUrl ?? null
+          }));
+          console.log('SHARP=' + JSON.stringify(sharp, null, 2));
+          NODE
