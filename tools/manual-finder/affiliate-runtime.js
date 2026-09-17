@@ -19,125 +19,40 @@
   }
 
   function loadCameraAccessoryLayers(done) {
-    loadScript(
-      "affiliate-camera-accessories.js?v=mf-camera-accessory-20260916a",
-      () => Boolean(window.MANUALFINDER_CAMERA_ACCESSORY_LEDGER),
-      () => {
-        loadScript(
-          "affiliate-nikon-camera-accessories-wave2.js?v=mf-nikon-camera-accessory-wave2-20260916a",
-          () => Boolean(window.MANUALFINDER_NIKON_CAMERA_ACCESSORY_WAVE2_LEDGER),
-          () => {
-            loadScript(
-              "affiliate-dji-camera-accessories-wave1.js?v=mf-dji-camera-accessory-wave1-20260916a",
-              () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE1_LEDGER),
-              () => {
-                loadScript(
-                  "affiliate-dji-camera-accessories-wave2.js?v=mf-dji-camera-accessory-wave2-20260916a",
-                  () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE2_LEDGER),
-                  () => {
-                    loadScript(
-                      "affiliate-dji-camera-accessories-wave3.js?v=mf-dji-camera-accessory-wave3-20260916a",
-                      () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE3_LEDGER),
-                      () => {
-                        loadScript(
-                          "affiliate-dji-camera-accessories-wave4.js?v=mf-dji-camera-accessory-wave4-20260916a",
-                          () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE4_LEDGER),
-                          () => {
-                            loadScript(
-                              "affiliate-dji-camera-accessories-wave5.js?v=mf-dji-camera-accessory-wave5-20260916a",
-                              () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE5_LEDGER),
-                              () => {
-                                loadScript(
-                                  "affiliate-dji-camera-accessories-wave6.js?v=mf-dji-camera-accessory-wave6-20260916a",
-                                  () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE6_LEDGER),
-                                  () => {
-                                    loadScript(
-                                      "affiliate-dji-camera-accessories-wave7.js?v=mf-dji-camera-accessory-wave7-20260916a",
-                                      () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE7_LEDGER),
-                                      () => {
-                                        loadScript(
-                                          "affiliate-dji-camera-accessories-wave8.js?v=mf-dji-camera-accessory-wave8-20260916a",
-                                          () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE8_LEDGER),
-                                          () => {
-                                            loadScript(
-                                              "affiliate-dji-camera-accessories-wave9.js?v=mf-dji-camera-accessory-wave9-20260916a",
-                                              () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE9_LEDGER),
-                                              () => {
-                                                loadScript(
-                                                  "affiliate-dji-camera-accessories-wave10.js?v=mf-dji-camera-accessory-wave10-20260917a",
-                                                  () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE10_LEDGER),
-                                                  () => {
-                                                    loadScript(
-                                                      "affiliate-dji-camera-accessories-wave11.js?v=mf-dji-camera-accessory-wave11-20260917a",
-                                                      () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE11_LEDGER),
-                                                      () => {
-                                                        loadScript(
-                                                          "affiliate-dji-camera-accessories-wave12.js?v=mf-dji-camera-accessory-wave12-20260917a",
-                                                          () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE12_LEDGER),
-                                                          () => {
-                                                            loadScript(
-                                                              "affiliate-dji-camera-accessories-wave13.js?v=mf-dji-camera-accessory-wave13-20260917a",
-                                                              () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE13_LEDGER),
-                                                              () => {
-                                                                loadScript(
-                                                                  "affiliate-dji-camera-accessories-wave14.js?v=mf-dji-camera-accessory-wave14-20260917a",
-                                                                  () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE14_LEDGER),
-                                                                  () => {
-                                                                    loadScript(
-                                                                      "affiliate-dji-camera-accessories-wave15.js?v=mf-dji-camera-accessory-wave15-20260917a",
-                                                                      () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE15_LEDGER),
-                                                                      () => {
-                                                                        loadScript(
-                                                                          "affiliate-dji-camera-accessories-wave16.js?v=mf-dji-camera-accessory-wave16-20260917a",
-                                                                          () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE16_LEDGER),
-                                                                          () => {
-                                                                            loadScript(
-                                                                              "affiliate-dji-camera-accessories-wave17.js?v=mf-dji-camera-accessory-wave17-20260917a",
-                                                                              () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE17_LEDGER),
-                                                                              () => {
-                                                                                loadScript(
-                                                                                  "affiliate-dji-camera-accessories-wave18.js?v=mf-dji-camera-accessory-wave18-20260917a",
-                                                                                  () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE18_LEDGER),
-                                                                                  done
-                                                                                );
-                                                                              }
-                                                                            );
-                                                                          }
-                                                                        );
-                                                                      }
-                                                                    );
-                                                                  }
-                                                                );
-                                                              }
-                                                            );
-                                                          }
-                                                        );
-                                                      }
-                                                    );
-                                                  }
-                                                );
-                                              }
-                                            );
-                                          }
-                                        );
-                                      }
-                                    );
-                                  }
-                                );
-                              }
-                            );
-                          }
-                        );
-                      }
-                    );
-                  }
-                );
-              }
-            );
-          }
-        );
+    const layers = [
+      ["affiliate-camera-accessories.js?v=mf-camera-accessory-20260916a", "MANUALFINDER_CAMERA_ACCESSORY_LEDGER"],
+      ["affiliate-nikon-camera-accessories-wave2.js?v=mf-nikon-camera-accessory-wave2-20260916a", "MANUALFINDER_NIKON_CAMERA_ACCESSORY_WAVE2_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave1.js?v=mf-dji-camera-accessory-wave1-20260916a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE1_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave2.js?v=mf-dji-camera-accessory-wave2-20260916a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE2_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave3.js?v=mf-dji-camera-accessory-wave3-20260916a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE3_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave4.js?v=mf-dji-camera-accessory-wave4-20260916a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE4_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave5.js?v=mf-dji-camera-accessory-wave5-20260916a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE5_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave6.js?v=mf-dji-camera-accessory-wave6-20260916a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE6_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave7.js?v=mf-dji-camera-accessory-wave7-20260916a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE7_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave8.js?v=mf-dji-camera-accessory-wave8-20260916a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE8_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave9.js?v=mf-dji-camera-accessory-wave9-20260916a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE9_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave10.js?v=mf-dji-camera-accessory-wave10-20260917a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE10_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave11.js?v=mf-dji-camera-accessory-wave11-20260917a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE11_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave12.js?v=mf-dji-camera-accessory-wave12-20260917a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE12_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave13.js?v=mf-dji-camera-accessory-wave13-20260917a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE13_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave14.js?v=mf-dji-camera-accessory-wave14-20260917a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE14_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave15.js?v=mf-dji-camera-accessory-wave15-20260917a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE15_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave16.js?v=mf-dji-camera-accessory-wave16-20260917a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE16_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave17.js?v=mf-dji-camera-accessory-wave17-20260917a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE17_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave18.js?v=mf-dji-camera-accessory-wave18-20260917a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE18_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave19.js?v=mf-dji-camera-accessory-wave19-20260917a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE19_LEDGER"]
+    ];
+
+    let index = 0;
+    function next() {
+      if (index >= layers.length) {
+        done();
+        return;
       }
-    );
+      const [url, ledgerName] = layers[index++];
+      loadScript(url, () => Boolean(window[ledgerName]), next);
+    }
+    next();
   }
 
   function init() {
