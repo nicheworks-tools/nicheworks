@@ -59,6 +59,15 @@ check(liteHtml.includes('data-lang="ja"') && liteHtml.includes('data-lang="en"')
 check(liteHtml.includes('PASTE → CHECK → REVIEW'), 'Lite paste-first hero contract missing');
 check(liteHtml.includes('/tools/inci-fastscan/'), 'Lite must link to FastScan for OCR/detail');
 check(!liteHtml.includes('/assets/nicheworks-logo.png'), 'Lite must not restore the old NicheWorks logo header');
+check(liteHtml.includes('成分ごとの役割と説明'), 'Lite must lead with ingredient-level answers');
+check(liteHtml.includes('役割の説明'), 'Lite result table must label role explanations explicitly');
+const liteTableAt = liteHtml.indexOf('id="itemsTable"');
+const liteSummaryAt = liteHtml.indexOf('id="summaryBox"');
+const liteAffiliateAt = liteHtml.indexOf('id="amazonAffiliateSlot"');
+check(liteTableAt >= 0 && liteSummaryAt > liteTableAt, 'Lite overall summary must follow the ingredient result table');
+check(liteTableAt >= 0 && liteAffiliateAt > liteTableAt, 'Lite affiliate slot must follow the ingredient result table');
+check(liteEnhancements.includes("filterBar.hidden = rows.length < 2"), 'Lite single-result view must not show redundant filters');
+check(liteEnhancements.includes("summaryBox.hidden = rowCount < 2"), 'Lite single-result view must not show redundant aggregate summary');
 check(liteUiCss.includes('body.lite-v2 {\n  background: #fff;'), 'Lite UI v2 must retain a white page background');
 check(liteUiCss.includes('body.lite-v2 .result-table tr,') && liteUiCss.includes('display: block;'), 'Lite mobile results must retain stacked/card-like rows');
 
@@ -122,8 +131,7 @@ check(affiliateConfig.includes('enabled: true'), 'Amazon config must be active')
 check(affiliateConfig.includes('trackingMode: "tagged_search"'), 'Amazon config must use tagged_search mode');
 check(affiliateConfig.includes('displayMode: "post_result_category_choice"'), 'Amazon config must remain post-result category choice');
 check(affiliateConfig.includes('const ASSOCIATE_TAG = "nicheworks09-22"'), 'verified Associates tag missing');
-check(affiliateConfig.includes('placement: "after-summary"'), 'Lite affiliate placement changed');
-check(affiliateConfig.includes('placement: "after-results"'), 'FastScan affiliate placement changed');
+check((affiliateConfig.match(/placement: "after-results"/g) || []).length === 2, 'both cosmetics affiliate slots must stay after results');
 check((affiliateConfig.match(/links: fixedSearchLinks/g) || []).length === 2, 'both cosmetics tools must use the fixed search set');
 const affiliateCategoryKeys = ['toner', 'serum', 'moisturizer', 'cleanser', 'cleansing', 'sunscreen', 'bodycare'];
 for (const key of affiliateCategoryKeys) check(affiliateConfig.includes(`key: "${key}"`), `fixed affiliate category missing: ${key}`);
@@ -146,8 +154,10 @@ if (failures.length) {
 console.log(JSON.stringify({
   status: 'pass',
   tools: ['cosmetic-ingredient-checker-lite', 'inci-fastscan'],
-  ui_contract: 'cosmetics-v2-role-first',
+  ui_contract: 'cosmetics-v2-answer-first',
   lite_paste_first: true,
+  lite_answer_first: true,
+  lite_single_result_filters: false,
   fastscan_photo_first: true,
   public_results: 'ingredient-role-first',
   bilingual_ui: true,
@@ -158,6 +168,7 @@ console.log(JSON.stringify({
   amazon_enabled: true,
   amazon_tracking_mode: 'tagged_search',
   amazon_display_mode: 'post_result_category_choice',
+  amazon_placement: 'after-results',
   amazon_fixed_categories: affiliateCategoryKeys.length,
-  release_gate: 'amazon-live-quality-wave'
+  release_gate: 'answer-first-quality-wave'
 }, null, 2));

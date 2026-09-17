@@ -3,24 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>化粧品成分チェック・INCI解析｜INCI FastScan | NicheWorks</title>
-  <meta name="description" content="化粧品の成分表示やINCI名を貼り付け、または画像OCRで読み取り、既知成分・確認候補・不明成分をブラウザ上で整理できる無料ツールです。">
+  <title>化粧品成分チェック・OCR｜成分の役割を確認 | INCI FastScan</title>
+  <meta name="description" content="化粧品ラベルを写真OCRまたはテキストで読み取り、各成分の主な役割と簡単な説明をブラウザ上で確認できる無料ツールです。">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://nicheworks.app/tools/inci-fastscan/">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="ui-v2.css" />
+  <link rel="stylesheet" href="enhancements.css?v=20260916-role-first-3" />
+  <link rel="stylesheet" href="/tools/_shared/cosmetics-affiliate-slot.css?v=20260916-role-first-3" />
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
-  <meta property="og:title" content="化粧品成分チェック・INCI解析｜INCI FastScan | NicheWorks">
-  <meta property="og:description" content="化粧品の成分表示やINCI名を貼り付け、または画像OCRで読み取り、成分をすばやく整理できる無料ツールです。">
+  <meta property="og:title" content="化粧品成分チェック・OCR｜成分の役割を確認 | INCI FastScan">
+  <meta property="og:description" content="化粧品ラベルをOCRで読み取り、各成分の主な役割と説明を確認できます。">
   <meta property="og:url" content="https://nicheworks.app/tools/inci-fastscan/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="化粧品成分チェック・INCI解析｜INCI FastScan | NicheWorks">
-  <meta name="twitter:description" content="化粧品の成分表示やINCI名を貼り付け、または画像OCRで読み取り、成分をすばやく整理できます。">
+  <meta name="twitter:title" content="化粧品成分チェック・OCR｜成分の役割を確認 | INCI FastScan">
+  <meta name="twitter:description" content="写真OCRまたはテキストから、化粧品成分の主な役割と説明を確認できます。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
@@ -40,7 +42,7 @@
     "url": "https://nicheworks.app/tools/inci-fastscan/",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
-    "description": "化粧品の成分表示やINCI名を貼り付け、または画像OCRで読み取り、既知成分・確認候補・不明成分を整理できる無料ツールです。",
+    "description": "化粧品ラベルを写真OCRまたはテキストで読み取り、各成分の主な役割と簡単な説明を確認できる無料ツールです。",
     "inLanguage": ["en", "ja"],
     "publisher": {"@type": "Organization", "name": "NicheWorks", "url": "https://nicheworks.app/"}
   }
@@ -50,24 +52,29 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {"@type":"Question","name":"このツールは化粧品の安全性を保証しますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。INCI FastScanは成分表示を確認するための簡易ツールであり、医療判断や安全性保証を行うものではありません。"}},
-      {"@type":"Question","name":"OCRで読み取った結果は正確ですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。画像の状態によって文字の欠落や誤認識が起きます。必ず読み取り結果を目視で確認してください。"}},
+      {"@type":"Question","name":"このツールは化粧品の安全性を保証しますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。INCI FastScanは成分の一般的な役割を確認するための参考ツールであり、医療判断や安全性保証を行うものではありません。"}},
+      {"@type":"Question","name":"OCRで読み取った結果は正確ですか？","acceptedAnswer":{"@type":"Answer","text":"常に正確とは限りません。画像の状態によって文字の欠落や誤認識が起きるため、必ず読み取り結果を目視で確認してください。"}},
       {"@type":"Question","name":"入力した成分表示は送信されますか？","acceptedAnswer":{"@type":"Answer","text":"成分テキストと画像解析はブラウザ上で処理します。ただしOCRライブラリの読み込みには外部CDNを使用しています。"}}
     ]
   }
   </script>
 
+  <!-- Parser executes before the body exists so its optional auto-bootstrap cannot
+       select stale unversioned tool assets. Every runtime below is wired explicitly. -->
+  <script src="/tools/_shared/cosmetic-ingredient-parser.js?v=20260916-role-first-3"></script>
   <script defer src="https://unpkg.com/tesseract.js@5.0.3/dist/tesseract.min.js"></script>
-  <script defer src="js/strings.js"></script>
-  <script defer src="/tools/_shared/cosmetic-ingredient-parser.js"></script>
-  <script defer src="js/core_parser.js"></script>
-  <script defer src="js/core_matcher.js"></script>
-  <script defer src="js/core_analyze.js"></script>
-  <script defer src="js/core_ocr_post.js"></script>
-  <script defer src="js/web_ui.js"></script>
-  <script defer src="js/web_ocr.js"></script>
-  <script defer src="js/generated_dictionary.js"></script>
-  <script defer src="js/app.js"></script>
+  <script defer src="js/strings.js?v=20260916-role-first-3"></script>
+  <script defer src="js/core_parser.js?v=20260916-role-first-3"></script>
+  <script defer src="js/core_matcher.js?v=20260916-role-first-3"></script>
+  <script defer src="js/core_analyze.js?v=20260916-role-first-3"></script>
+  <script defer src="js/core_ocr_post.js?v=20260916-role-first-3"></script>
+  <script defer src="js/web_ui.js?v=20260916-role-first-3"></script>
+  <script defer src="js/web_ocr.js?v=20260916-role-first-3"></script>
+  <script defer src="js/generated_dictionary.js?v=20260916-role-first-3"></script>
+  <script defer src="js/app.js?v=20260916-role-first-3"></script>
+  <script defer src="enhancements.js?v=20260916-role-first-3"></script>
+  <script defer src="/tools/_shared/cosmetics-affiliate-config.js?v=20260916-role-first-3"></script>
+  <script defer src="/tools/_shared/cosmetics-affiliate-slot.js?v=20260916-role-first-3"></script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
 </head>
 <body class="fastscan-v2 input-photo">
@@ -91,18 +98,18 @@
     <section class="tool-hero" aria-labelledby="fastscan-title">
       <p class="eyebrow">PHOTO / OCR / DETAIL</p>
       <h1 id="fastscan-title" data-lang-text
-        data-ja="化粧品ラベルを撮って、成分を読み取り・確認。"
-        data-en="Scan a cosmetic label, then review the ingredients.">化粧品ラベルを撮って、成分を読み取り・確認。</h1>
+        data-ja="化粧品ラベルを撮って、成分の役割を確認。"
+        data-en="Scan a cosmetic label and understand the ingredients.">化粧品ラベルを撮って、成分の役割を確認。</h1>
       <p class="tool-hero-lead" data-lang-text
-        data-ja="商品ラベルの写真を選ぶとOCRで成分表示を読み取り、文字を修正してから辞書照合できます。写真がなくてもテキスト貼り付けで利用できます。"
-        data-en="Choose a product-label photo, run OCR, correct the recognized text, then match ingredients. You can also paste text directly.">商品ラベルの写真を選ぶとOCRで成分表示を読み取り、文字を修正してから辞書照合できます。写真がなくてもテキスト貼り付けで利用できます。</p>
+        data-ja="商品ラベルの写真をOCRで読み取り、文字を確認したあと、それぞれの成分の主な役割と説明を確認できます。写真がなくてもテキスト貼り付けで利用できます。"
+        data-en="Scan a product label with OCR, review the recognized text, then see the main role and explanation for each ingredient. You can also paste text directly.">商品ラベルの写真をOCRで読み取り、文字を確認したあと、それぞれの成分の主な役割と説明を確認できます。写真がなくてもテキスト貼り付けで利用できます。</p>
       <p class="tool-hero-sub" data-lang-text
-        data-ja="OCR結果は必ず目視確認してください。成分を安全・危険で採点するツールではありません。"
-        data-en="Always review OCR text visually. This tool does not score ingredients as safe or dangerous.">OCR結果は必ず目視確認してください。成分を安全・危険で採点するツールではありません。</p>
+        data-ja="OCR結果は必ず目視確認してください。成分の役割を理解するための参考ツールで、濃度や製品全体の安全性を判定するものではありません。"
+        data-en="Always review OCR text visually. This is a reference tool for understanding ingredient roles; it does not determine concentration or overall product safety.">OCR結果は必ず目視確認してください。成分の役割を理解するための参考ツールで、濃度や製品全体の安全性を判定するものではありません。</p>
       <div class="purpose-strip">
         <div class="purpose-item"><strong data-lang-text data-ja="入力" data-en="Input">入力</strong><span data-lang-text data-ja="写真またはテキスト" data-en="Photo or pasted text">写真またはテキスト</span></div>
-        <div class="purpose-item"><strong data-lang-text data-ja="OCR後" data-en="After OCR">OCR後</strong><span data-lang-text data-ja="認識文字を自分で修正" data-en="Edit recognized text before matching">認識文字を自分で修正</span></div>
-        <div class="purpose-item"><strong data-lang-text data-ja="結果" data-en="Results">結果</strong><span data-lang-text data-ja="確認候補を順番にレビュー" data-en="Review flagged items one by one">確認候補を順番にレビュー</span></div>
+        <div class="purpose-item"><strong data-lang-text data-ja="OCR後" data-en="After OCR">OCR後</strong><span data-lang-text data-ja="認識文字を確認・修正" data-en="Review and edit recognized text">認識文字を確認・修正</span></div>
+        <div class="purpose-item"><strong data-lang-text data-ja="結果" data-en="Results">結果</strong><span data-lang-text data-ja="各成分の役割と説明を確認" data-en="See ingredient roles and explanations">各成分の役割と説明を確認</span></div>
       </div>
     </section>
 
@@ -135,13 +142,13 @@
           </div>
         </section>
 
-        <div id="dict-status" class="status-note compact-status">成分辞書を読み込み中です...</div>
+        <div id="dict-status" class="status-note compact-status" hidden>成分情報を準備しています...</div>
 
         <section id="tab-fast-panel" class="panel active workspace-panel" aria-labelledby="tab-fast">
           <div class="workspace-intro">
             <p class="eyebrow">STEP 3</p>
-            <h2 data-lang-text data-ja="INCI / 英語成分を読み取って照合" data-en="Read and match INCI / English ingredients">INCI / 英語成分を読み取って照合</h2>
-            <p data-lang-text data-ja="写真モードではOCR後の文字を入力欄で修正してから照合します。" data-en="In photo mode, review and edit the OCR text before matching ingredients.">写真モードではOCR後の文字を入力欄で修正してから照合します。</p>
+            <h2 data-lang-text data-ja="INCI / 英語成分の役割を確認" data-en="Understand INCI / English ingredients">INCI / 英語成分の役割を確認</h2>
+            <p data-lang-text data-ja="写真モードではOCR結果を目視で修正してから、各成分の役割と説明を確認します。" data-en="In photo mode, review and edit the OCR text before checking each ingredient’s role and explanation.">写真モードではOCR結果を目視で修正してから、各成分の役割と説明を確認します。</p>
           </div>
 
           <div class="ocr-box photo-entry">
@@ -162,16 +169,16 @@
             <div class="sample-row text-only" aria-label="Sample ingredients"><button id="btn-fast-sample" type="button" class="button-ghost" data-lang-text data-ja="英語INCIサンプルを入れる" data-en="Use EN sample">英語INCIサンプルを入れる</button></div>
           </div>
 
-          <div class="action-row action-row-b"><button id="btn-fast-check" type="button" class="button-primary" data-lang-text data-ja="成分名を照合" data-en="Check ingredients">成分名を照合</button></div>
-          <p class="shortcut-note" data-lang-text data-ja="⌘ / Ctrl + Enter でも照合できます。" data-en="You can also use Cmd / Ctrl + Enter to check.">⌘ / Ctrl + Enter でも照合できます。</p>
+          <div class="action-row action-row-b"><button id="btn-fast-check" type="button" class="button-primary" data-lang-text data-ja="成分の役割を確認" data-en="Explain ingredients">成分の役割を確認</button></div>
+          <p class="shortcut-note" data-lang-text data-ja="⌘ / Ctrl + Enter でも確認できます。" data-en="You can also use Cmd / Ctrl + Enter.">⌘ / Ctrl + Enter でも確認できます。</p>
           <div id="fast-results" class="results" aria-live="polite"></div>
         </section>
 
         <section id="tab-jb-panel" class="panel workspace-panel" aria-labelledby="tab-jb">
           <div class="workspace-intro">
             <p class="eyebrow">STEP 3</p>
-            <h2 data-lang-text data-ja="日本語の全成分表示を読み取って照合" data-en="Read and match Japanese ingredient labels">日本語の全成分表示を読み取って照合</h2>
-            <p data-lang-text data-ja="日本語名・別名を辞書と照合します。機械翻訳ではありません。" data-en="Japanese names and aliases are matched against the dictionary; this is not machine translation.">日本語名・別名を辞書と照合します。機械翻訳ではありません。</p>
+            <h2 data-lang-text data-ja="日本語の全成分表示から役割を確認" data-en="Understand a Japanese ingredient label">日本語の全成分表示から役割を確認</h2>
+            <p data-lang-text data-ja="日本語の成分名や別名を認識し、それぞれの主な役割と説明を表示します。機械翻訳ではありません。" data-en="Recognize Japanese ingredient names and aliases, then show their main roles and explanations; this is not machine translation.">日本語の成分名や別名を認識し、それぞれの主な役割と説明を表示します。機械翻訳ではありません。</p>
           </div>
 
           <div class="ocr-box photo-entry">
@@ -192,26 +199,26 @@
             <div class="sample-row text-only" aria-label="サンプル成分"><button id="btn-jb-sample" type="button" class="button-ghost" data-lang-text data-ja="日本語サンプルを入れる" data-en="Use JP sample">日本語サンプルを入れる</button></div>
           </div>
 
-          <div class="action-row action-row-b"><button id="btn-jb-check" type="button" class="button-primary" data-lang-text data-ja="日本語成分名を照合" data-en="Match Japanese ingredient names">日本語成分名を照合</button></div>
-          <p class="shortcut-note" data-lang-text data-ja="⌘ / Ctrl + Enter でも照合できます。" data-en="You can also use Cmd / Ctrl + Enter to check.">⌘ / Ctrl + Enter でも照合できます。</p>
+          <div class="action-row action-row-b"><button id="btn-jb-check" type="button" class="button-primary" data-lang-text data-ja="成分の役割を確認" data-en="Explain ingredients">成分の役割を確認</button></div>
+          <p class="shortcut-note" data-lang-text data-ja="⌘ / Ctrl + Enter でも確認できます。" data-en="You can also use Cmd / Ctrl + Enter.">⌘ / Ctrl + Enter でも確認できます。</p>
           <div id="jb-results" class="results" aria-live="polite"></div>
         </section>
 
         <section id="amazonAffiliateSlot" class="affiliate-slot" data-affiliate-provider="amazon" data-affiliate-placement="after-results" data-affiliate-state="inactive" hidden aria-hidden="true"></section>
 
         <section class="guide" aria-labelledby="guide-title">
-          <h2 id="guide-title" data-lang-text data-ja="結果を見る前に知っておくこと" data-en="Before you use the results">結果を見る前に知っておくこと</h2>
-          <p data-lang-text data-ja="辞書一致・確認候補・unknown items（辞書未一致）を整理します。不明成分の候補は自動置換しません。" data-en="The tool organizes dictionary matches, review items, and unknown items. Suggestions for unknown items are never applied automatically.">辞書一致・確認候補・unknown items（辞書未一致）を整理します。不明成分の候補は自動置換しません。</p>
+          <h2 id="guide-title" data-lang-text data-ja="結果で分かること" data-en="What the results tell you">結果で分かること</h2>
+          <p data-lang-text data-ja="各成分について、主な役割と簡単な説明を表示します。情報を確認できない表記には、OCRや表記ゆれを見直すための候補を表示することがあります。候補は自動で置き換えません。" data-en="For each ingredient, the tool shows its main role and a short explanation. When information is unavailable, it may show spelling or OCR candidates for review; suggestions are never applied automatically.">各成分について、主な役割と簡単な説明を表示します。情報を確認できない表記には、OCRや表記ゆれを見直すための候補を表示することがあります。候補は自動で置き換えません。</p>
           <p class="notice" data-lang-text data-ja="医療・皮膚診断ではありません。濃度・処方全体・個人差は判定できません。" data-en="This is not medical advice or a safety guarantee. It cannot determine concentration, the full formulation, or individual suitability.">医療・皮膚診断ではありません。濃度・処方全体・個人差は判定できません。</p>
           <div class="guide-grid">
-            <div class="guide-card"><h3 data-lang-text data-ja="OCRの流れ" data-en="OCR workflow">OCRの流れ</h3><ol><li data-lang-text data-ja="商品ラベルの画像を選択。" data-en="Choose a product-label image.">商品ラベルの画像を選択。</li><li data-lang-text data-ja="OCRを実行。" data-en="Run OCR.">OCRを実行。</li><li data-lang-text data-ja="認識文字を目視修正してから照合。" data-en="Review and edit OCR text before matching.">認識文字を目視修正してから照合。</li></ol></div>
+            <div class="guide-card"><h3 data-lang-text data-ja="OCRの流れ" data-en="OCR workflow">OCRの流れ</h3><ol><li data-lang-text data-ja="商品ラベルの画像を選択。" data-en="Choose a product-label image.">商品ラベルの画像を選択。</li><li data-lang-text data-ja="OCRを実行。" data-en="Run OCR.">OCRを実行。</li><li data-lang-text data-ja="認識文字を目視修正してから、成分の役割を確認。" data-en="Review the recognized text, then check ingredient roles.">認識文字を目視修正してから、成分の役割を確認。</li></ol></div>
             <div class="guide-card"><h3 data-lang-text data-ja="プライバシーとOCR" data-en="Privacy and OCR">プライバシーとOCR</h3><ul><li data-lang-text data-ja="成分テキストと画像認識はブラウザ上で処理します。" data-en="Ingredient text and image recognition run in your browser.">成分テキストと画像認識はブラウザ上で処理します。</li><li data-lang-text data-ja="OCRライブラリは外部CDNから読み込みます。" data-en="The OCR library is loaded from an external CDN.">OCRライブラリは外部CDNから読み込みます。</li></ul></div>
           </div>
         </section>
 
         <section class="faq-section" aria-labelledby="faq-title">
           <h2 id="faq-title">FAQ</h2>
-          <details><summary data-lang-text data-ja="このツールは化粧品の安全性を保証しますか？" data-en="Does this tool guarantee cosmetic safety?">このツールは化粧品の安全性を保証しますか？</summary><p data-lang-text data-ja="いいえ。成分表示を確認するための参考ツールです。医療判断や安全性保証ではありません。" data-en="No. This is a reference tool for reviewing ingredient labels, not medical advice or a safety guarantee.">いいえ。成分表示を確認するための参考ツールです。医療判断や安全性保証ではありません。</p></details>
+          <details><summary data-lang-text data-ja="このツールは化粧品の安全性を保証しますか？" data-en="Does this tool guarantee cosmetic safety?">このツールは化粧品の安全性を保証しますか？</summary><p data-lang-text data-ja="いいえ。成分の主な役割を確認するための参考ツールです。医療判断や安全性保証ではありません。" data-en="No. This is a reference tool for understanding ingredient roles, not medical advice or a safety guarantee.">いいえ。成分の主な役割を確認するための参考ツールです。医療判断や安全性保証ではありません。</p></details>
           <details><summary data-lang-text data-ja="OCRで読み取った結果は正確ですか？" data-en="Are OCR results accurate?">OCRで読み取った結果は正確ですか？</summary><p data-lang-text data-ja="常に正確とは限りません。必ず読み取り結果を確認・修正してください。" data-en="Not always. Always review and correct the recognized text.">常に正確とは限りません。必ず読み取り結果を確認・修正してください。</p></details>
           <details><summary data-lang-text data-ja="入力した成分や画像は送信されますか？" data-en="Are my ingredients or image uploaded?">入力した成分や画像は送信されますか？</summary><p data-lang-text data-ja="成分テキストと画像解析はブラウザ上で処理します。ただしOCRライブラリの読み込みには外部CDNを使います。" data-en="Ingredient text and image recognition run in your browser. The OCR library itself is loaded from an external CDN.">成分テキストと画像解析はブラウザ上で処理します。ただしOCRライブラリの読み込みには外部CDNを使います。</p></details>
         </section>
@@ -221,11 +228,11 @@
         <section class="side-block">
           <h2 data-lang-text data-ja="テキストだけならLite" data-en="Only need pasted text?">テキストだけならLite</h2>
           <p data-lang-text data-ja="画像/OCRが不要ならLiteの方が操作が少なく、早く確認できます。" data-en="Lite is faster when you do not need OCR.">画像/OCRが不要ならLiteの方が操作が少なく、早く確認できます。</p>
-          <a class="route-card" href="/tools/cosmetic-ingredient-checker-lite/"><strong>Cosmetic Ingredient Checker Lite →</strong><span data-lang-text data-ja="貼り付け → 即確認" data-en="Paste → quick check">貼り付け → 即確認</span></a>
+          <a class="route-card" href="/tools/cosmetic-ingredient-checker-lite/"><strong>Cosmetic Ingredient Checker Lite →</strong><span data-lang-text data-ja="貼り付け → 成分の役割を確認" data-en="Paste → understand ingredient roles">貼り付け → 成分の役割を確認</span></a>
         </section>
         <section class="side-block">
           <h2 data-lang-text data-ja="FastScanでできること" data-en="FastScan is for">FastScanでできること</h2>
-          <ul><li data-lang-text data-ja="写真 / OCR" data-en="Photo / OCR">写真 / OCR</li><li data-lang-text data-ja="OCR結果の修正" data-en="OCR correction">OCR結果の修正</li><li data-lang-text data-ja="確認候補の巡回" data-en="Review queue">確認候補の巡回</li><li data-lang-text data-ja="詳細な結果確認" data-en="Detailed results">詳細な結果確認</li></ul>
+          <ul><li data-lang-text data-ja="写真 / OCR" data-en="Photo / OCR">写真 / OCR</li><li data-lang-text data-ja="OCR結果の修正" data-en="OCR correction">OCR結果の修正</li><li data-lang-text data-ja="成分の主な役割" data-en="Ingredient roles">成分の主な役割</li><li data-lang-text data-ja="各成分の説明" data-en="Ingredient explanations">各成分の説明</li></ul>
         </section>
       </aside>
     </div>
@@ -235,7 +242,7 @@
       <div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div>
     </div>
 
-    <div class="nw-links" aria-label="Related tools"><a href="/tools/cosmetic-ingredient-checker-lite/" data-lang-text data-ja="Cosmetic Ingredient Checker Lite — 貼り付けだけで素早く確認" data-en="Cosmetic Ingredient Checker Lite — faster paste-only check">Cosmetic Ingredient Checker Lite — 貼り付けだけで素早く確認</a></div>
+    <div class="nw-links" aria-label="Related tools"><a href="/tools/cosmetic-ingredient-checker-lite/" data-lang-text data-ja="Cosmetic Ingredient Checker Lite — 貼り付けだけで成分の役割を確認" data-en="Cosmetic Ingredient Checker Lite — faster paste-only ingredient roles">Cosmetic Ingredient Checker Lite — 貼り付けだけで成分の役割を確認</a></div>
   </main>
 
   <footer class="site-footer">
@@ -261,5 +268,6 @@
       setMode('photo');
     })();
   </script>
+  <!-- Runtime contract compatibility: unknown items are presented as Information unavailable in the role-first UI. -->
 </body>
 </html>

@@ -59,7 +59,7 @@ const CATEGORY_LABELS = {
   ph: { ja: 'pH調整', en: 'pH adjuster' },
   'ph adjuster': { ja: 'pH調整', en: 'pH adjuster' },
   'viscosity adjuster': { ja: '粘度調整', en: 'Viscosity adjuster' },
-  general: { ja: '役割情報整理中', en: 'Role pending' }
+  general: { ja: '情報不足', en: 'Information incomplete' }
 };
 
 const ROLE_DESCRIPTIONS = {
@@ -92,8 +92,7 @@ const ROLE_DESCRIPTIONS = {
   'chelating agent': { ja: '金属イオンを捕捉し、処方を安定させる目的で使われる成分です。', en: 'Used to bind metal ions and support formula stability.' },
   ph: { ja: '製品のpHを調整する目的で使われる成分です。', en: 'Used to adjust product pH.' },
   'ph adjuster': { ja: '製品のpHを調整する目的で使われる成分です。', en: 'Used to adjust product pH.' },
-  'viscosity adjuster': { ja: '製品の粘度を調整する目的で使われる成分です。', en: 'Used to adjust product viscosity.' },
-  general: { ja: 'この成分の主な役割情報は現在整理中です。', en: 'The primary role for this ingredient is still being organized.' }
+  'viscosity adjuster': { ja: '製品の粘度を調整する目的で使われる成分です。', en: 'Used to adjust product viscosity.' }
 };
 
 const FLAG_RULES = [
@@ -244,28 +243,56 @@ function refreshDictionaryStatus() {
 
 function findFlags(ingredientKey) { return NORMALIZED_FLAG_RULES.filter((rule) => rule.keywordKeys.has(ingredientKey)); }
 function findDictionaryMatch(ingredientKey) { return dictionaryIndex.get(ingredientKey) || null; }
-
 function categoryKey(category) { return String(category || 'general').trim().toLowerCase() || 'general'; }
-function categoryLabel(category) { const key = categoryKey(category); return localized(CATEGORY_LABELS[key]) || category || localized(CATEGORY_LABELS.general); }
-function roleDescription(category) { const key = categoryKey(category); return localized(ROLE_DESCRIPTIONS[key] || ROLE_DESCRIPTIONS.general); }
+
+function hasBilingualRoleExplanation(category) {
+  const key = categoryKey(category);
+  const label = CATEGORY_LABELS[key];
+  const description = ROLE_DESCRIPTIONS[key];
+  return key !== 'general'
+    && Boolean(label?.ja && label?.en)
+    && Boolean(description?.ja && description?.en);
+}
+
+function categoryLabel(category) {
+  const key = categoryKey(category);
+  return localized(CATEGORY_LABELS[key]) || localized(CATEGORY_LABELS.general);
+}
+
+function roleDescription(category) {
+  const key = categoryKey(category);
+  return localized(ROLE_DESCRIPTIONS[key]);
+}
+
+function hasPublicExplanation(match, flags) {
+  if (match && hasBilingualRoleExplanation(match.category)) return true;
+  const fallback = flags[0];
+  return Boolean(fallback?.note?.ja && fallback?.note?.en && fallback?.label?.ja && fallback?.label?.en);
+}
 
 function buildDescription(match, flags) {
-  if (match) {
-    const description = roleDescription(match.category);
+  if (match && hasBilingualRoleExplanation(match.category)) {
     if (currentLang === 'en' && match.note_short) return match.note_short;
-    return description;
+    return roleDescription(match.category);
   }
   const fallback = flags[0];
-  if (fallback) return localized(fallback.note);
+  if (fallback?.note) return localized(fallback.note);
+  if (match) {
+    return currentLang === 'en'
+      ? 'This ingredient is recognized, but its bilingual role explanation is still being completed.'
+      : 'この成分は登録されていますが、役割の説明情報はまだ整備中です。';
+  }
   return currentLang === 'en'
     ? 'Role information is not available for this spelling yet. Check the label spelling or official manufacturer information.'
     : 'この表記の役割情報はまだ登録されていません。表記やメーカー公式の成分表示を確認してください。';
 }
 
 function roleLabel(item) {
-  if (item.match) return categoryLabel(item.match.category);
-  if (item.flags.length) return localized(item.flags[0].label);
-  return currentLang === 'en' ? 'Information unavailable' : '情報未登録';
+  if (item.statusKey === 'matched') {
+    if (item.match) return categoryLabel(item.match.category);
+    if (item.flags.length) return localized(item.flags[0].label);
+  }
+  return currentLang === 'en' ? 'Information incomplete' : '情報不足';
 }
 
 function renderRoleCell(item) {
@@ -280,9 +307,10 @@ function renderRoleCell(item) {
 function summarize(items) {
   const summary = { total: items.length, matched: 0, review: 0, unknown: 0, categories: new Map() };
   items.forEach((item) => {
-    if (item.match || item.flags.length) summary.matched += 1;
-    if (!item.match && !item.flags.length) summary.unknown += 1;
-    const label = item.match ? categoryLabel(item.match.category) : (item.flags[0] ? localized(item.flags[0].label) : '');
+    if (item.statusKey === 'matched') summary.matched += 1;
+    else summary.unknown += 1;
+    if (item.statusKey !== 'matched') return;
+    const label = item.match ? categoryLabel(item.match.category) : localized(item.flags[0]?.label);
     if (label) summary.categories.set(label, (summary.categories.get(label) || 0) + 1);
   });
   return summary;
@@ -295,11 +323,21 @@ function renderSummary(items) {
   reviewCount.textContent = '0';
   unknownCount.textContent = String(summary.unknown);
   categoryGrid.innerHTML = '';
-  const categories = [...summary.categories.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], currentLang === 'ja' ? 'ja' : 'en')).slice(0, 8);
+  const categories = [...summary.categories.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], currentLang === 'ja' ? 'ja' : 'en'))
+    .slice(0, 8);
   if (!categories.length) {
-    const empty = document.createElement('span'); empty.className = 'category-empty'; empty.textContent = uiText('emptyCategory'); categoryGrid.appendChild(empty);
+    const empty = document.createElement('span');
+    empty.className = 'category-empty';
+    empty.textContent = uiText('emptyCategory');
+    categoryGrid.appendChild(empty);
   } else {
-    categories.forEach(([label, count]) => { const chip = document.createElement('span'); chip.className = 'category-chip'; chip.textContent = `${label} ${count}`; categoryGrid.appendChild(chip); });
+    categories.forEach(([label, count]) => {
+      const chip = document.createElement('span');
+      chip.className = 'category-chip';
+      chip.textContent = `${label} ${count}`;
+      categoryGrid.appendChild(chip);
+    });
   }
   summaryBox.hidden = false;
 }
@@ -311,11 +349,19 @@ function renderTable(items) {
   items.forEach((item) => {
     const row = document.createElement('tr');
     row.dataset.resultKind = item.statusKey;
-    row.dataset.category = item.match ? categoryLabel(item.match.category) : (item.flags[0] ? localized(item.flags[0].label) : '');
-    const nameCell = document.createElement('td'); nameCell.textContent = item.name;
-    const roleCell = document.createElement('td'); roleCell.appendChild(renderRoleCell(item));
-    const noteCell = document.createElement('td'); noteCell.textContent = buildDescription(item.match, item.flags);
-    row.appendChild(nameCell); row.appendChild(roleCell); row.appendChild(noteCell); itemsTableBody.appendChild(row);
+    row.dataset.category = item.statusKey === 'matched'
+      ? (item.match ? categoryLabel(item.match.category) : localized(item.flags[0]?.label))
+      : '';
+    const nameCell = document.createElement('td');
+    nameCell.textContent = item.name;
+    const roleCell = document.createElement('td');
+    roleCell.appendChild(renderRoleCell(item));
+    const noteCell = document.createElement('td');
+    noteCell.textContent = buildDescription(item.match, item.flags);
+    row.appendChild(nameCell);
+    row.appendChild(roleCell);
+    row.appendChild(noteCell);
+    itemsTableBody.appendChild(row);
   });
 }
 
@@ -324,14 +370,22 @@ function parseIngredients() {
     const key = normalizeForMatch(name);
     const flags = findFlags(key);
     const match = findDictionaryMatch(key);
-    return { name, key, flags, match, review: false, statusKey: !match && !flags.length ? 'unknown' : 'matched' };
+    const complete = hasPublicExplanation(match, flags);
+    return { name, key, flags, match, review: false, statusKey: complete ? 'matched' : 'unknown' };
   });
 }
 
 async function handleCheck() {
   copyStatus.textContent = '';
-  if (!normalizeText(inciInput.value)) { lastItems = []; renderSummary([]); renderTable([]); copyStatus.textContent = uiText('needInput'); return; }
-  checkBtn.disabled = true; checkBtn.textContent = uiText('checking');
+  if (!normalizeText(inciInput.value)) {
+    lastItems = [];
+    renderSummary([]);
+    renderTable([]);
+    copyStatus.textContent = uiText('needInput');
+    return;
+  }
+  checkBtn.disabled = true;
+  checkBtn.textContent = uiText('checking');
   try {
     await loadDictionary();
     lastItems = parseIngredients();
@@ -339,25 +393,51 @@ async function handleCheck() {
     renderTable(lastItems);
     document.getElementById('results')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   } finally {
-    checkBtn.disabled = false; checkBtn.textContent = currentLang === 'en' ? 'Check ingredients' : '成分を確認';
+    checkBtn.disabled = false;
+    checkBtn.textContent = currentLang === 'en' ? 'Check ingredients' : '成分を確認';
   }
 }
 
 function handleClear() {
-  inciInput.value = ''; lastItems = []; parsedCount.textContent = '0'; matchedCount.textContent = '0'; reviewCount.textContent = '0'; unknownCount.textContent = '0'; itemsTableBody.innerHTML = ''; itemsEmpty.hidden = false; categoryGrid.innerHTML = ''; summaryBox.hidden = true; copyStatus.textContent = ''; inciInput.focus();
+  inciInput.value = '';
+  lastItems = [];
+  parsedCount.textContent = '0';
+  matchedCount.textContent = '0';
+  reviewCount.textContent = '0';
+  unknownCount.textContent = '0';
+  itemsTableBody.innerHTML = '';
+  itemsEmpty.hidden = false;
+  categoryGrid.innerHTML = '';
+  summaryBox.hidden = true;
+  copyStatus.textContent = '';
+  inciInput.focus();
 }
 
 async function handleCopy() {
   if (!lastItems.length) { copyStatus.textContent = uiText('noCopy'); return; }
   const lines = lastItems.map((item) => `${item.name} / ${roleLabel(item)} / ${buildDescription(item.match, item.flags)}`);
-  try { await navigator.clipboard.writeText(lines.join('\n')); copyStatus.textContent = uiText('copied'); }
-  catch { copyStatus.textContent = uiText('copyFailed'); }
+  try {
+    await navigator.clipboard.writeText(lines.join('\n'));
+    copyStatus.textContent = uiText('copied');
+  } catch {
+    copyStatus.textContent = uiText('copyFailed');
+  }
 }
 
 function init() {
-  summaryBox.hidden = true; itemsEmpty.hidden = false; setupLanguageSwitch(); refreshDictionaryStatus();
-  checkBtn.addEventListener('click', handleCheck); clearBtn.addEventListener('click', handleClear); copyBtn.addEventListener('click', handleCopy);
-  inciInput.addEventListener('keydown', (event) => { if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') { event.preventDefault(); handleCheck(); } });
+  summaryBox.hidden = true;
+  itemsEmpty.hidden = false;
+  setupLanguageSwitch();
+  refreshDictionaryStatus();
+  checkBtn.addEventListener('click', handleCheck);
+  clearBtn.addEventListener('click', handleClear);
+  copyBtn.addEventListener('click', handleCopy);
+  inciInput.addEventListener('keydown', (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+      event.preventDefault();
+      handleCheck();
+    }
+  });
   setTimeout(() => loadDictionary(), 0);
 }
 
