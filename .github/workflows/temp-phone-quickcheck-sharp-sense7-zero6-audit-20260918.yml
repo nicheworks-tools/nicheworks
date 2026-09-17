@@ -1,0 +1,35 @@
+name: Temp Phone QuickCheck SHARP sense7 zero6 audit 20260918
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/temp-phone-quickcheck-sharp-sense7-zero6-audit-20260918.yml'
+      - 'tools/phone-quickcheck/data/phones.json'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print SHARP records
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('tools/phone-quickcheck/data/phones.json','utf8'));
+          const ids = ['sharp-aquos-sense7','sharp-aquos-zero6'];
+          for (const id of ids) {
+            const p = data.phones.find(x => x.id === id);
+            if (!p) throw new Error(`${id} not found`);
+            console.log('RECORD=' + JSON.stringify({
+              id:p.id, model:p.model, market:p.market ?? null, included:p.included,
+              specificationsUrl:p.sources?.specificationsUrl ?? null,
+              manualUrl:p.sources?.manualUrl ?? null,
+              releaseUrl:p.sources?.releaseUrl ?? null,
+              chargingUrl:p.sources?.chargingUrl ?? null,
+              verifiedAt:p.sources?.verifiedAt ?? null
+            }));
+          }
+          NODE
