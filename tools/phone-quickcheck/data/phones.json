@@ -8975,8 +8975,8 @@
         "wirelessMaxW": 5
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/175748/",
