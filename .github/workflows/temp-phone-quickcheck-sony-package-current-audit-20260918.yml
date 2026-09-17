@@ -1,0 +1,35 @@
+name: Temp Phone QuickCheck Sony package audit 20260918
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/temp-phone-quickcheck-sony-package-current-audit-20260918.yml'
+      - 'tools/phone-quickcheck/data/phones.json'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print Sony records
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('tools/phone-quickcheck/data/phones.json','utf8'));
+          const ids = ['sony-xperia-1-vi','sony-xperia-10-vi','sony-xperia-5-v','sony-xperia-10-v'];
+          for (const id of ids) {
+            const p = data.phones.find(x => x.id === id);
+            if (!p) throw new Error(`${id} not found`);
+            console.log('RECORD=' + JSON.stringify({
+              id:p.id, model:p.model, market:p.market ?? null, included:p.included,
+              specificationsUrl:p.sources?.specificationsUrl ?? null,
+              manualUrl:p.sources?.manualUrl ?? null,
+              releaseUrl:p.sources?.releaseUrl ?? null,
+              chargingUrl:p.sources?.chargingUrl ?? null,
+              verifiedAt:p.sources?.verifiedAt ?? null
+            }));
+          }
+          NODE
