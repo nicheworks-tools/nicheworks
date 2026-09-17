@@ -1,0 +1,202 @@
+[
+  {
+    "name": "utf8-lf",
+    "text": "名前,値\n東京,001\n",
+    "delimiter": ",",
+    "expected": [
+      [
+        "名前",
+        "値"
+      ],
+      [
+        "東京",
+        "001"
+      ]
+    ]
+  },
+  {
+    "name": "crlf",
+    "text": "a,b\r\n1,2\r\n",
+    "delimiter": ",",
+    "expected": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "1",
+        "2"
+      ]
+    ]
+  },
+  {
+    "name": "quoted-delimiter",
+    "text": "a,b\n\"Tokyo, Japan\",x\n",
+    "delimiter": ",",
+    "expected": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "Tokyo, Japan",
+        "x"
+      ]
+    ]
+  },
+  {
+    "name": "escaped-quote",
+    "text": "a\n\"He said \"\"hello\"\"\"\n",
+    "delimiter": ",",
+    "expected": [
+      [
+        "a"
+      ],
+      [
+        "He said \"hello\""
+      ]
+    ]
+  },
+  {
+    "name": "embedded-newline",
+    "text": "a,b\n\"first\nsecond\",x\n",
+    "delimiter": ",",
+    "expected": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "first\nsecond",
+        "x"
+      ]
+    ]
+  },
+  {
+    "name": "embedded-crlf",
+    "text": "a,b\r\n\"first\r\nsecond\",x\r\n",
+    "delimiter": ",",
+    "expected": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "first\r\nsecond",
+        "x"
+      ]
+    ]
+  },
+  {
+    "name": "empty-trailing-cell",
+    "text": "a,b,c\nx,,\n",
+    "delimiter": ",",
+    "expected": [
+      [
+        "a",
+        "b",
+        "c"
+      ],
+      [
+        "x",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "name": "blank-row",
+    "text": "a\n\nx\n",
+    "delimiter": ",",
+    "expected": [
+      [
+        "a"
+      ],
+      [
+        ""
+      ],
+      [
+        "x"
+      ]
+    ]
+  },
+  {
+    "name": "empty-header",
+    "text": ",b\nx,y\n",
+    "delimiter": ",",
+    "expected": [
+      [
+        "",
+        "b"
+      ],
+      [
+        "x",
+        "y"
+      ]
+    ]
+  },
+  {
+    "name": "duplicate-header",
+    "text": "a,a\nx,y\n",
+    "delimiter": ",",
+    "expected": [
+      [
+        "a",
+        "a"
+      ],
+      [
+        "x",
+        "y"
+      ]
+    ]
+  },
+  {
+    "name": "ragged",
+    "text": "a,b\nx\ny,z,extra\n",
+    "delimiter": ",",
+    "expected": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "x"
+      ],
+      [
+        "y",
+        "z",
+        "extra"
+      ]
+    ]
+  },
+  {
+    "name": "tab",
+    "text": "a\tb\n\"x\ty\"\tz\n",
+    "delimiter": "\t",
+    "expected": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "x\ty",
+        "z"
+      ]
+    ]
+  },
+  {
+    "name": "semicolon",
+    "text": "a;b\n\"x;y\";z\n",
+    "delimiter": ";",
+    "expected": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "x;y",
+        "z"
+      ]
+    ]
+  }
+]

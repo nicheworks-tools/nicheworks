@@ -302,11 +302,11 @@ if (state.data.rows && state.data.rows.length) schedulePreviewRequest();
     return s.includes('"') || s.includes(delim) || s.includes("\n") || s.includes("\r");
   }
 
-  function stringifyCSV(rows, delim, newline){
+  function stringifyCSV(rows, delim, newline, quoteMode = "auto"){
     const nl = newline === "crlf" ? "\r\n" : "\n";
     const out = rows.map(r => r.map(v => {
       const s = String(v ?? "");
-      if (!mustQuote(s, delim)) return s;
+      if (quoteMode !== "always" && !mustQuote(s, delim)) return s;
       return '"' + s.replace(/"/g, '""') + '"';
     }).join(delim)).join(nl);
     return out + nl;
@@ -926,22 +926,35 @@ return;
     }
     // Build OUT rows (all rows)
     const out = buildOutputPreview(false); // false => all rows
+    if (!out.colsUsed){
+      setError(state.ui.lang==="ja"
+        ? "出力する列がありません。元ファイルは変更されていません。列を1つ以上含めてください。"
+        : "No output columns. The source is unchanged. Include at least one column.", "NO_COLUMNS");
+      return;
+    }
+    const rows = state.input.hasHeader ? [out.headers, ...out.rows] : out.rows;
 
     // Determine output delimiter
-    const mode = state.options.outDelimiter || "input";
-    const delim = (mode==="input") ? state.input.delimiter
+    const mode = els.outDelimiter.value || "input";
+    const delim = (mode==="input") ? state.input.delimiterResolved
       : (mode==="comma") ? ","
       : (mode==="tab") ? "	"
       : (mode==="semi") ? ";"
-      : state.input.delimiter;
+      : null;
+    if (![",", "\t", ";"].includes(delim)){
+      setError(state.ui.lang==="ja"
+        ? "出力区切り文字を選び直してください。元ファイルは変更されていません。"
+        : "Select a valid output delimiter. The source is unchanged.", "INVALID_DELIMITER");
+      return;
+    }
 
-    const newline = state.input.newline || "\n";
-    const quoteMode = state.options.quotePolicy || "auto";
+    const newline = state.options.output.newline;
+    const quoteMode = els.quotePolicy.value || "auto";
 
-    let csv = stringifyCSV(out, delim, newline, quoteMode);
+    let csv = stringifyCSV(rows, delim, newline, quoteMode);
 
     // BOM
-    const bom = state.options.bom ? "﻿" : "";
+    const bom = state.options.output.bom ? "﻿" : "";
     const blob = new Blob([bom, csv], {type: "text/csv;charset=utf-8"});
 
     let name = (els.outName.value || "").trim();
