@@ -7195,7 +7195,7 @@
       },
       "included": {
         "cable": "included",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.docomo.ne.jp/support/product/sc53b/spec.html",
@@ -7246,7 +7246,7 @@
       },
       "included": {
         "cable": "included",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.docomo.ne.jp/support/product/sc54a/spec.html",
