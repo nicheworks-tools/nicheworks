@@ -10,8 +10,9 @@ on:
       - 'tools/_shared/check-cosmetics-accuracy-benchmark.mjs'
       - 'tools/_shared/check-cosmetics-full-label-benchmark.mjs'
       - 'tools/_shared/cosmetics-full-label-fixtures.json'
-      - 'tools/_shared/cosmetics-real-label-corpus.json'
+      - 'tools/_shared/cosmetics-real-label-corpus*.json'
       - 'tools/_shared/check-cosmetics-real-label-corpus.mjs'
+      - 'tools/_shared/check-cosmetics-cohort4-wave1.mjs'
       - 'tools/_shared/check-cosmetics-dictionary-quality.mjs'
       - 'tools/_shared/check-cosmetics-semantic-quality.mjs'
       - 'tools/_shared/check-cosmetics-category-gap-inventory.mjs'
@@ -132,6 +133,7 @@ jobs:
           node --check tools/_shared/check-cosmetics-verified-note-wave4.mjs
           node --check tools/_shared/check-cosmetics-verified-note-wave5.mjs
           node --check tools/_shared/check-cosmetics-jp-label-variants.mjs
+          node --check tools/_shared/check-cosmetics-cohort4-wave1.mjs
           node --check tools/_shared/check-fastscan-ocr-robustness.mjs
           node --check tools/cosmetic-ingredient-checker-lite/app.js
           node --check tools/cosmetic-ingredient-checker-lite/enhancements.js
@@ -165,6 +167,8 @@ jobs:
         run: node tools/_shared/check-cosmetics-full-label-benchmark.mjs
       - name: Source-backed real-label baseline
         run: node tools/_shared/check-cosmetics-real-label-corpus.mjs
+      - name: Cohort 4 dictionary wave 1
+        run: node tools/_shared/check-cosmetics-cohort4-wave1.mjs
       - name: Cross-tool release gate
         run: node tools/_shared/check-cosmetics-cross-tool-release.mjs
       - name: Wave 2 release gate
