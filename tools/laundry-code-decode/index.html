@@ -60,6 +60,7 @@
   }
   </script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+  <link rel="stylesheet" href="/assets/amazon-static-offers.css">
 </head>
 
 <body>
@@ -182,7 +183,9 @@
       </details>
     </section>
 
-    <div class="nw-donate">
+        <div id="nwAmazonAffiliate" class="nw-amazon-mount" hidden></div>
+
+<div class="nw-donate">
       <p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をお願いします。</p>
       <p class="nw-donate-text" data-i18n="en">If this tool helped you, please consider supporting its development.</p>
       <div class="nw-donate-links">
@@ -206,5 +209,8 @@
 
   <script src="data.js"></script>
   <script src="app.js"></script>
+  <script src="/assets/amazon-affiliate.js"></script>
+  <script src="./affiliate-config.js"></script>
+  <script src="/assets/amazon-static-offers.js"></script>
 </body>
 </html>

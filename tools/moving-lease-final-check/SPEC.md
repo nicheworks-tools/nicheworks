@@ -66,7 +66,7 @@ The primary experience is a short form followed by a final-stage checklist, prog
 
 ## Affiliate boundary
 
-This tool may remain a future affiliate candidate because final-stage move-out work can have contextual physical-product needs. However, no Amazon CTA or product claim may be added without a verified Special Link and a clearly relevant placement. The checklist result must not be used to diagnose a need to buy a product.
+The canonical monetization class is `AFFILIATE`. The live commerce block uses the validated NicheWorks Amazon Japan tagged-search template with tracking ID `nicheworks09-22` and fixed general move-out/handoff-supply queries only. Exit date, home type, checklist state, inspection notes, and progress never enter an Amazon URL. The checklist result must not be used to diagnose a need to buy a product or to infer lease/restoration obligations.
 
 ## Limits and non-goals
 
@@ -85,9 +85,11 @@ This tool may remain a future affiliate candidate because final-stage move-out w
 - [ ] The UI does not present checklist completion as a guarantee about restoration costs, deposits, or legal obligations.
 - [ ] The public page does not load or expose the retired shared-Pro purchase/entitlement flow.
 - [ ] The page explicitly sends broad moving preparation to `moving-checklist-generator`.
+- [ ] The active Amazon block uses only fixed general handoff-supply queries and the shared `nicheworks09-22` tagged-search template; it does not infer lease or restoration requirements.
 
 ## Implementation evidence
 
 - `tools/moving-lease-final-check/index.html`
 - `tools/moving-lease-final-check/app.js`
 - `tools/moving-lease-final-check/style.css`
+- `tools/moving-lease-final-check/affiliate-config.js`

@@ -42,6 +42,7 @@
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"チェック状態はどこに保存されますか？","acceptedAnswer":{"@type":"Answer","text":"チェック状態と、条件識別用の引っ越し日・家族構成・住居タイプがこのブラウザのlocalStorageに保存されます。別端末や別ブラウザには引き継がれず、ブラウザデータを削除すると消えます。"}},{"@type":"Question","name":"PDFとして保存できますか？","acceptedAnswer":{"@type":"Answer","text":"ブラウザの印刷画面からPDFとして保存を選ぶことで保存できます。印刷用メモに入力した内容は印刷やPDFに出る場合があります。"}},{"@type":"Question","name":"すべての引っ越し手続きを網羅していますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。一般的な参考リストです。自治体、管理会社、契約先の公式情報を必ず確認してください。"}},{"@type":"Question","name":"住所や個人情報を入力する必要はありますか？","acceptedAnswer":{"@type":"Answer","text":"必須ではありません。印刷用メモは保存しませんが、印刷やPDFに出る場合があるため、個人情報は入力しないことを推奨します。"}}]}
   </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+  <link rel="stylesheet" href="/assets/amazon-static-offers.css">
 </head>
 
 <body>
@@ -110,7 +111,9 @@
 
     <div class="nw-links" aria-label="Related tools"><a href="/tools/moving-lease-final-check/">Moving / Lease Final Check</a><a href="/tools/jp-postal-lite/">JP Postal Lite</a><a href="/tools/pdf-page-tools-mini/">PDF Page Tools Mini</a><a href="/tools/screenshot-stitcher/">Screenshot Stitcher</a></div>
 
-    <div class="nw-donate"><p class="nw-donate-text" data-i18n="donateText">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
+        <div id="nwAmazonAffiliate" class="nw-amazon-mount" hidden></div>
+
+<div class="nw-donate"><p class="nw-donate-text" data-i18n="donateText">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
   </main>
 
   <footer class="nw-footer">
@@ -120,5 +123,8 @@
   </footer>
 
   <script src="./app.js"></script>
+  <script src="/assets/amazon-affiliate.js"></script>
+  <script src="./affiliate-config.js"></script>
+  <script src="/assets/amazon-static-offers.js"></script>
 </body>
 </html>

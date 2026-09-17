@@ -57,6 +57,7 @@
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="/assets/amazon-static-offers.css">
 </head>
 
 <body>
@@ -196,7 +197,9 @@
 
     <div class="ad-slot ad-bottom"><span data-i18n="ja">広告枠</span><span data-i18n="en">Ad slot</span></div>
 
-    <div class="nw-donate" id="nwDonate">
+        <div id="nwAmazonAffiliate" class="nw-amazon-mount" hidden></div>
+
+<div class="nw-donate" id="nwDonate">
       <p class="nw-donate-text"><span data-i18n="ja">本ツールがお役に立ちましたら、任意でご支援いただけます。運営・改善の継続に活用いたします。</span><span data-i18n="en">If this tool is helpful, optional support is appreciated. It helps maintain and improve the service.</span></p>
       <div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div>
     </div>
@@ -214,5 +217,8 @@
   </footer>
 
   <script src="./app.js"></script>
+  <script src="/assets/amazon-affiliate.js"></script>
+  <script src="./affiliate-config.js"></script>
+  <script src="/assets/amazon-static-offers.js"></script>
 </body>
 </html>
