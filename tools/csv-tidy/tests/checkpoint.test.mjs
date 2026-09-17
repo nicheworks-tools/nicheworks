@@ -23,17 +23,41 @@ test('unclosed quotes are rejected; empty input parses to no records', () => {
   assert.throws(() => h.parseCSV('a,b\n"unclosed,x', ','), e => e.code === 'unclosed_quote');
   assert.deepEqual(plain(h.parseCSV('', ',')), []);
 });
-test('G1 KNOWN GAP: quoted commas mislead semicolon auto-detection', () => {
+test('G1 resolved: quoted commas do not change the semicolon delimiter', async () => {
   const h = harness(), text = 'name;memo\nA;"one,two,three,four,five"\n';
-  assert.equal(h.guessDelimiter(text), ',');
-  assert.deepEqual(plain(h.parseCSV(text, ';')), [['name','memo'],['A','one,two,three,four,five']]);
-  assert.notDeepEqual(plain(h.parseCSV(text, h.guessDelimiter(text))), [['name','memo'],['A','one,two,three,four,five']]);
+  assert.equal(h.guessDelimiter(text), ';');
+  await h.load(text, 'utf-8', 'auto');
+  assert.deepEqual(plain(h.state.data.rows), [['name','memo'],['A','one,two,three,four,five']]);
 });
-test('G2 KNOWN GAP: trailing explicit empty record disappears and load removes middle blank rows', async () => {
+test('G1: logical quoted records, escaped quotes and TAB detection', () => {
   const h = harness();
-  assert.deepEqual(plain(h.parseCSV('a,b\n,', ',')), [['a','b']]);
-  await h.load('a,b\n,\nx,y\n');
-  assert.deepEqual(plain(h.state.data.rows), [['a','b'],['x','y']]);
+  for (const delimiter of [',', '\t', ';']) {
+    const text = 'a'+delimiter+'b\n"one,two;three\tfour\nHe said ""hello"""'+delimiter+'001\n';
+    assert.equal(h.guessDelimiter(text), delimiter);
+  }
+  assert.equal(h.guessDelimiter('"all,inside;one\tcell\nnext line"\n'), ',');
+});
+test('G1: ambiguous separators require selection, never a confident guess', async () => {
+  const h = harness(), text = 'a,b;c\n1,2;3\n';
+  assert.throws(() => h.guessDelimiter(text), e => e.code === 'ambiguous_delimiter' && e.candidates.length === 2);
+  await h.load(text, 'utf-8', 'auto');
+  assert.equal(h.state.data.rows.length, 0);
+  assert.match(h.get('#errBox').textContent, /ambiguous_delimiter/);
+  await h.load(text, 'utf-8', ';');
+  assert.deepEqual(plain(h.state.data.rows), [['a,b','c'],['1,2','3']]);
+});
+test('G2 resolved: EOF terminator vs actual empty records and fields', async () => {
+  const h = harness();
+  for (const [text, expected] of [
+    ['', []], ['a\n', [['a']]], ['a\n\n', [['a'],['']]],
+    ['\n', [['']]], ['""', [['']]], ['a\n""', [['a'],['']]],
+    ['a,b\n,', [['a','b'],['','']]], ['a,b\n,\n', [['a','b'],['','']]],
+    ['a\r\n\r\nb\r\n', [['a'],[''],['b']]],
+  ]) assert.deepEqual(plain(h.parseCSV(text, ',')), expected, JSON.stringify(text));
+  await h.load('a,b\n,\nx,y\n,');
+  assert.deepEqual(plain(h.state.data.rows), [['a','b'],['',''],['x','y'],['','']]);
+  await h.load('a\n\nx\n\n');
+  assert.deepEqual(plain(h.state.data.rows), [['a'],[''],['x'],['']]);
 });
 test('G3 KNOWN GAP: replacement decoding and sparse Japanese SJIS misclassification', () => {
   const h = harness();
@@ -72,10 +96,14 @@ test('duplicate headers remain separate positional columns', async () => {
   assert.deepEqual(plain(h.buildOutputPreview(false).headers), ['a','a']);
   assert.deepEqual(plain(h.buildOutputPreview(false).rows), [['x','y']]);
 });
-test('G7 KNOWN GAP: invalid quote placement silently rewrites data', () => {
+test('G7 resolved: malformed quotes reject with logical record, field and offset', () => {
   const h = harness();
-  assert.deepEqual(plain(h.parseCSV('a\nb"c"d\n', ',')), [['a'],['bcd']]);
-  assert.deepEqual(plain(h.parseCSV('a\n"b"c\n', ',')), [['a'],['bc']]);
+  for (const [text, code, record, field] of [
+    ['a\nb"c"d\n','invalid_quote',2,1], ['a\n"b"c\n','invalid_quote',2,1],
+    ['a,b\nx,"y" z','invalid_quote',2,2], ['a,b\nx,"unclosed','unclosed_quote',2,2],
+    ['a,b\n"first\nsecond",ok\nx,b"c"','invalid_quote',3,2],
+  ]) assert.throws(() => h.parseCSV(text, ','), e => e.code === code && e.record === record && e.field === field && Number.isInteger(e.offset));
+  assert.throws(() => h.parseCSV('a,b', 'auto'), e => e.code === 'invalid_delimiter');
 });
 test('G8 KNOWN GAP: selected-column scope does not protect an unchecked column', async () => {
   const h = harness(); await h.load('a,b\n  x  ,  y  \n');
@@ -160,4 +188,17 @@ test('actual Shift_JIS input transforms and exports to independent UTF-8 reparse
   const h = harness(); await h.load(Buffer.from('96bc914f2c926c0a938c8b9e2c3030310a', 'hex'), 'shift_jis');
   h.state.data.cols[0].name = 'city'; h.downloadCSV();
   assert.deepEqual(reparse(Buffer.from(await h.blobs.at(-1).arrayBuffer()), ','), [['city','値'],['東京','001']]);
+});
+
+test('G1/G2/G7 corrected input round-trips through independent Python parser', async () => {
+  for (const [text, delimiter, expected] of [
+    ['name;memo\nA;"one,two,three\nHe said ""hello"""\n', 'auto', [['name','memo'],['A','one,two,three\nHe said "hello"']]],
+    ['a,b\n,\nx,y\n,', ',', [['a','b'],['',''],['x','y'],['','']]],
+    ['a\n\nx\n\n', ',', [['a'],[''],['x'],['']]],
+  ]) {
+    const h = harness(), bytes = await h.load(text, 'utf-8', delimiter), copy = Buffer.from(bytes);
+    h.downloadCSV();
+    assert.deepEqual(reparse(Buffer.from(await h.blobs.at(-1).arrayBuffer()), h.state.input.delimiterResolved), expected);
+    assert.deepEqual(bytes, copy);
+  }
 });

@@ -234,66 +234,63 @@ if (state.data.rows && state.data.rows.length) schedulePreviewRequest();
     return "utf-8";
   }
 
+  function csvError(code, details = {}){
+    return Object.assign(new Error(code), { code }, details);
+  }
+
   function guessDelimiter(text){
-    const lines = text.split(/\r\n|\n|\r/).slice(0, 10);
-    const cands = [",", "\t", ";"];
-    const scores = cands.map(d => {
-      let s = 0;
-      for (const ln of lines) s += (ln.split(d).length - 1);
-      return s;
-    });
-    let best = 0;
-    for (let i=1;i<scores.length;i++) if (scores[i] > scores[best]) best = i;
-    return scores[best] === 0 ? "," : cands[best];
+    // Compare strict interpretations of logical records, never character counts.
+    // Multiple valid multi-column interpretations require an explicit selection.
+    const candidates = [];
+    let validSingleColumn = false;
+    let firstError;
+    for (const delim of [",", "\t", ";"]){
+      try {
+        const rows = parseCSV(text, delim);
+        if (rows.some(row => row.length > 1)) candidates.push(delim);
+        else validSingleColumn = true;
+      } catch(error){
+        if (!firstError) firstError = error;
+      }
+    }
+    if (candidates.length > 1) throw csvError("ambiguous_delimiter", { candidates });
+    if (candidates.length === 1) return candidates[0];
+    if (validSingleColumn) return ","; // equivalent single-column interpretations
+    throw firstError;
   }
 
   function parseCSV(text, delim){
+    if (![",", "\t", ";"].includes(delim)) throw csvError("invalid_delimiter");
     const rows = [];
-    let row = [];
-    let cell = "";
-    let i = 0;
-    let inQuotes = false;
-
-    while (i < text.length){
+    let row = [], cell = "", mode = "start", recordStart = 0;
+    const fail = (code, offset) => { throw csvError(code, {
+      record: rows.length + 1, field: row.length + 1, offset
+    }); };
+    for (let i = 0; i < text.length; i++){
       const ch = text[i];
-
-      if (inQuotes){
+      if (mode === "quoted"){
         if (ch === '"'){
-          const next = text[i+1];
-          if (next === '"'){ cell += '"'; i += 2; continue; }
-          inQuotes = false; i++; continue;
-        }
-        cell += ch; i++; continue;
+          if (text[i + 1] === '"'){ cell += '"'; i++; }
+          else mode = "closed";
+        } else cell += ch;
+        continue;
+      }
+      if (ch === delim){
+        row.push(cell); cell = ""; mode = "start";
+      } else if (ch === "\n" || ch === "\r"){
+        if (ch === "\r" && text[i + 1] === "\n") i++;
+        row.push(cell); rows.push(row);
+        row = []; cell = ""; mode = "start"; recordStart = i + 1;
+      } else if (ch === '"' && mode === "start"){
+        mode = "quoted";
       } else {
-        if (ch === '"'){ inQuotes = true; i++; continue; }
-
-        if (ch === delim){
-          row.push(cell); cell = ""; i++; continue;
-        }
-        if (ch === "\n" || ch === "\r"){
-          if (ch === "\r" && text[i+1] === "\n") i++;
-          row.push(cell);
-          rows.push(row);
-          row = []; cell = ""; i++; continue;
-        }
-        cell += ch; i++; continue;
+        if (ch === '"' || mode === "closed") fail("invalid_quote", i);
+        cell += ch; mode = "unquoted";
       }
     }
-    row.push(cell);
-    rows.push(row);
-
-    if (rows.length){
-      const last = rows[rows.length-1];
-      const allEmpty = last.every(v => (v || "") === "");
-      if (allEmpty) rows.pop();
-    }
-    // [CSVTDY-06] Detect unclosed quote (malformed CSV)
-    if (inQuotes) {
-      const err = new Error("unclosed_quote");
-      err.code = "unclosed_quote";
-      throw err;
-    }
-
+    if (mode === "quoted") fail("unclosed_quote", text.length);
+    // A final terminator is not another record; explicit empty fields/quotes are.
+    if (recordStart < text.length){ row.push(cell); rows.push(row); }
     return rows;
   }
 
@@ -306,7 +303,7 @@ if (state.data.rows && state.data.rows.length) schedulePreviewRequest();
     const nl = newline === "crlf" ? "\r\n" : "\n";
     const out = rows.map(r => r.map(v => {
       const s = String(v ?? "");
-      if (quoteMode !== "always" && !mustQuote(s, delim)) return s;
+      if (quoteMode !== "always" && !(r.length === 1 && s === "") && !mustQuote(s, delim)) return s;
       return '"' + s.replace(/"/g, '""') + '"';
     }).join(delim)).join(nl);
     return out + nl;
@@ -855,27 +852,27 @@ return;
     state.data.rawText = text;
 
     let delim = state.input.delimiter;
-    if (delim === "auto") delim = guessDelimiter(text);
-    if (delim === "tab") delim = "\t";
-    state.input.delimiterResolved = delim;
-
     let rows;
-    try { rows = parseCSV(text, delim); }
-    catch(_e){
-      setError(state.ui.lang==="ja" ? "CSVの解析に失敗しました（形式を確認してください）。" : "Failed to parse CSV.", "PARSE_FAIL", state.ui.lang==="ja" ? "区切り文字やダブルクォートを確認してください。" : "Check delimiter and quotes.");
+    try {
+      if (delim === "auto") delim = guessDelimiter(text);
+      if (delim === "tab") delim = "\t";
+      state.input.delimiterResolved = delim;
+      rows = parseCSV(text, delim);
+    } catch(error){
+      state.ui.inputError = { code: error.code, record: error.record, field: error.field,
+        offset: error.offset, candidates: error.candidates };
+      const location = error.record ? ` (${error.record}:${error.field})` : "";
+      const action = error.code === "ambiguous_delimiter"
+        ? (state.ui.lang === "ja" ? "区切り文字を手動で選択してください。" : "Select the input delimiter manually.")
+        : (state.ui.lang === "ja" ? "区切り文字と引用符を確認してください。" : "Check delimiter and quotes.");
+      setError((state.ui.lang === "ja" ? "CSVの解析に失敗しました。" : "Failed to parse CSV.") + location,
+        error.code || "PARSE_FAIL", action);
       return;
     }
     if (!rows || !rows.length){
       setError(state.ui.lang==="ja" ? "CSVが空です。" : "CSV is empty.");
       return;
     }
-
-    // [CSVTDY-05] Drop fully empty rows (keep header row if enabled)
-    const keepHeaderRows = state.input.hasHeader ? 1 : 0;
-    rows = rows.filter((r, idx) => {
-      if (idx < keepHeaderRows) return true;
-      return !r.every(v => String(v ?? "") === "");
-    });
 
     const maxCols = rows.reduce((m,r)=>Math.max(m, r.length), 0);
     rows = rows.map(r => (r.length < maxCols ? r.concat(Array(maxCols-r.length).fill("")) : r));

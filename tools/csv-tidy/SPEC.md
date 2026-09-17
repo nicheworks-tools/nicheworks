@@ -29,14 +29,14 @@ The following are acceptance requirements, with current evidence/status called o
 | UTF-8 / UTF-8 BOM | Decode UTF-8, consume initial byte-order mark | Tested in Node through actual decoder/load functions |
 | Shift_JIS | Decode actual bytes when TextDecoder supports it; otherwise clear unsupported-encoding error | Japanese byte fixture passes in Node; browser support/error path pending |
 | Quoted delimiters / doubled quotes / quoted LF or CRLF | Preserve delimiter, quote and newline characters within fields | Explicit-delimiter parser fixtures pass |
-| Empty / trailing cells | Preserve field count and empty strings | Ordinary trailing cell passes; entirely empty trailing record has G2 |
-| Blank records | Do not silently delete actual records; final record terminator alone is not an additional record | G2; current load drops fully empty rows |
+| Empty / trailing cells | Preserve field count and empty strings | G2 resolved: explicit empty records/cells preserved |
+| Blank records | Do not silently delete actual records; final record terminator alone is not an additional record | G2 resolved: no load-time blank-record removal |
 | Empty headers | Retain literal empty header or explicitly disclose a user-selected replacement | G6; current load silently generates `col_N` |
 | Duplicate headers | Keep independent positional columns; make ambiguity visible for import preparation | Positional preservation tested; warning behavior incomplete |
 | Unequal field counts | Reject clearly before export, identifying the problematic record; do not silently pad or discard fields | G6; parser exposes widths, loader currently pads to maximum width |
 | CRLF / LF / comma / TAB / semicolon | Parse logical records without splitting quoted newlines | Explicit-format fixtures pass |
-| Unclosed / misplaced quotes | Reject malformed records with actionable error; do not strip quotes to invent a value | Unclosed quote parser rejection passes; G7 for misplaced quotes |
-| Auto delimiter | Ignore candidates inside quoted fields; ambiguity must be visible and manually overridable | G1; current raw-character counting fails |
+| Unclosed / misplaced quotes | Reject malformed records with actionable error; do not strip quotes to invent a value | G7 resolved: strict start/unquoted/quoted/closed grammar, located errors |
+| Auto delimiter | Ignore candidates inside quoted fields; ambiguity must be visible and manually overridable | G1 resolved: compare strict logical-record interpretations; multiple multi-column candidates require manual choice |
 | Auto encoding / invalid bytes | No silent replacement-character decoding; invalid selected encoding must fail; valid-but-ambiguous encodings require user confirmation by inspection | G3; current ratio heuristic can misdecode sparse Japanese content |
 | Empty input / all columns excluded | No exportable result; explain how to load data/include columns | Empty parser case and zero-column export guard tested; rendered states pending |
 
@@ -64,7 +64,7 @@ Required guarantees:
 5. Source bytes are read only. No writes to the selected source are performed; download creates a separate Blob/file.
 6. Errors must not result in a partial or stale CSV being presented as the latest successful output.
 
-These are **not an unconditional guarantee for today's full UI**: G1–G9 below prevent overall acceptance. Unit/integration tests execute production functions with a minimal DOM/FileReader/URL boundary and capture Blob bytes. Python's independent standard-library `csv.reader` reparses those bytes. Browser download handling, rendered preview, download failure recovery and source-file behavior in real browsers remain unverified.
+These are **not an unconditional guarantee for today's full UI**: Unresolved gaps below prevent overall acceptance. Unit/integration tests execute production functions with a minimal DOM/FileReader/URL boundary and capture Blob bytes. Python's independent standard-library `csv.reader` reparses those bytes. Browser download handling, rendered preview, download failure recovery and source-file behavior in real browsers remain unverified.
 
 ## Required failure and warning behavior
 
@@ -78,17 +78,17 @@ All classifications below are based on deterministic tests of current production
 
 | ID | Finding | Classification / severity | Next work |
 | --- | --- | --- | --- |
-| G1 | Semicolon CSV containing many commas inside a quoted field is guessed as comma | CONFIRMED GAP / BLOCKER | Quote-aware delimiter detection with ambiguous-input policy |
-| G2 | `a,b\n,` loses its last record; loader also removes middle all-empty records | CONFIRMED GAP / BLOCKER | Preserve records and distinguish terminal separator from actual blank record |
+| G1 | Semicolon CSV containing many commas inside a quoted field is guessed as comma | RESOLVED (unit/integration) | Strict candidate parses; ambiguous_delimiter requires manual selection |
+| G2 | `a,b\n,` loses its last record; loader also removes middle all-empty records | RESOLVED (unit/integration) | Preserve records; quote singleton empty values on export for independent reparse |
 | G3 | Invalid UTF-8 becomes U+FFFD; 2,000 ASCII characters plus SJIS Tokyo are guessed UTF-8 | CONFIRMED GAP / BLOCKER | Strict decode and safe encoding selection/failure state |
 | G4 | Accounting template writes `outName` while preview uses `name`; Japanese headers do not receive template order | CONFIRMED GAP / CORE GAP | One column-name/mapping source of truth, duplicate-safe matching |
 | G5 | Filtering rendered column items hides excluded names from summary and confirmation; input count changes | CONFIRMED GAP / UX GAP | Compute counts/exclusions from full data state, not filtered DOM |
 | G6 | Loader silently pads ragged rows and replaces empty header names | CONFIRMED GAP / BLOCKER | Reject ragged records; preserve/disclose empty headers |
-| G7 | `b"c"d` and `"b"c` are accepted and rewritten | CONFIRMED GAP / BLOCKER | Strict quote grammar and actionable errors |
+| G7 | `b"c"d` and `"b"c` are accepted and rewritten | RESOLVED (unit/integration) | Reject invalid_quote/unclosed_quote with logical record, field and UTF-16 offset |
 | G8 | Unchecked selected-scope columns still receive cleaning | CONFIRMED GAP / BLOCKER | Wire scope and honor it in shared transformation path |
 | G9 | Loading malformed data after good data retains old rows for export | CONFIRMED GAP / BLOCKER | Transactional load/clear failure state and repeated-load regression |
 
-Additional confirmed export blocker: `downloadCSV` passes the preview model object to an array serializer, throwing `rows.map is not a function`. It also reads BOM/newline from wrong state locations, uses unresolved input delimiter, and ignores the always-quote option. A small correction is permitted in this checkpoint; it does not resolve G1–G9.
+Additional confirmed export blocker: `downloadCSV` passes the preview model object to an array serializer, throwing `rows.map is not a function`. It also reads BOM/newline from wrong state locations, uses unresolved input delimiter, and ignores the always-quote option. The preserved checkpoint repaired that export path. Current resolved/unresolved statuses are listed above.
 
 Specification gaps corrected here: the previous `complete` label, vague malformed-CSV limitation, missing completion/record-loss policy, missing preview-to-byte acceptance, and absent measured-scale qualifications.
 
@@ -127,7 +127,15 @@ No optional/rejected additions are implemented. No substantial justified feature
 1. Normal UTF-8/BOM input → reorder/rename/exclude/clean → output preview model → actual export Blob → independent Python reparse equals the explicit matrix.
 2. Same matrix under comma/TAB/semicolon, BOM ON/OFF and LF/CRLF; header OFF and always-quote preserve Japanese/leading zeroes and embedded comma/newline/quotes.
 3. Actual SJIS bytes decode Japanese in a supporting runtime. Browser support and unsupported-decoder error remain later checks.
-4. Core parser fixtures preserve ordinary empty/trailing cells, quoted records and positional duplicate headers. G1–G9 have executable characterization evidence, not acceptance approval.
+4. Core parser fixtures preserve ordinary empty/trailing cells, quoted records and positional duplicate headers. Resolved gaps have acceptance tests; remaining KNOWN GAP tests describe unresolved behavior, not acceptance approval.
 5. Later phase must replace gap characterizations, verify actual browser workflows/errors/downloads, test 1440/1024/768/375/320 widths and progressively measure realistic larger data before claiming full completion.
 
 Checkpoint plan (kept here to respect the explicitly limited CSV Tidy file scope): finish unread source → reproduce suspicions → establish this contract → apply only small export correction → run original and new tests → commit explicit CSV Tidy paths and remotely preserve the branch. No final PR, UI redesign, broad browser matrix, performance benchmark, SEO or monetization work in this phase.
+
+### Data-integrity repair evidence — group A
+
+G1/G2/G7 now pass desired-behavior regressions. Delimiter detection parses each of comma/TAB/semicolon with strict quote grammar across logical records. Exactly one multi-column interpretation wins; several require manual selection (even when one has more uniform widths). Equivalent single-column interpretations default to comma. No raw-frequency guess is made. Row-width acceptance remains a separate loading concern.
+
+Quoted fields must start at field start; only a delimiter, record terminator or EOF may follow a closing quote. Errors expose 1-based logical `record` and `field`, plus 0-based UTF-16 code-unit `offset`. `state.ui.inputError` retains structured parser/detection details for the later UI phase. Blank lines represent one empty field; singleton empty output fields are quoted so independent readers preserve the record.
+
+Group A: original behavior suite passed; checkpoint 35 passed / 0 failed / 0 skipped, with 6 remaining KNOWN GAP characterizations. Independent Python reparse now covers 25 generated Blobs. Browser verification remains deferred.

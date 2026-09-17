@@ -51,3 +51,11 @@ Only export assembly/options were repaired: model object → header/data matrix,
 Next implementation phase: G1 quote-aware detection; G2 record preservation; G3 strict decoding; G4 template naming/order; G5 data-driven summary/exclusions; G6 ragged/empty-header policy; G7 strict quotes; G8 selected-column scope; G9 safe failure/reload state. Required output/failure guarantees in SPEC remain incomplete until these are resolved.
 
 Later verification: real FileReader/sample paths, browser download/reopen, unsupported-decoder and unreadable-file messages, repeated execution/reset state, keyboard/focus, desktop and 768/375/320 controls, progressive realistic size/column tests and memory/UI responsiveness. No scale limit or performance claim was established. No competitor research was needed to decide the evidenced correctness requirements. No final product-quality PR in this checkpoint.
+
+## Data-integrity continuation — group A (2026-09-17 UTC)
+
+Starting checkpoint `eda8db404b12b0f741e34a9203a69f8e93ce2ec9` was verified unchanged locally and remotely: original suite passed; 32 checkpoint tests passed including 9 KNOWN GAP cases. Live main was `7e517e07d407eb4e358efba95214d46c03f4add8`; all CSV Tidy file/subtree SHAs still matched the original base. No integration of main.
+
+Replaced G1/G2/G7 characterizations with desired behavior and added ambiguity/quoted-logical-record/independent empty-record output checks. Before source repair: 35 tests, 30 passed / 5 failed. After repair: original suite passed; 35 tests passed / 0 failed / 0 skipped. Six KNOWN GAP cases remain (G3/G4/G5/G6/G8/G9). There are now 25 independent Python Blob reparses. The original failing fixtures remain in the acceptance tests, not deleted or weakened.
+
+Parser now enforces quote grammar and reports logical record/field/offset. AUTO compares valid logical-record interpretations and rejects ambiguity. Loader no longer deletes blank records. A single empty output cell is quoted to preserve a one-field empty record for independent CSV readers. No browser, responsive or performance checks were performed.
