@@ -115,6 +115,7 @@ for (const name of [
   'affiliate-dji-camera-accessories-wave12.js',
   'affiliate-dji-camera-accessories-wave13.js',
   'affiliate-dji-camera-accessories-wave14.js',
+  'affiliate-dji-camera-accessories-wave15.js',
   'affiliate-camera-detail-exclusions.js'
 ]) run(new URL(name, root), `tools/manual-finder/${name}`);
 
