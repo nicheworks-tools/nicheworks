@@ -1,0 +1,38 @@
+name: Cosmetics semantic readiness report
+
+on:
+  pull_request:
+    paths:
+      - 'tools/cosmetic-ingredient-checker-lite/**'
+      - 'tools/inci-fastscan/**'
+      - 'tools/_shared/cosmetic-ingredient-parser.js'
+      - 'tools/_shared/check-cosmetics-semantic-quality.mjs'
+      - 'tools/_shared/check-cosmetics-public-role-readiness.mjs'
+      - '.github/workflows/cosmetics-semantic-report.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Generate semantic readiness report
+        shell: bash
+        run: |
+          set -o pipefail
+          node tools/_shared/check-cosmetics-semantic-quality.mjs | tee cosmetics-semantic-readiness.json
+      - name: Enforce public role readiness baseline
+        run: node tools/_shared/check-cosmetics-public-role-readiness.mjs
+      - name: Upload semantic readiness report
+        if: always() && hashFiles('cosmetics-semantic-readiness.json') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: cosmetics-semantic-readiness
+          path: cosmetics-semantic-readiness.json
+          retention-days: 30
