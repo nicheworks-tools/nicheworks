@@ -1,0 +1,50 @@
+name: tmp TrashNavi Wave43 readiness
+on:
+  push:
+    branches: [feat/trashnavi-wave43-readiness-refresh]
+permissions:
+  contents: write
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-wave43-readiness-refresh
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Apply and validate
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path('tools/trashnavi/app.js')
+          s=p.read_text()
+          old='"data/direct-waste-links-supply-wave42.json"]'
+          new='"data/direct-waste-links-supply-wave42.json","data/direct-waste-links-supply-wave43.json"]'
+          assert old in s and 'direct-waste-links-supply-wave43.json' not in s
+          p.write_text(s.replace(old,new,1))
+          rows=json.loads(Path('tools/trashnavi/data/direct-waste-links-supply-wave43.json').read_text())
+          assert len(rows)==30, len(rows)
+          by={}
+          for r in rows:
+            assert r['pref']=='埼玉県'
+            assert r.get('lgcode') and r.get('link_type') and r.get('url','').startswith(('http://','https://'))
+            by.setdefault(r['lgcode'],[]).append(r)
+          assert len(by)==10, len(by)
+          for code, rs in by.items():
+            assert len(rs)==3, (code,len(rs))
+            assert len({r['link_type'] for r in rs})==3, code
+            assert len({r['url'] for r in rs})==3, code
+          print('wave43 records',len(rows),'municipalities',len(by))
+          PY
+          rm .github/workflows/tmp-trashnavi-wave43-readiness.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/trashnavi/app.js .github/workflows/tmp-trashnavi-wave43-readiness.yml
+          git diff --cached --check
+          git commit -m "feat(trashnavi): register Wave43 readiness dataset"
+          git push origin HEAD:feat/trashnavi-wave43-readiness-refresh
