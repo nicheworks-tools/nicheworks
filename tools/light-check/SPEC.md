@@ -11,7 +11,7 @@ Use live camera frames to compare relative brightness, color cast, contrast/shad
 
 ## Affiliate boundary
 
-The canonical monetization class is `AFFILIATE`, but no live Amazon CTA may render until a verified Amazon Special Link/configuration has been supplied for this tool.
+The canonical monetization class is `AFFILIATE`. The live commerce block uses the validated NicheWorks Amazon Japan tagged-search template with tracking ID `nicheworks09-22` and fixed shooting/streaming equipment queries only. Camera frames and B/C/S/F values never enter an Amazon URL.
 
 Contextually acceptable future product areas are shooting/streaming lighting equipment such as LED/video lights, ring lights, light stands, or diffusion accessories. The placement must be framed as general equipment discovery for shooting/streaming, not as a calibrated recommendation derived from B/C/S/F values.
 
@@ -69,12 +69,13 @@ The camera preview, compact metrics, bottom controls, and sheets are explicitly 
 - [ ] Active video analysis produces the implemented relative B/C/S/F indicators without claiming lux or calibrated flicker values.
 - [ ] Camera errors are surfaced with recoverable guidance rather than silently failing.
 - [ ] JP/EN and Lite/camera controls preserve the relative-measurement disclaimer and local-analysis behavior.
-- [ ] No Amazon affiliate CTA renders unless a verified tool-specific affiliate configuration exists.
-- [ ] Any future affiliate placement remains a general shooting/streaming equipment path and is not presented as a calibrated recommendation from B/C/S/F.
+- [ ] The active Amazon block uses only fixed general shooting/streaming equipment queries and the shared `nicheworks09-22` tagged-search template.
+- [ ] Affiliate placement remains a general equipment path and is not presented as a calibrated recommendation from B/C/S/F.
 
 ## Implementation evidence
 
 - `tools/light-check/index.html`
 - `tools/light-check/app.js`
 - `tools/light-check/style.css`
+- `tools/light-check/affiliate-config.js`
 - `tools/light-check/usage.html`

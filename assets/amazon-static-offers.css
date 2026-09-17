@@ -1,0 +1,11 @@
+.nw-amazon-mount{margin:18px 0}
+.nw-amazon-card{border:1px solid #e5e7eb;border-radius:14px;padding:14px;background:#fff}
+.nw-amazon-title{margin:0 0 6px;font-size:16px}
+.nw-amazon-note{margin:0 0 12px;color:#6b7280;font-size:12px;line-height:1.6}
+.nw-amazon-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.nw-amazon-slot{min-width:0}
+.nw-amazon-link{display:flex;align-items:center;justify-content:center;min-height:42px;padding:9px 10px;border:1px solid #d1d5db;border-radius:10px;background:#fff;color:#111827;text-decoration:none;font-size:13px;line-height:1.35;text-align:center}
+.nw-amazon-link:hover{background:#f9fafb}
+.nw-amazon-disclosure{margin-top:10px;color:#6b7280;font-size:11px;line-height:1.5}
+.nw-amazon-disclosure p{margin:2px 0}
+@media(max-width:480px){.nw-amazon-grid{grid-template-columns:1fr}}

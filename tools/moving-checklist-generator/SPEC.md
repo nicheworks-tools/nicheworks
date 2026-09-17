@@ -17,7 +17,7 @@ This tool is the broad moving-timeline surface. Its primary intent is planning a
 
 ## Affiliate boundary
 
-The canonical monetization class is `AFFILIATE`, but no live Amazon CTA may render until a verified Amazon Special Link/configuration has been supplied for this tool.
+The canonical monetization class is `AFFILIATE`. The live commerce block uses the validated NicheWorks Amazon Japan tagged-search template with tracking ID `nicheworks09-22` and fixed general moving/packing-supply queries only. Move date, household/home type, memo text, checklist state, and completion progress never enter an Amazon URL.
 
 Contextually acceptable future product areas are ordinary moving/packing supplies such as boxes, packing tape, labels/markers, and protective packing materials. Affiliate placements should live near preparation/packing context and remain separate from government, address-change, contract, utility, or legal-adjacent checklist items.
 
@@ -85,7 +85,7 @@ The core interaction is a compact form followed by a chronological checklist; a 
 - [ ] Print/PDF uses the browser print flow and does not claim server-generated PDF storage.
 - [ ] Public metadata describes the broad 30-days-before-through-post-move timeline rather than presenting this as the dedicated lease-exit final check.
 - [ ] The page links to `moving-lease-final-check` as the dedicated final-stage companion.
-- [ ] No Amazon affiliate CTA renders unless a verified tool-specific affiliate configuration exists.
+- [ ] The active Amazon block uses only fixed general moving/packing-supply queries and the shared `nicheworks09-22` tagged-search template.
 - [ ] Affiliate content remains limited to general moving/packing supplies and never represents an official checklist requirement.
 
 ## Implementation evidence
@@ -93,3 +93,4 @@ The core interaction is a compact form followed by a chronological checklist; a 
 - `tools/moving-checklist-generator/index.html`
 - `tools/moving-checklist-generator/app.js`
 - `tools/moving-checklist-generator/style.css`
+- `tools/moving-checklist-generator/affiliate-config.js`

@@ -59,6 +59,7 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="/assets/amazon-static-offers.css">
 </head>
 
 <body>
@@ -162,7 +163,9 @@
 
     <section class="faq" aria-label="FAQ"><h2 data-i18n="ja">よくある質問</h2><h2 data-i18n="en">FAQ</h2><details><summary><span data-i18n="ja">実際に乾くか保証できますか？</span><span data-i18n="en">Can this guarantee actual drying?</span></summary><p data-i18n="ja">いいえ。気温・湿度・風速・降水・雲量からの簡易目安です。日照、素材、干し方、時間帯で変わります。</p><p data-i18n="en">No. It is a simple guide based on temperature, humidity, wind, precipitation and cloud cover. Sunlight, material, drying method and time of day can change the result.</p></details><details><summary><span data-i18n="ja">現在地は必須ですか？</span><span data-i18n="en">Is current location required?</span></summary><p data-i18n="ja">必須ではありません。緯度経度で取得するか、手動入力だけでも使えます。</p><p data-i18n="en">No. You can fetch by coordinates or use manual inputs only.</p></details><details><summary><span data-i18n="ja">雨や雲量も見ていますか？</span><span data-i18n="en">Does it consider rain and cloud cover?</span></summary><p data-i18n="ja">天気取得時は、降水量と雲量を補正に使います。手動入力のみの場合は未考慮です。</p><p data-i18n="en">When weather data is fetched, precipitation and cloud cover are used as adjustments. Manual-only mode does not include them.</p></details><details><summary><span data-i18n="ja">天気予報として使えますか？</span><span data-i18n="en">Can I use this as a weather forecast?</span></summary><p data-i18n="ja">いいえ。Open-Meteoから取得する現在条件、または手動入力した条件を使う現在時点の目安です。将来の天気や乾燥状態は予報しません。</p><p data-i18n="en">No. It uses current conditions from Open-Meteo or your manual inputs. It does not forecast future weather or future drying conditions.</p></details><details><summary><span data-i18n="ja">入力内容は保存されますか？</span><span data-i18n="en">Are inputs saved?</span></summary><p data-i18n="ja">対象、干し方、気温、湿度、風速、緯度経度などはこのブラウザのlocalStorageに保存されます。</p><p data-i18n="en">Target, method, temperature, humidity, wind and coordinates are saved in this browser's localStorage.</p></details></section>
 
-    <div class="nw-donate"><p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><p class="nw-donate-text" data-i18n="en">If this tool helped, your support keeps it maintained.</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
+        <div id="nwAmazonAffiliate" class="nw-amazon-mount" hidden></div>
+
+<div class="nw-donate"><p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><p class="nw-donate-text" data-i18n="en">If this tool helped, your support keeps it maintained.</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
     <div class="nw-links" aria-label="Internal links"><a href="/tools/laundry-code-decode/">Laundry Code Decode</a> / <a href="/tools/light-check/">Light Check</a> / <a href="/tools/weatherdiff/">WeatherDiff</a> / <a href="/tools/unitmaster/">UnitMaster</a></div>
     <div class="disclaimer" role="note"><p data-i18n="ja">※ 本ツールは現在の天気データまたは手動入力からの簡易推定です。天気予報ではなく、実際の乾燥結果、天気変化、衣類や布団の状態を保証するものではありません。</p><p data-i18n="en">This tool is a rough estimate from current weather data or manual inputs, not a forecast. It does not guarantee actual drying results, weather changes, or item condition.</p></div>
 
@@ -170,5 +173,8 @@
 
   <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p><p class="nw-footer-line"><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
   <script src="./app.js"></script>
+  <script src="/assets/amazon-affiliate.js"></script>
+  <script src="./affiliate-config.js"></script>
+  <script src="/assets/amazon-static-offers.js"></script>
 </body>
 </html>

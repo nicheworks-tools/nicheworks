@@ -1,6 +1,6 @@
 # NicheWorks Amazon Associates Common Rules
 
-Status: active implementation contract, integration disabled until valid Associate links are configured.
+Status: active implementation contract. Individual tools remain fail-closed until their validated configuration is enabled; several production tools use the shared validated tagged-search format.
 
 This file supplements `common-spec/spec-ja.md` only for pages that use Amazon Associates links. It does not replace the canonical NicheWorks common specification. Affiliate click measurement is governed by `common-spec/affiliate-outbound.md`.
 
@@ -100,6 +100,20 @@ The first planned integrations are:
   - `usb_microphone`
 
 Manual Finder is managed in its own workstream and may use a validated model-search template rather than per-record short links.
+
+## 6A. Shared validated NicheWorks tagged-search template
+
+NicheWorks production tools may reuse the already validated Amazon Japan tagged-search format with tracking ID `nicheworks09-22` when all query terms are fixed tool-owned metadata. The representative proof URL and verification method are recorded in each active tool configuration. A tool does not need a separate SiteStripe short link for every fixed category when it reuses this validated format.
+
+As of 2026-09-17, the retained affiliate-candidate rollout also activates fixed-query commerce blocks for:
+
+- Dry Meter — room measurement / air circulation / indoor drying-rack discovery;
+- Light Check — shooting/streaming lighting accessories;
+- Laundry Code Decode — general laundry accessories, separated from JIS interpretation;
+- Moving Checklist Generator — general moving/packing supplies;
+- Moving / Lease Final Check — general move-out/handoff supplies.
+
+For these tools, user inputs, tool results, scores, measurements, selected symbols, dates, checklist state, or uploaded content MUST NOT alter the Amazon query or affiliate analytics metadata.
 
 ## 7. Release gate
 

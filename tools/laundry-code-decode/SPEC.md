@@ -33,7 +33,7 @@ The canonical set MUST NOT contain duplicate convenience records, invented combi
 
 ## Affiliate boundary
 
-The canonical monetization class is `AFFILIATE`, but no live Amazon CTA may render until a verified Amazon Special Link/configuration has been supplied for this tool.
+The canonical monetization class is `AFFILIATE`. The live commerce block uses the validated NicheWorks Amazon Japan tagged-search template with tracking ID `nicheworks09-22` and fixed general laundry-accessory queries only. Selected symbols, search text, uploaded images, and candidate scores never enter an Amazon URL.
 
 A future commerce block may only offer general laundry-care accessories in a way clearly separated from the standardized-symbol interpretation. It MUST NOT infer from a JIS symbol that a particular detergent, bleach, dryer, iron, steamer, or other treatment product is safe or required for the garment.
 
@@ -114,7 +114,7 @@ The symbol grid and result areas reflow for narrow screens while retaining usabl
 - [ ] Photo candidate search compares only against the canonical 43-symbol set.
 - [ ] Unsupported or malformed images fail safely without sending the image to a server.
 - [ ] JP/EN switching preserves symbol selection and behavior.
-- [ ] No Amazon affiliate CTA renders unless a verified tool-specific affiliate configuration exists.
+- [ ] The active Amazon block uses only fixed general laundry-accessory queries and the shared `nicheworks09-22` tagged-search template.
 - [ ] Affiliate content never changes or extends the meaning of a JIS symbol or recommends a garment treatment from the symbol alone.
 
 ## Implementation evidence
@@ -123,4 +123,5 @@ The symbol grid and result areas reflow for narrow screens while retaining usabl
 - `tools/laundry-code-decode/data.js`
 - `tools/laundry-code-decode/app.js`
 - `tools/laundry-code-decode/style.css`
+- `tools/laundry-code-decode/affiliate-config.js`
 - `tools/laundry-code-decode/tests/behavior.test.mjs`
