@@ -81,7 +81,7 @@ Dictionary recognition by itself is not enough to qualify as a complete public r
 When two or more result rows exist, Lite may show:
 
 - result-state filtering,
-- role/category filtering when at least two roles are present,
+- functional-category filtering by role/category when at least two roles are present,
 - visible-row count,
 - copy-visible and copy-incomplete actions,
 - aggregate role counts.
