@@ -1,0 +1,46 @@
+name: Retained Amazon affiliate rollout
+
+on:
+  pull_request:
+    paths:
+      - 'assets/amazon-affiliate.js'
+      - 'assets/amazon-static-offers.js'
+      - 'assets/amazon-static-offers.css'
+      - 'common-spec/amazon-affiliate.md'
+      - 'MONETIZATION_CLASSIFICATION.json'
+      - 'tools/dry-meter/**'
+      - 'tools/light-check/**'
+      - 'tools/laundry-code-decode/**'
+      - 'tools/moving-checklist-generator/**'
+      - 'tools/moving-lease-final-check/**'
+      - 'scripts/check-retained-amazon-affiliates.mjs'
+      - '.github/workflows/check-retained-amazon-affiliates.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'assets/amazon-affiliate.js'
+      - 'assets/amazon-static-offers.js'
+      - 'assets/amazon-static-offers.css'
+      - 'common-spec/amazon-affiliate.md'
+      - 'MONETIZATION_CLASSIFICATION.json'
+      - 'tools/dry-meter/**'
+      - 'tools/light-check/**'
+      - 'tools/laundry-code-decode/**'
+      - 'tools/moving-checklist-generator/**'
+      - 'tools/moving-lease-final-check/**'
+      - 'scripts/check-retained-amazon-affiliates.mjs'
+      - '.github/workflows/check-retained-amazon-affiliates.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/check-retained-amazon-affiliates.mjs
