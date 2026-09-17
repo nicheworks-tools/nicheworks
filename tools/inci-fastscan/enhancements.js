@@ -7,6 +7,63 @@
     ROLE_DESCRIPTIONS['plant extract'] = { ja: '植物から得られたエキス成分です。', en: 'A plant-derived extract ingredient.' };
   }
 
+  function bilingualRoleEntry(value) {
+    return Boolean(value && typeof value.ja === 'string' && value.ja.trim() && typeof value.en === 'string' && value.en.trim());
+  }
+
+  function hasPublicRoleExplanation(result) {
+    if (!result?.found || typeof ROLE_LABELS === 'undefined' || typeof ROLE_DESCRIPTIONS === 'undefined') return false;
+    const key = String(result.category || '').trim().toLowerCase();
+    if (!key || key === 'general') return false;
+    return bilingualRoleEntry(ROLE_LABELS[key]) && bilingualRoleEntry(ROLE_DESCRIPTIONS[key]);
+  }
+
+  function normalizePublicResults(results) {
+    if (!Array.isArray(results)) return [];
+    return results.map((result) => {
+      if (!result?.found) return result;
+      if (!hasPublicRoleExplanation(result)) {
+        return {
+          ...result,
+          found: false,
+          safety: undefined,
+          note_short: undefined,
+          publicSemanticIncomplete: true
+        };
+      }
+      return {
+        ...result,
+        safety: undefined,
+        note_short: undefined
+      };
+    });
+  }
+
+  function syncIncompleteResultCopy() {
+    if (typeof RESULT_TEXT === 'undefined') return;
+    RESULT_TEXT.unknown = { ja: '情報不足', en: 'Information incomplete' };
+    RESULT_TEXT.filterUnknown = { ja: '情報不足', en: 'Information incomplete' };
+    RESULT_TEXT.unknownLabel = { ja: '情報不足', en: 'Information incomplete' };
+    RESULT_TEXT.unknownMany = {
+      ja: '役割・説明情報が不足している成分が多いです。OCRの誤認識、区切り、表記ゆれ、または未整理の成分情報を確認してください。',
+      en: 'Role or explanation information is incomplete for many items. Check OCR mistakes, separators, spelling variants, or ingredient information that is not yet fully covered.'
+    };
+    RESULT_TEXT.unknownReason = {
+      ja: 'この表記または役割・説明情報を十分に確認できませんでした。OCRの読み違い、表記ゆれ、または未登録・未整理の成分情報である可能性があります。',
+      en: 'Complete role or explanation information is not available for this spelling. It may be an OCR error, spelling variant, or ingredient information that is not yet fully covered.'
+    };
+  }
+
+  function enforcePublicResultContract() {
+    const baseRender = root.renderResults;
+    if (typeof baseRender !== 'function' || baseRender.__nwPublicCompleteness === true) return;
+    const wrappedRender = function renderPublicResults(container, results, lang) {
+      return baseRender(container, normalizePublicResults(results), lang);
+    };
+    wrappedRender.__nwPublicCompleteness = true;
+    root.renderResults = wrappedRender;
+  }
+
   const workflows = [
     {
       fileId: 'ocr-file-fast',
@@ -175,6 +232,8 @@
 
   function init() {
     extendRoleTaxonomy();
+    syncIncompleteResultCopy();
+    enforcePublicResultContract();
     syncRoleFirstCopy();
     for (const workflow of workflows) setupWorkflow(workflow);
     document.addEventListener('click', (event) => {
