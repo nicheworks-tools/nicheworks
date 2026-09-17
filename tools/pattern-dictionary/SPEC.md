@@ -17,7 +17,7 @@ Pattern Dictionary is a bilingual visual pattern-identification dictionary for u
 
 The product identifies a maintained pattern identity, exposes nearby/confusable patterns, provides bilingual dictionary detail pages, and offers explicit downstream Amazon links based only on maintained canonical commerce intents. It is not an asset marketplace, pattern generator, image-classification service, or live retailer-data product. Pattern Atlas remains a separate product.
 
-## Current publication state
+## Current functional contract
 
 The canonical v1 catalog is complete and frozen at exactly **100 published pattern IDs**.
 
@@ -30,6 +30,16 @@ The canonical v1 catalog is complete and frozen at exactly **100 published patte
 - Search regression set: **264 maintained cases**.
 - Comparison guidance: **72 maintained guides**.
 - Amazon commerce layer: **305 maintained active Amazon.co.jp offers**, using fixed canonical queries and the shared NicheWorks Associates tag.
+
+Search, filtering, ranking, autocomplete, and comparison run client-side against the maintained static dataset. Pattern IDs are language-independent. Japanese and English labels, aliases, search vocabulary, descriptions, relationships, and routes resolve to the same identity.
+
+Search performs maintained weighted matching across names, aliases, descriptive terms, motif/geometry/family cues, culture/use terms, and other canonical vocabulary. Visual Autocomplete provides image-backed candidates. Search interpretation chips expose recognized cues and allow cue removal before reranking. Low-confidence searches must not fabricate certainty; they return nearby maintained candidates and confidence wording.
+
+Every canonical ID has one deterministic 1536×1536 PNG Reference Image under `assets/reference/`. These images are recognition references, not claims that every real-world example has one exact appearance. Accuracy review is separately recorded as `accepted`, `representative-accepted`, or `corrected`, and the current audit has **0 unresolved** records.
+
+Source verification is complete for all 100 terms. A `qualified` state is not an unfinished research flag: it marks terms where the name denotes a broader weave, technique, textile tradition, style, material effect, or overlapping naming convention that cannot honestly be reduced to one universal fixed repeat. User-facing copy and imagery must preserve that boundary.
+
+Amazon affiliate navigation is active and downstream of identification. Provider is Amazon.co.jp, tracking ID is `nicheworks09-22`, and the shared helper is `/assets/amazon-affiliate.js`. Destinations come only from maintained canonical mappings in `data/affiliate-config.json`. User free text, autocomplete text, search chips, or other user state must never be forwarded into Amazon queries.
 
 Future growth beyond 100 is not part of this contract. Any 101+ expansion requires a new versioned expansion plan rather than silently extending the canonical-100 dataset.
 
@@ -48,41 +58,13 @@ The current tool does **not** accept image upload, account credentials, payment 
 
 Canonical runtime inputs are static same-origin files, principally:
 
-- `data/patterns.json`
-- `data/search-dictionary.json`
-- `data/production-content.json`
-- `data/source-verification.json`
-- `data/reference-images.json`
-- `data/compare-guides.json`
-- `data/affiliate-config.json`
-
-## Search and discovery behavior
-
-Search, filtering, ranking, autocomplete, and comparison run client-side against the maintained static dataset. Pattern IDs are language-independent. Japanese and English labels, aliases, search vocabulary, descriptions, relationships, and routes resolve to the same identity.
-
-Search performs maintained weighted matching across names, aliases, descriptive terms, motif/geometry/family cues, culture/use terms, and other canonical vocabulary. Visual Autocomplete provides image-backed candidates. Search interpretation chips expose recognized cues and allow cue removal before reranking.
-
-Low-confidence searches must not fabricate certainty. They return nearby maintained candidates and confidence wording. Zero-result and weak-result handling must preserve that uncertainty rather than invent a pattern outside the catalog.
-
-Visual browsing is a primary path, not a secondary fallback. Family filters and the equal-square reference grid must remain usable without prior taxonomy knowledge.
-
-## Reference Image contract
-
-Every canonical ID has one deterministic 1536×1536 PNG Reference Image under `assets/reference/`. These images are recognition references, not claims that every real-world example has one exact appearance.
-
-`data/reference-image-accuracy-audit.json` defines the accuracy boundary:
-
-- `accepted`: the render materially represents the maintained recognition structure;
-- `representative-accepted`: for a broad technique/style/tradition/material term, the render is one defensible representative cue rather than a universal canonical motif;
-- `corrected`: a previously published render was judged capable of misleading recognition and was replaced.
-
-The current audit is complete for all 100 records with **0 unresolved**. Accuracy-review state must remain distinct from mere image existence, dimensions, or decode success.
-
-## Source and terminology contract
-
-Source verification is complete for all 100 published terms. A `qualified` state is not an unfinished research flag: it marks terms where the name denotes a broader weave, technique, textile tradition, style, material effect, or overlapping naming convention that cannot honestly be reduced to one universal fixed repeat.
-
-User-facing copy for qualified terms must preserve that boundary. The runtime must not convert a qualified term into a false statement that one Reference Image is the only correct form.
+- `tools/pattern-dictionary/data/patterns.json`
+- `tools/pattern-dictionary/data/search-dictionary.json`
+- `tools/pattern-dictionary/data/production-content.json`
+- `tools/pattern-dictionary/data/source-verification.json`
+- `tools/pattern-dictionary/data/reference-images.json`
+- `tools/pattern-dictionary/data/compare-guides.json`
+- `tools/pattern-dictionary/data/affiliate-config.json`
 
 ## Outputs
 
@@ -99,66 +81,41 @@ The tool produces:
 
 It does not output downloadable pattern assets, generated pattern files, live Amazon product results, prices, stock, ratings, review counts, or delivery claims.
 
-## Affiliate contract
+## State and persistence
 
-Amazon affiliate navigation is active and downstream of identification.
+Pattern search, ranking, filtering, autocomplete, comparison, and rendering run in the browser against static same-origin data. Query/search state may be represented in the page URL where applicable.
 
-- Provider: Amazon.co.jp.
-- Shared tracking ID: `nicheworks09-22`.
-- Shared helper: `/assets/amazon-affiliate.js`.
-- Destinations come only from maintained canonical mappings in `data/affiliate-config.json`.
-- User free text, autocomplete text, search chips, or other user state must never be forwarded into Amazon queries.
-- Affiliate actions must remain visibly distinct from dictionary facts, search results, or comparison conclusions.
-- No price, inventory, rating, review, or product-quality claim is made by Pattern Dictionary.
+The implementation does not persist pattern queries, selections, or search history in `localStorage` or `sessionStorage`. The tool has no user account, server-side search history, or user-specific database state.
 
-## Language contract
-
-Pattern Dictionary uses separate Japanese and English public pages backed by one canonical identity set.
-
-- Japanese root: `/tools/pattern-dictionary/`
-- English root: `/tools/pattern-dictionary/en/`
-- Japanese detail: `/tools/pattern-dictionary/patterns/{id}/`
-- English detail: `/tools/pattern-dictionary/en/patterns/{id}/`
-
-Language switching on a detail page must preserve the canonical pattern ID. Mixed-language search vocabulary is allowed.
-
-## SEO contract
-
-The Japanese and English landing pages and all 200 static detail pages are publication surfaces.
-
-- Published detail pages are `index,follow`.
-- Every published detail URL is present in the root sitemap.
-- Japanese/English detail pairs use canonical and hreflang relationships.
-- Detail pages carry Open Graph/Twitter metadata and absolute production Reference Image previews.
-- Search and compare pages are query/selection-dependent utilities and remain `noindex,follow`.
-- No thin color/scale/variant URL families are introduced.
+Canonical records, publication state, source-review state, image-review state, comparison guidance, and affiliate mappings live in repository-controlled static files. Missing or malformed canonical state must fail validation before publication rather than being silently reconstructed at runtime.
 
 ## Privacy and network behavior
 
-Pattern search text, filtering, ranking, and comparison are processed in the browser against same-origin static data. Pattern Dictionary does not intentionally transmit the user's search text to an external AI/search service or to Amazon.
+Pattern search text, filtering, ranking, and comparison are processed locally in the browser against same-origin static data. Pattern Dictionary does not intentionally transmit the user's search text to an external AI/search service or to Amazon.
 
-The tool does not maintain user accounts or server-side search history and does not persist pattern queries in `localStorage` or `sessionStorage`. Query state may appear in the page URL where applicable.
+Affiliate navigation occurs only after an explicit user click on a maintained commerce action. User free text, autocomplete text, cue chips, and other search state are never used to construct Amazon destinations.
 
 The page still follows NicheWorks common analytics, advertising, and support behavior; those common resources must not be described as absent.
 
-## Responsive and accessibility contract
+## Language mode
 
-The product is a visual-discovery interface.
+`separate JA/EN pages`
 
-- Desktop target: approximately 960–1200px useful content width.
-- Tablet target: 768px.
-- Mobile verification targets: 390px and 320px.
-- Search, autocomplete, filters, chips, detail navigation, affiliate actions, and compare must work without a precision pointer.
-- Page-level horizontal overflow is not allowed at supported widths.
-- Filter rows may horizontally scroll where appropriate.
-- Reference images require meaningful alt text tied to the maintained pattern identity.
-- Keyboard focus and interactive control semantics must remain visible and usable.
+Japanese root: `/tools/pattern-dictionary/`.
 
-## Error behavior
+English root: `/tools/pattern-dictionary/en/`.
 
-Unknown or weak queries must degrade to nearby maintained candidates or an explicit low-confidence/zero-result state. Runtime code must not invent names, relationships, source states, affiliate queries, or imagery to fill missing canonical data.
+Japanese detail routes use `/tools/pattern-dictionary/patterns/{id}/`; English detail routes use `/tools/pattern-dictionary/en/patterns/{id}/`. Language switching on a detail page must preserve the canonical pattern ID. Mixed-language search vocabulary is allowed.
 
-Malformed canonical data, missing detail routes, missing Reference Images, unresolved relationships, or publication-state drift must fail validation before publication.
+Landing pages and all 200 detail pages are publication surfaces. Detail pages are `index,follow`, present in the root sitemap, and paired with canonical/hreflang relationships. Search and compare are query/selection-dependent utilities and remain `noindex,follow`.
+
+## Layout class
+
+`hybrid`
+
+Desktop uses a wide visual-discovery layout with an equal-square pattern grid, search/autocomplete, filters, detail surfaces, and comparison. Tablet target is 768px. Mobile verification targets are 390px and 320px.
+
+Search, autocomplete, filters, cue chips, detail navigation, affiliate actions, and compare must work without a precision pointer. Page-level horizontal overflow is not allowed at supported widths. Filter rows may horizontally scroll where intentional. Interactive controls require usable keyboard focus, and Reference Images require meaningful alt text tied to the maintained pattern identity.
 
 ## Limits and non-goals
 
@@ -169,6 +126,9 @@ Malformed canonical data, missing detail routes, missing Reference Images, unres
 - No live retailer data is fetched.
 - Pattern Atlas remains independent.
 - Qualified technique/tradition/style terms are representative categories, not claims of one universal motif.
+- Pattern Dictionary makes no price, inventory, rating, review, delivery, or product-quality claim about Amazon results.
+
+Unknown or weak queries must degrade to nearby maintained candidates or an explicit low-confidence/zero-result state. Runtime code must not invent names, relationships, source states, affiliate queries, or imagery to fill missing canonical data.
 
 ## Acceptance criteria
 
@@ -176,7 +136,7 @@ Malformed canonical data, missing detail routes, missing Reference Images, unres
 - [x] Visual browsing and ambiguous JA/EN text search are both primary discovery paths.
 - [x] Visual Autocomplete and cue-removal reranking are implemented.
 - [x] All 100 IDs have Japanese and English static detail routes.
-- [x] All 200 detail pages are indexable and present in the sitemap.
+- [x] All 200 detail pages are `index,follow` and present in the sitemap.
 - [x] All 100 IDs have verified-publication 1536×1536 Reference Images.
 - [x] A complete 100-entry image-accuracy audit exists with 0 unresolved records.
 - [x] Qualified source terms preserve representative/non-universal wording.
@@ -190,32 +150,34 @@ Malformed canonical data, missing detail routes, missing Reference Images, unres
 
 Primary implementation and data:
 
-- `index.html`, `en/index.html`
-- `search.html`, `en/search.html`
-- `compare.html`, `en/compare.html`
-- `app.js`, `style.css`
-- `data/patterns.json`
-- `data/production-content.json`
-- `data/source-verification.json`
-- `data/reference-images.json`
-- `data/reference-image-accuracy-audit.json`
-- `data/search-dictionary.json`
-- `data/compare-guides.json`
-- `data/affiliate-config.json`
-- `assets/reference/*.png`
+- `tools/pattern-dictionary/index.html`
+- `tools/pattern-dictionary/en/index.html`
+- `tools/pattern-dictionary/search.html`
+- `tools/pattern-dictionary/en/search.html`
+- `tools/pattern-dictionary/compare.html`
+- `tools/pattern-dictionary/en/compare.html`
+- `tools/pattern-dictionary/app.js`
+- `tools/pattern-dictionary/style.css`
+- `tools/pattern-dictionary/data/patterns.json`
+- `tools/pattern-dictionary/data/production-content.json`
+- `tools/pattern-dictionary/data/source-verification.json`
+- `tools/pattern-dictionary/data/reference-images.json`
+- `tools/pattern-dictionary/data/reference-image-accuracy-audit.json`
+- `tools/pattern-dictionary/data/search-dictionary.json`
+- `tools/pattern-dictionary/data/compare-guides.json`
+- `tools/pattern-dictionary/data/affiliate-config.json`
+- `tools/pattern-dictionary/assets/reference/`
 
 Publication/quality evidence:
 
-- `tests/publication-test.mjs`
-- `tests/reference-image-test.mjs`
-- `tests/reference-image-accuracy-audit-test.mjs`
-- `tests/search-test.mjs`
-- `tests/compare-test.mjs`
-- `tests/affiliate-test.mjs`
-- `tests/seo-detail-test.mjs`
-- `tests/browse-mobile-test.mjs`
-- `tests/validate.mjs`
-- `tools/tools-index.json`
-- `tools/tool-spec-manifest.json`
+- `tools/pattern-dictionary/tests/publication-test.mjs`
+- `tools/pattern-dictionary/tests/reference-image-test.mjs`
+- `tools/pattern-dictionary/tests/reference-image-accuracy-audit-test.mjs`
+- `tools/pattern-dictionary/tests/search-test.mjs`
+- `tools/pattern-dictionary/tests/compare-test.mjs`
+- `tools/pattern-dictionary/tests/affiliate-test.mjs`
+- `tools/pattern-dictionary/tests/seo-detail-test.mjs`
+- `tools/pattern-dictionary/tests/browse-mobile-test.mjs`
+- `tools/pattern-dictionary/tests/validate.mjs`
 - `docs/tools/pattern-dictionary.md`
 - `sitemap.xml`
