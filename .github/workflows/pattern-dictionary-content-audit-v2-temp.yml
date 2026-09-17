@@ -1,0 +1,60 @@
+name: Pattern Dictionary content audit v2 temp
+
+on:
+  push:
+    branches:
+      - audit/pattern-dictionary-content-quality-20260917
+    paths:
+      - .github/workflows/pattern-dictionary-content-audit-v2-temp.yml
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/pattern-dictionary-content-quality-20260917
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Audit runtime-effective aliases, qualifications and relationships
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const root='tools/pattern-dictionary/data/';
+          const base=JSON.parse(fs.readFileSync(root+'patterns.json','utf8'));
+          const prod=JSON.parse(fs.readFileSync(root+'production-content.json','utf8'));
+          const src=JSON.parse(fs.readFileSync(root+'source-verification.json','utf8'));
+          const B=new Map(base.map(x=>[x.id,x])), P=new Map(prod.patterns.map(x=>[x.pattern_id,x])), S=new Map(src.patterns.map(x=>[x.pattern_id,x]));
+          const norm=s=>(s||'').toLowerCase().normalize('NFKC').replace(/[’']/g,"'").replace(/\s+/g,' ').trim();
+          const uniq=a=>[...new Set(a)];
+          const aliasFindings=[];
+          const relationshipFindings=[];
+          const qualificationFindings=[];
+          for(const [id,b] of B){
+            const p=P.get(id),s=S.get(id); if(!p||!s) continue;
+            for(const lang of ['ja','en']){
+              const effective=uniq([...(b.aliases?.[lang]||[]),...(p.aliases?.[lang]||[])]);
+              const allowed=new Set((s.verified_aliases?.[lang]||[]).map(norm));
+              const extras=effective.filter(x=>!allowed.has(norm(x)));
+              const missing=(s.verified_aliases?.[lang]||[]).filter(x=>!new Set(effective.map(norm)).has(norm(x)));
+              if(extras.length||missing.length) aliasFindings.push({id,lang,base:b.aliases?.[lang]||[],production:p.aliases?.[lang]||[],source_verified:s.verified_aliases?.[lang]||[],effective,extras,missing});
+            }
+            const rel=b.relationships||{};
+            for(const kind of ['similar','often_confused_with']) for(const target of rel[kind]||[]) if(!B.has(target)) relationshipFindings.push({id,kind,target,issue:'missing target'});
+            const q=s.verification_state==='qualified';
+            const hasJa=!!p.qualification?.ja?.trim(),hasEn=!!p.qualification?.en?.trim();
+            if(q&&(!hasJa||!hasEn))qualificationFindings.push({id,issue:'qualified missing bilingual scope note',hasJa,hasEn});
+            if(!q&&(hasJa||hasEn))qualificationFindings.push({id,issue:'verified entry unexpectedly carries scope note',hasJa,hasEn});
+          }
+          console.log('RUNTIME_ALIAS_FINDINGS',JSON.stringify(aliasFindings,null,2));
+          console.log('RUNTIME_ALIAS_FINDING_COUNT',aliasFindings.length);
+          console.log('RELATIONSHIP_FINDINGS',JSON.stringify(relationshipFindings,null,2));
+          console.log('QUALIFICATION_FINDINGS',JSON.stringify(qualificationFindings,null,2));
+          console.log('QUALIFIED_WITH_NOTES', [...S.values()].filter(x=>x.verification_state==='qualified').filter(x=>P.get(x.pattern_id)?.qualification?.ja&&P.get(x.pattern_id)?.qualification?.en).length);
+          const displayedScope=[...P.values()].map(x=>({id:x.pattern_id,scope:x.term_scope})).filter(x=>typeof x.scope!=='string'||!x.scope.trim());
+          console.log('EMPTY_TERM_SCOPES',JSON.stringify(displayedScope));
+          NODE
