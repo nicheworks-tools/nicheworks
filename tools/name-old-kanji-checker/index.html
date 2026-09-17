@@ -13,20 +13,20 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>人名旧字体チェッカー | Name Old Kanji Checker | NicheWorks</title>
-  <meta name="description" content="名前に含まれる旧字体・異体字候補を確認するための参考ツールです。旧字体一覧データを使って、旧字→新字・新字→旧字候補をブラウザ内で確認できます。">
+  <title>名前の旧字体・異体字を調べる｜人名旧字体チェッカー | NicheWorks</title>
+  <meta name="description" content="名前に含まれる旧字体・異体字候補を1文字ずつ確認できる無料ツールです。齋藤・渡邊・濱田・髙橋などを入力し、旧字→新字、新字→旧字・異体字候補を確認できます。戸籍・公的書類では登録字体を必ず確認してください。">
   <link rel="canonical" href="https://nicheworks.app/tools/name-old-kanji-checker/">
   <meta name="robots" content="index,follow">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NicheWorks">
-  <meta property="og:title" content="人名旧字体チェッカー | Name Old Kanji Checker | NicheWorks">
-  <meta property="og:description" content="名前に含まれる旧字体・異体字候補を確認するための参考ツールです。旧字体一覧データを使って、旧字→新字・新字→旧字候補をブラウザ内で確認できます。">
+  <meta property="og:title" content="名前の旧字体・異体字を調べる｜人名旧字体チェッカー | NicheWorks">
+  <meta property="og:description" content="名前に含まれる旧字体・異体字候補を1文字ずつ確認できます。旧字→新字、新字→旧字・異体字候補を確認する参考ツールです。">
   <meta property="og:url" content="https://nicheworks.app/tools/name-old-kanji-checker/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="人名旧字体チェッカー | Name Old Kanji Checker | NicheWorks">
-  <meta name="twitter:description" content="名前に含まれる旧字体・異体字候補を確認するための参考ツールです。旧字体一覧データを使って、旧字→新字・新字→旧字候補をブラウザ内で確認できます。">
+  <meta name="twitter:title" content="名前の旧字体・異体字を調べる｜人名旧字体チェッカー | NicheWorks">
+  <meta name="twitter:description" content="名前に含まれる旧字体・異体字候補を1文字ずつ確認できます。旧字→新字、新字→旧字・異体字候補を確認する参考ツールです。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <link rel="icon" href="/assets/favicon.ico">
@@ -39,12 +39,12 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "人名旧字体チェッカー | Name Old Kanji Checker",
+    "name": "名前の旧字体・異体字を調べる｜人名旧字体チェッカー",
     "url": "https://nicheworks.app/tools/name-old-kanji-checker/",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
     "inLanguage": ["ja", "en"],
-    "description": "名前に含まれる旧字体・異体字候補を確認するための参考ツールです。旧字→新字・新字→旧字候補をブラウザ内で確認できます。",
+    "description": "名前に含まれる旧字体・異体字候補を1文字ずつ確認する参考ツールです。旧字→新字・新字→旧字候補をブラウザ内で確認できます。戸籍や公的書類の正式表記は実際の登録字体を確認してください。",
     "publisher": {
       "@type": "Organization",
       "name": "NicheWorks",
@@ -58,15 +58,19 @@
 <body>
   <main class="name-checker">
     <header>
-      <h1 id="page-title">人名旧字体チェッカー</h1>
-      <p id="page-description">名前に含まれる旧字体・異体字候補を確認するための参考ツールです。氏名・戸籍・公的書類では、必ず実際の登録字体を確認してください。</p>
+      <h1 id="page-title">名前の旧字体・異体字を調べる</h1>
+      <p id="page-description">名前に含まれる旧字体・異体字候補を1文字ずつ確認するための参考ツールです。氏名・戸籍・公的書類では、必ず実際の登録字体を確認してください。</p>
       <div class="lang-switch" role="group" aria-label="Language switch">
         <button type="button" data-lang="ja" class="active">JP</button>
         <button type="button" data-lang="en">EN</button>
       </div>
     </header>
 
-
+    <section class="reference-links" aria-labelledby="name-check-guide-title">
+      <h2 id="name-check-guide-title">名前・戸籍の旧字体を確認するとき</h2>
+      <p>齋藤・渡邊・濱田・髙橋など、名前に含まれる文字を入力すると、このサイトの旧字体データに基づいて旧字→新字、新字→旧字・異体字候補を確認できます。</p>
+      <p>このツールは候補確認用であり、戸籍上の正式な字体や氏名への使用可否を判定するものではありません。正式表記を確認する場合は、実際の戸籍・公的書類に加えて、法務省の<a href="https://houmukyoku.moj.go.jp/KOSEKIMOJIDB/M01.html" target="_blank" rel="noopener">戸籍統一文字情報</a>も参照してください。</p>
+    </section>
 
     <section class="input-panel">
       <label for="name-input" id="name-label">名前を入力</label>
