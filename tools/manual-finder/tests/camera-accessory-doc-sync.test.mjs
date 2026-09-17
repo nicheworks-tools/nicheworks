@@ -116,6 +116,7 @@ for (const path of [
   'affiliate-dji-camera-accessories-wave12.js',
   'affiliate-dji-camera-accessories-wave13.js',
   'affiliate-dji-camera-accessories-wave14.js',
+  'affiliate-dji-camera-accessories-wave15.js',
   'affiliate-camera-detail-exclusions.js',
   'CAMERA_ACCESSORY_COVERAGE.md',
   'tests/nikon-camera-accessory-wave2.test.mjs',
@@ -133,6 +134,7 @@ for (const path of [
   'tests/dji-mavic-air-accessory-wave12.test.mjs',
   'tests/dji-mavic-pro-accessory-wave13.test.mjs',
   'tests/dji-mavic-pro-platinum-accessory-wave14.test.mjs',
+  'tests/dji-mavic3-enterprise-accessory-wave15.test.mjs',
   'tests/camera-accessory-coverage.test.mjs',
   'tests/camera-accessory-doc-sync.test.mjs'
 ]) {
