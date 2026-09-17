@@ -15,6 +15,11 @@ const handoffs = [
   '/tools/unicode-kanji-checker/',
   '/tools/variant-kanji-compare/',
 ];
+const individualAllowlist = [
+  'kanji/ga-kaku/',
+  'kanji/sho-shou/',
+  'kanji/kyu-old/',
+];
 
 check(html.includes(`<title>${title}</title>`), 'CTR-oriented title missing');
 check(html.includes('<meta name="description" content="旧字体・旧字を1文字から検索し、新字体との対応を一覧で確認できる無料ツールです。'), 'search/list/free meta description missing');
@@ -39,8 +44,13 @@ if (linksMatch) {
 }
 
 check(spec.includes('## Search cluster role'), 'Reference SPEC search-cluster role missing');
-check(spec.includes('Individual-kanji indexable URLs are not part of the current contract.'), 'individual-kanji thin-page guard missing');
-check(spec.includes('Current mapping data can contain identity/reference records'), 'mapping audit prerequisite missing');
+check(spec.includes('Individual-kanji pages are **allowlist-only**.'), 'individual-kanji allowlist guard missing');
+for (const path of individualAllowlist) {
+  check(spec.includes(path), `individual-kanji allowlist entry missing: ${path}`);
+}
+check(spec.includes('`identity` and `unresolved` records are not eligible for individual indexable pages.'), 'identity/unresolved publication guard missing');
+check(spec.includes('Repository-side `seoCandidate` status is not publication approval'), 'dictionary audit prerequisite missing');
+check(spec.includes('source + GSC-demand allowlist contract'), 'search-demand publication gate missing');
 
 if (failures.length) {
   console.error(`Old Kanji Reference SEO contract failed (${failures.length})`);
