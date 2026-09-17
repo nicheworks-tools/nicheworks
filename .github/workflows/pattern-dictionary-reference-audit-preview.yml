@@ -6,6 +6,7 @@ on:
       - fix/pattern-dictionary-reference-audit-20260917
     paths:
       - tools/pattern-dictionary/scripts/generate-reference-images-audit-fixes.py
+      - tools/pattern-dictionary/scripts/generate-reference-images-audit-fixes-v2.py
       - .github/workflows/pattern-dictionary-reference-audit-preview.yml
 
 permissions:
@@ -19,7 +20,9 @@ jobs:
         with:
           ref: fix/pattern-dictionary-reference-audit-20260917
       - name: Generate corrected reference images
-        run: python3 tools/pattern-dictionary/scripts/generate-reference-images-audit-fixes.py
+        run: |
+          python3 tools/pattern-dictionary/scripts/generate-reference-images-audit-fixes.py
+          python3 tools/pattern-dictionary/scripts/generate-reference-images-audit-fixes-v2.py
       - name: Verify dimensions and PNG signatures
         run: |
           python3 - <<'PY'
