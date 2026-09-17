@@ -15,6 +15,12 @@ Public search intent is "Wi-Fi / connection status check" only in the limited se
 
 The tool MUST NOT target or imply accurate "Wi-Fi speed test", "Wi-Fi signal strength", or "RSSI meter" functionality.
 
+## Monetization boundary
+
+The canonical monetization class is `ADS_DONATION`. Amazon router, mesh, repeater, or other network-equipment offers are not part of the current product contract because this tool does not measure RSSI, actual line speed, packet loss, or router health and therefore cannot support a purchase-need inference.
+
+Do not use Low / Medium / High output, estimated RTT/downlink, or unsupported-browser state to imply that the user needs replacement network hardware. Any future commerce experiment would require a separate product-intent review and must remain non-diagnostic.
+
 ## Current functional contract
 
 - `navigator.connection`またはbrowser prefix版Network Information APIを利用する。
@@ -86,6 +92,7 @@ Start/Stop、current values、graph、Resetを縦方向中心に配置する。
 - [ ] tool独自のping/speed-test requestやSSID/RSSI取得を行わない。
 - [ ] Public title/description/H1 use connection-status language while explicitly stating that RSSI, real ping, and real speed are not measured.
 - [ ] The public page has one H1 element while preserving JA/EN language switching inside that heading.
+- [ ] No Amazon affiliate offer is rendered under the current `ADS_DONATION` classification.
 
 ## Implementation evidence
 
