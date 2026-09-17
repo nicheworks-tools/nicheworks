@@ -6,6 +6,7 @@ const root = process.cwd();
 const referenceDir = path.join(root, 'tools', 'old-kanji-reference');
 const dictPath = path.join(referenceDir, 'dict.json');
 const compatibilityPath = path.join(referenceDir, 'compatibility-notes.json');
+const repairEvidencePath = path.join(referenceDir, 'dictionary-repair-evidence.json');
 const auditPath = path.join(referenceDir, 'dictionary-audit.json');
 const metaFiles = ['meta.json', 'meta-extra-2.json', 'meta-extra-3.json', 'meta-extra-4.json', 'meta-extra-5.json', 'meta-extra-6.json'];
 const CLASS_ORDER = ['old_to_modern', 'variant', 'compatibility', 'identity', 'unresolved'];
@@ -73,12 +74,19 @@ function buildRawDuplicateLedger(entries) {
   }
   return [...grouped.entries()]
     .filter(([, values]) => values.length > 1)
-    .map(([key, values]) => ({
-      key,
-      occurrences: values.length,
-      values,
-      conflicting: new Set(values.map((value) => JSON.stringify(value))).size > 1
-    }));
+    .map(([key, values]) => {
+      const conflicting = new Set(values.map((value) => JSON.stringify(value))).size > 1;
+      return {
+        key,
+        occurrences: values.length,
+        values,
+        conflicting,
+        maintenanceDisposition: 'fix',
+        maintenanceReason: conflicting
+          ? 'Conflicting raw duplicate keys are blocking data-quality defects and must be resolved from authoritative evidence.'
+          : 'Same-value raw duplicate key; mechanical deduplication is parse-preserving but is deferred until a dedicated source-cleanup edit.'
+      };
+    });
 }
 
 function loadMetadata() {
@@ -89,12 +97,34 @@ function loadMetadata() {
     const filePath = path.join(referenceDir, file);
     const json = readJson(filePath);
     for (const [key, value] of Object.entries(json.entries || {})) {
-      if (merged.has(key)) duplicateKeys.push({ key, previous: sourceFile.get(key), next: file });
+      if (merged.has(key)) {
+        duplicateKeys.push({
+          key,
+          previous: sourceFile.get(key),
+          next: file,
+          maintenanceDisposition: 'deferred',
+          maintenanceReason: 'Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking.'
+        });
+      }
       merged.set(key, value || {});
       sourceFile.set(key, file);
     }
   }
   return { merged, sourceFile, duplicateKeys };
+}
+
+function loadRepairEvidence() {
+  const json = readJson(repairEvidencePath);
+  const records = Array.isArray(json.records) ? json.records : [];
+  return new Map(records.map((record) => [record.source, record]));
+}
+
+function repairEvidenceClassification(record, target) {
+  if (!record || record.afterTarget == null || record.afterTarget !== target) return null;
+  if (record.relation === 'old_to_modern') return 'old_to_modern';
+  if (record.relation === 'variant' || record.relation === 'semantic_variant') return 'variant';
+  if (record.relation === 'unicode_compatibility') return 'compatibility';
+  return null;
 }
 
 function isCompatibilityCodePoint(source) {
@@ -137,7 +167,7 @@ function standaloneSignals(meta, note) {
   return signals;
 }
 
-function classifyRecord({ source, target, meta, note, duplicate, forwardIssues }) {
+function classifyRecord({ source, target, meta, note, repairEvidence, duplicate, forwardIssues }) {
   const evidence = [];
   const issues = [...forwardIssues];
 
@@ -162,6 +192,9 @@ function classifyRecord({ source, target, meta, note, duplicate, forwardIssues }
   const verifiedOldPair = hasVerifiedOldToModernEvidence(meta, target);
   if (verifiedOldPair) evidence.push('verified_metadata_old_to_modern');
 
+  const repairClassification = repairEvidenceClassification(repairEvidence, target);
+  if (repairClassification) evidence.push(`authoritative_repair_${repairEvidence.relation}`);
+
   const classificationBlockingIssues = new Set([
     'conflicting_duplicate_key',
     'metadata_modern_mismatch',
@@ -175,6 +208,8 @@ function classifyRecord({ source, target, meta, note, duplicate, forwardIssues }
     classification = 'unresolved';
   } else if (source === target) {
     classification = 'identity';
+  } else if (repairClassification) {
+    classification = repairClassification;
   } else if (compatibilityRange || compatibilityNote) {
     classification = 'compatibility';
   } else if (variantEvidence) {
@@ -202,6 +237,36 @@ function classifyRecord({ source, target, meta, note, duplicate, forwardIssues }
   return { classification, evidence, issues: [...new Set(issues)], standaloneSignals: signals, seoCandidate, seoGate };
 }
 
+function classifyReverseIssue(issue) {
+  if (issue.type === 'reverse_source_missing_forward') {
+    if (issue.source === issue.target) {
+      return {
+        ...issue,
+        maintenanceDisposition: 'deferred',
+        maintenanceReason: 'Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior.'
+      };
+    }
+    return {
+      ...issue,
+      maintenanceDisposition: 'deferred',
+      maintenanceReason: 'Reverse-only relationship lacks a corresponding forward mapping. Authoritative relation verification is required before adding a forward mapping or removing the reverse candidate.'
+    };
+  }
+  return {
+    ...issue,
+    maintenanceDisposition: 'fix',
+    maintenanceReason: 'Forward/reverse tables disagree on an existing forward mapping; resolve from authoritative evidence before completion.'
+  };
+}
+
+function dispositionCounts(items) {
+  const counts = { fix: 0, intentional: 0, deferred: 0 };
+  for (const item of items) {
+    if (Object.prototype.hasOwnProperty.call(counts, item.maintenanceDisposition)) counts[item.maintenanceDisposition] += 1;
+  }
+  return counts;
+}
+
 export function buildAudit() {
   const dictRaw = readText(dictPath);
   const dict = JSON.parse(dictRaw);
@@ -213,8 +278,9 @@ export function buildAudit() {
   const { merged: metadata, sourceFile: metadataSource, duplicateKeys: metadataDuplicateKeys } = loadMetadata();
   const compatibilityJson = readJson(compatibilityPath);
   const compatibility = compatibilityJson.entries || {};
+  const repairEvidence = loadRepairEvidence();
 
-  const reverseIssues = [];
+  const reverseIssuesRaw = [];
   const forwardIssuesBySource = new Map();
   const addForwardIssue = (source, issue) => {
     if (!forwardIssuesBySource.has(source)) forwardIssuesBySource.set(source, []);
@@ -228,31 +294,34 @@ export function buildAudit() {
     if (source === target) continue;
     const reverse = Array.isArray(newToOld[target]) ? newToOld[target] : [];
     if (!reverse.includes(source)) {
-      reverseIssues.push({ type: 'forward_missing_from_reverse', source, target });
+      reverseIssuesRaw.push({ type: 'forward_missing_from_reverse', source, target });
       addForwardIssue(source, 'reverse_mapping_missing');
     }
   }
   for (const [target, sources] of Object.entries(newToOld)) {
     for (const source of Array.isArray(sources) ? sources : []) {
       if (!Object.prototype.hasOwnProperty.call(oldToNew, source)) {
-        reverseIssues.push({ type: 'reverse_source_missing_forward', source, target });
+        reverseIssuesRaw.push({ type: 'reverse_source_missing_forward', source, target });
         continue;
       }
       if (oldToNew[source] !== target) {
-        reverseIssues.push({ type: 'reverse_target_mismatch', source, target, forwardTarget: oldToNew[source] });
+        reverseIssuesRaw.push({ type: 'reverse_target_mismatch', source, target, forwardTarget: oldToNew[source] });
         addForwardIssue(source, 'reverse_target_mismatch');
       }
     }
   }
+  const reverseIssues = reverseIssuesRaw.map(classifyReverseIssue);
 
   const records = Object.entries(oldToNew).map(([source, target]) => {
     const meta = metadata.get(source) || null;
     const note = compatibility[source] || null;
+    const repair = repairEvidence.get(source) || null;
     const result = classifyRecord({
       source,
       target,
       meta,
       note,
+      repairEvidence: repair,
       duplicate: duplicateByKey.get(source) || null,
       forwardIssues: forwardIssuesBySource.get(source) || []
     });
@@ -270,6 +339,13 @@ export function buildAudit() {
         category: meta.category || null,
         modernMatchesMapping: meta.modern === target
       } : null,
+      repairEvidence: repair && repair.afterTarget === target ? {
+        ledgerVersion: readJson(repairEvidencePath).version || null,
+        relation: repair.relation || null,
+        authority: repair.authority || null,
+        authorities: repair.authorities || null,
+        locator: repair.locator || null
+      } : null,
       compatibility: note ? {
         riskLevel: note.riskLevel || null,
         riskTypes: Array.isArray(note.riskTypes) ? note.riskTypes : [],
@@ -283,25 +359,41 @@ export function buildAudit() {
 
   const classes = Object.fromEntries(CLASS_ORDER.map((key) => [key, records.filter((record) => record.classification === key).length]));
   const identityMappings = records.filter((record) => record.classification === 'identity').map(({ source, target }) => ({ source, target }));
-  const unresolvedRecords = records.filter((record) => record.classification === 'unresolved').map(({ source, target, evidence, issues, seoGate }) => ({ source, target, evidence, issues, seoGate }));
+  const unresolvedRecords = records.filter((record) => record.classification === 'unresolved').map(({ source, target, evidence, issues, seoGate }) => ({
+    source,
+    target,
+    evidence,
+    issues,
+    seoGate,
+    maintenanceDisposition: 'deferred',
+    maintenanceReason: 'Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion.'
+  }));
   const issueRecords = records.filter((record) => record.issues.length > 0).map(({ source, target, classification, issues }) => ({ source, target, classification, issues }));
   const seoCandidates = records.filter((record) => record.seoCandidate).map((record) => record.source);
 
-  const sourceFiles = ['dict.json', ...metaFiles, 'compatibility-notes.json'];
+  const sourceFiles = ['dict.json', ...metaFiles, 'compatibility-notes.json', 'dictionary-repair-evidence.json'];
   const sourceDigests = Object.fromEntries(sourceFiles.map((file) => [file, sha256(readText(path.join(referenceDir, file)))]));
 
   return {
-    version: '2026-09-14-okj-dictionary-audit-1',
-    basis: 'repository_only',
+    version: '2026-09-18-okj-dictionary-audit-2',
+    basis: 'repository_plus_authoritative_repair_ledger',
     sourceDigests,
     classificationRules: {
-      precedence: ['data_quality_conflict=>unresolved', 'identity', 'compatibility', 'variant', 'verified_metadata_old_to_modern', 'unresolved'],
+      precedence: ['data_quality_conflict=>unresolved', 'identity', 'authoritative_repair_ledger', 'compatibility', 'variant', 'verified_metadata_old_to_modern', 'unresolved'],
+      authoritative_repair_ledger: 'dictionary-repair-evidence.json may classify a current mapping only when afterTarget exactly matches the current forward target; supported relations are old_to_modern, variant/semantic_variant, and unicode_compatibility',
       compatibility: 'Unicode U+F900–U+FAFF or existing compatibility note riskTypes includes compatibility-ideograph',
-      variant: 'existing repository metadata/compatibility wording explicitly says 異体字 or variant',
-      old_to_modern: 'verified metadata modern target matches dict and sourceNote explicitly describes old/new-form correspondence',
+      variant: 'existing repository metadata/compatibility wording explicitly says 異体字 or variant, or authoritative repair evidence records variant/semantic_variant',
+      old_to_modern: 'verified metadata modern target matches dict and sourceNote explicitly describes old/new-form correspondence, or authoritative repair evidence records old_to_modern',
       identity: 'source equals mapped target; self-reference in new_to_old is not required',
       unresolved: 'repository evidence is insufficient or data-quality conflicts exist',
-      seoCandidate: 'non-identity/non-unresolved classification + no issues + verified matching metadata + at least two standalone repository signals; publication still requires actual search demand'
+      seoCandidate: 'non-identity/non-unresolved classification + no issues + verified matching metadata + at least two standalone repository signals; authoritative repair classification alone does not waive standalone data or search-demand gates'
+    },
+    maintenancePolicy: {
+      allowedDispositions: ['fix', 'intentional', 'deferred'],
+      rawDuplicateKeys: 'Same-value duplicates are fix-class cleanup debt; conflicting duplicates are blocking fixes.',
+      metadataDuplicateKeys: 'Overlay collisions are deferred until field-level semantic review; ordered last-file-wins behavior remains explicit.',
+      reverseIssues: 'Reverse-only candidates are deferred until Modern→Old runtime QA or authoritative relation verification; direct forward/reverse contradictions are fix-class.',
+      unresolvedRecords: 'Unresolved character-changing mappings remain deferred and SEO-blocked until authoritative verification.'
     },
     summary: {
       canonicalOldToNewRecords: records.length,
@@ -315,6 +407,12 @@ export function buildAudit() {
       reverseIssues: reverseIssues.length,
       issueRecords: issueRecords.length,
       seoCandidates: seoCandidates.length
+    },
+    maintenanceSummary: {
+      rawDuplicateKeys: dispositionCounts(rawDuplicates),
+      metadataDuplicateKeys: dispositionCounts(metadataDuplicateKeys),
+      reverseIssues: dispositionCounts(reverseIssues),
+      unresolvedRecords: dispositionCounts(unresolvedRecords)
     },
     rawDuplicateKeys: rawDuplicates,
     metadataDuplicateKeys,

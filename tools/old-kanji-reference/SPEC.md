@@ -9,7 +9,7 @@
 
 ## Purpose
 
-Provide a searchable bilingual reference for old Japanese kanji forms and their modern equivalents, including selected metadata, text detection, local study state, export utilities, and optional contextual Amazon search handoffs for physical reference tools.
+Provide a searchable bilingual reference for old Japanese kanji forms and their modern equivalents, including selected metadata, text detection, local study state, export utilities, evidence-gated individual guides, and optional contextual Amazon search handoffs for physical reference tools.
 
 ## Search cluster role
 
@@ -19,7 +19,7 @@ Provide a searchable bilingual reference for old Japanese kanji forms and their 
 - The page is the generic lookup/search entry point for the Old Kanji cluster. It must not present itself as the primary full-text conversion or OCR page.
 - SERP-facing title/description should make the free searchable/list nature explicit and describe old/new-form comparison without claiming unsupported metadata coverage.
 - Primary task handoffs are limited to Kanji Modernizer (full-text conversion), Old Kanji OCR Scanner (image input), Unicode Kanji Checker, and Variant Kanji Compare.
-- Individual-kanji indexable URLs are not part of the current contract. They require a separate source/data-quality audit and standalone-value threshold; bare mapping-only records must not be mass-generated as thin SEO pages.
+- Individual-kanji pages are **allowlist-only**. The current production allowlist is `kanji/ga-kaku/`, `kanji/sho-shou/`, and `kanji/kyu-old/`. Any future page requires both the dictionary/source gate and actual settled GSC demand defined by `tools/OLD_KANJI_CLUSTER.md`; `identity`, `unresolved`, bare-pair, or demand-free records must not be mass-generated into indexable pages.
 
 ## Current functional contract
 
@@ -35,6 +35,9 @@ Provide a searchable bilingual reference for old Japanese kanji forms and their 
 - CSV, JSON, Markdown, and print export controls are currently Free and are not gated on Pro entitlement.
 - No unfinished public Pro sales panel is rendered. Current CSV/JSON/Markdown/print exports remain Free; future paid scope stays outside the public functional contract until verified billing activation.
 - Detail rendering may add shape and stroke-reference sections. Those sections use explicit card/grid layout, wrapping, labels, and a single-column mobile fallback instead of browser-default unstyled blocks.
+- Expose the evidence-gated individual guides currently approved by the cluster allowlist without treating the repository-side SEO candidate count as publishable inventory.
+- Provide a dedicated `旧字体の調べ方` guide that routes search, image/OCR, and whole-text conversion needs to the appropriate current tool.
+- Provide visible task handoffs for whole-text conversion, image OCR, Unicode inspection, variant comparison, and current name/family-register intent where relevant, without turning the page into a generic link directory.
 - A separate optional Amazon resource panel exposes fixed searches for old/variant-kanji dictionaries, document magnifiers, and book stands.
 
 ## Amazon affiliate contract
@@ -66,6 +69,7 @@ Provide a searchable bilingual reference for old Japanese kanji forms and their 
 - CSV and JSON downloads of visible entries.
 - Markdown table copy and browser print output.
 - Quiz question/result/statistics UI.
+- Links to the currently allowlisted individual guides where applicable.
 - Optional fixed Amazon search handoffs for dictionaries, magnifiers, and book stands, plus Associates disclosure.
 
 ## State and persistence
@@ -95,7 +99,7 @@ The dense searchable catalog, filters, detector, display modes, export controls,
 - Rendering can vary for compatibility ideographs, supplementary-plane characters, and variation selectors.
 - No fixed Pro price or unfinished purchase controls are rendered on the public page while billing is inactive.
 - Amazon search links are optional shopping handoffs, not product endorsements or suitability guarantees.
-- Current mapping data can contain identity/reference records as well as genuine old→modern substitutions; those records must be audited before any per-character SEO-page rollout.
+- `identity` and `unresolved` records are not eligible for individual indexable pages. Repository-side `seoCandidate` status is not publication approval; current and future individual pages remain subject to the source + GSC-demand allowlist contract.
 
 ## Acceptance criteria
 
@@ -104,7 +108,7 @@ The dense searchable catalog, filters, detector, display modes, export controls,
 - [ ] The visible H1 is `旧字体検索・旧字体一覧` in Japanese mode.
 - [ ] Canonical remains `https://nicheworks.app/tools/old-kanji-reference/` and WebApplication JSON-LD accurately describes current functionality.
 - [ ] Visible FAQ content and FAQPage schema remain aligned.
-- [ ] Footer-near task handoffs are limited to full-text conversion, image OCR, Unicode inspection, and variant comparison.
+- [ ] Task handoffs remain action-specific and respect the cluster role boundaries rather than becoming a generic SEO link dump.
 - [ ] Detector text highlights registered old forms and supports copy/send-to-converter actions locally.
 - [ ] Favorites, recent entries, display mode, and quiz statistics restore from their documented localStorage keys.
 - [ ] CSV/JSON/Markdown/print actions remain functional without requiring Pro entitlement.
@@ -112,6 +116,7 @@ The dense searchable catalog, filters, detector, display modes, export controls,
 - [ ] The public page does not expose a fixed Pro price, disabled purchase CTA, or billing-unavailable sales panel before verified billing activation.
 - [ ] Reference results retain cautions appropriate to non-authoritative old/variant-kanji data.
 - [ ] Shape/stroke detail sections have explicit responsive layout rules and do not render as unstyled raw blocks.
+- [ ] The individual-page inventory equals the reviewed allowlist; `identity`, `unresolved`, and demand-free candidates cannot be published automatically.
 - [ ] Amazon resource links use only the three fixed search terms and `nicheworks09-22`.
 - [ ] No search/detector/detail/localStorage/export value enters Amazon URLs or affiliate analytics.
 - [ ] Associates disclosure is rendered whenever the active Amazon targets are available.
@@ -119,11 +124,17 @@ The dense searchable catalog, filters, detector, display modes, export controls,
 ## Implementation evidence
 
 - `tools/old-kanji-reference/index.html`
+- `tools/old-kanji-reference/howto/`
+- `tools/old-kanji-reference/kanji/ga-kaku/`
+- `tools/old-kanji-reference/kanji/sho-shou/`
+- `tools/old-kanji-reference/kanji/kyu-old/`
 - `tools/old-kanji-reference/app-meaning-v4.js`
 - `tools/old-kanji-reference/verified-badge.js`
 - `tools/old-kanji-reference/dict.json`
 - `tools/old-kanji-reference/meta.json`
 - `tools/old-kanji-reference/compatibility-notes.json`
+- `tools/old-kanji-reference/dictionary-audit.json`
+- `tools/old-kanji-reference/dictionary-repair-evidence.json`
 - `tools/old-kanji-reference/style.css`
 - `tools/old-kanji-reference/amazon-layout.css`
 - `tools/old-kanji-reference/affiliate-config.js`
