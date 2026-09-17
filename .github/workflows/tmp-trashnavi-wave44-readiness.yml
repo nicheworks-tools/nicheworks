@@ -71,8 +71,8 @@ jobs:
             assert canonical not in root
             assert canonical not in dedicated
             assert href not in index
-          assert dedicated.count('<lastmod>2026-09-18</lastmod>')==214
-          print('Wave44 readiness acceptance: 10 municipalities / 30 records / unpublished URLs absent / dedicated sitemap 214 lastmod synced')
+          assert dedicated.count('<lastmod>2026-09-18</lastmod>')==215
+          print('Wave44 readiness acceptance: 10 municipalities / 30 records / unpublished URLs absent / dedicated sitemap 215 lastmod synced (tool root + 214 published municipality pages)')
           PY
 
           rm .github/workflows/tmp-trashnavi-wave44-readiness.yml
