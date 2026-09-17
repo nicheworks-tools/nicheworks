@@ -183,58 +183,408 @@
   },
   "samples": {
     "fallback_independent_core": [
-      {"id":"drill_driver","source":"data/tools.quality-001.json","enrichment":null,"fallback_fields":[]},
-      {"id":"hammer_drill","source":"data/tools.quality-001.json","enrichment":null,"fallback_fields":[]},
-      {"id":"core_drill","source":"data/tools.quality-001.json","enrichment":null,"fallback_fields":[]},
-      {"id":"random_orbit_sander","source":"data/tools.quality-001.json","enrichment":null,"fallback_fields":[]},
-      {"id":"speed_square","source":"data/tools.quality-001.json","enrichment":null,"fallback_fields":[]},
-      {"id":"chisel","source":"data/tools.quality-001.json","enrichment":null,"fallback_fields":[]},
-      {"id":"hand_saw","source":"data/tools.quality-001.json","enrichment":null,"fallback_fields":[]},
-      {"id":"stepladder","source":"data/tools.quality-001.json","enrichment":null,"fallback_fields":[]},
-      {"id":"drywall_board","source":"data/tools.quality-002.json","enrichment":null,"fallback_fields":[]},
-      {"id":"form_plywood","source":"data/tools.quality-002.json","enrichment":null,"fallback_fields":[]},
-      {"id":"runner_track","source":"data/tools.quality-002.json","enrichment":null,"fallback_fields":[]},
-      {"id":"self_drilling_screw","source":"data/tools.quality-002.json","enrichment":null,"fallback_fields":[]},
-      {"id":"wood_screw","source":"data/tools.quality-002.json","enrichment":null,"fallback_fields":[]},
-      {"id":"chemical_anchor","source":"data/tools.quality-002.json","enrichment":null,"fallback_fields":[]},
-      {"id":"laser_distance_meter","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"total_station","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"auto_level","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"leveling_staff","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"marking_spray","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"marking_pencil","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"plumb_laser","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"line_marker","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"dust_mask","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"cut_resistant_gloves","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"safety_shoes","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]}
+      {
+        "id": "drill_driver",
+        "source": "data/tools.quality-001.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "hammer_drill",
+        "source": "data/tools.quality-001.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "core_drill",
+        "source": "data/tools.quality-001.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "random_orbit_sander",
+        "source": "data/tools.quality-001.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "speed_square",
+        "source": "data/tools.quality-001.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "chisel",
+        "source": "data/tools.quality-001.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "hand_saw",
+        "source": "data/tools.quality-001.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "stepladder",
+        "source": "data/tools.quality-001.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "drywall_board",
+        "source": "data/tools.quality-002.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "form_plywood",
+        "source": "data/tools.quality-002.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "runner_track",
+        "source": "data/tools.quality-002.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "self_drilling_screw",
+        "source": "data/tools.quality-002.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "wood_screw",
+        "source": "data/tools.quality-002.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "chemical_anchor",
+        "source": "data/tools.quality-002.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "laser_distance_meter",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "total_station",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "auto_level",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "leveling_staff",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "marking_spray",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "marking_pencil",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "plumb_laser",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "line_marker",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "dust_mask",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "cut_resistant_gloves",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "safety_shoes",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      }
     ],
     "runtime_fallback_dependent": [
-      {"id":"q016_moisture_barrier_coating","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_subfloor_level_check","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_flatness_check","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_pull_off_tester","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_cross_cut_tester","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_coating_thickness_gauge","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_color_sample_board","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_finish_sample","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_mockup_panel","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_punch_list","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_snagging","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_blue_tape_walk","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_scratch_guard","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_corner_protection_tape","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_temporary_floor_mat","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_dust_barrier","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_zip_wall","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_negative_air_machine","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_hepa_filter","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_hearing_protection","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_first_aid_kit","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_hot_work_permit","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_lockout_tagout","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_toolbox_meeting","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_near_miss_report","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]}
+      {
+        "id": "q016_moisture_barrier_coating",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_subfloor_level_check",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_flatness_check",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_pull_off_tester",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_cross_cut_tester",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_coating_thickness_gauge",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_color_sample_board",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_finish_sample",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_mockup_panel",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_punch_list",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_snagging",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_blue_tape_walk",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_scratch_guard",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_corner_protection_tape",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_temporary_floor_mat",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_dust_barrier",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_zip_wall",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_negative_air_machine",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_hepa_filter",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_hearing_protection",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_first_aid_kit",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_hot_work_permit",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_lockout_tagout",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_toolbox_meeting",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_near_miss_report",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      }
     ],
     "missing_core_bilingual_content": []
   }
