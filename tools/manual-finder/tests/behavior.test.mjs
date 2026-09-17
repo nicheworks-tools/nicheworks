@@ -40,5 +40,6 @@ await import('./dji-mavic-pro-accessory-wave13.test.mjs');
 await import('./dji-mavic-pro-platinum-accessory-wave14.test.mjs');
 await import('./dji-mavic3-enterprise-accessory-wave15.test.mjs');
 await import('./dji-inspire3-accessory-wave16.test.mjs');
+await import('./dji-inspire2-accessory-wave17.test.mjs');
 await import('./camera-accessory-coverage.test.mjs');
 await import('./camera-accessory-doc-sync.test.mjs');
