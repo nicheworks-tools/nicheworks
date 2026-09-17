@@ -5669,14 +5669,14 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/aquos-sense6/simfree/",
-        "manualUrl": "https://jp.sharp/support/aquos/",
+        "manualUrl": "https://k-tai.sharp.co.jp/support/other/sense6_simfree/manual/index.html",
         "chargingUrl": "https://jp.sharp/products/aquos-sense6/simfree/",
-        "verifiedAt": "2026-09-15",
+        "verifiedAt": "2026-09-17",
         "releaseUrl": "https://corporate.jp.sharp/news/210928-e.html"
       },
       "affiliateKeys": []
