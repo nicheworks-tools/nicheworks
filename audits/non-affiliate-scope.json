@@ -1,15 +1,15 @@
 {
   "schemaVersion": "nicheworks-non-affiliate-scope-v1",
-  "updated": "2026-09-16",
+  "updated": "2026-09-17",
   "registryTotal": 88,
   "excludedClass": "AFFILIATE",
-  "excludedCount": 16,
-  "inScopeCount": 72,
+  "excludedCount": 12,
+  "inScopeCount": 76,
   "source": "MONETIZATION_CLASSIFICATION.json",
   "counts": {
     "PRO_BUNDLE": 42,
     "STANDALONE_PRO": 1,
-    "ADS_DONATION": 26,
+    "ADS_DONATION": 30,
     "HOLD": 3
   },
   "classes": {
@@ -62,8 +62,10 @@
     ],
     "ADS_DONATION": [
       "color-replace",
+      "cover-letter-lite",
       "exif-cleaner-mini",
       "filetype-sniffer",
+      "form-tool-selector",
       "growth-log-template-generator",
       "habit-plan-generator",
       "image-compression-inspector",
@@ -77,6 +79,7 @@
       "name-old-kanji-checker",
       "old-document-kanji-highlighter",
       "old-kanji-reference",
+      "pages-deploy-guide",
       "place-old-kanji-checker",
       "redirect-unwrapper",
       "size-converter",
@@ -86,7 +89,8 @@
       "unitmaster",
       "variant-kanji-compare",
       "vibe-lexicon",
-      "weatherdiff"
+      "weatherdiff",
+      "wifi-meter"
     ],
     "HOLD": [
       "earth-map-suite",
@@ -97,26 +101,23 @@
   "excludedAffiliateSlugs": [
     "construction-tools-atlas",
     "cosmetic-ingredient-checker-lite",
-    "cover-letter-lite",
     "dry-meter",
-    "form-tool-selector",
     "inci-fastscan",
     "laundry-code-decode",
     "light-check",
     "manual-finder",
     "moving-checklist-generator",
     "moving-lease-final-check",
-    "pages-deploy-guide",
     "pattern-dictionary",
     "phone-quickcheck",
-    "trashnavi",
-    "wifi-meter"
+    "trashnavi"
   ],
   "rules": [
     "This scope is for the non-affiliate quality/SEO/monetization workstream only.",
     "AFFILIATE-class tools are intentionally excluded and handled in a separate parallel workstream.",
     "Every in-scope slug must exist in tools/tools-index.json and MONETIZATION_CLASSIFICATION.json.",
     "The in-scope set must equal the registered tool set minus the AFFILIATE class.",
-    "Changes to registry or monetization classification must update this scope in the same pull request."
+    "Changes to registry or monetization classification must update this scope in the same pull request.",
+    "Cover Letter Lite, Form Tool Selector, Pages Deploy Guide, and WiFi Meter entered this scope on 2026-09-17 after affiliate-intent review; existing completed wave assignments remain frozen and these additions are assigned to the late-addition wave."
   ]
 }
