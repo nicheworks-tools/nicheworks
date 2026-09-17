@@ -977,3 +977,23 @@ Wave 41は10自治体batch scaling ruleを継続し、公開閾値を変更せ�
 Wave 41 readiness baselineは1,916 municipalities、2,670 valid HTTP(S) records、194 preferred candidates、44 direct-link datasets / 602 records / 583 unique URLs / 0 invalid URLsとする。Wave41の `last_checked: 2026-09-17` はWave40と同日なので、Readinessではsitemapを変更せず、未公開Wave41 URLも先出ししていない。
 
 Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 194/194、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する秩父市・羽生市・幸手市・日高市・吉川市・三芳町・伊奈町・宮代町だけ2026 calendar calloutを表示し、深谷市・鶴ヶ島市には年次calloutを生成しない。深谷市はcollection calendarではなく自治体公式ごみ分別アプリを第三の独立typeとして採用する。鶴ヶ島市はwaste search / bulky waste / drop-off facilityの3独立typeで公開条件を満たす。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+
+## Wave 42 ten-municipality publication
+
+Wave 42は10自治体batch scaling ruleを継続し、公開閾値を変更せず **194自治体から204自治体** へ拡張する。対象は松伏町・上里町・川島町・吉見町・嵐山町・毛呂山町・神川町・美里町・皆野町・滑川町。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeとし、同一combined pageの二重計上や外部衛生組合・委託先等による閾値補完は行わない。
+
+- 松伏町 — `/tools/trashnavi/saitama/matsubushi/` — collection calendar / waste sorting / bulky waste
+- 上里町 — `/tools/trashnavi/saitama/kamisato/` — waste sorting / bulky waste / waste app
+- 川島町 — `/tools/trashnavi/saitama/kawajima/` — collection calendar / waste sorting / waste app
+- 吉見町 — `/tools/trashnavi/saitama/yoshimi/` — collection calendar / waste sorting / bulky waste
+- 嵐山町 — `/tools/trashnavi/saitama/ranzan/` — collection calendar / waste sorting / waste search
+- 毛呂山町 — `/tools/trashnavi/saitama/moroyama/` — collection calendar / bulky waste / waste search
+- 神川町 — `/tools/trashnavi/saitama/kamikawa/` — waste sorting / bulky waste / waste app
+- 美里町 — `/tools/trashnavi/saitama/misato-town/` — waste sorting / waste search / waste app
+- 皆野町 — `/tools/trashnavi/saitama/minano/` — collection calendar / waste sorting / bulky waste
+- 滑川町 — `/tools/trashnavi/saitama/namegawa/` — collection calendar / waste search / bulky waste
+
+Wave 42 readiness baselineは1,916 municipalities、2,700 valid HTTP(S) records、204 preferred candidates、45 direct-link datasets / 632 records / 613 unique URLs / 0 invalid URLsとする。Wave42の `last_checked: 2026-09-17` はWave41と同日なので、Readinessではsitemapを変更せず、未公開Wave42 URLも先出ししていない。
+
+Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 204/204、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する松伏町・川島町・吉見町・嵐山町・毛呂山町・皆野町・滑川町だけ2026 calendar calloutを表示し、上里町・神川町・美里町には年次calloutを生成しない。美里町は既存の三郷市 `/tools/trashnavi/saitama/misato/` とURL衝突しないよう `/tools/trashnavi/saitama/misato-town/` をcanonical pathとして使用する。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。

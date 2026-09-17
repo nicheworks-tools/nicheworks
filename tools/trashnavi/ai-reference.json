@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 194,
+  "published_municipality_count": 204,
   "municipalities": [
     {
       "lgcode": "131016",
@@ -1172,6 +1172,66 @@
       "pref_slug": "saitama",
       "city_slug": "miyashiro",
       "url": "https://nicheworks.app/tools/trashnavi/saitama/miyashiro/"
+    },
+    {
+      "lgcode": "114651",
+      "pref_slug": "saitama",
+      "city_slug": "matsubushi",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/matsubushi/"
+    },
+    {
+      "lgcode": "113859",
+      "pref_slug": "saitama",
+      "city_slug": "kamisato",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/kamisato/"
+    },
+    {
+      "lgcode": "113468",
+      "pref_slug": "saitama",
+      "city_slug": "kawajima",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/kawajima/"
+    },
+    {
+      "lgcode": "113476",
+      "pref_slug": "saitama",
+      "city_slug": "yoshimi",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/yoshimi/"
+    },
+    {
+      "lgcode": "113425",
+      "pref_slug": "saitama",
+      "city_slug": "ranzan",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/ranzan/"
+    },
+    {
+      "lgcode": "113263",
+      "pref_slug": "saitama",
+      "city_slug": "moroyama",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/moroyama/"
+    },
+    {
+      "lgcode": "113832",
+      "pref_slug": "saitama",
+      "city_slug": "kamikawa",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/kamikawa/"
+    },
+    {
+      "lgcode": "113816",
+      "pref_slug": "saitama",
+      "city_slug": "misato-town",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/misato-town/"
+    },
+    {
+      "lgcode": "113620",
+      "pref_slug": "saitama",
+      "city_slug": "minano",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/minano/"
+    },
+    {
+      "lgcode": "113417",
+      "pref_slug": "saitama",
+      "city_slug": "namegawa",
+      "url": "https://nicheworks.app/tools/trashnavi/saitama/namegawa/"
     }
   ]
 }
