@@ -10,28 +10,28 @@ This document is the audited baseline for compatibility-sensitive camera battery
 | --- | ---: |
 | Canonical `カメラ・映像` records | **192** |
 | Camera records with a basic Amazon path | **185** |
-| Camera records with verified accessory detail | **45** |
+| Camera records with verified accessory detail | **46** |
 | Reviewed camera-detail exclusions | **0** |
-| Actionable camera records still missing accessory detail | **140** |
+| Actionable camera records still missing accessory detail | **139** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 185 = detail 45 + reviewed exclusion 0 + missing 140`
+`camera basic 185 = detail 46 + reviewed exclusion 0 + missing 139`
 
-The current detail ledger contains all 14 actionable Nikon records plus thirty-one reviewed DJI records across Osmo Action Wave 1, Air Wave 2, Mini Wave 3, Mavic 3 Wave 4, Air 2S/Mavic Air 2 Wave 5, compact power Wave 6, Mini 2 Wave 7, FPV Wave 8, Avata Wave 9, Mavic 2 Wave 10, Mavic Mini Wave 11, Mavic Air Wave 12, Mavic Pro Wave 13, Mavic Pro Platinum Wave 14, Mavic 3 Enterprise/Mavic 3M Wave 15, Inspire 3 Wave 16, and Inspire 2 Wave 17.
+The current detail ledger contains all 14 actionable Nikon records plus thirty-two reviewed DJI records across Osmo Action Wave 1, Air Wave 2, Mini Wave 3, Mavic 3 Wave 4, Air 2S/Mavic Air 2 Wave 5, compact power Wave 6, Mini 2 Wave 7, FPV Wave 8, Avata Wave 9, Mavic 2 Wave 10, Mavic Mini Wave 11, Mavic Air Wave 12, Mavic Pro Wave 13, Mavic Pro Platinum Wave 14, Mavic 3 Enterprise/Mavic 3M Wave 15, Inspire 3 Wave 16, Inspire 2 Wave 17, and Inspire 1 Wave 18.
 
 ## Actionable coverage by maker
 
 | Maker | Basic | Detail | Reviewed exclusion | Missing |
 | --- | ---: | ---: | ---: | ---: |
-| DJI | 96 | 31 | 0 | 65 |
+| DJI | 96 | 32 | 0 | 64 |
 | OM SYSTEM | 37 | 0 | 0 | 37 |
 | GoPro | 31 | 0 | 0 | 31 |
 | Nikon | 14 | 14 | 0 | 0 |
 | Insta360 | 7 | 0 | 0 | 7 |
 
-The exact missing model arrays are emitted by `tests/camera-accessory-coverage.test.mjs` as `MANUALFINDER_CAMERA_ACCESSORY_COVERAGE`. They are intentionally not duplicated here as a 140-model prose ledger.
+The exact missing model arrays are emitted by `tests/camera-accessory-coverage.test.mjs` as `MANUALFINDER_CAMERA_ACCESSORY_COVERAGE`. They are intentionally not duplicated here as a 139-model prose ledger.
 
 ## Nikon completion — Waves 1–2
 
@@ -246,9 +246,18 @@ The canonical `Inspire 2` record has two reviewed DJI power-accessory handoffs:
 
 Wave 17 remains exact-canonical-row only. It does not infer this mapping to `DJI Inspire 2`, `Inspire 1`, `Inspire 1 Pro/Raw`, or any other Inspire-family canonical record. `DJI Inspire 3` retains its independent TB51 Wave 16 mapping.
 
-After DJI Waves 1–17 the maker-level reconciliation is:
+## DJI Inspire 1 — Wave 18
 
-`DJI camera 96 = detail 31 + reviewed exclusion 0 + missing 65`
+The canonical `Inspire 1` record has two reviewed DJI power-accessory handoffs:
+
+- `DJI TB47 Intelligent Flight Battery` — DJI's official Inspire 1 support page identifies the standard Intelligent Flight Battery as model `TB47`.
+- `DJI Inspire 1 Battery Charging Hub` — DJI's official announcement names the Inspire 1 Battery Charging Hub and states that it is compatible with `TB47` and `TB48` batteries.
+
+Wave 18 remains exact-canonical-row only. It does not infer this mapping to `Inspire 1 Pro/Raw`, `DJI Inspire 1`, `Inspire 2`, or any other Inspire-family record. Inspire 2 and DJI Inspire 3 retain their separately reviewed Wave 17 and Wave 16 mappings.
+
+After DJI Waves 1–18 the maker-level reconciliation is:
+
+`DJI camera 96 = detail 32 + reviewed exclusion 0 + missing 64`
 
 ## Non-actionable camera records
 
@@ -277,7 +286,7 @@ Seven camera-category records are maker/index entries without an actionable exac
 
 The measured remaining backlog determines the work order rather than assumptions about brand prominence:
 
-1. Continue DJI from the remaining 65 actionable records in bounded product-family waves.
+1. Continue DJI from the remaining 64 actionable records in bounded product-family waves.
 2. Review OM SYSTEM 37 actionable records.
 3. Review GoPro 31 actionable records.
 4. Review Insta360 7 actionable records.
@@ -290,7 +299,7 @@ The camera accessory phase is complete only when:
 
 `camera basic = detail + reviewed exclusion + missing 0`
 
-The current baseline is not complete: `140` actionable records remain missing accessory detail. Counts may change when the canonical catalog changes, but the reconciliation invariant and zero-unreviewed-missing completion target do not change.
+The current baseline is not complete: `139` actionable records remain missing accessory detail. Counts may change when the canonical catalog changes, but the reconciliation invariant and zero-unreviewed-missing completion target do not change.
 
 ## Source of truth
 
@@ -313,6 +322,7 @@ The current baseline is not complete: `140` actionable records remain missing ac
 - `affiliate-dji-camera-accessories-wave15.js` — exact reviewed DJI Mavic 3 Enterprise and DJI Mavic 3M battery and 100W charging-hub mappings.
 - `affiliate-dji-camera-accessories-wave16.js` — exact reviewed DJI Inspire 3 TB51 battery and charging-hub mapping.
 - `affiliate-dji-camera-accessories-wave17.js` — exact reviewed Inspire 2 TB50 battery and charging-hub mapping.
+- `affiliate-dji-camera-accessories-wave18.js` — exact reviewed Inspire 1 TB47 battery and charging-hub mapping.
 - `affiliate-camera-detail-exclusions.js` — reviewed explicit exclusions; currently empty.
 - `tests/nikon-camera-accessory-wave1.test.mjs` — Nikon Wave 1 compatibility boundary.
 - `tests/nikon-camera-accessory-wave2.test.mjs` — Nikon Wave 2 compatibility boundary and fourteen-record Nikon completion.
@@ -333,5 +343,6 @@ The current baseline is not complete: `140` actionable records remain missing ac
 - `tests/dji-mavic3-enterprise-accessory-wave15.test.mjs` — exact DJI Mavic 3 Enterprise / DJI Mavic 3M Wave 15 compatibility boundary.
 - `tests/dji-inspire3-accessory-wave16.test.mjs` — exact DJI Inspire 3 Wave 16 compatibility boundary.
 - `tests/dji-inspire2-accessory-wave17.test.mjs` — exact Inspire 2 Wave 17 compatibility boundary.
+- `tests/dji-inspire1-accessory-wave18.test.mjs` — exact Inspire 1 Wave 18 compatibility boundary.
 - `tests/camera-accessory-coverage.test.mjs` — catalog-wide camera coverage computation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` — documentation drift guard for this audited baseline.
