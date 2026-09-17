@@ -1,15 +1,22 @@
 {
   "schemaVersion": "nicheworks-non-affiliate-audit-plan-v1",
-  "updated": "2026-09-16",
+  "updated": "2026-09-17",
   "scopeSource": "audits/non-affiliate-scope.json",
   "registrySource": "tools/tools-index.json",
   "classificationSource": "MONETIZATION_CLASSIFICATION.json",
   "existingEvidenceSource": "audits/tool-quality-matrix.json",
   "standard": "docs/non-affiliate-audit-standard.md",
-  "totalTools": 72,
+  "totalTools": 76,
   "waveSize": 12,
-  "waveCount": 6,
-  "assignment": "registry_order_excluding_affiliate",
+  "waveCount": 7,
+  "waveSizes": [12, 12, 12, 12, 12, 12, 4],
+  "assignment": "frozen_baseline_waves_plus_reclassified_additions",
+  "lateAdditions": [
+    "cover-letter-lite",
+    "form-tool-selector",
+    "pages-deploy-guide",
+    "wifi-meter"
+  ],
   "auditMode": "audit_only",
   "categoryStatusEnum": [
     "PASS",
@@ -43,7 +50,9 @@
   ],
   "waveResultPathPattern": "audits/non-affiliate-waves/wave-{NN}.json",
   "completionRules": [
-    "Every one of the 72 in-scope tools must appear exactly once across the six deterministic waves.",
+    "The 72 tools assigned before the 2026-09-17 monetization reclassification remain in their existing six deterministic waves of 12; those historical assignments must not be reshuffled.",
+    "Cover Letter Lite, Form Tool Selector, Pages Deploy Guide, and WiFi Meter are late additions and form wave 7 with four tools in registry order.",
+    "Every one of the 76 in-scope tools must appear exactly once across the seven waves when the late-addition wave is completed.",
     "Every audited record must contain every required category.",
     "PASS requires every category to be PASS or justified NOT_APPLICABLE and requires zero open findings.",
     "Audit waves do not repair production behavior; defects are recorded for later repair PRs.",
