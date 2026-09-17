@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cloudflare Pages・GitHub Pages デプロイ確認ガイド｜Pages Deploy Guide | NicheWorks</title>
-<meta name="description" content="Cloudflare Pages / GitHub Pages の公開前チェックリスト、よくあるエラー、症状別診断、引き継ぎメモをブラウザ内で生成します。build command、output directory、404、DNS、SSLなどを整理できます。">
+<meta name="description" content="Cloudflare Pages / GitHub Pages の公開前チェックリスト、よくあるエラー、症状別診断、引き継ぎメモをブラウザ内で生成します。build command、公開元、404、DNS、SSLなどを整理できます。">
 <link rel="canonical" href="https://nicheworks.app/tools/pages-deploy-guide/">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
@@ -44,7 +44,7 @@
       <div class="field"><label class="label" for="platform">Platform</label><select class="select" id="platform"><option value="cloudflare">Cloudflare Pages</option><option value="github">GitHub Pages</option></select></div>
       <div class="field"><label class="label" for="sourceType">Source type</label><select class="select" id="sourceType"><option value="repository">Repository / Folder</option><option value="static">Build output / Static files</option></select></div>
       <div class="field"><label class="label" for="customDomain">Custom domain</label><select class="select" id="customDomain"><option value="no">なし / No</option><option value="yes">あり / Yes</option></select></div>
-      <div class="field"><label class="label" for="outputFolder">Output directory</label><select class="select" id="outputFolder"><option value="root">/ (root)</option><option value="dist">dist</option><option value="public">public</option><option value="docs">docs</option></select></div>
+      <div class="field"><label class="label" for="outputFolder">Directory / folder to review</label><select class="select" id="outputFolder"><option value="root">/ (root)</option><option value="dist">dist</option><option value="public">public</option><option value="docs">docs</option></select></div>
       <div class="row"><button class="btn primary" type="button" id="generate">生成する / Generate</button><button class="btn" type="button" id="copyAll">全結果をコピー / Copy all</button><button class="btn" type="button" id="downloadMd">Markdown保存 / Save Markdown</button></div>
     </div>
   </section>
@@ -67,8 +67,22 @@
     </div>
   </section>
 
+  <section class="card" aria-label="Official documentation references">
+    <div class="card-hd"><h2 class="card-title" data-i18n="ja">公式仕様の確認先</h2><h2 class="card-title" data-i18n="en" style="display:none">Official documentation</h2></div>
+    <div class="card-bd">
+      <p class="note" data-i18n="ja">ホスティング仕様は変わるため、最終確認は公式ドキュメントで行ってください。以下は2026-09-17に確認した参照先です。</p>
+      <p class="note" data-i18n="en" style="display:none">Hosting behavior can change. Confirm final settings in the official documentation. References below were checked on 2026-09-17.</p>
+      <ul class="note">
+        <li><a href="https://developers.cloudflare.com/pages/configuration/build-configuration/" target="_blank" rel="noopener noreferrer">Cloudflare Pages — Build configuration</a></li>
+        <li><a href="https://developers.cloudflare.com/pages/configuration/custom-domains/" target="_blank" rel="noopener noreferrer">Cloudflare Pages — Custom domains</a></li>
+        <li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" target="_blank" rel="noopener noreferrer">GitHub Pages — Configuring a publishing source</a></li>
+        <li><a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/troubleshooting-custom-domains-and-github-pages" target="_blank" rel="noopener noreferrer">GitHub Pages — Custom domain troubleshooting</a></li>
+      </ul>
+    </div>
+  </section>
+
   <div class="nw-donate"><p class="nw-donate-text" data-i18n="ja">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><p class="nw-donate-text" data-i18n="en" style="display:none">If this tool helps, please consider supporting development.</p><div class="nw-donate-links"><a class="btn" href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a class="btn" href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
-  <section class="faq-section"><h2 class="section-title">FAQ</h2><details><summary>このチェックだけでデプロイ成功を保証できますか？</summary><p>いいえ。公開前確認の補助です。実際のビルドログ、表示、DNS/SSL、各サービスの公式ドキュメントを確認してください。</p></details><details><summary>症状別診断やMarkdown出力は有料ですか？</summary><p>いいえ。症状別診断、引き継ぎパック、全結果コピー、Markdown保存を含め、現在の機能は無料です。</p></details></section>
+  <section class="faq-section"><h2 class="section-title">FAQ</h2><details><summary>このチェックだけでデプロイ成功を保証できますか？</summary><p>いいえ。公開前確認の補助です。実際のビルドログ、表示、DNS/SSL、各サービスの公式ドキュメントを確認してください。</p></details><details><summary>GitHub Pagesでdistやpublicを選べますか？</summary><p>branch公開のsource folderは /(root) または /docs のみです。dist/public等のbuild成果物を使う場合はGitHub ActionsでPages artifactをdeployする方法を確認してください。</p></details><details><summary>症状別診断やMarkdown出力は有料ですか？</summary><p>いいえ。症状別診断、引き継ぎパック、全結果コピー、Markdown保存を含め、現在の機能は無料です。</p></details></section>
   <section class="nw-other"><h3 class="nw-other-title">関連ツール</h3><div class="nw-other-links"><a href="/tools/microtool-launch-checklist/">Microtool Launch Checklist</a><a href="/tools/release-guardian/">Release Guardian</a><a href="/tools/codex-product-shipping-playbooks/">Codex Product Shipping Playbooks</a><a href="/tools/analytics-privacy-kit/">Analytics Privacy Kit</a></div></section>
 </main>
 <footer class="nw-footer"><p class="nw-footer-line">© NicheWorks — Small Web Tools for Boring Tasks</p><p class="nw-footer-line">当サイトには広告が含まれる場合があります。掲載情報の正確性は保証しません。必ず公式情報をご確認ください。</p></footer>
