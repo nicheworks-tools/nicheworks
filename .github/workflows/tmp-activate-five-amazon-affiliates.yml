@@ -1,0 +1,34 @@
+name: Temporary five-tool Amazon rollout finalizer
+
+on:
+  push:
+    branches:
+      - feat/activate-five-amazon-affiliates-20260917
+    paths:
+      - 'scripts/tmp-activate-five-amazon-affiliates.mjs'
+      - '.github/workflows/tmp-activate-five-amazon-affiliates.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/activate-five-amazon-affiliates-20260917
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Apply rollout
+        run: node scripts/tmp-activate-five-amazon-affiliates.mjs
+      - name: Commit generated rollout
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "Activate Amazon affiliates for five retained tools"
+          git push origin HEAD:feat/activate-five-amazon-affiliates-20260917
