@@ -77,31 +77,62 @@
 
   function platformItems(s) {
     if (isEn()) {
-      if (s.platform === "cloudflare") return [
-        "Check build command and output directory",
-        "Check Preview and Production deployments",
-        "Check Functions, compatibility date, and environment variables if used",
-        s.customDomain ? "Check custom domain, DNS, and SSL" : "Check the default Pages domain first"
+      if (s.platform === "cloudflare") {
+        const items = [
+          "Check the configured build command and build output directory",
+          s.sourceType === "static" ? "If no build is required, Cloudflare Pages documents `exit 0` as the no-build command; confirm the output directory contains the deployable files" : "Confirm the framework build command exits successfully and writes to the configured output directory",
+          "Check Preview and Production deployments separately",
+          "If using Pages Functions, check the Workers compatibility date/flags and environment-variable configuration"
+        ];
+        if (s.sourceType === "static") items.push("If using Functions with uploaded static output, note that dashboard Direct Upload does not support a /functions directory; use a supported deployment flow such as Wrangler");
+        items.push(s.customDomain
+          ? "Check the Pages Custom domains mapping, DNS, and SSL; an apex domain requires the zone/nameservers on Cloudflare, while a subdomain normally uses the configured DNS target"
+          : "Check the default *.pages.dev deployment before debugging a custom domain");
+        return items;
+      }
+
+      const items = [
+        "Choose the GitHub Pages publishing source: Deploy from a branch or GitHub Actions",
+        "For branch publishing, the source folder can only be /(root) or /docs",
+        (s.outputFolder === "dist" || s.outputFolder === "public")
+          ? `The selected ${labels[s.outputFolder]} folder is not a branch-publishing source; use GitHub Actions to build/upload the Pages artifact, or copy the publishable files to /(root) or /docs`
+          : `If publishing from a branch, confirm ${labels[s.outputFolder]} is the selected Pages source and the entry file is at the top level`,
+        "Check the Pages deployment workflow/run for build or deployment failures",
+        "Check project-site base paths and asset paths when the site is served under /repository-name/"
       ];
-      return [
-        "Check Pages source branch/folder",
-        "Check repository base path and asset paths",
-        "Check Actions / Pages build logs",
-        s.customDomain ? "Check CNAME, DNS, and HTTPS enforcement" : "Check the default GitHub Pages URL first"
-      ];
+      items.push(s.customDomain
+        ? "Configure the custom domain in GitHub Pages settings and verify DNS/HTTPS. A CNAME file applies to branch publishing; custom GitHub Actions publishing does not require it and ignores it"
+        : "Check the default github.io URL first");
+      return items;
     }
-    if (s.platform === "cloudflare") return [
-      "Build commandとoutput directoryを確認する",
-      "PreviewとProductionの両方を確認する",
-      "Functions使用時はcompatibility dateと環境変数を確認する",
-      s.customDomain ? "カスタムドメイン、DNS、SSLを確認する" : "まず既定のPagesドメインで確認する"
+
+    if (s.platform === "cloudflare") {
+      const items = [
+        "設定済みのBuild commandとbuild output directoryを確認する",
+        s.sourceType === "static" ? "ビルド不要ならCloudflare Pages公式では`exit 0`をno-build commandとして案内しているため、公開ファイルがoutput directoryにあるか確認する" : "frameworkのbuild commandが正常終了し、設定したoutput directoryへ成果物を出しているか確認する",
+        "PreviewとProductionの両方を確認する",
+        "Pages Functionsを使う場合はWorkersのcompatibility date / flagsと環境変数設定を確認する"
+      ];
+      if (s.sourceType === "static") items.push("Functions付き静的出力を使う場合、dashboardのDirect Uploadでは/functions directoryを扱えないため、Wranglerなど対応するdeploy方式を確認する");
+      items.push(s.customDomain
+        ? "PagesのCustom domains紐付け、DNS、SSLを確認する。apex domainはCloudflare zone / nameserver設定、subdomainは設定したDNS向き先を確認する"
+        : "custom domainより先に既定の*.pages.dev deploymentで表示を確認する");
+      return items;
+    }
+
+    const items = [
+      "GitHub Pagesの公開方式がDeploy from a branchかGitHub Actionsか確認する",
+      "branch公開で選べるsource folderは/(root)または/docsのみ",
+      (s.outputFolder === "dist" || s.outputFolder === "public")
+        ? `選択した${labels[s.outputFolder]}はbranch公開のsource folderにはできない。GitHub Actionsでbuild成果物をPages artifactとしてdeployするか、公開ファイルを/(root)または/docsへ置く`
+        : `branch公開ならPages設定で${labels[s.outputFolder]}をsourceに選び、entry fileがsource直下にあるか確認する`,
+      "Pagesのdeployment workflow / Actions runでbuild・deploy失敗を確認する",
+      "project siteが/repository-name/配下になる場合はbase pathとasset pathを確認する"
     ];
-    return [
-      "Pages sourceのbranch/folderを確認する",
-      "repository base pathとasset pathを確認する",
-      "Actions / Pages build logを確認する",
-      s.customDomain ? "CNAME、DNS、HTTPS enforcementを確認する" : "まず既定のGitHub Pages URLで確認する"
-    ];
+    items.push(s.customDomain
+      ? "GitHub Pages設定でcustom domainを登録し、DNS/HTTPSを確認する。CNAME fileはbranch公開ではsource直下に置かれるが、custom GitHub Actions公開では不要で無視される"
+      : "まず既定のgithub.io URLで表示を確認する");
+    return items;
   }
 
   function build() {
@@ -110,90 +141,90 @@
     const checklist = (isEn() ? [
       `Target platform: ${platform}`,
       `Source type: ${labels[s.sourceType]}`,
-      `Output directory: ${labels[s.outputFolder]}`,
-      "Check build command, output directory, runtime version, and dependency lockfile",
-      "Open deployed URL and check top page, nested pages, CSS/JS/images, and console errors",
-      "Check 404 fallback, canonical, OGP, robots.txt, sitemap.xml, GA4, and AdSense IDs",
+      `Selected directory: ${labels[s.outputFolder]}`,
+      "Confirm the actual publishing/deployment mode before treating a directory as the publish source",
+      "Open the deployed URL and check top page, nested pages, CSS/JS/images, and console errors",
+      "Check 404 behavior, canonical, OGP, robots.txt, sitemap.xml, GA4, and AdSense IDs",
       "Check mobile layout and hard refresh"
     ] : [
       `対象プラットフォーム: ${platform}`,
       `ソース種別: ${labels[s.sourceType]}`,
-      `公開フォルダ: ${labels[s.outputFolder]}`,
-      "build command、output directory、runtime version、依存関係を確認する",
+      `選択ディレクトリ: ${labels[s.outputFolder]}`,
+      "directoryを公開元として扱う前に、実際のpublish / deploy方式を確認する",
       "公開URLでトップ、下層、CSS/JS/画像、console errorを確認する",
-      "404 fallback、canonical、OGP、robots.txt、sitemap.xml、GA4、AdSense IDを確認する",
+      "404、canonical、OGP、robots.txt、sitemap.xml、GA4、AdSense IDを確認する",
       "スマホ表示とハードリロード確認を行う"
     ]).concat(platformItems(s));
 
     const errors = isEn() ? [
-      "Build failed: check command, runtime, dependencies, and environment variables",
-      "404 after deploy: check output directory and index.html placement",
-      "Blank page: check console, base path, and script errors",
-      "Assets fail: check paths and cache",
-      "Domain pending: check DNS and SSL"
+      "Build failed: check the configured build/deploy mode, command, runtime, dependencies, and environment variables",
+      "404 after deploy: check the platform's valid publishing source/output rule and entry-file placement",
+      "Blank page: check console, base path, asset path, and script errors",
+      "Assets fail: check paths, project-site base path, case sensitivity, and cache",
+      "Domain pending: check the domain mapping in platform settings, DNS records, and HTTPS/SSL state"
     ] : [
-      "ビルド失敗: command、runtime、依存関係、環境変数を確認",
-      "デプロイ後404: output directoryとindex.html配置を確認",
-      "白画面: console、base path、script errorを確認",
-      "asset失敗: pathとcacheを確認",
-      "domain pending: DNSとSSLを確認"
+      "ビルド失敗: platformのpublish/deploy方式、command、runtime、依存関係、環境変数を確認",
+      "デプロイ後404: platformで有効な公開元/output ruleとentry file配置を確認",
+      "白画面: console、base path、asset path、script errorを確認",
+      "asset失敗: path、project siteのbase path、大文字小文字、cacheを確認",
+      "domain pending: platform側のdomain紐付け、DNS record、HTTPS/SSL状態を確認"
     ];
 
     const diagnosis = isEn() ? [
       "Symptom: build fails",
-      "- Check command, runtime, dependency lockfile, environment variables, and hosting logs",
+      "- Confirm whether the platform is building from a repository/branch or deploying an artifact/output directory, then check command, runtime, dependencies, environment variables, and logs",
       "",
       "Symptom: top page is 404",
-      "- Check output directory, source settings, and index.html placement",
+      "- Cloudflare Pages: confirm the configured output directory contains a top-level index.html for a static site",
+      "- GitHub Pages branch publishing: source must be /(root) or /docs and the entry file must be at the top level",
+      "- GitHub Actions publishing: confirm the uploaded Pages artifact contains the entry file at the artifact root",
       "",
-      "Symptom: blank page",
-      "- Check console, base path, asset path, and runtime errors",
-      "",
-      "Symptom: assets fail",
-      "- Check absolute/relative paths, base path, case sensitivity, and cache",
+      "Symptom: blank page or broken assets",
+      "- Check console errors, absolute/relative asset paths, repository-name base paths, case sensitivity, and cache",
       "",
       "Symptom: domain or SSL is pending",
-      "- Check DNS record type, target, platform mapping, and SSL status"
+      "- Check the domain mapping in platform settings first, then DNS record type/target and certificate/HTTPS state"
     ] : [
       "症状: ビルドが失敗する",
-      "- command、runtime、lockfile、環境変数、hosting logを確認",
+      "- repository/branchをbuildしているのか、artifact/outputをdeployしているのかを先に確認し、command、runtime、依存関係、環境変数、logを確認",
       "",
       "症状: トップが404",
-      "- output directory、source設定、index.html配置を確認",
+      "- Cloudflare Pages: static siteなら設定したoutput directory直下にindex.htmlがあるか確認",
+      "- GitHub Pages branch公開: sourceは/(root)または/docsで、entry fileがsource直下にあるか確認",
+      "- GitHub Actions公開: uploadしたPages artifact直下にentry fileがあるか確認",
       "",
-      "症状: 白画面",
-      "- console、base path、asset path、runtime errorを確認",
-      "",
-      "症状: CSS/JS/画像だけ失敗する",
-      "- 絶対/相対path、base path、大文字小文字、cacheを確認",
+      "症状: 白画面 / assetだけ失敗する",
+      "- console error、絶対/相対path、repository-name配下のbase path、大文字小文字、cacheを確認",
       "",
       "症状: domain/SSLがpending",
-      "- DNS種別、向き先、平台側紐付け、SSL状態を確認"
+      "- platform設定のdomain紐付けを先に確認し、その後DNS種別・向き先・certificate / HTTPS状態を確認"
     ];
 
     const handoff = isEn() ? [
       `Platform: ${platform}`,
       `Source: ${labels[s.sourceType]}`,
-      `Output directory: ${labels[s.outputFolder]}`,
+      `Selected directory: ${labels[s.outputFolder]}`,
       `Custom domain: ${s.customDomain ? "Yes" : "No"}`,
       "",
       "Handoff pack:",
+      "- Record the publishing mode (branch / GitHub Actions / Cloudflare Git integration / Direct Upload or Wrangler)",
       "- Save deploy URL, commit SHA, and production domain together",
-      "- Record build command, output directory, and runtime version",
+      "- Record build command, source/root directory, output directory, and runtime version where applicable",
       "- Record environment variable names only; do not paste secrets",
-      "- Keep DNS record type, target, SSL status, and verification date",
+      "- Keep DNS record type, target, SSL/HTTPS status, and verification date",
       "- Check top, nested pages, mobile, OGP, robots.txt, sitemap.xml, GA4, and AdSense after launch"
     ] : [
       `プラットフォーム: ${platform}`,
       `ソース: ${labels[s.sourceType]}`,
-      `公開フォルダ: ${labels[s.outputFolder]}`,
+      `選択ディレクトリ: ${labels[s.outputFolder]}`,
       `カスタムドメイン: ${s.customDomain ? "あり" : "なし"}`,
       "",
       "引き継ぎパック:",
+      "- publish方式（branch / GitHub Actions / Cloudflare Git integration / Direct UploadまたはWrangler）を記録する",
       "- deploy URL、commit SHA、本番ドメインをセットで記録する",
-      "- build command、output directory、runtime versionを記録する",
+      "- 該当するbuild command、source/root directory、output directory、runtime versionを記録する",
       "- 環境変数は名前だけ記録し、secret値は貼らない",
-      "- DNS種別、向き先、SSL状態、確認日を残す",
+      "- DNS種別、向き先、SSL/HTTPS状態、確認日を残す",
       "- 公開後にトップ、下層、スマホ、OGP、robots.txt、sitemap.xml、GA4、AdSenseを確認する"
     ];
 
