@@ -234,6 +234,11 @@
     if (!bar) return;
     bar.style.display = active ? "block" : "none";
   }
+
+  function prepareInputText(value) {
+    const text = typeof value === "string" ? value : "";
+    return { text, hasContent: text.trim().length > 0 };
+  }
   function updateReferenceLink(inputValue) {
     const value = String(inputValue || "").trim();
     const href = value ? `/tools/old-kanji-reference/?q=${encodeURIComponent(value)}` : "/tools/old-kanji-reference/";
@@ -482,6 +487,42 @@
       radio.addEventListener("change", updatePolicyVisibility);
     });
 
+    let pendingAutoConvert = Boolean(qParam);
+
+    const runConversion = async () => {
+      clearMessage();
+      const prepared = prepareInputText(input ? input.value : "");
+      if (!prepared.hasContent) {
+        showMessage("empty", { type: "error" });
+        return;
+      }
+
+      setProgress(true);
+      try {
+        const dict = await loadDict();
+        const selected = document.querySelector('input[name="direction"]:checked');
+        const direction = selected ? selected.value : "old-to-new";
+        const exclude = excludeToggle ? excludeToggle.checked : false;
+        const policyRadio = document.querySelector('input[name="conversionPolicy"]:checked');
+        const policy = policyRadio ? policyRadio.value : "conservative";
+        const result = convertText(prepared.text, direction, dict, { exclude, policy });
+
+        lastResultText = result.plain;
+        lastReplacementList = result.replacements;
+        lastAmbiguityList = result.ambiguities;
+        if (inputHighlight) inputHighlight.innerHTML = result.inputHtml;
+        if (output) output.innerHTML = result.outputHtml;
+        renderReplacementTable(result.replacements);
+        renderAmbiguityReview(result.ambiguities);
+        if (resultBlock) resultBlock.hidden = false;
+      } catch (e) {
+        console.error(e);
+        showMessage("loadError", { showRetry: true, showNote: true, type: "error" });
+      } finally {
+        setProgress(false);
+      }
+    };
+
     const initDict = async () => {
       setConvertEnabled(false);
       try {
@@ -489,10 +530,16 @@
         updateCounts(dict);
         clearMessage();
         setConvertEnabled(true);
+        if (pendingAutoConvert && convertBtn) {
+          pendingAutoConvert = false;
+          Promise.resolve().then(() => { if (!convertBtn.disabled) convertBtn.click(); });
+        }
+        return true;
       } catch (err) {
         console.error(err);
         showMessage("loadError", { showRetry: true, showNote: true, type: "error" });
         setConvertEnabled(false);
+        return false;
       }
     };
 
@@ -506,41 +553,8 @@
     }
 
     if (convertBtn) {
-      convertBtn.addEventListener("click", async () => {
-        clearMessage();
-        const text = (input && input.value ? input.value : "").trim();
-        if (!text) {
-          showMessage("empty", { type: "error" });
-          return;
-        }
-
-        setProgress(true);
-        try {
-          const dict = await loadDict();
-          const selected = document.querySelector('input[name="direction"]:checked');
-          const direction = selected ? selected.value : "old-to-new";
-          const exclude = excludeToggle ? excludeToggle.checked : false;
-          const policyRadio = document.querySelector('input[name="conversionPolicy"]:checked');
-          const policy = policyRadio ? policyRadio.value : "conservative";
-          const result = convertText(text, direction, dict, { exclude, policy });
-
-          lastResultText = result.plain;
-          lastReplacementList = result.replacements;
-          lastAmbiguityList = result.ambiguities;
-          if (inputHighlight) inputHighlight.innerHTML = result.inputHtml;
-          if (output) output.innerHTML = result.outputHtml;
-          renderReplacementTable(result.replacements);
-          renderAmbiguityReview(result.ambiguities);
-          if (resultBlock) resultBlock.hidden = false;
-        } catch (e) {
-          console.error(e);
-          showMessage("loadError", { showRetry: true, showNote: true, type: "error" });
-        } finally {
-          setProgress(false);
-        }
-      });
+      convertBtn.addEventListener("click", runConversion);
     }
-    if (qParam && convertBtn) convertBtn.click();
 
     if (copyTextBtn) {
       copyTextBtn.addEventListener("click", async () => {
@@ -588,6 +602,12 @@
         lastResultText = "";
         lastReplacementList = [];
         lastAmbiguityList = [];
+        updateReferenceLink("");
+        if (window.history && typeof window.history.replaceState === "function" && window.location?.href) {
+          const cleanUrl = new URL(window.location.href);
+          cleanUrl.searchParams.delete("q");
+          window.history.replaceState(null, "", cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
+        }
         clearMessage();
       });
     }

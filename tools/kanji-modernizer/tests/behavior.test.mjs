@@ -57,7 +57,7 @@ assert.deepEqual(Array.from(dict.new_to_old['旧']), ['舊']);
 const oldToNew = api.convertText('舊舊學𠮷', 'old-to-new', dict, { exclude: false });
 assert.equal(oldToNew.plain, '旧旧学𠮷');
 assert.deepEqual(
-  oldToNew.replacements.map(item => [item.from, item.to, item.count]),
+  Array.from(oldToNew.replacements, item => [item.from, item.to, item.count]),
   [['舊', '旧', 2], ['學', '学', 1]],
 );
 

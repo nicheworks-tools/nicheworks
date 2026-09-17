@@ -1,6 +1,7 @@
 (() => {
   let currentLang = "ja";
   let entriesCache = [];
+  let oldEntryLookup = new Map();
   let currentFilter = "all";
   let currentQuery = "";
   let currentSearchMode = "all";
@@ -151,7 +152,7 @@
   async function loadData(){ const [dict, meta, extra2, extra3, extra4, extra5, extra6, shapeNotes, strokeCounts, compatibilityNotes] = await Promise.all([fetchJson("./dict.json"), fetchJson("./meta.json?v=20260503-okj-meta-3"), fetchJson("./meta-extra-2.json?v=20260503-okj-extra-3").catch(() => ({ entries: {} })), fetchJson("./meta-extra-3.json?v=20260518-okj-extra-3").catch(() => ({ entries: {} })), fetchJson("./meta-extra-4.json?v=20260519-okj-extra-4").catch(() => ({ entries: {} })), fetchJson("./meta-extra-5.json?v=20260519-okj-extra-5").catch(() => ({ entries: {} })), fetchJson("./meta-extra-6.json?v=20260519-okj-extra-6").catch(() => ({ entries: {} })), fetchJson("./shape-notes.json").catch(() => ({ entries: {} })), fetchJson("./stroke-counts.json").catch(() => ({ entries: {} })), fetchJson("./compatibility-notes.json").catch(() => ({ entries: {} }))]); metaCache = { popularOrder: meta.popularOrder || [], entries: Object.assign({}, meta.entries || {}, extra2.entries || {}, extra3.entries || {}, extra4.entries || {}, extra5.entries || {}, extra6.entries || {}) }; shapeNotesCache = (shapeNotes && shapeNotes.entries) || {}; strokeCountsCache = (strokeCounts && strokeCounts.entries) || {}; compatibilityNotesCache = (compatibilityNotes && compatibilityNotes.entries) || {}; return dict; }
   function setCounts(dict){ const oldCount = Object.keys(dict.old_to_new || {}).length; document.querySelectorAll('[data-count="old"]').forEach(el => { el.textContent = oldCount; }); }
   function setStatusText(text){ const el = document.getElementById("statusMessage"); if (el) el.textContent = text || ""; }
-  function buildEntries(dict){ const popularOrder = getPopularOrder(); entriesCache = Object.entries(dict.old_to_new || {}).map(([oldChar, newChar]) => { const meta = getMeta(oldChar); const newText = Array.isArray(newChar) ? newChar.join("、") : String(newChar || ""); return { oldChar, newText, oldCode: getCodePoints(oldChar), newCode: getCodePoints(newText), category: getCategory(oldChar), verified: Boolean(meta.verified), readingJa: meta.readingJa || "", readingEn: meta.readingEn || "", meaningJa: meta.meaningJa || "", meaningEn: meta.meaningEn || "", usageJa: meta.usageJa || "", usageEn: meta.usageEn || "" }; }); entriesCache.sort((a,b) => { const ia = popularOrder.indexOf(a.oldChar); const ib = popularOrder.indexOf(b.oldChar); if (ia >= 0 && ib >= 0) return ia - ib; if (ia >= 0) return -1; if (ib >= 0) return 1; return a.oldChar.localeCompare(b.oldChar, "ja"); }); }
+  function buildEntries(dict){ const popularOrder = getPopularOrder(); entriesCache = Object.entries(dict.old_to_new || {}).map(([oldChar, newChar]) => { const meta = getMeta(oldChar); const newText = Array.isArray(newChar) ? newChar.join("、") : String(newChar || ""); return { oldChar, newText, oldCode: getCodePoints(oldChar), newCode: getCodePoints(newText), category: getCategory(oldChar), verified: Boolean(meta.verified), readingJa: meta.readingJa || "", readingEn: meta.readingEn || "", meaningJa: meta.meaningJa || "", meaningEn: meta.meaningEn || "", usageJa: meta.usageJa || "", usageEn: meta.usageEn || "" }; }); entriesCache.sort((a,b) => { const ia = popularOrder.indexOf(a.oldChar); const ib = popularOrder.indexOf(b.oldChar); if (ia >= 0 && ib >= 0) return ia - ib; if (ia >= 0) return -1; if (ib >= 0) return 1; return a.oldChar.localeCompare(b.oldChar, "ja"); }); oldEntryLookup = new Map(entriesCache.map(entry => [entry.oldChar, entry])); }
   function loadStoredList(key){
     try {
       const raw = localStorage.getItem(key);
@@ -543,7 +544,7 @@
   function escapeHtml(text){ return String(text || "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;"); }
   function detectOldForms(text){
     const counts = new Map();
-    Array.from(String(text || "")).forEach((ch) => { if (entriesCache.some(entry => entry.oldChar === ch)) counts.set(ch, (counts.get(ch) || 0) + 1); });
+    Array.from(String(text || "")).forEach((ch) => { if (oldEntryLookup.has(ch)) counts.set(ch, (counts.get(ch) || 0) + 1); });
     return entriesCache.filter(entry => counts.has(entry.oldChar)).map(entry => ({ entry, count: counts.get(entry.oldChar) }));
   }
   function renderDetector(){
@@ -580,8 +581,8 @@
   }
   function sendDetectorTextToConverter(){
     const input = document.getElementById("detectorInput");
-    const text = (input?.value || "").trim();
-    if (!text) {
+    const text = input?.value || "";
+    if (!text.trim()) {
       showToast(messages[currentLang].noDetectorTextToSend);
       return;
     }
@@ -590,7 +591,7 @@
 
   function getVisibleEntries(){ return getFilteredEntries(); }
   function csvEscape(value){ const text = String(value ?? ""); return /[",\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text; }
-  function getDataStatus(entry){ return hasMeaning(entry) ? "verified" : "pair-only"; }
+  function getDataStatus(entry){ return entry.verified ? "verified" : "pair-only"; }
   function getConfidence(entry){ return entry.verified ? "high" : (hasMeaning(entry) ? "medium" : "mapping-only"); }
   function buildExportRows(entries){ return entries.map(entry => ({
     old: entry.oldChar,
@@ -731,7 +732,27 @@ document.addEventListener("DOMContentLoaded", () => {
       currentQuery = qParam;
     }
     if (detectorInput && textParam) detectorInput.value = textParam;
+    const referenceRetryBtn = document.getElementById("referenceRetryBtn");
+    const loadReferenceData = () => {
+      if (referenceRetryBtn) referenceRetryBtn.hidden = true;
+      setStatusText(messages[currentLang].loading);
+      return loadData().then(dict => {
+        loadFailed = false;
+        setCounts(dict);
+        buildEntries(dict);
+        makeQuizQuestion();
+        renderAll();
+        return true;
+      }).catch(() => {
+        loadFailed = true;
+        renderAll();
+        if (referenceRetryBtn) referenceRetryBtn.hidden = false;
+        return false;
+      });
+    };
+    if (referenceRetryBtn) referenceRetryBtn.addEventListener("click", loadReferenceData);
     syncOkjProRuntimeState();
-    switchLang(currentLang); setStatusText(messages[currentLang].loading); loadData().then(dict => { loadFailed = false; setCounts(dict); buildEntries(dict); makeQuizQuestion(); renderAll(); }).catch(() => { loadFailed = true; renderAll(); });
+    switchLang(currentLang);
+    loadReferenceData();
   });
 })();

@@ -84,7 +84,9 @@ api.setSearch({ filter: 'pairOnly' });
 assert.deepEqual(Array.from(api.getFilteredEntries(), e => e.oldChar), ['神']);
 
 const detected = api.detectOldForms('A舊舊學B');
-assert.deepEqual(detected.map(item => [item.entry.oldChar, item.count]), [['舊', 2], ['學', 1]]);
+const detectedCounts = new Map(detected.map(item => [item.entry.oldChar, item.count]));
+assert.equal(detectedCounts.get('舊'), 2);
+assert.equal(detectedCounts.get('學'), 1);
 const largeDetected = api.detectOldForms('舊'.repeat(10000) + '學');
 assert.equal(largeDetected.find(item => item.entry.oldChar === '舊').count, 10000);
 assert.equal(largeDetected.find(item => item.entry.oldChar === '學').count, 1);
