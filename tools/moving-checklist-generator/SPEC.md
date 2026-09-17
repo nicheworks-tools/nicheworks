@@ -15,6 +15,14 @@ This tool is the broad moving-timeline surface. Its primary intent is planning a
 
 `moving-lease-final-check` is the separate final-stage surface for move-out / pre-vacate checking such as inspection, photo evidence, meter photos, key return, cancellation confirmation, and handoff notes. The two tools may reference overlapping moving-day tasks, but their primary search intent and product role MUST remain distinct.
 
+## Affiliate boundary
+
+The canonical monetization class is `AFFILIATE`, but no live Amazon CTA may render until a verified Amazon Special Link/configuration has been supplied for this tool.
+
+Contextually acceptable future product areas are ordinary moving/packing supplies such as boxes, packing tape, labels/markers, and protective packing materials. Affiliate placements should live near preparation/packing context and remain separate from government, address-change, contract, utility, or legal-adjacent checklist items.
+
+Checklist state MUST NOT be used to infer that a user must buy a product. The tool MUST NOT imply that purchasing an item completes an official procedure, satisfies a landlord/municipal requirement, or guarantees a successful move. If no verified affiliate configuration exists, the correct commerce state is no affiliate offer.
+
 ## Current functional contract
 
 - Accept move date, household type (`solo` or `family`), and home type (`rental` or `owned`).
@@ -77,6 +85,8 @@ The core interaction is a compact form followed by a chronological checklist; a 
 - [ ] Print/PDF uses the browser print flow and does not claim server-generated PDF storage.
 - [ ] Public metadata describes the broad 30-days-before-through-post-move timeline rather than presenting this as the dedicated lease-exit final check.
 - [ ] The page links to `moving-lease-final-check` as the dedicated final-stage companion.
+- [ ] No Amazon affiliate CTA renders unless a verified tool-specific affiliate configuration exists.
+- [ ] Affiliate content remains limited to general moving/packing supplies and never represents an official checklist requirement.
 
 ## Implementation evidence
 

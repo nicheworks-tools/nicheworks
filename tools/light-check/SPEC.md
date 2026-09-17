@@ -9,6 +9,14 @@
 
 Use live camera frames to compare relative brightness, color cast, contrast/shadow characteristics, and brightness variation before shooting or streaming, without presenting the browser camera as a calibrated light meter.
 
+## Affiliate boundary
+
+The canonical monetization class is `AFFILIATE`, but no live Amazon CTA may render until a verified Amazon Special Link/configuration has been supplied for this tool.
+
+Contextually acceptable future product areas are shooting/streaming lighting equipment such as LED/video lights, ring lights, light stands, or diffusion accessories. The placement must be framed as general equipment discovery for shooting/streaming, not as a calibrated recommendation derived from B/C/S/F values.
+
+The tool MUST NOT use B/C/S/F values to claim a specific light is required, infer lux/color-temperature/flicker performance, or imply that a purchase will correct a measured professional lighting defect. If no verified affiliate configuration exists, the correct commerce state is no affiliate offer.
+
 ## Current functional contract
 
 - Request browser camera access only after the user starts the tool and provide an explicit Stop action that releases camera use.
@@ -61,6 +69,8 @@ The camera preview, compact metrics, bottom controls, and sheets are explicitly 
 - [ ] Active video analysis produces the implemented relative B/C/S/F indicators without claiming lux or calibrated flicker values.
 - [ ] Camera errors are surfaced with recoverable guidance rather than silently failing.
 - [ ] JP/EN and Lite/camera controls preserve the relative-measurement disclaimer and local-analysis behavior.
+- [ ] No Amazon affiliate CTA renders unless a verified tool-specific affiliate configuration exists.
+- [ ] Any future affiliate placement remains a general shooting/streaming equipment path and is not presented as a calibrated recommendation from B/C/S/F.
 
 ## Implementation evidence
 

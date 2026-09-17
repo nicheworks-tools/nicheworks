@@ -31,6 +31,14 @@ Each record in `data.js` MUST expose the official three-digit symbol number in `
 
 The canonical set MUST NOT contain duplicate convenience records, invented combinations, practical-advice variants that reuse an official symbol as if they were separate symbols, or legacy symbols from previous Japanese standards.
 
+## Affiliate boundary
+
+The canonical monetization class is `AFFILIATE`, but no live Amazon CTA may render until a verified Amazon Special Link/configuration has been supplied for this tool.
+
+A future commerce block may only offer general laundry-care accessories in a way clearly separated from the standardized-symbol interpretation. It MUST NOT infer from a JIS symbol that a particular detergent, bleach, dryer, iron, steamer, or other treatment product is safe or required for the garment.
+
+The standardized symbol meaning, the physical garment label, manufacturer instructions, material notes, and professional-cleaner guidance always take precedence over affiliate content. If no verified affiliate configuration exists, the correct commerce state is no affiliate offer.
+
 ## Current functional contract
 
 - Render the 43 current JIS L 0001:2024 care symbols as local SVG templates.
@@ -106,6 +114,8 @@ The symbol grid and result areas reflow for narrow screens while retaining usabl
 - [ ] Photo candidate search compares only against the canonical 43-symbol set.
 - [ ] Unsupported or malformed images fail safely without sending the image to a server.
 - [ ] JP/EN switching preserves symbol selection and behavior.
+- [ ] No Amazon affiliate CTA renders unless a verified tool-specific affiliate configuration exists.
+- [ ] Affiliate content never changes or extends the meaning of a JIS symbol or recommends a garment treatment from the symbol alone.
 
 ## Implementation evidence
 
