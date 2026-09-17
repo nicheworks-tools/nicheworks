@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "updated": "2026-09-16",
-  "review_type": "visual-structural-recognition-review",
+  "updated": "2026-09-17",
+  "review_type": "visual-structural-recognition-and-accuracy-review",
   "scope": "canonical-100",
-  "decision_rule": "Pass only when the image is recognizable at browse-card scale, materially distinguishes the entry from its common confusions, and does not overclaim a unique canonical motif for broad terms.",
+  "decision_rule": "Pass only when the image is recognizable at browse-card scale, materially matches the documented recognition structure, distinguishes common confusions, and does not overclaim a unique canonical motif for broad terms.",
   "verification_boundary": "A structural-review pass advances an image to reviewed, not verified. Source/content verification and final browser QA remain separate gates.",
   "records": [
     {
@@ -23,8 +23,9 @@
     },
     {
       "pattern_id": "glen-check",
-      "decision": "pass",
-      "note": "Regenerated after review to emphasize fine checks, unequal grouped stripes and larger overcheck structure without houndstooth-like jagged diagonals."
+      "decision": "pass-after-accuracy-correction",
+      "note": "Re-audited against the term/source structure after canonical-100 publication; the previous render was replaced because it could misstate or weaken the recognition structure. deterministic compound fine grouped Glen check with larger framing divisions.",
+      "accuracy_audit": "2026-09-17"
     },
     {
       "pattern_id": "argyle",
@@ -113,8 +114,9 @@
     },
     {
       "pattern_id": "shepherd-check",
-      "decision": "pass",
-      "note": "Regenerated after review. Fine alternating black/white check structure reads distinctly from the larger Buffalo and multitone Gun Club references."
+      "decision": "pass-after-accuracy-correction",
+      "note": "Re-audited against the term/source structure after canonical-100 publication; the previous render was replaced because it could misstate or weaken the recognition structure. deterministic fine grouped black/white shepherd-check with woven crossing cue.",
+      "accuracy_audit": "2026-09-17"
     },
     {
       "pattern_id": "windowpane-check",
@@ -133,13 +135,15 @@
     },
     {
       "pattern_id": "gun-club-check",
-      "decision": "pass",
-      "note": "Regenerated after review. Multitone small-check and overlaid line structure now reads as a textile check rather than a block mosaic."
+      "decision": "pass-after-accuracy-correction",
+      "note": "Re-audited against the term/source structure after canonical-100 publication; the previous render was replaced because it could misstate or weaken the recognition structure. deterministic fine multi-tone cream/brown/black district-check weave.",
+      "accuracy_audit": "2026-09-17"
     },
     {
       "pattern_id": "prince-of-wales-check",
-      "decision": "pass",
-      "note": "Fine Glen-family structure plus a clearly larger contrasting overcheck communicates the practical Prince of Wales distinction while preserving naming overlap."
+      "decision": "pass-after-accuracy-correction",
+      "note": "Re-audited against the term/source structure after canonical-100 publication; the previous render was replaced because it could misstate or weaken the recognition structure. deterministic compound Glen-check field with contrasting burgundy windowpane overcheck.",
+      "accuracy_audit": "2026-09-17"
     },
     {
       "pattern_id": "pinstripe",
@@ -183,8 +187,9 @@
     },
     {
       "pattern_id": "herringbone",
-      "decision": "pass",
-      "note": "Broken alternating diagonal bars around a spine read as herringbone and remain visibly discontinuous from continuous Chevron/Zigzag bands."
+      "decision": "pass-after-accuracy-correction",
+      "note": "Re-audited against the term/source structure after canonical-100 publication; the previous render was replaced because it could misstate or weaken the recognition structure. deterministic reversing diagonal twill columns forming continuous herringbone V bands.",
+      "accuracy_audit": "2026-09-17"
     },
     {
       "pattern_id": "zigzag",
@@ -258,8 +263,9 @@
     },
     {
       "pattern_id": "fleur-de-lis",
-      "decision": "pass",
-      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in pass 2."
+      "decision": "pass-after-accuracy-correction",
+      "note": "Re-audited against the term/source structure after canonical-100 publication; the previous render was replaced because it could misstate or weaken the recognition structure. deterministic bold heraldic three-petal fleur-de-lis silhouette with waist band and lower flare.",
+      "accuracy_audit": "2026-09-17"
     },
     {
       "pattern_id": "toile-de-jouy",
@@ -338,8 +344,9 @@
     },
     {
       "pattern_id": "sayagata",
-      "decision": "pass",
-      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1."
+      "decision": "pass-after-accuracy-correction",
+      "note": "Re-audited against the term/source structure after canonical-100 publication; the previous render was replaced because it could misstate or weaken the recognition structure. deterministic interlocking manji/key-fret units on a diagonal lattice.",
+      "accuracy_audit": "2026-09-17"
     },
     {
       "pattern_id": "uroko",
@@ -353,8 +360,9 @@
     },
     {
       "pattern_id": "kagome",
-      "decision": "pass",
-      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 3."
+      "decision": "pass-after-accuracy-correction",
+      "note": "Re-audited against the term/source structure after canonical-100 publication; the previous render was replaced because it could misstate or weaken the recognition structure. deterministic three-direction basket-weave strip-edge lattice forming kagome basket-eye geometry.",
+      "accuracy_audit": "2026-09-17"
     },
     {
       "pattern_id": "kanoko",
@@ -368,8 +376,9 @@
     },
     {
       "pattern_id": "same-komon",
-      "decision": "pass",
-      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 1. Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      "decision": "pass-after-accuracy-correction",
+      "note": "Re-audited against the term/source structure after canonical-100 publication; the previous render was replaced because it could misstate or weaken the recognition structure. deterministic fine dotted nested semicircular fans representing Same Komon sharkskin structure.",
+      "accuracy_audit": "2026-09-17"
     },
     {
       "pattern_id": "nami-chidori",
@@ -378,8 +387,9 @@
     },
     {
       "pattern_id": "tomoe",
-      "decision": "pass",
-      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted in structural review pass 2."
+      "decision": "pass-after-accuracy-correction",
+      "note": "Re-audited against the term/source structure after canonical-100 publication; the previous render was replaced because it could misstate or weaken the recognition structure. deterministic three comma-shaped tomoe with round heads and curved tapering tails.",
+      "accuracy_audit": "2026-09-17"
     },
     {
       "pattern_id": "shibori",
@@ -458,8 +468,9 @@
     },
     {
       "pattern_id": "zebra-print",
-      "decision": "pass",
-      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes."
+      "decision": "pass-after-accuracy-correction",
+      "note": "Re-audited against the term/source structure after canonical-100 publication; the previous render was replaced because it could misstate or weaken the recognition structure. deterministic tapered irregular branching zebra stripes.",
+      "accuracy_audit": "2026-09-17"
     },
     {
       "pattern_id": "tiger-print",
@@ -478,8 +489,9 @@
     },
     {
       "pattern_id": "giraffe-print",
-      "decision": "pass",
-      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes."
+      "decision": "pass-after-accuracy-correction",
+      "note": "Re-audited against the term/source structure after canonical-100 publication; the previous render was replaced because it could misstate or weaken the recognition structure. deterministic irregular polygonal giraffe patches separated by pale channels.",
+      "accuracy_audit": "2026-09-17"
     },
     {
       "pattern_id": "dalmatian-spots",
@@ -498,8 +510,9 @@
     },
     {
       "pattern_id": "marbling",
-      "decision": "pass",
-      "note": "1536x1536 RGB PNG; no text/frame/shadow/product mockup; multiple repeats visible; source-scope recognition cue accepted after three visual review passes. Qualified term: accepted only as a representative recognition reference, not a universal canonical repeat."
+      "decision": "pass-after-accuracy-correction",
+      "note": "Re-audited against the term/source structure after canonical-100 publication; the previous render was replaced because it could misstate or weaken the recognition structure. deterministic multi-vortex fluid-vein field representing marbled flow rather than regular stripes.",
+      "accuracy_audit": "2026-09-17"
     },
     {
       "pattern_id": "terrazzo",

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-09-16",
+  "updated": "2026-09-17",
   "status": "verified-publication",
   "policy": {
     "dimensions": [
@@ -18,9 +18,10 @@
       "no-product-mockup",
       "multiple-repeats-visible"
     ],
-    "verification_rule": "verified images passed source/content contract checks, structural visual review, search/compare regressions, and desktop/mobile Chromium publication QA",
+    "verification_rule": "verified images passed source/content contract checks, visual structural review, canonical-100 accuracy audit, search/compare regressions, and desktop/mobile Chromium publication QA",
     "broad_category_rule": "For broad technique/style/textile categories, the image is a representative recognition cue and must not imply one uniquely canonical motif.",
-    "review_ledger": "data/reference-image-review.json"
+    "review_ledger": "data/reference-image-review.json",
+    "accuracy_audit": "data/reference-image-accuracy-audit.json"
   },
   "images": [
     {
@@ -57,11 +58,13 @@
       "pattern_id": "glen-check",
       "path": "assets/reference/glen-check.png",
       "review_state": "verified",
-      "method": "deterministic fine-check field with unequal grouped stripes and larger overcheck divisions",
+      "method": "deterministic compound fine grouped Glen check with larger framing divisions",
       "representation_scope": "structural-reference",
       "has_text": false,
       "is_mockup": false,
-      "multiple_repeats": true
+      "multiple_repeats": true,
+      "generator": "scripts/generate-reference-images-audit-fixes.py",
+      "accuracy_audit": "corrected-2026-09-17"
     },
     {
       "pattern_id": "argyle",
@@ -239,11 +242,13 @@
       "pattern_id": "shepherd-check",
       "path": "assets/reference/shepherd-check.png",
       "review_state": "verified",
-      "method": "deterministic fine alternating black/white check construction with a woven-scale cue",
+      "method": "deterministic fine grouped black/white shepherd-check with woven crossing cue",
       "representation_scope": "structural-reference",
       "has_text": false,
       "is_mockup": false,
-      "multiple_repeats": true
+      "multiple_repeats": true,
+      "generator": "scripts/generate-reference-images-audit-fixes.py",
+      "accuracy_audit": "corrected-2026-09-17"
     },
     {
       "ordinal": 23,
@@ -283,22 +288,26 @@
       "pattern_id": "gun-club-check",
       "path": "assets/reference/gun-club-check.png",
       "review_state": "verified",
-      "method": "deterministic multitone small-check field with layered dark and brown grid lines",
+      "method": "deterministic fine multi-tone cream/brown/black district-check weave",
       "representation_scope": "structural-reference",
       "has_text": false,
       "is_mockup": false,
-      "multiple_repeats": true
+      "multiple_repeats": true,
+      "generator": "scripts/generate-reference-images-audit-fixes.py",
+      "accuracy_audit": "corrected-2026-09-17"
     },
     {
       "ordinal": 27,
       "pattern_id": "prince-of-wales-check",
       "path": "assets/reference/prince-of-wales-check.png",
       "review_state": "verified",
-      "method": "deterministic Glen-family fine-check field with a larger burgundy overcheck",
+      "method": "deterministic compound Glen-check field with contrasting burgundy windowpane overcheck",
       "representation_scope": "representative-overcheck-reference-with-glen-check-overlap",
       "has_text": false,
       "is_mockup": false,
-      "multiple_repeats": true
+      "multiple_repeats": true,
+      "generator": "scripts/generate-reference-images-audit-fixes.py",
+      "accuracy_audit": "corrected-2026-09-17"
     },
     {
       "ordinal": 28,
@@ -393,11 +402,13 @@
       "pattern_id": "herringbone",
       "path": "assets/reference/herringbone.png",
       "review_state": "verified",
-      "method": "deterministic broken alternating diagonal bars arranged around repeated central spines",
+      "method": "deterministic reversing diagonal twill columns forming continuous herringbone V bands",
       "representation_scope": "representative-weave-and-broken-v-visual-reference",
       "has_text": false,
       "is_mockup": false,
-      "multiple_repeats": true
+      "multiple_repeats": true,
+      "generator": "scripts/generate-reference-images-audit-fixes.py",
+      "accuracy_audit": "corrected-2026-09-17"
     },
     {
       "ordinal": 37,
@@ -558,11 +569,13 @@
       "pattern_id": "fleur-de-lis",
       "path": "assets/reference/fleur-de-lis.png",
       "review_state": "verified",
-      "method": "deterministic repeated symmetrical three-lobed fleur-de-lis silhouettes",
+      "method": "deterministic bold heraldic three-petal fleur-de-lis silhouette with waist band and lower flare",
       "representation_scope": "structural-reference",
       "has_text": false,
       "is_mockup": false,
-      "multiple_repeats": true
+      "multiple_repeats": true,
+      "generator": "scripts/generate-reference-images-audit-fixes-v2.py",
+      "accuracy_audit": "corrected-2026-09-17"
     },
     {
       "ordinal": 52,
@@ -734,11 +747,13 @@
       "pattern_id": "sayagata",
       "path": "assets/reference/sayagata.png",
       "review_state": "verified",
-      "method": "deterministic interlocking right-angled continuous fret field",
+      "method": "deterministic interlocking manji/key-fret units on a diagonal lattice",
       "representation_scope": "structural-reference",
       "has_text": false,
       "is_mockup": false,
-      "multiple_repeats": true
+      "multiple_repeats": true,
+      "generator": "scripts/generate-reference-images-audit-fixes.py",
+      "accuracy_audit": "corrected-2026-09-17"
     },
     {
       "ordinal": 68,
@@ -767,11 +782,13 @@
       "pattern_id": "kagome",
       "path": "assets/reference/kagome.png",
       "review_state": "verified",
-      "method": "deterministic three-direction basket lattice",
+      "method": "deterministic three-direction basket-weave strip-edge lattice forming kagome basket-eye geometry",
       "representation_scope": "structural-reference",
       "has_text": false,
       "is_mockup": false,
-      "multiple_repeats": true
+      "multiple_repeats": true,
+      "generator": "scripts/generate-reference-images-audit-fixes.py",
+      "accuracy_audit": "corrected-2026-09-17"
     },
     {
       "ordinal": 71,
@@ -800,11 +817,13 @@
       "pattern_id": "same-komon",
       "path": "assets/reference/same-komon.png",
       "review_state": "verified",
-      "method": "deterministic extremely fine dot arcs in fan groupings",
+      "method": "deterministic fine dotted nested semicircular fans representing Same Komon sharkskin structure",
       "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
       "has_text": false,
       "is_mockup": false,
-      "multiple_repeats": true
+      "multiple_repeats": true,
+      "generator": "scripts/generate-reference-images-audit-fixes-v2.py",
+      "accuracy_audit": "corrected-2026-09-17"
     },
     {
       "ordinal": 74,
@@ -822,11 +841,13 @@
       "pattern_id": "tomoe",
       "path": "assets/reference/tomoe.png",
       "review_state": "verified",
-      "method": "deterministic three comma-like radial tomoe units",
+      "method": "deterministic three comma-shaped tomoe with round heads and curved tapering tails",
       "representation_scope": "structural-reference",
       "has_text": false,
       "is_mockup": false,
-      "multiple_repeats": true
+      "multiple_repeats": true,
+      "generator": "scripts/generate-reference-images-audit-fixes.py",
+      "accuracy_audit": "corrected-2026-09-17"
     },
     {
       "ordinal": 76,
@@ -998,11 +1019,13 @@
       "pattern_id": "zebra-print",
       "path": "assets/reference/zebra-print.png",
       "review_state": "verified",
-      "method": "deterministic irregular black-white tapering stripes",
+      "method": "deterministic tapered irregular branching zebra stripes",
       "representation_scope": "structural-reference",
       "has_text": false,
       "is_mockup": false,
-      "multiple_repeats": true
+      "multiple_repeats": true,
+      "generator": "scripts/generate-reference-images-audit-fixes.py",
+      "accuracy_audit": "corrected-2026-09-17"
     },
     {
       "ordinal": 92,
@@ -1042,11 +1065,13 @@
       "pattern_id": "giraffe-print",
       "path": "assets/reference/giraffe-print.png",
       "review_state": "verified",
-      "method": "deterministic brown polygon patches separated by pale channels",
+      "method": "deterministic irregular polygonal giraffe patches separated by pale channels",
       "representation_scope": "structural-reference",
       "has_text": false,
       "is_mockup": false,
-      "multiple_repeats": true
+      "multiple_repeats": true,
+      "generator": "scripts/generate-reference-images-audit-fixes.py",
+      "accuracy_audit": "corrected-2026-09-17"
     },
     {
       "ordinal": 96,
@@ -1086,11 +1111,13 @@
       "pattern_id": "marbling",
       "path": "assets/reference/marbling.png",
       "review_state": "verified",
-      "method": "deterministic fluid interwoven sinusoidal veins",
+      "method": "deterministic multi-vortex fluid-vein field representing marbled flow rather than regular stripes",
       "representation_scope": "representative-qualified-reference-not-a-universal-canonical-repeat",
       "has_text": false,
       "is_mockup": false,
-      "multiple_repeats": true
+      "multiple_repeats": true,
+      "generator": "scripts/generate-reference-images-audit-fixes.py",
+      "accuracy_audit": "corrected-2026-09-17"
     },
     {
       "ordinal": 100,
