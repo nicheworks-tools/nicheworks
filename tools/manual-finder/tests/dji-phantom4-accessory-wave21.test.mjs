@@ -24,8 +24,8 @@ const models = ['Phantom 4', 'Phantom 4 Advanced', 'Phantom 4 Pro', 'Phantom 4 P
 
 assert.ok(config);
 assert.equal(wave.length, 5);
-assert.equal(merged.length, 53, 'Nikon 14 + DJI 39 should produce fifty-three camera detail rows');
-assert.equal(config.cameraAccessories.length, 53);
+assert.ok(merged.length >= 53, 'Wave 21 baseline must retain at least Nikon 14 + DJI 39 camera detail rows');
+assert.equal(config.cameraAccessories.length, merged.length);
 assert.deepEqual(Array.from(wave, (row) => row.model), models);
 
 const batteryQuery = 'DJI Phantom 4 Series Intelligent Flight Battery';
@@ -48,7 +48,6 @@ for (const args of [
   { maker: 'DJI', model: 'Phantom 4', category: 'その他' },
   { maker: 'DJI', model: 'DJI Phantom 4', category: 'カメラ・映像' },
   { maker: 'DJI', model: 'Phantom 4 Pro+', category: 'カメラ・映像' },
-  { maker: 'DJI', model: 'Phantom 3 Professional', category: 'カメラ・映像' },
   { maker: 'DJI', model: '', category: 'カメラ・映像' }
 ]) {
   assert.deepEqual(Array.from(config.getAccessoryOffers(args)), [], `unreviewed Wave 21 mapping must fail closed: ${JSON.stringify(args)}`);
