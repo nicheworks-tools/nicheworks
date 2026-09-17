@@ -1,0 +1,50 @@
+name: Pattern Dictionary reference audit contact sheet
+
+on:
+  push:
+    branches:
+      - fix/pattern-dictionary-reference-audit-20260917
+    paths:
+      - .github/workflows/pattern-dictionary-reference-audit-contact.yml
+
+permissions:
+  contents: read
+
+jobs:
+  contact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/pattern-dictionary-reference-audit-20260917
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check pillow
+      - name: Build full 100 contact sheets
+        run: |
+          python - <<'PY'
+          from PIL import Image, ImageOps, ImageDraw
+          from pathlib import Path
+          import json, math
+          root=Path('tools/pattern-dictionary')
+          pats=json.loads((root/'data/patterns.json').read_text())
+          ids=[p['id'] for p in pats]
+          out=Path('/tmp/pd-audit'); out.mkdir(exist_ok=True)
+          for page in range(5):
+              chunk=ids[page*20:(page+1)*20]
+              thumb=260; label=30; cols=5; rows=4
+              sheet=Image.new('RGB',(cols*thumb,rows*(thumb+label)),'white')
+              d=ImageDraw.Draw(sheet)
+              for i,pid in enumerate(chunk):
+                  img=Image.open(root/'assets/reference'/f'{pid}.png').convert('RGB')
+                  img=ImageOps.fit(img,(thumb,thumb))
+                  x=(i%cols)*thumb; y=(i//cols)*(thumb+label)
+                  sheet.paste(img,(x,y)); d.text((x+4,y+thumb+6),f'{page*20+i+1:03d} {pid}',fill='black')
+              sheet.save(out/f'page-{page+1}.png')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pattern-dictionary-reference-audit-contact
+          path: /tmp/pd-audit/*.png
