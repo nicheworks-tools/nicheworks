@@ -26,7 +26,8 @@ const reviewById=Object.fromEntries(records.map(x=>[x.pattern_id,x]));
 for(const id of ids){
   const image=byId[id],verdict=reviewById[id];
   if(image.review_state!=='verified')throw new Error(`${id}: reference image must be verified`);
-  if(verdict.decision!=='pass'||!verdict.note?.trim())throw new Error(`${id}: passing review note required`);
+  if(!['pass','pass-after-accuracy-correction'].includes(verdict.decision)||!verdict.note?.trim())throw new Error(`${id}: passing review note required`);
+  if(verdict.decision==='pass-after-accuracy-correction'&&!verdict.accuracy_audit)throw new Error(`${id}: corrected review must carry accuracy_audit marker`);
   if(image.has_text||image.is_mockup||!image.multiple_repeats)throw new Error(`${id}: image policy flags invalid`);
   const file=path.join(root,image.path);if(!fs.existsSync(file))throw new Error(`${id}: missing ${image.path}`);
   const [w,h]=pngSize(fs.readFileSync(file));if(w!==1536||h!==1536)throw new Error(`${id}: ${w}x${h}, expected 1536x1536`);

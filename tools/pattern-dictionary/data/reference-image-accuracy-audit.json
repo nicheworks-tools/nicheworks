@@ -1,0 +1,822 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-17",
+  "scope": "canonical-100",
+  "status": "complete",
+  "policy": {
+    "purpose": "Accuracy audit of the published recognition-reference images after visual errors were found in the canonical-100 set.",
+    "accepted_meaning": "The deterministic render materially matches the documented recognition structure at dictionary/browse scale; it is not a claim that all real-world examples look identical.",
+    "representative_accepted_meaning": "For qualified technique/style/tradition/material terms, the image is a defensible representative recognition cue only, not one universal canonical motif.",
+    "corrected_meaning": "The prior published render was judged capable of misleading recognition and was replaced during this audit.",
+    "correction_generator": "scripts/generate-reference-images-audit-fixes.py with v2 overrides for Same Komon and Fleur-de-lis"
+  },
+  "counts": {
+    "total": 100,
+    "corrected": 13,
+    "representative_accepted": 37,
+    "accepted": 50,
+    "unresolved": 0
+  },
+  "records": [
+    {
+      "ordinal": 1,
+      "pattern_id": "houndstooth",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 2,
+      "pattern_id": "gingham",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 3,
+      "pattern_id": "tartan",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 4,
+      "pattern_id": "glen-check",
+      "source_state": "verified",
+      "decision": "corrected",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review + corrected render review",
+      "corrected_generator": "scripts/generate-reference-images-audit-fixes.py"
+    },
+    {
+      "ordinal": 5,
+      "pattern_id": "argyle",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 6,
+      "pattern_id": "chevron",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 7,
+      "pattern_id": "polka-dot",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 8,
+      "pattern_id": "paisley",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 9,
+      "pattern_id": "damask",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 10,
+      "pattern_id": "arabesque",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 11,
+      "pattern_id": "seigaiha",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 12,
+      "pattern_id": "asanoha",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 13,
+      "pattern_id": "shippo",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 14,
+      "pattern_id": "ichimatsu",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 15,
+      "pattern_id": "kikko",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 16,
+      "pattern_id": "kilim",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 17,
+      "pattern_id": "karakusa",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 18,
+      "pattern_id": "moroccan-trellis",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 19,
+      "pattern_id": "leopard-print",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 20,
+      "pattern_id": "ikat",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 21,
+      "pattern_id": "buffalo-check",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 22,
+      "pattern_id": "shepherd-check",
+      "source_state": "verified",
+      "decision": "corrected",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review + corrected render review",
+      "corrected_generator": "scripts/generate-reference-images-audit-fixes.py"
+    },
+    {
+      "ordinal": 23,
+      "pattern_id": "windowpane-check",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 24,
+      "pattern_id": "madras-check",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 25,
+      "pattern_id": "tattersall",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 26,
+      "pattern_id": "gun-club-check",
+      "source_state": "verified",
+      "decision": "corrected",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review + corrected render review",
+      "corrected_generator": "scripts/generate-reference-images-audit-fixes.py"
+    },
+    {
+      "ordinal": 27,
+      "pattern_id": "prince-of-wales-check",
+      "source_state": "qualified",
+      "decision": "corrected",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review + corrected render review",
+      "corrected_generator": "scripts/generate-reference-images-audit-fixes.py"
+    },
+    {
+      "ordinal": 28,
+      "pattern_id": "pinstripe",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 29,
+      "pattern_id": "chalk-stripe",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 30,
+      "pattern_id": "bengal-stripe",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 31,
+      "pattern_id": "koushi",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 32,
+      "pattern_id": "awning-stripe",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 33,
+      "pattern_id": "regimental-stripe",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 34,
+      "pattern_id": "breton-stripe",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 35,
+      "pattern_id": "swiss-dot",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 36,
+      "pattern_id": "herringbone",
+      "source_state": "qualified",
+      "decision": "corrected",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review + corrected render review",
+      "corrected_generator": "scripts/generate-reference-images-audit-fixes.py"
+    },
+    {
+      "ordinal": 37,
+      "pattern_id": "zigzag",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 38,
+      "pattern_id": "diamond",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 39,
+      "pattern_id": "harlequin",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 40,
+      "pattern_id": "checkerboard",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 41,
+      "pattern_id": "greek-key",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 42,
+      "pattern_id": "quatrefoil",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 43,
+      "pattern_id": "ogee",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 44,
+      "pattern_id": "lattice",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 45,
+      "pattern_id": "honeycomb",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 46,
+      "pattern_id": "scallop",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 47,
+      "pattern_id": "basketweave",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 48,
+      "pattern_id": "hexagon",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 49,
+      "pattern_id": "trellis",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 50,
+      "pattern_id": "hishi",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 51,
+      "pattern_id": "fleur-de-lis",
+      "source_state": "verified",
+      "decision": "corrected",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review + corrected render review",
+      "corrected_generator": "scripts/generate-reference-images-audit-fixes-v2.py"
+    },
+    {
+      "ordinal": 52,
+      "pattern_id": "toile-de-jouy",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 53,
+      "pattern_id": "chintz",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 54,
+      "pattern_id": "ditsy-floral",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 55,
+      "pattern_id": "jacobean-floral",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 56,
+      "pattern_id": "millefleurs",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 57,
+      "pattern_id": "botanical-print",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 58,
+      "pattern_id": "acanthus",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 59,
+      "pattern_id": "medallion",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 60,
+      "pattern_id": "ivy",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 61,
+      "pattern_id": "baroque-scroll",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 62,
+      "pattern_id": "chinoiserie",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 63,
+      "pattern_id": "flame-stitch",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 64,
+      "pattern_id": "tree-of-life",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 65,
+      "pattern_id": "moire",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 66,
+      "pattern_id": "yagasuri",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 67,
+      "pattern_id": "sayagata",
+      "source_state": "verified",
+      "decision": "corrected",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review + corrected render review",
+      "corrected_generator": "scripts/generate-reference-images-audit-fixes.py"
+    },
+    {
+      "ordinal": 68,
+      "pattern_id": "uroko",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 69,
+      "pattern_id": "tatewaku",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 70,
+      "pattern_id": "kagome",
+      "source_state": "verified",
+      "decision": "corrected",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review + corrected render review",
+      "corrected_generator": "scripts/generate-reference-images-audit-fixes.py"
+    },
+    {
+      "ordinal": 71,
+      "pattern_id": "kanoko",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 72,
+      "pattern_id": "hanabishi",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 73,
+      "pattern_id": "same-komon",
+      "source_state": "qualified",
+      "decision": "corrected",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review + corrected render review",
+      "corrected_generator": "scripts/generate-reference-images-audit-fixes-v2.py"
+    },
+    {
+      "ordinal": 74,
+      "pattern_id": "nami-chidori",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 75,
+      "pattern_id": "tomoe",
+      "source_state": "verified",
+      "decision": "corrected",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review + corrected render review",
+      "corrected_generator": "scripts/generate-reference-images-audit-fixes.py"
+    },
+    {
+      "ordinal": 76,
+      "pattern_id": "shibori",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 77,
+      "pattern_id": "batik",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 78,
+      "pattern_id": "bandhani",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 79,
+      "pattern_id": "ajrakh",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 80,
+      "pattern_id": "kalamkari",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 81,
+      "pattern_id": "suzani",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 82,
+      "pattern_id": "kente",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 83,
+      "pattern_id": "bogolan",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 84,
+      "pattern_id": "adire",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 85,
+      "pattern_id": "kuba-cloth",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 86,
+      "pattern_id": "sashiko",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 87,
+      "pattern_id": "kantha",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 88,
+      "pattern_id": "otomi-embroidery",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 89,
+      "pattern_id": "african-wax-print",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 90,
+      "pattern_id": "block-print",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 91,
+      "pattern_id": "zebra-print",
+      "source_state": "verified",
+      "decision": "corrected",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review + corrected render review",
+      "corrected_generator": "scripts/generate-reference-images-audit-fixes.py"
+    },
+    {
+      "ordinal": 92,
+      "pattern_id": "tiger-print",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 93,
+      "pattern_id": "snake-print",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 94,
+      "pattern_id": "cow-print",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 95,
+      "pattern_id": "giraffe-print",
+      "source_state": "verified",
+      "decision": "corrected",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review + corrected render review",
+      "corrected_generator": "scripts/generate-reference-images-audit-fixes.py"
+    },
+    {
+      "ordinal": 96,
+      "pattern_id": "dalmatian-spots",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 97,
+      "pattern_id": "camouflage",
+      "source_state": "verified",
+      "decision": "accepted",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 98,
+      "pattern_id": "tie-dye",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    },
+    {
+      "ordinal": 99,
+      "pattern_id": "marbling",
+      "source_state": "qualified",
+      "decision": "corrected",
+      "review_basis": "source-ledger structure + generator-code audit + canonical contact-sheet visual review + corrected render review",
+      "corrected_generator": "scripts/generate-reference-images-audit-fixes.py"
+    },
+    {
+      "ordinal": 100,
+      "pattern_id": "terrazzo",
+      "source_state": "qualified",
+      "decision": "representative-accepted",
+      "review_basis": "source-ledger scope + generator-code audit + canonical contact-sheet visual review; image accepted only as a representative recognition reference",
+      "corrected_generator": null
+    }
+  ]
+}
