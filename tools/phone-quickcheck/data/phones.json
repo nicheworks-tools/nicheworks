@@ -7799,7 +7799,7 @@
       },
       "included": {
         "cable": "unknown",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/aquos-sense5g/spec.html",
@@ -7952,7 +7952,7 @@
       },
       "included": {
         "cable": "unknown",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/aquos-r6/spec.html",
@@ -8054,7 +8054,7 @@
       },
       "included": {
         "cable": "unknown",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/aquos-r5g/spec.html",
@@ -8105,7 +8105,7 @@
       },
       "included": {
         "cable": "unknown",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/aquos-zero5g-basic/spec.html",
