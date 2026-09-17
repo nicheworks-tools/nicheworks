@@ -192,5 +192,15 @@
   {"lgcode":"112437","pref_slug":"saitama","city_slug":"yoshikawa","publish":true},
   {"lgcode":"113247","pref_slug":"saitama","city_slug":"miyoshi","publish":true},
   {"lgcode":"113018","pref_slug":"saitama","city_slug":"ina","publish":true},
-  {"lgcode":"114421","pref_slug":"saitama","city_slug":"miyashiro","publish":true}
+  {"lgcode":"114421","pref_slug":"saitama","city_slug":"miyashiro","publish":true},
+  {"lgcode":"114651","pref_slug":"saitama","city_slug":"matsubushi","publish":true},
+  {"lgcode":"113859","pref_slug":"saitama","city_slug":"kamisato","publish":true},
+  {"lgcode":"113468","pref_slug":"saitama","city_slug":"kawajima","publish":true},
+  {"lgcode":"113476","pref_slug":"saitama","city_slug":"yoshimi","publish":true},
+  {"lgcode":"113425","pref_slug":"saitama","city_slug":"ranzan","publish":true},
+  {"lgcode":"113263","pref_slug":"saitama","city_slug":"moroyama","publish":true},
+  {"lgcode":"113832","pref_slug":"saitama","city_slug":"kamikawa","publish":true},
+  {"lgcode":"113816","pref_slug":"saitama","city_slug":"misato-town","publish":true},
+  {"lgcode":"113620","pref_slug":"saitama","city_slug":"minano","publish":true},
+  {"lgcode":"113417","pref_slug":"saitama","city_slug":"namegawa","publish":true}
 ]
