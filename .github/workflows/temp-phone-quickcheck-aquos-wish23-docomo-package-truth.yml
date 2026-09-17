@@ -1,0 +1,43 @@
+name: Temp Phone QuickCheck AQUOS wish2/wish3 Docomo package truth
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/temp-phone-quickcheck-aquos-wish23-docomo-package-truth.yml'
+      - 'scripts/temp-phone-quickcheck-aquos-wish23-docomo-package-truth.mjs'
+      - 'tools/phone-quickcheck/data/phones.json'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Apply patch
+        run: node scripts/temp-phone-quickcheck-aquos-wish23-docomo-package-truth.mjs
+      - name: Validate
+        run: |
+          node scripts/check-phone-quickcheck-data.mjs
+          node scripts/check-phone-quickcheck-source-semantics.mjs
+          node scripts/check-phone-quickcheck-affiliate.mjs
+          node tools/phone-quickcheck/tests/behavior.test.mjs
+          git diff --check
+      - name: Commit canonical data
+        run: |
+          if git diff --quiet -- tools/phone-quickcheck/data/phones.json; then
+            echo 'No canonical data change to commit.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/phone-quickcheck/data/phones.json
+          git commit -m 'Phone QuickCheck: verify AQUOS wish2/wish3 Docomo package contents'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
