@@ -23,9 +23,9 @@ The required reconciliation is therefore:
 
 The camera accessory audit is independently tracked and currently reconciles as:
 
-`camera basic 185 = detail 44 + reviewed exclusion 0 + missing 141`
+`camera basic 185 = detail 45 + reviewed exclusion 0 + missing 140`
 
-All 14 actionable Nikon camera records are closed. DJI Waves 1–16 add thirty reviewed detail rows, leaving DJI 66, OM SYSTEM 37, GoPro 31, and Insta360 7 missing accessory-detail rows.
+All 14 actionable Nikon camera records are closed. DJI Waves 1–17 add thirty-one reviewed detail rows, leaving DJI 65, OM SYSTEM 37, GoPro 31, and Insta360 7 missing accessory-detail rows.
 
 The printer coverage audit must also report:
 
@@ -59,7 +59,7 @@ Current state:
 2. **Consumer-printer ink** — active for the verified Brother, Epson, and Canon mappings.
 3. **Office-printer toner** — the current printer-detail audit is complete. Verified mappings exist across the maintained OKI, KYOCERA, RICOH, and FUJIFILM Business Innovation ledgers; reviewed non-retail/service-managed cases are explicit exclusions.
 4. **Office-printer drum / maintenance parts** — optional future expansion, not part of the completed toner-detail audit.
-5. **Camera batteries / chargers** — Nikon is complete at 14/14 detail. DJI has thirty reviewed rows across Osmo Action Wave 1, Air Wave 2, Mini Wave 3, Mavic 3 Wave 4, Air 2S/Mavic Air 2 Wave 5, compact power Wave 6, Mini 2 Wave 7, DJI FPV Wave 8, DJI Avata Wave 9, Mavic 2 Wave 10, Mavic Mini Wave 11, Mavic Air Wave 12, Mavic Pro Wave 13, Mavic Pro Platinum Wave 14, Mavic 3 Enterprise/Mavic 3M Wave 15, and Inspire 3 Wave 16; the remaining camera backlog is measured separately and must continue in bounded reviewed waves.
+5. **Camera batteries / chargers** — Nikon is complete at 14/14 detail. DJI has thirty-one reviewed rows through Inspire 2 Wave 17; the remaining camera backlog is measured separately and must continue in bounded reviewed waves.
 6. **Appliance replacement parts / filters** — future work only where exact compatibility can be proven.
 7. Additional accessory families require a clear user need and a verified mapping source.
 
@@ -148,215 +148,44 @@ Wave 2 explicitly reviews and closes the remaining ten canonical Nikon models:
 
 Every mapping is tied to an exact Nikon official model/manual source. Shared battery or charger families are not generalized by model-name similarity. Wrong maker, wrong category, empty model, nonexistent model, and models outside an explicit reviewed ledger fail closed for camera accessory offers.
 
-## Camera accessory rule — DJI Osmo Action Wave 1
-
-The first DJI wave activates exactly four canonical action-camera records:
-
-- `Osmo Action 3`
-- `Osmo Action 4`
-- `Osmo Action 5 Pro`
-- `Osmo Action 6`
-
-DJI official compatibility evidence explicitly supports both reviewed handoffs for each of those four models:
-
-- `DJI Osmo Action Extreme Battery Plus`
-- `DJI Osmo Action Multifunctional Battery Case 2`
-
-The Wave 1 contract is exact-model only. The older `Osmo Action` and `DJI Action 2` records remain fail-closed for accessory detail until separately reviewed.
-
-## Camera accessory rule — DJI Air Wave 2
-
-DJI Air Wave 2 activates exactly two canonical records:
-
-- `DJI Air 3`
-- `DJI Air 3S`
-
-DJI official compatibility information explicitly supports both reviewed handoffs for both models:
-
-- `DJI Air 3 Intelligent Flight Battery`
-- `DJI Air 3 Series Battery Charging Hub`
-
-The Wave 2 contract is exact-model only. `DJI Air 2S`, `Mavic Air 2`, and `Mavic Air` remained fail-closed until separately reviewed.
-
-## Camera accessory rule — DJI Mini Wave 3
-
-DJI Mini Wave 3 activates exactly three canonical records:
-
-- `DJI Mini 3`
-- `DJI Mini 3 Pro`
-- `DJI Mini 4 Pro`
-
-The battery mapping follows DJI's exact reviewed compatibility boundary:
-
-- `DJI Mini 3` and `DJI Mini 3 Pro` → `DJI Mini 3 Series Intelligent Flight Battery`.
-- `DJI Mini 4 Pro` → `DJI Mini 4 Pro Intelligent Flight Battery`.
-- all three → `DJI Mini 4 Pro/Mini 3 Series Two-Way Charging Hub`.
-
-Wave 3 does not infer compatibility for `DJI Mini 2`, `DJI Mini SE`, `Mavic Mini`, or other Mini-family records.
-
-## Camera accessory rule — DJI Mavic 3 Wave 4
-
-DJI Mavic 3 Wave 4 activates exactly three canonical consumer records:
-
-- `DJI Mavic 3`
-- `DJI Mavic 3 Classic`
-- `DJI Mavic 3 Pro`
-
-DJI official Store compatibility information explicitly supports both reviewed handoffs for all three models:
-
-- `DJI Mavic 3 Series Intelligent Flight Battery`
-- `DJI Mavic 3 Series Battery Charging Hub`
-
-Wave 4 does not infer compatibility for `DJI Mavic 3 Enterprise`, `DJI Mavic 3M`, `DJI Mavic 3 Cine`, `Mavic 2`, or other Mavic-family records.
-
-## Camera accessory rule — DJI Air 2S / Mavic Air 2 Wave 5
-
-DJI Air 2S / Mavic Air 2 Wave 5 activates exactly two canonical records:
-
-- `DJI Air 2S`
-- `Mavic Air 2`
-
-DJI official Store compatibility information explicitly supports both reviewed handoffs for both models:
-
-- `Mavic Air 2 Intelligent Flight Battery`
-- `Mavic Air 2 Battery Charging Hub`
-
-Wave 5 does not infer compatibility for `Mavic Air`, `DJI Air 3`, `DJI Air 3S`, `DJI Mini 2`, or other Air/Mavic-family records.
-
-## Camera accessory rule — DJI compact power Wave 6
-
-DJI compact power Wave 6 activates exactly three canonical records, each with its own reviewed DJI official compatibility pair:
-
-- `DJI Avata 2` → `DJI Avata 2 Intelligent Flight Battery` / `DJI Avata 2 Two-Way Charging Hub`.
-- `DJI Flip` → `DJI Flip Intelligent Flight Battery` / `DJI Flip Parallel Charging Hub`.
-- `DJI Neo` → `DJI Neo Intelligent Flight Battery` / `DJI Neo Two-Way Charging Hub`.
-
-Wave 6 does not infer cross-model compatibility among those three products and does not extend to `DJI Avata`, future similarly named products, or any unreviewed DJI model.
-
-## Camera accessory rule — DJI Mini 2 family Wave 7
-
-DJI Mini 2 family Wave 7 activates exactly three canonical rows:
-
-- `DJI Mini 2`
-- `DJI Mini 4K | DJI Mini 2 SE`
-- `DJI Mini SE`
-
-DJI official Store compatibility information explicitly lists DJI Mini 4K, DJI Mini 2 SE, DJI Mini 2, and DJI Mini SE for both reviewed accessories:
-
-- `DJI Mini 2 Intelligent Flight Battery`
-- `DJI Mini 2 Two-Way Charging Hub`
-
-The compound canonical row is valid because both `DJI Mini 4K` and `DJI Mini 2 SE` are named by DJI's compatibility list. Wave 7 remains exact-canonical-row only and does not infer compatibility for `Mavic Mini` or other Mini-family records.
-
-## Camera accessory rule — DJI FPV Wave 8
-
-DJI FPV Wave 8 activates exactly the canonical `DJI FPV` row.
-
-DJI official Store compatibility information explicitly supports both reviewed handoffs:
-
-- `DJI FPV Intelligent Flight Battery` — dedicated flight-battery search handoff.
-- `DJI FPV AC Power Adapter` — dedicated charging-adapter search handoff; DJI states that it charges the DJI FPV Intelligent Flight Battery.
-
-Wave 8 remains exact-model only. `DJI Digital FPV System`, `DJI Avata`, `DJI Avata 2`, goggles, and other FPV-related records are not inferred into this compatibility set.
-
-## Camera accessory rule — DJI Avata Wave 9
-
-DJI Avata Wave 9 activates exactly the canonical `DJI Avata` row.
-
-The DJI official `DJI Avata Fly More Kit` page identifies the kit as compatible with DJI Avata and explicitly lists both reviewed accessories in the box:
-
-- `DJI Avata Intelligent Flight Battery`
-- `DJI Avata Battery Charging Hub`
-
-Wave 9 evidence is exact-model only. `DJI Avata 2` remains separately supported by its Wave 6 evidence and Wave 9 evidence is not reused for it.
-
-## Camera accessory rule — DJI Mavic 2 Wave 10
-
-DJI Mavic 2 Wave 10 activates exactly the canonical `Mavic 2` row.
-
-DJI official evidence explicitly supports both reviewed handoffs:
-
-- `Mavic 2 Intelligent Flight Battery` — the DJI Store battery page marks it as compatible with Mavic 2.
-- `Mavic 2 Battery Charging Hub` — the official Mavic 2 support page describes the hub charging Mavic 2 Intelligent Flight Batteries.
-
-Wave 10 remains exact-canonical-row only. `Mavic 2 Enterprise Advanced`, `Mavic 2 Enterprise Series`, `Mavic 2 Pro`, `Mavic 2 Zoom`, and other Mavic records are not inferred into this mapping.
-
-## Camera accessory rule — DJI Mavic Mini Wave 11
-
-DJI Mavic Mini Wave 11 activates exactly the canonical `Mavic Mini` row.
-
-DJI official evidence explicitly supports both reviewed handoffs:
-
-- `Mavic Mini Intelligent Flight Battery` — the DJI Store battery page marks it as compatible with Mavic Mini.
-- `Mavic Mini Two-Way Charging Hub` — DJI's official charging-hub compatibility table maps the Mavic Mini hub to the Mavic Mini Intelligent Flight Battery.
-
-Wave 11 remains exact-canonical-row only. It does not reuse DJI Mini 2 Wave 7 evidence and does not infer compatibility for `Mavic Pro`, `Mavic Pro Platinum`, `Mavic Air`, or other Mavic-family records.
-
-## Camera accessory rule — DJI Mavic Air Wave 12
-
-DJI Mavic Air Wave 12 activates exactly the canonical `Mavic Air` row.
-
-DJI official evidence explicitly supports both reviewed handoffs:
-
-- `Mavic Air Intelligent Flight Battery` — DJI's official battery policy identifies the exact Mavic Air battery and its characteristics.
-- `Mavic Air Battery Charging Hub` — DJI's official charging-hub compatibility table maps the hub to the Mavic Air Intelligent Flight Battery.
-
-Wave 12 remains exact-canonical-row only. `Mavic Air 2` retains its independently reviewed Wave 5 mapping, and Wave 12 does not infer compatibility for `Mavic Pro`, `Mavic Pro Platinum`, or other Mavic-family records.
-
-## Camera accessory rule — DJI Mavic Pro Wave 13
-
-DJI Mavic Pro Wave 13 activates exactly the canonical `Mavic Pro` row.
-
-DJI official evidence explicitly supports both reviewed handoffs:
-
-- `Mavic Pro Intelligent Flight Battery` — DJI's official battery page identifies the exact Mavic Pro battery.
-- `Mavic Pro Battery Charging Hub` — DJI's official charging-hub compatibility table maps the hub to the Mavic Pro Intelligent Flight Battery.
-
-Wave 13 remains exact-canonical-row only. `Mavic Pro Platinum` remains fail-closed because the reviewed battery evidence is not generalized to that canonical row; `Mavic 2`, `Mavic Air`, and other Mavic-family records retain their independently reviewed mappings.
-
-## Camera accessory rule — DJI Mavic Pro Platinum Wave 14
-
-DJI Mavic Pro Platinum Wave 14 activates exactly the canonical `Mavic Pro Platinum` row.
-
-DJI official evidence explicitly supports both reviewed handoffs:
-
-- `Mavic Pro Platinum Intelligent Flight Battery` — DJI's official Mavic Pro Platinum support page identifies the Platinum Intelligent Flight Battery and states that it can also be used with Mavic Pro.
-- `Mavic Pro Battery Charging Hub` — DJI's official charging-hub compatibility guidance explicitly lists both Mavic Pro and Mavic Pro Platinum.
-
-Wave 14 remains exact-canonical-row only. It does not replace or broaden the existing Wave 13 `Mavic Pro` battery mapping and does not infer compatibility for `Mavic 2`, `Mavic Air`, or other Mavic-family records.
-
-## Camera accessory rule — DJI Mavic 3 Enterprise / Mavic 3M Wave 15
-
-DJI Mavic 3 Enterprise / Mavic 3M Wave 15 activates exactly two canonical records:
-
-- `DJI Mavic 3 Enterprise`
-- `DJI Mavic 3M`
-
-DJI official Enterprise specifications/support explicitly establish the reviewed power-accessory boundary:
-
-- `DJI Mavic 3 Series Intelligent Flight Battery`
-- `DJI Mavic 3 Battery Charging Hub 100W`
-
-For `DJI Mavic 3 Enterprise`, the Enterprise specifications name the Mavic 3 Series Intelligent Flight Battery and the Enterprise support page identifies the Mavic 3 Battery Charging Hub (100W). For `DJI Mavic 3M`, DJI support states that its batteries are compatible with DJI Mavic 3 Series and DJI Mavic 3 Enterprise Series aircraft and identifies the DJI Mavic 3 Charging Hub (100 W).
-
-Wave 15 remains exact-canonical-row only. `DJI Mavic 3T`, a generic Enterprise Series name, and other non-canonical variants remain fail-closed. The existing consumer Mavic 3 / Classic / Pro rows remain on their separately reviewed Wave 4 mappings.
-
-## Camera accessory rule — DJI Inspire 3 Wave 16
-
-DJI Inspire 3 Wave 16 activates exactly the canonical `DJI Inspire 3` row.
-
-DJI official Inspire 3 specifications and Store compatibility information explicitly support both reviewed handoffs:
-
-- `DJI TB51 Intelligent Battery`
-- `DJI TB51 Intelligent Battery Charging Hub`
-
-Wave 16 remains exact-canonical-row only. It does not infer the TB51 mapping to `Inspire 1`, `Inspire 1 Pro/Raw`, `Inspire 2`, or a non-canonical `Inspire 3` name.
-
-After DJI Waves 1–16 the maker reconciliation is:
-
-`DJI camera 96 = detail 30 + reviewed exclusion 0 + missing 66`
-
-The catalog-wide camera audit now reports 185 actionable basic records, 44 detail mappings, 0 reviewed exclusions, and 141 missing accessory-detail rows. The remaining missing counts are DJI 66, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing model arrays remain machine-readable in `tests/camera-accessory-coverage.test.mjs` output and are summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
+## DJI camera accessory Waves 1–17
+
+The DJI camera accessory phase uses bounded exact-canonical-model waves. Every row requires official DJI compatibility evidence; neighboring names, family members, and future variants remain fail-closed until separately reviewed.
+
+| Wave | Canonical rows | Reviewed power handoff |
+| --- | --- | --- |
+| 1 | `Osmo Action 3`, `Osmo Action 4`, `Osmo Action 5 Pro`, `Osmo Action 6` | Extreme Battery Plus / Multifunctional Battery Case 2 |
+| 2 | `DJI Air 3`, `DJI Air 3S` | Air 3 Intelligent Flight Battery / Air 3 Series Battery Charging Hub |
+| 3 | `DJI Mini 3`, `DJI Mini 3 Pro`, `DJI Mini 4 Pro` | reviewed Mini 3/Mini 4 battery boundary / shared Two-Way Charging Hub |
+| 4 | `DJI Mavic 3`, `DJI Mavic 3 Classic`, `DJI Mavic 3 Pro` | Mavic 3 Series Intelligent Flight Battery / Battery Charging Hub |
+| 5 | `DJI Air 2S`, `Mavic Air 2` | Mavic Air 2 Intelligent Flight Battery / Battery Charging Hub |
+| 6 | `DJI Avata 2`, `DJI Flip`, `DJI Neo` | individually reviewed model-specific battery/hub pairs |
+| 7 | `DJI Mini 2`, `DJI Mini 4K | DJI Mini 2 SE`, `DJI Mini SE` | Mini 2 Intelligent Flight Battery / Two-Way Charging Hub |
+| 8 | `DJI FPV` | FPV Intelligent Flight Battery / AC Power Adapter |
+| 9 | `DJI Avata` | Avata Intelligent Flight Battery / Battery Charging Hub |
+| 10 | `Mavic 2` | Mavic 2 Intelligent Flight Battery / Battery Charging Hub |
+| 11 | `Mavic Mini` | Mavic Mini Intelligent Flight Battery / Two-Way Charging Hub |
+| 12 | `Mavic Air` | Mavic Air Intelligent Flight Battery / Battery Charging Hub |
+| 13 | `Mavic Pro` | Mavic Pro Intelligent Flight Battery / Battery Charging Hub |
+| 14 | `Mavic Pro Platinum` | Mavic Pro Platinum Intelligent Flight Battery / Mavic Pro Battery Charging Hub |
+| 15 | `DJI Mavic 3 Enterprise`, `DJI Mavic 3M` | Mavic 3 Series Intelligent Flight Battery / Mavic 3 Battery Charging Hub 100W |
+| 16 | `DJI Inspire 3` | TB51 Intelligent Battery / TB51 Intelligent Battery Charging Hub |
+| 17 | `Inspire 2` | TB50 Intelligent Battery / Inspire 2 Battery Charging Hub |
+
+### DJI Inspire 2 — Wave 17
+
+Wave 17 activates exactly the canonical `Inspire 2` record. DJI official Store compatibility information explicitly supports both reviewed handoffs:
+
+- `DJI TB50 Intelligent Battery`
+- `DJI Inspire 2 Battery Charging Hub`
+
+Wave 17 does not infer compatibility to `DJI Inspire 2`, `Inspire 1`, `Inspire 1 Pro/Raw`, or any other Inspire-family canonical record. `DJI Inspire 3` retains its independently reviewed TB51 Wave 16 mapping.
+
+After DJI Waves 1–17 the maker reconciliation is:
+
+`DJI camera 96 = detail 31 + reviewed exclusion 0 + missing 65`
+
+The catalog-wide camera audit now reports 185 actionable basic records, 45 detail mappings, 0 reviewed exclusions, and 140 missing accessory-detail rows. The remaining missing counts are DJI 65, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing model arrays remain machine-readable in `tests/camera-accessory-coverage.test.mjs` output and are summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## Current fixed override
 
@@ -370,56 +199,20 @@ The Z8 override remains an end-to-end proof of SiteStripe/account behavior. It i
 
 - `app.paged.js` places canonical `maker`, `model`, and `category` metadata on each result card.
 - `affiliate-config.js` owns the fixed tracking ID, generic model-search policy, and consumer-printer compatibility mappings.
-- `affiliate-office-consumables.js` owns the base cross-maker office-printer toner mappings.
-- `affiliate-oki-toner-wave2.js` and `affiliate-oki-toner-wave6.js` extend reviewed OKI toner coverage.
-- `affiliate-ricoh-consumables-wave3.js` extends reviewed RICOH consumable coverage.
-- `affiliate-kyocera-toner-wave3.js`, `affiliate-kyocera-toner-wave4.js`, and `affiliate-kyocera-toner-wave6.js` contain the KYOCERA supplemental ledgers. The last bundle exposes the later ledgers through Wave 19, including the final `KM-C3225E` and `KM-C870` rows.
-- `affiliate-fujifilm-toner-wave2.js` contains the supplemental FUJIFILM Business Innovation family-evidence mappings.
+- `affiliate-office-consumables.js` and maker-specific printer ledgers own verified printer consumable mappings.
 - `affiliate-printer-detail-exclusions.js` is the explicit reviewed printer exclusion ledger.
 - `affiliate-camera-accessories.js` owns Nikon Wave 1 and the dedicated coarse camera-accessory Amazon target.
-- `affiliate-nikon-camera-accessories-wave2.js` extends the camera resolver with the remaining ten Nikon records.
-- `affiliate-dji-camera-accessories-wave1.js` adds the four reviewed DJI Osmo Action rows.
-- `affiliate-dji-camera-accessories-wave2.js` adds the two reviewed DJI Air rows.
-- `affiliate-dji-camera-accessories-wave3.js` adds the three reviewed DJI Mini rows.
-- `affiliate-dji-camera-accessories-wave4.js` adds the three reviewed DJI Mavic 3 consumer rows.
-- `affiliate-dji-camera-accessories-wave5.js` adds the two reviewed DJI Air 2S/Mavic Air 2 rows.
-- `affiliate-dji-camera-accessories-wave6.js` adds the three reviewed DJI Avata 2 / Flip / Neo rows.
-- `affiliate-dji-camera-accessories-wave7.js` adds the three reviewed DJI Mini 2-family canonical rows.
-- `affiliate-dji-camera-accessories-wave8.js` adds the reviewed DJI FPV row.
-- `affiliate-dji-camera-accessories-wave9.js` adds the reviewed DJI Avata row.
-- `affiliate-dji-camera-accessories-wave10.js` adds the reviewed Mavic 2 row.
-- `affiliate-dji-camera-accessories-wave11.js` adds the reviewed Mavic Mini row.
-- `affiliate-dji-camera-accessories-wave12.js` adds the reviewed Mavic Air row.
-- `affiliate-dji-camera-accessories-wave13.js` adds the reviewed Mavic Pro row.
-- `affiliate-dji-camera-accessories-wave14.js` adds the reviewed Mavic Pro Platinum row.
-- `affiliate-dji-camera-accessories-wave15.js` adds the reviewed DJI Mavic 3 Enterprise and DJI Mavic 3M rows.
-- `affiliate-dji-camera-accessories-wave16.js` adds the reviewed DJI Inspire 3 row and exposes the merged 44-row camera detail ledger.
+- `affiliate-nikon-camera-accessories-wave2.js` closes the remaining ten Nikon records.
+- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave17.js` are the reviewed DJI camera accessory ledgers.
+- `affiliate-dji-camera-accessories-wave17.js` adds the exact reviewed `Inspire 2` TB50 battery and charging-hub mapping and exposes the merged 45-row camera detail ledger.
 - `affiliate-camera-detail-exclusions.js` is the reviewed camera-detail exclusion ledger and is currently empty.
-- `affiliate-runtime.js` renders the generic/body search plus zero or more verified consumable or camera-accessory searches. It loads Nikon Wave 1, Nikon Wave 2, and DJI Waves 1–16 before initial affiliate rendering so the final config is complete before cards are mounted.
+- `affiliate-runtime.js` loads Nikon Waves 1–2 and DJI Waves 1–17 before initial affiliate rendering so the final config is complete before cards are mounted.
 - `/assets/amazon-affiliate.js` validates Amazon destinations and records only coarse analytics targets. Model names and consumable/accessory terms are not analytics parameters.
-- `tests/affiliate-coverage.test.mjs` is the catalog-wide reconciliation gate for basic/detail/exclusion/missing printer coverage.
-- `tests/nikon-camera-accessory-wave1.test.mjs` locks the original four-model Nikon Wave 1 boundary.
-- `tests/nikon-camera-accessory-wave2.test.mjs` locks the ten Nikon Wave 2 records and 14-record Nikon completion.
-- `tests/dji-osmo-action-accessory-wave1.test.mjs` locks the exact four-model DJI Osmo Action Wave 1 boundary.
-- `tests/dji-air-accessory-wave2.test.mjs` locks the exact two-model DJI Air Wave 2 boundary.
-- `tests/dji-mini-accessory-wave3.test.mjs` locks the exact three-model DJI Mini Wave 3 boundary.
-- `tests/dji-mavic3-accessory-wave4.test.mjs` locks the exact three-model DJI Mavic 3 Wave 4 boundary.
-- `tests/dji-air2-accessory-wave5.test.mjs` locks the exact two-model DJI Air 2S/Mavic Air 2 Wave 5 boundary.
-- `tests/dji-compact-power-wave6.test.mjs` locks the exact three-model DJI Avata 2 / Flip / Neo Wave 6 boundary.
-- `tests/dji-mini2-accessory-wave7.test.mjs` locks the exact three-row DJI Mini 2-family Wave 7 boundary.
-- `tests/dji-fpv-accessory-wave8.test.mjs` locks the exact DJI FPV Wave 8 boundary.
-- `tests/dji-avata-accessory-wave9.test.mjs` locks the exact DJI Avata Wave 9 boundary.
-- `tests/dji-mavic2-accessory-wave10.test.mjs` locks the exact canonical Mavic 2 Wave 10 boundary.
-- `tests/dji-mavic-mini-accessory-wave11.test.mjs` locks the exact canonical Mavic Mini Wave 11 boundary.
-- `tests/dji-mavic-air-accessory-wave12.test.mjs` locks the exact canonical Mavic Air Wave 12 boundary.
-- `tests/dji-mavic-pro-accessory-wave13.test.mjs` locks the exact canonical Mavic Pro Wave 13 boundary.
-- `tests/dji-mavic-pro-platinum-accessory-wave14.test.mjs` locks the exact canonical Mavic Pro Platinum Wave 14 boundary.
-- `tests/dji-mavic3-enterprise-accessory-wave15.test.mjs` locks the exact DJI Mavic 3 Enterprise / DJI Mavic 3M Wave 15 boundary.
-- `tests/dji-inspire3-accessory-wave16.test.mjs` locks the exact DJI Inspire 3 Wave 16 boundary.
+- `tests/affiliate-coverage.test.mjs` and `tests/affiliate-doc-sync.test.mjs` protect the completed printer reconciliation.
+- maker/wave-specific camera tests lock exact compatibility boundaries, including `tests/dji-inspire2-accessory-wave17.test.mjs`.
 - `tests/camera-accessory-coverage.test.mjs` is the catalog-wide camera reconciliation and missing-model diagnostic gate.
 - `tests/camera-accessory-doc-sync.test.mjs` prevents the measured camera baseline documentation from drifting from runtime data.
 - `CAMERA_ACCESSORY_COVERAGE.md` records the current measured camera baseline and remaining maker backlog.
-- Maker/wave-specific tests enforce exact evidence boundaries and fail-closed behavior.
 
 Unsupported categories, empty models, malformed URLs, wrong makers, wrong categories, nonexistent model IDs, and unreviewed compatibility mappings must fail closed. Official manual/support links always remain above the commercial block.
 
@@ -447,9 +240,9 @@ The Nikon camera subphase is closed only while all of the following remain true:
 The DJI camera phase is currently partial and must reconcile at:
 
 - DJI camera basic = 96
-- DJI camera detail = 30
+- DJI camera detail = 31
 - DJI reviewed camera exclusions = 0
-- DJI camera missing accessory detail = 66
+- DJI camera missing accessory detail = 65
 
 If the canonical catalog changes, numeric values may legitimately change, but each reconciliation invariant remains mandatory.
 
@@ -457,4 +250,4 @@ If the canonical catalog changes, numeric values may legitimately change, but ea
 
 The printer-detail Amazon handoff audit is no longer an open expansion target. Further printer work should be triggered by newly added canonical models, newly discovered evidence that changes an explicit exclusion, or a separately approved accessory family such as drums/maintenance parts.
 
-Nikon camera coverage is closed. The measured camera backlog continues with DJI 66 actionable records, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded reviewed product-family waves and exact manufacturer evidence. Appliance replacement-part rules remain a separate future phase.
+Nikon camera coverage is closed. The measured camera backlog continues with DJI 65 actionable records, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded reviewed product-family waves and exact manufacturer evidence. Appliance replacement-part rules remain a separate future phase.
