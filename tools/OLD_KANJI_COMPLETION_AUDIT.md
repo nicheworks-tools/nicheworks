@@ -1,22 +1,22 @@
-# Old Kanji Completion Audit — Wave 9 Baseline
+# Old Kanji Completion Audit
 
-Status: completion baseline, not a declaration of finished quality.
+Status: active completion ledger, not a declaration of finished quality.
 
-Baseline main: `6df0320312bd97b327b42917dd175ad304b4c7db`
+Wave 9 baseline main: `6df0320312bd97b327b42917dd175ad304b4c7db`
 
 Scope: the eight-tool Old Kanji cluster defined by `tools/OLD_KANJI_CLUSTER.md`.
 
 ## Executive state
 
-All eight tools have a `SPEC.md` whose specification status is `complete`. That means the intended product contract exists. It does **not** mean the implementation has passed final acceptance. At this baseline, the acceptance checkboxes in the eight tool specifications are still unchecked and there is no single cluster-wide completion evidence matrix.
+All eight tools have a `SPEC.md` whose specification status is `complete`. That means the intended product contract exists. It does **not** mean the implementation has passed final acceptance. The acceptance checkboxes remain open until direct evidence is produced in the later completion waves.
 
-The purpose of Completion Waves 10–20 is therefore not feature expansion. It is to reconcile data/documentation drift, verify every current functional contract, fix discovered defects, validate cross-tool behavior, and end with a bounded maintenance baseline.
+Completion Wave 10 closes the data/documentation drift identified in C-01 and C-02 and makes remaining dictionary debt machine-classified. Product-flow acceptance remains open for Waves 11–19.
 
 ## Tool-by-tool completion state
 
-| Tool | Spec status | Acceptance evidence at Wave 9 | Primary remaining owner wave |
+| Tool | Spec status | Acceptance evidence | Primary remaining owner wave |
 | --- | --- | --- | --- |
-| Old Kanji Reference | complete | unverified as a whole; acceptance checklist still open | Wave 10 data/doc sync, Wave 11 functional QA, Wave 15 UX, Wave 16 SEO contract |
+| Old Kanji Reference | complete | data/contract sync closed in Wave 10; functional acceptance still open | Wave 11 functional QA, Wave 15 UX, Wave 16 search reconciliation |
 | Kanji Modernizer | complete | unverified as a whole; acceptance checklist still open | Wave 11 functional QA, Wave 15 UX, Wave 16 search intent |
 | Old Kanji OCR Scanner | complete | unverified as a whole; acceptance checklist still open | Wave 12 OCR/error QA, Wave 15 UX |
 | Old Document Kanji Highlighter | complete | unverified as a whole; acceptance checklist still open | Wave 12 detection/copy QA, Wave 15 UX |
@@ -27,38 +27,46 @@ The purpose of Completion Waves 10–20 is therefore not feature expansion. It i
 
 ## Confirmed cross-cluster findings
 
-### C-01 — Dictionary audit documentation is stale
-Severity: high documentation/data-governance defect.
-Owner: Completion Wave 10.
+### C-01 — Dictionary audit documentation drift
+Status: **closed in Completion Wave 10**.
+Severity at discovery: high documentation/data-governance defect.
 
-`tools/old-kanji-reference/dictionary-audit.json` reflects the repaired post-PR8 state:
+Wave 10 updated the audit generator to consume the repository-held authoritative PR8 repair ledger only when a repair record's `afterTarget` still matches the current forward mapping. The regenerated canonical snapshot is now:
+
 - 356 canonical old→new records;
 - 364 raw entries;
-- 163 `old_to_modern`;
-- 1 `variant`;
+- 165 `old_to_modern`;
+- 3 `variant`;
 - 22 `compatibility`;
 - 115 `identity`;
-- 55 `unresolved`;
-- 8 raw duplicate keys;
+- 51 `unresolved`;
+- 8 raw duplicate keys, all same-valued;
 - 0 conflicting raw duplicate keys;
+- 61 metadata overlay events;
 - 35 reverse issues;
 - 0 blocking issue records;
 - 168 repository-side SEO candidates.
 
-`tools/old-kanji-reference/DICTIONARY_AUDIT.md` still describes the older pre-repair snapshot with 358 canonical records, 367 raw entries, one conflicting duplicate, 53 reverse issues, 17 blocking issue records, and 158 candidates. The human-readable audit therefore disagrees with the canonical machine-readable artifact.
+`DICTIONARY_AUDIT.md` now describes the same snapshot and policy as `dictionary-audit.json`.
 
-Exit condition: regenerate/rewrite the human audit from the current canonical state and explicitly classify the remaining 8 raw duplicates, 35 reverse issues, 55 unresolved records, and 61 metadata overlaps as fix / intentional / deferred with a reason.
+The four classifications corrected by consuming already-verified PR8 evidence are:
+- `淚→涙` → `old_to_modern`;
+- `霸→覇` → `old_to_modern`;
+- `躰→体` → `variant`;
+- `邨→村` → `variant` class from semantic-variant evidence.
 
-### C-02 — Individual-kanji policy documentation is stale after SEO Waves 1–3
-Severity: high contract-drift defect.
-Owner: Completion Wave 10 or Wave 16.
+The SEO candidate count remains 168 because authoritative relation evidence does not bypass standalone-data requirements.
 
-The cluster contract and Old Kanji Reference SPEC still say individual-kanji indexable URLs are not part of the current contract / may be introduced later. Main now intentionally contains three evidence-gated individual pages:
-- `kanji/ga-kaku/` for 画 / 畫 with `計画 → 計畫` intent;
-- `kanji/sho-shou/` for 将 / 將;
-- `kanji/kyu-old/` for 旧 / 舊.
+### C-02 — Individual-kanji policy documentation drift
+Status: **closed in Completion Wave 10**.
+Severity at discovery: high contract-drift defect.
 
-Exit condition: update the contract to describe the current evidence-gated allowlist model, explicitly prohibit mass generation, and retain the dual gate of dictionary safety plus actual GSC demand.
+The cluster contract and Old Kanji Reference SPEC now describe the actual current allowlist:
+- `kanji/ga-kaku/` — 画 / 畫 with `計画 → 計畫` intent;
+- `kanji/sho-shou/` — 将 / 將;
+- `kanji/kyu-old/` — 旧 / 舊.
+
+Future publication remains dual-gated by authoritative dictionary/source safety plus actual settled GSC demand. `identity`, `unresolved`, bare-pair, and demand-free records cannot be mass-generated into indexable pages. The 168 repository-side candidates remain audit candidates, not publication inventory.
 
 ### C-03 — Wave 4–8 search-intent changes are only partially reflected in specs
 Severity: medium contract-drift defect.
@@ -70,7 +78,7 @@ Post-spec work changed or strengthened live intent and handoffs for:
 - Old Kanji Reference FAQ handling for identity/unresolved search queries;
 - Name Old Kanji Checker's name/family-register intent, including explicit official-registration caution and a Legal Affairs Bureau follow-up link.
 
-The canonical cluster contract broadly supports these roles, but the per-tool implementation evidence and acceptance wording have not been systematically re-synced after Waves 4–8.
+Wave 10 synchronizes the Reference-side allowlist/how-to contract, but the complete eight-tool title/H1/description/schema/handoff reconciliation remains owned by Wave 16.
 
 Exit condition: Wave 16 compares live title/H1/description/schema/handoffs against each tool's declared search role and updates specs only where current behavior is intentional.
 
@@ -78,7 +86,7 @@ Exit condition: Wave 16 compares live title/H1/description/schema/handoffs again
 Severity: high completion-process defect.
 Owner: Waves 11–19.
 
-Every tool specification has an Acceptance criteria section, but all checkboxes remain open. There is no canonical evidence ledger connecting each acceptance item to a test, runtime contract, manual verification, or source file.
+Every tool specification has an Acceptance criteria section, but the checkboxes remain open. There is no canonical evidence ledger connecting each acceptance item to a test, runtime contract, manual verification, or source file.
 
 Exit condition: no checkbox is marked complete until its criterion is directly verified. Wave 19 must produce a final evidence matrix or equivalent durable proof for all eight tools.
 
@@ -103,34 +111,45 @@ Exit condition: durable automated checks where practical plus explicit manual ev
 Severity: medium maintainability risk; not yet proven to be a defect.
 Owner: Completion Wave 19.
 
-The Reference directory contains multiple similarly named implementation generations such as `app-meaning.js`, `app-meaning-v3.js`, and `app-meaning-v4.js`, alongside other historical helper files. Wave 9 does not assume they are dead because reachability has not yet been verified.
+The Reference directory contains multiple similarly named implementation generations such as `app-meaning.js`, `app-meaning-v3.js`, and `app-meaning-v4.js`, alongside other historical helper files. Do not assume they are dead until runtime/build reachability is verified.
 
 Exit condition: determine actual runtime references. Remove only files proven unreachable and obsolete; retain any compatibility/build input that is still intentionally consumed.
 
-### C-07 — Remaining dictionary anomalies are not blocking, but are not completion-classified
-Severity: medium data-quality debt.
-Owner: Completion Wave 10.
+### C-07 — Remaining dictionary anomalies need bounded maintenance treatment
+Status: **classification closed in Completion Wave 10; physical cleanup/review remains bounded debt**.
+Severity at discovery: medium data-quality debt.
 
-The current machine audit reports zero blocking issue records, but still reports:
-- 8 duplicate raw keys with identical values;
-- 35 reverse-table issues;
-- 55 unresolved canonical records;
-- 61 metadata key overlaps.
+`dictionary-audit.json` now attaches `fix`, `intentional`, or `deferred` maintenance dispositions and reasons to every remaining anomaly entry.
 
-These are not automatically errors. Completion requires classifying them so that a future maintainer can distinguish known/intentional structure from unfinished data repair.
+Current disposition summary:
 
-Exit condition: each category has a documented policy, counts are current, and any records that remain unresolved are explicitly allowed to remain non-publishable/non-authoritative.
+- raw duplicate keys: **8 fix / 0 intentional / 0 deferred**;
+- metadata overlay events: **0 fix / 0 intentional / 61 deferred**;
+- reverse issues: **0 fix / 0 intentional / 35 deferred**;
+- unresolved records: **0 fix / 0 intentional / 51 deferred**.
+
+Interpretation:
+- the eight raw duplicates are same-value and parse-preserving but remain explicit source-cleanup debt;
+- metadata overlaps require field-level semantic review before consolidation;
+- reverse-only candidates are retained until Wave 11 verifies Modern→Old runtime behavior or authoritative evidence supports a relation change;
+- unresolved mappings remain SEO-blocked and cannot be promoted without authoritative evidence.
+
+No current anomaly is silently treated as authoritative or publishable.
 
 ## Completion-wave ownership
 
 ### Wave 10 — Dictionary and documentation finalization
-- sync `DICTIONARY_AUDIT.md` to the machine artifact;
-- classify all remaining anomaly categories;
-- sync individual-page policy and evidence-gated publication rules;
-- do not expand the dictionary from model inference.
+Status: **completed**.
+
+Completed work:
+- synced `DICTIONARY_AUDIT.md` to the regenerated machine artifact;
+- integrated `dictionary-repair-evidence.json` into classification without weakening SEO gates;
+- classified remaining anomaly categories with machine-readable dispositions;
+- synchronized the current three-page individual allowlist and dual publication gate in the cluster contract and Reference SPEC;
+- preserved unresolved mappings rather than guessing.
 
 ### Wave 11 — Reference + Modernizer completion QA
-Verify search/filter/detector/export/local state plus both conversion directions, ambiguity policy, exclusions, copy actions, empty/error/large inputs, and load failures.
+Verify search/filter/detector/export/local state plus both conversion directions, ambiguity policy, exclusions, copy actions, empty/error/large inputs, load failures, and the deferred reverse-candidate behavior that Wave 10 deliberately did not mutate.
 
 ### Wave 12 — OCR + Highlighter completion QA
 Verify one-image OCR, progress/failure states, editable correction, detection/highlighting, copy actions, degraded reference-data behavior, and task handoffs.
@@ -145,7 +164,7 @@ Verify candidate lookup in both directions where applicable, optional metadata f
 Verify all eight tools on narrow and desktop layouts, JP/EN switching, keyboard/focus behavior, overflow/long-text cases, zero/error states, buttons, copy feedback, and readable warnings.
 
 ### Wave 16 — Search-cluster final reconciliation
-Reconcile title/H1/description/canonical/schema/internal links against the cluster role table; eliminate cannibalizing generic copy; sync how-to, individual-page allowlist, and Name/Place intent changes.
+Reconcile title/H1/description/canonical/schema/internal links against the cluster role table; eliminate cannibalizing generic copy; finish post-Wave-4 intent/spec synchronization.
 
 ### Wave 17 — Measurement completion
 Verify coarse landing/handoff/support/affiliate measurement without transmitting user payload data. Add only missing events required by the cluster measurement contract.
@@ -178,6 +197,6 @@ The Old Kanji cluster is complete only when all of the following are true:
 13. Remaining limitations and intentionally unresolved data are documented rather than silently treated as complete data.
 14. Further SEO/content expansion is driven by settled measurement, not by an open-ended wave sequence.
 
-## Wave 9 decision
+## Current decision
 
-No product code is changed in this wave. The cluster is **not yet completion-locked**. The next permitted work is Completion Wave 10: dictionary/data/documentation finalization against this baseline.
+Completion Wave 10 closes the dictionary/data/documentation-finalization gate. The cluster is **not yet completion-locked**. The next permitted work is Completion Wave 11: Old Kanji Reference + Kanji Modernizer completion QA.
