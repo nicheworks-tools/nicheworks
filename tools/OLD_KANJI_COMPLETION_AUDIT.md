@@ -8,16 +8,16 @@ Scope: the eight-tool Old Kanji cluster defined by `tools/OLD_KANJI_CLUSTER.md`.
 
 ## Executive state
 
-All eight tools have a `SPEC.md` whose specification status is `complete`. That means the intended product contract exists. It does **not** mean the implementation has passed final acceptance. The acceptance checkboxes remain open until direct evidence is produced in the later completion waves.
+All eight tools have a `SPEC.md` whose specification status is `complete`. That means the intended product contract exists. It does **not** mean the implementation has passed final cluster acceptance.
 
-Completion Wave 10 closes the data/documentation drift identified in C-01 and C-02 and makes remaining dictionary debt machine-classified. Product-flow acceptance remains open for Waves 11–19.
+Completion Wave 10 closed the dictionary/data/documentation drift identified in C-01 and C-02. Completion Wave 11 closes the first product-flow QA tranche for Old Kanji Reference and Kanji Modernizer: durable behavior tests now cover both conversion directions, ambiguity, exclusions, exact text preservation, Reference search/detection/state semantics, dictionary failure/recovery contracts, and the Reference → Modernizer handoff. Browser-layout/accessibility and remaining cross-cluster acceptance remain owned by later waves.
 
 ## Tool-by-tool completion state
 
 | Tool | Spec status | Acceptance evidence | Primary remaining owner wave |
 | --- | --- | --- | --- |
-| Old Kanji Reference | complete | data/contract sync closed in Wave 10; functional acceptance still open | Wave 11 functional QA, Wave 15 UX, Wave 16 search reconciliation |
-| Kanji Modernizer | complete | unverified as a whole; acceptance checklist still open | Wave 11 functional QA, Wave 15 UX, Wave 16 search intent |
+| Old Kanji Reference | complete | Wave 10 data/contract sync complete; Wave 11 core search/detector/handoff/state behavior automated; browser export/UX and remaining policy/UI criteria still open | Wave 15 UX/browser interaction, Wave 16 search reconciliation, Wave 19 release audit |
+| Kanji Modernizer | complete | Wave 11 declared functional criteria closed by automated behavior QA, including exact text preservation, ambiguity, exclusions, copy helper, load recovery, and `?q=` handoff readiness | Wave 15 UX/mobile/accessibility, Wave 16 search intent, Wave 19 release audit |
 | Old Kanji OCR Scanner | complete | unverified as a whole; acceptance checklist still open | Wave 12 OCR/error QA, Wave 15 UX |
 | Old Document Kanji Highlighter | complete | unverified as a whole; acceptance checklist still open | Wave 12 detection/copy QA, Wave 15 UX |
 | Unicode Kanji Checker | complete | unverified as a whole; acceptance checklist still open | Wave 13 encoding/edge-case QA, Wave 15 UX |
@@ -47,7 +47,7 @@ Wave 10 updated the audit generator to consume the repository-held authoritative
 - 0 blocking issue records;
 - 168 repository-side SEO candidates.
 
-`DICTIONARY_AUDIT.md` now describes the same snapshot and policy as `dictionary-audit.json`.
+`DICTIONARY_AUDIT.md` describes the same snapshot and policy as `dictionary-audit.json`.
 
 The four classifications corrected by consuming already-verified PR8 evidence are:
 - `淚→涙` → `old_to_modern`;
@@ -61,7 +61,7 @@ The SEO candidate count remains 168 because authoritative relation evidence does
 Status: **closed in Completion Wave 10**.
 Severity at discovery: high contract-drift defect.
 
-The cluster contract and Old Kanji Reference SPEC now describe the actual current allowlist:
+The cluster contract and Old Kanji Reference SPEC describe the actual current allowlist:
 - `kanji/ga-kaku/` — 画 / 畫 with `計画 → 計畫` intent;
 - `kanji/sho-shou/` — 将 / 將;
 - `kanji/kyu-old/` — 旧 / 舊.
@@ -78,27 +78,39 @@ Post-spec work changed or strengthened live intent and handoffs for:
 - Old Kanji Reference FAQ handling for identity/unresolved search queries;
 - Name Old Kanji Checker's name/family-register intent, including explicit official-registration caution and a Legal Affairs Bureau follow-up link.
 
-Wave 10 synchronizes the Reference-side allowlist/how-to contract, but the complete eight-tool title/H1/description/schema/handoff reconciliation remains owned by Wave 16.
+Wave 10 synchronized the Reference-side allowlist/how-to contract. Wave 11 synchronized the intentional Modernizer `?q=` handoff and exact-text behavior, but the complete eight-tool title/H1/description/schema/handoff reconciliation remains owned by Wave 16.
 
 Exit condition: Wave 16 compares live title/H1/description/schema/handoffs against each tool's declared search role and updates specs only where current behavior is intentional.
 
-### C-04 — Acceptance criteria are declared but not closed with evidence
-Severity: high completion-process defect.
+### C-04 — Acceptance criteria need direct evidence
+Status: **partially closed from Completion Wave 11 onward**.
+Severity at discovery: high completion-process defect.
 Owner: Waves 11–19.
 
-Every tool specification has an Acceptance criteria section, but the checkboxes remain open. There is no canonical evidence ledger connecting each acceptance item to a test, runtime contract, manual verification, or source file.
+Wave 11 establishes the rule in practice: an acceptance checkbox is checked only when a durable automated contract or direct implementation evidence exists.
 
-Exit condition: no checkbox is marked complete until its criterion is directly verified. Wave 19 must produce a final evidence matrix or equivalent durable proof for all eight tools.
+Current closure state after Wave 11:
+- Kanji Modernizer: all declared functional acceptance criteria are checked with `tools/kanji-modernizer/tests/behavior.test.mjs` and runtime-source assertions.
+- Old Kanji Reference: search/filter, SERP/H1/canonical/schema/FAQ contracts, task handoffs, detector/handoff behavior, local-state restoration semantics, and individual-page allowlist are checked. Browser-level export interaction, remaining copy/visual behavior, Pro/public-copy, caution/layout, and Amazon criteria remain open for the owning later waves.
+- Other six tools: criteria remain open until their assigned QA waves produce evidence.
+
+Exit condition: Wave 19 must leave no unchecked criterion without either direct evidence or an explicit specification decision that removes/rewords the criterion.
 
 ### C-05 — No cluster-wide regression contract currently proves the full eight-tool journey
+Status: **partially covered in Completion Wave 11**.
 Severity: medium regression-risk defect.
 Owner: Waves 11–17 and Wave 19.
 
-The cluster contract defines explicit role separation and task handoffs, but the current completion evidence does not yet prove the full journey across all eight tools. Individual repository CI may pass while a handoff, privacy boundary, or task-role distinction drifts.
+Wave 11 adds durable coverage for the highest-risk first boundary:
+- Reference detector text → Modernizer `?q=` preserves leading/trailing whitespace and line breaks;
+- Modernizer waits for dictionary readiness before auto-converting handoff text;
+- a failed dictionary load remains retryable instead of consuming the pending auto-convert;
+- Reset removes the handoff query state;
+- parsed Reference and Modernizer dictionaries must remain equal.
 
-Required coverage before completion:
-- Reference → Modernizer/OCR/Unicode/Variant handoffs;
-- Modernizer → Reference/Highlighter/Unicode handoffs;
+Still required before completion:
+- Reference → OCR/Unicode/Variant browser handoffs;
+- Modernizer → Reference/Highlighter/Unicode browser handoffs;
 - OCR ↔ Highlighter/Reference/Modernizer task boundary;
 - Variant ↔ Unicode/Reference/Name boundary;
 - Place ↔ Reference/Modernizer/Name boundary;
@@ -116,10 +128,10 @@ The Reference directory contains multiple similarly named implementation generat
 Exit condition: determine actual runtime references. Remove only files proven unreachable and obsolete; retain any compatibility/build input that is still intentionally consumed.
 
 ### C-07 — Remaining dictionary anomalies need bounded maintenance treatment
-Status: **classification closed in Completion Wave 10; physical cleanup/review remains bounded debt**.
+Status: **classification closed in Completion Wave 10; runtime implications checked in Wave 11; authoritative data review remains bounded debt**.
 Severity at discovery: medium data-quality debt.
 
-`dictionary-audit.json` now attaches `fix`, `intentional`, or `deferred` maintenance dispositions and reasons to every remaining anomaly entry.
+`dictionary-audit.json` attaches `fix`, `intentional`, or `deferred` maintenance dispositions and reasons to every remaining anomaly entry.
 
 Current disposition summary:
 
@@ -128,10 +140,12 @@ Current disposition summary:
 - reverse issues: **0 fix / 0 intentional / 35 deferred**;
 - unresolved records: **0 fix / 0 intentional / 51 deferred**.
 
+Wave 11 verifies that Modern → Old behavior follows the current parsed reverse table deterministically: Conservative mode preserves genuinely ambiguous characters, while First-candidate mode selects the first current candidate and reports that decision. It also locks parsed Reference/Modernizer dictionary equality. This does **not** convert the 35 reverse-audit findings into authoritative linguistic relations, so no reverse table cleanup is performed from runtime inference.
+
 Interpretation:
 - the eight raw duplicates are same-value and parse-preserving but remain explicit source-cleanup debt;
 - metadata overlaps require field-level semantic review before consolidation;
-- reverse-only candidates are retained until Wave 11 verifies Modern→Old runtime behavior or authoritative evidence supports a relation change;
+- reverse-only candidates remain until authoritative relation verification supports a data change;
 - unresolved mappings remain SEO-blocked and cannot be promoted without authoritative evidence.
 
 No current anomaly is silently treated as authoritative or publishable.
@@ -149,7 +163,29 @@ Completed work:
 - preserved unresolved mappings rather than guessing.
 
 ### Wave 11 — Reference + Modernizer completion QA
-Verify search/filter/detector/export/local state plus both conversion directions, ambiguity policy, exclusions, copy actions, empty/error/large inputs, load failures, and the deferred reverse-candidate behavior that Wave 10 deliberately did not mutate.
+Status: **completed**.
+
+Durable evidence:
+- `tools/old-kanji-reference/tests/behavior.test.mjs`;
+- `tools/kanji-modernizer/tests/behavior.test.mjs`;
+- both tests are discovered by the repository-wide `scripts/run-tool-behavior-tests.mjs` runner;
+- existing Old Kanji SEO, handoff, cluster, and dictionary-drift contracts remain required.
+
+Confirmed defects fixed:
+1. Modernizer no longer trims leading/trailing whitespace or line breaks before conversion.
+2. Reference detector handoff no longer trims the text placed into `?q=`.
+3. Modernizer no longer clicks a disabled Convert button before asynchronous dictionary initialization; pending handoff conversion waits for readiness and survives a load failure until Retry.
+4. Modernizer Reset clears the Reference handoff state from both related-link state and the `q` URL parameter.
+5. Reference detector membership checks now use a prebuilt old-character lookup instead of rescanning the entire entry list for every input character; a 10,000-character regression case is covered.
+6. Reference export `dataStatus` now follows the actual verified flag instead of treating any entry with reading/meaning metadata as verified.
+7. Reference primary dictionary failure now exposes an explicit retry control while optional enrichment-file failures remain non-blocking.
+
+Verified behavior includes:
+- Reference old/new/reading/meaning/Unicode search and verified/pair-only filters;
+- detector counts, large input, exact handoff text, storage parsing/round-trip/fallback semantics, quiz-stat state, export row semantics, CSV escaping, and clipboard helper behavior;
+- Old → Modern replacements/counts, supplementary-plane preservation, Modern → Old ambiguity policies, URL/fenced-code exclusions, whitespace-only empty handling, exact copy text, JP/EN conversion equivalence, load failure/recovery, and parsed dictionary equality.
+
+Browser visual/focus/mobile behavior and end-to-end clicks that require rendered layout remain intentionally assigned to Wave 15/19 rather than being falsely closed by source-only tests.
 
 ### Wave 12 — OCR + Highlighter completion QA
 Verify one-image OCR, progress/failure states, editable correction, detection/highlighting, copy actions, degraded reference-data behavior, and task handoffs.
@@ -199,4 +235,4 @@ The Old Kanji cluster is complete only when all of the following are true:
 
 ## Current decision
 
-Completion Wave 10 closes the dictionary/data/documentation-finalization gate. The cluster is **not yet completion-locked**. The next permitted work is Completion Wave 11: Old Kanji Reference + Kanji Modernizer completion QA.
+Completion Wave 11 closes the Reference + Modernizer functional-QA gate without declaring browser UX or the full eight-tool cluster finished. The next permitted work is Completion Wave 12: Old Kanji OCR Scanner + Old Document Kanji Highlighter completion QA.

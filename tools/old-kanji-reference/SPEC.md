@@ -28,16 +28,18 @@ Provide a searchable bilingual reference for old Japanese kanji forms and their 
 - Filter entries by verified status, metadata availability, names/places, common-use old forms, old documents, rare/reference, and pair-only records.
 - Offer compact, detail, and table display modes.
 - Show common/popular entries and richer reading/meaning/usage/Unicode data only where available rather than fabricating metadata for every pair.
-- Detect registered old forms inside pasted text, highlight them, copy detected old forms/pairs, and send the full text to Kanji Modernizer through a query parameter.
+- Detect registered old forms inside pasted text, highlight them, copy detected old forms/pairs, and send the full text to Kanji Modernizer through a query parameter without trimming boundary whitespace or line breaks.
 - Maintain browser-local favorites, recent entries, display mode, and quiz statistics.
 - Provide quiz modes for old→modern, modern→old, and reading→old using suitable verified data.
 - Export the currently visible entries as CSV or JSON, copy a Markdown table, and invoke browser print.
+- Exported `dataStatus` reflects the entry's verified flag rather than merely the presence of reading/meaning metadata.
 - CSV, JSON, Markdown, and print export controls are currently Free and are not gated on Pro entitlement.
 - No unfinished public Pro sales panel is rendered. Current CSV/JSON/Markdown/print exports remain Free; future paid scope stays outside the public functional contract until verified billing activation.
 - Detail rendering may add shape and stroke-reference sections. Those sections use explicit card/grid layout, wrapping, labels, and a single-column mobile fallback instead of browser-default unstyled blocks.
 - Expose the evidence-gated individual guides currently approved by the cluster allowlist without treating the repository-side SEO candidate count as publishable inventory.
 - Provide a dedicated `旧字体の調べ方` guide that routes search, image/OCR, and whole-text conversion needs to the appropriate current tool.
 - Provide visible task handoffs for whole-text conversion, image OCR, Unicode inspection, variant comparison, and current name/family-register intent where relevant, without turning the page into a generic link directory.
+- A primary `dict.json` load failure produces a stable visible error state with an explicit retry control. Optional enrichment-file failures do not block the primary mapping list.
 - A separate optional Amazon resource panel exposes fixed searches for old/variant-kanji dictionaries, document magnifiers, and book stands.
 
 ## Amazon affiliate contract
@@ -103,20 +105,20 @@ The dense searchable catalog, filters, detector, display modes, export controls,
 
 ## Acceptance criteria
 
-- [ ] Search modes and filters operate on loaded reference data without inventing missing metadata.
-- [ ] SERP title/description identify this as a free old-kanji search/list reference and do not claim full-text conversion as the page's main function.
-- [ ] The visible H1 is `旧字体検索・旧字体一覧` in Japanese mode.
-- [ ] Canonical remains `https://nicheworks.app/tools/old-kanji-reference/` and WebApplication JSON-LD accurately describes current functionality.
-- [ ] Visible FAQ content and FAQPage schema remain aligned.
-- [ ] Task handoffs remain action-specific and respect the cluster role boundaries rather than becoming a generic SEO link dump.
-- [ ] Detector text highlights registered old forms and supports copy/send-to-converter actions locally.
-- [ ] Favorites, recent entries, display mode, and quiz statistics restore from their documented localStorage keys.
-- [ ] CSV/JSON/Markdown/print actions remain functional without requiring Pro entitlement.
+- [x] Search modes and filters operate on loaded reference data without inventing missing metadata. Evidence: `tests/behavior.test.mjs` exercises old/new/reading/meaning/Unicode lookup plus verified/pair-only filters.
+- [x] SERP title/description identify this as a free old-kanji search/list reference and do not claim full-text conversion as the page's main function. Evidence: `scripts/check-old-kanji-reference-seo.mjs`.
+- [x] The visible H1 is `旧字体検索・旧字体一覧` in Japanese mode. Evidence: `scripts/check-old-kanji-reference-seo.mjs`.
+- [x] Canonical remains `https://nicheworks.app/tools/old-kanji-reference/` and WebApplication JSON-LD accurately describes current functionality. Evidence: `scripts/check-old-kanji-reference-seo.mjs`.
+- [x] Visible FAQ content and FAQPage schema remain aligned. Evidence: `scripts/check-old-kanji-reference-seo.mjs`.
+- [x] Task handoffs remain action-specific and respect the cluster role boundaries rather than becoming a generic SEO link dump. Evidence: `scripts/check-old-kanji-internal-handoffs.mjs` and `tests/behavior.test.mjs` for exact Reference → Modernizer payload preservation.
+- [x] Detector text highlights registered old forms and supports copy/send-to-converter actions locally. Evidence: `tests/behavior.test.mjs` verifies detector hits/counts, large-input behavior, clipboard helper/bindings, and exact handoff text; runtime source renders detected characters with `<mark>`.
+- [x] Favorites, recent entries, display mode, and quiz statistics restore from their documented localStorage keys. Evidence: `tests/behavior.test.mjs` verifies list round-trips, display-mode recovery/fallback, quiz-stat recovery/fallback/save; runtime initialization consumes the four documented keys.
+- [ ] CSV/JSON/Markdown/print actions remain functional without requiring Pro entitlement. Wave 11 verifies row/status semantics, CSV escaping, clipboard behavior, and the four control bindings; final browser-interaction confirmation remains in Wave 15/19.
 - [ ] Public JP/EN copy explicitly identifies the current export actions as Free and does not label them Pro-only.
 - [ ] The public page does not expose a fixed Pro price, disabled purchase CTA, or billing-unavailable sales panel before verified billing activation.
 - [ ] Reference results retain cautions appropriate to non-authoritative old/variant-kanji data.
 - [ ] Shape/stroke detail sections have explicit responsive layout rules and do not render as unstyled raw blocks.
-- [ ] The individual-page inventory equals the reviewed allowlist; `identity`, `unresolved`, and demand-free candidates cannot be published automatically.
+- [x] The individual-page inventory equals the reviewed allowlist; `identity`, `unresolved`, and demand-free candidates cannot be published automatically. Evidence: `scripts/check-old-kanji-reference-seo.mjs` plus the Wave 10 dictionary audit gate.
 - [ ] Amazon resource links use only the three fixed search terms and `nicheworks09-22`.
 - [ ] No search/detector/detail/localStorage/export value enters Amazon URLs or affiliate analytics.
 - [ ] Associates disclosure is rendered whenever the active Amazon targets are available.
@@ -129,6 +131,7 @@ The dense searchable catalog, filters, detector, display modes, export controls,
 - `tools/old-kanji-reference/kanji/sho-shou/`
 - `tools/old-kanji-reference/kanji/kyu-old/`
 - `tools/old-kanji-reference/app-meaning-v4.js`
+- `tools/old-kanji-reference/tests/behavior.test.mjs`
 - `tools/old-kanji-reference/verified-badge.js`
 - `tools/old-kanji-reference/dict.json`
 - `tools/old-kanji-reference/meta.json`
