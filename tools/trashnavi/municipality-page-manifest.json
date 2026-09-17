@@ -212,5 +212,15 @@
   {"lgcode":"113654","pref_slug":"saitama","city_slug":"ogano","publish":true},
   {"lgcode":"113697","pref_slug":"saitama","city_slug":"higashichichibu","publish":true},
   {"lgcode":"114081","pref_slug":"saitama","city_slug":"yorii","publish":true},
-  {"lgcode":"114642","pref_slug":"saitama","city_slug":"sugito","publish":true}
+  {"lgcode":"114642","pref_slug":"saitama","city_slug":"sugito","publish":true},
+  {"lgcode":"122254","pref_slug":"chiba","city_slug":"kimitsu","publish":true},
+  {"lgcode":"122262","pref_slug":"chiba","city_slug":"futtsu","publish":true},
+  {"lgcode":"122297","pref_slug":"chiba","city_slug":"sodegaura","publish":true},
+  {"lgcode":"122106","pref_slug":"chiba","city_slug":"mobara","publish":true},
+  {"lgcode":"122131","pref_slug":"chiba","city_slug":"togane","publish":true},
+  {"lgcode":"122301","pref_slug":"chiba","city_slug":"yachimata","publish":true},
+  {"lgcode":"122319","pref_slug":"chiba","city_slug":"inzai","publish":true},
+  {"lgcode":"122327","pref_slug":"chiba","city_slug":"shiroi","publish":true},
+  {"lgcode":"122289","pref_slug":"chiba","city_slug":"yotsukaido","publish":true},
+  {"lgcode":"122335","pref_slug":"chiba","city_slug":"tomisato","publish":true}
 ]
