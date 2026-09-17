@@ -27,12 +27,10 @@ jobs:
           entries=[('112381','hasuda'),('112461','shiraoka'),('113433','ogawa'),('113492','tokigawa'),('113611','yokoze'),('113638','nagatoro'),('113654','ogano'),('113697','higashichichibu'),('114081','yorii'),('114642','sugito')]
           existing={x['lgcode'] for x in manifest}
           assert not any(code in existing for code,_ in entries)
-          text=mp.read_text().rstrip()
-          assert text.endswith(']')
+          text=mp.read_text().rstrip(); assert text.endswith(']')
           body=text[:-1].rstrip()
           body += ',\n' + ',\n'.join(f'  {{"lgcode":"{code}","pref_slug":"saitama","city_slug":"{slug}","publish":true}}' for code,slug in entries) + '\n]\n'
-          mp.write_text(body)
-          assert len(json.loads(mp.read_text()))==214
+          mp.write_text(body); assert len(json.loads(mp.read_text()))==214
           gen=Path('tools/trashnavi/scripts/generate-municipality-pages.mjs')
           s=gen.read_text(); old='if(outputs.length!==204) throw new Error(`municipality page count must be 204; got ${outputs.length}`);'; new='if(outputs.length!==214) throw new Error(`municipality page count must be 214; got ${outputs.length}`);'
           assert old in s; gen.write_text(s.replace(old,new,1))
@@ -42,6 +40,13 @@ jobs:
           spec=Path('tools/trashnavi/SPEC.md'); s=spec.read_text().rstrip(); assert '## Wave 43 ten-municipality publication' not in s
           lines=['','## Wave 43 ten-municipality publication','','Wave 43は10自治体batch scaling ruleを継続し、公開閾値を変更せず **204自治体から214自治体** へ拡張する。対象は蓮田市・白岡市・小川町・ときがわ町・横瀬町・長瀞町・小鹿野町・東秩父村・寄居町・杉戸町。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeとし、同一combined pageの二重計上や外部衛生組合・委託先等のURLによる閾値補完は行わない。','','- 蓮田市 — `/tools/trashnavi/saitama/hasuda/` — waste sorting / waste app / special disposal','- 白岡市 — `/tools/trashnavi/saitama/shiraoka/` — waste sorting / drop-off facility / special disposal','- 小川町 — `/tools/trashnavi/saitama/ogawa/` — waste sorting / collection calendar / bulky waste','- ときがわ町 — `/tools/trashnavi/saitama/tokigawa/` — waste sorting / collection calendar / drop-off facility','- 横瀬町 — `/tools/trashnavi/saitama/yokoze/` — waste sorting / collection calendar / special disposal','- 長瀞町 — `/tools/trashnavi/saitama/nagatoro/` — waste sorting / collection calendar / drop-off facility','- 小鹿野町 — `/tools/trashnavi/saitama/ogano/` — waste sorting / collection calendar / drop-off facility','- 東秩父村 — `/tools/trashnavi/saitama/higashichichibu/` — waste sorting / bulky waste / special disposal','- 寄居町 — `/tools/trashnavi/saitama/yorii/` — collection calendar / waste app / special disposal','- 杉戸町 — `/tools/trashnavi/saitama/sugito/` — collection calendar / waste app / special disposal','','Wave 43 readiness baselineは1,916 municipalities、2,730 valid HTTP(S) records、214 preferred candidates、46 direct-link datasets / 662 records / 643 unique URLs / 0 invalid URLsとする。Wave43の `last_checked: 2026-09-17` はWave42と同日なので、Readinessではsitemapを変更せず、未公開Wave43 URLも先出ししていない。','','Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 214/214、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する小川町・ときがわ町・横瀬町・長瀞町・小鹿野町・寄居町・杉戸町だけ2026 calendar calloutを表示し、蓮田市・白岡市・東秩父村には年次calloutを生成しない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。']
           spec.write_text(s+'\n'+'\n'.join(lines)+'\n')
+          root=Path('sitemap.xml'); rt=root.read_text(); assert rt.rstrip().endswith('</urlset>')
+          urls=[]
+          for _,slug in entries:
+            canonical=f'https://nicheworks.app/tools/trashnavi/saitama/{slug}/'
+            assert canonical not in rt
+            urls.append(f'  <url>\n    <loc>{canonical}</loc>\n    <lastmod>2026-09-17</lastmod>\n  </url>')
+          rt=rt.rstrip(); rt=rt[:-len('</urlset>')]+'\n'.join(urls)+'\n</urlset>\n'; root.write_text(rt)
           PY
           node tools/trashnavi/scripts/generate-municipality-pages.mjs
           node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
