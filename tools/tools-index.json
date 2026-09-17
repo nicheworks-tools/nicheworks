@@ -628,13 +628,13 @@
     {
       "slug": "moving-checklist-generator",
       "title_en": "Moving Checklist Generator",
-      "title_ja": "引越しチェックリスト生成",
-      "desc_en": "Generate a moving checklist from dates and housing notes.",
-      "desc_ja": "引越し日程から必要作業のチェックリストを作ります。",
+      "title_ja": "引っ越しやることチェックリスト",
+      "desc_en": "Build a chronological moving checklist from 30 days before the move through post-move follow-up, including address changes, utilities, packing, and moving-day tasks.",
+      "desc_ja": "引っ越し日の30日前から引越し後まで、住所変更・役所手続き・ライフライン・荷造り・当日確認を時系列で整理します。",
       "tags": [
         "moving",
         "checklist",
-        "life",
+        "timeline",
         "home"
       ]
     },
