@@ -24,10 +24,12 @@ jobs:
           node-version: '24'
       - name: Apply rollout
         run: node scripts/tmp-activate-five-amazon-affiliates.mjs
-      - name: Commit generated rollout
+      - name: Preserve workflow files and commit generated rollout
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout HEAD -- scripts/tmp-activate-five-amazon-affiliates.mjs .github/workflows/tmp-activate-five-amazon-affiliates.yml
+          rm -f .github/workflows/check-retained-amazon-affiliates.yml
           git add -A
           git diff --cached --quiet && exit 0
           git commit -m "Activate Amazon affiliates for five retained tools"
