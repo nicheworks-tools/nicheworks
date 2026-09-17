@@ -1,0 +1,90 @@
+name: tmp TrashNavi Wave44 readiness
+on:
+  push:
+    branches: [feat/trashnavi-wave44-readiness-20260917]
+permissions:
+  contents: write
+jobs:
+  readiness:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-wave44-readiness-20260917
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Register and validate Wave44 readiness
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+
+          data_path=Path('tools/trashnavi/data/direct-waste-links-supply-wave44.json')
+          rows=json.loads(data_path.read_text())
+          assert len(rows)==30, len(rows)
+          expected={
+            '113018':'ina','113247':'miyoshi','112402':'satte','112437':'yoshikawa','112241':'toda',
+            '112291':'wako','112305':'niiza','122173':'kashiwa','122271':'urayasu','122122':'sakura'
+          }
+          by={}
+          for row in rows:
+            assert row['lgcode'] in expected, row['lgcode']
+            assert row['status']=='active'
+            assert row['last_checked']=='2026-09-17'
+            assert row['language']=='ja'
+            assert row['link_type']!='municipal_home'
+            assert row['url'].startswith('https://')
+            by.setdefault(row['lgcode'],[]).append(row)
+          assert set(by)==set(expected)
+          for code, rs in by.items():
+            assert len(rs)==3, (code,len(rs))
+            assert len({r['link_type'] for r in rs})==3, (code,[r['link_type'] for r in rs])
+            assert len({r['url'] for r in rs})==3, (code,[r['url'] for r in rs])
+
+          app=Path('tools/trashnavi/app.js')
+          s=app.read_text()
+          old='"data/direct-waste-links-supply-wave43.json"]'
+          new='"data/direct-waste-links-supply-wave43.json","data/direct-waste-links-supply-wave44.json"]'
+          assert old in s and 'direct-waste-links-supply-wave44.json' not in s
+          app.write_text(s.replace(old,new,1))
+
+          manifest=json.loads(Path('tools/trashnavi/municipality-page-manifest.json').read_text())
+          published={x['lgcode'] for x in manifest if x.get('publish')}
+          assert len(manifest)==214
+          assert not (published & set(expected))
+          root=Path('sitemap.xml').read_text()
+          dedicated=Path('sitemap-trashnavi.xml').read_text()
+          for code,slug in expected.items():
+            pref='chiba' if code.startswith('122') else 'saitama'
+            canonical=f'https://nicheworks.app/tools/trashnavi/{pref}/{slug}/'
+            assert canonical not in root
+            assert canonical not in dedicated
+          print('Wave44 readiness structure: 30 records / 10 municipalities / 3 types / 3 URLs each; no prepublication')
+          PY
+
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/check-affiliate-contract.mjs
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          rows=json.loads(Path('tools/trashnavi/data/direct-waste-links-supply-wave44.json').read_text())
+          assert len(rows)==30
+          assert Path('tools/trashnavi/app.js').read_text().count('direct-waste-links-supply-wave44.json')==1
+          manifest=json.loads(Path('tools/trashnavi/municipality-page-manifest.json').read_text())
+          assert len(manifest)==214
+          print('Wave44 readiness acceptance: dataset registered; publication remains 214')
+          PY
+
+          rm .github/workflows/tmp-trashnavi-wave44-readiness.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git diff --cached --check
+          git commit -m "feat(trashnavi): register Wave44 readiness data"
+          git push origin HEAD:feat/trashnavi-wave44-readiness-20260917
