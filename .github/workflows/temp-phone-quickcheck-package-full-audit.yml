@@ -1,0 +1,40 @@
+name: Temp Phone QuickCheck full package audit
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/temp-phone-quickcheck-package-full-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print all remaining package unknowns
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('tools/phone-quickcheck/data/phones.json','utf8'));
+          const rows = data.phones.filter(p => p.included?.adapter === 'unknown' || p.included?.cable === 'unknown').map(p => ({
+            id:p.id,
+            manufacturer:p.manufacturer,
+            model:p.model,
+            market:p.market ?? null,
+            included:p.included,
+            specificationsUrl:p.sources?.specificationsUrl ?? null,
+            manualUrl:p.sources?.manualUrl ?? null,
+            releaseUrl:p.sources?.releaseUrl ?? null,
+            chargingUrl:p.sources?.chargingUrl ?? null
+          }));
+          const adapter = rows.filter(p => p.included.adapter === 'unknown');
+          const cable = rows.filter(p => p.included.cable === 'unknown');
+          console.log('ADAPTER_COUNT=' + adapter.length);
+          console.log('CABLE_COUNT=' + cable.length);
+          console.log('ADAPTER_IDS=' + JSON.stringify(adapter.map(p => p.id)));
+          console.log('CABLE_IDS=' + JSON.stringify(cable.map(p => p.id)));
+          const grouped = Object.groupBy(rows, r => r.manufacturer || 'UNKNOWN');
+          console.log('GROUPED=' + JSON.stringify(grouped, null, 2));
+          NODE
