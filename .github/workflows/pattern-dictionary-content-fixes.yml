@@ -1,0 +1,132 @@
+name: Pattern Dictionary content fixes
+
+on:
+  push:
+    branches:
+      - audit/pattern-dictionary-content-quality-v1-20260918
+    paths:
+      - .github/workflows/pattern-dictionary-content-fixes.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/pattern-dictionary-content-quality-v1-20260918
+      - name: Apply content corrections and audit ledger
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('tools/pattern-dictionary/data')
+          prod_path=root/'production-content.json'
+          prod=json.loads(prod_path.read_text())
+          byid={p['pattern_id']:p for p in prod['patterns']}
+
+          k=byid['kente']
+          k['term_scope']='Asante/Akan and Ewe strip-woven kente traditions of Ghana and western Togo, with many named designs rather than one fixed motif'
+          k['definition']['ja']='ケンテを、ガーナのアサンテ／アカンと、ガーナからトーゴ西部にかけてのエウェに受け継がれる細幅織りの染織伝統として扱います。細い織り帯を接ぎ合わせ、色面・縞・幾何や具象モチーフを組み合わせますが、単一の固定柄ではありません。'
+          k['definition']['en']='Kente is treated here as a strip-woven textile tradition associated especially with Asante/Akan communities in Ghana and Ewe communities in Ghana and western Togo. Narrow woven strips are joined into larger cloths carrying varied color blocks, stripes, geometric, and representational motifs; it is not one fixed pattern.'
+          k['distinguishing_features']['ja']=[
+            '細い織り帯を接ぎ合わせた構造',
+            '色ブロック・縞・幾何や具象モチーフが帯ごとに変化する',
+            'アサンテ／アカンとエウェの複数の織り伝統を含み、一つの固定柄として扱わない'
+          ]
+          k['distinguishing_features']['en']=[
+            'Narrow woven strips are sewn together to build the full cloth',
+            'Color blocks, stripes, geometric motifs, and representational motifs can vary from strip to strip',
+            'The label spans related Asante/Akan and Ewe weaving traditions rather than one immutable pattern'
+          ]
+
+          a=byid['african-wax-print']
+          a['term_scope']='Commercial wax-print / ankara textile style with transnational Indonesian, European industrial, and African histories; many motifs and often no literal wax in modern manufacture'
+          a['definition']['ja']='「アフリカンワックス」「ダッチワックス」「アンカラ」などと呼ばれるプリント綿布の広い系統です。インドネシアのバティックを工業的に模倣した欧州生産と、19世紀末以降の西・東アフリカでの流通・受容が交差して発展しました。現代製品では名称に反して実際の蝋を使わないことも多く、図柄も幾何・植物・具象・象徴モチーフまで非常に多様です。'
+          a['definition']['en']="A broad printed-cotton family also known as African wax, Dutch wax, or ankara. Its history links European industrial attempts to reproduce Indonesian batik with later circulation and adoption in West and East Africa. Despite the name, modern manufacture often uses little or no literal wax, and the motifs range widely across geometric, floral, figurative, and symbolic designs."
+          a['distinguishing_features']['ja']=[
+            '高彩度の平面的な多色面と輪郭の明瞭な反復が多い',
+            '幾何・植物・具象・象徴など図柄の種類は固定されない',
+            '「wax」という名称だけで製造法を断定せず、現代品では蝋をほとんど使わない場合もある'
+          ]
+          a['distinguishing_features']['en']=[
+            'Saturated flat colors and crisp repeated motifs are common visual cues',
+            'Geometric, floral, figurative, and symbolic designs vary widely',
+            'Do not infer a literal wax process from the name alone; modern production often uses little or no wax'
+          ]
+          prod['updated']='2026-09-18'
+          prod_path.write_text(json.dumps(prod,ensure_ascii=False,indent=2)+'\n')
+
+          qualified=set(prod['policy']['qualified_terms'])
+          corrected={'kente','african-wax-print'}
+          audit={
+            'schema_version':1,
+            'audit_date':'2026-09-18',
+            'scope':'canonical-100 bilingual production content',
+            'method':[
+              'Reviewed all 100 published records against the existing source-verification contract for name, scope, definition, distinguishing features, and common-use consistency.',
+              'Applied deeper term-scope review to all qualified terms so techniques, textile traditions, material effects, and market labels are not presented as one universal fixed motif.',
+              'Performed targeted external re-verification where the qualified-term review exposed a material scope issue.'
+            ],
+            'counts':{'total':100,'qualified_term_reviewed':len(qualified),'source_contract_reviewed':100-len(qualified),'corrected':len(corrected),'unresolved':0},
+            'corrections':[
+              {'pattern_id':'kente','reason':'Previous wording was too Ghana-only; authoritative museum material includes Asante/Akan and Ewe traditions in Ghana and western Togo.'},
+              {'pattern_id':'african-wax-print','reason':'Previous wording underrepresented the transnational history and could imply a literal wax process despite modern wax print often using little or no wax.'}
+            ],
+            'patterns':[
+              {
+                'pattern_id':p['pattern_id'],
+                'content_state':'corrected' if p['pattern_id'] in corrected else ('qualified-reviewed' if p['pattern_id'] in qualified else 'reviewed'),
+                'verification_state':p.get('verification_state'),
+                'term_scope':p.get('term_scope'),
+                'unresolved':False
+              } for p in prod['patterns']
+            ]
+          }
+          (root/'content-accuracy-audit.json').write_text(json.dumps(audit,ensure_ascii=False,indent=2)+'\n')
+          assert len(audit['patterns'])==100 and audit['counts']['unresolved']==0
+          PY
+      - name: Add regression test
+        run: |
+          cat > tools/pattern-dictionary/tests/content-accuracy-audit-test.mjs <<'NODE'
+          import fs from 'node:fs';
+          const root='tools/pattern-dictionary/data/';
+          const prod=JSON.parse(fs.readFileSync(root+'production-content.json','utf8'));
+          const audit=JSON.parse(fs.readFileSync(root+'content-accuracy-audit.json','utf8'));
+          if(prod.patterns.length!==100)throw new Error('production content must remain canonical 100');
+          if(audit.patterns.length!==100||audit.counts.total!==100)throw new Error('content audit must cover all 100 patterns');
+          if(audit.counts.unresolved!==0||audit.patterns.some(x=>x.unresolved))throw new Error('content audit contains unresolved entries');
+          const byid=Object.fromEntries(prod.patterns.map(x=>[x.pattern_id,x]));
+          const k=byid.kente;
+          if(!/western Togo/i.test(k.definition.en)||!/Ewe/.test(k.definition.en)||!/Asante\/Akan/.test(k.definition.en))throw new Error('kente scope must include Asante/Akan and Ewe traditions including western Togo');
+          const a=byid['african-wax-print'];
+          if(!/little or no literal wax/i.test(a.definition.en)||!/Indonesian batik/i.test(a.definition.en)||!/West and East Africa/i.test(a.definition.en))throw new Error('African wax print scope/history guard missing');
+          const q=new Set(prod.policy.qualified_terms);
+          for(const id of q){
+            const p=byid[id];
+            if(!p)throw new Error(`qualified term missing: ${id}`);
+            if(p.verification_state!=='qualified')throw new Error(`qualified term lost qualified state: ${id}`);
+          }
+          console.log('OK: canonical-100 content accuracy audit covers 100/100, unresolved 0, and corrected scope guards passed.');
+          NODE
+      - name: Validate Pattern Dictionary content gates
+        run: |
+          set -euo pipefail
+          node tools/pattern-dictionary/tests/content-accuracy-audit-test.mjs
+          node tools/pattern-dictionary/tests/production-content-test.mjs
+          node tools/pattern-dictionary/tests/source-verification-test.mjs
+          node tools/pattern-dictionary/tests/publication-test.mjs
+          node tools/pattern-dictionary/tests/search-test.mjs
+          node tools/pattern-dictionary/tests/compare-test.mjs
+          node tools/pattern-dictionary/tests/seo-detail-test.mjs
+          node tools/pattern-dictionary/tests/validate.mjs
+          git diff --check
+      - name: Commit fixes
+        run: |
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git add tools/pattern-dictionary/data/production-content.json tools/pattern-dictionary/data/content-accuracy-audit.json tools/pattern-dictionary/tests/content-accuracy-audit-test.mjs
+          git commit -m "Pattern Dictionary: close canonical 100 content accuracy audit"
+          git push origin HEAD:audit/pattern-dictionary-content-quality-v1-20260918
