@@ -10,22 +10,22 @@ This document is the audited baseline for compatibility-sensitive camera battery
 | --- | ---: |
 | Canonical `カメラ・映像` records | **192** |
 | Camera records with a basic Amazon path | **185** |
-| Camera records with verified accessory detail | **48** |
+| Camera records with verified accessory detail | **53** |
 | Reviewed camera-detail exclusions | **0** |
-| Actionable camera records still missing accessory detail | **137** |
+| Actionable camera records still missing accessory detail | **132** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 185 = detail 48 + reviewed exclusion 0 + missing 137`
+`camera basic 185 = detail 53 + reviewed exclusion 0 + missing 132`
 
-The active detail ledger contains all fourteen actionable Nikon records and thirty-four reviewed DJI records. Missing rows remain explicit rather than being converted to guessed accessory mappings or unsupported exclusions.
+The active detail ledger contains all fourteen actionable Nikon records and thirty-nine reviewed DJI records. Missing rows remain explicit rather than being converted to guessed accessory mappings or unsupported exclusions.
 
 ## Actionable coverage by maker
 
 | Maker | Basic | Detail | Reviewed exclusion | Missing |
 | --- | ---: | ---: | ---: | ---: |
-| DJI | 96 | 34 | 0 | 62 |
+| DJI | 96 | 39 | 0 | 57 |
 | OM SYSTEM | 37 | 0 | 0 | 37 |
 | GoPro | 31 | 0 | 0 | 31 |
 | Nikon | 14 | 14 | 0 | 0 |
@@ -75,24 +75,30 @@ DJI coverage advances only through bounded exact-canonical-row waves backed by D
 | 18 | `Inspire 1` | TB47 Intelligent Flight Battery / Inspire 1 Battery Charging Hub |
 | 19 | `Inspire 1 Pro/Raw` | TB47 Intelligent Flight Battery / Inspire 1 Battery Charging Hub |
 | 20 | `Spark` | Spark Intelligent Flight Battery / Spark Battery Charging Hub |
+| 21 | `Phantom 4`, `Phantom 4 Advanced`, `Phantom 4 Pro`, `Phantom 4 Pro V2.0`, `Phantom 4 RTK` | Phantom 4 Series Intelligent Flight Battery / Phantom 4 Battery Charging Hub |
 
-### Wave 20 — Spark
+### Wave 21 — Phantom 4 series
 
-Wave 20 activates exactly the canonical `Spark` row.
+Wave 21 activates exactly five canonical Phantom 4 rows:
 
-- `DJI Spark Intelligent Flight Battery` — DJI's official older-product accessory purchase guide explicitly maps `Spark` to `Spark Intelligent Flight Battery`.
-- `DJI Spark Battery Charging Hub` — DJI's official Spark Download Center publishes the `Spark Battery Charging Hub User Guide` under the Spark product.
+- `Phantom 4`
+- `Phantom 4 Advanced`
+- `Phantom 4 Pro`
+- `Phantom 4 Pro V2.0`
+- `Phantom 4 RTK`
 
-The reviewed sources are:
+DJI's official charging-hub compatibility table maps `Phantom 4 Battery Charging Hub` to `Phantom 4 Series Intelligent Flight Battery`. DJI's official battery guidance defines Phantom 4 Series standard/high-capacity intelligent batteries, while product-specific official pages independently establish the Advanced, Pro, Pro V2.0, and RTK battery/charging workflows. RTK explicitly lists both its Intelligent Flight Battery and Intelligent Flight Battery Charging Hub.
 
-- `https://www.dji.com/downloads/products/spark`
-- `https://repair.dji.com/help/content?customId=01700009975&lang=en&paperDocType=ARTICLE&re=US&spaceId=17`
+The deterministic Amazon handoffs are:
 
-Wave 20 remains exact-canonical-row only. It does not activate `DJI Spark`, `Spark 2`, or any other similarly named record.
+- `DJI Phantom 4 Series Intelligent Flight Battery`
+- `DJI Phantom 4 Battery Charging Hub`
 
-After DJI Waves 1–20 the maker-level reconciliation is:
+Wave 21 remains exact-canonical-row only. It does not activate Phantom 3 models, `DJI Phantom 4`, `Phantom 4 Pro+`, or other inferred names.
 
-`DJI camera 96 = detail 34 + reviewed exclusion 0 + missing 62`
+After DJI Waves 1–21 the maker-level reconciliation is:
+
+`DJI camera 96 = detail 39 + reviewed exclusion 0 + missing 57`
 
 ## Non-actionable camera records
 
@@ -121,7 +127,7 @@ Seven camera-category records are maker/index entries without an actionable exac
 
 The measured remaining backlog determines work order:
 
-1. Continue DJI from the remaining 62 actionable records in bounded official-evidence waves.
+1. Continue DJI from the remaining 57 actionable records in bounded official-evidence waves.
 2. Review OM SYSTEM 37 actionable records.
 3. Review GoPro 31 actionable records.
 4. Review Insta360 7 actionable records.
@@ -134,16 +140,16 @@ The camera accessory phase is complete only when:
 
 `camera basic = detail + reviewed exclusion + missing 0`
 
-The current baseline is not complete: `137` actionable records remain missing accessory detail.
+The current baseline is not complete: `132` actionable records remain missing accessory detail.
 
 ## Source of truth
 
 - `affiliate-camera-accessories.js` — Nikon Wave 1 and camera accessory target.
 - `affiliate-nikon-camera-accessories-wave2.js` — Nikon Wave 2 completion mappings.
-- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave20.js` — reviewed DJI camera accessory ledgers.
-- `affiliate-dji-camera-accessories-wave20.js` — exact reviewed Spark battery and charging-hub mapping.
+- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave21.js` — reviewed DJI camera accessory ledgers.
+- `affiliate-dji-camera-accessories-wave21.js` — exact reviewed Phantom 4 series battery and charging-hub mappings.
 - `affiliate-camera-detail-exclusions.js` — reviewed camera exclusions; currently empty.
 - `affiliate-runtime.js` — sequential browser loading of Nikon and DJI accessory ledgers before rendering.
-- `tests/dji-spark-accessory-wave20.test.mjs` — exact Wave 20 Spark compatibility boundary.
+- `tests/dji-phantom4-accessory-wave21.test.mjs` — exact Wave 21 Phantom 4 series boundary.
 - `tests/camera-accessory-coverage.test.mjs` — catalog-wide camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` — documentation drift guard and implementation-evidence synchronization.
