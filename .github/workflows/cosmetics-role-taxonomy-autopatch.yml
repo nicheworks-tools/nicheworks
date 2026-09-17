@@ -1,0 +1,38 @@
+name: Cosmetics role taxonomy autopatch
+
+on:
+  push:
+    branches:
+      - fix/cosmetics-role-taxonomy-parity-20260918
+    paths:
+      - 'tools/_shared/apply-cosmetics-role-taxonomy-parity.mjs'
+      - '.github/workflows/cosmetics-role-taxonomy-autopatch.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/cosmetics-role-taxonomy-parity-20260918
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Apply parity patch
+        run: node tools/_shared/apply-cosmetics-role-taxonomy-parity.mjs
+      - name: Commit patched runtime files
+        run: |
+          if git diff --quiet -- tools/cosmetic-ingredient-checker-lite/app.js tools/inci-fastscan/js/web_ui.js; then
+            echo 'No runtime changes to commit.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/cosmetic-ingredient-checker-lite/app.js tools/inci-fastscan/js/web_ui.js
+          git commit -m 'Cosmetics: align role taxonomy across Lite and FastScan'
+          git push origin HEAD:fix/cosmetics-role-taxonomy-parity-20260918
