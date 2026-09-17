@@ -10,28 +10,28 @@ This document is the audited baseline for compatibility-sensitive camera battery
 | --- | ---: |
 | Canonical `カメラ・映像` records | **192** |
 | Camera records with a basic Amazon path | **185** |
-| Camera records with verified accessory detail | **39** |
+| Camera records with verified accessory detail | **40** |
 | Reviewed camera-detail exclusions | **0** |
-| Actionable camera records still missing accessory detail | **146** |
+| Actionable camera records still missing accessory detail | **145** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 185 = detail 39 + reviewed exclusion 0 + missing 146`
+`camera basic 185 = detail 40 + reviewed exclusion 0 + missing 145`
 
-The current detail ledger contains all 14 actionable Nikon records plus twenty-five reviewed DJI records across Osmo Action Wave 1, Air Wave 2, Mini Wave 3, Mavic 3 Wave 4, Air 2S/Mavic Air 2 Wave 5, compact power Wave 6, Mini 2 Wave 7, FPV Wave 8, Avata Wave 9, Mavic 2 Wave 10, Mavic Mini Wave 11, and Mavic Air Wave 12.
+The current detail ledger contains all 14 actionable Nikon records plus twenty-six reviewed DJI records across Osmo Action Wave 1, Air Wave 2, Mini Wave 3, Mavic 3 Wave 4, Air 2S/Mavic Air 2 Wave 5, compact power Wave 6, Mini 2 Wave 7, FPV Wave 8, Avata Wave 9, Mavic 2 Wave 10, Mavic Mini Wave 11, Mavic Air Wave 12, and Mavic Pro Wave 13.
 
 ## Actionable coverage by maker
 
 | Maker | Basic | Detail | Reviewed exclusion | Missing |
 | --- | ---: | ---: | ---: | ---: |
-| DJI | 96 | 25 | 0 | 71 |
+| DJI | 96 | 26 | 0 | 70 |
 | OM SYSTEM | 37 | 0 | 0 | 37 |
 | GoPro | 31 | 0 | 0 | 31 |
 | Nikon | 14 | 14 | 0 | 0 |
 | Insta360 | 7 | 0 | 0 | 7 |
 
-The exact missing model arrays are emitted by `tests/camera-accessory-coverage.test.mjs` as `MANUALFINDER_CAMERA_ACCESSORY_COVERAGE`. They are intentionally not duplicated here as a 146-model prose ledger.
+The exact missing model arrays are emitted by `tests/camera-accessory-coverage.test.mjs` as `MANUALFINDER_CAMERA_ACCESSORY_COVERAGE`. They are intentionally not duplicated here as a 145-model prose ledger.
 
 ## Nikon completion — Waves 1–2
 
@@ -194,9 +194,18 @@ The canonical `Mavic Air` record has two reviewed DJI power-accessory handoffs:
 
 Wave 12 remains exact-canonical-row only. `Mavic Air 2` retains its separately reviewed Wave 5 mapping, and Wave 12 evidence is not extended to `Mavic Pro`, `Mavic Pro Platinum`, or other Mavic-family records.
 
-After DJI Waves 1–12 the maker-level reconciliation is:
+## DJI Mavic Pro — Wave 13
 
-`DJI camera 96 = detail 25 + reviewed exclusion 0 + missing 71`
+The canonical `Mavic Pro` record has two reviewed DJI power-accessory handoffs:
+
+- `Mavic Pro Intelligent Flight Battery` — DJI's official battery policy identifies the Mavic Pro Intelligent Flight Battery and its exact battery characteristics.
+- `Mavic Pro Battery Charging Hub` — DJI's official charging-hub compatibility table maps the Mavic Pro hub to the Mavic Pro Intelligent Flight Battery.
+
+DJI separately states that the Mavic Pro Battery Charging Hub also supports `Mavic Pro Platinum`, but Wave 13 does not extend the battery mapping to Platinum without an equally explicit reviewed battery boundary. `Mavic Pro Platinum` therefore remains missing rather than being inferred.
+
+After DJI Waves 1–13 the maker-level reconciliation is:
+
+`DJI camera 96 = detail 26 + reviewed exclusion 0 + missing 70`
 
 ## Non-actionable camera records
 
@@ -225,7 +234,7 @@ Seven camera-category records are maker/index entries without an actionable exac
 
 The measured remaining backlog determines the work order rather than assumptions about brand prominence:
 
-1. Continue DJI from the remaining 71 actionable records in bounded product-family waves.
+1. Continue DJI from the remaining 70 actionable records in bounded product-family waves.
 2. Review OM SYSTEM 37 actionable records.
 3. Review GoPro 31 actionable records.
 4. Review Insta360 7 actionable records.
@@ -238,7 +247,7 @@ The camera accessory phase is complete only when:
 
 `camera basic = detail + reviewed exclusion + missing 0`
 
-The current baseline is not complete: `146` actionable records remain missing accessory detail. Counts may change when the canonical catalog changes, but the reconciliation invariant and zero-unreviewed-missing completion target do not change.
+The current baseline is not complete: `145` actionable records remain missing accessory detail. Counts may change when the canonical catalog changes, but the reconciliation invariant and zero-unreviewed-missing completion target do not change.
 
 ## Source of truth
 
@@ -256,6 +265,7 @@ The current baseline is not complete: `146` actionable records remain missing ac
 - `affiliate-dji-camera-accessories-wave10.js` — exact reviewed Mavic 2 battery and charging-hub mapping.
 - `affiliate-dji-camera-accessories-wave11.js` — exact reviewed Mavic Mini battery and two-way charging-hub mapping.
 - `affiliate-dji-camera-accessories-wave12.js` — exact reviewed Mavic Air battery and charging-hub mapping.
+- `affiliate-dji-camera-accessories-wave13.js` — exact reviewed Mavic Pro battery and charging-hub mapping.
 - `affiliate-camera-detail-exclusions.js` — reviewed explicit exclusions; currently empty.
 - `tests/nikon-camera-accessory-wave1.test.mjs` — Nikon Wave 1 compatibility boundary.
 - `tests/nikon-camera-accessory-wave2.test.mjs` — Nikon Wave 2 compatibility boundary and fourteen-record Nikon completion.
@@ -271,5 +281,6 @@ The current baseline is not complete: `146` actionable records remain missing ac
 - `tests/dji-mavic2-accessory-wave10.test.mjs` — exact canonical Mavic 2 Wave 10 compatibility boundary.
 - `tests/dji-mavic-mini-accessory-wave11.test.mjs` — exact canonical Mavic Mini Wave 11 compatibility boundary.
 - `tests/dji-mavic-air-accessory-wave12.test.mjs` — exact canonical Mavic Air Wave 12 compatibility boundary.
+- `tests/dji-mavic-pro-accessory-wave13.test.mjs` — exact canonical Mavic Pro Wave 13 compatibility boundary.
 - `tests/camera-accessory-coverage.test.mjs` — catalog-wide camera coverage computation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` — documentation drift guard for this audited baseline.
