@@ -37,5 +37,5 @@ for(const id of wave5)if(offers.filter(x=>x.pattern_id===id).length!==3)throw ne
 if(offers.length!==305)throw new Error(`100-pattern publication should contain 305 maintained links after adding exactly 60 Wave 5 links; got ${offers.length}`);
 if(!app.includes('/assets/amazon-affiliate.js')||!app.includes("tool:'pattern-dictionary'")||!app.includes("placement:'pattern-detail'")||!app.includes('pd-amazon-links')||!app.includes('offer.offer_id'))throw new Error('runtime Amazon wiring incomplete');
 if(app.includes('amazonSearchUrl('))throw new Error('runtime must not construct private affiliate URLs');
-if(!helper.includes('affiliate_click')||!helper.includes('sponsored noopener'))throw new Error('shared helper analytics/sponsored semantics changed');
+if(!helper.includes('affiliate_outbound')||!helper.includes('sponsored noopener'))throw new Error('shared helper analytics/sponsored semantics changed');
 console.log(`OK: Pattern Dictionary exposes ${offers.length} maintained Amazon intent links across 100 published patterns, including exactly 60 Wave 5 links, with no free-text forwarding.`);
