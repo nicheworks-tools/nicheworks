@@ -1,5 +1,6 @@
 name: Pattern Dictionary reference audit final gate
 
+# retry: affiliate-helper-contract-aligned
 on:
   push:
     branches:
