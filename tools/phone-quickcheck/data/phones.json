@@ -7296,8 +7296,8 @@
         }
       },
       "included": {
-        "cable": "included",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.samsung.com/sg/business/smartphones/galaxy-a/galaxy-a32-5g-sm-a326blvhxsp/",
