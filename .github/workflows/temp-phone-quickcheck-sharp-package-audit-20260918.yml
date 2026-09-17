@@ -1,0 +1,26 @@
+name: Temp Phone QuickCheck Sharp package audit 20260918
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/temp-phone-quickcheck-sharp-package-audit-20260918.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print Sharp package records
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('tools/phone-quickcheck/data/phones.json','utf8'));
+          for (const id of ['sharp-aquos-r10','sharp-aquos-sense10','sharp-aquos-wish5']) {
+            const p = data.phones.find(x => x.id === id);
+            if (!p) throw new Error(id + ' not found');
+            console.log(JSON.stringify({id,market:p.market??null,included:p.included,specificationsUrl:p.sources?.specificationsUrl??null,manualUrl:p.sources?.manualUrl??null,releaseUrl:p.sources?.releaseUrl??null,verifiedAt:p.sources?.verifiedAt??null}, null, 2));
+          }
+          NODE
