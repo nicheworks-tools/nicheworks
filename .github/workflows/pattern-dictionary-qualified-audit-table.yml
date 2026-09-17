@@ -1,0 +1,52 @@
+name: Pattern Dictionary qualified audit table
+
+on:
+  push:
+    branches:
+      - audit/pattern-dictionary-content-quality-v1-20260918
+    paths:
+      - .github/workflows/pattern-dictionary-qualified-audit-table.yml
+
+permissions:
+  contents: write
+
+jobs:
+  table:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/pattern-dictionary-content-quality-v1-20260918
+      - name: Build compact qualified audit table
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('tools/pattern-dictionary/data')
+          prod=json.loads((root/'production-content.json').read_text())
+          src=json.loads((root/'source-verification.json').read_text())
+          q=set(prod['policy']['qualified_terms'])
+          srcmap={x.get('pattern_id'):x for x in src.get('patterns',[])}
+          lines=['id\tname_ja\tname_en\tscope\tdefinition_ja\tdefinition_en\tfeatures_ja\tsources']
+          for p in prod['patterns']:
+              if p['pattern_id'] not in q: continue
+              s=srcmap.get(p['pattern_id'],{})
+              pubs=[]
+              for x in (s.get('sources') or s.get('references') or []):
+                  pubs.append(f"{x.get('publisher','')}|{x.get('url','')}")
+              vals=[
+                  p['pattern_id'],p['names']['ja'],p['names']['en'],p.get('term_scope',''),
+                  p['definition']['ja'],p['definition']['en'],' / '.join(p['distinguishing_features']['ja']),'; '.join(pubs)
+              ]
+              vals=[str(v).replace('\t',' ').replace('\n',' ') for v in vals]
+              lines.append('\t'.join(vals))
+          Path('tools/pattern-dictionary/data/qualified-content-audit.tsv').write_text('\n'.join(lines)+'\n')
+          assert len(lines)==42
+          PY
+      - name: Commit table
+        run: |
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git add tools/pattern-dictionary/data/qualified-content-audit.tsv
+          git commit -m "Pattern Dictionary: add qualified-term audit table"
+          git push origin HEAD:audit/pattern-dictionary-content-quality-v1-20260918
