@@ -15,6 +15,12 @@ The public search intent is requirement-based form-builder selection: users star
 
 The tool MUST NOT present itself as a ranking of named vendors, a live price comparison, or a guarantee that one provider is suitable. Public metadata should describe "form builder/tool selection by requirements" rather than relying on the product-internal phrase "Form Tool Selector" alone.
 
+## Monetization boundary
+
+The canonical monetization class is `ADS_DONATION`. The current intent is SaaS/form-tool selection rather than physical-product shopping, so Amazon affiliate offers are not part of this product contract.
+
+A future form-service partner program would require a separate verified integration and must not turn the tool into a named-vendor ranking, live price comparison, or guaranteed recommendation.
+
 ## Current functional contract
 
 - Accept requirement toggles for file uploads, payments/billing, notifications/integrations, and multilingual forms.
@@ -72,6 +78,7 @@ The checkbox groups, result list, and memo are a stacked decision-support flow s
 - [ ] JP/EN switching preserves the same requirements and provider-verification warnings.
 - [ ] The public page has one H1 element while retaining JP/EN switching inside that heading.
 - [ ] Title, description, lead copy, and structured description communicate requirement-based form-builder/tool selection.
+- [ ] No Amazon affiliate offer is rendered under the current `ADS_DONATION` classification.
 
 ## Implementation evidence
 
