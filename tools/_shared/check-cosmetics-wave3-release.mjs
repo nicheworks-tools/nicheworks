@@ -97,8 +97,8 @@ check(affiliateConfig.includes('trackingMode: "tagged_search"'), 'Amazon trackin
 check(affiliateConfig.includes('displayMode: "post_result_category_choice"'), 'Amazon chooser must remain post-result only');
 check(affiliateConfig.includes('const ASSOCIATE_TAG = "nicheworks09-22"'), 'verified Associates tag missing');
 check(affiliateConfig.includes('associateTag: ASSOCIATE_TAG'), 'affiliate config must use the verified Associates tag constant');
-check(affiliateConfig.includes('placement: "after-summary"'), 'Lite Amazon placement changed');
-check(affiliateConfig.includes('placement: "after-results"'), 'FastScan Amazon placement changed');
+check(!affiliateConfig.includes('placement: "after-summary"'), 'Cosmetics Amazon placement must not return to after-summary');
+check((affiliateConfig.match(/placement: "after-results"/g) || []).length === 2, 'both cosmetics Amazon placements must stay after-results');
 check((affiliateConfig.match(/links: fixedSearchLinks/g) || []).length === 2, 'both cosmetics tools must retain the fixed search set');
 const affiliateCategoryKeys = ['toner', 'serum', 'moisturizer', 'cleanser', 'cleansing', 'sunscreen', 'bodycare'];
 for (const key of affiliateCategoryKeys) {
