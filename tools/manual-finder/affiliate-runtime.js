@@ -86,7 +86,13 @@
                                                                     loadScript(
                                                                       "affiliate-dji-camera-accessories-wave15.js?v=mf-dji-camera-accessory-wave15-20260917a",
                                                                       () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE15_LEDGER),
-                                                                      done
+                                                                      () => {
+                                                                        loadScript(
+                                                                          "affiliate-dji-camera-accessories-wave16.js?v=mf-dji-camera-accessory-wave16-20260917a",
+                                                                          () => Boolean(window.MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE16_LEDGER),
+                                                                          done
+                                                                        );
+                                                                      }
                                                                     );
                                                                   }
                                                                 );
