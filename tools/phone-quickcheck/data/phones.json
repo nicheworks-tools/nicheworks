@@ -9147,8 +9147,8 @@
         "wirelessMaxW": null
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.nubia.com/jp/products/smartphones/nubia/nubia-flip-5g",
