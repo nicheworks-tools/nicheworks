@@ -1,7 +1,26 @@
 (function enhanceCosmeticLite(root) {
   'use strict';
 
+  function extendRoleTaxonomy() {
+    if (typeof CATEGORY_LABELS === 'undefined' || typeof ROLE_DESCRIPTIONS === 'undefined') return;
+    Object.assign(CATEGORY_LABELS, {
+      'plant extract': { ja: '植物エキス', en: 'Plant extract' },
+      buffer: { ja: 'pH安定化', en: 'Buffer' },
+      conditioning: { ja: 'コンディショニング', en: 'Conditioning' },
+      'skin conditioning': { ja: '整肌', en: 'Skin conditioning' },
+      'hair conditioning': { ja: '毛髪コンディショニング', en: 'Hair conditioning' }
+    });
+    Object.assign(ROLE_DESCRIPTIONS, {
+      'plant extract': { ja: '植物から得られたエキス成分です。', en: 'A plant-derived extract ingredient.' },
+      buffer: { ja: '製品のpHを安定させる目的で使われる成分です。', en: 'Used to help stabilize product pH.' },
+      conditioning: { ja: '肌や毛髪の感触を整える目的で使われる成分です。', en: 'Used for skin or hair conditioning.' },
+      'skin conditioning': { ja: '肌の状態や感触を整える目的で使われる成分です。', en: 'Used for skin conditioning.' },
+      'hair conditioning': { ja: '毛髪の感触やまとまりを整える目的で使われる成分です。', en: 'Used for hair conditioning.' }
+    });
+  }
+
   function init() {
+    extendRoleTaxonomy();
     const summaryBox = document.getElementById('summaryBox');
     const categoryBlock = summaryBox?.querySelector('.category-block');
     const categoryGrid = document.getElementById('categoryGrid');
