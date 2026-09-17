@@ -23,9 +23,21 @@ const EVIDENCE_FIELDS = ['source', 'source_url', 'evidence', 'evidence_url', 're
 const GENERATED_NOTE_RE = /generated dictionary entry|use official ingredient labels for final confirmation/i;
 const CLAIM_REVIEW_RE = /\b(?:safe|safety|risk|irritat|allerg|sensiti|pregnan|toxic|comedogen|acne|well tolerated|avoid)\b/i;
 
-// PR38 freezes the measured semantic-debt baseline. These are ceilings, not
-// targets: future cleanup may reduce them, but later dictionary expansion may
-// not silently increase semantic debt while still passing coverage checks.
+// Categories that currently have a bilingual public role label and role-level
+// explanation in the answer-first cosmetics UI. This is intentionally narrower
+// than the raw dictionary taxonomy: unsupported categories remain explicit
+// Information incomplete debt instead of receiving a fabricated explanation.
+const PUBLIC_ROLE_CATEGORIES = new Set([
+  'humectant', 'moisturizer', 'soothing', 'active', 'amino acid', 'silicone',
+  'film former', 'emollient', 'oil', 'solvent', 'preservative', 'fragrance',
+  'surfactant', 'cleanser', 'uv filter', 'sunscreen', 'colorant', 'pigment',
+  'antioxidant', 'botanical', 'extract', 'peptide', 'ferment', 'thickener',
+  'emulsifier', 'chelator', 'chelating agent', 'ph', 'ph adjuster',
+  'viscosity adjuster'
+]);
+
+// Existing semantic-debt ceilings. These are ceilings, not targets: cleanup may
+// reduce them, but later dictionary expansion may not silently increase debt.
 const BASELINE_CEILINGS = Object.freeze({
   duplicate_canonical_groups: 120,
   duplicate_canonical_records_beyond_first: 126,
@@ -96,6 +108,7 @@ const hardFailures = [];
 const groups = new Map();
 const categoryCounts = new Map();
 const safetyCounts = new Map();
+const unsupportedPublicCategoryCounts = new Map();
 
 let missingCategory = 0;
 let missingSafety = 0;
@@ -103,6 +116,8 @@ let missingNote = 0;
 let generatedPlaceholderNotes = 0;
 let claimBearingNotes = 0;
 let evidenceBackedRecords = 0;
+let recordsWithPublicRole = 0;
+let recordsWithoutPublicRole = 0;
 
 for (const item of rows) {
   const en = normalizeText(item.en);
@@ -123,8 +138,17 @@ for (const item of rows) {
   const category = normalizeCategory(item.category);
   const note = normalizeText(item.note_short);
 
-  if (!category) missingCategory += 1;
-  else categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
+  if (!category) {
+    missingCategory += 1;
+    recordsWithoutPublicRole += 1;
+  } else {
+    categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
+    if (PUBLIC_ROLE_CATEGORIES.has(category)) recordsWithPublicRole += 1;
+    else {
+      recordsWithoutPublicRole += 1;
+      unsupportedPublicCategoryCounts.set(category, (unsupportedPublicCategoryCounts.get(category) || 0) + 1);
+    }
+  }
 
   if (!safety) {
     missingSafety += 1;
@@ -149,8 +173,14 @@ const safetyConflicts = [];
 const categoryConflicts = [];
 const noteConflicts = [];
 const incompleteDuplicateSemantics = [];
+let canonicalIdentitiesWithPublicRole = 0;
+let canonicalIdentitiesWithoutPublicRole = 0;
 
 for (const group of groups.values()) {
+  const categories = [...new Set(group.map((item) => normalizeCategory(item.category)).filter(Boolean))];
+  if (categories.some((category) => PUBLIC_ROLE_CATEGORIES.has(category))) canonicalIdentitiesWithPublicRole += 1;
+  else canonicalIdentitiesWithoutPublicRole += 1;
+
   if (group.length <= 1) continue;
   const summary = summarizeGroup(group);
   duplicateGroups.push(summary);
@@ -216,11 +246,17 @@ function sampleConflicts(items, limit = 25) {
 
 const report = {
   status: hardFailures.length ? 'fail' : 'pass',
-  phase: 'semantic-quality-baseline-frozen',
+  phase: 'semantic-quality-and-public-role-readiness',
   dictionary_files: DATA_FILES.length,
   dictionary_records: rows.length,
   canonical_identities: groups.size,
   ...measured,
+  public_role_categories_supported: PUBLIC_ROLE_CATEGORIES.size,
+  records_with_public_role_explanation: recordsWithPublicRole,
+  records_without_public_role_explanation: recordsWithoutPublicRole,
+  canonical_identities_with_public_role_explanation: canonicalIdentitiesWithPublicRole,
+  canonical_identities_without_public_role_explanation: canonicalIdentitiesWithoutPublicRole,
+  unsupported_public_category_counts: topCounts(unsupportedPublicCategoryCounts, 50),
   records_with_explicit_evidence_metadata: evidenceBackedRecords,
   frozen_ceiling: BASELINE_CEILINGS,
   safety_values: topCounts(safetyCounts, 20),
