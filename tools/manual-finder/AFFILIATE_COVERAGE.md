@@ -21,12 +21,12 @@ Required printer reconciliation:
 
 The camera accessory audit independently reconciles as:
 
-`camera basic 185 = detail 48 + reviewed exclusion 0 + missing 137`
+`camera basic 185 = detail 53 + reviewed exclusion 0 + missing 132`
 
 Maker-level camera state:
 
 - `Nikon camera 14 = detail 14 + reviewed exclusion 0 + missing 0`
-- `DJI camera 96 = detail 34 + reviewed exclusion 0 + missing 62`
+- `DJI camera 96 = detail 39 + reviewed exclusion 0 + missing 57`
 - OM SYSTEM: 37 missing
 - GoPro: 31 missing
 - Insta360: 7 missing
@@ -88,7 +88,7 @@ Nikon camera accessory coverage remains complete:
 
 Shared accessory families are not generalized by model-name similarity; each active row is explicit in the reviewed ledger.
 
-## DJI camera accessory Waves 1–20
+## DJI camera accessory Waves 1–21
 
 DJI camera accessory coverage advances only through bounded exact-canonical-model waves. Every active row requires DJI official evidence; neighboring names and variants remain fail-closed until separately reviewed.
 
@@ -114,23 +114,24 @@ DJI camera accessory coverage advances only through bounded exact-canonical-mode
 | 18 | `Inspire 1` | TB47 Intelligent Flight Battery / Inspire 1 Battery Charging Hub |
 | 19 | `Inspire 1 Pro/Raw` | TB47 Intelligent Flight Battery / Inspire 1 Battery Charging Hub |
 | 20 | `Spark` | Spark Intelligent Flight Battery / Spark Battery Charging Hub |
+| 21 | `Phantom 4`, `Phantom 4 Advanced`, `Phantom 4 Pro`, `Phantom 4 Pro V2.0`, `Phantom 4 RTK` | Phantom 4 Series Intelligent Flight Battery / Phantom 4 Battery Charging Hub |
 
-### DJI Spark — Wave 20
+### DJI Phantom 4 series — Wave 21
 
-Wave 20 activates exactly `Spark`.
+Wave 21 activates exactly five canonical Phantom 4 rows. DJI's official charging-hub compatibility table maps `Phantom 4 Battery Charging Hub` to `Phantom 4 Series Intelligent Flight Battery`. Official Phantom 4-series battery guidance identifies the standard/high-capacity Intelligent Flight Battery family, while the Advanced, Pro/Pro V2.0, and RTK official support/charging pages establish the reviewed model-specific boundary. RTK explicitly lists both its Intelligent Flight Battery and Intelligent Flight Battery Charging Hub.
 
-DJI's official older-product accessory purchase guide explicitly maps `Spark` to `Spark Intelligent Flight Battery`. DJI's official Spark Download Center publishes the `Spark Battery Charging Hub User Guide` under the Spark product. These sources support the deterministic Amazon handoffs:
+The deterministic Amazon handoffs are:
 
-- `DJI Spark Intelligent Flight Battery`
-- `DJI Spark Battery Charging Hub`
+- `DJI Phantom 4 Series Intelligent Flight Battery`
+- `DJI Phantom 4 Battery Charging Hub`
 
-Wave 20 does not infer compatibility to `DJI Spark`, `Spark 2`, or other similarly named rows.
+Wave 21 does not infer compatibility to Phantom 3 rows, `DJI Phantom 4`, `Phantom 4 Pro+`, or other non-canonical spellings.
 
-After Waves 1–20:
+After Waves 1–21:
 
-`DJI camera 96 = detail 34 + reviewed exclusion 0 + missing 62`
+`DJI camera 96 = detail 39 + reviewed exclusion 0 + missing 57`
 
-The catalog-wide camera audit is therefore 185 actionable basic rows, 48 detail mappings, 0 reviewed exclusions, and 137 missing accessory-detail rows.
+The catalog-wide camera audit is therefore 185 actionable basic rows, 53 detail mappings, 0 reviewed exclusions, and 132 missing accessory-detail rows.
 
 ## Runtime boundary and source of truth
 
@@ -139,14 +140,14 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 48 detail 
 - Maker-specific printer ledgers own reviewed consumable mappings.
 - `affiliate-printer-detail-exclusions.js` owns reviewed printer exclusions.
 - `affiliate-camera-accessories.js` and `affiliate-nikon-camera-accessories-wave2.js` own Nikon camera mappings.
-- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave20.js` own reviewed DJI camera mappings.
-- `affiliate-dji-camera-accessories-wave20.js` adds the exact reviewed `Spark` battery and charging-hub mapping and exposes the merged 48-row camera detail ledger.
+- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave21.js` own reviewed DJI camera mappings.
+- `affiliate-dji-camera-accessories-wave21.js` adds the exact reviewed five-row Phantom 4 series mapping and exposes the merged 53-row camera detail ledger.
 - `affiliate-camera-detail-exclusions.js` remains empty.
 - `affiliate-runtime.js` sequentially loads Nikon and DJI ledgers before affiliate rendering.
 - `tests/affiliate-coverage.test.mjs` and `tests/affiliate-doc-sync.test.mjs` protect printer reconciliation.
-- `tests/dji-spark-accessory-wave20.test.mjs` protects the exact Spark boundary.
+- `tests/dji-phantom4-accessory-wave21.test.mjs` protects the exact Phantom 4 series boundary.
 - `tests/camera-accessory-coverage.test.mjs` computes camera reconciliation and exact missing-model diagnostics.
-- `tests/camera-accessory-doc-sync.test.mjs` prevents documentation drift.
+- `tests/camera-accessory-doc-sync.test.mjs` prevents documentation drift and auto-discovers DJI wave evidence.
 - `CAMERA_ACCESSORY_COVERAGE.md` records the measured camera baseline.
 
 Unsupported categories, empty models, malformed URLs, wrong makers, wrong categories, nonexistent model IDs, and unreviewed compatibility mappings fail closed. Official manual/support links remain above the commercial block.
@@ -171,10 +172,10 @@ Nikon remains closed only while:
 DJI remains partial at:
 
 - DJI basic = 96
-- DJI detail = 34
+- DJI detail = 39
 - DJI reviewed exclusions = 0
-- DJI missing = 62
+- DJI missing = 57
 
 ## Next expansion gate
 
-Printer-detail is closed. Nikon camera coverage is closed. The measured camera backlog continues with DJI 62 actionable rows, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded exact-model official-evidence waves.
+Printer-detail is closed. Nikon camera coverage is closed. The measured camera backlog continues with DJI 57 actionable rows, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded exact-model official-evidence waves.
