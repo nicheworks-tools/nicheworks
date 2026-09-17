@@ -1,0 +1,73 @@
+name: Pattern Dictionary v1 accessibility QA v3
+
+on:
+  push:
+    branches:
+      - audit/pattern-dictionary-v1-product-quality-20260917
+    paths:
+      - .github/workflows/pattern-dictionary-v1-a11y-qa-v3.yml
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/pattern-dictionary-v1-product-quality-20260917
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run focused static accessibility contract
+        run: |
+          node --check tools/pattern-dictionary/app.js
+          node tools/pattern-dictionary/tests/browse-mobile-test.mjs
+          git diff --check
+      - name: Install browser QA dependencies
+        run: |
+          npm install --no-save --package-lock=false playwright@1.55.0 axe-core@4.10.3
+          npx playwright install --with-deps chromium
+      - name: Start static server
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/pd-http.log 2>&1 &
+          for i in {1..20}; do curl -fsS http://127.0.0.1:8000/tools/pattern-dictionary/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/pd-http.log; exit 1
+      - name: Run WCAG and scroll-region QA
+        run: |
+          cat > .pd-a11y-qa.cjs <<'NODE'
+          const {chromium}=require('playwright');
+          const assert=require('node:assert/strict');
+          const axePath=require.resolve('axe-core/axe.min.js');
+          const base='http://127.0.0.1:8000/tools/pattern-dictionary/';
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const page=await browser.newPage({viewport:{width:390,height:844}});
+            const urls=[base,base+'en/',base+'search.html?q='+encodeURIComponent('白黒のギザギザしたチェック'),base+'patterns/houndstooth/',base+'compare.html?a=chevron&b=herringbone'];
+            const violations=[];
+            for(const url of urls){
+              await page.goto(url,{waitUntil:'domcontentloaded'});
+              if(url===base||url===base+'en/')await page.waitForFunction(()=>document.querySelectorAll('#pattern-grid .pd-card').length===100);
+              if(url.includes('search.html'))await page.waitForFunction(()=>document.querySelector('#results')?.textContent.trim().length>0);
+              if(url.includes('/patterns/'))await page.waitForSelector('.pd-detail-image');
+              if(url.includes('compare.html'))await page.waitForSelector('.pd-compare-guide');
+              await page.addScriptTag({path:axePath});
+              const result=await page.evaluate(async()=>axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}));
+              for(const v of result.violations)violations.push({url,id:v.id,impact:v.impact,help:v.help,nodes:v.nodes.map(n=>({target:n.target,html:n.html,failureSummary:n.failureSummary}))});
+            }
+            console.log('AXE_VIOLATIONS',JSON.stringify(violations,null,2));
+            const blocking=violations.filter(v=>v.impact==='serious'||v.impact==='critical');
+            assert.deepEqual(blocking,[]);
+            await page.goto(base+'compare.html?a=chevron&b=herringbone',{waitUntil:'domcontentloaded'});
+            await page.waitForSelector('.pd-table-wrap');
+            const region=await page.locator('.pd-table-wrap').evaluate(el=>({tab:el.tabIndex,role:el.getAttribute('role'),label:el.getAttribute('aria-label')}));
+            assert.equal(region.tab,0); assert.equal(region.role,'region'); assert.equal(region.label,'比較表');
+            await page.locator('.pd-table-wrap').focus();
+            const focus=await page.locator('.pd-table-wrap').evaluate(el=>({active:document.activeElement===el,outline:getComputedStyle(el).outlineStyle,width:getComputedStyle(el).outlineWidth}));
+            assert.equal(focus.active,true); assert.notEqual(focus.outline,'none'); assert.notEqual(focus.width,'0px');
+            console.log('OK: WCAG A/AA serious/critical violations = 0 and comparison scroll region is keyboard accessible.');
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+          node .pd-a11y-qa.cjs
