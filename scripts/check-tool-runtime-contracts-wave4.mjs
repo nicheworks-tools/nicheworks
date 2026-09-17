@@ -65,11 +65,15 @@ has('tools/moving-checklist-generator/app.js', 'function saveChecks(key, checks)
 has('tools/moving-checklist-generator/app.js', 'window.print()');
 has('tools/moving-checklist-generator/index.html', '印刷用メモは保存しません');
 
-// 52. Moving / Lease Final Check — condition-keyed storage and entitlement-isolated Pro actions.
+// 52. Moving / Lease Final Check — free-only condition-keyed storage and local outputs; retired Pro must stay absent.
 has('tools/moving-lease-final-check/app.js', 'nw_moving_final_v1:${date}:${type}');
-has('tools/moving-lease-final-check/app.js', 'function requirePro(event)');
-has('tools/moving-lease-final-check/pro-bridge.js', "const EXPECTED_ENTITLEMENT = 'nicheworks_pro'");
-has('tools/moving-lease-final-check/pro-bridge.js', 'status.active && status.entitlement === EXPECTED_ENTITLEMENT');
+has('tools/moving-lease-final-check/app.js', 'async function copyTxt()');
+has('tools/moving-lease-final-check/app.js', 'function saveTxt()');
+has('tools/moving-lease-final-check/app.js', 'window.print()');
+lacks('tools/moving-lease-final-check/app.js', 'requirePro', 'retired Pro runtime gate');
+lacks('tools/moving-lease-final-check/index.html', '/assets/nw-pro.js', 'retired shared Pro client');
+lacks('tools/moving-lease-final-check/index.html', 'buy.stripe.com', 'retired Stripe purchase URL');
+check(!exists('tools/moving-lease-final-check/pro-bridge.js'), 'tools/moving-lease-final-check/pro-bridge.js: retired Pro bridge must be absent');
 
 // 53. Name Old Kanji Checker — same-site mappings, optional metadata fallback, no unfinished public sales UI.
 has('tools/name-old-kanji-checker/app.js', "const DICT_URL = '../old-kanji-reference/dict.json'");
