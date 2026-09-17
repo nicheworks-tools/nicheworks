@@ -1,0 +1,28 @@
+name: Temp Phone QuickCheck package remaining audit C
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/temp-phone-quickcheck-package-remaining-audit-c.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print package unknowns
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('tools/phone-quickcheck/data/phones.json','utf8'));
+          const project = p => ({id:p.id,manufacturer:p.manufacturer,model:p.model,market:p.market??null,included:p.included,specificationsUrl:p.sources?.specificationsUrl??null,releaseUrl:p.sources?.releaseUrl??null,manualUrl:p.sources?.manualUrl??null});
+          const adapter = data.phones.filter(p => p.included?.adapter === 'unknown');
+          const cable = data.phones.filter(p => p.included?.cable === 'unknown');
+          console.log('ADAPTER_COUNT=' + adapter.length);
+          console.log('CABLE_COUNT=' + cable.length);
+          console.log('ADAPTER=' + JSON.stringify(adapter.map(project), null, 2));
+          console.log('CABLE=' + JSON.stringify(cable.map(project), null, 2));
+          NODE
