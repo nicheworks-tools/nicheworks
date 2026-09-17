@@ -1,0 +1,28 @@
+name: Pattern Dictionary reference audit sync main
+
+on:
+  push:
+    branches:
+      - fix/pattern-dictionary-reference-audit-20260917
+    paths:
+      - .github/workflows/pattern-dictionary-reference-audit-sync-main.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/pattern-dictionary-reference-audit-20260917
+          fetch-depth: 0
+      - name: Merge latest main
+        run: |
+          set -euo pipefail
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+          git push origin HEAD:fix/pattern-dictionary-reference-audit-20260917
