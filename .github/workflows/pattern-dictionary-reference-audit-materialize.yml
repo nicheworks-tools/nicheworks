@@ -1,0 +1,75 @@
+name: Pattern Dictionary reference audit materialize
+
+on:
+  push:
+    branches:
+      - fix/pattern-dictionary-reference-audit-20260917
+    paths:
+      - .github/workflows/pattern-dictionary-reference-audit-materialize.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/pattern-dictionary-reference-audit-20260917
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Generate audited corrections
+        run: |
+          python3 tools/pattern-dictionary/scripts/generate-reference-images-audit-fixes.py
+          python3 tools/pattern-dictionary/scripts/generate-reference-images-audit-fixes-v2.py
+          node tools/pattern-dictionary/scripts/apply-reference-image-accuracy-audit.mjs
+      - name: Run canonical 100 Pattern Dictionary gates
+        run: |
+          set -euo pipefail
+          cd tools/pattern-dictionary
+          node tests/validate.mjs
+          node tests/canonical-100-test.mjs
+          node tests/production-content-test.mjs
+          node tests/source-verification-test.mjs
+          node tests/reference-image-test.mjs
+          node tests/reference-image-accuracy-audit-test.mjs
+          node tests/publication-test.mjs
+          node tests/search-test.mjs
+          node tests/compare-test.mjs
+          node tests/affiliate-test.mjs
+          node tests/seo-detail-test.mjs
+          node tests/browse-mobile-test.mjs
+          node tests/wave2-production-content-test.mjs
+          node tests/wave2-source-verification-test.mjs
+          node tests/wave3-source-verification-test.mjs
+          node tests/wave4-source-verification-test.mjs
+          node tests/wave5-source-verification-test.mjs
+          cd ../..
+          git diff --check
+      - name: Commit audited corrections
+        run: |
+          set -euo pipefail
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git add \
+            tools/pattern-dictionary/assets/reference/shepherd-check.png \
+            tools/pattern-dictionary/assets/reference/glen-check.png \
+            tools/pattern-dictionary/assets/reference/prince-of-wales-check.png \
+            tools/pattern-dictionary/assets/reference/gun-club-check.png \
+            tools/pattern-dictionary/assets/reference/herringbone.png \
+            tools/pattern-dictionary/assets/reference/kagome.png \
+            tools/pattern-dictionary/assets/reference/same-komon.png \
+            tools/pattern-dictionary/assets/reference/tomoe.png \
+            tools/pattern-dictionary/assets/reference/fleur-de-lis.png \
+            tools/pattern-dictionary/assets/reference/marbling.png \
+            tools/pattern-dictionary/assets/reference/sayagata.png \
+            tools/pattern-dictionary/assets/reference/giraffe-print.png \
+            tools/pattern-dictionary/assets/reference/zebra-print.png \
+            tools/pattern-dictionary/data/reference-images.json \
+            tools/pattern-dictionary/data/reference-image-review.json \
+            tools/pattern-dictionary/data/reference-image-accuracy-audit.json
+          git commit -m "Pattern Dictionary: materialize audited reference corrections"
+          git push origin HEAD:fix/pattern-dictionary-reference-audit-20260917
