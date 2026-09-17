@@ -432,15 +432,15 @@
     },
     {
       "slug": "laundry-code-decode",
-      "title_en": "Laundry Code Decode",
-      "title_ja": "洗濯表示コード読み解き",
-      "desc_en": "Decode laundry symbols and care-label notes.",
-      "desc_ja": "洗濯表示やケアラベルの意味を確認します。",
+      "title_en": "Laundry Care Symbol Guide",
+      "title_ja": "洗濯表示記号の意味",
+      "desc_en": "Look up the 43 current JIS L 0001:2024 laundry care symbols by meaning, category, or symbol number.",
+      "desc_ja": "JIS L 0001:2024の現行洗濯表示43記号を、意味・カテゴリ・記号番号から確認できます。",
       "tags": [
         "laundry",
-        "clothing",
-        "symbols",
-        "life"
+        "care-label",
+        "jis",
+        "symbols"
       ]
     },
     {
