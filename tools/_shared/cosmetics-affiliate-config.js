@@ -56,7 +56,7 @@
   ]);
 
   const config = Object.freeze({
-    version: "1.3.0",
+    version: "1.4.0",
     provider: "amazon",
     enabled: true,
     trackingMode: "tagged_search",
@@ -69,7 +69,7 @@
     slots: Object.freeze({
       "cosmetic-ingredient-checker-lite": Object.freeze({
         slotId: "amazonAffiliateSlot",
-        placement: "after-summary",
+        placement: "after-results",
         links: fixedSearchLinks
       }),
       "inci-fastscan": Object.freeze({

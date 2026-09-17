@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-57QT78M3JB');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>化粧品成分チェッカー｜INCI・日本語成分名を照合 | NicheWorks</title>
-  <meta name="description" content="化粧品の全成分表示を貼り付け、INCI名・日本語成分名をローカル辞書と照合して主な分類や確認候補を整理できる無料の化粧品成分チェッカーです。入力内容はブラウザ内で処理します。">
+  <title>化粧品成分チェッカー｜成分の役割・用途を整理 | NicheWorks</title>
+  <meta name="description" content="化粧品の全成分表示を貼り付けると、各成分の主な役割と簡単な説明を表示し、成分表全体の役割構成を整理できる無料ツールです。入力内容はブラウザ内で処理します。">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <link rel="canonical" href="https://nicheworks.app/tools/cosmetic-ingredient-checker-lite/">
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./ui-v2.css">
+  <link rel="stylesheet" href="./enhancements.css?v=20260917-answer-first-1">
+  <link rel="stylesheet" href="/tools/_shared/cosmetics-affiliate-slot.css?v=20260917-answer-first-1">
 
-  <meta property="og:title" content="化粧品成分チェッカー｜INCI・日本語成分名を照合 | NicheWorks">
-  <meta property="og:description" content="全成分表示を貼り付け、INCI名・日本語成分名をローカル辞書と照合して主な分類や確認候補を整理できる無料ツールです。">
+  <meta property="og:title" content="化粧品成分チェッカー｜成分の役割・用途を整理 | NicheWorks">
+  <meta property="og:description" content="全成分表示を貼り付けて、各成分の主な役割と説明、成分表全体の役割構成を確認できます。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nicheworks.app/tools/cosmetic-ingredient-checker-lite/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta property="og:site_name" content="NicheWorks">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="化粧品成分チェッカー｜INCI・日本語成分名を照合 | NicheWorks">
-  <meta name="twitter:description" content="全成分表示を貼り付け、INCI名・日本語成分名をローカル辞書と照合して主な分類や確認候補を整理できる無料ツールです。">
+  <meta name="twitter:title" content="化粧品成分チェッカー｜成分の役割・用途を整理 | NicheWorks">
+  <meta name="twitter:description" content="全成分表示を貼り付けて、各成分の主な役割と説明を確認できます。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
 
   <script type="application/ld+json">
@@ -40,7 +42,7 @@
     "url": "https://nicheworks.app/tools/cosmetic-ingredient-checker-lite/",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
-    "description": "化粧品の全成分表示を貼り付け、INCI名・日本語成分名をローカル辞書と照合して主な分類や確認候補を整理できる無料の化粧品成分チェッカーです。",
+    "description": "化粧品の全成分表示から、それぞれの成分の主な役割と簡単な説明を整理する無料ツールです。",
     "inLanguage": ["ja", "en"],
     "publisher": { "@type": "Organization", "name": "NicheWorks", "url": "https://nicheworks.app/" }
   }
@@ -54,6 +56,8 @@
     data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'>
   </script>
   <meta name="robots" content="index,follow">
+
+  <script src="/tools/_shared/cosmetic-ingredient-parser.js?v=20260917-answer-first-1"></script>
 </head>
 
 <body class="lite-v2">
@@ -77,14 +81,14 @@
     <section class="tool-hero" aria-labelledby="tool-title">
       <p class="eyebrow">PASTE → CHECK → REVIEW</p>
       <h1 id="tool-title" data-lang-text
-        data-ja="化粧品の全成分表示を、貼るだけで整理。"
-        data-en="Paste a cosmetic ingredient list and organize it instantly.">化粧品の全成分表示を、貼るだけで整理。</h1>
+        data-ja="化粧品の全成分表示を、役割ごとに整理。"
+        data-en="Understand what each cosmetic ingredient does.">化粧品の全成分表示を、役割ごとに整理。</h1>
       <p class="tool-hero-lead" data-lang-text
-        data-ja="パッケージや公式サイトの全成分表示を貼り付けると、成分名を辞書と照合し、認識できた成分・確認候補・未分類に分けて表示します。"
-        data-en="Paste the full ingredient list from a package or official product page. The tool matches ingredient names and separates recognized, review, and unclassified items.">パッケージや公式サイトの全成分表示を貼り付けると、成分名を辞書と照合し、認識できた成分・確認候補・未分類に分けて表示します。</p>
+        data-ja="全成分表示を貼り付けると、それぞれの成分が何のために使われるのかを整理し、主な役割と説明を表示します。"
+        data-en="Paste a full ingredient list to see the main role and explanation for each ingredient.">全成分表示を貼り付けると、それぞれの成分が何のために使われるのかを整理し、主な役割と説明を表示します。</p>
       <p class="tool-hero-sub" data-lang-text
-        data-ja="安全性を採点するツールではありません。成分名と、追加確認が必要な項目を整理するためのツールです。"
-        data-en="This is not a safety scoring tool. It helps organize ingredient names and items that may need further review.">安全性を採点するツールではありません。成分名と、追加確認が必要な項目を整理するためのツールです。</p>
+        data-ja="成分の役割を把握するための参考ツールです。濃度や製品全体の安全性を判定するものではありません。"
+        data-en="This is a reference tool for understanding ingredient roles; it does not determine concentration or overall product safety.">成分の役割を把握するための参考ツールです。濃度や製品全体の安全性を判定するものではありません。</p>
 
       <div class="purpose-strip" aria-label="Tool purpose">
         <div class="purpose-item">
@@ -93,7 +97,7 @@
         </div>
         <div class="purpose-item">
           <strong data-lang-text data-ja="確認" data-en="Check">確認</strong>
-          <span data-lang-text data-ja="辞書一致・確認候補・未分類を分離" data-en="Separate matched, review, and unclassified items">辞書一致・確認候補・未分類を分離</span>
+          <span data-lang-text data-ja="各成分の主な役割と説明" data-en="See each ingredient’s role and explanation">各成分の主な役割と説明</span>
         </div>
         <div class="purpose-item">
           <strong data-lang-text data-ja="向いている使い方" data-en="Best for">向いている使い方</strong>
@@ -125,44 +129,60 @@
             <button id="copyBtn" class="btn" type="button" data-lang-text data-ja="結果をコピー" data-en="Copy results">結果をコピー</button>
           </div>
           <div class="input-meta">
-            <span id="dictionaryStatus" class="dictionary-status" aria-live="polite">成分辞書を準備しています。</span>
+            <span id="dictionaryStatus" class="dictionary-status" aria-live="polite" hidden>成分情報を準備しています。</span>
             <span class="keyboard-hint" data-lang-text data-ja="⌘ / Ctrl + Enter でも確認" data-en="Use Cmd / Ctrl + Enter to check">⌘ / Ctrl + Enter でも確認</span>
           </div>
           <div id="copyStatus" class="copy-status" aria-live="polite"></div>
           <div id="disclaimerBox" class="disclaimer-box" data-lang-text
-            data-ja="<strong>情報提供のみ：</strong>成分名をローカル辞書と照合して整理する参考ツールです。濃度・処方全体・個人差は判定できず、医学的・薬機法上の診断や安全性保証は行いません。"
-            data-en="<strong>For reference only:</strong> This tool organizes ingredient names by matching them against a local dictionary. It cannot determine concentration, the full formulation, individual suitability, medical diagnosis, or guarantee safety."><strong>情報提供のみ：</strong>成分名をローカル辞書と照合して整理する参考ツールです。濃度・処方全体・個人差は判定できず、医学的・薬機法上の診断や安全性保証は行いません。</div>
+            data-ja="<strong>情報提供のみ：</strong>成分の主な役割を整理する参考ツールです。濃度・処方全体・個人差は判定できず、医学的・薬機法上の診断や安全性保証は行いません。"
+            data-en="<strong>For reference only:</strong> This tool organizes the main roles of cosmetic ingredients. It cannot determine concentration, the full formulation, individual suitability, medical diagnosis, or guarantee safety."><strong>情報提供のみ：</strong>成分の主な役割を整理する参考ツールです。濃度・処方全体・個人差は判定できず、医学的・薬機法上の診断や安全性保証は行いません。</div>
         </section>
 
         <section class="tool-card results-card" id="results" aria-labelledby="results-title">
           <div class="results-header">
             <div>
               <p class="eyebrow">STEP 2</p>
-              <h2 id="results-title" class="section-title" data-lang-text data-ja="全体を見てから、各成分を確認" data-en="See the overview, then review each ingredient">全体を見てから、各成分を確認</h2>
+              <h2 id="results-title" class="section-title" data-lang-text data-ja="成分ごとの役割と説明" data-en="Ingredient roles and explanations">成分ごとの役割と説明</h2>
               <p class="section-desc" data-lang-text
-                data-ja="入力順を維持します。「確認候補」は危険判定ではなく、使用条件や公式情報を追加確認するための目印です。"
-                data-en="Input order is preserved. “Review” is not a danger label; it marks items that may need additional official information or usage-condition checks.">入力順を維持します。「確認候補」は危険判定ではなく、使用条件や公式情報を追加確認するための目印です。</p>
+                data-ja="結果は成分ごとに表示します。複数成分を調べた場合だけ、絞り込みと全体の役割構成も使えます。"
+                data-en="Results are shown ingredient by ingredient. Filters and the overall role summary appear only when they are useful for multiple ingredients.">結果は成分ごとに表示します。複数成分を調べた場合だけ、絞り込みと全体の役割構成も使えます。</p>
             </div>
-            <div class="parsed-count"><span data-lang-text data-ja="解析数" data-en="Parsed">解析数</span> <strong id="parsedCount">0</strong></div>
+            <div class="parsed-count"><span data-lang-text data-ja="成分数" data-en="Ingredients">成分数</span> <strong id="parsedCount">0</strong></div>
           </div>
+
+          <div class="table-wrapper">
+            <table id="itemsTable" class="result-table">
+              <thead>
+                <tr>
+                  <th data-lang-text data-ja="成分" data-en="Ingredient">成分</th>
+                  <th data-lang-text data-ja="主な役割" data-en="Main role">主な役割</th>
+                  <th data-lang-text data-ja="役割の説明" data-en="Role explanation">役割の説明</th>
+                </tr>
+              </thead>
+              <tbody id="itemsTableBody"></tbody>
+            </table>
+          </div>
+          <div id="itemsEmpty" class="empty-state" data-lang-text
+            data-ja="成分リストを貼り付けて「成分を確認」を押すと、ここに各成分の役割と説明が表示されます。"
+            data-en="Paste an ingredient list and press “Check ingredients” to see the role and explanation for each ingredient.">成分リストを貼り付けて「成分を確認」を押すと、ここに各成分の役割と説明が表示されます。</div>
 
           <div id="summaryBox" class="summary-box" hidden>
             <div class="metric-grid" aria-label="解析サマリー">
               <div class="metric-card">
-                <span class="metric-label" data-lang-text data-ja="辞書一致" data-en="Matched">辞書一致</span>
+                <span class="metric-label" data-lang-text data-ja="役割情報あり" data-en="Role identified">役割情報あり</span>
                 <strong id="matchedCount" class="metric-value">0</strong>
               </div>
-              <div class="metric-card metric-review">
-                <span class="metric-label" data-lang-text data-ja="確認候補" data-en="Review">確認候補</span>
+              <div class="metric-card metric-review" hidden>
+                <span class="metric-label" data-lang-text data-ja="補足確認" data-en="Additional review">補足確認</span>
                 <strong id="reviewCount" class="metric-value">0</strong>
               </div>
               <div class="metric-card">
-                <span class="metric-label" data-lang-text data-ja="未分類" data-en="Unclassified">未分類</span>
+                <span class="metric-label" data-lang-text data-ja="情報未登録" data-en="Information unavailable">情報未登録</span>
                 <strong id="unknownCount" class="metric-value">0</strong>
               </div>
             </div>
             <div class="category-block">
-              <p class="summary-title" data-lang-text data-ja="主な分類" data-en="Main categories">主な分類</p>
+              <p class="summary-title" data-lang-text data-ja="全体の主な役割" data-en="Overall main roles">全体の主な役割</p>
               <div id="categoryGrid" class="category-grid"></div>
             </div>
           </div>
@@ -171,26 +191,10 @@
             id="amazonAffiliateSlot"
             class="affiliate-slot"
             data-affiliate-provider="amazon"
-            data-affiliate-placement="after-summary"
+            data-affiliate-placement="after-results"
             data-affiliate-state="inactive"
             hidden
             aria-hidden="true"></section>
-
-          <div class="table-wrapper">
-            <table id="itemsTable" class="result-table">
-              <thead>
-                <tr>
-                  <th data-lang-text data-ja="入力成分" data-en="Input ingredient">入力成分</th>
-                  <th data-lang-text data-ja="状態 / 分類" data-en="Status / category">状態 / 分類</th>
-                  <th data-lang-text data-ja="簡易メモ" data-en="Quick note">簡易メモ</th>
-                </tr>
-              </thead>
-              <tbody id="itemsTableBody"></tbody>
-            </table>
-          </div>
-          <div id="itemsEmpty" class="empty-state" data-lang-text
-            data-ja="成分リストを貼り付けて「成分を確認」を押すと、ここに結果が表示されます。"
-            data-en="Paste an ingredient list and press “Check ingredients” to see results here.">成分リストを貼り付けて「成分を確認」を押すと、ここに結果が表示されます。</div>
         </section>
       </div>
 
@@ -220,14 +224,14 @@
     <section class="tool-card about-card" aria-labelledby="about-title">
       <h2 id="about-title" class="section-title" data-lang-text data-ja="このLite版で分かること" data-en="What the Lite tool shows">このLite版で分かること</h2>
       <p data-lang-text
-        data-ja="成分名をローカル辞書へ照合し、INCI名・日本語名の表記ゆれをまとめながら、確認できた主な分類を表示します。"
-        data-en="The tool matches ingredient names against a local dictionary, normalizes INCI/Japanese name variants, and shows verified main categories where available.">成分名をローカル辞書へ照合し、INCI名・日本語名の表記ゆれをまとめながら、確認できた主な分類を表示します。</p>
+        data-ja="全成分表示から、それぞれの成分の主な役割と簡単な説明を確認できます。複数成分では、保湿・洗浄・乳化など、成分表全体の役割構成もまとめます。"
+        data-en="See the main role and a short explanation for each ingredient. For multi-ingredient lists, the tool also summarizes roles such as hydration, cleansing, and emulsifying.">全成分表示から、それぞれの成分の主な役割と簡単な説明を確認できます。複数成分では、保湿・洗浄・乳化など、成分表全体の役割構成もまとめます。</p>
       <p data-lang-text
-        data-ja="画像から読み取りたい場合や、確認候補を詳しく追いたい場合はINCI FastScanを利用してください。"
-        data-en="Use INCI FastScan if you need photo OCR or a more detailed review workflow.">画像から読み取りたい場合や、確認候補を詳しく追いたい場合はINCI FastScanを利用してください。</p>
+        data-ja="画像から読み取りたい場合や、OCR結果を確認しながら詳しく見たい場合はINCI FastScanを利用してください。"
+        data-en="Use INCI FastScan when you want to read a label from an image and review OCR output in more detail.">画像から読み取りたい場合や、OCR結果を確認しながら詳しく見たい場合はINCI FastScanを利用してください。</p>
       <p class="small-note" data-lang-text
-        data-ja="未分類は「危険」という意味ではありません。辞書未登録、表記ゆれ、製品固有の名称などが考えられます。"
-        data-en="Unclassified does not mean dangerous. It may indicate an unregistered term, spelling variation, or product-specific wording.">未分類は「危険」という意味ではありません。辞書未登録、表記ゆれ、製品固有の名称などが考えられます。</p>
+        data-ja="情報未登録は危険判定ではありません。表記ゆれ、未登録、製品固有の名称などが考えられます。"
+        data-en="Information unavailable is not a danger label. It may reflect spelling variation, missing data, or product-specific wording.">情報未登録は危険判定ではありません。表記ゆれ、未登録、製品固有の名称などが考えられます。</p>
     </section>
 
     <div class="nw-donate">
@@ -250,7 +254,9 @@
     <p class="nw-footer-line"><a href="https://nicheworks.app/">nicheworks.app</a></p>
   </footer>
 
-  <script src="/tools/_shared/cosmetic-ingredient-parser.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=20260917-answer-first-1"></script>
+  <script src="enhancements.js?v=20260917-answer-first-1"></script>
+  <script src="/tools/_shared/cosmetics-affiliate-config.js?v=20260917-answer-first-1"></script>
+  <script src="/tools/_shared/cosmetics-affiliate-slot.js?v=20260917-answer-first-1"></script>
 </body>
 </html>

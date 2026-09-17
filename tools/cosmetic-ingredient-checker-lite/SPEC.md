@@ -7,57 +7,92 @@
 
 ## Purpose
 
-Provide a fast bilingual paste-first cosmetic ingredient checker that normalizes an ingredient list, matches exact INCI / Japanese / alias names against the local NicheWorks ingredient data, and summarizes useful reference categories without presenting medical, diagnostic, regulatory, allergy, concentration, or product-safety conclusions.
+Provide a fast bilingual paste-first cosmetic ingredient checker. A user pastes a full ingredient list and receives the useful answer first: each ingredient, its main role when supported, and a plain role explanation.
 
-The Lite product is intentionally distinct from INCI FastScan:
+The tool is informational. It does not score product safety, diagnose skin conditions, estimate concentration, or determine whether a product is suitable for a particular person.
 
-- Lite = paste text and review quickly.
-- INCI FastScan = photo/OCR plus more detailed bilingual review.
+Lite and FastScan remain separate workflows:
 
-## Current functional contract
-
-- Provide JP/EN switching on the same page, including static copy, dynamic dictionary state, analysis results, filter labels, copy states, category labels, notes, and disclaimers.
-- Keep Lite / FastScan switching visible in the tool header so users can move between the paste-first and OCR-first workflows without NicheWorks logo/title branding in the header.
-- Accept ingredient text containing INCI names, Japanese names, or a mixture.
-- Parse explicit list separators while preserving legitimate ingredient-name punctuation such as `/`, `・`, and numeric locant commas such as `1,2-Hexanediol`.
-- Match normalized input by exact INCI name, Japanese name, or declared alias against the existing local INCI FastScan dictionary files.
-- Fall back gracefully to the implemented lightweight exact-match rules if dictionary files cannot be loaded.
-- Show parsed count, dictionary-match count, review-candidate count, unclassified count, dictionary recognition percentage, top functional categories, and a row-per-ingredient result table.
-- Surface the current unclassified ingredient names as a compact review list so users can see coverage gaps without scanning the entire table.
-- Allow result-table filtering between all / unclassified / review-candidate / dictionary-match rows without re-running analysis.
-- Allow the status filter to be combined with a functional-category filter generated from the categories present in the current result.
-- Show the current visible-row count against the complete result count while filters are active.
-- Allow users to copy the currently visible ingredient names or only the current unclassified ingredient names; both actions are explicit local clipboard operations.
-- Keep `caution` / `risk` dictionary metadata internal to the matching layer; the Lite UI exposes only a non-diagnostic `確認候補 / Review` signal.
-- Keep unknown entries explicitly unclassified rather than inventing a diagnosis or safety conclusion.
-- Support clear/reset and copying the current result.
-- Support Cmd/Ctrl + Enter as a convenience check action.
-- Present explicit information-only and non-diagnostic disclaimers in both UI languages.
-- Link to INCI FastScan when the user needs photo/OCR input.
+- Lite = paste text and review immediately.
+- INCI FastScan = photo/image OCR plus detailed review.
 
 ## Inputs
 
-- Pasted cosmetic ingredient-list text.
-- Check, clear, copy, status-filter, and category-filter actions.
-- UI language (JP / EN).
-- Optional keyboard shortcut: Cmd/Ctrl + Enter.
+Primary input is pasted cosmetic ingredient text. The checker accepts INCI names, Japanese ingredient names, aliases, and mixed full-label lists separated by commas, Japanese punctuation, semicolons, or line breaks. Numeric locant punctuation such as `1,2-Hexanediol` is preserved by the shared parser.
+
+The Lite workflow does not accept or process product-label images; photo/OCR input belongs to INCI FastScan.
 
 ## Outputs
 
-- Parsed ingredient count.
-- Dictionary-match / review-candidate / unclassified summary.
-- Dictionary recognition percentage (`dictionary matches / parsed ingredients`).
-- Compact list of currently unclassified ingredient names, capped in the summary while the full table remains available.
-- Up to eight prominent functional-category chips derived from matched dictionary entries.
-- Ingredient table containing the original input name, current reference status/categories, and concise explanatory note.
-- Client-side filtering of the result table by status and by currently represented functional category, including horizontally safe controls on narrow screens.
-- Current visible-row count versus complete result count.
-- Clipboard copy of the current full result, currently visible ingredient-name subset, or unclassified-name subset.
-- The same result state can be re-rendered in JP or EN without rerunning ingredient analysis.
+For every parsed ingredient, the public result shows:
+
+- the original ingredient text,
+- a supported main role, or `情報不足 / Information incomplete`,
+- a role explanation, or an explicit incomplete-information explanation.
+
+For multi-ingredient input only, Lite may additionally show result filters and an aggregate role summary. Affiliate content is not part of the result and appears only after useful result content.
+
+## Public result contract
+
+The result experience is **answer-first**.
+
+Order after a check:
+
+1. ingredient-level result rows,
+2. filters only when multiple rows make filtering useful,
+3. aggregate role summary only for multi-ingredient results,
+4. incomplete-information guidance when needed,
+5. Amazon affiliate handoff after the useful result content.
+
+A one-ingredient query must not show redundant result filters or an aggregate summary before the ingredient answer.
+
+Each result row contains:
+
+- original ingredient text,
+- main role, or `情報不足 / Information incomplete`,
+- role explanation or an explicit incomplete-information explanation.
+
+### Explanation completeness rule
+
+A row may be counted and labeled as `役割・説明あり / Role and explanation available` only when the runtime has both:
+
+- a supported bilingual role label, and
+- a non-empty JP and EN role explanation for that role.
+
+Dictionary recognition by itself is not enough to qualify as a complete public result. A dictionary record with missing or unsupported role/explanation metadata is presented as `情報不足 / Information incomplete` rather than receiving a fabricated role description.
+
+`note_short` remains a more specific data-layer note where available. Missing `note_short` must not be disguised as a verified ingredient-specific note. The public Japanese explanation may be a clearly role-level explanation; the UI labels that column `役割の説明` rather than implying that every sentence is an ingredient-specific monograph.
+
+## Current functional contract
+
+- JP/EN switching uses one bilingual single-page workflow.
+- Accept INCI, Japanese names, aliases, or mixed ingredient lists.
+- Preserve ingredient punctuation such as `/`, `・`, and numeric locant commas such as `1,2-Hexanediol`.
+- Match exact normalized INCI/Japanese/alias names against the maintained local cosmetics dictionary.
+- Keep matching/debug metadata internal; public value is the role and explanation.
+- Keep incomplete entries explicit instead of inventing a role, diagnosis, or safety conclusion.
+- Support clear/reset and result copy.
+- Support Cmd/Ctrl + Enter.
+- Link to INCI FastScan for photo/OCR input.
+- Do not expose `caution`, `risk`, legacy `safety`, match route, or canonical-debug metadata as a consumer-facing verdict.
+
+## Multi-result controls
+
+When two or more result rows exist, Lite may show:
+
+- result-state filtering,
+- functional-category filtering by role/category when at least two roles are present,
+- visible-row count,
+- copy-visible and copy-incomplete actions,
+- aggregate role counts.
+
+These controls are secondary to the ingredient-level answer and must not displace a single-result answer.
+
+Result filters only change visibility; they do not change the underlying analysis or rerun ingredient matching.
 
 ## Ingredient data dependency
 
-Lite reuses the maintained static ingredient data already shipped with INCI FastScan:
+Lite reuses the maintained static data shipped with INCI FastScan:
 
 ```txt
 /tools/inci-fastscan/data/ingredients.json
@@ -66,45 +101,54 @@ Lite reuses the maintained static ingredient data already shipped with INCI Fast
 /tools/inci-fastscan/data/ingredients-extra-8.json
 ```
 
-This is a same-origin browser fetch of static application data. User-entered ingredient text is not included in those requests.
-
-The legacy `tools/cosmetic-ingredient-checker-lite/data/ingredients.json` is not treated as the runtime source of truth in the current Lite implementation.
+The shared parser performs canonical merge and normalization. The legacy local Lite dictionary is not the runtime source of truth.
 
 ## State and persistence
 
-Input, parsed results, the current status filter, and the current category filter are ephemeral current-page state. UI language preference is stored locally under `cosmetic-lite-lang` when browser storage is available. The current implementation does not define saved ingredient history or cross-session result persistence.
+Raw ingredient input, parsed results, filters, and summaries are ephemeral current-page state. Language preference may be stored locally under `cosmetic-lite-lang`.
+
+No ingredient history is intentionally persisted by the checker workflow.
 
 ## Privacy and network behavior
 
-Ingredient parsing, filtering, matching, language re-rendering, and subset-copy operations run in the browser. The pasted ingredient text is not intentionally uploaded by the checker workflow. Static dictionary files are loaded from the same NicheWorks origin. Suite-wide advertising and analytics resources may load separately.
+Raw ingredient text and analysis remain in the browser. Static dictionary files are loaded from the NicheWorks origin. Suite-wide analytics, advertising, and other declared shared resources may load separately.
 
-The Amazon affiliate layer is isolated from ingredient state. Raw ingredient input, parsed ingredient names, unknown names, categories, filters, complete analysis results, copied subsets, and UI language state must never be attached to affiliate analytics or the Amazon destination. Affiliate analytics are limited to fixed metadata: `tool`, `provider`, `placement`, `link_key`.
+The Amazon layer is isolated from raw ingredient input and raw analysis. Ingredient names, unknown names, role categories, filters, copied subsets, or analysis output must not be attached to affiliate destinations or affiliate analytics.
+
+Affiliate analytics are limited to fixed metadata:
+
+```txt
+tool
+provider
+placement
+link_key
+```
 
 ## Language mode
 
 `bilingual single-page`
 
-JP/EN controls switch the same Lite workflow. The initial language follows the stored local preference when available, otherwise the browser language (`ja` -> Japanese, other languages -> English). Switching language re-renders the visible static and dynamic UI without changing or rerunning the ingredient analysis.
+JP/EN switching re-renders the current result state without rerunning ingredient analysis.
 
 ## Layout class
 
 `mobile-oriented`
 
-The page is paste-first and uses the approved v2 white-background presentation with spacing, typography, and thin borders rather than gray page/card surfaces. The purpose of Lite is stated in the first view before the workspace. On narrow mobile screens, result rows are presented as card-like stacked records while preserving the existing result-table DOM contract; desktop keeps the detailed tabular presentation.
+The page uses the approved white-background v2 presentation. Desktop may use a detailed table. Narrow screens keep the same DOM contract while presenting result rows as stacked/card-like records rather than forcing horizontal table scrolling.
 
 ## Amazon affiliate contract
 
-The existing result-adjacent slot is live through the shared cosmetics affiliate layer:
+The affiliate block is a post-result handoff, not part of the answer.
 
 ```txt
 #amazonAffiliateSlot
 provider = amazon
-placement = after-summary
-HTML default state = inactive (fail-closed before runtime)
-runtime state = active when the fixed Amazon search config passes validation
+placement = after-results
+HTML default state = inactive
+runtime state = active only after a rendered result exists and the fixed-link config validates
 ```
 
-Both cosmetics tools share these runtime assets:
+Shared assets:
 
 ```txt
 /tools/_shared/cosmetics-affiliate-config.js
@@ -112,91 +156,67 @@ Both cosmetics tools share these runtime assets:
 /tools/_shared/cosmetics-affiliate-slot.css
 ```
 
-The current activation contract is:
+Activation contract:
 
 ```txt
 enabled = true
 trackingMode = tagged_search
 associateTag = nicheworks09-22
-fixed Amazon search categories = 4
-verifiedAt = 2026-09-13
-placement = after-summary
+displayMode = post_result_category_choice
+placement = after-results
 ```
 
-The four fixed destinations are neutral Amazon Japan searches for general skincare, moisturizing skincare, ceramide skincare, and sunscreen. They are defined statically in the shared config and are not selected, rewritten, or ranked from the ingredient analysis.
+The current fixed Amazon Japan search choices are neutral user-selected categories:
 
-The adapter fail-closes unless a tagged-search destination is HTTPS on `amazon.co.jp` / an `amazon.co.jp` subdomain, uses the `/s` search path, contains a non-empty fixed `k` search term, and carries the exact configured Associate tag.
+- toner,
+- serum,
+- moisturizer,
+- facial cleanser,
+- cleansing / makeup remover,
+- sunscreen,
+- body care.
 
-The live CTAs are intentionally generic and not tied to the ingredient analysis, for example:
+The entered ingredients and result categories do not choose, rank, or rewrite an Amazon destination.
 
-```txt
-スキンケアをAmazonで探す [PR]
-保湿スキンケアを探す [PR]
-セラミド系スキンケアを探す [PR]
-日焼け止めをAmazonで探す [PR]
-```
-
-The affiliate card also renders the required disclosure for the active UI language, including:
-
-```txt
-Amazonのアソシエイトとして、NicheWorksは適格販売により収入を得ています。
-```
-
-These are fixed Amazon search handoffs. They are not statements that any product is safe, suitable, recommended, cheapest, available, hypoallergenic, or medically appropriate for the entered ingredients.
-
-Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` with `tool`, `provider`, `placement`, and `link_key`. Pasted ingredient names, complete analysis results, or other user-entered content must never be attached.
+The affiliate card must display `[PR]` and the active-language Amazon Associates disclosure.
 
 ## Limits and non-goals
 
-- `辞書一致 / Matched` means only that the normalized name matched a local dictionary entry; it is not a safety guarantee.
-- `辞書認識率 / Dictionary recognition` is a dictionary coverage indicator, not a product-quality or safety score.
-- `確認候補 / Review` is a review cue, not a danger label.
-- `未分類 / Unclassified` is not evidence that an ingredient is unsafe.
-- Result filters only change visibility; they do not change the underlying analysis.
-- Category filters are derived from the tool's existing functional classification labels and are not product-suitability recommendations.
-- The tool does not know ingredient concentration, complete formulation context, user allergies, individual skin condition, pregnancy suitability, drug interactions, or regulatory status from the pasted list alone.
-- Lite does not perform OCR; use INCI FastScan for image input.
-- The current Amazon links are fixed generic category searches and do not change based on the ingredient list or analysis result.
+- A role explanation is not a safety verdict.
+- `情報不足 / Information incomplete` is not evidence that an ingredient is unsafe.
+- A role-level explanation must not be presented as an ingredient-specific scientific monograph.
+- The tool does not know ingredient concentration, full formulation context, allergies, individual skin condition, pregnancy suitability, drug interactions, or regulatory status from a pasted list alone.
+- Lite does not perform photo/OCR; use INCI FastScan.
+- Amazon links do not change based on ingredient input or analysis.
 - The tool does not display Amazon price, availability, rating, seller status, review count, or product imagery.
 
 ## Acceptance criteria
 
-- [x] A comma-, Japanese-comma-, semicolon-, or line-break-separated ingredient list is parsed in input order.
-- [x] Slash / middle-dot ingredient names and numeric locant commas are preserved by the shared parser.
-- [x] Exact INCI / Japanese / alias matches can enrich Lite results from the local maintained dictionary set.
-- [x] `Cetearyl Alcohol` does not become an ethanol-type alcohol result merely because the word `Alcohol` is present.
-- [x] Unknown items remain explicitly unclassified rather than receiving fabricated safety claims.
-- [x] Dictionary recognition percentage is visible after analysis without being framed as a safety score.
-- [x] Unclassified ingredient names are surfaced compactly while the complete result table remains available.
-- [x] Result rows can be filtered by status and current functional category without changing analysis state, including on narrow mobile screens.
-- [x] Current visible-row count remains visible while result filters are active.
-- [x] Users can explicitly copy the currently visible ingredient names or only unclassified ingredient names without sending them to analytics or an external API.
-- [x] JP/EN switching covers static and dynamic Lite UI, preserves the current analysis state, and retains the medical/regulatory disclaimer in both languages.
-- [x] The header exposes Lite / FastScan switching without the NicheWorks logo/title branding used by the old UI.
-- [x] The NicheWorks logo image is not shown in the tool header.
-- [x] The mobile result presentation avoids a mandatory horizontal table-scroll experience by rendering table rows as card-like stacked records while preserving the DOM contract.
-- [x] The donation block appears before the footer.
+- [x] Paste-first input remains the primary workflow.
+- [x] Exact INCI/Japanese/alias matches use the maintained shared dictionary.
+- [x] Result value is role-first, not match/debug-first.
+- [x] Ingredient-level rows appear before aggregate summary and affiliate content.
+- [x] One-result queries hide redundant filtering and aggregate summary.
+- [x] The explanation column is explicitly `役割の説明 / Role explanation`.
+- [x] A row is labeled complete only when a bilingual public role explanation exists.
+- [x] Unsupported/missing role metadata is exposed as incomplete instead of receiving a fabricated complete label.
+- [x] JP/EN switching preserves the current result state.
+- [x] Mobile results remain readable without mandatory horizontal scrolling.
 - [x] A clear INCI FastScan route exists for photo/OCR use.
-- [x] The Amazon slot keeps the frozen `after-summary` placement and fail-closed HTML default.
-- [x] Four fixed Amazon category searches are rendered only through `tagged_search` mode with the configured Associate tag.
-- [x] Amazon destinations remain independent of ingredient input, result categories, unknowns, filters, and analysis output.
-- [x] Amazon disclosure and `[PR]` labeling are visible with the live affiliate CTAs.
-- [x] Affiliate analytics remain coarse and contain no ingredient or analysis payload.
+- [x] The Amazon slot is after-results, fail-closed in HTML, and result-gated at runtime.
+- [x] Fixed Amazon category choices remain independent of ingredient input and analysis.
+- [x] Affiliate analytics contain no raw ingredient or analysis payload.
 
 ## Implementation evidence
 
 - `tools/_shared/cosmetic-ingredient-parser.js`
-- `tools/_shared/check-cosmetic-ingredient-parser.mjs`
 - `tools/_shared/cosmetics-affiliate-config.js`
 - `tools/_shared/cosmetics-affiliate-slot.js`
-- `tools/_shared/cosmetics-affiliate-slot.css`
 - `tools/_shared/check-cosmetics-affiliate-contract.mjs`
+- `tools/_shared/check-cosmetics-cross-tool-release.mjs`
 - `tools/cosmetic-ingredient-checker-lite/index.html`
 - `tools/cosmetic-ingredient-checker-lite/app.js`
-- `tools/cosmetic-ingredient-checker-lite/style.css`
 - `tools/cosmetic-ingredient-checker-lite/ui-v2.css`
 - `tools/cosmetic-ingredient-checker-lite/enhancements.js`
 - `tools/cosmetic-ingredient-checker-lite/enhancements.css`
-- `tools/cosmetic-ingredient-checker-lite/qa.json`
-- `tools/cosmetic-ingredient-checker-lite/howto/`
-- `tools/inci-fastscan/data/ingredients*.json` (read-only runtime data dependency)
+- `tools/inci-fastscan/data/ingredients*.json`
