@@ -59,65 +59,57 @@ ManualFinder is an `AFFILIATE` tool, but its official manual directory remains t
 - A fixed override may still be used for an exact model when there is a reason to pin one Amazon-provided Special Link. The current `Nikon` / `Z8` override remains `https://amzn.to/3T7sxbB`.
 - The generic model-search template is represented by one coarse target (`manual_model_search_template`) rather than one target per model. Its representative Brother MFC-J4440N tagged search URL was validated by Amazon Link Checker on 2026-09-13 and the template is active.
 - Generic exact-model search is enabled for `PC・スマホ`, `家電`, `プリンター・複合機`, `カメラ・映像`, `オーディオ`, `ゲーム`, and `ネットワーク機器`, provided the record has a non-empty canonical model.
-- `その他` is deliberately excluded from the generic rule because it mixes materially different identity types such as Seiko watch calibers and Roland legacy products. Any future commerce rule for an `その他` family must be narrowly scoped and independently justified.
+- `その他` is deliberately excluded from the generic rule because it mixes materially different identity types. Any future commerce rule for an `その他` family must be narrowly scoped and independently justified.
 - Compatibility-sensitive accessory offers require separate verified mapping data and must not be inferred from model names.
-- Consumer-printer ink mappings are active for verified Brother, Epson, and Canon model batches. Exact ink-family mappings retain an official manufacturer source URL and verification date; unmapped compatibility must fail closed.
-- Office-printer toner mappings extend the same consumable runtime only for existing exact ManualFinder model records with explicit official manufacturer evidence. Maintained OKI, KYOCERA, RICOH, and FUJIFILM Business Innovation ledgers are covered by this rule.
-- A manufacturer-published retail toner code is retained when verified. If the official source establishes the exact model/toner relationship but no public retail SKU can be verified, an empty code list is valid; the runtime must not invent a SKU.
-- Printer-detail coverage is governed by a catalog-wide reconciliation contract: every canonical printer with a basic Amazon path must have either a verified detail handoff or an explicit reviewed exclusion.
-- The current audited printer state is **291 basic = 284 detail + 7 reviewed exclusions + 0 missing detail**.
-- The reviewed exclusions are evidence-backed service-managed-consumables cases and are stored in `affiliate-printer-detail-exclusions.js`; they are not unresolved mappings to be filled speculatively.
-- KYOCERA Waves 1–19 close the current KYOCERA catalog at **123 = 120 detail + 3 reviewed exclusions + 0 missing**. Wave 19 adds the final `KM-C3225E` and `KM-C870` handoffs with `tonerCodes: []` because no public retail toner SKU was verified from the official evidence.
-- The Wave 19 Amazon queries remain model-specific: `KYOCERA KM-C3225E トナー` and `KYOCERA KM-C870 トナー`.
-- Camera accessory coverage is governed by a separate catalog-wide reconciliation contract: every actionable `カメラ・映像` record with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or an explicit missing-accessory diagnostic.
-- The current camera state is **185 basic = 44 detail + 0 reviewed exclusions + 141 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
-- Nikon camera-accessory Waves 1–2 close all 14 actionable Nikon camera records at **14 detail + 0 reviewed exclusions + 0 missing**.
-- Nikon Wave 1 remains exactly `Z8`, `Z6III`, `Z5II`, and `Zf`, each mapped to `EN-EL15c` rechargeable battery and `MH-25a` battery charger from model-specific Nikon official evidence.
-- Nikon Wave 2 explicitly closes the remaining ten models: `Z9` → `EN-EL18d` / `MH-33`; `Z7II`, `Z6II`, `Z5` → `EN-EL15c` / `MH-25a`; `Z7`, `Z6` → `EN-EL15b` / `MH-25a`; `Z50II`, `Z50`, `Z30`, `Zfc` → `EN-EL25a` / `MH-32`.
-- Shared Nikon power-accessory families must not be generalized by family or model-name similarity. Every active Nikon row must exist explicitly in a reviewed mapping ledger with an official Nikon model/manual source.
-- The existing Nikon Z8 fixed body-search override may coexist with verified accessory handoffs; a fixed body override must not suppress separately reviewed accessory offers.
-- DJI Osmo Action Wave 1 activates exactly `Osmo Action 3`, `Osmo Action 4`, `Osmo Action 5 Pro`, and `Osmo Action 6`. Each receives a battery handoff for `DJI Osmo Action Extreme Battery Plus` and a charger/battery-case handoff for `DJI Osmo Action Multifunctional Battery Case 2`, each backed by explicit DJI official compatibility information.
-- DJI Osmo Action Wave 1 must not infer compatibility for the older `Osmo Action`, `DJI Action 2`, or any future similarly named model.
-- DJI Air Wave 2 activates exactly `DJI Air 3` and `DJI Air 3S`, with `DJI Air 3 Intelligent Flight Battery` and `DJI Air 3 Series Battery Charging Hub` handoffs backed by explicit DJI official compatibility information.
-- DJI Mini Wave 3 activates exactly `DJI Mini 3`, `DJI Mini 3 Pro`, and `DJI Mini 4 Pro`; it preserves the reviewed battery distinction and the shared `DJI Mini 4 Pro/Mini 3 Series Two-Way Charging Hub` boundary.
-- DJI Mavic 3 Wave 4 activates exactly `DJI Mavic 3`, `DJI Mavic 3 Classic`, and `DJI Mavic 3 Pro`, mapped to `DJI Mavic 3 Series Intelligent Flight Battery` and `DJI Mavic 3 Series Battery Charging Hub` from explicit DJI Store compatibility evidence.
-- DJI Mavic 3 Wave 4 must not infer compatibility for `DJI Mavic 3 Enterprise`, `DJI Mavic 3M`, `DJI Mavic 3 Cine`, `Mavic 2`, or other Mavic-family records.
-- DJI Air 2S/Mavic Air 2 Wave 5 activates exactly `DJI Air 2S` and `Mavic Air 2`, mapped to `Mavic Air 2 Intelligent Flight Battery` and `Mavic Air 2 Battery Charging Hub` from explicit DJI Store compatibility evidence.
-- DJI Air 2S/Mavic Air 2 Wave 5 must not infer compatibility for `Mavic Air`, `Mavic Air 2S`, `DJI Mini 2`, or other Air/Mavic-family records.
-- DJI compact power Wave 6 activates exactly `DJI Avata 2`, `DJI Flip`, and `DJI Neo`. Each row is mapped only to its own DJI official battery and charging-hub pair: Avata 2 → `DJI Avata 2 Intelligent Flight Battery` / `DJI Avata 2 Two-Way Charging Hub`; Flip → `DJI Flip Intelligent Flight Battery` / `DJI Flip Parallel Charging Hub`; Neo → `DJI Neo Intelligent Flight Battery` / `DJI Neo Two-Way Charging Hub`.
-- DJI compact power Wave 6 must not infer cross-model compatibility among Avata 2, Flip, and Neo and must not extend to `DJI Avata`, future similarly named products, or other unreviewed DJI records.
-- DJI Mini 2 family Wave 7 activates exactly `DJI Mini 2`, `DJI Mini 4K | DJI Mini 2 SE`, and `DJI Mini SE`, mapped to `DJI Mini 2 Intelligent Flight Battery` and `DJI Mini 2 Two-Way Charging Hub` from DJI's explicit four-model compatibility list.
-- The compound Wave 7 canonical row is permitted only because DJI explicitly names both `DJI Mini 4K` and `DJI Mini 2 SE`; Wave 7 does not infer compatibility for `Mavic Mini` or other Mini-family records.
-- DJI FPV Wave 8 activates exactly `DJI FPV`, mapped to `DJI FPV Intelligent Flight Battery` and `DJI FPV AC Power Adapter` from explicit DJI official Store compatibility information. The adapter evidence also explicitly states that it charges the DJI FPV Intelligent Flight Battery.
-- DJI FPV Wave 8 must not infer compatibility for `DJI Digital FPV System`, `DJI Avata`, `DJI Avata 2`, goggles, or other FPV-related records.
-- DJI Avata Wave 9 activates exactly `DJI Avata`, mapped to `DJI Avata Intelligent Flight Battery` and `DJI Avata Battery Charging Hub` from the official DJI Avata Fly More Kit page, which explicitly identifies DJI Avata compatibility and lists both products in the kit.
-- DJI Avata Wave 9 evidence is exact-model only; `DJI Avata 2` remains separately reviewed under Wave 6 and Wave 9 evidence is not reused for it.
-- DJI Mavic 2 Wave 10 activates exactly `Mavic 2`, mapped to `Mavic 2 Intelligent Flight Battery` and `Mavic 2 Battery Charging Hub` from DJI official Store/support evidence.
-- DJI Mavic 2 Wave 10 must not infer compatibility for `Mavic 2 Enterprise Advanced`, `Mavic 2 Enterprise Series`, `Mavic 2 Pro`, `Mavic 2 Zoom`, or other Mavic-family records.
-- DJI Mavic Mini Wave 11 activates exactly `Mavic Mini`, mapped to `Mavic Mini Intelligent Flight Battery` and `Mavic Mini Two-Way Charging Hub` from DJI official Store and charging-hub compatibility evidence.
-- DJI Mavic Mini Wave 11 must not infer compatibility for `DJI Mini 2`, `Mavic Pro`, `Mavic Pro Platinum`, `Mavic Air`, or other Mavic/Mini-family records.
-- DJI Mavic Air Wave 12 activates exactly `Mavic Air`, mapped to `Mavic Air Intelligent Flight Battery` and `Mavic Air Battery Charging Hub` from DJI official battery-policy and charging-hub compatibility evidence.
-- DJI Mavic Air Wave 12 keeps `Mavic Air 2` on its separately reviewed Wave 5 mapping and must not infer compatibility for `Mavic Pro`, `Mavic Pro Platinum`, or other Mavic-family records.
-- DJI Mavic Pro Wave 13 activates exactly `Mavic Pro`, mapped to `Mavic Pro Intelligent Flight Battery` and `Mavic Pro Battery Charging Hub` from DJI official battery and charging-hub compatibility evidence.
-- DJI Mavic Pro Wave 13 must not infer the reviewed battery mapping to `Mavic Pro Platinum`; `Mavic 2`, `Mavic Air`, and other Mavic-family records remain on their independently reviewed contracts.
-- DJI Mavic Pro Platinum Wave 14 activates exactly `Mavic Pro Platinum`, mapped to `Mavic Pro Platinum Intelligent Flight Battery` and `Mavic Pro Battery Charging Hub` from DJI official Mavic Pro Platinum support and charging-hub compatibility evidence.
-- DJI Mavic Pro Platinum Wave 14 remains exact-canonical-row only; it does not replace the separate `Mavic Pro` Wave 13 battery mapping or infer compatibility to other Mavic-family records.
-- DJI Mavic 3 Enterprise / Mavic 3M Wave 15 activates exactly `DJI Mavic 3 Enterprise` and `DJI Mavic 3M`, mapped to `DJI Mavic 3 Series Intelligent Flight Battery` and `DJI Mavic 3 Battery Charging Hub 100W` from DJI official Enterprise specifications/support.
-- DJI Mavic 3 Enterprise / Mavic 3M Wave 15 must not infer compatibility to `DJI Mavic 3T`, a generic Enterprise Series row, or other non-canonical variants, and must preserve the independent consumer Wave 4 mappings.
-- DJI Inspire 3 Wave 16 activates exactly `DJI Inspire 3`, mapped to `DJI TB51 Intelligent Battery` and `DJI TB51 Intelligent Battery Charging Hub` from DJI official Inspire 3 Store compatibility evidence.
-- DJI Inspire 3 Wave 16 must not infer compatibility to `Inspire 1`, `Inspire 1 Pro/Raw`, `Inspire 2`, or a non-canonical `Inspire 3` spelling.
-- The measured DJI state after Waves 1–16 is **96 basic = 30 detail + 0 reviewed exclusions + 66 missing accessory detail**.
-- Camera detail exclusions are stored separately in `affiliate-camera-detail-exclusions.js`; the ledger is currently empty and must not be used to hide unreviewed missing rows.
-- The measured remaining camera backlog is DJI 66, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized by `CAMERA_ACCESSORY_COVERAGE.md`.
 - Wrong maker, wrong category, nonexistent model, malformed URL, unsupported category, and unreviewed compatibility cases must fail closed.
-- Printer consumable CTAs use one coarse analytics target (`printer_consumable_search_template`). Camera accessory CTAs use a separate coarse target (`camera_accessory_search_template`). Amazon search terms are constructed only from verified compatibility mappings or exact canonical model identities, never arbitrary user text.
-- Compatibility-sensitive CTA wording does not claim that every Amazon result is genuine, recommended, or compatible. The UI states that compatibility evidence was checked against a manufacturer source and asks the user to confirm the exact Amazon item before purchase.
-- Amazon search CTAs are handoffs (`Amazonで <maker> <model> を探す` / `Find <maker> <model> on Amazon`), not claims that any listing is official, recommended, cheapest, available, or compatible.
 - Amazon commerce UI appears after official links, is visually distinct, explicitly identifies Amazon/affiliate status, and uses the shared `/assets/amazon-affiliate.js` helper.
 - The required Amazon Associates disclosure is rendered whenever an Amazon target is active.
 - Do not display copied/scraped Amazon price, availability, rating, review count, seller claim, or product imagery.
-- Affiliate analytics may emit only the shared coarse `affiliate_click` metadata (`tool`, `affiliate`, `target`, `placement`). Model names, generated Amazon query terms, consumable/accessory codes, search text, selected filters, and other user input must not be sent through the affiliate analytics path.
-- Future expansion should add a small number of verified offer rules/templates, not thousands of individually maintained URLs.
+- Affiliate analytics may emit only the shared coarse fixed affiliate/outbound metadata. Model names, generated Amazon query terms, consumable/accessory codes, search text, selected filters, and other user input must not be sent through the affiliate analytics path.
+
+### Printer consumable contract
+
+- Consumer-printer ink mappings are active for verified Brother, Epson, and Canon model batches.
+- Office-printer toner mappings extend the consumable runtime only for exact ManualFinder model records with explicit official manufacturer evidence. Maintained OKI, KYOCERA, RICOH, and FUJIFILM Business Innovation ledgers follow this rule.
+- A manufacturer-published retail toner code is retained when verified. If official evidence establishes the exact model/toner relationship but no public retail SKU can be verified, an empty code list is valid; the runtime must not invent a SKU.
+- Every canonical printer with a basic Amazon path must have either a verified detail handoff or an explicit reviewed exclusion.
+- The current audited printer state is **291 basic = 284 detail + 7 reviewed exclusions + 0 missing detail**.
+- Reviewed exclusions are evidence-backed service-managed-consumables cases stored in `affiliate-printer-detail-exclusions.js`.
+- KYOCERA Waves 1–19 close the current KYOCERA catalog at **123 = 120 detail + 3 reviewed exclusions + 0 missing**.
+- Wave 19 closes `KM-C3225E` and `KM-C870` with `tonerCodes: []`; no public retail toner SKU is invented.
+
+### Camera accessory contract
+
+Camera accessory coverage is governed by a separate catalog-wide reconciliation contract. Every actionable `カメラ・映像` record with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or an explicit missing-accessory diagnostic.
+
+The current camera state is **185 basic = 45 detail + 0 reviewed exclusions + 140 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
+
+Nikon camera-accessory Waves 1–2 close all 14 actionable Nikon camera records at **14 detail + 0 reviewed exclusions + 0 missing**. Shared Nikon power-accessory families must not be generalized by family or model-name similarity; every active row exists explicitly in the reviewed ledger.
+
+DJI is intentionally advanced in bounded exact-canonical-model waves:
+
+- DJI Osmo Action Wave 1 activates exactly `Osmo Action 3`, `Osmo Action 4`, `Osmo Action 5 Pro`, and `Osmo Action 6`.
+- DJI Air Wave 2 activates exactly `DJI Air 3` and `DJI Air 3S`.
+- DJI Mini Wave 3 activates exactly `DJI Mini 3`, `DJI Mini 3 Pro`, and `DJI Mini 4 Pro`, preserving the reviewed battery distinction.
+- DJI Mavic 3 Wave 4 activates exactly `DJI Mavic 3`, `DJI Mavic 3 Classic`, and `DJI Mavic 3 Pro`.
+- DJI Air 2S/Mavic Air 2 Wave 5 activates exactly `DJI Air 2S` and `Mavic Air 2`.
+- DJI compact power Wave 6 activates exactly `DJI Avata 2`, `DJI Flip`, and `DJI Neo`, each with its own reviewed battery/hub pair.
+- DJI Mini 2 family Wave 7 activates exactly `DJI Mini 2`, `DJI Mini 4K | DJI Mini 2 SE`, and `DJI Mini SE`.
+- DJI FPV Wave 8 activates exactly `DJI FPV` with its reviewed battery and AC Power Adapter.
+- DJI Avata Wave 9 activates exactly `DJI Avata` with its reviewed battery and charging hub.
+- DJI Mavic 2 Wave 10 activates exactly `Mavic 2`.
+- DJI Mavic Mini Wave 11 activates exactly `Mavic Mini`.
+- DJI Mavic Air Wave 12 activates exactly `Mavic Air`.
+- DJI Mavic Pro Wave 13 activates exactly `Mavic Pro`.
+- DJI Mavic Pro Platinum Wave 14 activates exactly `Mavic Pro Platinum`.
+- DJI Mavic 3 Enterprise / Mavic 3M Wave 15 activates exactly `DJI Mavic 3 Enterprise` and `DJI Mavic 3M`.
+- DJI Inspire 3 Wave 16 activates exactly `DJI Inspire 3`, mapped to `DJI TB51 Intelligent Battery` and `DJI TB51 Intelligent Battery Charging Hub`.
+- DJI Inspire 2 Wave 17 activates exactly `Inspire 2`, mapped to `DJI TB50 Intelligent Battery` and `DJI Inspire 2 Battery Charging Hub` from DJI official Store compatibility evidence.
+- DJI Inspire 2 Wave 17 must not infer compatibility to `DJI Inspire 2`, `Inspire 1`, `Inspire 1 Pro/Raw`, or other Inspire-family canonical records. `DJI Inspire 3` keeps its independent Wave 16 TB51 mapping.
+
+The measured DJI state after Waves 1–17 is **96 basic = 31 detail + 0 reviewed exclusions + 65 missing accessory detail**.
+
+Camera detail exclusions are stored separately in `affiliate-camera-detail-exclusions.js`; the ledger is currently empty and must not be used to hide unreviewed missing rows. The measured remaining camera backlog is DJI 65, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized by `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## State and persistence
 
@@ -156,40 +148,22 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] Vendor-defined shared manual pages remain explicit shared targets instead of being expanded into invented per-model URLs.
 - [x] Japanese and English canonical pages provide equivalent core search/directory behavior and preserve the accuracy disclaimer.
 - [x] Search text remains local to the browser search/filter runtime and is not intentionally sent to an application search backend.
-- [x] The Nikon Z8 result may show the verified Amazon search override only after the official manual links.
 - [x] The validated dynamic model-search builder generates deterministic tagged URLs from canonical maker/model metadata without requiring a per-model stored link for eligible product categories.
 - [x] Generic manufacturer entrances and `その他` records do not receive the generic Amazon model-search CTA.
-- [x] Verified Brother/Epson/Canon ink mappings expose only their manufacturer-backed searches; unknown or unmapped compatibility fails closed.
-- [x] Maintained office-printer toner mappings activate only for reviewed exact model/maker/category contracts and retain manufacturer evidence without inventing unverified SKUs.
+- [x] Verified printer consumable mappings expose only manufacturer-backed searches; unknown or unmapped compatibility fails closed.
 - [x] The catalog-wide printer audit reconciles to **291 basic = 284 detail + 7 reviewed exclusions + 0 missing detail**.
 - [x] `printerMissingDetail`, `printerMissingDetailByMaker`, and `printerMissingDetailModelsByMaker` are empty at the completed audit baseline.
-- [x] KYOCERA closes at **123 = 120 detail + 3 reviewed exclusions + 0 missing**, including the final Wave 19 `KM-C3225E` and `KM-C870` rows with no inferred toner SKU.
-- [x] Nikon camera-accessory Wave 1 activates exactly `Z8`, `Z6III`, `Z5II`, and `Zf`, with exactly two manufacturer-backed handoffs per model.
-- [x] Nikon camera-accessory Wave 2 adds exactly the remaining ten actionable Nikon records and closes Nikon at **14 detail + 0 reviewed exclusions + 0 missing** without modifying the Wave 1 boundary.
-- [x] Each active Nikon camera row uses the reviewed battery/charger pair from its exact official Nikon evidence rather than family-name inference.
-- [x] DJI Osmo Action Wave 1 activates exactly `Osmo Action 3`, `Osmo Action 4`, `Osmo Action 5 Pro`, and `Osmo Action 6`, with exactly two DJI-backed handoffs per model.
-- [x] DJI Air Wave 2 activates exactly `DJI Air 3` and `DJI Air 3S` with reviewed DJI power-accessory mappings.
-- [x] DJI Mini Wave 3 activates exactly `DJI Mini 3`, `DJI Mini 3 Pro`, and `DJI Mini 4 Pro` while preserving the distinct reviewed battery boundary.
-- [x] DJI Mavic 3 Wave 4 activates exactly `DJI Mavic 3`, `DJI Mavic 3 Classic`, and `DJI Mavic 3 Pro`, with no inference to Enterprise/3M/Cine or older Mavic records.
-- [x] DJI Air 2S/Mavic Air 2 Wave 5 activates exactly `DJI Air 2S` and `Mavic Air 2`, with exactly two DJI-backed power-accessory handoffs per model and no inference to unreviewed Air/Mavic records.
-- [x] DJI compact power Wave 6 activates exactly `DJI Avata 2`, `DJI Flip`, and `DJI Neo`, with two individually evidenced DJI-backed power-accessory handoffs per model and no cross-model inference.
-- [x] DJI Mini 2 family Wave 7 activates exactly `DJI Mini 2`, `DJI Mini 4K | DJI Mini 2 SE`, and `DJI Mini SE`, with two DJI-backed shared power-accessory handoffs per canonical row and no inference to `Mavic Mini`.
-- [x] DJI FPV Wave 8 activates exactly `DJI FPV` with a reviewed DJI FPV battery and AC Power Adapter handoff, and does not infer compatibility to other FPV-related canonical records.
-- [x] DJI Avata Wave 9 activates exactly `DJI Avata` with reviewed DJI Avata Intelligent Flight Battery and DJI Avata Battery Charging Hub handoffs from the official Fly More Kit compatibility page.
-- [x] DJI Mavic 2 Wave 10 activates exactly `Mavic 2` with reviewed Mavic 2 Intelligent Flight Battery and Mavic 2 Battery Charging Hub handoffs from DJI official evidence.
-- [x] DJI Mavic Mini Wave 11 activates exactly `Mavic Mini` with reviewed Mavic Mini Intelligent Flight Battery and Mavic Mini Two-Way Charging Hub handoffs from DJI official evidence.
-- [x] DJI Mavic Air Wave 12 activates exactly `Mavic Air` with reviewed Mavic Air Intelligent Flight Battery and Mavic Air Battery Charging Hub handoffs from DJI official evidence.
-- [x] DJI Mavic Pro Wave 13 activates exactly `Mavic Pro` with reviewed Mavic Pro Intelligent Flight Battery and Mavic Pro Battery Charging Hub handoffs from DJI official evidence; `Mavic Pro Platinum` remains separate until Wave 14.
-- [x] DJI Mavic Pro Platinum Wave 14 activates exactly `Mavic Pro Platinum` with reviewed Mavic Pro Platinum Intelligent Flight Battery and Mavic Pro Battery Charging Hub handoffs from DJI official evidence.
-- [x] DJI Mavic 3 Enterprise / Mavic 3M Wave 15 activates exactly `DJI Mavic 3 Enterprise` and `DJI Mavic 3M` with reviewed Mavic 3 Series Intelligent Flight Battery and Mavic 3 Battery Charging Hub 100W handoffs from DJI official Enterprise evidence.
-- [x] DJI Inspire 3 Wave 16 activates exactly `DJI Inspire 3` with reviewed DJI TB51 Intelligent Battery and DJI TB51 Intelligent Battery Charging Hub handoffs from DJI official evidence.
-- [x] DJI Waves 1–16 reconcile to **96 basic = 30 detail + 0 reviewed exclusions + 66 missing accessory detail**.
-- [x] The catalog-wide camera audit reconciles to **185 basic = 44 detail + 0 reviewed exclusions + 141 missing accessory detail**, while seven maker/index rows remain explicitly non-actionable.
-- [x] `cameraMissingAccessoryByMaker` and `cameraMissingAccessoryModelsByMaker` expose the remaining backlog and the documentation sync test prevents the camera baseline from drifting silently.
-- [x] The Nikon Z8 fixed body-search override coexists with its reviewed battery/charger handoffs instead of short-circuiting them.
+- [x] KYOCERA closes at **123 = 120 detail + 3 reviewed exclusions + 0 missing**.
+- [x] Nikon camera-accessory Waves 1–2 close Nikon at **14 detail + 0 reviewed exclusions + 0 missing**.
+- [x] DJI Waves 1–16 retain their reviewed exact-model boundaries and evidence without cross-family inference.
+- [x] DJI Inspire 2 Wave 17 activates exactly `Inspire 2` with reviewed `DJI TB50 Intelligent Battery` and `DJI Inspire 2 Battery Charging Hub` handoffs from DJI official evidence.
+- [x] DJI Inspire 2 Wave 17 does not infer its TB50 mapping to `DJI Inspire 2`, `Inspire 1`, `Inspire 1 Pro/Raw`, or `DJI Inspire 3`.
+- [x] DJI Waves 1–17 reconcile to **96 basic = 31 detail + 0 reviewed exclusions + 65 missing accessory detail**.
+- [x] The catalog-wide camera audit reconciles to **185 basic = 45 detail + 0 reviewed exclusions + 140 missing accessory detail**, while seven maker/index rows remain explicitly non-actionable.
+- [x] `cameraMissingAccessoryByMaker` and `cameraMissingAccessoryModelsByMaker` expose the remaining backlog and documentation sync prevents silent drift.
 - [x] Nonexistent models, wrong maker/category combinations, and other unreviewed cases remain fail-closed.
-- [x] Compatibility-sensitive searches use the fixed NicheWorks tracking ID while analytics receive only coarse fixed targets/placements, not the accessory/consumable/model query.
-- [x] The Amazon disclosure and sponsored link semantics are supplied by the shared affiliate helper, with only coarse fixed click metadata.
+- [x] Compatibility-sensitive searches use the fixed NicheWorks tracking ID while analytics receive only coarse fixed targets/placements, not accessory/consumable/model queries.
+- [x] The Amazon disclosure and sponsored link semantics are supplied by the shared affiliate helper.
 
 ## Implementation evidence
 
@@ -224,6 +198,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave14.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave15.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave16.js`
+- `tools/manual-finder/affiliate-dji-camera-accessories-wave17.js`
 - `tools/manual-finder/affiliate-camera-detail-exclusions.js`
 - `tools/manual-finder/affiliate-runtime.js`
 - `tools/manual-finder/affiliate.css`
@@ -249,6 +224,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - `tools/manual-finder/tests/dji-mavic-pro-platinum-accessory-wave14.test.mjs`
 - `tools/manual-finder/tests/dji-mavic3-enterprise-accessory-wave15.test.mjs`
 - `tools/manual-finder/tests/dji-inspire3-accessory-wave16.test.mjs`
+- `tools/manual-finder/tests/dji-inspire2-accessory-wave17.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-coverage.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs`
 - `tools/manual-finder/tests/behavior.test.mjs`
