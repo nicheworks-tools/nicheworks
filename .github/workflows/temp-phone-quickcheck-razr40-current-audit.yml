@@ -1,0 +1,24 @@
+name: Temp Phone QuickCheck razr40 current audit
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/temp-phone-quickcheck-razr40-current-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print razr40 record
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('tools/phone-quickcheck/data/phones.json','utf8'));
+          const p = data.phones.find(x => x.id === 'motorola-razr-40');
+          if (!p) throw new Error('motorola-razr-40 not found');
+          console.log(JSON.stringify({id:p.id,market:p.market??null,included:p.included,sources:p.sources}, null, 2));
+          NODE
