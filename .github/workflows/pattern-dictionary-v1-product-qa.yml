@@ -1,0 +1,159 @@
+name: Pattern Dictionary v1 product QA
+
+on:
+  push:
+    branches:
+      - audit/pattern-dictionary-v1-product-quality-20260917
+    paths:
+      - .github/workflows/pattern-dictionary-v1-product-qa.yml
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/pattern-dictionary-v1-product-quality-20260917
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install browser QA dependencies
+        run: |
+          npm install --no-save --package-lock=false playwright@1.55.0 axe-core@4.10.3
+          npx playwright install --with-deps chromium
+      - name: Start static server
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/pd-http.log 2>&1 &
+          for i in {1..20}; do
+            curl -fsS http://127.0.0.1:8000/tools/pattern-dictionary/ >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/pd-http.log
+          exit 1
+      - name: Run end-to-end product QA
+        run: |
+          cat > .pd-v1-product-qa.cjs <<'NODE'
+          const { chromium } = require('playwright');
+          const assert = require('node:assert/strict');
+          const axePath = require.resolve('axe-core/axe.min.js');
+          const base = 'http://127.0.0.1:8000/tools/pattern-dictionary/';
+          const pagesForA11y = [
+            base,
+            base+'en/',
+            base+'search.html?q=%E7%99%BD%E9%BB%92%E3%81%AE%E3%82%AE%E3%82%B6%E3%82%AE%E3%82%B6%E3%81%97%E3%81%9F%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF',
+            base+'patterns/houndstooth/',
+            base+'compare.html?a=chevron&b=herringbone'
+          ];
+          (async()=>{
+            const browser = await chromium.launch({headless:true});
+            const context = await browser.newContext();
+            await context.route('**/*', route => {
+              const u = new URL(route.request().url());
+              if (u.hostname === '127.0.0.1') return route.continue();
+              return route.abort();
+            });
+            const page = await context.newPage();
+            const pageErrors=[];
+            page.on('pageerror',e=>pageErrors.push(e.message));
+            const goto = async (url) => { pageErrors.length=0; await page.goto(url,{waitUntil:'domcontentloaded'}); };
+            const noOverflow = async(label) => {
+              const v=await page.evaluate(()=>({s:document.documentElement.scrollWidth,c:document.documentElement.clientWidth}));
+              assert.ok(v.s<=v.c+1,`${label}: horizontal overflow ${v.s}/${v.c}`);
+            };
+            const waitCards = ()=>page.waitForFunction(()=>document.querySelectorAll('#pattern-grid .pd-card').length===100);
+
+            // Core JA/EN browse.
+            await goto(base); await waitCards();
+            assert.equal(await page.locator('#pattern-grid .pd-card').count(),100);
+            assert.equal(await page.locator('#pattern-grid .pd-card img[alt=""]').count(),0,'home images must have non-empty alt');
+            await page.locator('#q').fill('千鳥');
+            await page.waitForFunction(()=>{const x=document.querySelector('#autocomplete');return x&&!x.hidden&&x.textContent.trim().length>0});
+            assert.match(await page.locator('#autocomplete').innerText(),/千鳥格子/,'autocomplete must identify houndstooth');
+            assert.deepEqual(pageErrors,[],'JA home page errors');
+
+            await goto(base+'en/'); await waitCards();
+            assert.equal(await page.locator('#pattern-grid .pd-card').count(),100);
+            assert.deepEqual(pageErrors,[],'EN home page errors');
+
+            // Search: strong natural-language query and zero/weak query behavior.
+            await goto(base+'search.html?q='+encodeURIComponent('白黒のギザギザしたチェック'));
+            await page.waitForFunction(()=>document.querySelector('#results')?.textContent.trim().length>0);
+            assert.match(await page.locator('#results').innerText(),/千鳥格子/,'JA vague search must surface houndstooth');
+            await page.locator('#q').fill('zzzz-no-known-pattern-987654321');
+            await page.locator('#search-form').evaluate(f=>f.requestSubmit());
+            await page.waitForTimeout(100);
+            assert.ok((await page.locator('#results').innerText()).trim().length>0,'zero/weak query must render explicit state');
+            assert.deepEqual(pageErrors,[],'search page errors');
+
+            // Detail identity, language preservation, image and maintained affiliate behavior.
+            await goto(base+'patterns/houndstooth/');
+            await page.waitForSelector('.pd-detail-image');
+            const img=await page.locator('.pd-detail-image').evaluate(i=>({alt:i.alt,nw:i.naturalWidth,nh:i.naturalHeight,complete:i.complete}));
+            assert.ok(img.alt.trim().length>0,'detail image alt must be non-empty');
+            assert.ok(img.complete&&img.nw===1536&&img.nh===1536,`detail image expected 1536x1536, got ${img.nw}x${img.nh}`);
+            const langHref=await page.locator('.pd-lang').getAttribute('href');
+            assert.ok(langHref.endsWith('/en/patterns/houndstooth/'),'detail language switch must preserve ID');
+            await page.waitForFunction(()=>document.querySelectorAll('a[href*="amazon.co.jp"]').length>=2);
+            const amazon=await page.locator('a[href*="amazon.co.jp"]').evaluateAll(xs=>xs.map(a=>({href:a.href,rel:a.rel,text:a.textContent.trim()})));
+            assert.ok(amazon.length>=2&&amazon.length<=4,`expected 2-4 maintained Amazon links, got ${amazon.length}`);
+            for(const a of amazon){
+              assert.match(a.href,/tag=nicheworks09-22/,'Amazon link must carry maintained tag');
+              assert.ok(/sponsored/.test(a.rel),'Amazon link must use sponsored rel');
+              assert.ok(a.text.length>0,'Amazon link needs accessible text');
+            }
+            assert.deepEqual(pageErrors,[],'detail page errors');
+
+            // Compare guidance.
+            await goto(base+'compare.html?a=chevron&b=herringbone');
+            await page.waitForSelector('.pd-compare-guide');
+            const compareText=await page.locator('#compare').innerText();
+            assert.match(compareText,/シェブロン/);
+            assert.match(compareText,/ヘリンボーン/);
+            assert.deepEqual(pageErrors,[],'compare page errors');
+
+            // Responsive contract: no root overflow and 2-column mobile browse.
+            for(const width of [1440,768,390,320]){
+              await page.setViewportSize({width,height:900});
+              await goto(base); await waitCards(); await noOverflow(`home ${width}`);
+              if(width<=390){
+                const boxes=await page.locator('#pattern-grid .pd-card').evaluateAll(xs=>xs.slice(0,3).map(x=>{const r=x.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width}}));
+                assert.ok(Math.abs(boxes[0].y-boxes[1].y)<2,`${width}: first two cards should share a row`);
+                assert.ok(boxes[2].y>boxes[0].y+5,`${width}: third card should start next row`);
+              }
+              await goto(base+'compare.html?a=chevron&b=herringbone');
+              await page.waitForSelector('.pd-compare-guide'); await noOverflow(`compare ${width}`);
+            }
+
+            // Keyboard and accessible names for primary controls.
+            await page.setViewportSize({width:390,height:844});
+            await goto(base);
+            const controls=await page.locator('button,input,a').evaluateAll(xs=>xs.map(x=>({tag:x.tagName,name:(x.getAttribute('aria-label')||x.textContent||x.getAttribute('placeholder')||'').trim(),type:x.getAttribute('type')})).filter(x=>x.tag==='BUTTON'||x.tag==='INPUT'));
+            for(const c of controls)assert.ok(c.name.length>0,`${c.tag}: primary control lacks accessible name`);
+            await page.locator('#q').focus();
+            assert.equal(await page.evaluate(()=>document.activeElement?.id),'q');
+            await page.keyboard.press('Tab');
+            assert.equal(await page.evaluate(()=>document.activeElement?.tagName),'BUTTON','Tab after search input should reach search button');
+
+            // axe: fail serious/critical WCAG A/AA violations; print all violations for review.
+            const allViolations=[];
+            for(const url of pagesForA11y){
+              await goto(url);
+              if(url.includes('search.html')) await page.waitForFunction(()=>document.querySelector('#results')?.textContent.trim().length>0);
+              if(url.includes('/patterns/')) await page.waitForSelector('.pd-detail-image');
+              if(url.includes('compare.html')) await page.waitForSelector('.pd-compare-guide');
+              if(url===base||url===base+'en/') await waitCards();
+              await page.addScriptTag({path:axePath});
+              const result=await page.evaluate(async()=>axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}));
+              for(const v of result.violations)allViolations.push({url,id:v.id,impact:v.impact,help:v.help,nodes:v.nodes.length});
+            }
+            console.log('AXE_VIOLATIONS',JSON.stringify(allViolations,null,2));
+            const blocking=allViolations.filter(v=>v.impact==='serious'||v.impact==='critical');
+            assert.deepEqual(blocking,[],`blocking accessibility violations: ${JSON.stringify(blocking)}`);
+            console.log('OK: Pattern Dictionary canonical v1 product QA passed.');
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+          node .pd-v1-product-qa.cjs
