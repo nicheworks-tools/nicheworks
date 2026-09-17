@@ -41,28 +41,138 @@
     "examples": 80
   },
   "by_type": {
-    "access": {"public_entries": 1, "fallback_independent_core": 1, "runtime_fallback_dependent": 0, "missing_core_bilingual_content": 0},
-    "accessory": {"public_entries": 2, "fallback_independent_core": 0, "runtime_fallback_dependent": 2, "missing_core_bilingual_content": 0},
-    "component": {"public_entries": 205, "fallback_independent_core": 188, "runtime_fallback_dependent": 17, "missing_core_bilingual_content": 0},
-    "consumable": {"public_entries": 13, "fallback_independent_core": 11, "runtime_fallback_dependent": 2, "missing_core_bilingual_content": 0},
-    "defect": {"public_entries": 3, "fallback_independent_core": 3, "runtime_fallback_dependent": 0, "missing_core_bilingual_content": 0},
-    "document": {"public_entries": 2, "fallback_independent_core": 2, "runtime_fallback_dependent": 0, "missing_core_bilingual_content": 0},
-    "equipment": {"public_entries": 43, "fallback_independent_core": 38, "runtime_fallback_dependent": 5, "missing_core_bilingual_content": 0},
-    "fastener": {"public_entries": 18, "fallback_independent_core": 14, "runtime_fallback_dependent": 4, "missing_core_bilingual_content": 0},
-    "fixture": {"public_entries": 5, "fallback_independent_core": 5, "runtime_fallback_dependent": 0, "missing_core_bilingual_content": 0},
-    "hardware": {"public_entries": 14, "fallback_independent_core": 14, "runtime_fallback_dependent": 0, "missing_core_bilingual_content": 0},
-    "inspection": {"public_entries": 8, "fallback_independent_core": 8, "runtime_fallback_dependent": 0, "missing_core_bilingual_content": 0},
-    "material": {"public_entries": 158, "fallback_independent_core": 133, "runtime_fallback_dependent": 25, "missing_core_bilingual_content": 0},
-    "materials": {"public_entries": 14, "fallback_independent_core": 0, "runtime_fallback_dependent": 14, "missing_core_bilingual_content": 0},
-    "process": {"public_entries": 19, "fallback_independent_core": 8, "runtime_fallback_dependent": 11, "missing_core_bilingual_content": 0},
-    "rigging": {"public_entries": 7, "fallback_independent_core": 7, "runtime_fallback_dependent": 0, "missing_core_bilingual_content": 0},
-    "safety": {"public_entries": 16, "fallback_independent_core": 13, "runtime_fallback_dependent": 3, "missing_core_bilingual_content": 0},
-    "sample": {"public_entries": 1, "fallback_independent_core": 0, "runtime_fallback_dependent": 1, "missing_core_bilingual_content": 0},
-    "site": {"public_entries": 2, "fallback_independent_core": 0, "runtime_fallback_dependent": 2, "missing_core_bilingual_content": 0},
-    "structure": {"public_entries": 2, "fallback_independent_core": 2, "runtime_fallback_dependent": 0, "missing_core_bilingual_content": 0},
-    "temporary": {"public_entries": 3, "fallback_independent_core": 2, "runtime_fallback_dependent": 1, "missing_core_bilingual_content": 0},
-    "test": {"public_entries": 1, "fallback_independent_core": 1, "runtime_fallback_dependent": 0, "missing_core_bilingual_content": 0},
-    "tool": {"public_entries": 333, "fallback_independent_core": 121, "runtime_fallback_dependent": 212, "missing_core_bilingual_content": 0}
+    "access": {
+      "public_entries": 1,
+      "fallback_independent_core": 1,
+      "runtime_fallback_dependent": 0,
+      "missing_core_bilingual_content": 0
+    },
+    "accessory": {
+      "public_entries": 2,
+      "fallback_independent_core": 0,
+      "runtime_fallback_dependent": 2,
+      "missing_core_bilingual_content": 0
+    },
+    "component": {
+      "public_entries": 205,
+      "fallback_independent_core": 188,
+      "runtime_fallback_dependent": 17,
+      "missing_core_bilingual_content": 0
+    },
+    "consumable": {
+      "public_entries": 13,
+      "fallback_independent_core": 11,
+      "runtime_fallback_dependent": 2,
+      "missing_core_bilingual_content": 0
+    },
+    "defect": {
+      "public_entries": 3,
+      "fallback_independent_core": 3,
+      "runtime_fallback_dependent": 0,
+      "missing_core_bilingual_content": 0
+    },
+    "document": {
+      "public_entries": 2,
+      "fallback_independent_core": 2,
+      "runtime_fallback_dependent": 0,
+      "missing_core_bilingual_content": 0
+    },
+    "equipment": {
+      "public_entries": 43,
+      "fallback_independent_core": 38,
+      "runtime_fallback_dependent": 5,
+      "missing_core_bilingual_content": 0
+    },
+    "fastener": {
+      "public_entries": 18,
+      "fallback_independent_core": 14,
+      "runtime_fallback_dependent": 4,
+      "missing_core_bilingual_content": 0
+    },
+    "fixture": {
+      "public_entries": 5,
+      "fallback_independent_core": 5,
+      "runtime_fallback_dependent": 0,
+      "missing_core_bilingual_content": 0
+    },
+    "hardware": {
+      "public_entries": 14,
+      "fallback_independent_core": 14,
+      "runtime_fallback_dependent": 0,
+      "missing_core_bilingual_content": 0
+    },
+    "inspection": {
+      "public_entries": 8,
+      "fallback_independent_core": 8,
+      "runtime_fallback_dependent": 0,
+      "missing_core_bilingual_content": 0
+    },
+    "material": {
+      "public_entries": 158,
+      "fallback_independent_core": 133,
+      "runtime_fallback_dependent": 25,
+      "missing_core_bilingual_content": 0
+    },
+    "materials": {
+      "public_entries": 14,
+      "fallback_independent_core": 0,
+      "runtime_fallback_dependent": 14,
+      "missing_core_bilingual_content": 0
+    },
+    "process": {
+      "public_entries": 19,
+      "fallback_independent_core": 8,
+      "runtime_fallback_dependent": 11,
+      "missing_core_bilingual_content": 0
+    },
+    "rigging": {
+      "public_entries": 7,
+      "fallback_independent_core": 7,
+      "runtime_fallback_dependent": 0,
+      "missing_core_bilingual_content": 0
+    },
+    "safety": {
+      "public_entries": 16,
+      "fallback_independent_core": 13,
+      "runtime_fallback_dependent": 3,
+      "missing_core_bilingual_content": 0
+    },
+    "sample": {
+      "public_entries": 1,
+      "fallback_independent_core": 0,
+      "runtime_fallback_dependent": 1,
+      "missing_core_bilingual_content": 0
+    },
+    "site": {
+      "public_entries": 2,
+      "fallback_independent_core": 0,
+      "runtime_fallback_dependent": 2,
+      "missing_core_bilingual_content": 0
+    },
+    "structure": {
+      "public_entries": 2,
+      "fallback_independent_core": 2,
+      "runtime_fallback_dependent": 0,
+      "missing_core_bilingual_content": 0
+    },
+    "temporary": {
+      "public_entries": 3,
+      "fallback_independent_core": 2,
+      "runtime_fallback_dependent": 1,
+      "missing_core_bilingual_content": 0
+    },
+    "test": {
+      "public_entries": 1,
+      "fallback_independent_core": 1,
+      "runtime_fallback_dependent": 0,
+      "missing_core_bilingual_content": 0
+    },
+    "tool": {
+      "public_entries": 333,
+      "fallback_independent_core": 121,
+      "runtime_fallback_dependent": 212,
+      "missing_core_bilingual_content": 0
+    }
   },
   "hashes": {
     "content_status_sha256": "c46e017aa3ef9eea09f780f0304c898cf6385423e322522c19bae05290561b74",
@@ -73,58 +183,408 @@
   },
   "samples": {
     "fallback_independent_core": [
-      {"id":"drill_driver","source":"data/tools.quality-001.json","enrichment":null,"fallback_fields":[]},
-      {"id":"hammer_drill","source":"data/tools.quality-001.json","enrichment":null,"fallback_fields":[]},
-      {"id":"core_drill","source":"data/tools.quality-001.json","enrichment":null,"fallback_fields":[]},
-      {"id":"random_orbit_sander","source":"data/tools.quality-001.json","enrichment":null,"fallback_fields":[]},
-      {"id":"speed_square","source":"data/tools.quality-001.json","enrichment":null,"fallback_fields":[]},
-      {"id":"chisel","source":"data/tools.quality-001.json","enrichment":null,"fallback_fields":[]},
-      {"id":"hand_saw","source":"data/tools.quality-001.json","enrichment":null,"fallback_fields":[]},
-      {"id":"stepladder","source":"data/tools.quality-001.json","enrichment":null,"fallback_fields":[]},
-      {"id":"drywall_board","source":"data/tools.quality-002.json","enrichment":null,"fallback_fields":[]},
-      {"id":"form_plywood","source":"data/tools.quality-002.json","enrichment":null,"fallback_fields":[]},
-      {"id":"runner_track","source":"data/tools.quality-002.json","enrichment":null,"fallback_fields":[]},
-      {"id":"self_drilling_screw","source":"data/tools.quality-002.json","enrichment":null,"fallback_fields":[]},
-      {"id":"wood_screw","source":"data/tools.quality-002.json","enrichment":null,"fallback_fields":[]},
-      {"id":"chemical_anchor","source":"data/tools.quality-002.json","enrichment":null,"fallback_fields":[]},
-      {"id":"laser_distance_meter","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"total_station","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"auto_level","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"leveling_staff","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"marking_spray","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"marking_pencil","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"plumb_laser","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"line_marker","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"dust_mask","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"cut_resistant_gloves","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]},
-      {"id":"safety_shoes","source":"data/tools.quality-003.json","enrichment":null,"fallback_fields":[]}
+      {
+        "id": "drill_driver",
+        "source": "data/tools.quality-001.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "hammer_drill",
+        "source": "data/tools.quality-001.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "core_drill",
+        "source": "data/tools.quality-001.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "random_orbit_sander",
+        "source": "data/tools.quality-001.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "speed_square",
+        "source": "data/tools.quality-001.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "chisel",
+        "source": "data/tools.quality-001.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "hand_saw",
+        "source": "data/tools.quality-001.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "stepladder",
+        "source": "data/tools.quality-001.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "drywall_board",
+        "source": "data/tools.quality-002.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "form_plywood",
+        "source": "data/tools.quality-002.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "runner_track",
+        "source": "data/tools.quality-002.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "self_drilling_screw",
+        "source": "data/tools.quality-002.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "wood_screw",
+        "source": "data/tools.quality-002.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "chemical_anchor",
+        "source": "data/tools.quality-002.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "laser_distance_meter",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "total_station",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "auto_level",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "leveling_staff",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "marking_spray",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "marking_pencil",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "plumb_laser",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "line_marker",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "dust_mask",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "cut_resistant_gloves",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      },
+      {
+        "id": "safety_shoes",
+        "source": "data/tools.quality-003.json",
+        "enrichment": null,
+        "fallback_fields": []
+      }
     ],
     "runtime_fallback_dependent": [
-      {"id":"q016_plaster_base","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_plaster_mesh","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_skim_coat","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_plaster_hawk","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_plaster_trowel","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_corner_trowel","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_sponge_float","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_repair_patch","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_wall_repair_mesh","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_spackling_paste","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_crack_filler","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_epoxy_floor_coating","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_floor_hardener","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_concrete_sealer","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_floor_polisher","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_moisture_barrier_coating","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_subfloor_level_check","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_flatness_check","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_pull_off_tester","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_cross_cut_tester","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_coating_thickness_gauge","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_color_sample_board","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_finish_sample","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_mockup_panel","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]},
-      {"id":"q016_punch_list","source":"data/tools.quality-016.json","enrichment":null,"fallback_fields":["detail","bullets","examples"]}
+      {
+        "id": "q016_plaster_base",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_plaster_mesh",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_skim_coat",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_plaster_hawk",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_plaster_trowel",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_corner_trowel",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_sponge_float",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_repair_patch",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_wall_repair_mesh",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_spackling_paste",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_crack_filler",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_epoxy_floor_coating",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_floor_hardener",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_concrete_sealer",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_floor_polisher",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_moisture_barrier_coating",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_subfloor_level_check",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_flatness_check",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_pull_off_tester",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_cross_cut_tester",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_coating_thickness_gauge",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_color_sample_board",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_finish_sample",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_mockup_panel",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_punch_list",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      }
     ],
     "missing_core_bilingual_content": []
   }
