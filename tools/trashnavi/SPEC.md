@@ -1001,3 +1001,7 @@ Publication acceptanceでは10ページすべてについてexactly 3 official c
 ## Wave 43 ten-municipality publication
 
 Wave 43は既存の10自治体batch scaling ruleとpreferred readiness thresholdを維持し、204自治体から214自治体へ拡張する。対象は蓮田市・白岡市・小川町・ときがわ町・横瀬町・長瀞町・小鹿野町・東秩父村・寄居町・杉戸町。各自治体は `municipal_home` を除く3種類の異なるwaste-specific official link typeと3つの自治体公式URLを持ち、同一ページ二重計上や外部衛生組合・委託先URLによる閾値補完は行わない。Readiness baselineは2,730/2,730 valid HTTP(S)、214 preferred candidates、46 datasets / 662 records / 643 unique URLs / invalid 0。Publicationでは214ページ、AI reference 214/214、root/dedicated sitemap、root internal links、Amazon 4 fixed categories (`nicheworks09-22`) を検証する。2026 calendar calloutは `fiscal_year: 2026` が明示された小川町・ときがわ町・横瀬町・長瀞町・小鹿野町・寄居町・杉戸町のみ表示し、蓮田市・白岡市・東秩父村には表示しない。
+
+## Wave 44 ten-municipality publication
+
+Wave 44は既存の10自治体batch scaling ruleとpreferred readiness thresholdを維持し、214自治体から224自治体へ拡張する。対象は君津市・富津市・袖ケ浦市・茂原市・東金市・八街市・印西市・白井市・四街道市・富里市。各自治体は `municipal_home` を除く3種類の異なるwaste-specific official link typeと3つの自治体公式URLを持ち、同一ページ二重計上や外部衛生組合・委託先URLによる閾値補完は行わない。Readiness baselineは2,760/2,760 valid HTTP(S)、224 preferred candidates、47 datasets / 692 records / 673 unique URLs / invalid 0。Publicationでは224ページ、AI reference 224/224、root/dedicated sitemap、root internal links、Amazon 4 fixed categories (`nicheworks09-22`) を検証する。2026 calendar calloutは `fiscal_year: 2026` が明示された富津市・袖ケ浦市・茂原市・東金市・八街市・四街道市・富里市のみ表示し、君津市・印西市・白井市には表示しない。

@@ -1,13 +1,13 @@
 {
   "schema_version": "trashnavi-ai-reference-v1",
-  "snapshot_date": "2026-09-16",
+  "snapshot_date": "2026-09-18",
   "canonical_tool": "https://nicheworks.app/tools/trashnavi/",
   "purpose": "Machine-readable discovery index for currently published TrashNavi municipality pages.",
   "scope": "Published municipality landing pages only. This pilot index does not duplicate or replace the official municipal rules linked from each page.",
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 214,
+  "published_municipality_count": 224,
   "municipalities": [
     {
       "lgcode": "131016",
@@ -1292,6 +1292,66 @@
       "pref_slug": "saitama",
       "city_slug": "sugito",
       "url": "https://nicheworks.app/tools/trashnavi/saitama/sugito/"
+    },
+    {
+      "lgcode": "122254",
+      "pref_slug": "chiba",
+      "city_slug": "kimitsu",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/kimitsu/"
+    },
+    {
+      "lgcode": "122262",
+      "pref_slug": "chiba",
+      "city_slug": "futtsu",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/futtsu/"
+    },
+    {
+      "lgcode": "122297",
+      "pref_slug": "chiba",
+      "city_slug": "sodegaura",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/sodegaura/"
+    },
+    {
+      "lgcode": "122106",
+      "pref_slug": "chiba",
+      "city_slug": "mobara",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/mobara/"
+    },
+    {
+      "lgcode": "122131",
+      "pref_slug": "chiba",
+      "city_slug": "togane",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/togane/"
+    },
+    {
+      "lgcode": "122301",
+      "pref_slug": "chiba",
+      "city_slug": "yachimata",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/yachimata/"
+    },
+    {
+      "lgcode": "122319",
+      "pref_slug": "chiba",
+      "city_slug": "inzai",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/inzai/"
+    },
+    {
+      "lgcode": "122327",
+      "pref_slug": "chiba",
+      "city_slug": "shiroi",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/shiroi/"
+    },
+    {
+      "lgcode": "122289",
+      "pref_slug": "chiba",
+      "city_slug": "yotsukaido",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/yotsukaido/"
+    },
+    {
+      "lgcode": "122335",
+      "pref_slug": "chiba",
+      "city_slug": "tomisato",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/tomisato/"
     }
   ]
 }

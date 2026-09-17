@@ -1,216 +1,1346 @@
 [
-  {"lgcode":"131016","pref_slug":"tokyo","city_slug":"chiyoda","publish":true},
-  {"lgcode":"131032","pref_slug":"tokyo","city_slug":"minato","publish":true},
-  {"lgcode":"131041","pref_slug":"tokyo","city_slug":"shinjuku","publish":true},
-  {"lgcode":"131121","pref_slug":"tokyo","city_slug":"setagaya","publish":true},
-  {"lgcode":"131130","pref_slug":"tokyo","city_slug":"shibuya","publish":true},
-  {"lgcode":"131156","pref_slug":"tokyo","city_slug":"suginami","publish":true},
-  {"lgcode":"131202","pref_slug":"tokyo","city_slug":"nerima","publish":true},
-  {"lgcode":"245615","pref_slug":"mie","city_slug":"mihama","publish":true},
-  {"lgcode":"212211","pref_slug":"gifu","city_slug":"kaizu","publish":true},
-  {"lgcode":"082074","pref_slug":"ibaraki","city_slug":"yuki","publish":true},
-  {"lgcode":"131024","pref_slug":"tokyo","city_slug":"chuo","publish":true},
-  {"lgcode":"131229","pref_slug":"tokyo","city_slug":"katsushika","publish":true},
-  {"lgcode":"074080","pref_slug":"fukushima","city_slug":"inawashiro","publish":true},
-  {"lgcode":"382019","pref_slug":"ehime","city_slug":"matsuyama","publish":true},
-  {"lgcode":"292010","pref_slug":"nara","city_slug":"nara","publish":true},
-  {"lgcode":"462012","pref_slug":"kagoshima","city_slug":"kagoshima","publish":true},
-  {"lgcode":"452017","pref_slug":"miyazaki","city_slug":"miyazaki","publish":true},
-  {"lgcode":"372013","pref_slug":"kagawa","city_slug":"takamatsu","publish":true},
-  {"lgcode":"442011","pref_slug":"oita","city_slug":"oita","publish":true},
-  {"lgcode":"242012","pref_slug":"mie","city_slug":"tsu","publish":true},
-  {"lgcode":"352039","pref_slug":"yamaguchi","city_slug":"yamaguchi","publish":true},
-  {"lgcode":"252018","pref_slug":"shiga","city_slug":"otsu","publish":true},
-  {"lgcode":"322016","pref_slug":"shimane","city_slug":"matsue","publish":true},
-  {"lgcode":"412015","pref_slug":"saga","city_slug":"saga","publish":true},
-  {"lgcode":"312011","pref_slug":"tottori","city_slug":"tottori","publish":true},
-  {"lgcode":"472018","pref_slug":"okinawa","city_slug":"naha","publish":true},
-  {"lgcode":"362018","pref_slug":"tokushima","city_slug":"tokushima","publish":true},
-  {"lgcode":"422011","pref_slug":"nagasaki","city_slug":"nagasaki","publish":true},
-  {"lgcode":"392014","pref_slug":"kochi","city_slug":"kochi","publish":true},
-  {"lgcode":"092011","pref_slug":"tochigi","city_slug":"utsunomiya","publish":true},
-  {"lgcode":"162019","pref_slug":"toyama","city_slug":"toyama","publish":true},
-  {"lgcode":"182010","pref_slug":"fukui","city_slug":"fukui","publish":true},
-  {"lgcode":"202011","pref_slug":"nagano","city_slug":"nagano","publish":true},
-  {"lgcode":"212016","pref_slug":"gifu","city_slug":"gifu","publish":true},
-  {"lgcode":"011002","pref_slug":"hokkaido","city_slug":"sapporo","publish":true},
-  {"lgcode":"141003","pref_slug":"kanagawa","city_slug":"yokohama","publish":true},
-  {"lgcode":"192015","pref_slug":"yamanashi","city_slug":"kofu","publish":true},
-  {"lgcode":"231002","pref_slug":"aichi","city_slug":"nagoya","publish":true},
-  {"lgcode":"302015","pref_slug":"wakayama","city_slug":"wakayama","publish":true},
-  {"lgcode":"041009","pref_slug":"miyagi","city_slug":"sendai","publish":true},
-  {"lgcode":"121002","pref_slug":"chiba","city_slug":"chiba","publish":true},
-  {"lgcode":"151009","pref_slug":"niigata","city_slug":"niigata","publish":true},
-  {"lgcode":"261009","pref_slug":"kyoto","city_slug":"kyoto","publish":true},
-  {"lgcode":"271004","pref_slug":"osaka","city_slug":"osaka","publish":true},
-  {"lgcode":"221007","pref_slug":"shizuoka","city_slug":"shizuoka","publish":true},
-  {"lgcode":"221309","pref_slug":"shizuoka","city_slug":"hamamatsu","publish":true},
-  {"lgcode":"281000","pref_slug":"hyogo","city_slug":"kobe","publish":true},
-  {"lgcode":"341002","pref_slug":"hiroshima","city_slug":"hiroshima","publish":true},
-  {"lgcode":"431001","pref_slug":"kumamoto","city_slug":"kumamoto","publish":true},
-  {"lgcode":"022012","pref_slug":"aomori","city_slug":"aomori","publish":true},
-  {"lgcode":"062014","pref_slug":"yamagata","city_slug":"yamagata","publish":true},
-  {"lgcode":"102016","pref_slug":"gunma","city_slug":"maebashi","publish":true},
-  {"lgcode":"111007","pref_slug":"saitama","city_slug":"saitama","publish":true},
-  {"lgcode":"172014","pref_slug":"ishikawa","city_slug":"kanazawa","publish":true},
-  {"lgcode":"032018","pref_slug":"iwate","city_slug":"morioka","publish":true},
-  {"lgcode":"052019","pref_slug":"akita","city_slug":"akita","publish":true},
-  {"lgcode":"072010","pref_slug":"fukushima","city_slug":"fukushima","publish":true},
-  {"lgcode":"082015","pref_slug":"ibaraki","city_slug":"mito","publish":true},
-  {"lgcode":"141305","pref_slug":"kanagawa","city_slug":"kawasaki","publish":true},
-  {"lgcode":"141500","pref_slug":"kanagawa","city_slug":"sagamihara","publish":true},
-  {"lgcode":"271403","pref_slug":"osaka","city_slug":"sakai","publish":true},
-  {"lgcode":"331007","pref_slug":"okayama","city_slug":"okayama","publish":true},
-  {"lgcode":"401307","pref_slug":"fukuoka","city_slug":"fukuoka","publish":true},
-  {"lgcode":"401005","pref_slug":"fukuoka","city_slug":"kitakyushu","publish":true},
-  {"lgcode":"131113","pref_slug":"tokyo","city_slug":"ota","publish":true},
-  {"lgcode":"131237","pref_slug":"tokyo","city_slug":"edogawa","publish":true},
-  {"lgcode":"131211","pref_slug":"tokyo","city_slug":"adachi","publish":true},
-  {"lgcode":"131199","pref_slug":"tokyo","city_slug":"itabashi","publish":true},
-  {"lgcode":"131083","pref_slug":"tokyo","city_slug":"koto","publish":true},
-  {"lgcode":"131091","pref_slug":"tokyo","city_slug":"shinagawa","publish":true},
-  {"lgcode":"131172","pref_slug":"tokyo","city_slug":"kita","publish":true},
-  {"lgcode":"131148","pref_slug":"tokyo","city_slug":"nakano","publish":true},
-  {"lgcode":"131164","pref_slug":"tokyo","city_slug":"toshima","publish":true},
-  {"lgcode":"131105","pref_slug":"tokyo","city_slug":"meguro","publish":true},
-  {"lgcode":"131059","pref_slug":"tokyo","city_slug":"bunkyo","publish":true},
-  {"lgcode":"131067","pref_slug":"tokyo","city_slug":"taito","publish":true},
-  {"lgcode":"131075","pref_slug":"tokyo","city_slug":"sumida","publish":true},
-  {"lgcode":"131181","pref_slug":"tokyo","city_slug":"arakawa","publish":true},
-  {"lgcode":"132012","pref_slug":"tokyo","city_slug":"hachioji","publish":true},
-  {"lgcode":"122041","pref_slug":"chiba","city_slug":"funabashi","publish":true},
-  {"lgcode":"112038","pref_slug":"saitama","city_slug":"kawaguchi","publish":true},
-  {"lgcode":"122076","pref_slug":"chiba","city_slug":"matsudo","publish":true},
-  {"lgcode":"122033","pref_slug":"chiba","city_slug":"ichikawa","publish":true},
-  {"lgcode":"132098","pref_slug":"tokyo","city_slug":"machida","publish":true},
-  {"lgcode":"272272","pref_slug":"osaka","city_slug":"higashiosaka","publish":true},
-  {"lgcode":"282022","pref_slug":"hyogo","city_slug":"amagasaki","publish":true},
-  {"lgcode":"142051","pref_slug":"kanagawa","city_slug":"fujisawa","publish":true},
-  {"lgcode":"112011","pref_slug":"saitama","city_slug":"kawagoe","publish":true},
-  {"lgcode":"232114","pref_slug":"aichi","city_slug":"toyota","publish":true},
-  {"lgcode":"272035","pref_slug":"osaka","city_slug":"toyonaka","publish":true},
-  {"lgcode":"142018","pref_slug":"kanagawa","city_slug":"yokosuka","publish":true},
-  {"lgcode":"232025","pref_slug":"aichi","city_slug":"okazaki","publish":true},
-  {"lgcode":"232033","pref_slug":"aichi","city_slug":"ichinomiya","publish":true},
-  {"lgcode":"102024","pref_slug":"gunma","city_slug":"takasaki","publish":true},
-  {"lgcode":"012041","pref_slug":"hokkaido","city_slug":"asahikawa","publish":true},
-  {"lgcode":"112224","pref_slug":"saitama","city_slug":"koshigaya","publish":true},
-  {"lgcode":"112089","pref_slug":"saitama","city_slug":"tokorozawa","publish":true},
-  {"lgcode":"072036","pref_slug":"fukushima","city_slug":"koriyama","publish":true},
-  {"lgcode":"282049","pref_slug":"hyogo","city_slug":"nishinomiya","publish":true},
-  {"lgcode":"272108","pref_slug":"osaka","city_slug":"hirakata","publish":true},
-  {"lgcode":"272051","pref_slug":"osaka","city_slug":"suita","publish":true},
-  {"lgcode":"272078","pref_slug":"osaka","city_slug":"takatsuki","publish":true},
-  {"lgcode":"232017","pref_slug":"aichi","city_slug":"toyohashi","publish":true},
-  {"lgcode":"282031","pref_slug":"hyogo","city_slug":"akashi","publish":true},
-  {"lgcode":"332020","pref_slug":"okayama","city_slug":"kurashiki","publish":true},
-  {"lgcode":"342076","pref_slug":"hiroshima","city_slug":"fukuyama","publish":true},
-  {"lgcode":"272124","pref_slug":"osaka","city_slug":"yao","publish":true},
-  {"lgcode":"272116","pref_slug":"osaka","city_slug":"ibaraki","publish":true},
-  {"lgcode":"282103","pref_slug":"hyogo","city_slug":"kakogawa","publish":true},
-  {"lgcode":"152021","pref_slug":"niigata","city_slug":"nagaoka","publish":true},
-  {"lgcode":"202029","pref_slug":"nagano","city_slug":"matsumoto","publish":true},
-  {"lgcode":"222101","pref_slug":"shizuoka","city_slug":"fuji","publish":true},
-  {"lgcode":"112216","pref_slug":"saitama","city_slug":"soka","publish":true},
-  {"lgcode":"232068","pref_slug":"aichi","city_slug":"kasugai","publish":true},
-  {"lgcode":"132063","pref_slug":"tokyo","city_slug":"fuchu","publish":true},
-  {"lgcode":"132080","pref_slug":"tokyo","city_slug":"chofu","publish":true},
-  {"lgcode":"142034","pref_slug":"kanagawa","city_slug":"hiratsuka","publish":true},
-  {"lgcode":"142077","pref_slug":"kanagawa","city_slug":"chigasaki","publish":true},
-  {"lgcode":"142131","pref_slug":"kanagawa","city_slug":"yamato","publish":true},
-  {"lgcode":"112143","pref_slug":"saitama","city_slug":"kasukabe","publish":true},
-  {"lgcode":"112194","pref_slug":"saitama","city_slug":"ageo","publish":true},
-  {"lgcode":"282146","pref_slug":"hyogo","city_slug":"takarazuka","publish":true},
-  {"lgcode":"272159","pref_slug":"osaka","city_slug":"neyagawa","publish":true},
-  {"lgcode":"282073","pref_slug":"hyogo","city_slug":"itami","publish":true},
-  {"lgcode":"112020","pref_slug":"saitama","city_slug":"kumagaya","publish":true},
-  {"lgcode":"112305","pref_slug":"saitama","city_slug":"niiza","publish":true},
-  {"lgcode":"122203","pref_slug":"chiba","city_slug":"nagareyama","publish":true},
-  {"lgcode":"122211","pref_slug":"chiba","city_slug":"yachiyo","publish":true},
-  {"lgcode":"122165","pref_slug":"chiba","city_slug":"narashino","publish":true},
-  {"lgcode":"132292","pref_slug":"tokyo","city_slug":"nishitokyo","publish":true},
-  {"lgcode":"132110","pref_slug":"tokyo","city_slug":"kodaira","publish":true},
-  {"lgcode":"132021","pref_slug":"tokyo","city_slug":"tachikawa","publish":true},
-  {"lgcode":"142123","pref_slug":"kanagawa","city_slug":"atsugi","publish":true},
-  {"lgcode":"142069","pref_slug":"kanagawa","city_slug":"odawara","publish":true},
-  {"lgcode":"132047","pref_slug":"tokyo","city_slug":"mitaka","publish":true},
-  {"lgcode":"132039","pref_slug":"tokyo","city_slug":"musashino","publish":true},
-  {"lgcode":"132128","pref_slug":"tokyo","city_slug":"hino","publish":true},
-  {"lgcode":"132144","pref_slug":"tokyo","city_slug":"kokubunji","publish":true},
-  {"lgcode":"132241","pref_slug":"tokyo","city_slug":"tama","publish":true},
-  {"lgcode":"142042","pref_slug":"kanagawa","city_slug":"kamakura","publish":true},
-  {"lgcode":"142158","pref_slug":"kanagawa","city_slug":"ebina","publish":true},
-  {"lgcode":"142166","pref_slug":"kanagawa","city_slug":"zama","publish":true},
-  {"lgcode":"122122","pref_slug":"chiba","city_slug":"sakura","publish":true},
-  {"lgcode":"122114","pref_slug":"chiba","city_slug":"narita","publish":true},
-  {"lgcode":"132101","pref_slug":"tokyo","city_slug":"koganei","publish":true},
-  {"lgcode":"132071","pref_slug":"tokyo","city_slug":"akishima","publish":true},
-  {"lgcode":"132152","pref_slug":"tokyo","city_slug":"kunitachi","publish":true},
-  {"lgcode":"132250","pref_slug":"tokyo","city_slug":"inagi","publish":true},
-  {"lgcode":"132195","pref_slug":"tokyo","city_slug":"komae","publish":true},
-  {"lgcode":"132217","pref_slug":"tokyo","city_slug":"kiyose","publish":true},
-  {"lgcode":"132225","pref_slug":"tokyo","city_slug":"higashikurume","publish":true},
-  {"lgcode":"142140","pref_slug":"kanagawa","city_slug":"isehara","publish":true},
-  {"lgcode":"132209","pref_slug":"tokyo","city_slug":"higashiyamato","publish":true},
-  {"lgcode":"122220","pref_slug":"chiba","city_slug":"abiko","publish":true},
-  {"lgcode":"132276","pref_slug":"tokyo","city_slug":"hamura","publish":true},
-  {"lgcode":"132284","pref_slug":"tokyo","city_slug":"akiruno","publish":true},
-  {"lgcode":"132233","pref_slug":"tokyo","city_slug":"musashimurayama","publish":true},
-  {"lgcode":"122068","pref_slug":"chiba","city_slug":"kisarazu","publish":true},
-  {"lgcode":"122084","pref_slug":"chiba","city_slug":"noda","publish":true},
-  {"lgcode":"122271","pref_slug":"chiba","city_slug":"urayasu","publish":true},
-  {"lgcode":"122246","pref_slug":"chiba","city_slug":"kamagaya","publish":true},
-  {"lgcode":"112275","pref_slug":"saitama","city_slug":"asaka","publish":true},
-  {"lgcode":"112291","pref_slug":"saitama","city_slug":"wako","publish":true},
-  {"lgcode":"112241","pref_slug":"saitama","city_slug":"toda","publish":true},
-  {"lgcode":"132055","pref_slug":"tokyo","city_slug":"ome","publish":true},
-  {"lgcode":"132187","pref_slug":"tokyo","city_slug":"fussa","publish":true},
-  {"lgcode":"112259","pref_slug":"saitama","city_slug":"iruma","publish":true},
-  {"lgcode":"112151","pref_slug":"saitama","city_slug":"sayama","publish":true},
-  {"lgcode":"112097","pref_slug":"saitama","city_slug":"hanno","publish":true},
-  {"lgcode":"112372","pref_slug":"saitama","city_slug":"misato","publish":true},
-  {"lgcode":"112348","pref_slug":"saitama","city_slug":"yashio","publish":true},
-  {"lgcode":"112356","pref_slug":"saitama","city_slug":"fujimi","publish":true},
-  {"lgcode":"112399","pref_slug":"saitama","city_slug":"sakado","publish":true},
-  {"lgcode":"112127","pref_slug":"saitama","city_slug":"higashimatsuyama","publish":true},
-  {"lgcode":"112321","pref_slug":"saitama","city_slug":"kuki","publish":true},
-  {"lgcode":"112178","pref_slug":"saitama","city_slug":"konosu","publish":true},
-  {"lgcode":"112101","pref_slug":"saitama","city_slug":"kazo","publish":true},
-  {"lgcode":"112453","pref_slug":"saitama","city_slug":"fujimino","publish":true},
-  {"lgcode":"112062","pref_slug":"saitama","city_slug":"gyoda","publish":true},
-  {"lgcode":"112119","pref_slug":"saitama","city_slug":"honjo","publish":true},
-  {"lgcode":"112283","pref_slug":"saitama","city_slug":"shiki","publish":true},
-  {"lgcode":"112313","pref_slug":"saitama","city_slug":"okegawa","publish":true},
-  {"lgcode":"112232","pref_slug":"saitama","city_slug":"warabi","publish":true},
-  {"lgcode":"112330","pref_slug":"saitama","city_slug":"kitamoto","publish":true},
-  {"lgcode":"112071","pref_slug":"saitama","city_slug":"chichibu","publish":true},
-  {"lgcode":"112160","pref_slug":"saitama","city_slug":"hanyu","publish":true},
-  {"lgcode":"112186","pref_slug":"saitama","city_slug":"fukaya","publish":true},
-  {"lgcode":"112402","pref_slug":"saitama","city_slug":"satte","publish":true},
-  {"lgcode":"112411","pref_slug":"saitama","city_slug":"tsurugashima","publish":true},
-  {"lgcode":"112429","pref_slug":"saitama","city_slug":"hidaka","publish":true},
-  {"lgcode":"112437","pref_slug":"saitama","city_slug":"yoshikawa","publish":true},
-  {"lgcode":"113247","pref_slug":"saitama","city_slug":"miyoshi","publish":true},
-  {"lgcode":"113018","pref_slug":"saitama","city_slug":"ina","publish":true},
-  {"lgcode":"114421","pref_slug":"saitama","city_slug":"miyashiro","publish":true},
-  {"lgcode":"114651","pref_slug":"saitama","city_slug":"matsubushi","publish":true},
-  {"lgcode":"113859","pref_slug":"saitama","city_slug":"kamisato","publish":true},
-  {"lgcode":"113468","pref_slug":"saitama","city_slug":"kawajima","publish":true},
-  {"lgcode":"113476","pref_slug":"saitama","city_slug":"yoshimi","publish":true},
-  {"lgcode":"113425","pref_slug":"saitama","city_slug":"ranzan","publish":true},
-  {"lgcode":"113263","pref_slug":"saitama","city_slug":"moroyama","publish":true},
-  {"lgcode":"113832","pref_slug":"saitama","city_slug":"kamikawa","publish":true},
-  {"lgcode":"113816","pref_slug":"saitama","city_slug":"misato-town","publish":true},
-  {"lgcode":"113620","pref_slug":"saitama","city_slug":"minano","publish":true},
-  {"lgcode":"113417","pref_slug":"saitama","city_slug":"namegawa","publish":true},
-  {"lgcode":"112381","pref_slug":"saitama","city_slug":"hasuda","publish":true},
-  {"lgcode":"112461","pref_slug":"saitama","city_slug":"shiraoka","publish":true},
-  {"lgcode":"113433","pref_slug":"saitama","city_slug":"ogawa","publish":true},
-  {"lgcode":"113492","pref_slug":"saitama","city_slug":"tokigawa","publish":true},
-  {"lgcode":"113611","pref_slug":"saitama","city_slug":"yokoze","publish":true},
-  {"lgcode":"113638","pref_slug":"saitama","city_slug":"nagatoro","publish":true},
-  {"lgcode":"113654","pref_slug":"saitama","city_slug":"ogano","publish":true},
-  {"lgcode":"113697","pref_slug":"saitama","city_slug":"higashichichibu","publish":true},
-  {"lgcode":"114081","pref_slug":"saitama","city_slug":"yorii","publish":true},
-  {"lgcode":"114642","pref_slug":"saitama","city_slug":"sugito","publish":true}
+  {
+    "lgcode": "131016",
+    "pref_slug": "tokyo",
+    "city_slug": "chiyoda",
+    "publish": true
+  },
+  {
+    "lgcode": "131032",
+    "pref_slug": "tokyo",
+    "city_slug": "minato",
+    "publish": true
+  },
+  {
+    "lgcode": "131041",
+    "pref_slug": "tokyo",
+    "city_slug": "shinjuku",
+    "publish": true
+  },
+  {
+    "lgcode": "131121",
+    "pref_slug": "tokyo",
+    "city_slug": "setagaya",
+    "publish": true
+  },
+  {
+    "lgcode": "131130",
+    "pref_slug": "tokyo",
+    "city_slug": "shibuya",
+    "publish": true
+  },
+  {
+    "lgcode": "131156",
+    "pref_slug": "tokyo",
+    "city_slug": "suginami",
+    "publish": true
+  },
+  {
+    "lgcode": "131202",
+    "pref_slug": "tokyo",
+    "city_slug": "nerima",
+    "publish": true
+  },
+  {
+    "lgcode": "245615",
+    "pref_slug": "mie",
+    "city_slug": "mihama",
+    "publish": true
+  },
+  {
+    "lgcode": "212211",
+    "pref_slug": "gifu",
+    "city_slug": "kaizu",
+    "publish": true
+  },
+  {
+    "lgcode": "082074",
+    "pref_slug": "ibaraki",
+    "city_slug": "yuki",
+    "publish": true
+  },
+  {
+    "lgcode": "131024",
+    "pref_slug": "tokyo",
+    "city_slug": "chuo",
+    "publish": true
+  },
+  {
+    "lgcode": "131229",
+    "pref_slug": "tokyo",
+    "city_slug": "katsushika",
+    "publish": true
+  },
+  {
+    "lgcode": "074080",
+    "pref_slug": "fukushima",
+    "city_slug": "inawashiro",
+    "publish": true
+  },
+  {
+    "lgcode": "382019",
+    "pref_slug": "ehime",
+    "city_slug": "matsuyama",
+    "publish": true
+  },
+  {
+    "lgcode": "292010",
+    "pref_slug": "nara",
+    "city_slug": "nara",
+    "publish": true
+  },
+  {
+    "lgcode": "462012",
+    "pref_slug": "kagoshima",
+    "city_slug": "kagoshima",
+    "publish": true
+  },
+  {
+    "lgcode": "452017",
+    "pref_slug": "miyazaki",
+    "city_slug": "miyazaki",
+    "publish": true
+  },
+  {
+    "lgcode": "372013",
+    "pref_slug": "kagawa",
+    "city_slug": "takamatsu",
+    "publish": true
+  },
+  {
+    "lgcode": "442011",
+    "pref_slug": "oita",
+    "city_slug": "oita",
+    "publish": true
+  },
+  {
+    "lgcode": "242012",
+    "pref_slug": "mie",
+    "city_slug": "tsu",
+    "publish": true
+  },
+  {
+    "lgcode": "352039",
+    "pref_slug": "yamaguchi",
+    "city_slug": "yamaguchi",
+    "publish": true
+  },
+  {
+    "lgcode": "252018",
+    "pref_slug": "shiga",
+    "city_slug": "otsu",
+    "publish": true
+  },
+  {
+    "lgcode": "322016",
+    "pref_slug": "shimane",
+    "city_slug": "matsue",
+    "publish": true
+  },
+  {
+    "lgcode": "412015",
+    "pref_slug": "saga",
+    "city_slug": "saga",
+    "publish": true
+  },
+  {
+    "lgcode": "312011",
+    "pref_slug": "tottori",
+    "city_slug": "tottori",
+    "publish": true
+  },
+  {
+    "lgcode": "472018",
+    "pref_slug": "okinawa",
+    "city_slug": "naha",
+    "publish": true
+  },
+  {
+    "lgcode": "362018",
+    "pref_slug": "tokushima",
+    "city_slug": "tokushima",
+    "publish": true
+  },
+  {
+    "lgcode": "422011",
+    "pref_slug": "nagasaki",
+    "city_slug": "nagasaki",
+    "publish": true
+  },
+  {
+    "lgcode": "392014",
+    "pref_slug": "kochi",
+    "city_slug": "kochi",
+    "publish": true
+  },
+  {
+    "lgcode": "092011",
+    "pref_slug": "tochigi",
+    "city_slug": "utsunomiya",
+    "publish": true
+  },
+  {
+    "lgcode": "162019",
+    "pref_slug": "toyama",
+    "city_slug": "toyama",
+    "publish": true
+  },
+  {
+    "lgcode": "182010",
+    "pref_slug": "fukui",
+    "city_slug": "fukui",
+    "publish": true
+  },
+  {
+    "lgcode": "202011",
+    "pref_slug": "nagano",
+    "city_slug": "nagano",
+    "publish": true
+  },
+  {
+    "lgcode": "212016",
+    "pref_slug": "gifu",
+    "city_slug": "gifu",
+    "publish": true
+  },
+  {
+    "lgcode": "011002",
+    "pref_slug": "hokkaido",
+    "city_slug": "sapporo",
+    "publish": true
+  },
+  {
+    "lgcode": "141003",
+    "pref_slug": "kanagawa",
+    "city_slug": "yokohama",
+    "publish": true
+  },
+  {
+    "lgcode": "192015",
+    "pref_slug": "yamanashi",
+    "city_slug": "kofu",
+    "publish": true
+  },
+  {
+    "lgcode": "231002",
+    "pref_slug": "aichi",
+    "city_slug": "nagoya",
+    "publish": true
+  },
+  {
+    "lgcode": "302015",
+    "pref_slug": "wakayama",
+    "city_slug": "wakayama",
+    "publish": true
+  },
+  {
+    "lgcode": "041009",
+    "pref_slug": "miyagi",
+    "city_slug": "sendai",
+    "publish": true
+  },
+  {
+    "lgcode": "121002",
+    "pref_slug": "chiba",
+    "city_slug": "chiba",
+    "publish": true
+  },
+  {
+    "lgcode": "151009",
+    "pref_slug": "niigata",
+    "city_slug": "niigata",
+    "publish": true
+  },
+  {
+    "lgcode": "261009",
+    "pref_slug": "kyoto",
+    "city_slug": "kyoto",
+    "publish": true
+  },
+  {
+    "lgcode": "271004",
+    "pref_slug": "osaka",
+    "city_slug": "osaka",
+    "publish": true
+  },
+  {
+    "lgcode": "221007",
+    "pref_slug": "shizuoka",
+    "city_slug": "shizuoka",
+    "publish": true
+  },
+  {
+    "lgcode": "221309",
+    "pref_slug": "shizuoka",
+    "city_slug": "hamamatsu",
+    "publish": true
+  },
+  {
+    "lgcode": "281000",
+    "pref_slug": "hyogo",
+    "city_slug": "kobe",
+    "publish": true
+  },
+  {
+    "lgcode": "341002",
+    "pref_slug": "hiroshima",
+    "city_slug": "hiroshima",
+    "publish": true
+  },
+  {
+    "lgcode": "431001",
+    "pref_slug": "kumamoto",
+    "city_slug": "kumamoto",
+    "publish": true
+  },
+  {
+    "lgcode": "022012",
+    "pref_slug": "aomori",
+    "city_slug": "aomori",
+    "publish": true
+  },
+  {
+    "lgcode": "062014",
+    "pref_slug": "yamagata",
+    "city_slug": "yamagata",
+    "publish": true
+  },
+  {
+    "lgcode": "102016",
+    "pref_slug": "gunma",
+    "city_slug": "maebashi",
+    "publish": true
+  },
+  {
+    "lgcode": "111007",
+    "pref_slug": "saitama",
+    "city_slug": "saitama",
+    "publish": true
+  },
+  {
+    "lgcode": "172014",
+    "pref_slug": "ishikawa",
+    "city_slug": "kanazawa",
+    "publish": true
+  },
+  {
+    "lgcode": "032018",
+    "pref_slug": "iwate",
+    "city_slug": "morioka",
+    "publish": true
+  },
+  {
+    "lgcode": "052019",
+    "pref_slug": "akita",
+    "city_slug": "akita",
+    "publish": true
+  },
+  {
+    "lgcode": "072010",
+    "pref_slug": "fukushima",
+    "city_slug": "fukushima",
+    "publish": true
+  },
+  {
+    "lgcode": "082015",
+    "pref_slug": "ibaraki",
+    "city_slug": "mito",
+    "publish": true
+  },
+  {
+    "lgcode": "141305",
+    "pref_slug": "kanagawa",
+    "city_slug": "kawasaki",
+    "publish": true
+  },
+  {
+    "lgcode": "141500",
+    "pref_slug": "kanagawa",
+    "city_slug": "sagamihara",
+    "publish": true
+  },
+  {
+    "lgcode": "271403",
+    "pref_slug": "osaka",
+    "city_slug": "sakai",
+    "publish": true
+  },
+  {
+    "lgcode": "331007",
+    "pref_slug": "okayama",
+    "city_slug": "okayama",
+    "publish": true
+  },
+  {
+    "lgcode": "401307",
+    "pref_slug": "fukuoka",
+    "city_slug": "fukuoka",
+    "publish": true
+  },
+  {
+    "lgcode": "401005",
+    "pref_slug": "fukuoka",
+    "city_slug": "kitakyushu",
+    "publish": true
+  },
+  {
+    "lgcode": "131113",
+    "pref_slug": "tokyo",
+    "city_slug": "ota",
+    "publish": true
+  },
+  {
+    "lgcode": "131237",
+    "pref_slug": "tokyo",
+    "city_slug": "edogawa",
+    "publish": true
+  },
+  {
+    "lgcode": "131211",
+    "pref_slug": "tokyo",
+    "city_slug": "adachi",
+    "publish": true
+  },
+  {
+    "lgcode": "131199",
+    "pref_slug": "tokyo",
+    "city_slug": "itabashi",
+    "publish": true
+  },
+  {
+    "lgcode": "131083",
+    "pref_slug": "tokyo",
+    "city_slug": "koto",
+    "publish": true
+  },
+  {
+    "lgcode": "131091",
+    "pref_slug": "tokyo",
+    "city_slug": "shinagawa",
+    "publish": true
+  },
+  {
+    "lgcode": "131172",
+    "pref_slug": "tokyo",
+    "city_slug": "kita",
+    "publish": true
+  },
+  {
+    "lgcode": "131148",
+    "pref_slug": "tokyo",
+    "city_slug": "nakano",
+    "publish": true
+  },
+  {
+    "lgcode": "131164",
+    "pref_slug": "tokyo",
+    "city_slug": "toshima",
+    "publish": true
+  },
+  {
+    "lgcode": "131105",
+    "pref_slug": "tokyo",
+    "city_slug": "meguro",
+    "publish": true
+  },
+  {
+    "lgcode": "131059",
+    "pref_slug": "tokyo",
+    "city_slug": "bunkyo",
+    "publish": true
+  },
+  {
+    "lgcode": "131067",
+    "pref_slug": "tokyo",
+    "city_slug": "taito",
+    "publish": true
+  },
+  {
+    "lgcode": "131075",
+    "pref_slug": "tokyo",
+    "city_slug": "sumida",
+    "publish": true
+  },
+  {
+    "lgcode": "131181",
+    "pref_slug": "tokyo",
+    "city_slug": "arakawa",
+    "publish": true
+  },
+  {
+    "lgcode": "132012",
+    "pref_slug": "tokyo",
+    "city_slug": "hachioji",
+    "publish": true
+  },
+  {
+    "lgcode": "122041",
+    "pref_slug": "chiba",
+    "city_slug": "funabashi",
+    "publish": true
+  },
+  {
+    "lgcode": "112038",
+    "pref_slug": "saitama",
+    "city_slug": "kawaguchi",
+    "publish": true
+  },
+  {
+    "lgcode": "122076",
+    "pref_slug": "chiba",
+    "city_slug": "matsudo",
+    "publish": true
+  },
+  {
+    "lgcode": "122033",
+    "pref_slug": "chiba",
+    "city_slug": "ichikawa",
+    "publish": true
+  },
+  {
+    "lgcode": "132098",
+    "pref_slug": "tokyo",
+    "city_slug": "machida",
+    "publish": true
+  },
+  {
+    "lgcode": "272272",
+    "pref_slug": "osaka",
+    "city_slug": "higashiosaka",
+    "publish": true
+  },
+  {
+    "lgcode": "282022",
+    "pref_slug": "hyogo",
+    "city_slug": "amagasaki",
+    "publish": true
+  },
+  {
+    "lgcode": "142051",
+    "pref_slug": "kanagawa",
+    "city_slug": "fujisawa",
+    "publish": true
+  },
+  {
+    "lgcode": "112011",
+    "pref_slug": "saitama",
+    "city_slug": "kawagoe",
+    "publish": true
+  },
+  {
+    "lgcode": "232114",
+    "pref_slug": "aichi",
+    "city_slug": "toyota",
+    "publish": true
+  },
+  {
+    "lgcode": "272035",
+    "pref_slug": "osaka",
+    "city_slug": "toyonaka",
+    "publish": true
+  },
+  {
+    "lgcode": "142018",
+    "pref_slug": "kanagawa",
+    "city_slug": "yokosuka",
+    "publish": true
+  },
+  {
+    "lgcode": "232025",
+    "pref_slug": "aichi",
+    "city_slug": "okazaki",
+    "publish": true
+  },
+  {
+    "lgcode": "232033",
+    "pref_slug": "aichi",
+    "city_slug": "ichinomiya",
+    "publish": true
+  },
+  {
+    "lgcode": "102024",
+    "pref_slug": "gunma",
+    "city_slug": "takasaki",
+    "publish": true
+  },
+  {
+    "lgcode": "012041",
+    "pref_slug": "hokkaido",
+    "city_slug": "asahikawa",
+    "publish": true
+  },
+  {
+    "lgcode": "112224",
+    "pref_slug": "saitama",
+    "city_slug": "koshigaya",
+    "publish": true
+  },
+  {
+    "lgcode": "112089",
+    "pref_slug": "saitama",
+    "city_slug": "tokorozawa",
+    "publish": true
+  },
+  {
+    "lgcode": "072036",
+    "pref_slug": "fukushima",
+    "city_slug": "koriyama",
+    "publish": true
+  },
+  {
+    "lgcode": "282049",
+    "pref_slug": "hyogo",
+    "city_slug": "nishinomiya",
+    "publish": true
+  },
+  {
+    "lgcode": "272108",
+    "pref_slug": "osaka",
+    "city_slug": "hirakata",
+    "publish": true
+  },
+  {
+    "lgcode": "272051",
+    "pref_slug": "osaka",
+    "city_slug": "suita",
+    "publish": true
+  },
+  {
+    "lgcode": "272078",
+    "pref_slug": "osaka",
+    "city_slug": "takatsuki",
+    "publish": true
+  },
+  {
+    "lgcode": "232017",
+    "pref_slug": "aichi",
+    "city_slug": "toyohashi",
+    "publish": true
+  },
+  {
+    "lgcode": "282031",
+    "pref_slug": "hyogo",
+    "city_slug": "akashi",
+    "publish": true
+  },
+  {
+    "lgcode": "332020",
+    "pref_slug": "okayama",
+    "city_slug": "kurashiki",
+    "publish": true
+  },
+  {
+    "lgcode": "342076",
+    "pref_slug": "hiroshima",
+    "city_slug": "fukuyama",
+    "publish": true
+  },
+  {
+    "lgcode": "272124",
+    "pref_slug": "osaka",
+    "city_slug": "yao",
+    "publish": true
+  },
+  {
+    "lgcode": "272116",
+    "pref_slug": "osaka",
+    "city_slug": "ibaraki",
+    "publish": true
+  },
+  {
+    "lgcode": "282103",
+    "pref_slug": "hyogo",
+    "city_slug": "kakogawa",
+    "publish": true
+  },
+  {
+    "lgcode": "152021",
+    "pref_slug": "niigata",
+    "city_slug": "nagaoka",
+    "publish": true
+  },
+  {
+    "lgcode": "202029",
+    "pref_slug": "nagano",
+    "city_slug": "matsumoto",
+    "publish": true
+  },
+  {
+    "lgcode": "222101",
+    "pref_slug": "shizuoka",
+    "city_slug": "fuji",
+    "publish": true
+  },
+  {
+    "lgcode": "112216",
+    "pref_slug": "saitama",
+    "city_slug": "soka",
+    "publish": true
+  },
+  {
+    "lgcode": "232068",
+    "pref_slug": "aichi",
+    "city_slug": "kasugai",
+    "publish": true
+  },
+  {
+    "lgcode": "132063",
+    "pref_slug": "tokyo",
+    "city_slug": "fuchu",
+    "publish": true
+  },
+  {
+    "lgcode": "132080",
+    "pref_slug": "tokyo",
+    "city_slug": "chofu",
+    "publish": true
+  },
+  {
+    "lgcode": "142034",
+    "pref_slug": "kanagawa",
+    "city_slug": "hiratsuka",
+    "publish": true
+  },
+  {
+    "lgcode": "142077",
+    "pref_slug": "kanagawa",
+    "city_slug": "chigasaki",
+    "publish": true
+  },
+  {
+    "lgcode": "142131",
+    "pref_slug": "kanagawa",
+    "city_slug": "yamato",
+    "publish": true
+  },
+  {
+    "lgcode": "112143",
+    "pref_slug": "saitama",
+    "city_slug": "kasukabe",
+    "publish": true
+  },
+  {
+    "lgcode": "112194",
+    "pref_slug": "saitama",
+    "city_slug": "ageo",
+    "publish": true
+  },
+  {
+    "lgcode": "282146",
+    "pref_slug": "hyogo",
+    "city_slug": "takarazuka",
+    "publish": true
+  },
+  {
+    "lgcode": "272159",
+    "pref_slug": "osaka",
+    "city_slug": "neyagawa",
+    "publish": true
+  },
+  {
+    "lgcode": "282073",
+    "pref_slug": "hyogo",
+    "city_slug": "itami",
+    "publish": true
+  },
+  {
+    "lgcode": "112020",
+    "pref_slug": "saitama",
+    "city_slug": "kumagaya",
+    "publish": true
+  },
+  {
+    "lgcode": "112305",
+    "pref_slug": "saitama",
+    "city_slug": "niiza",
+    "publish": true
+  },
+  {
+    "lgcode": "122203",
+    "pref_slug": "chiba",
+    "city_slug": "nagareyama",
+    "publish": true
+  },
+  {
+    "lgcode": "122211",
+    "pref_slug": "chiba",
+    "city_slug": "yachiyo",
+    "publish": true
+  },
+  {
+    "lgcode": "122165",
+    "pref_slug": "chiba",
+    "city_slug": "narashino",
+    "publish": true
+  },
+  {
+    "lgcode": "132292",
+    "pref_slug": "tokyo",
+    "city_slug": "nishitokyo",
+    "publish": true
+  },
+  {
+    "lgcode": "132110",
+    "pref_slug": "tokyo",
+    "city_slug": "kodaira",
+    "publish": true
+  },
+  {
+    "lgcode": "132021",
+    "pref_slug": "tokyo",
+    "city_slug": "tachikawa",
+    "publish": true
+  },
+  {
+    "lgcode": "142123",
+    "pref_slug": "kanagawa",
+    "city_slug": "atsugi",
+    "publish": true
+  },
+  {
+    "lgcode": "142069",
+    "pref_slug": "kanagawa",
+    "city_slug": "odawara",
+    "publish": true
+  },
+  {
+    "lgcode": "132047",
+    "pref_slug": "tokyo",
+    "city_slug": "mitaka",
+    "publish": true
+  },
+  {
+    "lgcode": "132039",
+    "pref_slug": "tokyo",
+    "city_slug": "musashino",
+    "publish": true
+  },
+  {
+    "lgcode": "132128",
+    "pref_slug": "tokyo",
+    "city_slug": "hino",
+    "publish": true
+  },
+  {
+    "lgcode": "132144",
+    "pref_slug": "tokyo",
+    "city_slug": "kokubunji",
+    "publish": true
+  },
+  {
+    "lgcode": "132241",
+    "pref_slug": "tokyo",
+    "city_slug": "tama",
+    "publish": true
+  },
+  {
+    "lgcode": "142042",
+    "pref_slug": "kanagawa",
+    "city_slug": "kamakura",
+    "publish": true
+  },
+  {
+    "lgcode": "142158",
+    "pref_slug": "kanagawa",
+    "city_slug": "ebina",
+    "publish": true
+  },
+  {
+    "lgcode": "142166",
+    "pref_slug": "kanagawa",
+    "city_slug": "zama",
+    "publish": true
+  },
+  {
+    "lgcode": "122122",
+    "pref_slug": "chiba",
+    "city_slug": "sakura",
+    "publish": true
+  },
+  {
+    "lgcode": "122114",
+    "pref_slug": "chiba",
+    "city_slug": "narita",
+    "publish": true
+  },
+  {
+    "lgcode": "132101",
+    "pref_slug": "tokyo",
+    "city_slug": "koganei",
+    "publish": true
+  },
+  {
+    "lgcode": "132071",
+    "pref_slug": "tokyo",
+    "city_slug": "akishima",
+    "publish": true
+  },
+  {
+    "lgcode": "132152",
+    "pref_slug": "tokyo",
+    "city_slug": "kunitachi",
+    "publish": true
+  },
+  {
+    "lgcode": "132250",
+    "pref_slug": "tokyo",
+    "city_slug": "inagi",
+    "publish": true
+  },
+  {
+    "lgcode": "132195",
+    "pref_slug": "tokyo",
+    "city_slug": "komae",
+    "publish": true
+  },
+  {
+    "lgcode": "132217",
+    "pref_slug": "tokyo",
+    "city_slug": "kiyose",
+    "publish": true
+  },
+  {
+    "lgcode": "132225",
+    "pref_slug": "tokyo",
+    "city_slug": "higashikurume",
+    "publish": true
+  },
+  {
+    "lgcode": "142140",
+    "pref_slug": "kanagawa",
+    "city_slug": "isehara",
+    "publish": true
+  },
+  {
+    "lgcode": "132209",
+    "pref_slug": "tokyo",
+    "city_slug": "higashiyamato",
+    "publish": true
+  },
+  {
+    "lgcode": "122220",
+    "pref_slug": "chiba",
+    "city_slug": "abiko",
+    "publish": true
+  },
+  {
+    "lgcode": "132276",
+    "pref_slug": "tokyo",
+    "city_slug": "hamura",
+    "publish": true
+  },
+  {
+    "lgcode": "132284",
+    "pref_slug": "tokyo",
+    "city_slug": "akiruno",
+    "publish": true
+  },
+  {
+    "lgcode": "132233",
+    "pref_slug": "tokyo",
+    "city_slug": "musashimurayama",
+    "publish": true
+  },
+  {
+    "lgcode": "122068",
+    "pref_slug": "chiba",
+    "city_slug": "kisarazu",
+    "publish": true
+  },
+  {
+    "lgcode": "122084",
+    "pref_slug": "chiba",
+    "city_slug": "noda",
+    "publish": true
+  },
+  {
+    "lgcode": "122271",
+    "pref_slug": "chiba",
+    "city_slug": "urayasu",
+    "publish": true
+  },
+  {
+    "lgcode": "122246",
+    "pref_slug": "chiba",
+    "city_slug": "kamagaya",
+    "publish": true
+  },
+  {
+    "lgcode": "112275",
+    "pref_slug": "saitama",
+    "city_slug": "asaka",
+    "publish": true
+  },
+  {
+    "lgcode": "112291",
+    "pref_slug": "saitama",
+    "city_slug": "wako",
+    "publish": true
+  },
+  {
+    "lgcode": "112241",
+    "pref_slug": "saitama",
+    "city_slug": "toda",
+    "publish": true
+  },
+  {
+    "lgcode": "132055",
+    "pref_slug": "tokyo",
+    "city_slug": "ome",
+    "publish": true
+  },
+  {
+    "lgcode": "132187",
+    "pref_slug": "tokyo",
+    "city_slug": "fussa",
+    "publish": true
+  },
+  {
+    "lgcode": "112259",
+    "pref_slug": "saitama",
+    "city_slug": "iruma",
+    "publish": true
+  },
+  {
+    "lgcode": "112151",
+    "pref_slug": "saitama",
+    "city_slug": "sayama",
+    "publish": true
+  },
+  {
+    "lgcode": "112097",
+    "pref_slug": "saitama",
+    "city_slug": "hanno",
+    "publish": true
+  },
+  {
+    "lgcode": "112372",
+    "pref_slug": "saitama",
+    "city_slug": "misato",
+    "publish": true
+  },
+  {
+    "lgcode": "112348",
+    "pref_slug": "saitama",
+    "city_slug": "yashio",
+    "publish": true
+  },
+  {
+    "lgcode": "112356",
+    "pref_slug": "saitama",
+    "city_slug": "fujimi",
+    "publish": true
+  },
+  {
+    "lgcode": "112399",
+    "pref_slug": "saitama",
+    "city_slug": "sakado",
+    "publish": true
+  },
+  {
+    "lgcode": "112127",
+    "pref_slug": "saitama",
+    "city_slug": "higashimatsuyama",
+    "publish": true
+  },
+  {
+    "lgcode": "112321",
+    "pref_slug": "saitama",
+    "city_slug": "kuki",
+    "publish": true
+  },
+  {
+    "lgcode": "112178",
+    "pref_slug": "saitama",
+    "city_slug": "konosu",
+    "publish": true
+  },
+  {
+    "lgcode": "112101",
+    "pref_slug": "saitama",
+    "city_slug": "kazo",
+    "publish": true
+  },
+  {
+    "lgcode": "112453",
+    "pref_slug": "saitama",
+    "city_slug": "fujimino",
+    "publish": true
+  },
+  {
+    "lgcode": "112062",
+    "pref_slug": "saitama",
+    "city_slug": "gyoda",
+    "publish": true
+  },
+  {
+    "lgcode": "112119",
+    "pref_slug": "saitama",
+    "city_slug": "honjo",
+    "publish": true
+  },
+  {
+    "lgcode": "112283",
+    "pref_slug": "saitama",
+    "city_slug": "shiki",
+    "publish": true
+  },
+  {
+    "lgcode": "112313",
+    "pref_slug": "saitama",
+    "city_slug": "okegawa",
+    "publish": true
+  },
+  {
+    "lgcode": "112232",
+    "pref_slug": "saitama",
+    "city_slug": "warabi",
+    "publish": true
+  },
+  {
+    "lgcode": "112330",
+    "pref_slug": "saitama",
+    "city_slug": "kitamoto",
+    "publish": true
+  },
+  {
+    "lgcode": "112071",
+    "pref_slug": "saitama",
+    "city_slug": "chichibu",
+    "publish": true
+  },
+  {
+    "lgcode": "112160",
+    "pref_slug": "saitama",
+    "city_slug": "hanyu",
+    "publish": true
+  },
+  {
+    "lgcode": "112186",
+    "pref_slug": "saitama",
+    "city_slug": "fukaya",
+    "publish": true
+  },
+  {
+    "lgcode": "112402",
+    "pref_slug": "saitama",
+    "city_slug": "satte",
+    "publish": true
+  },
+  {
+    "lgcode": "112411",
+    "pref_slug": "saitama",
+    "city_slug": "tsurugashima",
+    "publish": true
+  },
+  {
+    "lgcode": "112429",
+    "pref_slug": "saitama",
+    "city_slug": "hidaka",
+    "publish": true
+  },
+  {
+    "lgcode": "112437",
+    "pref_slug": "saitama",
+    "city_slug": "yoshikawa",
+    "publish": true
+  },
+  {
+    "lgcode": "113247",
+    "pref_slug": "saitama",
+    "city_slug": "miyoshi",
+    "publish": true
+  },
+  {
+    "lgcode": "113018",
+    "pref_slug": "saitama",
+    "city_slug": "ina",
+    "publish": true
+  },
+  {
+    "lgcode": "114421",
+    "pref_slug": "saitama",
+    "city_slug": "miyashiro",
+    "publish": true
+  },
+  {
+    "lgcode": "114651",
+    "pref_slug": "saitama",
+    "city_slug": "matsubushi",
+    "publish": true
+  },
+  {
+    "lgcode": "113859",
+    "pref_slug": "saitama",
+    "city_slug": "kamisato",
+    "publish": true
+  },
+  {
+    "lgcode": "113468",
+    "pref_slug": "saitama",
+    "city_slug": "kawajima",
+    "publish": true
+  },
+  {
+    "lgcode": "113476",
+    "pref_slug": "saitama",
+    "city_slug": "yoshimi",
+    "publish": true
+  },
+  {
+    "lgcode": "113425",
+    "pref_slug": "saitama",
+    "city_slug": "ranzan",
+    "publish": true
+  },
+  {
+    "lgcode": "113263",
+    "pref_slug": "saitama",
+    "city_slug": "moroyama",
+    "publish": true
+  },
+  {
+    "lgcode": "113832",
+    "pref_slug": "saitama",
+    "city_slug": "kamikawa",
+    "publish": true
+  },
+  {
+    "lgcode": "113816",
+    "pref_slug": "saitama",
+    "city_slug": "misato-town",
+    "publish": true
+  },
+  {
+    "lgcode": "113620",
+    "pref_slug": "saitama",
+    "city_slug": "minano",
+    "publish": true
+  },
+  {
+    "lgcode": "113417",
+    "pref_slug": "saitama",
+    "city_slug": "namegawa",
+    "publish": true
+  },
+  {
+    "lgcode": "112381",
+    "pref_slug": "saitama",
+    "city_slug": "hasuda",
+    "publish": true
+  },
+  {
+    "lgcode": "112461",
+    "pref_slug": "saitama",
+    "city_slug": "shiraoka",
+    "publish": true
+  },
+  {
+    "lgcode": "113433",
+    "pref_slug": "saitama",
+    "city_slug": "ogawa",
+    "publish": true
+  },
+  {
+    "lgcode": "113492",
+    "pref_slug": "saitama",
+    "city_slug": "tokigawa",
+    "publish": true
+  },
+  {
+    "lgcode": "113611",
+    "pref_slug": "saitama",
+    "city_slug": "yokoze",
+    "publish": true
+  },
+  {
+    "lgcode": "113638",
+    "pref_slug": "saitama",
+    "city_slug": "nagatoro",
+    "publish": true
+  },
+  {
+    "lgcode": "113654",
+    "pref_slug": "saitama",
+    "city_slug": "ogano",
+    "publish": true
+  },
+  {
+    "lgcode": "113697",
+    "pref_slug": "saitama",
+    "city_slug": "higashichichibu",
+    "publish": true
+  },
+  {
+    "lgcode": "114081",
+    "pref_slug": "saitama",
+    "city_slug": "yorii",
+    "publish": true
+  },
+  {
+    "lgcode": "114642",
+    "pref_slug": "saitama",
+    "city_slug": "sugito",
+    "publish": true
+  },
+  {
+    "lgcode": "122254",
+    "pref_slug": "chiba",
+    "city_slug": "kimitsu",
+    "publish": true
+  },
+  {
+    "lgcode": "122262",
+    "pref_slug": "chiba",
+    "city_slug": "futtsu",
+    "publish": true
+  },
+  {
+    "lgcode": "122297",
+    "pref_slug": "chiba",
+    "city_slug": "sodegaura",
+    "publish": true
+  },
+  {
+    "lgcode": "122106",
+    "pref_slug": "chiba",
+    "city_slug": "mobara",
+    "publish": true
+  },
+  {
+    "lgcode": "122131",
+    "pref_slug": "chiba",
+    "city_slug": "togane",
+    "publish": true
+  },
+  {
+    "lgcode": "122301",
+    "pref_slug": "chiba",
+    "city_slug": "yachimata",
+    "publish": true
+  },
+  {
+    "lgcode": "122319",
+    "pref_slug": "chiba",
+    "city_slug": "inzai",
+    "publish": true
+  },
+  {
+    "lgcode": "122327",
+    "pref_slug": "chiba",
+    "city_slug": "shiroi",
+    "publish": true
+  },
+  {
+    "lgcode": "122289",
+    "pref_slug": "chiba",
+    "city_slug": "yotsukaido",
+    "publish": true
+  },
+  {
+    "lgcode": "122335",
+    "pref_slug": "chiba",
+    "city_slug": "tomisato",
+    "publish": true
+  }
 ]
