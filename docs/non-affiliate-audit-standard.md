@@ -1,19 +1,22 @@
-# NicheWorks non-affiliate 72-tool audit standard
+# NicheWorks non-affiliate 76-tool audit standard
 
 Status: active audit contract  
-Updated: 2026-09-16
+Updated: 2026-09-17
 
 ## Scope
 
 This audit covers only the tools defined by `audits/non-affiliate-scope.json`.
 
 - Registered tools: 88
-- Affiliate workstream: 16 — explicitly excluded here
-- Non-affiliate workstream: 72
-- Audit waves: 6
-- Tools per wave: 12
+- Affiliate workstream: 12 — explicitly excluded here
+- Non-affiliate workstream: 76
+- Audit waves: 7
+- Baseline waves 1–6: 12 tools each
+- Late-addition wave 7: 4 tools
 
-Wave assignment is deterministic: take `tools/tools-index.json` in registry order, remove the 16 Affiliate slugs, then split the remaining 72 into consecutive groups of 12.
+The original 72-tool assignment is frozen. Waves 1–6 keep exactly the tools assigned before the 2026-09-17 monetization reclassification and MUST NOT be reshuffled.
+
+On 2026-09-17, `cover-letter-lite`, `form-tool-selector`, `pages-deploy-guide`, and `wifi-meter` moved from `AFFILIATE` to `ADS_DONATION`. These four tools are appended as wave 7 in registry order. This preserves all existing audit evidence while bringing the canonical non-affiliate scope into agreement with the monetization classification.
 
 The existing `audits/tool-quality-matrix.json` remains valid evidence, but its `PASS` state is not a completion gate for this program. In particular, a tool may currently be `PASS` there while behavior-level regression coverage is still missing. This stricter audit is intended to identify the remaining work required before a tool is treated as complete.
 
@@ -79,11 +82,20 @@ Each wave record must include:
 
 A `PASS` record is invalid when any category is unresolved or any finding remains open.
 
+## Assignment stability
+
+The wave-assignment code is intentionally asymmetric after the 2026-09-17 scope change:
+
+- waves 1–6 are the frozen baseline assignment of the original 72 non-affiliate tools;
+- wave 7 consists only of the four tools reclassified from `AFFILIATE` to `ADS_DONATION` on 2026-09-17;
+- later classification changes must not silently reorder historical wave evidence; they require an explicit scope/assignment migration.
+
 ## Completion sequence
 
-1. Audit all six waves without mixing in production repairs.
-2. Aggregate findings by shared/common issue versus tool-specific issue.
-3. Repair shared defects first.
-4. Repair tool-specific `MAJOR_FIX` findings, then `MINOR_FIX` findings.
-5. Re-audit affected records against the repair commit.
-6. Only after every non-HOLD tool reaches strict `PASS` and each HOLD tool has a deliberate disposition is the 72-tool quality pass complete.
+1. Preserve and validate the existing six baseline wave records.
+2. Audit the four late additions in wave 7 without mixing in production repairs.
+3. Aggregate findings by shared/common issue versus tool-specific issue.
+4. Repair shared defects first.
+5. Repair tool-specific `MAJOR_FIX` findings, then `MINOR_FIX` findings.
+6. Re-audit affected records against the repair commit.
+7. Only after every non-HOLD tool reaches strict `PASS` and each HOLD tool has a deliberate disposition is the 76-tool quality pass complete.

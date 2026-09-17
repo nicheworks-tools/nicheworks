@@ -17,7 +17,7 @@ The page MUST NOT imply job-placement, hiring, immigration, or career-advice out
 
 ### Monetization boundary
 
-The current Amazon-affiliate classification is `NOT_APPLICABLE`. Cover Letter Lite should remain an organic-search / advertising / donation surface plus an internal entry point to related job-application utilities.
+The canonical monetization class is `ADS_DONATION`. Amazon affiliate monetization is not applicable to the current product intent. Cover Letter Lite remains an organic-search / advertising / donation surface plus an internal entry point to related job-application utilities.
 
 Do not add Amazon product offers merely to monetize the page. A future career/job-service partner offer may be considered only as a separate verified partner integration with explicit contextual relevance and its own review; it must never be presented as required to complete the cover letter, as a hiring recommendation, or as evidence that a service improves interview/hiring probability.
 
@@ -74,7 +74,7 @@ The primary workflow is a vertical form followed by a generated draft and checkl
 - [ ] Copy and TXT save operate on the currently generated draft.
 - [ ] The page remains explicitly English-only and retains the review/privacy warnings.
 - [ ] Public title, description, H1, and intro state that the tool is a free English cover-letter template generator and that no AI API is used.
-- [ ] No Amazon affiliate offer is rendered for the current product classification.
+- [ ] No Amazon affiliate offer is rendered under the current `ADS_DONATION` classification.
 
 ## Implementation evidence
 

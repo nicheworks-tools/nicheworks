@@ -1,13 +1,13 @@
 {
   "schemaVersion": "nicheworks-monetization-classification-v1",
-  "updated": "2026-09-16",
+  "updated": "2026-09-17",
   "registryTotal": 88,
   "bundleProductId": "nicheworks.pro",
   "counts": {
     "PRO_BUNDLE": 42,
     "STANDALONE_PRO": 1,
-    "AFFILIATE": 16,
-    "ADS_DONATION": 26,
+    "AFFILIATE": 12,
+    "ADS_DONATION": 30,
     "FREE": 0,
     "HOLD": 3
   },
@@ -62,25 +62,23 @@
     "AFFILIATE": [
       "construction-tools-atlas",
       "cosmetic-ingredient-checker-lite",
-      "cover-letter-lite",
       "dry-meter",
-      "form-tool-selector",
       "inci-fastscan",
       "laundry-code-decode",
       "light-check",
       "manual-finder",
       "moving-checklist-generator",
       "moving-lease-final-check",
-      "pages-deploy-guide",
       "pattern-dictionary",
       "phone-quickcheck",
-      "trashnavi",
-      "wifi-meter"
+      "trashnavi"
     ],
     "ADS_DONATION": [
       "color-replace",
+      "cover-letter-lite",
       "exif-cleaner-mini",
       "filetype-sniffer",
+      "form-tool-selector",
       "growth-log-template-generator",
       "habit-plan-generator",
       "image-compression-inspector",
@@ -94,6 +92,7 @@
       "name-old-kanji-checker",
       "old-document-kanji-highlighter",
       "old-kanji-reference",
+      "pages-deploy-guide",
       "place-old-kanji-checker",
       "redirect-unwrapper",
       "size-converter",
@@ -103,7 +102,8 @@
       "unitmaster",
       "variant-kanji-compare",
       "vibe-lexicon",
-      "weatherdiff"
+      "weatherdiff",
+      "wifi-meter"
     ],
     "FREE": [],
     "HOLD": [
@@ -123,6 +123,8 @@
     "The separate okj.toolkit_pro billing concept is not a registered-tool classification unless its runtime/tool registration is explicitly changed later.",
     "ManualFinder is classified AFFILIATE because its separate monetization workstream is the explicit affiliate reference implementation for the suite.",
     "Phone QuickCheck is classified AFFILIATE because its planned monetization path is compatible smartphone charging accessories via Amazon Associates; live affiliate URLs remain disabled until separate activation work is complete.",
-    "Pattern Dictionary is classified AFFILIATE because its intended downstream action is Amazon Associates product discovery after pattern identification."
+    "Pattern Dictionary is classified AFFILIATE because its intended downstream action is Amazon Associates product discovery after pattern identification.",
+    "Cover Letter Lite, Form Tool Selector, Pages Deploy Guide, and WiFi Meter were moved from AFFILIATE to ADS_DONATION on 2026-09-17 after product-intent review found no sufficiently direct, non-misleading Amazon purchase path.",
+    "WiFi Meter does not measure RSSI, real ping, or real line speed, so its browser-estimated connection status must not be used to infer that a router or mesh purchase is needed."
   ]
 }

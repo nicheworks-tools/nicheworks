@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { buildNonAffiliateWaves } from './non-affiliate-wave-assignment.mjs';
 
 const root = process.cwd();
 const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(root, rel), 'utf8'));
@@ -35,11 +36,26 @@ const scope = readJson('audits/non-affiliate-scope.json');
 const classification = readJson('MONETIZATION_CLASSIFICATION.json');
 const plan = readJson('audits/non-affiliate-audit-plan.json');
 
-if (plan.totalTools !== 72) fail(`plan totalTools must be 72, got ${plan.totalTools}`);
-if (plan.waveSize !== 12) fail(`plan waveSize must be 12, got ${plan.waveSize}`);
-if (plan.waveCount !== 6) fail(`plan waveCount must be 6, got ${plan.waveCount}`);
-if (plan.totalTools !== plan.waveSize * plan.waveCount) fail('plan totalTools must equal waveSize * waveCount');
-if (plan.assignment !== 'registry_order_excluding_affiliate') fail(`unexpected assignment ${plan.assignment}`);
+if (plan.totalTools !== 76) fail(`plan totalTools must be 76, got ${plan.totalTools}`);
+if (plan.waveSize !== 12) fail(`plan baseline waveSize must be 12, got ${plan.waveSize}`);
+if (plan.waveCount !== 7) fail(`plan waveCount must be 7, got ${plan.waveCount}`);
+if (!Array.isArray(plan.waveSizes) || plan.waveSizes.length !== 7) {
+  fail('plan waveSizes must contain seven entries');
+} else {
+  const expectedSizes = [12, 12, 12, 12, 12, 12, 4];
+  if (plan.waveSizes.some((size, index) => size !== expectedSizes[index])) {
+    fail(`plan waveSizes must be ${expectedSizes.join(',')}, got ${plan.waveSizes.join(',')}`);
+  }
+  if (plan.waveSizes.reduce((sum, size) => sum + size, 0) !== plan.totalTools) {
+    fail('plan totalTools must equal the sum of waveSizes');
+  }
+}
+if (plan.assignment !== 'frozen_baseline_waves_plus_reclassified_additions') {
+  fail(`unexpected assignment ${plan.assignment}`);
+}
+if (!Array.isArray(plan.lateAdditions) || plan.lateAdditions.length !== 4) {
+  fail('lateAdditions must contain the four 2026-09-17 reclassified tools');
+}
 if (plan.auditMode !== 'audit_only') fail(`auditMode must be audit_only, got ${plan.auditMode}`);
 if (!sameSet(new Set(plan.categories), new Set(REQUIRED_CATEGORIES)) || plan.categories.length !== REQUIRED_CATEGORIES.length) {
   fail('audit category contract drifted from the required 14-category standard');
@@ -47,24 +63,33 @@ if (!sameSet(new Set(plan.categories), new Set(REQUIRED_CATEGORIES)) || plan.cat
 if (!sameSet(new Set(plan.categoryStatusEnum), CATEGORY_STATES)) fail('category status enum drifted');
 if (!sameSet(new Set(plan.overallStatusEnum), OVERALL_STATES)) fail('overall status enum drifted');
 
-const inScope = new Set(Object.values(scope.classes).flat());
-const registryOrder = registry.items.map((item) => item.slug);
-const ordered = registryOrder.filter((slug) => inScope.has(slug));
-if (ordered.length !== plan.totalTools) fail(`deterministic assignment expected ${plan.totalTools}, got ${ordered.length}`);
-if (!sameSet(new Set(ordered), inScope)) fail('deterministic assignment does not exactly equal non-affiliate scope');
+let ordered = [];
+let waves = [];
+try {
+  ({ ordered, waves } = buildNonAffiliateWaves(registry, scope, plan));
+} catch (error) {
+  fail(error.message);
+}
 
-const waves = Array.from({ length: plan.waveCount }, (_, index) =>
-  ordered.slice(index * plan.waveSize, (index + 1) * plan.waveSize)
-);
+const inScope = new Set(Object.values(scope.classes).flat());
+if (ordered.length && !sameSet(new Set(ordered), inScope)) {
+  fail('wave assignment does not exactly equal non-affiliate scope');
+}
+
 const flattened = waves.flat();
-if (new Set(flattened).size !== plan.totalTools) fail('wave assignment contains duplicate slugs');
-for (let i = 0; i < waves.length; i += 1) {
-  if (waves[i].length !== plan.waveSize) fail(`wave ${i + 1} has ${waves[i].length} tools instead of ${plan.waveSize}`);
+if (flattened.length && new Set(flattened).size !== plan.totalTools) {
+  fail('wave assignment contains duplicate slugs');
 }
 
 const classBySlug = new Map();
 for (const [className, slugs] of Object.entries(classification.classes)) {
   for (const slug of slugs) classBySlug.set(slug, className);
+}
+
+for (const slug of plan.lateAdditions ?? []) {
+  if (classBySlug.get(slug) !== 'ADS_DONATION') {
+    fail(`late addition ${slug} must be ADS_DONATION after affiliate reclassification`);
+  }
 }
 
 const waveDir = path.join(root, 'audits', 'non-affiliate-waves');
@@ -82,15 +107,17 @@ if (fs.existsSync(waveDir)) {
     }
     if (result.wave !== waveNumber) fail(`${name}: wave field ${result.wave} does not match filename`);
     if (result.auditMode !== 'audit_only') fail(`${name}: auditMode must be audit_only`);
-    if (!Array.isArray(result.records) || result.records.length !== plan.waveSize) {
-      fail(`${name}: expected ${plan.waveSize} records`);
+
+    const expectedSize = plan.waveSizes[waveNumber - 1];
+    if (!Array.isArray(result.records) || result.records.length !== expectedSize) {
+      fail(`${name}: expected ${expectedSize} records`);
       continue;
     }
 
-    const expectedSlugs = new Set(waves[waveNumber - 1]);
+    const expectedSlugs = new Set(waves[waveNumber - 1] ?? []);
     const actualSlugs = new Set(result.records.map((record) => record.slug));
     if (actualSlugs.size !== result.records.length) fail(`${name}: duplicate record slugs`);
-    if (!sameSet(expectedSlugs, actualSlugs)) fail(`${name}: record slugs do not match deterministic wave assignment`);
+    if (!sameSet(expectedSlugs, actualSlugs)) fail(`${name}: record slugs do not match frozen/late-addition wave assignment`);
 
     for (const record of result.records) {
       const prefix = `${name}:${record.slug}`;
@@ -161,6 +188,6 @@ if (fs.existsSync(waveDir)) {
 }
 
 if (!process.exitCode) {
-  console.log(`PASS: strict audit plan valid; tools=${plan.totalTools}, waves=${plan.waveCount}, waveSize=${plan.waveSize}`);
+  console.log(`PASS: strict audit plan valid; tools=${plan.totalTools}, waves=${plan.waveCount}, sizes=${plan.waveSizes.join('/')}`);
   waves.forEach((slugs, index) => console.log(`Wave ${index + 1}: ${slugs.join(', ')}`));
 }
