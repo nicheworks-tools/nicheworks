@@ -1,6 +1,6 @@
 {
-  "version": "2026-09-14-okj-dictionary-audit-1",
-  "basis": "repository_only",
+  "version": "2026-09-18-okj-dictionary-audit-2",
+  "basis": "repository_plus_authoritative_repair_ledger",
   "sourceDigests": {
     "dict.json": "703d8dd068ad8083af9f5a112bb1d94c37cb43641964145521ed69f8c1df842c",
     "meta.json": "091fe92b82a548c8f66913d6f2b7af011db149b6703b99e6d8ef2d6f8af5c985",
@@ -9,42 +9,78 @@
     "meta-extra-4.json": "da9e9686ba8bf6253ce028491622966f33d52665a36be8b2955f1bd7b9667fb6",
     "meta-extra-5.json": "593f1cb3bf775ec262d745fbf5bcf3b6651e9221b9206a30ff564eb577e6480d",
     "meta-extra-6.json": "99c1c03c5e5487b74af4d952230c246b4b289cef89525233c0cf7b8fb3862e40",
-    "compatibility-notes.json": "107ab15612e8994835bc20dd16921054720e1d46e1f3a5efae889ee0889c793b"
+    "compatibility-notes.json": "107ab15612e8994835bc20dd16921054720e1d46e1f3a5efae889ee0889c793b",
+    "dictionary-repair-evidence.json": "8af8bf7f6750824db68b909fbc58a01194321bd4c2169d6744decbc8a101939e"
   },
   "classificationRules": {
     "precedence": [
       "data_quality_conflict=>unresolved",
       "identity",
+      "authoritative_repair_ledger",
       "compatibility",
       "variant",
       "verified_metadata_old_to_modern",
       "unresolved"
     ],
+    "authoritative_repair_ledger": "dictionary-repair-evidence.json may classify a current mapping only when afterTarget exactly matches the current forward target; supported relations are old_to_modern, variant/semantic_variant, and unicode_compatibility",
     "compatibility": "Unicode U+F900–U+FAFF or existing compatibility note riskTypes includes compatibility-ideograph",
-    "variant": "existing repository metadata/compatibility wording explicitly says 異体字 or variant",
-    "old_to_modern": "verified metadata modern target matches dict and sourceNote explicitly describes old/new-form correspondence",
+    "variant": "existing repository metadata/compatibility wording explicitly says 異体字 or variant, or authoritative repair evidence records variant/semantic_variant",
+    "old_to_modern": "verified metadata modern target matches dict and sourceNote explicitly describes old/new-form correspondence, or authoritative repair evidence records old_to_modern",
     "identity": "source equals mapped target; self-reference in new_to_old is not required",
     "unresolved": "repository evidence is insufficient or data-quality conflicts exist",
-    "seoCandidate": "non-identity/non-unresolved classification + no issues + verified matching metadata + at least two standalone repository signals; publication still requires actual search demand"
+    "seoCandidate": "non-identity/non-unresolved classification + no issues + verified matching metadata + at least two standalone repository signals; authoritative repair classification alone does not waive standalone data or search-demand gates"
+  },
+  "maintenancePolicy": {
+    "allowedDispositions": [
+      "fix",
+      "intentional",
+      "deferred"
+    ],
+    "rawDuplicateKeys": "Same-value duplicates are fix-class cleanup debt; conflicting duplicates are blocking fixes.",
+    "metadataDuplicateKeys": "Overlay collisions are deferred until field-level semantic review; ordered last-file-wins behavior remains explicit.",
+    "reverseIssues": "Reverse-only candidates are deferred until Modern→Old runtime QA or authoritative relation verification; direct forward/reverse contradictions are fix-class.",
+    "unresolvedRecords": "Unresolved character-changing mappings remain deferred and SEO-blocked until authoritative verification."
   },
   "summary": {
     "canonicalOldToNewRecords": 356,
     "rawOldToNewEntries": 364,
     "classes": {
-      "old_to_modern": 163,
-      "variant": 1,
+      "old_to_modern": 165,
+      "variant": 3,
       "compatibility": 22,
       "identity": 115,
-      "unresolved": 55
+      "unresolved": 51
     },
     "identityMappings": 115,
-    "unresolvedRecords": 55,
+    "unresolvedRecords": 51,
     "rawDuplicateKeys": 8,
     "conflictingRawDuplicateKeys": 0,
     "metadataDuplicateKeys": 61,
     "reverseIssues": 35,
     "issueRecords": 0,
     "seoCandidates": 168
+  },
+  "maintenanceSummary": {
+    "rawDuplicateKeys": {
+      "fix": 8,
+      "intentional": 0,
+      "deferred": 0
+    },
+    "metadataDuplicateKeys": {
+      "fix": 0,
+      "intentional": 0,
+      "deferred": 61
+    },
+    "reverseIssues": {
+      "fix": 0,
+      "intentional": 0,
+      "deferred": 35
+    },
+    "unresolvedRecords": {
+      "fix": 0,
+      "intentional": 0,
+      "deferred": 51
+    }
   },
   "rawDuplicateKeys": [
     {
@@ -54,7 +90,9 @@
         "挙",
         "挙"
       ],
-      "conflicting": false
+      "conflicting": false,
+      "maintenanceDisposition": "fix",
+      "maintenanceReason": "Same-value raw duplicate key; mechanical deduplication is parse-preserving but is deferred until a dedicated source-cleanup edit."
     },
     {
       "key": "藝",
@@ -63,7 +101,9 @@
         "芸",
         "芸"
       ],
-      "conflicting": false
+      "conflicting": false,
+      "maintenanceDisposition": "fix",
+      "maintenanceReason": "Same-value raw duplicate key; mechanical deduplication is parse-preserving but is deferred until a dedicated source-cleanup edit."
     },
     {
       "key": "擊",
@@ -72,7 +112,9 @@
         "撃",
         "撃"
       ],
-      "conflicting": false
+      "conflicting": false,
+      "maintenanceDisposition": "fix",
+      "maintenanceReason": "Same-value raw duplicate key; mechanical deduplication is parse-preserving but is deferred until a dedicated source-cleanup edit."
     },
     {
       "key": "覽",
@@ -81,7 +123,9 @@
         "覧",
         "覧"
       ],
-      "conflicting": false
+      "conflicting": false,
+      "maintenanceDisposition": "fix",
+      "maintenanceReason": "Same-value raw duplicate key; mechanical deduplication is parse-preserving but is deferred until a dedicated source-cleanup edit."
     },
     {
       "key": "藥",
@@ -90,7 +134,9 @@
         "薬",
         "薬"
       ],
-      "conflicting": false
+      "conflicting": false,
+      "maintenanceDisposition": "fix",
+      "maintenanceReason": "Same-value raw duplicate key; mechanical deduplication is parse-preserving but is deferred until a dedicated source-cleanup edit."
     },
     {
       "key": "雙",
@@ -99,7 +145,9 @@
         "双",
         "双"
       ],
-      "conflicting": false
+      "conflicting": false,
+      "maintenanceDisposition": "fix",
+      "maintenanceReason": "Same-value raw duplicate key; mechanical deduplication is parse-preserving but is deferred until a dedicated source-cleanup edit."
     },
     {
       "key": "禍",
@@ -108,7 +156,9 @@
         "禍",
         "禍"
       ],
-      "conflicting": false
+      "conflicting": false,
+      "maintenanceDisposition": "fix",
+      "maintenanceReason": "Same-value raw duplicate key; mechanical deduplication is parse-preserving but is deferred until a dedicated source-cleanup edit."
     },
     {
       "key": "護",
@@ -117,491 +167,685 @@
         "護",
         "護"
       ],
-      "conflicting": false
+      "conflicting": false,
+      "maintenanceDisposition": "fix",
+      "maintenanceReason": "Same-value raw duplicate key; mechanical deduplication is parse-preserving but is deferred until a dedicated source-cleanup edit."
     }
   ],
   "metadataDuplicateKeys": [
     {
       "key": "齊",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "齋",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "邊",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "邉",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "澤",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "濱",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "﨑",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "德",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "廣",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "榮",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "壽",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "實",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "櫻",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "龍",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "國",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "學",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "會",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "鄕",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "穗",
       "previous": "meta.json",
-      "next": "meta-extra-4.json"
+      "next": "meta-extra-4.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "舊",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "體",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "會",
       "previous": "meta-extra-4.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "國",
       "previous": "meta-extra-4.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "學",
       "previous": "meta-extra-4.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "縣",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "營",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "驛",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "關",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "戰",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "廳",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "敎",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "數",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "證",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "觀",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "嚴",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "鐵",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "藝",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "靈",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "讓",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "爲",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "據",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "覽",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "歸",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "歷",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "畫",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "寶",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "價",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "傳",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "圖",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "團",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "從",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "應",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "斷",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "滿",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "稱",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "繪",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "聲",
       "previous": "meta.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "號",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "譯",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "黃",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     },
     {
       "key": "黑",
       "previous": "meta-extra-2.json",
-      "next": "meta-extra-5.json"
+      "next": "meta-extra-5.json",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Ordered metadata overlay collision; requires field-level semantic review before consolidation. Current last-file-wins behavior is explicit and non-blocking."
     }
   ],
   "reverseIssues": [
     {
       "type": "reverse_source_missing_forward",
       "source": "鄉",
-      "target": "郷"
+      "target": "郷",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse-only relationship lacks a corresponding forward mapping. Authoritative relation verification is required before adding a forward mapping or removing the reverse candidate."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "偽",
-      "target": "偽"
+      "target": "偽",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "聯",
-      "target": "連"
+      "target": "連",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse-only relationship lacks a corresponding forward mapping. Authoritative relation verification is required before adding a forward mapping or removing the reverse candidate."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "礼",
-      "target": "礼"
+      "target": "礼",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "祐",
-      "target": "祐"
+      "target": "祐",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "福",
-      "target": "福"
+      "target": "福",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "貸",
-      "target": "貸"
+      "target": "貸",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "費",
-      "target": "費"
+      "target": "費",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "資",
-      "target": "資"
+      "target": "資",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "超",
-      "target": "超"
+      "target": "超",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "越",
-      "target": "越"
+      "target": "越",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "趣",
-      "target": "趣"
+      "target": "趣",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "距",
-      "target": "距"
+      "target": "距",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "跨",
-      "target": "跨"
+      "target": "跨",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "跡",
-      "target": "跡"
+      "target": "跡",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "跳",
-      "target": "跳"
+      "target": "跳",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "踐",
-      "target": "践"
+      "target": "践",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse-only relationship lacks a corresponding forward mapping. Authoritative relation verification is required before adding a forward mapping or removing the reverse candidate."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "踪",
-      "target": "踪"
+      "target": "踪",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "輪",
-      "target": "輪"
+      "target": "輪",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "酸",
-      "target": "酸"
+      "target": "酸",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "益",
-      "target": "酸"
+      "target": "酸",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse-only relationship lacks a corresponding forward mapping. Authoritative relation verification is required before adding a forward mapping or removing the reverse candidate."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "醬",
-      "target": "醤"
+      "target": "醤",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse-only relationship lacks a corresponding forward mapping. Authoritative relation verification is required before adding a forward mapping or removing the reverse candidate."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "釣",
-      "target": "釣"
+      "target": "釣",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "針",
-      "target": "針"
+      "target": "針",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "鈴",
-      "target": "鈴"
+      "target": "鈴",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "﨨",
-      "target": "鈴"
+      "target": "鈴",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse-only relationship lacks a corresponding forward mapping. Authoritative relation verification is required before adding a forward mapping or removing the reverse candidate."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "銳",
-      "target": "鋭"
+      "target": "鋭",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse-only relationship lacks a corresponding forward mapping. Authoritative relation verification is required before adding a forward mapping or removing the reverse candidate."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "鞄",
-      "target": "鞄"
+      "target": "鞄",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "韻",
-      "target": "韻"
+      "target": "韻",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "頂",
-      "target": "頂"
+      "target": "頂",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "風",
-      "target": "風"
+      "target": "風",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "飛",
-      "target": "飛"
+      "target": "飛",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "鳥",
-      "target": "鳥"
+      "target": "鳥",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "暑",
-      "target": "鳥"
+      "target": "鳥",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse-only relationship lacks a corresponding forward mapping. Authoritative relation verification is required before adding a forward mapping or removing the reverse candidate."
     },
     {
       "type": "reverse_source_missing_forward",
       "source": "鳴",
-      "target": "鳴"
+      "target": "鳴",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Reverse candidate-only self entry. It does not create a forward-integrity defect; retain until Completion Wave 11 verifies Modern→Old candidate behavior."
     }
   ],
   "identityMappings": [
@@ -1075,7 +1319,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "遞",
@@ -1084,7 +1330,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "擊",
@@ -1094,7 +1342,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "盡",
@@ -1103,7 +1353,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "潛",
@@ -1112,7 +1364,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "俠",
@@ -1121,7 +1375,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "倂",
@@ -1130,7 +1386,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "劒",
@@ -1139,7 +1397,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "墮",
@@ -1148,7 +1408,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "墻",
@@ -1157,7 +1419,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "夾",
@@ -1166,7 +1430,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "娛",
@@ -1175,7 +1441,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "寢",
@@ -1184,7 +1452,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "彎",
@@ -1193,7 +1463,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "徵",
@@ -1202,7 +1474,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "慘",
@@ -1211,7 +1485,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "戲",
@@ -1220,7 +1496,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "曉",
@@ -1229,16 +1507,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
-      "source": "淚",
-      "target": "涙",
-      "evidence": [
-        "mapping_changes_character"
-      ],
-      "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "滯",
@@ -1247,7 +1518,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "溫",
@@ -1256,7 +1529,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "爐",
@@ -1265,7 +1540,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "獸",
@@ -1274,7 +1551,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "獵",
@@ -1283,7 +1562,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "祿",
@@ -1292,7 +1573,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "稅",
@@ -1301,7 +1584,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "稻",
@@ -1310,7 +1595,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "穡",
@@ -1319,7 +1606,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "竊",
@@ -1328,7 +1617,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "竝",
@@ -1337,7 +1628,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "粹",
@@ -1346,7 +1639,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "繼",
@@ -1355,7 +1650,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "繩",
@@ -1364,7 +1661,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "纖",
@@ -1373,7 +1672,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "羣",
@@ -1382,7 +1683,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "翫",
@@ -1391,7 +1694,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "腳",
@@ -1400,7 +1705,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "膽",
@@ -1409,7 +1716,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "禦",
@@ -1418,7 +1727,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "艷",
@@ -1427,7 +1738,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "蘆",
@@ -1436,7 +1749,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "虛",
@@ -1445,7 +1760,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "蠶",
@@ -1454,7 +1771,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "觸",
@@ -1463,7 +1782,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "贊",
@@ -1472,7 +1793,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "飮",
@@ -1481,7 +1804,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "驅",
@@ -1490,7 +1815,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "鬧",
@@ -1499,7 +1826,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "黃",
@@ -1508,7 +1837,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "說",
@@ -1517,25 +1848,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
-      "source": "躰",
-      "target": "体",
-      "evidence": [
-        "mapping_changes_character"
-      ],
-      "issues": [],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
-      "source": "邨",
-      "target": "村",
-      "evidence": [
-        "mapping_changes_character"
-      ],
-      "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "礦",
@@ -1544,16 +1859,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
-    },
-    {
-      "source": "霸",
-      "target": "覇",
-      "evidence": [
-        "mapping_changes_character"
-      ],
-      "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     },
     {
       "source": "黑",
@@ -1562,7 +1870,9 @@
         "mapping_changes_character"
       ],
       "issues": [],
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_unresolved_classification",
+      "maintenanceDisposition": "deferred",
+      "maintenanceReason": "Character-changing mapping remains unsupported by sufficient current repository evidence. Keep blocked from per-kanji SEO and require authoritative verification before promotion."
     }
   ],
   "seoCandidates": [
@@ -1753,6 +2063,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -1780,6 +2091,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "medium",
         "riskTypes": [
@@ -1815,6 +2127,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "medium",
         "riskTypes": [
@@ -1850,6 +2163,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -1877,6 +2191,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -1903,6 +2218,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -1929,6 +2245,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -1956,6 +2273,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "medium",
         "riskTypes": [
@@ -1991,6 +2309,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2018,6 +2337,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2045,6 +2365,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2071,6 +2392,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "medium",
         "riskTypes": [
@@ -2106,6 +2428,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2133,6 +2456,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "medium",
         "riskTypes": [
@@ -2168,6 +2492,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2194,6 +2519,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2220,6 +2546,7 @@
         "category": "popular",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "medium",
         "riskTypes": [
@@ -2255,6 +2582,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2282,6 +2610,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2307,6 +2636,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -2329,6 +2659,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "medium",
         "riskTypes": [
@@ -2366,6 +2697,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "high",
         "riskTypes": [
@@ -2404,6 +2736,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "high",
         "riskTypes": [
@@ -2439,6 +2772,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "medium",
         "riskTypes": [
@@ -2475,6 +2809,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "high",
         "riskTypes": [
@@ -2511,6 +2846,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2539,6 +2875,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "high",
         "riskTypes": [
@@ -2574,6 +2911,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2601,6 +2939,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2628,6 +2967,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2654,6 +2994,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2680,6 +3021,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2706,6 +3048,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2731,6 +3074,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -2753,6 +3097,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "medium",
         "riskTypes": [
@@ -2788,6 +3133,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2815,6 +3161,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2841,6 +3188,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2867,6 +3215,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2893,6 +3242,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2919,6 +3269,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2945,6 +3296,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2972,6 +3324,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -2999,6 +3352,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3026,6 +3380,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3053,6 +3408,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3080,6 +3436,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3106,6 +3463,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3132,6 +3490,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "medium",
         "riskTypes": [
@@ -3167,6 +3526,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3193,6 +3553,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3219,6 +3580,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3246,6 +3608,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3273,6 +3636,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3299,6 +3663,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -3321,6 +3686,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "medium",
         "riskTypes": [
@@ -3346,7 +3712,8 @@
       "evidence": [
         "raw_duplicate_same_value",
         "mapping_changes_character",
-        "verified_metadata_old_to_modern"
+        "verified_metadata_old_to_modern",
+        "authoritative_repair_old_to_modern"
       ],
       "issues": [],
       "metadata": {
@@ -3356,6 +3723,13 @@
         "confidence": "medium",
         "category": "document",
         "modernMatchesMapping": true
+      },
+      "repairEvidence": {
+        "ledgerVersion": "2026-09-16-pr8-1",
+        "relation": "old_to_modern",
+        "authority": "文化庁 常用漢字表",
+        "authorities": null,
+        "locator": "芸（藝）"
       },
       "compatibility": null,
       "standaloneSignals": [
@@ -3384,6 +3758,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3410,6 +3785,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3437,6 +3813,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3463,6 +3840,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3490,6 +3868,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3517,6 +3896,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3544,6 +3924,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3571,6 +3952,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3586,7 +3968,8 @@
       "classification": "old_to_modern",
       "evidence": [
         "mapping_changes_character",
-        "verified_metadata_old_to_modern"
+        "verified_metadata_old_to_modern",
+        "authoritative_repair_old_to_modern"
       ],
       "issues": [],
       "metadata": {
@@ -3596,6 +3979,13 @@
         "confidence": "medium",
         "category": "document",
         "modernMatchesMapping": true
+      },
+      "repairEvidence": {
+        "ledgerVersion": "2026-09-16-pr8-1",
+        "relation": "old_to_modern",
+        "authority": "文化庁 常用漢字表",
+        "authorities": null,
+        "locator": "拠（據）"
       },
       "compatibility": null,
       "standaloneSignals": [
@@ -3624,6 +4014,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -3646,6 +4037,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3674,6 +4066,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3700,6 +4093,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -3722,6 +4116,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3749,6 +4144,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3775,6 +4171,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3802,6 +4199,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3829,6 +4227,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3855,6 +4254,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3881,6 +4281,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3908,6 +4309,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3934,6 +4336,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3960,6 +4363,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -3986,6 +4390,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4013,6 +4418,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4040,6 +4446,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4065,6 +4472,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -4087,6 +4495,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4113,6 +4522,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4140,6 +4550,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4166,6 +4577,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4193,6 +4605,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4219,6 +4632,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4245,6 +4659,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4272,6 +4687,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "low",
         "riskTypes": [
@@ -4305,6 +4721,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4330,6 +4747,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -4351,6 +4769,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -4373,6 +4792,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4399,6 +4819,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -4421,6 +4842,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4447,6 +4869,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -4468,6 +4891,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -4489,6 +4913,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -4510,6 +4935,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -4531,6 +4957,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -4553,6 +4980,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4578,6 +5006,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -4600,6 +5029,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4626,6 +5056,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4652,6 +5083,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4679,6 +5111,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4706,6 +5139,7 @@
         "category": "popular",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4734,6 +5168,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4760,6 +5195,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4787,6 +5223,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4814,6 +5251,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4841,6 +5279,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4867,6 +5306,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -4888,6 +5328,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -4910,6 +5351,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4937,6 +5379,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4964,6 +5407,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -4990,6 +5434,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -5012,6 +5457,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5039,6 +5485,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5065,6 +5512,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -5086,6 +5534,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -5108,6 +5557,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5134,6 +5584,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5162,6 +5613,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "high",
         "riskTypes": [
@@ -5190,6 +5642,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -5212,6 +5665,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5238,6 +5692,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -5260,6 +5715,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5286,6 +5742,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5312,6 +5769,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5338,6 +5796,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -5360,6 +5819,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5386,6 +5846,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5412,6 +5873,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -5434,6 +5896,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5460,6 +5923,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5487,6 +5951,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5513,6 +5978,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5539,6 +6005,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -5561,6 +6028,7 @@
         "category": "popular",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5587,6 +6055,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -5609,6 +6078,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5635,6 +6105,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5661,6 +6132,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5687,6 +6159,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5713,6 +6186,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5739,6 +6213,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5764,6 +6239,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -5785,6 +6261,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -5807,6 +6284,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5833,6 +6311,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5859,6 +6338,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -5880,6 +6360,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -5901,6 +6382,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -5909,9 +6391,10 @@
     {
       "source": "淚",
       "target": "涙",
-      "classification": "unresolved",
+      "classification": "old_to_modern",
       "evidence": [
-        "mapping_changes_character"
+        "mapping_changes_character",
+        "authoritative_repair_old_to_modern"
       ],
       "issues": [],
       "metadata": {
@@ -5922,10 +6405,17 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": {
+        "ledgerVersion": "2026-09-16-pr8-1",
+        "relation": "old_to_modern",
+        "authority": "文化庁 常用漢字表",
+        "authorities": null,
+        "locator": "涙（淚）"
+      },
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_insufficient_standalone_data"
     },
     {
       "source": "滿",
@@ -5944,6 +6434,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -5970,6 +6461,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -5991,6 +6483,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6013,6 +6506,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -6038,6 +6532,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6059,6 +6554,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6080,6 +6576,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6091,7 +6588,8 @@
       "classification": "old_to_modern",
       "evidence": [
         "mapping_changes_character",
-        "verified_metadata_old_to_modern"
+        "verified_metadata_old_to_modern",
+        "authoritative_repair_old_to_modern"
       ],
       "issues": [],
       "metadata": {
@@ -6101,6 +6599,13 @@
         "confidence": "high",
         "category": "popular",
         "modernMatchesMapping": true
+      },
+      "repairEvidence": {
+        "ledgerVersion": "2026-09-16-pr8-1",
+        "relation": "old_to_modern",
+        "authority": "文化庁 常用漢字表",
+        "authorities": null,
+        "locator": "独（獨）"
       },
       "compatibility": null,
       "standaloneSignals": [
@@ -6128,6 +6633,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6150,6 +6656,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -6176,6 +6683,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -6202,6 +6710,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -6227,6 +6736,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6249,6 +6759,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -6275,6 +6786,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6296,6 +6808,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6317,6 +6830,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6338,6 +6852,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6359,6 +6874,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6380,6 +6896,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6401,6 +6918,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6422,6 +6940,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6443,6 +6962,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6464,6 +6984,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6485,6 +7006,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6507,6 +7029,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -6533,6 +7056,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6554,6 +7078,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6575,6 +7100,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6596,6 +7122,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6617,6 +7144,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6638,6 +7166,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6660,6 +7189,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -6687,6 +7217,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "high",
         "riskTypes": [
@@ -6716,6 +7247,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -6742,6 +7274,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -6768,6 +7301,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6789,6 +7323,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6811,6 +7346,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -6836,6 +7372,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6858,6 +7395,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -6883,6 +7421,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6907,6 +7446,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "high",
         "riskTypes": [
@@ -6937,6 +7477,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "high",
         "riskTypes": [
@@ -6965,6 +7506,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -6986,6 +7528,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7007,6 +7550,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7029,6 +7573,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -7055,6 +7600,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7076,6 +7622,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7098,6 +7645,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7119,6 +7667,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7141,6 +7690,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -7167,6 +7717,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7188,6 +7739,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7210,6 +7762,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -7236,6 +7789,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -7262,6 +7816,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7283,6 +7838,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7304,6 +7860,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7325,6 +7882,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7347,6 +7905,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7369,6 +7928,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7390,6 +7950,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7412,6 +7973,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -7437,6 +7999,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7448,7 +8011,8 @@
       "classification": "old_to_modern",
       "evidence": [
         "mapping_changes_character",
-        "verified_metadata_old_to_modern"
+        "verified_metadata_old_to_modern",
+        "authoritative_repair_old_to_modern"
       ],
       "issues": [],
       "metadata": {
@@ -7458,6 +8022,13 @@
         "confidence": "high",
         "category": "document",
         "modernMatchesMapping": true
+      },
+      "repairEvidence": {
+        "ledgerVersion": "2026-09-16-pr8-1",
+        "relation": "old_to_modern",
+        "authority": "文化庁 常用漢字表",
+        "authorities": null,
+        "locator": "髄（髓）"
       },
       "compatibility": null,
       "standaloneSignals": [
@@ -7485,6 +8056,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7507,6 +8079,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -7522,7 +8095,8 @@
       "classification": "compatibility",
       "evidence": [
         "mapping_changes_character",
-        "unicode_cjk_compatibility_range"
+        "unicode_cjk_compatibility_range",
+        "authoritative_repair_unicode_compatibility"
       ],
       "issues": [],
       "metadata": {
@@ -7532,6 +8106,13 @@
         "confidence": "low",
         "category": "rare",
         "modernMatchesMapping": true
+      },
+      "repairEvidence": {
+        "ledgerVersion": "2026-09-16-pr8-1",
+        "relation": "unicode_compatibility",
+        "authority": "Unicode Consortium NamesList",
+        "authorities": null,
+        "locator": "U+F936 ≡ U+865C 虜"
       },
       "compatibility": null,
       "standaloneSignals": [],
@@ -7554,6 +8135,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7576,6 +8158,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7598,6 +8181,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -7625,6 +8209,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7647,6 +8232,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -7672,6 +8258,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7693,6 +8280,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7715,6 +8303,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -7741,6 +8330,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7763,6 +8353,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7785,6 +8376,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7807,6 +8399,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7829,6 +8422,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7851,6 +8445,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -7880,6 +8475,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": {
         "riskLevel": "high",
         "riskTypes": [
@@ -7916,6 +8512,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -7943,6 +8540,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -7969,6 +8567,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -7990,6 +8589,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8011,6 +8611,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8032,6 +8633,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8053,6 +8655,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8074,6 +8677,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8095,6 +8699,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8116,6 +8721,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8138,6 +8744,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8159,6 +8766,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8180,6 +8788,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8201,6 +8810,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8222,6 +8832,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8243,6 +8854,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8264,6 +8876,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8285,6 +8898,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8306,6 +8920,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8328,6 +8943,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -8354,6 +8970,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -8379,6 +8996,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8400,6 +9018,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8421,6 +9040,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8442,6 +9062,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8463,6 +9084,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8484,6 +9106,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8505,6 +9128,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8526,6 +9150,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8547,6 +9172,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8568,6 +9194,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8589,6 +9216,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8610,6 +9238,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8631,6 +9260,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8652,6 +9282,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8673,6 +9304,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8695,6 +9327,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -8720,6 +9353,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8741,6 +9375,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8762,6 +9397,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8783,6 +9419,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8804,6 +9441,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8825,6 +9463,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8846,6 +9485,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8867,6 +9507,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8888,6 +9529,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8909,6 +9551,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8930,6 +9573,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8951,6 +9595,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8972,6 +9617,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -8993,6 +9639,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9014,6 +9661,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9035,6 +9683,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9043,9 +9692,10 @@
     {
       "source": "躰",
       "target": "体",
-      "classification": "unresolved",
+      "classification": "variant",
       "evidence": [
-        "mapping_changes_character"
+        "mapping_changes_character",
+        "authoritative_repair_variant"
       ],
       "issues": [],
       "metadata": {
@@ -9056,10 +9706,17 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": {
+        "ledgerVersion": "2026-09-16-pr8-1",
+        "relation": "variant",
+        "authority": "厚生労働省 異体字検索漢字リスト",
+        "authorities": null,
+        "locator": "正字 体 / 異体字等 躰・體"
+      },
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_insufficient_standalone_data"
     },
     {
       "source": "載",
@@ -9077,6 +9734,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9098,6 +9756,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9119,6 +9778,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9140,6 +9800,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9161,6 +9822,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9182,6 +9844,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9190,9 +9853,10 @@
     {
       "source": "邨",
       "target": "村",
-      "classification": "unresolved",
+      "classification": "variant",
       "evidence": [
-        "mapping_changes_character"
+        "mapping_changes_character",
+        "authoritative_repair_semantic_variant"
       ],
       "issues": [],
       "metadata": {
@@ -9203,10 +9867,17 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": {
+        "ledgerVersion": "2026-09-16-pr8-1",
+        "relation": "semantic_variant",
+        "authority": "Unicode Consortium Unihan variant data",
+        "authorities": null,
+        "locator": "U+6751 kSemanticVariant U+90A8"
+      },
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_insufficient_standalone_data"
     },
     {
       "source": "鄰",
@@ -9225,6 +9896,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -9252,6 +9924,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -9278,6 +9951,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9299,6 +9973,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9320,6 +9995,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9341,6 +10017,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9362,6 +10039,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9383,6 +10061,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9404,6 +10083,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9425,6 +10105,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9447,6 +10128,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -9473,6 +10155,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -9485,9 +10168,10 @@
     {
       "source": "霸",
       "target": "覇",
-      "classification": "unresolved",
+      "classification": "old_to_modern",
       "evidence": [
-        "mapping_changes_character"
+        "mapping_changes_character",
+        "authoritative_repair_old_to_modern"
       ],
       "issues": [],
       "metadata": {
@@ -9498,10 +10182,17 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": {
+        "ledgerVersion": "2026-09-16-pr8-1",
+        "relation": "old_to_modern",
+        "authority": "文化庁 常用漢字表",
+        "authorities": null,
+        "locator": "覇（霸）"
+      },
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
-      "seoGate": "blocked_unresolved_classification"
+      "seoGate": "blocked_insufficient_standalone_data"
     },
     {
       "source": "雜",
@@ -9509,7 +10200,8 @@
       "classification": "old_to_modern",
       "evidence": [
         "mapping_changes_character",
-        "verified_metadata_old_to_modern"
+        "verified_metadata_old_to_modern",
+        "authoritative_repair_old_to_modern"
       ],
       "issues": [],
       "metadata": {
@@ -9519,6 +10211,13 @@
         "confidence": "high",
         "category": "common",
         "modernMatchesMapping": true
+      },
+      "repairEvidence": {
+        "ledgerVersion": "2026-09-16-pr8-1",
+        "relation": "old_to_modern",
+        "authority": "文化庁 常用漢字表",
+        "authorities": null,
+        "locator": "雑（雜）"
       },
       "compatibility": null,
       "standaloneSignals": [
@@ -9545,6 +10244,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9567,6 +10267,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9588,6 +10289,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9609,6 +10311,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9630,6 +10333,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9651,6 +10355,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9672,6 +10377,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9693,6 +10399,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9714,6 +10421,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9735,6 +10443,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9756,6 +10465,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9767,7 +10477,8 @@
       "classification": "old_to_modern",
       "evidence": [
         "mapping_changes_character",
-        "verified_metadata_old_to_modern"
+        "verified_metadata_old_to_modern",
+        "authoritative_repair_old_to_modern"
       ],
       "issues": [],
       "metadata": {
@@ -9777,6 +10488,13 @@
         "confidence": "medium",
         "category": "name",
         "modernMatchesMapping": true
+      },
+      "repairEvidence": {
+        "ledgerVersion": "2026-09-16-pr8-1",
+        "relation": "old_to_modern",
+        "authority": "漢字ペディア（日本漢字能力検定協会）",
+        "authorities": null,
+        "locator": "顔 / 旧字 顏"
       },
       "compatibility": null,
       "standaloneSignals": [
@@ -9804,6 +10522,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9825,6 +10544,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9836,7 +10556,8 @@
       "classification": "old_to_modern",
       "evidence": [
         "mapping_changes_character",
-        "verified_metadata_old_to_modern"
+        "verified_metadata_old_to_modern",
+        "authoritative_repair_old_to_modern"
       ],
       "issues": [],
       "metadata": {
@@ -9846,6 +10567,13 @@
         "confidence": "high",
         "category": "common",
         "modernMatchesMapping": true
+      },
+      "repairEvidence": {
+        "ledgerVersion": "2026-09-16-pr8-1",
+        "relation": "old_to_modern",
+        "authority": "文化庁 常用漢字表",
+        "authorities": null,
+        "locator": "顕（顯）"
       },
       "compatibility": null,
       "standaloneSignals": [
@@ -9872,6 +10600,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9893,6 +10622,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9914,6 +10644,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9935,6 +10666,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9956,6 +10688,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9977,6 +10710,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -9998,6 +10732,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -10020,6 +10755,7 @@
         "category": "common",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -10045,6 +10781,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -10066,6 +10803,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -10087,6 +10825,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -10108,6 +10847,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -10129,6 +10869,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -10150,6 +10891,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -10171,6 +10913,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -10192,6 +10935,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -10214,6 +10958,7 @@
         "category": "name",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [
         "reading",
@@ -10240,6 +10985,7 @@
         "category": "document",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -10262,6 +11008,7 @@
         "category": "rare",
         "modernMatchesMapping": true
       },
+      "repairEvidence": null,
       "compatibility": null,
       "standaloneSignals": [],
       "seoCandidate": false,
@@ -10273,7 +11020,8 @@
       "classification": "old_to_modern",
       "evidence": [
         "mapping_changes_character",
-        "verified_metadata_old_to_modern"
+        "verified_metadata_old_to_modern",
+        "authoritative_repair_old_to_modern"
       ],
       "issues": [],
       "metadata": {
@@ -10283,6 +11031,13 @@
         "confidence": "high",
         "category": "name",
         "modernMatchesMapping": true
+      },
+      "repairEvidence": {
+        "ledgerVersion": "2026-09-16-pr8-1",
+        "relation": "old_to_modern",
+        "authority": "文化庁 常用漢字表",
+        "authorities": null,
+        "locator": "斎（齋）"
       },
       "compatibility": {
         "riskLevel": "medium",
@@ -10308,7 +11063,8 @@
       "classification": "old_to_modern",
       "evidence": [
         "mapping_changes_character",
-        "verified_metadata_old_to_modern"
+        "verified_metadata_old_to_modern",
+        "authoritative_repair_old_to_modern"
       ],
       "issues": [],
       "metadata": {
@@ -10318,6 +11074,13 @@
         "confidence": "high",
         "category": "common",
         "modernMatchesMapping": true
+      },
+      "repairEvidence": {
+        "ledgerVersion": "2026-09-16-pr8-1",
+        "relation": "old_to_modern",
+        "authority": "文化庁 常用漢字表",
+        "authorities": null,
+        "locator": "齢（齡）"
       },
       "compatibility": null,
       "standaloneSignals": [
@@ -10334,7 +11097,8 @@
       "classification": "old_to_modern",
       "evidence": [
         "mapping_changes_character",
-        "verified_metadata_old_to_modern"
+        "verified_metadata_old_to_modern",
+        "authoritative_repair_old_to_modern"
       ],
       "issues": [],
       "metadata": {
@@ -10344,6 +11108,13 @@
         "confidence": "high",
         "category": "document",
         "modernMatchesMapping": true
+      },
+      "repairEvidence": {
+        "ledgerVersion": "2026-09-16-pr8-1",
+        "relation": "old_to_modern",
+        "authority": "文化庁 常用漢字表",
+        "authorities": null,
+        "locator": "歯（齒）"
       },
       "compatibility": null,
       "standaloneSignals": [
