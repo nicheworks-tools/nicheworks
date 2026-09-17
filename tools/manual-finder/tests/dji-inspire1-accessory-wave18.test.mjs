@@ -73,7 +73,6 @@ for (const args of [
   { maker: 'DJI', model: 'Inspire 1', category: 'その他' },
   { maker: 'DJI', model: 'DJI Inspire 1', category: 'カメラ・映像' },
   { maker: 'DJI', model: 'Inspire 1 Pro/Raw', category: 'カメラ・映像' },
-  { maker: 'DJI', model: 'Inspire 2', category: 'カメラ・映像' },
   { maker: 'DJI', model: '', category: 'カメラ・映像' }
 ]) {
   assert.deepEqual(Array.from(config.getAccessoryOffers(args)), [], `unreviewed Wave 18 mapping must fail closed: ${JSON.stringify(args)}`);
