@@ -7,6 +7,7 @@ on:
       - 'tools/inci-fastscan/**'
       - 'tools/_shared/cosmetic-ingredient-parser.js'
       - 'tools/_shared/check-cosmetics-semantic-quality.mjs'
+      - 'tools/_shared/check-cosmetics-public-role-readiness.mjs'
       - '.github/workflows/cosmetics-semantic-report.yml'
   workflow_dispatch:
 
@@ -26,6 +27,8 @@ jobs:
         run: |
           set -o pipefail
           node tools/_shared/check-cosmetics-semantic-quality.mjs | tee cosmetics-semantic-readiness.json
+      - name: Enforce public role readiness baseline
+        run: node tools/_shared/check-cosmetics-public-role-readiness.mjs
       - name: Upload semantic readiness report
         if: always() && hashFiles('cosmetics-semantic-readiness.json') != ''
         uses: actions/upload-artifact@v4
