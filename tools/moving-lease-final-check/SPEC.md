@@ -7,40 +7,46 @@
 
 ## Purpose
 
-Provide a final pre-move/pre-vacate checklist for common cancellation, inspection, photo, meter, key-return, and handoff tasks immediately around move-out.
+Provide a final-stage move-out / handoff checklist for inspection, photo records, meters, keys, return items, remaining belongings, and handoff notes immediately before leaving or transferring a home.
 
 ### Search and product scope boundary
 
-This tool is the final-stage move-out / pre-vacate surface. Its primary intent is the last checks around inspection, photo records, utility-meter records, key return, cancellation confirmation, and handoff notes.
+This tool is the final-stage `退去前チェックリスト` / move-out-handoff surface. Its primary intent is the last checks immediately before inspection, key return, final exit, or property handoff.
 
-`moving-checklist-generator` is the separate broad moving-timeline surface covering planning from 30 days before the move through post-move follow-up, including address changes, government procedures, utilities, packing, and moving-day preparation. The two tools may reference overlapping moving-day tasks, but their primary search intent and product role MUST remain distinct.
+`moving-checklist-generator` is the separate broad moving-timeline surface covering planning from 30 days before the move through post-move follow-up, including address changes, government procedures, utilities planning, packing, and general moving-day preparation.
+
+The Moving / Lease Final Check MUST NOT duplicate broad address-change, postal-forwarding, municipal-procedure, school/workplace, or early packing tasks. Those belong to `moving-checklist-generator`.
+
+Rental is the primary public search intent. The `owned` mode remains available only for final property handoff / vacancy checks such as keys, equipment, photos, shutoff points, continuing contracts, and final locking.
 
 ## Current functional contract
 
-- Require an exit/move date and accept home type (`rental` or `owned`).
-- Generate a final checklist and completion progress for the selected conditions.
-- Persist exit date, home type, and checkbox state in the current browser.
+- Require an exit/handoff date and accept home type (`rental` or `owned`).
+- Generate a final-stage checklist and completion progress for the selected conditions.
+- Rental output focuses on inspection timing, key return, room/equipment photos, meter records, insurance/contract confirmation, refund contact details, return items, and restoration-related source checking.
+- Owned output focuses on final shutoff/locking, handoff documents/keys, condition photos, handoff contacts, vacancy setup, continuing contracts, equipment condition, and record retention.
+- Persist exit/handoff date, home type, and checkbox state in the current browser.
 - Allow clearing completion state, resetting inputs, deleting the current condition's saved state, and deleting the previously used condition's saved state.
 - Allow checklist TXT copy, TXT download, and browser print/PDF.
-- Include a non-persistent inspection memo template for inspection date, management contact, keys, meter photos, observed damage/equipment, and agreements.
+- Include a non-persistent inspection/handoff memo template for date/time, contact, keys, meter photos, observed damage/equipment, and shared notes.
 - Do not require or load any NicheWorks Pro entitlement, paid unlock, or product-specific payment bridge.
 
 ## Inputs
 
-- Required move/exit date.
+- Required move-out / handoff date.
 - Home type: rental or owned.
 - Checklist completion toggles.
 
 ## Outputs
 
-- Final checklist and progress indicator.
+- Final-stage checklist and progress indicator.
 - TXT copy/download.
 - Browser print/PDF output.
-- Inspection memo template.
+- Inspection / handoff memo template.
 
 ## State and persistence
 
-Exit date, home type, and checklist state are stored browser-locally. They do not sync across devices or browsers.
+Exit/handoff date, home type, and checklist state are stored browser-locally. They do not sync across devices or browsers.
 
 ## Privacy and network behavior
 
@@ -56,24 +62,29 @@ The current public tool surface and structured language declaration are Japanese
 
 `mobile-oriented`
 
-The primary experience is a short form followed by a checklist, progress bar, outputs, and inspection memo.
+The primary experience is a short form followed by a final-stage checklist, progress bar, outputs, and inspection/handoff memo.
+
+## Affiliate boundary
+
+This tool may remain a future affiliate candidate because final-stage move-out work can have contextual physical-product needs. However, no Amazon CTA or product claim may be added without a verified Special Link and a clearly relevant placement. The checklist result must not be used to diagnose a need to buy a product.
 
 ## Limits and non-goals
 
-- This is not the broad 30-day moving planner; use `moving-checklist-generator` for the full preparation-through-post-move timeline.
+- This is not the broad 30-day moving planner; use `moving-checklist-generator` for address changes, municipal procedures, utilities planning, packing, and the full preparation-through-post-move timeline.
 - The tool does not determine legal responsibility, lease interpretation, restoration obligations, deposit settlement, repair charges, or dispute outcomes.
 - Contract documents and property-management guidance take precedence.
 - PDF save is provided by the browser print dialog, not server-side PDF generation.
 
 ## Acceptance criteria
 
-- [ ] A required move/exit date and home type produce the corresponding final checklist.
+- [ ] A required exit/handoff date and home type produce the corresponding final-stage checklist.
+- [ ] Rental tasks remain centered on inspection/photo/key/return/handoff work rather than broad moving preparation.
+- [ ] Owned tasks remain centered on property handoff/vacancy finalization rather than broad address or municipal procedures.
 - [ ] Completion state persists in the browser for the saved condition and can be deleted explicitly.
 - [ ] TXT copy/download and browser print remain usable without any paid entitlement.
 - [ ] The UI does not present checklist completion as a guarantee about restoration costs, deposits, or legal obligations.
 - [ ] The public page does not load or expose the retired shared-Pro purchase/entitlement flow.
-- [ ] Public positioning remains final-stage move-out / pre-vacate checking rather than a broad moving timeline.
-- [ ] The page continues to link to `moving-checklist-generator` for earlier preparation.
+- [ ] The page explicitly sends broad moving preparation to `moving-checklist-generator`.
 
 ## Implementation evidence
 
