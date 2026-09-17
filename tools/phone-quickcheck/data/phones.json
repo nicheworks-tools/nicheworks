@@ -1634,8 +1634,8 @@
         "wirelessMaxW": null
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "waterRating": "IPX5/IPX8 / IP6X",
       "sources": {
@@ -1682,8 +1682,8 @@
         "wirelessMaxW": null
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "waterRating": "IPX5/IPX8 / IP6X",
       "sources": {
@@ -1730,8 +1730,8 @@
         "wirelessMaxW": null
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "waterRating": "IPX5/IPX8/IPX9 / IP6X",
       "sources": {
