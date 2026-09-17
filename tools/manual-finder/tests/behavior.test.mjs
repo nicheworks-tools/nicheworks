@@ -45,5 +45,6 @@ await import('./dji-inspire1-accessory-wave18.test.mjs');
 await import('./dji-inspire1-proraw-accessory-wave19.test.mjs');
 await import('./dji-spark-accessory-wave20.test.mjs');
 await import('./dji-phantom4-accessory-wave21.test.mjs');
+await import('./dji-phantom3-accessory-wave22.test.mjs');
 await import('./camera-accessory-coverage.test.mjs');
 await import('./camera-accessory-doc-sync.test.mjs');
