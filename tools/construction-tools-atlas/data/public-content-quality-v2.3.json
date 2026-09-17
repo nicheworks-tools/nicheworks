@@ -18,27 +18,27 @@
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
     "quality_manifest_version": "2026-09-14-manifest-8",
-    "content_enrichment_version": "2026-09-17-wave5m"
+    "content_enrichment_version": "2026-09-17-wave5n"
   },
   "summary": {
     "public_entries": 870,
-    "fallback_independent_core": 496,
-    "runtime_fallback_dependent": 374,
+    "fallback_independent_core": 511,
+    "runtime_fallback_dependent": 359,
     "missing_core_bilingual_content": 0,
     "explicit_bilingual_identity": 870,
     "explicit_bilingual_definition": 870,
-    "explicit_bilingual_detail": 715,
-    "explicit_bilingual_bullets": 496,
-    "explicit_bilingual_examples": 715,
+    "explicit_bilingual_detail": 730,
+    "explicit_bilingual_bullets": 511,
+    "explicit_bilingual_examples": 730,
     "explicit_bilingual_aliases": 279,
-    "content_enriched_entries": 356,
+    "content_enriched_entries": 371,
     "has_category_context": 870,
     "has_task_context": 870
   },
   "fallback_field_counts": {
-    "detail": 155,
-    "bullets": 374,
-    "examples": 155
+    "detail": 140,
+    "bullets": 359,
+    "examples": 140
   },
   "by_type": {
     "access": {
@@ -55,8 +55,8 @@
     },
     "component": {
       "public_entries": 205,
-      "fallback_independent_core": 161,
-      "runtime_fallback_dependent": 44,
+      "fallback_independent_core": 170,
+      "runtime_fallback_dependent": 35,
       "missing_core_bilingual_content": 0
     },
     "consumable": {
@@ -85,8 +85,8 @@
     },
     "fastener": {
       "public_entries": 18,
-      "fallback_independent_core": 12,
-      "runtime_fallback_dependent": 6,
+      "fallback_independent_core": 14,
+      "runtime_fallback_dependent": 4,
       "missing_core_bilingual_content": 0
     },
     "fixture": {
@@ -169,17 +169,17 @@
     },
     "tool": {
       "public_entries": 333,
-      "fallback_independent_core": 102,
-      "runtime_fallback_dependent": 231,
+      "fallback_independent_core": 106,
+      "runtime_fallback_dependent": 227,
       "missing_core_bilingual_content": 0
     }
   },
   "hashes": {
-    "content_status_sha256": "4f2932e5becdd23ec7d5c8f330b19e56e6833421aad7a2d85b1bce4ab0a85f62",
-    "fallback_independent_id_sha256": "b9ec3cf322a8b8da0e6540b0089fba4ad85e8db6d59c45b66b8a25ed74120c2f",
-    "fallback_dependent_id_sha256": "29de87a7d78c6b0fe3966014e7d78cf2f5d4824225d45b0ca35a5e422f662d0f",
+    "content_status_sha256": "689e31e8f4b24ff6caad37323b85aa2e4ce14bd7e2224a4d09124aa06af172bb",
+    "fallback_independent_id_sha256": "12ea06bb283b778b1e9ae76cc1d35539d23439232a5c87ce65d570003aafeaa9",
+    "fallback_dependent_id_sha256": "b2741224349266a94fa4c17bf98ab9cc20ef4e2807d2025284ebbe4cca5f3d1e",
     "missing_core_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "content_enriched_id_sha256": "c5a8409cdb5db7d375edf23b781e13e0f5c7ab5e7746e7a766e848eaeb5f6ad9"
+    "content_enriched_id_sha256": "3a645adf826c4a799652a41f0183e4a06879d4d3a1b0bbacce0eb324dc1c5661"
   },
   "samples": {
     "fallback_independent_core": [
@@ -336,156 +336,6 @@
     ],
     "runtime_fallback_dependent": [
       {
-        "id": "q015_pipe_shoe",
-        "source": "data/tools.quality-015.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q015_u_bolt_pipe",
-        "source": "data/tools.quality-015.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q015_pipe_saddle",
-        "source": "data/tools.quality-015.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q015_riser_clamp",
-        "source": "data/tools.quality-015.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q015_anti_vibration_hanger",
-        "source": "data/tools.quality-015.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q015_equipment_anchor",
-        "source": "data/tools.quality-015.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q015_equipment_pad",
-        "source": "data/tools.quality-015.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q015_access_door_mep",
-        "source": "data/tools.quality-015.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q015_balancing_valve",
-        "source": "data/tools.quality-015.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q015_air_vent_valve",
-        "source": "data/tools.quality-015.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q015_drain_valve",
-        "source": "data/tools.quality-015.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q015_temperature_gauge",
-        "source": "data/tools.quality-015.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q015_flow_meter",
-        "source": "data/tools.quality-015.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q015_test_plug",
-        "source": "data/tools.quality-015.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q015_pressure_test_pump",
-        "source": "data/tools.quality-015.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
         "id": "q015_leak_detector",
         "source": "data/tools.quality-015.json",
         "enrichment": null,
@@ -578,6 +428,156 @@
       {
         "id": "q015_weather_louver",
         "source": "data/tools.quality-015.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q015_backdraft_damper",
+        "source": "data/tools.quality-015.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q015_silencer_duct",
+        "source": "data/tools.quality-015.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q015_flexible_connector",
+        "source": "data/tools.quality-015.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_vinyl_floor_tile",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_vinyl_sheet_flooring",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_flooring_board",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_laminate_flooring",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_floor_underlayment",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_floor_adhesive",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_floor_weld_rod",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_floor_joint_strip",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_soft_baseboard",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_cove_base",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_carpet_adhesive",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_tack_strip",
+        "source": "data/tools.quality-016.json",
         "enrichment": null,
         "fallback_fields": [
           "detail",
