@@ -48,19 +48,6 @@
     }, 2400);
   }
 
-  function isProActive() {
-    return document.documentElement.dataset.proActive === 'true';
-  }
-
-  function requirePro(event) {
-    if (isProActive()) return true;
-    event?.preventDefault?.();
-    event?.stopImmediatePropagation?.();
-    toast('共通Proを有効化すると、このPro出力をコピー・保存できます。');
-    document.querySelector('[data-pro-buy]')?.focus?.();
-    return false;
-  }
-
   function fmt(value) {
     if (!value) return '';
     const date = new Date(`${value}T00:00:00`);
@@ -115,7 +102,6 @@
     ['btnClear', 'btnCopyTxt', 'btnSaveTxt', 'btnPrint'].forEach((id) => {
       if ($(id)) $(id).disabled = !taskItems.length;
     });
-    updateProOutput();
   }
 
   function render() {
@@ -191,140 +177,35 @@
     ].join('\n');
   }
 
-  function proPack(options = {}) {
-    const context = ctx();
-    if (!context) return '';
-    const checks = load(context.key);
-    const done = context.tasks.filter((task) => checks[task.id]).length;
-    const md = options.markdown;
-    const heading = md ? (text, level = 2) => `${'#'.repeat(level)} ${text}` : (text) => `【${text}】`;
-    const bullet = md ? '- ' : '・';
-    const checkLine = (task) => `${md ? '- ' : ''}${checks[task.id] ? '[x]' : '[ ]'} ${task.text}（${task.meta}）`;
-
-    return [
-      md ? '# Moving / Lease Final Pack' : 'Moving / Lease Final Pack',
-      `日付: ${context.date}`,
-      `住居タイプ: ${label(context.homeType)}`,
-      `進捗: ${done} / ${context.tasks.length}`,
-      '',
-      heading('提出・共有用チェックリスト完全版'),
-      ...context.tasks.map(checkLine),
-      '',
-      heading('退去立会いメモ完成版'),
-      `${bullet}立会い日時: ${context.date} / 時刻:`,
-      `${bullet}管理会社・担当者:`,
-      `${bullet}返却する鍵の種類・本数:`,
-      `${bullet}メーター写真: 電気 / ガス / 水道`,
-      `${bullet}確認した傷・汚れ・設備:`,
-      `${bullet}その場で共有した内容:`,
-      '',
-      heading('管理会社連絡メモ'),
-      `${bullet}退去日・引っ越し日: ${context.date}`,
-      `${bullet}退去後の連絡先:`,
-      `${bullet}返金先口座・確認事項:`,
-      `${bullet}書類・返却物:`,
-      '',
-      heading('住所変更・解約先整理テンプレ'),
-      `${bullet}郵便転送:`,
-      `${bullet}電気・ガス・水道:`,
-      `${bullet}ネット回線・サブスク・定期配送:`,
-      `${bullet}銀行・カード・保険・勤務先:`,
-      '',
-      heading('敷金/保証金・返金先確認メモ'),
-      `${bullet}返金先口座:`,
-      `${bullet}退去後住所:`,
-      `${bullet}管理会社から受領する書類:`,
-      `${bullet}確認したい点（判断は契約書・管理会社・専門窓口で確認）:`,
-      '',
-      heading('写真記録リスト'),
-      `${bullet}室内全体 / 床 / 壁 / 水回り / 設備 / 既存傷`,
-      `${bullet}鍵 / メーター / 返却物 / 残置物がない状態`,
-      `${bullet}撮影日・場所・補足メモを残す`,
-      '',
-      heading('家族共有用まとめ'),
-      `${bullet}今日確認すること:`,
-      `${bullet}担当者:`,
-      `${bullet}未完了の連絡・解約・住所変更:`,
-      `${bullet}当日の持ち物:`,
-      '',
-      heading('制限事項'),
-      `${bullet}退去費用、原状回復、敷金精算、修繕費請求、法的判断を自動判定しません。`,
-      `${bullet}契約内容や管理会社判断を保証しません。`,
-      `${bullet}公式な提出書類ではなく、確認・共有・記録用の整理パックです。`,
-      `${bullet}最終判断は契約書、管理会社、自治体、専門窓口で確認してください。`
-    ].join('\n');
-  }
-
-  function inspectionMemo() {
-    return proPack().split('【管理会社連絡メモ】')[0].trim();
-  }
-
-  function addressMemo() {
-    const text = proPack();
-    return text.slice(text.indexOf('【住所変更・解約先整理テンプレ】'), text.indexOf('【敷金/保証金・返金先確認メモ】')).trim();
-  }
-
-  function familyMemo() {
-    const text = proPack();
-    return text.slice(text.indexOf('【家族共有用まとめ】'), text.indexOf('【制限事項】')).trim();
-  }
-
-  function updateProOutput() {
-    const output = $('proPackOutput');
-    if (!output) return;
-    output.textContent = ctx() ? proPack() : '退去日 / 引っ越し日を入力し、最終チェックを表示するとPro Packを生成できます。';
-  }
-
-  async function copyText(out, successMessage) {
+  async function copyTxt() {
+    const out = basicText();
     if (!out) return toast('先にチェックリストを表示してください。');
     try {
       await navigator.clipboard.writeText(out);
-      toast(successMessage);
+      toast('TXTをコピーしました。');
     } catch (error) {
       toast('コピーできませんでした。');
     }
   }
 
-  async function copyTxt() {
-    await copyText(basicText(), 'TXTをコピーしました。');
-  }
-
-  function saveBlob(out, filename, successMessage = 'TXTを保存しました。') {
+  function saveTxt() {
+    const context = ctx();
+    const out = basicText();
     if (!out) return toast('先にチェックリストを表示してください。');
     const blob = new Blob([out], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement('a');
     anchor.href = url;
-    anchor.download = filename;
+    anchor.download = `moving-lease-final-check-${context.date}-${context.homeType}.txt`;
     document.body.appendChild(anchor);
     anchor.click();
     anchor.remove();
     URL.revokeObjectURL(url);
-    toast(successMessage);
-  }
-
-  function saveTxt() {
-    const context = ctx();
-    saveBlob(basicText(), `moving-lease-final-check-${context?.date || 'check'}-${context?.homeType || 'home'}.txt`);
+    toast('TXTを保存しました。');
   }
 
   function printBasic() {
     if ($('result').hidden) return toast('先にチェックリストを表示してください。');
-    document.body.dataset.printMode = 'basic';
-    window.print();
-  }
-
-  function saveProTxt(event) {
-    if (!requirePro(event)) return;
-    const context = ctx();
-    saveBlob(proPack(), `moving-lease-final-pack-${context?.date || 'check'}-${context?.homeType || 'home'}.txt`, 'Pro PackをTXT保存しました。');
-  }
-
-  function printPro(event) {
-    if (!requirePro(event)) return;
-    if (!ctx()) return toast('先にチェックリストを表示してください。');
-    updateProOutput();
-    document.body.dataset.printMode = 'pro';
     window.print();
   }
 
@@ -335,33 +216,7 @@
     $('taskList').textContent = '';
     $('progressFill').style.width = '0%';
     $('progressText').textContent = '0 / 0 完了';
-    updateProOutput();
     toast('入力欄をリセットしました。');
-  }
-
-  function bindProButtons() {
-    document.querySelectorAll('[data-pro-locked]').forEach((button) => {
-      button.addEventListener('click', requirePro);
-    });
-
-    const bindings = [
-      ['btnCopyProPack', () => copyText(proPack(), 'Pro Packをコピーしました。')],
-      ['btnSaveProPack', saveProTxt],
-      ['btnCopyMarkdown', () => copyText(proPack({ markdown: true }), 'Markdownをコピーしました。')],
-      ['btnCopyInspectionMemo', () => copyText(inspectionMemo(), '退去立会いメモをコピーしました。')],
-      ['btnCopyAddressMemo', () => copyText(addressMemo(), '住所変更・解約メモをコピーしました。')],
-      ['btnCopyFamilyMemo', () => copyText(familyMemo(), '家族共有メモをコピーしました。')],
-      ['btnPrintPro', printPro]
-    ];
-
-    bindings.forEach(([id, handler]) => {
-      const button = $(id);
-      if (!button) return;
-      button.addEventListener('click', (event) => {
-        if (!requirePro(event)) return;
-        handler(event);
-      });
-    });
   }
 
   function init() {
@@ -380,7 +235,6 @@
     $('btnCopyTxt').addEventListener('click', copyTxt);
     $('btnSaveTxt').addEventListener('click', saveTxt);
     $('btnPrint').addEventListener('click', printBasic);
-    bindProButtons();
 
     try {
       const last = JSON.parse(localStorage.getItem(LAST) || 'null');
@@ -389,12 +243,6 @@
         $('homeType').value = last.homeType || 'rental';
       }
     } catch (error) {}
-
-    window.addEventListener('nw-pro-state-change', updateProOutput);
-    window.addEventListener('afterprint', () => {
-      delete document.body.dataset.printMode;
-    });
-    updateProOutput();
   }
 
   document.addEventListener('DOMContentLoaded', init);
