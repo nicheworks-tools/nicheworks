@@ -1,0 +1,12 @@
+{
+  "title_ja": "引っ越しやることチェックリスト",
+  "title_en": "Moving Checklist Generator",
+  "desc_ja": "引っ越し日の30日前から引越し後まで、住所変更・役所手続き・ライフライン・荷造り・当日確認を時系列で整理します。",
+  "desc_en": "Build a chronological moving checklist from 30 days before the move through post-move follow-up, including address changes, utilities, packing, and moving-day tasks.",
+  "tags": [
+    "moving",
+    "checklist",
+    "timeline",
+    "home"
+  ]
+}
