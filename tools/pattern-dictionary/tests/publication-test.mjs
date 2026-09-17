@@ -14,6 +14,9 @@ const homeEn=fs.readFileSync(path.join(root,'en','index.html'),'utf8');
 const searchJa=fs.readFileSync(path.join(root,'search.html'),'utf8');
 const searchEn=fs.readFileSync(path.join(root,'en','search.html'),'utf8');
 const sitemap=fs.readFileSync(path.join(repoRoot,'sitemap.xml'),'utf8');
+const localSpec=fs.readFileSync(path.join(root,'SPEC.md'),'utf8');
+const repoSpec=fs.readFileSync(path.join(repoRoot,'docs','tools','pattern-dictionary.md'),'utf8');
+const readme=fs.readFileSync(path.join(root,'README.md'),'utf8');
 const canonical=base.map(x=>x.id);
 if(canonical.length!==100)throw new Error(`published runtime must be 100, got ${canonical.length}`);
 if(prod.phase!=='verified-publication'||prod.policy?.review_state!=='verified'||prod.policy?.record_count!==100)throw new Error('production publication metadata must declare verified 100');
@@ -36,4 +39,27 @@ if(/final verification is still pending|最終verified前|現在はreviewed/.tes
 if(!homeJa.includes('現在の100件')||!homeEn.includes('The current 100 entries'))throw new Error('home publication count must be 100 in JA/EN');
 if(!searchJa.includes('100件の検証済みデータ')||!searchEn.includes('100-record verified dataset'))throw new Error('search publication count must be 100 in JA/EN');
 for(const family of ['stripe','dot','floral','global-textile'])if(!homeJa.includes(`data-family="${family}"`)||!homeEn.includes(`data-family="${family}"`))throw new Error(`JA/EN home must expose ${family} visual filter`);
-console.log('OK: 100/100 patterns and Reference Images are verified, 200/200 detail pages are indexable and in sitemap, and JA/EN home/search surfaces expose the 100-pattern publication state.');
+
+if(!localSpec.includes('Publication contract: `canonical-100-v1`'))throw new Error('tool-local SPEC must declare canonical-100-v1');
+if(!localSpec.includes('Current dataset: `100 verified-publication patterns`'))throw new Error('tool-local SPEC must declare the 100-pattern verified publication state');
+if(!localSpec.includes('305 maintained active Amazon.co.jp offers'))throw new Error('tool-local SPEC must document the active maintained affiliate surface');
+if(!repoSpec.includes('**Publication contract:** `canonical-100-v1`'))throw new Error('repository Pattern Dictionary spec must declare canonical-100-v1');
+if(!repoSpec.includes('100 verified-publication patterns'))throw new Error('repository Pattern Dictionary spec must declare the 100-pattern publication state');
+if(!readme.includes('Canonical v1 is complete and frozen at exactly **100 published pattern IDs**'))throw new Error('README must describe canonical v1 as the complete 100-pattern publication');
+if(!readme.includes('**305** active maintained Amazon.co.jp commerce-intent links'))throw new Error('README must document the current maintained affiliate count');
+
+const retiredDocClaims=[
+  'Current dataset: `20 prototype-curated patterns`',
+  'Current catalog size is 20 patterns',
+  '20 `prototype-curated` patterns',
+  'Current pattern visuals are deterministic DEV SVG placeholders',
+  'live Amazon affiliate URLs are not enabled',
+  'No live affiliate URL is emitted in this slice',
+  'All 40 prototype detail pages also remain `noindex,follow`',
+  'publication state remains prototype-gated'
+];
+for(const [name,text] of [['SPEC.md',localSpec],['docs/tools/pattern-dictionary.md',repoSpec],['README.md',readme]]){
+  for(const stale of retiredDocClaims)if(text.includes(stale))throw new Error(`${name}: retired prototype documentation remains: ${stale}`);
+}
+
+console.log('OK: 100/100 patterns and Reference Images are verified, 200/200 detail pages are indexable and in sitemap, JA/EN home/search surfaces expose the 100-pattern publication state, and canonical-v1 documentation is synchronized.');
