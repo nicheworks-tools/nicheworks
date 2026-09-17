@@ -1,0 +1,67 @@
+name: CTA Wave5M affiliate helper
+
+on:
+  push:
+    branches:
+      - content/construction-atlas-wave5m-q015-firestop-support-20260917
+
+permissions:
+  contents: write
+
+jobs:
+  append-affiliate-mappings:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/construction-atlas-wave5m-q015-firestop-support-20260917
+      - name: Append maintained Wave5M mappings
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'tools/construction-tools-atlas/data/affiliate-offers-v2.3.json';
+          const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+          data.version = '2026-09-17-wave5m-affiliate-1';
+          const rows = [
+            ['q015_refrigerant_pipe','冷媒管 銅管','冷媒管','refrigerant tubing'],
+            ['q015_drain_up_piping','空調 ドレン管','空調ドレン管','HVAC condensate drain pipe'],
+            ['q015_condensate_pump','ドレンアップポンプ','ドレンアップポンプ','condensate pumps'],
+            ['q015_drain_trap_hvac','空調 ドレントラップ','空調ドレントラップ','HVAC drain traps'],
+            ['q015_wall_sleeve','配管 壁貫通 スリーブ','壁貫通スリーブ','wall pipe sleeves'],
+            ['q015_floor_sleeve','配管 床貫通 スリーブ','床貫通スリーブ','floor pipe sleeves'],
+            ['q015_sleeve_ring','配管 スリーブリング','スリーブリング','sleeve rings'],
+            ['q015_pipe_support','配管 支持金具','配管支持金具','pipe supports'],
+            ['q015_trapeze_hanger','配管 門型 吊り金物','門型吊り金物','trapeze pipe hangers'],
+            ['q015_clevis_hanger','クレビスハンガー 配管','クレビスハンガー','clevis hangers']
+          ];
+          const existing = new Set(data.offers.map((o) => o.entry_id));
+          for (const [entryId, query, ja, en] of rows) {
+            if (existing.has(entryId)) continue;
+            const suffix = entryId.replace(/^q015_/, '');
+            const params = new URLSearchParams({ k: query, tag: data.tracking_id });
+            data.offers.push({
+              entry_id: entryId,
+              status: 'active',
+              offer_id: `amazon_q015_${suffix}_search`,
+              query,
+              amazon_url: `https://www.amazon.co.jp/s?${params.toString()}`,
+              label_ja: `Amazonで${ja}を探す`,
+              label_en: `Find ${en} on Amazon`
+            });
+          }
+          if (data.offers.length !== 127) throw new Error(`expected 127 offers, got ${data.offers.length}`);
+          const ids = data.offers.map((o) => o.entry_id);
+          if (new Set(ids).size !== ids.length) throw new Error('duplicate entry_id after Wave5M append');
+          fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
+          NODE
+      - name: Commit affiliate update if needed
+        run: |
+          if git diff --quiet -- tools/construction-tools-atlas/data/affiliate-offers-v2.3.json; then
+            echo 'No affiliate change needed'
+            exit 0
+          fi
+          git config user.name 'nicheworks-tools'
+          git config user.email 'nicheworks.tools@gmail.com'
+          git add tools/construction-tools-atlas/data/affiliate-offers-v2.3.json
+          git commit -m 'Construction Atlas: add Wave5M affiliate mappings'
+          git push origin HEAD:content/construction-atlas-wave5m-q015-firestop-support-20260917
