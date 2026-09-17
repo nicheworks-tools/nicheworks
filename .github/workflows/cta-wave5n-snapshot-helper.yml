@@ -1,0 +1,23 @@
+name: CTA Wave5N snapshot helper
+on:
+  push:
+    branches:
+      - content/construction-atlas-wave5n-q015-support-testing-20260917
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/construction-atlas-wave5n-q015-support-testing-20260917
+      - name: Generate authoritative content snapshot
+        run: node tools/construction-tools-atlas/scripts/audit-public-content-quality-v2.3.cjs --write
+      - name: Commit snapshot
+        run: |
+          git config user.name 'nicheworks-tools'
+          git config user.email 'nicheworks.tools@gmail.com'
+          git add tools/construction-tools-atlas/data/public-content-quality-v2.3.json
+          git commit -m 'Construction Atlas: refresh Wave5N content quality snapshot'
+          git push origin HEAD:content/construction-atlas-wave5n-q015-support-testing-20260917
