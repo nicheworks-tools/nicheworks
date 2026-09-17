@@ -937,3 +937,63 @@ Wave 39は10自治体batch scaling ruleを継続し、公開閾値を変更せ�
 Wave 39 readiness baselineは1,916 municipalities、2,610 valid HTTP(S) records、174 preferred candidates、42 direct-link datasets / 542 records / 523 unique URLs / 0 invalid URLsとする。ReadinessではWave39の `last_checked: 2026-09-17` に合わせ、未公開URLを追加せず既存164件の専用TrashNavi sitemap `lastmod` のみ同期した。
 
 Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 174/174、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する青梅市・入間市・狭山市・飯能市・三郷市・八潮市・坂戸市・東松山市だけ2026 calendar calloutを表示し、福生市・富士見市には年次calloutを生成しない。富士見市はcollection calendarではなく自治体公式ごみ分別アプリを第三の独立typeとして採用する。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+
+## Wave 40 ten-municipality publication
+
+Wave 40は10自治体batch scaling ruleを継続し、公開閾値を変更せず **174自治体から184自治体** へ拡張する。対象は久喜市・鴻巣市・加須市・ふじみ野市・行田市・本庄市・志木市・桶川市・蕨市・北本市。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeとし、同一combined pageの二重計上や外部委託先による閾値補完は行わない。
+
+- 久喜市 — `/tools/trashnavi/saitama/kuki/` — waste search / collection calendar / bulky waste
+- 鴻巣市 — `/tools/trashnavi/saitama/konosu/` — waste search / collection calendar / bulky waste
+- 加須市 — `/tools/trashnavi/saitama/kazo/` — waste search / collection calendar / bulky waste
+- ふじみ野市 — `/tools/trashnavi/saitama/fujimino/` — waste search / collection calendar / drop-off facility
+- 行田市 — `/tools/trashnavi/saitama/gyoda/` — waste sorting / collection calendar / drop-off facility
+- 本庄市 — `/tools/trashnavi/saitama/honjo/` — waste sorting / waste app / drop-off facility
+- 志木市 — `/tools/trashnavi/saitama/shiki/` — waste sorting / collection calendar / bulky waste
+- 桶川市 — `/tools/trashnavi/saitama/okegawa/` — waste sorting / collection calendar / bulky waste
+- 蕨市 — `/tools/trashnavi/saitama/warabi/` — waste sorting / collection calendar / bulky waste
+- 北本市 — `/tools/trashnavi/saitama/kitamoto/` — waste sorting / collection calendar / bulky waste
+
+Wave 40 readiness baselineは1,916 municipalities、2,640 valid HTTP(S) records、184 preferred candidates、43 direct-link datasets / 572 records / 553 unique URLs / 0 invalid URLsとする。Wave40の `last_checked: 2026-09-17` はWave39と同日なので、Readinessではsitemapを変更せず、未公開Wave40 URLも先出ししていない。
+
+Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 184/184、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する久喜市・鴻巣市・加須市・ふじみ野市・行田市・桶川市・北本市だけ2026 calendar calloutを表示し、本庄市・志木市・蕨市には年次calloutを生成しない。本庄市はcollection calendarではなく自治体公式ごみ分別アプリを第三の独立typeとして採用する。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+
+## Wave 41 ten-municipality publication
+
+Wave 41は10自治体batch scaling ruleを継続し、公開閾値を変更せず **184自治体から194自治体** へ拡張する。対象は秩父市・羽生市・深谷市・幸手市・鶴ヶ島市・日高市・吉川市・三芳町・伊奈町・宮代町。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeとし、同一combined pageの二重計上や外部衛生組合等による閾値補完は行わない。
+
+- 秩父市 — `/tools/trashnavi/saitama/chichibu/` — collection calendar / waste sorting / waste app
+- 羽生市 — `/tools/trashnavi/saitama/hanyu/` — waste search / waste sorting / collection calendar
+- 深谷市 — `/tools/trashnavi/saitama/fukaya/` — waste search / waste sorting / waste app
+- 幸手市 — `/tools/trashnavi/saitama/satte/` — collection calendar / drop-off facility / waste sorting
+- 鶴ヶ島市 — `/tools/trashnavi/saitama/tsurugashima/` — waste search / bulky waste / drop-off facility
+- 日高市 — `/tools/trashnavi/saitama/hidaka/` — collection calendar / bulky waste / waste sorting
+- 吉川市 — `/tools/trashnavi/saitama/yoshikawa/` — collection calendar / bulky waste / drop-off facility
+- 三芳町 — `/tools/trashnavi/saitama/miyoshi/` — collection calendar / waste app / bulky waste
+- 伊奈町 — `/tools/trashnavi/saitama/ina/` — collection calendar / waste app / bulky waste
+- 宮代町 — `/tools/trashnavi/saitama/miyashiro/` — collection calendar / waste app / bulky waste
+
+Wave 41 readiness baselineは1,916 municipalities、2,670 valid HTTP(S) records、194 preferred candidates、44 direct-link datasets / 602 records / 583 unique URLs / 0 invalid URLsとする。Wave41の `last_checked: 2026-09-17` はWave40と同日なので、Readinessではsitemapを変更せず、未公開Wave41 URLも先出ししていない。
+
+Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 194/194、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する秩父市・羽生市・幸手市・日高市・吉川市・三芳町・伊奈町・宮代町だけ2026 calendar calloutを表示し、深谷市・鶴ヶ島市には年次calloutを生成しない。深谷市はcollection calendarではなく自治体公式ごみ分別アプリを第三の独立typeとして採用する。鶴ヶ島市はwaste search / bulky waste / drop-off facilityの3独立typeで公開条件を満たす。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+
+## Wave 42 ten-municipality publication
+
+Wave 42は10自治体batch scaling ruleを継続し、公開閾値を変更せず **194自治体から204自治体** へ拡張する。対象は松伏町・上里町・川島町・吉見町・嵐山町・毛呂山町・神川町・美里町・皆野町・滑川町。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeとし、同一combined pageの二重計上や外部衛生組合・委託先等による閾値補完は行わない。
+
+- 松伏町 — `/tools/trashnavi/saitama/matsubushi/` — collection calendar / waste sorting / bulky waste
+- 上里町 — `/tools/trashnavi/saitama/kamisato/` — waste sorting / bulky waste / waste app
+- 川島町 — `/tools/trashnavi/saitama/kawajima/` — collection calendar / waste sorting / waste app
+- 吉見町 — `/tools/trashnavi/saitama/yoshimi/` — collection calendar / waste sorting / bulky waste
+- 嵐山町 — `/tools/trashnavi/saitama/ranzan/` — collection calendar / waste sorting / waste search
+- 毛呂山町 — `/tools/trashnavi/saitama/moroyama/` — collection calendar / bulky waste / waste search
+- 神川町 — `/tools/trashnavi/saitama/kamikawa/` — waste sorting / bulky waste / waste app
+- 美里町 — `/tools/trashnavi/saitama/misato-town/` — waste sorting / waste search / waste app
+- 皆野町 — `/tools/trashnavi/saitama/minano/` — collection calendar / waste sorting / bulky waste
+- 滑川町 — `/tools/trashnavi/saitama/namegawa/` — collection calendar / waste search / bulky waste
+
+Wave 42 readiness baselineは1,916 municipalities、2,700 valid HTTP(S) records、204 preferred candidates、45 direct-link datasets / 632 records / 613 unique URLs / 0 invalid URLsとする。Wave42の `last_checked: 2026-09-17` はWave41と同日なので、Readinessではsitemapを変更せず、未公開Wave42 URLも先出ししていない。
+
+Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 204/204、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する松伏町・川島町・吉見町・嵐山町・毛呂山町・皆野町・滑川町だけ2026 calendar calloutを表示し、上里町・神川町・美里町には年次calloutを生成しない。美里町は既存の三郷市 `/tools/trashnavi/saitama/misato/` とURL衝突しないよう `/tools/trashnavi/saitama/misato-town/` をcanonical pathとして使用する。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。

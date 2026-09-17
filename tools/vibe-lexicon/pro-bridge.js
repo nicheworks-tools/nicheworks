@@ -1,52 +1,35 @@
 (function () {
   'use strict';
 
-  var TOOL_ID = 'vibe-lexicon';
-  var LEGACY_KEY = 'nw_pro_' + TOOL_ID;
-  var BUY_URL = 'https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209';
-  var EXPECTED_ENTITLEMENT = 'nicheworks_pro';
-
   function isJa() {
-    return document.body && document.body.dataset.lang === 'ja';
+    return document.documentElement.lang === 'ja' || (document.body && document.body.dataset.lang === 'ja');
   }
 
-  function localCommonActive() {
-    try {
-      var status = window.NWPro && typeof window.NWPro.getLocalStatus === 'function' ? window.NWPro.getLocalStatus() : null;
-      return Boolean(status && status.active && status.entitlement === EXPECTED_ENTITLEMENT);
-    } catch (error) {
-      return false;
-    }
-  }
-
-  function clearLegacyLocalFlag() {
-    try {
-      localStorage.removeItem(LEGACY_KEY);
-    } catch (error) {}
-  }
-
-  function updateBuyLinks() {
-    document.querySelectorAll('[data-pro-buy]').forEach(function (link) {
-      link.href = BUY_URL;
-      link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener noreferrer');
-    });
+  function setFreeActive() {
+    document.documentElement.dataset.proActive = 'true';
+    if (document.body) document.body.dataset.proActive = 'true';
   }
 
   function setHidden(nodes, hidden) {
-    nodes.forEach(function (node) {
+    Array.from(nodes).forEach(function (node) {
       node.hidden = hidden;
       node.setAttribute('aria-hidden', hidden ? 'true' : 'false');
     });
   }
 
-  function applyUI(active) {
-    var ja = isJa();
-    document.documentElement.dataset.proActive = active ? 'true' : 'false';
+  function removePurchaseSurface() {
+    document.querySelectorAll('[data-pro-buy]').forEach(function (node) {
+      node.remove();
+    });
+  }
 
-    var statusText = active
-      ? (ja ? 'Pro解放済み。このブラウザではNicheWorks Proが有効です。' : 'Pro unlocked. NicheWorks Pro is active in this browser.')
-      : (ja ? 'Previewモードです。Proで解放されるcopy/export機能のサンプルを表示しています。' : 'Preview mode. Samples show the copy/export features unlocked with Pro.');
+  function applyUI() {
+    var ja = isJa();
+    setFreeActive();
+
+    var statusText = ja
+      ? '全copy/export機能を無料で利用できます。'
+      : 'All copy/export features are available for free.';
 
     document.querySelectorAll('[data-pro-status], #vlProStatus').forEach(function (node) {
       node.textContent = statusText;
@@ -54,34 +37,34 @@
 
     var badge = document.getElementById('vlProBadge');
     if (badge) {
-      badge.textContent = active ? (ja ? 'Pro解放済み' : 'Pro unlocked') : (ja ? 'Previewモード' : 'Preview mode');
-      badge.classList.toggle('active', active);
+      badge.textContent = ja ? '無料で利用可能' : 'Available for free';
+      badge.classList.add('active');
     }
 
-    setHidden(document.querySelectorAll('[data-pro-only]'), !active);
-    setHidden(document.querySelectorAll('[data-pro-preview]'), active);
+    setHidden(document.querySelectorAll('[data-pro-only]'), false);
+    setHidden(document.querySelectorAll('[data-pro-preview]'), true);
 
     document.querySelectorAll('[data-pro-action]').forEach(function (button) {
-      button.setAttribute('aria-disabled', active ? 'false' : 'true');
-      button.classList.toggle('is-locked', !active);
+      if ('disabled' in button) button.disabled = false;
+      button.setAttribute('aria-disabled', 'false');
+      button.classList.remove('is-locked');
     });
 
-    updateBuyLinks();
-    window.dispatchEvent(new CustomEvent('nw-pro-status-change', { detail: { active: active, entitlement: 'nicheworks_pro' } }));
+    removePurchaseSurface();
+    window.dispatchEvent(new CustomEvent('nw-pro-status-change', {
+      detail: { active: true, free: true, entitlement: 'free', source: 'ads_donation' }
+    }));
   }
 
-  function boot() {
-    updateBuyLinks();
-    clearLegacyLocalFlag();
-    var active = localCommonActive();
-    applyUI(active);
-  }
+  // Set the flag immediately so app.js sees the free state during initialization.
+  setFreeActive();
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
+    document.addEventListener('DOMContentLoaded', applyUI, { once: true });
   } else {
-    boot();
+    applyUI();
   }
 
-  window.addEventListener('storage', boot);
+  window.addEventListener('storage', applyUI);
+  window.NWVibeLexiconProBridge = Object.freeze({ render: applyUI, mode: 'free' });
 })();

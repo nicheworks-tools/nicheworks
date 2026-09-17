@@ -175,11 +175,19 @@ for (const item of stagedItems) {
 
 const publicRegistry = readJson('tools/tools-index.json');
 const publicItems = Array.isArray(publicRegistry?.items) ? publicRegistry.items : [];
-const unfinishedSalesPatterns = [
+const hardUnfinishedSalesPatterns = [
   /data-okj-pro-state=["']billing-unavailable["']/i,
-  /okj-pro-state-billing-unavailable/i,
+  /okj-pro-state-billing-unavailable/i
+];
+const unavailableBillingCopyPatterns = [
   /課金(?:導線)?[^<\n]{0,40}(?:未接続|接続されていません)/i,
   /billing[^<\n]{0,40}(?:unavailable|not connected)/i
+];
+const activeSalesPatterns = [
+  /buy\.stripe\.com/i,
+  /id=["'][^"']*(?:checkout|purchase|buy)[^"']*["']/i,
+  /<(?:button|a)\b[^>]*>[\s\S]{0,160}?(?:購入|Buy|Get\s+[^<]{0,30}Pro|View\s+Pro|Upgrade)/i,
+  /(?:¥|\$)\s?\d[\d,.]*/i
 ];
 for (const item of publicItems) {
   const slug = item?.slug;
@@ -187,7 +195,10 @@ for (const item of publicItems) {
   const file = `tools/${slug}/index.html`;
   const html = read(file);
   if (!html || metaRobots(html).includes('noindex')) continue;
-  if (unfinishedSalesPatterns.some((pattern) => pattern.test(html))) {
+  const hasHardUnfinishedSalesState = hardUnfinishedSalesPatterns.some((pattern) => pattern.test(html));
+  const hasUnavailableBillingCopy = unavailableBillingCopyPatterns.some((pattern) => pattern.test(html));
+  const hasActiveSalesSurface = activeSalesPatterns.some((pattern) => pattern.test(html));
+  if (hasHardUnfinishedSalesState || (hasUnavailableBillingCopy && hasActiveSalesSurface)) {
     fail(`${file}: indexable public tool must not expose unfinished billing/Pro sales UI`);
   }
   const publicPath = `/tools/${slug}/`;

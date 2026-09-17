@@ -25,7 +25,10 @@ assert.doesNotMatch(analytics, /query\s*:\s*input\.value/, 'raw input values mus
 assert.doesNotMatch(analytics, /link_url\s*:/, 'official destination URLs are intentionally excluded from custom telemetry');
 assert.doesNotMatch(analytics, /destination_url\s*:/, 'official destination URLs are intentionally excluded from custom telemetry');
 
-assert.match(amazon, /"affiliate_click"/, 'Amazon helper must keep owning affiliate click telemetry');
-assert.doesNotMatch(analytics, /affiliate_click/, 'ManualFinder analytics must not duplicate affiliate click events');
+assert.match(amazon, /"affiliate_outbound"/, 'Amazon helper must own canonical affiliate outbound telemetry');
+assert.match(amazon, /destination_key/, 'Amazon helper must use internal destination keys rather than outbound URLs');
+assert.doesNotMatch(amazon, /"affiliate_click"/, 'Amazon helper must not emit the legacy affiliate_click event');
+assert.doesNotMatch(analytics, /affiliate_outbound/, 'ManualFinder analytics must not duplicate affiliate outbound events');
+assert.doesNotMatch(analytics, /affiliate_click/, 'ManualFinder analytics must not retain legacy affiliate click events');
 
 console.log('ManualFinder analytics contract tests passed.');

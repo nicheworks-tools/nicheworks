@@ -24,7 +24,9 @@ Reconcile two transaction datasets locally in the browser and isolate exact matc
 - Bound ordinary candidate graphs and grouped matching searches so pathological inputs stop or degrade to manual review rather than partially auto-resolving.
 - Provide result counts, status filtering, text search, CSV audit export, and a seven-sheet XLSX report implementation. Large result sets are rendered in bounded 250-row UI pages while filtering/searching/export continue to operate on the complete result set.
 - Reconcile Pro enables amount tolerance, sign modes, larger limits, 1:n / n:1 matching, XLSX report export, and saved profiles only after server verification of product `reconcile.pro_v1` with feature `reconcile_pro_v1`.
-- A Reconcile Pro purchase is ¥3,980 JPY one-time and grants both `reconcile_pro_v1` and shared `nicheworks_pro`. A shared NicheWorks Pro entitlement by itself must not unlock Reconcile Pro.
+- New Reconcile Pro purchases are **not currently available**. `config/billing/products.json` is `status: planning`, product Stripe mode is `not_connected`, and UI state is `billing-unavailable`; the public tool must therefore expose no purchase CTA or active price offer while that state remains authoritative.
+- The planning registry currently contains a ¥3,980 JPY one-time tier and grants `reconcile_pro_v1` plus shared `nicheworks_pro`, but those values are staging/commercial configuration and do not constitute an active public offer until billing is explicitly connected and authorized.
+- A shared NicheWorks Pro entitlement by itself must not unlock Reconcile Pro.
 - Store saved profile configuration locally only while Reconcile Pro is active; profile code never stores transaction rows or uploaded file bytes.
 
 ### Matching safety bounds
@@ -73,7 +75,7 @@ Reconcile two transaction datasets locally in the browser and isolate exact matc
 
 - Parsed transaction rows, selected in-memory `File` objects, file bytes, and reconciliation results remain in page memory and disappear on reload. Loaded CSV files are reparsed in memory when encoding/delimiter settings change; the file is not re-uploaded.
 - Shared language preference uses `localStorage` key `nw_lang`.
-- The shared billing adapter may store only the verified product-scoped Stripe Checkout Session ID under `nicheworks:billing:session:reconcile.pro_v1`; that identifier is re-verified against the server and is never accepted as proof of entitlement by itself.
+- The shared billing adapter may store only a verified product-scoped Stripe Checkout Session ID under `nicheworks:billing:session:reconcile.pro_v1`; that identifier is re-verified against the server and is never accepted as proof of entitlement by itself.
 - Saved profile implementation uses `localStorage` key `nw_reconcile_profiles_v1`, schema version 1, maximum 20 profiles, and stores configuration only.
 - Saved profiles contain parser settings, column mappings, matching options, local profile id/name, and timestamps; they do not contain transaction rows, uploaded file bytes, result rows, account data, or payment data.
 - Profile JSON uses bundle type `nicheworks-reconcile-profile-bundle`; imported options are validated, sanitized, and bounded before persistence.
@@ -84,19 +86,17 @@ Reconcile two transaction datasets locally in the browser and isolate exact matc
 - Reconcile does not send transaction contents to a NicheWorks API or third-party reconciliation service.
 - The XLSX parser/writer is vendored locally; there is no runtime SheetJS CDN fetch.
 - The public page follows suite-wide GA4, AdSense, and Cloudflare Analytics behavior. Those services receive ordinary page/advertising telemetry under the common site contract, not uploaded transaction files or parsed reconciliation rows from Reconcile.
-- Checkout creation sends only product/return-path billing context to the NicheWorks billing API. Entitlement restoration sends the product ID plus Stripe Checkout Session ID. Neither request contains uploaded transaction rows, descriptions, amounts, references, mappings, or file contents.
-- Paid access is enabled only after the server confirms an active entitlement created from a verified Stripe webhook. URL parameters, redirects, and localStorage do not directly unlock Reconcile Pro.
+- The current public page has no checkout CTA while billing is `billing-unavailable`. The checkout API remains server-gated infrastructure and must not be presented as an available purchase path until authoritative configuration and environment gates are enabled.
+- Entitlement restoration/checking may send the product ID plus a stored Stripe Checkout Session ID. It does not contain uploaded transaction rows, descriptions, amounts, references, mappings, or file contents.
+- Paid access is enabled only after the server confirms an active entitlement created from a verified payment flow. URL parameters, redirects, and localStorage do not directly unlock Reconcile Pro.
 
-## Refund and cancellation contract
+## Commercial availability and refund contract
 
-- Reconcile Pro is a ¥3,980 JPY one-time digital feature purchase.
-- Customer-convenience refunds or cancellations are generally not accepted after purchase.
-- Limited exceptions may be reviewed individually for duplicate charges, payment-processing errors, or a NicheWorks-side technical failure that prevents use of Reconcile Pro.
-- Refunds required by applicable law remain available.
-- The product does not expose an automatic or self-service refund button; refund review is handled through the site Contact route.
-- If a refund or payment dispute is completed, entitlement derived from that Reconcile purchase becomes inactive under the existing billing contract. Separate purchases and their entitlements must not be revoked by that event.
-- This presentation policy does not change the existing Stripe refund/dispute webhook handling or the one-way feature-grant contract.
-- Public policy page: `tools/reconcile/refund.html`.
+- New Reconcile Pro purchases are currently unavailable because the authoritative registry marks billing as planning / not connected / unavailable.
+- The current planning registry contains a ¥3,980 JPY one-time tier, but this is not displayed as an active public price or purchase offer while billing remains unavailable.
+- `tools/reconcile/refund.html` is retained as the policy applicable if billing is formally enabled in the future or if a valid paid transaction requires review; it explicitly states that new purchases are currently unavailable.
+- For a valid paid transaction, customer-convenience refunds/cancellations are generally not accepted after purchase, with limited review for duplicate charges, payment-processing errors, NicheWorks-side technical failure, and applicable-law requirements.
+- Refund/dispute completion revokes entitlement derived from that purchase only; separate purchase-derived entitlements must remain unaffected.
 
 ## Language mode
 
@@ -113,6 +113,7 @@ Japanese and English UI copy share the same public URL and are switched client-s
 - Free cap: 500 parsed rows and 5 MB per file for CSV or XLSX.
 - Reconcile Pro cap: CSV 100,000 parsed rows / 50 MB per file; XLSX 50,000 parsed rows / 25 MB per file. These limits are implemented product safety bounds, not theoretical browser-capacity claims.
 - Reconcile Pro remains locked whenever product-specific entitlement verification is unavailable, fails, has been revoked/refunded/disputed, or does not include `reconcile_pro_v1`.
+- No new Reconcile Pro purchase is available while canonical billing state remains `billing-unavailable`.
 - v1 does not include user accounts, cloud transaction storage, AI/probabilistic matching, OCR, PDF input, bank/Open Banking APIs, QuickBooks/Xero APIs, team workspaces, or server-side reconciliation.
 - The tool is not an accounting system and does not certify that a financial ledger is complete or legally/audit compliant.
 
@@ -136,12 +137,13 @@ Japanese and English UI copy share the same public URL and are switched client-s
 - [x] Saved profile serialization never contains transaction rows or uploaded file bytes.
 - [x] Reconcile Pro controls unlock only when server verification for product `reconcile.pro_v1` includes feature `reconcile_pro_v1`; `nicheworks_pro` alone is insufficient.
 - [x] Failed/unavailable entitlement verification fails closed without changing Free reconciliation behavior.
-- [x] The purchase CTA states that customer-convenience refunds/cancellations are generally unavailable and links to the Reconcile refund policy before checkout.
-- [x] The refund policy documents limited review exceptions, applicable-law override, no self-service refund, and purchase-scoped entitlement revocation after refund/dispute.
+- [x] While canonical billing UI state is `billing-unavailable`, the public tool exposes no purchase CTA and no active price claim, and it clearly states that new purchases are unavailable.
+- [x] The refund policy clearly states that new purchases are unavailable and applies only to future formally enabled billing or a valid paid transaction requiring review.
 - [x] Japanese/English switching preserves the current reconciliation state and the wide result workflow remains usable with mobile stacking/scrolling.
 - [x] Changing CSV encoding/delimiter settings reparses already loaded CSV files in memory; applying a saved profile applies its parser settings before restoring saved mappings.
 - [x] Large result sets render at most 250 result rows per UI page; paging does not change the complete reconciliation result or export contents.
 - [x] Synthetic stress coverage verifies the declared 100,000-row Pro CSV ceiling and 50,000-row Pro XLSX parsing ceiling without imposing a brittle wall-clock pass/fail threshold.
+
 ## Implementation evidence
 
 - `tools/reconcile/index.html`
@@ -160,6 +162,7 @@ Japanese and English UI copy share the same public URL and are switched client-s
 - `functions/api/billing/create-checkout-session.js`
 - `functions/api/billing/entitlement.js`
 - `config/billing/products.json`
+- `scripts/check-billing-foundation.mjs`
 - `tools/reconcile/vendor/README.md`
 - `tools/reconcile/vendor/LICENSE.sheetjs`
 - `tools/reconcile/vendor/NOTICE.sheetjs.txt`

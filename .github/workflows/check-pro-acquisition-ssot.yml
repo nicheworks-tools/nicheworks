@@ -1,0 +1,32 @@
+name: PRO acquisition SSOT check
+
+on:
+  pull_request:
+    paths:
+      - 'MONETIZATION_CLASSIFICATION.json'
+      - 'tools/ai-interaction-atlas/**'
+      - 'tools/command-safety-checker/**'
+      - 'scripts/check-pro-acquisition-ssot.mjs'
+      - '.github/workflows/check-pro-acquisition-ssot.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'MONETIZATION_CLASSIFICATION.json'
+      - 'tools/ai-interaction-atlas/**'
+      - 'tools/command-safety-checker/**'
+      - 'scripts/check-pro-acquisition-ssot.mjs'
+      - '.github/workflows/check-pro-acquisition-ssot.yml'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Enforce pending PRO_BUNDLE acquisition boundary
+        run: node scripts/check-pro-acquisition-ssot.mjs

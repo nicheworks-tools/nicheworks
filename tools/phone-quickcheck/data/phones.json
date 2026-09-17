@@ -5669,14 +5669,14 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/aquos-sense6/simfree/",
-        "manualUrl": "https://jp.sharp/support/aquos/",
+        "manualUrl": "https://k-tai.sharp.co.jp/support/other/sense6_simfree/manual/index.html",
         "chargingUrl": "https://jp.sharp/products/aquos-sense6/simfree/",
-        "verifiedAt": "2026-09-15",
+        "verifiedAt": "2026-09-17",
         "releaseUrl": "https://corporate.jp.sharp/news/210928-e.html"
       },
       "affiliateKeys": []
@@ -5720,8 +5720,8 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/aquos-wish3/d/",
@@ -5771,8 +5771,8 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/aquos-wish2/d/",
@@ -7849,8 +7849,8 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/products/shm15/spec.html",
@@ -8975,8 +8975,8 @@
         "wirelessMaxW": 5
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/175748/",
@@ -9147,8 +9147,8 @@
         "wirelessMaxW": null
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.nubia.com/jp/products/smartphones/nubia/nubia-flip-5g",

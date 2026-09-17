@@ -30,6 +30,9 @@ const productConfig = read('functions/api/billing/product-config.js');
 const adapter = read('assets/nw-pro-entitlement.js');
 const success = read('billing/success.html');
 const configSource = read('config/billing/products.json');
+const reconcileIndex = read('tools/reconcile/index.html');
+const reconcileRefund = read('tools/reconcile/refund.html');
+const reconcileSpec = read('tools/reconcile/SPEC.md');
 const config = JSON.parse(configSource);
 
 requireText(checkout, "validateConfiguredProduct", 'checkout');
@@ -84,6 +87,21 @@ requireEqual(reconcile?.price?.type, 'one_time', 'Reconcile Pro price type');
 requireEqual(reconcile?.priceTierId, 'nw.one_time.jpy_3980', 'Reconcile Pro price tier');
 requireEqual(reconcile?.stripe?.priceIdEnv, 'STRIPE_PRICE_RECONCILE_PRO', 'Reconcile Pro Stripe price env');
 requireArrayEqual(reconcile?.features, ['reconcile_pro_v1', 'nicheworks_pro'], 'Reconcile Pro grants');
+
+const reconcileBillingUnavailable = config.status === 'planning'
+  || reconcile?.stripe?.mode === 'not_connected'
+  || reconcile?.ui?.state === 'billing-unavailable';
+
+if (reconcileBillingUnavailable) {
+  forbidText(reconcileIndex, 'id="proCheckoutBtn"', 'Reconcile public page while billing is unavailable');
+  forbidText(reconcileIndex, '¥3,980', 'Reconcile public page while billing is unavailable');
+  requireText(reconcileIndex, 'billing unavailable', 'Reconcile public page while billing is unavailable');
+  requireText(reconcileIndex, '新規購入できません', 'Reconcile public page while billing is unavailable');
+  requireText(reconcileRefund, 'New Reconcile Pro purchases are currently unavailable', 'Reconcile refund policy');
+  forbidText(reconcileRefund, '¥3,980', 'Reconcile refund policy while billing is unavailable');
+  requireText(reconcileSpec, 'New Reconcile Pro purchases are **not currently available**', 'Reconcile specification');
+  requireText(reconcileSpec, 'no purchase CTA or active price offer', 'Reconcile specification');
+}
 
 const nonReconcileProducts = config.products.filter((product) => product.productId !== 'reconcile.pro_v1');
 for (const product of nonReconcileProducts) {

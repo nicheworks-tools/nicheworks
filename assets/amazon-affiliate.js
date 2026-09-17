@@ -4,7 +4,7 @@
   const state = {
     enabled: false,
     tool: "",
-    affiliate: "amazon",
+    merchant: "amazon",
     targets: Object.create(null)
   };
 
@@ -32,7 +32,7 @@
   function configure(config = {}) {
     state.enabled = config.enabled === true;
     state.tool = typeof config.tool === "string" ? config.tool : "";
-    state.affiliate = "amazon";
+    state.merchant = "amazon";
     state.targets = normalizeTargets(config.targets);
     return api;
   }
@@ -45,15 +45,53 @@
     return state.enabled && Object.keys(state.targets).length > 0;
   }
 
-  function trackClick(target, placement) {
+  function normalizeLanguage(value) {
+    const language = String(value || "").toLowerCase();
+    if (language === "ja" || language.startsWith("ja-")) return "ja";
+    if (language === "en" || language.startsWith("en-")) return "en";
+    return "";
+  }
+
+  function resolveLanguage(container, explicitLanguage) {
+    const explicit = normalizeLanguage(explicitLanguage);
+    if (explicit) return explicit;
+
+    if (container instanceof Element) {
+      const i18nNode = container.closest("[data-i18n]");
+      const i18nLanguage = normalizeLanguage(i18nNode?.getAttribute("data-i18n"));
+      if (i18nLanguage) return i18nLanguage;
+
+      const langNode = container.closest("[lang]");
+      const localLanguage = normalizeLanguage(langNode?.getAttribute("lang"));
+      if (localLanguage) return localLanguage;
+    }
+
+    return normalizeLanguage(document.documentElement.lang) || "en";
+  }
+
+  function stableToken(value, fallback) {
+    const token = String(value || "").trim();
+    return token || fallback;
+  }
+
+  function trackClick(target, options = {}) {
     if (typeof window.gtag !== "function") return;
-    const params = {
-      tool: state.tool || "unknown",
-      affiliate: state.affiliate,
-      target: String(target || "unknown"),
-      placement: String(placement || "unspecified")
-    };
-    window.gtag("event", "affiliate_click", params);
+
+    const placement = stableToken(options.placement, "unspecified");
+    const destinationKey = stableToken(options.destinationKey, String(target || "unknown"));
+    const affiliateId = stableToken(
+      options.affiliateId,
+      `${destinationKey}_${placement}`
+    );
+
+    window.gtag("event", "affiliate_outbound", {
+      tool_slug: stableToken(state.tool, "unknown"),
+      affiliate_id: affiliateId,
+      placement,
+      merchant: state.merchant,
+      destination_key: destinationKey,
+      language: resolveLanguage(options.container, options.language)
+    });
   }
 
   function mountLink(container, target, url, options = {}) {
@@ -70,7 +108,7 @@
     link.target = "_blank";
     link.rel = "sponsored noopener";
     link.textContent = options.label || "Amazonで探す";
-    link.addEventListener("click", () => trackClick(target, options.placement));
+    link.addEventListener("click", () => trackClick(target, { ...options, container }));
 
     container.appendChild(link);
     container.hidden = false;

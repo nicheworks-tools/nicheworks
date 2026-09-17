@@ -15,11 +15,11 @@ The public search intent is a free English cover-letter template generator for j
 
 The page MUST NOT imply job-placement, hiring, immigration, or career-advice outcomes. It MUST NOT claim that the generated draft is personalized from a job description unless the user actually supplies and reviews that information.
 
-### Affiliate boundary
+### Monetization boundary
 
-The current primary monetization classification is `AFFILIATE`, but no commercial block may be invented merely because of that classification. A career/job-service next action may be shown only after the free draft when a verified partner/offer configuration exists and is contextually relevant. Without verified configuration, the correct affiliate state is no offer.
+The current Amazon-affiliate classification is `NOT_APPLICABLE`. Cover Letter Lite should remain an organic-search / advertising / donation surface plus an internal entry point to related job-application utilities.
 
-Affiliate content must never be presented as required to complete the cover letter, as a hiring recommendation, or as evidence that a service improves interview/hiring probability.
+Do not add Amazon product offers merely to monetize the page. A future career/job-service partner offer may be considered only as a separate verified partner integration with explicit contextual relevance and its own review; it must never be presented as required to complete the cover letter, as a hiring recommendation, or as evidence that a service improves interview/hiring probability.
 
 ## Current functional contract
 
@@ -74,7 +74,7 @@ The primary workflow is a vertical form followed by a generated draft and checkl
 - [ ] Copy and TXT save operate on the currently generated draft.
 - [ ] The page remains explicitly English-only and retains the review/privacy warnings.
 - [ ] Public title, description, H1, and intro state that the tool is a free English cover-letter template generator and that no AI API is used.
-- [ ] No affiliate offer is rendered unless a verified contextual partner/offer configuration exists.
+- [ ] No Amazon affiliate offer is rendered for the current product classification.
 
 ## Implementation evidence
 

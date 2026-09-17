@@ -1,54 +1,59 @@
-# Old Kanji Amazon Affiliate Contract
+# Old Kanji Amazon Compatibility Contract
 
-Status: canonical affiliate supplement for the Old Kanji cluster.
+Status: dormant compatibility contract governed by `MONETIZATION_CLASSIFICATION.json`.
 
-## Active scope
+## Canonical monetization boundary
 
-Amazon affiliate links are intentionally limited to two Old Kanji tools where the shopping intent is directly adjacent to the task.
+The current monetization SSOT classifies:
 
-### Old Kanji Reference
+- `old-kanji-reference` as `ADS_DONATION`.
+- `old-kanji-ocr-scanner` as `HOLD`.
 
-Tracking ID: `nicheworks09-22`
+Neither tool is in the canonical `AFFILIATE` class. Therefore Amazon affiliate runtime must remain fail-closed on both tools.
 
-Fixed Amazon.co.jp searches only:
-- `dictionary` → `旧字体 異体字 辞典`
-- `magnifier` → `古文書 ルーペ`
-- `book_stand` → `書見台 ブックスタンド`
+The historical Amazon helper/config/UI files may remain temporarily as compatibility code while the tool surfaces are cleaned up, but they must not provide a live outbound Amazon destination or an enabled affiliate configuration.
 
-Placement: `reference_resources` after the main reference/list task and before the unavailable Pro area.
+## Required dormant state
 
-### Old Kanji OCR Scanner
+For both Old Kanji Reference and Old Kanji OCR Scanner:
 
-Tracking ID: `nicheworks09-22`
+- `affiliate-config.js` must set `enabled: false`.
+- `trackingId` must be empty.
+- `targets` and `searches` must be empty objects.
+- No `amazon.co.jp`, `amzn.to`, or Associates `tag=` destination may remain in the production config.
+- The shared Amazon helper must render no CTA and no disclosure when the config is disabled.
+- Searched kanji, OCR text, image names, document text, names, addresses, or other user-derived values must never enter affiliate analytics or outbound URLs.
 
-Fixed Amazon.co.jp searches only:
-- `book_scanner` → `ブックスキャナー 非破壊`
-- `magnifier` → `古文書 ルーペ`
+## Historical UI compatibility
 
-Placement: `ocr_resources`. The resource panel is moved to immediately after the OCR result/copy actions so the shopping handoff follows task completion rather than appearing after Pro/caution content.
+The current HTML and tool-owned affiliate modules can remain loaded only as dormant compatibility wiring. They must fail closed because the production config is disabled. This preserves layout/runtime stability while commercial cleanup is separated from tool behavior changes.
+
+The existing placement identifiers remain non-authoritative compatibility metadata:
+
+- Old Kanji Reference: `reference_resources`.
+- Old Kanji OCR Scanner: `ocr_resources`.
+
+These identifiers do not authorize affiliate activation.
 
 ## Non-expansion rule
 
-No Amazon activation is added in this wave to:
+No Amazon activation is authorized for any Old Kanji cluster tool unless that tool is first moved into the canonical `AFFILIATE` class through an explicit monetization decision.
+
+This includes:
+
 - Kanji Modernizer
 - Old Document Kanji Highlighter
 - Unicode Kanji Checker
 - Variant Kanji Compare
 - Place Old Kanji Checker
 - Name Old Kanji Checker
+- Old Kanji Reference
+- Old Kanji OCR Scanner
 
-A future Amazon surface on one of those tools requires a separate relevance case based on actual user intent; cluster membership alone is not sufficient.
+Cluster membership, historical implementation, or the presence of dormant helper code is not sufficient authority to activate Amazon links.
 
-## UI and disclosure
+## Analytics boundary
 
-- Links are plain text CTAs; no Amazon product images, prices, ratings, reviews, or availability data.
-- The resource copy states that Amazon searches are optional / only for users who need the physical tool.
-- Reference uses a one-column Amazon link grid at narrow mobile widths (`max-width: 720px`).
-- OCR uses a one-column Amazon link grid at narrow mobile widths (`max-width: 560px`).
-- Shared `/assets/amazon-affiliate.js` owns URL validation, `rel="sponsored noopener"`, Associates disclosure, and `affiliate_click`.
+The shared Amazon helper may support the canonical `affiliate_outbound` event for tools that are legitimately in the `AFFILIATE` class. Old Kanji Reference and Old Kanji OCR Scanner must emit no Amazon outbound event while their configs are disabled.
 
-## Privacy and measurement
-
-Amazon URLs contain only the fixed search term and `tag=nicheworks09-22`. Searched kanji, OCR text, image names, document text, names, addresses, conversion content, and other user-derived values never enter the link.
-
-The existing `affiliate_click` event is the only Amazon click event. Its coarse parameters remain `tool`, `affiliate`, `target`, and `placement`. The Old Kanji cluster analytics module must not duplicate it.
+The Old Kanji cluster analytics module must not implement a second tool-owned affiliate click payload.

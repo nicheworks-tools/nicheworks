@@ -1,0 +1,12 @@
+{
+  "title_ja": "洗濯物の乾きやすさ判定",
+  "title_en": "Laundry Drying Checker",
+  "desc_ja": "気温・湿度・風速などから、洗濯物が今どれくらい乾きやすいかを確認します。",
+  "desc_en": "Estimate laundry drying conditions from temperature, humidity, wind, rain, and cloud cover.",
+  "tags": [
+    "laundry",
+    "drying",
+    "weather",
+    "home"
+  ]
+}
