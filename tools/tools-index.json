@@ -198,15 +198,15 @@
     },
     {
       "slug": "cover-letter-lite",
-      "title_en": "Cover Letter Lite",
-      "title_ja": "カバーレター Lite",
-      "desc_en": "Draft a simple cover letter structure from job and profile notes.",
-      "desc_ja": "求人情報や自己紹介メモからカバーレター構成を作ります。",
+      "title_en": "Free Cover Letter Template Generator",
+      "title_ja": "英語カバーレター作成（テンプレート式）",
+      "desc_en": "Generate an editable English cover-letter draft from five deterministic templates in your browser, with no AI API.",
+      "desc_ja": "AI APIを使わず、5種類のテンプレートから編集可能な英語カバーレター下書きをブラウザ内で作成します。",
       "tags": [
         "cover-letter",
         "job",
-        "writing",
-        "template"
+        "template",
+        "writing"
       ]
     },
     {
