@@ -24,10 +24,7 @@ for (const [label, value] of [
   ['Actionable camera records still missing accessory detail', summary.cameraMissingAccessory],
   ['Non-actionable camera maker-index records', summary.cameraNonActionable]
 ]) {
-  assert.ok(
-    doc.includes(`| ${label} | **${value}** |`),
-    `${label} must match the live camera coverage audit`
-  );
+  assert.ok(doc.includes(`| ${label} | **${value}** |`), `${label} must match the live camera coverage audit`);
 }
 
 const reconciliation = `camera basic ${summary.cameraBasic} = detail ${summary.cameraDetail} + reviewed exclusion ${summary.cameraDetailExcluded} + missing ${summary.cameraMissingAccessory}`;
@@ -53,17 +50,11 @@ for (const maker of makers) {
   const detail = summary.cameraDetailByMaker[maker] || 0;
   const excluded = summary.cameraDetailExcludedByMaker[maker] || 0;
   const missing = summary.cameraMissingAccessoryByMaker[maker] || 0;
-  assert.ok(
-    doc.includes(`| ${maker} | ${basic} | ${detail} | ${excluded} | ${missing} |`),
-    `${maker} camera coverage row must match the live audit`
-  );
+  assert.ok(doc.includes(`| ${maker} | ${basic} | ${detail} | ${excluded} | ${missing} |`), `${maker} camera coverage row must match the live audit`);
 }
 
 for (const [maker, count] of Object.entries(summary.cameraNonActionableByMaker)) {
-  assert.ok(
-    doc.includes(`- ${maker}: ${count}`),
-    `${maker} non-actionable camera count must match the live audit`
-  );
+  assert.ok(doc.includes(`- ${maker}: ${count}`), `${maker} non-actionable camera count must match the live audit`);
 }
 
 assert.ok(
@@ -75,18 +66,9 @@ const nikonBasic = summary.cameraBasicByMaker.Nikon || 0;
 const nikonDetail = summary.cameraDetailByMaker.Nikon || 0;
 const nikonExcluded = summary.cameraDetailExcludedByMaker.Nikon || 0;
 const nikonMissing = summary.cameraMissingAccessoryByMaker.Nikon || 0;
-assert.ok(
-  doc.includes(`Nikon camera ${nikonBasic} = detail ${nikonDetail} + reviewed exclusion ${nikonExcluded} + missing ${nikonMissing}`),
-  'Nikon camera completion line must match the live audit'
-);
-assert.ok(
-  affiliateDoc.includes(`Nikon camera ${nikonBasic} = detail ${nikonDetail} + reviewed exclusion ${nikonExcluded} + missing ${nikonMissing}`),
-  'affiliate coverage Nikon completion line must match the live audit'
-);
-assert.ok(
-  spec.includes(`**${nikonDetail} detail + ${nikonExcluded} reviewed exclusions + ${nikonMissing} missing**`),
-  'ManualFinder spec Nikon completion values must match the live audit'
-);
+assert.ok(doc.includes(`Nikon camera ${nikonBasic} = detail ${nikonDetail} + reviewed exclusion ${nikonExcluded} + missing ${nikonMissing}`));
+assert.ok(affiliateDoc.includes(`Nikon camera ${nikonBasic} = detail ${nikonDetail} + reviewed exclusion ${nikonExcluded} + missing ${nikonMissing}`));
+assert.ok(spec.includes(`**${nikonDetail} detail + ${nikonExcluded} reviewed exclusions + ${nikonMissing} missing**`));
 
 const djiBasic = summary.cameraBasicByMaker.DJI || 0;
 const djiDetail = summary.cameraDetailByMaker.DJI || 0;
@@ -95,10 +77,7 @@ const djiMissing = summary.cameraMissingAccessoryByMaker.DJI || 0;
 const djiReconciliation = `DJI camera ${djiBasic} = detail ${djiDetail} + reviewed exclusion ${djiExcluded} + missing ${djiMissing}`;
 assert.ok(doc.includes(djiReconciliation), 'DJI camera progress line must match the live audit');
 assert.ok(affiliateDoc.includes(djiReconciliation), 'affiliate coverage DJI progress line must match the live audit');
-assert.ok(
-  spec.includes(`**${djiBasic} basic = ${djiDetail} detail + ${djiExcluded} reviewed exclusions + ${djiMissing} missing accessory detail**`),
-  'ManualFinder spec DJI progress values must match the live audit'
-);
+assert.ok(spec.includes(`**${djiBasic} basic = ${djiDetail} detail + ${djiExcluded} reviewed exclusions + ${djiMissing} missing accessory detail**`));
 
 for (const path of [
   'affiliate-nikon-camera-accessories-wave2.js',
@@ -120,6 +99,7 @@ for (const path of [
   'affiliate-dji-camera-accessories-wave16.js',
   'affiliate-dji-camera-accessories-wave17.js',
   'affiliate-dji-camera-accessories-wave18.js',
+  'affiliate-dji-camera-accessories-wave19.js',
   'affiliate-camera-detail-exclusions.js',
   'CAMERA_ACCESSORY_COVERAGE.md',
   'tests/nikon-camera-accessory-wave2.test.mjs',
@@ -141,6 +121,7 @@ for (const path of [
   'tests/dji-inspire3-accessory-wave16.test.mjs',
   'tests/dji-inspire2-accessory-wave17.test.mjs',
   'tests/dji-inspire1-accessory-wave18.test.mjs',
+  'tests/dji-inspire1-proraw-accessory-wave19.test.mjs',
   'tests/camera-accessory-coverage.test.mjs',
   'tests/camera-accessory-doc-sync.test.mjs'
 ]) {
