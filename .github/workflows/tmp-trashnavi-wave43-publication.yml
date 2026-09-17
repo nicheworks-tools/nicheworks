@@ -21,39 +21,56 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           import json
+          entries=[
+            ('112381','hasuda','蓮田市'),('112461','shiraoka','白岡市'),('113433','ogawa','小川町'),
+            ('113492','tokigawa','ときがわ町'),('113611','yokoze','横瀬町'),('113638','nagatoro','長瀞町'),
+            ('113654','ogano','小鹿野町'),('113697','higashichichibu','東秩父村'),('114081','yorii','寄居町'),('114642','sugito','杉戸町')]
+
           mp=Path('tools/trashnavi/municipality-page-manifest.json')
           manifest=json.loads(mp.read_text())
-          assert len(manifest)==204, len(manifest)
-          entries=[('112381','hasuda'),('112461','shiraoka'),('113433','ogawa'),('113492','tokigawa'),('113611','yokoze'),('113638','nagatoro'),('113654','ogano'),('113697','higashichichibu'),('114081','yorii'),('114642','sugito')]
-          existing={x['lgcode'] for x in manifest}
-          assert not any(code in existing for code,_ in entries)
-          text=mp.read_text().rstrip(); assert text.endswith(']')
-          body=text[:-1].rstrip()
-          body += ',\n' + ',\n'.join(f'  {{"lgcode":"{code}","pref_slug":"saitama","city_slug":"{slug}","publish":true}}' for code,slug in entries) + '\n]\n'
-          mp.write_text(body); assert len(json.loads(mp.read_text()))==214
+          assert len(manifest)==204
+          assert not any(code in {x['lgcode'] for x in manifest} for code,_,_ in entries)
+          text=mp.read_text().rstrip(); body=text[:-1].rstrip()
+          body += ',\n' + ',\n'.join(f'  {{"lgcode":"{code}","pref_slug":"saitama","city_slug":"{slug}","publish":true}}' for code,slug,_ in entries) + '\n]\n'
+          mp.write_text(body)
+          assert len(json.loads(mp.read_text()))==214
+
           gen=Path('tools/trashnavi/scripts/generate-municipality-pages.mjs')
           s=gen.read_text(); old='if(outputs.length!==204) throw new Error(`municipality page count must be 204; got ${outputs.length}`);'; new='if(outputs.length!==214) throw new Error(`municipality page count must be 214; got ${outputs.length}`);'
           assert old in s; gen.write_text(s.replace(old,new,1))
           aff=Path('tools/trashnavi/scripts/check-affiliate-contract.mjs')
           s=aff.read_text(); old='check(manifest.length === 204, `expected 204 published municipality pages, got ${manifest.length}`);'; new='check(manifest.length === 214, `expected 214 published municipality pages, got ${manifest.length}`);'
           assert old in s; aff.write_text(s.replace(old,new,1))
-          spec=Path('tools/trashnavi/SPEC.md'); s=spec.read_text().rstrip(); assert '## Wave 43 ten-municipality publication' not in s
-          lines=['','## Wave 43 ten-municipality publication','','Wave 43は10自治体batch scaling ruleを継続し、公開閾値を変更せず **204自治体から214自治体** へ拡張する。対象は蓮田市・白岡市・小川町・ときがわ町・横瀬町・長瀞町・小鹿野町・東秩父村・寄居町・杉戸町。公開条件は従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific official link typeとし、同一combined pageの二重計上や外部衛生組合・委託先等のURLによる閾値補完は行わない。','','- 蓮田市 — `/tools/trashnavi/saitama/hasuda/` — waste sorting / waste app / special disposal','- 白岡市 — `/tools/trashnavi/saitama/shiraoka/` — waste sorting / drop-off facility / special disposal','- 小川町 — `/tools/trashnavi/saitama/ogawa/` — waste sorting / collection calendar / bulky waste','- ときがわ町 — `/tools/trashnavi/saitama/tokigawa/` — waste sorting / collection calendar / drop-off facility','- 横瀬町 — `/tools/trashnavi/saitama/yokoze/` — waste sorting / collection calendar / special disposal','- 長瀞町 — `/tools/trashnavi/saitama/nagatoro/` — waste sorting / collection calendar / drop-off facility','- 小鹿野町 — `/tools/trashnavi/saitama/ogano/` — waste sorting / collection calendar / drop-off facility','- 東秩父村 — `/tools/trashnavi/saitama/higashichichibu/` — waste sorting / bulky waste / special disposal','- 寄居町 — `/tools/trashnavi/saitama/yorii/` — collection calendar / waste app / special disposal','- 杉戸町 — `/tools/trashnavi/saitama/sugito/` — collection calendar / waste app / special disposal','','Wave 43 readiness baselineは1,916 municipalities、2,730 valid HTTP(S) records、214 preferred candidates、46 direct-link datasets / 662 records / 643 unique URLs / 0 invalid URLsとする。Wave43の `last_checked: 2026-09-17` はWave42と同日なので、Readinessではsitemapを変更せず、未公開Wave43 URLも先出ししていない。','','Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 214/214、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する小川町・ときがわ町・横瀬町・長瀞町・小鹿野町・寄居町・杉戸町だけ2026 calendar calloutを表示し、蓮田市・白岡市・東秩父村には年次calloutを生成しない。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。']
-          spec.write_text(s+'\n'+'\n'.join(lines)+'\n')
+
+          spec=Path('tools/trashnavi/SPEC.md'); s=spec.read_text().rstrip()
+          assert '## Wave 43 ten-municipality publication' not in s
+          spec.write_text(s+'\n\n## Wave 43 ten-municipality publication\n\nWave 43は既存の10自治体batch scaling ruleとpreferred readiness thresholdを維持し、204自治体から214自治体へ拡張する。対象は蓮田市・白岡市・小川町・ときがわ町・横瀬町・長瀞町・小鹿野町・東秩父村・寄居町・杉戸町。各自治体は `municipal_home` を除く3種類の異なるwaste-specific official link typeと3つの自治体公式URLを持ち、同一ページ二重計上や外部衛生組合・委託先URLによる閾値補完は行わない。Readiness baselineは2,730/2,730 valid HTTP(S)、214 preferred candidates、46 datasets / 662 records / 643 unique URLs / invalid 0。Publicationでは214ページ、AI reference 214/214、root/dedicated sitemap、root internal links、Amazon 4 fixed categories (`nicheworks09-22`) を検証する。2026 calendar calloutは `fiscal_year: 2026` が明示された小川町・ときがわ町・横瀬町・長瀞町・小鹿野町・寄居町・杉戸町のみ表示し、蓮田市・白岡市・東秩父村には表示しない。\n')
+
           root=Path('sitemap.xml'); rt=root.read_text(); assert rt.rstrip().endswith('</urlset>')
-          urls=[]
-          for _,slug in entries:
+          blocks=[]
+          for _,slug,_ in entries:
             canonical=f'https://nicheworks.app/tools/trashnavi/saitama/{slug}/'
             assert canonical not in rt
-            urls.append(f'  <url>\n    <loc>{canonical}</loc>\n    <lastmod>2026-09-17</lastmod>\n  </url>')
-          rt=rt.rstrip(); rt=rt[:-len('</urlset>')]+'\n'.join(urls)+'\n</urlset>\n'; root.write_text(rt)
+            blocks.append(f'  <url>\n    <loc>{canonical}</loc>\n    <lastmod>2026-09-17</lastmod>\n  </url>')
+          rt=rt.rstrip(); root.write_text(rt[:-len('</urlset>')]+'\n'.join(blocks)+'\n</urlset>\n')
+
+          index=Path('tools/trashnavi/index.html'); html=index.read_text()
+          marker='<div class="municipality-related-links">'; start=html.index(marker); end=html.index('</div>',start)
+          for _,slug,name in entries:
+            href=f'/tools/trashnavi/saitama/{slug}/'
+            assert href not in html
+            html=html[:end]+f'<a href="{href}">{name}</a>'+html[end:]
+            end += len(f'<a href="{href}">{name}</a>')
+          index.write_text(html)
           PY
+
           node tools/trashnavi/scripts/generate-municipality-pages.mjs
           node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
           node tools/trashnavi/scripts/audit-coverage.mjs --strict
           node scripts/check-trashnavi-direct-links.mjs --inventory
           node tools/trashnavi/scripts/check-affiliate-contract.mjs
           node tools/trashnavi/scripts/check-runtime-contract.mjs
+
           python3 - <<'PY'
           from pathlib import Path
           import json
@@ -61,10 +78,11 @@ jobs:
           entries=[('112381','hasuda'),('112461','shiraoka'),('113433','ogawa'),('113492','tokigawa'),('113611','yokoze'),('113638','nagatoro'),('113654','ogano'),('113697','higashichichibu'),('114081','yorii'),('114642','sugito')]
           by={}
           for r in rows: by.setdefault(r['lgcode'],[]).append(r)
-          dedicated=Path('sitemap-trashnavi.xml').read_text(); root=Path('sitemap.xml').read_text()
+          dedicated=Path('sitemap-trashnavi.xml').read_text(); root=Path('sitemap.xml').read_text(); index=Path('tools/trashnavi/index.html').read_text()
           for code,slug in entries:
             rs=by[code]; assert len(rs)==3
-            html=Path(f'tools/trashnavi/saitama/{slug}/index.html').read_text(); canonical=f'https://nicheworks.app/tools/trashnavi/saitama/{slug}/'
+            canonical=f'https://nicheworks.app/tools/trashnavi/saitama/{slug}/'; href=f'/tools/trashnavi/saitama/{slug}/'
+            html=Path(f'tools/trashnavi/saitama/{slug}/index.html').read_text()
             assert f'<link rel="canonical" href="{canonical}">' in html
             assert html.count('class="official-link-card"')==3
             assert '[PR]' in html
@@ -72,10 +90,14 @@ jobs:
             assert ('class="current-calendar-callout"' in html)==callout
             assert dedicated.count(f'<loc>{canonical}</loc>')==1
             assert root.count(f'<loc>{canonical}</loc>')==1
-          ai=json.loads(Path('tools/trashnavi/ai-reference.json').read_text()); assert ai['published_municipality_count']==214 and len(ai['municipalities'])==214
-          manifest=json.loads(Path('tools/trashnavi/municipality-page-manifest.json').read_text()); assert len(manifest)==214 and all(x.get('publish') for x in manifest)
-          print('Wave43 publication acceptance: 10/10 pages; AI 214/214; sitemaps OK')
+            assert index.count(f'href="{href}"')==1
+          ai=json.loads(Path('tools/trashnavi/ai-reference.json').read_text())
+          assert ai['published_municipality_count']==214 and len(ai['municipalities'])==214
+          manifest=json.loads(Path('tools/trashnavi/municipality-page-manifest.json').read_text())
+          assert len(manifest)==214 and all(x.get('publish') for x in manifest)
+          print('Wave43 publication acceptance: 10/10 pages; AI 214/214; sitemaps/internal links OK')
           PY
+
           rm .github/workflows/tmp-trashnavi-wave43-publication.yml
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
