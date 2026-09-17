@@ -1,0 +1,63 @@
+name: Pattern Dictionary v1 accessibility fixer
+
+on:
+  push:
+    branches:
+      - audit/pattern-dictionary-v1-product-quality-20260917
+    paths:
+      - .github/workflows/pattern-dictionary-v1-a11y-fixes.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/pattern-dictionary-v1-product-quality-20260917
+      - name: Apply contrast and scroll-region fixes
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          root=Path('tools/pattern-dictionary')
+
+          css=root/'style.css'
+          s=css.read_text()
+          old='.pd-ad{margin:20px 0;border:1px dashed #cbd5e1;background:#f8fafc;color:#94a3b8;text-align:center;padding:12px;font-size:12px}'
+          new='.pd-ad{margin:20px 0;border:1px dashed #cbd5e1;background:#f8fafc;color:#475569;text-align:center;padding:12px;font-size:12px}'
+          if old not in s: raise SystemExit('pd-ad style target missing')
+          s=s.replace(old,new,1)
+          old2='.pd-table-wrap{overflow-x:auto}.pd-compare-table{min-width:680px}'
+          new2='.pd-table-wrap{overflow-x:auto}.pd-table-wrap:focus{outline:2px solid #0f172a;outline-offset:2px}.pd-compare-table{min-width:680px}'
+          if old2 not in s: raise SystemExit('pd-table-wrap style target missing')
+          css.write_text(s.replace(old2,new2,1))
+
+          app=root/'app.js'
+          a=app.read_text()
+          old3='<div class="pd-table-wrap"><table class="pd-table pd-compare-table">'
+          new3='<div class="pd-table-wrap" tabindex="0" role="region" aria-label="${lang===\'ja\'?\'比較表\':\'Comparison table\'}"><table class="pd-table pd-compare-table">'
+          if old3 not in a: raise SystemExit('compare table wrapper target missing')
+          app.write_text(a.replace(old3,new3,1))
+
+          test=root/'tests'/'browse-mobile-test.mjs'
+          t=test.read_text()
+          marker="if(!css.includes('.pd-mini-stripe')||!css.includes('.pd-mini-dot')||!css.includes('.pd-mini-floral')||!css.includes('.pd-mini-global-textile'))throw new Error('expanded visual filter cues missing');"
+          addition=marker+"\nif(!css.includes('background:#f8fafc;color:#475569;text-align:center;padding:12px;font-size:12px'))throw new Error('ad-slot label contrast must remain readable');\nif(!css.includes('.pd-table-wrap:focus{outline:2px solid #0f172a;outline-offset:2px}'))throw new Error('scrollable comparison table needs visible keyboard focus');\nif(!app.includes('class=\"pd-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"${lang===\\\'ja\\\'?\\\'比較表\\\':\\\'Comparison table\\\'}\"'))throw new Error('scrollable comparison table must be keyboard-focusable and labelled');"
+          if marker not in t: raise SystemExit('browse-mobile marker missing')
+          test.write_text(t.replace(marker,addition,1))
+          PY
+      - name: Validate fixes
+        run: |
+          node --check tools/pattern-dictionary/app.js
+          node tools/pattern-dictionary/tests/browse-mobile-test.mjs
+          node tools/pattern-dictionary/tests/compare-test.mjs
+          git diff --check
+      - name: Commit fixes
+        run: |
+          git config user.name "nicheworks-tools"
+          git config user.email "nicheworks.tools@gmail.com"
+          git add tools/pattern-dictionary/style.css tools/pattern-dictionary/app.js tools/pattern-dictionary/tests/browse-mobile-test.mjs
+          git commit -m "Pattern Dictionary: fix contrast and scroll-region accessibility"
+          git push origin HEAD:audit/pattern-dictionary-v1-product-quality-20260917
