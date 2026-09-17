@@ -29,6 +29,28 @@ const PUBLIC_ROLE_CATEGORIES = new Set([
   'hair conditioning'
 ]);
 
+// Frozen from main c979c8a06a2a6491d66a0647533cb572a183602d on 2026-09-18 JST.
+// These are debt ceilings, not completion targets. Future work may lower them,
+// but dictionary growth must not silently create more incomplete public data.
+const BASELINE_DEBT_CEILINGS = Object.freeze({
+  missing_jp_name: 113,
+  missing_alias_array: 343,
+  missing_category: 187,
+  unsupported_public_role_category: 122,
+  missing_note_short: 538,
+  missing_evidence_metadata: 725,
+  canonical_without_supported_public_role: 191,
+  canonical_without_japanese_name: 108,
+  canonical_without_note_and_evidence: 599
+});
+
+const BASELINE_FLOORS = Object.freeze({
+  dictionary_records: 725,
+  canonical_identities: 599,
+  supported_public_role_records: 416,
+  canonical_with_supported_public_role: 408
+});
+
 function text(value = '') {
   return String(value).normalize('NFKC').replace(/\s+/g, ' ').trim();
 }
@@ -165,9 +187,40 @@ for (const group of groups.values()) {
   else canonicalWithoutNoteAndEvidence += 1;
 }
 
+const measuredDebt = {
+  missing_jp_name: counters.missing_jp_name,
+  missing_alias_array: counters.missing_alias_array,
+  missing_category: counters.missing_category,
+  unsupported_public_role_category: counters.unsupported_public_role_category,
+  missing_note_short: counters.missing_note_short,
+  missing_evidence_metadata: counters.missing_evidence_metadata,
+  canonical_without_supported_public_role: canonicalWithoutSupportedRole,
+  canonical_without_japanese_name: canonicalWithoutJapaneseName,
+  canonical_without_note_and_evidence: canonicalWithoutNoteAndEvidence
+};
+
+const measuredFloors = {
+  dictionary_records: rows.length,
+  canonical_identities: groups.size,
+  supported_public_role_records: counters.supported_public_role,
+  canonical_with_supported_public_role: canonicalWithSupportedRole
+};
+
+for (const [metric, ceiling] of Object.entries(BASELINE_DEBT_CEILINGS)) {
+  if (measuredDebt[metric] > ceiling) {
+    structuralFailures.push(`completion debt regression ${metric}: ${measuredDebt[metric]} exceeds frozen ceiling ${ceiling}`);
+  }
+}
+for (const [metric, floor] of Object.entries(BASELINE_FLOORS)) {
+  if (measuredFloors[metric] < floor) {
+    structuralFailures.push(`completion readiness regression ${metric}: ${measuredFloors[metric]} below frozen floor ${floor}`);
+  }
+}
+
 const report = {
   status: structuralFailures.length ? 'fail' : 'pass',
   phase: 'cosmetics-completion-readiness-inventory',
+  baseline_main_sha: 'c979c8a06a2a6491d66a0647533cb572a183602d',
   dictionary_files: DATA_FILES.length,
   dictionary_records: rows.length,
   canonical_identities: groups.size,
@@ -187,6 +240,8 @@ const report = {
     public_role_ready_percent: groups.size ? Number((canonicalWithSupportedRole / groups.size * 100).toFixed(2)) : 0,
     ingredient_note_with_evidence_percent: groups.size ? Number((canonicalWithNoteAndEvidence / groups.size * 100).toFixed(2)) : 0
   },
+  debt_ceiling: BASELINE_DEBT_CEILINGS,
+  readiness_floor: BASELINE_FLOORS,
   unsupported_public_role_categories: topCounts(unsupportedCategoryCounts),
   records_by_file: topCounts(fileCounts, DATA_FILES.length),
   completion_definition: {
