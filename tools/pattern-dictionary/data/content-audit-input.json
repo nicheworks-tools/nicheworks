@@ -1,0 +1,6763 @@
+{
+  "count": 100,
+  "qualified_terms": [
+    "adire",
+    "african-wax-print",
+    "ajrakh",
+    "bandhani",
+    "baroque-scroll",
+    "basketweave",
+    "batik",
+    "block-print",
+    "bogolan",
+    "botanical-print",
+    "breton-stripe",
+    "chinoiserie",
+    "chintz",
+    "flame-stitch",
+    "herringbone",
+    "ikat",
+    "ivy",
+    "jacobean-floral",
+    "kalamkari",
+    "kanoko",
+    "kantha",
+    "kente",
+    "kilim",
+    "koushi",
+    "kuba-cloth",
+    "madras-check",
+    "marbling",
+    "moire",
+    "moroccan-trellis",
+    "ogee",
+    "otomi-embroidery",
+    "prince-of-wales-check",
+    "regimental-stripe",
+    "same-komon",
+    "sashiko",
+    "shibori",
+    "suzani",
+    "swiss-dot",
+    "terrazzo",
+    "tie-dye",
+    "toile-de-jouy"
+  ],
+  "patterns": [
+    {
+      "id": "houndstooth",
+      "verification_state": "verified",
+      "term_scope": "two-color broken twill/check pattern",
+      "names": {
+        "ja": "千鳥格子",
+        "en": "Houndstooth"
+      },
+      "aliases": {
+        "ja": [
+          "ハウンドトゥース"
+        ],
+        "en": [
+          "hound's tooth",
+          "dogtooth check"
+        ]
+      },
+      "definition": {
+        "ja": "2色の糸で作るブロークンツイル系のチェックで、先の尖った四方向の形が連続して見える柄です。",
+        "en": "A two-color broken-twill check whose repeat forms jagged, four-pointed shapes."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "尖った四方向の形が規則的に反復する",
+          "通常の格子より輪郭が崩れ、歯や鳥のシルエットのように見える",
+          "色よりもギザギザした反復構造で識別する"
+        ],
+        "en": [
+          "Look for jagged four-pointed units in a regular repeat",
+          "The check is visually broken rather than made of plain square cells",
+          "Identify it by the pointed repeat, not by a specific colorway"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "コート",
+          "ジャケット",
+          "スーツ",
+          "スカート",
+          "マフラー",
+          "バッグ",
+          "インテリア生地"
+        ],
+        "en": [
+          "coats",
+          "jackets",
+          "suits",
+          "skirts",
+          "scarves",
+          "bags",
+          "furnishing textiles"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Museum of Fine Arts Boston / CAMEO",
+          "url": "https://cameo.mfa.org/wiki/Houndstooth_check",
+          "supports": [
+            "English term",
+            "dogtooth alias",
+            "two-color broken twill structure"
+          ]
+        },
+        {
+          "publisher": "Kotobank / Shogakukan",
+          "url": "https://kotobank.jp/word/%E3%81%AF%E3%81%86%E3%82%93%E3%81%A9%E3%81%A8%E3%81%86%E3%83%BC%E3%81%99-599646",
+          "supports": [
+            "Japanese name equivalence",
+            "hound's tooth naming"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gingham",
+      "verification_state": "verified",
+      "term_scope": "checked cloth / regular two-color check appearance",
+      "names": {
+        "ja": "ギンガムチェック",
+        "en": "Gingham"
+      },
+      "aliases": {
+        "ja": [
+          "ギンガム"
+        ],
+        "en": []
+      },
+      "definition": {
+        "ja": "白地と有色糸の縦横の帯が同じリズムで交差し、明暗の四角が規則的に並ぶチェックです。",
+        "en": "A regular check created by crossing colored and white bands, producing repeated light, medium, and darker squares."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "縦横の帯幅が揃い、規則的な四角が並ぶ",
+          "交差部が濃く見え、中間色と白地が繰り返される",
+          "複雑な太細線よりも均等な反復が目印"
+        ],
+        "en": [
+          "Equal-width horizontal and vertical bands form regular squares",
+          "Intersections read darker than the single-color bands",
+          "The even rhythm distinguishes it from more complex plaids"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "シャツ",
+          "ワンピース",
+          "エプロン",
+          "テーブルクロス",
+          "寝具",
+          "雑貨"
+        ],
+        "en": [
+          "shirts",
+          "dresses",
+          "aprons",
+          "table linens",
+          "bedding",
+          "accessories"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Cambridge Dictionary",
+          "url": "https://dictionary.cambridge.org/dictionary/english/gingham",
+          "supports": [
+            "English term",
+            "cotton cloth",
+            "colored-square check on white ground"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tartan",
+      "verification_state": "verified",
+      "term_scope": "woven design / repeated sett",
+      "names": {
+        "ja": "タータン",
+        "en": "Tartan"
+      },
+      "aliases": {
+        "ja": [
+          "タータンチェック"
+        ],
+        "en": [
+          "tartan check"
+        ]
+      },
+      "definition": {
+        "ja": "複数色の縦横のストライプを一定の順序と幅で反復し、格子状の「sett」を作る織柄です。",
+        "en": "A woven design in which colored stripes repeat vertically and horizontally in a defined sequence and proportion to form a sett."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "縦と横で同じ色列が交差する",
+          "線の色順と幅の比率が個々のタータン識別に関わる",
+          "単なる多色チェックよりsettの反復を重視する"
+        ],
+        "en": [
+          "The same stripe sequence crosses in warp and weft",
+          "Color order and stripe proportions matter to a specific tartan sett",
+          "The repeated sett distinguishes tartan from a generic multicolor plaid"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "キルト",
+          "スカート",
+          "マフラー",
+          "ジャケット",
+          "ブランケット",
+          "服飾小物"
+        ],
+        "en": [
+          "kilts",
+          "skirts",
+          "scarves",
+          "jackets",
+          "blankets",
+          "fashion accessories"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Scottish Register of Tartans",
+          "url": "https://www.tartanregister.gov.uk/FAQ",
+          "supports": [
+            "statutory definition",
+            "sett terminology",
+            "role of color sequence and stripe proportions"
+          ]
+        },
+        {
+          "publisher": "Kotobank",
+          "url": "https://kotobank.jp/word/%E3%81%9F%E3%83%BC%E3%81%9F%E3%82%93-3182845",
+          "supports": [
+            "Japanese term",
+            "tartan-check alias"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "glen-check",
+      "verification_state": "verified",
+      "term_scope": "compound check / glen plaid",
+      "names": {
+        "ja": "グレンチェック",
+        "en": "Glen Check"
+      },
+      "aliases": {
+        "ja": [
+          "グレナカートチェック"
+        ],
+        "en": [
+          "glen plaid",
+          "Glenurquhart check"
+        ]
+      },
+      "definition": {
+        "ja": "細かなチェックやブロークンチェックを組み合わせ、さらに大きな格子として見える複合チェックです。",
+        "en": "A compound check combining small checks and broken checks so that a larger-scale plaid emerges."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "小さな格子の集合がさらに大きな格子を作る",
+          "遠目では灰色調や細かな織柄に見えやすい",
+          "単純な千鳥格子より複数スケールの格子がある"
+        ],
+        "en": [
+          "Small checks combine into a larger-scale check",
+          "It often reads as a fine gray or muted texture from a distance",
+          "Multiple check scales distinguish it from plain houndstooth"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "スーツ",
+          "ジャケット",
+          "パンツ",
+          "コート",
+          "帽子",
+          "インテリア生地"
+        ],
+        "en": [
+          "suits",
+          "jackets",
+          "trousers",
+          "coats",
+          "hats",
+          "furnishing textiles"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Collins English Dictionary",
+          "url": "https://www.collinsdictionary.com/us/dictionary/english/glen-plaid",
+          "supports": [
+            "glen plaid / glen check equivalence",
+            "compound irregular-check structure",
+            "common muted palette"
+          ]
+        },
+        {
+          "publisher": "Kotobank / Shogakukan",
+          "url": "https://kotobank.jp/word/%E3%81%90%E3%82%8C%E3%82%93%E3%81%A1%E3%81%88%E3%81%A4%E3%81%8F-3210361",
+          "supports": [
+            "Japanese name",
+            "small-checks forming larger check"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "argyle",
+      "verification_state": "verified",
+      "term_scope": "diamond-pattern family used especially in knitwear",
+      "names": {
+        "ja": "アーガイル",
+        "en": "Argyle"
+      },
+      "aliases": {
+        "ja": [
+          "アーガイルチェック"
+        ],
+        "en": [
+          "argyle pattern"
+        ]
+      },
+      "definition": {
+        "ja": "色の異なる菱形を反復し、細い斜線が菱形の上を交差する構成が多い幾何学柄です。",
+        "en": "A repeating diamond pattern, commonly with thin diagonal lines crossing over the colored lozenges."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "菱形が規則的に並ぶ",
+          "細い対角線が菱形を横切る構成が典型的",
+          "単なるダイヤ柄より線の重なりが識別の手掛かり"
+        ],
+        "en": [
+          "Repeating diamonds or lozenges form the base",
+          "Thin diagonal lines commonly cross the diamonds",
+          "The overlaid diagonal network helps distinguish argyle from a plain diamond repeat"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "セーター",
+          "ベスト",
+          "靴下",
+          "ゴルフウェア",
+          "バッグ",
+          "ブランケット"
+        ],
+        "en": [
+          "sweaters",
+          "vests",
+          "socks",
+          "golfwear",
+          "bags",
+          "blankets"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Cambridge Dictionary",
+          "url": "https://dictionary.cambridge.org/us/dictionary/english/argyle",
+          "supports": [
+            "English term",
+            "multicolored diamond structure",
+            "socks/sweaters use"
+          ]
+        },
+        {
+          "publisher": "Kotobank",
+          "url": "https://kotobank.jp/word/%E3%81%82%E3%83%BC%E3%81%8C%E3%81%84%E3%82%8B-3177059",
+          "supports": [
+            "Japanese term",
+            "multicolor diamond pattern",
+            "knitwear use"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chevron",
+      "verification_state": "verified",
+      "term_scope": "geometric V/zigzag motif family",
+      "names": {
+        "ja": "シェブロン",
+        "en": "Chevron"
+      },
+      "aliases": {
+        "ja": [
+          "山形模様"
+        ],
+        "en": [
+          "chevron pattern"
+        ]
+      },
+      "definition": {
+        "ja": "V字または山形の帯を連続させ、規則的なジグザグを作る幾何学模様です。",
+        "en": "A geometric repeat built from V-shaped units or bands that create a regular zigzag."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "V字が同じ向きと間隔で連続する",
+          "山と谷が明瞭なジグザグ線になる",
+          "ヘリンボーンのような短い斜線の組み合わせではなく、連続Vを優先して見る"
+        ],
+        "en": [
+          "Repeated V-shaped units form clear peaks and valleys",
+          "The zigzag is continuous and regular",
+          "Unlike herringbone, the primary cue is a continuous V rhythm rather than offset short strokes"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "壁紙",
+          "ラグ",
+          "クッション",
+          "服地",
+          "タイル",
+          "包装デザイン"
+        ],
+        "en": [
+          "wallpaper",
+          "rugs",
+          "cushions",
+          "apparel textiles",
+          "tile",
+          "packaging"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Smarthistory",
+          "url": "https://smarthistory.org/motifs-and-patterns-fundamentals-of-design-vocabulary/",
+          "supports": [
+            "chevron as zigzag motif",
+            "textile use"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/708512",
+          "supports": [
+            "historic textile-design use of a chevron base pattern"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "polka-dot",
+      "verification_state": "verified",
+      "term_scope": "regular repeated round-dot surface pattern",
+      "names": {
+        "ja": "水玉",
+        "en": "Polka Dot"
+      },
+      "aliases": {
+        "ja": [
+          "水玉模様",
+          "ドット柄"
+        ],
+        "en": [
+          "polka-dot",
+          "polkadot"
+        ]
+      },
+      "definition": {
+        "ja": "同程度の大きさの丸い点を一定の間隔で反復する水玉模様です。",
+        "en": "A surface pattern of regularly repeated round dots, usually consistent in size and spacing."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "丸い点が多数反復する",
+          "点の大きさと間隔に規則性がある",
+          "不規則な斑点や動物柄ではなく、人工的な配置が目印"
+        ],
+        "en": [
+          "Many round dots repeat across the surface",
+          "Dot size and spacing are usually regular",
+          "The ordered placement distinguishes it from irregular spots or animal markings"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ワンピース",
+          "ブラウス",
+          "スカーフ",
+          "子ども服",
+          "食器",
+          "包装",
+          "インテリア"
+        ],
+        "en": [
+          "dresses",
+          "blouses",
+          "scarves",
+          "children's wear",
+          "tableware",
+          "packaging",
+          "interiors"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Cambridge Dictionary",
+          "url": "https://dictionary.cambridge.org/dictionary/english/polka-dot",
+          "supports": [
+            "English term and spelling variants",
+            "round spots",
+            "regular repeat"
+          ]
+        },
+        {
+          "publisher": "Kotobank / Shogakukan",
+          "url": "https://kotobank.jp/jeword/%E6%A8%A1%E6%A7%98",
+          "supports": [
+            "Japanese water-dot wording mapped to polka-dot pattern"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "moroccan-trellis",
+      "verification_state": "qualified",
+      "term_scope": "contemporary decorative/design-market descriptor",
+      "names": {
+        "ja": "モロッカントレリス",
+        "en": "Moroccan Trellis"
+      },
+      "aliases": {
+        "ja": [
+          "モロッカン格子"
+        ],
+        "en": [
+          "Moroccan lattice",
+          "lantern pattern",
+          "Casbah trellis"
+        ]
+      },
+      "definition": {
+        "ja": "丸みのある辺と上下の尖りをもつ格子セルなどを反復する、現代のインテリア市場で「Moroccan Trellis」と呼ばれる装飾柄の総称的ラベルです。",
+        "en": "A contemporary decorative-market label for repeating lattice cells, often with rounded sides and pointed top and bottom."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "同形の格子セルが連続して面を埋める",
+          "セルはランタン形・四つ葉形に近い変種を含む",
+          "歴史的に単一のモロッコ正典文様と断定せず、市場ラベルとして扱う"
+        ],
+        "en": [
+          "Repeating lattice cells fill the surface",
+          "Common variants resemble lantern or quatrefoil-like cells",
+          "Treat the term as a contemporary market label, not as one uniquely canonical historic Moroccan motif"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ラグ",
+          "カーテン",
+          "クッション",
+          "壁紙",
+          "タイル風プリント",
+          "寝具"
+        ],
+        "en": [
+          "rugs",
+          "curtains",
+          "cushions",
+          "wallpaper",
+          "tile-inspired prints",
+          "bedding"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Isthmus / University of Wisconsin design commentary",
+          "url": "https://isthmus.com/arts/emphasis/design-tile-moroccan-trellis/",
+          "supports": [
+            "common contemporary name",
+            "lantern/Casbah/quatrefoil variants",
+            "interior-design usage"
+          ]
+        },
+        {
+          "publisher": "TM Interiors",
+          "url": "https://tm-interiors.co.uk/fabric-guide/guide-to-common-fabric-patterns",
+          "supports": [
+            "Moroccan lattice/trellis label",
+            "rounded-and-pointed repeating cell description"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seigaiha",
+      "verification_state": "verified",
+      "term_scope": "named Japanese traditional motif",
+      "names": {
+        "ja": "青海波",
+        "en": "Seigaiha"
+      },
+      "aliases": {
+        "ja": [
+          "青海波文"
+        ],
+        "en": [
+          "seigaiha pattern"
+        ]
+      },
+      "definition": {
+        "ja": "同心円状の半円弧を扇形に重ね、波が連なって見える日本の伝統文様です。",
+        "en": "A Japanese traditional motif made from overlapping concentric semicircular arcs arranged like repeating waves."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "半円の中に複数の同心弧がある",
+          "半円同士が段違いに重なり波の列を作る",
+          "単なる鱗形や円弧ではなく扇状の波の反復が目印"
+        ],
+        "en": [
+          "Each fan contains several concentric arcs",
+          "The fans overlap in staggered rows to read as waves",
+          "The layered wave-fan repeat distinguishes it from simple scallops"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "手ぬぐい",
+          "風呂敷",
+          "陶磁器",
+          "包装紙",
+          "和雑貨"
+        ],
+        "en": [
+          "kimono",
+          "tenugui",
+          "furoshiki",
+          "ceramics",
+          "wrapping paper",
+          "Japanese goods"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Agency for Cultural Affairs / Cultural Heritage Online",
+          "url": "https://online.bunka.go.jp/heritages/detail/248366",
+          "supports": [
+            "Japanese name",
+            "overlapping semicircle wave structure",
+            "historical textile use"
+          ]
+        },
+        {
+          "publisher": "Agency for Cultural Affairs / Cultural Heritage Online",
+          "url": "https://online.bunka.go.jp/heritages/detail/587897",
+          "supports": [
+            "fan-like concentric circles stacked as waves",
+            "name context"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "asanoha",
+      "verification_state": "verified",
+      "term_scope": "named Japanese traditional geometric motif",
+      "names": {
+        "ja": "麻の葉",
+        "en": "Asanoha"
+      },
+      "aliases": {
+        "ja": [
+          "麻の葉文"
+        ],
+        "en": [
+          "hemp-leaf pattern"
+        ]
+      },
+      "definition": {
+        "ja": "正六角形を基礎に放射状の線を組み、麻の葉を思わせる星形が連続する日本の幾何学文様です。",
+        "en": "A Japanese geometric motif built from regular hexagons and radiating lines, forming star-like units associated with hemp leaves."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "六角形を基礎に細線が中心から放射する",
+          "六方向の星形・葉形が連続する",
+          "亀甲より内部線が多く、星状の細かな分割が目立つ"
+        ],
+        "en": [
+          "Regular hexagons provide the underlying grid",
+          "Radiating lines create six-point star or leaf-like units",
+          "More internal spokes than kikko make the star-like subdivision prominent"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "手ぬぐい",
+          "木工・組子風デザイン",
+          "包装",
+          "インテリア"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "tenugui",
+          "lattice-inspired design",
+          "packaging",
+          "interiors"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Agency for Cultural Affairs / Cultural Heritage Online",
+          "url": "https://online.bunka.go.jp/index.php/heritages/detail/587667",
+          "supports": [
+            "Japanese name",
+            "regular-hexagon/star geometry",
+            "hemp-leaf naming",
+            "textile use"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shippo",
+      "verification_state": "verified",
+      "term_scope": "named Japanese interlocking-circle motif",
+      "names": {
+        "ja": "七宝",
+        "en": "Shippo"
+      },
+      "aliases": {
+        "ja": [
+          "七宝文",
+          "七宝繋ぎ"
+        ],
+        "en": [
+          "shippo pattern",
+          "interlocking circles"
+        ]
+      },
+      "definition": {
+        "ja": "同じ大きさの円弧を四分の一ずつ重ね、連続した円形・花形を作る日本の伝統文様です。",
+        "en": "A Japanese traditional motif formed by overlapping equal circular arcs to create a continuous network of circles and petal-like intersections."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "同じ半径の円が規則的に重なる",
+          "交差部に四弁の花のような形が現れる",
+          "青海波より完全な円のネットワークとして見える"
+        ],
+        "en": [
+          "Equal-radius circles overlap in a regular network",
+          "Intersections create four-petal flower-like shapes",
+          "It reads as interlocking circles rather than the fan-shaped wave units of seigaiha"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "陶磁器",
+          "漆器",
+          "包装紙",
+          "和雑貨"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "ceramics",
+          "lacquerware",
+          "wrapping paper",
+          "Japanese goods"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Agency for Cultural Affairs / Cultural Heritage Online",
+          "url": "https://online.bunka.go.jp/heritages/detail/588607",
+          "supports": [
+            "Japanese name",
+            "quarter-overlapped equal-circle construction",
+            "continuous motif"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ichimatsu",
+      "verification_state": "verified",
+      "term_scope": "Japanese name for alternating-square/checker motif",
+      "names": {
+        "ja": "市松",
+        "en": "Ichimatsu"
+      },
+      "aliases": {
+        "ja": [
+          "市松模様",
+          "石畳",
+          "霰"
+        ],
+        "en": [
+          "ichimatsu pattern",
+          "checker pattern"
+        ]
+      },
+      "definition": {
+        "ja": "対照的な色や明度の正方形を交互に並べる、日本で「市松」と呼ばれる格子文様です。",
+        "en": "The Japanese term for a checker arrangement of alternating square cells in contrasting colors or values."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "同じ大きさの正方形が縦横に並ぶ",
+          "隣り合うマスが交互に色・明度を変える",
+          "色自体は固定されず、交互配列が本体"
+        ],
+        "en": [
+          "Equal-size square cells form a grid",
+          "Adjacent cells alternate in color or value",
+          "The alternating arrangement defines the motif; the colors are not fixed"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "バッグ",
+          "タイル",
+          "床材",
+          "包装",
+          "グラフィック"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "bags",
+          "tile",
+          "flooring",
+          "packaging",
+          "graphic design"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "National Diet Library",
+          "url": "https://www.ndl.go.jp/kaleido/entry/34/2.html",
+          "supports": [
+            "Ichimatsu name origin",
+            "older arare/ishidatami names"
+          ]
+        },
+        {
+          "publisher": "National Diet Library Collaborative Reference Database",
+          "url": "https://crd.ndl.go.jp/reference/entry/index.php?id=1000289587&page=ref_view",
+          "supports": [
+            "alternating squares",
+            "colors are not fixed"
+          ]
+        },
+        {
+          "publisher": "Agency for Cultural Affairs / Cultural Heritage Online",
+          "url": "https://online.bunka.go.jp/heritages/detail/457252",
+          "supports": [
+            "historic textile example with alternating colored squares called ichimatsu"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kikko",
+      "verification_state": "verified",
+      "term_scope": "named Japanese hexagonal tortoiseshell motif",
+      "names": {
+        "ja": "亀甲",
+        "en": "Kikko"
+      },
+      "aliases": {
+        "ja": [
+          "亀甲文"
+        ],
+        "en": [
+          "kikko pattern",
+          "tortoiseshell pattern"
+        ]
+      },
+      "definition": {
+        "ja": "正六角形を連続させ、亀の甲羅を思わせる日本の伝統的な幾何学文様です。",
+        "en": "A Japanese traditional geometric motif based on repeating hexagons associated with tortoiseshell."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "六角形が隙間なく連続する",
+          "基本形は内部の放射線を必要としない",
+          "麻の葉より単純な六角セルの輪郭が主役"
+        ],
+        "en": [
+          "Hexagons repeat in a close tessellation",
+          "The basic form does not require the internal spokes seen in asanoha",
+          "The hexagonal cell outline is the primary cue"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "和紙",
+          "陶磁器",
+          "建具",
+          "包装"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "washi",
+          "ceramics",
+          "architectural fittings",
+          "packaging"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Agency for Cultural Affairs / Cultural Heritage Online",
+          "url": "https://online.bunka.go.jp/heritages/detail/621195",
+          "supports": [
+            "Japanese name",
+            "regular-hexagon definition",
+            "tortoiseshell naming",
+            "honeycomb English comparison"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "karakusa",
+      "verification_state": "verified",
+      "term_scope": "Japanese scrolling-vine motif family",
+      "names": {
+        "ja": "唐草",
+        "en": "Karakusa"
+      },
+      "aliases": {
+        "ja": [
+          "唐草文様",
+          "唐草模様"
+        ],
+        "en": [
+          "karakusa pattern",
+          "Japanese arabesque"
+        ]
+      },
+      "definition": {
+        "ja": "茎やつるが曲線で連続し、葉や枝を伸ばしながら反復する日本の唐草文様です。",
+        "en": "A Japanese scrolling-vine motif in which stems and tendrils continue in flowing curves with leaves or offshoots."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "途切れにくい蔓状の曲線が連続する",
+          "葉や枝が主線から伸びる",
+          "ペイズリーの独立した滴形より、つながる蔓の流れを重視する"
+        ],
+        "en": [
+          "Continuous vine-like curves travel across the surface",
+          "Leaves or branches grow from the main scroll",
+          "The connected vine flow distinguishes it from separate paisley boteh units"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "風呂敷",
+          "手ぬぐい",
+          "陶磁器",
+          "着物",
+          "包装",
+          "インテリア"
+        ],
+        "en": [
+          "furoshiki",
+          "tenugui",
+          "ceramics",
+          "kimono",
+          "packaging",
+          "interiors"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Agency for Cultural Affairs / Cultural Heritage Online",
+          "url": "https://online.bunka.go.jp/heritages/detail/651736",
+          "supports": [
+            "Japanese karakusa name",
+            "historic stencil/textile use"
+          ]
+        },
+        {
+          "publisher": "Ministry of Agriculture, Forestry and Fisheries",
+          "url": "https://www.maff.go.jp/j/pr/aff/1802/pdf/1802_06.pdf",
+          "supports": [
+            "karakusa as traditional Japanese pattern representing plants",
+            "furoshiki association"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "damask",
+      "verification_state": "verified",
+      "term_scope": "reversible figured weave / damask-derived ornamental surface pattern",
+      "names": {
+        "ja": "ダマスク",
+        "en": "Damask"
+      },
+      "aliases": {
+        "ja": [
+          "ダマスク柄"
+        ],
+        "en": [
+          "damask pattern"
+        ]
+      },
+      "definition": {
+        "ja": "本来は表裏で地と文様の光沢関係が反転する織物・織組織を指し、現代の表面デザインでは大きな植物・花文様の反復を「ダマスク柄」と呼ぶことがあります。",
+        "en": "Originally a figured, often reversible weave in which pattern and ground contrast through weave structure; in modern surface design, 'damask pattern' often refers to large repeating floral or foliate motifs derived from that look."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "大きな植物・花・葉のモチーフが反復する表面柄が多い",
+          "左右対称に見える構成は一般的だが絶対条件ではない",
+          "歴史的な定義はモチーフ形より織組織にある"
+        ],
+        "en": [
+          "Modern surface versions often repeat large floral or foliate motifs",
+          "Symmetry is common but not an absolute defining rule",
+          "Historically, damask is defined by weave structure rather than one fixed motif shape"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "カーテン",
+          "壁紙",
+          "椅子張り",
+          "テーブルリネン",
+          "ドレス地",
+          "寝具"
+        ],
+        "en": [
+          "curtains",
+          "wallpaper",
+          "upholstery",
+          "table linen",
+          "dress textiles",
+          "bedding"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Fitzwilliam Museum / Getty AAT terminology",
+          "url": "https://data.fitzmuseum.cam.ac.uk/id/terminology/term-40147",
+          "supports": [
+            "damask terminology",
+            "one-warp/one-weft structure",
+            "reversed face/back pattern"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/216471",
+          "supports": [
+            "visual effect from shiny warp face versus matte weft face",
+            "furnishing and dress uses"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arabesque",
+      "verification_state": "verified",
+      "term_scope": "scrolling vegetal and geometric ornamental tradition",
+      "names": {
+        "ja": "アラベスク",
+        "en": "Arabesque"
+      },
+      "aliases": {
+        "ja": [
+          "アラベスク文様"
+        ],
+        "en": [
+          "arabesque pattern"
+        ]
+      },
+      "definition": {
+        "ja": "植物の茎・葉を抽象化した連続曲線や幾何学的反復を組み合わせる装飾様式・文様群です。",
+        "en": "An ornamental tradition using rhythmic scrolling vegetal forms, geometric repetition, or combinations of the two."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "曲線的なつる・葉が反復しながら連続する",
+          "幾何学的な反復と組み合わさる場合がある",
+          "単一の固定モチーフ名ではなく装飾様式の広いカテゴリー"
+        ],
+        "en": [
+          "Scrolling vegetal curves repeat rhythmically",
+          "Geometric repetition may be combined with foliage",
+          "It is a broad ornamental category rather than one single fixed motif"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "建築装飾",
+          "タイル",
+          "壁紙",
+          "テキスタイル",
+          "金工",
+          "グラフィック"
+        ],
+        "en": [
+          "architectural ornament",
+          "tile",
+          "wallpaper",
+          "textiles",
+          "metalwork",
+          "graphic design"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/ko/essays/vegetal-patterns-in-islamic-art",
+          "supports": [
+            "term history",
+            "Islamic vegetal-pattern context",
+            "scholarly caution on the term"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/447782",
+          "supports": [
+            "rhythmical vine-scroll and foliate definition",
+            "infinite-extension structure"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paisley",
+      "verification_state": "verified",
+      "term_scope": "boteh-based ornamental repeat",
+      "names": {
+        "ja": "ペイズリー",
+        "en": "Paisley"
+      },
+      "aliases": {
+        "ja": [
+          "ペイズリー柄"
+        ],
+        "en": [
+          "paisley pattern",
+          "boteh pattern"
+        ]
+      },
+      "definition": {
+        "ja": "先端が曲がった滴形・葉形の「boteh」を主要モチーフとして反復する装飾柄です。",
+        "en": "An ornamental repeat built around the boteh, a curved teardrop- or leaf-like motif."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "先端が一方向へ曲がる滴形・葉形が中心",
+          "内部に細かな植物・幾何学装飾を持つことが多い",
+          "唐草のような連続蔓ではなく、独立したboteh単位が見分けやすい"
+        ],
+        "en": [
+          "Curved teardrop or leaf-shaped boteh units are the main cue",
+          "The motifs often contain smaller floral or geometric decoration",
+          "Separate boteh units distinguish paisley from a continuous vine scroll"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "スカーフ",
+          "バンダナ",
+          "ネクタイ",
+          "シャツ",
+          "ドレス",
+          "壁紙",
+          "寝具"
+        ],
+        "en": [
+          "scarves",
+          "bandanas",
+          "ties",
+          "shirts",
+          "dresses",
+          "wallpaper",
+          "bedding"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/157846",
+          "supports": [
+            "boteh form",
+            "Indian/Persian context",
+            "Paisley naming"
+          ]
+        },
+        {
+          "publisher": "Smithsonian National Museum of Asian Art",
+          "url": "https://asia-archive.si.edu/collections/new/acquisitions-2017/S2017.14/",
+          "supports": [
+            "paisley motif as boteh",
+            "tear-shaped description",
+            "Persian textile context"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leopard-print",
+      "verification_state": "verified",
+      "term_scope": "animal-print imitation of leopard coat markings",
+      "names": {
+        "ja": "レオパード柄",
+        "en": "Leopard Print"
+      },
+      "aliases": {
+        "ja": [
+          "ヒョウ柄",
+          "豹柄"
+        ],
+        "en": [
+          "leopard pattern",
+          "leopard spots"
+        ]
+      },
+      "definition": {
+        "ja": "ヒョウの被毛に見られる斑紋を模したアニマルプリントで、輪状・ロゼット状の斑点と不規則な点が組み合わさります。",
+        "en": "An animal print imitating leopard coat markings, using irregular spots and rosette-like ringed markings."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "斑点の位置と大きさが規則正しく揃わない",
+          "単純な黒点だけでなく輪状・ロゼット状の斑が混じる",
+          "水玉のような等間隔の反復ではない"
+        ],
+        "en": [
+          "Spot size and placement are irregular",
+          "Ringed or rosette-like marks mix with solid spots",
+          "It lacks the even spacing and uniform dots of polka dot"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "コート",
+          "バッグ",
+          "靴",
+          "スカーフ",
+          "トップス",
+          "ネイル・雑貨"
+        ],
+        "en": [
+          "coats",
+          "bags",
+          "shoes",
+          "scarves",
+          "tops",
+          "nail art and accessories"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Victoria and Albert Museum",
+          "url": "https://www.vam.ac.uk/articles/fashion-inspired-by-the-natural-world",
+          "supports": [
+            "leopard print in fashion",
+            "rosette distinction",
+            "animal-pattern inspiration"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ikat",
+      "verification_state": "qualified",
+      "term_scope": "resist-dyeing technique applied to yarn before weaving",
+      "names": {
+        "ja": "イカット",
+        "en": "Ikat"
+      },
+      "aliases": {
+        "ja": [
+          "絣",
+          "イカット柄"
+        ],
+        "en": [
+          "ikat weave",
+          "ikat textile"
+        ]
+      },
+      "definition": {
+        "ja": "織る前の経糸・緯糸または両方を部分的に防染してから織る技法で、その工程に由来する輪郭のにじみ・ずれがイカットらしい表情を作ります。",
+        "en": "A resist-dyeing technique in which warp, weft, or both are bound and dyed before weaving; the process often produces softly feathered or shifted motif edges."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "モチーフの輪郭にわずかなずれやぼかしが見える",
+          "幾何学形や植物形など多様で、形そのものは固定されない",
+          "単一の柄名ではなく制作技法として扱う"
+        ],
+        "en": [
+          "Motif edges often look softly feathered or slightly misregistered",
+          "Geometric and floral motifs vary widely; no single shape defines ikat",
+          "Treat ikat primarily as a textile technique rather than one fixed pattern"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "布地",
+          "衣服",
+          "サロン",
+          "クッション",
+          "ラグ",
+          "インテリアテキスタイル"
+        ],
+        "en": [
+          "textiles",
+          "garments",
+          "sarongs",
+          "cushions",
+          "rugs",
+          "furnishing fabrics"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/pt/essays/textiles-island-southeast-asia",
+          "supports": [
+            "pre-weave resist-dye process",
+            "warp/weft variants",
+            "soft-edge visual result"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/de/press-releases/the-fabric-of-life-ikat-textiles-of-indonesia-2006-exhibitions",
+          "supports": [
+            "term derived from tying",
+            "technique creates diverse imagery rather than one motif"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kilim",
+      "verification_state": "qualified",
+      "term_scope": "flat-woven textile category and kilim-inspired visual family, not one fixed motif",
+      "names": {
+        "ja": "キリム柄",
+        "en": "Kilim Pattern"
+      },
+      "aliases": {
+        "ja": [
+          "キリム",
+          "キリム模様"
+        ],
+        "en": [
+          "Kilim",
+          "kelim",
+          "kilim rug pattern"
+        ]
+      },
+      "definition": {
+        "ja": "キリムは毛足のない平織り系の敷物・織物カテゴリーで、表面には菱形、フック、帯状幾何学など多様なモチーフが用いられます。本辞典では市場でいう「キリム柄」を、その外観を指す検索ラベルとして扱います。",
+        "en": "Kilim is a category of pileless flat-woven rugs and textiles that can carry many geometric motifs. Here, 'kilim pattern' is treated as a search label for that visual family rather than one single canonical motif."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "平面的な織物上に幾何学モチーフが反復することが多い",
+          "菱形・フック・帯など複数のモチーフ体系を含む",
+          "一つの固定柄ではなくキリム外観の検索カテゴリーとして扱う"
+        ],
+        "en": [
+          "Flat-woven surfaces often carry repeated geometric motifs",
+          "Diamonds, hooks, bands, and other motifs vary across kilims",
+          "Treat it as a visual search family, not as one fixed canonical pattern"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ラグ",
+          "クッション",
+          "バッグ",
+          "椅子張り",
+          "壁掛け",
+          "インテリア雑貨"
+        ],
+        "en": [
+          "rugs",
+          "cushions",
+          "bags",
+          "upholstery",
+          "wall hangings",
+          "interior accessories"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Encyclopaedia Iranica",
+          "url": "https://www.iranicaonline.org/articles/kelim/",
+          "supports": [
+            "kelim/kilim terminology",
+            "flat-woven carpet category",
+            "diverse designs and colors"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/787736",
+          "supports": [
+            "kilim as flat-woven tapestry",
+            "regional textile context"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "buffalo-check",
+      "verification_state": "verified",
+      "term_scope": "named large-scale red-and-black check convention",
+      "names": {
+        "ja": "バッファローチェック",
+        "en": "Buffalo Check"
+      },
+      "aliases": {
+        "ja": [
+          "バッファローチェック柄"
+        ],
+        "en": [
+          "buffalo plaid"
+        ]
+      },
+      "definition": {
+        "ja": "大きく均等な二色の格子を反復するチェック柄です。赤と黒の組み合わせが代表的ですが、識別の中心は大きな等間隔の格子です。",
+        "en": "A large, evenly spaced two-color check. Red and black are the best-known combination, but the key cue is the bold regular grid."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "ギンガムより大きな格子として見えることが多い",
+          "縦横の帯幅がそろった単純な二色格子",
+          "赤黒は代表的だが必須条件ではない"
+        ],
+        "en": [
+          "Usually reads at a larger scale than gingham",
+          "Uses a simple regular grid of equal-width crossing bands",
+          "Red and black are conventional rather than mandatory"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "シャツ",
+          "ジャケット",
+          "ブランケット",
+          "バッグ",
+          "インテリア生地"
+        ],
+        "en": [
+          "shirts",
+          "jackets",
+          "blankets",
+          "bags",
+          "furnishing textiles"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Permanent Style",
+          "url": "https://www.permanentstyle.com/2021/01/check-mate-a-guide-to-checked-shirt-patterns.html",
+          "supports": [
+            "Buffalo Check name",
+            "large-scale check relationship to gingham",
+            "red-and-black convention",
+            "Woolrich/Rob Roy historical context"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shepherd-check",
+      "verification_state": "verified",
+      "term_scope": "small even check family",
+      "names": {
+        "ja": "シェパードチェック",
+        "en": "Shepherd's Check"
+      },
+      "aliases": {
+        "ja": [
+          "シェパードチェック柄"
+        ],
+        "en": [
+          "shepherd check",
+          "shepherd's plaid"
+        ]
+      },
+      "definition": {
+        "ja": "細かな二色の線を等間隔で交差させ、小さく均一な格子を作るチェック柄です。黒白が古典的な認識例です。",
+        "en": "A small, even check formed by crossing contrasting stripes at regular intervals, classically in black and white."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "小さく均一な格子が連続する",
+          "千鳥格子のような尖った崩れがない",
+          "ガンクラブチェックより配色と構造が単純"
+        ],
+        "en": [
+          "Repeats small even check cells",
+          "Lacks the jagged tooth-like breakup of houndstooth",
+          "Is simpler in color and layering than gun-club checks"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ジャケット",
+          "スーツ",
+          "パンツ",
+          "スカート",
+          "帽子"
+        ],
+        "en": [
+          "jackets",
+          "suits",
+          "trousers",
+          "skirts",
+          "hats"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Collins English Dictionary",
+          "url": "https://www.collinsdictionary.com/us/dictionary/english/shepherds-check",
+          "supports": [
+            "English term and aliases",
+            "small/even check structure",
+            "black-and-white stripe construction"
+          ]
+        },
+        {
+          "publisher": "Permanent Style",
+          "url": "https://www.permanentstyle.com/2025/12/the-origins-of-tweed-patterns-scottish-estates-and-district-checks.html",
+          "supports": [
+            "relationship to later district and gun-club checks"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "windowpane-check",
+      "verification_state": "verified",
+      "term_scope": "large-scale thin-line check",
+      "names": {
+        "ja": "ウィンドウペーンチェック",
+        "en": "Windowpane Check"
+      },
+      "aliases": {
+        "ja": [
+          "ウィンドーペーン"
+        ],
+        "en": [
+          "windowpane"
+        ]
+      },
+      "definition": {
+        "ja": "細い縦線と横線を広い間隔で交差させ、窓枠のような大きな四角を作るチェック柄です。",
+        "en": "A large-scale check made from thin horizontal and vertical lines spaced widely apart, resembling window panes."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "線が細く、格子の空白が大きい",
+          "タッターソールより色数が少なく単純に見えやすい",
+          "グレンチェックの細かな複合格子とはスケールが異なる"
+        ],
+        "en": [
+          "Uses thin lines around large open cells",
+          "Usually reads more simply than multicolor Tattersall",
+          "Operates at a much larger scale than the fine compound base of Glen Check"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "スーツ",
+          "ジャケット",
+          "シャツ",
+          "パンツ",
+          "インテリア生地"
+        ],
+        "en": [
+          "suits",
+          "jackets",
+          "shirts",
+          "trousers",
+          "furnishing textiles"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Permanent Style",
+          "url": "https://www.permanentstyle.com/2021/01/check-mate-a-guide-to-checked-shirt-patterns.html",
+          "supports": [
+            "Windowpane Check name",
+            "thin-line construction",
+            "large scale",
+            "use as overcheck in Prince of Wales/tartan"
+          ]
+        },
+        {
+          "publisher": "Kotobank / Heibonsha encyclopedia excerpt",
+          "url": "https://kotobank.jp/word/%E3%81%B7%E3%82%89%E3%81%A4%E3%81%A9-3217792",
+          "supports": [
+            "Japanese windowpane terminology",
+            "window-frame-like partitioned check"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "madras-check",
+      "verification_state": "qualified",
+      "term_scope": "Madras textile/check style rather than one fixed grid specification",
+      "names": {
+        "ja": "マドラスチェック",
+        "en": "Madras Check"
+      },
+      "aliases": {
+        "ja": [
+          "マドラス"
+        ],
+        "en": [
+          "madras plaid",
+          "madras"
+        ]
+      },
+      "definition": {
+        "ja": "マドラス／チェンナイの綿織物文化と結びつく、多色の縦横線が交差するチェック系の見た目です。ひとつの固定格子を指す語ではありません。",
+        "en": "A multicolor woven check/plaid appearance associated with Madras/Chennai cotton textiles. It is a textile tradition and style, not one immutable grid."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "複数色の帯が縦横に交差する",
+          "明るい多色使いが現代の強い認識手掛かり",
+          "特定の一種類の格子だけを正解としない"
+        ],
+        "en": [
+          "Uses crossing bands in multiple colors",
+          "Bright multicolor combinations are a strong modern cue",
+          "Should not be reduced to one supposedly authentic repeat"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "シャツ",
+          "ショーツ",
+          "ワンピース",
+          "スカーフ",
+          "パッチワーク"
+        ],
+        "en": [
+          "shirts",
+          "shorts",
+          "dresses",
+          "scarves",
+          "patchwork"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Kotobank / Shogakukan",
+          "url": "https://kotobank.jp/word/%E3%81%BE%E3%81%A9%E3%82%89%E3%81%99%E3%81%A1%E3%81%88%E3%81%A4%E3%81%8F-635299",
+          "supports": [
+            "Japanese term",
+            "Madras/Chennai association",
+            "large check cotton textile"
+          ]
+        },
+        {
+          "publisher": "Smithsonian National Museum of African American History and Culture",
+          "url": "https://nmaahc.si.edu/object/nmaahc_2015.153",
+          "supports": [
+            "Madras-style plaid cotton",
+            "multicolor woven example"
+          ]
+        },
+        {
+          "publisher": "Collins English Dictionary",
+          "url": "https://www.collinsdictionary.com/dictionary/english/madras",
+          "supports": [
+            "madras as cotton/silk fabric term",
+            "woven stripe context"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tattersall",
+      "verification_state": "verified",
+      "term_scope": "thin-line multicolor check on a light ground",
+      "names": {
+        "ja": "タッターソール",
+        "en": "Tattersall"
+      },
+      "aliases": {
+        "ja": [
+          "タッターソールチェック",
+          "タッタソールチェック"
+        ],
+        "en": [
+          "tattersall check"
+        ]
+      },
+      "definition": {
+        "ja": "明るい地色の上に、複数色の細い線を縦横に交差させて四角を作るチェック柄です。",
+        "en": "A check of thin colored crossbars forming repeated squares on a usually light ground, often using more than one stripe color."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "地色が広く見える細線中心の格子",
+          "二色以上の細い線を使うことが多い",
+          "ウィンドウペーンより線と色の組み合わせが細かい"
+        ],
+        "en": [
+          "Leaves substantial light ground visible between thin lines",
+          "Often combines two or more stripe colors",
+          "Is usually finer and more multicolor than Windowpane"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "シャツ",
+          "ジャケット",
+          "ネクタイ",
+          "パンツ",
+          "インテリア生地"
+        ],
+        "en": [
+          "shirts",
+          "jackets",
+          "ties",
+          "trousers",
+          "furnishing textiles"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Collins English Dictionary",
+          "url": "https://www.collinsdictionary.com/us/dictionary/english/tattersall",
+          "supports": [
+            "English term",
+            "crossbar/square structure",
+            "light background",
+            "Tattersall horse-market naming"
+          ]
+        },
+        {
+          "publisher": "Permanent Style",
+          "url": "https://www.permanentstyle.com/2021/01/check-mate-a-guide-to-checked-shirt-patterns.html",
+          "supports": [
+            "thin-line multicolor distinction",
+            "country-shirt usage",
+            "Tattersall naming context"
+          ]
+        },
+        {
+          "publisher": "Kotobank / encyclopedia excerpt",
+          "url": "https://kotobank.jp/word/%E3%81%A1%E3%81%88%E3%81%A4%E3%81%8F-1561696",
+          "supports": [
+            "Japanese Tattersall terminology",
+            "check-family context"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gun-club-check",
+      "verification_state": "verified",
+      "term_scope": "multicolor district-check family derived from shepherd-check variation",
+      "names": {
+        "ja": "ガンクラブチェック",
+        "en": "Gun Club Check"
+      },
+      "aliases": {
+        "ja": [
+          "ガンクラブチェック柄"
+        ],
+        "en": [
+          "gun check"
+        ]
+      },
+      "definition": {
+        "ja": "シェパードチェック系の細かな格子を基礎に、複数の色調や格子層を組み合わせるチェック柄です。",
+        "en": "A multitone district-check family built from a small shepherd-check-like base with added colors or check layers."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "小格子を基礎に複数色が見える",
+          "シェパードチェックより色調と層が複雑",
+          "遠目では細かな混色の格子として見える"
+        ],
+        "en": [
+          "Starts from a small-check base and introduces multiple tones",
+          "Is more layered and colorful than Shepherd's Check",
+          "Can read as a fine blended check from a distance"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ジャケット",
+          "スーツ",
+          "コート",
+          "パンツ",
+          "帽子"
+        ],
+        "en": [
+          "jackets",
+          "suits",
+          "coats",
+          "trousers",
+          "hats"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Kotobank / Shogakukan and Heibonsha",
+          "url": "https://kotobank.jp/word/%E3%81%8C%E3%82%93%E3%81%8F%E3%82%89%E3%81%B6%E3%81%A1%E3%81%88%E3%81%A4%E3%81%8F-469579",
+          "supports": [
+            "Japanese/English term",
+            "combined check construction",
+            "relationship to shepherd check",
+            "historical naming context"
+          ]
+        },
+        {
+          "publisher": "Permanent Style",
+          "url": "https://www.permanentstyle.com/2025/12/the-origins-of-tweed-patterns-scottish-estates-and-district-checks.html",
+          "supports": [
+            "Coigach/Gun Club historical relationship",
+            "shepherd-check base",
+            "multi-tone structure"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prince-of-wales-check",
+      "verification_state": "qualified",
+      "term_scope": "glen-check-derived check convention with modern naming overlap",
+      "names": {
+        "ja": "プリンス・オブ・ウェールズ・チェック",
+        "en": "Prince of Wales Check"
+      },
+      "aliases": {
+        "ja": [
+          "プリンスオブウェールズチェック"
+        ],
+        "en": [
+          "Prince-of-Wales check",
+          "Prince of Wales plaid"
+        ]
+      },
+      "definition": {
+        "ja": "グレンチェック系の細かな複合格子に、より大きな対比色のオーバーチェックを重ねる形で説明されることが多いチェックです。現代ではグレンチェックと同義的に使われる場合もあります。",
+        "en": "A Glen-Check-like compound check commonly distinguished by a larger contrasting overcheck, although modern usage often overlaps with the term Glen Check."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "細かなグレン系格子の上に大きな線格子が見える",
+          "実用上はオーバーチェックの有無が重要な手掛かり",
+          "名称はグレンチェックと重なって使われることがある"
+        ],
+        "en": [
+          "Shows a fine Glen-like base plus a larger overcheck",
+          "The overcheck is the most useful practical cue",
+          "Naming can overlap with Glen Check in modern usage"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "スーツ",
+          "ジャケット",
+          "コート",
+          "パンツ",
+          "ネクタイ"
+        ],
+        "en": [
+          "suits",
+          "jackets",
+          "coats",
+          "trousers",
+          "ties"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Permanent Style",
+          "url": "https://www.permanentstyle.com/2017/01/the-guide-to-cloth-weaves-and-designs.html",
+          "supports": [
+            "modern naming overlap with glen check",
+            "distinct historical lineages"
+          ]
+        },
+        {
+          "publisher": "Permanent Style",
+          "url": "https://www.permanentstyle.com/2021/01/check-mate-a-guide-to-checked-shirt-patterns.html",
+          "supports": [
+            "glen-check base plus windowpane overcheck as practical distinction",
+            "Edward VII naming context"
+          ]
+        },
+        {
+          "publisher": "Permanent Style",
+          "url": "https://www.permanentstyle.com/2025/12/the-origins-of-tweed-patterns-scottish-estates-and-district-checks.html",
+          "supports": [
+            "current overcheck distinction",
+            "historical relationship"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pinstripe",
+      "verification_state": "verified",
+      "term_scope": "very narrow parallel stripe pattern in cloth",
+      "names": {
+        "ja": "ピンストライプ",
+        "en": "Pinstripe"
+      },
+      "aliases": {
+        "ja": [
+          "ピンストライプ柄"
+        ],
+        "en": [
+          "pin-stripe"
+        ]
+      },
+      "definition": {
+        "ja": "暗い地の上に、ごく細い淡色の平行線を一定間隔で並べるストライプです。",
+        "en": "A stripe pattern of very narrow, usually pale parallel lines set at regular intervals on darker cloth."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "線が非常に細い",
+          "線同士の間隔が広く地色が大きく見える",
+          "チョークストライプより細く輪郭がシャープ"
+        ],
+        "en": [
+          "Uses extremely narrow lines",
+          "Leaves substantial ground visible between stripes",
+          "Is finer and sharper than Chalk Stripe"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "スーツ",
+          "ジャケット",
+          "パンツ",
+          "スカート",
+          "シャツ"
+        ],
+        "en": [
+          "suits",
+          "jackets",
+          "trousers",
+          "skirts",
+          "shirts"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Cambridge Dictionary",
+          "url": "https://dictionary.cambridge.org/dictionary/english/pinstripe",
+          "supports": [
+            "English term",
+            "narrow pale parallel-line structure",
+            "dark-cloth convention"
+          ]
+        },
+        {
+          "publisher": "Collins English Dictionary",
+          "url": "https://www.collinsdictionary.com/dictionary/english/pinstripe",
+          "supports": [
+            "very narrow stripe definition",
+            "parallel fabric pattern",
+            "suiting use"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chalk-stripe",
+      "verification_state": "verified",
+      "term_scope": "wider softer parallel stripe convention used in suiting",
+      "names": {
+        "ja": "チョークストライプ",
+        "en": "Chalk Stripe"
+      },
+      "aliases": {
+        "ja": [
+          "チョークストライプ柄"
+        ],
+        "en": [
+          "chalk-stripe",
+          "chalkstripe"
+        ]
+      },
+      "definition": {
+        "ja": "暗い地に淡い平行線を並べるストライプで、ピンストライプより線が太く、チョークで引いたように柔らかく見えるのが特徴です。",
+        "en": "A pale-on-dark parallel stripe that is wider and usually softer or more muted in appearance than a pinstripe."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "ピンストライプより線幅が太い",
+          "線の輪郭がやや柔らかく見える",
+          "暗色地に淡色線のスーツ地でよく見られる"
+        ],
+        "en": [
+          "Uses wider lines than Pinstripe",
+          "The stripe edge often reads softer or chalkier",
+          "Commonly appears as pale lines on dark suiting"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "スーツ",
+          "ジャケット",
+          "パンツ",
+          "コート",
+          "ベスト"
+        ],
+        "en": [
+          "suits",
+          "jackets",
+          "trousers",
+          "coats",
+          "waistcoats"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Collins English Dictionary",
+          "url": "https://www.collinsdictionary.com/dictionary/english/chalk-stripe",
+          "supports": [
+            "English term",
+            "wider/more muted than pinstripe",
+            "parallel stripe structure",
+            "light-on-dark convention"
+          ]
+        },
+        {
+          "publisher": "Kotobank / Nipponica",
+          "url": "https://kotobank.jp/word/%E3%81%99%E3%81%A8%E3%82%89%E3%81%84%E3%81%B7-3156416",
+          "supports": [
+            "Japanese term",
+            "chalk-like stripe appearance",
+            "dark-ground/light-line convention"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bengal-stripe",
+      "verification_state": "verified",
+      "term_scope": "balanced alternating colored-and-white stripe convention",
+      "names": {
+        "ja": "ベンガルストライプ",
+        "en": "Bengal Stripe"
+      },
+      "aliases": {
+        "ja": [
+          "ベンガルストライプ柄"
+        ],
+        "en": [
+          "bengal"
+        ]
+      },
+      "definition": {
+        "ja": "色帯と白帯をほぼ同じ幅で交互に並べる、均等で明快なストライプです。",
+        "en": "A balanced stripe of alternating colored and white bands, generally broader than fine pin or pencil stripes."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "色帯と白帯の幅が近い",
+          "細いピンストライプより面として見える",
+          "シャツ地でよく使われる明快な反復"
+        ],
+        "en": [
+          "Colored and white bands are close in width",
+          "Reads as alternating bands rather than hairline marks",
+          "Commonly associated with shirting"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "シャツ",
+          "ブラウス",
+          "ワンピース",
+          "パジャマ",
+          "寝具"
+        ],
+        "en": [
+          "shirts",
+          "blouses",
+          "dresses",
+          "sleepwear",
+          "bedding"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Permanent Style",
+          "url": "https://www.permanentstyle.com/2020/10/name-that-stripe-a-guide-to-shirt-stripe-patterns.html",
+          "supports": [
+            "Bengal Stripe name",
+            "even spacing",
+            "alternating color and white",
+            "relative stripe width",
+            "shirt usage"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "koushi",
+      "verification_state": "qualified",
+      "term_scope": "broad Japanese lattice/check family",
+      "names": {
+        "ja": "格子",
+        "en": "Koushi"
+      },
+      "aliases": {
+        "ja": [
+          "格子文",
+          "格子文様"
+        ],
+        "en": [
+          "koushi pattern",
+          "Japanese lattice pattern"
+        ]
+      },
+      "definition": {
+        "ja": "縦線と横線を交差させて四角・長方形の区画を作る、日本の広い格子文様群です。線幅や本数、間隔によって多くの派生があります。",
+        "en": "A broad Japanese lattice/check family formed by intersecting vertical and horizontal lines, with many variants in spacing, line weight, and count."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "線そのものが交差して格子を作る",
+          "市松のように塗りつぶした正方形を交互に置く構造とは異なる",
+          "ひとつの固定反復ではなく多数の格子系を含む"
+        ],
+        "en": [
+          "The lattice is constructed from crossing lines",
+          "It differs from Ichimatsu's alternating filled squares",
+          "It is a family of lattice variants rather than one fixed repeat"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "浴衣",
+          "手ぬぐい",
+          "建具",
+          "工芸品"
+        ],
+        "en": [
+          "kimono",
+          "yukata",
+          "tenugui",
+          "architectural latticework",
+          "crafts"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Agency for Cultural Affairs / Cultural Heritage Online",
+          "url": "https://online.bunka.go.jp/heritages/detail/651646",
+          "supports": [
+            "格子 term",
+            "vertical/horizontal stripe intersection",
+            "multiple named variants",
+            "historical Japanese use"
+          ]
+        },
+        {
+          "publisher": "National Diet Library Search",
+          "url": "https://ndlsearch.ndl.go.jp/books/R100000002-I034012068",
+          "supports": [
+            "格子 included among Japanese geometric continuous patterns"
+          ]
+        },
+        {
+          "publisher": "National Diet Library Collaborative Reference Database",
+          "url": "https://crd.ndl.go.jp/reference/entry/index.php?id=1000289587&page=ref_view",
+          "supports": [
+            "Ichimatsu as alternating squares",
+            "boundary distinction from generic lattice/check"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "awning-stripe",
+      "verification_state": "verified",
+      "term_scope": "very broad stripe convention named after awnings",
+      "names": {
+        "ja": "オーニングストライプ",
+        "en": "Awning Stripe"
+      },
+      "aliases": {
+        "ja": [
+          "オーニングストライプ柄"
+        ],
+        "en": [
+          "awning stripes"
+        ]
+      },
+      "definition": {
+        "ja": "店舗や屋外の日よけを思わせる、太く大胆な帯を規則的に反復するストライプです。",
+        "en": "A bold, broad, regularly repeated stripe named for the large-scale bands seen on traditional awnings."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "帯幅が大きく遠目でも強く見える",
+          "ベンガルストライプより大判に見えやすい",
+          "色よりも太い規則反復が識別の中心"
+        ],
+        "en": [
+          "Uses broad bands that remain obvious at a distance",
+          "Usually reads larger in scale than Bengal Stripe",
+          "The bold regular banding matters more than a specific color"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "日よけ",
+          "屋外布",
+          "クッション",
+          "カーテン",
+          "シャツ"
+        ],
+        "en": [
+          "awnings",
+          "outdoor textiles",
+          "cushions",
+          "curtains",
+          "shirts"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Permanent Style",
+          "url": "https://www.permanentstyle.com/2020/10/name-that-stripe-a-guide-to-shirt-stripe-patterns.html",
+          "supports": [
+            "Awning Stripe name",
+            "largest/common broad shirting stripe",
+            "awning naming reference"
+          ]
+        },
+        {
+          "publisher": "TextileGlossary",
+          "url": "https://www.textileglossary.com/terms/awning-stripe.html",
+          "supports": [
+            "bold broad stripe definition",
+            "regular spacing",
+            "awning inspiration"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regimental-stripe",
+      "verification_state": "qualified",
+      "term_scope": "stripe style associated with English/British regimental ties rather than one fixed repeat",
+      "names": {
+        "ja": "レジメンタルストライプ",
+        "en": "Regimental Stripe"
+      },
+      "aliases": {
+        "ja": [
+          "レジメンタル"
+        ],
+        "en": [
+          "regimental"
+        ]
+      },
+      "definition": {
+        "ja": "英国の連隊ネクタイなどと結びつく斜め縞のスタイル群です。特定の一色順・線幅・方向だけをレジメンタルの正解とはできません。",
+        "en": "A family of diagonal stripe conventions associated with British regimental neckwear. No single color sequence, width, or direction defines the whole category."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "ネクタイで見られる斜めの反復縞が代表的",
+          "色の組み合わせが所属や伝統と結びつく場合がある",
+          "一般化した参考柄を特定連隊の真正柄とは扱わない"
+        ],
+        "en": [
+          "Diagonal repeated bands are the common neckwear cue",
+          "Color combinations may carry organizational meaning",
+          "A generic reference must not be presented as an authentic design for a specific regiment"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ネクタイ",
+          "スカーフ",
+          "リボン",
+          "ジャケット裏地",
+          "小物"
+        ],
+        "en": [
+          "ties",
+          "scarves",
+          "ribbons",
+          "jacket linings",
+          "accessories"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Permanent Style",
+          "url": "https://www.permanentstyle.com/2020/10/name-that-stripe-a-guide-to-shirt-stripe-patterns.html",
+          "supports": [
+            "Regimental Stripe name",
+            "relationship to English regimental ties",
+            "family-level usage"
+          ]
+        },
+        {
+          "publisher": "Artlandia Pattern Design Glossary",
+          "url": "https://artlandia.com/wonderland/glossary/",
+          "supports": [
+            "colors originating from British regiments",
+            "neckwear use",
+            "regimental/regimentals naming"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "breton-stripe",
+      "verification_state": "qualified",
+      "term_scope": "French maritime clothing/style convention derived from striped naval knitwear",
+      "names": {
+        "ja": "ブレトンストライプ",
+        "en": "Breton Stripe"
+      },
+      "aliases": {
+        "ja": [
+          "ブレトンボーダー"
+        ],
+        "en": [
+          "Breton top",
+          "marinière",
+          "tricot rayé"
+        ]
+      },
+      "definition": {
+        "ja": "フランスの海軍・海洋服の歴史と結びつく、青や紺と白の横縞を代表例とするスタイルです。現代のブレトン柄は歴史的制服仕様より広い概念です。",
+        "en": "A maritime clothing convention associated with the French naval/Breton-top tradition, classically using blue or navy horizontal stripes on white. Modern usage is broader than the historic uniform specification."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "横方向の青・紺と白の縞が強い認識手掛かり",
+          "衣服、とくにボートネック系トップスとの結びつきが強い",
+          "現代品の線幅や本数は歴史的制服仕様に限定されない"
+        ],
+        "en": [
+          "Blue/navy horizontal stripes on white are the strongest cue",
+          "Strongly associated with maritime tops",
+          "Modern stripe count and spacing need not match the historic naval uniform"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "Tシャツ",
+          "ニット",
+          "カットソー",
+          "ワンピース",
+          "バッグ"
+        ],
+        "en": [
+          "T-shirts",
+          "knitwear",
+          "jersey tops",
+          "dresses",
+          "bags"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Royal Museums Greenwich",
+          "url": "https://www.rmg.co.uk/stories/maritime-history/stripes-sea-history-breton-top",
+          "supports": [
+            "Breton Top terminology",
+            "French naval uniform adoption in 1858",
+            "maritime striped-shirt context"
+          ]
+        },
+        {
+          "publisher": "France Today",
+          "url": "https://francetoday.com/culture/a-history-of-the-breton-stripe/",
+          "supports": [
+            "blue-and-white marinière convention",
+            "historic French Navy stripe specification"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swiss-dot",
+      "verification_state": "qualified",
+      "term_scope": "dotted Swiss textile/fabric category, not generic printed polka dots",
+      "names": {
+        "ja": "スイスドット",
+        "en": "Swiss Dot"
+      },
+      "aliases": {
+        "ja": [
+          "ドッテッドスイス"
+        ],
+        "en": [
+          "dotted Swiss",
+          "Swiss muslin"
+        ]
+      },
+      "definition": {
+        "ja": "薄く張りのある生地の表面に小さな点を持つドッテッドスイス系の生地表現です。単なる平面印刷の水玉とは区別します。",
+        "en": "A dotted-Swiss textile appearance: fine, sheer, crisp fabric carrying small surface dots. It is a fabric/treatment category, not simply flat printed polka dots."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "小さな点が生地表面の織り・刺繍・フロックなどとして見える",
+          "水玉より点が小さく繊細なことが多い",
+          "点そのものだけでなく薄地の質感が識別に重要"
+        ],
+        "en": [
+          "Dots appear as a surface treatment such as woven, embroidered, or flocked detail",
+          "The dots are often smaller and subtler than ordinary polka dots",
+          "Sheer crisp textile character is part of the recognition cue"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ブラウス",
+          "ワンピース",
+          "子供服",
+          "カーテン",
+          "ベール"
+        ],
+        "en": [
+          "blouses",
+          "dresses",
+          "childrenswear",
+          "curtains",
+          "veils"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Collins English Dictionary",
+          "url": "https://www.collinsdictionary.com/us/dictionary/english/dotted-swiss",
+          "supports": [
+            "Dotted Swiss term",
+            "fine sheer crisp fabric",
+            "surface dots",
+            "blouse/curtain uses"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "herringbone",
+      "verification_state": "qualified",
+      "term_scope": "herringbone weave/arrangement and its broken-V visual family",
+      "names": {
+        "ja": "ヘリンボーン",
+        "en": "Herringbone"
+      },
+      "aliases": {
+        "ja": [
+          "杉綾",
+          "ヘリンボーン柄"
+        ],
+        "en": [
+          "herringbone pattern",
+          "herringbone weave"
+        ]
+      },
+      "definition": {
+        "ja": "短い斜線の列が途中で向きを反転し、折れたV字や魚の骨のような連続列を作る構造です。織りとしても広い視覚配置としても使われます。",
+        "en": "An arrangement in which rows of short diagonal strokes reverse direction to form repeated broken V shapes, widely used as a weave and broader visual construction."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "V字の頂点で斜線が切り替わり、連続線にならない",
+          "シェブロンより魚骨状の細かな構造が見える",
+          "織物ではツイル方向の反転として現れる"
+        ],
+        "en": [
+          "Diagonal strokes reverse at the center instead of forming one continuous chevron band",
+          "Shows a finer fish-bone structure than simple Chevron",
+          "In cloth it commonly appears through reversing twill direction"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ジャケット",
+          "コート",
+          "パンツ",
+          "床材",
+          "タイル"
+        ],
+        "en": [
+          "jackets",
+          "coats",
+          "trousers",
+          "flooring",
+          "tile layouts"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Collins English Dictionary",
+          "url": "https://www.collinsdictionary.com/dictionary/english/herringbone",
+          "supports": [
+            "English term",
+            "alternating slanted rows",
+            "parallel V/zigzag structure",
+            "textile/twill use"
+          ]
+        },
+        {
+          "publisher": "Permanent Style",
+          "url": "https://www.permanentstyle.com/2017/01/the-guide-to-cloth-weaves-and-designs.html",
+          "supports": [
+            "herringbone as a weave variation on twill"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zigzag",
+      "verification_state": "verified",
+      "term_scope": "generic angular line/pattern family",
+      "names": {
+        "ja": "ジグザグ",
+        "en": "Zigzag"
+      },
+      "aliases": {
+        "ja": [
+          "ジグザグ柄"
+        ],
+        "en": [
+          "zig-zag",
+          "zigzag pattern"
+        ]
+      },
+      "definition": {
+        "ja": "直線が鋭い角度で交互に方向を変え、Z字が連なるように見える広い幾何学パターンです。",
+        "en": "A broad geometric pattern in which a line repeatedly changes direction at sharp angles, resembling a row of joined Z shapes."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "鋭角で左右へ折れ返す線が主役",
+          "V字単位を帯として反復するシェブロンより広い概念",
+          "ヘリンボーンのような短い斜線列の反転を必要としない"
+        ],
+        "en": [
+          "Defined by repeated sharp directional changes",
+          "Broader than Chevron, which emphasizes repeated V-shaped bands",
+          "Does not require Herringbone's rows of short reversing strokes"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "テキスタイル",
+          "ラグ",
+          "壁紙",
+          "包装紙",
+          "グラフィック"
+        ],
+        "en": [
+          "textiles",
+          "rugs",
+          "wallpaper",
+          "wrapping paper",
+          "graphics"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Cambridge Dictionary",
+          "url": "https://dictionary.cambridge.org/dictionary/english/zigzag",
+          "supports": [
+            "English term",
+            "Z/row-of-Z visual definition",
+            "fabric pattern usage"
+          ]
+        },
+        {
+          "publisher": "Cambridge English-Japanese Dictionary",
+          "url": "https://dictionary.cambridge.org/ja/dictionary/english-japanese/zigzag",
+          "supports": [
+            "Japanese zigzag equivalence",
+            "sharp-angle repeated direction change"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "diamond",
+      "verification_state": "verified",
+      "term_scope": "generic repeated diamond/rhombus geometric family",
+      "names": {
+        "ja": "ダイヤモンド柄",
+        "en": "Diamond Pattern"
+      },
+      "aliases": {
+        "ja": [
+          "菱形柄",
+          "ダイヤ柄"
+        ],
+        "en": [
+          "diamond pattern",
+          "rhombus pattern",
+          "lozenge pattern"
+        ]
+      },
+      "definition": {
+        "ja": "菱形・ダイヤ形を規則的に反復する広い幾何学パターンです。色や内部の線構造は定義条件ではありません。",
+        "en": "A broad geometric family built from repeated diamond or rhombus shapes; color and internal line systems are not required parts of the definition."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "菱形そのものの反復が中心",
+          "アーガイルのような重なる斜線格子を必要としない",
+          "ハーレクインのような塗り分けた衣装的ダイヤ群より広い概念"
+        ],
+        "en": [
+          "The repeated rhombus itself is the core cue",
+          "Does not require Argyle's superimposed diagonal lattice",
+          "Is broader than Harlequin's contrasting costume-like diamond blocks"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "テキスタイル",
+          "ラグ",
+          "壁紙",
+          "タイル",
+          "ニット"
+        ],
+        "en": [
+          "textiles",
+          "rugs",
+          "wallpaper",
+          "tiles",
+          "knitwear"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Cambridge Dictionary",
+          "url": "https://dictionary.cambridge.org/dictionary/english/rhombus",
+          "supports": [
+            "rhombus geometry",
+            "diamond synonym"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/314528",
+          "supports": [
+            "historic textile use of a repeated/stepped diamond pattern"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "harlequin",
+      "verification_state": "verified",
+      "term_scope": "diamond-block pattern convention associated with Harlequin costume",
+      "names": {
+        "ja": "ハーレクイン",
+        "en": "Harlequin"
+      },
+      "aliases": {
+        "ja": [
+          "ハーレクイン柄"
+        ],
+        "en": [
+          "harlequin pattern",
+          "harlequin diamonds"
+        ]
+      },
+      "definition": {
+        "ja": "ハーレクインの衣装と結びつく、対比色のダイヤ形ブロックを反復する柄です。",
+        "en": "A repeated field of contrasting diamond-shaped blocks associated with the diamond-patterned costume tradition of Harlequin."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "塗り分けられたダイヤ形ブロックが主役",
+          "一般的なダイヤ柄より強い配色対比を伴うことが多い",
+          "アーガイルのような細い斜線格子を重ねない"
+        ],
+        "en": [
+          "Uses filled contrasting diamond blocks",
+          "Usually relies more heavily on color contrast than a generic diamond repeat",
+          "Does not require Argyle's thin overlaid diagonal lattice"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "舞台衣装",
+          "テキスタイル",
+          "壁紙",
+          "パーティー装飾",
+          "小物"
+        ],
+        "en": [
+          "costume",
+          "textiles",
+          "wallpaper",
+          "party decor",
+          "accessories"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/ko/perspectives/harley-quinn",
+          "supports": [
+            "Harlequin character origin",
+            "diamond-patterned costume association",
+            "16th-century commedia dell'arte context"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/ko/met-publications/watteau-music-and-theater",
+          "supports": [
+            "traditional Harlequin diamond-pattern costume"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "checkerboard",
+      "verification_state": "verified",
+      "term_scope": "generic alternating dark/light square pattern",
+      "names": {
+        "ja": "チェッカーボード",
+        "en": "Checkerboard"
+      },
+      "aliases": {
+        "ja": [
+          "チェッカーボード柄",
+          "ブロックチェック"
+        ],
+        "en": [
+          "checkerboard pattern",
+          "block check"
+        ]
+      },
+      "definition": {
+        "ja": "濃色と淡色の正方形を交互に並べ、チェッカー盤のような規則格子を作る柄です。",
+        "en": "A regular grid of alternating dark and light squares, like the board used for checkers or draughts."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "隣り合う正方形が交互に明暗を変える",
+          "線だけの格子ではなく面が塗り分けられる",
+          "市松と見た目が一致する場合があり、名称は文脈で区別する"
+        ],
+        "en": [
+          "Adjacent squares alternate in value or color",
+          "The cells are filled blocks rather than merely crossing lines",
+          "It can be visually identical to Ichimatsu, so naming may depend on cultural/contextual framing"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "床材",
+          "タイル",
+          "衣類",
+          "バッグ",
+          "グラフィック"
+        ],
+        "en": [
+          "flooring",
+          "tiles",
+          "clothing",
+          "bags",
+          "graphics"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Cambridge Dictionary",
+          "url": "https://dictionary.cambridge.org/us/dictionary/english/checkerboard",
+          "supports": [
+            "English term",
+            "alternating dark/light square pattern"
+          ]
+        },
+        {
+          "publisher": "Kotobank / MyPedia and Japanese dictionaries",
+          "url": "https://kotobank.jp/word/%E3%81%A1%E3%81%88%E3%81%A4%E3%81%8F-1561696",
+          "supports": [
+            "block check / checkerboard equivalence",
+            "Japanese check-family context"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "greek-key",
+      "verification_state": "verified",
+      "term_scope": "named rectilinear meander motif",
+      "names": {
+        "ja": "グリークキー",
+        "en": "Greek Key"
+      },
+      "aliases": {
+        "ja": [
+          "メアンダー"
+        ],
+        "en": [
+          "Greek fret",
+          "meander"
+        ]
+      },
+      "definition": {
+        "ja": "直線が直角に折れながら連続し、帯状に反復するメアンダー文様です。色ではなく、途切れず続く直角の折れ線構造が識別の中心です。",
+        "en": "A continuous rectilinear meander that turns at right angles and repeats as a band. The defining cue is the unbroken angular path rather than any fixed color."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "直角だけで構成される連続線",
+          "同じ折れ方が帯状に反復する",
+          "ジグザグよりも矩形の回り込みが明確"
+        ],
+        "en": [
+          "Uses a continuous line with right-angle turns",
+          "Repeats a consistent meander along a band",
+          "Has stronger rectangular returns than a generic zigzag"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ボーダー装飾",
+          "生地",
+          "壁紙",
+          "ラグ"
+        ],
+        "en": [
+          "decorative borders",
+          "textiles",
+          "wallpaper",
+          "rugs"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/toah/hd/god5/ho_C.I.53.40.5a-e.htm",
+          "supports": [
+            "Greek key terminology",
+            "rectilinear meander structure",
+            "repeated border use"
+          ]
+        },
+        {
+          "publisher": "Delphi Archaeological Museum",
+          "url": "https://www.delphimuseum.gr/2025/03/the-meander.html",
+          "supports": [
+            "meander/Greek key terminology",
+            "continuous-line repeated motif context"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quatrefoil",
+      "verification_state": "verified",
+      "term_scope": "named four-lobed motif",
+      "names": {
+        "ja": "クアトレフォイル",
+        "en": "Quatrefoil"
+      },
+      "aliases": {
+        "ja": [],
+        "en": []
+      },
+      "definition": {
+        "ja": "四つの丸い葉・ローブが中心を囲む、左右上下対称の四葉形モチーフです。四つのふくらみと、その間のくびれが識別の手掛かりです。",
+        "en": "A symmetrical four-lobed motif formed by four rounded leaves or lobes around a center. The four bulges and intervening cusps are the key cues."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "四つの丸いローブ",
+          "上下左右に対称",
+          "ローブの間にくびれがある"
+        ],
+        "en": [
+          "Four rounded lobes",
+          "Balanced on vertical and horizontal axes",
+          "Cusps separate the lobes"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "生地",
+          "壁紙",
+          "タイル",
+          "インテリア"
+        ],
+        "en": [
+          "textiles",
+          "wallpaper",
+          "tile",
+          "interiors"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Getty Research Institute, Art & Architecture Thesaurus",
+          "url": "https://www.getty.edu/vow/AATFullDisplay?find=&logic=&note=&subjectid=300009784",
+          "supports": [
+            "quatrefoil term",
+            "four equal lobes",
+            "cusped four-part form"
+          ]
+        },
+        {
+          "publisher": "The National Gallery, London",
+          "url": "https://www.nationalgallery.org.uk/paintings/glossary/quatrefoils",
+          "supports": [
+            "four-leaved ornamental form",
+            "historical decorative usage"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ogee",
+      "verification_state": "qualified",
+      "term_scope": "ogee double-curve form used as a repeating surface-design family",
+      "names": {
+        "ja": "オジー",
+        "en": "Ogee"
+      },
+      "aliases": {
+        "ja": [],
+        "en": [
+          "ogee curve"
+        ]
+      },
+      "definition": {
+        "ja": "凹凸を反転させたS字状の二重曲線を向かい合わせたり連結したりして、尖った区画を反復する柄です。オジーは本来ひとつの固定柄ではなく、曲線形式を指します。",
+        "en": "A repeating family built from opposed or interlocking S-shaped double curves that form pointed or bulbous compartments. Ogee is a curve form, not one universal repeat."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "S字状の二重曲線",
+          "上下で尖る区画が生まれやすい",
+          "単一の固定リピートではない"
+        ],
+        "en": [
+          "Uses S-shaped double curves",
+          "Often creates pointed compartments",
+          "Represents a family rather than one fixed repeat"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "生地",
+          "壁紙",
+          "ラグ",
+          "装飾面"
+        ],
+        "en": [
+          "textiles",
+          "wallpaper",
+          "rugs",
+          "decorative surfaces"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Collins English Dictionary",
+          "url": "https://www.collinsdictionary.com/dictionary/english/ogee",
+          "supports": [
+            "ogee term",
+            "S-shaped/double curve definition",
+            "concave and convex curvature"
+          ]
+        },
+        {
+          "publisher": "Getty Research Institute, Art & Architecture Thesaurus",
+          "url": "https://www.getty.edu/vow/AATFullDisplay?find=&logic=&note=&page=1&subjectid=300003522",
+          "supports": [
+            "cyma/ogee double-curvature terminology",
+            "concave-convex profile"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lattice",
+      "verification_state": "verified",
+      "term_scope": "generic crossed-strip or crisscross pattern family",
+      "names": {
+        "ja": "ラティス",
+        "en": "Lattice"
+      },
+      "aliases": {
+        "ja": [
+          "格子模様"
+        ],
+        "en": [
+          "latticework"
+        ]
+      },
+      "definition": {
+        "ja": "帯や線を交差させ、間に空いた区画を作る格子系の柄です。斜め格子が代表的ですが、ラティスは広い格子構造を指します。",
+        "en": "A lattice family made from crossing strips or lines that leave open compartments between intersections. Diagonal grids are common, but the term is broader than one layout."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "交差する線や帯が主役",
+          "区画の内部は空いて見える",
+          "斜め格子が代表的だが必須ではない"
+        ],
+        "en": [
+          "Crossing lines or strips are the subject",
+          "Open spaces remain between intersections",
+          "Diagonal layout is common but not mandatory"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "生地",
+          "壁紙",
+          "フェンス風装飾",
+          "インテリア"
+        ],
+        "en": [
+          "textiles",
+          "wallpaper",
+          "lattice-inspired decor",
+          "interiors"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Collins English Dictionary",
+          "url": "https://www.collinsdictionary.com/dictionary/english/lattice",
+          "supports": [
+            "lattice term",
+            "crossing-strip structure",
+            "open ornamental pattern",
+            "diagonal crossing convention"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "honeycomb",
+      "verification_state": "verified",
+      "term_scope": "generic honeycomb-derived cellular pattern",
+      "names": {
+        "ja": "ハニカム",
+        "en": "Honeycomb"
+      },
+      "aliases": {
+        "ja": [
+          "蜂の巣柄"
+        ],
+        "en": [
+          "honeycomb pattern"
+        ]
+      },
+      "definition": {
+        "ja": "蜂の巣のように六辺のセルが隙間なく隣接して続くセル状の柄です。単に六角形があるだけでなく、共有辺を持つ密な連結構造が重要です。",
+        "en": "A honeycomb-derived field of adjacent six-sided cells packed edge to edge. The decisive cue is the shared-edge cellular network, not merely the presence of hexagons."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "六辺セルが隙間なく連結",
+          "隣のセルと辺を共有する",
+          "蜂の巣状の連続ネットワーク"
+        ],
+        "en": [
+          "Six-sided cells connect without gaps",
+          "Neighboring cells share edges",
+          "Reads as a continuous cellular network"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "生地",
+          "壁紙",
+          "タイル",
+          "インテリア"
+        ],
+        "en": [
+          "textiles",
+          "wallpaper",
+          "tile",
+          "interiors"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Collins English Dictionary",
+          "url": "https://www.collinsdictionary.com/dictionary/english/honeycomb",
+          "supports": [
+            "honeycomb term",
+            "adjacent hexagonal/six-sided cells",
+            "patterned-after-honeycomb usage",
+            "textile pattern context"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scallop",
+      "verification_state": "verified",
+      "term_scope": "generic repeated scalloped-arc pattern family",
+      "names": {
+        "ja": "スカラップ",
+        "en": "Scallop"
+      },
+      "aliases": {
+        "ja": [
+          "波形模様"
+        ],
+        "en": [
+          "scallop pattern"
+        ]
+      },
+      "definition": {
+        "ja": "丸い半円弧や扇形を繰り返し、貝殻や波形の縁のように見せる柄です。上下に重なる弧の反復が強い識別手掛かりです。",
+        "en": "A repeat of rounded semicircular or fan-like arcs that reads like scallop shells or a wave-edged field. Repeated overlapping arcs are the main cue."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "半円・扇形の丸い弧",
+          "横方向に連続する波形",
+          "段違いに重なる配置が多い"
+        ],
+        "en": [
+          "Rounded semicircular or fan-like arcs",
+          "Repeating wave-edged rows",
+          "Often arranged in offset overlapping tiers"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "生地",
+          "壁紙",
+          "タイル",
+          "小物"
+        ],
+        "en": [
+          "textiles",
+          "wallpaper",
+          "tile",
+          "accessories"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Kotobank / Shogakukan Progressive English-Japanese Dictionary",
+          "url": "https://kotobank.jp/ejword/scallop",
+          "supports": [
+            "scallop terminology",
+            "wave-shaped decorative edge",
+            "shell-derived form",
+            "Japanese wave-pattern meaning"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "basketweave",
+      "verification_state": "qualified",
+      "term_scope": "weave structure and basket-like visual family",
+      "names": {
+        "ja": "バスケットウィーブ",
+        "en": "Basketweave"
+      },
+      "aliases": {
+        "ja": [
+          "バスケット織"
+        ],
+        "en": [
+          "basket weave",
+          "matt weave",
+          "mat weave",
+          "hopsack"
+        ]
+      },
+      "definition": {
+        "ja": "複数本の糸や帯をまとまりとして交互に組み、かご編みのようなブロック状の表面を作る織り・見た目の系統です。特定の一本のプリント柄を指す語ではありません。",
+        "en": "A weave structure and visual family in which grouped threads or strips interlace as units, creating a blocky basket-like surface. It is not one universal printed motif."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "縦横の帯が交互に上下する",
+          "小さなブロック状の織り感",
+          "一本ずつではなく束として見える"
+        ],
+        "en": [
+          "Vertical and horizontal groups alternate over and under",
+          "Creates a blocky woven surface",
+          "Elements read as grouped strips rather than single lines"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "織物",
+          "生地",
+          "インテリア生地",
+          "バッグ"
+        ],
+        "en": [
+          "woven textiles",
+          "fabric",
+          "furnishing textiles",
+          "bags"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Museum of Fine Arts Boston, CAMEO",
+          "url": "https://cameo.mfa.org/wiki/Basket_weave",
+          "supports": [
+            "basket weave term",
+            "plain-weave family",
+            "grouped-thread interlacing",
+            "basket-like/checkered appearance",
+            "matt/mat/hopsack aliases"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hexagon",
+      "verification_state": "verified",
+      "term_scope": "generic repeated six-sided polygon pattern",
+      "names": {
+        "ja": "六角形柄",
+        "en": "Hexagon Pattern"
+      },
+      "aliases": {
+        "ja": [
+          "ヘキサゴン柄"
+        ],
+        "en": [
+          "hexagonal pattern"
+        ]
+      },
+      "definition": {
+        "ja": "六本の直線辺を持つ六角形を、独立したモチーフや連結図形として反復する幾何学柄です。蜂の巣のように全セルが共有辺で密着している必要はありません。",
+        "en": "A geometric pattern that repeats six-sided polygons as isolated motifs, linked shapes, or a tessellated field. Unlike Honeycomb, the hexagons need not form a fully shared-edge cell network."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "六本の直線辺を持つ図形",
+          "六角形そのものが主役",
+          "独立配置や間隔のある反復も含む"
+        ],
+        "en": [
+          "Uses polygons with six straight sides",
+          "The hexagonal shape itself is the subject",
+          "May use isolated or spaced repeats"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "生地",
+          "壁紙",
+          "タイル",
+          "ラグ"
+        ],
+        "en": [
+          "textiles",
+          "wallpaper",
+          "tile",
+          "rugs"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Cambridge Dictionary",
+          "url": "https://dictionary.cambridge.org/dictionary/english/hexagon",
+          "supports": [
+            "hexagon term",
+            "six straight sides",
+            "geometric definition"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trellis",
+      "verification_state": "verified",
+      "term_scope": "generic trellis-derived repeat family",
+      "names": {
+        "ja": "トレリス",
+        "en": "Trellis"
+      },
+      "aliases": {
+        "ja": [
+          "トレリス柄"
+        ],
+        "en": [
+          "trellis pattern"
+        ]
+      },
+      "definition": {
+        "ja": "帯や枠を連結して、四角・菱形・曲線形などの開いた区画を繰り返すトレリス由来の柄です。単純な交差線だけでなく、枠組みとして連結して見えることがポイントです。",
+        "en": "A trellis-derived repeat in which linked bands or framework form open square, diamond, curved, or ornamented compartments. The linked framework matters more than simple line crossings."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "帯や枠が連結して区画を作る",
+          "開いた区画が規則的に続く",
+          "単純な細線格子より枠組み感が強い"
+        ],
+        "en": [
+          "Linked bands create repeated compartments",
+          "Open cells repeat regularly",
+          "Reads more as a framework than a simple thin-line grid"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "壁紙",
+          "生地",
+          "ラグ",
+          "インテリア"
+        ],
+        "en": [
+          "wallpaper",
+          "textiles",
+          "rugs",
+          "interiors"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/384020",
+          "supports": [
+            "Trellis design title",
+            "repeating trellis motif in wallpaper",
+            "William Morris example"
+          ]
+        },
+        {
+          "publisher": "Cooper Hewitt, Smithsonian Design Museum",
+          "url": "https://www.cooperhewitt.org/2016/08/26/trellis-by-william-morris/",
+          "supports": [
+            "trellis motif terminology",
+            "framework-derived pattern",
+            "historical wallpaper design context"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hishi",
+      "verification_state": "verified",
+      "term_scope": "Japanese diamond/rhombus motif family",
+      "names": {
+        "ja": "菱文様",
+        "en": "Hishi"
+      },
+      "aliases": {
+        "ja": [
+          "菱形文様",
+          "菱紋"
+        ],
+        "en": [
+          "hishi motif",
+          "hishigata"
+        ]
+      },
+      "definition": {
+        "ja": "菱形を単独または連結して反復する日本の文様群です。単なる幾何学的なダイヤ柄ではなく、日本文様としての文脈を持つ菱・菱形の系統を指します。",
+        "en": "A Japanese motif family based on rhombus or diamond forms repeated singly or in linked arrangements. It is distinguished from generic Diamond Pattern by its Japanese decorative context."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "菱形・斜方形が中心",
+          "連結する菱継ぎ型も含む",
+          "日本文様の文脈が識別に重要"
+        ],
+        "en": [
+          "Centers on rhombus or diamond forms",
+          "Includes linked-diamond arrangements",
+          "Japanese decorative context is important"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "和装",
+          "染織",
+          "工芸",
+          "和柄小物"
+        ],
+        "en": [
+          "Japanese dress",
+          "textiles",
+          "crafts",
+          "Japanese-pattern accessories"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "JAANUS (Japanese Architecture and Art Net Users System)",
+          "url": "https://www.aisf.or.jp/~jaanus/deta/h/hishi.htm",
+          "supports": [
+            "hishi/hishigata terminology",
+            "diamond/lozenge form",
+            "hishimon/hishi mon'you terminology",
+            "hishitsunagi repeated-diamond variant",
+            "Japanese decorative uses"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fleur-de-lis",
+      "verification_state": "verified",
+      "term_scope": "named stylized lily/iris motif",
+      "names": {
+        "ja": "フルール・ド・リス",
+        "en": "Fleur-de-lis"
+      },
+      "aliases": {
+        "ja": [
+          "フルールドリス"
+        ],
+        "en": [
+          "fleur-de-lys"
+        ]
+      },
+      "definition": {
+        "ja": "中央の花弁を高く、左右の花弁を外側へ湾曲させた、三つの主要ローブからなる左右対称の花形モチーフです。",
+        "en": "A vertically symmetrical stylized flower, usually with three principal petals or lobes: a taller center and two outward-curving side lobes."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "三つの主要な花弁・ローブ",
+          "中央が高く左右が外へ開く",
+          "縦軸で強く対称"
+        ],
+        "en": [
+          "Three principal petals or lobes",
+          "Tall center with outward side lobes",
+          "Strong vertical symmetry"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "生地",
+          "壁紙",
+          "紋章風装飾",
+          "インテリア"
+        ],
+        "en": [
+          "textiles",
+          "wallpaper",
+          "emblematic decoration",
+          "interiors"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Getty Research Institute, Art & Architecture Thesaurus",
+          "url": "https://www.getty.edu/vow/AATFullDisplay?find=&logic=&note=&subjectid=300009966",
+          "supports": [
+            "fleur-de-lis term",
+            "stylized iris/lily motif",
+            "three curled petals",
+            "symmetrical design"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "toile-de-jouy",
+      "verification_state": "qualified",
+      "term_scope": "printed-textile/design tradition associated with pictorial figural scenes",
+      "names": {
+        "ja": "トワル・ド・ジュイ",
+        "en": "Toile de Jouy"
+      },
+      "aliases": {
+        "ja": [
+          "トワルドジュイ"
+        ],
+        "en": []
+      },
+      "definition": {
+        "ja": "明るい地に人物・風景・牧歌的または物語的な場面を一色中心で描くことが多い、ジュイ＝アン＝ジョザスと結びつくプリント布の伝統です。ひとつの固定リピートではありません。",
+        "en": "A printed-textile/design tradition associated with Jouy-en-Josas, often recognized by pictorial figures, landscapes, or narrative scenes in one contrasting color on a light ground. It is not one fixed repeat."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "人物や風景を含む絵画的場面",
+          "明るい地に単色系で描く例が多い",
+          "単純な花柄だけではない"
+        ],
+        "en": [
+          "Uses pictorial figures or landscapes",
+          "Often uses one ink color on a light ground",
+          "Is not merely a generic floral repeat"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "生地",
+          "壁紙",
+          "カーテン",
+          "クッション"
+        ],
+        "en": [
+          "textiles",
+          "wallpaper",
+          "curtains",
+          "cushions"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/226246",
+          "supports": [
+            "toile de Jouy terminology",
+            "printed cotton context",
+            "figural/pictorial pattern usage",
+            "Jouy manufacture context"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/208809",
+          "supports": [
+            "monochromatic pictorial cotton example",
+            "Jouy-en-Josas naming context",
+            "single-color copperplate-printing convention"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chintz",
+      "verification_state": "qualified",
+      "term_scope": "printed cotton/textile tradition commonly associated with floral patterning",
+      "names": {
+        "ja": "チンツ",
+        "en": "Chintz"
+      },
+      "aliases": {
+        "ja": [
+          "チンツ柄"
+        ],
+        "en": [
+          "chintz fabric"
+        ]
+      },
+      "definition": {
+        "ja": "花・葉・枝などを密に配した多色のプリントで認識されることが多い綿布・染織の伝統です。チンツは本来ひとつの固定花柄名ではありません。",
+        "en": "A printed or painted cotton/textile tradition commonly recognized through dense multicolor flowers, foliage, and branches. Chintz is not the name of one fixed floral motif."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "花・葉・枝が密に入る例が多い",
+          "多色の装飾的な植物表現",
+          "単一の固定リピートではない"
+        ],
+        "en": [
+          "Often densely filled with flowers, foliage, and branches",
+          "Frequently uses multicolor botanical decoration",
+          "Does not resolve to one fixed repeat"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "生地",
+          "カーテン",
+          "壁紙",
+          "インテリア"
+        ],
+        "en": [
+          "textiles",
+          "curtains",
+          "wallpaper",
+          "interiors"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Cambridge Dictionary",
+          "url": "https://dictionary.cambridge.org/dictionary/english/chintz",
+          "supports": [
+            "chintz term",
+            "cotton cloth",
+            "usual flower-pattern association",
+            "slightly shiny/glazed convention"
+          ]
+        },
+        {
+          "publisher": "Europeana",
+          "url": "https://www.europeana.eu/en/stories/what-is-chintz",
+          "supports": [
+            "Indian textile origin/context",
+            "painted/printed/stained cotton tradition",
+            "floral pattern history"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ditsy-floral",
+      "verification_state": "verified",
+      "term_scope": "generic small-flower print pattern",
+      "names": {
+        "ja": "小花柄",
+        "en": "Ditsy Floral"
+      },
+      "aliases": {
+        "ja": [
+          "小花模様"
+        ],
+        "en": [
+          "ditsy print",
+          "ditsy pattern"
+        ]
+      },
+      "definition": {
+        "ja": "小さな花や同程度の小モチーフを地全体に散らした細かな花柄です。大きな主役花を置かず、小スケールの散らしが続くことが特徴です。",
+        "en": "A fine-scale floral print with many small flowers or similarly small motifs scattered across the ground, without a dominant large bloom."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "花が小さくスケールが揃う",
+          "地全体に散らして配置",
+          "大きな主役花がない"
+        ],
+        "en": [
+          "Flowers stay small in scale",
+          "Motifs are scattered across the ground",
+          "No large dominant bloom controls the design"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ワンピース",
+          "ブラウス",
+          "生地",
+          "小物"
+        ],
+        "en": [
+          "dresses",
+          "blouses",
+          "textiles",
+          "accessories"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Cambridge Dictionary",
+          "url": "https://dictionary.cambridge.org/dictionary/english/ditsy",
+          "supports": [
+            "ditsy textile/design usage",
+            "small flowers or shapes",
+            "irregular-looking printed pattern"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jacobean-floral",
+      "verification_state": "qualified",
+      "term_scope": "modern floral surface-design family derived from Jacobean/crewelwork conventions",
+      "names": {
+        "ja": "ジャコビアン・フローラル",
+        "en": "Jacobean Floral"
+      },
+      "aliases": {
+        "ja": [
+          "ジャコビアン柄"
+        ],
+        "en": [
+          "Jacobean floral pattern"
+        ]
+      },
+      "definition": {
+        "ja": "スクロールする茎に、様式化した花・葉・果実などを密に組み合わせる装飾的な植物柄の系統です。歴史的なジャコビアン刺繍・クルーエルワークに由来する現代的な分類で、固定柄ではありません。",
+        "en": "A modern floral surface-design family derived from Jacobean/crewelwork conventions, using scrolling stems with stylized flowers, leaves, fruit, and related ornament. It is not one fixed motif."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "長く曲がるスクロール状の茎",
+          "大きめで様式化された花や葉",
+          "密で装飾的な構成"
+        ],
+        "en": [
+          "Long scrolling stems",
+          "Large stylized flowers and leaves",
+          "Dense ornamental composition"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "生地",
+          "カーテン",
+          "壁紙",
+          "刺繍風装飾"
+        ],
+        "en": [
+          "textiles",
+          "curtains",
+          "wallpaper",
+          "embroidery-inspired decor"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "National Gallery of Victoria",
+          "url": "https://www.ngv.vic.gov.au/wp-content/uploads/2014/08/ExquisiteThreads_Labels.pdf",
+          "supports": [
+            "Jacobean embroidery historical context",
+            "scrollwork",
+            "flowers and leaves",
+            "later animal and vegetal forms"
+          ]
+        },
+        {
+          "publisher": "Textile Research Centre Leiden",
+          "url": "https://trc-leiden.org/trc-needles/regional-traditions/europe-and-north-america/embroideries/crewel-embroidery",
+          "supports": [
+            "crewel embroidery context",
+            "17th-century Britain",
+            "Jacobean work terminology"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "millefleurs",
+      "verification_state": "verified",
+      "term_scope": "named dense field of many small flowers",
+      "names": {
+        "ja": "ミルフルール",
+        "en": "Millefleurs"
+      },
+      "aliases": {
+        "ja": [
+          "ミルフルール柄"
+        ],
+        "en": [
+          "mille-fleurs",
+          "thousand flowers"
+        ]
+      },
+      "definition": {
+        "ja": "多数の小さな草花を密に敷き詰め、画面全体を花で満たす「千の花」の系統です。小花柄よりも花の密度と連続した花野の印象が強くなります。",
+        "en": "A dense field of numerous small flowering plants and blossoms—the 'thousand flowers' effect—so the surface reads as continuously flower-strewn rather than simply scattered."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "小さな花が非常に多い",
+          "地が花で埋まるほど密",
+          "草花の種類や向きに変化がある"
+        ],
+        "en": [
+          "Contains very many small flowers",
+          "The ground is densely filled",
+          "Small plants and blooms vary across the field"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "タペストリー風装飾",
+          "生地",
+          "壁紙",
+          "インテリア"
+        ],
+        "en": [
+          "tapestry-inspired decor",
+          "textiles",
+          "wallpaper",
+          "interiors"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/459953",
+          "supports": [
+            "millefleurs terminology",
+            "thousand flowers meaning",
+            "lush flower-strewn background",
+            "historical tapestry context"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/451982",
+          "supports": [
+            "millefleurs carpet context",
+            "densely arranged flowers",
+            "variation across media"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "botanical-print",
+      "verification_state": "qualified",
+      "term_scope": "broad plant-form surface-print family",
+      "names": {
+        "ja": "ボタニカル柄",
+        "en": "Botanical Print"
+      },
+      "aliases": {
+        "ja": [
+          "ボタニカルプリント"
+        ],
+        "en": [
+          "botanical pattern"
+        ]
+      },
+      "definition": {
+        "ja": "葉・茎・花・実など、植物の形を主題にした広いプリント柄の分類です。写実的な植物図から抽象化した反復まで含み、ひとつの固定モチーフではありません。",
+        "en": "A broad surface-print family organized around plant forms such as leaves, stems, flowers, and seedpods, ranging from naturalistic illustration to stylized repeats. It is not one fixed motif."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "植物の形そのものが主題",
+          "葉や茎だけでも成立する",
+          "写実から抽象まで幅が広い"
+        ],
+        "en": [
+          "Plant forms are the subject",
+          "Leaves and stems can dominate without flowers",
+          "Ranges from naturalistic to highly stylized"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "生地",
+          "壁紙",
+          "クッション",
+          "ファッション"
+        ],
+        "en": [
+          "textiles",
+          "wallpaper",
+          "cushions",
+          "fashion"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Victoria and Albert Museum",
+          "url": "https://www.vam.ac.uk/articles/post-war-textiles",
+          "supports": [
+            "botanical form as textile-design inspiration",
+            "botanical pattern terminology",
+            "naturalistic and abstract plant-form pattern examples"
+          ]
+        },
+        {
+          "publisher": "KEITA MARUYAMA Textile Museum",
+          "url": "https://www.keitamaruyama.com/blog/125",
+          "supports": [
+            "Botanical print terminology in fashion/textile context",
+            "flower-rich botanical surface-design example"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acanthus",
+      "verification_state": "verified",
+      "term_scope": "named stylized acanthus-leaf ornamental motif",
+      "names": {
+        "ja": "アカンサス",
+        "en": "Acanthus"
+      },
+      "aliases": {
+        "ja": [
+          "アカンサス文様"
+        ],
+        "en": [
+          "acanthus motif",
+          "acanthus leaf"
+        ]
+      },
+      "definition": {
+        "ja": "ギザギザしたアカンサスの葉を様式化し、外側へ巻き込む曲線やスクロールとして組む装飾文様です。花よりも大きく裂けた葉形が識別の中心です。",
+        "en": "An ornamental motif based on stylized, jagged acanthus leaves that curl outward in scrolling, symmetrical, or repeating compositions. The large serrated leaf form is the key cue."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "大きく裂けたギザギザの葉",
+          "葉先が外へ巻くスクロール",
+          "装飾的で対称的な構成が多い"
+        ],
+        "en": [
+          "Large jagged or deeply cut leaves",
+          "Leaf tips curl into scrolls",
+          "Often arranged ornamentally or symmetrically"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "壁紙",
+          "生地",
+          "建築装飾風デザイン",
+          "インテリア"
+        ],
+        "en": [
+          "wallpaper",
+          "textiles",
+          "architectural-style ornament",
+          "interiors"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Getty Research Institute, Art & Architecture Thesaurus",
+          "url": "https://www.getty.edu/vow/AATFullDisplay?find=&logic=&note=&subjectid=300164902",
+          "supports": [
+            "acanthus motif term",
+            "stylized Acanthus spinosus leaf basis",
+            "jagged leaf form",
+            "ornamental decorative-arts use"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "medallion",
+      "verification_state": "verified",
+      "term_scope": "generic framed circular or oval ornamental motif family",
+      "names": {
+        "ja": "メダリオン",
+        "en": "Medallion"
+      },
+      "aliases": {
+        "ja": [
+          "メダリオン柄"
+        ],
+        "en": [
+          "medallion pattern",
+          "medallion motif"
+        ]
+      },
+      "definition": {
+        "ja": "円形または楕円形の枠の中に花・図形・人物などの装飾を収め、その単位を中心配置または反復するモチーフ群です。枠で囲まれた円・楕円の「島」が識別の中心です。",
+        "en": "A motif family built from circular or oval framed units containing floral, geometric, figural, or other ornament, used singly, centrally, or as a repeat."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "円または楕円の外枠",
+          "枠内に別の装飾が入る",
+          "独立した装飾単位として見える"
+        ],
+        "en": [
+          "Circular or oval outer frame",
+          "Contains ornament inside the frame",
+          "Reads as a self-contained ornamental unit"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ラグ",
+          "壁紙",
+          "生地",
+          "インテリア"
+        ],
+        "en": [
+          "rugs",
+          "wallpaper",
+          "textiles",
+          "interiors"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Getty Research Institute, Art & Architecture Thesaurus",
+          "url": "https://www.getty.edu/vow/AATFullDisplay?find=&logic=&note=&subjectid=300077354",
+          "supports": [
+            "medallions as ornament areas",
+            "circular or oval framed form",
+            "figural or ornamental contents",
+            "two-dimensional textile use",
+            "medallion pattern terminology"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ivy",
+      "verification_state": "qualified",
+      "term_scope": "generic ivy-leaf botanical motif family",
+      "names": {
+        "ja": "アイビー柄",
+        "en": "Ivy Pattern"
+      },
+      "aliases": {
+        "ja": [
+          "アイビーパターン"
+        ],
+        "en": [
+          "ivy motif",
+          "ivy leaf pattern"
+        ]
+      },
+      "definition": {
+        "ja": "切れ込みのあるアイビーの葉を、単独または茎・つるに沿って反復する植物柄の系統です。ひとつの標準リピートではなく、葉形とつるの組み合わせを主な手掛かりにします。",
+        "en": "A broad botanical motif family using recognizable lobed ivy leaves, repeated alone or along trailing stems and vines. It is not one standardized repeat."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "切れ込みのあるアイビー葉",
+          "つるや茎に沿った連続配置",
+          "緑色は代表例で必須ではない"
+        ],
+        "en": [
+          "Recognizable lobed ivy leaves",
+          "Leaves often follow trailing vines or stems",
+          "Green is conventional but not required"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "生地",
+          "壁紙",
+          "クッション",
+          "装飾面"
+        ],
+        "en": [
+          "textiles",
+          "wallpaper",
+          "cushions",
+          "decorative surfaces"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/13998",
+          "supports": [
+            "Ivy textile/pattern terminology",
+            "repeated ivy leaves",
+            "layered leaf treatment",
+            "textile surface-design context"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "baroque-scroll",
+      "verification_state": "qualified",
+      "term_scope": "Baroque running-scroll ornamental family rather than one uniquely fixed repeat",
+      "names": {
+        "ja": "バロック・スクロール",
+        "en": "Baroque Scroll"
+      },
+      "aliases": {
+        "ja": [
+          "バロック調スクロール",
+          "バロック唐草"
+        ],
+        "en": [
+          "Baroque scrollwork",
+          "Baroque floral scroll",
+          "Baroque acanthus scroll"
+        ]
+      },
+      "definition": {
+        "ja": "C字・S字に巻き上がるスクロールへ葉や花を絡める、バロック装飾由来の広い様式です。一本の固定リピートではなく、連続する巻き線が識別の中心です。",
+        "en": "A broad Baroque-derived ornamental style built from rolling C- and S-shaped scrolls, often with foliage or flowers. It is not one fixed repeat."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "C字・S字の巻き線",
+          "葉や花を伴う装飾的な連続",
+          "巻き線が横方向へ連続して走る反復リズム"
+        ],
+        "en": [
+          "Rolling C/S scrollwork",
+          "Often entwined with foliage or flowers",
+          "A running scroll rhythm that continues laterally across the repeat"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "壁紙",
+          "生地",
+          "家具装飾"
+        ],
+        "en": [
+          "wallpaper",
+          "textiles",
+          "furnishing ornament"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Victoria and Albert Museum",
+          "url": "https://www.vam.ac.uk/articles/the-baroque-style",
+          "supports": [
+            "Baroque ornament context",
+            "running scroll as a widespread form of Baroque floral decoration",
+            "frequent combination with acanthus"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/26786",
+          "supports": [
+            "seventeenth-century Baroque taste",
+            "heavy foliate scroll ornament"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chinoiserie",
+      "verification_state": "qualified",
+      "term_scope": "European decorative style adapting imagined or interpreted East Asian motifs, not one fixed motif",
+      "names": {
+        "ja": "シノワズリ",
+        "en": "Chinoiserie"
+      },
+      "aliases": {
+        "ja": [
+          "中国趣味"
+        ],
+        "en": [
+          "Chinese taste",
+          "Chinese-style decoration"
+        ]
+      },
+      "definition": {
+        "ja": "中国美術へのヨーロッパ的な憧憬から展開した装飾様式で、楼閣、鳥、花木、庭園などを幻想的に組み合わせます。単一の固定柄ではありません。",
+        "en": "A broad European decorative style inspired by Chinese art, often combining pavilions, birds, flowering plants, and gardens. It is not one canonical repeat."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "楼閣・鳥・花木などの東アジア風情景",
+          "一つのモチーフではなく様式全体",
+          "情景要素を余白とともに非対称に配置する構成"
+        ],
+        "en": [
+          "Pavilions, birds, and flowering plants",
+          "A broad style rather than one motif",
+          "Scenic motifs commonly arranged asymmetrically with open space between them"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "壁紙",
+          "生地",
+          "陶磁器"
+        ],
+        "en": [
+          "wallpaper",
+          "textiles",
+          "ceramics"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Victoria and Albert Museum",
+          "url": "https://www.vam.ac.uk/articles/chinoiserie-an-introduction",
+          "supports": [
+            "chinoiserie as a European decorative style",
+            "adaptation of East Asian motifs",
+            "varied recurring motif vocabulary rather than one fixed pattern"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/exhibitions/listings/2015/china-through-the-looking-glass/exhibition-galleries",
+          "supports": [
+            "late-seventeenth-century chinoiserie style",
+            "Chinese figures, pagodas, landscapes, birds and flowering plants as varied elements"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flame-stitch",
+      "verification_state": "qualified",
+      "term_scope": "Bargello or flame-stitch counted-thread embroidery technique and its characteristic stepped zigzag visual",
+      "names": {
+        "ja": "フレームステッチ",
+        "en": "Flame Stitch"
+      },
+      "aliases": {
+        "ja": [
+          "バルジェロ",
+          "フロレンティン・ステッチ"
+        ],
+        "en": [
+          "Bargello",
+          "Florentine work",
+          "Florentine stitch"
+        ]
+      },
+      "definition": {
+        "ja": "階段状に上下する尖った山と谷を連続させ、炎のような動きを作る意匠です。Bargelloなどの刺繍技法と強く結びつくため、技法由来の視覚系として扱います。",
+        "en": "A stepped sequence of pointed peaks and valleys creating a flame-like rhythm, strongly associated with Bargello and related needlework."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "階段状の山と谷",
+          "単純なジグザグより多段の尖り",
+          "段階的に上下するジグザグが炎状の峰をつくる"
+        ],
+        "en": [
+          "Stepped peaks and valleys",
+          "More stair-stepped than a simple zigzag",
+          "Stepped zigzags rise and fall into flame-like peaks"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "刺繍",
+          "椅子張り",
+          "クッション"
+        ],
+        "en": [
+          "embroidery",
+          "upholstery",
+          "cushions"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Victoria and Albert Museum",
+          "url": "https://www.vam.ac.uk/articles/embroidery-styles-an-illustrated-guide",
+          "supports": [
+            "Bargello counted-thread embroidery",
+            "flame stitch as a name for Bargello work",
+            "vertical stitches stepped to create regular peaks and valleys"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/156124",
+          "supports": [
+            "Bargello or flame stitch terminology",
+            "historical embroidery use",
+            "typical zigzag visual"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tree-of-life",
+      "verification_state": "verified",
+      "term_scope": "named tree-centered symbolic motif with many historical variants",
+      "names": {
+        "ja": "生命の樹",
+        "en": "Tree of Life"
+      },
+      "aliases": {
+        "ja": [
+          "生命樹",
+          "ツリー・オブ・ライフ"
+        ],
+        "en": [
+          "Tree of Life motif"
+        ]
+      },
+      "definition": {
+        "ja": "一本の幹から枝葉・花・果実などが広がる「生命の樹」を主題にした装飾モチーフです。中央の樹木構造が全体をまとめます。",
+        "en": "A decorative Tree of Life motif organized around a central trunk from which branches, leaves, flowers, or fruit spread."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "中心となる幹",
+          "枝葉が一体の樹木として広がる",
+          "中央の幹から左右へ枝葉が展開する樹形"
+        ],
+        "en": [
+          "A central trunk",
+          "Branches and foliage form one coherent tree",
+          "A central trunk expands outward into branching foliage"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "タペストリー",
+          "生地",
+          "刺繍"
+        ],
+        "en": [
+          "tapestries",
+          "textiles",
+          "embroidery"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/451090",
+          "supports": [
+            "Tree of Life terminology",
+            "tree-centered motif",
+            "animals flanking a tree as a long-standing composition"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/229006",
+          "supports": [
+            "Tree of Life textile title",
+            "fruit-bearing tree and wildlife pattern usage"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "moire",
+      "verification_state": "qualified",
+      "term_scope": "watered or rippled textile surface effect rather than one fixed motif",
+      "names": {
+        "ja": "モアレ",
+        "en": "Moiré"
+      },
+      "aliases": {
+        "ja": [
+          "モワレ",
+          "木目模様"
+        ],
+        "en": [
+          "moire",
+          "watered silk",
+          "watered effect"
+        ]
+      },
+      "definition": {
+        "ja": "水面や木目のような揺らぐ帯が見えるモアレ効果です。固定された線画ではなく、光沢や組織の干渉による表面効果を指します。",
+        "en": "A watered or rippled moire effect resembling flowing water or wood grain. It is a textile/surface effect rather than one fixed drawn motif."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "水面のような揺らぐ帯",
+          "間隔や太さが局所的に変化",
+          "水面のような波紋が重なって流れる光沢線"
+        ],
+        "en": [
+          "Watered flowing bands",
+          "Local shifts in spacing and thickness",
+          "Overlapping watered ripples create a flowing, lustrous surface effect"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "シルク",
+          "リボン",
+          "ドレス生地"
+        ],
+        "en": [
+          "silk",
+          "ribbon",
+          "dress fabric"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Smithsonian Museum Conservation Institute",
+          "url": "https://mci.si.edu/node/1317445",
+          "supports": [
+            "moiré as several methods affecting a fabric surface",
+            "wavy designs",
+            "multiple fibers and production methods"
+          ]
+        },
+        {
+          "publisher": "National Museum of American History, Smithsonian Institution",
+          "url": "https://americanhistory.si.edu/collections/object/nmah_624411",
+          "supports": [
+            "watered moiré effect",
+            "pressed textile surface",
+            "moire as production method/effect"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yagasuri",
+      "verification_state": "verified",
+      "term_scope": "named Japanese arrow-feather or arrow design",
+      "names": {
+        "ja": "矢絣",
+        "en": "Yagasuri"
+      },
+      "aliases": {
+        "ja": [
+          "矢羽根",
+          "矢羽根模様"
+        ],
+        "en": [
+          "arrow-feather pattern",
+          "arrow pattern"
+        ]
+      },
+      "definition": {
+        "ja": "矢の羽根を連ねた日本文様で、細長いV字が方向性を持って規則的に並びます。一般的なシェブロンより矢羽の単位が明確です。",
+        "en": "A Japanese pattern based on arrow feathers, repeating elongated V-shaped units with a clear directional rhythm."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "矢羽を思わせる細長いV字",
+          "同じ方向へ規則的に連続",
+          "矢羽根形のV字単位が同方向へ整列する"
+        ],
+        "en": [
+          "Elongated arrow-feather V units",
+          "Strong repeated direction",
+          "Arrow-feather V units align in a consistent directional repeat"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "和小物"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "Japanese accessories"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Cooper Hewitt, Smithsonian Design Museum",
+          "url": "https://collections.si.edu/search/detail/edanmdm%3Achndm_1976-103-289",
+          "supports": [
+            "yagasuri terminology",
+            "Japanese arrow design",
+            "rows of large and small arrows",
+            "alternating direction"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sayagata",
+      "verification_state": "verified",
+      "term_scope": "named continuous interlocking fret pattern",
+      "names": {
+        "ja": "紗綾形",
+        "en": "Sayagata"
+      },
+      "aliases": {
+        "ja": [
+          "卍繋ぎ",
+          "さや形"
+        ],
+        "en": [
+          "continuous fret pattern",
+          "fylfot pattern"
+        ]
+      },
+      "definition": {
+        "ja": "卍形の鍵状線を途切れなく連結し、迷路のような連続地文を作る日本文様です。単独記号ではなく、直角の折れ線が面を埋める構造が識別点です。",
+        "en": "A Japanese continuous fret pattern formed by interlocking manji-shaped right-angled lines, read as a linked field rather than isolated symbols."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "直角で折れる鍵状線",
+          "線が連結して面を埋める",
+          "卍を崩した鍵形の線が途切れず連結する"
+        ],
+        "en": [
+          "Right-angled key-like lines",
+          "Interlocks into a continuous field",
+          "Interlocking key-fret lines derived from manji forms connect continuously"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "和装小物"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "Japanese accessories"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/65305",
+          "supports": [
+            "sayagata terminology",
+            "continuous fret pattern",
+            "common Japanese dress use in the Edo period"
+          ]
+        },
+        {
+          "publisher": "Cooper Hewitt, Smithsonian Design Museum",
+          "url": "https://www.si.edu/object/chndm_1976-103-215",
+          "supports": [
+            "fylfot/sayagata terminology",
+            "popular Japanese geometric design"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "uroko",
+      "verification_state": "verified",
+      "term_scope": "named Japanese scale pattern based on repeated triangles",
+      "names": {
+        "ja": "鱗文様",
+        "en": "Uroko"
+      },
+      "aliases": {
+        "ja": [
+          "鱗文",
+          "鱗形"
+        ],
+        "en": [
+          "uroko pattern",
+          "scale pattern"
+        ]
+      },
+      "definition": {
+        "ja": "三角形を規則的に反復し、鱗の連なりに見立てる日本文様です。菱形ではなく、明確な三角単位が識別の中心です。",
+        "en": "A Japanese scale pattern made from regular repeating triangles, with the triangle as the decisive unit rather than the diamond."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "三角形が主単位",
+          "上下反転した三角が規則的に続く",
+          "三角形が上下反転しながら規則的に並ぶ"
+        ],
+        "en": [
+          "Triangles are the primary unit",
+          "Alternating upright and inverted triangles",
+          "Triangles alternate orientation in a regular scale-like repeat"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "能装束",
+          "和小物"
+        ],
+        "en": [
+          "kimono",
+          "Noh costume",
+          "Japanese accessories"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Agency for Cultural Affairs, Japan — Cultural Heritage Online",
+          "url": "https://online.bunka.go.jp/heritages/detail/523613",
+          "supports": [
+            "uroko/scale pattern terminology",
+            "continuous equilateral triangles",
+            "dragon-scale interpretation",
+            "textile use"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tatewaku",
+      "verification_state": "verified",
+      "term_scope": "named Japanese vertically rising paired-curve pattern",
+      "names": {
+        "ja": "立涌",
+        "en": "Tatewaku"
+      },
+      "aliases": {
+        "ja": [
+          "立湧",
+          "立涌文"
+        ],
+        "en": [
+          "tatewaku pattern",
+          "rising-steam pattern"
+        ]
+      },
+      "definition": {
+        "ja": "向かい合う曲線が縦方向にふくらみとくびれを繰り返し、立ち上るような縦長区画を作る日本文様です。",
+        "en": "A Japanese pattern of opposed vertical curves that repeatedly swell and narrow, forming rising elongated compartments."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "縦方向に連続する曲線",
+          "左右の線がふくらみとくびれを作る",
+          "平行する波状線が縦方向へ立ち上がる"
+        ],
+        "en": [
+          "Curves run vertically",
+          "Opposed lines swell and narrow",
+          "Parallel undulating lines rise vertically through the repeat"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "有職文様"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "courtly Japanese patterning"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Agency for Cultural Affairs, Japan — Cultural Heritage Online",
+          "url": "https://online.bunka.go.jp/heritages/detail/427076",
+          "supports": [
+            "tatewaku terminology",
+            "continuous curves forming vertically repeated gourd-like shapes",
+            "named variants based on inserted motifs"
+          ]
+        },
+        {
+          "publisher": "Nezu Museum",
+          "url": "https://www.nezu-muse.or.jp/jp/exhibitions/view-88.html",
+          "supports": [
+            "tatewaku as a rising-steam-like pattern",
+            "textile use"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kagome",
+      "verification_state": "verified",
+      "term_scope": "named Japanese basket-weave-derived lattice pattern",
+      "names": {
+        "ja": "籠目",
+        "en": "Kagome"
+      },
+      "aliases": {
+        "ja": [
+          "籠目文",
+          "かごめ"
+        ],
+        "en": [
+          "kagome pattern",
+          "wickerwork pattern"
+        ]
+      },
+      "definition": {
+        "ja": "竹籠の編み目に由来し、複数方向の斜線が交差して三角・六角・星状の開口を作る日本の籠目文様です。",
+        "en": "A Japanese basket-eye pattern derived from woven bamboo, where crossing diagonals create triangular, hexagonal, and star-like openings."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "三方向の斜線が交差",
+          "三角・六角・星状の開口",
+          "斜線が交差して三角形と六角形を連結する籠目格子"
+        ],
+        "en": [
+          "Three directional sets of diagonals",
+          "Triangle, hexagon, and star-like openings",
+          "Interlaced diagonals form a connected lattice of triangles and hexagons"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "竹工芸",
+          "着物",
+          "和小物"
+        ],
+        "en": [
+          "bamboo craft",
+          "kimono",
+          "Japanese accessories"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Cooper Hewitt, Smithsonian Design Museum",
+          "url": "https://www.si.edu/object/wicker-work-pattern%3Achndm_1948-128-74",
+          "supports": [
+            "kagome/wickerwork terminology",
+            "origin in bamboo basket structure",
+            "Japanese textile-design context"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kanoko",
+      "verification_state": "qualified",
+      "term_scope": "kanoko spotted visual convention closely tied to kanoko shibori resist-dye technique",
+      "names": {
+        "ja": "鹿の子",
+        "en": "Kanoko"
+      },
+      "aliases": {
+        "ja": [
+          "鹿の子絞り",
+          "疋田鹿の子"
+        ],
+        "en": [
+          "kanoko shibori",
+          "spotted dyeing",
+          "fawn-spot pattern"
+        ]
+      },
+      "definition": {
+        "ja": "鹿の子絞りと結びつく、小さな点・輪点を規則的または菱状に並べた視覚表現です。点柄一般ではなく、絞り由来の輪点が重要です。",
+        "en": "A dotted visual convention associated with kanoko shibori, using small resist dots or rings arranged regularly or in diamond groupings."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "小さな点または輪点",
+          "点が菱状・格子状にまとまる",
+          "小さな結び防染の点が群として反復する"
+        ],
+        "en": [
+          "Small dots or resist rings",
+          "Often grouped in diamond or grid arrangements",
+          "Small tied-resist dots repeat in clustered formations"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "絞り染め",
+          "和小物"
+        ],
+        "en": [
+          "kimono",
+          "shibori textiles",
+          "Japanese accessories"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/74585",
+          "supports": [
+            "kanoko shibori terminology",
+            "spotted resist dyeing",
+            "Japanese textile context"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/45399",
+          "supports": [
+            "kanoko as a popular shibori variation",
+            "small tied pinches",
+            "typical small square with center dot",
+            "variation in shape"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hanabishi",
+      "verification_state": "verified",
+      "term_scope": "named Japanese floral-lozenge motif",
+      "names": {
+        "ja": "花菱",
+        "en": "Hanabishi"
+      },
+      "aliases": {
+        "ja": [
+          "花菱文"
+        ],
+        "en": [
+          "floral lozenge",
+          "hanabishi motif"
+        ]
+      },
+      "definition": {
+        "ja": "四弁の花を菱形に整えた花菱モチーフを反復する日本文様です。単なる菱形ではなく、花弁として読めることが識別点です。",
+        "en": "A Japanese motif that organizes a four-petaled flower into a lozenge form; the diamond unit itself reads as a flower."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "四弁花が菱形に収まる",
+          "花と菱が一体化した輪郭",
+          "菱形の輪郭内に四弁の花形が収まる"
+        ],
+        "en": [
+          "Four petals organized as a lozenge",
+          "Flower and diamond form are integrated",
+          "A four-petal floral unit is contained within a lozenge-shaped structure"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "有職文様"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "courtly Japanese patterning"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/74544",
+          "supports": [
+            "hanabishi terminology",
+            "floral lozenge identification",
+            "Japanese textile use"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "same-komon",
+      "verification_state": "qualified",
+      "term_scope": "same or sharkskin fine-dot komon visual produced within a fine-pattern dyeing tradition",
+      "names": {
+        "ja": "鮫小紋",
+        "en": "Same Komon"
+      },
+      "aliases": {
+        "ja": [
+          "鮫",
+          "鮫小紋柄"
+        ],
+        "en": [
+          "sharkskin komon",
+          "same pattern",
+          "sharkskin pattern"
+        ]
+      },
+      "definition": {
+        "ja": "極小の点を弧・扇状に密集させ、遠目には無地に近く見える鮫小紋の視覚表現です。固定された一点密度を唯一の正解とはしません。",
+        "en": "A Same Komon visual convention made from extremely fine dots grouped in arc or fan-like formations, often reading nearly solid from a distance."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "非常に細かい点",
+          "点が弧・扇状にまとまる",
+          "極小の点が高密度に集まり鮫肌状の面をつくる"
+        ],
+        "en": [
+          "Extremely fine dots",
+          "Dots form arc or fan-like groupings",
+          "Extremely fine dense dots create the characteristic shark-skin-like field"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "江戸小紋",
+          "着物",
+          "帯"
+        ],
+        "en": [
+          "Edo komon",
+          "kimono",
+          "obi"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Bureau of Industrial and Labor Affairs, Tokyo Metropolitan Government",
+          "url": "https://www.dento-tokyo.metro.tokyo.lg.jp/english/items/02.html",
+          "supports": [
+            "Tokyo Some-Komon as repeated minute-pattern dyeing",
+            "gokuzame/fine sharkskin as a representative pattern",
+            "very fine dot scale"
+          ]
+        },
+        {
+          "publisher": "University of Michigan Museum of Art",
+          "url": "https://umma.umich.edu/objects/kimono-2013-2-477/",
+          "supports": [
+            "same-komon terminology",
+            "minute white dots",
+            "hill-like repeated forms",
+            "same meaning shark",
+            "Edo komon context"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nami-chidori",
+      "verification_state": "verified",
+      "term_scope": "named Japanese motif pairing plovers with waves",
+      "names": {
+        "ja": "波千鳥",
+        "en": "Nami Chidori"
+      },
+      "aliases": {
+        "ja": [
+          "波に千鳥",
+          "千鳥に波"
+        ],
+        "en": [
+          "plovers and waves",
+          "plovers over waves",
+          "wave-and-plover motif"
+        ]
+      },
+      "definition": {
+        "ja": "波と千鳥を組み合わせた日本文様です。波だけではなく、飛ぶ小鳥の簡略シルエットが一緒に現れることが決め手です。",
+        "en": "A Japanese motif combining waves with chidori, small plover-like birds; the decisive cue is birds appearing together with the water motif."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "波と小鳥が同じ構図にある",
+          "千鳥は翼を広げた簡略シルエット",
+          "波の曲線と飛ぶ千鳥を一組として読む"
+        ],
+        "en": [
+          "Waves and small birds share the composition",
+          "Chidori appear as simplified flying silhouettes",
+          "Curving waves and flying plovers are read together as the defining motif pair"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "手ぬぐい",
+          "和小物"
+        ],
+        "en": [
+          "kimono",
+          "tenugui",
+          "Japanese accessories"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/25740",
+          "supports": [
+            "波千鳥 / plovers and waves motif terminology",
+            "Japanese decorative use",
+            "stylized plovers paired with waves"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/44576",
+          "supports": [
+            "plovers and waves textile design",
+            "chidori terminology and Japanese cultural context"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tomoe",
+      "verification_state": "verified",
+      "term_scope": "named Japanese comma-shaped tomoe motif",
+      "names": {
+        "ja": "巴",
+        "en": "Tomoe"
+      },
+      "aliases": {
+        "ja": [
+          "巴文",
+          "巴紋"
+        ],
+        "en": [
+          "comma pattern",
+          "tomoe pattern",
+          "tomoe crest"
+        ]
+      },
+      "definition": {
+        "ja": "勾玉・コンマのように曲がる巴形を中心の周囲へ回転させて構成する日本文様です。一つ巴・二つ巴・三つ巴など複数構成があります。",
+        "en": "A Japanese tomoe motif formed from one or more comma-like curved shapes rotating around a center."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "コンマ・勾玉状の曲形",
+          "中心の周囲に回転配置",
+          "勾玉状の曲線単位が中心の周囲を旋回する"
+        ],
+        "en": [
+          "Comma-like curved units",
+          "Arranged rotationally around a center",
+          "Comma-shaped curved units revolve around a shared center"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "社寺装飾",
+          "家紋",
+          "和小物"
+        ],
+        "en": [
+          "shrine and temple ornament",
+          "heraldry",
+          "Japanese accessories"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/846698",
+          "supports": [
+            "traditional comma/tomoe terminology",
+            "Japanese pattern use",
+            "association with crests and samurai culture"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shibori",
+      "verification_state": "qualified",
+      "term_scope": "family of Japanese resist-dye techniques producing many different patterns",
+      "names": {
+        "ja": "絞り",
+        "en": "Shibori"
+      },
+      "aliases": {
+        "ja": [
+          "絞り染め"
+        ],
+        "en": [
+          "shibori resist dyeing",
+          "Japanese tie-dye"
+        ]
+      },
+      "definition": {
+        "ja": "布を括る・縫う・折る・締めるなどして染料を防ぐ、日本の絞り染め技法群です。結果の模様は多様で、代表画像は技法の一例に限ります。",
+        "en": "A Japanese family of resist-dye techniques that bind, stitch, fold, clamp, or otherwise restrict cloth before dyeing; resulting patterns vary widely."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "染まらない白抜き部分",
+          "輪・線・しわ状など多様な絞り痕",
+          "防染部のにじみや輪郭の揺らぎが反復に残る"
+        ],
+        "en": [
+          "Undyed resist areas",
+          "Rings, lines, or fold marks vary by method",
+          "Resist-dyed edges retain characteristic soft halos and irregularity"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "着物",
+          "手ぬぐい",
+          "衣料"
+        ],
+        "en": [
+          "kimono",
+          "tenugui",
+          "apparel"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/79595",
+          "supports": [
+            "shibori as resist-dye art",
+            "folding, stitching, binding, sheathing and knotting as resist methods",
+            "technique produces complex varied designs"
+          ]
+        },
+        {
+          "publisher": "Kyoto Shibori Museum",
+          "url": "https://en.shibori.jp/shibori-exhibition",
+          "supports": [
+            "shibori as a specialized textile-art field",
+            "Kyoto Kanoko Shibori as one refined technique within the broader practice"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "batik",
+      "verification_state": "qualified",
+      "term_scope": "wax-resist dyeing textile tradition with a wide diversity of patterns",
+      "names": {
+        "ja": "バティック",
+        "en": "Batik"
+      },
+      "aliases": {
+        "ja": [
+          "ろうけつ染め"
+        ],
+        "en": [
+          "wax-resist batik",
+          "Indonesian batik"
+        ]
+      },
+      "definition": {
+        "ja": "蝋で防染して染め分けるバティックの技法・伝統で、地域ごとに植物・幾何・象徴文様が多様に展開します。一つの固定柄ではありません。",
+        "en": "A wax-resist textile technique and tradition encompassing many regional floral, geometric, and symbolic patterns; Batik is not one fixed motif."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "蝋防染による細い輪郭",
+          "植物・幾何など多様なモチーフ",
+          "蝋防染による輪郭と細かなひび割れ状の線が現れる"
+        ],
+        "en": [
+          "Fine wax-resist boundaries",
+          "Wide range of floral and geometric motifs",
+          "Wax-resist contours may be accompanied by fine crackle-like lines"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "衣料",
+          "サロン",
+          "生地"
+        ],
+        "en": [
+          "apparel",
+          "sarongs",
+          "textiles"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "UNESCO Intangible Cultural Heritage",
+          "url": "https://ich.unesco.org/en/RL/batik-a-masterpiece-of-the-oral-and-intangible-heritage-of-humanity-00170",
+          "supports": [
+            "Indonesian Batik as techniques, symbolism and culture",
+            "hot-wax resist dyeing process",
+            "wide diversity of patterns and influences"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bandhani",
+      "verification_state": "qualified",
+      "term_scope": "South Asian tie-resist textile technique and tradition characterized by numerous tied points",
+      "names": {
+        "ja": "バンダニ",
+        "en": "Bandhani"
+      },
+      "aliases": {
+        "ja": [
+          "バンダニ染め",
+          "バンデジ"
+        ],
+        "en": [
+          "Bandhej",
+          "Bandhni",
+          "tie-and-dye"
+        ]
+      },
+      "definition": {
+        "ja": "布の小点を多数つまんで括り、防染する南アジアのタイ・レジスト染色伝統です。微細な白抜き点が菱・円・格子などを作りますが、配置は多様です。",
+        "en": "A South Asian tie-resist tradition made by tying many tiny points before dyeing; small resist dots may form grids, diamonds, circles, or larger motifs."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "非常に小さな白抜き点",
+          "多数の点で大きな図形を作る",
+          "結び防染の小点が列や幾何・花形を組み立てる"
+        ],
+        "en": [
+          "Very small resist dots",
+          "Many dots combine into larger figures",
+          "Tiny tied-resist dots assemble into rows, geometric forms, or floral motifs"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "サリー",
+          "ドゥパッタ",
+          "生地"
+        ],
+        "en": [
+          "saris",
+          "dupattas",
+          "textiles"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Government of Rajasthan — Handmade in Rajasthan",
+          "url": "https://handmadeinrajasthan.rajasthan.gov.in/content/industries/handmadeinrajasthandepartment/artandcraft/textilework/bandhani.html",
+          "supports": [
+            "Bandhani as tie-dye textile",
+            "tiny bindings and tied-point process",
+            "multiple named patterns depending on tying method"
+          ]
+        },
+        {
+          "publisher": "Government of Rajasthan — Handmade in Rajasthan",
+          "url": "https://handmadeinrajasthan.rajasthan.gov.in/content/industries/handmadeinrajasthandepartment/artandcraft/textilework/tyeanddyetobereplacedwithbandhejandlehriya.html",
+          "supports": [
+            "Bandhej/Bandhani as resist dyeing",
+            "small tied dots",
+            "variety of patterns from different tying methods"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ajrakh",
+      "verification_state": "qualified",
+      "term_scope": "Kachchh/Sindh-linked resist and block-print textile tradition with complex geometric pattern vocabularies",
+      "names": {
+        "ja": "アジュラック",
+        "en": "Ajrakh"
+      },
+      "aliases": {
+        "ja": [
+          "アジュラク"
+        ],
+        "en": [
+          "Ajrak",
+          "Ajrakh block print"
+        ]
+      },
+      "definition": {
+        "ja": "シンド・カッチ地方などと結びつく多工程の木版染色・捺染伝統で、反復する幾何や花文を深い藍・赤などで構成します。単一モチーフ名ではありません。",
+        "en": "A multi-stage South Asian block-printing and dyeing tradition associated especially with Sindh and Kutch, often using dense geometric or floral repeats in indigo and red."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "木版由来の反復幾何",
+          "藍・赤系の深い配色が代表的",
+          "幾何と植物要素を対称的なブロック反復へ組み込む"
+        ],
+        "en": [
+          "Repeating block-printed geometry",
+          "Deep indigo/red palettes are characteristic references",
+          "Geometric and vegetal motifs are organized into strongly ordered block repeats"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "ショール",
+          "衣料",
+          "生地"
+        ],
+        "en": [
+          "shawls",
+          "apparel",
+          "textiles"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "District Kachchh, Government of Gujarat",
+          "url": "https://kachchh.nic.in/handicraft/",
+          "supports": [
+            "Ajrakh as printed textile craft",
+            "complex geometry and starry constellations",
+            "indigo, madder, black and white palette",
+            "multi-stage washing, dyeing, printing and drying process"
+          ]
+        },
+        {
+          "publisher": "Gujarat Tourism",
+          "url": "https://gujarattourism.com/handicrafts/ajrakh.html",
+          "supports": [
+            "Ajrakh as hand block printing tradition in Kutch",
+            "resist-printing and dyeing process",
+            "multiple blocks and varied textile uses"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kalamkari",
+      "verification_state": "qualified",
+      "term_scope": "Indian painted, mordant-dyed and resist-dyed textile process/tradition rather than one fixed pattern",
+      "names": {
+        "ja": "カラムカリ",
+        "en": "Kalamkari"
+      },
+      "aliases": {
+        "ja": [
+          "カラムカーリ"
+        ],
+        "en": [
+          "qalamkari",
+          "pen-work textile"
+        ]
+      },
+      "definition": {
+        "ja": "筆描きや木版を用いて布に絵付けするインドの染織・絵画伝統です。花唐草、樹木、人物、物語場面など幅広く、一つの固定モチーフではありません。",
+        "en": "An Indian textile-painting and printing tradition using hand-drawn pen work and/or blocks, with floral vines, trees, figures, and narrative scenes."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "手描き感のある細い輪郭",
+          "花唐草・樹木・物語場面など多様",
+          "植物の蔓や花を流れる線でつなぐ描画的構成"
+        ],
+        "en": [
+          "Fine hand-drawn-looking outlines",
+          "Floral vines, trees, or narrative imagery",
+          "Flowing drawn or printed lines connect vines, flowers, and other pictorial motifs"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "サリー",
+          "寺院布",
+          "壁掛け"
+        ],
+        "en": [
+          "saris",
+          "temple cloths",
+          "wall hangings"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/ko/essays/indian-textiles-trade-and-production",
+          "supports": [
+            "kalamkari meaning pen-worked",
+            "multistep mordant, wax-resist and dye process",
+            "process used to create varied designs"
+          ]
+        },
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/447118",
+          "supports": [
+            "kalamkari as multistep textile-dyeing process",
+            "stylus and resist application",
+            "regional production of many textile types"
+          ]
+        },
+        {
+          "publisher": "Government of India — National Portal / ODOP",
+          "url": "https://www.india.gov.in/explore-india/odop/details/srikalahasthi-kalamkari",
+          "supports": [
+            "Srikalahasti Kalamkari as hand-painted or block-printed cotton textile craft",
+            "intricate designs, traditional motifs and natural dyes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suzani",
+      "verification_state": "qualified",
+      "term_scope": "Central Asian embroidered textile tradition with many regional compositions rather than one fixed repeat",
+      "names": {
+        "ja": "スザニ",
+        "en": "Suzani"
+      },
+      "aliases": {
+        "ja": [
+          "スーザニ"
+        ],
+        "en": [
+          "suzani embroidery"
+        ]
+      },
+      "definition": {
+        "ja": "中央アジアの刺繍布スザニを、ロゼットや花、葉、茎の大きな刺繍構成として扱います。地域や制作例で構図が変わるため、固定リピートではありません。",
+        "en": "A Central Asian embroidered-textile tradition recognized by bold rosettes, flowers, leaves, and scrolling stems. Layouts vary, so it is not one fixed repeat."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "大きな円形ロゼットや花",
+          "太い茎と葉の刺繍",
+          "余白を埋める対称・準対称の大柄構成"
+        ],
+        "en": [
+          "Large rosettes or floral medallions",
+          "Bold embroidered stems and leaves",
+          "Large-scale balanced fields rather than a tiny repeat"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "壁掛け",
+          "クッション",
+          "装飾布"
+        ],
+        "en": [
+          "wall hangings",
+          "cushions",
+          "decorative textiles"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/447384",
+          "supports": [
+            "suzani terminology and Central Asian textile context",
+            "joined fabric strips",
+            "rosettes, palmettes, stems and scrolls"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kente",
+      "verification_state": "qualified",
+      "term_scope": "Ghanaian strip-woven textile tradition with many named arrangements rather than one fixed motif",
+      "names": {
+        "ja": "ケンテ",
+        "en": "Kente"
+      },
+      "aliases": {
+        "ja": [
+          "ケンテ布"
+        ],
+        "en": [
+          "kente cloth"
+        ]
+      },
+      "definition": {
+        "ja": "ガーナのケンテを、細幅の織り帯をつなぎ、色のブロックや幾何学帯が切り替わる染織として扱います。単一柄ではありません。",
+        "en": "A Ghanaian strip-woven textile tradition built from narrow patterned bands sewn together. Color blocks and geometric sections vary across many kente designs."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "細い織り帯を接ぎ合わせた構造",
+          "色ブロックと幾何学帯の切り替え",
+          "縦方向のストリップ境界が見える"
+        ],
+        "en": [
+          "Narrow strip-woven construction",
+          "Alternating color blocks and geometric bands",
+          "Visible longitudinal strip boundaries"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "衣装",
+          "儀礼布",
+          "装飾布"
+        ],
+        "en": [
+          "garments",
+          "ceremonial cloth",
+          "decorative textiles"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/894795",
+          "supports": [
+            "Asante/Ghana kente cloth",
+            "narrow strips sewn edge-to-edge",
+            "silk and cotton colored patterning"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bogolan",
+      "verification_state": "qualified",
+      "term_scope": "Malian bogolanfini mud-dyed textile tradition with varied symbolic pattern vocabularies",
+      "names": {
+        "ja": "ボゴラン",
+        "en": "Bogolan"
+      },
+      "aliases": {
+        "ja": [
+          "ボゴランフィニ",
+          "泥染め布"
+        ],
+        "en": [
+          "bogolanfini",
+          "mud cloth",
+          "mud-dyed cloth"
+        ]
+      },
+      "definition": {
+        "ja": "マリの泥染め布ボゴランを、黒〜茶の幾何学記号と生成り地の強い対比として扱います。記号や配置は多様で、単一の固定柄ではありません。",
+        "en": "A Malian mud-dyed textile tradition using dark geometric marks against lighter cloth. Motifs and arrangements vary, so this is a representative family rather than one fixed pattern."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "黒〜茶と生成りの強い対比",
+          "線・点・山形などの幾何学記号",
+          "帯や区画に分かれた反復"
+        ],
+        "en": [
+          "Dark mud-dyed marks on pale cloth",
+          "Lines, dots, chevrons, and symbolic geometry",
+          "Patterning arranged in bands or compartments"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "衣料",
+          "インテリア布",
+          "バッグ"
+        ],
+        "en": [
+          "apparel",
+          "interior textiles",
+          "bags"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Smithsonian National Museum of African Art",
+          "url": "https://www.si.edu/object/nmafa_2012-9-1",
+          "supports": [
+            "bogolan/bogolanfini terminology",
+            "mud-dyed cloth tradition",
+            "patterned surface with cultural meaning"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "adire",
+      "verification_state": "qualified",
+      "term_scope": "Yoruba indigo resist-dyed textile tradition using multiple resist methods and named patterns",
+      "names": {
+        "ja": "アディレ",
+        "en": "Adire"
+      },
+      "aliases": {
+        "ja": [
+          "アディレ布",
+          "ヨルバ藍染め"
+        ],
+        "en": [
+          "adire cloth",
+          "Yoruba indigo resist cloth"
+        ]
+      },
+      "definition": {
+        "ja": "ヨルバの藍染めアディレを、藍地に防染で白〜淡青の点・線・円・格子が現れる染織として扱います。技法も図柄も複数あります。",
+        "en": "A Yoruba indigo resist-dyed textile tradition producing pale dots, lines, circles, grids, and named designs on blue cloth through several resist methods."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "藍地と白〜淡青の防染部分",
+          "点・円・格子・線の組み合わせ",
+          "絞り・縫い・糊など技法で輪郭が変わる"
+        ],
+        "en": [
+          "Indigo ground with pale resisted areas",
+          "Dots, circles, grids, and linear units",
+          "Edges vary with tie, stitch, fold, or starch resist"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "衣料",
+          "布",
+          "バッグ"
+        ],
+        "en": [
+          "apparel",
+          "cloth",
+          "bags"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Victoria and Albert Museum",
+          "url": "https://www.vam.ac.uk/articles/adire-tied-and-dyed-indigo-textiles",
+          "supports": [
+            "Yoruba adire terminology",
+            "indigo-dyed cotton",
+            "resist techniques and blue/white patterning"
+          ]
+        },
+        {
+          "publisher": "The British Museum",
+          "url": "https://www.britishmuseum.org/collection/term/x112724",
+          "supports": [
+            "multiple resist methods including tying, stitching, folding, starch and stencil"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kuba-cloth",
+      "verification_state": "qualified",
+      "term_scope": "Kuba textile tradition using raffia and varied geometric embroidery/applique rather than one fixed motif",
+      "names": {
+        "ja": "クバ布",
+        "en": "Kuba Cloth"
+      },
+      "aliases": {
+        "ja": [
+          "クバクロス",
+          "クバ族の布"
+        ],
+        "en": [
+          "Kuba textile",
+          "Kuba raffia cloth"
+        ]
+      },
+      "definition": {
+        "ja": "クバ布を、ラフィア地に角張った幾何学模様を刺繍・アップリケなどで重ねる広い染織伝統として扱います。固定の一柄ではありません。",
+        "en": "A broad Kuba raffia-textile tradition recognized by bold angular geometry created through embroidery, applique, pile, dye, and related techniques."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "ラフィア色の地",
+          "角張った幾何学の反復",
+          "対称を崩すずれや中断が入りやすい"
+        ],
+        "en": [
+          "Raffia-toned ground",
+          "Bold angular geometric units",
+          "Frequent shifts, interruptions, or asymmetry"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "装飾布",
+          "壁掛け",
+          "クッション"
+        ],
+        "en": [
+          "decorative cloth",
+          "wall hangings",
+          "cushions"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/318398",
+          "supports": [
+            "Kuba prestige textile",
+            "raffia palm fiber",
+            "applique and embroidered geometric design"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sashiko",
+      "verification_state": "qualified",
+      "term_scope": "Japanese running-stitch reinforcement and embroidery tradition with many geometric motifs",
+      "names": {
+        "ja": "刺し子",
+        "en": "Sashiko"
+      },
+      "aliases": {
+        "ja": [
+          "刺子",
+          "刺し子模様"
+        ],
+        "en": [
+          "sashiko stitching",
+          "Japanese sashiko"
+        ]
+      },
+      "definition": {
+        "ja": "刺し子を、短い運針が点線状につながって幾何学を作る日本の縫い・刺繍技法として扱います。模様語彙は多数あり、一柄ではありません。",
+        "en": "A Japanese running-stitch reinforcement and embroidery tradition in which short stitches form dotted geometric lines. It includes many named motifs rather than one fixed pattern."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "短い運針の連続が点線に見える",
+          "藍地に白糸が代表的",
+          "格子・波・菱形など幾何学を線で組む"
+        ],
+        "en": [
+          "Short running stitches read as dotted lines",
+          "Indigo and white are a classic cue",
+          "Grids, waves, diamonds, and other geometry built from stitch paths"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "衣料",
+          "布小物",
+          "補強縫い"
+        ],
+        "en": [
+          "apparel",
+          "textile accessories",
+          "reinforcement stitching"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Cooper Hewitt, Smithsonian Design Museum",
+          "url": "https://www.si.edu/object/sashiko-motifs%3Achndm_1948-128-18",
+          "supports": [
+            "sashiko as traditional Japanese folk embroidery",
+            "running-stitch construction",
+            "variety of traditional motifs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kantha",
+      "verification_state": "qualified",
+      "term_scope": "Bengal/Bangladesh layered-cloth running-stitch embroidery and quilting tradition with varied personal designs",
+      "names": {
+        "ja": "カンタ",
+        "en": "Kantha"
+      },
+      "aliases": {
+        "ja": [
+          "カンタ刺繍"
+        ],
+        "en": [
+          "kantha embroidery",
+          "kantha quilt"
+        ]
+      },
+      "definition": {
+        "ja": "カンタを、重ねた布を細かな運針でキルティングし、人物・花・幾何学などを自由に刺すベンガル地域の染織伝統として扱います。",
+        "en": "A Bengal and Bangladesh quilting/embroidery tradition using dense running stitches across layered cloth, often with varied figures, flowers, borders, and geometry."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "面全体に走る細かな運針",
+          "布を重ねたキルティング感",
+          "具象と幾何学を混ぜた自由な構図"
+        ],
+        "en": [
+          "Dense running-stitch texture across the field",
+          "Layered/quilted cloth appearance",
+          "Free compositions mixing figures, florals, and geometry"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "キルト",
+          "敷物",
+          "バッグ"
+        ],
+        "en": [
+          "quilts",
+          "covers",
+          "bags"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Victoria and Albert Museum",
+          "url": "https://www.vam.ac.uk/articles/indian-embroidery",
+          "supports": [
+            "kantha from Bengal/Bangladesh",
+            "layers of old garments quilted with running stitch",
+            "varied personal embroidered designs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "otomi-embroidery",
+      "verification_state": "qualified",
+      "term_scope": "Otomí/Tenango embroidery tradition with varied densely filled animal and plant figures",
+      "names": {
+        "ja": "オトミ刺繍",
+        "en": "Otomi Embroidery"
+      },
+      "aliases": {
+        "ja": [
+          "テナンゴ刺繍",
+          "オトミ刺しゅう"
+        ],
+        "en": [
+          "Tenango embroidery",
+          "Otomí embroidery"
+        ]
+      },
+      "definition": {
+        "ja": "メキシコ・イダルゴ州のオトミ／テナンゴ刺繍を、動物・鳥・植物の色鮮やかなシルエットを密に刺した構成として扱います。",
+        "en": "An Otomí/Tenango embroidery tradition from Hidalgo, Mexico, recognized by brightly filled animal, bird, plant, and floral silhouettes arranged across cloth."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "動物・鳥・植物の大きな輪郭",
+          "輪郭内部を色糸で密に埋める",
+          "白地に多色のモチーフが散る"
+        ],
+        "en": [
+          "Large outlined animals, birds, and plants",
+          "Figures densely filled with colored thread",
+          "Multicolor motifs distributed over a light ground"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "刺繍布",
+          "クッション",
+          "壁掛け"
+        ],
+        "en": [
+          "embroidered cloth",
+          "cushions",
+          "wall hangings"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "National Museum of the American Indian, Smithsonian",
+          "url": "https://americanindian.si.edu/collections-search/object/NMAI_281114",
+          "supports": [
+            "Otomí attribution",
+            "Tenango de Doria, Hidalgo",
+            "cotton embroidered/sewn textile"
+          ]
+        },
+        {
+          "publisher": "Museo Nacional de Culturas Populares / Google Arts & Culture",
+          "url": "https://artsandculture.google.com/story/yAVx8DqM0sentQ",
+          "supports": [
+            "Tenango embroidery tradition",
+            "characteristic animal and plant figures",
+            "dense filled embroidery"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "african-wax-print",
+      "verification_state": "qualified",
+      "term_scope": "Commercial wax-print textile style with many polychromatic motifs and complex transnational history",
+      "names": {
+        "ja": "アフリカンワックスプリント",
+        "en": "African Wax Print"
+      },
+      "aliases": {
+        "ja": [
+          "アフリカンプリント",
+          "ワックスプリント"
+        ],
+        "en": [
+          "Ankara print",
+          "African print",
+          "Dutch wax print"
+        ]
+      },
+      "definition": {
+        "ja": "アフリカンワックスプリントを、強い多色と輪郭のはっきりした反復モチーフを持つプリント綿布の広い系統として扱います。図柄は非常に多様です。",
+        "en": "A broad wax-print cotton style recognized by saturated flat colors and crisp repeated motifs. Geometric, floral, figurative, and symbolic designs vary widely."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "高彩度の多色面",
+          "輪郭のはっきりした大柄モチーフ",
+          "幾何学・植物・具象を大胆に反復"
+        ],
+        "en": [
+          "Saturated flat color areas",
+          "Crisp large-scale motifs",
+          "Bold repeats spanning geometry, flora, and figurative imagery"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "衣料",
+          "バッグ",
+          "インテリア布"
+        ],
+        "en": [
+          "apparel",
+          "bags",
+          "interior textiles"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Victoria and Albert Museum",
+          "url": "https://www.vam.ac.uk/articles/cloth-of-a-continent-africa-fashion",
+          "supports": [
+            "Ankara/African/Dutch wax terminology",
+            "printed cotton",
+            "many layered polychromatic patterns and complex history"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "block-print",
+      "verification_state": "qualified",
+      "term_scope": "Relief block-printing technique capable of many textile motifs rather than one fixed visual pattern",
+      "names": {
+        "ja": "ブロックプリント",
+        "en": "Block Print"
+      },
+      "aliases": {
+        "ja": [
+          "木版プリント",
+          "木版捺染"
+        ],
+        "en": [
+          "block printing",
+          "woodblock print textile"
+        ]
+      },
+      "definition": {
+        "ja": "ブロックプリントを、彫った版を繰り返し捺してモチーフを構成する印刷技法として扱います。花・幾何学など図柄自体は多様です。",
+        "en": "A relief-printing technique in which carved blocks are repeatedly impressed onto cloth. The modular block repeat is the cue; motif families vary widely."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "同じ版形が規則的に反復",
+          "版の境界や微妙な位置ずれ",
+          "花・幾何学など多様な図柄を版単位で組む"
+        ],
+        "en": [
+          "Repeated modular block impressions",
+          "Possible registration shifts or block boundaries",
+          "Many motif families built from repeated carved units"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "生地",
+          "衣料",
+          "テーブル布"
+        ],
+        "en": [
+          "fabric",
+          "apparel",
+          "table textiles"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/es/perspectives/indian-block-printed-textiles",
+          "supports": [
+            "Indian block-printed textiles",
+            "carved blocks and mordant/resist printing",
+            "many designs and repeated block footprints"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zebra-print",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating zebra striping",
+      "names": {
+        "ja": "ゼブラ柄",
+        "en": "Zebra Print"
+      },
+      "aliases": {
+        "ja": [
+          "シマウマ柄"
+        ],
+        "en": [
+          "zebra stripe",
+          "zebra pattern"
+        ]
+      },
+      "definition": {
+        "ja": "シマウマの体表を模した、不規則な黒白の縞が太さや向きを変えながら走るアニマル柄です。",
+        "en": "An animal print imitating zebra striping, with irregular high-contrast bands that change width, direction, and continuity."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "黒と白の強い縞",
+          "縞幅が一定ではない",
+          "直線ではなく湾曲・分岐・先細りが混じる"
+        ],
+        "en": [
+          "Strong black-white striping",
+          "Uneven stripe widths",
+          "Curving, tapering, branching, or interrupted bands"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "衣料",
+          "バッグ",
+          "インテリア"
+        ],
+        "en": [
+          "apparel",
+          "bags",
+          "interiors"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Smithsonian Institution",
+          "url": "https://www.si.edu/object/zebra-fur-records-big-game-their-distribution-characteristics-dimensions-weights-and-horn-tusk%3Asilgoi_68432",
+          "supports": [
+            "zebra print as striped visual",
+            "stripes described as noncontinuous, unpredictable and changing direction"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tiger-print",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating tiger coat stripes",
+      "names": {
+        "ja": "タイガー柄",
+        "en": "Tiger Print"
+      },
+      "aliases": {
+        "ja": [
+          "虎柄",
+          "トラ柄"
+        ],
+        "en": [
+          "tiger stripe",
+          "tiger pattern"
+        ]
+      },
+      "definition": {
+        "ja": "トラの体表を模した、橙〜黄褐色の地に黒い細長い縞が湾曲・先細りして走るアニマル柄です。",
+        "en": "An animal print imitating tiger coats, with dark tapered stripes curving across an orange or tan ground, often with light areas."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "橙〜黄褐色の地",
+          "黒い細長い縞",
+          "縞が湾曲し先細りする"
+        ],
+        "en": [
+          "Orange or tan ground",
+          "Dark elongated stripes",
+          "Curved and tapered stripe endings"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "衣料",
+          "バッグ",
+          "インテリア"
+        ],
+        "en": [
+          "apparel",
+          "bags",
+          "interiors"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Smithsonian National Zoo",
+          "url": "https://nationalzoo.si.edu/animals/tiger",
+          "supports": [
+            "reddish-orange coat",
+            "prominent dark stripes",
+            "white areas and individual stripe patterns"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "snake-print",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating patterned snake scales or skin",
+      "names": {
+        "ja": "スネーク柄",
+        "en": "Snake Print"
+      },
+      "aliases": {
+        "ja": [
+          "ヘビ柄",
+          "蛇柄",
+          "パイソン柄"
+        ],
+        "en": [
+          "snakeskin print",
+          "snake skin pattern",
+          "python print"
+        ]
+      },
+      "definition": {
+        "ja": "ヘビの鱗や皮の見え方を模した、細かな連結セルと斑紋を重ねるアニマル柄です。",
+        "en": "An animal print imitating snake skin through dense connected scale cells, often overlaid with mottled or longitudinal markings."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "細かな鱗セルが連続",
+          "セルの縁が濃く見える",
+          "鱗の上に大きめの斑紋が重なることがある"
+        ],
+        "en": [
+          "Dense connected scale cells",
+          "Often darker cell edges",
+          "Larger mottled markings may overlay the scale texture"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "靴",
+          "バッグ",
+          "衣料"
+        ],
+        "en": [
+          "shoes",
+          "bags",
+          "apparel"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Smithsonian Institution",
+          "url": "https://www.si.edu/object/snake-skin-reptiles-western-north-america%3Asilgoi_68433",
+          "supports": [
+            "snake scales form intricate patterns",
+            "imitation snake-skin use in fashion accessories"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cow-print",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating piebald cattle markings",
+      "names": {
+        "ja": "カウ柄",
+        "en": "Cow Print"
+      },
+      "aliases": {
+        "ja": [
+          "牛柄",
+          "ホルスタイン柄"
+        ],
+        "en": [
+          "cowhide print",
+          "Holstein print",
+          "cow pattern"
+        ]
+      },
+      "definition": {
+        "ja": "ホルスタインなどの牛の斑を模した、白地に大きく不規則な黒斑を散らすアニマル柄です。",
+        "en": "An animal print inspired by piebald cattle such as Holsteins, using large irregular solid patches separated by open contrasting ground."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "大きな不定形の黒斑",
+          "白地の余白が広い",
+          "斑点は丸い小点ではなく塊状"
+        ],
+        "en": [
+          "Large irregular solid patches",
+          "Wide open contrasting ground",
+          "Blob-like markings rather than small round dots"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "衣料",
+          "バッグ",
+          "ラグ"
+        ],
+        "en": [
+          "apparel",
+          "bags",
+          "rugs"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Smithsonian National Zoo",
+          "url": "https://nationalzoo.si.edu/animals/cow",
+          "supports": [
+            "Holstein cattle black-and-white coat example"
+          ]
+        },
+        {
+          "publisher": "Smithsonian Institution",
+          "url": "https://www.si.edu/newsdesk/releases/smithsonian-s-national-zoo-asks-public-name-female-holstein-calf",
+          "supports": [
+            "Holsteins recognized by distinctive black-and-white or red-and-white markings"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "giraffe-print",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating giraffe coat patches",
+      "names": {
+        "ja": "ジラフ柄",
+        "en": "Giraffe Print"
+      },
+      "aliases": {
+        "ja": [
+          "キリン柄"
+        ],
+        "en": [
+          "giraffe pattern",
+          "giraffe spots"
+        ]
+      },
+      "definition": {
+        "ja": "キリンの体表を模した、茶〜黄褐色の大きな多角形斑を淡色の細い境界が区切るアニマル柄です。",
+        "en": "An animal print imitating giraffe coats, with large brown or tan polygonal patches separated by a pale narrow network."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "大きな多角形の茶色斑",
+          "淡色の細い境界線が網目になる",
+          "斑がモザイク状に連結して見える"
+        ],
+        "en": [
+          "Large polygonal brown patches",
+          "Pale narrow channels form a network",
+          "A cellular mosaic rather than isolated dots"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "衣料",
+          "バッグ",
+          "インテリア"
+        ],
+        "en": [
+          "apparel",
+          "bags",
+          "interiors"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Smithsonian Conservation Biology Institute",
+          "url": "https://nationalzoo.si.edu/conservation-ecology-center/giraffe-conservation",
+          "supports": [
+            "individual giraffes identified by unique spot patterns",
+            "giraffe coat spot pattern as recognition feature"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dalmatian-spots",
+      "verification_state": "verified",
+      "term_scope": "named animal print imitating Dalmatian dog spotting",
+      "names": {
+        "ja": "ダルメシアン柄",
+        "en": "Dalmatian Spots"
+      },
+      "aliases": {
+        "ja": [
+          "ダルメシアンスポット",
+          "犬の黒斑柄"
+        ],
+        "en": [
+          "dalmatian print",
+          "dalmatian pattern"
+        ]
+      },
+      "definition": {
+        "ja": "ダルメシアン犬の斑点を模した、白地に小〜中サイズの黒い不規則スポットを散らすアニマル柄です。",
+        "en": "An animal print imitating Dalmatian spotting, with isolated small-to-medium dark spots scattered across a light ground."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "白地に孤立した黒スポット",
+          "円形寄りだが形や大きさに揺らぎ",
+          "牛柄より一つ一つが小さく数が多い"
+        ],
+        "en": [
+          "Isolated dark spots on a light ground",
+          "Rounded but variably shaped and sized",
+          "Smaller and more numerous than cow-print patches"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "衣料",
+          "バッグ",
+          "インテリア"
+        ],
+        "en": [
+          "apparel",
+          "bags",
+          "interiors"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "American Kennel Club",
+          "url": "https://www.akc.org/expert-advice/dog-breeding/what-makes-dalmatian-spots/",
+          "supports": [
+            "distinctive Dalmatian spots",
+            "black or liver spotting",
+            "spot size and distribution compared with patches"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "camouflage",
+      "verification_state": "verified",
+      "term_scope": "camouflage visual family based on disruptive irregular patches rather than one single standardized repeat",
+      "names": {
+        "ja": "迷彩柄",
+        "en": "Camouflage"
+      },
+      "aliases": {
+        "ja": [
+          "カモフラ柄",
+          "カモ柄"
+        ],
+        "en": [
+          "camo",
+          "camouflage print"
+        ]
+      },
+      "definition": {
+        "ja": "輪郭を分断するための不規則な有機形の斑を複数色で重ねる迷彩の視覚系統です。軍用規格ごとに柄は異なります。",
+        "en": "A camouflage visual family built from overlapping irregular patches intended to disrupt outlines. Exact systems vary; woodland palettes are only one common form."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "不規則な有機形の大きな斑",
+          "複数の斑色が重なり合う",
+          "輪郭が連続せず背景へ溶ける構成"
+        ],
+        "en": [
+          "Large irregular organic patches",
+          "Several patch colors overlap",
+          "Disruptive composition avoids continuous outlines"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "衣料",
+          "バッグ",
+          "アウトドア用品"
+        ],
+        "en": [
+          "apparel",
+          "bags",
+          "outdoor gear"
+        ]
+      },
+      "source_state": "verified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "Smithsonian National Museum of American History",
+          "url": "https://www.si.edu/object/wm-skinner-and-sons-camouflage-pattern-nylon-parachute-cloth-sample-1945%3Anmah_1162117",
+          "supports": [
+            "camouflage-pattern textile",
+            "irregular blotch patterns",
+            "green tones simulating foliage/protective coloring"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tie-dye",
+      "verification_state": "qualified",
+      "term_scope": "resist-dye technique family created by binding cloth before dyeing rather than one fixed motif",
+      "names": {
+        "ja": "タイダイ",
+        "en": "Tie-dye"
+      },
+      "aliases": {
+        "ja": [
+          "絞り染め風タイダイ"
+        ],
+        "en": [
+          "tie dye",
+          "tied resist dye"
+        ]
+      },
+      "definition": {
+        "ja": "布をつまみ、縛ってから染めることで防染部を残すタイダイ技法を、放射・輪・帯などのにじんだ色境界として扱います。一柄ではありません。",
+        "en": "A resist-dye technique family made by binding or pinching cloth before dyeing, producing radiating rings, bands, diamonds, and soft-edged color transitions."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "中心から広がる放射や輪",
+          "色境界がにじみやすい",
+          "縛り位置に沿って白抜けや淡色部が残る"
+        ],
+        "en": [
+          "Radiating rings or burst structures",
+          "Soft feathered color boundaries",
+          "Resisted pale areas follow binding points"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "Tシャツ",
+          "生地",
+          "雑貨"
+        ],
+        "en": [
+          "T-shirts",
+          "fabric",
+          "accessories"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/exhibitions/listings/2011/the-andean-tunic-400-bce1800-ce/photo-gallery",
+          "supports": [
+            "tie-dyed fabrics made by pinching and binding before dyeing",
+            "bound areas resist color",
+            "diamond design as one tie-dye outcome"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "marbling",
+      "verification_state": "qualified",
+      "term_scope": "marbling technique and visual family made by floating color on a bath and transferring flowing patterns",
+      "names": {
+        "ja": "マーブル柄",
+        "en": "Marbling"
+      },
+      "aliases": {
+        "ja": [
+          "マーブリング",
+          "墨流し風"
+        ],
+        "en": [
+          "marbled pattern",
+          "marbled paper",
+          "marbling pattern"
+        ]
+      },
+      "definition": {
+        "ja": "液面に浮かべた色を移し取るマーブリングを、互いに流れ込む筋・渦・羽根状の帯として扱います。固定リピートではありません。",
+        "en": "A marbling technique and visual family made by floating color on a bath and transferring flowing veins, swirls, and combed bands. It has no single fixed repeat."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "液体が流れたような連続曲線",
+          "複数色の筋が互いに入り組む",
+          "規則的な反復単位がない"
+        ],
+        "en": [
+          "Fluid continuous veins and curves",
+          "Several colors interweave",
+          "No regular repeating unit"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "紙",
+          "生地",
+          "小物"
+        ],
+        "en": [
+          "paper",
+          "fabric",
+          "accessories"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/ja/perspectives/marbled-paper",
+          "supports": [
+            "colors floated on a bath and transferred",
+            "swirling and combed marbling patterns",
+            "many marbling variants"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "terrazzo",
+      "verification_state": "qualified",
+      "term_scope": "material-inspired pattern family derived from terrazzo composite chips rather than one fixed printed motif",
+      "names": {
+        "ja": "テラゾー柄",
+        "en": "Terrazzo Pattern"
+      },
+      "aliases": {
+        "ja": [
+          "テラゾ柄",
+          "テラゾ"
+        ],
+        "en": [
+          "terrazzo print",
+          "terrazzo effect"
+        ]
+      },
+      "definition": {
+        "ja": "テラゾーの骨材チップを模した、大小の不定形片を地の上へランダムに散らす素材由来の柄です。固定リピートではありません。",
+        "en": "A material-inspired pattern family based on terrazzo aggregate: irregular chips of different sizes and colors scattered through a contrasting matrix."
+      },
+      "distinguishing_features": {
+        "ja": [
+          "大小の不定形チップ",
+          "向きのないランダム配置",
+          "チップ間に連続した地色が見える"
+        ],
+        "en": [
+          "Irregular chips in several sizes",
+          "Non-directional random distribution",
+          "Continuous matrix visible between chips"
+        ]
+      },
+      "common_uses": {
+        "ja": [
+          "壁紙",
+          "生地",
+          "雑貨"
+        ],
+        "en": [
+          "wallpaper",
+          "fabric",
+          "accessories"
+        ]
+      },
+      "source_state": "qualified",
+      "source_summary": null,
+      "sources": [
+        {
+          "publisher": "National Park Service",
+          "url": "https://www.nps.gov/articles/000/preserving-the-texaco-road-map-pavement-at-the-new-york-state-pavilion.htm",
+          "supports": [
+            "terrazzo as composite of marble/quartz/granite/glass chips with binder",
+            "ground and polished surface",
+            "random aggregate pieces"
+          ]
+        }
+      ]
+    }
+  ]
+}
