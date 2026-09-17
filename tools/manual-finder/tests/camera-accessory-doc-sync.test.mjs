@@ -12,6 +12,8 @@ const line = output.split(/\r?\n/).find((entry) => entry.startsWith(prefix));
 assert.ok(line, 'camera accessory coverage test must emit a machine-readable summary');
 const summary = JSON.parse(line.slice(prefix.length));
 
+const toolRoot = new URL('../', import.meta.url);
+const testsRoot = new URL('./', import.meta.url);
 const doc = fs.readFileSync(new URL('../CAMERA_ACCESSORY_COVERAGE.md', import.meta.url), 'utf8');
 const affiliateDoc = fs.readFileSync(new URL('../AFFILIATE_COVERAGE.md', import.meta.url), 'utf8');
 const spec = fs.readFileSync(new URL('../SPEC.md', import.meta.url), 'utf8');
@@ -79,49 +81,19 @@ assert.ok(doc.includes(djiReconciliation), 'DJI camera progress line must match 
 assert.ok(affiliateDoc.includes(djiReconciliation), 'affiliate coverage DJI progress line must match the live audit');
 assert.ok(spec.includes(`**${djiBasic} basic = ${djiDetail} detail + ${djiExcluded} reviewed exclusions + ${djiMissing} missing accessory detail**`));
 
+const djiLedgers = fs.readdirSync(toolRoot)
+  .filter((name) => /^affiliate-dji-camera-accessories-wave\d+\.js$/.test(name))
+  .sort((a, b) => Number(a.match(/wave(\d+)/)?.[1] || 0) - Number(b.match(/wave(\d+)/)?.[1] || 0));
+const djiTests = fs.readdirSync(testsRoot)
+  .filter((name) => /^dji-.*-wave\d+\.test\.mjs$/.test(name));
+
 for (const path of [
   'affiliate-nikon-camera-accessories-wave2.js',
-  'affiliate-dji-camera-accessories-wave1.js',
-  'affiliate-dji-camera-accessories-wave2.js',
-  'affiliate-dji-camera-accessories-wave3.js',
-  'affiliate-dji-camera-accessories-wave4.js',
-  'affiliate-dji-camera-accessories-wave5.js',
-  'affiliate-dji-camera-accessories-wave6.js',
-  'affiliate-dji-camera-accessories-wave7.js',
-  'affiliate-dji-camera-accessories-wave8.js',
-  'affiliate-dji-camera-accessories-wave9.js',
-  'affiliate-dji-camera-accessories-wave10.js',
-  'affiliate-dji-camera-accessories-wave11.js',
-  'affiliate-dji-camera-accessories-wave12.js',
-  'affiliate-dji-camera-accessories-wave13.js',
-  'affiliate-dji-camera-accessories-wave14.js',
-  'affiliate-dji-camera-accessories-wave15.js',
-  'affiliate-dji-camera-accessories-wave16.js',
-  'affiliate-dji-camera-accessories-wave17.js',
-  'affiliate-dji-camera-accessories-wave18.js',
-  'affiliate-dji-camera-accessories-wave19.js',
+  ...djiLedgers,
   'affiliate-camera-detail-exclusions.js',
   'CAMERA_ACCESSORY_COVERAGE.md',
   'tests/nikon-camera-accessory-wave2.test.mjs',
-  'tests/dji-osmo-action-accessory-wave1.test.mjs',
-  'tests/dji-air-accessory-wave2.test.mjs',
-  'tests/dji-mini-accessory-wave3.test.mjs',
-  'tests/dji-mavic3-accessory-wave4.test.mjs',
-  'tests/dji-air2-accessory-wave5.test.mjs',
-  'tests/dji-compact-power-wave6.test.mjs',
-  'tests/dji-mini2-accessory-wave7.test.mjs',
-  'tests/dji-fpv-accessory-wave8.test.mjs',
-  'tests/dji-avata-accessory-wave9.test.mjs',
-  'tests/dji-mavic2-accessory-wave10.test.mjs',
-  'tests/dji-mavic-mini-accessory-wave11.test.mjs',
-  'tests/dji-mavic-air-accessory-wave12.test.mjs',
-  'tests/dji-mavic-pro-accessory-wave13.test.mjs',
-  'tests/dji-mavic-pro-platinum-accessory-wave14.test.mjs',
-  'tests/dji-mavic3-enterprise-accessory-wave15.test.mjs',
-  'tests/dji-inspire3-accessory-wave16.test.mjs',
-  'tests/dji-inspire2-accessory-wave17.test.mjs',
-  'tests/dji-inspire1-accessory-wave18.test.mjs',
-  'tests/dji-inspire1-proraw-accessory-wave19.test.mjs',
+  ...djiTests.map((name) => `tests/${name}`),
   'tests/camera-accessory-coverage.test.mjs',
   'tests/camera-accessory-doc-sync.test.mjs'
 ]) {

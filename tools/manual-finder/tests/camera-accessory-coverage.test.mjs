@@ -65,6 +65,10 @@ function modelsByMaker(rows) {
   return result;
 }
 
+function waveNumber(name) {
+  return Number(name.match(/wave(\d+)\.js$/)?.[1] || 0);
+}
+
 const baseRows = JSON.parse(fs.readFileSync(new URL('manuals.json', dataRoot), 'utf8'));
 
 runData('manuals.full.js');
@@ -100,28 +104,15 @@ assert.ok(cameraRecords.length > 0, 'ManualFinder camera catalog should not be e
 for (const name of [
   'affiliate-config.js',
   'affiliate-camera-accessories.js',
-  'affiliate-nikon-camera-accessories-wave2.js',
-  'affiliate-dji-camera-accessories-wave1.js',
-  'affiliate-dji-camera-accessories-wave2.js',
-  'affiliate-dji-camera-accessories-wave3.js',
-  'affiliate-dji-camera-accessories-wave4.js',
-  'affiliate-dji-camera-accessories-wave5.js',
-  'affiliate-dji-camera-accessories-wave6.js',
-  'affiliate-dji-camera-accessories-wave7.js',
-  'affiliate-dji-camera-accessories-wave8.js',
-  'affiliate-dji-camera-accessories-wave9.js',
-  'affiliate-dji-camera-accessories-wave10.js',
-  'affiliate-dji-camera-accessories-wave11.js',
-  'affiliate-dji-camera-accessories-wave12.js',
-  'affiliate-dji-camera-accessories-wave13.js',
-  'affiliate-dji-camera-accessories-wave14.js',
-  'affiliate-dji-camera-accessories-wave15.js',
-  'affiliate-dji-camera-accessories-wave16.js',
-  'affiliate-dji-camera-accessories-wave17.js',
-  'affiliate-dji-camera-accessories-wave18.js',
-  'affiliate-dji-camera-accessories-wave19.js',
-  'affiliate-camera-detail-exclusions.js'
+  'affiliate-nikon-camera-accessories-wave2.js'
 ]) run(new URL(name, root), `tools/manual-finder/${name}`);
+
+const djiWaveFiles = fs.readdirSync(root)
+  .filter((name) => /^affiliate-dji-camera-accessories-wave\d+\.js$/.test(name))
+  .sort((a, b) => waveNumber(a) - waveNumber(b));
+assert.ok(djiWaveFiles.length >= 20, 'DJI camera accessory waves through Wave 20 must be present');
+for (const name of djiWaveFiles) run(new URL(name, root), `tools/manual-finder/${name}`);
+run(new URL('affiliate-camera-detail-exclusions.js', root), 'tools/manual-finder/affiliate-camera-detail-exclusions.js');
 
 const config = context.window.MANUALFINDER_AFFILIATE_CONFIG;
 assert.ok(config?.enabled, 'ManualFinder affiliate config should be enabled');
