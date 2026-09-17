@@ -18,27 +18,27 @@
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
     "quality_manifest_version": "2026-09-14-manifest-8",
-    "content_enrichment_version": "2026-09-17-wave5r"
+    "content_enrichment_version": "2026-09-17-wave5s"
   },
   "summary": {
     "public_entries": 870,
-    "fallback_independent_core": 571,
-    "runtime_fallback_dependent": 299,
+    "fallback_independent_core": 586,
+    "runtime_fallback_dependent": 284,
     "missing_core_bilingual_content": 0,
     "explicit_bilingual_identity": 870,
     "explicit_bilingual_definition": 870,
-    "explicit_bilingual_detail": 790,
-    "explicit_bilingual_bullets": 571,
-    "explicit_bilingual_examples": 790,
+    "explicit_bilingual_detail": 805,
+    "explicit_bilingual_bullets": 586,
+    "explicit_bilingual_examples": 805,
     "explicit_bilingual_aliases": 279,
-    "content_enriched_entries": 431,
+    "content_enriched_entries": 446,
     "has_category_context": 870,
     "has_task_context": 870
   },
   "fallback_field_counts": {
-    "detail": 80,
-    "bullets": 299,
-    "examples": 80
+    "detail": 65,
+    "bullets": 284,
+    "examples": 65
   },
   "by_type": {
     "access": {
@@ -109,8 +109,8 @@
     },
     "material": {
       "public_entries": 158,
-      "fallback_independent_core": 133,
-      "runtime_fallback_dependent": 25,
+      "fallback_independent_core": 142,
+      "runtime_fallback_dependent": 16,
       "missing_core_bilingual_content": 0
     },
     "materials": {
@@ -121,8 +121,8 @@
     },
     "process": {
       "public_entries": 19,
-      "fallback_independent_core": 8,
-      "runtime_fallback_dependent": 11,
+      "fallback_independent_core": 9,
+      "runtime_fallback_dependent": 10,
       "missing_core_bilingual_content": 0
     },
     "rigging": {
@@ -169,17 +169,17 @@
     },
     "tool": {
       "public_entries": 333,
-      "fallback_independent_core": 121,
-      "runtime_fallback_dependent": 212,
+      "fallback_independent_core": 126,
+      "runtime_fallback_dependent": 207,
       "missing_core_bilingual_content": 0
     }
   },
   "hashes": {
-    "content_status_sha256": "c46e017aa3ef9eea09f780f0304c898cf6385423e322522c19bae05290561b74",
-    "fallback_independent_id_sha256": "e97eec1111f54edd7cd68cde3a7b225952b3fc2e78693563b50edd4f1bdec625",
-    "fallback_dependent_id_sha256": "7b8bee9ba0bd1cc839f592c3d9522498be84058528e04a80eb9bcef41091e96f",
+    "content_status_sha256": "515fea661806b023ea1bbac817110c8c6342d5ae4c63c1151d3918a876962349",
+    "fallback_independent_id_sha256": "9f3e641fd7025a86aab5412806ad063d76a911b88475fdcc5b04e9f8332e4b08",
+    "fallback_dependent_id_sha256": "294b8722a36ba558db1e7122e5f4496e1eba81cbf0a0e8c703760646230eb42c",
     "missing_core_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "content_enriched_id_sha256": "a57f9e314d5d35e7df7e60a8112093a69ac839eddc950396326810855141c842"
+    "content_enriched_id_sha256": "dfe77c41d34139186342316b9768735fe79cdf0229ae2c6e60c7f8f923e3e56b"
   },
   "samples": {
     "fallback_independent_core": [
@@ -336,156 +336,6 @@
     ],
     "runtime_fallback_dependent": [
       {
-        "id": "q016_plaster_base",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_plaster_mesh",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_skim_coat",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_plaster_hawk",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_plaster_trowel",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_corner_trowel",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_sponge_float",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_repair_patch",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_wall_repair_mesh",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_spackling_paste",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_crack_filler",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_epoxy_floor_coating",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_floor_hardener",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_concrete_sealer",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q016_floor_polisher",
-        "source": "data/tools.quality-016.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
         "id": "q016_moisture_barrier_coating",
         "source": "data/tools.quality-016.json",
         "enrichment": null,
@@ -577,6 +427,156 @@
       },
       {
         "id": "q016_punch_list",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_snagging",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_blue_tape_walk",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_scratch_guard",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_corner_protection_tape",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_temporary_floor_mat",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_dust_barrier",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_zip_wall",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_negative_air_machine",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_hepa_filter",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_hearing_protection",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_first_aid_kit",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_hot_work_permit",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_lockout_tagout",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_toolbox_meeting",
+        "source": "data/tools.quality-016.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q016_near_miss_report",
         "source": "data/tools.quality-016.json",
         "enrichment": null,
         "fallback_fields": [
