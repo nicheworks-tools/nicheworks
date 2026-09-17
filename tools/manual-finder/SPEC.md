@@ -82,7 +82,7 @@ ManualFinder is an `AFFILIATE` tool, but its official manual directory remains t
 
 Camera accessory coverage is governed by a separate catalog-wide reconciliation contract. Every actionable `カメラ・映像` record with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or an explicit missing-accessory diagnostic.
 
-The current camera state is **185 basic = 45 detail + 0 reviewed exclusions + 140 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
+The current camera state is **185 basic = 46 detail + 0 reviewed exclusions + 139 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
 
 Nikon camera-accessory Waves 1–2 close all 14 actionable Nikon camera records at **14 detail + 0 reviewed exclusions + 0 missing**. Shared Nikon power-accessory families must not be generalized by family or model-name similarity; every active row exists explicitly in the reviewed ledger.
 
@@ -106,10 +106,12 @@ DJI is intentionally advanced in bounded exact-canonical-model waves:
 - DJI Inspire 3 Wave 16 activates exactly `DJI Inspire 3`, mapped to `DJI TB51 Intelligent Battery` and `DJI TB51 Intelligent Battery Charging Hub`.
 - DJI Inspire 2 Wave 17 activates exactly `Inspire 2`, mapped to `DJI TB50 Intelligent Battery` and `DJI Inspire 2 Battery Charging Hub` from DJI official Store compatibility evidence.
 - DJI Inspire 2 Wave 17 must not infer compatibility to `DJI Inspire 2`, `Inspire 1`, `Inspire 1 Pro/Raw`, or other Inspire-family canonical records. `DJI Inspire 3` keeps its independent Wave 16 TB51 mapping.
+- DJI Inspire 1 Wave 18 activates exactly `Inspire 1`, mapped to `DJI TB47 Intelligent Flight Battery` and `DJI Inspire 1 Battery Charging Hub` from DJI official Inspire 1 support and charging-hub evidence.
+- DJI Inspire 1 Wave 18 must not infer compatibility to `Inspire 1 Pro/Raw`, `DJI Inspire 1`, `Inspire 2`, `DJI Inspire 2`, or `DJI Inspire 3`. The later Inspire generations retain their independently reviewed Wave 17 and Wave 16 mappings.
 
-The measured DJI state after Waves 1–17 is **96 basic = 31 detail + 0 reviewed exclusions + 65 missing accessory detail**.
+The measured DJI state after Waves 1–18 is **96 basic = 32 detail + 0 reviewed exclusions + 64 missing accessory detail**.
 
-Camera detail exclusions are stored separately in `affiliate-camera-detail-exclusions.js`; the ledger is currently empty and must not be used to hide unreviewed missing rows. The measured remaining camera backlog is DJI 65, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized by `CAMERA_ACCESSORY_COVERAGE.md`.
+Camera detail exclusions are stored separately in `affiliate-camera-detail-exclusions.js`; the ledger is currently empty and must not be used to hide unreviewed missing rows. The measured remaining camera backlog is DJI 64, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized by `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## State and persistence
 
@@ -155,11 +157,11 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] `printerMissingDetail`, `printerMissingDetailByMaker`, and `printerMissingDetailModelsByMaker` are empty at the completed audit baseline.
 - [x] KYOCERA closes at **123 = 120 detail + 3 reviewed exclusions + 0 missing**.
 - [x] Nikon camera-accessory Waves 1–2 close Nikon at **14 detail + 0 reviewed exclusions + 0 missing**.
-- [x] DJI Waves 1–16 retain their reviewed exact-model boundaries and evidence without cross-family inference.
-- [x] DJI Inspire 2 Wave 17 activates exactly `Inspire 2` with reviewed `DJI TB50 Intelligent Battery` and `DJI Inspire 2 Battery Charging Hub` handoffs from DJI official evidence.
-- [x] DJI Inspire 2 Wave 17 does not infer its TB50 mapping to `DJI Inspire 2`, `Inspire 1`, `Inspire 1 Pro/Raw`, or `DJI Inspire 3`.
-- [x] DJI Waves 1–17 reconcile to **96 basic = 31 detail + 0 reviewed exclusions + 65 missing accessory detail**.
-- [x] The catalog-wide camera audit reconciles to **185 basic = 45 detail + 0 reviewed exclusions + 140 missing accessory detail**, while seven maker/index rows remain explicitly non-actionable.
+- [x] DJI Waves 1–17 retain their reviewed exact-model boundaries and evidence without cross-family inference.
+- [x] DJI Inspire 1 Wave 18 activates exactly `Inspire 1` with reviewed `DJI TB47 Intelligent Flight Battery` and `DJI Inspire 1 Battery Charging Hub` handoffs from DJI official evidence.
+- [x] DJI Inspire 1 Wave 18 does not infer its mapping to `Inspire 1 Pro/Raw`, `DJI Inspire 1`, or later Inspire-family canonical records.
+- [x] DJI Waves 1–18 reconcile to **96 basic = 32 detail + 0 reviewed exclusions + 64 missing accessory detail**.
+- [x] The catalog-wide camera audit reconciles to **185 basic = 46 detail + 0 reviewed exclusions + 139 missing accessory detail**, while seven maker/index rows remain explicitly non-actionable.
 - [x] `cameraMissingAccessoryByMaker` and `cameraMissingAccessoryModelsByMaker` expose the remaining backlog and documentation sync prevents silent drift.
 - [x] Nonexistent models, wrong maker/category combinations, and other unreviewed cases remain fail-closed.
 - [x] Compatibility-sensitive searches use the fixed NicheWorks tracking ID while analytics receive only coarse fixed targets/placements, not accessory/consumable/model queries.
@@ -199,6 +201,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave15.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave16.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave17.js`
+- `tools/manual-finder/affiliate-dji-camera-accessories-wave18.js`
 - `tools/manual-finder/affiliate-camera-detail-exclusions.js`
 - `tools/manual-finder/affiliate-runtime.js`
 - `tools/manual-finder/affiliate.css`
@@ -225,6 +228,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - `tools/manual-finder/tests/dji-mavic3-enterprise-accessory-wave15.test.mjs`
 - `tools/manual-finder/tests/dji-inspire3-accessory-wave16.test.mjs`
 - `tools/manual-finder/tests/dji-inspire2-accessory-wave17.test.mjs`
+- `tools/manual-finder/tests/dji-inspire1-accessory-wave18.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-coverage.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs`
 - `tools/manual-finder/tests/behavior.test.mjs`
