@@ -36,6 +36,9 @@ if(!css.includes('@media(max-width:680px)'))throw new Error('missing mobile brea
 if(!css.includes('.pd-compare-grid{grid-template-columns:1fr;gap:12px}'))throw new Error('compare panels must stack at mobile width');
 if(!css.includes('.pd-filter-row{flex-wrap:nowrap;overflow:auto'))throw new Error('mobile filters must remain horizontally scrollable');
 if(!css.includes('.pd-mini-stripe')||!css.includes('.pd-mini-dot')||!css.includes('.pd-mini-floral')||!css.includes('.pd-mini-global-textile'))throw new Error('expanded visual filter cues missing');
+if(!css.includes('background:#f8fafc;color:#475569;text-align:center;padding:12px;font-size:12px'))throw new Error('ad-slot label contrast must remain readable');
+if(!css.includes('.pd-table-wrap:focus{outline:2px solid #0f172a;outline-offset:2px}'))throw new Error('scrollable comparison table needs visible keyboard focus');
+if(!app.includes('class="pd-table-wrap" tabindex="0" role="region" aria-label="${lang===\'ja\'?\'比較表\':\'Comparison table\'}"'))throw new Error('scrollable comparison table must be keyboard-focusable and labelled');
 if(/UI検証用DEVプレースホルダー|This image is a DEV placeholder/.test(app))throw new Error('runtime contains stale DEV detail warning');
 if(!app.includes('function autocompleteNameMatch(q,p,lang)')||!app.includes('.some(v=>v.startsWith(nq))'))throw new Error('Visual Autocomplete must preserve partial name/alias prefix matching while typing');
 if(app.includes('20柄の辞典項目')||app.includes('fixed 20-pattern dictionary'))throw new Error('runtime contains stale canonical-20 comparison copy');
