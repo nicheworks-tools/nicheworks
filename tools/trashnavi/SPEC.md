@@ -997,3 +997,7 @@ Wave 42は10自治体batch scaling ruleを継続し、公開閾値を変更せ�
 Wave 42 readiness baselineは1,916 municipalities、2,700 valid HTTP(S) records、204 preferred candidates、45 direct-link datasets / 632 records / 613 unique URLs / 0 invalid URLsとする。Wave42の `last_checked: 2026-09-17` はWave41と同日なので、Readinessではsitemapを変更せず、未公開Wave42 URLも先出ししていない。
 
 Publication acceptanceでは10ページすべてについてexactly 3 official cards、canonical URL、確認済みofficial source URL、Amazon affiliate block `[PR]`、AI reference 204/204、両sitemapへのcanonical 1件ずつを検証する。`fiscal_year: 2026` を明示する松伏町・川島町・吉見町・嵐山町・毛呂山町・皆野町・滑川町だけ2026 calendar calloutを表示し、上里町・神川町・美里町には年次calloutを生成しない。美里町は既存の三郷市 `/tools/trashnavi/saitama/misato/` とURL衝突しないよう `/tools/trashnavi/saitama/misato-town/` をcanonical pathとして使用する。Amazon契約は既存の `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を継承する。
+
+## Wave 43 ten-municipality publication
+
+Wave 43は既存の10自治体batch scaling ruleとpreferred readiness thresholdを維持し、204自治体から214自治体へ拡張する。対象は蓮田市・白岡市・小川町・ときがわ町・横瀬町・長瀞町・小鹿野町・東秩父村・寄居町・杉戸町。各自治体は `municipal_home` を除く3種類の異なるwaste-specific official link typeと3つの自治体公式URLを持ち、同一ページ二重計上や外部衛生組合・委託先URLによる閾値補完は行わない。Readiness baselineは2,730/2,730 valid HTTP(S)、214 preferred candidates、46 datasets / 662 records / 643 unique URLs / invalid 0。Publicationでは214ページ、AI reference 214/214、root/dedicated sitemap、root internal links、Amazon 4 fixed categories (`nicheworks09-22`) を検証する。2026 calendar calloutは `fiscal_year: 2026` が明示された小川町・ときがわ町・横瀬町・長瀞町・小鹿野町・寄居町・杉戸町のみ表示し、蓮田市・白岡市・東秩父村には表示しない。
