@@ -1,6 +1,6 @@
 {
   "schema": "cta-affiliate-offers-v2.3",
-  "version": "2026-09-17-wave5t-affiliate-1",
+  "version": "2026-09-17-wave5u-affiliate-1",
   "provider": "amazon.co.jp",
   "tracking_id": "nicheworks09-22",
   "policy": {"query_source":"maintained_canonical_mapping_only","free_text_forwarding":false,"product_claims":false,"price_inventory_rating_content":false},
@@ -223,6 +223,12 @@
     {"entry_id":"q016_coating_thickness_gauge","status":"active","offer_id":"amazon_q016_coating_thickness_gauge_search","query":"膜厚計","amazon_url":"https://www.amazon.co.jp/s?k=%E8%86%9C%E5%8E%9A%E8%A8%88&tag=nicheworks09-22","label_ja":"Amazonで膜厚計を探す","label_en":"Find coating thickness gauges on Amazon"},
     {"entry_id":"q016_scratch_guard","status":"active","offer_id":"amazon_q016_scratch_guard_search","query":"傷防止 養生シート","amazon_url":"https://www.amazon.co.jp/s?k=%E5%82%B7%E9%98%B2%E6%AD%A2+%E9%A4%8A%E7%94%9F%E3%82%B7%E3%83%BC%E3%83%88&tag=nicheworks09-22","label_ja":"Amazonで傷防止養生シートを探す","label_en":"Find scratch-protection sheets on Amazon"},
     {"entry_id":"q016_corner_protection_tape","status":"active","offer_id":"amazon_q016_corner_protection_tape_search","query":"コーナー 養生 テープ","amazon_url":"https://www.amazon.co.jp/s?k=%E3%82%B3%E3%83%BC%E3%83%8A%E3%83%BC+%E9%A4%8A%E7%94%9F+%E3%83%86%E3%83%BC%E3%83%97&tag=nicheworks09-22","label_ja":"Amazonでコーナー養生テープを探す","label_en":"Find corner protection tape on Amazon"},
-    {"entry_id":"q016_temporary_floor_mat","status":"active","offer_id":"amazon_q016_temporary_floor_mat_search","query":"床 養生 マット","amazon_url":"https://www.amazon.co.jp/s?k=%E5%BA%8A+%E9%A4%8A%E7%94%9F+%E3%83%9E%E3%83%83%E3%83%88&tag=nicheworks09-22","label_ja":"Amazonで床養生マットを探す","label_en":"Find temporary floor protection mats on Amazon"}
+    {"entry_id":"q016_temporary_floor_mat","status":"active","offer_id":"amazon_q016_temporary_floor_mat_search","query":"床 養生 マット","amazon_url":"https://www.amazon.co.jp/s?k=%E5%BA%8A+%E9%A4%8A%E7%94%9F+%E3%83%9E%E3%83%83%E3%83%88&tag=nicheworks09-22","label_ja":"Amazonで床養生マットを探す","label_en":"Find temporary floor protection mats on Amazon"},
+    {"entry_id":"q016_dust_barrier","status":"active","offer_id":"amazon_q016_dust_barrier_search","query":"防塵 養生 シート","amazon_url":"https://www.amazon.co.jp/s?k=%E9%98%B2%E5%A1%B5+%E9%A4%8A%E7%94%9F+%E3%82%B7%E3%83%BC%E3%83%88&tag=nicheworks09-22","label_ja":"Amazonで防塵養生シートを探す","label_en":"Find dust barrier sheeting on Amazon"},
+    {"entry_id":"q016_zip_wall","status":"active","offer_id":"amazon_q016_zip_wall_search","query":"仮設 間仕切り 養生","amazon_url":"https://www.amazon.co.jp/s?k=%E4%BB%AE%E8%A8%AD+%E9%96%93%E4%BB%95%E5%88%87%E3%82%8A+%E9%A4%8A%E7%94%9F&tag=nicheworks09-22","label_ja":"Amazonで仮設間仕切り養生を探す","label_en":"Find temporary dust wall systems on Amazon"},
+    {"entry_id":"q016_negative_air_machine","status":"active","offer_id":"amazon_q016_negative_air_machine_search","query":"負圧 集じん機","amazon_url":"https://www.amazon.co.jp/s?k=%E8%B2%A0%E5%9C%A7+%E9%9B%86%E3%81%98%E3%82%93%E6%A9%9F&tag=nicheworks09-22","label_ja":"Amazonで負圧集じん機を探す","label_en":"Find negative air machines on Amazon"},
+    {"entry_id":"q016_hepa_filter","status":"active","offer_id":"amazon_q016_hepa_filter_search","query":"HEPA フィルター 集じん機","amazon_url":"https://www.amazon.co.jp/s?k=HEPA+%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF%E3%83%BC+%E9%9B%86%E3%81%98%E3%82%93%E6%A9%9F&tag=nicheworks09-22","label_ja":"Amazonで集じん機用HEPAフィルターを探す","label_en":"Find HEPA filters for dust equipment on Amazon"},
+    {"entry_id":"q016_hearing_protection","status":"active","offer_id":"amazon_q016_hearing_protection_search","query":"防音 イヤーマフ 耳栓","amazon_url":"https://www.amazon.co.jp/s?k=%E9%98%B2%E9%9F%B3+%E3%82%A4%E3%83%A4%E3%83%BC%E3%83%9E%E3%83%95+%E8%80%B3%E6%A0%93&tag=nicheworks09-22","label_ja":"Amazonで聴覚保護具を探す","label_en":"Find hearing protection on Amazon"},
+    {"entry_id":"q016_first_aid_kit","status":"active","offer_id":"amazon_q016_first_aid_kit_search","query":"救急箱","amazon_url":"https://www.amazon.co.jp/s?k=%E6%95%91%E6%80%A5%E7%AE%B1&tag=nicheworks09-22","label_ja":"Amazonで救急箱を探す","label_en":"Find first aid kits on Amazon"}
   ]
 }
