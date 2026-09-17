@@ -1,0 +1,48 @@
+name: tmp TrashNavi Wave43 AI reference
+on:
+  push:
+    branches: [feat/trashnavi-wave43-publication]
+permissions:
+  contents: write
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-wave43-publication
+          fetch-depth: 0
+      - name: Sync AI reference
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path('tools/trashnavi/ai-reference.json')
+          data=json.loads(p.read_text())
+          assert data['published_municipality_count']==204
+          assert len(data['municipalities'])==204
+          entries=[
+            ('112381','hasuda'),('112461','shiraoka'),('113433','ogawa'),('113492','tokigawa'),
+            ('113611','yokoze'),('113638','nagatoro'),('113654','ogano'),('113697','higashichichibu'),
+            ('114081','yorii'),('114642','sugito')]
+          existing={x['lgcode'] for x in data['municipalities']}
+          for code,slug in entries:
+            assert code not in existing
+            data['municipalities'].append({
+              'lgcode':code,
+              'pref_slug':'saitama',
+              'city_slug':slug,
+              'url':f'https://nicheworks.app/tools/trashnavi/saitama/{slug}/'
+            })
+          data['published_municipality_count']=214
+          assert len(data['municipalities'])==214
+          p.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+          PY
+          rm .github/workflows/tmp-trashnavi-wave43-ai-reference.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/trashnavi/ai-reference.json .github/workflows/tmp-trashnavi-wave43-ai-reference.yml
+          git diff --cached --check
+          git commit -m "feat(trashnavi): sync Wave43 AI reference"
+          git push origin HEAD:feat/trashnavi-wave43-publication
