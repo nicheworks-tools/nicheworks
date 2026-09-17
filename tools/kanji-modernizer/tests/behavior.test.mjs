@@ -11,6 +11,7 @@ source = source.replace(/\n\}\)\(\);\s*$/, `
     pickMappedChar,
     convertText,
     prepareInputText,
+    copyToClipboard,
     loadDict,
     resetDictCache() { dictCache = null; },
     setLang(lang) { currentLang = lang; }
@@ -18,6 +19,7 @@ source = source.replace(/\n\}\)\(\);\s*$/, `
 })();
 `);
 
+const clipboardWrites = [];
 let fetchImpl = async () => ({ ok: false, async json() { return {}; } });
 const sandbox = {
   console,
@@ -31,7 +33,7 @@ const sandbox = {
     body: { appendChild() {} },
     execCommand() { return true; },
   },
-  navigator: { language: 'ja', clipboard: { async writeText() {} } },
+  navigator: { language: 'ja', clipboard: { async writeText(value) { clipboardWrites.push(value); } } },
   window: { isSecureContext: true },
   localStorage: { getItem() { return null; }, setItem() {} },
   fetch: (...args) => fetchImpl(...args),
@@ -81,12 +83,20 @@ const prepared = api.prepareInputText('  舊\n學  ');
 assert.equal(prepared.hasContent, true);
 assert.equal(prepared.text, '  舊\n學  ', 'conversion input must preserve leading/trailing whitespace and newlines');
 assert.equal(api.prepareInputText('  \n  ').hasContent, false);
+assert.deepEqual(
+  api.convertText('', 'old-to-new', dict, { exclude: false }),
+  { plain: '', inputHtml: '', outputHtml: '', replacements: [], ambiguities: [] },
+);
 
 api.setLang('ja');
 const jaResult = api.convertText('舊學', 'old-to-new', dict, { exclude: false }).plain;
 api.setLang('en');
 const enResult = api.convertText('舊學', 'old-to-new', dict, { exclude: false }).plain;
 assert.equal(jaResult, enResult, 'language switching must not alter conversion semantics');
+
+assert.equal(await api.copyToClipboard('  旧\n学  '), true);
+assert.equal(clipboardWrites.at(-1), '  旧\n学  ', 'copy must preserve the exact converted text');
+assert.equal(await api.copyToClipboard(''), false, 'empty output must not report a successful copy');
 
 fetchImpl = async () => ({ ok: false, async json() { return {}; } });
 api.resetDictCache();
@@ -113,6 +123,9 @@ assert.doesNotMatch(
   /if \(qParam && convertBtn\) convertBtn\.click\(\);/,
   'must not click a disabled converter before dictionary initialization',
 );
+assert.match(source, /retryBtn\.addEventListener\("click", \(\) => \{[\s\S]*dictCache = null;[\s\S]*initDict\(\)/);
+assert.match(source, /copyTextBtn\.addEventListener\("click", async \(\) =>/);
+assert.match(source, /copyTableBtn\.addEventListener\("click", async \(\) =>/);
 assert.match(source, /cleanUrl\.searchParams\.delete\("q"\)/, 'Reset should clear q handoff state from the URL');
 
 const indexHtml = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
