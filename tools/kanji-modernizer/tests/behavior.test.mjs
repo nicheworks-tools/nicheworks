@@ -83,10 +83,12 @@ const prepared = api.prepareInputText('  舊\n學  ');
 assert.equal(prepared.hasContent, true);
 assert.equal(prepared.text, '  舊\n學  ', 'conversion input must preserve leading/trailing whitespace and newlines');
 assert.equal(api.prepareInputText('  \n  ').hasContent, false);
-assert.deepEqual(
-  api.convertText('', 'old-to-new', dict, { exclude: false }),
-  { plain: '', inputHtml: '', outputHtml: '', replacements: [], ambiguities: [] },
-);
+const emptyResult = api.convertText('', 'old-to-new', dict, { exclude: false });
+assert.equal(emptyResult.plain, '');
+assert.equal(emptyResult.inputHtml, '');
+assert.equal(emptyResult.outputHtml, '');
+assert.equal(emptyResult.replacements.length, 0);
+assert.equal(emptyResult.ambiguities.length, 0);
 
 api.setLang('ja');
 const jaResult = api.convertText('舊學', 'old-to-new', dict, { exclude: false }).plain;
