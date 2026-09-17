@@ -26,16 +26,28 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Correct detector QA ordering assumption
+      - name: Normalize QA-only comparisons
         run: |
           node <<'NODE'
           const fs = require('fs');
-          const file = 'tools/old-kanji-reference/tests/behavior.test.mjs';
-          const before = "const detected = api.detectOldForms('A舊舊學B');\nassert.deepEqual(detected.map(item => [item.entry.oldChar, item.count]), [['舊', 2], ['學', 1]]);";
-          const after = "const detected = api.detectOldForms('A舊舊學B');\nconst detectedCounts = new Map(detected.map(item => [item.entry.oldChar, item.count]));\nassert.equal(detectedCounts.get('舊'), 2);\nassert.equal(detectedCounts.get('學'), 1);";
-          const current = fs.readFileSync(file, 'utf8');
-          if (!current.includes(before)) throw new Error('Detector QA replacement anchor missing');
-          fs.writeFileSync(file, current.replace(before, after));
+
+          {
+            const file = 'tools/old-kanji-reference/tests/behavior.test.mjs';
+            const before = "const detected = api.detectOldForms('A舊舊學B');\nassert.deepEqual(detected.map(item => [item.entry.oldChar, item.count]), [['舊', 2], ['學', 1]]);";
+            const after = "const detected = api.detectOldForms('A舊舊學B');\nconst detectedCounts = new Map(detected.map(item => [item.entry.oldChar, item.count]));\nassert.equal(detectedCounts.get('舊'), 2);\nassert.equal(detectedCounts.get('學'), 1);";
+            const current = fs.readFileSync(file, 'utf8');
+            if (!current.includes(before)) throw new Error('Detector QA replacement anchor missing');
+            fs.writeFileSync(file, current.replace(before, after));
+          }
+
+          {
+            const file = 'tools/kanji-modernizer/tests/behavior.test.mjs';
+            const before = "  oldToNew.replacements.map(item => [item.from, item.to, item.count]),";
+            const after = "  Array.from(oldToNew.replacements, item => [item.from, item.to, item.count]),";
+            const current = fs.readFileSync(file, 'utf8');
+            if (!current.includes(before)) throw new Error('Modernizer VM-array QA replacement anchor missing');
+            fs.writeFileSync(file, current.replace(before, after));
+          }
           NODE
 
       - name: Apply Wave 11 patch
