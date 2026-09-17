@@ -1,3 +1,4 @@
+# retry after Wave43 AI reference sync
 name: tmp TrashNavi Wave43 publication
 on:
   push:
