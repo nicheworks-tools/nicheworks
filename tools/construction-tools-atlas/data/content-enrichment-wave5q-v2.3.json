@@ -1,0 +1,396 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-17-wave5q-q016-wall-ceiling-paint-1",
+  "entries": [
+    {
+      "id": "q016_wallpaper_seam_roller",
+      "wave": "content-wave-005q",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "壁紙・クロスの継ぎ目を押さえ、端部の浮きや開きを抑える小型ローラー。壁紙の材質や表面柄を傷めないローラー幅・硬さを選び、糊の状態を見ながら使用する。",
+      "detail_en": "A small roller used to press wallpaper seams and reduce lifting or gapping at joined edges. Roller width and hardness should suit the wallcovering surface so the pattern or finish is not damaged.",
+      "bullets_ja": [
+        "継ぎ目の位置と糊のなじみを確認してから軽く圧着する。",
+        "強く押し過ぎると糊の押し出しや表面つぶれを起こすため注意する。",
+        "凹凸の大きい壁紙では目立たない場所で圧痕が出ないか確認する。"
+      ],
+      "bullets_en": [
+        "Confirm seam alignment and adhesive wet-out before rolling.",
+        "Avoid excessive pressure that can squeeze out adhesive or crush the surface texture.",
+        "On deeply textured wallpaper, test first to ensure the roller does not leave marks."
+      ],
+      "examples_ja": [
+        "クロスの突き付け継ぎをジョイントローラーで均一に押さえる。",
+        "柄物クロスで圧痕が出ないことを確認してから継ぎ目を仕上げる。"
+      ],
+      "examples_en": [
+        "Press a butt seam evenly with a wallpaper seam roller.",
+        "Test on patterned wallcovering before rolling the finished seam."
+      ]
+    },
+    {
+      "id": "q016_wallpaper_spatula",
+      "wave": "content-wave-005q",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "壁紙を下地へなじませ、空気抜きや端部の押さえに使う樹脂・金属製のヘラ。刃先形状、硬さ、壁紙表面への当たりを確認して使い分ける。",
+      "detail_en": "A plastic or metal spatula used to smooth wallpaper onto the substrate, remove trapped air, and press edges. Edge shape, stiffness, and contact pressure should suit the wallcovering.",
+      "bullets_ja": [
+        "中央から外側へ空気を逃がすように押さえる。",
+        "表面を傷付けないよう刃先のバリや欠けを確認する。",
+        "角部や端部は折れ・しわを作らないよう小さく動かす。"
+      ],
+      "bullets_en": [
+        "Work from the center outward to expel trapped air.",
+        "Check the edge for burrs or damage that could scratch the surface.",
+        "Use short controlled strokes at corners and edges to avoid creases."
+      ],
+      "examples_ja": [
+        "貼り付けたクロスをヘラで中央から端へ撫でて空気を抜く。",
+        "入隅でクロスを傷めないよう軽く押さえて形を出す。"
+      ],
+      "examples_en": [
+        "Smooth freshly hung wallpaper from the center toward the edge with a spatula.",
+        "Press wallpaper gently into an inside corner without tearing it."
+      ]
+    },
+    {
+      "id": "q016_wallpaper_cutting_guide",
+      "wave": "content-wave-005q",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "壁紙の余分をカッターで切り落とす際に、直線ガイドとして当てる幅広の地ベラ。刃を安定させ、巾木・枠・入隅などで仕上がり線をそろえるために使う。",
+      "detail_en": "A wide wallpaper trimming guide placed against edges so a knife can cut excess wallcovering in a straight, controlled line. It is used around baseboards, frames, and corners.",
+      "bullets_ja": [
+        "切断線に密着させ、地ベラが動かないよう保持する。",
+        "カッター刃は切れ味を保ち、壁紙を引き裂かないようこまめに交換する。",
+        "枠や巾木を傷付けない角度で刃を走らせる。"
+      ],
+      "bullets_en": [
+        "Hold the guide firmly against the intended trim line.",
+        "Keep the knife blade sharp and replace it frequently to prevent tearing.",
+        "Run the blade at an angle that avoids damaging adjacent trim or frames."
+      ],
+      "examples_ja": [
+        "巾木上端に地ベラを当てて余分なクロスを切り落とす。",
+        "窓枠沿いで地ベラをガイドにして仕上がり線をそろえる。"
+      ],
+      "examples_en": [
+        "Place the guide along the top of a baseboard and trim away excess wallpaper.",
+        "Use the guide along a window frame to produce a straight finished edge."
+      ]
+    },
+    {
+      "id": "q016_wall_putty",
+      "wave": "content-wave-005q",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "壁紙や塗装の前に、ビス頭・小穴・段差・不陸を埋めて下地を平滑にする内装用充填材。下地材、仕上げ材、塗り厚、乾燥時間、研磨性に合う種類を選ぶ。",
+      "detail_en": "Interior filler used before wallpapering or painting to fill screw heads, small holes, steps, and surface irregularities. The compound should suit the substrate, finish, required thickness, drying time, and sanding method.",
+      "bullets_ja": [
+        "粉じんや脆弱部を除去してから必要な範囲へ充填する。",
+        "厚付けが必要な箇所は指定厚を守り、必要に応じて複数回に分ける。",
+        "完全乾燥後に研磨し、仕上げ材へ段差が出ないよう平滑にする。"
+      ],
+      "bullets_en": [
+        "Remove dust and weak material before filling the defect.",
+        "For deeper repairs, respect maximum coat thickness and build up in multiple passes if required.",
+        "Sand only after full drying so the finish remains flat under the final covering."
+      ],
+      "examples_ja": [
+        "石膏ボードのビス頭と小さな段差をパテで埋めて研磨する。",
+        "クロス施工前に下地のくぼみを薄付けパテで平滑にする。"
+      ],
+      "examples_en": [
+        "Fill gypsum-board screw heads and small steps with wall putty before sanding.",
+        "Skim shallow depressions smooth before wallpaper installation."
+      ]
+    },
+    {
+      "id": "q016_joint_compound",
+      "wave": "content-wave-005q",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "石膏ボード継ぎ目やビス頭を処理し、テープと組み合わせて平滑な面を作る仕上げ材。下塗り・上塗りの用途、可使時間、乾燥条件、研磨性を確認して使用する。",
+      "detail_en": "Compound used with joint tape to finish gypsum-board joints and fastener heads into a smooth surface. Grade, working time, drying conditions, and sanding characteristics should match the joint-finishing stage.",
+      "bullets_ja": [
+        "継ぎ目へテープを確実に埋め込み、気泡や浮きを残さない。",
+        "一度に厚く盛らず、乾燥後に塗り幅を広げて段差を消す。",
+        "仕上げ前に未乾燥部やひび割れがないか確認する。"
+      ],
+      "bullets_en": [
+        "Embed joint tape fully and avoid trapped air or lifted edges.",
+        "Build the joint in successive coats rather than applying excessive thickness at once.",
+        "Before finishing, check that the compound is dry and free from cracking."
+      ],
+      "examples_ja": [
+        "ボード継ぎ目へテープを伏せ込み、乾燥後に上塗りして平滑にする。",
+        "ビス頭へ複数回薄く塗って面をそろえる。"
+      ],
+      "examples_en": [
+        "Embed tape in joint compound and apply wider finish coats after drying.",
+        "Cover fastener heads in thin successive coats until flush."
+      ]
+    },
+    {
+      "id": "q016_corner_tape",
+      "wave": "content-wave-005q",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "石膏ボードの入隅・出隅を補強し、直線性のある角を作るためのテープ材。紙・樹脂・金属補強入りなどがあり、角部形状と仕上げ方法に合わせて選ぶ。",
+      "detail_en": "Tape used to reinforce drywall inside or outside corners and create a straight corner line. Paper, plastic, and metal-reinforced types are selected to suit the corner geometry and finishing system.",
+      "bullets_ja": [
+        "角の中心線を合わせ、左右へ均等に密着させる。",
+        "ジョイント材を十分に回して空洞や浮きを作らない。",
+        "出隅は通りを確認しながら直線を保って仕上げる。"
+      ],
+      "bullets_en": [
+        "Align the tape center with the corner and seat both sides evenly.",
+        "Use enough joint compound to avoid voids or lifted sections.",
+        "For outside corners, check straightness continuously while finishing."
+      ],
+      "examples_ja": [
+        "石膏ボード入隅へコーナーテープを埋め込んで仕上げる。",
+        "出隅の通りを確認しながら補強テープを施工する。"
+      ],
+      "examples_en": [
+        "Embed corner tape at a drywall inside corner and finish over it.",
+        "Install reinforced tape on an outside corner while checking straightness."
+      ]
+    },
+    {
+      "id": "q016_ceiling_tile",
+      "wave": "content-wave-005q",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "天井面の仕上げに使う板状・タイル状の材料。材質、寸法、重量、防火・耐湿性能、固定方式や天井下地との適合を確認して選定する。",
+      "detail_en": "Tile or panel material used as a finished ceiling surface. Material, dimensions, weight, fire or moisture performance, fixing method, and compatibility with the ceiling support system must be checked.",
+      "bullets_ja": [
+        "天井下地やグリッド寸法に適合する製品サイズを確認する。",
+        "切断部や端部は欠けを防ぎ、指定された納まりで支持する。",
+        "湿気の多い場所では耐湿仕様と使用条件を確認する。"
+      ],
+      "bullets_en": [
+        "Confirm tile dimensions match the supporting grid or ceiling framing.",
+        "Support cut edges correctly and avoid chipping during trimming.",
+        "For humid areas, verify moisture-resistant rating and service conditions."
+      ],
+      "examples_ja": [
+        "システム天井グリッドへ規格寸法の天井板を載せ込む。",
+        "壁際の天井板を現場寸法に合わせて切断して納める。"
+      ],
+      "examples_en": [
+        "Place standard-size ceiling tiles into the suspended grid.",
+        "Cut perimeter tiles to fit the measured border module."
+      ]
+    },
+    {
+      "id": "q016_acoustic_ceiling_tile",
+      "wave": "content-wave-005q",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "室内の反射音を抑えるため吸音性能を持たせた天井板。吸音率、厚さ、表面仕上げ、防火性能、湿度条件、支持グリッドとの適合を確認して使用する。",
+      "detail_en": "Ceiling tile designed to absorb reflected sound in interior spaces. Acoustic rating, thickness, surface finish, fire performance, humidity limits, and grid compatibility should be verified.",
+      "bullets_ja": [
+        "必要な吸音性能と室用途に合う仕様を選ぶ。",
+        "表面を汚したり潰したりしないよう手袋などで扱う。",
+        "設備開口を設ける場合は支持条件と端部処理を確認する。"
+      ],
+      "bullets_en": [
+        "Select the acoustic performance required for the room use.",
+        "Handle carefully to avoid staining or crushing the exposed face.",
+        "For service openings, confirm support requirements and edge treatment."
+      ],
+      "examples_ja": [
+        "会議室のグリッドへ吸音天井板を汚さないよう設置する。",
+        "照明開口まわりの吸音板を支持条件に合わせて加工する。"
+      ],
+      "examples_en": [
+        "Install acoustic ceiling tiles in a meeting room without soiling the face.",
+        "Trim an acoustic tile around a light opening while maintaining required support."
+      ]
+    },
+    {
+      "id": "q016_suspended_ceiling_grid",
+      "wave": "content-wave-005q",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "天井板を載せるため、メインTバー・クロスTバー・周辺材などで構成する吊り天井の格子下地。割付、レベル、吊り間隔、荷重条件、設備との取合いを管理する。",
+      "detail_en": "Suspended ceiling support grid made from main tees, cross tees, perimeter members, and hangers. Layout, level, hanger spacing, loading, and coordination with building services are critical.",
+      "bullets_ja": [
+        "基準線からグリッド割付を行い、端部寸法を調整する。",
+        "吊り材の間隔と固定先が仕様を満たすことを確認する。",
+        "照明や設備機器の荷重をグリッドへ無理に負担させない。"
+      ],
+      "bullets_en": [
+        "Set out the grid from control lines and coordinate perimeter module sizes.",
+        "Verify hanger spacing and attachment points meet the ceiling specification.",
+        "Do not impose unsupported equipment loads on the grid."
+      ],
+      "examples_ja": [
+        "基準墨からメインTバーとクロスTバーを割り付けて水平を調整する。",
+        "照明位置に合わせてグリッドモジュールを整える。"
+      ],
+      "examples_en": [
+        "Set out main and cross tees from control lines and level the grid.",
+        "Coordinate grid modules with the planned light-fixture locations."
+      ]
+    },
+    {
+      "id": "q016_main_tee",
+      "wave": "content-wave-005q",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "システム天井グリッドの主方向に通し、クロスTバーや天井板を支持する主要T形部材。吊り位置、継手、通り、レベルを管理して施工する。",
+      "detail_en": "Primary T-shaped member running along the main direction of a suspended ceiling grid and supporting cross tees and ceiling panels. Hanger locations, splices, alignment, and level must be controlled.",
+      "bullets_ja": [
+        "基準線に沿って通りを出し、必要な間隔で吊る。",
+        "継手は確実に接続し、連続したレベルを保つ。",
+        "端部は周辺材との納まり寸法を確認して切断する。"
+      ],
+      "bullets_en": [
+        "Align to the control line and suspend at the specified spacing.",
+        "Lock splices securely and maintain a continuous level line.",
+        "Trim ends to the required dimension at perimeter members."
+      ],
+      "examples_ja": [
+        "メインTバーを所定間隔で吊り、レーザーでレベルをそろえる。",
+        "継手を接続して長い通りを直線に調整する。"
+      ],
+      "examples_en": [
+        "Suspend main tees at the specified spacing and level them with a laser.",
+        "Connect main-tee splices and align the run straight."
+      ]
+    },
+    {
+      "id": "q016_cross_tee",
+      "wave": "content-wave-005q",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "メインTバー間へ直交して接続し、天井グリッドのモジュールを形成する副T形部材。長さ、接続方式、割付寸法を合わせて天井板を支持する。",
+      "detail_en": "Secondary T-shaped member connected perpendicular between main tees to form the ceiling grid module. Length, connection type, and module spacing must match the panel layout.",
+      "bullets_ja": [
+        "メインTバーの指定スロットへ確実にかみ合わせる。",
+        "対向するクロスTバーの通りとモジュール寸法を確認する。",
+        "曲がりやねじれのある部材は使用しない。"
+      ],
+      "bullets_en": [
+        "Engage the connector fully in the specified main-tee slot.",
+        "Check opposing cross tees remain aligned and maintain the correct module size.",
+        "Do not install bent or twisted members."
+      ],
+      "examples_ja": [
+        "メインTバー間へクロスTバーをはめ込み600角モジュールを作る。",
+        "壁際で必要長さに切ったクロスTバーを周辺材へ納める。"
+      ],
+      "examples_en": [
+        "Lock cross tees between main tees to form a 600 mm ceiling module.",
+        "Cut a perimeter cross tee to length and seat it at the edge trim."
+      ]
+    },
+    {
+      "id": "q016_ceiling_hanger_wire",
+      "wave": "content-wave-005q",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "吊り天井グリッドや下地を上部構造から吊り下げて支持する線材。線径、吊り間隔、固定方法、許容荷重を天井仕様に合わせて使用する。",
+      "detail_en": "Wire used to suspend a ceiling grid or ceiling framing from the structure above. Wire gauge, hanger spacing, anchorage, and allowable load must comply with the ceiling system requirements.",
+      "bullets_ja": [
+        "構造側の確実な支持点へ固定し、設備配管などへ吊らない。",
+        "指定線径と間隔を守り、必要なねじり回数で固定する。",
+        "天井レベル調整後も緩みや著しい傾きを残さない。"
+      ],
+      "bullets_en": [
+        "Anchor only to approved structural support points, not to services or piping.",
+        "Use the specified wire gauge, spacing, and required number of twists.",
+        "After leveling, ensure hangers are tight and not excessively inclined."
+      ],
+      "examples_ja": [
+        "躯体アンカーから吊り線を下ろしてメインTバーを支持する。",
+        "天井レベル調整後に吊り線の緩みを確認する。"
+      ],
+      "examples_en": [
+        "Suspend a main tee from structural anchors using hanger wire.",
+        "Check hanger wires for looseness after the ceiling level is adjusted."
+      ]
+    },
+    {
+      "id": "q016_access_ceiling_panel",
+      "wave": "content-wave-005q",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "天井裏の配管・配線・機器を点検するために設ける開閉式の点検口。開口寸法、枠の支持、防火・気密などの要求、設備へのアクセス性を確認して取り付ける。",
+      "detail_en": "Openable access panel installed in a ceiling for inspection and maintenance of services above. Opening size, frame support, fire or airtightness requirements, and maintenance access must be coordinated.",
+      "bullets_ja": [
+        "点検対象へ手が届く位置と必要開口寸法を確認する。",
+        "切断した天井下地を必要に応じて補強して枠を支持する。",
+        "防火区画などでは要求性能を満たす認定仕様を使用する。"
+      ],
+      "bullets_en": [
+        "Locate the panel where the service can actually be reached and maintain the required opening size.",
+        "Reinforce cut ceiling framing as needed to support the panel frame.",
+        "Where fire separation applies, use a system meeting the required rating."
+      ],
+      "examples_ja": [
+        "空調バルブの直下に天井点検口を設置する。",
+        "石膏ボード天井を補強して点検口枠を固定する。"
+      ],
+      "examples_en": [
+        "Install a ceiling access panel directly below an HVAC valve.",
+        "Reinforce gypsum-board ceiling framing before fixing the access-panel frame."
+      ]
+    },
+    {
+      "id": "q016_paint_primer_interior",
+      "wave": "content-wave-005q",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "内装塗装の前に下地へ塗り、吸込み調整や密着性向上、下地封止などを行う下塗り材。下地材と上塗り塗料の双方に適合する種類を選ぶ。",
+      "detail_en": "Primer applied before interior painting to control substrate absorption, improve adhesion, or seal the surface. The primer must be compatible with both the substrate and the finish paint.",
+      "bullets_ja": [
+        "下地の汚れ・粉化・含水状態を確認し、必要な処理を行う。",
+        "メーカー指定の塗布量と乾燥時間を守る。",
+        "上塗り塗料との組合せ適合性を確認する。"
+      ],
+      "bullets_en": [
+        "Check for dirt, chalking, and moisture and prepare the substrate as required.",
+        "Follow the specified coverage rate and drying time.",
+        "Confirm compatibility with the intended finish coat."
+      ],
+      "examples_ja": [
+        "石膏ボード下地へ内装用プライマーを均一に塗布してから上塗りする。",
+        "吸込みの強い補修部へ下塗りを追加して面をそろえる。"
+      ],
+      "examples_en": [
+        "Apply interior primer evenly to gypsum board before the finish coat.",
+        "Prime a highly absorbent repaired area so the finish coat dries uniformly."
+      ]
+    },
+    {
+      "id": "q016_interior_paint",
+      "wave": "content-wave-005q",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "室内の壁・天井などを保護・着色する仕上げ塗料。下地、艶、色、耐汚染性、洗浄性、乾燥条件、必要塗回数を用途に合わせて選ぶ。",
+      "detail_en": "Finish paint used to protect and color interior walls and ceilings. Substrate, sheen, color, stain resistance, cleanability, drying conditions, and required number of coats should match the intended use.",
+      "bullets_ja": [
+        "指定された下塗りと組み合わせ、十分に乾燥した下地へ施工する。",
+        "色むらや艶むらを避けるため塗布量と塗り継ぎを管理する。",
+        "換気を確保し、各塗回の乾燥時間を守る。"
+      ],
+      "bullets_en": [
+        "Apply over the specified primer on a properly dried substrate.",
+        "Control coverage and wet edges to avoid color or sheen variation.",
+        "Provide ventilation and observe drying time between coats."
+      ],
+      "examples_ja": [
+        "壁面へローラーで内装塗料を二回塗りして色をそろえる。",
+        "天井を塗る際に塗り継ぎを切らさず艶むらを防ぐ。"
+      ],
+      "examples_en": [
+        "Apply two roller coats of interior paint to obtain an even wall color.",
+        "Maintain a wet edge while painting a ceiling to avoid sheen variation."
+      ]
+    }
+  ]
+}
