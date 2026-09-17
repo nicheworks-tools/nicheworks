@@ -8,54 +8,43 @@ ns=runpy.run_path(str(BASE/'generate-reference-images-audit-fixes.py'))
 write_png=ns['write_png']; INDIGO=ns['INDIGO']; WHITE=ns['WHITE']; CREAM=ns['CREAM']; GOLD=ns['GOLD']; OUT=ns['OUT']
 
 
-def ellipse(x,y,cx,cy,rx,ry,a=0):
-    ca,sa=math.cos(a),math.sin(a); dx,dy=x-cx,y-cy
-    u=dx*ca+dy*sa; v=-dx*sa+dy*ca
-    return (u/rx)**2+(v/ry)**2<=1
+def point_in_poly(x,y,pts):
+    inside=False; j=len(pts)-1
+    for i,(xi,yi) in enumerate(pts):
+        xj,yj=pts[j]
+        if ((yi>y)!=(yj>y)) and x < (xj-xi)*(y-yi)/(yj-yi+1e-9)+xi:
+            inside=not inside
+        j=i
+    return inside
 
 
 def same_komon(x,y):
-    # Same-komon recognition reference: extremely fine dots arranged in repeated
-    # nested semicircular sharkskin fans. Stagger the fan rows so no horizontal
-    # solid band forms at browse scale.
+    # Same-komon/sharkskin recognition cue: tiny discrete white dots arranged
+    # in dense, staggered nested semicircular fans on an indigo ground.
     xx=x%96; yy=y%96
-    for row,cy in enumerate((24,72,120)):
+    for row,cy in enumerate((32,64,96,128)):
         off=24 if row%2 else 0
         for cx in range(-48+off,145,48):
             if yy<=cy:
-                dx=xx-cx; dy=yy-cy; r=math.hypot(dx,dy)
-                for rr in (9,14,19,24,29):
-                    if abs(r-rr)<=1.0:
-                        a=math.atan2(dy,dx)
-                        # discrete dots along each arc, not continuous lines
-                        if int((a+math.pi)*rr/2.8)%3==0:
-                            return WHITE
+                r=math.hypot(xx-cx,yy-cy)
+                for rr in (8,13,18,23,28):
+                    if abs(r-rr)<=.9:
+                        a=(math.atan2(yy-cy,xx-cx)+math.pi)
+                        if int(a*rr/2.1)%4==0:return WHITE
     return INDIGO
 
 
+CENTER=[(48,6),(58,34),(55,47),(48,57),(41,47),(38,34)]
+LEFT=[(44,55),(38,43),(28,31),(14,24),(17,39),(27,51),(40,61)]
+RIGHT=[(52,55),(58,43),(68,31),(82,24),(79,39),(69,51),(56,61)]
+BAND=[(25,56),(71,56),(71,66),(25,66)]
+LOWER_LEFT=[(43,63),(42,77),(27,84),(36,88),(48,80)]
+LOWER_RIGHT=[(53,63),(54,77),(69,84),(60,88),(48,80)]
+BOTTOM=[(43,76),(53,76),(53,83),(48,92),(43,83)]
 def fleur_de_lis(x,y):
-    xx=x%96; yy=y%96; cx=48
-    # Bold heraldic lily silhouette: tall central spear, two outward-curving
-    # lateral petals, narrow waist, horizontal tie and a flared lower base.
-    # Central spear/petal
-    if yy>=8 and yy<=57:
-        half=max(5,18-(yy-8)*0.22)
-        if abs(xx-cx)<=half and yy>=8+abs(xx-cx)*1.5:return GOLD
-    # Rounded lateral petals that flare outward and return toward the waist
-    if ellipse(xx,yy,29,39,13,24,-.62):return GOLD
-    if ellipse(xx,yy,67,39,13,24,.62):return GOLD
-    # carve inner notches between center and side petals
-    if ellipse(xx,yy,39,39,5,16,-.25):return CREAM
-    if ellipse(xx,yy,57,39,5,16,.25):return CREAM
-    # Tie/band and lower stem
-    if 23<=xx<=73 and 55<=yy<=65:return GOLD
-    if 42<=xx<=54 and 61<=yy<=82:return GOLD
-    # Lower flared lobes
-    if ellipse(xx,yy,34,70,15,9,-.25):return GOLD
-    if ellipse(xx,yy,62,70,15,9,.25):return GOLD
-    # Bottom point
-    if 72<=yy<=89 and abs(xx-cx)<=max(2,10-(yy-72)*.45):return GOLD
-    return CREAM
+    xx=x%96; yy=y%96
+    shapes=(CENTER,LEFT,RIGHT,BAND,LOWER_LEFT,LOWER_RIGHT,BOTTOM)
+    return GOLD if any(point_in_poly(xx,yy,p) for p in shapes) else CREAM
 
 write_png('same-komon',same_komon)
 write_png('fleur-de-lis',fleur_de_lis)
