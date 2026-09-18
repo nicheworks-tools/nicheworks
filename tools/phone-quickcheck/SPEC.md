@@ -28,6 +28,7 @@ Charging semantics must remain explicit:
 - A separate device-side maximum may be displayed only when the maintained source supports that interpretation.
 - Manufacturer-nonpublic battery capacity must remain unknown unless a deliberately maintained third-party reference is introduced and labelled as such.
 - Unknown facts remain unknown rather than being inferred.
+- Reviewed-but-unresolved package/water facts are recorded in `data/reviewed-unknowns.json`; review completion does not force the canonical value away from unknown.
 
 Power-bank charge estimates use the maintained product approximation:
 
@@ -53,6 +54,7 @@ Canonical runtime inputs are static NicheWorks-hosted JSON data:
 
 - `tools/phone-quickcheck/data/phones.json`
 - `tools/phone-quickcheck/data/accessories.json`
+- `tools/phone-quickcheck/data/reviewed-unknowns.json`
 - `tools/phone-quickcheck/affiliate-config.js`
 - `tools/phone-quickcheck/affiliate-runtime.js`
 - `scripts/check-phone-quickcheck-affiliate.mjs`
@@ -148,6 +150,7 @@ Production/runtime evidence:
 - `tools/phone-quickcheck/app.js`
 - `tools/phone-quickcheck/data/phones.json`
 - `tools/phone-quickcheck/data/accessories.json`
+- `tools/phone-quickcheck/data/reviewed-unknowns.json`
 - `tools/phone-quickcheck/affiliate-config.js`
 - `tools/phone-quickcheck/affiliate-runtime.js`
 - `scripts/check-phone-quickcheck-affiliate.mjs`

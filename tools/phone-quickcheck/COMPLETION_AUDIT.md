@@ -6,23 +6,24 @@ Dataset target for this closure pass: **181 maintained phones**
 
 ## Completion rule
 
-Phone QuickCheck v1 is complete when the product behavior is stable and every currently actionable evidence gap is either:
+Phone QuickCheck v1 is complete when the product behavior is stable and every actionable evidence gap is either:
 
 1. resolved from acceptable primary evidence, or
-2. explicitly reviewed and retained as unknown because the maintained evidence does not support a stronger claim.
+2. explicitly reviewed and retained as unknown because the maintained evidence does not support a stronger canonical claim.
 
-Completion does **not** require forcing every nullable charging field to a value. Unknown values remain valid where manufacturer evidence is absent or the product contract deliberately forbids inference.
+Completion does **not** require forcing every nullable field to a value. Unknown values remain valid where manufacturer/carrier evidence is absent, ambiguous across Japan sales variants, or the product contract deliberately forbids inference.
 
 ## Baseline
 
-Correction note: Galaxy A35 5G was removed from the JP-maintained set on 2026-09-18. Samsung did not launch the A35 5G in Japan in 2024; the previous record used global launch/specification sources while incorrectly declaring `market: ["JP"]`.
+Correction note: Galaxy A35 5G was removed from the JP-maintained set on 2026-09-18. The previous record used global launch/specification sources while incorrectly declaring `market: ["JP"]`.
 
 - phones: **181**
 - manufacturers: **9**
 - foldables: **32**
-- package adapter unknown: **4**
-- package cable unknown: **11**
-- unresolved water state: **3**
+- raw package unknowns: **4 adapter / 11 cable = 15 fields**
+- raw water unresolved: **3 records**
+- reviewed-unresolved package/water fields: **18 / 18**
+- **unreviewed package/water gaps: 0**
 - battery capacity unknown: **33** — all maintained Apple records; intentional under current policy
 - charger guidance missing: **62**
 - handset-side wired maximum missing: **86**
@@ -31,34 +32,37 @@ Correction note: Galaxy A35 5G was removed from the JP-maintained set on 2026-09
 
 The final four charging counts are **not automatically defects**. They are evidence-sensitive fields and must not be filled by inference merely to reduce an unknown count.
 
-## Actionable package review backlog
+## Package review closure
 
-### AC adapter unknown — 4
+All remaining package unknown fields are now explicitly recorded in `data/reviewed-unknowns.json` with a reason and reviewed primary-source URLs.
 
-- `sony-xperia-1-vi`
-- `sony-xperia-10-vi`
-- `sony-xperia-5-v`
-- `sony-xperia-10-v`
+The remaining raw unknowns are:
 
-### Cable unknown — 11
+- Galaxy A36 5G: cable
+- Xperia 1 VI: adapter + cable
+- Xperia 10 VI: adapter + cable
+- Xperia 5 V: adapter + cable
+- Xperia 10 V: adapter + cable
+- Xperia 1 V: cable
+- Xperia 10 IV: cable
+- AQUOS sense5G: cable
+- AQUOS R6: cable
+- AQUOS R5G: cable
+- AQUOS zero5G basic: cable
 
-- `samsung-galaxy-a36-5g`
-- `sony-xperia-1-vi`
-- `sony-xperia-10-vi`
-- `sony-xperia-5-v`
-- `sony-xperia-10-v`
-- `sony-xperia-1-v`
-- `sony-xperia-10-iv`
-- `sharp-aquos-sense5g`
-- `sharp-aquos-r6`
-- `sharp-aquos-r5g`
-- `sharp-aquos-zero5g-basic`
+These are not silently converted to `included` or `not_included`. Exact JP in-box evidence was not sufficient for the canonical record, or package state is not safe to generalize across Japan sales variants.
 
-## Actionable water review backlog — 3
+## Water review closure
 
-- `google-pixel-4a-5g`
-- `google-pixel-4a`
-- `oppo-a54-5g`
+The remaining raw water unknowns are:
+
+- Pixel 4a (5G)
+- Pixel 4a
+- OPPO A54 5G
+
+Primary safety/specification material was reviewed. It does not support converting these records to the combined UI claim `not_resistant` (“非防水・非防塵”), so the canonical value remains unknown and each record is registered as `reviewed_unresolved`.
+
+Galaxy Z Flip 5G and Galaxy M23 5G were separately resolved to explicit `not_resistant` states from Japan-market primary evidence.
 
 ## Intentional / evidence-sensitive unknowns
 
@@ -75,14 +79,22 @@ A null or unknown value is not itself a completion defect. These fields may be p
 - `pps`: explicit supported/required/not-supported state only with evidence
 - `wirelessStandard` / `wirelessMaxW`: source-backed wireless capability only
 
-## Closure sequence
+## Remaining closure sequence
 
-1. Finish package review backlog.
-2. Finish water review backlog.
-3. Re-audit charging evidence and classify remaining null/unknown values as either source-backed gaps or intentionally unresolved.
-4. Run final browser QA at 320 / 390 / 414 px, tablet, and desktop for search, filters, sorting, JP/EN, foldables, bottom sheet, unknown rendering, Amazon CTA, official links, and data-load failure.
-5. Change this document's status to **V1 COMPLETE** only when no unreviewed actionable gap remains.
+1. Re-audit charging evidence and classify remaining null/unknown values as either actionable source gaps or intentionally unresolved.
+2. Run final browser QA at 320 / 390 / 414 px, tablet, and desktop for search, filters, sorting, JP/EN, foldables, bottom sheet, unknown rendering, Amazon CTA, official links, and data-load failure.
+3. Change this document's status to **V1 COMPLETE** only when the charging review and final browser QA are complete.
 
 ## Regression guard
 
-`scripts/check-phone-quickcheck-completion.mjs` locks this baseline. If package/water unknown IDs or the intentional Apple battery rule drift, the Phone QuickCheck data CI must fail until this audit is consciously updated.
+`scripts/check-phone-quickcheck-completion.mjs` now compares the live package/water unknown field set to `data/reviewed-unknowns.json`.
+
+The CI fails when:
+
+- a new package/water unknown appears without review;
+- a reviewed unknown is resolved but its ledger entry is left stale;
+- a ledger entry references a missing phone/unsupported field;
+- evidence/review metadata is malformed;
+- the intentional Apple battery rule drifts.
+
+This makes **unreviewed actionable package/water gaps = 0** a machine-checked invariant.
