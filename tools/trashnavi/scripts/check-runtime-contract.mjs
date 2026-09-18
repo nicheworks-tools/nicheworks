@@ -51,9 +51,26 @@ assert.ok(app.includes('btns.forEach(b=>b.addEventListener("click",()=>apply(b.d
 
 const published = manifest.filter((entry) => entry.publish);
 assert.ok(published.length >= 1, 'municipality publication manifest has no published entries');
+const publishedHrefSet = new Set(published.map((entry) => `/tools/trashnavi/${entry.pref_slug}/${entry.city_slug}/`));
+let municipalityRelatedLinksVerified = 0;
 for (const entry of published) {
   const href = `/tools/trashnavi/${entry.pref_slug}/${entry.city_slug}/`;
   assert.ok(html.includes(`href="${href}"`), `published municipality missing from TrashNavi root internal links: ${href}`);
+
+  const pageHtml = read(`tools/trashnavi/${entry.pref_slug}/${entry.city_slug}/index.html`);
+  const relatedBlock = pageHtml.match(/<div class="municipality-related-links">([\\s\\S]*?)<\\/div>/);
+  assert.ok(relatedBlock, `municipality related-link block missing: ${href}`);
+  const relatedHrefs = [...relatedBlock[1].matchAll(/href="(\\/tools\\/trashnavi\\/[^"]+\\/)"/g)].map((match) => match[1]);
+  assert.equal(relatedHrefs.length, Math.min(9, published.length - 1), `municipality related-link count drift: ${href}`);
+  assert.ok(!relatedHrefs.includes(href), `municipality related links must not self-link: ${href}`);
+  for (const relatedHref of relatedHrefs) assert.ok(publishedHrefSet.has(relatedHref), `municipality related link targets unpublished page: ${relatedHref}`);
+
+  const samePrefExpected = published
+    .filter((candidate) => candidate.lgcode !== entry.lgcode && candidate.pref_slug === entry.pref_slug)
+    .slice(0, 9)
+    .map((candidate) => `/tools/trashnavi/${candidate.pref_slug}/${candidate.city_slug}/`);
+  assert.deepEqual(relatedHrefs.slice(0, samePrefExpected.length), samePrefExpected, `municipality related links must prioritize same-prefecture siblings: ${href}`);
+  municipalityRelatedLinksVerified += 1;
 }
 
 console.log(JSON.stringify({
@@ -61,6 +78,7 @@ console.log(JSON.stringify({
   runtime_acceptance_checks: 6,
   published_municipalities: published.length,
   root_internal_links_verified: published.length,
+  municipality_related_links_verified: municipalityRelatedLinksVerified,
   issue_template: true,
   language_modes: ['ja', 'en']
 }, null, 2));

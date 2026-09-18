@@ -73,7 +73,11 @@ function page(entry, rows, manifest, names) {
   const heroEn = legacyCore ? 'Use these verified municipal links for sorting, collection calendars and bulky waste. Confirm current rules, fees and dates on the official source.' : 'Use these verified municipal waste-information links. Confirm current sorting rules, fees and collection dates on the official source.';
   const calendar = links.find(r=>canonicalType(r)==='collection_calendar' && String(r.fiscal_year || '')==='2026');
   const checked = links.map(r=>String(r.last_checked || '').trim()).filter(Boolean).sort().at(-1) || '';
-  const related = manifest.filter(m=>m.publish && m.lgcode!==entry.lgcode).slice(0,9).map(m=>`<a href="/tools/trashnavi/${esc(m.pref_slug)}/${esc(m.city_slug)}/">${esc(names.get(m.lgcode) || m.city_slug)}</a>`).join('');
+  const relatedEntries = [
+    ...manifest.filter(m=>m.publish && m.lgcode!==entry.lgcode && m.pref_slug===entry.pref_slug),
+    ...manifest.filter(m=>m.publish && m.lgcode!==entry.lgcode && m.pref_slug!==entry.pref_slug)
+  ].slice(0,9);
+  const related = relatedEntries.map(m=>`<a href="/tools/trashnavi/${esc(m.pref_slug)}/${esc(m.city_slug)}/">${esc(names.get(m.lgcode) || m.city_slug)}</a>`).join('');
   const ld = JSON.stringify({'@context':'https://schema.org','@type':'WebPage',name:title,url:canonical,description:desc,isPartOf:{'@type':'WebSite',name:'NicheWorks',url:'https://nicheworks.app/'},about:{'@type':'AdministrativeArea',name:`${pref}${city}`}}).replaceAll('<','\\u003c');
   const crumbs = JSON.stringify({'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'NicheWorks',item:'https://nicheworks.app/'},{'@type':'ListItem',position:2,name:'TrashNavi',item:'https://nicheworks.app/tools/trashnavi/'},{'@type':'ListItem',position:3,name:city,item:canonical}]}).replaceAll('<','\\u003c');
   return `<!DOCTYPE html>
