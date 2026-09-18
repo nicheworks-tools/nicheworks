@@ -41,7 +41,7 @@ for (const args of [
   { maker: 'Nikon', model: 'Phantom 3 SE', category: 'カメラ・映像' },
   { maker: 'DJI', model: 'Phantom 3 SE', category: 'その他' },
   { maker: 'DJI', model: 'DJI Phantom 3 SE', category: 'カメラ・映像' },
-  { maker: 'DJI', model: 'Phantom 3 4K Pro', category: 'カメラ・映像' },
+  { maker: 'DJI', model: 'Phantom 3 4K', category: 'カメラ・映像' },
   { maker: 'DJI', model: '', category: 'カメラ・映像' }
 ]) {
   assert.deepEqual(Array.from(config.getAccessoryOffers(args)), [], `unreviewed Wave 23 mapping must fail closed: ${JSON.stringify(args)}`);
