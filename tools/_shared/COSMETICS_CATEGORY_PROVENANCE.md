@@ -295,3 +295,21 @@ Wave 24 closes the remaining seven canonical public-role gaps in the maintained 
 The Korea Cosmetic Association source is intentionally identified separately from COSMILE Europe and is admitted explicitly in the provenance-source allowlist. No raw recognition row is rewritten.
 
 Wave 24 also introduces `binder` as a bilingual public role because COSMILE's `BINDING` function is distinct from the existing film-forming, emulsifying, conditioning and viscosity roles.
+
+
+## Wave 24 benchmark closure
+
+The new official-label zero-role-gap invariant exposed eight additional recognized canonical identities that the earlier occurrence inventory had not counted. Wave 24 closes those gaps instead of weakening the invariant.
+
+| Canonical identity | Verified public category | Preserved raw category state | Source basis |
+| --- | --- | --- | --- |
+| `hexadecyloxy pg hydroxyethyl hexadecanamide` | `moisturizer` | `barrier lipid` | Kao / Curel official product information explicitly identifies the ingredient as `保湿`. |
+| `peg-6 caprylic/capric glycerides` | `emulsifier` | `surfactant / emulsifier` | COSMILE Europe: `SURFACTANT - EMULSIFYING`. |
+| `sodium lauroyl lactylate` | `emulsifier` | `surfactant / emulsifier` | COSMILE Europe: `SURFACTANT - EMULSIFYING`. |
+| `zinc oxide` | `uv filter` | `uv filter / colorant` | COSMILE Europe: `UV FILTER`. |
+| `zea mays starch` | `viscosity adjuster` | `powder` | COSMILE Europe: `VISCOSITY CONTROLLING`. |
+| `peg-8` | `humectant` | `humectant / solvent` | COSMILE Europe: `HUMECTANT` and `SOLVENT`; humectant is the reviewed public primary role. |
+| `microcrystalline wax` | `viscosity adjuster` | `wax / texture agent` | COSMILE Europe: viscosity-controlling function. |
+| `benzyl alcohol` | `preservative` | duplicate raw group includes `preservative / fragrance` and a category-empty row | COSMILE Europe: `PRESERVATIVE`, `FRAGRANCE`, `SOLVENT`, and `VISCOSITY CONTROLLING`; preservative is the reviewed public primary role. |
+
+Raw dictionary records remain unchanged. All displaced or additional legacy functions remain auditable in the merged runtime record.
