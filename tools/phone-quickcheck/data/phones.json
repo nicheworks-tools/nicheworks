@@ -7398,7 +7398,7 @@
         }
       },
       "included": {
-        "cable": "unknown",
+        "cable": "included",
         "adapter": "not_included"
       },
       "sources": {
