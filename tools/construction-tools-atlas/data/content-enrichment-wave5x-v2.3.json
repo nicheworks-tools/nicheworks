@@ -1,0 +1,396 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-18-wave5x-q017-tools-basic-cutting-1",
+  "entries": [
+    {
+      "id": "q017_form_clamp",
+      "wave": "content-wave-005x",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "型枠部材を所定位置で締め付け、組立状態を保持するためのクランプ。型枠方式、把持範囲、許容荷重、締付け機構を確認し、せき板・桟木・鋼製部材など対象に合う形式を使う。",
+      "detail_en": "Clamp used to tighten and hold formwork members in their required assembled position. Clamping range, rated load, mechanism, and compatibility with the formwork system should match the panels, walers, or framing being secured.",
+      "bullets_ja": [
+        "把持範囲と許容荷重を超えて無理に締め付けない。",
+        "接触面がずれたり傾いた状態で荷重を掛けず、確実に座らせる。",
+        "変形、ねじ損傷、溶接部の割れなどがあるクランプは使用しない。"
+      ],
+      "bullets_en": [
+        "Do not exceed the clamp's working range or rated load by forcing it tighter.",
+        "Seat the contact faces squarely before applying load rather than clamping on a skewed edge.",
+        "Remove clamps with deformation, damaged threads, cracked welds, or similar defects from service."
+      ],
+      "examples_ja": [
+        "壁型枠の桟木を所定位置で締め付けて組立状態を保持する。",
+        "型枠調整後にクランプを締め直して通りを固定する。"
+      ],
+      "examples_en": [
+        "Clamp formwork framing in position while assembling a wall form.",
+        "Retighten form clamps after alignment to hold the corrected form position."
+      ]
+    },
+    {
+      "id": "q017_flooring_roller",
+      "wave": "content-wave-005x",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "床シートやタイルなどを接着剤へ均一に圧着し、浮きや空気残りを減らすためのローラー。床材と接着剤の施工仕様に合わせてローラー幅、重量、押圧方法を選ぶ。",
+      "detail_en": "Roller used to press sheet flooring, tiles, and similar finishes evenly into adhesive, reducing trapped air and poor contact. Roller width, weight, and rolling procedure should follow the flooring and adhesive installation requirements.",
+      "bullets_ja": [
+        "接着剤のオープンタイムや圧着可能時間内に使用する。",
+        "中央から端部へ均一に転がし、局部的な過圧や押し残しを避ける。",
+        "床材の継ぎ目や端部は浮きがないか別途確認する。"
+      ],
+      "bullets_en": [
+        "Roll within the adhesive open and working time specified for the system.",
+        "Apply even passes from the field toward edges to avoid missed areas or concentrated pressure.",
+        "Inspect seams and perimeter edges separately for incomplete bonding or lift."
+      ],
+      "examples_ja": [
+        "長尺シート施工後に床ローラーで全面を圧着する。",
+        "タイル系床材を貼った後、指定方向へローラーを掛けて接着を安定させる。"
+      ],
+      "examples_en": [
+        "Roll a newly installed sheet floor to consolidate the bond across the full area.",
+        "Pass a floor roller over adhered floor tiles in the specified pattern after placement."
+      ]
+    },
+    {
+      "id": "q017_ceiling_hanger",
+      "wave": "content-wave-005x",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "上部構造から吊り下げて天井下地や天井部材を支持する吊り材・金物の総称。天井方式、支持荷重、吊り長さ、接続部材、耐震・振れ止め条件を施工仕様に合わせて選ぶ。",
+      "detail_en": "Hanger component used to suspend and support ceiling framing or ceiling members from the structure above. Hanger type, supported load, suspension length, connections, and any seismic or bracing requirements should match the ceiling system.",
+      "bullets_ja": [
+        "上部構造と天井下地の双方に適合する接続方法を使う。",
+        "吊り長さや支持間隔を施工図・工法指定どおりに管理する。",
+        "設備荷重を天井下地へ安易に共吊りせず、指定された支持系統を守る。"
+      ],
+      "bullets_en": [
+        "Use connection methods compatible with both the supporting structure and the ceiling framing.",
+        "Maintain hanger length and spacing according to the drawings and ceiling system requirements.",
+        "Do not add unrelated equipment loads to ceiling hangers unless the support design explicitly allows it."
+      ],
+      "examples_ja": [
+        "スラブ下から天井下地を支持する吊り金物を所定ピッチで設置する。",
+        "吊り天井の高さを合わせながらハンガー位置を調整する。"
+      ],
+      "examples_en": [
+        "Install ceiling hangers at the specified spacing below a slab.",
+        "Adjust hanger positions and lengths while setting the suspended ceiling elevation."
+      ]
+    },
+    {
+      "id": "q017_stop_valve",
+      "wave": "content-wave-005x",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "給水などの配管で流体を局所的に遮断するための止水弁。特定の弁機構に限定せず、管径、接続方式、使用圧力・温度、流体、操作方法を系統条件に合わせて選ぶ。",
+      "detail_en": "Shutoff valve used to stop flow locally in a water or service line, without implying a specific valve mechanism. Size, connection method, pressure-temperature rating, fluid compatibility, and operating method should match the piping system.",
+      "bullets_ja": [
+        "配管材・呼び径・接続方式に適合する止水栓を選ぶ。",
+        "点検や緊急時に操作できる位置へ設け、周囲のアクセスを確保する。",
+        "閉止後も漏れや逆流がないか必要に応じて確認する。"
+      ],
+      "bullets_en": [
+        "Select a stop valve compatible with the pipe material, size, and connection method.",
+        "Locate it where it can be reached for maintenance or emergency isolation.",
+        "After closing, verify isolation or leakage where the work procedure requires it."
+      ],
+      "examples_ja": [
+        "器具交換前に枝配管の止水栓を閉めて給水を遮断する。",
+        "洗面器系統へ保守用の局所止水栓を設ける。"
+      ],
+      "examples_en": [
+        "Close a local stop valve before replacing a plumbing fixture.",
+        "Install an accessible shutoff valve on a branch serving a washbasin."
+      ]
+    },
+    {
+      "id": "q017_seam_roller",
+      "wave": "content-wave-005x",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "シート材や仕上げ材の継ぎ目を押さえ、目地部を密着させる小型ローラー。壁紙に限定せず、床材・シート・化粧材など対象の接着方式に合わせてローラー材質、幅、押圧を選ぶ。",
+      "detail_en": "Small roller used to press seams in sheet or finish materials so the joint bonds firmly. It is not limited to wallpaper; roller material, width, and pressure should suit the adhesive system and finish being joined.",
+      "bullets_ja": [
+        "対象材を傷めないローラー材質と押圧を選ぶ。",
+        "接着剤が硬化する前の指定タイミングで目地を均一に押さえる。",
+        "過度な圧力で接着剤を押し出したり表面を変形させない。"
+      ],
+      "bullets_en": [
+        "Choose a roller surface and pressure that will not mark or damage the finish.",
+        "Press the seam evenly at the timing specified before the adhesive cures.",
+        "Avoid excessive pressure that squeezes out too much adhesive or distorts the surface."
+      ],
+      "examples_ja": [
+        "シート床材の継ぎ目を小型ローラーで均一に圧着する。",
+        "化粧シートの重ね部を押さえて接着を安定させる。"
+      ],
+      "examples_en": [
+        "Roll a sheet-flooring seam evenly after bonding.",
+        "Press a decorative sheet joint with a seam roller to consolidate adhesion."
+      ]
+    },
+    {
+      "id": "circular_saw",
+      "wave": "content-wave-005x",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "円形の回転刃で木材や合板などを直線切断する電動工具。材料と切断深さに合う刃径・刃種を選び、ベースの角度や切込み深さを調整して使う。",
+      "detail_en": "Power saw with a rotating circular blade used mainly for straight cuts in wood, plywood, and similar materials. Blade type and diameter, cutting depth, and base angle should be matched to the material and cut.",
+      "bullets_ja": [
+        "材料に適合する刃を装着し、刃の損傷や取付け緩みを使用前に確認する。",
+        "切込み深さは材料厚に対して必要以上に深くせず、材料を確実に支持する。",
+        "刃の進行線上や材料下側へ手を入れず、キックバックが起きる姿勢を避ける。"
+      ],
+      "bullets_en": [
+        "Fit a blade suited to the material and inspect it for damage and secure mounting before use.",
+        "Set cutting depth only as deep as required and support the workpiece securely.",
+        "Keep hands out of the blade path and below the workpiece, and maintain a stance that reduces kickback risk."
+      ],
+      "examples_ja": [
+        "合板をガイドに沿って直線切断する。",
+        "2×4材を墨線に合わせて所定寸法へ切る。"
+      ],
+      "examples_en": [
+        "Make a straight guided cut through plywood.",
+        "Crosscut a framing member to the marked length."
+      ]
+    },
+    {
+      "id": "jigsaw",
+      "wave": "content-wave-005x",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "細い往復刃を上下動させ、木材や板材の曲線切り・切抜きに使う電動工具。材料に合う刃の材質・ピッチを選び、必要に応じて速度やオービタル量を調整する。",
+      "detail_en": "Power saw with a narrow reciprocating blade used for curves, cutouts, and detail cuts in wood and sheet materials. Blade material and tooth pitch, speed, and orbital action should suit the workpiece.",
+      "bullets_ja": [
+        "材料と切断方向に合う刃を確実に固定する。",
+        "ベースを材料へ安定して当て、刃を無理に曲げて急旋回させない。",
+        "切抜き開始時は適切な下穴やプランジ対応手順を使う。"
+      ],
+      "bullets_en": [
+        "Install and secure a blade suited to the material and cutting direction.",
+        "Keep the shoe seated on the workpiece and do not force the blade through an excessively tight turn.",
+        "For internal cutouts, use a suitable starter hole or an approved plunge-cut procedure."
+      ],
+      "examples_ja": [
+        "合板に描いた曲線へ沿って切断する。",
+        "天板へ配線用の開口を切り抜く。"
+      ],
+      "examples_en": [
+        "Follow a curved layout line in plywood.",
+        "Cut an internal opening in a panel for cable routing."
+      ]
+    },
+    {
+      "id": "reciprocating_saw",
+      "wave": "content-wave-005x",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "細長い刃を前後に往復させ、解体や粗切り、狭所の切断に使う電動ノコギリ。木材・金属・樹脂など対象に合う刃長と刃種を選び、切断裏側の障害物を確認して使う。",
+      "detail_en": "Power saw with a push-pull blade used for demolition, rough cutting, and access-limited cuts. Blade length and type should suit wood, metal, plastic, or other material, and the hidden side of the cut should be checked first.",
+      "bullets_ja": [
+        "切断材と厚さに合う刃を選び、刃先が裏側の配線・配管へ届かないか確認する。",
+        "シューを材料へ当てて反動を抑え、刃を噛ませたままねじらない。",
+        "解体前に電気・配管など隠蔽物の位置を確認する。"
+      ],
+      "bullets_en": [
+        "Choose a blade for the material and thickness and confirm it cannot strike hidden wiring or piping behind the cut.",
+        "Keep the shoe against the workpiece to control reaction and avoid twisting a bound blade.",
+        "Before demolition cutting, identify concealed electrical and plumbing services."
+      ],
+      "examples_ja": [
+        "撤去する木下地を区画ごとに粗切りする。",
+        "既設金属管を適合刃で切断して撤去する。"
+      ],
+      "examples_en": [
+        "Rough-cut timber framing into removable sections during demolition.",
+        "Cut an existing metal pipe with an appropriate blade for removal."
+      ]
+    },
+    {
+      "id": "handsaw",
+      "wave": "content-wave-005x",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "手作業で木材や板材などを切断する基本的なノコギリ。縦挽き・横挽き、刃の細かさ、刃長を材料と必要な切断精度に合わせて選ぶ。",
+      "detail_en": "Basic manual saw for cutting wood and similar materials. Rip or crosscut tooth pattern, tooth pitch, and blade length should match the material and required finish.",
+      "bullets_ja": [
+        "材料を安定して固定し、切断線の近くへ手を置かない。",
+        "切り始めは浅い角度で溝を作り、刃をこじらず一定のストロークで進める。",
+        "刃の曲がり、欠け、著しい錆がある場合は交換する。"
+      ],
+      "bullets_en": [
+        "Support the workpiece securely and keep the supporting hand clear of the cut line.",
+        "Start with controlled shallow strokes and continue without twisting or forcing the blade.",
+        "Replace a blade that is bent, badly rusted, or has damaged teeth."
+      ],
+      "examples_ja": [
+        "木材を墨線に合わせて手作業で横切りする。",
+        "現場で小さな木片を寸法調整のため切り落とす。"
+      ],
+      "examples_en": [
+        "Crosscut a timber member along a marked line by hand.",
+        "Trim a small wooden piece on site to adjust its fit."
+      ]
+    },
+    {
+      "id": "utility_knife",
+      "wave": "content-wave-005x",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "交換式・収納式の刃でシート材、梱包材、薄い仕上げ材などを切断する手工具。対象材に合う刃形状と突出量を選び、定規や下敷きを併用して切る。",
+      "detail_en": "Hand knife with replaceable or retractable blades used for sheet materials, packaging, and thin finishes. Blade style and extension should suit the material, with a straightedge or cutting surface used where appropriate.",
+      "bullets_ja": [
+        "刃は必要最小限だけ出し、切断方向へ手や身体を置かない。",
+        "鈍った刃を無理に押し込まず、安全な手順で交換・廃棄する。",
+        "下地や隠れた配線を傷つけないよう切込み深さを管理する。"
+      ],
+      "bullets_en": [
+        "Extend only as much blade as needed and keep hands and body out of the cutting direction.",
+        "Replace dull blades rather than forcing them, and dispose of used blades safely.",
+        "Control cutting depth so the substrate or concealed wiring is not damaged."
+      ],
+      "examples_ja": [
+        "養生シートを定規に沿って必要寸法へ切る。",
+        "石膏ボード表紙へ切込みを入れて折り切る。"
+      ],
+      "examples_en": [
+        "Trim protective sheet material along a straightedge.",
+        "Score the face paper of gypsum board before snapping it."
+      ]
+    },
+    {
+      "id": "angle_grinder",
+      "wave": "content-wave-005x",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "高速回転するディスクで金属や石材などの研削・切断・面取りを行う携帯電動工具。作業内容に合うディスク種類・径・最高使用回転数を確認して使用する。",
+      "detail_en": "Handheld power tool using a high-speed rotating disc for grinding, cutting, and edge preparation on metal, masonry, and similar materials. Disc type, diameter, and maximum rated speed must suit the task and tool.",
+      "bullets_ja": [
+        "工具回転数に対応する適正ディスクを使い、ひびや欠けのあるディスクは使用しない。",
+        "ガードと補助ハンドルを適切に取り付け、両手で安定して保持する。",
+        "火花・粉じん・破片の飛散方向を管理し、周囲の可燃物や人を保護する。"
+      ],
+      "bullets_en": [
+        "Use a disc rated for the tool speed and discard discs that are cracked or damaged.",
+        "Keep the guard and auxiliary handle correctly installed and hold the tool securely with both hands.",
+        "Control sparks, dust, and debris and protect nearby people and combustible materials."
+      ],
+      "examples_ja": [
+        "鋼材の切断面のバリを研削して整える。",
+        "金属部材を切断用ディスクで所定位置から切り離す。"
+      ],
+      "examples_en": [
+        "Grind burrs from a cut steel edge.",
+        "Cut a metal component at the marked location with a suitable cutoff disc."
+      ]
+    },
+    {
+      "id": "orbital_sander",
+      "wave": "content-wave-005x",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "パッドを細かく振動・旋回させ、木材や塗装下地などを平滑に仕上げる電動サンダー。材料と工程に合う研磨紙の粒度を選び、粗研磨から仕上げへ段階的に進める。",
+      "detail_en": "Power sander that moves an abrasive pad in small orbital motions to smooth wood, coatings, and prepared surfaces. Abrasive grit should match the material and progress from coarse preparation to finer finishing as needed.",
+      "bullets_ja": [
+        "研磨紙をパッドへ正しく固定し、摩耗や破れが大きいものは交換する。",
+        "同じ位置へ長時間当て続けず、均一な速度と重なりで面を研磨する。",
+        "集じん機能や適切な保護具を使い、粉じんの吸入・拡散を抑える。"
+      ],
+      "bullets_en": [
+        "Secure the abrasive sheet correctly and replace it when excessively worn or torn.",
+        "Keep the sander moving with even overlap rather than dwelling in one spot.",
+        "Use dust extraction and suitable protective equipment to reduce airborne sanding dust."
+      ],
+      "examples_ja": [
+        "木部塗装前に表面を均一に研磨する。",
+        "パテ補修部を周囲と段差がなくなるよう仕上げ研磨する。"
+      ],
+      "examples_en": [
+        "Sand a wooden surface uniformly before painting.",
+        "Blend a filled repair area into the surrounding surface with finishing passes."
+      ]
+    },
+    {
+      "id": "hammer",
+      "wave": "content-wave-005x",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "釘打ち、部材の位置調整、軽い解体などに使う打撃工具。頭部形状、重量、柄の長さ、釘抜き機能などを作業内容に合わせて選ぶ。",
+      "detail_en": "Striking hand tool used for driving nails, adjusting components, and light demolition. Head style, weight, handle length, and claw or pulling features should match the task.",
+      "bullets_ja": [
+        "頭部と柄の緩み、割れ、著しい変形を使用前に確認する。",
+        "打撃対象に対して適切な面を使い、斜め打ちで破片を飛散させない。",
+        "周囲に十分な振り幅を確保し、手や他者を打撃範囲へ入れない。"
+      ],
+      "bullets_en": [
+        "Inspect the head and handle for looseness, cracking, or significant deformation before use.",
+        "Use the correct striking face and avoid glancing blows that can send fragments flying.",
+        "Maintain clear swing space and keep hands and other people outside the striking path."
+      ],
+      "examples_ja": [
+        "木下地へ釘を打ち込む。",
+        "仮固定した部材を軽く叩いて位置を微調整する。"
+      ],
+      "examples_en": [
+        "Drive a nail into timber framing.",
+        "Tap a temporarily fixed component to make a small alignment adjustment."
+      ]
+    },
+    {
+      "id": "sledgehammer",
+      "wave": "content-wave-005x",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "重量のある頭部で大きな打撃力を与え、破砕、解体、杭打ちなどに使う長柄のハンマー。頭部重量と柄長を作業と作業空間に合わせて選ぶ。",
+      "detail_en": "Long-handled hammer with a heavy head used for breaking, demolition, and driving stakes. Head weight and handle length should suit the task, material, and available swing space.",
+      "bullets_ja": [
+        "打撃前に周囲の人、配線、配管、飛散し得る部材を確認する。",
+        "柄と頭部の固定状態を点検し、損傷した工具を使用しない。",
+        "破砕作業では飛散防止と目・顔・足などの保護を行う。"
+      ],
+      "bullets_en": [
+        "Before swinging, check for people, concealed services, and materials that may break or fly.",
+        "Inspect the handle and head attachment and do not use a damaged tool.",
+        "During breaking work, control flying debris and use appropriate eye, face, and foot protection."
+      ],
+      "examples_ja": [
+        "撤去予定の無筋ブロックを破砕する。",
+        "仮設杭を地面へ打ち込む。"
+      ],
+      "examples_en": [
+        "Break up an unreinforced masonry block scheduled for removal.",
+        "Drive a temporary stake into the ground."
+      ]
+    },
+    {
+      "id": "pry_bar",
+      "wave": "content-wave-005x",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "てこの原理で部材をこじ開け、引き離し、釘を抜く解体・調整用の手工具。長さ、先端形状、曲がり、材質を必要なてこ力と作業空間に合わせて選ぶ。",
+      "detail_en": "Lever hand tool used for prying components apart, lifting edges, pulling nails, and demolition. Length, tip shape, bend, and material should match the required leverage and working space.",
+      "bullets_ja": [
+        "支点と対象部材の強度を確認し、工具が外れたときの反動方向へ身体を置かない。",
+        "電線・配管などが隠れている可能性がある部位を無確認でこじらない。",
+        "曲がり、亀裂、先端の著しい欠けがあるバールは使用しない。"
+      ],
+      "bullets_en": [
+        "Confirm the fulcrum and material can take the load and keep your body out of the reaction path if the bar slips.",
+        "Do not pry blindly into areas that may contain concealed wiring or piping.",
+        "Remove pry bars with cracks, excessive bending, or badly damaged tips from service."
+      ],
+      "examples_ja": [
+        "内装解体で巾木を壁から少しずつ浮かせて撤去する。",
+        "木材に残った釘をバールの釘抜き部で引き抜く。"
+      ],
+      "examples_en": [
+        "Pry trim gradually away from a wall during interior demolition.",
+        "Pull a remaining nail from timber using the nail-pulling end of a pry bar."
+      ]
+    }
+  ]
+}
