@@ -28,6 +28,7 @@ Checklist state MUST NOT be used to infer that a user must buy a product. The to
 - Accept move date, household type (`solo` or `family`), and home type (`rental` or `owned`).
 - Accept an optional print-only memo up to 40 characters.
 - Generate reference tasks spanning preparation before the move through post-move follow-up.
+- Keep a crawlable static overview of the move timeline from 30 days before through post-move follow-up so the page's core planning intent is available before checklist generation.
 - Track completion state and show progress for the current condition set.
 - Save checkbox state keyed by the identifying conditions: move date, household type, and home type.
 - Do not persist the optional print memo.
@@ -84,6 +85,7 @@ The core interaction is a compact form followed by a chronological checklist; a 
 - [ ] Delete-current and delete-all actions remove the corresponding saved checklist state.
 - [ ] Print/PDF uses the browser print flow and does not claim server-generated PDF storage.
 - [ ] Public metadata describes the broad 30-days-before-through-post-move timeline rather than presenting this as the dedicated lease-exit final check.
+- [ ] The initial HTML exposes the major timeline stages (30 days, 14 days, 7 days, 3 days, day before, moving day, post-move) without requiring a generated checklist.
 - [ ] The page links to `moving-lease-final-check` as the dedicated final-stage companion.
 - [ ] The active Amazon block uses only fixed general moving/packing-supply queries and the shared `nicheworks09-22` tagged-search template.
 - [ ] Affiliate content remains limited to general moving/packing supplies and never represents an official checklist requirement.
