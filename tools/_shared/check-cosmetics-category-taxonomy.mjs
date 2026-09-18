@@ -9,7 +9,8 @@ const parser = require('./cosmetic-ingredient-parser.js');
 const taxonomy = JSON.parse(fs.readFileSync(path.join(root, 'tools/_shared/cosmetics-category-taxonomy.json'), 'utf8'));
 
 const EXPECTED_CATEGORIES = new Set([
-  'solvent', 'humectant', 'preservative', 'thickener', 'pH adjuster', 'antioxidant', 'viscosity adjuster', 'chelating agent'
+  'solvent', 'humectant', 'preservative', 'thickener', 'pH adjuster', 'antioxidant', 'viscosity adjuster', 'chelating agent',
+  'skin conditioning', 'emollient', 'cleanser'
 ]);
 const EXPECTED_AUTHORITY_FUNCTIONS = Object.freeze({
   'solvent': ['solvent'],
@@ -19,7 +20,10 @@ const EXPECTED_AUTHORITY_FUNCTIONS = Object.freeze({
   'pH adjuster': ['pH adjuster'],
   'antioxidant': ['antioxidant', 'antioxidants'],
   'viscosity adjuster': ['viscosity increasing agent - aqueous', 'viscosity controlling'],
-  'chelating agent': ['chelating agent', 'chelating agents', 'chelating']
+  'chelating agent': ['chelating agent', 'chelating agents', 'chelating'],
+  'skin conditioning': ['skin conditioning'],
+  'emollient': ['skin conditioning - emollient'],
+  'cleanser': ['cleansing']
 });
 const EXPECTED_WAVE3_PROMOTED = new Set(['sodium chloride', 'disodium edta']);
 const EXPECTED_WAVE4_PROMOTED = new Set(['tocopheryl acetate']);
@@ -29,6 +33,7 @@ const EXPECTED_WAVE7_PROMOTED = new Set(['bht', 'betaine', 'pentylene glycol']);
 const EXPECTED_WAVE8_PROMOTED = new Set(['propanediol', '1,2-hexanediol', 'alcohol']);
 const EXPECTED_WAVE9_PROMOTED = new Set(['ascorbyl palmitate']);
 const EXPECTED_WAVE10_PROMOTED = new Set(['sodium gluconate', 'xanthan gum']);
+const EXPECTED_WAVE11_PROMOTED = new Set(['ethylhexylglycerin', 'squalane', 'sodium cocoyl glutamate', 'dimethicone']);
 const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu', 'cosmileeurope.eu']);
 
 function normalize(value = '') {
@@ -65,7 +70,7 @@ for (const [category, contract] of Object.entries(taxonomy.categories)) {
 }
 assert.equal(authorityFunctionToCategory.get('chelating'), 'chelating agent', 'COSMILE CHELATING must map explicitly to chelating agent');
 assert.equal(authorityFunctionToCategory.get('viscosity controlling'), 'viscosity adjuster', 'COSMILE VISCOSITY CONTROLLING must map explicitly to viscosity adjuster');
-assert.equal(authorityFunctionToCategory.size, 13, 'authority function vocabulary must contain exactly 13 reviewed terms');
+assert.equal(authorityFunctionToCategory.size, 16, 'authority function vocabulary must contain exactly 16 reviewed terms');
 
 const runtimeMappings = {};
 for (const [canonical, mapping] of Object.entries(taxonomy.reviewed_mappings)) {
@@ -89,8 +94,13 @@ for (const canonical of EXPECTED_WAVE7_PROMOTED) assert.ok(runtimeMappings[canon
 for (const canonical of EXPECTED_WAVE8_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 8 mapping must be runtime_verified`);
 for (const canonical of EXPECTED_WAVE9_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 9 mapping must be runtime_verified`);
 for (const canonical of EXPECTED_WAVE10_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 10 mapping must be runtime_verified`);
+for (const canonical of EXPECTED_WAVE11_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 11 mapping must be runtime_verified`);
 assert.equal(runtimeMappings['sodium gluconate']?.source_functions?.[0], 'chelating', 'Sodium Gluconate must use the reviewed COSMILE CHELATING authority term');
 assert.equal(runtimeMappings['xanthan gum']?.source_functions?.[0], 'viscosity controlling', 'Xanthan Gum must use the reviewed COSMILE VISCOSITY CONTROLLING authority term');
+assert.equal(runtimeMappings['ethylhexylglycerin']?.source_functions?.[0], 'skin conditioning', 'Ethylhexylglycerin must use the reviewed COSMILE SKIN CONDITIONING authority term');
+assert.equal(runtimeMappings['squalane']?.source_functions?.[0], 'skin conditioning - emollient', 'Squalane must use the reviewed COSMILE SKIN CONDITIONING - EMOLLIENT authority term');
+assert.equal(runtimeMappings['sodium cocoyl glutamate']?.source_functions?.[0], 'cleansing', 'Sodium Cocoyl Glutamate must use the reviewed COSMILE CLEANSING authority term');
+assert.equal(runtimeMappings['dimethicone']?.source_functions?.[0], 'skin conditioning', 'Dimethicone must use the reviewed COSMILE SKIN CONDITIONING authority term');
 assert.equal(runtimeMappings['sodium citrate'], undefined, 'Sodium Citrate must remain out of runtime taxonomy until buffer vs pH-adjuster semantics are explicitly resolved');
 
 const runtimeEvidence = parser.verifiedCategoryEvidence || {};
@@ -106,7 +116,7 @@ for (const ambiguous of parser.ambiguousExactKeys || []) assert.equal(taxonomy.r
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'verified-category-taxonomy-wave-10',
+  phase: 'verified-category-taxonomy-wave-11',
   mapping_policy: taxonomy.mapping_policy,
   canonical_categories: Object.keys(taxonomy.categories).length,
   unique_authority_function_terms: authorityFunctionToCategory.size,
@@ -119,6 +129,7 @@ console.log(JSON.stringify({
   wave_8_promoted_mappings: [...EXPECTED_WAVE8_PROMOTED],
   wave_9_promoted_mappings: [...EXPECTED_WAVE9_PROMOTED],
   wave_10_promoted_mappings: [...EXPECTED_WAVE10_PROMOTED],
+  wave_11_promoted_mappings: [...EXPECTED_WAVE11_PROMOTED],
   sodium_citrate_deferred_for_taxonomy_decision: true,
   raw_legacy_taxonomy_rewritten: false,
   safety_contract_changed: false,

@@ -11,7 +11,10 @@
     "pH adjuster": { "authority_functions": ["pH adjuster"] },
     "antioxidant": { "authority_functions": ["antioxidant", "antioxidants"] },
     "viscosity adjuster": { "authority_functions": ["viscosity increasing agent - aqueous", "viscosity controlling"] },
-    "chelating agent": { "authority_functions": ["chelating agent", "chelating agents", "chelating"] }
+    "chelating agent": { "authority_functions": ["chelating agent", "chelating agents", "chelating"] },
+    "skin conditioning": { "authority_functions": ["skin conditioning"] },
+    "emollient": { "authority_functions": ["skin conditioning - emollient"] },
+    "cleanser": { "authority_functions": ["cleansing"] }
   },
   "reviewed_mappings": {
     "water": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/water/"],"runtime_verified":true},
@@ -38,6 +41,10 @@
     "alcohol": {"category":"solvent","source_functions":["solvent"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/590/alcohol/"],"runtime_verified":true},
     "ascorbyl palmitate": {"category":"antioxidant","source_functions":["antioxidant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/1244/ascorbyl-palmitate/"],"runtime_verified":true},
     "sodium gluconate": {"category":"chelating agent","source_functions":["chelating"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14787/sodium-gluconate/"],"runtime_verified":true},
-    "xanthan gum": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/16999/xanthan-gum/"],"runtime_verified":true}
+    "xanthan gum": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/16999/xanthan-gum/"],"runtime_verified":true},
+    "ethylhexylglycerin": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/5500/ethylhexylglycerin/"],"runtime_verified":true},
+    "squalane": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15418/squalane/"],"runtime_verified":true},
+    "sodium cocoyl glutamate": {"category":"cleanser","source_functions":["cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14710/sodium-cocoyl-glutamate/"],"runtime_verified":true},
+    "dimethicone": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/4583/dimethicone/"],"runtime_verified":true}
   }
 }

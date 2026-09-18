@@ -187,6 +187,13 @@ for (const group of groups.values()) {
   else canonicalWithoutNoteAndEvidence += 1;
 }
 
+const runtimeMerged = parser.mergeDictionaryRecords(rows);
+const runtimeRoleReady = runtimeMerged.filter((item) => {
+  const categories = Array.isArray(item.categories) ? item.categories : [item.category];
+  return categories.some((value) => PUBLIC_ROLE_CATEGORIES.has(category(value)));
+}).length;
+const runtimeRoleMissing = runtimeMerged.length - runtimeRoleReady;
+
 const measuredDebt = {
   missing_jp_name: counters.missing_jp_name,
   missing_alias_array: counters.missing_alias_array,
@@ -229,6 +236,13 @@ const report = {
     ...counters,
     public_role_ready_percent: rows.length ? Number((counters.supported_public_role / rows.length * 100).toFixed(2)) : 0,
     ingredient_note_with_evidence_percent: rows.length ? Number((counters.with_note_and_evidence / rows.length * 100).toFixed(2)) : 0
+  },
+  runtime_canonical_readiness: {
+    merged_canonical_identities: runtimeMerged.length,
+    with_supported_public_role: runtimeRoleReady,
+    without_supported_public_role: runtimeRoleMissing,
+    public_role_ready_percent: runtimeMerged.length ? Number((runtimeRoleReady / runtimeMerged.length * 100).toFixed(2)) : 0,
+    verified_category_overlay_identities: Object.keys(parser.verifiedCategoryEvidence || {}).length
   },
   canonical_readiness: {
     with_supported_public_role: canonicalWithSupportedRole,
