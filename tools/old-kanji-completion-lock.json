@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "old-kanji-completion-lock-v1",
+  "lockedAt": "2026-09-18",
+  "mode": "maintenance_measurement",
+  "releaseCodeBaselineSha": "447c1beb0e5490b5dfc8b45a2a9a4afb0d7122d3",
+  "scope": [
+    "old-kanji-reference",
+    "kanji-modernizer",
+    "old-kanji-ocr-scanner",
+    "old-document-kanji-highlighter",
+    "unicode-kanji-checker",
+    "variant-kanji-compare",
+    "place-old-kanji-checker",
+    "name-old-kanji-checker"
+  ],
+  "seoInventory": {
+    "publishedIndividualPages": 3,
+    "allowlist": [
+      "ga-kaku",
+      "sho-shou",
+      "kyu-old"
+    ],
+    "repositoryCandidates": 168,
+    "expansionRequires": [
+      "current_dictionary_source_gate",
+      "settled_search_console_demand"
+    ]
+  },
+  "dictionarySnapshot": {
+    "auditVersion": "2026-09-18-okj-dictionary-audit-2",
+    "canonicalOldToNewRecords": 356,
+    "rawOldToNewEntries": 364,
+    "classes": {
+      "old_to_modern": 165,
+      "variant": 3,
+      "compatibility": 22,
+      "identity": 115,
+      "unresolved": 51
+    },
+    "rawDuplicateKeys": 8,
+    "conflictingRawDuplicateKeys": 0,
+    "metadataDuplicateKeys": 61,
+    "reverseIssues": 35,
+    "issueRecords": 0
+  },
+  "monetization": {
+    "oldKanjiReference": "ADS_DONATION",
+    "oldKanjiOcrScanner": "HOLD",
+    "affiliateRuntimeEnabled": false
+  },
+  "knownLimitations": [
+    "8 same-valued raw duplicate keys remain source-cleanup debt",
+    "61 metadata overlay events require deferred semantic review",
+    "35 reverse issues require authoritative relation review",
+    "51 unresolved records remain deferred and SEO-blocked",
+    "fresh GSC retrieval was unavailable in Wave 18 because the connected GSC Wizard returned payment_required"
+  ],
+  "reopenTriggers": [
+    "feature_contract_change",
+    "authoritative_dictionary_or_source_change",
+    "settled_gsc_demand_plus_source_support_for_seo_expansion",
+    "verified_billing_or_affiliate_activation",
+    "ci_browser_or_platform_regression",
+    "privacy_or_measurement_contract_change"
+  ]
+}
