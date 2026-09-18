@@ -7954,7 +7954,7 @@
         }
       },
       "included": {
-        "cable": "unknown",
+        "cable": "not_included",
         "adapter": "not_included"
       },
       "sources": {
@@ -7962,7 +7962,7 @@
         "manualUrl": "https://k-tai.sharp.co.jp/support/",
         "releaseUrl": "https://jp.sharp/products/aquos-zero6/",
         "chargingUrl": "https://jp.sharp/products/aquos-zero6/s/index.html",
-        "verifiedAt": "2026-09-16",
+        "verifiedAt": "2026-09-18",
         "waterUrl": "https://jp.sharp/products/aquos-zero6/"
       },
       "affiliateKeys": []
