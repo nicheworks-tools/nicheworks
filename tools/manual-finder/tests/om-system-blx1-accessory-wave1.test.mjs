@@ -43,7 +43,6 @@ for (const args of [
   { maker: 'OM System', model: 'OM-1', category: 'カメラ・映像' },
   { maker: 'OM SYSTEM', model: 'OM-1', category: 'その他' },
   { maker: 'OM SYSTEM', model: 'OM-1 Mark III', category: 'カメラ・映像' },
-  { maker: 'OM SYSTEM', model: 'OM-5', category: 'カメラ・映像' },
   { maker: 'Olympus', model: 'OM-1', category: 'カメラ・映像' },
   { maker: 'OM SYSTEM', model: '', category: 'カメラ・映像' }
 ]) {

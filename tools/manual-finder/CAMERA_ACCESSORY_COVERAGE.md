@@ -10,23 +10,23 @@ This document is the audited baseline for compatibility-sensitive camera battery
 | --- | ---: |
 | Canonical `カメラ・映像` records | **192** |
 | Camera records with a basic Amazon path | **185** |
-| Camera records with verified accessory detail | **101** |
+| Camera records with verified accessory detail | **121** |
 | Reviewed camera-detail exclusions | **26** |
-| Actionable camera records still missing accessory detail | **58** |
+| Actionable camera records still missing accessory detail | **38** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 185 = detail 101 + reviewed exclusion 26 + missing 58`
+`camera basic 185 = detail 121 + reviewed exclusion 26 + missing 38`
 
-The active detail ledger contains all fourteen actionable Nikon records, seventy reviewed DJI records, and seventeen reviewed OM SYSTEM records. Twenty-six DJI rows are evidence-backed reviewed exclusions covering built-in/nonremovable power, rechargeable controllers without model-specific replaceable power accessories, externally powered air units, and the multi-component Digital FPV System. Missing rows remain explicit rather than being converted to guessed mappings or unsupported exclusions.
+The active detail ledger contains all fourteen actionable Nikon records, seventy reviewed DJI records, and all thirty-seven actionable OM SYSTEM records. Twenty-six DJI rows are evidence-backed reviewed exclusions covering built-in/nonremovable power, rechargeable controllers without model-specific replaceable power accessories, externally powered air units, and the multi-component Digital FPV System. Missing rows remain explicit rather than being converted to guessed mappings or unsupported exclusions.
 
 ## Actionable coverage by maker
 
 | Maker | Basic | Detail | Reviewed exclusion | Missing |
 | --- | ---: | ---: | ---: | ---: |
 | DJI | 96 | 70 | 26 | 0 |
-| OM SYSTEM | 37 | 17 | 0 | 20 |
+| OM SYSTEM | 37 | 37 | 0 | 0 |
 | GoPro | 31 | 0 | 0 | 31 |
 | Nikon | 14 | 14 | 0 | 0 |
 | Insta360 | 7 | 0 | 0 | 7 |
@@ -226,6 +226,22 @@ Current OM SYSTEM reconciliation:
 
 `OM SYSTEM camera 37 = detail 17 + reviewed exclusion 0 + missing 20`
 
+### Wave 5 — BLN-1 legacy/high-end family
+
+Wave 5 activates exactly `E-M1`, `E-M5`, `E-M5 Mark II`, `E-P5`, and `PEN-F`. OM SYSTEM's official power-supply compatibility table marks `BLN-1` as compatible with each of these five exact models.
+
+The deterministic Amazon handoff is `OM SYSTEM BLN-1 Lithium Ion Rechargeable Battery`.
+
+### Wave 6 — BLS-50 legacy PEN / E-M10 family
+
+Wave 6 activates the final fifteen OM SYSTEM rows: `E-M10`, `E-M10 Mark II`, `E-P1`, `E-P2`, `E-P3`, `E-PL1`, `E-PL2`, `E-PL3`, `E-PL5`, `E-PL6`, `E-PL7`, `E-PL8`, `E-PL9`, `E-PM1`, and `E-PM2`. The same official OM SYSTEM compatibility table explicitly marks `BLS-50` as compatible with all fifteen rows, including older models that originally shipped with BLS-1 or BLS-5.
+
+The deterministic Amazon handoff is `OM SYSTEM BLS-50 Lithium Ion Rechargeable Battery`. Wave 6 relies on the current explicit compatibility table rather than family-name inference.
+
+OM SYSTEM is now closed:
+
+`OM SYSTEM camera 37 = detail 37 + reviewed exclusion 0 + missing 0`
+
 ## Non-actionable camera records
 
 Seven camera-category records are maker/index entries without an actionable exact-model Amazon path and are not counted as missing accessory detail:
@@ -251,11 +267,10 @@ Seven camera-category records are maker/index entries without an actionable exac
 
 ## Expansion order
 
-1. Continue OM SYSTEM from the remaining 20 actionable records in bounded official-evidence waves.
-2. Review GoPro 31 actionable records.
-3. Review Insta360 7 actionable records.
+1. Review GoPro 31 actionable records.
+2. Review Insta360 7 actionable records.
 
-DJI and Nikon are closed at zero missing.
+DJI, Nikon, and OM SYSTEM are closed at zero missing.
 
 ## Completion target
 
@@ -263,7 +278,7 @@ The camera accessory phase is complete only when:
 
 `camera basic = detail + reviewed exclusion + missing 0`
 
-The current baseline is not complete: `58` actionable records remain missing accessory detail.
+The current baseline is not complete: `38` actionable records remain missing accessory detail.
 
 ## Source of truth
 
@@ -273,6 +288,8 @@ The current baseline is not complete: `58` actionable records remain missing acc
 - `affiliate-om-system-camera-accessories-wave2.js` — exact E-M1 Mark II / E-M1 Mark III / E-M1X BLH-1 mappings.
 - `affiliate-om-system-camera-accessories-wave3.js` — exact TG-4 / TG-5 / TG-6 / TG-7 LI-92B mappings.
 - `affiliate-om-system-camera-accessories-wave4.js` — exact seven-row BLS-50 mappings.
+- `affiliate-om-system-camera-accessories-wave5.js` — exact five-row BLN-1 mappings.
+- `affiliate-om-system-camera-accessories-wave6.js` — exact fifteen-row legacy BLS-50 mappings and OM SYSTEM closure.
 - `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave41.js` — reviewed DJI camera accessory ledgers.
 - `affiliate-dji-camera-accessories-wave22.js` — exact reviewed Phantom 3 Advanced/Professional/Standard battery and charging-hub mappings.
 - `affiliate-dji-camera-accessories-wave23.js` — exact reviewed Phantom 3 SE battery-only mapping; charging hub remains intentionally unasserted.
@@ -316,5 +333,7 @@ The current baseline is not complete: `58` actionable records remain missing acc
 - `tests/om-system-blh1-accessory-wave2.test.mjs` — exact OM SYSTEM Wave 2 BLH-1 boundary.
 - `tests/om-system-li92b-accessory-wave3.test.mjs` — exact OM SYSTEM Wave 3 LI-92B boundary.
 - `tests/om-system-bls50-accessory-wave4.test.mjs` — exact OM SYSTEM Wave 4 BLS-50 boundary.
+- `tests/om-system-bln1-accessory-wave5.test.mjs` — exact OM SYSTEM Wave 5 BLN-1 boundary.
+- `tests/om-system-bls50-legacy-wave6.test.mjs` — exact OM SYSTEM Wave 6 legacy BLS-50 boundary.
 - `tests/camera-accessory-coverage.test.mjs` — catalog-wide camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` — documentation drift guard and implementation-evidence synchronization.

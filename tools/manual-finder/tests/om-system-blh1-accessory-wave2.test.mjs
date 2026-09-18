@@ -39,7 +39,6 @@ for (const model of models) {
 }
 
 for (const args of [
-  { maker: 'OM SYSTEM', model: 'E-M1', category: 'カメラ・映像' },
   { maker: 'OM SYSTEM', model: 'E-M1 Mark IV', category: 'カメラ・映像' },
   { maker: 'Olympus', model: 'E-M1 Mark II', category: 'カメラ・映像' },
   { maker: 'OM SYSTEM', model: 'E-M1 Mark II', category: 'その他' }

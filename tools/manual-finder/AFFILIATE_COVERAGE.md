@@ -21,7 +21,7 @@ Required printer reconciliation:
 
 The camera accessory audit independently reconciles as:
 
-`camera basic 185 = detail 101 + reviewed exclusion 26 + missing 58`
+`camera basic 185 = detail 121 + reviewed exclusion 26 + missing 38`
 
 Maker-level camera state:
 
@@ -267,9 +267,9 @@ After Waves 1–41:
 
 `DJI camera 96 = detail 70 + reviewed exclusion 26 + missing 0`
 
-The catalog-wide camera audit is therefore 185 actionable basic rows, 101 detail mappings, 26 reviewed exclusions, and 58 missing accessory-detail rows.
+The catalog-wide camera audit is therefore 185 actionable basic rows, 121 detail mappings, 26 reviewed exclusions, and 38 missing accessory-detail rows.
 
-## OM SYSTEM camera review — Waves 1–4
+## OM SYSTEM camera review — Waves 1–6
 
 OM SYSTEM Wave 1 activates exactly `OM-1`, `OM-1 Mark II`, and `OM-3`. OM SYSTEM's official BLX-1 battery page explicitly lists all three models as compatible with the `BLX-1 Lithium Ion Rechargeable Battery`.
 
@@ -296,6 +296,18 @@ The deterministic Amazon handoff is `OM SYSTEM BLS-50 Lithium Ion Rechargeable B
 Current OM SYSTEM reconciliation:
 
 `OM SYSTEM camera 37 = detail 17 + reviewed exclusion 0 + missing 20`
+
+### BLN-1 — Wave 5
+
+Wave 5 activates exactly `E-M1`, `E-M5`, `E-M5 Mark II`, `E-P5`, and `PEN-F`. OM SYSTEM's official power-supply compatibility table explicitly marks BLN-1 compatible with all five. The deterministic handoff is `OM SYSTEM BLN-1 Lithium Ion Rechargeable Battery`.
+
+### Legacy BLS-50 — Wave 6
+
+Wave 6 activates the final fifteen OM SYSTEM rows: `E-M10`, `E-M10 Mark II`, `E-P1`, `E-P2`, `E-P3`, `E-PL1`, `E-PL2`, `E-PL3`, `E-PL5`, `E-PL6`, `E-PL7`, `E-PL8`, `E-PL9`, `E-PM1`, and `E-PM2`. OM SYSTEM's official power-supply compatibility table explicitly marks BLS-50 compatible with all fifteen. The deterministic handoff is `OM SYSTEM BLS-50 Lithium Ion Rechargeable Battery`.
+
+OM SYSTEM is closed:
+
+`OM SYSTEM camera 37 = detail 37 + reviewed exclusion 0 + missing 0`
 
 ## Runtime boundary and source of truth
 
@@ -324,7 +336,9 @@ Current OM SYSTEM reconciliation:
 - `affiliate-om-system-camera-accessories-wave1.js` adds exact OM-1 / OM-1 Mark II / OM-3 BLX-1 mappings.
 - `affiliate-om-system-camera-accessories-wave2.js` adds exact E-M1 Mark II / E-M1 Mark III / E-M1X BLH-1 mappings.
 - `affiliate-om-system-camera-accessories-wave3.js` adds exact TG-4 / TG-5 / TG-6 / TG-7 LI-92B mappings.
-- `affiliate-om-system-camera-accessories-wave4.js` adds exact seven-row BLS-50 mappings and exposes the merged 101-row camera detail ledger.
+- `affiliate-om-system-camera-accessories-wave4.js` adds exact seven-row BLS-50 mappings.
+- `affiliate-om-system-camera-accessories-wave5.js` adds exact five-row BLN-1 mappings.
+- `affiliate-om-system-camera-accessories-wave6.js` adds exact fifteen-row legacy BLS-50 mappings and exposes the merged 121-row camera detail ledger.
 - `affiliate-camera-detail-exclusions.js` contains twenty-six exact DJI exclusions across Waves 32, 34, 36, 40, and 41.
 - `affiliate-runtime.js` sequentially loads Nikon, DJI, and OM SYSTEM ledgers before affiliate rendering.
 - `tests/affiliate-coverage.test.mjs` and `tests/affiliate-doc-sync.test.mjs` protect printer reconciliation.
@@ -352,6 +366,8 @@ Current OM SYSTEM reconciliation:
 - `tests/om-system-blh1-accessory-wave2.test.mjs` protects the exact OM SYSTEM BLH-1 Wave 2 boundary.
 - `tests/om-system-li92b-accessory-wave3.test.mjs` protects the exact OM SYSTEM LI-92B Wave 3 boundary.
 - `tests/om-system-bls50-accessory-wave4.test.mjs` protects the exact OM SYSTEM BLS-50 Wave 4 boundary.
+- `tests/om-system-bln1-accessory-wave5.test.mjs` protects the exact OM SYSTEM BLN-1 Wave 5 boundary.
+- `tests/om-system-bls50-legacy-wave6.test.mjs` protects the exact OM SYSTEM legacy BLS-50 Wave 6 boundary.
 - `tests/camera-accessory-coverage.test.mjs` computes camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` prevents documentation drift and auto-discovers DJI wave evidence.
 - `CAMERA_ACCESSORY_COVERAGE.md` records the measured camera baseline.
@@ -384,4 +400,4 @@ DJI is closed at:
 
 ## Next expansion gate
 
-Printer-detail is closed. Nikon and DJI camera coverage are closed. The measured camera backlog continues with OM SYSTEM 20, GoPro 31, and Insta360 7.
+Printer-detail is closed. Nikon, DJI, and OM SYSTEM camera coverage are closed. The measured camera backlog is GoPro 31 and Insta360 7.
