@@ -341,3 +341,16 @@ The closure adds 14 source-backed canonical identities without rewriting raw rec
 - Microcrystalline Wax → `viscosity adjuster`
 
 COSMILE Europe is the provenance authority for twelve mappings, Korea Cosmetic Association for Snail Secretion Filtrate, and Kao/Curel official product information for the explicitly stated `保湿` function of Hexadecyloxy PG Hydroxyethyl Hexadecanamide. Legacy category labels remain auditable in runtime metadata.
+
+
+## Strong-runtime verified-note closure
+
+The runtime readiness audit identified three identities with source-backed verified ingredient notes and maintained Japanese names but no supported public role. This closure adds only source-backed category overlays; raw dictionary categories remain untouched.
+
+| Canonical identity | Verified public category | Raw category state | Source basis |
+| --- | --- | --- | --- |
+| `sulfur` | `skin conditioning` | category missing | COSMILE Europe lists `SKIN CONDITIONING` among Sulfur's cosmetic functions. |
+| `aminobenzoic acid` | `uv filter` | category missing | EU Cosmetics Regulation Annex VI lists PABA / 4-Aminobenzoic Acid as a UV filter; the existing verified note already uses this authority. |
+| `ammonium hydroxide` | `buffer` | category missing | COSMILE Europe lists `BUFFERING` for Ammonium Hydroxide. |
+
+After this closure, all 22 verified-note identities also satisfy the strong runtime definition: supported public role + maintained Japanese name + source-backed verified ingredient-specific note.
