@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-18-applicability-wave5",
+  "version": "2026-09-18-applicability-wave6",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -6343,6 +6343,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A blind rivet is a distinct physical fastener with a recognizable mandrel-and-body form; a close subject-matched photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6354,6 +6363,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A block plane is a distinctive woodworking hand plane; a reviewed photograph strongly aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6371,6 +6389,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A blow pump is a physical hole-cleaning tool used for anchor preparation; a subject-matched photograph clarifies the canonical.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6382,6 +6409,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A bolster chisel is a distinctive wide-bladed masonry chisel; a reviewed photograph is useful for identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6399,6 +6435,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A box-end wrench has a stable ring-ended form; a close reviewed photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6410,6 +6455,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A bull point chisel is a physical pointed demolition bit with a distinctive shape; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6427,6 +6481,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A channel nut is a recognizable strut-channel fastener; a close reviewed photograph helps distinguish it from generic nuts.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6438,6 +6501,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A chisel bit is a physical power-tool accessory with a recognizable cutting end and shank; imagery is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6469,6 +6541,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A combination wrench has a distinctive open-end and box-end form; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6480,6 +6561,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A concrete cylinder mold is a recognizable specimen-forming container used in concrete testing; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6497,6 +6587,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A rebound/Schmidt hammer is a distinctive concrete test instrument; a subject-matched photograph strongly aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6508,6 +6607,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A coping saw has a distinctive U-shaped frame and fine blade; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6525,6 +6633,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A core sampler is a physical sampling tool/system used to extract cylindrical material samples; a subject-matched photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6536,6 +6653,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A countersink bit has a recognizable cutting profile; a close reviewed photograph helps distinguish it from ordinary drill bits.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6553,6 +6679,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A diamond cup wheel is a distinctive grinding accessory with a cup-shaped segmented face; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6564,6 +6699,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A curing tank is a physical specimen-storage tank used for controlled curing; a reviewed laboratory/site photograph can identify it clearly.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6581,6 +6725,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A debris net is a physical temporary safety mesh with a recognizable installed scaffold/building use; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6592,6 +6745,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A depth gauge is a distinct measuring instrument; a subject-matched photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6609,6 +6771,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A digital level is a visually identifiable measuring tool with an electronic display and level body; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6620,6 +6791,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An embedded plate is a physical steel plate cast into concrete for later connections; an installed or pre-pour photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6637,6 +6817,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Epoxy anchor adhesive is a physical anchoring material typically supplied in cartridges and used with drilled holes; a reviewed product/application photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6648,6 +6837,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An extension cord reel is a distinctive temporary-power accessory with a reel body and cable; a subject-matched photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6665,6 +6863,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A flap disc is a recognizable abrasive wheel made from overlapping abrasive flaps; a close reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6676,6 +6883,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A flat chisel is a physical cutting/chipping tool with a broad flat edge; a subject-matched photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6693,6 +6909,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A framing square is a distinctive L-shaped layout tool; a reviewed photograph strongly aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6704,6 +6929,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A cutting/grinder disc is a physical abrasive accessory with a recognizable thin circular form and labeling/context; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6721,6 +6955,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Baseplate grouting has a recognizable physical result and work setup beneath equipment or steel baseplates; a reviewed field photograph can represent the canonical without being arbitrary.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6732,6 +6975,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A gusset plate is a physical connection plate used to reinforce structural joints; an installed or fabricated photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6749,6 +7001,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Tin snips/hand shears are distinctive sheet-metal cutting tools; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6760,6 +7021,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pipe hanger clamp is a physical support fitting with recognizable installed geometry; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6777,6 +7047,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A hole-cleaning brush is a distinctive cylindrical brush used for drilled anchor holes; a subject-matched photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6788,6 +7067,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An infrared thermometer is a distinctive handheld measurement instrument; a reviewed photograph strongly aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6819,6 +7107,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A leveling mount is a physical adjustable support foot used under equipment; a close reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6830,6 +7127,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A lock nut is a physical fastener with identifiable locking features; a close reviewed photograph aids distinction from standard nuts.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6847,6 +7153,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A marking gauge is a distinctive woodworking layout tool with fence and cutter/pin; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6858,6 +7173,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A micrometer is a distinctive precision measuring instrument; a subject-matched photograph strongly aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6875,6 +7199,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A nail puller is a physical hand tool with recognizable gripping/prying geometry; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6886,6 +7219,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A nibbler is a distinctive sheet-metal cutting tool; a subject-matched photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6903,6 +7245,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Non-shrink grout is a physical construction material with recognizable bag/mix and installed baseplate applications; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6914,6 +7265,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pipe clamp is a physical support/fastening component with recognizable installed forms; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6931,6 +7291,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pop rivet gun is a distinctive riveting hand/power tool; a subject-matched photograph strongly aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6942,6 +7311,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A Dozuki/pull saw is a distinctive Japanese pull saw with a thin blade and often a stiff back; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6959,6 +7337,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A ratchet handle is a distinctive socket-driving tool with a ratcheting head; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6970,6 +7357,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A reamer is a physical hole-finishing cutting tool with recognizable fluted geometry; a close reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -6987,6 +7383,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A rubber vibration-isolation mount is a physical component with recognizable elastomer/metal construction; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -6998,6 +7403,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An SDS Max bit is a physical masonry drilling accessory with a distinctive SDS Max shank; a close reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -7015,6 +7429,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An SDS Plus bit is a physical masonry drilling accessory with a distinctive SDS Plus shank; a close reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -7026,6 +7449,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A self-tapping screw is a physical fastener with characteristic thread/point geometry; a close reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -7043,6 +7475,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A sheet metal brake is a distinctive bending machine with a clamping leaf and bending apron; a reviewed photograph strongly aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -7054,6 +7495,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T14:52:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A shim plate is a physical thin adjustment plate used for leveling/alignment; a close installed or loose-part photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
