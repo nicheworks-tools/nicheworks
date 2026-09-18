@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-inventory-exceptions-v2.3",
-  "version": "2026-09-18-applicability-wave13",
+  "version": "2026-09-18-applicability-wave14",
   "items": [
     {
       "entry_id": "punch_list",
@@ -161,6 +161,26 @@
       "entry_id": "q016_near_miss_report",
       "state": "not_required",
       "reason": "The canonical is a safety-reporting record/process whose form and media vary by organization; a photograph of one report would be an arbitrary template rather than the stable concept."
+    },
+    {
+      "entry_id": "q016_punch_list",
+      "state": "not_required",
+      "reason": "The canonical is a closeout/defect-list management concept whose document format and workflow vary by project; a single photograph would show only an arbitrary checklist or inspection scene rather than the concept itself."
+    },
+    {
+      "entry_id": "q016_snagging",
+      "state": "not_required",
+      "reason": "The canonical is a finish-inspection and defect-identification process; the inspected defects and marking methods vary, so one photograph would depict only an arbitrary example."
+    },
+    {
+      "entry_id": "q016_subfloor_level_check",
+      "state": "not_required",
+      "reason": "The canonical is an inspection procedure for verifying subfloor level/flatness and may use several tools and measurement methods; no single photograph is a stable visual identity for the process."
+    },
+    {
+      "entry_id": "q016_toolbox_meeting",
+      "state": "not_required",
+      "reason": "The canonical is a safety briefing/meeting practice rather than one unique object; any photograph would show an arbitrary group or meeting format and would not identify the concept reliably."
     }
   ]
 }

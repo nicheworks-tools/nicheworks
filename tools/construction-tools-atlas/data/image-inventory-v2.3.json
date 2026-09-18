@@ -18,7 +18,7 @@
   "sources": {
     "quality_manifest_version": "2026-09-14-manifest-8",
     "image_registry_version": "2026-09-18-wave4a-1",
-    "exception_ledger_version": "2026-09-18-applicability-wave13",
+    "exception_ledger_version": "2026-09-18-applicability-wave14",
     "source_ledgers": [
       {
         "file": "image-wave1-sources-v2.3.json",
@@ -45,8 +45,8 @@
   "summary": {
     "corpus_entries": 5536,
     "formal_image_entries": 30,
-    "missing_formal_image_entries": 5474,
-    "not_required_entries": 32,
+    "missing_formal_image_entries": 5470,
+    "not_required_entries": 36,
     "unobtainable_entries": 0,
     "classified_entries": 5536,
     "formal_coverage_percent": 0.5419,
@@ -59,22 +59,22 @@
     "stored_non_public_entries": 4666,
     "public_entries": 870,
     "disposition_records": 870,
-    "applicability_reviewed": 688,
-    "required": 656,
+    "applicability_reviewed": 738,
+    "required": 702,
     "on_hold": 0,
-    "final_dispositions": 62,
-    "unresolved": 808,
+    "final_dispositions": 66,
+    "unresolved": 804,
     "by_stage": {
-      "unreviewed": 182,
-      "not_required": 32,
-      "awaiting_source": 626,
+      "unreviewed": 132,
+      "not_required": 36,
+      "awaiting_source": 672,
       "candidate": 0,
       "provenance_verified": 0,
       "subject_verified": 0,
       "verified": 0,
       "promoted": 30
     },
-    "evidence_sha256": "e61aa8002f2b440e0f43f04234d5a07801a42a8fe72f2a231e0c13698c7be2a1"
+    "evidence_sha256": "374598d4f53a94d009289ac9df6e2faa6c007c9f554b784fe2d2bb3785b4d050"
   },
   "by_type": {
     "access": {
@@ -178,8 +178,8 @@
     "process": {
       "corpus": 15,
       "formal_image": 0,
-      "missing_formal_image": 8,
-      "not_required": 7,
+      "missing_formal_image": 4,
+      "not_required": 11,
       "unobtainable": 0
     },
     "rigging": {
@@ -249,8 +249,8 @@
   "hashes": {
     "corpus_id_sha256": "bff8aae6f75c763415864d81b9b2686131a2964b60bc354e85f84d64e3433f31",
     "formal_image_id_sha256": "0badc275080c60550705c89e80a74086de7f19c8feecd0964fec395cb735c60b",
-    "missing_formal_image_id_sha256": "58b73916cccc5adf108d62249dff7cfd4c545969c92d57f0acc6d5d029c44eb4",
-    "classification_sha256": "b4807e4cc87df752c3412587c14c951882e55029b72e3aeb8e8f01cd78cfe4db"
+    "missing_formal_image_id_sha256": "e6f0c6d5917bed754c03488bc16121824800ab4009e515cb24d2636a5a68fcf4",
+    "classification_sha256": "082c184fe2e9665b620ab1b1869fc0cb0f93509db82aa1705869de30f53afd1a"
   },
   "missing_sample": [
     "access_door",
