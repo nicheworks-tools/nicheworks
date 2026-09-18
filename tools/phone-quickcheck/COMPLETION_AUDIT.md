@@ -1,6 +1,6 @@
 # Phone QuickCheck v1 Completion Audit
 
-Status: **FINAL AUTOMATED QA**
+Status: **V1 COMPLETE**
 Baseline date: **2026-09-18**
 Dataset target for this closure pass: **181 maintained phones**
 
@@ -110,10 +110,47 @@ The CI now exercises the final functional and responsive contracts:
 
 A true pixel-level visual browser inspection is **not represented by these Node/static-contract tests**. The repository is code/data complete after these gates; a human or browser-rendering smoke test remains the only non-automated visual check.
 
-## Remaining closure sequence
+## Final rendered browser smoke
 
-1. Perform a pixel-level visual browser smoke test when a browser-rendering environment is available.
-2. Change this document's status to **V1 COMPLETE** after that visual check.
+The final pixel-level browser smoke was completed on **2026-09-18** in headless Google Chrome with Japanese Noto CJK fonts installed.
+
+Temporary audit PR: **#1279** — closed without merge after inspection.
+
+Successful final run: **GitHub Actions run 35339894575**.
+
+Rendered and checked viewports:
+
+- **320 px** — mobile bottom sheet; 181 rows loaded; no horizontal overflow; Japanese detail labels preserved horizontally; long values wrap in the value column only.
+- **390 px** — mobile bottom sheet; JP and EN rendering exercised; no horizontal overflow.
+- **414 px** — mobile bottom sheet; no horizontal overflow.
+- **768 px** — mobile/tablet bottom sheet; no horizontal overflow.
+- **1280 px** — desktop list + detail pane; no horizontal overflow.
+
+The rendered smoke also verified:
+
+- official source links are present in the detail view;
+- the Amazon CTA is visible;
+- mobile body scrolling locks while the sheet is open;
+- close-button dismissal works;
+- all target viewports load the full **181-model** dataset;
+- no page-level JavaScript errors were observed by the smoke runner.
+
+During the visual audit, a real 320 px regression was found: the Japanese 「ワイヤレス」 label could collapse into per-character wrapping when a long right-side value consumed the row width. PR **#1283** fixed the detail grid to preserve the label column and allow only the value column to shrink. The final rendered run passed after that correction.
+
+## V1 completion state
+
+Phone QuickCheck v1 is complete under the maintained contract:
+
+- **181** JP-maintained phone records;
+- **32** foldables with explicit folded/unfolded handling;
+- package/water unknowns are either source-resolved or explicitly registered as `reviewed_unresolved`;
+- **unreviewed package/water gaps: 0**;
+- positive charging/wireless claims require source URLs;
+- PPS state/protocol semantics are regression-checked;
+- automated behavior/responsive/affiliate/data/source audits pass;
+- final rendered Chrome smoke passed at 320 / 390 / 414 / 768 / 1280 px.
+
+Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
 ## Regression guard
 
