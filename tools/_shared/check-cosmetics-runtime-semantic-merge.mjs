@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 33, 'the 4 legacy category conflicts plus 29 reviewed Wave 15-16 and Wave 18-22 legacy-vs-verified role conflicts must be explicit at runtime');
+assert.equal(categoryConflicts.length, 40, 'the 4 legacy category conflicts plus 36 reviewed Wave 15-16 and Wave 18-23 legacy-vs-verified role conflicts must be explicit at runtime');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
@@ -64,7 +64,14 @@ const reviewedVerifiedPrimary = new Map([
   ['ceramide ng', { category: 'skin conditioning', legacy: ['barrier lipid'] }],
   ['glyceryl acrylate/acrylic acid copolymer', { category: 'humectant', legacy: ['general'] }],
   ['hectorite', { category: 'viscosity adjuster', legacy: ['general'] }],
-  ['tapioca starch', { category: 'viscosity adjuster', legacy: ['powder'] }]
+  ['tapioca starch', { category: 'viscosity adjuster', legacy: ['powder'] }],
+  ['helianthus annuus sunflower seed wax', { category: 'skin conditioning', legacy: ['texture agent'] }],
+  ['melaleuca alternifolia tea tree leaf oil', { category: 'antioxidant', legacy: ['essential oil'] }],
+  ['peg-120 methyl glucose dioleate', { category: 'emulsifier', legacy: ['general'] }],
+  ['peg-30 dipolyhydroxystearate', { category: 'emulsifier', legacy: ['general'] }],
+  ['pentaerythrityl tetraethylhexanoate', { category: 'emollient', legacy: ['general'] }],
+  ['polyacrylate crosspolymer-11', { category: 'viscosity adjuster', legacy: ['polymer'] }],
+  ['sphingolipids', { category: 'skin conditioning', legacy: ['barrier lipid'] }]
 ]);
 
 for (const item of categoryConflicts) {

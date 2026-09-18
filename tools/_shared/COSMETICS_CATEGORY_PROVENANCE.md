@@ -258,3 +258,21 @@ Wave 22 resolves six additional source-backed official-label gaps, each observed
 | `tapioca starch` | `viscosity adjuster` | `powder` | COSMILE Europe lists `VISCOSITY CONTROLLING`. |
 
 Raw recognition records are not rewritten. Existing broad legacy category hints remain auditable, while the reviewed source-backed role becomes the public primary category.
+
+
+## Wave 23 reviewed set
+
+Wave 23 resolves eight additional source-backed official-label gaps, each observed once in the maintained 30-product corpus.
+
+| Canonical identity | Verified public category | Preserved raw category state | Source basis |
+| --- | --- | --- | --- |
+| `helianthus annuus sunflower seed wax` | `skin conditioning` | `texture agent` | COSMILE Europe lists `SKIN CONDITIONING`. |
+| `melaleuca alternifolia tea tree leaf oil` | `antioxidant` | `essential oil` | COSMILE Europe lists `ANTIOXIDANT` and fragrance. |
+| `peg-120 methyl glucose dioleate` | `emulsifier` | `general` | COSMILE Europe lists `SURFACTANT - EMULSIFYING`. |
+| `peg-30 dipolyhydroxystearate` | `emulsifier` | `general` | COSMILE Europe lists `SURFACTANT - EMULSIFYING`. |
+| `pentaerythrityl tetraethylhexanoate` | `emollient` | `general` | COSMILE Europe lists `SKIN CONDITIONING - EMOLLIENT`. |
+| `polyacrylate crosspolymer-11` | `viscosity adjuster` | `polymer` | COSMILE Europe lists `VISCOSITY CONTROLLING`. |
+| `polyglyceryl-4 caprate` | `emulsifier` | category missing | COSMILE Europe lists `SURFACTANT - EMULSIFYING`. |
+| `sphingolipids` | `skin conditioning` | `barrier lipid` | COSMILE Europe lists `SKIN CONDITIONING` and emollient/skin-protecting functions. |
+
+Raw recognition data remains unchanged. The verified category supplies the answer-first public role while broad legacy hints remain auditable. Polyglyceryl-4 Caprate remains category-empty in the raw dictionary and is resolved only by the verified overlay.

@@ -142,7 +142,15 @@
     "ceramide ng": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/21295/ceramide-ng/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "glyceryl acrylate/acrylic acid copolymer": Object.freeze({ category: "humectant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5966/glyceryl-acrylate-acrylic-acid-copolymer/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "hectorite": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6288/hectorite/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "tapioca starch": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15859/tapioca-starch/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "tapioca starch": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15859/tapioca-starch/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "helianthus annuus sunflower seed wax": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/22005/helianthus-annuus-seed-wax/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "melaleuca alternifolia tea tree leaf oil": Object.freeze({ category: "antioxidant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8748/melaleuca-alternifolia-leaf-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "peg-120 methyl glucose dioleate": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10422/peg-120-methyl-glucose-dioleate"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "peg-30 dipolyhydroxystearate": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10720/peg-30-dipolyhydroxystearate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "pentaerythrityl tetraethylhexanoate": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11370/pentaerythrityl-tetraethylhexanoate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polyacrylate crosspolymer-11": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19988/polyacrylate-crosspolymer-11/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polyglyceryl-4 caprate": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12210/polyglyceryl-4-caprate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sphingolipids": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15386/sphingolipids"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
@@ -392,7 +400,7 @@
   }
 
   const api = {
-    version: "1.39.0",
+    version: "1.40.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,

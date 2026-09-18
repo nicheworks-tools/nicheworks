@@ -246,3 +246,16 @@ Wave 22 introduces no new public category or authority-function vocabulary. It r
 - `viscosity controlling` → `viscosity adjuster`
 
 Where a source lists multiple functions, the overlay records one reviewed public-primary role already supported by the controlled taxonomy and does not invent compound labels.
+
+
+## Wave 23 mappings
+
+Wave 23 introduces no new public category or authority-function vocabulary. It reuses:
+
+- `skin conditioning` → `skin conditioning`
+- `antioxidant` → `antioxidant`
+- `surfactant - emulsifying` → `emulsifier`
+- `skin conditioning - emollient` → `emollient`
+- `viscosity controlling` → `viscosity adjuster`
+
+Some COSMILE pages expose multiple functions. The overlay continues to select one reviewed public-primary role already supported by the controlled taxonomy while preserving the broader raw/source context rather than creating synthetic compound labels.
