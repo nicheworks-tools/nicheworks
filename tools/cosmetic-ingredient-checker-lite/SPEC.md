@@ -115,14 +115,18 @@ Raw ingredient text and analysis remain in the browser. Static dictionary files 
 
 The Amazon layer is isolated from raw ingredient input and raw analysis. Ingredient names, unknown names, role categories, filters, copied subsets, or analysis output must not be attached to affiliate destinations or affiliate analytics.
 
-Affiliate analytics are limited to fixed metadata:
+Affiliate click analytics use the suite-wide `affiliate_outbound` event with fixed metadata:
 
 ```txt
-tool
-provider
+tool_slug
+affiliate_id
 placement
-link_key
+merchant
+destination_key
+language
 ```
+
+The separate `affiliate_impression` event remains limited to fixed `tool`, `provider`, `placement`, and `link_key` metadata.
 
 ## Language mode
 
@@ -205,7 +209,7 @@ The affiliate card must display `[PR]` and the active-language Amazon Associates
 - [x] A clear INCI FastScan route exists for photo/OCR use.
 - [x] The Amazon slot is after-results, fail-closed in HTML, and result-gated at runtime.
 - [x] Fixed Amazon category choices remain independent of ingredient input and analysis.
-- [x] Affiliate analytics contain no raw ingredient or analysis payload.
+- [x] Affiliate clicks use the suite-wide `affiliate_outbound` event and contain no raw ingredient or analysis payload.
 
 ## Implementation evidence
 
