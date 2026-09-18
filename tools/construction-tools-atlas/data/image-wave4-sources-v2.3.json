@@ -19,7 +19,8 @@
       "expected_sha1": "443bbf408dfc13517d6bfe2abc342d71ac0021dd",
       "subject_match": "matched",
       "review_state": "reviewed",
-      "review_note": "Commons describes an assortment of metric Allen keys and structured data identifies the depicted subject as hex keys; direct match for allen_key."
+      "review_note": "Commons describes an assortment of metric Allen keys and structured data identifies the depicted subject as hex keys; direct match for allen_key.",
+      "source_sha1": "443bbf408dfc13517d6bfe2abc342d71ac0021dd"
     },
     {
       "entry_id": "bolt_cutter",
@@ -33,7 +34,8 @@
       "expected_sha1": "175029164f2827b55263290877418bf9a28a4367",
       "subject_match": "matched",
       "review_state": "reviewed",
-      "review_note": "Commons explicitly describes the photographed tool as a bolt cutter; direct real-subject match for bolt_cutter."
+      "review_note": "Commons explicitly describes the photographed tool as a bolt cutter; direct real-subject match for bolt_cutter.",
+      "source_sha1": "175029164f2827b55263290877418bf9a28a4367"
     },
     {
       "entry_id": "ball_valve",
@@ -47,7 +49,8 @@
       "expected_sha1": "1667437cfa405f12472c85363e1fbbeaf85c7747",
       "subject_match": "matched",
       "review_state": "reviewed",
-      "review_note": "Commons identifies the photographed cutaway as a ball valve and the spherical closure element is clearly visible; direct match for ball_valve."
+      "review_note": "Commons identifies the photographed cutaway as a ball valve and the spherical closure element is clearly visible; direct match for ball_valve.",
+      "source_sha1": "1667437cfa405f12472c85363e1fbbeaf85c7747"
     },
     {
       "entry_id": "respirator",
@@ -61,7 +64,8 @@
       "expected_sha1": "e7f50d1a17143a65f8930fce448af3033b81b207",
       "subject_match": "matched",
       "review_state": "reviewed",
-      "review_note": "CDC/NIOSH source explicitly identifies a North 7700 Series half-mask air-purifying respirator; direct match for respirator."
+      "review_note": "CDC/NIOSH source explicitly identifies a North 7700 Series half-mask air-purifying respirator; direct match for respirator.",
+      "source_sha1": "e7f50d1a17143a65f8930fce448af3033b81b207"
     },
     {
       "entry_id": "measuring_wheel",
@@ -75,7 +79,8 @@
       "expected_sha1": "b87b011b8b6a837171ae797b81564854cb6cda91",
       "subject_match": "matched",
       "review_state": "reviewed",
-      "review_note": "Commons explicitly describes a surveyor's measuring wheel being used to measure distances; direct match for measuring_wheel."
+      "review_note": "Commons explicitly describes a surveyor's measuring wheel being used to measure distances; direct match for measuring_wheel.",
+      "source_sha1": "b87b011b8b6a837171ae797b81564854cb6cda91"
     },
     {
       "entry_id": "safety_boots",
@@ -89,7 +94,8 @@
       "expected_sha1": "f49d282e880319a9a54665eef81401139209ccc7",
       "subject_match": "matched",
       "review_state": "reviewed",
-      "review_note": "Commons describes the photograph as a pair of steel-toe boots and categorizes it as construction/work boots; direct match for safety_boots."
+      "review_note": "Commons describes the photograph as a pair of steel-toe boots and categorizes it as construction/work boots; direct match for safety_boots.",
+      "source_sha1": "f49d282e880319a9a54665eef81401139209ccc7"
     }
   ]
 }
