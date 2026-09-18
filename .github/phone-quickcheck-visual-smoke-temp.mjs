@@ -60,8 +60,12 @@ for (const width of widths) {
     await page.screenshot({ path: path.join(outDir, `phone-${width}-sheet.png`), fullPage: false });
 
     if (width === 390) {
+      await page.locator('#sheetClose').click();
       await page.locator('[data-lang="en"]').click();
       await page.waitForFunction(() => document.documentElement.lang === 'en');
+      await page.locator('.phone-row').first().click();
+      await page.locator('#mobileSheet').waitFor({ state: 'visible' });
+      await page.locator('#sheetDetail .amazon-cta').first().waitFor({ state: 'visible' });
       await page.screenshot({ path: path.join(outDir, 'phone-390-sheet-en.png'), fullPage: false });
     }
 
