@@ -41,8 +41,12 @@ if (plan.waveSize !== 12) fail(`plan baseline waveSize must be 12, got ${plan.wa
 if (plan.waveCount !== plan.waveSizes?.length) fail(`plan waveCount must equal waveSizes length, got ${plan.waveCount}`);
 if (!Array.isArray(plan.waveSizes) || plan.waveSizes.length !== plan.waveCount) {
   fail('plan waveSizes must contain one entry per wave');
-} else if (plan.waveSizes.reduce((sum, size) => sum + size, 0) !== plan.totalTools) {
-  fail('plan totalTools must equal the sum of waveSizes');
+} else if (!Number.isInteger(plan.auditedTools)) fail('plan auditedTools must be an integer');
+const pendingSlugs = Array.isArray(plan.pendingSlugs) ? plan.pendingSlugs : [];
+if (new Set(pendingSlugs).size !== pendingSlugs.length) fail('pendingSlugs contains duplicates');
+if (plan.auditedTools + pendingSlugs.length !== plan.totalTools) fail('auditedTools + pendingSlugs must equal totalTools');
+if (plan.waveSizes.reduce((sum, size) => sum + size, 0) !== plan.auditedTools) {
+  fail('plan auditedTools must equal the sum of waveSizes');
 } else {
   const expectedSizes = [12, 12, 12, 12, 12, 12, 4];
   if (plan.waveSizes.some((size, index) => size !== expectedSizes[index])) {
@@ -52,12 +56,10 @@ if (!Array.isArray(plan.waveSizes) || plan.waveSizes.length !== plan.waveCount) 
     fail('plan totalTools must equal the sum of waveSizes');
   }
 }
-if (plan.assignment !== 'current_registry_order_chunks') {
+if (plan.assignment !== 'current_registry_order_audited_chunks') {
   fail(`unexpected assignment ${plan.assignment}`);
 }
-if (!Array.isArray(plan.lateAdditions) || plan.lateAdditions.length !== 0) {
-  fail('lateAdditions must be empty in current-scope chunk mode');
-}
+if (!Array.isArray(plan.pendingSlugs)) fail('pendingSlugs must be an array');
 if (plan.auditMode !== 'audit_only') fail(`auditMode must be audit_only, got ${plan.auditMode}`);
 if (!sameSet(new Set(plan.categories), new Set(REQUIRED_CATEGORIES)) || plan.categories.length !== REQUIRED_CATEGORIES.length) {
   fail('audit category contract drifted from the required 14-category standard');
@@ -65,22 +67,28 @@ if (!sameSet(new Set(plan.categories), new Set(REQUIRED_CATEGORIES)) || plan.cat
 if (!sameSet(new Set(plan.categoryStatusEnum), CATEGORY_STATES)) fail('category status enum drifted');
 if (!sameSet(new Set(plan.overallStatusEnum), OVERALL_STATES)) fail('overall status enum drifted');
 
+let scopeOrdered = [];
 let ordered = [];
+let pending = [];
 let waves = [];
 try {
-  ({ ordered, waves } = buildNonAffiliateWaves(registry, scope, plan));
+  ({ scopeOrdered, ordered, pending, waves } = buildNonAffiliateWaves(registry, scope, plan));
 } catch (error) {
   fail(error.message);
 }
 
 const inScope = new Set(Object.values(scope.classes).flat());
-if (ordered.length && !sameSet(new Set(ordered), inScope)) {
-  fail('wave assignment does not exactly equal non-affiliate scope');
+if (scopeOrdered.length && !sameSet(new Set(scopeOrdered), inScope)) {
+  fail('current scope ordering does not exactly equal non-affiliate scope');
+}
+const auditedPlusPending = new Set([...ordered, ...pending]);
+if (auditedPlusPending.size && !sameSet(auditedPlusPending, inScope)) {
+  fail('audited + pending slugs do not exactly equal non-affiliate scope');
 }
 
 const flattened = waves.flat();
-if (flattened.length && new Set(flattened).size !== plan.totalTools) {
-  fail('wave assignment contains duplicate slugs');
+if (flattened.length && (flattened.length !== plan.auditedTools || new Set(flattened).size !== plan.auditedTools)) {
+  fail('wave assignment must contain each audited slug exactly once');
 }
 
 const classBySlug = new Map();
