@@ -79,7 +79,7 @@ async function flush() {
   await new Promise((resolve) => setImmediate(resolve));
 }
 
-async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
+async function createHarness(ids, { mobile = false, savedLang = 'ja', failFetch = false } = {}) {
   const phones = requirePhones(ids);
   const elements = Object.create(null);
   for (const id of [
@@ -125,6 +125,9 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
     addEventListener(type, listener) {
       if (!documentListeners.has(type)) documentListeners.set(type, []);
       documentListeners.get(type).push(listener);
+    },
+    dispatch(type, event = {}) {
+      for (const listener of documentListeners.get(type) || []) listener({ type, ...event });
     }
   };
 
@@ -142,6 +145,7 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   window.localStorage = localStorage;
 
   const fetch = async (url) => {
+    if (failFetch) return { ok: false, json: async () => ({}) };
     const href = String(url);
     if (href.includes('phones.json')) return { ok: true, json: async () => ({ phones }) };
     if (href.includes('accessories.json')) return { ok: true, json: async () => accessoryPayload };
@@ -609,3 +613,71 @@ console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estim
   assert.match(html, /同梱ケーブル<\/span><b>別売/);
   assert.match(html, /ACアダプター<\/span><b>別売/);
 }
+
+
+// Final control-flow QA: manufacturer/connector/year filters and sort modes run through the real runtime.
+{
+  const h = await createHarness(['google-pixel-7', 'apple-iphone-12']);
+
+  // Default newest order: Pixel 7 (2022) before iPhone 12 (2020).
+  assert.ok(h.elements.phoneList.innerHTML.indexOf('Pixel 7') < h.elements.phoneList.innerHTML.indexOf('iPhone 12'));
+
+  h.elements.manufacturerFilter.value = 'Apple';
+  h.elements.manufacturerFilter.dispatch('change');
+  assert.match(h.elements.phoneList.innerHTML, /iPhone 12/);
+  assert.doesNotMatch(h.elements.phoneList.innerHTML, /Pixel 7/);
+
+  h.elements.manufacturerFilter.value = 'all';
+  h.elements.manufacturerFilter.dispatch('change');
+  h.elements.connectorFilter.value = 'Lightning';
+  h.elements.connectorFilter.dispatch('change');
+  assert.match(h.elements.phoneList.innerHTML, /iPhone 12/);
+  assert.doesNotMatch(h.elements.phoneList.innerHTML, /Pixel 7/);
+
+  h.elements.connectorFilter.value = 'all';
+  h.elements.connectorFilter.dispatch('change');
+  h.elements.yearFilter.value = '2022';
+  h.elements.yearFilter.dispatch('change');
+  assert.match(h.elements.phoneList.innerHTML, /Pixel 7/);
+  assert.doesNotMatch(h.elements.phoneList.innerHTML, /iPhone 12/);
+
+  h.elements.yearFilter.value = 'all';
+  h.elements.yearFilter.dispatch('change');
+  h.elements.sortSelect.value = 'lightest';
+  h.elements.sortSelect.dispatch('change');
+  assert.ok(h.elements.phoneList.innerHTML.indexOf('iPhone 12') < h.elements.phoneList.innerHTML.indexOf('Pixel 7'));
+
+  h.elements.sortSelect.value = 'compact';
+  h.elements.sortSelect.dispatch('change');
+  assert.ok(h.elements.phoneList.innerHTML.indexOf('iPhone 12') < h.elements.phoneList.innerHTML.indexOf('Pixel 7'));
+
+  h.elements.searchInput.value = 'no-such-phone-fixture';
+  h.elements.searchInput.dispatch('input');
+  assert.match(h.elements.phoneList.innerHTML, /該当する機種がありません/);
+}
+
+// Data-load failure remains an explicit, readable state rather than silently rendering an empty list.
+{
+  const h = await createHarness(['google-pixel-7'], { failFetch: true });
+  assert.equal(h.elements.dataState.textContent, 'データ読込エラー');
+  assert.match(h.elements.phoneList.innerHTML, /データを読み込めませんでした/);
+  assert.match(h.elements.desktopDetail.innerHTML, /データを読み込めませんでした/);
+}
+
+// Mobile dismissal paths: backdrop and Escape both close the same bottom sheet.
+{
+  const h = await createHarness(['google-pixel-7', 'apple-iphone-12'], { mobile: true });
+  const iphoneRow = h.phoneRows.find((row) => row.dataset.phoneId === 'apple-iphone-12');
+  assert.ok(iphoneRow);
+  iphoneRow.click();
+  assert.equal(h.elements.mobileSheet.hidden, false);
+  h.elements.sheetBackdrop.click();
+  assert.equal(h.elements.mobileSheet.hidden, true);
+
+  iphoneRow.click();
+  assert.equal(h.elements.mobileSheet.hidden, false);
+  h.document.dispatch('keydown', { key: 'Escape' });
+  assert.equal(h.elements.mobileSheet.hidden, true);
+}
+
+console.log('Phone QuickCheck final automated QA passed: controls, sort modes, empty/error states, and mobile dismissal paths.');
