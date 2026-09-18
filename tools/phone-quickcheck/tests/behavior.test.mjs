@@ -722,3 +722,62 @@ console.log('Phone QuickCheck final automated QA passed: controls, sort modes, e
   assert.match(h.elements.phoneList.innerHTML, /Xiaomi 17T Pro/);
 }
 
+
+// 2026 freshness Wave 2: non-foldable physical variants preserve exact color thickness↔weight pairs.
+{
+  const reno15 = byId.get('oppo-reno15-a');
+  assert.ok(reno15, 'OPPO Reno15 A fixture missing');
+  assert.equal(reno15.weightG, undefined);
+  assert.equal(reno15.dimensions?.depthMm, undefined);
+  assert.deepEqual(
+    reno15.physicalVariants.map((variant) => [variant.key, variant.depthMm, variant.weightG]),
+    [
+      ['twilight-navy-afterglow-pink', 8.1, 195],
+      ['aurora-blue', 8.3, 202]
+    ]
+  );
+  assert.equal(reno15.charging?.wiredMaxW, 80);
+  assert.equal(reno15.charging?.pps, 'supported');
+  assert.equal(reno15.charging?.battery?.capacityMah, 7000);
+  assert.equal(reno15.included?.cable, 'not_included');
+  assert.equal(reno15.included?.adapter, 'not_included');
+
+  const reno16 = byId.get('oppo-reno16-5g');
+  assert.ok(reno16, 'OPPO Reno16 5G fixture missing');
+  assert.deepEqual(
+    reno16.physicalVariants.map((variant) => [variant.key, variant.depthMm, variant.weightG]),
+    [
+      ['twilight-purple', 8.2, 182],
+      ['pop-white', 8.4, 193]
+    ]
+  );
+  assert.equal(reno16.waterRating, 'IPX8/IPX9/IPX9K / IP6X');
+  assert.equal(reno16.charging?.battery?.capacityMah, 6700);
+
+  const h = await createHarness(['oppo-reno15-a', 'oppo-reno16-5g']);
+  assert.match(h.elements.phoneList.innerHTML, /195–202 g/);
+  assert.match(h.elements.phoneList.innerHTML, /182–193 g/);
+
+  const reno16Row = h.phoneRows.find((row) => row.dataset.phoneId === 'oppo-reno16-5g');
+  assert.ok(reno16Row, 'Reno16 list row missing');
+  reno16Row.click();
+  let html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /151 × 72 × 8\.2–8\.4 mm/);
+  assert.match(html, /トワイライトパープル/);
+  assert.match(html, /8\.2 mm \/ 182 g/);
+  assert.match(html, /ポップホワイト/);
+  assert.match(html, /8\.4 mm \/ 193 g/);
+
+  h.langEn.click();
+  html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /Twilight Purple/);
+  assert.match(html, /Pop White/);
+
+  h.elements.sortSelect.value = 'lightest';
+  h.elements.sortSelect.dispatch('change');
+  assert.ok(
+    h.elements.phoneList.innerHTML.indexOf('OPPO Reno16 5G') < h.elements.phoneList.innerHTML.indexOf('OPPO Reno15 A'),
+    'lightest sort must use the minimum published physical-variant weight'
+  );
+}
+
