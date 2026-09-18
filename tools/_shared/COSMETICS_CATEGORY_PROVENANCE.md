@@ -298,3 +298,22 @@ Wave 24 also adds the explicit authority-function mappings `BUFFERING → buffer
 
 Runtime public-role readiness after this wave is 492 / 599 canonical identities (82.1%), up from 482 / 599 (80.5%). The remaining 107 identities stay explicitly incomplete until their functional role is source-backed; broad legacy classes such as `protein`, `powder`, `essential oil`, `animal extract`, and `fragrance allergen` are not automatically promoted to functional roles.
 
+## Wave 25 reviewed set
+
+Wave 25 resolves ten remaining legacy `fragrance allergen` classifications into source-backed public functional roles. The legacy label class remains auditable; it is not used as a safety verdict.
+
+| Canonical identity | Verified public category | Preserved raw category | Source basis |
+| --- | --- | --- | --- |
+| `limonene` | `fragrance` | `fragrance allergen` | COSMILE Europe lists `FRAGRANCE` among its cosmetic functions. |
+| `linalool` | `fragrance` | `fragrance allergen` | COSMILE Europe lists `FRAGRANCE`. |
+| `citral` | `fragrance` | `fragrance allergen` | COSMILE Europe lists `FRAGRANCE`. |
+| `geraniol` | `fragrance` | `fragrance allergen` | COSMILE Europe lists `FRAGRANCE`. |
+| `citronellol` | `fragrance` | `fragrance allergen` | COSMILE Europe lists `FRAGRANCE`. |
+| `eugenol` | `fragrance` | `fragrance allergen` | COSMILE Europe lists `FRAGRANCE`. |
+| `coumarin` | `fragrance` | `fragrance allergen` | COSMILE Europe lists `FRAGRANCE`. |
+| `farnesol` | `fragrance` | `fragrance allergen` | COSMILE Europe lists a perfuming/fragrance function. |
+| `hexyl cinnamal` | `fragrance` | `fragrance allergen` | COSMILE Europe lists a fragrance/perfuming function. |
+| `alpha-isomethyl ionone` | `fragrance` | `fragrance allergen` | COSMILE Europe lists a fragrance/perfuming function alongside skin conditioning. |
+
+Wave 25 adds the explicit authority-function mapping `FRAGRANCE → fragrance`. It does not infer that a fragrance-allergen label means unsafe, nor does it remove the legacy classification. Public-role readiness rises from 492 / 599 (82.1%) to 502 / 599 canonical identities (83.8%), leaving 97 identities explicitly incomplete.
+
