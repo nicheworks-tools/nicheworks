@@ -16,6 +16,14 @@ const expectedAffiliate = [
   'laundry-code-decode',
   'light-check',
   'manual-finder',
+  'kanji-modernizer',
+  'name-old-kanji-checker',
+  'old-document-kanji-highlighter',
+  'old-kanji-ocr-scanner',
+  'old-kanji-reference',
+  'place-old-kanji-checker',
+  'unicode-kanji-checker',
+  'variant-kanji-compare',
   'moving-checklist-generator',
   'moving-lease-final-check',
   'pattern-dictionary',
@@ -73,6 +81,29 @@ for (const slug of ['manual-finder','phone-quickcheck']) {
   check(runtime.includes('NWAmazonAffiliate'), `${slug}: runtime must use shared helper`);
   check(runtime.includes('placement:') || runtime.includes('placement,'), `${slug}: runtime placement metadata missing`);
   check(!runtime.includes('gtag("event"') && !runtime.includes("gtag('event'"), `${slug}: runtime must not bypass shared outbound analytics`);
+}
+
+
+const oldKanjiAffiliate = [
+  'old-kanji-reference',
+  'kanji-modernizer',
+  'old-kanji-ocr-scanner',
+  'old-document-kanji-highlighter',
+  'unicode-kanji-checker',
+  'variant-kanji-compare',
+  'place-old-kanji-checker',
+  'name-old-kanji-checker'
+];
+const oldKanjiContext = read('assets/old-kanji-amazon-context.js');
+check(oldKanjiContext.includes(TRACKING_ID), 'Old Kanji: tracking ID missing from contextual catalog');
+check(oldKanjiContext.includes('https://www.amazon.co.jp/s'), 'Old Kanji: Amazon Japan fixed-search base missing');
+check(!oldKanjiContext.includes('location.search'), 'Old Kanji: page query string must not enter affiliate runtime');
+check(!oldKanjiContext.includes('localStorage'), 'Old Kanji: local storage must not enter affiliate runtime');
+for (const slug of oldKanjiAffiliate) {
+  const html = read(`tools/${slug}/index.html`);
+  check(html.includes('/assets/amazon-affiliate.js'), `${slug}: shared Amazon helper missing`);
+  check(html.includes('/assets/old-kanji-amazon-context.js'), `${slug}: Old Kanji contextual affiliate runtime missing`);
+  check(oldKanjiContext.includes(`"${slug}"`), `${slug}: contextual offer catalog entry missing`);
 }
 
 const patternConfig = json('tools/pattern-dictionary/data/affiliate-config.json');
