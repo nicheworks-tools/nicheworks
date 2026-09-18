@@ -68,13 +68,13 @@
       "unreviewed": 0,
       "not_required": 47,
       "awaiting_source": 787,
-      "candidate": 6,
-      "provenance_verified": 0,
+      "candidate": 2,
+      "provenance_verified": 4,
       "subject_verified": 0,
       "verified": 0,
       "promoted": 30
     },
-    "evidence_sha256": "917e7440158283c01c7c93091fbc6b37624b20ff398f69a0c7ebe887bc2e629f"
+    "evidence_sha256": "a9c3d3a43b98d903b0e13fa518fa902e9bca79d14fa70def866f52133b6467d4"
   },
   "by_type": {
     "access": {
