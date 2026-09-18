@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-18-applicability-wave11",
+  "version": "2026-09-18-applicability-wave12",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -13299,6 +13299,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An occupancy sensor is a physical control device with recognizable ceiling/wall-mounted forms; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13310,6 +13319,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An air-conditioning outdoor unit is a physical HVAC machine with a distinctive cabinet, fan grille, and service connections; a reviewed photograph is highly useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13327,6 +13345,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A photoelectric/light sensor is a physical lighting-control device with recognizable mounted forms; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13338,6 +13365,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Pipe insulation is a physical thermal-insulation material with recognizable tubular/wrapped installed forms; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13355,6 +13391,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pipe saddle clamp is a physical pipe-support fitting with a distinctive strap/bracket form; a close reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13366,6 +13411,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pipe shoe is a physical support component between pipe and structure; an installed close photograph materially aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13383,6 +13437,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A fire-rated pipe sleeve is a physical penetration component used with firestop systems; a reviewed installed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13394,6 +13457,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Pipe supports are physical hangers/brackets/support assemblies with recognizable installed forms; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13411,6 +13483,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Polyethylene pipe insulation is a physical foam insulation product with recognizable tubular form; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13422,6 +13503,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pressure gauge is a physical measuring instrument with a distinctive dial and process connection; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13439,6 +13529,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pressure-reducing valve is a physical piping control component with recognizable valve body and adjustment features; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13450,6 +13549,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pressure switch is a physical control device mounted to piping/equipment; a subject-matched photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13467,6 +13575,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pressure test pump is a physical testing tool with recognizable pump, reservoir, hose, and gauge arrangement; a reviewed photograph is highly useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13478,6 +13595,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pull box is a physical electrical enclosure used for cable pulling and routing; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13495,6 +13621,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pump is a physical fluid-moving machine with recognizable body, motor, and piping connections; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13506,6 +13641,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Refrigerant piping is a physical HVAC pipe assembly, typically insulated copper lines; an installed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13523,6 +13667,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A return-air grille is a physical HVAC terminal with recognizable slats/grid and installed ceiling/wall context; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13534,6 +13687,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A ring terminal is a small physical electrical connector with a distinctive ring lug shape; a close reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13551,6 +13713,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A riser clamp is a physical pipe-support fitting used around vertical pipe; a reviewed installed/detail photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13562,6 +13733,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A duct silencer is a physical HVAC acoustic component installed in ductwork; a reviewed photograph materially aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13579,6 +13759,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A sirocco/centrifugal fan is a physical ventilation machine with a distinctive scroll housing; a subject-matched photograph strongly aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13590,6 +13779,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A sleeve ring is a physical finishing/support component used around penetrations; a close reviewed photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13607,6 +13805,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A smoke damper is a physical duct control component with recognizable frame/blade and actuator forms; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13618,6 +13825,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A smoke tester is a physical testing device used to visualize airflow/leakage; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13635,6 +13851,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A solenoid valve is a physical flow-control component with a distinctive valve body and electrical coil; a close reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13646,6 +13871,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A spade terminal is a small physical electrical connector with a distinctive forked lug shape; a close reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13663,6 +13897,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Spiral duct is a physical round duct product with a distinctive helical seam; a reviewed photograph is highly informative.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13674,6 +13917,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A strainer is a physical piping component used to trap debris; a subject-matched photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13691,6 +13943,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A sump pump is a physical drainage pump with recognizable pump body and discharge arrangement; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13702,6 +13963,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A switch box is a physical electrical wall box/enclosure with clear installed and open-box visual identity; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13719,6 +13989,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A temperature gauge is a physical measuring instrument with a distinctive dial/display and process connection; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13730,6 +14009,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A test plug is a physical temporary pipe/drain sealing component with recognizable expansion or cap forms; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13747,6 +14035,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A toilet bowl is a physical plumbing fixture with clear visual identity; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13758,6 +14055,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A transformer is a physical electrical power device with recognizable enclosure/core and connection forms; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13775,6 +14081,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A trap primer is a physical plumbing device that supplies water to maintain a trap seal; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13786,6 +14101,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A trapeze hanger is a physical suspended support assembly for multiple services; an installed photograph materially aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13803,6 +14127,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A U-bolt is a physical fastening/support component with a distinctive U-shaped threaded form; a close reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13814,6 +14147,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A urinal is a physical plumbing fixture with clear visual identity; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13831,6 +14173,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A volume-control damper is a physical duct balancing component with recognizable blade/handle forms; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13842,6 +14193,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A wall sleeve is a physical penetration component installed through a wall; an installed/detail photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13859,6 +14219,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A wash basin is a physical plumbing fixture with clear visual identity; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13870,6 +14239,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A weather louver is a physical exterior air-opening component with recognizable slats and rain-shedding geometry; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13887,6 +14265,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A wire marker is a physical identification label/sleeve applied to conductors; a close reviewed photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13898,6 +14285,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A Y-strainer is a physical piping component with a distinctive Y-shaped body; a subject-matched photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13915,6 +14311,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A ceiling access panel is a physical openable ceiling component with clear installed visual identity; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13926,6 +14331,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An acoustic ceiling tile is a physical finish panel with recognizable surface texture and suspended-ceiling context; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13943,6 +14357,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is an inspection/closeout practice in which defects are marked during a walkthrough; tape color, marking style, and inspected subjects vary by project, so a single photograph would depict an arbitrary instance rather than the practice itself.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13954,6 +14377,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Carpet adhesive is a physical flooring material with recognizable container/application forms; a reviewed product or application photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -13971,6 +14403,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Ceiling hanger wire is a physical suspension material with recognizable installed use in ceiling systems; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -13982,6 +14423,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A ceiling tile is a physical finish panel with recognizable suspended-ceiling context; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
