@@ -58,9 +58,9 @@ for (const entry of published) {
   assert.ok(html.includes(`href="${href}"`), `published municipality missing from TrashNavi root internal links: ${href}`);
 
   const pageHtml = read(`tools/trashnavi/${entry.pref_slug}/${entry.city_slug}/index.html`);
-  const relatedBlock = pageHtml.match(/<div class="municipality-related-links">([\\s\\S]*?)<\\/div>/);
+  const relatedBlock = pageHtml.match(/<div class="municipality-related-links">([\s\S]*?)<\/div>/);
   assert.ok(relatedBlock, `municipality related-link block missing: ${href}`);
-  const relatedHrefs = [...relatedBlock[1].matchAll(/href="(\\/tools\\/trashnavi\\/[^"]+\\/)"/g)].map((match) => match[1]);
+  const relatedHrefs = [...relatedBlock[1].matchAll(/href="(\/tools\/trashnavi\/[^"]+\/)"/g)].map((match) => match[1]);
   assert.equal(relatedHrefs.length, Math.min(9, published.length - 1), `municipality related-link count drift: ${href}`);
   assert.ok(!relatedHrefs.includes(href), `municipality related links must not self-link: ${href}`);
   for (const relatedHref of relatedHrefs) assert.ok(publishedHrefSet.has(relatedHref), `municipality related link targets unpublished page: ${relatedHref}`);
