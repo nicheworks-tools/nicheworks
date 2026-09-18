@@ -18,18 +18,18 @@
   "sources": {
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
-    "image_registry_version": "2026-09-14-wave3a-1",
+    "image_registry_version": "2026-09-18-wave4a-1",
     "image_exception_ledger_version": "2026-09-18-admin-wave1"
   },
   "summary": {
     "public_entries": 870,
-    "formal_image_entries": 24,
-    "missing_formal_image_entries": 838,
+    "formal_image_entries": 30,
+    "missing_formal_image_entries": 832,
     "not_required_entries": 8,
     "unobtainable_entries": 0,
     "classified_entries": 870,
-    "formal_coverage_percent": 2.7586,
-    "registry_items_total": 24,
+    "formal_coverage_percent": 3.4483,
+    "registry_items_total": 30,
     "formal_images_inherited_via_redirect": 6,
     "formal_images_outside_public": 0,
     "image_exceptions_outside_public": 0,
@@ -185,17 +185,17 @@
     },
     "tool": {
       "public_entries": 333,
-      "formal_image": 14,
-      "missing_formal_image": 311,
+      "formal_image": 20,
+      "missing_formal_image": 305,
       "not_required": 8,
       "unobtainable": 0
     }
   },
   "hashes": {
     "public_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
-    "public_formal_image_id_sha256": "040763473f9eacfcf8556123ab24574b7e74e4bb561e746bd7a567acd05c03d9",
-    "public_missing_formal_image_id_sha256": "cd43ed57859f663d6c385705dcf24ac6f65ae0c31e94325861388fa5bbb134c8",
-    "public_image_classification_sha256": "0a3b57613db263ac58ce0f3fe55ee9bcf38feee9885c7554c03b4335bf3673f0"
+    "public_formal_image_id_sha256": "eb19ef99e951f77a5676e95c7b682383a57996aed0ce06ad00d33e6456a36444",
+    "public_missing_formal_image_id_sha256": "fced5ddfc1dccb7f5c3bf4be213b508a56aaa5859e8a9a998a36c1c9b4035635",
+    "public_image_classification_sha256": "671f4920f9566b6432295f65cc7c0e6c1cad6dffd8cc0b5f1396f3fdf98990e7"
   },
   "inherited_formal_images": [
     {
@@ -230,7 +230,6 @@
     "access_panel",
     "acoustic_panel",
     "adhesion_test",
-    "allen_key",
     "anchor_bolt",
     "anchor_plastic_plug",
     "angle_finder",
@@ -239,17 +238,18 @@
     "auto_level",
     "backer_rod",
     "backhoe_loader",
-    "ball_valve",
     "barricade",
     "base_trim",
     "baseboard",
     "beam",
-    "bolt_cutter",
     "bolt_nut",
     "borescope",
     "brick_hammer",
     "brick_trowel",
     "bucket",
-    "butyl_tape_002"
+    "butyl_tape_002",
+    "cable_ramp",
+    "cable_tie",
+    "cable_tray"
   ]
 }

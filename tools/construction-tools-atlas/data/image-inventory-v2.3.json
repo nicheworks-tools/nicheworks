@@ -17,7 +17,7 @@
   },
   "sources": {
     "quality_manifest_version": "2026-09-14-manifest-8",
-    "image_registry_version": "2026-09-14-wave3a-1",
+    "image_registry_version": "2026-09-18-wave4a-1",
     "exception_ledger_version": "2026-09-18-admin-wave1",
     "source_ledgers": [
       {
@@ -34,19 +34,24 @@
         "file": "image-wave3-sources-v2.3.json",
         "version": "2026-09-14-wave3a-1",
         "items": 6
+      },
+      {
+        "file": "image-wave4-sources-v2.3.json",
+        "version": "2026-09-18-wave4a-1",
+        "items": 6
       }
     ]
   },
   "summary": {
     "corpus_entries": 5536,
-    "formal_image_entries": 24,
-    "missing_formal_image_entries": 5504,
+    "formal_image_entries": 30,
+    "missing_formal_image_entries": 5498,
     "not_required_entries": 8,
     "unobtainable_entries": 0,
     "classified_entries": 5536,
-    "formal_coverage_percent": 0.4335,
-    "registry_items": 24,
-    "source_ledger_items": 24,
+    "formal_coverage_percent": 0.5419,
+    "registry_items": 30,
+    "source_ledger_items": 30,
     "identity_holds": 0
   },
   "by_type": {
@@ -213,17 +218,17 @@
     },
     "tool": {
       "corpus": 379,
-      "formal_image": 15,
-      "missing_formal_image": 356,
+      "formal_image": 21,
+      "missing_formal_image": 350,
       "not_required": 8,
       "unobtainable": 0
     }
   },
   "hashes": {
     "corpus_id_sha256": "bff8aae6f75c763415864d81b9b2686131a2964b60bc354e85f84d64e3433f31",
-    "formal_image_id_sha256": "c3a1247bdd270a30f8b845200af6a6a1c02f0fdc2ed94fb7561a55d8382e8696",
-    "missing_formal_image_id_sha256": "812d6843f50ec79d096a43956000bb1a00a87eef46d37c07e4f44433a73559bb",
-    "classification_sha256": "27294e1bea60a4b06eb6ee7c7ace853ad121f3c29f2fcdcb3f463df1ca730b8c"
+    "formal_image_id_sha256": "0badc275080c60550705c89e80a74086de7f19c8feecd0964fec395cb735c60b",
+    "missing_formal_image_id_sha256": "69c98880263a6e3eb23e001fbb36a7ad684d9a57fe298e1a75c2fb5486aaa219",
+    "classification_sha256": "857af125cfd3e9cc33f60bb90ef91b97f78d44191f714baad708a8eec9d3514d"
   },
   "missing_sample": [
     "access_door",
@@ -231,7 +236,6 @@
     "acoustic_panel",
     "adhesion_test",
     "air_compressor",
-    "allen_key",
     "anchor_bolt",
     "anchor_plastic_plug",
     "angle_finder",
@@ -240,16 +244,17 @@
     "auto_level",
     "backer_rod",
     "backhoe_loader",
-    "ball_valve",
     "barricade",
     "base_trim",
     "baseboard",
     "beam",
-    "bolt_cutter",
     "bolt_nut",
     "borescope",
     "brick_hammer",
     "brick_trowel",
-    "bucket"
+    "bucket",
+    "butyl_tape_002",
+    "cable_ramp",
+    "cable_tie"
   ]
 }

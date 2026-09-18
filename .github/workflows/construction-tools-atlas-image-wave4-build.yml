@@ -1,0 +1,78 @@
+name: Construction Tools Atlas image Wave 4 build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feat/construction-atlas-image-wave4a-core-subjects-20260918
+    paths:
+      - 'tools/construction-tools-atlas/data/image-wave4-sources-v2.3.json'
+      - 'tools/construction-tools-atlas/scripts/check-image-wave4-sources-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/build-image-wave4-v2.3.mjs'
+      - 'tools/construction-tools-atlas/scripts/promote-image-wave4a-v2.3.cjs'
+      - '.github/workflows/construction-tools-atlas-image-wave4-build.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: construction-atlas-image-wave4-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Wave 4A branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Install image tooling
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+
+      - name: Validate staged Wave 4 source contract
+        run: node tools/construction-tools-atlas/scripts/check-image-wave4-sources-v2.3.cjs
+
+      - name: Validate Wave 4 build and promotion syntax
+        run: |
+          node --check tools/construction-tools-atlas/scripts/build-image-wave4-v2.3.mjs
+          node --check tools/construction-tools-atlas/scripts/promote-image-wave4a-v2.3.cjs
+
+      - name: Download reviewed sources, verify Commons hashes, and generate WebP derivatives
+        run: node tools/construction-tools-atlas/scripts/build-image-wave4-v2.3.mjs
+
+      - name: Promote Wave 4A canonical images
+        run: node tools/construction-tools-atlas/scripts/promote-image-wave4a-v2.3.cjs
+
+      - name: Validate materialized Wave 4 contract
+        run: node tools/construction-tools-atlas/scripts/check-image-wave4-sources-v2.3.cjs
+
+      - name: Validate shared registry, attribution, and runtime contracts
+        run: |
+          node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-attribution-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
+
+      - name: Commit pinned ledger, promoted registry, runtime key, and local image assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add \
+            tools/construction-tools-atlas/data/image-wave4-sources-v2.3.json \
+            tools/construction-tools-atlas/data/image-registry-v2.3.json \
+            tools/construction-tools-atlas/detail-image-hotfix.js \
+            tools/construction-tools-atlas/images/
+          if git diff --cached --quiet; then
+            echo "Wave 4A image assets and registry are already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(construction-atlas): promote Wave 4A raster images"
+          git fetch origin "${GITHUB_REF_NAME}"
+          git rebase "origin/${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

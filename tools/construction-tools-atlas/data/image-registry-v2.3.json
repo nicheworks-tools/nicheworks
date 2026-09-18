@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-registry-v2.3",
-  "version": "2026-09-14-wave3a-1",
+  "version": "2026-09-18-wave4a-1",
   "policy": {
     "primary_format": "webp",
     "formal_min_state": "reviewed",
@@ -583,6 +583,150 @@
         "source_sha1": "c43d6f238208e805362dbbef10ec57187df4265e"
       },
       "notes": "Wave 3A manually reviewed real-subject image for the q017 Copper Pipe canonical."
+    },
+    {
+      "entry_id": "allen_key",
+      "alt_ja": "サイズ違いのL形六角レンチ",
+      "alt_en": "Assorted metric L-shaped hex keys",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/allen_key/source.jpg",
+        "display": "./images/allen_key/primary.webp",
+        "thumbnail": "./images/allen_key/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Allen_keys.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Allen_keys.jpg",
+        "license": "Public Domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+        "author": "Scott Ehardt",
+        "attribution": "Scott Ehardt / Wikimedia Commons (Public Domain)",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "443bbf408dfc13517d6bfe2abc342d71ac0021dd"
+      },
+      "notes": "Wave 4A manually reviewed real-subject image for the Allen key canonical."
+    },
+    {
+      "entry_id": "bolt_cutter",
+      "alt_ja": "長いハンドルを備えたボルトカッター",
+      "alt_en": "Long-handled bolt cutter",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/bolt_cutter/source.jpg",
+        "display": "./images/bolt_cutter/primary.webp",
+        "thumbnail": "./images/bolt_cutter/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Bolt_Cutter_Bolzenschneider.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Bolt_Cutter_Bolzenschneider.jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Bluemel1",
+        "attribution": "Bluemel1 / Wikimedia Commons, CC0 1.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "175029164f2827b55263290877418bf9a28a4367"
+      },
+      "notes": "Wave 4A manually reviewed real-subject image for the Bolt Cutter canonical."
+    },
+    {
+      "entry_id": "ball_valve",
+      "alt_ja": "内部の球体が見える半開きのボールバルブ断面模型",
+      "alt_en": "Cutaway ball valve showing the internal spherical closure",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/ball_valve/source.jpg",
+        "display": "./images/ball_valve/primary.webp",
+        "thumbnail": "./images/ball_valve/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Ball_Valve.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Ball_Valve.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "Bitjungle",
+        "attribution": "Bitjungle / Wikimedia Commons, CC BY-SA 4.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "1667437cfa405f12472c85363e1fbbeaf85c7747"
+      },
+      "notes": "Wave 4A manually reviewed real-subject image for the Ball Valve canonical."
+    },
+    {
+      "entry_id": "respirator",
+      "alt_ja": "交換式フィルターを備えた半面形空気浄化式呼吸用保護具",
+      "alt_en": "Half-mask air-purifying respirator with replaceable filters",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/respirator/source.jpg",
+        "display": "./images/respirator/primary.webp",
+        "thumbnail": "./images/respirator/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Air-Purifying_Respirator.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Air-Purifying_Respirator.jpg",
+        "license": "Public Domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-HHS-CDC",
+        "author": "John Dimos and Paul Satti",
+        "attribution": "John Dimos and Paul Satti / NIOSH / CDC / Wikimedia Commons (Public Domain)",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "e7f50d1a17143a65f8930fce448af3033b81b207"
+      },
+      "notes": "Wave 4A manually reviewed real-subject image for the Respirator canonical."
+    },
+    {
+      "entry_id": "measuring_wheel",
+      "alt_ja": "距離測定に使用される測定輪",
+      "alt_en": "Surveyor measuring wheel used to measure distance",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/measuring_wheel/source.jpg",
+        "display": "./images/measuring_wheel/primary.webp",
+        "thumbnail": "./images/measuring_wheel/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/9/97/Surveyor%27s_wheel_01.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Surveyor%27s_wheel_01.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "FBenjr123",
+        "attribution": "FBenjr123 / Wikimedia Commons, CC BY-SA 4.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "b87b011b8b6a837171ae797b81564854cb6cda91"
+      },
+      "notes": "Wave 4A manually reviewed real-subject image for the Measuring Wheel canonical."
+    },
+    {
+      "entry_id": "safety_boots",
+      "alt_ja": "つま先保護付きの黒い安全靴",
+      "alt_en": "Black steel-toe safety boots",
+      "image_state": "reviewed",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/safety_boots/source.jpg",
+        "display": "./images/safety_boots/primary.webp",
+        "thumbnail": "./images/safety_boots/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Steel_toe_boots.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Steel_toe_boots.jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Persmas24",
+        "attribution": "Persmas24 / Wikimedia Commons, CC0 1.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "f49d282e880319a9a54665eef81401139209ccc7"
+      },
+      "notes": "Wave 4A manually reviewed real-subject image for the Safety Boots canonical."
     }
   ]
 }

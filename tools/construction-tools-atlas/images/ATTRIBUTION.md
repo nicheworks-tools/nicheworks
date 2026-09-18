@@ -32,6 +32,12 @@ For licensed sources, each generated WebP derivative is made available under the
 | `q017_needle_nose_pliers` | oomlout / Wikimedia Commons, CC BY-SA 2.0 | [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Basic_NeedleNose_Pliers.jpg) | `0fd5ac2cb494254ed537ed3d76e743bdaa3d3545` |
 | `q017_survey_tripod` | Michael Daly / Wikimedia Commons, CC BY-SA 3.0 | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Surveyors_tripod.jpg) | `2c6726e0b2baf2399c0cc13c44bd821248dd4c44` |
 | `q017_copper_pipe` | MdeVicente / Wikimedia Commons, CC0 1.0 | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Tubo_cobre.png) | `c43d6f238208e805362dbbef10ec57187df4265e` |
+| `allen_key` | Scott Ehardt / Wikimedia Commons (Public Domain) | [Public Domain](https://commons.wikimedia.org/wiki/Template:PD-self) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Allen_keys.jpg) | `443bbf408dfc13517d6bfe2abc342d71ac0021dd` |
+| `bolt_cutter` | Bluemel1 / Wikimedia Commons, CC0 1.0 | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Bolt_Cutter_Bolzenschneider.jpg) | `175029164f2827b55263290877418bf9a28a4367` |
+| `ball_valve` | Bitjungle / Wikimedia Commons, CC BY-SA 4.0 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Ball_Valve.jpg) | `1667437cfa405f12472c85363e1fbbeaf85c7747` |
+| `respirator` | John Dimos and Paul Satti / NIOSH / CDC / Wikimedia Commons (Public Domain) | [Public Domain](https://commons.wikimedia.org/wiki/Template:PD-USGov-HHS-CDC) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Air-Purifying_Respirator.jpg) | `e7f50d1a17143a65f8930fce448af3033b81b207` |
+| `measuring_wheel` | FBenjr123 / Wikimedia Commons, CC BY-SA 4.0 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Surveyor%27s_wheel_01.jpg) | `b87b011b8b6a837171ae797b81564854cb6cda91` |
+| `safety_boots` | Persmas24 / Wikimedia Commons, CC0 1.0 | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Steel_toe_boots.jpg) | `f49d282e880319a9a54665eef81401139209ccc7` |
 
-Source ledger versions: `2026-09-14-wave1-1`, `2026-09-14-wave2b-1`, `2026-09-14-wave3a-1`.
+Source ledger versions: `2026-09-14-wave1-1`, `2026-09-14-wave2b-1`, `2026-09-14-wave3a-1`, `2026-09-18-wave4a-1`.
 
