@@ -51,6 +51,12 @@ const BASELINE_FLOORS = Object.freeze({
   canonical_with_supported_public_role: 408
 });
 
+const BASELINE_RUNTIME_PROVENANCE_FLOORS = Object.freeze({
+  verified_category_runtime_identities: 116,
+  verified_note_runtime_identities: 22,
+  strong_runtime_data_identities: 22
+});
+
 function text(value = '') {
   return String(value).normalize('NFKC').replace(/\s+/g, ' ').trim();
 }
@@ -246,6 +252,23 @@ for (const [metric, floor] of Object.entries(BASELINE_FLOORS)) {
   }
 }
 
+const runtimeProvenanceMeasured = {
+  verified_category_runtime_identities: runtimeVerifiedCategory,
+  verified_note_runtime_identities: runtimeVerifiedNote,
+  strong_runtime_data_identities: runtimeStrongReady
+};
+for (const [metric, floor] of Object.entries(BASELINE_RUNTIME_PROVENANCE_FLOORS)) {
+  if (runtimeProvenanceMeasured[metric] < floor) {
+    structuralFailures.push(`runtime provenance regression ${metric}: ${runtimeProvenanceMeasured[metric]} below frozen floor ${floor}`);
+  }
+}
+if (runtimeVerifiedCategory !== Object.keys(parser.verifiedCategoryEvidence || {}).length) {
+  structuralFailures.push('verified category overlay entries must all survive into runtime provenance');
+}
+if (runtimeVerifiedNote !== Object.keys(parser.verifiedNoteEvidence || {}).length) {
+  structuralFailures.push('verified note overlay entries must all survive into runtime provenance');
+}
+
 const report = {
   status: structuralFailures.length ? 'fail' : 'pass',
   phase: 'cosmetics-completion-readiness-inventory',
@@ -287,6 +310,7 @@ const report = {
   },
   debt_ceiling: BASELINE_DEBT_CEILINGS,
   readiness_floor: BASELINE_FLOORS,
+  runtime_provenance_floor: BASELINE_RUNTIME_PROVENANCE_FLOORS,
   unsupported_public_role_categories: topCounts(unsupportedCategoryCounts),
   records_by_file: topCounts(fileCounts, DATA_FILES.length),
   completion_definition: {
