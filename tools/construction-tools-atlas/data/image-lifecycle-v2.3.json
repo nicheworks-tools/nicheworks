@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-18-applicability-wave15",
+  "version": "2026-09-18-applicability-wave16",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -18067,6 +18067,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A shovel is a physical digging/handling hand tool with a distinctive blade and shaft; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18078,6 +18087,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Siding is a physical exterior cladding material with recognizable panel/board and installed wall forms; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18095,6 +18113,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Silicone sealant is a physical sealing material with recognizable cartridge/bead application; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18106,6 +18133,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A sill is a physical horizontal building element at the base of an opening or wall assembly; a reviewed construction-detail photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18123,6 +18159,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A slab is a physical concrete floor/structural element with clear construction context; a reviewed site photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18134,6 +18179,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A sledgehammer is a distinctive heavy striking tool with a large head and long handle; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18151,6 +18205,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A construction sleeve is a physical penetration component installed through walls/slabs; a reviewed detail photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18162,6 +18225,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A sleeve anchor is a physical masonry fastener with a recognizable expansion sleeve and bolt form; a close reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18179,6 +18251,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A sling belt/web sling is a physical lifting/rigging component with recognizable webbing and eye/loop forms; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18190,6 +18271,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is a testing procedure using smoke to reveal leakage or airflow; smoke sources, instruments, and setups vary, so a single photograph would depict only one arbitrary implementation.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18207,6 +18297,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A socket wrench is a physical fastening hand tool with a ratchet handle and interchangeable socket; a subject-matched photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18218,6 +18317,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A soffit is a physical underside finish/component at eaves or projections; a reviewed installed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18235,6 +18343,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A soldering iron is a physical heated hand tool with a distinctive handle, shaft, and tip; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18246,6 +18363,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A soundness/test hammer is a physical inspection hand tool used to tap surfaces for defects; a subject-matched photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18263,6 +18389,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A spacer block is a physical construction support/spacer component used to maintain cover or separation; a reviewed detail photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18274,6 +18409,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A spade bit is a physical drill accessory with a distinctive flat paddle blade; a close reviewed photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18291,6 +18435,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A speed square is a physical triangular layout/measuring tool with distinctive shape and markings; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18302,6 +18455,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A spirit level is a physical measuring tool with a distinctive vial-equipped body; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18319,6 +18481,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical denotes a safety role/person responsible for guiding or observing work, not a unique physical object; a photograph of any one worker would be arbitrary.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18330,6 +18501,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical denotes the activity/role of vehicle spotting and guidance rather than a specific vehicle or device; a single photograph would only depict one arbitrary scene.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18347,6 +18527,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is a physical carpenter's square/try-square type measuring tool; a reviewed subject-matched photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18358,6 +18547,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Stair nosing is a physical edge/trim component installed at stair tread fronts; a reviewed installed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18375,6 +18573,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A staple gun is a physical fastening tool with a distinctive stapler/tacker form; a subject-matched photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18386,6 +18593,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A step ladder is a physical self-supporting access device with clear visual identity; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18403,6 +18619,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A stepladder is a physical self-supporting ladder/access device with clear visual identity; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18414,6 +18639,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A stirrup/tie is a physical bent reinforcing-steel component used to confine reinforcement; a reviewed rebar-detail photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18431,6 +18665,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A story pole is a physical marked reference stick used to transfer repeated dimensions; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18442,6 +18685,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A string line is a physical layout string stretched between reference points; a reviewed in-use photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18459,6 +18711,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A stud is a physical vertical framing member with recognizable wall-framing context; a reviewed construction photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18470,6 +18731,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A stud finder is a physical wall-scanning tool with a distinctive handheld form; a subject-matched photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18487,6 +18757,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A hand tamper is a physical compaction tool with a recognizable plate and handle; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18498,6 +18777,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A tape measure is a physical retractable measuring tool with clear visual identity; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18515,6 +18803,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A tarpaulin/tarp is a physical protective sheet with recognizable folded/deployed forms; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18526,6 +18823,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A temporary fence is a physical site-control barrier system with recognizable panels/posts; a reviewed site photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18543,6 +18849,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is the process/state of temporarily fixing a component before final fastening; methods vary by trade and material, so no single photograph is a stable visual identity.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18554,6 +18869,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Temporary lighting is a physical jobsite lighting setup made from temporary fixtures, cords, and supports; a reviewed site photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18571,6 +18895,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is a broad temporary-power system/concept spanning panels, cabling, outlets, generators, and distribution; one photograph would arbitrarily represent only one configuration.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18582,6 +18915,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A temporary power panel is a physical electrical distribution enclosure used on jobsites; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18599,6 +18941,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A thermal camera is a physical inspection instrument with a distinctive handheld/display form; a subject-matched photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18610,6 +18961,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Threaded rod is a physical fastening/support material with a distinctive fully threaded long-shank form; a close reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18627,6 +18987,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A threshold is a physical door/opening transition component with recognizable installed form; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18638,6 +19007,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Tile adhesive is a physical bonding material with recognizable bag/tub and troweled application forms; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18655,6 +19033,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A tile cutter is a physical scoring/cutting tool or machine with clear task-specific visual identity; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18666,6 +19053,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Tile grout is a physical joint-filling material with recognizable mixed/applied forms; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18683,6 +19079,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A tile spacer is a small physical installation aid with distinctive cross/T forms; a close reviewed photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18694,6 +19099,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A toggle anchor is a physical hollow-wall fastener with a distinctive folding/expanding wing mechanism; a close reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18711,6 +19125,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is a short pre-work safety briefing practice, not a unique physical subject; meeting location, participants, and format vary by site.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18722,6 +19145,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Top coat is a physical finish-coating material/layer with recognizable applied surface and product context; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18739,6 +19171,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Torque is a physical quantity/measurement concept rather than a visually identifiable object; photographs of tools or fasteners would depict related equipment, not torque itself.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -18750,6 +19191,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A torque wrench is a physical precision fastening tool with recognizable ratchet/scale or digital forms; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
