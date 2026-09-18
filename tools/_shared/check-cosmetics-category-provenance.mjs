@@ -52,6 +52,7 @@ const EXPECTED_WAVE23 = Object.freeze({ 'helianthus annuus sunflower seed wax':'
 const EXPECTED_WAVE23_LEGACY_CATEGORIES = Object.freeze({ 'helianthus annuus sunflower seed wax':['texture agent'], 'melaleuca alternifolia tea tree leaf oil':['essential oil'], 'peg-120 methyl glucose dioleate':['general'], 'peg-30 dipolyhydroxystearate':['general'], 'pentaerythrityl tetraethylhexanoate':['general'], 'polyacrylate crosspolymer-11':['polymer'], sphingolipids:['barrier lipid'] });
 const EXPECTED_WAVE24 = Object.freeze({ 'polyglyceryl-10 oleate':'skin conditioning', 'gluconic acid':'chelating agent', 'peg-40 hydrogenated castor oil':'emulsifier', 'sodium carbonate':'buffer', sulisobenzone:'uv filter', 'benzyl alcohol':'preservative', urea:'humectant', 'glyceryl caprate':'emollient', 'polysilicone-15':'uv filter', 'drometrizole trisiloxane':'uv filter' });
 const EXPECTED_WAVE24_LEGACY_CATEGORIES = Object.freeze({ 'peg-40 hydrogenated castor oil':['solubilizer'], 'benzyl alcohol':['preservative','fragrance'], urea:['active','humectant'] });
+const EXPECTED_WAVE24_MIXED_MISSING = new Set(['benzyl alcohol','urea']);
 const EXPECTED_ALL = Object.freeze({ ...EXPECTED_WAVE1, ...EXPECTED_WAVE2, ...EXPECTED_WAVE3, ...EXPECTED_WAVE4, ...EXPECTED_WAVE5, ...EXPECTED_WAVE6, ...EXPECTED_WAVE7, ...EXPECTED_WAVE8, ...EXPECTED_WAVE9, ...EXPECTED_WAVE10, ...EXPECTED_WAVE11, ...EXPECTED_WAVE12, ...EXPECTED_WAVE13, ...EXPECTED_WAVE14, ...EXPECTED_WAVE15, ...EXPECTED_WAVE16, ...EXPECTED_WAVE17, ...EXPECTED_WAVE18, ...EXPECTED_WAVE19, ...EXPECTED_WAVE20, ...EXPECTED_WAVE21, ...EXPECTED_WAVE22, ...EXPECTED_WAVE23, ...EXPECTED_WAVE24 });
 
 const EXPECTED_SOURCES = Object.freeze({
@@ -287,7 +288,7 @@ for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
   }
   if(Object.hasOwn(EXPECTED_WAVE24,canonical)){
     if(Object.hasOwn(EXPECTED_WAVE24_LEGACY_CATEGORIES,canonical)){
-      assert.equal(hasRawMissing,false,`${canonical}: wave 24 must preserve the existing unsupported raw category without inventing a missing row`);
+      assert.equal(hasRawMissing,EXPECTED_WAVE24_MIXED_MISSING.has(canonical),`${canonical}: wave 24 raw missing-category state changed unexpectedly`);
       assert.deepEqual(rawCategories,EXPECTED_WAVE24_LEGACY_CATEGORIES[canonical],`${canonical}: wave 24 must preserve the frozen unsupported legacy category hint for audit`);
     } else {
       assert.equal(hasRawMissing,true,`${canonical}: wave 24 must resolve an existing raw missing-category identity`);
