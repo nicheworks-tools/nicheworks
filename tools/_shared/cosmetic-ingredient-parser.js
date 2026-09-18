@@ -118,7 +118,11 @@
     "palmitic acid": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10137/palmitic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "stearic acid": Object.freeze({ category: "cleanser", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15514/stearic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "myristic acid": Object.freeze({ category: "cleanser", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/9266/myristic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "niacinamide": Object.freeze({ category: "smoothing", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/9443/niacinamide/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "niacinamide": Object.freeze({ category: "smoothing", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/9443/niacinamide/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydroxyethyl acrylate/sodium acryloyldimethyl taurate copolymer": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/7079/hydroxyethyl-acrylate-sodium-acryloyldimethyl-taurate-copolymer/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ammonium polyacryloyldimethyl taurate": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/933/ammonium-polyacryloyldimethyl-taurate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ethylhexyl methoxycrylene": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5485/ethylhexyl-methoxycrylene/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "glyceryl stearate se": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6059/glyceryl-stearate-se/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
@@ -368,7 +372,7 @@
   }
 
   const api = {
-    version: "1.34.0",
+    version: "1.35.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
