@@ -136,7 +136,13 @@
     "dimethicone crosspolymer": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/4584/dimethicone-crosspolymer/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "glycol distearate": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6123/glycol-distearate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "myristyl myristate": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/9328/myristyl-myristate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "lecithin": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8209/lecithin/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "lecithin": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8209/lecithin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "calcium gluconate": Object.freeze({ category: "chelating agent", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2389/calcium-gluconate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ceramide as": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/25520/ceramide-as/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ceramide ng": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/21295/ceramide-ng/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "glyceryl acrylate/acrylic acid copolymer": Object.freeze({ category: "humectant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5966/glyceryl-acrylate-acrylic-acid-copolymer/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hectorite": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6288/hectorite/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "tapioca starch": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15859/tapioca-starch/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
@@ -386,7 +392,7 @@
   }
 
   const api = {
-    version: "1.38.0",
+    version: "1.39.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
