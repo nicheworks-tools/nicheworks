@@ -1016,3 +1016,14 @@ Wave 45は千葉県の追加10自治体を、従来どおり `municipal_home` �
 - publication acceptance: 234 municipality pages、234 root internal links、AI reference 234/234、専用sitemapはtool rootを含む235 URL
 - 2026 calendar callout: 銚子市、館山市、旭市、鴨川市、南房総市、香取市、いすみ市、大網白里市、匝瑳市。勝浦市は年次を明示しない。
 - Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を維持する。
+
+
+## Wave 46 batch publication
+
+Wave 46は茨城県の10自治体を、従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific municipal-official link typeで公開し、公開対象を **234自治体から244自治体** へ拡張する。古河市は地区別の収集・粗大ごみ条件を市全域へ平坦化しないため採用せず、守谷市へ差し替えた。
+
+- 日立市、土浦市、石岡市、龍ケ崎市、下妻市、笠間市、牛久市、つくば市、ひたちなか市、守谷市
+- readiness baseline: 2,820 / 2,820 valid HTTP(S)、244 preferred candidates、49 direct-link datasets / 752 records / 733 unique URLs / 0 invalid URLs
+- publication acceptance: 244 municipality pages、244 root internal links、AI reference 244/244、専用sitemapはtool rootを含む245 URL
+- 2026 calendar callout: 日立市、石岡市、龍ケ崎市、つくば市、守谷市。その他5市は年次を推測しない。
+- Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を維持する。
