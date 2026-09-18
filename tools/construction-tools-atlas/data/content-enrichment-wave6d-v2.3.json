@@ -1,0 +1,396 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-18-wave6d-infrastructure-site-safety-1",
+  "entries": [
+    {
+      "id": "pvc_pipe",
+      "wave": "content-wave-006d",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "塩化ビニル樹脂製の配管材。排水・給排気など用途に応じて管種、呼び径、肉厚、継手方式を選び、対応する規格と施工条件に合わせる。",
+      "detail_en": "PVC piping material used for drainage, venting, and related services. Pipe class, nominal size, wall thickness, and jointing method should match the applicable standard and installation conditions.",
+      "bullets_ja": [
+        "用途に合う管種・呼び径・継手を選び、異なる規格を混在させない。",
+        "切断面のばりを除去し、接着接合では差込み長さと養生時間を守る。",
+        "屋外や高温部では耐候性・使用温度・支持間隔を確認する。"
+      ],
+      "bullets_en": [
+        "Select pipe class, nominal size, and fittings for the service and do not mix incompatible systems.",
+        "Deburr cut ends and, for solvent-cement joints, follow insertion depth and curing requirements.",
+        "For outdoor or warm locations, verify weather resistance, temperature limits, and support spacing."
+      ],
+      "examples_ja": [
+        "排水配管へVU管を所定勾配で施工する。",
+        "塩ビ管を切断し、適合する継手で接続する。"
+      ],
+      "examples_en": [
+        "Install PVC drainage pipe to the required slope.",
+        "Cut PVC pipe and join it with compatible fittings."
+      ]
+    },
+    {
+      "id": "conduit",
+      "wave": "content-wave-006d",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "電線を保護・収容するための電線管。金属管や合成樹脂管などがあり、呼び径、曲げ半径、支持、接地、防水性を配線方式と環境に合わせる。",
+      "detail_en": "Raceway used to contain and protect electrical conductors. Metallic and nonmetallic conduit systems vary in size, bend radius, support, grounding, and environmental suitability.",
+      "bullets_ja": [
+        "収容する電線量と管径を確認し、過度な充填や急曲げを避ける。",
+        "端部・継手を確実に処理し、電線被覆を傷付けるばりを残さない。",
+        "金属管の接地・ボンディングや湿潤場所の防水処理は適用仕様に従う。"
+      ],
+      "bullets_en": [
+        "Check conductor fill and conduit size and avoid excessive fill or sharp bends.",
+        "Finish ends and fittings correctly so no burrs can damage conductor insulation.",
+        "Follow applicable requirements for grounding and bonding of metallic conduit and sealing in wet locations."
+      ],
+      "examples_ja": [
+        "盤から機器まで電線管を敷設して配線を保護する。",
+        "壁内配線用に合成樹脂製電線管を固定する。"
+      ],
+      "examples_en": [
+        "Run conduit from a panel to equipment to protect wiring.",
+        "Secure nonmetallic conduit for wiring within a wall."
+      ]
+    },
+    {
+      "id": "circuit_breaker",
+      "wave": "content-wave-006d",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "過電流や短絡時などに回路を自動遮断する保護機器。極数、定格電流、遮断容量、電圧、用途を回路条件と設備仕様に合わせて選ぶ。",
+      "detail_en": "Protective device that automatically opens an electrical circuit under overcurrent or short-circuit conditions. Pole count, current rating, interrupting capacity, voltage, and application must match the circuit.",
+      "bullets_ja": [
+        "回路の定格と設備仕様に適合するブレーカーを使用し、定格を勝手に上げない。",
+        "交換・接続作業は適切に停電・隔離し、無電圧を確認してから行う。",
+        "端子の締付条件を守り、発熱・変色・異臭など異常があれば使用を停止する。"
+      ],
+      "bullets_en": [
+        "Use a breaker rated for the circuit and equipment and do not increase the rating without design approval.",
+        "Isolate the supply and verify absence of voltage before replacement or wiring work.",
+        "Follow terminal tightening requirements and stop use if overheating, discoloration, or unusual odor is observed."
+      ],
+      "examples_ja": [
+        "分電盤へ回路定格に合うブレーカーを取り付ける。",
+        "過電流で遮断した回路の原因を確認してから復旧する。"
+      ],
+      "examples_en": [
+        "Install a breaker in a panel with ratings matched to the branch circuit.",
+        "Determine the cause of an overcurrent trip before restoring the circuit."
+      ]
+    },
+    {
+      "id": "forklift",
+      "wave": "content-wave-006d",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "フォークで荷を持ち上げ、構内や現場内で運搬・積卸しを行う産業車両。定格荷重、荷重中心、揚高、路面条件、周囲の人員動線を確認して運用する。",
+      "detail_en": "Powered industrial truck that lifts and transports loads with forks. Rated capacity, load center, lift height, surface conditions, and pedestrian traffic must be considered in operation.",
+      "bullets_ja": [
+        "必要な資格・教育を受けた運転者が使用し、始業前点検を行う。",
+        "荷重表の範囲内で積載し、荷を安定させて低い位置で走行する。",
+        "死角・交差部では速度を落とし、歩行者と作業範囲を分離する。"
+      ],
+      "bullets_en": [
+        "Operate only with required training or authorization and complete pre-use inspections.",
+        "Keep loads within the capacity chart, stabilize them, and travel with the load low.",
+        "Reduce speed at blind spots and intersections and separate pedestrian routes from operating areas."
+      ],
+      "examples_ja": [
+        "パレット積み資材を搬入口から保管場所へ運搬する。",
+        "荷下ろし区画でフォークを使って資材を積み替える。"
+      ],
+      "examples_en": [
+        "Move palletized materials from a delivery point to storage.",
+        "Transfer materials with forks in a controlled unloading zone."
+      ]
+    },
+    {
+      "id": "excavator",
+      "wave": "content-wave-006d",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "ブーム・アーム・バケットなどを油圧で動かし、掘削や積込みを行う建設機械。機体重量、作業半径、地盤、埋設物、旋回範囲を施工条件に合わせて管理する。",
+      "detail_en": "Hydraulic construction machine using a boom, arm, and bucket for excavation and loading. Machine weight, working radius, ground conditions, buried services, and swing area must be managed for the task.",
+      "bullets_ja": [
+        "必要な資格・教育を確認し、作業前に機体と安全装置を点検する。",
+        "旋回範囲と掘削部周囲を立入管理し、人をバケットの下や死角へ入れない。",
+        "掘削前に埋設物と地盤条件を確認し、法肩や軟弱地盤で安定を損なわない。"
+      ],
+      "bullets_en": [
+        "Confirm required operator qualification or training and inspect the machine and safety devices before work.",
+        "Control access to the swing and excavation zone and keep people out from under the bucket and blind areas.",
+        "Locate buried services and assess ground conditions before digging; maintain stability near edges and soft ground."
+      ],
+      "examples_ja": [
+        "基礎掘削で土砂を掘り取りダンプへ積み込む。",
+        "配管工事のため所定深さまで掘削する。"
+      ],
+      "examples_en": [
+        "Excavate foundation soil and load it into a dump truck.",
+        "Dig a trench to the specified depth for piping work."
+      ]
+    },
+    {
+      "id": "backhoe_loader",
+      "wave": "content-wave-006d",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "前部ローダーバケットと後部バックホーを備え、積込みと掘削を一台で行える建設機械。作業側、アウトリガー、周囲スペース、地盤条件を確認して使う。",
+      "detail_en": "Construction machine combining a front loader bucket with a rear backhoe for loading and excavation. Working side, stabilizers, clearance, and ground conditions must be checked before use.",
+      "bullets_ja": [
+        "作業前にローダー側・バックホー側の安全装置と油圧系を点検する。",
+        "バックホー作業では必要に応じアウトリガーを正しく設置し、機体を安定させる。",
+        "前後の作業装置と旋回範囲の死角へ人を入れず、移動時は装置を安全位置にする。"
+      ],
+      "bullets_en": [
+        "Inspect safety devices and hydraulic systems for both loader and backhoe functions before work.",
+        "When excavating, deploy stabilizers correctly as required to keep the machine stable.",
+        "Keep people clear of blind areas around both attachments and place equipment in a safe travel position before moving."
+      ],
+      "examples_ja": [
+        "狭い現場で掘削後に前部バケットで土砂を移動する。",
+        "小規模な溝掘削と埋戻し材の運搬を一台で行う。"
+      ],
+      "examples_en": [
+        "Excavate in a confined area and then move spoil with the front bucket.",
+        "Use one machine for a small trench and moving backfill material."
+      ]
+    },
+    {
+      "id": "dump_truck",
+      "wave": "content-wave-006d",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "荷台を傾けて土砂や砕石などを排出できる運搬車両。積載量、荷姿、走行経路、架空線、排出場所の地盤と傾斜を確認して運用する。",
+      "detail_en": "Truck with a tipping body used to transport and discharge soil, aggregate, and similar bulk materials. Payload, load distribution, route, overhead hazards, and dumping-ground stability require control.",
+      "bullets_ja": [
+        "最大積載量を守り、偏荷重や荷こぼれが起きないよう積載する。",
+        "後退・排出時は誘導と立入管理を行い、架空線や障害物との接触を防ぐ。",
+        "荷台を上げる場所は水平で十分な支持力を確保し、走行前に完全に下げる。"
+      ],
+      "bullets_en": [
+        "Stay within payload limits and distribute the load to avoid instability or spillage.",
+        "Control access and use suitable guidance during reversing or dumping; avoid overhead lines and obstructions.",
+        "Dump only on sufficiently level, stable ground and fully lower the body before travel."
+      ],
+      "examples_ja": [
+        "掘削土を場外処分先まで運搬する。",
+        "砕石を指定位置へ運び、管理された場所で荷下ろしする。"
+      ],
+      "examples_en": [
+        "Haul excavated soil to an approved disposal location.",
+        "Deliver aggregate and dump it in a controlled designated area."
+      ]
+    },
+    {
+      "id": "tarpaulin_tarp",
+      "wave": "content-wave-006d",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "資材・床面・開口部などを一時的に覆い、雨、汚れ、飛散から保護するシート。寸法、厚み、防水性、耐候性、ハトメや固定方法を用途に合わせる。",
+      "detail_en": "Flexible sheet used to temporarily cover materials, surfaces, or openings against rain, dirt, and debris. Size, thickness, waterproofing, weather resistance, eyelets, and fastening method should suit the task.",
+      "bullets_ja": [
+        "風であおられないよう周囲を確実に固定し、必要に応じてウェイトを使う。",
+        "通路へ敷く場合はしわ・端部のめくれを抑え、つまずきや滑りを防ぐ。",
+        "火気や高温物から離し、用途に必要な防炎・耐候性能を確認する。"
+      ],
+      "bullets_en": [
+        "Secure edges against wind and use suitable ballast where needed.",
+        "On walkways, control wrinkles and lifted edges to reduce trip and slip hazards.",
+        "Keep away from ignition sources and hot materials and verify any required flame or weather resistance."
+      ],
+      "examples_ja": [
+        "屋外保管資材をブルーシートで覆う。",
+        "解体作業周辺の床をシートで養生する。"
+      ],
+      "examples_en": [
+        "Cover stored outdoor materials with a tarp.",
+        "Protect a floor around demolition work with a sheet."
+      ]
+    },
+    {
+      "id": "masking_tape",
+      "wave": "content-wave-006d",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "塗装やシーリング時の境界保護・仮固定に使う低粘着の粘着テープ。接着力、耐熱性、屋外適性、貼付可能時間を下地と作業条件に合わせる。",
+      "detail_en": "Low-tack adhesive tape used for paint edges, sealant work, and temporary holding. Adhesion, heat resistance, outdoor suitability, and allowable dwell time should match the substrate and process.",
+      "bullets_ja": [
+        "目立たない場所で粘着性と糊残りを確認してから広範囲へ使用する。",
+        "下地のほこり・水分を除き、必要な境界へまっすぐ圧着する。",
+        "指定時間を超えて放置せず、塗膜や下地を傷めない角度で剥がす。"
+      ],
+      "bullets_en": [
+        "Test adhesion and residue on an inconspicuous area before broad use.",
+        "Clean dust and moisture from the substrate and press the tape firmly along the intended edge.",
+        "Do not exceed the recommended dwell time and remove at an angle that minimizes damage to the coating or substrate."
+      ],
+      "examples_ja": [
+        "塗装前に見切り線へマスキングテープを貼る。",
+        "シーリング目地の両側をテープで養生する。"
+      ],
+      "examples_en": [
+        "Mask a paint boundary before coating.",
+        "Tape both sides of a sealant joint before application."
+      ]
+    },
+    {
+      "id": "drop_cloth",
+      "wave": "content-wave-006d",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "塗料、粉じん、傷などから床や仕上げ面を保護する養生シート。材質、吸水性、防滑性、厚み、再使用可否を作業内容に合わせる。",
+      "detail_en": "Protective sheet used to shield floors and finished surfaces from paint, dust, and damage. Material, absorbency, slip resistance, thickness, and reusability should suit the work.",
+      "bullets_ja": [
+        "端部を固定し、歩行部でめくれやしわが生じないようにする。",
+        "濡れた塗料や液体が染み抜ける可能性を考慮し、必要な防水性能を選ぶ。",
+        "火気作業の近くでは可燃性シートを避け、適切な防炎養生を使用する。"
+      ],
+      "bullets_en": [
+        "Secure edges and keep walking areas free of lifted corners and wrinkles.",
+        "Choose sufficient liquid resistance where wet paint or spills could soak through.",
+        "Near hot work, avoid combustible coverings and use appropriate flame-resistant protection."
+      ],
+      "examples_ja": [
+        "内装塗装前に床全面へ養生シートを敷く。",
+        "搬入作業で既存床を傷から保護する。"
+      ],
+      "examples_en": [
+        "Cover the floor with protective sheeting before interior painting.",
+        "Protect an existing floor from damage during material delivery."
+      ]
+    },
+    {
+      "id": "safety_meeting",
+      "wave": "content-wave-006d",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "作業開始前などに当日の作業内容、危険箇所、役割、連絡方法を共有する安全ミーティング。会社や現場により朝礼、TBM、ツールボックストークなど呼称や進め方が異なる。",
+      "detail_en": "Pre-work safety meeting used to share the day's tasks, hazards, responsibilities, and communication methods. Names and formats vary by company and site, including morning briefings, TBMs, and toolbox talks.",
+      "bullets_ja": [
+        "当日の作業変更、重機、開口部、電気など具体的な危険源を共有する。",
+        "各作業者の役割・立入範囲・合図方法を確認し、不明点を残さない。",
+        "形だけの確認にせず、現場条件が変わった場合は内容を更新して再共有する。"
+      ],
+      "bullets_en": [
+        "Discuss specific hazards for the day, including changes, machinery, openings, and electrical work.",
+        "Confirm responsibilities, restricted areas, and communication signals so uncertainties are resolved.",
+        "Do not treat the meeting as a formality; update and repeat the briefing when site conditions change."
+      ],
+      "examples_ja": [
+        "朝礼で当日の揚重作業と立入禁止範囲を確認する。",
+        "作業変更が出たため班ごとに短いTBMを行う。"
+      ],
+      "examples_en": [
+        "Review lifting work and exclusion zones during the morning safety meeting.",
+        "Hold a short toolbox talk after a change in the work plan."
+      ]
+    },
+    {
+      "id": "ky_hazard_prediction",
+      "wave": "content-wave-006d",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "KY（危険予知）は、作業前に起こり得る危険を洗い出し、重点危険と対策を作業者間で共有する現場の安全確認手法。運用方法や記録様式は会社・現場で異なる。",
+      "detail_en": "KY, or hazard prediction, is a jobsite safety practice in which workers identify possible hazards before work, agree on priority risks, and share controls. Methods and documentation vary by company and site.",
+      "bullets_ja": [
+        "実際の作業手順と周囲状況を見ながら、起こり得る災害を具体的に挙げる。",
+        "優先して対策すべき危険を絞り、誰が何をするかまで確認する。",
+        "作業条件が変わったら最初のKYだけで済ませず、危険と対策を見直す。"
+      ],
+      "bullets_en": [
+        "Identify specific possible incidents from the actual work sequence and surrounding conditions.",
+        "Prioritize significant hazards and confirm who will apply each control.",
+        "Reassess hazards and controls when conditions change instead of relying only on the initial KY discussion."
+      ],
+      "examples_ja": [
+        "高所作業前に墜落・工具落下の危険と対策をKYで確認する。",
+        "重機搬入経路が変わったため接触危険を再度洗い出す。"
+      ],
+      "examples_en": [
+        "Use KY before work at height to review fall and dropped-object hazards.",
+        "Reassess struck-by hazards after the machinery access route changes."
+      ]
+    },
+    {
+      "id": "kiken_watch_out",
+      "wave": "content-wave-006d",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "「危険」「あぶない」など、現場で差し迫った危険を周囲へ知らせる警告の言い方。会社や職種で合図は異なるため、作業前に共通の警告方法を決めておく。",
+      "detail_en": "A jobsite warning such as \"kiken\" or \"watch out\" used to alert others to immediate danger. Signals vary by company and trade, so a common warning method should be agreed before work.",
+      "bullets_ja": [
+        "緊急時は短く明確な声や所定の合図で危険を伝え、曖昧な表現を避ける。",
+        "警告を受けたら作業を止め、危険の内容と安全を確認してから再開する。",
+        "騒音環境や死角がある場合は無線・手信号・警報など補助手段を併用する。"
+      ],
+      "bullets_en": [
+        "Use a short, clear voice warning or agreed signal and avoid ambiguous wording in urgent situations.",
+        "On receiving a warning, stop work and confirm the hazard and safe condition before resuming.",
+        "Where noise or blind spots reduce audibility, supplement voice warnings with radios, hand signals, or alarms."
+      ],
+      "examples_ja": [
+        "資材が落下しそうなとき周囲へ大声で危険を知らせる。",
+        "重機後退時に誘導員が決められた停止合図を出す。"
+      ],
+      "examples_en": [
+        "Call out a clear warning when a material is about to fall.",
+        "A spotter gives the agreed stop signal while machinery reverses."
+      ]
+    },
+    {
+      "id": "youshi_protection",
+      "wave": "content-wave-006d",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "「養生」は、既存仕上げや周囲を傷・汚れから保護する作業、または施工材料を適切な条件で保つ処置を指す現場用語。文脈で意味が変わるため対象を明確にする。",
+      "detail_en": "\"Yojou\" (protection/curing) is a jobsite term that can mean protecting existing finishes from damage and dirt, or maintaining proper conditions for newly placed materials. The intended meaning should be clear from context.",
+      "bullets_ja": [
+        "何を何から保護する養生か、対象と目的を作業前に共有する。",
+        "床・壁・設備の保護では固定方法とつまずき・火気への影響も確認する。",
+        "コンクリートや仕上げ材の養生では必要な温度・湿度・期間など施工条件を守る。"
+      ],
+      "bullets_en": [
+        "Clarify what is being protected or cured and the purpose before work begins.",
+        "For surface protection, check fixing methods as well as trip and fire risks.",
+        "For curing concrete or finishes, maintain the required temperature, moisture, and duration."
+      ],
+      "examples_ja": [
+        "搬入前に床と壁角をシート・ボードで養生する。",
+        "コンクリート打設後に乾燥を防ぐ養生を行う。"
+      ],
+      "examples_en": [
+        "Protect floors and wall corners before moving materials indoors.",
+        "Cure newly placed concrete to prevent premature drying."
+      ]
+    },
+    {
+      "id": "cleanup_katazuke",
+      "wave": "content-wave-006d",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "「片付け」は、作業後や工程の区切りで工具・材料・廃材を整理し、通路や作業場所を安全な状態へ戻す現場の基本作業。会社によって範囲や分別ルールが異なる。",
+      "detail_en": "\"Katazuke\" refers to jobsite cleanup and housekeeping: organizing tools and materials, removing waste, and restoring safe access at the end of work or a work phase. Scope and sorting rules vary by site.",
+      "bullets_ja": [
+        "工具・材料を所定位置へ戻し、通路・避難経路・分電盤前を塞がない。",
+        "釘、切れ端、粉じん、漏れなど次の作業者へ危険を残さない。",
+        "廃材は現場ルールに従って分別し、危険物や鋭利物は適切な容器へ入れる。"
+      ],
+      "bullets_en": [
+        "Return tools and materials to designated locations and keep walkways, exits, and electrical panels clear.",
+        "Do not leave nails, offcuts, dust, spills, or other hazards for the next worker.",
+        "Sort waste according to site rules and place hazardous or sharp waste in suitable containers."
+      ],
+      "examples_ja": [
+        "終業前に通路の端材と工具を回収して清掃する。",
+        "工程完了後に廃材を分別し、次工程用の作業場所を空ける。"
+      ],
+      "examples_en": [
+        "Collect offcuts and tools and clean walkways before the end of the shift.",
+        "Sort waste and clear the work area before the next trade begins."
+      ]
+    }
+  ]
+}
