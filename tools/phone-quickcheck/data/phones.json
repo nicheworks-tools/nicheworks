@@ -5101,7 +5101,7 @@
         }
       },
       "included": {
-        "cable": "unknown",
+        "cable": "included",
         "adapter": "not_included"
       },
       "sources": {
@@ -5109,7 +5109,7 @@
         "manualUrl": "https://www.samsung.com/jp/support/",
         "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
         "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
-        "verifiedAt": "2026-09-15",
+        "verifiedAt": "2026-09-18",
         "releaseUrl": "https://news.samsung.com/global/samsung-galaxy-s21-ultra-the-ultimate-smartphone-experience-designed-to-be-epic-in-every-way"
       },
       "affiliateKeys": []
@@ -7348,13 +7348,13 @@
       },
       "included": {
         "cable": "included",
-        "adapter": "unknown"
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://www.samsung.com/no/business/smartphones/galaxy-a/galaxy-a41-a415-sm-a415fzkdeud/",
         "manualUrl": "https://www.samsung.com/jp/support/model/SM-A415DZWADCM/",
         "releaseUrl": "https://www.samsung.com/jp/support/mobile-devices/please-tell-us-about-the-latest-version-of-the-galaxy-device-sold-in-docomo/",
-        "verifiedAt": "2026-09-16",
+        "verifiedAt": "2026-09-18",
         "waterUrl": "https://www.docomo.ne.jp/support/product/sc41a/spec.html",
         "chargingUrl": "https://www.docomo.ne.jp/support/product/sc41a/spec.html"
       },

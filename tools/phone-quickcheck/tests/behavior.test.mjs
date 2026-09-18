@@ -496,6 +496,17 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.match(html, /IPX4 \/ IP5X/);
 }
 
+// Samsung package closure: exact Japan-market carrier evidence.
+{
+  const s21Ultra = byId.get('samsung-galaxy-s21-ultra-5g');
+  assert.ok(s21Ultra, 'Galaxy S21 Ultra fixture missing');
+  assert.equal(s21Ultra.included?.cable, 'included');
+
+  const a41 = byId.get('samsung-galaxy-a41');
+  assert.ok(a41, 'Galaxy A41 fixture missing');
+  assert.equal(a41.included?.adapter, 'not_included');
+}
+
 console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estimates, Apple unknown capacity, Lightning guidance, proprietary charging, and mobile sheet.');
 
 // Explicit manufacturer-backed non-resistance is localized; model-specific unknown remains unknown.

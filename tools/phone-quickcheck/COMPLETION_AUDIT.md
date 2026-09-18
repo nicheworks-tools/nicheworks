@@ -18,8 +18,8 @@ Completion does **not** require forcing every nullable charging field to a value
 - phones: **182**
 - manufacturers: **9**
 - foldables: **32**
-- package adapter unknown: **5**
-- package cable unknown: **15**
+- package adapter unknown: **4**
+- package cable unknown: **14**
 - unresolved water state: **5**
 - battery capacity unknown: **33** — all maintained Apple records; intentional under current policy
 - charger guidance missing: **62**
@@ -31,22 +31,20 @@ The final four charging counts are **not automatically defects**. They are evide
 
 ## Actionable package review backlog
 
-### AC adapter unknown — 5
+### AC adapter unknown — 4
 
 - `sony-xperia-1-vi`
 - `sony-xperia-10-vi`
 - `sony-xperia-5-v`
 - `sony-xperia-10-v`
-- `samsung-galaxy-a41`
 
-### Cable unknown — 15
+### Cable unknown — 14
 
 - `samsung-galaxy-a36-5g`
 - `sony-xperia-1-vi`
 - `sony-xperia-10-vi`
 - `sony-xperia-5-v`
 - `sony-xperia-10-v`
-- `samsung-galaxy-s21-ultra-5g`
 - `samsung-galaxy-a35-5g`
 - `sony-xperia-1-v`
 - `sony-xperia-10-iv`

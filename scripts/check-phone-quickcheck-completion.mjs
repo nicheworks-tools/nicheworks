@@ -12,7 +12,6 @@ const expected = {
   foldableCount: 32,
   manufacturers: ['Apple', 'Google', 'Motorola', 'OPPO', 'SHARP', 'Samsung', 'Sony', 'Xiaomi', 'ZTE'],
   adapterUnknown: [
-    'samsung-galaxy-a41',
     'sony-xperia-1-vi',
     'sony-xperia-10-v',
     'sony-xperia-10-vi',
@@ -21,7 +20,6 @@ const expected = {
   cableUnknown: [
     'samsung-galaxy-a35-5g',
     'samsung-galaxy-a36-5g',
-    'samsung-galaxy-s21-ultra-5g',
     'sharp-aquos-r5g',
     'sharp-aquos-r6',
     'sharp-aquos-sense5g',
