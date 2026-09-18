@@ -32,16 +32,13 @@ Allowed parameters only:
 
 ## Amazon measurement
 
-Amazon is currently **dormant for the Old Kanji cluster** under the canonical monetization SSOT:
+Amazon is active across all eight Old Kanji tools under the explicit 2026-09-19 product decision.
 
-- Old Kanji Reference: `ADS_DONATION`
-- Old Kanji OCR Scanner: `HOLD`
-- neither tool is in the canonical `AFFILIATE` class
-- both production affiliate configs remain `enabled: false` with no tracking ID or outbound target
+The shared `/assets/amazon-affiliate.js` event name is `affiliate_outbound`. It is the only authorized Amazon outbound event. `assets/old-kanji-analytics.js` must not duplicate shared Amazon measurement or emit any legacy tool-owned affiliate event.
 
-The shared `/assets/amazon-affiliate.js` event name is `affiliate_outbound`. It is the only authorized Amazon outbound event if a tool is explicitly moved into the canonical `AFFILIATE` class in the future. `assets/old-kanji-analytics.js` must not duplicate shared Amazon measurement or emit any legacy tool-owned affiliate event.
+Allowed Amazon measurement is coarse and contains only tool/offer/placement/language identifiers. Searched kanji, names, addresses, OCR text, pasted document text, conversion content, image metadata, rendered results, storage values, and raw destination URLs/query strings are forbidden.
 
-In the current dormant state, Old Kanji Reference and Old Kanji OCR Scanner must emit **no Amazon outbound event** because no active Amazon destination exists.
+Use `affiliate_outbound` together with settled landing/session data, GSC impressions/clicks/CTR/position, internal handoffs, and support clicks. Compare performance by tool and offer key rather than by user-entered content.
 
 ## Privacy boundary
 
