@@ -18,7 +18,7 @@ It is intentionally not a comprehensive smartphone encyclopedia, review database
 
 ## Current functional contract
 
-The maintained public dataset contains 182 verified models across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, and Motorola. Users can search by model name and maintained aliases, filter by manufacturer, charging connector, and release year, and sort by newest, lightest, or compact-size oriented order.
+The maintained public dataset contains 182 verified models across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, Motorola, and ZTE, including 32 foldables with separate folded/unfolded dimensions. Users can search by model name and maintained aliases, filter by manufacturer, charging connector, and release year, and sort by newest, lightest, or compact-size oriented order.
 
 The list view remains deliberately compact. Selecting a phone exposes detail information including dimensions, weight, display size where maintained, water/dust rating or an explicitly source-backed non-resistant state, charging port, charger guidance, verified protocol labels, PPS state, wireless charging standard/wattage, battery capacity where an accepted value exists, included cable/adapter state, official specification/manual links, and last verification date.
 
