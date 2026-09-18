@@ -35,7 +35,6 @@ const expected = {
     'google-pixel-4a',
     'google-pixel-4a-5g',
     'oppo-a54-5g',
-    'samsung-galaxy-m23-5g',
   ],
   appleBatteryUnknownCount: 33
 };
