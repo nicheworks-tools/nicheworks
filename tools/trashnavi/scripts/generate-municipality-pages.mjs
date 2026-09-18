@@ -118,7 +118,8 @@ for (const row of rows) { const code=String(row.lgcode||'').trim(); if(!code) co
 const outputs=[];
 for(const entry of manifest.filter(x=>x.publish)) { const html=page(entry,by.get(entry.lgcode)||[],manifest,names); const relative=path.join('tools','trashnavi',entry.pref_slug,entry.city_slug,'index.html'); outputs.push({relative,absolute:path.join(repoRoot,relative),content:html,url:`https://nicheworks.app/tools/trashnavi/${entry.pref_slug}/${entry.city_slug}/`}); }
 if(outputs.length!==264) throw new Error(`municipality page count must be 264; got ${outputs.length}`);
-const lastmod=rows.map(r=>String(r.last_checked||'').trim()).filter(Boolean).sort().at(-1)||'';
+const publishedCodes=new Set(manifest.filter(x=>x.publish).map(x=>String(x.lgcode||'').trim()));
+const lastmod=rows.filter(r=>publishedCodes.has(String(r.lgcode||'').trim())).map(r=>String(r.last_checked||'').trim()).filter(Boolean).sort().at(-1)||'';
 const sitemap=`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${['https://nicheworks.app/tools/trashnavi/',...outputs.map(o=>o.url)].map(u=>`  <url>\n    <loc>${u}</loc>${lastmod?`\n    <lastmod>${lastmod}</lastmod>`:''}\n  </url>`).join('\n')}\n</urlset>\n`;
 const drift=[];
 function sync(file,content,label){ if(checkMode){ if(!fs.existsSync(file)) return drift.push(`${label}: missing`); if(fs.readFileSync(file,'utf8')!==content) drift.push(`${label}: out of date`); } else { fs.mkdirSync(path.dirname(file),{recursive:true}); fs.writeFileSync(file,content,'utf8'); } }
