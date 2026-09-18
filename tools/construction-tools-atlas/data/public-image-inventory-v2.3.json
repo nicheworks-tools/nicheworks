@@ -52,14 +52,14 @@
         "unreviewed": 0,
         "not_required": 47,
         "awaiting_source": 787,
-        "candidate": 6,
-        "provenance_verified": 0,
+        "candidate": 2,
+        "provenance_verified": 4,
         "subject_verified": 0,
         "verified": 0,
         "promoted": 30
       }
     },
-    "evidence_sha256": "917e7440158283c01c7c93091fbc6b37624b20ff398f69a0c7ebe887bc2e629f",
+    "evidence_sha256": "a9c3d3a43b98d903b0e13fa518fa902e9bca79d14fa70def866f52133b6467d4",
     "rows": [
       {
         "id": "access_door",
@@ -246,12 +246,12 @@
       {
         "id": "backhoe_loader",
         "applicability": "required",
-        "stage": "candidate",
+        "stage": "provenance_verified",
         "applicability_reviewed": true,
-        "provenance_verified": false,
+        "provenance_verified": true,
         "subject_verified": false,
         "hold": null,
-        "reason": "Wikimedia Commons candidate located; the file page identifies a backhoe loader and the photograph shows the combined front-loader/rear-excavator machine. Provenance/license verification remains pending.",
+        "reason": "Wikimedia Commons provenance verified: own work by Raysonho @ Open Grid Scheduler / Grid Engine, CC0 1.0, with the Commons SHA-1 pinned from structured data.",
         "candidate_id": "wave5a:backhoe_loader",
         "source_entry_id": "backhoe_loader",
         "attachment": "none"
@@ -675,12 +675,12 @@
       {
         "id": "circuit_breaker",
         "applicability": "required",
-        "stage": "candidate",
+        "stage": "provenance_verified",
         "applicability_reviewed": true,
-        "provenance_verified": false,
+        "provenance_verified": true,
         "subject_verified": false,
         "hold": null,
-        "reason": "Wikimedia Commons candidate located; the file page identifies apartment circuit breakers and the photograph directly depicts breaker devices. Provenance/license verification remains pending.",
+        "reason": "Wikimedia Commons provenance verified: own work by Douglas Paul Perkins, CC0 1.0, with the Commons SHA-1 pinned from structured data.",
         "candidate_id": "wave5a:circuit_breaker",
         "source_entry_id": "circuit_breaker",
         "attachment": "none"
@@ -688,12 +688,12 @@
       {
         "id": "circular_saw",
         "applicability": "required",
-        "stage": "candidate",
+        "stage": "provenance_verified",
         "applicability_reviewed": true,
-        "provenance_verified": false,
+        "provenance_verified": true,
         "subject_verified": false,
         "hold": null,
-        "reason": "Wikimedia Commons candidate located; the file page describes a circular saw and the photograph directly depicts the canonical power tool. Provenance/license verification remains a separate lifecycle step.",
+        "reason": "Wikimedia Commons provenance verified: own work by Hychika, CC BY-SA 4.0, with the Commons SHA-1 pinned from structured data.",
         "candidate_id": "wave5a:circular_saw",
         "source_entry_id": "circular_saw",
         "attachment": "none"
@@ -701,12 +701,12 @@
       {
         "id": "clamp_bar",
         "applicability": "required",
-        "stage": "candidate",
+        "stage": "provenance_verified",
         "applicability_reviewed": true,
-        "provenance_verified": false,
+        "provenance_verified": true,
         "subject_verified": false,
         "hold": null,
-        "reason": "Wikimedia Commons candidate located; the file page describes bar clamps used to laminate a tabletop and the photograph clearly shows the canonical clamp form. Provenance/license verification remains pending.",
+        "reason": "Wikimedia Commons provenance verified: own work by Aerolin55, usable under CC BY-SA 3.0, with the Commons SHA-1 pinned from structured data.",
         "candidate_id": "wave5a:clamp_bar",
         "source_entry_id": "clamp_bar",
         "attachment": "none"
