@@ -1,0 +1,396 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-18-wave6f-roofing-closeout-measurement-1",
+  "entries": [
+    {
+      "id": "touch_up",
+      "wave": "content-wave-006f",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "仕上げ後に残った小さな傷、塗り残し、色むらなどを局所的に補修する「タッチアップ」。塗装・内装などで使われ、対象材と既存仕上げに合う材料・色・艶で補修範囲を整える。",
+      "detail_en": "A local finish repair for small scratches, missed coating, color variation, or similar defects after the main work. Touch-up materials, color, sheen, and preparation should match the existing finish.",
+      "bullets_ja": [
+        "補修前に傷・汚れ・塗膜不良など原因と範囲を確認する。",
+        "既存仕上げと同じ系統の材料・色・艶を使い、必要な下地処理と乾燥条件を守る。",
+        "広範囲の不具合や下地原因がある場合は、単なるタッチアップで隠さず是正方法を確認する。"
+      ],
+      "bullets_en": [
+        "Identify the cause and extent of the defect before repairing it.",
+        "Use compatible material, color, and sheen and follow required surface preparation and drying conditions.",
+        "If the defect is widespread or caused by the substrate, confirm the proper corrective work instead of hiding it with a spot repair."
+      ],
+      "examples_ja": [
+        "塗装完了後に小さな擦り傷を同色塗料で補修する。",
+        "建具取付後に周囲の塗膜欠けを局所補修する。"
+      ],
+      "examples_en": [
+        "Repair a small scratch after painting with matching finish material.",
+        "Touch up chipped coating around installed trim or hardware."
+      ]
+    },
+    {
+      "id": "rafter",
+      "wave": "content-wave-006f",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "屋根面の勾配方向に配置し、野地板や屋根荷重を支持する構造・下地部材。木造では垂木と呼ばれ、断面、間隔、支点、接合方法は屋根構成と構造仕様に従う。",
+      "detail_en": "A sloping roof-framing member that supports roof sheathing and roof loads. In timber construction, rafter size, spacing, bearing, and connections must follow the structural and roof design.",
+      "bullets_ja": [
+        "断面寸法・ピッチ・勾配・支点を図面と仕様に合わせる。",
+        "切欠きや穴あけは耐力へ影響するため、許容範囲を確認せずに加工しない。",
+        "施工中は転倒・滑落・不安定な仮置きを避け、必要な仮固定を行う。"
+      ],
+      "bullets_en": [
+        "Match section size, spacing, slope, and bearing to the drawings and specification.",
+        "Do not notch or drill rafters without confirming the permitted limits because modifications can reduce capacity.",
+        "During erection, prevent unstable placement and provide temporary fixing or bracing where required."
+      ],
+      "examples_ja": [
+        "屋根勾配に合わせて垂木を所定ピッチで配置する。",
+        "垂木端部を指定金物で母屋・軒桁へ固定する。"
+      ],
+      "examples_en": [
+        "Install rafters at the specified spacing along the roof slope.",
+        "Secure rafter ends to supporting members with the specified connectors."
+      ]
+    },
+    {
+      "id": "roofing_felt",
+      "wave": "content-wave-006f",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "屋根仕上げ材の下に施工する防水・二次防水層の総称。アスファルトルーフィングや改質系などがあり、屋根材、勾配、下地、露出条件に合う製品と重ね寸法を選ぶ。",
+      "detail_en": "Roof underlayment installed beneath the finished roof covering as a secondary water-shedding layer. Product type, lap dimensions, substrate, roof slope, and exposure limits must suit the roof system.",
+      "bullets_ja": [
+        "乾燥し平滑な下地へ、上下関係を崩さない方向で所定の重ね幅を確保して張る。",
+        "破れ・しわ・釘穴の拡大を避け、固定方法と留付け間隔を製品仕様に合わせる。",
+        "長期間むき出しにせず、許容露出期間内に屋根仕上げを施工する。"
+      ],
+      "bullets_en": [
+        "Install on a dry, sound substrate with the specified laps arranged to shed water correctly.",
+        "Avoid tears, wrinkles, and enlarged fastener holes and follow the specified fastening method and spacing.",
+        "Do not leave the underlayment exposed beyond its permitted exposure period; complete the roof covering in time."
+      ],
+      "examples_ja": [
+        "野地板の上へ軒先側からルーフィングを重ね張りする。",
+        "谷部や立上り部を仕様どおり増し張りしてから屋根材を施工する。"
+      ],
+      "examples_en": [
+        "Lay roofing underlayment from the eave upward with the required overlaps.",
+        "Provide specified additional underlayment at valleys or upstands before installing the roof covering."
+      ]
+    },
+    {
+      "id": "shingle",
+      "wave": "content-wave-006f",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "屋根面へ重ねて施工する板状・シート状の屋根仕上げ材。アスファルトシングルなどがあり、製品ごとの有効寸法、重ね、留付け位置、対応勾配を守って施工する。",
+      "detail_en": "An overlapping roof-covering unit such as an asphalt shingle. Exposure, lap, fastener location, pattern, and permitted roof slope are product-specific and must be followed.",
+      "bullets_ja": [
+        "スターター位置と割付けを確認し、継ぎ目が不適切に連続しないよう配置する。",
+        "指定された釘・留付け本数と位置を守り、打ち過ぎや浮きを避ける。",
+        "低温・強風・高温など施工条件と接着部の性能条件を製品仕様で確認する。"
+      ],
+      "bullets_en": [
+        "Set out the starter course and pattern so joints do not align in an unsuitable repeated line.",
+        "Use the specified fastener type, count, and location and avoid overdriving or leaving fasteners proud.",
+        "Check product limits for installation temperature, wind conditions, and sealing or adhesive performance."
+      ],
+      "examples_ja": [
+        "スターター施工後にシングル材を所定のずらし寸法で葺く。",
+        "棟・端部を専用部材と指定留付け方法で納める。"
+      ],
+      "examples_en": [
+        "After the starter course, install shingles with the specified offset pattern.",
+        "Finish ridges and edges with the designated components and fastening method."
+      ]
+    },
+    {
+      "id": "flashing",
+      "wave": "content-wave-006f",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "屋根・外壁・開口部などの取合いで、水を外側へ導いて浸入を防ぐ板金・防水部材。金属板や成形部材などがあり、周囲の防水層と連続させて納める。",
+      "detail_en": "Sheet-metal or membrane detailing used at roof, wall, and opening transitions to direct water outward and prevent intrusion. Flashing must be integrated continuously with surrounding weather-resistive layers.",
+      "bullets_ja": [
+        "水が上から下へ流れる重ね順序を守り、逆重ねを作らない。",
+        "防水紙・屋根材・外装材との取り合いを連続させ、端部や貫通部を仕様どおり納める。",
+        "異種金属の接触、腐食環境、熱伸縮を考慮して材質と固定方法を選ぶ。"
+      ],
+      "bullets_en": [
+        "Maintain shingle-style laps so water is always directed to the exterior rather than behind the flashing.",
+        "Integrate flashing with underlayment, WRB, roofing, or cladding and detail edges and penetrations as specified.",
+        "Consider dissimilar-metal contact, corrosion exposure, and thermal movement when selecting material and fastening."
+      ],
+      "examples_ja": [
+        "屋根と壁の取合いへ雨押え板金を施工する。",
+        "窓開口まわりで防水層とフラッシングを連続させる。"
+      ],
+      "examples_en": [
+        "Install flashing at a roof-to-wall intersection.",
+        "Integrate window-opening flashing with the surrounding weather barrier."
+      ]
+    },
+    {
+      "id": "seal_tape",
+      "wave": "content-wave-006f",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "開口部、継ぎ目、貫通部などの防水・気密補助に使う粘着テープ。ブチル系など種類があり、下地との接着性、温度範囲、耐候性、上から重ねる材料との適合を確認する。",
+      "detail_en": "Adhesive sealing tape used to support waterproofing or air sealing at openings, joints, and penetrations. Adhesive chemistry, substrate compatibility, temperature range, weather exposure, and integration with adjacent materials must be considered.",
+      "bullets_ja": [
+        "ほこり・水分・油分を除いた適合下地へ、しわや空気溜まりを作らず圧着する。",
+        "端部・継ぎ目は指定重ね幅を確保し、ローラーなど製品指定の方法で十分に押さえる。",
+        "低温施工、長期露出、可塑剤を含む下地など適合外条件を製品仕様で確認する。"
+      ],
+      "bullets_en": [
+        "Apply to a compatible substrate that is clean and dry, avoiding wrinkles and trapped air.",
+        "Provide the specified overlaps at ends and joints and apply pressure with the recommended roller or method.",
+        "Check product limitations for low-temperature application, prolonged exposure, plasticized substrates, and other compatibility concerns."
+      ],
+      "examples_ja": [
+        "窓まわりの防水紙と開口部を防水テープで連続させる。",
+        "外壁貫通部のフランジ周囲を指定順序でテープ処理する。"
+      ],
+      "examples_en": [
+        "Use flashing tape to integrate a window opening with the wall weather barrier.",
+        "Seal around an exterior-wall penetration flange in the specified sequence."
+      ]
+    },
+    {
+      "id": "punch_list",
+      "wave": "content-wave-006f",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "完成・引渡し前の検査で見つかった未完了、欠陥、調整不足などの是正項目をまとめるリスト。項目ごとに場所、内容、担当、期限、完了確認を管理する。",
+      "detail_en": "A list of incomplete, defective, or adjustment items identified during completion inspections before handover. Each item is normally tracked by location, description, responsible party, due date, and closure status.",
+      "bullets_ja": [
+        "項目を曖昧な表現にせず、場所・対象・不具合内容が特定できるよう記録する。",
+        "担当者と期限、是正方法または参照図書を紐付け、重複や漏れを防ぐ。",
+        "「完了」だけで閉じず、必要な再確認・写真・検査記録で是正済みを確認する。"
+      ],
+      "bullets_en": [
+        "Record each item so the location, affected work, and defect can be identified without ambiguity.",
+        "Assign responsibility and due dates and link the item to the relevant corrective instruction or reference document.",
+        "Do not close an item on status alone; verify correction with the required reinspection, photo, or record."
+      ],
+      "examples_ja": [
+        "竣工検査で見つかった建具調整と塗装傷を手直しリストへ登録する。",
+        "是正後に再検査して項目を完了扱いにする。"
+      ],
+      "examples_en": [
+        "Add door adjustment and paint-damage items found during completion inspection to the punch list.",
+        "Reinspect corrected work before marking the item closed."
+      ]
+    },
+    {
+      "id": "handover",
+      "wave": "content-wave-006f",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "完成した建物・設備を発注者や運用側へ引き渡す工程。検査・是正の完了、鍵や取扱情報、竣工図、保証・保守資料など必要な成果物を確認して移管する。",
+      "detail_en": "The process of transferring a completed building or system to the owner or operator. It commonly includes confirming inspections and corrections and delivering keys, operating information, as-built records, warranties, and maintenance documents.",
+      "bullets_ja": [
+        "未完了事項と例外扱いを整理し、引渡し時点で残る項目を双方が把握できる状態にする。",
+        "竣工図、取扱説明、保証、試験記録、鍵など契約上必要な資料・物品を照合する。",
+        "設備操作や緊急時対応など必要な説明・教育を記録し、受領確認を残す。"
+      ],
+      "bullets_en": [
+        "Identify outstanding items and agreed exceptions so both parties understand what remains at handover.",
+        "Check delivery of contract-required records and items such as as-builts, manuals, warranties, test records, and keys.",
+        "Document required operational or emergency-response training and retain evidence of receipt or acceptance."
+      ],
+      "examples_ja": [
+        "竣工図と設備取扱資料を揃えて発注者へ引き渡す。",
+        "残工事リストを合意した上で鍵と管理情報を移管する。"
+      ],
+      "examples_en": [
+        "Deliver as-built drawings and equipment manuals to the owner at handover.",
+        "Transfer keys and management information with an agreed list of outstanding work."
+      ]
+    },
+    {
+      "id": "as_built",
+      "wave": "content-wave-006f",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "施工完了時の実際の位置・寸法・系統・変更内容を反映した竣工図・記録図。設計図から変更された配管、機器、開口、ルートなどを将来の維持管理で追えるよう更新する。",
+      "detail_en": "As-built drawings or records showing the installed condition at completion, including actual locations, dimensions, routes, systems, and approved deviations from the design. They support future operation, maintenance, and alteration work.",
+      "bullets_ja": [
+        "施工中の変更を後から記憶で補わず、決定・施工時点で追記できる運用にする。",
+        "変更箇所の位置・寸法・系統・参照番号を明確にし、曖昧な手書き指示だけで残さない。",
+        "最終版の版数・日付・承認状態を管理し、古い図面と混同しない。"
+      ],
+      "bullets_en": [
+        "Capture field changes as they occur rather than reconstructing them from memory at the end of the project.",
+        "Record changed locations, dimensions, routes, and reference numbers clearly rather than relying on ambiguous notes.",
+        "Control final revision, date, and approval status so superseded drawings are not confused with the record set."
+      ],
+      "examples_ja": [
+        "現場変更した配管ルートを竣工図へ反映する。",
+        "機器の最終設置位置と型式を記録図へ追記する。"
+      ],
+      "examples_en": [
+        "Update the as-built drawing with a field-rerouted pipe run.",
+        "Record the final equipment location and identification in the completion drawings."
+      ]
+    },
+    {
+      "id": "rfis",
+      "wave": "content-wave-006f",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "RFI（Request for Information）は、図面・仕様・現場条件の不明点や矛盾について正式な回答を求める質疑手続き。質問、該当資料、回答、影響、期限を追跡できる形で管理する。",
+      "detail_en": "An RFI (Request for Information) is a formal query used to obtain clarification of drawings, specifications, or conflicting site conditions. The question, references, response, impact, and status should remain traceable.",
+      "bullets_ja": [
+        "質問対象の図面番号・仕様節・位置などを明記し、何が不明かを一件ごとに具体化する。",
+        "回答前に推測で施工を進めず、緊急時の扱いもプロジェクトの承認経路に従う。",
+        "回答による設計変更・工程・コスト影響がある場合は、関連する変更管理へつなげる。"
+      ],
+      "bullets_en": [
+        "Identify the relevant drawing, specification section, location, and exact point requiring clarification.",
+        "Do not proceed on assumptions before a response; handle urgent cases through the project's authorized decision path.",
+        "If the response changes design, schedule, or cost, link it to the appropriate change-control process."
+      ],
+      "examples_ja": [
+        "図面と仕様書で納まりが異なる箇所についてRFIを発行する。",
+        "RFI回答を該当施工図と変更管理記録へ反映する。"
+      ],
+      "examples_en": [
+        "Issue an RFI where a drawing detail conflicts with the specification.",
+        "Incorporate the RFI response into the relevant shop drawing and change record."
+      ]
+    },
+    {
+      "id": "change_order",
+      "wave": "content-wave-006f",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "契約後に工事範囲、金額、工期などを正式に変更するための変更指示・変更契約。呼称と手続きは契約方式で異なるため、誰が承認できるかと発効条件を明確にする。",
+      "detail_en": "A formal change to contracted scope, price, schedule, or related obligations after award. Terminology and procedure vary by contract, so authorization authority and the condition under which a change becomes effective must be clear.",
+      "bullets_ja": [
+        "変更内容、理由、対象範囲、図書、金額・工期への影響を追跡可能な形で記録する。",
+        "口頭指示だけで契約変更扱いにせず、契約で定めた承認権限と手続きを確認する。",
+        "承認後は旧図・旧指示を識別し、現場へ最新情報が行き渡るよう版管理する。"
+      ],
+      "bullets_en": [
+        "Record the change, reason, affected scope and documents, and any cost or schedule impact in a traceable form.",
+        "Do not treat an informal verbal direction as a contractual change without checking the authorization process defined by the contract.",
+        "After approval, identify superseded information and control revisions so the field is working from the current instruction."
+      ],
+      "examples_ja": [
+        "仕様変更による追加工事を変更指示として金額・工期とともに整理する。",
+        "承認済み変更を施工図と工程表へ反映する。"
+      ],
+      "examples_en": [
+        "Document additional work caused by a specification change together with cost and schedule effects.",
+        "Update construction drawings and schedule after an approved change."
+      ]
+    },
+    {
+      "id": "torque",
+      "wave": "content-wave-006f",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "回転させる力の作用を表す量で、ボルト締付けなどでは指定トルクの管理に使う。単位はN·mなどで表し、締結部の仕様に応じて適切な工具と手順を用いる。",
+      "detail_en": "Torque is the turning moment of a force and is commonly controlled during bolted fastening. It is expressed in units such as N·m, and the required value and tightening method depend on the joint specification.",
+      "bullets_ja": [
+        "指定値の単位を確認し、N·mと他単位を取り違えない。",
+        "トルク管理が必要な締結では、適切な範囲の校正・管理された工具を使用する。",
+        "潤滑状態、締付け順序、再使用可否などで必要条件が変わるため、対象仕様に従う。"
+      ],
+      "bullets_en": [
+        "Confirm the specified units and do not confuse N·m with other torque units.",
+        "Where controlled tightening is required, use a suitable tool within its range and under the required calibration or verification regime.",
+        "Follow the joint specification because lubrication, tightening sequence, and fastener reuse can affect the required method."
+      ],
+      "examples_ja": [
+        "アンカーボルトを指定された締付けトルクで管理する。",
+        "フランジボルトを所定順序で段階的に締め付ける。"
+      ],
+      "examples_en": [
+        "Tighten an anchor-bolt connection to the specified torque where required.",
+        "Tighten flange bolts in the specified sequence and stages."
+      ]
+    },
+    {
+      "id": "caliper",
+      "wave": "content-wave-006f",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "外径、内径、段差、深さなどを測定するためのノギス。バーニヤ、ダイヤル、デジタル式があり、必要精度と測定範囲に合うものを選ぶ。",
+      "detail_en": "A caliper used to measure external dimensions, internal dimensions, steps, and depth. Vernier, dial, and digital types are selected according to the required resolution and measurement range.",
+      "bullets_ja": [
+        "測定前に測定面を清掃し、ゼロ点と単位を確認する。",
+        "ジョウを傾けたり強く押し付けたりせず、対象へ正しく当てて読む。",
+        "要求精度に応じて校正・点検状態を確認し、落下や測定面の損傷を避ける。"
+      ],
+      "bullets_en": [
+        "Clean the measuring faces and check zero and units before measurement.",
+        "Keep the jaws correctly aligned with the feature and avoid excessive measuring force.",
+        "Confirm calibration or verification status as required by the measurement accuracy and protect the tool from impact or damaged measuring faces."
+      ],
+      "examples_ja": [
+        "ボルト軸径をノギスで測定する。",
+        "配管部品の外径と内径を確認する。"
+      ],
+      "examples_en": [
+        "Measure a bolt shank diameter with a caliper.",
+        "Check the outside and inside diameter of a fitting."
+      ]
+    },
+    {
+      "id": "feeler_gauge",
+      "wave": "content-wave-006f",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "厚さの異なる薄いブレードを隙間へ差し込み、クリアランスを測るシクネスゲージ。機械部品、建具、設備などの隙間確認に使い、ブレード表示値で判断する。",
+      "detail_en": "A set of thin blades of known thickness used to measure small clearances or gaps. Feeler gauges are used for machinery, fittings, doors, and other assemblies by checking which blade or blade combination fits.",
+      "bullets_ja": [
+        "測定面とブレードを清掃し、錆・付着物・曲がりがないことを確認する。",
+        "ブレードを無理に押し込まず、軽い抵抗で通る厚さを基準にする。",
+        "複数枚を重ねる場合は表示厚さを正しく合算し、要求精度に合う方法を使う。"
+      ],
+      "bullets_en": [
+        "Clean the surfaces and blades and check that blades are free from rust, contamination, or bending.",
+        "Do not force a blade into the gap; use the specified feel or light resistance criterion.",
+        "When combining blades, add the marked thicknesses correctly and use a method appropriate for the required accuracy."
+      ],
+      "examples_ja": [
+        "機器据付後に指定クリアランスをシクネスゲージで確認する。",
+        "建具の隙間が許容範囲内か測定する。"
+      ],
+      "examples_en": [
+        "Check a specified equipment clearance with a feeler gauge after installation.",
+        "Measure whether a door or fitting gap is within tolerance."
+      ]
+    },
+    {
+      "id": "dial_gauge",
+      "wave": "content-wave-006f",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "測定子の微小な変位を針や表示で読み取る比較測定器。振れ、段差、変位、平行・平面状態の確認などに使い、安定したスタンドや基準面へ固定して測る。",
+      "detail_en": "A comparator instrument that displays small displacement of a contact point. Dial indicators are used for runout, steps, movement, alignment, and comparative checks when mounted rigidly against a reference.",
+      "bullets_ja": [
+        "スタンドや治具を剛性のある位置へ固定し、測定中に本体が動かないようにする。",
+        "測定子の方向と予圧を適切に設定してゼロ合わせし、測定方向のずれを避ける。",
+        "衝撃や過大ストロークを与えず、要求精度に応じて点検・校正状態を確認する。"
+      ],
+      "bullets_en": [
+        "Mount the stand or fixture rigidly so the instrument cannot shift during measurement.",
+        "Set contact direction and preload correctly, zero the indicator, and minimize cosine error from misalignment.",
+        "Avoid shock or overtravel and confirm verification or calibration status for the required accuracy."
+      ],
+      "examples_ja": [
+        "回転軸を回して外周の振れをダイヤルゲージで確認する。",
+        "据付機器の相対変位を基準位置と比較測定する。"
+      ],
+      "examples_en": [
+        "Rotate a shaft and check runout with a dial indicator.",
+        "Compare equipment displacement against a fixed reference position."
+      ]
+    }
+  ]
+}
