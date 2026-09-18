@@ -51,15 +51,15 @@
       "by_stage": {
         "unreviewed": 0,
         "not_required": 47,
-        "awaiting_source": 787,
+        "awaiting_source": 781,
         "candidate": 0,
         "provenance_verified": 0,
         "subject_verified": 0,
-        "verified": 6,
+        "verified": 12,
         "promoted": 30
       }
     },
-    "evidence_sha256": "add94ee09a499ff8890ac125a7835f1aec6c7edd9ae95b2cf53ea1c50e9b045a",
+    "evidence_sha256": "2e610d215e5ede7be81e717df3c702744fd513104f3919eea2521839622f7a91",
     "rows": [
       {
         "id": "access_door",
@@ -1182,14 +1182,14 @@
       {
         "id": "drill_driver",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "verified",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A drill driver is a distinctive cordless/corded power tool; a subject-matched photograph is important for distinguishing it from impact drivers.",
-        "candidate_id": null,
-        "source_entry_id": null,
+        "reason": "Subject review passed: Commons explicitly identifies the photographed tool as a cordless drill/driver; chuck, clutch body and battery form match the drill_driver canonical.",
+        "candidate_id": "wave5b:drill_driver",
+        "source_entry_id": "drill_driver",
         "attachment": "none"
       },
       {
@@ -1364,14 +1364,14 @@
       {
         "id": "excavator",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "verified",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "An excavator is a distinctive tracked/wheeled machine with boom, arm, and bucket; a verified photograph is highly informative.",
-        "candidate_id": null,
-        "source_entry_id": null,
+        "reason": "Subject review passed: the side-view photograph is explicitly identified as an excavator and shows the tracked undercarriage, boom, arm and bucket characteristic of the canonical.",
+        "candidate_id": "wave5b:excavator",
+        "source_entry_id": "excavator",
         "attachment": "none"
       },
       {
@@ -1637,14 +1637,14 @@
       {
         "id": "forklift",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "verified",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A forklift is a distinctive materials-handling vehicle with mast and forks; a verified photograph strongly aids identification.",
-        "candidate_id": null,
-        "source_entry_id": null,
+        "reason": "Subject review passed: the photograph directly depicts a diesel forklift with mast and forks, matching the forklift canonical rather than another material-handling vehicle.",
+        "candidate_id": "wave5b:forklift",
+        "source_entry_id": "forklift",
         "attachment": "none"
       },
       {
@@ -1845,14 +1845,14 @@
       {
         "id": "hammer",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "verified",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A hammer is a physical hand tool with clear visual identity; a reviewed photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
+        "reason": "Subject review passed: the photograph directly depicts a claw hammer with head, striking face, claw and handle clearly visible, matching the hammer canonical.",
+        "candidate_id": "wave5b:hammer",
+        "source_entry_id": "hammer",
         "attachment": "none"
       },
       {
@@ -1975,14 +1975,14 @@
       {
         "id": "hard_hat",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "verified",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A hard hat is physical head-protection PPE with clear visual identity; a reviewed photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
+        "reason": "Subject review passed: Commons describes and depicts a hard hat as the primary subject; the helmet shape and suspension shell are clearly identifiable.",
+        "candidate_id": "wave5b:hard_hat",
+        "source_entry_id": "hard_hat",
         "attachment": "none"
       },
       {
@@ -2131,14 +2131,14 @@
       {
         "id": "jigsaw",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "verified",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A jigsaw is a distinctive reciprocating-blade power saw; a subject-matched photograph strongly aids identification.",
-        "candidate_id": null,
-        "source_entry_id": null,
+        "reason": "Subject review passed: the photograph directly depicts a handheld electric jigsaw with its narrow reciprocating blade and shoe visible, matching the jigsaw canonical.",
+        "candidate_id": "wave5b:jigsaw",
+        "source_entry_id": "jigsaw",
         "attachment": "none"
       },
       {
