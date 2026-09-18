@@ -58,3 +58,19 @@ FastScan inherits the shared-data requirements and additionally needs the OCR/re
 - `humectant/solvent`: 4
 
 `general` is intentionally not a public role and should be resolved through record-level semantic review, not exposed as a meaningful ingredient function.
+
+
+## Runtime provenance correction
+
+The original baseline intentionally counted only raw dictionary fields. That remains useful as raw-data debt, but it no longer represents runtime provenance after the verified overlay work.
+
+Current runtime provenance on main:
+
+- verified category overlay identities: 116
+- verified note overlay identities: 22
+- verified note identities with maintained Japanese naming: 22
+- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): 22 / 599
+
+Accordingly, completion readiness must report raw dictionary debt and runtime verified provenance separately. A raw evidence count of zero must not be interpreted as zero runtime provenance.
+
+The runtime provenance floors are ratcheted at 116 verified categories, 22 verified notes, and 22 strong runtime identities so later changes cannot silently discard completed provenance work.
