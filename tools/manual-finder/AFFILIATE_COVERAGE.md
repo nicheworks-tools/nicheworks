@@ -21,7 +21,7 @@ Required printer reconciliation:
 
 The camera accessory audit independently reconciles as:
 
-`camera basic 185 = detail 121 + reviewed exclusion 26 + missing 38`
+`camera basic 185 = detail 131 + reviewed exclusion 26 + missing 28`
 
 Maker-level camera state:
 
@@ -267,7 +267,7 @@ After Waves 1–41:
 
 `DJI camera 96 = detail 70 + reviewed exclusion 26 + missing 0`
 
-The catalog-wide camera audit is therefore 185 actionable basic rows, 121 detail mappings, 26 reviewed exclusions, and 38 missing accessory-detail rows.
+The catalog-wide camera audit is therefore 185 actionable basic rows, 131 detail mappings, 26 reviewed exclusions, and 28 missing accessory-detail rows.
 
 ## OM SYSTEM camera review — Waves 1–6
 
@@ -309,6 +309,14 @@ OM SYSTEM is closed:
 
 `OM SYSTEM camera 37 = detail 37 + reviewed exclusion 0 + missing 0`
 
+## GoPro camera review — Waves 1–3
+
+Wave 1 maps exactly `HERO9 Black`, `HERO10 Black`, `HERO11 Black`, and `HERO12 Black` to `GoPro Enduro Battery`, backed by GoPro's official Enduro compatibility listing. Wave 2 maps exactly `HERO13 Black` to `GoPro Enduro Battery HERO13 Black`; GoPro explicitly states the HERO13 battery uses a new connector and is not compatible with previous GoPros. Wave 3 maps exactly `HERO5 Black`, `HERO6 Black`, `HERO7 Black`, `HERO8 Black`, and `HERO 2018` to `GoPro HERO8 Black Rechargeable Battery`, with HERO5 Black requiring the software update noted by GoPro.
+
+Current GoPro reconciliation:
+
+`GoPro camera 31 = detail 10 + reviewed exclusion 0 + missing 21`
+
 ## Runtime boundary and source of truth
 
 - `app.paged.js` places canonical `maker`, `model`, and `category` metadata on result cards.
@@ -338,7 +346,10 @@ OM SYSTEM is closed:
 - `affiliate-om-system-camera-accessories-wave3.js` adds exact TG-4 / TG-5 / TG-6 / TG-7 LI-92B mappings.
 - `affiliate-om-system-camera-accessories-wave4.js` adds exact seven-row BLS-50 mappings.
 - `affiliate-om-system-camera-accessories-wave5.js` adds exact five-row BLN-1 mappings.
-- `affiliate-om-system-camera-accessories-wave6.js` adds exact fifteen-row legacy BLS-50 mappings and exposes the merged 121-row camera detail ledger.
+- `affiliate-om-system-camera-accessories-wave6.js` adds exact fifteen-row legacy BLS-50 mappings.
+- `affiliate-gopro-camera-accessories-wave1.js` adds exact HERO9–12 Black Enduro mappings.
+- `affiliate-gopro-camera-accessories-wave2.js` adds the exact HERO13 Black Enduro mapping.
+- `affiliate-gopro-camera-accessories-wave3.js` adds exact HERO5–8 Black / HERO 2018 mappings and exposes the merged 131-row camera detail ledger.
 - `affiliate-camera-detail-exclusions.js` contains twenty-six exact DJI exclusions across Waves 32, 34, 36, 40, and 41.
 - `affiliate-runtime.js` sequentially loads Nikon, DJI, and OM SYSTEM ledgers before affiliate rendering.
 - `tests/affiliate-coverage.test.mjs` and `tests/affiliate-doc-sync.test.mjs` protect printer reconciliation.
@@ -368,6 +379,9 @@ OM SYSTEM is closed:
 - `tests/om-system-bls50-accessory-wave4.test.mjs` protects the exact OM SYSTEM BLS-50 Wave 4 boundary.
 - `tests/om-system-bln1-accessory-wave5.test.mjs` protects the exact OM SYSTEM BLN-1 Wave 5 boundary.
 - `tests/om-system-bls50-legacy-wave6.test.mjs` protects the exact OM SYSTEM legacy BLS-50 Wave 6 boundary.
+- `tests/gopro-enduro-accessory-wave1.test.mjs` protects the exact GoPro Enduro Wave 1 boundary.
+- `tests/gopro-hero13-accessory-wave2.test.mjs` protects the exact GoPro HERO13 Wave 2 boundary.
+- `tests/gopro-legacy-battery-wave3.test.mjs` protects the exact GoPro legacy battery Wave 3 boundary.
 - `tests/camera-accessory-coverage.test.mjs` computes camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` prevents documentation drift and auto-discovers DJI wave evidence.
 - `CAMERA_ACCESSORY_COVERAGE.md` records the measured camera baseline.
@@ -400,4 +414,4 @@ DJI is closed at:
 
 ## Next expansion gate
 
-Printer-detail is closed. Nikon, DJI, and OM SYSTEM camera coverage are closed. The measured camera backlog is GoPro 31 and Insta360 7.
+Printer-detail is closed. Nikon, DJI, and OM SYSTEM camera coverage are closed. The measured camera backlog is GoPro 21 and Insta360 7.

@@ -72,7 +72,7 @@ ManualFinder is an `AFFILIATE` tool, but commerce is an optional next-action lay
 
 Every actionable `カメラ・映像` row with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or explicit missing-accessory diagnostic state.
 
-The current camera state is **185 basic = 121 detail + 26 reviewed exclusions + 38 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
+The current camera state is **185 basic = 131 detail + 26 reviewed exclusions + 28 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
 
 Nikon Waves 1–2 remain closed at **14 detail + 0 reviewed exclusions + 0 missing**.
 
@@ -93,7 +93,9 @@ DJI camera review is closed at zero missing. Camera-detail exclusions contain tw
 
 OM SYSTEM review is closed through Waves 1–6. Waves 1–4 cover BLX-1, BLH-1, LI-92B, and current/late BLS-50 families. Wave 5 maps exactly `E-M1`, `E-M5`, `E-M5 Mark II`, `E-P5`, and `PEN-F` to BLN-1. Wave 6 maps the final fifteen legacy PEN/E-M10 rows to BLS-50. Waves 5–6 use OM SYSTEM's official power-supply compatibility table, which explicitly marks those battery/model combinations; no family-name inference is used. The measured OM SYSTEM state is **37 basic = 37 detail + 0 reviewed exclusions + 0 missing accessory detail**.
 
-Remaining missing camera rows are GoPro 31 and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
+GoPro review now covers Waves 1–3. Wave 1 maps exactly HERO9–12 Black to Enduro; Wave 2 maps exactly HERO13 Black to its model-specific Enduro battery; Wave 3 maps exactly HERO5–8 Black plus HERO 2018 to the 1220 mAh rechargeable battery family using GoPro's official compatibility page. The measured GoPro state is **31 basic = 10 detail + 0 reviewed exclusions + 21 missing accessory detail**.
+
+Remaining missing camera rows are GoPro 21 and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## State and persistence
 
@@ -160,7 +162,11 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] OM SYSTEM Wave 5 activates exactly five BLN-1 rows backed by the official OM SYSTEM power-supply compatibility table.
 - [x] OM SYSTEM Wave 6 activates exactly fifteen legacy BLS-50 rows backed by the same explicit compatibility table.
 - [x] OM SYSTEM Waves 1–6 reconcile to **37 basic = 37 detail + 0 reviewed exclusions + 0 missing accessory detail**.
-- [x] The catalog-wide camera audit reconciles to **185 basic = 121 detail + 26 reviewed exclusions + 38 missing accessory detail** while seven maker/index rows remain non-actionable.
+- [x] GoPro Wave 1 activates exactly HERO9–12 Black with official Enduro compatibility evidence.
+- [x] GoPro Wave 2 activates exactly HERO13 Black with model-specific official Enduro evidence.
+- [x] GoPro Wave 3 activates exactly HERO5–8 Black plus HERO 2018 with official rechargeable-battery compatibility evidence.
+- [x] GoPro currently reconciles to **31 basic = 10 detail + 0 reviewed exclusions + 21 missing accessory detail**.
+- [x] The catalog-wide camera audit reconciles to **185 basic = 131 detail + 26 reviewed exclusions + 28 missing accessory detail** while seven maker/index rows remain non-actionable.
 - [x] Missing-model maker diagnostics and documentation sync remain machine-readable drift guards.
 - [x] Wrong maker/category, nonexistent models, spelling variants, and other unreviewed compatibility cases fail closed.
 - [x] Amazon disclosure and sponsored-link semantics remain supplied by the shared affiliate helper.
@@ -226,6 +232,9 @@ Reviewed DJI camera accessory ledgers:
 - `tools/manual-finder/affiliate-om-system-camera-accessories-wave4.js`
 - `tools/manual-finder/affiliate-om-system-camera-accessories-wave5.js`
 - `tools/manual-finder/affiliate-om-system-camera-accessories-wave6.js`
+- `tools/manual-finder/affiliate-gopro-camera-accessories-wave1.js`
+- `tools/manual-finder/affiliate-gopro-camera-accessories-wave2.js`
+- `tools/manual-finder/affiliate-gopro-camera-accessories-wave3.js`
 
 Camera accessory tests and audit gates:
 
@@ -278,6 +287,9 @@ Camera accessory tests and audit gates:
 - `tools/manual-finder/tests/om-system-bls50-accessory-wave4.test.mjs`
 - `tools/manual-finder/tests/om-system-bln1-accessory-wave5.test.mjs`
 - `tools/manual-finder/tests/om-system-bls50-legacy-wave6.test.mjs`
+- `tools/manual-finder/tests/gopro-enduro-accessory-wave1.test.mjs`
+- `tools/manual-finder/tests/gopro-hero13-accessory-wave2.test.mjs`
+- `tools/manual-finder/tests/gopro-legacy-battery-wave3.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-coverage.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs`
 - `tools/manual-finder/tests/affiliate-coverage.test.mjs`
