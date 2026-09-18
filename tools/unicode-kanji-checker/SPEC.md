@@ -9,6 +9,14 @@
 
 漢字、旧字体、異体字についてUnicode code point、HTML entity、UTF-16、旧字体対応、表示環境上の注意をbrowser内で確認するreference toolを提供する。
 
+## Search cluster role
+
+- Primary intent: inspect kanji code points, HTML entities, UTF-16, and rendering concerns.
+- Primary query families: `漢字 Unicode`, `旧字体 Unicode`, `異体字 Unicode`.
+- Supporting query families: `漢字 コードポイント`, `CJK compatibility ideograph`.
+- The page is the cluster's encoding/rendering inspector and does not decide official or legal glyph validity.
+- Primary task handoffs are Variant Kanji Compare, Old Kanji Reference, and Kanji Modernizer.
+
 ## Current functional contract
 
 - 入力文字列からwhitespaceを除き、unique character単位で解析する。
