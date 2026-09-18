@@ -68,6 +68,10 @@
     "palmitic acid": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/10137/palmitic-acid/"],"runtime_verified":true},
     "stearic acid": {"category":"cleanser","source_functions":["cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15514/stearic-acid/"],"runtime_verified":true},
     "myristic acid": {"category":"cleanser","source_functions":["cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/9266/myristic-acid/"],"runtime_verified":true},
-    "niacinamide": {"category":"smoothing","source_functions":["smoothing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/9443/niacinamide/"],"runtime_verified":true}
+    "niacinamide": {"category":"smoothing","source_functions":["smoothing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/9443/niacinamide/"],"runtime_verified":true},
+    "hydroxyethyl acrylate/sodium acryloyldimethyl taurate copolymer": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/7079/hydroxyethyl-acrylate-sodium-acryloyldimethyl-taurate-copolymer/"],"runtime_verified":true},
+    "ammonium polyacryloyldimethyl taurate": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/933/ammonium-polyacryloyldimethyl-taurate/"],"runtime_verified":true},
+    "ethylhexyl methoxycrylene": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/5485/ethylhexyl-methoxycrylene/"],"runtime_verified":true},
+    "glyceryl stearate se": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6059/glyceryl-stearate-se/"],"runtime_verified":true}
   }
 }

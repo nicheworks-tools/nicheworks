@@ -184,3 +184,17 @@ Wave 17 resolves Niacinamide, a high-frequency canonical identity that was recog
 | `niacinamide` | `smoothing` | category missing | COSMILE Europe lists `SMOOTHING` and describes reducing roughness or irregularities to achieve a more even skin surface. |
 
 The raw Niacinamide record is not rewritten. The verified overlay supplies the public role, while Lite and FastScan both define the same bilingual `smoothing` role label and role-level explanation. This category is intentionally distinct from the pre-existing `soothing` category.
+
+
+## Wave 18 reviewed set
+
+Wave 18 is prioritized from the maintained 30-product official-label regression corpus. It resolves four directly source-backed public-role gaps accounting for nine ingredient occurrences in that corpus.
+
+| Canonical identity | Verified public category | Preserved raw category state | Source basis |
+| --- | --- | --- | --- |
+| `hydroxyethyl acrylate/sodium acryloyldimethyl taurate copolymer` | `viscosity adjuster` | `general` | COSMILE Europe lists `VISCOSITY CONTROLLING` (and emulsion stabilising). |
+| `ammonium polyacryloyldimethyl taurate` | `viscosity adjuster` | `polymer` | COSMILE Europe lists `VISCOSITY CONTROLLING` (and emulsion stabilising). |
+| `ethylhexyl methoxycrylene` | `skin conditioning` | `general` | COSMILE Europe lists `SKIN CONDITIONING`. |
+| `glyceryl stearate se` | `emulsifier` | category missing | COSMILE Europe lists `SURFACTANT - EMULSIFYING`. |
+
+Raw recognition records remain unchanged. For the three identities with unsupported raw categories, the reviewed role becomes the public primary `category` while the raw hint remains auditable. Glyceryl Stearate SE remains category-empty in raw data and is resolved only by the verified overlay.

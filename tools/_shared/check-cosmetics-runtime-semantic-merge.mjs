@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 12, 'the 4 legacy category conflicts plus 8 reviewed Wave 15-16 legacy-vs-verified role conflicts must be explicit at runtime');
+assert.equal(categoryConflicts.length, 15, 'the 4 legacy category conflicts plus 11 reviewed Wave 15-16 and Wave 18 legacy-vs-verified role conflicts must be explicit at runtime');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
@@ -43,7 +43,10 @@ const reviewedVerifiedPrimary = new Map([
   ['hydroxyacetophenone', { category: 'antioxidant', legacy: ['preservative booster'] }],
   ['palmitic acid', { category: 'emollient', legacy: ['general'] }],
   ['stearic acid', { category: 'cleanser', legacy: ['general'] }],
-  ['myristic acid', { category: 'cleanser', legacy: ['general'] }]
+  ['myristic acid', { category: 'cleanser', legacy: ['general'] }],
+  ['hydroxyethyl acrylate/sodium acryloyldimethyl taurate copolymer', { category: 'viscosity adjuster', legacy: ['general'] }],
+  ['ammonium polyacryloyldimethyl taurate', { category: 'viscosity adjuster', legacy: ['polymer'] }],
+  ['ethylhexyl methoxycrylene', { category: 'skin conditioning', legacy: ['general'] }]
 ]);
 
 for (const item of categoryConflicts) {
