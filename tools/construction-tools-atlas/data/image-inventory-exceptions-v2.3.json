@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-inventory-exceptions-v2.3",
-  "version": "2026-09-18-applicability-wave1",
+  "version": "2026-09-18-applicability-wave2",
   "items": [
     {
       "entry_id": "punch_list",
@@ -51,6 +51,16 @@
       "entry_id": "cleanup_katazuke",
       "state": "not_required",
       "reason": "The canonical is a jobsite cleanup/housekeeping practice and slang usage, not a unique physical subject; any photograph would depict an arbitrary cleanup scene rather than identify the term itself."
+    },
+    {
+      "entry_id": "defect_marking",
+      "state": "not_required",
+      "reason": "The canonical is the inspection practice of marking defects, while tape, chalk, tags, symbols, and colors vary by site; a single photograph would depict one arbitrary marking convention rather than identify the concept reliably."
+    },
+    {
+      "entry_id": "dust_control_008",
+      "state": "not_required",
+      "reason": "The canonical is a broad dust-control practice combining extraction, wet methods, barriers, ventilation, and housekeeping; no single photograph can represent the concept without privileging one arbitrary control method."
     }
   ]
 }
