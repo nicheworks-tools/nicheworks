@@ -45,6 +45,7 @@ const EXPECTED_WAVE17_PROMOTED = new Set(['niacinamide']);
 const EXPECTED_WAVE18_PROMOTED = new Set(['hydroxyethyl acrylate/sodium acryloyldimethyl taurate copolymer', 'ammonium polyacryloyldimethyl taurate', 'ethylhexyl methoxycrylene', 'glyceryl stearate se']);
 const EXPECTED_WAVE19_PROMOTED = new Set(['polyacrylate crosspolymer-6', 'polyhydroxystearic acid', 'potassium cetyl phosphate', 'sorbitan isostearate']);
 const EXPECTED_WAVE20_PROMOTED = new Set(['ceramide ap', 'ceramide eop', 'phytosphingosine']);
+const EXPECTED_WAVE21_PROMOTED = new Set(['silica', 'alumina', 'aluminum stearate', 'dimethicone crosspolymer', 'glycol distearate', 'myristyl myristate', 'lecithin']);
 const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu', 'cosmileeurope.eu']);
 
 function normalize(value = '') {
@@ -117,6 +118,7 @@ for (const canonical of EXPECTED_WAVE17_PROMOTED) assert.ok(runtimeMappings[cano
 for (const canonical of EXPECTED_WAVE18_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 18 mapping must be runtime_verified`);
 for (const canonical of EXPECTED_WAVE19_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 19 mapping must be runtime_verified`);
 for (const canonical of EXPECTED_WAVE20_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 20 mapping must be runtime_verified`);
+for (const canonical of EXPECTED_WAVE21_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 21 mapping must be runtime_verified`);
 assert.equal(runtimeMappings['sodium gluconate']?.source_functions?.[0], 'chelating', 'Sodium Gluconate must use the reviewed COSMILE CHELATING authority term');
 assert.equal(runtimeMappings['xanthan gum']?.source_functions?.[0], 'viscosity controlling', 'Xanthan Gum must use the reviewed COSMILE VISCOSITY CONTROLLING authority term');
 assert.equal(runtimeMappings['ethylhexylglycerin']?.source_functions?.[0], 'skin conditioning', 'Ethylhexylglycerin must use the reviewed COSMILE SKIN CONDITIONING authority term');
@@ -155,6 +157,13 @@ assert.equal(runtimeMappings['sorbitan isostearate']?.source_functions?.[0], 'su
 assert.equal(runtimeMappings['ceramide ap']?.source_functions?.[0], 'skin conditioning', 'Ceramide AP must use the reviewed COSMILE SKIN CONDITIONING authority term');
 assert.equal(runtimeMappings['ceramide eop']?.source_functions?.[0], 'skin conditioning', 'Ceramide EOP must use the reviewed COSMILE SKIN CONDITIONING authority term');
 assert.equal(runtimeMappings['phytosphingosine']?.source_functions?.[0], 'skin conditioning', 'Phytosphingosine must use the reviewed COSMILE SKIN CONDITIONING authority term');
+assert.equal(runtimeMappings['silica']?.source_functions?.[0], 'viscosity controlling', 'Silica must use the reviewed COSMILE VISCOSITY CONTROLLING authority term');
+assert.equal(runtimeMappings['alumina']?.source_functions?.[0], 'viscosity controlling', 'Alumina must use the reviewed COSMILE VISCOSITY CONTROLLING authority term');
+assert.equal(runtimeMappings['aluminum stearate']?.source_functions?.[0], 'viscosity controlling', 'Aluminum Stearate must use the reviewed COSMILE VISCOSITY CONTROLLING authority term');
+assert.equal(runtimeMappings['dimethicone crosspolymer']?.source_functions?.[0], 'viscosity controlling', 'Dimethicone Crosspolymer must use the reviewed COSMILE VISCOSITY CONTROLLING authority term');
+assert.equal(runtimeMappings['glycol distearate']?.source_functions?.[0], 'surfactant - emulsifying', 'Glycol Distearate must use the reviewed COSMILE SURFACTANT - EMULSIFYING authority term');
+assert.equal(runtimeMappings['myristyl myristate']?.source_functions?.[0], 'skin conditioning - emollient', 'Myristyl Myristate must use the reviewed COSMILE SKIN CONDITIONING - EMOLLIENT authority term');
+assert.equal(runtimeMappings['lecithin']?.source_functions?.[0], 'surfactant - emulsifying', 'Lecithin must use the reviewed COSMILE SURFACTANT - EMULSIFYING authority term');
 assert.equal(runtimeMappings['sodium citrate'], undefined, 'Sodium Citrate must remain out of runtime taxonomy until buffer vs pH-adjuster semantics are explicitly resolved');
 
 const runtimeEvidence = parser.verifiedCategoryEvidence || {};
@@ -170,7 +179,7 @@ for (const ambiguous of parser.ambiguousExactKeys || []) assert.equal(taxonomy.r
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'verified-category-taxonomy-wave-20',
+  phase: 'verified-category-taxonomy-wave-21',
   mapping_policy: taxonomy.mapping_policy,
   canonical_categories: Object.keys(taxonomy.categories).length,
   unique_authority_function_terms: authorityFunctionToCategory.size,
@@ -193,6 +202,7 @@ console.log(JSON.stringify({
   wave_18_promoted_mappings: [...EXPECTED_WAVE18_PROMOTED],
   wave_19_promoted_mappings: [...EXPECTED_WAVE19_PROMOTED],
   wave_20_promoted_mappings: [...EXPECTED_WAVE20_PROMOTED],
+  wave_21_promoted_mappings: [...EXPECTED_WAVE21_PROMOTED],
   sodium_citrate_deferred_for_taxonomy_decision: true,
   raw_legacy_taxonomy_rewritten: false,
   safety_contract_changed: false,

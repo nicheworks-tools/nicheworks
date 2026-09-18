@@ -129,7 +129,14 @@
     "sorbitan isostearate": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15309/sorbitan-isostearate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "ceramide ap": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2820/ceramide-ap/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "ceramide eop": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/25521/ceramide-eop/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "phytosphingosine": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11660/phytosphingosine/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "phytosphingosine": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11660/phytosphingosine/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "silica": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14425/silica/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "alumina": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/738/alumina/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "aluminum stearate": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/792/aluminum-stearate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "dimethicone crosspolymer": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/4584/dimethicone-crosspolymer/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "glycol distearate": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6123/glycol-distearate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "myristyl myristate": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/9328/myristyl-myristate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "lecithin": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8209/lecithin/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
@@ -379,7 +386,7 @@
   }
 
   const api = {
-    version: "1.37.0",
+    version: "1.38.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,

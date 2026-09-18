@@ -222,3 +222,14 @@ Wave 20 requires no new taxonomy vocabulary. All three identities reuse the exis
 - COSMILE `skin conditioning` → NicheWorks `skin conditioning`
 
 COSMILE also lists `hair conditioning` for Ceramide AP, Ceramide EOP and Phytosphingosine. The current overlay supports one reviewed public-primary category, so Wave 20 selects the directly supported skin-conditioning role for the skincare ingredient-results surface without deleting the additional source function or the raw barrier-lipid metadata.
+
+
+## Wave 21 mappings
+
+Wave 21 introduces no new public category or authority-function vocabulary. It reuses:
+
+- `viscosity controlling` → `viscosity adjuster`
+- `surfactant - emulsifying` → `emulsifier`
+- `skin conditioning - emollient` → `emollient`
+
+Several source pages list additional cosmetic functions beyond the selected public-primary role. Those functions are not collapsed into invented compound public labels. The controlled overlay records the reviewed primary role needed by the current answer-first UI while raw/source semantics remain auditable.
