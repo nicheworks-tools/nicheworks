@@ -18,7 +18,7 @@
   "sources": {
     "quality_manifest_version": "2026-09-14-manifest-8",
     "image_registry_version": "2026-09-18-wave4a-1",
-    "exception_ledger_version": "2026-09-18-applicability-wave5",
+    "exception_ledger_version": "2026-09-18-applicability-wave9",
     "source_ledgers": [
       {
         "file": "image-wave1-sources-v2.3.json",
@@ -45,8 +45,8 @@
   "summary": {
     "corpus_entries": 5536,
     "formal_image_entries": 30,
-    "missing_formal_image_entries": 5482,
-    "not_required_entries": 24,
+    "missing_formal_image_entries": 5480,
+    "not_required_entries": 26,
     "unobtainable_entries": 0,
     "classified_entries": 5536,
     "formal_coverage_percent": 0.5419,
@@ -59,22 +59,22 @@
     "stored_non_public_entries": 4666,
     "public_entries": 870,
     "disposition_records": 870,
-    "applicability_reviewed": 438,
-    "required": 414,
+    "applicability_reviewed": 488,
+    "required": 462,
     "on_hold": 0,
-    "final_dispositions": 54,
-    "unresolved": 816,
+    "final_dispositions": 56,
+    "unresolved": 814,
     "by_stage": {
-      "unreviewed": 432,
-      "not_required": 24,
-      "awaiting_source": 384,
+      "unreviewed": 382,
+      "not_required": 26,
+      "awaiting_source": 432,
       "candidate": 0,
       "provenance_verified": 0,
       "subject_verified": 0,
       "verified": 0,
       "promoted": 30
     },
-    "evidence_sha256": "270ad70843d3065520aad40fd9fb70ea294604f99c544b3b33a187c86e775d58"
+    "evidence_sha256": "1376d7199fea51970ac656b014b9f7126efe94e715f398a83a25a4a4f025c405"
   },
   "by_type": {
     "access": {
@@ -94,8 +94,8 @@
     "component": {
       "corpus": 210,
       "formal_image": 2,
-      "missing_formal_image": 208,
-      "not_required": 0,
+      "missing_formal_image": 207,
+      "not_required": 1,
       "unobtainable": 0
     },
     "consumable": {
@@ -178,8 +178,8 @@
     "process": {
       "corpus": 15,
       "formal_image": 0,
-      "missing_formal_image": 15,
-      "not_required": 0,
+      "missing_formal_image": 14,
+      "not_required": 1,
       "unobtainable": 0
     },
     "rigging": {
@@ -249,8 +249,8 @@
   "hashes": {
     "corpus_id_sha256": "bff8aae6f75c763415864d81b9b2686131a2964b60bc354e85f84d64e3433f31",
     "formal_image_id_sha256": "0badc275080c60550705c89e80a74086de7f19c8feecd0964fec395cb735c60b",
-    "missing_formal_image_id_sha256": "4d13a72578c4b126f29d3ec9894bdbe04c7ce059e5a881f5a03fe5fcc69d1d40",
-    "classification_sha256": "ee0b300964c0a10e2c06262eb2244575a8f84eafd85baa319063cdcd4d1439f7"
+    "missing_formal_image_id_sha256": "6e4f7fd58cff7238ae2a2d5a03c522ac9bee35604590268dff8ed4b3786fd5f0",
+    "classification_sha256": "104b3ab160b42e755ee99ed4d0f52efe00f7c366ac001ce9b015316871079585"
   },
   "missing_sample": [
     "access_door",
