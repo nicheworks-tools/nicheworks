@@ -267,6 +267,30 @@
         "https://k-tai.sharp.co.jp/support/other/wish6_simfree/index.html"
       ],
       "reviewedAt": "2026-09-19"
+    },
+    {
+      "phoneId": "xiaomi-poco-m8-5g",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_retail_in_box_state_not_explicit",
+      "reason": "Xiaomi Japan's POCO M8 5G product page states that charger inclusion depends on the local seller, while the Japan FAQ describes a standard 45W charger but does not establish the exact maintained retail in-box state.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/poco-m8-5g/",
+        "https://www.mi.com/jp/support/faq/details/KA-650868/"
+      ],
+      "reviewedAt": "2026-09-19"
+    },
+    {
+      "phoneId": "xiaomi-poco-m8-5g",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_retail_in_box_state_not_explicit",
+      "reason": "Xiaomi Japan's FAQ specifies the standard USB-A-to-USB-C cable characteristics, but the maintained primary pages do not explicitly establish the exact cable in-box state for the Japan retail SKU.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/poco-m8-5g/",
+        "https://www.mi.com/jp/support/faq/details/KA-650868/"
+      ],
+      "reviewedAt": "2026-09-19"
     }
   ]
 }
