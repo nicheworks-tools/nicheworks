@@ -30,6 +30,17 @@ Highlight registered old/variant kanji in pasted historical-style text and provi
 - If the primary Old Kanji dictionary cannot be loaded, keep text input/copy usable and show an explicit degraded-data warning instead of presenting a false zero-match result.
 - Do not render an unfinished Pro sales panel, fixed Pro price, or disabled purchase CTA while no verified purchase path is connected.
 
+## Amazon affiliate contract
+
+- Canonical monetization class: `AFFILIATE`.
+- Amazon Associates is active for Old Document Kanji Highlighter under the all-eight Old Kanji affiliate decision.
+- The affiliate panel appears only after document detection produces a result.
+- Curated purchase intent: `くずし字用例辞典`, old-document reading dictionaries, and A4 book stands.
+- Amazon destinations are fixed tool-specific searches; pasted document text, detected characters, correspondence data, and modernization preview must never be inserted into an affiliate URL or affiliate event.
+- Shared `/assets/amazon-affiliate.js` owns URL validation, disclosure, `rel="sponsored noopener"`, and the canonical `affiliate_outbound` event.
+- Shared `/assets/old-kanji-amazon-context.js` owns the reviewed tool-specific offer/placement catalog; it does not derive Amazon search terms from user input.
+- The free tool task remains usable without interacting with Amazon.
+
 ## Inputs
 
 - Pasted text.
@@ -76,7 +87,12 @@ Long source documents benefit from desktop width, while the input/results are ve
 - [x] Pasted document text is not sent to an external analysis API.
 - [x] The public page does not expose unfinished billing/Pro sales controls until a verified entitlement/purchase path exists.
 
+- [x] Contextual Amazon affiliate handoffs follow the reviewed only after document detection produces a result contract, use fixed tool-specific destinations, and exclude user-derived values from outbound URLs/events. Evidence: `assets/old-kanji-amazon-context.js`, `assets/amazon-affiliate.js`, and `scripts/check-old-kanji-amazon.mjs`.
+
 ## Implementation evidence
+
+- `assets/amazon-affiliate.js`
+- `assets/old-kanji-amazon-context.js`
 
 - `tools/old-document-kanji-highlighter/index.html`
 - `tools/old-document-kanji-highlighter/app.js`
