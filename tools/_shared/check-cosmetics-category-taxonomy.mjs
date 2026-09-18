@@ -58,7 +58,8 @@ const EXPECTED_WAVE23_PROMOTED = new Set(['helianthus annuus sunflower seed wax'
 const EXPECTED_WAVE24_PROMOTED = new Set(['polyglyceryl-10 oleate', 'gluconic acid', 'peg-40 hydrogenated castor oil', 'sodium carbonate', 'sulisobenzone', 'benzyl alcohol', 'urea', 'glyceryl caprate', 'polysilicone-15', 'drometrizole trisiloxane']);
 const EXPECTED_WAVE25_PROMOTED = new Set(['limonene', 'linalool', 'citral', 'geraniol', 'citronellol', 'eugenol', 'coumarin', 'farnesol', 'hexyl cinnamal', 'alpha-isomethyl ionone']);
 const EXPECTED_OFFICIAL_LABEL_CLOSURE = new Set(['triethoxycaprylylsilane', 'p-anisic acid', 'polyquaternium-39', 'polyquaternium-53', 'ppg-5-ceteth-20', 'snail secretion filtrate', 'synthetic beeswax', 'hexadecyloxy pg hydroxyethyl hexadecanamide', 'peg-6 caprylic/capric glycerides', 'sodium lauroyl lactylate', 'zinc oxide', 'zea mays starch', 'peg-8', 'microcrystalline wax']);
-const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu', 'cosmileeurope.eu', 'kcia.or.kr', 'www.kao-kirei.com']);
+const EXPECTED_STRONG_RUNTIME_BLOCKERS = new Set(['sulfur', 'aminobenzoic acid', 'ammonium hydroxide']);
+const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu', 'cosmileeurope.eu', 'kcia.or.kr', 'www.kao-kirei.com', 'eur-lex.europa.eu']);
 
 function normalize(value = '') {
   return String(value).normalize('NFKC').replace(/[\u2010\u2011\u2012\u2013\u2014\u2212]/g, '-').replace(/\s+/g, ' ').trim().toLowerCase();
@@ -141,6 +142,7 @@ for (const canonical of EXPECTED_WAVE23_PROMOTED) assert.ok(runtimeMappings[cano
 for (const canonical of EXPECTED_WAVE24_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 24 mapping must be runtime_verified`);
 for (const canonical of EXPECTED_WAVE25_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 25 mapping must be runtime_verified`);
 for (const canonical of EXPECTED_OFFICIAL_LABEL_CLOSURE) assert.ok(runtimeMappings[canonical], `${canonical}: official-label closure mapping must be runtime_verified`);
+for (const canonical of EXPECTED_STRONG_RUNTIME_BLOCKERS) assert.ok(runtimeMappings[canonical], `${canonical}: strong-runtime blocker mapping must be runtime_verified`);
 assert.equal(runtimeMappings['sodium gluconate']?.source_functions?.[0], 'chelating', 'Sodium Gluconate must use the reviewed COSMILE CHELATING authority term');
 assert.equal(runtimeMappings['xanthan gum']?.source_functions?.[0], 'viscosity controlling', 'Xanthan Gum must use the reviewed COSMILE VISCOSITY CONTROLLING authority term');
 assert.equal(runtimeMappings['ethylhexylglycerin']?.source_functions?.[0], 'skin conditioning', 'Ethylhexylglycerin must use the reviewed COSMILE SKIN CONDITIONING authority term');
@@ -211,6 +213,9 @@ assert.equal(runtimeMappings['glyceryl caprate']?.source_functions?.[0], 'skin c
 assert.equal(runtimeMappings['polysilicone-15']?.source_functions?.[0], 'uv filter', 'Polysilicone-15 must use the reviewed COSMILE UV FILTER authority term');
 assert.equal(runtimeMappings['drometrizole trisiloxane']?.source_functions?.[0], 'uv filter', 'Drometrizole Trisiloxane must use the reviewed COSMILE UV FILTER authority term');
 for (const canonical of EXPECTED_WAVE25_PROMOTED) assert.equal(runtimeMappings[canonical]?.source_functions?.[0], 'fragrance', `${canonical}: wave 25 must use the reviewed COSMILE FRAGRANCE authority term`);
+assert.equal(runtimeMappings['sulfur']?.source_functions?.[0], 'skin conditioning', 'Sulfur must use the reviewed COSMILE SKIN CONDITIONING authority term');
+assert.equal(runtimeMappings['aminobenzoic acid']?.source_functions?.[0], 'uv filter', 'Aminobenzoic Acid must use the reviewed EU UV FILTER authority term');
+assert.equal(runtimeMappings['ammonium hydroxide']?.source_functions?.[0], 'buffering', 'Ammonium Hydroxide must use the reviewed COSMILE BUFFERING authority term');
 assert.equal(runtimeMappings['sodium citrate'], undefined, 'Sodium Citrate must remain out of runtime taxonomy until buffer vs pH-adjuster semantics are explicitly resolved');
 
 const runtimeEvidence = parser.verifiedCategoryEvidence || {};
@@ -226,7 +231,7 @@ for (const ambiguous of parser.ambiguousExactKeys || []) assert.equal(taxonomy.r
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'verified-category-taxonomy-wave-25',
+  phase: 'verified-category-taxonomy-strong-runtime-closure',
   mapping_policy: taxonomy.mapping_policy,
   canonical_categories: Object.keys(taxonomy.categories).length,
   unique_authority_function_terms: authorityFunctionToCategory.size,
@@ -254,6 +259,7 @@ console.log(JSON.stringify({
   wave_23_promoted_mappings: [...EXPECTED_WAVE23_PROMOTED],
   wave_24_promoted_mappings: [...EXPECTED_WAVE24_PROMOTED],
   wave_25_promoted_mappings: [...EXPECTED_WAVE25_PROMOTED],
+  strong_runtime_blocker_mappings: [...EXPECTED_STRONG_RUNTIME_BLOCKERS],
   official_label_closure_mappings: [...EXPECTED_OFFICIAL_LABEL_CLOSURE],
   sodium_citrate_deferred_for_taxonomy_decision: true,
   raw_legacy_taxonomy_rewritten: false,

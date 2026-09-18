@@ -141,6 +141,9 @@
     "zinc oxide": {"category":"uv filter","source_functions":["uv filter"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/17131/zinc-oxide/"],"runtime_verified":true},
     "zea mays starch": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/17078/zea-mays-starch"],"runtime_verified":true},
     "peg-8": {"category":"humectant","source_functions":["humectant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/11059/peg-8/"],"runtime_verified":true},
-    "microcrystalline wax": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/fr/inci/ingredient/22305/microcrystalline-wax/"],"runtime_verified":true}
+    "microcrystalline wax": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/fr/inci/ingredient/22305/microcrystalline-wax/"],"runtime_verified":true},
+    "sulfur": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15709/sulfur/"],"runtime_verified":true},
+    "aminobenzoic acid": {"category":"uv filter","source_functions":["uv filter"],"authority":"European Union / EUR-Lex","sources":["https://eur-lex.europa.eu/eli/reg/2009/1223"],"runtime_verified":true},
+    "ammonium hydroxide": {"category":"buffer","source_functions":["buffering"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/906/ammonium-hydroxide/"],"runtime_verified":true}
   }
 }
