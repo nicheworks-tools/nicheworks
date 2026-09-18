@@ -4161,7 +4161,7 @@
         "wirelessMaxW": 15
       },
       "included": {
-        "cable": "unknown",
+        "cable": "included",
         "adapter": "included"
       },
       "sources": {
@@ -6325,8 +6325,8 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "not_included"
+        "cable": "included",
+        "adapter": "included"
       },
       "sources": {
         "specificationsUrl": "https://en-us.support.motorola.com/app/answers/detail/a_id/178982/~/specifications---motorola-edge-50-pro/",
