@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-inventory-exceptions-v2.3",
-  "version": "2026-09-18-applicability-wave4",
+  "version": "2026-09-18-applicability-wave5",
   "items": [
     {
       "entry_id": "punch_list",
@@ -116,6 +116,11 @@
       "entry_id": "lockout_tagout_loto",
       "state": "not_required",
       "reason": "The canonical is the lockout/tagout safety procedure and control system; locks, tags, devices, and isolation arrangements vary, so one photographed setup would be only an arbitrary implementation rather than the procedure itself."
+    },
+    {
+      "entry_id": "ppe",
+      "state": "not_required",
+      "reason": "PPE is a broad category covering helmets, gloves, footwear, eye, hearing, respiratory and fall protection; one photograph would arbitrarily represent only a subset, while specific PPE canonicals can carry their own images."
     }
   ]
 }
