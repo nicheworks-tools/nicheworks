@@ -815,3 +815,47 @@ console.log('Phone QuickCheck final automated QA passed: controls, sort modes, e
   assert.match(h.elements.desktopDetail.innerHTML, /インペネトラブルグレイ/);
 }
 
+// Post-v1 2026 maintenance Wave 4.
+{
+  const ultra = byId.get('samsung-galaxy-z-fold8-ultra');
+  assert.ok(ultra, 'Galaxy Z Fold8 Ultra fixture missing');
+  assert.equal(ultra.formFactor, 'foldable');
+  assert.deepEqual(ultra.dimensionsFolded, { heightMm: 158, widthMm: 73, depthMm: 8.9 });
+  assert.deepEqual(ultra.dimensionsUnfolded, { heightMm: 158, widthMm: 143, depthMm: 4.1 });
+  assert.equal(ultra.weightG, 215);
+  assert.equal(ultra.charging?.wiredMaxW, 45);
+  assert.equal(ultra.charging?.wirelessStandard, 'Qi2');
+  assert.equal(ultra.included?.cable, 'included');
+  assert.equal(ultra.included?.adapter, 'not_included');
+
+  const fold8 = byId.get('samsung-galaxy-z-fold8');
+  assert.ok(fold8, 'Galaxy Z Fold8 fixture missing');
+  assert.deepEqual(fold8.dimensionsFolded, { heightMm: 124, widthMm: 82, depthMm: 9.7 });
+  assert.deepEqual(fold8.dimensionsUnfolded, { heightMm: 124, widthMm: 161, depthMm: 4.5 });
+  assert.equal(fold8.weightG, 201);
+  assert.equal(fold8.charging?.battery?.capacityMah, 4800);
+  assert.equal(fold8.charging?.wiredMaxW, 45);
+
+  const flip8 = byId.get('samsung-galaxy-z-flip8');
+  assert.ok(flip8, 'Galaxy Z Flip8 fixture missing');
+  assert.deepEqual(flip8.dimensionsFolded, { heightMm: 86, widthMm: 75, depthMm: 13.1 });
+  assert.deepEqual(flip8.dimensionsUnfolded, { heightMm: 167, widthMm: 75, depthMm: 6.1 });
+  assert.equal(flip8.weightG, 180);
+  assert.equal(flip8.charging?.wiredMaxW, 25);
+  assert.equal(flip8.included?.cable, 'included');
+
+  const edge60 = byId.get('motorola-edge-60');
+  assert.ok(edge60, 'motorola edge 60 fixture missing');
+  assert.equal(edge60.displayInch, 6.7);
+  assert.equal(edge60.weightG, 179);
+  assert.equal(edge60.charging?.battery?.capacityMah, 5200);
+  assert.equal(edge60.charging?.wiredMaxW, 68);
+  assert.equal(edge60.waterRating, 'IP68');
+  assert.equal(edge60.included?.cable, 'not_included');
+  assert.equal(edge60.included?.adapter, 'not_included');
+
+  const h = await createHarness(['samsung-galaxy-z-fold8-ultra', 'samsung-galaxy-z-fold8', 'samsung-galaxy-z-flip8', 'motorola-edge-60']);
+  assert.match(h.elements.phoneList.innerHTML, /Galaxy Z Fold8 Ultra/);
+  assert.match(h.elements.desktopDetail.innerHTML, /158 × 73 × 8\.9 mm/);
+}
+
