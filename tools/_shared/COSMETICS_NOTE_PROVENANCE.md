@@ -135,3 +135,29 @@ node tools/_shared/check-cosmetics-verified-note-wave1.mjs
 The isolation regression fails if FastScan can render an unverified dictionary note, if verified notes stop requiring provenance, if the neutral fallback copy disappears, or if PR38's semantic-note/evidence inventory is removed.
 
 The schema regression validates all nine maintained dictionary files, exercises order-independent verified-note canonical merge, verifies source union behavior, and proves that conflicting or invalid provenance fails closed. The wave-1 regression additionally pins the three reviewed canonical notes, their reviewed EC/EUR-Lex source URLs, overlay-to-runtime merge behavior, and 22 → 3 resolved / 19 unresolved claim-bearing progress accounting.
+
+
+## Verified note wave 6
+
+After the frozen 22 claim-bearing legacy notes were fully resolved, verified-note coverage becomes an open-ended source-backed enrichment track rather than a fixed 22-entry overlay.
+
+Wave 6 prioritizes four ingredients by frequency in the maintained 30-product official-label corpus:
+
+| Canonical identity | Corpus occurrences | Reviewed runtime note basis |
+| --- | ---: | --- |
+| `glycerin` | 20 | COSMILE Europe: humectant, skin/hair conditioning, solvent, viscosity controlling. |
+| `caprylyl glycol` | 16 | COSMILE Europe: skin-conditioning emollient plus skin/hair conditioning. |
+| `citric acid` | 16 | COSMILE Europe: buffering and chelating; controls cosmetic-product pH and binds metal ions. |
+| `water` | 13 | COSMILE Europe: solvent; purified water is a common basis for cosmetic products. |
+
+The new notes are ingredient-specific, source-backed summaries. They do not convert role descriptions into safety, efficacy, allergy, concentration, or suitability claims.
+
+Wave 5 continues to freeze the original 22 claim-bearing identities as a required subset. It no longer requires the verified-note overlay to contain exactly 22 entries, because later waves must be able to add reviewed notes without weakening the original baseline.
+
+After Wave 6:
+
+- frozen claim-bearing verified notes: 22 / 22 retained;
+- new Wave 6 verified notes: 4;
+- cumulative verified-note identities: 26;
+- strong runtime identities: 26 / 599;
+- raw dictionary records rewritten: no.
