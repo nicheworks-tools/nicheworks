@@ -39,7 +39,7 @@ Amazon is currently **dormant for the Old Kanji cluster** under the canonical mo
 - neither tool is in the canonical `AFFILIATE` class
 - both production affiliate configs remain `enabled: false` with no tracking ID or outbound target
 
-The shared `/assets/amazon-affiliate.js` event name is `affiliate_outbound`. It is the only authorized Amazon outbound event if a tool is explicitly moved into the canonical `AFFILIATE` class in the future. `assets/old-kanji-analytics.js` must not duplicate `affiliate_outbound` or emit any legacy `affiliate_click` event.
+The shared `/assets/amazon-affiliate.js` event name is `affiliate_outbound`. It is the only authorized Amazon outbound event if a tool is explicitly moved into the canonical `AFFILIATE` class in the future. `assets/old-kanji-analytics.js` must not duplicate shared Amazon measurement or emit any legacy tool-owned affiliate event.
 
 In the current dormant state, Old Kanji Reference and Old Kanji OCR Scanner must emit **no Amazon outbound event** because no active Amazon destination exists.
 
