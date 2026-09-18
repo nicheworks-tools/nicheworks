@@ -79,6 +79,13 @@
     "sorbitan isostearate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15309/sorbitan-isostearate/"],"runtime_verified":true},
     "ceramide ap": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2820/ceramide-ap/"],"runtime_verified":true},
     "ceramide eop": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/25521/ceramide-eop/"],"runtime_verified":true},
-    "phytosphingosine": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/11660/phytosphingosine/"],"runtime_verified":true}
+    "phytosphingosine": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/11660/phytosphingosine/"],"runtime_verified":true},
+    "silica": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14425/silica/"],"runtime_verified":true},
+    "alumina": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/738/alumina/"],"runtime_verified":true},
+    "aluminum stearate": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/792/aluminum-stearate/"],"runtime_verified":true},
+    "dimethicone crosspolymer": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/4584/dimethicone-crosspolymer/"],"runtime_verified":true},
+    "glycol distearate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6123/glycol-distearate/"],"runtime_verified":true},
+    "myristyl myristate": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/9328/myristyl-myristate/"],"runtime_verified":true},
+    "lecithin": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/8209/lecithin/"],"runtime_verified":true}
   }
 }
