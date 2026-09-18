@@ -25,6 +25,7 @@ on:
       - 'scripts/check-old-kanji-measurement.mjs'
       - 'scripts/check-old-kanji-amazon.mjs'
       - 'scripts/check-old-kanji-pro-boundary.mjs'
+      - 'scripts/check-old-kanji-release-audit.mjs'
       - 'scripts/build-old-kanji-dictionary-audit.mjs'
       - 'scripts/run-tool-behavior-tests.mjs'
       - 'scripts/check-old-kanji-browser-ux.mjs'
@@ -55,6 +56,7 @@ on:
       - 'scripts/check-old-kanji-measurement.mjs'
       - 'scripts/check-old-kanji-amazon.mjs'
       - 'scripts/check-old-kanji-pro-boundary.mjs'
+      - 'scripts/check-old-kanji-release-audit.mjs'
       - 'scripts/build-old-kanji-dictionary-audit.mjs'
       - 'scripts/run-tool-behavior-tests.mjs'
       - 'scripts/check-old-kanji-browser-ux.mjs'
@@ -137,6 +139,9 @@ jobs:
 
       - name: Check Old Kanji dictionary audit drift
         run: node scripts/build-old-kanji-dictionary-audit.mjs --check
+
+      - name: Check Old Kanji final release audit
+        run: node scripts/check-old-kanji-release-audit.mjs
 
       - name: Verify audit is read-only
         run: |
