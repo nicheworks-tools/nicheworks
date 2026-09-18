@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-inventory-exceptions-v2.3",
-  "version": "2026-09-18-applicability-wave3",
+  "version": "2026-09-18-applicability-wave4",
   "items": [
     {
       "entry_id": "punch_list",
@@ -91,6 +91,31 @@
       "entry_id": "kiken_watch_out",
       "state": "not_required",
       "reason": "The canonical is a spoken/shouted jobsite warning expression rather than a physical subject; any scene photograph would be arbitrary and would not identify the term itself."
+    },
+    {
+      "entry_id": "ky_hazard_prediction",
+      "state": "not_required",
+      "reason": "The canonical is the KY hazard-prediction practice/site-safety concept rather than one physical subject; a meeting board, worksheet, or group scene would be an arbitrary implementation and would not identify the concept itself."
+    },
+    {
+      "entry_id": "leak_trace",
+      "state": "not_required",
+      "reason": "The canonical is a diagnostic investigation process that may use visual inspection, water testing, infrared imaging, borescopes, or moisture measurement; one photograph would depict only one arbitrary method rather than the leak-tracing concept."
+    },
+    {
+      "entry_id": "level_survey",
+      "state": "not_required",
+      "reason": "The canonical is the surveying procedure of measuring elevations and level differences, not a unique physical object; the principal instruments already have separate canonicals, so one equipment photograph would misrepresent the process."
+    },
+    {
+      "entry_id": "load_bearing_wall",
+      "state": "not_required",
+      "reason": "Load-bearing status is a structural function that generally cannot be established reliably from a wall's visible appearance alone; an ordinary wall photograph could be misleading rather than identify the canonical property."
+    },
+    {
+      "entry_id": "lockout_tagout_loto",
+      "state": "not_required",
+      "reason": "The canonical is the lockout/tagout safety procedure and control system; locks, tags, devices, and isolation arrangements vary, so one photographed setup would be only an arbitrary implementation rather than the procedure itself."
     }
   ]
 }
