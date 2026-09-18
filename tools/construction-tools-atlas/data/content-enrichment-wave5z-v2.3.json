@@ -1,0 +1,396 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-18-wave5z-basic-site-safety-1",
+  "entries": [
+    {
+      "id": "crimping_tool",
+      "wave": "content-wave-005z",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "電線へ圧着端子やスリーブを規定形状で圧着する工具。端子種類、電線サイズ、ダイス形状、ラチェット機構を接続仕様に合わせて選ぶ。",
+      "detail_en": "Tool used to crimp terminals or sleeves onto conductors with the required profile. Terminal type, wire size, die geometry, and ratchet mechanism must match the connection system.",
+      "bullets_ja": [
+        "端子と電線サイズに適合するダイスを使用する。",
+        "圧着位置を正しく合わせ、途中で解除せず規定ストロークまで圧着する。",
+        "電気作業は必要な資格・手順に従い、回路状態を確認してから行う。"
+      ],
+      "bullets_en": [
+        "Use a die matched to the terminal and conductor size.",
+        "Position the terminal correctly and complete the full crimp cycle rather than stopping partway.",
+        "Follow applicable electrical-work qualifications and procedures and verify circuit condition before work."
+      ],
+      "examples_ja": [
+        "リング端子をより線へ規定ダイスで圧着する。",
+        "圧着後に端子の抜けや変形を目視確認する。"
+      ],
+      "examples_en": [
+        "Crimp a ring terminal onto stranded wire with the specified die.",
+        "Inspect the completed crimp for pullout or abnormal deformation."
+      ]
+    },
+    {
+      "id": "multimeter",
+      "wave": "content-wave-005z",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "電圧、抵抗、導通などを測定する電気計測器。測定カテゴリ、最大定格、レンジ、プローブ仕様を対象回路と測定内容に合わせて使う。",
+      "detail_en": "Electrical measuring instrument for voltage, resistance, continuity, and related measurements. Measurement category, maximum rating, range, and probes must suit the circuit and test.",
+      "bullets_ja": [
+        "測定対象と想定値に合う端子・レンジ・モードを設定する。",
+        "抵抗や導通測定では原則として無電圧を確認してから接続する。",
+        "損傷したリードや定格不明のプローブを使用しない。"
+      ],
+      "bullets_en": [
+        "Select the input jacks, range, and mode for the quantity and expected value.",
+        "For resistance or continuity tests, verify the circuit is de-energized as required before connecting.",
+        "Do not use damaged leads or probes with unknown or inadequate ratings."
+      ],
+      "examples_ja": [
+        "コンセント系統の電圧を適切なレンジで確認する。",
+        "配線作業前に回路の導通を確認する。"
+      ],
+      "examples_en": [
+        "Check circuit voltage using the appropriate range and rated probes.",
+        "Verify continuity of a conductor during wiring work."
+      ]
+    },
+    {
+      "id": "concrete_mixer",
+      "wave": "content-wave-005z",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "セメント、骨材、水などを均一に練り混ぜる機械。ドラム容量、駆動方式、投入量、練混ぜ時間を配合と必要量に合わせて使う。",
+      "detail_en": "Machine used to mix cement, aggregate, water, and related ingredients uniformly. Drum capacity, drive method, batch size, and mixing time should suit the mix and required volume.",
+      "bullets_ja": [
+        "定格容量を超えて材料を投入せず、安定した場所へ設置する。",
+        "回転部へ手や工具を入れず、清掃・点検時は停止状態を確保する。",
+        "セメント粉じんや湿潤コンクリートとの接触に適切な保護を行う。"
+      ],
+      "bullets_en": [
+        "Do not overload the rated capacity and place the mixer on stable ground.",
+        "Keep hands and tools away from moving parts and secure the stopped condition for cleaning or inspection.",
+        "Use appropriate protection against cement dust and contact with wet concrete."
+      ],
+      "examples_ja": [
+        "小規模な基礎補修用コンクリートを一定量ずつ練る。",
+        "モルタル材料を規定順序で投入して均一に混合する。"
+      ],
+      "examples_en": [
+        "Mix small batches of concrete for a foundation repair.",
+        "Load mortar ingredients in the specified sequence and mix uniformly."
+      ]
+    },
+    {
+      "id": "trowel",
+      "wave": "content-wave-005z",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "モルタルやコンクリートを塗り付け、広げ、表面を仕上げる左官工具。形状、材質、刃厚、大きさを材料と仕上げ工程に合わせて選ぶ。",
+      "detail_en": "Hand finishing tool used to place, spread, and finish mortar or concrete. Shape, material, blade thickness, and size should match the material and finishing stage.",
+      "bullets_ja": [
+        "材料の硬化進行に合わせて押さえや仕上げのタイミングを調整する。",
+        "刃先の欠けや大きな反りがあるコテは仕上げ品質に影響するため交換する。",
+        "湿潤モルタルやコンクリートの皮膚接触を避ける。"
+      ],
+      "bullets_en": [
+        "Adjust finishing pressure and timing as the material sets.",
+        "Replace trowels with chipped edges or excessive warping that can affect finish quality.",
+        "Avoid prolonged skin contact with wet mortar or concrete."
+      ],
+      "examples_ja": [
+        "補修モルタルを壁面へ塗り付けて平滑にする。",
+        "床コンクリートの表面を硬化段階に合わせて押さえる。"
+      ],
+      "examples_en": [
+        "Apply repair mortar to a wall and smooth the surface.",
+        "Trowel a concrete floor at the appropriate stage of setting."
+      ]
+    },
+    {
+      "id": "float",
+      "wave": "content-wave-005z",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "コンクリートやモルタルの表面をならし、凹凸を整える仕上げ工具。木、樹脂、マグネシウムなど材質により作用が異なるため工程に合わせて選ぶ。",
+      "detail_en": "Finishing float used to level and smooth concrete or mortar surfaces. Wood, resin, magnesium, and other float materials behave differently and should match the finishing stage.",
+      "bullets_ja": [
+        "打設直後から仕上げまでの適切なタイミングで使用する。",
+        "過度な押さえで表面へ水分や微粒分を集めすぎない。",
+        "使用後は付着材が硬化する前に清掃する。"
+      ],
+      "bullets_en": [
+        "Use the float at the appropriate stage from initial leveling through finishing.",
+        "Avoid excessive working that brings too much water or fines to the surface.",
+        "Clean the tool before adhered material hardens."
+      ],
+      "examples_ja": [
+        "土間コンクリートを木ゴテで均一にならす。",
+        "補修モルタルの表面をフロートで整える。"
+      ],
+      "examples_en": [
+        "Level a slab surface evenly with a hand float.",
+        "Smooth the surface of a mortar repair with a float."
+      ]
+    },
+    {
+      "id": "concrete_vibrator",
+      "wave": "content-wave-005z",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "打設したコンクリートへ振動を与え、内部の空気を抜きながら密実に締め固める機械。振動部径、周波数、挿入間隔・時間を部材寸法と配合に合わせる。",
+      "detail_en": "Machine used to consolidate freshly placed concrete by vibration and remove entrapped air. Head diameter, frequency, insertion spacing, and duration should suit the member and mix.",
+      "bullets_ja": [
+        "一定間隔で素早く挿入し、過振動や締固め不足を避ける。",
+        "型枠や鉄筋へ無理に押し付けず、既打設部との一体化を意識して使用する。",
+        "ケーブルや振動部の損傷を点検し、回転・振動部へ不用意に触れない。"
+      ],
+      "bullets_en": [
+        "Insert at consistent spacing and duration to avoid under- or over-vibration.",
+        "Do not force the head against formwork or reinforcement, and consolidate across placement lifts appropriately.",
+        "Inspect the hose, cable, and vibrating head for damage and avoid unnecessary contact with moving parts."
+      ],
+      "examples_ja": [
+        "柱型枠内のコンクリートを層ごとに締め固める。",
+        "梁とスラブの打継ぎ周辺で適切に振動を与える。"
+      ],
+      "examples_en": [
+        "Consolidate concrete in a column form lift by lift.",
+        "Vibrate concrete appropriately around a beam-and-slab placement junction."
+      ]
+    },
+    {
+      "id": "wheelbarrow",
+      "wave": "content-wave-005z",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "土砂、コンクリート、資材などを人力で運搬する一輪式または類似の手押し運搬具。荷台容量、タイヤ、フレーム強度を荷物と路面に合わせて使う。",
+      "detail_en": "Hand-pushed carrier, commonly single-wheel, for moving soil, concrete, debris, or materials. Tray capacity, tire type, and frame strength should suit the load and route.",
+      "bullets_ja": [
+        "積載量を過度に増やさず、重心が偏らないよう載せる。",
+        "段差、傾斜、ぬかるみなど運搬経路を事前に確認する。",
+        "タイヤ空気圧やフレーム、取手の損傷を点検する。"
+      ],
+      "bullets_en": [
+        "Avoid overloading and distribute the load so the center of gravity remains manageable.",
+        "Check the route for steps, slopes, soft ground, and other hazards before transport.",
+        "Inspect tire condition, frame, and handles before use."
+      ],
+      "examples_ja": [
+        "掘削土を仮置き場所まで運ぶ。",
+        "少量の練りコンクリートを打設位置へ搬送する。"
+      ],
+      "examples_en": [
+        "Move excavated soil to a temporary stockpile.",
+        "Carry a small batch of mixed concrete to the placement area."
+      ]
+    },
+    {
+      "id": "shovel",
+      "wave": "content-wave-005z",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "土砂や砕石などを掘削、すくい取り、移動する手工具。先端形状、刃幅、柄長を地盤と作業内容に合わせて選ぶ。",
+      "detail_en": "Hand tool used to dig, scoop, and move soil, gravel, and similar materials. Blade shape, width, and handle length should match the ground and task.",
+      "bullets_ja": [
+        "掘削前に埋設配管・電線などの位置を確認する。",
+        "足元を安定させ、無理なひねり姿勢で重量物を持ち上げない。",
+        "刃先や柄の割れ・緩みを点検する。"
+      ],
+      "bullets_en": [
+        "Check for buried utilities before digging.",
+        "Maintain stable footing and avoid lifting heavy loads with excessive twisting.",
+        "Inspect the blade and handle for cracks, looseness, or damage."
+      ],
+      "examples_ja": [
+        "砕石をすくって基礎周囲へ配る。",
+        "小規模掘削で土を掘り出す。"
+      ],
+      "examples_en": [
+        "Scoop and distribute gravel around a foundation area.",
+        "Excavate soil manually for a small trench or hole."
+      ]
+    },
+    {
+      "id": "pickaxe",
+      "wave": "content-wave-005z",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "硬い地盤や締まった土、石を打撃で砕きながら掘削する手工具。先端形状、頭部重量、柄長を対象地盤と作業空間に合わせる。",
+      "detail_en": "Hand tool used to break hard ground, compacted soil, or rock by striking. Head shape, weight, and handle length should suit the material and work space.",
+      "bullets_ja": [
+        "埋設物の位置を確認してから打撃作業を行う。",
+        "振り下ろす範囲へ人を入れず、安定した足場を確保する。",
+        "頭部の緩みや柄の亀裂がある工具を使用しない。"
+      ],
+      "bullets_en": [
+        "Identify buried services before striking or excavation.",
+        "Keep people out of the swing area and maintain stable footing.",
+        "Do not use a pickaxe with a loose head or cracked handle."
+      ],
+      "examples_ja": [
+        "締まった地盤をほぐしてスコップで掘りやすくする。",
+        "小さな石混じり地盤を部分的に砕く。"
+      ],
+      "examples_en": [
+        "Break compacted ground before removing it with a shovel.",
+        "Loosen a small area of stony soil during excavation."
+      ]
+    },
+    {
+      "id": "tamper",
+      "wave": "content-wave-005z",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "地盤や砕石を人力で繰り返し押し固める締固め工具。底板面積、重量、柄長を施工面積と材料に合わせて使う。",
+      "detail_en": "Manual compaction tool used to repeatedly tamp soil or aggregate. Base area, weight, and handle length should suit the material and work area.",
+      "bullets_ja": [
+        "薄層ごとに均一に締め固め、局部だけを過度に叩かない。",
+        "足元や周囲の障害物を確認して安定した姿勢で作業する。",
+        "底板や柄の緩み・破損を点検する。"
+      ],
+      "bullets_en": [
+        "Compact in even thin layers rather than concentrating force in one spot.",
+        "Maintain stable footing and clear the surrounding area before repeated tamping.",
+        "Inspect the base and handle for looseness or damage."
+      ],
+      "examples_ja": [
+        "配管埋戻し部の小範囲を手作業で締め固める。",
+        "舗装補修の砕石下地を均一に転圧する。"
+      ],
+      "examples_en": [
+        "Compact a small backfilled area around piping by hand.",
+        "Tamp aggregate base evenly for a small pavement repair."
+      ]
+    },
+    {
+      "id": "plate_compactor",
+      "wave": "content-wave-005z",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "振動する底板で砕石や粒状土を面状に締め固める機械。機体重量、底板寸法、振動力、前進方式を材料と施工面積に合わせて選ぶ。",
+      "detail_en": "Machine that compacts granular soil or aggregate with a vibrating plate. Machine weight, plate size, vibration force, and travel method should suit the material and area.",
+      "bullets_ja": [
+        "埋設物や構造物への影響を確認し、適切な層厚で転圧する。",
+        "斜面や端部では機体の転倒・滑落リスクに注意する。",
+        "始動前に燃料・電源、底板、ハンドル、防振部を点検する。"
+      ],
+      "bullets_en": [
+        "Check effects on buried services and nearby structures and compact appropriate lift thicknesses.",
+        "Take extra care near slopes and edges where the machine could slide or overturn.",
+        "Inspect power or fuel systems, plate, handle, and vibration mounts before starting."
+      ],
+      "examples_ja": [
+        "舗装下地の砕石を層ごとに転圧する。",
+        "小規模な埋戻し部をプレートコンパクターで締め固める。"
+      ],
+      "examples_en": [
+        "Compact aggregate pavement base in successive lifts.",
+        "Compact a small granular backfill area with a plate compactor."
+      ]
+    },
+    {
+      "id": "ladder",
+      "wave": "content-wave-005z",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "高所へ昇降するためのはしご。単はしご、伸縮式などがあり、長さ、材質、定格荷重、設置角度を作業高さと環境に合わせて選ぶ。",
+      "detail_en": "Ladder used for access to elevated locations. Straight and extension types vary in length, material, duty rating, and setup requirements that should suit the work height and environment.",
+      "bullets_ja": [
+        "水平で安定した支持点へ設置し、適切な角度と上端支持を確保する。",
+        "最上段付近で無理に身体を乗り出さず、三点支持を意識する。",
+        "脚、桟、ロック、滑り止めに損傷がある場合は使用しない。"
+      ],
+      "bullets_en": [
+        "Set the ladder on stable support with the appropriate angle and secure upper support as required.",
+        "Avoid overreaching near the top and maintain three points of contact when climbing.",
+        "Do not use a ladder with damaged feet, rungs, locks, or anti-slip parts."
+      ],
+      "examples_ja": [
+        "屋上点検口へ安全に昇降するため伸縮はしごを設置する。",
+        "壁面の軽作業位置へ単はしごでアクセスする。"
+      ],
+      "examples_en": [
+        "Set an extension ladder for safe access to a roof hatch.",
+        "Use a straight ladder to reach a light-duty wall work location."
+      ]
+    },
+    {
+      "id": "step_ladder",
+      "wave": "content-wave-005z",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "自立して使うA形の脚立。天板高さ、段数、定格荷重、開き止め機構を作業高さと用途に合わせて選ぶ。",
+      "detail_en": "Self-supporting A-frame step ladder. Platform height, number of steps, duty rating, and spreader-lock mechanism should match the task and required reach.",
+      "bullets_ja": [
+        "完全に開いて開き止めを確実に固定し、平坦な場所で使う。",
+        "メーカーが立ち位置として認めていない天板や上段へ乗らない。",
+        "身体を横へ大きく乗り出さず、必要なら脚立を移動する。"
+      ],
+      "bullets_en": [
+        "Fully open and lock the spreaders and use the ladder on a level, stable surface.",
+        "Do not stand on the top cap or upper steps unless the manufacturer permits that position.",
+        "Move the ladder rather than leaning far sideways to extend reach."
+      ],
+      "examples_ja": [
+        "天井器具の点検に必要な高さの脚立を使用する。",
+        "室内塗装で位置を変えながら脚立から作業する。"
+      ],
+      "examples_en": [
+        "Use a step ladder of suitable height to inspect a ceiling fixture.",
+        "Reposition a step ladder as needed during interior painting."
+      ]
+    },
+    {
+      "id": "scaffold",
+      "wave": "content-wave-005z",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "高所作業用の作業床と昇降・支持部材で構成する仮設構造。方式、許容荷重、作業床幅、壁つなぎ・控え、手すり等を現場条件と法令・施工計画に合わせる。",
+      "detail_en": "Temporary structure providing working platforms and access at height. Scaffold type, load capacity, platform width, ties or bracing, guardrails, and access must follow site conditions, regulations, and the erection plan.",
+      "bullets_ja": [
+        "資格・手順が必要な組立や変更は定められた方法で行い、無断改変しない。",
+        "使用前に作業床、手すり、筋交い、支持・固定部を点検する。",
+        "許容荷重を超えて資材を集中載荷せず、昇降設備を適切に使用する。"
+      ],
+      "bullets_en": [
+        "Erect, alter, and dismantle scaffolds only under the required procedures and qualifications, without unauthorized modifications.",
+        "Inspect platforms, guardrails, bracing, supports, and ties before use.",
+        "Do not overload platforms with concentrated materials and use the designated access system."
+      ],
+      "examples_ja": [
+        "外壁作業用に計画された足場の作業床を使用する。",
+        "作業開始前に手すりと壁つなぎの状態を点検する。"
+      ],
+      "examples_en": [
+        "Use the designated scaffold platform for exterior wall work.",
+        "Inspect guardrails and scaffold ties before starting work."
+      ]
+    },
+    {
+      "id": "safety_harness",
+      "wave": "content-wave-005z",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "高所作業で墜落時の身体保持と制止に用いるフルハーネス型墜落制止用器具。サイズ、ランヤード方式、接続器具、使用条件を作業方法と規則に合わせる。",
+      "detail_en": "Full-body fall-arrest harness used to support the body and arrest a fall during work at height. Harness size, lanyard system, connectors, and use conditions must match the work method and applicable requirements.",
+      "bullets_ja": [
+        "使用前にウェビング、縫製、金具、ランヤード、フックを点検する。",
+        "適切なアンカー位置へ接続し、必要な落下距離・クリアランスを確保する。",
+        "一度墜落を受けた器具や損傷した器具は規定に従って使用停止・点検する。"
+      ],
+      "bullets_en": [
+        "Inspect webbing, stitching, hardware, lanyards, and hooks before use.",
+        "Connect to an appropriate anchor and ensure the required fall clearance and arrest distance.",
+        "Remove equipment from service after a fall event or when damaged, following the applicable inspection procedure."
+      ],
+      "examples_ja": [
+        "高所作業車外で必要な作業にフルハーネスを使用する。",
+        "屋根作業前にハーネスとランヤードの状態を点検する。"
+      ],
+      "examples_en": [
+        "Use a full-body harness for work at height where fall-arrest protection is required.",
+        "Inspect the harness and lanyard before roof work."
+      ]
+    }
+  ]
+}
