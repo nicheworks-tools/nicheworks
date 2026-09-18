@@ -10,6 +10,8 @@ on:
       - 'scripts/check-phone-quickcheck-data.mjs'
       - 'scripts/check-phone-quickcheck-affiliate.mjs'
       - 'scripts/check-phone-quickcheck-source-semantics.mjs'
+      - 'scripts/check-phone-quickcheck-completion.mjs'
+      - 'tools/phone-quickcheck/COMPLETION_AUDIT.md'
       - '.github/workflows/phone-quickcheck-data-check.yml'
   push:
     branches:
@@ -22,6 +24,8 @@ on:
       - 'scripts/check-phone-quickcheck-data.mjs'
       - 'scripts/check-phone-quickcheck-affiliate.mjs'
       - 'scripts/check-phone-quickcheck-source-semantics.mjs'
+      - 'scripts/check-phone-quickcheck-completion.mjs'
+      - 'tools/phone-quickcheck/COMPLETION_AUDIT.md'
       - '.github/workflows/phone-quickcheck-data-check.yml'
 
 permissions:
@@ -37,5 +41,6 @@ jobs:
           node-version: 20
       - run: node scripts/check-phone-quickcheck-data.mjs
       - run: node scripts/check-phone-quickcheck-source-semantics.mjs
+      - run: node scripts/check-phone-quickcheck-completion.mjs
       - run: node scripts/check-phone-quickcheck-affiliate.mjs
       - run: node tools/phone-quickcheck/tests/behavior.test.mjs
