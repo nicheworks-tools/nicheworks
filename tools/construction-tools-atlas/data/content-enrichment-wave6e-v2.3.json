@@ -1,0 +1,396 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-18-wave6e-safety-layout-finishes-1",
+  "entries": [
+    {
+      "id": "spotter",
+      "wave": "content-wave-006e",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "重機・車両・揚重作業などで、運転者や作業者の死角を補い、進行・停止・接近可否を合図する誘導担当者。作業前に合図方法と担当範囲を明確にする。",
+      "detail_en": "A designated person who helps guide vehicles, machinery, or lifting operations by covering blind spots and signaling movement, stopping, and clearance. Signals and responsibilities should be agreed before work.",
+      "bullets_ja": [
+        "作業前に停止・進行などの合図を決め、誰が誘導するかを明確にする。",
+        "運転者から見える安全な位置を保ち、見失った場合は機械・車両を停止させる。",
+        "後退経路や吊荷の下など危険範囲に入らず、周囲の歩行者も管理する。"
+      ],
+      "bullets_en": [
+        "Agree on stop, proceed, and other signals before work and designate who is giving them.",
+        "Remain in a safe position visible to the operator; stop the machine or vehicle if visual contact is lost.",
+        "Stay out of reversing paths and suspended-load zones and help keep pedestrians clear."
+      ],
+      "examples_ja": [
+        "バックホーの後退時に誘導員が死角を確認して停止合図を出す。",
+        "資材搬入車を狭い構内へ誘導する。"
+      ],
+      "examples_en": [
+        "A spotter checks a blind area and gives a stop signal while an excavator reverses.",
+        "Guide a delivery vehicle through a confined jobsite route."
+      ]
+    },
+    {
+      "id": "ppe",
+      "wave": "content-wave-006e",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "PPE（Personal Protective Equipment）は、作業中の危険へのばく露を減らすために着用する個人用保護具の総称。ヘルメット、保護眼鏡、手袋、呼吸用保護具などを作業内容に応じて選ぶ。",
+      "detail_en": "PPE (personal protective equipment) is the collective term for equipment worn to reduce exposure to job hazards, including hard hats, eye protection, gloves, hearing protection, and respirators selected for the task.",
+      "bullets_ja": [
+        "作業の危険源を確認し、それぞれに適した保護具を選ぶ。",
+        "サイズ・装着状態と、複数の保護具を同時に使う場合の干渉を確認する。",
+        "破損・汚染・劣化した保護具は交換し、PPEだけに頼らず他の安全対策も併用する。"
+      ],
+      "bullets_en": [
+        "Identify the hazards of the task and select PPE suited to each exposure.",
+        "Check fit and condition and make sure multiple items of PPE do not interfere with one another.",
+        "Replace damaged, contaminated, or degraded PPE and use it together with other hazard controls rather than as the only control."
+      ],
+      "examples_ja": [
+        "研削作業で保護眼鏡・防じん用保護具・手袋を作業条件に合わせて選ぶ。",
+        "高所作業前にヘルメットや墜落制止用器具の状態を確認する。"
+      ],
+      "examples_en": [
+        "Select eye, respiratory, and hand protection appropriate for a grinding task.",
+        "Check the condition of a hard hat and fall-protection equipment before work at height."
+      ]
+    },
+    {
+      "id": "ear_protection",
+      "wave": "content-wave-006e",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "騒音による聴覚への負担を減らすための耳栓・イヤーマフなどの保護具。騒音レベル、装着性、他のPPEとの併用、周囲の警報や合図を聞く必要性を考慮して選ぶ。",
+      "detail_en": "Hearing protection such as earplugs or earmuffs used to reduce noise exposure. Selection should consider noise level, fit, compatibility with other PPE, and the need to hear alarms or communication.",
+      "bullets_ja": [
+        "騒音の程度と作業時間に合う遮音性能の製品を使用する。",
+        "耳栓は正しく挿入し、イヤーマフはクッション部の密着を妨げる物がないか確認する。",
+        "警報・無線・合図が聞こえにくくならないよう、現場の連絡方法も合わせて確認する。"
+      ],
+      "bullets_en": [
+        "Use protection with attenuation suitable for the noise level and duration of exposure.",
+        "Insert earplugs correctly and make sure nothing prevents earmuff cushions from sealing properly.",
+        "Confirm site communication methods so alarms, radios, and safety signals remain effective."
+      ],
+      "examples_ja": [
+        "はつり作業でイヤーマフを装着する。",
+        "長時間の電動工具作業で適切に装着した耳栓を使用する。"
+      ],
+      "examples_en": [
+        "Wear earmuffs during concrete chipping work.",
+        "Use properly fitted earplugs during extended power-tool operation."
+      ]
+    },
+    {
+      "id": "first_aid_kit",
+      "wave": "content-wave-006e",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "切創や擦過傷などの応急手当に使う物品をまとめた救急箱。現場人数や作業内容に応じて必要品を備え、すぐ取り出せる場所で管理する。",
+      "detail_en": "A first-aid kit containing supplies for immediate care of cuts, abrasions, and similar injuries. Contents and quantity should suit the workforce and work hazards and remain readily accessible.",
+      "bullets_ja": [
+        "設置場所を全員が分かるようにし、資材で塞がない。",
+        "使用期限・在庫・破損を定期的に確認し、使用した物品を補充する。",
+        "重傷や緊急性がある場合は救急箱だけで対応せず、現場の緊急連絡手順に従う。"
+      ],
+      "bullets_en": [
+        "Keep the kit in a location known to workers and do not block access to it.",
+        "Check expiry dates, stock, and condition regularly and replenish used items.",
+        "For serious or urgent injuries, follow the site's emergency-response procedure rather than relying on the kit alone."
+      ],
+      "examples_ja": [
+        "休憩所近くの分かりやすい場所に救急箱を常備する。",
+        "使用後にガーゼや手袋を補充する。"
+      ],
+      "examples_en": [
+        "Keep a first-aid kit in a clearly identified location near the work area.",
+        "Restock dressings and gloves after the kit is used."
+      ]
+    },
+    {
+      "id": "fire_extinguisher",
+      "wave": "content-wave-006e",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "初期消火に使用する可搬式の消火設備。想定される火災の種類、消火能力、設置条件を現場の火気・燃料・電気設備などに合わせ、必要な法令・現場基準に従って配置する。",
+      "detail_en": "Portable fire-fighting equipment intended for incipient-stage fires. The extinguisher type, rating, and placement should suit the expected fire hazards and applicable site or regulatory requirements.",
+      "bullets_ja": [
+        "想定火災に適合する種類を選び、見やすく取り出しやすい位置を確保する。",
+        "封印・圧力表示・損傷・使用期限などを所定の点検方法で確認する。",
+        "火勢が大きい、退路がない、使用方法が分からない場合は無理に消火せず避難・通報を優先する。"
+      ],
+      "bullets_en": [
+        "Select an extinguisher suitable for the expected fire class and keep it visible and accessible.",
+        "Inspect seals, pressure indication, damage, and service status according to the required inspection method.",
+        "If the fire is growing, escape is not secure, or the user is not trained, prioritize evacuation and emergency notification."
+      ],
+      "examples_ja": [
+        "溶接作業区画の近くに適合する消火器を配置する。",
+        "始業前点検で消火器の設置位置と状態を確認する。"
+      ],
+      "examples_en": [
+        "Place an appropriate extinguisher near a controlled hot-work area.",
+        "Confirm extinguisher location and condition during a pre-work inspection."
+      ]
+    },
+    {
+      "id": "marker",
+      "wave": "content-wave-006e",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "材料や仕上げ面に位置・寸法・識別情報を書き込むためのマーカー。油性、ペイント、建築用など種類があり、下地材と必要な耐水性・消去性に合わせて選ぶ。",
+      "detail_en": "A marker used to place layout, dimension, or identification marks on materials and finished surfaces. Ink type and permanence should suit the substrate and whether the mark must resist water or later be removed.",
+      "bullets_ja": [
+        "仕上げ面では変色・にじみ・消去可否を目立たない場所で確認する。",
+        "基準線と一時的な作業メモを区別し、誤施工につながる不要な線を残さない。",
+        "金属・木材・コンクリートなど下地に合うインクとペン先を選ぶ。"
+      ],
+      "bullets_en": [
+        "On finished surfaces, test for staining, bleed-through, and removability in an inconspicuous area.",
+        "Distinguish reference layout lines from temporary notes and remove confusing marks that could cause errors.",
+        "Choose an ink and tip suited to the substrate, such as metal, wood, or concrete."
+      ],
+      "examples_ja": [
+        "切断位置を鋼材へペイントマーカーで記す。",
+        "取付位置を下地材へマーカーで仮記入する。"
+      ],
+      "examples_en": [
+        "Mark a cut line on steel with a paint marker.",
+        "Place temporary installation marks on a substrate before fixing components."
+      ]
+    },
+    {
+      "id": "string_line",
+      "wave": "content-wave-006e",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "基準となる直線・通り・高さを目視確認するために張る糸。基礎、組積、外構、木工などで両端を固定して張力を与え、部材の位置合わせに使う。",
+      "detail_en": "A taut reference line used to establish or visually check straightness, alignment, or elevation in foundation, masonry, exterior, and framing work.",
+      "bullets_ja": [
+        "両端を確実に固定し、たるみや風による振れが基準に影響しないよう張る。",
+        "糸そのものの太さや接触で位置がずれないよう、確認する側を統一する。",
+        "通路を横切る場合は引っ掛かりや切創を防ぎ、不要になったら速やかに撤去する。"
+      ],
+      "bullets_en": [
+        "Anchor both ends securely and tension the line so sag or wind movement does not distort the reference.",
+        "Use a consistent side of the line for checking so line thickness or contact does not shift the layout.",
+        "Where the line crosses access routes, control trip or cut hazards and remove it promptly when no longer needed."
+      ],
+      "examples_ja": [
+        "ブロック積みの通りを水糸で確認する。",
+        "基礎型枠の位置合わせ用に基準糸を張る。"
+      ],
+      "examples_en": [
+        "Use a string line to check alignment while laying block.",
+        "Set a reference line to align foundation formwork."
+      ]
+    },
+    {
+      "id": "joist",
+      "wave": "content-wave-006e",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "床や天井などを支持するために一定間隔で配置する横架材。木材、鋼製材などがあり、断面寸法、間隔、支点、荷重条件は構造設計や仕様に従う。",
+      "detail_en": "A repeated horizontal framing member used to support floors or ceilings. Joists may be timber or steel, and section size, spacing, bearing, and loading should follow the structural design or specification.",
+      "bullets_ja": [
+        "断面・間隔・支点長さを図面や仕様どおりに施工し、独断で変更しない。",
+        "切欠き・穴あけは耐力に影響するため、許容位置・寸法を確認してから行う。",
+        "木製根太では含水・腐朽・反り、鋼製では腐食や接合部の状態を確認する。"
+      ],
+      "bullets_en": [
+        "Install section size, spacing, and bearing in accordance with the drawings or specification and do not alter them casually.",
+        "Check permitted locations and sizes before notching or drilling because these can reduce structural capacity.",
+        "For timber joists check moisture, decay, and distortion; for steel joists check corrosion and connections."
+      ],
+      "examples_ja": [
+        "床下地を支持する根太を所定ピッチで配置する。",
+        "設備配管のための穴位置が許容範囲か確認する。"
+      ],
+      "examples_en": [
+        "Install floor joists at the specified spacing to support the subfloor.",
+        "Confirm that a proposed service hole is within the permitted zone."
+      ]
+    },
+    {
+      "id": "beam",
+      "wave": "content-wave-006e",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "柱や壁などの間に架け、床・屋根・上部構造などの荷重を支える主な横架材。木、鉄骨、鉄筋コンクリートなど構造形式により納まりと接合方法が異なる。",
+      "detail_en": "A primary horizontal structural member spanning between columns, walls, or other supports and carrying floor, roof, or superstructure loads. Detailing and connections vary with timber, steel, concrete, and other systems.",
+      "bullets_ja": [
+        "部材寸法・向き・支点・接合方法を構造図と仕様に合わせる。",
+        "現場での穴あけ・切欠き・溶接などは構造性能へ影響するため、承認なしに行わない。",
+        "仮置き・建方中も転倒や横座屈を防ぐため必要な仮固定・支保を行う。"
+      ],
+      "bullets_en": [
+        "Match member size, orientation, bearing, and connection details to the structural drawings and specification.",
+        "Do not drill, notch, weld, or otherwise modify a structural beam without appropriate approval.",
+        "Provide required temporary bracing or support during storage and erection to prevent overturning or lateral instability."
+      ],
+      "examples_ja": [
+        "柱間へ鉄骨梁を建て込み所定の接合部で固定する。",
+        "木造梁の仕口位置を構造図で確認する。"
+      ],
+      "examples_en": [
+        "Erect a steel beam between columns and secure it at the specified connections.",
+        "Check the joint location of a timber beam against the structural drawings."
+      ]
+    },
+    {
+      "id": "column",
+      "wave": "content-wave-006e",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "上部からの荷重を基礎や下階へ伝える主な鉛直構造材。木柱、鉄骨柱、鉄筋コンクリート柱などがあり、位置・断面・鉛直精度・接合部を構造仕様に合わせる。",
+      "detail_en": "A primary vertical structural member that transfers loads from the structure above to foundations or lower levels. Timber, steel, and reinforced-concrete columns require correct position, section, plumb, and connections.",
+      "bullets_ja": [
+        "通り芯・位置・鉛直を確認し、構造図どおりの断面と向きで設置する。",
+        "柱脚・柱頭・継手などの接合部を指定方法で施工し、無断加工を行わない。",
+        "建方中は本接合が完了するまで必要な仮固定を行い、転倒を防ぐ。"
+      ],
+      "bullets_en": [
+        "Check grid position and plumb and install the column with the specified section and orientation.",
+        "Construct base, head, and splice connections as detailed and do not modify the member without approval.",
+        "Use required temporary bracing during erection until permanent connections provide stability."
+      ],
+      "examples_ja": [
+        "鉄骨柱を所定のアンカーボルト位置へ建て込む。",
+        "木柱の鉛直を確認しながら仮筋交いで固定する。"
+      ],
+      "examples_en": [
+        "Erect a steel column over the specified anchor-bolt layout.",
+        "Plumb a timber column and secure it with temporary bracing."
+      ]
+    },
+    {
+      "id": "osb",
+      "wave": "content-wave-006e",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "細長い木質ストランドを一定方向に配向して積層・圧締した木質面材。壁・床・屋根下地などに使われ、厚さ、強度区分、耐湿性、使用環境を用途に合わせて選ぶ。",
+      "detail_en": "An engineered wood panel made from oriented wood strands bonded and pressed in layers. OSB is used for wall, floor, and roof sheathing, with thickness, grade, moisture resistance, and exposure class selected for the application.",
+      "bullets_ja": [
+        "構造用途では指定された厚さ・等級・張り方向・釘間隔などを守る。",
+        "端部支持や目地のクリアランスを確保し、吸湿による膨張を考慮する。",
+        "濡れた状態を長く放置せず、屋外使用では用途に合う耐候・防水仕様を確認する。"
+      ],
+      "bullets_en": [
+        "For structural use, follow the specified thickness, grade, panel orientation, and fastener schedule.",
+        "Provide required edge support and panel gaps to allow for moisture-related movement.",
+        "Do not leave panels wet for prolonged periods and verify suitable weather or moisture protection for exposed use."
+      ],
+      "examples_ja": [
+        "耐力壁の面材として指定厚さのOSBを張る。",
+        "屋根下地へOSBを割付けて留め付ける。"
+      ],
+      "examples_en": [
+        "Install specified OSB sheathing on a framed shear wall.",
+        "Lay out and fasten OSB panels as roof sheathing."
+      ]
+    },
+    {
+      "id": "form_tie",
+      "wave": "content-wave-006e",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "コンクリート打設時の側圧に対して、向かい合う型枠パネルの間隔を保持する締結部材。セパレーター、フォームタイ、座金などを組み合わせる方式があり、型枠計画に応じて選ぶ。",
+      "detail_en": "A formwork fastening component used to hold opposing form faces at the required spacing against fresh-concrete pressure. Systems may combine separators, ties, cones, and plates selected for the formwork design.",
+      "bullets_ja": [
+        "コンクリート側圧と型枠計画に合う種類・許容荷重・配置間隔を使用する。",
+        "締付け不足や過締めで型枠を変形させないよう、所定の方法で均等に固定する。",
+        "脱型後のタイ穴や残存部は、仕上げ・防水仕様に合わせて処理する。"
+      ],
+      "bullets_en": [
+        "Use the tie type, allowable load, and spacing required by the formwork design and fresh-concrete pressure.",
+        "Tighten uniformly by the specified method to avoid loose formwork or distortion from over-tightening.",
+        "After stripping, treat tie holes or remaining components according to the finish and waterproofing requirements."
+      ],
+      "examples_ja": [
+        "壁型枠をセパレーターとフォームタイで所定間隔に保持する。",
+        "脱型後にフォームタイ跡を仕様どおり補修する。"
+      ],
+      "examples_en": [
+        "Hold wall forms to the specified spacing with separators and form ties.",
+        "Repair form-tie locations after stripping as required by the finish specification."
+      ]
+    },
+    {
+      "id": "sandpaper",
+      "wave": "content-wave-006e",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "紙や布などの基材に研磨材を付着させた研磨シート。木材、塗膜、パテ、金属などの下地調整に使い、番手、研磨材、乾式・湿式適性を対象に合わせる。",
+      "detail_en": "Abrasive sheet or paper used for surface preparation on wood, coatings, fillers, metals, and other materials. Grit, abrasive type, backing, and wet/dry suitability should match the substrate and finish.",
+      "bullets_ja": [
+        "粗い番手から必要に応じて細かい番手へ進め、削り過ぎを避ける。",
+        "対象材に合う研磨材を選び、目詰まりや摩耗した紙やすりは交換する。",
+        "研磨粉じんを集じん・清掃し、必要な呼吸・目の保護具を使用する。"
+      ],
+      "bullets_en": [
+        "Progress from coarse to finer grits as needed and avoid removing more material than required.",
+        "Choose an abrasive suited to the substrate and replace sheets that are clogged or worn.",
+        "Control sanding dust with extraction or cleanup and use appropriate respiratory and eye protection."
+      ],
+      "examples_ja": [
+        "パテ乾燥後に紙やすりで面を平滑にする。",
+        "木部塗装前に番手を上げながら研磨する。"
+      ],
+      "examples_en": [
+        "Smooth cured filler with sandpaper before finishing.",
+        "Sand timber with progressively finer grits before coating."
+      ]
+    },
+    {
+      "id": "primer",
+      "wave": "content-wave-006e",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "仕上げ塗装の前に塗る下塗り材。下地への付着向上、吸い込み調整、防錆、シミ止めなど目的が異なるため、下地材と上塗り塗料の組合せに適合する製品を選ぶ。",
+      "detail_en": "A preparatory coating applied before finish coats. Primers may improve adhesion, control porosity, inhibit corrosion, or block stains, so the product must be compatible with the substrate and coating system.",
+      "bullets_ja": [
+        "下地の材質・含水・汚れ・旧塗膜の状態を確認し、適合するプライマーを選ぶ。",
+        "必要な下地処理、塗布量、乾燥・再塗装時間を製品仕様に従う。",
+        "溶剤系などでは換気・火気管理と必要な保護具を確保する。"
+      ],
+      "bullets_en": [
+        "Assess substrate material, moisture, contamination, and existing coatings before selecting a compatible primer.",
+        "Follow the product requirements for preparation, application rate, drying, and recoat time.",
+        "For solvent-bearing products, provide required ventilation, ignition control, and PPE."
+      ],
+      "examples_ja": [
+        "吸い込みの大きい下地へ指定プライマーを塗布してから仕上げる。",
+        "金属部へ防錆プライマーを塗って上塗りへつなぐ。"
+      ],
+      "examples_en": [
+        "Prime a porous substrate with the specified product before finish coating.",
+        "Apply an anticorrosive primer to prepared metal before the top coat."
+      ]
+    },
+    {
+      "id": "top_coat",
+      "wave": "content-wave-006e",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "塗装工程の最終層として外観や色、耐候性、耐摩耗性などを与える上塗り材。下塗り・中塗りとの適合、使用環境、必要膜厚、色・艶を仕様に合わせる。",
+      "detail_en": "The final coating layer used to provide appearance, color, weather resistance, wear resistance, or other finish properties. It must be compatible with preceding coats and meet the specified environment, film build, color, and sheen.",
+      "bullets_ja": [
+        "下塗り・中塗りが十分に乾燥し、上塗りとの適合性があることを確認する。",
+        "指定塗布量・膜厚・希釈・乾燥条件を守り、塗りむらや未硬化を防ぐ。",
+        "温度・湿度・結露・降雨など施工環境を確認し、必要な換気と保護具を確保する。"
+      ],
+      "bullets_en": [
+        "Confirm preceding coats are adequately dry and compatible with the top coat.",
+        "Follow specified coverage, film thickness, thinning, and curing conditions to avoid uneven or under-cured finish.",
+        "Check temperature, humidity, condensation, and rain conditions and provide required ventilation and PPE."
+      ],
+      "examples_ja": [
+        "外壁塗装の最終工程で指定色の上塗りを行う。",
+        "金属部のプライマー・中塗り後に耐候性上塗りを施工する。"
+      ],
+      "examples_en": [
+        "Apply the specified finish color as the final exterior-wall coating.",
+        "Apply a weather-resistant top coat over the specified primer and intermediate coat on metal."
+      ]
+    }
+  ]
+}
