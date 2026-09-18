@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-18-1",
+  "version": "2026-09-18-applicability-wave1",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -285,6 +285,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A service access door is a visually identifiable installed component; a subject-matched photograph materially helps distinguish it from a simple opening or panel.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -296,6 +305,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An access panel has a stable visible form as an openable wall or ceiling component; a reviewed photograph improves recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -313,6 +331,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Acoustic panels are physical finish products with recognizable installed forms; a representative subject-matched photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -324,6 +351,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An adhesion test has a recognizable field setup such as bonded test dollies and pull-off equipment; a reviewed process photograph can explain the canonical without being arbitrary.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -355,6 +391,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An anchor bolt is a concrete fastening component with a distinct physical form and installation context; a verified photograph is useful for identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -369,6 +414,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A plastic wall plug is a visually identifiable fastener; a close subject-matched photograph would materially aid recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -380,6 +434,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An angle finder is a distinct measuring tool with recognizable forms; a reviewed tool photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -425,6 +488,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is defined by the drawing's record/as-built status rather than one stable visual layout; project drawing formats vary, so a representative photograph would be arbitrary and potentially misleading.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -436,6 +508,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Asphalt felt is a physical roofing/waterproofing underlayment with a recognizable roll and installed appearance; a verified photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -453,6 +534,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An automatic level is a distinctive surveying instrument; a subject-matched photograph strongly aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -467,6 +557,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Backer rod is a physical joint-filler material with a recognizable foam profile and installation context; imagery is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -478,6 +577,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A backhoe loader is a distinctive machine with front loader and rear excavator assemblies; a verified photograph is highly informative.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -509,6 +617,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A construction barricade is a visually identifiable temporary safety barrier; a reviewed site photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -520,6 +637,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Base/floor trim is a physical transition component whose profile and installed edge condition are visually useful to distinguish.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -537,6 +663,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A baseboard is a stable installed wall-floor trim element; a subject-matched photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -548,6 +683,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A structural beam is a physical horizontal load-bearing member; a reviewed construction photograph can represent the canonical usefully despite material variation.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -579,6 +723,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Bolts and nuts are visually identifiable fastening hardware; a close reviewed photograph materially aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -590,6 +743,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A borescope is a distinctive inspection camera and probe tool; a verified photograph is useful for identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -607,6 +769,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A brick hammer has a characteristic hammer head used in masonry; a subject-matched tool photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -618,6 +789,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A brick trowel has a characteristic masonry blade and handle; a verified photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -635,6 +815,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A work bucket is a physical site container with clear visual identity; a representative reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -646,6 +835,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Butyl tape is a physical sealing tape with recognizable roll/strip form and application; a verified photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -663,6 +861,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A cable ramp/protector is a distinctive temporary floor protection product; a reviewed photograph clearly aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -674,6 +881,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A cable tie is a visually distinctive fastening item; a close subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -691,6 +907,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Cable tray is a physical cable-support system with recognizable installed geometry; a reviewed installation photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -702,6 +927,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A caliper is a distinctive measuring instrument; a verified tool photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -719,6 +953,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Carpet tile is a physical modular floor finish with a recognizable installed and loose-tile form; imagery is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -733,6 +976,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Caulk masking/back-up tape is a physical sealing-work material; a reviewed product or application photograph can clarify the canonical.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -744,6 +996,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A caulk finisher is a distinct hand tool used to shape sealant joints; a subject-matched photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -775,6 +1036,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A caulking/paint scraper is a distinct hand tool; a verified close photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -786,6 +1056,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Sealant is a physical construction material commonly seen in cartridges, sausages, or applied joints; a reviewed canonical photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -803,6 +1082,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A suspended ceiling grid has a distinctive installed T-bar framework; a reviewed photograph materially aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -814,6 +1102,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Ceiling tile is a physical finish panel with a recognizable suspended-ceiling context; imagery is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -831,6 +1128,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Cement is a physical binder material with recognizable powder/bag and mixing context; a verified photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -842,6 +1148,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Cement board is a physical sheet substrate with recognizable board form and installation context; a reviewed photograph aids distinction from gypsum board.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -859,6 +1174,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A chain block is a distinctive manual lifting device with chain, hook, and hoist body; a subject-matched photograph is highly informative.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -870,6 +1194,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A chalk line reel is a distinctive layout tool; a reviewed photograph of the reel or snapping operation aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -901,6 +1234,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Metal channel is a physical C/track-shaped framing member; a verified photograph can clearly represent its profile and use.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -912,6 +1254,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A chemical anchor is a physical resin-and-rod fastening system with recognizable installation components; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -929,6 +1280,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A woodworking chisel is a distinctive bladed hand tool; a subject-matched photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -940,6 +1300,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A circuit breaker is a visually identifiable electrical protection device; a reviewed photograph materially aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -957,6 +1326,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A circular saw is a distinctive power tool; a verified photograph strongly aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -968,6 +1346,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A bar clamp is a recognizable workholding tool with a rail and jaws; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -985,6 +1372,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A plumbing cleanout is a physical access fitting/cap with recognizable installed contexts; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -996,6 +1392,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is a jobsite cleanup/housekeeping practice and slang usage, not a unique physical subject; any photograph would depict an arbitrary cleanup scene rather than identify the term itself.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -1013,6 +1418,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A structural column is a physical vertical load-bearing member; a reviewed construction photograph can represent the canonical usefully despite material variation.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -1024,6 +1438,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An air compressor is a distinctive piece of pneumatic equipment; a subject-matched photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -1041,6 +1464,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Concrete is a physical construction material with recognizable fresh and hardened application contexts; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -1055,6 +1487,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A concrete bucket is a distinctive crane-lifted placing container; a verified site photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -1066,6 +1507,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:32:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A concrete mixer is a distinctive mixing machine; a subject-matched photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
