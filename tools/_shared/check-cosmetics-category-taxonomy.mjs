@@ -10,7 +10,7 @@ const taxonomy = JSON.parse(fs.readFileSync(path.join(root, 'tools/_shared/cosme
 
 const EXPECTED_CATEGORIES = new Set([
   'solvent', 'humectant', 'preservative', 'thickener', 'pH adjuster', 'antioxidant', 'viscosity adjuster', 'chelating agent',
-  'skin conditioning', 'emollient', 'cleanser'
+  'skin conditioning', 'emollient', 'cleanser', 'emulsifier'
 ]);
 const EXPECTED_AUTHORITY_FUNCTIONS = Object.freeze({
   'solvent': ['solvent'],
