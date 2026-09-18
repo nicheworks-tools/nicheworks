@@ -62,7 +62,9 @@
     i18nNodes: $$("[data-i18n]")
   };
 
+  let loadGeneration = 0;
   const state = {
+    load: { status: "empty", candidateName: null },
     ui: {
       lang: "ja",
       previewMode: "out",
@@ -76,6 +78,7 @@
       hasHeader: true
     },
     options: {
+      cleanScope: "all",
       trim: true,
       normSpaces: false,
       zenHan: {
@@ -95,6 +98,13 @@
       cols: []
     }
   };
+
+  // Backward-compatible runtime-contract alias. output.bom remains the canonical state.
+  Object.defineProperty(state.options, "bom", {
+    configurable: true,
+    get(){ return state.options.output.bom; },
+    set(value){ state.options.output.bom = !!value; }
+  });
 
   function setSegActive(a, b, onA){
     a.classList.toggle("active", !!onA);
@@ -203,97 +213,100 @@ if (state.data.rows && state.data.rows.length) schedulePreviewRequest();
   async function readFileAsArrayBuffer(file){
     return new Promise((resolve, reject) => {
       const fr = new FileReader();
-      fr.onerror = () => reject(new Error("file_read_failed"));
+      fr.onerror = fr.onabort = () => reject(csvError("file_read_failed", {}));
       fr.onload = () => resolve(fr.result);
       fr.readAsArrayBuffer(file);
     });
   }
 
   function decodeArrayBuffer(buf, enc){
-    try {
-      const td = new TextDecoder(enc, { fatal: false });
-      return td.decode(buf);
-    } catch (e) {
-      // [CSVTDY-07] Some browsers don't support Shift_JIS in TextDecoder
-      if (String(enc).toLowerCase() === "shift_jis") {
-        const err = new Error("unsupported_shift_jis");
-        err.code = "unsupported_shift_jis";
-        throw err;
-      }
-      throw e;
+    if (!["utf-8", "shift_jis"].includes(enc)) throw csvError("unsupported_encoding", { encoding: enc });
+    let decoder;
+    try { decoder = new TextDecoder(enc, { fatal: true }); }
+    catch(_error){
+      throw csvError(enc === "shift_jis" ? "unsupported_shift_jis" : "unsupported_encoding", { encoding: enc });
     }
+    try { return decoder.decode(buf); }
+    catch(_error){ throw csvError("decoding_failed", { encoding: enc }); }
   }
 
   function guessEncoding(buf){
-    let t1 = "";
-    try { t1 = decodeArrayBuffer(buf, "utf-8"); } catch(_e){ t1 = ""; }
-    const rep = (t1.match(/\uFFFD/g) || []).length;
-    const len = Math.max(1, t1.length);
-    const ratio = rep / len;
-    if (ratio > 0.002) return "shift_jis";
+    const bytes = new Uint8Array(buf);
+    const hasBOM = bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf;
+    let utf8;
+    try { utf8 = decodeArrayBuffer(buf, "utf-8"); }
+    catch(error){
+      // Do not override a UTF-8 signature to rescue malformed UTF-8 bytes.
+      if (hasBOM || error.code !== "decoding_failed") throw error;
+      decodeArrayBuffer(buf, "shift_jis"); // strict fallback or explicit failure
+      return "shift_jis";
+    }
+    if (hasBOM) return "utf-8";
+    let alternate;
+    try { alternate = decodeArrayBuffer(buf, "shift_jis"); } catch(_error) {}
+    if (alternate !== undefined && alternate !== utf8){
+      throw csvError("ambiguous_encoding", { candidates: ["utf-8", "shift_jis"] });
+    }
     return "utf-8";
   }
 
+  function csvError(code, details = {}){
+    return Object.assign(new Error(code), { code }, details);
+  }
+
   function guessDelimiter(text){
-    const lines = text.split(/\r\n|\n|\r/).slice(0, 10);
-    const cands = [",", "\t", ";"];
-    const scores = cands.map(d => {
-      let s = 0;
-      for (const ln of lines) s += (ln.split(d).length - 1);
-      return s;
-    });
-    let best = 0;
-    for (let i=1;i<scores.length;i++) if (scores[i] > scores[best]) best = i;
-    return scores[best] === 0 ? "," : cands[best];
+    // Compare strict interpretations of logical records, never character counts.
+    // Multiple valid multi-column interpretations require an explicit selection.
+    const candidates = [];
+    let validSingleColumn = false;
+    let firstError;
+    for (const delim of [",", "\t", ";"]){
+      try {
+        const rows = parseCSV(text, delim);
+        if (rows.some(row => row.length > 1)) candidates.push(delim);
+        else validSingleColumn = true;
+      } catch(error){
+        if (!firstError) firstError = error;
+      }
+    }
+    if (candidates.length > 1) throw csvError("ambiguous_delimiter", { candidates });
+    if (candidates.length === 1) return candidates[0];
+    if (validSingleColumn) return ","; // equivalent single-column interpretations
+    throw firstError;
   }
 
   function parseCSV(text, delim){
+    if (![",", "\t", ";"].includes(delim)) throw csvError("invalid_delimiter");
     const rows = [];
-    let row = [];
-    let cell = "";
-    let i = 0;
-    let inQuotes = false;
-
-    while (i < text.length){
+    let row = [], cell = "", mode = "start", recordStart = 0;
+    const fail = (code, offset) => { throw csvError(code, {
+      record: rows.length + 1, field: row.length + 1, offset
+    }); };
+    for (let i = 0; i < text.length; i++){
       const ch = text[i];
-
-      if (inQuotes){
+      if (mode === "quoted"){
         if (ch === '"'){
-          const next = text[i+1];
-          if (next === '"'){ cell += '"'; i += 2; continue; }
-          inQuotes = false; i++; continue;
-        }
-        cell += ch; i++; continue;
+          if (text[i + 1] === '"'){ cell += '"'; i++; }
+          else mode = "closed";
+        } else cell += ch;
+        continue;
+      }
+      if (ch === delim){
+        row.push(cell); cell = ""; mode = "start";
+      } else if (ch === "\n" || ch === "\r"){
+        if (ch === "\r" && text[i + 1] === "\n") i++;
+        row.push(cell); rows.push(row);
+        row = []; cell = ""; mode = "start"; recordStart = i + 1;
+      } else if (ch === '"' && mode === "start"){
+        mode = "quoted";
       } else {
-        if (ch === '"'){ inQuotes = true; i++; continue; }
-
-        if (ch === delim){
-          row.push(cell); cell = ""; i++; continue;
-        }
-        if (ch === "\n" || ch === "\r"){
-          if (ch === "\r" && text[i+1] === "\n") i++;
-          row.push(cell);
-          rows.push(row);
-          row = []; cell = ""; i++; continue;
-        }
-        cell += ch; i++; continue;
+        if (ch === '"' || mode === "closed") fail("invalid_quote", i);
+        cell += ch; mode = "unquoted";
       }
     }
-    row.push(cell);
-    rows.push(row);
-
-    if (rows.length){
-      const last = rows[rows.length-1];
-      const allEmpty = last.every(v => (v || "") === "");
-      if (allEmpty) rows.pop();
-    }
-    // [CSVTDY-06] Detect unclosed quote (malformed CSV)
-    if (inQuotes) {
-      const err = new Error("unclosed_quote");
-      err.code = "unclosed_quote";
-      throw err;
-    }
-
+    if (mode === "quoted") fail("unclosed_quote", text.length);
+    // A final terminator is not another record; explicit empty fields/quotes are.
+    if (recordStart < text.length){ row.push(cell); rows.push(row); }
     return rows;
   }
 
@@ -302,11 +315,11 @@ if (state.data.rows && state.data.rows.length) schedulePreviewRequest();
     return s.includes('"') || s.includes(delim) || s.includes("\n") || s.includes("\r");
   }
 
-  function stringifyCSV(rows, delim, newline){
+  function stringifyCSV(rows, delim, newline, quoteMode = "auto"){
     const nl = newline === "crlf" ? "\r\n" : "\n";
     const out = rows.map(r => r.map(v => {
       const s = String(v ?? "");
-      if (!mustQuote(s, delim)) return s;
+      if (quoteMode !== "always" && !(r.length === 1 && s === "") && !mustQuote(s, delim)) return s;
       return '"' + s.replace(/"/g, '""') + '"';
     }).join(delim)).join(nl);
     return out + nl;
@@ -411,12 +424,13 @@ if (state.data.rows && state.data.rows.length) schedulePreviewRequest();
   }
 
   function buildOutputPreview(limitRows){
+    if (state.load.status !== "valid") return { headers: [], rows: [], colsUsed: 0, dropped: 0 };
     const cols = state.data.cols
       .filter(c => !c.excluded)
       .slice()
       .sort((a,b) => a.order - b.order);
 
-    const headers = cols.map(c => applyHeaderOptions(c.name));
+    const headers = cols.map(c => shouldApplyCleanForCol(c) ? applyHeaderOptions(c.name) : c.name);
     const srcRows = state.data.rows;
     const start = state.input.hasHeader ? 1 : 0;
     const dataRows = srcRows.slice(start);
@@ -425,11 +439,25 @@ if (state.data.rows && state.data.rows.length) schedulePreviewRequest();
     const outRows = [];
     for (let r=0; r<Math.min(n, dataRows.length); r++){
       const src = dataRows[r];
-      const dst = cols.map(c => applyCellOptions(src[c.srcIndex] ?? ""));
+      const dst = cols.map(c => shouldApplyCleanForCol(c) ? applyCellOptions(src[c.srcIndex] ?? "") : (src[c.srcIndex] ?? ""));
       outRows.push(dst);
     }
     return { headers, rows: outRows, colsUsed: cols.length, dropped: state.data.cols.length - cols.length };
   }
+
+  // Read-only snapshot for complete.js; column editor filtering is view-only.
+  function getSummaryModel(lang){
+    if (state.load.status !== "valid") return { valid: false, inputCols: 0, outputCols: 0, previewRows: 0, excluded: [] };
+    const cols = state.data.cols;
+    const excluded = cols.slice().sort((a,b) => a.order - b.order || a.srcIndex - b.srcIndex)
+      .filter(c => c.excluded).map(c => {
+        const name = String(shouldApplyCleanForCol(c) ? applyHeaderOptions(c.name) : c.name);
+        return name.trim() ? name : (lang === "ja" ? "列 " : "Column ") + (c.srcIndex + 1);
+      });
+    return { valid: true, inputCols: cols.length, outputCols: cols.filter(c => !c.excluded).length,
+      previewRows: Math.min(state.ui.previewN, Math.max(0, state.data.rows.length - (state.input.hasHeader ? 1 : 0))), excluded };
+  }
+  window.csvTidySummary = getSummaryModel;
 
   // [CSVTDY-10] Bulk actions helpers
   function getMatchedCols(){
@@ -539,8 +567,7 @@ if (state.data.rows && state.data.rows.length) schedulePreviewRequest();
       const visibleNames = [];
 
       cols.filter(c=>!c.excluded).forEach(c=>{
-        const out = (c.outName ?? c.newName ?? c.renameTo);
-        const nm = String((out!=null && String(out).length) ? out : (c.name ?? "")).trim();
+        const nm = String(shouldApplyCleanForCol(c) ? applyHeaderOptions(c.name) : c.name).trim();
         if (!nm) return;
         present.add(nm.toLowerCase());
         visibleNames.push(nm);
@@ -584,70 +611,47 @@ function applyTemplate(tid){
     const cols = state.data.cols;
     const hasHeader = !!(state && state.input && state.input.hasHeader);
 
-    // build name map (by current column display name)
-    // - prefer header cell value if present (stored in c.name usually)
-    const map = new Map();
-    cols.forEach((c, idx)=>{
-      const key = normKey(c.name ?? "");
-      if (key) map.set(key, c);
-    });
+    if (!hasHeader){
+      updateMappingWarnings();
+      setTmplInfo(state.ui.lang === "ja" ? "ヘッダーOFFのためテンプレートは適用していません。" : "Template not applied: Header is OFF.");
+      return;
+    }
 
-    // apply renames (outName)
+    // Current output name is the only rename source/target. Match each entity,
+    // never collapse duplicate headers into a name-to-column map.
+    const aliases = new Map(Object.entries(t.rename || {}).map(([src, dst]) => [normKey(src), dst]));
+    const exclSet = new Set((t.exclude || []).map(normKey));
     let renamed = 0;
-    Object.keys(t.rename || {}).forEach(src=>{
-      const key = normKey(src);
-      const c = map.get(key);
-      if (c){
-        c.outName = t.rename[src];
+    cols.forEach(c => {
+      const key = normKey(c.name);
+      if (exclSet.has(key)) c.excluded = true;
+      if (aliases.has(key) && c.name !== aliases.get(key)){
+        c.name = aliases.get(key);
         renamed++;
       }
     });
 
-    // apply excludes: explicit list + optional "include by order" behavior
-    const exclSet = new Set((t.exclude || []).map(normKey));
-    let forcedOrder = Array.isArray(t.order) && t.order.length > 0;
-
-    // If template has order list, we treat it as "include these if found, but do not exclude others by default".
-    // (Safer for unknown CSVs; user can still bulk-exclude manually.)
-    // You can change to "exclude non-listed" later in CSVTDY-16/17.
-    cols.forEach(c=>{
-      const key = normKey(c.name ?? "");
-      if (exclSet.has(key)) c.excluded = true;
-    });
-
-    // apply order (only for found columns)
+    const forcedOrder = Array.isArray(t.order) && t.order.length > 0;
     let ordered = 0;
-    let missing = [];
+    const missing = [];
     if (forcedOrder){
-      // reset order to existing first, then set for matched cols
-      // Keep relative order for unmatched.
-      const base = cols.slice().sort((a,b)=>{
-        const ao = (a.order != null) ? a.order : (a.srcIndex ?? 0);
-        const bo = (b.order != null) ? b.order : (b.srcIndex ?? 0);
-        return ao - bo;
-      });
-
-      // assign new order: first template matches in listed order, then remaining
+      const base = cols.slice().sort((a,b) => a.order - b.order || a.srcIndex - b.srcIndex);
       const used = new Set();
       let cursor = 0;
-
-      t.order.forEach(name=>{
-        const c = map.get(normKey(name));
-        if (c){
+      t.order.forEach(name => {
+        const matches = base.filter(c => !used.has(c) && normKey(c.name) === normKey(name));
+        if (!matches.length) missing.push(name);
+        matches.forEach(c => {
           c.order = cursor++;
           used.add(c);
           ordered++;
-        } else {
-          missing.push(name);
-        }
+        });
       });
-
-      base.forEach(c=>{
-        if (used.has(c)) return;
-        c.order = cursor++;
-      });
+      // All matches in canonical groups; unmatched entities keep relative order.
+      base.forEach(c => { if (!used.has(c)) c.order = cursor++; });
     }
 
+    updateMappingWarnings();
     renderColsList();
     if (typeof schedulePreviewRequest === "function") schedulePreviewRequest();
     else schedulePreview();
@@ -741,7 +745,7 @@ function applyTemplate(tid){
   }
 
   function renderPreview(){
-    if (!state.data.rows.length){
+    if (state.load.status !== "valid" || !state.data.rows.length){
       if (els.emptyGuide) els.emptyGuide.hidden = false;
       els.previewTable.innerHTML = "";
       els.summary.textContent = "";
@@ -796,7 +800,7 @@ return;
     }
 
     if (previewTimer) clearTimeout(previewTimer);
-    previewTimer = setTimeout(() => { setError(""); renderPreview(); }, 60);
+    previewTimer = setTimeout(() => { if (state.load.status === "valid") setError(""); renderPreview(); }, 60);
   
     // [CSVTDY-16 preview hook]
     try { updateMappingWarnings(); } catch(_e) {}
@@ -804,6 +808,13 @@ return;
 }
 
   async function handleFile(file){
+    const generation = ++loadGeneration;
+    const candidate = { filename: file?.name || "export.csv", encoding: state.input.encoding,
+      delimiter: state.input.delimiter, hasHeader: state.input.hasHeader };
+    state.load = { status: "loading", candidateName: candidate.filename };
+    state.ui.inputError = null;
+    state.data.widthError = null;
+    renderPreview();
     // [CSVTDY-14 handleFile busy]
     setBusy(true, (state.ui && state.ui.lang==="ja") ? "読み込み中…" : "Loading…");
     setUIEnabled(false);
@@ -815,81 +826,94 @@ return;
     setError(""); setHint("");
     if (!file){ resetAll(); return; }
 
-    state.input.filename = file.name || "export.csv";
-    els.outName.value = (file.name ? file.name.replace(/\.csv$/i,"") : "export") + ".tidy.csv";
-
     let buf;
     try { buf = await readFileAsArrayBuffer(file); }
-    catch(_e){
-      const isUnclosed = (_e && (_e.code === "unclosed_quote" || _e.message === "unclosed_quote"));
-      if (isUnclosed){
-        setError(state.ui.lang==="ja" ? 'CSVの形式エラー：ダブルクォート(")が閉じていません。' : 'Malformed CSV: unclosed double-quote (").', "PARSE_UNCLOSED_QUOTE", state.ui.lang==="ja" ? "区切り文字やファイル形式を確認してください。" : "Check delimiter and CSV format.");
-      } else {
-        setError(state.ui.lang==="ja" ? "CSVの解析に失敗しました（形式を確認してください）。" : "Failed to parse CSV.", "PARSE_FAIL", state.ui.lang==="ja" ? "区切り文字やダブルクォートを確認してください。" : "Check delimiter and quotes.");
-      }
-      // ensure UI recovers from parse errors
-      setBusy(false);
-      setUIEnabled(true);
-
+    catch(error){
+      if (generation !== loadGeneration) return;
+      state.ui.inputError = { code: "file_read_failed" };
+      setError(state.ui.lang === "ja"
+        ? "ファイルを読み込めません。元ファイルは変更されていません。ファイルを選び直してください。"
+        : "Cannot read the file. The source is unchanged. Select the file again.", "file_read_failed");
       return;
     }
+    if (generation !== loadGeneration) return;
 
-    let enc = state.input.encoding;
+    let enc = candidate.encoding;
     let guessedEnc = null;
-    if (enc === "auto") { guessedEnc = guessEncoding(buf); enc = guessedEnc; }
-
     let text = "";
     try {
-      text = decodeArrayBuffer(buf, enc === "shift_jis" ? "shift_jis" : "utf-8");
+      if (enc === "auto") { guessedEnc = guessEncoding(buf); enc = guessedEnc; }
+      text = decodeArrayBuffer(buf, enc);
     } catch(_e){
+      state.ui.inputError = { code: _e.code, encoding: _e.encoding, candidates: _e.candidates };
       const isSJISUnsupported = (_e && (_e.code === "unsupported_shift_jis" || _e.message === "unsupported_shift_jis"));
       if (isSJISUnsupported){
         setError(state.ui.lang==="ja"
           ? "このブラウザはShift_JISの読み込みに未対応です。CSVをUTF-8に変換して再試行してください。"
-          : "This browser does not support Shift_JIS decoding. Convert the CSV to UTF-8 and try again.");
+          : "This browser does not support Shift_JIS decoding. Convert the CSV to UTF-8 and try again.", _e.code);
+      } else if (_e.code === "ambiguous_encoding"){
+        setError(state.ui.lang === "ja"
+          ? "UTF-8とShift_JISで異なる文字になります。入力文字コードを手動で選択してください。元ファイルは変更されていません。"
+          : "UTF-8 and Shift_JIS produce different text. Select the input encoding manually. The source is unchanged.", _e.code);
       } else {
-        setError(state.ui.lang==="ja" ? "文字コードの解釈に失敗しました。" : "Failed to decode text.");
+        setError(state.ui.lang === "ja"
+          ? "選択した文字コードで読み込めません。元ファイルは変更されていません。入力文字コードを確認し、正しい形式で再保存して試してください。"
+          : "Cannot decode these bytes using the selected encoding. The source is unchanged. Check the encoding or resave the CSV and retry.", _e.code);
       }
       return;
     }
-    state.data.rawText = text;
 
-    let delim = state.input.delimiter;
-    if (delim === "auto") delim = guessDelimiter(text);
-    if (delim === "tab") delim = "\t";
-    state.input.delimiterResolved = delim;
-
+    let delim = candidate.delimiter;
     let rows;
-    try { rows = parseCSV(text, delim); }
-    catch(_e){
-      setError(state.ui.lang==="ja" ? "CSVの解析に失敗しました（形式を確認してください）。" : "Failed to parse CSV.", "PARSE_FAIL", state.ui.lang==="ja" ? "区切り文字やダブルクォートを確認してください。" : "Check delimiter and quotes.");
+    try {
+      if (delim === "auto") delim = guessDelimiter(text);
+      if (delim === "tab") delim = "\t";
+      rows = parseCSV(text, delim);
+    } catch(error){
+      state.ui.inputError = { code: error.code, record: error.record, field: error.field,
+        offset: error.offset, candidates: error.candidates };
+      const location = error.record ? ` (${error.record}:${error.field})` : "";
+      const action = error.code === "ambiguous_delimiter"
+        ? (state.ui.lang === "ja" ? "区切り文字を手動で選択してください。" : "Select the input delimiter manually.")
+        : (state.ui.lang === "ja" ? "区切り文字と引用符を確認してください。" : "Check delimiter and quotes.");
+      setError((state.ui.lang === "ja" ? "CSVの解析に失敗しました。" : "Failed to parse CSV.") + location,
+        error.code || "PARSE_FAIL", action);
       return;
     }
     if (!rows || !rows.length){
-      setError(state.ui.lang==="ja" ? "CSVが空です。" : "CSV is empty.");
+      state.ui.inputError = { code: "empty_input" };
+      setError(state.ui.lang==="ja" ? "CSVが空です。別のファイルを選択してください。" : "CSV is empty. Select another file.", "empty_input");
       return;
     }
 
-    // [CSVTDY-05] Drop fully empty rows (keep header row if enabled)
-    const keepHeaderRows = state.input.hasHeader ? 1 : 0;
-    rows = rows.filter((r, idx) => {
-      if (idx < keepHeaderRows) return true;
-      return !r.every(v => String(v ?? "") === "");
-    });
-
-    const maxCols = rows.reduce((m,r)=>Math.max(m, r.length), 0);
-    rows = rows.map(r => (r.length < maxCols ? r.concat(Array(maxCols-r.length).fill("")) : r));
-    state.data.rows = rows;
-
-    const headers = state.input.hasHeader ? rows[0] : Array.from({length:maxCols}, (_,i)=>`col_${i+1}`);
-    state.data.cols = headers.map((h, idx) => ({
+    // Header ON: header width. Header OFF: first data record width.
+    const maxCols = rows[0].length;
+    const badIndex = rows.findIndex(row => row.length !== maxCols);
+    if (badIndex !== -1){
+      const error = { code: "inconsistent_fields", record: badIndex + 1,
+        expectedFields: maxCols, actualFields: rows[badIndex].length };
+      state.ui.inputError = error;
+      state.data.widthError = error; // retained independently of presentation updates
+      showWidthError();
+      return;
+    }
+    const headers = candidate.hasHeader ? rows[0] : Array.from({length:maxCols}, (_,i)=>`col_${i+1}`);
+    const cols = headers.map((h, idx) => ({
       id: "c" + idx + "_" + Math.random().toString(16).slice(2),
       srcIndex: idx,
-      name: (h == null || h === "") ? `col_${idx+1}` : String(h),
+      name: String(h ?? ""),
       excluded: false,
       order: idx,
       sample: pickSample(rows, idx)
     }));
+
+    // Commit the fully validated candidate together, without an async boundary.
+    state.data = { rawText: text, rows, cols, widthError: null };
+    Object.assign(state.input, { filename: candidate.filename, encodingResolved: enc,
+      delimiterResolved: delim, hasHeader: candidate.hasHeader });
+    state.ui.inputError = null;
+    state.load = { status: "valid", candidateName: null };
+    els.outName.value = candidate.filename.replace(/\.csv$/i, "") + ".tidy.csv";
 
     const encLabel = enc === "shift_jis" ? "Shift_JIS" : "UTF-8";
     const encInfoJa = (guessedEnc ? `推定:${encLabel}` : `指定:${encLabel}`);
@@ -899,17 +923,39 @@ return;
       : `Loaded: ${rows.length} rows / ${maxCols} cols (${encInfoEn} / delim: ${delim === "\t" ? "TAB" : delim})`
     );
 
+    if (guessedEnc){
+      setHint(els.loadHint.textContent + (state.ui.lang === "ja"
+        ? " 文字コードは推定です。文字を確認し、違う場合は入力文字コードを指定してください。"
+        : " Encoding is inferred: verify the text and select the input encoding if incorrect."));
+    }
     renderColsList();
     schedulePreviewRequest();
   
+    } catch(error) {
+      if (generation === loadGeneration) {
+        state.ui.inputError = { code: error.code || "load_failed" };
+        state.load.status = "invalid";
+        setError(state.ui.lang === "ja" ? "読み込みに失敗しました。ファイルを選び直してください。" : "Load failed. Select the file again.", state.ui.inputError.code);
+      }
     } finally {
-      try { setBusy(false); } catch(_e) {}
-      try { setUIEnabled(true); } catch(_e) {}
+      if (generation === loadGeneration) {
+        if (state.load.status === "loading") state.load.status = "invalid";
+        try { setBusy(false); } catch(_e) {}
+        try { setUIEnabled(true); } catch(_e) {}
+        els.downloadBtn.disabled = state.load.status !== "valid";
+      }
     }
 }
 
   function resetAll(){
+    ++loadGeneration;
+    state.load = { status: "empty", candidateName: null };
+    state.ui.inputError = null;
+    Object.assign(state.input, { filename: "", encodingResolved: null, delimiterResolved: null });
+    els.outName.value = "";
+    setBusy(false); setUIEnabled(true);
     state.data.rawText = "";
+    state.data.widthError = null;
     state.data.rows = [];
     state.data.cols = [];
     els.colsList.innerHTML = "";
@@ -919,26 +965,53 @@ return;
     setHint(""); setError("");
   }
 
+  function showWidthError(){
+    const error = state.data.widthError;
+    setError(state.ui.lang === "ja"
+      ? `論理レコード${error.record}の列数が不一致です（必要:${error.expectedFields}、実際:${error.actualFields}）。元ファイルは変更されていません。CSVの列数か入力区切り文字を確認して再読込してください。`
+      : `Logical record ${error.record} has ${error.actualFields} fields; expected ${error.expectedFields}. The source is unchanged. Check the CSV widths or input delimiter and reload.`, error.code);
+  }
+
   function downloadCSV(){
+    if (state.load.status !== "valid"){
+      setError(state.ui.lang === "ja"
+        ? "正常に読み込んだCSVがありません。入力を確認して再読込してください。元ファイルは変更されていません。"
+        : "No valid current CSV. Check the input and reload. The source is unchanged.", "INVALID_LOAD");
+      return;
+    }
+    if (state.data.widthError){ showWidthError(); return; }
     if (!state.data.rows.length){
       setError(state.ui.lang==="ja" ? "CSVを読み込んでください。" : "Please load a CSV.", "NO_ROWS");
       return;
     }
     // Build OUT rows (all rows)
     const out = buildOutputPreview(false); // false => all rows
+    if (!out.colsUsed){
+      setError(state.ui.lang==="ja"
+        ? "出力する列がありません。元ファイルは変更されていません。列を1つ以上含めてください。"
+        : "No output columns. The source is unchanged. Include at least one column.", "NO_COLUMNS");
+      return;
+    }
+    const rows = state.input.hasHeader ? [out.headers, ...out.rows] : out.rows;
 
     // Determine output delimiter
-    const mode = state.options.outDelimiter || "input";
-    const delim = (mode==="input") ? state.input.delimiter
+    const mode = els.outDelimiter.value || "input";
+    const delim = (mode==="input") ? state.input.delimiterResolved
       : (mode==="comma") ? ","
       : (mode==="tab") ? "	"
       : (mode==="semi") ? ";"
-      : state.input.delimiter;
+      : null;
+    if (![",", "\t", ";"].includes(delim)){
+      setError(state.ui.lang==="ja"
+        ? "出力区切り文字を選び直してください。元ファイルは変更されていません。"
+        : "Select a valid output delimiter. The source is unchanged.", "INVALID_DELIMITER");
+      return;
+    }
 
-    const newline = state.input.newline || "\n";
-    const quoteMode = state.options.quotePolicy || "auto";
+    const newline = state.options.output.newline;
+    const quoteMode = els.quotePolicy.value || "auto";
 
-    let csv = stringifyCSV(out, delim, newline, quoteMode);
+    let csv = stringifyCSV(rows, delim, newline, quoteMode);
 
     // BOM
     const bom = state.options.bom ? "﻿" : "";
@@ -1060,6 +1133,7 @@ setSegActive(els.hasHeaderOn, els.hasHeaderOff, true);
       if (file) handleFile(file);
     });
 
+    els.cleanScope.addEventListener("change", () => { state.options.cleanScope = els.cleanScope.value; schedulePreviewRequest(); });
     els.optTrim.addEventListener("change", () => { state.options.trim = !!els.optTrim.checked; schedulePreviewRequest(); });
     els.optNormSpaces.addEventListener("change", () => { state.options.normSpaces = !!els.optNormSpaces.checked; schedulePreviewRequest(); });
 
