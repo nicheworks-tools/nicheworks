@@ -10,7 +10,7 @@ Scope: the eight-tool Old Kanji cluster defined by `tools/OLD_KANJI_CLUSTER.md`.
 
 All eight tools have a `SPEC.md` whose specification status is `complete`. That means the intended product contract exists. It does **not** mean the implementation has passed final cluster acceptance.
 
-Completion Wave 10 closed the dictionary/data/documentation drift identified in C-01 and C-02. Completion Wave 11 closed the first product-flow QA tranche for Old Kanji Reference and Kanji Modernizer. Completion Wave 12 closed the OCR/Highlighter core behavior tranche. Completion Wave 13 closes the Unicode/Variant encoding and comparison tranche: durable tests now cover BMP and supplementary code points, UTF-16 surrogate pairs, both CJK Compatibility Ideographs blocks, both variation-selector ranges, preset/custom comparison, mapping/reverse mapping, summary separation, CSV output, multi-font wiring, and exact inbound `?q=` restoration in Unicode Checker. Browser-layout/accessibility and remaining cross-cluster acceptance remain owned by later waves.
+Completion Wave 10 closed the dictionary/data/documentation drift identified in C-01 and C-02. Completion Wave 11 closed the first product-flow QA tranche for Old Kanji Reference and Kanji Modernizer. Completion Wave 12 closed the OCR/Highlighter core behavior tranche. Completion Wave 13 closed the Unicode/Variant encoding and comparison tranche. Completion Wave 14 closes the Name/Place functional and safety tranche: durable tests now cover forward/reverse candidate lookup, array-valued mappings, optional-data degradation, current bilingual metadata/shape/stroke/rendering-note schemas, exact whole-text Modernizer handoffs, supplementary compatibility ranges, primary-load safe failure for Place, privacy boundaries, and explicit non-authoritative official-use cautions. Browser-layout/accessibility and remaining cross-cluster acceptance remain owned by later waves.
 
 ## Tool-by-tool completion state
 
@@ -22,8 +22,8 @@ Completion Wave 10 closed the dictionary/data/documentation drift identified in 
 | Old Document Kanji Highlighter | complete | Wave 12 declared functional acceptance criteria closed by automated behavior QA, including degraded dictionary mode and exact Modernizer handoff | Wave 15 UX/mobile/accessibility, Wave 16 search intent, Wave 19 release audit |
 | Unicode Kanji Checker | complete | Wave 13 functional acceptance closed by durable encoding/edge-case QA, including exact inbound `?q=` restoration | Wave 15 UX/mobile/accessibility, Wave 19 release audit |
 | Variant Kanji Compare | complete | Wave 13 functional acceptance closed by durable preset/custom comparison, Unicode-range, multi-font wiring, mapping and summary QA | Wave 15 UX/mobile/accessibility, Wave 19 release audit |
-| Place Old Kanji Checker | complete | unverified as a whole; acceptance checklist still open | Wave 14 official-use/privacy QA, Wave 15 UX |
-| Name Old Kanji Checker | complete | unverified as a whole; acceptance checklist still open | Wave 14 official-use/privacy QA, Wave 15 UX |
+| Place Old Kanji Checker | complete | Wave 14 functional acceptance closed by durable mapping/data-degradation/privacy/non-authority/handoff QA | Wave 15 UX/mobile/accessibility, Wave 16 search intent, Wave 19 release audit |
+| Name Old Kanji Checker | complete | Wave 14 functional acceptance closed by durable forward/reverse mapping, optional-data degradation, exact handoff, privacy and official-use QA | Wave 15 UX/mobile/accessibility, Wave 16 search intent, Wave 19 release audit |
 
 ## Confirmed cross-cluster findings
 
@@ -89,12 +89,12 @@ Owner: Waves 11–19.
 
 Wave 11 establishes the rule in practice: an acceptance checkbox is checked only when a durable automated contract or direct implementation evidence exists.
 
-Current closure state after Wave 13:
+Current closure state after Wave 14:
 - Kanji Modernizer: all declared functional acceptance criteria are checked with `tools/kanji-modernizer/tests/behavior.test.mjs` and runtime-source assertions.
 - Old Kanji Reference: search/filter, SERP/H1/canonical/schema/FAQ contracts, task handoffs, detector/handoff behavior, local-state restoration semantics, and individual-page allowlist are checked. Browser-level export interaction, remaining copy/visual behavior, Pro/public-copy, caution/layout, and Amazon criteria remain open for the owning later waves.
 - Old Kanji OCR Scanner and Old Document Kanji Highlighter: Wave 12 closes the declared core functional criteria supported by behavior tests; OCR affiliate criteria and browser UX remain later-wave work.
 - Unicode Kanji Checker and Variant Kanji Compare: Wave 13 closes their declared functional acceptance criteria with behavior tests and implementation-source assertions, including supplementary Unicode ranges that were previously misclassified.
-- Place Old Kanji Checker and Name Old Kanji Checker: criteria remain open until Wave 14 produces direct evidence.
+- Place Old Kanji Checker and Name Old Kanji Checker: Wave 14 closes their declared functional acceptance criteria with behavior tests and source assertions covering mapping, degraded optional data, privacy, non-authority wording, and exact Modernizer handoffs.
 
 Exit condition: Wave 19 must leave no unchecked criterion without either direct evidence or an explicit specification decision that removes/rewords the criterion.
 
@@ -115,8 +115,8 @@ Still required before completion:
 - Modernizer → Reference/Highlighter/Unicode browser handoffs;
 - OCR ↔ Highlighter/Reference/Modernizer task boundary;
 - Variant → Unicode comparison-set handoff now has a tested Unicode `?q=` receiver; Variant ↔ Reference/Name browser boundary remains;
-- Place ↔ Reference/Modernizer/Name boundary;
-- Name ↔ Reference/Variant/Unicode boundary;
+- Place → Modernizer whole-text handoff now preserves exact input and per-character Reference links remain wired; Place ↔ Name browser boundary remains;
+- Name → Modernizer whole-text handoff now preserves exact input and per-character Reference links remain wired; Name ↔ Variant/Unicode browser boundary remains;
 - no user-entered names, addresses, OCR text, pasted documents, conversion text, or searched strings in analytics/affiliate payloads.
 
 Exit condition: durable automated checks where practical plus explicit manual evidence for browser-only behavior that cannot be proven statically.
@@ -248,7 +248,37 @@ Deferred intentionally:
 - remaining Variant ↔ Reference/Name browser journey evidence remains part of later cross-tool acceptance.
 
 ### Wave 14 — Name + Place completion QA
-Verify candidate lookup in both directions where applicable, optional metadata failure, official-use cautions, legal/registry non-claims, privacy, and related-tool handoffs.
+Status: **completed for core functional/safety QA**.
+
+Durable evidence:
+- `tools/name-old-kanji-checker/tests/behavior.test.mjs`;
+- `tools/place-old-kanji-checker/tests/behavior.test.mjs`;
+- both are auto-discovered by `scripts/run-tool-behavior-tests.mjs`.
+
+Confirmed defects fixed:
+1. Name Checker previously trimmed leading/trailing whitespace and line breaks before constructing the whole-text Modernizer handoff. Analysis may still ignore meaningless edge whitespace, but the handoff now preserves the exact entered text.
+2. Name Checker compatibility fallback now recognizes CJK Compatibility Ideographs Supplement (`U+2F800–U+2FA1F`) in addition to the BMP compatibility block.
+3. Place Checker reverse lookup previously assumed every old→modern mapping was scalar; array-valued mappings could not be resolved correctly from modern form back to registered old/variant candidates.
+4. Place Checker read legacy `reading`/`meaning`/`usage` fields instead of the current bilingual `readingJa/En`, `meaningJa/En`, and `usageJa/En` metadata schema.
+5. Place Checker read obsolete generic `shape.summary` and `stroke.old` fields instead of the current shape-note and `oldStrokes/modernStrokes/difference` schemas.
+6. Place Checker compatibility notes always preferred Japanese fields even in EN mode; localization now follows the active language with fallback.
+7. Place Checker now records optional metadata/shape/stroke/compatibility failures as a degraded state while retaining base mapping, and a primary dictionary failure enters a safe error state instead of leaving an unhandled initialization path.
+8. Place Checker compatibility fallback now covers both compatibility-ideograph blocks and gives variation selectors a specific warning before the generic supplementary-plane fallback.
+
+Verified behavior includes:
+- old→modern and modern→old/variant candidate lookup;
+- deduplication and array-valued reverse mappings;
+- optional reference-data failure without loss of the base dictionary;
+- bilingual metadata, shape, stroke and rendering-note field selection;
+- supplementary-plane, compatibility-supplement and variation-selector handling;
+- exact Name → Modernizer and Place → Modernizer whole-text handoffs;
+- same-site-only Old Kanji reference data requests;
+- explicit family-register/name and official-address non-authority cautions;
+- public pages remain free of unfinished fixed-price/disabled-billing sales panels.
+
+Deferred intentionally:
+- rendered mobile/desktop behavior, keyboard/focus order, copy-feedback interaction, overflow and live JP/EN visual verification remain Wave 15/19;
+- remaining Name ↔ Variant/Unicode and Place ↔ Name browser journeys remain later cross-tool acceptance work.
 
 ### Wave 15 — Cross-tool UX/mobile/accessibility
 Verify all eight tools on narrow and desktop layouts, JP/EN switching, keyboard/focus behavior, overflow/long-text cases, zero/error states, buttons, copy feedback, and readable warnings.
@@ -289,4 +319,4 @@ The Old Kanji cluster is complete only when all of the following are true:
 
 ## Current decision
 
-Completion Wave 13 closes the Unicode Kanji Checker + Variant Kanji Compare functional-QA gate without declaring browser UX or the full eight-tool cluster finished. The next permitted work is Completion Wave 14: Name Old Kanji Checker + Place Old Kanji Checker completion QA.
+Completion Wave 14 closes the Name Old Kanji Checker + Place Old Kanji Checker core functional/safety gate without declaring browser UX or the full eight-tool cluster finished. The next permitted work is Completion Wave 15: cross-tool UX/mobile/accessibility verification.
