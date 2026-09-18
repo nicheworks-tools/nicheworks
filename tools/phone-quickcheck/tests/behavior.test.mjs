@@ -515,6 +515,16 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.equal(wish.included?.cable, 'not_included');
 }
 
+// Galaxy M23 5G: Japan-market KDDI/povo primary material explicitly states no water/dust resistance.
+{
+  const phone = byId.get('samsung-galaxy-m23-5g');
+  assert.ok(phone, 'Galaxy M23 5G fixture missing');
+  assert.equal(phone.waterStatus, 'not_resistant');
+  assert.match(phone.sources?.waterUrl || '', /^https:\/\/povo\.jp\//);
+  const h = await createHarness(['samsung-galaxy-m23-5g']);
+  assert.match(h.elements.desktopDetail.innerHTML, /非防水・非防塵/);
+}
+
 console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estimates, Apple unknown capacity, Lightning guidance, proprietary charging, and mobile sheet.');
 
 // Explicit manufacturer-backed non-resistance is localized; model-specific unknown remains unknown.
