@@ -232,5 +232,15 @@
   {"lgcode":"122360","pref_slug":"chiba","city_slug":"katori","publish":true},
   {"lgcode":"122386","pref_slug":"chiba","city_slug":"isumi","publish":true},
   {"lgcode":"122394","pref_slug":"chiba","city_slug":"oamishirasato","publish":true},
-  {"lgcode":"122351","pref_slug":"chiba","city_slug":"sosa","publish":true}
+  {"lgcode":"122351","pref_slug":"chiba","city_slug":"sosa","publish":true},
+  {"lgcode":"082023","pref_slug":"ibaraki","city_slug":"hitachi","publish":true},
+  {"lgcode":"082031","pref_slug":"ibaraki","city_slug":"tsuchiura","publish":true},
+  {"lgcode":"082058","pref_slug":"ibaraki","city_slug":"ishioka","publish":true},
+  {"lgcode":"082082","pref_slug":"ibaraki","city_slug":"ryugasaki","publish":true},
+  {"lgcode":"082104","pref_slug":"ibaraki","city_slug":"shimotsuma","publish":true},
+  {"lgcode":"082163","pref_slug":"ibaraki","city_slug":"kasama","publish":true},
+  {"lgcode":"082198","pref_slug":"ibaraki","city_slug":"ushiku","publish":true},
+  {"lgcode":"082201","pref_slug":"ibaraki","city_slug":"tsukuba","publish":true},
+  {"lgcode":"082210","pref_slug":"ibaraki","city_slug":"hitachinaka","publish":true},
+  {"lgcode":"082244","pref_slug":"ibaraki","city_slug":"moriya","publish":true}
 ]

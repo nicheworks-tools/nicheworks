@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 234,
+  "published_municipality_count": 244,
   "municipalities": [
     {
       "lgcode": "131016",
@@ -1412,6 +1412,66 @@
       "pref_slug": "chiba",
       "city_slug": "sosa",
       "url": "https://nicheworks.app/tools/trashnavi/chiba/sosa/"
+    },
+    {
+      "lgcode": "082023",
+      "pref_slug": "ibaraki",
+      "city_slug": "hitachi",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/hitachi/"
+    },
+    {
+      "lgcode": "082031",
+      "pref_slug": "ibaraki",
+      "city_slug": "tsuchiura",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/tsuchiura/"
+    },
+    {
+      "lgcode": "082058",
+      "pref_slug": "ibaraki",
+      "city_slug": "ishioka",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/ishioka/"
+    },
+    {
+      "lgcode": "082082",
+      "pref_slug": "ibaraki",
+      "city_slug": "ryugasaki",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/ryugasaki/"
+    },
+    {
+      "lgcode": "082104",
+      "pref_slug": "ibaraki",
+      "city_slug": "shimotsuma",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/shimotsuma/"
+    },
+    {
+      "lgcode": "082163",
+      "pref_slug": "ibaraki",
+      "city_slug": "kasama",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/kasama/"
+    },
+    {
+      "lgcode": "082198",
+      "pref_slug": "ibaraki",
+      "city_slug": "ushiku",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/ushiku/"
+    },
+    {
+      "lgcode": "082201",
+      "pref_slug": "ibaraki",
+      "city_slug": "tsukuba",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/tsukuba/"
+    },
+    {
+      "lgcode": "082210",
+      "pref_slug": "ibaraki",
+      "city_slug": "hitachinaka",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/hitachinaka/"
+    },
+    {
+      "lgcode": "082244",
+      "pref_slug": "ibaraki",
+      "city_slug": "moriya",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/moriya/"
     }
   ]
 }
