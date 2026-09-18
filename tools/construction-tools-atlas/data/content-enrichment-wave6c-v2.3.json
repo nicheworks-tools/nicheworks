@@ -1,0 +1,396 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-18-wave6c-materials-tools-1",
+  "entries": [
+    {
+      "id": "bucket",
+      "wave": "content-wave-006c",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "材料、水、工具などを運搬・一時保管するための容器。容量、材質、取手強度、耐薬品性を内容物と作業条件に合わせて選ぶ。",
+      "detail_en": "Container used to carry or temporarily hold materials, water, and tools. Capacity, material, handle strength, and chemical resistance should suit the contents and job conditions.",
+      "bullets_ja": [
+        "ひび割れ、変形、取手の緩みがある容器は重量物の運搬に使わない。",
+        "液体や粉体は容量を超えて入れず、こぼれや転倒を防ぐ。",
+        "薬品や汚染物を扱った容器を飲料水や清浄用途へ転用しない。"
+      ],
+      "bullets_en": [
+        "Do not carry heavy loads in buckets with cracks, deformation, or loose handles.",
+        "Do not overfill liquids or powders; control spills and tipping.",
+        "Do not reuse containers exposed to chemicals or contaminants for drinking water or clean-service use."
+      ],
+      "examples_ja": [
+        "左官作業で水やモルタル材料を小運搬する。",
+        "清掃時に工具や廃材を一時的にまとめる。"
+      ],
+      "examples_en": [
+        "Carry small quantities of water or mortar materials during finishing work.",
+        "Temporarily collect tools or debris during cleanup."
+      ]
+    },
+    {
+      "id": "spade_bit",
+      "wave": "content-wave-006c",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "木材へ比較的大径の穴をあける平たい刃形状のドリルビット。軸径、刃径、先端形状をドリルと必要穴径に合わせて選ぶ。",
+      "detail_en": "Flat-bladed drill bit used to bore relatively large holes in wood. Shank size, cutting diameter, and point design should match the drill and required hole size.",
+      "bullets_ja": [
+        "木工用途に使用し、金属や石材へ無理に使用しない。",
+        "切れ刃の欠けや曲がりを確認し、適正回転数で使用する。",
+        "貫通直前は送りを弱め、裏面の割れや急な食い込みを抑える。"
+      ],
+      "bullets_en": [
+        "Use for suitable wood applications and do not force the bit into metal or masonry.",
+        "Inspect the cutting edges for chips or bending and use an appropriate speed.",
+        "Reduce feed as the bit breaks through to limit tear-out and sudden grabbing."
+      ],
+      "examples_ja": [
+        "木下地へ配線用の貫通穴をあける。",
+        "木材へボルト通し用の大径穴を加工する。"
+      ],
+      "examples_en": [
+        "Bore a wiring hole through timber framing.",
+        "Drill a large clearance hole for a bolt through wood."
+      ]
+    },
+    {
+      "id": "hole_saw",
+      "wave": "content-wave-006c",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "円筒状の刃で板材へ大径の丸穴を加工する工具。刃材、直径、取付アーバー、対象材をドリルと施工条件に合わせる。",
+      "detail_en": "Cylindrical cutting tool used to make large round holes in sheet and panel materials. Tooth material, diameter, arbor, and work material must match the drill and application.",
+      "bullets_ja": [
+        "対象材に適した刃種を選び、センタードリルとアーバーを確実に固定する。",
+        "加工材を固定し、噛み込み時の反力に備えて両手で工具を保持する。",
+        "切粉を排出しながら加工し、過熱や焼付きが見られたら停止する。"
+      ],
+      "bullets_en": [
+        "Select a cutter suited to the material and secure the pilot bit and arbor correctly.",
+        "Clamp the work and control the drill with both hands against reaction torque.",
+        "Clear chips during cutting and stop if overheating or binding develops."
+      ],
+      "examples_ja": [
+        "合板へ配管貫通用の丸穴をあける。",
+        "薄鋼板へボックス取付用の穴を加工する。"
+      ],
+      "examples_en": [
+        "Cut a round pipe penetration through plywood.",
+        "Make an opening in thin sheet metal for an electrical box."
+      ]
+    },
+    {
+      "id": "stud_finder",
+      "wave": "content-wave-006c",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "壁面の裏側にある柱・間柱や一部の配線・金属などを検知する測定器。検知方式と対象深度を壁材・目的に合わせて使う。",
+      "detail_en": "Detector used to locate framing members and, on some models, wiring or metal behind finished walls. Detection mode and depth must suit the wall assembly and task.",
+      "bullets_ja": [
+        "使用前に取扱説明書どおり校正し、壁材に合う検知モードを選ぶ。",
+        "表示を一点だけで判断せず、複数方向から走査して位置を確認する。",
+        "通電線検知は補助情報として扱い、穴あけ前に別手段でも危険を確認する。"
+      ],
+      "bullets_en": [
+        "Calibrate as instructed and select a detection mode appropriate to the wall material.",
+        "Do not rely on a single indication; scan from multiple directions to confirm location.",
+        "Treat live-wire detection as supplementary and verify hazards by other means before drilling."
+      ],
+      "examples_ja": [
+        "石こうボード越しに間柱位置を探して金物取付位置を決める。",
+        "壁面へ穴をあける前に下地と配線の可能性を確認する。"
+      ],
+      "examples_en": [
+        "Locate a stud through drywall before positioning a wall-mounted bracket.",
+        "Check for framing and possible wiring before drilling into a wall."
+      ]
+    },
+    {
+      "id": "caulking_sealant",
+      "wave": "content-wave-006c",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "目地や取合い部の隙間を充填し、水・空気・ほこりの侵入を抑えるシーリング材。材質、変成能力、塗装可否、使用温度を施工部位に合わせる。",
+      "detail_en": "Sealant used to fill joints and interfaces to limit entry of water, air, and dust. Chemistry, movement capability, paintability, and service temperature should match the joint and substrate.",
+      "bullets_ja": [
+        "被着面の汚れ・水分・旧材を除去し、必要に応じてプライマーを使用する。",
+        "目地幅・深さと施工温度を製品仕様内に保つ。",
+        "異種材料への適合性や塗装可否を確認し、完全硬化前に負荷を掛けない。"
+      ],
+      "bullets_en": [
+        "Remove dirt, moisture, and old sealant from bonding surfaces and use primer when specified.",
+        "Keep joint dimensions and application temperature within the product limits.",
+        "Verify compatibility with adjoining materials and coatings and avoid loading before full cure."
+      ],
+      "examples_ja": [
+        "サッシ周囲の目地へシーリング材を充填する。",
+        "外壁パネルの取合い部を防水目的でシールする。"
+      ],
+      "examples_en": [
+        "Apply sealant around a window-frame joint.",
+        "Seal an exterior panel interface for weather resistance."
+      ]
+    },
+    {
+      "id": "safety_cones",
+      "wave": "content-wave-006c",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "立入制限、通路誘導、危険箇所の明示に使う視認性の高いカラーコーン。高さ、反射材、ウェイト、設置間隔を現場条件に合わせる。",
+      "detail_en": "High-visibility traffic or safety cones used to mark restricted areas, guide movement, and identify hazards. Height, reflective bands, ballast, and spacing should suit the site.",
+      "bullets_ja": [
+        "作業区画が明確に分かる位置と間隔で設置する。",
+        "風や接触で倒れやすい場所では適切なウェイトや連結材を使用する。",
+        "夜間や低照度では反射材や照明など追加の視認対策を行う。"
+      ],
+      "bullets_en": [
+        "Place cones at positions and spacing that clearly define the work zone.",
+        "Use suitable ballast or connecting devices where wind or contact could displace them.",
+        "Add reflective or illuminated controls for night or low-light conditions."
+      ],
+      "examples_ja": [
+        "床補修中の区画をカラーコーンで囲う。",
+        "搬入口で歩行者と車両の動線を分ける。"
+      ],
+      "examples_en": [
+        "Cone off an area during floor repair.",
+        "Separate pedestrian and vehicle paths at a loading entrance."
+      ]
+    },
+    {
+      "id": "rebar",
+      "wave": "content-wave-006c",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "コンクリート構造物の引張力を負担させるために配置する鉄筋。径、鋼種、長さ、曲げ形状、かぶり、継手を構造図と仕様に従って管理する。",
+      "detail_en": "Reinforcing steel placed in concrete to carry tensile forces. Bar diameter, grade, length, bends, cover, and splices must follow the structural drawings and specification.",
+      "bullets_ja": [
+        "指定径・鋼種・加工形状を配筋図と照合する。",
+        "油、泥、著しい浮きさびなど付着を損なう汚れを除去する。",
+        "かぶり、定着、継手長さを確保し、打設中に位置がずれないよう固定する。"
+      ],
+      "bullets_en": [
+        "Verify diameter, grade, and fabricated shape against the reinforcement drawings.",
+        "Remove oil, mud, and other contamination that can impair bond.",
+        "Maintain required cover, anchorage, and splice length and secure bars against displacement during concrete placement."
+      ],
+      "examples_ja": [
+        "基礎梁の主筋とスターラップを図面どおり配置する。",
+        "スラブ配筋のかぶりをスペーサーで確保する。"
+      ],
+      "examples_en": [
+        "Place beam reinforcement and stirrups according to the drawings.",
+        "Maintain slab reinforcement cover with suitable spacers."
+      ]
+    },
+    {
+      "id": "cement",
+      "wave": "content-wave-006c",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "水と反応して硬化し、モルタルやコンクリートの結合材となる粉体材料。種類、保管状態、配合、使用期限を要求性能に合わせて管理する。",
+      "detail_en": "Powdered hydraulic binder that reacts with water and forms the binding phase in mortar and concrete. Type, storage condition, mix proportion, and shelf life should suit the required performance.",
+      "bullets_ja": [
+        "吸湿・固結を避け、乾燥した場所で密閉または適切に保管する。",
+        "粉じんを吸い込まないよう換気と保護具を使用し、皮膚・眼への接触を避ける。",
+        "指定配合を守り、勝手な加水で施工性だけを調整しない。"
+      ],
+      "bullets_en": [
+        "Store dry and protected from moisture and caking.",
+        "Use ventilation and protective equipment to limit dust inhalation and avoid skin or eye contact.",
+        "Follow the specified mix proportions and do not add uncontrolled water merely to improve workability."
+      ],
+      "examples_ja": [
+        "補修用モルタルの結合材としてセメントを計量する。",
+        "現場配合コンクリート用に指定量を投入する。"
+      ],
+      "examples_en": [
+        "Measure cement as the binder for a repair mortar.",
+        "Batch the specified amount for site-mixed concrete."
+      ]
+    },
+    {
+      "id": "mortar",
+      "wave": "content-wave-006c",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "セメント系結合材、細骨材、水などを混合した材料で、組積、左官、充填、補修に使用する。用途別配合、可使時間、下地条件を守る。",
+      "detail_en": "Mixture of cementitious binder, fine aggregate, water, and optional additives used for masonry, plastering, bedding, filling, and repair. Mix design, working time, and substrate conditions depend on the application.",
+      "bullets_ja": [
+        "指定水量と練混ぜ手順を守り、硬化し始めた材料へ再加水しない。",
+        "施工前に下地の汚れ・脆弱部を除去し、必要な湿潤やプライマー処理を行う。",
+        "施工厚、養生、使用可能時間を製品または仕様の範囲内に保つ。"
+      ],
+      "bullets_en": [
+        "Follow the specified water quantity and mixing procedure and do not retemper material after setting begins.",
+        "Prepare the substrate by removing contamination and weak material and applying required dampening or primer.",
+        "Keep placement thickness, curing, and working time within product or project requirements."
+      ],
+      "examples_ja": [
+        "ブロック積みの目地へモルタルを敷く。",
+        "欠損したコンクリート表面を補修モルタルで埋める。"
+      ],
+      "examples_en": [
+        "Bed masonry units in mortar joints.",
+        "Fill a damaged concrete surface with repair mortar."
+      ]
+    },
+    {
+      "id": "concrete",
+      "wave": "content-wave-006c",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "セメント、水、細骨材、粗骨材などを練り混ぜて硬化させる構造材料。強度、スランプ、空気量、配合、打込み・締固め・養生条件を管理する。",
+      "detail_en": "Structural material produced by mixing cement, water, fine and coarse aggregate, and optional admixtures. Strength, consistency, air content, mix proportions, placement, consolidation, and curing require control.",
+      "bullets_ja": [
+        "指定配合と受入条件を守り、現場で無断加水しない。",
+        "打込み中は分離を避け、型枠・鉄筋周囲まで適切に締め固める。",
+        "打設後は必要な温度・湿潤条件を確保し、早期乾燥や凍結を防ぐ。"
+      ],
+      "bullets_en": [
+        "Maintain the specified mix and acceptance conditions and do not add unauthorized water on site.",
+        "Place without excessive segregation and consolidate adequately around formwork and reinforcement.",
+        "Provide required temperature and moisture curing and protect against premature drying or freezing."
+      ],
+      "examples_ja": [
+        "基礎型枠へコンクリートを打込み、バイブレータで締め固める。",
+        "小規模補修部へプレミックスコンクリートを練って充填する。"
+      ],
+      "examples_en": [
+        "Place concrete in a foundation form and consolidate it with a vibrator.",
+        "Mix and place packaged concrete for a small repair."
+      ]
+    },
+    {
+      "id": "bolt_nut",
+      "wave": "content-wave-006c",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "ボルトとナットを組み合わせて部材を機械的に締結する締結部品。径、ねじピッチ、強度区分、材質、座金、締付条件を接合部仕様に合わせる。",
+      "detail_en": "Fastening pair consisting of a bolt and nut used to mechanically clamp components together. Diameter, thread pitch, property class, material, washers, and tightening requirements must suit the joint.",
+      "bullets_ja": [
+        "ボルトとナットのねじ径・ピッチ・強度区分の適合を確認する。",
+        "ねじ山の損傷や著しい腐食がある部品は使用しない。",
+        "指定された締付け方法・トルク・締付け順序がある場合はそれに従う。"
+      ],
+      "bullets_en": [
+        "Verify that bolt and nut diameter, pitch, and strength class are compatible.",
+        "Do not use fasteners with damaged threads or severe corrosion.",
+        "Follow specified tightening method, torque, and sequence where required."
+      ],
+      "examples_ja": [
+        "鋼製ブラケットをボルト・ナットで組み立てる。",
+        "設備架台の接合部を指定トルクで締め付ける。"
+      ],
+      "examples_en": [
+        "Assemble a steel bracket with bolts and nuts.",
+        "Tighten an equipment-frame joint to the specified torque."
+      ]
+    },
+    {
+      "id": "voltage_tester",
+      "wave": "content-wave-006c",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "導体や回路に電圧が存在するか確認する測定器。接触式・非接触式などがあり、測定カテゴリ、定格電圧、検知方式を作業対象に合わせる。",
+      "detail_en": "Tester used to determine whether voltage is present on a conductor or circuit. Contact and non-contact types differ in measurement category, voltage rating, and detection method.",
+      "bullets_ja": [
+        "測定器の定格・CAT区分が対象回路に適合することを確認する。",
+        "使用前後に既知の活線で動作確認し、無反応だけで安全と判断しない。",
+        "非接触式は補助確認として扱い、無電圧確認が必要な作業では適切な接触測定を行う。"
+      ],
+      "bullets_en": [
+        "Confirm that the tester voltage rating and measurement category are appropriate for the circuit.",
+        "Prove the tester on a known live source before and after use and do not assume safety from a single negative indication.",
+        "Treat non-contact indication as supplementary and use suitable contact testing where verified absence of voltage is required."
+      ],
+      "examples_ja": [
+        "コンセント回路の通電有無を作業前に確認する。",
+        "ブレーカ遮断後に対象端子の無電圧を適切な測定器で確認する。"
+      ],
+      "examples_en": [
+        "Check whether a receptacle circuit is energized before work.",
+        "Verify absence of voltage at terminals after isolating a breaker with an appropriate tester."
+      ]
+    },
+    {
+      "id": "plywood",
+      "wave": "content-wave-006c",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "単板を繊維方向が交差するよう積層接着した木質板材。厚さ、等級、接着性能、表面品質、構造用途区分を使用場所に合わせて選ぶ。",
+      "detail_en": "Wood panel made by bonding veneer layers with alternating grain directions. Thickness, grade, bond durability, face quality, and structural rating should match the application.",
+      "bullets_ja": [
+        "構造用途では必要な等級・厚さ・支持間隔を設計に合わせる。",
+        "切断時は材料を支持し、ささくれや粉じん対策を行う。",
+        "屋外や湿潤部では用途に適した接着性能・耐久区分を選ぶ。"
+      ],
+      "bullets_en": [
+        "For structural work, match grade, thickness, and support spacing to the design.",
+        "Support the panel during cutting and control splinters and dust.",
+        "For exterior or damp locations, select a panel with suitable bond durability and exposure rating."
+      ],
+      "examples_ja": [
+        "床下地として構造用合板を根太上へ張る。",
+        "仮設の養生板として合板を切断して敷く。"
+      ],
+      "examples_en": [
+        "Install structural plywood over floor joists as a subfloor.",
+        "Cut plywood sheets for temporary surface protection."
+      ]
+    },
+    {
+      "id": "drywall",
+      "wave": "content-wave-006c",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "石こうを芯材とし表裏を紙などで被覆した内装用ボード。厚さ、耐火・耐水・強化仕様、下地間隔を壁・天井の要求性能に合わせる。",
+      "detail_en": "Interior gypsum board consisting of a gypsum core faced with paper or similar liners. Thickness and fire-, moisture-, or impact-resistant type should match wall or ceiling performance and framing spacing.",
+      "bullets_ja": [
+        "用途に適したボード種類・厚さを選び、支持間隔と留付けピッチを守る。",
+        "切断・研磨時は石こう粉じんを抑え、端部破損を避けて取り扱う。",
+        "耐水ボードでも恒常的な浸水部へ使用せず、仕様どおりの湿気対策を行う。"
+      ],
+      "bullets_en": [
+        "Select the correct board type and thickness and follow framing and fastener-spacing requirements.",
+        "Control gypsum dust during cutting or sanding and protect board edges from damage.",
+        "Do not treat moisture-resistant board as suitable for continuous wet exposure; follow the specified moisture-control system."
+      ],
+      "examples_ja": [
+        "軽量鉄骨下地へ石こうボードをビス留めする。",
+        "天井下地へ指定厚のボードを張る。"
+      ],
+      "examples_en": [
+        "Screw gypsum board to light-gauge steel framing.",
+        "Install specified board thickness on a ceiling frame."
+      ]
+    },
+    {
+      "id": "insulation",
+      "wave": "content-wave-006c",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "建物の熱移動を抑えるため壁・天井・床などへ施工する断熱材。材種、熱抵抗、厚さ、防湿・防火条件、施工部位を設計に合わせる。",
+      "detail_en": "Thermal insulation installed in walls, ceilings, roofs, or floors to reduce heat transfer. Material type, thermal resistance, thickness, vapor control, fire requirements, and location must match the design.",
+      "bullets_ja": [
+        "設計で指定された種類・厚さを用い、隙間や大きな圧縮を避けて連続して施工する。",
+        "繊維系材料では皮膚・眼・呼吸器への刺激を抑える保護具と換気を行う。",
+        "熱源、照明器具、配線、通気層との離隔は製品・法令・設計条件に従う。"
+      ],
+      "bullets_en": [
+        "Install the specified type and thickness continuously without gaps or excessive compression.",
+        "For fibrous products, use ventilation and protective equipment to limit skin, eye, and respiratory irritation.",
+        "Maintain required clearance from heat sources, luminaires, wiring, and ventilation spaces according to product, code, and design requirements."
+      ],
+      "examples_ja": [
+        "壁の間柱間へグラスウール断熱材を隙間なく充填する。",
+        "屋根裏へ所定厚の断熱材を連続して施工する。"
+      ],
+      "examples_en": [
+        "Fit glass-fiber insulation between wall studs without gaps.",
+        "Install the specified insulation thickness continuously across an attic."
+      ]
+    }
+  ]
+}
