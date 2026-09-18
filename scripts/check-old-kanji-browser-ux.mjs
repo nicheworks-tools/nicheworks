@@ -65,6 +65,8 @@ async function action(c){return c.js(String.raw`const v=e=>{const s=getComputedS
 
 async function referenceExports(c,fail){
   const result=await c.js(String.raw`
+    const search=document.getElementById('searchInput');
+    if(search){search.value='';search.dispatchEvent(new Event('input',{bubbles:true}));}
     const ids=['exportCsv','exportJson','copyMarkdown','printPage'];
     const buttons=ids.map(id=>document.getElementById(id));
     const missing=ids.filter((id,i)=>!buttons[i]);
