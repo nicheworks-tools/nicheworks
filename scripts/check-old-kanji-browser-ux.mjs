@@ -63,6 +63,33 @@ async function clickLang(c,lang){return c.js(String.raw`const l=arguments[0],v=e
 async function fill(c,value){return c.js(String.raw`const v=arguments[0],ok=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0};const e=[...document.querySelectorAll('textarea,input[type=text],input[type=search]')].find(ok);if(!e)return false;e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));return true;`,[value]);}
 async function action(c){return c.js(String.raw`const v=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0};const b=[...document.querySelectorAll('button')].filter(e=>v(e)&&!e.disabled).find(e=>/(analy|compare|check|convert|search|detect|scan|\u78BA\u8A8D|\u6BD4\u8F03|\u5909\u63DB|\u691C\u7D22|\u5224\u5B9A)/i.test((e.id||'')+' '+(e.textContent||'')));if(!b)return false;b.click();return true;`);}
 
+async function referenceExports(c,fail){
+  const result=await c.js(String.raw`
+    const ids=['exportCsv','exportJson','copyMarkdown','printPage'];
+    const buttons=ids.map(id=>document.getElementById(id));
+    const missing=ids.filter((id,i)=>!buttons[i]);
+    const disabled=ids.filter((id,i)=>buttons[i]?.disabled);
+    window.__w19Export={downloads:[],clipboard:[],prints:0};
+    try{Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async value=>{window.__w19Export.clipboard.push(String(value));}}})}catch{}
+    const oldCreate=URL.createObjectURL,oldRevoke=URL.revokeObjectURL,oldClick=HTMLAnchorElement.prototype.click,oldPrint=window.print;
+    URL.createObjectURL=()=> 'blob:wave19';
+    URL.revokeObjectURL=()=>{};
+    HTMLAnchorElement.prototype.click=function(){if(this.download)window.__w19Export.downloads.push(this.download);};
+    window.print=()=>{window.__w19Export.prints+=1;};
+    try{for(const button of buttons){if(button&&!button.disabled)button.click();}}
+    finally{URL.createObjectURL=oldCreate;URL.revokeObjectURL=oldRevoke;HTMLAnchorElement.prototype.click=oldClick;window.print=oldPrint;}
+    return {missing,disabled,...window.__w19Export,freeCopy:(document.querySelector('.export-panel')?.innerText||'')};
+  `);
+  await sleep(80);
+  if(result.missing.length)fail.push('old-kanji-reference/desktop/export: missing controls '+JSON.stringify(result.missing));
+  if(result.disabled.length)fail.push('old-kanji-reference/desktop/export: disabled controls '+JSON.stringify(result.disabled));
+  if(!result.downloads.some(x=>/\.csv$/.test(x)))fail.push('old-kanji-reference/desktop/export: CSV download did not fire');
+  if(!result.downloads.some(x=>/\.json$/.test(x)))fail.push('old-kanji-reference/desktop/export: JSON download did not fire');
+  if(!result.clipboard.some(x=>x.includes('| Old form | Modern form |')&&x.includes('| 旧字体 | 新字体 |')))fail.push('old-kanji-reference/desktop/export: Markdown clipboard output did not fire');
+  if(result.prints!==1)fail.push('old-kanji-reference/desktop/export: print action count='+result.prints);
+  if(!result.freeCopy.includes('現在は無料')||!result.freeCopy.includes('currently free'))fail.push('old-kanji-reference/desktop/export: Free JP/EN public copy missing');
+}
+
 async function main(){
   const server=await staticServer(),proc=spawn(driverPath(),[`--port=${driverPort}`],{stdio:'ignore'});let c;const fail=[];
   try{
@@ -72,6 +99,7 @@ async function main(){
       await c.js(`document.body.tabIndex=-1;document.body.focus()`);const focus=new Set();for(let i=0;i<8;i++){await c.tab();const a=await c.js(`const e=document.activeElement,r=e&&e.getBoundingClientRect();return e?{k:e.tagName+'#'+(e.id||'')+':'+((e.innerText||e.value||'').trim().slice(0,40)),v:!!r&&r.width>0&&r.height>0}:null`);if(a?.k&&a.k!=='BODY#:')focus.add(a.k);if(a&&!a.v)fail.push(label+': hidden focus target '+a.k);}if(focus.size<3)fail.push(label+`: only ${focus.size} tab targets`);await c.js(`document.body.removeAttribute('tabindex')`);
       if(await fill(c,('\u820A\u5B78\u9AD4'.repeat(120))+'\n'+('\u{20BB7}\uFA11'.repeat(80)))){await action(c);await sleep(180);sc=await c.js(scanScript);check(label+'/long',sc,fail);}await fill(c,'');await action(c);await sleep(100);check(label+'/empty',await c.js(scanScript),fail);
       if(await fill(c,'\u820A\u5B78\u9AD4\u{20BB7}\uFA11')){await action(c);await sleep(120);await c.js(`try{Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{}}})}catch{}`);const copied=await c.js(String.raw`const v=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0};const b=[...document.querySelectorAll('button')].filter(e=>v(e)&&!e.disabled).find(e=>/(copy|\u30B3\u30D4\u30FC)/i.test((e.id||'')+' '+(e.textContent||'')));if(!b)return false;b.click();return true;`);if(copied){await sleep(70);const fb=await c.js(String.raw`const v=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0};return [...document.querySelectorAll('[aria-live],[role=status]')].filter(v).some(e=>(e.textContent||'').trim())`);if(!fb)fail.push(label+': no visible copy feedback');}}
+      if(tool==='old-kanji-reference'&&vp.name==='desktop')await referenceExports(c,fail);
       const errs=await c.js('return window.__w15||[]');if(errs.length)fail.push(label+': runtime errors '+JSON.stringify(errs));check(label+'/final',await c.js(scanScript),fail);
     }}
     if(fail.length){console.error(`Old Kanji browser UX audit failed: ${fail.length}`);for(const x of fail)console.error('- '+x);process.exitCode=1;}else console.log(`Old Kanji browser UX audit passed: ${tools.length} tools x ${viewports.length} viewports.`);
