@@ -67,14 +67,14 @@
     "by_stage": {
       "unreviewed": 0,
       "not_required": 47,
-      "awaiting_source": 793,
-      "candidate": 0,
+      "awaiting_source": 787,
+      "candidate": 6,
       "provenance_verified": 0,
       "subject_verified": 0,
       "verified": 0,
       "promoted": 30
     },
-    "evidence_sha256": "295d9f70b6f8a86494951c34049e920be576c6ae4146b8ef51e470a000645748"
+    "evidence_sha256": "917e7440158283c01c7c93091fbc6b37624b20ff398f69a0c7ebe887bc2e629f"
   },
   "by_type": {
     "access": {
