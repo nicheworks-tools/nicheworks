@@ -22,6 +22,7 @@ The tool MUST NOT use B/C/S/F values to claim a specific light is required, infe
 - Request browser camera access only after the user starts the tool and provide an explicit Stop action that releases camera use.
 - Analyze camera frames locally and present compact B/C/S/F relative metrics plus explanatory result/how-to sheets.
 - Treat B as brightness-related comparison, C as color-cast-related comparison, S as contrast/shadow-related comparison, and F as a simple brightness-variation indicator.
+- Keep a crawlable static lighting-comparison guide in the initial HTML that explains how to compare conditions and what B/C/S/F represent while preserving the non-calibrated measurement boundary.
 - Provide camera flip where supported and a Lite mode for reduced processing/load as implemented.
 - Show camera-permission/startup error guidance for common mobile/browser cases.
 - Provide JP/EN UI and explicit warnings that the metrics are relative camera-derived indicators.
@@ -67,6 +68,7 @@ The camera preview, compact metrics, bottom controls, and sheets are explicitly 
 
 - [ ] Camera analysis starts only after permission/user action and Stop ends active camera use.
 - [ ] Active video analysis produces the implemented relative B/C/S/F indicators without claiming lux or calibrated flicker values.
+- [ ] Initial HTML exposes a visible JP/EN guide for camera-lighting comparison and B/C/S/F meanings without presenting those indicators as calibrated measurements.
 - [ ] Camera errors are surfaced with recoverable guidance rather than silently failing.
 - [ ] JP/EN and Lite/camera controls preserve the relative-measurement disclaimer and local-analysis behavior.
 - [ ] The active Amazon block uses only fixed general shooting/streaming equipment queries and the shared `nicheworks09-22` tagged-search template.
