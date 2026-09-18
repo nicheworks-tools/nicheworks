@@ -109,7 +109,7 @@ For the Old Kanji cluster, long-term priority is:
 2. AdSense as broad supporting revenue;
 3. OFUSE / Ko-fi as voluntary support.
 
-Amazon is **contextual and optional**, not a cluster-wide requirement. Existing Old Kanji Reference dictionary/magnifier/book-stand links and Old Kanji OCR Scanner scanner/magnifier links may remain because they are task-adjacent. Do not add Amazon to the other six tools without a separate relevance case.
+Amazon is **currently dormant**, not a live cluster revenue surface. The canonical monetization SSOT classifies Old Kanji Reference as `ADS_DONATION` and Old Kanji OCR Scanner as `HOLD`; neither is in the `AFFILIATE` class. Their historical Amazon helper/config/UI wiring may remain only in fail-closed compatibility form with `enabled: false`, no tracking ID, and no outbound target. No Old Kanji tool may activate Amazon unless an explicit monetization decision first moves that tool into the canonical `AFFILIATE` class.
 
 ## Measurement contract
 
@@ -119,7 +119,8 @@ Evaluation must support, at minimum:
 - GSC impressions, clicks, CTR, and average position by landing page;
 - internal Old Kanji tool handoff clicks;
 - Pro CTA clicks when a real enabled CTA exists, and optionally disabled-Pro interest clicks only if the UI provides an explicit non-purchase interest control;
-- OFUSE / Ko-fi clicks.
+- OFUSE / Ko-fi clicks;
+- `affiliate_outbound` only if a future explicit canonical `AFFILIATE` activation exists; in the current dormant state no Old Kanji Amazon outbound event should be emitted.
 
 Existing GA4/analytics setup must be preserved. Only missing click events should be added in the measurement implementation PR.
 
