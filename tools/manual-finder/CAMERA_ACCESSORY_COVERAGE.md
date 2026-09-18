@@ -10,23 +10,23 @@ This document is the audited baseline for compatibility-sensitive camera battery
 | --- | ---: |
 | Canonical `カメラ・映像` records | **192** |
 | Camera records with a basic Amazon path | **185** |
-| Camera records with verified accessory detail | **84** |
+| Camera records with verified accessory detail | **87** |
 | Reviewed camera-detail exclusions | **26** |
-| Actionable camera records still missing accessory detail | **75** |
+| Actionable camera records still missing accessory detail | **72** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 185 = detail 84 + reviewed exclusion 26 + missing 75`
+`camera basic 185 = detail 87 + reviewed exclusion 26 + missing 72`
 
-The active detail ledger contains all fourteen actionable Nikon records and seventy reviewed DJI records. Twenty-six DJI rows are evidence-backed reviewed exclusions covering built-in/nonremovable power, rechargeable controllers without model-specific replaceable power accessories, externally powered air units, and the multi-component Digital FPV System. Missing rows remain explicit rather than being converted to guessed mappings or unsupported exclusions.
+The active detail ledger contains all fourteen actionable Nikon records, seventy reviewed DJI records, and three reviewed OM SYSTEM records. Twenty-six DJI rows are evidence-backed reviewed exclusions covering built-in/nonremovable power, rechargeable controllers without model-specific replaceable power accessories, externally powered air units, and the multi-component Digital FPV System. Missing rows remain explicit rather than being converted to guessed mappings or unsupported exclusions.
 
 ## Actionable coverage by maker
 
 | Maker | Basic | Detail | Reviewed exclusion | Missing |
 | --- | ---: | ---: | ---: | ---: |
 | DJI | 96 | 70 | 26 | 0 |
-| OM SYSTEM | 37 | 0 | 0 | 37 |
+| OM SYSTEM | 37 | 3 | 0 | 34 |
 | GoPro | 31 | 0 | 0 | 31 |
 | Nikon | 14 | 14 | 0 | 0 |
 | Insta360 | 7 | 0 | 0 | 7 |
@@ -192,6 +192,18 @@ After DJI Waves 1–41 the maker-level reconciliation is:
 
 `DJI camera 96 = detail 70 + reviewed exclusion 26 + missing 0`
 
+## OM SYSTEM reviewed waves
+
+### Wave 1 — BLX-1 battery family
+
+OM SYSTEM Wave 1 activates exactly three canonical rows: `OM-1`, `OM-1 Mark II`, and `OM-3`. OM SYSTEM's official BLX-1 product page explicitly lists all three as compatible with the `BLX-1 Lithium Ion Rechargeable Battery`.
+
+The deterministic Amazon handoff is `OM SYSTEM BLX-1 Lithium Ion Rechargeable Battery` for each reviewed row. `OM-5`, `OM-5 Mark II`, E-M series models, and other OM SYSTEM rows remain fail-closed until separately reviewed.
+
+Current OM SYSTEM reconciliation:
+
+`OM SYSTEM camera 37 = detail 3 + reviewed exclusion 0 + missing 34`
+
 ## Non-actionable camera records
 
 Seven camera-category records are maker/index entries without an actionable exact-model Amazon path and are not counted as missing accessory detail:
@@ -217,7 +229,7 @@ Seven camera-category records are maker/index entries without an actionable exac
 
 ## Expansion order
 
-1. Review OM SYSTEM 37 actionable records.
+1. Continue OM SYSTEM from the remaining 34 actionable records in bounded official-evidence waves.
 2. Review GoPro 31 actionable records.
 3. Review Insta360 7 actionable records.
 
@@ -231,12 +243,13 @@ The camera accessory phase is complete only when:
 
 `camera basic = detail + reviewed exclusion + missing 0`
 
-The current baseline is not complete: `75` actionable records remain missing accessory detail.
+The current baseline is not complete: `72` actionable records remain missing accessory detail.
 
 ## Source of truth
 
 - `affiliate-camera-accessories.js` — Nikon Wave 1 and camera accessory target.
 - `affiliate-nikon-camera-accessories-wave2.js` — Nikon Wave 2 completion mappings.
+- `affiliate-om-system-camera-accessories-wave1.js` — exact OM-1 / OM-1 Mark II / OM-3 BLX-1 mappings.
 - `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave41.js` — reviewed DJI camera accessory ledgers.
 - `affiliate-dji-camera-accessories-wave22.js` — exact reviewed Phantom 3 Advanced/Professional/Standard battery and charging-hub mappings.
 - `affiliate-dji-camera-accessories-wave23.js` — exact reviewed Phantom 3 SE battery-only mapping; charging hub remains intentionally unasserted.
@@ -276,5 +289,6 @@ The current baseline is not complete: `75` actionable records remain missing acc
 - `tests/dji-ronin4d-osmo-action-wave39.test.mjs` — exact Wave 39 two-row Ronin 4D / Osmo Action boundary.
 - `tests/dji-rechargeable-controller-exclusions-wave40.test.mjs` — exact six-row Wave 40 rechargeable-controller exclusion boundary.
 - `tests/dji-final-power-wave41.test.mjs` — final DJI closure boundary covering Osmo Nano detail plus five exact exclusions.
+- `tests/om-system-blx1-accessory-wave1.test.mjs` — exact OM SYSTEM Wave 1 BLX-1 boundary.
 - `tests/camera-accessory-coverage.test.mjs` — catalog-wide camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` — documentation drift guard and implementation-evidence synchronization.

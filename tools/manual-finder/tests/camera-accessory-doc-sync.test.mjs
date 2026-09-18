@@ -81,19 +81,35 @@ assert.ok(doc.includes(djiReconciliation), 'DJI camera progress line must match 
 assert.ok(affiliateDoc.includes(djiReconciliation), 'affiliate coverage DJI progress line must match the live audit');
 assert.ok(spec.includes(`**${djiBasic} basic = ${djiDetail} detail + ${djiExcluded} reviewed exclusions + ${djiMissing} missing accessory detail**`));
 
+const omBasic = summary.cameraBasicByMaker['OM SYSTEM'] || 0;
+const omDetail = summary.cameraDetailByMaker['OM SYSTEM'] || 0;
+const omExcluded = summary.cameraDetailExcludedByMaker['OM SYSTEM'] || 0;
+const omMissing = summary.cameraMissingAccessoryByMaker['OM SYSTEM'] || 0;
+const omReconciliation = `OM SYSTEM camera ${omBasic} = detail ${omDetail} + reviewed exclusion ${omExcluded} + missing ${omMissing}`;
+assert.ok(doc.includes(omReconciliation), 'OM SYSTEM camera progress line must match the live audit');
+assert.ok(affiliateDoc.includes(omReconciliation), 'affiliate coverage OM SYSTEM progress line must match the live audit');
+assert.ok(spec.includes(`**${omBasic} basic = ${omDetail} detail + ${omExcluded} reviewed exclusions + ${omMissing} missing accessory detail**`));
+
 const djiLedgers = fs.readdirSync(toolRoot)
   .filter((name) => /^affiliate-dji-camera-accessories-wave\d+\.js$/.test(name))
   .sort((a, b) => Number(a.match(/wave(\d+)/)?.[1] || 0) - Number(b.match(/wave(\d+)/)?.[1] || 0));
 const djiTests = fs.readdirSync(testsRoot)
   .filter((name) => /^dji-.*-wave\d+\.test\.mjs$/.test(name));
+const omSystemLedgers = fs.readdirSync(toolRoot)
+  .filter((name) => /^affiliate-om-system-camera-accessories-wave\d+\.js$/.test(name))
+  .sort((a, b) => Number(a.match(/wave(\d+)/)?.[1] || 0) - Number(b.match(/wave(\d+)/)?.[1] || 0));
+const omSystemTests = fs.readdirSync(testsRoot)
+  .filter((name) => /^om-system-.*-wave\d+\.test\.mjs$/.test(name));
 
 for (const path of [
   'affiliate-nikon-camera-accessories-wave2.js',
   ...djiLedgers,
+  ...omSystemLedgers,
   'affiliate-camera-detail-exclusions.js',
   'CAMERA_ACCESSORY_COVERAGE.md',
   'tests/nikon-camera-accessory-wave2.test.mjs',
   ...djiTests.map((name) => `tests/${name}`),
+  ...omSystemTests.map((name) => `tests/${name}`),
   'tests/camera-accessory-coverage.test.mjs',
   'tests/camera-accessory-doc-sync.test.mjs'
 ]) {

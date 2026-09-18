@@ -112,6 +112,12 @@ const djiWaveFiles = fs.readdirSync(root)
   .sort((a, b) => waveNumber(a) - waveNumber(b));
 assert.ok(djiWaveFiles.length >= 20, 'DJI camera accessory waves through Wave 20 must be present');
 for (const name of djiWaveFiles) run(new URL(name, root), `tools/manual-finder/${name}`);
+
+const omSystemWaveFiles = fs.readdirSync(root)
+  .filter((name) => /^affiliate-om-system-camera-accessories-wave\d+\.js$/.test(name))
+  .sort((a, b) => waveNumber(a) - waveNumber(b));
+for (const name of omSystemWaveFiles) run(new URL(name, root), `tools/manual-finder/${name}`);
+
 run(new URL('affiliate-camera-detail-exclusions.js', root), 'tools/manual-finder/affiliate-camera-detail-exclusions.js');
 
 const config = context.window.MANUALFINDER_AFFILIATE_CONFIG;
