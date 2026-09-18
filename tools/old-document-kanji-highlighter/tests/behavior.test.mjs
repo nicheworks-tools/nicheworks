@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 
-let source = fs.readFileSync(new URL('../app.js', import.meta.url), 'utf8');
+const rawSource = fs.readFileSync(new URL('../app.js', import.meta.url), 'utf8');
+let source = rawSource;
 source = source.replace(/\n\(async function init\(\)\{[\s\S]*$/, `
 globalThis.__test = {
   loadData,
@@ -61,13 +62,13 @@ assert.equal(await api.loadData(), true);
 assert.equal(api.getDataLoadFailed(), false);
 assert.equal(api.analyzeDocumentText('舊').modern, '旧');
 
-assert.match(source, /state\.dataLoadFailed\?t\(\)\.loadDataError/);
-assert.match(source, /inputText'\)\.addEventListener\('input', analyzeText\)/);
-assert.match(source, /copyOld'\)\.onclick=.*copyText/);
-assert.match(source, /copyPairs'\)\.onclick=.*copyText/);
-assert.match(source, /copyModern'\)\.onclick=.*copyText/);
+assert.match(rawSource, /state\.dataLoadFailed\?t\(\)\.loadDataError/);
+assert.match(rawSource, /inputText'\)\.addEventListener\('input', analyzeText\)/);
+assert.match(rawSource, /copyOld'\)\.onclick=.*copyText/);
+assert.match(rawSource, /copyPairs'\)\.onclick=.*copyText/);
+assert.match(rawSource, /copyModern'\)\.onclick=.*copyText/);
 
-const fetchTargets = Array.from(source.matchAll(/fetch\(([^)]+)\)/g), match => match[1]);
+const fetchTargets = Array.from(rawSource.matchAll(/fetch\(([^)]+)\)/g), match => match[1]);
 assert.ok(fetchTargets.length >= 1);
 assert.ok(
   fetchTargets.every(target => target.includes('old-kanji-reference')),
