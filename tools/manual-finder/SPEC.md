@@ -72,21 +72,24 @@ ManualFinder is an `AFFILIATE` tool, but commerce is an optional next-action lay
 
 Every actionable `カメラ・映像` row with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or explicit missing-accessory diagnostic state.
 
-The current camera state is **185 basic = 65 detail + 3 reviewed exclusions + 117 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
+The current camera state is **185 basic = 71 detail + 3 reviewed exclusions + 111 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
 
 Nikon Waves 1–2 remain closed at **14 detail + 0 reviewed exclusions + 0 missing**.
 
-DJI advances only through bounded exact-canonical-model review waves. Reviewed scope through Wave 32 includes Waves 1–31 plus Wave 32 for exactly:
+DJI advances only through bounded exact-canonical-model review waves. Reviewed scope through Wave 33 includes Waves 1–32 plus Wave 33 for exactly:
 
-- `DJI Goggles 3`
-- `DJI Goggles Integra`
-- `DJI Goggles N3`
+- `DJI RS 2`
+- `DJI RS 3`
+- `DJI RS 3 Pro`
+- `DJI RS 4`
+- `DJI RS 4 Pro`
+- `DJI RS 5`
 
-Wave 32 does not add an Amazon power handoff. DJI's official support/specification pages identify each model's power input as a built-in battery. Because no model-specific replaceable battery or charger accessory was established at the audit evidence standard, the three canonical rows are recorded in `affiliate-camera-detail-exclusions.js` with reason `built_in_battery_no_model_specific_replaceable_power_accessory`. Generic USB-C chargers and power banks are not treated as compatibility-sensitive model detail.
+Wave 33 maps each of those six exact canonical rows to `DJI RS BG30 Battery Grip`. DJI Store's official BG30 page explicitly lists all six in Compatibility and documents the quick-release battery grip as independently chargeable. `DJI RS 3 Mini`, `DJI RS 4 Mini`, `DJI RSC 2`, and other neighboring Ronin/RS products are not inferred.
 
-The measured DJI state after Waves 1–32 is **96 basic = 51 detail + 3 reviewed exclusions + 42 missing accessory detail**.
+The measured DJI state after Waves 1–33 is **96 basic = 57 detail + 3 reviewed exclusions + 36 missing accessory detail**.
 
-Camera-detail exclusions now contain exactly the three Wave 32 DJI built-in-battery Goggles rows. Remaining missing camera rows are DJI 42, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
+Camera-detail exclusions remain exactly the three Wave 32 DJI built-in-battery Goggles rows. Remaining missing camera rows are DJI 36, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## State and persistence
 
@@ -127,7 +130,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] The printer audit remains **291 basic = 284 detail + 7 reviewed exclusions + 0 missing detail**.
 - [x] KYOCERA remains **123 = 120 detail + 3 reviewed exclusions + 0 missing**.
 - [x] Nikon camera accessory coverage remains **14 detail + 0 reviewed exclusions + 0 missing**.
-- [x] DJI Waves 1–32 preserve exact reviewed boundaries and do not infer neighboring product names.
+- [x] DJI Waves 1–33 preserve exact reviewed boundaries and do not infer neighboring product names.
 - [x] DJI Mavic 2 Enterprise Series Wave 25 activates exactly one reviewed canonical series row with official battery and charging-hub evidence.
 - [x] DJI Osmo Pocket 3 Wave 26 activates exactly one reviewed canonical row with official Battery Handle compatibility evidence.
 - [x] DJI Action 2 Wave 27 activates exactly one reviewed canonical row with official Power Module compatibility evidence.
@@ -136,8 +139,9 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] Osmo 360 Wave 30 activates exactly one reviewed canonical row with official battery and multifunctional battery-case compatibility evidence.
 - [x] DJI Goggles 2 Wave 31 activates exactly one reviewed canonical row with official battery compatibility evidence.
 - [x] DJI Goggles 3, DJI Goggles Integra, and DJI Goggles N3 Wave 32 are exact reviewed exclusions backed by official built-in-battery evidence and receive no generic power handoff.
-- [x] DJI Waves 1–32 reconcile to **96 basic = 51 detail + 3 reviewed exclusions + 42 missing accessory detail**.
-- [x] The catalog-wide camera audit reconciles to **185 basic = 65 detail + 3 reviewed exclusions + 117 missing accessory detail** while seven maker/index rows remain non-actionable.
+- [x] DJI RS BG30 Wave 33 activates exactly six reviewed canonical rows with DJI Store compatibility evidence.
+- [x] DJI Waves 1–33 reconcile to **96 basic = 57 detail + 3 reviewed exclusions + 36 missing accessory detail**.
+- [x] The catalog-wide camera audit reconciles to **185 basic = 71 detail + 3 reviewed exclusions + 111 missing accessory detail** while seven maker/index rows remain non-actionable.
 - [x] Missing-model maker diagnostics and documentation sync remain machine-readable drift guards.
 - [x] Wrong maker/category, nonexistent models, spelling variants, and other unreviewed compatibility cases fail closed.
 - [x] Amazon disclosure and sponsored-link semantics remain supplied by the shared affiliate helper.
@@ -191,6 +195,7 @@ Reviewed DJI camera accessory ledgers:
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave29.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave30.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave31.js`
+- `tools/manual-finder/affiliate-dji-camera-accessories-wave33.js`
 
 Camera accessory tests and audit gates:
 
@@ -228,6 +233,7 @@ Camera accessory tests and audit gates:
 - `tools/manual-finder/tests/dji-osmo360-accessory-wave30.test.mjs`
 - `tools/manual-finder/tests/dji-goggles2-accessory-wave31.test.mjs`
 - `tools/manual-finder/tests/dji-goggles-integrated-battery-exclusions-wave32.test.mjs`
+- `tools/manual-finder/tests/dji-rs-bg30-accessory-wave33.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-coverage.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs`
 - `tools/manual-finder/tests/affiliate-coverage.test.mjs`
