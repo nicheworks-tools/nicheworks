@@ -105,7 +105,11 @@
     "cetearyl olivate": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2907/cetearyl-olivate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "stearyl alcohol": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15539/stearyl-alcohol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "sodium lauroyl glutamate": Object.freeze({ category: "cleanser", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14885/sodium-lauroyl-glutamate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "sodium coco-sulfate": Object.freeze({ category: "cleanser", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14690/sodium-coco-sulfate/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "sodium coco-sulfate": Object.freeze({ category: "cleanser", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14690/sodium-coco-sulfate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polysorbate 80": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12497/polysorbate-80/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sorbitan olivate": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15312/sorbitan-olivate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "steareth-2": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15492/steareth-2/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "steareth-21": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15496/steareth-21/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
@@ -341,7 +345,7 @@
   }
 
   const api = {
-    version: "1.30.0",
+    version: "1.31.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
