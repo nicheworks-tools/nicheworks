@@ -72,7 +72,7 @@ ManualFinder is an `AFFILIATE` tool, but commerce is an optional next-action lay
 
 Every actionable `カメラ・映像` row with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or explicit missing-accessory diagnostic state.
 
-The current camera state is **185 basic = 87 detail + 26 reviewed exclusions + 72 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
+The current camera state is **185 basic = 94 detail + 26 reviewed exclusions + 65 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
 
 Nikon Waves 1–2 remain closed at **14 detail + 0 reviewed exclusions + 0 missing**.
 
@@ -91,9 +91,9 @@ The measured DJI state after Waves 1–41 is **96 basic = 70 detail + 26 reviewe
 
 DJI camera review is closed at zero missing. Camera-detail exclusions contain twenty-six DJI rows across Waves 32, 34, 36, 40, and 41.
 
-OM SYSTEM review has started with Wave 1 for exactly `OM-1`, `OM-1 Mark II`, and `OM-3`. OM SYSTEM's official BLX-1 page explicitly lists all three as compatible with the BLX-1 Lithium Ion Rechargeable Battery, so each exact canonical row receives the deterministic `OM SYSTEM BLX-1 Lithium Ion Rechargeable Battery` handoff. The measured OM SYSTEM state is **37 basic = 3 detail + 0 reviewed exclusions + 34 missing accessory detail**.
+OM SYSTEM review now covers Waves 1–3. Wave 1 maps exactly `OM-1`, `OM-1 Mark II`, and `OM-3` to BLX-1. Wave 2 maps exactly `E-M1 Mark II`, `E-M1 Mark III`, and `E-M1X` to BLH-1 using OM SYSTEM's official compatibility page. Wave 3 maps exactly `TG-4`, `TG-5`, `TG-6`, and `TG-7` to LI-92B using OM SYSTEM's official LI-92B compatibility guidance. No neighboring models are inferred. The measured OM SYSTEM state is **37 basic = 10 detail + 0 reviewed exclusions + 27 missing accessory detail**.
 
-Remaining missing camera rows are OM SYSTEM 34, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
+Remaining missing camera rows are OM SYSTEM 27, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## State and persistence
 
@@ -154,8 +154,10 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] DJI final Wave 41 maps Osmo Nano to its reviewed Multifunctional Vision Dock and resolves the remaining five DJI rows as exact evidence-backed exclusions.
 - [x] DJI Waves 1–41 reconcile to **96 basic = 70 detail + 26 reviewed exclusions + 0 missing accessory detail**.
 - [x] OM SYSTEM Wave 1 activates exactly OM-1, OM-1 Mark II, and OM-3 with official BLX-1 compatibility evidence.
-- [x] OM SYSTEM currently reconciles to **37 basic = 3 detail + 0 reviewed exclusions + 34 missing accessory detail**.
-- [x] The catalog-wide camera audit reconciles to **185 basic = 87 detail + 26 reviewed exclusions + 72 missing accessory detail** while seven maker/index rows remain non-actionable.
+- [x] OM SYSTEM Wave 2 activates exactly E-M1 Mark II, E-M1 Mark III, and E-M1X with official BLH-1 compatibility evidence.
+- [x] OM SYSTEM Wave 3 activates exactly TG-4, TG-5, TG-6, and TG-7 with official LI-92B compatibility evidence.
+- [x] OM SYSTEM currently reconciles to **37 basic = 10 detail + 0 reviewed exclusions + 27 missing accessory detail**.
+- [x] The catalog-wide camera audit reconciles to **185 basic = 94 detail + 26 reviewed exclusions + 65 missing accessory detail** while seven maker/index rows remain non-actionable.
 - [x] Missing-model maker diagnostics and documentation sync remain machine-readable drift guards.
 - [x] Wrong maker/category, nonexistent models, spelling variants, and other unreviewed compatibility cases fail closed.
 - [x] Amazon disclosure and sponsored-link semantics remain supplied by the shared affiliate helper.
@@ -216,6 +218,8 @@ Reviewed DJI camera accessory ledgers:
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave39.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave41.js`
 - `tools/manual-finder/affiliate-om-system-camera-accessories-wave1.js`
+- `tools/manual-finder/affiliate-om-system-camera-accessories-wave2.js`
+- `tools/manual-finder/affiliate-om-system-camera-accessories-wave3.js`
 
 Camera accessory tests and audit gates:
 
@@ -263,6 +267,8 @@ Camera accessory tests and audit gates:
 - `tools/manual-finder/tests/dji-rechargeable-controller-exclusions-wave40.test.mjs`
 - `tools/manual-finder/tests/dji-final-power-wave41.test.mjs`
 - `tools/manual-finder/tests/om-system-blx1-accessory-wave1.test.mjs`
+- `tools/manual-finder/tests/om-system-blh1-accessory-wave2.test.mjs`
+- `tools/manual-finder/tests/om-system-li92b-accessory-wave3.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-coverage.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs`
 - `tools/manual-finder/tests/affiliate-coverage.test.mjs`
