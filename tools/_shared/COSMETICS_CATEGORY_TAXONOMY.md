@@ -192,3 +192,14 @@ Public copy is synchronized across both tools:
 - English role label: `Smoothing`
 - Japanese explanation: `肌表面の粗さや凹凸を減らし、なめらかに整える目的で使われる成分です。`
 - English explanation: `Used to smooth the skin surface by reducing roughness or irregularities.`
+
+
+## Wave 18 mappings
+
+Wave 18 introduces no new authority-function vocabulary. It reuses existing explicit mappings:
+
+- `viscosity controlling` → `viscosity adjuster`
+- `skin conditioning` → `skin conditioning`
+- `surfactant - emulsifying` → `emulsifier`
+
+The reviewed mappings are Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Ammonium Polyacryloyldimethyl Taurate, Ethylhexyl Methoxycrylene and Glyceryl Stearate SE. Where COSMILE lists multiple functions, Wave 18 records only the directly supported public role needed by the current controlled taxonomy and does not invent an `emulsion stabilising` public category.
