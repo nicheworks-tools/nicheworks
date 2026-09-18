@@ -310,7 +310,7 @@ for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
     wave24Reviewed+=1;
   }
   if(Object.hasOwn(EXPECTED_WAVE25,canonical)){
-    assert.equal(hasRawMissing,false,`${canonical}: wave 25 must preserve the existing fragrance-allergen raw category without inventing a missing row`);
+    assert.equal(hasRawMissing,true,`${canonical}: wave 25 must preserve the existing duplicate raw missing-category row alongside fragrance-allergen metadata`);
     assert.deepEqual(rawCategories,EXPECTED_WAVE25_LEGACY_CATEGORIES[canonical],`${canonical}: wave 25 must preserve fragrance-allergen as an auditable legacy label class`);
     wave25Reviewed+=1;
   }
