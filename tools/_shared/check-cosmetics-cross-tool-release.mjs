@@ -87,6 +87,8 @@ check(!/tesseract/i.test(liteHtml + liteApp), 'Lite must not absorb the OCR engi
 check(!liteHtml.includes('id="ocr-file"'), 'Lite must remain OCR-free');
 check(liteApp.includes('ROLE_DESCRIPTIONS'), 'Lite must expose role descriptions');
 check(liteApp.includes("smoothing: { ja: '肌をなめらかに', en: 'Smoothing' }"), 'Lite must expose the reviewed bilingual smoothing role');
+check(liteApp.includes("binder: { ja: '結合', en: 'Binder' }"), 'Lite must expose the reviewed bilingual binder role');
+check(liteApp.includes("binder: { ja: '粉体などの成分同士をまとまりやすくする目的で使われる成分です。', en: 'Used to help bind ingredients together in pressed or powdered products.' }"), 'Lite binder explanation must remain bilingual');
 check(liteApp.includes("smoothing: { ja: '肌表面の粗さや凹凸を減らし、なめらかに整える目的で使われる成分です。', en: 'Used to smooth the skin surface by reducing roughness or irregularities.' }"), 'Lite smoothing role explanation must remain bilingual and source-aligned');
 check(liteEnhancements.includes('役割情報あり'), 'Lite public summary must be role-oriented');
 check(!liteEnhancements.includes('辞書認識率'), 'Lite dictionary-coverage metric must not return');
@@ -115,6 +117,8 @@ check(resultUi.includes('主な役割'), 'FastScan role-first public result labe
 check(resultUi.includes('情報未登録'), 'FastScan unavailable-information label missing');
 check(resultUi.includes('ROLE_DESCRIPTIONS'), 'FastScan role descriptions missing');
 check(resultUi.includes('smoothing: { ja: "肌をなめらかに", en: "Smoothing" }'), 'FastScan must expose the reviewed bilingual smoothing role');
+check(resultUi.includes('binder: { ja: "結合", en: "Binder" }'), 'FastScan must expose the reviewed bilingual binder role');
+check(resultUi.includes('binder: { ja: "粉体などの成分同士をまとまりやすくする目的で使われる成分です。", en: "Used to help bind ingredients together in pressed or powdered products." }'), 'FastScan binder explanation must remain bilingual');
 check(resultUi.includes('smoothing: { ja: "肌表面の粗さや凹凸を減らし、なめらかに整える目的で使われる成分です。", en: "Used to smooth the skin surface by reducing roughness or irregularities." }'), 'FastScan smoothing role explanation must remain bilingual and source-aligned');
 check(!resultUi.includes('function getMatchRouteLabel'), 'FastScan must not expose match route as public result value');
 check(!resultUi.includes('rt("matchRoute"'), 'FastScan must not render match route');
