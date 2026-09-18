@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-18-applicability-wave4",
+  "version": "2026-09-18-applicability-wave5",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -5165,6 +5165,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A plumb laser is a distinctive layout instrument that projects vertical reference points; a subject-matched photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5179,6 +5188,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Plumber's putty is a physical sealing compound with recognizable product and application forms; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5190,6 +5208,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Plywood is a physical sheet material whose layered edges and veneer faces are visually useful for recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5221,6 +5248,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "PPE is a broad category covering helmets, gloves, footwear, eye, hearing, respiratory and fall protection; one photograph would arbitrarily represent only a subset, while specific PPE canonicals can carry their own images.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5232,6 +5268,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pressure test has a recognizable field setup using gauges, pumps and a connected system; a reviewed process photograph can materially explain the canonical.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5249,6 +5294,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Primer is a physical coating material with recognizable product/application contexts; a reviewed photograph can represent its construction use.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5260,6 +5314,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Primer is a physical preparatory coating used before paint or bonding; a reviewed application/product photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5277,6 +5340,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A protective sheet is a physical site-protection material with recognizable deployed use; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5288,6 +5360,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pry bar is a distinctive hand tool with clear visual identity; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5305,6 +5386,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "PTFE thread-seal tape is a physical plumbing material with a recognizable small roll and threaded-joint application; imagery is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5316,6 +5406,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pull-out test has a recognizable anchor-testing setup with loading equipment and gauge; a reviewed process photograph is informative.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5347,6 +5446,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Construction putty is a physical repair/filling material with recognizable application to holes and surface defects; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5358,6 +5466,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A putty knife is a distinctive flat-bladed finishing hand tool; a subject-matched photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5375,6 +5492,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "PVC pipe is a physical piping material with recognizable rigid tube and fitting forms; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5386,6 +5512,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Anti-slip tape is a physical safety material with a characteristic abrasive surface and installed stair/floor use; a reviewed photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5403,6 +5538,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Modified bitumen membrane is a physical waterproofing sheet with recognizable roll and installed-layer forms; imagery is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5414,6 +5558,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A chair bar is a physical reinforcement support used to hold rebar elevation; an installed-detail photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5431,6 +5584,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A check valve is a physical one-way piping component with recognizable valve forms; a subject-matched photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5442,6 +5604,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A clamp meter is a distinctive electrical measuring instrument with clamp jaws; a reviewed photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5459,6 +5630,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A concrete cold joint is a physical interface/defect from delayed placement; a reviewed field photograph can show the characteristic condition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5470,6 +5650,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Concrete slump is assessed through a recognizable slump-cone test and resulting concrete shape; a reviewed test photograph materially aids understanding.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5487,6 +5676,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A core sleeve is a physical penetration component with recognizable installed form before or through concrete; imagery is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5498,6 +5696,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A curing sheet is a physical surface-protection material with recognizable deployed concrete/finish use; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5515,6 +5722,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A distribution board is a distinctive electrical panel containing branch protective devices; a subject-matched photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5526,6 +5742,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Drainage mat is a physical sheet/mat product with recognizable drainage profile and installed waterproofing use; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5543,6 +5768,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Epoxy putty is a physical repair material with recognizable mixed/applied form; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5554,6 +5788,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Firestop sealant is a physical rated sealing material used around penetrations and joints; an installed-detail photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5571,6 +5814,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A flange is a physical bolted piping/equipment connection component with distinctive circular geometry; a subject-matched photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5582,6 +5834,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A furring channel is a physical light-gauge framing member with a recognizable profile and installed ceiling/wall use; imagery is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5599,6 +5860,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A grout float is a distinctive rubber-faced tile tool; a reviewed photograph strongly aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5610,6 +5880,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Honeycomb concrete is a visually identifiable defect with exposed aggregate and voids; a reviewed defect photograph is highly informative.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5627,6 +5906,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An inspection hatch is a physical openable access component with recognizable installed form; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5638,6 +5926,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An insulation tester is a distinctive electrical test instrument; a subject-matched photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5655,6 +5952,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A knockout punch is a distinctive tool for making round holes in panels/boxes; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5666,6 +5972,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Laitance is a visually identifiable weak cement-rich surface layer on concrete; a reviewed close field photograph can illustrate the canonical condition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5683,6 +5998,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A mortar mixer is a distinctive physical mixing machine; a subject-matched photograph strongly aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5694,6 +6018,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Repair mortar is a physical patching material with recognizable mixing and concrete-repair application; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5711,6 +6044,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Rust-inhibitive primer is a physical coating applied to steel; a reviewed product/application photograph can represent the canonical clearly.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5722,6 +6064,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Sanding paper is a physical abrasive material with recognizable sheets/discs and grit surface; a reviewed photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5739,6 +6090,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Screeding is a visually recognizable surface-leveling operation using a straightedge/screed; a reviewed process photograph is informative.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5750,6 +6110,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Sleeve setting is a visually recognizable construction operation placing sleeves before concrete; a reviewed process photograph can show the canonical clearly.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5767,6 +6136,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A terminal block is a physical electrical connection component with distinctive terminals and modular form; a subject-matched photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5778,6 +6156,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Thinset mortar is a physical tile-setting material with recognizable notched-trowel application; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5795,6 +6182,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Tie wire is a physical thin wire used to bind reinforcement; an installed or close subject-matched photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5806,6 +6202,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A union joint is a physical detachable piping fitting with recognizable threaded/nut geometry; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5823,6 +6228,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A rebar tie-wire twister is a distinctive hand tool used to twist binding wire; a subject-matched photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5834,6 +6248,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An air impact wrench is a distinctive pneumatic fastening tool; a reviewed photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -5851,6 +6274,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A concrete air meter is a distinctive test apparatus used to measure fresh-concrete air content; a subject-matched photograph is highly informative.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5865,6 +6297,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An anchor-bolt template is a physical positioning plate/frame used to hold anchor locations; an installed/detail photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -5876,6 +6317,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:54:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A base plate is a physical steel plate connecting a column or equipment base to a foundation; a reviewed installed-detail photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
