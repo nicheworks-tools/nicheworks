@@ -173,3 +173,14 @@ Wave 16 continues the unsupported-legacy-category cleanup for four identities ob
 | `myristic acid` | `cleanser` | `general` | COSMILE Europe lists cleansing. |
 
 All four records already carried an unsupported legacy category rather than a missing category. The shared runtime therefore exposes the reviewed role as the public primary `category`, keeps the legacy value in the complete `categories` set, and records it in `legacy_category_values` for audit.
+
+
+## Wave 17 reviewed set
+
+Wave 17 resolves Niacinamide, a high-frequency canonical identity that was recognized by the shared dictionary but remained category-empty in the frozen raw data.
+
+| Canonical identity | Verified public category | Raw category state | Source basis |
+| --- | --- | --- | --- |
+| `niacinamide` | `smoothing` | category missing | COSMILE Europe lists `SMOOTHING` and describes reducing roughness or irregularities to achieve a more even skin surface. |
+
+The raw Niacinamide record is not rewritten. The verified overlay supplies the public role, while Lite and FastScan both define the same bilingual `smoothing` role label and role-level explanation. This category is intentionally distinct from the pre-existing `soothing` category.

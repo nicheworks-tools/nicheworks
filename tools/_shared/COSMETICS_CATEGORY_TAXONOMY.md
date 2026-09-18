@@ -176,3 +176,19 @@ Wave 16 requires no new authority-function vocabulary. It reuses exact reviewed 
 - Myristic Acid: COSMILE `cleansing` → NicheWorks `cleanser`
 
 As in Wave 15, these source-backed mappings control the public primary role without deleting or rewriting the raw legacy category hints.
+
+
+## Wave 17 taxonomy expansion
+
+Wave 17 adds one exact authority-function mapping:
+
+- COSMILE `smoothing` → NicheWorks `smoothing`
+
+This is a new public role category because `smoothing` and the existing `soothing` category describe different functions and must not be conflated. Niacinamide is the first reviewed canonical identity using the category.
+
+Public copy is synchronized across both tools:
+
+- Japanese role label: `肌をなめらかに`
+- English role label: `Smoothing`
+- Japanese explanation: `肌表面の粗さや凹凸を減らし、なめらかに整える目的で使われる成分です。`
+- English explanation: `Used to smooth the skin surface by reducing roughness or irregularities.`

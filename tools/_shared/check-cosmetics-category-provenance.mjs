@@ -37,7 +37,8 @@ const EXPECTED_WAVE15 = Object.freeze({ 'caprylyl glycol':'emollient', 'ceramide
 const EXPECTED_WAVE15_LEGACY_CATEGORIES = Object.freeze({ 'caprylyl glycol':['preservative booster'], 'ceramide np':['barrier lipid'], cholesterol:['barrier lipid'], 'hexylene glycol':['general'] });
 const EXPECTED_WAVE16 = Object.freeze({ hydroxyacetophenone:'antioxidant', 'palmitic acid':'emollient', 'stearic acid':'cleanser', 'myristic acid':'cleanser' });
 const EXPECTED_WAVE16_LEGACY_CATEGORIES = Object.freeze({ hydroxyacetophenone:['preservative booster'], 'palmitic acid':['general'], 'stearic acid':['general'], 'myristic acid':['general'] });
-const EXPECTED_ALL = Object.freeze({ ...EXPECTED_WAVE1, ...EXPECTED_WAVE2, ...EXPECTED_WAVE3, ...EXPECTED_WAVE4, ...EXPECTED_WAVE5, ...EXPECTED_WAVE6, ...EXPECTED_WAVE7, ...EXPECTED_WAVE8, ...EXPECTED_WAVE9, ...EXPECTED_WAVE10, ...EXPECTED_WAVE11, ...EXPECTED_WAVE12, ...EXPECTED_WAVE13, ...EXPECTED_WAVE14, ...EXPECTED_WAVE15, ...EXPECTED_WAVE16 });
+const EXPECTED_WAVE17 = Object.freeze({ niacinamide:'smoothing' });
+const EXPECTED_ALL = Object.freeze({ ...EXPECTED_WAVE1, ...EXPECTED_WAVE2, ...EXPECTED_WAVE3, ...EXPECTED_WAVE4, ...EXPECTED_WAVE5, ...EXPECTED_WAVE6, ...EXPECTED_WAVE7, ...EXPECTED_WAVE8, ...EXPECTED_WAVE9, ...EXPECTED_WAVE10, ...EXPECTED_WAVE11, ...EXPECTED_WAVE12, ...EXPECTED_WAVE13, ...EXPECTED_WAVE14, ...EXPECTED_WAVE15, ...EXPECTED_WAVE16, ...EXPECTED_WAVE17 });
 
 const EXPECTED_SOURCES = Object.freeze({
   water:'https://www.cosmeticsinfo.org/ingredient/water/', glycerin:'https://www.cosmeticsinfo.org/ingredient/glycerin/', 'propylene glycol':'https://www.cosmeticsinfo.org/ingredient/propylene-glycol/',
@@ -60,7 +61,8 @@ const EXPECTED_SOURCES = Object.freeze({
   'caprylyl glycol':'https://cosmileeurope.eu/inci/detail/2612/caprylyl-glycol/', 'ceramide np':'https://cosmileeurope.eu/inci/detail/25522/ceramide-np/',
   cholesterol:'https://cosmileeurope.eu/inci/detail/3117/cholesterol/', 'hexylene glycol':'https://cosmileeurope.eu/inci/detail/6450/hexylene-glycol/',
   hydroxyacetophenone:'https://cosmileeurope.eu/inci/detail/17301/hydroxyacetophenone/', 'palmitic acid':'https://cosmileeurope.eu/inci/detail/10137/palmitic-acid/',
-  'stearic acid':'https://cosmileeurope.eu/inci/detail/15514/stearic-acid/', 'myristic acid':'https://cosmileeurope.eu/inci/detail/9266/myristic-acid/'
+  'stearic acid':'https://cosmileeurope.eu/inci/detail/15514/stearic-acid/', 'myristic acid':'https://cosmileeurope.eu/inci/detail/9266/myristic-acid/',
+  niacinamide:'https://cosmileeurope.eu/inci/detail/9443/niacinamide/'
 });
 const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org','health.ec.europa.eu','cosmileeurope.eu']);
 
@@ -70,7 +72,7 @@ function validHttpsSource(value){ try { const u=new URL(String(value||'').trim()
 
 const rows=DATA_FILES.flatMap((file)=>{ const payload=JSON.parse(fs.readFileSync(path.join(root,file),'utf8')); if(!Array.isArray(payload)) throw new Error(`${file}: dictionary payload must be an array`); return payload; });
 const evidence=parser.verifiedCategoryEvidence||{};
-assert.deepEqual(Object.fromEntries(Object.entries(evidence).map(([key,item])=>[key,item.category])),EXPECTED_ALL,'verified category evidence must remain the reviewed cumulative wave 1 through wave 16 set');
+assert.deepEqual(Object.fromEntries(Object.entries(evidence).map(([key,item])=>[key,item.category])),EXPECTED_ALL,'verified category evidence must remain the reviewed cumulative wave 1 through wave 17 set');
 for(const ambiguous of parser.ambiguousExactKeys||[]) assert.equal(evidence[ambiguous],undefined,`ambiguous exact token must not receive category evidence: ${ambiguous}`);
 
 const groups=new Map();
@@ -90,6 +92,7 @@ let wave13Resolved=0;
 let wave14Resolved=0;
 let wave15Reviewed=0;
 let wave16Reviewed=0;
+let wave17Resolved=0;
 const rawCategoryInventory={};
 for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
   const item=evidence[canonical];
@@ -164,6 +167,11 @@ for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
     assert.equal(hasRawMissing,false,`${canonical}: wave 16 must document an existing unsupported legacy category rather than inventing a missing row`);
     wave16Reviewed+=1;
   }
+  if(Object.hasOwn(EXPECTED_WAVE17,canonical)){
+    assert.equal(hasRawMissing,true,`${canonical}: wave 17 must resolve the existing raw missing-category identity`);
+    assert.deepEqual(rawCategories,[],`${canonical}: wave 17 must start from a completely category-empty raw canonical identity`);
+    wave17Resolved+=1;
+  }
 }
 
 const merged=parser.mergeDictionaryRecords(rows);
@@ -185,6 +193,7 @@ assert.equal(Object.keys(EXPECTED_WAVE13).length,4);
 assert.equal(Object.keys(EXPECTED_WAVE14).length,4);
 assert.equal(Object.keys(EXPECTED_WAVE15).length,4);
 assert.equal(Object.keys(EXPECTED_WAVE16).length,4);
+assert.equal(Object.keys(EXPECTED_WAVE17).length,1);
 assert.equal(wave6Resolved,3);
 assert.equal(wave7Resolved,3);
 assert.equal(wave8Resolved,3);
@@ -196,6 +205,7 @@ assert.equal(wave13Resolved,4,'wave 13 must resolve exactly four completely cate
 assert.equal(wave14Resolved,4,'wave 14 must resolve exactly four completely category-empty canonical identities');
 assert.equal(wave15Reviewed,4,'wave 15 must review exactly four unsupported legacy role categories');
 assert.equal(wave16Reviewed,4,'wave 16 must review exactly four unsupported legacy role categories');
+assert.equal(wave17Resolved,1,'wave 17 must resolve exactly one completely category-empty canonical identity');
 assert.equal(evidence['sodium citrate'],undefined,'Sodium Citrate must remain deferred until buffer vs pH-adjuster taxonomy is explicitly resolved');
 
-console.log(JSON.stringify({ status:'pass', phase:'category-provenance-wave-16', raw_missing_category_rows_unchanged:rawMissingCategoryRows, verified_category_evidence_canonical_identities:Object.keys(EXPECTED_ALL).length, wave_10_verified_canonical_identities:Object.keys(EXPECTED_WAVE10).length, wave_11_verified_canonical_identities:Object.keys(EXPECTED_WAVE11).length, wave_12_verified_canonical_identities:Object.keys(EXPECTED_WAVE12).length, wave_13_verified_canonical_identities:Object.keys(EXPECTED_WAVE13).length, wave_14_verified_canonical_identities:Object.keys(EXPECTED_WAVE14).length, wave_15_verified_canonical_identities:Object.keys(EXPECTED_WAVE15).length, wave_16_verified_canonical_identities:Object.keys(EXPECTED_WAVE16).length, newly_classified_completely_category_empty_canonical_identities:newlyClassifiedCanonicalIdentities, wave_6_raw_missing_canonical_identities_resolved:wave6Resolved, wave_7_raw_missing_canonical_identities_resolved:wave7Resolved, wave_8_raw_missing_canonical_identities_resolved:wave8Resolved, wave_9_raw_missing_canonical_identities_resolved:wave9Resolved, wave_10_raw_missing_canonical_identities_resolved:wave10Resolved, wave_11_raw_missing_canonical_identities_resolved:wave11Resolved, wave_12_raw_missing_canonical_identities_resolved:wave12Resolved, wave_13_raw_missing_canonical_identities_resolved:wave13Resolved, wave_14_raw_missing_canonical_identities_resolved:wave14Resolved, wave_15_unsupported_legacy_categories_reviewed:wave15Reviewed, wave_16_unsupported_legacy_categories_reviewed:wave16Reviewed, wave_10_requires_completely_category_empty_raw_canonical:true, wave_11_requires_completely_category_empty_raw_canonical:true, wave_12_requires_completely_category_empty_raw_canonical:true, wave_13_requires_completely_category_empty_raw_canonical:true, wave_14_requires_completely_category_empty_raw_canonical:true, wave_15_preserves_unsupported_legacy_category_hints:true, wave_16_preserves_unsupported_legacy_category_hints:true, sodium_citrate_deferred_for_taxonomy_decision:true, raw_category_inventory:rawCategoryInventory, recognition_records_rewritten:false, safety_contract_changed:false, ambiguity_contract_changed:false, affiliate_contract_changed:false },null,2));
+console.log(JSON.stringify({ status:'pass', phase:'category-provenance-wave-17', raw_missing_category_rows_unchanged:rawMissingCategoryRows, verified_category_evidence_canonical_identities:Object.keys(EXPECTED_ALL).length, wave_10_verified_canonical_identities:Object.keys(EXPECTED_WAVE10).length, wave_11_verified_canonical_identities:Object.keys(EXPECTED_WAVE11).length, wave_12_verified_canonical_identities:Object.keys(EXPECTED_WAVE12).length, wave_13_verified_canonical_identities:Object.keys(EXPECTED_WAVE13).length, wave_14_verified_canonical_identities:Object.keys(EXPECTED_WAVE14).length, wave_15_verified_canonical_identities:Object.keys(EXPECTED_WAVE15).length, wave_16_verified_canonical_identities:Object.keys(EXPECTED_WAVE16).length, wave_17_verified_canonical_identities:Object.keys(EXPECTED_WAVE17).length, newly_classified_completely_category_empty_canonical_identities:newlyClassifiedCanonicalIdentities, wave_6_raw_missing_canonical_identities_resolved:wave6Resolved, wave_7_raw_missing_canonical_identities_resolved:wave7Resolved, wave_8_raw_missing_canonical_identities_resolved:wave8Resolved, wave_9_raw_missing_canonical_identities_resolved:wave9Resolved, wave_10_raw_missing_canonical_identities_resolved:wave10Resolved, wave_11_raw_missing_canonical_identities_resolved:wave11Resolved, wave_12_raw_missing_canonical_identities_resolved:wave12Resolved, wave_13_raw_missing_canonical_identities_resolved:wave13Resolved, wave_14_raw_missing_canonical_identities_resolved:wave14Resolved, wave_15_unsupported_legacy_categories_reviewed:wave15Reviewed, wave_16_unsupported_legacy_categories_reviewed:wave16Reviewed, wave_17_raw_missing_canonical_identities_resolved:wave17Resolved, wave_10_requires_completely_category_empty_raw_canonical:true, wave_11_requires_completely_category_empty_raw_canonical:true, wave_12_requires_completely_category_empty_raw_canonical:true, wave_13_requires_completely_category_empty_raw_canonical:true, wave_14_requires_completely_category_empty_raw_canonical:true, wave_15_preserves_unsupported_legacy_category_hints:true, wave_16_preserves_unsupported_legacy_category_hints:true, wave_17_requires_completely_category_empty_raw_canonical:true, sodium_citrate_deferred_for_taxonomy_decision:true, raw_category_inventory:rawCategoryInventory, recognition_records_rewritten:false, safety_contract_changed:false, ambiguity_contract_changed:false, affiliate_contract_changed:false },null,2));
