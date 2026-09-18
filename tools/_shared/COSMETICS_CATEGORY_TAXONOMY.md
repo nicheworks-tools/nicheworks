@@ -164,3 +164,15 @@ The reviewed mappings are:
 - Hexylene Glycol: `solvent` → `solvent`
 
 This wave also formalizes precedence for reviewed provenance over unsupported legacy category hints. The verified mapping controls the public primary role, while legacy values remain visible for audit and are not rewritten in the raw dictionaries.
+
+
+## Wave 16 mappings
+
+Wave 16 requires no new authority-function vocabulary. It reuses exact reviewed mappings already present in the controlled taxonomy:
+
+- Hydroxyacetophenone: COSMILE `antioxidant` → NicheWorks `antioxidant`
+- Palmitic Acid: COSMILE `skin conditioning - emollient` → NicheWorks `emollient`
+- Stearic Acid: COSMILE `cleansing` → NicheWorks `cleanser`
+- Myristic Acid: COSMILE `cleansing` → NicheWorks `cleanser`
+
+As in Wave 15, these source-backed mappings control the public primary role without deleting or rewriting the raw legacy category hints.

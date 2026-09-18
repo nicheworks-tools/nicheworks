@@ -62,6 +62,10 @@
     "caprylyl glycol": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2612/caprylyl-glycol/"],"runtime_verified":true},
     "ceramide np": {"category":"skin conditioning","source_functions":["skin conditioning - miscellaneous"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/25522/ceramide-np/"],"runtime_verified":true},
     "cholesterol": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/3117/cholesterol/"],"runtime_verified":true},
-    "hexylene glycol": {"category":"solvent","source_functions":["solvent"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6450/hexylene-glycol/"],"runtime_verified":true}
+    "hexylene glycol": {"category":"solvent","source_functions":["solvent"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6450/hexylene-glycol/"],"runtime_verified":true},
+    "hydroxyacetophenone": {"category":"antioxidant","source_functions":["antioxidant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/17301/hydroxyacetophenone/"],"runtime_verified":true},
+    "palmitic acid": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/10137/palmitic-acid/"],"runtime_verified":true},
+    "stearic acid": {"category":"cleanser","source_functions":["cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15514/stearic-acid/"],"runtime_verified":true},
+    "myristic acid": {"category":"cleanser","source_functions":["cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/9266/myristic-acid/"],"runtime_verified":true}
   }
 }

@@ -113,7 +113,11 @@
     "caprylyl glycol": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2612/caprylyl-glycol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "ceramide np": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/25522/ceramide-np/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "cholesterol": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3117/cholesterol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "hexylene glycol": Object.freeze({ category: "solvent", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6450/hexylene-glycol/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "hexylene glycol": Object.freeze({ category: "solvent", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6450/hexylene-glycol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydroxyacetophenone": Object.freeze({ category: "antioxidant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/17301/hydroxyacetophenone/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "palmitic acid": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10137/palmitic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "stearic acid": Object.freeze({ category: "cleanser", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15514/stearic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "myristic acid": Object.freeze({ category: "cleanser", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/9266/myristic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
@@ -363,7 +367,7 @@
   }
 
   const api = {
-    version: "1.32.0",
+    version: "1.33.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
