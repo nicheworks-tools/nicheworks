@@ -8,7 +8,7 @@ const failures = [];
 const fail = (message) => failures.push(message);
 
 const expected = {
-  phoneCount: 182,
+  phoneCount: 181,
   foldableCount: 32,
   manufacturers: ['Apple', 'Google', 'Motorola', 'OPPO', 'SHARP', 'Samsung', 'Sony', 'Xiaomi', 'ZTE'],
   adapterUnknown: [
@@ -18,7 +18,6 @@ const expected = {
     'sony-xperia-5-v'
   ],
   cableUnknown: [
-    'samsung-galaxy-a35-5g',
     'samsung-galaxy-a36-5g',
     'sharp-aquos-r5g',
     'sharp-aquos-r6',

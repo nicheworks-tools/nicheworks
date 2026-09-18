@@ -2,7 +2,7 @@
 
 Status: **IN PROGRESS**
 Baseline date: **2026-09-18**
-Dataset target for this closure pass: **182 maintained phones**
+Dataset target for this closure pass: **181 maintained phones**
 
 ## Completion rule
 
@@ -15,11 +15,13 @@ Completion does **not** require forcing every nullable charging field to a value
 
 ## Baseline
 
-- phones: **182**
+Correction note: Galaxy A35 5G was removed from the JP-maintained set on 2026-09-18. Samsung did not launch the A35 5G in Japan in 2024; the previous record used global launch/specification sources while incorrectly declaring `market: ["JP"]`.
+
+- phones: **181**
 - manufacturers: **9**
 - foldables: **32**
 - package adapter unknown: **4**
-- package cable unknown: **13**
+- package cable unknown: **12**
 - unresolved water state: **5**
 - battery capacity unknown: **33** — all maintained Apple records; intentional under current policy
 - charger guidance missing: **62**
@@ -38,14 +40,13 @@ The final four charging counts are **not automatically defects**. They are evide
 - `sony-xperia-5-v`
 - `sony-xperia-10-v`
 
-### Cable unknown — 13
+### Cable unknown — 12
 
 - `samsung-galaxy-a36-5g`
 - `sony-xperia-1-vi`
 - `sony-xperia-10-vi`
 - `sony-xperia-5-v`
 - `sony-xperia-10-v`
-- `samsung-galaxy-a35-5g`
 - `sony-xperia-1-v`
 - `sony-xperia-10-iv`
 - `sharp-aquos-sense5g`

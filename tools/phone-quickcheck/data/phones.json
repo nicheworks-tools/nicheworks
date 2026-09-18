@@ -5219,58 +5219,6 @@
       "affiliateKeys": []
     },
     {
-      "id": "samsung-galaxy-a35-5g",
-      "manufacturer": "Samsung",
-      "model": "Galaxy A35 5G",
-      "aliases": [
-        "Samsung Galaxy A35 5G",
-        "GalaxyA35",
-        "Galaxy A35",
-        "ギャラクシーA35"
-      ],
-      "market": [
-        "JP"
-      ],
-      "releaseYear": 2024,
-      "dimensions": {
-        "heightMm": 161.7,
-        "widthMm": 78,
-        "depthMm": 8.2
-      },
-      "weightG": 209,
-      "displayInch": 6.6,
-      "waterRating": "IP67",
-      "charging": {
-        "connector": "USB-C",
-        "wiredRecommendedW": 25,
-        "wiredMaxW": 25,
-        "protocols": [
-          "Super Fast Charging"
-        ],
-        "pps": "unknown",
-        "wirelessStandard": null,
-        "wirelessMaxW": null,
-        "battery": {
-          "capacityMah": 5000,
-          "valueClass": "manufacturer",
-          "sourceRef": "https://news.samsung.com/global/samsung-galaxy-a55-5g-and-galaxy-a35-5g-awesome-innovations-and-security-engineered-for-everyone"
-        }
-      },
-      "included": {
-        "cable": "unknown",
-        "adapter": "not_included"
-      },
-      "sources": {
-        "specificationsUrl": "https://news.samsung.com/global/samsung-galaxy-a55-5g-and-galaxy-a35-5g-awesome-innovations-and-security-engineered-for-everyone",
-        "manualUrl": "https://www.samsung.com/jp/support/",
-        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
-        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
-        "verifiedAt": "2026-09-15",
-        "releaseUrl": "https://news.samsung.com/global/samsung-galaxy-a55-5g-and-galaxy-a35-5g-awesome-innovations-and-security-engineered-for-everyone"
-      },
-      "affiliateKeys": []
-    },
-    {
       "id": "sony-xperia-1-v",
       "manufacturer": "Sony",
       "model": "Xperia 1 V",
