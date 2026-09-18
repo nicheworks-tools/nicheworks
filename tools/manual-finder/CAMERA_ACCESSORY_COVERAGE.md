@@ -72,13 +72,13 @@ The deterministic Amazon handoffs are:
 - `DJI Phantom 3 Intelligent Flight Battery`
 - `DJI Phantom 3 Battery Charging Hub`
 
-Wave 22 remains exact-canonical-row only. `Phantom 3 SE`, `Phantom 3 4K`, `DJI Phantom 3 Standard`, and other inferred names remain fail-closed pending their own reviewed evidence.
+Wave 22 remains exact-canonical-row only. At Wave 22, `Phantom 3 SE` and `Phantom 3 4K` remained fail-closed pending separate review; they are now handled by Waves 23 and 26. `DJI Phantom 3 Standard` and other inferred names remain fail-closed.
 
 ### Wave 23 — Phantom 3 SE
 
 Wave 23 activates exactly the canonical `Phantom 3 SE` row. DJI's official Phantom 3 SE Download Center publishes SE-specific Intelligent Flight Battery safety material, while DJI's official battery guidance defines the Phantom 3 Series Intelligent Flight Battery as 15.2 V / 4480 mAh. The deterministic Amazon handoff is `DJI Phantom 3 Intelligent Flight Battery`.
 
-No charging-hub handoff is emitted in Wave 23 because equally explicit official SE-specific hub compatibility was not established. Wave 22 hub evidence is not inherited by name or series similarity. `Phantom 3 4K`, `DJI Phantom 3 SE`, and other non-canonical spellings remain fail-closed.
+No charging-hub handoff is emitted in Wave 23 because equally explicit official SE-specific hub compatibility was not established. Wave 22 hub evidence is not inherited by name or series similarity. At Wave 23, `Phantom 3 4K` remained pending and is now handled separately by Wave 26; `DJI Phantom 3 SE` and other non-canonical spellings remain fail-closed.
 
 ### Wave 24 — Mavic 2 Enterprise Advanced
 
