@@ -42,3 +42,17 @@ Branch: feat/construction-atlas-image-lifecycle-20260918.
 ## Unresolved implementation details
 - Final on-disk review evidence shape and candidate history binding.
 - Exact fixture count and final validation commands/results to record below.
+
+## Unit 2 checkpoint
+- Implemented lifecycle ledger (870 records), policy, JSON Schema, validation and
+  review protocol. Migration preserves 30 promoted (6 inherited), 8 not_required,
+  832 unreviewed. No source rows, registry, exceptions, assets or UI rewritten.
+- Evidence shape resolved: append-only full-state events; candidates reference
+  existing source ledgers or inline prospective source metadata; SHA-256 binds
+  candidate evidence. Initial 38 decisions are pinned imports, not new reviews.
+- `node .../scripts/image-lifecycle-v2.3.cjs`: PASS, 870 records, 38 reviewed,
+  30 required/promoted, 8 not_required, 832 unreviewed, 0 hold.
+- `node .../scripts/check-image-lifecycle-v2.3.cjs`: 50 PASS / 0 FAIL.
+- Existing public image frozen inventory `--check`: PASS (no behavior change).
+- NEXT: connect lifecycle reporting and fixture execution to existing CI-invoked
+  public inventory auditor, add corpus reporting, freeze snapshots, full regression.

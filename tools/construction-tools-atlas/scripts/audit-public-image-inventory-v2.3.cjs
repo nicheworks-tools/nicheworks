@@ -265,7 +265,9 @@ async function main() {
   console.log(`- quarantined generated excluded from public backlog: ${computed.summary.quarantined_generated_entries}`);
 }
 
-main().catch((error) => {
+module.exports = { runPublicLoader, compute, isFormal };
+
+if (require.main === module) main().catch((error) => {
   console.error('Construction Tools Atlas public image inventory v2.3: FAIL');
   console.error(`- ${error.message}`);
   process.exit(1);
