@@ -33,7 +33,7 @@ for (const needle of [
   '"affiliate_outbound"',
   'tool_slug:',
   'affiliate_id:',
-  'placement:',
+  'placement,',
   'merchant:',
   'destination_key:',
   'language:'
@@ -71,13 +71,13 @@ for (const slug of ['manual-finder','phone-quickcheck']) {
   check(html.includes('./affiliate-runtime.js'), `${slug}: affiliate runtime wiring missing`);
   check(config.includes(TRACKING_ID), `${slug}: tracking ID missing`);
   check(runtime.includes('NWAmazonAffiliate'), `${slug}: runtime must use shared helper`);
-  check(runtime.includes('placement:'), `${slug}: runtime placement metadata missing`);
+  check(runtime.includes('placement:') || runtime.includes('placement,'), `${slug}: runtime placement metadata missing`);
   check(!runtime.includes('gtag("event"') && !runtime.includes("gtag('event'"), `${slug}: runtime must not bypass shared outbound analytics`);
 }
 
 const patternConfig = json('tools/pattern-dictionary/data/affiliate-config.json');
 check(patternConfig.tracking_id === TRACKING_ID, 'pattern-dictionary: tracking ID mismatch');
-check(patternConfig.free_text_forwarding === false, 'pattern-dictionary: free-text forwarding must remain disabled');
+check(patternConfig.policy?.free_text_forwarding === false, 'pattern-dictionary: free-text forwarding must remain disabled');
 for (const offer of patternConfig.offers || []) {
   if (offer.status !== 'active') continue;
   validateTaggedUrl(offer.amazon_url, `pattern-dictionary:${offer.offer_id || offer.pattern_id || 'offer'}`);
