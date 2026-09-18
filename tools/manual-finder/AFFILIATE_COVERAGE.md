@@ -21,12 +21,12 @@ Required printer reconciliation:
 
 The camera accessory audit independently reconciles as:
 
-`camera basic 185 = detail 77 + reviewed exclusion 15 + missing 93`
+`camera basic 185 = detail 81 + reviewed exclusion 15 + missing 89`
 
 Maker-level camera state:
 
 - `Nikon camera 14 = detail 14 + reviewed exclusion 0 + missing 0`
-- `DJI camera 96 = detail 63 + reviewed exclusion 15 + missing 18`
+- `DJI camera 96 = detail 67 + reviewed exclusion 15 + missing 14`
 - OM SYSTEM: 37 missing
 - GoPro: 31 missing
 - Insta360: 7 missing
@@ -88,7 +88,7 @@ Nikon camera accessory coverage remains complete:
 
 Shared accessory families are not generalized by model-name similarity; each active row is explicit in the reviewed ledger.
 
-## DJI camera review Waves 1–37
+## DJI camera review Waves 1–38
 
 DJI camera accessory coverage advances only through bounded exact-canonical-model waves. Every active row requires DJI official evidence; neighboring names and variants remain fail-closed until separately reviewed.
 
@@ -131,6 +131,7 @@ DJI camera accessory coverage advances only through bounded exact-canonical-mode
 | 35 | `DJI Ronin-SC`, `Ronin-S` | Ronin-SC BG18 Grip / Ronin-S BG37 Grip |
 | 36 | `DJI OM 4`, `DJI OM 4 SE`, `DJI OM 5`, `Osmo Mobile 2`, `Osmo Mobile 3`, `Osmo Mobile 6`, `Osmo Mobile 7 Series`, `Osmo Mobile 8`, `Osmo Mobile SE` | reviewed exclusion: built-in/nonreplaceable battery |
 | 37 | `Osmo`, `Osmo Mobile`, `Osmo+`, `Osmo Pro and Raw` | Osmo Intelligent Battery 980mAh / High Capacity Intelligent Battery 1225mAh |
+| 38 | `Ronin 2`, `Ronin-M`, `Ronin-MX`, `Ronin` | TB50 Intelligent Battery / Ronin-M Battery 1580mAh / Ronin Battery 3400mAh |
 
 ### DJI Phantom 3 series — Wave 22
 
@@ -235,11 +236,17 @@ Wave 37 activates exactly `Osmo`, `Osmo Mobile`, `Osmo+`, and `Osmo Pro and Raw`
 
 The deterministic Amazon handoffs are `DJI Osmo Intelligent Battery 980mAh` for the first two rows and `DJI Osmo High Capacity Intelligent Battery 1225mAh` for the latter two. `DJI Osmo`, `Osmo Plus`, `Osmo Pro`, and `Osmo RAW` remain fail-closed.
 
-After Waves 1–37:
+### Legacy Ronin replaceable batteries — Wave 38
 
-`DJI camera 96 = detail 63 + reviewed exclusion 15 + missing 18`
+Wave 38 activates exactly `Ronin 2`, `Ronin-M`, `Ronin-MX`, and `Ronin`. DJI's official Ronin 2 support says Ronin 2 uses the same batteries as Inspire 2, and DJI Store explicitly lists Ronin 2 compatibility for TB50. Official Ronin-M/Ronin Series material documents Ronin-M's removable smart battery and states that Ronin-MX uses the same 1580 mAh battery. Original Ronin support documents its removable 4S smart batteries.
 
-The catalog-wide camera audit is therefore 185 actionable basic rows, 77 detail mappings, 15 reviewed exclusions, and 93 missing accessory-detail rows.
+The deterministic Amazon handoffs are `DJI TB50 Intelligent Battery`, `DJI Ronin-M Battery 1580mAh`, and `DJI Ronin Battery 3400mAh` at their exact reviewed rows. `DJI Ronin 2`, `Ronin M`, `Ronin MX`, and other spelling variants remain fail-closed.
+
+After Waves 1–38:
+
+`DJI camera 96 = detail 67 + reviewed exclusion 15 + missing 14`
+
+The catalog-wide camera audit is therefore 185 actionable basic rows, 81 detail mappings, 15 reviewed exclusions, and 89 missing accessory-detail rows.
 
 ## Runtime boundary and source of truth
 
@@ -248,7 +255,7 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 77 detail 
 - Maker-specific printer ledgers own reviewed consumable mappings.
 - `affiliate-printer-detail-exclusions.js` owns reviewed printer exclusions.
 - `affiliate-camera-accessories.js` and `affiliate-nikon-camera-accessories-wave2.js` own Nikon camera mappings.
-- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave37.js` own reviewed DJI camera mappings.
+- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave38.js` own reviewed DJI camera mappings.
 - `affiliate-dji-camera-accessories-wave22.js` adds the exact reviewed three-row Phantom 3 mapping.
 - `affiliate-dji-camera-accessories-wave23.js` adds the exact Phantom 3 SE battery-only mapping.
 - `affiliate-dji-camera-accessories-wave24.js` adds the exact Mavic 2 Enterprise Advanced battery-only mapping.
@@ -261,7 +268,8 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 77 detail 
 - `affiliate-dji-camera-accessories-wave31.js` adds the exact DJI Goggles 2 Battery mapping.
 - `affiliate-dji-camera-accessories-wave33.js` adds the exact six-row DJI RS BG30 Battery Grip mapping.
 - `affiliate-dji-camera-accessories-wave35.js` adds the exact Ronin-SC BG18 / Ronin-S BG37 mappings.
-- `affiliate-dji-camera-accessories-wave37.js` adds the exact four-row legacy Osmo battery mappings and exposes the merged 77-row camera detail ledger.
+- `affiliate-dji-camera-accessories-wave37.js` adds the exact four-row legacy Osmo battery mappings.
+- `affiliate-dji-camera-accessories-wave38.js` adds the exact four-row legacy Ronin battery mappings and exposes the merged 81-row camera detail ledger.
 - `affiliate-camera-detail-exclusions.js` contains fifteen exact DJI exclusions across Waves 32, 34, and 36.
 - `affiliate-runtime.js` sequentially loads Nikon and DJI ledgers before affiliate rendering.
 - `tests/affiliate-coverage.test.mjs` and `tests/affiliate-doc-sync.test.mjs` protect printer reconciliation.
@@ -281,6 +289,7 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 77 detail 
 - `tests/dji-ronin-grip-accessory-wave35.test.mjs` protects the exact two-row Wave 35 Ronin grip boundary.
 - `tests/dji-osmo-mobile-battery-exclusions-wave36.test.mjs` protects the exact nine-row Wave 36 Osmo Mobile exclusion boundary.
 - `tests/dji-osmo-legacy-battery-wave37.test.mjs` protects the exact four-row Wave 37 legacy Osmo battery boundary.
+- `tests/dji-ronin-legacy-battery-wave38.test.mjs` protects the exact four-row Wave 38 legacy Ronin battery boundary.
 - `tests/camera-accessory-coverage.test.mjs` computes camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` prevents documentation drift and auto-discovers DJI wave evidence.
 - `CAMERA_ACCESSORY_COVERAGE.md` records the measured camera baseline.
@@ -307,10 +316,10 @@ Nikon remains closed only while:
 DJI remains partial at:
 
 - DJI basic = 96
-- DJI detail = 63
+- DJI detail = 67
 - DJI reviewed exclusions = 15
-- DJI missing = 18
+- DJI missing = 14
 
 ## Next expansion gate
 
-Printer-detail is closed. Nikon camera coverage is closed. The measured camera backlog continues with DJI 18 actionable rows, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded exact-model official-evidence waves.
+Printer-detail is closed. Nikon camera coverage is closed. The measured camera backlog continues with DJI 14 actionable rows, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded exact-model official-evidence waves.
