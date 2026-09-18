@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-18-applicability-wave16",
+  "version": "2026-09-18-applicability-wave17-final",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -19217,6 +19217,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A total station is a distinctive surveying instrument with a telescope, EDM body, and tripod-mounted operating context; a subject-matched photograph strongly aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -19228,6 +19237,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is the finishing action of making small local corrections after primary work; materials, tools, and defect types vary, so one photograph would show only an arbitrary example of the process.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -19245,6 +19263,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A transition strip is a physical floor-finish component installed between flooring materials or levels; a reviewed installed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -19256,6 +19283,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A plumbing trap is a physical drainage fitting with a recognizable curved/water-seal geometry; a subject-matched photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -19273,6 +19309,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A trowel is a physical hand tool with a distinctive blade and handle used for mortar, plaster, or concrete finishing; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -19284,6 +19329,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A tube cutter is a physical hand tool with a recognizable wheel-and-roller cutting mechanism; a subject-matched photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -19301,6 +19355,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Underlayment board is a physical sheet substrate installed beneath a finish layer; a reviewed board or installed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -19312,6 +19375,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A utility knife is a physical cutting hand tool with a recognizable retractable/replaceable blade form; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -19329,6 +19401,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Valley flashing is a physical roofing component installed along roof valleys to manage water; a reviewed installed photograph materially aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -19340,6 +19421,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A vapor barrier is a physical membrane/sheet material installed to limit moisture diffusion; a reviewed roll or installed-detail photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -19357,6 +19447,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Vinyl flooring is a physical resilient floor finish with recognizable tile/sheet/plank and installed forms; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -19368,6 +19467,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A vise is a physical workholding device with distinctive fixed/moving jaws and screw mechanism; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -19385,6 +19493,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A voltage tester is a physical electrical testing instrument with recognizable probe/pen/meter forms; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -19396,6 +19513,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A wall panel is a physical finish/building component with a recognizable panel form and installed wall context; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -19413,6 +19539,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is a testing procedure for confirming water tightness, flow, or leakage; test setups and target assemblies vary, so a single photograph would depict only one arbitrary implementation.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -19424,6 +19559,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A waterproofing membrane is a physical sheet/coating system used to form a water-resistant layer; a reviewed product or installed-detail photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -19441,6 +19585,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A waterproof sheet is a physical sheet material used as part of a waterproofing assembly; a reviewed roll or installed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -19452,6 +19605,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A waterstop is a physical joint-sealing component embedded across concrete joints; a reviewed close or installed photograph strongly aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -19469,6 +19631,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Weatherstrip is a physical sealing strip installed around doors/windows to limit air and water ingress; a reviewed detail photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -19480,6 +19651,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A wedge anchor is a physical expansion fastener with a distinctive threaded stud and wedge mechanism; a close reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -19497,6 +19677,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A wet/dry vacuum is a physical cleanup/extraction machine with a recognizable canister, hose, and tool-use context; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -19508,6 +19697,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A wheelbarrow is a physical hand-propelled transport tool with a recognizable tray, handles, and wheel; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -19525,6 +19723,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A window frame is a physical opening component with clear installed structural/finish identity; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -19536,6 +19743,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A window sash is a physical movable/fixed framed glazing component within a window; a reviewed photograph aids distinction from the outer frame.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -19553,6 +19769,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A wire connector is a physical electrical joining component with recognizable cap/terminal forms; a close reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -19564,6 +19789,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A wire stripper is a physical hand tool with distinctive stripping jaws/notches; a subject-matched photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -19581,6 +19815,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wood flooring is a physical finish material with recognizable plank/board and installed forms; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -19592,6 +19835,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A wood screw is a physical threaded fastener with recognizable point, thread, and head geometry; a close reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -19609,6 +19861,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Work gloves are physical hand-protection PPE with clear visual identity; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -19620,6 +19881,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A wrench is a physical fastening hand tool with a recognizable open/box jaw form; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -19637,6 +19907,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An adjustable wrench is a physical fastening hand tool with a distinctive movable jaw and adjustment screw; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -19648,6 +19927,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:50:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is the broad jobsite practice/concept of 養生 (protecting finished work and surrounding areas); materials and methods vary widely, so one photograph would arbitrarily depict only one protection method.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
