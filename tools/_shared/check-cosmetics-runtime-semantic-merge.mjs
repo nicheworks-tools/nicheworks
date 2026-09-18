@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 40, 'the 4 legacy category conflicts plus 36 reviewed Wave 15-16 and Wave 18-23 legacy-vs-verified role conflicts must be explicit at runtime');
+assert.equal(categoryConflicts.length, 42, 'the 3 remaining legacy-only category conflicts plus 39 reviewed Wave 15-16 and Wave 18-24 legacy-vs-verified role conflicts must be explicit at runtime');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
@@ -71,7 +71,10 @@ const reviewedVerifiedPrimary = new Map([
   ['peg-30 dipolyhydroxystearate', { category: 'emulsifier', legacy: ['general'] }],
   ['pentaerythrityl tetraethylhexanoate', { category: 'emollient', legacy: ['general'] }],
   ['polyacrylate crosspolymer-11', { category: 'viscosity adjuster', legacy: ['polymer'] }],
-  ['sphingolipids', { category: 'skin conditioning', legacy: ['barrier lipid'] }]
+  ['sphingolipids', { category: 'skin conditioning', legacy: ['barrier lipid'] }],
+  ['peg-40 hydrogenated castor oil', { category: 'emulsifier', legacy: ['solubilizer'] }],
+  ['benzyl alcohol', { category: 'preservative', legacy: ['fragrance'] }],
+  ['urea', { category: 'humectant', legacy: ['active'] }]
 ]);
 
 for (const item of categoryConflicts) {
@@ -94,6 +97,9 @@ const urea = merged.find((item) => parser.canonicalIdentityKey(item.en) === 'ure
 assert.ok(urea, 'Urea canonical runtime record missing');
 assert.equal(urea.safety, undefined, 'Urea safety conflict must be neutralized');
 assert.deepEqual(urea.categories, ['active', 'humectant'], 'Urea must retain both observed functional categories');
+assert.equal(urea.category, 'humectant', 'Urea verified humectant role must be the public primary category');
+assert.equal(urea.category_verified, true, 'Urea verified humectant role must remain provenance-marked');
+assert.deepEqual(urea.legacy_category_values, ['active'], 'Urea legacy active category must remain auditable');
 
 const titaniumDioxide = merged.find((item) => parser.canonicalIdentityKey(item.en) === 'titanium dioxide');
 assert.ok(titaniumDioxide, 'Titanium Dioxide canonical runtime record missing');
