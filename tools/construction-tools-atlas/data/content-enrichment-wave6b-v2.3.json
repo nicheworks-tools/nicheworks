@@ -1,0 +1,396 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-18-wave6b-fastening-masonry-1",
+  "entries": [
+    {
+      "id": "staple_gun",
+      "wave": "content-wave-006b",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "ステープルを材料へ打ち込み、シート材や薄板、内装材などを固定する工具。手動・電動・空圧式があり、対応ステープル寸法と打込み力を母材に合わせる。",
+      "detail_en": "Tool used to drive staples into a substrate for fastening sheet materials, thin panels, and interior work. Manual, electric, and pneumatic types must use staples and drive force suited to the material.",
+      "bullets_ja": [
+        "指定された線径・脚長のステープルだけを装填する。",
+        "射出口を人へ向けず、詰まり除去前に動力源を遮断する。",
+        "母材厚を確認し、裏側へ針先が危険に突出しないようにする。"
+      ],
+      "bullets_en": [
+        "Load only staple sizes specified for the tool.",
+        "Keep the nose pointed away from people and disconnect power before clearing jams.",
+        "Check substrate thickness so staple legs do not protrude dangerously from the back."
+      ],
+      "examples_ja": [
+        "防湿シートを木下地へ仮固定する。",
+        "薄い内装材を下地へステープル留めする。"
+      ],
+      "examples_en": [
+        "Temporarily fasten a vapor sheet to timber framing.",
+        "Staple a thin interior material to its substrate."
+      ]
+    },
+    {
+      "id": "screw_set",
+      "wave": "content-wave-006b",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "複数種類・寸法のねじを用途別にまとめたセット。頭形状、ねじ径、長さ、材質、表面処理を締結材と使用環境に合わせて選ぶ。",
+      "detail_en": "Assortment of screws in multiple types and sizes. Head style, diameter, length, material, and coating should match the materials being fastened and the service environment.",
+      "bullets_ja": [
+        "母材と相手材に適したねじ種類・長さ・径を選ぶ。",
+        "屋外や湿潤環境では必要な耐食性を持つ材質・表面処理を選ぶ。",
+        "先端やねじ山が損傷したねじは使用しない。"
+      ],
+      "bullets_en": [
+        "Choose screw type, diameter, and length for the substrate and attached material.",
+        "Use suitable corrosion-resistant material or coating in exterior or wet environments.",
+        "Do not use screws with damaged points or threads."
+      ],
+      "examples_ja": [
+        "木下地への金物取付に適した木ねじを選ぶ。",
+        "薄鋼下地へ対応するねじをセットから選定する。"
+      ],
+      "examples_en": [
+        "Select a wood screw for attaching hardware to timber framing.",
+        "Choose a screw compatible with light-gauge steel framing."
+      ]
+    },
+    {
+      "id": "anchor_bolt",
+      "wave": "content-wave-006b",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "構造物や設備をコンクリート等へ固定するためのアンカーボルト。方式、径、埋込み長さ、母材強度、端距離を必要荷重と施工条件に合わせる。",
+      "detail_en": "Anchor bolt used to secure structures or equipment to concrete or similar substrates. Anchor type, diameter, embedment, concrete strength, and edge distance must suit the design load and installation conditions.",
+      "bullets_ja": [
+        "設計・メーカー仕様に従い径、埋込み、孔径、端距離を守る。",
+        "穿孔後は指定手順で孔内清掃を行い、所定位置へ施工する。",
+        "所定の締付けや養生完了前に荷重を掛けない。"
+      ],
+      "bullets_en": [
+        "Follow design and manufacturer requirements for diameter, embedment, hole size, and edge distance.",
+        "Clean drilled holes as specified before installing the anchor.",
+        "Do not load the anchor before required tightening or curing is complete."
+      ],
+      "examples_ja": [
+        "設備架台をコンクリート床へアンカー固定する。",
+        "柱脚金物のアンカー位置を施工図に合わせて確認する。"
+      ],
+      "examples_en": [
+        "Anchor an equipment frame to a concrete floor.",
+        "Verify column-base anchor locations against the installation drawing."
+      ]
+    },
+    {
+      "id": "rebar_cutter",
+      "wave": "content-wave-006b",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "鉄筋を所定長さへ切断する工具または機械。対応径、材種、切断方式を対象鉄筋と現場条件に合わせて選ぶ。",
+      "detail_en": "Tool or machine used to cut reinforcing bar to length. Rated diameter, steel grade, and cutting method must match the rebar and work conditions.",
+      "bullets_ja": [
+        "工具の対応鉄筋径・材種を超えて使用しない。",
+        "切断材を安定して支持し、切断片の飛び出し方向へ人を入れない。",
+        "刃の摩耗・欠けと可動部の異常を使用前に確認する。"
+      ],
+      "bullets_en": [
+        "Do not exceed the tool's rated rebar diameter or steel grade.",
+        "Support the bar securely and keep people clear of the direction of possible offcuts.",
+        "Inspect cutting edges and moving parts for wear or damage before use."
+      ],
+      "examples_ja": [
+        "配筋図の寸法に合わせて鉄筋を切断する。",
+        "補修工事で不要な突出鉄筋を指定位置で切る。"
+      ],
+      "examples_en": [
+        "Cut rebar to lengths shown on the reinforcement schedule.",
+        "Trim projecting rebar at the specified location during repair work."
+      ]
+    },
+    {
+      "id": "rebar_bender",
+      "wave": "content-wave-006b",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "鉄筋を所定角度・曲げ半径に加工する工具または機械。対応径、曲げローラー、角度設定を鉄筋仕様と加工図に合わせる。",
+      "detail_en": "Tool or machine used to bend reinforcing bar to specified angles and radii. Rated bar diameter, bending former, and angle setting should match the reinforcement specification and bending schedule.",
+      "bullets_ja": [
+        "指定された曲げ半径と角度を守り、急激な再曲げを避ける。",
+        "対応径を超える鉄筋を無理に曲げない。",
+        "可動範囲へ手や足を入れず、鉄筋の跳ね戻りに注意する。"
+      ],
+      "bullets_en": [
+        "Follow the specified bend radius and angle and avoid improper repeated rebending.",
+        "Do not force bars larger than the machine's rated capacity.",
+        "Keep hands and feet out of moving areas and account for springback."
+      ],
+      "examples_ja": [
+        "スターラップ用鉄筋を指定角度へ曲げる。",
+        "加工図に合わせて主筋端部の曲げを成形する。"
+      ],
+      "examples_en": [
+        "Bend reinforcing bar to form a stirrup.",
+        "Form a specified end bend according to the bar schedule."
+      ]
+    },
+    {
+      "id": "rebar_tying_tool",
+      "wave": "content-wave-006b",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "鉄筋交点を結束線で固定するための工具。手動フック式や自動結束機があり、対応線径と結束方式を配筋作業に合わせる。",
+      "detail_en": "Tool used to secure reinforcing-bar intersections with tie wire. Manual hooks and powered tying tools vary by wire size and tying method.",
+      "bullets_ja": [
+        "鉄筋交点を必要位置で保持し、結束線の緩みがないよう固定する。",
+        "自動機では指定線材を使用し、詰まり除去前に電源を切る。",
+        "突出した結束線端部でけがをしないよう向きと処理に注意する。"
+      ],
+      "bullets_en": [
+        "Hold bar intersections in the required position and make ties secure without excessive looseness.",
+        "Use specified tie wire in powered tools and disconnect power before clearing jams.",
+        "Control or bend protruding wire ends to reduce puncture hazards."
+      ],
+      "examples_ja": [
+        "床配筋の交点を結束線で固定する。",
+        "壁筋の位置を保持しながら自動結束する。"
+      ],
+      "examples_en": [
+        "Tie intersections in slab reinforcement.",
+        "Use a powered tying tool to secure wall reinforcement in position."
+      ]
+    },
+    {
+      "id": "brick_trowel",
+      "wave": "content-wave-006b",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "れんが・ブロック積みでモルタルをすくい、載せ、目地を調整する鏝。鏝形状と大きさを材料寸法と施工方法に合わせる。",
+      "detail_en": "Masonry trowel used to scoop, place, and shape mortar when laying brick or block. Blade shape and size should suit the masonry unit and laying method.",
+      "bullets_ja": [
+        "モルタルを適量載せ、目地厚を均一に保つ。",
+        "刃先の欠けや大きな変形がある鏝は仕上がりへ影響するため交換する。",
+        "湿潤モルタルとの皮膚接触を避ける。"
+      ],
+      "bullets_en": [
+        "Place a controlled amount of mortar and maintain consistent joint thickness.",
+        "Replace trowels with chipped or badly deformed blades that affect workmanship.",
+        "Avoid prolonged skin contact with wet mortar."
+      ],
+      "examples_ja": [
+        "ブロック天端へモルタルを均一に敷く。",
+        "れんが側面へ目地モルタルを付けて積む。"
+      ],
+      "examples_en": [
+        "Spread an even mortar bed on a block course.",
+        "Butter a brick end with mortar before laying it."
+      ]
+    },
+    {
+      "id": "masonry_chisel",
+      "wave": "content-wave-006b",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "れんが、ブロック、モルタルなどを割る・はつるためのたがね。刃幅、長さ、材質を対象物と打撃工具に合わせて選ぶ。",
+      "detail_en": "Chisel used to split or remove brick, block, mortar, and related masonry. Blade width, length, and material should suit the workpiece and striking method.",
+      "bullets_ja": [
+        "刃先と打撃端の欠け・きのこ状変形を点検する。",
+        "飛散物対策として保護眼鏡など適切な保護具を使用する。",
+        "対象物を安定させ、手を打撃位置から離して作業する。"
+      ],
+      "bullets_en": [
+        "Inspect the cutting edge and struck end for chips or mushrooming.",
+        "Use suitable eye and other protection against flying fragments.",
+        "Secure the workpiece and keep hands clear of the striking zone."
+      ],
+      "examples_ja": [
+        "れんがを寸法に合わせて割る。",
+        "古いモルタル目地を部分的にはつり取る。"
+      ],
+      "examples_en": [
+        "Split a brick to the required size.",
+        "Remove a small section of old mortar joint."
+      ]
+    },
+    {
+      "id": "brick_hammer",
+      "wave": "content-wave-006b",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "れんがやブロックの割り・成形に使う、打撃面と刃状部を持つハンマー。頭部重量と刃形状を対象材に合わせる。",
+      "detail_en": "Masonry hammer with a striking face and chisel-like end used to split and shape brick or block. Head weight and edge geometry should suit the material.",
+      "bullets_ja": [
+        "頭部の緩み、柄の亀裂、刃部の欠けを使用前に確認する。",
+        "破片の飛散方向を避け、保護眼鏡を使用する。",
+        "必要以上の力で打撃せず、割れ線を確認しながら成形する。"
+      ],
+      "bullets_en": [
+        "Inspect for a loose head, cracked handle, or chipped cutting edge.",
+        "Wear eye protection and keep clear of the fragment path.",
+        "Use controlled blows and follow the intended break line rather than striking excessively."
+      ],
+      "examples_ja": [
+        "れんが端部を割って納まり寸法へ調整する。",
+        "ブロックの小さな出っ張りを整える。"
+      ],
+      "examples_en": [
+        "Trim a brick edge to fit the required space.",
+        "Dress a small projection on a masonry block."
+      ]
+    },
+    {
+      "id": "tile_cutter",
+      "wave": "content-wave-006b",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "陶磁器タイルなどを直線的に切断する工具。手動スコア式や電動式があり、対応タイル材質・厚さ・切断長を施工条件に合わせる。",
+      "detail_en": "Tool used to cut ceramic and similar tile, commonly by manual score-and-snap or powered cutting. Tile material, thickness, and cut length must be within the tool's capability.",
+      "bullets_ja": [
+        "対象タイルの材質・厚さに適合するカッターを使用する。",
+        "スコア式では切断線を一度均一に傷付け、無理な複数回のなぞりを避ける。",
+        "破片や粉じん対策として適切な保護具を使用する。"
+      ],
+      "bullets_en": [
+        "Use a cutter suitable for the tile material and thickness.",
+        "With score-and-snap tools, make one consistent score along the cut line rather than repeatedly scratching it.",
+        "Use appropriate protection against fragments and dust."
+      ],
+      "examples_ja": [
+        "壁タイルを端部寸法に合わせて直線切りする。",
+        "床タイルを割付線に合わせて切断する。"
+      ],
+      "examples_en": [
+        "Cut a wall tile to fit an edge condition.",
+        "Cut a floor tile to match the layout line."
+      ]
+    },
+    {
+      "id": "tile_spacer",
+      "wave": "content-wave-006b",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "タイル間の目地幅を一定に保つため施工時に挟むスペーサー。形状と厚さを設計目地幅と施工方法に合わせる。",
+      "detail_en": "Spacer inserted between tiles during installation to maintain consistent joint width. Shape and thickness should match the specified joint and laying method.",
+      "bullets_ja": [
+        "指定目地幅に合う厚さを使用する。",
+        "接着剤硬化前にタイル位置を確認し、スペーサーで無理に押し広げない。",
+        "撤去式スペーサーは目地詰め前に残置がないか確認する。"
+      ],
+      "bullets_en": [
+        "Use spacer thickness matching the specified joint width.",
+        "Check tile alignment before the adhesive sets and do not force misaligned tiles apart with spacers.",
+        "For removable spacers, confirm none remain where they would interfere with grouting."
+      ],
+      "examples_ja": [
+        "壁タイルの縦横目地幅を一定に保つ。",
+        "床タイル四隅へスペーサーを入れて割付を揃える。"
+      ],
+      "examples_en": [
+        "Maintain consistent vertical and horizontal joints in wall tile.",
+        "Place spacers at floor-tile corners to keep the layout aligned."
+      ]
+    },
+    {
+      "id": "caulking_scraper",
+      "wave": "content-wave-006b",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "既設シーリング材やコーキング残りを削り取る手工具。刃形状、材質、幅を目地形状と下地の傷付きやすさに合わせる。",
+      "detail_en": "Hand scraper used to remove old sealant or caulk residue. Blade shape, material, and width should suit the joint geometry and substrate sensitivity.",
+      "bullets_ja": [
+        "下地を傷つけない角度と力で既設材を除去する。",
+        "刃先の欠けや変形を確認し、必要に応じて交換する。",
+        "古いシーリング材の種類や有害物質の可能性がある場合は適切な処理手順に従う。"
+      ],
+      "bullets_en": [
+        "Remove old material with blade angle and pressure that do not damage the substrate.",
+        "Inspect the edge for chips or deformation and replace it as needed.",
+        "Follow appropriate handling procedures where old sealant may contain hazardous substances."
+      ],
+      "examples_ja": [
+        "浴室目地の古いシーリング材を撤去する。",
+        "サッシ周囲の残留シーリングを清掃する。"
+      ],
+      "examples_en": [
+        "Remove old sealant from a bathroom joint.",
+        "Scrape residual sealant from around a window frame."
+      ]
+    },
+    {
+      "id": "heat_gun",
+      "wave": "content-wave-006b",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "高温の温風で材料を加熱する電動工具。塗膜剥離、熱収縮、成形などに使い、温度・風量を対象材に合わせて調整する。",
+      "detail_en": "Electric tool that produces a high-temperature air stream for paint stripping, heat shrinking, forming, and similar work. Temperature and airflow should be matched to the material.",
+      "bullets_ja": [
+        "可燃物を周囲から除去し、ノズルを一点へ長時間向けない。",
+        "作業中・直後のノズルへ触れず、耐熱面で十分に冷却する。",
+        "古い塗膜を加熱する場合は有害成分や発煙の可能性を確認する。"
+      ],
+      "bullets_en": [
+        "Remove combustible materials and avoid holding the hot air stream on one point for too long.",
+        "Do not touch the nozzle during or immediately after use; allow it to cool on a heat-resistant surface.",
+        "Before heating old coatings, assess possible hazardous constituents and fumes."
+      ],
+      "examples_ja": [
+        "熱収縮チューブを均一に加熱して収縮させる。",
+        "古い塗膜を軟化させてスクレーパーで除去する。"
+      ],
+      "examples_en": [
+        "Heat shrink tubing evenly until it contracts.",
+        "Soften old coating before removing it with a scraper."
+      ]
+    },
+    {
+      "id": "extension_cord",
+      "wave": "content-wave-006b",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "電源を離れた作業位置まで延長する可搬式電源コード。定格電流、導体サイズ、長さ、接地、屋外適合性を接続機器と環境に合わせる。",
+      "detail_en": "Portable cord used to extend electrical power to a remote work location. Current rating, conductor size, length, grounding, and environmental rating must suit the connected equipment and site.",
+      "bullets_ja": [
+        "接続機器の電流とコード定格を確認し、過負荷や過度な電圧降下を避ける。",
+        "被覆損傷、露出導体、プラグ破損があるコードは使用しない。",
+        "巻いたまま大電流を流さず、通路では踏付け・つまずき防止措置を行う。"
+      ],
+      "bullets_en": [
+        "Match cord rating to the connected load and avoid overload or excessive voltage drop.",
+        "Do not use cords with damaged insulation, exposed conductors, or broken plugs.",
+        "Avoid high-current use while tightly coiled and protect cords across walkways from damage and trip hazards."
+      ],
+      "examples_ja": [
+        "屋外対応延長コードで電動工具へ給電する。",
+        "通路を横切るコードを保護カバーで養生する。"
+      ],
+      "examples_en": [
+        "Supply a power tool with an outdoor-rated extension cord.",
+        "Protect a cord crossing a walkway with a suitable cable cover."
+      ]
+    },
+    {
+      "id": "cordless_work_light",
+      "wave": "content-wave-006b",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "バッテリーで作業場所を照らす可搬式照明。光束、照射角、連続点灯時間、防塵防水性、対応バッテリーを現場条件に合わせて選ぶ。",
+      "detail_en": "Portable battery-powered light used to illuminate work areas. Light output, beam angle, runtime, ingress protection, and battery compatibility should suit the jobsite.",
+      "bullets_ja": [
+        "安定した位置へ設置し、通路や作業者の視界を妨げる向きに置かない。",
+        "可燃物へ近づけすぎず、機器の放熱を妨げない。",
+        "バッテリーや本体に膨れ・割れ・浸水など異常がある場合は使用しない。"
+      ],
+      "bullets_en": [
+        "Set the light on stable support without obstructing walkways or creating excessive glare.",
+        "Keep suitable clearance from combustible materials and do not block cooling paths.",
+        "Do not use the light or battery if swollen, cracked, water-damaged, or otherwise abnormal."
+      ],
+      "examples_ja": [
+        "天井裏点検時にコードレス照明を設置する。",
+        "停電した作業区画を一時的に照明する。"
+      ],
+      "examples_en": [
+        "Place a cordless work light for inspection above a ceiling.",
+        "Temporarily illuminate a work area during a power outage."
+      ]
+    }
+  ]
+}
