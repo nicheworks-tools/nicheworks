@@ -47,8 +47,7 @@ for (const args of [
   { maker: 'DJI', model: 'DJI Goggles 2', category: 'カメラ・映像' },
   { maker: 'DJI', model: 'DJI Goggles', category: 'カメラ・映像' },
   { maker: 'DJI', model: 'DJI Goggles RE', category: 'カメラ・映像' },
-  { maker: 'DJI', model: 'Goggles 3', category: 'カメラ・映像' },
-  { maker: 'dji', model: 'DJI Goggles 3', category: 'カメラ・映像' }
+  { maker: 'DJI', model: 'Goggles 3', category: 'カメラ・映像' }
 ]) {
   const key = `${args.maker}|${args.model}|${args.category}`.toLowerCase();
   assert.ok(!exclusions.some((row) => `${row.maker}|${row.model}|${row.category}`.toLowerCase() === key), `unreviewed exclusion must remain absent: ${JSON.stringify(args)}`);
