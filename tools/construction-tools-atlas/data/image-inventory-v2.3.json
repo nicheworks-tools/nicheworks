@@ -54,6 +54,28 @@
     "source_ledger_items": 30,
     "identity_holds": 0
   },
+  "public_lifecycle": {
+    "scope": "published canonical IDs only; stored non-public records are not review backlog",
+    "stored_non_public_entries": 4666,
+    "public_entries": 870,
+    "disposition_records": 870,
+    "applicability_reviewed": 38,
+    "required": 30,
+    "on_hold": 0,
+    "final_dispositions": 38,
+    "unresolved": 832,
+    "by_stage": {
+      "unreviewed": 832,
+      "not_required": 8,
+      "awaiting_source": 0,
+      "candidate": 0,
+      "provenance_verified": 0,
+      "subject_verified": 0,
+      "verified": 0,
+      "promoted": 30
+    },
+    "evidence_sha256": "19e26c85f8b273bfbffd447189719a1c77550e444ac894b5345b00afbdbfe09b"
+  },
   "by_type": {
     "access": {
       "corpus": 1,

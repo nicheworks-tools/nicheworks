@@ -42,7 +42,8 @@ canonical definition, not raw type alone (some historical concepts are typed too
 
 A hold is an orthogonal object `{reason, resume_when}` on a nonterminal event.
 Use it for an actual blocker (identity uncertainty, rights clarification, access),
-not merely for lack of a search attempt. It never counts as final coverage. There
+not merely for lack of a search attempt. Release a hold in a separate same-state
+event before progressing. It never counts as final coverage. There
 is deliberately no `unobtainable` in v1: failed searches cannot prove permanent
 unavailability. Reconsider the policy in a separate change if that becomes useful.
 No not_required/formal-image coexistence exception is allowed in v1.
@@ -139,5 +140,47 @@ node tools/construction-tools-atlas/scripts/check-image-lifecycle-v2.3.cjs
 node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --check
 ```
 
-Inventory integration and final command results are tracked in
-`.agent/plans/image-lifecycle.md` until implementation is complete.
+## Inventories and CI
+
+The existing public image auditor now validates the lifecycle on every invocation.
+Its `--check` mode also runs the 58 isolated positive/negative fixtures. This is
+already called by the path-triggered Construction Tools Atlas audit workflow;
+no workflow outside this tool directory has been changed. Missing/stale lifecycle
+records or snapshots therefore fail the existing CI gate.
+
+`public-image-inventory-v2.3.json.lifecycle` contains all public canonical rows,
+review flags, acquisition stage, blocker, reason, source owner and attachment mode.
+Its `summary.final_dispositions` counts promoted + not_required only;
+`disposition_records` includes unreviewed records and is not completion coverage.
+The old `missing_formal_image` compatibility counter is still an asset-coverage
+counter, never an applicability decision. `image-inventory-v2.3.json.public_lifecycle`
+reports the same public summary, keeping 4666 non-public stored records separate.
+All output is deterministic; timestamps belong to review events, not regeneration.
+
+After editing reviews, regenerate both snapshots and check them:
+
+```
+node tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs --write
+node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --write
+node tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs --check
+node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --check
+node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs
+node tools/construction-tools-atlas/scripts/check-image-attribution-v2.3.cjs
+node tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
+```
+
+Frozen inventories detect edits to prior events/candidate evidence through their
+hashes. Reviewers must also inspect the git diff for append-only history: replay
+validation does not prove that intermediate events were never removed when an
+author intentionally rewrites both the ledger and snapshots. Initial migrated
+reviews have an additional independent hash anchor in policy. Do not alter these
+anchors or transition policy to make a routine classification pass.
+
+For a new canonical retirement, stop routine classification and make a dedicated
+identity/lifecycle migration: retain old events under the surviving canonical,
+keep historical candidate owners and explicit redirects, and review any import
+anchor updates together. The validator intentionally fails unexplained removal
+of an imported canonical. This task does not retire any additional canonicals.
+
+Full command results: `IMAGE_LIFECYCLE_VALIDATION_V2.3.md`.
+Resumption checkpoint: `.agent/plans/image-lifecycle.md`.

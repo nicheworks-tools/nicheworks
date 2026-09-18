@@ -167,14 +167,16 @@ function validate(ledger, policy, context, { checkAssets = true } = {}) {
     let previous;
     for (const [index, event] of item.history.entries()) {
       keys(event, ['state', 'at', 'actor', 'reason', 'candidate_id', 'candidate_sha256', 'hold'], `${id} event`);
-      const rule = policy.states[event.state];
+      const rule = Object.hasOwn(policy.states, event.state) ? policy.states[event.state] : null;
       assert(rule, `${id}: invalid lifecycle state ${event.state}`);
       assert(nonempty(event.actor) && nonempty(event.reason) && /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(event.at) && Number.isFinite(Date.parse(event.at)), `${id}: event requires actor, UTC timestamp, reason`);
+      assert(new Date(event.at).toISOString().replace('.000Z', 'Z') === event.at, `${id}: invalid calendar timestamp`);
       if (index === 0) {
         assert(event.state === 'unreviewed' || imports.get(id) === digest(event), `${id}: first event must be unreviewed or pinned historical import`);
         if (imports.has(id)) assert(imports.get(id) === digest(event), `${id}: historical import changed`);
       } else {
         assert(Date.parse(event.at) >= Date.parse(previous.at), `${id}: event chronology invalid`);
+        assert(!previous.hold || previous.state === event.state, `${id}: release hold in a same-state event before progressing`);
         assert(policy.states[previous.state].next.includes(event.state), `${id}: illegal transition ${previous.state} -> ${event.state}`);
         if (previous.candidate_id && event.candidate_id && previous.candidate_id !== event.candidate_id) {
           assert(event.state === 'candidate', `${id}: candidate replacement must restart verification`);

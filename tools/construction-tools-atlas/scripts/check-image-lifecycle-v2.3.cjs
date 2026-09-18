@@ -1,8 +1,36 @@
 const assert = require('node:assert/strict');
-const { validate, loadContext, read, digest, candidateDigest } = require('./image-lifecycle-v2.3.cjs');
+const { validate, read, digest, candidateDigest } = require('./image-lifecycle-v2.3.cjs');
 const clone = (x) => JSON.parse(JSON.stringify(x));
 async function runTests() {
-  const base = { ledger: read('image-lifecycle-v2.3.json'), policy: read('image-lifecycle-policy-v2.3.json'), context: await loadContext() };
+  // Synthetic fixtures remain valid after every real public entry is reviewed.
+  // They never modify production data, acquire images, or depend on backlog size.
+  const fixtureId = 'fixture_unreviewed';
+  const publicIds = ['fixture_direct','fixture_inherited','fixture_exception',fixtureId];
+  const source = {source_url:'https://example.invalid/source.jpg',source_page:'https://example.invalid/source',
+    license:'CC0 1.0',license_url:'https://creativecommons.org/publicdomain/zero/1.0/',
+    author:'Fixture',attribution:'Fixture',source_sha1:'a'.repeat(40),modifications:'Fixture derivatives'};
+  const sourceRows = ['fixture_direct','fixture_retired'].map(entry_id=>({entry_id,...source,subject_match:'matched',review_state:'reviewed',review_note:'Fixture subject review'}));
+  const sourceFile='image-wave1-sources-v2.3.json';
+  const context = {publicIds,corpusIds:[...publicIds,'fixture_retired','fixture_quarantined'],
+    publication:{summary:{published_runtime_entries:publicIds.length},hashes:{published_id_sha256:
+      require('node:crypto').createHash('sha256').update([...publicIds].sort((a,b)=>a.localeCompare(b,'en')).join('\n')+'\n').digest('hex')}},
+    redirects:[{from:'fixture_retired',to:'fixture_inherited',reason:'Reviewed duplicate fixture'}],
+    sources:{[sourceFile]:sourceRows},
+    registry:sourceRows.map(r=>({entry_id:r.entry_id,image_state:'reviewed',subject_match:'matched',migration_state:'promoted',source:clone(source),
+      primary:{source:'./images/fixture/source.jpg',display:'./images/fixture/primary.webp',thumbnail:'./images/fixture/thumb.webp'}})),
+    exceptions:[{entry_id:'fixture_exception',state:'not_required',reason:'Non-visual fixture concept'}]};
+  const policy=read('image-lifecycle-policy-v2.3.json');policy.imports=[];
+  const ledger={schema:'cta-image-lifecycle-v2.3',version:'fixture',candidates:[],items:[]};
+  for(const id of publicIds){
+    const sourceId=id==='fixture_inherited'?'fixture_retired':id;
+    const candidate=sourceRows.some(r=>r.entry_id===sourceId)?{id:'existing:'+sourceId,source_entry_id:sourceId,kind:'photograph',source_ref:{file:sourceFile,entry_id:sourceId}}:null;
+    if(candidate)ledger.candidates.push(candidate);
+    const e={state:candidate?'promoted':id==='fixture_exception'?'not_required':'unreviewed',at:'2026-09-18T00:00:00Z',actor:'fixture',
+      reason:id==='fixture_exception'?'Non-visual fixture concept':'Fixture decision',candidate_id:candidate?.id||null,candidate_sha256:candidate?candidateDigest(candidate,context):null,hold:null};
+    if(e.state!=='unreviewed')policy.imports.push({entry_id:id,event_sha256:digest(e)});
+    ledger.items.push({entry_id:id,history:[e]});
+  }
+  const base={ledger,policy,context};
   let passed = 0;
   function test(name, change, error) {
     const f = clone(base);
@@ -12,7 +40,7 @@ async function runTests() {
     passed++;
   }
   const formal = (f) => f.ledger.items.find((r) => r.history.at(-1).state === 'promoted');
-  const pending = (f) => f.ledger.items.find((r) => r.history.at(-1).state === 'unreviewed');
+  const pending = (f) => f.ledger.items.find((r) => r.entry_id === fixtureId);
   function event(state, candidate = null, context = null) {
     return { state, at: '2026-09-19T00:00:00Z', actor: 'fixture-reviewer', reason: 'Fixture review attestation.',
       candidate_id: candidate?.id || null, candidate_sha256: candidate ? candidateDigest(candidate, context) : null, hold: null };
@@ -92,6 +120,51 @@ async function runTests() {
   test('candidate replacement through candidate is valid', (f) => {
     const {row,candidate}=flow(f,['unreviewed','awaiting_source','candidate','subject_verified']);
     const newer={...clone(candidate),id:'replacement'};f.ledger.candidates.push(newer);row.history.push(event('candidate',newer,f.context));
+  });
+  test('hold must be released before progressing', (f) => {
+    const r=pending(f);r.history[0].hold={reason:'Identity unclear',resume_when:'Reviewed'};
+    r.history.push(event('awaiting_source'));
+  }, /release hold/);
+  test('hold can be released then progress', (f) => {
+    const r=pending(f);r.history[0].hold={reason:'Identity unclear',resume_when:'Reviewed'};
+    r.history.push(event('unreviewed'),event('awaiting_source'));
+  });
+  test('calendar timestamp invalid', (f) => pending(f).history[0].at='2026-02-31T00:00:00Z', /invalid calendar/);
+  test('candidate lacking license cannot be provenance verified', (f) => {
+    const {row,candidate}=flow(f,['unreviewed','awaiting_source','candidate','provenance_verified']);
+    const source=clone(f.context.sources[candidate.source_ref.file].find(r=>r.entry_id===candidate.source_entry_id));
+    delete candidate.source_ref;delete source.license;candidate.source=source;
+    for(const e of row.history)if(e.candidate_id)e.candidate_sha256=candidateDigest(candidate,f.context);
+  }, /provenance license required/);
+  test('candidate with only source URLs is a valid unverified lead', (f) => {
+    const {row,candidate}=flow(f,['unreviewed','awaiting_source','candidate']);
+    const source=f.context.sources[candidate.source_ref.file].find(r=>r.entry_id===candidate.source_entry_id);
+    delete candidate.source_ref;candidate.source={source_url:source.source_url,source_page:source.source_page};
+    row.history.at(-1).candidate_sha256=candidateDigest(candidate,f.context);
+  });
+  test('historical source evidence cannot be silently rewritten', (f) => {
+    Object.values(f.context.sources)[0][0].review_note='Rewritten evidence';
+  }, /changed candidate evidence/);
+  test('ambiguous inherited images are rejected', (f) => {
+    const image=f.context.registry.find(r=>f.context.redirects.some(d=>d.from===r.entry_id));
+    const target=f.context.redirects.find(r=>r.from===image.entry_id).to;
+    const alias='fixture_retired_second';f.context.corpusIds.push(alias);
+    f.context.redirects.push({from:alias,to:target,reason:'Fixture duplicate'});
+    const source=Object.values(f.context.sources).flat().find(r=>r.entry_id===image.entry_id);
+    Object.values(f.context.sources)[0].push({...clone(source),entry_id:alias});
+    f.context.registry.push({...clone(image),entry_id:alias});
+  }, /ambiguous inherited/);
+  test('direct ownership wins while retired source provenance is retained', (f) => {
+    const image=f.context.registry.find(r=>f.context.redirects.some(d=>d.from===r.entry_id));
+    const target=f.context.redirects.find(r=>r.from===image.entry_id).to;
+    const source=Object.values(f.context.sources).flat().find(r=>r.entry_id===image.entry_id);
+    const file=Object.keys(f.context.sources)[0];
+    f.context.sources[file].push({...clone(source),entry_id:target});
+    f.context.registry.push({...clone(image),entry_id:target});
+    const candidate={id:'fixture_direct',kind:'photograph',source_entry_id:target,source_ref:{file,entry_id:target}};
+    f.ledger.candidates.push(candidate);
+    const row=f.ledger.items.find(r=>r.entry_id===target);
+    for(const state of ['candidate','provenance_verified','verified','promoted'])row.history.push(event(state,candidate,f.context));
   });
   // Real bytes exercise the source/format gate, without changing tracked assets.
   const f=clone(base); f.context.registry[0].primary.source='./images/ATTRIBUTION.md';

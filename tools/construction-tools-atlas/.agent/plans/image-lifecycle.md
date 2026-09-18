@@ -56,3 +56,21 @@ Branch: feat/construction-atlas-image-lifecycle-20260918.
 - Existing public image frozen inventory `--check`: PASS (no behavior change).
 - NEXT: connect lifecycle reporting and fixture execution to existing CI-invoked
   public inventory auditor, add corpus reporting, freeze snapshots, full regression.
+
+## Unit 3 checkpoint
+- DONE: both existing inventories include lifecycle reporting; public inventory
+  contains one row per actual published canonical, full corpus summary separates
+  4666 non-public stored entries. Old compatibility asset counters preserved.
+- Existing CI public auditor --check now executes lifecycle validation and 58
+  isolated fixtures. No .github file changes, dependencies, UI or source edits.
+- Relevant integration commands PASS; repeat regeneration 2/2 byte-identical.
+- Existing CI audit workflow 72/72 PASS; existing CJS checks 32/32 PASS.
+- Fixtures expanded from 50 to 58: holds, source changes, ambiguous inheritance,
+  direct precedence, partial candidates. Synthetic fixtures do not require a real
+  unreviewed backlog, so classification completion will not invalidate tests.
+- Exact command list/results: IMAGE_LIFECYCLE_VALIDATION_V2.3.md.
+- No unresolved architecture decisions. Historical deletion across rewritten
+  snapshots remains a git-diff review concern, explicitly documented; state replay,
+  pinned initial imports and source-evidence hashes are machine-enforced.
+- NEXT: commit this verified integration; push branch and open PR against main;
+  check remote head and CI status. Do not classify/acquire remaining 832 entries.
