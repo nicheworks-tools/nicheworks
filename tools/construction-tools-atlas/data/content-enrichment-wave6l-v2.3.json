@@ -1,0 +1,370 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-18-wave6l-fallback-zero-1",
+  "entries": [
+    {
+      "id": "flashing_tape",
+      "wave": "content-wave-006l",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "窓・扉開口、外壁・屋根の取合いなどで防水層を連続させる粘着式フラッシングテープ。下地適合、温度条件、重ね幅、圧着方法を製品仕様に合わせる。",
+      "detail_en": "Adhesive flashing tape used to maintain a continuous weather barrier around windows, doors, wall transitions, and roof details. Substrate compatibility, temperature limits, laps, and pressure application must follow the product system.",
+      "bullets_ja": [
+        "下地のほこり・水分・油分を除去し、必要なプライマーを使用する。",
+        "水が外側へ流れる重ね順序を守り、端部・コーナー・貫通部を連続処理する。",
+        "ローラー等で十分に圧着し、しわ・浮き・気泡を残さない。"
+      ],
+      "bullets_en": [
+        "Clean and dry the substrate and use primer where required.",
+        "Maintain water-shedding lap sequence and seal corners, edges, and penetrations continuously.",
+        "Apply firm pressure with the recommended roller or tool and avoid wrinkles, fishmouths, or trapped air."
+      ],
+      "examples_ja": [
+        "サッシ下端から側部へ防水テープを重ねて施工する。",
+        "外壁貫通部のフランジ周囲をテープで連続処理する。"
+      ],
+      "examples_en": [
+        "Install flashing tape around a window in the specified sill-to-jamb sequence.",
+        "Seal around an exterior penetration flange with compatible flashing tape."
+      ]
+    },
+    {
+      "id": "conduit_pf",
+      "wave": "content-wave-006l",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "電線を機械的損傷から保護する合成樹脂製の可とう電線管。呼び径、曲げ半径、使用場所、接続部品、支持間隔を配線方式と適用基準に合わせる。",
+      "detail_en": "Flexible synthetic-resin conduit used to protect electrical conductors from mechanical damage. Diameter, bend radius, environment, fittings, and support spacing must suit the wiring method and applicable requirements.",
+      "bullets_ja": [
+        "収容する電線量に合う呼び径を選び、過度に詰め込まない。",
+        "急な折れやつぶれを避け、所定の曲げ半径と支持間隔を守る。",
+        "ボックス接続部では専用コネクタを使用し、抜け・水侵入・電線損傷を防ぐ。"
+      ],
+      "bullets_en": [
+        "Select conduit size for the conductor fill and avoid overcrowding.",
+        "Prevent kinks and crushing and maintain required bend radius and support spacing.",
+        "Use suitable fittings at boxes and terminations to prevent pullout, water entry, and conductor damage."
+      ],
+      "examples_ja": [
+        "壁内配線をPF管へ収めてボックス間を接続する。",
+        "曲がり部で最小曲げ半径を確保して配管する。"
+      ],
+      "examples_en": [
+        "Route concealed conductors through PF conduit between boxes.",
+        "Maintain the required minimum bend radius at direction changes."
+      ]
+    },
+    {
+      "id": "ground_fault_breaker",
+      "wave": "content-wave-006l",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "漏電・地絡による残留電流を検出し、所定値を超えると回路を遮断する漏電保護装置。定格電圧・電流・感度・遮断方式を回路用途に合わせる。",
+      "detail_en": "A ground-fault or residual-current protective device that disconnects a circuit when leakage current exceeds its trip threshold. Voltage, current, sensitivity, and interrupting characteristics must suit the circuit.",
+      "bullets_ja": [
+        "回路仕様に適合する定格・感度の機器を使用し、電気工事の適用基準に従う。",
+        "TEST機能など指定方法で定期確認し、正常動作しない機器を使用しない。",
+        "漏電保護だけに頼らず、接地・絶縁・過電流保護など他の保護も維持する。"
+      ],
+      "bullets_en": [
+        "Use a device with ratings and trip sensitivity appropriate for the circuit and applicable electrical rules.",
+        "Test operation by the specified method and remove malfunctioning devices from service.",
+        "Maintain grounding, insulation, and overcurrent protection rather than relying on residual-current protection alone."
+      ],
+      "examples_ja": [
+        "仮設電源回路へ適切な漏電遮断器を設置する。",
+        "定期点検でテストボタンによる動作を確認する。"
+      ],
+      "examples_en": [
+        "Provide suitable ground-fault protection on a temporary power circuit.",
+        "Verify trip operation using the device's prescribed test function."
+      ]
+    },
+    {
+      "id": "deburring_tool",
+      "wave": "content-wave-006l",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "金属管・樹脂管・板材などの切断後に残るバリや鋭利な縁を除去する工具。内面・外面用刃などを対象材に合わせ、必要以上に削らない。",
+      "detail_en": "A hand tool used to remove burrs and sharp edges after cutting pipe, tubing, sheet, or similar materials. Blade form should suit the material and edge being finished.",
+      "bullets_ja": [
+        "対象材に適した刃を使い、切断面を固定して安定した姿勢で作業する。",
+        "必要以上に面取りして肉厚や寸法を損なわない。",
+        "刃の欠け・摩耗を点検し、切粉を素手で払わず清掃する。"
+      ],
+      "bullets_en": [
+        "Use a blade suited to the material and secure the workpiece before deburring.",
+        "Remove only the necessary burr without excessively reducing wall thickness or dimensions.",
+        "Inspect blades for wear or damage and clean swarf without brushing sharp chips away by hand."
+      ],
+      "examples_ja": [
+        "切断した電線管の内面バリを除去してから通線する。",
+        "金属パイプ端部を面取りして継手へ挿入する。"
+      ],
+      "examples_en": [
+        "Deburr the inside of cut conduit before pulling conductors.",
+        "Chamfer a cut metal tube before inserting it into a fitting."
+      ]
+    },
+    {
+      "id": "notched_trowel",
+      "wave": "content-wave-006l",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "接着剤や薄塗りモルタルを一定量・一定形状で塗り広げるくし目付きコテ。タイル寸法、下地、材料に応じて切欠き形状と大きさを選ぶ。",
+      "detail_en": "A trowel with notched edges used to spread adhesive or thin-set mortar in controlled ridges. Notch shape and size should suit tile size, substrate, and setting material.",
+      "bullets_ja": [
+        "材料メーカー・タイル寸法に合うくし目サイズを使用する。",
+        "一定角度で引いて均一なリッジを作り、皮張りした材料へ貼り付けない。",
+        "必要に応じ裏面充填を確認し、施工後は固着前に工具を清掃する。"
+      ],
+      "bullets_en": [
+        "Use the notch size recommended for the material and tile dimensions.",
+        "Hold the trowel at a consistent angle to form uniform ridges and do not set tile into skinned-over material.",
+        "Check coverage where required and clean the trowel before material hardens."
+      ],
+      "examples_ja": [
+        "大型タイル用接着剤を指定くし目で塗布する。",
+        "床タイル施工で一定方向のリッジを作る。"
+      ],
+      "examples_en": [
+        "Spread tile adhesive with the specified notch for large-format tile.",
+        "Comb mortar in a consistent direction during floor-tile installation."
+      ]
+    },
+    {
+      "id": "corner_float",
+      "wave": "content-wave-006l",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "左官材やパテなどの内角・外角を均一に整えるコーナーゴテ。用途に応じて内隅用・出隅用の形状を使い分ける。",
+      "detail_en": "A shaped trowel used to form and finish inside or outside corners in plaster, compound, or similar materials. Inside- and outside-corner profiles are selected to suit the work.",
+      "bullets_ja": [
+        "内角・外角に合う工具形状を選び、角度を崩さず一定圧で動かす。",
+        "材料の適切な硬化段階で仕上げ、過度な押さえで材料を掻き取らない。",
+        "角部へ付着した硬化材を除去し、エッジを滑らかに保つ。"
+      ],
+      "bullets_en": [
+        "Use the correct inside- or outside-corner profile and maintain consistent angle and pressure.",
+        "Finish at the appropriate stage of material set and avoid removing too much material.",
+        "Keep the tool edges clean and free of hardened compound that could scratch the finish."
+      ],
+      "examples_ja": [
+        "左官仕上げの入隅をコーナーゴテで整える。",
+        "パテ処理した角部を均一な形状に仕上げる。"
+      ],
+      "examples_en": [
+        "Finish an inside plaster corner with a corner trowel.",
+        "Shape a compound-coated corner to a consistent profile."
+      ]
+    },
+    {
+      "id": "wedge_anchor",
+      "wave": "content-wave-006l",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "コンクリート下穴内でウェッジ部を拡張させて固定する機械式アンカー。穴径、埋込み、端距離、間隔、締付けトルク、母材条件が性能に影響する。",
+      "detail_en": "A mechanical anchor that develops holding force by expanding a wedge inside a drilled concrete hole. Hole size, embedment, spacing, edge distance, tightening torque, and concrete condition affect capacity.",
+      "bullets_ja": [
+        "対象コンクリートと荷重用途に認められた製品を選ぶ。",
+        "指定径・深さで穿孔し、穴内を清掃して所定埋込みまで設置する。",
+        "指定トルクで締め付け、端距離・アンカー間隔を設計条件どおり確保する。"
+      ],
+      "bullets_en": [
+        "Use an anchor approved for the concrete condition and intended load application.",
+        "Drill and clean the hole to the specified diameter and depth and install to the required embedment.",
+        "Tighten to the specified installation torque and maintain required edge distance and anchor spacing."
+      ],
+      "examples_ja": [
+        "設備ベースをコンクリート床へウェッジアンカーで固定する。",
+        "柱脚金物のアンカーを指定トルクで締める。"
+      ],
+      "examples_en": [
+        "Fasten an equipment base to a concrete slab with wedge anchors.",
+        "Tighten an approved wedge anchor to its specified installation torque."
+      ]
+    },
+    {
+      "id": "sleeve_anchor",
+      "wave": "content-wave-006l",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "締付けによって外周スリーブが拡張し、コンクリートや組積材へ固定する機械式アンカー。母材、穴径、埋込み、取付物厚さを製品仕様に合わせる。",
+      "detail_en": "A mechanical anchor whose sleeve expands as the fastener is tightened in concrete or masonry. Base material, hole diameter, embedment, and fixture thickness must match the anchor specification.",
+      "bullets_ja": [
+        "対象母材への適用可否と必要荷重を確認して製品を選ぶ。",
+        "指定寸法で穿孔・清掃し、アンカーを必要深さまで挿入する。",
+        "過締めや浅い埋込みを避け、端部近傍では必要な端距離を確保する。"
+      ],
+      "bullets_en": [
+        "Confirm the anchor is suitable for the base material and required load.",
+        "Drill and clean the hole to specified dimensions and insert the anchor to the required depth.",
+        "Avoid over-tightening or insufficient embedment and maintain required edge distance."
+      ],
+      "examples_ja": [
+        "軽量金物をコンクリート壁へスリーブアンカーで固定する。",
+        "組積壁へのブラケット固定で適合アンカーを使用する。"
+      ],
+      "examples_en": [
+        "Fasten light hardware to a concrete wall with a sleeve anchor.",
+        "Use a suitable sleeve anchor to attach a bracket to approved masonry."
+      ]
+    },
+    {
+      "id": "toggle_anchor",
+      "wave": "content-wave-006l",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "中空壁の裏側で羽根・バーを展開し、面材を挟んで荷重を受ける中空壁用アンカー。壁厚、空洞寸法、取付物荷重に適合する種類を選ぶ。",
+      "detail_en": "A hollow-wall anchor that opens or rotates behind the panel so load is distributed over the rear face. Wall thickness, cavity clearance, and fixture load must fit the anchor's limits.",
+      "bullets_ja": [
+        "面材種類・厚さ・荷重へ適合する定格のアンカーを選ぶ。",
+        "裏側で確実に展開できる空間を確認し、設備配線・配管を避けて穿孔する。",
+        "重量物や人命に関わる用途では中空壁アンカーへ安易に頼らず、構造下地へ固定する。"
+      ],
+      "bullets_en": [
+        "Select an anchor rated for the panel type, thickness, and intended load.",
+        "Confirm enough cavity clearance for full deployment and avoid concealed services when drilling.",
+        "For heavy or safety-critical loads, use structural backing rather than relying on a hollow-wall anchor."
+      ],
+      "examples_ja": [
+        "石膏ボード壁へ軽量棚金物をトグルアンカーで固定する。",
+        "中空部を確認してから指定径の穴をあける。"
+      ],
+      "examples_en": [
+        "Attach a light bracket to a hollow drywall partition using a suitable toggle anchor.",
+        "Verify cavity clearance before drilling the specified hole size."
+      ]
+    },
+    {
+      "id": "threaded_rod",
+      "wave": "content-wave-006l",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "全長にねじ山がある棒材で、設備・配管・天井などの吊り支持や固定に使う。径、強度区分、材質、防錆、ナット・座金の組合せを荷重条件に合わせる。",
+      "detail_en": "A rod threaded along its length and used for hanging or anchoring services, ceilings, pipework, and equipment. Diameter, strength, material, corrosion protection, nuts, and washers must suit the load.",
+      "bullets_ja": [
+        "設計荷重に合う径・強度区分・支持間隔を使用する。",
+        "切断後はねじ山を整え、鋭利な端部を保護し、必要な防錆処理を復旧する。",
+        "吊り用途では上部アンカー・ナットの緩み止めを含め、支持系全体を確認する。"
+      ],
+      "bullets_en": [
+        "Use rod diameter, grade, and support spacing appropriate for the design load.",
+        "After cutting, restore usable threads, protect sharp ends, and repair corrosion protection where required.",
+        "For suspended work, verify the complete support system including upper anchors, nuts, washers, and locking arrangements."
+      ],
+      "examples_ja": [
+        "天井設備を全ねじと吊り金具で支持する。",
+        "切断した全ねじ端部を処理してナットを取り付ける。"
+      ],
+      "examples_en": [
+        "Suspend ceiling services with threaded rod and approved hangers.",
+        "Dress a cut rod end before installing nuts and hardware."
+      ]
+    },
+    {
+      "id": "construction_adhesive_001",
+      "wave": "content-wave-006l",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "木材、ボード、金属、コンクリートなどの部材接着に使う建築用接着剤。下地材、屋内外、荷重、硬化時間、耐水・耐熱性能に適合する製品を選ぶ。",
+      "detail_en": "Construction adhesive bonds materials such as timber, panels, metal, and masonry. Product selection depends on substrate compatibility, indoor/outdoor exposure, load, cure time, water resistance, and temperature.",
+      "bullets_ja": [
+        "接着対象の材質と使用環境に適合する製品か確認する。",
+        "下地を清掃・乾燥し、指定ビード径・塗布量・オープンタイムを守る。",
+        "硬化中は必要なクランプ・仮固定を行い、構造用途では接着剤だけへ依存しない。"
+      ],
+      "bullets_en": [
+        "Confirm the adhesive is compatible with both substrates and the service environment.",
+        "Prepare clean, dry surfaces and follow specified bead size, coverage, and open time.",
+        "Provide clamping or temporary fixing during cure and do not substitute adhesive for required structural fastening."
+      ],
+      "examples_ja": [
+        "巾木を指定接着剤と必要な仮固定で施工する。",
+        "下地材へパネルを接着する前に適合性を確認する。"
+      ],
+      "examples_en": [
+        "Install base trim with compatible adhesive and temporary restraint.",
+        "Verify substrate compatibility before bonding a panel to framing."
+      ]
+    },
+    {
+      "id": "butyl_tape_002",
+      "wave": "content-wave-006l",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "高い粘着性と追従性を持つブチル系防水・気密テープ。金属板、開口部、屋根・外壁部材などの継ぎ目止水に使い、下地と温度条件への適合を確認する。",
+      "detail_en": "A highly tacky, conformable butyl sealing tape used for waterproofing and air sealing at sheet-metal, opening, roof, and wall joints. Substrate and temperature compatibility are important.",
+      "bullets_ja": [
+        "下地を清掃・乾燥させ、油分や粉じんを除去してから貼る。",
+        "指定重ね幅を確保し、ローラーなどで均一に圧着する。",
+        "長期露出可否や高温部での流動性など製品の使用範囲を確認する。"
+      ],
+      "bullets_en": [
+        "Apply only to clean, dry surfaces free of dust and oil.",
+        "Maintain required overlaps and apply uniform pressure with a roller or suitable tool.",
+        "Check limitations for prolonged exposure, high temperature, and substrate compatibility."
+      ],
+      "examples_ja": [
+        "板金継ぎ目へブチルテープを圧着して止水する。",
+        "開口部防水で防水紙とフランジを連続させる。"
+      ],
+      "examples_en": [
+        "Seal a sheet-metal joint with firmly rolled butyl tape.",
+        "Use butyl tape to integrate a flange with the surrounding weather barrier."
+      ]
+    },
+    {
+      "id": "primer_003",
+      "wave": "content-wave-006l",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "塗装・接着・防水施工の前に下地へ塗布し、密着性向上、吸込み調整、防錆などを担う下塗り材。上に施工する材料と下地の双方へ適合する製品を選ぶ。",
+      "detail_en": "A preparatory coating used before paint, adhesive, sealant, or waterproofing to improve adhesion, control porosity, or provide corrosion protection. It must be compatible with both substrate and following material.",
+      "bullets_ja": [
+        "下地材と後工程材料の組合せに指定されたプライマーを使用する。",
+        "清掃・乾燥・研磨など必要な下地処理後、指定塗布量で施工する。",
+        "乾燥・再塗装時間を守り、乾き過ぎや未乾燥状態で次工程へ進まない。"
+      ],
+      "bullets_en": [
+        "Use the primer specified for the substrate and the material applied over it.",
+        "Complete required cleaning, drying, or abrasion and apply at the specified coverage.",
+        "Observe drying and recoat windows and do not proceed while under-cured or after an exceeded maximum interval without required preparation."
+      ],
+      "examples_ja": [
+        "シーリング前に指定プライマーを目地側面へ塗布する。",
+        "金属下地へ防錆プライマーを施工してから上塗りする。"
+      ],
+      "examples_en": [
+        "Apply the specified primer to sealant-joint faces before caulking.",
+        "Prime prepared metal with an anticorrosive primer before finish coating."
+      ]
+    },
+    {
+      "id": "dust_control_008",
+      "wave": "content-wave-006l",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "切断・研磨・解体などで発生する粉じんを発生源で減らし、作業者や周囲への拡散を抑える対策の総称。湿式化、局所集じん、隔離、換気、清掃、呼吸用保護具を組み合わせる。",
+      "detail_en": "Dust control is the combination of measures used to reduce dust generation and prevent worker or area exposure during cutting, grinding, demolition, and similar work. Wet methods, local extraction, isolation, ventilation, cleanup, and respiratory protection may be combined.",
+      "bullets_ja": [
+        "可能な場合は湿式化や工具直結集じんなど発生源対策を優先する。",
+        "防じん間仕切り・負圧・換気で周囲への拡散を抑え、他作業者のばく露も管理する。",
+        "乾いた粉じんを圧縮空気で飛ばさず、HEPA掃除機や湿式清掃など適切な方法で除去する。"
+      ],
+      "bullets_en": [
+        "Prioritize source controls such as wet cutting or tool-connected extraction where practicable.",
+        "Use barriers, negative pressure, or ventilation to limit migration and protect nearby workers.",
+        "Do not disperse settled dust with compressed air; use suitable HEPA vacuuming or wet cleanup methods."
+      ],
+      "examples_ja": [
+        "コンクリート切断で給水と集じんを併用する。",
+        "改修区画を隔離し、HEPA集じん機で粉じん拡散を抑える。"
+      ],
+      "examples_en": [
+        "Use water and extraction while cutting concrete.",
+        "Isolate a renovation area and use HEPA filtration to control dust migration."
+      ]
+    }
+  ]
+}
