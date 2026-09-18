@@ -36,7 +36,7 @@
     "old-kanji-ocr-scanner": {
       placement: "post_ocr_result",
       anchor: "#copy-actions",
-      activation: { type: "value", selector: "#manual-text" },
+      activation: { type: "visible-content", selector: "#detection-summary" },
       headingJa: "紙資料をもっと読み取りやすくする",
       headingEn: "Tools for better paper-document capture",
       noteJa: "実際に紙資料を撮影・OCRしている人向けの機材です。OCR結果、画像名、画像内容はAmazonへ送りません。",
