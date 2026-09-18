@@ -9868,24 +9868,28 @@
       },
       "physicalVariants": [
         {
+          "key": "impenetrable-gray",
           "labelJa": "インペネトラブルグレイ",
           "labelEn": "Impenetrable Gray",
           "depthMm": 7.85,
           "weightG": 194
         },
         {
+          "key": "nautical-blue",
           "labelJa": "ノーティカルブルー",
           "labelEn": "Nautical Blue",
           "depthMm": 7.85,
           "weightG": 196
         },
         {
+          "key": "caprician",
           "labelJa": "カプリシアン",
           "labelEn": "Caprician",
           "depthMm": 7.85,
           "weightG": 196
         },
         {
+          "key": "fuchsia-red",
           "labelJa": "フューシャレッド",
           "labelEn": "Fuchsia Red",
           "depthMm": 7.85,
