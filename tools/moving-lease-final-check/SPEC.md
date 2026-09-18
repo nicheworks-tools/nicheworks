@@ -23,6 +23,7 @@ Rental is the primary public search intent. The `owned` mode remains available o
 
 - Require an exit/handoff date and accept home type (`rental` or `owned`).
 - Generate a final-stage checklist and completion progress for the selected conditions.
+- Keep a crawlable static move-out guide in the initial HTML covering inspection/handoff timing, keys/return items, condition photos, meter checks, remaining belongings, and the contract-guidance boundary.
 - Rental output focuses on inspection timing, key return, room/equipment photos, meter records, insurance/contract confirmation, refund contact details, return items, and restoration-related source checking.
 - Owned output focuses on final shutoff/locking, handoff documents/keys, condition photos, handoff contacts, vacancy setup, continuing contracts, equipment condition, and record retention.
 - Persist exit/handoff date, home type, and checkbox state in the current browser.
@@ -79,6 +80,7 @@ The canonical monetization class is `AFFILIATE`. The live commerce block uses th
 
 - [ ] A required exit/handoff date and home type produce the corresponding final-stage checklist.
 - [ ] Rental tasks remain centered on inspection/photo/key/return/handoff work rather than broad moving preparation.
+- [ ] Initial HTML exposes the core退去前確認 topics without requiring checklist generation and keeps restoration/deposit/legal judgments out of scope.
 - [ ] Owned tasks remain centered on property handoff/vacancy finalization rather than broad address or municipal procedures.
 - [ ] Completion state persists in the browser for the saved condition and can be deleted explicitly.
 - [ ] TXT copy/download and browser print remain usable without any paid entitlement.
