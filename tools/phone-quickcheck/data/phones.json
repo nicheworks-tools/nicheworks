@@ -3059,9 +3059,11 @@
         "releaseUrl": "https://news.samsung.com/global/introducing-galaxy-z-flip-5g-express-yourself-with-a-stylish-5g-enabled-foldable-smartphone",
         "chargingUrl": "https://image-us.samsung.com/SamsungUS/samsungbusiness/pdfs/datasheet/Galaxy-Z-Flip_Z-Flip-5G-Datasheet-Generic.pdf",
         "wirelessUrl": "https://www.samsung.com/hk_en/news/product/introducing-galaxy-z-flip-5g/",
-        "verifiedAt": "2026-09-15"
+        "verifiedAt": "2026-09-18",
+        "waterUrl": "https://www.au.com/online-manual/scg04/scg04_01/m_02_00_00.html"
       },
-      "affiliateKeys": []
+      "affiliateKeys": [],
+      "waterStatus": "not_resistant"
     },
     {
       "id": "samsung-galaxy-z-flip",
