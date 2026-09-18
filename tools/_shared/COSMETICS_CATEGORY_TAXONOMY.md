@@ -279,3 +279,15 @@ The `binder` public copy is synchronized in Lite and FastScan:
 - Explanation: powdered products are helped to hold together and maintain cohesion.
 
 This wave sets the maintained official-label corpus public-role gap target to zero while keeping raw legacy categories auditable.
+
+
+## Wave 24 benchmark closure taxonomy
+
+The final benchmark closure adds two explicit public-role mappings that were already supported by both tool UIs but not yet admitted to the controlled verified taxonomy:
+
+- Kao official `保湿` → NicheWorks `moisturizer`
+- COSMILE `uv filter` → NicheWorks `uv filter`
+
+Existing mappings are reused for the other six benchmark-discovered identities: `surfactant - emulsifying`, `viscosity controlling`, `humectant`, and `preservative`.
+
+`www.kao-kirei.com` is admitted as an explicit provenance host only for the source-backed Curel ingredient-function statement. It is not treated as COSMILE or a general regulatory authority.
