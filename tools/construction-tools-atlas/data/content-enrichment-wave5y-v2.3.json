@@ -1,0 +1,396 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-18-wave5y-basic-measure-driving-1",
+  "entries": [
+    {
+      "id": "tape_measure",
+      "wave": "content-wave-005y",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "巻き取り式の目盛り付きテープで長さや位置を素早く測る工具。テープ長、幅、目盛り仕様、先端フック、ロック機構を作業距離と必要精度に合わせて選ぶ。",
+      "detail_en": "Retractable graduated tape used to measure lengths and positions quickly. Tape length, width, scale, end hook, and lock mechanism should suit the measuring range and required accuracy.",
+      "bullets_ja": [
+        "測定開始点と先端フックの掛かり方を揃え、斜めに張らない。",
+        "テープの折れ・裂け・目盛り摩耗を確認し、損傷時は交換する。",
+        "長尺測定ではたるみや温度、読み取り位置による誤差を意識する。"
+      ],
+      "bullets_en": [
+        "Keep the tape aligned with the measurement and seat the end hook consistently at the reference point.",
+        "Inspect for kinks, tears, or worn markings and replace a damaged tape.",
+        "For longer measurements, account for sag, temperature, and reading position where accuracy matters."
+      ],
+      "examples_ja": [
+        "壁間寸法を測って下地材の切断長さを決める。",
+        "器具取付位置を基準点から測ってマーキングする。"
+      ],
+      "examples_en": [
+        "Measure between walls to determine a framing cut length.",
+        "Measure from a reference point to mark a fixture location."
+      ]
+    },
+    {
+      "id": "spirit_level",
+      "wave": "content-wave-005y",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "気泡管を用いて部材や面の水平・垂直を確認する測定工具。工具長、気泡管の数、精度、磁石の有無などを対象物と測定距離に合わせて選ぶ。",
+      "detail_en": "Measuring tool with bubble vials used to check level and plumb. Tool length, vial arrangement, accuracy, and optional magnetic features should match the workpiece and span.",
+      "bullets_ja": [
+        "測定面のごみや突起を除き、工具を全面で安定して当てる。",
+        "水平器を反転して同じ位置を測り、気泡管のずれが疑われる場合は校正状態を確認する。",
+        "長い部材では短すぎる水平器だけで判断せず、必要な測定長を確保する。"
+      ],
+      "bullets_en": [
+        "Clean the contact surface and seat the level firmly along its measuring face.",
+        "Reverse the level on the same surface to check for vial error when accuracy is in doubt.",
+        "For long members, use a level or method with sufficient span rather than relying only on a short tool."
+      ],
+      "examples_ja": [
+        "棚受けを固定する前に水平を確認する。",
+        "間柱の垂直を気泡管で確認して固定する。"
+      ],
+      "examples_en": [
+        "Check a shelf support for level before fastening it.",
+        "Check a stud for plumb before final fixing."
+      ]
+    },
+    {
+      "id": "laser_level",
+      "wave": "content-wave-005y",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "水平・垂直などのレーザーラインを投影し、複数位置へ共通基準を出す墨出し機器。投影ライン数、精度、自動整準範囲、作業距離、受光器対応を用途に合わせて選ぶ。",
+      "detail_en": "Layout instrument that projects horizontal, vertical, or other laser lines to establish shared references across multiple points. Line configuration, accuracy, self-leveling range, working distance, and receiver support should suit the task.",
+      "bullets_ja": [
+        "安定した位置へ据え、自動整準範囲を超えた状態で基準として使わない。",
+        "要求精度に応じて距離と機器仕様を確認し、必要なら定期的に精度点検する。",
+        "レーザー光を直接のぞき込まず、周囲の人にも照射方向を配慮する。"
+      ],
+      "bullets_en": [
+        "Set the instrument on a stable support and do not use it as a reference while outside its leveling range.",
+        "Match working distance and instrument accuracy to the task and verify calibration when required.",
+        "Avoid direct eye exposure to the beam and control its direction around other people."
+      ],
+      "examples_ja": [
+        "間仕切り下地の通りを床と天井へ同時に投影する。",
+        "複数の棚を同じ高さへ取り付けるため水平ラインを出す。"
+      ],
+      "examples_en": [
+        "Project a common line on floor and ceiling for partition framing.",
+        "Establish a horizontal reference for mounting several shelves at the same height."
+      ]
+    },
+    {
+      "id": "chalk_line",
+      "wave": "content-wave-005y",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "粉を付けた糸を張って弾き、長い直線の基準を面へ写す墨出し工具。糸長、粉の色や定着性、巻取り機構を下地と作業距離に合わせる。",
+      "detail_en": "Layout tool that snaps a chalked string against a surface to mark a long straight reference. Line length, chalk color and permanence, and reel mechanism should suit the surface and layout distance.",
+      "bullets_ja": [
+        "両端の基準点を正確に合わせ、糸を十分張ってから弾く。",
+        "仕上げ面では粉の残留や染みを避けるため適合する色・種類を選ぶ。",
+        "糸のほつれや切れ、ケース内の詰まりを点検する。"
+      ],
+      "bullets_en": [
+        "Align both endpoints accurately and tension the string before snapping the line.",
+        "On finish surfaces, choose chalk color and permanence that will not cause unwanted staining.",
+        "Inspect the string for fraying or breakage and keep the reel mechanism free of blockage."
+      ],
+      "examples_ja": [
+        "床面へ間仕切り下地の基準線を一度に打つ。",
+        "合板上へ切断用の長い直線を墨打ちする。"
+      ],
+      "examples_en": [
+        "Snap a partition layout line across a floor.",
+        "Mark a long straight cutting reference on plywood."
+      ]
+    },
+    {
+      "id": "square_tool",
+      "wave": "content-wave-005y",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "直角確認や寸法移し、墨付けに使うL形・直角基準の測定工具。差し金、スコヤなど形状により用途が異なり、長さや目盛り仕様を作業に合わせて選ぶ。",
+      "detail_en": "Right-angle measuring and layout tool used to check square, transfer dimensions, and mark cuts. Carpenter's squares, try squares, and related forms vary in length and scale for different tasks.",
+      "bullets_ja": [
+        "基準辺へ隙間なく当て、汚れやバリによる浮きを避ける。",
+        "直角精度が疑われる場合は反転法などで確認し、曲がった工具は使わない。",
+        "目盛りを使う場合は単位と読み取り基準を揃える。"
+      ],
+      "bullets_en": [
+        "Seat the reference edge fully against the workpiece and remove debris or burrs that could lift it.",
+        "If squareness is in doubt, verify by a reversal check and do not use a bent tool for precision layout.",
+        "When using the scale, confirm units and keep a consistent reading reference."
+      ],
+      "examples_ja": [
+        "木材端部に90度の切断線を墨付けする。",
+        "枠材の組立時に直角を確認する。"
+      ],
+      "examples_en": [
+        "Mark a 90-degree cut line across a timber member.",
+        "Check a frame corner for square during assembly."
+      ]
+    },
+    {
+      "id": "plumb_bob",
+      "wave": "content-wave-005y",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "糸の先に重りを吊り、重力方向を利用して垂直基準を出す工具。重りの重量、糸長、先端形状を測定高さや風などの現場条件に合わせて使う。",
+      "detail_en": "Tool consisting of a weight suspended from a line to establish a true vertical reference by gravity. Weight, line length, and point shape should suit the height and environmental conditions.",
+      "bullets_ja": [
+        "上部の吊り点を確実に固定し、重りが自由に静止できる空間を確保する。",
+        "風や振動がある場合は振れが収まってから読み取る。",
+        "重りの真下へ人や壊れやすい物を置かない。"
+      ],
+      "bullets_en": [
+        "Secure the upper suspension point and provide clear space for the weight to hang freely.",
+        "Allow movement from wind or vibration to settle before taking a reading.",
+        "Keep people and fragile objects out from directly below the suspended weight."
+      ],
+      "examples_ja": [
+        "柱の上下位置を比較して垂直を確認する。",
+        "上階の基準位置を下階へ鉛直に移す。"
+      ],
+      "examples_en": [
+        "Compare top and bottom positions of a column to check plumb.",
+        "Transfer a reference point vertically from an upper level to a lower one."
+      ]
+    },
+    {
+      "id": "cordless_drill",
+      "wave": "content-wave-005y",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "バッテリーで駆動し、穴あけとねじ締めに使うドリルドライバー。チャック径、回転数、クラッチ段数、最大トルク、対応バッテリーを作業に合わせて選ぶ。",
+      "detail_en": "Battery-powered drill/driver used for drilling and screwdriving. Chuck capacity, speed range, clutch settings, torque, and battery platform should suit the application.",
+      "bullets_ja": [
+        "材料と穴径に合うビットを確実にチャックへ固定する。",
+        "ねじ締めではクラッチや速度を調整し、ねじ頭や材料を過度に傷めない。",
+        "回転部へ衣服や髪を近づけず、ビット交換時はトリガー誤作動を防ぐ。"
+      ],
+      "bullets_en": [
+        "Secure a bit appropriate to the material and hole size in the chuck.",
+        "For screwdriving, adjust clutch and speed to reduce stripped fasteners or damaged material.",
+        "Keep hair and clothing away from rotating parts and prevent accidental trigger operation during bit changes."
+      ],
+      "examples_ja": [
+        "木材へビス用の下穴を開ける。",
+        "クラッチを調整して内装金物のねじを締める。"
+      ],
+      "examples_en": [
+        "Drill pilot holes in timber for screws.",
+        "Set the clutch and drive screws for interior hardware."
+      ]
+    },
+    {
+      "id": "impact_driver",
+      "wave": "content-wave-005y",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "回転方向へ打撃を加えて高い締付け力を出す電動工具。長いビスやボルト締結に適し、先端規格、出力モード、最大トルクを締結材と母材に合わせて使う。",
+      "detail_en": "Power tool that adds rotational impacts to deliver high fastening torque. It is suited to long screws and certain bolts, with bit standard, power mode, and torque selected for the fastener and substrate.",
+      "bullets_ja": [
+        "インパクト対応のビットやソケットを使用し、摩耗・割れを点検する。",
+        "締め過ぎによるねじ切れ、ねじ頭破損、母材損傷を避けるため出力を調整する。",
+        "指定トルク管理が必要な締結は最終確認をトルクレンチなど適切な方法で行う。"
+      ],
+      "bullets_en": [
+        "Use impact-rated bits or sockets and inspect them for wear or cracking.",
+        "Adjust power to avoid broken fasteners, stripped heads, or substrate damage from overdriving.",
+        "Where a specified final torque is required, verify it with an appropriate torque-controlled method."
+      ],
+      "examples_ja": [
+        "構造用の長い木ねじを下地へ締め込む。",
+        "仮締めしたボルトをインパクト対応ソケットで効率よく回す。"
+      ],
+      "examples_en": [
+        "Drive a long structural wood screw into framing.",
+        "Run a preassembled bolt efficiently using an impact-rated socket."
+      ]
+    },
+    {
+      "id": "rotary_hammer",
+      "wave": "content-wave-005y",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "回転と強い打撃機構でコンクリートや石材へ穴あけする電動工具。SDSなどのシャンク規格、穴径、打撃エネルギー、回転・ハツリモードを用途に合わせて選ぶ。",
+      "detail_en": "Power tool combining rotation with strong hammering action for drilling concrete and masonry. Shank system such as SDS, hole diameter, impact energy, and drilling or chiseling modes should match the task.",
+      "bullets_ja": [
+        "工具規格と穴径に合うコンクリート用ビットを確実に装着する。",
+        "鉄筋や埋設物へ当たる可能性を確認し、無理に押し付けて貫通させない。",
+        "粉じん対策を行い、長時間作業では振動・騒音への保護も考慮する。"
+      ],
+      "bullets_en": [
+        "Fit a masonry bit compatible with the tool shank system and required hole size.",
+        "Check for reinforcement or concealed services and do not force the bit through an obstruction.",
+        "Control dust and consider vibration and hearing protection for extended work."
+      ],
+      "examples_ja": [
+        "コンクリート壁へアンカー用の下穴を開ける。",
+        "適合チゼルを装着し、小範囲のモルタルをはつる。"
+      ],
+      "examples_en": [
+        "Drill an anchor hole in a concrete wall.",
+        "Fit a compatible chisel for limited mortar removal."
+      ]
+    },
+    {
+      "id": "drill_bit_set",
+      "wave": "content-wave-005y",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "ドリルへ装着して材料を切削し、穴を開ける先端工具。木工、金属、コンクリートなど材質ごとに刃形状・材質・シャンクが異なり、穴径と工具規格に合わせて選ぶ。",
+      "detail_en": "Cutting attachment fitted to a drill to produce holes. Tip geometry, material, and shank differ for wood, metal, masonry, and other substrates, and must match the hole size and drill system.",
+      "bullets_ja": [
+        "被削材に適した種類と穴径のビットを選ぶ。",
+        "摩耗、欠け、曲がりがあるビットは精度低下や破損につながるため交換する。",
+        "回転数や送りを材質とビット径に合わせ、過熱時は無理に続けない。"
+      ],
+      "bullets_en": [
+        "Select the bit type and diameter for the material being drilled.",
+        "Replace bits that are worn, chipped, or bent because they can reduce accuracy or fail.",
+        "Match speed and feed to material and bit diameter and avoid continuing while the bit is overheating."
+      ],
+      "examples_ja": [
+        "木ねじ用の下穴を木工ビットで開ける。",
+        "アンカー径に合わせたコンクリートビットで穿孔する。"
+      ],
+      "examples_en": [
+        "Drill a pilot hole for a wood screw with a wood bit.",
+        "Use a masonry bit sized for the specified anchor hole."
+      ]
+    },
+    {
+      "id": "screwdriver",
+      "wave": "content-wave-005y",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "ねじを手作業で締めたり緩めたりする工具。プラス、マイナス、トルクスなど先端規格とサイズをねじ頭に合わせ、柄の形状や軸長を作業空間に応じて選ぶ。",
+      "detail_en": "Hand tool used to tighten or loosen screws. Tip pattern and size such as Phillips, slotted, or Torx must match the screw head, while handle shape and shaft length should suit the workspace.",
+      "bullets_ja": [
+        "ねじ頭へ適合する先端規格・サイズを使い、浮いた状態で回さない。",
+        "先端が摩耗・欠けした工具はカムアウトやねじ頭損傷の原因になるため交換する。",
+        "電気作業では必要に応じて定格絶縁工具を使用し、一般ドライバーを絶縁品として扱わない。"
+      ],
+      "bullets_en": [
+        "Use the correct tip pattern and size and keep it fully seated in the screw head.",
+        "Replace worn or chipped tips that increase cam-out and screw-head damage.",
+        "For electrical tasks, use appropriately rated insulated tools when required rather than assuming an ordinary screwdriver is insulated."
+      ],
+      "examples_ja": [
+        "配線器具の取付ねじを適合するプラスドライバーで締める。",
+        "点検カバーのねじを手作業で外す。"
+      ],
+      "examples_en": [
+        "Tighten a wiring-device screw with the correct Phillips screwdriver.",
+        "Remove inspection-cover screws by hand."
+      ]
+    },
+    {
+      "id": "wrench_adjustable",
+      "wave": "content-wave-005y",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "可動あごで口幅を調整し、異なるサイズのボルト・ナットを回すレンチ。開口範囲、全長、あご厚さを締結部と作業空間に合わせて選ぶ。",
+      "detail_en": "Wrench with a movable jaw that adjusts to different nut and bolt sizes. Jaw capacity, overall length, and jaw thickness should suit the fastener and access space.",
+      "bullets_ja": [
+        "あごをナット平面へ隙間なく合わせ、がたついた状態で力を掛けない。",
+        "可動あご側へ過大な力が掛からない向きを意識し、工具を斜めに掛けない。",
+        "高い締付け精度が必要な箇所では適正サイズの固定レンチやトルク工具を使う。"
+      ],
+      "bullets_en": [
+        "Adjust the jaws snugly to the fastener flats and do not apply force with excessive play.",
+        "Keep the wrench square on the fastener and orient the load to reduce stress on the movable jaw.",
+        "For precision or specified torque work, use a correctly sized fixed wrench or torque tool instead."
+      ],
+      "examples_ja": [
+        "配管継手のナットを保持して別工具との共回りを防ぐ。",
+        "異なるサイズの六角ナットを現場で調整して回す。"
+      ],
+      "examples_en": [
+        "Hold a plumbing fitting nut to prevent rotation while another connection is tightened.",
+        "Adjust the jaw to turn different hex-nut sizes during site work."
+      ]
+    },
+    {
+      "id": "socket_wrench",
+      "wave": "content-wave-005y",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "交換式ソケットとラチェットハンドルで六角ボルト・ナットを効率よく回す工具。差込角、ソケットサイズ、深さ、ラチェット機構を締結部と作業空間に合わせる。",
+      "detail_en": "Tool system using interchangeable sockets and a ratchet handle to turn hex bolts and nuts efficiently. Drive size, socket size and depth, and ratchet mechanism should suit the fastener and access.",
+      "bullets_ja": [
+        "ボルト・ナットに正確に合うソケットサイズを使用する。",
+        "ラチェット切替方向を確認し、過大な延長パイプなどで想定以上の荷重を掛けない。",
+        "インパクト工具へ使用する場合はインパクト対応ソケットを使い、手工具用ソケットと区別する。"
+      ],
+      "bullets_en": [
+        "Use a socket that fits the fastener accurately.",
+        "Confirm ratchet direction and do not add uncontrolled leverage beyond the tool's intended loading.",
+        "For impact tools, use impact-rated sockets rather than ordinary hand-tool sockets."
+      ],
+      "examples_ja": [
+        "架台ボルトをラチェットで連続して締める。",
+        "深型ソケットで突出したボルトのナットを回す。"
+      ],
+      "examples_en": [
+        "Tighten a series of support-frame bolts with a ratchet.",
+        "Use a deep socket on a nut with a projecting bolt thread."
+      ]
+    },
+    {
+      "id": "pliers",
+      "wave": "content-wave-005y",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "部材や線材をつかむ、曲げる、保持するほか、種類によっては切断にも使う汎用把持工具。あご形状、切断刃、全長、グリップ仕様を対象に合わせて選ぶ。",
+      "detail_en": "General-purpose gripping tool used to hold and bend parts or wire and, depending on the design, to cut them. Jaw shape, cutters, overall length, and grip style should match the work.",
+      "bullets_ja": [
+        "対象を確実にあごでつかみ、先端だけで過大なねじりやこじりを行わない。",
+        "切断刃の能力を超える硬線や太線を切らない。",
+        "電気作業では通電状態を確認し、必要なら定格絶縁工具を使う。"
+      ],
+      "bullets_en": [
+        "Grip the work securely in the jaws and do not apply excessive twisting or prying through the tips.",
+        "Do not cut wire harder or larger than the cutter rating.",
+        "For electrical work, verify de-energization and use rated insulated tools where required."
+      ],
+      "examples_ja": [
+        "細い金属線を曲げて固定位置へ合わせる。",
+        "小さな部品を保持しながら別工具で締結する。"
+      ],
+      "examples_en": [
+        "Bend a small wire into its required position.",
+        "Hold a small component steady while fastening it with another tool."
+      ]
+    },
+    {
+      "id": "wire_stripper",
+      "wave": "content-wave-005y",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "電線導体を傷つけずに被覆を所定長さだけ除去するための工具。電線サイズ、単線・より線、自動調整式か穴径式かなどを対象ケーブルに合わせて選ぶ。",
+      "detail_en": "Tool used to remove a controlled length of insulation without damaging the conductor. Wire size, solid or stranded construction, and stripper mechanism must match the cable.",
+      "bullets_ja": [
+        "作業前に回路を無電圧化し、必要な手順で確認してから導体へ触れる。",
+        "電線サイズに合う刃・穴を使い、導体へ切り傷を付けない。",
+        "端子仕様に必要な剥き長さを守り、被覆を過剰に除去しない。"
+      ],
+      "bullets_en": [
+        "De-energize the circuit and verify the safe condition before handling conductors.",
+        "Use the stripping position or blade setting for the wire size so conductor strands are not nicked.",
+        "Strip only the length required by the terminal specification and avoid excessive exposed conductor."
+      ],
+      "examples_ja": [
+        "圧着端子施工前により線の被覆を指定長さだけ剥く。",
+        "盤内配線の端末処理で電線サイズに合う穴を選ぶ。"
+      ],
+      "examples_en": [
+        "Strip the specified length of insulation before crimping a terminal.",
+        "Select the correct stripping slot for a conductor during panel wiring."
+      ]
+    }
+  ]
+}
