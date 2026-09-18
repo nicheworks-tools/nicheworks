@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 52, 'the 3 remaining legacy-only category conflicts plus 49 reviewed Wave 15-16 and Wave 18-25 legacy-vs-verified role conflicts must be explicit at runtime');
+assert.equal(categoryConflicts.length, 65, 'the 2 remaining legacy-only category conflicts plus 63 reviewed verified-primary role conflicts must be explicit at runtime');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
@@ -84,7 +84,21 @@ const reviewedVerifiedPrimary = new Map([
   ['coumarin', { category: 'fragrance', legacy: ['fragrance allergen'] }],
   ['farnesol', { category: 'fragrance', legacy: ['fragrance allergen'] }],
   ['hexyl cinnamal', { category: 'fragrance', legacy: ['fragrance allergen'] }],
-  ['alpha-isomethyl ionone', { category: 'fragrance', legacy: ['fragrance allergen'] }]
+  ['alpha-isomethyl ionone', { category: 'fragrance', legacy: ['fragrance allergen'] }],
+  ['triethoxycaprylylsilane', { category: 'binder', legacy: ['general'] }],
+  ['p-anisic acid', { category: 'fragrance', legacy: ['preservative support'] }],
+  ['polyquaternium-39', { category: 'film former', legacy: ['conditioning polymer'] }],
+  ['polyquaternium-53', { category: 'hair conditioning', legacy: ['conditioning polymer'] }],
+  ['ppg-5-ceteth-20', { category: 'emulsifier', legacy: ['general'] }],
+  ['snail secretion filtrate', { category: 'skin conditioning', legacy: ['animal extract'] }],
+  ['synthetic beeswax', { category: 'viscosity adjuster', legacy: ['texture agent'] }],
+  ['hexadecyloxy pg hydroxyethyl hexadecanamide', { category: 'moisturizer', legacy: ['barrier lipid'] }],
+  ['peg-6 caprylic/capric glycerides', { category: 'emulsifier', legacy: ['surfactant'] }],
+  ['sodium lauroyl lactylate', { category: 'emulsifier', legacy: ['surfactant'] }],
+  ['zinc oxide', { category: 'uv filter', legacy: ['colorant'] }],
+  ['zea mays starch', { category: 'viscosity adjuster', legacy: ['powder'] }],
+  ['peg-8', { category: 'humectant', legacy: ['solvent'] }],
+  ['microcrystalline wax', { category: 'viscosity adjuster', legacy: ['wax', 'texture agent'] }]
 ]);
 
 for (const item of categoryConflicts) {
@@ -117,7 +131,9 @@ assert.deepEqual(titaniumDioxide.categories, ['uv filter', 'colorant'], 'Titaniu
 
 const microcrystallineWax = merged.find((item) => parser.canonicalIdentityKey(item.en) === 'microcrystalline wax');
 assert.ok(microcrystallineWax, 'Microcrystalline Wax canonical runtime record missing');
-assert.deepEqual(microcrystallineWax.categories, ['wax', 'texture agent'], 'Microcrystalline Wax must retain both observed functional categories');
+assert.equal(microcrystallineWax.category, 'viscosity adjuster', 'Microcrystalline Wax verified role must control the public primary category');
+assert.deepEqual(microcrystallineWax.categories, ['wax', 'texture agent', 'viscosity adjuster'], 'Microcrystalline Wax must retain both legacy categories plus the verified role');
+assert.deepEqual(microcrystallineWax.legacy_category_values, ['wax', 'texture agent'], 'Microcrystalline Wax legacy categories must remain auditable');
 
 const peg32 = merged.find((item) => parser.canonicalIdentityKey(item.en) === 'peg-32');
 assert.ok(peg32, 'PEG-32 canonical runtime record missing');

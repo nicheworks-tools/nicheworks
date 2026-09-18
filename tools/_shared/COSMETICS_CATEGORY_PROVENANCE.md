@@ -317,3 +317,27 @@ Wave 25 resolves ten remaining legacy `fragrance allergen` classifications into 
 
 Wave 25 adds the explicit authority-function mapping `FRAGRANCE → fragrance`. It does not infer that a fragrance-allergen label means unsafe, nor does it remove the legacy classification. Public-role readiness rises from 492 / 599 (82.1%) to 502 / 599 canonical identities (83.8%), leaving 97 identities explicitly incomplete.
 
+
+
+## Official-label zero-gap closure
+
+After Wave 25, the official-label regression corpus is closed under a stricter invariant: every label token that resolves exactly to one maintained canonical ingredient must also resolve to a supported bilingual public role. Under-specified or deliberately non-exact label tokens remain in the separate unknown inventory.
+
+The closure adds 14 source-backed canonical identities without rewriting raw recognition dictionaries:
+
+- Triethoxycaprylylsilane → `binder`
+- p-Anisic Acid → `fragrance`
+- Polyquaternium-39 → `film former`
+- Polyquaternium-53 → `hair conditioning`
+- PPG-5-Ceteth-20 → `emulsifier`
+- Snail Secretion Filtrate → `skin conditioning`
+- Synthetic Beeswax → `viscosity adjuster`
+- Hexadecyloxy PG Hydroxyethyl Hexadecanamide → `moisturizer`
+- PEG-6 Caprylic/Capric Glycerides → `emulsifier`
+- Sodium Lauroyl Lactylate → `emulsifier`
+- Zinc Oxide → `uv filter`
+- Zea Mays Starch → `viscosity adjuster`
+- PEG-8 → `humectant`
+- Microcrystalline Wax → `viscosity adjuster`
+
+COSMILE Europe is the provenance authority for twelve mappings, Korea Cosmetic Association for Snail Secretion Filtrate, and Kao/Curel official product information for the explicitly stated `保湿` function of Hexadecyloxy PG Hydroxyethyl Hexadecanamide. Legacy category labels remain auditable in runtime metadata.

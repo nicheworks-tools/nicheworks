@@ -28,7 +28,7 @@ const CLAIM_REVIEW_RE = /\b(?:safe|safety|risk|irritat|allerg|sensiti|pregnan|to
 // Information incomplete debt instead of receiving a fabricated explanation.
 const PUBLIC_ROLE_CATEGORIES = new Set([
   'humectant', 'moisturizer', 'soothing', 'smoothing', 'active', 'amino acid', 'silicone',
-  'film former', 'emollient', 'oil', 'solvent', 'preservative', 'fragrance',
+  'film former', 'binder', 'emollient', 'oil', 'solvent', 'preservative', 'fragrance',
   'surfactant', 'cleanser', 'uv filter', 'sunscreen', 'colorant', 'pigment',
   'antioxidant', 'botanical', 'extract', 'plant extract', 'peptide', 'ferment',
   'thickener', 'emulsifier', 'chelator', 'chelating agent', 'ph', 'ph adjuster',

@@ -19,7 +19,11 @@
     "smoothing": { "authority_functions": ["smoothing"] },
     "buffer": { "authority_functions": ["buffering"] },
     "uv filter": { "authority_functions": ["uv filter"] },
-    "fragrance": { "authority_functions": ["fragrance"] }
+    "fragrance": { "authority_functions": ["fragrance"] },
+    "binder": { "authority_functions": ["binding"] },
+    "film former": { "authority_functions": ["film forming"] },
+    "hair conditioning": { "authority_functions": ["hair conditioning"] },
+    "moisturizer": { "authority_functions": ["保湿"] }
   },
   "reviewed_mappings": {
     "water": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/water/"],"runtime_verified":true},
@@ -123,6 +127,20 @@
     "coumarin": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/19218/coumarin/"],"runtime_verified":true},
     "farnesol": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/5607/farnesol/"],"runtime_verified":true},
     "hexyl cinnamal": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/19147/hexyl-cinnamal/"],"runtime_verified":true},
-    "alpha-isomethyl ionone": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/707/alpha-isomethyl-ionone/"],"runtime_verified":true}
+    "alpha-isomethyl ionone": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/707/alpha-isomethyl-ionone/"],"runtime_verified":true},
+    "triethoxycaprylylsilane": {"category":"binder","source_functions":["binding"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/16387/triethoxycaprylylsilane/"],"runtime_verified":true},
+    "p-anisic acid": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/10050/p-anisic-acid"],"runtime_verified":true},
+    "polyquaternium-39": {"category":"film former","source_functions":["film forming"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12405/polyquaternium-39/"],"runtime_verified":true},
+    "polyquaternium-53": {"category":"hair conditioning","source_functions":["hair conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12420/polyquaternium-53/"],"runtime_verified":true},
+    "ppg-5-ceteth-20": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/13095/ppg-5-ceteth-20/"],"runtime_verified":true},
+    "snail secretion filtrate": {"category":"skin conditioning","source_functions":["skin conditioning - miscellaneous"],"authority":"Korea Cosmetic Association / Ingredient Dictionary","sources":["https://kcia.or.kr/cid/search/ingd_view.php?no=6319"],"runtime_verified":true},
+    "synthetic beeswax": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15761/synthetic-beeswax/"],"runtime_verified":true},
+    "hexadecyloxy pg hydroxyethyl hexadecanamide": {"category":"moisturizer","source_functions":["保湿"],"authority":"Kao / Curel official product information","sources":["https://www.kao-kirei.com/ja/official/curel/special/26oilserum/"],"runtime_verified":true},
+    "peg-6 caprylic/capric glycerides": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/10945/peg-6-caprylic-capric-glycerides/"],"runtime_verified":true},
+    "sodium lauroyl lactylate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14891/sodium-lauroyl-lactylate/"],"runtime_verified":true},
+    "zinc oxide": {"category":"uv filter","source_functions":["uv filter"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/17131/zinc-oxide/"],"runtime_verified":true},
+    "zea mays starch": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/17078/zea-mays-starch"],"runtime_verified":true},
+    "peg-8": {"category":"humectant","source_functions":["humectant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/11059/peg-8/"],"runtime_verified":true},
+    "microcrystalline wax": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/fr/inci/ingredient/22305/microcrystalline-wax/"],"runtime_verified":true}
   }
 }

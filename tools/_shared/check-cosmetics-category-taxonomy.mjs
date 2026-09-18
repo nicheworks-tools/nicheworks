@@ -10,7 +10,7 @@ const taxonomy = JSON.parse(fs.readFileSync(path.join(root, 'tools/_shared/cosme
 
 const EXPECTED_CATEGORIES = new Set([
   'solvent', 'humectant', 'preservative', 'thickener', 'pH adjuster', 'antioxidant', 'viscosity adjuster', 'chelating agent',
-  'skin conditioning', 'emollient', 'cleanser', 'emulsifier', 'smoothing', 'buffer', 'uv filter', 'fragrance'
+  'skin conditioning', 'emollient', 'cleanser', 'emulsifier', 'smoothing', 'buffer', 'uv filter', 'fragrance', 'binder', 'film former', 'hair conditioning', 'moisturizer'
 ]);
 const EXPECTED_AUTHORITY_FUNCTIONS = Object.freeze({
   'solvent': ['solvent'],
@@ -28,7 +28,11 @@ const EXPECTED_AUTHORITY_FUNCTIONS = Object.freeze({
   'smoothing': ['smoothing'],
   'buffer': ['buffering'],
   'uv filter': ['uv filter'],
-  'fragrance': ['fragrance']
+  'fragrance': ['fragrance'],
+  'binder': ['binding'],
+  'film former': ['film forming'],
+  'hair conditioning': ['hair conditioning'],
+  'moisturizer': ['保湿']
 });
 const EXPECTED_WAVE3_PROMOTED = new Set(['sodium chloride', 'disodium edta']);
 const EXPECTED_WAVE4_PROMOTED = new Set(['tocopheryl acetate']);
@@ -53,7 +57,8 @@ const EXPECTED_WAVE22_PROMOTED = new Set(['calcium gluconate', 'ceramide as', 'c
 const EXPECTED_WAVE23_PROMOTED = new Set(['helianthus annuus sunflower seed wax', 'melaleuca alternifolia tea tree leaf oil', 'peg-120 methyl glucose dioleate', 'peg-30 dipolyhydroxystearate', 'pentaerythrityl tetraethylhexanoate', 'polyacrylate crosspolymer-11', 'polyglyceryl-4 caprate', 'sphingolipids']);
 const EXPECTED_WAVE24_PROMOTED = new Set(['polyglyceryl-10 oleate', 'gluconic acid', 'peg-40 hydrogenated castor oil', 'sodium carbonate', 'sulisobenzone', 'benzyl alcohol', 'urea', 'glyceryl caprate', 'polysilicone-15', 'drometrizole trisiloxane']);
 const EXPECTED_WAVE25_PROMOTED = new Set(['limonene', 'linalool', 'citral', 'geraniol', 'citronellol', 'eugenol', 'coumarin', 'farnesol', 'hexyl cinnamal', 'alpha-isomethyl ionone']);
-const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu', 'cosmileeurope.eu']);
+const EXPECTED_OFFICIAL_LABEL_CLOSURE = new Set(['triethoxycaprylylsilane', 'p-anisic acid', 'polyquaternium-39', 'polyquaternium-53', 'ppg-5-ceteth-20', 'snail secretion filtrate', 'synthetic beeswax', 'hexadecyloxy pg hydroxyethyl hexadecanamide', 'peg-6 caprylic/capric glycerides', 'sodium lauroyl lactylate', 'zinc oxide', 'zea mays starch', 'peg-8', 'microcrystalline wax']);
+const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu', 'cosmileeurope.eu', 'kcia.or.kr', 'www.kao-kirei.com']);
 
 function normalize(value = '') {
   return String(value).normalize('NFKC').replace(/[\u2010\u2011\u2012\u2013\u2014\u2212]/g, '-').replace(/\s+/g, ' ').trim().toLowerCase();
@@ -92,7 +97,11 @@ assert.equal(authorityFunctionToCategory.get('viscosity controlling'), 'viscosit
 assert.equal(authorityFunctionToCategory.get('skin conditioning - miscellaneous'), 'skin conditioning', 'COSMILE SKIN CONDITIONING - MISCELLANEOUS must map explicitly to skin conditioning');
 assert.equal(authorityFunctionToCategory.get('smoothing'), 'smoothing', 'COSMILE SMOOTHING must map explicitly to smoothing');
 assert.equal(authorityFunctionToCategory.get('fragrance'), 'fragrance', 'COSMILE FRAGRANCE must map explicitly to fragrance');
-assert.equal(authorityFunctionToCategory.size, 23, 'authority function vocabulary must contain exactly 23 reviewed terms');
+assert.equal(authorityFunctionToCategory.get('binding'), 'binder', 'COSMILE BINDING must map explicitly to binder');
+assert.equal(authorityFunctionToCategory.get('film forming'), 'film former', 'COSMILE FILM FORMING must map explicitly to film former');
+assert.equal(authorityFunctionToCategory.get('hair conditioning'), 'hair conditioning', 'COSMILE HAIR CONDITIONING must map explicitly to hair conditioning');
+assert.equal(authorityFunctionToCategory.get('保湿'), 'moisturizer', 'Kao official 保湿 function must map explicitly to moisturizer');
+assert.equal(authorityFunctionToCategory.size, 27, 'authority function vocabulary must contain exactly 27 reviewed terms');
 
 const runtimeMappings = {};
 for (const [canonical, mapping] of Object.entries(taxonomy.reviewed_mappings)) {
@@ -131,6 +140,7 @@ for (const canonical of EXPECTED_WAVE22_PROMOTED) assert.ok(runtimeMappings[cano
 for (const canonical of EXPECTED_WAVE23_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 23 mapping must be runtime_verified`);
 for (const canonical of EXPECTED_WAVE24_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 24 mapping must be runtime_verified`);
 for (const canonical of EXPECTED_WAVE25_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 25 mapping must be runtime_verified`);
+for (const canonical of EXPECTED_OFFICIAL_LABEL_CLOSURE) assert.ok(runtimeMappings[canonical], `${canonical}: official-label closure mapping must be runtime_verified`);
 assert.equal(runtimeMappings['sodium gluconate']?.source_functions?.[0], 'chelating', 'Sodium Gluconate must use the reviewed COSMILE CHELATING authority term');
 assert.equal(runtimeMappings['xanthan gum']?.source_functions?.[0], 'viscosity controlling', 'Xanthan Gum must use the reviewed COSMILE VISCOSITY CONTROLLING authority term');
 assert.equal(runtimeMappings['ethylhexylglycerin']?.source_functions?.[0], 'skin conditioning', 'Ethylhexylglycerin must use the reviewed COSMILE SKIN CONDITIONING authority term');
@@ -244,6 +254,7 @@ console.log(JSON.stringify({
   wave_23_promoted_mappings: [...EXPECTED_WAVE23_PROMOTED],
   wave_24_promoted_mappings: [...EXPECTED_WAVE24_PROMOTED],
   wave_25_promoted_mappings: [...EXPECTED_WAVE25_PROMOTED],
+  official_label_closure_mappings: [...EXPECTED_OFFICIAL_LABEL_CLOSURE],
   sodium_citrate_deferred_for_taxonomy_decision: true,
   raw_legacy_taxonomy_rewritten: false,
   safety_contract_changed: false,
