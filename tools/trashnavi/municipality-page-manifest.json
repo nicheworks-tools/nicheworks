@@ -222,5 +222,15 @@
   {"lgcode":"122319","pref_slug":"chiba","city_slug":"inzai","publish":true},
   {"lgcode":"122327","pref_slug":"chiba","city_slug":"shiroi","publish":true},
   {"lgcode":"122289","pref_slug":"chiba","city_slug":"yotsukaido","publish":true},
-  {"lgcode":"122335","pref_slug":"chiba","city_slug":"tomisato","publish":true}
+  {"lgcode":"122335","pref_slug":"chiba","city_slug":"tomisato","publish":true},
+  {"lgcode":"122025","pref_slug":"chiba","city_slug":"choshi","publish":true},
+  {"lgcode":"122050","pref_slug":"chiba","city_slug":"tateyama","publish":true},
+  {"lgcode":"122157","pref_slug":"chiba","city_slug":"asahi","publish":true},
+  {"lgcode":"122181","pref_slug":"chiba","city_slug":"katsuura","publish":true},
+  {"lgcode":"122238","pref_slug":"chiba","city_slug":"kamogawa","publish":true},
+  {"lgcode":"122343","pref_slug":"chiba","city_slug":"minamiboso","publish":true},
+  {"lgcode":"122360","pref_slug":"chiba","city_slug":"katori","publish":true},
+  {"lgcode":"122386","pref_slug":"chiba","city_slug":"isumi","publish":true},
+  {"lgcode":"122394","pref_slug":"chiba","city_slug":"oamishirasato","publish":true},
+  {"lgcode":"122351","pref_slug":"chiba","city_slug":"sosa","publish":true}
 ]
