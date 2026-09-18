@@ -533,6 +533,18 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.equal(phone.included?.adapter, 'not_included');
 }
 
+// Pixel 8a keeps PPS unknown: exact maintained primary material supports USB-PD but not a device PPS claim.
+{
+  const phone = byId.get('google-pixel-8a');
+  assert.ok(phone, 'Pixel 8a fixture missing');
+  assert.equal(phone.charging?.pps, 'unknown');
+  assert.deepEqual(phone.charging?.protocols, ['USB PD']);
+  const h = await createHarness(['google-pixel-8a']);
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /規格<\/span><b>USB PD/);
+  assert.match(html, /PPS<\/span><b>不明/);
+}
+
 console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estimates, Apple unknown capacity, Lightning guidance, proprietary charging, and mobile sheet.');
 
 // Explicit manufacturer-backed non-resistance is localized; model-specific unknown remains unknown.

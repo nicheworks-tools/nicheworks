@@ -65,6 +65,27 @@ for (const phone of phones) {
     fail(`${phone.id}: wirelessMaxW requires wirelessStandard`);
   }
 
+  const hasChargingClaim =
+    charging.wiredRecommendedW !== null && charging.wiredRecommendedW !== undefined
+    || charging.wiredMaxW !== null && charging.wiredMaxW !== undefined
+    || protocols.length > 0
+    || ['required', 'supported', 'not_supported'].includes(charging.pps);
+  if (hasChargingClaim && !sources.chargingUrl) {
+    fail(`${phone.id}: source-backed charging claim requires sources.chargingUrl`);
+  }
+
+  if (hasWirelessStandard && !sources.wirelessUrl) {
+    fail(`${phone.id}: source-backed wireless claim requires sources.wirelessUrl`);
+  }
+
+  const hasPpsProtocol = protocols.some((value) => value.includes('pps'));
+  if (['required', 'supported'].includes(charging.pps) && !hasPpsProtocol) {
+    fail(`${phone.id}: pps=${charging.pps} requires an explicit PPS protocol label`);
+  }
+  if (hasPpsProtocol && !['required', 'supported'].includes(charging.pps)) {
+    fail(`${phone.id}: explicit PPS protocol label requires pps=required or pps=supported`);
+  }
+
   if (String(charging.connector || '').toLowerCase() === 'lightning' && phone.manufacturer !== 'Apple') {
     fail(`${phone.id}: Lightning connector is only expected on maintained Apple records`);
   }

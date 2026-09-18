@@ -2334,7 +2334,7 @@
         "protocols": [
           "USB PD"
         ],
-        "pps": "supported",
+        "pps": "unknown",
         "wirelessStandard": "Qi",
         "wirelessMaxW": 7.5,
         "battery": {
@@ -2351,7 +2351,7 @@
         "specificationsUrl": "https://store.google.com/jp/product/pixel_8a_specs?hl=ja",
         "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
         "releaseUrl": "https://store.google.com/jp/magazine/compare_pixel?hl=ja&toggler0=Google+Pixel+8a",
-        "verifiedAt": "2026-09-14",
+        "verifiedAt": "2026-09-18",
         "chargingUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
         "wirelessUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
         "waterUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja"
