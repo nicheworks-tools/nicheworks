@@ -14,7 +14,7 @@ const accessoryPayload = JSON.parse(fs.readFileSync(accessoriesPath, 'utf8'));
 const phones = Array.isArray(phonePayload.phones) ? phonePayload.phones : [];
 const accessories = Array.isArray(accessoryPayload.accessories) ? accessoryPayload.accessories : [];
 
-if (phones.length < 185) fail(`expected at least 185 phones, got ${phones.length}`);
+if (phones.length < 187) fail(`expected at least 187 phones, got ${phones.length}`);
 if (!/^2026-\d{2}-\d{2}$/.test(String(phonePayload.updatedAt || ''))) fail('phones updatedAt must be a 2026 ISO date');
 
 const ids = new Set();
@@ -37,6 +37,15 @@ for (const phone of phones) {
 
   const isFoldable = phone.formFactor === 'foldable';
   if (phone.formFactor !== undefined && phone.formFactor !== 'foldable') fail(`${label}: unsupported formFactor`);
+
+  const physicalVariants = phone.physicalVariants;
+  if (physicalVariants !== undefined && !Array.isArray(physicalVariants)) {
+    fail(`${label}: physicalVariants must be an array when present`);
+  }
+  const variants = Array.isArray(physicalVariants) ? physicalVariants : [];
+  if (variants.length === 1) fail(`${label}: physicalVariants must contain at least two variants when used`);
+  if (isFoldable && variants.length) fail(`${label}: physicalVariants are currently supported only for non-foldable records`);
+
   const dimensionSets = isFoldable
     ? [['dimensionsFolded', phone.dimensionsFolded], ['dimensionsUnfolded', phone.dimensionsUnfolded]]
     : [['dimensions', phone.dimensions]];
@@ -52,19 +61,36 @@ for (const phone of phones) {
       fail(`${label}: ${dimensionLabel} must not mix depthMm with depthMmMin/depthMmMax`);
     } else if (hasDepth) {
       if (!finitePositive(d.depthMm)) fail(`${label}: invalid ${dimensionLabel}.depthMm`);
+      if (!isFoldable && variants.length) fail(`${label}: variant-backed dimensions must not duplicate depthMm`);
     } else if (hasDepthRange) {
-      if (!isFoldable) fail(`${label}: depth ranges are only supported for foldable dimensions`);
+      if (!isFoldable) fail(`${label}: depth ranges are only supported directly on foldable dimensions; use physicalVariants for non-foldables`);
       if (!finitePositive(d?.depthMmMin) || !finitePositive(d?.depthMmMax)) {
         fail(`${label}: ${dimensionLabel} depth range requires positive depthMmMin and depthMmMax`);
       } else if (Number(d.depthMmMin) > Number(d.depthMmMax)) {
         fail(`${label}: ${dimensionLabel}.depthMmMin must be <= depthMmMax`);
       }
-    } else {
+    } else if (!(variants.length && !isFoldable)) {
       fail(`${label}: ${dimensionLabel} requires depthMm or depthMmMin/depthMmMax`);
     }
   }
   if (isFoldable && phone.dimensions !== undefined) fail(`${label}: foldable records must use dimensionsFolded/dimensionsUnfolded, not dimensions`);
-  if (!finitePositive(phone.weightG)) fail(`${label}: invalid weightG`);
+
+  if (variants.length) {
+    if (phone.weightG !== undefined && phone.weightG !== null) fail(`${label}: variant-backed records must not collapse variant weights into weightG`);
+    const variantKeys = new Set();
+    for (const [index, variant] of variants.entries()) {
+      const variantLabel = `${label}.physicalVariants[${index}]`;
+      if (!variant || typeof variant !== 'object') { fail(`${variantLabel}: variant must be an object`); continue; }
+      if (!variant.key || typeof variant.key !== 'string') fail(`${variantLabel}: key required`);
+      else if (variantKeys.has(variant.key)) fail(`${variantLabel}: duplicate key ${variant.key}`);
+      else variantKeys.add(variant.key);
+      if (!variant.labelJa || !variant.labelEn) fail(`${variantLabel}: bilingual labels required`);
+      if (!finitePositive(variant.depthMm)) fail(`${variantLabel}: positive depthMm required`);
+      if (!finitePositive(variant.weightG)) fail(`${variantLabel}: positive weightG required`);
+    }
+  } else if (!finitePositive(phone.weightG)) {
+    fail(`${label}: invalid weightG`);
+  }
   if (phone.displayInch !== null && phone.displayInch !== undefined && !finitePositive(phone.displayInch)) fail(`${label}: invalid displayInch`);
   if (phone.waterRating !== null && phone.waterRating !== undefined && (typeof phone.waterRating !== 'string' || !phone.waterRating.trim())) fail(`${label}: invalid waterRating`);
   if (phone.waterStatus !== null && phone.waterStatus !== undefined && phone.waterStatus !== 'not_resistant') fail(`${label}: unsupported waterStatus`);
