@@ -169,3 +169,12 @@ All dictionary additions and shared naming equivalents are available to Lite and
 The corpus contains public product-label text only. It contains no user-entered ingredient lists, OCR images, filenames, scan results, or personal data.
 
 Amazon affiliate links are live as a separate neutral commerce layer. Corpus records and user analysis results must not select or construct affiliate destinations dynamically, and corpus contents must not be sent to affiliate analytics. Affiliate analytics remain limited to coarse fixed metadata under the shared cosmetics affiliate contract.
+
+
+## Public-role zero-gap invariant
+
+The source-backed 30-product corpus now enforces a semantic invariant in addition to exact identity coverage:
+
+> Every label token that resolves exactly to one maintained canonical ingredient must have at least one supported bilingual public role after the shared runtime merge.
+
+This invariant is enforced by `check-cosmetics-real-label-corpus.mjs`. It does not require under-specified, ambiguous, or deliberately deferred label tokens to become exact matches; those remain tracked by the existing unknown inventory. The invariant must not be weakened to accommodate new gaps—new exact-known gaps must be resolved through reviewed provenance and the shared role taxonomy.
