@@ -496,9 +496,10 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 
 - AdSense等のsite-wide monetization基盤はcommon specificationに従う。
 - monetizationを理由に自治体固有ルールを水増し・推測・転載しない。
-- Amazon等のaffiliateを将来追加する場合、自治体official link cardと商品recommendationを同一のauthorityに見せない。
+- Amazon affiliate surfaces must never make municipality official-link cards and product links look like the same authority; the live block remains visually and semantically separate.
 - affiliate/related-product surfaceはofficial municipality informationとは視覚的・意味的に分離する。
 - municipality pageのaffiliate blockは自治体official linkと視覚的・意味的に分離し、自治体固有情報やuser/runtime stateをAmazon queryへ渡さない。
+- root directory pageのaffiliate blockも検索結果・自治体official informationと分離し、prefecture / municipality / link type / keyword / result stateをAmazon queryやaffiliate analyticsへ渡さない。
 
 ## Limits and non-goals
 
@@ -630,6 +631,9 @@ CI probeの結果だけで`last_checked`、`status`、`final_url`等のsource re
 
 
 ## Amazon affiliate monetization (2026-09-14)
+
+- The root directory page also renders the same fixed four-offer Amazon block after the useful municipality-search result surface and before secondary reporting/support content.
+- Root-page prefecture, municipality, link type, keyword, result set, and other runtime state never choose, rank, or rewrite an Amazon destination.
 
 - Published municipality pages include one separate `[PR]` commerce block after the official municipal-information area.
 - Amazon Associates tracking uses the maintained NicheWorks tag `nicheworks09-22` and the existing `/assets/amazon-affiliate.js` helper.
