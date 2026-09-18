@@ -1,0 +1,396 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-18-wave5w-q017-electrical-layout-flooring-1",
+  "entries": [
+    {
+      "id": "q017_conduit_coupling",
+      "wave": "content-wave-005w",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "同径の電線管同士を直線的に接続するための継手。電線管の種類、呼び径、ねじ・差込・圧着などの接続方式、必要な保護等級や接地条件を合わせて選ぶ。",
+      "detail_en": "Fitting used to join two conduit sections of the same size in line. Conduit type, trade size, threaded, set-screw, compression, or other connection method, and any enclosure or grounding requirements must match the installation.",
+      "bullets_ja": [
+        "接続する電線管の材質・規格・呼び径に適合するカップリングを使う。",
+        "ねじ込み量、締付け、差込位置など製品指定の接続方法を守る。",
+        "屋外・湿潤場所や接地経路として使う場合は、その用途に適合する定格を確認する。"
+      ],
+      "bullets_en": [
+        "Use a coupling compatible with the conduit material, standard, and trade size on both sides.",
+        "Follow the specified thread engagement, tightening, insertion, or compression method for the fitting.",
+        "Where installed outdoors, in wet locations, or as part of a grounding path, confirm the fitting is rated for that use."
+      ],
+      "examples_ja": [
+        "切断した金属電線管を同径カップリングで直線接続する。",
+        "既設配管を延長する際に同一規格のカップリングを追加する。"
+      ],
+      "examples_en": [
+        "Join two cut sections of metal conduit in line with a same-size coupling.",
+        "Extend an existing conduit run using a coupling of the same system and size."
+      ]
+    },
+    {
+      "id": "q017_conduit_connector",
+      "wave": "content-wave-005w",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "電線管をボックス、盤、エンクロージャーなどの開口部へ接続・固定する継手。管種、呼び径、ノックアウト径、接続方式、シール性や接地条件を確認して選定する。",
+      "detail_en": "Fitting used to secure conduit to an electrical box, panel, or enclosure opening. Conduit type, trade size, knockout size, connection method, sealing, and grounding requirements must be compatible.",
+      "bullets_ja": [
+        "電線管とボックス開口の双方に適合するサイズ・方式を選ぶ。",
+        "ロックナットや圧着部は緩みや傾きがないよう確実に施工する。",
+        "防水・防じん性能が必要な場所では適合するシール構造を確認する。"
+      ],
+      "bullets_en": [
+        "Select a connector compatible with both the conduit and the box or enclosure opening.",
+        "Tighten locknuts, compression parts, or set screws securely without skewing the fitting.",
+        "Where water or dust protection is required, use a connector with the necessary sealing rating."
+      ],
+      "examples_ja": [
+        "金属電線管を分電盤のノックアウトへ固定する。",
+        "屋外ボックスへ電線管を接続するため防水形コネクタを使う。"
+      ],
+      "examples_en": [
+        "Secure metal conduit to a panel knockout with a conduit connector.",
+        "Use a weather-rated connector where conduit enters an outdoor box."
+      ]
+    },
+    {
+      "id": "q017_switch_plate",
+      "wave": "content-wave-005w",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "壁面のスイッチや配線器具の取付部を覆い、開口を仕上げるプレート。器具数、取付方式、開口形状、材質、色や周辺仕上げとの納まりを合わせて選ぶ。",
+      "detail_en": "Finish plate that covers the wall opening around a switch or wiring device. Device count, mounting pattern, opening shape, material, color, and fit with the surrounding finish determine the correct plate.",
+      "bullets_ja": [
+        "1連・2連など器具構成と開口形状に合うプレートを使う。",
+        "器具の傾きや突出を調整してからプレートを無理なく固定する。",
+        "割れ、反り、鋭い欠けがあるプレートは交換する。"
+      ],
+      "bullets_en": [
+        "Match the plate to the device count and opening pattern, such as single- or multi-gang layouts.",
+        "Align and set device depth before fastening the plate so it seats without distortion.",
+        "Replace plates that are cracked, warped, or chipped with sharp edges."
+      ],
+      "examples_ja": [
+        "壁スイッチ交換後に同じ規格の仕上げプレートを取り付ける。",
+        "2連ボックスに対応するプレートで開口周囲を仕上げる。"
+      ],
+      "examples_en": [
+        "Install a matching finish plate after replacing a wall switch.",
+        "Cover a two-gang box opening with the appropriate multi-device plate."
+      ]
+    },
+    {
+      "id": "q017_wire_duct",
+      "wave": "content-wave-005w",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "盤内や設備内で電線をまとめ、保護しながら配線経路を整えるダクト。収納量、幅・高さ、スロット形状、材質、難燃性、蓋の有無を配線量と盤内レイアウトに合わせる。",
+      "detail_en": "Duct used to organize, route, and protect wiring inside panels or equipment. Capacity, width, height, slot pattern, material, flame properties, and cover style should match the cable volume and panel layout.",
+      "bullets_ja": [
+        "配線量に対して過密にならない断面寸法を選ぶ。",
+        "曲がりや分岐部で電線を強く折り曲げず、必要な曲げ半径を確保する。",
+        "蓋の脱落や切断端の鋭利部がないか施工後に確認する。"
+      ],
+      "bullets_en": [
+        "Choose duct dimensions that provide adequate space without overcrowding the conductors.",
+        "Maintain appropriate cable bend radius at corners and branch points rather than forcing tight bends.",
+        "Check that covers are secure and that cut edges do not leave sharp hazards."
+      ],
+      "examples_ja": [
+        "制御盤内の制御線を配線ダクトへまとめて整理する。",
+        "端子台の列に沿ってスロット付きダクトを配置する。"
+      ],
+      "examples_en": [
+        "Route control wiring through wire duct inside a control panel.",
+        "Install slotted duct alongside terminal blocks to organize branch conductors."
+      ]
+    },
+    {
+      "id": "q017_barricade_bar",
+      "wave": "content-wave-005w",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "立入禁止や通行制限範囲を視覚的に示し、作業区画を区切る横桟状の安全部材。長さ、視認性、支持方法、屋内外条件、周辺の人流に合わせて設置する。",
+      "detail_en": "Horizontal barricade member used to mark or block a restricted work area. Length, visibility, support method, indoor or outdoor conditions, and pedestrian flow should be considered when setting it up.",
+      "bullets_ja": [
+        "人が容易に見落とさない高さと位置に設置する。",
+        "コーンや支柱との接続部を確実にし、倒れや抜けを防ぐ。",
+        "避難経路や必要な通行幅を塞がないよう配置を確認する。"
+      ],
+      "bullets_en": [
+        "Place the bar at a height and location where people are unlikely to miss it.",
+        "Secure connections to cones or posts so the barricade cannot easily fall or pull free.",
+        "Do not block required egress routes or necessary pedestrian clearance."
+      ],
+      "examples_ja": [
+        "床補修中の区画周囲にバリケードバーを設置する。",
+        "一時的な通行止め範囲をコーンとバーで明示する。"
+      ],
+      "examples_en": [
+        "Set barricade bars around an area where floor repair is in progress.",
+        "Mark a temporary no-entry zone using cones and horizontal barricade bars."
+      ]
+    },
+    {
+      "id": "q017_rotary_laser",
+      "wave": "content-wave-005w",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "回転するレーザー光で広範囲に水平面や勾配基準を作る測量・墨出し機器。自動整準範囲、精度、作業距離、受光器対応、勾配設定機能などを用途に合わせて選ぶ。",
+      "detail_en": "Layout instrument that rotates a laser beam to establish a level or sloped reference plane over a wide area. Self-leveling range, accuracy, working distance, receiver compatibility, and slope functions should match the task.",
+      "bullets_ja": [
+        "安定した三脚や基台に据え、整準範囲内で使用する。",
+        "作業距離と要求精度に合う機器仕様を確認する。",
+        "屋外や明るい場所では対応受光器を使用し、レーザーを直接見ない。"
+      ],
+      "bullets_en": [
+        "Mount the instrument on a stable tripod or base and operate within its leveling range.",
+        "Confirm that the specified working distance and accuracy meet the job requirement.",
+        "Use a compatible receiver outdoors or in bright conditions and avoid direct eye exposure to the laser."
+      ],
+      "examples_ja": [
+        "広い床面でレベル基準を出して高さを確認する。",
+        "外構工事で勾配設定した回転レーザーを基準に施工する。"
+      ],
+      "examples_en": [
+        "Establish a level reference across a large floor area to check elevations.",
+        "Use a rotary laser set to a slope as a reference for exterior grading work."
+      ]
+    },
+    {
+      "id": "q017_laser_receiver",
+      "wave": "content-wave-005w",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "回転レーザーなどの光を屋外や長距離で検出し、基準位置の上下を表示する受光器。対応レーザー波長、検出幅、精度設定、クランプ方式、表示・警報方法を確認して使う。",
+      "detail_en": "Receiver used to detect a rotary or compatible laser reference outdoors or at long range and indicate whether the sensor is above, below, or on grade. Wavelength compatibility, detection window, accuracy setting, clamp method, and indicators must match the laser and task.",
+      "bullets_ja": [
+        "使用するレーザー機器と受光器の互換性を確認する。",
+        "標尺やスタッフへ確実に固定し、測定中に位置がずれないようにする。",
+        "粗・精度モードを測定目的に合わせて切り替える。"
+      ],
+      "bullets_en": [
+        "Confirm that the receiver is compatible with the laser instrument being used.",
+        "Clamp it securely to the grade rod or staff so its position does not shift during measurement.",
+        "Select coarse or fine detection accuracy according to the measurement task."
+      ],
+      "examples_ja": [
+        "屋外で回転レーザーの基準高さをスタッフ上で検出する。",
+        "造成作業で受光器の表示を見ながら切土・盛土高さを確認する。"
+      ],
+      "examples_en": [
+        "Detect a rotary laser reference on a grade rod outdoors.",
+        "Check cut and fill elevations by watching the receiver indication during grading."
+      ]
+    },
+    {
+      "id": "q017_survey_tripod",
+      "wave": "content-wave-005w",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "レベル、トータルステーション、回転レーザーなどを安定して支持する測量用三脚。取付ねじ、脚長、材質、重量、脚先形状を機器と現場条件に合わせる。",
+      "detail_en": "Survey tripod used to support levels, total stations, rotary lasers, and similar instruments. Mounting thread, leg length, material, weight, and foot style should suit the instrument and site conditions.",
+      "bullets_ja": [
+        "機器の取付ねじと三脚ヘッドの規格を確認する。",
+        "脚を十分に開き、地面へ安定させて転倒や沈下を防ぐ。",
+        "機器を載せたまま三脚を移動せず、必要時は一度取り外す。"
+      ],
+      "bullets_en": [
+        "Verify that the tripod head and mounting screw match the instrument.",
+        "Spread and seat the legs firmly to reduce tipping or settlement.",
+        "Do not carry the tripod with the instrument mounted; remove the instrument before relocation when required."
+      ],
+      "examples_ja": [
+        "オートレベルを三脚に固定して高さ測定を行う。",
+        "回転レーザーを安定した三脚へ据えて広範囲の基準を出す。"
+      ],
+      "examples_en": [
+        "Mount an automatic level on a survey tripod for elevation work.",
+        "Set a rotary laser on a stable tripod to establish a wide-area reference."
+      ]
+    },
+    {
+      "id": "q017_inspection_mirror",
+      "wave": "content-wave-005w",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "直接見えない部材裏側、設備背面、狭所などを反射面で確認する点検用ミラー。ミラー径、柄の長さ、伸縮・首振り機構、照明の有無を点検箇所に合わせて選ぶ。",
+      "detail_en": "Inspection mirror used to view hidden backsides, equipment recesses, and confined areas indirectly. Mirror size, handle length, telescoping or articulating mechanism, and optional lighting should match the inspection area.",
+      "bullets_ja": [
+        "対象へ無理に差し込まず、周囲の配線や部材を傷つけない。",
+        "鏡面の汚れや曇りを除き、像を誤認しない状態で使う。",
+        "高温部や回転部の近くでは接触リスクを確認して使用する。"
+      ],
+      "bullets_en": [
+        "Do not force the mirror into a space where it could damage wiring or components.",
+        "Keep the mirror surface clean and clear so reflected details are not misread.",
+        "Near hot or moving parts, assess contact hazards before inserting the mirror."
+      ],
+      "examples_ja": [
+        "配管背面の漏れ跡をミラーで確認する。",
+        "機器裏側の銘板や接続状態を直接手を入れずに点検する。"
+      ],
+      "examples_en": [
+        "Use a mirror to check for leak traces behind piping.",
+        "Inspect a label or connection on the back of equipment without reaching directly into the space."
+      ]
+    },
+    {
+      "id": "q017_abrasive_block",
+      "wave": "content-wave-005w",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "手作業で面を研磨・ならすブロック状の研磨材。粒度、砥粒種類、硬さ、形状を素材と必要な仕上がりに合わせ、木材、塗膜、パテ、金属などの局部研磨に使う。",
+      "detail_en": "Block-shaped abrasive used by hand to sand, smooth, or dress surfaces. Grit size, abrasive type, hardness, and shape are selected for the material and required finish on wood, coatings, filler, metal, and similar surfaces.",
+      "bullets_ja": [
+        "粗削りから仕上げへ必要に応じて粒度を段階的に細かくする。",
+        "同じ場所へ過度に力を集中させず、面の平滑さを確認しながら使う。",
+        "粉じんが出る材料では適切な集じん・保護具を併用する。"
+      ],
+      "bullets_en": [
+        "Progress from coarser to finer grit as needed from stock removal to finishing.",
+        "Avoid concentrating excessive pressure in one spot and check flatness as you work.",
+        "Use appropriate dust control and protective equipment when sanding materials that generate hazardous dust."
+      ],
+      "examples_ja": [
+        "パテ補修部を塗装前に平滑へ研磨する。",
+        "木部の角を軽く面取りして手触りを整える。"
+      ],
+      "examples_en": [
+        "Smooth a filled repair area before painting.",
+        "Lightly ease a wooden edge with an abrasive block before finishing."
+      ]
+    },
+    {
+      "id": "q017_adhesive_spreader",
+      "wave": "content-wave-005w",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "床材などの施工で接着剤を所定の量・厚さへ広げるためのヘラやスプレッダー。刃幅、ノッチ形状、ノッチ寸法、接着剤との適合を施工仕様に合わせて選ぶ。",
+      "detail_en": "Hand spreader or trowel used to distribute flooring or construction adhesive at the required coverage and thickness. Blade width, notch shape, notch size, and adhesive compatibility should follow the installation specification.",
+      "bullets_ja": [
+        "接着剤メーカー指定のノッチ形状・寸法を使う。",
+        "塗布面へ均一な角度で動かし、塗り残しや過剰塗布を避ける。",
+        "硬化した接着剤がノッチへ詰まる前に清掃する。"
+      ],
+      "bullets_en": [
+        "Use the notch profile and size specified by the adhesive or flooring manufacturer.",
+        "Hold and move the spreader consistently to avoid missed areas or excessive adhesive.",
+        "Clean the tool before cured adhesive blocks or alters the notches."
+      ],
+      "examples_ja": [
+        "床タイル用接着剤を指定ノッチのヘラで塗布する。",
+        "接着剤のオープンタイムに合わせて施工範囲だけを均一に塗る。"
+      ],
+      "examples_en": [
+        "Spread floor-tile adhesive with the specified notched trowel.",
+        "Coat only the workable area uniformly within the adhesive open time."
+      ]
+    },
+    {
+      "id": "q017_flooring_pull_bar",
+      "wave": "content-wave-005w",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "壁際など直接打撃しにくい場所で、床材の端部へ掛けて接合部を引き寄せる金具。床材厚さ、端部形状、当て面、必要な引寄せ力に合う形状を選ぶ。",
+      "detail_en": "Metal pull bar used to draw flooring joints together near walls and other places where direct tapping is difficult. Bar geometry, contact face, flooring thickness, edge profile, and required pulling force should suit the flooring system.",
+      "bullets_ja": [
+        "床材端部を傷つけない位置へ当て、必要に応じて保護材を併用する。",
+        "無理な打撃でロック機構やさねを破損させない。",
+        "壁際の必要クリアランスを保ったまま接合部を締める。"
+      ],
+      "bullets_en": [
+        "Engage the flooring edge at a protected contact point and use padding where needed.",
+        "Do not use excessive hammer force that could damage locking profiles or tongues and grooves.",
+        "Close the joint while maintaining the required expansion clearance at the wall."
+      ],
+      "examples_ja": [
+        "最終列のフローリングを壁際で引き寄せて接合する。",
+        "叩き込みスペースがない場所で床材の隙間を詰める。"
+      ],
+      "examples_en": [
+        "Pull the final row of flooring tight near a wall.",
+        "Close a flooring joint where there is not enough room to use a tapping block directly."
+      ]
+    },
+    {
+      "id": "q017_floor_edge_pad",
+      "wave": "content-wave-005w",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "床材端部を叩いて位置調整する際、直接の打撃を避けて端部やロック形状を保護する当て材。床材の形状や硬さに合う接触面を選び、打撃を分散させて使う。",
+      "detail_en": "Protective pad or block placed against a flooring edge so it can be tapped into position without direct impact damage. Contact shape and hardness should suit the flooring profile and distribute impact away from vulnerable edges.",
+      "bullets_ja": [
+        "床材のさね・ロック部へ直接ハンマーを当てない。",
+        "当て材を端部へ均等に接触させ、偏った打撃を避ける。",
+        "欠けや変形した当て材は床材を傷つけるため交換する。"
+      ],
+      "bullets_en": [
+        "Do not strike flooring tongues, grooves, or locking edges directly with a hammer.",
+        "Seat the pad evenly against the edge to avoid concentrated or angled impact.",
+        "Replace a pad or block that is chipped or deformed enough to damage the flooring."
+      ],
+      "examples_ja": [
+        "クリック式床材を当て木越しに軽く叩いて接合する。",
+        "端部を保護しながら床材の位置を数ミリ調整する。"
+      ],
+      "examples_en": [
+        "Tap click-lock flooring together through a protective block.",
+        "Shift a flooring board slightly while protecting its edge from direct hammer contact."
+      ]
+    },
+    {
+      "id": "q017_formwork_panel",
+      "wave": "content-wave-005w",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "打設するコンクリートの形状を作る面材として組み立てる型枠用パネル。寸法、面材材質、表面状態、剛性、再使用回数、締付け・支持方法を構造と打設条件に合わせる。",
+      "detail_en": "Panel assembled as the face of formwork to shape fresh concrete. Dimensions, facing material, surface condition, stiffness, reuse condition, and tie or support method must suit the concrete geometry and placing loads.",
+      "bullets_ja": [
+        "打設圧力やパネル割付に対応する厚さ・支持間隔を確保する。",
+        "コンクリート接触面の損傷、付着物、著しい反りを施工前に確認する。",
+        "継ぎ目や端部からペーストが漏れないよう組立精度と締付けを管理する。"
+      ],
+      "bullets_en": [
+        "Provide panel thickness and support spacing suitable for the expected fresh-concrete pressure and layout.",
+        "Inspect the concrete-contact face for damage, buildup, or excessive warping before use.",
+        "Control alignment and fastening so joints and edges do not allow significant paste leakage."
+      ],
+      "examples_ja": [
+        "壁型枠の面材としてパネルを割付けて組み立てる。",
+        "再使用パネルの表面を清掃し、損傷を確認してから施工する。"
+      ],
+      "examples_en": [
+        "Lay out and assemble panels as the face of a wall form.",
+        "Clean and inspect a reusable form panel before installing it for another pour."
+      ]
+    },
+    {
+      "id": "q017_flooring_spacer",
+      "wave": "content-wave-005w",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "床材と壁・固定物の間へ所定の伸縮隙間を確保するためのスペーサー。必要クリアランス、床材厚さ、施工方式に合う寸法・形状を選び、施工中の基準を一定に保つ。",
+      "detail_en": "Spacer used to maintain the required expansion gap between flooring and walls or fixed boundaries. Spacer thickness and shape should match the specified clearance, flooring thickness, and installation method.",
+      "bullets_ja": [
+        "床材メーカーが指定する周囲クリアランスに合わせる。",
+        "壁の不陸があっても必要隙間を局所的に失わないよう配置する。",
+        "床材固定後や施工完了時に指定手順でスペーサーを撤去する。"
+      ],
+      "bullets_en": [
+        "Match spacer thickness to the perimeter clearance specified by the flooring manufacturer.",
+        "Place spacers so wall irregularities do not eliminate the required local expansion gap.",
+        "Remove the spacers at the stage specified by the flooring installation procedure."
+      ],
+      "examples_ja": [
+        "フローリング施工時に壁際へスペーサーを並べて伸縮隙間を確保する。",
+        "部屋の外周で一定のクリアランスを保ちながら床材を敷き進める。"
+      ],
+      "examples_en": [
+        "Place spacers along a wall while installing flooring to maintain the expansion gap.",
+        "Keep a consistent perimeter clearance as flooring is laid around a room."
+      ]
+    }
+  ]
+}
