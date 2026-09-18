@@ -5,60 +5,140 @@ const state = {
   metadata: new Map(),
   compatibility: new Map(),
   shapeNotes: new Map(),
-  strokeCounts: new Map()
+  strokeCounts: new Map(),
+  dataStatus: 'loading'
 };
 
 async function loadData() {
+  state.dataStatus = 'loading';
   const dictRes = await fetch('../old-kanji-reference/dict.json');
-  if (!dictRes.ok) throw new Error('dict load failed');
+  if (!dictRes.ok) {
+    state.dataStatus = 'error';
+    throw new Error('dict load failed');
+  }
   state.dict = await dictRes.json();
   state.reverse = buildReverseLookupFromOldToNew(state.dict.old_to_new || {});
-  await Promise.all([loadMetadata(), loadCompatibilityNotes()]);
+  const [metadataOk, compatibilityOk] = await Promise.all([loadMetadata(), loadCompatibilityNotes()]);
+  state.dataStatus = metadataOk && compatibilityOk ? 'ready' : 'partial_error';
+  return state.dataStatus;
+}
+
+function addReverseCandidate(map, modernForm, oldForm) {
+  if (!modernForm || !oldForm) return;
+  const candidates = map.get(modernForm) || [];
+  if (!candidates.includes(oldForm)) {
+    candidates.push(oldForm);
+    map.set(modernForm, candidates);
+  }
 }
 
 function buildReverseLookupFromOldToNew(oldToNew) {
   const map = new Map();
-  Object.entries(oldToNew).forEach(([oldForm, modernForm]) => {
-    if (!map.has(modernForm)) map.set(modernForm, []);
-    map.get(modernForm).push(oldForm);
+  Object.entries(oldToNew || {}).forEach(([oldForm, modernValue]) => {
+    const modernForms = Array.isArray(modernValue) ? modernValue : [modernValue];
+    modernForms.forEach((modernForm) => addReverseCandidate(map, modernForm, oldForm));
   });
   return map;
 }
 
+function getMetadataFields(meta, lang = state.lang) {
+  if (!meta) return {};
+  const ja = lang === 'ja';
+  return {
+    reading: ja ? (meta.readingJa || meta.readingEn || meta.reading || '') : (meta.readingEn || meta.readingJa || meta.reading || ''),
+    meaning: ja ? (meta.meaningJa || meta.meaningEn || meta.meaning || '') : (meta.meaningEn || meta.meaningJa || meta.meaning || ''),
+    usage: ja ? (meta.usageJa || meta.usageEn || meta.usage || '') : (meta.usageEn || meta.usageJa || meta.usage || ''),
+    category: meta.category || ''
+  };
+}
+
+function getShapeText(shape, lang = state.lang) {
+  if (!shape) return '';
+  if (typeof shape === 'string') return shape;
+  return lang === 'ja'
+    ? (shape.structureJa || shape.differenceJa || shape.noteJa || shape.summary || '')
+    : (shape.structureEn || shape.differenceEn || shape.noteEn || shape.summary || '');
+}
+
+function getStrokeText(stroke, lang = state.lang) {
+  if (!stroke) return '';
+  if (typeof stroke === 'number') return String(stroke);
+  if (stroke.oldStrokes == null && stroke.modernStrokes == null && stroke.difference == null) {
+    return stroke.old != null ? String(stroke.old) : '';
+  }
+  return lang === 'ja'
+    ? `旧字 ${stroke.oldStrokes ?? '-'} / 新字 ${stroke.modernStrokes ?? '-'} / 差 ${stroke.difference ?? '-'}`
+    : `old ${stroke.oldStrokes ?? '-'} / modern ${stroke.modernStrokes ?? '-'} / difference ${stroke.difference ?? '-'}`;
+}
+
+function getLocalizedCompatibilityFields(note, lang = state.lang) {
+  if (!note) return { summary: '', copyNote: '', recommended: '' };
+  const ja = lang === 'ja';
+  return {
+    summary: note.summary || (ja ? (note.summaryJa || note.summaryEn) : (note.summaryEn || note.summaryJa)) || '',
+    copyNote: note.copyNote || (ja ? (note.copyNoteJa || note.copyNoteEn) : (note.copyNoteEn || note.copyNoteJa)) || '',
+    recommended: note.recommendedCheck || (ja ? (note.recommendedCheckJa || note.recommendedCheckEn) : (note.recommendedCheckEn || note.recommendedCheckJa)) || ''
+  };
+}
+
+function buildConverterHref(input) {
+  return `../kanji-modernizer/?q=${encodeURIComponent(input || '')}`;
+}
+
 async function loadMetadata() {
   const files = ['meta.json', 'meta-extra-2.json', 'meta-extra-3.json', 'meta-extra-4.json', 'meta-extra-5.json', 'meta-extra-6.json'];
+  let ok = true;
   for (const file of files) {
     try {
       const res = await fetch(`../old-kanji-reference/${file}`);
-      if (!res.ok) continue;
+      if (!res.ok) { ok = false; continue; }
       const json = await res.json();
       const entries = json.entries || {};
       Object.entries(entries).forEach(([char, meta]) => state.metadata.set(char, meta));
-    } catch (_) {}
+    } catch (_) { ok = false; }
   }
   try {
     const shape = await fetch('../old-kanji-reference/shape-notes.json');
-    if (shape.ok) Object.entries((await shape.json()).entries || {}).forEach(([k, v]) => state.shapeNotes.set(k, v));
-  } catch (_) {}
+    if (shape.ok) {
+      Object.entries((await shape.json()).entries || {}).forEach(([k, v]) => state.shapeNotes.set(k, v));
+    } else {
+      ok = false;
+    }
+  } catch (_) { ok = false; }
   try {
     const stroke = await fetch('../old-kanji-reference/stroke-counts.json');
-    if (stroke.ok) Object.entries((await stroke.json()).entries || {}).forEach(([k, v]) => state.strokeCounts.set(k, v));
-  } catch (_) {}
+    if (stroke.ok) {
+      Object.entries((await stroke.json()).entries || {}).forEach(([k, v]) => state.strokeCounts.set(k, v));
+    } else {
+      ok = false;
+    }
+  } catch (_) { ok = false; }
+  return ok;
 }
 
 async function loadCompatibilityNotes() {
   try {
     const res = await fetch('../old-kanji-reference/compatibility-notes.json');
-    if (!res.ok) return;
+    if (!res.ok) return false;
     const json = await res.json();
     Object.entries(json.entries || {}).forEach(([k, v]) => state.compatibility.set(k, v));
-  } catch (_) {}
+    return true;
+  } catch (_) {
+    return false;
+  }
 }
 
 function getFallbackCompatibilityNote(char) {
   const cp = char.codePointAt(0);
-  if (cp >= 0xF900 && cp <= 0xFAFF) return { summaryJa:'CJK互換漢字です。', summaryEn:'CJK Compatibility Ideograph.', copyNoteJa:'環境差に注意', copyNoteEn:'Watch rendering differences.', recommendedCheckJa:'自治体・郵便・登記表記を照合', recommendedCheckEn:'Cross-check official records.'};
-  if (cp > 0xFFFF) return { summaryJa:'補助漢字面の文字です。', summaryEn:'Supplementary plane character.', copyNoteJa:'文字化けの可能性あり', copyNoteEn:'May not render everywhere.', recommendedCheckJa:'フォント差を確認', recommendedCheckEn:'Check font support.'};
+  if ((cp >= 0xFE00 && cp <= 0xFE0F) || (cp >= 0xE0100 && cp <= 0xE01EF)) {
+    return { summaryJa:'異体字セレクタです。', summaryEn:'Variation Selector.', copyNoteJa:'対応していない環境では字形指定が失われる場合があります。', copyNoteEn:'Unsupported environments may lose the glyph variation.', recommendedCheckJa:'利用先の対応状況を確認', recommendedCheckEn:'Check target-system support.' };
+  }
+  if ((cp >= 0xF900 && cp <= 0xFAFF) || (cp >= 0x2F800 && cp <= 0x2FA1F)) {
+    return { summaryJa:'CJK互換漢字です。', summaryEn:'CJK Compatibility Ideograph.', copyNoteJa:'環境差に注意', copyNoteEn:'Watch rendering differences.', recommendedCheckJa:'自治体・郵便・登記表記を照合', recommendedCheckEn:'Cross-check official records.' };
+  }
+  if (cp > 0xFFFF) {
+    return { summaryJa:'補助平面の文字です。', summaryEn:'Supplementary-plane character.', copyNoteJa:'文字化けの可能性あり', copyNoteEn:'May not render everywhere.', recommendedCheckJa:'フォント差を確認', recommendedCheckEn:'Check font support.' };
+  }
   return null;
 }
 
@@ -70,6 +150,12 @@ function analyzeInput() {
   const converterAnchor = document.getElementById('converterAnchor');
   resultList.innerHTML = '';
   if (!input.trim()) { summary.hidden = true; document.getElementById('cautionPanel').hidden = true; converterLink.hidden = true; return; }
+  if (!state.dict || state.dataStatus === 'loading' || state.dataStatus === 'error') {
+    summary.hidden = true;
+    document.getElementById('cautionPanel').hidden = true;
+    converterLink.hidden = true;
+    return;
+  }
 
   let found = false;
   [...input].forEach((char) => {
@@ -83,41 +169,46 @@ function analyzeInput() {
 
   renderCautionPanel();
   converterLink.hidden = false;
-  converterAnchor.href = `../kanji-modernizer/?q=${encodeURIComponent(input)}`;
+  converterAnchor.href = buildConverterHref(input);
 }
 
 function renderResultCard(char) {
-  const oldToNew = state.dict.old_to_new || {};
+  const oldToNew = state.dict?.old_to_new || {};
   const oldMatch = oldToNew[char];
-  const reverseCandidates = state.reverse.get(char);
-  if (!oldMatch && !reverseCandidates) return null;
+  const reverseCandidates = state.reverse.get(char) || [];
+  if (!oldMatch && reverseCandidates.length === 0) return null;
 
   const card = document.createElement('article');
   card.className = 'place-result-card';
-  const metaKey = oldMatch ? char : (reverseCandidates && reverseCandidates[0]);
+  const modernForms = oldMatch ? (Array.isArray(oldMatch) ? oldMatch : [oldMatch]) : [];
+  const modernText = modernForms.filter(Boolean).join(' / ');
+  const metaKey = oldMatch ? char : reverseCandidates[0];
   const meta = state.metadata.get(metaKey) || {};
+  const metaFields = getMetadataFields(meta);
   const compatibility = state.compatibility.get(metaKey) || getFallbackCompatibilityNote(char);
   const shape = state.shapeNotes.get(metaKey);
   const stroke = state.strokeCounts.get(metaKey);
 
-  const candidateText = oldMatch ? `${char} → ${oldMatch}` : `${char} ${state.lang === 'ja' ? 'の旧字体・異体字候補' : 'candidates'}: ${reverseCandidates.join('、')}`;
+  const candidateText = oldMatch ? `${char} → ${modernText}` : `${char} ${state.lang === 'ja' ? 'の旧字体・異体字候補' : 'candidates'}: ${reverseCandidates.join('、')}`;
   const details = [];
-  if (meta.reading) details.push(`<div>${state.lang === 'ja' ? '読み' : 'Reading'}: ${meta.reading}</div>`);
-  if (meta.meaning) details.push(`<div>${state.lang === 'ja' ? '意味' : 'Meaning'}: ${meta.meaning}</div>`);
-  if (meta.category) details.push(`<div>${state.lang === 'ja' ? '候補種別' : 'Candidate type'}: ${meta.category}</div>`);
-  if (meta.usage) details.push(`<div>${state.lang === 'ja' ? '用途' : 'Usage'}: ${meta.usage}</div>`);
+  if (metaFields.reading) details.push(`<div>${state.lang === 'ja' ? '読み' : 'Reading'}: ${metaFields.reading}</div>`);
+  if (metaFields.meaning) details.push(`<div>${state.lang === 'ja' ? '意味' : 'Meaning'}: ${metaFields.meaning}</div>`);
+  if (metaFields.category) details.push(`<div>${state.lang === 'ja' ? '候補種別' : 'Candidate type'}: ${metaFields.category}</div>`);
+  if (metaFields.usage) details.push(`<div>${state.lang === 'ja' ? '用途' : 'Usage'}: ${metaFields.usage}</div>`);
   if (!details.length) details.push(`<div>${state.lang === 'ja' ? '登録データなし' : 'No data in current reference'}</div>`);
 
   const referenceChar = oldMatch ? char : reverseCandidates[0];
   card.innerHTML = `<h3>${candidateText}</h3>${details.join('')}
   <div class="copy-actions">
     <button type="button" data-copy="${char}">${state.lang === 'ja' ? '入力字をコピー' : 'Copy input character'}</button>
-    ${oldMatch ? `<button type="button" data-copy="${oldMatch}">${state.lang === 'ja' ? '現代表記をコピー' : 'Copy modern form'}</button><button type="button" data-copy="${char}">${state.lang === 'ja' ? '候補をコピー' : 'Copy candidate'}</button>` : `<button type="button" data-copy="${reverseCandidates.join('、')}">${state.lang === 'ja' ? '候補一覧をコピー' : 'Copy all candidates'}</button>`}
+    ${oldMatch ? `<button type="button" data-copy="${modernText}">${state.lang === 'ja' ? '現代表記をコピー' : 'Copy modern form'}</button><button type="button" data-copy="${char}">${state.lang === 'ja' ? '候補をコピー' : 'Copy candidate'}</button>` : `<button type="button" data-copy="${reverseCandidates.join('、')}">${state.lang === 'ja' ? '候補一覧をコピー' : 'Copy all candidates'}</button>`}
   </div>
   <p class="reference-links"><a href="../old-kanji-reference/?q=${encodeURIComponent(referenceChar)}">${state.lang === 'ja' ? '旧字体一覧で詳しく見る' : 'View in Old Kanji Reference'}</a></p>`;
 
-  if (shape || stroke) {
-    card.innerHTML += `<div class="candidate-list">${shape ? `<div>${state.lang === 'ja' ? '形の見比べ' : 'Shape comparison'}: ${typeof shape === 'string' ? shape : (shape.summary || '')}</div>` : ''}${stroke ? `<div>${state.lang === 'ja' ? '画数の目安' : 'Stroke count reference'}: ${typeof stroke === 'number' ? stroke : (stroke.old || '')}</div>` : ''}</div>`;
+  const shapeText = getShapeText(shape);
+  const strokeText = getStrokeText(stroke);
+  if (shapeText || strokeText) {
+    card.innerHTML += `<div class="candidate-list">${shapeText ? `<div>${state.lang === 'ja' ? '形の見比べ' : 'Shape comparison'}: ${shapeText}</div>` : ''}${strokeText ? `<div>${state.lang === 'ja' ? '画数の目安' : 'Stroke count reference'}: ${strokeText}</div>` : ''}</div>`;
   }
   if (compatibility) {
     card.appendChild(renderCompatibilityNote(compatibility));
@@ -130,9 +221,7 @@ function renderResultCard(char) {
 function renderCompatibilityNote(note) {
   const block = document.createElement('div');
   block.className = 'compatibility-note';
-  const summary = note.summary || note.summaryJa || note.summaryEn || '';
-  const copyNote = note.copyNote || note.copyNoteJa || note.copyNoteEn || '';
-  const recommended = note.recommendedCheck || note.recommendedCheckJa || note.recommendedCheckEn || '';
+  const { summary, copyNote, recommended } = getLocalizedCompatibilityFields(note);
   block.innerHTML = `<strong>${state.lang === 'ja' ? '表示環境の注意' : 'Rendering note'}</strong><div>${summary}</div><div>${copyNote}</div><div>${recommended}</div>`;
   return block;
 }
@@ -207,5 +296,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.querySelectorAll('.nw-lang-switch button').forEach((btn) => btn.addEventListener('click', () => setLang(btn.dataset.lang)));
   setLang('ja');
   syncOkjProRuntimeState();
-  await loadData();
+  try {
+    await loadData();
+  } catch (_) {
+    state.dataStatus = 'error';
+  }
+  analyzeInput();
 });

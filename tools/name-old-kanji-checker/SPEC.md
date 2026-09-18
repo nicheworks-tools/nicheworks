@@ -17,7 +17,7 @@ Check characters in a name against the Old Kanji Reference data and surface old-
 - Build a reverse lookup so entered modern forms can show registered old/variant candidates.
 - Show available reading, meaning, category, and rendering/compatibility notes from the reference data.
 - Provide copy actions for input characters, modern forms, candidates, and candidate lists.
-- Link to the full Old Kanji Reference and Kanji Modernizer for follow-up review.
+- Link to the full Old Kanji Reference and Kanji Modernizer for follow-up review; the whole-text Modernizer handoff preserves the exact entered text, including leading/trailing whitespace and line breaks.
 - Degrade to basic mappings when optional metadata files fail to load.
 - Do not render an unfinished Pro sales panel, fixed Pro price, or disabled purchase CTA while no verified purchase path is connected.
 
@@ -61,16 +61,18 @@ The workflow is a short name input followed by vertically stacked per-character 
 
 ## Acceptance criteria
 
-- [ ] Old forms in the reference mapping show their modern mapping and modern forms show registered reverse candidates when available.
-- [ ] Failure of optional metadata files still allows base mapping checks rather than falsely reporting a total application failure.
-- [ ] Entered name text is not sent to an external character-lookup API.
-- [ ] Results retain explicit official-use cautions and do not claim legal/registry authority.
-- [ ] The public page does not expose unfinished billing/Pro sales controls until a verified entitlement/purchase path exists.
+- [x] Old forms in the reference mapping show their modern mapping and modern forms show registered reverse candidates when available.
+- [x] Failure of optional metadata files still allows base mapping checks rather than falsely reporting a total application failure.
+- [x] Entered name text is not sent to an external character-lookup API.
+- [x] Results retain explicit official-use cautions and do not claim legal/registry authority.
+- [x] Whole-text Modernizer handoff preserves the entered text without trimming leading/trailing whitespace or line breaks.
+- [x] The public page does not expose unfinished billing/Pro sales controls until a verified entitlement/purchase path exists.
 
 ## Implementation evidence
 
 - `tools/name-old-kanji-checker/index.html`
 - `tools/name-old-kanji-checker/app.js`
+- `tools/name-old-kanji-checker/tests/behavior.test.mjs` — forward/reverse mapping, supplementary Unicode handling, optional-data degradation, exact Modernizer handoff, privacy/non-authority wording, and public Pro-boundary regression QA.
 - `tools/name-old-kanji-checker/style.css`
 - `tools/old-kanji-reference/dict.json`
 - `tools/old-kanji-reference/compatibility-notes.json`

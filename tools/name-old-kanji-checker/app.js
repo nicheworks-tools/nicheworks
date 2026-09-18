@@ -138,6 +138,14 @@
     return Array.from(text || '');
   }
 
+  function hasMeaningfulText(text) {
+    return String(text || '').trim().length > 0;
+  }
+
+  function buildConverterHref(text) {
+    return `../kanji-modernizer/?q=${encodeURIComponent(text || '')}`;
+  }
+
   function getCodePointInfo(char) {
     if (!char) return null;
     const codePoint = char.codePointAt(0);
@@ -150,7 +158,9 @@
 
   function hasCompatibilityIdeograph(char) {
     const info = getCodePointInfo(char);
-    return !!info && info.codePoint >= 0xf900 && info.codePoint <= 0xfaff;
+    if (!info) return false;
+    const cp = info.codePoint;
+    return (cp >= 0xf900 && cp <= 0xfaff) || (cp >= 0x2f800 && cp <= 0x2fa1f);
   }
 
   function hasSupplementaryPlaneChar(char) {
@@ -301,18 +311,20 @@
   function render() {
     renderStatusMessage();
 
-    const rawInput = el.input.value.trim();
+    const exactInput = el.input.value || '';
+    const rawInput = exactInput.trim();
+    const hasInput = hasMeaningfulText(exactInput);
     const isUsable = state.dataStatus === 'ready' || state.dataStatus === 'partial_error';
 
-    el.summary.hidden = !rawInput || !isUsable;
-    el.list.hidden = !rawInput || !isUsable;
-    el.riskPanel.hidden = !rawInput || !isUsable;
+    el.summary.hidden = !hasInput || !isUsable;
+    el.list.hidden = !hasInput || !isUsable;
+    el.riskPanel.hidden = !hasInput || !isUsable;
 
     el.summary.innerHTML = '';
     el.list.innerHTML = '';
     el.converterLinkWrap.innerHTML = '';
 
-    if (!rawInput || !isUsable) return;
+    if (!hasInput || !isUsable) return;
 
     let foundCount = 0;
 
@@ -424,7 +436,7 @@
     el.riskPanel.innerHTML = `<h2>${t('riskTitle')}</h2><p>${t('riskText')}</p>`;
 
     const converterLink = document.createElement('a');
-    converterLink.href = `../kanji-modernizer/?q=${encodeURIComponent(rawInput)}`;
+    converterLink.href = buildConverterHref(exactInput);
     converterLink.textContent = t('converterLink');
     el.converterLinkWrap.appendChild(converterLink);
   }
