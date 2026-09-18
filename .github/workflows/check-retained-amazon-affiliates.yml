@@ -14,6 +14,18 @@ on:
       - 'tools/moving-checklist-generator/**'
       - 'tools/moving-lease-final-check/**'
       - 'scripts/check-retained-amazon-affiliates.mjs'
+      - 'tools/manual-finder/**'
+      - 'tools/phone-quickcheck/**'
+      - 'tools/pattern-dictionary/**'
+      - 'tools/trashnavi/**'
+      - 'tools/construction-tools-atlas/**'
+      - 'tools/cosmetic-ingredient-checker-lite/**'
+      - 'tools/inci-fastscan/**'
+      - 'tools/_shared/cosmetics-affiliate-config.js'
+      - 'tools/_shared/cosmetics-affiliate-slot.js'
+      - 'tools/_shared/check-cosmetics-affiliate-contract.mjs'
+      - 'tools/_shared/check-fastscan-result-controls.mjs'
+      - 'scripts/check-all-affiliate-contract.mjs'
       - '.github/workflows/check-retained-amazon-affiliates.yml'
   push:
     branches:
@@ -30,6 +42,18 @@ on:
       - 'tools/moving-checklist-generator/**'
       - 'tools/moving-lease-final-check/**'
       - 'scripts/check-retained-amazon-affiliates.mjs'
+      - 'tools/manual-finder/**'
+      - 'tools/phone-quickcheck/**'
+      - 'tools/pattern-dictionary/**'
+      - 'tools/trashnavi/**'
+      - 'tools/construction-tools-atlas/**'
+      - 'tools/cosmetic-ingredient-checker-lite/**'
+      - 'tools/inci-fastscan/**'
+      - 'tools/_shared/cosmetics-affiliate-config.js'
+      - 'tools/_shared/cosmetics-affiliate-slot.js'
+      - 'tools/_shared/check-cosmetics-affiliate-contract.mjs'
+      - 'tools/_shared/check-fastscan-result-controls.mjs'
+      - 'scripts/check-all-affiliate-contract.mjs'
       - '.github/workflows/check-retained-amazon-affiliates.yml'
 
 permissions:
@@ -44,3 +68,4 @@ jobs:
         with:
           node-version: '24'
       - run: node scripts/check-retained-amazon-affiliates.mjs
+      - run: node scripts/check-all-affiliate-contract.mjs
