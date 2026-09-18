@@ -14,7 +14,8 @@
     "chelating agent": { "authority_functions": ["chelating agent", "chelating agents", "chelating"] },
     "skin conditioning": { "authority_functions": ["skin conditioning"] },
     "emollient": { "authority_functions": ["skin conditioning - emollient"] },
-    "cleanser": { "authority_functions": ["cleansing", "surfactant - cleansing"] }
+    "cleanser": { "authority_functions": ["cleansing", "surfactant - cleansing"] },
+    "emulsifier": { "authority_functions": ["surfactant - emulsifying"] }
   },
   "reviewed_mappings": {
     "water": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/water/"],"runtime_verified":true},
@@ -53,6 +54,10 @@
     "cetearyl olivate": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2907/cetearyl-olivate/"],"runtime_verified":true},
     "stearyl alcohol": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15539/stearyl-alcohol/"],"runtime_verified":true},
     "sodium lauroyl glutamate": {"category":"cleanser","source_functions":["surfactant - cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14885/sodium-lauroyl-glutamate/"],"runtime_verified":true},
-    "sodium coco-sulfate": {"category":"cleanser","source_functions":["surfactant - cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14690/sodium-coco-sulfate/"],"runtime_verified":true}
+    "sodium coco-sulfate": {"category":"cleanser","source_functions":["surfactant - cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14690/sodium-coco-sulfate/"],"runtime_verified":true},
+    "polysorbate 80": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12497/polysorbate-80/"],"runtime_verified":true},
+    "sorbitan olivate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15312/sorbitan-olivate/"],"runtime_verified":true},
+    "steareth-2": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15492/steareth-2/"],"runtime_verified":true},
+    "steareth-21": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15496/steareth-21/"],"runtime_verified":true}
   }
 }
