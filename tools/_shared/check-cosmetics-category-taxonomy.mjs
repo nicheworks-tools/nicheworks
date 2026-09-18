@@ -44,6 +44,7 @@ const EXPECTED_WAVE16_PROMOTED = new Set(['hydroxyacetophenone', 'palmitic acid'
 const EXPECTED_WAVE17_PROMOTED = new Set(['niacinamide']);
 const EXPECTED_WAVE18_PROMOTED = new Set(['hydroxyethyl acrylate/sodium acryloyldimethyl taurate copolymer', 'ammonium polyacryloyldimethyl taurate', 'ethylhexyl methoxycrylene', 'glyceryl stearate se']);
 const EXPECTED_WAVE19_PROMOTED = new Set(['polyacrylate crosspolymer-6', 'polyhydroxystearic acid', 'potassium cetyl phosphate', 'sorbitan isostearate']);
+const EXPECTED_WAVE20_PROMOTED = new Set(['ceramide ap', 'ceramide eop', 'phytosphingosine']);
 const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu', 'cosmileeurope.eu']);
 
 function normalize(value = '') {
@@ -115,6 +116,7 @@ for (const canonical of EXPECTED_WAVE16_PROMOTED) assert.ok(runtimeMappings[cano
 for (const canonical of EXPECTED_WAVE17_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 17 mapping must be runtime_verified`);
 for (const canonical of EXPECTED_WAVE18_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 18 mapping must be runtime_verified`);
 for (const canonical of EXPECTED_WAVE19_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 19 mapping must be runtime_verified`);
+for (const canonical of EXPECTED_WAVE20_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave 20 mapping must be runtime_verified`);
 assert.equal(runtimeMappings['sodium gluconate']?.source_functions?.[0], 'chelating', 'Sodium Gluconate must use the reviewed COSMILE CHELATING authority term');
 assert.equal(runtimeMappings['xanthan gum']?.source_functions?.[0], 'viscosity controlling', 'Xanthan Gum must use the reviewed COSMILE VISCOSITY CONTROLLING authority term');
 assert.equal(runtimeMappings['ethylhexylglycerin']?.source_functions?.[0], 'skin conditioning', 'Ethylhexylglycerin must use the reviewed COSMILE SKIN CONDITIONING authority term');
@@ -150,6 +152,9 @@ assert.equal(runtimeMappings['polyacrylate crosspolymer-6']?.source_functions?.[
 assert.equal(runtimeMappings['polyhydroxystearic acid']?.source_functions?.[0], 'surfactant - emulsifying', 'Polyhydroxystearic Acid must use the reviewed COSMILE SURFACTANT - EMULSIFYING authority term');
 assert.equal(runtimeMappings['potassium cetyl phosphate']?.source_functions?.[0], 'surfactant - emulsifying', 'Potassium Cetyl Phosphate must use the reviewed COSMILE SURFACTANT - EMULSIFYING authority term');
 assert.equal(runtimeMappings['sorbitan isostearate']?.source_functions?.[0], 'surfactant - emulsifying', 'Sorbitan Isostearate must use the reviewed COSMILE SURFACTANT - EMULSIFYING authority term');
+assert.equal(runtimeMappings['ceramide ap']?.source_functions?.[0], 'skin conditioning', 'Ceramide AP must use the reviewed COSMILE SKIN CONDITIONING authority term');
+assert.equal(runtimeMappings['ceramide eop']?.source_functions?.[0], 'skin conditioning', 'Ceramide EOP must use the reviewed COSMILE SKIN CONDITIONING authority term');
+assert.equal(runtimeMappings['phytosphingosine']?.source_functions?.[0], 'skin conditioning', 'Phytosphingosine must use the reviewed COSMILE SKIN CONDITIONING authority term');
 assert.equal(runtimeMappings['sodium citrate'], undefined, 'Sodium Citrate must remain out of runtime taxonomy until buffer vs pH-adjuster semantics are explicitly resolved');
 
 const runtimeEvidence = parser.verifiedCategoryEvidence || {};
@@ -165,7 +170,7 @@ for (const ambiguous of parser.ambiguousExactKeys || []) assert.equal(taxonomy.r
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'verified-category-taxonomy-wave-19',
+  phase: 'verified-category-taxonomy-wave-20',
   mapping_policy: taxonomy.mapping_policy,
   canonical_categories: Object.keys(taxonomy.categories).length,
   unique_authority_function_terms: authorityFunctionToCategory.size,
@@ -187,6 +192,7 @@ console.log(JSON.stringify({
   wave_17_promoted_mappings: [...EXPECTED_WAVE17_PROMOTED],
   wave_18_promoted_mappings: [...EXPECTED_WAVE18_PROMOTED],
   wave_19_promoted_mappings: [...EXPECTED_WAVE19_PROMOTED],
+  wave_20_promoted_mappings: [...EXPECTED_WAVE20_PROMOTED],
   sodium_citrate_deferred_for_taxonomy_decision: true,
   raw_legacy_taxonomy_rewritten: false,
   safety_contract_changed: false,
