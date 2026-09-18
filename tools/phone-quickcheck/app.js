@@ -234,7 +234,7 @@
     });
 
     if (sort === 'lightest') {
-      result.sort((a, b) => numberOrInfinity(a.weightG) - numberOrInfinity(b.weightG));
+      result.sort((a, b) => numberOrInfinity(sortWeight(a)) - numberOrInfinity(sortWeight(b)));
     } else if (sort === 'compact') {
       result.sort((a, b) => numberOrInfinity(sortDimensions(a)?.widthMm) - numberOrInfinity(sortDimensions(b)?.widthMm) || numberOrInfinity(sortDimensions(a)?.heightMm) - numberOrInfinity(sortDimensions(b)?.heightMm));
     } else {
@@ -246,6 +246,36 @@
   function numberOrInfinity(value) { return Number.isFinite(Number(value)) ? Number(value) : Number.POSITIVE_INFINITY; }
   function numberOrZero(value) { return Number.isFinite(Number(value)) ? Number(value) : 0; }
   function numberOrNull(value) { return Number.isFinite(Number(value)) ? Number(value) : null; }
+
+  function physicalVariants(phone) {
+    return Array.isArray(phone?.physicalVariants) ? phone.physicalVariants : [];
+  }
+
+  function sortWeight(phone) {
+    if (Number.isFinite(Number(phone?.weightG))) return Number(phone.weightG);
+    const values = physicalVariants(phone)
+      .map((variant) => Number(variant?.weightG))
+      .filter(Number.isFinite);
+    return values.length ? Math.min(...values) : null;
+  }
+
+  function weightLabel(phone) {
+    if (Number.isFinite(Number(phone?.weightG))) return `${formatNumber(phone.weightG)} g`;
+    const values = physicalVariants(phone)
+      .map((variant) => Number(variant?.weightG))
+      .filter(Number.isFinite)
+      .sort((a, b) => a - b);
+    if (!values.length) return '—';
+    const min = values[0];
+    const max = values[values.length - 1];
+    return min === max ? `${formatNumber(min)} g` : `${formatNumber(min)}–${formatNumber(max)} g`;
+  }
+
+  function localizedVariantLabel(variant) {
+    const preferred = state.lang === 'ja' ? variant?.labelJa : variant?.labelEn;
+    const fallback = state.lang === 'ja' ? variant?.labelEn : variant?.labelJa;
+    return preferred || fallback || variant?.key || '—';
+  }
 
   function render() {
     renderDataState();
@@ -278,7 +308,7 @@
 
     list.innerHTML = phones.map((phone) => {
       const dimensions = compactDimensions(phone);
-      const weight = phone.weightG ? `${formatNumber(phone.weightG)} g` : '—';
+      const weight = weightLabel(phone);
       const connector = phone.charging?.connector || '—';
       const active = phone.id === state.selectedId ? ' active' : '';
       return `<div class="phone-row${active}" data-phone-id="${escapeHtml(phone.id)}" tabindex="0" role="button">
@@ -316,7 +346,7 @@
 
   function detailHtml(phone) {
     const dimensions = fullDimensions(phone);
-    const weight = phone.weightG ? `${formatNumber(phone.weightG)} g` : '—';
+    const weight = weightLabel(phone);
     const connector = phone.charging?.connector || '—';
     const display = phone.displayInch ? `${formatNumber(phone.displayInch)} in` : '—';
     const water = waterLabel(phone);
@@ -476,7 +506,20 @@
   }
 
   function fullDimensions(phone) {
-    return dimensionString(sortDimensions(phone));
+    const dimensions = sortDimensions(phone);
+    const variants = physicalVariants(phone);
+    if (!variants.length) return dimensionString(dimensions);
+    const depths = variants
+      .map((variant) => Number(variant?.depthMm))
+      .filter(Number.isFinite)
+      .sort((a, b) => a - b);
+    if (!depths.length) return dimensionString(dimensions);
+    const min = depths[0];
+    const max = depths[depths.length - 1];
+    return dimensionString({
+      ...dimensions,
+      ...(min === max ? { depthMm: min } : { depthMmMin: min, depthMmMax: max })
+    });
   }
 
   function dimensionRowsHtml(phone) {
@@ -484,7 +527,13 @@
       return kv(msg('dimensionsFolded'), dimensionString(phone.dimensionsFolded))
         + kv(msg('dimensionsUnfolded'), dimensionString(phone.dimensionsUnfolded));
     }
-    return kv(msg('dimensions'), fullDimensions(phone));
+    const variants = physicalVariants(phone);
+    if (!variants.length) return kv(msg('dimensions'), fullDimensions(phone));
+    return kv(msg('dimensions'), fullDimensions(phone))
+      + variants.map((variant) => kv(
+        localizedVariantLabel(variant),
+        `${formatNumber(variant.depthMm)} mm / ${formatNumber(variant.weightG)} g`
+      )).join('');
   }
 
   function ppsLabel(value) {
