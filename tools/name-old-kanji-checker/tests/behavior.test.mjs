@@ -132,7 +132,8 @@ assert.equal(api.state.dataStatus, 'partial_error', 'optional data failure must 
 assert.equal(api.state.dict.old_to_new['舊'], '旧');
 assert.deepEqual(Array.from(api.state.modernToOld.get('高')), ['髙']);
 
-const fetchTargets = Array.from(rawSource.matchAll(/fetchJson\(([^)]+)\)/g), match => match[1]);
+const fetchTargets = Array.from(rawSource.matchAll(/fetchJson\(([^)]+)\)/g), match => match[1].trim())
+  .filter(target => target !== 'url');
 assert.ok(fetchTargets.length >= 2);
 assert.ok(
   fetchTargets.every(target => target.includes('DICT_URL') || target.includes('old-kanji-reference') || target.includes('COMPATIBILITY_URL')),
