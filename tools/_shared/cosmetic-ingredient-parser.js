@@ -184,7 +184,10 @@
     "zinc oxide": Object.freeze({ category: "uv filter", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/17131/zinc-oxide/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "zea mays starch": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/17078/zea-mays-starch"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "peg-8": Object.freeze({ category: "humectant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11059/peg-8/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "microcrystalline wax": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/fr/inci/ingredient/22305/microcrystalline-wax/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "microcrystalline wax": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/fr/inci/ingredient/22305/microcrystalline-wax/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sulfur": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15709/sulfur/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "aminobenzoic acid": Object.freeze({ category: "uv filter", sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]), authority: "European Union / EUR-Lex" }),
+    "ammonium hydroxide": Object.freeze({ category: "buffer", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/906/ammonium-hydroxide/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
@@ -434,7 +437,7 @@
   }
 
   const api = {
-    version: "1.41.0",
+    version: "1.42.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
