@@ -45,8 +45,8 @@ for (const args of [
   { maker: 'dji', model: 'DJI Ronin-SC', category: 'カメラ・映像' },
   { maker: 'DJI', model: 'Ronin-SC', category: 'カメラ・映像' },
   { maker: 'DJI', model: 'DJI Ronin-S', category: 'カメラ・映像' },
-  { maker: 'DJI', model: 'Ronin 2', category: 'カメラ・映像' },
-  { maker: 'DJI', model: 'Ronin-M', category: 'カメラ・映像' },
+  { maker: 'DJI', model: 'DJI Ronin 2', category: 'カメラ・映像' },
+  { maker: 'DJI', model: 'Ronin M', category: 'カメラ・映像' },
   { maker: 'DJI', model: '', category: 'カメラ・映像' }
 ]) {
   assert.deepEqual(Array.from(config.getAccessoryOffers(args)), [], `unreviewed Wave 35 mapping must fail closed: ${JSON.stringify(args)}`);
