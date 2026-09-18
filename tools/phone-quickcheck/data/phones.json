@@ -7900,7 +7900,7 @@
         }
       },
       "included": {
-        "cable": "unknown",
+        "cable": "not_included",
         "adapter": "included"
       },
       "sources": {
@@ -7908,7 +7908,7 @@
         "manualUrl": "https://k-tai.sharp.co.jp/support/",
         "releaseUrl": "https://jp.sharp/products/aquos-wish/",
         "chargingUrl": "https://jp.sharp/products/aquos-wish-biz/s/",
-        "verifiedAt": "2026-09-16",
+        "verifiedAt": "2026-09-18",
         "waterUrl": "https://jp.sharp/products/aquos-wish/a/"
       },
       "affiliateKeys": []
