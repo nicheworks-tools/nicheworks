@@ -124,3 +124,14 @@ node tools/_shared/check-cosmetics-category-gap-inventory.mjs
 ```
 
 Recognition coverage, OCR behavior, legacy safety isolation, note provenance, Amazon affiliate behavior and privacy metadata remain unchanged.
+
+
+## Wave 11 taxonomy expansion
+
+Wave 11 adds three explicit authority-function translations because the prior verified taxonomy intentionally covered only the earlier narrow function set:
+
+- COSMILE `skin conditioning` → NicheWorks `skin conditioning`
+- COSMILE `skin conditioning - emollient` → NicheWorks `emollient`
+- COSMILE `cleansing` → NicheWorks `cleanser`
+
+The reviewed runtime mappings are Ethylhexylglycerin, Squalane, Sodium Cocoyl Glutamate and Dimethicone. These mappings are exact and source-backed; the change does not infer mappings for other legacy categories.
