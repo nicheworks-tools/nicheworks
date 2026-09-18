@@ -86,6 +86,12 @@
     "dimethicone crosspolymer": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/4584/dimethicone-crosspolymer/"],"runtime_verified":true},
     "glycol distearate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6123/glycol-distearate/"],"runtime_verified":true},
     "myristyl myristate": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/9328/myristyl-myristate/"],"runtime_verified":true},
-    "lecithin": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/8209/lecithin/"],"runtime_verified":true}
+    "lecithin": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/8209/lecithin/"],"runtime_verified":true},
+    "calcium gluconate": {"category":"chelating agent","source_functions":["chelating"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2389/calcium-gluconate/"],"runtime_verified":true},
+    "ceramide as": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/25520/ceramide-as/"],"runtime_verified":true},
+    "ceramide ng": {"category":"skin conditioning","source_functions":["skin conditioning - miscellaneous"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/21295/ceramide-ng/"],"runtime_verified":true},
+    "glyceryl acrylate/acrylic acid copolymer": {"category":"humectant","source_functions":["humectant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/5966/glyceryl-acrylate-acrylic-acid-copolymer/"],"runtime_verified":true},
+    "hectorite": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6288/hectorite/"],"runtime_verified":true},
+    "tapioca starch": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15859/tapioca-starch/"],"runtime_verified":true}
   }
 }
