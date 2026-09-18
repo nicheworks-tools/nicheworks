@@ -31,7 +31,8 @@ const EXPECTED_WAVE9 = Object.freeze({ 'ascorbyl palmitate':'antioxidant' });
 const EXPECTED_WAVE10 = Object.freeze({ 'sodium gluconate':'chelating agent', 'xanthan gum':'viscosity adjuster' });
 const EXPECTED_WAVE11 = Object.freeze({ ethylhexylglycerin:'skin conditioning', squalane:'emollient', 'sodium cocoyl glutamate':'cleanser', dimethicone:'skin conditioning' });
 const EXPECTED_WAVE12 = Object.freeze({ 'cetearyl alcohol':'emollient', 'cetyl alcohol':'emollient', 'disodium lauryl sulfosuccinate':'cleanser', 'hydrogenated polyisobutene':'emollient' });
-const EXPECTED_ALL = Object.freeze({ ...EXPECTED_WAVE1, ...EXPECTED_WAVE2, ...EXPECTED_WAVE3, ...EXPECTED_WAVE4, ...EXPECTED_WAVE5, ...EXPECTED_WAVE6, ...EXPECTED_WAVE7, ...EXPECTED_WAVE8, ...EXPECTED_WAVE9, ...EXPECTED_WAVE10, ...EXPECTED_WAVE11, ...EXPECTED_WAVE12 });
+const EXPECTED_WAVE13 = Object.freeze({ 'cetearyl olivate':'emollient', 'stearyl alcohol':'emollient', 'sodium lauroyl glutamate':'cleanser', 'sodium coco-sulfate':'cleanser' });
+const EXPECTED_ALL = Object.freeze({ ...EXPECTED_WAVE1, ...EXPECTED_WAVE2, ...EXPECTED_WAVE3, ...EXPECTED_WAVE4, ...EXPECTED_WAVE5, ...EXPECTED_WAVE6, ...EXPECTED_WAVE7, ...EXPECTED_WAVE8, ...EXPECTED_WAVE9, ...EXPECTED_WAVE10, ...EXPECTED_WAVE11, ...EXPECTED_WAVE12, ...EXPECTED_WAVE13 });
 
 const EXPECTED_SOURCES = Object.freeze({
   water:'https://www.cosmeticsinfo.org/ingredient/water/', glycerin:'https://www.cosmeticsinfo.org/ingredient/glycerin/', 'propylene glycol':'https://www.cosmeticsinfo.org/ingredient/propylene-glycol/',
@@ -46,7 +47,9 @@ const EXPECTED_SOURCES = Object.freeze({
   ethylhexylglycerin:'https://cosmileeurope.eu/inci/detail/5500/ethylhexylglycerin/', squalane:'https://cosmileeurope.eu/inci/detail/15418/squalane/',
   'sodium cocoyl glutamate':'https://cosmileeurope.eu/inci/detail/14710/sodium-cocoyl-glutamate/', dimethicone:'https://cosmileeurope.eu/inci/detail/4583/dimethicone/',
   'cetearyl alcohol':'https://cosmileeurope.eu/inci/detail/2895/cetearyl-alcohol/', 'cetyl alcohol':'https://cosmileeurope.eu/inci/detail/2973/cetyl-alcohol/',
-  'disodium lauryl sulfosuccinate':'https://cosmileeurope.eu/inci/detail/4979/disodium-lauryl-sulfosuccinate/', 'hydrogenated polyisobutene':'https://cosmileeurope.eu/inci/detail/6702/hydrogenated-polyisobutene/'
+  'disodium lauryl sulfosuccinate':'https://cosmileeurope.eu/inci/detail/4979/disodium-lauryl-sulfosuccinate/', 'hydrogenated polyisobutene':'https://cosmileeurope.eu/inci/detail/6702/hydrogenated-polyisobutene/',
+  'cetearyl olivate':'https://cosmileeurope.eu/inci/detail/2907/cetearyl-olivate/', 'stearyl alcohol':'https://cosmileeurope.eu/inci/detail/15539/stearyl-alcohol/',
+  'sodium lauroyl glutamate':'https://cosmileeurope.eu/inci/detail/14885/sodium-lauroyl-glutamate/', 'sodium coco-sulfate':'https://cosmileeurope.eu/inci/detail/14690/sodium-coco-sulfate/'
 });
 const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org','health.ec.europa.eu','cosmileeurope.eu']);
 
@@ -56,7 +59,7 @@ function validHttpsSource(value){ try { const u=new URL(String(value||'').trim()
 
 const rows=DATA_FILES.flatMap((file)=>{ const payload=JSON.parse(fs.readFileSync(path.join(root,file),'utf8')); if(!Array.isArray(payload)) throw new Error(`${file}: dictionary payload must be an array`); return payload; });
 const evidence=parser.verifiedCategoryEvidence||{};
-assert.deepEqual(Object.fromEntries(Object.entries(evidence).map(([key,item])=>[key,item.category])),EXPECTED_ALL,'verified category evidence must remain the reviewed cumulative wave 1 through wave 12 set');
+assert.deepEqual(Object.fromEntries(Object.entries(evidence).map(([key,item])=>[key,item.category])),EXPECTED_ALL,'verified category evidence must remain the reviewed cumulative wave 1 through wave 13 set');
 for(const ambiguous of parser.ambiguousExactKeys||[]) assert.equal(evidence[ambiguous],undefined,`ambiguous exact token must not receive category evidence: ${ambiguous}`);
 
 const groups=new Map();
@@ -72,6 +75,7 @@ let wave9Resolved=0;
 let wave10Resolved=0;
 let wave11Resolved=0;
 let wave12Resolved=0;
+let wave13Resolved=0;
 const rawCategoryInventory={};
 for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
   const item=evidence[canonical];
@@ -125,6 +129,11 @@ for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
     assert.deepEqual(rawCategories,[],`${canonical}: wave 12 must be completely category-empty before overlay`);
     wave12Resolved+=1;
   }
+  if(Object.hasOwn(EXPECTED_WAVE13,canonical)){
+    assert.equal(hasRawMissing,true,`${canonical}: wave 13 must resolve a raw missing-category row`);
+    assert.deepEqual(rawCategories,[],`${canonical}: wave 13 must be completely category-empty before overlay`);
+    wave13Resolved+=1;
+  }
 }
 
 const merged=parser.mergeDictionaryRecords(rows);
@@ -142,6 +151,7 @@ for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
 assert.equal(Object.keys(EXPECTED_WAVE10).length,2);
 assert.equal(Object.keys(EXPECTED_WAVE11).length,4);
 assert.equal(Object.keys(EXPECTED_WAVE12).length,4);
+assert.equal(Object.keys(EXPECTED_WAVE13).length,4);
 assert.equal(wave6Resolved,3);
 assert.equal(wave7Resolved,3);
 assert.equal(wave8Resolved,3);
@@ -149,6 +159,7 @@ assert.equal(wave9Resolved,1);
 assert.equal(wave10Resolved,2,'wave 10 must resolve exactly two completely category-empty canonical identities');
 assert.equal(wave11Resolved,4,'wave 11 must resolve exactly four completely category-empty canonical identities');
 assert.equal(wave12Resolved,4,'wave 12 must resolve exactly four completely category-empty canonical identities');
+assert.equal(wave13Resolved,4,'wave 13 must resolve exactly four completely category-empty canonical identities');
 assert.equal(evidence['sodium citrate'],undefined,'Sodium Citrate must remain deferred until buffer vs pH-adjuster taxonomy is explicitly resolved');
 
-console.log(JSON.stringify({ status:'pass', phase:'category-provenance-wave-12', raw_missing_category_rows_unchanged:rawMissingCategoryRows, verified_category_evidence_canonical_identities:Object.keys(EXPECTED_ALL).length, wave_10_verified_canonical_identities:Object.keys(EXPECTED_WAVE10).length, wave_11_verified_canonical_identities:Object.keys(EXPECTED_WAVE11).length, wave_12_verified_canonical_identities:Object.keys(EXPECTED_WAVE12).length, newly_classified_completely_category_empty_canonical_identities:newlyClassifiedCanonicalIdentities, wave_6_raw_missing_canonical_identities_resolved:wave6Resolved, wave_7_raw_missing_canonical_identities_resolved:wave7Resolved, wave_8_raw_missing_canonical_identities_resolved:wave8Resolved, wave_9_raw_missing_canonical_identities_resolved:wave9Resolved, wave_10_raw_missing_canonical_identities_resolved:wave10Resolved, wave_11_raw_missing_canonical_identities_resolved:wave11Resolved, wave_12_raw_missing_canonical_identities_resolved:wave12Resolved, wave_10_requires_completely_category_empty_raw_canonical:true, wave_11_requires_completely_category_empty_raw_canonical:true, wave_12_requires_completely_category_empty_raw_canonical:true, sodium_citrate_deferred_for_taxonomy_decision:true, raw_category_inventory:rawCategoryInventory, recognition_records_rewritten:false, safety_contract_changed:false, ambiguity_contract_changed:false, affiliate_contract_changed:false },null,2));
+console.log(JSON.stringify({ status:'pass', phase:'category-provenance-wave-13', raw_missing_category_rows_unchanged:rawMissingCategoryRows, verified_category_evidence_canonical_identities:Object.keys(EXPECTED_ALL).length, wave_10_verified_canonical_identities:Object.keys(EXPECTED_WAVE10).length, wave_11_verified_canonical_identities:Object.keys(EXPECTED_WAVE11).length, wave_12_verified_canonical_identities:Object.keys(EXPECTED_WAVE12).length, wave_13_verified_canonical_identities:Object.keys(EXPECTED_WAVE13).length, newly_classified_completely_category_empty_canonical_identities:newlyClassifiedCanonicalIdentities, wave_6_raw_missing_canonical_identities_resolved:wave6Resolved, wave_7_raw_missing_canonical_identities_resolved:wave7Resolved, wave_8_raw_missing_canonical_identities_resolved:wave8Resolved, wave_9_raw_missing_canonical_identities_resolved:wave9Resolved, wave_10_raw_missing_canonical_identities_resolved:wave10Resolved, wave_11_raw_missing_canonical_identities_resolved:wave11Resolved, wave_12_raw_missing_canonical_identities_resolved:wave12Resolved, wave_13_raw_missing_canonical_identities_resolved:wave13Resolved, wave_10_requires_completely_category_empty_raw_canonical:true, wave_11_requires_completely_category_empty_raw_canonical:true, wave_12_requires_completely_category_empty_raw_canonical:true, wave_13_requires_completely_category_empty_raw_canonical:true, sodium_citrate_deferred_for_taxonomy_decision:true, raw_category_inventory:rawCategoryInventory, recognition_records_rewritten:false, safety_contract_changed:false, ambiguity_contract_changed:false, affiliate_contract_changed:false },null,2));
