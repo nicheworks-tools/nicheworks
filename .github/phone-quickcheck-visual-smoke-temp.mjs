@@ -57,10 +57,11 @@ for (const width of widths) {
     if (!officialLinks) throw new Error(`${width}px: official source links missing in mobile sheet`);
 
     if (width === 320) {
-      const wirelessLabel = page.locator('#sheetDetail .kv span').filter({ hasText: 'ワイヤレス' }).first();
+      const wirelessLabel = page.locator('#sheetDetail .kv span:first-child').filter({ hasText: 'ワイヤレス' }).first();
       const labelBox = await wirelessLabel.boundingBox();
-      if (!labelBox || labelBox.width < 48 || labelBox.height > 28) {
-        throw new Error(`320px: wireless label collapsed/wrapped unexpectedly: ${JSON.stringify(labelBox)}`);
+      const whiteSpace = await wirelessLabel.evaluate((element) => getComputedStyle(element).whiteSpace);
+      if (!labelBox || labelBox.width < 48 || whiteSpace !== 'nowrap') {
+        throw new Error(`320px: wireless label collapsed/wrapped unexpectedly: box=${JSON.stringify(labelBox)} whiteSpace=${whiteSpace}`);
       }
     }
 
