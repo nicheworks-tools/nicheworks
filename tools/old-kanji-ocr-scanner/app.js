@@ -110,17 +110,94 @@ let compatibilityMap = new Map();
 let dataLoadFailed = false;
 let lastDetectionResult = null;
 
-async function loadOldKanjiData() { try { const json = await fetch('../old-kanji-reference/dict.json').then((r) => r.json()); oldToNewMap = json?.old_to_new || {}; if (!Object.keys(oldToNewMap).length) dataLoadFailed = true; } catch { dataLoadFailed = true; oldToNewMap = {}; } }
+async function loadOldKanjiData() {
+  dataLoadFailed = false;
+  try {
+    const response = await fetch('../old-kanji-reference/dict.json');
+    if (!response.ok) throw new Error('old-kanji dictionary load failed');
+    const json = await response.json();
+    oldToNewMap = json?.old_to_new || {};
+    if (!Object.keys(oldToNewMap).length) dataLoadFailed = true;
+  } catch {
+    dataLoadFailed = true;
+    oldToNewMap = {};
+  }
+  return !dataLoadFailed;
+}
 async function loadMetadata() { const files = ['meta.json', 'meta-extra-2.json', 'meta-extra-3.json', 'meta-extra-4.json', 'meta-extra-5.json', 'meta-extra-6.json']; for (const file of files) { try { const json = await fetch(`../old-kanji-reference/${file}`).then((r) => r.json()); Object.entries(json.entries || {}).forEach(([c, m]) => metadataMap.set(c, m || {})); } catch {} } }
 async function loadCompatibilityNotes() { try { const json = await fetch('../old-kanji-reference/compatibility-notes.json').then((r) => r.json()); Object.entries(json.entries || {}).forEach(([c, n]) => compatibilityMap.set(c, n || {})); } catch {} }
 function getOldToModernText(old) { const mapped = oldToNewMap[old]; return Array.isArray(mapped) ? (mapped[0] || '') : (typeof mapped === 'string' ? mapped : ''); }
+function hasMeaningfulText(value) { return /\S/u.test(String(value || '')); }
+function buildManualHandoffHref(baseHref, text) {
+  const raw = String(text || '');
+  return `${baseHref}?q=${hasMeaningfulText(raw) ? encodeURIComponent(raw) : ''}`;
+}
 function getMetadataFields(meta) { if (!meta) return {}; const ja = currentLang === 'ja'; return { reading: ja ? (meta.readingJa || meta.readingEn) : (meta.readingEn || meta.readingJa), meaning: ja ? (meta.meaningJa || meta.meaningEn) : (meta.meaningEn || meta.meaningJa), usage: ja ? (meta.usageJa || meta.usageEn) : (meta.usageEn || meta.usageJa) }; }
 function getCategoryLabel(v) { const m = { ja: { name: '人名・地名', document: '文献・古文書', common: '旧常用漢字', rare: '参考', popular: 'よく使う旧字体', pair_only: '対応のみ' }, en: { name: 'Names / Places', document: 'Old documents', common: 'Common-use old forms', rare: 'Reference', popular: 'Common old forms', pair_only: 'Pair only' } }; return (m[currentLang] && m[currentLang][v]) || v || ''; }
 function getCompatibilityNote(char) { const note = compatibilityMap.get(char); if (note) { const ja = currentLang === 'ja'; return [ja ? note.summaryJa : note.summaryEn, ja ? note.copyNoteJa : note.copyNoteEn, ja ? note.technicalJa : note.technicalEn, ja ? note.recommendedCheckJa : note.recommendedCheckEn].filter(Boolean); } return []; }
 function detectOldKanji(text) { const items = new Map(); let total = 0; for (const ch of text || '') { if (Object.prototype.hasOwnProperty.call(oldToNewMap, ch)) { total++; if (!items.has(ch)) items.set(ch, { oldChar: ch, modern: getOldToModernText(ch), count: 0, meta: metadataMap.get(ch) || {} }); items.get(ch).count++; } } return { total, unique: items.size, items: [...items.values()] }; }
 function renderDetectionSummary(result) { const el = document.getElementById('detection-summary'); const text = document.getElementById('manual-text').value.trim(); el.hidden = !text; el.textContent = ''; if (!text) return; const h = document.createElement('h2'); h.textContent = i18n[currentLang].detectionHeading; const p = document.createElement('p'); p.textContent = result.total ? i18n[currentLang].foundText : i18n[currentLang].notFoundText; const c = document.createElement('p'); c.textContent = currentLang === 'ja' ? `検出数：${result.total}件 / 種類：${result.unique}種類` : `Matches: ${result.total} / Unique forms: ${result.unique}`; el.append(h, p, c); if (dataLoadFailed) { const w = document.createElement('p'); w.className = 'empty-state'; w.textContent = i18n[currentLang].loadDataError; el.appendChild(w); } }
 function renderHighlightedText(text, result) { const panel = document.getElementById('highlight-panel'); const out = document.getElementById('highlight-output'); panel.hidden = !text; out.textContent = ''; if (!text) return; const hitSet = new Set(result.items.map((i) => i.oldChar)); for (const ch of text) { if (ch === '\n') { out.appendChild(document.createElement('br')); continue; } if (hitSet.has(ch)) { const s = document.createElement('span'); s.className = 'old-kanji-hit'; s.textContent = ch; s.addEventListener('click', () => { document.getElementById(`card-${encodeURIComponent(ch)}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }); out.appendChild(s); } else { out.appendChild(document.createTextNode(ch)); } } }
-function renderDetectedCard(item) { const card = document.createElement('article'); card.className = 'detected-card'; card.id = `card-${encodeURIComponent(item.oldChar)}`; const title = document.createElement('h3'); title.className = 'detected-card__glyph'; title.textContent = `${item.oldChar} → ${item.modern || '-'}`; card.appendChild(title); return card; }
+function renderDetectedCard(item) {
+  const card = document.createElement('article');
+  card.className = 'detected-card';
+  card.id = `card-${encodeURIComponent(item.oldChar)}`;
+  const title = document.createElement('h3');
+  title.className = 'detected-card__glyph';
+  title.textContent = `${item.oldChar} → ${item.modern || '-'}`;
+  card.appendChild(title);
+
+  const fields = getMetadataFields(item.meta);
+  const details = [
+    [i18n[currentLang].occurrences, item.count],
+    [i18n[currentLang].reading, fields.reading],
+    [i18n[currentLang].meaning, fields.meaning],
+    [i18n[currentLang].usage, fields.usage],
+    [i18n[currentLang].category, getCategoryLabel(item.meta?.category)]
+  ];
+  details.forEach(([label, value]) => {
+    if (value === undefined || value === null || value === '') return;
+    const row = document.createElement('p');
+    row.textContent = `${label}: ${value}`;
+    card.appendChild(row);
+  });
+
+  const compatibilityNotes = getCompatibilityNote(item.oldChar);
+  if (compatibilityNotes.length) {
+    const block = document.createElement('div');
+    block.className = 'compatibility-note';
+    const heading = document.createElement('strong');
+    heading.textContent = i18n[currentLang].renderingNote;
+    block.appendChild(heading);
+    compatibilityNotes.forEach((note) => {
+      const row = document.createElement('p');
+      row.textContent = note;
+      block.appendChild(row);
+    });
+    card.appendChild(block);
+  }
+
+  const actions = document.createElement('div');
+  actions.className = 'button-row';
+  const copyOld = document.createElement('button');
+  copyOld.type = 'button';
+  copyOld.textContent = i18n[currentLang].copyOld;
+  copyOld.addEventListener('click', () => copyText(item.oldChar));
+  actions.appendChild(copyOld);
+  if (item.modern) {
+    const copyModern = document.createElement('button');
+    copyModern.type = 'button';
+    copyModern.textContent = i18n[currentLang].copyModern;
+    copyModern.addEventListener('click', () => copyText(item.modern));
+    actions.appendChild(copyModern);
+  }
+  const reference = document.createElement('a');
+  reference.href = `../old-kanji-reference/?q=${encodeURIComponent(item.oldChar)}`;
+  reference.textContent = i18n[currentLang].viewReference;
+  actions.appendChild(reference);
+  card.appendChild(actions);
+  return card;
+}
 function renderDetectedCards(result) { const list = document.getElementById('detected-list'); list.hidden = !result.items.length; list.textContent = ''; result.items.forEach((item) => list.appendChild(renderDetectedCard(item))); }
 function renderModernPreview(text) { const p = document.getElementById('modern-preview-panel'); const out = document.getElementById('modern-preview-output'); p.hidden = !text; let r = ''; for (const ch of text || '') r += Object.prototype.hasOwnProperty.call(oldToNewMap, ch) ? (getOldToModernText(ch) || ch) : ch; out.textContent = r; out.dataset.value = r; }
 async function copyText(value) { if (!value) return; try { await navigator.clipboard.writeText(value); } catch { const h = document.createElement('textarea'); h.value = value; document.body.appendChild(h); h.select(); document.execCommand('copy'); h.remove(); } const t = document.getElementById('copy-toast'); t.textContent = i18n[currentLang].copied; clearTimeout(copyToastTimer); copyToastTimer = setTimeout(() => { t.textContent = ''; }, 1500); }
@@ -133,9 +210,9 @@ function handleImageSelection(event) { const [file] = event.target.files || []; 
 function renderImagePreview(file) { const p = document.getElementById('preview-panel'); const i = document.getElementById('preview-image'); revokeCurrentObjectUrl(); currentObjectUrl = URL.createObjectURL(file); i.src = currentObjectUrl; i.alt = file.name; document.getElementById('file-name').textContent = file.name; document.getElementById('file-size').textContent = formatFileSize(file.size); document.getElementById('file-type').textContent = file.type || '-'; p.hidden = false; }
 function clearImage() { revokeCurrentObjectUrl(); const input = document.getElementById('image-input'); const p = document.getElementById('preview-panel'); const i = document.getElementById('preview-image'); input.value = ''; i.removeAttribute('src'); i.alt = ''; document.getElementById('file-name').textContent = ''; document.getElementById('file-size').textContent = ''; document.getElementById('file-type').textContent = ''; p.hidden = true; setOcrBusy(false); setOcrProgress(null); setOcrStatus('ocrIdleText'); document.getElementById('run-ocr').disabled = true; }
 function formatFileSize(bytes) { if (!Number.isFinite(bytes) || bytes <= 0) return '0 B'; if (bytes < 1024) return `${bytes} B`; const kb = bytes / 1024; if (kb < 1024) return `${kb.toFixed(1)} KB`; return `${(kb / 1024).toFixed(2)} MB`; }
-function updateManualLinks() { const text = document.getElementById('manual-text').value.trim(); document.querySelectorAll('#manual-links a').forEach((link) => { link.href = `${link.dataset.baseHref}?q=${text ? encodeURIComponent(text) : ''}`; }); }
+function updateManualLinks() { const text = document.getElementById('manual-text').value || ''; document.querySelectorAll('#manual-links a').forEach((link) => { link.href = buildManualHandoffHref(link.dataset.baseHref, text); }); }
 function revokeCurrentObjectUrl() { if (currentObjectUrl) { URL.revokeObjectURL(currentObjectUrl); currentObjectUrl = null; } }
-async function runOcr() { if (ocrBusy) return; const [file] = document.getElementById('image-input').files || []; if (!file) return setOcrStatus('ocrNoImageText'); if (!file.type || !file.type.startsWith('image/')) return setOcrStatus('ocrUnsupportedText'); if (typeof Tesseract === 'undefined') return setOcrStatus('ocrFailedText'); setOcrBusy(true); setOcrStatus('ocrBusyText'); setOcrProgress(0); try { const result = await Tesseract.recognize(file, 'jpn', { logger: (event) => { if (event?.status?.includes('loading')) setOcrStatus('ocrEngineLoading'); else if (event?.status?.includes('initializing')) setOcrStatus('ocrAnalyzing'); else if (event?.status?.includes('recognizing')) setOcrStatus('ocrRecognizing'); if (typeof event?.progress === 'number') setOcrProgress(event.progress); } }); const text = (result?.data?.text || '').trim(); updateResultText(text); setOcrStatus(text ? 'ocrCompleteText' : 'ocrEmptyText'); } catch { setOcrStatus('ocrFailedText'); } finally { setOcrBusy(false); } }
+async function runOcr() { if (ocrBusy) return; const [file] = document.getElementById('image-input').files || []; if (!file) return setOcrStatus('ocrNoImageText'); if (!file.type || !file.type.startsWith('image/')) return setOcrStatus('ocrUnsupportedText'); if (typeof Tesseract === 'undefined') return setOcrStatus('ocrFailedText'); setOcrBusy(true); setOcrStatus('ocrBusyText'); setOcrProgress(0); try { const result = await Tesseract.recognize(file, 'jpn', { logger: (event) => { if (event?.status?.includes('loading')) setOcrStatus('ocrEngineLoading'); else if (event?.status?.includes('initializing')) setOcrStatus('ocrAnalyzing'); else if (event?.status?.includes('recognizing')) setOcrStatus('ocrRecognizing'); if (typeof event?.progress === 'number') setOcrProgress(event.progress); } }); const text = result?.data?.text || ''; updateResultText(text); setOcrStatus(hasMeaningfulText(text) ? 'ocrCompleteText' : 'ocrEmptyText'); } catch { setOcrStatus('ocrFailedText'); } finally { setOcrBusy(false); } }
 function setOcrStatus(k) { document.getElementById('ocr-status').textContent = i18n[currentLang][k] || k || ''; }
 function setOcrProgress(v) { document.getElementById('ocr-progress').textContent = typeof v === 'number' ? `${Math.round(Math.max(0, Math.min(1, v)) * 100)}%` : ''; }
 function setOcrBusy(b) { ocrBusy = !!b; document.getElementById('image-input').disabled = ocrBusy; document.getElementById('run-ocr').disabled = ocrBusy || !document.getElementById('image-input').files[0]; document.getElementById('remove-image').disabled = ocrBusy; }
