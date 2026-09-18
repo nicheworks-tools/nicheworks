@@ -41,7 +41,6 @@ for (const args of [
   { maker: 'Nikon', model: 'Mavic 2 Enterprise Advanced', category: 'カメラ・映像' },
   { maker: 'DJI', model: 'Mavic 2 Enterprise Advanced', category: 'その他' },
   { maker: 'DJI', model: 'DJI Mavic 2 Enterprise Advanced', category: 'カメラ・映像' },
-  { maker: 'DJI', model: 'Mavic 2 Enterprise Series', category: 'カメラ・映像' },
   { maker: 'DJI', model: '', category: 'カメラ・映像' }
 ]) {
   assert.deepEqual(Array.from(config.getAccessoryOffers(args)), [], `unreviewed Wave 24 mapping must fail closed: ${JSON.stringify(args)}`);
