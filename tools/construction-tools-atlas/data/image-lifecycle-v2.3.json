@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-19-image-candidates-wave5a-provenance-2",
+  "version": "2026-09-19-image-candidates-wave5a-verified",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -709,6 +709,15 @@
           "candidate_id": "wave5a:backhoe_loader",
           "candidate_sha256": "503307a16ac2ce457f5402b3f67be4950bedf1747e1a48512fbcf1c91c7fa280",
           "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-09-18T16:36:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Subject review passed: the photograph shows the combined front loader bucket and rear backhoe boom characteristic of a backhoe loader, directly matching the canonical.",
+          "candidate_id": "wave5a:backhoe_loader",
+          "candidate_sha256": "503307a16ac2ce457f5402b3f67be4950bedf1747e1a48512fbcf1c91c7fa280",
+          "hold": null
         }
       ]
     },
@@ -1083,6 +1092,15 @@
           "at": "2026-09-18T16:34:01Z",
           "actor": "gpt-5.6-sol",
           "reason": "Wikimedia Commons provenance verified for caliper: license, author, source page, source URL and structured SHA-1 are explicit and pinned.",
+          "candidate_id": "wave5a2:caliper",
+          "candidate_sha256": "c3c8ea5937caf3ea37284b73590c9c300b32a78935e7ad47b3bc2adaa262c765",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-09-18T16:36:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Subject review passed: the photograph directly depicts digital calipers with measuring jaws and scale body, matching the caliper canonical.",
           "candidate_id": "wave5a2:caliper",
           "candidate_sha256": "c3c8ea5937caf3ea37284b73590c9c300b32a78935e7ad47b3bc2adaa262c765",
           "hold": null
@@ -1477,6 +1495,15 @@
           "candidate_id": "wave5a:circuit_breaker",
           "candidate_sha256": "a9fc74fec12e77a897ccaa03acdc839e89c628bdf66b6e36fcd0eda2964baca3",
           "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-09-18T16:36:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Subject review passed: the photograph directly shows electrical circuit-breaker devices with operating toggles, matching the circuit_breaker canonical.",
+          "candidate_id": "wave5a:circuit_breaker",
+          "candidate_sha256": "a9fc74fec12e77a897ccaa03acdc839e89c628bdf66b6e36fcd0eda2964baca3",
+          "hold": null
         }
       ]
     },
@@ -1518,6 +1545,15 @@
           "candidate_id": "wave5a:circular_saw",
           "candidate_sha256": "dc103e6348b4ff3583c0516517f0deb57c05a8bdb3e349289368518815d723a8",
           "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-09-18T16:36:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Subject review passed: the photograph directly depicts a handheld circular saw with its circular blade and guard visible, matching the circular_saw canonical rather than another saw type.",
+          "candidate_id": "wave5a:circular_saw",
+          "candidate_sha256": "dc103e6348b4ff3583c0516517f0deb57c05a8bdb3e349289368518815d723a8",
+          "hold": null
         }
       ]
     },
@@ -1556,6 +1592,15 @@
           "at": "2026-09-18T16:29:00Z",
           "actor": "gpt-5.6-sol",
           "reason": "Wikimedia Commons provenance verified: own work by Aerolin55, usable under CC BY-SA 3.0, with the Commons SHA-1 pinned from structured data.",
+          "candidate_id": "wave5a:clamp_bar",
+          "candidate_sha256": "ff1ec3d2c9db2c0b49492eb3ea8f88531d0500d40918b961dc7af7bb61e636cf",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-09-18T16:36:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Subject review passed: the photograph clearly shows long bar clamps with sliding jaws, matching the clamp_bar canonical and not a generic C-clamp.",
           "candidate_id": "wave5a:clamp_bar",
           "candidate_sha256": "ff1ec3d2c9db2c0b49492eb3ea8f88531d0500d40918b961dc7af7bb61e636cf",
           "hold": null
@@ -2968,6 +3013,15 @@
           "at": "2026-09-18T16:34:01Z",
           "actor": "gpt-5.6-sol",
           "reason": "Wikimedia Commons provenance verified for fire_extinguisher: license, author, source page, source URL and structured SHA-1 are explicit and pinned.",
+          "candidate_id": "wave5a2:fire_extinguisher",
+          "candidate_sha256": "5a8c6eedefa433a931986d45ee30e3ff5e29f6827e113acf0235c8cfa739a923",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-09-18T16:36:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Subject review passed: the photograph directly depicts a portable fire extinguisher, matching the fire_extinguisher canonical.",
           "candidate_id": "wave5a2:fire_extinguisher",
           "candidate_sha256": "5a8c6eedefa433a931986d45ee30e3ff5e29f6827e113acf0235c8cfa739a923",
           "hold": null
