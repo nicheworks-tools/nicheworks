@@ -19,7 +19,7 @@ Completion does **not** require forcing every nullable charging field to a value
 - manufacturers: **9**
 - foldables: **32**
 - package adapter unknown: **4**
-- package cable unknown: **14**
+- package cable unknown: **13**
 - unresolved water state: **5**
 - battery capacity unknown: **33** — all maintained Apple records; intentional under current policy
 - charger guidance missing: **62**
@@ -38,7 +38,7 @@ The final four charging counts are **not automatically defects**. They are evide
 - `sony-xperia-5-v`
 - `sony-xperia-10-v`
 
-### Cable unknown — 14
+### Cable unknown — 13
 
 - `samsung-galaxy-a36-5g`
 - `sony-xperia-1-vi`
@@ -49,7 +49,6 @@ The final four charging counts are **not automatically defects**. They are evide
 - `sony-xperia-1-v`
 - `sony-xperia-10-iv`
 - `sharp-aquos-sense5g`
-- `sharp-aquos-wish`
 - `sharp-aquos-r6`
 - `sharp-aquos-zero6`
 - `sharp-aquos-r5g`

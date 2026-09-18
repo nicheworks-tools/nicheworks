@@ -507,6 +507,14 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.equal(a41.included?.adapter, 'not_included');
 }
 
+// AQUOS wish SoftBank-aligned canonical package: charger included, USB cable not included.
+{
+  const wish = byId.get('sharp-aquos-wish');
+  assert.ok(wish, 'AQUOS wish fixture missing');
+  assert.equal(wish.included?.adapter, 'included');
+  assert.equal(wish.included?.cable, 'not_included');
+}
+
 console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estimates, Apple unknown capacity, Lightning guidance, proprietary charging, and mobile sheet.');
 
 // Explicit manufacturer-backed non-resistance is localized; model-specific unknown remains unknown.
