@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 21, 'the 4 legacy category conflicts plus 17 reviewed Wave 15-16 and Wave 18-20 legacy-vs-verified role conflicts must be explicit at runtime');
+assert.equal(categoryConflicts.length, 22, 'the 4 legacy category conflicts plus 18 reviewed Wave 15-16 and Wave 18-21 legacy-vs-verified role conflicts must be explicit at runtime');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
@@ -52,7 +52,8 @@ const reviewedVerifiedPrimary = new Map([
   ['potassium cetyl phosphate', { category: 'emulsifier', legacy: ['general'] }],
   ['sorbitan isostearate', { category: 'emulsifier', legacy: ['general'] }],
   ['ceramide ap', { category: 'skin conditioning', legacy: ['barrier lipid'] }],
-  ['ceramide eop', { category: 'skin conditioning', legacy: ['barrier lipid'] }]
+  ['ceramide eop', { category: 'skin conditioning', legacy: ['barrier lipid'] }],
+  ['triethoxycaprylylsilane', { category: 'binder', legacy: ['general'] }]
 ]);
 
 for (const item of categoryConflicts) {
