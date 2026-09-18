@@ -145,3 +145,8 @@ Wave 12 requires no new authority-function vocabulary. It reuses the reviewed Wa
 ## Wave 13 taxonomy extension
 
 Wave 13 adds the exact COSMILE authority term `surfactant - cleansing` as an explicit second source-function vocabulary entry for the existing internal `cleanser` category. No fuzzy or inferred terminology mapping is introduced.
+
+
+## Wave 14 taxonomy expansion
+
+Wave 14 adds `emulsifier` to the verified overlay taxonomy with the exact COSMILE authority term `surfactant - emulsifying`. The four reviewed mappings are Polysorbate 80, Sorbitan Olivate, Steareth-2 and Steareth-21.
