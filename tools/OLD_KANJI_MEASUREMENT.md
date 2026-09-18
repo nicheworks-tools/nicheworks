@@ -46,4 +46,4 @@ No GA4 event in this contract may include searched kanji, names, addresses, past
 
 ## Evaluation
 
-Use these events together with settled GA4 landing/session data and GSC impressions/clicks/CTR/position. Internal handoffs, support clicks, and future enabled Pro clicks are current Old Kanji measurement signals. `affiliate_outbound` becomes an Old Kanji monetization KPI only after an explicit canonical `AFFILIATE` classification and enabled runtime; while the cluster remains non-affiliate/HOLD it is expected to be absent.
+Use these events together with settled GA4 landing/session data and GSC impressions/clicks/CTR/position. Internal handoffs, support clicks, active `affiliate_outbound` events, and future enabled Pro clicks are current Old Kanji measurement signals. Evaluate affiliate performance by tool, placement, and reviewed offer key without inspecting or transmitting the user's content.
