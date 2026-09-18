@@ -76,7 +76,7 @@ assert.match(rawSource, /summary\.compatibility/, 'rendered compatibility count 
 assert.match(rawSource, /summary\.rendering/, 'rendering-note count must remain independent');
 
 const indexHtml = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
-assert.match(indexHtml, /法的な有効性や登録可否を判断するものではありません/);
+assert.match(rawSource, /法的な有効性や登録可否を判断するものではありません/);
 assert.match(indexHtml, /入力内容はブラウザ内で処理され、外部APIには送信しません/);
 assert.doesNotMatch(indexHtml, /\$4\.99|data-okj-pro-state/, 'unfinished Pro sales panel must not be rendered');
 
