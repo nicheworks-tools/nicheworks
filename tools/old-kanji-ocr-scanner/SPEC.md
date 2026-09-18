@@ -101,7 +101,6 @@ Camera/image selection, OCR status, editable result text, and detected cards for
 - `tools/old-kanji-ocr-scanner/app.js`
 - `tools/old-kanji-ocr-scanner/tests/behavior.test.mjs` — one-image lifecycle/source contract, Japanese Tesseract wiring, exact OCR/handoff text preservation, detection, degraded dictionary mode, metadata/rendering-card contract, and no rendered unfinished Pro sales panel.
 - `tools/old-kanji-ocr-scanner/style.css`
-- `tools/old-kanji-ocr-scanner/amazon.css`
 - `assets/amazon-affiliate.js`
 - `assets/old-kanji-amazon-context.js`
 - `tools/old-kanji-reference/dict.json`
