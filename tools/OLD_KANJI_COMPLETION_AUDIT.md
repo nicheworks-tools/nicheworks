@@ -18,7 +18,7 @@ Completion Waves 10–19 closed dictionary/documentation drift, the four functio
 | --- | --- | --- | --- |
 | Old Kanji Reference | complete | Waves 10–19 complete current-contract data, behavior, browser, search, measurement, SEO-inventory and release acceptance; legacy runtime reachability reviewed | maintenance / measurement |
 | Kanji Modernizer | complete | Functional QA, browser UX, search-role synchronization and Wave 19 release acceptance complete | maintenance / measurement |
-| Old Kanji OCR Scanner | complete | OCR QA, browser UX, search reconciliation, dormant monetization/measurement boundary and Wave 19 release acceptance complete | maintenance / measurement |
+| Old Kanji OCR Scanner | complete | OCR QA, browser UX, search reconciliation, original monetization/measurement boundary and Wave 19 release acceptance complete; post-lock Amazon activation reviewed on 2026-09-19 | maintenance / measurement |
 | Old Document Kanji Highlighter | complete | Functional QA, browser UX, search-role synchronization and Wave 19 release acceptance complete | maintenance / measurement |
 | Unicode Kanji Checker | complete | Encoding/edge-case QA, browser UX and Wave 19 release acceptance complete | maintenance / measurement |
 | Variant Kanji Compare | complete | Comparison/Unicode QA, browser UX and Wave 19 release acceptance complete | maintenance / measurement |
@@ -91,13 +91,13 @@ Wave 11 establishes the rule in practice: an acceptance checkbox is checked only
 
 Current closure state after Wave 19:
 - Kanji Modernizer: all declared functional acceptance criteria are checked with `tools/kanji-modernizer/tests/behavior.test.mjs` and runtime-source assertions.
-- Old Kanji Reference: search/filter, SERP/H1/canonical/schema/FAQ contracts, task handoffs, detector/handoff behavior, local-state restoration, individual-page inventory, dormant monetization/measurement, browser exports, Free/Pro public copy, caution boundaries, and responsive detail layout are all directly evidenced.
-- Old Kanji OCR Scanner and Old Document Kanji Highlighter: Wave 12 closes core functional criteria; Wave 15 closes browser UX; Wave 17 closes OCR dormant Amazon/measurement criteria against the canonical `HOLD` state.
+- Old Kanji Reference: search/filter, SERP/H1/canonical/schema/FAQ contracts, task handoffs, detector/handoff behavior, local-state restoration, individual-page inventory, active contextual monetization/measurement, browser exports, Free/Pro public copy, caution boundaries, and responsive detail layout are all directly evidenced.
+- Old Kanji OCR Scanner and Old Document Kanji Highlighter: Wave 12 closes core functional criteria; Wave 15 closes browser UX; Wave 17 closed the then-current dormant Amazon/measurement criteria; the later 2026-09-19 monetization reopen supersedes that state with active contextual Amazon across all eight tools.
 - Unicode Kanji Checker and Variant Kanji Compare: Wave 13 closes their declared functional acceptance criteria with behavior tests and implementation-source assertions, including supplementary Unicode ranges that were previously misclassified.
 - Place Old Kanji Checker and Name Old Kanji Checker: Wave 14 closes their declared functional acceptance criteria with behavior tests and source assertions covering mapping, degraded optional data, privacy, non-authority wording, and exact Modernizer handoffs.
 - All eight tools: Wave 15 adds real-Chrome browser evidence at 375×812 and 1440×1000 for language switching, keyboard traversal, long/empty interaction states, document overflow, visible control labelling/naming, warning readability, copy feedback where copy controls exist, and runtime-error capture.
 - All eight tools: Wave 16 aligns title/H1/description/canonical/schema/spec search roles with the canonical cluster contract and adds a durable anti-cannibalization/search-role regression checker.
-- All eight tools: Wave 17 locks coarse `old_kanji_handoff`, `support_click`, and enabled-only `old_kanji_pro_click` measurement without inspecting user payload sources; Amazon remains a separate shared `affiliate_outbound` authority and is dormant for the current Old Kanji classifications.
+- All eight tools: Wave 17 locks coarse `old_kanji_handoff`, `support_click`, and enabled-only `old_kanji_pro_click` measurement without inspecting user payload sources; Amazon remains a separate shared `affiliate_outbound` authority; after the 2026-09-19 reopen it is active across all eight Old Kanji tools with fixed tool-specific destinations.
 - Old Kanji Reference SEO inventory: Wave 18 locks the published individual-page set to exactly three reviewed pages and proves that repository-side `seoCandidate` records cannot silently become sitemap/filesystem inventory.
 
 Wave 19 closes the final five Reference criteria with real-Chrome export interaction, the existing Pro-boundary checker, explicit source/non-authority cautions, and the new responsive shape/stroke layout contract. `scripts/check-old-kanji-release-audit.mjs` now fails CI if any of the eight SPECs regains an unchecked acceptance criterion.
@@ -120,7 +120,7 @@ Closure coverage accumulated through Wave 19:
 - global SEO internal-link integrity verifies those static destinations resolve;
 - query-bearing Reference → Modernizer, Highlighter → Modernizer, Unicode inbound, Name → Modernizer, and Place → Modernizer paths retain exact-text behavior tests;
 - Wave 15 real-Chrome coverage verifies the rendered tools remain interactable across mobile/desktop and JP/EN modes;
-- Wave 17 analytics/privacy checks ensure cluster analytics does not inspect user field values, rendered text, storage, query strings, or search params, and dormant Amazon runtime emits no Old Kanji outbound event.
+- Wave 17 analytics/privacy checks ensure cluster analytics does not inspect user field values, rendered text, storage, query strings, or search params, and active Amazon runtime still excludes user payloads and emits only coarse shared `affiliate_outbound` metadata.
 
 Wave 19 closes the remaining release boundary by combining the bounded internal-handoff checker, global SEO internal-link integrity, real-Chrome interaction coverage, exact-payload behavior tests for query-bearing handoffs, and the Wave 17 analytics/privacy contract. Static task-boundary links are verified to resolve; payload-bearing handoffs retain their exact-text tests; no user payload is added to analytics/affiliate events.
 
@@ -221,7 +221,7 @@ Verified behavior includes:
 
 Deferred intentionally:
 - OCR SERP/schema copy still describes an “initial” OCR state even though OCR is live; this remains Wave 16 search/contract reconciliation rather than being mixed into functional QA.
-- OCR Amazon affiliate configuration is currently fail-closed/disabled, so the three affiliate-specific acceptance criteria stay open for Wave 17/19 instead of being falsely checked.
+- Historical note: OCR Amazon was fail-closed during Wave 17/19. The 2026-09-19 monetization reopen supersedes that state and activates the reviewed contextual all-eight contract.
 - browser visual/focus/mobile behavior remains Wave 15/19.
 
 ### Wave 13 — Unicode + Variant completion QA
@@ -446,3 +446,23 @@ The Old Kanji cluster is complete only when all of the following are true:
 ## Current decision
 
 Completion Wave 20 closes the planned completion program. The eight-tool Old Kanji cluster is locked to maintenance / measurement mode for the current product contract. Further feature, monetization, data-authority, or SEO expansion requires an explicit reopen trigger from `tools/OLD_KANJI_COMPLETION_LOCK.md`.
+
+
+## Post-lock monetization reopen — 2026-09-19
+
+Status: **completed product decision / implementation in the current branch**.
+
+The user-approved Old Kanji Amazon strategy supersedes the accidental dormant drift introduced after the original live affiliate implementation.
+
+Current contract:
+- all 8 Old Kanji tools are Amazon Associates surfaces;
+- tracking ID remains `nicheworks09-22`;
+- each tool has its own curated three-offer set and contextual placement;
+- Reference appears after the reference/list task; the other result-driven tools wait until a meaningful result exists;
+- book/reference offers use stable title/ISBN-oriented searches where practical;
+- OCR uses concrete scanner/magnifier purchase intent;
+- user-entered kanji, names, addresses, OCR/document text, conversion text, Unicode input, filenames, storage values, and page query strings never become Amazon search terms;
+- shared `assets/amazon-affiliate.js` remains the only outbound/disclosure/measurement authority;
+- `affiliate_outbound` remains coarse and payload-free.
+
+The historical two-tool cap is removed. It was a product-policy choice, not a technical or Amazon Associates limitation.

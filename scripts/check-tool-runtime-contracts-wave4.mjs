@@ -117,34 +117,21 @@ has('tools/old-document-kanji-highlighter/app.js', 'renderModernPreview');
 lacks('tools/old-document-kanji-highlighter/index.html', 'okj-pro-panel', 'unfinished public Pro panel');
 lacks('tools/old-document-kanji-highlighter/index.html', '$4.99', 'unfinished fixed Pro price');
 
-// 59. Old Kanji OCR Scanner — HOLD tool. OCR behavior stays intact, while legacy Amazon compatibility is fail-closed.
+// 59. Old Kanji OCR Scanner — active contextual Amazon follows OCR/manual result state.
 has('tools/old-kanji-ocr-scanner/index.html', 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js');
 has('tools/old-kanji-ocr-scanner/app.js', "Tesseract.recognize(file, 'jpn'");
 has('tools/old-kanji-ocr-scanner/app.js', "document.getElementById('manual-text').value = text || ''");
 has('tools/old-kanji-ocr-scanner/index.html', '外部OCR APIには送信しません');
 lacks('tools/old-kanji-ocr-scanner/index.html', 'okj-pro-panel', 'unfinished public Pro panel');
 has('tools/old-kanji-ocr-scanner/index.html', '/assets/amazon-affiliate.js');
-has('tools/old-kanji-ocr-scanner/index.html', './affiliate-config.js');
-has('tools/old-kanji-ocr-scanner/index.html', './affiliate.js');
-has('tools/old-kanji-ocr-scanner/index.html', 'id="amazonDisclosure"');
-has('tools/old-kanji-ocr-scanner/affiliate-config.js', 'enabled: false');
-lacks('tools/old-kanji-ocr-scanner/affiliate-config.js', 'amazon.co.jp', 'live Amazon destination');
-lacks('tools/old-kanji-ocr-scanner/affiliate-config.js', 'amzn.to', 'live Amazon short destination');
-has('tools/old-kanji-ocr-scanner/affiliate.js', 'tool: "old-kanji-ocr-scanner"');
-has('tools/old-kanji-ocr-scanner/affiliate.js', 'placement: "ocr_resources"');
-lacks('tools/old-kanji-ocr-scanner/affiliate.js', 'manual-text', 'OCR/manual text entering affiliate runtime');
-lacks('tools/old-kanji-ocr-scanner/affiliate.js', 'image-input', 'image state entering affiliate runtime');
-{
-  const html = read('tools/old-kanji-ocr-scanner/index.html');
-  const helper = html.indexOf('/assets/amazon-affiliate.js');
-  const config = html.indexOf('./affiliate-config.js');
-  const affiliate = html.indexOf('./affiliate.js');
-  const app = html.indexOf('<script src="app.js"></script>');
-  check(helper >= 0 && helper < config && config < affiliate && affiliate < app,
-    'tools/old-kanji-ocr-scanner/index.html: dormant Amazon helper/config/ui must load before app.js');
-}
+has('tools/old-kanji-ocr-scanner/index.html', '/assets/old-kanji-amazon-context.js');
+lacks('tools/old-kanji-ocr-scanner/index.html', './affiliate-config.js', 'obsolete tool-local affiliate config load');
+lacks('tools/old-kanji-ocr-scanner/index.html', './affiliate.js', 'obsolete tool-local affiliate runtime load');
+has('assets/old-kanji-amazon-context.js', '"old-kanji-ocr-scanner"');
+has('assets/old-kanji-amazon-context.js', 'CZUR ET24 Pro ブックスキャナー');
+has('assets/old-kanji-amazon-context.js', 'activation: { type: "visible-content", selector: "#detection-summary" }');
 
-// 60. Old Kanji Reference — ADS_DONATION tool. Core exports/layout stay intact and legacy Amazon compatibility is fail-closed.
+// 60. Old Kanji Reference — active contextual Amazon follows the completed reference task.
 for (const key of ['oldKanjiReference.recent.v1', 'oldKanjiReference.displayMode.v1', 'oldKanjiReference.favorites.v1', 'oldKanjiReference.quizStats.v1']) {
   has('tools/old-kanji-reference/app-meaning-v4.js', key);
 }
@@ -155,30 +142,17 @@ lacks('tools/old-kanji-reference/index.html', 'okj-pro-panel', 'unfinished publi
 lacks('tools/old-kanji-reference/index.html', '$4.99', 'unfinished fixed Pro price');
 has('tools/old-kanji-reference/index.html', './amazon-layout.css');
 has('tools/old-kanji-reference/index.html', '/assets/amazon-affiliate.js');
-has('tools/old-kanji-reference/index.html', './affiliate-config.js');
-has('tools/old-kanji-reference/index.html', './affiliate.js');
-has('tools/old-kanji-reference/index.html', 'id="amazonDisclosure"');
-has('tools/old-kanji-reference/affiliate-config.js', 'enabled: false');
-lacks('tools/old-kanji-reference/affiliate-config.js', 'amazon.co.jp', 'live Amazon destination');
-lacks('tools/old-kanji-reference/affiliate-config.js', 'amzn.to', 'live Amazon short destination');
-has('tools/old-kanji-reference/affiliate.js', 'tool: "old-kanji-reference"');
-has('tools/old-kanji-reference/affiliate.js', 'placement: "reference_resources"');
-lacks('tools/old-kanji-reference/affiliate.js', 'searchInput', 'search text entering affiliate runtime');
-lacks('tools/old-kanji-reference/affiliate.js', 'detectorInput', 'detector text entering affiliate runtime');
+has('tools/old-kanji-reference/index.html', '/assets/old-kanji-amazon-context.js');
+lacks('tools/old-kanji-reference/index.html', './affiliate-config.js', 'obsolete tool-local affiliate config load');
+lacks('tools/old-kanji-reference/index.html', './affiliate.js', 'obsolete tool-local affiliate runtime load');
+has('assets/old-kanji-amazon-context.js', '"old-kanji-reference"');
+has('assets/old-kanji-amazon-context.js', '9784309412443 異体字の世界 最新版 小池和夫');
 has('tools/old-kanji-reference/amazon-layout.css', '.shape-note-grid');
 has('tools/old-kanji-reference/amazon-layout.css', '.stroke-note-grid');
 has('tools/old-kanji-reference/amazon-layout.css', 'grid-template-columns: repeat(2, minmax(0, 1fr));');
 has('tools/old-kanji-reference/amazon-layout.css', 'overflow-wrap: anywhere;');
 has('tools/old-kanji-reference/amazon-layout.css', '@media (max-width: 720px)');
-{
-  const html = read('tools/old-kanji-reference/index.html');
-  const helper = html.indexOf('/assets/amazon-affiliate.js');
-  const config = html.indexOf('./affiliate-config.js');
-  const affiliate = html.indexOf('./affiliate.js');
-  const app = html.indexOf('./app-meaning-v4.js');
-  check(helper >= 0 && helper < config && config < affiliate && affiliate < app,
-    'tools/old-kanji-reference/index.html: dormant Amazon helper/config/ui must load before app runtime');
-}
+
 
 if (failures.length) {
   console.error(`Tool runtime contract audit wave 4 failed (${failures.length})`);

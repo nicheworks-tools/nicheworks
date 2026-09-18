@@ -16,12 +16,54 @@
     "total": 72
   },
   "waveResults": [
-    {"wave": 1, "pr": 1021, "MAJOR_FIX": 9, "MINOR_FIX": 3, "HOLD_REVIEW": 0, "PASS": 0},
-    {"wave": 2, "pr": 1030, "MAJOR_FIX": 9, "MINOR_FIX": 2, "HOLD_REVIEW": 1, "PASS": 0},
-    {"wave": 3, "pr": 1033, "MAJOR_FIX": 10, "MINOR_FIX": 2, "HOLD_REVIEW": 0, "PASS": 0},
-    {"wave": 4, "pr": 1038, "MAJOR_FIX": 10, "MINOR_FIX": 1, "HOLD_REVIEW": 1, "PASS": 0},
-    {"wave": 5, "pr": 1043, "MAJOR_FIX": 10, "MINOR_FIX": 1, "HOLD_REVIEW": 1, "PASS": 0},
-    {"wave": 6, "pr": 1048, "MAJOR_FIX": 9, "MINOR_FIX": 3, "HOLD_REVIEW": 0, "PASS": 0}
+    {
+      "wave": 1,
+      "pr": 1021,
+      "MAJOR_FIX": 9,
+      "MINOR_FIX": 3,
+      "HOLD_REVIEW": 0,
+      "PASS": 0
+    },
+    {
+      "wave": 2,
+      "pr": 1030,
+      "MAJOR_FIX": 9,
+      "MINOR_FIX": 2,
+      "HOLD_REVIEW": 1,
+      "PASS": 0
+    },
+    {
+      "wave": 3,
+      "pr": 1033,
+      "MAJOR_FIX": 10,
+      "MINOR_FIX": 2,
+      "HOLD_REVIEW": 0,
+      "PASS": 0
+    },
+    {
+      "wave": 4,
+      "pr": 1038,
+      "MAJOR_FIX": 10,
+      "MINOR_FIX": 1,
+      "HOLD_REVIEW": 1,
+      "PASS": 0
+    },
+    {
+      "wave": 5,
+      "pr": 1043,
+      "MAJOR_FIX": 10,
+      "MINOR_FIX": 1,
+      "HOLD_REVIEW": 1,
+      "PASS": 0
+    },
+    {
+      "wave": 6,
+      "pr": 1048,
+      "MAJOR_FIX": 9,
+      "MINOR_FIX": 3,
+      "HOLD_REVIEW": 0,
+      "PASS": 0
+    }
   ],
   "holdQueue": [
     "earth-map-suite",
@@ -33,13 +75,25 @@
       "id": "functional_and_safety_p0",
       "priority": "P0",
       "description": "Repair confirmed behavior defects or safety-critical regression gaps before cosmetic work.",
-      "knownExamples": ["color-replace", "sql-db-risk-checker"]
+      "knownExamples": [
+        "color-replace",
+        "sql-db-risk-checker"
+      ]
     },
     {
       "id": "commercial_ssot_p0",
       "priority": "P0",
       "description": "Align public purchase/activation claims, billing configuration, entitlement authority, and canonical monetization classification. Do not expand Pro rollout while product-scoped authority is staged or billing is unavailable.",
-      "knownExamples": ["reconcile", "command-safety-checker", "ai-interaction-atlas", "motion-atlas", "old-kanji-reference", "size-converter", "tiny-audio-meter", "vibe-lexicon"]
+      "knownExamples": [
+        "reconcile",
+        "command-safety-checker",
+        "ai-interaction-atlas",
+        "motion-atlas",
+        "old-kanji-reference",
+        "size-converter",
+        "tiny-audio-meter",
+        "vibe-lexicon"
+      ]
     },
     {
       "id": "regression_coverage_p1",
@@ -57,5 +111,23 @@
       "description": "Give each HOLD tool an explicit KEEP, PROMOTE, REBUILD, or ARCHIVE disposition before it can leave HOLD_REVIEW."
     }
   ],
-  "completionGate": "All non-HOLD tools must reach strict PASS after repair and re-audit; each HOLD tool must receive an explicit disposition."
+  "completionGate": "All non-HOLD tools must reach strict PASS after repair and re-audit; each HOLD tool must receive an explicit disposition.",
+  "historicalSnapshot": true,
+  "currentScopeAsOf20260919": {
+    "registeredTools": 88,
+    "affiliateTools": 20,
+    "nonAffiliateTools": 68,
+    "retainedAuditedRecords": 64,
+    "pendingStrictAudit": [
+      "cover-letter-lite",
+      "form-tool-selector",
+      "pages-deploy-guide",
+      "wifi-meter"
+    ],
+    "currentHoldQueue": [
+      "earth-map-suite",
+      "pattern-atlas"
+    ],
+    "note": "The eight Old Kanji tools moved to the AFFILIATE workstream on 2026-09-19. The original 72-tool aggregate above remains historical audit evidence, not the current scope."
+  }
 }

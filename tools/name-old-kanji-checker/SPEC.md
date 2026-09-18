@@ -29,6 +29,17 @@ Check characters in a name against the Old Kanji Reference data and surface old-
 - Degrade to basic mappings when optional metadata files fail to load.
 - Do not render an unfinished Pro sales panel, fixed Pro price, or disabled purchase CTA while no verified purchase path is connected.
 
+## Amazon affiliate contract
+
+- Canonical monetization class: `AFFILIATE`.
+- Amazon Associates is active for Name Old Kanji Checker under the all-eight Old Kanji affiliate decision.
+- The affiliate panel appears only after a name result exists.
+- Curated purchase intent: `実例で読み解く名前の漢字辞典`, `人名の漢字語源辞典 新装版`, and `異体字の世界 最新版`.
+- Amazon destinations are fixed tool-specific searches; entered names, result candidates, copied values, and converter-handoff text must never be inserted into an affiliate URL or affiliate event.
+- Shared `/assets/amazon-affiliate.js` owns URL validation, disclosure, `rel="sponsored noopener"`, and the canonical `affiliate_outbound` event.
+- Shared `/assets/old-kanji-amazon-context.js` owns the reviewed tool-specific offer/placement catalog; it does not derive Amazon search terms from user input.
+- The free tool task remains usable without interacting with Amazon.
+
 ## Inputs
 
 - Name text.
@@ -76,7 +87,12 @@ The workflow is a short name input followed by vertically stacked per-character 
 - [x] Whole-text Modernizer handoff preserves the entered text without trimming leading/trailing whitespace or line breaks.
 - [x] The public page does not expose unfinished billing/Pro sales controls until a verified entitlement/purchase path exists.
 
+- [x] Contextual Amazon affiliate handoffs follow the reviewed only after a name result exists contract, use fixed tool-specific destinations, and exclude user-derived values from outbound URLs/events. Evidence: `assets/old-kanji-amazon-context.js`, `assets/amazon-affiliate.js`, and `scripts/check-old-kanji-amazon.mjs`.
+
 ## Implementation evidence
+
+- `assets/amazon-affiliate.js`
+- `assets/old-kanji-amazon-context.js`
 
 - `tools/name-old-kanji-checker/index.html`
 - `tools/name-old-kanji-checker/app.js`

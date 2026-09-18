@@ -102,14 +102,17 @@ Pro is reserved for recurring/heavy workflow value such as:
 
 Until a verified purchase/entitlement path is active, public tool pages must not render a fixed Pro price, disabled purchase CTA, or billing-unavailable sales panel. Future Pro scope stays documented in SPEC/planning material and is introduced publicly only when a real purchasable flow exists.
 
-## Revenue order
+## Revenue surfaces
 
-For the Old Kanji cluster, long-term priority is:
-1. Pro for repeat/heavy users;
+Current Old Kanji revenue surfaces are:
+1. Amazon Associates contextual handoffs on all eight tools;
 2. AdSense as broad supporting revenue;
-3. OFUSE / Ko-fi as voluntary support.
+3. OFUSE / Ko-fi as voluntary support;
+4. Pro only after a verified purchase/entitlement path exists.
 
-Amazon is **currently dormant**, not a live cluster revenue surface. The canonical monetization SSOT classifies Old Kanji Reference as `ADS_DONATION` and Old Kanji OCR Scanner as `HOLD`; neither is in the `AFFILIATE` class. Their historical Amazon helper/config/UI wiring may remain only in fail-closed compatibility form with `enabled: false`, no tracking ID, and no outbound target. No Old Kanji tool may activate Amazon unless an explicit monetization decision first moves that tool into the canonical `AFFILIATE` class.
+Amazon is an **active cluster revenue surface on all eight Old Kanji tools**. Each tool has its own curated offer set and result/task placement under `tools/OLD_KANJI_AMAZON.md`. The shared runtime is only the safety/disclosure/measurement layer; it must not collapse the eight tools into one generic product list.
+
+Amazon destinations are fixed curated searches. Searched kanji, names, addresses, OCR text, pasted documents, conversion text, filenames, Unicode input, and other user-derived values must never be encoded into affiliate URLs.
 
 ## Measurement contract
 
@@ -120,7 +123,7 @@ Evaluation must support, at minimum:
 - internal Old Kanji tool handoff clicks;
 - Pro CTA clicks when a real enabled CTA exists, and optionally disabled-Pro interest clicks only if the UI provides an explicit non-purchase interest control;
 - OFUSE / Ko-fi clicks;
-- `affiliate_outbound` only if a future explicit canonical `AFFILIATE` activation exists; in the current dormant state no Old Kanji Amazon outbound event should be emitted.
+- `affiliate_outbound` for active Amazon handoffs on all eight tools, emitted only by the shared Amazon helper with coarse tool/offer/placement metadata.
 
 Existing GA4/analytics setup must be preserved. Only missing click events should be added in the measurement implementation PR.
 

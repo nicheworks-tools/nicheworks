@@ -29,6 +29,17 @@ Check place names, addresses, station names, old-map labels, and sign text for r
 - Optional metadata/shape/stroke/compatibility asset failures degrade to the base mapping instead of blocking place-name checks.
 - Do not render an unfinished Pro sales panel, fixed Pro price, or disabled purchase CTA while no verified purchase path is connected.
 
+## Amazon affiliate contract
+
+- Canonical monetization class: `AFFILIATE`.
+- Amazon Associates is active for Place Old Kanji Checker under the all-eight Old Kanji affiliate decision.
+- The affiliate panel appears only after a place-name result exists.
+- Curated purchase intent: `角川日本地名大辞典`, `日本歴史地名大系`, and old-map/historical place-name references.
+- Amazon destinations are fixed tool-specific searches; entered place names, addresses, station names, result candidates, and converter-handoff text must never be inserted into an affiliate URL or affiliate event.
+- Shared `/assets/amazon-affiliate.js` owns URL validation, disclosure, `rel="sponsored noopener"`, and the canonical `affiliate_outbound` event.
+- Shared `/assets/old-kanji-amazon-context.js` owns the reviewed tool-specific offer/placement catalog; it does not derive Amazon search terms from user input.
+- The free tool task remains usable without interacting with Amazon.
+
 ## Inputs
 
 - Place name, address, station name, or related text.
@@ -76,7 +87,12 @@ The primary interaction is one text area followed by results and caution cards.
 - [x] Whole-text Modernizer handoff preserves the entered text without trimming or silent mutation.
 - [x] The public page does not expose unfinished billing/Pro sales controls until a verified entitlement/purchase path exists.
 
+- [x] Contextual Amazon affiliate handoffs follow the reviewed only after a place-name result exists contract, use fixed tool-specific destinations, and exclude user-derived values from outbound URLs/events. Evidence: `assets/old-kanji-amazon-context.js`, `assets/amazon-affiliate.js`, and `scripts/check-old-kanji-amazon.mjs`.
+
 ## Implementation evidence
+
+- `assets/amazon-affiliate.js`
+- `assets/old-kanji-amazon-context.js`
 
 - `tools/place-old-kanji-checker/index.html`
 - `tools/place-old-kanji-checker/app.js`

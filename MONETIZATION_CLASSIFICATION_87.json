@@ -1,15 +1,15 @@
 {
   "schemaVersion": "nicheworks-monetization-classification-v1",
-  "updated": "2026-09-17",
+  "updated": "2026-09-19",
   "registryTotal": 88,
   "bundleProductId": "nicheworks.pro",
   "counts": {
     "PRO_BUNDLE": 42,
     "STANDALONE_PRO": 1,
-    "AFFILIATE": 12,
-    "ADS_DONATION": 30,
+    "AFFILIATE": 20,
+    "ADS_DONATION": 23,
     "FREE": 0,
-    "HOLD": 3
+    "HOLD": 2
   },
   "classes": {
     "PRO_BUNDLE": [
@@ -64,14 +64,22 @@
       "cosmetic-ingredient-checker-lite",
       "dry-meter",
       "inci-fastscan",
+      "kanji-modernizer",
       "laundry-code-decode",
       "light-check",
       "manual-finder",
       "moving-checklist-generator",
       "moving-lease-final-check",
+      "name-old-kanji-checker",
+      "old-document-kanji-highlighter",
+      "old-kanji-ocr-scanner",
+      "old-kanji-reference",
       "pattern-dictionary",
       "phone-quickcheck",
-      "trashnavi"
+      "place-old-kanji-checker",
+      "trashnavi",
+      "unicode-kanji-checker",
+      "variant-kanji-compare"
     ],
     "ADS_DONATION": [
       "color-replace",
@@ -83,24 +91,17 @@
       "habit-plan-generator",
       "image-compression-inspector",
       "jp-postal-lite",
-      "kanji-modernizer",
       "linebreak-doctor",
       "message-generator",
       "metadatasnap",
       "mini-game-utility",
       "motion-atlas",
-      "name-old-kanji-checker",
-      "old-document-kanji-highlighter",
-      "old-kanji-reference",
       "pages-deploy-guide",
-      "place-old-kanji-checker",
       "redirect-unwrapper",
       "size-converter",
       "sukima-baito-income",
       "tiny-audio-meter",
-      "unicode-kanji-checker",
       "unitmaster",
-      "variant-kanji-compare",
       "vibe-lexicon",
       "weatherdiff",
       "wifi-meter"
@@ -108,15 +109,14 @@
     "FREE": [],
     "HOLD": [
       "earth-map-suite",
-      "old-kanji-ocr-scanner",
       "pattern-atlas"
     ]
   },
   "bundleBoundaryStatus": "pending-freeze",
   "notes": [
+    "This historical _87 file is compatibility-only; MONETIZATION_CLASSIFICATION.json is canonical. It mirrors the current canonical classification so legacy validators cannot override current product decisions.",
     "Every currently registered tool is classified exactly once.",
-    "This historical _87 file is compatibility-only; MONETIZATION_CLASSIFICATION.json is canonical.",
-    "registryTotal and classifications track the current 88-tool registry.",
+    "registryTotal and classifications are authoritative for the current 88-tool registry.",
     "The PRO_BUNDLE class means approved commercial membership in the future nicheworks.pro bundle; exact Free/Pro operation boundaries are frozen before live migration.",
     "Legacy Pro code does not determine classification.",
     "Reconcile is a registered STANDALONE_PRO tool backed by the separate reconcile.pro_v1 product contract and is not part of nicheworks.pro.",
@@ -125,6 +125,7 @@
     "Phone QuickCheck is classified AFFILIATE because its planned monetization path is compatible smartphone charging accessories via Amazon Associates; live affiliate URLs remain disabled until separate activation work is complete.",
     "Pattern Dictionary is classified AFFILIATE because its intended downstream action is Amazon Associates product discovery after pattern identification.",
     "Cover Letter Lite, Form Tool Selector, Pages Deploy Guide, and WiFi Meter were moved from AFFILIATE to ADS_DONATION on 2026-09-17 after product-intent review found no sufficiently direct, non-misleading Amazon purchase path.",
-    "WiFi Meter does not measure RSSI, real ping, or real line speed, so its browser-estimated connection status must not be used to infer that a router or mesh purchase is needed."
+    "WiFi Meter does not measure RSSI, real ping, or real line speed, so its browser-estimated connection status must not be used to infer that a router or mesh purchase is needed.",
+    "All eight Old Kanji tools are active Amazon Associates surfaces by explicit product decision. Offers are tool-specific and use fixed curated Amazon.co.jp search destinations; user-entered kanji, names, addresses, OCR text, document text, and conversion text are never encoded into affiliate URLs."
   ]
 }

@@ -1,16 +1,17 @@
 {
   "schemaVersion": "nicheworks-non-affiliate-scope-v1",
-  "updated": "2026-09-17",
+  "updated": "2026-09-19",
   "registryTotal": 88,
   "excludedClass": "AFFILIATE",
-  "excludedCount": 12,
-  "inScopeCount": 76,
+  "excludedCount": 20,
+  "inScopeCount": 68,
   "source": "MONETIZATION_CLASSIFICATION.json",
   "counts": {
     "PRO_BUNDLE": 42,
     "STANDALONE_PRO": 1,
-    "ADS_DONATION": 30,
-    "HOLD": 3
+    "ADS_DONATION": 23,
+    "FREE": 0,
+    "HOLD": 2
   },
   "classes": {
     "PRO_BUNDLE": [
@@ -70,31 +71,24 @@
       "habit-plan-generator",
       "image-compression-inspector",
       "jp-postal-lite",
-      "kanji-modernizer",
       "linebreak-doctor",
       "message-generator",
       "metadatasnap",
       "mini-game-utility",
       "motion-atlas",
-      "name-old-kanji-checker",
-      "old-document-kanji-highlighter",
-      "old-kanji-reference",
       "pages-deploy-guide",
-      "place-old-kanji-checker",
       "redirect-unwrapper",
       "size-converter",
       "sukima-baito-income",
       "tiny-audio-meter",
-      "unicode-kanji-checker",
       "unitmaster",
-      "variant-kanji-compare",
       "vibe-lexicon",
       "weatherdiff",
       "wifi-meter"
     ],
+    "FREE": [],
     "HOLD": [
       "earth-map-suite",
-      "old-kanji-ocr-scanner",
       "pattern-atlas"
     ]
   },
@@ -103,21 +97,29 @@
     "cosmetic-ingredient-checker-lite",
     "dry-meter",
     "inci-fastscan",
+    "kanji-modernizer",
     "laundry-code-decode",
     "light-check",
     "manual-finder",
     "moving-checklist-generator",
     "moving-lease-final-check",
+    "name-old-kanji-checker",
+    "old-document-kanji-highlighter",
+    "old-kanji-ocr-scanner",
+    "old-kanji-reference",
     "pattern-dictionary",
     "phone-quickcheck",
-    "trashnavi"
+    "place-old-kanji-checker",
+    "trashnavi",
+    "unicode-kanji-checker",
+    "variant-kanji-compare"
   ],
   "rules": [
-    "This scope is for the non-affiliate quality/SEO/monetization workstream only.",
-    "AFFILIATE-class tools are intentionally excluded and handled in a separate parallel workstream.",
+    "This scope is for the current non-affiliate quality/SEO/monetization workstream only.",
+    "AFFILIATE-class tools are intentionally excluded and handled in the affiliate workstream.",
     "Every in-scope slug must exist in tools/tools-index.json and MONETIZATION_CLASSIFICATION.json.",
     "The in-scope set must equal the registered tool set minus the AFFILIATE class.",
     "Changes to registry or monetization classification must update this scope in the same pull request.",
-    "Cover Letter Lite, Form Tool Selector, Pages Deploy Guide, and WiFi Meter entered this scope on 2026-09-17 after affiliate-intent review; existing completed wave assignments remain frozen and these additions are assigned to the late-addition wave."
+    "The eight Old Kanji tools left this scope on 2026-09-19 after the explicit all-eight Amazon Associates product decision."
   ]
 }

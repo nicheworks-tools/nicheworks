@@ -1,5 +1,7 @@
 # Non-affiliate 72-tool strict audit summary
 
+> **Current-scope note (2026-09-19):** This document preserves the initial 72-tool / six-wave audit snapshot. The canonical current classification now has 20 AFFILIATE tools after all eight Old Kanji tools moved to the affiliate workstream. Current non-affiliate scope is 68 tools: 64 retain strict-audit records and 4 remain pending (Cover Letter Lite, Form Tool Selector, Pages Deploy Guide, WiFi Meter). Current HOLD tools are Earth Map Suite and Pattern Atlas; the Old Kanji OCR Scanner entry below is historical.
+
 Status: initial strict audit complete  
 Updated: 2026-09-16
 

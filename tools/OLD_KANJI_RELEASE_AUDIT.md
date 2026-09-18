@@ -28,7 +28,7 @@ Reference shape/stroke detail sections were emitted as structured DOM but had no
 
 ## Release evidence retained in CI
 
-The Tool runtime contract audit requires behavior tests, real-Chrome browser UX, Reference layout, cluster contract, Reference SEO, search-cluster reconciliation, SEO inventory gate, internal handoffs, measurement/privacy, dormant Amazon, Pro boundary, dictionary drift, final release audit, and read-only verification.
+The Tool runtime contract audit requires behavior tests, real-Chrome browser UX, Reference layout, cluster contract, Reference SEO, search-cluster reconciliation, SEO inventory gate, internal handoffs, measurement/privacy, active contextual Amazon, Pro boundary, dictionary drift, final release audit, and read-only verification.
 
 The global SEO workflow separately retains public URL, indexable identity, head cardinality, language metadata, internal-link integrity, structured data, and strict SEO checks.
 

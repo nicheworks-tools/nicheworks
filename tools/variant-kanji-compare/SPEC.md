@@ -29,6 +29,17 @@
 - Old Kanji Reference / Unicode Kanji Checkerへのlinkを提供する。
 - verified purchase pathがない間は、fixed Pro price・disabled purchase CTA・billing-unavailable sales panelをpublic pageへ表示しない。
 
+## Amazon affiliate contract
+
+- Canonical monetization class: `AFFILIATE`.
+- Amazon Associates is active for Variant Kanji Compare under the all-eight Old Kanji affiliate decision.
+- The affiliate panel appears only after comparison results exist.
+- Curated purchase intent: `異体字の世界 最新版`, `実例で読み解く名前の漢字辞典`, and glyph/form dictionaries.
+- Amazon destinations are fixed tool-specific searches; compared characters, presets, code points, comparison results, and rendering notes must never be inserted into an affiliate URL or affiliate event.
+- Shared `/assets/amazon-affiliate.js` owns URL validation, disclosure, `rel="sponsored noopener"`, and the canonical `affiliate_outbound` event.
+- Shared `/assets/old-kanji-amazon-context.js` owns the reviewed tool-specific offer/placement catalog; it does not derive Amazon search terms from user input.
+- The free tool task remains usable without interacting with Amazon.
+
 ## Inputs
 
 - 比較したいcharacter群。
@@ -88,7 +99,12 @@ comparison cardsはscreen幅に応じてgrid/stack化し、desktop/mobile双方�
 - [x] comparison結果とCSVをclipboardへcopyできる。
 - [x] verified billing activation前にfixed Pro price、disabled purchase CTA、billing-unavailable sales panelを表示しない。
 
+- [x] Contextual Amazon affiliate handoffs follow the reviewed only after comparison results exist contract, use fixed tool-specific destinations, and exclude user-derived values from outbound URLs/events. Evidence: `assets/old-kanji-amazon-context.js`, `assets/amazon-affiliate.js`, and `scripts/check-old-kanji-amazon.mjs`.
+
 ## Implementation evidence
+
+- `assets/amazon-affiliate.js`
+- `assets/old-kanji-amazon-context.js`
 
 - `tools/variant-kanji-compare/index.html` — input/preset/comparison/copy UI。
 - `tools/variant-kanji-compare/app.js` — input parsing、presets、Old Kanji Reference data load、glyph/code/mapping/shape/stroke comparison、BMP/Supplement compatibility判定、variation selector判定、独立したsummary counts、copy output。

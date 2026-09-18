@@ -65,9 +65,8 @@ for (const forbiddenDoc of ['searched kanji', 'OCR text', 'raw URLs/query string
   check(measurement.includes(forbiddenDoc), `privacy boundary documentation missing: ${forbiddenDoc}`);
 }
 check(measurement.includes('`affiliate_outbound`'), 'canonical Amazon affiliate_outbound event must be documented');
-check(measurement.includes('ADS_DONATION'), 'Reference dormant monetization class must be documented');
-check(measurement.includes('HOLD'), 'OCR dormant monetization class must be documented');
-check(measurement.includes('enabled: false'), 'disabled Old Kanji Amazon runtime must be documented');
+check(measurement.includes('active across all eight Old Kanji tools'), 'all-eight active affiliate measurement state must be documented');
+check(measurement.includes('tool/offer/placement/language identifiers'), 'coarse active affiliate measurement boundary missing');
 check(!measurement.includes('`affiliate_click`'), 'measurement contract must not retain legacy affiliate_click event');
 
 if (failures.length) {

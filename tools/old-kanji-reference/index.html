@@ -42,6 +42,7 @@
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"旧字体とは何ですか？","acceptedAnswer":{"@type":"Answer","text":"現在一般的に使われる新字体に対して、戦前の文書や古い表記、人名・地名などで見られる古い字体・旧字系の表記です。"}},{"@type":"Question","name":"新字体と旧字体は必ず一対一で対応しますか？","acceptedAnswer":{"@type":"Answer","text":"必ずしも一対一ではありません。同じ新字体に複数の旧字体・異体字が対応する場合があります。"}},{"@type":"Question","name":"名前に使われる旧字体も探せますか？","acceptedAnswer":{"@type":"Answer","text":"人名・地名で見かけやすい旧字体を分類し、検索やフィルタで探せるようにしています。"}},{"@type":"Question","name":"すべての文字に読み・意味・用途がありますか？","acceptedAnswer":{"@type":"Answer","text":"全件に無理なテンプレ説明は出していません。読み・意味・用途は確認済みの主要文字を中心に表示し、それ以外は旧字と現代表記の対応を優先して表示します。"}},{"@type":"Question","name":"この一覧は変換ツールとして使えますか？","acceptedAnswer":{"@type":"Answer","text":"一文字ごとの旧字・新字対応を確認するための一覧です。文章全体の自動変換には別途変換ツールを使ってください。"}},{"@type":"Question","name":"「臨」の旧字体は？","acceptedAnswer":{"@type":"Answer","text":"文化庁の常用漢字表では「臨」に丸括弧付きの康熙字典体は示されていません。このサイトでは、確認できた根拠のない別字を「臨の旧字体」として提示しません。"}},{"@type":"Question","name":"「御」の旧字体は「禦」ですか？","acceptedAnswer":{"@type":"Answer","text":"文化庁の常用漢字表では「御」に丸括弧付きの康熙字典体は示されていません。一方、文化庁の「同音の漢字による書きかえ」には「制馭（禦）→制御」があります。これは語の書換え例なので、このサイトでは「御の旧字体＝禦」と一律には扱いません。"}},{"@type":"Question","name":"「魂」の旧字体は？","acceptedAnswer":{"@type":"Answer","text":"文化庁の常用漢字表では「魂」に丸括弧付きの康熙字典体は示されていません。このサイトでは、確認できた根拠のない別字を「魂の旧字体」として提示しません。"}},{"@type":"Question","name":"「霧」の旧字体は？","acceptedAnswer":{"@type":"Answer","text":"文化庁の常用漢字表では「霧」に丸括弧付きの康熙字典体は示されていません。このサイトでは、確認できた根拠のない別字を「霧の旧字体」として提示しません。"}}]}
   </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "aeec938336694c99bc864cdf859b5e37"}'></script>
+  <link rel="stylesheet" href="/assets/old-kanji-amazon-context.css?v=20260919-1">
 </head>
 
 <body>
@@ -129,21 +130,7 @@
       <div id="groupContainer" class="group-container" aria-live="polite"></div>
       <p id="emptyMessage" class="empty-message" hidden><span data-i18n="ja">該当なしです。検索モード・フィルタ・キーワードを変えて再検索してください。</span><span data-i18n="en">No matches. Try another mode, filter, or keyword.</span></p>
     </section>
-
-    <section class="amazon-resource-panel" aria-label="Amazon resources">
-      <h2 id="amazonResourceHeading">調査に役立つ道具</h2>
-      <p id="amazonResourceNote" class="amazon-resource-note">古い資料を調べるときに使えるAmazon検索です。検索した漢字やページ入力内容はリンクへ追加しません。</p>
-      <div class="amazon-resource-links">
-        <div id="amazonDictionary" class="amazon-resource-slot" hidden></div>
-        <div id="amazonMagnifier" class="amazon-resource-slot" hidden></div>
-        <div id="amazonBookStand" class="amazon-resource-slot" hidden></div>
-      </div>
-      <div id="amazonDisclosure" class="amazon-disclosure" hidden></div>
-    </section>
-
-
-
-    <section id="quizPanelBody" class="quiz-panel panel-body" hidden>
+<section id="quizPanelBody" class="quiz-panel panel-body" hidden>
       <p class="section-desc"><span data-i18n="ja">旧字体と新字体の対応を、短いクイズで確認できます。</span><span data-i18n="en">Practice old and modern kanji pairs with short quizzes.</span></p>
       <div id="quizContainer"></div>
     </section>
@@ -162,9 +149,8 @@
   <footer class="nw-footer"><p>© 2025 NicheWorks</p><p><a href="https://nicheworks.app/" target="_blank" rel="noopener">nicheworks.app</a></p></footer>
   <script src="/assets/nw-pro-entitlement.js"></script>
   <script src="/assets/amazon-affiliate.js"></script>
-  <script src="./affiliate-config.js"></script>
-  <script src="./affiliate.js"></script>
   <script src="./app-meaning-v4.js?v=20260519-langfix-1"></script>
   <script src="./verified-badge.js?v=20260914-modern-summary-4"></script>
+  <script src="/assets/old-kanji-amazon-context.js?v=20260919-1"></script>
 </body>
 </html>

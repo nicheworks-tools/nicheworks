@@ -92,15 +92,49 @@ async function referenceExports(c,fail){
   if(!result.freeCopy.includes('現在は無料')||!result.freeCopy.includes('currently free'))fail.push('old-kanji-reference/desktop/export: Free JP/EN public copy missing');
 }
 
+
+async function affiliateState(c){
+  return c.js(String.raw`
+    const panel=document.querySelector('.old-kanji-amazon-panel');
+    if(!panel)return {present:false,hidden:true,links:[],disclosure:''};
+    return {
+      present:true,
+      hidden:panel.hidden||getComputedStyle(panel).display==='none',
+      links:[...panel.querySelectorAll('a')].map(a=>a.href),
+      disclosure:(panel.querySelector('.old-kanji-amazon-disclosure')?.textContent||'').trim()
+    };
+  `);
+}
+
+function checkAffiliate(label,state,expectedVisible,fail){
+  if(!state.present){fail.push(label+': affiliate panel missing');return;}
+  if(expectedVisible&&state.hidden)fail.push(label+': contextual affiliate panel should be visible');
+  if(!expectedVisible&&!state.hidden)fail.push(label+': contextual affiliate panel should stay hidden before task result');
+  if(!expectedVisible)return;
+  if(state.links.length!==3)fail.push(label+': expected 3 curated affiliate links, got '+state.links.length);
+  for(const href of state.links){
+    let url;try{url=new URL(href);}catch{fail.push(label+': invalid affiliate URL '+href);continue;}
+    if(url.protocol!=='https:'||url.hostname!=='www.amazon.co.jp')fail.push(label+': non-Amazon HTTPS affiliate destination '+href);
+    if(url.searchParams.get('tag')!=='nicheworks09-22')fail.push(label+': Associates tag missing '+href);
+    const k=url.searchParams.get('k')||'';
+    if(/[舊學體𠮷﨑]/u.test(k))fail.push(label+': user test input leaked into Amazon search query '+k);
+  }
+  if(!state.disclosure.includes('Amazon'))fail.push(label+': Associates disclosure missing');
+}
+
 async function main(){
   const server=await staticServer(),proc=spawn(driverPath(),[`--port=${driverPort}`],{stdio:'ignore'});let c;const fail=[];
   try{
     await waitDriver();const s=await session(),id=s.sessionId;if(!id)throw new Error('No session id');c=client(id);await wd('POST',`/session/${id}/timeouts`,{implicit:0,pageLoad:15000,script:10000});
     for(const vp of viewports){await c.rect(vp.width,vp.height);for(const tool of tools){const label=`${tool}/${vp.name}`;console.log('==> '+label);await c.nav(`${base}/tools/${tool}/`);await sleep(500);await c.js(`window.__w15=[];addEventListener('error',e=>__w15.push(String(e.message||e.error)));addEventListener('unhandledrejection',e=>__w15.push(String(e.reason)));`);
-      let sc=await c.js(scanScript);check(label+'/initial',sc,fail);if(!sc.en||!sc.ja)fail.push(label+': JP/EN controls missing');else{await clickLang(c,'en');await sleep(80);let l=await c.js('return document.documentElement.lang||""');if(!String(l).toLowerCase().startsWith('en'))fail.push(label+': EN switch failed');await clickLang(c,'ja');await sleep(80);l=await c.js('return document.documentElement.lang||""');if(!String(l).toLowerCase().startsWith('ja'))fail.push(label+': JP switch failed');}
+      let sc=await c.js(scanScript);check(label+'/initial',sc,fail);
+      checkAffiliate(label+'/affiliate-initial',await affiliateState(c),tool==='old-kanji-reference',fail);
+      if(!sc.en||!sc.ja)fail.push(label+': JP/EN controls missing');else{await clickLang(c,'en');await sleep(80);let l=await c.js('return document.documentElement.lang||""');if(!String(l).toLowerCase().startsWith('en'))fail.push(label+': EN switch failed');await clickLang(c,'ja');await sleep(80);l=await c.js('return document.documentElement.lang||""');if(!String(l).toLowerCase().startsWith('ja'))fail.push(label+': JP switch failed');}
       await c.js(`document.body.tabIndex=-1;document.body.focus()`);const focus=new Set();for(let i=0;i<8;i++){await c.tab();const a=await c.js(`const e=document.activeElement,r=e&&e.getBoundingClientRect();return e?{k:e.tagName+'#'+(e.id||'')+':'+((e.innerText||e.value||'').trim().slice(0,40)),v:!!r&&r.width>0&&r.height>0}:null`);if(a?.k&&a.k!=='BODY#:')focus.add(a.k);if(a&&!a.v)fail.push(label+': hidden focus target '+a.k);}if(focus.size<3)fail.push(label+`: only ${focus.size} tab targets`);await c.js(`document.body.removeAttribute('tabindex')`);
       if(await fill(c,('\u820A\u5B78\u9AD4'.repeat(120))+'\n'+('\u{20BB7}\uFA11'.repeat(80)))){await action(c);await sleep(180);sc=await c.js(scanScript);check(label+'/long',sc,fail);}await fill(c,'');await action(c);await sleep(100);check(label+'/empty',await c.js(scanScript),fail);
-      if(await fill(c,'\u820A\u5B78\u9AD4\u{20BB7}\uFA11')){await action(c);await sleep(120);await c.js(`try{Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{}}})}catch{}`);const copied=await c.js(String.raw`const v=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0};const b=[...document.querySelectorAll('button')].filter(e=>v(e)&&!e.disabled).find(e=>/(copy|\u30B3\u30D4\u30FC)/i.test((e.id||'')+' '+(e.textContent||'')));if(!b)return false;b.click();return true;`);if(copied){await sleep(70);const fb=await c.js(String.raw`const v=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0};return [...document.querySelectorAll('[aria-live],[role=status]')].filter(v).some(e=>(e.textContent||'').trim())`);if(!fb)fail.push(label+': no visible copy feedback');}}
+      if(await fill(c,'\u820A\u5B78\u9AD4\u{20BB7}\uFA11')){await action(c);await sleep(220);
+        checkAffiliate(label+'/affiliate-result',await affiliateState(c),true,fail);
+        await c.js(`try{Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{}}})}catch{}`);const copied=await c.js(String.raw`const v=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0};const b=[...document.querySelectorAll('button')].filter(e=>v(e)&&!e.disabled).find(e=>/(copy|\u30B3\u30D4\u30FC)/i.test((e.id||'')+' '+(e.textContent||'')));if(!b)return false;b.click();return true;`);if(copied){await sleep(70);const fb=await c.js(String.raw`const v=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0};return [...document.querySelectorAll('[aria-live],[role=status]')].filter(v).some(e=>(e.textContent||'').trim())`);if(!fb)fail.push(label+': no visible copy feedback');}}
       if(tool==='old-kanji-reference'&&vp.name==='desktop')await referenceExports(c,fail);
       const errs=await c.js('return window.__w15||[]');if(errs.length)fail.push(label+': runtime errors '+JSON.stringify(errs));check(label+'/final',await c.js(scanScript),fail);
     }}
