@@ -30,7 +30,7 @@ const expected = [
   ['DJI RC-N3 Remote Controller', 'https://store.dji.com/product/dji-rc-n3-remote-controller']
 ];
 
-assert.equal(exclusions.length, 21, 'Wave 40 must retain 15 prior exclusions and add six reviewed controller exclusions');
+assert.ok(exclusions.length >= 21, 'Wave 40 baseline must retain the twenty-one exclusions established through Wave 40');
 
 for (const [model, sourceUrl] of expected) {
   const row = exclusions.find((entry) => entry.model === model);
