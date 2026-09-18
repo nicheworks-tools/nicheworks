@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 8, 'the 4 legacy category conflicts plus 4 reviewed Wave 15 legacy-vs-verified role conflicts must be explicit at runtime');
+assert.equal(categoryConflicts.length, 12, 'the 4 legacy category conflicts plus 8 reviewed Wave 15-16 legacy-vs-verified role conflicts must be explicit at runtime');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
@@ -35,17 +35,21 @@ for (const item of safetyConflicts) {
   assert.deepEqual(item.legacy_safety_values, item.semantic_conflicts.safety, `${item.en}: conflict marker and auditable safety values must agree`);
 }
 
-const wave15VerifiedPrimary = new Map([
+const reviewedVerifiedPrimary = new Map([
   ['caprylyl glycol', { category: 'emollient', legacy: ['preservative booster'] }],
   ['ceramide np', { category: 'skin conditioning', legacy: ['barrier lipid'] }],
   ['cholesterol', { category: 'emollient', legacy: ['barrier lipid'] }],
-  ['hexylene glycol', { category: 'solvent', legacy: ['general'] }]
+  ['hexylene glycol', { category: 'solvent', legacy: ['general'] }],
+  ['hydroxyacetophenone', { category: 'antioxidant', legacy: ['preservative booster'] }],
+  ['palmitic acid', { category: 'emollient', legacy: ['general'] }],
+  ['stearic acid', { category: 'cleanser', legacy: ['general'] }],
+  ['myristic acid', { category: 'cleanser', legacy: ['general'] }]
 ]);
 
 for (const item of categoryConflicts) {
   assert.ok(Array.isArray(item.categories) && item.categories.length >= 2, `${item.en}: category conflict must preserve multiple functional categories`);
   const canonical = parser.canonicalIdentityKey(item.en);
-  const reviewed = wave15VerifiedPrimary.get(canonical);
+  const reviewed = reviewedVerifiedPrimary.get(canonical);
   if (reviewed) {
     assert.equal(item.category, reviewed.category, `${item.en}: reviewed verified role must be the public primary category`);
     assert.equal(item.category_verified, true, `${item.en}: reviewed verified role must remain provenance-marked`);
@@ -83,7 +87,7 @@ console.log(JSON.stringify({
   explicit_safety_conflicts: safetyConflicts.length,
   safety_conflicts_with_selected_winner: safetyConflicts.filter((item) => item.safety).length,
   explicit_category_conflicts: categoryConflicts.length,
-  reviewed_verified_primary_category_conflicts: categoryConflicts.filter((item) => wave15VerifiedPrimary.has(parser.canonicalIdentityKey(item.en))).length,
-  legacy_only_category_conflicts: categoryConflicts.filter((item) => !wave15VerifiedPrimary.has(parser.canonicalIdentityKey(item.en))).length,
+  reviewed_verified_primary_category_conflicts: categoryConflicts.filter((item) => reviewedVerifiedPrimary.has(parser.canonicalIdentityKey(item.en))).length,
+  legacy_only_category_conflicts: categoryConflicts.filter((item) => !reviewedVerifiedPrimary.has(parser.canonicalIdentityKey(item.en))).length,
   category_conflicts_preserving_all_functions: categoryConflicts.filter((item) => item.categories?.length >= 2).length
 }, null, 2));
