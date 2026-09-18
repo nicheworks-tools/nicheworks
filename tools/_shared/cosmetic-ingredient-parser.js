@@ -212,7 +212,11 @@
     "imidazolidinyl urea": Object.freeze({ note_short: "Preservative; EU Annex V lists Imidazolidinyl Urea at up to 0.6%.", note_sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]), authority: "European Union / EUR-Lex" }),
     "ammonium hydroxide": Object.freeze({ note_short: "Buffering and denaturant ingredient; COSMILE Europe lists both functions for Ammonium Hydroxide and notes that it is subject to EU Annex III restrictions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/906/ammonium-hydroxide"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "glutathione": Object.freeze({ note_short: "Reducing agent; COSMILE Europe lists Glutathione as a reducing ingredient in cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5915/glutathione/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "zinc pca": Object.freeze({ note_short: "Humectant and skin-conditioning ingredient; COSMILE Europe lists both functions for Zinc PCA.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/17133/zinc-pca/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "zinc pca": Object.freeze({ note_short: "Humectant and skin-conditioning ingredient; COSMILE Europe lists both functions for Zinc PCA.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/17133/zinc-pca/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "glycerin": Object.freeze({ note_short: "Humectant and solvent; COSMILE Europe lists Glycerin as moisture-retaining, skin-conditioning, hair-conditioning, solvent and viscosity-controlling in cosmetics.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5951/glycerin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "caprylyl glycol": Object.freeze({ note_short: "Skin-conditioning emollient; COSMILE Europe lists Caprylyl Glycol as softening and smoothing skin, alongside skin- and hair-conditioning functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2612/caprylyl-glycol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "citric acid": Object.freeze({ note_short: "Buffering and chelating ingredient; COSMILE Europe lists Citric Acid as controlling cosmetic-product pH and binding metal ions that can affect product stability or appearance.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3374/citric-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "water": Object.freeze({ note_short: "Solvent; COSMILE Europe describes purified water as a solvent and common basis for many cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/23035/water/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -437,7 +441,7 @@
   }
 
   const api = {
-    version: "1.42.0",
+    version: "1.43.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
