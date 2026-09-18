@@ -1,0 +1,31 @@
+name: PRO_BUNDLE commercial surface scan
+
+on:
+  pull_request:
+    paths:
+      - 'MONETIZATION_CLASSIFICATION.json'
+      - 'tools/**'
+      - 'scripts/check-pro-bundle-commercial-surfaces.mjs'
+      - '.github/workflows/check-pro-bundle-commercial-surfaces.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'MONETIZATION_CLASSIFICATION.json'
+      - 'tools/**'
+      - 'scripts/check-pro-bundle-commercial-surfaces.mjs'
+      - '.github/workflows/check-pro-bundle-commercial-surfaces.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Scan all canonical PRO_BUNDLE runtime surfaces
+        run: node scripts/check-pro-bundle-commercial-surfaces.mjs
