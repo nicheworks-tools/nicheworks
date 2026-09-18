@@ -196,6 +196,20 @@ POCO F9 Ultra preserves Xiaomi Japan's 8050mAh battery, 100W wired HyperCharge/P
 
 REDMI Note 17 Pro Max 5G preserves the official color-dependent 8.65mm / 8.57mm thickness split using `physicalVariants[]`; all Japan variants are 229.5g. It records 10000mAh, 100W HyperCharge/PPS support, IP66/IP68, and the included 100W charger/cable.
 
+## Post-v1 maintenance Wave 6 — 2026-09-19
+
+Added two Xiaomi Japan-market 2026 records:
+
+- Xiaomi 17 Ultra
+- POCO M8 5G
+
+Maintained dataset: **197 → 199**.
+
+Xiaomi 17 Ultra uses `physicalVariants[]` to preserve the 218.4g Black/White and 219g Starlit Green split at the shared 8.29mm thickness. It records 6000mAh, 90W HyperCharge/PPS, source-backed wireless charging capability without inventing an exact wireless input wattage, IP68, and explicit cable/adapter inclusion.
+
+POCO M8 5G records the Japan FAQ's 164 × 75.42 × 7.35mm, 178g, 5520mAh, 45W, PPS/PD/QC support, and IP66. Charger/cable package fields remain `unknown` and are registered as reviewed-unresolved because Xiaomi Japan does not establish one invariant retail in-box state for the maintained JP record.
+
+
 
 
 
