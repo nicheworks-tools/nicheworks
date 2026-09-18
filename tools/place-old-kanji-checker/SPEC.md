@@ -9,6 +9,14 @@
 
 Check place names, addresses, station names, old-map labels, and sign text for registered old/variant kanji candidates as a reference aid.
 
+## Search cluster role
+
+- Primary intent: check place/address/station text for old/variant candidates.
+- Primary query families: `地名 旧字体`, `住所 旧字体`, `駅名 旧字体`.
+- Supporting query families: `古地図 旧字体`, `地名 異体字`.
+- The page is the cluster's place/address-focused candidate checker and keeps an explicit official-use caution.
+- Primary task handoffs are Old Kanji Reference, Kanji Modernizer, and Name Old Kanji Checker.
+
 ## Current functional contract
 
 - Accept free-text place/address input.
