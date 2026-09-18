@@ -859,3 +859,33 @@ console.log('Phone QuickCheck final automated QA passed: controls, sort modes, e
   assert.match(h.elements.desktopDetail.innerHTML, /158 × 73 × 8\.9 mm/);
 }
 
+// Post-v1 2026 maintenance Wave 5.
+{
+  const poco = byId.get('xiaomi-poco-f9-ultra');
+  assert.ok(poco, 'POCO F9 Ultra fixture missing');
+  assert.equal(poco.weightG, 235);
+  assert.equal(poco.displayInch, 6.9);
+  assert.equal(poco.charging?.battery?.capacityMah, 8050);
+  assert.equal(poco.charging?.wiredMaxW, 100);
+  assert.equal(poco.charging?.pps, 'supported');
+  assert.equal(poco.charging?.wirelessStandard, 'Wireless HyperCharge');
+  assert.equal(poco.charging?.wirelessMaxW, null);
+  assert.equal(poco.waterRating, 'IP68');
+  assert.equal(poco.included?.cable, 'included');
+  assert.equal(poco.included?.adapter, 'included');
+
+  const redmi = byId.get('xiaomi-redmi-note-17-pro-max-5g');
+  assert.ok(redmi, 'REDMI Note 17 Pro Max 5G fixture missing');
+  assert.equal(redmi.charging?.battery?.capacityMah, 10000);
+  assert.equal(redmi.charging?.wiredMaxW, 100);
+  assert.equal(redmi.charging?.pps, 'supported');
+  assert.equal(redmi.waterRating, 'IP66/IP68');
+  assert.equal(redmi.physicalVariants?.length, 3);
+  assert.deepEqual(redmi.physicalVariants?.map((variant) => variant.depthMm), [8.65, 8.65, 8.57]);
+  assert.deepEqual(redmi.physicalVariants?.map((variant) => variant.weightG), [229.5, 229.5, 229.5]);
+
+  const h = await createHarness(['xiaomi-poco-f9-ultra', 'xiaomi-redmi-note-17-pro-max-5g']);
+  assert.match(h.elements.phoneList.innerHTML, /POCO F9 Ultra/);
+  assert.match(h.elements.desktopDetail.innerHTML, /8050 mAh/);
+}
+
