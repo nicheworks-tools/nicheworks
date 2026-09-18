@@ -1,0 +1,73 @@
+name: tmp TrashNavi Wave45 readiness
+on:
+  push:
+    branches: [feat/trashnavi-wave45-readiness-20260918]
+permissions:
+  contents: write
+jobs:
+  readiness:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/trashnavi-wave45-readiness-20260918
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate Wave45 readiness
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          rows=json.loads(Path('tools/trashnavi/data/direct-waste-links-supply-wave45.json').read_text())
+          expected={
+            '122025':'銚子市','122050':'館山市','122157':'旭市','122181':'勝浦市','122238':'鴨川市',
+            '122343':'南房総市','122360':'香取市','122386':'いすみ市','122394':'大網白里市','122351':'匝瑳市'
+          }
+          assert len(rows)==30
+          by={}
+          for r in rows:
+            assert r['pref']=='千葉県'
+            assert r['lgcode'] in expected and r['city']==expected[r['lgcode']]
+            assert r['last_checked']=='2026-09-18'
+            assert r['status']=='active' and r['language']=='ja'
+            assert r['link_type']!='municipal_home'
+            assert r['url'].startswith('https://')
+            by.setdefault(r['lgcode'],[]).append(r)
+          assert set(by)==set(expected)
+          for code,rs in by.items():
+            assert len(rs)==3
+            assert len({r['link_type'] for r in rs})==3
+            assert len({r['url'] for r in rs})==3
+          app=Path('tools/trashnavi/app.js').read_text()
+          assert 'data/direct-waste-links-supply-wave45.json' in app
+          manifest=json.loads(Path('tools/trashnavi/municipality-page-manifest.json').read_text())
+          assert len(manifest)==224
+          slugs=['choshi','tateyama','asahi','katsuura','kamogawa','minamiboso','katori','isumi','oamishirasato','sosa']
+          root=Path('sitemap.xml').read_text()
+          dedicated=Path('sitemap-trashnavi.xml').read_text()
+          index=Path('tools/trashnavi/index.html').read_text()
+          for slug in slugs:
+            canonical=f'https://nicheworks.app/tools/trashnavi/chiba/{slug}/'
+            href=f'/tools/trashnavi/chiba/{slug}/'
+            assert canonical not in root
+            assert canonical not in dedicated
+            assert href not in index
+          assert dedicated.count('<url>')==225
+          print('Wave45 readiness static acceptance: 10 municipalities / 30 records / published surface remains 224')
+          PY
+
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+          node tools/trashnavi/scripts/check-affiliate-contract.mjs
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+
+          rm .github/workflows/tmp-trashnavi-wave45-readiness.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git diff --cached --check
+          git commit -m "test(trashnavi): validate Wave45 readiness"
+          git push origin HEAD:feat/trashnavi-wave45-readiness-20260918
