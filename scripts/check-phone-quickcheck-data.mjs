@@ -14,7 +14,7 @@ const accessoryPayload = JSON.parse(fs.readFileSync(accessoriesPath, 'utf8'));
 const phones = Array.isArray(phonePayload.phones) ? phonePayload.phones : [];
 const accessories = Array.isArray(accessoryPayload.accessories) ? accessoryPayload.accessories : [];
 
-if (phones.length < 181) fail(`expected at least 181 phones, got ${phones.length}`);
+if (phones.length < 185) fail(`expected at least 185 phones, got ${phones.length}`);
 if (!/^2026-\d{2}-\d{2}$/.test(String(phonePayload.updatedAt || ''))) fail('phones updatedAt must be a 2026 ISO date');
 
 const ids = new Set();
@@ -89,6 +89,7 @@ for (const phone of phones) {
 
   const sources = phone.sources || {};
   if (sources.waterUrl !== null && sources.waterUrl !== undefined && !isHttps(sources.waterUrl)) fail(`${label}: waterUrl must be HTTPS when present`);
+  if (sources.packageUrl !== null && sources.packageUrl !== undefined && !isHttps(sources.packageUrl)) fail(`${label}: packageUrl must be HTTPS when present`);
   if (phone.waterStatus === 'not_resistant' && !isHttps(sources.waterUrl)) fail(`${label}: not_resistant requires HTTPS sources.waterUrl`);
   if (!isHttps(sources.specificationsUrl)) fail(`${label}: HTTPS specificationsUrl required`);
   if (!isHttps(sources.manualUrl)) fail(`${label}: HTTPS manualUrl required`);
