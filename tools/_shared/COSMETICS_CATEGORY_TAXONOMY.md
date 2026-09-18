@@ -150,3 +150,17 @@ Wave 13 adds the exact COSMILE authority term `surfactant - cleansing` as an exp
 ## Wave 14 taxonomy expansion
 
 Wave 14 adds `emulsifier` to the verified overlay taxonomy with the exact COSMILE authority term `surfactant - emulsifying`. The four reviewed mappings are Polysorbate 80, Sorbitan Olivate, Steareth-2 and Steareth-21.
+
+
+## Wave 15 taxonomy expansion
+
+Wave 15 adds the exact COSMILE authority term `skin conditioning - miscellaneous` as an explicit source-function synonym for the existing internal `skin conditioning` category. It does not create a new public category.
+
+The reviewed mappings are:
+
+- Caprylyl Glycol: `skin conditioning - emollient` → `emollient`
+- Ceramide NP: `skin conditioning - miscellaneous` → `skin conditioning`
+- Cholesterol: `skin conditioning - emollient` → `emollient`
+- Hexylene Glycol: `solvent` → `solvent`
+
+This wave also formalizes precedence for reviewed provenance over unsupported legacy category hints. The verified mapping controls the public primary role, while legacy values remain visible for audit and are not rewritten in the raw dictionaries.
