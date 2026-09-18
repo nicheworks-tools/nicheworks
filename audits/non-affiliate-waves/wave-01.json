@@ -1,9 +1,6 @@
 {
-  "schemaVersion": "nicheworks-non-affiliate-wave-result-v1",
   "wave": 1,
   "auditMode": "audit_only",
-  "auditedAt": "2026-09-16T13:40:00+09:00",
-  "baseSha": "6b1c74016e4a48c2cec5e366be69fe78e5badf0f",
   "records": [
     {
       "slug": "ai-interaction-atlas",
