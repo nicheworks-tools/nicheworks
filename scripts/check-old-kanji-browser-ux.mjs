@@ -78,7 +78,7 @@ async function referenceExports(c,fail){
     window.print=()=>{window.__w19Export.prints+=1;};
     try{for(const button of buttons){if(button&&!button.disabled)button.click();}}
     finally{URL.createObjectURL=oldCreate;URL.revokeObjectURL=oldRevoke;HTMLAnchorElement.prototype.click=oldClick;window.print=oldPrint;}
-    return {missing,disabled,...window.__w19Export,freeCopy:(document.querySelector('.export-panel')?.innerText||'')};
+    return {missing,disabled,...window.__w19Export,freeCopy:(document.querySelector('.export-panel')?.textContent||'')};
   `);
   await sleep(80);
   if(result.missing.length)fail.push('old-kanji-reference/desktop/export: missing controls '+JSON.stringify(result.missing));
