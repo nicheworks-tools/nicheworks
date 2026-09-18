@@ -210,27 +210,33 @@ if (state.data.rows && state.data.rows.length) schedulePreviewRequest();
   }
 
   function decodeArrayBuffer(buf, enc){
-    try {
-      const td = new TextDecoder(enc, { fatal: false });
-      return td.decode(buf);
-    } catch (e) {
-      // [CSVTDY-07] Some browsers don't support Shift_JIS in TextDecoder
-      if (String(enc).toLowerCase() === "shift_jis") {
-        const err = new Error("unsupported_shift_jis");
-        err.code = "unsupported_shift_jis";
-        throw err;
-      }
-      throw e;
+    if (!["utf-8", "shift_jis"].includes(enc)) throw csvError("unsupported_encoding", { encoding: enc });
+    let decoder;
+    try { decoder = new TextDecoder(enc, { fatal: true }); }
+    catch(_error){
+      throw csvError(enc === "shift_jis" ? "unsupported_shift_jis" : "unsupported_encoding", { encoding: enc });
     }
+    try { return decoder.decode(buf); }
+    catch(_error){ throw csvError("decoding_failed", { encoding: enc }); }
   }
 
   function guessEncoding(buf){
-    let t1 = "";
-    try { t1 = decodeArrayBuffer(buf, "utf-8"); } catch(_e){ t1 = ""; }
-    const rep = (t1.match(/\uFFFD/g) || []).length;
-    const len = Math.max(1, t1.length);
-    const ratio = rep / len;
-    if (ratio > 0.002) return "shift_jis";
+    const bytes = new Uint8Array(buf);
+    const hasBOM = bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf;
+    let utf8;
+    try { utf8 = decodeArrayBuffer(buf, "utf-8"); }
+    catch(error){
+      // Do not override a UTF-8 signature to rescue malformed UTF-8 bytes.
+      if (hasBOM || error.code !== "decoding_failed") throw error;
+      decodeArrayBuffer(buf, "shift_jis"); // strict fallback or explicit failure
+      return "shift_jis";
+    }
+    if (hasBOM) return "utf-8";
+    let alternate;
+    try { alternate = decodeArrayBuffer(buf, "shift_jis"); } catch(_error) {}
+    if (alternate !== undefined && alternate !== utf8){
+      throw csvError("ambiguous_encoding", { candidates: ["utf-8", "shift_jis"] });
+    }
     return "utf-8";
   }
 
@@ -833,19 +839,25 @@ return;
 
     let enc = state.input.encoding;
     let guessedEnc = null;
-    if (enc === "auto") { guessedEnc = guessEncoding(buf); enc = guessedEnc; }
-
     let text = "";
     try {
-      text = decodeArrayBuffer(buf, enc === "shift_jis" ? "shift_jis" : "utf-8");
+      if (enc === "auto") { guessedEnc = guessEncoding(buf); enc = guessedEnc; }
+      text = decodeArrayBuffer(buf, enc);
     } catch(_e){
+      state.ui.inputError = { code: _e.code, encoding: _e.encoding, candidates: _e.candidates };
       const isSJISUnsupported = (_e && (_e.code === "unsupported_shift_jis" || _e.message === "unsupported_shift_jis"));
       if (isSJISUnsupported){
         setError(state.ui.lang==="ja"
           ? "このブラウザはShift_JISの読み込みに未対応です。CSVをUTF-8に変換して再試行してください。"
-          : "This browser does not support Shift_JIS decoding. Convert the CSV to UTF-8 and try again.");
+          : "This browser does not support Shift_JIS decoding. Convert the CSV to UTF-8 and try again.", _e.code);
+      } else if (_e.code === "ambiguous_encoding"){
+        setError(state.ui.lang === "ja"
+          ? "UTF-8とShift_JISで異なる文字になります。入力文字コードを手動で選択してください。元ファイルは変更されていません。"
+          : "UTF-8 and Shift_JIS produce different text. Select the input encoding manually. The source is unchanged.", _e.code);
       } else {
-        setError(state.ui.lang==="ja" ? "文字コードの解釈に失敗しました。" : "Failed to decode text.");
+        setError(state.ui.lang === "ja"
+          ? "選択した文字コードで読み込めません。元ファイルは変更されていません。入力文字コードを確認し、正しい形式で再保存して試してください。"
+          : "Cannot decode these bytes using the selected encoding. The source is unchanged. Check the encoding or resave the CSV and retry.", _e.code);
       }
       return;
     }
@@ -896,6 +908,11 @@ return;
       : `Loaded: ${rows.length} rows / ${maxCols} cols (${encInfoEn} / delim: ${delim === "\t" ? "TAB" : delim})`
     );
 
+    if (guessedEnc){
+      setHint(els.loadHint.textContent + (state.ui.lang === "ja"
+        ? " 文字コードは推定です。文字を確認し、違う場合は入力文字コードを指定してください。"
+        : " Encoding is inferred: verify the text and select the input encoding if incorrect."));
+    }
     renderColsList();
     schedulePreviewRequest();
   

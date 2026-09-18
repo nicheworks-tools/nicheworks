@@ -1,5 +1,7 @@
 # CSV Tidy correctness checkpoint — 2026-09-17 UTC
 
+Latest result: G3-only continuation below (2026-09-18): 39 passing tests, 5 remaining KNOWN GAP cases. Earlier sections retain historical evidence.
+
 Base: `4f00e990f06fd3bc9332a629859bac09e069ef52`.
 Branch: `feat/csv-tidy-product-quality-20260917`.
 One live API check found main at `02c677f09e2b7c4ee61392c529b03c532a0dbafb`; no rebase/merge performed. This evidence applies to the base above plus the scoped checkpoint changes, not newer main.
@@ -59,3 +61,25 @@ Starting checkpoint `eda8db404b12b0f741e34a9203a69f8e93ce2ec9` was verified unch
 Replaced G1/G2/G7 characterizations with desired behavior and added ambiguity/quoted-logical-record/independent empty-record output checks. Before source repair: 35 tests, 30 passed / 5 failed. After repair: original suite passed; 35 tests passed / 0 failed / 0 skipped. Six KNOWN GAP cases remain (G3/G4/G5/G6/G8/G9). There are now 25 independent Python Blob reparses. The original failing fixtures remain in the acceptance tests, not deleted or weakened.
 
 Parser now enforces quote grammar and reports logical record/field/offset. AUTO compares valid logical-record interpretations and rejects ambiguity. Loader no longer deletes blank records. A single empty output cell is quoted to preserve a one-field empty record for independent CSV readers. No browser, responsive or performance checks were performed.
+
+## G3-only continuation — 2026-09-18 UTC
+
+Workspace recovery found local HEAD `4f00e990f06fd3bc9332a629859bac09e069ef52`, no staged changes, and no partial CSV Tidy G3/G6 work. Remote branch remained `ca1df30427d4ce9ecec8697382a4597e94b783d9`. Local branch was fast-forwarded to that preserved checkpoint without changing unrelated working-tree deletion. No commits after that checkpoint existed at recovery.
+
+G3 root cause: nonfatal decoding silently inserted replacement characters, and replacement-character frequency was used as an encoding heuristic. The strict decoder now distinguishes malformed bytes from unsupported decoder construction. AUTO honors UTF-8 BOM, strictly validates fallback, and rejects differing valid interpretations pending explicit selection. The original sparse-Japanese and malformed-byte fixtures were retained as desired-behavior assertions.
+
+Before source correction, focused G3 tests: 5 executed, 2 passed / 3 failed. Initial full run after correction: 38 passed / 1 failed, because the new UTF-8 Japanese test incorrectly assumed AUTO could uniquely identify BOM-less bytes. Native strict decoders demonstrated both interpretations are valid with different text. The test now requires the policy's ambiguity error, then verifies manual UTF-8 preserves the expected matrix; the implementation was not weakened to accept ambiguous bytes.
+
+Final executed commands:
+
+```sh
+node tools/csv-tidy/tests/behavior.test.mjs
+node --test tools/csv-tidy/tests/checkpoint.test.mjs
+git diff --check
+```
+
+Original suite passed. **39 checkpoint tests passed / 0 failed / 0 skipped / 0 todo**: 34 desired-behavior tests, 5 KNOWN GAP characterizations (G4/G5/G6/G8/G9). Independent Python `csv.reader` checks passed for **26 Blobs**: the preserved 25 plus one actual AUTO SJIS → UTF-8 output. BOM/newline/quoting/leading-zero/source-byte assertions continue passing.
+
+New G3 tests cover actual UTF-8 ASCII/Japanese/BOM bytes, invalid UTF-8 `ff`, truncated SJIS `81`, SJIS Japanese bytes, sparse SJIS following 2,000 ASCII characters, `c2a9` ambiguity, BOM authority, explicit encoding selection and AUTO. A test-only decoder constructor double verifies unsupported SJIS is distinct from invalid bytes and does not prevent valid UTF-8 use. Real browser support is unverified.
+
+No G6 implementation/tests/status changes were made. G1/G2/G7 were not reimplemented. G4/G5/G8/G9, browser/responsive/performance/SEO work and final PR are outside this session.

@@ -59,13 +59,46 @@ test('G2 resolved: EOF terminator vs actual empty records and fields', async () 
   await h.load('a\n\nx\n\n');
   assert.deepEqual(plain(h.state.data.rows), [['a'],[''],['x'],['']]);
 });
-test('G3 KNOWN GAP: replacement decoding and sparse Japanese SJIS misclassification', () => {
+test('G3: strict decoding and sparse SJIS Japanese detection', async () => {
   const h = harness();
-  assert.equal(h.decodeArrayBuffer(Buffer.from([0xff]), 'utf-8'), '\uFFFD');
+  assert.throws(() => h.decodeArrayBuffer(Buffer.from([0xff]), 'utf-8'), e => e.code === 'decoding_failed' && e.encoding === 'utf-8');
+  assert.throws(() => h.decodeArrayBuffer(Buffer.from([0x81]), 'shift_jis'), e => e.code === 'decoding_failed' && e.encoding === 'shift_jis');
   const bytes = Buffer.concat([Buffer.from('a'.repeat(2000) + ','), Buffer.from([0x93,0x8c,0x8b,0x9e])]);
-  assert.equal(h.guessEncoding(bytes), 'utf-8');
-  assert.ok(h.decodeArrayBuffer(bytes, h.guessEncoding(bytes)).includes('\uFFFD'));
-  assert.ok(h.decodeArrayBuffer(bytes, 'shift_jis').endsWith('東京'));
+  assert.equal(h.guessEncoding(bytes), 'shift_jis');
+  assert.ok(h.decodeArrayBuffer(bytes, h.guessEncoding(bytes)).endsWith('東京'));
+  await h.load(bytes, 'auto');
+  assert.equal(h.state.data.rows[0][1], '東京');
+  assert.match(h.get('#loadHint').textContent, /inferred|guessed/i);
+  assert.match(h.get('#loadHint').textContent, /verify/i);
+});
+test('G3: ambiguous valid encodings require selection; UTF-8 BOM is authoritative', async () => {
+  const h = harness(), ambiguous = Buffer.from('c2a9', 'hex'); // UTF-8 © vs SJIS ﾂｩ
+  assert.throws(() => h.guessEncoding(ambiguous), e => e.code === 'ambiguous_encoding');
+  await h.load(ambiguous, 'auto');
+  assert.equal(h.state.data.rows.length, 0);
+  assert.equal(h.state.ui.inputError.code, 'ambiguous_encoding');
+  assert.match(h.get('#errBox').textContent, /select|choose/i);
+  await h.load(ambiguous, 'utf-8'); assert.deepEqual(plain(h.state.data.rows), [['©']]);
+  await h.load(ambiguous, 'shift_jis'); assert.deepEqual(plain(h.state.data.rows), [['ﾂｩ']]);
+  assert.equal(h.guessEncoding(Buffer.from('efbbbfc2a9', 'hex')), 'utf-8');
+  assert.throws(() => h.guessEncoding(Buffer.from('efbbbf938c8b9e', 'hex')), e => e.code === 'decoding_failed' && e.encoding === 'utf-8');
+  assert.equal(h.decodeArrayBuffer(Buffer.from('\uFFFD'), 'utf-8'), '\uFFFD', 'literal U+FFFD is valid text, not decoder substitution');
+});
+test('G3: unavailable Shift_JIS is distinct from invalid bytes', async () => {
+  const h = harness(class { constructor(enc, options) { if (enc === 'shift_jis') throw new RangeError('unsupported'); return new TextDecoder(enc, options); } });
+  assert.throws(() => h.decodeArrayBuffer(Buffer.from([0x93,0x8c]), 'shift_jis'), e => e.code === 'unsupported_shift_jis');
+  await h.load(Buffer.from([0x93,0x8c]), 'auto');
+  assert.equal(h.state.ui.inputError.code, 'unsupported_shift_jis');
+  assert.equal(h.state.data.rows.length, 0);
+  assert.match(h.get('#errBox').textContent, /UTF-8/);
+  await h.load('name,value\n東京,001\n', 'auto');
+  assert.deepEqual(plain(h.state.data.rows), [['name','value'],['東京','001']]);
+  for (const enc of ['utf-8','shift_jis','auto']) {
+    const invalid = harness(); await invalid.load(Buffer.from([0xff]), enc);
+    assert.equal(invalid.state.data.rows.length, 0);
+    assert.equal(invalid.state.ui.inputError.code, 'decoding_failed');
+    invalid.downloadCSV(); assert.equal(invalid.blobs.length, 0);
+  }
 });
 test('G4 KNOWN GAP: template announces rename but preview still uses Japanese names/order', async () => {
   const h = harness(); await h.load('金額,日付\n1200,2026-01-01\n');
@@ -201,4 +234,27 @@ test('G1/G2/G7 corrected input round-trips through independent Python parser', a
     assert.deepEqual(reparse(Buffer.from(await h.blobs.at(-1).arrayBuffer()), h.state.input.delimiterResolved), expected);
     assert.deepEqual(bytes, copy);
   }
+});
+
+test('G3: UTF-8 byte fixtures preserve text or require explicit selection when ambiguous', async () => {
+  for (const hex of ['612c620a3030312c780a', 'e5908de5898d2ce580a40ae69db1e4baac2c3030310a', 'efbbbfe5908de5898d2ce580a40ae69db1e4baac2c3030310a']) {
+    const bytes = Buffer.from(hex, 'hex'), copy = Buffer.from(bytes);
+    for (const enc of ['utf-8', 'auto']) {
+      const h = harness(); await h.load(bytes, enc);
+      if (enc === 'auto' && hex.startsWith('e5908d')) {
+        // These exact bytes also strictly decode as SJIS 蜷榊燕,蛟､ / 譚ｱ莠ｬ,001.
+        assert.equal(h.state.ui.inputError.code, 'ambiguous_encoding');
+        assert.deepEqual(plain(h.state.data.rows), []);
+        await h.load(bytes, 'utf-8');
+      }
+      assert.deepEqual(plain(h.state.data.rows), hex.startsWith('61') ? [['a','b'],['001','x']] : [['名前','値'],['東京','001']]);
+      assert.deepEqual(bytes, copy);
+    }
+  }
+});
+test('G3: actual AUTO SJIS input independently round-trips as UTF-8', async () => {
+  const h = harness(), bytes = Buffer.from('96bc914f2c926c0a938c8b9e2c3030310a', 'hex');
+  const copy = Buffer.from(bytes); await h.load(bytes, 'auto'); h.downloadCSV();
+  assert.deepEqual(reparse(Buffer.from(await h.blobs.at(-1).arrayBuffer()), ','), [['名前','値'],['東京','001']]);
+  assert.deepEqual(bytes, copy);
 });

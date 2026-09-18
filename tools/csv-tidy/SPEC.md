@@ -37,7 +37,7 @@ The following are acceptance requirements, with current evidence/status called o
 | CRLF / LF / comma / TAB / semicolon | Parse logical records without splitting quoted newlines | Explicit-format fixtures pass |
 | Unclosed / misplaced quotes | Reject malformed records with actionable error; do not strip quotes to invent a value | G7 resolved: strict start/unquoted/quoted/closed grammar, located errors |
 | Auto delimiter | Ignore candidates inside quoted fields; ambiguity must be visible and manually overridable | G1 resolved: compare strict logical-record interpretations; multiple multi-column candidates require manual choice |
-| Auto encoding / invalid bytes | No silent replacement-character decoding; invalid selected encoding must fail; valid-but-ambiguous encodings require user confirmation by inspection | G3; current ratio heuristic can misdecode sparse Japanese content |
+| Auto encoding / invalid bytes | No silent replacement-character decoding; invalid selected encoding must fail; valid-but-ambiguous encodings require user confirmation by inspection | G3 resolved: fatal decoding, validated fallback, explicit selection for differing valid interpretations |
 | Empty input / all columns excluded | No exportable result; explain how to load data/include columns | Empty parser case and zero-column export guard tested; rendered states pending |
 
 UTF-8 BOM is handled at the decoding boundary, not by the string parser. Encoding auto-detection cannot prove the original encoding when bytes are valid under multiple encodings. Explicit selection and readable preview remain necessary. Arbitrary delimiter/encoding values are not supported UI inputs.
@@ -80,7 +80,7 @@ All classifications below are based on deterministic tests of current production
 | --- | --- | --- | --- |
 | G1 | Semicolon CSV containing many commas inside a quoted field is guessed as comma | RESOLVED (unit/integration) | Strict candidate parses; ambiguous_delimiter requires manual selection |
 | G2 | `a,b\n,` loses its last record; loader also removes middle all-empty records | RESOLVED (unit/integration) | Preserve records; quote singleton empty values on export for independent reparse |
-| G3 | Invalid UTF-8 becomes U+FFFD; 2,000 ASCII characters plus SJIS Tokyo are guessed UTF-8 | CONFIRMED GAP / BLOCKER | Strict decode and safe encoding selection/failure state |
+| G3 | Invalid UTF-8 becomes U+FFFD; 2,000 ASCII characters plus SJIS Tokyo are guessed UTF-8 | RESOLVED (unit/integration) | Fatal decoding and explicit encoding ambiguity; general failed-load state remains G9 |
 | G4 | Accounting template writes `outName` while preview uses `name`; Japanese headers do not receive template order | CONFIRMED GAP / CORE GAP | One column-name/mapping source of truth, duplicate-safe matching |
 | G5 | Filtering rendered column items hides excluded names from summary and confirmation; input count changes | CONFIRMED GAP / UX GAP | Compute counts/exclusions from full data state, not filtered DOM |
 | G6 | Loader silently pads ragged rows and replaces empty header names | CONFIRMED GAP / BLOCKER | Reject ragged records; preserve/disclose empty headers |
@@ -139,3 +139,16 @@ G1/G2/G7 now pass desired-behavior regressions. Delimiter detection parses each 
 Quoted fields must start at field start; only a delimiter, record terminator or EOF may follow a closing quote. Errors expose 1-based logical `record` and `field`, plus 0-based UTF-16 code-unit `offset`. `state.ui.inputError` retains structured parser/detection details for the later UI phase. Blank lines represent one empty field; singleton empty output fields are quoted so independent readers preserve the record.
 
 Group A: original behavior suite passed; checkpoint 35 passed / 0 failed / 0 skipped, with 6 remaining KNOWN GAP characterizations. Independent Python reparse now covers 25 generated Blobs. Browser verification remains deferred.
+
+### G3-only continuation — 2026-09-18
+
+Resumed remote `ca1df30427d4ce9ecec8697382a4597e94b783d9`. Only G3 is newly resolved; G4/G5/G6/G8/G9 statuses and behavior remain unchanged. No browser certification or overall acceptance is claimed.
+
+- Explicit UTF-8/Shift_JIS use native `TextDecoder` with `fatal: true`. Invalid bytes produce `decoding_failed` with the selected encoding; unsupported Shift_JIS construction produces `unsupported_shift_jis`, never UTF-8 reinterpretation. Literal correctly encoded U+FFFD remains valid data.
+- AUTO strictly validates UTF-8. A UTF-8 BOM is authoritative; malformed subsequent UTF-8 bytes fail without SJIS fallback.
+- Without BOM, failed UTF-8 validation permits only a successfully strict-decoded Shift_JIS fallback. The load hint identifies inference and asks users to verify text. Failure of both decoders rejects input.
+- If both supported encodings strictly decode to different text, AUTO reports `ambiguous_encoding` and requires manual selection. Identical interpretations (ASCII) use UTF-8. Valid UTF-8 remains usable when the environment lacks Shift_JIS support, with an inference notice.
+- Bytes `c2a9` can mean UTF-8 `©` or SJIS `ﾂｩ`. The tested BOM-less UTF-8 `名前,値 / 東京,001` fixture is also valid SJIS with different text, so AUTO correctly requires selection. No perfect detection claim is made; explicit selection can still be semantically wrong even with valid bytes.
+- Encoding error details are retained in `state.ui.inputError`. General prior-document retention after a failed load is still unresolved G9, not repaired by this change.
+
+Validation: original behavior suite passes; **39 checkpoint tests pass, 0 fail, 0 skipped, 0 todo**, including **5 remaining KNOWN GAP characterizations**. Actual UTF-8/BOM/SJIS/malformed/ambiguous byte fixtures and a test-only unavailable-decoder double are covered. **26** generated Blobs independently reparse with Python to the expected matrices; source byte fixtures remain unchanged. G1/G2/G7 acceptance regressions remain passing.

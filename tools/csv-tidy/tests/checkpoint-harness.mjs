@@ -17,7 +17,7 @@ export function element() {
     querySelectorAll() { return []; },
   };
 }
-export function harness() {
+export function harness(Decoder = TextDecoder) {
   const nodes = new Map(), blobs = [];
   const get = id => { if (!nodes.has(id)) nodes.set(id, element()); return nodes.get(id); };
   const document = {
@@ -25,7 +25,7 @@ export function harness() {
     createElement: () => element(), addEventListener() {}, body: element(), readyState: 'loading',
   };
   const sandbox = {
-    document, navigator: { language: 'en' }, console, TextDecoder, Blob,
+    document, navigator: { language: 'en' }, console, TextDecoder: Decoder, Blob,
     URL: { createObjectURL(blob) { blobs.push(blob); return 'blob:test'; }, revokeObjectURL() {} },
     // Timers are deliberately not executed: tests call the relevant production function directly.
     setTimeout() { return 1; }, clearTimeout() {},
