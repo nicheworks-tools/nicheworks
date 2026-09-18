@@ -1,0 +1,396 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-18-wave6a-basic-safety-finishing-1",
+  "entries": [
+    {
+      "id": "hard_hat",
+      "wave": "content-wave-006a",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "落下物や飛来物、頭部の衝突などから頭を保護するための保護帽。用途区分、衝撃吸収性能、あご紐、内装体、サイズ調整機構を作業環境と規則に合わせて選ぶ。",
+      "detail_en": "Protective headgear used to reduce injury from falling or flying objects and head impacts. Protection class, suspension, chin strap, fit system, and other features should match the work environment and applicable requirements.",
+      "bullets_ja": [
+        "用途に適合する規格・性能の保護帽を使用し、サイズを正しく調整する。",
+        "帽体、内装体、あご紐に割れ・変形・著しい劣化がないか使用前に確認する。",
+        "強い衝撃を受けた保護帽は外観に異常がなくても規定に従って交換・点検する。"
+      ],
+      "bullets_en": [
+        "Use a helmet with the required rating for the task and adjust it for a secure fit.",
+        "Inspect the shell, suspension, and chin strap for cracks, deformation, or significant deterioration before use.",
+        "Remove from service or inspect a helmet after a significant impact according to the applicable replacement rules."
+      ],
+      "examples_ja": [
+        "資材搬入エリアで飛来・落下物対策として着用する。",
+        "足場周辺の作業前にあご紐と内装体の状態を確認する。"
+      ],
+      "examples_en": [
+        "Wear a hard hat in a material-handling area where falling-object hazards exist.",
+        "Check the chin strap and suspension before work around scaffolding."
+      ]
+    },
+    {
+      "id": "safety_glasses",
+      "wave": "content-wave-006a",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "切断、研削、穴あけなどで発生する飛散物や粉じんから目を保護する保護めがね。レンズ材質、側面保護、防曇性、遮光性能などを作業リスクに合わせて選ぶ。",
+      "detail_en": "Protective eyewear used to shield the eyes from chips, dust, and particles produced by cutting, grinding, drilling, and similar work. Lens material, side protection, anti-fog features, and optical protection should match the hazard.",
+      "bullets_ja": [
+        "飛散方向と作業内容に適した側面保護付きの保護めがねを選ぶ。",
+        "レンズの深い傷、割れ、視界を妨げる汚れがある場合は交換・清掃する。",
+        "薬品飛沫や強い粉じんなど密閉性が必要な作業では適切なゴーグル等を使用する。"
+      ],
+      "bullets_en": [
+        "Choose eyewear with side protection appropriate to the direction and type of particle hazard.",
+        "Clean or replace lenses that are cracked, deeply scratched, or obstruct vision.",
+        "Use suitable sealed goggles or other protection where chemical splash or heavy dust requires greater enclosure."
+      ],
+      "examples_ja": [
+        "グラインダー作業で切粉の飛散から目を保護する。",
+        "ドリル穴あけ前にレンズとつるの損傷を確認する。"
+      ],
+      "examples_en": [
+        "Protect the eyes from debris during grinding work.",
+        "Inspect the lenses and temples before drilling work."
+      ]
+    },
+    {
+      "id": "work_gloves",
+      "wave": "content-wave-006a",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "手の擦れ、汚れ、軽微な切創などを低減する作業用手袋。素材、耐切創性、耐熱性、耐薬品性、滑り止め性能を取り扱う材料と作業内容に合わせて選ぶ。",
+      "detail_en": "Work gloves used to reduce hand exposure to abrasion, dirt, minor cuts, and other task-specific hazards. Material, cut resistance, heat resistance, chemical resistance, and grip should suit the work.",
+      "bullets_ja": [
+        "作業リスクに適合する材質と保護性能の手袋を使用する。",
+        "破れ、穴、著しい摩耗や汚染がある手袋は交換する。",
+        "回転機械の近くなど巻き込まれリスクがある作業では手袋使用の可否を手順に従って判断する。"
+      ],
+      "bullets_en": [
+        "Use gloves with material and protection performance appropriate to the task hazards.",
+        "Replace gloves that are torn, punctured, heavily worn, or contaminated.",
+        "Around rotating machinery, follow the work procedure on whether gloves may be worn because of entanglement risk."
+      ],
+      "examples_ja": [
+        "鋼材運搬で手の擦れを減らすため適切な手袋を着用する。",
+        "シーリング材作業後に汚染した手袋を交換する。"
+      ],
+      "examples_en": [
+        "Wear suitable gloves when handling steel components to reduce abrasion.",
+        "Replace contaminated gloves after sealant work."
+      ]
+    },
+    {
+      "id": "respirator_mask",
+      "wave": "content-wave-006a",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "粉じん、ミスト、ガス・蒸気などの吸入ばく露を低減する呼吸用保護具。対象物質、フィルター・吸収缶、面体形式、フィット性をリスク評価と使用条件に合わせる。",
+      "detail_en": "Respiratory protective equipment used to reduce inhalation exposure to dust, mist, gases, or vapors. The facepiece, filter or cartridge, and fit must be selected for the contaminant and use conditions.",
+      "bullets_ja": [
+        "対象物質と濃度に適合する面体・フィルター・吸収缶を選ぶ。",
+        "顔との密着を確認し、ひげや異物でシールが妨げられないようにする。",
+        "フィルターや吸収缶は使用条件と交換基準に従い、劣化品を使い続けない。"
+      ],
+      "bullets_en": [
+        "Select the facepiece, filter, or cartridge for the contaminant and exposure conditions.",
+        "Check the face seal and avoid facial hair or objects that interfere with fit.",
+        "Replace filters and cartridges according to service conditions and the specified change schedule."
+      ],
+      "examples_ja": [
+        "研削粉じん作業で適合する防じん用面体を使用する。",
+        "有機溶剤を扱う前に対象蒸気へ適合する吸収缶を確認する。"
+      ],
+      "examples_en": [
+        "Use an appropriate particulate respirator during grinding work.",
+        "Verify that the cartridge is suitable for the target vapor before solvent work."
+      ]
+    },
+    {
+      "id": "paint_roller",
+      "wave": "content-wave-006a",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "塗料を広い面へ均一に塗布するローラー工具。ローラー幅、毛丈、材質、塗料適合性を下地の粗さと仕上げ要求に合わせて選ぶ。",
+      "detail_en": "Roller tool used to apply paint uniformly over broad surfaces. Roller width, nap length, cover material, and paint compatibility should match the substrate texture and finish requirement.",
+      "bullets_ja": [
+        "塗料と下地に適した毛丈・材質のローラーを選ぶ。",
+        "塗料を含ませすぎず、重ね幅を揃えて塗りムラを抑える。",
+        "使用後は塗料仕様に従って洗浄し、毛抜けや変形したローラーは交換する。"
+      ],
+      "bullets_en": [
+        "Choose roller cover material and nap length suited to the coating and substrate.",
+        "Avoid overloading the roller and maintain consistent overlap to reduce uneven coverage.",
+        "Clean according to the coating system and replace covers that shed fibers or deform."
+      ],
+      "examples_ja": [
+        "室内壁へ水性塗料を均一にローラー塗りする。",
+        "粗面下地に適した毛丈のローラーへ交換する。"
+      ],
+      "examples_en": [
+        "Roll water-based paint evenly onto an interior wall.",
+        "Switch to a longer-nap roller for a rougher substrate."
+      ]
+    },
+    {
+      "id": "paint_brush",
+      "wave": "content-wave-006a",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "塗料を細部、端部、凹凸部へ塗布する刷毛。毛材、幅、厚み、形状を塗料種別と塗装箇所に合わせて選ぶ。",
+      "detail_en": "Brush used to apply paint to edges, details, profiles, and uneven areas. Bristle material, width, thickness, and shape should suit the coating and application area.",
+      "bullets_ja": [
+        "使用する塗料に適合する毛材と刷毛形状を選ぶ。",
+        "含ませる塗料量を調整し、垂れや刷毛目を抑えながら均一に塗る。",
+        "毛抜けや硬化した塗料残りを確認し、仕上げを損なう刷毛は使用しない。"
+      ],
+      "bullets_en": [
+        "Choose bristle material and brush shape compatible with the coating.",
+        "Control paint loading to limit runs and excessive brush marks while maintaining coverage.",
+        "Do not use a brush with loose bristles or hardened residue that could damage the finish."
+      ],
+      "examples_ja": [
+        "ローラーが届きにくい壁際を刷毛で先行塗りする。",
+        "建具の細い見付け面へ塗料を塗る。"
+      ],
+      "examples_en": [
+        "Cut in wall edges with a brush before rolling the field.",
+        "Apply paint to a narrow face of interior trim."
+      ]
+    },
+    {
+      "id": "putty_knife",
+      "wave": "content-wave-006a",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "パテの充填・しごき、古い塗膜や付着物の軽い除去などに使う薄板状の手工具。刃幅、柔軟性、材質を補修範囲と材料に合わせる。",
+      "detail_en": "Thin-bladed hand tool used to apply and feather putty and for light scraping of coatings or residue. Blade width, stiffness, and material should suit the repair and compound.",
+      "bullets_ja": [
+        "補修幅とパテ粘度に合う刃幅・硬さを選ぶ。",
+        "刃先の曲がりや欠けを確認し、仕上げ面を傷つける工具は使用しない。",
+        "古い塗膜を削る場合は粉じんや有害物質の可能性を確認して適切に対策する。"
+      ],
+      "bullets_en": [
+        "Choose blade width and stiffness for the repair size and compound consistency.",
+        "Inspect for bent or chipped edges and avoid tools that could scratch the finish.",
+        "When scraping old coatings, assess possible hazardous dust or materials and use appropriate controls."
+      ],
+      "examples_ja": [
+        "ビス穴へパテを充填して周囲へ薄くしごく。",
+        "乾燥した余分な充填材を軽く削り取る。"
+      ],
+      "examples_en": [
+        "Fill a screw hole and feather the compound into the surrounding surface.",
+        "Lightly scrape excess dried filler from a repair."
+      ]
+    },
+    {
+      "id": "caulking_gun",
+      "wave": "content-wave-006a",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "カートリッジ入りのシーリング材や接着剤を押し出して連続吐出する工具。カートリッジ規格、押出比、ロッド機構を材料粘度と施工量に合わせて選ぶ。",
+      "detail_en": "Dispensing tool used to extrude sealant or adhesive from cartridges in a controlled bead. Cartridge format, thrust ratio, and rod mechanism should suit material viscosity and application volume.",
+      "bullets_ja": [
+        "材料カートリッジを正しく装着し、ノズル径を必要な目地幅に合わせる。",
+        "一定速度と圧力で吐出し、空隙や過充填を避ける。",
+        "交換時は残圧を解除し、ノズル先端を人へ向けない。"
+      ],
+      "bullets_en": [
+        "Load the cartridge correctly and cut the nozzle to suit the required joint bead.",
+        "Maintain consistent travel speed and pressure to avoid voids or excessive material.",
+        "Release pressure before cartridge changes and keep the nozzle pointed away from people."
+      ],
+      "examples_ja": [
+        "サッシ周囲へシーリング材を連続して充填する。",
+        "内装下地へカートリッジ接着剤をビード状に塗布する。"
+      ],
+      "examples_en": [
+        "Apply a continuous sealant bead around a window frame.",
+        "Dispense cartridge adhesive in beads onto an interior substrate."
+      ]
+    },
+    {
+      "id": "pipe_wrench",
+      "wave": "content-wave-006a",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "丸形の鋼管やねじ込み継手を強くつかんで回す配管用レンチ。口開き、全長、あご歯形を管径と必要トルクに合わせて選ぶ。",
+      "detail_en": "Plumbing wrench with toothed jaws used to grip and turn round metal pipe and threaded fittings. Jaw capacity, handle length, and tooth condition should suit pipe size and required torque.",
+      "bullets_ja": [
+        "管径に合う口開きへ調整し、あご全体を確実に掛ける。",
+        "仕上げ面や薄肉管など歯で傷める対象には適切な別工具を使用する。",
+        "柄へ延長管を掛けるなど定格を超える力の掛け方をしない。"
+      ],
+      "bullets_en": [
+        "Adjust the jaw opening for the pipe size and engage the jaws fully.",
+        "Use another suitable tool on finished surfaces or thin-wall pipe that could be damaged by serrated jaws.",
+        "Do not overload the wrench with improvised handle extensions or other excessive leverage."
+      ],
+      "examples_ja": [
+        "ねじ込み鋼管を保持して継手を締める。",
+        "既設配管のねじ込み継手を緩める。"
+      ],
+      "examples_en": [
+        "Hold threaded steel pipe while tightening a fitting.",
+        "Loosen a threaded fitting on an existing steel pipe."
+      ]
+    },
+    {
+      "id": "pipe_cutter",
+      "wave": "content-wave-006a",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "銅管や樹脂管などを周方向から切断する専用工具。切断方式、対応材質、管径範囲を対象配管に合わせて選ぶ。",
+      "detail_en": "Dedicated cutter used to sever copper, plastic, or other pipe with a controlled circumferential cut. Cutting method, material compatibility, and diameter capacity should match the pipe.",
+      "bullets_ja": [
+        "対象材質と管径に適合するカッターを使用する。",
+        "ローラー式では一度に締め込みすぎず、回転ごとに徐々に送り込む。",
+        "切断後は必要に応じてバリ取り・面取りを行い、接続部を傷めない。"
+      ],
+      "bullets_en": [
+        "Use a cutter rated for the pipe material and diameter.",
+        "With wheel cutters, increase pressure gradually rather than overtightening in one step.",
+        "Deburr or chamfer the cut end as required so fittings and seals are not damaged."
+      ],
+      "examples_ja": [
+        "銅管を継手位置に合わせて直角に切断する。",
+        "樹脂管を指定長さへ切って端面を整える。"
+      ],
+      "examples_en": [
+        "Cut copper tube square at a planned fitting location.",
+        "Cut plastic pipe to length and dress the cut end."
+      ]
+    },
+    {
+      "id": "hacksaw",
+      "wave": "content-wave-006a",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "細い鋸刃をフレームへ張り、金属や樹脂などを手作業で切断する弓のこ。刃の山数、材質、張力を被削材の厚さと種類に合わせる。",
+      "detail_en": "Frame saw with a tensioned narrow blade used to cut metal, plastic, and similar materials by hand. Blade tooth pitch, material, and tension should match the workpiece.",
+      "bullets_ja": [
+        "材料厚に適した山数の刃を選び、正しい向きと張力で取り付ける。",
+        "材料を確実に固定し、切断線に沿って無理のないストロークで切る。",
+        "摩耗・欠け・亀裂のある刃は折損前に交換する。"
+      ],
+      "bullets_en": [
+        "Choose tooth pitch for the material thickness and install the blade in the correct direction and tension.",
+        "Secure the workpiece and saw with controlled strokes along the cut line.",
+        "Replace worn, chipped, or cracked blades before they fail."
+      ],
+      "examples_ja": [
+        "薄肉金属管を万力で固定して切断する。",
+        "樹脂部材の余長を手作業で切り落とす。"
+      ],
+      "examples_en": [
+        "Clamp thin-wall metal tube and cut it with a hacksaw.",
+        "Trim excess length from a plastic component by hand."
+      ]
+    },
+    {
+      "id": "bolt_cutter",
+      "wave": "content-wave-006a",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "長い柄のてこ作用でボルト、棒鋼、チェーンなどを切断する手工具。刃能力、対象材硬度、柄長を切断物に合わせて選ぶ。",
+      "detail_en": "Long-handled cutter that uses leverage to sever bolts, rod, chain, and similar metal items. Jaw capacity, allowable material hardness, and handle length must suit the workpiece.",
+      "bullets_ja": [
+        "工具の最大切断径と対象材硬度を超える材料へ使用しない。",
+        "材料を刃の適切な位置へ入れ、安定した姿勢で両柄へ均等に力を掛ける。",
+        "刃の欠けや変形、ヒンジ部の緩みを使用前に点検する。"
+      ],
+      "bullets_en": [
+        "Do not cut material beyond the tool's rated diameter or hardness.",
+        "Position the material correctly in the jaws and apply even force from a stable stance.",
+        "Inspect the jaws for chipping or deformation and check the pivot for looseness."
+      ],
+      "examples_ja": [
+        "仮設チェーンの不要部分を指定能力内で切断する。",
+        "細径ボルトを撤去のため切り落とす。"
+      ],
+      "examples_en": [
+        "Cut excess temporary chain within the cutter's rated capacity.",
+        "Sever a small-diameter bolt during removal work."
+      ]
+    },
+    {
+      "id": "clamp_bar",
+      "wave": "content-wave-006a",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "長いバー上の可動あごで材料を締め付け、接着・組立・位置保持に使うクランプ。開口寸法、締付力、あご形状を対象物に合わせて選ぶ。",
+      "detail_en": "Bar-type clamp with adjustable jaws used to hold parts during gluing, assembly, or positioning. Capacity, clamping force, and jaw shape should suit the workpiece.",
+      "bullets_ja": [
+        "締付面を平行に当て、必要に応じて当て材で仕上げ面を保護する。",
+        "必要以上に締め込み、材料の変形や接着剤の過度な押し出しを起こさない。",
+        "バーの曲がり、ねじ・送り機構、あご部の損傷を点検する。"
+      ],
+      "bullets_en": [
+        "Seat the jaws squarely and use protective pads where finished surfaces could be marked.",
+        "Do not overtighten to the point of deforming the workpiece or squeezing out excessive adhesive.",
+        "Inspect the bar, screw or sliding mechanism, and jaws for damage."
+      ],
+      "examples_ja": [
+        "木工接着中の板材を複数のバークランプで保持する。",
+        "枠材の位置を固定してから締結する。"
+      ],
+      "examples_en": [
+        "Hold glued boards together with several bar clamps during cure.",
+        "Clamp frame members in position before fastening."
+      ]
+    },
+    {
+      "id": "vise",
+      "wave": "content-wave-006a",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "作業台へ固定し、材料をあごで挟んで切断・やすり掛け・組立時に保持する工具。あご幅、開口、固定方式を対象物と作業荷重に合わせる。",
+      "detail_en": "Bench-mounted holding tool with jaws used to secure workpieces for cutting, filing, assembly, and similar operations. Jaw width, opening, mounting, and load capacity should suit the task.",
+      "bullets_ja": [
+        "本体を作業台へ確実に固定し、材料をあご全面で保持する。",
+        "仕上げ面や柔らかい材料には口金や当て材を使って傷を防ぐ。",
+        "ハンドルへ延長管を掛けるなど過大な締付力を加えない。"
+      ],
+      "bullets_en": [
+        "Mount the vise securely to the bench and grip the workpiece across the jaws.",
+        "Use soft jaws or pads to protect finished or easily damaged materials.",
+        "Do not apply excessive clamping force with improvised handle extensions."
+      ],
+      "examples_ja": [
+        "金属棒を固定して端部をやすりで整える。",
+        "短い配管部材を保持して手作業で切断する。"
+      ],
+      "examples_en": [
+        "Clamp a metal bar while filing its end.",
+        "Hold a short pipe section securely for hand cutting."
+      ]
+    },
+    {
+      "id": "nail_gun",
+      "wave": "content-wave-006a",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "圧縮空気、ガス、電池などの動力で釘を連続的に打ち込む工具。対応釘、打込み深さ、作動方式、電源・エア圧を母材と用途に合わせて設定する。",
+      "detail_en": "Powered fastening tool that drives nails using compressed air, gas, battery power, or similar energy. Nail specification, drive depth, trigger mode, and power or air settings must suit the substrate and task.",
+      "bullets_ja": [
+        "指定された種類・寸法の釘だけを装填し、詰まり除去前に動力源を遮断する。",
+        "射出口を人へ向けず、接触安全装置を無効化しない。",
+        "母材裏側の貫通や隠れた配線・配管を確認し、打込み深さを適切に調整する。"
+      ],
+      "bullets_en": [
+        "Load only specified nail types and disconnect the power or air source before clearing jams.",
+        "Never point the nose at a person and do not defeat the contact safety mechanism.",
+        "Check for over-penetration and concealed services and adjust drive depth appropriately."
+      ],
+      "examples_ja": [
+        "木下地へ合板を指定釘で固定する。",
+        "詰まりを除去する前にエアホースまたは電池を外す。"
+      ],
+      "examples_en": [
+        "Fasten sheathing to timber framing with specified nails.",
+        "Disconnect the air hose or battery before clearing a jam."
+      ]
+    }
+  ]
+}
