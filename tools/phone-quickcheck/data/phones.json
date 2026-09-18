@@ -10289,6 +10289,141 @@
         "verifiedAt": "2026-09-19"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-17-ultra",
+      "manufacturer": "Xiaomi",
+      "model": "Xiaomi 17 Ultra",
+      "aliases": [
+        "Xiaomi17Ultra",
+        "Xiaomi 17 Ultra",
+        "シャオミ17 Ultra",
+        "シャオミ17ウルトラ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 162.9,
+        "widthMm": 77.6
+      },
+      "physicalVariants": [
+        {
+          "key": "black",
+          "labelJa": "ブラック",
+          "labelEn": "Black",
+          "depthMm": 8.29,
+          "weightG": 218.4
+        },
+        {
+          "key": "white",
+          "labelJa": "ホワイト",
+          "labelEn": "White",
+          "depthMm": 8.29,
+          "weightG": 218.4
+        },
+        {
+          "key": "starlit-green",
+          "labelJa": "スターリットグリーン",
+          "labelEn": "Starlit Green",
+          "depthMm": 8.29,
+          "weightG": 219
+        }
+      ],
+      "displayInch": 6.9,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 90,
+        "protocols": [
+          "Xiaomi HyperCharge",
+          "PPS",
+          "USB PD 3.0",
+          "USB PD 2.0"
+        ],
+        "pps": "supported",
+        "wirelessStandard": "Wireless charging",
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 6000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/xiaomi-17-ultra/specs/"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/xiaomi-17-ultra/specs/",
+        "manualUrl": "https://www.mi.com/jp/support/",
+        "releaseUrl": "https://www.mi.com/jp/event/xiaomi-17-series-imei-redemption",
+        "chargingUrl": "https://www.mi.com/jp/product/xiaomi-17-ultra/specs/",
+        "wirelessUrl": "https://www.mi.com/jp/product/xiaomi-17-ultra/",
+        "waterUrl": "https://www.mi.com/jp/product/xiaomi-17-ultra/specs/",
+        "packageUrl": "https://www.mi.com/jp/product/xiaomi-17-ultra/specs/",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-poco-m8-5g",
+      "manufacturer": "Xiaomi",
+      "model": "POCO M8 5G",
+      "aliases": [
+        "Xiaomi POCO M8 5G",
+        "POCOM85G",
+        "Poco M8 5G",
+        "ポコM8 5G"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 164,
+        "widthMm": 75.42,
+        "depthMm": 7.35
+      },
+      "weightG": 178,
+      "displayInch": 6.77,
+      "waterRating": "IP66",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 45,
+        "protocols": [
+          "Xiaomi TurboCharge",
+          "PPS",
+          "USB PD 3.0",
+          "USB PD 2.0",
+          "QC 2.0",
+          "QC 3.0"
+        ],
+        "pps": "supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5520,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/support/faq/details/KA-650868/"
+        }
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/poco-m8-5g/",
+        "manualUrl": "https://www.mi.com/jp/support/",
+        "releaseUrl": "https://www.mi.com/jp/event/poco-m8-series-firstsale",
+        "chargingUrl": "https://www.mi.com/jp/support/faq/details/KA-650868/",
+        "waterUrl": "https://www.mi.com/jp/product/poco-m8-5g/",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
     }
   ]
 }
