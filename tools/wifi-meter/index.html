@@ -138,6 +138,21 @@
     </p>
   </section>
 
+  <section class="nw-card" aria-label="How to read browser network estimates">
+    <h2 data-lang="ja">表示値の見方</h2>
+    <h2 data-lang="en">How to read the estimates</h2>
+    <ul>
+      <li data-lang="ja"><strong>推定RTT：</strong>ブラウザが推定した往復遅延の目安です。実際のping測定値ではありません。</li>
+      <li data-lang="en"><strong>Estimated RTT:</strong> a browser-provided round-trip latency estimate, not a real ping measurement.</li>
+      <li data-lang="ja"><strong>変動幅：</strong>前回の推定RTTとの差です。連続表示の揺れを見るための参考値で、jitter測定ではありません。</li>
+      <li data-lang="en"><strong>Fluctuation:</strong> the difference from the previous estimated RTT. It helps show changes over time but is not a jitter test.</li>
+      <li data-lang="ja"><strong>推定帯域：</strong>ブラウザが返すdownlinkの推定値です。実際にファイルを送受信して測る速度テストではありません。</li>
+      <li data-lang="en"><strong>Estimated downlink:</strong> the browser-reported downlink estimate, not a download/upload speed test that transfers test data.</li>
+    </ul>
+    <p class="nw-small" data-lang="ja">「電波が弱い場所を探したい」「SSIDごとの強度を比べたい」場合は、このツールでは測れません。ブラウザから周辺Wi-FiのRSSI一覧を取得する機能は使っていません。</p>
+    <p class="nw-small" data-lang="en">This tool cannot locate weak-signal spots or compare RSSI by SSID. It does not use any browser capability to enumerate nearby Wi-Fi signal strength.</p>
+  </section>
+
   <section class="nw-controls">
     <div class="nw-controls-row">
       <button class="start-btn nw-btn-primary" data-lang="ja">Start 計測開始</button>
