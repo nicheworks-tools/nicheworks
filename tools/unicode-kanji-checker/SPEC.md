@@ -17,6 +17,7 @@
 - Old Kanji Referenceのsame-site dataを読み込み、old→modern mapping、modern→old candidates、reading、meaning、category、usage、compatibility noteを補足する。
 - character / Unicode / HTML entity / UTF-16を個別copyでき、全結果とCSV形式もcopyできる。
 - Kanji Modernizerへ入力文字列をquery付きで引き継ぐlinkを提供する。
+- same-site toolからの`?q=` handoffを受け取り、leading/trailing whitespaceや改行を削らず入力へ復元して解析する。
 - verified purchase pathがない間は、fixed Pro price・disabled purchase CTA・billing-unavailable sales panelをpublic pageへ表示しない。
 
 ## Inputs
@@ -68,15 +69,17 @@
 
 ## Acceptance criteria
 
-- [ ] 入力したunique characterごとにUnicode、decimal、HTML hex/decimal、UTF-16を表示する。
-- [ ] Compatibility Ideograph、supplementary-plane、variation-selectorを該当rangeに基づき識別する。
-- [ ] Old Kanji Reference dataに対応がある文字ではold/modern mappingやmetadataを表示する。
-- [ ] 全結果とCSVをclipboardへcopyできる。
-- [ ] 入力内容をexternal character APIへ送信しない。
-- [ ] verified billing activation前にfixed Pro price、disabled purchase CTA、billing-unavailable sales panelを表示しない。
+- [x] 入力したunique characterごとにUnicode、decimal、HTML hex/decimal、UTF-16を表示する。
+- [x] Compatibility Ideograph、supplementary-plane、variation-selectorを該当rangeに基づき識別する。
+- [x] Old Kanji Reference dataに対応がある文字ではold/modern mappingやmetadataを表示する。
+- [x] 全結果とCSVをclipboardへcopyできる。
+- [x] 入力内容をexternal character APIへ送信しない。
+- [x] same-site `?q=` handoffで入力文字列を欠落・trimせず復元できる。
+- [x] verified billing activation前にfixed Pro price、disabled purchase CTA、billing-unavailable sales panelを表示しない。
 
 ## Implementation evidence
 
 - `tools/unicode-kanji-checker/index.html` — input/copy/result UI、privacy notice。
-- `tools/unicode-kanji-checker/app.js` — code point/entity/UTF-16解析、range判定、Old Kanji Reference data load、copy/render logic。
+- `tools/unicode-kanji-checker/app.js` — code point/entity/UTF-16解析、BMPとSupplement両方のcompatibility ideograph判定、variation selector判定、Old Kanji Reference data load、exact `?q=` handoff、copy/render logic。
+- `tools/unicode-kanji-checker/tests/behavior.test.mjs` — BMP/supplementary code point、UTF-16 surrogate pair、Compatibility Ideographs Supplement、Variation Selectors Supplement、reverse mapping、CSV escaping、exact query handoffのdurable regression QA。
 - `tools/old-kanji-reference/dict.json` and metadata files — mapping/reference source consumed by this tool。
