@@ -1,59 +1,71 @@
-# Old Kanji Amazon Compatibility Contract
+# Old Kanji Amazon Affiliate Contract
 
-Status: dormant compatibility contract governed by `MONETIZATION_CLASSIFICATION.json`.
+Status: active across all eight Old Kanji tools.
 
-## Canonical monetization boundary
+Decision date: 2026-09-19
 
-The current monetization SSOT classifies:
+This contract replaces the later dormant-state drift that had disabled an earlier approved Old Kanji Amazon implementation. The product decision is that every Old Kanji tool may carry an Amazon Associates surface when the offer is tied to that tool's task and does not leak user-entered content.
 
-- `old-kanji-reference` as `ADS_DONATION`.
-- `old-kanji-ocr-scanner` as `HOLD`.
+## Shared safety/runtime boundary
 
-Neither tool is in the canonical `AFFILIATE` class. Therefore Amazon affiliate runtime must remain fail-closed on both tools.
+All eight tools use:
+- Associates tracking ID `nicheworks09-22`;
+- shared `/assets/amazon-affiliate.js` for Amazon URL validation, `rel="sponsored noopener"`, disclosure, and the canonical `affiliate_outbound` event;
+- `/assets/old-kanji-amazon-context.js` for Old Kanji tool-specific offer selection and contextual placement;
+- fixed curated Amazon.co.jp searches only.
 
-The historical Amazon helper/config/UI files may remain temporarily as compatibility code while the tool surfaces are cleaned up, but they must not provide a live outbound Amazon destination or an enabled affiliate configuration.
+The shared code is implementation infrastructure only. The actual offer set, copy, placement, and activation rule are different for each tool.
 
-## Required dormant state
+No user-derived value may be inserted into an Amazon URL or affiliate event. This includes searched kanji, names, addresses, OCR text, document text, converted text, filenames, selected image state, Unicode/code-point input, localStorage values, or query strings.
 
-For both Old Kanji Reference and Old Kanji OCR Scanner:
+## Active tool-specific surfaces
 
-- `affiliate-config.js` must set `enabled: false`.
-- `trackingId` must be empty.
-- `targets` and `searches` must be empty objects.
-- No `amazon.co.jp`, `amzn.to`, or Associates `tag=` destination may remain in the production config.
-- The shared Amazon helper must render no CTA and no disclosure when the config is disabled.
-- Searched kanji, OCR text, image names, document text, names, addresses, or other user-derived values must never enter affiliate analytics or outbound URLs.
+| Tool | Activation / placement | Curated purchase intent |
+| --- | --- | --- |
+| Old Kanji Reference | after the main reference/list task | `異体字の世界 最新版`, `くずし字用例辞典`, `日本語の正しい表記と用語の辞典 第三版` |
+| Kanji Modernizer | only after a conversion result is visible | notation/usage dictionary, variant-kanji reference, `漢字源` |
+| Old Kanji OCR Scanner | only after OCR/manual result text exists | CZUR ET24 Pro, non-destructive book scanners, LED reading magnifiers |
+| Old Document Kanji Highlighter | only after document detection produces a result | `くずし字用例辞典`, old-document reading dictionaries, A4 book stands |
+| Unicode Kanji Checker | only after character/code analysis produces cards | `プログラマのための文字コード技術入門`, Japanese typography/visual-culture reference, Unicode/encoding books |
+| Variant Kanji Compare | only after comparison results exist | `異体字の世界 最新版`, `実例で読み解く名前の漢字辞典`, glyph/form dictionaries |
+| Place Old Kanji Checker | only after a place-name result exists | `角川日本地名大辞典`, `日本歴史地名大系`, old-map/historical place-name references |
+| Name Old Kanji Checker | only after a name result exists | `実例で読み解く名前の漢字辞典`, `人名の漢字語源辞典 新装版`, `異体字の世界 最新版` |
 
-## Historical UI compatibility
+The book-title searches are intentionally title/ISBN-oriented where a stable bibliographic identity is available. Hardware searches remain model/category-oriented because stock and exact retail listings can change.
 
-The current HTML and tool-owned affiliate modules can remain loaded only as dormant compatibility wiring. They must fail closed because the production config is disabled. This preserves layout/runtime stability while commercial cleanup is separated from tool behavior changes.
+## UX rule
 
-The existing placement identifiers remain non-authoritative compatibility metadata:
+Affiliate surfaces must follow the task rather than precede it.
 
-- Old Kanji Reference: `reference_resources`.
-- Old Kanji OCR Scanner: `ocr_resources`.
+- A user should be able to complete the free tool task without interacting with Amazon.
+- Result-dependent tools do not reveal the affiliate panel until a meaningful result exists.
+- The Reference page may show its reference-book panel after the reference/list area because browsing the dictionary itself is already the relevant task.
+- Affiliate panels must not masquerade as required next steps, official sources, or correctness validation.
+- Place/Name panels must not imply that a purchased book establishes current official/registry spelling.
+- OCR hardware is presented as optional capture equipment, not as a claim that buying hardware will fix OCR accuracy.
 
-These identifiers do not authorize affiliate activation.
+## Measurement
 
-## Non-expansion rule
+The only Amazon event is the shared `affiliate_outbound` event.
 
-No Amazon activation is authorized for any Old Kanji cluster tool unless that tool is first moved into the canonical `AFFILIATE` class through an explicit monetization decision.
+Allowed coarse fields are:
+- `tool_slug`
+- `affiliate_id`
+- `placement`
+- `merchant`
+- `destination_key`
+- `language`
 
-This includes:
+Raw destination URLs and all user content are excluded.
 
-- Kanji Modernizer
-- Old Document Kanji Highlighter
-- Unicode Kanji Checker
-- Variant Kanji Compare
-- Place Old Kanji Checker
-- Name Old Kanji Checker
-- Old Kanji Reference
-- Old Kanji OCR Scanner
+## Expansion and maintenance
 
-Cluster membership, historical implementation, or the presence of dormant helper code is not sufficient authority to activate Amazon links.
+All eight current Old Kanji tools are authorized Amazon surfaces. Adding a ninth Old Kanji tool requires an explicit product decision for that tool, but no arbitrary "two-tool only" cap exists.
 
-## Analytics boundary
-
-The shared Amazon helper may support the canonical `affiliate_outbound` event for tools that are legitimately in the `AFFILIATE` class. Old Kanji Reference and Old Kanji OCR Scanner must emit no Amazon outbound event while their configs are disabled.
-
-The Old Kanji cluster analytics module must not implement a second tool-owned affiliate click payload.
+Offer changes should be reviewed for:
+1. task relevance;
+2. current bibliographic/product identity;
+3. non-misleading copy;
+4. privacy-safe fixed destinations;
+5. mobile/desktop placement;
+6. working disclosure and measurement.
