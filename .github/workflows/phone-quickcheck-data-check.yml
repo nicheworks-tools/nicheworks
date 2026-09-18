@@ -11,6 +11,7 @@ on:
       - 'scripts/check-phone-quickcheck-affiliate.mjs'
       - 'scripts/check-phone-quickcheck-source-semantics.mjs'
       - 'scripts/check-phone-quickcheck-completion.mjs'
+      - 'scripts/check-phone-quickcheck-responsive-contract.mjs'
       - 'tools/phone-quickcheck/COMPLETION_AUDIT.md'
       - '.github/workflows/phone-quickcheck-data-check.yml'
   push:
@@ -25,6 +26,7 @@ on:
       - 'scripts/check-phone-quickcheck-affiliate.mjs'
       - 'scripts/check-phone-quickcheck-source-semantics.mjs'
       - 'scripts/check-phone-quickcheck-completion.mjs'
+      - 'scripts/check-phone-quickcheck-responsive-contract.mjs'
       - 'tools/phone-quickcheck/COMPLETION_AUDIT.md'
       - '.github/workflows/phone-quickcheck-data-check.yml'
 
@@ -42,5 +44,6 @@ jobs:
       - run: node scripts/check-phone-quickcheck-data.mjs
       - run: node scripts/check-phone-quickcheck-source-semantics.mjs
       - run: node scripts/check-phone-quickcheck-completion.mjs
+      - run: node scripts/check-phone-quickcheck-responsive-contract.mjs
       - run: node scripts/check-phone-quickcheck-affiliate.mjs
       - run: node tools/phone-quickcheck/tests/behavior.test.mjs
