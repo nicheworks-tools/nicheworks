@@ -183,3 +183,22 @@ After Wave 7:
 - Wave 6 identities retained: 4 / 4;
 - frozen claim-bearing identities retained: 22 / 22;
 - raw dictionary records rewritten: no.
+
+
+## Verified note wave 8
+
+Wave 8 continues frequency-prioritized source-backed enrichment:
+
+| Canonical identity | Corpus occurrences | Reviewed runtime note basis |
+| --- | ---: | --- |
+| `propanediol` | 9 | COSMILE Europe: humectant, solvent and viscosity control. |
+| `sodium chloride` | 9 | COSMILE Europe: viscosity control and bulking/swelling effects in cosmetics. |
+| `tocopherol` | 8 | COSMILE Europe: Vitamin E, antioxidant and skin conditioning. |
+| `carbomer` | 7 | COSMILE Europe: polyacrylic-acid polymer used for gel formation, viscosity control and emulsion stability. |
+
+After Wave 8:
+
+- cumulative verified-note identities: 34;
+- strong runtime identities: 34 / 599;
+- prior reviewed waves remain required subsets;
+- raw dictionary records rewritten: no.
