@@ -10,22 +10,22 @@ This document is the audited baseline for compatibility-sensitive camera battery
 | --- | ---: |
 | Canonical `カメラ・映像` records | **192** |
 | Camera records with a basic Amazon path | **185** |
-| Camera records with verified accessory detail | **63** |
+| Camera records with verified accessory detail | **64** |
 | Reviewed camera-detail exclusions | **0** |
-| Actionable camera records still missing accessory detail | **122** |
+| Actionable camera records still missing accessory detail | **121** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 185 = detail 63 + reviewed exclusion 0 + missing 122`
+`camera basic 185 = detail 64 + reviewed exclusion 0 + missing 121`
 
-The active detail ledger contains all fourteen actionable Nikon records and forty-nine reviewed DJI records. Missing rows remain explicit rather than being converted to guessed accessory mappings or unsupported exclusions.
+The active detail ledger contains all fourteen actionable Nikon records and fifty reviewed DJI records. Missing rows remain explicit rather than being converted to guessed accessory mappings or unsupported exclusions.
 
 ## Actionable coverage by maker
 
 | Maker | Basic | Detail | Reviewed exclusion | Missing |
 | --- | ---: | ---: | ---: | ---: |
-| DJI | 96 | 49 | 0 | 47 |
+| DJI | 96 | 50 | 0 | 46 |
 | OM SYSTEM | 37 | 0 | 0 | 37 |
 | GoPro | 31 | 0 | 0 | 31 |
 | Nikon | 14 | 14 | 0 | 0 |
@@ -51,7 +51,7 @@ Every row is explicit in the reviewed ledger; shared accessory families are not 
 
 ## DJI reviewed waves
 
-DJI coverage advances only through bounded exact-canonical-row waves backed by DJI official evidence. Waves 1–28 remain frozen in their reviewed ledgers.
+DJI coverage advances only through bounded exact-canonical-row waves backed by DJI official evidence. Waves 1–29 remain frozen in their reviewed ledgers.
 
 ### Wave 21 — Phantom 4 series
 
@@ -116,9 +116,15 @@ Wave 29 activates exactly the canonical `Osmo Pocket` row. DJI's official Osmo P
 
 The deterministic Amazon handoff is `DJI Osmo Pocket Charging Case`. Wave 29 remains exact-canonical-row only. `DJI Osmo Pocket`, `Osmo Pocket Charging Case`, `DJI Pocket 2`, and other neighboring or synthetic names remain fail-closed.
 
-After DJI Waves 1–29 the maker-level reconciliation is:
+### Wave 30 — Osmo 360
 
-`DJI camera 96 = detail 49 + reviewed exclusion 0 + missing 47`
+Wave 30 activates exactly the canonical `Osmo 360` row. DJI's official Osmo 360 FAQ states that Osmo Action Extreme Battery Plus (1950 mAh) and Osmo Action Extreme Battery (1770 mAh) are supported. DJI Store independently lists `Osmo 360` as compatible with `Osmo Action Extreme Battery Plus (1950 mAh)` and with `Osmo Action Multifunctional Battery Case 2`.
+
+The deterministic Amazon handoffs are `DJI Osmo Action Extreme Battery Plus` and `DJI Osmo Action Multifunctional Battery Case 2`. Wave 30 remains exact-canonical-row only. `DJI Osmo 360`, `Osmo 360 II`, `Osmo 360 Adventure Combo`, and other neighboring or synthetic names remain fail-closed.
+
+After DJI Waves 1–30 the maker-level reconciliation is:
+
+`DJI camera 96 = detail 50 + reviewed exclusion 0 + missing 46`
 
 ## Non-actionable camera records
 
@@ -145,7 +151,7 @@ Seven camera-category records are maker/index entries without an actionable exac
 
 ## Expansion order
 
-1. Continue DJI from the remaining 47 actionable records in bounded official-evidence waves.
+1. Continue DJI from the remaining 46 actionable records in bounded official-evidence waves.
 2. Review OM SYSTEM 37 actionable records.
 3. Review GoPro 31 actionable records.
 4. Review Insta360 7 actionable records.
@@ -158,13 +164,13 @@ The camera accessory phase is complete only when:
 
 `camera basic = detail + reviewed exclusion + missing 0`
 
-The current baseline is not complete: `122` actionable records remain missing accessory detail.
+The current baseline is not complete: `121` actionable records remain missing accessory detail.
 
 ## Source of truth
 
 - `affiliate-camera-accessories.js` — Nikon Wave 1 and camera accessory target.
 - `affiliate-nikon-camera-accessories-wave2.js` — Nikon Wave 2 completion mappings.
-- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave29.js` — reviewed DJI camera accessory ledgers.
+- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave30.js` — reviewed DJI camera accessory ledgers.
 - `affiliate-dji-camera-accessories-wave22.js` — exact reviewed Phantom 3 Advanced/Professional/Standard battery and charging-hub mappings.
 - `affiliate-dji-camera-accessories-wave23.js` — exact reviewed Phantom 3 SE battery-only mapping; charging hub remains intentionally unasserted.
 - `affiliate-dji-camera-accessories-wave24.js` — exact reviewed Mavic 2 Enterprise Advanced enterprise-battery-only mapping; charging hub remains intentionally unasserted.
@@ -173,6 +179,7 @@ The current baseline is not complete: `122` actionable records remain missing ac
 - `affiliate-dji-camera-accessories-wave27.js` — exact reviewed DJI Action 2 Power Module mapping.
 - `affiliate-dji-camera-accessories-wave28.js` — exact reviewed DJI Pocket 2 Charging Case mapping.
 - `affiliate-dji-camera-accessories-wave29.js` — exact reviewed Osmo Pocket Charging Case mapping.
+- `affiliate-dji-camera-accessories-wave30.js` — exact reviewed Osmo 360 battery and multifunctional battery-case mappings.
 - `affiliate-camera-detail-exclusions.js` — reviewed camera exclusions; currently empty.
 - `affiliate-runtime.js` — sequential browser loading of Nikon and DJI accessory ledgers before rendering.
 - `tests/dji-phantom3-accessory-wave22.test.mjs` — exact Wave 22 Phantom 3 boundary.
@@ -183,5 +190,6 @@ The current baseline is not complete: `122` actionable records remain missing ac
 - `tests/dji-action2-accessory-wave27.test.mjs` — exact Wave 27 DJI Action 2 Power Module boundary.
 - `tests/dji-pocket2-accessory-wave28.test.mjs` — exact Wave 28 DJI Pocket 2 Charging Case boundary.
 - `tests/dji-osmo-pocket-accessory-wave29.test.mjs` — exact Wave 29 Osmo Pocket Charging Case boundary.
+- `tests/dji-osmo360-accessory-wave30.test.mjs` — exact Wave 30 Osmo 360 battery and battery-case boundary.
 - `tests/camera-accessory-coverage.test.mjs` — catalog-wide camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` — documentation drift guard and implementation-evidence synchronization.
