@@ -276,3 +276,22 @@ Wave 23 resolves eight additional source-backed official-label gaps, each observ
 | `sphingolipids` | `skin conditioning` | `barrier lipid` | COSMILE Europe lists `SKIN CONDITIONING` and emollient/skin-protecting functions. |
 
 Raw recognition data remains unchanged. The verified category supplies the answer-first public role while broad legacy hints remain auditable. Polyglyceryl-4 Caprate remains category-empty in the raw dictionary and is resolved only by the verified overlay.
+
+
+## Wave 24 final official-label set
+
+Wave 24 closes the remaining seven canonical public-role gaps in the maintained 30-product official-label corpus, representing eight unresolved ingredient occurrences before this wave.
+
+| Canonical identity | Verified public category | Preserved raw category hint | Source basis |
+| --- | --- | --- | --- |
+| `triethoxycaprylylsilane` | `binder` | `general` | COSMILE Europe lists `BINDING`. |
+| `p-anisic acid` | `fragrance` | `preservative support` | COSMILE Europe lists `FRAGRANCE`. |
+| `polyquaternium-39` | `film former` | `conditioning polymer` | COSMILE Europe lists `FILM FORMING` and antistatic functions. |
+| `polyquaternium-53` | `hair conditioning` | `conditioning polymer` | COSMILE Europe lists `HAIR CONDITIONING`. |
+| `ppg-5-ceteth-20` | `emulsifier` | `general` | COSMILE Europe lists `SURFACTANT - EMULSIFYING` and cleansing functions. |
+| `snail secretion filtrate` | `skin conditioning` | `animal extract` | Korea Cosmetic Association ingredient dictionary lists skin conditioning (miscellaneous). |
+| `synthetic beeswax` | `viscosity adjuster` | `texture agent` | COSMILE Europe lists `VISCOSITY CONTROLLING`, binding and emulsion-stabilising functions. |
+
+The Korea Cosmetic Association source is intentionally identified separately from COSMILE Europe and is admitted explicitly in the provenance-source allowlist. No raw recognition row is rewritten.
+
+Wave 24 also introduces `binder` as a bilingual public role because COSMILE's `BINDING` function is distinct from the existing film-forming, emulsifying, conditioning and viscosity roles.
