@@ -135,3 +135,8 @@ Wave 11 adds three explicit authority-function translations because the prior ve
 - COSMILE `cleansing` → NicheWorks `cleanser`
 
 The reviewed runtime mappings are Ethylhexylglycerin, Squalane, Sodium Cocoyl Glutamate and Dimethicone. These mappings are exact and source-backed; the change does not infer mappings for other legacy categories.
+
+
+## Wave 12 mappings
+
+Wave 12 requires no new authority-function vocabulary. It reuses the reviewed Wave 11 translations for `skin conditioning - emollient` → `emollient` and `cleansing` → `cleanser` for Cetearyl Alcohol, Cetyl Alcohol, Disodium Lauryl Sulfosuccinate and Hydrogenated Polyisobutene.
