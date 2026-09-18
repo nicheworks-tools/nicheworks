@@ -16,7 +16,7 @@
 - 各characterをserif / sans-serif / system fontで拡大表示する。
 - Unicode、HTML hex/decimal entity、UTF-16 code unitsを表示する。
 - Old Kanji Referenceのsame-site dataからold→modern mapping、modern candidates、reading、meaning、usage、category、shape hint、stroke count、compatibility/rendering noteを補足する。
-- comparison summaryとdifference hintsを生成する。
+- comparison summaryとdifference hintsを生成する。compatibility ideograph件数とrendering-note件数は独立して集計する。
 - comparison全体、CSV、各character/code valueをclipboardへcopyできる。
 - Old Kanji Reference / Unicode Kanji Checkerへのlinkを提供する。
 - verified purchase pathがない間は、fixed Pro price・disabled purchase CTA・billing-unavailable sales panelをpublic pageへ表示しない。
@@ -71,15 +71,18 @@ comparison cardsはscreen幅に応じてgrid/stack化し、desktop/mobile双方�
 
 ## Acceptance criteria
 
-- [ ] 任意character群をdedupeしてcomparison gridへ表示できる。
-- [ ] preset buttonから代表的variant pair/groupを即時比較できる。
-- [ ] 各characterについてmulti-font glyphとUnicode/HTML/UTF-16を表示する。
-- [ ] reference dataに存在するmapping、shape、stroke、metadataを補足表示する。
-- [ ] comparison結果とCSVをclipboardへcopyできる。
-- [ ] verified billing activation前にfixed Pro price、disabled purchase CTA、billing-unavailable sales panelを表示しない。
+- [x] 任意character群をdedupeしてcomparison gridへ表示できる。
+- [x] preset buttonから代表的variant pair/groupを即時比較できる。
+- [x] 各characterについてmulti-font glyphとUnicode/HTML/UTF-16を表示する。
+- [x] reference dataに存在するmapping、shape、stroke、metadataを補足表示する。
+- [x] Compatibility Ideographs SupplementとVariation Selectors Supplementを含むedge rangeを誤分類しない。
+- [x] compatibility ideograph件数とrendering-note件数を独立してsummaryへ表示する。
+- [x] comparison結果とCSVをclipboardへcopyできる。
+- [x] verified billing activation前にfixed Pro price、disabled purchase CTA、billing-unavailable sales panelを表示しない。
 
 ## Implementation evidence
 
 - `tools/variant-kanji-compare/index.html` — input/preset/comparison/copy UI。
-- `tools/variant-kanji-compare/app.js` — input parsing、presets、Old Kanji Reference data load、glyph/code/mapping/shape/stroke comparison、copy output。
+- `tools/variant-kanji-compare/app.js` — input parsing、presets、Old Kanji Reference data load、glyph/code/mapping/shape/stroke comparison、BMP/Supplement compatibility判定、variation selector判定、独立したsummary counts、copy output。
+- `tools/variant-kanji-compare/tests/behavior.test.mjs` — custom dedupe、preset inventory、supplementary UTF-16、Compatibility Ideographs Supplement、Variation Selectors Supplement、mapping、multi-font wiring、summary count separation、CSVのdurable regression QA。
 - `tools/old-kanji-reference/` — comparison reference datasets。
