@@ -71,7 +71,7 @@
       <label class="toggle"><input type="checkbox" id="excludeToggle" checked><span data-i18n="ja">ASCII文字／URL／コードブロック内は変換しない</span><span data-i18n="en">Do not convert inside ASCII text, URLs, or code blocks</span></label>
       <div class="action-row"><button id="convertBtn" class="btn-primary" type="button"><span data-i18n="ja">変換する</span><span data-i18n="en">Convert</span></button><button id="resetBtn" class="btn-ghost" type="button"><span data-i18n="ja">リセット</span><span data-i18n="en">Reset</span></button></div>
       <div id="progress" class="progress"><div class="progress-bar"></div></div>
-      <div id="messageBox" class="message-box" hidden><p id="messageText" class="message-text"></p><p id="messageNote" class="message-note" hidden><span data-i18n="ja">辞書の読み込みに失敗する場合は、キャッシュを消去して再読み込みしてください。</span><span data-i18n="en">If loading still fails, try a hard refresh or clear your cache.</span></p><button id="retryBtn" class="btn-secondary btn-small" type="button" hidden><span data-i18n="ja">再読み込み</span><span data-i18n="en">Retry</span></button></div>
+      <div id="messageBox" class="message-box" role="status" aria-live="polite" aria-atomic="true" hidden><p id="messageText" class="message-text"></p><p id="messageNote" class="message-note" hidden><span data-i18n="ja">辞書の読み込みに失敗する場合は、キャッシュを消去して再読み込みしてください。</span><span data-i18n="en">If loading still fails, try a hard refresh or clear your cache.</span></p><button id="retryBtn" class="btn-secondary btn-small" type="button" hidden><span data-i18n="ja">再読み込み</span><span data-i18n="en">Retry</span></button></div>
     </section>
     <section class="section section-lg" id="resultBlock" hidden>
       <h2 class="section-title"><span data-i18n="ja">変換結果</span><span data-i18n="en">Result</span></h2>
