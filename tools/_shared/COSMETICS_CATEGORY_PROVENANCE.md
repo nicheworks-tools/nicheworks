@@ -212,3 +212,16 @@ Wave 19 continues the official-label-priority cleanup with four identities that 
 | `sorbitan isostearate` | `emulsifier` | `general` | COSMILE Europe lists `SURFACTANT - EMULSIFYING`. |
 
 The raw dictionary is not rewritten. The source-backed role becomes the public primary category, while the legacy `polymer` / `general` hints remain available in the full internal category set and `legacy_category_values`.
+
+
+## Wave 20 reviewed set
+
+Wave 20 targets the three largest remaining directly source-backed gaps in the maintained 30-product official-label corpus. Together they account for fourteen ingredient occurrences.
+
+| Canonical identity | Verified public category | Preserved raw category state | Source basis |
+| --- | --- | --- | --- |
+| `ceramide ap` | `skin conditioning` | `barrier lipid` | COSMILE Europe lists `SKIN CONDITIONING` and `HAIR CONDITIONING`. |
+| `ceramide eop` | `skin conditioning` | `barrier lipid` | COSMILE Europe lists `SKIN CONDITIONING` and `HAIR CONDITIONING`. |
+| `phytosphingosine` | `skin conditioning` | category missing | COSMILE Europe lists `SKIN CONDITIONING` and `HAIR CONDITIONING`. |
+
+The current public-primary role is `skin conditioning`, matching the skincare-label context and the existing controlled role vocabulary. The raw `barrier lipid` hints for Ceramide AP/EOP are not deleted or rewritten; they remain auditable alongside the verified role. Phytosphingosine remains category-empty in raw data and is resolved only by the verified overlay.
