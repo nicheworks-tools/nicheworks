@@ -18,26 +18,26 @@
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
     "quality_manifest_version": "2026-09-14-manifest-8",
-    "content_enrichment_version": "2026-09-18-wave6b"
+    "content_enrichment_version": "2026-09-18-wave6c"
   },
   "summary": {
     "public_entries": 870,
-    "fallback_independent_core": 721,
-    "runtime_fallback_dependent": 149,
+    "fallback_independent_core": 736,
+    "runtime_fallback_dependent": 134,
     "missing_core_bilingual_content": 0,
     "explicit_bilingual_identity": 870,
     "explicit_bilingual_definition": 870,
     "explicit_bilingual_detail": 870,
-    "explicit_bilingual_bullets": 721,
+    "explicit_bilingual_bullets": 736,
     "explicit_bilingual_examples": 870,
     "explicit_bilingual_aliases": 279,
-    "content_enriched_entries": 581,
+    "content_enriched_entries": 596,
     "has_category_context": 870,
     "has_task_context": 870
   },
   "fallback_field_counts": {
     "detail": 0,
-    "bullets": 149,
+    "bullets": 134,
     "examples": 0
   },
   "by_type": {
@@ -109,8 +109,8 @@
     },
     "material": {
       "public_entries": 158,
-      "fallback_independent_core": 151,
-      "runtime_fallback_dependent": 7,
+      "fallback_independent_core": 152,
+      "runtime_fallback_dependent": 6,
       "missing_core_bilingual_content": 0
     },
     "materials": {
@@ -169,17 +169,17 @@
     },
     "tool": {
       "public_entries": 333,
-      "fallback_independent_core": 212,
-      "runtime_fallback_dependent": 121,
+      "fallback_independent_core": 226,
+      "runtime_fallback_dependent": 107,
       "missing_core_bilingual_content": 0
     }
   },
   "hashes": {
-    "content_status_sha256": "a074ade24152720b0c1367848846197dd4225d3f9b2cfcf2731072d0077b97bb",
-    "fallback_independent_id_sha256": "aac471b27b3e394ca9c8f1ed50cb79f00cf71a814feb6d3665818016c198bbec",
-    "fallback_dependent_id_sha256": "5398807b9b7e35577ed8d10b27752e4319a71836ecf9b9b152d85f63d0a15bd2",
+    "content_status_sha256": "bcf8718c4ab86fe75f003d1e72254d5adef8f1d4af4fa24357ae942b13998b31",
+    "fallback_independent_id_sha256": "6a3413708ec0314665b727336979edc79abc24082ffe0823c803ef24385d5b63",
+    "fallback_dependent_id_sha256": "853e4b2f132e10a3a1b5f4110eefc0a06a7c12602f2cc21c0a417db603afa613",
     "missing_core_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "content_enriched_id_sha256": "dc4c1b6ea9b9824a45cc01c36073e6e4b883d6145683d3aaa7daed8ed26c7626"
+    "content_enriched_id_sha256": "c010ecad3ba2a3beb28be5308cca6e695c66f5d4192d0471e6804c64976c95a7"
   },
   "samples": {
     "fallback_independent_core": [
@@ -336,126 +336,6 @@
     ],
     "runtime_fallback_dependent": [
       {
-        "id": "bucket",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "spade_bit",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "hole_saw",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "stud_finder",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "caulking_sealant",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "safety_cones",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "rebar",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "cement",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "mortar",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "concrete",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "bolt_nut",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "voltage_tester",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "plywood",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "drywall",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "insulation",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
         "id": "pvc_pipe",
         "source": "data/tools.basic.json",
         "enrichment": null,
@@ -529,6 +409,126 @@
       },
       {
         "id": "drop_cloth",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "safety_meeting",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "ky_hazard_prediction",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "kiken_watch_out",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "youshi_protection",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "cleanup_katazuke",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "spotter",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "ppe",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "ear_protection",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "first_aid_kit",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "fire_extinguisher",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "marker",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "string_line",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "joist",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "beam",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "column",
         "source": "data/tools.basic.json",
         "enrichment": null,
         "fallback_fields": [
