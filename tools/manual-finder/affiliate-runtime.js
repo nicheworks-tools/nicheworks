@@ -50,7 +50,8 @@
       ["affiliate-dji-camera-accessories-wave26.js?v=mf-dji-camera-accessory-wave26-20260918a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE26_LEDGER"],
       ["affiliate-dji-camera-accessories-wave27.js?v=mf-dji-camera-accessory-wave27-20260918a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE27_LEDGER"],
       ["affiliate-dji-camera-accessories-wave28.js?v=mf-dji-camera-accessory-wave28-20260918a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE28_LEDGER"],
-      ["affiliate-dji-camera-accessories-wave29.js?v=mf-dji-camera-accessory-wave29-20260918a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE29_LEDGER"]
+      ["affiliate-dji-camera-accessories-wave29.js?v=mf-dji-camera-accessory-wave29-20260918a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE29_LEDGER"],
+      ["affiliate-dji-camera-accessories-wave30.js?v=mf-dji-camera-accessory-wave30-20260918a", "MANUALFINDER_DJI_CAMERA_ACCESSORY_WAVE30_LEDGER"]
     ];
 
     let index = 0;

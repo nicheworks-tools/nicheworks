@@ -53,5 +53,6 @@ await import('./dji-osmo-pocket3-accessory-wave26.test.mjs');
 await import('./dji-action2-accessory-wave27.test.mjs');
 await import('./dji-pocket2-accessory-wave28.test.mjs');
 await import('./dji-osmo-pocket-accessory-wave29.test.mjs');
+await import('./dji-osmo360-accessory-wave30.test.mjs');
 await import('./camera-accessory-coverage.test.mjs');
 await import('./camera-accessory-doc-sync.test.mjs');
