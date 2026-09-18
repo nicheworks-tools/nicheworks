@@ -21,7 +21,7 @@ Correction note: Galaxy A35 5G was removed from the JP-maintained set on 2026-09
 - manufacturers: **9**
 - foldables: **32**
 - package adapter unknown: **4**
-- package cable unknown: **12**
+- package cable unknown: **11**
 - unresolved water state: **3**
 - battery capacity unknown: **33** — all maintained Apple records; intentional under current policy
 - charger guidance missing: **62**
@@ -40,7 +40,7 @@ The final four charging counts are **not automatically defects**. They are evide
 - `sony-xperia-5-v`
 - `sony-xperia-10-v`
 
-### Cable unknown — 12
+### Cable unknown — 11
 
 - `samsung-galaxy-a36-5g`
 - `sony-xperia-1-vi`
@@ -51,7 +51,6 @@ The final four charging counts are **not automatically defects**. They are evide
 - `sony-xperia-10-iv`
 - `sharp-aquos-sense5g`
 - `sharp-aquos-r6`
-- `sharp-aquos-zero6`
 - `sharp-aquos-r5g`
 - `sharp-aquos-zero5g-basic`
 
