@@ -18,27 +18,27 @@
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
     "quality_manifest_version": "2026-09-14-manifest-8",
-    "content_enrichment_version": "2026-09-18-wave5w"
+    "content_enrichment_version": "2026-09-18-wave5x"
   },
   "summary": {
     "public_entries": 870,
-    "fallback_independent_core": 646,
-    "runtime_fallback_dependent": 224,
+    "fallback_independent_core": 661,
+    "runtime_fallback_dependent": 209,
     "missing_core_bilingual_content": 0,
     "explicit_bilingual_identity": 870,
     "explicit_bilingual_definition": 870,
-    "explicit_bilingual_detail": 865,
-    "explicit_bilingual_bullets": 646,
-    "explicit_bilingual_examples": 865,
+    "explicit_bilingual_detail": 870,
+    "explicit_bilingual_bullets": 661,
+    "explicit_bilingual_examples": 870,
     "explicit_bilingual_aliases": 279,
-    "content_enriched_entries": 506,
+    "content_enriched_entries": 521,
     "has_category_context": 870,
     "has_task_context": 870
   },
   "fallback_field_counts": {
-    "detail": 5,
-    "bullets": 224,
-    "examples": 5
+    "detail": 0,
+    "bullets": 209,
+    "examples": 0
   },
   "by_type": {
     "access": {
@@ -55,8 +55,8 @@
     },
     "component": {
       "public_entries": 205,
-      "fallback_independent_core": 201,
-      "runtime_fallback_dependent": 4,
+      "fallback_independent_core": 203,
+      "runtime_fallback_dependent": 2,
       "missing_core_bilingual_content": 0
     },
     "consumable": {
@@ -169,17 +169,17 @@
     },
     "tool": {
       "public_entries": 333,
-      "fallback_independent_core": 142,
-      "runtime_fallback_dependent": 191,
+      "fallback_independent_core": 155,
+      "runtime_fallback_dependent": 178,
       "missing_core_bilingual_content": 0
     }
   },
   "hashes": {
-    "content_status_sha256": "5f7eeba9dbb15f2d49613e8ab6f4208b2eb6640042551f3a4d0e7994a5f8ba4d",
-    "fallback_independent_id_sha256": "a1fa8b72fdf9b4a4a088c1a26622e7afa2e8c7fc251ae58c16c67672de8beaf5",
-    "fallback_dependent_id_sha256": "7c7eb73959fc3b829bc12ad57302f55765d8dc93258ffce33557b8344c175e84",
+    "content_status_sha256": "e888347f7fd0ed8a0e60b968a539d70f10ae003ff31256412f6e566036986620",
+    "fallback_independent_id_sha256": "908af08cb0ac2bff99c78c368d85d9bfc9b928f2089fda3130226e5810904856",
+    "fallback_dependent_id_sha256": "10d4983cae13ae45736aaf570e936a6c8efc185712e5c23691d161223e99a562",
     "missing_core_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "content_enriched_id_sha256": "d56a93d3c23364a0bf649dffdf3fc60fddf63eaf8f18397fb5ee499f11d6d70b"
+    "content_enriched_id_sha256": "ae61a3bef01d8916f8ce248a6ee18cbda3982de54b2d617f730110cc2b277898"
   },
   "samples": {
     "fallback_independent_core": [
@@ -336,136 +336,6 @@
     ],
     "runtime_fallback_dependent": [
       {
-        "id": "q017_form_clamp",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_flooring_roller",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_ceiling_hanger",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_stop_valve",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_seam_roller",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "circular_saw",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "jigsaw",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "reciprocating_saw",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "handsaw",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "utility_knife",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "angle_grinder",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "orbital_sander",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "hammer",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "sledgehammer",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "pry_bar",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
         "id": "tape_measure",
         "source": "data/tools.basic.json",
         "enrichment": null,
@@ -539,6 +409,126 @@
       },
       {
         "id": "drill_bit_set",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "screwdriver",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "wrench_adjustable",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "socket_wrench",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "pliers",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "wire_stripper",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "crimping_tool",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "multimeter",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "concrete_mixer",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "trowel",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "float",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "concrete_vibrator",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "wheelbarrow",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "shovel",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "pickaxe",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "tamper",
         "source": "data/tools.basic.json",
         "enrichment": null,
         "fallback_fields": [
