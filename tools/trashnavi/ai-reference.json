@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 254,
+  "published_municipality_count": 264,
   "municipalities": [
     {
       "lgcode": "131016",
@@ -1532,6 +1532,66 @@
       "pref_slug": "ibaraki",
       "city_slug": "namegata",
       "url": "https://nicheworks.app/tools/trashnavi/ibaraki/namegata/"
+    },
+    {
+      "lgcode": "082121",
+      "pref_slug": "ibaraki",
+      "city_slug": "hitachiota",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/hitachiota/"
+    },
+    {
+      "lgcode": "082252",
+      "pref_slug": "ibaraki",
+      "city_slug": "hitachiomiya",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/hitachiomiya/"
+    },
+    {
+      "lgcode": "084433",
+      "pref_slug": "ibaraki",
+      "city_slug": "ami",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/ami/"
+    },
+    {
+      "lgcode": "083097",
+      "pref_slug": "ibaraki",
+      "city_slug": "oarai",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/oarai/"
+    },
+    {
+      "lgcode": "083020",
+      "pref_slug": "ibaraki",
+      "city_slug": "ibaraki-town",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/ibaraki-town/"
+    },
+    {
+      "lgcode": "085642",
+      "pref_slug": "ibaraki",
+      "city_slug": "tone",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/tone/"
+    },
+    {
+      "lgcode": "085219",
+      "pref_slug": "ibaraki",
+      "city_slug": "yachiyo",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/yachiyo/"
+    },
+    {
+      "lgcode": "083411",
+      "pref_slug": "ibaraki",
+      "city_slug": "tokai",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/tokai/"
+    },
+    {
+      "lgcode": "082317",
+      "pref_slug": "ibaraki",
+      "city_slug": "sakuragawa",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/sakuragawa/"
+    },
+    {
+      "lgcode": "085421",
+      "pref_slug": "ibaraki",
+      "city_slug": "goka",
+      "url": "https://nicheworks.app/tools/trashnavi/ibaraki/goka/"
     }
   ]
 }
