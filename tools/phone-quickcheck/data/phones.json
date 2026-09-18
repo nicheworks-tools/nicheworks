@@ -1,6 +1,6 @@
 {
   "version": 7,
-  "updatedAt": "2026-09-16",
+  "updatedAt": "2026-09-18",
   "phones": [
     {
       "id": "apple-iphone-18-pro",
@@ -1502,6 +1502,110 @@
         "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
         "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
         "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sony-xperia-1-viii",
+      "manufacturer": "Sony",
+      "model": "Xperia 1 VIII",
+      "aliases": [
+        "Sony Xperia 1 VIII",
+        "Xperia1VIII",
+        "Xperia 1 Mark 8",
+        "エクスペリア1 VIII"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 162,
+        "widthMm": 74,
+        "depthMm": 8.3
+      },
+      "weightG": 200,
+      "displayInch": 6.5,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "official",
+          "sourceRef": "https://www.sony.jp/xperia/products/xperia1m8/spec.html"
+        },
+        "wiredRecommendedW": 30,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Wireless charging",
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.sony.jp/xperia/products/xperia1m8/spec.html",
+        "manualUrl": "https://support.sony.jp/electronics/support/mobile-phones-sim-free/xperia-1-viii-xq-ge44/manuals",
+        "releaseUrl": "https://www.sony.jp/CorporateCruise/Press/202605/26-0513/",
+        "chargingUrl": "https://www.sony.jp/xperia/product/accessories/xqz-uc1/",
+        "wirelessUrl": "https://www.sony.jp/xperia/products/xperia1m8/spec.html",
+        "waterUrl": "https://www.sony.jp/xperia/products/xperia1m8/spec.html",
+        "packageUrl": "https://www.sony.jp/xperia/environment/",
+        "verifiedAt": "2026-09-18"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sony-xperia-10-viii",
+      "manufacturer": "Sony",
+      "model": "Xperia 10 VIII",
+      "aliases": [
+        "Sony Xperia 10 VIII",
+        "Xperia10VIII",
+        "Xperia 10 Mark 8",
+        "エクスペリア10 VIII"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 153,
+        "widthMm": 72,
+        "depthMm": 8.3
+      },
+      "weightG": 168,
+      "displayInch": 6.1,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "official",
+          "sourceRef": "https://www.sony.jp/xperia/products/xperia10m8/spec.html"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.sony.jp/xperia/products/xperia10m8/spec.html",
+        "manualUrl": "https://support.sony.jp/electronics/support/mobile-phones-tablets-mobile-phones/manuals",
+        "releaseUrl": "https://www.sony.jp/xperia/news/",
+        "waterUrl": "https://www.sony.jp/xperia/products/xperia10m8/spec.html",
+        "packageUrl": "https://www.sony.jp/xperia/environment/",
+        "verifiedAt": "2026-09-18"
       },
       "affiliateKeys": []
     },
@@ -3834,6 +3938,117 @@
         "releaseUrl": "https://www.oppo.com/jp/newsroom/press/oppo-a3-release/",
         "verifiedAt": "2026-09-16",
         "chargingUrl": "https://www.oppo.com/jp/smartphones/series-a/a3-5g/specs/"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-17t-pro",
+      "manufacturer": "Xiaomi",
+      "model": "Xiaomi 17T Pro",
+      "aliases": [
+        "17T Pro",
+        "Xiaomi17TPro",
+        "シャオミ17T Pro"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 162.2,
+        "widthMm": 77.5,
+        "depthMm": 8.25
+      },
+      "weightG": 219,
+      "displayInch": 6.83,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 7000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/xiaomi-17t-pro/specs/"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": 100,
+        "protocols": [
+          "Xiaomi HyperCharge",
+          "PPS",
+          "USB PD 3.0",
+          "USB PD 2.0"
+        ],
+        "pps": "supported",
+        "wirelessStandard": "Wireless charging",
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/xiaomi-17t-pro/specs/",
+        "manualUrl": "https://www.mi.com/jp/support/",
+        "releaseUrl": "https://www.mi.com/jp/event/2026/xiaomi-launch-may-2026/",
+        "chargingUrl": "https://www.mi.com/jp/product/xiaomi-17t-pro/specs/",
+        "wirelessUrl": "https://www.mi.com/jp/product/xiaomi-17t-pro/",
+        "waterUrl": "https://www.mi.com/jp/product/xiaomi-17t-pro/specs/",
+        "packageUrl": "https://www.mi.com/jp/product/xiaomi-17t-pro/specs/",
+        "verifiedAt": "2026-09-18"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-17t",
+      "manufacturer": "Xiaomi",
+      "model": "Xiaomi 17T",
+      "aliases": [
+        "17T",
+        "Xiaomi17T",
+        "シャオミ17T"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 157.6,
+        "widthMm": 75.2,
+        "depthMm": 8.17
+      },
+      "weightG": 200,
+      "displayInch": 6.59,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 6500,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/xiaomi-17t/specs/"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": 67,
+        "protocols": [
+          "Xiaomi HyperCharge",
+          "PPS",
+          "USB PD 3.0",
+          "USB PD 2.0"
+        ],
+        "pps": "supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/xiaomi-17t/specs/",
+        "manualUrl": "https://www.mi.com/jp/support/",
+        "releaseUrl": "https://www.mi.com/jp/event/2026/xiaomi-launch-may-2026/",
+        "chargingUrl": "https://www.mi.com/jp/product/xiaomi-17t/specs/",
+        "waterUrl": "https://www.mi.com/jp/product/xiaomi-17t/specs/",
+        "packageUrl": "https://www.mi.com/jp/product/xiaomi-17t/specs/",
+        "verifiedAt": "2026-09-18"
       },
       "affiliateKeys": []
     },

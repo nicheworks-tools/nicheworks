@@ -2,7 +2,7 @@
 
 Status: **V1 COMPLETE**
 Baseline date: **2026-09-18**
-Dataset target for this closure pass: **181 maintained phones**
+V1 closure baseline: **181 maintained phones**
 
 ## Completion rule
 
@@ -17,7 +17,7 @@ Completion does **not** require forcing every nullable field to a value. Unknown
 
 Correction note: Galaxy A35 5G was removed from the JP-maintained set on 2026-09-18. The previous record used global launch/specification sources while incorrectly declaring `market: ["JP"]`.
 
-- phones: **181**
+- phones at v1 closure: **181**
 - manufacturers: **9**
 - foldables: **32**
 - raw package unknowns: **4 adapter / 11 cable = 15 fields**
@@ -25,10 +25,10 @@ Correction note: Galaxy A35 5G was removed from the JP-maintained set on 2026-09
 - reviewed-unresolved package/water fields: **18 / 18**
 - **unreviewed package/water gaps: 0**
 - battery capacity unknown: **33** — all maintained Apple records; intentional under current policy
-- charger guidance missing: **62**
-- handset-side wired maximum missing: **86**
-- PPS unknown: **152**
-- wireless standard missing: **74**
+- charger guidance missing at v1 closure: **62**
+- handset-side wired maximum missing at v1 closure: **86**
+- PPS unknown at v1 closure: **152**
+- wireless standard missing at v1 closure: **74**
 
 The final four charging counts are **not automatically defects**. They are evidence-sensitive fields and must not be filled by inference merely to reduce an unknown count.
 
@@ -141,7 +141,7 @@ During the visual audit, a real 320 px regression was found: the Japanese 「ワ
 
 Phone QuickCheck v1 is complete under the maintained contract:
 
-- **181** JP-maintained phone records;
+- v1 closure baseline: **181** JP-maintained phone records;
 - **32** foldables with explicit folded/unfolded handling;
 - package/water unknowns are either source-resolved or explicitly registered as `reviewed_unresolved`;
 - **unreviewed package/water gaps: 0**;
@@ -151,6 +151,26 @@ Phone QuickCheck v1 is complete under the maintained contract:
 - final rendered Chrome smoke passed at 320 / 390 / 414 / 768 / 1280 px.
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
+
+
+## Maintenance — 2026 freshness Wave 1
+
+Applied on **2026-09-18** after v1 closure.
+
+Current maintained dataset: **185 phones**.
+
+Added four Japan-market 2026 models from manufacturer primary sources:
+
+- Sony Xperia 1 VIII
+- Sony Xperia 10 VIII
+- Xiaomi 17T
+- Xiaomi 17T Pro
+
+Package provenance is now optionally stored as `sources.packageUrl` and checked as a trusted primary-source URL when present.
+
+The Xperia 10 VIII record intentionally does not invent a wired wattage or charging protocol claim. Sony's maintained product specification establishes USB Type-C and the battery facts used here; a stronger charging claim can be added later only when exact primary evidence is maintained.
+
+OPPO Reno15 A and Reno16 5G were reviewed during this freshness pass but are **not added in this wave** because the current non-foldable schema stores one thickness and one weight while OPPO's official Japan specifications publish color-dependent thickness/weight variants. A schema change is required before those records can be represented without collapsing official variant facts.
 
 ## Regression guard
 

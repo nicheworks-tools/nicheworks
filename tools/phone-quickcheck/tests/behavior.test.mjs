@@ -681,3 +681,44 @@ console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estim
 }
 
 console.log('Phone QuickCheck final automated QA passed: controls, sort modes, empty/error states, and mobile dismissal paths.');
+
+
+// 2026 freshness Wave 1: source-backed Sony and Xiaomi additions.
+{
+  const xperia1 = byId.get('sony-xperia-1-viii');
+  assert.ok(xperia1, 'Xperia 1 VIII fixture missing');
+  assert.equal(xperia1.releaseYear, 2026);
+  assert.equal(xperia1.charging?.battery?.capacityMah, 5000);
+  assert.equal(xperia1.charging?.wiredRecommendedW, 30);
+  assert.deepEqual(xperia1.charging?.protocols, ['USB PD']);
+  assert.equal(xperia1.included?.adapter, 'not_included');
+  assert.equal(xperia1.included?.cable, 'not_included');
+  assert.match(xperia1.sources?.packageUrl || '', /^https:\/\/www\.sony\.jp\//);
+
+  const xperia10 = byId.get('sony-xperia-10-viii');
+  assert.ok(xperia10, 'Xperia 10 VIII fixture missing');
+  assert.equal(xperia10.charging?.battery?.capacityMah, 5000);
+  assert.equal(xperia10.waterRating, 'IPX5/IPX8 / IP6X');
+  assert.equal(xperia10.charging?.wiredRecommendedW, null);
+  assert.deepEqual(xperia10.charging?.protocols, []);
+
+  const xiaomi17t = byId.get('xiaomi-17t');
+  assert.ok(xiaomi17t, 'Xiaomi 17T fixture missing');
+  assert.equal(xiaomi17t.charging?.wiredMaxW, 67);
+  assert.equal(xiaomi17t.charging?.pps, 'supported');
+  assert.equal(xiaomi17t.charging?.battery?.capacityMah, 6500);
+  assert.equal(xiaomi17t.included?.adapter, 'included');
+  assert.equal(xiaomi17t.included?.cable, 'included');
+
+  const xiaomi17tPro = byId.get('xiaomi-17t-pro');
+  assert.ok(xiaomi17tPro, 'Xiaomi 17T Pro fixture missing');
+  assert.equal(xiaomi17tPro.charging?.wiredMaxW, 100);
+  assert.equal(xiaomi17tPro.charging?.pps, 'supported');
+  assert.equal(xiaomi17tPro.charging?.battery?.capacityMah, 7000);
+  assert.equal(xiaomi17tPro.charging?.wirelessStandard, 'Wireless charging');
+
+  const h = await createHarness(['sony-xperia-1-viii', 'sony-xperia-10-viii', 'xiaomi-17t', 'xiaomi-17t-pro']);
+  assert.match(h.elements.phoneList.innerHTML, /Xperia 1 VIII/);
+  assert.match(h.elements.phoneList.innerHTML, /Xiaomi 17T Pro/);
+}
+
