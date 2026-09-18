@@ -72,21 +72,19 @@ ManualFinder is an `AFFILIATE` tool, but commerce is an optional next-action lay
 
 Every actionable `カメラ・映像` row with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or explicit missing-accessory diagnostic state.
 
-The current camera state is **185 basic = 56 detail + 0 reviewed exclusions + 129 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
+The current camera state is **185 basic = 57 detail + 0 reviewed exclusions + 128 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
 
 Nikon Waves 1–2 remain closed at **14 detail + 0 reviewed exclusions + 0 missing**.
 
-DJI advances only through bounded exact-canonical-model waves. Reviewed scope through Wave 22 includes Waves 1–21 frozen in their individual ledgers plus Wave 22 for exactly:
+DJI advances only through bounded exact-canonical-model waves. Reviewed scope through Wave 23 includes Waves 1–22 frozen in their individual ledgers plus Wave 23 for exactly:
 
-- `Phantom 3 Advanced`
-- `Phantom 3 Professional`
-- `Phantom 3 Standard`
+- `Phantom 3 SE`
 
-Wave 22 maps those three canonical rows to `DJI Phantom 3 Intelligent Flight Battery` and `DJI Phantom 3 Battery Charging Hub`. DJI official Advanced, Professional, and Standard Download Centers publish the Phantom 3 Series Charging Hub manual for those products. DJI official battery guidance identifies the Phantom 3 Series Intelligent Flight Battery, and the Standard support FAQ explicitly states that Professional/Advanced and Standard batteries are the same. `Phantom 3 SE`, `Phantom 3 4K`, `DJI Phantom 3 Standard`, and other inferred names remain fail-closed.
+Wave 23 maps only the exact canonical `Phantom 3 SE` row to `DJI Phantom 3 Intelligent Flight Battery`. DJI's official Phantom 3 SE Download Center publishes SE-specific Intelligent Flight Battery safety documentation, and DJI official Phantom 3 Series battery guidance defines the series battery as 15.2 V / 4480 mAh. No charging-hub offer is emitted because equally explicit SE-specific hub compatibility was not established; Wave 22 hub evidence is not inferred to SE. `Phantom 3 4K`, `DJI Phantom 3 SE`, and other spelling/family variants remain fail-closed.
 
-The measured DJI state after Waves 1–22 is **96 basic = 42 detail + 0 reviewed exclusions + 54 missing accessory detail**.
+The measured DJI state after Waves 1–23 is **96 basic = 43 detail + 0 reviewed exclusions + 53 missing accessory detail**.
 
-Camera-detail exclusions remain in `affiliate-camera-detail-exclusions.js`; the ledger is currently empty. Remaining missing camera rows are DJI 54, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
+Camera-detail exclusions remain in `affiliate-camera-detail-exclusions.js`; the ledger is currently empty. Remaining missing camera rows are DJI 53, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## State and persistence
 
@@ -127,10 +125,10 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] The printer audit remains **291 basic = 284 detail + 7 reviewed exclusions + 0 missing detail**.
 - [x] KYOCERA remains **123 = 120 detail + 3 reviewed exclusions + 0 missing**.
 - [x] Nikon camera accessory coverage remains **14 detail + 0 reviewed exclusions + 0 missing**.
-- [x] DJI Waves 1–22 preserve exact reviewed boundaries and do not infer neighboring product names.
-- [x] DJI Phantom 3 Wave 22 activates exactly three reviewed Phantom 3 canonical rows with official battery/hub evidence.
-- [x] DJI Waves 1–22 reconcile to **96 basic = 42 detail + 0 reviewed exclusions + 54 missing accessory detail**.
-- [x] The catalog-wide camera audit reconciles to **185 basic = 56 detail + 0 reviewed exclusions + 129 missing accessory detail** while seven maker/index rows remain non-actionable.
+- [x] DJI Waves 1–23 preserve exact reviewed boundaries and do not infer neighboring product names.
+- [x] DJI Phantom 3 SE Wave 23 activates exactly one reviewed canonical row with official battery evidence and deliberately no inferred hub offer.
+- [x] DJI Waves 1–23 reconcile to **96 basic = 43 detail + 0 reviewed exclusions + 53 missing accessory detail**.
+- [x] The catalog-wide camera audit reconciles to **185 basic = 57 detail + 0 reviewed exclusions + 128 missing accessory detail** while seven maker/index rows remain non-actionable.
 - [x] Missing-model maker diagnostics and documentation sync remain machine-readable drift guards.
 - [x] Wrong maker/category, nonexistent models, spelling variants, and other unreviewed compatibility cases fail closed.
 - [x] Amazon disclosure and sponsored-link semantics remain supplied by the shared affiliate helper.
@@ -175,6 +173,7 @@ Reviewed DJI camera accessory ledgers:
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave20.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave21.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave22.js`
+- `tools/manual-finder/affiliate-dji-camera-accessories-wave23.js`
 
 Camera accessory tests and audit gates:
 
@@ -202,6 +201,7 @@ Camera accessory tests and audit gates:
 - `tools/manual-finder/tests/dji-spark-accessory-wave20.test.mjs`
 - `tools/manual-finder/tests/dji-phantom4-accessory-wave21.test.mjs`
 - `tools/manual-finder/tests/dji-phantom3-accessory-wave22.test.mjs`
+- `tools/manual-finder/tests/dji-phantom3-se-accessory-wave23.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-coverage.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs`
 - `tools/manual-finder/tests/affiliate-coverage.test.mjs`

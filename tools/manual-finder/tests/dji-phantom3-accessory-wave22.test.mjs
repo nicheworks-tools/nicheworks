@@ -46,7 +46,6 @@ for (const args of [
   { maker: 'dji', model: 'Phantom 3 Advanced', category: 'カメラ・映像' },
   { maker: 'Nikon', model: 'Phantom 3 Advanced', category: 'カメラ・映像' },
   { maker: 'DJI', model: 'Phantom 3 Advanced', category: 'その他' },
-  { maker: 'DJI', model: 'Phantom 3 SE', category: 'カメラ・映像' },
   { maker: 'DJI', model: 'Phantom 3 4K', category: 'カメラ・映像' },
   { maker: 'DJI', model: 'DJI Phantom 3 Standard', category: 'カメラ・映像' },
   { maker: 'DJI', model: '', category: 'カメラ・映像' }
