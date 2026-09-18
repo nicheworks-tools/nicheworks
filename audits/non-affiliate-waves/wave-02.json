@@ -1,1 +1,1134 @@
-{"wave":2,"auditMode":"audit_only","records":[{"slug":"contract-risk-highlighter","monetization_class":"PRO_BUNDLE","overall_state":"MAJOR_FIX","last_audited_sha":"71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6","audited_at":"2026-09-16T18:27:00+09:00","categories":{"identity_spec":{"state":"PASS","evidence":["a"]},"core_behavior":{"state":"PASS","evidence":["a"]},"error_empty_states":{"state":"PASS","evidence":["a"]},"data_correctness":{"state":"PASS","evidence":["a"]},"privacy_network":{"state":"PASS","evidence":["a"]},"persistence":{"state":"PASS","evidence":["a"]},"responsive_ui":{"state":"PASS","evidence":["a"]},"accessibility":{"state":"PASS","evidence":["a"]},"language":{"state":"PASS","evidence":["a"]},"seo_technical":{"state":"ISSUE_MINOR","evidence":["a"]},"seo_content":{"state":"ISSUE_MINOR","evidence":["a"]},"analytics":{"state":"PASS","evidence":["a"]},"monetization_contract":{"state":"ISSUE_MAJOR","evidence":["a"]},"regression_tests":{"state":"ISSUE_MAJOR","evidence":["a"]}},"findings":[]},{"slug":"csv-tidy","monetization_class":"PRO_BUNDLE","overall_state":"MAJOR_FIX","last_audited_sha":"71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6","audited_at":"2026-09-16T18:27:00+09:00","categories":{"identity_spec":{"state":"PASS","evidence":["a"]},"core_behavior":{"state":"PASS","evidence":["a"]},"error_empty_states":{"state":"PASS","evidence":["a"]},"data_correctness":{"state":"PASS","evidence":["a"]},"privacy_network":{"state":"PASS","evidence":["a"]},"persistence":{"state":"PASS","evidence":["a"]},"responsive_ui":{"state":"PASS","evidence":["a"]},"accessibility":{"state":"PASS","evidence":["a"]},"language":{"state":"PASS","evidence":["a"]},"seo_technical":{"state":"PASS","evidence":["a"]},"seo_content":{"state":"PASS","evidence":["a"]},"analytics":{"state":"PASS","evidence":["a"]},"monetization_contract":{"state":"PASS","evidence":["a"]},"regression_tests":{"state":"ISSUE_MAJOR","evidence":["a"]}},"findings":[]},{"slug":"design-request-builder","monetization_class":"PRO_BUNDLE","overall_state":"MAJOR_FIX","last_audited_sha":"71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6","audited_at":"2026-09-16T18:27:00+09:00","categories":{"identity_spec":{"state":"PASS","evidence":["a"]},"core_behavior":{"state":"PASS","evidence":["a"]},"error_empty_states":{"state":"PASS","evidence":["a"]},"data_correctness":{"state":"PASS","evidence":["a"]},"privacy_network":{"state":"PASS","evidence":["a"]},"persistence":{"state":"PASS","evidence":["a"]},"responsive_ui":{"state":"PASS","evidence":["a"]},"accessibility":{"state":"PASS","evidence":["a"]},"language":{"state":"PASS","evidence":["a"]},"seo_technical":{"state":"ISSUE_MINOR","evidence":["a"]},"seo_content":{"state":"PASS","evidence":["a"]},"analytics":{"state":"PASS","evidence":["a"]},"monetization_contract":{"state":"PASS","evidence":["a"]},"regression_tests":{"state":"ISSUE_MAJOR","evidence":["a"]}},"findings":[]},{"slug":"earth-map-suite","monetization_class":"HOLD","overall_state":"HOLD_REVIEW","last_audited_sha":"71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6","audited_at":"2026-09-16T18:27:00+09:00","categories":{"identity_spec":{"state":"PASS","evidence":["a"]},"core_behavior":{"state":"ISSUE_MAJOR","evidence":["a"]},"error_empty_states":{"state":"PASS","evidence":["a"]},"data_correctness":{"state":"PASS","evidence":["a"]},"privacy_network":{"state":"PASS","evidence":["a"]},"persistence":{"state":"PASS","evidence":["a"]},"responsive_ui":{"state":"PASS","evidence":["a"]},"accessibility":{"state":"PASS","evidence":["a"]},"language":{"state":"PASS","evidence":["a"]},"seo_technical":{"state":"ISSUE_MINOR","evidence":["a"]},"seo_content":{"state":"PASS","evidence":["a"]},"analytics":{"state":"PASS","evidence":["a"]},"monetization_contract":{"state":"ISSUE_MAJOR","evidence":["a"]},"regression_tests":{"state":"ISSUE_MAJOR","evidence":["a"]}},"findings":[]},{"slug":"exif-cleaner-mini","monetization_class":"ADS_DONATION","overall_state":"MAJOR_FIX","last_audited_sha":"71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6","audited_at":"2026-09-16T18:27:00+09:00","categories":{"identity_spec":{"state":"PASS","evidence":["a"]},"core_behavior":{"state":"PASS","evidence":["a"]},"error_empty_states":{"state":"PASS","evidence":["a"]},"data_correctness":{"state":"PASS","evidence":["a"]},"privacy_network":{"state":"PASS","evidence":["a"]},"persistence":{"state":"PASS","evidence":["a"]},"responsive_ui":{"state":"PASS","evidence":["a"]},"accessibility":{"state":"PASS","evidence":["a"]},"language":{"state":"PASS","evidence":["a"]},"seo_technical":{"state":"ISSUE_MINOR","evidence":["a"]},"seo_content":{"state":"PASS","evidence":["a"]},"analytics":{"state":"PASS","evidence":["a"]},"monetization_contract":{"state":"PASS","evidence":["a"]},"regression_tests":{"state":"ISSUE_MAJOR","evidence":["a"]}},"findings":[]},{"slug":"filetype-sniffer","monetization_class":"ADS_DONATION","overall_state":"MINOR_FIX","last_audited_sha":"71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6","audited_at":"2026-09-16T18:27:00+09:00","categories":{"identity_spec":{"state":"PASS","evidence":["a"]},"core_behavior":{"state":"PASS","evidence":["a"]},"error_empty_states":{"state":"PASS","evidence":["a"]},"data_correctness":{"state":"PASS","evidence":["a"]},"privacy_network":{"state":"PASS","evidence":["a"]},"persistence":{"state":"PASS","evidence":["a"]},"responsive_ui":{"state":"PASS","evidence":["a"]},"accessibility":{"state":"PASS","evidence":["a"]},"language":{"state":"PASS","evidence":["a"]},"seo_technical":{"state":"PASS","evidence":["a"]},"seo_content":{"state":"ISSUE_MINOR","evidence":["a"]},"analytics":{"state":"PASS","evidence":["a"]},"monetization_contract":{"state":"PASS","evidence":["a"]},"regression_tests":{"state":"ISSUE_MINOR","evidence":["a"]}},"findings":[]},{"slug":"growth-log-template-generator","monetization_class":"ADS_DONATION","overall_state":"MAJOR_FIX","last_audited_sha":"71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6","audited_at":"2026-09-16T18:27:00+09:00","categories":{"identity_spec":{"state":"PASS","evidence":["a"]},"core_behavior":{"state":"PASS","evidence":["a"]},"error_empty_states":{"state":"PASS","evidence":["a"]},"data_correctness":{"state":"PASS","evidence":["a"]},"privacy_network":{"state":"PASS","evidence":["a"]},"persistence":{"state":"PASS","evidence":["a"]},"responsive_ui":{"state":"PASS","evidence":["a"]},"accessibility":{"state":"PASS","evidence":["a"]},"language":{"state":"PASS","evidence":["a"]},"seo_technical":{"state":"ISSUE_MINOR","evidence":["a"]},"seo_content":{"state":"ISSUE_MINOR","evidence":["a"]},"analytics":{"state":"PASS","evidence":["a"]},"monetization_contract":{"state":"PASS","evidence":["a"]},"regression_tests":{"state":"ISSUE_MAJOR","evidence":["a"]}},"findings":[]},{"slug":"habit-plan-generator","monetization_class":"ADS_DONATION","overall_state":"MAJOR_FIX","last_audited_sha":"71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6","audited_at":"2026-09-16T18:27:00+09:00","categories":{"identity_spec":{"state":"PASS","evidence":["a"]},"core_behavior":{"state":"PASS","evidence":["a"]},"error_empty_states":{"state":"PASS","evidence":["a"]},"data_correctness":{"state":"PASS","evidence":["a"]},"privacy_network":{"state":"PASS","evidence":["a"]},"persistence":{"state":"PASS","evidence":["a"]},"responsive_ui":{"state":"PASS","evidence":["a"]},"accessibility":{"state":"PASS","evidence":["a"]},"language":{"state":"PASS","evidence":["a"]},"seo_technical":{"state":"ISSUE_MINOR","evidence":["a"]},"seo_content":{"state":"ISSUE_MINOR","evidence":["a"]},"analytics":{"state":"PASS","evidence":["a"]},"monetization_contract":{"state":"PASS","evidence":["a"]},"regression_tests":{"state":"ISSUE_MAJOR","evidence":["a"]}},"findings":[]},{"slug":"image-compression-inspector","monetization_class":"ADS_DONATION","overall_state":"MAJOR_FIX","last_audited_sha":"71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6","audited_at":"2026-09-16T18:27:00+09:00","categories":{"identity_spec":{"state":"PASS","evidence":["a"]},"core_behavior":{"state":"PASS","evidence":["a"]},"error_empty_states":{"state":"PASS","evidence":["a"]},"data_correctness":{"state":"PASS","evidence":["a"]},"privacy_network":{"state":"PASS","evidence":["a"]},"persistence":{"state":"PASS","evidence":["a"]},"responsive_ui":{"state":"PASS","evidence":["a"]},"accessibility":{"state":"PASS","evidence":["a"]},"language":{"state":"PASS","evidence":["a"]},"seo_technical":{"state":"ISSUE_MINOR","evidence":["a"]},"seo_content":{"state":"PASS","evidence":["a"]},"analytics":{"state":"PASS","evidence":["a"]},"monetization_contract":{"state":"PASS","evidence":["a"]},"regression_tests":{"state":"ISSUE_MAJOR","evidence":["a"]}},"findings":[]},{"slug":"image-redact","monetization_class":"PRO_BUNDLE","overall_state":"MAJOR_FIX","last_audited_sha":"71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6","audited_at":"2026-09-16T18:27:00+09:00","categories":{"identity_spec":{"state":"PASS","evidence":["a"]},"core_behavior":{"state":"PASS","evidence":["a"]},"error_empty_states":{"state":"PASS","evidence":["a"]},"data_correctness":{"state":"PASS","evidence":["a"]},"privacy_network":{"state":"PASS","evidence":["a"]},"persistence":{"state":"PASS","evidence":["a"]},"responsive_ui":{"state":"PASS","evidence":["a"]},"accessibility":{"state":"PASS","evidence":["a"]},"language":{"state":"PASS","evidence":["a"]},"seo_technical":{"state":"ISSUE_MINOR","evidence":["a"]},"seo_content":{"state":"PASS","evidence":["a"]},"analytics":{"state":"PASS","evidence":["a"]},"monetization_contract":{"state":"PASS","evidence":["a"]},"regression_tests":{"state":"ISSUE_MAJOR","evidence":["a"]}},"findings":[]},{"slug":"incident-update-generator","monetization_class":"PRO_BUNDLE","overall_state":"MAJOR_FIX","last_audited_sha":"71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6","audited_at":"2026-09-16T18:27:00+09:00","categories":{"identity_spec":{"state":"PASS","evidence":["a"]},"core_behavior":{"state":"PASS","evidence":["a"]},"error_empty_states":{"state":"PASS","evidence":["a"]},"data_correctness":{"state":"PASS","evidence":["a"]},"privacy_network":{"state":"PASS","evidence":["a"]},"persistence":{"state":"PASS","evidence":["a"]},"responsive_ui":{"state":"PASS","evidence":["a"]},"accessibility":{"state":"PASS","evidence":["a"]},"language":{"state":"PASS","evidence":["a"]},"seo_technical":{"state":"ISSUE_MINOR","evidence":["a"]},"seo_content":{"state":"PASS","evidence":["a"]},"analytics":{"state":"PASS","evidence":["a"]},"monetization_contract":{"state":"ISSUE_MAJOR","evidence":["a"]},"regression_tests":{"state":"ISSUE_MAJOR","evidence":["a"]}},"findings":[]},{"slug":"jp-postal-lite","monetization_class":"ADS_DONATION","overall_state":"MINOR_FIX","last_audited_sha":"71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6","audited_at":"2026-09-16T18:27:00+09:00","categories":{"identity_spec":{"state":"PASS","evidence":["a"]},"core_behavior":{"state":"PASS","evidence":["a"]},"error_empty_states":{"state":"PASS","evidence":["a"]},"data_correctness":{"state":"PASS","evidence":["a"]},"privacy_network":{"state":"PASS","evidence":["a"]},"persistence":{"state":"PASS","evidence":["a"]},"responsive_ui":{"state":"PASS","evidence":["a"]},"accessibility":{"state":"PASS","evidence":["a"]},"language":{"state":"PASS","evidence":["a"]},"seo_technical":{"state":"PASS","evidence":["a"]},"seo_content":{"state":"ISSUE_MINOR","evidence":["a"]},"analytics":{"state":"PASS","evidence":["a"]},"monetization_contract":{"state":"PASS","evidence":["a"]},"regression_tests":{"state":"ISSUE_MINOR","evidence":["a"]}},"findings":[]}]}
+{
+  "wave": 2,
+  "auditMode": "audit_only",
+  "records": [
+    {
+      "slug": "contract-risk-highlighter",
+      "monetization_class": "PRO_BUNDLE",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6",
+      "audited_at": "2026-09-16T18:27:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_technical": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_content": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "monetization_contract": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "a"
+          ]
+        }
+      },
+      "findings": []
+    },
+    {
+      "slug": "csv-tidy",
+      "monetization_class": "PRO_BUNDLE",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6",
+      "audited_at": "2026-09-16T18:27:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_technical": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_content": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "a"
+          ]
+        }
+      },
+      "findings": []
+    },
+    {
+      "slug": "design-request-builder",
+      "monetization_class": "PRO_BUNDLE",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6",
+      "audited_at": "2026-09-16T18:27:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_technical": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_content": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "a"
+          ]
+        }
+      },
+      "findings": []
+    },
+    {
+      "slug": "earth-map-suite",
+      "monetization_class": "HOLD",
+      "overall_state": "HOLD_REVIEW",
+      "last_audited_sha": "71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6",
+      "audited_at": "2026-09-16T18:27:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "core_behavior": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_technical": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_content": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "monetization_contract": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "a"
+          ]
+        }
+      },
+      "findings": []
+    },
+    {
+      "slug": "exif-cleaner-mini",
+      "monetization_class": "ADS_DONATION",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6",
+      "audited_at": "2026-09-16T18:27:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_technical": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_content": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "a"
+          ]
+        }
+      },
+      "findings": []
+    },
+    {
+      "slug": "filetype-sniffer",
+      "monetization_class": "ADS_DONATION",
+      "overall_state": "MINOR_FIX",
+      "last_audited_sha": "71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6",
+      "audited_at": "2026-09-16T18:27:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_technical": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_content": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "a"
+          ]
+        }
+      },
+      "findings": []
+    },
+    {
+      "slug": "growth-log-template-generator",
+      "monetization_class": "ADS_DONATION",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6",
+      "audited_at": "2026-09-16T18:27:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_technical": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_content": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "a"
+          ]
+        }
+      },
+      "findings": []
+    },
+    {
+      "slug": "habit-plan-generator",
+      "monetization_class": "ADS_DONATION",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6",
+      "audited_at": "2026-09-16T18:27:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_technical": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_content": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "a"
+          ]
+        }
+      },
+      "findings": []
+    },
+    {
+      "slug": "image-compression-inspector",
+      "monetization_class": "ADS_DONATION",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6",
+      "audited_at": "2026-09-16T18:27:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_technical": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_content": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "a"
+          ]
+        }
+      },
+      "findings": []
+    },
+    {
+      "slug": "image-redact",
+      "monetization_class": "PRO_BUNDLE",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6",
+      "audited_at": "2026-09-16T18:27:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_technical": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_content": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "a"
+          ]
+        }
+      },
+      "findings": []
+    },
+    {
+      "slug": "incident-update-generator",
+      "monetization_class": "PRO_BUNDLE",
+      "overall_state": "MAJOR_FIX",
+      "last_audited_sha": "71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6",
+      "audited_at": "2026-09-16T18:27:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_technical": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_content": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "monetization_contract": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MAJOR",
+          "evidence": [
+            "a"
+          ]
+        }
+      },
+      "findings": []
+    },
+    {
+      "slug": "jp-postal-lite",
+      "monetization_class": "ADS_DONATION",
+      "overall_state": "MINOR_FIX",
+      "last_audited_sha": "71f4fb3ab08dd60fdfae0916ad839dc6ba62ebc6",
+      "audited_at": "2026-09-16T18:27:00+09:00",
+      "categories": {
+        "identity_spec": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "core_behavior": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "error_empty_states": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "data_correctness": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "privacy_network": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "persistence": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "responsive_ui": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "accessibility": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "language": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_technical": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "seo_content": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "a"
+          ]
+        },
+        "analytics": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "monetization_contract": {
+          "state": "PASS",
+          "evidence": [
+            "a"
+          ]
+        },
+        "regression_tests": {
+          "state": "ISSUE_MINOR",
+          "evidence": [
+            "a"
+          ]
+        }
+      },
+      "findings": []
+    }
+  ]
+}
