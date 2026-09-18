@@ -889,3 +889,33 @@ console.log('Phone QuickCheck final automated QA passed: controls, sort modes, e
   assert.match(h.elements.desktopDetail.innerHTML, /8050 mAh/);
 }
 
+// Post-v1 2026 maintenance Wave 6.
+{
+  const ultra = byId.get('xiaomi-17-ultra');
+  assert.ok(ultra, 'Xiaomi 17 Ultra fixture missing');
+  assert.equal(ultra.charging?.battery?.capacityMah, 6000);
+  assert.equal(ultra.charging?.wiredMaxW, 90);
+  assert.equal(ultra.charging?.pps, 'supported');
+  assert.equal(ultra.charging?.wirelessStandard, 'Wireless charging');
+  assert.equal(ultra.waterRating, 'IP68');
+  assert.equal(ultra.physicalVariants?.length, 3);
+  assert.deepEqual(ultra.physicalVariants?.map((variant) => variant.weightG), [218.4, 218.4, 219]);
+  assert.equal(ultra.included?.cable, 'included');
+  assert.equal(ultra.included?.adapter, 'included');
+
+  const m8 = byId.get('xiaomi-poco-m8-5g');
+  assert.ok(m8, 'POCO M8 5G fixture missing');
+  assert.equal(m8.weightG, 178);
+  assert.equal(m8.displayInch, 6.77);
+  assert.equal(m8.charging?.battery?.capacityMah, 5520);
+  assert.equal(m8.charging?.wiredMaxW, 45);
+  assert.equal(m8.charging?.pps, 'supported');
+  assert.equal(m8.waterRating, 'IP66');
+  assert.equal(m8.included?.cable, 'unknown');
+  assert.equal(m8.included?.adapter, 'unknown');
+
+  const h = await createHarness(['xiaomi-17-ultra', 'xiaomi-poco-m8-5g']);
+  assert.match(h.elements.phoneList.innerHTML, /Xiaomi 17 Ultra/);
+  assert.match(h.elements.desktopDetail.innerHTML, /6000 mAh/);
+}
+
