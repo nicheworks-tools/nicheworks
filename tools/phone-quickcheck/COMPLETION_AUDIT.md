@@ -1,6 +1,6 @@
 # Phone QuickCheck v1 Completion Audit
 
-Status: **IN PROGRESS**
+Status: **FINAL AUTOMATED QA**
 Baseline date: **2026-09-18**
 Dataset target for this closure pass: **181 maintained phones**
 
@@ -94,10 +94,26 @@ Pixel 8a was corrected during this audit: `pps: supported` was reverted to `unkn
 
 The remaining raw null/unknown counts are therefore retained as evidence-sensitive unknowns unless future primary evidence justifies a stronger claim.
 
+## Final automated QA
+
+The CI now exercises the final functional and responsive contracts:
+
+- alias/model search and JP/EN switching;
+- manufacturer, connector, and release-year filters;
+- newest, lightest, and compact sorting;
+- empty-result and data-load failure states;
+- mobile bottom-sheet open/close, backdrop dismissal, and Escape dismissal;
+- foldable folded/unfolded rendering;
+- source-backed unknown/non-resistant rendering;
+- Amazon affiliate contract in the dedicated affiliate check;
+- static responsive structure for desktop >900px, tablet/mobile <=900px, narrow <=600px, and phone <=480px. The <=480px contract covers 320 / 390 / 414px phone widths.
+
+A true pixel-level visual browser inspection is **not represented by these Node/static-contract tests**. The repository is code/data complete after these gates; a human or browser-rendering smoke test remains the only non-automated visual check.
+
 ## Remaining closure sequence
 
-1. Run final browser QA at 320 / 390 / 414 px, tablet, and desktop for search, filters, sorting, JP/EN, foldables, bottom sheet, unknown rendering, Amazon CTA, official links, and data-load failure.
-2. Change this document's status to **V1 COMPLETE** only when final browser QA is complete.
+1. Perform a pixel-level visual browser smoke test when a browser-rendering environment is available.
+2. Change this document's status to **V1 COMPLETE** after that visual check.
 
 ## Regression guard
 
