@@ -1,0 +1,43 @@
+name: Pattern Dictionary production SEO audit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'tools/pattern-dictionary/**'
+      - 'sitemap.xml'
+      - 'robots.txt'
+      - '.github/workflows/pattern-dictionary-production-seo-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  production-seo-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Audit 200 production detail URLs
+        env:
+          PATTERN_DICTIONARY_PRODUCTION_SEO_REPORT: pattern-dictionary-production-seo-report.json
+          PATTERN_DICTIONARY_PRODUCTION_SEO_CONCURRENCY: '8'
+          PATTERN_DICTIONARY_PRODUCTION_SEO_TIMEOUT_MS: '20000'
+          PATTERN_DICTIONARY_PRODUCTION_SEO_RETRIES: '2'
+        run: node tools/pattern-dictionary/scripts/audit-production-seo.mjs
+
+      - name: Upload production SEO report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pattern-dictionary-production-seo-report
+          path: pattern-dictionary-production-seo-report.json
+          if-no-files-found: error
+          retention-days: 30
