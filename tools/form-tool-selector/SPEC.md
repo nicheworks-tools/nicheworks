@@ -24,6 +24,7 @@ A future form-service partner program would require a separate verified integrat
 ## Current functional contract
 
 - Accept requirement toggles for file uploads, payments/billing, notifications/integrations, and multilingual forms.
+- Keep a crawlable pre-selection comparison guide covering use case, volume/limits, post-submission workflow, publishing/embedding needs, and personal-data handling before the interactive selector.
 - Accept priority toggles such as free-first and privacy-first.
 - Generate candidate form-tool types/categories from the selected requirements rather than recommending a named provider.
 - Generate a handoff/decision memo with checks users should perform on real services.
@@ -78,6 +79,7 @@ The checkbox groups, result list, and memo are a stacked decision-support flow s
 - [ ] JP/EN switching preserves the same requirements and provider-verification warnings.
 - [ ] The public page has one H1 element while retaining JP/EN switching inside that heading.
 - [ ] Title, description, lead copy, and structured description communicate requirement-based form-builder/tool selection.
+- [ ] Initial HTML exposes the main comparison criteria before users run the selector, rather than hiding all selection context in generated results.
 - [ ] No Amazon affiliate offer is rendered under the current `ADS_DONATION` classification.
 
 ## Implementation evidence
