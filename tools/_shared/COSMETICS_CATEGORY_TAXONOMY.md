@@ -259,3 +259,17 @@ Wave 23 introduces no new public category or authority-function vocabulary. It r
 - `viscosity controlling` → `viscosity adjuster`
 
 Some COSMILE pages expose multiple functions. The overlay continues to select one reviewed public-primary role already supported by the controlled taxonomy while preserving the broader raw/source context rather than creating synthetic compound labels.
+
+
+## Official-label zero-gap taxonomy
+
+The closure preserves Wave 25 and adds four controlled public-role categories required by source-backed official-label identities:
+
+- COSMILE `binding` → NicheWorks `binder`
+- COSMILE `film forming` → NicheWorks `film former`
+- COSMILE `hair conditioning` → NicheWorks `hair conditioning`
+- Kao official `保湿` → NicheWorks `moisturizer`
+
+Existing mappings are reused for `fragrance`, `surfactant - emulsifying`, `skin conditioning - miscellaneous`, `viscosity controlling`, `uv filter`, `humectant`, and `preservative`.
+
+The public primary role is source-backed; raw legacy categories remain preserved rather than normalized in-place.
