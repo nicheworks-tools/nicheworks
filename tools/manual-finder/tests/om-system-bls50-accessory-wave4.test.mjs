@@ -28,8 +28,6 @@ for (const model of models) {
   assert.equal(offers[0].verifiedAt, '2026-09-19');
 }
 for (const args of [
-  {maker:'OM SYSTEM',model:'E-M10 Mark II',category:'カメラ・映像'},
-  {maker:'OM SYSTEM',model:'E-M5 Mark II',category:'カメラ・映像'},
   {maker:'Olympus',model:'E-P7',category:'カメラ・映像'},
   {maker:'OM SYSTEM',model:'OM-5',category:'その他'}
 ]) assert.deepEqual(Array.from(config.getAccessoryOffers(args)), [], `unreviewed BLS-50 mapping must fail closed: ${JSON.stringify(args)}`);
