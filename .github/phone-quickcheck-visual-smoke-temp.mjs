@@ -56,6 +56,14 @@ for (const width of widths) {
     const officialLinks = await page.locator('#sheetDetail .official-links a').count();
     if (!officialLinks) throw new Error(`${width}px: official source links missing in mobile sheet`);
 
+    if (width === 320) {
+      const wirelessLabel = page.locator('#sheetDetail .kv span').filter({ hasText: 'ワイヤレス' }).first();
+      const labelBox = await wirelessLabel.boundingBox();
+      if (!labelBox || labelBox.width < 48 || labelBox.height > 28) {
+        throw new Error(`320px: wireless label collapsed/wrapped unexpectedly: ${JSON.stringify(labelBox)}`);
+      }
+    }
+
     await page.locator('#sheetDetail .amazon-cta').first().waitFor({ state: 'visible' });
     await page.screenshot({ path: path.join(outDir, `phone-${width}-sheet.png`), fullPage: false });
 
