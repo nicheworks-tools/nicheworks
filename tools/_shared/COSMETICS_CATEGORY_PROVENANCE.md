@@ -143,3 +143,19 @@ Wave 12 advances four additional canonical identities with no raw functional cat
 | `sorbitan olivate` | `emulsifier` | COSMILE Europe lists surfactant-emulsifying. |
 | `steareth-2` | `emulsifier` | COSMILE Europe lists surfactant-emulsifying. |
 | `steareth-21` | `emulsifier` | COSMILE Europe lists surfactant-emulsifying. |
+
+
+## Wave 15 reviewed set
+
+Wave 15 begins the unsupported-legacy-category cleanup rather than selecting more category-empty identities. The reviewed source-backed role becomes the public primary role while the pre-existing raw category hint remains auditable in runtime metadata.
+
+| Canonical identity | Verified public category | Preserved raw category hint | Source basis |
+| --- | --- | --- | --- |
+| `caprylyl glycol` | `emollient` | `preservative booster` | COSMILE Europe lists skin-conditioning emollient. |
+| `ceramide np` | `skin conditioning` | `barrier lipid` | COSMILE Europe lists skin-conditioning miscellaneous. |
+| `cholesterol` | `emollient` | `barrier lipid` | COSMILE Europe lists skin-conditioning emollient. |
+| `hexylene glycol` | `solvent` | `general` | COSMILE Europe lists solvent. |
+
+For Caprylyl Glycol, Ceramide NP and Cholesterol, duplicate maintained records also contain a raw missing-category row. Wave 15 does not rewrite those source records. Hexylene Glycol has only the unsupported raw `general` category; that legacy value is likewise preserved for audit.
+
+Runtime precedence is explicit: a reviewed `category_verified` value is the public primary `category`, while all observed legacy and verified functions remain in `categories` and any displaced legacy public-role hint is exposed as `legacy_category_values`. Unverified legacy conflicts retain the prior no-winner behavior.

@@ -109,7 +109,11 @@
     "polysorbate 80": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12497/polysorbate-80/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "sorbitan olivate": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15312/sorbitan-olivate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "steareth-2": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15492/steareth-2/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "steareth-21": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15496/steareth-21/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "steareth-21": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15496/steareth-21/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "caprylyl glycol": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2612/caprylyl-glycol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ceramide np": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/25522/ceramide-np/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "cholesterol": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3117/cholesterol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hexylene glycol": Object.freeze({ category: "solvent", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6450/hexylene-glycol/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
@@ -291,8 +295,22 @@
       if (semantics.category.length === 1) { current.category = semantics.category[0]; current.categories = semantics.category.slice(); }
       else if (semantics.category.length > 1) { const categories = atomicCategoryValues(semantics.category); current.categories = categories; current.category = categories.join(" / "); conflicts.category = semantics.category.slice(); }
       else { delete current.category; current.categories = []; }
-      if (categoryEvidence) { current.category_verified = true; current.category_sources = normalizeNoteSources(categoryEvidence.sources); current.category_authority = categoryEvidence.authority; }
-      else { delete current.category_verified; delete current.category_sources; delete current.category_authority; }
+      if (categoryEvidence) {
+        const verifiedCategory = normalizeText(categoryEvidence.category);
+        const verifiedKey = verifiedCategory.toLowerCase();
+        const legacyCategories = atomicCategoryValues(semantics.category).filter((value) => value.toLowerCase() !== verifiedKey);
+        current.category = verifiedCategory;
+        current.category_verified = true;
+        current.category_sources = normalizeNoteSources(categoryEvidence.sources);
+        current.category_authority = categoryEvidence.authority;
+        if (legacyCategories.length) current.legacy_category_values = legacyCategories;
+        else delete current.legacy_category_values;
+      } else {
+        delete current.category_verified;
+        delete current.category_sources;
+        delete current.category_authority;
+        delete current.legacy_category_values;
+      }
       if (provenanceCandidates.length === 1) {
         current.note_short = provenanceCandidates[0].note;
         current.note_verified = true;
@@ -345,7 +363,7 @@
   }
 
   const api = {
-    version: "1.31.0",
+    version: "1.32.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
