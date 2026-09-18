@@ -2,7 +2,7 @@
   "use strict";
 
   const EVENT_IMPRESSION = "affiliate_impression";
-  const EVENT_CLICK = "affiliate_click";
+  const EVENT_OUTBOUND = "affiliate_outbound";
   let started = false;
   let active = false;
   let activeLang = "";
@@ -14,13 +14,26 @@
     return "";
   }
 
-  function track(eventName, metadata) {
+  function trackImpression(metadata) {
     if (typeof root.gtag !== "function") return;
-    root.gtag("event", eventName, {
+    root.gtag("event", EVENT_IMPRESSION, {
       tool: metadata.tool,
       provider: metadata.provider,
       placement: metadata.placement,
       link_key: metadata.linkKey || ""
+    });
+  }
+
+  function trackOutbound(metadata) {
+    if (typeof root.gtag !== "function") return;
+    const linkKey = String(metadata.linkKey || "").trim() || "unknown";
+    root.gtag("event", EVENT_OUTBOUND, {
+      tool_slug: metadata.tool || "unknown",
+      affiliate_id: linkKey,
+      placement: metadata.placement || "unspecified",
+      merchant: metadata.provider || "amazon",
+      destination_key: linkKey,
+      language: metadata.language === "en" ? "en" : "ja"
     });
   }
 
@@ -103,11 +116,12 @@
       anchor.dataset.affiliateLinkKey = link.key;
       anchor.textContent = lang === "en" ? link.labelEn : link.labelJa;
       anchor.addEventListener("click", () => {
-        track(EVENT_CLICK, {
+        trackOutbound({
           tool,
           provider: config.provider,
           placement: slotConfig.placement,
-          linkKey: link.key
+          linkKey: link.key,
+          language: lang
         });
       });
       linkWrap.appendChild(anchor);
@@ -164,7 +178,7 @@
     activeLang = lang;
 
     if (!wasActive) {
-      track(EVENT_IMPRESSION, {
+      trackImpression({
         tool,
         provider: config.provider,
         placement: slotConfig.placement,
@@ -202,7 +216,7 @@
 
   root.NWCosmeticsAffiliateSlots = Object.freeze({
     version: "1.3.0",
-    events: Object.freeze({ impression: EVENT_IMPRESSION, click: EVENT_CLICK }),
+    events: Object.freeze({ impression: EVENT_IMPRESSION, outbound: EVENT_OUTBOUND }),
     render: sync,
     sync
   });

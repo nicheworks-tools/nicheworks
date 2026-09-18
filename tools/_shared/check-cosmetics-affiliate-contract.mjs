@@ -71,12 +71,16 @@ check(adapter.includes('MutationObserver'), 'affiliate gate must react when resu
 check(adapter.includes('カテゴリは照合結果ではなく、あなた自身の選択で決まります。'), 'Japanese user-choice disclosure missing');
 check(adapter.includes('The category is selected by you, not by the check result.'), 'English user-choice disclosure missing');
 
-for (const eventName of ['affiliate_impression', 'affiliate_click']) {
+for (const eventName of ['affiliate_impression', 'affiliate_outbound']) {
   check(adapter.includes(eventName), `adapter missing event ${eventName}`);
 }
 for (const safeKey of ['tool', 'provider', 'placement', 'link_key']) {
-  check(adapter.includes(safeKey), `adapter missing generic metadata ${safeKey}`);
+  check(adapter.includes(safeKey), `adapter missing impression metadata ${safeKey}`);
 }
+for (const outboundKey of ['tool_slug', 'affiliate_id', 'placement', 'merchant', 'destination_key', 'language']) {
+  check(adapter.includes(outboundKey), `adapter missing outbound metadata ${outboundKey}`);
+}
+check(!adapter.includes('affiliate_click'), 'legacy affiliate_click event must not remain in cosmetics adapter');
 for (const forbidden of ['inciInput', 'fast-input', 'jb-input', 'ocr-file', 'ingredients', 'analysis', 'filename']) {
   check(!adapter.includes(forbidden), `adapter must not reference raw user-data surface: ${forbidden}`);
 }

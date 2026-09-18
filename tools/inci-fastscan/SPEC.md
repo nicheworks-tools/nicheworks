@@ -77,7 +77,7 @@ Ingredient text, selected image, OCR result, image preview, scan result, current
 
 Ingredient text, result filtering, review-queue navigation, candidate application, and selected image analysis run in the browser, but the Tesseract.js OCR library is loaded from the external `unpkg.com` CDN. Suite-wide analytics/advertising resources may also load.
 
-The Amazon affiliate layer is isolated from scan state. Raw ingredient text, OCR output, filenames, images, matched ingredients, chosen correction candidates, review position, filters, and complete analysis results must not be added to analytics, affiliate events, or the Amazon destination. Affiliate analytics are limited to fixed metadata: `tool`, `provider`, `placement`, `link_key`. The current contract does not claim a fully offline page.
+The Amazon affiliate layer is isolated from scan state. Raw ingredient text, OCR output, filenames, images, matched ingredients, chosen correction candidates, review position, filters, and complete analysis results must not be added to analytics, affiliate events, or the Amazon destination. Affiliate click analytics use the suite-wide `affiliate_outbound` event with fixed `tool_slug`, `affiliate_id`, `placement`, `merchant`, `destination_key`, and `language` metadata. The separate `affiliate_impression` event remains limited to fixed `tool`, `provider`, `placement`, and `link_key` metadata. The current contract does not claim a fully offline page.
 
 ## Language mode
 
@@ -145,7 +145,7 @@ Amazonのアソシエイトとして、NicheWorksは適格販売により収入�
 
 These are fixed Amazon search handoffs. They are not statements that any product is safe, suitable, recommended, cheapest, available, hypoallergenic, or medically appropriate for the scanned ingredients.
 
-Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` with `tool`, `provider`, `placement`, and `link_key`. Raw ingredient text, OCR output, filenames, images, matched ingredients, selected correction candidates, review position, and complete analysis results must never be attached.
+Affiliate analytics use `affiliate_impression` for fixed impression metadata and `affiliate_outbound` for clicks with the suite-wide fixed outbound metadata. Raw ingredient text, OCR output, filenames, images, matched ingredients, selected correction candidates, review position, and complete analysis results must never be attached.
 
 ## Limits and non-goals
 
@@ -191,7 +191,7 @@ Affiliate analytics are limited to `affiliate_impression` and `affiliate_click` 
 - [x] Four fixed Amazon category searches are rendered only through `tagged_search` mode with the configured Associate tag.
 - [x] Amazon destinations remain independent of OCR text, input text, dictionary matches, candidates, review state, filters, and complete analysis output.
 - [x] Amazon disclosure and `[PR]` labeling are visible with the live affiliate CTAs.
-- [x] Affiliate analytics remain coarse and contain no ingredient/OCR/analysis payload.
+- [x] Affiliate clicks use the suite-wide `affiliate_outbound` event; analytics remain coarse and contain no ingredient/OCR/analysis payload.
 
 ## Implementation evidence
 
