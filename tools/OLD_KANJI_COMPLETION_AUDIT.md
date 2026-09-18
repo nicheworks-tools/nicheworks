@@ -10,7 +10,7 @@ Scope: the eight-tool Old Kanji cluster defined by `tools/OLD_KANJI_CLUSTER.md`.
 
 All eight tools have a `SPEC.md` whose specification status is `complete`. That means the intended product contract exists. It does **not** mean the implementation has passed final cluster acceptance.
 
-Completion Wave 10 closed the dictionary/data/documentation drift identified in C-01 and C-02. Completion Wave 11 closes the first product-flow QA tranche for Old Kanji Reference and Kanji Modernizer: durable behavior tests now cover both conversion directions, ambiguity, exclusions, exact text preservation, Reference search/detection/state semantics, dictionary failure/recovery contracts, and the Reference → Modernizer handoff. Browser-layout/accessibility and remaining cross-cluster acceptance remain owned by later waves.
+Completion Wave 10 closed the dictionary/data/documentation drift identified in C-01 and C-02. Completion Wave 11 closed the first product-flow QA tranche for Old Kanji Reference and Kanji Modernizer. Completion Wave 12 closes the OCR/Highlighter core behavior tranche: durable tests now cover OCR text preservation, Japanese Tesseract wiring, one-image/object-URL lifecycle contracts, OCR detection/degraded data behavior, Highlighter detection/modernization, exact converter handoff, compatibility edge cases, and Highlighter dictionary-failure degradation. Browser-layout/accessibility and remaining cross-cluster acceptance remain owned by later waves.
 
 ## Tool-by-tool completion state
 
@@ -18,8 +18,8 @@ Completion Wave 10 closed the dictionary/data/documentation drift identified in 
 | --- | --- | --- | --- |
 | Old Kanji Reference | complete | Wave 10 data/contract sync complete; Wave 11 core search/detector/handoff/state behavior automated; browser export/UX and remaining policy/UI criteria still open | Wave 15 UX/browser interaction, Wave 16 search reconciliation, Wave 19 release audit |
 | Kanji Modernizer | complete | Wave 11 declared functional criteria closed by automated behavior QA, including exact text preservation, ambiguity, exclusions, copy helper, load recovery, and `?q=` handoff readiness | Wave 15 UX/mobile/accessibility, Wave 16 search intent, Wave 19 release audit |
-| Old Kanji OCR Scanner | complete | unverified as a whole; acceptance checklist still open | Wave 12 OCR/error QA, Wave 15 UX |
-| Old Document Kanji Highlighter | complete | unverified as a whole; acceptance checklist still open | Wave 12 detection/copy QA, Wave 15 UX |
+| Old Kanji OCR Scanner | complete | Wave 12 core OCR/detection/error behavior automated; five core acceptance criteria closed; currently disabled optional Amazon affiliate criteria remain open for Wave 17/19 | Wave 15 UX, Wave 17 measurement/affiliate contract, Wave 19 release audit |
+| Old Document Kanji Highlighter | complete | Wave 12 declared functional acceptance criteria closed by automated behavior QA, including degraded dictionary mode and exact Modernizer handoff | Wave 15 UX/mobile/accessibility, Wave 16 search intent, Wave 19 release audit |
 | Unicode Kanji Checker | complete | unverified as a whole; acceptance checklist still open | Wave 13 encoding/edge-case QA, Wave 15 UX |
 | Variant Kanji Compare | complete | unverified as a whole; acceptance checklist still open | Wave 13 comparison/rendering QA, Wave 15 UX |
 | Place Old Kanji Checker | complete | unverified as a whole; acceptance checklist still open | Wave 14 official-use/privacy QA, Wave 15 UX |
@@ -188,7 +188,32 @@ Verified behavior includes:
 Browser visual/focus/mobile behavior and end-to-end clicks that require rendered layout remain intentionally assigned to Wave 15/19 rather than being falsely closed by source-only tests.
 
 ### Wave 12 — OCR + Highlighter completion QA
-Verify one-image OCR, progress/failure states, editable correction, detection/highlighting, copy actions, degraded reference-data behavior, and task handoffs.
+Status: **completed for core functional QA**.
+
+Durable evidence:
+- `tools/old-kanji-ocr-scanner/tests/behavior.test.mjs`;
+- `tools/old-document-kanji-highlighter/tests/behavior.test.mjs`;
+- both tests are auto-discovered by `scripts/run-tool-behavior-tests.mjs`.
+
+Confirmed defects fixed:
+1. OCR no longer trims Tesseract output before placing it in the editable result area; leading/trailing whitespace and line breaks are preserved.
+2. OCR related-tool `?q=` handoffs no longer trim the editable OCR/manual text.
+3. OCR detected-character cards now render available occurrence/reading/meaning/usage/category metadata, compatibility/rendering notes, copy actions, and a Reference handoff instead of only a pair title.
+4. OCR primary dictionary loading now checks HTTP success explicitly and exposes deterministic degraded state to the existing warning UI.
+5. Highlighter primary dictionary failure no longer rejects initialization; it enters a degraded state and shows a data-load warning instead of a false zero-match interpretation.
+6. Highlighter mechanical preview and Modernizer handoff are covered by pure behavior contracts, including exact whitespace/newline preservation in the handoff.
+
+Verified behavior includes:
+- Tesseract `recognize(file, 'jpn', ...)` wiring and progress logger contract;
+- image Object URL revoke-before-replace and before-unload cleanup wiring;
+- OCR registered-form detection/counts and mechanical modern mapping;
+- degraded reference-data mode;
+- Highlighter detection counts, mechanical modernization, compatibility/supplementary-plane fallback notes, same-site-only analysis fetches, and local copy wiring.
+
+Deferred intentionally:
+- OCR SERP/schema copy still describes an “initial” OCR state even though OCR is live; this remains Wave 16 search/contract reconciliation rather than being mixed into functional QA.
+- OCR Amazon affiliate configuration is currently fail-closed/disabled, so the three affiliate-specific acceptance criteria stay open for Wave 17/19 instead of being falsely checked.
+- browser visual/focus/mobile behavior remains Wave 15/19.
 
 ### Wave 13 — Unicode + Variant completion QA
 Verify code point/UTF-16/entities, supplementary-plane characters, compatibility ideographs, variation selectors, preset/custom comparison, multi-font behavior, and non-authoritative wording.
