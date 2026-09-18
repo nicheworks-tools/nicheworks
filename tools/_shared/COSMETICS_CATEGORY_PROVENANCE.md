@@ -159,3 +159,17 @@ Wave 15 begins the unsupported-legacy-category cleanup rather than selecting mor
 For Caprylyl Glycol, Ceramide NP and Cholesterol, duplicate maintained records also contain a raw missing-category row. Wave 15 does not rewrite those source records. Hexylene Glycol has only the unsupported raw `general` category; that legacy value is likewise preserved for audit.
 
 Runtime precedence is explicit: a reviewed `category_verified` value is the public primary `category`, while all observed legacy and verified functions remain in `categories` and any displaced legacy public-role hint is exposed as `legacy_category_values`. Unverified legacy conflicts retain the prior no-winner behavior.
+
+
+## Wave 16 reviewed set
+
+Wave 16 continues the unsupported-legacy-category cleanup for four identities observed repeatedly in the maintained official-product corpus. No raw recognition record is rewritten.
+
+| Canonical identity | Verified public category | Preserved raw category hint | Source basis |
+| --- | --- | --- | --- |
+| `hydroxyacetophenone` | `antioxidant` | `preservative booster` | COSMILE Europe lists antioxidant. |
+| `palmitic acid` | `emollient` | `general` | COSMILE Europe lists skin-conditioning emollient. |
+| `stearic acid` | `cleanser` | `general` | COSMILE Europe lists cleansing. |
+| `myristic acid` | `cleanser` | `general` | COSMILE Europe lists cleansing. |
+
+All four records already carried an unsupported legacy category rather than a missing category. The shared runtime therefore exposes the reviewed role as the public primary `category`, keeps the legacy value in the complete `categories` set, and records it in `legacy_category_values` for audit.
