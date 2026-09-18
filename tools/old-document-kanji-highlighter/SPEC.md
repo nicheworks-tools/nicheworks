@@ -9,6 +9,14 @@
 
 Highlight registered old/variant kanji in pasted historical-style text and provide a mechanical modern-form reference without claiming translation or scholarly interpretation.
 
+## Search cluster role
+
+- Primary intent: find registered old forms inside pasted historical-style text.
+- Primary query families: `古文書 旧字体`, `文章 旧字体 検出`, `旧字体 ハイライト`.
+- Supporting query families: `古い文章 漢字 調べる`, `旧字 文章 チェック`.
+- The page is the cluster's pasted-document detector/highlighter. It is not OCR and is not the generic conversion page.
+- Primary task handoffs are Kanji Modernizer, Old Kanji Reference, and Old Kanji OCR Scanner.
+
 ## Current functional contract
 
 - Accept pasted text such as old documents, inscriptions, map descriptions, or sign text.
