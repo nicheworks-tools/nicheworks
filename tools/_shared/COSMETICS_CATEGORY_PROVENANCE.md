@@ -97,3 +97,17 @@ The Cosmetics accuracy benchmark runs these checks together with parser, semanti
 ## Next waves
 
 Subsequent waves may add canonical identities only after the functional category has been checked against an authoritative or primary source and, when terminology differs, an explicit taxonomy mapping exists. Legacy duplicate metadata may be used to locate candidates, but it is never sufficient evidence by itself.
+
+
+## Wave 11 reviewed set
+
+Wave 11 advances four common canonical identities that had no raw functional category at all. It adds source-backed runtime semantics without rewriting the recognition records.
+
+| Canonical identity | Verified category | Source basis |
+| --- | --- | --- |
+| `ethylhexylglycerin` | `skin conditioning` | COSMILE Europe lists skin conditioning among Ethylhexylglycerin functions. |
+| `squalane` | `emollient` | COSMILE Europe lists skin-conditioning emollient for Squalane. |
+| `sodium cocoyl glutamate` | `cleanser` | COSMILE Europe lists cleansing and surfactant-cleansing functions. |
+| `dimethicone` | `skin conditioning` | COSMILE Europe lists skin conditioning and skin-conditioning emollient functions. |
+
+Wave 11 intentionally does not classify Sodium Citrate; its buffer vs pH-adjuster taxonomy remains deferred. It also does not force Niacinamide into a local role category until the external function vocabulary is mapped explicitly.
