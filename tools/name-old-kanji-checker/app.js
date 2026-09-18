@@ -27,6 +27,7 @@
     input: document.getElementById('name-input'),
     checkButton: document.getElementById('check-button'),
     loadingState: document.getElementById('loading-state'),
+    copyStatus: document.getElementById('copy-status'),
     summary: document.getElementById('result-summary'),
     list: document.getElementById('name-result-list'),
     riskPanel: document.getElementById('risk-panel'),
@@ -67,6 +68,8 @@
       copyModern: '現代表記をコピー',
       copyCandidate: '候補をコピー',
       copyAll: '候補一覧をコピー',
+      copied: 'コピーしました。',
+      copyFailed: 'コピーに失敗しました。',
       detailLink: '旧字体一覧で詳しく見る',
       converterLink: '文章全体を旧字体変換ツールで確認する',
       privacyNote:
@@ -113,6 +116,8 @@
       copyModern: 'Copy modern form',
       copyCandidate: 'Copy candidate',
       copyAll: 'Copy all candidates',
+      copied: 'Copied.',
+      copyFailed: 'Copy failed.',
       detailLink: 'View in Old Kanji Reference',
       converterLink: 'Check full text in converter',
       privacyNote:
@@ -269,9 +274,13 @@
     const button = document.createElement('button');
     button.type = 'button';
     button.textContent = label;
-    button.addEventListener('click', () => {
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(value);
+    button.addEventListener('click', async () => {
+      try {
+        if (!navigator.clipboard?.writeText) throw new Error('clipboard unavailable');
+        await navigator.clipboard.writeText(value);
+        if (el.copyStatus) el.copyStatus.textContent = t('copied');
+      } catch (_error) {
+        if (el.copyStatus) el.copyStatus.textContent = t('copyFailed');
       }
     });
     return button;
