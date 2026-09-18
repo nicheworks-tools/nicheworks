@@ -32,7 +32,7 @@ At the audited release baseline:
 - individual-kanji public inventory: 3 reviewed pages.
 - repository-side SEO candidates: 168 candidates, not publication inventory.
 - real-Chrome browser QA covers all 8 tools at 375×812 and 1440×1000.
-- search-role, internal-handoff, privacy/measurement, dormant Amazon, Pro-boundary, SEO-inventory, dictionary-drift, and final-release checks are retained in CI.
+- search-role, internal-handoff, privacy/measurement, active contextual Amazon, Pro-boundary, SEO-inventory, dictionary-drift, and final-release checks are retained in CI.
 
 ## Known limitations / bounded maintenance debt
 
@@ -43,7 +43,7 @@ At the audited release baseline:
 - glyph appearance still depends on OS/browser/font rendering.
 - official/legal/registry spelling is not determined by these tools.
 - OCR depends on browser-side Tesseract assets and is not fully offline.
-- Amazon remains dormant for the current Old Kanji monetization classifications.
+- Amazon is active across all eight tools under the approved 2026-09-19 monetization reopen; user-derived values remain excluded from affiliate destinations and events.
 - fresh Search Console demand was unavailable in Wave 18; no new individual page was authorized from inferred demand.
 
 ## Maintenance rules
@@ -65,7 +65,7 @@ A new completion/expansion phase is required before:
 - changing the canonical search-cluster role table;
 - publishing any new individual-kanji SEO page;
 - bulk-promoting unresolved/reverse-only/identity records;
-- activating Amazon or another monetization surface for a currently dormant Old Kanji tool;
+- materially changing the approved all-eight Amazon offer/placement model, adding another affiliate provider, or allowing user-derived values into affiliate destinations/events;
 - changing billing/Pro availability or entitlement semantics;
 - adding analytics that inspects or transmits user-entered names, addresses, OCR/document text, conversion text, search strings, query strings, or storage values;
 - replacing the current dictionary authority or changing classification policy;
@@ -84,4 +84,4 @@ The existing three-page allowlist remains the publication inventory until an exp
 
 ## Completion lock rule
 
-The Old Kanji cluster is complete for the current product contract as of the audited release baseline above. Future work defaults to maintenance/measurement mode. Expansion is opt-in and evidence-gated, not the automatic continuation of Wave 20.
+The Old Kanji cluster is complete for the current product contract as of the audited release baseline above. A bounded monetization reopen on 2026-09-19 activated contextual Amazon handoffs across all eight tools and then returned the cluster to maintenance/measurement mode. Future work defaults to maintenance/measurement mode. Expansion is opt-in and evidence-gated, not the automatic continuation of Wave 20.
