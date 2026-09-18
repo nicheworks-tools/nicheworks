@@ -27,7 +27,7 @@ const expected = [
   ['DJI Goggles N3', 'https://www.dji.com/support/product/goggles-n3']
 ];
 
-assert.equal(exclusions.length, 3, 'Wave 32 must contain exactly three reviewed built-in-battery exclusions');
+assert.ok(exclusions.length >= 3, 'Wave 32 must retain its three reviewed built-in-battery exclusions');
 assert.deepEqual(exclusions.map((row) => row.model).sort(), expected.map(([model]) => model).sort());
 
 for (const [model, sourceUrl] of expected) {
