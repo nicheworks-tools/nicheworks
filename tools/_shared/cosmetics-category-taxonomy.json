@@ -4,102 +4,1101 @@
   "mapping_policy": "explicit_only",
   "normalization": "NFKC, trim, lowercase, normalize Unicode dashes to ASCII hyphen, collapse whitespace",
   "categories": {
-    "solvent": { "authority_functions": ["solvent"] },
-    "humectant": { "authority_functions": ["humectant"] },
-    "preservative": { "authority_functions": ["preservative"] },
-    "thickener": { "authority_functions": ["thickening agent", "thickening"] },
-    "pH adjuster": { "authority_functions": ["pH adjuster"] },
-    "antioxidant": { "authority_functions": ["antioxidant", "antioxidants"] },
-    "viscosity adjuster": { "authority_functions": ["viscosity increasing agent - aqueous", "viscosity controlling"] },
-    "chelating agent": { "authority_functions": ["chelating agent", "chelating agents", "chelating"] },
-    "skin conditioning": { "authority_functions": ["skin conditioning", "skin conditioning - miscellaneous"] },
-    "emollient": { "authority_functions": ["skin conditioning - emollient"] },
-    "cleanser": { "authority_functions": ["cleansing", "surfactant - cleansing"] },
-    "emulsifier": { "authority_functions": ["surfactant - emulsifying"] },
-    "smoothing": { "authority_functions": ["smoothing"] }
+    "solvent": {
+      "authority_functions": [
+        "solvent"
+      ]
+    },
+    "humectant": {
+      "authority_functions": [
+        "humectant"
+      ]
+    },
+    "preservative": {
+      "authority_functions": [
+        "preservative"
+      ]
+    },
+    "thickener": {
+      "authority_functions": [
+        "thickening agent",
+        "thickening"
+      ]
+    },
+    "pH adjuster": {
+      "authority_functions": [
+        "pH adjuster"
+      ]
+    },
+    "antioxidant": {
+      "authority_functions": [
+        "antioxidant",
+        "antioxidants"
+      ]
+    },
+    "viscosity adjuster": {
+      "authority_functions": [
+        "viscosity increasing agent - aqueous",
+        "viscosity controlling"
+      ]
+    },
+    "chelating agent": {
+      "authority_functions": [
+        "chelating agent",
+        "chelating agents",
+        "chelating"
+      ]
+    },
+    "skin conditioning": {
+      "authority_functions": [
+        "skin conditioning",
+        "skin conditioning - miscellaneous"
+      ]
+    },
+    "emollient": {
+      "authority_functions": [
+        "skin conditioning - emollient"
+      ]
+    },
+    "cleanser": {
+      "authority_functions": [
+        "cleansing",
+        "surfactant - cleansing"
+      ]
+    },
+    "emulsifier": {
+      "authority_functions": [
+        "surfactant - emulsifying"
+      ]
+    },
+    "smoothing": {
+      "authority_functions": [
+        "smoothing"
+      ]
+    },
+    "buffer": {
+      "authority_functions": [
+        "buffering"
+      ]
+    },
+    "uv filter": {
+      "authority_functions": [
+        "uv filter"
+      ]
+    }
   },
   "reviewed_mappings": {
-    "water": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/water/"],"runtime_verified":true},
-    "glycerin": {"category":"humectant","source_functions":["humectant"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/glycerin/"],"runtime_verified":true},
-    "propylene glycol": {"category":"humectant","source_functions":["humectant"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/propylene-glycol/"],"runtime_verified":true},
-    "phenoxyethanol": {"category":"preservative","source_functions":["preservative"],"authority":"European Commission Scientific Committee on Consumer Safety","sources":["https://health.ec.europa.eu/publications/phenoxyethanol_en"],"runtime_verified":true},
-    "carbomer": {"category":"thickener","source_functions":["thickening"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/carbomer/"],"runtime_verified":true},
-    "citric acid": {"category":"pH adjuster","source_functions":["pH adjuster"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/citric-acid/"],"runtime_verified":true},
-    "tocopherol": {"category":"antioxidant","source_functions":["antioxidant"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/tocopherol/"],"runtime_verified":true},
-    "sodium chloride": {"category":"viscosity adjuster","source_functions":["viscosity increasing agent - aqueous"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/sodium-chloride/"],"runtime_verified":true},
-    "disodium edta": {"category":"chelating agent","source_functions":["chelating agents"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/disodium-edta/"],"runtime_verified":true},
-    "tocopheryl acetate": {"category":"antioxidant","source_functions":["antioxidant"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/tocopherol/"],"runtime_verified":true},
-    "butylene glycol": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/"],"runtime_verified":true},
-    "dipropylene glycol": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/"],"runtime_verified":true},
-    "sodium hydroxide": {"category":"pH adjuster","source_functions":["pH adjuster"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/"],"runtime_verified":true},
-    "aminomethyl propanol": {"category":"pH adjuster","source_functions":["pH adjuster"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/aminomethyl-propanol/"],"runtime_verified":true},
-    "triethanolamine": {"category":"pH adjuster","source_functions":["pH adjuster"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/triethanolamine-and-tea-containing-ingredients/"],"runtime_verified":true},
-    "potassium hydroxide": {"category":"pH adjuster","source_functions":["pH adjuster"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/"],"runtime_verified":true},
-    "bht": {"category":"antioxidant","source_functions":["antioxidant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/1672/bht/"],"runtime_verified":true},
-    "betaine": {"category":"humectant","source_functions":["humectant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/1648/betaine/"],"runtime_verified":true},
-    "pentylene glycol": {"category":"solvent","source_functions":["solvent"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/11416/pentylene-glycol/"],"runtime_verified":true},
-    "propanediol": {"category":"humectant","source_functions":["humectant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/13169/propanediol/"],"runtime_verified":true},
-    "1,2-hexanediol": {"category":"solvent","source_functions":["solvent"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/5/1-2-hexanediol/"],"runtime_verified":true},
-    "alcohol": {"category":"solvent","source_functions":["solvent"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/590/alcohol/"],"runtime_verified":true},
-    "ascorbyl palmitate": {"category":"antioxidant","source_functions":["antioxidant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/1244/ascorbyl-palmitate/"],"runtime_verified":true},
-    "sodium gluconate": {"category":"chelating agent","source_functions":["chelating"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14787/sodium-gluconate/"],"runtime_verified":true},
-    "xanthan gum": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/16999/xanthan-gum/"],"runtime_verified":true},
-    "ethylhexylglycerin": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/5500/ethylhexylglycerin/"],"runtime_verified":true},
-    "squalane": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15418/squalane/"],"runtime_verified":true},
-    "sodium cocoyl glutamate": {"category":"cleanser","source_functions":["cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14710/sodium-cocoyl-glutamate/"],"runtime_verified":true},
-    "dimethicone": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/4583/dimethicone/"],"runtime_verified":true},
-    "cetearyl alcohol": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2895/cetearyl-alcohol/"],"runtime_verified":true},
-    "cetyl alcohol": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2973/cetyl-alcohol/"],"runtime_verified":true},
-    "disodium lauryl sulfosuccinate": {"category":"cleanser","source_functions":["cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/4979/disodium-lauryl-sulfosuccinate/"],"runtime_verified":true},
-    "hydrogenated polyisobutene": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6702/hydrogenated-polyisobutene/"],"runtime_verified":true},
-    "cetearyl olivate": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2907/cetearyl-olivate/"],"runtime_verified":true},
-    "stearyl alcohol": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15539/stearyl-alcohol/"],"runtime_verified":true},
-    "sodium lauroyl glutamate": {"category":"cleanser","source_functions":["surfactant - cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14885/sodium-lauroyl-glutamate/"],"runtime_verified":true},
-    "sodium coco-sulfate": {"category":"cleanser","source_functions":["surfactant - cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14690/sodium-coco-sulfate/"],"runtime_verified":true},
-    "polysorbate 80": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12497/polysorbate-80/"],"runtime_verified":true},
-    "sorbitan olivate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15312/sorbitan-olivate/"],"runtime_verified":true},
-    "steareth-2": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15492/steareth-2/"],"runtime_verified":true},
-    "steareth-21": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15496/steareth-21/"],"runtime_verified":true},
-    "caprylyl glycol": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2612/caprylyl-glycol/"],"runtime_verified":true},
-    "ceramide np": {"category":"skin conditioning","source_functions":["skin conditioning - miscellaneous"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/25522/ceramide-np/"],"runtime_verified":true},
-    "cholesterol": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/3117/cholesterol/"],"runtime_verified":true},
-    "hexylene glycol": {"category":"solvent","source_functions":["solvent"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6450/hexylene-glycol/"],"runtime_verified":true},
-    "hydroxyacetophenone": {"category":"antioxidant","source_functions":["antioxidant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/17301/hydroxyacetophenone/"],"runtime_verified":true},
-    "palmitic acid": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/10137/palmitic-acid/"],"runtime_verified":true},
-    "stearic acid": {"category":"cleanser","source_functions":["cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15514/stearic-acid/"],"runtime_verified":true},
-    "myristic acid": {"category":"cleanser","source_functions":["cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/9266/myristic-acid/"],"runtime_verified":true},
-    "niacinamide": {"category":"smoothing","source_functions":["smoothing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/9443/niacinamide/"],"runtime_verified":true},
-    "hydroxyethyl acrylate/sodium acryloyldimethyl taurate copolymer": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/7079/hydroxyethyl-acrylate-sodium-acryloyldimethyl-taurate-copolymer/"],"runtime_verified":true},
-    "ammonium polyacryloyldimethyl taurate": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/933/ammonium-polyacryloyldimethyl-taurate/"],"runtime_verified":true},
-    "ethylhexyl methoxycrylene": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/5485/ethylhexyl-methoxycrylene/"],"runtime_verified":true},
-    "glyceryl stearate se": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6059/glyceryl-stearate-se/"],"runtime_verified":true},
-    "polyacrylate crosspolymer-6": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/17882/polyacrylate-crosspolymer-6/"],"runtime_verified":true},
-    "polyhydroxystearic acid": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12317/polyhydroxystearic-acid/"],"runtime_verified":true},
-    "potassium cetyl phosphate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12639/potassium-cetyl-phosphate/"],"runtime_verified":true},
-    "sorbitan isostearate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15309/sorbitan-isostearate/"],"runtime_verified":true},
-    "ceramide ap": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2820/ceramide-ap/"],"runtime_verified":true},
-    "ceramide eop": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/25521/ceramide-eop/"],"runtime_verified":true},
-    "phytosphingosine": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/11660/phytosphingosine/"],"runtime_verified":true},
-    "silica": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14425/silica/"],"runtime_verified":true},
-    "alumina": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/738/alumina/"],"runtime_verified":true},
-    "aluminum stearate": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/792/aluminum-stearate/"],"runtime_verified":true},
-    "dimethicone crosspolymer": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/4584/dimethicone-crosspolymer/"],"runtime_verified":true},
-    "glycol distearate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6123/glycol-distearate/"],"runtime_verified":true},
-    "myristyl myristate": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/9328/myristyl-myristate/"],"runtime_verified":true},
-    "lecithin": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/8209/lecithin/"],"runtime_verified":true},
-    "calcium gluconate": {"category":"chelating agent","source_functions":["chelating"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2389/calcium-gluconate/"],"runtime_verified":true},
-    "ceramide as": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/25520/ceramide-as/"],"runtime_verified":true},
-    "ceramide ng": {"category":"skin conditioning","source_functions":["skin conditioning - miscellaneous"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/21295/ceramide-ng/"],"runtime_verified":true},
-    "glyceryl acrylate/acrylic acid copolymer": {"category":"humectant","source_functions":["humectant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/5966/glyceryl-acrylate-acrylic-acid-copolymer/"],"runtime_verified":true},
-    "hectorite": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6288/hectorite/"],"runtime_verified":true},
-    "tapioca starch": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15859/tapioca-starch/"],"runtime_verified":true},
-    "helianthus annuus sunflower seed wax": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/22005/helianthus-annuus-seed-wax/"],"runtime_verified":true},
-    "melaleuca alternifolia tea tree leaf oil": {"category":"antioxidant","source_functions":["antioxidant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/8748/melaleuca-alternifolia-leaf-oil/"],"runtime_verified":true},
-    "peg-120 methyl glucose dioleate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/10422/peg-120-methyl-glucose-dioleate"],"runtime_verified":true},
-    "peg-30 dipolyhydroxystearate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/10720/peg-30-dipolyhydroxystearate/"],"runtime_verified":true},
-    "pentaerythrityl tetraethylhexanoate": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/11370/pentaerythrityl-tetraethylhexanoate/"],"runtime_verified":true},
-    "polyacrylate crosspolymer-11": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/19988/polyacrylate-crosspolymer-11/"],"runtime_verified":true},
-    "polyglyceryl-4 caprate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12210/polyglyceryl-4-caprate/"],"runtime_verified":true},
-    "sphingolipids": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15386/sphingolipids"],"runtime_verified":true}
+    "water": {
+      "category": "solvent",
+      "source_functions": [
+        "solvent"
+      ],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": [
+        "https://www.cosmeticsinfo.org/ingredient/water/"
+      ],
+      "runtime_verified": true
+    },
+    "glycerin": {
+      "category": "humectant",
+      "source_functions": [
+        "humectant"
+      ],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": [
+        "https://www.cosmeticsinfo.org/ingredient/glycerin/"
+      ],
+      "runtime_verified": true
+    },
+    "propylene glycol": {
+      "category": "humectant",
+      "source_functions": [
+        "humectant"
+      ],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": [
+        "https://www.cosmeticsinfo.org/ingredient/propylene-glycol/"
+      ],
+      "runtime_verified": true
+    },
+    "phenoxyethanol": {
+      "category": "preservative",
+      "source_functions": [
+        "preservative"
+      ],
+      "authority": "European Commission Scientific Committee on Consumer Safety",
+      "sources": [
+        "https://health.ec.europa.eu/publications/phenoxyethanol_en"
+      ],
+      "runtime_verified": true
+    },
+    "carbomer": {
+      "category": "thickener",
+      "source_functions": [
+        "thickening"
+      ],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": [
+        "https://www.cosmeticsinfo.org/ingredient/carbomer/"
+      ],
+      "runtime_verified": true
+    },
+    "citric acid": {
+      "category": "pH adjuster",
+      "source_functions": [
+        "pH adjuster"
+      ],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": [
+        "https://www.cosmeticsinfo.org/ingredient/citric-acid/"
+      ],
+      "runtime_verified": true
+    },
+    "tocopherol": {
+      "category": "antioxidant",
+      "source_functions": [
+        "antioxidant"
+      ],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": [
+        "https://www.cosmeticsinfo.org/ingredient/tocopherol/"
+      ],
+      "runtime_verified": true
+    },
+    "sodium chloride": {
+      "category": "viscosity adjuster",
+      "source_functions": [
+        "viscosity increasing agent - aqueous"
+      ],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": [
+        "https://www.cosmeticsinfo.org/ingredient/sodium-chloride/"
+      ],
+      "runtime_verified": true
+    },
+    "disodium edta": {
+      "category": "chelating agent",
+      "source_functions": [
+        "chelating agents"
+      ],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": [
+        "https://www.cosmeticsinfo.org/ingredient/disodium-edta/"
+      ],
+      "runtime_verified": true
+    },
+    "tocopheryl acetate": {
+      "category": "antioxidant",
+      "source_functions": [
+        "antioxidant"
+      ],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": [
+        "https://www.cosmeticsinfo.org/ingredient/tocopherol/"
+      ],
+      "runtime_verified": true
+    },
+    "butylene glycol": {
+      "category": "solvent",
+      "source_functions": [
+        "solvent"
+      ],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": [
+        "https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/"
+      ],
+      "runtime_verified": true
+    },
+    "dipropylene glycol": {
+      "category": "solvent",
+      "source_functions": [
+        "solvent"
+      ],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": [
+        "https://www.cosmeticsinfo.org/ingredient/dipropylene-glycol/"
+      ],
+      "runtime_verified": true
+    },
+    "sodium hydroxide": {
+      "category": "pH adjuster",
+      "source_functions": [
+        "pH adjuster"
+      ],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": [
+        "https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/"
+      ],
+      "runtime_verified": true
+    },
+    "aminomethyl propanol": {
+      "category": "pH adjuster",
+      "source_functions": [
+        "pH adjuster"
+      ],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": [
+        "https://www.cosmeticsinfo.org/ingredient/aminomethyl-propanol/"
+      ],
+      "runtime_verified": true
+    },
+    "triethanolamine": {
+      "category": "pH adjuster",
+      "source_functions": [
+        "pH adjuster"
+      ],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": [
+        "https://www.cosmeticsinfo.org/ingredient/triethanolamine-and-tea-containing-ingredients/"
+      ],
+      "runtime_verified": true
+    },
+    "potassium hydroxide": {
+      "category": "pH adjuster",
+      "source_functions": [
+        "pH adjuster"
+      ],
+      "authority": "Personal Care Products Council / Cosmetics Info",
+      "sources": [
+        "https://www.cosmeticsinfo.org/product/cuticle-oils-creams-and-lotions/"
+      ],
+      "runtime_verified": true
+    },
+    "bht": {
+      "category": "antioxidant",
+      "source_functions": [
+        "antioxidant"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/1672/bht/"
+      ],
+      "runtime_verified": true
+    },
+    "betaine": {
+      "category": "humectant",
+      "source_functions": [
+        "humectant"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/1648/betaine/"
+      ],
+      "runtime_verified": true
+    },
+    "pentylene glycol": {
+      "category": "solvent",
+      "source_functions": [
+        "solvent"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/11416/pentylene-glycol/"
+      ],
+      "runtime_verified": true
+    },
+    "propanediol": {
+      "category": "humectant",
+      "source_functions": [
+        "humectant"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/13169/propanediol/"
+      ],
+      "runtime_verified": true
+    },
+    "1,2-hexanediol": {
+      "category": "solvent",
+      "source_functions": [
+        "solvent"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/5/1-2-hexanediol/"
+      ],
+      "runtime_verified": true
+    },
+    "alcohol": {
+      "category": "solvent",
+      "source_functions": [
+        "solvent"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/590/alcohol/"
+      ],
+      "runtime_verified": true
+    },
+    "ascorbyl palmitate": {
+      "category": "antioxidant",
+      "source_functions": [
+        "antioxidant"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/1244/ascorbyl-palmitate/"
+      ],
+      "runtime_verified": true
+    },
+    "sodium gluconate": {
+      "category": "chelating agent",
+      "source_functions": [
+        "chelating"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/14787/sodium-gluconate/"
+      ],
+      "runtime_verified": true
+    },
+    "xanthan gum": {
+      "category": "viscosity adjuster",
+      "source_functions": [
+        "viscosity controlling"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/16999/xanthan-gum/"
+      ],
+      "runtime_verified": true
+    },
+    "ethylhexylglycerin": {
+      "category": "skin conditioning",
+      "source_functions": [
+        "skin conditioning"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/5500/ethylhexylglycerin/"
+      ],
+      "runtime_verified": true
+    },
+    "squalane": {
+      "category": "emollient",
+      "source_functions": [
+        "skin conditioning - emollient"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/15418/squalane/"
+      ],
+      "runtime_verified": true
+    },
+    "sodium cocoyl glutamate": {
+      "category": "cleanser",
+      "source_functions": [
+        "cleansing"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/14710/sodium-cocoyl-glutamate/"
+      ],
+      "runtime_verified": true
+    },
+    "dimethicone": {
+      "category": "skin conditioning",
+      "source_functions": [
+        "skin conditioning"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/4583/dimethicone/"
+      ],
+      "runtime_verified": true
+    },
+    "cetearyl alcohol": {
+      "category": "emollient",
+      "source_functions": [
+        "skin conditioning - emollient"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/2895/cetearyl-alcohol/"
+      ],
+      "runtime_verified": true
+    },
+    "cetyl alcohol": {
+      "category": "emollient",
+      "source_functions": [
+        "skin conditioning - emollient"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/2973/cetyl-alcohol/"
+      ],
+      "runtime_verified": true
+    },
+    "disodium lauryl sulfosuccinate": {
+      "category": "cleanser",
+      "source_functions": [
+        "cleansing"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/4979/disodium-lauryl-sulfosuccinate/"
+      ],
+      "runtime_verified": true
+    },
+    "hydrogenated polyisobutene": {
+      "category": "emollient",
+      "source_functions": [
+        "skin conditioning - emollient"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/6702/hydrogenated-polyisobutene/"
+      ],
+      "runtime_verified": true
+    },
+    "cetearyl olivate": {
+      "category": "emollient",
+      "source_functions": [
+        "skin conditioning - emollient"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/2907/cetearyl-olivate/"
+      ],
+      "runtime_verified": true
+    },
+    "stearyl alcohol": {
+      "category": "emollient",
+      "source_functions": [
+        "skin conditioning - emollient"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/15539/stearyl-alcohol/"
+      ],
+      "runtime_verified": true
+    },
+    "sodium lauroyl glutamate": {
+      "category": "cleanser",
+      "source_functions": [
+        "surfactant - cleansing"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/14885/sodium-lauroyl-glutamate/"
+      ],
+      "runtime_verified": true
+    },
+    "sodium coco-sulfate": {
+      "category": "cleanser",
+      "source_functions": [
+        "surfactant - cleansing"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/14690/sodium-coco-sulfate/"
+      ],
+      "runtime_verified": true
+    },
+    "polysorbate 80": {
+      "category": "emulsifier",
+      "source_functions": [
+        "surfactant - emulsifying"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/12497/polysorbate-80/"
+      ],
+      "runtime_verified": true
+    },
+    "sorbitan olivate": {
+      "category": "emulsifier",
+      "source_functions": [
+        "surfactant - emulsifying"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/15312/sorbitan-olivate/"
+      ],
+      "runtime_verified": true
+    },
+    "steareth-2": {
+      "category": "emulsifier",
+      "source_functions": [
+        "surfactant - emulsifying"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/15492/steareth-2/"
+      ],
+      "runtime_verified": true
+    },
+    "steareth-21": {
+      "category": "emulsifier",
+      "source_functions": [
+        "surfactant - emulsifying"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/15496/steareth-21/"
+      ],
+      "runtime_verified": true
+    },
+    "caprylyl glycol": {
+      "category": "emollient",
+      "source_functions": [
+        "skin conditioning - emollient"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/2612/caprylyl-glycol/"
+      ],
+      "runtime_verified": true
+    },
+    "ceramide np": {
+      "category": "skin conditioning",
+      "source_functions": [
+        "skin conditioning - miscellaneous"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/25522/ceramide-np/"
+      ],
+      "runtime_verified": true
+    },
+    "cholesterol": {
+      "category": "emollient",
+      "source_functions": [
+        "skin conditioning - emollient"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/3117/cholesterol/"
+      ],
+      "runtime_verified": true
+    },
+    "hexylene glycol": {
+      "category": "solvent",
+      "source_functions": [
+        "solvent"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/6450/hexylene-glycol/"
+      ],
+      "runtime_verified": true
+    },
+    "hydroxyacetophenone": {
+      "category": "antioxidant",
+      "source_functions": [
+        "antioxidant"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/17301/hydroxyacetophenone/"
+      ],
+      "runtime_verified": true
+    },
+    "palmitic acid": {
+      "category": "emollient",
+      "source_functions": [
+        "skin conditioning - emollient"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/10137/palmitic-acid/"
+      ],
+      "runtime_verified": true
+    },
+    "stearic acid": {
+      "category": "cleanser",
+      "source_functions": [
+        "cleansing"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/15514/stearic-acid/"
+      ],
+      "runtime_verified": true
+    },
+    "myristic acid": {
+      "category": "cleanser",
+      "source_functions": [
+        "cleansing"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/9266/myristic-acid/"
+      ],
+      "runtime_verified": true
+    },
+    "niacinamide": {
+      "category": "smoothing",
+      "source_functions": [
+        "smoothing"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/9443/niacinamide/"
+      ],
+      "runtime_verified": true
+    },
+    "hydroxyethyl acrylate/sodium acryloyldimethyl taurate copolymer": {
+      "category": "viscosity adjuster",
+      "source_functions": [
+        "viscosity controlling"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/7079/hydroxyethyl-acrylate-sodium-acryloyldimethyl-taurate-copolymer/"
+      ],
+      "runtime_verified": true
+    },
+    "ammonium polyacryloyldimethyl taurate": {
+      "category": "viscosity adjuster",
+      "source_functions": [
+        "viscosity controlling"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/933/ammonium-polyacryloyldimethyl-taurate/"
+      ],
+      "runtime_verified": true
+    },
+    "ethylhexyl methoxycrylene": {
+      "category": "skin conditioning",
+      "source_functions": [
+        "skin conditioning"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/5485/ethylhexyl-methoxycrylene/"
+      ],
+      "runtime_verified": true
+    },
+    "glyceryl stearate se": {
+      "category": "emulsifier",
+      "source_functions": [
+        "surfactant - emulsifying"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/6059/glyceryl-stearate-se/"
+      ],
+      "runtime_verified": true
+    },
+    "polyacrylate crosspolymer-6": {
+      "category": "viscosity adjuster",
+      "source_functions": [
+        "viscosity controlling"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/17882/polyacrylate-crosspolymer-6/"
+      ],
+      "runtime_verified": true
+    },
+    "polyhydroxystearic acid": {
+      "category": "emulsifier",
+      "source_functions": [
+        "surfactant - emulsifying"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/12317/polyhydroxystearic-acid/"
+      ],
+      "runtime_verified": true
+    },
+    "potassium cetyl phosphate": {
+      "category": "emulsifier",
+      "source_functions": [
+        "surfactant - emulsifying"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/12639/potassium-cetyl-phosphate/"
+      ],
+      "runtime_verified": true
+    },
+    "sorbitan isostearate": {
+      "category": "emulsifier",
+      "source_functions": [
+        "surfactant - emulsifying"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/15309/sorbitan-isostearate/"
+      ],
+      "runtime_verified": true
+    },
+    "ceramide ap": {
+      "category": "skin conditioning",
+      "source_functions": [
+        "skin conditioning"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/2820/ceramide-ap/"
+      ],
+      "runtime_verified": true
+    },
+    "ceramide eop": {
+      "category": "skin conditioning",
+      "source_functions": [
+        "skin conditioning"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/25521/ceramide-eop/"
+      ],
+      "runtime_verified": true
+    },
+    "phytosphingosine": {
+      "category": "skin conditioning",
+      "source_functions": [
+        "skin conditioning"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/11660/phytosphingosine/"
+      ],
+      "runtime_verified": true
+    },
+    "silica": {
+      "category": "viscosity adjuster",
+      "source_functions": [
+        "viscosity controlling"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/14425/silica/"
+      ],
+      "runtime_verified": true
+    },
+    "alumina": {
+      "category": "viscosity adjuster",
+      "source_functions": [
+        "viscosity controlling"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/738/alumina/"
+      ],
+      "runtime_verified": true
+    },
+    "aluminum stearate": {
+      "category": "viscosity adjuster",
+      "source_functions": [
+        "viscosity controlling"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/792/aluminum-stearate/"
+      ],
+      "runtime_verified": true
+    },
+    "dimethicone crosspolymer": {
+      "category": "viscosity adjuster",
+      "source_functions": [
+        "viscosity controlling"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/4584/dimethicone-crosspolymer/"
+      ],
+      "runtime_verified": true
+    },
+    "glycol distearate": {
+      "category": "emulsifier",
+      "source_functions": [
+        "surfactant - emulsifying"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/6123/glycol-distearate/"
+      ],
+      "runtime_verified": true
+    },
+    "myristyl myristate": {
+      "category": "emollient",
+      "source_functions": [
+        "skin conditioning - emollient"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/9328/myristyl-myristate/"
+      ],
+      "runtime_verified": true
+    },
+    "lecithin": {
+      "category": "emulsifier",
+      "source_functions": [
+        "surfactant - emulsifying"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/8209/lecithin/"
+      ],
+      "runtime_verified": true
+    },
+    "calcium gluconate": {
+      "category": "chelating agent",
+      "source_functions": [
+        "chelating"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/2389/calcium-gluconate/"
+      ],
+      "runtime_verified": true
+    },
+    "ceramide as": {
+      "category": "skin conditioning",
+      "source_functions": [
+        "skin conditioning"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/25520/ceramide-as/"
+      ],
+      "runtime_verified": true
+    },
+    "ceramide ng": {
+      "category": "skin conditioning",
+      "source_functions": [
+        "skin conditioning - miscellaneous"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/21295/ceramide-ng/"
+      ],
+      "runtime_verified": true
+    },
+    "glyceryl acrylate/acrylic acid copolymer": {
+      "category": "humectant",
+      "source_functions": [
+        "humectant"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/5966/glyceryl-acrylate-acrylic-acid-copolymer/"
+      ],
+      "runtime_verified": true
+    },
+    "hectorite": {
+      "category": "viscosity adjuster",
+      "source_functions": [
+        "viscosity controlling"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/6288/hectorite/"
+      ],
+      "runtime_verified": true
+    },
+    "tapioca starch": {
+      "category": "viscosity adjuster",
+      "source_functions": [
+        "viscosity controlling"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/15859/tapioca-starch/"
+      ],
+      "runtime_verified": true
+    },
+    "helianthus annuus sunflower seed wax": {
+      "category": "skin conditioning",
+      "source_functions": [
+        "skin conditioning"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/22005/helianthus-annuus-seed-wax/"
+      ],
+      "runtime_verified": true
+    },
+    "melaleuca alternifolia tea tree leaf oil": {
+      "category": "antioxidant",
+      "source_functions": [
+        "antioxidant"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/8748/melaleuca-alternifolia-leaf-oil/"
+      ],
+      "runtime_verified": true
+    },
+    "peg-120 methyl glucose dioleate": {
+      "category": "emulsifier",
+      "source_functions": [
+        "surfactant - emulsifying"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/10422/peg-120-methyl-glucose-dioleate"
+      ],
+      "runtime_verified": true
+    },
+    "peg-30 dipolyhydroxystearate": {
+      "category": "emulsifier",
+      "source_functions": [
+        "surfactant - emulsifying"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/10720/peg-30-dipolyhydroxystearate/"
+      ],
+      "runtime_verified": true
+    },
+    "pentaerythrityl tetraethylhexanoate": {
+      "category": "emollient",
+      "source_functions": [
+        "skin conditioning - emollient"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/11370/pentaerythrityl-tetraethylhexanoate/"
+      ],
+      "runtime_verified": true
+    },
+    "polyacrylate crosspolymer-11": {
+      "category": "viscosity adjuster",
+      "source_functions": [
+        "viscosity controlling"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/19988/polyacrylate-crosspolymer-11/"
+      ],
+      "runtime_verified": true
+    },
+    "polyglyceryl-4 caprate": {
+      "category": "emulsifier",
+      "source_functions": [
+        "surfactant - emulsifying"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/12210/polyglyceryl-4-caprate/"
+      ],
+      "runtime_verified": true
+    },
+    "sphingolipids": {
+      "category": "skin conditioning",
+      "source_functions": [
+        "skin conditioning"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/15386/sphingolipids"
+      ],
+      "runtime_verified": true
+    },
+    "polyglyceryl-10 oleate": {
+      "category": "skin conditioning",
+      "source_functions": [
+        "skin conditioning"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/12120/polyglyceryl-10-oleate/"
+      ],
+      "runtime_verified": true
+    },
+    "gluconic acid": {
+      "category": "chelating agent",
+      "source_functions": [
+        "chelating"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/5889/gluconic-acid/"
+      ],
+      "runtime_verified": true
+    },
+    "peg-40 hydrogenated castor oil": {
+      "category": "emulsifier",
+      "source_functions": [
+        "surfactant - emulsifying"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/10814/peg-40-hydrogenated-castor-oil/"
+      ],
+      "runtime_verified": true
+    },
+    "sodium carbonate": {
+      "category": "buffer",
+      "source_functions": [
+        "buffering"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/14651/sodium-carbonate/"
+      ],
+      "runtime_verified": true
+    },
+    "sulisobenzone": {
+      "category": "uv filter",
+      "source_functions": [
+        "uv filter"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/1578/benzophenone-4/"
+      ],
+      "runtime_verified": true
+    },
+    "benzyl alcohol": {
+      "category": "preservative",
+      "source_functions": [
+        "preservative"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/1592/benzyl-alcohol/"
+      ],
+      "runtime_verified": true
+    },
+    "urea": {
+      "category": "humectant",
+      "source_functions": [
+        "humectant"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/16737/urea/"
+      ],
+      "runtime_verified": true
+    },
+    "glyceryl caprate": {
+      "category": "emollient",
+      "source_functions": [
+        "skin conditioning - emollient"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/5976/glyceryl-caprate/"
+      ],
+      "runtime_verified": true
+    },
+    "polysilicone-15": {
+      "category": "uv filter",
+      "source_functions": [
+        "uv filter"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/12473/polysilicone-15/"
+      ],
+      "runtime_verified": true
+    },
+    "drometrizole trisiloxane": {
+      "category": "uv filter",
+      "source_functions": [
+        "uv filter"
+      ],
+      "authority": "Cosmetics Europe / COSMILE Europe",
+      "sources": [
+        "https://cosmileeurope.eu/inci/detail/5138/drometrizole-trisiloxane/"
+      ],
+      "runtime_verified": true
+    }
   }
 }
