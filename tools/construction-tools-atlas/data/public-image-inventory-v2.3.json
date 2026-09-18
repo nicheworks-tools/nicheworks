@@ -51,15 +51,15 @@
       "by_stage": {
         "unreviewed": 0,
         "not_required": 47,
-        "awaiting_source": 793,
-        "candidate": 0,
-        "provenance_verified": 0,
+        "awaiting_source": 787,
+        "candidate": 2,
+        "provenance_verified": 4,
         "subject_verified": 0,
         "verified": 0,
         "promoted": 30
       }
     },
-    "evidence_sha256": "295d9f70b6f8a86494951c34049e920be576c6ae4146b8ef51e470a000645748",
+    "evidence_sha256": "a9c3d3a43b98d903b0e13fa518fa902e9bca79d14fa70def866f52133b6467d4",
     "rows": [
       {
         "id": "access_door",
@@ -246,14 +246,14 @@
       {
         "id": "backhoe_loader",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "provenance_verified",
         "applicability_reviewed": true,
-        "provenance_verified": false,
+        "provenance_verified": true,
         "subject_verified": false,
         "hold": null,
-        "reason": "A backhoe loader is a distinctive machine with front loader and rear excavator assemblies; a verified photograph is highly informative.",
-        "candidate_id": null,
-        "source_entry_id": null,
+        "reason": "Wikimedia Commons provenance verified: own work by Raysonho @ Open Grid Scheduler / Grid Engine, CC0 1.0, with the Commons SHA-1 pinned from structured data.",
+        "candidate_id": "wave5a:backhoe_loader",
+        "source_entry_id": "backhoe_loader",
         "attachment": "none"
       },
       {
@@ -454,14 +454,14 @@
       {
         "id": "caliper",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "candidate",
         "applicability_reviewed": true,
         "provenance_verified": false,
         "subject_verified": false,
         "hold": null,
-        "reason": "A caliper is a distinctive measuring instrument; a verified tool photograph strongly aids identification.",
-        "candidate_id": null,
-        "source_entry_id": null,
+        "reason": "Wikimedia Commons candidate located; the file page identifies a Vernier caliper and the photograph directly depicts the measuring instrument. Provenance/license verification remains pending.",
+        "candidate_id": "wave5a:caliper",
+        "source_entry_id": "caliper",
         "attachment": "none"
       },
       {
@@ -675,40 +675,40 @@
       {
         "id": "circuit_breaker",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "provenance_verified",
         "applicability_reviewed": true,
-        "provenance_verified": false,
+        "provenance_verified": true,
         "subject_verified": false,
         "hold": null,
-        "reason": "A circuit breaker is a visually identifiable electrical protection device; a reviewed photograph materially aids recognition.",
-        "candidate_id": null,
-        "source_entry_id": null,
+        "reason": "Wikimedia Commons provenance verified: own work by Douglas Paul Perkins, CC0 1.0, with the Commons SHA-1 pinned from structured data.",
+        "candidate_id": "wave5a:circuit_breaker",
+        "source_entry_id": "circuit_breaker",
         "attachment": "none"
       },
       {
         "id": "circular_saw",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "provenance_verified",
         "applicability_reviewed": true,
-        "provenance_verified": false,
+        "provenance_verified": true,
         "subject_verified": false,
         "hold": null,
-        "reason": "A circular saw is a distinctive power tool; a verified photograph strongly aids identification.",
-        "candidate_id": null,
-        "source_entry_id": null,
+        "reason": "Wikimedia Commons provenance verified: own work by Hychika, CC BY-SA 4.0, with the Commons SHA-1 pinned from structured data.",
+        "candidate_id": "wave5a:circular_saw",
+        "source_entry_id": "circular_saw",
         "attachment": "none"
       },
       {
         "id": "clamp_bar",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "provenance_verified",
         "applicability_reviewed": true,
-        "provenance_verified": false,
+        "provenance_verified": true,
         "subject_verified": false,
         "hold": null,
-        "reason": "A bar clamp is a recognizable workholding tool with a rail and jaws; a subject-matched photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
+        "reason": "Wikimedia Commons provenance verified: own work by Aerolin55, usable under CC BY-SA 3.0, with the Commons SHA-1 pinned from structured data.",
+        "candidate_id": "wave5a:clamp_bar",
+        "source_entry_id": "clamp_bar",
         "attachment": "none"
       },
       {
@@ -1494,14 +1494,14 @@
       {
         "id": "fire_extinguisher",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "candidate",
         "applicability_reviewed": true,
         "provenance_verified": false,
         "subject_verified": false,
         "hold": null,
-        "reason": "A fire extinguisher is a physical safety device with clear visual identity; a reviewed photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
+        "reason": "Wikimedia Commons candidate located; the file page explicitly identifies the photographed subject as a fire extinguisher. Provenance/license verification remains pending.",
+        "candidate_id": "wave5a:fire_extinguisher",
+        "source_entry_id": "fire_extinguisher",
         "attachment": "none"
       },
       {

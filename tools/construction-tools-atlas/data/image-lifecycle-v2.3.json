@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-18-applicability-wave17-final",
+  "version": "2026-09-19-image-candidates-wave5a-provenance-1",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -270,6 +270,80 @@
       "source_ref": {
         "file": "image-wave2-sources-v2.3.json",
         "entry_id": "safety_harness"
+      }
+    },
+    {
+      "id": "wave5a:circular_saw",
+      "source_entry_id": "circular_saw",
+      "kind": "photograph",
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Circular_Saw.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Circular_Saw.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "Hychika",
+        "attribution": "Hychika / Wikimedia Commons, CC BY-SA 4.0",
+        "source_sha1": "1bf993485c68658d2d16c1f5d6543b4b4bfa11f1"
+      }
+    },
+    {
+      "id": "wave5a:backhoe_loader",
+      "source_entry_id": "backhoe_loader",
+      "kind": "photograph",
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/BackhoeLoader.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:BackhoeLoader.jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Raysonho @ Open Grid Scheduler / Grid Engine",
+        "attribution": "Raysonho @ Open Grid Scheduler / Grid Engine / Wikimedia Commons, CC0 1.0",
+        "source_sha1": "45efffcc9b4431f81989bf778f985a217f01b085"
+      }
+    },
+    {
+      "id": "wave5a:caliper",
+      "source_entry_id": "caliper",
+      "kind": "photograph",
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Vernier_Caliper.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Vernier_Caliper.jpg"
+      }
+    },
+    {
+      "id": "wave5a:clamp_bar",
+      "source_entry_id": "clamp_bar",
+      "kind": "photograph",
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Bar_clamp_1.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Bar_clamp_1.jpg",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Aerolin55",
+        "attribution": "Aerolin55 / Wikimedia Commons, CC BY-SA 3.0",
+        "source_sha1": "011ab6680e00fd7d5db793405d656dc86b55954c"
+      }
+    },
+    {
+      "id": "wave5a:circuit_breaker",
+      "source_entry_id": "circuit_breaker",
+      "kind": "photograph",
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Circuit_Breaker.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Circuit_Breaker.jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Douglas Paul Perkins",
+        "attribution": "Douglas Paul Perkins / Wikimedia Commons, CC0 1.0",
+        "source_sha1": "9ecb44aa650eac9dabdd2d5ad91967bdf8c678ed"
+      }
+    },
+    {
+      "id": "wave5a:fire_extinguisher",
+      "source_entry_id": "fire_extinguisher",
+      "kind": "photograph",
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/A_Fire_Extinguisher.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:A_Fire_Extinguisher.jpg"
       }
     }
   ],
@@ -588,6 +662,24 @@
           "reason": "A backhoe loader is a distinctive machine with front loader and rear excavator assemblies; a verified photograph is highly informative.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-09-18T16:22:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons candidate located; the file page identifies a backhoe loader and the photograph shows the combined front-loader/rear-excavator machine. Provenance/license verification remains pending.",
+          "candidate_id": "wave5a:backhoe_loader",
+          "candidate_sha256": "503307a16ac2ce457f5402b3f67be4950bedf1747e1a48512fbcf1c91c7fa280",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-09-18T16:29:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons provenance verified: own work by Raysonho @ Open Grid Scheduler / Grid Engine, CC0 1.0, with the Commons SHA-1 pinned from structured data.",
+          "candidate_id": "wave5a:backhoe_loader",
+          "candidate_sha256": "503307a16ac2ce457f5402b3f67be4950bedf1747e1a48512fbcf1c91c7fa280",
           "hold": null
         }
       ]
@@ -938,6 +1030,15 @@
           "reason": "A caliper is a distinctive measuring instrument; a verified tool photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-09-18T16:22:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons candidate located; the file page identifies a Vernier caliper and the photograph directly depicts the measuring instrument. Provenance/license verification remains pending.",
+          "candidate_id": "wave5a:caliper",
+          "candidate_sha256": "c28da2964cfc1392ba02aac6d3b98f47e0c2cf114c3ff014565207fa791bfd22",
           "hold": null
         }
       ]
@@ -1312,6 +1413,24 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-09-18T16:22:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons candidate located; the file page identifies apartment circuit breakers and the photograph directly depicts breaker devices. Provenance/license verification remains pending.",
+          "candidate_id": "wave5a:circuit_breaker",
+          "candidate_sha256": "a9fc74fec12e77a897ccaa03acdc839e89c628bdf66b6e36fcd0eda2964baca3",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-09-18T16:29:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons provenance verified: own work by Douglas Paul Perkins, CC0 1.0, with the Commons SHA-1 pinned from structured data.",
+          "candidate_id": "wave5a:circuit_breaker",
+          "candidate_sha256": "a9fc74fec12e77a897ccaa03acdc839e89c628bdf66b6e36fcd0eda2964baca3",
+          "hold": null
         }
       ]
     },
@@ -1335,6 +1454,24 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-09-18T16:22:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons candidate located; the file page describes a circular saw and the photograph directly depicts the canonical power tool. Provenance/license verification remains a separate lifecycle step.",
+          "candidate_id": "wave5a:circular_saw",
+          "candidate_sha256": "dc103e6348b4ff3583c0516517f0deb57c05a8bdb3e349289368518815d723a8",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-09-18T16:29:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons provenance verified: own work by Hychika, CC BY-SA 4.0, with the Commons SHA-1 pinned from structured data.",
+          "candidate_id": "wave5a:circular_saw",
+          "candidate_sha256": "dc103e6348b4ff3583c0516517f0deb57c05a8bdb3e349289368518815d723a8",
+          "hold": null
         }
       ]
     },
@@ -1357,6 +1494,24 @@
           "reason": "A bar clamp is a recognizable workholding tool with a rail and jaws; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-09-18T16:22:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons candidate located; the file page describes bar clamps used to laminate a tabletop and the photograph clearly shows the canonical clamp form. Provenance/license verification remains pending.",
+          "candidate_id": "wave5a:clamp_bar",
+          "candidate_sha256": "ff1ec3d2c9db2c0b49492eb3ea8f88531d0500d40918b961dc7af7bb61e636cf",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-09-18T16:29:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons provenance verified: own work by Aerolin55, usable under CC BY-SA 3.0, with the Commons SHA-1 pinned from structured data.",
+          "candidate_id": "wave5a:clamp_bar",
+          "candidate_sha256": "ff1ec3d2c9db2c0b49492eb3ea8f88531d0500d40918b961dc7af7bb61e636cf",
           "hold": null
         }
       ]
@@ -2742,6 +2897,15 @@
           "reason": "A fire extinguisher is a physical safety device with clear visual identity; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-09-18T16:22:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons candidate located; the file page explicitly identifies the photographed subject as a fire extinguisher. Provenance/license verification remains pending.",
+          "candidate_id": "wave5a:fire_extinguisher",
+          "candidate_sha256": "f7df7fc315659d75c9b92da23da1f65be89380c16152c9a1090400a53d45f813",
           "hold": null
         }
       ]
