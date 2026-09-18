@@ -233,3 +233,16 @@ Wave 21 introduces no new public category or authority-function vocabulary. It r
 - `skin conditioning - emollient` → `emollient`
 
 Several source pages list additional cosmetic functions beyond the selected public-primary role. Those functions are not collapsed into invented compound public labels. The controlled overlay records the reviewed primary role needed by the current answer-first UI while raw/source semantics remain auditable.
+
+
+## Wave 22 mappings
+
+Wave 22 introduces no new public category or authority-function vocabulary. It reuses existing explicit mappings:
+
+- `chelating` → `chelating agent`
+- `skin conditioning` → `skin conditioning`
+- `skin conditioning - miscellaneous` → `skin conditioning`
+- `humectant` → `humectant`
+- `viscosity controlling` → `viscosity adjuster`
+
+Where a source lists multiple functions, the overlay records one reviewed public-primary role already supported by the controlled taxonomy and does not invent compound labels.
