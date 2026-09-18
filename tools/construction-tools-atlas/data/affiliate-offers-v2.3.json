@@ -1,6 +1,6 @@
 {
   "schema": "cta-affiliate-offers-v2.3",
-  "version": "2026-09-18-wave6d-affiliate-1",
+  "version": "2026-09-18-wave6e-affiliate-1",
   "provider": "amazon.co.jp",
   "tracking_id": "nicheworks09-22",
   "policy": {"query_source":"maintained_canonical_mapping_only","free_text_forwarding":false,"product_claims":false,"price_inventory_rating_content":false},
@@ -347,6 +347,16 @@
     {"entry_id":"circuit_breaker","status":"active","offer_id":"amazon_circuit_breaker_search","query":"配線用遮断器","amazon_url":"https://www.amazon.co.jp/s?k=%E9%85%8D%E7%B7%9A%E7%94%A8%E9%81%AE%E6%96%AD%E5%99%A8&tag=nicheworks09-22","label_ja":"Amazonで配線用遮断器を探す","label_en":"Find circuit breakers on Amazon"},
     {"entry_id":"tarpaulin_tarp","status":"active","offer_id":"amazon_tarpaulin_tarp_search","query":"ブルーシート","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%96%E3%83%AB%E3%83%BC%E3%82%B7%E3%83%BC%E3%83%88&tag=nicheworks09-22","label_ja":"Amazonでブルーシートを探す","label_en":"Find tarps on Amazon"},
     {"entry_id":"masking_tape","status":"active","offer_id":"amazon_masking_tape_search","query":"マスキングテープ","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%9E%E3%82%B9%E3%82%AD%E3%83%B3%E3%82%B0%E3%83%86%E3%83%BC%E3%83%97&tag=nicheworks09-22","label_ja":"Amazonでマスキングテープを探す","label_en":"Find masking tape on Amazon"},
-    {"entry_id":"drop_cloth","status":"active","offer_id":"amazon_drop_cloth_search","query":"養生シート","amazon_url":"https://www.amazon.co.jp/s?k=%E9%A4%8A%E7%94%9F%E3%82%B7%E3%83%BC%E3%83%88&tag=nicheworks09-22","label_ja":"Amazonで養生シートを探す","label_en":"Find drop cloths on Amazon"}
+    {"entry_id":"drop_cloth","status":"active","offer_id":"amazon_drop_cloth_search","query":"養生シート","amazon_url":"https://www.amazon.co.jp/s?k=%E9%A4%8A%E7%94%9F%E3%82%B7%E3%83%BC%E3%83%88&tag=nicheworks09-22","label_ja":"Amazonで養生シートを探す","label_en":"Find drop cloths on Amazon"},
+    {"entry_id":"ear_protection","status":"active","offer_id":"amazon_ear_protection_search","query":"耳栓 イヤーマフ 作業用","amazon_url":"https://www.amazon.co.jp/s?k=%E8%80%B3%E6%A0%93+%E3%82%A4%E3%83%A4%E3%83%BC%E3%83%9E%E3%83%95+%E4%BD%9C%E6%A5%AD%E7%94%A8&tag=nicheworks09-22","label_ja":"Amazonで作業用の耳栓・イヤーマフを探す","label_en":"Find work ear protection on Amazon"},
+    {"entry_id":"first_aid_kit","status":"active","offer_id":"amazon_first_aid_kit_search","query":"救急箱 現場 作業用","amazon_url":"https://www.amazon.co.jp/s?k=%E6%95%91%E6%80%A5%E7%AE%B1+%E7%8F%BE%E5%A0%B4+%E4%BD%9C%E6%A5%AD%E7%94%A8&tag=nicheworks09-22","label_ja":"Amazonで作業現場用の救急箱を探す","label_en":"Find jobsite first-aid kits on Amazon"},
+    {"entry_id":"fire_extinguisher","status":"active","offer_id":"amazon_fire_extinguisher_search","query":"消火器 作業場","amazon_url":"https://www.amazon.co.jp/s?k=%E6%B6%88%E7%81%AB%E5%99%A8+%E4%BD%9C%E6%A5%AD%E5%A0%B4&tag=nicheworks09-22","label_ja":"Amazonで消火器を探す","label_en":"Find fire extinguishers on Amazon"},
+    {"entry_id":"marker","status":"active","offer_id":"amazon_marker_search","query":"建築用 マーカー","amazon_url":"https://www.amazon.co.jp/s?k=%E5%BB%BA%E7%AF%89%E7%94%A8+%E3%83%9E%E3%83%BC%E3%82%AB%E3%83%BC&tag=nicheworks09-22","label_ja":"Amazonで建築用マーカーを探す","label_en":"Find construction markers on Amazon"},
+    {"entry_id":"string_line","status":"active","offer_id":"amazon_string_line_search","query":"水糸 建築","amazon_url":"https://www.amazon.co.jp/s?k=%E6%B0%B4%E7%B3%B8+%E5%BB%BA%E7%AF%89&tag=nicheworks09-22","label_ja":"Amazonで建築用の水糸を探す","label_en":"Find construction string lines on Amazon"},
+    {"entry_id":"osb","status":"active","offer_id":"amazon_osb_search","query":"OSB 合板","amazon_url":"https://www.amazon.co.jp/s?k=OSB+%E5%90%88%E6%9D%BF&tag=nicheworks09-22","label_ja":"AmazonでOSB合板を探す","label_en":"Find OSB panels on Amazon"},
+    {"entry_id":"form_tie","status":"active","offer_id":"amazon_form_tie_search","query":"フォームタイ 型枠","amazon_url":"https://www.amazon.co.jp/s?k=%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%82%BF%E3%82%A4+%E5%9E%8B%E6%9E%A0&tag=nicheworks09-22","label_ja":"Amazonで型枠用フォームタイを探す","label_en":"Find form ties on Amazon"},
+    {"entry_id":"sandpaper","status":"active","offer_id":"amazon_sandpaper_search","query":"紙やすり サンドペーパー","amazon_url":"https://www.amazon.co.jp/s?k=%E7%B4%99%E3%82%84%E3%81%99%E3%82%8A+%E3%82%B5%E3%83%B3%E3%83%89%E3%83%9A%E3%83%BC%E3%83%91%E3%83%BC&tag=nicheworks09-22","label_ja":"Amazonで紙やすりを探す","label_en":"Find sandpaper on Amazon"},
+    {"entry_id":"primer","status":"active","offer_id":"amazon_primer_search","query":"塗装 プライマー 下塗り","amazon_url":"https://www.amazon.co.jp/s?k=%E5%A1%97%E8%A3%85+%E3%83%97%E3%83%A9%E3%82%A4%E3%83%9E%E3%83%BC+%E4%B8%8B%E5%A1%97%E3%82%8A&tag=nicheworks09-22","label_ja":"Amazonで塗装用プライマーを探す","label_en":"Find paint primers on Amazon"},
+    {"entry_id":"top_coat","status":"active","offer_id":"amazon_top_coat_search","query":"上塗り 塗料 建築","amazon_url":"https://www.amazon.co.jp/s?k=%E4%B8%8A%E5%A1%97%E3%82%8A+%E5%A1%97%E6%96%99+%E5%BB%BA%E7%AF%89&tag=nicheworks09-22","label_ja":"Amazonで建築用の上塗り塗料を探す","label_en":"Find architectural top-coat paint on Amazon"}
   ]
 }
