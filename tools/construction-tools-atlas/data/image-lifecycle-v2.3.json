@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-19-image-candidates-wave5a-verified",
+  "version": "2026-09-19-image-candidates-wave5b-verified",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -372,6 +372,90 @@
         "author": "Jadeswick",
         "attribution": "Jadeswick / Wikimedia Commons, CC BY-SA 4.0",
         "source_sha1": "b16ed3c7fe066ed9f4bf816f826caff7e87344e1"
+      }
+    },
+    {
+      "id": "wave5b:hammer",
+      "source_entry_id": "hammer",
+      "kind": "photograph",
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Hammer.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Hammer.jpg",
+        "license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "author": "Michael Jastremski",
+        "attribution": "Michael Jastremski / Wikimedia Commons, CC BY-SA 2.0",
+        "source_sha1": "43d9123800ab1dd248c66d50227bfea4f228b1cf"
+      }
+    },
+    {
+      "id": "wave5b:hard_hat",
+      "source_entry_id": "hard_hat",
+      "kind": "photograph",
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/A_Hard_Hat.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:A_Hard_Hat.JPG",
+        "license": "CC BY 3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0/",
+        "author": "Dwight Burdette",
+        "attribution": "Dwight Burdette / Wikimedia Commons, CC BY 3.0",
+        "source_sha1": "e9347fa698168117e63b0730f897427ffebc8a32"
+      }
+    },
+    {
+      "id": "wave5b:forklift",
+      "source_entry_id": "forklift",
+      "kind": "photograph",
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/67/A_forklift.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:A_forklift.jpg",
+        "license": "Public Domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-user",
+        "author": "Plenumchamber",
+        "attribution": "Plenumchamber / Wikimedia Commons (Public Domain)",
+        "source_sha1": "2be43369306ff164d8891a5fbf43a5ba45a2e23a"
+      }
+    },
+    {
+      "id": "wave5b:excavator",
+      "source_entry_id": "excavator",
+      "kind": "photograph",
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Excavator_side.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Excavator_side.jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Wikideas1",
+        "attribution": "Wikideas1 / Wikimedia Commons, CC0 1.0",
+        "source_sha1": "85883e46507227149a34a2cf660e019f10015498"
+      }
+    },
+    {
+      "id": "wave5b:jigsaw",
+      "source_entry_id": "jigsaw",
+      "kind": "photograph",
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Makita_4350FCT_Jigsaw.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Makita_4350FCT_Jigsaw.jpg",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0/",
+        "author": "Mark Hunter",
+        "attribution": "Mark Hunter / Wikimedia Commons, CC BY 2.0",
+        "source_sha1": "5c4c636002f7e51946b7fe34268e8b79f013d1ff"
+      }
+    },
+    {
+      "id": "wave5b:drill_driver",
+      "source_entry_id": "drill_driver",
+      "kind": "photograph",
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Drill-driver.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Drill-driver.JPG",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Gisling",
+        "attribution": "Gisling / Wikimedia Commons, CC BY-SA 3.0",
+        "source_sha1": "dee2602b63bd39b80c9f8b83dd12ea511ee7972f"
       }
     }
   ],
@@ -2446,6 +2530,33 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-09-18T16:40:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons candidate selected for drill_driver; source page, license metadata and structured SHA-1 are explicit.",
+          "candidate_id": "wave5b:drill_driver",
+          "candidate_sha256": "e08c4a36473abd34f8593d4010d181c6ea0d37fa6da5e26cfb2d739be0572ab7",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-09-18T16:40:01Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons provenance verified for drill_driver: author, license, source page, source URL and SHA-1 are explicit and pinned.",
+          "candidate_id": "wave5b:drill_driver",
+          "candidate_sha256": "e08c4a36473abd34f8593d4010d181c6ea0d37fa6da5e26cfb2d739be0572ab7",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-09-18T16:40:02Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Subject review passed: Commons explicitly identifies the photographed tool as a cordless drill/driver; chuck, clutch body and battery form match the drill_driver canonical.",
+          "candidate_id": "wave5b:drill_driver",
+          "candidate_sha256": "e08c4a36473abd34f8593d4010d181c6ea0d37fa6da5e26cfb2d739be0572ab7",
+          "hold": null
         }
       ]
     },
@@ -2758,6 +2869,33 @@
           "reason": "An excavator is a distinctive tracked/wheeled machine with boom, arm, and bucket; a verified photograph is highly informative.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-09-18T16:40:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons candidate selected for excavator; source page, license metadata and structured SHA-1 are explicit.",
+          "candidate_id": "wave5b:excavator",
+          "candidate_sha256": "d8ed4920de0e3ace3164777bff7501da9cbafe860750ea90c76dc03db3ef63c1",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-09-18T16:40:01Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons provenance verified for excavator: author, license, source page, source URL and SHA-1 are explicit and pinned.",
+          "candidate_id": "wave5b:excavator",
+          "candidate_sha256": "d8ed4920de0e3ace3164777bff7501da9cbafe860750ea90c76dc03db3ef63c1",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-09-18T16:40:02Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Subject review passed: the side-view photograph is explicitly identified as an excavator and shows the tracked undercarriage, boom, arm and bucket characteristic of the canonical.",
+          "candidate_id": "wave5b:excavator",
+          "candidate_sha256": "d8ed4920de0e3ace3164777bff7501da9cbafe860750ea90c76dc03db3ef63c1",
           "hold": null
         }
       ]
@@ -3251,6 +3389,33 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-09-18T16:40:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons candidate selected for forklift; source page, license metadata and structured SHA-1 are explicit.",
+          "candidate_id": "wave5b:forklift",
+          "candidate_sha256": "39843e18e03868b6c5894f324d23c5b3d33f0287c28178e0dc7487dba32148de",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-09-18T16:40:01Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons provenance verified for forklift: author, license, source page, source URL and SHA-1 are explicit and pinned.",
+          "candidate_id": "wave5b:forklift",
+          "candidate_sha256": "39843e18e03868b6c5894f324d23c5b3d33f0287c28178e0dc7487dba32148de",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-09-18T16:40:02Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Subject review passed: the photograph directly depicts a diesel forklift with mast and forks, matching the forklift canonical rather than another material-handling vehicle.",
+          "candidate_id": "wave5b:forklift",
+          "candidate_sha256": "39843e18e03868b6c5894f324d23c5b3d33f0287c28178e0dc7487dba32148de",
+          "hold": null
         }
       ]
     },
@@ -3619,6 +3784,33 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-09-18T16:40:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons candidate selected for hammer; source page, license metadata and structured SHA-1 are explicit.",
+          "candidate_id": "wave5b:hammer",
+          "candidate_sha256": "5ec5aaf994866fef097c7700149a9b9622445d33897fb301120f6aa2750fb923",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-09-18T16:40:01Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons provenance verified for hammer: author, license, source page, source URL and SHA-1 are explicit and pinned.",
+          "candidate_id": "wave5b:hammer",
+          "candidate_sha256": "5ec5aaf994866fef097c7700149a9b9622445d33897fb301120f6aa2750fb923",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-09-18T16:40:02Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Subject review passed: the photograph directly depicts a claw hammer with head, striking face, claw and handle clearly visible, matching the hammer canonical.",
+          "candidate_id": "wave5b:hammer",
+          "candidate_sha256": "5ec5aaf994866fef097c7700149a9b9622445d33897fb301120f6aa2750fb923",
+          "hold": null
         }
       ]
     },
@@ -3839,6 +4031,33 @@
           "reason": "A hard hat is physical head-protection PPE with clear visual identity; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-09-18T16:40:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons candidate selected for hard_hat; source page, license metadata and structured SHA-1 are explicit.",
+          "candidate_id": "wave5b:hard_hat",
+          "candidate_sha256": "de3fcb2ff0e7dc8fef679e7376ea69a96454566d1f36a7446c196cde1ed9654e",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-09-18T16:40:01Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons provenance verified for hard_hat: author, license, source page, source URL and SHA-1 are explicit and pinned.",
+          "candidate_id": "wave5b:hard_hat",
+          "candidate_sha256": "de3fcb2ff0e7dc8fef679e7376ea69a96454566d1f36a7446c196cde1ed9654e",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-09-18T16:40:02Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Subject review passed: Commons describes and depicts a hard hat as the primary subject; the helmet shape and suspension shell are clearly identifiable.",
+          "candidate_id": "wave5b:hard_hat",
+          "candidate_sha256": "de3fcb2ff0e7dc8fef679e7376ea69a96454566d1f36a7446c196cde1ed9654e",
           "hold": null
         }
       ]
@@ -4106,6 +4325,33 @@
           "reason": "A jigsaw is a distinctive reciprocating-blade power saw; a subject-matched photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-09-18T16:40:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons candidate selected for jigsaw; source page, license metadata and structured SHA-1 are explicit.",
+          "candidate_id": "wave5b:jigsaw",
+          "candidate_sha256": "9ec1068994833fa3cc389385d4dd303b33db1b363f5816fc08cf35e1b9ce3350",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-09-18T16:40:01Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons provenance verified for jigsaw: author, license, source page, source URL and SHA-1 are explicit and pinned.",
+          "candidate_id": "wave5b:jigsaw",
+          "candidate_sha256": "9ec1068994833fa3cc389385d4dd303b33db1b363f5816fc08cf35e1b9ce3350",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-09-18T16:40:02Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Subject review passed: the photograph directly depicts a handheld electric jigsaw with its narrow reciprocating blade and shoe visible, matching the jigsaw canonical.",
+          "candidate_id": "wave5b:jigsaw",
+          "candidate_sha256": "9ec1068994833fa3cc389385d4dd303b33db1b363f5816fc08cf35e1b9ce3350",
           "hold": null
         }
       ]
