@@ -273,3 +273,14 @@ The closure preserves Wave 25 and adds four controlled public-role categories re
 Existing mappings are reused for `fragrance`, `surfactant - emulsifying`, `skin conditioning - miscellaneous`, `viscosity controlling`, `uv filter`, `humectant`, and `preservative`.
 
 The public primary role is source-backed; raw legacy categories remain preserved rather than normalized in-place.
+
+
+## Strong-runtime blocker mappings
+
+No new public category vocabulary is introduced. The closure reuses existing explicit mappings:
+
+- COSMILE `skin conditioning` → NicheWorks `skin conditioning`
+- EU Annex VI `uv filter` → NicheWorks `uv filter`
+- COSMILE `buffering` → NicheWorks `buffer`
+
+These mappings close Sulfur, Aminobenzoic Acid, and Ammonium Hydroxide as the final three verified-note identities that previously lacked a supported public role.
