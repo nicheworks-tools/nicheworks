@@ -45,6 +45,10 @@
     "ethylhexylglycerin": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/5500/ethylhexylglycerin/"],"runtime_verified":true},
     "squalane": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15418/squalane/"],"runtime_verified":true},
     "sodium cocoyl glutamate": {"category":"cleanser","source_functions":["cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14710/sodium-cocoyl-glutamate/"],"runtime_verified":true},
-    "dimethicone": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/4583/dimethicone/"],"runtime_verified":true}
+    "dimethicone": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/4583/dimethicone/"],"runtime_verified":true},
+    "cetearyl alcohol": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2895/cetearyl-alcohol/"],"runtime_verified":true},
+    "cetyl alcohol": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2973/cetyl-alcohol/"],"runtime_verified":true},
+    "disodium lauryl sulfosuccinate": {"category":"cleanser","source_functions":["cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/4979/disodium-lauryl-sulfosuccinate/"],"runtime_verified":true},
+    "hydrogenated polyisobutene": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6702/hydrogenated-polyisobutene/"],"runtime_verified":true}
   }
 }
