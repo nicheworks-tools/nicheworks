@@ -160,7 +160,17 @@
     "urea": Object.freeze({ category: "humectant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/16737/urea/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "glyceryl caprate": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5976/glyceryl-caprate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "polysilicone-15": Object.freeze({ category: "uv filter", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12473/polysilicone-15/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "drometrizole trisiloxane": Object.freeze({ category: "uv filter", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5138/drometrizole-trisiloxane/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "drometrizole trisiloxane": Object.freeze({ category: "uv filter", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5138/drometrizole-trisiloxane/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "limonene": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8297/limonene/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "linalool": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8307/linalool/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "citral": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3373/citral/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "geraniol": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5834/geraniol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "citronellol": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19208/citronellol"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "eugenol": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5549/eugenol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "coumarin": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19218/coumarin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "farnesol": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5607/farnesol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hexyl cinnamal": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19147/hexyl-cinnamal/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "alpha-isomethyl ionone": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/707/alpha-isomethyl-ionone/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({

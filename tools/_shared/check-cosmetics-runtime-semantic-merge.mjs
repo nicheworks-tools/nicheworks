@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 42, 'the 3 remaining legacy-only category conflicts plus 39 reviewed Wave 15-16 and Wave 18-24 legacy-vs-verified role conflicts must be explicit at runtime');
+assert.equal(categoryConflicts.length, 52, 'the 3 remaining legacy-only category conflicts plus 49 reviewed Wave 15-16 and Wave 18-25 legacy-vs-verified role conflicts must be explicit at runtime');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
@@ -74,7 +74,17 @@ const reviewedVerifiedPrimary = new Map([
   ['sphingolipids', { category: 'skin conditioning', legacy: ['barrier lipid'] }],
   ['peg-40 hydrogenated castor oil', { category: 'emulsifier', legacy: ['solubilizer'] }],
   ['benzyl alcohol', { category: 'preservative', legacy: ['fragrance'] }],
-  ['urea', { category: 'humectant', legacy: ['active'] }]
+  ['urea', { category: 'humectant', legacy: ['active'] }],
+  ['limonene', { category: 'fragrance', legacy: ['fragrance allergen'] }],
+  ['linalool', { category: 'fragrance', legacy: ['fragrance allergen'] }],
+  ['citral', { category: 'fragrance', legacy: ['fragrance allergen'] }],
+  ['geraniol', { category: 'fragrance', legacy: ['fragrance allergen'] }],
+  ['citronellol', { category: 'fragrance', legacy: ['fragrance allergen'] }],
+  ['eugenol', { category: 'fragrance', legacy: ['fragrance allergen'] }],
+  ['coumarin', { category: 'fragrance', legacy: ['fragrance allergen'] }],
+  ['farnesol', { category: 'fragrance', legacy: ['fragrance allergen'] }],
+  ['hexyl cinnamal', { category: 'fragrance', legacy: ['fragrance allergen'] }],
+  ['alpha-isomethyl ionone', { category: 'fragrance', legacy: ['fragrance allergen'] }]
 ]);
 
 for (const item of categoryConflicts) {
