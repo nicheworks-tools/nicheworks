@@ -19,26 +19,26 @@ const DATA_FILES = [
   'tools/inci-fastscan/data/ingredients-extra-8.json'
 ];
 
-const PRIOR_VERIFIED_NOTE_COUNT = 22;
-const EXPECTED_WAVE6 = Object.freeze({
-  glycerin: Object.freeze({
-    note_short: 'Humectant and solvent; COSMILE Europe lists Glycerin as moisture-retaining, skin-conditioning, hair-conditioning, solvent and viscosity-controlling in cosmetics.',
-    source: 'https://cosmileeurope.eu/inci/detail/5951/glycerin/',
+const PRIOR_VERIFIED_NOTE_COUNT = 26;
+const EXPECTED_WAVE7 = Object.freeze({
+  'xanthan gum': Object.freeze({
+    note_short: 'Viscosity-controlling and emulsion-stabilising polysaccharide; COSMILE Europe notes that Xanthan Gum forms highly viscous, gel-like solutions and supports gel formation and emulsion stability.',
+    source: 'https://cosmileeurope.eu/inci/detail/16999/xanthan-gum/',
     authority: 'Cosmetics Europe / COSMILE Europe'
   }),
-  'caprylyl glycol': Object.freeze({
-    note_short: 'Skin-conditioning emollient; COSMILE Europe lists Caprylyl Glycol as softening and smoothing skin, alongside skin- and hair-conditioning functions.',
-    source: 'https://cosmileeurope.eu/inci/detail/2612/caprylyl-glycol/',
+  niacinamide: Object.freeze({
+    note_short: 'Smoothing ingredient; COSMILE Europe lists Niacinamide as seeking a more even skin surface by decreasing roughness or irregularities.',
+    source: 'https://cosmileeurope.eu/inci/detail/9443/niacinamide/',
     authority: 'Cosmetics Europe / COSMILE Europe'
   }),
-  'citric acid': Object.freeze({
-    note_short: 'Buffering and chelating ingredient; COSMILE Europe lists Citric Acid as controlling cosmetic-product pH and binding metal ions that can affect product stability or appearance.',
-    source: 'https://cosmileeurope.eu/inci/detail/3374/citric-acid/',
+  'ceramide np': Object.freeze({
+    note_short: 'Ceramide lipid and skin/hair-conditioning ingredient; COSMILE Europe describes ceramides as sphingolipids present in the epidermis and lists Ceramide NP for skin and hair conditioning.',
+    source: 'https://cosmileeurope.eu/inci/detail/25522/ceramide-np/',
     authority: 'Cosmetics Europe / COSMILE Europe'
   }),
-  water: Object.freeze({
-    note_short: 'Solvent; COSMILE Europe describes purified water as a solvent and common basis for many cosmetic products.',
-    source: 'https://cosmileeurope.eu/inci/detail/23035/water/',
+  ethylhexylglycerin: Object.freeze({
+    note_short: 'Skin-conditioning and deodorant ingredient; COSMILE Europe lists both functions for Ethylhexylglycerin.',
+    source: 'https://cosmileeurope.eu/inci/detail/5500/ethylhexylglycerin/',
     authority: 'Cosmetics Europe / COSMILE Europe'
   })
 });
@@ -71,14 +71,15 @@ for (const row of rows) {
 }
 
 const evidence = parser.verifiedNoteEvidence || {};
-assert.ok(
-  Object.keys(evidence).length >= PRIOR_VERIFIED_NOTE_COUNT + Object.keys(EXPECTED_WAVE6).length,
-  'wave 6 reviewed identities must remain present as later verified-note waves extend the overlay'
+assert.equal(
+  Object.keys(evidence).length,
+  PRIOR_VERIFIED_NOTE_COUNT + Object.keys(EXPECTED_WAVE7).length,
+  'wave 7 must extend the 26 reviewed note identities by exactly four source-backed identities'
 );
 
-for (const [canonical, expected] of Object.entries(EXPECTED_WAVE6)) {
+for (const [canonical, expected] of Object.entries(EXPECTED_WAVE7)) {
   const item = evidence[canonical];
-  assert.ok(item, `${canonical}: wave 6 verified note evidence missing`);
+  assert.ok(item, `${canonical}: wave 7 verified note evidence missing`);
   assert.equal(normalizeText(item.note_short), expected.note_short, `${canonical}: reviewed note text changed unexpectedly`);
   assert.equal(normalizeText(item.authority), expected.authority, `${canonical}: reviewed authority changed unexpectedly`);
   assert.ok(Array.isArray(item.note_sources) && item.note_sources.length === 1, `${canonical}: exactly one reviewed source is required`);
@@ -93,25 +94,25 @@ for (const ambiguous of parser.ambiguousExactKeys || []) {
 
 const merged = parser.mergeDictionaryRecords(rows);
 const mergedByCanonical = new Map(merged.map((item) => [parser.canonicalIdentityKey(item.en), item]));
-for (const [canonical, expected] of Object.entries(EXPECTED_WAVE6)) {
+for (const [canonical, expected] of Object.entries(EXPECTED_WAVE7)) {
   const item = mergedByCanonical.get(canonical);
   assert.ok(item, `${canonical}: missing from merged runtime dictionary`);
   assert.equal(item.note_verified, true, `${canonical}: verified note flag must survive canonical merge`);
-  assert.equal(item.note_short, expected.note_short, `${canonical}: runtime note must equal the reviewed wave 6 note`);
+  assert.equal(item.note_short, expected.note_short, `${canonical}: runtime note must equal the reviewed wave 7 note`);
   assert.ok(Array.isArray(item.note_sources) && item.note_sources.includes(expected.source), `${canonical}: reviewed source must survive canonical merge`);
   assert.equal(item.note_authority, expected.authority, `${canonical}: note authority must survive canonical merge`);
   assert.equal(item.note_provenance_conflict, undefined, `${canonical}: verified overlay must not create a note provenance conflict`);
-  assert.equal(item.category_verified, true, `${canonical}: wave 6 note identity must already have a verified public role`);
-  assert.ok(Array.isArray(item.jp) && item.jp.some((value) => normalizeText(value)), `${canonical}: wave 6 note identity must retain a Japanese name`);
+  assert.equal(item.category_verified, true, `${canonical}: wave 7 note identity must already have a verified public role`);
+  assert.ok(Array.isArray(item.jp) && item.jp.some((value) => normalizeText(value)), `${canonical}: wave 7 note identity must retain a Japanese name`);
 }
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'verified-note-wave-6-common-label-priority',
+  phase: 'verified-note-wave-7-common-label-priority',
   prior_verified_note_identities: PRIOR_VERIFIED_NOTE_COUNT,
-  wave_6_verified_note_identities: Object.keys(EXPECTED_WAVE6).length,
+  wave_7_verified_note_identities: Object.keys(EXPECTED_WAVE7).length,
   cumulative_verified_note_identities: Object.keys(evidence).length,
-  wave_6_identities: Object.keys(EXPECTED_WAVE6),
+  wave_7_identities: Object.keys(EXPECTED_WAVE7),
   source_authority: 'Cosmetics Europe / COSMILE Europe',
   raw_dictionary_records_rewritten: false,
   recognition_contract_changed: false,

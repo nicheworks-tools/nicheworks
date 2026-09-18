@@ -161,3 +161,25 @@ After Wave 6:
 - cumulative verified-note identities: 26;
 - strong runtime identities: 26 / 599;
 - raw dictionary records rewritten: no.
+
+
+## Verified note wave 7
+
+Wave 7 continues frequency-prioritized source-backed enrichment from the maintained 30-product official-label corpus:
+
+| Canonical identity | Corpus occurrences | Reviewed runtime note basis |
+| --- | ---: | --- |
+| `xanthan gum` | 13 | COSMILE Europe: viscosity control, gel formation, emulsion stabilisation and related functions. |
+| `niacinamide` | 10 | COSMILE Europe: smoothing; seeks a more even skin surface by decreasing roughness or irregularities. |
+| `ceramide np` | 9 | COSMILE Europe: ceramide/sphingolipid background plus skin and hair conditioning. |
+| `ethylhexylglycerin` | 9 | COSMILE Europe: skin conditioning and deodorant functions. |
+
+Wave 6 remains a required reviewed subset rather than a total-overlay-size ceiling, allowing later bounded waves to extend provenance without weakening earlier checks.
+
+After Wave 7:
+
+- cumulative verified-note identities: 30;
+- strong runtime identities: 30 / 599;
+- Wave 6 identities retained: 4 / 4;
+- frozen claim-bearing identities retained: 22 / 22;
+- raw dictionary records rewritten: no.
