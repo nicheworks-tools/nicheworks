@@ -23,7 +23,6 @@ const expected = {
     'sharp-aquos-r5g',
     'sharp-aquos-r6',
     'sharp-aquos-sense5g',
-    'sharp-aquos-wish',
     'sharp-aquos-zero5g-basic',
     'sharp-aquos-zero6',
     'sony-xperia-1-v',
