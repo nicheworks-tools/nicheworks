@@ -27,7 +27,7 @@ const CLAIM_REVIEW_RE = /\b(?:safe|safety|risk|irritat|allerg|sensiti|pregnan|to
 // explanation in both cosmetics tools. Unsupported categories remain explicit
 // Information incomplete debt instead of receiving a fabricated explanation.
 const PUBLIC_ROLE_CATEGORIES = new Set([
-  'humectant', 'moisturizer', 'soothing', 'active', 'amino acid', 'silicone',
+  'humectant', 'moisturizer', 'soothing', 'smoothing', 'active', 'amino acid', 'silicone',
   'film former', 'emollient', 'oil', 'solvent', 'preservative', 'fragrance',
   'surfactant', 'cleanser', 'uv filter', 'sunscreen', 'colorant', 'pigment',
   'antioxidant', 'botanical', 'extract', 'plant extract', 'peptide', 'ferment',
