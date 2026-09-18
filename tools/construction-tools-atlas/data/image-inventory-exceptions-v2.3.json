@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-inventory-exceptions-v2.3",
-  "version": "2026-09-18-applicability-wave15",
+  "version": "2026-09-18-applicability-wave16",
   "items": [
     {
       "entry_id": "punch_list",
@@ -186,6 +186,41 @@
       "entry_id": "safety_meeting",
       "state": "not_required",
       "reason": "The canonical is a jobsite safety briefing/meeting practice rather than a unique physical subject; any photograph would show an arbitrary group, location, or meeting format rather than the concept itself."
+    },
+    {
+      "entry_id": "smoke_test",
+      "state": "not_required",
+      "reason": "The canonical is a testing procedure using smoke to reveal leakage or airflow; smoke sources, instruments, and setups vary, so a single photograph would depict only one arbitrary implementation."
+    },
+    {
+      "entry_id": "spotter",
+      "state": "not_required",
+      "reason": "The canonical denotes a safety role/person responsible for guiding or observing work, not a unique physical object; a photograph of any one worker would be arbitrary."
+    },
+    {
+      "entry_id": "spotter_vehicle",
+      "state": "not_required",
+      "reason": "The canonical denotes the activity/role of vehicle spotting and guidance rather than a specific vehicle or device; a single photograph would only depict one arbitrary scene."
+    },
+    {
+      "entry_id": "temporary_fixing_kari",
+      "state": "not_required",
+      "reason": "The canonical is the process/state of temporarily fixing a component before final fastening; methods vary by trade and material, so no single photograph is a stable visual identity."
+    },
+    {
+      "entry_id": "temporary_power",
+      "state": "not_required",
+      "reason": "The canonical is a broad temporary-power system/concept spanning panels, cabling, outlets, generators, and distribution; one photograph would arbitrarily represent only one configuration."
+    },
+    {
+      "entry_id": "toolbox_talk",
+      "state": "not_required",
+      "reason": "The canonical is a short pre-work safety briefing practice, not a unique physical subject; meeting location, participants, and format vary by site."
+    },
+    {
+      "entry_id": "torque",
+      "state": "not_required",
+      "reason": "Torque is a physical quantity/measurement concept rather than a visually identifiable object; photographs of tools or fasteners would depict related equipment, not torque itself."
     }
   ]
 }
