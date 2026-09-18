@@ -65,5 +65,6 @@ await import('./dji-ronin-legacy-battery-wave38.test.mjs');
 await import('./dji-ronin4d-osmo-action-wave39.test.mjs');
 await import('./dji-rechargeable-controller-exclusions-wave40.test.mjs');
 await import('./dji-final-power-wave41.test.mjs');
+await import('./om-system-blx1-accessory-wave1.test.mjs');
 await import('./camera-accessory-coverage.test.mjs');
 await import('./camera-accessory-doc-sync.test.mjs');
