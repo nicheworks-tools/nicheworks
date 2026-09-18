@@ -193,6 +193,28 @@ const runtimeRoleReady = runtimeMerged.filter((item) => {
   return categories.some((value) => PUBLIC_ROLE_CATEGORIES.has(category(value)));
 }).length;
 const runtimeRoleMissing = runtimeMerged.length - runtimeRoleReady;
+const runtimeVerifiedCategory = runtimeMerged.filter((item) =>
+  item.category_verified === true &&
+  Array.isArray(item.category_sources) &&
+  item.category_sources.some((value) => text(value))
+).length;
+const runtimeVerifiedNote = runtimeMerged.filter((item) =>
+  item.note_verified === true &&
+  text(item.note_short) &&
+  Array.isArray(item.note_sources) &&
+  item.note_sources.some((value) => text(value))
+).length;
+const runtimeStrongReady = runtimeMerged.filter((item) => {
+  const categories = Array.isArray(item.categories) ? item.categories : [item.category];
+  const hasRole = categories.some((value) => PUBLIC_ROLE_CATEGORIES.has(category(value)));
+  const hasJp = hasJapaneseName(item);
+  const hasVerifiedNote = item.note_verified === true &&
+    text(item.note_short) &&
+    Array.isArray(item.note_sources) &&
+    item.note_sources.some((value) => text(value));
+  return hasRole && hasJp && hasVerifiedNote;
+}).length;
+const runtimeStrongMissing = runtimeMerged.length - runtimeStrongReady;
 
 const measuredDebt = {
   missing_jp_name: counters.missing_jp_name,
@@ -242,7 +264,16 @@ const report = {
     with_supported_public_role: runtimeRoleReady,
     without_supported_public_role: runtimeRoleMissing,
     public_role_ready_percent: runtimeMerged.length ? Number((runtimeRoleReady / runtimeMerged.length * 100).toFixed(2)) : 0,
-    verified_category_overlay_identities: Object.keys(parser.verifiedCategoryEvidence || {}).length
+    verified_category_overlay_identities: Object.keys(parser.verifiedCategoryEvidence || {}).length,
+    verified_category_runtime_identities: runtimeVerifiedCategory,
+    verified_note_overlay_identities: Object.keys(parser.verifiedNoteEvidence || {}).length,
+    verified_note_runtime_identities: runtimeVerifiedNote
+  },
+  runtime_shared_data_strong_readiness: {
+    definition: 'supported public role + maintained Japanese name + source-backed verified ingredient-specific note',
+    with_strong_runtime_data: runtimeStrongReady,
+    without_strong_runtime_data: runtimeStrongMissing,
+    strong_runtime_ready_percent: runtimeMerged.length ? Number((runtimeStrongReady / runtimeMerged.length * 100).toFixed(2)) : 0
   },
   canonical_readiness: {
     with_supported_public_role: canonicalWithSupportedRole,
@@ -260,7 +291,8 @@ const report = {
   records_by_file: topCounts(fileCounts, DATA_FILES.length),
   completion_definition: {
     lite_core: 'canonical identity + supported bilingual public role category; incomplete data stays explicit',
-    shared_data_strong: 'canonical identity + Japanese naming coverage when maintained + supported public role + ingredient-specific note + explicit evidence metadata',
+    shared_data_strong: 'canonical identity + maintained Japanese name + supported public role + source-backed verified ingredient-specific note at runtime',
+    raw_dictionary_metrics: 'raw record debt only; verified parser overlays are intentionally measured separately and must not be mistaken for zero runtime provenance',
     fastscan_extra: 'Lite/shared-data readiness plus OCR/review usability; match/debug metadata remains secondary'
   },
   structural_failures: structuralFailures
