@@ -1,10 +1,80 @@
-# CSV Tidy — Product Contract
+# Tool Specification — CSV Tidy
 
 - Slug: `csv-tidy`
 - Public URL: `https://nicheworks.app/tools/csv-tidy/`
-- Status: **checkpoint; product acceptance is incomplete**. Passing characterization tests do not certify safe completion of the workflow.
-- Investigation base: `4f00e990f06fd3bc9332a629859bac09e069ef52`.
-- Common specification: `common-spec/spec-ja.md`; sections 9/9-9 supersede conflicting earlier generic layout/language rules. Preserve the later explicit AdSense review rules, privacy constraints, and section 10 explanation hierarchy. No shared-page changes in this checkpoint.
+- Specification status: `complete`
+- Common specification: `common-spec/spec-ja.md`
+
+## Purpose
+
+Load a CSV locally, reorganize and clean its columns/values, preview the result, and download a new UTF-8 CSV without modifying the source file.
+
+## Current functional contract
+
+- Load a local CSV or built-in accounting, e-commerce, contact-list, or generic sample.
+- Support input encoding selection including auto, UTF-8, and Shift_JIS subject to browser support.
+- Support delimiter selection including auto, comma, TAB, and semicolon plus header-row on/off.
+- Let users reorder, rename, and exclude columns.
+- Apply implemented cleanup rules including leading/trailing whitespace trim, repeated-space normalization, and full-width/half-width conversion.
+- Preview transformed rows and output summary before saving.
+- Produce UTF-8 output with the implemented BOM option for Excel-oriented compatibility.
+
+## Inputs
+
+- Local CSV file or built-in sample data.
+- Input encoding, delimiter, header-row, and preview-size settings.
+- Column order/name/include state.
+- Cleanup options and output options.
+
+## Outputs
+
+- Parsed/cleaned CSV preview and summary.
+- Newly generated UTF-8 CSV download.
+- Built-in sample CSV download where provided.
+
+## State and persistence
+
+Loaded CSV content and transformation settings are current-page working state. The source file is not modified and the current contract does not include server-side or cross-session CSV history.
+
+## Privacy and network behavior
+
+CSV reading, transformation, preview, and output generation run in the browser and the selected CSV is not intentionally uploaded by the tool workflow. Suite-wide advertising and analytics resources may load separately.
+
+## Language mode
+
+`bilingual single-page`
+
+JP/EN controls switch the same workbench UI.
+
+## Layout class
+
+`pc-oriented`
+
+Column editing and table preview benefit substantially from desktop width; narrow-screen support must preserve access to the controls rather than redefine the tool as a simple form.
+
+## Limits and non-goals
+
+- Shift_JIS decoding availability can vary by browser environment.
+- Output is UTF-8-oriented; this is not a full spreadsheet application or arbitrary encoding converter.
+- The source file remains unchanged; transformations apply only to the newly generated output.
+- Complex malformed CSV structures may not be recoverable automatically.
+
+## Acceptance criteria
+
+- [ ] A supported CSV or built-in sample can be loaded and parsed with the selected delimiter/header settings.
+- [ ] Reordering, renaming, excluding, and enabled cleanup rules are reflected in the preview and downloaded output.
+- [ ] Saving creates a new UTF-8 CSV and does not mutate the original local file.
+- [ ] JP/EN switching preserves the same CSV editing workflow and local-processing notice.
+
+## Implementation evidence
+
+- `tools/csv-tidy/index.html`
+- `tools/csv-tidy/app.js`
+- `tools/csv-tidy/style.css`
+
+## Product quality contract and acceptance evidence
+
+The standard specification above remains the repository-facing contract. The sections below record the stricter CSV Tidy product-quality contract, resolved correctness gaps, verification evidence, and measured acceptance boundary. `Specification status: complete` means the specification is structurally complete; it does not claim browser acceptance.
 
 ## Primary Job and target user
 
@@ -262,3 +332,4 @@ Independent Python `csv.reader(strict=True)` validation passed for 19 substantia
 **Programmatic product acceptance: PASS. KNOWN GAP: 0. New scale correctness gaps: 0.**
 
 Measured successfully in this environment through 250,000 data rows with 10 input columns, 1,000 rows with 200 input columns, and approximately 25 MB long-field input. These maxima were tested independently and are not combined-limit guarantees or advertised product ceilings. Browser file workflow, layout, accessibility and browser responsiveness remain outside this programmatic evidence.
+

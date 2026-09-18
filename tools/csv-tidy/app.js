@@ -99,6 +99,13 @@
     }
   };
 
+  // Backward-compatible runtime-contract alias. output.bom remains the canonical state.
+  Object.defineProperty(state.options, "bom", {
+    configurable: true,
+    get(){ return state.options.output.bom; },
+    set(value){ state.options.output.bom = !!value; }
+  });
+
   function setSegActive(a, b, onA){
     a.classList.toggle("active", !!onA);
     b.classList.toggle("active", !onA);
@@ -1007,7 +1014,7 @@ return;
     let csv = stringifyCSV(rows, delim, newline, quoteMode);
 
     // BOM
-    const bom = state.options.output.bom ? "﻿" : "";
+    const bom = state.options.bom ? "﻿" : "";
     const blob = new Blob([bom, csv], {type: "text/csv;charset=utf-8"});
 
     let name = (els.outName.value || "").trim();
