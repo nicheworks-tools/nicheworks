@@ -18,7 +18,7 @@
   "sources": {
     "quality_manifest_version": "2026-09-14-manifest-8",
     "image_registry_version": "2026-09-14-wave3a-1",
-    "exception_ledger_version": "2026-09-15-1",
+    "exception_ledger_version": "2026-09-18-admin-wave1",
     "source_ledgers": [
       {
         "file": "image-wave1-sources-v2.3.json",
@@ -40,8 +40,8 @@
   "summary": {
     "corpus_entries": 5536,
     "formal_image_entries": 24,
-    "missing_formal_image_entries": 5512,
-    "not_required_entries": 0,
+    "missing_formal_image_entries": 5504,
+    "not_required_entries": 8,
     "unobtainable_entries": 0,
     "classified_entries": 5536,
     "formal_coverage_percent": 0.4335,
@@ -214,16 +214,16 @@
     "tool": {
       "corpus": 379,
       "formal_image": 15,
-      "missing_formal_image": 364,
-      "not_required": 0,
+      "missing_formal_image": 356,
+      "not_required": 8,
       "unobtainable": 0
     }
   },
   "hashes": {
     "corpus_id_sha256": "bff8aae6f75c763415864d81b9b2686131a2964b60bc354e85f84d64e3433f31",
     "formal_image_id_sha256": "c3a1247bdd270a30f8b845200af6a6a1c02f0fdc2ed94fb7561a55d8382e8696",
-    "missing_formal_image_id_sha256": "99ecb4af09b12b1121a09f9e0678dcac9be8b80178b872924aaedaf783d59267",
-    "classification_sha256": "da99500fa9f8f71f0c74e3764bea30a7fb936ae51dd12f52588f4833f52c03ea"
+    "missing_formal_image_id_sha256": "812d6843f50ec79d096a43956000bb1a00a87eef46d37c07e4f44433a73559bb",
+    "classification_sha256": "27294e1bea60a4b06eb6ee7c7ace853ad121f3c29f2fcdcb3f463df1ca730b8c"
   },
   "missing_sample": [
     "access_door",
@@ -235,7 +235,6 @@
     "anchor_bolt",
     "anchor_plastic_plug",
     "angle_finder",
-    "as_built",
     "as_built_drawing",
     "asphalt_felt",
     "auto_level",
@@ -250,6 +249,7 @@
     "bolt_nut",
     "borescope",
     "brick_hammer",
-    "brick_trowel"
+    "brick_trowel",
+    "bucket"
   ]
 }

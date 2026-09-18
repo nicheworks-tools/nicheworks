@@ -1,5 +1,46 @@
 {
   "schema": "cta-image-inventory-exceptions-v2.3",
-  "version": "2026-09-15-1",
-  "items": []
+  "version": "2026-09-18-admin-wave1",
+  "items": [
+    {
+      "entry_id": "punch_list",
+      "state": "not_required",
+      "reason": "Administrative closeout checklist concept; a representative photograph would be arbitrary and is not required to understand the dictionary entry."
+    },
+    {
+      "entry_id": "handover",
+      "state": "not_required",
+      "reason": "Project turnover process rather than a concrete object; no single subject photograph is required for accurate identification."
+    },
+    {
+      "entry_id": "as_built",
+      "state": "not_required",
+      "reason": "Record-drawing concept whose meaning is defined by documentation state, not by the appearance of a unique physical subject."
+    },
+    {
+      "entry_id": "rfis",
+      "state": "not_required",
+      "reason": "Request-for-information workflow/document concept; a generic form image would not establish a canonical visual subject."
+    },
+    {
+      "entry_id": "change_order",
+      "state": "not_required",
+      "reason": "Contract change-control concept rather than a visually identifiable construction object."
+    },
+    {
+      "entry_id": "five_s_5s",
+      "state": "not_required",
+      "reason": "Workplace-organization management practice; no single canonical photograph can represent the concept without becoming illustrative rather than identificatory."
+    },
+    {
+      "entry_id": "job_hazard_analysis",
+      "state": "not_required",
+      "reason": "Safety-analysis procedure/document concept; visual identity is not necessary for dictionary recognition."
+    },
+    {
+      "entry_id": "permit_to_work",
+      "state": "not_required",
+      "reason": "Work-authorization procedure/document concept; a permit layout varies by organization and is not a stable canonical visual subject."
+    }
+  ]
 }
