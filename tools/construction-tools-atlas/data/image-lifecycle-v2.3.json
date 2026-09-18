@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-18-applicability-wave14",
+  "version": "2026-09-18-applicability-wave15",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -16763,6 +16763,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An inspection mirror is a physical hand tool with a small mirror on an articulated/extended handle; a subject-matched photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -16777,6 +16786,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An insulated screwdriver is a physical electrical hand tool with distinctive insulated shaft/handle features; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -16788,6 +16806,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A laser receiver is a physical surveying/layout accessory with a recognizable detector body and mounting clamp; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -16819,6 +16846,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pipe coupling is a physical plumbing fitting with a recognizable sleeve/connector form; a close reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -16830,6 +16866,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pipe deburrer is a physical hand tool with a distinctive cutting/reaming form for pipe edges; a reviewed photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -16847,6 +16892,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pipe elbow is a physical fitting with a distinctive angled bend used to change direction; a close reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -16858,6 +16912,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pipe tee is a physical fitting with a distinctive three-way branch form; a close reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -16875,6 +16938,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pipe threader is a physical tool/machine with recognizable dies and pipe-holding/threading arrangement; a reviewed photograph strongly aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -16886,6 +16958,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A rotary laser is a distinctive surveying/layout instrument with a rotating laser head and tripod/mounting context; a subject-matched photograph is highly useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -16917,6 +16998,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A sealant joint is a physical finished joint with recognizable sealant bead/profile and backing context; a reviewed detail photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -16931,6 +17021,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A seam roller is a physical small roller tool used to press finish seams; a subject-matched photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -16942,6 +17041,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A stop valve is a physical plumbing shutoff component with recognizable valve body/handle forms; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -16973,6 +17081,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A switch plate is a physical electrical finish component with clear wall-mounted visual identity; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17001,6 +17118,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wire duct is a physical wiring-management channel with recognizable slotted/channel form; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17012,6 +17138,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A wood rasp is a physical shaping hand tool with a distinctive coarse-toothed file surface; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17043,6 +17178,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A rafter is a physical roof-framing member with a stable structural role and recognizable sloped installation; a reviewed framing photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17054,6 +17198,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A rainscreen cavity is a physical ventilated/drained gap behind exterior cladding; a reviewed construction-detail photograph can clearly show the canonical condition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17071,6 +17224,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A random-orbit sander is a distinctive handheld power tool with a round sanding pad; a subject-matched photograph strongly aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17082,6 +17244,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Rebar is a physical reinforcing steel bar with distinctive ribbed surface and installed reinforcement context; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17099,6 +17270,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A rebar bender is a physical tool/machine used to bend reinforcing bar; a subject-matched photograph strongly aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17110,6 +17290,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A rebar cutter is a physical cutting tool/machine for reinforcing bar; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17127,6 +17316,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A rebar detector is a physical inspection instrument used to locate reinforcement in concrete; a subject-matched photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17138,6 +17336,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A rebar tying tool is a physical hand/power tool used to twist or apply tie wire around reinforcement; a reviewed photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17155,6 +17362,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A receptacle/outlet is a physical electrical wiring device with clear installed visual identity; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17166,6 +17382,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A reciprocating saw is a distinctive power tool with a protruding reciprocating blade; a subject-matched photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17183,6 +17408,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A reflective/high-visibility vest is physical PPE with clear fluorescent/reflective visual identity; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17194,6 +17428,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A repair patch is a physical repair material/component used over localized damage; a reviewed product or installed-detail photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17225,6 +17468,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A respirator mask is physical respiratory PPE with recognizable mask/filter forms; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17236,6 +17488,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Reveal trim is a physical finish/profile component used to create a controlled edge or recess; a reviewed installed/detail photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17267,6 +17528,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A ridge cap is a physical roofing component installed along the roof ridge; a reviewed installed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17278,6 +17548,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Rock wool is a physical mineral-fiber insulation material with recognizable batt/board form; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17295,6 +17574,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A roof batten is a physical roof-framing/support strip installed beneath roof coverings; a reviewed construction photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17306,6 +17594,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A roof tile is a physical roofing unit with clear visual identity; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17337,6 +17634,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Roofing felt is a physical underlayment material with recognizable roll and installed roof-deck forms; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17362,6 +17668,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A runner/track is a physical framing channel used at floor/ceiling edges; a close or installed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17393,6 +17708,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Safety cones are physical traffic/access-control devices with distinctive conical form and high-visibility appearance; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17404,6 +17728,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Safety glasses are physical eye-protection PPE with clear visual identity; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17435,6 +17768,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is a jobsite safety briefing/meeting practice rather than a unique physical subject; any photograph would show an arbitrary group, location, or meeting format rather than the concept itself.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17446,6 +17788,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Safety shoes are physical PPE with recognizable protective footwear form; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17463,6 +17814,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Sandpaper is a physical abrasive sheet/disc material with recognizable grit-backed form; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17474,6 +17834,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Scaffold is a physical temporary access/work platform structure with clear visual identity; a reviewed site photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17491,6 +17860,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The screed/leveling tool represented by this canonical is a physical concrete-finishing/leveling implement; a subject-matched photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17502,6 +17880,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Screws are physical threaded fasteners with clear visual identity and distinguishable head/thread forms; a close reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17519,6 +17906,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A screwdriver is a physical hand tool with a distinctive shaft, tip, and handle; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17530,6 +17926,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Seal/waterproof tape is a physical construction material with recognizable roll and installed strip forms; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17547,6 +17952,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A self-drilling screw is a physical fastener with a distinctive drill-point tip and threaded body; a close reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17558,6 +17972,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Self-leveling compound is a physical flooring material with recognizable mixing/pouring application; a reviewed product or application photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -17575,6 +17998,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A separator/spacer is a physical construction component used to maintain spacing or separation between materials; a reviewed detail photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17589,6 +18021,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A shackle is a physical rigging component with a distinctive U-shaped body and removable pin; a close reviewed photograph is highly useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -17600,6 +18041,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A roofing shingle is a physical roof-covering unit with recognizable material and installed overlap pattern; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
