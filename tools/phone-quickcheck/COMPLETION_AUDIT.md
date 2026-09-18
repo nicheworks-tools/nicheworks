@@ -152,6 +152,22 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 3 — 2026-09-19
+
+Added four Japan-market 2026 models from primary manufacturer sources:
+
+- Samsung Galaxy A57 5G
+- AQUOS R11
+- AQUOS wish6
+- moto g37j
+
+Maintained dataset: **187 → 191**.
+
+AQUOS R11 and AQUOS wish6 package adapter/cable fields remain `unknown` and are registered in `data/reviewed-unknowns.json`; exact SIM-free in-box states were not promoted without direct evidence.
+
+moto g37j uses `physicalVariants[]` to preserve the official color-dependent 194g / 196g weight split instead of collapsing it to a synthetic single weight.
+
+
 
 ## Maintenance — 2026 freshness Wave 1
 

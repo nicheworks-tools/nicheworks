@@ -781,3 +781,37 @@ console.log('Phone QuickCheck final automated QA passed: controls, sort modes, e
   );
 }
 
+// Post-v1 2026 maintenance Wave 3.
+{
+  const a57 = byId.get('samsung-galaxy-a57-5g');
+  assert.ok(a57, 'Galaxy A57 5G fixture missing');
+  assert.equal(a57.releaseYear, 2026);
+  assert.equal(a57.weightG, 179);
+  assert.equal(a57.charging?.wiredMaxW, 45);
+  assert.equal(a57.included?.cable, 'not_included');
+  assert.equal(a57.included?.adapter, 'not_included');
+  assert.equal(a57.waterRating, 'IP68');
+
+  const r11 = byId.get('sharp-aquos-r11');
+  assert.ok(r11, 'AQUOS R11 fixture missing');
+  assert.equal(r11.charging?.battery?.capacityMah, 5100);
+  assert.equal(r11.charging?.wiredRecommendedW, 36);
+  assert.equal(r11.included?.cable, 'unknown');
+  assert.equal(r11.included?.adapter, 'unknown');
+
+  const wish6 = byId.get('sharp-aquos-wish6');
+  assert.ok(wish6, 'AQUOS wish6 fixture missing');
+  assert.equal(wish6.charging?.battery?.capacityMah, 5000);
+  assert.equal(wish6.charging?.wiredRecommendedW, 27);
+  assert.equal(wish6.waterRating, 'IPX5/IPX8/IPX9 / IP6X');
+
+  const g37j = byId.get('motorola-moto-g37j');
+  assert.ok(g37j, 'moto g37j fixture missing');
+  assert.equal(g37j.charging?.wiredMaxW, 20);
+  assert.equal(g37j.physicalVariants?.length, 4);
+  assert.deepEqual(g37j.physicalVariants?.map((variant) => variant.weightG), [194, 196, 196, 196]);
+  const h = await createHarness(['motorola-moto-g37j']);
+  assert.match(h.elements.desktopDetail.innerHTML, /194–196 g/);
+  assert.match(h.elements.desktopDetail.innerHTML, /インペネトラブルグレイ/);
+}
+

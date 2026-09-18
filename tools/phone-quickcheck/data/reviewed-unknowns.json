@@ -219,6 +219,54 @@
         "https://www.au.com/online-manual/opg02/opg02_02/m_01_00_03.html"
       ],
       "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "sharp-aquos-r11",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_sim_free_in_box_state_not_established",
+      "reason": "AQUOS R11 SH-M35 Japan SIM-free specifications and support materials were reviewed, but the exact AC-adapter in-box state is not established by the maintained primary HTML evidence.",
+      "evidenceUrls": [
+        "https://www.sharp.co.jp/k-tai/products/aquos-r11/specs/",
+        "https://k-tai.sharp.co.jp/support/other/r11_simfree/manual/index.html"
+      ],
+      "reviewedAt": "2026-09-19"
+    },
+    {
+      "phoneId": "sharp-aquos-r11",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_sim_free_in_box_state_not_established",
+      "reason": "AQUOS R11 SH-M35 Japan SIM-free specifications and support materials were reviewed, but the exact USB-cable in-box state is not established by the maintained primary HTML evidence.",
+      "evidenceUrls": [
+        "https://www.sharp.co.jp/k-tai/products/aquos-r11/specs/",
+        "https://k-tai.sharp.co.jp/support/other/r11_simfree/manual/index.html"
+      ],
+      "reviewedAt": "2026-09-19"
+    },
+    {
+      "phoneId": "sharp-aquos-wish6",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_sim_free_in_box_state_not_established",
+      "reason": "AQUOS wish6 SH-M36 Japan SIM-free specifications and support materials were reviewed, but the exact AC-adapter in-box state is not established by the maintained primary HTML evidence.",
+      "evidenceUrls": [
+        "https://www.sharp.co.jp/k-tai/products/aquos-wish6/specs/",
+        "https://k-tai.sharp.co.jp/support/other/wish6_simfree/index.html"
+      ],
+      "reviewedAt": "2026-09-19"
+    },
+    {
+      "phoneId": "sharp-aquos-wish6",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_sim_free_in_box_state_not_established",
+      "reason": "AQUOS wish6 SH-M36 Japan SIM-free specifications and support materials were reviewed, but the exact USB-cable in-box state is not established by the maintained primary HTML evidence.",
+      "evidenceUrls": [
+        "https://www.sharp.co.jp/k-tai/products/aquos-wish6/specs/",
+        "https://k-tai.sharp.co.jp/support/other/wish6_simfree/index.html"
+      ],
+      "reviewedAt": "2026-09-19"
     }
   ]
 }

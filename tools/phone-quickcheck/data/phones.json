@@ -9697,6 +9697,235 @@
         "verifiedAt": "2026-09-15"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-a57-5g",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A57 5G",
+      "aliases": [
+        "Samsung Galaxy A57 5G",
+        "GalaxyA575G",
+        "Galaxy A57",
+        "ギャラクシーA57 5G"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 161.5,
+        "widthMm": 76.8,
+        "depthMm": 6.9
+      },
+      "weightG": 179,
+      "displayInch": 6.7,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 45,
+        "wiredMaxW": 45,
+        "protocols": [
+          "Super Fast Charging 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.samsung.com/jp/smartphones/galaxy-a/galaxy-a57-5g-awesome-navy-128gb-sm-a576qdbasjp/"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-a/galaxy-a57-5g-awesome-navy-128gb-sm-a576qdbasjp/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-A576QDBASJP/",
+        "releaseUrl": "https://news.samsung.com/jp/galaxy-a57-launch",
+        "chargingUrl": "https://news.samsung.com/jp/galaxy-a57-5g-roundtable-discussion",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-r11",
+      "manufacturer": "SHARP",
+      "model": "AQUOS R11",
+      "aliases": [
+        "Sharp AQUOS R11",
+        "AQUOSR11",
+        "アクオスR11"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 156,
+        "widthMm": 74,
+        "depthMm": 8.9
+      },
+      "weightG": 195,
+      "displayInch": 6.5,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5100,
+          "valueClass": "official",
+          "sourceRef": "https://www.sharp.co.jp/k-tai/products/aquos-r11/specs/"
+        },
+        "wiredRecommendedW": 36,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "waterRating": "IPX5/IPX8/IPX9 / IP6X",
+      "sources": {
+        "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-r11/specs/",
+        "manualUrl": "https://k-tai.sharp.co.jp/support/other/r11_simfree/manual/index.html",
+        "releaseUrl": "https://corporate.jp.sharp/news/260616-d.html",
+        "chargingUrl": "https://www.sharp.co.jp/k-tai/products/aquos-r11/specs/",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-wish6",
+      "manufacturer": "SHARP",
+      "model": "AQUOS wish6",
+      "aliases": [
+        "Sharp AQUOS wish6",
+        "AQUOSwish6",
+        "アクオスwish6",
+        "アクオスウィッシュ6"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 165,
+        "widthMm": 76,
+        "depthMm": 8.3
+      },
+      "weightG": 189,
+      "displayInch": 6.6,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "official",
+          "sourceRef": "https://www.sharp.co.jp/k-tai/products/aquos-wish6/specs/"
+        },
+        "wiredRecommendedW": 27,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "waterRating": "IPX5/IPX8/IPX9 / IP6X",
+      "sources": {
+        "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-wish6/specs/",
+        "manualUrl": "https://k-tai.sharp.co.jp/support/other/wish6_simfree/index.html",
+        "releaseUrl": "https://corporate.jp.sharp/news/260909-a.html",
+        "chargingUrl": "https://www.sharp.co.jp/k-tai/products/aquos-wish6/specs/",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "motorola-moto-g37j",
+      "manufacturer": "Motorola",
+      "model": "moto g37j",
+      "aliases": [
+        "Motorola moto g37j",
+        "motog37j",
+        "moto g37j",
+        "モトg37j"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 166.23,
+        "widthMm": 76.5
+      },
+      "physicalVariants": [
+        {
+          "key": "impenetrable-gray",
+          "labelJa": "インペネトラブルグレイ",
+          "labelEn": "Impenetrable Gray",
+          "depthMm": 7.85,
+          "weightG": 194
+        },
+        {
+          "key": "nautical-blue",
+          "labelJa": "ノーティカルブルー",
+          "labelEn": "Nautical Blue",
+          "depthMm": 7.85,
+          "weightG": 196
+        },
+        {
+          "key": "caprician",
+          "labelJa": "カプリシアン",
+          "labelEn": "Caprician",
+          "depthMm": 7.85,
+          "weightG": 196
+        },
+        {
+          "key": "fuchsia-red",
+          "labelJa": "フューシャレッド",
+          "labelEn": "Fuchsia Red",
+          "depthMm": 7.85,
+          "weightG": 196
+        }
+      ],
+      "displayInch": 6.72,
+      "waterRating": "IP64",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 20,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5200,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://store.motorola.co.jp/item/MOTO_G37J.html"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://store.motorola.co.jp/item/MOTO_G37J.html",
+        "manualUrl": "https://jp-jp.support.motorola.com/",
+        "releaseUrl": "https://store.motorola.co.jp/topics_list.html",
+        "chargingUrl": "https://store.motorola.co.jp/item/MOTO_G37J.html",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
     }
   ]
 }
