@@ -100,6 +100,9 @@ jobs:
       - name: Check Wave 4 image builder syntax
         run: node --check tools/construction-tools-atlas/scripts/build-image-wave4-v2.3.mjs
 
+      - name: Check Wave 5 image builder syntax
+        run: node --check tools/construction-tools-atlas/scripts/build-image-wave5-v2.3.mjs
+
       - name: Check Wave 1 source checker syntax
         run: node --check tools/construction-tools-atlas/scripts/check-image-wave1-sources-v2.3.cjs
 
@@ -112,11 +115,17 @@ jobs:
       - name: Check Wave 4 source checker syntax
         run: node --check tools/construction-tools-atlas/scripts/check-image-wave4-sources-v2.3.cjs
 
+      - name: Check Wave 5 source checker syntax
+        run: node --check tools/construction-tools-atlas/scripts/check-image-wave5-sources-v2.3.cjs
+
       - name: Check Wave 3 promotion syntax
         run: node --check tools/construction-tools-atlas/scripts/promote-image-wave3a-v2.3.cjs
 
       - name: Check Wave 4 promotion syntax
         run: node --check tools/construction-tools-atlas/scripts/promote-image-wave4a-v2.3.cjs
+
+      - name: Check Wave 5 promotion syntax
+        run: node --check tools/construction-tools-atlas/scripts/promote-image-wave5-v2.3.cjs
 
       - name: Check registry source sync syntax
         run: node --check tools/construction-tools-atlas/scripts/sync-image-registry-sources-v2.3.cjs
@@ -218,6 +227,9 @@ jobs:
 
       - name: Validate Wave 4 image source contract
         run: node tools/construction-tools-atlas/scripts/check-image-wave4-sources-v2.3.cjs
+
+      - name: Validate Wave 5 image source contract
+        run: node tools/construction-tools-atlas/scripts/check-image-wave5-sources-v2.3.cjs
 
       - name: Validate canonical image registry and source-ledger parity
         run: node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs

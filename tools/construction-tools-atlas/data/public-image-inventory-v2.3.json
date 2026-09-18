@@ -20,18 +20,18 @@
   "sources": {
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
-    "image_registry_version": "2026-09-18-wave4a-1",
+    "image_registry_version": "2026-09-19-wave5-promotion-1",
     "image_exception_ledger_version": "2026-09-18-applicability-wave17-final"
   },
   "summary": {
     "public_entries": 870,
-    "formal_image_entries": 30,
-    "missing_formal_image_entries": 793,
+    "formal_image_entries": 42,
+    "missing_formal_image_entries": 781,
     "not_required_entries": 47,
     "unobtainable_entries": 0,
     "classified_entries": 870,
-    "formal_coverage_percent": 3.4483,
-    "registry_items_total": 30,
+    "formal_coverage_percent": 4.8276,
+    "registry_items_total": 42,
     "formal_images_inherited_via_redirect": 6,
     "formal_images_outside_public": 0,
     "image_exceptions_outside_public": 0,
@@ -46,8 +46,8 @@
       "applicability_reviewed": 870,
       "required": 823,
       "on_hold": 0,
-      "final_dispositions": 77,
-      "unresolved": 793,
+      "final_dispositions": 89,
+      "unresolved": 781,
       "by_stage": {
         "unreviewed": 0,
         "not_required": 47,
@@ -55,11 +55,11 @@
         "candidate": 0,
         "provenance_verified": 0,
         "subject_verified": 0,
-        "verified": 12,
-        "promoted": 30
+        "verified": 0,
+        "promoted": 42
       }
     },
-    "evidence_sha256": "2e610d215e5ede7be81e717df3c702744fd513104f3919eea2521839622f7a91",
+    "evidence_sha256": "0dd3a1ff2fd1e5a4f1e3ca8e390c603e396501dc28a4b8173bcffd2193b0efe9",
     "rows": [
       {
         "id": "access_door",
@@ -246,15 +246,15 @@
       {
         "id": "backhoe_loader",
         "applicability": "required",
-        "stage": "verified",
+        "stage": "promoted",
         "applicability_reviewed": true,
         "provenance_verified": true,
         "subject_verified": true,
         "hold": null,
-        "reason": "Subject review passed: the photograph shows the combined front loader bucket and rear backhoe boom characteristic of a backhoe loader, directly matching the canonical.",
+        "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
         "candidate_id": "wave5a:backhoe_loader",
         "source_entry_id": "backhoe_loader",
-        "attachment": "none"
+        "attachment": "direct"
       },
       {
         "id": "ball_valve",
@@ -454,15 +454,15 @@
       {
         "id": "caliper",
         "applicability": "required",
-        "stage": "verified",
+        "stage": "promoted",
         "applicability_reviewed": true,
         "provenance_verified": true,
         "subject_verified": true,
         "hold": null,
-        "reason": "Subject review passed: the photograph directly depicts digital calipers with measuring jaws and scale body, matching the caliper canonical.",
+        "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
         "candidate_id": "wave5a2:caliper",
         "source_entry_id": "caliper",
-        "attachment": "none"
+        "attachment": "direct"
       },
       {
         "id": "carpet_tile",
@@ -675,41 +675,41 @@
       {
         "id": "circuit_breaker",
         "applicability": "required",
-        "stage": "verified",
+        "stage": "promoted",
         "applicability_reviewed": true,
         "provenance_verified": true,
         "subject_verified": true,
         "hold": null,
-        "reason": "Subject review passed: the photograph directly shows electrical circuit-breaker devices with operating toggles, matching the circuit_breaker canonical.",
+        "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
         "candidate_id": "wave5a:circuit_breaker",
         "source_entry_id": "circuit_breaker",
-        "attachment": "none"
+        "attachment": "direct"
       },
       {
         "id": "circular_saw",
         "applicability": "required",
-        "stage": "verified",
+        "stage": "promoted",
         "applicability_reviewed": true,
         "provenance_verified": true,
         "subject_verified": true,
         "hold": null,
-        "reason": "Subject review passed: the photograph directly depicts a handheld circular saw with its circular blade and guard visible, matching the circular_saw canonical rather than another saw type.",
+        "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
         "candidate_id": "wave5a:circular_saw",
         "source_entry_id": "circular_saw",
-        "attachment": "none"
+        "attachment": "direct"
       },
       {
         "id": "clamp_bar",
         "applicability": "required",
-        "stage": "verified",
+        "stage": "promoted",
         "applicability_reviewed": true,
         "provenance_verified": true,
         "subject_verified": true,
         "hold": null,
-        "reason": "Subject review passed: the photograph clearly shows long bar clamps with sliding jaws, matching the clamp_bar canonical and not a generic C-clamp.",
+        "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
         "candidate_id": "wave5a:clamp_bar",
         "source_entry_id": "clamp_bar",
-        "attachment": "none"
+        "attachment": "direct"
       },
       {
         "id": "cleanout",
@@ -1182,15 +1182,15 @@
       {
         "id": "drill_driver",
         "applicability": "required",
-        "stage": "verified",
+        "stage": "promoted",
         "applicability_reviewed": true,
         "provenance_verified": true,
         "subject_verified": true,
         "hold": null,
-        "reason": "Subject review passed: Commons explicitly identifies the photographed tool as a cordless drill/driver; chuck, clutch body and battery form match the drill_driver canonical.",
+        "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
         "candidate_id": "wave5b:drill_driver",
         "source_entry_id": "drill_driver",
-        "attachment": "none"
+        "attachment": "direct"
       },
       {
         "id": "drip_edge",
@@ -1364,15 +1364,15 @@
       {
         "id": "excavator",
         "applicability": "required",
-        "stage": "verified",
+        "stage": "promoted",
         "applicability_reviewed": true,
         "provenance_verified": true,
         "subject_verified": true,
         "hold": null,
-        "reason": "Subject review passed: the side-view photograph is explicitly identified as an excavator and shows the tracked undercarriage, boom, arm and bucket characteristic of the canonical.",
+        "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
         "candidate_id": "wave5b:excavator",
         "source_entry_id": "excavator",
-        "attachment": "none"
+        "attachment": "direct"
       },
       {
         "id": "expansion_anchor",
@@ -1494,15 +1494,15 @@
       {
         "id": "fire_extinguisher",
         "applicability": "required",
-        "stage": "verified",
+        "stage": "promoted",
         "applicability_reviewed": true,
         "provenance_verified": true,
         "subject_verified": true,
         "hold": null,
-        "reason": "Subject review passed: the photograph directly depicts a portable fire extinguisher, matching the fire_extinguisher canonical.",
+        "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
         "candidate_id": "wave5a2:fire_extinguisher",
         "source_entry_id": "fire_extinguisher",
-        "attachment": "none"
+        "attachment": "direct"
       },
       {
         "id": "firestop",
@@ -1637,15 +1637,15 @@
       {
         "id": "forklift",
         "applicability": "required",
-        "stage": "verified",
+        "stage": "promoted",
         "applicability_reviewed": true,
         "provenance_verified": true,
         "subject_verified": true,
         "hold": null,
-        "reason": "Subject review passed: the photograph directly depicts a diesel forklift with mast and forks, matching the forklift canonical rather than another material-handling vehicle.",
+        "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
         "candidate_id": "wave5b:forklift",
         "source_entry_id": "forklift",
-        "attachment": "none"
+        "attachment": "direct"
       },
       {
         "id": "form_oil",
@@ -1845,15 +1845,15 @@
       {
         "id": "hammer",
         "applicability": "required",
-        "stage": "verified",
+        "stage": "promoted",
         "applicability_reviewed": true,
         "provenance_verified": true,
         "subject_verified": true,
         "hold": null,
-        "reason": "Subject review passed: the photograph directly depicts a claw hammer with head, striking face, claw and handle clearly visible, matching the hammer canonical.",
+        "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
         "candidate_id": "wave5b:hammer",
         "source_entry_id": "hammer",
-        "attachment": "none"
+        "attachment": "direct"
       },
       {
         "id": "hammer_drill",
@@ -1975,15 +1975,15 @@
       {
         "id": "hard_hat",
         "applicability": "required",
-        "stage": "verified",
+        "stage": "promoted",
         "applicability_reviewed": true,
         "provenance_verified": true,
         "subject_verified": true,
         "hold": null,
-        "reason": "Subject review passed: Commons describes and depicts a hard hat as the primary subject; the helmet shape and suspension shell are clearly identifiable.",
+        "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
         "candidate_id": "wave5b:hard_hat",
         "source_entry_id": "hard_hat",
-        "attachment": "none"
+        "attachment": "direct"
       },
       {
         "id": "heat_gun",
@@ -2131,15 +2131,15 @@
       {
         "id": "jigsaw",
         "applicability": "required",
-        "stage": "verified",
+        "stage": "promoted",
         "applicability_reviewed": true,
         "provenance_verified": true,
         "subject_verified": true,
         "hold": null,
-        "reason": "Subject review passed: the photograph directly depicts a handheld electric jigsaw with its narrow reciprocating blade and shoe visible, matching the jigsaw canonical.",
+        "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
         "candidate_id": "wave5b:jigsaw",
         "source_entry_id": "jigsaw",
-        "attachment": "none"
+        "attachment": "direct"
       },
       {
         "id": "job_hazard_analysis",
@@ -11523,17 +11523,17 @@
     },
     "tool": {
       "public_entries": 333,
-      "formal_image": 20,
-      "missing_formal_image": 288,
+      "formal_image": 32,
+      "missing_formal_image": 276,
       "not_required": 25,
       "unobtainable": 0
     }
   },
   "hashes": {
     "public_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
-    "public_formal_image_id_sha256": "eb19ef99e951f77a5676e95c7b682383a57996aed0ce06ad00d33e6456a36444",
-    "public_missing_formal_image_id_sha256": "80be977a7502e2968e25546cc80a96da441ed445a3b45408f9e8af29c20d06c1",
-    "public_image_classification_sha256": "c2879334a4d18af6501ecfb3c8fb887c223746fbbb1602901813cb69e43ee00f"
+    "public_formal_image_id_sha256": "937d58837fe8c17ee04da8d64dbea1acec9f07c43adecc595aa8a058e9dd52e2",
+    "public_missing_formal_image_id_sha256": "176b22ab638d2a712d43618ee9557ec80e9251277afb302a0cb3fcaaf9f773d3",
+    "public_image_classification_sha256": "602d7ffacf659afc5503d44c065bb5a159655b47cb5372123f05d82b5b8d4642"
   },
   "inherited_formal_images": [
     {
@@ -11574,7 +11574,6 @@
     "asphalt_felt",
     "auto_level",
     "backer_rod",
-    "backhoe_loader",
     "barricade",
     "base_trim",
     "baseboard",
@@ -11588,6 +11587,7 @@
     "cable_ramp",
     "cable_tie",
     "cable_tray",
-    "caliper"
+    "carpet_tile",
+    "caulk_back_up_tape"
   ]
 }
