@@ -119,7 +119,7 @@ DJI camera accessory coverage advances only through bounded exact-canonical-mode
 | 23 | `Phantom 3 SE` | Phantom 3 Intelligent Flight Battery only; no hub inference |
 | 24 | `Mavic 2 Enterprise Advanced` | Mavic 2 Enterprise Battery only; no hub inference |
 | 25 | `Mavic 2 Enterprise Series` | Mavic 2 Enterprise Battery / Mavic 2 Battery Charging Hub |
-| 26 | `Phantom 3 4K` | Phantom 3 Intelligent Flight Battery only; no hub inference |
+| 26 | `Osmo Pocket 3` | Osmo Pocket 3 Battery Handle |
 
 ### DJI Phantom 3 series — Wave 22
 
@@ -132,7 +132,7 @@ The deterministic Amazon handoffs are:
 - `DJI Phantom 3 Intelligent Flight Battery`
 - `DJI Phantom 3 Battery Charging Hub`
 
-Wave 22 does not infer compatibility beyond its three reviewed rows. `Phantom 3 SE` and `Phantom 3 4K` required separate reviewed waves and are handled by Waves 23 and 26; `DJI Phantom 3 Standard` and other non-canonical spellings remain fail-closed.
+Wave 22 does not infer compatibility to `Phantom 3 SE`, `Phantom 3 4K`, `DJI Phantom 3 Standard`, or other non-canonical spellings.
 
 ### DJI Phantom 3 SE — Wave 23
 
@@ -152,11 +152,11 @@ Wave 25 activates exactly `Mavic 2 Enterprise Series`. DJI's official Series Dow
 
 The deterministic handoffs are `DJI Mavic 2 Enterprise Battery` and `Mavic 2 Battery Charging Hub`. No synthetic child model is created from the series row.
 
-### DJI Phantom 3 4K — Wave 26
+### DJI Osmo Pocket 3 — Wave 26
 
-Wave 26 activates exactly `Phantom 3 4K`. DJI's official Phantom 3 4K Download Center publishes model-specific Phantom 3 Intelligent Flight Battery safety material, and DJI's official Phantom 3 Series battery guidance identifies the series battery as 15.2 V / 4480 mAh. The deterministic accessory handoff is `DJI Phantom 3 Intelligent Flight Battery`.
+Wave 26 activates exactly the canonical `Osmo Pocket 3` row. DJI's official Osmo Pocket 3 Battery Handle product page explicitly lists `Osmo Pocket 3` as compatible, and DJI's Osmo Pocket 3 support material documents the Battery Handle as a supported accessory.
 
-A charging-hub offer is intentionally omitted because equally explicit Phantom 3 4K hub compatibility was not established. Wave 22's Phantom 3 charging-hub mapping is not generalized to the 4K row.
+The deterministic Amazon handoff is `DJI Osmo Pocket 3 Battery Handle`. Wave 26 remains exact-canonical-row only: `DJI Osmo Pocket 3`, `Osmo Pocket 3 Creator Combo`, `DJI Pocket 2`, and other neighboring or synthetic names remain fail-closed.
 
 After Waves 1–26:
 
@@ -176,7 +176,7 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 60 detail 
 - `affiliate-dji-camera-accessories-wave23.js` adds the exact Phantom 3 SE battery-only mapping.
 - `affiliate-dji-camera-accessories-wave24.js` adds the exact Mavic 2 Enterprise Advanced battery-only mapping.
 - `affiliate-dji-camera-accessories-wave25.js` adds the exact Mavic 2 Enterprise Series battery/hub mapping.
-- `affiliate-dji-camera-accessories-wave26.js` adds the exact Phantom 3 4K battery-only mapping and exposes the merged 60-row camera detail ledger.
+- `affiliate-dji-camera-accessories-wave26.js` adds the exact Osmo Pocket 3 Battery Handle mapping and exposes the merged 60-row camera detail ledger.
 - `affiliate-camera-detail-exclusions.js` remains empty.
 - `affiliate-runtime.js` sequentially loads Nikon and DJI ledgers before affiliate rendering.
 - `tests/affiliate-coverage.test.mjs` and `tests/affiliate-doc-sync.test.mjs` protect printer reconciliation.
@@ -184,7 +184,7 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 60 detail 
 - `tests/dji-phantom3-se-accessory-wave23.test.mjs` protects the exact battery-only Phantom 3 SE Wave 23 boundary.
 - `tests/dji-mavic2-enterprise-advanced-wave24.test.mjs` protects the exact battery-only Mavic 2 Enterprise Advanced Wave 24 boundary.
 - `tests/dji-mavic2-enterprise-series-wave25.test.mjs` protects the exact Mavic 2 Enterprise Series Wave 25 battery/hub boundary.
-- `tests/dji-phantom3-4k-accessory-wave26.test.mjs` protects the exact Phantom 3 4K Wave 26 battery-only boundary.
+- `tests/dji-osmo-pocket3-accessory-wave26.test.mjs` protects the exact Osmo Pocket 3 Wave 26 Battery Handle boundary.
 - `tests/camera-accessory-coverage.test.mjs` computes camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` prevents documentation drift and auto-discovers DJI wave evidence.
 - `CAMERA_ACCESSORY_COVERAGE.md` records the measured camera baseline.
