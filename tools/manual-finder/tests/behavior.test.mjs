@@ -63,5 +63,6 @@ await import('./dji-osmo-mobile-battery-exclusions-wave36.test.mjs');
 await import('./dji-osmo-legacy-battery-wave37.test.mjs');
 await import('./dji-ronin-legacy-battery-wave38.test.mjs');
 await import('./dji-ronin4d-osmo-action-wave39.test.mjs');
+await import('./dji-rc-nano-wave40.test.mjs');
 await import('./camera-accessory-coverage.test.mjs');
 await import('./camera-accessory-doc-sync.test.mjs');
