@@ -72,19 +72,19 @@ ManualFinder is an `AFFILIATE` tool, but commerce is an optional next-action lay
 
 Every actionable `カメラ・映像` row with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or explicit missing-accessory diagnostic state.
 
-The current camera state is **185 basic = 58 detail + 0 reviewed exclusions + 127 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
+The current camera state is **185 basic = 59 detail + 0 reviewed exclusions + 126 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
 
 Nikon Waves 1–2 remain closed at **14 detail + 0 reviewed exclusions + 0 missing**.
 
-DJI advances only through bounded exact-canonical-model waves. Reviewed scope through Wave 24 includes Waves 1–23 frozen in their individual ledgers plus Wave 24 for exactly:
+DJI advances only through bounded exact-canonical-model waves. Reviewed scope through Wave 25 includes Waves 1–24 frozen in their individual ledgers plus Wave 25 for exactly:
 
-- `Mavic 2 Enterprise Advanced`
+- `Mavic 2 Enterprise Series`
 
-Wave 24 maps only the exact canonical `Mavic 2 Enterprise Advanced` row to `DJI Mavic 2 Enterprise Battery`. DJI Store's official `Mavic 2 Enterprise Battery` page explicitly lists `Mavic 2 Enterprise Advanced` in Compatibility. No charging-hub offer is emitted because equally explicit Advanced-specific hub compatibility was not established; Wave 10's Mavic 2 hub evidence is not inferred to this enterprise variant. `Mavic 2 Enterprise Series`, `DJI Mavic 2 Enterprise Advanced`, and other family/spelling variants remain fail-closed.
+Wave 25 maps exactly the canonical `Mavic 2 Enterprise Series` row to `DJI Mavic 2 Enterprise Battery` and `Mavic 2 Battery Charging Hub`. DJI's official Mavic 2 Enterprise Series Download Center publishes the series-specific Intelligent Flight Battery Safety Guide, and DJI's official charging-hub compatibility article explicitly lists `Mavic 2 Enterprise Series` for the Mavic 2 Battery Charging Hub. Synthetic child-model names remain fail-closed.
 
-The measured DJI state after Waves 1–24 is **96 basic = 44 detail + 0 reviewed exclusions + 52 missing accessory detail**.
+The measured DJI state after Waves 1–25 is **96 basic = 45 detail + 0 reviewed exclusions + 51 missing accessory detail**.
 
-Camera-detail exclusions remain in `affiliate-camera-detail-exclusions.js`; the ledger is currently empty. Remaining missing camera rows are DJI 52, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
+Camera-detail exclusions remain in `affiliate-camera-detail-exclusions.js`; the ledger is currently empty. Remaining missing camera rows are DJI 51, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## State and persistence
 
@@ -125,10 +125,10 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] The printer audit remains **291 basic = 284 detail + 7 reviewed exclusions + 0 missing detail**.
 - [x] KYOCERA remains **123 = 120 detail + 3 reviewed exclusions + 0 missing**.
 - [x] Nikon camera accessory coverage remains **14 detail + 0 reviewed exclusions + 0 missing**.
-- [x] DJI Waves 1–24 preserve exact reviewed boundaries and do not infer neighboring product names.
-- [x] DJI Mavic 2 Enterprise Advanced Wave 24 activates exactly one reviewed canonical row with official DJI Store battery evidence and deliberately no inferred hub offer.
-- [x] DJI Waves 1–24 reconcile to **96 basic = 44 detail + 0 reviewed exclusions + 52 missing accessory detail**.
-- [x] The catalog-wide camera audit reconciles to **185 basic = 58 detail + 0 reviewed exclusions + 127 missing accessory detail** while seven maker/index rows remain non-actionable.
+- [x] DJI Waves 1–25 preserve exact reviewed boundaries and do not infer neighboring product names.
+- [x] DJI Mavic 2 Enterprise Series Wave 25 activates exactly one reviewed canonical series row with official battery and charging-hub evidence.
+- [x] DJI Waves 1–25 reconcile to **96 basic = 45 detail + 0 reviewed exclusions + 51 missing accessory detail**.
+- [x] The catalog-wide camera audit reconciles to **185 basic = 59 detail + 0 reviewed exclusions + 126 missing accessory detail** while seven maker/index rows remain non-actionable.
 - [x] Missing-model maker diagnostics and documentation sync remain machine-readable drift guards.
 - [x] Wrong maker/category, nonexistent models, spelling variants, and other unreviewed compatibility cases fail closed.
 - [x] Amazon disclosure and sponsored-link semantics remain supplied by the shared affiliate helper.
@@ -175,6 +175,7 @@ Reviewed DJI camera accessory ledgers:
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave22.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave23.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave24.js`
+- `tools/manual-finder/affiliate-dji-camera-accessories-wave25.js`
 
 Camera accessory tests and audit gates:
 
@@ -204,6 +205,7 @@ Camera accessory tests and audit gates:
 - `tools/manual-finder/tests/dji-phantom3-accessory-wave22.test.mjs`
 - `tools/manual-finder/tests/dji-phantom3-se-accessory-wave23.test.mjs`
 - `tools/manual-finder/tests/dji-mavic2-enterprise-advanced-wave24.test.mjs`
+- `tools/manual-finder/tests/dji-mavic2-enterprise-series-wave25.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-coverage.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs`
 - `tools/manual-finder/tests/affiliate-coverage.test.mjs`
