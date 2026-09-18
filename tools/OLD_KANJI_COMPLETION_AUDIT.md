@@ -10,7 +10,7 @@ Scope: the eight-tool Old Kanji cluster defined by `tools/OLD_KANJI_CLUSTER.md`.
 
 All eight tools have a `SPEC.md` whose specification status is `complete`. That means the intended product contract exists. It does **not** mean the implementation has passed final cluster acceptance.
 
-Completion Wave 10 closed the dictionary/data/documentation drift identified in C-01 and C-02. Completion Wave 11 closed the first product-flow QA tranche for Old Kanji Reference and Kanji Modernizer. Completion Wave 12 closed the OCR/Highlighter core behavior tranche. Completion Wave 13 closed the Unicode/Variant encoding and comparison tranche. Completion Wave 14 closed the Name/Place functional and safety tranche. Completion Wave 15 closes the cross-tool browser UX/mobile/accessibility tranche with real headless-Chrome coverage for all eight tools at 375×812 and 1440×1000, including JP/EN switching, keyboard focus traversal, long/empty input states, horizontal-overflow checks, control labelling/naming, warning readability, copy feedback, and captured runtime errors. Remaining search, measurement, SEO-inventory, and release acceptance stay owned by Waves 16–20.
+Completion Waves 10–16 closed dictionary/documentation drift, the four functional QA tranches, cross-tool browser UX/mobile/accessibility, and search-cluster reconciliation. Completion Wave 17 closes the measurement/affiliate-contract tranche by aligning the Old Kanji measurement SSOT with the canonical monetization classification: cluster handoff/support/Pro events remain coarse and payload-free, shared Amazon measurement is `affiliate_outbound`, and Reference/OCR Amazon wiring remains fail-closed because neither tool is currently in the canonical `AFFILIATE` class. Remaining SEO-inventory and release acceptance stay owned by Waves 18–20.
 
 ## Tool-by-tool completion state
 
@@ -18,7 +18,7 @@ Completion Wave 10 closed the dictionary/data/documentation drift identified in 
 | --- | --- | --- | --- |
 | Old Kanji Reference | complete | Wave 10 data/contract sync complete; Wave 11 core search/detector/handoff/state behavior automated; Wave 15 browser UX and Wave 16 search-role reconciliation complete; remaining release criteria stay open | Wave 19 release audit |
 | Kanji Modernizer | complete | Wave 11 functional QA, Wave 15 browser UX, and Wave 16 search-role/spec synchronization complete | Wave 19 release audit |
-| Old Kanji OCR Scanner | complete | Wave 12 core OCR/detection/error behavior automated; five core acceptance criteria closed; currently disabled optional Amazon affiliate criteria remain open for Wave 17/19 | Wave 17 measurement/affiliate contract, Wave 19 release audit |
+| Old Kanji OCR Scanner | complete | Wave 12 core OCR/detection/error behavior automated; Wave 15 browser UX and Wave 16 search-role reconciliation complete; Wave 17 closes dormant Amazon/measurement criteria against canonical `HOLD` state | Wave 19 release audit |
 | Old Document Kanji Highlighter | complete | Wave 12 functional QA, Wave 15 browser UX, and Wave 16 search-role/spec synchronization complete | Wave 19 release audit |
 | Unicode Kanji Checker | complete | Wave 13 functional acceptance closed by durable encoding/edge-case QA, including exact inbound `?q=` restoration | Wave 19 release audit |
 | Variant Kanji Compare | complete | Wave 13 functional acceptance closed by durable preset/custom comparison, Unicode-range, multi-font wiring, mapping and summary QA | Wave 19 release audit |
@@ -90,21 +90,22 @@ Owner: Waves 11–19.
 
 Wave 11 establishes the rule in practice: an acceptance checkbox is checked only when a durable automated contract or direct implementation evidence exists.
 
-Current closure state after Wave 16:
+Current closure state after Wave 17:
 - Kanji Modernizer: all declared functional acceptance criteria are checked with `tools/kanji-modernizer/tests/behavior.test.mjs` and runtime-source assertions.
-- Old Kanji Reference: search/filter, SERP/H1/canonical/schema/FAQ contracts, task handoffs, detector/handoff behavior, local-state restoration semantics, and individual-page allowlist are checked. Browser-level export interaction, remaining copy/visual behavior, Pro/public-copy, caution/layout, and Amazon criteria remain open for the owning later waves.
-- Old Kanji OCR Scanner and Old Document Kanji Highlighter: Wave 12 closes the declared core functional criteria supported by behavior tests; OCR affiliate criteria and browser UX remain later-wave work.
+- Old Kanji Reference: search/filter, SERP/H1/canonical/schema/FAQ contracts, task handoffs, detector/handoff behavior, local-state restoration semantics, individual-page allowlist, and dormant Amazon/measurement boundary are checked. Remaining browser export/copy/visual/Pro-public-copy/caution/layout criteria stay for Wave 19.
+- Old Kanji OCR Scanner and Old Document Kanji Highlighter: Wave 12 closes core functional criteria; Wave 15 closes browser UX; Wave 17 closes OCR dormant Amazon/measurement criteria against the canonical `HOLD` state.
 - Unicode Kanji Checker and Variant Kanji Compare: Wave 13 closes their declared functional acceptance criteria with behavior tests and implementation-source assertions, including supplementary Unicode ranges that were previously misclassified.
 - Place Old Kanji Checker and Name Old Kanji Checker: Wave 14 closes their declared functional acceptance criteria with behavior tests and source assertions covering mapping, degraded optional data, privacy, non-authority wording, and exact Modernizer handoffs.
 - All eight tools: Wave 15 adds real-Chrome browser evidence at 375×812 and 1440×1000 for language switching, keyboard traversal, long/empty interaction states, document overflow, visible control labelling/naming, warning readability, copy feedback where copy controls exist, and runtime-error capture.
 - All eight tools: Wave 16 aligns title/H1/description/canonical/schema/spec search roles with the canonical cluster contract and adds a durable anti-cannibalization/search-role regression checker.
+- All eight tools: Wave 17 locks coarse `old_kanji_handoff`, `support_click`, and enabled-only `old_kanji_pro_click` measurement without inspecting user payload sources; Amazon remains a separate shared `affiliate_outbound` authority and is dormant for the current Old Kanji classifications.
 
 Exit condition: Wave 19 must leave no unchecked criterion without either direct evidence or an explicit specification decision that removes/rewords the criterion.
 
 ### C-05 — No cluster-wide regression contract currently proves the full eight-tool journey
-Status: **partially covered in Completion Wave 11**.
+Status: **measurement/privacy boundary closed in Completion Wave 17; remaining browser-journey closure owned by Wave 19**.
 Severity: medium regression-risk defect.
-Owner: Waves 11–17 and Wave 19.
+Owner: Completion Wave 19.
 
 Wave 11 adds durable coverage for the highest-risk first boundary:
 - Reference detector text → Modernizer `?q=` preserves leading/trailing whitespace and line breaks;
@@ -120,7 +121,7 @@ Still required before completion:
 - Variant → Unicode comparison-set handoff now has a tested Unicode `?q=` receiver; Variant ↔ Reference/Name browser boundary remains;
 - Place → Modernizer whole-text handoff now preserves exact input and per-character Reference links remain wired; Place ↔ Name browser boundary remains;
 - Name → Modernizer whole-text handoff now preserves exact input and per-character Reference links remain wired; Name ↔ Variant/Unicode browser boundary remains;
-- no user-entered names, addresses, OCR text, pasted documents, conversion text, or searched strings in analytics/affiliate payloads.
+- analytics/affiliate payload privacy boundary is now durably checked in Wave 17: cluster analytics does not inspect `.value`, `.textContent`, `.innerText`, storage, query strings, or search params; Old Kanji Amazon runtime is disabled and emits no outbound event.
 
 Exit condition: durable automated checks where practical plus explicit manual evidence for browser-only behavior that cannot be proven statically.
 
@@ -324,7 +325,30 @@ Confirmed search-copy defect fixed:
 No broad title rewrite was performed on pages already aligned with their intended role, and the individual-kanji allowlist remains unchanged.
 
 ### Wave 17 — Measurement completion
-Verify coarse landing/handoff/support/affiliate measurement without transmitting user payload data. Add only missing events required by the cluster measurement contract.
+Status: **completed**.
+
+Durable evidence:
+- `tools/OLD_KANJI_MEASUREMENT.md`;
+- `scripts/check-old-kanji-measurement.mjs`;
+- `tools/OLD_KANJI_AMAZON.md`;
+- `scripts/check-old-kanji-amazon.mjs`;
+- `assets/old-kanji-analytics.js`;
+- shared `assets/amazon-affiliate.js`.
+
+Confirmed contract drift fixed:
+1. The Old Kanji measurement contract/checker still named historical `affiliate_click`, while the shared canonical Amazon helper has moved to `affiliate_outbound`.
+2. Old Kanji Reference and OCR SPECs still described live fixed Amazon searches/tracking IDs even though canonical monetization classifies Reference as `ADS_DONATION` and OCR as `HOLD`, with both production configs disabled.
+
+Verified measurement/privacy behavior:
+- cluster handoff events expose only source tool, target tool, and coarse placement;
+- support events expose only tool, provider, and support placement;
+- Pro events are suppressed for disabled, aria-disabled, or billing-unavailable controls;
+- cluster analytics does not inspect user-entered field values, rendered text, local/session storage, or query strings;
+- cluster analytics does not implement either legacy `affiliate_click` or duplicate shared `affiliate_outbound`;
+- shared Amazon `affiliate_outbound` remains the sole future affiliate-event authority;
+- current Reference/OCR Amazon configs are fail-closed, with no tracking ID, no destination/search targets, and therefore no current Old Kanji Amazon outbound event.
+
+No runtime Amazon activation, affiliate classification change, user-payload measurement, or new monetization surface was introduced.
 
 ### Wave 18 — SEO inventory final gate
 Keep individual pages allowlisted and evidence-led. Re-audit the existing three pages. Do not publish the 168 repository-side candidates as inventory without actual GSC demand and authoritative source support.
@@ -356,4 +380,4 @@ The Old Kanji cluster is complete only when all of the following are true:
 
 ## Current decision
 
-Completion Wave 16 closes the search-cluster/spec reconciliation gate without declaring measurement/SEO-inventory/release completion. The next permitted work is Completion Wave 17: measurement completion.
+Completion Wave 17 closes the measurement/affiliate-contract gate without activating Amazon or expanding telemetry. The next permitted work is Completion Wave 18: SEO inventory final gate.
