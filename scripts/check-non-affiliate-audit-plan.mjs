@@ -36,11 +36,13 @@ const scope = readJson('audits/non-affiliate-scope.json');
 const classification = readJson('MONETIZATION_CLASSIFICATION.json');
 const plan = readJson('audits/non-affiliate-audit-plan.json');
 
-if (plan.totalTools !== 76) fail(`plan totalTools must be 76, got ${plan.totalTools}`);
+if (plan.totalTools !== scope.inScopeCount) fail(`plan totalTools=${plan.totalTools} must equal scope inScopeCount=${scope.inScopeCount}`);
 if (plan.waveSize !== 12) fail(`plan baseline waveSize must be 12, got ${plan.waveSize}`);
-if (plan.waveCount !== 7) fail(`plan waveCount must be 7, got ${plan.waveCount}`);
-if (!Array.isArray(plan.waveSizes) || plan.waveSizes.length !== 7) {
-  fail('plan waveSizes must contain seven entries');
+if (plan.waveCount !== plan.waveSizes?.length) fail(`plan waveCount must equal waveSizes length, got ${plan.waveCount}`);
+if (!Array.isArray(plan.waveSizes) || plan.waveSizes.length !== plan.waveCount) {
+  fail('plan waveSizes must contain one entry per wave');
+} else if (plan.waveSizes.reduce((sum, size) => sum + size, 0) !== plan.totalTools) {
+  fail('plan totalTools must equal the sum of waveSizes');
 } else {
   const expectedSizes = [12, 12, 12, 12, 12, 12, 4];
   if (plan.waveSizes.some((size, index) => size !== expectedSizes[index])) {
@@ -50,11 +52,11 @@ if (!Array.isArray(plan.waveSizes) || plan.waveSizes.length !== 7) {
     fail('plan totalTools must equal the sum of waveSizes');
   }
 }
-if (plan.assignment !== 'frozen_baseline_waves_plus_reclassified_additions') {
+if (plan.assignment !== 'current_registry_order_chunks') {
   fail(`unexpected assignment ${plan.assignment}`);
 }
-if (!Array.isArray(plan.lateAdditions) || plan.lateAdditions.length !== 4) {
-  fail('lateAdditions must contain the four 2026-09-17 reclassified tools');
+if (!Array.isArray(plan.lateAdditions) || plan.lateAdditions.length !== 0) {
+  fail('lateAdditions must be empty in current-scope chunk mode');
 }
 if (plan.auditMode !== 'audit_only') fail(`auditMode must be audit_only, got ${plan.auditMode}`);
 if (!sameSet(new Set(plan.categories), new Set(REQUIRED_CATEGORIES)) || plan.categories.length !== REQUIRED_CATEGORIES.length) {
@@ -86,11 +88,7 @@ for (const [className, slugs] of Object.entries(classification.classes)) {
   for (const slug of slugs) classBySlug.set(slug, className);
 }
 
-for (const slug of plan.lateAdditions ?? []) {
-  if (classBySlug.get(slug) !== 'ADS_DONATION') {
-    fail(`late addition ${slug} must be ADS_DONATION after affiliate reclassification`);
-  }
-}
+
 
 const waveDir = path.join(root, 'audits', 'non-affiliate-waves');
 if (fs.existsSync(waveDir)) {
