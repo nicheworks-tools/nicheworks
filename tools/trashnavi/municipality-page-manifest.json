@@ -242,5 +242,15 @@
   {"lgcode":"082198","pref_slug":"ibaraki","city_slug":"ushiku","publish":true},
   {"lgcode":"082201","pref_slug":"ibaraki","city_slug":"tsukuba","publish":true},
   {"lgcode":"082210","pref_slug":"ibaraki","city_slug":"hitachinaka","publish":true},
-  {"lgcode":"082244","pref_slug":"ibaraki","city_slug":"moriya","publish":true}
+  {"lgcode":"082244","pref_slug":"ibaraki","city_slug":"moriya","publish":true},
+  {"lgcode":"082171","pref_slug":"ibaraki","city_slug":"toride","publish":true},
+  {"lgcode":"082261","pref_slug":"ibaraki","city_slug":"naka","publish":true},
+  {"lgcode":"082279","pref_slug":"ibaraki","city_slug":"chikusei","publish":true},
+  {"lgcode":"082295","pref_slug":"ibaraki","city_slug":"inashiki","publish":true},
+  {"lgcode":"082309","pref_slug":"ibaraki","city_slug":"kasumigaura","publish":true},
+  {"lgcode":"082350","pref_slug":"ibaraki","city_slug":"tsukubamirai","publish":true},
+  {"lgcode":"082228","pref_slug":"ibaraki","city_slug":"kashima","publish":true},
+  {"lgcode":"082325","pref_slug":"ibaraki","city_slug":"kamisu","publish":true},
+  {"lgcode":"082368","pref_slug":"ibaraki","city_slug":"omitama","publish":true},
+  {"lgcode":"082333","pref_slug":"ibaraki","city_slug":"namegata","publish":true}
 ]

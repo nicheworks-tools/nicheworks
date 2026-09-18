@@ -1031,3 +1031,14 @@ Wave 46は茨城県の10自治体を、従来どおり `municipal_home` を除�
 - publication acceptance: 244 municipality pages、244 root internal links、AI reference 244/244、専用sitemapはtool rootを含む245 URL
 - 2026 calendar callout: 日立市、石岡市、龍ケ崎市、つくば市、守谷市。その他5市は年次を推測しない。
 - Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を維持する。
+
+
+## Wave 47 batch publication
+
+Wave 47は茨城県の10自治体を、従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific municipal-official link typeで公開し、公開対象を **244自治体から254自治体** へ拡張する。坂東市は市公式の独立3 URL thresholdを無理に満たさず、行方市へ差し替える。Wave 46後に追加されたtype-aware municipality generatorとroot Amazon affiliate isolation contractを正本として維持する。
+
+- 取手市、那珂市、筑西市、稲敷市、かすみがうら市、つくばみらい市、鹿嶋市、神栖市、小美玉市、行方市
+- readiness baseline: 2,850 / 2,850 valid HTTP(S)、254 preferred candidates、50 direct-link datasets / 782 records / 763 unique URLs / 0 invalid URLs
+- publication acceptance: 254 municipality pages、254 root internal links、AI reference 254/254、専用sitemapはtool rootを含む255 URL
+- 2026 calendar callout: 取手市、那珂市、稲敷市、つくばみらい市、鹿嶋市、小美玉市、行方市。筑西市・かすみがうら市・神栖市には年次calloutを生成しない。
+- Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を維持し、root directory affiliate blockも検索結果・自治体公式情報とは分離する。
