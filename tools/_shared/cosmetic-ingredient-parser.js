@@ -157,7 +157,15 @@
     "polyquaternium-53": Object.freeze({ category: "hair conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12420/polyquaternium-53/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "ppg-5-ceteth-20": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/13095/ppg-5-ceteth-20/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "snail secretion filtrate": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://kcia.or.kr/cid/search/ingd_view.php?no=6319"]), authority: "Korea Cosmetic Association / Ingredient Dictionary" }),
-    "synthetic beeswax": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15761/synthetic-beeswax/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "synthetic beeswax": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15761/synthetic-beeswax/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hexadecyloxy pg hydroxyethyl hexadecanamide": Object.freeze({ category: "moisturizer", sources: Object.freeze(["https://www.kao-kirei.com/ja/official/curel/special/26oilserum/"]), authority: "Kao / Curel official product information" }),
+    "peg-6 caprylic/capric glycerides": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10945/peg-6-caprylic-capric-glycerides/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sodium lauroyl lactylate": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14891/sodium-lauroyl-lactylate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "zinc oxide": Object.freeze({ category: "uv filter", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/17131/zinc-oxide/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "zea mays starch": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/17078/zea-mays-starch"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "peg-8": Object.freeze({ category: "humectant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11059/peg-8/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "microcrystalline wax": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/fr/inci/ingredient/22305/microcrystalline-wax/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "benzyl alcohol": Object.freeze({ category: "preservative", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1592/benzyl-alcohol/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
@@ -407,7 +415,7 @@
   }
 
   const api = {
-    version: "1.41.0",
+    version: "1.42.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
