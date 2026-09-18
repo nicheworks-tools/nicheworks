@@ -9,6 +9,14 @@
 
 見た目が近い漢字、旧字体、異体字を並べ、glyph、Unicode、HTML entity、UTF-16、旧新対応、画数・字形note、表示環境上の注意を比較するreference toolを提供する。
 
+## Search cluster role
+
+- Primary intent: compare visually similar old/variant glyphs side by side.
+- Primary query families: `異体字 比較`, `漢字 字形 比較`, `<字> <字> 違い`.
+- Supporting query families: `旧字体 異体字 違い`, `髙 高 違い`, `﨑 崎 違い`.
+- The page is the cluster's multi-glyph visual/code comparison tool. It is not the generic old/new dictionary.
+- Primary task handoffs are Unicode Kanji Checker, Old Kanji Reference, and Name Old Kanji Checker.
+
 ## Current functional contract
 
 - 入力からwhitespace、comma、slash等を除き、unique characterとして比較する。
