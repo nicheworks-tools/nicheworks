@@ -2844,20 +2844,20 @@
       "json_ld_status": "present",
       "donation_status": "present",
       "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
+      "functional_test_status": "behavior-test-present",
       "automated_tests": [
-        "scripts/check-tool-runtime-contracts.mjs"
+        "scripts/check-tool-runtime-contracts.mjs",
+        "tools/kanji-modernizer/tests/behavior.test.mjs"
       ],
-      "outstanding_issues": [
-        "Behavior-level automated tests are absent."
-      ],
+      "outstanding_issues": [],
       "final_state": "PASS",
       "evidence": [
         "tools/kanji-modernizer/index.html",
         "tools/kanji-modernizer/app.js",
         "tools/kanji-modernizer/style.css",
         "tools/kanji-modernizer/usage-en.html",
-        "tools/kanji-modernizer/usage.html"
+        "tools/kanji-modernizer/usage.html",
+        "tools/kanji-modernizer/tests/behavior.test.mjs"
       ],
       "usage_html_present": true,
       "usage_en_html_present": true,
@@ -2880,13 +2880,15 @@
         {
           "path": "scripts/check-tool-runtime-contracts.mjs",
           "classification": "regression/contract test"
+        },
+        {
+          "path": "tools/kanji-modernizer/tests/behavior.test.mjs",
+          "classification": "behavior test"
         }
       ],
       "decision_gaps": [],
       "hard_compliance_gaps": [],
-      "recommendation_only_gaps": [
-        "Behavior-level automated tests are absent."
-      ]
+      "recommendation_only_gaps": []
     },
     {
       "slug": "laundry-code-decode",
@@ -4388,20 +4390,21 @@
       "json_ld_status": "present",
       "donation_status": "present",
       "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
+      "functional_test_status": "behavior-test-present",
       "automated_tests": [
-        "scripts/check-tool-runtime-contracts-wave4.mjs"
+        "scripts/check-tool-runtime-contracts-wave4.mjs",
+        "tools/name-old-kanji-checker/tests/behavior.test.mjs"
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "FAQ is recommended but absent."
       ],
       "final_state": "PASS",
       "evidence": [
         "tools/name-old-kanji-checker/index.html",
         "tools/name-old-kanji-checker/app.js",
-        "tools/name-old-kanji-checker/style.css"
+        "tools/name-old-kanji-checker/style.css",
+        "tools/name-old-kanji-checker/tests/behavior.test.mjs"
       ],
       "usage_html_present": false,
       "usage_en_html_present": false,
@@ -4421,14 +4424,17 @@
         {
           "path": "scripts/check-tool-runtime-contracts-wave4.mjs",
           "classification": "regression/contract test"
+        },
+        {
+          "path": "tools/name-old-kanji-checker/tests/behavior.test.mjs",
+          "classification": "behavior test"
         }
       ],
       "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
-        "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "FAQ is recommended but absent."
       ]
     },
     {
@@ -4806,20 +4812,21 @@
       "json_ld_status": "present",
       "donation_status": "present",
       "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
+      "functional_test_status": "behavior-test-present",
       "automated_tests": [
-        "scripts/check-tool-runtime-contracts-wave4.mjs"
+        "scripts/check-tool-runtime-contracts-wave4.mjs",
+        "tools/old-document-kanji-highlighter/tests/behavior.test.mjs"
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "FAQ is recommended but absent."
       ],
       "final_state": "PASS",
       "evidence": [
         "tools/old-document-kanji-highlighter/index.html",
         "tools/old-document-kanji-highlighter/app.js",
-        "tools/old-document-kanji-highlighter/style.css"
+        "tools/old-document-kanji-highlighter/style.css",
+        "tools/old-document-kanji-highlighter/tests/behavior.test.mjs"
       ],
       "usage_html_present": false,
       "usage_en_html_present": false,
@@ -4839,14 +4846,17 @@
         {
           "path": "scripts/check-tool-runtime-contracts-wave4.mjs",
           "classification": "regression/contract test"
+        },
+        {
+          "path": "tools/old-document-kanji-highlighter/tests/behavior.test.mjs",
+          "classification": "behavior test"
         }
       ],
       "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
-        "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "FAQ is recommended but absent."
       ]
     },
     {
@@ -4894,20 +4904,21 @@
       "json_ld_status": "present",
       "donation_status": "present",
       "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
+      "functional_test_status": "behavior-test-present",
       "automated_tests": [
-        "scripts/check-tool-runtime-contracts-wave4.mjs"
+        "scripts/check-tool-runtime-contracts-wave4.mjs",
+        "tools/old-kanji-ocr-scanner/tests/behavior.test.mjs"
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "FAQ is recommended but absent."
       ],
       "final_state": "PASS",
       "evidence": [
         "tools/old-kanji-ocr-scanner/index.html",
         "tools/old-kanji-ocr-scanner/app.js",
-        "tools/old-kanji-ocr-scanner/style.css"
+        "tools/old-kanji-ocr-scanner/style.css",
+        "tools/old-kanji-ocr-scanner/tests/behavior.test.mjs"
       ],
       "usage_html_present": false,
       "usage_en_html_present": false,
@@ -4927,14 +4938,17 @@
         {
           "path": "scripts/check-tool-runtime-contracts-wave4.mjs",
           "classification": "regression/contract test"
+        },
+        {
+          "path": "tools/old-kanji-ocr-scanner/tests/behavior.test.mjs",
+          "classification": "behavior test"
         }
       ],
       "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
-        "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "FAQ is recommended but absent."
       ]
     },
     {
@@ -4983,26 +4997,25 @@
       "json_ld_status": "present",
       "donation_status": "present",
       "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
+      "functional_test_status": "behavior-test-present",
       "automated_tests": [
         "scripts/check-tool-runtime-contracts-wave4.mjs",
         "tools/old-kanji-reference/validate-compatibility-notes.js",
         "tools/old-kanji-reference/validate-meta.js",
         "tools/old-kanji-reference/validate-shape-notes.js",
-        "tools/old-kanji-reference/validate-stroke-counts.js"
+        "tools/old-kanji-reference/validate-stroke-counts.js",
+        "tools/old-kanji-reference/tests/behavior.test.mjs"
       ],
       "outstanding_issues": [
-        "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "Usage documentation is recommended but absent."
       ],
       "final_state": "PASS",
       "evidence": [
         "tools/old-kanji-reference/index.html",
-        "tools/old-kanji-reference/app-meaning-v3.js",
         "tools/old-kanji-reference/app-meaning-v4.js",
-        "tools/old-kanji-reference/app-meaning.js",
         "tools/old-kanji-reference/app.js",
-        "tools/old-kanji-reference/style.css"
+        "tools/old-kanji-reference/style.css",
+        "tools/old-kanji-reference/tests/behavior.test.mjs"
       ],
       "usage_html_present": false,
       "usage_en_html_present": false,
@@ -5038,13 +5051,16 @@
         {
           "path": "tools/old-kanji-reference/validate-stroke-counts.js",
           "classification": "data validation"
+        },
+        {
+          "path": "tools/old-kanji-reference/tests/behavior.test.mjs",
+          "classification": "behavior test"
         }
       ],
       "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
-        "Usage documentation is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "Usage documentation is recommended but absent."
       ]
     },
     {
@@ -5809,20 +5825,21 @@
       "json_ld_status": "present",
       "donation_status": "present",
       "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
+      "functional_test_status": "behavior-test-present",
       "automated_tests": [
-        "scripts/check-tool-runtime-contracts-wave5.mjs"
+        "scripts/check-tool-runtime-contracts-wave5.mjs",
+        "tools/place-old-kanji-checker/tests/behavior.test.mjs"
       ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "FAQ is recommended but absent."
       ],
       "final_state": "PASS",
       "evidence": [
         "tools/place-old-kanji-checker/index.html",
         "tools/place-old-kanji-checker/app.js",
-        "tools/place-old-kanji-checker/style.css"
+        "tools/place-old-kanji-checker/style.css",
+        "tools/place-old-kanji-checker/tests/behavior.test.mjs"
       ],
       "usage_html_present": false,
       "usage_en_html_present": false,
@@ -5842,14 +5859,17 @@
         {
           "path": "scripts/check-tool-runtime-contracts-wave5.mjs",
           "classification": "regression/contract test"
+        },
+        {
+          "path": "tools/place-old-kanji-checker/tests/behavior.test.mjs",
+          "classification": "behavior test"
         }
       ],
       "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
-        "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "FAQ is recommended but absent."
       ]
     },
     {
@@ -7046,18 +7066,20 @@
       "json_ld_status": "present",
       "donation_status": "present",
       "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
-      "automated_tests": [],
+      "functional_test_status": "behavior-test-present",
+      "automated_tests": [
+        "tools/unicode-kanji-checker/tests/behavior.test.mjs"
+      ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "FAQ is recommended but absent."
       ],
       "final_state": "PASS",
       "evidence": [
         "tools/unicode-kanji-checker/index.html",
         "tools/unicode-kanji-checker/app.js",
-        "tools/unicode-kanji-checker/style.css"
+        "tools/unicode-kanji-checker/style.css",
+        "tools/unicode-kanji-checker/tests/behavior.test.mjs"
       ],
       "usage_html_present": false,
       "usage_en_html_present": false,
@@ -7073,13 +7095,17 @@
           "en": false
         }
       },
-      "test_evidence": [],
+      "test_evidence": [
+        {
+          "path": "tools/unicode-kanji-checker/tests/behavior.test.mjs",
+          "classification": "behavior test"
+        }
+      ],
       "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
-        "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "FAQ is recommended but absent."
       ]
     },
     {
@@ -7309,18 +7335,20 @@
       "json_ld_status": "present",
       "donation_status": "present",
       "privacy_compliance": "documented",
-      "functional_test_status": "behavior-test-missing",
-      "automated_tests": [],
+      "functional_test_status": "behavior-test-present",
+      "automated_tests": [
+        "tools/variant-kanji-compare/tests/behavior.test.mjs"
+      ],
       "outstanding_issues": [
         "Usage documentation is recommended but absent.",
-        "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "FAQ is recommended but absent."
       ],
       "final_state": "PASS",
       "evidence": [
         "tools/variant-kanji-compare/index.html",
         "tools/variant-kanji-compare/app.js",
-        "tools/variant-kanji-compare/style.css"
+        "tools/variant-kanji-compare/style.css",
+        "tools/variant-kanji-compare/tests/behavior.test.mjs"
       ],
       "usage_html_present": false,
       "usage_en_html_present": false,
@@ -7336,13 +7364,17 @@
           "en": false
         }
       },
-      "test_evidence": [],
+      "test_evidence": [
+        {
+          "path": "tools/variant-kanji-compare/tests/behavior.test.mjs",
+          "classification": "behavior test"
+        }
+      ],
       "decision_gaps": [],
       "hard_compliance_gaps": [],
       "recommendation_only_gaps": [
         "Usage documentation is recommended but absent.",
-        "FAQ is recommended but absent.",
-        "Behavior-level automated tests are absent."
+        "FAQ is recommended but absent."
       ]
     },
     {
