@@ -1,0 +1,396 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-18-wave6h-services-site-controls-1",
+  "entries": [
+    {
+      "id": "backer_rod",
+      "wave": "content-wave-006h",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "シーリング目地へ充填してシーリング材の深さ・断面形状を調整する発泡体のバックアップ材。目地幅、必要な圧縮、シーリング材との適合、屋内外条件に合わせて径と材質を選ぶ。",
+      "detail_en": "Foam backer material placed in a sealant joint to control sealant depth and joint profile. Diameter and material should suit joint width, required compression, sealant compatibility, and exposure conditions.",
+      "bullets_ja": [
+        "目地幅より適度に大きい径を選び、均一な深さで押し込んでシーリング厚を確保する。",
+        "シーリング材が目地底へ付着して三面接着にならないよう、指定断面を形成する。",
+        "閉孔材など傷に弱いタイプは鋭利な工具で突かず、表面を損傷させない。"
+      ],
+      "bullets_en": [
+        "Select a diameter that fits the joint with suitable compression and install it to a consistent depth.",
+        "Form the specified sealant profile and prevent unwanted three-sided adhesion to the joint bottom.",
+        "Do not puncture or damage closed-cell or otherwise sensitive backer material with sharp tools."
+      ],
+      "examples_ja": [
+        "外壁シーリング目地へバックアップ材を挿入して施工深さを揃える。",
+        "サッシ周囲の目地でシーリング材の断面を整える。"
+      ],
+      "examples_en": [
+        "Insert backer rod in an exterior sealant joint to control sealant depth.",
+        "Use backer material around a window joint to establish the required sealant profile."
+      ]
+    },
+    {
+      "id": "junction_box",
+      "wave": "content-wave-006h",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "電線の接続・分岐部を収容し、機械的損傷や接触から保護する配線箱。材質、寸法、開口、接地、屋内外・防水性能などを配線方式と設置環境に合わせる。",
+      "detail_en": "An electrical enclosure used to contain splices or branch connections and protect them from contact and mechanical damage. Size, material, openings, grounding, and environmental rating must suit the wiring method and location.",
+      "bullets_ja": [
+        "収容する電線・接続具に十分な容量を確保し、過密な詰込みを避ける。",
+        "ノックアウトや引込部を適切なコネクタで処理し、電線被覆を傷付ける端部を残さない。",
+        "必要な接地・カバー・防水処理を行い、点検が必要な箱を仕上げ内へ埋め込まない。"
+      ],
+      "bullets_en": [
+        "Provide sufficient enclosure volume for the conductors and connectors and avoid overcrowding.",
+        "Use suitable fittings at knockouts and cable entries and eliminate sharp edges that could damage insulation.",
+        "Provide required grounding, covers, and weather sealing, and keep boxes accessible where inspection is required."
+      ],
+      "examples_ja": [
+        "天井内の分岐接続をジョイントボックス内へ収める。",
+        "屋外配線で防雨仕様の配線箱を使用する。"
+      ],
+      "examples_en": [
+        "Contain a branch-wire splice inside an accessible junction box.",
+        "Use a weather-rated junction box for an outdoor wiring connection."
+      ]
+    },
+    {
+      "id": "receptacle_outlet",
+      "wave": "content-wave-006h",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "プラグを差し込んで機器へ電源を供給するコンセント・アウトレット。電圧、定格電流、極数、接地方式、防水・保護機能などを回路と使用場所に合わせて選ぶ。",
+      "detail_en": "A receptacle or outlet provides plug-in power to equipment. Voltage, current rating, pole arrangement, grounding, and environmental or protective features must match the circuit and installation location.",
+      "bullets_ja": [
+        "回路電圧・定格・接地方式に適合する器具を使用し、異なる仕様を混在させない。",
+        "施工・交換時は回路を適切に隔離し、無電圧確認後に結線する。",
+        "湿潤部・屋外・工事現場などでは、必要な防水・漏電保護・カバー仕様を確認する。"
+      ],
+      "bullets_en": [
+        "Use a receptacle compatible with circuit voltage, rating, and grounding arrangement and do not mix incompatible devices.",
+        "Isolate the circuit and verify absence of voltage before wiring or replacement.",
+        "For wet, outdoor, or jobsite locations, provide the required weather protection, residual-current protection, and covers."
+      ],
+      "examples_ja": [
+        "仮設事務所へ回路仕様に合う接地極付きコンセントを設置する。",
+        "屋外設備用に防雨カバー付きアウトレットを施工する。"
+      ],
+      "examples_en": [
+        "Install a grounded receptacle matched to the circuit in a temporary site office.",
+        "Provide a weather-protected outlet for exterior equipment."
+      ]
+    },
+    {
+      "id": "wire_connector",
+      "wave": "content-wave-006h",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "電線同士を接続するための配線コネクタ。ねじ込み式、差込み式、圧着式などがあり、導体材質、サイズ、本数、電圧・温度条件に適合する製品を使う。",
+      "detail_en": "A connector used to join electrical conductors. Twist-on, push-in, crimp, and other types have limits for conductor material, size, count, voltage, and temperature that must be followed.",
+      "bullets_ja": [
+        "導体の種類・太さ・本数がコネクタの適用範囲内であることを確認する。",
+        "指定の被覆剥き長さを守り、接続後に裸導体が不必要に露出しないようにする。",
+        "接続を引張って緩みがないことを確認し、必要な配線箱内へ収める。"
+      ],
+      "bullets_en": [
+        "Confirm conductor material, gauge, and count are within the connector's approved range.",
+        "Use the specified strip length and avoid leaving unnecessary bare conductor exposed after connection.",
+        "Check the completed connection for security and enclose it in the required electrical box or enclosure."
+      ],
+      "examples_ja": [
+        "分岐配線を適合する配線コネクタで接続する。",
+        "器具交換時に導体サイズへ合うコネクタを選ぶ。"
+      ],
+      "examples_en": [
+        "Join branch conductors with a connector approved for the conductor combination.",
+        "Select a wire connector that matches conductor size during fixture replacement."
+      ]
+    },
+    {
+      "id": "ball_valve",
+      "wave": "content-wave-006h",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "内部の球体を90度回転させて流路を開閉する配管用バルブ。呼び径、接続方式、圧力・温度、流体、材質を配管系統に合わせて選ぶ。",
+      "detail_en": "A quarter-turn valve that opens or closes flow by rotating an internal ball. Nominal size, connection type, pressure and temperature rating, fluid compatibility, and body materials must match the piping system.",
+      "bullets_ja": [
+        "流体・圧力・温度に適合する定格と材質のバルブを使用する。",
+        "配管へ無理な応力を掛けず、ねじ込み・フランジ・溶接など接続方式に合う施工を行う。",
+        "開閉位置を確認できるようハンドル周囲の操作空間を確保し、用途不明の中間開度運用を避ける。"
+      ],
+      "bullets_en": [
+        "Use a valve with pressure, temperature, and material ratings compatible with the service fluid.",
+        "Install using the correct threaded, flanged, soldered, or other connection method without imposing excessive pipe stress.",
+        "Maintain access to the handle and do not assume the valve is suitable for throttling unless the product is designed for it."
+      ],
+      "examples_ja": [
+        "給水枝管へ保守用のボールバルブを設置する。",
+        "設備交換前にボールバルブで対象系統を隔離する。"
+      ],
+      "examples_en": [
+        "Install a ball valve on a water branch for maintenance isolation.",
+        "Close a ball valve to isolate equipment before replacement."
+      ]
+    },
+    {
+      "id": "p_trap",
+      "wave": "content-wave-006h",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "排水配管に水封を保持し、下水臭やガスの逆流を抑えるP字形の排水トラップ。器具排水口、管径、勾配、清掃性、通気条件に合わせて施工する。",
+      "detail_en": "A P-shaped drain trap that retains a water seal to reduce sewer-gas entry through a fixture drain. Size, orientation, slope, cleanability, and venting must suit the plumbing arrangement.",
+      "bullets_ja": [
+        "正しい向きと高さで組み、トラップ内に水封が維持される配置にする。",
+        "継手を無理に引き寄せず、漏れのない接続と適切な排水勾配を確保する。",
+        "清掃・点検できるようアクセスを確保し、長期未使用で水封が失われる場合の管理も考慮する。"
+      ],
+      "bullets_en": [
+        "Install in the correct orientation and elevation so the trap retains its intended water seal.",
+        "Do not force misaligned joints; provide leak-tight connections and the required drainage slope.",
+        "Keep the trap accessible for cleaning and consider water-seal loss where fixtures remain unused for long periods."
+      ],
+      "examples_ja": [
+        "洗面器下へ排水口位置に合わせてPトラップを接続する。",
+        "漏水確認後にトラップ接続部を最終締付けする。"
+      ],
+      "examples_en": [
+        "Connect a P-trap beneath a basin to suit the fixture outlet and drain line.",
+        "Check for leaks before completing the trap installation."
+      ]
+    },
+    {
+      "id": "pipe_joint_compound",
+      "wave": "content-wave-006h",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "ねじ込み配管継手の微小な隙間をシールするために塗布する配管用ねじシール剤。流体、配管材、温度・圧力、ねじ種類に適合する製品を選ぶ。",
+      "detail_en": "A paste or compound applied to compatible threaded pipe joints to help seal small clearances. The product must be suitable for the service fluid, pipe material, pressure, temperature, and thread type.",
+      "bullets_ja": [
+        "用途と流体に対する製品適合を確認し、ガス・飲料水・薬品などへ一般品を流用しない。",
+        "ねじ部を清掃し、メーカー指定範囲へ過不足なく塗布して配管内への大量侵入を避ける。",
+        "硬化時間や増締め条件がある製品では、通水・加圧前に指定条件を満たす。"
+      ],
+      "bullets_en": [
+        "Verify product approval and compatibility for the service and do not substitute general-purpose compound for gas, potable-water, chemical, or other special systems.",
+        "Clean the threads and apply the specified amount in the recommended area without forcing excess compound into the pipe bore.",
+        "Where cure time or retightening requirements apply, satisfy them before pressurizing or placing the line in service."
+      ],
+      "examples_ja": [
+        "ねじ込み給水継手へ適合する配管用シール剤を塗布する。",
+        "圧力試験前にシール剤の必要硬化時間を確認する。"
+      ],
+      "examples_en": [
+        "Apply compatible joint compound to a threaded water fitting.",
+        "Confirm required cure time before pressure testing a sealed threaded joint."
+      ]
+    },
+    {
+      "id": "paint_sprayer",
+      "wave": "content-wave-006h",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "塗料を霧化して広い面へ均一に塗布するスプレー塗装機。エアレス、HVLPなど方式があり、塗料粘度、ノズル、圧力、吐出量を仕上げと材料に合わせて設定する。",
+      "detail_en": "A paint sprayer atomizes coating for efficient application over larger surfaces. Airless, HVLP, and other systems require tip, pressure, flow, and coating viscosity settings appropriate for the material and finish.",
+      "bullets_ja": [
+        "塗料に合うノズル・圧力を使用し、試し吹きで吐出パターンと仕上がりを確認する。",
+        "換気・養生・呼吸用保護具などでミストとオーバースプレーへのばく露を管理する。",
+        "エアレス式など高圧機器は皮下注入事故の危険があるため、詰まり除去や整備前に必ず圧力を解放する。"
+      ],
+      "bullets_en": [
+        "Use a tip and pressure suitable for the coating and confirm spray pattern and finish with a test pass.",
+        "Control mist and overspray with ventilation, masking, and suitable respiratory and other PPE.",
+        "High-pressure systems such as airless sprayers can cause injection injuries; fully relieve pressure before clearing blockages or servicing."
+      ],
+      "examples_ja": [
+        "壁面塗装で試し吹き後にノズルと圧力を調整する。",
+        "エアレススプレーのチップ交換前に圧力を抜く。"
+      ],
+      "examples_en": [
+        "Adjust tip and pressure after a test spray before coating a wall.",
+        "Relieve pressure before changing an airless spray tip."
+      ]
+    },
+    {
+      "id": "extension_pole",
+      "wave": "content-wave-006h",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "ローラーや刷毛などを先端へ取り付け、高所や広い面を床上から施工するための延長ポール。伸縮長さ、固定機構、先端ねじ、重量を使用する工具に合わせる。",
+      "detail_en": "An extension pole carries a roller, brush, or similar tool so elevated or broad surfaces can be reached from the floor. Length, locking mechanism, thread interface, and stiffness should suit the attached tool.",
+      "bullets_ja": [
+        "伸縮部のロックが確実に掛かることを確認し、緩んだ状態で頭上作業をしない。",
+        "長く伸ばすほど操作荷重が増えるため、無理な姿勢や過大な押付けを避ける。",
+        "電気設備付近では一般のポールを絶縁工具とみなさず、充電部との安全距離を確保する。"
+      ],
+      "bullets_en": [
+        "Confirm telescoping sections are securely locked before working overhead.",
+        "Longer extension increases leverage and handling force, so avoid awkward posture and excessive pressure.",
+        "Do not treat an ordinary extension pole as electrically insulated; maintain safe clearance from energized equipment."
+      ],
+      "examples_ja": [
+        "天井塗装でローラーを延長ポールへ取り付ける。",
+        "高い壁面を脚立に頼らず床面から塗装する。"
+      ],
+      "examples_en": [
+        "Attach a roller to an extension pole for ceiling painting.",
+        "Paint a high wall area from floor level using a suitable extension pole."
+      ]
+    },
+    {
+      "id": "job_hazard_analysis",
+      "wave": "content-wave-006h",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "JHA/JSAは、作業を手順ごとに分けて危険源を洗い出し、必要な対策・責任・確認事項を作業前に整理する安全管理手法。書式や承認方法は会社・現場で異なる。",
+      "detail_en": "A JHA or JSA breaks a task into steps, identifies hazards at each step, and records controls, responsibilities, and checks before work. Forms and approval processes vary by organization and site.",
+      "bullets_ja": [
+        "実際の作業手順に沿って工程を分解し、各段階の危険源を具体的に挙げる。",
+        "危険をなくす・隔離する対策を優先し、PPEだけに頼らない管理方法を検討する。",
+        "作業条件・設備・人員・手順が変わった場合はJHA/JSAを見直し、作業者へ再共有する。"
+      ],
+      "bullets_en": [
+        "Break the actual task into practical steps and identify specific hazards associated with each step.",
+        "Prioritize elimination, isolation, and other higher-level controls rather than relying only on PPE.",
+        "Review and re-communicate the JHA/JSA when conditions, equipment, personnel, or work methods change."
+      ],
+      "examples_ja": [
+        "重量物搬入作業を工程別に分け、挟まれ・接触・転倒リスクと対策を記載する。",
+        "手順変更後にJHAを更新して班員へ再説明する。"
+      ],
+      "examples_en": [
+        "Break a heavy-material delivery task into steps and document pinch, struck-by, and overturning controls.",
+        "Update the JHA after a method change and brief the crew again."
+      ]
+    },
+    {
+      "id": "dust_barrier",
+      "wave": "content-wave-006h",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "改修・解体・研磨などで発生する粉じんが周囲へ拡散するのを抑える仮設間仕切り・シート養生。シート、ポール、ファスナー扉、養生テープなどを組み合わせて作業区画を分ける。",
+      "detail_en": "A temporary partition or sheeting system used to limit dust migration from renovation, demolition, sanding, and similar work. Plastic sheeting, poles, zipper doors, tape, and related components may form the enclosure.",
+      "bullets_ja": [
+        "床・壁・天井との隙間を抑え、作業区画外へ粉じんが抜ける開口を必要最小限にする。",
+        "避難経路、消防設備、換気口、既存設備を不用意に塞がないよう設置計画を確認する。",
+        "必要に応じ集じん・負圧管理など他の粉じん対策と組み合わせ、撤去時も堆積粉じんを再飛散させない。"
+      ],
+      "bullets_en": [
+        "Seal gaps at floors, walls, and ceilings and minimize uncontrolled openings that allow dust to escape.",
+        "Plan the barrier so exits, fire equipment, ventilation, and required building services are not improperly obstructed.",
+        "Combine with extraction or negative-pressure controls where required and remove the barrier without re-releasing accumulated dust."
+      ],
+      "examples_ja": [
+        "内装解体区画を防じんシートで仮設間仕切りする。",
+        "研磨作業室へファスナー付き出入口を設けて周囲への粉じん拡散を抑える。"
+      ],
+      "examples_en": [
+        "Enclose an interior demolition area with temporary dust sheeting.",
+        "Install a zipper access door to contain dust from a sanding work zone."
+      ]
+    },
+    {
+      "id": "debris_chute",
+      "wave": "content-wave-006h",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "上階から解体ガラや廃材を地上の集積容器へ安全に落下搬送する仮設シュート。筒状部材を連結して建物や足場へ支持し、投入口・排出口周囲を立入管理する。",
+      "detail_en": "A temporary chute system used to move demolition debris from upper levels to a controlled collection point. Chute sections are connected and supported from the structure or scaffold, with controlled loading and discharge zones.",
+      "bullets_ja": [
+        "メーカー・仮設計画に従って支持間隔、連結、固定、最大高さ・荷重条件を守る。",
+        "投入口と排出口周囲へ立入禁止範囲を設け、落下物が人へ当たらないよう管理する。",
+        "詰まりを上から無理に突き落とさず、使用停止・隔離して安全な方法で解消する。"
+      ],
+      "bullets_en": [
+        "Follow the temporary-works or manufacturer requirements for support spacing, connections, anchorage, height, and loading.",
+        "Establish exclusion zones at loading and discharge points so falling debris cannot strike people.",
+        "Do not force blockages through from above; stop use, isolate the chute, and clear obstructions by a controlled method."
+      ],
+      "examples_ja": [
+        "改修階からコンテナまでガラシュートを固定して廃材を搬出する。",
+        "シュート排出口周囲をバリケードで立入管理する。"
+      ],
+      "examples_en": [
+        "Secure a debris chute from a renovation floor to a collection container.",
+        "Barricade the discharge area around the bottom of the chute."
+      ]
+    },
+    {
+      "id": "temporary_power",
+      "wave": "content-wave-006h",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "工事期間中に照明・工具・仮設設備へ供給する一時的な電源・配電設備。仮設盤、ケーブル、接地・漏電保護、分岐回路などを現場条件に合わせて計画する。",
+      "detail_en": "Temporary power is the short-term electrical distribution used during construction for lighting, tools, and temporary equipment. Panels, cables, grounding, residual-current protection, and branch circuits must be designed for site conditions.",
+      "bullets_ja": [
+        "必要容量と回路を計画し、仮設盤・保護装置・接地方式を適用基準に合わせる。",
+        "ケーブルを車両・水・鋭利部・つまずきから保護し、損傷したコードや仮配線を使用しない。",
+        "仮設だからと省略せず、定期点検・漏電保護確認・無断増設防止を行う。"
+      ],
+      "bullets_en": [
+        "Plan load and circuits and provide temporary panels, protective devices, and grounding arrangements appropriate to the applicable requirements.",
+        "Protect cables from traffic, water, sharp edges, and trip damage and remove damaged cords or temporary wiring from service.",
+        "Do not relax controls because the installation is temporary; inspect it regularly, verify protective devices, and prevent unauthorized extensions."
+      ],
+      "examples_ja": [
+        "各階の仮設盤から照明と工具用回路を分けて供給する。",
+        "通路を横切る仮設ケーブルをケーブルプロテクターで保護する。"
+      ],
+      "examples_en": [
+        "Supply temporary lighting and tool circuits separately from a floor distribution panel.",
+        "Protect temporary cables crossing an access route with suitable cable protection."
+      ]
+    },
+    {
+      "id": "hot_work",
+      "wave": "content-wave-006h",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "溶接、溶断、ろう付け、火花を出す研削など、火炎・高熱・火花で着火源を生じる作業。周囲の可燃物、火災監視、消火設備、換気、許可手順を確認して実施する。",
+      "detail_en": "Hot work includes welding, cutting, brazing, and spark-producing grinding or similar tasks that introduce flame, heat, or ignition sources. Combustibles, fire watch, extinguishing equipment, ventilation, and permit controls must be addressed.",
+      "bullets_ja": [
+        "可燃物を除去・遮へいし、火花や溶融物が隠れた空間へ入る経路も確認する。",
+        "必要な消火器・火災監視員・作業許可を配置し、周囲へ火気作業を周知する。",
+        "作業終了直後だけでなく、現場手順で定める時間まで残火・くすぶりを監視する。"
+      ],
+      "bullets_en": [
+        "Remove or shield combustibles and check paths where sparks or molten material could enter concealed spaces.",
+        "Provide required extinguishers, fire watch, and work permit and communicate the hot-work area to others.",
+        "Continue post-work fire monitoring for the period required by the site procedure rather than leaving immediately after the task."
+      ],
+      "examples_ja": [
+        "鋼材溶接前に周囲の可燃養生を撤去し火気作業許可を確認する。",
+        "切断作業後に火花が飛んだ周辺と下階を残火確認する。"
+      ],
+      "examples_en": [
+        "Before welding steel, remove combustible coverings and confirm the hot-work permit.",
+        "After cutting, inspect the surrounding and lower areas for smoldering or hidden ignition."
+      ]
+    },
+    {
+      "id": "permit_to_work",
+      "wave": "content-wave-006h",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "高リスク作業を開始する前に、作業範囲・危険源・隔離・対策・責任者・有効時間を確認して正式に許可するPTW（Permit to Work）制度。許可票自体は安全対策の代替ではない。",
+      "detail_en": "A permit-to-work (PTW) system formally authorizes defined higher-risk work after scope, hazards, isolations, controls, responsible persons, and validity period are confirmed. The permit documents controls but does not replace them.",
+      "bullets_ja": [
+        "対象作業・場所・時間・設備を明確にし、許可範囲外の作業を同じ許可で行わない。",
+        "必要な隔離、ガス測定、火災対策、立入管理など前提条件が実施済みか確認して発行する。",
+        "作業終了・中断・条件変更時は許可を閉鎖または再発行し、古い許可が有効に見えないよう管理する。"
+      ],
+      "bullets_en": [
+        "Define the work, location, equipment, and time window clearly and do not extend the permit to unrelated activities.",
+        "Issue the permit only after required isolations, testing, fire controls, access restrictions, and other prerequisites are in place.",
+        "Close, suspend, or reissue the permit when work finishes, stops, or conditions change so obsolete permits cannot be mistaken as valid."
+      ],
+      "examples_ja": [
+        "タンク内作業前に隔離・測定・監視体制を確認して作業許可を発行する。",
+        "火気作業条件が変わったため既存PTWを停止し再評価する。"
+      ],
+      "examples_en": [
+        "Issue a permit after verifying isolation, testing, and monitoring for entry work.",
+        "Suspend and reassess an existing PTW when hot-work conditions change."
+      ]
+    }
+  ]
+}
