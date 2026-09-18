@@ -4,7 +4,7 @@
   "policy": {
     "runtime_hotlink": false,
     "source_provider": "Wikimedia Commons",
-    "promotion_rule": "Only previously verified lifecycle candidates with pinned provenance and subject match may be materialized and promoted."
+    "promotion_rule": "Only the 12 already-verified lifecycle candidates in this ledger may be materialized; each download must match its pinned SHA-1 before formal promotion."
   },
   "items": [
     {
