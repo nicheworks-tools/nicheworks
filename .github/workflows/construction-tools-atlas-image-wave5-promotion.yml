@@ -2,9 +2,9 @@ name: Construction Tools Atlas image Wave 5 promotion
 
 on:
   workflow_dispatch:
-  push:
+  pull_request:
     branches:
-      - feat/construction-atlas-image-wave5-promotion-20260919
+      - main
     paths:
       - 'tools/construction-tools-atlas/data/image-wave5-sources-v2.3.json'
       - 'tools/construction-tools-atlas/scripts/build-image-wave5-v2.3.mjs'
@@ -21,11 +21,13 @@ concurrency:
 
 jobs:
   build-promote-and-commit:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Wave 5 promotion branch
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
           fetch-depth: 0
           persist-credentials: true
 
@@ -90,6 +92,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore(construction-atlas): promote verified Wave 5 images"
-          git fetch origin "${GITHUB_REF_NAME}"
-          git rebase "origin/${GITHUB_REF_NAME}"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          TARGET_BRANCH="${{ github.event.pull_request.head.ref || github.ref_name }}"
+          git fetch origin "${TARGET_BRANCH}"
+          git rebase "origin/${TARGET_BRANCH}"
+          git push origin "HEAD:${TARGET_BRANCH}"
