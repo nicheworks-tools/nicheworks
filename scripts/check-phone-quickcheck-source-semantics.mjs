@@ -44,7 +44,7 @@ for (const phone of phones) {
   }
 
   const sources = phone.sources || {};
-  for (const key of ['specificationsUrl', 'manualUrl', 'releaseUrl', 'chargingUrl', 'wirelessUrl', 'waterUrl']) {
+  for (const key of ['specificationsUrl', 'manualUrl', 'releaseUrl', 'chargingUrl', 'wirelessUrl', 'waterUrl', 'packageUrl']) {
     assertTrustedUrl(phone, `sources.${key}`, sources[key]);
   }
 
