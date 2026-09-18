@@ -21,12 +21,12 @@ Required printer reconciliation:
 
 The camera accessory audit independently reconciles as:
 
-`camera basic 185 = detail 57 + reviewed exclusion 0 + missing 128`
+`camera basic 185 = detail 58 + reviewed exclusion 0 + missing 127`
 
 Maker-level camera state:
 
 - `Nikon camera 14 = detail 14 + reviewed exclusion 0 + missing 0`
-- `DJI camera 96 = detail 43 + reviewed exclusion 0 + missing 53`
+- `DJI camera 96 = detail 44 + reviewed exclusion 0 + missing 52`
 - OM SYSTEM: 37 missing
 - GoPro: 31 missing
 - Insta360: 7 missing
@@ -88,7 +88,7 @@ Nikon camera accessory coverage remains complete:
 
 Shared accessory families are not generalized by model-name similarity; each active row is explicit in the reviewed ledger.
 
-## DJI camera accessory Waves 1–23
+## DJI camera accessory Waves 1–24
 
 DJI camera accessory coverage advances only through bounded exact-canonical-model waves. Every active row requires DJI official evidence; neighboring names and variants remain fail-closed until separately reviewed.
 
@@ -117,6 +117,7 @@ DJI camera accessory coverage advances only through bounded exact-canonical-mode
 | 21 | `Phantom 4`, `Phantom 4 Advanced`, `Phantom 4 Pro`, `Phantom 4 Pro V2.0`, `Phantom 4 RTK` | Phantom 4 Series Intelligent Flight Battery / Phantom 4 Battery Charging Hub |
 | 22 | `Phantom 3 Advanced`, `Phantom 3 Professional`, `Phantom 3 Standard` | Phantom 3 Intelligent Flight Battery / Phantom 3 Battery Charging Hub |
 | 23 | `Phantom 3 SE` | Phantom 3 Intelligent Flight Battery only; no hub inference |
+| 24 | `Mavic 2 Enterprise Advanced` | Mavic 2 Enterprise Battery only; no hub inference |
 
 ### DJI Phantom 3 series — Wave 22
 
@@ -137,11 +138,17 @@ Wave 23 activates exactly `Phantom 3 SE`. DJI's official Phantom 3 SE Download C
 
 A charging-hub offer is intentionally omitted because explicit SE-specific hub compatibility was not established at the same evidence standard. Wave 22 hub evidence is not generalized to SE.
 
-After Waves 1–23:
+### DJI Mavic 2 Enterprise Advanced — Wave 24
 
-`DJI camera 96 = detail 43 + reviewed exclusion 0 + missing 53`
+Wave 24 activates exactly `Mavic 2 Enterprise Advanced`. DJI Store's official `Mavic 2 Enterprise Battery` page explicitly lists `Mavic 2 Enterprise Advanced` in its Compatibility section. The only deterministic accessory handoff is `DJI Mavic 2 Enterprise Battery`.
 
-The catalog-wide camera audit is therefore 185 actionable basic rows, 57 detail mappings, 0 reviewed exclusions, and 128 missing accessory-detail rows.
+A charging-hub offer is intentionally omitted because the reviewed official hub evidence did not directly name Advanced at the same standard. Wave 10's Mavic 2 hub mapping is not generalized to this enterprise variant.
+
+After Waves 1–24:
+
+`DJI camera 96 = detail 44 + reviewed exclusion 0 + missing 52`
+
+The catalog-wide camera audit is therefore 185 actionable basic rows, 58 detail mappings, 0 reviewed exclusions, and 127 missing accessory-detail rows.
 
 ## Runtime boundary and source of truth
 
@@ -150,14 +157,16 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 57 detail 
 - Maker-specific printer ledgers own reviewed consumable mappings.
 - `affiliate-printer-detail-exclusions.js` owns reviewed printer exclusions.
 - `affiliate-camera-accessories.js` and `affiliate-nikon-camera-accessories-wave2.js` own Nikon camera mappings.
-- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave23.js` own reviewed DJI camera mappings.
+- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave24.js` own reviewed DJI camera mappings.
 - `affiliate-dji-camera-accessories-wave22.js` adds the exact reviewed three-row Phantom 3 mapping.
-- `affiliate-dji-camera-accessories-wave23.js` adds the exact Phantom 3 SE battery-only mapping and exposes the merged 57-row camera detail ledger.
+- `affiliate-dji-camera-accessories-wave23.js` adds the exact Phantom 3 SE battery-only mapping.
+- `affiliate-dji-camera-accessories-wave24.js` adds the exact Mavic 2 Enterprise Advanced battery-only mapping and exposes the merged 58-row camera detail ledger.
 - `affiliate-camera-detail-exclusions.js` remains empty.
 - `affiliate-runtime.js` sequentially loads Nikon and DJI ledgers before affiliate rendering.
 - `tests/affiliate-coverage.test.mjs` and `tests/affiliate-doc-sync.test.mjs` protect printer reconciliation.
 - `tests/dji-phantom3-accessory-wave22.test.mjs` protects the exact Phantom 3 Wave 22 boundary.
 - `tests/dji-phantom3-se-accessory-wave23.test.mjs` protects the exact battery-only Phantom 3 SE Wave 23 boundary.
+- `tests/dji-mavic2-enterprise-advanced-wave24.test.mjs` protects the exact battery-only Mavic 2 Enterprise Advanced Wave 24 boundary.
 - `tests/camera-accessory-coverage.test.mjs` computes camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` prevents documentation drift and auto-discovers DJI wave evidence.
 - `CAMERA_ACCESSORY_COVERAGE.md` records the measured camera baseline.
@@ -184,10 +193,10 @@ Nikon remains closed only while:
 DJI remains partial at:
 
 - DJI basic = 96
-- DJI detail = 43
+- DJI detail = 44
 - DJI reviewed exclusions = 0
-- DJI missing = 53
+- DJI missing = 52
 
 ## Next expansion gate
 
-Printer-detail is closed. Nikon camera coverage is closed. The measured camera backlog continues with DJI 53 actionable rows, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded exact-model official-evidence waves.
+Printer-detail is closed. Nikon camera coverage is closed. The measured camera backlog continues with DJI 52 actionable rows, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded exact-model official-evidence waves.
