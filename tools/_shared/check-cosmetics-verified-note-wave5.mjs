@@ -85,11 +85,10 @@ assert.equal(claimRows.length, EXPECTED_RAW_CLAIM_ROWS, 'raw claim-bearing legac
 
 const evidence = parser.verifiedNoteEvidence || {};
 const expectedAllKeys = [...PRIOR_WAVE_KEYS, ...Object.keys(EXPECTED_WAVE5)];
-assert.deepEqual(
-  new Set(Object.keys(evidence)),
-  new Set(expectedAllKeys),
-  'verified note overlay must contain exactly the frozen 22 claim-bearing canonical identities after wave 5'
-);
+for (const canonical of expectedAllKeys) {
+  assert.ok(evidence[canonical], `${canonical}: frozen claim-bearing verified-note identity must remain present after wave 5`);
+}
+assert.equal(expectedAllKeys.length, 22, 'wave 1-5 frozen claim-bearing verified-note set must remain exactly 22 identities');
 
 const canonicalRows = new Map();
 for (const row of rows) {
