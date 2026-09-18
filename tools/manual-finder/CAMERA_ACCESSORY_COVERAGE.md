@@ -72,13 +72,13 @@ The deterministic Amazon handoffs are:
 - `DJI Phantom 3 Intelligent Flight Battery`
 - `DJI Phantom 3 Battery Charging Hub`
 
-Wave 22 remains exact-canonical-row only. At Wave 22, `Phantom 3 SE` and `Phantom 3 4K` remained fail-closed pending separate review; they are now handled by Waves 23 and 26. `DJI Phantom 3 Standard` and other inferred names remain fail-closed.
+Wave 22 remains exact-canonical-row only. `Phantom 3 SE`, `Phantom 3 4K`, `DJI Phantom 3 Standard`, and other inferred names remain fail-closed unless separately reviewed.
 
 ### Wave 23 — Phantom 3 SE
 
 Wave 23 activates exactly the canonical `Phantom 3 SE` row. DJI's official Phantom 3 SE Download Center publishes SE-specific Intelligent Flight Battery safety material, while DJI's official battery guidance defines the Phantom 3 Series Intelligent Flight Battery as 15.2 V / 4480 mAh. The deterministic Amazon handoff is `DJI Phantom 3 Intelligent Flight Battery`.
 
-No charging-hub handoff is emitted in Wave 23 because equally explicit official SE-specific hub compatibility was not established. Wave 22 hub evidence is not inherited by name or series similarity. At Wave 23, `Phantom 3 4K` remained pending and is now handled separately by Wave 26; `DJI Phantom 3 SE` and other non-canonical spellings remain fail-closed.
+No charging-hub handoff is emitted in Wave 23 because equally explicit official SE-specific hub compatibility was not established. Wave 22 hub evidence is not inherited by name or series similarity. `Phantom 3 4K`, `DJI Phantom 3 SE`, and other non-canonical spellings remain fail-closed.
 
 ### Wave 24 — Mavic 2 Enterprise Advanced
 
@@ -92,11 +92,11 @@ Wave 25 activates exactly the canonical `Mavic 2 Enterprise Series` row. DJI's o
 
 The deterministic Amazon handoffs are `DJI Mavic 2 Enterprise Battery` and `Mavic 2 Battery Charging Hub`. Wave 25 remains exact-canonical-row only and does not create synthetic `Mavic 2 Enterprise`, `Mavic 2 Enterprise Dual`, or other names.
 
-### Wave 26 — Phantom 3 4K
+### Wave 26 — Osmo Pocket 3
 
-Wave 26 activates exactly the canonical `Phantom 3 4K` row. DJI's official Phantom 3 4K Download Center publishes model-specific Phantom 3 Intelligent Flight Battery safety material, and DJI's official Phantom 3 Series battery guidance identifies the series Intelligent Flight Battery as 15.2 V / 4480 mAh. The deterministic Amazon handoff is `DJI Phantom 3 Intelligent Flight Battery`.
+Wave 26 activates exactly the canonical `Osmo Pocket 3` row. DJI's official Battery Handle product page explicitly lists `Osmo Pocket 3` as compatible, and DJI's official Osmo Pocket 3 support material documents the Battery Handle as a supported accessory. The deterministic Amazon handoff is `DJI Osmo Pocket 3 Battery Handle`.
 
-No charging-hub handoff is emitted in Wave 26 because the reviewed Phantom 3 4K Download Center does not publish the Phantom 3 Series Charging Hub manual and equally explicit 4K-specific hub compatibility was not established. Wave 22 hub evidence is not inherited by series similarity. `DJI Phantom 3 4K`, `Phantom 3 4K Pro`, and other non-canonical spellings remain fail-closed.
+Wave 26 remains exact-canonical-row only. `DJI Osmo Pocket 3`, `Osmo Pocket 3 Creator Combo`, `DJI Pocket 2`, and other neighboring or synthetic names remain fail-closed; compatibility is not inherited by product-family similarity.
 
 After DJI Waves 1–26 the maker-level reconciliation is:
 
@@ -151,13 +151,13 @@ The current baseline is not complete: `125` actionable records remain missing ac
 - `affiliate-dji-camera-accessories-wave23.js` — exact reviewed Phantom 3 SE battery-only mapping; charging hub remains intentionally unasserted.
 - `affiliate-dji-camera-accessories-wave24.js` — exact reviewed Mavic 2 Enterprise Advanced enterprise-battery-only mapping; charging hub remains intentionally unasserted.
 - `affiliate-dji-camera-accessories-wave25.js` — exact reviewed Mavic 2 Enterprise Series battery and charging-hub mappings.
-- `affiliate-dji-camera-accessories-wave26.js` — exact reviewed Phantom 3 4K battery-only mapping; charging hub remains intentionally unasserted.
+- `affiliate-dji-camera-accessories-wave26.js` — exact reviewed Osmo Pocket 3 Battery Handle mapping.
 - `affiliate-camera-detail-exclusions.js` — reviewed camera exclusions; currently empty.
 - `affiliate-runtime.js` — sequential browser loading of Nikon and DJI accessory ledgers before rendering.
 - `tests/dji-phantom3-accessory-wave22.test.mjs` — exact Wave 22 Phantom 3 boundary.
 - `tests/dji-phantom3-se-accessory-wave23.test.mjs` — exact Wave 23 Phantom 3 SE battery-only boundary.
 - `tests/dji-mavic2-enterprise-advanced-wave24.test.mjs` — exact Wave 24 Mavic 2 Enterprise Advanced battery-only boundary.
 - `tests/dji-mavic2-enterprise-series-wave25.test.mjs` — exact Wave 25 Mavic 2 Enterprise Series battery/hub boundary.
-- `tests/dji-phantom3-4k-accessory-wave26.test.mjs` — exact Wave 26 Phantom 3 4K battery-only boundary.
+- `tests/dji-osmo-pocket3-accessory-wave26.test.mjs` — exact Wave 26 Osmo Pocket 3 Battery Handle boundary.
 - `tests/camera-accessory-coverage.test.mjs` — catalog-wide camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` — documentation drift guard and implementation-evidence synchronization.
