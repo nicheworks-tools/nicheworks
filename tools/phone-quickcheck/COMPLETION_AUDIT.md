@@ -22,7 +22,7 @@ Correction note: Galaxy A35 5G was removed from the JP-maintained set on 2026-09
 - foldables: **32**
 - package adapter unknown: **4**
 - package cable unknown: **12**
-- unresolved water state: **4**
+- unresolved water state: **3**
 - battery capacity unknown: **33** — all maintained Apple records; intentional under current policy
 - charger guidance missing: **62**
 - handset-side wired maximum missing: **86**
@@ -55,11 +55,10 @@ The final four charging counts are **not automatically defects**. They are evide
 - `sharp-aquos-r5g`
 - `sharp-aquos-zero5g-basic`
 
-## Actionable water review backlog — 4
+## Actionable water review backlog — 3
 
 - `google-pixel-4a-5g`
 - `google-pixel-4a`
-- `samsung-galaxy-m23-5g`
 - `oppo-a54-5g`
 
 ## Intentional / evidence-sensitive unknowns
