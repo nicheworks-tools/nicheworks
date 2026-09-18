@@ -2,149 +2,41 @@
   "schema": "cta-content-enrichment-manifest-v2.3",
   "version": "2026-09-18-wave6a",
   "packs": [
-    {
-      "path": "./data/content-enrichment-v2.3.json",
-      "wave": "content-wave-001"
-    },
-    {
-      "path": "./data/content-enrichment-wave2-v2.3.json",
-      "wave": "content-wave-002"
-    },
-    {
-      "path": "./data/content-enrichment-wave3a-v2.3.json",
-      "wave": "content-wave-003a"
-    },
-    {
-      "path": "./data/content-enrichment-wave3b-v2.3.json",
-      "wave": "content-wave-003b"
-    },
-    {
-      "path": "./data/content-enrichment-wave3c-v2.3.json",
-      "wave": "content-wave-003c"
-    },
-    {
-      "path": "./data/content-enrichment-wave3d-v2.3.json",
-      "wave": "content-wave-003d"
-    },
-    {
-      "path": "./data/content-enrichment-wave4a-v2.3.json",
-      "wave": "content-wave-004a"
-    },
-    {
-      "path": "./data/content-enrichment-wave4b-v2.3.json",
-      "wave": "content-wave-004b"
-    },
-    {
-      "path": "./data/content-enrichment-wave4c-v2.3.json",
-      "wave": "content-wave-004c"
-    },
-    {
-      "path": "./data/content-enrichment-wave5a-v2.3.json",
-      "wave": "content-wave-005a"
-    },
-    {
-      "path": "./data/content-enrichment-wave5b-v2.3.json",
-      "wave": "content-wave-005b"
-    },
-    {
-      "path": "./data/content-enrichment-wave5c-v2.3.json",
-      "wave": "content-wave-005c"
-    },
-    {
-      "path": "./data/content-enrichment-wave5d-v2.3.json",
-      "wave": "content-wave-005d"
-    },
-    {
-      "path": "./data/content-enrichment-wave5e-v2.3.json",
-      "wave": "content-wave-005e"
-    },
-    {
-      "path": "./data/content-enrichment-wave5f-v2.3.json",
-      "wave": "content-wave-005f"
-    },
-    {
-      "path": "./data/content-enrichment-wave5g-v2.3.json",
-      "wave": "content-wave-005g"
-    },
-    {
-      "path": "./data/content-enrichment-wave5h-v2.3.json",
-      "wave": "content-wave-005h"
-    },
-    {
-      "path": "./data/content-enrichment-wave5i-v2.3.json",
-      "wave": "content-wave-005i"
-    },
-    {
-      "path": "./data/content-enrichment-wave5j-v2.3.json",
-      "wave": "content-wave-005j"
-    },
-    {
-      "path": "./data/content-enrichment-wave5k-v2.3.json",
-      "wave": "content-wave-005k"
-    },
-    {
-      "path": "./data/content-enrichment-wave5l-v2.3.json",
-      "wave": "content-wave-005l"
-    },
-    {
-      "path": "./data/content-enrichment-wave5m-v2.3.json",
-      "wave": "content-wave-005m"
-    },
-    {
-      "path": "./data/content-enrichment-wave5n-v2.3.json",
-      "wave": "content-wave-005n"
-    },
-    {
-      "path": "./data/content-enrichment-wave5o-v2.3.json",
-      "wave": "content-wave-005o"
-    },
-    {
-      "path": "./data/content-enrichment-wave5p-v2.3.json",
-      "wave": "content-wave-005p"
-    },
-    {
-      "path": "./data/content-enrichment-wave5q-v2.3.json",
-      "wave": "content-wave-005q"
-    },
-    {
-      "path": "./data/content-enrichment-wave5r-v2.3.json",
-      "wave": "content-wave-005r"
-    },
-    {
-      "path": "./data/content-enrichment-wave5s-v2.3.json",
-      "wave": "content-wave-005s"
-    },
-    {
-      "path": "./data/content-enrichment-wave5t-v2.3.json",
-      "wave": "content-wave-005t"
-    },
-    {
-      "path": "./data/content-enrichment-wave5u-v2.3.json",
-      "wave": "content-wave-005u"
-    },
-    {
-      "path": "./data/content-enrichment-wave5v-v2.3.json",
-      "wave": "content-wave-005v"
-    },
-    {
-      "path": "./data/content-enrichment-wave5w-v2.3.json",
-      "wave": "content-wave-005w"
-    },
-    {
-      "path": "./data/content-enrichment-wave5x-v2.3.json",
-      "wave": "content-wave-005x"
-    },
-    {
-      "path": "./data/content-enrichment-wave5y-v2.3.json",
-      "wave": "content-wave-005y"
-    },
-    {
-      "path": "./data/content-enrichment-wave5z-v2.3.json",
-      "wave": "content-wave-005z"
-    },
-    {
-      "path": "./data/content-enrichment-wave6a-v2.3.json",
-      "wave": "content-wave-006a"
-    }
+    {"path":"./data/content-enrichment-v2.3.json","wave":"content-wave-001"},
+    {"path":"./data/content-enrichment-wave2-v2.3.json","wave":"content-wave-002"},
+    {"path":"./data/content-enrichment-wave3a-v2.3.json","wave":"content-wave-003a"},
+    {"path":"./data/content-enrichment-wave3b-v2.3.json","wave":"content-wave-003b"},
+    {"path":"./data/content-enrichment-wave3c-v2.3.json","wave":"content-wave-003c"},
+    {"path":"./data/content-enrichment-wave3d-v2.3.json","wave":"content-wave-003d"},
+    {"path":"./data/content-enrichment-wave4a-v2.3.json","wave":"content-wave-004a"},
+    {"path":"./data/content-enrichment-wave4b-v2.3.json","wave":"content-wave-004b"},
+    {"path":"./data/content-enrichment-wave4c-v2.3.json","wave":"content-wave-004c"},
+    {"path":"./data/content-enrichment-wave5a-v2.3.json","wave":"content-wave-005a"},
+    {"path":"./data/content-enrichment-wave5b-v2.3.json","wave":"content-wave-005b"},
+    {"path":"./data/content-enrichment-wave5c-v2.3.json","wave":"content-wave-005c"},
+    {"path":"./data/content-enrichment-wave5d-v2.3.json","wave":"content-wave-005d"},
+    {"path":"./data/content-enrichment-wave5e-v2.3.json","wave":"content-wave-005e"},
+    {"path":"./data/content-enrichment-wave5f-v2.3.json","wave":"content-wave-005f"},
+    {"path":"./data/content-enrichment-wave5g-v2.3.json","wave":"content-wave-005g"},
+    {"path":"./data/content-enrichment-wave5h-v2.3.json","wave":"content-wave-005h"},
+    {"path":"./data/content-enrichment-wave5i-v2.3.json","wave":"content-wave-005i"},
+    {"path":"./data/content-enrichment-wave5j-v2.3.json","wave":"content-wave-005j"},
+    {"path":"./data/content-enrichment-wave5k-v2.3.json","wave":"content-wave-005k"},
+    {"path":"./data/content-enrichment-wave5l-v2.3.json","wave":"content-wave-005l"},
+    {"path":"./data/content-enrichment-wave5m-v2.3.json","wave":"content-wave-005m"},
+    {"path":"./data/content-enrichment-wave5n-v2.3.json","wave":"content-wave-005n"},
+    {"path":"./data/content-enrichment-wave5o-v2.3.json","wave":"content-wave-005o"},
+    {"path":"./data/content-enrichment-wave5p-v2.3.json","wave":"content-wave-005p"},
+    {"path":"./data/content-enrichment-wave5q-v2.3.json","wave":"content-wave-005q"},
+    {"path":"./data/content-enrichment-wave5r-v2.3.json","wave":"content-wave-005r"},
+    {"path":"./data/content-enrichment-wave5s-v2.3.json","wave":"content-wave-005s"},
+    {"path":"./data/content-enrichment-wave5t-v2.3.json","wave":"content-wave-005t"},
+    {"path":"./data/content-enrichment-wave5u-v2.3.json","wave":"content-wave-005u"},
+    {"path":"./data/content-enrichment-wave5v-v2.3.json","wave":"content-wave-005v"},
+    {"path":"./data/content-enrichment-wave5w-v2.3.json","wave":"content-wave-005w"},
+    {"path":"./data/content-enrichment-wave5x-v2.3.json","wave":"content-wave-005x"},
+    {"path":"./data/content-enrichment-wave5y-v2.3.json","wave":"content-wave-005y"},
+    {"path":"./data/content-enrichment-wave5z-v2.3.json","wave":"content-wave-005z"},
+    {"path":"./data/content-enrichment-wave6a-v2.3.json","wave":"content-wave-006a"}
   ]
 }
