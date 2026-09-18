@@ -9926,6 +9926,234 @@
         "verifiedAt": "2026-09-19"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-fold8-ultra",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Fold8 Ultra",
+      "aliases": [
+        "Samsung Galaxy Z Fold8 Ultra",
+        "GalaxyZFold8Ultra",
+        "Z Fold8 Ultra",
+        "ギャラクシーZ Fold8 Ultra",
+        "ギャラクシーZフォールド8ウルトラ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 158,
+        "widthMm": 73,
+        "depthMm": 8.9
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 158,
+        "widthMm": 143,
+        "depthMm": 4.1
+      },
+      "weightG": 215,
+      "displayInch": 8,
+      "waterRating": "IPX8 / IP4X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 45,
+        "wiredMaxW": 45,
+        "protocols": [
+          "Super Fast Charging"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi2",
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://news.samsung.com/jp/galaxy-z-series-onsale-open"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-z-fold8-ultra/specs/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F976QZVFSJP/",
+        "releaseUrl": "https://news.samsung.com/jp/galaxy-z-series-onsale-open",
+        "chargingUrl": "https://news.samsung.com/jp/interview-fold8-hw",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-fold8",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Fold8",
+      "aliases": [
+        "Samsung Galaxy Z Fold8",
+        "GalaxyZFold8",
+        "Z Fold8",
+        "ギャラクシーZ Fold8",
+        "ギャラクシーZフォールド8"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 124,
+        "widthMm": 82,
+        "depthMm": 9.7
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 124,
+        "widthMm": 161,
+        "depthMm": 4.5
+      },
+      "weightG": 201,
+      "displayInch": 7.6,
+      "waterRating": "IPX8 / IP4X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 45,
+        "wiredMaxW": 45,
+        "protocols": [
+          "Super Fast Charging"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi2",
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4800,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://news.samsung.com/jp/galaxy-z-series-onsale-open"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-z-fold8/",
+        "manualUrl": "https://www.samsung.com/jp/support/mobile-devices/about-galaxy-z-fold-series-product-specifications/",
+        "releaseUrl": "https://news.samsung.com/jp/galaxy-z-series-onsale-open",
+        "chargingUrl": "https://news.samsung.com/jp/interview-fold8-hw",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-z-flip8",
+      "manufacturer": "Samsung",
+      "model": "Galaxy Z Flip8",
+      "aliases": [
+        "Samsung Galaxy Z Flip8",
+        "GalaxyZFlip8",
+        "Z Flip8",
+        "ギャラクシーZ Flip8",
+        "ギャラクシーZフリップ8"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 86,
+        "widthMm": 75,
+        "depthMm": 13.1
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 167,
+        "widthMm": 75,
+        "depthMm": 6.1
+      },
+      "weightG": 180,
+      "displayInch": 6.9,
+      "waterRating": "IPX8 / IP4X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 25,
+        "wiredMaxW": 25,
+        "protocols": [
+          "Super Fast Charging"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4300,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://news.samsung.com/jp/galaxy-z-series-onsale-open"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-z-flip8/specs/",
+        "manualUrl": "https://www.samsung.com/jp/support/model/SM-F776QLIASJP/",
+        "releaseUrl": "https://news.samsung.com/jp/galaxy-z-series-onsale-open",
+        "chargingUrl": "https://www.samsung.com/jp/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/",
+        "wirelessUrl": "https://www.samsung.com/jp/support/mobile-devices/issues-with-wireless-charging/",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "motorola-edge-60",
+      "manufacturer": "Motorola",
+      "model": "motorola edge 60",
+      "aliases": [
+        "Motorola edge 60",
+        "edge60",
+        "motorola edge60",
+        "モトローラedge 60"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 161,
+        "widthMm": 73,
+        "depthMm": 8
+      },
+      "weightG": 179,
+      "displayInch": 6.7,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 68,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5200,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://store.motorola.co.jp/item/EDGE60.html"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://store.motorola.co.jp/item/EDGE60.html",
+        "manualUrl": "https://jp-jp.support.motorola.com/",
+        "releaseUrl": "https://store.motorola.co.jp/topics_list.html",
+        "chargingUrl": "https://store.motorola.co.jp/item/EDGE60.html",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
     }
   ]
 }
