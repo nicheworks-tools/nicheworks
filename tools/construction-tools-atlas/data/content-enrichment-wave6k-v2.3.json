@@ -1,0 +1,396 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-18-wave6k-finishes-insulation-waterproofing-1",
+  "entries": [
+    {
+      "id": "mud_pan",
+      "wave": "content-wave-006k",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "石膏ボードのパテ処理でジョイントコンパウンドを手元に保持する細長い容器。ステンレスや樹脂製があり、パテベラをしごいて適量を取るためにも使う。",
+      "detail_en": "A narrow tray used to hold drywall joint compound during taping and finishing. Metal and plastic pans also provide an edge for loading and wiping joint knives.",
+      "bullets_ja": [
+        "作業量に合う容量を使い、パテを入れ過ぎて手首へ負担を掛けない。",
+        "縁へ乾燥したパテを残さず、硬化片が仕上げへ混入しないよう清掃する。",
+        "金属製は縁の変形やバリを点検し、手やベラを傷付ける状態で使わない。"
+      ],
+      "bullets_en": [
+        "Use a practical amount of compound so the loaded pan does not create unnecessary wrist strain.",
+        "Keep dried compound off the rim so hardened fragments do not contaminate the finish.",
+        "Inspect metal pans for bent or sharp edges that could injure hands or damage tools."
+      ],
+      "examples_ja": [
+        "ジョイント処理で必要量のパテをマッドパンへ取り分ける。",
+        "作業終了後にパテ皿を洗浄して乾燥硬化を防ぐ。"
+      ],
+      "examples_en": [
+        "Carry a working amount of joint compound in a mud pan during drywall finishing.",
+        "Clean the pan after use so compound does not harden on the edges."
+      ]
+    },
+    {
+      "id": "drywall_lift",
+      "wave": "content-wave-006k",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "石膏ボードを天井や高い壁位置まで持ち上げ、固定中に保持するボードリフター。昇降機構、支えアーム、キャスターなどを点検し、定格内で使用する。",
+      "detail_en": "A panel lift used to raise and hold drywall sheets at ceilings or high wall positions while they are fastened. The lifting mechanism, support arms, wheels, and rated capacity must be checked before use.",
+      "bullets_ja": [
+        "使用前にワイヤー・ブレーキ・ロック・支えアームを点検し、損傷機を使わない。",
+        "定格寸法・重量を超えるボードを載せず、荷を中央へ安定して載せる。",
+        "昇降中はボード下や転倒範囲へ人を入れず、水平で安定した床面で使う。"
+      ],
+      "bullets_en": [
+        "Inspect cable, brake, locks, and support arms before use and remove damaged equipment from service.",
+        "Do not exceed rated sheet size or weight and center the panel securely on the cradle.",
+        "Keep people out from beneath the raised panel and use the lift on a stable, level surface."
+      ],
+      "examples_ja": [
+        "天井石膏ボードをリフターで持ち上げてビス固定する。",
+        "大型ボードを高い壁位置へ保持して施工する。"
+      ],
+      "examples_en": [
+        "Raise a drywall sheet to the ceiling and hold it while fastening.",
+        "Support a large panel at a high wall position during installation."
+      ]
+    },
+    {
+      "id": "self_leveling_compound",
+      "wave": "content-wave-006k",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "床下地の小さな不陸や高低差を平滑化する流動性の高いレベリング材。下地種類、施工厚、プライマー、水量、可使時間、仕上げ材との適合を確認して使う。",
+      "detail_en": "A flowable underlayment used to smooth minor floor irregularities and elevation differences. Substrate type, application thickness, primer, mix water, working time, and finish-floor compatibility must be verified.",
+      "bullets_ja": [
+        "下地の強度・清掃・含水状態を確認し、必要なプライマーを指定量で施工する。",
+        "規定水量と攪拌時間を守り、流動性を上げるための過剰加水をしない。",
+        "可使時間内に連続施工し、施工厚・養生・仕上げ材施工可能時期を守る。"
+      ],
+      "bullets_en": [
+        "Verify substrate condition and cleanliness and apply the specified primer where required.",
+        "Use the specified water quantity and mixing time; do not add extra water simply to improve flow.",
+        "Place continuously within working time and follow thickness, curing, and floor-covering requirements."
+      ],
+      "examples_ja": [
+        "既存床の小さな不陸をセルフレベリング材で調整する。",
+        "床仕上げ前に所定厚でレベリング層を施工する。"
+      ],
+      "examples_en": [
+        "Correct minor unevenness in an existing floor with self-leveling compound.",
+        "Install a leveling layer to the specified thickness before floor finishes."
+      ]
+    },
+    {
+      "id": "caulk_finisher",
+      "wave": "content-wave-006k",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "シーリング材を押さえて表面形状を整えるならしヘラ。目地幅や仕上げ形状に合う先端寸法を選び、材料を十分に目地へ押し付けながら仕上げる。",
+      "detail_en": "A hand tool used to tool and smooth sealant joints. The profile should suit joint width and desired finish while pressing sealant into proper contact with the joint faces.",
+      "bullets_ja": [
+        "目地幅と仕上げ形状に合うヘラ先を使い、材料を過度に掻き取らない。",
+        "連続して均一な圧力で仕上げ、気泡や空洞を残さない。",
+        "硬化したシーリング材を工具へ残さず、先端形状を保つよう清掃する。"
+      ],
+      "bullets_en": [
+        "Use a profile suited to the joint width and avoid removing excessive sealant.",
+        "Tool the joint with consistent pressure so voids and bubbles are not left behind.",
+        "Clean cured sealant from the tool and keep the finishing edge in good condition."
+      ],
+      "examples_ja": [
+        "サッシ周囲のシーリングをならしヘラで押さえる。",
+        "外壁目地を均一な断面になるよう仕上げる。"
+      ],
+      "examples_en": [
+        "Tool sealant around a window frame with a caulk finisher.",
+        "Finish an exterior joint to a consistent sealant profile."
+      ]
+    },
+    {
+      "id": "mixing_paddle",
+      "wave": "content-wave-006k",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "塗料、パテ、モルタル系材料などを電動ドリルやミキサーで攪拌する羽根。材料粘度と容器寸法に合う形状・径を選び、工具の許容回転数内で使う。",
+      "detail_en": "A paddle attached to a drill or mixer for blending paint, compound, mortar, and similar materials. Paddle shape and diameter should suit material viscosity and container size, within the power tool's rated speed.",
+      "bullets_ja": [
+        "シャフトを確実に固定し、曲がり・亀裂・摩耗がある羽根を使わない。",
+        "材料が飛散しないよう低速から回し、容器底や側面へ強く当てない。",
+        "材料指定の攪拌時間と速度を守り、空気を過度に巻き込まない。"
+      ],
+      "bullets_en": [
+        "Secure the shaft correctly and do not use a bent, cracked, or badly worn paddle.",
+        "Start at low speed to limit splashing and avoid striking the container aggressively.",
+        "Follow the material's specified mixing time and speed and avoid excessive air entrainment."
+      ],
+      "examples_ja": [
+        "ジョイントコンパウンドを指定粘度に攪拌する。",
+        "塗料を施工前にミキサーパドルで均一化する。"
+      ],
+      "examples_en": [
+        "Mix joint compound to the specified consistency.",
+        "Blend coating material uniformly before application."
+      ]
+    },
+    {
+      "id": "spotter_vehicle",
+      "wave": "content-wave-006k",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "車両の後退・旋回・狭所進入などで死角を補い、運転者へ停止・進行方向を伝える車両誘導担当。誘導位置と合図方法を事前に決める。",
+      "detail_en": "A vehicle spotter guides reversing, turning, and confined vehicle movements by covering blind spots and signaling stop or travel direction. Positioning and signals should be agreed before movement begins.",
+      "bullets_ja": [
+        "運転者と合図方法を統一し、誘導者を見失った場合は車両を停止する。",
+        "車両の進路・挟まれ範囲へ立たず、常に退避できる位置を保つ。",
+        "歩行者と車両動線を分離し、必要に応じ追加の監視員やバリケードを使う。"
+      ],
+      "bullets_en": [
+        "Agree on signals with the driver and stop the vehicle if visual contact with the spotter is lost.",
+        "Stay clear of the travel path and pinch zones and maintain an escape route.",
+        "Separate pedestrians from vehicle movement and use additional controls where needed."
+      ],
+      "examples_ja": [
+        "資材搬入車の後退を誘導員が監視して停止合図する。",
+        "狭い構内へ大型車を誘導する。"
+      ],
+      "examples_en": [
+        "Guide a reversing delivery truck and give a clear stop signal.",
+        "Direct a large vehicle through a confined site route."
+      ]
+    },
+    {
+      "id": "story_pole",
+      "wave": "content-wave-006k",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "繰り返し使う高さ・位置・割付寸法を一本の棒へ写し取り、現場で同じ基準を再現する寸法棒。仕上げ高さ、棚位置、ブロック段数などの転記に使う。",
+      "detail_en": "A marked stick used to carry repeated elevations, positions, and layout dimensions so the same reference can be reproduced across a job. It is useful for finish heights, shelving, masonry courses, and repeated layouts.",
+      "bullets_ja": [
+        "基準寸法の出所を確認してから記入し、現場変更があれば古い印を残さない。",
+        "上下・表裏を明確にして、向き違いで寸法を転記しない。",
+        "長期使用では反りや縮みを確認し、精度が必要な箇所は測量機器で再確認する。"
+      ],
+      "bullets_en": [
+        "Transfer dimensions only from a verified reference and update obsolete marks when the layout changes.",
+        "Clearly identify orientation and face so measurements are not transferred backwards or upside down.",
+        "Check for warping or dimensional change and verify critical work with appropriate measuring equipment."
+      ],
+      "examples_ja": [
+        "各室のスイッチ高さをストーリーポールへ記録する。",
+        "ブロック積みの段高さを寸法棒で繰り返し確認する。"
+      ],
+      "examples_en": [
+        "Record repeated switch heights on a story pole.",
+        "Use a story pole to repeat masonry course elevations."
+      ]
+    },
+    {
+      "id": "diamond_blade",
+      "wave": "content-wave-006k",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "コンクリート、石材、タイルなどを切断するダイヤモンド砥粒付きブレード。乾式・湿式、対象材、外径、取付穴、最高使用回転数を機械と作業に合わせる。",
+      "detail_en": "A diamond-abrasive blade for cutting concrete, masonry, stone, or tile. Dry/wet rating, material compatibility, diameter, arbor, and maximum operating speed must match the machine and task.",
+      "bullets_ja": [
+        "ブレード表示の対象材・乾湿区分・最高回転数を確認し、機械仕様と一致させる。",
+        "欠け・亀裂・変形がある刃を使わず、回転方向指定を守って正しく固定する。",
+        "粉じん・破片を管理し、湿式では給水、乾式では集じんなど必要対策を行う。"
+      ],
+      "bullets_en": [
+        "Match the blade's material rating, wet/dry designation, and maximum RPM to the saw.",
+        "Do not use cracked, chipped, or warped blades and install them in the specified rotation direction.",
+        "Control dust and fragments with water, extraction, guards, and appropriate PPE."
+      ],
+      "examples_ja": [
+        "コンクリートカッターへ適合する湿式ダイヤモンドブレードを装着する。",
+        "タイル切断で対象材用の刃を使用する。"
+      ],
+      "examples_en": [
+        "Install a compatible wet-cut diamond blade on a concrete saw.",
+        "Use a blade rated for tile when cutting ceramic or stone tile."
+      ]
+    },
+    {
+      "id": "cement_board",
+      "wave": "content-wave-006k",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "セメント質芯材を用いた耐水性・耐久性の高い板状下地材。浴室やタイル下地などで使われ、厚さ、端部形状、固定方法、目地処理を製品仕様に合わせる。",
+      "detail_en": "A cement-based board used as a durable, moisture-resistant substrate, commonly behind tile and in wet areas. Thickness, edge type, fastening, and joint treatment must follow the product system.",
+      "bullets_ja": [
+        "用途に合う厚さと製品を選び、必要な下地ピッチと留付け間隔を守る。",
+        "切断粉じんを集じんし、必要な呼吸・目の保護具を使用する。",
+        "目地テープ・モルタル・防水層など周辺材料との指定システムを守る。"
+      ],
+      "bullets_en": [
+        "Use the required board thickness and follow framing and fastener spacing requirements.",
+        "Control cutting dust and use suitable respiratory and eye protection.",
+        "Follow the specified system for joint tape, mortar, waterproofing, and adjacent materials."
+      ],
+      "examples_ja": [
+        "浴室壁のタイル下地へセメントボードを施工する。",
+        "目地へ指定テープと薄塗りモルタルを施工する。"
+      ],
+      "examples_en": [
+        "Install cement board as a tile substrate in a wet area.",
+        "Treat board joints with the specified tape and mortar."
+      ]
+    },
+    {
+      "id": "vapor_barrier",
+      "wave": "content-wave-006k",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "壁・床・天井などで水蒸気の移動を抑える防湿層。気候、断熱構成、室内外条件により適切な位置が異なるため、設計仕様に従って連続させる。",
+      "detail_en": "A vapor-control layer used in wall, floor, or ceiling assemblies to limit water-vapor migration. Correct location depends on climate and assembly design, so continuity and placement must follow the specified system.",
+      "bullets_ja": [
+        "室内側・外側など設置位置を独断で決めず、断熱・防水設計に従う。",
+        "重ね部や端部、貫通部を指定テープ等で連続させ、穴や破れを補修する。",
+        "二重防湿で水分を閉じ込める構成にならないか、既存層との関係を確認する。"
+      ],
+      "bullets_en": [
+        "Do not choose placement by assumption; follow the wall or roof hygrothermal design.",
+        "Seal laps, edges, and penetrations as specified and repair holes or tears.",
+        "Check existing layers so the new barrier does not unintentionally trap moisture between low-permeance layers."
+      ],
+      "examples_ja": [
+        "断熱壁の指定位置へ防湿シートを連続施工する。",
+        "配管貫通部を専用テープで気密・防湿処理する。"
+      ],
+      "examples_en": [
+        "Install a continuous vapor barrier at the specified side of an insulated wall.",
+        "Seal pipe penetrations through the vapor-control layer with compatible tape."
+      ]
+    },
+    {
+      "id": "toolbox_talk",
+      "wave": "content-wave-006k",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "作業開始前に、その日の作業内容・危険源・変更点・役割・緊急事項などを短時間で共有する安全ミーティング。参加者が理解したか確認することが重要。",
+      "detail_en": "A short pre-task safety meeting used to review the day's work, hazards, changes, responsibilities, and urgent site information. Effective talks include confirmation that workers understand the controls.",
+      "bullets_ja": [
+        "その日の実作業に関係する危険と変更点に絞り、形式的な読み上げだけにしない。",
+        "新規入場者や言語差を考慮し、質問・復唱などで理解を確認する。",
+        "重大な変更があった場合は朝礼後でも再度集まり、内容を更新する。"
+      ],
+      "bullets_en": [
+        "Focus on hazards and changes relevant to the actual task rather than treating the talk as a rote checklist.",
+        "Account for new workers and language differences and confirm understanding through questions or repeat-back.",
+        "Reconvene and update the briefing if significant conditions change after the initial talk."
+      ],
+      "examples_ja": [
+        "朝礼で当日のクレーン作業と立入禁止範囲を共有する。",
+        "午後の工程変更後に短い追加TBMを実施する。"
+      ],
+      "examples_en": [
+        "Review crane activity and exclusion zones during the morning toolbox talk.",
+        "Hold a short follow-up talk after an afternoon method change."
+      ]
+    },
+    {
+      "id": "glasswool",
+      "wave": "content-wave-006k",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "ガラス繊維を綿状に成形した断熱・吸音材。厚さ、密度、熱抵抗、防湿層の有無を設計性能に合わせ、隙間や過度な圧縮を避けて施工する。",
+      "detail_en": "Fiberglass insulation made from fine glass fibers for thermal and acoustic performance. Thickness, density, thermal resistance, and facing should match the design, with gaps and excessive compression avoided.",
+      "bullets_ja": [
+        "指定厚さ・密度を使い、押し潰して断熱性能を低下させない。",
+        "柱間・配管周囲へ隙間なく納めるが、無理な詰込みを避ける。",
+        "切断・施工時の繊維ばく露に備え、長袖・手袋・目や呼吸の保護を行う。"
+      ],
+      "bullets_en": [
+        "Use the specified thickness and density and avoid compressing the insulation excessively.",
+        "Fit around framing and services without gaps but do not overpack cavities.",
+        "Control fiber exposure during cutting and installation with suitable skin, eye, and respiratory protection."
+      ],
+      "examples_ja": [
+        "木造壁の柱間へグラスウールを隙間なく充填する。",
+        "天井断熱材の防湿面の向きを仕様どおりに施工する。"
+      ],
+      "examples_en": [
+        "Fit fiberglass insulation between timber wall studs without gaps.",
+        "Install faced ceiling insulation with the vapor-control side oriented as specified."
+      ]
+    },
+    {
+      "id": "rockwool",
+      "wave": "content-wave-006k",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "鉱物繊維を成形した断熱・吸音・耐火用途の材料。ボード、フェルト、充填材などがあり、厚さ、密度、耐火・音響性能を仕様に合わせる。",
+      "detail_en": "Mineral-wool insulation used for thermal, acoustic, and fire-resistance applications. Batts, boards, and loose products vary in thickness, density, fire performance, and acoustic properties.",
+      "bullets_ja": [
+        "耐火区画では認定・仕様で要求される密度、厚さ、納まりを崩さない。",
+        "隙間や大きな圧縮を避け、部材間へ連続して充填する。",
+        "切断粉じん・繊維へのばく露を抑え、必要な保護具と清掃方法を使う。"
+      ],
+      "bullets_en": [
+        "For fire-rated assemblies, maintain the required product, density, thickness, and installation detail.",
+        "Fit material continuously without large gaps or excessive compression.",
+        "Control dust and fiber exposure during cutting and handling with suitable PPE and cleanup."
+      ],
+      "examples_ja": [
+        "間仕切り壁内へ吸音目的のロックウールを充填する。",
+        "耐火区画の指定箇所へ規定密度の材料を施工する。"
+      ],
+      "examples_en": [
+        "Install rock wool in a partition cavity for acoustic control.",
+        "Place specified mineral wool in a fire-rated assembly."
+      ]
+    },
+    {
+      "id": "pe_foam",
+      "wave": "content-wave-006k",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "ポリエチレンを発泡させた軽量シート材。床・建具・仕上げ材の養生、緩衝、梱包、簡易下敷きなどに使い、厚さ・密度・帯電・難燃性を用途に合わせる。",
+      "detail_en": "Lightweight polyethylene foam sheet used for protection, cushioning, packing, and temporary underlayment. Thickness, density, static behavior, and flame properties should suit the use.",
+      "bullets_ja": [
+        "養生対象を傷付けない厚さ・表面性状を選び、荷重で破れる薄すぎる材料を使わない。",
+        "通路では滑りやめくれによる転倒を防ぐよう固定する。",
+        "火気周辺では一般PEフォームの可燃性を考慮し、用途に合う難燃仕様を確認する。"
+      ],
+      "bullets_en": [
+        "Choose thickness and surface characteristics that protect the finish under the expected load.",
+        "Secure sheets in access routes so they do not slip, curl, or create trip hazards.",
+        "Consider the combustibility of ordinary PE foam near hot work and use suitable rated material where required."
+      ],
+      "examples_ja": [
+        "仕上げ床の搬入養生としてPEフォームを敷く。",
+        "建具運搬時の緩衝材として使用する。"
+      ],
+      "examples_en": [
+        "Lay PE foam to protect a finished floor during material delivery.",
+        "Use PE foam as cushioning during door or fixture transport."
+      ]
+    },
+    {
+      "id": "waterproof_membrane",
+      "wave": "content-wave-006k",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "床・壁・屋根などへ連続した防水層を形成するシート・塗膜系材料。下地処理、重ね、端部・立上り・貫通部の納まりが性能を左右する。",
+      "detail_en": "A sheet or liquid-applied membrane used to create a continuous waterproof layer on floors, walls, roofs, and similar assemblies. Substrate preparation, laps, terminations, upstands, and penetrations are critical to performance.",
+      "bullets_ja": [
+        "下地の乾燥・平滑・清掃状態を整え、製品指定のプライマーを使用する。",
+        "重ね幅、端部、立上り、ドレン・配管貫通部を仕様どおり連続処理する。",
+        "施工後は穴・しわ・浮き・ピンホールを点検し、保護層施工前に補修する。"
+      ],
+      "bullets_en": [
+        "Prepare the substrate to the required dryness, smoothness, and cleanliness and use the specified primer.",
+        "Detail laps, terminations, upstands, drains, and penetrations continuously as required by the system.",
+        "Inspect for holes, wrinkles, blisters, or pinholes and repair defects before covering the membrane."
+      ],
+      "examples_ja": [
+        "浴室床下地へ防水膜を連続施工する。",
+        "屋上防水で立上りとドレン周囲を補強処理する。"
+      ],
+      "examples_en": [
+        "Apply a continuous waterproof membrane beneath a wet-area floor finish.",
+        "Reinforce upstands and drain details in a roof waterproofing system."
+      ]
+    }
+  ]
+}
