@@ -16,7 +16,8 @@
     "emollient": { "authority_functions": ["skin conditioning - emollient"] },
     "cleanser": { "authority_functions": ["cleansing", "surfactant - cleansing"] },
     "emulsifier": { "authority_functions": ["surfactant - emulsifying"] },
-    "smoothing": { "authority_functions": ["smoothing"] }
+    "smoothing": { "authority_functions": ["smoothing"] },
+    "binder": { "authority_functions": ["binding"] }
   },
   "reviewed_mappings": {
     "water": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/water/"],"runtime_verified":true},
@@ -79,6 +80,7 @@
     "sorbitan isostearate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15309/sorbitan-isostearate/"],"runtime_verified":true},
     "ceramide ap": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2820/ceramide-ap/"],"runtime_verified":true},
     "ceramide eop": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/25521/ceramide-eop/"],"runtime_verified":true},
-    "phytosphingosine": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/11660/phytosphingosine/"],"runtime_verified":true}
+    "phytosphingosine": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/11660/phytosphingosine/"],"runtime_verified":true},
+    "triethoxycaprylylsilane": {"category":"binder","source_functions":["binding"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/16387/triethoxycaprylylsilane/"],"runtime_verified":true}
   }
 }
