@@ -163,6 +163,7 @@ const runtimeByCanonical = new Map(
   parser.mergeDictionaryRecords(records).map((item) => [canonicalIdentity(item.en), item])
 );
 const exactKnownRoleGaps = new Map();
+// Wave 24 closure keeps this invariant strict: recognized canonical ingredients must never regress to public-role gaps.
 
 function hasSupportedPublicRole(item) {
   const categories = Array.isArray(item?.categories) ? item.categories : [item?.category];
