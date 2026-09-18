@@ -9,6 +9,14 @@
 
 Convert registered old-form and modern-form kanji character-by-character using the tool's dictionary while exposing replacements and ambiguity instead of claiming context-aware official-name conversion.
 
+## Search cluster role
+
+- Primary intent: convert pasted text between registered old and modern forms.
+- Primary query families: `旧字体 変換`, `旧字体 変換サイト`, `旧字 新字 変換`.
+- Supporting query families: `新字体 旧字体 変換`, `文章 旧字体 変換`.
+- The page is the cluster's whole-text converter. It must not present itself as the generic old-kanji lookup/list page.
+- Primary task handoffs are Old Kanji Reference, Old Document Kanji Highlighter, and Unicode Kanji Checker.
+
 ## Current functional contract
 
 - Accept arbitrary text and convert Old → Modern or Modern → Old using the loaded dictionary.
