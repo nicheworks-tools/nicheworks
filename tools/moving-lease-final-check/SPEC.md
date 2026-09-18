@@ -80,7 +80,7 @@ The canonical monetization class is `AFFILIATE`. The live commerce block uses th
 
 - [ ] A required exit/handoff date and home type produce the corresponding final-stage checklist.
 - [ ] Rental tasks remain centered on inspection/photo/key/return/handoff work rather than broad moving preparation.
-- [ ] Initial HTML exposes the core退去前確認 topics without requiring checklist generation and keeps restoration/deposit/legal judgments out of scope.
+- [ ] Initial HTML exposes the core move-out checking topics without requiring checklist generation and keeps restoration, deposit, and legal judgments out of scope.
 - [ ] Owned tasks remain centered on property handoff/vacancy finalization rather than broad address or municipal procedures.
 - [ ] Completion state persists in the browser for the saved condition and can be deleted explicitly.
 - [ ] TXT copy/download and browser print remain usable without any paid entitlement.
