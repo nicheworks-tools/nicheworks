@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-18-applicability-wave2",
+  "version": "2026-09-18-applicability-wave3",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -2711,6 +2711,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A feeler gauge is a distinctive measuring tool made from thin calibrated leaves; a close subject-matched photograph strongly aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -2722,6 +2731,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A fire extinguisher is a physical safety device with clear visual identity; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -2739,6 +2757,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Firestop is physically manifested at rated penetrations and joints using sealants, mortars, collars, or wraps; a reviewed installed-detail photograph can represent the canonical meaningfully.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -2753,6 +2780,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A first-aid kit is a physical safety supply container with recognizable jobsite use; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -2764,6 +2800,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Fish tape is a distinctive electrical pulling tool with a reel/case and flexible tape; a subject-matched photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -2809,6 +2854,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Flashing tape is a physical waterproofing tape used around openings; a reviewed roll or installed-detail photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -2820,6 +2874,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Flexible conduit is a physical corrugated or metallic raceway with recognizable installed form; imagery materially aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -2851,6 +2914,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A concrete float/trowel is a physical finishing tool with characteristic blade/handle form; a subject-matched photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -2862,6 +2934,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Floor leveler is a physical substrate-adjustment material with recognizable mixing/pour application; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -2879,6 +2960,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A forklift is a distinctive materials-handling vehicle with mast and forks; a verified photograph strongly aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -2890,6 +2980,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Form release agent is a physical material applied to concrete formwork; a reviewed product/application photograph can represent the canonical use.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -2907,6 +3006,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Concrete form plywood is a physical sheet material with recognizable formwork context; a reviewed photograph aids distinction from general plywood.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -2918,6 +3026,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A form tie is a physical concrete-form fastening component with recognizable threaded/tie geometry; a close reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -2935,6 +3052,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Formwork is a physical temporary mold/support system for concrete; a reviewed site photograph materially aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -2946,6 +3072,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A furring strip is a physical narrow framing/backing member with recognizable installed use; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -2963,6 +3098,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is the broad jobsite/slang concept 'genba'; any construction-site photograph would be an arbitrary example of a location rather than a stable visual subject for the term itself.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -2974,6 +3118,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A portable/jobsite generator is a distinctive power-supply machine; a subject-matched photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -2991,6 +3144,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A GFCI/RCD is a physical electrical protection device with recognizable breaker/receptacle forms; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3002,6 +3164,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Glass wool is a physical fibrous insulation material with recognizable batt/roll form; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -3019,6 +3190,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Fiberglass insulation is a physical fibrous insulation product with recognizable batt/roll form; a reviewed photograph is useful for this surviving canonical.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3030,6 +3210,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A ground-fault breaker is a physical electrical safety device with recognizable breaker form; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -3047,6 +3236,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Grout is a physical construction material used in joints or void filling; a reviewed product or application photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3058,6 +3256,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A construction guardrail is a physical edge-protection system with clear visual identity; a reviewed site photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -3075,6 +3282,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A gutter is a physical roof-edge rainwater component with a recognizable installed form; imagery aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3086,6 +3302,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A hacksaw is a distinctive framed hand saw for metal/plastic cutting; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -3103,6 +3328,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A hammer is a physical hand tool with clear visual identity; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3114,6 +3348,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A hammer drill is a distinctive power drill for masonry; a subject-matched photograph helps distinguish it from rotary hammers and drill drivers.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -3131,6 +3374,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A hammer tacker is a distinctive hammer-like stapling tool; a reviewed photograph strongly aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3142,6 +3394,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A hand saw is a physical cutting tool with recognizable blade and handle; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -3159,6 +3420,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical covers jobsite hand signaling as a communication practice; there are multiple distinct signals, so one photograph would represent only an arbitrary gesture and could misstate the broader concept.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3170,6 +3440,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A hand truck/cart is a physical wheeled transport aid with recognizable forms; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -3201,6 +3480,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A handrail bracket is a physical support fitting with a distinct wall/rail attachment form; a close reviewed photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3212,6 +3500,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A hand saw is a physical cutting tool with clear visual identity; this surviving canonical can be represented by a subject-matched photograph.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -3229,6 +3526,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A hanger bolt/threaded suspension rod is a physical support component with recognizable installed use; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3240,6 +3546,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A hard hat is physical head-protection PPE with clear visual identity; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -3257,6 +3572,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A heat gun is a distinctive handheld hot-air power tool; a subject-matched photograph strongly aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3268,6 +3592,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Heat-shrink tubing is a physical electrical material with recognizable tube and shrunk-connection forms; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -3285,6 +3618,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A high-visibility vest is physical PPE with distinctive fluorescent/reflective appearance; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3296,6 +3638,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A hole saw is a distinctive cup-shaped cutting accessory; a close subject-matched photograph strongly aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -3313,6 +3664,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A hose clamp is a physical fastening band with recognizable screw/band form; a close reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3327,6 +3687,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is a broad work category covering welding, cutting, brazing and other spark/flame-producing operations; one photograph would depict only one arbitrary subtype rather than the concept itself.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3338,6 +3707,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Housewrap is a physical weather-resistive sheet material with recognizable installed wall-envelope use; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -3369,6 +3747,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is defined by the inspection information recorded, while form layouts and media vary by organization; a representative document photograph would be arbitrary rather than a stable visual identity.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3380,6 +3767,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is the broad insulation material category spanning fibrous, foam, board, spray and other forms; a single photograph of one subtype would misleadingly narrow the generic concept, while specific insulation canonicals can carry images.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -3397,6 +3793,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Insulation board is a physical rigid sheet product with a recognizable form and installation context; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3408,6 +3813,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A jigsaw is a distinctive reciprocating-blade power saw; a subject-matched photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -3439,6 +3853,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Joint compound is a physical finishing material with recognizable tub/bucket and drywall-joint application; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3450,6 +3873,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A joist is a physical repeated horizontal framing member in floors/ceilings; a reviewed framing photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -3467,6 +3899,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A junction box is a physical electrical enclosure with recognizable installed forms; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -3478,6 +3919,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is a spoken/shouted jobsite warning expression rather than a physical subject; any scene photograph would be arbitrary and would not identify the term itself.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null

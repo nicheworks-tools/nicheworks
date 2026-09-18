@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-inventory-exceptions-v2.3",
-  "version": "2026-09-18-applicability-wave2",
+  "version": "2026-09-18-applicability-wave3",
   "items": [
     {
       "entry_id": "punch_list",
@@ -61,6 +61,36 @@
       "entry_id": "dust_control_008",
       "state": "not_required",
       "reason": "The canonical is a broad dust-control practice combining extraction, wet methods, barriers, ventilation, and housekeeping; no single photograph can represent the concept without privileging one arbitrary control method."
+    },
+    {
+      "entry_id": "genba_site",
+      "state": "not_required",
+      "reason": "The canonical is the broad jobsite/slang concept 'genba'; any construction-site photograph would be an arbitrary example of a location rather than a stable visual subject for the term itself."
+    },
+    {
+      "entry_id": "hand_signal",
+      "state": "not_required",
+      "reason": "The canonical covers jobsite hand signaling as a communication practice; there are multiple distinct signals, so one photograph would represent only an arbitrary gesture and could misstate the broader concept."
+    },
+    {
+      "entry_id": "hot_work",
+      "state": "not_required",
+      "reason": "The canonical is a broad work category covering welding, cutting, brazing and other spark/flame-producing operations; one photograph would depict only one arbitrary subtype rather than the concept itself."
+    },
+    {
+      "entry_id": "inspection_record",
+      "state": "not_required",
+      "reason": "The canonical is defined by the inspection information recorded, while form layouts and media vary by organization; a representative document photograph would be arbitrary rather than a stable visual identity."
+    },
+    {
+      "entry_id": "insulation",
+      "state": "not_required",
+      "reason": "The canonical is the broad insulation material category spanning fibrous, foam, board, spray and other forms; a single photograph of one subtype would misleadingly narrow the generic concept, while specific insulation canonicals can carry images."
+    },
+    {
+      "entry_id": "kiken_watch_out",
+      "state": "not_required",
+      "reason": "The canonical is a spoken/shouted jobsite warning expression rather than a physical subject; any scene photograph would be arbitrary and would not identify the term itself."
     }
   ]
 }
