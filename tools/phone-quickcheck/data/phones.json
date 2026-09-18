@@ -5618,8 +5618,8 @@
         }
       },
       "included": {
-        "cable": "unknown",
-        "adapter": "unknown"
+        "cable": "not_included",
+        "adapter": "not_included"
       },
       "sources": {
         "specificationsUrl": "https://jp.sharp/k-tai/22winter/spec-sense7.html",
