@@ -51,6 +51,12 @@ const BASELINE_FLOORS = Object.freeze({
   canonical_with_supported_public_role: 408
 });
 
+const BASELINE_RUNTIME_PROVENANCE_FLOORS = Object.freeze({
+  verified_category_runtime_identities: 116,
+  verified_note_runtime_identities: 22,
+  strong_runtime_data_identities: 19
+});
+
 function text(value = '') {
   return String(value).normalize('NFKC').replace(/\s+/g, ' ').trim();
 }
@@ -193,6 +199,40 @@ const runtimeRoleReady = runtimeMerged.filter((item) => {
   return categories.some((value) => PUBLIC_ROLE_CATEGORIES.has(category(value)));
 }).length;
 const runtimeRoleMissing = runtimeMerged.length - runtimeRoleReady;
+const runtimeVerifiedCategory = runtimeMerged.filter((item) =>
+  item.category_verified === true &&
+  Array.isArray(item.category_sources) &&
+  item.category_sources.some((value) => text(value))
+).length;
+const runtimeVerifiedNote = runtimeMerged.filter((item) =>
+  item.note_verified === true &&
+  text(item.note_short) &&
+  Array.isArray(item.note_sources) &&
+  item.note_sources.some((value) => text(value))
+).length;
+const runtimeStrongReady = runtimeMerged.filter((item) => {
+  const categories = Array.isArray(item.categories) ? item.categories : [item.category];
+  const hasRole = categories.some((value) => PUBLIC_ROLE_CATEGORIES.has(category(value)));
+  const hasJp = hasJapaneseName(item);
+  const hasVerifiedNote = item.note_verified === true &&
+    text(item.note_short) &&
+    Array.isArray(item.note_sources) &&
+    item.note_sources.some((value) => text(value));
+  return hasRole && hasJp && hasVerifiedNote;
+}).length;
+const runtimeStrongMissing = runtimeMerged.length - runtimeStrongReady;
+const runtimeVerifiedNoteNotStrong = runtimeMerged
+  .filter((item) => item.note_verified === true && text(item.note_short) && Array.isArray(item.note_sources) && item.note_sources.some((value) => text(value)))
+  .filter((item) => {
+    const categories = Array.isArray(item.categories) ? item.categories : [item.category];
+    const hasRole = categories.some((value) => PUBLIC_ROLE_CATEGORIES.has(category(value)));
+    return !(hasRole && hasJapaneseName(item));
+  })
+  .map((item) => ({
+    canonical: canonicalKey(item.en),
+    has_japanese_name: hasJapaneseName(item),
+    categories: Array.isArray(item.categories) ? item.categories : []
+  }));
 
 const measuredDebt = {
   missing_jp_name: counters.missing_jp_name,
@@ -224,6 +264,23 @@ for (const [metric, floor] of Object.entries(BASELINE_FLOORS)) {
   }
 }
 
+const runtimeProvenanceMeasured = {
+  verified_category_runtime_identities: runtimeVerifiedCategory,
+  verified_note_runtime_identities: runtimeVerifiedNote,
+  strong_runtime_data_identities: runtimeStrongReady
+};
+for (const [metric, floor] of Object.entries(BASELINE_RUNTIME_PROVENANCE_FLOORS)) {
+  if (runtimeProvenanceMeasured[metric] < floor) {
+    structuralFailures.push(`runtime provenance regression ${metric}: ${runtimeProvenanceMeasured[metric]} below frozen floor ${floor}`);
+  }
+}
+if (runtimeVerifiedCategory !== Object.keys(parser.verifiedCategoryEvidence || {}).length) {
+  structuralFailures.push('verified category overlay entries must all survive into runtime provenance');
+}
+if (runtimeVerifiedNote !== Object.keys(parser.verifiedNoteEvidence || {}).length) {
+  structuralFailures.push('verified note overlay entries must all survive into runtime provenance');
+}
+
 const report = {
   status: structuralFailures.length ? 'fail' : 'pass',
   phase: 'cosmetics-completion-readiness-inventory',
@@ -242,7 +299,17 @@ const report = {
     with_supported_public_role: runtimeRoleReady,
     without_supported_public_role: runtimeRoleMissing,
     public_role_ready_percent: runtimeMerged.length ? Number((runtimeRoleReady / runtimeMerged.length * 100).toFixed(2)) : 0,
-    verified_category_overlay_identities: Object.keys(parser.verifiedCategoryEvidence || {}).length
+    verified_category_overlay_identities: Object.keys(parser.verifiedCategoryEvidence || {}).length,
+    verified_category_runtime_identities: runtimeVerifiedCategory,
+    verified_note_overlay_identities: Object.keys(parser.verifiedNoteEvidence || {}).length,
+    verified_note_runtime_identities: runtimeVerifiedNote
+  },
+  runtime_shared_data_strong_readiness: {
+    definition: 'supported public role + maintained Japanese name + source-backed verified ingredient-specific note',
+    with_strong_runtime_data: runtimeStrongReady,
+    without_strong_runtime_data: runtimeStrongMissing,
+    strong_runtime_ready_percent: runtimeMerged.length ? Number((runtimeStrongReady / runtimeMerged.length * 100).toFixed(2)) : 0,
+    verified_note_identities_not_strong: runtimeVerifiedNoteNotStrong
   },
   canonical_readiness: {
     with_supported_public_role: canonicalWithSupportedRole,
@@ -256,11 +323,13 @@ const report = {
   },
   debt_ceiling: BASELINE_DEBT_CEILINGS,
   readiness_floor: BASELINE_FLOORS,
+  runtime_provenance_floor: BASELINE_RUNTIME_PROVENANCE_FLOORS,
   unsupported_public_role_categories: topCounts(unsupportedCategoryCounts),
   records_by_file: topCounts(fileCounts, DATA_FILES.length),
   completion_definition: {
     lite_core: 'canonical identity + supported bilingual public role category; incomplete data stays explicit',
-    shared_data_strong: 'canonical identity + Japanese naming coverage when maintained + supported public role + ingredient-specific note + explicit evidence metadata',
+    shared_data_strong: 'canonical identity + maintained Japanese name + supported public role + source-backed verified ingredient-specific note at runtime',
+    raw_dictionary_metrics: 'raw record debt only; verified parser overlays are intentionally measured separately and must not be mistaken for zero runtime provenance',
     fastscan_extra: 'Lite/shared-data readiness plus OCR/review usability; match/debug metadata remains secondary'
   },
   structural_failures: structuralFailures
