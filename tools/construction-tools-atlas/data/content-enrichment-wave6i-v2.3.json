@@ -1,0 +1,396 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-18-wave6i-concrete-layout-tools-1",
+  "entries": [
+    {
+      "id": "wrench",
+      "wave": "content-wave-006i",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "ボルト・ナットを締めたり緩めたりする手工具の総称。片口・両口・コンビネーション・モンキーなど種類があり、二面幅と作業スペースに合う工具を選ぶ。",
+      "detail_en": "A general hand tool for tightening or loosening nuts and bolts. Open-end, box-end, combination, and adjustable types should be selected to match fastener size and available working space.",
+      "bullets_ja": [
+        "ナットやボルト頭に正しく合うサイズを使い、角を傷めるガタの大きい工具を使わない。",
+        "引く方向で安定して力を掛け、パイプ延長など想定外の過大トルクを与えない。",
+        "割れ・広がり・摩耗した口部や緩んだ可動部を点検し、損傷工具は交換する。"
+      ],
+      "bullets_en": [
+        "Use a wrench that fits the fastener correctly and avoid loose-fitting jaws that can round corners.",
+        "Apply force in a stable direction and do not use improvised extensions that create excessive torque.",
+        "Inspect for cracked, spread, or worn jaws and loose adjustable mechanisms and replace damaged tools."
+      ],
+      "examples_ja": [
+        "配管支持金物のボルトを適正サイズのレンチで締める。",
+        "設備点検でナットを緩める際に固定側と回転側へレンチを掛ける。"
+      ],
+      "examples_en": [
+        "Tighten support-hardware bolts with the correctly sized wrench.",
+        "Use two wrenches where needed to hold one side while loosening a fitting or fastener."
+      ]
+    },
+    {
+      "id": "formwork",
+      "wave": "content-wave-006i",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "コンクリートが硬化するまで所定の形状・寸法を保持するための型枠システム。せき板、桟木、支保工、締付材などで構成し、打設時の側圧・荷重に耐えるよう計画する。",
+      "detail_en": "A temporary system that holds fresh concrete to the required shape and dimensions until sufficient strength develops. Panels, walers, braces, shores, ties, and connections must be designed for construction loads and concrete pressure.",
+      "bullets_ja": [
+        "型枠・支保工の配置、締付け、支点を施工計画どおりに組み、現場判断で省略しない。",
+        "打設前に通り・寸法・隙間・清掃・離型処理・締付け状態を確認する。",
+        "脱型・支保工撤去はコンクリート強度と施工条件を確認し、早過ぎる撤去を避ける。"
+      ],
+      "bullets_en": [
+        "Install panels, ties, braces, and shores in accordance with the formwork plan and do not omit components casually.",
+        "Before placement, check alignment, dimensions, joints, cleanliness, release treatment, and restraint.",
+        "Strip forms and remove shores only when concrete strength and construction conditions permit."
+      ],
+      "examples_ja": [
+        "基礎立上りの型枠を組み、寸法と通りを確認してから打設する。",
+        "壁型枠のセパレーターと支保を打設前に点検する。"
+      ],
+      "examples_en": [
+        "Assemble foundation-wall formwork and verify dimensions before concrete placement.",
+        "Inspect wall-form ties and bracing before the pour."
+      ]
+    },
+    {
+      "id": "float_trowel",
+      "wave": "content-wave-006i",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "打設したコンクリート表面をならし、粗い凹凸を整えるためのフロート・こて。木製、マグネシウム、樹脂などがあり、コンクリートの状態と仕上げ工程に合わせて使う。",
+      "detail_en": "A float or trowel used to level and consolidate the surface of freshly placed concrete before later finishing. Wood, magnesium, resin, and other types are selected according to the mix condition and finish sequence.",
+      "bullets_ja": [
+        "ブリーディング水が多い状態で無理に仕上げず、表面状態を見て適切なタイミングで作業する。",
+        "過度な押さえ込みや繰返しで表面を乱さず、平坦性を確認しながら均一に動かす。",
+        "湿ったコンクリートとの皮膚接触を避け、手袋・長靴など必要な保護具を使用する。"
+      ],
+      "bullets_en": [
+        "Do not force finishing while excessive bleed water remains; work at the appropriate stage of concrete setting.",
+        "Use even passes and avoid excessive pressure or repeated working that disturbs the surface.",
+        "Avoid skin contact with wet concrete and use suitable gloves, boots, and other protective equipment."
+      ],
+      "examples_ja": [
+        "打設後の床面をフロートで荒ならしする。",
+        "定規ならし後に表面の小さな凹凸をフロートで整える。"
+      ],
+      "examples_en": [
+        "Float a freshly placed slab after initial screeding.",
+        "Use a float to remove minor surface irregularities before final finishing."
+      ]
+    },
+    {
+      "id": "metal_stud",
+      "wave": "content-wave-006i",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "内装壁・天井などの下地に使う薄板鋼製のスタッド材。ランナーと組み合わせて骨組みを構成し、寸法、板厚、ピッチ、開口補強を仕様に合わせる。",
+      "detail_en": "A light-gauge steel stud used for interior wall and ceiling framing. Studs work with tracks or runners, with size, gauge, spacing, and opening reinforcement selected to suit the partition specification.",
+      "bullets_ja": [
+        "指定されたスタッド寸法・ピッチとランナーの組合せを守る。",
+        "切断端は鋭利なので手袋を使用し、必要に応じて端部処理を行う。",
+        "開口部、設備貫通、重量物取付部では必要な補強や下地を追加する。"
+      ],
+      "bullets_en": [
+        "Use the specified stud size, gauge, spacing, and compatible track system.",
+        "Wear gloves around sharp cut edges and treat exposed edges where required.",
+        "Provide specified reinforcement at openings, service penetrations, and locations carrying mounted loads."
+      ],
+      "examples_ja": [
+        "軽量間仕切り壁のスタッドを所定ピッチでランナーへ建て込む。",
+        "ドア開口部へ補強スタッドを追加する。"
+      ],
+      "examples_en": [
+        "Install metal studs at the specified spacing in floor and head tracks.",
+        "Add reinforced studs around a door opening."
+      ]
+    },
+    {
+      "id": "concrete_pump",
+      "wave": "content-wave-006i",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "生コンクリートを配管・ホースを通して打設位置へ圧送するコンクリートポンプ・ポンプ車。ブーム、配管、アウトリガー、圧送圧力、周囲の架空線や人員動線を管理して使用する。",
+      "detail_en": "A concrete pump or pump truck conveys fresh concrete through pipework and hose to the placement point. Boom movement, pipeline pressure, outriggers, overhead hazards, and personnel exclusion require control.",
+      "bullets_ja": [
+        "アウトリガー設置地盤とブーム旋回範囲を確認し、架空線や建物との離隔を確保する。",
+        "配管・クランプ・ホースを点検し、圧力が掛かった状態で接続部を外さない。",
+        "ホース先端の振れや詰まり解消時の急動作に備え、周囲を立入管理する。"
+      ],
+      "bullets_en": [
+        "Check ground support for outriggers and maintain clearance from overhead lines and structures throughout boom movement.",
+        "Inspect pipes, clamps, and hoses and never open connections while the system is pressurized.",
+        "Control access around the hose end and during blockage clearing because sudden movement or discharge can occur."
+      ],
+      "examples_ja": [
+        "基礎打設でポンプ車を安定した位置へ据え、ブームで打設箇所へ圧送する。",
+        "打設前に配管クランプとホース状態を点検する。"
+      ],
+      "examples_en": [
+        "Set up a pump truck on stable ground and place concrete through the boom for a foundation pour.",
+        "Inspect pipeline clamps and hose condition before pumping begins."
+      ]
+    },
+    {
+      "id": "genba_site",
+      "wave": "content-wave-006i",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "「現場」は、建設・改修・設備工事など実際の作業が行われる場所を指す一般的な現場用語。文脈によって工事区域全体、特定の作業区画、勤務先の工事案件などを指す。",
+      "detail_en": "“Genba” means the actual work site or field location where construction, renovation, or installation takes place. Depending on context, it may mean the whole project, a specific work area, or the job assignment itself.",
+      "bullets_ja": [
+        "「現場へ行く」「現場内」など、文脈により場所の範囲が違うため必要に応じ具体的な区域名で確認する。",
+        "立入ルール、保護具、搬入経路、緊急連絡などは現場ごとの管理条件に従う。",
+        "別現場のルールや慣行をそのまま持ち込まず、その工事の最新手順を確認する。"
+      ],
+      "bullets_en": [
+        "Clarify the exact area when “site” could mean the whole project, a building, floor, or specific work zone.",
+        "Follow project-specific access, PPE, logistics, emergency, and communication requirements.",
+        "Do not assume rules from another project apply; confirm the current site's procedures and controls."
+      ],
+      "examples_ja": [
+        "「午後は別の現場へ移動する」のように工事案件を指して使う。",
+        "現場内の立入禁止区画を朝礼で確認する。"
+      ],
+      "examples_en": [
+        "Use “genba” to refer to a different project location being visited later in the day.",
+        "Confirm restricted areas within the site during the daily briefing."
+      ]
+    },
+    {
+      "id": "hand_signal",
+      "wave": "content-wave-006i",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "重機、車両、揚重作業などで、誘導員と運転者・作業者の意思疎通に使う手合図。開始前に合図の種類、合図者、停止合図を共通認識にする。",
+      "detail_en": "Hand signals are visual commands used between spotters, operators, and workers during vehicle, machinery, or lifting operations. Signal meanings, the designated signaler, and stop signals should be agreed before work.",
+      "bullets_ja": [
+        "作業前に使用する合図を確認し、複数人が同時に異なる指示を出さない。",
+        "運転者から合図者が見えなくなった場合は、原則として動作を停止して再確認する。",
+        "緊急停止など重要な合図は全員が理解できるよう明確にし、無線併用時も優先ルールを決める。"
+      ],
+      "bullets_en": [
+        "Agree on the signal set and designated signaler before work and avoid conflicting instructions from multiple people.",
+        "If the operator loses sight of the signaler, stop movement and re-establish communication.",
+        "Make emergency-stop signals universally understood and define priorities when radios and hand signals are both used."
+      ],
+      "examples_ja": [
+        "クレーン作業前に合図者と運転者で巻上げ・停止の手合図を確認する。",
+        "バック車両の誘導で停止合図を明確に使う。"
+      ],
+      "examples_en": [
+        "Review hoist and stop hand signals between the crane operator and signaler before lifting.",
+        "Use a clear stop signal while guiding a reversing vehicle."
+      ]
+    },
+    {
+      "id": "respirator",
+      "wave": "content-wave-006i",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "粉じん、ミスト、蒸気、ガスなど特定の有害物質への吸入ばく露を減らす呼吸用保護具。面体とフィルタ・吸収缶の種類、適合性、フィットを対象物質と作業条件に合わせる。",
+      "detail_en": "A respirator reduces inhalation exposure to specified dusts, mists, vapors, or gases. Facepiece type, filter or cartridge selection, compatibility, and fit must match the contaminant and work conditions.",
+      "bullets_ja": [
+        "対象となる有害物質と濃度・作業条件に適合する面体・フィルタ・吸収缶を選ぶ。",
+        "密着性を損なうひげ・装着不良・劣化を避け、使用前に所定のフィット確認を行う。",
+        "酸素欠乏など空気浄化式呼吸用保護具では対応できない環境へ一般の防毒マスクを使用しない。"
+      ],
+      "bullets_en": [
+        "Select a facepiece and filter or cartridge approved for the identified contaminant and expected exposure conditions.",
+        "Maintain a proper face seal, avoid fit interference, and perform the required user seal or fit checks.",
+        "Do not use ordinary air-purifying respirators in oxygen-deficient or otherwise unsuitable atmospheres."
+      ],
+      "examples_ja": [
+        "溶剤塗装で対象蒸気に適合する吸収缶付き呼吸用保護具を使用する。",
+        "研磨粉じん作業前に面体の密着状態を確認する。"
+      ],
+      "examples_en": [
+        "Use a respirator with cartridges appropriate for the coating vapors involved.",
+        "Check face seal before entering a dusty sanding work area."
+      ]
+    },
+    {
+      "id": "measuring_wheel",
+      "wave": "content-wave-006i",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "車輪を地面に転がし、その回転数から距離を測る測定車。長い通路、外構、敷地寸法などを素早く概測するのに向く。",
+      "detail_en": "A measuring wheel estimates distance by counting wheel rotation along the ground. It is useful for longer site, roadway, landscape, and layout measurements where rapid field measurement is needed.",
+      "bullets_ja": [
+        "測定開始位置でカウンタをゼロにし、車輪を測定線に沿ってまっすぐ転がす。",
+        "段差・凹凸・滑り・蛇行で誤差が増えるため、精度が必要な場合は別手段で確認する。",
+        "往復測定や既知距離での確認を行い、単位設定を間違えない。"
+      ],
+      "bullets_en": [
+        "Zero the counter at the start point and roll the wheel along the intended measurement line.",
+        "Expect more error from rough ground, steps, slipping, or wandering and verify by another method when higher accuracy is required.",
+        "Use repeat measurements or a known distance for checks and confirm the displayed unit."
+      ],
+      "examples_ja": [
+        "敷地内の仮設通路長さを測定車で概測する。",
+        "フェンス施工前に外周距離を測る。"
+      ],
+      "examples_en": [
+        "Estimate the length of a temporary site access route with a measuring wheel.",
+        "Measure a perimeter before planning fence installation."
+      ]
+    },
+    {
+      "id": "line_level",
+      "wave": "content-wave-006i",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "張った水糸などへ掛けて、その糸が水平かを確認する小型水平器。基礎・組積・外構などで長い基準線の高さ確認に使う。",
+      "detail_en": "A small spirit level that hangs on a taut string line to check whether the line is level. It is used for longer reference lines in foundation, masonry, landscaping, and similar layout work.",
+      "bullets_ja": [
+        "水糸を十分に張ってたるみを抑え、水平器を中央付近へ掛けて確認する。",
+        "水平器自体の重量で糸が下がるため、長い距離では誤差を考慮する。",
+        "高い精度が必要な施工ではレーザーやレベルなど適切な測量機器で再確認する。"
+      ],
+      "bullets_en": [
+        "Tension the string to minimize sag and place the level near the relevant measurement position.",
+        "Allow for deflection caused by string sag and the weight of the level, especially over long spans.",
+        "For work requiring higher accuracy, verify with a laser, optical level, or other suitable instrument."
+      ],
+      "examples_ja": [
+        "ブロック積みの基準水糸へ糸水平器を掛けて高さを調整する。",
+        "外構の短い区間で水平基準を確認する。"
+      ],
+      "examples_en": [
+        "Hang a line level on a masonry string to adjust the reference elevation.",
+        "Check a short landscaping reference line for level."
+      ]
+    },
+    {
+      "id": "stud",
+      "wave": "content-wave-006i",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "壁下地で上下の横架材・ランナー間に立てる縦材。木製・鋼製があり、壁の種類、荷重、仕上げ材、開口部に応じて寸法・ピッチ・補強を決める。",
+      "detail_en": "A vertical wall-framing member installed between plates or tracks. Timber and steel studs vary in size, spacing, load capacity, and reinforcement according to wall type, finishes, and openings.",
+      "bullets_ja": [
+        "図面・仕様で指定された寸法とピッチを守り、通りと鉛直を確認する。",
+        "ドア・窓・重量物取付部や設備貫通部では必要な補強を追加する。",
+        "切欠き・穴あけは部材性能へ影響するため、許容位置・寸法を確認する。"
+      ],
+      "bullets_en": [
+        "Follow specified stud size and spacing and check alignment and plumb.",
+        "Provide required reinforcement at doors, windows, mounted loads, and service penetrations.",
+        "Check permitted notch and hole locations because modifications can reduce member performance."
+      ],
+      "examples_ja": [
+        "木造間仕切り壁の間柱を指定ピッチで配置する。",
+        "壁掛け設備の取付位置へ補強下地を追加する。"
+      ],
+      "examples_en": [
+        "Install timber studs at the specified spacing for a partition wall.",
+        "Add framing reinforcement at a wall-mounted equipment location."
+      ]
+    },
+    {
+      "id": "screed",
+      "wave": "content-wave-006i",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "打設直後のコンクリートやモルタル表面を所定高さへならす定規・ならし工具、またはその作業。直線材や専用スクリードを基準へ当て、余分な材料を移動させて平坦性を整える。",
+      "detail_en": "A screed is a straightedge or specialized tool, and the associated process, used to strike off fresh concrete or mortar to the required elevation and flatness.",
+      "bullets_ja": [
+        "基準となる型枠・レール・レベルを確認し、所定高さを外さないようならす。",
+        "大きな凹みへ材料を補いながら、過度に表面を引きずって材料分離を起こさない。",
+        "長尺工具は周囲の人や配筋へ当てないよう、複数人作業では合図を合わせる。"
+      ],
+      "bullets_en": [
+        "Verify the reference forms, rails, or levels and strike the surface to the required elevation.",
+        "Fill low areas as needed and avoid excessive dragging that causes segregation or surface defects.",
+        "Control long screed tools around workers and reinforcement and coordinate movement when more than one person handles the tool."
+      ],
+      "examples_ja": [
+        "床コンクリート打設後に定規で所定レベルへならす。",
+        "基礎天端をスクリードで粗ならししてから仕上げる。"
+      ],
+      "examples_en": [
+        "Strike off a freshly placed slab to the required level with a screed.",
+        "Rough-level a foundation top before subsequent finishing."
+      ]
+    },
+    {
+      "id": "joint_compound",
+      "wave": "content-wave-006i",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "石膏ボードの継ぎ目、ビス頭、表面不陸などを埋めて平滑にするジョイントコンパウンド・パテ。テープ処理用、仕上げ用、速硬化型など用途に応じた種類がある。",
+      "detail_en": "Joint compound is used to fill and smooth drywall joints, fastener heads, and minor surface irregularities. Taping, finishing, lightweight, and setting-type products have different purposes and working characteristics.",
+      "bullets_ja": [
+        "製品の用途に合う下地・ジョイントテープと組み合わせ、指定混合・可使時間を守る。",
+        "一度に厚盛りし過ぎず、各層を十分に乾燥または硬化させてから次工程へ進む。",
+        "研磨時の粉じんを集じんし、必要な呼吸・目の保護を行う。"
+      ],
+      "bullets_en": [
+        "Use the compound with compatible substrate and joint tape and follow mixing and working-time requirements.",
+        "Avoid excessive build in one pass and allow each layer to dry or set adequately before the next coat.",
+        "Control sanding dust with extraction and use appropriate respiratory and eye protection."
+      ],
+      "examples_ja": [
+        "石膏ボード継ぎ目へテープを伏せ込み、ジョイントコンパウンドで仕上げる。",
+        "ビス頭をパテ処理して乾燥後に研磨する。"
+      ],
+      "examples_en": [
+        "Embed joint tape and finish a drywall seam with joint compound.",
+        "Cover screw heads with compound and sand after drying."
+      ]
+    },
+    {
+      "id": "torque_wrench",
+      "wave": "content-wave-006i",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "ボルト・ナットを指定トルクで締め付けるための測定機能付きレンチ。クリック式、プレート式、デジタル式などがあり、必要トルク範囲と精度に合うものを使う。",
+      "detail_en": "A torque wrench applies and indicates a controlled tightening torque to nuts and bolts. Click, beam, dial, and digital types should be selected for the required torque range and accuracy.",
+      "bullets_ja": [
+        "指定トルクと単位を確認し、工具の有効測定範囲内で使用する。",
+        "締付け方向・持ち位置・操作速度を取扱方法に合わせ、クリック後に追加で締め込まない。",
+        "落下・過負荷を避け、必要な校正・点検周期を守って保管する。"
+      ],
+      "bullets_en": [
+        "Confirm the specified torque and units and work within the tool's intended measurement range.",
+        "Use the correct direction, grip position, and application rate and do not continue tightening after the set point is reached.",
+        "Avoid drops and overload and maintain required calibration or verification intervals and storage conditions."
+      ],
+      "examples_ja": [
+        "設備アンカーボルトを指定トルクで締め付ける。",
+        "フランジボルトを所定順序でトルク管理する。"
+      ],
+      "examples_en": [
+        "Tighten equipment anchor bolts to a specified torque.",
+        "Control flange-bolt tightening torque in the specified sequence."
+      ]
+    },
+    {
+      "id": "hammer_tacker",
+      "wave": "content-wave-006i",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "ハンマーのように打ち付ける動作でステープルを連続施工する手動タッカー。防水紙、断熱材、シートなどの仮固定・軽作業に使われ、対応ステープル寸法を確認して使う。",
+      "detail_en": "A manual stapling tool driven with a hammering motion for rapid fastening of underlayment, insulation facing, sheeting, and similar light materials. Staple type and length must match the tool and application.",
+      "bullets_ja": [
+        "工具指定のステープルだけを装填し、詰まり除去前にマガジン状態を安全に確認する。",
+        "手や他の作業者を打撃範囲へ入れず、硬い下地へ無理に打ち込まない。",
+        "構造固定や強度を要求される接合へ、仕様確認なしにタッカー留めを代用しない。"
+      ],
+      "bullets_en": [
+        "Load only staples specified for the tool and make the magazine safe before clearing a jam.",
+        "Keep hands and other workers out of the striking path and do not force staples into unsuitable hard substrates.",
+        "Do not substitute hammer-tacker staples for structural fastening unless the specification explicitly permits it."
+      ],
+      "examples_ja": [
+        "防水紙を下地へ仮固定するためハンマータッカーを使用する。",
+        "断熱材のフェーシングを木下地へ軽く留める。"
+      ],
+      "examples_en": [
+        "Use a hammer tacker to temporarily fasten building paper to a substrate.",
+        "Fasten insulation facing lightly to timber framing."
+      ]
+    }
+  ]
+}
