@@ -46,7 +46,9 @@ const EXPECTED_WAVE20 = Object.freeze({ 'ceramide ap':'skin conditioning', 'cera
 const EXPECTED_WAVE20_LEGACY_CATEGORIES = Object.freeze({ 'ceramide ap':['barrier lipid'], 'ceramide eop':['barrier lipid'] });
 const EXPECTED_WAVE21 = Object.freeze({ silica:'viscosity adjuster', alumina:'viscosity adjuster', 'aluminum stearate':'viscosity adjuster', 'dimethicone crosspolymer':'viscosity adjuster', 'glycol distearate':'emulsifier', 'myristyl myristate':'emollient', lecithin:'emulsifier' });
 const EXPECTED_WAVE21_LEGACY_CATEGORIES = Object.freeze({ silica:['powder'], alumina:['powder'], 'aluminum stearate':['powder'], 'dimethicone crosspolymer':['texture polymer'], 'glycol distearate':['general'], 'myristyl myristate':['general'] });
-const EXPECTED_ALL = Object.freeze({ ...EXPECTED_WAVE1, ...EXPECTED_WAVE2, ...EXPECTED_WAVE3, ...EXPECTED_WAVE4, ...EXPECTED_WAVE5, ...EXPECTED_WAVE6, ...EXPECTED_WAVE7, ...EXPECTED_WAVE8, ...EXPECTED_WAVE9, ...EXPECTED_WAVE10, ...EXPECTED_WAVE11, ...EXPECTED_WAVE12, ...EXPECTED_WAVE13, ...EXPECTED_WAVE14, ...EXPECTED_WAVE15, ...EXPECTED_WAVE16, ...EXPECTED_WAVE17, ...EXPECTED_WAVE18, ...EXPECTED_WAVE19, ...EXPECTED_WAVE20, ...EXPECTED_WAVE21 });
+const EXPECTED_WAVE22 = Object.freeze({ 'calcium gluconate':'chelating agent', 'ceramide as':'skin conditioning', 'ceramide ng':'skin conditioning', 'glyceryl acrylate/acrylic acid copolymer':'humectant', hectorite:'viscosity adjuster', 'tapioca starch':'viscosity adjuster' });
+const EXPECTED_WAVE22_LEGACY_CATEGORIES = Object.freeze({ 'calcium gluconate':['general'], 'ceramide as':['barrier lipid'], 'ceramide ng':['barrier lipid'], 'glyceryl acrylate/acrylic acid copolymer':['general'], hectorite:['general'], 'tapioca starch':['powder'] });
+const EXPECTED_ALL = Object.freeze({ ...EXPECTED_WAVE1, ...EXPECTED_WAVE2, ...EXPECTED_WAVE3, ...EXPECTED_WAVE4, ...EXPECTED_WAVE5, ...EXPECTED_WAVE6, ...EXPECTED_WAVE7, ...EXPECTED_WAVE8, ...EXPECTED_WAVE9, ...EXPECTED_WAVE10, ...EXPECTED_WAVE11, ...EXPECTED_WAVE12, ...EXPECTED_WAVE13, ...EXPECTED_WAVE14, ...EXPECTED_WAVE15, ...EXPECTED_WAVE16, ...EXPECTED_WAVE17, ...EXPECTED_WAVE18, ...EXPECTED_WAVE19, ...EXPECTED_WAVE20, ...EXPECTED_WAVE21, ...EXPECTED_WAVE22 });
 
 const EXPECTED_SOURCES = Object.freeze({
   water:'https://www.cosmeticsinfo.org/ingredient/water/', glycerin:'https://www.cosmeticsinfo.org/ingredient/glycerin/', 'propylene glycol':'https://www.cosmeticsinfo.org/ingredient/propylene-glycol/',
@@ -88,7 +90,13 @@ const EXPECTED_SOURCES = Object.freeze({
   'dimethicone crosspolymer':'https://cosmileeurope.eu/inci/detail/4584/dimethicone-crosspolymer/',
   'glycol distearate':'https://cosmileeurope.eu/inci/detail/6123/glycol-distearate/',
   'myristyl myristate':'https://cosmileeurope.eu/inci/detail/9328/myristyl-myristate/',
-  lecithin:'https://cosmileeurope.eu/inci/detail/8209/lecithin/'
+  lecithin:'https://cosmileeurope.eu/inci/detail/8209/lecithin/',
+  'calcium gluconate':'https://cosmileeurope.eu/inci/detail/2389/calcium-gluconate/',
+  'ceramide as':'https://cosmileeurope.eu/inci/detail/25520/ceramide-as/',
+  'ceramide ng':'https://cosmileeurope.eu/inci/detail/21295/ceramide-ng/',
+  'glyceryl acrylate/acrylic acid copolymer':'https://cosmileeurope.eu/inci/detail/5966/glyceryl-acrylate-acrylic-acid-copolymer/',
+  hectorite:'https://cosmileeurope.eu/inci/detail/6288/hectorite/',
+  'tapioca starch':'https://cosmileeurope.eu/inci/detail/15859/tapioca-starch/'
 });
 const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org','health.ec.europa.eu','cosmileeurope.eu']);
 
@@ -98,7 +106,7 @@ function validHttpsSource(value){ try { const u=new URL(String(value||'').trim()
 
 const rows=DATA_FILES.flatMap((file)=>{ const payload=JSON.parse(fs.readFileSync(path.join(root,file),'utf8')); if(!Array.isArray(payload)) throw new Error(`${file}: dictionary payload must be an array`); return payload; });
 const evidence=parser.verifiedCategoryEvidence||{};
-assert.deepEqual(Object.fromEntries(Object.entries(evidence).map(([key,item])=>[key,item.category])),EXPECTED_ALL,'verified category evidence must remain the reviewed cumulative wave 1 through wave 21 set');
+assert.deepEqual(Object.fromEntries(Object.entries(evidence).map(([key,item])=>[key,item.category])),EXPECTED_ALL,'verified category evidence must remain the reviewed cumulative wave 1 through wave 22 set');
 for(const ambiguous of parser.ambiguousExactKeys||[]) assert.equal(evidence[ambiguous],undefined,`ambiguous exact token must not receive category evidence: ${ambiguous}`);
 
 const groups=new Map();
@@ -123,6 +131,7 @@ let wave18Reviewed=0;
 let wave19Reviewed=0;
 let wave20Reviewed=0;
 let wave21Reviewed=0;
+let wave22Reviewed=0;
 const rawCategoryInventory={};
 for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
   const item=evidence[canonical];
@@ -139,7 +148,7 @@ for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
   const hasRawMissing=canonicalRows.some((row)=>!normalizeText(row.category));
   rawCategoryInventory[canonical]=rawCategories;
   if(rawCategories.length===0) newlyClassifiedCanonicalIdentities+=1;
-  if(rawCategories.length>0 && !Object.hasOwn(EXPECTED_WAVE15,canonical) && !Object.hasOwn(EXPECTED_WAVE16,canonical) && !Object.hasOwn(EXPECTED_WAVE18,canonical) && !Object.hasOwn(EXPECTED_WAVE19,canonical) && !Object.hasOwn(EXPECTED_WAVE20,canonical) && !Object.hasOwn(EXPECTED_WAVE21,canonical)) assert.ok(rawCategories.includes(expectedCategory.toLowerCase()),`${canonical}: verified category conflicts with existing raw category metadata (${rawCategories.join(', ')})`);
+  if(rawCategories.length>0 && !Object.hasOwn(EXPECTED_WAVE15,canonical) && !Object.hasOwn(EXPECTED_WAVE16,canonical) && !Object.hasOwn(EXPECTED_WAVE18,canonical) && !Object.hasOwn(EXPECTED_WAVE19,canonical) && !Object.hasOwn(EXPECTED_WAVE20,canonical) && !Object.hasOwn(EXPECTED_WAVE21,canonical) && !Object.hasOwn(EXPECTED_WAVE22,canonical)) assert.ok(rawCategories.includes(expectedCategory.toLowerCase()),`${canonical}: verified category conflicts with existing raw category metadata (${rawCategories.join(', ')})`);
 
   if(Object.hasOwn(EXPECTED_WAVE6,canonical)){
     assert.equal(hasRawMissing,true,`${canonical}: wave 6 must resolve at least one raw missing-category row`);
@@ -237,6 +246,11 @@ for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
     }
     wave21Reviewed+=1;
   }
+  if(Object.hasOwn(EXPECTED_WAVE22,canonical)){
+    assert.equal(hasRawMissing,false,`${canonical}: wave 22 must preserve the existing unsupported raw category without inventing a missing row`);
+    assert.deepEqual(rawCategories,EXPECTED_WAVE22_LEGACY_CATEGORIES[canonical],`${canonical}: wave 22 must preserve the frozen unsupported legacy category hint for audit`);
+    wave22Reviewed+=1;
+  }
 }
 
 const merged=parser.mergeDictionaryRecords(rows);
@@ -263,6 +277,7 @@ assert.equal(Object.keys(EXPECTED_WAVE18).length,4);
 assert.equal(Object.keys(EXPECTED_WAVE19).length,4);
 assert.equal(Object.keys(EXPECTED_WAVE20).length,3);
 assert.equal(Object.keys(EXPECTED_WAVE21).length,7);
+assert.equal(Object.keys(EXPECTED_WAVE22).length,6);
 assert.equal(wave6Resolved,3);
 assert.equal(wave7Resolved,3);
 assert.equal(wave8Resolved,3);
@@ -279,6 +294,7 @@ assert.equal(wave18Reviewed,4,'wave 18 must review exactly four high-frequency p
 assert.equal(wave19Reviewed,4,'wave 19 must review exactly four official-label public-role gaps');
 assert.equal(wave20Reviewed,3,'wave 20 must review exactly three high-frequency ceramide/phytosphingosine public-role gaps');
 assert.equal(wave21Reviewed,7,'wave 21 must review exactly seven official-label public-role gaps');
+assert.equal(wave22Reviewed,6,'wave 22 must review exactly six official-label public-role gaps');
 assert.equal(evidence['sodium citrate'],undefined,'Sodium Citrate must remain deferred until buffer vs pH-adjuster taxonomy is explicitly resolved');
 
-console.log(JSON.stringify({ status:'pass', phase:'category-provenance-wave-21', raw_missing_category_rows_unchanged:rawMissingCategoryRows, verified_category_evidence_canonical_identities:Object.keys(EXPECTED_ALL).length, wave_10_verified_canonical_identities:Object.keys(EXPECTED_WAVE10).length, wave_11_verified_canonical_identities:Object.keys(EXPECTED_WAVE11).length, wave_12_verified_canonical_identities:Object.keys(EXPECTED_WAVE12).length, wave_13_verified_canonical_identities:Object.keys(EXPECTED_WAVE13).length, wave_14_verified_canonical_identities:Object.keys(EXPECTED_WAVE14).length, wave_15_verified_canonical_identities:Object.keys(EXPECTED_WAVE15).length, wave_16_verified_canonical_identities:Object.keys(EXPECTED_WAVE16).length, wave_17_verified_canonical_identities:Object.keys(EXPECTED_WAVE17).length, wave_18_verified_canonical_identities:Object.keys(EXPECTED_WAVE18).length, wave_19_verified_canonical_identities:Object.keys(EXPECTED_WAVE19).length, wave_20_verified_canonical_identities:Object.keys(EXPECTED_WAVE20).length, wave_21_verified_canonical_identities:Object.keys(EXPECTED_WAVE21).length, newly_classified_completely_category_empty_canonical_identities:newlyClassifiedCanonicalIdentities, wave_6_raw_missing_canonical_identities_resolved:wave6Resolved, wave_7_raw_missing_canonical_identities_resolved:wave7Resolved, wave_8_raw_missing_canonical_identities_resolved:wave8Resolved, wave_9_raw_missing_canonical_identities_resolved:wave9Resolved, wave_10_raw_missing_canonical_identities_resolved:wave10Resolved, wave_11_raw_missing_canonical_identities_resolved:wave11Resolved, wave_12_raw_missing_canonical_identities_resolved:wave12Resolved, wave_13_raw_missing_canonical_identities_resolved:wave13Resolved, wave_14_raw_missing_canonical_identities_resolved:wave14Resolved, wave_15_unsupported_legacy_categories_reviewed:wave15Reviewed, wave_16_unsupported_legacy_categories_reviewed:wave16Reviewed, wave_17_raw_missing_canonical_identities_resolved:wave17Resolved, wave_18_reviewed_canonical_identities:wave18Reviewed, wave_19_reviewed_canonical_identities:wave19Reviewed, wave_20_reviewed_canonical_identities:wave20Reviewed, wave_21_reviewed_canonical_identities:wave21Reviewed, wave_10_requires_completely_category_empty_raw_canonical:true, wave_11_requires_completely_category_empty_raw_canonical:true, wave_12_requires_completely_category_empty_raw_canonical:true, wave_13_requires_completely_category_empty_raw_canonical:true, wave_14_requires_completely_category_empty_raw_canonical:true, wave_15_preserves_unsupported_legacy_category_hints:true, wave_16_preserves_unsupported_legacy_category_hints:true, wave_17_requires_completely_category_empty_raw_canonical:true, wave_18_preserves_legacy_category_hints_and_category_empty_state:true, wave_19_preserves_unsupported_legacy_category_hints:true, wave_20_preserves_barrier_lipid_hints_and_category_empty_state:true, wave_21_preserves_unsupported_legacy_category_hints_and_category_empty_state:true, sodium_citrate_deferred_for_taxonomy_decision:true, raw_category_inventory:rawCategoryInventory, recognition_records_rewritten:false, safety_contract_changed:false, ambiguity_contract_changed:false, affiliate_contract_changed:false },null,2));
+console.log(JSON.stringify({ status:'pass', phase:'category-provenance-wave-22', raw_missing_category_rows_unchanged:rawMissingCategoryRows, verified_category_evidence_canonical_identities:Object.keys(EXPECTED_ALL).length, wave_10_verified_canonical_identities:Object.keys(EXPECTED_WAVE10).length, wave_11_verified_canonical_identities:Object.keys(EXPECTED_WAVE11).length, wave_12_verified_canonical_identities:Object.keys(EXPECTED_WAVE12).length, wave_13_verified_canonical_identities:Object.keys(EXPECTED_WAVE13).length, wave_14_verified_canonical_identities:Object.keys(EXPECTED_WAVE14).length, wave_15_verified_canonical_identities:Object.keys(EXPECTED_WAVE15).length, wave_16_verified_canonical_identities:Object.keys(EXPECTED_WAVE16).length, wave_17_verified_canonical_identities:Object.keys(EXPECTED_WAVE17).length, wave_18_verified_canonical_identities:Object.keys(EXPECTED_WAVE18).length, wave_19_verified_canonical_identities:Object.keys(EXPECTED_WAVE19).length, wave_20_verified_canonical_identities:Object.keys(EXPECTED_WAVE20).length, wave_21_verified_canonical_identities:Object.keys(EXPECTED_WAVE21).length, wave_22_verified_canonical_identities:Object.keys(EXPECTED_WAVE22).length, newly_classified_completely_category_empty_canonical_identities:newlyClassifiedCanonicalIdentities, wave_6_raw_missing_canonical_identities_resolved:wave6Resolved, wave_7_raw_missing_canonical_identities_resolved:wave7Resolved, wave_8_raw_missing_canonical_identities_resolved:wave8Resolved, wave_9_raw_missing_canonical_identities_resolved:wave9Resolved, wave_10_raw_missing_canonical_identities_resolved:wave10Resolved, wave_11_raw_missing_canonical_identities_resolved:wave11Resolved, wave_12_raw_missing_canonical_identities_resolved:wave12Resolved, wave_13_raw_missing_canonical_identities_resolved:wave13Resolved, wave_14_raw_missing_canonical_identities_resolved:wave14Resolved, wave_15_unsupported_legacy_categories_reviewed:wave15Reviewed, wave_16_unsupported_legacy_categories_reviewed:wave16Reviewed, wave_17_raw_missing_canonical_identities_resolved:wave17Resolved, wave_18_reviewed_canonical_identities:wave18Reviewed, wave_19_reviewed_canonical_identities:wave19Reviewed, wave_20_reviewed_canonical_identities:wave20Reviewed, wave_21_reviewed_canonical_identities:wave21Reviewed, wave_22_reviewed_canonical_identities:wave22Reviewed, wave_10_requires_completely_category_empty_raw_canonical:true, wave_11_requires_completely_category_empty_raw_canonical:true, wave_12_requires_completely_category_empty_raw_canonical:true, wave_13_requires_completely_category_empty_raw_canonical:true, wave_14_requires_completely_category_empty_raw_canonical:true, wave_15_preserves_unsupported_legacy_category_hints:true, wave_16_preserves_unsupported_legacy_category_hints:true, wave_17_requires_completely_category_empty_raw_canonical:true, wave_18_preserves_legacy_category_hints_and_category_empty_state:true, wave_19_preserves_unsupported_legacy_category_hints:true, wave_20_preserves_barrier_lipid_hints_and_category_empty_state:true, wave_21_preserves_unsupported_legacy_category_hints_and_category_empty_state:true, wave_22_preserves_unsupported_legacy_category_hints:true, sodium_citrate_deferred_for_taxonomy_decision:true, raw_category_inventory:rawCategoryInventory, recognition_records_rewritten:false, safety_contract_changed:false, ambiguity_contract_changed:false, affiliate_contract_changed:false },null,2));
