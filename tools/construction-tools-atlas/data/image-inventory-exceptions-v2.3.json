@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-inventory-exceptions-v2.3",
-  "version": "2026-09-18-applicability-wave14",
+  "version": "2026-09-18-applicability-wave15",
   "items": [
     {
       "entry_id": "punch_list",
@@ -181,6 +181,11 @@
       "entry_id": "q016_toolbox_meeting",
       "state": "not_required",
       "reason": "The canonical is a safety briefing/meeting practice rather than one unique object; any photograph would show an arbitrary group or meeting format and would not identify the concept reliably."
+    },
+    {
+      "entry_id": "safety_meeting",
+      "state": "not_required",
+      "reason": "The canonical is a jobsite safety briefing/meeting practice rather than a unique physical subject; any photograph would show an arbitrary group, location, or meeting format rather than the concept itself."
     }
   ]
 }
