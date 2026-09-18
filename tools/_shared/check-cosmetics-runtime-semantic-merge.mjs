@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 40, 'the 4 legacy category conflicts plus 36 reviewed Wave 15-16 and Wave 18-23 legacy-vs-verified role conflicts must be explicit at runtime');
+assert.equal(categoryConflicts.length, 47, 'the 4 legacy category conflicts plus 43 reviewed Wave 15-16 and Wave 18-24 legacy-vs-verified role conflicts must be explicit at runtime');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
@@ -71,7 +71,14 @@ const reviewedVerifiedPrimary = new Map([
   ['peg-30 dipolyhydroxystearate', { category: 'emulsifier', legacy: ['general'] }],
   ['pentaerythrityl tetraethylhexanoate', { category: 'emollient', legacy: ['general'] }],
   ['polyacrylate crosspolymer-11', { category: 'viscosity adjuster', legacy: ['polymer'] }],
-  ['sphingolipids', { category: 'skin conditioning', legacy: ['barrier lipid'] }]
+  ['sphingolipids', { category: 'skin conditioning', legacy: ['barrier lipid'] }],
+  ['triethoxycaprylylsilane', { category: 'binder', legacy: ['general'] }],
+  ['p-anisic acid', { category: 'fragrance', legacy: ['preservative support'] }],
+  ['polyquaternium-39', { category: 'film former', legacy: ['conditioning polymer'] }],
+  ['polyquaternium-53', { category: 'hair conditioning', legacy: ['conditioning polymer'] }],
+  ['ppg-5-ceteth-20', { category: 'emulsifier', legacy: ['general'] }],
+  ['snail secretion filtrate', { category: 'skin conditioning', legacy: ['animal extract'] }],
+  ['synthetic beeswax', { category: 'viscosity adjuster', legacy: ['texture agent'] }]
 ]);
 
 for (const item of categoryConflicts) {
