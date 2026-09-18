@@ -18,26 +18,26 @@
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
     "quality_manifest_version": "2026-09-14-manifest-8",
-    "content_enrichment_version": "2026-09-18-wave6j"
+    "content_enrichment_version": "2026-09-18-wave6k"
   },
   "summary": {
     "public_entries": 870,
-    "fallback_independent_core": 841,
-    "runtime_fallback_dependent": 29,
+    "fallback_independent_core": 856,
+    "runtime_fallback_dependent": 14,
     "missing_core_bilingual_content": 0,
     "explicit_bilingual_identity": 870,
     "explicit_bilingual_definition": 870,
     "explicit_bilingual_detail": 870,
-    "explicit_bilingual_bullets": 841,
+    "explicit_bilingual_bullets": 856,
     "explicit_bilingual_examples": 870,
     "explicit_bilingual_aliases": 279,
-    "content_enriched_entries": 701,
+    "content_enriched_entries": 716,
     "has_category_context": 870,
     "has_task_context": 870
   },
   "fallback_field_counts": {
     "detail": 0,
-    "bullets": 29,
+    "bullets": 14,
     "examples": 0
   },
   "by_type": {
@@ -49,8 +49,8 @@
     },
     "accessory": {
       "public_entries": 2,
-      "fallback_independent_core": 1,
-      "runtime_fallback_dependent": 1,
+      "fallback_independent_core": 2,
+      "runtime_fallback_dependent": 0,
       "missing_core_bilingual_content": 0
     },
     "component": {
@@ -61,8 +61,8 @@
     },
     "consumable": {
       "public_entries": 13,
-      "fallback_independent_core": 12,
-      "runtime_fallback_dependent": 1,
+      "fallback_independent_core": 13,
+      "runtime_fallback_dependent": 0,
       "missing_core_bilingual_content": 0
     },
     "defect": {
@@ -115,8 +115,8 @@
     },
     "materials": {
       "public_entries": 14,
-      "fallback_independent_core": 0,
-      "runtime_fallback_dependent": 14,
+      "fallback_independent_core": 6,
+      "runtime_fallback_dependent": 8,
       "missing_core_bilingual_content": 0
     },
     "process": {
@@ -145,8 +145,8 @@
     },
     "site": {
       "public_entries": 2,
-      "fallback_independent_core": 0,
-      "runtime_fallback_dependent": 2,
+      "fallback_independent_core": 1,
+      "runtime_fallback_dependent": 1,
       "missing_core_bilingual_content": 0
     },
     "structure": {
@@ -169,17 +169,17 @@
     },
     "tool": {
       "public_entries": 333,
-      "fallback_independent_core": 324,
-      "runtime_fallback_dependent": 9,
+      "fallback_independent_core": 330,
+      "runtime_fallback_dependent": 3,
       "missing_core_bilingual_content": 0
     }
   },
   "hashes": {
-    "content_status_sha256": "9ae5a44fbdfccdcd01929104f353746ed22ac11f9229222cb72d9d867a65dcff",
-    "fallback_independent_id_sha256": "c1e3292fb885286fc0cb8a87265b53a6b19d42ad23e631dd02f522053d199ec0",
-    "fallback_dependent_id_sha256": "8ed4f5df6a8ec5cecec48077cc49ee401157e51fdd37ebcbcf159b332a31177e",
+    "content_status_sha256": "75ef0c3a9e799b74b696f518de82ee347e54f0cb801050e8d009e0204b372a09",
+    "fallback_independent_id_sha256": "7f8fc386660b5f3c90ac53fccab34f1177b28e82473f853227406b751564c2c0",
+    "fallback_dependent_id_sha256": "0decf458fa7e0a5e5caec229f175241fa0811fea895c5f8f9d37626ccc33c93e",
     "missing_core_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "content_enriched_id_sha256": "e2b8fff876c3c49e861a2098a47a8dc5cb6af9058e45e1fee677375fd1772ca8"
+    "content_enriched_id_sha256": "44d1a707db507186c2896228355af2857cf483b02441de9d8f8d9fbda9e1fad1"
   },
   "samples": {
     "fallback_independent_core": [
@@ -336,126 +336,6 @@
     ],
     "runtime_fallback_dependent": [
       {
-        "id": "mud_pan",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "drywall_lift",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "self_leveling_compound",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "caulk_finisher",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "mixing_paddle",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "spotter_vehicle",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "story_pole",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "diamond_blade",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "cement_board",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "vapor_barrier",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "toolbox_talk",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "glasswool",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "rockwool",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "pe_foam",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
-        "id": "waterproof_membrane",
-        "source": "data/tools.basic.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "bullets"
-        ]
-      },
-      {
         "id": "flashing_tape",
         "source": "data/tools.basic.json",
         "enrichment": null,
@@ -529,6 +409,38 @@
       },
       {
         "id": "threaded_rod",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "construction_adhesive_001",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "butyl_tape_002",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "primer_003",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "dust_control_008",
         "source": "data/tools.basic.json",
         "enrichment": null,
         "fallback_fields": [
