@@ -25,6 +25,7 @@ on:
       - 'scripts/check-old-kanji-pro-boundary.mjs'
       - 'scripts/build-old-kanji-dictionary-audit.mjs'
       - 'scripts/run-tool-behavior-tests.mjs'
+      - 'scripts/check-old-kanji-browser-ux.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
   push:
     branches:
@@ -52,6 +53,7 @@ on:
       - 'scripts/check-old-kanji-pro-boundary.mjs'
       - 'scripts/build-old-kanji-dictionary-audit.mjs'
       - 'scripts/run-tool-behavior-tests.mjs'
+      - 'scripts/check-old-kanji-browser-ux.mjs'
       - '.github/workflows/tool-runtime-contract-audit.yml'
 
 permissions:
@@ -98,6 +100,9 @@ jobs:
 
       - name: Check Size Converter growth wave 4
         run: node scripts/check-size-converter-growth-wave4.mjs
+
+      - name: Check Old Kanji browser UX
+        run: node scripts/check-old-kanji-browser-ux.mjs
 
       - name: Check Old Kanji Reference layout
         run: node scripts/check-old-kanji-reference-layout.mjs
