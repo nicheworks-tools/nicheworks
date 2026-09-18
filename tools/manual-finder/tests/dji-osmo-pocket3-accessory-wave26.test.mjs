@@ -46,8 +46,8 @@ for (const args of [
   assert.deepEqual(Array.from(config.getAccessoryOffers(args)), [], `unreviewed Wave 26 mapping must fail closed: ${JSON.stringify(args)}`);
 }
 
-const pocket2Offers = Array.from(config.getAccessoryOffers({ maker: 'DJI', model: 'DJI Pocket 2', category: 'カメラ・映像' }));
-assert.deepEqual(pocket2Offers, [], 'DJI Pocket 2 must not inherit the Osmo Pocket 3 Battery Handle mapping');
+const pocket2ComboOffers = Array.from(config.getAccessoryOffers({ maker: 'DJI', model: 'DJI Pocket 2 Creator Combo', category: 'カメラ・映像' }));
+assert.deepEqual(pocket2ComboOffers, [], 'DJI Pocket 2 Creator Combo must not inherit the Osmo Pocket 3 Battery Handle mapping');
 
 const runtimeSource = fs.readFileSync(new URL('../affiliate-runtime.js', import.meta.url), 'utf8');
 assert.ok(runtimeSource.includes('affiliate-dji-camera-accessories-wave26.js'));
