@@ -170,7 +170,17 @@
     "coumarin": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19218/coumarin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "farnesol": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5607/farnesol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "hexyl cinnamal": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19147/hexyl-cinnamal/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "alpha-isomethyl ionone": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/707/alpha-isomethyl-ionone/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "alpha-isomethyl ionone": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/707/alpha-isomethyl-ionone/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "isoeugenol": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/7436/isoeugenol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "3-o-ethyl ascorbic acid": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/25166/3-o-ethyl-ascorbic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "lauric acid": Object.freeze({ category: "cleanser", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8079/lauric-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "cocos nucifera oil": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3680/cocos-nucifera-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "prunus armeniaca kernel oil": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/13280/prunus-armeniaca-kernel-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "simmondsia chinensis seed oil": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14490/simmondsia-chinensis-seed-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "asiatic acid": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1251/asiatic-acid"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "centella asiatica leaf extract": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2807/centella-asiatica-leaf-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "aloe barbadensis leaf extract": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/689/aloe-barbadensis-leaf-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "oryza sativa bran oil": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/pl/inci/szczegoly/9956/oryza-sativa-bran-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
