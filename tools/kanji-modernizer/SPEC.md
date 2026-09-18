@@ -29,6 +29,17 @@ Convert registered old-form and modern-form kanji character-by-character using t
 - Accept Reference handoff text through `?q=` and auto-convert only after dictionary loading has completed successfully. Reset clears the handoff query state.
 - Provide JP/EN UI while remaining a Japanese-kanji transformation tool.
 
+## Amazon affiliate contract
+
+- Canonical monetization class: `AFFILIATE`.
+- Amazon Associates is active for Kanji Modernizer under the all-eight Old Kanji affiliate decision.
+- The affiliate panel appears only after a conversion result is visible.
+- Curated purchase intent: notation/usage references, variant-kanji references, and `漢字源`.
+- Amazon destinations are fixed tool-specific searches; source text, converted text, replacement details, ambiguity details, and query-handoff content must never be inserted into an affiliate URL or affiliate event.
+- Shared `/assets/amazon-affiliate.js` owns URL validation, disclosure, `rel="sponsored noopener"`, and the canonical `affiliate_outbound` event.
+- Shared `/assets/old-kanji-amazon-context.js` owns the reviewed tool-specific offer/placement catalog; it does not derive Amazon search terms from user input.
+- The free tool task remains usable without interacting with Amazon.
+
 ## Inputs
 
 - Text to convert.
@@ -82,7 +93,12 @@ Large input/result blocks and replacement tables benefit from width but can be s
 - [x] A `?q=` handoff waits for successful dictionary readiness before auto-conversion, dictionary load failure remains retryable, and Reset clears the handoff URL state. Evidence: `tests/behavior.test.mjs` plus the runtime source contract assertions.
 - [x] The parsed Modernizer dictionary remains equivalent to the parsed Old Kanji Reference dictionary. Evidence: `tests/behavior.test.mjs` deep-compares both bundled `dict.json` files.
 
+- [x] Contextual Amazon affiliate handoffs follow the reviewed only after a conversion result is visible contract, use fixed tool-specific destinations, and exclude user-derived values from outbound URLs/events. Evidence: `assets/old-kanji-amazon-context.js`, `assets/amazon-affiliate.js`, and `scripts/check-old-kanji-amazon.mjs`.
+
 ## Implementation evidence
+
+- `assets/amazon-affiliate.js`
+- `assets/old-kanji-amazon-context.js`
 
 - `tools/kanji-modernizer/index.html`
 - `tools/kanji-modernizer/app.js`
