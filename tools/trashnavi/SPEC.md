@@ -1005,3 +1005,14 @@ Wave 43は既存の10自治体batch scaling ruleとpreferred readiness threshold
 ## Wave 44 ten-municipality publication
 
 Wave 44は既存の10自治体batch scaling ruleとpreferred readiness thresholdを維持し、214自治体から224自治体へ拡張する。対象は君津市・富津市・袖ケ浦市・茂原市・東金市・八街市・印西市・白井市・四街道市・富里市。各自治体は `municipal_home` を除く3種類の異なるwaste-specific official link typeと3つの自治体公式URLを持ち、同一ページ二重計上や外部衛生組合・委託先URLによる閾値補完は行わない。Readiness baselineは2,760/2,760 valid HTTP(S)、224 preferred candidates、47 datasets / 692 records / 673 unique URLs / invalid 0。Publicationでは224ページ、AI reference 224/224、root/dedicated sitemap、root internal links、Amazon 4 fixed categories (`nicheworks09-22`) を検証する。2026 calendar calloutは `fiscal_year: 2026` が明示された富津市・袖ケ浦市・茂原市・東金市・八街市・四街道市・富里市のみ表示し、君津市・印西市・白井市には表示しない。
+
+
+## Wave 45 batch publication
+
+Wave 45は千葉県の追加10自治体を、従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific municipal-official link typeで公開し、公開対象を **224自治体から234自治体** へ拡張する。山武市は地域別の処理体系を市全域へ平坦化しないため本Waveでは採用せず、匝瑳市を含む10自治体を公開する。
+
+- 銚子市、館山市、旭市、勝浦市、鴨川市、南房総市、香取市、いすみ市、大網白里市、匝瑳市
+- readiness baseline: 2,790 / 2,790 valid HTTP(S)、234 preferred candidates、48 direct-link datasets / 722 records / 703 unique URLs / 0 invalid URLs
+- publication acceptance: 234 municipality pages、234 root internal links、AI reference 234/234、専用sitemapはtool rootを含む235 URL
+- 2026 calendar callout: 銚子市、館山市、旭市、鴨川市、南房総市、香取市、いすみ市、大網白里市、匝瑳市。勝浦市は年次を明示しない。
+- Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を維持する。

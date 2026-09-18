@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 224,
+  "published_municipality_count": 234,
   "municipalities": [
     {
       "lgcode": "131016",
@@ -1352,6 +1352,66 @@
       "pref_slug": "chiba",
       "city_slug": "tomisato",
       "url": "https://nicheworks.app/tools/trashnavi/chiba/tomisato/"
+    },
+    {
+      "lgcode": "122025",
+      "pref_slug": "chiba",
+      "city_slug": "choshi",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/choshi/"
+    },
+    {
+      "lgcode": "122050",
+      "pref_slug": "chiba",
+      "city_slug": "tateyama",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/tateyama/"
+    },
+    {
+      "lgcode": "122157",
+      "pref_slug": "chiba",
+      "city_slug": "asahi",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/asahi/"
+    },
+    {
+      "lgcode": "122181",
+      "pref_slug": "chiba",
+      "city_slug": "katsuura",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/katsuura/"
+    },
+    {
+      "lgcode": "122238",
+      "pref_slug": "chiba",
+      "city_slug": "kamogawa",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/kamogawa/"
+    },
+    {
+      "lgcode": "122343",
+      "pref_slug": "chiba",
+      "city_slug": "minamiboso",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/minamiboso/"
+    },
+    {
+      "lgcode": "122360",
+      "pref_slug": "chiba",
+      "city_slug": "katori",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/katori/"
+    },
+    {
+      "lgcode": "122386",
+      "pref_slug": "chiba",
+      "city_slug": "isumi",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/isumi/"
+    },
+    {
+      "lgcode": "122394",
+      "pref_slug": "chiba",
+      "city_slug": "oamishirasato",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/oamishirasato/"
+    },
+    {
+      "lgcode": "122351",
+      "pref_slug": "chiba",
+      "city_slug": "sosa",
+      "url": "https://nicheworks.app/tools/trashnavi/chiba/sosa/"
     }
   ]
 }
