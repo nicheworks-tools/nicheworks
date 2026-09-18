@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-19-image-candidates-wave5a-provenance-1",
+  "version": "2026-09-19-image-candidates-wave5a-provenance-2",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -344,6 +344,34 @@
       "source": {
         "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/A_Fire_Extinguisher.jpg",
         "source_page": "https://commons.wikimedia.org/wiki/File:A_Fire_Extinguisher.jpg"
+      }
+    },
+    {
+      "id": "wave5a2:caliper",
+      "source_entry_id": "caliper",
+      "kind": "photograph",
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Caliper1.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Caliper1.jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Hardyplants",
+        "attribution": "Hardyplants / Wikimedia Commons, CC0 1.0",
+        "source_sha1": "dbfab49f61ea4a06b67940e57ee362e4866d22b4"
+      }
+    },
+    {
+      "id": "wave5a2:fire_extinguisher",
+      "source_entry_id": "fire_extinguisher",
+      "kind": "photograph",
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/7/71/Fireextinguisher.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Fireextinguisher.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "Jadeswick",
+        "attribution": "Jadeswick / Wikimedia Commons, CC BY-SA 4.0",
+        "source_sha1": "b16ed3c7fe066ed9f4bf816f826caff7e87344e1"
       }
     }
   ],
@@ -1039,6 +1067,24 @@
           "reason": "Wikimedia Commons candidate located; the file page identifies a Vernier caliper and the photograph directly depicts the measuring instrument. Provenance/license verification remains pending.",
           "candidate_id": "wave5a:caliper",
           "candidate_sha256": "c28da2964cfc1392ba02aac6d3b98f47e0c2cf114c3ff014565207fa791bfd22",
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-09-18T16:34:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Replaced the earlier candidate with a Wikimedia Commons digital-caliper photograph whose CC0 provenance and SHA-1 are explicitly exposed in structured data.",
+          "candidate_id": "wave5a2:caliper",
+          "candidate_sha256": "c3c8ea5937caf3ea37284b73590c9c300b32a78935e7ad47b3bc2adaa262c765",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-09-18T16:34:01Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons provenance verified for caliper: license, author, source page, source URL and structured SHA-1 are explicit and pinned.",
+          "candidate_id": "wave5a2:caliper",
+          "candidate_sha256": "c3c8ea5937caf3ea37284b73590c9c300b32a78935e7ad47b3bc2adaa262c765",
           "hold": null
         }
       ]
@@ -2906,6 +2952,24 @@
           "reason": "Wikimedia Commons candidate located; the file page explicitly identifies the photographed subject as a fire extinguisher. Provenance/license verification remains pending.",
           "candidate_id": "wave5a:fire_extinguisher",
           "candidate_sha256": "f7df7fc315659d75c9b92da23da1f65be89380c16152c9a1090400a53d45f813",
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-09-18T16:34:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Replaced the earlier candidate with a Wikimedia Commons fire-extinguisher photograph whose CC BY-SA 4.0 provenance and SHA-1 are explicitly exposed in structured data.",
+          "candidate_id": "wave5a2:fire_extinguisher",
+          "candidate_sha256": "5a8c6eedefa433a931986d45ee30e3ff5e29f6827e113acf0235c8cfa739a923",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-09-18T16:34:01Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons provenance verified for fire_extinguisher: license, author, source page, source URL and structured SHA-1 are explicit and pinned.",
+          "candidate_id": "wave5a2:fire_extinguisher",
+          "candidate_sha256": "5a8c6eedefa433a931986d45ee30e3ff5e29f6827e113acf0235c8cfa739a923",
           "hold": null
         }
       ]
