@@ -225,3 +225,20 @@ Wave 20 targets the three largest remaining directly source-backed gaps in the m
 | `phytosphingosine` | `skin conditioning` | category missing | COSMILE Europe lists `SKIN CONDITIONING` and `HAIR CONDITIONING`. |
 
 The current public-primary role is `skin conditioning`, matching the skincare-label context and the existing controlled role vocabulary. The raw `barrier lipid` hints for Ceramide AP/EOP are not deleted or rewritten; they remain auditable alongside the verified role. Phytosphingosine remains category-empty in raw data and is resolved only by the verified overlay.
+
+
+## Wave 21 reviewed set
+
+Wave 21 continues the official-label-priority cleanup with seven identities accounting for eight unresolved ingredient occurrences in the maintained 30-product corpus.
+
+| Canonical identity | Verified public category | Preserved raw category state | Source basis |
+| --- | --- | --- | --- |
+| `silica` | `viscosity adjuster` | `powder` | COSMILE Europe lists `VISCOSITY CONTROLLING`. |
+| `alumina` | `viscosity adjuster` | `powder` | COSMILE Europe lists `VISCOSITY CONTROLLING`. |
+| `aluminum stearate` | `viscosity adjuster` | `powder` | COSMILE Europe lists `VISCOSITY CONTROLLING`. |
+| `dimethicone crosspolymer` | `viscosity adjuster` | `texture polymer` | COSMILE Europe lists `VISCOSITY CONTROLLING`. |
+| `glycol distearate` | `emulsifier` | `general` | COSMILE Europe lists `SURFACTANT - EMULSIFYING`. |
+| `myristyl myristate` | `emollient` | `general` | COSMILE Europe lists `SKIN CONDITIONING - EMOLLIENT`. |
+| `lecithin` | `emulsifier` | category missing | COSMILE Europe lists `SURFACTANT - EMULSIFYING`. |
+
+Raw recognition data remains unchanged. Unsupported legacy category hints stay auditable, while the verified source-backed category becomes the public primary role. Lecithin remains category-empty in raw data and is resolved only through the overlay.
