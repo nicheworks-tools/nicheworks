@@ -3,9 +3,11 @@ import path from 'node:path';
 
 const root = process.cwd();
 const cssPath = path.join(root, 'tools/old-kanji-reference/verified-badge.css');
+const appCssPath = path.join(root, 'tools/old-kanji-reference/style.css');
 const jsPath = path.join(root, 'tools/old-kanji-reference/verified-badge.js');
 const htmlPath = path.join(root, 'tools/old-kanji-reference/index.html');
 const css = fs.readFileSync(cssPath, 'utf8');
+const appCss = fs.readFileSync(appCssPath, 'utf8');
 const js = fs.readFileSync(jsPath, 'utf8');
 const html = fs.readFileSync(htmlPath, 'utf8');
 const failures = [];
@@ -33,6 +35,13 @@ check(js.includes('normalizeModernSummaryPlacement();'), 'grouped-by-modern plac
 check(js.includes('document.querySelector(".group-wrapper") || document.body'), 'dynamic summary observer must watch the whole group wrapper');
 check(html.includes('verified-badge.js?v=20260914-modern-summary-4'), 'current modern-summary script cache key missing');
 check(!html.includes('verified-badge.js?v=20260503-okj-badge-1'), 'stale modern-summary script cache key returned');
+
+check(appCss.includes('.shape-note-grid'), 'Reference shape-note grid styling missing');
+check(appCss.includes('.stroke-note-grid'), 'Reference stroke-note grid styling missing');
+check(appCss.includes('grid-template-columns: repeat(2, minmax(0, 1fr));'), 'Reference detail desktop grid styling missing');
+check(appCss.includes('.shape-note-text') && appCss.includes('overflow-wrap: anywhere;'), 'Reference shape-note overflow protection missing');
+check(appCss.includes('.stroke-note-value'), 'Reference stroke-note value styling missing');
+check(appCss.includes('@media (max-width: 640px)') && appCss.includes('.stroke-note-grid { grid-template-columns: 1fr; }'), 'Reference shape/stroke mobile one-column rule missing');
 
 if (failures.length) {
   console.error(`Old Kanji Reference layout contract failed (${failures.length})`);

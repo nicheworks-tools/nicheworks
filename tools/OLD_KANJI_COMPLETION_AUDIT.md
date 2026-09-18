@@ -10,20 +10,20 @@ Scope: the eight-tool Old Kanji cluster defined by `tools/OLD_KANJI_CLUSTER.md`.
 
 All eight tools have a `SPEC.md` whose specification status is `complete`. That means the intended product contract exists. It does **not** mean the implementation has passed final cluster acceptance.
 
-Completion Waves 10–17 closed dictionary/documentation drift, the four functional QA tranches, cross-tool browser UX/mobile/accessibility, search-cluster reconciliation, and measurement/affiliate contracts. Completion Wave 18 closes the SEO inventory gate: the only indexable individual-kanji pages remain the three reviewed pages for 画/畫, 将/將, and 旧/舊; all three still pass the current dictionary/source gate and retain their preserved authenticated-GSC demand evidence. A fresh GSC read was unavailable because the connected GSC Wizard subscription returned `payment_required`, so Wave 18 authorizes **0 new pages** rather than inferring demand. Remaining release acceptance stays owned by Waves 19–20.
+Completion Waves 10–18 closed dictionary/documentation drift, the four functional QA tranches, cross-tool browser UX/mobile/accessibility, search-cluster reconciliation, measurement/affiliate contracts, and the evidence-gated SEO inventory. Completion Wave 19 closes final release acceptance: all eight SPECs have zero unchecked criteria, Reference export actions are exercised in real Chrome, the confirmed shape/stroke presentation gap is fixed, proven-unreachable Reference runtime generations are removed, and the existing behavior/SEO/privacy/measurement/data gates remain required. Only Completion Wave 20 baseline locking remains.
 
 ## Tool-by-tool completion state
 
 | Tool | Spec status | Acceptance evidence | Primary remaining owner wave |
 | --- | --- | --- | --- |
-| Old Kanji Reference | complete | Wave 10 data/contract sync, Wave 11 core behavior, Wave 15 browser UX, Wave 16 search-role reconciliation, Wave 17 measurement boundary, and Wave 18 three-page SEO inventory gate complete | Wave 19 release audit |
-| Kanji Modernizer | complete | Wave 11 functional QA, Wave 15 browser UX, and Wave 16 search-role/spec synchronization complete | Wave 19 release audit |
-| Old Kanji OCR Scanner | complete | Wave 12 core OCR/detection/error behavior automated; Wave 15 browser UX and Wave 16 search-role reconciliation complete; Wave 17 closes dormant Amazon/measurement criteria against canonical `HOLD` state | Wave 19 release audit |
-| Old Document Kanji Highlighter | complete | Wave 12 functional QA, Wave 15 browser UX, and Wave 16 search-role/spec synchronization complete | Wave 19 release audit |
-| Unicode Kanji Checker | complete | Wave 13 functional acceptance closed by durable encoding/edge-case QA, including exact inbound `?q=` restoration | Wave 19 release audit |
-| Variant Kanji Compare | complete | Wave 13 functional acceptance closed by durable preset/custom comparison, Unicode-range, multi-font wiring, mapping and summary QA | Wave 19 release audit |
-| Place Old Kanji Checker | complete | Wave 14 functional QA, Wave 15 browser UX, and Wave 16 search-role/spec synchronization complete | Wave 19 release audit |
-| Name Old Kanji Checker | complete | Wave 14 functional QA, Wave 15 browser UX, and Wave 16 search-role/spec synchronization complete | Wave 19 release audit |
+| Old Kanji Reference | complete | Waves 10–19 complete current-contract data, behavior, browser, search, measurement, SEO-inventory and release acceptance; legacy runtime reachability reviewed | Wave 20 completion lock |
+| Kanji Modernizer | complete | Functional QA, browser UX, search-role synchronization and Wave 19 release acceptance complete | Wave 20 completion lock |
+| Old Kanji OCR Scanner | complete | OCR QA, browser UX, search reconciliation, dormant monetization/measurement boundary and Wave 19 release acceptance complete | Wave 20 completion lock |
+| Old Document Kanji Highlighter | complete | Functional QA, browser UX, search-role synchronization and Wave 19 release acceptance complete | Wave 20 completion lock |
+| Unicode Kanji Checker | complete | Encoding/edge-case QA, browser UX and Wave 19 release acceptance complete | Wave 20 completion lock |
+| Variant Kanji Compare | complete | Comparison/Unicode QA, browser UX and Wave 19 release acceptance complete | Wave 20 completion lock |
+| Place Old Kanji Checker | complete | Functional/safety QA, browser UX, search-role synchronization and Wave 19 release acceptance complete | Wave 20 completion lock |
+| Name Old Kanji Checker | complete | Functional/safety QA, browser UX, search-role synchronization and Wave 19 release acceptance complete | Wave 20 completion lock |
 
 ## Confirmed cross-cluster findings
 
@@ -84,15 +84,14 @@ Closed work:
 CI evidence: the new eight-tool search-cluster reconciliation checker, the existing Old Kanji Reference SEO checker, internal-handoff checker, strict SEO audit, tool spec audit, browser UX audit, and remaining runtime-contract checks all passed in the Wave 16 PR.
 
 ### C-04 — Acceptance criteria need direct evidence
-Status: **partially closed from Completion Wave 11 onward**.
+Status: **closed in Completion Wave 19**.
 Severity at discovery: high completion-process defect.
-Owner: Waves 11–19.
 
 Wave 11 establishes the rule in practice: an acceptance checkbox is checked only when a durable automated contract or direct implementation evidence exists.
 
-Current closure state after Wave 18:
+Current closure state after Wave 19:
 - Kanji Modernizer: all declared functional acceptance criteria are checked with `tools/kanji-modernizer/tests/behavior.test.mjs` and runtime-source assertions.
-- Old Kanji Reference: search/filter, SERP/H1/canonical/schema/FAQ contracts, task handoffs, detector/handoff behavior, local-state restoration semantics, individual-page allowlist, and dormant Amazon/measurement boundary are checked. Remaining browser export/copy/visual/Pro-public-copy/caution/layout criteria stay for Wave 19.
+- Old Kanji Reference: search/filter, SERP/H1/canonical/schema/FAQ contracts, task handoffs, detector/handoff behavior, local-state restoration, individual-page inventory, dormant monetization/measurement, browser exports, Free/Pro public copy, caution boundaries, and responsive detail layout are all directly evidenced.
 - Old Kanji OCR Scanner and Old Document Kanji Highlighter: Wave 12 closes core functional criteria; Wave 15 closes browser UX; Wave 17 closes OCR dormant Amazon/measurement criteria against the canonical `HOLD` state.
 - Unicode Kanji Checker and Variant Kanji Compare: Wave 13 closes their declared functional acceptance criteria with behavior tests and implementation-source assertions, including supplementary Unicode ranges that were previously misclassified.
 - Place Old Kanji Checker and Name Old Kanji Checker: Wave 14 closes their declared functional acceptance criteria with behavior tests and source assertions covering mapping, degraded optional data, privacy, non-authority wording, and exact Modernizer handoffs.
@@ -101,12 +100,13 @@ Current closure state after Wave 18:
 - All eight tools: Wave 17 locks coarse `old_kanji_handoff`, `support_click`, and enabled-only `old_kanji_pro_click` measurement without inspecting user payload sources; Amazon remains a separate shared `affiliate_outbound` authority and is dormant for the current Old Kanji classifications.
 - Old Kanji Reference SEO inventory: Wave 18 locks the published individual-page set to exactly three reviewed pages and proves that repository-side `seoCandidate` records cannot silently become sitemap/filesystem inventory.
 
-Exit condition: Wave 19 must leave no unchecked criterion without either direct evidence or an explicit specification decision that removes/rewords the criterion.
+Wave 19 closes the final five Reference criteria with real-Chrome export interaction, the existing Pro-boundary checker, explicit source/non-authority cautions, and the new responsive shape/stroke layout contract. `scripts/check-old-kanji-release-audit.mjs` now fails CI if any of the eight SPECs regains an unchecked acceptance criterion.
+
+Exit condition: satisfied — all eight SPECs have zero unchecked current-contract acceptance criteria.
 
 ### C-05 — No cluster-wide regression contract currently proves the full eight-tool journey
-Status: **measurement/privacy boundary closed in Completion Wave 17; remaining browser-journey closure owned by Wave 19**.
+Status: **closed in Completion Wave 19**.
 Severity: medium regression-risk defect.
-Owner: Completion Wave 19.
 
 Wave 11 adds durable coverage for the highest-risk first boundary:
 - Reference detector text → Modernizer `?q=` preserves leading/trailing whitespace and line breaks;
@@ -115,24 +115,26 @@ Wave 11 adds durable coverage for the highest-risk first boundary:
 - Reset removes the handoff query state;
 - parsed Reference and Modernizer dictionaries must remain equal.
 
-Still required before completion:
-- Reference → OCR/Unicode/Variant browser handoffs;
-- Modernizer → Reference/Highlighter/Unicode browser handoffs;
-- OCR ↔ Highlighter/Reference/Modernizer task boundary;
-- Variant → Unicode comparison-set handoff now has a tested Unicode `?q=` receiver; Variant ↔ Reference/Name browser boundary remains;
-- Place → Modernizer whole-text handoff now preserves exact input and per-character Reference links remain wired; Place ↔ Name browser boundary remains;
-- Name → Modernizer whole-text handoff now preserves exact input and per-character Reference links remain wired; Name ↔ Variant/Unicode browser boundary remains;
-- analytics/affiliate payload privacy boundary is now durably checked in Wave 17: cluster analytics does not inspect `.value`, `.textContent`, `.innerText`, storage, query strings, or search params; Old Kanji Amazon runtime is disabled and emits no outbound event.
+Closure coverage accumulated through Wave 19:
+- the bounded Reference / Modernizer / OCR / Highlighter / Unicode / Variant / Place / Name handoff graph is enforced by `scripts/check-old-kanji-internal-handoffs.mjs`;
+- global SEO internal-link integrity verifies those static destinations resolve;
+- query-bearing Reference → Modernizer, Highlighter → Modernizer, Unicode inbound, Name → Modernizer, and Place → Modernizer paths retain exact-text behavior tests;
+- Wave 15 real-Chrome coverage verifies the rendered tools remain interactable across mobile/desktop and JP/EN modes;
+- Wave 17 analytics/privacy checks ensure cluster analytics does not inspect user field values, rendered text, storage, query strings, or search params, and dormant Amazon runtime emits no Old Kanji outbound event.
 
-Exit condition: durable automated checks where practical plus explicit manual evidence for browser-only behavior that cannot be proven statically.
+Wave 19 closes the remaining release boundary by combining the bounded internal-handoff checker, global SEO internal-link integrity, real-Chrome interaction coverage, exact-payload behavior tests for query-bearing handoffs, and the Wave 17 analytics/privacy contract. Static task-boundary links are verified to resolve; payload-bearing handoffs retain their exact-text tests; no user payload is added to analytics/affiliate events.
+
+Exit condition: satisfied for the current cluster contract.
 
 ### C-06 — Old Kanji Reference contains multiple generations of implementation files that require dead-code review
-Severity: medium maintainability risk; not yet proven to be a defect.
-Owner: Completion Wave 19.
+Status: **closed in Completion Wave 19**.
+Severity: medium maintainability risk.
 
-The Reference directory contains multiple similarly named implementation generations such as `app-meaning.js`, `app-meaning-v3.js`, and `app-meaning-v4.js`, alongside other historical helper files. Do not assume they are dead until runtime/build reachability is verified.
+At discovery, the Reference directory contained multiple similarly named application generations: `app-meaning.js`, `app-meaning-v3.js`, and `app-meaning-v4.js`. Wave 19 treated them as reachable until runtime/build evidence proved otherwise.
 
-Exit condition: determine actual runtime references. Remove only files proven unreachable and obsolete; retain any compatibility/build input that is still intentionally consumed.
+Wave 19 verified that the public Reference HTML loads only `app-meaning-v4.js`, while the current behavior tests and release evidence also target v4. Historical `app-meaning.js` and `app-meaning-v3.js` had no current runtime entry point and were removed. The final release checker prevents those removed runtime generations from silently returning.
+
+Exit condition: satisfied — v4 is the sole active Reference application runtime generation.
 
 ### C-07 — Remaining dictionary anomalies need bounded maintenance treatment
 Status: **classification closed in Completion Wave 10; runtime implications checked in Wave 11; authoritative data review remains bounded debt**.
@@ -377,7 +379,31 @@ Fresh-demand limitation:
 The new CI gate fails if filesystem or sitemap inventory expands beyond the three-page allowlist without an explicit reviewed contract change.
 
 ### Wave 19 — Final release audit
-Close acceptance criteria with evidence, inspect dead code, broken links, sitemap/schema drift, stale documentation, privacy/network behavior, and CI. No unchecked blocker may remain.
+Status: **completed**.
+
+Durable evidence:
+- `tools/OLD_KANJI_RELEASE_AUDIT.md`;
+- `scripts/check-old-kanji-release-audit.mjs`;
+- extended real-Chrome export coverage in `scripts/check-old-kanji-browser-ux.mjs`;
+- strengthened Reference layout checks in `scripts/check-old-kanji-reference-layout.mjs`;
+- all pre-existing Old Kanji behavior, SEO, handoff, measurement, monetization, inventory and dictionary checks.
+
+Confirmed defect fixed:
+- Reference shape/stroke sections had structured markup but no dedicated responsive presentation. Wave 19 adds explicit desktop/mobile layout and overflow-safe styling.
+
+Cleanup:
+- removed unreachable `tools/old-kanji-reference/app-meaning.js`;
+- removed unreachable `tools/old-kanji-reference/app-meaning-v3.js`;
+- retained `app-meaning-v4.js` as the sole active Reference runtime generation.
+
+Release acceptance:
+- all eight SPECs now have zero unchecked criteria;
+- Reference CSV/JSON/Markdown/print controls are exercised in real Chrome without Pro entitlement;
+- JP/EN Free export copy and no-unfinished-sales boundaries are checked;
+- source/non-authority cautions remain visible;
+- local runtime asset existence and tool-local external-network boundaries are checked;
+- current dictionary has zero blocking issue records and zero conflicting raw duplicate keys;
+- bounded dictionary maintenance debt remains documented rather than hidden.
 
 ### Wave 20 — Completion lock
 Record final baseline SHA, known limitations, maintenance rules, and the trigger required to reopen feature/SEO expansion. Move the cluster from active completion work to maintenance/measurement mode.
@@ -403,4 +429,4 @@ The Old Kanji cluster is complete only when all of the following are true:
 
 ## Current decision
 
-Completion Wave 18 closes the SEO inventory gate with the reviewed individual-page inventory held at three pages and no inferred expansion. The next permitted work is Completion Wave 19: final release audit.
+Completion Wave 19 closes final release acceptance with no unchecked current-contract criterion or known release blocker. The next permitted work is Completion Wave 20: completion lock.

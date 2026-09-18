@@ -9,7 +9,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 - FIX: **0**
 - BLOCKED: **0**
 - NEEDS_DECISION: **0**
-- Behavior-level tests missing: **80**
+- Behavior-level tests missing: **72**
 - Real responsive defects found: **0**
 - Hard common-spec violations: **0 tools**
 - Recommendation-only documentation gaps: **28 tools**
@@ -51,7 +51,7 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 | [jp-postal-lite](../docs/tools/jp-postal-lite.md) | mobile-oriented | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [json-repair](../docs/tools/json-repair.md) | desktop-wide | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [json2mermaid](../docs/tools/json2mermaid.md) | desktop-wide | optional-present | optional-present | behavior-test-present | 0 | 0 | **PASS** |
-| [kanji-modernizer](../docs/tools/kanji-modernizer.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
+| [kanji-modernizer](../docs/tools/kanji-modernizer.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-present | 0 | 0 | **PASS** |
 | [laundry-code-decode](../docs/tools/laundry-code-decode.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [light-check](../docs/tools/light-check.md) | mobile-oriented | optional-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [linebreak-doctor](../docs/tools/linebreak-doctor.md) | mobile-oriented | optional-absent | optional-present | behavior-test-present | 0 | 0 | **PASS** |
@@ -69,21 +69,21 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 | [motion-atlas](../docs/tools/motion-atlas.md) | desktop-wide | recommended-and-present | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
 | [moving-checklist-generator](../docs/tools/moving-checklist-generator.md) | mobile-oriented | optional-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [moving-lease-final-check](../docs/tools/moving-lease-final-check.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
-| [name-old-kanji-checker](../docs/tools/name-old-kanji-checker.md) | mobile-oriented | recommended-and-missing | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
+| [name-old-kanji-checker](../docs/tools/name-old-kanji-checker.md) | mobile-oriented | recommended-and-missing | recommended-and-missing | behavior-test-present | 0 | 0 | **PASS** |
 | [newsletter-kit-generator](../docs/tools/newsletter-kit-generator.md) | mobile-oriented | optional-absent | optional-absent | behavior-test-missing | 0 | 0 | **PASS** |
 | [niche-job-starter-kit](../docs/tools/niche-job-starter-kit.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [notion-form-design-kit](../docs/tools/notion-form-design-kit.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [og-image-maker](../docs/tools/og-image-maker.md) | desktop-wide | recommended-and-missing | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
-| [old-document-kanji-highlighter](../docs/tools/old-document-kanji-highlighter.md) | desktop-wide | recommended-and-missing | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
-| [old-kanji-ocr-scanner](../docs/tools/old-kanji-ocr-scanner.md) | mobile-oriented | recommended-and-missing | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
-| [old-kanji-reference](../docs/tools/old-kanji-reference.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
+| [old-document-kanji-highlighter](../docs/tools/old-document-kanji-highlighter.md) | desktop-wide | recommended-and-missing | recommended-and-missing | behavior-test-present | 0 | 0 | **PASS** |
+| [old-kanji-ocr-scanner](../docs/tools/old-kanji-ocr-scanner.md) | mobile-oriented | recommended-and-missing | recommended-and-missing | behavior-test-present | 0 | 0 | **PASS** |
+| [old-kanji-reference](../docs/tools/old-kanji-reference.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-present | 0 | 0 | **PASS** |
 | [ops-weekly-report-generator](../docs/tools/ops-weekly-report-generator.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [outsource-spec-generator](../docs/tools/outsource-spec-generator.md) | desktop-wide | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [pages-deploy-guide](../docs/tools/pages-deploy-guide.md) | mobile-oriented | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [pattern-atlas](../docs/tools/pattern-atlas.md) | desktop-wide | optional-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [pdf-page-tools-mini](../docs/tools/pdf-page-tools-mini.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [pdf2csv-local](../docs/tools/pdf2csv-local.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
-| [place-old-kanji-checker](../docs/tools/place-old-kanji-checker.md) | mobile-oriented | recommended-and-missing | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
+| [place-old-kanji-checker](../docs/tools/place-old-kanji-checker.md) | mobile-oriented | recommended-and-missing | recommended-and-missing | behavior-test-present | 0 | 0 | **PASS** |
 | [product-founder-os](../docs/tools/product-founder-os.md) | desktop-wide | optional-absent | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [reconcile](../docs/tools/reconcile.md) | desktop-wide | recommended-and-present | optional-absent | behavior-test-present | 0 | 0 | **PASS** |
 | [redirect-unwrapper](../docs/tools/redirect-unwrapper.md) | mobile-oriented | recommended-and-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
@@ -97,10 +97,10 @@ This is the human-readable rendering of `audits/tool-quality-matrix.json`. Runti
 | [tiny-audio-meter](../docs/tools/tiny-audio-meter.md) | mobile-oriented | recommended-and-missing | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [trashnavi](../docs/tools/trashnavi.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [ui-atlas](../docs/tools/ui-atlas.md) | desktop-wide | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
-| [unicode-kanji-checker](../docs/tools/unicode-kanji-checker.md) | desktop-wide | recommended-and-missing | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
+| [unicode-kanji-checker](../docs/tools/unicode-kanji-checker.md) | desktop-wide | recommended-and-missing | recommended-and-missing | behavior-test-present | 0 | 0 | **PASS** |
 | [unitmaster](../docs/tools/unitmaster.md) | desktop-wide | recommended-and-missing | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [url-title-collector](../docs/tools/url-title-collector.md) | mobile-oriented | recommended-and-present | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
-| [variant-kanji-compare](../docs/tools/variant-kanji-compare.md) | desktop-wide | recommended-and-missing | recommended-and-missing | behavior-test-missing | 0 | 0 | **PASS** |
+| [variant-kanji-compare](../docs/tools/variant-kanji-compare.md) | desktop-wide | recommended-and-missing | recommended-and-missing | behavior-test-present | 0 | 0 | **PASS** |
 | [vibe-lexicon](../docs/tools/vibe-lexicon.md) | desktop-wide | optional-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [weatherdiff](../docs/tools/weatherdiff.md) | mobile-oriented | recommended-and-present | recommended-and-present | behavior-test-missing | 0 | 0 | **PASS** |
 | [webp-avif-converter](../docs/tools/webp-avif-converter.md) | mobile-oriented | recommended-and-present | optional-present | behavior-test-missing | 0 | 0 | **PASS** |
