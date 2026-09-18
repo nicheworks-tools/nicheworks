@@ -276,3 +276,25 @@ Wave 23 resolves eight additional source-backed official-label gaps, each observ
 | `sphingolipids` | `skin conditioning` | `barrier lipid` | COSMILE Europe lists `SKIN CONDITIONING` and emollient/skin-protecting functions. |
 
 Raw recognition data remains unchanged. The verified category supplies the answer-first public role while broad legacy hints remain auditable. Polyglyceryl-4 Caprate remains category-empty in the raw dictionary and is resolved only by the verified overlay.
+
+## Wave 24 reviewed set
+
+Wave 24 continues the public-role completion pass with ten source-backed identities selected from the remaining runtime gaps. Raw recognition records remain unchanged; the verified overlay supplies the reviewed public primary role.
+
+| Canonical identity | Verified public category | Preserved raw category state | Source basis |
+| --- | --- | --- | --- |
+| `polyglyceryl-10 oleate` | `skin conditioning` | category missing | COSMILE Europe lists `SKIN CONDITIONING`. |
+| `gluconic acid` | `chelating agent` | category missing | COSMILE Europe lists `CHELATING`. |
+| `peg-40 hydrogenated castor oil` | `emulsifier` | `solubilizer` | COSMILE Europe lists `SURFACTANT - EMULSIFYING` (and cleansing). |
+| `sodium carbonate` | `buffer` | category missing | COSMILE Europe lists `BUFFERING`. |
+| `sulisobenzone` | `uv filter` | category missing | COSMILE Europe lists Benzophenone-4 / Sulisobenzone as `UV FILTER`. |
+| `benzyl alcohol` | `preservative` | `preservative / fragrance` | COSMILE Europe lists `PRESERVATIVE` among its cosmetic functions. |
+| `urea` | `humectant` | `active / humectant` | COSMILE Europe lists `HUMECTANT` and skin-conditioning functions. |
+| `glyceryl caprate` | `emollient` | category missing | COSMILE Europe lists `SKIN CONDITIONING - EMOLLIENT`. |
+| `polysilicone-15` | `uv filter` | category missing | COSMILE Europe lists `UV FILTER`. |
+| `drometrizole trisiloxane` | `uv filter` | category missing | COSMILE Europe lists `UV FILTER`. |
+
+Wave 24 also adds the explicit authority-function mappings `BUFFERING → buffer` and `UV FILTER → uv filter` to the reviewed category taxonomy. Both categories already have bilingual public role explanations in the cosmetics UI, so this wave improves semantic coverage without adding a new consumer-facing role vocabulary.
+
+Runtime public-role readiness after this wave is 492 / 599 canonical identities (82.1%), up from 482 / 599 (80.5%). The remaining 107 identities stay explicitly incomplete until their functional role is source-backed; broad legacy classes such as `protein`, `powder`, `essential oil`, `animal extract`, and `fragrance allergen` are not automatically promoted to functional roles.
+

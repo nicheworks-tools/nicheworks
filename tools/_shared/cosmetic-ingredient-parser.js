@@ -150,7 +150,17 @@
     "pentaerythrityl tetraethylhexanoate": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11370/pentaerythrityl-tetraethylhexanoate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "polyacrylate crosspolymer-11": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19988/polyacrylate-crosspolymer-11/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "polyglyceryl-4 caprate": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12210/polyglyceryl-4-caprate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "sphingolipids": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15386/sphingolipids"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "sphingolipids": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15386/sphingolipids"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polyglyceryl-10 oleate": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12120/polyglyceryl-10-oleate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "gluconic acid": Object.freeze({ category: "chelating agent", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5889/gluconic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "peg-40 hydrogenated castor oil": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10814/peg-40-hydrogenated-castor-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sodium carbonate": Object.freeze({ category: "buffer", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14651/sodium-carbonate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sulisobenzone": Object.freeze({ category: "uv filter", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1578/benzophenone-4/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "benzyl alcohol": Object.freeze({ category: "preservative", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1592/benzyl-alcohol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "urea": Object.freeze({ category: "humectant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/16737/urea/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "glyceryl caprate": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5976/glyceryl-caprate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polysilicone-15": Object.freeze({ category: "uv filter", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12473/polysilicone-15/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "drometrizole trisiloxane": Object.freeze({ category: "uv filter", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5138/drometrizole-trisiloxane/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({

@@ -16,7 +16,9 @@
     "emollient": { "authority_functions": ["skin conditioning - emollient"] },
     "cleanser": { "authority_functions": ["cleansing", "surfactant - cleansing"] },
     "emulsifier": { "authority_functions": ["surfactant - emulsifying"] },
-    "smoothing": { "authority_functions": ["smoothing"] }
+    "smoothing": { "authority_functions": ["smoothing"] },
+    "buffer": { "authority_functions": ["buffering"] },
+    "uv filter": { "authority_functions": ["uv filter"] }
   },
   "reviewed_mappings": {
     "water": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/water/"],"runtime_verified":true},
@@ -100,6 +102,16 @@
     "pentaerythrityl tetraethylhexanoate": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/11370/pentaerythrityl-tetraethylhexanoate/"],"runtime_verified":true},
     "polyacrylate crosspolymer-11": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/19988/polyacrylate-crosspolymer-11/"],"runtime_verified":true},
     "polyglyceryl-4 caprate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12210/polyglyceryl-4-caprate/"],"runtime_verified":true},
-    "sphingolipids": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15386/sphingolipids"],"runtime_verified":true}
+    "sphingolipids": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15386/sphingolipids"],"runtime_verified":true},
+    "polyglyceryl-10 oleate": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12120/polyglyceryl-10-oleate/"],"runtime_verified":true},
+    "gluconic acid": {"category":"chelating agent","source_functions":["chelating"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/5889/gluconic-acid/"],"runtime_verified":true},
+    "peg-40 hydrogenated castor oil": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/10814/peg-40-hydrogenated-castor-oil/"],"runtime_verified":true},
+    "sodium carbonate": {"category":"buffer","source_functions":["buffering"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14651/sodium-carbonate/"],"runtime_verified":true},
+    "sulisobenzone": {"category":"uv filter","source_functions":["uv filter"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/1578/benzophenone-4/"],"runtime_verified":true},
+    "benzyl alcohol": {"category":"preservative","source_functions":["preservative"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/1592/benzyl-alcohol/"],"runtime_verified":true},
+    "urea": {"category":"humectant","source_functions":["humectant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/16737/urea/"],"runtime_verified":true},
+    "glyceryl caprate": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/5976/glyceryl-caprate/"],"runtime_verified":true},
+    "polysilicone-15": {"category":"uv filter","source_functions":["uv filter"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12473/polysilicone-15/"],"runtime_verified":true},
+    "drometrizole trisiloxane": {"category":"uv filter","source_functions":["uv filter"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/5138/drometrizole-trisiloxane/"],"runtime_verified":true}
   }
 }
