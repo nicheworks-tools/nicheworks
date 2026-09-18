@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-18-applicability-wave7",
+  "version": "2026-09-18-applicability-wave8",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -8699,6 +8699,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A power trowel is a distinctive concrete-finishing machine with rotating blades; a reviewed photograph strongly aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -8710,6 +8719,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A prism pole is a physical surveying pole used with a reflector prism; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -8727,6 +8745,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A rammer is a distinctive compacting machine with a narrow foot; a reviewed site photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -8738,6 +8765,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A right-angle clamp is a physical scaffold/pipe clamp with recognizable fixed-angle geometry; a close reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -8755,6 +8791,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Sand is a physical construction material with recognizable granular form and bedding/mortar use; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -8766,6 +8811,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A scaffold plank is a physical work-platform board with a clear installed role; a reviewed photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -8783,6 +8837,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A scaffold clamp is a physical tube-and-coupler fitting with recognizable installed geometry; a close reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -8794,6 +8857,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A scaffold stair/ladder is a physical access component with a stable installed form; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -8811,6 +8883,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A scribe is a distinctive pointed marking hand tool; a close subject-matched photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -8822,6 +8903,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Sheet pile is a physical interlocking retaining member with distinctive corrugated/profiled form; a reviewed construction photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -8839,6 +8929,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Shoring is a physical temporary support system for excavations or structures; a reviewed site photograph materially aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -8850,6 +8949,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A round-point shovel is a distinct digging hand tool with a pointed blade; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -8867,6 +8975,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A square shovel is a distinct hand tool with a flat square blade; a reviewed photograph helps distinguish it from pointed shovels.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -8878,6 +8995,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A slope board is a physical grade/slope checking aid with recognizable site use; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -8895,6 +9021,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A snap-off utility blade is a physical segmented cutting accessory with a distinctive form; a close reviewed photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -8906,6 +9041,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A soil rake is a physical long-handled leveling tool with a toothed head; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -8923,6 +9067,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A straightedge is a physical layout/checking tool with a long rigid straight form; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -8934,6 +9087,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A shoring strut is a physical compression support member used between retaining elements; an installed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -8951,6 +9113,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A survey prism is a distinctive optical reflector used with total stations; a subject-matched photograph strongly aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -8962,6 +9133,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A survey stake is a physical marked stake used to record layout/grade points; a reviewed field photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -8979,6 +9159,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A swivel scaffold clamp is a physical adjustable-angle coupler with recognizable geometry; a close reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -8990,6 +9179,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A tag line is a physical control rope attached to suspended loads; a reviewed rigging photograph can represent the canonical clearly.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9007,6 +9205,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A theodolite is a distinctive surveying instrument for angle measurement; a subject-matched photograph strongly aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9018,6 +9225,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A trench box is a large physical protective shield system used in excavations; a reviewed site photograph is highly informative.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9035,6 +9251,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A hoist trolley is a physical beam-mounted load-moving device with recognizable wheels/body; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9046,6 +9271,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A turnbuckle is a physical tension-adjusting hardware component with a distinctive threaded body; a close reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9063,6 +9297,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A waler is a physical horizontal shoring member tying/supporting retaining systems; an installed photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9074,6 +9317,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A scaffold wall tie is a physical anchoring member connecting scaffold to a building; a reviewed installed-detail photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9091,6 +9343,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Weed-barrier fabric is a physical sheet material with recognizable landscaping/ground-cover use; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9102,6 +9363,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A wire hand brush is a physical rust/scale-removal tool with characteristic wire bristles; a close reviewed photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9119,6 +9389,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A wire-rope sling is a physical lifting assembly with identifiable wire-rope body and eyes/hooks; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9130,6 +9409,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An airless sprayer is a distinctive paint-spraying machine with pump, hose, and gun; a reviewed photograph strongly aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9147,6 +9435,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An aluminum sash is a physical window-frame assembly with recognizable installed form; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9158,6 +9455,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Asphalt mix is a physical paving material with recognizable aggregate/bitumen texture and placement context; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9175,6 +9481,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A prime coat is a physical asphaltic preparation applied to a base before paving; a reviewed application photograph can represent the canonical clearly.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9186,6 +9501,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An asphalt rake is a physical long-handled paving tool with a distinctive rake/lute head; a subject-matched photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9203,6 +9527,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A tack coat is a physical bonding layer sprayed between asphalt courses; a reviewed application photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9214,6 +9547,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Bond-breaker tape is a physical joint-preparation material with recognizable roll/application form; a reviewed close photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9231,6 +9573,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A baluster is a physical vertical railing member with a stable installed role; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9242,6 +9593,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Bitumen primer is a physical waterproofing preparation material typically supplied as liquid coating; a reviewed product/application photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9259,6 +9619,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A catch pit is a physical drainage chamber/inlet structure; a reviewed installed photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9270,6 +9639,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A concrete paver slab is a physical paving unit with recognizable precast form and installed layout; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9287,6 +9665,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A coping joint is a physical joint between coping sections with recognizable seal/gap detailing; a reviewed close photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9298,6 +9685,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A corner guard is a physical protective trim installed on exposed corners; a subject-matched photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9315,6 +9711,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A corrugated roof sheet is a physical roofing panel with distinctive corrugations; a reviewed photograph strongly aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9326,6 +9731,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A curb block is a physical precast edge unit with a recognizable road/landscape installation; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9343,6 +9757,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A cylinder lock is a physical door-lock component with a distinctive keyed cylinder form; a close reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9354,6 +9777,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A door closer is a physical door-control hardware device with recognizable body and arm; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9371,6 +9803,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A door handle is a physical door-operating hardware component with clear visual identity; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9382,6 +9823,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:01:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A door hinge is a physical hardware joint with recognizable leaves and pin; a close reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
