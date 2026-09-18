@@ -10,13 +10,13 @@ Scope: the eight-tool Old Kanji cluster defined by `tools/OLD_KANJI_CLUSTER.md`.
 
 All eight tools have a `SPEC.md` whose specification status is `complete`. That means the intended product contract exists. It does **not** mean the implementation has passed final cluster acceptance.
 
-Completion Waves 10–16 closed dictionary/documentation drift, the four functional QA tranches, cross-tool browser UX/mobile/accessibility, and search-cluster reconciliation. Completion Wave 17 closes the measurement/affiliate-contract tranche by aligning the Old Kanji measurement SSOT with the canonical monetization classification: cluster handoff/support/Pro events remain coarse and payload-free, shared Amazon measurement is `affiliate_outbound`, and Reference/OCR Amazon wiring remains fail-closed because neither tool is currently in the canonical `AFFILIATE` class. Remaining SEO-inventory and release acceptance stay owned by Waves 18–20.
+Completion Waves 10–17 closed dictionary/documentation drift, the four functional QA tranches, cross-tool browser UX/mobile/accessibility, search-cluster reconciliation, and measurement/affiliate contracts. Completion Wave 18 closes the SEO inventory gate: the only indexable individual-kanji pages remain the three reviewed pages for 画/畫, 将/將, and 旧/舊; all three still pass the current dictionary/source gate and retain their preserved authenticated-GSC demand evidence. A fresh GSC read was unavailable because the connected GSC Wizard subscription returned `payment_required`, so Wave 18 authorizes **0 new pages** rather than inferring demand. Remaining release acceptance stays owned by Waves 19–20.
 
 ## Tool-by-tool completion state
 
 | Tool | Spec status | Acceptance evidence | Primary remaining owner wave |
 | --- | --- | --- | --- |
-| Old Kanji Reference | complete | Wave 10 data/contract sync complete; Wave 11 core search/detector/handoff/state behavior automated; Wave 15 browser UX and Wave 16 search-role reconciliation complete; remaining release criteria stay open | Wave 19 release audit |
+| Old Kanji Reference | complete | Wave 10 data/contract sync, Wave 11 core behavior, Wave 15 browser UX, Wave 16 search-role reconciliation, Wave 17 measurement boundary, and Wave 18 three-page SEO inventory gate complete | Wave 19 release audit |
 | Kanji Modernizer | complete | Wave 11 functional QA, Wave 15 browser UX, and Wave 16 search-role/spec synchronization complete | Wave 19 release audit |
 | Old Kanji OCR Scanner | complete | Wave 12 core OCR/detection/error behavior automated; Wave 15 browser UX and Wave 16 search-role reconciliation complete; Wave 17 closes dormant Amazon/measurement criteria against canonical `HOLD` state | Wave 19 release audit |
 | Old Document Kanji Highlighter | complete | Wave 12 functional QA, Wave 15 browser UX, and Wave 16 search-role/spec synchronization complete | Wave 19 release audit |
@@ -66,7 +66,7 @@ The cluster contract and Old Kanji Reference SPEC describe the actual current al
 - `kanji/sho-shou/` — 将 / 將;
 - `kanji/kyu-old/` — 旧 / 舊.
 
-Future publication remains dual-gated by authoritative dictionary/source safety plus actual settled GSC demand. `identity`, `unresolved`, bare-pair, and demand-free records cannot be mass-generated into indexable pages. The 168 repository-side candidates remain audit candidates, not publication inventory.
+Future publication remains dual-gated by authoritative dictionary/source safety plus actual settled GSC demand. `identity`, `unresolved`, bare-pair, and demand-free records cannot be mass-generated into indexable pages. Completion Wave 18 re-audited the filesystem, sitemap, current dictionary records, Culture Agency links, and the preserved authenticated-GSC evidence for the three allowlisted pages. The 168 repository-side candidates remain audit candidates, not publication inventory, and Wave 18 authorizes zero new pages because fresh settled GSC demand could not be retrieved.
 
 ### C-03 — Wave 4–8 search-intent changes are only partially reflected in specs
 Status: **closed in Completion Wave 16**.
@@ -90,7 +90,7 @@ Owner: Waves 11–19.
 
 Wave 11 establishes the rule in practice: an acceptance checkbox is checked only when a durable automated contract or direct implementation evidence exists.
 
-Current closure state after Wave 17:
+Current closure state after Wave 18:
 - Kanji Modernizer: all declared functional acceptance criteria are checked with `tools/kanji-modernizer/tests/behavior.test.mjs` and runtime-source assertions.
 - Old Kanji Reference: search/filter, SERP/H1/canonical/schema/FAQ contracts, task handoffs, detector/handoff behavior, local-state restoration semantics, individual-page allowlist, and dormant Amazon/measurement boundary are checked. Remaining browser export/copy/visual/Pro-public-copy/caution/layout criteria stay for Wave 19.
 - Old Kanji OCR Scanner and Old Document Kanji Highlighter: Wave 12 closes core functional criteria; Wave 15 closes browser UX; Wave 17 closes OCR dormant Amazon/measurement criteria against the canonical `HOLD` state.
@@ -99,6 +99,7 @@ Current closure state after Wave 17:
 - All eight tools: Wave 15 adds real-Chrome browser evidence at 375×812 and 1440×1000 for language switching, keyboard traversal, long/empty interaction states, document overflow, visible control labelling/naming, warning readability, copy feedback where copy controls exist, and runtime-error capture.
 - All eight tools: Wave 16 aligns title/H1/description/canonical/schema/spec search roles with the canonical cluster contract and adds a durable anti-cannibalization/search-role regression checker.
 - All eight tools: Wave 17 locks coarse `old_kanji_handoff`, `support_click`, and enabled-only `old_kanji_pro_click` measurement without inspecting user payload sources; Amazon remains a separate shared `affiliate_outbound` authority and is dormant for the current Old Kanji classifications.
+- Old Kanji Reference SEO inventory: Wave 18 locks the published individual-page set to exactly three reviewed pages and proves that repository-side `seoCandidate` records cannot silently become sitemap/filesystem inventory.
 
 Exit condition: Wave 19 must leave no unchecked criterion without either direct evidence or an explicit specification decision that removes/rewords the criterion.
 
@@ -351,7 +352,29 @@ Verified measurement/privacy behavior:
 No runtime Amazon activation, affiliate classification change, user-payload measurement, or new monetization surface was introduced.
 
 ### Wave 18 — SEO inventory final gate
-Keep individual pages allowlisted and evidence-led. Re-audit the existing three pages. Do not publish the 168 repository-side candidates as inventory without actual GSC demand and authoritative source support.
+Status: **completed**.
+
+Durable evidence:
+- `tools/OLD_KANJI_SEO_INVENTORY_GATE.md`;
+- `scripts/check-old-kanji-seo-inventory-gate.mjs`;
+- the preserved Wave 1–3 ExecPlans containing authenticated Search Console demand evidence;
+- current `tools/old-kanji-reference/dictionary-audit.json`;
+- current three individual-page HTML files and `sitemap.xml`.
+
+Verified state:
+- filesystem individual-page inventory = exactly **3**;
+- sitemap individual-page inventory = exactly the same **3** canonical URLs, once each;
+- 畫→画, 將→将, 舊→旧 remain `old_to_modern`, `seoCandidate: true`, and issue-free in the current audit;
+- all three pages retain self-canonical/indexable metadata, Article structured data, and the Culture Agency primary-source link;
+- current dictionary audit still contains **168** repository-side SEO candidates, which remain candidates rather than publication inventory;
+- the original authenticated-GSC demand evidence remains preserved for each published page.
+
+Fresh-demand limitation:
+- a new Search Console read was attempted through the connected GSC Wizard integration during Wave 18;
+- the integration returned `payment_required` because its trial/subscription is inactive;
+- therefore no fresh-demand claim is made and **0 new individual pages** are authorized in Wave 18.
+
+The new CI gate fails if filesystem or sitemap inventory expands beyond the three-page allowlist without an explicit reviewed contract change.
 
 ### Wave 19 — Final release audit
 Close acceptance criteria with evidence, inspect dead code, broken links, sitemap/schema drift, stale documentation, privacy/network behavior, and CI. No unchecked blocker may remain.
@@ -380,4 +403,4 @@ The Old Kanji cluster is complete only when all of the following are true:
 
 ## Current decision
 
-Completion Wave 17 closes the measurement/affiliate-contract gate without activating Amazon or expanding telemetry. The next permitted work is Completion Wave 18: SEO inventory final gate.
+Completion Wave 18 closes the SEO inventory gate with the reviewed individual-page inventory held at three pages and no inferred expansion. The next permitted work is Completion Wave 19: final release audit.
