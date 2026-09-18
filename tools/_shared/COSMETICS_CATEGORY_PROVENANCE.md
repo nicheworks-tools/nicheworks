@@ -198,3 +198,17 @@ Wave 18 is prioritized from the maintained 30-product official-label regression 
 | `glyceryl stearate se` | `emulsifier` | category missing | COSMILE Europe lists `SURFACTANT - EMULSIFYING`. |
 
 Raw recognition records remain unchanged. For the three identities with unsupported raw categories, the reviewed role becomes the public primary `category` while the raw hint remains auditable. Glyceryl Stearate SE remains category-empty in raw data and is resolved only by the verified overlay.
+
+
+## Wave 19 reviewed set
+
+Wave 19 continues the official-label-priority cleanup with four identities that each appear twice in the maintained 30-product corpus, for eight additional public-role gaps.
+
+| Canonical identity | Verified public category | Preserved raw category hint | Source basis |
+| --- | --- | --- | --- |
+| `polyacrylate crosspolymer-6` | `viscosity adjuster` | `polymer` | COSMILE Europe lists `VISCOSITY CONTROLLING` (and emulsion stabilising). |
+| `polyhydroxystearic acid` | `emulsifier` | `general` | COSMILE Europe lists `SURFACTANT - EMULSIFYING` (and dispersing). |
+| `potassium cetyl phosphate` | `emulsifier` | `general` | COSMILE Europe lists `SURFACTANT - EMULSIFYING` and `SURFACTANT - CLEANSING`; the reviewed public-primary role is emulsifier. |
+| `sorbitan isostearate` | `emulsifier` | `general` | COSMILE Europe lists `SURFACTANT - EMULSIFYING`. |
+
+The raw dictionary is not rewritten. The source-backed role becomes the public primary category, while the legacy `polymer` / `general` hints remain available in the full internal category set and `legacy_category_values`.
