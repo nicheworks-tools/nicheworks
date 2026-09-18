@@ -9,7 +9,7 @@
 
 ## Purpose
 
-Provide a searchable bilingual reference for old Japanese kanji forms and their modern equivalents, including selected metadata, text detection, local study state, export utilities, evidence-gated individual guides, and optional contextual Amazon search handoffs for physical reference tools.
+Provide a searchable bilingual reference for old Japanese kanji forms and their modern equivalents, including selected metadata, text detection, local study state, export utilities, and evidence-gated individual guides.
 
 ## Search cluster role
 
@@ -40,18 +40,16 @@ Provide a searchable bilingual reference for old Japanese kanji forms and their 
 - Provide a dedicated `旧字体の調べ方` guide that routes search, image/OCR, and whole-text conversion needs to the appropriate current tool.
 - Provide visible task handoffs for whole-text conversion, image OCR, Unicode inspection, variant comparison, and current name/family-register intent where relevant, without turning the page into a generic link directory.
 - A primary `dict.json` load failure produces a stable visible error state with an explicit retry control. Optional enrichment-file failures do not block the primary mapping list.
-- A separate optional Amazon resource panel exposes fixed searches for old/variant-kanji dictionaries, document magnifiers, and book stands.
+- Historical Amazon resource wiring remains dormant compatibility code only. Canonical monetization class is `ADS_DONATION`; production affiliate config remains `enabled: false` with no tracking ID or outbound target.
 
 ## Amazon affiliate contract
 
-- Tracking ID: `nicheworks09-22`.
-- Search base: `https://www.amazon.co.jp/s`.
-- Fixed search terms only: `旧字体 異体字 辞典`, `古文書 ルーペ`, `書見台 ブックスタンド`.
-- Search URLs are generated locally as Amazon.co.jp search URLs with the tracking tag.
-- Search/detector input, selected kanji, favorites, recent state, quiz state, detail metadata, exports, and any other user-derived value are never appended to affiliate URLs.
-- Shared `/assets/amazon-affiliate.js` supplies URL validation, Associates disclosure, `rel="sponsored noopener"`, and coarse `affiliate_click` metadata only.
-- Allowed click metadata remains only `tool`, `affiliate`, `target`, and `placement`.
-- No Amazon product image, price, rating, review, availability, or scraped product metadata is displayed.
+- Canonical monetization SSOT class: `ADS_DONATION`.
+- Old Kanji Reference is not in the canonical `AFFILIATE` class.
+- Production `affiliate-config.js` must remain `enabled: false`, `provider: "disabled"`, with an empty `trackingId`, `targets`, and `searches`.
+- Historical Amazon UI/helper files may remain only as dormant fail-closed compatibility wiring and must render no live Amazon CTA or Associates disclosure while disabled.
+- No search/detector/detail/localStorage/export value may enter an affiliate URL or affiliate event.
+- If a future explicit monetization decision moves this tool into the canonical `AFFILIATE` class, shared `/assets/amazon-affiliate.js` remains the only Amazon measurement authority and uses the coarse `affiliate_outbound` event. Cluster analytics must not duplicate that event.
 
 ## Inputs
 
@@ -72,15 +70,15 @@ Provide a searchable bilingual reference for old Japanese kanji forms and their 
 - Markdown table copy and browser print output.
 - Quiz question/result/statistics UI.
 - Links to the currently allowlisted individual guides where applicable.
-- Optional fixed Amazon search handoffs for dictionaries, magnifiers, and book stands, plus Associates disclosure.
+- No live Amazon outbound handoff while the canonical affiliate config remains disabled.
 
 ## State and persistence
 
-Browser-local keys include `oldKanjiReference.recent.v1`, `oldKanjiReference.displayMode.v1`, `oldKanjiReference.favorites.v1`, and `oldKanjiReference.quizStats.v1`. Search/filter text is current-session UI state. Reference data itself is loaded from bundled same-site assets. Amazon resource configuration is static and does not persist user state.
+Browser-local keys include `oldKanjiReference.recent.v1`, `oldKanjiReference.displayMode.v1`, `oldKanjiReference.favorites.v1`, and `oldKanjiReference.quizStats.v1`. Search/filter text is current-session UI state. Reference data itself is loaded from bundled same-site assets. Historical Amazon compatibility configuration is static, disabled, and does not persist user state.
 
 ## Privacy and network behavior
 
-Search, detector, quiz, favorites, and export processing occur in the browser after same-site reference data loads. Detector/search input is not sent to an external kanji lookup service. Google Fonts, ads, analytics, and other page resources may load independently. Amazon links are fixed search handoffs and do not contain searched characters, detector text, or local state.
+Search, detector, quiz, favorites, and export processing occur in the browser after same-site reference data loads. Detector/search input is not sent to an external kanji lookup service. Google Fonts, ads, analytics, and other page resources may load independently. Current disabled Amazon compatibility wiring has no live outbound destination; user-derived reference/search state must not enter any future affiliate URL or event.
 
 ## Language mode
 
@@ -100,7 +98,7 @@ The dense searchable catalog, filters, detector, display modes, export controls,
 - Full-text conversion belongs to Kanji Modernizer rather than this reference catalog.
 - Rendering can vary for compatibility ideographs, supplementary-plane characters, and variation selectors.
 - No fixed Pro price or unfinished purchase controls are rendered on the public page while billing is inactive.
-- Amazon search links are optional shopping handoffs, not product endorsements or suitability guarantees.
+- Historical Amazon compatibility wiring is not authorization to activate affiliate links; activation requires an explicit canonical `AFFILIATE` classification.
 - `identity` and `unresolved` records are not eligible for individual indexable pages. Repository-side `seoCandidate` status is not publication approval; current and future individual pages remain subject to the source + GSC-demand allowlist contract.
 
 ## Acceptance criteria
@@ -119,9 +117,9 @@ The dense searchable catalog, filters, detector, display modes, export controls,
 - [ ] Reference results retain cautions appropriate to non-authoritative old/variant-kanji data.
 - [ ] Shape/stroke detail sections have explicit responsive layout rules and do not render as unstyled raw blocks.
 - [x] The individual-page inventory equals the reviewed allowlist; `identity`, `unresolved`, and demand-free candidates cannot be published automatically. Evidence: `scripts/check-old-kanji-reference-seo.mjs` plus the Wave 10 dictionary audit gate.
-- [ ] Amazon resource links use only the three fixed search terms and `nicheworks09-22`.
-- [ ] No search/detector/detail/localStorage/export value enters Amazon URLs or affiliate analytics.
-- [ ] Associates disclosure is rendered whenever the active Amazon targets are available.
+- [x] Canonical monetization keeps Old Kanji Reference outside the `AFFILIATE` class and production Amazon config fail-closed. Evidence: `MONETIZATION_CLASSIFICATION.json`, `affiliate-config.js`, and `scripts/check-old-kanji-amazon.mjs`.
+- [x] No search/detector/detail/localStorage/export value can enter an Old Kanji Amazon URL/event while the config is disabled; cluster analytics also does not duplicate shared affiliate measurement. Evidence: `scripts/check-old-kanji-amazon.mjs` and `scripts/check-old-kanji-measurement.mjs`.
+- [x] No Associates disclosure or live Amazon CTA is rendered from the disabled config. Evidence: shared Amazon helper renders disclosure/CTA only for active targets; `scripts/check-old-kanji-amazon.mjs` locks the disabled state.
 
 ## Implementation evidence
 
