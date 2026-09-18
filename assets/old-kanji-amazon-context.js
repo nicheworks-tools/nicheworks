@@ -227,16 +227,32 @@
 
     document.addEventListener("input", schedule, true);
     document.addEventListener("change", schedule, true);
-    document.addEventListener("click", () => setTimeout(schedule, 0), true);
-    new MutationObserver(schedule).observe(document.body, {
-      subtree: true,
-      childList: true,
+    document.addEventListener("click", () => {
+      setTimeout(schedule, 40);
+      setTimeout(schedule, 350);
+    }, true);
+
+    const activationElement = config.activation?.selector
+      ? document.querySelector(config.activation.selector)
+      : null;
+    if (activationElement) {
+      new MutationObserver(schedule).observe(activationElement, {
+        subtree: true,
+        childList: true,
+        attributes: true,
+        attributeFilter: ["hidden", "class"]
+      });
+    }
+    new MutationObserver(schedule).observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ["hidden", "class", "lang"]
+      attributeFilter: ["lang"]
     });
 
     render();
   }
+
+  window.NWOldKanjiAmazonContextCatalog = CATALOG;
+  window.NWOldKanjiAmazonTrackingId = TRACKING_ID;
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
