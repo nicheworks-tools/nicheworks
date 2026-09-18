@@ -10,6 +10,14 @@
 
 Run browser-side Japanese OCR on one selected image, let the user correct the recognized text, detect registered old/variant kanji in the resulting text, and optionally expose contextual Amazon search handoffs for physical document-reading tools.
 
+## Search cluster role
+
+- Primary intent: read a photographed/scanned image with browser OCR and inspect recognized old/variant forms.
+- Primary query families: `旧字体 OCR`, `古文書 OCR 漢字`, `画像 旧字体 読み取り`.
+- Supporting query families: `旧漢字 画像 検索`, `旧字体 写真 読み取り`.
+- The page is the cluster's image-input/OCR tool. It must not present itself as the text-only highlighter or generic reference.
+- Primary task handoffs are Old Kanji Reference, Old Document Kanji Highlighter, and Kanji Modernizer.
+
 ## Current functional contract
 
 - Accept one local image through file selection/camera capture and show preview plus file name, size, and MIME type.
