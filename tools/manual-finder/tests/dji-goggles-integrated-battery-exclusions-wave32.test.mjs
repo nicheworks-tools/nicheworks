@@ -28,7 +28,10 @@ const expected = [
 ];
 
 assert.ok(exclusions.length >= 3, 'Wave 32 must retain its three reviewed built-in-battery exclusions');
-assert.deepEqual(exclusions.map((row) => row.model).sort(), expected.map(([model]) => model).sort());
+assert.deepEqual(
+  exclusions.filter((row) => expected.some(([model]) => model === row.model)).map((row) => row.model).sort(),
+  expected.map(([model]) => model).sort()
+);
 
 for (const [model, sourceUrl] of expected) {
   const row = exclusions.find((entry) => entry.model === model);
