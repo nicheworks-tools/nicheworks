@@ -169,3 +169,18 @@ All dictionary additions and shared naming equivalents are available to Lite and
 The corpus contains public product-label text only. It contains no user-entered ingredient lists, OCR images, filenames, scan results, or personal data.
 
 Amazon affiliate links are live as a separate neutral commerce layer. Corpus records and user analysis results must not select or construct affiliate destinations dynamically, and corpus contents must not be sent to affiliate analytics. Affiliate analytics remain limited to coarse fixed metadata under the shared cosmetics affiliate contract.
+
+
+## Wave 24 public-role completion gate
+
+The maintained 30-product official-label corpus now has a separate semantic completion invariant in addition to exact-recognition coverage.
+
+For every label token that resolves to exactly one maintained canonical ingredient, the merged runtime ingredient must expose at least one supported bilingual public role. The benchmark fails if any recognized canonical ingredient falls back to information-incomplete solely because its role taxonomy is missing.
+
+Wave 24 establishes the current measured baseline:
+
+- recognized-canonical public-role gap occurrences: **0**
+- raw recognition dictionaries rewritten for this result: **no**
+- under-specified, deliberately deferred, or not-exact label tokens: **still tracked separately by the existing unknown inventory**
+
+This gate does not claim that every raw label token in the corpus is an exact dictionary identity. It specifically guarantees semantic role completeness for the canonical identities the parser can recognize exactly.
