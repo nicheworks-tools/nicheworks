@@ -532,25 +532,26 @@ console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estim
     assert.match(h.elements.desktopDetail.innerHTML, /Not water or dust resistant/);
   }
 
-  const unresolved = byId.get('samsung-galaxy-z-flip-5g');
-  assert.ok(unresolved, 'Galaxy Z Flip 5G fixture missing');
-  assert.notEqual(unresolved.waterStatus, 'not_resistant');
-  assert.equal(unresolved.sources?.waterUrl, undefined);
+  const resolved = byId.get('samsung-galaxy-z-flip-5g');
+  assert.ok(resolved, 'Galaxy Z Flip 5G fixture missing');
+  assert.equal(resolved.waterStatus, 'not_resistant');
+  assert.match(resolved.sources?.waterUrl || '', /^https:\/\/www\.au\.com\//);
   const h = await createHarness(['samsung-galaxy-z-flip-5g']);
-  assert.doesNotMatch(h.elements.desktopDetail.innerHTML, /非防水・非防塵/);
+  assert.match(h.elements.desktopDetail.innerHTML, /非防水・非防塵/);
 }
 
-// Galaxy Z Flip 5G keeps water protection unresolved while rendering its source-backed 9W Qi maximum.
+// Galaxy Z Flip 5G preserves its source-backed 9W Qi maximum and explicit au non-resistant state.
 {
   const phone = byId.get('samsung-galaxy-z-flip-5g');
   assert.ok(phone, 'Galaxy Z Flip 5G fixture missing');
-  assert.equal(phone.waterStatus, undefined);
+  assert.equal(phone.waterStatus, 'not_resistant');
   assert.equal(phone.charging?.wirelessMaxW, 9);
   assert.match(phone.sources?.wirelessUrl || '', /^https:\/\/www\.samsung\.com\//);
+  assert.match(phone.sources?.waterUrl || '', /^https:\/\/www\.au\.com\//);
   const h = await createHarness(['samsung-galaxy-z-flip-5g']);
   const html = h.elements.desktopDetail.innerHTML;
   assert.match(html, /Qi \/ 9W/);
-  assert.doesNotMatch(html, /非防水・非防塵/);
+  assert.match(html, /非防水・非防塵/);
 }
 
 // Original Galaxy Z Flip renders its Samsung-source-backed 9W Qi maximum.
