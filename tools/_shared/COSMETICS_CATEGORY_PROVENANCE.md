@@ -133,3 +133,13 @@ Wave 12 advances four additional canonical identities with no raw functional cat
 | `stearyl alcohol` | `emollient` | COSMILE Europe lists skin-conditioning emollient. |
 | `sodium lauroyl glutamate` | `cleanser` | COSMILE Europe lists surfactant-cleansing. |
 | `sodium coco-sulfate` | `cleanser` | COSMILE Europe lists surfactant-cleansing. |
+
+
+## Wave 14 reviewed set
+
+| Canonical identity | Verified category | Source basis |
+| --- | --- | --- |
+| `polysorbate 80` | `emulsifier` | COSMILE Europe lists surfactant-emulsifying. |
+| `sorbitan olivate` | `emulsifier` | COSMILE Europe lists surfactant-emulsifying. |
+| `steareth-2` | `emulsifier` | COSMILE Europe lists surfactant-emulsifying. |
+| `steareth-21` | `emulsifier` | COSMILE Europe lists surfactant-emulsifying. |
