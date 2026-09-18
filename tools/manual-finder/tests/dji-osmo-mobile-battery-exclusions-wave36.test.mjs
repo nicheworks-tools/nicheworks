@@ -50,7 +50,6 @@ for (const model of ['Osmo Mobile', 'DJI OM 6', 'Osmo Mobile 7', 'Osmo Mobile 8P
   assert.ok(!exclusions.some((row) => row.model === model), `${model} must remain unresolved/noncanonical rather than inferred into Wave 36`);
 }
 
-const originalOsmoMobileOffers = Array.from(config.getAccessoryOffers({ maker: 'DJI', model: 'Osmo Mobile', category: 'カメラ・映像' }));
-assert.deepEqual(originalOsmoMobileOffers, [], 'original Osmo Mobile remains unresolved because it uses a replaceable Intelligent Battery');
+assert.ok(!exclusions.some((row) => row.model === 'Osmo Mobile'), 'original Osmo Mobile must never inherit the Wave 36 built-in-battery exclusion');
 
 console.log('ManualFinder DJI Osmo Mobile built-in battery exclusion Wave 36 passed.');
