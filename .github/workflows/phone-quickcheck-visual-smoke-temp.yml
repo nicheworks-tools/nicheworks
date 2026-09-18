@@ -1,0 +1,48 @@
+name: Temporary Phone QuickCheck visual smoke
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/phone-quickcheck-visual-smoke-temp.yml'
+      - '.github/phone-quickcheck-visual-smoke-temp.mjs'
+
+permissions:
+  contents: read
+
+jobs:
+  visual-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Playwright library
+        run: npm install --prefix /tmp/phone-smoke --no-package-lock --no-save playwright@1.55.0
+      - name: Resolve browser
+        shell: bash
+        run: |
+          set -euo pipefail
+          chrome="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -n "$chrome" ]; then
+            echo "CHROME_PATH=$chrome" >> "$GITHUB_ENV"
+          else
+            /tmp/phone-smoke/node_modules/.bin/playwright install chromium
+          fi
+          echo "PLAYWRIGHT_ROOT=/tmp/phone-smoke" >> "$GITHUB_ENV"
+          echo "SMOKE_OUT=$RUNNER_TEMP/phone-quickcheck-visual-smoke" >> "$GITHUB_ENV"
+      - name: Start local static server
+        shell: bash
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > "$RUNNER_TEMP/phone-http.log" 2>&1 &
+          echo $! > "$RUNNER_TEMP/phone-http.pid"
+          curl --retry 20 --retry-delay 1 --retry-connrefused -fsS http://127.0.0.1:4173/tools/phone-quickcheck/ >/dev/null
+      - name: Render target viewports
+        run: node .github/phone-quickcheck-visual-smoke-temp.mjs
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phone-quickcheck-visual-smoke
+          path: ${{ runner.temp }}/phone-quickcheck-visual-smoke
+          if-no-files-found: error
