@@ -19,7 +19,8 @@
       "expected_sha1": "45efffcc9b4431f81989bf778f985a217f01b085",
       "subject_match": "matched",
       "review_state": "verified",
-      "review_note": "Subject review passed: the photograph shows the combined front loader bucket and rear backhoe boom characteristic of a backhoe loader, directly matching the canonical."
+      "review_note": "Subject review passed: the photograph shows the combined front loader bucket and rear backhoe boom characteristic of a backhoe loader, directly matching the canonical.",
+      "source_sha1": "45efffcc9b4431f81989bf778f985a217f01b085"
     },
     {
       "entry_id": "caliper",
@@ -33,7 +34,8 @@
       "expected_sha1": "dbfab49f61ea4a06b67940e57ee362e4866d22b4",
       "subject_match": "matched",
       "review_state": "verified",
-      "review_note": "Subject review passed: the photograph directly depicts digital calipers with measuring jaws and scale body, matching the caliper canonical."
+      "review_note": "Subject review passed: the photograph directly depicts digital calipers with measuring jaws and scale body, matching the caliper canonical.",
+      "source_sha1": "dbfab49f61ea4a06b67940e57ee362e4866d22b4"
     },
     {
       "entry_id": "circuit_breaker",
@@ -47,7 +49,8 @@
       "expected_sha1": "9ecb44aa650eac9dabdd2d5ad91967bdf8c678ed",
       "subject_match": "matched",
       "review_state": "verified",
-      "review_note": "Subject review passed: the photograph directly shows electrical circuit-breaker devices with operating toggles, matching the circuit_breaker canonical."
+      "review_note": "Subject review passed: the photograph directly shows electrical circuit-breaker devices with operating toggles, matching the circuit_breaker canonical.",
+      "source_sha1": "9ecb44aa650eac9dabdd2d5ad91967bdf8c678ed"
     },
     {
       "entry_id": "circular_saw",
@@ -61,7 +64,8 @@
       "expected_sha1": "1bf993485c68658d2d16c1f5d6543b4b4bfa11f1",
       "subject_match": "matched",
       "review_state": "verified",
-      "review_note": "Subject review passed: the photograph directly depicts a handheld circular saw with its circular blade and guard visible, matching the circular_saw canonical rather than another saw type."
+      "review_note": "Subject review passed: the photograph directly depicts a handheld circular saw with its circular blade and guard visible, matching the circular_saw canonical rather than another saw type.",
+      "source_sha1": "1bf993485c68658d2d16c1f5d6543b4b4bfa11f1"
     },
     {
       "entry_id": "clamp_bar",
@@ -75,7 +79,8 @@
       "expected_sha1": "011ab6680e00fd7d5db793405d656dc86b55954c",
       "subject_match": "matched",
       "review_state": "verified",
-      "review_note": "Subject review passed: the photograph clearly shows long bar clamps with sliding jaws, matching the clamp_bar canonical and not a generic C-clamp."
+      "review_note": "Subject review passed: the photograph clearly shows long bar clamps with sliding jaws, matching the clamp_bar canonical and not a generic C-clamp.",
+      "source_sha1": "011ab6680e00fd7d5db793405d656dc86b55954c"
     },
     {
       "entry_id": "drill_driver",
@@ -89,7 +94,8 @@
       "expected_sha1": "dee2602b63bd39b80c9f8b83dd12ea511ee7972f",
       "subject_match": "matched",
       "review_state": "verified",
-      "review_note": "Subject review passed: Commons explicitly identifies the photographed tool as a cordless drill/driver; chuck, clutch body and battery form match the drill_driver canonical."
+      "review_note": "Subject review passed: Commons explicitly identifies the photographed tool as a cordless drill/driver; chuck, clutch body and battery form match the drill_driver canonical.",
+      "source_sha1": "dee2602b63bd39b80c9f8b83dd12ea511ee7972f"
     },
     {
       "entry_id": "excavator",
@@ -103,7 +109,8 @@
       "expected_sha1": "85883e46507227149a34a2cf660e019f10015498",
       "subject_match": "matched",
       "review_state": "verified",
-      "review_note": "Subject review passed: the side-view photograph is explicitly identified as an excavator and shows the tracked undercarriage, boom, arm and bucket characteristic of the canonical."
+      "review_note": "Subject review passed: the side-view photograph is explicitly identified as an excavator and shows the tracked undercarriage, boom, arm and bucket characteristic of the canonical.",
+      "source_sha1": "85883e46507227149a34a2cf660e019f10015498"
     },
     {
       "entry_id": "fire_extinguisher",
@@ -117,7 +124,8 @@
       "expected_sha1": "b16ed3c7fe066ed9f4bf816f826caff7e87344e1",
       "subject_match": "matched",
       "review_state": "verified",
-      "review_note": "Subject review passed: the photograph directly depicts a portable fire extinguisher, matching the fire_extinguisher canonical."
+      "review_note": "Subject review passed: the photograph directly depicts a portable fire extinguisher, matching the fire_extinguisher canonical.",
+      "source_sha1": "b16ed3c7fe066ed9f4bf816f826caff7e87344e1"
     },
     {
       "entry_id": "forklift",
@@ -131,7 +139,8 @@
       "expected_sha1": "2be43369306ff164d8891a5fbf43a5ba45a2e23a",
       "subject_match": "matched",
       "review_state": "verified",
-      "review_note": "Subject review passed: the photograph directly depicts a diesel forklift with mast and forks, matching the forklift canonical rather than another material-handling vehicle."
+      "review_note": "Subject review passed: the photograph directly depicts a diesel forklift with mast and forks, matching the forklift canonical rather than another material-handling vehicle.",
+      "source_sha1": "2be43369306ff164d8891a5fbf43a5ba45a2e23a"
     },
     {
       "entry_id": "hammer",
@@ -145,7 +154,8 @@
       "expected_sha1": "43d9123800ab1dd248c66d50227bfea4f228b1cf",
       "subject_match": "matched",
       "review_state": "verified",
-      "review_note": "Subject review passed: the photograph directly depicts a claw hammer with head, striking face, claw and handle clearly visible, matching the hammer canonical."
+      "review_note": "Subject review passed: the photograph directly depicts a claw hammer with head, striking face, claw and handle clearly visible, matching the hammer canonical.",
+      "source_sha1": "43d9123800ab1dd248c66d50227bfea4f228b1cf"
     },
     {
       "entry_id": "hard_hat",
@@ -159,7 +169,8 @@
       "expected_sha1": "e9347fa698168117e63b0730f897427ffebc8a32",
       "subject_match": "matched",
       "review_state": "verified",
-      "review_note": "Subject review passed: Commons describes and depicts a hard hat as the primary subject; the helmet shape and suspension shell are clearly identifiable."
+      "review_note": "Subject review passed: Commons describes and depicts a hard hat as the primary subject; the helmet shape and suspension shell are clearly identifiable.",
+      "source_sha1": "e9347fa698168117e63b0730f897427ffebc8a32"
     },
     {
       "entry_id": "jigsaw",
@@ -173,7 +184,8 @@
       "expected_sha1": "5c4c636002f7e51946b7fe34268e8b79f013d1ff",
       "subject_match": "matched",
       "review_state": "verified",
-      "review_note": "Subject review passed: the photograph directly depicts a handheld electric jigsaw with its narrow reciprocating blade and shoe visible, matching the jigsaw canonical."
+      "review_note": "Subject review passed: the photograph directly depicts a handheld electric jigsaw with its narrow reciprocating blade and shoe visible, matching the jigsaw canonical.",
+      "source_sha1": "5c4c636002f7e51946b7fe34268e8b79f013d1ff"
     }
   ]
 }

@@ -17,7 +17,7 @@
   },
   "sources": {
     "quality_manifest_version": "2026-09-14-manifest-8",
-    "image_registry_version": "2026-09-18-wave4a-1",
+    "image_registry_version": "2026-09-19-wave5-promotion-1",
     "exception_ledger_version": "2026-09-18-applicability-wave17-final",
     "source_ledgers": [
       {
@@ -39,19 +39,24 @@
         "file": "image-wave4-sources-v2.3.json",
         "version": "2026-09-18-wave4a-1",
         "items": 6
+      },
+      {
+        "file": "image-wave5-sources-v2.3.json",
+        "version": "2026-09-19-wave5-promotion-1",
+        "items": 12
       }
     ]
   },
   "summary": {
     "corpus_entries": 5536,
-    "formal_image_entries": 30,
-    "missing_formal_image_entries": 5459,
+    "formal_image_entries": 42,
+    "missing_formal_image_entries": 5447,
     "not_required_entries": 47,
     "unobtainable_entries": 0,
     "classified_entries": 5536,
-    "formal_coverage_percent": 0.5419,
-    "registry_items": 30,
-    "source_ledger_items": 30,
+    "formal_coverage_percent": 0.7587,
+    "registry_items": 42,
+    "source_ledger_items": 42,
     "identity_holds": 0
   },
   "public_lifecycle": {
@@ -62,8 +67,8 @@
     "applicability_reviewed": 870,
     "required": 823,
     "on_hold": 0,
-    "final_dispositions": 77,
-    "unresolved": 793,
+    "final_dispositions": 89,
+    "unresolved": 781,
     "by_stage": {
       "unreviewed": 0,
       "not_required": 47,
@@ -71,10 +76,10 @@
       "candidate": 0,
       "provenance_verified": 0,
       "subject_verified": 0,
-      "verified": 12,
-      "promoted": 30
+      "verified": 0,
+      "promoted": 42
     },
-    "evidence_sha256": "2e610d215e5ede7be81e717df3c702744fd513104f3919eea2521839622f7a91"
+    "evidence_sha256": "0dd3a1ff2fd1e5a4f1e3ca8e390c603e396501dc28a4b8173bcffd2193b0efe9"
   },
   "by_type": {
     "access": {
@@ -240,17 +245,17 @@
     },
     "tool": {
       "corpus": 379,
-      "formal_image": 21,
-      "missing_formal_image": 333,
+      "formal_image": 33,
+      "missing_formal_image": 321,
       "not_required": 25,
       "unobtainable": 0
     }
   },
   "hashes": {
     "corpus_id_sha256": "bff8aae6f75c763415864d81b9b2686131a2964b60bc354e85f84d64e3433f31",
-    "formal_image_id_sha256": "0badc275080c60550705c89e80a74086de7f19c8feecd0964fec395cb735c60b",
-    "missing_formal_image_id_sha256": "0749b10bc2072a3b1597a694e48d4c42081f9ccb1c46d098c1cf117864968af7",
-    "classification_sha256": "abb549a55bec6e1d308f2cbfe2559d756e150bab02d976cb028b01a44b2049bb"
+    "formal_image_id_sha256": "e06e092251eee89733e5244e0582866f36c80b96e13e5698428795116b554dd7",
+    "missing_formal_image_id_sha256": "4b04bb12c5cf0cb3c262aa4554e3ba50aaeb66fcd34a8902e695ee15ba4e9508",
+    "classification_sha256": "db7b38ac0d15c45b4b6ca84b748025e9cc6855b1e6e1ef3ad1fde721e0e3ff5c"
   },
   "missing_sample": [
     "access_door",
@@ -264,7 +269,6 @@
     "asphalt_felt",
     "auto_level",
     "backer_rod",
-    "backhoe_loader",
     "barricade",
     "base_trim",
     "baseboard",
@@ -277,6 +281,7 @@
     "butyl_tape_002",
     "cable_ramp",
     "cable_tie",
-    "cable_tray"
+    "cable_tray",
+    "carpet_tile"
   ]
 }

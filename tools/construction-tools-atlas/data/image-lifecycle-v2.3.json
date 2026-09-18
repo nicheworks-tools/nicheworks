@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-19-image-candidates-wave5b-verified",
+  "version": "2026-09-19-image-wave5-promoted",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -802,6 +802,15 @@
           "candidate_id": "wave5a:backhoe_loader",
           "candidate_sha256": "503307a16ac2ce457f5402b3f67be4950bedf1747e1a48512fbcf1c91c7fa280",
           "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-09-18T23:05:00Z",
+          "actor": "image-wave5-promotion",
+          "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
+          "candidate_id": "wave5a:backhoe_loader",
+          "candidate_sha256": "503307a16ac2ce457f5402b3f67be4950bedf1747e1a48512fbcf1c91c7fa280",
+          "hold": null
         }
       ]
     },
@@ -1185,6 +1194,15 @@
           "at": "2026-09-18T16:36:00Z",
           "actor": "gpt-5.6-sol",
           "reason": "Subject review passed: the photograph directly depicts digital calipers with measuring jaws and scale body, matching the caliper canonical.",
+          "candidate_id": "wave5a2:caliper",
+          "candidate_sha256": "c3c8ea5937caf3ea37284b73590c9c300b32a78935e7ad47b3bc2adaa262c765",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-09-18T23:05:00Z",
+          "actor": "image-wave5-promotion",
+          "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
           "candidate_id": "wave5a2:caliper",
           "candidate_sha256": "c3c8ea5937caf3ea37284b73590c9c300b32a78935e7ad47b3bc2adaa262c765",
           "hold": null
@@ -1588,6 +1606,15 @@
           "candidate_id": "wave5a:circuit_breaker",
           "candidate_sha256": "a9fc74fec12e77a897ccaa03acdc839e89c628bdf66b6e36fcd0eda2964baca3",
           "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-09-18T23:05:00Z",
+          "actor": "image-wave5-promotion",
+          "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
+          "candidate_id": "wave5a:circuit_breaker",
+          "candidate_sha256": "a9fc74fec12e77a897ccaa03acdc839e89c628bdf66b6e36fcd0eda2964baca3",
+          "hold": null
         }
       ]
     },
@@ -1638,6 +1665,15 @@
           "candidate_id": "wave5a:circular_saw",
           "candidate_sha256": "dc103e6348b4ff3583c0516517f0deb57c05a8bdb3e349289368518815d723a8",
           "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-09-18T23:05:00Z",
+          "actor": "image-wave5-promotion",
+          "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
+          "candidate_id": "wave5a:circular_saw",
+          "candidate_sha256": "dc103e6348b4ff3583c0516517f0deb57c05a8bdb3e349289368518815d723a8",
+          "hold": null
         }
       ]
     },
@@ -1685,6 +1721,15 @@
           "at": "2026-09-18T16:36:00Z",
           "actor": "gpt-5.6-sol",
           "reason": "Subject review passed: the photograph clearly shows long bar clamps with sliding jaws, matching the clamp_bar canonical and not a generic C-clamp.",
+          "candidate_id": "wave5a:clamp_bar",
+          "candidate_sha256": "ff1ec3d2c9db2c0b49492eb3ea8f88531d0500d40918b961dc7af7bb61e636cf",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-09-18T23:05:00Z",
+          "actor": "image-wave5-promotion",
+          "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
           "candidate_id": "wave5a:clamp_bar",
           "candidate_sha256": "ff1ec3d2c9db2c0b49492eb3ea8f88531d0500d40918b961dc7af7bb61e636cf",
           "hold": null
@@ -2557,6 +2602,15 @@
           "candidate_id": "wave5b:drill_driver",
           "candidate_sha256": "e08c4a36473abd34f8593d4010d181c6ea0d37fa6da5e26cfb2d739be0572ab7",
           "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-09-18T23:05:00Z",
+          "actor": "image-wave5-promotion",
+          "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
+          "candidate_id": "wave5b:drill_driver",
+          "candidate_sha256": "e08c4a36473abd34f8593d4010d181c6ea0d37fa6da5e26cfb2d739be0572ab7",
+          "hold": null
         }
       ]
     },
@@ -2897,6 +2951,15 @@
           "candidate_id": "wave5b:excavator",
           "candidate_sha256": "d8ed4920de0e3ace3164777bff7501da9cbafe860750ea90c76dc03db3ef63c1",
           "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-09-18T23:05:00Z",
+          "actor": "image-wave5-promotion",
+          "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
+          "candidate_id": "wave5b:excavator",
+          "candidate_sha256": "d8ed4920de0e3ace3164777bff7501da9cbafe860750ea90c76dc03db3ef63c1",
+          "hold": null
         }
       ]
     },
@@ -3163,6 +3226,15 @@
           "candidate_id": "wave5a2:fire_extinguisher",
           "candidate_sha256": "5a8c6eedefa433a931986d45ee30e3ff5e29f6827e113acf0235c8cfa739a923",
           "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-09-18T23:05:00Z",
+          "actor": "image-wave5-promotion",
+          "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
+          "candidate_id": "wave5a2:fire_extinguisher",
+          "candidate_sha256": "5a8c6eedefa433a931986d45ee30e3ff5e29f6827e113acf0235c8cfa739a923",
+          "hold": null
         }
       ]
     },
@@ -3413,6 +3485,15 @@
           "at": "2026-09-18T16:40:02Z",
           "actor": "gpt-5.6-sol",
           "reason": "Subject review passed: the photograph directly depicts a diesel forklift with mast and forks, matching the forklift canonical rather than another material-handling vehicle.",
+          "candidate_id": "wave5b:forklift",
+          "candidate_sha256": "39843e18e03868b6c5894f324d23c5b3d33f0287c28178e0dc7487dba32148de",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-09-18T23:05:00Z",
+          "actor": "image-wave5-promotion",
+          "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
           "candidate_id": "wave5b:forklift",
           "candidate_sha256": "39843e18e03868b6c5894f324d23c5b3d33f0287c28178e0dc7487dba32148de",
           "hold": null
@@ -3811,6 +3892,15 @@
           "candidate_id": "wave5b:hammer",
           "candidate_sha256": "5ec5aaf994866fef097c7700149a9b9622445d33897fb301120f6aa2750fb923",
           "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-09-18T23:05:00Z",
+          "actor": "image-wave5-promotion",
+          "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
+          "candidate_id": "wave5b:hammer",
+          "candidate_sha256": "5ec5aaf994866fef097c7700149a9b9622445d33897fb301120f6aa2750fb923",
+          "hold": null
         }
       ]
     },
@@ -4056,6 +4146,15 @@
           "at": "2026-09-18T16:40:02Z",
           "actor": "gpt-5.6-sol",
           "reason": "Subject review passed: Commons describes and depicts a hard hat as the primary subject; the helmet shape and suspension shell are clearly identifiable.",
+          "candidate_id": "wave5b:hard_hat",
+          "candidate_sha256": "de3fcb2ff0e7dc8fef679e7376ea69a96454566d1f36a7446c196cde1ed9654e",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-09-18T23:05:00Z",
+          "actor": "image-wave5-promotion",
+          "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
           "candidate_id": "wave5b:hard_hat",
           "candidate_sha256": "de3fcb2ff0e7dc8fef679e7376ea69a96454566d1f36a7446c196cde1ed9654e",
           "hold": null
@@ -4350,6 +4449,15 @@
           "at": "2026-09-18T16:40:02Z",
           "actor": "gpt-5.6-sol",
           "reason": "Subject review passed: the photograph directly depicts a handheld electric jigsaw with its narrow reciprocating blade and shoe visible, matching the jigsaw canonical.",
+          "candidate_id": "wave5b:jigsaw",
+          "candidate_sha256": "9ec1068994833fa3cc389385d4dd303b33db1b363f5816fc08cf35e1b9ce3350",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-09-18T23:05:00Z",
+          "actor": "image-wave5-promotion",
+          "reason": "Promoted the already verified Wave 5 candidate after pinned source hash verification, local raster retention, derivative generation, and canonical registry materialization.",
           "candidate_id": "wave5b:jigsaw",
           "candidate_sha256": "9ec1068994833fa3cc389385d4dd303b33db1b363f5816fc08cf35e1b9ce3350",
           "hold": null

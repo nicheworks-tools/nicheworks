@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-registry-v2.3",
-  "version": "2026-09-18-wave4a-1",
+  "version": "2026-09-19-wave5-promotion-1",
   "policy": {
     "primary_format": "webp",
     "formal_min_state": "reviewed",
@@ -727,6 +727,294 @@
         "source_sha1": "f49d282e880319a9a54665eef81401139209ccc7"
       },
       "notes": "Wave 4A manually reviewed real-subject image for the Safety Boots canonical."
+    },
+    {
+      "entry_id": "backhoe_loader",
+      "alt_ja": "前方ローダーバケットと後方バックホーを備えたバックホーローダー",
+      "alt_en": "Backhoe loader with front loader bucket and rear backhoe boom",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/backhoe_loader/source.jpg",
+        "display": "./images/backhoe_loader/primary.webp",
+        "thumbnail": "./images/backhoe_loader/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/BackhoeLoader.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:BackhoeLoader.jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Raysonho @ Open Grid Scheduler / Grid Engine",
+        "attribution": "Raysonho @ Open Grid Scheduler / Grid Engine / Wikimedia Commons, CC0 1.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "45efffcc9b4431f81989bf778f985a217f01b085"
+      },
+      "notes": "Wave 5 promotion of a previously provenance-verified and subject-verified lifecycle candidate."
+    },
+    {
+      "entry_id": "caliper",
+      "alt_ja": "測定ジョーを備えたデジタルノギス",
+      "alt_en": "Digital caliper with measuring jaws",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/caliper/source.jpg",
+        "display": "./images/caliper/primary.webp",
+        "thumbnail": "./images/caliper/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Caliper1.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Caliper1.jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Hardyplants",
+        "attribution": "Hardyplants / Wikimedia Commons, CC0 1.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "dbfab49f61ea4a06b67940e57ee362e4866d22b4"
+      },
+      "notes": "Wave 5 promotion of a previously provenance-verified and subject-verified lifecycle candidate."
+    },
+    {
+      "entry_id": "circuit_breaker",
+      "alt_ja": "操作レバーを備えた配線用遮断器",
+      "alt_en": "Electrical circuit breakers with operating toggles",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/circuit_breaker/source.jpg",
+        "display": "./images/circuit_breaker/primary.webp",
+        "thumbnail": "./images/circuit_breaker/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Circuit_Breaker.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Circuit_Breaker.jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Douglas Paul Perkins",
+        "attribution": "Douglas Paul Perkins / Wikimedia Commons, CC0 1.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "9ecb44aa650eac9dabdd2d5ad91967bdf8c678ed"
+      },
+      "notes": "Wave 5 promotion of a previously provenance-verified and subject-verified lifecycle candidate."
+    },
+    {
+      "entry_id": "circular_saw",
+      "alt_ja": "丸い鋸刃とガードを備えた手持ち丸ノコ",
+      "alt_en": "Handheld circular saw with circular blade and guard",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/circular_saw/source.jpg",
+        "display": "./images/circular_saw/primary.webp",
+        "thumbnail": "./images/circular_saw/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Circular_Saw.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Circular_Saw.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "Hychika",
+        "attribution": "Hychika / Wikimedia Commons, CC BY-SA 4.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "1bf993485c68658d2d16c1f5d6543b4b4bfa11f1"
+      },
+      "notes": "Wave 5 promotion of a previously provenance-verified and subject-verified lifecycle candidate."
+    },
+    {
+      "entry_id": "clamp_bar",
+      "alt_ja": "長いバーとスライド式ジョーを備えたバークランプ",
+      "alt_en": "Bar clamps with long rails and sliding jaws",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/clamp_bar/source.jpg",
+        "display": "./images/clamp_bar/primary.webp",
+        "thumbnail": "./images/clamp_bar/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Bar_clamp_1.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Bar_clamp_1.jpg",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Aerolin55",
+        "attribution": "Aerolin55 / Wikimedia Commons, CC BY-SA 3.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "011ab6680e00fd7d5db793405d656dc86b55954c"
+      },
+      "notes": "Wave 5 promotion of a previously provenance-verified and subject-verified lifecycle candidate."
+    },
+    {
+      "entry_id": "drill_driver",
+      "alt_ja": "チャックとバッテリーを備えたドリルドライバー",
+      "alt_en": "Cordless drill driver with chuck and battery",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/drill_driver/source.jpg",
+        "display": "./images/drill_driver/primary.webp",
+        "thumbnail": "./images/drill_driver/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Drill-driver.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Drill-driver.JPG",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Gisling",
+        "attribution": "Gisling / Wikimedia Commons, CC BY-SA 3.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "dee2602b63bd39b80c9f8b83dd12ea511ee7972f"
+      },
+      "notes": "Wave 5 promotion of a previously provenance-verified and subject-verified lifecycle candidate."
+    },
+    {
+      "entry_id": "excavator",
+      "alt_ja": "履帯、ブーム、アーム、バケットを備えた油圧ショベル",
+      "alt_en": "Tracked excavator with boom, arm, and bucket",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/excavator/source.jpg",
+        "display": "./images/excavator/primary.webp",
+        "thumbnail": "./images/excavator/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Excavator_side.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Excavator_side.jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Wikideas1",
+        "attribution": "Wikideas1 / Wikimedia Commons, CC0 1.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "85883e46507227149a34a2cf660e019f10015498"
+      },
+      "notes": "Wave 5 promotion of a previously provenance-verified and subject-verified lifecycle candidate."
+    },
+    {
+      "entry_id": "fire_extinguisher",
+      "alt_ja": "携帯型の消火器",
+      "alt_en": "Portable fire extinguisher",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/fire_extinguisher/source.jpg",
+        "display": "./images/fire_extinguisher/primary.webp",
+        "thumbnail": "./images/fire_extinguisher/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/7/71/Fireextinguisher.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Fireextinguisher.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "Jadeswick",
+        "attribution": "Jadeswick / Wikimedia Commons, CC BY-SA 4.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "b16ed3c7fe066ed9f4bf816f826caff7e87344e1"
+      },
+      "notes": "Wave 5 promotion of a previously provenance-verified and subject-verified lifecycle candidate."
+    },
+    {
+      "entry_id": "forklift",
+      "alt_ja": "マストとフォークを備えたフォークリフト",
+      "alt_en": "Forklift with mast and forks",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/forklift/source.jpg",
+        "display": "./images/forklift/primary.webp",
+        "thumbnail": "./images/forklift/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/67/A_forklift.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:A_forklift.jpg",
+        "license": "Public Domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-user",
+        "author": "Plenumchamber",
+        "attribution": "Plenumchamber / Wikimedia Commons (Public Domain)",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "2be43369306ff164d8891a5fbf43a5ba45a2e23a"
+      },
+      "notes": "Wave 5 promotion of a previously provenance-verified and subject-verified lifecycle candidate."
+    },
+    {
+      "entry_id": "hammer",
+      "alt_ja": "金属ヘッドと爪を備えたクローハンマー",
+      "alt_en": "Claw hammer with metal head, striking face, and claw",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/hammer/source.jpg",
+        "display": "./images/hammer/primary.webp",
+        "thumbnail": "./images/hammer/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Hammer.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Hammer.jpg",
+        "license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "author": "Michael Jastremski",
+        "attribution": "Michael Jastremski / Wikimedia Commons, CC BY-SA 2.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "43d9123800ab1dd248c66d50227bfea4f228b1cf"
+      },
+      "notes": "Wave 5 promotion of a previously provenance-verified and subject-verified lifecycle candidate."
+    },
+    {
+      "entry_id": "hard_hat",
+      "alt_ja": "白色の保護帽（ハードハット）",
+      "alt_en": "White construction hard hat",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/hard_hat/source.jpg",
+        "display": "./images/hard_hat/primary.webp",
+        "thumbnail": "./images/hard_hat/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/A_Hard_Hat.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:A_Hard_Hat.JPG",
+        "license": "CC BY 3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0/",
+        "author": "Dwight Burdette",
+        "attribution": "Dwight Burdette / Wikimedia Commons, CC BY 3.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "e9347fa698168117e63b0730f897427ffebc8a32"
+      },
+      "notes": "Wave 5 promotion of a previously provenance-verified and subject-verified lifecycle candidate."
+    },
+    {
+      "entry_id": "jigsaw",
+      "alt_ja": "細い往復刃とベースを備えた電動ジグソー",
+      "alt_en": "Electric jigsaw with narrow reciprocating blade and shoe",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/jigsaw/source.jpg",
+        "display": "./images/jigsaw/primary.webp",
+        "thumbnail": "./images/jigsaw/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Makita_4350FCT_Jigsaw.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Makita_4350FCT_Jigsaw.jpg",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0/",
+        "author": "Mark Hunter",
+        "attribution": "Mark Hunter / Wikimedia Commons, CC BY 2.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, and converted to WebP; original source retained locally.",
+        "source_sha1": "5c4c636002f7e51946b7fe34268e8b79f013d1ff"
+      },
+      "notes": "Wave 5 promotion of a previously provenance-verified and subject-verified lifecycle candidate."
     }
   ]
 }
