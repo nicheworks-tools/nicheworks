@@ -28,6 +28,8 @@ requireText(css, 'max-height:88vh;overflow:auto', 'mobile bottom sheet vertical 
 requireText(css, 'padding-bottom:env(safe-area-inset-bottom)', 'mobile safe-area padding missing');
 requireText(css, '@media(max-width:600px)', '600px narrow breakpoint missing');
 requireText(css, '@media(max-width:480px)', '480px phone breakpoint missing');
+requireText(css, '.kv{display:grid;grid-template-columns:max-content minmax(0,1fr)', 'detail key/value grid must preserve mobile labels');
+requireText(css, '.kv span:first-child{color:var(--muted);white-space:nowrap}', 'detail labels must not collapse into per-character wrapping');
 
 requireText(app, "window.matchMedia('(max-width: 900px)').matches", 'runtime mobile breakpoint must match CSS 900px contract');
 requireText(app, 'function openSheet()', 'mobile sheet open behavior missing');
