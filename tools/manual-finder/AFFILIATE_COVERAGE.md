@@ -21,7 +21,7 @@ Required printer reconciliation:
 
 The camera accessory audit independently reconciles as:
 
-`camera basic 185 = detail 84 + reviewed exclusion 26 + missing 75`
+`camera basic 185 = detail 87 + reviewed exclusion 26 + missing 72`
 
 Maker-level camera state:
 
@@ -267,7 +267,17 @@ After Waves 1–41:
 
 `DJI camera 96 = detail 70 + reviewed exclusion 26 + missing 0`
 
-The catalog-wide camera audit is therefore 185 actionable basic rows, 84 detail mappings, 26 reviewed exclusions, and 75 missing accessory-detail rows.
+The catalog-wide camera audit is therefore 185 actionable basic rows, 87 detail mappings, 26 reviewed exclusions, and 72 missing accessory-detail rows.
+
+## OM SYSTEM camera review — Wave 1
+
+OM SYSTEM Wave 1 activates exactly `OM-1`, `OM-1 Mark II`, and `OM-3`. OM SYSTEM's official BLX-1 battery page explicitly lists all three models as compatible with the `BLX-1 Lithium Ion Rechargeable Battery`.
+
+The deterministic Amazon handoff is `OM SYSTEM BLX-1 Lithium Ion Rechargeable Battery` for each of the three reviewed rows. No compatibility is inferred to `OM-5`, `OM-5 Mark II`, E-M series models, or any other OM SYSTEM row.
+
+Current OM SYSTEM reconciliation:
+
+`OM SYSTEM camera 37 = detail 3 + reviewed exclusion 0 + missing 34`
 
 ## Runtime boundary and source of truth
 
@@ -292,9 +302,10 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 84 detail 
 - `affiliate-dji-camera-accessories-wave37.js` adds the exact four-row legacy Osmo battery mappings.
 - `affiliate-dji-camera-accessories-wave38.js` adds the exact four-row legacy Ronin battery mappings.
 - `affiliate-dji-camera-accessories-wave39.js` adds the exact Ronin 4D / Osmo Action battery-and-hub mappings.
-- `affiliate-dji-camera-accessories-wave41.js` adds the exact Osmo Nano Multifunctional Vision Dock mapping and exposes the merged 84-row camera detail ledger.
+- `affiliate-dji-camera-accessories-wave41.js` adds the exact Osmo Nano Multifunctional Vision Dock mapping.
+- `affiliate-om-system-camera-accessories-wave1.js` adds exact OM-1 / OM-1 Mark II / OM-3 BLX-1 mappings and exposes the merged 87-row camera detail ledger.
 - `affiliate-camera-detail-exclusions.js` contains twenty-six exact DJI exclusions across Waves 32, 34, 36, 40, and 41.
-- `affiliate-runtime.js` sequentially loads Nikon and DJI ledgers before affiliate rendering.
+- `affiliate-runtime.js` sequentially loads Nikon, DJI, and OM SYSTEM ledgers before affiliate rendering.
 - `tests/affiliate-coverage.test.mjs` and `tests/affiliate-doc-sync.test.mjs` protect printer reconciliation.
 - `tests/dji-phantom3-accessory-wave22.test.mjs` protects the exact Phantom 3 Wave 22 boundary.
 - `tests/dji-phantom3-se-accessory-wave23.test.mjs` protects the exact battery-only Phantom 3 SE Wave 23 boundary.
@@ -316,6 +327,7 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 84 detail 
 - `tests/dji-ronin4d-osmo-action-wave39.test.mjs` protects the exact two-row Wave 39 boundary.
 - `tests/dji-rechargeable-controller-exclusions-wave40.test.mjs` protects the exact six-row Wave 40 controller exclusion boundary.
 - `tests/dji-final-power-wave41.test.mjs` protects the final DJI closure boundary.
+- `tests/om-system-blx1-accessory-wave1.test.mjs` protects the exact OM SYSTEM BLX-1 Wave 1 boundary.
 - `tests/camera-accessory-coverage.test.mjs` computes camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` prevents documentation drift and auto-discovers DJI wave evidence.
 - `CAMERA_ACCESSORY_COVERAGE.md` records the measured camera baseline.
@@ -348,4 +360,4 @@ DJI is closed at:
 
 ## Next expansion gate
 
-Printer-detail is closed. Nikon camera coverage is closed. The measured camera backlog now continues with OM SYSTEM 37, GoPro 31, and Insta360 7. DJI and Nikon are closed at zero missing.
+Printer-detail is closed. Nikon and DJI camera coverage are closed. The measured camera backlog continues with OM SYSTEM 34, GoPro 31, and Insta360 7.
