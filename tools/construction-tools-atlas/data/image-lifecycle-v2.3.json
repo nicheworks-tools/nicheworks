@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-18-applicability-wave12",
+  "version": "2026-09-18-applicability-wave13",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -14449,6 +14449,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A coating thickness gauge is a physical inspection instrument with a distinctive handheld probe/display form; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14460,6 +14469,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A color sample board is a physical finish-approval sample with clear visual identity as a prepared color/material reference; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14477,6 +14495,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Concrete sealer is a physical coating material applied to concrete surfaces; a reviewed product/application photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14488,6 +14515,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Corner protection tape is a physical temporary protection material applied to vulnerable edges; an installed/detail photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14505,6 +14541,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Corner tape is a physical finishing/reinforcement material used at wall corners; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14516,6 +14561,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A corner trowel is a distinctive hand tool with an angled blade geometry; a subject-matched photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14533,6 +14587,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Cove base is a physical resilient wall-floor finishing strip with a recognizable curved toe; a reviewed installed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14544,6 +14607,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Crack filler is a physical repair material used to fill surface cracks; a reviewed product or application photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14561,6 +14633,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A cross-cut tester is a physical coating-adhesion test tool with distinctive cutting blades/grid use; a reviewed photograph is highly useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14572,6 +14653,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A cross tee is a physical suspended-ceiling grid member with a recognizable T-profile and connection form; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14589,6 +14679,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is a recurring safety-inspection activity rather than one stable visual subject; any photograph would show an arbitrary checklist, worker, or site condition rather than identify the practice itself.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14600,6 +14699,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A drop cloth is a physical protective covering used during finishing work; a reviewed deployed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14617,6 +14725,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A dust barrier is a physical temporary enclosure or sheeting system separating work areas; a reviewed installed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14628,6 +14745,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Epoxy floor coating is a physical flooring finish material with a recognizable applied surface and mixing/application context; imagery is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14645,6 +14771,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A finish sample is a physical approval/reference specimen for color, texture, or material; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14656,6 +14791,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A first-aid kit is a physical safety item with clear visual identity as a stocked emergency kit; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14673,6 +14817,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is an inspection procedure for evaluating surface flatness, which may use straightedges, levels, laser methods, or other instruments; one photograph would represent only one arbitrary method rather than the concept.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14684,6 +14837,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Floor adhesive is a physical flooring material with recognizable container and spread application forms; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14701,6 +14863,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Floor hardener is a physical treatment/material applied to concrete floors; a reviewed product or application photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14712,6 +14883,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A floor transition/joint strip is a physical finishing component installed at flooring edges or material changes; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14729,6 +14909,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A floor polisher is a distinctive powered floor-finishing machine; a subject-matched photograph strongly aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14740,6 +14929,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A floor sander is a distinctive powered sanding machine used on floor surfaces; a reviewed photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14757,6 +14955,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A floor scraper is a physical hand or powered removal tool with clear task-specific visual identity; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14768,6 +14975,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Floor underlayment is a physical sheet/board/layer material installed beneath flooring; a reviewed product or installed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14785,6 +15001,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Floor welding rod is a physical resilient-flooring seam material with a distinctive cord/rod form; a close reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14796,6 +15021,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wood flooring board is a physical finish material with clear plank/board form and installed context; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14813,6 +15047,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Grout sealer is a physical finishing/protection material applied to grout joints; a reviewed product/application photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14824,6 +15067,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A grout sponge is a physical tiling/finishing tool with a recognizable dense sponge form and use; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14841,6 +15093,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Hearing protection such as earplugs or earmuffs is physical PPE with recognizable forms; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14852,6 +15113,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A HEPA filter is a physical filtration component with recognizable pleated media/frame forms; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14869,6 +15139,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is a work-authorization document/process whose form layout, approval workflow, and fields vary by organization; one photograph would be arbitrary and would not identify the concept reliably.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14880,6 +15159,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Interior paint is a physical coating material with recognizable container and applied-finish contexts; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14897,6 +15185,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Joint compound is a physical finishing material used on board joints and fasteners; a reviewed product/application photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14908,6 +15205,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Laminate flooring is a physical plank finish product with recognizable layered plank form and installed appearance; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14925,6 +15231,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is an energy-isolation safety procedure spanning locks, tags, devices, and documented steps; a single photograph of one setup would misleadingly narrow the broader practice.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14936,6 +15251,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A main tee is a physical suspended-ceiling grid member with a recognizable T-profile and hanger/support role; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14953,6 +15277,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Masking film is a physical protective sheet product used during painting/finishing; a reviewed roll or deployed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14964,6 +15297,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A mockup panel is a physical sample assembly built for finish/detail review; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -14981,6 +15323,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Moisture-barrier coating is a physical applied material used to control substrate moisture; a reviewed product/application photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -14992,6 +15343,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is a safety-reporting record/process whose form and media vary by organization; a photograph of one report would be an arbitrary template rather than the stable concept.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -15009,6 +15369,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A negative-air machine is a distinctive filtration/air-handling device used for containment; a subject-matched photograph strongly aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -15020,6 +15389,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Oil-based paint is a physical coating material with recognizable container and applied-finish contexts; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -15037,6 +15415,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A paint extension pole is a physical telescoping accessory with clear visual identity; a subject-matched photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -15048,6 +15435,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Interior primer is a physical coating material used before finish paint; a reviewed product/application photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -15065,6 +15461,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Paint filler/putty is a physical surface-preparation material with recognizable container/application forms; a reviewed photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -15076,6 +15481,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A paint roller cover is a physical painting accessory with a distinctive cylindrical sleeve form; a close reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -15093,6 +15507,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Lime plaster is a physical finishing material with recognizable wet-mix and applied wall-surface forms; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -15104,6 +15527,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Plaster base coat is a physical undercoat material applied before finish plaster; a reviewed product/application photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -15121,6 +15553,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A plaster hawk is a distinctive hand tool with a flat board and central handle; a subject-matched photograph strongly aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -15132,6 +15573,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:35:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Plaster mesh is a physical reinforcing material with recognizable grid/mesh form and installed use; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null

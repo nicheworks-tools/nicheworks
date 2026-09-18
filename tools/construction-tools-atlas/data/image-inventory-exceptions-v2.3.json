@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-inventory-exceptions-v2.3",
-  "version": "2026-09-18-applicability-wave12",
+  "version": "2026-09-18-applicability-wave13",
   "items": [
     {
       "entry_id": "punch_list",
@@ -136,6 +136,31 @@
       "entry_id": "q016_blue_tape_walk",
       "state": "not_required",
       "reason": "The canonical is an inspection/closeout practice in which defects are marked during a walkthrough; tape color, marking style, and inspected subjects vary by project, so a single photograph would depict an arbitrary instance rather than the practice itself."
+    },
+    {
+      "entry_id": "q016_daily_safety_check",
+      "state": "not_required",
+      "reason": "The canonical is a recurring safety-inspection activity rather than one stable visual subject; any photograph would show an arbitrary checklist, worker, or site condition rather than identify the practice itself."
+    },
+    {
+      "entry_id": "q016_flatness_check",
+      "state": "not_required",
+      "reason": "The canonical is an inspection procedure for evaluating surface flatness, which may use straightedges, levels, laser methods, or other instruments; one photograph would represent only one arbitrary method rather than the concept."
+    },
+    {
+      "entry_id": "q016_hot_work_permit",
+      "state": "not_required",
+      "reason": "The canonical is a work-authorization document/process whose form layout, approval workflow, and fields vary by organization; one photograph would be arbitrary and would not identify the concept reliably."
+    },
+    {
+      "entry_id": "q016_lockout_tagout",
+      "state": "not_required",
+      "reason": "The canonical is an energy-isolation safety procedure spanning locks, tags, devices, and documented steps; a single photograph of one setup would misleadingly narrow the broader practice."
+    },
+    {
+      "entry_id": "q016_near_miss_report",
+      "state": "not_required",
+      "reason": "The canonical is a safety-reporting record/process whose form and media vary by organization; a photograph of one report would be an arbitrary template rather than the stable concept."
     }
   ]
 }
