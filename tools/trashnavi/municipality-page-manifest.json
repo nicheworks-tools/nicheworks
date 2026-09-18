@@ -252,5 +252,15 @@
   {"lgcode":"082228","pref_slug":"ibaraki","city_slug":"kashima","publish":true},
   {"lgcode":"082325","pref_slug":"ibaraki","city_slug":"kamisu","publish":true},
   {"lgcode":"082368","pref_slug":"ibaraki","city_slug":"omitama","publish":true},
-  {"lgcode":"082333","pref_slug":"ibaraki","city_slug":"namegata","publish":true}
+  {"lgcode":"082333","pref_slug":"ibaraki","city_slug":"namegata","publish":true},
+  {"lgcode":"082121","pref_slug":"ibaraki","city_slug":"hitachiota","publish":true},
+  {"lgcode":"082252","pref_slug":"ibaraki","city_slug":"hitachiomiya","publish":true},
+  {"lgcode":"084433","pref_slug":"ibaraki","city_slug":"ami","publish":true},
+  {"lgcode":"083097","pref_slug":"ibaraki","city_slug":"oarai","publish":true},
+  {"lgcode":"083020","pref_slug":"ibaraki","city_slug":"ibaraki-town","publish":true},
+  {"lgcode":"085642","pref_slug":"ibaraki","city_slug":"tone","publish":true},
+  {"lgcode":"085219","pref_slug":"ibaraki","city_slug":"yachiyo","publish":true},
+  {"lgcode":"083411","pref_slug":"ibaraki","city_slug":"tokai","publish":true},
+  {"lgcode":"082317","pref_slug":"ibaraki","city_slug":"sakuragawa","publish":true},
+  {"lgcode":"085421","pref_slug":"ibaraki","city_slug":"goka","publish":true}
 ]

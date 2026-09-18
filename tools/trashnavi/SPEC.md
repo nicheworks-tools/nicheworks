@@ -1042,3 +1042,14 @@ Wave 47は茨城県の10自治体を、従来どおり `municipal_home` を除�
 - publication acceptance: 254 municipality pages、254 root internal links、AI reference 254/254、専用sitemapはtool rootを含む255 URL
 - 2026 calendar callout: 取手市、那珂市、稲敷市、つくばみらい市、鹿嶋市、小美玉市、行方市。筑西市・かすみがうら市・神栖市には年次calloutを生成しない。
 - Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を維持し、root directory affiliate blockも検索結果・自治体公式情報とは分離する。
+
+
+## Wave 48 batch publication
+
+Wave 48は茨城県の追加10自治体を、従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific municipal-official link typeで公開し、公開対象を **254自治体から264自治体** へ拡張する。常総市は地域別処理体系、北茨城市は外部組合依存を市全域の単一制度として扱わないため採用しない。
+
+- 常陸太田市、常陸大宮市、阿見町、大洗町、茨城町、利根町、八千代町、東海村、桜川市、五霞町
+- readiness baseline: 2,880 / 2,880 valid HTTP(S)、264 preferred candidates、51 direct-link datasets / 812 records / 793 unique URLs / 0 invalid URLs
+- publication acceptance: 264 municipality pages、264 root internal links、AI reference 264/264、専用sitemapはtool rootを含む265 URL
+- 2026 calendar callout: 阿見町、大洗町、茨城町、利根町、八千代町、東海村、五霞町。常陸太田市、常陸大宮市、桜川市は年次を推測しない。
+- Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を維持する。
