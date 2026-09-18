@@ -72,19 +72,19 @@ ManualFinder is an `AFFILIATE` tool, but commerce is an optional next-action lay
 
 Every actionable `カメラ・映像` row with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or explicit missing-accessory diagnostic state.
 
-The current camera state is **185 basic = 59 detail + 0 reviewed exclusions + 126 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
+The current camera state is **185 basic = 60 detail + 0 reviewed exclusions + 125 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
 
 Nikon Waves 1–2 remain closed at **14 detail + 0 reviewed exclusions + 0 missing**.
 
-DJI advances only through bounded exact-canonical-model waves. Reviewed scope through Wave 25 includes Waves 1–24 frozen in their individual ledgers plus Wave 25 for exactly:
+DJI advances only through bounded exact-canonical-model waves. Reviewed scope through Wave 26 includes Waves 1–25 frozen in their individual ledgers plus Wave 26 for exactly:
 
-- `Mavic 2 Enterprise Series`
+- `Osmo Pocket 3`
 
-Wave 25 maps exactly the canonical `Mavic 2 Enterprise Series` row to `DJI Mavic 2 Enterprise Battery` and `Mavic 2 Battery Charging Hub`. DJI's official Mavic 2 Enterprise Series Download Center publishes the series-specific Intelligent Flight Battery Safety Guide, and DJI's official charging-hub compatibility article explicitly lists `Mavic 2 Enterprise Series` for the Mavic 2 Battery Charging Hub. Synthetic child-model names remain fail-closed.
+Wave 26 maps exactly the canonical `Osmo Pocket 3` row to `DJI Osmo Pocket 3 Battery Handle`. DJI's official Battery Handle product page explicitly lists `Osmo Pocket 3` as compatible, and DJI's official Osmo Pocket 3 support material documents the Battery Handle as a supported accessory. `DJI Osmo Pocket 3`, `Osmo Pocket 3 Creator Combo`, `DJI Pocket 2`, and other neighboring or synthetic names remain fail-closed.
 
-The measured DJI state after Waves 1–25 is **96 basic = 45 detail + 0 reviewed exclusions + 51 missing accessory detail**.
+The measured DJI state after Waves 1–26 is **96 basic = 46 detail + 0 reviewed exclusions + 50 missing accessory detail**.
 
-Camera-detail exclusions remain in `affiliate-camera-detail-exclusions.js`; the ledger is currently empty. Remaining missing camera rows are DJI 51, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
+Camera-detail exclusions remain in `affiliate-camera-detail-exclusions.js`; the ledger is currently empty. Remaining missing camera rows are DJI 50, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## State and persistence
 
@@ -125,10 +125,11 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] The printer audit remains **291 basic = 284 detail + 7 reviewed exclusions + 0 missing detail**.
 - [x] KYOCERA remains **123 = 120 detail + 3 reviewed exclusions + 0 missing**.
 - [x] Nikon camera accessory coverage remains **14 detail + 0 reviewed exclusions + 0 missing**.
-- [x] DJI Waves 1–25 preserve exact reviewed boundaries and do not infer neighboring product names.
+- [x] DJI Waves 1–26 preserve exact reviewed boundaries and do not infer neighboring product names.
 - [x] DJI Mavic 2 Enterprise Series Wave 25 activates exactly one reviewed canonical series row with official battery and charging-hub evidence.
-- [x] DJI Waves 1–25 reconcile to **96 basic = 45 detail + 0 reviewed exclusions + 51 missing accessory detail**.
-- [x] The catalog-wide camera audit reconciles to **185 basic = 59 detail + 0 reviewed exclusions + 126 missing accessory detail** while seven maker/index rows remain non-actionable.
+- [x] DJI Osmo Pocket 3 Wave 26 activates exactly one reviewed canonical row with official Battery Handle compatibility evidence.
+- [x] DJI Waves 1–26 reconcile to **96 basic = 46 detail + 0 reviewed exclusions + 50 missing accessory detail**.
+- [x] The catalog-wide camera audit reconciles to **185 basic = 60 detail + 0 reviewed exclusions + 125 missing accessory detail** while seven maker/index rows remain non-actionable.
 - [x] Missing-model maker diagnostics and documentation sync remain machine-readable drift guards.
 - [x] Wrong maker/category, nonexistent models, spelling variants, and other unreviewed compatibility cases fail closed.
 - [x] Amazon disclosure and sponsored-link semantics remain supplied by the shared affiliate helper.
@@ -176,6 +177,7 @@ Reviewed DJI camera accessory ledgers:
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave23.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave24.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave25.js`
+- `tools/manual-finder/affiliate-dji-camera-accessories-wave26.js`
 
 Camera accessory tests and audit gates:
 
@@ -206,6 +208,7 @@ Camera accessory tests and audit gates:
 - `tools/manual-finder/tests/dji-phantom3-se-accessory-wave23.test.mjs`
 - `tools/manual-finder/tests/dji-mavic2-enterprise-advanced-wave24.test.mjs`
 - `tools/manual-finder/tests/dji-mavic2-enterprise-series-wave25.test.mjs`
+- `tools/manual-finder/tests/dji-osmo-pocket3-accessory-wave26.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-coverage.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs`
 - `tools/manual-finder/tests/affiliate-coverage.test.mjs`
