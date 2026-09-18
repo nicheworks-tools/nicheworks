@@ -93,7 +93,7 @@ function loadExceptions(corpusIds, formalIds) {
   }
   return { raw, byId };
 }
-function buildInventory() {
+async function buildInventory() {
   const { manifest, entries } = loadCorpus();
   const registry = readJson(REGISTRY_PATH);
   if (registry.schema !== 'cta-image-registry-v2.3' || !Array.isArray(registry.items)) throw new Error('Unexpected image registry schema');
@@ -130,6 +130,7 @@ function buildInventory() {
   }
   const sourceLedgers = sourceLedgerState();
   const resolutions = fs.existsSync(RESOLUTIONS_PATH) ? readJson(RESOLUTIONS_PATH) : { holds: [] };
+  const lifecycle = await require('./image-lifecycle-v2.3.cjs').audit();
   const summary = {
     corpus_entries: classes.length,
     formal_image_entries: formal,
@@ -161,6 +162,12 @@ function buildInventory() {
       source_ledgers: sourceLedgers.ledgers
     },
     summary,
+    public_lifecycle: {
+      scope: 'published canonical IDs only; stored non-public records are not review backlog',
+      stored_non_public_entries: classes.length - lifecycle.summary.public_entries,
+      ...lifecycle.summary,
+      evidence_sha256: lifecycle.evidence_sha256
+    },
     by_type: Object.fromEntries(Object.entries(byType).sort(([a], [b]) => a.localeCompare(b, 'en'))),
     hashes: {
       corpus_id_sha256: hashLines(classes.map((row) => row.id)),
@@ -172,7 +179,8 @@ function buildInventory() {
   };
 }
 
-const computed = buildInventory();
+async function main() {
+const computed = await buildInventory();
 console.log(`CTA_IMAGE_INVENTORY_SUMMARY=${JSON.stringify(computed.summary)}`);
 console.log(`CTA_IMAGE_INVENTORY_HASHES=${JSON.stringify(computed.hashes)}`);
 console.log(`CTA_IMAGE_INVENTORY_BY_TYPE=${JSON.stringify(computed.by_type)}`);
@@ -200,3 +208,6 @@ if (args.has('--check')) {
   console.log(`- ${computed.summary.missing_formal_image_entries} canonicals remain in the formal image backlog`);
   console.log(`- identity holds: ${computed.summary.identity_holds}`);
 }
+
+}
+main().catch((error) => { console.error(`Construction Tools Atlas image inventory: FAIL\n- ${error.message}`); process.exitCode = 1; });

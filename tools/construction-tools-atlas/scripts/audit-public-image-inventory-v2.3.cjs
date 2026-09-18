@@ -187,6 +187,10 @@ async function compute() {
     incrementType(byType, row.type, status);
   }
 
+  const lifecycle = await require('./image-lifecycle-v2.3.cjs').audit();
+  if (lifecycle.summary.public_entries !== rows.length || lifecycle.summary.by_stage.promoted !== formal
+      || lifecycle.summary.by_stage.not_required !== notRequired) throw new Error('Public lifecycle/image inventory count mismatch');
+
   const summary = {
     public_entries: rows.length,
     formal_image_entries: formal,
@@ -217,6 +221,8 @@ async function compute() {
       acquisition_provenance_remains_on_original_registry_id: true,
       legacy_svg_counts_as_final: false,
       default_without_formal_image_or_exception: 'missing_formal_image',
+      missing_formal_image_is_not_an_applicability_decision: true,
+      applicability_and_acquisition: 'image-lifecycle-v2.3.json',
       quarantined_generated_records_are_not_public_image_backlog: true
     },
     sources: {
@@ -226,6 +232,7 @@ async function compute() {
       image_exception_ledger_version: text(exceptions.version)
     },
     summary,
+    lifecycle,
     by_type: Object.fromEntries(Object.entries(byType).sort(([a], [b]) => a.localeCompare(b, 'en'))),
     hashes: {
       public_id_sha256: runtimeHash,
@@ -256,6 +263,7 @@ async function main() {
     if (!fs.existsSync(SNAPSHOT_PATH)) throw new Error('data/public-image-inventory-v2.3.json is missing; run with --write');
     const saved = readJson(SNAPSHOT_PATH);
     if (JSON.stringify(saved) !== JSON.stringify(computed)) throw new Error('Frozen public image inventory is stale');
+    await require('./check-image-lifecycle-v2.3.cjs').runTests();
   }
 
   console.log('Construction Tools Atlas public image inventory v2.3: PASS');
@@ -265,7 +273,9 @@ async function main() {
   console.log(`- quarantined generated excluded from public backlog: ${computed.summary.quarantined_generated_entries}`);
 }
 
-main().catch((error) => {
+module.exports = { runPublicLoader, compute, isFormal };
+
+if (require.main === module) main().catch((error) => {
   console.error('Construction Tools Atlas public image inventory v2.3: FAIL');
   console.error(`- ${error.message}`);
   process.exit(1);

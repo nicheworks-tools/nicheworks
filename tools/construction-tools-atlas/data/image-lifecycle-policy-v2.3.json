@@ -1,0 +1,269 @@
+{
+  "schema": "cta-image-lifecycle-policy-v2.3",
+  "version": "2026-09-18-1",
+  "baseline_main": "447c1beb0e5490b5dfc8b45a2a9a4afb0d7122d3",
+  "rules": {
+    "scope": "published canonical IDs only",
+    "default_is_required": false,
+    "import_means": "carry forward existing source/exception review, not a new independent review",
+    "historical_source_rows_immutable": true,
+    "formal_media": "photograph",
+    "inheritance": "explicit canonical redirect; direct registry owner wins; multiple inherited owners without direct owner fail",
+    "not_required_with_formal_image": "forbidden; no override in v1",
+    "unobtainable": "unsupported; use hold with reason and resume_when",
+    "history": "append complete snapshots; preserve prior events and candidate evidence",
+    "verification": "event actor, UTC at and reason attest the verification added by the transition; no inferred verification from candidate discovery"
+  },
+  "states": {
+    "unreviewed": {
+      "applicability": "unreviewed",
+      "candidate": false,
+      "provenance_verified": false,
+      "subject_verified": false,
+      "next": [
+        "unreviewed",
+        "awaiting_source",
+        "not_required"
+      ]
+    },
+    "not_required": {
+      "applicability": "not_required",
+      "candidate": false,
+      "provenance_verified": false,
+      "subject_verified": false,
+      "next": [
+        "not_required",
+        "awaiting_source"
+      ]
+    },
+    "awaiting_source": {
+      "applicability": "required",
+      "candidate": false,
+      "provenance_verified": false,
+      "subject_verified": false,
+      "next": [
+        "awaiting_source",
+        "candidate",
+        "not_required"
+      ]
+    },
+    "candidate": {
+      "applicability": "required",
+      "candidate": true,
+      "provenance_verified": false,
+      "subject_verified": false,
+      "next": [
+        "candidate",
+        "awaiting_source",
+        "not_required",
+        "provenance_verified",
+        "subject_verified"
+      ]
+    },
+    "provenance_verified": {
+      "applicability": "required",
+      "candidate": true,
+      "provenance_verified": true,
+      "subject_verified": false,
+      "next": [
+        "provenance_verified",
+        "candidate",
+        "awaiting_source",
+        "not_required",
+        "verified"
+      ]
+    },
+    "subject_verified": {
+      "applicability": "required",
+      "candidate": true,
+      "provenance_verified": false,
+      "subject_verified": true,
+      "next": [
+        "subject_verified",
+        "candidate",
+        "awaiting_source",
+        "not_required",
+        "verified"
+      ]
+    },
+    "verified": {
+      "applicability": "required",
+      "candidate": true,
+      "provenance_verified": true,
+      "subject_verified": true,
+      "next": [
+        "verified",
+        "candidate",
+        "awaiting_source",
+        "not_required",
+        "promoted"
+      ]
+    },
+    "promoted": {
+      "applicability": "required",
+      "candidate": true,
+      "provenance_verified": true,
+      "subject_verified": true,
+      "next": [
+        "promoted",
+        "candidate",
+        "awaiting_source",
+        "not_required"
+      ]
+    }
+  },
+  "imports": [
+    {
+      "entry_id": "allen_key",
+      "event_sha256": "9e6dbc94cd36dd37be92ae4faa2687b2da72928cefac8240159421c880320ac9"
+    },
+    {
+      "entry_id": "angle_grinder",
+      "event_sha256": "cb6f99381fb1f5629070a5b4d28919bb6ed0ef896177cbc8ba22e700e68c4852"
+    },
+    {
+      "entry_id": "as_built",
+      "event_sha256": "ce888d0082e97bd4c44ff98b867eae7dca7438498673f2d0dd637fcd00ec7f7c"
+    },
+    {
+      "entry_id": "ball_valve",
+      "event_sha256": "ebeef379d2a4f147c3fc9184e7a733886b8860401cba3836b4fd6f44aaca45bc"
+    },
+    {
+      "entry_id": "bolt_cutter",
+      "event_sha256": "f140c5517d9adf6ec70cfe44c418049b9f991bfa30f27678396e50638770bdfa"
+    },
+    {
+      "entry_id": "caulking_gun",
+      "event_sha256": "cbd91e6ba62b402f9a852af9f8d059279e912b3e313ef50faf6fc16b03661559"
+    },
+    {
+      "entry_id": "change_order",
+      "event_sha256": "45ddb14241c98e2bea88aacca474cd5a273466927b1818f0cd5ee58b45619729"
+    },
+    {
+      "entry_id": "cordless_drill",
+      "event_sha256": "5ec26b425c23a5eb1cbbd367e68e587e749cf86d62a90c3e4fd643174c7d35d3"
+    },
+    {
+      "entry_id": "drip_edge",
+      "event_sha256": "1126563297333437fb069a1fb137fe4d1b98e19bf30374399be66500690e889e"
+    },
+    {
+      "entry_id": "five_s_5s",
+      "event_sha256": "c29ac8b91478fe81c318b168690878a24770a89298a590b848508190b1419d26"
+    },
+    {
+      "entry_id": "flashing",
+      "event_sha256": "00631bc51aff088b1d0611bc54d077e16ffefd663c8a14da8a648817e8b3bf9e"
+    },
+    {
+      "entry_id": "float",
+      "event_sha256": "7e5da1b13b4e95d52894a9ccdc11b0c58a3df27c541573f5b91f26f822f46bd6"
+    },
+    {
+      "entry_id": "handover",
+      "event_sha256": "038019e0dc591db16705dda20081410732f2ccdb095fbcf6aa63d26014092029"
+    },
+    {
+      "entry_id": "impact_driver",
+      "event_sha256": "f9cb71754c0a0499720d232a4ad3a9a84f26877f5cbba586bec19d7b43de459d"
+    },
+    {
+      "entry_id": "job_hazard_analysis",
+      "event_sha256": "135ffdc0123b9ce8da0bd1078c72ab8376d3a88e713d2bae2c71b2dad35a3432"
+    },
+    {
+      "entry_id": "laser_level",
+      "event_sha256": "bcb344eca8193808d1f911044fdd7bb6da734b436f9f7e338c3b46d17e92b836"
+    },
+    {
+      "entry_id": "measuring_wheel",
+      "event_sha256": "a46f7649962c07ddb52540b687fa18b9ac646eb54de1d188b49c159248a65f0d"
+    },
+    {
+      "entry_id": "notched_trowel",
+      "event_sha256": "cf20d2db443cf6ae35397a4c07edd473b7c93eedf132f373d57ee63992288611"
+    },
+    {
+      "entry_id": "paint_tray",
+      "event_sha256": "a3cfd6974c335dda4fab3f63c2e2381d26cd1d129b95bc2c839a9890e7d50eb7"
+    },
+    {
+      "entry_id": "permit_to_work",
+      "event_sha256": "8af96bd2f8329ef30921fa705567e13bcb1f603ac81316fd08316f12c4888c4c"
+    },
+    {
+      "entry_id": "pointing_trowel",
+      "event_sha256": "445b5ef8fa86d4ceee226f5721b9cd4bb5ac9bbc7fbd04fe78144c6e5475354b"
+    },
+    {
+      "entry_id": "punch_list",
+      "event_sha256": "6792cd8e2c65a2ad8e82c667236d9a932dc576d365da150f2cd56584db08e5c5"
+    },
+    {
+      "entry_id": "q012_cold_chisel",
+      "event_sha256": "4e3b841b2fad82626657d08e51bf6491612990c43e7f5243438b38abe3f2b30f"
+    },
+    {
+      "entry_id": "q012_japanese_plane",
+      "event_sha256": "085e4f74d4dc28442b34cd537fbeeba3d5c128d7411d55429bf6762c2ff1b80c"
+    },
+    {
+      "entry_id": "q012_unistrut_channel",
+      "event_sha256": "6575a8f3829c4fce958f2fb170c03dde8674f97b13e6408e45ad998214baeed5"
+    },
+    {
+      "entry_id": "q013_dolly",
+      "event_sha256": "1b62612b93f0a1193e7acc8638ff7b265004701b6ba708ac0d3ca470692c20fc"
+    },
+    {
+      "entry_id": "q017_copper_pipe",
+      "event_sha256": "6554864113347d8ddb7bcd9c78a969683bd98bc27ee14d6c9be7b1fa4a833eaa"
+    },
+    {
+      "entry_id": "q017_needle_nose_pliers",
+      "event_sha256": "24d20b414d63959f0e14d8c10644ace94b4340738a83edf64fc5dab1bca11755"
+    },
+    {
+      "entry_id": "q017_rubber_mallet",
+      "event_sha256": "138f5b5e148c826c4555e8a8d1d3c3579eb9a6af73f07c03b70412779ac6fcb5"
+    },
+    {
+      "entry_id": "q017_survey_tripod",
+      "event_sha256": "0955db5c7113c480bfe527aee50908d7f7f0e537e54bfb6a2ddb38df0a77393c"
+    },
+    {
+      "entry_id": "q017_toolbox",
+      "event_sha256": "36933d7c794ae408e80dbd5290a7bdbb5f4b7e001e9ce528024b10ffd35f5bcb"
+    },
+    {
+      "entry_id": "q017_workbench",
+      "event_sha256": "749516959d86994a8bb3c0789a0b3ad9794b6309498e94da0adf6cb91ce2cb5a"
+    },
+    {
+      "entry_id": "respirator",
+      "event_sha256": "dce0f8345227c29e6547f9cb306b72487888186837cbd1c5cbbdef5598f74c6d"
+    },
+    {
+      "entry_id": "rfis",
+      "event_sha256": "2ac5c24e3c936144f705ad6e074ca357b54ea3e9a42ed35052a493c9fa1a442c"
+    },
+    {
+      "entry_id": "roof_underlayment",
+      "event_sha256": "4e2ab079b216f2eba6714761b36fc54991e1aa61771ff076346a8af883116deb"
+    },
+    {
+      "entry_id": "rotary_hammer",
+      "event_sha256": "fc1dc37cf7a3450e157cbc724d6d7357e09a3a9b929246f3617c77b48ec476f4"
+    },
+    {
+      "entry_id": "safety_boots",
+      "event_sha256": "ca0fd92694812857a77f2d2a5eeaf4fc348dac4e1edfb54faddfa5aba964ff0e"
+    },
+    {
+      "entry_id": "safety_harness",
+      "event_sha256": "c6cbea791ef8fc6a797bbe2733ab079ebe8a91be9189d28697235f9f40057b7d"
+    }
+  ]
+}
