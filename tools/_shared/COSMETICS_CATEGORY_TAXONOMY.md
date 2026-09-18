@@ -203,3 +203,13 @@ Wave 18 introduces no new authority-function vocabulary. It reuses existing expl
 - `surfactant - emulsifying` → `emulsifier`
 
 The reviewed mappings are Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Ammonium Polyacryloyldimethyl Taurate, Ethylhexyl Methoxycrylene and Glyceryl Stearate SE. Where COSMILE lists multiple functions, Wave 18 records only the directly supported public role needed by the current controlled taxonomy and does not invent an `emulsion stabilising` public category.
+
+
+## Wave 19 mappings
+
+Wave 19 introduces no new category or authority-function vocabulary. It reuses:
+
+- `viscosity controlling` → `viscosity adjuster`
+- `surfactant - emulsifying` → `emulsifier`
+
+Polyhydroxystearic Acid also has a COSMILE `dispersing` function, and Potassium Cetyl Phosphate also has `surfactant - cleansing`. The current runtime overlay supports one reviewed public-primary category, so Wave 19 records the directly supported role already represented by the controlled taxonomy and preserves other source/raw semantics outside that primary slot rather than inventing a compound public label.
