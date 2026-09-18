@@ -886,15 +886,26 @@ return;
       return;
     }
 
-    const maxCols = rows.reduce((m,r)=>Math.max(m, r.length), 0);
-    rows = rows.map(r => (r.length < maxCols ? r.concat(Array(maxCols-r.length).fill("")) : r));
+    // Header ON: header width. Header OFF: first data record width.
+    const maxCols = rows[0].length;
+    const badIndex = rows.findIndex(row => row.length !== maxCols);
+    if (badIndex !== -1){
+      const error = { code: "inconsistent_fields", record: badIndex + 1,
+        expectedFields: maxCols, actualFields: rows[badIndex].length };
+      state.ui.inputError = error;
+      state.data.widthError = error; // retained independently of presentation updates
+      showWidthError();
+      return;
+    }
+    state.data.widthError = null;
+    state.ui.inputError = null;
     state.data.rows = rows;
 
     const headers = state.input.hasHeader ? rows[0] : Array.from({length:maxCols}, (_,i)=>`col_${i+1}`);
     state.data.cols = headers.map((h, idx) => ({
       id: "c" + idx + "_" + Math.random().toString(16).slice(2),
       srcIndex: idx,
-      name: (h == null || h === "") ? `col_${idx+1}` : String(h),
+      name: String(h ?? ""),
       excluded: false,
       order: idx,
       sample: pickSample(rows, idx)
@@ -924,6 +935,7 @@ return;
 
   function resetAll(){
     state.data.rawText = "";
+    state.data.widthError = null;
     state.data.rows = [];
     state.data.cols = [];
     els.colsList.innerHTML = "";
@@ -933,7 +945,15 @@ return;
     setHint(""); setError("");
   }
 
+  function showWidthError(){
+    const error = state.data.widthError;
+    setError(state.ui.lang === "ja"
+      ? `論理レコード${error.record}の列数が不一致です（必要:${error.expectedFields}、実際:${error.actualFields}）。元ファイルは変更されていません。CSVの列数か入力区切り文字を確認して再読込してください。`
+      : `Logical record ${error.record} has ${error.actualFields} fields; expected ${error.expectedFields}. The source is unchanged. Check the CSV widths or input delimiter and reload.`, error.code);
+  }
+
   function downloadCSV(){
+    if (state.data.widthError){ showWidthError(); return; }
     if (!state.data.rows.length){
       setError(state.ui.lang==="ja" ? "CSVを読み込んでください。" : "Please load a CSV.", "NO_ROWS");
       return;

@@ -118,11 +118,58 @@ test('G5 KNOWN GAP: filtering column DOM hides an exclusion from summary/confirm
   assert.deepEqual(plain(h.excludedNames()), []);
   assert.match(h.box.innerHTML, /Input<\/strong><span>1 columns/);
 });
-test('G6 KNOWN GAP: empty header renamed and ragged records silently padded on load', async () => {
-  const h = harness(); await h.load(',b\nx\ny,z,extra\n');
-  assert.deepEqual(plain(h.state.data.rows), [['','b',''],['x','',''],['y','z','extra']]);
-  assert.deepEqual(plain(h.buildOutputPreview(false).headers), ['col_1','b','col_3']);
-  assert.equal(h.get('#errBox').textContent, '');
+test('G6: reject ragged logical records without padding for either header mode', async () => {
+  for (const header of [true, false]) for (const delimiter of [',', '\t', ';']) {
+    for (const [last, actual] of [['x', 1], ['x'+delimiter+'y'+delimiter+'extra', 3], ['', 1]]) {
+      const h = harness(); h.state.input.hasHeader = header;
+      const bytes = Buffer.from('a'+delimiter+'b\n"quoted,comma\nsecond line"'+delimiter+'001\n'+last+'\n');
+      const copy = Buffer.from(bytes); await h.load(bytes, 'utf-8', delimiter);
+      assert.deepEqual(plain(h.state.ui.inputError), { code: 'inconsistent_fields', record: 3, expectedFields: 2, actualFields: actual });
+      assert.deepEqual(plain(h.state.data.rows), []);
+      assert.match(h.get('#errBox').textContent, /record 3/);
+      h.downloadCSV(); assert.equal(h.blobs.length, 0);
+      assert.deepEqual(bytes, copy);
+    }
+  }
+  const h = harness(); await h.load(',b\nx\ny,z,extra\n'); // original failing fixture
+  assert.deepEqual(plain(h.state.ui.inputError), { code: 'inconsistent_fields', record: 2, expectedFields: 2, actualFields: 1 });
+});
+test('G6: empty and duplicate headers remain independent through output and manual editing', async () => {
+  for (const [headers, data] of [
+    [['name','','age'], ['Alice','x','20']],
+    [['','',''], ['A','B','C']],
+    [['name','name',''], ['A','B','C']],
+  ]) {
+    const h = harness(), bytes = Buffer.from(headers.join(',')+'\n'+data.join(',')+'\n');
+    const original = Buffer.from(bytes); await h.load(bytes);
+    assert.deepEqual(plain(h.buildOutputPreview(false).headers), headers);
+    assert.equal(new Set(h.state.data.cols.map(c => c.id)).size, 3);
+    assert.deepEqual(plain(h.state.data.cols.map(c => c.srcIndex)), [0,1,2]);
+    h.downloadCSV();
+    assert.deepEqual(reparse(Buffer.from(await h.blobs.at(-1).arrayBuffer()), ','), [headers,data]);
+    const emptyIndex = headers.indexOf('');
+    h.state.data.cols[emptyIndex].name = 'renamed';
+    h.state.data.cols.forEach((c,i) => { c.order = 2-i; });
+    const renamed = headers.map((v,i) => i === emptyIndex ? 'renamed' : v).reverse();
+    h.downloadCSV();
+    assert.deepEqual(reparse(Buffer.from(await h.blobs.at(-1).arrayBuffer()), ','), [renamed, [...data].reverse()]);
+    assert.deepEqual(bytes, original);
+  }
+});
+test('G6: header OFF exports all data and correct-width empty records without labels', async () => {
+  const h = harness(); h.state.input.hasHeader = false;
+  await h.load('name,,age\nAlice,x,20\n,,');
+  assert.deepEqual(plain(h.state.data.cols.map(c => c.name)), ['col_1','col_2','col_3']);
+  h.downloadCSV();
+  assert.deepEqual(reparse(Buffer.from(await h.blobs.at(-1).arrayBuffer()), ','), [['name','','age'],['Alice','x','20'],['','','']]);
+});
+test('G6: dedicated width-error gate blocks export until a valid reload', async () => {
+  const h = harness(); await h.load('a,b\nx,y\n'); await h.load('a,b\nx\n');
+  h.downloadCSV(); assert.equal(h.blobs.length, 0);
+  h.get('#errBox').textContent = ''; // presentation cannot bypass rejection
+  h.downloadCSV(); assert.equal(h.blobs.length, 0);
+  await h.load('a,b\n001,東京\n'); h.downloadCSV();
+  assert.deepEqual(reparse(Buffer.from(await h.blobs.at(-1).arrayBuffer()), ','), [['a','b'],['001','東京']]);
 });
 test('duplicate headers remain separate positional columns', async () => {
   const h = harness(); await h.load('a,a\nx,y\n');

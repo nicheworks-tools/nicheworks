@@ -31,9 +31,9 @@ The following are acceptance requirements, with current evidence/status called o
 | Quoted delimiters / doubled quotes / quoted LF or CRLF | Preserve delimiter, quote and newline characters within fields | Explicit-delimiter parser fixtures pass |
 | Empty / trailing cells | Preserve field count and empty strings | G2 resolved: explicit empty records/cells preserved |
 | Blank records | Do not silently delete actual records; final record terminator alone is not an additional record | G2 resolved: no load-time blank-record removal |
-| Empty headers | Retain literal empty header or explicitly disclose a user-selected replacement | G6; current load silently generates `col_N` |
+| Empty headers | Retain literal empty header or explicitly disclose a user-selected replacement | G6 resolved: literal empty names retained with positional identity |
 | Duplicate headers | Keep independent positional columns; make ambiguity visible for import preparation | Positional preservation tested; warning behavior incomplete |
-| Unequal field counts | Reject clearly before export, identifying the problematic record; do not silently pad or discard fields | G6; parser exposes widths, loader currently pads to maximum width |
+| Unequal field counts | Reject clearly before export, identifying the problematic record; do not silently pad or discard fields | G6 resolved: loader rejects the first mismatch with structured record/width details |
 | CRLF / LF / comma / TAB / semicolon | Parse logical records without splitting quoted newlines | Explicit-format fixtures pass |
 | Unclosed / misplaced quotes | Reject malformed records with actionable error; do not strip quotes to invent a value | G7 resolved: strict start/unquoted/quoted/closed grammar, located errors |
 | Auto delimiter | Ignore candidates inside quoted fields; ambiguity must be visible and manually overridable | G1 resolved: compare strict logical-record interpretations; multiple multi-column candidates require manual choice |
@@ -83,7 +83,7 @@ All classifications below are based on deterministic tests of current production
 | G3 | Invalid UTF-8 becomes U+FFFD; 2,000 ASCII characters plus SJIS Tokyo are guessed UTF-8 | RESOLVED (unit/integration) | Fatal decoding and explicit encoding ambiguity; general failed-load state remains G9 |
 | G4 | Accounting template writes `outName` while preview uses `name`; Japanese headers do not receive template order | CONFIRMED GAP / CORE GAP | One column-name/mapping source of truth, duplicate-safe matching |
 | G5 | Filtering rendered column items hides excluded names from summary and confirmation; input count changes | CONFIRMED GAP / UX GAP | Compute counts/exclusions from full data state, not filtered DOM |
-| G6 | Loader silently pads ragged rows and replaces empty header names | CONFIRMED GAP / BLOCKER | Reject ragged records; preserve/disclose empty headers |
+| G6 | Loader silently pads ragged rows and replaces empty header names | RESOLVED (unit/integration) | First-record width validation, dedicated export gate, literal empty headers |
 | G7 | `b"c"d` and `"b"c` are accepted and rewritten | RESOLVED (unit/integration) | Reject invalid_quote/unclosed_quote with logical record, field and UTF-16 offset |
 | G8 | Unchecked selected-scope columns still receive cleaning | CONFIRMED GAP / BLOCKER | Wire scope and honor it in shared transformation path |
 | G9 | Loading malformed data after good data retains old rows for export | CONFIRMED GAP / BLOCKER | Transactional load/clear failure state and repeated-load regression |
@@ -152,3 +152,15 @@ Resumed remote `ca1df30427d4ce9ecec8697382a4597e94b783d9`. Only G3 is newly reso
 - Encoding error details are retained in `state.ui.inputError`. General prior-document retention after a failed load is still unresolved G9, not repaired by this change.
 
 Validation: original behavior suite passes; **39 checkpoint tests pass, 0 fail, 0 skipped, 0 todo**, including **5 remaining KNOWN GAP characterizations**. Actual UTF-8/BOM/SJIS/malformed/ambiguous byte fixtures and a test-only unavailable-decoder double are covered. **26** generated Blobs independently reparse with Python to the expected matrices; source byte fixtures remain unchanged. G1/G2/G7 acceptance regressions remain passing.
+
+### G6-only continuation — 2026-09-18
+
+Starting checkpoint: `12512320d0e941c3246fb9af0f7f009b1d05a73f`. G6 is now **RESOLVED (unit/integration)**. G4/G5/G8/G9 remain unresolved; overall product acceptance and browser verification remain incomplete.
+
+- Header ON: the literal header record establishes expected width. Header OFF: the first data record establishes it. Every later logical record must match, regardless of physical newlines inside quoted cells.
+- The low-level parser still returns literal records. Before accepting a loaded matrix, the loader rejects the first width mismatch without padding, truncating or removing records. `state.ui.inputError` retains `{code: 'inconsistent_fields', record, expectedFields, actualFields}`, with a 1-based logical record number.
+- A blank line is one empty field. It remains preserved for one-column files and is a width error in a multi-column file, not silently deleted/expanded. Correct-width rows of empty fields remain accepted, including at EOF.
+- The dedicated `state.data.widthError` gate prevents export after width rejection until successful load or reset, even if displayed error text changes. This narrow G6 safeguard does not implement general previous-document/failed-new-load transaction management (G9).
+- Empty header values remain empty strings in the output model and exported bytes until explicitly renamed. Independent column IDs/source positions preserve duplicate and empty columns. Header-OFF generated `col_N` labels remain display/internal labels and never become an exported header.
+
+Evidence: original behavior suite passes; **42 checkpoint tests pass / 0 fail / 0 skipped / 0 todo**, with **4 KNOWN GAP characterizations** (G4/G5/G8/G9). **34 generated Blobs** independently reparse with Python to expected matrices. No G1/G2/G3/G7 implementation changes, browser work, performance work or final PR.

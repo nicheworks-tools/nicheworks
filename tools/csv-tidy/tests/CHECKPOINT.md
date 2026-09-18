@@ -1,6 +1,6 @@
 # CSV Tidy correctness checkpoint — 2026-09-17 UTC
 
-Latest result: G3-only continuation below (2026-09-18): 39 passing tests, 5 remaining KNOWN GAP cases. Earlier sections retain historical evidence.
+Latest result: G6-only continuation below (2026-09-18): 42 passing tests, 4 remaining KNOWN GAP cases. Earlier sections retain historical evidence.
 
 Base: `4f00e990f06fd3bc9332a629859bac09e069ef52`.
 Branch: `feat/csv-tidy-product-quality-20260917`.
@@ -83,3 +83,26 @@ Original suite passed. **39 checkpoint tests passed / 0 failed / 0 skipped / 0 t
 New G3 tests cover actual UTF-8 ASCII/Japanese/BOM bytes, invalid UTF-8 `ff`, truncated SJIS `81`, SJIS Japanese bytes, sparse SJIS following 2,000 ASCII characters, `c2a9` ambiguity, BOM authority, explicit encoding selection and AUTO. A test-only decoder constructor double verifies unsupported SJIS is distinct from invalid bytes and does not prevent valid UTF-8 use. Real browser support is unverified.
 
 No G6 implementation/tests/status changes were made. G1/G2/G7 were not reimplemented. G4/G5/G8/G9, browser/responsive/performance/SEO work and final PR are outside this session.
+
+## G6-only continuation — 2026-09-18 UTC
+
+Local and remote starting HEAD both `12512320d0e941c3246fb9af0f7f009b1d05a73f`; no staged changes, partial CSV Tidy work, or later commits at recovery. Only the previously known unrelated working-tree deletion existed and was untouched. Remote main observed at `3f0760aa4da260225a1d1c82961a45a0365b2f8b`; no main integration.
+
+Root causes: load padded every row to maximum width and substituted `col_N` for empty source headers. Only those G6 paths and a dedicated width-error export guard changed. The G6 bad-behavior characterization was replaced by four acceptance tests. Before repair, focused G6 run: **1 pass / 3 failures**. After repair, full original behavior suite passed; checkpoint **42 pass / 0 fail / 0 skip / 0 todo**. Four KNOWN GAP characterizations remain: G4/G5/G8/G9.
+
+Executed:
+
+```sh
+node tools/csv-tidy/tests/behavior.test.mjs
+node --test tools/csv-tidy/tests/checkpoint.test.mjs
+git diff --check
+```
+
+Coverage:
+
+- Too-short, too-wide and actual blank logical records under both header modes and all three explicit delimiters (18 combinations). Quoted comma and embedded newline in the preceding valid record verify logical record numbering. Expected/actual field counts, no accepted normalized matrix, no export, and source byte equality are asserted. The original `,b\nx\ny,z,extra\n` fixture is retained and now rejects logical record 2.
+- Single empty header, multiple empty headers, duplicate names mixed with an empty name: positional IDs/indices, preview model, output, explicit rename and reverse order are checked independently.
+- Header OFF retains every source record, preserves correct-width empty-field records, and exports no generated labels.
+- Width rejection cannot be bypassed by clearing displayed text; a valid reload resumes export. This is the narrow G6 gate only. The general G9 characterization remains unchanged and passing as an unresolved finding.
+
+**34 independent Python Blob reparses matched**: preserved 26 plus six empty/duplicate-header outputs (three fixtures before/after editing), one header-OFF empty-record output and one valid reload after width rejection. G1/G2/G3/G7 regressions were not edited and remain passing. No browser/responsive/performance/SEO work or overall acceptance claim.
