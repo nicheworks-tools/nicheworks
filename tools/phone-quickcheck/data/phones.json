@@ -10154,6 +10154,141 @@
         "verifiedAt": "2026-09-19"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-poco-f9-ultra",
+      "manufacturer": "Xiaomi",
+      "model": "POCO F9 Ultra",
+      "aliases": [
+        "Xiaomi POCO F9 Ultra",
+        "POCOF9Ultra",
+        "Poco F9 Ultra",
+        "ポコF9 Ultra",
+        "ポコF9ウルトラ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 163.49,
+        "widthMm": 77.94,
+        "depthMm": 8.74
+      },
+      "weightG": 235,
+      "displayInch": 6.9,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 100,
+        "protocols": [
+          "Xiaomi HyperCharge",
+          "PPS",
+          "USB PD 3.0",
+          "USB PD 2.0"
+        ],
+        "pps": "supported",
+        "wirelessStandard": "Wireless HyperCharge",
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 8050,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/poco-f9-ultra/specs/"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/poco-f9-ultra/specs/",
+        "manualUrl": "https://www.mi.com/jp/support/",
+        "releaseUrl": "https://www.mi.com/jp/launch/poco-f9-series-launch",
+        "chargingUrl": "https://www.mi.com/jp/product/poco-f9-ultra/specs/",
+        "wirelessUrl": "https://www.mi.com/jp/product/poco-f9-ultra/",
+        "waterUrl": "https://www.mi.com/jp/product/poco-f9-ultra/specs/",
+        "packageUrl": "https://www.mi.com/jp/product/poco-f9-ultra/specs/",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-redmi-note-17-pro-max-5g",
+      "manufacturer": "Xiaomi",
+      "model": "REDMI Note 17 Pro Max 5G",
+      "aliases": [
+        "Xiaomi REDMI Note 17 Pro Max 5G",
+        "REDMINote17ProMax5G",
+        "Redmi Note 17 Pro Max 5G",
+        "レッドミーNote 17 Pro Max 5G"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 163.44,
+        "widthMm": 78.27
+      },
+      "physicalVariants": [
+        {
+          "key": "black",
+          "labelJa": "ブラック",
+          "labelEn": "Black",
+          "depthMm": 8.65,
+          "weightG": 229.5
+        },
+        {
+          "key": "purple",
+          "labelJa": "パープル",
+          "labelEn": "Purple",
+          "depthMm": 8.65,
+          "weightG": 229.5
+        },
+        {
+          "key": "cloud-blush",
+          "labelJa": "クラウドブラッシュ",
+          "labelEn": "Cloud Blush",
+          "depthMm": 8.57,
+          "weightG": 229.5
+        }
+      ],
+      "displayInch": 6.83,
+      "waterRating": "IP66/IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 100,
+        "protocols": [
+          "Xiaomi HyperCharge",
+          "PPS",
+          "USB PD 3.0",
+          "USB PD 2.0"
+        ],
+        "pps": "supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 10000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/redmi-note-17-pro-max-5g/specs/"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/redmi-note-17-pro-max-5g/specs/",
+        "manualUrl": "https://www.mi.com/jp/support/",
+        "releaseUrl": "https://www.mi.com/jp/launch/redmi-note-17-series/",
+        "chargingUrl": "https://www.mi.com/jp/product/redmi-note-17-pro-max-5g/specs/",
+        "waterUrl": "https://www.mi.com/jp/product/redmi-note-17-pro-max-5g/specs/",
+        "packageUrl": "https://www.mi.com/jp/product/redmi-note-17-pro-max-5g/specs/",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
     }
   ]
 }
