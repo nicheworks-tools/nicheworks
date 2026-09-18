@@ -21,12 +21,21 @@ for (const name of [
 const config = context.window.MANUALFINDER_AFFILIATE_CONFIG;
 const exclusions = Array.from(context.window.MANUALFINDER_CAMERA_DETAIL_EXCLUSIONS || []);
 
-const expected = ['DJI RS 3 Mini', 'DJI RS 4 Mini', 'DJI RSC 2'];
-const sourceUrl = 'https://repair.dji.com/help/content?customId=01700007783&lang=en&paperDocType=ARTICLE&re=US&spaceId=17';
+const expected = new Map([
+  ['DJI OM 4', 'https://www.dji.com/support/product/om-4'],
+  ['DJI OM 4 SE', 'https://www.dji.com/support/product/om-4-se'],
+  ['DJI OM 5', 'https://www.dji.com/support/product/om-5'],
+  ['Osmo Mobile 2', 'https://www.dji.com/support/product/osmo-mobile-2'],
+  ['Osmo Mobile 3', 'https://www.dji.com/support/product/osmo-mobile-3'],
+  ['Osmo Mobile 6', 'https://www.dji.com/support/product/osmo-mobile-6'],
+  ['Osmo Mobile 7 Series', 'https://www.dji.com/support/product/osmo-mobile-7-series'],
+  ['Osmo Mobile 8', 'https://www.dji.com/support/product/osmo-mobile-8'],
+  ['Osmo Mobile SE', 'https://www.dji.com/support/product/osmo-mobile-se']
+]);
 
-assert.ok(exclusions.length >= 6, 'Wave 34 must retain three Goggles exclusions and its three nonremovable RS/RSC exclusions');
+assert.equal(exclusions.length, 15, 'Wave 36 must bring the reviewed camera exclusion ledger to fifteen rows');
 
-for (const model of expected) {
+for (const [model, sourceUrl] of expected) {
   const row = exclusions.find((entry) => entry.model === model);
   assert.ok(row, `${model} exclusion must exist`);
   assert.equal(row.maker, 'DJI');
@@ -37,12 +46,11 @@ for (const model of expected) {
   assert.deepEqual(Array.from(config.getAccessoryOffers({ maker: 'DJI', model, category: 'カメラ・映像' })), [], `${model} must remain detail-free`);
 }
 
-for (const model of ['DJI RS 2', 'DJI RS 3', 'DJI RS 3 Pro', 'DJI RS 4', 'DJI RS 4 Pro', 'DJI RS 5']) {
-  assert.equal(Array.from(config.getAccessoryOffers({ maker: 'DJI', model, category: 'カメラ・映像' })).length, 1, `${model} must retain Wave 33 BG30 detail`);
+for (const model of ['Osmo Mobile', 'DJI OM 6', 'Osmo Mobile 7', 'Osmo Mobile 8P']) {
+  assert.ok(!exclusions.some((row) => row.model === model), `${model} must remain unresolved/noncanonical rather than inferred into Wave 36`);
 }
 
-for (const model of ['DJI Ronin-SC', 'Ronin-S', 'Ronin 2']) {
-  assert.ok(!exclusions.some((row) => row.model === model), `${model} must remain unresolved rather than inferred into Wave 34`);
-}
+const originalOsmoMobileOffers = Array.from(config.getAccessoryOffers({ maker: 'DJI', model: 'Osmo Mobile', category: 'カメラ・映像' }));
+assert.deepEqual(originalOsmoMobileOffers, [], 'original Osmo Mobile remains unresolved because it uses a replaceable Intelligent Battery');
 
-console.log('ManualFinder DJI RS/RSC nonremovable battery exclusion Wave 34 passed.');
+console.log('ManualFinder DJI Osmo Mobile built-in battery exclusion Wave 36 passed.');
