@@ -89,9 +89,9 @@ Severity at discovery: high completion-process defect.
 
 Wave 11 establishes the rule in practice: an acceptance checkbox is checked only when a durable automated contract or direct implementation evidence exists.
 
-Current closure state after Wave 18:
+Current closure state after Wave 19:
 - Kanji Modernizer: all declared functional acceptance criteria are checked with `tools/kanji-modernizer/tests/behavior.test.mjs` and runtime-source assertions.
-- Old Kanji Reference: search/filter, SERP/H1/canonical/schema/FAQ contracts, task handoffs, detector/handoff behavior, local-state restoration semantics, individual-page allowlist, and dormant Amazon/measurement boundary are checked. Remaining browser export/copy/visual/Pro-public-copy/caution/layout criteria stay for Wave 19.
+- Old Kanji Reference: search/filter, SERP/H1/canonical/schema/FAQ contracts, task handoffs, detector/handoff behavior, local-state restoration, individual-page inventory, dormant monetization/measurement, browser exports, Free/Pro public copy, caution boundaries, and responsive detail layout are all directly evidenced.
 - Old Kanji OCR Scanner and Old Document Kanji Highlighter: Wave 12 closes core functional criteria; Wave 15 closes browser UX; Wave 17 closes OCR dormant Amazon/measurement criteria against the canonical `HOLD` state.
 - Unicode Kanji Checker and Variant Kanji Compare: Wave 13 closes their declared functional acceptance criteria with behavior tests and implementation-source assertions, including supplementary Unicode ranges that were previously misclassified.
 - Place Old Kanji Checker and Name Old Kanji Checker: Wave 14 closes their declared functional acceptance criteria with behavior tests and source assertions covering mapping, degraded optional data, privacy, non-authority wording, and exact Modernizer handoffs.
@@ -115,14 +115,12 @@ Wave 11 adds durable coverage for the highest-risk first boundary:
 - Reset removes the handoff query state;
 - parsed Reference and Modernizer dictionaries must remain equal.
 
-Still required before completion:
-- Reference → OCR/Unicode/Variant browser handoffs;
-- Modernizer → Reference/Highlighter/Unicode browser handoffs;
-- OCR ↔ Highlighter/Reference/Modernizer task boundary;
-- Variant → Unicode comparison-set handoff now has a tested Unicode `?q=` receiver; Variant ↔ Reference/Name browser boundary remains;
-- Place → Modernizer whole-text handoff now preserves exact input and per-character Reference links remain wired; Place ↔ Name browser boundary remains;
-- Name → Modernizer whole-text handoff now preserves exact input and per-character Reference links remain wired; Name ↔ Variant/Unicode browser boundary remains;
-- analytics/affiliate payload privacy boundary is now durably checked in Wave 17: cluster analytics does not inspect `.value`, `.textContent`, `.innerText`, storage, query strings, or search params; Old Kanji Amazon runtime is disabled and emits no outbound event.
+Closure coverage accumulated through Wave 19:
+- the bounded Reference / Modernizer / OCR / Highlighter / Unicode / Variant / Place / Name handoff graph is enforced by `scripts/check-old-kanji-internal-handoffs.mjs`;
+- global SEO internal-link integrity verifies those static destinations resolve;
+- query-bearing Reference → Modernizer, Highlighter → Modernizer, Unicode inbound, Name → Modernizer, and Place → Modernizer paths retain exact-text behavior tests;
+- Wave 15 real-Chrome coverage verifies the rendered tools remain interactable across mobile/desktop and JP/EN modes;
+- Wave 17 analytics/privacy checks ensure cluster analytics does not inspect user field values, rendered text, storage, query strings, or search params, and dormant Amazon runtime emits no Old Kanji outbound event.
 
 Wave 19 closes the remaining release boundary by combining the bounded internal-handoff checker, global SEO internal-link integrity, real-Chrome interaction coverage, exact-payload behavior tests for query-bearing handoffs, and the Wave 17 analytics/privacy contract. Static task-boundary links are verified to resolve; payload-bearing handoffs retain their exact-text tests; no user payload is added to analytics/affiliate events.
 
@@ -132,7 +130,7 @@ Exit condition: satisfied for the current cluster contract.
 Status: **closed in Completion Wave 19**.
 Severity: medium maintainability risk.
 
-The Reference directory contains multiple similarly named implementation generations such as `app-meaning.js`, `app-meaning-v3.js`, and `app-meaning-v4.js`, alongside other historical helper files. Do not assume they are dead until runtime/build reachability is verified.
+At discovery, the Reference directory contained multiple similarly named application generations: `app-meaning.js`, `app-meaning-v3.js`, and `app-meaning-v4.js`. Wave 19 treated them as reachable until runtime/build evidence proved otherwise.
 
 Wave 19 verified that the public Reference HTML loads only `app-meaning-v4.js`, while the current behavior tests and release evidence also target v4. Historical `app-meaning.js` and `app-meaning-v3.js` had no current runtime entry point and were removed. The final release checker prevents those removed runtime generations from silently returning.
 
