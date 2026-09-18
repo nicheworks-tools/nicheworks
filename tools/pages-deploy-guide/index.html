@@ -38,6 +38,22 @@
   <div class="nw-note" data-i18n="ja">生成処理はブラウザ内で行います。実際のリポジトリ、ビルドログ、DNS、SSLを検査する機能ではありません。未公開のリポジトリ名、内部URL、顧客名、DNS情報などは入力しないでください。</div>
   <div class="nw-note" data-i18n="en" style="display:none">Generation runs in your browser. This tool does not inspect your repository, build logs, DNS, or SSL. Do not enter private repository names, internal URLs, customer names, or DNS details.</div>
 
+  <section class="card" aria-label="Current Pages deployment rules">
+    <div class="card-hd"><h2 class="card-title" data-i18n="ja">現在の公開ルール要点</h2><h2 class="card-title" data-i18n="en" style="display:none">Current publishing rules</h2></div>
+    <div class="card-bd">
+      <ul class="note">
+        <li data-i18n="ja"><strong>Cloudflare Pages：</strong>build commandとoutput directoryを設定できます。ビルド不要ならBuild commandを空欄にもでき、静的HTMLガイドではpresetを使わない場合のno-build commandとして<code>exit 0</code>が案内されています。</li>
+        <li data-i18n="en" style="display:none"><strong>Cloudflare Pages:</strong> configure a build command and output directory. A no-build site may leave the build command blank; Cloudflare's static HTML guide also documents <code>exit 0</code> when no preset/build is required.</li>
+        <li data-i18n="ja"><strong>Cloudflare Direct Upload：</strong>dashboardのdrag-and-dropでは<code>/functions</code> directoryをcompileできません。Functionsを使う場合はWrangler等を確認してください。Direct Upload projectは後からGit integrationへ切り替えできません。</li>
+        <li data-i18n="en" style="display:none"><strong>Cloudflare Direct Upload:</strong> dashboard drag-and-drop does not compile a <code>/functions</code> directory. Use Wrangler or another supported flow for Functions. A Direct Upload project cannot later be switched to Git integration.</li>
+        <li data-i18n="ja"><strong>GitHub Pages：</strong>branch公開のsource folderは<code>/</code>または<code>/docs</code>のみです。<code>dist</code>/<code>public</code>等のbuild成果物はGitHub ActionsでPages artifactとしてdeployできます。</li>
+        <li data-i18n="en" style="display:none"><strong>GitHub Pages:</strong> branch publishing supports only <code>/</code> or <code>/docs</code> as the source folder. Built output such as <code>dist</code>/<code>public</code> can be deployed as a Pages artifact with GitHub Actions.</li>
+        <li data-i18n="ja"><strong>GitHub custom domain：</strong>custom domainはPages設定/APIで登録します。branch公開ではCNAME fileが使われますが、custom Actions workflowではCNAME fileは不要で無視されます。</li>
+        <li data-i18n="en" style="display:none"><strong>GitHub custom domain:</strong> configure the domain in Pages settings/API. Branch publishing uses a CNAME file, while a custom Actions workflow does not require it and ignores it.</li>
+      </ul>
+    </div>
+  </section>
+
   <section class="card">
     <div class="card-hd"><h2 class="card-title" data-i18n="ja">入力</h2><h2 class="card-title" data-i18n="en" style="display:none">Input</h2></div>
     <div class="card-bd" id="toolRoot">
@@ -70,8 +86,8 @@
   <section class="card" aria-label="Official documentation references">
     <div class="card-hd"><h2 class="card-title" data-i18n="ja">公式仕様の確認先</h2><h2 class="card-title" data-i18n="en" style="display:none">Official documentation</h2></div>
     <div class="card-bd">
-      <p class="note" data-i18n="ja">ホスティング仕様は変わるため、最終確認は公式ドキュメントで行ってください。以下は2026-09-17に確認した参照先です。</p>
-      <p class="note" data-i18n="en" style="display:none">Hosting behavior can change. Confirm final settings in the official documentation. References below were checked on 2026-09-17.</p>
+      <p class="note" data-i18n="ja">ホスティング仕様は変わるため、最終確認は公式ドキュメントで行ってください。以下は2026-09-18に確認した参照先です。</p>
+      <p class="note" data-i18n="en" style="display:none">Hosting behavior can change. Confirm final settings in the official documentation. References below were checked on 2026-09-18.</p>
       <ul class="note">
         <li><a href="https://developers.cloudflare.com/pages/configuration/build-configuration/" target="_blank" rel="noopener noreferrer">Cloudflare Pages — Build configuration</a></li>
         <li><a href="https://developers.cloudflare.com/pages/configuration/custom-domains/" target="_blank" rel="noopener noreferrer">Cloudflare Pages — Custom domains</a></li>

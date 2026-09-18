@@ -80,11 +80,11 @@
       if (s.platform === "cloudflare") {
         const items = [
           "Check the configured build command and build output directory",
-          s.sourceType === "static" ? "If no build is required, Cloudflare Pages documents `exit 0` as the no-build command; confirm the output directory contains the deployable files" : "Confirm the framework build command exits successfully and writes to the configured output directory",
+          s.sourceType === "static" ? "If no build is required, the Build command can be blank; Cloudflare's static HTML guide also documents `exit 0` when no preset/build is required. Confirm the output directory contains the deployable files" : "Confirm the framework build command exits successfully and writes to the configured output directory",
           "Check Preview and Production deployments separately",
           "If using Pages Functions, check the Workers compatibility date/flags and environment-variable configuration"
         ];
-        if (s.sourceType === "static") items.push("If using Functions with uploaded static output, note that dashboard Direct Upload does not support a /functions directory; use a supported deployment flow such as Wrangler");
+        if (s.sourceType === "static") { items.push("If using Functions with uploaded static output, note that dashboard Direct Upload does not support a /functions directory; use a supported deployment flow such as Wrangler"); items.push("If you create a Direct Upload project, it cannot later be switched to Git integration; create a new project if you need Git integration"); }
         items.push(s.customDomain
           ? "Check the Pages Custom domains mapping, DNS, and SSL; an apex domain requires the zone/nameservers on Cloudflare, while a subdomain normally uses the configured DNS target"
           : "Check the default *.pages.dev deployment before debugging a custom domain");
@@ -109,11 +109,11 @@
     if (s.platform === "cloudflare") {
       const items = [
         "設定済みのBuild commandとbuild output directoryを確認する",
-        s.sourceType === "static" ? "ビルド不要ならCloudflare Pages公式では`exit 0`をno-build commandとして案内しているため、公開ファイルがoutput directoryにあるか確認する" : "frameworkのbuild commandが正常終了し、設定したoutput directoryへ成果物を出しているか確認する",
+        s.sourceType === "static" ? "ビルド不要ならBuild commandは空欄にもできる。Cloudflareの静的HTMLガイドではpresetを使わない場合のno-build commandとして`exit 0`も案内されているため、公開ファイルがoutput directoryにあるか確認する" : "frameworkのbuild commandが正常終了し、設定したoutput directoryへ成果物を出しているか確認する",
         "PreviewとProductionの両方を確認する",
         "Pages Functionsを使う場合はWorkersのcompatibility date / flagsと環境変数設定を確認する"
       ];
-      if (s.sourceType === "static") items.push("Functions付き静的出力を使う場合、dashboardのDirect Uploadでは/functions directoryを扱えないため、Wranglerなど対応するdeploy方式を確認する");
+      if (s.sourceType === "static") { items.push("Functions付き静的出力を使う場合、dashboardのDirect Uploadでは/functions directoryを扱えないため、Wranglerなど対応するdeploy方式を確認する"); items.push("Direct Upload projectは後からGit integrationへ切り替えできないため、Git連携が必要になった場合は新しいprojectを作成する"); }
       items.push(s.customDomain
         ? "PagesのCustom domains紐付け、DNS、SSLを確認する。apex domainはCloudflare zone / nameserver設定、subdomainは設定したDNS向き先を確認する"
         : "custom domainより先に既定の*.pages.dev deploymentで表示を確認する");

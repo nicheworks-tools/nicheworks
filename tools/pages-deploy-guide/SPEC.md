@@ -17,15 +17,16 @@ The tool MUST NOT claim that it inspects a repository, runs a build, reads hosti
 
 ## Current platform rules
 
-Platform-specific guidance was rechecked against official documentation on 2026-09-17.
+Platform-specific guidance was rechecked against official documentation on 2026-09-18.
 
 ### Cloudflare Pages
 
 - A Pages project can define a build command and build output directory.
-- For a project that does not require a build, Cloudflare's current static-HTML guidance documents `exit 0` as the no-build command.
+- For a project that does not require a build, Cloudflare documents that the Build command may be left blank; its current static-HTML guide also documents `exit 0` when no preset/build is required and recommends it for access to features such as Pages Functions.
 - Pages Functions use the Workers runtime and can depend on compatibility date / compatibility flags and environment-variable configuration.
 - A custom apex domain requires the domain to be a Cloudflare zone with nameservers configured for Cloudflare; subdomain behavior depends on the configured DNS target and Pages custom-domain mapping.
 - Dashboard Direct Upload does not support uploading a `/functions` directory; a supported deployment flow such as Wrangler is required when Functions are part of an uploaded-output workflow.
+- A Direct Upload project cannot later be switched to Git integration; a new project is required to use Git integration.
 
 Official references:
 
@@ -51,6 +52,7 @@ Official references:
 ## Current functional contract
 
 - Accept platform, source type, custom-domain presence, and a directory/folder to review.
+- Keep a crawlable static summary of the current Cloudflare Pages and GitHub Pages publishing rules before the interactive selectors, including no-build/output guidance, Direct Upload caveats, GitHub branch-source limits, Actions artifacts, and CNAME handling.
 - Generate a pre-deploy checklist covering build/output settings, publishing mode, deployment visibility, assets, 404 behavior, canonical/OGP, crawl files, analytics/ads identifiers, mobile checks, and platform-specific concerns.
 - When GitHub Pages is selected, explicitly distinguish branch publishing (`/` or `/docs`) from GitHub Actions artifact publishing and warn when `dist` or `public` is selected.
 - When Cloudflare Pages is selected, distinguish build-output guidance from no-build/static output and surface Pages Functions / Direct Upload caveats where relevant.
@@ -115,6 +117,7 @@ Amazon affiliate monetization is not part of the current product contract. The p
 - [ ] GitHub branch-publishing guidance never presents `dist` or `public` as a valid source folder; it names `/` and `/docs` and directs other build outputs to an Actions artifact workflow.
 - [ ] GitHub custom-domain guidance distinguishes branch CNAME handling from custom Actions publishing.
 - [ ] Cloudflare guidance retains current build-output, Pages Functions compatibility, custom-domain, and Direct Upload caveats.
+- [ ] Initial HTML exposes the core current platform rules without requiring the user to generate a checklist.
 - [ ] The same generation also produces a symptom diagnosis tree and deployment handoff pack without a paid gate.
 - [ ] Combined copy includes checklist, errors, diagnosis, and handoff content.
 - [ ] Markdown export is available without entitlement or purchase state.
