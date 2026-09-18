@@ -1,0 +1,95 @@
+name: Construction Tools Atlas image Wave 5 promotion
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feat/construction-atlas-image-wave5-promotion-20260919
+    paths:
+      - 'tools/construction-tools-atlas/data/image-wave5-sources-v2.3.json'
+      - 'tools/construction-tools-atlas/scripts/build-image-wave5-v2.3.mjs'
+      - 'tools/construction-tools-atlas/scripts/check-image-wave5-sources-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/promote-image-wave5-v2.3.cjs'
+      - '.github/workflows/construction-tools-atlas-image-wave5-promotion.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: construction-atlas-image-wave5-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-promote-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Wave 5 promotion branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Install image tooling
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+
+      - name: Validate staged Wave 5 source contract
+        run: node tools/construction-tools-atlas/scripts/check-image-wave5-sources-v2.3.cjs
+
+      - name: Validate Wave 5 build and promotion syntax
+        run: |
+          node --check tools/construction-tools-atlas/scripts/build-image-wave5-v2.3.mjs
+          node --check tools/construction-tools-atlas/scripts/check-image-wave5-sources-v2.3.cjs
+          node --check tools/construction-tools-atlas/scripts/promote-image-wave5-v2.3.cjs
+
+      - name: Download pinned sources and generate WebP derivatives
+        run: node tools/construction-tools-atlas/scripts/build-image-wave5-v2.3.mjs
+
+      - name: Promote verified Wave 5 candidates
+        run: node tools/construction-tools-atlas/scripts/promote-image-wave5-v2.3.cjs
+
+      - name: Validate materialized Wave 5 source contract
+        run: node tools/construction-tools-atlas/scripts/check-image-wave5-sources-v2.3.cjs
+
+      - name: Validate lifecycle and shared image contracts
+        run: |
+          node tools/construction-tools-atlas/scripts/image-lifecycle-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-lifecycle-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-attribution-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-runtime-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/audit-image-assets-v2.3.cjs
+
+      - name: Regenerate image inventories
+        run: |
+          node tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs --write
+          node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --write
+
+      - name: Validate regenerated inventories
+        run: |
+          node tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs --check
+          node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --check
+
+      - name: Commit promoted Wave 5 assets and state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add \
+            tools/construction-tools-atlas/data/image-wave5-sources-v2.3.json \
+            tools/construction-tools-atlas/data/image-registry-v2.3.json \
+            tools/construction-tools-atlas/data/image-lifecycle-v2.3.json \
+            tools/construction-tools-atlas/data/image-inventory-v2.3.json \
+            tools/construction-tools-atlas/data/public-image-inventory-v2.3.json \
+            tools/construction-tools-atlas/detail-image-hotfix.js \
+            tools/construction-tools-atlas/images/
+          if git diff --cached --quiet; then
+            echo "Wave 5 image assets and promotion state are already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(construction-atlas): promote verified Wave 5 images"
+          git fetch origin "${GITHUB_REF_NAME}"
+          git rebase "origin/${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
