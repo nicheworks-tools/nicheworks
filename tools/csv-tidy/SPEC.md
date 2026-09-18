@@ -82,7 +82,7 @@ All classifications below are based on deterministic tests of current production
 | G2 | `a,b\n,` loses its last record; loader also removes middle all-empty records | RESOLVED (unit/integration) | Preserve records; quote singleton empty values on export for independent reparse |
 | G3 | Invalid UTF-8 becomes U+FFFD; 2,000 ASCII characters plus SJIS Tokyo are guessed UTF-8 | RESOLVED (unit/integration) | Fatal decoding and explicit encoding ambiguity; general failed-load state remains G9 |
 | G4 | Accounting template writes `outName` while preview uses `name`; Japanese headers do not receive template order | RESOLVED (unit/integration) | Shared current name; per-entity alias mapping and stable canonical grouping |
-| G5 | Filtering rendered column items hides excluded names from summary and confirmation; input count changes | CONFIRMED GAP / UX GAP | Compute counts/exclusions from full data state, not filtered DOM |
+| G5 | Filtering rendered column items hides excluded names from summary and confirmation; input count changes | RESOLVED (unit/integration) | Shared read-only accepted-state summary for rendering and confirmation |
 | G6 | Loader silently pads ragged rows and replaces empty header names | RESOLVED (unit/integration) | First-record width validation, dedicated export gate, literal empty headers |
 | G7 | `b"c"d` and `"b"c` are accepted and rewritten | RESOLVED (unit/integration) | Reject invalid_quote/unclosed_quote with logical record, field and UTF-16 offset |
 | G8 | Unchecked selected-scope columns still receive cleaning | RESOLVED (unit/integration) | Scope control updates state; shared header/data transformation honors positional column selection |
@@ -197,3 +197,14 @@ Starting checkpoint `4b425020e6d7cb31f25018ff900f114bbe99bba1`. G4 is **RESOLVED
 Every matching column is renamed independently, including duplicate aliases. Ordering groups all canonical matches in template order, preserving pre-application relative order within each group. Unmatched/empty columns follow in their existing relative order. Excluded entities participate in mapping/order without being emitted; no non-listed column is automatically excluded. Reapplying an existing template is stable. Header OFF is an explicit warned no-op and does not consume data or generate exported headers.
 
 Evidence: behavior PASS; **52 checkpoint PASS / 0 FAIL / 0 SKIP / 0 TODO**, with **1 KNOWN GAP (G5)**. **64 Blob outputs** independently matched Python CSV matrices. Accounting canonical/shuffled Japanese, EC canonical/shuffled Japanese, generic/manual edits, duplicates/alias collisions, empty/unknown/excluded columns and header OFF are covered. Correctly mapped Accounting/EC has no false missing warning. No templates/features or browser/responsive/performance/SEO work added.
+
+
+## G5 state-derived summary — 2026-09-18
+
+Starting checkpoint `f58f764aea893fbda56af3fd327c1d559737cd22`. G5 is **RESOLVED (unit/integration)**. **KNOWN GAP: 0 does not equal Product accepted.**
+
+The app exposes a read-only summary snapshot consumed by complete.js. Input columns count all accepted column entities; output columns count non-excluded entities; exclusions retain every excluded entity in current output order. Names use the same current header and cleaning semantics as output. Empty names have a display-only, source-position fallback (Column N / 列 N); duplicate names remain repeated and actual headers are unchanged. Cleaning selection is independent of inclusion. Search only filters the editor view and cannot change summary or confirmation.
+
+Rows mean actual preview data rows, bounded by previewN and accepted data row count, excluding the source header when enabled. They are not total-file counts. Header OFF counts all records as data and exports no synthetic header. Loading/invalid/empty state returns no current summary or stale exclusions; G9 still guards download. Existing UI structure, output-option labels and refresh hooks remain in place.
+
+Evidence: behavior PASS; **55 checkpoint PASS / 0 FAIL / 0 SKIP / 0 TODO** and **68 independent Python Blob reparses matched**. Search/clear invariance, hidden-exclusion confirmation/cancel, template/manual names, duplicates, empty fallback, reorder, language, header OFF and failed-load/reset/recovery are covered. Remaining verification: real browser file workflow, download/reopen, error/recovery UI, keyboard/focus/accessibility, 1440/1024/768/375/320 operation, realistic scale/performance/memory. No browser or performance verification is claimed.

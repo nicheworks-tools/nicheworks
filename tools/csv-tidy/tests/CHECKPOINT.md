@@ -1,6 +1,6 @@
 # CSV Tidy correctness checkpoint — 2026-09-17 UTC
 
-Latest result: G4-only continuation below (2026-09-18): 52 passing tests, 1 remaining KNOWN GAP case. Earlier sections retain historical evidence.
+Latest result: G5-only continuation below (2026-09-18): 55 passing tests, 0 remaining KNOWN GAP cases. Product acceptance remains pending. Earlier sections retain historical evidence.
 
 Base: `4f00e990f06fd3bc9332a629859bac09e069ef52`.
 Branch: `feat/csv-tidy-product-quality-20260917`.
@@ -137,3 +137,12 @@ Recovered local/remote HEAD `4b425020e6d7cb31f25018ff900f114bbe99bba1` with no p
 The G4 characterization was replaced by four acceptance tests. Root causes were a shadow `outName` ignored by output, canonical order lookup against pre-rename names, and last-write-wins duplicate matching. Template rename now writes `name` per entity. Canonical groups include all matching entities in prior relative order; unmatched and empty entities follow; exclusion and cleaning selection remain attached to the entity. Manual names are the matching input and subsequent manual changes replace the same effective header. Mapping warnings use effective output headers. Header OFF is a warned no-op.
 
 Final behavior PASS; **52 PASS / 0 FAIL / 0 SKIP / 0 TODO**. **64 independent Python Blob reparses**: preserved 55 plus four Accounting/EC matrices, two generic/manual matrices, two duplicate/exclusion matrices and one header-OFF matrix. Tests also assert stable reapplication, unchanged IDs/source indices and correct mapped-warning state. Existing G1/G2/G3/G6/G7/G8/G9 regressions unchanged and passing. Only **G5** remains KNOWN GAP. No browser verification or overall acceptance claim.
+
+
+## G5-only continuation — 2026-09-18
+
+Local/remote checkpoint `f58f764aea893fbda56af3fd327c1d559737cd22` matched; no partial CSV Tidy changes or later commits. Local/live main `f4ca9c241e5f1e1666b6648d3f3c7283ca8fc5fa`. Starting behavior PASS; 52 checkpoint PASS / 0 FAIL / 0 SKIP / 0 TODO. Unrelated deletion untouched.
+
+Removed filtered DOM authority for column counts, exclusions and preview-row counts. A read-only app state snapshot is consumed by both summary and exclusion confirmation. Replaced the isolated DOM summary harness with execution of production complete.js alongside production app.js in the same VM. Four acceptance tests replace G5 characterization: five search states with identical summary/confirmation; template/manual/duplicate/empty/reordered/localized exclusion names; header OFF; invalid/reset/recovered state. Confirmation cancellation is exercised. Snapshot output counts agree with the actual output model; unchecked cleaning selection does not exclude columns.
+
+Final behavior PASS; **55 PASS / 0 FAIL / 0 SKIP / 0 TODO**; **68 independent Python reparses matched** (preserved 64 plus search-invariant export, renamed/excluded export, header-OFF export and post-failure recovery export). All earlier regression tests remain unchanged and green. **KNOWN GAP: 0; Product accepted: NO.** Real browser load/download/reopen, error/recovery UI, accessibility, viewport matrix (1440/1024/768/375/320) and realistic scale/performance/memory remain unverified. No final PR or browser/performance work in this checkpoint.

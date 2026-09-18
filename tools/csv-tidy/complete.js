@@ -82,19 +82,13 @@
     setLoadHint(t('このブラウザでは画面内投入に制限があるため、サンプルCSVをダウンロードしました。', 'This browser blocked in-page sample loading, so the sample CSV was downloaded.'));
   }
 
-  function visibleRows(){ return qsa('#previewTable tbody tr').filter(function(tr){ return tr.offsetParent !== null; }); }
-  function headerCells(){ return qsa('#previewTable thead th'); }
-  function colItems(){ return qsa('#colsList .col-item'); }
-
-  function excludedNames(){
-    return colItems().filter(function(item){
-      const checkbox = qs('.col-exclude', item);
-      return checkbox && checkbox.checked;
-    }).map(function(item, index){
-      const input = qs('.col-name', item);
-      return input && input.value ? input.value.trim() : 'Column ' + (index + 1);
-    }).filter(Boolean);
+  function summaryModel(){
+    return typeof window.csvTidySummary === 'function'
+      ? window.csvTidySummary(currentLang())
+      : { valid: false, inputCols: 0, outputCols: 0, previewRows: 0, excluded: [] };
   }
+
+  function excludedNames(){ return summaryModel().excluded; }
 
   function selectedText(id, fallback){
     const el = qs('#' + id);
@@ -124,12 +118,13 @@
     if (!box) return;
 
     const l = currentLang();
-    const cols = Math.max(headerCells().length, colItems().length);
-    const rows = visibleRows().length;
-    const excluded = excludedNames();
-    const outputCols = cols ? Math.max(0, cols - excluded.length) : 0;
+    const model = summaryModel();
+    const cols = model.inputCols;
+    const rows = model.previewRows;
+    const excluded = model.excluded;
+    const outputCols = model.outputCols;
 
-    if (!cols && !rows) {
+    if (!model.valid) {
       box.innerHTML = l === 'en'
         ? 'Load a CSV to see the output summary here.'
         : 'CSVを読み込むと、ここに出力前の確認内容が表示されます。';

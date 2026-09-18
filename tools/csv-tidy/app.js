@@ -438,6 +438,20 @@ if (state.data.rows && state.data.rows.length) schedulePreviewRequest();
     return { headers, rows: outRows, colsUsed: cols.length, dropped: state.data.cols.length - cols.length };
   }
 
+  // Read-only snapshot for complete.js; column editor filtering is view-only.
+  function getSummaryModel(lang){
+    if (state.load.status !== "valid") return { valid: false, inputCols: 0, outputCols: 0, previewRows: 0, excluded: [] };
+    const cols = state.data.cols;
+    const excluded = cols.slice().sort((a,b) => a.order - b.order || a.srcIndex - b.srcIndex)
+      .filter(c => c.excluded).map(c => {
+        const name = String(shouldApplyCleanForCol(c) ? applyHeaderOptions(c.name) : c.name);
+        return name.trim() ? name : (lang === "ja" ? "列 " : "Column ") + (c.srcIndex + 1);
+      });
+    return { valid: true, inputCols: cols.length, outputCols: cols.filter(c => !c.excluded).length,
+      previewRows: Math.min(state.ui.previewN, Math.max(0, state.data.rows.length - (state.input.hasHeader ? 1 : 0))), excluded };
+  }
+  window.csvTidySummary = getSummaryModel;
+
   // [CSVTDY-10] Bulk actions helpers
   function getMatchedCols(){
     const q = (els.colSearch && els.colSearch.value ? String(els.colSearch.value) : "").trim().toLowerCase();

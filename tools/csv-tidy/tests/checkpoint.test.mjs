@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
-import { harness, plain, element, summaryHarness } from './checkpoint-harness.mjs';
+import { harness, plain, summaryHarness } from './checkpoint-harness.mjs';
 const fixtures = JSON.parse(fs.readFileSync(new URL('./core-fixtures.json', import.meta.url)));
 for (const f of fixtures) test(`parser fixture: ${f.name}`, () => {
   assert.deepEqual(plain(harness().parseCSV(f.text, f.delimiter)), f.expected);
@@ -145,16 +145,58 @@ test('G4 resolved: header OFF template application is a warned no-op', async () 
   assert.match(h.get('#mapWarnBody').innerHTML,/Header is OFF/);
   await selectedRoundTrip(h,[['日付','金額'],['D','001']]);
 });
-test('G5 KNOWN GAP: filtering column DOM hides an exclusion from summary/confirmation', () => {
-  const h = summaryHarness(), keep = element(), drop = element();
-  keep.querySelector('.col-name').value = 'keep';
-  drop.querySelector('.col-name').value = 'drop'; drop.querySelector('.col-exclude').checked = true;
-  h.set([keep, drop], 1); h.renderSummary();
-  assert.deepEqual(plain(h.excludedNames()), ['drop']);
-  assert.match(h.box.innerHTML, /Input<\/strong><span>2 columns/);
-  h.set([keep], 1); h.renderSummary(); // same data, rendered list filtered to "keep"
-  assert.deepEqual(plain(h.excludedNames()), []);
-  assert.match(h.box.innerHTML, /Input<\/strong><span>1 columns/);
+test('G5 resolved: search is view-only for summary, confirmation and export', async () => {
+  const h=harness(); await h.load('keep,drop,other\n001,D,X\n002,E,Y');
+  const s=summaryHarness(h); h.state.data.cols[1].excluded=true;
+  h.state.data.cols[0].cleanApply=false; h.state.ui.previewN=1;
+  const expected={valid:true,inputCols:3,outputCols:2,previewRows:1,excluded:['drop']};
+  let html;
+  for(const search of ['', 'keep', 'drop', 'missing', '']) {
+    h.get('#colSearch').value=search; h.renderColsList(); s.renderSummary();
+    assert.deepEqual(plain(s.summaryModel()),expected);
+    assert.equal(s.summaryModel().outputCols,h.buildOutputPreview(false).colsUsed);
+    if(html) assert.equal(s.box.innerHTML,html); else html=s.box.innerHTML;
+    let message; h.sandbox.confirm=msg=>{message=msg;return false;};
+    let prevented=false, stopped=false;
+    s.confirmExcluded({preventDefault(){prevented=true;},stopImmediatePropagation(){stopped=true;}});
+    assert.match(message,/drop/); assert.equal(prevented,true); assert.equal(stopped,true);
+  }
+  h.downloadCSV();
+  assert.deepEqual(reparse(Buffer.from(await h.blobs.at(-1).arrayBuffer()),','),[['keep','other'],['001','X'],['002','Y']]);
+});
+test('G5 resolved: renamed, duplicate, empty and reordered exclusions use current state', async () => {
+  const h=harness(); await h.load('日付,備考,備考,,keep\nD,M1,M2,E,K');
+  const s=summaryHarness(h); h.applyTemplate('accounting');
+  h.state.data.cols.slice(0,4).forEach(c=>c.excluded=true);
+  assert.deepEqual(plain(s.excludedNames()),['date','memo','memo','Column 4']);
+  h.state.data.cols[0].name='manual'; h.state.data.cols[3].order=-1;
+  assert.deepEqual(plain(s.excludedNames()),['Column 4','manual','memo','memo']);
+  h.get('.nw-lang-switch button.active').dataset.lang='ja'; s.renderSummary();
+  assert.deepEqual(plain(s.excludedNames()),['列 4','manual','memo','memo']);
+  assert.equal(h.state.data.cols[3].name,'');
+  assert.equal(s.summaryModel().inputCols,5); assert.equal(s.summaryModel().outputCols,1);
+  let message; h.sandbox.confirm=msg=>{message=msg;return true;}; s.confirmExcluded({});
+  assert.match(message,/列 4, manual, memo, memo/);
+  await selectedRoundTrip(h,[['keep'],['K']]);
+});
+test('G5 resolved: header OFF counts and preview rows match actual output model', async () => {
+  const h=harness(); h.state.input.hasHeader=false; await h.load('A,001\nB,002');
+  const s=summaryHarness(h); h.state.data.cols[1].excluded=true;
+  assert.deepEqual(plain(s.summaryModel()),{valid:true,inputCols:2,outputCols:1,previewRows:2,excluded:['col_2']});
+  await selectedRoundTrip(h,[['A'],['B']]);
+});
+test('G5 resolved: failed replacement and reset clear summary and stale confirmation', async () => {
+  const h=harness(); const s=summaryHarness(h); await h.load('a,b\nold,001');
+  h.state.data.cols[1].excluded=true;
+  await h.load('a,b\n"broken'); s.renderSummary();
+  assert.equal(s.summaryModel().valid,false); assert.deepEqual(plain(s.excludedNames()),[]);
+  assert.match(s.box.innerHTML,/Load a CSV/);
+  h.sandbox.confirm=()=>{assert.fail('stale exclusions must not prompt');};
+  s.confirmExcluded({}); blockedLoad(h);
+  await h.handleFile(null); assert.equal(s.summaryModel().valid,false);
+  await h.load('new,value\nB,002'); s.renderSummary();
+  assert.equal(s.summaryModel().valid,true); assert.equal(s.summaryModel().inputCols,2);
+  await selectedRoundTrip(h,[['new','value'],['B','002']]);
 });
 test('G6: reject ragged logical records without padding for either header mode', async () => {
   for (const header of [true, false]) for (const delimiter of [',', '\t', ';']) {

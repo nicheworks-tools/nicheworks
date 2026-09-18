@@ -49,20 +49,8 @@ export function harness(Decoder = TextDecoder) {
   }
   return { ...api, load, nodes, get, blobs, sandbox };
 }
-export function summaryHarness() {
-  const box = element(), node = element();
-  let columns = [], headers = [];
-  const document = {
-    readyState: 'loading', addEventListener() {},
-    querySelector(selector) { return selector === '#csvTidyOutputSummary' ? box : null; },
-    querySelectorAll(selector) {
-      if (selector === '#colsList .col-item') return columns;
-      if (selector === '#previewTable thead th') return headers;
-      return [];
-    },
-  };
-  const sandbox = { document, navigator: { language: 'en' }, window: {}, setTimeout() {} };
+export function summaryHarness(h) {
   const source = fs.readFileSync(new URL('../complete.js', import.meta.url), 'utf8');
-  vm.runInNewContext(source.replace('  function install(){', '  globalThis.summaryAPI = { renderSummary, excludedNames };\n  function install(){'), sandbox);
-  return { box, ...sandbox.summaryAPI, set(items, count) { columns = items; headers = Array(count).fill(node); } };
+  vm.runInNewContext(source.replace('  function install(){', '  globalThis.summaryAPI = { renderSummary, excludedNames, confirmExcluded, summaryModel };\n  function install(){'), h.sandbox);
+  return { box: h.get('#csvTidyOutputSummary'), ...h.sandbox.summaryAPI };
 }
