@@ -129,7 +129,7 @@ lacks('tools/old-kanji-ocr-scanner/index.html', './affiliate-config.js', 'obsole
 lacks('tools/old-kanji-ocr-scanner/index.html', './affiliate.js', 'obsolete tool-local affiliate runtime load');
 has('assets/old-kanji-amazon-context.js', '"old-kanji-ocr-scanner"');
 has('assets/old-kanji-amazon-context.js', 'CZUR ET24 Pro ブックスキャナー');
-has('assets/old-kanji-amazon-context.js', 'activation: { type: "value", selector: "#manual-text" }');
+has('assets/old-kanji-amazon-context.js', 'activation: { type: "visible-content", selector: "#detection-summary" }');
 
 // 60. Old Kanji Reference — active contextual Amazon follows the completed reference task.
 for (const key of ['oldKanjiReference.recent.v1', 'oldKanjiReference.displayMode.v1', 'oldKanjiReference.favorites.v1', 'oldKanjiReference.quizStats.v1']) {
