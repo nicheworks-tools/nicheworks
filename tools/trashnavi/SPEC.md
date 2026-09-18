@@ -1053,3 +1053,14 @@ Wave 48は茨城県の追加10自治体を、従来どおり `municipal_home` �
 - publication acceptance: 264 municipality pages、264 root internal links、AI reference 264/264、専用sitemapはtool rootを含む265 URL
 - 2026 calendar callout: 阿見町、大洗町、茨城町、利根町、八千代町、東海村、五霞町。常陸太田市、常陸大宮市、桜川市は年次を推測しない。
 - Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を維持する。
+
+## Wave 49 batch publication
+
+Wave 49は茨城県の追加9自治体と栃木県小山市を、従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific municipal-official link typeで公開し、公開対象を **264自治体から274自治体** へ拡張する。坂東市は今回、分別・自己搬入・小型充電式電池回収の3独立公式URLを確認できたため採用する。河内町は現行公式サイト上で3独立URLを安全に満たせないため無理に採用せず、小山市へ差し替える。
+
+- 古河市、高萩市、潮来市、坂東市、鉾田市、城里町、大子町、美浦村、境町、小山市
+- readiness baseline: 2,910 / 2,910 valid HTTP(S)、274 preferred candidates、52 direct-link datasets / 842 records / 823 unique URLs / 0 invalid URLs
+- publication acceptance: 274 municipality pages、274 root internal links、AI reference 274/274、専用sitemapはtool rootを含む275 URL
+- 2026 calendar callout: 高萩市、城里町、大子町、美浦村、境町、小山市。古河市、潮来市、坂東市、鉾田市は年次を推測しない。
+- Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を維持する。
+
