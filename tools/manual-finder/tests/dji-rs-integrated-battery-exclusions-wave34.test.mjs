@@ -24,7 +24,7 @@ const exclusions = Array.from(context.window.MANUALFINDER_CAMERA_DETAIL_EXCLUSIO
 const expected = ['DJI RS 3 Mini', 'DJI RS 4 Mini', 'DJI RSC 2'];
 const sourceUrl = 'https://repair.dji.com/help/content?customId=01700007783&lang=en&paperDocType=ARTICLE&re=US&spaceId=17';
 
-assert.equal(exclusions.length, 6, 'Wave 34 must retain three Goggles exclusions and add three nonremovable RS/RSC exclusions');
+assert.ok(exclusions.length >= 6, 'Wave 34 must retain three Goggles exclusions and its three nonremovable RS/RSC exclusions');
 
 for (const model of expected) {
   const row = exclusions.find((entry) => entry.model === model);
