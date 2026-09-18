@@ -59,22 +59,22 @@
     "stored_non_public_entries": 4666,
     "public_entries": 870,
     "disposition_records": 870,
-    "applicability_reviewed": 538,
-    "required": 512,
+    "applicability_reviewed": 588,
+    "required": 562,
     "on_hold": 0,
     "final_dispositions": 56,
     "unresolved": 814,
     "by_stage": {
-      "unreviewed": 332,
+      "unreviewed": 282,
       "not_required": 26,
-      "awaiting_source": 482,
+      "awaiting_source": 532,
       "candidate": 0,
       "provenance_verified": 0,
       "subject_verified": 0,
       "verified": 0,
       "promoted": 30
     },
-    "evidence_sha256": "39bf29e7f680919730ab87ee6280e9776e1a9ad82321d2cd17447cb99c74c8e1"
+    "evidence_sha256": "5a760d16b1fd3b2fe1913b9969b5cdece093332f4b7d4e54fe84e41eb2ac55e6"
   },
   "by_type": {
     "access": {
