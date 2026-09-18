@@ -259,3 +259,23 @@ Wave 23 introduces no new public category or authority-function vocabulary. It r
 - `viscosity controlling` → `viscosity adjuster`
 
 Some COSMILE pages expose multiple functions. The overlay continues to select one reviewed public-primary role already supported by the controlled taxonomy while preserving the broader raw/source context rather than creating synthetic compound labels.
+
+
+## Wave 24 final taxonomy expansion
+
+Wave 24 adds four explicit authority-function mappings needed to close the official-label corpus without semantic substitution:
+
+- `binding` → `binder`
+- `film forming` → `film former`
+- `hair conditioning` → `hair conditioning`
+- `fragrance` → `fragrance`
+
+The existing mappings `surfactant - emulsifying` → `emulsifier`, `skin conditioning - miscellaneous` → `skin conditioning`, and `viscosity controlling` → `viscosity adjuster` are reused for the remaining Wave 24 identities.
+
+The `binder` public copy is synchronized in Lite and FastScan:
+
+- Japanese: `結合剤`
+- English: `Binder`
+- Explanation: powdered products are helped to hold together and maintain cohesion.
+
+This wave sets the maintained official-label corpus public-role gap target to zero while keeping raw legacy categories auditable.
