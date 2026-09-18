@@ -15,7 +15,8 @@
     "skin conditioning": { "authority_functions": ["skin conditioning", "skin conditioning - miscellaneous"] },
     "emollient": { "authority_functions": ["skin conditioning - emollient"] },
     "cleanser": { "authority_functions": ["cleansing", "surfactant - cleansing"] },
-    "emulsifier": { "authority_functions": ["surfactant - emulsifying"] }
+    "emulsifier": { "authority_functions": ["surfactant - emulsifying"] },
+    "smoothing": { "authority_functions": ["smoothing"] }
   },
   "reviewed_mappings": {
     "water": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/water/"],"runtime_verified":true},
@@ -66,6 +67,7 @@
     "hydroxyacetophenone": {"category":"antioxidant","source_functions":["antioxidant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/17301/hydroxyacetophenone/"],"runtime_verified":true},
     "palmitic acid": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/10137/palmitic-acid/"],"runtime_verified":true},
     "stearic acid": {"category":"cleanser","source_functions":["cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15514/stearic-acid/"],"runtime_verified":true},
-    "myristic acid": {"category":"cleanser","source_functions":["cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/9266/myristic-acid/"],"runtime_verified":true}
+    "myristic acid": {"category":"cleanser","source_functions":["cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/9266/myristic-acid/"],"runtime_verified":true},
+    "niacinamide": {"category":"smoothing","source_functions":["smoothing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/9443/niacinamide/"],"runtime_verified":true}
   }
 }
