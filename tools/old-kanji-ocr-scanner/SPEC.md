@@ -15,7 +15,7 @@ Run browser-side Japanese OCR on one selected image, let the user correct the re
 - Accept one local image through file selection/camera capture and show preview plus file name, size, and MIME type.
 - Run Japanese OCR with Tesseract.js using `Tesseract.recognize(file, 'jpn', ...)`.
 - Load the Tesseract.js script from jsDelivr and allow its engine/language data to load as required by Tesseract.
-- Place OCR output in an editable text area; the same text area also supports manual input before OCR.
+- Place OCR output in an editable text area; preserve the recognized text's leading/trailing whitespace and line breaks; the same text area also supports manual input before OCR.
 - Re-run old-kanji detection whenever the editable OCR/manual text changes.
 - Show detection summary, highlighted text, detected-character cards, metadata, and a mechanical modern-form preview.
 - Allow copying OCR text, detected old forms, correspondence table, and modern preview.
@@ -78,11 +78,11 @@ Camera/image selection, OCR status, editable result text, and detected cards for
 
 ## Acceptance criteria
 
-- [ ] A selected image can be previewed and cleared without uploading it to an external OCR API.
-- [ ] Running OCR invokes Tesseract with Japanese language configuration and exposes progress/status feedback.
-- [ ] Editing OCR text immediately updates old-kanji detection and the mechanical modern preview.
-- [ ] Failure to load old-kanji reference data still leaves OCR/manual text editing available with an explicit data-load warning.
-- [ ] No fixed Pro price, disabled purchase CTA, or unfinished billing panel is rendered before a verified purchase path is active.
+- [x] A selected image can be previewed and cleared without uploading it to an external OCR API.
+- [x] Running OCR invokes Tesseract with Japanese language configuration and exposes progress/status feedback.
+- [x] Editing OCR text immediately updates old-kanji detection and the mechanical modern preview.
+- [x] Failure to load old-kanji reference data still leaves OCR/manual text editing available with an explicit data-load warning.
+- [x] No fixed Pro price, disabled purchase CTA, or unfinished billing panel is rendered before a verified purchase path is active.
 - [ ] Amazon links use only the two fixed search terms and `nicheworks09-22`.
 - [ ] OCR/image/manual-input values never enter Amazon URLs or affiliate analytics.
 - [ ] Associates disclosure is rendered whenever active Amazon targets are available.
@@ -91,6 +91,7 @@ Camera/image selection, OCR status, editable result text, and detected cards for
 
 - `tools/old-kanji-ocr-scanner/index.html`
 - `tools/old-kanji-ocr-scanner/app.js`
+- `tools/old-kanji-ocr-scanner/tests/behavior.test.mjs` — one-image lifecycle/source contract, Japanese Tesseract wiring, exact OCR/handoff text preservation, detection, degraded dictionary mode, metadata/rendering-card contract, and no rendered unfinished Pro sales panel.
 - `tools/old-kanji-ocr-scanner/style.css`
 - `tools/old-kanji-ocr-scanner/amazon.css`
 - `tools/old-kanji-ocr-scanner/affiliate-config.js`
