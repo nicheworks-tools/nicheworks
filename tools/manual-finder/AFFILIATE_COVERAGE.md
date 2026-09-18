@@ -21,12 +21,12 @@ Required printer reconciliation:
 
 The camera accessory audit independently reconciles as:
 
-`camera basic 185 = detail 61 + reviewed exclusion 0 + missing 124`
+`camera basic 185 = detail 62 + reviewed exclusion 0 + missing 123`
 
 Maker-level camera state:
 
 - `Nikon camera 14 = detail 14 + reviewed exclusion 0 + missing 0`
-- `DJI camera 96 = detail 47 + reviewed exclusion 0 + missing 49`
+- `DJI camera 96 = detail 48 + reviewed exclusion 0 + missing 48`
 - OM SYSTEM: 37 missing
 - GoPro: 31 missing
 - Insta360: 7 missing
@@ -88,7 +88,7 @@ Nikon camera accessory coverage remains complete:
 
 Shared accessory families are not generalized by model-name similarity; each active row is explicit in the reviewed ledger.
 
-## DJI camera accessory Waves 1–27
+## DJI camera accessory Waves 1–28
 
 DJI camera accessory coverage advances only through bounded exact-canonical-model waves. Every active row requires DJI official evidence; neighboring names and variants remain fail-closed until separately reviewed.
 
@@ -121,6 +121,7 @@ DJI camera accessory coverage advances only through bounded exact-canonical-mode
 | 25 | `Mavic 2 Enterprise Series` | Mavic 2 Enterprise Battery / Mavic 2 Battery Charging Hub |
 | 26 | `Osmo Pocket 3` | Osmo Pocket 3 Battery Handle |
 | 27 | `DJI Action 2` | DJI Action 2 Power Module |
+| 28 | `DJI Pocket 2` | DJI Pocket 2 Charging Case |
 
 ### DJI Phantom 3 series — Wave 22
 
@@ -165,11 +166,17 @@ Wave 27 activates exactly the canonical `DJI Action 2` row. DJI's official Actio
 
 The deterministic Amazon handoff is `DJI Action 2 Power Module`. `Action 2`, `DJI Action 2 Power Combo`, `Osmo Action`, and other neighboring or synthetic names remain fail-closed.
 
-After Waves 1–27:
+### DJI Pocket 2 — Wave 28
 
-`DJI camera 96 = detail 47 + reviewed exclusion 0 + missing 49`
+Wave 28 activates exactly the canonical `DJI Pocket 2` row. DJI's official Pocket 2 support page states that the product can use the DJI Pocket 2 Charging Case for extended operating time. DJI Store's official Charging Case page explicitly lists `DJI Pocket 2` as compatible and specifies a 1500 mAh charging case.
 
-The catalog-wide camera audit is therefore 185 actionable basic rows, 61 detail mappings, 0 reviewed exclusions, and 124 missing accessory-detail rows.
+The deterministic Amazon handoff is `DJI Pocket 2 Charging Case`. `Pocket 2`, `DJI Pocket 2 Creator Combo`, `Osmo Pocket`, and other neighboring or synthetic names remain fail-closed.
+
+After Waves 1–28:
+
+`DJI camera 96 = detail 48 + reviewed exclusion 0 + missing 48`
+
+The catalog-wide camera audit is therefore 185 actionable basic rows, 62 detail mappings, 0 reviewed exclusions, and 123 missing accessory-detail rows.
 
 ## Runtime boundary and source of truth
 
@@ -178,13 +185,14 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 61 detail 
 - Maker-specific printer ledgers own reviewed consumable mappings.
 - `affiliate-printer-detail-exclusions.js` owns reviewed printer exclusions.
 - `affiliate-camera-accessories.js` and `affiliate-nikon-camera-accessories-wave2.js` own Nikon camera mappings.
-- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave27.js` own reviewed DJI camera mappings.
+- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave28.js` own reviewed DJI camera mappings.
 - `affiliate-dji-camera-accessories-wave22.js` adds the exact reviewed three-row Phantom 3 mapping.
 - `affiliate-dji-camera-accessories-wave23.js` adds the exact Phantom 3 SE battery-only mapping.
 - `affiliate-dji-camera-accessories-wave24.js` adds the exact Mavic 2 Enterprise Advanced battery-only mapping.
 - `affiliate-dji-camera-accessories-wave25.js` adds the exact Mavic 2 Enterprise Series battery/hub mapping.
 - `affiliate-dji-camera-accessories-wave26.js` adds the exact Osmo Pocket 3 Battery Handle mapping.
-- `affiliate-dji-camera-accessories-wave27.js` adds the exact DJI Action 2 Power Module mapping and exposes the merged 61-row camera detail ledger.
+- `affiliate-dji-camera-accessories-wave27.js` adds the exact DJI Action 2 Power Module mapping.
+- `affiliate-dji-camera-accessories-wave28.js` adds the exact DJI Pocket 2 Charging Case mapping and exposes the merged 62-row camera detail ledger.
 - `affiliate-camera-detail-exclusions.js` remains empty.
 - `affiliate-runtime.js` sequentially loads Nikon and DJI ledgers before affiliate rendering.
 - `tests/affiliate-coverage.test.mjs` and `tests/affiliate-doc-sync.test.mjs` protect printer reconciliation.
@@ -194,6 +202,7 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 61 detail 
 - `tests/dji-mavic2-enterprise-series-wave25.test.mjs` protects the exact Mavic 2 Enterprise Series Wave 25 battery/hub boundary.
 - `tests/dji-osmo-pocket3-accessory-wave26.test.mjs` protects the exact Osmo Pocket 3 Wave 26 Battery Handle boundary.
 - `tests/dji-action2-accessory-wave27.test.mjs` protects the exact DJI Action 2 Wave 27 Power Module boundary.
+- `tests/dji-pocket2-accessory-wave28.test.mjs` protects the exact DJI Pocket 2 Wave 28 Charging Case boundary.
 - `tests/camera-accessory-coverage.test.mjs` computes camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` prevents documentation drift and auto-discovers DJI wave evidence.
 - `CAMERA_ACCESSORY_COVERAGE.md` records the measured camera baseline.
@@ -220,10 +229,10 @@ Nikon remains closed only while:
 DJI remains partial at:
 
 - DJI basic = 96
-- DJI detail = 47
+- DJI detail = 48
 - DJI reviewed exclusions = 0
-- DJI missing = 49
+- DJI missing = 48
 
 ## Next expansion gate
 
-Printer-detail is closed. Nikon camera coverage is closed. The measured camera backlog continues with DJI 49 actionable rows, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded exact-model official-evidence waves.
+Printer-detail is closed. Nikon camera coverage is closed. The measured camera backlog continues with DJI 48 actionable rows, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded exact-model official-evidence waves.
