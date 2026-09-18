@@ -76,6 +76,7 @@
       hasHeader: true
     },
     options: {
+      cleanScope: "all",
       trim: true,
       normSpaces: false,
       zenHan: {
@@ -419,7 +420,7 @@ if (state.data.rows && state.data.rows.length) schedulePreviewRequest();
       .slice()
       .sort((a,b) => a.order - b.order);
 
-    const headers = cols.map(c => applyHeaderOptions(c.name));
+    const headers = cols.map(c => shouldApplyCleanForCol(c) ? applyHeaderOptions(c.name) : c.name);
     const srcRows = state.data.rows;
     const start = state.input.hasHeader ? 1 : 0;
     const dataRows = srcRows.slice(start);
@@ -428,7 +429,7 @@ if (state.data.rows && state.data.rows.length) schedulePreviewRequest();
     const outRows = [];
     for (let r=0; r<Math.min(n, dataRows.length); r++){
       const src = dataRows[r];
-      const dst = cols.map(c => applyCellOptions(src[c.srcIndex] ?? ""));
+      const dst = cols.map(c => shouldApplyCleanForCol(c) ? applyCellOptions(src[c.srcIndex] ?? "") : (src[c.srcIndex] ?? ""));
       outRows.push(dst);
     }
     return { headers, rows: outRows, colsUsed: cols.length, dropped: state.data.cols.length - cols.length };
@@ -1107,6 +1108,7 @@ setSegActive(els.hasHeaderOn, els.hasHeaderOff, true);
       if (file) handleFile(file);
     });
 
+    els.cleanScope.addEventListener("change", () => { state.options.cleanScope = els.cleanScope.value; schedulePreviewRequest(); });
     els.optTrim.addEventListener("change", () => { state.options.trim = !!els.optTrim.checked; schedulePreviewRequest(); });
     els.optNormSpaces.addEventListener("change", () => { state.options.normSpaces = !!els.optNormSpaces.checked; schedulePreviewRequest(); });
 

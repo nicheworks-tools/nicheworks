@@ -47,7 +47,7 @@ UTF-8 BOM is handled at the decoding boundary, not by the string parser. Encodin
 - Reorder/exclude use source column positions, not names. Rename changes output headers, not source rows. With header OFF, all source rows are data and generated display labels are not exported.
 - Active cleaning order: leading/trailing whitespace trim → collapse runs of ASCII spaces/TABs → width conversion. Trim may remove whitespace at field boundaries, including newlines; embedded newlines remain.
 - Width conversion uses the implemented ASCII-letter/digit/space/punctuation mapping in `convertZenHan`; it is not comprehensive Unicode normalization or kana transliteration. Header/data targeting remains separate.
-- Selected-column cleaning must leave unchecked columns untouched; currently G8. Whole-table cleaning combinations are covered.
+- Selected-column cleaning leaves unchecked columns literal in the shared preview/export model (G8 resolved at unit/integration level). ALL scope cleans every included column; selected scope uses each column entity’s cleaning selection, independent of its name or output position.
 - Manual rename/reorder/exclude are tested together. Example-template rename/order is currently G4 and is not a supported guarantee yet.
 - Settings that reparse the file currently rebuild columns and edits. Their rendered reset behavior and accidental edit-loss risk require the next phase; no persistence/history promise is made.
 
@@ -85,7 +85,7 @@ All classifications below are based on deterministic tests of current production
 | G5 | Filtering rendered column items hides excluded names from summary and confirmation; input count changes | CONFIRMED GAP / UX GAP | Compute counts/exclusions from full data state, not filtered DOM |
 | G6 | Loader silently pads ragged rows and replaces empty header names | RESOLVED (unit/integration) | First-record width validation, dedicated export gate, literal empty headers |
 | G7 | `b"c"d` and `"b"c` are accepted and rewritten | RESOLVED (unit/integration) | Reject invalid_quote/unclosed_quote with logical record, field and UTF-16 offset |
-| G8 | Unchecked selected-scope columns still receive cleaning | CONFIRMED GAP / BLOCKER | Wire scope and honor it in shared transformation path |
+| G8 | Unchecked selected-scope columns still receive cleaning | RESOLVED (unit/integration) | Scope control updates state; shared header/data transformation honors positional column selection |
 | G9 | Loading malformed data after good data retains old rows for export | CONFIRMED GAP / BLOCKER | Transactional load/clear failure state and repeated-load regression |
 
 Additional confirmed export blocker: `downloadCSV` passes the preview model object to an array serializer, throwing `rows.map is not a function`. It also reads BOM/newline from wrong state locations, uses unresolved input delimiter, and ignores the always-quote option. The preserved checkpoint repaired that export path. Current resolved/unresolved statuses are listed above.
@@ -164,3 +164,14 @@ Starting checkpoint: `12512320d0e941c3246fb9af0f7f009b1d05a73f`. G6 is now **RES
 - Empty header values remain empty strings in the output model and exported bytes until explicitly renamed. Independent column IDs/source positions preserve duplicate and empty columns. Header-OFF generated `col_N` labels remain display/internal labels and never become an exported header.
 
 Evidence: original behavior suite passes; **42 checkpoint tests pass / 0 fail / 0 skipped / 0 todo**, with **4 KNOWN GAP characterizations** (G4/G5/G8/G9). **34 generated Blobs** independently reparse with Python to expected matrices. No G1/G2/G3/G7 implementation changes, browser work, performance work or final PR.
+
+
+## G8 selected-column scope continuation — 2026-09-18
+
+Starting checkpoint: `881b23eeb4761515650d554c7c88227f4a7c02dc`. Only G8 is newly resolved. G4/G5/G9 remain unresolved; no overall acceptance or browser verification is claimed.
+
+Root cause: the existing column-selection predicate was unused by the common output model, and the scope control had no state binding. Both are now connected. Selected scope gates trim, repeated ASCII space/TAB normalization and width conversion for both headers and data. The existing header/data target switches still control width conversion separately; they do not disable trim or space normalization. ALL scope ignores per-column cleaning checkboxes, as intended. Existing checked-by-default column behavior is retained.
+
+Cleaning selection stays with the positional column entity through reorder, manual rename and exclusion. Empty/duplicate header values and header-OFF display labels do not determine identity. Excluded columns do not affect included-column targeting. Preview and export continue using the same transformation path; unchecked values remain literal. Source bytes are unchanged.
+
+Evidence: behavior suite PASS; checkpoint **46 pass / 0 fail / 0 skip / 0 todo**, including **3 remaining KNOWN GAP characterizations** (G4/G5/G9). **50 generated Blobs** match expected matrices through independent Python CSV parsing. No parsing/decoding or G4/G5/G9 implementation changes.

@@ -185,10 +185,75 @@ test('G7 resolved: malformed quotes reject with logical record, field and offset
   ]) assert.throws(() => h.parseCSV(text, ','), e => e.code === code && e.record === record && e.field === field && Number.isInteger(e.offset));
   assert.throws(() => h.parseCSV('a,b', 'auto'), e => e.code === 'invalid_delimiter');
 });
-test('G8 KNOWN GAP: selected-column scope does not protect an unchecked column', async () => {
-  const h = harness(); await h.load('a,b\n  x  ,  y  \n');
-  h.state.options.cleanScope = 'selected'; h.state.data.cols[1].cleanApply = false;
-  assert.deepEqual(plain(h.buildOutputPreview(false).rows), [['x','y']]);
+function scope(h, value) {
+  h.get('#cleanScope').value = value;
+  h.get('#cleanScope').dispatch('change');
+}
+async function selectedRoundTrip(h, expected) {
+  const preview = h.buildOutputPreview(true);
+  const full = h.buildOutputPreview(false);
+  assert.deepEqual(plain(preview), plain(full));
+  assert.deepEqual(plain(h.state.input.hasHeader ? [preview.headers, ...preview.rows] : preview.rows), expected);
+  const before = h.blobs.length;
+  h.downloadCSV();
+  assert.equal(h.blobs.length, before + 1);
+  assert.deepEqual(reparse(Buffer.from(await h.blobs.at(-1).arrayBuffer()), ','), expected);
+}
+test('G8 resolved: scope control and trim selection, reversed, none and ALL', async () => {
+  const h = harness(); h.bindUI(); await h.load('a,b\n  x  ,  y  \n');
+  scope(h, 'selected');
+  const [a,b] = h.state.data.cols;
+  b.cleanApply = false;
+  await selectedRoundTrip(h, [['a','b'],['x','  y  ']]);
+  a.cleanApply = false; b.cleanApply = true;
+  await selectedRoundTrip(h, [['a','b'],['  x  ','y']]);
+  b.cleanApply = false;
+  await selectedRoundTrip(h, [['a','b'],['  x  ','  y  ']]);
+  scope(h, 'all');
+  await selectedRoundTrip(h, [['a','b'],['x','y']]);
+});
+test('G8 resolved: individual space and width rules and combined cleaning', async () => {
+  for (const [value, trim, normSpaces, enabled, direction, expected] of [
+    [' x  \t y ',false,true,false,'zen2han',' x y '],
+    [' ＡＢ１２ ',false,false,true,'zen2han',' AB12 '],
+    [' AB12 ',false,false,true,'han2zen','　ＡＢ１２　'],
+    ['  Ａ  Ｂ  ',true,true,true,'zen2han','A B'],
+  ]) {
+    const h = harness(); h.bindUI(); await h.load(`a,b\n${value},${value}\n`);
+    scope(h,'selected'); h.state.data.cols[1].cleanApply = false;
+    Object.assign(h.state.options, {trim,normSpaces});
+    Object.assign(h.state.options.zenHan, {enabled,dir:direction,targetData:true,targetHeader:false});
+    await selectedRoundTrip(h, [['a','b'],[expected,value]]);
+  }
+});
+test('G8 resolved: duplicate and empty header selection follows entity through edits', async () => {
+  for (const headers of ['same,same,drop', ',,drop']) {
+    const h = harness(); h.bindUI(); await h.load(`${headers}\n  A  ,  B  ,  C  \n`);
+    scope(h,'selected');
+    const [a,b,c] = h.state.data.cols;
+    a.cleanApply = false; b.cleanApply = true; c.cleanApply = false;
+    await selectedRoundTrip(h, [headers.split(','),['  A  ','B','  C  ']]);
+    b.order = 0; a.order = 1; c.excluded = true; b.name = ' Renamed ';
+    await selectedRoundTrip(h, [['Renamed',a.name],['B','  A  ']]);
+  }
+});
+test('G8 resolved: selected scope gates separate header and data width targets', async () => {
+  for (const [targetHeader,targetData] of [[true,false],[false,true],[true,true]]) {
+    const h = harness(); h.bindUI(); await h.load('Ａ,Ｂ\nＣ,Ｄ\n');
+    scope(h,'selected'); h.state.data.cols[1].cleanApply = false;
+    h.state.options.trim = false; h.state.options.normSpaces = false;
+    Object.assign(h.state.options.zenHan, {enabled:true,dir:'zen2han',targetHeader,targetData});
+    await selectedRoundTrip(h, [[targetHeader?'A':'Ａ','Ｂ'],[targetData?'C':'Ｃ','Ｄ']]);
+  }
+});
+test('G8 resolved: header OFF positional selection preserves literal Japanese and quoted data', async () => {
+  const h = harness(); h.bindUI(); h.state.input.hasHeader = false;
+  const source = await h.load('  ００１  ,"  東京, ""引用""\n次  "\n');
+  const original = Buffer.from(source);
+  scope(h,'selected'); h.state.data.cols[1].cleanApply = false;
+  h.state.options.normSpaces = true;
+  await selectedRoundTrip(h, [['001','  東京, "引用"\n次  ']]);
+  assert.deepEqual(source, original);
 });
 test('G9 KNOWN GAP: failed replacement load retains previous exportable rows', async () => {
   const h = harness(); await h.load('a,b\nx,y\n'); await h.load('a,b\n"broken,x');

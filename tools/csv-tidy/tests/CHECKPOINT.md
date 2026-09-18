@@ -1,6 +1,6 @@
 # CSV Tidy correctness checkpoint — 2026-09-17 UTC
 
-Latest result: G6-only continuation below (2026-09-18): 42 passing tests, 4 remaining KNOWN GAP cases. Earlier sections retain historical evidence.
+Latest result: G8-only continuation below (2026-09-18): 46 passing tests, 3 remaining KNOWN GAP cases. Earlier sections retain historical evidence.
 
 Base: `4f00e990f06fd3bc9332a629859bac09e069ef52`.
 Branch: `feat/csv-tidy-product-quality-20260917`.
@@ -106,3 +106,14 @@ Coverage:
 - Width rejection cannot be bypassed by clearing displayed text; a valid reload resumes export. This is the narrow G6 gate only. The general G9 characterization remains unchanged and passing as an unresolved finding.
 
 **34 independent Python Blob reparses matched**: preserved 26 plus six empty/duplicate-header outputs (three fixtures before/after editing), one header-OFF empty-record output and one valid reload after width rejection. G1/G2/G3/G7 regressions were not edited and remain passing. No browser/responsive/performance/SEO work or overall acceptance claim.
+
+
+## G8-only continuation — 2026-09-18
+
+Recovered local/remote branch HEAD `881b23eeb4761515650d554c7c88227f4a7c02dc`; no partial CSV Tidy changes or later commits. Local/live main `3f0760aa4da260225a1d1c82961a45a0365b2f8b`. Unrelated deletion left untouched.
+
+Replaced the G8 bad-behavior characterization with five acceptance tests. Initial focused run failed all five on the original implementation. Scope now updates options, and the existing selection predicate gates the shared header/data transformation. Final behavior suite PASS; checkpoint **46 PASS / 0 FAIL / 0 SKIP / 0 TODO**. Remaining KNOWN GAP count **3: G4/G5/G9**.
+
+Acceptance covers first/reversed/no selection and ALL scope; trim, repeated spaces/TAB, both width directions and combined rules; duplicate/empty headers; reorder + manual rename + exclusion; separate header/data width targeting; header OFF; Japanese text, leading zeroes, embedded quotes/newlines and unchanged source bytes. The scope-control change event is exercised. This is VM/model integration evidence, not browser certification.
+
+The 16 new actual export Blobs match preview/full output models and independent Python `csv.reader` expectations: four trim/scope cases, four rule combinations, four positional-header/edit cases, three width-target combinations and one header-OFF case. Together with the preserved 34, **50 independent reparses match**. Existing G1/G2/G3/G6/G7 regressions remain unchanged and passing. No G4/G5/G9, browser, responsive, performance or SEO work.
