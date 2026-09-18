@@ -157,7 +157,7 @@ Future work is maintenance: new models, source changes, corrections, and evidenc
 
 Applied on **2026-09-18** after v1 closure.
 
-Current maintained dataset: **185 phones**.
+Dataset after Wave 1: **185 phones**.
 
 Added four Japan-market 2026 models from manufacturer primary sources:
 
@@ -171,6 +171,29 @@ Package provenance is now optionally stored as `sources.packageUrl` and checked 
 The Xperia 10 VIII record intentionally does not invent a wired wattage or charging protocol claim. Sony's maintained product specification establishes USB Type-C and the battery facts used here; a stronger charging claim can be added later only when exact primary evidence is maintained.
 
 OPPO Reno15 A and Reno16 5G were reviewed during this freshness pass but are **not added in this wave** because the current non-foldable schema stores one thickness and one weight while OPPO's official Japan specifications publish color-dependent thickness/weight variants. A schema change is required before those records can be represented without collapsing official variant facts.
+
+## Maintenance — 2026 freshness Wave 2
+
+Applied on **2026-09-18**.
+
+Current maintained dataset: **187 phones**.
+
+Added a non-foldable `physicalVariants[]` schema for manufacturer-published colour/material variants whose thickness and mass differ. The schema preserves each exact thickness↔weight pair and forbids replacing them with one inferred top-level `depthMm` or `weightG`.
+
+Runtime behavior:
+
+- compact list size continues to use common height × width;
+- weight displays the published variant range;
+- detail output shows the overall depth range plus each labelled variant's exact depth and weight;
+- "lightest" sorting uses the minimum published variant mass;
+- Japanese/English variant labels switch with the rest of the UI.
+
+Added two Japan-market 2026 records from OPPO primary sources:
+
+- OPPO Reno15 A — Twilight Navy / Afterglow Pink: 8.1 mm / 195 g; Aurora Blue: 8.3 mm / 202 g.
+- OPPO Reno16 5G — Twilight Purple: 8.2 mm / 182 g; Pop White: 8.4 mm / 193 g.
+
+Both records keep source-backed 80W SUPERVOOC / 55W PPS charging, source-backed battery capacities, exact water/dust ratings, and explicit package exclusions from OPPO's exhaustive in-box lists.
 
 ## Regression guard
 

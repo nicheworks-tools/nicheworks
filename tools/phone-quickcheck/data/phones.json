@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "updatedAt": "2026-09-18",
   "phones": [
     {
@@ -9381,6 +9381,144 @@
         "releaseUrl": "https://www.ymobile.jp/lineup/libero_flip/",
         "chargingUrl": "https://www.ymobile.jp/lineup/libero_flip/",
         "verifiedAt": "2026-09-14"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "oppo-reno16-5g",
+      "manufacturer": "OPPO",
+      "model": "OPPO Reno16 5G",
+      "aliases": [
+        "Reno16 5G",
+        "Reno16",
+        "OPPO Reno16",
+        "オッポReno16 5G",
+        "CPH2865"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 151,
+        "widthMm": 72
+      },
+      "physicalVariants": [
+        {
+          "key": "twilight-purple",
+          "labelJa": "トワイライトパープル",
+          "labelEn": "Twilight Purple",
+          "depthMm": 8.2,
+          "weightG": 182
+        },
+        {
+          "key": "pop-white",
+          "labelJa": "ポップホワイト",
+          "labelEn": "Pop White",
+          "depthMm": 8.4,
+          "weightG": 193
+        }
+      ],
+      "displayInch": 6.3,
+      "waterRating": "IPX8/IPX9/IPX9K / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 80,
+        "protocols": [
+          "SUPERVOOC",
+          "PPS"
+        ],
+        "pps": "supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 6700,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.oppo.com/jp/smartphones/series-reno/reno16/specs/"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno16/specs/",
+        "manualUrl": "https://support.oppo.com/jp/user-guide/",
+        "releaseUrl": "https://www.oppo.com/jp/newsroom/press/reno16-release/",
+        "chargingUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno16/specs/",
+        "waterUrl": "https://www.oppo.com/jp/newsroom/press/reno16-release/",
+        "packageUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno16/specs/",
+        "verifiedAt": "2026-09-18"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "oppo-reno15-a",
+      "manufacturer": "OPPO",
+      "model": "OPPO Reno15 A",
+      "aliases": [
+        "Reno15 A",
+        "Reno15A",
+        "OPPO Reno15A",
+        "オッポReno15 A",
+        "CPH2801"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 158,
+        "widthMm": 75
+      },
+      "physicalVariants": [
+        {
+          "key": "twilight-navy-afterglow-pink",
+          "labelJa": "トワイライトネイビー / アフターグロウピンク",
+          "labelEn": "Twilight Navy / Afterglow Pink",
+          "depthMm": 8.1,
+          "weightG": 195
+        },
+        {
+          "key": "aurora-blue",
+          "labelJa": "オーロラブルー",
+          "labelEn": "Aurora Blue",
+          "depthMm": 8.3,
+          "weightG": 202
+        }
+      ],
+      "displayInch": 6.6,
+      "waterRating": "IPX8/IPX9 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 80,
+        "protocols": [
+          "SUPERVOOC",
+          "PPS"
+        ],
+        "pps": "supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 7000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.oppo.com/jp/smartphones/series-reno/reno15-a/specs/"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno15-a/specs/",
+        "manualUrl": "https://support.oppo.com/jp/user-guide/",
+        "releaseUrl": "https://www.oppo.com/jp/newsroom/press/reno15a-release/",
+        "chargingUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno15-a/specs/",
+        "waterUrl": "https://www.oppo.com/jp/newsroom/press/reno15a-release/",
+        "packageUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno15-a/specs/",
+        "verifiedAt": "2026-09-18"
       },
       "affiliateKeys": []
     },

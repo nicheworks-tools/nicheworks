@@ -6,7 +6,7 @@
 - Public URL: `https://nicheworks.app/tools/phone-quickcheck/`
 - Specification status: `complete`
 - Common specification: `common-spec/spec-ja.md`
-- Current dataset: `185 verified models`
+- Current dataset: `187 verified models`
 - Public launch date: `2026-09-13`
 - Product class: `static browser utility / quick-check directory`
 
@@ -18,7 +18,7 @@ It is intentionally not a comprehensive smartphone encyclopedia, review database
 
 ## Current functional contract
 
-The maintained public dataset contains 185 verified models across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, Motorola, and ZTE, including 32 foldables with separate folded/unfolded dimensions. Users can search by model name and maintained aliases, filter by manufacturer, charging connector, and release year, and sort by newest, lightest, or compact-size oriented order.
+The maintained public dataset contains 187 verified models across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, Motorola, and ZTE, including 32 foldables with separate folded/unfolded dimensions. Users can search by model name and maintained aliases, filter by manufacturer, charging connector, and release year, and sort by newest, lightest, or compact-size oriented order.
 
 The list view remains deliberately compact. Selecting a phone exposes detail information including dimensions, weight, display size where maintained, water/dust rating or an explicitly source-backed non-resistant state, charging port, charger guidance, verified protocol labels, PPS state, wireless charging standard/wattage, battery capacity where an accepted value exists, included cable/adapter state, official specification/manual links, and last verification date.
 
@@ -61,7 +61,7 @@ Canonical runtime inputs are static NicheWorks-hosted JSON data:
 - `scripts/check-phone-quickcheck-source-semantics.mjs`
 - `tools/phone-quickcheck/tests/behavior.test.mjs`
 
-Phone records use stable model IDs, canonical manufacturer/model names, maintained aliases, dimensions in millimetres, mass in grams, charging facts, provenance/source URLs, verification date, and optional additive accessory keys. Standard phones use `dimensions`; foldables use `formFactor: foldable` plus complete `dimensionsFolded` and `dimensionsUnfolded` sets. Each dimension set keeps `heightMm` and `widthMm` plus either one `depthMm` value or, for a manufacturer-published variable foldable thickness, the paired `depthMmMin` / `depthMmMax` range. A range must never be collapsed into an inferred single depth. Foldables are listed and compact-sorted by folded dimensions while detail output shows both physical states.
+Phone records use stable model IDs, canonical manufacturer/model names, maintained aliases, dimensions in millimetres, mass in grams, charging facts, provenance/source URLs, verification date, and optional additive accessory keys. Standard phones normally use `dimensions` plus one `weightG`. When a manufacturer publishes colour/material variants with paired thickness and mass values, the canonical record instead keeps common `dimensions.heightMm` / `dimensions.widthMm` and a `physicalVariants[]` array. Each physical variant requires a stable key, Japanese/English label, exact `depthMm`, and exact `weightG`; the validator forbids collapsing those variant facts back into one top-level depth or weight. The list displays a weight range, the detail view preserves each exact thickness↔weight pairing, and lightest sorting uses the minimum published variant mass. Foldables use `formFactor: foldable` plus complete `dimensionsFolded` and `dimensionsUnfolded` sets. Each foldable dimension set keeps `heightMm` and `widthMm` plus either one `depthMm` value or, for a manufacturer-published variable foldable thickness, the paired `depthMmMin` / `depthMmMax` range. A range must never be collapsed into an inferred single depth. Foldables are listed and compact-sorted by folded dimensions while detail output shows both physical states.
 
 `waterRating` stores a published IP rating when one is maintained. An explicit negative state uses `waterStatus: not_resistant` plus a manufacturer-controlled `sources.waterUrl`; a missing/null `waterRating` without that status remains unknown/unverified. The absence of an IP rating must never be inferred as proof that a device is not water resistant.
 
@@ -125,7 +125,7 @@ Desktop uses a wide two-pane layout: searchable/filterable list on the left and 
 - [x] One canonical public tool page exists at `/tools/phone-quickcheck/`.
 - [x] Japanese and English UI are available on the same page.
 - [x] Desktop uses list + right detail pane and mobile uses a bottom sheet for details.
-- [x] The maintained public dataset contains 185 maintained models.
+- [x] The maintained public dataset contains 187 maintained models.
 - [x] Search matches canonical model names plus maintained aliases.
 - [x] Manufacturer, connector, and release-year filters work from canonical data.
 - [x] Device dimensions, weight, charging information, and official-source links can be displayed without converting the tool into a full specification encyclopedia.
