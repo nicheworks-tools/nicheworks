@@ -26,6 +26,7 @@ Do not add Amazon product offers merely to monetize the page. A future career/jo
 - Accept applicant name, company, role/title, key skills, and optional experience summary.
 - Support Formal/Neutral tone, Short/Medium length, and Formal/Modern/Entry-level/Direct/Skill-focused template styles.
 - Generate an English draft locally from the selected template and entered fields.
+- Keep a crawlable static guide to cover-letter structure (opening, fit, evidence, closing), template-style differences, and post-generation review before the interactive form.
 - Show a word count and allow copy or TXT save of the generated draft.
 - Keep the output explicitly positioned as an editable starting point that must be reviewed for the actual role/company.
 
@@ -74,6 +75,7 @@ The primary workflow is a vertical form followed by a generated draft and checkl
 - [ ] Copy and TXT save operate on the currently generated draft.
 - [ ] The page remains explicitly English-only and retains the review/privacy warnings.
 - [ ] Public title, description, H1, and intro state that the tool is a free English cover-letter template generator and that no AI API is used.
+- [ ] Initial HTML explains the basic cover-letter structure and five template-style roles, and provides a contextual handoff to ATS Paste Doctor without claiming hiring outcomes.
 - [ ] No Amazon affiliate offer is rendered under the current `ADS_DONATION` classification.
 
 ## Implementation evidence
