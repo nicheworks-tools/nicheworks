@@ -71,5 +71,8 @@ await import('./om-system-li92b-accessory-wave3.test.mjs');
 await import('./om-system-bls50-accessory-wave4.test.mjs');
 await import('./om-system-bln1-accessory-wave5.test.mjs');
 await import('./om-system-bls50-legacy-wave6.test.mjs');
+await import('./gopro-enduro-accessory-wave1.test.mjs');
+await import('./gopro-hero13-accessory-wave2.test.mjs');
+await import('./gopro-legacy-battery-wave3.test.mjs');
 await import('./camera-accessory-coverage.test.mjs');
 await import('./camera-accessory-doc-sync.test.mjs');
