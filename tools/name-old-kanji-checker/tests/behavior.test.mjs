@@ -145,7 +145,7 @@ assert.match(rawSource, /The candidates shown here do not determine legal validi
 
 const indexHtml = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 assert.match(indexHtml, /戸籍上の正式な字体や氏名への使用可否を判定するものではありません/);
-assert.match(indexHtml, /入力内容はブラウザ内で処理され/);
+assert.match(rawSource, /入力内容はブラウザ内で処理され、外部APIには送信しません/);
 assert.doesNotMatch(indexHtml, /\$4\.99|data-okj-pro-state|billing-unavailable/, 'unfinished Pro sales panel must not be rendered');
 
 console.log('Name Old Kanji Checker behavior test passed.');
