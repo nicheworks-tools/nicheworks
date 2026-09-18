@@ -1,0 +1,396 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-18-wave6j-fasteners-finishes-electrical-1",
+  "entries": [
+    {
+      "id": "anchor_plastic_plug",
+      "wave": "content-wave-006j",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "コンクリート、レンガ、ブロックなどへねじを固定するため、下穴へ挿入してねじ締めで広がる樹脂製プラグアンカー。下地材、穴径、ねじ径、必要荷重に合う種類を選ぶ。",
+      "detail_en": "A plastic wall plug inserted into a drilled hole in masonry and expanded by a screw to provide light-duty anchorage. Plug type, hole diameter, screw size, base material, and load should be compatible.",
+      "bullets_ja": [
+        "指定径・深さの下穴をあけ、切粉や粉じんを除去してから挿入する。",
+        "プラグに適合するねじ径・長さを使い、締め過ぎて空回りや下地破損を起こさない。",
+        "重量物・人命に関わる支持には、荷重性能が確認された適切なアンカーを使用する。"
+      ],
+      "bullets_en": [
+        "Drill the specified hole diameter and depth and remove drilling dust before inserting the plug.",
+        "Use a compatible screw diameter and length and avoid overtightening that strips the plug or damages the substrate.",
+        "For heavy or life-safety loads, use a rated anchoring system specifically designed for that application."
+      ],
+      "examples_ja": [
+        "コンクリート壁へ軽量ブラケットを樹脂プラグとねじで固定する。",
+        "ブロック壁へ小型サインを取り付ける。"
+      ],
+      "examples_en": [
+        "Fasten a light bracket to a concrete wall with a plastic plug and screw.",
+        "Mount a small sign on masonry using a suitable wall plug."
+      ]
+    },
+    {
+      "id": "silicone_sealant",
+      "wave": "content-wave-006j",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "ガラス、金属、タイル、設備まわりなどの目地・取り合いをシールする弾性シーリング材。酢酸系・中性硬化型などがあり、下地、塗装可否、耐候・防カビ性能を用途に合わせて選ぶ。",
+      "detail_en": "An elastic sealant used at joints and interfaces around glazing, metal, tile, and fixtures. Cure chemistry, substrate compatibility, paintability, weathering, and mildew resistance vary by product.",
+      "bullets_ja": [
+        "下地のほこり・油・水分を除去し、必要なプライマーやバックアップ材を使用する。",
+        "目地幅・深さを整え、充填後は表面を押さえて接着面へ確実に密着させる。",
+        "硬化前の水濡れや動きを避け、塗装が必要な場合は塗装可能な製品か確認する。"
+      ],
+      "bullets_en": [
+        "Clean dust, oil, and moisture from the substrate and use required primer or backer material.",
+        "Control joint width and depth and tool the sealant so it makes firm contact with the bonding surfaces.",
+        "Protect the joint during cure and confirm paintability before coating over the sealant."
+      ],
+      "examples_ja": [
+        "洗面器まわりの取り合いへ防カビシリコーンを施工する。",
+        "ガラスと金属枠の目地へ適合するシーラントを充填する。"
+      ],
+      "examples_en": [
+        "Seal around a basin with a compatible mildew-resistant silicone.",
+        "Apply suitable silicone to a joint between glazing and a metal frame."
+      ]
+    },
+    {
+      "id": "concrete_saw",
+      "wave": "content-wave-006j",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "コンクリート、アスファルト、石材などをダイヤモンドブレード等で切断する高出力切断機。手持ち式、床走行式などがあり、材料、切込み深さ、湿式・乾式条件に合う刃を使用する。",
+      "detail_en": "A high-powered saw using diamond or abrasive blades to cut concrete, asphalt, or masonry. Handheld and walk-behind types require blades matched to material, cutting depth, speed, and wet/dry use.",
+      "bullets_ja": [
+        "機械の定格回転数以上に対応した適正なブレードを装着し、ガードを外して使用しない。",
+        "切断粉じん、特にシリカ粉じんを湿式切断や集じんで抑え、必要な呼吸用保護具を使う。",
+        "刃の挟み込み・キックバックを避ける切断方向と姿勢を取り、刃が停止してから移動・調整する。"
+      ],
+      "bullets_en": [
+        "Fit a blade approved for the machine speed and material and never operate without the required guard.",
+        "Control cutting dust, especially respirable silica, using wet methods or extraction and suitable respiratory protection.",
+        "Avoid blade binding and kickback through proper cut planning and stance and wait for the blade to stop before adjustment or movement."
+      ],
+      "examples_ja": [
+        "既設コンクリート床へ設備開口用の切断線を入れる。",
+        "アスファルト舗装を補修範囲に沿って切断する。"
+      ],
+      "examples_en": [
+        "Saw-cut an existing slab around a planned service opening.",
+        "Cut asphalt along the edge of a repair area."
+      ]
+    },
+    {
+      "id": "nail_set",
+      "wave": "content-wave-006j",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "仕上げ釘などの頭を木材表面より少し沈めるため、ハンマーで打つ細いポンチ状の手工具。釘頭に合う先端径を選び、仕上げ面を傷付けずに打ち込む。",
+      "detail_en": "A small punch-like hand tool struck with a hammer to drive finish-nail heads slightly below the timber surface. Tip diameter should match the nail head to avoid slipping and damaging the finish.",
+      "bullets_ja": [
+        "釘頭に合う先端を選び、先端が摩耗・欠けた工具は使用しない。",
+        "ポンチを釘頭へ垂直に当て、手指を打撃位置から離して軽く打ち込む。",
+        "仕上げ材を深く傷めない程度に沈め、必要に応じて穴をパテ処理する。"
+      ],
+      "bullets_en": [
+        "Choose a tip that fits the nail head and do not use a chipped or badly worn punch.",
+        "Hold the nail set squarely on the nail and keep fingers clear of the hammer strike.",
+        "Drive only far enough for the finish requirement, then fill the recess where needed."
+      ],
+      "examples_ja": [
+        "巾木の仕上げ釘を釘しめで少し沈める。",
+        "木製見切り材の釘頭をパテ処理前に沈める。"
+      ],
+      "examples_en": [
+        "Set finish nails slightly below the surface of base trim.",
+        "Sink nail heads in timber molding before filling."
+      ]
+    },
+    {
+      "id": "drywall_tape",
+      "wave": "content-wave-006j",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "石膏ボードの継ぎ目を補強し、ひび割れを抑えるためジョイントコンパウンドと併用するテープ。紙テープ、メッシュテープなどがあり、使用するパテと工法に合わせる。",
+      "detail_en": "Tape used with joint compound to reinforce drywall seams and reduce cracking. Paper and mesh products have different installation methods and compound compatibility.",
+      "bullets_ja": [
+        "継ぎ目の段差・ほこりを整え、使用するジョイントコンパウンドに適合するテープを選ぶ。",
+        "紙テープはパテへ十分に伏せ込み、気泡・しわ・浮きを残さない。",
+        "継ぎ目・出隅・入隅など部位に合う処理方法を守り、乾燥後に次層を施工する。"
+      ],
+      "bullets_en": [
+        "Prepare the joint and select tape compatible with the joint compound and specified system.",
+        "Embed paper tape fully in compound and remove bubbles, wrinkles, and loose areas.",
+        "Use the correct treatment for flat joints, inside corners, and other conditions and allow proper drying before later coats."
+      ],
+      "examples_ja": [
+        "石膏ボード継ぎ目へ紙テープをパテで伏せ込む。",
+        "入隅へ折り目付きジョイントテープを施工する。"
+      ],
+      "examples_en": [
+        "Embed paper tape in compound over a drywall seam.",
+        "Install folded joint tape at an inside corner."
+      ]
+    },
+    {
+      "id": "paint_tray",
+      "wave": "content-wave-006j",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "ローラー塗装で塗料を入れ、ローラーへ適量を含ませるためのトレイ。塗料溜まり部としごき面があり、ローラー幅や塗料量に合うサイズを使う。",
+      "detail_en": "A tray used to hold paint and load a roller with a controlled amount of coating. It includes a reservoir and ramp and should be sized to suit roller width and working volume.",
+      "bullets_ja": [
+        "水平で安定した場所へ置き、通路や脚立足元など転倒しやすい位置を避ける。",
+        "塗料を入れ過ぎず、ローラーをしごき面で均一に含ませて液だれを減らす。",
+        "色・材料を変える前に洗浄またはライナー交換を行い、異種塗料の混入を防ぐ。"
+      ],
+      "bullets_en": [
+        "Place the tray on a stable level surface away from access routes and ladder feet.",
+        "Do not overfill; roll off excess coating on the ramp to load the roller evenly and reduce drips.",
+        "Clean the tray or replace the liner before changing colors or incompatible coating types."
+      ],
+      "examples_ja": [
+        "壁面ローラー塗装でトレイに必要量の塗料を入れる。",
+        "色替え前にトレイライナーを交換する。"
+      ],
+      "examples_en": [
+        "Load a paint tray with a manageable amount of coating for wall rolling.",
+        "Replace a tray liner before changing paint color."
+      ]
+    },
+    {
+      "id": "caulk_back_up_tape",
+      "wave": "content-wave-006j",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "この項目ではシーリング施工時に目地両側の仕上げ面を保護し、直線的な仕上がりを作るマスキング・養生テープを指す。下地への粘着性と糊残り、屋外適性を確認して使う。",
+      "detail_en": "In this entry, caulk masking tape means tape applied along both sides of a sealant joint to protect adjacent finishes and create a clean edge. Adhesion, residue, substrate compatibility, and outdoor suitability should be considered.",
+      "bullets_ja": [
+        "目地周囲のほこり・水分を除去し、下地を傷めない粘着力のテープを使う。",
+        "仕上げたい目地幅に合わせてまっすぐ貼り、シーリング材をテープ下へ押し込まない。",
+        "表面仕上げ後、シーリング材が完全硬化する前の適切なタイミングでテープを剥がす。"
+      ],
+      "bullets_en": [
+        "Clean the joint edges and use tape with adhesion suitable for the substrate without causing damage or residue.",
+        "Apply straight lines at the desired joint width and avoid forcing sealant beneath the tape edge.",
+        "Remove the tape at the proper stage after tooling, before cured sealant bridges strongly over the tape."
+      ],
+      "examples_ja": [
+        "サッシまわりのシーリング目地両側へマスキングテープを貼る。",
+        "仕上げ押さえ後に養生テープを剥がして直線的な目地を作る。"
+      ],
+      "examples_en": [
+        "Mask both sides of a window-perimeter sealant joint.",
+        "Remove masking tape after tooling to leave a clean sealant edge."
+      ]
+    },
+    {
+      "id": "gfci_rcd",
+      "wave": "content-wave-006j",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "漏電・地絡による電流差を検出し、一定条件で回路を素早く遮断する保護装置。GFCIやRCDなど呼称・規格は地域で異なり、感度、定格、設置位置を回路用途に合わせる。",
+      "detail_en": "A protective device that detects leakage or residual current and disconnects a circuit when specified conditions are exceeded. GFCI and RCD terminology and ratings vary by region and application.",
+      "bullets_ja": [
+        "回路電圧・定格電流・必要感度に適合する製品を使用し、適用基準に従って設置する。",
+        "TEST機能など指定された方法で定期的に動作確認し、作動しない装置は使用しない。",
+        "漏電遮断器だけに頼らず、接地・絶縁・配線保護など他の電気安全対策も維持する。"
+      ],
+      "bullets_en": [
+        "Use a device rated for the circuit voltage, current, and required trip sensitivity and install it in accordance with applicable requirements.",
+        "Test operation using the specified test function or procedure and remove a device from service if it does not operate correctly.",
+        "Do not rely on residual-current protection alone; maintain grounding, insulation, and other electrical safeguards."
+      ],
+      "examples_ja": [
+        "仮設電源回路へ適合する漏電保護を設ける。",
+        "使用前点検でポータブルGFCIのTEST/RESET動作を確認する。"
+      ],
+      "examples_en": [
+        "Provide suitable residual-current protection on temporary power circuits.",
+        "Check TEST/RESET operation of a portable GFCI before use."
+      ]
+    },
+    {
+      "id": "hose_clamp",
+      "wave": "content-wave-006j",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "ホースをニップルや配管継手へ締め付けて抜け・漏れを抑えるバンド式締結具。ウォームギヤ式、スプリング式などがあり、ホース外径、圧力、材質、腐食環境に合わせて選ぶ。",
+      "detail_en": "A band-type fastener used to secure hose over a barb or fitting and reduce leakage or pull-off. Worm-drive, spring, and other clamp types have different size, pressure, material, and corrosion limits.",
+      "bullets_ja": [
+        "ホース外径がクランプの使用範囲中央付近に入る適正サイズを選ぶ。",
+        "継手のビードや差込み長さを確認し、ホースを正しく差し込んでから締める。",
+        "締め過ぎてホースを切ったり変形させたりせず、高圧用途では専用品と仕様を確認する。"
+      ],
+      "bullets_en": [
+        "Select a clamp whose adjustment range properly covers the hose outside diameter.",
+        "Seat the hose fully over the fitting or barb before positioning and tightening the clamp.",
+        "Avoid overtightening that cuts or distorts the hose, and use specifically rated systems for high-pressure service."
+      ],
+      "examples_ja": [
+        "排水ホースをニップルへ差し込みホースバンドで固定する。",
+        "屋外配管で耐食性のあるクランプを使用する。"
+      ],
+      "examples_en": [
+        "Secure a drain hose to a barb with a properly sized hose clamp.",
+        "Use corrosion-resistant clamps on exposed outdoor hose connections."
+      ]
+    },
+    {
+      "id": "plumber_s_putty",
+      "wave": "content-wave-006j",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "水栓、排水金具、シンク部品などのフランジ下で隙間を埋める非硬化性の配管用パテ。製品により石材・樹脂への適否が異なり、圧力配管のねじシール用途には使わない。",
+      "detail_en": "A non-hardening putty used beneath flanges on faucets, drains, sinks, and similar plumbing fixtures. Compatibility with stone and plastics varies, and it is not a substitute for thread sealant on pressurized pipe joints.",
+      "bullets_ja": [
+        "使用する器具・天板材へ適合する製品か確認し、天然石など染みの出る材料では指定シール材を使う。",
+        "適量を均一なひも状にしてフランジ下へ入れ、締付けで余分なパテを押し出す。",
+        "圧力配管のねじ接続や製品が禁止する樹脂部品へ流用しない。"
+      ],
+      "bullets_en": [
+        "Confirm compatibility with the fixture and countertop material and use another specified sealant where putty can stain porous stone.",
+        "Form a uniform bead beneath the flange and allow tightening to squeeze out the excess.",
+        "Do not substitute plumber's putty for pressurized threaded joints or use it on incompatible plastics."
+      ],
+      "examples_ja": [
+        "排水金具フランジ下へ配管パテを入れてシンクへ固定する。",
+        "水栓台座のシールに製品指定のパテを使用する。"
+      ],
+      "examples_en": [
+        "Place plumber's putty beneath a drain flange before tightening it to a sink.",
+        "Seal a faucet base with putty where permitted by the fixture manufacturer."
+      ]
+    },
+    {
+      "id": "lag_screw",
+      "wave": "content-wave-006j",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "木材や木下地へ比較的大きな荷重の部材を固定する太径の六角頭ねじ。径、長さ、ねじ込み深さ、下穴、座金、材質・防錆仕様を接合条件に合わせる。",
+      "detail_en": "A heavy wood screw, usually with a hex head, used to fasten components to timber. Diameter, length, embedment, pilot-hole size, washer use, and corrosion resistance must suit the connection.",
+      "bullets_ja": [
+        "木材の割れや過大な締付けを防ぐため、径・樹種に合う下穴を施工する。",
+        "必要なねじ込み深さと端距離を確保し、座金指定がある場合は併用する。",
+        "屋外や防腐処理材では、接触環境に適した耐食材質・表面処理を選ぶ。"
+      ],
+      "bullets_en": [
+        "Drill the appropriate pilot hole for screw diameter and timber species to reduce splitting and installation torque.",
+        "Maintain required embedment and edge distances and use a washer where specified.",
+        "For exterior or treated timber, select corrosion-resistant material or coating compatible with the environment."
+      ],
+      "examples_ja": [
+        "木梁へ金物をコーチスクリューで固定する。",
+        "壁下地へ重量物用ブラケットを適切な下穴とともに取り付ける。"
+      ],
+      "examples_en": [
+        "Fasten a bracket to a timber beam with lag screws.",
+        "Install a heavy-duty bracket into timber framing using properly drilled pilot holes."
+      ]
+    },
+    {
+      "id": "concrete_screw",
+      "wave": "content-wave-006j",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "コンクリートや組積材へ専用下穴をあけ、ねじ山を食い込ませて直接固定するコンクリート用ねじ。下地強度、径、埋込み深さ、穴径、端距離を製品仕様に合わせる。",
+      "detail_en": "A masonry screw installed directly into a predrilled hole in concrete or masonry. Base-material strength, screw diameter, embedment, drill-hole size, and edge distance must follow the anchoring system requirements.",
+      "bullets_ja": [
+        "指定ビット径・穴深さで穿孔し、穴内粉じんを製品指定方法で除去する。",
+        "必要な端距離・アンカー間隔・埋込み深さを確保し、過締めでねじ山を破壊しない。",
+        "構造・耐震・吊下げ用途では、その荷重用途に認められた製品と設計条件を使用する。"
+      ],
+      "bullets_en": [
+        "Drill the specified hole diameter and depth and clean drilling dust as required by the product instructions.",
+        "Maintain required edge distance, spacing, and embedment and avoid overtightening that strips the formed thread.",
+        "For structural, seismic, or suspended loads, use an anchoring system approved and designed for that application."
+      ],
+      "examples_ja": [
+        "コンクリート壁へ軽量下地材をコンクリートビスで固定する。",
+        "設備支持金物を指定埋込み深さで取り付ける。"
+      ],
+      "examples_en": [
+        "Fasten light framing to a concrete wall with suitable concrete screws.",
+        "Install equipment support hardware using the specified screw embedment."
+      ]
+    },
+    {
+      "id": "expansion_anchor",
+      "wave": "content-wave-006j",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "コンクリートなどの下穴内でスリーブやウェッジを拡張させ、摩擦・支圧で固定する機械式アンカー。下地、穴径、埋込み、端距離、締付けトルクが性能へ影響する。",
+      "detail_en": "A mechanical anchor that expands a sleeve or wedge inside a drilled hole in concrete or masonry. Performance depends on the base material, hole size, embedment, spacing, edge distance, and installation torque.",
+      "bullets_ja": [
+        "対象下地へ認められたアンカーを選び、指定径・深さで正確に穿孔する。",
+        "穴内を清掃し、指定埋込み深さ・締付けトルクで施工する。",
+        "ひび割れコンクリート、端部近傍、耐震用途などでは、適用条件と設計値を必ず確認する。"
+      ],
+      "bullets_en": [
+        "Select an anchor approved for the actual base material and drill the specified diameter and depth accurately.",
+        "Clean the hole and install to the required embedment and tightening torque.",
+        "For cracked concrete, edge locations, seismic conditions, or other critical applications, verify the anchor's specific approval and design limits."
+      ],
+      "examples_ja": [
+        "コンクリート床へ設備ベースをウェッジアンカーで固定する。",
+        "手すり支柱のアンカーを指定トルクで締め付ける。"
+      ],
+      "examples_en": [
+        "Anchor an equipment base to a concrete slab with approved expansion anchors.",
+        "Tighten railing-post anchors to the specified installation torque."
+      ]
+    },
+    {
+      "id": "drywall_screw",
+      "wave": "content-wave-006j",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "石膏ボードを木下地・軽量鉄骨下地へ固定するための皿頭ねじ。下地材に応じてねじ山形状・長さを選び、頭をボード紙面を破らない位置まで沈める。",
+      "detail_en": "A bugle-head screw used to fasten gypsum board to timber or light-gauge steel framing. Thread type and length should match the substrate, and the head should sit below the surface without tearing the face paper.",
+      "bullets_ja": [
+        "木下地用・鋼製下地用など適合するねじを選び、必要な下地への掛かりを確保する。",
+        "頭をわずかに沈めるが、紙面を破って芯材までめり込ませない。",
+        "図面・仕様の留付け間隔と端距離を守り、浮きや未締付けを残さない。"
+      ],
+      "bullets_en": [
+        "Use screws suited to timber or steel framing and provide adequate penetration into the supporting member.",
+        "Set the head slightly below the surface without breaking through the face paper.",
+        "Follow specified fastener spacing and edge distances and correct proud or loose screws."
+      ],
+      "examples_ja": [
+        "石膏ボードを軽量鉄骨スタッドへボードビスで留める。",
+        "ビス頭を紙面を破らない深さへ調整する。"
+      ],
+      "examples_en": [
+        "Fasten gypsum board to metal studs with drywall screws.",
+        "Adjust screw depth so the head is recessed without tearing the board paper."
+      ]
+    },
+    {
+      "id": "corner_bead",
+      "wave": "content-wave-006j",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "石膏ボード壁などの出隅を直線に整え、角部を衝撃から保護するコーナービード。金属、樹脂、紙付きタイプなどがあり、下地・湿気条件・仕上げ工法に合わせる。",
+      "detail_en": "A trim profile installed on outside drywall corners to establish a straight edge and protect the corner from impact. Metal, vinyl, and paper-faced types suit different substrates and exposure conditions.",
+      "bullets_ja": [
+        "下地の出隅が大きく曲がっていないか確認し、ビードを通り良く取り付ける。",
+        "指定のビス・釘・クリンチ・パテ等で固定し、浮きやねじれを残さない。",
+        "ジョイントコンパウンドを薄く広く重ね、ビード端部が仕上げ面へ出ないよう平滑にする。"
+      ],
+      "bullets_en": [
+        "Check the substrate corner for major irregularity and install the bead straight and true.",
+        "Fasten with the specified screws, nails, clinching, adhesive, or compound without twists or loose sections.",
+        "Feather joint compound in progressively wider coats so bead edges disappear into the finished surface."
+      ],
+      "examples_ja": [
+        "石膏ボード出隅へ金属コーナービードを固定する。",
+        "紙付きビードをパテで伏せ込み、複数層で仕上げる。"
+      ],
+      "examples_en": [
+        "Fasten metal corner bead to an outside drywall corner.",
+        "Embed paper-faced corner bead and finish it with successive compound coats."
+      ]
+    }
+  ]
+}
