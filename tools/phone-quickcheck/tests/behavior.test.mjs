@@ -525,6 +525,14 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja' } = {}) {
   assert.match(h.elements.desktopDetail.innerHTML, /非防水・非防塵/);
 }
 
+// AQUOS zero6 SHG04: au manual explicitly lists the USB Type-C cable as not included.
+{
+  const phone = byId.get('sharp-aquos-zero6');
+  assert.ok(phone, 'AQUOS zero6 fixture missing');
+  assert.equal(phone.included?.cable, 'not_included');
+  assert.equal(phone.included?.adapter, 'not_included');
+}
+
 console.log('Phone QuickCheck behavior tests passed: search/i18n, recharge estimates, Apple unknown capacity, Lightning guidance, proprietary charging, and mobile sheet.');
 
 // Explicit manufacturer-backed non-resistance is localized; model-specific unknown remains unknown.
