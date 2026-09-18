@@ -1,0 +1,95 @@
+{
+  "schema": "cta-image-wave4-sources-v2.3",
+  "version": "2026-09-18-wave4a-1",
+  "policy": {
+    "runtime_hotlink": false,
+    "source_provider": "Wikimedia Commons",
+    "promotion_rule": "Only real raster sources with explicit license provenance, an active canonical identity, a pinned Commons SHA-1, and manually reviewed subject match may be promoted."
+  },
+  "items": [
+    {
+      "entry_id": "allen_key",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Allen_keys.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Allen_keys.jpg",
+      "source_filename": "source.jpg",
+      "license": "Public Domain",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+      "author": "Scott Ehardt",
+      "attribution": "Scott Ehardt / Wikimedia Commons (Public Domain)",
+      "expected_sha1": "443bbf408dfc13517d6bfe2abc342d71ac0021dd",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Commons describes an assortment of metric Allen keys and structured data identifies the depicted subject as hex keys; direct match for allen_key."
+    },
+    {
+      "entry_id": "bolt_cutter",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Bolt_Cutter_Bolzenschneider.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Bolt_Cutter_Bolzenschneider.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Bluemel1",
+      "attribution": "Bluemel1 / Wikimedia Commons, CC0 1.0",
+      "expected_sha1": "175029164f2827b55263290877418bf9a28a4367",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Commons explicitly describes the photographed tool as a bolt cutter; direct real-subject match for bolt_cutter."
+    },
+    {
+      "entry_id": "ball_valve",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Ball_Valve.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Ball_Valve.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "Bitjungle",
+      "attribution": "Bitjungle / Wikimedia Commons, CC BY-SA 4.0",
+      "expected_sha1": "1667437cfa405f12472c85363e1fbbeaf85c7747",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Commons identifies the photographed cutaway as a ball valve and the spherical closure element is clearly visible; direct match for ball_valve."
+    },
+    {
+      "entry_id": "respirator",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Air-Purifying_Respirator.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Air-Purifying_Respirator.jpg",
+      "source_filename": "source.jpg",
+      "license": "Public Domain",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-HHS-CDC",
+      "author": "John Dimos and Paul Satti",
+      "attribution": "John Dimos and Paul Satti / NIOSH / CDC / Wikimedia Commons (Public Domain)",
+      "expected_sha1": "e7f50d1a17143a65f8930fce448af3033b81b207",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "CDC/NIOSH source explicitly identifies a North 7700 Series half-mask air-purifying respirator; direct match for respirator."
+    },
+    {
+      "entry_id": "measuring_wheel",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/9/97/Surveyor%27s_wheel_01.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Surveyor%27s_wheel_01.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "FBenjr123",
+      "attribution": "FBenjr123 / Wikimedia Commons, CC BY-SA 4.0",
+      "expected_sha1": "b87b011b8b6a837171ae797b81564854cb6cda91",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Commons explicitly describes a surveyor's measuring wheel being used to measure distances; direct match for measuring_wheel."
+    },
+    {
+      "entry_id": "safety_boots",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Steel_toe_boots.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Steel_toe_boots.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Persmas24",
+      "attribution": "Persmas24 / Wikimedia Commons, CC0 1.0",
+      "expected_sha1": "f49d282e880319a9a54665eef81401139209ccc7",
+      "subject_match": "matched",
+      "review_state": "reviewed",
+      "review_note": "Commons describes the photograph as a pair of steel-toe boots and categorizes it as construction/work boots; direct match for safety_boots."
+    }
+  ]
+}
