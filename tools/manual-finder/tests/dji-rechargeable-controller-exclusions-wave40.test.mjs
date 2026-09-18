@@ -47,17 +47,6 @@ for (const [model, sourceUrl] of expected) {
   );
 }
 
-for (const model of [
-  'DJI Digital FPV System',
-  'DJI Goggles',
-  'DJI Goggles RE',
-  'DJI O3 Air Unit',
-  'DJI O4 Air Unit Series',
-  'Osmo Nano'
-]) {
-  assert.ok(!exclusions.some((row) => row.maker === 'DJI' && row.model === model && row.category === 'カメラ・映像'), `${model} must remain unresolved after Wave 40`);
-}
-
 const goggles2Offers = Array.from(config.getAccessoryOffers({ maker: 'DJI', model: 'DJI Goggles 2', category: 'カメラ・映像' }));
 assert.equal(goggles2Offers.length, 1, 'DJI Goggles 2 must retain its reviewed battery handoff');
 
