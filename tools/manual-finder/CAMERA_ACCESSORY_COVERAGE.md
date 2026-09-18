@@ -1,6 +1,6 @@
 # ManualFinder Camera Accessory Coverage
 
-Updated: 2026-09-18
+Updated: 2026-09-19
 
 This document is the audited baseline for compatibility-sensitive camera battery/charger Amazon handoffs. It is separate from the completed printer-detail audit. Exact missing model arrays remain machine-readable in `tests/camera-accessory-coverage.test.mjs` rather than being duplicated as prose.
 
@@ -11,21 +11,21 @@ This document is the audited baseline for compatibility-sensitive camera battery
 | Canonical `カメラ・映像` records | **192** |
 | Camera records with a basic Amazon path | **185** |
 | Camera records with verified accessory detail | **83** |
-| Reviewed camera-detail exclusions | **15** |
-| Actionable camera records still missing accessory detail | **87** |
+| Reviewed camera-detail exclusions | **21** |
+| Actionable camera records still missing accessory detail | **81** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 185 = detail 83 + reviewed exclusion 15 + missing 87`
+`camera basic 185 = detail 83 + reviewed exclusion 21 + missing 81`
 
-The active detail ledger contains all fourteen actionable Nikon records and sixty-nine reviewed DJI records. Fifteen DJI rows are now evidence-backed reviewed exclusions because their official power input is a built-in or nonremovable battery/grip and no model-specific replaceable power accessory was established at the audit standard. Missing rows remain explicit rather than being converted to guessed mappings or unsupported exclusions.
+The active detail ledger contains all fourteen actionable Nikon records and sixty-nine reviewed DJI records. Twenty-one DJI rows are now evidence-backed reviewed exclusions because their official power design is built-in/nonremovable or directly rechargeable without a model-specific replaceable power accessory at the audit standard. Missing rows remain explicit rather than being converted to guessed mappings or unsupported exclusions.
 
 ## Actionable coverage by maker
 
 | Maker | Basic | Detail | Reviewed exclusion | Missing |
 | --- | ---: | ---: | ---: | ---: |
-| DJI | 96 | 69 | 15 | 12 |
+| DJI | 96 | 69 | 21 | 6 |
 | OM SYSTEM | 37 | 0 | 0 | 37 |
 | GoPro | 31 | 0 | 0 | 31 |
 | Nikon | 14 | 14 | 0 | 0 |
@@ -51,7 +51,7 @@ Every row is explicit in the reviewed ledger; shared accessory families are not 
 
 ## DJI reviewed waves
 
-DJI coverage advances only through bounded exact-canonical-row waves backed by DJI official evidence. Waves 1–38 remain frozen in their reviewed mapping/exclusion boundaries.
+DJI coverage advances only through bounded exact-canonical-row waves backed by DJI official evidence. Waves 1–39 remain frozen in their reviewed mapping/exclusion boundaries.
 
 ### Wave 21 — Phantom 4 series
 
@@ -176,9 +176,15 @@ Wave 39 activates exactly two canonical rows: `DJI Ronin 4D` and `Osmo Action`. 
 
 The deterministic Amazon handoffs are `DJI TB50 Intelligent Battery` plus `DJI Inspire 2 Ronin 2 Battery Charging Hub` for `DJI Ronin 4D`, and `DJI Osmo Action Battery 1300mAh` plus `DJI Osmo Action Charging Hub` for `Osmo Action`. `Ronin 4D`, `DJI Ronin 4D-8K`, `DJI Osmo Action`, and `Osmo Action 2` remain fail-closed.
 
-After DJI Waves 1–39 the maker-level reconciliation is:
+### Wave 40 — rechargeable DJI controller exclusions
 
-`DJI camera 96 = detail 69 + reviewed exclusion 15 + missing 12`
+Wave 40 reviews exactly six canonical controller rows: `DJI RC`, `DJI RC 2`, `DJI RC Motion 2`, `DJI RC Motion 3`, `DJI RC Pro`, and `DJI RC-N3 Remote Controller`. DJI's official support/specification pages document rechargeable controller batteries, charging requirements, and operating times for these models; official RC-N3 product/support material likewise documents controller charging and battery capacity.
+
+These rows receive `rechargeable_controller_no_model_specific_replaceable_power_accessory`. Generic USB chargers are intentionally not treated as compatibility-sensitive model accessories, and no replaceable model-specific battery or charging dock was established at the review standard. `DJI Digital FPV System`, `DJI Goggles`, `DJI Goggles RE`, `DJI O3 Air Unit`, `DJI O4 Air Unit Series`, and `Osmo Nano` remain unresolved.
+
+After DJI Waves 1–40 the maker-level reconciliation is:
+
+`DJI camera 96 = detail 69 + reviewed exclusion 21 + missing 6`
 
 ## Non-actionable camera records
 
@@ -197,7 +203,7 @@ Seven camera-category records are maker/index entries without an actionable exac
 - Accessory detail means at least one compatibility-sensitive accessory offer emitted from an exact reviewed maker/model mapping.
 - A generic exact-model Amazon body search does not count as accessory detail.
 - Reviewed exclusions must live in `affiliate-camera-detail-exclusions.js` and resolve to a canonical `カメラ・映像` row.
-- The exclusion ledger contains three Wave 32 Goggles rows, three Wave 34 nonremovable RS/RSC rows, and nine Wave 36 Osmo Mobile built-in-battery rows. Missing records must not be converted to exclusions without an evidence-backed review reason.
+- The exclusion ledger contains three Wave 32 Goggles rows, three Wave 34 nonremovable RS/RSC rows, nine Wave 36 Osmo Mobile built-in-battery rows, and six Wave 40 rechargeable-controller rows. Missing records must not be converted to exclusions without an evidence-backed review reason.
 - One camera row cannot simultaneously be detail-mapped and excluded.
 - Every actionable camera row must reconcile to exactly one of: verified accessory detail, reviewed exclusion, or missing accessory detail.
 - Wrong maker/category, nonexistent model, spelling variants, and unreviewed family inference must fail closed.
@@ -205,7 +211,7 @@ Seven camera-category records are maker/index entries without an actionable exac
 
 ## Expansion order
 
-1. Continue DJI from the remaining 12 actionable records in bounded official-evidence waves.
+1. Continue DJI from the remaining 6 actionable records in bounded official-evidence waves.
 2. Review OM SYSTEM 37 actionable records.
 3. Review GoPro 31 actionable records.
 4. Review Insta360 7 actionable records.
@@ -218,7 +224,7 @@ The camera accessory phase is complete only when:
 
 `camera basic = detail + reviewed exclusion + missing 0`
 
-The current baseline is not complete: `87` actionable records remain missing accessory detail.
+The current baseline is not complete: `81` actionable records remain missing accessory detail.
 
 ## Source of truth
 
@@ -240,7 +246,7 @@ The current baseline is not complete: `87` actionable records remain missing acc
 - `affiliate-dji-camera-accessories-wave37.js` — exact four-row legacy Osmo replaceable-battery mappings.
 - `affiliate-dji-camera-accessories-wave38.js` — exact four-row legacy Ronin replaceable-battery mappings.
 - `affiliate-dji-camera-accessories-wave39.js` — exact DJI Ronin 4D TB50/hub and original Osmo Action battery/hub mappings.
-- `affiliate-camera-detail-exclusions.js` — fifteen reviewed DJI exclusions across Waves 32, 34, and 36.
+- `affiliate-camera-detail-exclusions.js` — twenty-one reviewed DJI exclusions across Waves 32, 34, 36, and 40.
 - `affiliate-runtime.js` — sequential browser loading of Nikon and DJI accessory ledgers before rendering.
 - `tests/dji-phantom3-accessory-wave22.test.mjs` — exact Wave 22 Phantom 3 boundary.
 - `tests/dji-phantom3-se-accessory-wave23.test.mjs` — exact Wave 23 Phantom 3 SE battery-only boundary.
@@ -260,5 +266,6 @@ The current baseline is not complete: `87` actionable records remain missing acc
 - `tests/dji-osmo-legacy-battery-wave37.test.mjs` — exact Wave 37 four-row legacy Osmo replaceable-battery boundary.
 - `tests/dji-ronin-legacy-battery-wave38.test.mjs` — exact Wave 38 four-row legacy Ronin replaceable-battery boundary.
 - `tests/dji-ronin4d-osmo-action-wave39.test.mjs` — exact Wave 39 two-row Ronin 4D / Osmo Action boundary.
+- `tests/dji-rechargeable-controller-exclusions-wave40.test.mjs` — exact six-row Wave 40 rechargeable-controller exclusion boundary.
 - `tests/camera-accessory-coverage.test.mjs` — catalog-wide camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` — documentation drift guard and implementation-evidence synchronization.
