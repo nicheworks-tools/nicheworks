@@ -1,0 +1,28 @@
+.old-kanji-amazon-panel{
+  margin:24px 0;
+  padding:18px;
+  border:1px solid rgba(127,127,127,.28);
+  border-radius:14px;
+  background:rgba(127,127,127,.06);
+}
+.old-kanji-amazon-panel[hidden]{display:none!important}
+.old-kanji-amazon-heading{margin:0 0 8px;font-size:1.08rem;line-height:1.45}
+.old-kanji-amazon-note{margin:0 0 12px;line-height:1.65}
+.old-kanji-amazon-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.old-kanji-amazon-slot{min-width:0}
+.old-kanji-amazon-link{
+  display:flex;
+  align-items:center;
+  min-height:48px;
+  height:100%;
+  padding:10px 12px;
+  border:1px solid currentColor;
+  border-radius:10px;
+  text-decoration:none;
+  overflow-wrap:anywhere;
+}
+.old-kanji-amazon-disclosure{margin-top:10px;font-size:.82rem;line-height:1.55;opacity:.82}
+.old-kanji-amazon-disclosure p{margin:4px 0}
+@media(max-width:720px){
+  .old-kanji-amazon-links{grid-template-columns:1fr}
+}
