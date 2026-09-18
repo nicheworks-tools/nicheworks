@@ -59,5 +59,6 @@ await import('./dji-goggles-integrated-battery-exclusions-wave32.test.mjs');
 await import('./dji-rs-bg30-accessory-wave33.test.mjs');
 await import('./dji-rs-integrated-battery-exclusions-wave34.test.mjs');
 await import('./dji-ronin-grip-accessory-wave35.test.mjs');
+await import('./dji-osmo-mobile-battery-exclusions-wave36.test.mjs');
 await import('./camera-accessory-coverage.test.mjs');
 await import('./camera-accessory-doc-sync.test.mjs');
