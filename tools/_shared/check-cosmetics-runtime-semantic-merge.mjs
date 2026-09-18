@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 66, 'the 3 remaining legacy-only category conflicts plus 63 reviewed verified-primary role conflicts must be explicit at runtime');
+assert.equal(categoryConflicts.length, 65, 'the 2 remaining legacy-only category conflicts plus 63 reviewed verified-primary role conflicts must be explicit at runtime');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
