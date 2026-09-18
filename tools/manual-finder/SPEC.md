@@ -72,19 +72,19 @@ ManualFinder is an `AFFILIATE` tool, but commerce is an optional next-action lay
 
 Every actionable `カメラ・映像` row with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or explicit missing-accessory diagnostic state.
 
-The current camera state is **185 basic = 63 detail + 0 reviewed exclusions + 122 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
+The current camera state is **185 basic = 64 detail + 0 reviewed exclusions + 121 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
 
 Nikon Waves 1–2 remain closed at **14 detail + 0 reviewed exclusions + 0 missing**.
 
-DJI advances only through bounded exact-canonical-model waves. Reviewed scope through Wave 29 includes Waves 1–28 frozen in their individual ledgers plus Wave 29 for exactly:
+DJI advances only through bounded exact-canonical-model waves. Reviewed scope through Wave 30 includes Waves 1–29 frozen in their individual ledgers plus Wave 30 for exactly:
 
-- `Osmo Pocket`
+- `Osmo 360`
 
-Wave 29 maps exactly the canonical `Osmo Pocket` row to `DJI Osmo Pocket Charging Case`. DJI's official Osmo Pocket product information publishes the Osmo Pocket Charging Case User Guide, and DJI's official Pocket 2 compatibility guidance states that the Osmo Pocket Charging Case is only compatible with `Osmo Pocket`. `DJI Osmo Pocket`, `Osmo Pocket Charging Case`, `DJI Pocket 2`, and other neighboring or synthetic names remain fail-closed.
+Wave 30 maps exactly the canonical `Osmo 360` row to `DJI Osmo Action Extreme Battery Plus` and `DJI Osmo Action Multifunctional Battery Case 2`. DJI's official Osmo 360 FAQ explicitly supports the 1950 mAh Extreme Battery Plus, and DJI Store lists `Osmo 360` as compatible with both reviewed accessories. `DJI Osmo 360`, `Osmo 360 II`, `Osmo 360 Adventure Combo`, and other neighboring or synthetic names remain fail-closed.
 
-The measured DJI state after Waves 1–29 is **96 basic = 49 detail + 0 reviewed exclusions + 47 missing accessory detail**.
+The measured DJI state after Waves 1–30 is **96 basic = 50 detail + 0 reviewed exclusions + 46 missing accessory detail**.
 
-Camera-detail exclusions remain in `affiliate-camera-detail-exclusions.js`; the ledger is currently empty. Remaining missing camera rows are DJI 47, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
+Camera-detail exclusions remain in `affiliate-camera-detail-exclusions.js`; the ledger is currently empty. Remaining missing camera rows are DJI 46, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## State and persistence
 
@@ -125,14 +125,15 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] The printer audit remains **291 basic = 284 detail + 7 reviewed exclusions + 0 missing detail**.
 - [x] KYOCERA remains **123 = 120 detail + 3 reviewed exclusions + 0 missing**.
 - [x] Nikon camera accessory coverage remains **14 detail + 0 reviewed exclusions + 0 missing**.
-- [x] DJI Waves 1–29 preserve exact reviewed boundaries and do not infer neighboring product names.
+- [x] DJI Waves 1–30 preserve exact reviewed boundaries and do not infer neighboring product names.
 - [x] DJI Mavic 2 Enterprise Series Wave 25 activates exactly one reviewed canonical series row with official battery and charging-hub evidence.
 - [x] DJI Osmo Pocket 3 Wave 26 activates exactly one reviewed canonical row with official Battery Handle compatibility evidence.
 - [x] DJI Action 2 Wave 27 activates exactly one reviewed canonical row with official Power Module compatibility evidence.
 - [x] DJI Pocket 2 Wave 28 activates exactly one reviewed canonical row with official Charging Case compatibility evidence.
 - [x] Osmo Pocket Wave 29 activates exactly one reviewed canonical row with official Charging Case compatibility evidence.
-- [x] DJI Waves 1–29 reconcile to **96 basic = 49 detail + 0 reviewed exclusions + 47 missing accessory detail**.
-- [x] The catalog-wide camera audit reconciles to **185 basic = 63 detail + 0 reviewed exclusions + 122 missing accessory detail** while seven maker/index rows remain non-actionable.
+- [x] Osmo 360 Wave 30 activates exactly one reviewed canonical row with official battery and multifunctional battery-case compatibility evidence.
+- [x] DJI Waves 1–30 reconcile to **96 basic = 50 detail + 0 reviewed exclusions + 46 missing accessory detail**.
+- [x] The catalog-wide camera audit reconciles to **185 basic = 64 detail + 0 reviewed exclusions + 121 missing accessory detail** while seven maker/index rows remain non-actionable.
 - [x] Missing-model maker diagnostics and documentation sync remain machine-readable drift guards.
 - [x] Wrong maker/category, nonexistent models, spelling variants, and other unreviewed compatibility cases fail closed.
 - [x] Amazon disclosure and sponsored-link semantics remain supplied by the shared affiliate helper.
@@ -184,6 +185,7 @@ Reviewed DJI camera accessory ledgers:
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave27.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave28.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave29.js`
+- `tools/manual-finder/affiliate-dji-camera-accessories-wave30.js`
 
 Camera accessory tests and audit gates:
 
@@ -218,6 +220,7 @@ Camera accessory tests and audit gates:
 - `tools/manual-finder/tests/dji-action2-accessory-wave27.test.mjs`
 - `tools/manual-finder/tests/dji-pocket2-accessory-wave28.test.mjs`
 - `tools/manual-finder/tests/dji-osmo-pocket-accessory-wave29.test.mjs`
+- `tools/manual-finder/tests/dji-osmo360-accessory-wave30.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-coverage.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs`
 - `tools/manual-finder/tests/affiliate-coverage.test.mjs`
