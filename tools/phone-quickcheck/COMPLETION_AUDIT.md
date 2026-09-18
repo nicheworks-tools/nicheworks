@@ -27,7 +27,7 @@ Correction note: Galaxy A35 5G was removed from the JP-maintained set on 2026-09
 - battery capacity unknown: **33** — all maintained Apple records; intentional under current policy
 - charger guidance missing: **62**
 - handset-side wired maximum missing: **86**
-- PPS unknown: **151**
+- PPS unknown: **152**
 - wireless standard missing: **74**
 
 The final four charging counts are **not automatically defects**. They are evidence-sensitive fields and must not be filled by inference merely to reduce an unknown count.
@@ -79,11 +79,25 @@ A null or unknown value is not itself a completion defect. These fields may be p
 - `pps`: explicit supported/required/not-supported state only with evidence
 - `wirelessStandard` / `wirelessMaxW`: source-backed wireless capability only
 
+## Charging evidence review closure
+
+The maintained charging dataset has been re-audited around **positive claims**, not raw null counts.
+
+Machine-checked invariants:
+
+- wired charger guidance / handset max / protocol / explicit PPS state with missing `sources.chargingUrl`: **0**
+- wireless standard/max claims with missing `sources.wirelessUrl`: **0**
+- PPS state without an explicit PPS protocol label: **0**
+- PPS protocol label without a matching explicit PPS state: **0**
+
+Pixel 8a was corrected during this audit: `pps: supported` was reverted to `unknown`. The maintained Pixel 8a primary material explicitly establishes USB Power Delivery, but does not support promoting PPS to a device capability claim.
+
+The remaining raw null/unknown counts are therefore retained as evidence-sensitive unknowns unless future primary evidence justifies a stronger claim.
+
 ## Remaining closure sequence
 
-1. Re-audit charging evidence and classify remaining null/unknown values as either actionable source gaps or intentionally unresolved.
-2. Run final browser QA at 320 / 390 / 414 px, tablet, and desktop for search, filters, sorting, JP/EN, foldables, bottom sheet, unknown rendering, Amazon CTA, official links, and data-load failure.
-3. Change this document's status to **V1 COMPLETE** only when the charging review and final browser QA are complete.
+1. Run final browser QA at 320 / 390 / 414 px, tablet, and desktop for search, filters, sorting, JP/EN, foldables, bottom sheet, unknown rendering, Amazon CTA, official links, and data-load failure.
+2. Change this document's status to **V1 COMPLETE** only when final browser QA is complete.
 
 ## Regression guard
 
