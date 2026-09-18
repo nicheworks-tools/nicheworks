@@ -67,10 +67,10 @@ The original baseline intentionally counted only raw dictionary fields. That rem
 Current runtime provenance on main:
 
 - verified category overlay identities: 116
-- verified note overlay identities: 22
-- verified note identities with maintained Japanese naming: 22
-- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): 22 / 599
+- verified note overlay identities: 26
+- verified note identities with maintained Japanese naming: 26
+- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): 26 / 599
 
 Accordingly, completion readiness must report raw dictionary debt and runtime verified provenance separately. A raw evidence count of zero must not be interpreted as zero runtime provenance.
 
-The runtime provenance floors are ratcheted at 119 verified categories, 22 verified notes, and 22 strong runtime identities so later changes cannot silently discard completed provenance work. The prior strong-runtime blockers `sulfur`, `aminobenzoic acid`, and `ammonium hydroxide` now have source-backed public roles, so every verified-note identity satisfies the strong runtime definition.
+The runtime provenance floors are ratcheted at 119 verified categories, 26 verified notes, and 26 strong runtime identities so later changes cannot silently discard completed provenance work. The prior strong-runtime blockers remain closed, and Wave 6 adds source-backed ingredient-specific notes for Glycerin, Caprylyl Glycol, Citric Acid, and Water.
