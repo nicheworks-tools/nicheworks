@@ -255,10 +255,83 @@ test('G8 resolved: header OFF positional selection preserves literal Japanese an
   await selectedRoundTrip(h, [['001','  東京, "引用"\n次  ']]);
   assert.deepEqual(source, original);
 });
-test('G9 KNOWN GAP: failed replacement load retains previous exportable rows', async () => {
-  const h = harness(); await h.load('a,b\nx,y\n'); await h.load('a,b\n"broken,x');
-  assert.match(h.get('#errBox').textContent, /Failed to parse CSV/);
-  assert.deepEqual(plain(h.state.data.rows), [['a','b'],['x','y']]);
+function blockedLoad(h) {
+  const before = h.blobs.length;
+  h.get('#errBox').textContent = '';
+  h.get('#downloadBtn').disabled = false;
+  h.downloadCSV();
+  assert.equal(h.blobs.length, before);
+  assert.deepEqual(plain(h.buildOutputPreview(false).rows), []);
+}
+test('G9 resolved: every replacement failure blocks export and preserves coherent accepted metadata', async () => {
+  for (const [bytes, encoding, delimiter, code] of [
+    ['a,b\n"broken,x','utf-8',',','unclosed_quote'],
+    ['a,b\nx,b"c','utf-8',',','invalid_quote'],
+    ['a,b\nx','utf-8',',','inconsistent_fields'],
+    [Buffer.from([0xff]),'utf-8',',','decoding_failed'],
+    [Buffer.from('c2a9','hex'),'auto',',','ambiguous_encoding'],
+    ['a,b;c\n1,2;3','utf-8','auto','ambiguous_delimiter'],
+    ['a,b','utf-8','|','invalid_delimiter'],
+    ['','utf-8',',','empty_input'],
+  ]) {
+    const h = harness(); await h.load('old;value\nA;001','utf-8',';');
+    const accepted = plain({data:h.state.data, filename:h.state.input.filename,
+      encoding:h.state.input.encodingResolved, delimiter:h.state.input.delimiterResolved});
+    h.state.input.encoding=encoding; h.state.input.delimiter=delimiter;
+    const source=Buffer.from(bytes), original=Buffer.from(source);
+    await h.handleFile({name:'failed.csv',bytes:source});
+    assert.equal(h.state.load.status,'invalid');
+    assert.equal(h.state.ui.inputError.code,code);
+    assert.equal(h.state.input.filename,accepted.filename);
+    assert.equal(h.state.input.encodingResolved,accepted.encoding);
+    assert.equal(h.state.input.delimiterResolved,accepted.delimiter);
+    for (const key of ['rawText','rows','cols']) assert.deepEqual(plain(h.state.data[key]),accepted.data[key]);
+    assert.equal(h.get('#outName').value,'fixture.tidy.csv');
+    blockedLoad(h); assert.equal(h.state.ui.inputError.code,code);
+    assert.deepEqual(source,original);
+  }
+});
+test('G9 resolved: repeated success failure recovery exports only each accepted document', async () => {
+  const h=harness();
+  for (const [name,value] of [['A.csv','001'],['B.csv','東京'],['C.csv','003']]) {
+    h.state.input.encoding='utf-8'; h.state.input.delimiter=',';
+    await h.handleFile({name,bytes:Buffer.from(`id,value\n${name},${value}\n`)});
+    assert.equal(h.state.load.status,'valid'); assert.equal(h.state.ui.inputError,null);
+    assert.equal(h.state.input.filename,name);
+    await selectedRoundTrip(h,[['id','value'],[name,value]]);
+    await h.load('a,b\n"bad'); blockedLoad(h);
+  }
+});
+test('G9 resolved: FileReader error, abort and synchronous read failure invalidate output', async () => {
+  for (const failure of ['error','abort','throw']) {
+    const h=harness(); await h.load('a,b\nold,1');
+    h.sandbox.FileReader=class { readAsArrayBuffer() {
+      if(failure==='throw') throw new Error('read denied');
+      if(failure==='abort') this.onabort(); else this.onerror();
+    }};
+    await h.handleFile({name:'unreadable.csv'});
+    assert.equal(h.state.load.status,'invalid');
+    assert.equal(h.state.ui.inputError.code,'file_read_failed'); blockedLoad(h);
+  }
+});
+test('G9 resolved: pending loads, reset and out-of-order reads cannot revive stale output', async () => {
+  const h=harness(); await h.load('a,b\nold,1');
+  const readers=[];
+  h.sandbox.FileReader=class { readAsArrayBuffer(file) { this.file=file; readers.push(this); }};
+  const finish=(i,text)=>{ readers[i].result=new TextEncoder().encode(text).buffer; readers[i].onload(); };
+  const first=h.handleFile({name:'slow.csv'}); blockedLoad(h);
+  const second=h.handleFile({name:'new.csv'});
+  finish(1,'a,b\nnew,002'); await second;
+  finish(0,'a,b\nstale,999'); await first;
+  assert.equal(h.state.input.filename,'new.csv');
+  await selectedRoundTrip(h,[['a','b'],['new','002']]);
+  const pending=h.handleFile({name:'cancelled.csv'});
+  await h.handleFile(null); finish(2,'a,b\ncancelled,1'); await pending;
+  assert.equal(h.state.load.status,'empty'); assert.equal(h.state.input.filename,'');
+  assert.equal(h.state.ui.inputError,null); assert.equal(h.state.data.rows.length,0); blockedLoad(h);
+  const recovery=h.handleFile({name:'after-reset.csv'}); finish(3,'a,b\nrecovered,003'); await recovery;
+  assert.equal(h.state.ui.inputError,null);
+  await selectedRoundTrip(h,[['a','b'],['recovered','003']]);
 });
 
 // Independent oracle is Python's standard-library CSV reader; it does not call parseCSV.

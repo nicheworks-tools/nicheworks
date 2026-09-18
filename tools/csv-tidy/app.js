@@ -62,7 +62,9 @@
     i18nNodes: $$("[data-i18n]")
   };
 
+  let loadGeneration = 0;
   const state = {
+    load: { status: "empty", candidateName: null },
     ui: {
       lang: "ja",
       previewMode: "out",
@@ -204,7 +206,7 @@ if (state.data.rows && state.data.rows.length) schedulePreviewRequest();
   async function readFileAsArrayBuffer(file){
     return new Promise((resolve, reject) => {
       const fr = new FileReader();
-      fr.onerror = () => reject(new Error("file_read_failed"));
+      fr.onerror = fr.onabort = () => reject(csvError("file_read_failed", {}));
       fr.onload = () => resolve(fr.result);
       fr.readAsArrayBuffer(file);
     });
@@ -415,6 +417,7 @@ if (state.data.rows && state.data.rows.length) schedulePreviewRequest();
   }
 
   function buildOutputPreview(limitRows){
+    if (state.load.status !== "valid") return { headers: [], rows: [], colsUsed: 0, dropped: 0 };
     const cols = state.data.cols
       .filter(c => !c.excluded)
       .slice()
@@ -745,7 +748,7 @@ function applyTemplate(tid){
   }
 
   function renderPreview(){
-    if (!state.data.rows.length){
+    if (state.load.status !== "valid" || !state.data.rows.length){
       if (els.emptyGuide) els.emptyGuide.hidden = false;
       els.previewTable.innerHTML = "";
       els.summary.textContent = "";
@@ -800,7 +803,7 @@ return;
     }
 
     if (previewTimer) clearTimeout(previewTimer);
-    previewTimer = setTimeout(() => { setError(""); renderPreview(); }, 60);
+    previewTimer = setTimeout(() => { if (state.load.status === "valid") setError(""); renderPreview(); }, 60);
   
     // [CSVTDY-16 preview hook]
     try { updateMappingWarnings(); } catch(_e) {}
@@ -808,6 +811,13 @@ return;
 }
 
   async function handleFile(file){
+    const generation = ++loadGeneration;
+    const candidate = { filename: file?.name || "export.csv", encoding: state.input.encoding,
+      delimiter: state.input.delimiter, hasHeader: state.input.hasHeader };
+    state.load = { status: "loading", candidateName: candidate.filename };
+    state.ui.inputError = null;
+    state.data.widthError = null;
+    renderPreview();
     // [CSVTDY-14 handleFile busy]
     setBusy(true, (state.ui && state.ui.lang==="ja") ? "読み込み中…" : "Loading…");
     setUIEnabled(false);
@@ -819,26 +829,19 @@ return;
     setError(""); setHint("");
     if (!file){ resetAll(); return; }
 
-    state.input.filename = file.name || "export.csv";
-    els.outName.value = (file.name ? file.name.replace(/\.csv$/i,"") : "export") + ".tidy.csv";
-
     let buf;
     try { buf = await readFileAsArrayBuffer(file); }
-    catch(_e){
-      const isUnclosed = (_e && (_e.code === "unclosed_quote" || _e.message === "unclosed_quote"));
-      if (isUnclosed){
-        setError(state.ui.lang==="ja" ? 'CSVの形式エラー：ダブルクォート(")が閉じていません。' : 'Malformed CSV: unclosed double-quote (").', "PARSE_UNCLOSED_QUOTE", state.ui.lang==="ja" ? "区切り文字やファイル形式を確認してください。" : "Check delimiter and CSV format.");
-      } else {
-        setError(state.ui.lang==="ja" ? "CSVの解析に失敗しました（形式を確認してください）。" : "Failed to parse CSV.", "PARSE_FAIL", state.ui.lang==="ja" ? "区切り文字やダブルクォートを確認してください。" : "Check delimiter and quotes.");
-      }
-      // ensure UI recovers from parse errors
-      setBusy(false);
-      setUIEnabled(true);
-
+    catch(error){
+      if (generation !== loadGeneration) return;
+      state.ui.inputError = { code: "file_read_failed" };
+      setError(state.ui.lang === "ja"
+        ? "ファイルを読み込めません。元ファイルは変更されていません。ファイルを選び直してください。"
+        : "Cannot read the file. The source is unchanged. Select the file again.", "file_read_failed");
       return;
     }
+    if (generation !== loadGeneration) return;
 
-    let enc = state.input.encoding;
+    let enc = candidate.encoding;
     let guessedEnc = null;
     let text = "";
     try {
@@ -862,14 +865,12 @@ return;
       }
       return;
     }
-    state.data.rawText = text;
 
-    let delim = state.input.delimiter;
+    let delim = candidate.delimiter;
     let rows;
     try {
       if (delim === "auto") delim = guessDelimiter(text);
       if (delim === "tab") delim = "\t";
-      state.input.delimiterResolved = delim;
       rows = parseCSV(text, delim);
     } catch(error){
       state.ui.inputError = { code: error.code, record: error.record, field: error.field,
@@ -883,7 +884,8 @@ return;
       return;
     }
     if (!rows || !rows.length){
-      setError(state.ui.lang==="ja" ? "CSVが空です。" : "CSV is empty.");
+      state.ui.inputError = { code: "empty_input" };
+      setError(state.ui.lang==="ja" ? "CSVが空です。別のファイルを選択してください。" : "CSV is empty. Select another file.", "empty_input");
       return;
     }
 
@@ -898,12 +900,8 @@ return;
       showWidthError();
       return;
     }
-    state.data.widthError = null;
-    state.ui.inputError = null;
-    state.data.rows = rows;
-
-    const headers = state.input.hasHeader ? rows[0] : Array.from({length:maxCols}, (_,i)=>`col_${i+1}`);
-    state.data.cols = headers.map((h, idx) => ({
+    const headers = candidate.hasHeader ? rows[0] : Array.from({length:maxCols}, (_,i)=>`col_${i+1}`);
+    const cols = headers.map((h, idx) => ({
       id: "c" + idx + "_" + Math.random().toString(16).slice(2),
       srcIndex: idx,
       name: String(h ?? ""),
@@ -911,6 +909,14 @@ return;
       order: idx,
       sample: pickSample(rows, idx)
     }));
+
+    // Commit the fully validated candidate together, without an async boundary.
+    state.data = { rawText: text, rows, cols, widthError: null };
+    Object.assign(state.input, { filename: candidate.filename, encodingResolved: enc,
+      delimiterResolved: delim, hasHeader: candidate.hasHeader });
+    state.ui.inputError = null;
+    state.load = { status: "valid", candidateName: null };
+    els.outName.value = candidate.filename.replace(/\.csv$/i, "") + ".tidy.csv";
 
     const encLabel = enc === "shift_jis" ? "Shift_JIS" : "UTF-8";
     const encInfoJa = (guessedEnc ? `推定:${encLabel}` : `指定:${encLabel}`);
@@ -928,13 +934,29 @@ return;
     renderColsList();
     schedulePreviewRequest();
   
+    } catch(error) {
+      if (generation === loadGeneration) {
+        state.ui.inputError = { code: error.code || "load_failed" };
+        state.load.status = "invalid";
+        setError(state.ui.lang === "ja" ? "読み込みに失敗しました。ファイルを選び直してください。" : "Load failed. Select the file again.", state.ui.inputError.code);
+      }
     } finally {
-      try { setBusy(false); } catch(_e) {}
-      try { setUIEnabled(true); } catch(_e) {}
+      if (generation === loadGeneration) {
+        if (state.load.status === "loading") state.load.status = "invalid";
+        try { setBusy(false); } catch(_e) {}
+        try { setUIEnabled(true); } catch(_e) {}
+        els.downloadBtn.disabled = state.load.status !== "valid";
+      }
     }
 }
 
   function resetAll(){
+    ++loadGeneration;
+    state.load = { status: "empty", candidateName: null };
+    state.ui.inputError = null;
+    Object.assign(state.input, { filename: "", encodingResolved: null, delimiterResolved: null });
+    els.outName.value = "";
+    setBusy(false); setUIEnabled(true);
     state.data.rawText = "";
     state.data.widthError = null;
     state.data.rows = [];
@@ -954,6 +976,12 @@ return;
   }
 
   function downloadCSV(){
+    if (state.load.status !== "valid"){
+      setError(state.ui.lang === "ja"
+        ? "正常に読み込んだCSVがありません。入力を確認して再読込してください。元ファイルは変更されていません。"
+        : "No valid current CSV. Check the input and reload. The source is unchanged.", "INVALID_LOAD");
+      return;
+    }
     if (state.data.widthError){ showWidthError(); return; }
     if (!state.data.rows.length){
       setError(state.ui.lang==="ja" ? "CSVを読み込んでください。" : "Please load a CSV.", "NO_ROWS");

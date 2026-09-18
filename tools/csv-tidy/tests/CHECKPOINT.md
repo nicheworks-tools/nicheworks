@@ -1,6 +1,6 @@
 # CSV Tidy correctness checkpoint — 2026-09-17 UTC
 
-Latest result: G8-only continuation below (2026-09-18): 46 passing tests, 3 remaining KNOWN GAP cases. Earlier sections retain historical evidence.
+Latest result: G9-only continuation below (2026-09-18): 49 passing tests, 2 remaining KNOWN GAP cases. Earlier sections retain historical evidence.
 
 Base: `4f00e990f06fd3bc9332a629859bac09e069ef52`.
 Branch: `feat/csv-tidy-product-quality-20260917`.
@@ -117,3 +117,14 @@ Replaced the G8 bad-behavior characterization with five acceptance tests. Initia
 Acceptance covers first/reversed/no selection and ALL scope; trim, repeated spaces/TAB, both width directions and combined rules; duplicate/empty headers; reorder + manual rename + exclusion; separate header/data width targeting; header OFF; Japanese text, leading zeroes, embedded quotes/newlines and unchanged source bytes. The scope-control change event is exercised. This is VM/model integration evidence, not browser certification.
 
 The 16 new actual export Blobs match preview/full output models and independent Python `csv.reader` expectations: four trim/scope cases, four rule combinations, four positional-header/edit cases, three width-target combinations and one header-OFF case. Together with the preserved 34, **50 independent reparses match**. Existing G1/G2/G3/G6/G7 regressions remain unchanged and passing. No G4/G5/G9, browser, responsive, performance or SEO work.
+
+
+## G9-only continuation — 2026-09-18
+
+Local and remote checkpoint `ce11d6413c2656b6eb062f6d6d286a41b13bc97a` matched, with no partial CSV Tidy changes, staged changes or later commits. Initial behavior suite PASS and checkpoint 46 PASS / 0 FAIL / 0 SKIP / 0 TODO. Fetched origin/main `f4ca9c241e5f1e1666b6648d3f3c7283ca8fc5fa`; no merge/rebase. Unrelated old-kanji deletion remains untouched.
+
+Root cause: load updated filename/raw text/resolved delimiter before validation while retaining old rows on failures. Candidate preparation now remains local until complete acceptance. Explicit load state gates the output model and production download; button state or cleared error text cannot bypass it. Structured failure details survive attempted downloads. Successful replacement resets errors. Reset clears document identity/data and invalidates pending reads. A generation token prevents obsolete read callbacks from accepting data or changing the newer load state.
+
+Replaced G9 characterization with four acceptance tests covering eight validation-failure cases, three FileReader double failure modes (error/abort/synchronous throw), metadata coherence, repeated recovery, in-flight export rejection, reversed read completion, reset while pending and recovery after reset. FileReader callbacks are exercised with controlled doubles; this does not certify native browser file IO. Built-in samples use the same file-input change handler by source inspection.
+
+Final behavior suite PASS; **49 PASS / 0 FAIL / 0 SKIP / 0 TODO**. **55 Python independent Blob reparses matched** (preserved 50 plus A/B/C, latest-read output and post-reset output). G1/G2/G3/G6/G7/G8 tests remain unchanged and pass. Remaining KNOWN GAP: **G4/G5 only**. No browser, responsive, performance, SEO or final PR work.

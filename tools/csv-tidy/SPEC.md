@@ -86,7 +86,7 @@ All classifications below are based on deterministic tests of current production
 | G6 | Loader silently pads ragged rows and replaces empty header names | RESOLVED (unit/integration) | First-record width validation, dedicated export gate, literal empty headers |
 | G7 | `b"c"d` and `"b"c` are accepted and rewritten | RESOLVED (unit/integration) | Reject invalid_quote/unclosed_quote with logical record, field and UTF-16 offset |
 | G8 | Unchecked selected-scope columns still receive cleaning | RESOLVED (unit/integration) | Scope control updates state; shared header/data transformation honors positional column selection |
-| G9 | Loading malformed data after good data retains old rows for export | CONFIRMED GAP / BLOCKER | Transactional load/clear failure state and repeated-load regression |
+| G9 | Loading malformed data after good data retains old rows for export | RESOLVED (unit/integration) | Candidate validation, explicit validity/export guard, recovery and stale-read protection |
 
 Additional confirmed export blocker: `downloadCSV` passes the preview model object to an array serializer, throwing `rows.map is not a function`. It also reads BOM/newline from wrong state locations, uses unresolved input delimiter, and ignores the always-quote option. The preserved checkpoint repaired that export path. Current resolved/unresolved statuses are listed above.
 
@@ -175,3 +175,14 @@ Root cause: the existing column-selection predicate was unused by the common out
 Cleaning selection stays with the positional column entity through reorder, manual rename and exclusion. Empty/duplicate header values and header-OFF display labels do not determine identity. Excluded columns do not affect included-column targeting. Preview and export continue using the same transformation path; unchecked values remain literal. Source bytes are unchanged.
 
 Evidence: behavior suite PASS; checkpoint **46 pass / 0 fail / 0 skip / 0 todo**, including **3 remaining KNOWN GAP characterizations** (G4/G5/G9). **50 generated Blobs** match expected matrices through independent Python CSV parsing. No parsing/decoding or G4/G5/G9 implementation changes.
+
+
+## G9 replacement-load safety — 2026-09-18
+
+Starting checkpoint `ce11d6413c2656b6eb062f6d6d286a41b13bc97a`. G9 is **RESOLVED (unit/integration)**. G4/G5 remain unresolved; overall acceptance and browser verification are not claimed.
+
+Load status is explicit: empty, loading, valid or invalid. Input settings are captured for each candidate. Bytes, decoded text, delimiter, parsed rows and columns are validated locally before the accepted filename, raw text, resolved encoding/delimiter, rows and columns are committed together. Input controls remain settings; resolved metadata describes only the accepted document. Earlier accepted data may remain internally after failure but is not a current valid document: its preview is cleared, output model is empty and the production download function refuses output independently of button/error text.
+
+All candidate failure paths retain structured inputError information and invalidate export, including read error/abort, decode failure/ambiguity, delimiter/quote errors, empty input and G6 width rejection. G3 policy and G6 structured width guard remain intact. A fully successful load clears errors and permits only the new document to export. Generation identity ignores superseded asynchronous reads; reset invalidates pending reads and clears data/identity/errors. Built-in sample insertion dispatches the same file-input change path; no sample browser behavior is certified here.
+
+Evidence: behavior suite PASS; checkpoint **49 PASS / 0 FAIL / 0 SKIP / 0 TODO**, including **2 remaining KNOWN GAP cases (G4/G5)**. **55 actual export Blobs** independently reparse to expected matrices using Python, including repeated A/failure/B/failure/C recovery, latest-read acceptance and recovery after reset. Source byte fixtures remain unchanged. No browser/responsive/performance/SEO work.
