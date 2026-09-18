@@ -1,6 +1,6 @@
 # CSV Tidy correctness checkpoint — 2026-09-17 UTC
 
-Latest result: G9-only continuation below (2026-09-18): 49 passing tests, 2 remaining KNOWN GAP cases. Earlier sections retain historical evidence.
+Latest result: G4-only continuation below (2026-09-18): 52 passing tests, 1 remaining KNOWN GAP case. Earlier sections retain historical evidence.
 
 Base: `4f00e990f06fd3bc9332a629859bac09e069ef52`.
 Branch: `feat/csv-tidy-product-quality-20260917`.
@@ -128,3 +128,12 @@ Root cause: load updated filename/raw text/resolved delimiter before validation 
 Replaced G9 characterization with four acceptance tests covering eight validation-failure cases, three FileReader double failure modes (error/abort/synchronous throw), metadata coherence, repeated recovery, in-flight export rejection, reversed read completion, reset while pending and recovery after reset. FileReader callbacks are exercised with controlled doubles; this does not certify native browser file IO. Built-in samples use the same file-input change handler by source inspection.
 
 Final behavior suite PASS; **49 PASS / 0 FAIL / 0 SKIP / 0 TODO**. **55 Python independent Blob reparses matched** (preserved 50 plus A/B/C, latest-read output and post-reset output). G1/G2/G3/G6/G7/G8 tests remain unchanged and pass. Remaining KNOWN GAP: **G4/G5 only**. No browser, responsive, performance, SEO or final PR work.
+
+
+## G4-only continuation — 2026-09-18
+
+Recovered local/remote HEAD `4b425020e6d7cb31f25018ff900f114bbe99bba1` with no partial CSV Tidy changes or later commits. Local/live main `f4ca9c241e5f1e1666b6648d3f3c7283ca8fc5fa`. Baseline behavior PASS and checkpoint 49 PASS / 0 FAIL / 0 SKIP / 0 TODO. Unrelated deletion untouched.
+
+The G4 characterization was replaced by four acceptance tests. Root causes were a shadow `outName` ignored by output, canonical order lookup against pre-rename names, and last-write-wins duplicate matching. Template rename now writes `name` per entity. Canonical groups include all matching entities in prior relative order; unmatched and empty entities follow; exclusion and cleaning selection remain attached to the entity. Manual names are the matching input and subsequent manual changes replace the same effective header. Mapping warnings use effective output headers. Header OFF is a warned no-op.
+
+Final behavior PASS; **52 PASS / 0 FAIL / 0 SKIP / 0 TODO**. **64 independent Python Blob reparses**: preserved 55 plus four Accounting/EC matrices, two generic/manual matrices, two duplicate/exclusion matrices and one header-OFF matrix. Tests also assert stable reapplication, unchanged IDs/source indices and correct mapped-warning state. Existing G1/G2/G3/G6/G7/G8/G9 regressions unchanged and passing. Only **G5** remains KNOWN GAP. No browser verification or overall acceptance claim.

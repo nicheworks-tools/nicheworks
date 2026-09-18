@@ -100,12 +100,50 @@ test('G3: unavailable Shift_JIS is distinct from invalid bytes', async () => {
     invalid.downloadCSV(); assert.equal(invalid.blobs.length, 0);
   }
 });
-test('G4 KNOWN GAP: template announces rename but preview still uses Japanese names/order', async () => {
-  const h = harness(); await h.load('金額,日付\n1200,2026-01-01\n');
+test('G4 resolved: Japanese accounting and EC canonical order preserves source values', async () => {
+  for (const [tid,source,expected] of [
+    ['accounting','日付,勘定科目,金額,税額,摘要\n2026-01-01,売上,001200,120,記録', [['date','account','amount','tax','memo'],['2026-01-01','売上','001200','120','記録']]],
+    ['accounting','摘要,金額,日付,税額,勘定科目\n記録,001200,2026-01-01,120,売上', [['date','account','amount','tax','memo'],['2026-01-01','売上','001200','120','記録']]],
+    ['ec','小計,数量,商品コード,単価,商品名\n300,3,001,100,商品A', [['sku','title','quantity','price','total'],['001','商品A','3','100','300']]],
+    ['ec','商品コード,商品名,数量,単価,小計\n001,商品A,3,100,300', [['sku','title','quantity','price','total'],['001','商品A','3','100','300']]],
+  ]) {
+    const h=harness(); await h.load(source); h.get('#tmplSelect').value=tid;
+    h.applyTemplate(tid); await selectedRoundTrip(h,expected);
+    assert.equal(h.get('#mapWarnBox').hidden,true);
+    const once=plain(h.state.data.cols); h.applyTemplate(tid);
+    assert.deepEqual(plain(h.state.data.cols),once);
+    assert.ok(h.state.data.cols.every(c=>!Object.hasOwn(c,'outName')));
+  }
+});
+test('G4 resolved: generic and manual renames share one effective header', async () => {
+  const h=harness(); await h.load('品名,数量,備考\n商品,003,"引用,メモ"');
+  h.state.data.cols[0].name='商品名'; // manual alias before applying template
+  h.applyTemplate('generic');
+  await selectedRoundTrip(h,[['title','quantity','memo'],['商品','003','引用,メモ']]);
+  h.state.data.cols[0].name='custom'; h.applyTemplate('generic');
+  await selectedRoundTrip(h,[['custom','quantity','memo'],['商品','003','引用,メモ']]);
+});
+test('G4 resolved: duplicate aliases, empty headers, unknown and excluded columns stay positional', async () => {
+  const h=harness(); await h.load('摘要,金額,金額,,備考,extra,日付\nM1,001,002,E,M2,X,D');
+  const ids=h.state.data.cols.map(c=>c.id);
+  h.state.data.cols[1].excluded=true;
+  h.state.data.cols[2].cleanApply=false;
   h.applyTemplate('accounting');
-  assert.deepEqual(plain(h.state.data.cols.map(c => c.outName)), ['amount','date']);
-  assert.deepEqual(plain(h.buildOutputPreview(false).headers), ['金額','日付']);
-  assert.match(h.get('#tmplInfo').textContent, /rename:2, order:0/);
+  assert.deepEqual(h.state.data.cols.map(c=>c.id),ids);
+  assert.deepEqual(plain(h.state.data.cols.map(c=>c.srcIndex)),[0,1,2,3,4,5,6]);
+  assert.equal(h.state.data.cols[2].cleanApply,false);
+  assert.equal(h.state.data.cols[1].excluded,true);
+  await selectedRoundTrip(h,[['date','amount','memo','memo','','extra'],['D','002','M1','M2','E','X']]);
+  h.state.data.cols[1].excluded=false;
+  await selectedRoundTrip(h,[['date','amount','amount','memo','memo','','extra'],['D','001','002','M1','M2','E','X']]);
+});
+test('G4 resolved: header OFF template application is a warned no-op', async () => {
+  const h=harness(); h.state.input.hasHeader=false;
+  await h.load('日付,金額\nD,001'); const before=plain(h.state.data.cols);
+  h.get('#tmplSelect').value='accounting'; h.applyTemplate('accounting');
+  assert.deepEqual(plain(h.state.data.cols),before);
+  assert.match(h.get('#mapWarnBody').innerHTML,/Header is OFF/);
+  await selectedRoundTrip(h,[['日付','金額'],['D','001']]);
 });
 test('G5 KNOWN GAP: filtering column DOM hides an exclusion from summary/confirmation', () => {
   const h = summaryHarness(), keep = element(), drop = element();

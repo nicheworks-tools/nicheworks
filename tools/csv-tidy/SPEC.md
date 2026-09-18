@@ -48,7 +48,7 @@ UTF-8 BOM is handled at the decoding boundary, not by the string parser. Encodin
 - Active cleaning order: leading/trailing whitespace trim → collapse runs of ASCII spaces/TABs → width conversion. Trim may remove whitespace at field boundaries, including newlines; embedded newlines remain.
 - Width conversion uses the implemented ASCII-letter/digit/space/punctuation mapping in `convertZenHan`; it is not comprehensive Unicode normalization or kana transliteration. Header/data targeting remains separate.
 - Selected-column cleaning leaves unchecked columns literal in the shared preview/export model (G8 resolved at unit/integration level). ALL scope cleans every included column; selected scope uses each column entity’s cleaning selection, independent of its name or output position.
-- Manual rename/reorder/exclude are tested together. Example-template rename/order is currently G4 and is not a supported guarantee yet.
+- Manual rename/reorder/exclude are tested together. Existing-template rename/order is verified at unit/integration level (G4 resolved).
 - Settings that reparse the file currently rebuild columns and edits. Their rendered reset behavior and accidental edit-loss risk require the next phase; no persistence/history promise is made.
 
 ## Output guarantees and their evidence boundary
@@ -81,7 +81,7 @@ All classifications below are based on deterministic tests of current production
 | G1 | Semicolon CSV containing many commas inside a quoted field is guessed as comma | RESOLVED (unit/integration) | Strict candidate parses; ambiguous_delimiter requires manual selection |
 | G2 | `a,b\n,` loses its last record; loader also removes middle all-empty records | RESOLVED (unit/integration) | Preserve records; quote singleton empty values on export for independent reparse |
 | G3 | Invalid UTF-8 becomes U+FFFD; 2,000 ASCII characters plus SJIS Tokyo are guessed UTF-8 | RESOLVED (unit/integration) | Fatal decoding and explicit encoding ambiguity; general failed-load state remains G9 |
-| G4 | Accounting template writes `outName` while preview uses `name`; Japanese headers do not receive template order | CONFIRMED GAP / CORE GAP | One column-name/mapping source of truth, duplicate-safe matching |
+| G4 | Accounting template writes `outName` while preview uses `name`; Japanese headers do not receive template order | RESOLVED (unit/integration) | Shared current name; per-entity alias mapping and stable canonical grouping |
 | G5 | Filtering rendered column items hides excluded names from summary and confirmation; input count changes | CONFIRMED GAP / UX GAP | Compute counts/exclusions from full data state, not filtered DOM |
 | G6 | Loader silently pads ragged rows and replaces empty header names | RESOLVED (unit/integration) | First-record width validation, dedicated export gate, literal empty headers |
 | G7 | `b"c"d` and `"b"c` are accepted and rewritten | RESOLVED (unit/integration) | Reject invalid_quote/unclosed_quote with logical record, field and UTF-16 offset |
@@ -186,3 +186,14 @@ Load status is explicit: empty, loading, valid or invalid. Input settings are ca
 All candidate failure paths retain structured inputError information and invalidate export, including read error/abort, decode failure/ambiguity, delimiter/quote errors, empty input and G6 width rejection. G3 policy and G6 structured width guard remain intact. A fully successful load clears errors and permits only the new document to export. Generation identity ignores superseded asynchronous reads; reset invalidates pending reads and clears data/identity/errors. Built-in sample insertion dispatches the same file-input change path; no sample browser behavior is certified here.
 
 Evidence: behavior suite PASS; checkpoint **49 PASS / 0 FAIL / 0 SKIP / 0 TODO**, including **2 remaining KNOWN GAP cases (G4/G5)**. **55 actual export Blobs** independently reparse to expected matrices using Python, including repeated A/failure/B/failure/C recovery, latest-read acceptance and recovery after reset. Source byte fixtures remain unchanged. No browser/responsive/performance/SEO work.
+
+
+## G4 template mapping — 2026-09-18
+
+Starting checkpoint `4b425020e6d7cb31f25018ff900f114bbe99bba1`. G4 is **RESOLVED (unit/integration)**; G5 alone remains KNOWN GAP. Overall product acceptance/browser verification remain pending.
+
+`c.name` is the single current output-header value used by the editor, manual/template rename, preview/export and mapping warnings (including active header cleaning). Template aliases match current names, not immutable historical names: a manually changed matching alias maps, an unrelated custom name remains unchanged, and later manual edits replace the same value. Column IDs/source positions remain unchanged.
+
+Every matching column is renamed independently, including duplicate aliases. Ordering groups all canonical matches in template order, preserving pre-application relative order within each group. Unmatched/empty columns follow in their existing relative order. Excluded entities participate in mapping/order without being emitted; no non-listed column is automatically excluded. Reapplying an existing template is stable. Header OFF is an explicit warned no-op and does not consume data or generate exported headers.
+
+Evidence: behavior PASS; **52 checkpoint PASS / 0 FAIL / 0 SKIP / 0 TODO**, with **1 KNOWN GAP (G5)**. **64 Blob outputs** independently matched Python CSV matrices. Accounting canonical/shuffled Japanese, EC canonical/shuffled Japanese, generic/manual edits, duplicates/alias collisions, empty/unknown/excluded columns and header OFF are covered. Correctly mapped Accounting/EC has no false missing warning. No templates/features or browser/responsive/performance/SEO work added.

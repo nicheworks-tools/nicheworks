@@ -546,8 +546,7 @@ if (state.data.rows && state.data.rows.length) schedulePreviewRequest();
       const visibleNames = [];
 
       cols.filter(c=>!c.excluded).forEach(c=>{
-        const out = (c.outName ?? c.newName ?? c.renameTo);
-        const nm = String((out!=null && String(out).length) ? out : (c.name ?? "")).trim();
+        const nm = String(shouldApplyCleanForCol(c) ? applyHeaderOptions(c.name) : c.name).trim();
         if (!nm) return;
         present.add(nm.toLowerCase());
         visibleNames.push(nm);
@@ -591,70 +590,47 @@ function applyTemplate(tid){
     const cols = state.data.cols;
     const hasHeader = !!(state && state.input && state.input.hasHeader);
 
-    // build name map (by current column display name)
-    // - prefer header cell value if present (stored in c.name usually)
-    const map = new Map();
-    cols.forEach((c, idx)=>{
-      const key = normKey(c.name ?? "");
-      if (key) map.set(key, c);
-    });
+    if (!hasHeader){
+      updateMappingWarnings();
+      setTmplInfo(state.ui.lang === "ja" ? "ヘッダーOFFのためテンプレートは適用していません。" : "Template not applied: Header is OFF.");
+      return;
+    }
 
-    // apply renames (outName)
+    // Current output name is the only rename source/target. Match each entity,
+    // never collapse duplicate headers into a name-to-column map.
+    const aliases = new Map(Object.entries(t.rename || {}).map(([src, dst]) => [normKey(src), dst]));
+    const exclSet = new Set((t.exclude || []).map(normKey));
     let renamed = 0;
-    Object.keys(t.rename || {}).forEach(src=>{
-      const key = normKey(src);
-      const c = map.get(key);
-      if (c){
-        c.outName = t.rename[src];
+    cols.forEach(c => {
+      const key = normKey(c.name);
+      if (exclSet.has(key)) c.excluded = true;
+      if (aliases.has(key) && c.name !== aliases.get(key)){
+        c.name = aliases.get(key);
         renamed++;
       }
     });
 
-    // apply excludes: explicit list + optional "include by order" behavior
-    const exclSet = new Set((t.exclude || []).map(normKey));
-    let forcedOrder = Array.isArray(t.order) && t.order.length > 0;
-
-    // If template has order list, we treat it as "include these if found, but do not exclude others by default".
-    // (Safer for unknown CSVs; user can still bulk-exclude manually.)
-    // You can change to "exclude non-listed" later in CSVTDY-16/17.
-    cols.forEach(c=>{
-      const key = normKey(c.name ?? "");
-      if (exclSet.has(key)) c.excluded = true;
-    });
-
-    // apply order (only for found columns)
+    const forcedOrder = Array.isArray(t.order) && t.order.length > 0;
     let ordered = 0;
-    let missing = [];
+    const missing = [];
     if (forcedOrder){
-      // reset order to existing first, then set for matched cols
-      // Keep relative order for unmatched.
-      const base = cols.slice().sort((a,b)=>{
-        const ao = (a.order != null) ? a.order : (a.srcIndex ?? 0);
-        const bo = (b.order != null) ? b.order : (b.srcIndex ?? 0);
-        return ao - bo;
-      });
-
-      // assign new order: first template matches in listed order, then remaining
+      const base = cols.slice().sort((a,b) => a.order - b.order || a.srcIndex - b.srcIndex);
       const used = new Set();
       let cursor = 0;
-
-      t.order.forEach(name=>{
-        const c = map.get(normKey(name));
-        if (c){
+      t.order.forEach(name => {
+        const matches = base.filter(c => !used.has(c) && normKey(c.name) === normKey(name));
+        if (!matches.length) missing.push(name);
+        matches.forEach(c => {
           c.order = cursor++;
           used.add(c);
           ordered++;
-        } else {
-          missing.push(name);
-        }
+        });
       });
-
-      base.forEach(c=>{
-        if (used.has(c)) return;
-        c.order = cursor++;
-      });
+      // All matches in canonical groups; unmatched entities keep relative order.
+      base.forEach(c => { if (!used.has(c)) c.order = cursor++; });
     }
 
+    updateMappingWarnings();
     renderColsList();
     if (typeof schedulePreviewRequest === "function") schedulePreviewRequest();
     else schedulePreview();
