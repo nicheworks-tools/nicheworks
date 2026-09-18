@@ -1,6 +1,6 @@
 # Old Kanji Completion Audit
 
-Status: active completion ledger, not a declaration of finished quality.
+Status: completion locked; maintenance / measurement mode.
 
 Wave 9 baseline main: `6df0320312bd97b327b42917dd175ad304b4c7db`
 
@@ -10,20 +10,20 @@ Scope: the eight-tool Old Kanji cluster defined by `tools/OLD_KANJI_CLUSTER.md`.
 
 All eight tools have a `SPEC.md` whose specification status is `complete`. That means the intended product contract exists. It does **not** mean the implementation has passed final cluster acceptance.
 
-Completion Waves 10–18 closed dictionary/documentation drift, the four functional QA tranches, cross-tool browser UX/mobile/accessibility, search-cluster reconciliation, measurement/affiliate contracts, and the evidence-gated SEO inventory. Completion Wave 19 closes final release acceptance: all eight SPECs have zero unchecked criteria, Reference export actions are exercised in real Chrome, the confirmed shape/stroke presentation gap is fixed, proven-unreachable Reference runtime generations are removed, and the existing behavior/SEO/privacy/measurement/data gates remain required. Only Completion Wave 20 baseline locking remains.
+Completion Waves 10–19 closed dictionary/documentation drift, the four functional QA tranches, cross-tool browser UX/mobile/accessibility, search-cluster reconciliation, measurement/affiliate contracts, the evidence-gated SEO inventory, and final release acceptance. Completion Wave 20 locks the audited Wave 19 release baseline `447c1beb0e5490b5dfc8b45a2a9a4afb0d7122d3`, records bounded limitations and reopen triggers, and moves the eight-tool cluster from active completion work to maintenance / measurement mode.
 
 ## Tool-by-tool completion state
 
 | Tool | Spec status | Acceptance evidence | Primary remaining owner wave |
 | --- | --- | --- | --- |
-| Old Kanji Reference | complete | Waves 10–19 complete current-contract data, behavior, browser, search, measurement, SEO-inventory and release acceptance; legacy runtime reachability reviewed | Wave 20 completion lock |
-| Kanji Modernizer | complete | Functional QA, browser UX, search-role synchronization and Wave 19 release acceptance complete | Wave 20 completion lock |
-| Old Kanji OCR Scanner | complete | OCR QA, browser UX, search reconciliation, dormant monetization/measurement boundary and Wave 19 release acceptance complete | Wave 20 completion lock |
-| Old Document Kanji Highlighter | complete | Functional QA, browser UX, search-role synchronization and Wave 19 release acceptance complete | Wave 20 completion lock |
-| Unicode Kanji Checker | complete | Encoding/edge-case QA, browser UX and Wave 19 release acceptance complete | Wave 20 completion lock |
-| Variant Kanji Compare | complete | Comparison/Unicode QA, browser UX and Wave 19 release acceptance complete | Wave 20 completion lock |
-| Place Old Kanji Checker | complete | Functional/safety QA, browser UX, search-role synchronization and Wave 19 release acceptance complete | Wave 20 completion lock |
-| Name Old Kanji Checker | complete | Functional/safety QA, browser UX, search-role synchronization and Wave 19 release acceptance complete | Wave 20 completion lock |
+| Old Kanji Reference | complete | Waves 10–19 complete current-contract data, behavior, browser, search, measurement, SEO-inventory and release acceptance; legacy runtime reachability reviewed | maintenance / measurement |
+| Kanji Modernizer | complete | Functional QA, browser UX, search-role synchronization and Wave 19 release acceptance complete | maintenance / measurement |
+| Old Kanji OCR Scanner | complete | OCR QA, browser UX, search reconciliation, dormant monetization/measurement boundary and Wave 19 release acceptance complete | maintenance / measurement |
+| Old Document Kanji Highlighter | complete | Functional QA, browser UX, search-role synchronization and Wave 19 release acceptance complete | maintenance / measurement |
+| Unicode Kanji Checker | complete | Encoding/edge-case QA, browser UX and Wave 19 release acceptance complete | maintenance / measurement |
+| Variant Kanji Compare | complete | Comparison/Unicode QA, browser UX and Wave 19 release acceptance complete | maintenance / measurement |
+| Place Old Kanji Checker | complete | Functional/safety QA, browser UX, search-role synchronization and Wave 19 release acceptance complete | maintenance / measurement |
+| Name Old Kanji Checker | complete | Functional/safety QA, browser UX, search-role synchronization and Wave 19 release acceptance complete | maintenance / measurement |
 
 ## Confirmed cross-cluster findings
 
@@ -406,7 +406,23 @@ Release acceptance:
 - bounded dictionary maintenance debt remains documented rather than hidden.
 
 ### Wave 20 — Completion lock
-Record final baseline SHA, known limitations, maintenance rules, and the trigger required to reopen feature/SEO expansion. Move the cluster from active completion work to maintenance/measurement mode.
+Status: **completed**.
+
+Durable evidence:
+- `tools/OLD_KANJI_COMPLETION_LOCK.md`;
+- `scripts/check-old-kanji-completion-lock.mjs`;
+- the existing Wave 19 release audit and all prior Old Kanji CI gates remain required.
+
+Locked state:
+- audited release baseline: `447c1beb0e5490b5dfc8b45a2a9a4afb0d7122d3`;
+- current product contract: complete across all eight tools;
+- unchecked acceptance criteria: 0;
+- product mode: maintenance / measurement;
+- individual-kanji inventory remains the reviewed three-page allowlist;
+- repository-side SEO candidates remain candidates only;
+- known dictionary/data limitations remain explicitly bounded maintenance debt.
+
+Reopen conditions are defined in `tools/OLD_KANJI_COMPLETION_LOCK.md`. Feature or SEO expansion is no longer the automatic continuation of this wave sequence.
 
 ## Completion exit criteria
 
@@ -429,4 +445,4 @@ The Old Kanji cluster is complete only when all of the following are true:
 
 ## Current decision
 
-Completion Wave 19 closes final release acceptance with no unchecked current-contract criterion or known release blocker. The next permitted work is Completion Wave 20: completion lock.
+Completion Wave 20 closes the planned completion program. The eight-tool Old Kanji cluster is locked to maintenance / measurement mode for the current product contract. Further feature, monetization, data-authority, or SEO expansion requires an explicit reopen trigger from `tools/OLD_KANJI_COMPLETION_LOCK.md`.
