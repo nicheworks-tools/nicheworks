@@ -46,8 +46,8 @@ for (const args of [
   assert.deepEqual(Array.from(config.getAccessoryOffers(args)), [], `unreviewed Wave 28 mapping must fail closed: ${JSON.stringify(args)}`);
 }
 
-const osmoPocketOffers = Array.from(config.getAccessoryOffers({ maker: 'DJI', model: 'Osmo Pocket', category: 'カメラ・映像' }));
-assert.deepEqual(osmoPocketOffers, [], 'Osmo Pocket must not inherit the DJI Pocket 2 Charging Case mapping');
+const pocket2CaseModelOffers = Array.from(config.getAccessoryOffers({ maker: 'DJI', model: 'DJI Pocket 2 Charging Case', category: 'カメラ・映像' }));
+assert.deepEqual(pocket2CaseModelOffers, [], 'DJI Pocket 2 Charging Case must remain an accessory query, not a canonical camera model');
 
 const runtimeSource = fs.readFileSync(new URL('../affiliate-runtime.js', import.meta.url), 'utf8');
 assert.ok(runtimeSource.includes('affiliate-dji-camera-accessories-wave28.js'));
