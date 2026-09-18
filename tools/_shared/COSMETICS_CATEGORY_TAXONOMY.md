@@ -140,3 +140,8 @@ The reviewed runtime mappings are Ethylhexylglycerin, Squalane, Sodium Cocoyl Gl
 ## Wave 12 mappings
 
 Wave 12 requires no new authority-function vocabulary. It reuses the reviewed Wave 11 translations for `skin conditioning - emollient` → `emollient` and `cleansing` → `cleanser` for Cetearyl Alcohol, Cetyl Alcohol, Disodium Lauryl Sulfosuccinate and Hydrogenated Polyisobutene.
+
+
+## Wave 13 taxonomy extension
+
+Wave 13 adds the exact COSMILE authority term `surfactant - cleansing` as an explicit second source-function vocabulary entry for the existing internal `cleanser` category. No fuzzy or inferred terminology mapping is introduced.

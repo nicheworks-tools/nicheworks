@@ -123,3 +123,13 @@ Wave 12 advances four additional canonical identities with no raw functional cat
 | `cetyl alcohol` | `emollient` | COSMILE Europe lists skin-conditioning emollient. |
 | `disodium lauryl sulfosuccinate` | `cleanser` | COSMILE Europe lists cleansing. |
 | `hydrogenated polyisobutene` | `emollient` | COSMILE Europe lists skin-conditioning emollient. |
+
+
+## Wave 13 reviewed set
+
+| Canonical identity | Verified category | Source basis |
+| --- | --- | --- |
+| `cetearyl olivate` | `emollient` | COSMILE Europe lists skin-conditioning emollient. |
+| `stearyl alcohol` | `emollient` | COSMILE Europe lists skin-conditioning emollient. |
+| `sodium lauroyl glutamate` | `cleanser` | COSMILE Europe lists surfactant-cleansing. |
+| `sodium coco-sulfate` | `cleanser` | COSMILE Europe lists surfactant-cleansing. |

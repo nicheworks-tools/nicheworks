@@ -14,7 +14,7 @@
     "chelating agent": { "authority_functions": ["chelating agent", "chelating agents", "chelating"] },
     "skin conditioning": { "authority_functions": ["skin conditioning"] },
     "emollient": { "authority_functions": ["skin conditioning - emollient"] },
-    "cleanser": { "authority_functions": ["cleansing"] }
+    "cleanser": { "authority_functions": ["cleansing", "surfactant - cleansing"] }
   },
   "reviewed_mappings": {
     "water": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/water/"],"runtime_verified":true},
@@ -49,6 +49,10 @@
     "cetearyl alcohol": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2895/cetearyl-alcohol/"],"runtime_verified":true},
     "cetyl alcohol": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2973/cetyl-alcohol/"],"runtime_verified":true},
     "disodium lauryl sulfosuccinate": {"category":"cleanser","source_functions":["cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/4979/disodium-lauryl-sulfosuccinate/"],"runtime_verified":true},
-    "hydrogenated polyisobutene": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6702/hydrogenated-polyisobutene/"],"runtime_verified":true}
+    "hydrogenated polyisobutene": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6702/hydrogenated-polyisobutene/"],"runtime_verified":true},
+    "cetearyl olivate": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2907/cetearyl-olivate/"],"runtime_verified":true},
+    "stearyl alcohol": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15539/stearyl-alcohol/"],"runtime_verified":true},
+    "sodium lauroyl glutamate": {"category":"cleanser","source_functions":["surfactant - cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14885/sodium-lauroyl-glutamate/"],"runtime_verified":true},
+    "sodium coco-sulfate": {"category":"cleanser","source_functions":["surfactant - cleansing"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/14690/sodium-coco-sulfate/"],"runtime_verified":true}
   }
 }
