@@ -30,7 +30,8 @@ check(contract.includes('Only **Kanji Modernizer** targets full-text'), 'convers
 check(contract.includes('2–4 per tool'), 'bounded related-link contract missing');
 check(contract.includes('Do **not** mass-generate thin pages'), 'thin-page prohibition missing');
 check(contract.includes('existing Old Kanji Reference CSV/JSON/Markdown/print actions remain Free'), 'existing Free export boundary missing');
-check(contract.includes('Amazon is **contextual and optional**'), 'Amazon relevance boundary missing');
+check(contract.includes('Amazon is **currently dormant**'), 'Amazon dormant boundary missing');
+check(contract.includes('`ADS_DONATION`') && contract.includes('`HOLD`') && contract.includes('`AFFILIATE`'), 'Amazon canonical classification boundary missing');
 check(contract.includes('internal Old Kanji tool handoff clicks'), 'internal-link measurement requirement missing');
 check(contract.includes('OFUSE / Ko-fi clicks'), 'support-click measurement requirement missing');
 check(contract.includes('must not send user-entered names, addresses, OCR text'), 'analytics payload privacy rule missing');
