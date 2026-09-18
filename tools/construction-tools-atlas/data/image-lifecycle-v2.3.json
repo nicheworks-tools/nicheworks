@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-18-applicability-wave9",
+  "version": "2026-09-18-applicability-wave10",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -10999,6 +10999,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A pull handle is a physical door/gate hardware component with clear installed identity; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11010,6 +11019,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A push plate is a physical door hardware plate with a recognizable installed position; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11027,6 +11045,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A vinyl/resin window frame is a physical fenestration assembly with recognizable profile and installed form; imagery is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11038,6 +11065,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A roof drain is a physical drainage inlet with a recognizable roof installation; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11055,6 +11091,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A roofing screw is a physical fastener with characteristic washer/head form; a close reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11066,6 +11111,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Roof sealant is a physical sealing material with recognizable cartridge/application and roof-joint context; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11083,6 +11137,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A ridge vent is a physical roof ventilation component installed along the ridge; a reviewed photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11094,6 +11157,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A roofing nail is a physical fastener with recognizable head/shank form and roofing use; a close reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11111,6 +11183,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A scaffold mesh sheet is a physical temporary containment/protection material with recognizable installed scaffold use; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11122,6 +11203,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A sealant spatula is a physical finishing hand tool with recognizable blade/profile; a subject-matched photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11139,6 +11229,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A sealer coat is a physical surface-preparation coating; a reviewed product/application photograph can represent the canonical use.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11150,6 +11249,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A sediment trap is a physical site drainage/control feature with recognizable basin/trap form; a reviewed site photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11167,6 +11275,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Sheet-membrane waterproofing is a physical rolled membrane system with recognizable installed seams/layers; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11178,6 +11295,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A siding clip is a physical fastening component with a recognizable profile and siding installation; a close reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11195,6 +11321,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A siding joint is a physical gap/seam between cladding panels with recognizable detailing; a reviewed close photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11206,6 +11341,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A siding starter strip is a physical base/profile component used to begin cladding installation; a reviewed photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11223,6 +11367,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A sill pan is a physical flashing/drainage component beneath windows/doors; a reviewed installed-detail photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11234,6 +11387,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A sliding-door rail is a physical track component with recognizable installed geometry; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11251,6 +11413,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A snow guard is a physical roof-mounted retention component with distinctive installed form; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11262,6 +11433,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A soffit vent is a physical eaves ventilation component with recognizable perforated/grille form; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11279,6 +11459,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A spray gun is a distinctive paint/coating application tool; a subject-matched photograph strongly aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11290,6 +11479,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Standing-seam roofing is a physical metal roof system with distinctive raised seams; a reviewed photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11307,6 +11505,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A stormwater inlet is a physical drainage structure with recognizable grate/opening and site context; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11318,6 +11525,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Torch-on membrane is a physical bituminous waterproofing system with recognizable roll and heat-applied installation; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11335,6 +11551,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A trench drain is a physical linear drainage channel with a recognizable grate/slot installation; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11346,6 +11571,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Urethane waterproofing is a physical liquid-applied membrane system with recognizable application/finished surface; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11363,6 +11597,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A vented rainscreen batten is a physical wall-envelope spacing member with recognizable installation behind cladding; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11374,6 +11617,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A vibratory roller is a distinctive compaction machine with a smooth vibrating drum; a reviewed photograph strongly aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11391,6 +11643,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A waterproofing topcoat is a physical protective coating over membrane systems; a reviewed application/finished-surface photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11402,6 +11663,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An MEP access door is a physical service-access component with recognizable wall/ceiling installation; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11419,6 +11689,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A duct access panel is a physical openable panel installed in ductwork; a close reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11430,6 +11709,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An air handling unit is a distinctive HVAC equipment assembly with recognizable casing/duct connections; a reviewed photograph strongly aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11447,6 +11735,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An air vent valve is a physical hydronic/plumbing component with a recognizable compact valve form; a close reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11458,6 +11755,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An airflow capture hood is a distinctive HVAC measurement instrument with a fabric hood and meter; a subject-matched photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11475,6 +11781,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Aluminum jacketing is a physical protective cladding around insulated pipe/duct surfaces; a reviewed installed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11486,6 +11801,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An anemometer is a distinctive airflow measurement instrument; a subject-matched photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11503,6 +11827,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A vibration-isolation hanger is a physical suspension component with spring/rubber isolation elements; a reviewed photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11514,6 +11847,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A backdraft damper is a physical airflow-control component with recognizable louvers/blades; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11531,6 +11873,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A balancing valve is a physical hydronic control valve with recognizable body/adjustment features; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11542,6 +11893,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A booster pump is a physical pressure-boosting machine with recognizable pump/motor assembly; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11559,6 +11919,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A butterfly valve is a physical valve with a distinctive disc/wafer body and actuator/handle; a reviewed photograph strongly aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11570,6 +11939,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A cable gland is a physical cable-entry fitting with distinctive threaded/compression geometry; a close reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11587,6 +11965,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A cable tag is a physical identification marker attached to cables; a reviewed close photograph aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11598,6 +11985,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A cable ladder is a physical cable-support system with recognizable ladder-like rails/rungs; a reviewed installed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11615,6 +12011,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A cable lug is a physical electrical termination component with a barrel and palm/eye; a close reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11626,6 +12031,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A cable-tray cover is a physical protective lid fitted over tray systems; a reviewed installed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11643,6 +12057,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A cleanout plug is a physical threaded/capped plumbing access component; a close reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11654,6 +12077,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A clevis hanger is a physical pipe-support fitting with a recognizable U-shaped suspended form; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -11671,6 +12103,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A condensate pump is a physical HVAC drainage device with pump/reservoir assembly; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -11682,6 +12123,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:09:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A control relay is a physical electrical control component with recognizable terminal/package form; a close reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
