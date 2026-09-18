@@ -208,3 +208,57 @@ The app exposes a read-only summary snapshot consumed by complete.js. Input colu
 Rows mean actual preview data rows, bounded by previewN and accepted data row count, excluding the source header when enabled. They are not total-file counts. Header OFF counts all records as data and exports no synthetic header. Loading/invalid/empty state returns no current summary or stale exclusions; G9 still guards download. Existing UI structure, output-option labels and refresh hooks remain in place.
 
 Evidence: behavior PASS; **55 checkpoint PASS / 0 FAIL / 0 SKIP / 0 TODO** and **68 independent Python Blob reparses matched**. Search/clear invariance, hidden-exclusion confirmation/cancel, template/manual names, duplicates, empty fallback, reorder, language, header OFF and failed-load/reset/recovery are covered. Remaining verification: real browser file workflow, download/reopen, error/recovery UI, keyboard/focus/accessibility, 1440/1024/768/375/320 operation, realistic scale/performance/memory. No browser or performance verification is claimed.
+
+## Scale / performance evidence — 2026-09-18
+
+Programmatic scale validation was completed in a non-browser runtime after **KNOWN GAP: 0**. This evidence measures production CSV Tidy logic through the existing test harness; it is not browser responsiveness certification.
+
+Environment: Node v24.19.0; Python 3.12.14; Linux 6.18.44 x64; host memory 16,793,280,512 bytes; cgroup limit 15,032,385,536 bytes; measured child-process V8 heap limit 2 GiB. Timing excludes fixture generation and Python verification. Memory values are observed process heap/RSS at processing stages, not instantaneous peak allocation.
+
+### Measured row envelope
+
+With 10 input columns and the supported transformation stack enabled (trim, repeated-space normalization, width conversion, selected-column scope, reorder, rename and one exclusion):
+
+| Data rows | Input bytes | Load ms | Preview ms | Full output model ms | Serialize ms | Total ms | Observed heap / RSS MB |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1,000 | 118,165 | 4.62 | 0.44 | 6.07 | 5.07 | 17.23 | 11.80 / 52.05 |
+| 10,000 | 1,201,345 | 26.06 | 0.48 | 42.41 | 45.47 | 114.64 | 31.80 / 95.33 |
+| 50,000 | 6,095,463 | 100.03 | 0.58 | 208.37 | 252.00 | 562.17 | 109.51 / 291.08 |
+| 100,000 | 12,213,109 | 200.74 | 0.81 | 379.55 | 439.04 | 1,019.94 | 164.37 / 409.12 |
+| 250,000 | 30,866,047 | 477.49 | 1.06 | 894.61 | 1,077.17 | 2,451.46 | 317.39 / 641.60 |
+
+10,000-row and 100,000-row representative cases were each repeated three times. Observed total ranges were 113.30–122.79 ms and 1,003.85–1,044.32 ms respectively.
+
+### Measured column envelope
+
+At 1,000 data rows:
+
+| Input → output columns | Load ms | Preview ms | Full model ms | Serialize ms | Total ms | Observed heap / RSS MB |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 10 → 9 | 4.07 | 0.44 | 5.34 | 4.76 | 15.46 | 11.84 / 52.04 |
+| 50 → 49 | 12.54 | 1.05 | 22.29 | 28.16 | 65.09 | 18.02 / 73.13 |
+| 100 → 99 | 28.38 | 3.16 | 40.06 | 47.14 | 117.99 | 29.38 / 92.47 |
+| 200 → 199 | 53.80 | 2.48 | 80.05 | 89.72 | 227.51 | 52.57 / 142.69 |
+
+The 100-column case was repeated three times; total range 116.21–125.14 ms.
+
+### Measured byte-oriented envelope
+
+Long-field fixtures showed materially higher memory pressure than similarly sized many-row fixtures:
+
+| Input bytes | Load ms | Preview ms | Full model ms | Serialize ms | Total ms | Observed heap / RSS MB |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1,004,165 | 38.78 | 2.01 | 62.75 | 16.25 | 120.92 | 77.48 / 139.42 |
+| 5,004,165 | 257.71 | 6.08 | 604.39 | 124.55 | 994.93 | 365.41 / 552.07 |
+| 10,004,165 | 891.65 | 12.30 | 1,295.99 | 262.54 | 2,467.39 | 730.40 / 955.97 |
+| 25,004,165 | 2,491.71 | 187.54 | 3,734.56 | 712.52 | 7,130.66 | 1,242.46 / 1,920.79 |
+
+The 25 MB long-field workload completed but was already resource-intensive, so a 50 MB long-field escalation was intentionally not run. This is a measured practical observation, not a hard product file-size limit.
+
+Large malformed inputs were also rejected safely near EOF: a roughly 12.21 MB / 100,000-row fixture with a late ragged record produced structured `inconsistent_fields`, and an equivalent fixture with a late unclosed quote produced `unclosed_quote`. Neither produced an output model or download Blob, and prior valid data did not leak.
+
+Independent Python `csv.reader(strict=True)` validation passed for 19 substantial outputs. Representative complete outputs included 100,000 rows × 9 columns (~9.22 MB), 250,000 rows × 9 columns (~23.40 MB), 1,000 rows × 199 columns (~1.84 MB), and a ~24.97 MB long-field output. Row counts, widths, headers and sentinel records matched, including Japanese, leading zeroes and embedded comma/quote/newline values.
+
+**Programmatic product acceptance: PASS. KNOWN GAP: 0. New scale correctness gaps: 0.**
+
+Measured successfully in this environment through 250,000 data rows with 10 input columns, 1,000 rows with 200 input columns, and approximately 25 MB long-field input. These maxima were tested independently and are not combined-limit guarantees or advertised product ceilings. Browser file workflow, layout, accessibility and browser responsiveness remain outside this programmatic evidence.

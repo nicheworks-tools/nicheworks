@@ -146,3 +146,33 @@ Local/remote checkpoint `f58f764aea893fbda56af3fd327c1d559737cd22` matched; no p
 Removed filtered DOM authority for column counts, exclusions and preview-row counts. A read-only app state snapshot is consumed by both summary and exclusion confirmation. Replaced the isolated DOM summary harness with execution of production complete.js alongside production app.js in the same VM. Four acceptance tests replace G5 characterization: five search states with identical summary/confirmation; template/manual/duplicate/empty/reordered/localized exclusion names; header OFF; invalid/reset/recovered state. Confirmation cancellation is exercised. Snapshot output counts agree with the actual output model; unchecked cleaning selection does not exclude columns.
 
 Final behavior PASS; **55 PASS / 0 FAIL / 0 SKIP / 0 TODO**; **68 independent Python reparses matched** (preserved 64 plus search-invariant export, renamed/excluded export, header-OFF export and post-failure recovery export). All earlier regression tests remain unchanged and green. **KNOWN GAP: 0; Product accepted: NO.** Real browser load/download/reopen, error/recovery UI, accessibility, viewport matrix (1440/1024/768/375/320) and realistic scale/performance/memory remain unverified. No final PR or browser/performance work in this checkpoint.
+
+## Scale / performance checkpoint — 2026-09-18
+
+A dedicated deterministic Node scale harness (`scale-benchmark.mjs`) exercises production CSV Tidy functions through `checkpoint-harness.mjs`; it does not reimplement parsing, transformations or serialization. Generated large fixtures are temporary/in-memory rather than committed data files.
+
+Environment: Node v24.19.0; Python 3.12.14; Linux 6.18.44 x64; host memory 16,793,280,512 bytes; free memory observed 15,517,433,856 bytes; cgroup limit 15,032,385,536 bytes; child-process V8 heap limit 2 GiB.
+
+Final programmatic evidence reported:
+
+- behavior suite: PASS
+- checkpoint suite: **55 PASS / 0 FAIL / 0 SKIP / 0 TODO**
+- scale suite: **21 PASS / 0 FAIL**
+- `git diff --check`: PASS
+- **KNOWN GAP: 0**
+- **New scale correctness gaps: 0**
+- Python independent scale reparse: **19 outputs PASS**
+
+Measured row cases (10 input columns, full supported transform stack): 1k, 10k, 50k, 100k and 250k data rows. The 250k case used 30,866,047 input bytes and completed the measured load/preview/full-output/serialize path in 2,451.46 ms with observed 317.39 MB heap / 641.60 MB RSS.
+
+Measured column cases at 1,000 rows: 10, 50, 100 and 200 input columns, producing 9, 49, 99 and 199 output columns after one exclusion. The 200-column case completed in 227.51 ms with observed 52.57 MB heap / 142.69 MB RSS.
+
+Long-field byte cases near 1, 5, 10 and 25 MB all completed. The 25,004,165-byte fixture took 7,130.66 ms and reached observed 1,242.46 MB heap / 1,920.79 MB RSS. Because this shape was already substantially more memory-intensive than the larger 30.87 MB many-row fixture, 50 MB long-field escalation was intentionally not attempted.
+
+Large invalid-input checks placed a malformed record near the end of ~100k-row input. Ragged width returned `inconsistent_fields` (expected 10 / actual 1); malformed quoting returned `unclosed_quote`. Both rejected without an export model or Blob and preserved G9 stale-output protection.
+
+Representative independently reparsed complete outputs: 100,000 × 9 (~9.22 MB), 250,000 × 9 (~23.40 MB), 1,000 × 199 (~1.84 MB), and ~24.97 MB long-field output. Full row counts/widths and sentinel records matched; Japanese, leading zeroes and embedded delimiters/quotes/newlines remained correct.
+
+**Programmatic product acceptance: PASS.**
+
+The largest measured cases are evidence points, not hard limits. Browser execution, layout, keyboard/focus and browser responsiveness are not certified by this checkpoint.
