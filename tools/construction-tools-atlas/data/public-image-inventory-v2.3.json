@@ -19,13 +19,13 @@
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
     "image_registry_version": "2026-09-14-wave3a-1",
-    "image_exception_ledger_version": "2026-09-15-1"
+    "image_exception_ledger_version": "2026-09-18-admin-wave1"
   },
   "summary": {
     "public_entries": 870,
     "formal_image_entries": 24,
-    "missing_formal_image_entries": 846,
-    "not_required_entries": 0,
+    "missing_formal_image_entries": 838,
+    "not_required_entries": 8,
     "unobtainable_entries": 0,
     "classified_entries": 870,
     "formal_coverage_percent": 2.7586,
@@ -186,16 +186,16 @@
     "tool": {
       "public_entries": 333,
       "formal_image": 14,
-      "missing_formal_image": 319,
-      "not_required": 0,
+      "missing_formal_image": 311,
+      "not_required": 8,
       "unobtainable": 0
     }
   },
   "hashes": {
     "public_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
     "public_formal_image_id_sha256": "040763473f9eacfcf8556123ab24574b7e74e4bb561e746bd7a567acd05c03d9",
-    "public_missing_formal_image_id_sha256": "0be227580726156b24c9cf1ee239f592fe4af664066bd0dccc654dc5d1fe15e8",
-    "public_image_classification_sha256": "559cdbc32bb87d8551c2192ec25ed8176be057aba83725221f58f57cebd74999"
+    "public_missing_formal_image_id_sha256": "cd43ed57859f663d6c385705dcf24ac6f65ae0c31e94325861388fa5bbb134c8",
+    "public_image_classification_sha256": "0a3b57613db263ac58ce0f3fe55ee9bcf38feee9885c7554c03b4335bf3673f0"
   },
   "inherited_formal_images": [
     {
@@ -234,7 +234,6 @@
     "anchor_bolt",
     "anchor_plastic_plug",
     "angle_finder",
-    "as_built",
     "as_built_drawing",
     "asphalt_felt",
     "auto_level",
@@ -250,6 +249,7 @@
     "borescope",
     "brick_hammer",
     "brick_trowel",
-    "bucket"
+    "bucket",
+    "butyl_tape_002"
   ]
 }
