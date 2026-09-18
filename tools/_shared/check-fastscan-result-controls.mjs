@@ -22,6 +22,6 @@ assert.ok(ui.includes('analysis will not rerun automatically'), 'English UI must
 assert.ok(spec.includes('result cards to be filtered'), 'FastScan SPEC must document result filtering');
 assert.ok(spec.includes('does not automatically rerun ingredient analysis'), 'FastScan SPEC must document no automatic rerun after candidate application');
 assert.ok(spec.includes('trackingMode = tagged_search'), 'FastScan SPEC must document the active fixed Amazon tagged-search contract');
-assert.ok(spec.includes('Affiliate analytics remain coarse') || spec.includes('Affiliate analytics are limited'), 'FastScan SPEC must retain coarse affiliate analytics privacy');
+assert.ok(spec.includes('Affiliate clicks use the suite-wide `affiliate_outbound` event') && spec.includes('analytics remain coarse'), 'FastScan SPEC must retain coarse affiliate analytics privacy with canonical outbound tracking');
 
 console.log('FastScan result control regression checks passed');
