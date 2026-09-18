@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 4, 'all 4 audited category conflicts must be explicit at runtime');
+assert.equal(categoryConflicts.length, 8, 'the 4 legacy category conflicts plus 4 reviewed Wave 15 legacy-vs-verified role conflicts must be explicit at runtime');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
@@ -35,9 +35,27 @@ for (const item of safetyConflicts) {
   assert.deepEqual(item.legacy_safety_values, item.semantic_conflicts.safety, `${item.en}: conflict marker and auditable safety values must agree`);
 }
 
+const wave15VerifiedPrimary = new Map([
+  ['caprylyl glycol', { category: 'emollient', legacy: ['preservative booster'] }],
+  ['ceramide np', { category: 'skin conditioning', legacy: ['barrier lipid'] }],
+  ['cholesterol', { category: 'emollient', legacy: ['barrier lipid'] }],
+  ['hexylene glycol', { category: 'solvent', legacy: ['general'] }]
+]);
+
 for (const item of categoryConflicts) {
   assert.ok(Array.isArray(item.categories) && item.categories.length >= 2, `${item.en}: category conflict must preserve multiple functional categories`);
-  assert.equal(item.category, item.categories.join(' / '), `${item.en}: runtime category display must include every normalized function`);
+  const canonical = parser.canonicalIdentityKey(item.en);
+  const reviewed = wave15VerifiedPrimary.get(canonical);
+  if (reviewed) {
+    assert.equal(item.category, reviewed.category, `${item.en}: reviewed verified role must be the public primary category`);
+    assert.equal(item.category_verified, true, `${item.en}: reviewed verified role must remain provenance-marked`);
+    assert.deepEqual(item.legacy_category_values, reviewed.legacy, `${item.en}: unsupported legacy category must remain auditable`);
+    assert.ok(item.categories.includes(reviewed.category), `${item.en}: verified role must remain in the full functional category set`);
+    for (const legacy of reviewed.legacy) assert.ok(item.categories.includes(legacy), `${item.en}: legacy category must remain in the full functional category set`);
+  } else {
+    assert.equal(item.category, item.categories.join(' / '), `${item.en}: unverified legacy category conflict must continue to display every normalized function`);
+    assert.equal(item.legacy_category_values, undefined, `${item.en}: legacy-only conflicts must not gain a synthetic verified-primary audit field`);
+  }
 }
 
 const urea = merged.find((item) => parser.canonicalIdentityKey(item.en) === 'urea');
@@ -65,5 +83,7 @@ console.log(JSON.stringify({
   explicit_safety_conflicts: safetyConflicts.length,
   safety_conflicts_with_selected_winner: safetyConflicts.filter((item) => item.safety).length,
   explicit_category_conflicts: categoryConflicts.length,
+  reviewed_verified_primary_category_conflicts: categoryConflicts.filter((item) => wave15VerifiedPrimary.has(parser.canonicalIdentityKey(item.en))).length,
+  legacy_only_category_conflicts: categoryConflicts.filter((item) => !wave15VerifiedPrimary.has(parser.canonicalIdentityKey(item.en))).length,
   category_conflicts_preserving_all_functions: categoryConflicts.filter((item) => item.categories?.length >= 2).length
 }, null, 2));
