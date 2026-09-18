@@ -21,7 +21,7 @@ const DATA_FILES = [
 const EVIDENCE_FIELDS = ['source', 'source_url', 'evidence', 'evidence_url', 'reference', 'references', 'note_sources'];
 const PUBLIC_ROLE_CATEGORIES = new Set([
   'humectant', 'moisturizer', 'soothing', 'smoothing', 'active', 'amino acid', 'silicone',
-  'film former', 'emollient', 'oil', 'solvent', 'preservative', 'fragrance',
+  'film former', 'binder', 'emollient', 'oil', 'solvent', 'preservative', 'fragrance',
   'surfactant', 'cleanser', 'uv filter', 'sunscreen', 'colorant', 'pigment',
   'antioxidant', 'botanical', 'extract', 'plant extract', 'peptide', 'ferment',
   'thickener', 'emulsifier', 'chelator', 'chelating agent', 'ph', 'ph adjuster',
