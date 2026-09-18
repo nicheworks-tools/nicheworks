@@ -151,6 +151,29 @@ for (const item of records) {
   for (const value of Array.isArray(item.alias) ? item.alias : []) addOwner(value, item.en);
 }
 
+const PUBLIC_ROLE_CATEGORIES = new Set([
+  'humectant', 'moisturizer', 'soothing', 'smoothing', 'active', 'amino acid', 'silicone',
+  'film former', 'binder', 'emollient', 'oil', 'solvent', 'preservative', 'fragrance',
+  'surfactant', 'cleanser', 'uv filter', 'sunscreen', 'colorant', 'pigment',
+  'antioxidant', 'botanical', 'extract', 'plant extract', 'peptide', 'ferment',
+  'thickener', 'emulsifier', 'chelator', 'chelating agent', 'ph', 'ph adjuster',
+  'viscosity adjuster', 'buffer', 'conditioning', 'skin conditioning', 'hair conditioning'
+]);
+const runtimeByCanonical = new Map(
+  parser.mergeDictionaryRecords(records).map((item) => [canonicalIdentity(item.en), item])
+);
+const exactKnownRoleGaps = new Map();
+
+function hasSupportedPublicRole(item) {
+  const categories = Array.isArray(item?.categories) ? item.categories : [item?.category];
+  return categories.some((value) => PUBLIC_ROLE_CATEGORIES.has(String(value || '').trim().toLowerCase()));
+}
+
+function canonicalForExactKnown(value) {
+  const set = owners.get(parser.normalizeKey(value));
+  return set && set.size === 1 ? [...set][0] : '';
+}
+
 function isExactKnown(value) {
   const key = parser.normalizeKey(value);
   if (!key) return false;
@@ -221,6 +244,12 @@ for (const item of corpus) {
   for (const value of parts) {
     if (isExactKnown(value)) {
       known += 1;
+      const canonical = canonicalForExactKnown(value);
+      const runtimeItem = runtimeByCanonical.get(canonical);
+      if (!runtimeItem || !hasSupportedPublicRole(runtimeItem)) {
+        const key = canonical || parser.normalizeBaseKey(value);
+        exactKnownRoleGaps.set(key, (exactKnownRoleGaps.get(key) || 0) + 1);
+      }
     } else {
       unknown.push(value);
       const key = parser.normalizeBaseKey ? parser.normalizeBaseKey(value) : value.toLowerCase();
@@ -290,6 +319,12 @@ for (const exactName of COHORT2_WAVE1_EXACT) {
 for (const exactName of COHORT3_WAVE1_EXACT) {
   assert.equal(isExactKnown(exactName), true, `${exactName}: cohort 3 Wave 1 exact identity must remain recognized`);
 }
+
+assert.equal(
+  [...exactKnownRoleGaps.values()].reduce((sum, count) => sum + count, 0),
+  0,
+  `recognized canonical ingredients in the official-label corpus must all have supported public roles: ${JSON.stringify([...exactKnownRoleGaps.entries()])}`
+);
 
 for (const unresolved of [
   'パラベン',
