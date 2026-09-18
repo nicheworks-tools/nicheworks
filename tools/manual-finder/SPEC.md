@@ -78,9 +78,9 @@ Nikon Waves 1–2 remain closed at **14 detail + 0 reviewed exclusions + 0 missi
 
 DJI advances only through bounded exact-canonical-model waves. Reviewed scope through Wave 26 includes Waves 1–25 frozen in their individual ledgers plus Wave 26 for exactly:
 
-- `Phantom 3 4K`
+- `Osmo Pocket 3`
 
-Wave 26 maps exactly the canonical `Phantom 3 4K` row to `DJI Phantom 3 Intelligent Flight Battery`. DJI's official Phantom 3 4K Download Center publishes model-specific Phantom 3 Intelligent Flight Battery safety material, and DJI's official Phantom 3 Series battery guidance identifies the series battery as 15.2 V / 4480 mAh. A charging-hub handoff remains intentionally unasserted because equally explicit Phantom 3 4K hub compatibility was not established. Neighboring and synthetic names remain fail-closed.
+Wave 26 maps exactly the canonical `Osmo Pocket 3` row to `DJI Osmo Pocket 3 Battery Handle`. DJI's official Battery Handle product page explicitly lists `Osmo Pocket 3` as compatible, and DJI's official Osmo Pocket 3 support material documents the Battery Handle as a supported accessory. `DJI Osmo Pocket 3`, `Osmo Pocket 3 Creator Combo`, `DJI Pocket 2`, and other neighboring or synthetic names remain fail-closed.
 
 The measured DJI state after Waves 1–26 is **96 basic = 46 detail + 0 reviewed exclusions + 50 missing accessory detail**.
 
@@ -127,7 +127,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] Nikon camera accessory coverage remains **14 detail + 0 reviewed exclusions + 0 missing**.
 - [x] DJI Waves 1–26 preserve exact reviewed boundaries and do not infer neighboring product names.
 - [x] DJI Mavic 2 Enterprise Series Wave 25 activates exactly one reviewed canonical series row with official battery and charging-hub evidence.
-- [x] DJI Phantom 3 4K Wave 26 activates exactly one reviewed canonical row with official battery evidence and no inferred charging-hub handoff.
+- [x] DJI Osmo Pocket 3 Wave 26 activates exactly one reviewed canonical row with official Battery Handle compatibility evidence.
 - [x] DJI Waves 1–26 reconcile to **96 basic = 46 detail + 0 reviewed exclusions + 50 missing accessory detail**.
 - [x] The catalog-wide camera audit reconciles to **185 basic = 60 detail + 0 reviewed exclusions + 125 missing accessory detail** while seven maker/index rows remain non-actionable.
 - [x] Missing-model maker diagnostics and documentation sync remain machine-readable drift guards.
@@ -208,7 +208,7 @@ Camera accessory tests and audit gates:
 - `tools/manual-finder/tests/dji-phantom3-se-accessory-wave23.test.mjs`
 - `tools/manual-finder/tests/dji-mavic2-enterprise-advanced-wave24.test.mjs`
 - `tools/manual-finder/tests/dji-mavic2-enterprise-series-wave25.test.mjs`
-- `tools/manual-finder/tests/dji-phantom3-4k-accessory-wave26.test.mjs`
+- `tools/manual-finder/tests/dji-osmo-pocket3-accessory-wave26.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-coverage.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs`
 - `tools/manual-finder/tests/affiliate-coverage.test.mjs`
