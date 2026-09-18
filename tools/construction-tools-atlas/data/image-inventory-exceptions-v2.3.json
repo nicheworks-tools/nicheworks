@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-inventory-exceptions-v2.3",
-  "version": "2026-09-18-applicability-wave16",
+  "version": "2026-09-18-applicability-wave17-final",
   "items": [
     {
       "entry_id": "punch_list",
@@ -221,6 +221,21 @@
       "entry_id": "torque",
       "state": "not_required",
       "reason": "Torque is a physical quantity/measurement concept rather than a visually identifiable object; photographs of tools or fasteners would depict related equipment, not torque itself."
+    },
+    {
+      "entry_id": "touch_up",
+      "state": "not_required",
+      "reason": "The canonical is the finishing action of making small local corrections after primary work; materials, tools, and defect types vary, so one photograph would show only an arbitrary example of the process."
+    },
+    {
+      "entry_id": "water_test",
+      "state": "not_required",
+      "reason": "The canonical is a testing procedure for confirming water tightness, flow, or leakage; test setups and target assemblies vary, so a single photograph would depict only one arbitrary implementation."
+    },
+    {
+      "entry_id": "youshi_protection",
+      "state": "not_required",
+      "reason": "The canonical is the broad jobsite practice/concept of 養生 (protecting finished work and surrounding areas); materials and methods vary widely, so one photograph would arbitrarily depict only one protection method."
     }
   ]
 }
