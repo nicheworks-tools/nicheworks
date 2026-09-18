@@ -33,7 +33,7 @@ for (const model of models) {
   assert.equal(offers[0].verifiedAt, '2026-09-19');
 }
 
-for (const args of [{"maker":"OM SYSTEM","model":"E-M1 Mark II","category":"カメラ・映像"},{"maker":"OM SYSTEM","model":"E-M5 Mark III","category":"カメラ・映像"},{"maker":"Olympus","model":"E-M1","category":"カメラ・映像"},{"maker":"OM SYSTEM","model":"E-M1","category":"その他"}]) {
+for (const args of [{"maker":"OM SYSTEM","model":"E-M1 Mark IV","category":"カメラ・映像"},{"maker":"OM SYSTEM","model":"E-M5 Mark IV","category":"カメラ・映像"},{"maker":"Olympus","model":"E-M1","category":"カメラ・映像"},{"maker":"OM SYSTEM","model":"E-M1","category":"その他"}]) {
   assert.deepEqual(Array.from(config.getAccessoryOffers(args)), [], `unreviewed OM SYSTEM Wave 5 mapping must fail closed: ${JSON.stringify(args)}`);
 }
 
