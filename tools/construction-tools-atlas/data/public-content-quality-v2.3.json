@@ -18,27 +18,27 @@
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
     "quality_manifest_version": "2026-09-14-manifest-8",
-    "content_enrichment_version": "2026-09-17-wave5u"
+    "content_enrichment_version": "2026-09-18-wave5v"
   },
   "summary": {
     "public_entries": 870,
-    "fallback_independent_core": 616,
-    "runtime_fallback_dependent": 254,
+    "fallback_independent_core": 631,
+    "runtime_fallback_dependent": 239,
     "missing_core_bilingual_content": 0,
     "explicit_bilingual_identity": 870,
     "explicit_bilingual_definition": 870,
-    "explicit_bilingual_detail": 835,
-    "explicit_bilingual_bullets": 616,
-    "explicit_bilingual_examples": 835,
+    "explicit_bilingual_detail": 850,
+    "explicit_bilingual_bullets": 631,
+    "explicit_bilingual_examples": 850,
     "explicit_bilingual_aliases": 279,
-    "content_enriched_entries": 476,
+    "content_enriched_entries": 491,
     "has_category_context": 870,
     "has_task_context": 870
   },
   "fallback_field_counts": {
-    "detail": 35,
-    "bullets": 254,
-    "examples": 35
+    "detail": 20,
+    "bullets": 239,
+    "examples": 20
   },
   "by_type": {
     "access": {
@@ -55,8 +55,8 @@
     },
     "component": {
       "public_entries": 205,
-      "fallback_independent_core": 190,
-      "runtime_fallback_dependent": 15,
+      "fallback_independent_core": 195,
+      "runtime_fallback_dependent": 10,
       "missing_core_bilingual_content": 0
     },
     "consumable": {
@@ -85,8 +85,8 @@
     },
     "fastener": {
       "public_entries": 18,
-      "fallback_independent_core": 14,
-      "runtime_fallback_dependent": 4,
+      "fallback_independent_core": 16,
+      "runtime_fallback_dependent": 2,
       "missing_core_bilingual_content": 0
     },
     "fixture": {
@@ -109,8 +109,8 @@
     },
     "material": {
       "public_entries": 158,
-      "fallback_independent_core": 149,
-      "runtime_fallback_dependent": 9,
+      "fallback_independent_core": 150,
+      "runtime_fallback_dependent": 8,
       "missing_core_bilingual_content": 0
     },
     "materials": {
@@ -169,17 +169,17 @@
     },
     "tool": {
       "public_entries": 333,
-      "fallback_independent_core": 130,
-      "runtime_fallback_dependent": 203,
+      "fallback_independent_core": 137,
+      "runtime_fallback_dependent": 196,
       "missing_core_bilingual_content": 0
     }
   },
   "hashes": {
-    "content_status_sha256": "08aece374974bf928067b21dc573062c479890144a98d210ba78b7453c2efdb8",
-    "fallback_independent_id_sha256": "7da16ae8127e5112226ec0c2d1e2ee3e878e0994529558f162233b841215b0a0",
-    "fallback_dependent_id_sha256": "344769361469b6288b88d639b407fe6aa72dac0a238d4748ef19760bbc6fdfd5",
+    "content_status_sha256": "f5f31fb6d0d0c461fb8f9c1ba688c2421ac173198d8d8e5ac337363ee36a1c68",
+    "fallback_independent_id_sha256": "d31fa6ee9f3254086f750566b2ed372d07701875291c3fd423d7d47f6048df04",
+    "fallback_dependent_id_sha256": "41e157971a9a544800cd8d40da147529b766dc27f72fa2c59cc1d95701603af4",
     "missing_core_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "content_enriched_id_sha256": "fb26c38df69c6ba92ccd5116de2ecb3eb831c83168439aed6d7dda4c7fb71123"
+    "content_enriched_id_sha256": "26c41f38d1353851be7a58b31da09a468014fba60e317a987f1f8dc4aa6690c1"
   },
   "samples": {
     "fallback_independent_core": [
@@ -336,156 +336,6 @@
     ],
     "runtime_fallback_dependent": [
       {
-        "id": "q017_wood_rasp",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_needle_nose_pliers",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_insulated_screwdriver",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_cable_cutter",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_cable_tie_tool",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_pipe_threader",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_pipe_deburrer",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_copper_pipe",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_pipe_elbow",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_pipe_tee",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_pipe_coupling",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_ceiling_runner",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_access_floor_panel",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_drop_in_anchor",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
-        "id": "q017_eye_bolt",
-        "source": "data/tools.quality-017.json",
-        "enrichment": null,
-        "fallback_fields": [
-          "detail",
-          "bullets",
-          "examples"
-        ]
-      },
-      {
         "id": "q017_conduit_coupling",
         "source": "data/tools.quality-017.json",
         "enrichment": null,
@@ -583,6 +433,146 @@
           "detail",
           "bullets",
           "examples"
+        ]
+      },
+      {
+        "id": "q017_adhesive_spreader",
+        "source": "data/tools.quality-017.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q017_flooring_pull_bar",
+        "source": "data/tools.quality-017.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q017_floor_edge_pad",
+        "source": "data/tools.quality-017.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q017_formwork_panel",
+        "source": "data/tools.quality-017.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q017_flooring_spacer",
+        "source": "data/tools.quality-017.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q017_form_clamp",
+        "source": "data/tools.quality-017.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q017_flooring_roller",
+        "source": "data/tools.quality-017.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q017_ceiling_hanger",
+        "source": "data/tools.quality-017.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q017_stop_valve",
+        "source": "data/tools.quality-017.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "q017_seam_roller",
+        "source": "data/tools.quality-017.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "detail",
+          "bullets",
+          "examples"
+        ]
+      },
+      {
+        "id": "circular_saw",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "jigsaw",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "reciprocating_saw",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "handsaw",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
+        ]
+      },
+      {
+        "id": "utility_knife",
+        "source": "data/tools.basic.json",
+        "enrichment": null,
+        "fallback_fields": [
+          "bullets"
         ]
       }
     ],
