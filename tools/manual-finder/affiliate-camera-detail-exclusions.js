@@ -2,8 +2,9 @@
   "use strict";
 
   // Reviewed camera records that intentionally do not receive an accessory-detail handoff.
-  // These rows have built-in batteries and no model-specific replaceable battery/charger
-  // accessory was established at the evidence standard used by the camera-detail audit.
+  // These rows have built-in/nonremovable batteries or rechargeable controller power
+  // with no model-specific replaceable battery/charger accessory established at the
+  // evidence standard used by the camera-detail audit.
   window.MANUALFINDER_CAMERA_DETAIL_EXCLUSIONS = Object.freeze([
     Object.freeze({
       maker: "DJI",
@@ -123,6 +124,54 @@
       reason: "built_in_battery_no_model_specific_replaceable_power_accessory",
       sourceUrl: "https://www.dji.com/support/product/osmo-mobile-se",
       verifiedAt: "2026-09-18"
+    }),
+    Object.freeze({
+      maker: "DJI",
+      model: "DJI RC",
+      category: "カメラ・映像",
+      reason: "rechargeable_controller_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://www.dji.com/support/product/rc",
+      verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "DJI",
+      model: "DJI RC 2",
+      category: "カメラ・映像",
+      reason: "rechargeable_controller_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://www.dji.com/support/product/rc-2",
+      verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "DJI",
+      model: "DJI RC Motion 2",
+      category: "カメラ・映像",
+      reason: "rechargeable_controller_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://www.dji.com/support/product/rc-motion-2",
+      verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "DJI",
+      model: "DJI RC Motion 3",
+      category: "カメラ・映像",
+      reason: "rechargeable_controller_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://www.dji.com/support/product/rc-motion-3",
+      verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "DJI",
+      model: "DJI RC Pro",
+      category: "カメラ・映像",
+      reason: "rechargeable_controller_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://www.dji.com/support/product/rc-pro",
+      verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "DJI",
+      model: "DJI RC-N3 Remote Controller",
+      category: "カメラ・映像",
+      reason: "rechargeable_controller_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://store.dji.com/product/dji-rc-n3-remote-controller",
+      verifiedAt: "2026-09-19"
     })
   ]);
 })();

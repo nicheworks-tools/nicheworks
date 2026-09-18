@@ -33,7 +33,7 @@ const expected = new Map([
   ['Osmo Mobile SE', 'https://www.dji.com/support/product/osmo-mobile-se']
 ]);
 
-assert.equal(exclusions.length, 15, 'Wave 36 must bring the reviewed camera exclusion ledger to fifteen rows');
+assert.ok(exclusions.length >= 15, 'Wave 36 baseline must retain at least the fifteen exclusions established through Wave 36');
 
 for (const [model, sourceUrl] of expected) {
   const row = exclusions.find((entry) => entry.model === model);
