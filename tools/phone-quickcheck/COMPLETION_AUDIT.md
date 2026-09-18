@@ -167,6 +167,23 @@ AQUOS R11 and AQUOS wish6 package adapter/cable fields remain `unknown` and are 
 
 moto g37j uses `physicalVariants[]` to preserve the official color-dependent 194g / 196g weight split instead of collapsing it to a synthetic single weight.
 
+## Post-v1 maintenance Wave 4 — 2026-09-19
+
+Added four Japan-market 2026 models:
+
+- Samsung Galaxy Z Fold8 Ultra
+- Samsung Galaxy Z Fold8
+- Samsung Galaxy Z Flip8
+- motorola edge 60
+
+Maintained dataset: **191 → 195**.
+Foldables: **32 → 35**.
+
+Samsung's Japan launch material provides exact folded/unfolded dimensions, weight, battery, IPX8/IP4X, Qi support, and C-to-C cable inclusion. Fold8 Ultra / Fold8 use source-backed 45W wired charging; Flip8 uses Samsung Japan's maintained 25W charging table. Fold8 Ultra / Fold8 are recorded as Qi2-capable without inventing an exact wireless maximum.
+
+motorola edge 60 is recorded from the Japan official store with 6.7-inch display, 5200mAh battery, 68W TurboPower, IP68, 179g, and explicit charger/cable exclusion.
+
+
 
 
 ## Maintenance — 2026 freshness Wave 1
