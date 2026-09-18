@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-inventory-exceptions-v2.3",
-  "version": "2026-09-18-admin-wave1",
+  "version": "2026-09-18-applicability-wave1",
   "items": [
     {
       "entry_id": "punch_list",
@@ -41,6 +41,16 @@
       "entry_id": "permit_to_work",
       "state": "not_required",
       "reason": "Work-authorization procedure/document concept; a permit layout varies by organization and is not a stable canonical visual subject."
+    },
+    {
+      "entry_id": "as_built_drawing",
+      "state": "not_required",
+      "reason": "The canonical is defined by the drawing's record/as-built status rather than one stable visual layout; project drawing formats vary, so a representative photograph would be arbitrary and potentially misleading."
+    },
+    {
+      "entry_id": "cleanup_katazuke",
+      "state": "not_required",
+      "reason": "The canonical is a jobsite cleanup/housekeeping practice and slang usage, not a unique physical subject; any photograph would depict an arbitrary cleanup scene rather than identify the term itself."
     }
   ]
 }

@@ -18,7 +18,7 @@
   "sources": {
     "quality_manifest_version": "2026-09-14-manifest-8",
     "image_registry_version": "2026-09-18-wave4a-1",
-    "exception_ledger_version": "2026-09-18-admin-wave1",
+    "exception_ledger_version": "2026-09-18-applicability-wave1",
     "source_ledgers": [
       {
         "file": "image-wave1-sources-v2.3.json",
@@ -45,8 +45,8 @@
   "summary": {
     "corpus_entries": 5536,
     "formal_image_entries": 30,
-    "missing_formal_image_entries": 5498,
-    "not_required_entries": 8,
+    "missing_formal_image_entries": 5496,
+    "not_required_entries": 10,
     "unobtainable_entries": 0,
     "classified_entries": 5536,
     "formal_coverage_percent": 0.5419,
@@ -59,22 +59,22 @@
     "stored_non_public_entries": 4666,
     "public_entries": 870,
     "disposition_records": 870,
-    "applicability_reviewed": 38,
-    "required": 30,
+    "applicability_reviewed": 88,
+    "required": 78,
     "on_hold": 0,
-    "final_dispositions": 38,
-    "unresolved": 832,
+    "final_dispositions": 40,
+    "unresolved": 830,
     "by_stage": {
-      "unreviewed": 832,
-      "not_required": 8,
-      "awaiting_source": 0,
+      "unreviewed": 782,
+      "not_required": 10,
+      "awaiting_source": 48,
       "candidate": 0,
       "provenance_verified": 0,
       "subject_verified": 0,
       "verified": 0,
       "promoted": 30
     },
-    "evidence_sha256": "19e26c85f8b273bfbffd447189719a1c77550e444ac894b5345b00afbdbfe09b"
+    "evidence_sha256": "e17b4e6a520207e21b775c6556ea3c022ee2ce35bf89ab8680d9fbab50aaea7f"
   },
   "by_type": {
     "access": {
@@ -115,8 +115,8 @@
     "document": {
       "corpus": 2,
       "formal_image": 0,
-      "missing_formal_image": 2,
-      "not_required": 0,
+      "missing_formal_image": 1,
+      "not_required": 1,
       "unobtainable": 0
     },
     "equipment": {
@@ -241,16 +241,16 @@
     "tool": {
       "corpus": 379,
       "formal_image": 21,
-      "missing_formal_image": 350,
-      "not_required": 8,
+      "missing_formal_image": 349,
+      "not_required": 9,
       "unobtainable": 0
     }
   },
   "hashes": {
     "corpus_id_sha256": "bff8aae6f75c763415864d81b9b2686131a2964b60bc354e85f84d64e3433f31",
     "formal_image_id_sha256": "0badc275080c60550705c89e80a74086de7f19c8feecd0964fec395cb735c60b",
-    "missing_formal_image_id_sha256": "69c98880263a6e3eb23e001fbb36a7ad684d9a57fe298e1a75c2fb5486aaa219",
-    "classification_sha256": "857af125cfd3e9cc33f60bb90ef91b97f78d44191f714baad708a8eec9d3514d"
+    "missing_formal_image_id_sha256": "65d74fdb29712dcc95b188b1875bd2b55f296139df6c32ba25abeeb6e4a5b069",
+    "classification_sha256": "8ca05b69ca8ace78e7be18f4dfca2ee817973e5f18c94e471095c960de31a281"
   },
   "missing_sample": [
     "access_door",
@@ -261,7 +261,6 @@
     "anchor_bolt",
     "anchor_plastic_plug",
     "angle_finder",
-    "as_built_drawing",
     "asphalt_felt",
     "auto_level",
     "backer_rod",
@@ -277,6 +276,7 @@
     "bucket",
     "butyl_tape_002",
     "cable_ramp",
-    "cable_tie"
+    "cable_tie",
+    "cable_tray"
   ]
 }
