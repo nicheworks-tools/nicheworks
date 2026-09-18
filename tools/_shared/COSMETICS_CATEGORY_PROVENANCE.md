@@ -111,3 +111,15 @@ Wave 11 advances four common canonical identities that had no raw functional cat
 | `dimethicone` | `skin conditioning` | COSMILE Europe lists skin conditioning and skin-conditioning emollient functions. |
 
 Wave 11 intentionally does not classify Sodium Citrate; its buffer vs pH-adjuster taxonomy remains deferred. It also does not force Niacinamide into a local role category until the external function vocabulary is mapped explicitly.
+
+
+## Wave 12 reviewed set
+
+Wave 12 advances four additional canonical identities with no raw functional category by reusing the explicit Wave 11 taxonomy mappings.
+
+| Canonical identity | Verified category | Source basis |
+| --- | --- | --- |
+| `cetearyl alcohol` | `emollient` | COSMILE Europe lists skin-conditioning emollient. |
+| `cetyl alcohol` | `emollient` | COSMILE Europe lists skin-conditioning emollient. |
+| `disodium lauryl sulfosuccinate` | `cleanser` | COSMILE Europe lists cleansing. |
+| `hydrogenated polyisobutene` | `emollient` | COSMILE Europe lists skin-conditioning emollient. |
