@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-18-applicability-wave8",
+  "version": "2026-09-18-applicability-wave9",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -9849,6 +9849,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A door leaf is a physical door panel with clear installed identity; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9860,6 +9869,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A lockset is a physical door-hardware assembly with recognizable latch/handle/cylinder components; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9877,6 +9895,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A door roller is a physical sliding-door hardware component with a recognizable wheel/bracket form; a close reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9888,6 +9915,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A door stop is a physical hardware component with a stable installed function and recognizable forms; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9905,6 +9941,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An insulated glass unit is a physical glazing assembly whose spacer and double-pane construction can be shown in a reviewed close/detail photograph.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9916,6 +9961,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A drainage channel is a physical linear drain component with recognizable installed geometry; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9933,6 +9987,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A drain cover is a physical grating/cover component with a recognizable installed role; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9944,6 +10007,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A drain strainer is a physical inlet-protection component with recognizable perforated/mesh form; a close reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9961,6 +10033,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Drainage slope is a geometric condition defined by measured fall toward an outlet; an ordinary photograph cannot reliably establish the slope and would be an arbitrary visual example rather than a stable canonical subject.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -9972,6 +10053,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Eave flashing is a physical roof-edge sheet-metal detail with a recognizable installed location; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -9989,6 +10079,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Elastomeric paint is a physical exterior coating material whose product/application context can be represented by a reviewed photograph.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10000,6 +10099,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Expanding foam is a physical gap-filling material with recognizable can/application and cured-foam forms; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10017,6 +10125,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Expansion-joint filler is a physical compressible joint material with recognizable strip/profile and installed use; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10028,6 +10145,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Exterior corner trim is a physical siding/finish component installed at outside corners; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10045,6 +10171,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A fence is a physical exterior barrier with clear visual identity; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10056,6 +10191,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Exterior paint is a physical coating material and application state; a reviewed product/application photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10073,6 +10217,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A fascia board is a physical eaves component with a recognizable installed position; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10084,6 +10237,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A fence post is a physical vertical support member with clear installed identity; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10101,6 +10263,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Fiber-cement siding is a physical cladding product with recognizable board/panel and installed wall forms; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10112,6 +10283,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A filler coat is a physical surface-preparation coating applied before finishing; a reviewed application photograph can represent the canonical use.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10129,6 +10309,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Floor-protection board is a physical temporary protection material with recognizable sheet form and deployed use; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10140,6 +10329,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "FRP waterproofing is a physical resin-and-reinforcement membrane system with recognizable installation/finished appearance; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10157,6 +10355,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Galvalume steel roofing is a physical metal roof system with recognizable sheet/panel form; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10168,6 +10375,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A gate is a physical exterior access barrier with clear visual identity; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10185,6 +10401,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A gate hinge is a physical pivot hardware component with recognizable installed form; a close reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10196,6 +10421,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A gate latch is a physical closure hardware component with recognizable installed geometry; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10213,6 +10447,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A glass suction cup is a distinctive handling tool with one or more suction pads and handles; a subject-matched photograph strongly aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10224,6 +10467,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A glazing bead is a physical retaining trim securing glass in a frame; a close reviewed installation photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10241,6 +10493,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A glazing gasket is a physical elastomeric sealing profile around glass; a close reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10252,6 +10513,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A granite curb is a physical stone edge unit with recognizable material and installed road/landscape form; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10269,6 +10539,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Grating is a physical open-grid cover/platform component with distinctive geometry; a reviewed photograph strongly aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10280,6 +10559,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A guardrail post is a physical vertical support in an edge-protection system; a reviewed installed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10297,6 +10585,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A walk-behind roller is a distinctive pavement-compaction machine; a subject-matched photograph strongly aids recognition.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10308,6 +10605,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A handrail is a physical graspable railing component with clear installed identity; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10325,6 +10631,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Housewrap tape is a physical weather-barrier sealing tape with recognizable roll and installed seam use; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10336,6 +10651,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An interlocking paver is a physical paving unit with characteristic shapes and installed patterns; a reviewed photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10353,6 +10677,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Exterior joint sealant is a physical sealing material visible in building joints; a reviewed close/application photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10364,6 +10697,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Line-marking paint is a physical pavement coating with recognizable application/result; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10381,6 +10723,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Low-E glass is defined primarily by a low-emissivity coating/performance property that is not reliably distinguishable in an ordinary photograph from other glazing; a representative photo would risk asserting an invisible property.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10392,6 +10743,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An asphalt lute is a distinctive long-handled paving rake/leveling tool; a subject-matched photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10409,6 +10769,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Metal siding is a physical exterior cladding system with recognizable panels/profiles and installed form; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10420,6 +10789,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Modified-silicone sealant is a physical joint-sealing material commonly supplied in cartridges/sausages and visible in applied joints; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10437,6 +10815,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An overflow drain is a physical secondary drainage inlet with recognizable installed context; a reviewed photograph aids identification.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10448,6 +10835,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An exterior panel lifter is a physical handling/lifting tool for large panels; a subject-matched photograph strongly aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10465,6 +10861,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A parapet cap is a physical coping/cap component installed on wall tops; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10476,6 +10881,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "An asphalt paver is a distinctive road-construction machine with hopper and screed; a reviewed photograph strongly aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10493,6 +10907,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Paving stone is a physical hardscape unit with recognizable material and installed patterns; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10504,6 +10927,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Permeable pavers are physical paving units/systems with recognizable joints/void structure and installed use; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -10521,6 +10953,15 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Poly curing sheet is a physical plastic-sheet material used to protect/retain moisture on surfaces; a reviewed application photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
         }
       ]
     },
@@ -10532,6 +10973,15 @@
           "at": "2026-09-18T12:49:59Z",
           "actor": "lifecycle-migration",
           "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:05:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Polyurethane sealant is a physical joint-sealing material with recognizable cartridge/application and cured-joint context; a reviewed photograph is useful.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null

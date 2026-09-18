@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-inventory-exceptions-v2.3",
-  "version": "2026-09-18-applicability-wave5",
+  "version": "2026-09-18-applicability-wave9",
   "items": [
     {
       "entry_id": "punch_list",
@@ -121,6 +121,16 @@
       "entry_id": "ppe",
       "state": "not_required",
       "reason": "PPE is a broad category covering helmets, gloves, footwear, eye, hearing, respiratory and fall protection; one photograph would arbitrarily represent only a subset, while specific PPE canonicals can carry their own images."
+    },
+    {
+      "entry_id": "q014_drainage_slope",
+      "state": "not_required",
+      "reason": "Drainage slope is a geometric condition defined by measured fall toward an outlet; an ordinary photograph cannot reliably establish the slope and would be an arbitrary visual example rather than a stable canonical subject."
+    },
+    {
+      "entry_id": "q014_low_e_glass",
+      "state": "not_required",
+      "reason": "Low-E glass is defined primarily by a low-emissivity coating/performance property that is not reliably distinguishable in an ordinary photograph from other glazing; a representative photo would risk asserting an invisible property."
     }
   ]
 }
