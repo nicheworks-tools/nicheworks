@@ -183,6 +183,20 @@ Samsung's Japan launch material provides exact folded/unfolded dimensions, weigh
 
 motorola edge 60 is recorded from the Japan official store with 6.7-inch display, 5200mAh battery, 68W TurboPower, IP68, 179g, and explicit charger/cable exclusion.
 
+## Post-v1 maintenance Wave 5 — 2026-09-19
+
+Added two Xiaomi Japan-market 2026 records:
+
+- POCO F9 Ultra
+- REDMI Note 17 Pro Max 5G
+
+Maintained dataset: **195 → 197**.
+
+POCO F9 Ultra preserves Xiaomi Japan's 8050mAh battery, 100W wired HyperCharge/PPS support, source-backed wireless HyperCharge capability without inventing an exact wireless input wattage, IP68, and explicit charger/cable inclusion.
+
+REDMI Note 17 Pro Max 5G preserves the official color-dependent 8.65mm / 8.57mm thickness split using `physicalVariants[]`; all Japan variants are 229.5g. It records 10000mAh, 100W HyperCharge/PPS support, IP66/IP68, and the included 100W charger/cable.
+
+
 
 
 
