@@ -15,10 +15,15 @@
     12,
     12,
     12,
-    8
+    4
   ],
-  "assignment": "current_registry_order_chunks",
-  "lateAdditions": [],
+  "assignment": "current_registry_order_audited_chunks",
+  "lateAdditions": [
+    "cover-letter-lite",
+    "form-tool-selector",
+    "pages-deploy-guide",
+    "wifi-meter"
+  ],
   "auditMode": "audit_only",
   "categoryStatusEnum": [
     "PASS",
@@ -52,12 +57,19 @@
   ],
   "waveResultPathPattern": "audits/non-affiliate-waves/wave-{NN}.json",
   "completionRules": [
-    "The current non-affiliate scope is rebuilt in registry order whenever canonical monetization reclassification moves tools into or out of AFFILIATE.",
-    "The 68 current in-scope tools must appear exactly once across six waves sized 12/12/12/12/12/8.",
+    "The canonical non-affiliate scope currently contains 68 tools after the eight Old Kanji tools moved to AFFILIATE on 2026-09-19.",
+    "64 of those tools retain strict-audit evidence from the completed historical waves and are repartitioned in current registry order into six waves sized 12/12/12/12/12/4.",
+    "Cover Letter Lite, Form Tool Selector, Pages Deploy Guide, and WiFi Meter remain pending strict-audit records; no audit result is invented for them.",
     "Every audited record must contain every required category.",
     "PASS requires every category to be PASS or justified NOT_APPLICABLE and requires zero open findings.",
-    "Audit waves do not repair production behavior; defects are recorded for later repair PRs.",
     "HOLD_REVIEW is reserved for canonical HOLD tools after substantive audit.",
-    "Existing audit evidence is retained by slug when wave membership is re-partitioned."
+    "Existing audit evidence is retained by slug when wave membership is repartitioned."
+  ],
+  "auditedTools": 64,
+  "pendingSlugs": [
+    "cover-letter-lite",
+    "form-tool-selector",
+    "pages-deploy-guide",
+    "wifi-meter"
   ]
 }
