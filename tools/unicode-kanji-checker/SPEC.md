@@ -28,6 +28,17 @@
 - same-site toolからの`?q=` handoffを受け取り、leading/trailing whitespaceや改行を削らず入力へ復元して解析する。
 - verified purchase pathがない間は、fixed Pro price・disabled purchase CTA・billing-unavailable sales panelをpublic pageへ表示しない。
 
+## Amazon affiliate contract
+
+- Canonical monetization class: `AFFILIATE`.
+- Amazon Associates is active for Unicode Kanji Checker under the all-eight Old Kanji affiliate decision.
+- The affiliate panel appears only after Unicode/code analysis produces results.
+- Curated purchase intent: `プログラマのための文字コード技術入門`, Japanese typography/visual-culture references, and Unicode/encoding books.
+- Amazon destinations are fixed tool-specific searches; input characters, code points, entities, UTF-16 values, mapping results, and query-handoff content must never be inserted into an affiliate URL or affiliate event.
+- Shared `/assets/amazon-affiliate.js` owns URL validation, disclosure, `rel="sponsored noopener"`, and the canonical `affiliate_outbound` event.
+- Shared `/assets/old-kanji-amazon-context.js` owns the reviewed tool-specific offer/placement catalog; it does not derive Amazon search terms from user input.
+- The free tool task remains usable without interacting with Amazon.
+
 ## Inputs
 
 - 任意の文字列。
@@ -85,7 +96,12 @@
 - [x] same-site `?q=` handoffで入力文字列を欠落・trimせず復元できる。
 - [x] verified billing activation前にfixed Pro price、disabled purchase CTA、billing-unavailable sales panelを表示しない。
 
+- [x] Contextual Amazon affiliate handoffs follow the reviewed only after Unicode/code analysis produces results contract, use fixed tool-specific destinations, and exclude user-derived values from outbound URLs/events. Evidence: `assets/old-kanji-amazon-context.js`, `assets/amazon-affiliate.js`, and `scripts/check-old-kanji-amazon.mjs`.
+
 ## Implementation evidence
+
+- `assets/amazon-affiliate.js`
+- `assets/old-kanji-amazon-context.js`
 
 - `tools/unicode-kanji-checker/index.html` — input/copy/result UI、privacy notice。
 - `tools/unicode-kanji-checker/app.js` — code point/entity/UTF-16解析、BMPとSupplement両方のcompatibility ideograph判定、variation selector判定、Old Kanji Reference data load、exact `?q=` handoff、copy/render logic。
