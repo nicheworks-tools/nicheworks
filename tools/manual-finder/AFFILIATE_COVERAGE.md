@@ -21,7 +21,7 @@ Required printer reconciliation:
 
 The camera accessory audit independently reconciles as:
 
-`camera basic 185 = detail 94 + reviewed exclusion 26 + missing 65`
+`camera basic 185 = detail 101 + reviewed exclusion 26 + missing 58`
 
 Maker-level camera state:
 
