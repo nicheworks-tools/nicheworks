@@ -150,7 +150,14 @@
     "pentaerythrityl tetraethylhexanoate": Object.freeze({ category: "emollient", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11370/pentaerythrityl-tetraethylhexanoate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "polyacrylate crosspolymer-11": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19988/polyacrylate-crosspolymer-11/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "polyglyceryl-4 caprate": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12210/polyglyceryl-4-caprate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "sphingolipids": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15386/sphingolipids"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "sphingolipids": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15386/sphingolipids"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "triethoxycaprylylsilane": Object.freeze({ category: "binder", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/16387/triethoxycaprylylsilane/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "p-anisic acid": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10050/p-anisic-acid"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polyquaternium-39": Object.freeze({ category: "film former", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12405/polyquaternium-39/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polyquaternium-53": Object.freeze({ category: "hair conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12420/polyquaternium-53/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ppg-5-ceteth-20": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/13095/ppg-5-ceteth-20/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "snail secretion filtrate": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://kcia.or.kr/cid/search/ingd_view.php?no=6319"]), authority: "Korea Cosmetic Association / Ingredient Dictionary" }),
+    "synthetic beeswax": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15761/synthetic-beeswax/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
@@ -400,7 +407,7 @@
   }
 
   const api = {
-    version: "1.40.0",
+    version: "1.41.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
