@@ -12,7 +12,7 @@
     "antioxidant": { "authority_functions": ["antioxidant", "antioxidants"] },
     "viscosity adjuster": { "authority_functions": ["viscosity increasing agent - aqueous", "viscosity controlling"] },
     "chelating agent": { "authority_functions": ["chelating agent", "chelating agents", "chelating"] },
-    "skin conditioning": { "authority_functions": ["skin conditioning"] },
+    "skin conditioning": { "authority_functions": ["skin conditioning", "skin conditioning - miscellaneous"] },
     "emollient": { "authority_functions": ["skin conditioning - emollient"] },
     "cleanser": { "authority_functions": ["cleansing", "surfactant - cleansing"] },
     "emulsifier": { "authority_functions": ["surfactant - emulsifying"] }
@@ -58,6 +58,10 @@
     "polysorbate 80": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12497/polysorbate-80/"],"runtime_verified":true},
     "sorbitan olivate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15312/sorbitan-olivate/"],"runtime_verified":true},
     "steareth-2": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15492/steareth-2/"],"runtime_verified":true},
-    "steareth-21": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15496/steareth-21/"],"runtime_verified":true}
+    "steareth-21": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15496/steareth-21/"],"runtime_verified":true},
+    "caprylyl glycol": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2612/caprylyl-glycol/"],"runtime_verified":true},
+    "ceramide np": {"category":"skin conditioning","source_functions":["skin conditioning - miscellaneous"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/25522/ceramide-np/"],"runtime_verified":true},
+    "cholesterol": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/3117/cholesterol/"],"runtime_verified":true},
+    "hexylene glycol": {"category":"solvent","source_functions":["solvent"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6450/hexylene-glycol/"],"runtime_verified":true}
   }
 }
