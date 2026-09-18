@@ -76,6 +76,9 @@
     "polyacrylate crosspolymer-6": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/17882/polyacrylate-crosspolymer-6/"],"runtime_verified":true},
     "polyhydroxystearic acid": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12317/polyhydroxystearic-acid/"],"runtime_verified":true},
     "potassium cetyl phosphate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12639/potassium-cetyl-phosphate/"],"runtime_verified":true},
-    "sorbitan isostearate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15309/sorbitan-isostearate/"],"runtime_verified":true}
+    "sorbitan isostearate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15309/sorbitan-isostearate/"],"runtime_verified":true},
+    "ceramide ap": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2820/ceramide-ap/"],"runtime_verified":true},
+    "ceramide eop": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/25521/ceramide-eop/"],"runtime_verified":true},
+    "phytosphingosine": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/11660/phytosphingosine/"],"runtime_verified":true}
   }
 }

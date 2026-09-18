@@ -213,3 +213,12 @@ Wave 19 introduces no new category or authority-function vocabulary. It reuses:
 - `surfactant - emulsifying` → `emulsifier`
 
 Polyhydroxystearic Acid also has a COSMILE `dispersing` function, and Potassium Cetyl Phosphate also has `surfactant - cleansing`. The current runtime overlay supports one reviewed public-primary category, so Wave 19 records the directly supported role already represented by the controlled taxonomy and preserves other source/raw semantics outside that primary slot rather than inventing a compound public label.
+
+
+## Wave 20 mappings
+
+Wave 20 requires no new taxonomy vocabulary. All three identities reuse the existing exact authority mapping:
+
+- COSMILE `skin conditioning` → NicheWorks `skin conditioning`
+
+COSMILE also lists `hair conditioning` for Ceramide AP, Ceramide EOP and Phytosphingosine. The current overlay supports one reviewed public-primary category, so Wave 20 selects the directly supported skin-conditioning role for the skincare ingredient-results surface without deleting the additional source function or the raw barrier-lipid metadata.
