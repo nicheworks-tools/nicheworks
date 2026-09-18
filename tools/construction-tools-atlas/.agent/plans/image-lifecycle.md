@@ -74,3 +74,23 @@ Branch: feat/construction-atlas-image-lifecycle-20260918.
   pinned initial imports and source-evidence hashes are machine-enforced.
 - NEXT: commit this verified integration; push branch and open PR against main;
   check remote head and CI status. Do not classify/acquire remaining 832 entries.
+
+## Review-ready checkpoint
+- Implementation complete. PR: https://github.com/nicheworks-tools/nicheworks/pull/1295
+- Remote implementation head: 869c3fd9c13a67a9fad094d175e7c62b08228b23.
+- Three remote commits preserve the tested local unit trees exactly:
+  f879108e363625577027d1060a89a2aec171cb26 (baseline),
+  fd253b1f06c6491fd6e221734fd0cd84a499f38b (lifecycle),
+  869c3fd9c13a67a9fad094d175e7c62b08228b23 (inventory/CI integration).
+- Shell push lacked credentials; published through the connected GitHub API,
+  verified each tree SHA, fetched remote commits and aligned the clean checkout.
+- GitHub reports mergeable=true. Main advanced during work, but the tool subtree
+  is unchanged relative to the starting main; no conflict/rebase work was needed.
+- Remote implementation-head Actions: 14 successful, 1 repository-wide Tool runtime
+  contract audit still running when this checkpoint was recorded. Atlas main audit,
+  public image inventory and full image inventory have all succeeded remotely.
+- NEXT: inspect PR #1295 final checks and review. No further implementation or
+  classification authorized by this task; do not merge automatically.
+- Remaining next-phase work: individually review 832 unreviewed canonicals, acquire
+  only genuinely required imagery, and follow the documented lifecycle. No new
+  candidate acquisition/classification performed in this architecture task.
