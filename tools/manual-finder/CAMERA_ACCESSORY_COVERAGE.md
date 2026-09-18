@@ -10,22 +10,22 @@ This document is the audited baseline for compatibility-sensitive camera battery
 | --- | ---: |
 | Canonical `カメラ・映像` records | **192** |
 | Camera records with a basic Amazon path | **185** |
-| Camera records with verified accessory detail | **71** |
-| Reviewed camera-detail exclusions | **3** |
-| Actionable camera records still missing accessory detail | **111** |
+| Camera records with verified accessory detail | **73** |
+| Reviewed camera-detail exclusions | **6** |
+| Actionable camera records still missing accessory detail | **106** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 185 = detail 71 + reviewed exclusion 3 + missing 111`
+`camera basic 185 = detail 73 + reviewed exclusion 6 + missing 106`
 
-The active detail ledger contains all fourteen actionable Nikon records and fifty-seven reviewed DJI records. Three additional DJI rows are now evidence-backed reviewed exclusions because their official power input is a built-in battery and no model-specific replaceable power accessory was established at the audit standard. Missing rows remain explicit rather than being converted to guessed mappings or unsupported exclusions.
+The active detail ledger contains all fourteen actionable Nikon records and fifty-nine reviewed DJI records. Six DJI rows are now evidence-backed reviewed exclusions because their official power input is a built-in or nonremovable battery/grip and no model-specific replaceable power accessory was established at the audit standard. Missing rows remain explicit rather than being converted to guessed mappings or unsupported exclusions.
 
 ## Actionable coverage by maker
 
 | Maker | Basic | Detail | Reviewed exclusion | Missing |
 | --- | ---: | ---: | ---: | ---: |
-| DJI | 96 | 57 | 3 | 36 |
+| DJI | 96 | 59 | 6 | 31 |
 | OM SYSTEM | 37 | 0 | 0 | 37 |
 | GoPro | 31 | 0 | 0 | 31 |
 | Nikon | 14 | 14 | 0 | 0 |
@@ -51,7 +51,7 @@ Every row is explicit in the reviewed ledger; shared accessory families are not 
 
 ## DJI reviewed waves
 
-DJI coverage advances only through bounded exact-canonical-row waves backed by DJI official evidence. Waves 1–32 remain frozen in their reviewed mapping/exclusion boundaries.
+DJI coverage advances only through bounded exact-canonical-row waves backed by DJI official evidence. Waves 1–34 remain frozen in their reviewed mapping/exclusion boundaries.
 
 ### Wave 21 — Phantom 4 series
 
@@ -138,11 +138,23 @@ These three rows therefore receive the reviewed exclusion reason `built_in_batte
 
 Wave 33 activates exactly six canonical rows: `DJI RS 2`, `DJI RS 3`, `DJI RS 3 Pro`, `DJI RS 4`, `DJI RS 4 Pro`, and `DJI RS 5`. DJI Store's official `DJI RS BG30 Battery Grip` page explicitly lists all six in Compatibility and documents the quick-release battery grip as independently chargeable.
 
-The deterministic Amazon handoff is `DJI RS BG30 Battery Grip` for each of the six reviewed rows. `DJI RS 3 Mini`, `DJI RS 4 Mini`, `DJI RSC 2`, and other Ronin/RS models are not inferred from family similarity and remain unresolved until separately reviewed.
+The deterministic Amazon handoff is `DJI RS BG30 Battery Grip` for each of the six reviewed rows. `DJI RS 3 Mini`, `DJI RS 4 Mini`, and `DJI RSC 2` required separate review and are handled by Wave 34.
 
-After DJI Waves 1–33 the maker-level reconciliation is:
+### Wave 34 — nonremovable RS/RSC power exclusions
 
-`DJI camera 96 = detail 57 + reviewed exclusion 3 + missing 36`
+Wave 34 reviews exactly `DJI RS 3 Mini`, `DJI RS 4 Mini`, and `DJI RSC 2`. DJI's official Ronin grip purchase guidance states that the grips of all three products are not removable and cannot be purchased separately. The RS 3 Mini, RS 4 Mini, and RSC 2 product specifications independently document their internal battery models, capacities, USB-C charging, and runtime.
+
+These rows therefore receive the reviewed exclusion reason `built_in_battery_no_model_specific_replaceable_power_accessory`. No generic charger handoff is emitted. `DJI Ronin-SC` and `Ronin-S` required their own separately purchasable grip review and are handled by Wave 35.
+
+### Wave 35 — Ronin-SC / Ronin-S battery grips
+
+Wave 35 activates exactly `DJI Ronin-SC` and `Ronin-S`. DJI Store's official `Ronin-SC BG18 Grip` page explicitly lists Ronin-SC compatibility and identifies its built-in 2450 mAh battery. DJI Store's official `Ronin-S BG37 Grip` page explicitly lists Ronin-S compatibility and identifies its built-in 2400 mAh battery.
+
+The deterministic Amazon handoffs are `DJI Ronin-SC BG18 Grip` and `DJI Ronin-S BG37 Grip`. `Ronin-SC`, `DJI Ronin-S`, `Ronin 2`, `Ronin-M`, and neighboring names remain fail-closed unless separately reviewed.
+
+After DJI Waves 1–35 the maker-level reconciliation is:
+
+`DJI camera 96 = detail 59 + reviewed exclusion 6 + missing 31`
 
 ## Non-actionable camera records
 
@@ -161,7 +173,7 @@ Seven camera-category records are maker/index entries without an actionable exac
 - Accessory detail means at least one compatibility-sensitive accessory offer emitted from an exact reviewed maker/model mapping.
 - A generic exact-model Amazon body search does not count as accessory detail.
 - Reviewed exclusions must live in `affiliate-camera-detail-exclusions.js` and resolve to a canonical `カメラ・映像` row.
-- The exclusion ledger contains exactly the three Wave 32 DJI built-in-battery Goggles rows. Missing records must not be converted to exclusions without an evidence-backed review reason.
+- The exclusion ledger contains the three Wave 32 DJI built-in-battery Goggles rows plus the three Wave 34 nonremovable RS/RSC power rows. Missing records must not be converted to exclusions without an evidence-backed review reason.
 - One camera row cannot simultaneously be detail-mapped and excluded.
 - Every actionable camera row must reconcile to exactly one of: verified accessory detail, reviewed exclusion, or missing accessory detail.
 - Wrong maker/category, nonexistent model, spelling variants, and unreviewed family inference must fail closed.
@@ -169,7 +181,7 @@ Seven camera-category records are maker/index entries without an actionable exac
 
 ## Expansion order
 
-1. Continue DJI from the remaining 36 actionable records in bounded official-evidence waves.
+1. Continue DJI from the remaining 31 actionable records in bounded official-evidence waves.
 2. Review OM SYSTEM 37 actionable records.
 3. Review GoPro 31 actionable records.
 4. Review Insta360 7 actionable records.
@@ -182,13 +194,13 @@ The camera accessory phase is complete only when:
 
 `camera basic = detail + reviewed exclusion + missing 0`
 
-The current baseline is not complete: `111` actionable records remain missing accessory detail.
+The current baseline is not complete: `106` actionable records remain missing accessory detail.
 
 ## Source of truth
 
 - `affiliate-camera-accessories.js` — Nikon Wave 1 and camera accessory target.
 - `affiliate-nikon-camera-accessories-wave2.js` — Nikon Wave 2 completion mappings.
-- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave33.js` — reviewed DJI camera accessory ledgers.
+- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave35.js` — reviewed DJI camera accessory ledgers.
 - `affiliate-dji-camera-accessories-wave22.js` — exact reviewed Phantom 3 Advanced/Professional/Standard battery and charging-hub mappings.
 - `affiliate-dji-camera-accessories-wave23.js` — exact reviewed Phantom 3 SE battery-only mapping; charging hub remains intentionally unasserted.
 - `affiliate-dji-camera-accessories-wave24.js` — exact reviewed Mavic 2 Enterprise Advanced enterprise-battery-only mapping; charging hub remains intentionally unasserted.
@@ -200,7 +212,8 @@ The current baseline is not complete: `111` actionable records remain missing ac
 - `affiliate-dji-camera-accessories-wave30.js` — exact reviewed Osmo 360 battery and multifunctional battery-case mappings.
 - `affiliate-dji-camera-accessories-wave31.js` — exact reviewed DJI Goggles 2 Battery mapping.
 - `affiliate-dji-camera-accessories-wave33.js` — exact six-row DJI RS BG30 Battery Grip mapping.
-- `affiliate-camera-detail-exclusions.js` — three reviewed DJI Wave 32 built-in-battery Goggles exclusions.
+- `affiliate-dji-camera-accessories-wave35.js` — exact DJI Ronin-SC BG18 and Ronin-S BG37 grip mappings.
+- `affiliate-camera-detail-exclusions.js` — six reviewed DJI exclusions: three Wave 32 Goggles rows and three Wave 34 nonremovable RS/RSC rows.
 - `affiliate-runtime.js` — sequential browser loading of Nikon and DJI accessory ledgers before rendering.
 - `tests/dji-phantom3-accessory-wave22.test.mjs` — exact Wave 22 Phantom 3 boundary.
 - `tests/dji-phantom3-se-accessory-wave23.test.mjs` — exact Wave 23 Phantom 3 SE battery-only boundary.
@@ -214,5 +227,7 @@ The current baseline is not complete: `111` actionable records remain missing ac
 - `tests/dji-goggles2-accessory-wave31.test.mjs` — exact Wave 31 DJI Goggles 2 Battery boundary.
 - `tests/dji-goggles-integrated-battery-exclusions-wave32.test.mjs` — exact Wave 32 built-in-battery Goggles exclusion boundary.
 - `tests/dji-rs-bg30-accessory-wave33.test.mjs` — exact Wave 33 six-row DJI RS BG30 Battery Grip boundary.
+- `tests/dji-rs-integrated-battery-exclusions-wave34.test.mjs` — exact Wave 34 three-row nonremovable RS/RSC exclusion boundary.
+- `tests/dji-ronin-grip-accessory-wave35.test.mjs` — exact Wave 35 Ronin-SC/Ronin-S grip boundary.
 - `tests/camera-accessory-coverage.test.mjs` — catalog-wide camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` — documentation drift guard and implementation-evidence synchronization.

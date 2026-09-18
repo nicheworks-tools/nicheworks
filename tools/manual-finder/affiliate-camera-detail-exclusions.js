@@ -27,6 +27,29 @@
       category: "カメラ・映像",
       reason: "built_in_battery_no_model_specific_replaceable_power_accessory",
       sourceUrl: "https://www.dji.com/support/product/goggles-n3",
+      verifiedAt: "2026-09-18"    }),
+    Object.freeze({
+      maker: "DJI",
+      model: "DJI RS 3 Mini",
+      category: "カメラ・映像",
+      reason: "built_in_battery_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://repair.dji.com/help/content?customId=01700007783&lang=en&paperDocType=ARTICLE&re=US&spaceId=17",
+      verifiedAt: "2026-09-18"
+    }),
+    Object.freeze({
+      maker: "DJI",
+      model: "DJI RS 4 Mini",
+      category: "カメラ・映像",
+      reason: "built_in_battery_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://repair.dji.com/help/content?customId=01700007783&lang=en&paperDocType=ARTICLE&re=US&spaceId=17",
+      verifiedAt: "2026-09-18"
+    }),
+    Object.freeze({
+      maker: "DJI",
+      model: "DJI RSC 2",
+      category: "カメラ・映像",
+      reason: "built_in_battery_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://repair.dji.com/help/content?customId=01700007783&lang=en&paperDocType=ARTICLE&re=US&spaceId=17",
       verifiedAt: "2026-09-18"
     })
   ]);
