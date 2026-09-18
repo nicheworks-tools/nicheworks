@@ -216,7 +216,11 @@
     "glycerin": Object.freeze({ note_short: "Humectant and solvent; COSMILE Europe lists Glycerin as moisture-retaining, skin-conditioning, hair-conditioning, solvent and viscosity-controlling in cosmetics.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5951/glycerin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "caprylyl glycol": Object.freeze({ note_short: "Skin-conditioning emollient; COSMILE Europe lists Caprylyl Glycol as softening and smoothing skin, alongside skin- and hair-conditioning functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2612/caprylyl-glycol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "citric acid": Object.freeze({ note_short: "Buffering and chelating ingredient; COSMILE Europe lists Citric Acid as controlling cosmetic-product pH and binding metal ions that can affect product stability or appearance.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3374/citric-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "water": Object.freeze({ note_short: "Solvent; COSMILE Europe describes purified water as a solvent and common basis for many cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/23035/water/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "water": Object.freeze({ note_short: "Solvent; COSMILE Europe describes purified water as a solvent and common basis for many cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/23035/water/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "xanthan gum": Object.freeze({ note_short: "Viscosity-controlling and emulsion-stabilising polysaccharide; COSMILE Europe notes that Xanthan Gum forms highly viscous, gel-like solutions and supports gel formation and emulsion stability.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/16999/xanthan-gum/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "niacinamide": Object.freeze({ note_short: "Smoothing ingredient; COSMILE Europe lists Niacinamide as seeking a more even skin surface by decreasing roughness or irregularities.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/9443/niacinamide/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ceramide np": Object.freeze({ note_short: "Ceramide lipid and skin/hair-conditioning ingredient; COSMILE Europe describes ceramides as sphingolipids present in the epidermis and lists Ceramide NP for skin and hair conditioning.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/25522/ceramide-np/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ethylhexylglycerin": Object.freeze({ note_short: "Skin-conditioning and deodorant ingredient; COSMILE Europe lists both functions for Ethylhexylglycerin.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5500/ethylhexylglycerin/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -441,7 +445,7 @@
   }
 
   const api = {
-    version: "1.43.0",
+    version: "1.44.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
