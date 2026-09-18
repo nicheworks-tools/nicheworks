@@ -30,16 +30,18 @@ Run browser-side Japanese OCR on one selected image, let the user correct the re
 - Load same-site Old Kanji mapping/metadata/compatibility assets for detection.
 - Free mode is designed for one-image review.
 - Future batch/history/crop/report scope is not advertised through an unfinished public sales panel while no verified purchase path is connected.
-- Historical Amazon resource wiring remains dormant compatibility code only. Canonical monetization class is `HOLD`; production affiliate config remains `enabled: false` with no tracking ID or outbound target.
+- Amazon Associates is active through the reviewed contextual affiliate runtime; offers are tool-specific and user-derived content is never used to build Amazon destinations.
 
 ## Amazon affiliate contract
 
-- Canonical monetization SSOT class: `HOLD`.
-- Old Kanji OCR Scanner is not in the canonical `AFFILIATE` class.
-- Production `affiliate-config.js` must remain `enabled: false`, `provider: "disabled"`, with an empty `trackingId`, `targets`, and `searches`.
-- Historical Amazon UI/helper files may remain only as dormant fail-closed compatibility wiring and must render no live Amazon CTA or Associates disclosure while disabled.
-- OCR text, image filename/type/size, detected characters, modern-form preview, selected image state, and manually entered text must never enter an affiliate URL or affiliate event.
-- If a future explicit monetization decision moves this tool into the canonical `AFFILIATE` class, shared `/assets/amazon-affiliate.js` remains the only Amazon measurement authority and uses the coarse `affiliate_outbound` event. Cluster analytics must not duplicate that event.
+- Canonical monetization class: `AFFILIATE`.
+- Amazon Associates is active for Old Kanji OCR Scanner under the all-eight Old Kanji affiliate decision.
+- The affiliate panel appears only after OCR/manual result text exists.
+- Curated purchase intent: CZUR ET24 Pro, non-destructive book scanners, and LED reading magnifiers.
+- Amazon destinations are fixed tool-specific searches; OCR text, image filename/type/size, detected characters, preview text, selected image state, and manually entered text must never be inserted into an affiliate URL or affiliate event.
+- Shared `/assets/amazon-affiliate.js` owns URL validation, disclosure, `rel="sponsored noopener"`, and the canonical `affiliate_outbound` event.
+- Shared `/assets/old-kanji-amazon-context.js` owns the reviewed tool-specific offer/placement catalog; it does not derive Amazon search terms from user input.
+- The free tool task remains usable without interacting with Amazon.
 
 ## Inputs
 
@@ -54,15 +56,15 @@ Run browser-side Japanese OCR on one selected image, let the user correct the re
 - Old-kanji detection/highlighting.
 - Mechanical modern-form preview.
 - Clipboard outputs for OCR text, old forms, pairs, and preview.
-- No live Amazon outbound handoff while the canonical affiliate config remains disabled.
+- Active Amazon handoffs use only reviewed fixed destinations and the shared privacy-safe outbound event.
 
 ## State and persistence
 
-Selected image, OCR text, and detection results are page-memory state and are not stored as scan history. Object URLs are revoked when the selected image is cleared/replaced. Paid history/collection scope is outside the current public free workflow; no inactive sales panel is rendered. Historical Amazon compatibility configuration is static, disabled, and does not persist user state.
+Selected image, OCR text, and detection results are page-memory state and are not stored as scan history. Object URLs are revoked when the selected image is cleared/replaced. Paid history/collection scope is outside the current public free workflow; no inactive sales panel is rendered. Amazon affiliate configuration is fixed by tool and does not persist user input or result state.
 
 ## Privacy and network behavior
 
-The selected image is passed to Tesseract.js in the browser and is not uploaded to an external OCR API by tool code. However, the OCR engine script is loaded from jsDelivr and Tesseract may load OCR runtime/language data over the network. Same-site reference JSON, ads, and analytics may also load. Therefore the tool is browser-side OCR, not a fully offline page. Current disabled Amazon compatibility wiring has no live outbound destination; OCR/image/user-derived values must not enter any future affiliate URL or event.
+The selected image is passed to Tesseract.js in the browser and is not uploaded to an external OCR API by tool code. However, the OCR engine script is loaded from jsDelivr and Tesseract may load OCR runtime/language data over the network. Same-site reference JSON, ads, and analytics may also load. Therefore the tool is browser-side OCR, not a fully offline page. Active Amazon handoffs use fixed curated destinations; user-derived values are excluded from URLs and affiliate analytics.
 
 ## Language mode
 
@@ -81,7 +83,7 @@ Camera/image selection, OCR status, editable result text, and detected cards for
 - The modern-form preview is a mapping-based aid, not an authoritative transcription or interpretation.
 - Free operation is one image at a time; batch/history/crop/report features are not currently active.
 - Loading external OCR runtime assets means offline operation is not guaranteed.
-- Historical Amazon compatibility wiring is not authorization to activate affiliate links; activation requires an explicit canonical `AFFILIATE` classification.
+- Amazon is active under the explicit all-eight affiliate contract; future offer changes must preserve relevance, disclosure, and privacy boundaries.
 
 ## Acceptance criteria
 
@@ -90,9 +92,8 @@ Camera/image selection, OCR status, editable result text, and detected cards for
 - [x] Editing OCR text immediately updates old-kanji detection and the mechanical modern preview.
 - [x] Failure to load old-kanji reference data still leaves OCR/manual text editing available with an explicit data-load warning.
 - [x] No fixed Pro price, disabled purchase CTA, or unfinished billing panel is rendered before a verified purchase path is active.
-- [x] Canonical monetization keeps Old Kanji OCR Scanner in `HOLD` and outside the `AFFILIATE` class with production Amazon config fail-closed. Evidence: `MONETIZATION_CLASSIFICATION.json`, `affiliate-config.js`, and `scripts/check-old-kanji-amazon.mjs`.
-- [x] OCR/image/manual-input values cannot enter an Old Kanji Amazon URL/event while the config is disabled; cluster analytics also does not duplicate shared affiliate measurement. Evidence: `scripts/check-old-kanji-amazon.mjs` and `scripts/check-old-kanji-measurement.mjs`.
-- [x] No Associates disclosure or live Amazon CTA is rendered from the disabled config. Evidence: shared Amazon helper renders disclosure/CTA only for active targets; `scripts/check-old-kanji-amazon.mjs` locks the disabled state.
+
+- [x] Contextual Amazon affiliate handoffs follow the reviewed only after OCR/manual result text exists contract, use fixed tool-specific destinations, and exclude user-derived values from outbound URLs/events. Evidence: `assets/old-kanji-amazon-context.js`, `assets/amazon-affiliate.js`, and `scripts/check-old-kanji-amazon.mjs`.
 
 ## Implementation evidence
 
@@ -101,8 +102,7 @@ Camera/image selection, OCR status, editable result text, and detected cards for
 - `tools/old-kanji-ocr-scanner/tests/behavior.test.mjs` — one-image lifecycle/source contract, Japanese Tesseract wiring, exact OCR/handoff text preservation, detection, degraded dictionary mode, metadata/rendering-card contract, and no rendered unfinished Pro sales panel.
 - `tools/old-kanji-ocr-scanner/style.css`
 - `tools/old-kanji-ocr-scanner/amazon.css`
-- `tools/old-kanji-ocr-scanner/affiliate-config.js`
-- `tools/old-kanji-ocr-scanner/affiliate.js`
 - `assets/amazon-affiliate.js`
+- `assets/old-kanji-amazon-context.js`
 - `tools/old-kanji-reference/dict.json`
 - `tools/old-kanji-reference/compatibility-notes.json`
