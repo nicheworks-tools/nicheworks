@@ -64,7 +64,10 @@
       ["affiliate-om-system-camera-accessories-wave3.js?v=mf-om-system-camera-accessory-wave3-20260919a", "MANUALFINDER_OM_SYSTEM_CAMERA_ACCESSORY_WAVE3_LEDGER"],
       ["affiliate-om-system-camera-accessories-wave4.js?v=mf-om-system-camera-accessory-wave4-20260919a", "MANUALFINDER_OM_SYSTEM_CAMERA_ACCESSORY_WAVE4_LEDGER"],
       ["affiliate-om-system-camera-accessories-wave5.js?v=mf-om-system-camera-accessory-wave5-20260919a", "MANUALFINDER_OM_SYSTEM_CAMERA_ACCESSORY_WAVE5_LEDGER"],
-      ["affiliate-om-system-camera-accessories-wave6.js?v=mf-om-system-camera-accessory-wave6-20260919a", "MANUALFINDER_OM_SYSTEM_CAMERA_ACCESSORY_WAVE6_LEDGER"]
+      ["affiliate-om-system-camera-accessories-wave6.js?v=mf-om-system-camera-accessory-wave6-20260919a", "MANUALFINDER_OM_SYSTEM_CAMERA_ACCESSORY_WAVE6_LEDGER"],
+      ["affiliate-gopro-camera-accessories-wave1.js?v=mf-gopro-camera-accessory-wave1-20260919a", "MANUALFINDER_GOPRO_CAMERA_ACCESSORY_WAVE1_LEDGER"],
+      ["affiliate-gopro-camera-accessories-wave2.js?v=mf-gopro-camera-accessory-wave2-20260919a", "MANUALFINDER_GOPRO_CAMERA_ACCESSORY_WAVE2_LEDGER"],
+      ["affiliate-gopro-camera-accessories-wave3.js?v=mf-gopro-camera-accessory-wave3-20260919a", "MANUALFINDER_GOPRO_CAMERA_ACCESSORY_WAVE3_LEDGER"]
     ];
 
     let index = 0;
