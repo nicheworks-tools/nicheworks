@@ -1,0 +1,396 @@
+{
+  "schema": "cta-content-enrichment-v2.3",
+  "version": "2026-09-18-wave6g-electrical-safety-materials-1",
+  "entries": [
+    {
+      "id": "soldering_iron",
+      "wave": "content-wave-006g",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "はんだを加熱して溶かし、電線や端子、電子部品などを接合する工具。こて先温度、出力、先端形状を対象と使用するはんだに合わせ、感電・やけど・煙への対策を行う。",
+      "detail_en": "A heated hand tool used to melt solder for joining wires, terminals, and electronic components. Tip temperature, power, and tip shape should suit the work, with controls for electric shock, burns, and fumes.",
+      "bullets_ja": [
+        "対象に合うこて先と温度を使い、過熱で絶縁材や部品を損傷しない。",
+        "使用中・直後のこて先は専用スタンドへ置き、可燃物やコードへ触れさせない。",
+        "換気や局所排気を確保し、作業後は電源を切って十分に冷却してから収納する。"
+      ],
+      "bullets_en": [
+        "Use a tip and temperature appropriate for the joint and avoid overheating insulation or components.",
+        "Place the hot iron in a proper stand and keep the tip away from combustibles and cables.",
+        "Provide suitable ventilation or local extraction, then switch off and allow the tool to cool before storage."
+      ],
+      "examples_ja": [
+        "制御盤内の低電圧配線端子をはんだ付けする。",
+        "細線の接続部を熱収縮チューブ施工前にはんだ処理する。"
+      ],
+      "examples_en": [
+        "Solder a low-voltage wiring terminal in a control assembly.",
+        "Solder a small wire splice before applying heat-shrink tubing."
+      ]
+    },
+    {
+      "id": "heat_shrink_tubing",
+      "wave": "content-wave-006g",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "加熱すると径が縮み、電線接続部や端子の絶縁・保護・識別に使われる樹脂チューブ。収縮前後の内径、収縮率、耐熱・耐電圧・難燃性などを用途に合わせて選ぶ。",
+      "detail_en": "Polymer tubing that shrinks when heated and is used to insulate, protect, or identify wire joints and terminals. Expanded/recovered diameter, shrink ratio, temperature rating, voltage suitability, and flame performance should match the application.",
+      "bullets_ja": [
+        "接続部より十分に大きい収縮前径と、収縮後に密着できる回復径を選ぶ。",
+        "均一に加熱し、焦げ・穴あき・周辺絶縁の損傷を避ける。",
+        "屋外・湿潤・高温部では接着剤付きや耐候仕様など必要性能を確認する。"
+      ],
+      "bullets_en": [
+        "Choose an expanded diameter large enough to pass over the joint and a recovered diameter that will grip the finished assembly.",
+        "Heat evenly and avoid scorching, pinholes, or damage to adjacent insulation.",
+        "For outdoor, wet, or hot locations, verify required features such as adhesive lining, weather resistance, or higher temperature rating."
+      ],
+      "examples_ja": [
+        "圧着端子部へ熱収縮チューブをかぶせて絶縁する。",
+        "配線束の識別ラベル保護に透明熱収縮チューブを使う。"
+      ],
+      "examples_en": [
+        "Shrink tubing over a crimped terminal to provide insulation.",
+        "Use clear heat-shrink tubing to protect an identification label on a wire bundle."
+      ]
+    },
+    {
+      "id": "cable_tie",
+      "wave": "content-wave-006g",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "ケーブルや細い部材を束ねて固定する結束バンド。材質、幅、引張強度、耐候性、耐熱性、難燃性などが異なり、屋内外や電気設備の条件に合わせて選ぶ。",
+      "detail_en": "A fastening strap used to bundle and secure cables or lightweight items. Material, width, tensile strength, UV resistance, temperature rating, and flame performance vary and should suit the installation.",
+      "bullets_ja": [
+        "締め過ぎて電線被覆や通信ケーブルを変形させない。",
+        "屋外では耐候性、発熱部では耐熱性など環境に合う種類を使う。",
+        "切断後の端部を鋭く残さず、構造支持や人命に関わる固定へ代用しない。"
+      ],
+      "bullets_en": [
+        "Do not overtighten and deform cable insulation or sensitive communication cables.",
+        "Use UV-resistant, heat-resistant, or other suitable types for the installation environment.",
+        "Trim tails safely and do not use ordinary cable ties as structural or life-safety supports."
+      ],
+      "examples_ja": [
+        "盤内配線を適度な間隔で束ねて整理する。",
+        "屋外配線に耐候性結束バンドを使用する。"
+      ],
+      "examples_en": [
+        "Bundle panel wiring at suitable intervals for orderly routing.",
+        "Use UV-resistant cable ties for exposed outdoor wiring."
+      ]
+    },
+    {
+      "id": "temporary_fixing_kari",
+      "wave": "content-wave-006g",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "本固定前に部材の位置・通り・納まりを確認するため、一時的に保持する仮止め・仮固定。最終固定と区別し、荷重や作業中の外力に耐える必要な強度を確保する。",
+      "detail_en": "Temporary fixing used to hold a component in position before permanent fastening so alignment, fit, and layout can be checked. It must be clearly distinguished from final fixing and be adequate for temporary loads.",
+      "bullets_ja": [
+        "仮止めのまま次工程へ進めないよう、本固定の完了条件を明確にする。",
+        "倒れ・落下・ずれが起きない十分な仮固定を行い、人の通行や風荷重なども考慮する。",
+        "本固定後は不要な仮止め材を撤去し、残置する場合は仕様上問題ないことを確認する。"
+      ],
+      "bullets_en": [
+        "Define when permanent fixing is complete so work is not inadvertently left in a temporary state.",
+        "Provide enough temporary restraint to prevent falling, overturning, or movement under expected construction loads.",
+        "Remove temporary fixings after permanent fastening unless they are permitted to remain by the design or specification."
+      ],
+      "examples_ja": [
+        "建具枠をくさびで仮固定して建入れを確認してから本固定する。",
+        "下地材を数本のビスで仮止めし、位置確認後に所定本数で固定する。"
+      ],
+      "examples_en": [
+        "Temporarily brace a door frame, check plumb, then complete permanent fixing.",
+        "Hold a lining component with a few screws, verify position, then install the specified full fastening pattern."
+      ]
+    },
+    {
+      "id": "allen_key",
+      "wave": "content-wave-006g",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "六角穴付きボルトや止めねじを回すための六角断面の手工具。ミリ・インチ寸法や先端形状があり、ねじ穴に正確に合うサイズを使う。",
+      "detail_en": "A hexagonal hand tool used to turn socket-head screws and set screws. Metric and inch sizes and different end forms exist, so the key must fit the socket correctly.",
+      "bullets_ja": [
+        "ミリ・インチを含め正しいサイズを選び、角が摩耗した工具を使わない。",
+        "ボルト穴へ十分に差し込み、斜め掛けや過大な延長で六角穴を傷めない。",
+        "指定トルクがある箇所では通常のL形レンチだけで管理せず、適切なトルク工具を使う。"
+      ],
+      "bullets_en": [
+        "Select the correct metric or inch size and do not use a rounded or damaged key.",
+        "Seat the key fully in the socket and avoid angled engagement or excessive leverage that can strip the fastener.",
+        "Where a specified torque is required, use an appropriate torque-controlled tool rather than relying on a basic L-key."
+      ],
+      "examples_ja": [
+        "設備カバーの六角穴付きボルトを六角レンチで取り外す。",
+        "家具金物の止めねじを適正サイズのヘックスキーで締める。"
+      ],
+      "examples_en": [
+        "Remove socket-head screws from an equipment cover with a hex key.",
+        "Tighten a set screw in hardware with the correctly sized Allen key."
+      ]
+    },
+    {
+      "id": "nails",
+      "wave": "content-wave-006g",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "木材や下地材などを打ち付けて固定する釘。長さ、径、頭形状、軸形状、材質、表面処理が異なり、部材厚さ・保持力・屋内外条件に合わせて選ぶ。",
+      "detail_en": "Driven fasteners used primarily to join timber and sheet materials. Length, diameter, head, shank form, material, and coating should suit member thickness, required holding capacity, and exposure conditions.",
+      "bullets_ja": [
+        "構造用途では図面・仕様で指定された種類、長さ、径、留付け間隔を守る。",
+        "端部割れを防ぐため必要な端距離を確保し、材料によっては下穴を検討する。",
+        "屋外・防腐処理木材などでは腐食環境に適合する材質・表面処理を選ぶ。"
+      ],
+      "bullets_en": [
+        "For structural work, use the nail type, size, and spacing specified by the drawings or fastening schedule.",
+        "Maintain required edge distances and consider pilot holes where splitting is a risk.",
+        "For exterior work or treated timber, use fasteners with corrosion resistance compatible with the exposure."
+      ],
+      "examples_ja": [
+        "構造用面材を指定釘・指定ピッチで柱へ留め付ける。",
+        "屋外木部へ耐食性のある釘を使用する。"
+      ],
+      "examples_en": [
+        "Fasten structural sheathing to framing with the specified nails and spacing.",
+        "Use corrosion-resistant nails for exposed exterior timber."
+      ]
+    },
+    {
+      "id": "grout",
+      "wave": "content-wave-006g",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "この項目では主にタイル目地を充填する目地材としてのグラウトを指す。セメント系、樹脂系などがあり、目地幅、使用場所、防水・防汚性、タイル種類に合わせて選ぶ。",
+      "detail_en": "In this entry, grout primarily means material used to fill joints between tiles. Cementitious and resin-based products vary in suitable joint width, exposure, stain resistance, water resistance, and tile compatibility.",
+      "bullets_ja": [
+        "タイルと目地幅、屋内外・湿潤部など使用環境に適合する製品を選ぶ。",
+        "所定の水量・配合・可使時間を守り、硬化が始まった材料へ再加水しない。",
+        "充填後は適切なタイミングで表面を清掃し、必要な養生期間を確保する。"
+      ],
+      "bullets_en": [
+        "Select a product compatible with the tile, joint width, and wet, dry, interior, or exterior exposure.",
+        "Follow specified mixing water, proportions, and pot life and do not retemper material after setting begins.",
+        "Clean the tile surface at the proper time and allow the required curing period before service."
+      ],
+      "examples_ja": [
+        "床タイル施工後に指定幅の目地へセメント系グラウトを充填する。",
+        "水回りで用途に適合する目地材を施工する。"
+      ],
+      "examples_en": [
+        "Fill specified floor-tile joints with compatible cementitious grout.",
+        "Use grout suited to the service conditions in a wet-area tile installation."
+      ]
+    },
+    {
+      "id": "lockout_tagout_loto",
+      "wave": "content-wave-006g",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "設備の保守・点検時に、電気・圧力・重力・熱などの危険エネルギーを隔離し、意図しない再起動やエネルギー放出を防ぐロックアウト・タグアウト手順。具体的な運用は法令・会社手順・設備条件に従う。",
+      "detail_en": "Lockout/tagout (LOTO) is an energy-isolation procedure used during service or maintenance to prevent unexpected startup or release of electrical, pressure, gravity, thermal, or other hazardous energy. Exact procedures follow applicable rules and site programs.",
+      "bullets_ja": [
+        "停止だけでなく、すべての危険エネルギー源を特定して隔離する。",
+        "所定のロック・タグを権限のある作業者が取り付け、蓄積エネルギーも解放・拘束する。",
+        "作業開始前に隔離状態を確認し、復旧時は人員・工具・保護装置を確認して定められた手順で解除する。"
+      ],
+      "bullets_en": [
+        "Identify and isolate every hazardous energy source rather than relying on a normal stop control.",
+        "Authorized workers apply the required locks and tags and release or restrain stored energy.",
+        "Verify isolation before work, then restore energy only through the site's defined removal and restart procedure after checking people, tools, and safeguards."
+      ],
+      "examples_ja": [
+        "盤内保守前に主電源を隔離し、ロックとタグを取り付けて無電圧を確認する。",
+        "空圧設備の保守で電源と圧力源を隔離し、残圧を抜いてから作業する。"
+      ],
+      "examples_en": [
+        "Before panel maintenance, isolate the main supply, apply lock and tag, and verify absence of voltage.",
+        "For pneumatic equipment service, isolate power and air supply and release stored pressure before work."
+      ]
+    },
+    {
+      "id": "five_s_5s",
+      "wave": "content-wave-006g",
+      "state": "expanded",
+      "affiliate_review": "not_applicable",
+      "detail_ja": "5Sは、整理・整頓・清掃・清潔・しつけを通じて作業場所を維持する管理活動。工具・材料・廃棄物・通路を分かりやすく保ち、異常や危険を見つけやすくする。",
+      "detail_en": "5S is a workplace organization practice built around sort, set in order, shine, standardize, and sustain. It aims to keep tools, materials, waste, and access routes orderly so abnormalities and hazards are easier to see.",
+      "bullets_ja": [
+        "不要物を区別して撤去し、必要品の置き場所と数量を決める。",
+        "通路・作業床・設備周辺を清掃し、漏れや破損など異常を見つけたら是正につなげる。",
+        "一時的な片付けで終わらせず、表示・点検・担当など維持方法を標準化する。"
+      ],
+      "bullets_en": [
+        "Separate and remove unnecessary items and define locations and quantities for needed items.",
+        "Clean work areas and equipment surroundings and act on abnormalities such as leaks or damage found during cleaning.",
+        "Do not treat 5S as a one-time cleanup; standardize labels, checks, responsibilities, and routines that sustain the condition."
+      ],
+      "examples_ja": [
+        "工具置場を表示して使用後の戻し場所を統一する。",
+        "終業時に通路の端材と廃棄物を撤去し翌日の作業スペースを確保する。"
+      ],
+      "examples_en": [
+        "Label tool storage so workers return items to a consistent location.",
+        "Remove offcuts and waste from access routes at the end of the shift to prepare a safe work area for the next day."
+      ]
+    },
+    {
+      "id": "generator",
+      "wave": "content-wave-006g",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "エンジンなどで発電し、現場の電動工具・照明・仮設設備へ電力を供給する発電機。出力容量、電圧、接地・保護方式、燃料、排気、騒音条件を用途に合わせる。",
+      "detail_en": "A generator supplies temporary electrical power for tools, lighting, and site equipment. Output capacity, voltage, grounding/protection arrangement, fuel, exhaust, and noise requirements must suit the application.",
+      "bullets_ja": [
+        "一酸化炭素中毒を防ぐため、エンジン発電機は屋内・密閉空間で使用せず排気を人や開口部から離す。",
+        "定格出力を超えて負荷を接続せず、必要な漏電・過電流保護や接地方式を現場仕様に合わせる。",
+        "給油は停止・冷却後に行い、燃料漏れ・火気・雨水侵入を管理する。"
+      ],
+      "bullets_en": [
+        "Prevent carbon-monoxide exposure by operating engine generators outdoors with exhaust directed away from people and building openings.",
+        "Do not exceed rated output and provide the grounding, residual-current, and overcurrent protection required by the site system.",
+        "Refuel only after shutdown and cooling, and control fuel spills, ignition sources, and water exposure."
+      ],
+      "examples_ja": [
+        "仮設照明と小型電動工具用に容量を確認して発電機を設置する。",
+        "停電区画の仮設電源として屋外に発電機を配置する。"
+      ],
+      "examples_en": [
+        "Size and set up a generator for temporary lighting and small power tools.",
+        "Place a generator outdoors to supply temporary power to an isolated work area."
+      ]
+    },
+    {
+      "id": "angle_finder",
+      "wave": "content-wave-006g",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "部材や面の角度・勾配を測る角度計。機械式、デジタル式、磁石付きなどがあり、屋根勾配、切断角度、部材取付角の確認に使う。",
+      "detail_en": "A measuring tool used to determine angles or slopes of surfaces and components. Mechanical, digital, and magnetic types are used for roof pitch, cutting angles, and installation checks.",
+      "bullets_ja": [
+        "測定前に基準面のごみ・ばりを除き、ゼロ点や校正状態を確認する。",
+        "工具を基準面へ確実に密着させ、丸みや凹凸のある場所で誤読しない。",
+        "度数・勾配比・百分率など表示単位を確認し、図面指定と同じ形式で判断する。"
+      ],
+      "bullets_en": [
+        "Clean the reference surface and check zero or calibration before measurement.",
+        "Seat the tool firmly on the reference face and avoid readings on rounded, dirty, or uneven surfaces.",
+        "Confirm whether the display is degrees, slope ratio, percent grade, or another unit and compare it with the drawing requirement correctly."
+      ],
+      "examples_ja": [
+        "垂木の屋根勾配をデジタル角度計で確認する。",
+        "切断前に鋼材の取付角度を測定する。"
+      ],
+      "examples_en": [
+        "Check roof-rafter pitch with a digital angle finder.",
+        "Measure a steel component's installation angle before cutting or fixing."
+      ]
+    },
+    {
+      "id": "fish_tape",
+      "wave": "content-wave-006g",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "電線管や壁内の配線経路へ先端を通し、電線や呼び線を引き込む通線工具。鋼製、樹脂製、グラスファイバー製などがあり、配管長さ・曲がり・電気的安全条件に合わせて使う。",
+      "detail_en": "A pulling tool fed through conduit or concealed pathways to draw conductors or pull strings. Steel, polymer, and fiberglass types vary in stiffness, length, and electrical properties.",
+      "bullets_ja": [
+        "通線先に活線がないことを確認し、既設電気回路がある場合は必要な隔離手順を取る。",
+        "無理に押し込んで折損・跳ね返りを起こさず、曲がりや詰まりが強い場合は経路を確認する。",
+        "引込み荷重を抑え、電線被覆を傷めない先端処理と潤滑方法を使う。"
+      ],
+      "bullets_en": [
+        "Confirm the pathway is not energized and apply required isolation procedures where existing electrical circuits are present.",
+        "Do not force the tape into an obstruction where it may kink, break, or recoil; investigate excessive resistance or bends.",
+        "Control pulling force and use a suitable attachment and lubricant so conductor insulation is not damaged."
+      ],
+      "examples_ja": [
+        "空配管へ通線ワイヤーを通して呼び線を引き込む。",
+        "長い電線管へ通線工具を使ってケーブルを引き込む。"
+      ],
+      "examples_en": [
+        "Feed fish tape through empty conduit and pull in a draw string.",
+        "Use fish tape to pull cable through a long conduit run."
+      ]
+    },
+    {
+      "id": "ptfe_tape",
+      "wave": "content-wave-006g",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "テーパねじなどのねじ込み配管接続で、ねじ部のシール補助に使うPTFE製テープ。流体、温度、ねじ形式、材質に対する適合性を確認して使用する。",
+      "detail_en": "PTFE thread-seal tape used on compatible threaded pipe joints as a sealing aid. Suitability depends on the fluid, temperature, thread form, and fitting materials.",
+      "bullets_ja": [
+        "対象のねじ接続がPTFEテープ使用に適していることを仕様で確認する。",
+        "ねじ込み方向に合わせて適切な張力で巻き、端部が配管内へ大きくはみ出さないようにする。",
+        "ガス・酸素・薬品など特殊用途では一般品を流用せず、用途認証・材質適合を確認する。"
+      ],
+      "bullets_en": [
+        "Confirm that the joint type and system specification permit PTFE thread-seal tape.",
+        "Wrap in the tightening direction with appropriate tension and avoid leaving loose tape protruding into the bore.",
+        "For gas, oxygen, chemicals, or other special services, use only products approved and compatible for that application."
+      ],
+      "examples_ja": [
+        "給水用ねじ込み継手へ仕様に適合するシールテープを巻く。",
+        "配管部品をねじ込む前にテープの巻き方向と量を確認する。"
+      ],
+      "examples_en": [
+        "Apply compatible PTFE tape to a threaded water-service fitting.",
+        "Check wrap direction and amount before assembling a threaded pipe joint."
+      ]
+    },
+    {
+      "id": "safety_boots",
+      "wave": "content-wave-006g",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "つま先保護、踏抜き防止、滑り抵抗など作業足元の危険を軽減する安全靴・作業靴。現場の危険源、床面、必要規格、サイズ・フィットに合わせて選ぶ。",
+      "detail_en": "Safety footwear designed to reduce foot injury from impact, compression, puncture, slips, and other jobsite hazards. Selection should match site risks, walking surface, required standard, and wearer fit.",
+      "bullets_ja": [
+        "落下物、踏抜き、滑り、薬品など現場の危険に対応する保護性能を選ぶ。",
+        "靴底の摩耗、先芯周辺の損傷、剥離などを点検し、性能が落ちた靴は交換する。",
+        "サイズと締め付けを適切にし、長時間作業で脱げたり足が動き過ぎたりしないようにする。"
+      ],
+      "bullets_en": [
+        "Select protection appropriate for impact, puncture, slip, chemical, or other site hazards.",
+        "Inspect sole wear, toe-area damage, separation, and other deterioration and replace footwear that no longer provides protection.",
+        "Use the correct size and secure fit so the footwear remains stable during extended work."
+      ],
+      "examples_ja": [
+        "資材搬入作業でつま先保護付き安全靴を着用する。",
+        "濡れた床面の作業で滑りにくい靴底の安全靴を選ぶ。"
+      ],
+      "examples_en": [
+        "Wear safety boots with toe protection during material handling.",
+        "Use safety footwear with suitable slip resistance on wet work surfaces."
+      ]
+    },
+    {
+      "id": "high_visibility_vest",
+      "wave": "content-wave-006g",
+      "state": "expanded",
+      "affiliate_review": "mapped",
+      "detail_ja": "蛍光色と再帰反射材などで着用者の視認性を高める高視認性ベスト。車両・重機が動く場所、夜間・薄暮などで周囲から見つけやすくするために使う。",
+      "detail_en": "A high-visibility vest uses fluorescent material and retroreflective trim to make the wearer easier to see, especially around moving vehicles, machinery, low light, or night work.",
+      "bullets_ja": [
+        "現場で要求される高視認性区分・色・反射材仕様に合う製品を着用する。",
+        "上着や工具で反射材を隠さず、汚れ・破れ・退色で視認性が落ちたものは交換する。",
+        "ベストだけに頼らず、車両動線分離・照明・誘導など他の接触防止策も併用する。"
+      ],
+      "bullets_en": [
+        "Wear a garment meeting the visibility class, color, and retroreflective requirements specified for the site.",
+        "Keep reflective areas visible and replace garments whose visibility is reduced by dirt, tears, or fading.",
+        "Do not rely on the vest alone; combine it with traffic separation, lighting, spotters, and other struck-by controls."
+      ],
+      "examples_ja": [
+        "車両が出入りする資材搬入口で反射ベストを着用する。",
+        "夜間作業で照明と高視認性ベストを併用する。"
+      ],
+      "examples_en": [
+        "Wear a high-visibility vest in a material-delivery area with vehicle traffic.",
+        "Use site lighting together with high-visibility clothing during night work."
+      ]
+    }
+  ]
+}
