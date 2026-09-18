@@ -72,22 +72,20 @@ ManualFinder is an `AFFILIATE` tool, but commerce is an optional next-action lay
 
 Every actionable `カメラ・映像` row with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or explicit missing-accessory diagnostic state.
 
-The current camera state is **185 basic = 81 detail + 15 reviewed exclusions + 89 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
+The current camera state is **185 basic = 83 detail + 15 reviewed exclusions + 87 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
 
 Nikon Waves 1–2 remain closed at **14 detail + 0 reviewed exclusions + 0 missing**.
 
-DJI advances only through bounded exact-canonical-model review waves. Reviewed scope through Wave 38 includes Waves 1–37 plus Wave 38 for exactly:
+DJI advances only through bounded exact-canonical-model review waves. Reviewed scope through Wave 39 includes Waves 1–38 plus Wave 39 for exactly:
 
-- `Ronin 2`
-- `Ronin-M`
-- `Ronin-MX`
-- `Ronin`
+- `DJI Ronin 4D`
+- `Osmo Action`
 
-Wave 38 maps `Ronin 2` to `DJI TB50 Intelligent Battery`; DJI's official Ronin 2 support says it uses the same batteries as Inspire 2 and DJI Store explicitly lists Ronin 2 as TB50-compatible. `Ronin-M` and `Ronin-MX` map to `DJI Ronin-M Battery 1580mAh` from official Ronin-M/Ronin Series battery guidance, and `Ronin` maps to `DJI Ronin Battery 3400mAh` from official original-Ronin battery documentation. Spelling variants and synthetic DJI-prefixed names are not inferred.
+Wave 39 maps `DJI Ronin 4D` to `DJI TB50 Intelligent Battery` and `DJI Inspire 2 Ronin 2 Battery Charging Hub`. DJI's official Ronin 4D support and DJI Store explicitly identify TB50 and the hub as compatible. Wave 39 maps `Osmo Action` to `DJI Osmo Action Battery 1300mAh` and `DJI Osmo Action Charging Hub`; DJI's original Osmo Action specifications identify the battery and the official Download Center publishes the charging-hub guide. Neighboring or synthetic names are not inferred.
 
-The measured DJI state after Waves 1–38 is **96 basic = 67 detail + 15 reviewed exclusions + 14 missing accessory detail**.
+The measured DJI state after Waves 1–39 is **96 basic = 69 detail + 15 reviewed exclusions + 12 missing accessory detail**.
 
-Camera-detail exclusions remain fifteen DJI rows across Waves 32, 34, and 36. Remaining missing camera rows are DJI 14, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
+Camera-detail exclusions remain fifteen DJI rows across Waves 32, 34, and 36. Remaining missing camera rows are DJI 12, OM SYSTEM 37, GoPro 31, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## State and persistence
 
@@ -128,7 +126,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] The printer audit remains **291 basic = 284 detail + 7 reviewed exclusions + 0 missing detail**.
 - [x] KYOCERA remains **123 = 120 detail + 3 reviewed exclusions + 0 missing**.
 - [x] Nikon camera accessory coverage remains **14 detail + 0 reviewed exclusions + 0 missing**.
-- [x] DJI Waves 1–38 preserve exact reviewed boundaries and do not infer neighboring product names.
+- [x] DJI Waves 1–39 preserve exact reviewed boundaries and do not infer neighboring product names.
 - [x] DJI Mavic 2 Enterprise Series Wave 25 activates exactly one reviewed canonical series row with official battery and charging-hub evidence.
 - [x] DJI Osmo Pocket 3 Wave 26 activates exactly one reviewed canonical row with official Battery Handle compatibility evidence.
 - [x] DJI Action 2 Wave 27 activates exactly one reviewed canonical row with official Power Module compatibility evidence.
@@ -143,8 +141,9 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] Nine Osmo Mobile/OM Wave 36 rows are exact reviewed exclusions backed by official nonreplaceable-battery statements.
 - [x] Four legacy Osmo Wave 37 rows activate exact reviewed 980mAh or 1225mAh Intelligent Battery handoffs backed by DJI official model evidence.
 - [x] Four legacy Ronin Wave 38 rows activate exact reviewed replaceable-battery handoffs backed by DJI official support/store evidence.
-- [x] DJI Waves 1–38 reconcile to **96 basic = 67 detail + 15 reviewed exclusions + 14 missing accessory detail**.
-- [x] The catalog-wide camera audit reconciles to **185 basic = 81 detail + 15 reviewed exclusions + 89 missing accessory detail** while seven maker/index rows remain non-actionable.
+- [x] DJI Ronin 4D and original Osmo Action Wave 39 activate exact reviewed battery and charging-hub handoffs backed by DJI official evidence.
+- [x] DJI Waves 1–39 reconcile to **96 basic = 69 detail + 15 reviewed exclusions + 12 missing accessory detail**.
+- [x] The catalog-wide camera audit reconciles to **185 basic = 83 detail + 15 reviewed exclusions + 87 missing accessory detail** while seven maker/index rows remain non-actionable.
 - [x] Missing-model maker diagnostics and documentation sync remain machine-readable drift guards.
 - [x] Wrong maker/category, nonexistent models, spelling variants, and other unreviewed compatibility cases fail closed.
 - [x] Amazon disclosure and sponsored-link semantics remain supplied by the shared affiliate helper.
@@ -202,6 +201,7 @@ Reviewed DJI camera accessory ledgers:
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave35.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave37.js`
 - `tools/manual-finder/affiliate-dji-camera-accessories-wave38.js`
+- `tools/manual-finder/affiliate-dji-camera-accessories-wave39.js`
 
 Camera accessory tests and audit gates:
 
@@ -245,6 +245,7 @@ Camera accessory tests and audit gates:
 - `tools/manual-finder/tests/dji-osmo-mobile-battery-exclusions-wave36.test.mjs`
 - `tools/manual-finder/tests/dji-osmo-legacy-battery-wave37.test.mjs`
 - `tools/manual-finder/tests/dji-ronin-legacy-battery-wave38.test.mjs`
+- `tools/manual-finder/tests/dji-ronin4d-osmo-action-wave39.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-coverage.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs`
 - `tools/manual-finder/tests/affiliate-coverage.test.mjs`
