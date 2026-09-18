@@ -24,6 +24,7 @@ Do not use Low / Medium / High output, estimated RTT/downlink, or unsupported-br
 ## Current functional contract
 
 - `navigator.connection`またはbrowser prefix版Network Information APIを利用する。
+- Keep a crawlable explanation of estimated RTT, RTT-to-RTT fluctuation, and estimated downlink, including the explicit distinction from real ping, jitter, speed tests, and RSSI measurement.
 - Start後は約1秒ごとに`connection.rtt`と`connection.downlink`を読み取る。
 - 前回RTTとの差のabsolute valueをfluctuationとして表示する。
 - RTT値を最大50 pointsまでpage memoryへ保持し、canvas trend graphを描画する。
@@ -91,6 +92,7 @@ Start/Stop、current values、graph、Resetを縦方向中心に配置する。
 - [ ] API非対応時は架空の測定値を生成せずNot supportedを表示する。
 - [ ] tool独自のping/speed-test requestやSSID/RSSI取得を行わない。
 - [ ] Public title/description/H1 use connection-status language while explicitly stating that RSSI, real ping, and real speed are not measured.
+- [ ] Initial HTML explains what each displayed estimate means and what it does not measure before the user starts polling.
 - [ ] The public page has one H1 element while preserving JA/EN language switching inside that heading.
 - [ ] No Amazon affiliate offer is rendered under the current `ADS_DONATION` classification.
 
