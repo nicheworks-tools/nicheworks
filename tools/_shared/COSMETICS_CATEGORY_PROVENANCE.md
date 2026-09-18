@@ -242,3 +242,19 @@ Wave 21 continues the official-label-priority cleanup with seven identities acco
 | `lecithin` | `emulsifier` | category missing | COSMILE Europe lists `SURFACTANT - EMULSIFYING`. |
 
 Raw recognition data remains unchanged. Unsupported legacy category hints stay auditable, while the verified source-backed category becomes the public primary role. Lecithin remains category-empty in raw data and is resolved only through the overlay.
+
+
+## Wave 22 reviewed set
+
+Wave 22 resolves six additional source-backed official-label gaps, each observed once in the maintained 30-product corpus.
+
+| Canonical identity | Verified public category | Preserved raw category hint | Source basis |
+| --- | --- | --- | --- |
+| `calcium gluconate` | `chelating agent` | `general` | COSMILE Europe lists `CHELATING`. |
+| `ceramide as` | `skin conditioning` | `barrier lipid` | COSMILE Europe lists `SKIN CONDITIONING`. |
+| `ceramide ng` | `skin conditioning` | `barrier lipid` | COSMILE Europe lists `SKIN CONDITIONING - MISCELLANEOUS`. |
+| `glyceryl acrylate/acrylic acid copolymer` | `humectant` | `general` | COSMILE Europe lists `HUMECTANT` (and viscosity controlling). |
+| `hectorite` | `viscosity adjuster` | `general` | COSMILE Europe lists `VISCOSITY CONTROLLING`. |
+| `tapioca starch` | `viscosity adjuster` | `powder` | COSMILE Europe lists `VISCOSITY CONTROLLING`. |
+
+Raw recognition records are not rewritten. Existing broad legacy category hints remain auditable, while the reviewed source-backed role becomes the public primary category.
