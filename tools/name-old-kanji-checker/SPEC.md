@@ -9,6 +9,14 @@
 
 Check characters in a name against the Old Kanji Reference data and surface old-form, modern-form, and variant candidates as a reference aid.
 
+## Search cluster role
+
+- Primary intent: check personal-name text for old/variant candidates.
+- Primary query families: `名前 旧字体`, `人名 旧字体`, `苗字 旧字体`.
+- Supporting query families: `氏名 異体字`, `戸籍 旧字体`.
+- The page is the cluster's name-focused candidate checker and keeps an explicit registry/legal caution.
+- Primary task handoffs are Old Kanji Reference, Variant Kanji Compare, and Unicode Kanji Checker.
+
 ## Current functional contract
 
 - Accept arbitrary name text and inspect it character by character.
