@@ -7,6 +7,7 @@ const check = (condition, message) => { if (!condition) failures.push(message); 
 const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
 
 const analytics = read('assets/old-kanji-analytics.js');
+const amazonAffiliate = read('assets/amazon-affiliate.js');
 const entitlement = read('assets/nw-pro-entitlement.js');
 const modernizer = read('tools/kanji-modernizer/index.html');
 const measurement = read('tools/OLD_KANJI_MEASUREMENT.md');
@@ -28,7 +29,9 @@ for (const eventName of ['old_kanji_handoff', 'support_click', 'old_kanji_pro_cl
   check(measurement.includes(`\`${eventName}\``), `measurement doc missing event ${eventName}`);
 }
 
-check(!analytics.includes('affiliate_click'), 'Old Kanji analytics must not duplicate Amazon affiliate_click');
+check(!analytics.includes('affiliate_click'), 'Old Kanji analytics must not implement legacy affiliate_click');
+check(!analytics.includes('affiliate_outbound'), 'Old Kanji analytics must not duplicate shared affiliate_outbound');
+check(amazonAffiliate.includes('affiliate_outbound'), 'shared Amazon helper must retain canonical affiliate_outbound event');
 check(analytics.includes("provider: 'ofuse'") || analytics.includes("return 'ofuse'"), 'OFUSE provider allowlist missing');
 check(analytics.includes("return 'ko-fi'"), 'Ko-fi provider allowlist missing');
 check(analytics.includes("proCta.matches(':disabled')"), 'disabled Pro guard missing');
@@ -61,7 +64,11 @@ for (const param of ['source_tool', 'target_tool', 'placement', 'tool', 'provide
 for (const forbiddenDoc of ['searched kanji', 'OCR text', 'raw URLs/query strings']) {
   check(measurement.includes(forbiddenDoc), `privacy boundary documentation missing: ${forbiddenDoc}`);
 }
-check(measurement.includes('affiliate_click'), 'Amazon affiliate_click KPI must remain documented');
+check(measurement.includes('`affiliate_outbound`'), 'canonical Amazon affiliate_outbound event must be documented');
+check(measurement.includes('ADS_DONATION'), 'Reference dormant monetization class must be documented');
+check(measurement.includes('HOLD'), 'OCR dormant monetization class must be documented');
+check(measurement.includes('enabled: false'), 'disabled Old Kanji Amazon runtime must be documented');
+check(!measurement.includes('`affiliate_click`'), 'measurement contract must not retain legacy affiliate_click event');
 
 if (failures.length) {
   console.error(`Old Kanji measurement contract failed (${failures.length})`);

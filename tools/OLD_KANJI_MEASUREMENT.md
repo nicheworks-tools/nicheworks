@@ -32,11 +32,16 @@ Allowed parameters only:
 
 ## Amazon measurement
 
-Amazon remains contextual and separately instrumented by `/assets/amazon-affiliate.js`. Its existing event is `affiliate_click`. The Old Kanji measurement module must not duplicate Amazon click events.
+Amazon is currently **dormant for the Old Kanji cluster** under the canonical monetization SSOT:
 
-Current production Amazon scope remains:
-- Old Kanji Reference: dictionary, magnifier, book stand searches.
-- Old Kanji OCR Scanner: non-destructive book scanner and magnifier searches.
+- Old Kanji Reference: `ADS_DONATION`
+- Old Kanji OCR Scanner: `HOLD`
+- neither tool is in the canonical `AFFILIATE` class
+- both production affiliate configs remain `enabled: false` with no tracking ID or outbound target
+
+The shared `/assets/amazon-affiliate.js` event name is `affiliate_outbound`. It is the only authorized Amazon outbound event if a tool is explicitly moved into the canonical `AFFILIATE` class in the future. `assets/old-kanji-analytics.js` must not duplicate shared Amazon measurement or emit any legacy tool-owned affiliate event.
+
+In the current dormant state, Old Kanji Reference and Old Kanji OCR Scanner must emit **no Amazon outbound event** because no active Amazon destination exists.
 
 ## Privacy boundary
 
@@ -44,4 +49,4 @@ No GA4 event in this contract may include searched kanji, names, addresses, past
 
 ## Evaluation
 
-Use these events together with settled GA4 landing/session data and GSC impressions/clicks/CTR/position. `affiliate_click` is a formal Old Kanji monetization KPI alongside internal handoffs, support clicks, and future enabled Pro clicks.
+Use these events together with settled GA4 landing/session data and GSC impressions/clicks/CTR/position. Internal handoffs, support clicks, and future enabled Pro clicks are current Old Kanji measurement signals. `affiliate_outbound` becomes an Old Kanji monetization KPI only after an explicit canonical `AFFILIATE` classification and enabled runtime; while the cluster remains non-affiliate/HOLD it is expected to be absent.
