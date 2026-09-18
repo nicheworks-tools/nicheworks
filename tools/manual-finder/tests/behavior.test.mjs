@@ -49,5 +49,6 @@ await import('./dji-phantom3-accessory-wave22.test.mjs');
 await import('./dji-phantom3-se-accessory-wave23.test.mjs');
 await import('./dji-mavic2-enterprise-advanced-wave24.test.mjs');
 await import('./dji-mavic2-enterprise-series-wave25.test.mjs');
+await import('./dji-phantom3-4k-accessory-wave26.test.mjs');
 await import('./camera-accessory-coverage.test.mjs');
 await import('./camera-accessory-doc-sync.test.mjs');
