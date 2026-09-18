@@ -61,6 +61,11 @@ const CATEGORY_LABELS = {
   ph: { ja: 'pH調整', en: 'pH adjuster' },
   'ph adjuster': { ja: 'pH調整', en: 'pH adjuster' },
   'viscosity adjuster': { ja: '粘度調整', en: 'Viscosity adjuster' },
+  buffer: { ja: 'pH安定化', en: 'Buffer' },
+  conditioning: { ja: 'コンディショニング', en: 'Conditioning' },
+  'skin conditioning': { ja: '整肌', en: 'Skin conditioning' },
+  'hair conditioning': { ja: '毛髪コンディショニング', en: 'Hair conditioning' },
+  'plant extract': { ja: '植物エキス', en: 'Plant extract' },
   general: { ja: '情報不足', en: 'Information incomplete' }
 };
 
@@ -96,7 +101,12 @@ const ROLE_DESCRIPTIONS = {
   'chelating agent': { ja: '金属イオンを捕捉し、処方を安定させる目的で使われる成分です。', en: 'Used to bind metal ions and support formula stability.' },
   ph: { ja: '製品のpHを調整する目的で使われる成分です。', en: 'Used to adjust product pH.' },
   'ph adjuster': { ja: '製品のpHを調整する目的で使われる成分です。', en: 'Used to adjust product pH.' },
-  'viscosity adjuster': { ja: '製品の粘度を調整する目的で使われる成分です。', en: 'Used to adjust product viscosity.' }
+  'viscosity adjuster': { ja: '製品の粘度を調整する目的で使われる成分です。', en: 'Used to adjust product viscosity.' },
+  buffer: { ja: '製品のpHを安定させる目的で使われる成分です。', en: 'Used to help stabilize product pH.' },
+  conditioning: { ja: '肌や毛髪の感触を整える目的で使われる成分です。', en: 'Used for skin or hair conditioning.' },
+  'skin conditioning': { ja: '肌の状態や感触を整える目的で使われる成分です。', en: 'Used for skin conditioning.' },
+  'hair conditioning': { ja: '毛髪の状態や感触を整える目的で使われる成分です。', en: 'Used for hair conditioning.' },
+  'plant extract': { ja: '植物などから得られたエキス成分です。', en: 'A plant-derived extract ingredient.' }
 };
 
 const FLAG_RULES = [
