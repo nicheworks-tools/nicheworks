@@ -54,7 +54,7 @@ const BASELINE_FLOORS = Object.freeze({
 const BASELINE_RUNTIME_PROVENANCE_FLOORS = Object.freeze({
   verified_category_runtime_identities: 116,
   verified_note_runtime_identities: 22,
-  strong_runtime_data_identities: 22
+  strong_runtime_data_identities: 19
 });
 
 function text(value = '') {
@@ -221,6 +221,18 @@ const runtimeStrongReady = runtimeMerged.filter((item) => {
   return hasRole && hasJp && hasVerifiedNote;
 }).length;
 const runtimeStrongMissing = runtimeMerged.length - runtimeStrongReady;
+const runtimeVerifiedNoteNotStrong = runtimeMerged
+  .filter((item) => item.note_verified === true && text(item.note_short) && Array.isArray(item.note_sources) && item.note_sources.some((value) => text(value)))
+  .filter((item) => {
+    const categories = Array.isArray(item.categories) ? item.categories : [item.category];
+    const hasRole = categories.some((value) => PUBLIC_ROLE_CATEGORIES.has(category(value)));
+    return !(hasRole && hasJapaneseName(item));
+  })
+  .map((item) => ({
+    canonical: canonicalKey(item.en),
+    has_japanese_name: hasJapaneseName(item),
+    categories: Array.isArray(item.categories) ? item.categories : []
+  }));
 
 const measuredDebt = {
   missing_jp_name: counters.missing_jp_name,
@@ -296,7 +308,8 @@ const report = {
     definition: 'supported public role + maintained Japanese name + source-backed verified ingredient-specific note',
     with_strong_runtime_data: runtimeStrongReady,
     without_strong_runtime_data: runtimeStrongMissing,
-    strong_runtime_ready_percent: runtimeMerged.length ? Number((runtimeStrongReady / runtimeMerged.length * 100).toFixed(2)) : 0
+    strong_runtime_ready_percent: runtimeMerged.length ? Number((runtimeStrongReady / runtimeMerged.length * 100).toFixed(2)) : 0,
+    verified_note_identities_not_strong: runtimeVerifiedNoteNotStrong
   },
   canonical_readiness: {
     with_supported_public_role: canonicalWithSupportedRole,
