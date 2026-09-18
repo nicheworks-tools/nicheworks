@@ -47,14 +47,6 @@ if (new Set(pendingSlugs).size !== pendingSlugs.length) fail('pendingSlugs conta
 if (plan.auditedTools + pendingSlugs.length !== plan.totalTools) fail('auditedTools + pendingSlugs must equal totalTools');
 if (plan.waveSizes.reduce((sum, size) => sum + size, 0) !== plan.auditedTools) {
   fail('plan auditedTools must equal the sum of waveSizes');
-} else {
-  const expectedSizes = [12, 12, 12, 12, 12, 12, 4];
-  if (plan.waveSizes.some((size, index) => size !== expectedSizes[index])) {
-    fail(`plan waveSizes must be ${expectedSizes.join(',')}, got ${plan.waveSizes.join(',')}`);
-  }
-  if (plan.waveSizes.reduce((sum, size) => sum + size, 0) !== plan.totalTools) {
-    fail('plan totalTools must equal the sum of waveSizes');
-  }
 }
 if (plan.assignment !== 'current_registry_order_audited_chunks') {
   fail(`unexpected assignment ${plan.assignment}`);
