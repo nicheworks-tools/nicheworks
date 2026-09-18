@@ -5,54 +5,127 @@ const state = {
   metadata: new Map(),
   compatibility: new Map(),
   shapeNotes: new Map(),
-  strokeCounts: new Map()
+  strokeCounts: new Map(),
+  dataStatus: 'loading'
 };
 
 async function loadData() {
+  state.dataStatus = 'loading';
   const dictRes = await fetch('../old-kanji-reference/dict.json');
-  if (!dictRes.ok) throw new Error('dict load failed');
+  if (!dictRes.ok) {
+    state.dataStatus = 'error';
+    throw new Error('dict load failed');
+  }
   state.dict = await dictRes.json();
   state.reverse = buildReverseLookupFromOldToNew(state.dict.old_to_new || {});
-  await Promise.all([loadMetadata(), loadCompatibilityNotes()]);
+  const [metadataOk, compatibilityOk] = await Promise.all([loadMetadata(), loadCompatibilityNotes()]);
+  state.dataStatus = metadataOk && compatibilityOk ? 'ready' : 'partial_error';
+  return state.dataStatus;
+}
+
+function addReverseCandidate(map, modernForm, oldForm) {
+  if (!modernForm || !oldForm) return;
+  const candidates = map.get(modernForm) || [];
+  if (!candidates.includes(oldForm)) {
+    candidates.push(oldForm);
+    map.set(modernForm, candidates);
+  }
 }
 
 function buildReverseLookupFromOldToNew(oldToNew) {
   const map = new Map();
-  Object.entries(oldToNew).forEach(([oldForm, modernForm]) => {
-    if (!map.has(modernForm)) map.set(modernForm, []);
-    map.get(modernForm).push(oldForm);
+  Object.entries(oldToNew || {}).forEach(([oldForm, modernValue]) => {
+    const modernForms = Array.isArray(modernValue) ? modernValue : [modernValue];
+    modernForms.forEach((modernForm) => addReverseCandidate(map, modernForm, oldForm));
   });
   return map;
 }
 
+function getMetadataFields(meta, lang = state.lang) {
+  if (!meta) return {};
+  const ja = lang === 'ja';
+  return {
+    reading: ja ? (meta.readingJa || meta.readingEn || meta.reading || '') : (meta.readingEn || meta.readingJa || meta.reading || ''),
+    meaning: ja ? (meta.meaningJa || meta.meaningEn || meta.meaning || '') : (meta.meaningEn || meta.meaningJa || meta.meaning || ''),
+    usage: ja ? (meta.usageJa || meta.usageEn || meta.usage || '') : (meta.usageEn || meta.usageJa || meta.usage || ''),
+    category: meta.category || ''
+  };
+}
+
+function getShapeText(shape, lang = state.lang) {
+  if (!shape) return '';
+  if (typeof shape === 'string') return shape;
+  return lang === 'ja'
+    ? (shape.structureJa || shape.differenceJa || shape.noteJa || shape.summary || '')
+    : (shape.structureEn || shape.differenceEn || shape.noteEn || shape.summary || '');
+}
+
+function getStrokeText(stroke, lang = state.lang) {
+  if (!stroke) return '';
+  if (typeof stroke === 'number') return String(stroke);
+  if (stroke.oldStrokes == null && stroke.modernStrokes == null && stroke.difference == null) {
+    return stroke.old != null ? String(stroke.old) : '';
+  }
+  return lang === 'ja'
+    ? `旧字 ${stroke.oldStrokes ?? '-'} / 新字 ${stroke.modernStrokes ?? '-'} / 差 ${stroke.difference ?? '-'}`
+    : `old ${stroke.oldStrokes ?? '-'} / modern ${stroke.modernStrokes ?? '-'} / difference ${stroke.difference ?? '-'}`;
+}
+
+function getLocalizedCompatibilityFields(note, lang = state.lang) {
+  if (!note) return { summary: '', copyNote: '', recommended: '' };
+  const ja = lang === 'ja';
+  return {
+    summary: note.summary || (ja ? (note.summaryJa || note.summaryEn) : (note.summaryEn || note.summaryJa)) || '',
+    copyNote: note.copyNote || (ja ? (note.copyNoteJa || note.copyNoteEn) : (note.copyNoteEn || note.copyNoteJa)) || '',
+    recommended: note.recommendedCheck || (ja ? (note.recommendedCheckJa || note.recommendedCheckEn) : (note.recommendedCheckEn || note.recommendedCheckJa)) || ''
+  };
+}
+
+function buildConverterHref(input) {
+  return `../kanji-modernizer/?q=${encodeURIComponent(input || '')}`;
+}
+
 async function loadMetadata() {
   const files = ['meta.json', 'meta-extra-2.json', 'meta-extra-3.json', 'meta-extra-4.json', 'meta-extra-5.json', 'meta-extra-6.json'];
+  let ok = true;
   for (const file of files) {
     try {
       const res = await fetch(`../old-kanji-reference/${file}`);
-      if (!res.ok) continue;
+      if (!res.ok) { ok = false; continue; }
       const json = await res.json();
       const entries = json.entries || {};
       Object.entries(entries).forEach(([char, meta]) => state.metadata.set(char, meta));
-    } catch (_) {}
+    } catch (_) { ok = false; }
   }
   try {
     const shape = await fetch('../old-kanji-reference/shape-notes.json');
-    if (shape.ok) Object.entries((await shape.json()).entries || {}).forEach(([k, v]) => state.shapeNotes.set(k, v));
-  } catch (_) {}
+    if (shape.ok) {
+      Object.entries((await shape.json()).entries || {}).forEach(([k, v]) => state.shapeNotes.set(k, v));
+    } else {
+      ok = false;
+    }
+  } catch (_) { ok = false; }
   try {
     const stroke = await fetch('../old-kanji-reference/stroke-counts.json');
-    if (stroke.ok) Object.entries((await stroke.json()).entries || {}).forEach(([k, v]) => state.strokeCounts.set(k, v));
-  } catch (_) {}
+    if (stroke.ok) {
+      Object.entries((await stroke.json()).entries || {}).forEach(([k, v]) => state.strokeCounts.set(k, v));
+    } else {
+      ok = false;
+    }
+  } catch (_) { ok = false; }
+  return ok;
 }
 
 async function loadCompatibilityNotes() {
   try {
     const res = await fetch('../old-kanji-reference/compatibility-notes.json');
-    if (!res.ok) return;
+    if (!res.ok) return false;
     const json = await res.json();
     Object.entries(json.entries || {}).forEach(([k, v]) => state.compatibility.set(k, v));
-  } catch (_) {}
+    return true;
+  } catch (_) {
+    return false;
+  }
 }
 
 function getFallbackCompatibilityNote(char) {
