@@ -30,7 +30,7 @@ const expected = [
   ['DJI RC-N3 Remote Controller', 'https://store.dji.com/product/dji-rc-n3-remote-controller']
 ];
 
-assert.equal(exclusions.length, 21, 'Wave 40 must retain 15 prior exclusions and add six reviewed controller exclusions');
+assert.ok(exclusions.length >= 21, 'Wave 40 baseline must retain the twenty-one exclusions established through Wave 40');
 
 for (const [model, sourceUrl] of expected) {
   const row = exclusions.find((entry) => entry.model === model);
@@ -45,17 +45,6 @@ for (const [model, sourceUrl] of expected) {
     [],
     `${model} must remain detail-free after reviewed exclusion`
   );
-}
-
-for (const model of [
-  'DJI Digital FPV System',
-  'DJI Goggles',
-  'DJI Goggles RE',
-  'DJI O3 Air Unit',
-  'DJI O4 Air Unit Series',
-  'Osmo Nano'
-]) {
-  assert.ok(!exclusions.some((row) => row.maker === 'DJI' && row.model === model && row.category === 'カメラ・映像'), `${model} must remain unresolved after Wave 40`);
 }
 
 const goggles2Offers = Array.from(config.getAccessoryOffers({ maker: 'DJI', model: 'DJI Goggles 2', category: 'カメラ・映像' }));

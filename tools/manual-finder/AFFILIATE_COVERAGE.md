@@ -21,12 +21,12 @@ Required printer reconciliation:
 
 The camera accessory audit independently reconciles as:
 
-`camera basic 185 = detail 83 + reviewed exclusion 21 + missing 81`
+`camera basic 185 = detail 84 + reviewed exclusion 26 + missing 75`
 
 Maker-level camera state:
 
 - `Nikon camera 14 = detail 14 + reviewed exclusion 0 + missing 0`
-- `DJI camera 96 = detail 69 + reviewed exclusion 21 + missing 6`
+- `DJI camera 96 = detail 70 + reviewed exclusion 26 + missing 0`
 - OM SYSTEM: 37 missing
 - GoPro: 31 missing
 - Insta360: 7 missing
@@ -88,7 +88,7 @@ Nikon camera accessory coverage remains complete:
 
 Shared accessory families are not generalized by model-name similarity; each active row is explicit in the reviewed ledger.
 
-## DJI camera review Waves 1–40
+## DJI camera review Waves 1–41
 
 DJI camera accessory coverage advances only through bounded exact-canonical-model waves. Every active row requires DJI official evidence; neighboring names and variants remain fail-closed until separately reviewed.
 
@@ -134,6 +134,7 @@ DJI camera accessory coverage advances only through bounded exact-canonical-mode
 | 38 | `Ronin 2`, `Ronin-M`, `Ronin-MX`, `Ronin` | TB50 Intelligent Battery / Ronin-M Battery 1580mAh / Ronin Battery 3400mAh |
 | 39 | `DJI Ronin 4D`, `Osmo Action` | TB50 Intelligent Battery + Charging Hub / Osmo Action Battery 1300mAh + Charging Hub |
 | 40 | `DJI RC`, `DJI RC 2`, `DJI RC Motion 2`, `DJI RC Motion 3`, `DJI RC Pro`, `DJI RC-N3 Remote Controller` | reviewed exclusion: rechargeable controller; no model-specific replaceable power accessory |
+| 41 | `Osmo Nano`, `DJI Digital FPV System`, `DJI Goggles`, `DJI Goggles RE`, `DJI O3 Air Unit`, `DJI O4 Air Unit Series` | Osmo Nano Vision Dock + five exact reviewed exclusions; DJI closure |
 
 ### DJI Phantom 3 series — Wave 22
 
@@ -256,11 +257,17 @@ Wave 40 reviews exactly `DJI RC`, `DJI RC 2`, `DJI RC Motion 2`, `DJI RC Motion 
 
 The six rows receive `rechargeable_controller_no_model_specific_replaceable_power_accessory`. Generic USB chargers are not treated as model-specific compatibility-sensitive accessory detail, and no replaceable battery or dedicated charging dock was established at the review standard.
 
-After Waves 1–40:
+### Final DJI power review — Wave 41
 
-`DJI camera 96 = detail 69 + reviewed exclusion 21 + missing 6`
+Wave 41 closes the final six canonical DJI rows. `Osmo Nano` receives the exact `DJI Osmo Nano Multifunctional Vision Dock` handoff; DJI documents the Dock as the model-specific companion that extends operating time and provides charging/connection functions.
 
-The catalog-wide camera audit is therefore 185 actionable basic rows, 83 detail mappings, 21 reviewed exclusions, and 81 missing accessory-detail rows.
+The five remaining rows are exact reviewed exclusions. `DJI Goggles` and `DJI Goggles RE` have integrated battery designs without a separately established model-specific replacement power accessory. `DJI O3 Air Unit` and `DJI O4 Air Unit Series` are externally powered components. `DJI Digital FPV System` is a multi-component system with separate power paths, so a single system-level battery/charger handoff is not asserted.
+
+After Waves 1–41:
+
+`DJI camera 96 = detail 70 + reviewed exclusion 26 + missing 0`
+
+The catalog-wide camera audit is therefore 185 actionable basic rows, 84 detail mappings, 26 reviewed exclusions, and 75 missing accessory-detail rows.
 
 ## Runtime boundary and source of truth
 
@@ -269,7 +276,7 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 83 detail 
 - Maker-specific printer ledgers own reviewed consumable mappings.
 - `affiliate-printer-detail-exclusions.js` owns reviewed printer exclusions.
 - `affiliate-camera-accessories.js` and `affiliate-nikon-camera-accessories-wave2.js` own Nikon camera mappings.
-- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave39.js` own reviewed DJI camera mappings.
+- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave41.js` own reviewed DJI camera mappings.
 - `affiliate-dji-camera-accessories-wave22.js` adds the exact reviewed three-row Phantom 3 mapping.
 - `affiliate-dji-camera-accessories-wave23.js` adds the exact Phantom 3 SE battery-only mapping.
 - `affiliate-dji-camera-accessories-wave24.js` adds the exact Mavic 2 Enterprise Advanced battery-only mapping.
@@ -284,8 +291,9 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 83 detail 
 - `affiliate-dji-camera-accessories-wave35.js` adds the exact Ronin-SC BG18 / Ronin-S BG37 mappings.
 - `affiliate-dji-camera-accessories-wave37.js` adds the exact four-row legacy Osmo battery mappings.
 - `affiliate-dji-camera-accessories-wave38.js` adds the exact four-row legacy Ronin battery mappings.
-- `affiliate-dji-camera-accessories-wave39.js` adds the exact Ronin 4D / Osmo Action battery-and-hub mappings and exposes the merged 83-row camera detail ledger.
-- `affiliate-camera-detail-exclusions.js` contains twenty-one exact DJI exclusions across Waves 32, 34, 36, and 40.
+- `affiliate-dji-camera-accessories-wave39.js` adds the exact Ronin 4D / Osmo Action battery-and-hub mappings.
+- `affiliate-dji-camera-accessories-wave41.js` adds the exact Osmo Nano Multifunctional Vision Dock mapping and exposes the merged 84-row camera detail ledger.
+- `affiliate-camera-detail-exclusions.js` contains twenty-six exact DJI exclusions across Waves 32, 34, 36, 40, and 41.
 - `affiliate-runtime.js` sequentially loads Nikon and DJI ledgers before affiliate rendering.
 - `tests/affiliate-coverage.test.mjs` and `tests/affiliate-doc-sync.test.mjs` protect printer reconciliation.
 - `tests/dji-phantom3-accessory-wave22.test.mjs` protects the exact Phantom 3 Wave 22 boundary.
@@ -307,6 +315,7 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 83 detail 
 - `tests/dji-ronin-legacy-battery-wave38.test.mjs` protects the exact four-row Wave 38 legacy Ronin battery boundary.
 - `tests/dji-ronin4d-osmo-action-wave39.test.mjs` protects the exact two-row Wave 39 boundary.
 - `tests/dji-rechargeable-controller-exclusions-wave40.test.mjs` protects the exact six-row Wave 40 controller exclusion boundary.
+- `tests/dji-final-power-wave41.test.mjs` protects the final DJI closure boundary.
 - `tests/camera-accessory-coverage.test.mjs` computes camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` prevents documentation drift and auto-discovers DJI wave evidence.
 - `CAMERA_ACCESSORY_COVERAGE.md` records the measured camera baseline.
@@ -330,13 +339,13 @@ Nikon remains closed only while:
 - Nikon reviewed exclusions = 0
 - Nikon missing = 0
 
-DJI remains partial at:
+DJI is closed at:
 
 - DJI basic = 96
-- DJI detail = 69
-- DJI reviewed exclusions = 21
-- DJI missing = 6
+- DJI detail = 70
+- DJI reviewed exclusions = 26
+- DJI missing = 0
 
 ## Next expansion gate
 
-Printer-detail is closed. Nikon camera coverage is closed. The measured camera backlog continues with DJI 6 actionable rows, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded exact-model official-evidence waves.
+Printer-detail is closed. Nikon camera coverage is closed. The measured camera backlog now continues with OM SYSTEM 37, GoPro 31, and Insta360 7. DJI and Nikon are closed at zero missing.

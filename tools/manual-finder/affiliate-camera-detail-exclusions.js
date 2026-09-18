@@ -172,6 +172,46 @@
       reason: "rechargeable_controller_no_model_specific_replaceable_power_accessory",
       sourceUrl: "https://store.dji.com/product/dji-rc-n3-remote-controller",
       verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "DJI",
+      model: "DJI Digital FPV System",
+      category: "カメラ・映像",
+      reason: "multi_component_system_no_single_model_specific_power_handoff",
+      sourceUrl: "https://www.dji.com/support/product/fpv",
+      verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "DJI",
+      model: "DJI Goggles",
+      category: "カメラ・映像",
+      reason: "built_in_battery_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://www.dji.com/support/product/dji-goggles",
+      verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "DJI",
+      model: "DJI Goggles RE",
+      category: "カメラ・映像",
+      reason: "built_in_battery_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://www.dji.com/support/product/dji-goggles-re",
+      verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "DJI",
+      model: "DJI O3 Air Unit",
+      category: "カメラ・映像",
+      reason: "externally_powered_component_no_model_specific_battery_or_charger",
+      sourceUrl: "https://www.dji.com/support/product/o3-air-unit",
+      verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "DJI",
+      model: "DJI O4 Air Unit Series",
+      category: "カメラ・映像",
+      reason: "externally_powered_component_no_model_specific_battery_or_charger",
+      sourceUrl: "https://www.dji.com/support/product/o4-air-unit",
+      verifiedAt: "2026-09-19"
     })
   ]);
 })();
