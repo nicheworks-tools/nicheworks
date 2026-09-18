@@ -46,8 +46,8 @@ for (const args of [
   assert.deepEqual(Array.from(config.getAccessoryOffers(args)), [], `unreviewed Wave 27 mapping must fail closed: ${JSON.stringify(args)}`);
 }
 
-const osmoActionOffers = Array.from(config.getAccessoryOffers({ maker: 'DJI', model: 'Osmo Action', category: 'カメラ・映像' }));
-assert.deepEqual(osmoActionOffers, [], 'Osmo Action must not inherit the DJI Action 2 Power Module mapping');
+const osmoAction2Offers = Array.from(config.getAccessoryOffers({ maker: 'DJI', model: 'Osmo Action 2', category: 'カメラ・映像' }));
+assert.deepEqual(osmoAction2Offers, [], 'Osmo Action 2 must not inherit the DJI Action 2 Power Module mapping');
 
 const runtimeSource = fs.readFileSync(new URL('../affiliate-runtime.js', import.meta.url), 'utf8');
 assert.ok(runtimeSource.includes('affiliate-dji-camera-accessories-wave27.js'));
