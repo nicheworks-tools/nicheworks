@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-18",
+  "policy": "reviewed_unknowns_preserve_unknown_when_primary_evidence_does_not_support_a_stronger_jp_canonical_claim",
+  "entries": [
+    {
+      "phoneId": "samsung-galaxy-a36-5g",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_in_box_state_not_established",
+      "reason": "The Japan SIM-free model and Samsung package guidance were reviewed, but the exact USB-cable in-box state is not explicitly established by the maintained primary HTML evidence. Samsung also notes that package contents can vary by model and country.",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/model/SM-A366QLVASJP/",
+        "https://www.samsung.com/jp/smartphones/galaxy-a/galaxy-a36-5g-awesome-lavender-128gb-sm-a366qlvasjp/",
+        "https://www.samsung.com/jp/support/mobile-devices/why-earphones-and-charger-are-not-included-in-the-galaxy-phone-package/"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "sony-xperia-1-vi",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_sim_free_in_box_state_not_established",
+      "reason": "Japan SIM-free primary sources were reviewed, but an exact maintained in-box statement for the AC adapter was not established. Carrier packaging is not generalized to the canonical JP record.",
+      "evidenceUrls": [
+        "https://www.sony.jp/xperia/xperia/xperia1m6/spec.html",
+        "https://pur.store.sony.jp/xperia/products/XQ-EC44/XQ-EC44_purchase/"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "sony-xperia-1-vi",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_sim_free_in_box_state_not_established",
+      "reason": "Japan SIM-free primary sources were reviewed, but an exact maintained in-box statement for the USB cable was not established. Carrier packaging is not generalized to the canonical JP record.",
+      "evidenceUrls": [
+        "https://www.sony.jp/xperia/xperia/xperia1m6/spec.html",
+        "https://pur.store.sony.jp/xperia/products/XQ-EC44/XQ-EC44_purchase/"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "sony-xperia-10-vi",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_sim_free_in_box_state_not_established",
+      "reason": "Japan SIM-free primary sources were reviewed, but an exact maintained in-box statement for the AC adapter was not established. Carrier packaging is not generalized to the canonical JP record.",
+      "evidenceUrls": [
+        "https://www.sony.jp/xperia/xperia/xperia10m6/compare.html",
+        "https://support.sony.jp/electronics/support/japan-other-carriers/xperia-10-vi-xq-es44/articles/mobile/00302662"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "sony-xperia-10-vi",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_sim_free_in_box_state_not_established",
+      "reason": "Japan SIM-free primary sources were reviewed, but an exact maintained in-box statement for the USB cable was not established. Carrier packaging is not generalized to the canonical JP record.",
+      "evidenceUrls": [
+        "https://www.sony.jp/xperia/xperia/xperia10m6/compare.html",
+        "https://support.sony.jp/electronics/support/japan-other-carriers/xperia-10-vi-xq-es44/articles/mobile/00302662"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "sony-xperia-5-v",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_sim_free_in_box_state_not_established",
+      "reason": "Japan SIM-free primary sources were reviewed, but an exact maintained in-box statement for the AC adapter was not established. Carrier packaging is not generalized to the canonical JP record.",
+      "evidenceUrls": [
+        "https://www.sony.jp/xperia/xperia/xperia5m5/spec.html",
+        "https://support.sony.jp/electronics/support/mobile-phones-sim-free/xperia-5-v-xq-de44/articles/00271863"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "sony-xperia-5-v",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_sim_free_in_box_state_not_established",
+      "reason": "Japan SIM-free primary sources were reviewed, but an exact maintained in-box statement for the USB cable was not established. Carrier packaging is not generalized to the canonical JP record.",
+      "evidenceUrls": [
+        "https://www.sony.jp/xperia/xperia/xperia5m5/spec.html",
+        "https://support.sony.jp/electronics/support/mobile-phones-sim-free/xperia-5-v-xq-de44/articles/00271863"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "sony-xperia-10-v",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_sim_free_in_box_state_not_established",
+      "reason": "Japan SIM-free primary sources were reviewed, but an exact maintained in-box statement for the AC adapter was not established. Carrier packaging is not generalized to the canonical JP record.",
+      "evidenceUrls": [
+        "https://www.sony.jp/xperia/xperia/xperia10m5/spec.html",
+        "https://www.sony.jp/xperia/xperia/xperia10m5/"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "sony-xperia-10-v",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_sim_free_in_box_state_not_established",
+      "reason": "Japan SIM-free primary sources were reviewed, but an exact maintained in-box statement for the USB cable was not established. Carrier packaging is not generalized to the canonical JP record.",
+      "evidenceUrls": [
+        "https://www.sony.jp/xperia/xperia/xperia10m5/spec.html",
+        "https://www.sony.jp/xperia/xperia/xperia10m5/"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "sony-xperia-1-v",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_sim_free_in_box_state_not_established",
+      "reason": "Japan SIM-free primary sources were reviewed, but an exact maintained in-box statement for the USB cable was not established. Carrier packaging is not generalized to the canonical JP record.",
+      "evidenceUrls": [
+        "https://www.sony.jp/xperia/xperia/xperia1m5/compare.html",
+        "https://www.sony.jp/CorporateCruise/Press/202305/23-0511/"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "sony-xperia-10-iv",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_sim_free_in_box_state_not_established",
+      "reason": "Japan SIM-free primary sources were reviewed, but an exact maintained in-box statement for the USB cable was not established. Carrier packaging is not generalized to the canonical JP record.",
+      "evidenceUrls": [
+        "https://www.sony.jp/xperia/xperia/xperia10m4/spec_sony.html",
+        "https://www.sony.jp/xperia/xperia/xperia10m4/accessory.html"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "sharp-aquos-sense5g",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_variant_package_state_not_safe_to_generalize",
+      "reason": "Japan primary sources were reviewed. Carrier instructions reference using an existing phone cable with the Quick Switch Adapter, while package contents vary across Japan sales variants; a variant-neutral cable state is therefore not asserted.",
+      "evidenceUrls": [
+        "https://jp.sharp/products/aquos-sense5g/spec.html",
+        "https://www.softbank.jp/mobile/support/manual/smartphone/aquos-sense5g/detail/31048/"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "sharp-aquos-r6",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_in_box_state_not_established",
+      "reason": "Japan manufacturer/carrier primary sources were reviewed, but an exact canonical cable in-box state was not established without generalizing across sales variants.",
+      "evidenceUrls": [
+        "https://jp.sharp/products/aquos-r6/spec.html",
+        "https://k-tai.sharp.co.jp/support/"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "sharp-aquos-r5g",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_in_box_state_not_established",
+      "reason": "Japan manufacturer/carrier primary sources were reviewed, but an exact canonical cable in-box state was not established without generalizing across sales variants.",
+      "evidenceUrls": [
+        "https://jp.sharp/products/aquos-r5g/spec.html",
+        "https://k-tai.sharp.co.jp/support/"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "sharp-aquos-zero5g-basic",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_in_box_state_not_established",
+      "reason": "Japan manufacturer/carrier primary sources were reviewed, but an exact canonical cable in-box state was not established without generalizing across sales variants.",
+      "evidenceUrls": [
+        "https://jp.sharp/products/aquos-zero5g-basic/spec.html",
+        "https://corporate.jp.sharp/news/201001-a.html"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "google-pixel-4a-5g",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "official_warning_without_explicit_combined_negative_state",
+      "reason": "Google primary material warns against liquid exposure and the maintained specifications do not provide an IP rating, but the evidence does not explicitly support the combined UI claim 'not water or dust resistant'.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/9921397?hl=ja",
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "google-pixel-4a",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "official_warning_without_explicit_combined_negative_state",
+      "reason": "Google primary material warns against liquid exposure and the maintained specifications do not provide an IP rating, but the evidence does not explicitly support the combined UI claim 'not water or dust resistant'.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/9803272?hl=ja",
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-09-18"
+    },
+    {
+      "phoneId": "oppo-a54-5g",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "official_warning_without_explicit_combined_negative_state",
+      "reason": "OPPO/au primary material was reviewed. The official specification does not provide a maintained IP rating and carrier handling guidance warns against water/liquid exposure, but that does not establish the combined UI claim 'not water or dust resistant'.",
+      "evidenceUrls": [
+        "https://www.oppo.com/jp/smartphones/series-a/a54-5g/specs/",
+        "https://www.au.com/online-manual/opg02/opg02_02/m_01_00_03.html"
+      ],
+      "reviewedAt": "2026-09-18"
+    }
+  ]
+}
