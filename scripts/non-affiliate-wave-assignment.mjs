@@ -1,20 +1,32 @@
 export function buildNonAffiliateWaves(registry, scope, plan) {
   const inScope = new Set(Object.values(scope.classes).flat());
-  const ordered = registry.items.map((item) => item.slug).filter((slug) => inScope.has(slug));
+  const scopeOrdered = registry.items.map((item) => item.slug).filter((slug) => inScope.has(slug));
 
-  if (ordered.length !== plan.totalTools) {
-    throw new Error(`Expected ${plan.totalTools} in-scope tools, found ${ordered.length}.`);
+  if (scopeOrdered.length !== plan.totalTools) {
+    throw new Error(`Expected ${plan.totalTools} in-scope tools, found ${scopeOrdered.length}.`);
   }
 
-  if (plan.assignment !== 'current_registry_order_chunks') {
+  if (plan.assignment !== 'current_registry_order_audited_chunks') {
     throw new Error(`Unsupported assignment mode: ${plan.assignment}`);
+  }
+
+  const pending = Array.isArray(plan.pendingSlugs) ? plan.pendingSlugs : [];
+  const pendingSet = new Set(pending);
+  if (pendingSet.size !== pending.length) throw new Error('pendingSlugs contains duplicates.');
+  for (const slug of pending) {
+    if (!inScope.has(slug)) throw new Error(`Pending slug is not in non-affiliate scope: ${slug}`);
+  }
+
+  const ordered = scopeOrdered.filter((slug) => !pendingSet.has(slug));
+  if (ordered.length !== plan.auditedTools) {
+    throw new Error(`Expected ${plan.auditedTools} audited tools, found ${ordered.length}.`);
   }
 
   if (!Array.isArray(plan.waveSizes) || plan.waveSizes.length !== plan.waveCount) {
     throw new Error('waveSizes must contain one entry per wave.');
   }
-  if (plan.waveSizes.reduce((sum, size) => sum + size, 0) !== plan.totalTools) {
-    throw new Error('waveSizes must sum to totalTools.');
+  if (plan.waveSizes.reduce((sum, size) => sum + size, 0) !== plan.auditedTools) {
+    throw new Error('waveSizes must sum to auditedTools.');
   }
 
   const waves = [];
@@ -31,9 +43,9 @@ export function buildNonAffiliateWaves(registry, scope, plan) {
   }
 
   const flattened = waves.flat();
-  if (flattened.length !== plan.totalTools || new Set(flattened).size !== plan.totalTools) {
-    throw new Error('Wave assignment must cover each in-scope tool exactly once.');
+  if (flattened.length !== plan.auditedTools || new Set(flattened).size !== plan.auditedTools) {
+    throw new Error('Wave assignment must cover each audited in-scope tool exactly once.');
   }
 
-  return { ordered, waves };
+  return { scopeOrdered, ordered, pending, waves };
 }
