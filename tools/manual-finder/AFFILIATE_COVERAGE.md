@@ -21,12 +21,12 @@ Required printer reconciliation:
 
 The camera accessory audit independently reconciles as:
 
-`camera basic 185 = detail 65 + reviewed exclusion 3 + missing 117`
+`camera basic 185 = detail 71 + reviewed exclusion 3 + missing 111`
 
 Maker-level camera state:
 
 - `Nikon camera 14 = detail 14 + reviewed exclusion 0 + missing 0`
-- `DJI camera 96 = detail 51 + reviewed exclusion 3 + missing 42`
+- `DJI camera 96 = detail 57 + reviewed exclusion 3 + missing 36`
 - OM SYSTEM: 37 missing
 - GoPro: 31 missing
 - Insta360: 7 missing
@@ -88,7 +88,7 @@ Nikon camera accessory coverage remains complete:
 
 Shared accessory families are not generalized by model-name similarity; each active row is explicit in the reviewed ledger.
 
-## DJI camera review Waves 1–32
+## DJI camera review Waves 1–33
 
 DJI camera accessory coverage advances only through bounded exact-canonical-model waves. Every active row requires DJI official evidence; neighboring names and variants remain fail-closed until separately reviewed.
 
@@ -126,6 +126,7 @@ DJI camera accessory coverage advances only through bounded exact-canonical-mode
 | 30 | `Osmo 360` | Osmo Action Extreme Battery Plus / Osmo Action Multifunctional Battery Case 2 |
 | 31 | `DJI Goggles 2` | DJI Goggles 2 Battery |
 | 32 | `DJI Goggles 3`, `DJI Goggles Integra`, `DJI Goggles N3` | reviewed exclusion: built-in battery; no model-specific replaceable power accessory |
+| 33 | `DJI RS 2`, `DJI RS 3`, `DJI RS 3 Pro`, `DJI RS 4`, `DJI RS 4 Pro`, `DJI RS 5` | DJI RS BG30 Battery Grip |
 
 ### DJI Phantom 3 series — Wave 22
 
@@ -200,11 +201,17 @@ Wave 32 reviews exactly `DJI Goggles 3`, `DJI Goggles Integra`, and `DJI Goggles
 
 The exclusion reason is `built_in_battery_no_model_specific_replaceable_power_accessory`. `DJI Goggles`, `DJI Goggles RE`, and other Goggles-family products remain unreviewed and are not excluded by inference.
 
-After Waves 1–32:
+### DJI RS BG30 Battery Grip — Wave 33
 
-`DJI camera 96 = detail 51 + reviewed exclusion 3 + missing 42`
+Wave 33 activates exactly `DJI RS 2`, `DJI RS 3`, `DJI RS 3 Pro`, `DJI RS 4`, `DJI RS 4 Pro`, and `DJI RS 5`. DJI Store's official BG30 page explicitly lists all six models in Compatibility and documents the battery grip as independently chargeable.
 
-The catalog-wide camera audit is therefore 185 actionable basic rows, 65 detail mappings, 3 reviewed exclusions, and 117 missing accessory-detail rows.
+The deterministic Amazon handoff for each reviewed row is `DJI RS BG30 Battery Grip`. `DJI RS 3 Mini`, `DJI RS 4 Mini`, `DJI RSC 2`, and other neighboring Ronin/RS products remain fail-closed.
+
+After Waves 1–33:
+
+`DJI camera 96 = detail 57 + reviewed exclusion 3 + missing 36`
+
+The catalog-wide camera audit is therefore 185 actionable basic rows, 71 detail mappings, 3 reviewed exclusions, and 111 missing accessory-detail rows.
 
 ## Runtime boundary and source of truth
 
@@ -213,7 +220,7 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 65 detail 
 - Maker-specific printer ledgers own reviewed consumable mappings.
 - `affiliate-printer-detail-exclusions.js` owns reviewed printer exclusions.
 - `affiliate-camera-accessories.js` and `affiliate-nikon-camera-accessories-wave2.js` own Nikon camera mappings.
-- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave31.js` own reviewed DJI camera mappings.
+- `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave33.js` own reviewed DJI camera mappings.
 - `affiliate-dji-camera-accessories-wave22.js` adds the exact reviewed three-row Phantom 3 mapping.
 - `affiliate-dji-camera-accessories-wave23.js` adds the exact Phantom 3 SE battery-only mapping.
 - `affiliate-dji-camera-accessories-wave24.js` adds the exact Mavic 2 Enterprise Advanced battery-only mapping.
@@ -223,7 +230,8 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 65 detail 
 - `affiliate-dji-camera-accessories-wave28.js` adds the exact DJI Pocket 2 Charging Case mapping.
 - `affiliate-dji-camera-accessories-wave29.js` adds the exact Osmo Pocket Charging Case mapping.
 - `affiliate-dji-camera-accessories-wave30.js` adds the exact Osmo 360 battery/case mappings.
-- `affiliate-dji-camera-accessories-wave31.js` adds the exact DJI Goggles 2 Battery mapping and exposes the merged 65-row camera detail ledger.
+- `affiliate-dji-camera-accessories-wave31.js` adds the exact DJI Goggles 2 Battery mapping.
+- `affiliate-dji-camera-accessories-wave33.js` adds the exact six-row DJI RS BG30 Battery Grip mapping and exposes the merged 71-row camera detail ledger.
 - `affiliate-camera-detail-exclusions.js` contains the three exact DJI Wave 32 built-in-battery Goggles exclusions.
 - `affiliate-runtime.js` sequentially loads Nikon and DJI ledgers before affiliate rendering.
 - `tests/affiliate-coverage.test.mjs` and `tests/affiliate-doc-sync.test.mjs` protect printer reconciliation.
@@ -238,6 +246,7 @@ The catalog-wide camera audit is therefore 185 actionable basic rows, 65 detail 
 - `tests/dji-osmo360-accessory-wave30.test.mjs` protects the exact Osmo 360 Wave 30 battery/case boundary.
 - `tests/dji-goggles2-accessory-wave31.test.mjs` protects the exact DJI Goggles 2 Wave 31 battery boundary.
 - `tests/dji-goggles-integrated-battery-exclusions-wave32.test.mjs` protects the exact three-row Wave 32 exclusion boundary.
+- `tests/dji-rs-bg30-accessory-wave33.test.mjs` protects the exact six-row DJI RS BG30 Wave 33 boundary.
 - `tests/camera-accessory-coverage.test.mjs` computes camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` prevents documentation drift and auto-discovers DJI wave evidence.
 - `CAMERA_ACCESSORY_COVERAGE.md` records the measured camera baseline.
@@ -264,10 +273,10 @@ Nikon remains closed only while:
 DJI remains partial at:
 
 - DJI basic = 96
-- DJI detail = 51
+- DJI detail = 57
 - DJI reviewed exclusions = 3
-- DJI missing = 42
+- DJI missing = 36
 
 ## Next expansion gate
 
-Printer-detail is closed. Nikon camera coverage is closed. The measured camera backlog continues with DJI 42 actionable rows, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded exact-model official-evidence waves.
+Printer-detail is closed. Nikon camera coverage is closed. The measured camera backlog continues with DJI 36 actionable rows, followed by OM SYSTEM 37, GoPro 31, and Insta360 7, using bounded exact-model official-evidence waves.
