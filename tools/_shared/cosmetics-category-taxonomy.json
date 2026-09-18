@@ -16,7 +16,11 @@
     "emollient": { "authority_functions": ["skin conditioning - emollient"] },
     "cleanser": { "authority_functions": ["cleansing", "surfactant - cleansing"] },
     "emulsifier": { "authority_functions": ["surfactant - emulsifying"] },
-    "smoothing": { "authority_functions": ["smoothing"] }
+    "smoothing": { "authority_functions": ["smoothing"] },
+    "binder": { "authority_functions": ["binding"] },
+    "film former": { "authority_functions": ["film forming"] },
+    "hair conditioning": { "authority_functions": ["hair conditioning"] },
+    "fragrance": { "authority_functions": ["fragrance"] }
   },
   "reviewed_mappings": {
     "water": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/water/"],"runtime_verified":true},
@@ -100,6 +104,13 @@
     "pentaerythrityl tetraethylhexanoate": {"category":"emollient","source_functions":["skin conditioning - emollient"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/11370/pentaerythrityl-tetraethylhexanoate/"],"runtime_verified":true},
     "polyacrylate crosspolymer-11": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/19988/polyacrylate-crosspolymer-11/"],"runtime_verified":true},
     "polyglyceryl-4 caprate": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12210/polyglyceryl-4-caprate/"],"runtime_verified":true},
-    "sphingolipids": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15386/sphingolipids"],"runtime_verified":true}
+    "sphingolipids": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15386/sphingolipids"],"runtime_verified":true},
+    "triethoxycaprylylsilane": {"category":"binder","source_functions":["binding"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/16387/triethoxycaprylylsilane/"],"runtime_verified":true},
+    "p-anisic acid": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/10050/p-anisic-acid"],"runtime_verified":true},
+    "polyquaternium-39": {"category":"film former","source_functions":["film forming"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12405/polyquaternium-39/"],"runtime_verified":true},
+    "polyquaternium-53": {"category":"hair conditioning","source_functions":["hair conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12420/polyquaternium-53/"],"runtime_verified":true},
+    "ppg-5-ceteth-20": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/13095/ppg-5-ceteth-20/"],"runtime_verified":true},
+    "snail secretion filtrate": {"category":"skin conditioning","source_functions":["skin conditioning - miscellaneous"],"authority":"Korea Cosmetic Association / Ingredient Dictionary","sources":["https://kcia.or.kr/cid/search/ingd_view.php?no=6319"],"runtime_verified":true},
+    "synthetic beeswax": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15761/synthetic-beeswax/"],"runtime_verified":true}
   }
 }
