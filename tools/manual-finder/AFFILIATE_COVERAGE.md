@@ -132,7 +132,7 @@ The deterministic Amazon handoffs are:
 - `DJI Phantom 3 Intelligent Flight Battery`
 - `DJI Phantom 3 Battery Charging Hub`
 
-Wave 22 does not infer compatibility to `Phantom 3 SE`, `Phantom 3 4K`, `DJI Phantom 3 Standard`, or other non-canonical spellings.
+Wave 22 does not infer compatibility beyond its three reviewed rows. `Phantom 3 SE` and `Phantom 3 4K` required separate reviewed waves and are handled by Waves 23 and 26; `DJI Phantom 3 Standard` and other non-canonical spellings remain fail-closed.
 
 ### DJI Phantom 3 SE — Wave 23
 
@@ -158,7 +158,7 @@ Wave 26 activates exactly `Phantom 3 4K`. DJI's official Phantom 3 4K Download C
 
 A charging-hub offer is intentionally omitted because equally explicit Phantom 3 4K hub compatibility was not established. Wave 22's Phantom 3 charging-hub mapping is not generalized to the 4K row.
 
-After Waves 1–25:
+After Waves 1–26:
 
 `DJI camera 96 = detail 46 + reviewed exclusion 0 + missing 50`
 
