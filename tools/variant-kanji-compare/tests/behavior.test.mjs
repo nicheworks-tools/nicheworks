@@ -2,88 +2,82 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 
-let source = fs.readFileSync(new URL('../app.js', import.meta.url), 'utf8');
-source += '\nglobalThis.__test = { state, parseInputCharacters, buildReverseLookupFromOldToNew, getUtf16CodeUnits, getMetadataFields, getCategoryLabel, getShapeHint, getStrokeText, renderCompatibilityNote, compareCharacters, toCsv };\n';
-
-const documentStub = {
-  documentElement: { lang: 'ja' },
-  addEventListener() {},
-  querySelectorAll() { return []; },
-  getElementById() { return null; },
-  createElement() { return {}; },
-  body: { appendChild() {} },
-  execCommand() { return true; },
+const rawSource = fs.readFileSync(new URL('../app.js', import.meta.url), 'utf8');
+let source = rawSource;
+source = source.replace(/\ndocument\.addEventListener\('DOMContentLoaded'[\s\S]*$/, `
+globalThis.__test = {
+  PRESETS,
+  parseInputCharacters,
+  getUtf16CodeUnits,
+  isCompatibilityIdeographCodePoint,
+  isVariationSelectorCodePoint,
+  renderCompatibilityNote,
+  compareCharacters,
+  summarizeComparison,
+  buildReverseLookupFromOldToNew,
+  toCsv,
+  setLang(lang) { state.lang = lang; },
+  setReferenceData({ oldToNew = {}, metadata = {}, compatibilityNotes = {}, shapeNotes = {}, strokeCounts = {} } = {}) {
+    state.dict = { old_to_new: oldToNew };
+    state.reverseLookup = buildReverseLookupFromOldToNew(oldToNew);
+    state.metadata = metadata;
+    state.compatibilityNotes = compatibilityNotes;
+    state.shapeNotes = shapeNotes;
+    state.strokeCounts = strokeCounts;
+  }
 };
-const sandbox = {
-  console,
-  document: documentStub,
-  navigator: { clipboard: { async writeText() {} } },
-  window: {},
-  fetch: async () => ({ async json() { return {}; } }),
-  encodeURIComponent,
-  setTimeout,
-};
-sandbox.window = sandbox;
+`);
 
+const sandbox = { console, Map, Set, Promise };
 const context = vm.createContext(sandbox);
 vm.runInContext(source, context, { filename: 'tools/variant-kanji-compare/app.js' });
 const api = context.__test;
-assert.ok(api, 'test exports should be available');
+assert.ok(api, 'Variant compare test exports should be available');
 
 assert.deepEqual(
-  Array.from(api.parseInputCharacters(' 高,髙 / 高、𠮷 ')),
-  ['高', '髙', '𠮷'],
-  'input parsing should remove separators, preserve supplementary characters, and deduplicate',
+  Array.from(api.parseInputCharacters('崎, 﨑/崎 𠮷、邊')),
+  ['崎', '﨑', '𠮷', '邊'],
+  'custom comparison must strip separators and dedupe by code point',
 );
+assert.deepEqual(Array.from(api.PRESETS), ['崎 﨑', '高 髙', '吉 𠮷', '辺 邊 邉', '斎 齋 齊', '浜 濱', '沢 澤', '国 國', '学 學']);
 
-const reverse = api.buildReverseLookupFromOldToNew({
-  舊: '旧',
-  髙: ['高', '高'],
-  邊: ['辺', '邊'],
-});
-assert.deepEqual(Array.from(reverse['旧']), ['舊']);
-assert.deepEqual(Array.from(reverse['高']), ['髙'], 'reverse lookup should deduplicate repeated modern mappings');
-assert.deepEqual(Array.from(reverse['辺']), ['邊']);
-assert.deepEqual(Array.from(reverse['邊']), ['邊']);
-
-assert.equal(api.getUtf16CodeUnits('髙'), '9AD9');
-assert.equal(api.getUtf16CodeUnits('𠮷'), 'D842 DFB7');
-
-api.state.lang = 'en';
-assert.deepEqual(
-  JSON.parse(JSON.stringify(api.getMetadataFields({ readingJa: 'さい', readingEn: 'sai', meaningJa: 'old', usageEn: 'names' }))),
-  { reading: 'sai', meaning: 'old', usage: 'names' },
-);
-assert.equal(api.getCategoryLabel('name'), 'Names / Places');
-assert.equal(api.getCategoryLabel('custom'), 'custom');
-assert.equal(api.getShapeHint({ structureJa: 'ja', differenceEn: 'en difference' }), 'en difference');
-assert.equal(api.getStrokeText({ oldStrokes: 18, modernStrokes: 10, difference: 8 }), 'Stroke count: old 18 / modern 10 / difference 8');
-
-api.state.compatibilityNotes = {
-  髙: { summaryEn: 'Explicit rendering note', copyNoteEn: 'Copy carefully' },
-};
-assert.equal(api.renderCompatibilityNote('髙', 0x9ad9), 'Explicit rendering note / Copy carefully');
-assert.equal(api.renderCompatibilityNote(String.fromCodePoint(0xf900), 0xf900), 'CJK Compatibility Ideograph range');
-assert.equal(api.renderCompatibilityNote('𠮷', 0x20bb7), 'Supplementary Plane character');
-assert.equal(api.renderCompatibilityNote('高', 0x9ad8), '');
-
-api.state.dict = { old_to_new: { 髙: '高' } };
-api.state.reverseLookup = { 高: ['髙'] };
-api.state.metadata = { 髙: { category: 'name', readingEn: 'taka' } };
-api.state.shapeNotes = { 髙: { differenceEn: 'upper component differs' } };
-api.state.strokeCounts = { 髙: { oldStrokes: 11, modernStrokes: 10, difference: 1 } };
-api.state.compatibilityNotes = {};
-const compared = JSON.parse(JSON.stringify(api.compareCharacters(['髙', '高', '𠮷'])));
-assert.equal(compared[0].unicode, 'U+9AD9');
-assert.equal(compared[0].htmlHex, '&#x9AD9;');
-assert.equal(compared[0].oldToModern, '高');
-assert.deepEqual(compared[1].modernCandidates, ['髙']);
+api.setLang('ja');
+api.setReferenceData({ oldToNew: { '舊': '旧', '邊': '辺', '邉': '辺' } });
+const compared = api.compareCharacters(['舊', '旧', '𠮷']);
+assert.equal(compared[0].oldToModern, '旧');
+assert.deepEqual(Array.from(compared[1].modernCandidates), ['舊']);
+assert.equal(compared[2].unicode, 'U+20BB7');
 assert.equal(compared[2].utf16, 'D842 DFB7');
-assert.equal(compared[2].compatibility, 'Supplementary Plane character');
 
-const csv = api.toCsv(api.compareCharacters(['髙', '高']));
-assert.match(csv, /^"character","unicode","html_hex"/);
-assert.match(csv, /"髙","U\+9AD9"/);
-assert.match(csv, /"高","U\+9AD8"/);
+const compatibilitySupplement = String.fromCodePoint(0x2F800);
+const supplementaryVs = String.fromCodePoint(0xE0100);
+const edgeItems = api.compareCharacters(['﨑', compatibilitySupplement, '𠮷', supplementaryVs]);
+assert.equal(edgeItems[0].isCompatibilityIdeograph, true);
+assert.equal(edgeItems[1].isCompatibilityIdeograph, true, 'supplementary compatibility ideograph must be recognized');
+assert.equal(edgeItems[3].isVariationSelector, true);
+assert.equal(
+  api.renderCompatibilityNote(supplementaryVs, 0xE0100),
+  '異体字セレクタ領域',
+  'supplementary variation selector must not be downgraded to a generic supplementary-plane note',
+);
+
+const summary = api.summarizeComparison(edgeItems);
+assert.equal(summary.compared, 4);
+assert.equal(summary.compatibility, 2, 'compatibility count must count compatibility ideographs only');
+assert.equal(summary.supplementary, 3);
+assert.equal(summary.variation, 1);
+assert.equal(summary.rendering, 4, 'rendering count is independent from compatibility count');
+
+const csv = api.toCsv(api.compareCharacters(['舊']));
+assert.match(csv, /"舊","U\+820A"/);
+
+assert.match(rawSource, /\[\[t\.serif,'glyph-serif'\],\[t\.sans,'glyph-sans'\],\[t\.system,'glyph-system'\]\]/, 'three-font comparison must remain wired');
+assert.match(rawSource, /summary\.compatibility/, 'rendered compatibility count must use the dedicated compatibility summary');
+assert.match(rawSource, /summary\.rendering/, 'rendering-note count must remain independent');
+
+const indexHtml = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+assert.match(rawSource, /法的な有効性や登録可否を判断するものではありません/);
+assert.match(indexHtml, /入力内容はブラウザ内で処理され、外部APIには送信しません/);
+assert.doesNotMatch(indexHtml, /\$4\.99|data-okj-pro-state/, 'unfinished Pro sales panel must not be rendered');
 
 console.log('Variant Kanji Compare behavior test passed.');

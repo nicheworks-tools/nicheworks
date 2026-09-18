@@ -37,14 +37,26 @@ function getMetadataFields(meta) { if (!meta) return {}; if (state.lang === 'ja'
 function getCategoryLabel(category) { if (!category) return ''; return CATEGORY_LABELS[state.lang][category] || category; }
 function getShapeHint(shape) { if (!shape) return ''; if (state.lang === 'ja') return shape.structureJa || shape.differenceJa || shape.noteJa || ''; return shape.structureEn || shape.differenceEn || shape.noteEn || ''; }
 function getStrokeText(stroke) { if (!stroke || typeof stroke !== 'object') return ''; const { oldStrokes, modernStrokes, difference } = stroke; if (oldStrokes == null && modernStrokes == null && difference == null) return ''; if (state.lang === 'ja') return `画数: 旧字 ${oldStrokes ?? '-'} / 新字 ${modernStrokes ?? '-'} / 差 ${difference ?? '-'}`; return `Stroke count: old ${oldStrokes ?? '-'} / modern ${modernStrokes ?? '-'} / difference ${difference ?? '-'}`; }
+function isCompatibilityIdeographCodePoint(cp) { return (cp >= 0xF900 && cp <= 0xFAFF) || (cp >= 0x2F800 && cp <= 0x2FA1F); }
+function isVariationSelectorCodePoint(cp) { return (cp >= 0xFE00 && cp <= 0xFE0F) || (cp >= 0xE0100 && cp <= 0xE01EF); }
+function summarizeComparison(items) {
+  return {
+    compared: items.length,
+    compatibility: items.filter((x) => x.isCompatibilityIdeograph).length,
+    supplementary: items.filter((x) => x.isSupplementaryPlane).length,
+    variation: items.filter((x) => x.isVariationSelector).length,
+    mapping: items.filter((x) => x.oldToModern || x.modernCandidates.length).length,
+    rendering: items.filter((x) => Boolean(x.compatibility)).length
+  };
+}
 function renderCompatibilityNote(ch, codePoint) { const t = I18N[state.lang]; const explicit = state.compatibilityNotes[ch]; if (explicit) { const chunks = state.lang === 'ja' ? [explicit.summaryJa, explicit.copyNoteJa, explicit.technicalJa, explicit.recommendedCheckJa] : [explicit.summaryEn, explicit.copyNoteEn, explicit.technicalEn, explicit.recommendedCheckEn]; const text = chunks.filter(Boolean).join(' / '); if (text) return text; }
-  if (codePoint >= 0xF900 && codePoint <= 0xFAFF) return t.compatibilityIdeograph;
+  if (isCompatibilityIdeographCodePoint(codePoint)) return t.compatibilityIdeograph;
+  if (isVariationSelectorCodePoint(codePoint)) return t.variationSelector;
   if (codePoint > 0xFFFF) return t.supplementaryPlane;
-  if ((codePoint >= 0xFE00 && codePoint <= 0xFE0F) || (codePoint >= 0xE0100 && codePoint <= 0xE01EF)) return t.variationSelector;
   return '';
 }
-function compareCharacters(chars) { return chars.map((ch) => { const cp = ch.codePointAt(0); const unicode = `U+${cp.toString(16).toUpperCase()}`; const info = { ch, cp, unicode, htmlHex: `&#x${cp.toString(16).toUpperCase()};`, htmlDec: `&#${cp};`, utf16: getUtf16CodeUnits(ch), oldToModern: state.dict.old_to_new?.[ch] || null, modernCandidates: state.reverseLookup[ch] || [], meta: state.metadata[ch] || null, shape: state.shapeNotes[ch] || null, stroke: state.strokeCounts[ch] || null, compatibility: renderCompatibilityNote(ch, cp) }; return info; }); }
-function renderSummary(items) { const t = I18N[state.lang]; const section = document.getElementById('summarySection'); const compatibilityCount = items.filter((x) => x.compatibility).length; const supplementaryCount = items.filter((x) => x.cp > 0xFFFF).length; const mappingCount = items.filter((x) => x.oldToModern || x.modernCandidates.length).length; section.textContent = `${t.result} | ${t.comparedChars}: ${items.length} | ${t.compatibilityCount}: ${compatibilityCount} | ${t.supplementaryCount}: ${supplementaryCount} | ${t.mappingCount}: ${mappingCount} | ${t.renderingCount}: ${compatibilityCount}`; section.hidden = false; }
+function compareCharacters(chars) { return chars.map((ch) => { const cp = ch.codePointAt(0); const unicode = `U+${cp.toString(16).toUpperCase()}`; const info = { ch, cp, unicode, htmlHex: `&#x${cp.toString(16).toUpperCase()};`, htmlDec: `&#${cp};`, utf16: getUtf16CodeUnits(ch), oldToModern: state.dict?.old_to_new?.[ch] || null, modernCandidates: state.reverseLookup[ch] || [], meta: state.metadata[ch] || null, shape: state.shapeNotes[ch] || null, stroke: state.strokeCounts[ch] || null, isCompatibilityIdeograph: isCompatibilityIdeographCodePoint(cp), isSupplementaryPlane: cp > 0xFFFF, isVariationSelector: isVariationSelectorCodePoint(cp) }; info.compatibility = renderCompatibilityNote(ch, cp); return info; }); }
+function renderSummary(items) { const t = I18N[state.lang]; const section = document.getElementById('summarySection'); const summary = summarizeComparison(items); section.textContent = `${t.result} | ${t.comparedChars}: ${summary.compared} | ${t.compatibilityCount}: ${summary.compatibility} | ${t.supplementaryCount}: ${summary.supplementary} | ${t.mappingCount}: ${summary.mapping} | ${t.renderingCount}: ${summary.rendering}`; section.hidden = false; }
 function renderComparisonGrid(items) { const grid = document.getElementById('comparisonGrid'); grid.innerHTML = ''; items.forEach((item) => grid.appendChild(renderCharacterColumn(item))); }
 function renderCharacterColumn(item) { const t = I18N[state.lang]; const card = document.createElement('article'); card.className = 'variant-card'; const h3 = document.createElement('h3'); h3.textContent = item.ch; card.appendChild(h3); card.appendChild(renderGlyphRows(item.ch)); const codeGrid = document.createElement('div'); codeGrid.className = 'code-grid'; [['Unicode', item.unicode], ['HTML hex', item.htmlHex], ['HTML decimal', item.htmlDec], ['UTF-16', item.utf16]].forEach(([k,v]) => { const row = document.createElement('div'); row.className = 'code-row'; const kEl = document.createElement('strong'); kEl.textContent = k; const vEl = document.createElement('code'); vEl.textContent = v; row.append(kEl, vEl); codeGrid.appendChild(row); }); card.appendChild(codeGrid);
   const details = document.createElement('p');

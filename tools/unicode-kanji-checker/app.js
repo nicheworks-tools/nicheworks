@@ -124,9 +124,19 @@
   function getHtmlHexEntity(char) { return `&#x${char.codePointAt(0).toString(16).toUpperCase()};`; }
   function getHtmlDecimalEntity(char) { return `&#${char.codePointAt(0)};`; }
   function getUtf16CodeUnits(char) { return Array.from(char).join('').split('').map((c) => c.charCodeAt(0).toString(16).toUpperCase().padStart(4, '0')).join(' '); }
-  function hasCompatibilityIdeograph(char) { const cp = char.codePointAt(0); return cp >= 0xF900 && cp <= 0xFAFF; }
+  function isCompatibilityIdeographCodePoint(cp) {
+    return (cp >= 0xF900 && cp <= 0xFAFF) || (cp >= 0x2F800 && cp <= 0x2FA1F);
+  }
+  function isVariationSelectorCodePoint(cp) {
+    return (cp >= 0xFE00 && cp <= 0xFE0F) || (cp >= 0xE0100 && cp <= 0xE01EF);
+  }
+  function hasCompatibilityIdeograph(char) { return isCompatibilityIdeographCodePoint(char.codePointAt(0)); }
   function hasSupplementaryPlaneChar(char) { return char.codePointAt(0) > 0xFFFF; }
-  function hasVariationSelector(char) { const cp = char.codePointAt(0); return (cp >= 0xFE00 && cp <= 0xFE0F) || (cp >= 0xE0100 && cp <= 0xE01EF); }
+  function hasVariationSelector(char) { return isVariationSelectorCodePoint(char.codePointAt(0)); }
+  function getQueryInput(href) {
+    const url = new URL(href);
+    return url.searchParams.has('q') ? url.searchParams.get('q') : null;
+  }
 
   function getFallbackCompatibilityNote(char) {
     const notes = [];
@@ -329,6 +339,11 @@
       copyText(toCsv(state.lastAnalysis.rows));
     });
     document.querySelectorAll('.nw-lang-btn').forEach((btn) => btn.addEventListener('click', () => setLang(btn.dataset.lang)));
+    const qParam = getQueryInput(window.location.href);
+    if (qParam !== null) {
+      $('#inputText').value = qParam;
+      analyzeInput();
+    }
   }
 
   init();
