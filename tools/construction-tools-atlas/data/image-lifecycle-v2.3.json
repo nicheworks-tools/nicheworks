@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-19-image-candidates-wave5a",
+  "version": "2026-09-19-image-candidates-wave5a-provenance-1",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -278,7 +278,12 @@
       "kind": "photograph",
       "source": {
         "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Circular_Saw.jpg",
-        "source_page": "https://commons.wikimedia.org/wiki/File:Circular_Saw.jpg"
+        "source_page": "https://commons.wikimedia.org/wiki/File:Circular_Saw.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "Hychika",
+        "attribution": "Hychika / Wikimedia Commons, CC BY-SA 4.0",
+        "source_sha1": "1bf993485c68658d2d16c1f5d6543b4b4bfa11f1"
       }
     },
     {
@@ -287,7 +292,12 @@
       "kind": "photograph",
       "source": {
         "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/BackhoeLoader.jpg",
-        "source_page": "https://commons.wikimedia.org/wiki/File:BackhoeLoader.jpg"
+        "source_page": "https://commons.wikimedia.org/wiki/File:BackhoeLoader.jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Raysonho @ Open Grid Scheduler / Grid Engine",
+        "attribution": "Raysonho @ Open Grid Scheduler / Grid Engine / Wikimedia Commons, CC0 1.0",
+        "source_sha1": "45efffcc9b4431f81989bf778f985a217f01b085"
       }
     },
     {
@@ -305,7 +315,12 @@
       "kind": "photograph",
       "source": {
         "source_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Bar_clamp_1.jpg",
-        "source_page": "https://commons.wikimedia.org/wiki/File:Bar_clamp_1.jpg"
+        "source_page": "https://commons.wikimedia.org/wiki/File:Bar_clamp_1.jpg",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Aerolin55",
+        "attribution": "Aerolin55 / Wikimedia Commons, CC BY-SA 3.0",
+        "source_sha1": "011ab6680e00fd7d5db793405d656dc86b55954c"
       }
     },
     {
@@ -314,7 +329,12 @@
       "kind": "photograph",
       "source": {
         "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Circuit_Breaker.jpg",
-        "source_page": "https://commons.wikimedia.org/wiki/File:Circuit_Breaker.jpg"
+        "source_page": "https://commons.wikimedia.org/wiki/File:Circuit_Breaker.jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Douglas Paul Perkins",
+        "attribution": "Douglas Paul Perkins / Wikimedia Commons, CC0 1.0",
+        "source_sha1": "9ecb44aa650eac9dabdd2d5ad91967bdf8c678ed"
       }
     },
     {
@@ -650,7 +670,16 @@
           "actor": "gpt-5.6-sol",
           "reason": "Wikimedia Commons candidate located; the file page identifies a backhoe loader and the photograph shows the combined front-loader/rear-excavator machine. Provenance/license verification remains pending.",
           "candidate_id": "wave5a:backhoe_loader",
-          "candidate_sha256": "0372ebf6dcf03058b4ff0257f0d2e5b391c8eb900d33dc210458e82439621938",
+          "candidate_sha256": "503307a16ac2ce457f5402b3f67be4950bedf1747e1a48512fbcf1c91c7fa280",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-09-18T16:29:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons provenance verified: own work by Raysonho @ Open Grid Scheduler / Grid Engine, CC0 1.0, with the Commons SHA-1 pinned from structured data.",
+          "candidate_id": "wave5a:backhoe_loader",
+          "candidate_sha256": "503307a16ac2ce457f5402b3f67be4950bedf1747e1a48512fbcf1c91c7fa280",
           "hold": null
         }
       ]
@@ -1391,7 +1420,16 @@
           "actor": "gpt-5.6-sol",
           "reason": "Wikimedia Commons candidate located; the file page identifies apartment circuit breakers and the photograph directly depicts breaker devices. Provenance/license verification remains pending.",
           "candidate_id": "wave5a:circuit_breaker",
-          "candidate_sha256": "c266ba449b626057ecf205f29a56a24278c712f72644e4622c64737eb7bc169f",
+          "candidate_sha256": "a9fc74fec12e77a897ccaa03acdc839e89c628bdf66b6e36fcd0eda2964baca3",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-09-18T16:29:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons provenance verified: own work by Douglas Paul Perkins, CC0 1.0, with the Commons SHA-1 pinned from structured data.",
+          "candidate_id": "wave5a:circuit_breaker",
+          "candidate_sha256": "a9fc74fec12e77a897ccaa03acdc839e89c628bdf66b6e36fcd0eda2964baca3",
           "hold": null
         }
       ]
@@ -1423,7 +1461,16 @@
           "actor": "gpt-5.6-sol",
           "reason": "Wikimedia Commons candidate located; the file page describes a circular saw and the photograph directly depicts the canonical power tool. Provenance/license verification remains a separate lifecycle step.",
           "candidate_id": "wave5a:circular_saw",
-          "candidate_sha256": "8ea47c0545d4d652c91493be9698b8e81c30a3acbdce2bdccd196c3db15f64d8",
+          "candidate_sha256": "dc103e6348b4ff3583c0516517f0deb57c05a8bdb3e349289368518815d723a8",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-09-18T16:29:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons provenance verified: own work by Hychika, CC BY-SA 4.0, with the Commons SHA-1 pinned from structured data.",
+          "candidate_id": "wave5a:circular_saw",
+          "candidate_sha256": "dc103e6348b4ff3583c0516517f0deb57c05a8bdb3e349289368518815d723a8",
           "hold": null
         }
       ]
@@ -1455,7 +1502,16 @@
           "actor": "gpt-5.6-sol",
           "reason": "Wikimedia Commons candidate located; the file page describes bar clamps used to laminate a tabletop and the photograph clearly shows the canonical clamp form. Provenance/license verification remains pending.",
           "candidate_id": "wave5a:clamp_bar",
-          "candidate_sha256": "49b343a49b5645c453010b022a09ed695bb4034458d7089544cf773bc2eafdc5",
+          "candidate_sha256": "ff1ec3d2c9db2c0b49492eb3ea8f88531d0500d40918b961dc7af7bb61e636cf",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-09-18T16:29:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Wikimedia Commons provenance verified: own work by Aerolin55, usable under CC BY-SA 3.0, with the Commons SHA-1 pinned from structured data.",
+          "candidate_id": "wave5a:clamp_bar",
+          "candidate_sha256": "ff1ec3d2c9db2c0b49492eb3ea8f88531d0500d40918b961dc7af7bb61e636cf",
           "hold": null
         }
       ]
