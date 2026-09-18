@@ -7356,9 +7356,11 @@
         "manualUrl": "https://www.samsung.com/jp/support/model/SM-M236QLBFSJP/",
         "releaseUrl": "https://www.samsung.com/jp/business/galaxy-m23-5g/",
         "chargingUrl": "https://www.samsung.com/jp/business/galaxy-m23-5g/",
-        "verifiedAt": "2026-09-14"
+        "verifiedAt": "2026-09-18",
+        "waterUrl": "https://povo.jp/library/article-085/"
       },
-      "affiliateKeys": []
+      "affiliateKeys": [],
+      "waterStatus": "not_resistant"
     },
     {
       "id": "sony-xperia-1-iii",

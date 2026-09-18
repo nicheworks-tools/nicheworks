@@ -10,7 +10,7 @@ const fail = (message) => failures.push(message);
 const trustedSourceDomains = {
   Apple: ['apple.com'],
   Google: ['google.com', 'google'],
-  Samsung: ['samsung.com', 'au.com', 'docomo.ne.jp'],
+  Samsung: ['samsung.com', 'au.com', 'docomo.ne.jp', 'povo.jp'],
   Sony: ['sony.jp', 'sony.com', 'docomo.ne.jp'],
   SHARP: ['sharp.co.jp', 'jp.sharp'],
   OPPO: ['oppo.com'],
