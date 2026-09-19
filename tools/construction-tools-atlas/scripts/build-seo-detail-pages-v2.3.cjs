@@ -261,20 +261,31 @@ function renderPage({ entry, image, offer, entryById, launchSet, resolveCanonica
     ? `https://nicheworks.app${image.display}`
     : "https://nicheworks.app/assets/ogp.png";
   const socialTitle = `${titleJa} / ${titleEn} | Construction Tools Atlas`;
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "DefinedTerm",
-    "@id": canonical,
-    "name": titleJa,
-    "alternateName": unique([titleEn, ...aliases.ja, ...aliases.en]).slice(0, 20),
-    "description": primaryDescription,
-    "inDefinedTermSet": {
-      "@type": "DefinedTermSet",
-      "name": "Construction Tools Atlas",
-      "url": `${SITE_ROOT}/`
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "DefinedTerm",
+      "@id": canonical,
+      "name": titleJa,
+      "alternateName": unique([titleEn, ...aliases.ja, ...aliases.en]).slice(0, 20),
+      "description": primaryDescription,
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Construction Tools Atlas",
+        "url": `${SITE_ROOT}/`
+      },
+      "url": canonical
     },
-    "url": canonical
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Construction Tools Atlas",
+      "url": `${SITE_ROOT}/`,
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "inLanguage": ["ja", "en"]
+    }
+  ];
 
   const taxonomy = unique([
     text(entry?.type),
@@ -292,6 +303,7 @@ function renderPage({ entry, image, offer, entryById, launchSet, resolveCanonica
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="${escapeHtml(canonical)}">
   <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <link rel="stylesheet" href="/tools/construction-tools-atlas/seo-detail-v2.3.css">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="NicheWorks">
