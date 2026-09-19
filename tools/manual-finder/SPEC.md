@@ -175,6 +175,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] The catalog-wide camera audit reconciles to **185 basic = 133 detail + 33 reviewed exclusions + 19 missing accessory detail** while seven maker/index rows remain non-actionable.
 - [x] Missing-model maker diagnostics and documentation sync remain machine-readable drift guards.
 - [x] Sony Japan α E-mount coverage-pass population reconciles at **107 = 104 direct + 0 shared + 3 support-only + 0 held** and the reviewed rows are loaded into the public directory through the coverage-pass batch loader.
+- [x] Panasonic Japan LUMIX S/G/compact camera-body sitemap scope reconciles at **27 = 27 direct + 0 shared + 0 support-only + 0 held** and the reviewed rows are loaded through the same reusable coverage-pass batch loader.
 - [x] Wrong maker/category, nonexistent models, spelling variants, and other unreviewed compatibility cases fail closed.
 - [x] Amazon disclosure and sponsored-link semantics remain supplied by the shared affiliate helper.
 
@@ -197,6 +198,9 @@ Core ManualFinder implementation:
 - `tools/manual-finder/data/manuals.coverage-passes.js`
 - `tools/manual-finder/data/manuals.coverage-pass.sony-jp-alpha-e-mount.js`
 - `tools/manual-finder/tests/sony-emount-coverage-pass-publication.test.mjs`
+- `tools/manual-finder/coverage-passes/panasonic/jp-lumix-camera-bodies-sitemap.json`
+- `tools/manual-finder/data/manuals.coverage-pass.panasonic-jp-lumix-camera-bodies.js`
+- `tools/manual-finder/tests/panasonic-lumix-coverage-pass-publication.test.mjs`
 - `tools/manual-finder/affiliate-printer-detail-exclusions.js`
 
 Reviewed DJI camera accessory ledgers:
