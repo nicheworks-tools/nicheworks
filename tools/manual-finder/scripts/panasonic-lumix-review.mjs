@@ -64,8 +64,8 @@ async function reviewOne(entry) {
   const upperText = support.text.toUpperCase();
   const exactModelText = upperText.includes(entry.model.toUpperCase());
   const hasManualSection = /取扱説明書/.test(support.text);
-  const saysNoManual = /取扱説明書[^。]{0,80}(?:ありません|提供しておりません)/.test(support.text)
-    || /ご希望の取扱説明書が見つからない場合/.test(support.text) && !/\[[^\]]*DC-[A-Z0-9]+[^\]]*\]/.test(support.text);
+  const saysNoManual = /現在[^。]{0,80}(?:本ページ|このページ)[^。]{0,80}取扱説明書[^。]{0,80}(?:ありません|提供しておりません)/.test(support.text)
+    || /現在[^。]{0,80}取扱説明書[^。]{0,80}(?:ありません|提供しておりません)/.test(support.text);
   const hasManualArtifact = /\bPDF\b|詳細ガイド|活用ガイド|取扱説明書[_＜<]|取扱説明書\s*[［\[]/.test(support.text);
 
   if (support.ok && exactModelText && hasManualSection && hasManualArtifact && !saysNoManual) {
