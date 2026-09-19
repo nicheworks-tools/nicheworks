@@ -17,6 +17,11 @@ assert.equal(sonyValidation.summary.unresolvedUniverseCount, 0);
 assert.equal(sonyValidation.summary.reviewedCount, 0);
 assert.equal(sonyValidation.summary.unreviewedCount, 107);
 assert.equal(sony.status, 'reviewing');
+const scopedSonyModels = sony.subscopes.flatMap((scope) => scope.models || []);
+assert.equal(scopedSonyModels.length, 107);
+assert.equal(new Set(scopedSonyModels).size, 107);
+assert.deepEqual(new Set(scopedSonyModels), new Set(sony.universe.models));
+assert.ok(sony.subscopes.every((scope) => scope.captureState === 'captured' && scope.capturedCount === scope.models.length));
 
 const sampleHtml = `
 <html><body>
