@@ -36,9 +36,9 @@ const EXPECTED_WAVE11 = Object.freeze({
     source: 'https://cosmileeurope.eu/inci/detail/15418/squalane/',
     authority: 'Cosmetics Europe / COSMILE Europe'
   }),
-  'trisodium ethylenediamine disuccinate': Object.freeze({
-    note_short: 'Chelating ingredient; COSMILE Europe describes Trisodium Ethylenediamine Disuccinate as binding metal ions to support product stability and cleansing performance in hard water.',
-    source: 'https://cosmileeurope.eu/inci/detail/16590/trisodium-ethylenediamine-disuccinate/',
+  allantoin: Object.freeze({
+    note_short: 'Skin-conditioning, skin-protecting and soothing ingredient; COSMILE Europe lists all three functions for Allantoin.',
+    source: 'https://cosmileeurope.eu/inci/detail/636/allantoin/',
     authority: 'Cosmetics Europe / COSMILE Europe'
   })
 });
