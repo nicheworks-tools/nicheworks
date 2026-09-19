@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "maker": "Panasonic",
+  "scopeId": "jp-lumix-camera-bodies-sitemap",
+  "scopeLabel": "Panasonic Japan LUMIX camera bodies listed in the official LUMIX sitemap",
+  "status": "reviewing",
+  "asOf": "2026-09-19",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "panasonic.jp",
+    "jpn.faq.panasonic.com",
+    "av.jpn.support.panasonic.com",
+    "panasonic.com"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://panasonic.jp/dc/sitemap.html",
+      "https://panasonic.jp/dc/support.html"
+    ],
+    "declaredCount": null,
+    "models": [
+      "DC-S1RM2",
+      "DC-S1R",
+      "DC-S1M2",
+      "DC-S1M2ES",
+      "DC-S1",
+      "DC-S1H",
+      "DC-S5M2",
+      "DC-S5M2X",
+      "DC-S5",
+      "DC-S9",
+      "DC-BS1H",
+      "DC-GH7",
+      "DC-GH6",
+      "DC-GH5M2",
+      "DC-BGH1",
+      "DC-G9M2",
+      "DC-G99M2",
+      "DC-G99",
+      "DC-G99D",
+      "DC-G100D",
+      "DC-TZ99",
+      "DC-TZ95D",
+      "DC-FZ85D",
+      "DC-FZ1000M2",
+      "DC-TX2",
+      "DC-TX2D",
+      "DC-LX100M2"
+    ],
+    "populationMethod": "official_lumix_sitemap_heading_enumeration",
+    "notes": "The locked scope is the exact camera-body/product identifiers enumerated under the official LUMIX sitemap headings S-series full-frame cameras, G-series cameras, and compact cameras on 2026-09-19. Panasonic combined sitemap labels DC-S5M2/S5M2X, DC-G99/G99D, and DC-TX2/TX2D are expanded only into the exact product identifiers visibly named by Panasonic. Lenses/accessories are out of scope."
+  },
+  "subscopes": [
+    {
+      "id": "s-series",
+      "label": "S-series full-frame camera bodies",
+      "sourceUrl": "https://panasonic.jp/dc/sitemap.html",
+      "models": [
+        "DC-S1RM2",
+        "DC-S1R",
+        "DC-S1M2",
+        "DC-S1M2ES",
+        "DC-S1",
+        "DC-S1H",
+        "DC-S5M2",
+        "DC-S5M2X",
+        "DC-S5",
+        "DC-S9",
+        "DC-BS1H"
+      ],
+      "capturedCount": 11,
+      "captureState": "captured"
+    },
+    {
+      "id": "g-series",
+      "label": "G-series camera bodies",
+      "sourceUrl": "https://panasonic.jp/dc/sitemap.html",
+      "models": [
+        "DC-GH7",
+        "DC-GH6",
+        "DC-GH5M2",
+        "DC-BGH1",
+        "DC-G9M2",
+        "DC-G99M2",
+        "DC-G99",
+        "DC-G99D",
+        "DC-G100D"
+      ],
+      "capturedCount": 9,
+      "captureState": "captured"
+    },
+    {
+      "id": "compact",
+      "label": "Compact cameras",
+      "sourceUrl": "https://panasonic.jp/dc/sitemap.html",
+      "models": [
+        "DC-TZ99",
+        "DC-TZ95D",
+        "DC-FZ85D",
+        "DC-FZ1000M2",
+        "DC-TX2",
+        "DC-TX2D",
+        "DC-LX100M2"
+      ],
+      "capturedCount": 7,
+      "captureState": "captured"
+    }
+  ],
+  "records": [],
+  "negativeEscalationChannels": [
+    "official_product_support_page",
+    "official_manual_search",
+    "official_support_search",
+    "official_product_page",
+    "official_regional_support",
+    "official_archive"
+  ],
+  "refresh": {
+    "compareAgainstOfficialUniverse": true,
+    "preserveHeldHistory": true,
+    "sourceUrl": "https://panasonic.jp/dc/sitemap.html"
+  }
+}

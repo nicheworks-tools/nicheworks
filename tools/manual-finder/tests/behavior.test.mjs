@@ -1,5 +1,6 @@
 await import('./coverage-pass-pipeline.test.mjs');
 await import('./sony-emount-coverage-pass-publication.test.mjs');
+await import('./panasonic-lumix-coverage-pass.test.mjs');
 await import('./affiliate-behavior-core.test.mjs');
 await import('./affiliate-other-model-search.test.mjs');
 await import('./ricoh-consumables-wave3.test.mjs');
