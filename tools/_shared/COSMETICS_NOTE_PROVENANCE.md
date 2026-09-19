@@ -244,3 +244,24 @@ After Wave 10:
 - strong runtime identities: 42 / 599;
 - Wave 9 identities retained: 4 / 4;
 - raw dictionary records rewritten: no.
+
+
+## Verified note wave 11
+
+Wave 11 continues frequency-prioritized source-backed enrichment:
+
+| Canonical identity | Corpus occurrences | Reviewed runtime note basis |
+| --- | ---: | --- |
+| `ceramide ap` | 5 | COSMILE Europe: ceramide/sphingolipid identity plus skin and hair conditioning. |
+| `ceramide eop` | 5 | COSMILE Europe: ceramide/sphingolipid identity plus skin and hair conditioning. |
+| `squalane` | 5 | COSMILE Europe: skin and hair conditioning, emollience and refatting. |
+| `trisodium ethylenediamine disuccinate` | 5 | COSMILE Europe: chelating; binds metal ions and supports product stability / cleansing performance in hard water. |
+
+Wave 10 remains a required reviewed subset rather than a total-overlay-size ceiling.
+
+After Wave 11:
+
+- cumulative verified-note identities: 46;
+- strong runtime identities: 46 / 599;
+- Wave 10 identities retained: 4 / 4;
+- raw dictionary records rewritten: no.
