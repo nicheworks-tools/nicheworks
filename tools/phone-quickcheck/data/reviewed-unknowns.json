@@ -302,6 +302,18 @@
         "https://www.mi.com/jp/support/faq/details/KA-680237/"
       ],
       "reviewedAt": "2026-09-19"
+    },
+    {
+      "phoneId": "apple-iphone-duo",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_in_box_cable_state_not_established",
+      "reason": "Apple Japan documents USB-C charging and separately sold power adapters for iPhone Duo, but the maintained specification/release material reviewed here does not explicitly enumerate an in-box USB-C cable.",
+      "evidenceUrls": [
+        "https://www.apple.com/jp/iphone-duo/specs/",
+        "https://www.apple.com/jp/newsroom/2026/09/apple-unveils-iphone-duo/"
+      ],
+      "reviewedAt": "2026-09-19"
     }
   ]
 }
