@@ -42,6 +42,9 @@ jobs:
       - name: Check direct-link dataset inventory
         run: node scripts/check-trashnavi-direct-links.mjs --inventory
 
+      - name: Check national completion ledger
+        run: node tools/trashnavi/scripts/check-national-completion.mjs
+
       - name: Check generated municipality pages
         run: node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
 
