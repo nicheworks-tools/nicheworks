@@ -3,7 +3,7 @@
   "maker": "Panasonic",
   "scopeId": "jp-lumix-camera-bodies-sitemap",
   "scopeLabel": "Panasonic Japan LUMIX camera bodies listed in the official LUMIX sitemap",
-  "status": "reviewing",
+  "status": "coverage-pass-complete",
   "asOf": "2026-09-19",
   "region": "JP",
   "language": "ja",
@@ -49,7 +49,7 @@
       "DC-LX100M2"
     ],
     "populationMethod": "official_lumix_sitemap_heading_enumeration",
-    "notes": "The locked scope is the exact camera-body/product identifiers enumerated under the official LUMIX sitemap headings S-series full-frame cameras, G-series cameras, and compact cameras on 2026-09-19. Panasonic combined sitemap labels DC-S5M2/S5M2X, DC-G99/G99D, and DC-TX2/TX2D are expanded only into the exact product identifiers visibly named by Panasonic. Lenses/accessories are out of scope."
+    "notes": "The official LUMIX sitemap scope is fully reviewed: 27 exact camera identities = 27 direct official manual/support destinations + 0 support-only + 0 held. One model, DC-G100D, required secondary official manual discovery because the standard product-support URL pattern returned 404."
   },
   "subscopes": [
     {
@@ -107,7 +107,365 @@
       "captureState": "captured"
     }
   ],
-  "records": [],
+  "records": [
+    {
+      "model": "DC-S1RM2",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-S1RM2/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-S1RM2/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-S1RM2/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-S1R",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-S1R/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-S1R/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-S1R/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-S1M2",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-S1M2/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-S1M2/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-S1M2/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-S1M2ES",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-S1M2ES/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-S1M2ES/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-S1M2ES/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-S1",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-S1/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-S1/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-S1/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-S1H",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-S1H/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-S1H/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-S1H/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-S5M2",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-S5M2/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-S5M2/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-S5M2/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-S5M2X",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-S5M2X/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-S5M2X/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-S5M2X/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-S5",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-S5/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-S5/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-S5/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-S9",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-S9/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-S9/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-S9/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-BS1H",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-BS1H/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-BS1H/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-BS1H/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-GH7",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-GH7/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-GH7/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-GH7/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-GH6",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-GH6/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-GH6/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-GH6/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-GH5M2",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-GH5M2/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-GH5M2/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-GH5M2/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-BGH1",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-BGH1/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-BGH1/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-BGH1/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-G9M2",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-G9M2/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-G9M2/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-G9M2/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-G99M2",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-G99M2/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-G99M2/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-G99M2/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-G99",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-G99/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-G99/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-G99/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-G99D",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-G99D/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-G99D/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-G99D/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-G100D",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/p-db/contents/manualdl/1428461433118.pdf",
+      "supportUrl": "https://panasonic.jp/dc/G100D.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/G100D.html",
+        "https://panasonic.jp/p-db/contents/manualdl/1428461433118.pdf"
+      ],
+      "attemptedDiscovery": [
+        "official_product_support_page",
+        "official_manual_search",
+        "official_product_page"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "secondary_official_manual_search",
+      "reviewNote": "The standard /dc/products/DC-G100D/support.html pattern is absent, but Panasonic's official product page identifies DC-G100D and Panasonic hosts an exact-model PDF manual for DC-G100D."
+    },
+    {
+      "model": "DC-TZ99",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-TZ99/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-TZ99/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-TZ99/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-TZ95D",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-TZ95D/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-TZ95D/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-TZ95D/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-FZ85D",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-FZ85D/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-FZ85D/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-FZ85D/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-FZ1000M2",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-FZ1000M2/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-FZ1000M2/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-FZ1000M2/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-TX2",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-TX2/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-TX2/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-TX2/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-TX2D",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-TX2D/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-TX2D/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-TX2D/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    },
+    {
+      "model": "DC-LX100M2",
+      "state": "direct",
+      "manualUrl": "https://panasonic.jp/dc/products/DC-LX100M2/support.html",
+      "supportUrl": "https://panasonic.jp/dc/products/DC-LX100M2/support.html",
+      "evidenceUrls": [
+        "https://panasonic.jp/dc/sitemap.html",
+        "https://panasonic.jp/dc/products/DC-LX100M2/support.html"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_support_manual_page",
+      "reviewNote": "Live review required Panasonic-controlled HTTPS, exact model text, a manual section, and an actual manual/PDF artifact marker."
+    }
+  ],
   "negativeEscalationChannels": [
     "official_product_support_page",
     "official_manual_search",
@@ -120,5 +478,48 @@
     "compareAgainstOfficialUniverse": true,
     "preserveHeldHistory": true,
     "sourceUrl": "https://panasonic.jp/dc/sitemap.html"
+  },
+  "review": {
+    "candidateRun": {
+      "workflowRunId": 35419757048,
+      "workflowJobId": 105835064665,
+      "reviewedPopulation": 27,
+      "candidateCounts": {
+        "direct": 26,
+        "needs_secondary_discovery": 1
+      },
+      "publicationReady": false
+    },
+    "validationSample": [
+      {
+        "model": "DC-S5M2",
+        "class": "s-series-direct",
+        "outcome": "confirmed",
+        "evidenceUrl": "https://panasonic.jp/dc/products/DC-S5M2/support.html",
+        "note": "Exact model support page exposes Panasonic PDF manual artifacts."
+      },
+      {
+        "model": "DC-G99D",
+        "class": "g-series-direct",
+        "outcome": "confirmed",
+        "evidenceUrl": "https://panasonic.jp/dc/products/DC-G99D/support.html",
+        "note": "Exact model support page exposes Panasonic manual artifacts."
+      },
+      {
+        "model": "DC-TZ99",
+        "class": "compact-direct",
+        "outcome": "confirmed_by_live_runner",
+        "evidenceUrl": "https://panasonic.jp/dc/products/DC-TZ99/support.html",
+        "note": "Live runner confirmed exact model text and manual artifact markers on the Panasonic support page."
+      },
+      {
+        "model": "DC-G100D",
+        "class": "secondary-discovery",
+        "outcome": "upgraded_to_direct",
+        "evidenceUrl": "https://panasonic.jp/p-db/contents/manualdl/1428461433118.pdf",
+        "note": "Panasonic official PDF manual explicitly identifies DC-G100D; official product page remains the support destination."
+      }
+    ],
+    "completedAt": "2026-09-19"
   }
 }
