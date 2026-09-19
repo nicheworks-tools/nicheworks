@@ -15,6 +15,7 @@ const AFFILIATE = path.join(DATA, "affiliate-offers-v2.3.json");
 const CONTENT_QUALITY = path.join(DATA, "public-content-quality-v2.3.json");
 const GLOSSARY = path.join(ROOT, "glossary");
 const SITEMAP = path.join(ROOT, "sitemap.xml");
+const ROOT_SITEMAP = path.resolve(ROOT, "..", "..", "sitemap.xml");
 const args = new Set(process.argv.slice(2));
 
 function readJson(file) { return JSON.parse(fs.readFileSync(file, "utf8")); }
@@ -228,13 +229,19 @@ function pageHtml({entry, slug, image, offer, related, slugById}) {
 `;
 }
 
-function sitemapWithGlossary(current, entries) {
-  const start = "  <!-- GENERATED_GLOSSARY_START -->";
-  const end = "  <!-- GENERATED_GLOSSARY_END -->";
-  const urls = entries.map(({slug}) => `  <url>\n    <loc>https://nicheworks.app/tools/construction-tools-atlas/glossary/${slug}/</loc>\n  </url>`).join("\n");
+function sitemapWithGlossary(current, entries, options = {}) {
+  const start = "  <!-- GENERATED_CTA_GLOSSARY_START -->";
+  const end = "  <!-- GENERATED_CTA_GLOSSARY_END -->";
+  const lastmod = options.lastmod ? `\n    <lastmod>${esc(options.lastmod)}</lastmod>` : "";
+  const urls = entries.map(({slug}) => `  <url>\n    <loc>https://nicheworks.app/tools/construction-tools-atlas/glossary/${slug}/</loc>${lastmod}\n  </url>`).join("\n");
   const block = `${start}\n${urls}\n${end}`;
+  const legacyStart = "  <!-- GENERATED_GLOSSARY_START -->";
+  const legacyEnd = "  <!-- GENERATED_GLOSSARY_END -->";
   if (current.includes(start) && current.includes(end)) {
     return current.replace(new RegExp(`${start}[\\s\\S]*?${end}`), block);
+  }
+  if (current.includes(legacyStart) && current.includes(legacyEnd)) {
+    return current.replace(new RegExp(`${legacyStart}[\\s\\S]*?${legacyEnd}`), block);
   }
   return current.replace(/\s*<\/urlset>\s*$/, `\n${block}\n</urlset>\n`);
 }
@@ -283,7 +290,9 @@ async function build() {
   }
 
   const currentSitemap = fs.readFileSync(SITEMAP, "utf8");
+  const currentRootSitemap = fs.readFileSync(ROOT_SITEMAP, "utf8");
   const expectedSitemap = sitemapWithGlossary(currentSitemap, cohortRows);
+  const expectedRootSitemap = sitemapWithGlossary(currentRootSitemap, cohortRows, { lastmod:"2026-09-19" });
 
   if (args.has("--write")) {
     fs.rmSync(GLOSSARY, {recursive:true, force:true});
@@ -292,6 +301,7 @@ async function build() {
       fs.writeFileSync(file, html);
     }
     fs.writeFileSync(SITEMAP, expectedSitemap);
+    fs.writeFileSync(ROOT_SITEMAP, expectedRootSitemap);
   }
 
   if (args.has("--check")) {
@@ -302,7 +312,8 @@ async function build() {
     const actualDirs = fs.existsSync(GLOSSARY) ? fs.readdirSync(GLOSSARY,{withFileTypes:true}).filter(d=>d.isDirectory()).map(d=>d.name).sort() : [];
     const expectedDirs = cohortRows.map(r=>r.slug).sort();
     requireValue(JSON.stringify(actualDirs) === JSON.stringify(expectedDirs), "glossary directory set does not match explicit cohort");
-    requireValue(fs.readFileSync(SITEMAP,"utf8") === expectedSitemap, "sitemap glossary block is stale");
+    requireValue(fs.readFileSync(SITEMAP,"utf8") === expectedSitemap, "tool sitemap glossary block is stale");
+    requireValue(fs.readFileSync(ROOT_SITEMAP,"utf8") === expectedRootSitemap, "root sitemap glossary block is stale");
   }
 
   console.log(JSON.stringify({
