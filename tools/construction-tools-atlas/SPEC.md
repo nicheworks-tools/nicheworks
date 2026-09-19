@@ -393,9 +393,21 @@ Content and image readiness are separate quality axes.
 
 ### 14. Static detail pages / SEO
 
-Per-entry static pages are optional future output, not a prerequisite for the core redesign. Only quality-ready entries with independent search value may become indexable static pages. Do not mass-generate thin pages.
+Selective per-entry static pages are implemented for revenue-ready canonicals and are not a prerequisite for the core Atlas runtime.
 
-Existing `?entry=` links remain compatible if static pages are added later.
+Canonical static form:
+
+```text
+https://nicheworks.app/tools/construction-tools-atlas/entries/<canonical-id>/
+```
+
+Publication is fail-closed and cohort-based. A static detail page may be emitted only when the canonical has fallback-independent bilingual core content, an active maintained Amazon mapping, and either a promoted formal image or an explicit `not_required` image disposition.
+
+The first published cohort is generated from the same canonical runtime corpus used by the Atlas through `quality-loader.js`. Generated pages include unique metadata/canonical URL, bilingual substantive content, maintained related navigation, promoted image attribution where applicable, Atlas deep-link handoff, and Amazon commerce handoff under the existing canonical-mapping contract.
+
+Do not mass-generate all 870 canonicals as thin pages. Expansion remains gated by content/image/commercial readiness and later measured search performance.
+
+Existing `?entry=` links remain compatible and continue to open the canonical entry inside the Atlas app.
 
 ### 15. Accessibility and performance
 

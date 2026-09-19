@@ -164,11 +164,24 @@ Expand from the initial cohort only when pages remain substantive and measuremen
 
 The target is not “870 indexable pages” as a vanity metric. The target is maximum useful traffic and qualified commercial exits while keeping the Atlas trustworthy.
 
-## Immediate next implementation
+## Current implementation checkpoint
 
-1. land this revenue-readiness rail,
-2. build the static detail generator,
-3. emit the first commerce-ready cohort,
-4. update the tool sitemap for emitted pages,
-5. add audit coverage so pages cannot outlive their canonical/image/affiliate evidence,
-6. then resume image acquisition from the affiliate-backed backlog.
+Completed:
+1. revenue-readiness rail landed,
+2. static detail generator implemented,
+3. first commerce-ready cohort emitted,
+4. sitemap updated from the generated cohort,
+5. audit coverage added so generated pages cannot drift from canonical/image/affiliate evidence.
+
+Current first cohort:
+- 33 static detail pages,
+- 32 with promoted formal images,
+- 1 with explicit image `not_required`,
+- 33 / 33 with active maintained Amazon mappings.
+
+Next:
+1. merge and publish this static-detail cohort,
+2. verify production URLs/indexability after deployment,
+3. begin maintained comparison/confusion pages for genuinely reviewed pairs,
+4. resume image acquisition from the 399 affiliate-backed awaiting-source canonicals,
+5. use measured search and affiliate click data to reorder later waves when available.

@@ -160,6 +160,12 @@ jobs:
       - name: Check revenue readiness reporter syntax
         run: node --check tools/construction-tools-atlas/scripts/report-revenue-readiness-v2.3.cjs
 
+      - name: Check static SEO detail page builder syntax
+        run: node --check tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs
+
+      - name: Check static SEO detail page runtime syntax
+        run: node --check tools/construction-tools-atlas/seo-detail-v2.3.js
+
       - name: Check master-detail v2.3 contract
         run: node tools/construction-tools-atlas/scripts/check-master-detail-v2.3.cjs
 
@@ -257,3 +263,6 @@ jobs:
 
       - name: Validate revenue execution readiness
         run: node tools/construction-tools-atlas/scripts/report-revenue-readiness-v2.3.cjs
+
+      - name: Validate generated static SEO detail pages
+        run: node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs --check

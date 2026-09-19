@@ -1,0 +1,225 @@
+{
+  "schema": "cta-seo-detail-pages-v2.3",
+  "version": "2026-09-19-commerce-cohort-1",
+  "policy": {
+    "publication_scope": "revenue_ready_only",
+    "eligibility": "fallback-independent bilingual core + active maintained Amazon mapping + (promoted formal image OR explicit image not_required)",
+    "thin_mass_generation": false,
+    "raw_search_text_affiliate_forwarding": false,
+    "canonical_source": "runtime corpus produced by quality-loader.js"
+  },
+  "sources": {
+    "revenue_priority_policy_version": "2026-09-19-revenue-priority-2",
+    "public_content_quality_version": "2026-09-16-q014-identity-closure-1",
+    "public_image_inventory_version": "2026-09-16-q014-identity-closure-1",
+    "image_registry_version": "2026-09-19-wave5-promotion-1",
+    "affiliate_offers_version": "2026-09-18-wave6l-affiliate-1"
+  },
+  "summary": {
+    "public_runtime_entries": 870,
+    "published_static_detail_pages": 33,
+    "with_promoted_image": 32,
+    "image_not_required": 1,
+    "with_active_affiliate_mapping": 33
+  },
+  "entries": [
+    {
+      "id": "allen_key",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/allen_key/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "angle_grinder",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/angle_grinder/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "ball_valve",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/ball_valve/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "bolt_cutter",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/bolt_cutter/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "caliper",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/caliper/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "caulking_gun",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/caulking_gun/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "circuit_breaker",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/circuit_breaker/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "circular_saw",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/circular_saw/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "clamp_bar",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/clamp_bar/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "cordless_drill",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/cordless_drill/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "drill_driver",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/drill_driver/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "fire_extinguisher",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/fire_extinguisher/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "flashing",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/flashing/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "float",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/float/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "hammer",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/hammer/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "hard_hat",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/hard_hat/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "impact_driver",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/impact_driver/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "insulation",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/insulation/",
+      "image": "not_required",
+      "affiliate": "active"
+    },
+    {
+      "id": "jigsaw",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/jigsaw/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "laser_level",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/laser_level/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "measuring_wheel",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/measuring_wheel/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "notched_trowel",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/notched_trowel/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "paint_tray",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/paint_tray/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "q017_copper_pipe",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/q017_copper_pipe/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "q017_needle_nose_pliers",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/q017_needle_nose_pliers/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "q017_rubber_mallet",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/q017_rubber_mallet/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "q017_survey_tripod",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/q017_survey_tripod/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "q017_toolbox",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/q017_toolbox/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "q017_workbench",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/q017_workbench/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "respirator",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/respirator/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "rotary_hammer",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/rotary_hammer/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "safety_boots",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/safety_boots/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "safety_harness",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/safety_harness/",
+      "image": "promoted",
+      "affiliate": "active"
+    }
+  ]
+}
