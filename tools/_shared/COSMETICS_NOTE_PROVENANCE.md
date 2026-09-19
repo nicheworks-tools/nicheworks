@@ -223,3 +223,24 @@ After Wave 9:
 - strong runtime identities: 38 / 599;
 - Wave 8 identities retained: 4 / 4;
 - raw dictionary records rewritten: no.
+
+
+## Verified note wave 10
+
+Wave 10 continues frequency-prioritized source-backed enrichment:
+
+| Canonical identity | Corpus occurrences | Reviewed runtime note basis |
+| --- | ---: | --- |
+| `pentylene glycol` | 6 | COSMILE Europe: solvent and skin-conditioning functions. |
+| `sodium hyaluronate` | 6 | COSMILE Europe: humectant and skin-conditioning functions. |
+| `dimethicone` | 5 | COSMILE Europe: skin conditioning, emollience, skin protection and antifoaming. |
+| `polysorbate 20` | 5 | COSMILE Europe: cleansing and emulsifying surfactant functions. |
+
+Wave 9 remains a required reviewed subset rather than a total-overlay-size ceiling.
+
+After Wave 10:
+
+- cumulative verified-note identities: 42;
+- strong runtime identities: 42 / 599;
+- Wave 9 identities retained: 4 / 4;
+- raw dictionary records rewritten: no.
