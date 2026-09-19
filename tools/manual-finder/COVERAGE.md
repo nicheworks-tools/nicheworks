@@ -52,7 +52,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 
 | # | Baseline brand | Model-level state | Next action |
 | ---: | --- | --- | --- |
-| 1 | Apple | generic-only | PC/mobile queue |
+| 1 | Apple | generic-only | **P0 — iPhone User Guide bounded scope started: 31 exact iPhone 11→17e/Air/SE2/SE3 identities locked and live review in progress** |
 | 2 | Sony | **expanded — 107** | JP α E-mount scope is published and coverage-pass-complete at 104 direct + 3 support-only + 0 held; broader Sony categories remain incomplete |
 | 3 | Panasonic | **expanded — 27** | JP LUMIX S/G/compact camera-body sitemap scope is published and coverage-pass-complete at 27 direct + 0 support-only + 0 held; broader Panasonic categories remain incomplete |
 | 4 | Canon | **expanded — 6** | First PIXUS batch covered in Wave 3E; broader Canon remains incomplete |
@@ -134,6 +134,10 @@ The first rotation is based on source structure, user usefulness, and the abilit
 | 5 | Canon | Official manual selector is structured by product group, series and model across camera, printer, scanner and business lines. | **Wave 3E implemented:** six PIXUS models, preserving Canon-defined shared manual groups where applicable. |
 | 6 | Panasonic | Official manual search spans a very broad appliance/AV catalog. The LUMIX sitemap provides a bounded camera-body population under S-series, G-series, and compact-camera headings. | **Coverage pass complete and published for the sitemap camera-body scope:** 27 official identities = 27 direct + 0 support-only + 0 held. The live runner confirmed 26 direct product-support/manual pages; secondary official discovery resolved DC-G100D to Panasonic's exact PDF manual. Broader Panasonic remains future work. |
 
+### Apple iPhone coverage-pass pilot
+
+Apple's current iPhone User Guide explicitly enumerates a bounded 31-model set from iPhone 11 through iPhone 17e, including iPhone Air and iPhone SE (2nd/3rd generation). That exact population is registered under `coverage-passes/apple/jp-iphone-ios26-guide-models.json` and is undergoing live review against Apple's official iPhone Manuals and Downloads index. Older iPhones, accessories, and iOS software entries are intentionally outside this pass.
+
 Primary official entry points used for this audit:
 
 - Nikon Web manuals: `https://onlinemanual.nikonimglib.com/portal/ja/`
@@ -142,6 +146,8 @@ Primary official entry points used for this audit:
 - Epson support: `https://www.epson.jp/support/`
 - Canon manuals: `https://canon.jp/support/manual`
 - Panasonic manuals: `https://panasonic.jp/support/manual.html`
+- Apple iPhone manuals: `https://support.apple.com/ja-jp/docs/iphone`
+- Apple iPhone User Guide: `https://support.apple.com/ja-jp/guide/iphone/welcome/ios`
 
 ## Wave rotation contract
 
@@ -153,7 +159,8 @@ Current deployed state:
 4. **Wave 3D — Epson:** implemented for six exact current Colorio models selected for clean manual and consumable evidence.
 5. **Wave 3E — Canon:** implemented for six PIXUS models; direct and vendor-shared manual targets are distinguished explicitly.
 6. **Panasonic coverage-pass pilot:** JP LUMIX S/G/compact camera-body scope is complete and published from `coverage-passes/panasonic/jp-lumix-camera-bodies-sitemap.json`: **27 = 27 direct + 0 shared + 0 support-only + 0 held**. The public compiled batch is `data/manuals.coverage-pass.panasonic-jp-lumix-camera-bodies.js`. Broader Panasonic categories remain separate future coverage passes.
-7. Re-evaluate counts and gaps before any second model-coverage wave for Nikon/Brother/Epson/Canon.
+7. **Apple coverage-pass pilot:** iPhone 11→17e/Air/SE2/SE3 scope is locked at 31 exact official User Guide identities and live model-doc review is in progress. No Apple rows are public from this pass until reconciliation completes.
+8. Re-evaluate counts and gaps before any second model-coverage wave for Nikon/Brother/Epson/Canon.
 
 Affiliate expansion has a separate priority queue and may evaluate already-deep office-printer datasets for verified toner/drum mappings without claiming new model coverage.
 
