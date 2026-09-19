@@ -248,7 +248,11 @@
     "salicylic acid": Object.freeze({ note_short: "Keratolytic, preservative and conditioning ingredient; COSMILE Europe lists Salicylic Acid for keratolytic, preservative, skin-conditioning, hair-conditioning and fragrance functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14076/salicylic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "sodium lactate": Object.freeze({ note_short: "Buffering and humectant ingredient with a keratolytic function; COSMILE Europe lists all three functions for Sodium Lactate.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14848/sodium-lactate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "sorbitan olivate": Object.freeze({ note_short: "Emulsifying surfactant; COSMILE Europe lists Sorbitan Olivate as enabling stable oil-and-water emulsions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15312/sorbitan-olivate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "caprylic/capric triglyceride": Object.freeze({ note_short: "Skin-conditioning oil component; COSMILE Europe lists a skin-conditioning function and describes smoothing and refatting use for Caprylic/Capric Triglyceride.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2584/caprylic-capric-triglyceride/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "caprylic/capric triglyceride": Object.freeze({ note_short: "Skin-conditioning oil component; COSMILE Europe lists a skin-conditioning function and describes smoothing and refatting use for Caprylic/Capric Triglyceride.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2584/caprylic-capric-triglyceride/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "alanine": Object.freeze({ note_short: "Amino acid used for skin and hair conditioning; COSMILE Europe also lists antistatic and fragrance functions for Alanine.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/572/alanine/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "betaine": Object.freeze({ note_short: "Humectant and skin/hair-conditioning ingredient; COSMILE Europe also lists antistatic and viscosity-controlling functions for Betaine.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1648/betaine/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "cetearyl olivate": Object.freeze({ note_short: "Skin-conditioning emollient and emulsifying ingredient; COSMILE Europe also lists emulsion-stabilising, hair-conditioning and slip-modifying functions for Cetearyl Olivate.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2907/cetearyl-olivate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "coco-glucoside": Object.freeze({ note_short: "Cleansing and foaming surfactant; COSMILE Europe lists cleansing, foaming and surfactant-cleansing functions for Coco-Glucoside.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3641/coco-glucoside/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -473,7 +477,7 @@
   }
 
   const api = {
-    version: "1.51.0",
+    version: "1.52.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
