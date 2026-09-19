@@ -10,8 +10,8 @@ const failures = [];
 const fail = (message) => failures.push(message);
 
 const expected = {
-  phoneCount: 203,
-  foldableCount: 35,
+  phoneCount: 204,
+  foldableCount: 36,
   manufacturers: ['Apple', 'Google', 'Motorola', 'OPPO', 'SHARP', 'Samsung', 'Sony', 'Xiaomi', 'ZTE'],
   appleBatteryUnknownCount: 33
 };
