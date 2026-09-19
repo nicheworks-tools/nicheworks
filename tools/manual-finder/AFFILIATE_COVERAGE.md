@@ -1,6 +1,6 @@
 # ManualFinder Affiliate Coverage
 
-Updated: 2026-09-18
+Updated: 2026-09-19
 
 ManualFinder keeps official manufacturer manual/support destinations primary. Amazon is an optional commercial next action generated from canonical metadata and reviewed compatibility mappings; arbitrary user-entered search text is never used in Amazon destinations.
 
@@ -21,14 +21,17 @@ Required printer reconciliation:
 
 The camera accessory audit independently reconciles as:
 
-`camera basic 185 = detail 133 + reviewed exclusion 33 + missing 19`
+`camera basic 375 = detail 133 + reviewed exclusion 33 + missing 209`
 
 Maker-level camera state:
 
 - `Nikon camera 14 = detail 14 + reviewed exclusion 0 + missing 0`
 - `DJI camera 96 = detail 70 + reviewed exclusion 26 + missing 0`
-- OM SYSTEM: 37 missing
-- GoPro: 31 missing
+- `OM SYSTEM camera 37 = detail 37 + reviewed exclusion 0 + missing 0`
+- `GoPro camera 31 = detail 12 + reviewed exclusion 7 + missing 12`
+- `Sony camera 107 = detail 0 + reviewed exclusion 0 + missing 107`
+- `Fujifilm camera 56 = detail 0 + reviewed exclusion 0 + missing 56`
+- `Panasonic camera 27 = detail 0 + reviewed exclusion 0 + missing 27`
 - Insta360: 7 missing
 
 The printer audit must continue to report `printerMissingDetail: 0`, an empty `printerMissingDetailByMaker`, and an empty `printerMissingDetailModelsByMaker`.
@@ -267,7 +270,7 @@ After Waves 1–41:
 
 `DJI camera 96 = detail 70 + reviewed exclusion 26 + missing 0`
 
-The catalog-wide camera audit is therefore 185 actionable basic rows, 133 detail mappings, 33 reviewed exclusions, and 19 missing accessory-detail rows.
+The catalog-wide camera audit is therefore 375 actionable basic rows, 133 detail mappings, 33 reviewed exclusions, and 209 missing accessory-detail rows. The denominator now includes published Sony, Panasonic, and Fujifilm coverage-pass camera rows because the runtime already gives those canonical models an exact-model Amazon body-search path.
 
 ## OM SYSTEM camera review — Waves 1–6
 
@@ -441,4 +444,4 @@ DJI is closed at:
 
 ## Next expansion gate
 
-Printer-detail is closed. Nikon, DJI, and OM SYSTEM camera coverage are closed. The measured camera backlog is GoPro 12 and Insta360 7.
+Printer-detail is closed. Nikon, DJI, and OM SYSTEM camera accessory coverage remain closed. The measured camera accessory backlog is Sony 107, Fujifilm 56, Panasonic 27, GoPro 12, and Insta360 7.

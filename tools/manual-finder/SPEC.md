@@ -76,7 +76,7 @@ ManualFinder is an `AFFILIATE` tool, but commerce is an optional next-action lay
 
 Every actionable `カメラ・映像` row with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or explicit missing-accessory diagnostic state.
 
-The current camera state is **185 basic = 133 detail + 33 reviewed exclusions + 19 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
+The current camera state is **375 basic = 133 detail + 33 reviewed exclusions + 209 missing accessory detail** across 382 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator. The camera audit now loads published coverage-pass batches exactly as the runtime does, so Sony, Panasonic, and Fujifilm camera expansions cannot bypass compatibility-sensitive accessory accounting.
 
 Nikon Waves 1–2 remain closed at **14 detail + 0 reviewed exclusions + 0 missing**.
 
@@ -99,7 +99,7 @@ OM SYSTEM review is closed through Waves 1–6. Waves 1–4 cover BLX-1, BLH-1, 
 
 GoPro review now covers Waves 1–5. Waves 1–4 map twelve exact HERO/MAX rows to GoPro-documented replaceable Enduro/rechargeable batteries. Wave 5 reviews exactly `HERO11 Black Mini`, `HERO7 Silver`, `HERO7 White`, `HERO5 Session`, `HERO Session`, `HERO+`, and `HERO+ LCD` as built-in/integrated-battery cameras based on official GoPro product/manual evidence; no generic USB charger handoff is emitted. The measured GoPro state is **31 basic = 12 detail + 7 reviewed exclusions + 12 missing accessory detail**.
 
-Remaining missing camera rows are GoPro 12 and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
+Remaining missing camera rows are Sony 107, Fujifilm 56, Panasonic 27, GoPro 12, and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## State and persistence
 
@@ -172,7 +172,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] GoPro Wave 4 activates exactly MAX and MAX2 with separate official Enduro battery evidence.
 - [x] GoPro Wave 5 reviews exactly seven built-in/integrated-battery cameras as evidence-backed exclusions with no generic USB charger handoff.
 - [x] GoPro currently reconciles to **31 basic = 12 detail + 7 reviewed exclusions + 12 missing accessory detail**.
-- [x] The catalog-wide camera audit reconciles to **185 basic = 133 detail + 33 reviewed exclusions + 19 missing accessory detail** while seven maker/index rows remain non-actionable.
+- [x] The catalog-wide camera audit reconciles to **375 basic = 133 detail + 33 reviewed exclusions + 209 missing accessory detail** while seven maker/index rows remain non-actionable, and published coverage-pass camera batches are included in the denominator.
 - [x] Missing-model maker diagnostics and documentation sync remain machine-readable drift guards.
 - [x] Sony Japan α E-mount coverage-pass population reconciles at **107 = 104 direct + 0 shared + 3 support-only + 0 held** and the reviewed rows are loaded into the public directory through the coverage-pass batch loader.
 - [x] Panasonic Japan LUMIX S/G/compact camera-body sitemap scope reconciles at **27 = 27 direct + 0 shared + 0 support-only + 0 held** and the reviewed rows are loaded through the same reusable coverage-pass batch loader.
