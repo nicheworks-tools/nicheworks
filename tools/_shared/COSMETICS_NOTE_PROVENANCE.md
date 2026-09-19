@@ -202,3 +202,24 @@ After Wave 8:
 - strong runtime identities: 34 / 599;
 - prior reviewed waves remain required subsets;
 - raw dictionary records rewritten: no.
+
+
+## Verified note wave 9
+
+Wave 9 continues frequency-prioritized source-backed enrichment from the maintained 30-product official-label corpus:
+
+| Canonical identity | Corpus occurrences | Reviewed runtime note basis |
+| --- | ---: | --- |
+| `chlorphenesin` | 7 | COSMILE Europe: antimicrobial and preservative functions. |
+| `cetearyl alcohol` | 6 | COSMILE Europe: skin-conditioning emollient, emulsion stability, viscosity control and surfactant functions. |
+| `disodium edta` | 6 | COSMILE Europe: chelating and viscosity-control functions. |
+| `panthenol` | 6 | COSMILE Europe: skin conditioning, hair conditioning and background humectant / skin-smoothing properties. |
+
+Wave 8 remains a required reviewed subset rather than a total-overlay-size ceiling.
+
+After Wave 9:
+
+- cumulative verified-note identities: 38;
+- strong runtime identities: 38 / 599;
+- Wave 8 identities retained: 4 / 4;
+- raw dictionary records rewritten: no.
