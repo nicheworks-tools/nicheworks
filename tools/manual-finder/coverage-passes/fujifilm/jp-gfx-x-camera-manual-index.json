@@ -1,0 +1,1010 @@
+{
+  "schemaVersion": 1,
+  "maker": "Fujifilm",
+  "scopeId": "jp-gfx-x-camera-manual-index",
+  "scopeLabel": "FUJIFILM Japan GFX and X-series camera models listed on the official camera manuals index",
+  "status": "coverage-pass-complete",
+  "asOf": "2026-09-19",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "fujifilm-x.com",
+    "dl.fujifilm-x.com",
+    "fujifilm.com"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/"
+    ],
+    "declaredCount": null,
+    "models": [
+      "GFX100 II",
+      "GFX100",
+      "GFX100S II",
+      "GFX100S",
+      "GFX 50S II",
+      "GFX 50S",
+      "GFX 50R",
+      "GFX100RF",
+      "GFX ETERNA 55",
+      "X-H2S",
+      "X-H2",
+      "X-H1",
+      "X-Pro3",
+      "X-Pro2",
+      "X-Pro1",
+      "X-T5",
+      "X-T4",
+      "X-T3",
+      "X-T2",
+      "X-T1",
+      "X-S20",
+      "X-S10",
+      "X-T50",
+      "X-T30 III",
+      "X-T30 II",
+      "X-T20",
+      "X-T10",
+      "X-T200",
+      "X-T100",
+      "X-E5",
+      "X-E4",
+      "X-E3",
+      "X-M5",
+      "X-M1",
+      "X-E2",
+      "X-E1",
+      "X-A7",
+      "X-A5",
+      "X-A3",
+      "X-A2",
+      "X-A1",
+      "X100VI",
+      "X100V",
+      "X100F",
+      "X100S",
+      "X100",
+      "X70",
+      "X30",
+      "X20",
+      "X10",
+      "X half",
+      "XF10",
+      "XF1",
+      "XQ2",
+      "XQ1",
+      "X-S1"
+    ],
+    "populationMethod": "official_camera_manual_index_gfx_and_x_sections",
+    "notes": "The bounded FUJIFILM Japan GFX + X-series camera-manual-index scope is fully reviewed: 56 exact models = 52 direct + 4 shared + 0 support-only + 0 held. The four shared rows remain explicit at the manufacturer-defined camera manual index because secondary official search did not establish a deeper current Japanese user-manual target."
+  },
+  "subscopes": [
+    {
+      "id": "gfx",
+      "sourceUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+      "models": [
+        "GFX100 II",
+        "GFX100",
+        "GFX100S II",
+        "GFX100S",
+        "GFX 50S II",
+        "GFX 50S",
+        "GFX 50R",
+        "GFX100RF",
+        "GFX ETERNA 55"
+      ],
+      "capturedCount": 9,
+      "captureState": "captured"
+    },
+    {
+      "id": "x-mirrorless",
+      "sourceUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+      "models": [
+        "X-H2S",
+        "X-H2",
+        "X-H1",
+        "X-Pro3",
+        "X-Pro2",
+        "X-Pro1",
+        "X-T5",
+        "X-T4",
+        "X-T3",
+        "X-T2",
+        "X-T1",
+        "X-S20",
+        "X-S10",
+        "X-T50",
+        "X-T30 III",
+        "X-T30 II",
+        "X-T20",
+        "X-T10",
+        "X-T200",
+        "X-T100",
+        "X-E5",
+        "X-E4",
+        "X-E3",
+        "X-M5",
+        "X-M1",
+        "X-E2",
+        "X-E1",
+        "X-A7",
+        "X-A5",
+        "X-A3",
+        "X-A2",
+        "X-A1"
+      ],
+      "capturedCount": 32,
+      "captureState": "captured"
+    },
+    {
+      "id": "x-fixed",
+      "sourceUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+      "models": [
+        "X100VI",
+        "X100V",
+        "X100F",
+        "X100S",
+        "X100",
+        "X70",
+        "X30",
+        "X20",
+        "X10",
+        "X half",
+        "XF10",
+        "XF1",
+        "XQ2",
+        "XQ1",
+        "X-S1"
+      ],
+      "capturedCount": 15,
+      "captureState": "captured"
+    }
+  ],
+  "records": [
+    {
+      "model": "GFX100 II",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx100-ii/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx100-ii/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx100-ii/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "GFX100",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx100/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx100/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx100/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "GFX100S II",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx100s-ii/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx100s-ii/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx100s-ii/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "GFX100S",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx100s/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx100s/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx100s/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "GFX 50S II",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx-50s-ii/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx-50s-ii/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx-50s-ii/"
+      ],
+      "attemptedDiscovery": [
+        "official_manual_detail_candidate",
+        "official_manual_index",
+        "official_site_search"
+      ],
+      "reviewMethod": "secondary_official_exact_manual_detail",
+      "reviewNote": "Initial candidate used the wrong slug. Secondary official search found FUJIFILM's exact GFX 50S II manual-detail page.",
+      "verifiedAt": "2026-09-19"
+    },
+    {
+      "model": "GFX 50S",
+      "state": "shared",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/download/firmware/cameras/gfx-50s/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/download/firmware/cameras/gfx-50s/"
+      ],
+      "attemptedDiscovery": [
+        "official_manual_detail_candidate",
+        "official_manual_index",
+        "official_site_search",
+        "official_download_support"
+      ],
+      "reviewMethod": "secondary_official_shared_manual_index",
+      "reviewNote": "FUJIFILM explicitly enumerates GFX 50S in the Japanese camera-manual index with a download control. No deeper current Japanese user-manual target was established in secondary search, so the manufacturer-defined index remains explicit as shared.",
+      "verifiedAt": "2026-09-19"
+    },
+    {
+      "model": "GFX 50R",
+      "state": "shared",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/download/firmware/cameras/gfx-50r/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/download/firmware/cameras/gfx-50r/"
+      ],
+      "attemptedDiscovery": [
+        "official_manual_detail_candidate",
+        "official_manual_index",
+        "official_site_search",
+        "official_download_support"
+      ],
+      "reviewMethod": "secondary_official_shared_manual_index",
+      "reviewNote": "FUJIFILM explicitly enumerates GFX 50R in the Japanese camera-manual index with a download control. No deeper current Japanese user-manual target was established in secondary search, so the manufacturer-defined index remains explicit as shared.",
+      "verifiedAt": "2026-09-19"
+    },
+    {
+      "model": "GFX100RF",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx100rf/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx100rf/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx100rf/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "GFX ETERNA 55",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx-eterna-55/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx-eterna-55/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx-eterna-55/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-H2S",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-h2s/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-h2s/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-h2s/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-H2",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-h2/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-h2/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-h2/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-H1",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-h1/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-h1/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-h1/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-Pro3",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-pro3/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-pro3/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-pro3/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-Pro2",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-pro2/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-pro2/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-pro2/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-Pro1",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-pro1/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-pro1/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-pro1/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-T5",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t5/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t5/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t5/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-T4",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t4/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t4/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t4/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-T3",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t3/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t3/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t3/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-T2",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t2/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t2/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t2/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-T1",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t1/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t1/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t1/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-S20",
+      "state": "shared",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/download/firmware/cameras/x-s20/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/download/firmware/cameras/x-s20/"
+      ],
+      "attemptedDiscovery": [
+        "official_manual_detail_candidate",
+        "official_manual_index",
+        "official_site_search",
+        "official_download_support"
+      ],
+      "reviewMethod": "secondary_official_shared_manual_index",
+      "reviewNote": "FUJIFILM explicitly enumerates X-S20 in the Japanese camera-manual index with a download control. The guessed detail slug returned 404 and no deeper current Japanese user-manual target was established, so the official index remains explicit as shared.",
+      "verifiedAt": "2026-09-19"
+    },
+    {
+      "model": "X-S10",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-s10/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-s10/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-s10/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-T50",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t50/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t50/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t50/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-T30 III",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t30-iii/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t30-iii/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t30-iii/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-T30 II",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t30-ii/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t30-ii/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t30-ii/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-T20",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t20/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t20/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t20/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-T10",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t10/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t10/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t10/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-T200",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t200/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t200/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t200/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-T100",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t100/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t100/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-t100/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-E5",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-e5/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-e5/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-e5/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-E4",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-e4/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-e4/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-e4/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-E3",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-e3/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-e3/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-e3/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-M5",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-m5/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-m5/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-m5/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-M1",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-m1/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-m1/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-m1/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-E2",
+      "state": "direct",
+      "manualUrl": "https://dl.fujifilm-x.com/support/manual/x/ff_x-e2_mn_j101.pdf",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://dl.fujifilm-x.com/support/manual/x/ff_x-e2_mn_j101.pdf"
+      ],
+      "attemptedDiscovery": [
+        "official_manual_detail_candidate",
+        "official_manual_index",
+        "official_pdf_search"
+      ],
+      "reviewMethod": "secondary_official_exact_pdf",
+      "reviewNote": "Secondary official search found FUJIFILM's Japanese X-E2 Version 4.00 instruction manual PDF.",
+      "verifiedAt": "2026-09-19"
+    },
+    {
+      "model": "X-E1",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-e1/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-e1/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-e1/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-A7",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-a7/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-a7/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-a7/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-A5",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-a5/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-a5/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-a5/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-A3",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-a3/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-a3/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-a3/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-A2",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-a2/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-a2/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-a2/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-A1",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-a1/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-a1/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-a1/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X100VI",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x100vi/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x100vi/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x100vi/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X100V",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x100v/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x100v/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x100v/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X100F",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x100f/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x100f/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x100f/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X100S",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x100s/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x100s/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x100s/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X100",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x100/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x100/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x100/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X70",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x70/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x70/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x70/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X30",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x30/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x30/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x30/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X20",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x20/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x20/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x20/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X10",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x10/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x10/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x10/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X half",
+      "state": "shared",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/download/firmware/cameras/x-hf1/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/download/firmware/cameras/x-hf1/"
+      ],
+      "attemptedDiscovery": [
+        "official_manual_detail_candidate",
+        "official_manual_index",
+        "official_site_search",
+        "official_download_support"
+      ],
+      "reviewMethod": "secondary_official_shared_manual_index",
+      "reviewNote": "FUJIFILM explicitly enumerates X half in the Japanese camera-manual index with a download control. The guessed detail slug returned 404; official firmware support identifies the camera as X half, so the manual index remains explicit as shared rather than guessing a deeper manual URL.",
+      "verifiedAt": "2026-09-19"
+    },
+    {
+      "model": "XF10",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/xf10/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/xf10/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/xf10/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "XF1",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/xf1/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/xf1/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/xf1/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "XQ2",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/xq2/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/xq2/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/xq2/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "XQ1",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/xq1/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/xq1/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/xq1/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    },
+    {
+      "model": "X-S1",
+      "state": "direct",
+      "manualUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-s1/",
+      "supportUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-s1/",
+      "evidenceUrls": [
+        "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/",
+        "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-s1/"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_detail",
+      "reviewNote": "Live review required FUJIFILM-controlled HTTPS, exact model text on the returned page, and a manual/download artifact marker."
+    }
+  ],
+  "negativeEscalationChannels": [
+    "official_manual_detail_candidate",
+    "official_manual_index",
+    "official_site_search",
+    "official_product_support",
+    "official_archive"
+  ],
+  "refresh": {
+    "compareAgainstOfficialUniverse": true,
+    "preserveHeldHistory": true,
+    "sourceUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/"
+  },
+  "review": {
+    "candidateRun": {
+      "workflowRunId": 35429184922,
+      "workflowJobId": 105860552229,
+      "reviewedPopulation": 56,
+      "candidateCounts": {
+        "direct": 50,
+        "needs_secondary_discovery": 6
+      },
+      "publicationReady": false
+    },
+    "secondaryDiscovery": {
+      "resolvedDirect": [
+        "GFX 50S II",
+        "X-E2"
+      ],
+      "resolvedShared": [
+        "GFX 50S",
+        "GFX 50R",
+        "X-S20",
+        "X half"
+      ],
+      "unresolved": [],
+      "note": "All six structural exceptions were rechecked through FUJIFILM official search/index/download channels. Two gained exact direct manual targets; four retain the manufacturer-defined Japanese camera-manual index as an explicit shared target rather than a guessed deep URL."
+    },
+    "validationSample": [
+      {
+        "model": "GFX100 II",
+        "class": "gfx-direct",
+        "outcome": "confirmed",
+        "evidenceUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx100-ii/"
+      },
+      {
+        "model": "X-H2S",
+        "class": "x-mirrorless-direct",
+        "outcome": "confirmed",
+        "evidenceUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x-h2s/"
+      },
+      {
+        "model": "X100VI",
+        "class": "x-fixed-direct",
+        "outcome": "confirmed",
+        "evidenceUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/x100vi/"
+      },
+      {
+        "model": "GFX 50S II",
+        "class": "secondary-direct-slug-exception",
+        "outcome": "confirmed_direct",
+        "evidenceUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/detail/gfx-50s-ii/"
+      },
+      {
+        "model": "X-E2",
+        "class": "secondary-direct-pdf",
+        "outcome": "confirmed_direct",
+        "evidenceUrl": "https://dl.fujifilm-x.com/support/manual/x/ff_x-e2_mn_j101.pdf"
+      },
+      {
+        "model": "X-S20",
+        "class": "secondary-shared",
+        "outcome": "confirmed_shared",
+        "evidenceUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/"
+      },
+      {
+        "model": "X half",
+        "class": "secondary-shared",
+        "outcome": "confirmed_shared",
+        "evidenceUrl": "https://www.fujifilm-x.com/ja-jp/support/manual/cameras/"
+      }
+    ],
+    "completedAt": "2026-09-19"
+  }
+}

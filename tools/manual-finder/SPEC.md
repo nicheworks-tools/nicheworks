@@ -177,6 +177,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] Sony Japan α E-mount coverage-pass population reconciles at **107 = 104 direct + 0 shared + 3 support-only + 0 held** and the reviewed rows are loaded into the public directory through the coverage-pass batch loader.
 - [x] Panasonic Japan LUMIX S/G/compact camera-body sitemap scope reconciles at **27 = 27 direct + 0 shared + 0 support-only + 0 held** and the reviewed rows are loaded through the same reusable coverage-pass batch loader.
 - [x] Apple iPhone bounded User Guide scope reconciles at **31 = 0 direct + 31 shared + 0 support-only + 0 held**; every model retains its exact Apple Manuals and Downloads support page while the manufacturer-defined Japanese iPhone User Guide remains explicit as a shared target.
+- [x] Fujifilm JP GFX + X-series camera manual-index scope reconciles at **56 = 52 direct + 4 shared + 0 support-only + 0 held**; structural exceptions are resolved through secondary official discovery or left explicitly at FUJIFILM's manufacturer-defined manual index rather than guessed deep URLs.
 - [x] Wrong maker/category, nonexistent models, spelling variants, and other unreviewed compatibility cases fail closed.
 - [x] Amazon disclosure and sponsored-link semantics remain supplied by the shared affiliate helper.
 
@@ -206,6 +207,10 @@ Core ManualFinder implementation:
 - `tools/manual-finder/data/manuals.coverage-pass.apple-jp-iphone-ios26-guide-models.js`
 - `tools/manual-finder/tests/apple-iphone-coverage-pass.test.mjs`
 - `tools/manual-finder/tests/apple-iphone-coverage-pass-publication.test.mjs`
+- `tools/manual-finder/coverage-passes/fujifilm/jp-gfx-x-camera-manual-index.json`
+- `tools/manual-finder/data/manuals.coverage-pass.fujifilm-jp-gfx-x-camera-manual-index.js`
+- `tools/manual-finder/tests/fujifilm-gfx-x-coverage-pass.test.mjs`
+- `tools/manual-finder/tests/fujifilm-gfx-x-coverage-pass-publication.test.mjs`
 - `tools/manual-finder/affiliate-printer-detail-exclusions.js`
 
 Reviewed DJI camera accessory ledgers:
