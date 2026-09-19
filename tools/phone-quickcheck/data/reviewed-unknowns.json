@@ -291,6 +291,17 @@
         "https://www.mi.com/jp/support/faq/details/KA-650868/"
       ],
       "reviewedAt": "2026-09-19"
+    },
+    {
+      "phoneId": "xiaomi-17",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_in_box_adapter_state_not_established",
+      "reason": "Xiaomi Japan's maintained FAQ documents region-dependent package variants and a standard charger but does not establish the exact Japan retail adapter-in-box state strongly enough for the canonical JP record.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/faq/details/KA-680237/"
+      ],
+      "reviewedAt": "2026-09-19"
     }
   ]
 }

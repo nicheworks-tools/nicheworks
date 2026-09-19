@@ -955,3 +955,27 @@ console.log('Phone QuickCheck final automated QA passed: controls, sort modes, e
   assert.match(h.elements.desktopDetail.innerHTML, /7050 mAh/);
 }
 
+// Post-v1 2026 maintenance Wave 7.
+{
+  const phone = byId.get('xiaomi-17');
+  assert.ok(phone, 'Xiaomi 17 fixture missing');
+  assert.equal(phone.releaseYear, 2026);
+  assert.deepEqual(phone.dimensions, { heightMm: 151.1, widthMm: 71.8, depthMm: 8.06 });
+  assert.equal(phone.weightG, 191);
+  assert.equal(phone.displayInch, 6.3);
+  assert.equal(phone.charging?.battery?.capacityMah, 6330);
+  assert.equal(phone.charging?.wiredMaxW, 100);
+  assert.equal(phone.charging?.pps, 'supported');
+  assert.equal(phone.charging?.wirelessStandard, 'Wireless HyperCharge');
+  assert.equal(phone.charging?.wirelessMaxW, 50);
+  assert.equal(phone.waterRating, 'IP68');
+  assert.equal(phone.included?.cable, 'included');
+  assert.equal(phone.included?.adapter, 'unknown');
+
+  const h = await createHarness(['xiaomi-17']);
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /6330 mAh/);
+  assert.match(html, /100W/);
+  assert.match(html, /Wireless HyperCharge \/ 50W/);
+}
+

@@ -10607,6 +10607,62 @@
         "verifiedAt": "2026-09-19"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-17",
+      "manufacturer": "Xiaomi",
+      "model": "Xiaomi 17",
+      "aliases": [
+        "Xiaomi17",
+        "Xiaomi 17",
+        "シャオミ17"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 151.1,
+        "widthMm": 71.8,
+        "depthMm": 8.06
+      },
+      "weightG": 191,
+      "displayInch": 6.3,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 100,
+        "protocols": [
+          "Xiaomi HyperCharge",
+          "PPS",
+          "USB PD 3.0",
+          "USB PD 2.0"
+        ],
+        "pps": "supported",
+        "wirelessStandard": "Wireless HyperCharge",
+        "wirelessMaxW": 50,
+        "battery": {
+          "capacityMah": 6330,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/support/faq/details/KA-680237/"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/support/faq/details/KA-680237/",
+        "manualUrl": "https://www.mi.com/jp/support/",
+        "releaseUrl": "https://www.mi.com/jp/support/faq/details/KA-680237/",
+        "chargingUrl": "https://www.mi.com/jp/support/faq/details/KA-680237/",
+        "wirelessUrl": "https://www.mi.com/jp/support/faq/details/KA-680237/",
+        "waterUrl": "https://www.mi.com/jp/support/faq/details/KA-680237/",
+        "packageUrl": "https://www.mi.com/jp/support/faq/details/KA-680237/",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
     }
   ]
 }

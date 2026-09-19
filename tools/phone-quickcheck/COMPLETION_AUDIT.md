@@ -166,6 +166,15 @@ OPPO Find X9 Ultra uses `physicalVariants[]` for the official 9.1mm/236g Tundra 
 
 POCO X8 Pro Max and X8 Pro are recorded from Xiaomi Japan specifications and support FAQs with exact dimensions/weight, 8500mAh / 6500mAh batteries, 100W HyperCharge, explicit PPS + PD support, IP68, and included charger/cable.
 
+## Post-v1 maintenance Wave 7 — 2026-09-19
+
+Added Xiaomi 17 from Xiaomi Japan maintained support material.
+
+Maintained dataset: **202 → 203**.
+
+The record preserves 151.1 × 71.8 × 8.06mm / 191g, 6.3-inch display, 6330mAh, 100W wired charging, PPS/PD support, 50W Wireless HyperCharge, and IP68. Xiaomi Japan explicitly documents the bundled charging cable. The AC-adapter package state remains `unknown` and is registered as `reviewed_unresolved` because the maintained FAQ describes region-dependent package variants rather than a sufficiently exact JP retail in-box claim.
+
+
 
 ## Post-v1 maintenance Wave 3 — 2026-09-19
 
