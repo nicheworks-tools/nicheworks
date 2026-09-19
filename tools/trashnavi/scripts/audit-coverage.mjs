@@ -74,7 +74,7 @@ function getRuntimeDeclaredDirectFiles() {
 }
 
 const jsonFiles = fs.readdirSync(dataDir)
-  .filter(file => file.endsWith(".json"))
+  .filter(file => file.endsWith(".json") && file !== "municipality-review-ledger.json")
   .sort((a, b) => a.localeCompare(b, "ja"));
 
 const sources = [];

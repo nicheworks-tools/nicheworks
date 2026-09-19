@@ -1084,3 +1084,16 @@ Wave 51は栃木県の追加10自治体を、従来どおり `municipal_home` �
 - 2026 calendar callout: 大田原市、那須烏山市、茂木町、壬生町、野木町、塩谷町、高根沢町、那須町。上三川町・芳賀町は年度を推測しない。
 - Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を維持する。
 
+## National completion policy
+
+全国網羅の正本方針は [NATIONAL_COMPLETION_POLICY.md](./NATIONAL_COMPLETION_POLICY.md) とする。
+
+- Phase 1の完成分母は、政令指定都市の行政区175件を除く **1,741自治体**。
+- 全国完成は「公開ページ数」ではなく、`municipality-review-ledger.json` が **1,741 / 1,741 reviewed** かつ `pending_review = 0` になった時点で判定する。
+- 最終状態は `standard` / `limited` / `joint_service` / `reviewed_no_direct`。未完了状態は `pending_review` のみ。
+- `standard` は従来どおり3種類・3独立公式URL以上を要求する。
+- 3 URL未満を理由に自治体を無期限保留しない。`limited` と `joint_service` は状態を明示して公開できる。
+- `reviewed_no_direct` はレビュー完了として数えるが、通常の自治体詳細ページ公開を必須としない。
+- 今後の標準review batchは50自治体。共同処理等が複雑な地域では25自治体まで縮小できる。
+- CIは `scripts/check-national-completion.mjs` で台帳・source threshold・manifest publication stateを横断検証する。
+
