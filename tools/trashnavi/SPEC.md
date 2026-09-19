@@ -1064,3 +1064,13 @@ Wave 49は茨城県の追加9自治体と栃木県小山市を、従来どおり
 - 2026 calendar callout: 高萩市、城里町、大子町、美浦村、境町、小山市。古河市、潮来市、坂東市、鉾田市は年次を推測しない。
 - Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を維持する。
 
+## Wave 50 batch publication
+
+Wave 50は栃木県の追加10市を、従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific municipal-official link typeで公開し、公開対象を **274自治体から284自治体** へ拡張する。栃木市は地域別カレンダーを市全域へ平坦化せず、家庭ごみ案内・粗大ごみ・市公式ごみ分別アプリの3系統で構成する。
+
+- 足利市、栃木市、佐野市、鹿沼市、日光市、真岡市、矢板市、那須塩原市、さくら市、下野市
+- readiness baseline: 2,940 / 2,940 valid HTTP(S)、284 preferred candidates、53 direct-link datasets / 872 records / 853 unique URLs / 0 invalid URLs
+- publication acceptance: 284 municipality pages、284 root internal links、AI reference 284/284、専用sitemapはtool rootを含む285 URL
+- 2026 calendar callout: 佐野市、真岡市、矢板市、那須塩原市、さくら市。足利市は年度を推測せず、栃木市・鹿沼市・日光市・下野市は独立した2026 calendar recordを採用しない。
+- Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を維持する。
+
