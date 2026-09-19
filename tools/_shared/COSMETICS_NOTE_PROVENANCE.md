@@ -385,3 +385,22 @@ After Wave 17:
 - strong runtime identities: 70 / 599;
 - Wave 16 identities retained: 4 / 4;
 - raw dictionary records rewritten: no.
+
+
+## Verified note wave 18
+
+Wave 18 continues frequency-prioritized source-backed enrichment:
+
+| Canonical identity | Corpus occurrences | Reviewed runtime note basis |
+| --- | ---: | --- |
+| `threonine` | 3 | COSMILE Europe: hair conditioning, antistatic and hair-waving-or-straightening functions. |
+| `cocamidopropyl betaine` | 2 | COSMILE Europe: cleansing/foam-boosting surfactant plus hair-conditioning and antistatic functions. |
+| `dicaprylyl carbonate` | 2 | COSMILE Europe: skin conditioning and emollience. |
+| `glutamic acid` | 2 | COSMILE Europe: humectant, hair conditioning and antistatic functions. |
+
+After Wave 18:
+
+- cumulative verified-note identities: 74;
+- strong runtime identities: 74 / 599;
+- Wave 17 identities retained: 4 / 4;
+- raw dictionary records rewritten: no.
