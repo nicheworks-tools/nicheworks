@@ -75,5 +75,6 @@ await import('./gopro-hero13-accessory-wave1.test.mjs');
 await import('./gopro-enduro-accessory-wave2.test.mjs');
 await import('./gopro-hero8-battery-accessory-wave3.test.mjs');
 await import('./gopro-max-enduro-accessory-wave4.test.mjs');
+await import('./gopro-integrated-battery-exclusions-wave5.test.mjs');
 await import('./camera-accessory-coverage.test.mjs');
 await import('./camera-accessory-doc-sync.test.mjs');
