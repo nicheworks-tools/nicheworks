@@ -268,7 +268,11 @@
     "adenosine": Object.freeze({ note_short: "Skin-conditioning ingredient; COSMILE Europe lists Adenosine as maintaining the skin in good condition.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/484/adenosine/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "behentrimonium methosulfate": Object.freeze({ note_short: "Antistatic and hair-conditioning cleansing surfactant; COSMILE Europe lists all three functions for Behentrimonium Methosulfate.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1532/behentrimonium-methosulfate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "butyrospermum parkii shea butter": Object.freeze({ note_short: "Shea butter used for skin conditioning and viscosity control; COSMILE Europe lists both functions for Butyrospermum Parkii Butter.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/18767/butyrospermum-parkii-butter/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "glyceryl stearate se": Object.freeze({ note_short: "Emulsifying surfactant; COSMILE Europe lists Glyceryl Stearate SE as supporting stable oil-and-water emulsions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6059/glyceryl-stearate-se/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "glyceryl stearate se": Object.freeze({ note_short: "Emulsifying surfactant; COSMILE Europe lists Glyceryl Stearate SE as supporting stable oil-and-water emulsions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6059/glyceryl-stearate-se/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "glycine": Object.freeze({ note_short: "Amino acid used for skin and hair conditioning and buffering; COSMILE Europe also lists an antistatic function for Glycine.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6084/glycine/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "lactic acid": Object.freeze({ note_short: "Buffering, humectant and skin-conditioning ingredient; COSMILE Europe also lists a fragrance-functional role for Lactic Acid.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/7749/lactic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "peg-100 stearate": Object.freeze({ note_short: "Cleansing surfactant; COSMILE Europe lists PEG-100 Stearate as a surface-active cleansing ingredient.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10380/peg-100-stearate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "proline": Object.freeze({ note_short: "Amino acid used for skin and hair conditioning; COSMILE Europe lists both functions for Proline.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/13164/proline/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -493,7 +497,7 @@
   }
 
   const api = {
-    version: "1.56.0",
+    version: "1.57.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
