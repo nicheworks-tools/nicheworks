@@ -164,11 +164,18 @@ Expand from the initial cohort only when pages remain substantive and measuremen
 
 The target is not “870 indexable pages” as a vanity metric. The target is maximum useful traffic and qualified commercial exits while keeping the Atlas trustworthy.
 
-## Immediate next implementation
+## Current implementation checkpoint
 
-1. land this revenue-readiness rail,
-2. build the static detail generator,
-3. emit the first commerce-ready cohort,
-4. update the tool sitemap for emitted pages,
-5. add audit coverage so pages cannot outlive their canonical/image/affiliate evidence,
-6. then resume image acquisition from the affiliate-backed backlog.
+Completed:
+1. revenue-readiness rail is on main,
+2. static detail generator exists,
+3. the explicit first commerce-ready cohort contains 33 canonicals,
+4. 33 generated glossary pages are materialized,
+5. the tool sitemap contains those 33 URLs,
+6. permanent audit coverage verifies cohort membership, content readiness, affiliate mapping, image readiness, generated HTML and sitemap parity.
+
+Next:
+1. review maintained relationship data for high-value confusion/comparison pairs,
+2. add the first bounded comparison cohort,
+3. resume image acquisition from the 399 affiliate-backed awaiting-source canonicals,
+4. use measured organic and affiliate click data to reorder later waves when Search Console data becomes available.
