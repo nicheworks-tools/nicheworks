@@ -120,6 +120,9 @@ The v2.3 desktop target is a persistent master-detail workspace with roughly 40â
 - `tools/construction-tools-atlas/data/entry-contract-v2.3.schema.json`
 - `tools/construction-tools-atlas/data/entry-contract-v2.3.example.json`
 - `tools/construction-tools-atlas/validate-contract-v2.3.mjs`
+- `tools/construction-tools-atlas/data/seo-launch-cohort-v2.3.json`
+- `tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs`
+- `tools/construction-tools-atlas/glossary/`
 
 ## v2.3 redesign contract
 
@@ -393,9 +396,19 @@ Content and image readiness are separate quality axes.
 
 ### 14. Static detail pages / SEO
 
-Per-entry static pages are optional future output, not a prerequisite for the core redesign. Only quality-ready entries with independent search value may become indexable static pages. Do not mass-generate thin pages.
+Selective static glossary pages are now supported for an explicit, reviewed cohort. They are generated under `glossary/<slug>/` by `scripts/build-seo-detail-pages-v2.3.cjs` from the same canonical runtime corpus.
 
-Existing `?entry=` links remain compatible if static pages are added later.
+Publication rules:
+
+- cohort membership is explicit in `data/seo-launch-cohort-v2.3.json`; new images or affiliate mappings do not auto-publish pages,
+- every published glossary page must retain fallback-independent bilingual core content,
+- an active maintained affiliate mapping is required for the initial commerce cohort,
+- image state must be either `promoted` or explicitly `not_required`,
+- promoted-image pages must resolve a formal representative image, including valid canonical redirect inheritance,
+- generated pages must have unique canonical URLs and be present in the tool sitemap,
+- do not mass-generate the entire corpus as thin pages.
+
+Existing `?entry=` links remain canonical application deep links and every glossary page links back to the Atlas entry.
 
 ### 15. Accessibility and performance
 
