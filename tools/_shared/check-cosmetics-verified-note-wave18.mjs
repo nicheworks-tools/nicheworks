@@ -71,10 +71,9 @@ for (const row of rows) {
 }
 
 const evidence = parser.verifiedNoteEvidence || {};
-assert.equal(
-  Object.keys(evidence).length,
-  PRIOR_VERIFIED_NOTE_COUNT + Object.keys(EXPECTED_WAVE18).length,
-  'wave 18 must extend the 70 reviewed note identities by exactly four source-backed identities'
+assert.ok(
+  Object.keys(evidence).length >= PRIOR_VERIFIED_NOTE_COUNT + Object.keys(EXPECTED_WAVE18).length,
+  'wave 18 reviewed identities must remain present as later verified-note waves extend the overlay'
 );
 
 for (const [canonical, expected] of Object.entries(EXPECTED_WAVE18)) {
