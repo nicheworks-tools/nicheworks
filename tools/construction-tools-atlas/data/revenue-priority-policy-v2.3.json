@@ -1,0 +1,36 @@
+{
+  "schema": "cta-revenue-priority-policy-v2.3",
+  "version": "2026-09-19-revenue-priority-1",
+  "purpose": "Turn the completed Construction Tools Atlas corpus into a revenue-oriented execution queue without inventing search volume or earnings estimates.",
+  "inputs": [
+    "public-content-quality-v2.3.json",
+    "public-image-inventory-v2.3.json",
+    "affiliate-offers-v2.3.json"
+  ],
+  "principles": {
+    "no_guessed_market_scores": true,
+    "no_guessed_search_volume": true,
+    "no_earnings_forecast": true,
+    "canonical_affiliate_mapping_only": true,
+    "raw_search_text_never_becomes_affiliate_destination": true,
+    "quality_before_indexation": true,
+    "measurement_reorders_future_work": true
+  },
+  "groups": {
+    "affiliate_in_progress": "Active Amazon mapping exists and image review is already between candidate and verified. Finish this lifecycle work before starting unrelated acquisition.",
+    "seo_commerce_ready": "Fallback-independent bilingual core content, an active maintained Amazon mapping, and a promoted formal image are all present. These are the first static SEO/commercial publication cohort.",
+    "affiliate_image_backlog": "Active maintained Amazon mapping exists but the required formal image is still awaiting source. These are the first acquisition pool after in-progress work.",
+    "organic_image_ready": "Promoted formal image exists but no active Amazon mapping exists. Useful for organic/reference expansion after commerce-ready publication.",
+    "non_affiliate_image_backlog": "A formal image is required but there is no active Amazon mapping. Lower revenue priority unless measured search demand later elevates it.",
+    "not_required": "Image applicability review concluded that a representative image is not required."
+  },
+  "execution_order": [
+    "finish affiliate_in_progress lifecycle rows",
+    "publish seo_commerce_ready static detail cohort",
+    "build maintained comparison pages from genuinely confused/related pairs in the published cohort",
+    "acquire and promote images from affiliate_image_backlog in bounded waves",
+    "measure organic impressions, detail engagement and affiliate_outbound events",
+    "reorder later work using measured Search Console and click-through data when available",
+    "expand organic_image_ready and non_affiliate_image_backlog only where measured demand or reference value justifies it"
+  ]
+}
