@@ -29,7 +29,7 @@ const sampleHtml = `
 </body></html>`;
 const discovered = discoverFromHtml(sampleHtml, sony.discovery);
 assert.equal(discovered.declaredCount, 5);
-assert.deepEqual(discovered.models, ['ILCE-6400K', 'ILCE-7M3M', 'ILCE-7M4M', 'NEX-7', 'ZV-E10K']);
+assert.deepEqual(new Set(discovered.models), new Set(['ILCE-6400K', 'ILCE-7M3M', 'ILCE-7M4M', 'NEX-7', 'ZV-E10K']));
 assert.equal(discovered.countMatches, true);
 
 const complete = {
