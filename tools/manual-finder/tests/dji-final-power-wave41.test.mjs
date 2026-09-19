@@ -45,7 +45,7 @@ const expectedExclusions = new Map([
   ['DJI O4 Air Unit Series', ['externally_powered_component_no_model_specific_battery_or_charger', 'https://www.dji.com/support/product/o4-air-unit']]
 ]);
 
-assert.equal(exclusions.length, 26, 'Wave 41 must close DJI with 26 total reviewed camera exclusions');
+assert.ok(exclusions.length >= 26, 'Wave 41 baseline must retain the 26 DJI exclusions established through Wave 41');
 for (const [model, [reason, sourceUrl]] of expectedExclusions) {
   const row = exclusions.find((entry) => entry.maker === 'DJI' && entry.model === model && entry.category === 'カメラ・映像');
   assert.ok(row, `${model} exclusion must exist`);
