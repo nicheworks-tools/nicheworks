@@ -17,7 +17,7 @@ All future model-level expansion must follow `COVERAGE_PASS_WORKFLOW.md`. Script
 
 ## Current verified model-level inventory
 
-With the completed Sony JP α E-mount, Panasonic JP LUMIX, and Apple iPhone coverage-pass publications plus deployed Waves 3A / 3B / 3D / 3E, the accepted dataset contains **1,681 verified model/caliber rows**. **1,238 are outside Seiko**. The coverage-pass layer now contributes 165 reviewed rows across Sony, Panasonic, and Apple.
+With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, and Fujifilm GFX/X coverage-pass publications plus deployed Waves 3A / 3B / 3D / 3E, the accepted dataset contains **1,737 verified model/caliber rows**. **1,294 are outside Seiko**. The coverage-pass layer now contributes 221 reviewed rows across Sony, Panasonic, Apple, and Fujifilm.
 
 | Maker / dataset identity | Verified rows | Current state | Notes |
 | --- | ---: | --- | --- |
@@ -28,6 +28,7 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, and Apple iPhone cove
 | DJI | 107 | expanded | Product-level official download/support destinations. |
 | Sony | 107 | expanded, scope-complete | JP α E-mount body coverage pass is complete and published: 104 direct manual/help destinations + 3 exact JP support-only destinations. Sony company-wide coverage remains incomplete. |
 | Apple | 31 | expanded, scope-complete | Bounded iPhone User Guide model scope is complete and published: 31 exact models share Apple's manufacturer-defined Japanese iPhone User Guide, with exact model Manuals and Downloads pages retained separately. Apple company-wide coverage remains incomplete. |
+| Fujifilm | 56 | expanded, scope-complete | JP GFX + X-series camera-manual-index scope is complete and published: 52 direct manual destinations + 4 explicit shared official manual-index targets. FinePix and broader Fujifilm coverage remain incomplete. |
 | Panasonic | 27 | expanded, scope-complete | JP LUMIX S/G/compact camera-body sitemap scope is complete and published: 27 direct official manual/support destinations. Panasonic company-wide coverage remains incomplete. |
 | OKI | 77 | expanded | Printer/MFP model-level official manual destinations. |
 | RICOH | 39 | expanded | Office MFP/wide-MFP model-level official product/manual destinations. |
@@ -43,7 +44,7 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, and Apple iPhone cove
 | Epson | 6 | expanded | Wave 3D first Colorio batch; exact official manual/support targets with verified consumable mappings. |
 | Canon | 6 | expanded | Wave 3E first PIXUS batch; direct or vendor-shared official online manuals with verified consumable mappings. |
 | Hisense | 2 | expanded | Exact TV function-manual targets; coverage is still very thin. |
-| **Total** | **1,681** |  |  |
+| **Total** | **1,737** |  |  |
 
 Counts above are accepted repository rows, not estimates of manufacturer catalog size.
 
@@ -58,7 +59,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 3 | Panasonic | **expanded — 27** | JP LUMIX S/G/compact camera-body sitemap scope is published and coverage-pass-complete at 27 direct + 0 support-only + 0 held; broader Panasonic categories remain incomplete |
 | 4 | Canon | **expanded — 6** | First PIXUS batch covered in Wave 3E; broader Canon remains incomplete |
 | 5 | Nikon | **expanded — 14** | Mirrorless Web-manual section covered in Wave 3A; rotate away |
-| 6 | Fujifilm | generic-only | **P0 — GFX + X-series camera manuals index scope started: 56 exact official camera identities locked and live review in progress; FinePix excluded from this pass** |
+| 6 | Fujifilm | **expanded — 56** | JP GFX + X-series camera-manual-index scope is published and coverage-pass-complete at 52 direct + 4 shared + 0 held; FinePix and broader Fujifilm remain incomplete |
 | 7 | Brother | **expanded — 13** | First bounded MFC-J batch covered in Wave 3B; MFC-J6990CDW held; rotate away |
 | 8 | Epson | **expanded — 6** | First bounded Colorio batch covered in Wave 3D; broader Epson remains incomplete |
 | 9 | HP | generic-only | PC/mobile queue |
@@ -120,7 +121,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 65 | Bambu Lab | generic-only | P1 3D-printer queue |
 | 66 | Creality | generic-only | P1 3D-printer queue |
 
-Result after the Sony JP α E-mount, Panasonic JP LUMIX, and Apple iPhone publications: **53 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
+Result after the Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, and Fujifilm GFX/X publications: **52 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
 
 ## P0 source audit and order
 
@@ -137,7 +138,7 @@ The first rotation is based on source structure, user usefulness, and the abilit
 
 ### Fujifilm GFX/X coverage-pass pilot
 
-FUJIFILM Japan's official camera 使用説明書 page explicitly enumerates 56 exact camera models across the GFX and X-series sections: 9 GFX, 32 X-series mirrorless, and 15 X-series fixed-lens models. That exact population is registered under `coverage-passes/fujifilm/jp-gfx-x-camera-manual-index.json`; FinePix, lenses, accessories, and software are intentionally outside this pass. Live review verifies generated detail-page candidates against FUJIFILM-controlled pages rather than treating the URL pattern itself as evidence.
+FUJIFILM Japan's official camera 使用説明書 page explicitly enumerates 56 exact camera models across the GFX and X-series sections: 9 GFX, 32 X-series mirrorless, and 15 X-series fixed-lens models. That population is coverage-pass-complete and published: **56 = 52 direct + 4 shared + 0 support-only + 0 held**. The live runner accepted 50 direct detail pages and escalated six structural exceptions. Secondary official discovery found the exact GFX 50S II manual-detail page and Japanese X-E2 PDF; GFX 50S, GFX 50R, X-S20, and X half remain explicit shared targets at FUJIFILM's manufacturer-defined Japanese camera manual index rather than guessed deep URLs. FinePix, lenses, accessories, and software remain outside this pass.
 
 ### Apple iPhone coverage-pass pilot
 
@@ -166,7 +167,7 @@ Current deployed state:
 5. **Wave 3E — Canon:** implemented for six PIXUS models; direct and vendor-shared manual targets are distinguished explicitly.
 6. **Panasonic coverage-pass pilot:** JP LUMIX S/G/compact camera-body scope is complete and published from `coverage-passes/panasonic/jp-lumix-camera-bodies-sitemap.json`: **27 = 27 direct + 0 shared + 0 support-only + 0 held**. The public compiled batch is `data/manuals.coverage-pass.panasonic-jp-lumix-camera-bodies.js`. Broader Panasonic categories remain separate future coverage passes.
 7. **Apple coverage-pass pilot:** iPhone 11→17e/Air/SE2/SE3 scope is complete and published from `coverage-passes/apple/jp-iphone-ios26-guide-models.json`: **31 = 0 direct + 31 shared + 0 support-only + 0 held**. The public compiled batch is `data/manuals.coverage-pass.apple-jp-iphone-ios26-guide-models.js`. Broader Apple categories remain separate future coverage passes.
-8. **Fujifilm coverage-pass pilot:** GFX + X-series camera manual-index scope is locked at 56 exact official camera identities and live review is in progress. No Fujifilm rows are public from this pass until reconciliation completes.
+8. **Fujifilm coverage-pass pilot:** GFX + X-series camera manual-index scope is complete and published from `coverage-passes/fujifilm/jp-gfx-x-camera-manual-index.json`: **56 = 52 direct + 4 shared + 0 support-only + 0 held**. The public compiled batch is `data/manuals.coverage-pass.fujifilm-jp-gfx-x-camera-manual-index.js`. FinePix and broader Fujifilm categories remain separate future coverage passes.
 9. Re-evaluate counts and gaps before any second model-coverage wave for Nikon/Brother/Epson/Canon.
 
 Affiliate expansion has a separate priority queue and may evaluate already-deep office-printer datasets for verified toner/drum mappings without claiming new model coverage.
