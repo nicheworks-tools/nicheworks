@@ -257,6 +257,10 @@ function renderPage({ entry, image, offer, entryById, launchSet, resolveCanonica
   const atlasUrl = atlasDeepLink(entry.id);
   const primaryDescription = description.ja || summary.ja || description.en || summary.en;
   const metaDescription = truncate(`${titleJa}（${titleEn}）の意味・用途・英語名・関連情報を確認できるConstruction Tools Atlasの項目ページ。 ${primaryDescription}`);
+  const socialImage = image
+    ? `https://nicheworks.app${image.display}`
+    : "https://nicheworks.app/assets/ogp.png";
+  const socialTitle = `${titleJa} / ${titleEn} | Construction Tools Atlas`;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "DefinedTerm",
@@ -291,11 +295,14 @@ function renderPage({ entry, image, offer, entryById, launchSet, resolveCanonica
   <link rel="stylesheet" href="/tools/construction-tools-atlas/seo-detail-v2.3.css">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="NicheWorks">
-  <meta property="og:title" content="${escapeHtml(titleJa)} / ${escapeHtml(titleEn)} | Construction Tools Atlas">
+  <meta property="og:title" content="${escapeHtml(socialTitle)}">
   <meta property="og:description" content="${escapeHtml(metaDescription)}">
   <meta property="og:url" content="${escapeHtml(canonical)}">
-  ${image ? `<meta property="og:image" content="https://nicheworks.app${escapeHtml(image.display)}">` : ""}
+  <meta property="og:image" content="${escapeHtml(socialImage)}">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(socialTitle)}">
+  <meta name="twitter:description" content="${escapeHtml(metaDescription)}">
+  <meta name="twitter:image" content="${escapeHtml(socialImage)}">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
   <script>
