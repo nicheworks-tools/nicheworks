@@ -90,6 +90,15 @@ assert.ok(doc.includes(omReconciliation), 'OM SYSTEM camera progress line must m
 assert.ok(affiliateDoc.includes(omReconciliation), 'affiliate coverage OM SYSTEM progress line must match the live audit');
 assert.ok(spec.includes(`**${omBasic} basic = ${omDetail} detail + ${omExcluded} reviewed exclusions + ${omMissing} missing accessory detail**`));
 
+const goProBasic = summary.cameraBasicByMaker.GoPro || 0;
+const goProDetail = summary.cameraDetailByMaker.GoPro || 0;
+const goProExcluded = summary.cameraDetailExcludedByMaker.GoPro || 0;
+const goProMissing = summary.cameraMissingAccessoryByMaker.GoPro || 0;
+const goProReconciliation = `GoPro camera ${goProBasic} = detail ${goProDetail} + reviewed exclusion ${goProExcluded} + missing ${goProMissing}`;
+assert.ok(doc.includes(goProReconciliation), 'GoPro camera progress line must match the live audit');
+assert.ok(affiliateDoc.includes(goProReconciliation), 'affiliate coverage GoPro progress line must match the live audit');
+assert.ok(spec.includes(`**${goProBasic} basic = ${goProDetail} detail + ${goProExcluded} reviewed exclusions + ${goProMissing} missing accessory detail**`));
+
 const djiLedgers = fs.readdirSync(toolRoot)
   .filter((name) => /^affiliate-dji-camera-accessories-wave\d+\.js$/.test(name))
   .sort((a, b) => Number(a.match(/wave(\d+)/)?.[1] || 0) - Number(b.match(/wave(\d+)/)?.[1] || 0));
@@ -100,16 +109,23 @@ const omSystemLedgers = fs.readdirSync(toolRoot)
   .sort((a, b) => Number(a.match(/wave(\d+)/)?.[1] || 0) - Number(b.match(/wave(\d+)/)?.[1] || 0));
 const omSystemTests = fs.readdirSync(testsRoot)
   .filter((name) => /^om-system-.*-wave\d+\.test\.mjs$/.test(name));
+const goProLedgers = fs.readdirSync(toolRoot)
+  .filter((name) => /^affiliate-gopro-camera-accessories-wave\d+\.js$/.test(name))
+  .sort((a, b) => Number(a.match(/wave(\d+)/)?.[1] || 0) - Number(b.match(/wave(\d+)/)?.[1] || 0));
+const goProTests = fs.readdirSync(testsRoot)
+  .filter((name) => /^gopro-.*-wave\d+\.test\.mjs$/.test(name));
 
 for (const path of [
   'affiliate-nikon-camera-accessories-wave2.js',
   ...djiLedgers,
   ...omSystemLedgers,
+  ...goProLedgers,
   'affiliate-camera-detail-exclusions.js',
   'CAMERA_ACCESSORY_COVERAGE.md',
   'tests/nikon-camera-accessory-wave2.test.mjs',
   ...djiTests.map((name) => `tests/${name}`),
   ...omSystemTests.map((name) => `tests/${name}`),
+  ...goProTests.map((name) => `tests/${name}`),
   'tests/camera-accessory-coverage.test.mjs',
   'tests/camera-accessory-doc-sync.test.mjs'
 ]) {
