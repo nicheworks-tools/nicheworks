@@ -129,6 +129,25 @@ for (const entry of published) {
   }
 }
 
+const migrationDiagnostics = [];
+for (const code of publishedCodes) {
+  const row = ledgerByCode.get(code);
+  const stats = sourceStats.get(code) || { urls: new Set(), types: new Set() };
+  if (row?.coverage_state === "standard" && (stats.urls.size < 3 || stats.types.size < 3)) {
+    migrationDiagnostics.push({
+      lgcode: code,
+      municipality: row.municipality,
+      actual_urls: stats.urls.size,
+      actual_types: stats.types.size,
+      recommended_state: stats.urls.size >= 1 && stats.types.size >= 1 ? "limited" : "reviewed_no_direct"
+    });
+  }
+}
+if (migrationDiagnostics.length) {
+  console.log("Legacy publication rows requiring state migration:");
+  console.log(JSON.stringify(migrationDiagnostics, null, 2));
+}
+
 const stateCounts = Object.fromEntries([...ALL_STATES].map((state) => [state, 0]));
 let reviewed = 0;
 
