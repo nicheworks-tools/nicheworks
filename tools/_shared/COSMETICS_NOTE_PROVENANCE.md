@@ -328,3 +328,22 @@ After Wave 14:
 - strong runtime identities: 58 / 599;
 - Wave 13 identities retained: 4 / 4;
 - raw dictionary records rewritten: no.
+
+
+## Verified note wave 15
+
+Wave 15 continues frequency-prioritized source-backed enrichment:
+
+| Canonical identity | Corpus occurrences | Reviewed runtime note basis |
+| --- | ---: | --- |
+| `alanine` | 3 | COSMILE Europe: skin and hair conditioning, antistatic and fragrance functions. |
+| `betaine` | 3 | COSMILE Europe: humectant, skin/hair conditioning, antistatic and viscosity control. |
+| `cetearyl olivate` | 3 | COSMILE Europe: skin-conditioning emollient, emulsifying, emulsion stabilising, hair conditioning and slip modification. |
+| `coco-glucoside` | 3 | COSMILE Europe: cleansing and foaming surfactant functions. |
+
+After Wave 15:
+
+- cumulative verified-note identities: 62;
+- strong runtime identities: 62 / 599;
+- Wave 14 identities retained: 4 / 4;
+- raw dictionary records rewritten: no.
