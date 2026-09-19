@@ -33,6 +33,10 @@ Provide a searchable, paginated directory of verified official manufacturer manu
 - Manufacturer-defined shared targets where applicable.
 - Optional Amazon purchase-search handoffs generated only from canonical metadata or exact reviewed compatibility mappings.
 
+## Coverage expansion workflow
+
+Future model-level expansion is governed by `COVERAGE_PASS_WORKFLOW.md`. Automation may discover candidates at scale, but it cannot promote rows solely because a URL was found or omit rows solely because a scraper missed them. Each manufacturer/category pass must lock an official population, retain every population model through direct/shared/support-only/held review states, escalate negative cases through alternate official discovery channels, and reconcile the entire population before `coverage-pass-complete` is allowed. Machine-readable manifests live under `coverage-passes/` and fail-closed validation lives under `scripts/coverage-pass-lib.mjs` plus `tests/coverage-pass-pipeline.test.mjs`.
+
 ## Data quality and provenance
 
 - Verified model-level coverage uses official manufacturer sources only.
