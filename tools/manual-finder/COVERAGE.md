@@ -17,7 +17,7 @@ All future model-level expansion must follow `COVERAGE_PASS_WORKFLOW.md`. Script
 
 ## Current verified model-level inventory
 
-With deployed Wave 3A / 3B / 3D / 3E, the accepted dataset contains **1,516 verified model/caliber rows**. **1,073 are outside Seiko**. Wave 3C Sony remains outside the deployed dataset and is not counted here.
+With the completed Sony JP α E-mount coverage-pass publication plus deployed Waves 3A / 3B / 3D / 3E, the accepted dataset contains **1,623 verified model/caliber rows**. **1,180 are outside Seiko**. The Sony publication adds 107 reviewed E-mount body rows in one reconciled batch.
 
 | Maker / dataset identity | Verified rows | Current state | Notes |
 | --- | ---: | --- | --- |
@@ -26,6 +26,7 @@ With deployed Wave 3A / 3B / 3D / 3E, the accepted dataset contains **1,516 veri
 | T-fal | 159 | expanded | Exact product-number rows from official instruction sources; many vendor-defined shared manuals. |
 | KYOCERA Document Solutions | 123 | expanded | Printer/MFP model rows from official manual pages. |
 | DJI | 107 | expanded | Product-level official download/support destinations. |
+| Sony | 107 | expanded, scope-complete | JP α E-mount body coverage pass is complete and published: 104 direct manual/help destinations + 3 exact JP support-only destinations. Sony company-wide coverage remains incomplete. |
 | OKI | 77 | expanded | Printer/MFP model-level official manual destinations. |
 | RICOH | 39 | expanded | Office MFP/wide-MFP model-level official product/manual destinations. |
 | OM SYSTEM | 37 | expanded | Camera/TG model-specific official manuals. |
@@ -40,7 +41,7 @@ With deployed Wave 3A / 3B / 3D / 3E, the accepted dataset contains **1,516 veri
 | Epson | 6 | expanded | Wave 3D first Colorio batch; exact official manual/support targets with verified consumable mappings. |
 | Canon | 6 | expanded | Wave 3E first PIXUS batch; direct or vendor-shared official online manuals with verified consumable mappings. |
 | Hisense | 2 | expanded | Exact TV function-manual targets; coverage is still very thin. |
-| **Total** | **1,516** |  |  |
+| **Total** | **1,623** |  |  |
 
 Counts above are accepted repository rows, not estimates of manufacturer catalog size.
 
@@ -51,7 +52,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | # | Baseline brand | Model-level state | Next action |
 | ---: | --- | --- | --- |
 | 1 | Apple | generic-only | PC/mobile queue |
-| 2 | Sony | generic-only | **P0 — JP α E-mount coverage pass is complete at 107 = 104 direct + 3 support-only + 0 held; publication is the next gate, so Sony remains generic-only until those reviewed rows are deployed** |
+| 2 | Sony | **expanded — 107** | JP α E-mount scope is published and coverage-pass-complete at 104 direct + 3 support-only + 0 held; broader Sony categories remain incomplete |
 | 3 | Panasonic | generic-only | **P0 — phase by product category** |
 | 4 | Canon | **expanded — 6** | First PIXUS batch covered in Wave 3E; broader Canon remains incomplete |
 | 5 | Nikon | **expanded — 14** | Mirrorless Web-manual section covered in Wave 3A; rotate away |
@@ -117,7 +118,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 65 | Bambu Lab | generic-only | P1 3D-printer queue |
 | 66 | Creality | generic-only | P1 3D-printer queue |
 
-Result after deployed Wave 3E: **56 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
+Result after the Sony JP α E-mount publication: **55 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
 
 ## P0 source audit and order
 
@@ -127,7 +128,7 @@ The first rotation is based on source structure, user usefulness, and the abilit
 | ---: | --- | --- | --- |
 | 1 | Nikon | Nikon's Web manual portal enumerates product families and individual camera manuals. The mirrorless section explicitly lists 14 camera models. | **Wave 3A implemented:** 14 searchable rows, 12 unique primary Web-manual targets, including vendor-shared Z7II/Z6II and Z7/Z6 pages. |
 | 2 | Brother | Official product search reports 96 MFC-J products. Wave 3B bounded the first search-result block to the 14 single-model results before the first grouped result. | **Wave 3B implemented:** 13 exact model manual pages accepted; MFC-J6990CDW held because its direct manual target was not confirmed in this pass. |
-| 3 | Sony | Official manuals are highly structured but enormous: camera/camcorder reports more than one thousand product names, while the current Japanese α manual index separates A-mount and E-mount bodies. | **Coverage pass complete for JP α E-mount:** 107 official models = 104 direct + 3 support-only + 0 held. The live runner initially found 103 direct + 4 support-only; secondary official discovery upgraded ILCE-5000 to a Japanese Sony Help Guide and confirmed why ILCE-3000, NEX-3N, and NEX-F3 remain JP support-only. Publication is still separate. |
+| 3 | Sony | Official manuals are highly structured but enormous: camera/camcorder reports more than one thousand product names, while the current Japanese α manual index separates A-mount and E-mount bodies. | **JP α E-mount coverage pass complete and published:** 107 official models = 104 direct + 3 support-only + 0 held. The live runner initially found 103 direct + 4 support-only; secondary official discovery upgraded ILCE-5000 to a Japanese Sony Help Guide and confirmed why ILCE-3000, NEX-3N, and NEX-F3 remain JP support-only. Broader Sony remains future work. |
 | 4 | Epson | Official support/manual system exposes model/category manuals and downloadable official pages. | **Wave 3D implemented:** six current Colorio models with direct official targets. |
 | 5 | Canon | Official manual selector is structured by product group, series and model across camera, printer, scanner and business lines. | **Wave 3E implemented:** six PIXUS models, preserving Canon-defined shared manual groups where applicable. |
 | 6 | Panasonic | Official manual search supports exact part-number lookup across a very broad appliance/AV catalog. | Next cross-maker P0 model-coverage phase; do not scrape the entire catalog as one wave. |
@@ -147,7 +148,7 @@ Current deployed state:
 
 1. **Wave 3A — Nikon:** implemented for the complete current mirrorless-camera Web-manual section; Nikon remains only `expanded`, not company-complete.
 2. **Wave 3B — Brother:** implemented for a bounded first MFC-J block; Brother remains only `expanded`, not company-complete.
-3. **Sony coverage-pass pilot:** JP α E-mount body scope is complete under `coverage-passes/sony/jp-alpha-e-mount-bodies.json`: **107 = 104 direct + 0 shared + 3 support-only + 0 held**. The reconciliation gate passes; reviewed rows are still non-public until the publication step lands. The old Wave 3C concept is superseded by this fail-closed coverage-pass workflow.
+3. **Sony coverage-pass pilot:** JP α E-mount body scope is complete and published from `coverage-passes/sony/jp-alpha-e-mount-bodies.json`: **107 = 104 direct + 0 shared + 3 support-only + 0 held**. The public compiled batch is `data/manuals.coverage-pass.sony-jp-alpha-e-mount.js`. Broader Sony categories remain separate future coverage passes.
 4. **Wave 3D — Epson:** implemented for six exact current Colorio models selected for clean manual and consumable evidence.
 5. **Wave 3E — Canon:** implemented for six PIXUS models; direct and vendor-shared manual targets are distinguished explicitly.
 6. **Next cross-maker coverage wave — Panasonic:** one bounded product category, unless Wave 3C Sony is closed first.
