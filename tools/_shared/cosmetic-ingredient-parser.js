@@ -228,7 +228,11 @@
     "chlorphenesin": Object.freeze({ note_short: "Preservative and antimicrobial ingredient; COSMILE Europe lists Chlorphenesin as protecting cosmetics from microbial spoilage and helping control microorganism growth.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3114/chlorphenesin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "cetearyl alcohol": Object.freeze({ note_short: "Fatty-alcohol mixture used for emollience, emulsion stability and viscosity control; COSMILE Europe also lists cleansing, emulsifying and foam-boosting surfactant functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2895/cetearyl-alcohol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "disodium edta": Object.freeze({ note_short: "Chelating ingredient; COSMILE Europe lists Disodium EDTA as binding metal ions that can affect cosmetic stability or appearance, with an additional viscosity-controlling function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/4934/disodium-edta/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "panthenol": Object.freeze({ note_short: "Provitamin B5 skin- and hair-conditioning ingredient; COSMILE Europe also describes humectant and skin-smoothing properties for Panthenol.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10243/panthenol/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "panthenol": Object.freeze({ note_short: "Provitamin B5 skin- and hair-conditioning ingredient; COSMILE Europe also describes humectant and skin-smoothing properties for Panthenol.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10243/panthenol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "pentylene glycol": Object.freeze({ note_short: "Solvent and skin-conditioning ingredient; COSMILE Europe lists both functions for Pentylene Glycol.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11416/pentylene-glycol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sodium hyaluronate": Object.freeze({ note_short: "Humectant and skin-conditioning ingredient; COSMILE Europe lists Sodium Hyaluronate as retaining moisture and maintaining skin condition.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14809/sodium-hyaluronate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "dimethicone": Object.freeze({ note_short: "Skin-conditioning silicone; COSMILE Europe lists Dimethicone for skin conditioning, emollience and skin protection, with an antifoaming function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/4583/dimethicone/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polysorbate 20": Object.freeze({ note_short: "Cleansing and emulsifying surfactant; COSMILE Europe lists both functions for Polysorbate 20.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12491/polysorbate-20/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -453,7 +457,7 @@
   }
 
   const api = {
-    version: "1.46.0",
+    version: "1.47.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
