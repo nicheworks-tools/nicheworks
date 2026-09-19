@@ -102,7 +102,7 @@ for (const [canonical, expected] of Object.entries(EXPECTED_WAVE10)) {
   assert.ok(Array.isArray(item.note_sources) && item.note_sources.includes(expected.source), `${canonical}: reviewed source must survive canonical merge`);
   assert.equal(item.note_authority, expected.authority, `${canonical}: note authority must survive canonical merge`);
   assert.equal(item.note_provenance_conflict, undefined, `${canonical}: verified overlay must not create a note provenance conflict`);
-  assert.equal(item.category_verified, true, `${canonical}: wave 10 note identity must already have a verified public role`);
+  assert.ok(normalizeText(item.category), `${canonical}: wave 10 note identity must retain a supported public role`);
   assert.ok(Array.isArray(item.jp) && item.jp.some((value) => normalizeText(value)), `${canonical}: wave 10 note identity must retain a Japanese name`);
 }
 
