@@ -264,7 +264,11 @@
     "threonine": Object.freeze({ note_short: "Amino acid used for hair conditioning; COSMILE Europe also lists antistatic and hair-waving-or-straightening functions for Threonine.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/16137/threonine/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "cocamidopropyl betaine": Object.freeze({ note_short: "Cleansing and foam-boosting surfactant used for hair conditioning and antistatic effects; COSMILE Europe lists these functions for Cocamidopropyl Betaine.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3599/cocamidopropyl-betaine/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "dicaprylyl carbonate": Object.freeze({ note_short: "Skin-conditioning emollient; COSMILE Europe lists Dicaprylyl Carbonate as maintaining, softening and smoothing the skin.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/4341/dicaprylyl-carbonate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "glutamic acid": Object.freeze({ note_short: "Amino acid used as a humectant and hair-conditioning ingredient; COSMILE Europe also lists an antistatic function for Glutamic Acid.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5909/glutamic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "glutamic acid": Object.freeze({ note_short: "Amino acid used as a humectant and hair-conditioning ingredient; COSMILE Europe also lists an antistatic function for Glutamic Acid.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5909/glutamic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "adenosine": Object.freeze({ note_short: "Skin-conditioning ingredient; COSMILE Europe lists Adenosine as maintaining the skin in good condition.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/484/adenosine/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "behentrimonium methosulfate": Object.freeze({ note_short: "Antistatic and hair-conditioning cleansing surfactant; COSMILE Europe lists all three functions for Behentrimonium Methosulfate.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1532/behentrimonium-methosulfate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "butyrospermum parkii shea butter": Object.freeze({ note_short: "Shea butter used for skin conditioning and viscosity control; COSMILE Europe lists both functions for Butyrospermum Parkii Butter.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/18767/butyrospermum-parkii-butter/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "glyceryl stearate se": Object.freeze({ note_short: "Emulsifying surfactant; COSMILE Europe lists Glyceryl Stearate SE as supporting stable oil-and-water emulsions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6059/glyceryl-stearate-se/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -489,7 +493,7 @@
   }
 
   const api = {
-    version: "1.55.0",
+    version: "1.56.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,

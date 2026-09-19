@@ -139,6 +139,8 @@ jobs:
         run: node tools/_shared/check-cosmetics-verified-note-wave17.mjs
       - name: Verified note wave 18 common-label priority
         run: node tools/_shared/check-cosmetics-verified-note-wave18.mjs
+      - name: Verified note wave 19 common-label priority
+        run: node tools/_shared/check-cosmetics-verified-note-wave19.mjs
       - name: Japanese label variant regression
         run: node tools/_shared/check-cosmetics-jp-label-variants.mjs
       - name: Canonical merge regression
@@ -177,6 +179,7 @@ jobs:
           node --check tools/_shared/check-cosmetics-verified-note-wave16.mjs
           node --check tools/_shared/check-cosmetics-verified-note-wave17.mjs
           node --check tools/_shared/check-cosmetics-verified-note-wave18.mjs
+          node --check tools/_shared/check-cosmetics-verified-note-wave19.mjs
           node --check tools/_shared/check-cosmetics-jp-label-variants.mjs
           node --check tools/_shared/check-fastscan-ocr-robustness.mjs
           node --check tools/cosmetic-ingredient-checker-lite/app.js

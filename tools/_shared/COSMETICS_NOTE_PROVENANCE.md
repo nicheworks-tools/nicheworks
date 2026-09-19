@@ -404,3 +404,22 @@ After Wave 18:
 - strong runtime identities: 74 / 599;
 - Wave 17 identities retained: 4 / 4;
 - raw dictionary records rewritten: no.
+
+
+## Verified note wave 19
+
+Wave 19 continues frequency-prioritized source-backed enrichment:
+
+| Canonical identity | Corpus occurrences | Reviewed runtime note basis |
+| --- | ---: | --- |
+| `adenosine` | 2 | COSMILE Europe: skin conditioning. |
+| `behentrimonium methosulfate` | 2 | COSMILE Europe: antistatic, hair conditioning and surfactant-cleansing. |
+| `butyrospermum parkii shea butter` | 2 | COSMILE Europe: skin conditioning and viscosity control. |
+| `glyceryl stearate se` | 2 | COSMILE Europe: emulsifying surfactant. |
+
+After Wave 19:
+
+- cumulative verified-note identities: 78;
+- strong runtime identities: 78 / 599;
+- Wave 18 identities retained: 4 / 4;
+- raw dictionary records rewritten: no.
