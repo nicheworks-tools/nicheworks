@@ -232,7 +232,11 @@
     "pentylene glycol": Object.freeze({ note_short: "Solvent and skin-conditioning ingredient; COSMILE Europe lists both functions for Pentylene Glycol.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11416/pentylene-glycol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "sodium hyaluronate": Object.freeze({ note_short: "Humectant and skin-conditioning ingredient; COSMILE Europe lists Sodium Hyaluronate as retaining moisture and maintaining skin condition.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14809/sodium-hyaluronate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "dimethicone": Object.freeze({ note_short: "Skin-conditioning silicone; COSMILE Europe lists Dimethicone for skin conditioning, emollience and skin protection, with an antifoaming function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/4583/dimethicone/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "polysorbate 20": Object.freeze({ note_short: "Cleansing and emulsifying surfactant; COSMILE Europe lists both functions for Polysorbate 20.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12491/polysorbate-20/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "polysorbate 20": Object.freeze({ note_short: "Cleansing and emulsifying surfactant; COSMILE Europe lists both functions for Polysorbate 20.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12491/polysorbate-20/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ceramide ap": Object.freeze({ note_short: "Ceramide lipid used for skin and hair conditioning; COSMILE Europe identifies Ceramide AP as a ceramide sphingolipid and lists both conditioning functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2820/ceramide-ap/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ceramide eop": Object.freeze({ note_short: "Ceramide lipid used for skin and hair conditioning; COSMILE Europe identifies Ceramide EOP as a ceramide sphingolipid and lists both conditioning functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/25521/ceramide-eop/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "squalane": Object.freeze({ note_short: "Skin- and hair-conditioning emollient; COSMILE Europe also lists refatting for Squalane and describes a skin-smoothing effect.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15418/squalane/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "trisodium ethylenediamine disuccinate": Object.freeze({ note_short: "Chelating ingredient; COSMILE Europe describes Trisodium Ethylenediamine Disuccinate as binding metal ions to support product stability and cleansing performance in hard water.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/16590/trisodium-ethylenediamine-disuccinate/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -457,7 +461,7 @@
   }
 
   const api = {
-    version: "1.47.0",
+    version: "1.48.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
