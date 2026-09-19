@@ -1,0 +1,150 @@
+{
+  "schema": "cta-seo-launch-cohort-v2.3",
+  "version": "2026-09-19-commerce-ready-cohort-1",
+  "policy": {
+    "source": "revenue readiness baseline after PR #1379",
+    "explicit_membership": true,
+    "auto_expand_on_new_images": false,
+    "require_active_affiliate_mapping": true,
+    "require_image_stage": [
+      "promoted",
+      "not_required"
+    ],
+    "require_fallback_independent_bilingual_core": true,
+    "url_root": "/tools/construction-tools-atlas/glossary/"
+  },
+  "entries": [
+    {
+      "id": "allen_key",
+      "slug": "allen-key"
+    },
+    {
+      "id": "angle_grinder",
+      "slug": "angle-grinder"
+    },
+    {
+      "id": "ball_valve",
+      "slug": "ball-valve"
+    },
+    {
+      "id": "bolt_cutter",
+      "slug": "bolt-cutter"
+    },
+    {
+      "id": "caliper",
+      "slug": "caliper"
+    },
+    {
+      "id": "caulking_gun",
+      "slug": "caulking-gun"
+    },
+    {
+      "id": "circuit_breaker",
+      "slug": "circuit-breaker"
+    },
+    {
+      "id": "circular_saw",
+      "slug": "circular-saw"
+    },
+    {
+      "id": "clamp_bar",
+      "slug": "clamp-bar"
+    },
+    {
+      "id": "cordless_drill",
+      "slug": "cordless-drill"
+    },
+    {
+      "id": "drill_driver",
+      "slug": "drill-driver"
+    },
+    {
+      "id": "fire_extinguisher",
+      "slug": "fire-extinguisher"
+    },
+    {
+      "id": "flashing",
+      "slug": "flashing"
+    },
+    {
+      "id": "float",
+      "slug": "float"
+    },
+    {
+      "id": "hammer",
+      "slug": "hammer"
+    },
+    {
+      "id": "hard_hat",
+      "slug": "hard-hat"
+    },
+    {
+      "id": "impact_driver",
+      "slug": "impact-driver"
+    },
+    {
+      "id": "insulation",
+      "slug": "insulation"
+    },
+    {
+      "id": "jigsaw",
+      "slug": "jigsaw"
+    },
+    {
+      "id": "laser_level",
+      "slug": "laser-level"
+    },
+    {
+      "id": "measuring_wheel",
+      "slug": "measuring-wheel"
+    },
+    {
+      "id": "notched_trowel",
+      "slug": "notched-trowel"
+    },
+    {
+      "id": "paint_tray",
+      "slug": "paint-tray"
+    },
+    {
+      "id": "q017_copper_pipe",
+      "slug": "copper-pipe"
+    },
+    {
+      "id": "q017_needle_nose_pliers",
+      "slug": "needle-nose-pliers"
+    },
+    {
+      "id": "q017_rubber_mallet",
+      "slug": "rubber-mallet"
+    },
+    {
+      "id": "q017_survey_tripod",
+      "slug": "survey-tripod"
+    },
+    {
+      "id": "q017_toolbox",
+      "slug": "toolbox"
+    },
+    {
+      "id": "q017_workbench",
+      "slug": "workbench"
+    },
+    {
+      "id": "respirator",
+      "slug": "respirator"
+    },
+    {
+      "id": "rotary_hammer",
+      "slug": "rotary-hammer"
+    },
+    {
+      "id": "safety_boots",
+      "slug": "safety-boots"
+    },
+    {
+      "id": "safety_harness",
+      "slug": "safety-harness"
+    }
+  ]
+}
