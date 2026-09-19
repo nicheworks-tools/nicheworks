@@ -220,7 +220,11 @@
     "xanthan gum": Object.freeze({ note_short: "Viscosity-controlling and emulsion-stabilising polysaccharide; COSMILE Europe notes that Xanthan Gum forms highly viscous, gel-like solutions and supports gel formation and emulsion stability.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/16999/xanthan-gum/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "niacinamide": Object.freeze({ note_short: "Smoothing ingredient; COSMILE Europe lists Niacinamide as seeking a more even skin surface by decreasing roughness or irregularities.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/9443/niacinamide/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "ceramide np": Object.freeze({ note_short: "Ceramide lipid and skin/hair-conditioning ingredient; COSMILE Europe describes ceramides as sphingolipids present in the epidermis and lists Ceramide NP for skin and hair conditioning.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/25522/ceramide-np/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "ethylhexylglycerin": Object.freeze({ note_short: "Skin-conditioning and deodorant ingredient; COSMILE Europe lists both functions for Ethylhexylglycerin.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5500/ethylhexylglycerin/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "ethylhexylglycerin": Object.freeze({ note_short: "Skin-conditioning and deodorant ingredient; COSMILE Europe lists both functions for Ethylhexylglycerin.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5500/ethylhexylglycerin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "propanediol": Object.freeze({ note_short: "Humectant, solvent and viscosity-controlling ingredient; COSMILE Europe lists these functions for Propanediol.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/13169/propanediol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sodium chloride": Object.freeze({ note_short: "Mineral salt used for viscosity control and bulking; COSMILE Europe notes that Sodium Chloride has viscosity-regulating and swelling effects in cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14677/sodium-chloride/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "tocopherol": Object.freeze({ note_short: "Vitamin E antioxidant and skin-conditioning ingredient; COSMILE Europe lists Tocopherol as limiting oxidation and deterioration of ingredients and maintaining skin condition.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/16234/tocopherol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "carbomer": Object.freeze({ note_short: "Polyacrylic-acid polymer used for gel formation, viscosity control and emulsion stability; COSMILE Europe describes Carbomer as a gelling and emulsion-stabilising component.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2648/carbomer/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -445,7 +449,7 @@
   }
 
   const api = {
-    version: "1.44.0",
+    version: "1.45.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
