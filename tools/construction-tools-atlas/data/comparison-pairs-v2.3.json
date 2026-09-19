@@ -1,0 +1,145 @@
+{
+  "schema": "cta-comparison-pairs-v2.3",
+  "version": "2026-09-19-reviewed-pairs-1",
+  "policy": {
+    "publication": "explicit_reviewed_pairs_only",
+    "arbitrary_all_to_all_comparison": false,
+    "evidence": "pair claims must be supported by current canonical bilingual content",
+    "commercial_claims": false,
+    "ranking_or_best_claims": false,
+    "raw_search_text_affiliate_forwarding": false
+  },
+  "pairs": [
+    {
+      "id": "impact-driver-vs-drill-driver",
+      "left_id": "impact_driver",
+      "right_id": "drill_driver",
+      "state": "reviewed",
+      "title_ja": "インパクトドライバーとドリルドライバーの違い",
+      "title_en": "Impact Driver vs Drill Driver",
+      "summary_ja": "どちらもネジ締めに使える電動工具だが、ドリルドライバーは穴あけと軽いネジ締めをクラッチで調整しやすく、インパクトドライバーは回転方向の打撃で高い締付け力を出す。",
+      "summary_en": "Both can drive screws, but a drill driver combines drilling with clutch-controlled light fastening, while an impact driver uses rotational impacts to deliver higher fastening torque.",
+      "evidence": [
+        {
+          "entry_id": "drill_driver",
+          "fields": [
+            "description",
+            "detail",
+            "examples"
+          ],
+          "note": "Canonical content explicitly distinguishes drill/driver use from impact-driver use and describes clutch-controlled drilling/light fastening."
+        },
+        {
+          "entry_id": "impact_driver",
+          "fields": [
+            "description",
+            "detail",
+            "bullets",
+            "examples"
+          ],
+          "note": "Canonical content describes rotational impacts, higher fastening torque, long screws/certain bolts, and over-driving/torque-control cautions."
+        }
+      ],
+      "dimensions": [
+        {
+          "label_ja": "主な役割",
+          "label_en": "Primary role",
+          "left_ja": "強い締付け。長いビスや一部のボルトを回す用途。",
+          "left_en": "Higher-torque fastening, including long screws and certain bolts.",
+          "right_ja": "穴あけと軽いネジ締め。下穴あけや仕上げ作業。",
+          "right_en": "Drilling plus light screw driving, including pilot holes and finish work."
+        },
+        {
+          "label_ja": "力の出し方・調整",
+          "label_en": "Torque behavior / control",
+          "left_ja": "回転方向へ打撃を加えて締付け力を出し、出力モードを作業に合わせる。",
+          "left_en": "Adds rotational impacts for fastening torque; power mode should match the task.",
+          "right_ja": "クラッチ設定で締付け力を調整し、締め過ぎを抑えやすい。",
+          "right_en": "Uses clutch settings to control driving torque and help prevent over-driving."
+        },
+        {
+          "label_ja": "穴あけ",
+          "label_en": "Drilling",
+          "left_ja": "現行canonicalでは主用途を締付けとして扱う。",
+          "left_en": "The current canonical treats fastening as the primary role.",
+          "right_ja": "木材・石膏ボード・薄い金属などへの下穴あけを主用途に含む。",
+          "right_en": "Includes pilot-hole drilling in wood, drywall, and thin metal."
+        },
+        {
+          "label_ja": "代表的な使用場面",
+          "label_en": "Typical use",
+          "left_ja": "構造用の長い木ねじ、仮締めしたボルトを効率よく回す。",
+          "left_en": "Driving long structural wood screws or running preassembled bolts.",
+          "right_ja": "棚受け金具の下穴、内装材の小ビス締め。",
+          "right_en": "Pilot holes for shelf brackets and small screws in finish work."
+        }
+      ]
+    },
+    {
+      "id": "hammer-vs-rubber-mallet",
+      "left_id": "hammer",
+      "right_id": "q017_rubber_mallet",
+      "state": "reviewed",
+      "title_ja": "ハンマーとゴムハンマーの違い",
+      "title_en": "Hammer vs Rubber Mallet",
+      "summary_ja": "どちらも打撃で部材を動かす手工具だが、ハンマーは釘打ちや軽い解体にも使い、ゴムハンマーは仕上げ面を傷つけにくい打撃で位置調整やはめ込みを行う。",
+      "summary_en": "Both are striking hand tools, but a hammer also serves nail driving and light demolition, while a rubber mallet is used for positioning and fitting with less risk of marking finished surfaces.",
+      "evidence": [
+        {
+          "entry_id": "hammer",
+          "fields": [
+            "description",
+            "detail",
+            "bullets",
+            "examples"
+          ],
+          "note": "Canonical content covers nail driving, component adjustment, light demolition, striking-face selection, and swing-space cautions."
+        },
+        {
+          "entry_id": "q017_rubber_mallet",
+          "fields": [
+            "description",
+            "detail",
+            "bullets",
+            "examples"
+          ],
+          "note": "Canonical content describes a rubber striking face for adjustment/fitting and explicitly contrasts reduced surface damage with a steel hammer."
+        }
+      ],
+      "dimensions": [
+        {
+          "label_ja": "主な役割",
+          "label_en": "Primary role",
+          "left_ja": "釘打ち、部材の位置調整、軽い解体。",
+          "left_en": "Driving nails, adjusting components, and light demolition.",
+          "right_ja": "部材を傷つけにくく叩いて位置調整・はめ込みを行う。",
+          "right_en": "Tapping parts into position or fit while reducing surface damage."
+        },
+        {
+          "label_ja": "打撃面",
+          "label_en": "Striking face",
+          "left_ja": "作業に合う頭部形状・打撃面を選ぶ。",
+          "left_en": "Head style and striking face are selected for the task.",
+          "right_ja": "ゴム製の打撃面を使う。",
+          "right_en": "Uses a rubber striking face."
+        },
+        {
+          "label_ja": "代表的な使用場面",
+          "label_en": "Typical use",
+          "left_ja": "木下地への釘打ち、仮固定部材の微調整。",
+          "left_en": "Driving nails into timber framing and making small alignment adjustments.",
+          "right_ja": "床材の継ぎ目、仕上げ面を傷つけたくない組立部材の調整。",
+          "right_en": "Flooring joints and assemblies where surface marking should be reduced."
+        },
+        {
+          "label_ja": "注意の焦点",
+          "label_en": "Key caution",
+          "left_ja": "斜め打ちや周囲の振り幅に注意し、適切な打撃面を使う。",
+          "left_en": "Avoid glancing blows, keep clear swing space, and use the correct striking face.",
+          "right_ja": "対象材に合うゴム頭の硬さ・重量を選び、必要以上に強打しない。",
+          "right_en": "Choose suitable rubber-head hardness and weight and avoid excessive blows."
+        }
+      ]
+    }
+  ]
+}
