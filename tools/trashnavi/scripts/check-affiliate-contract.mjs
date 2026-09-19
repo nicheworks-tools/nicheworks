@@ -14,6 +14,9 @@ const runtime = read('tools/trashnavi/affiliate-runtime.js');
 const generator = read('tools/trashnavi/scripts/generate-municipality-pages.mjs');
 const helper = read('assets/amazon-affiliate.js');
 const manifest = JSON.parse(read('tools/trashnavi/municipality-page-manifest.json')).filter((entry) => entry.publish);
+const ledger = JSON.parse(read('tools/trashnavi/data/municipality-review-ledger.json'));
+const publishableStates = new Set(['standard', 'limited', 'joint_service']);
+const expectedPublished = ledger.municipalities.filter((row) => publishableStates.has(row.coverage_state)).length;
 
 check(config.includes('const TRACKING_ID = "nicheworks09-22"'), 'TrashNavi Associates tracking ID missing');
 check(config.includes('trackingMode: "tagged_search"'), 'TrashNavi must use tagged Amazon search mode');
@@ -42,7 +45,7 @@ for (const asset of ['/assets/amazon-affiliate.js', '/tools/trashnavi/affiliate-
   check(generator.includes(asset), `generated page asset missing: ${asset}`);
 }
 check(generator.includes('自治体の収集ルールとは別に'), 'municipal-rule separation copy missing');
-check(manifest.length === 294, `expected 294 published municipality pages, got ${manifest.length}`);
+check(manifest.length === expectedPublished, `published municipality pages must match publishable ledger states (${expectedPublished}); got ${manifest.length}`);
 
 for (const entry of manifest) {
   const relative = path.join('tools', 'trashnavi', entry.pref_slug, entry.city_slug, 'index.html');
