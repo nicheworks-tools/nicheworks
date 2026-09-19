@@ -53,7 +53,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | ---: | --- | --- | --- |
 | 1 | Apple | generic-only | PC/mobile queue |
 | 2 | Sony | **expanded — 107** | JP α E-mount scope is published and coverage-pass-complete at 104 direct + 3 support-only + 0 held; broader Sony categories remain incomplete |
-| 3 | Panasonic | generic-only | **P0 — JP LUMIX camera-body coverage pass started from the official LUMIX sitemap: 27 exact S/G/compact camera identities locked and live review in progress** |
+| 3 | Panasonic | generic-only | **P0 — JP LUMIX camera-body coverage pass is complete at 27 = 27 direct + 0 support-only + 0 held; publication is the next gate, so Panasonic remains generic-only until those reviewed rows are deployed** |
 | 4 | Canon | **expanded — 6** | First PIXUS batch covered in Wave 3E; broader Canon remains incomplete |
 | 5 | Nikon | **expanded — 14** | Mirrorless Web-manual section covered in Wave 3A; rotate away |
 | 6 | Fujifilm | generic-only | Camera division must be handled separately from FUJIFILM Business Innovation |
@@ -131,7 +131,7 @@ The first rotation is based on source structure, user usefulness, and the abilit
 | 3 | Sony | Official manuals are highly structured but enormous: camera/camcorder reports more than one thousand product names, while the current Japanese α manual index separates A-mount and E-mount bodies. | **JP α E-mount coverage pass complete and published:** 107 official models = 104 direct + 3 support-only + 0 held. The live runner initially found 103 direct + 4 support-only; secondary official discovery upgraded ILCE-5000 to a Japanese Sony Help Guide and confirmed why ILCE-3000, NEX-3N, and NEX-F3 remain JP support-only. Broader Sony remains future work. |
 | 4 | Epson | Official support/manual system exposes model/category manuals and downloadable official pages. | **Wave 3D implemented:** six current Colorio models with direct official targets. |
 | 5 | Canon | Official manual selector is structured by product group, series and model across camera, printer, scanner and business lines. | **Wave 3E implemented:** six PIXUS models, preserving Canon-defined shared manual groups where applicable. |
-| 6 | Panasonic | Official manual search spans a very broad appliance/AV catalog. The LUMIX sitemap provides a bounded camera-body population under S-series, G-series, and compact-camera headings. | **Coverage-pass pilot active:** 27 exact LUMIX camera identities are locked from the official sitemap and undergoing live support/manual verification. Broader Panasonic remains out of scope for this pass. |
+| 6 | Panasonic | Official manual search spans a very broad appliance/AV catalog. The LUMIX sitemap provides a bounded camera-body population under S-series, G-series, and compact-camera headings. | **Coverage pass complete for the sitemap camera-body scope:** 27 official identities = 27 direct + 0 support-only + 0 held. The live runner confirmed 26 direct product-support/manual pages; secondary official discovery resolved DC-G100D to Panasonic's exact PDF manual. Publication remains separate. |
 
 Primary official entry points used for this audit:
 
@@ -151,7 +151,7 @@ Current deployed state:
 3. **Sony coverage-pass pilot:** JP α E-mount body scope is complete and published from `coverage-passes/sony/jp-alpha-e-mount-bodies.json`: **107 = 104 direct + 0 shared + 3 support-only + 0 held**. The public compiled batch is `data/manuals.coverage-pass.sony-jp-alpha-e-mount.js`. Broader Sony categories remain separate future coverage passes.
 4. **Wave 3D — Epson:** implemented for six exact current Colorio models selected for clean manual and consumable evidence.
 5. **Wave 3E — Canon:** implemented for six PIXUS models; direct and vendor-shared manual targets are distinguished explicitly.
-6. **Panasonic coverage-pass pilot:** JP LUMIX S/G/compact camera-body scope is registered under `coverage-passes/panasonic/jp-lumix-camera-bodies-sitemap.json`: **27 exact official sitemap identities** are locked and live review is in progress. No Panasonic rows are public from this pass until reconciliation completes.
+6. **Panasonic coverage-pass pilot:** JP LUMIX S/G/compact camera-body scope is complete under `coverage-passes/panasonic/jp-lumix-camera-bodies-sitemap.json`: **27 = 27 direct + 0 shared + 0 support-only + 0 held**. The reconciliation gate passes; reviewed rows remain non-public until the publication step lands.
 7. Re-evaluate counts and gaps before any second model-coverage wave for Nikon/Brother/Epson/Canon.
 
 Affiliate expansion has a separate priority queue and may evaluate already-deep office-printer datasets for verified toner/drum mappings without claiming new model coverage.
