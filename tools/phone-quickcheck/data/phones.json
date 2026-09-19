@@ -10424,6 +10424,189 @@
         "verifiedAt": "2026-09-19"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "oppo-find-x9-ultra",
+      "manufacturer": "OPPO",
+      "model": "OPPO Find X9 Ultra",
+      "aliases": [
+        "OPPO Find X9 Ultra",
+        "FindX9Ultra",
+        "Find X9 Ultra",
+        "オッポ Find X9 Ultra",
+        "オッポファインドX9ウルトラ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 163,
+        "widthMm": 77
+      },
+      "physicalVariants": [
+        {
+          "key": "tundra-amber",
+          "labelJa": "ツンドラアンバー",
+          "labelEn": "Tundra Amber",
+          "depthMm": 9.1,
+          "weightG": 236
+        },
+        {
+          "key": "canyon-orange",
+          "labelJa": "キャニオンオレンジ",
+          "labelEn": "Canyon Orange",
+          "depthMm": 8.7,
+          "weightG": 235
+        }
+      ],
+      "displayInch": 6.8,
+      "waterRating": "IPX8/IPX9 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 100,
+        "protocols": [
+          "SUPERVOOC"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "AIRVOOC",
+        "wirelessMaxW": 50,
+        "battery": {
+          "capacityMah": 7050,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.oppo.com/jp/newsroom/press/findx9ultra-release/"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-find-x/find-x9-ultra/",
+        "manualUrl": "https://support.oppo.com/jp/",
+        "releaseUrl": "https://www.oppo.com/jp/newsroom/press/findx9ultra-release/",
+        "chargingUrl": "https://www.oppo.com/jp/newsroom/press/findx9ultra-release/",
+        "wirelessUrl": "https://www.oppo.com/jp/newsroom/press/findx9ultra-release/",
+        "waterUrl": "https://www.oppo.com/jp/newsroom/press/findx9ultra-release/",
+        "packageUrl": "https://www.oppo.com/jp/newsroom/press/findx9ultra-release/",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-poco-x8-pro-max",
+      "manufacturer": "Xiaomi",
+      "model": "POCO X8 Pro Max",
+      "aliases": [
+        "Xiaomi POCO X8 Pro Max",
+        "POCOX8ProMax",
+        "Poco X8 Pro Max",
+        "ポコX8 Pro Max",
+        "ポコX8プロマックス"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 162.9,
+        "widthMm": 77.9,
+        "depthMm": 8.2
+      },
+      "weightG": 218,
+      "displayInch": 6.83,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 100,
+        "protocols": [
+          "Xiaomi HyperCharge",
+          "PPS",
+          "USB PD 3.0",
+          "USB PD 2.0"
+        ],
+        "pps": "supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 8500,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/poco-x8-pro-max/specs/"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/poco-x8-pro-max/specs/",
+        "manualUrl": "https://www.mi.com/jp/support/",
+        "releaseUrl": "https://www.mi.com/jp/event/poco-x8-pro-series-firstsale",
+        "chargingUrl": "https://www.mi.com/jp/support/faq/details/KA-678952/",
+        "waterUrl": "https://www.mi.com/jp/product/poco-x8-pro-max/specs/",
+        "packageUrl": "https://www.mi.com/jp/product/poco-x8-pro-max/specs/",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-poco-x8-pro",
+      "manufacturer": "Xiaomi",
+      "model": "POCO X8 Pro",
+      "aliases": [
+        "Xiaomi POCO X8 Pro",
+        "POCOX8Pro",
+        "Poco X8 Pro",
+        "ポコX8 Pro",
+        "ポコX8プロ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 157.53,
+        "widthMm": 75.19,
+        "depthMm": 8.38
+      },
+      "weightG": 201.47,
+      "displayInch": 6.59,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 100,
+        "protocols": [
+          "Xiaomi HyperCharge",
+          "PPS",
+          "USB PD 3.0",
+          "USB PD 2.0"
+        ],
+        "pps": "supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 6500,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/poco-x8-pro/specs/"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/poco-x8-pro/specs/",
+        "manualUrl": "https://www.mi.com/jp/support/",
+        "releaseUrl": "https://www.mi.com/jp/event/poco-x8-pro-series-firstsale",
+        "chargingUrl": "https://www.mi.com/jp/support/faq/details/KA-678967/",
+        "waterUrl": "https://www.mi.com/jp/product/poco-x8-pro/specs/",
+        "packageUrl": "https://www.mi.com/jp/product/poco-x8-pro/specs/",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
     }
   ]
 }
