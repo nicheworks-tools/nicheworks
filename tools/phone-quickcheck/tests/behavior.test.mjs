@@ -919,3 +919,39 @@ console.log('Phone QuickCheck final automated QA passed: controls, sort modes, e
   assert.match(h.elements.desktopDetail.innerHTML, /6000 mAh/);
 }
 
+// Post-v1 2026 maintenance Wave 6.
+{
+  const x9u = byId.get('oppo-find-x9-ultra');
+  assert.ok(x9u, 'OPPO Find X9 Ultra fixture missing');
+  assert.equal(x9u.physicalVariants?.length, 2);
+  assert.deepEqual(x9u.physicalVariants?.map((variant) => variant.depthMm), [9.1, 8.7]);
+  assert.deepEqual(x9u.physicalVariants?.map((variant) => variant.weightG), [236, 235]);
+  assert.equal(x9u.charging?.battery?.capacityMah, 7050);
+  assert.equal(x9u.charging?.wiredMaxW, 100);
+  assert.equal(x9u.charging?.wirelessMaxW, 50);
+  assert.equal(x9u.included?.adapter, 'included');
+  assert.equal(x9u.included?.cable, 'included');
+
+  const x8max = byId.get('xiaomi-poco-x8-pro-max');
+  assert.ok(x8max, 'POCO X8 Pro Max fixture missing');
+  assert.equal(x8max.weightG, 218);
+  assert.equal(x8max.charging?.battery?.capacityMah, 8500);
+  assert.equal(x8max.charging?.wiredMaxW, 100);
+  assert.equal(x8max.charging?.pps, 'supported');
+  assert.equal(x8max.waterRating, 'IP68');
+  assert.equal(x8max.included?.adapter, 'included');
+  assert.equal(x8max.included?.cable, 'included');
+
+  const x8pro = byId.get('xiaomi-poco-x8-pro');
+  assert.ok(x8pro, 'POCO X8 Pro fixture missing');
+  assert.equal(x8pro.weightG, 201.47);
+  assert.equal(x8pro.charging?.battery?.capacityMah, 6500);
+  assert.equal(x8pro.charging?.wiredMaxW, 100);
+  assert.equal(x8pro.charging?.pps, 'supported');
+  assert.equal(x8pro.waterRating, 'IP68');
+
+  const h = await createHarness(['oppo-find-x9-ultra', 'xiaomi-poco-x8-pro-max', 'xiaomi-poco-x8-pro']);
+  assert.match(h.elements.phoneList.innerHTML, /OPPO Find X9 Ultra/);
+  assert.match(h.elements.desktopDetail.innerHTML, /7050 mAh/);
+}
+
