@@ -224,7 +224,11 @@
     "propanediol": Object.freeze({ note_short: "Humectant, solvent and viscosity-controlling ingredient; COSMILE Europe lists these functions for Propanediol.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/13169/propanediol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "sodium chloride": Object.freeze({ note_short: "Mineral salt used for viscosity control and bulking; COSMILE Europe notes that Sodium Chloride has viscosity-regulating and swelling effects in cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14677/sodium-chloride/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "tocopherol": Object.freeze({ note_short: "Vitamin E antioxidant and skin-conditioning ingredient; COSMILE Europe lists Tocopherol as limiting oxidation and deterioration of ingredients and maintaining skin condition.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/16234/tocopherol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "carbomer": Object.freeze({ note_short: "Polyacrylic-acid polymer used for gel formation, viscosity control and emulsion stability; COSMILE Europe describes Carbomer as a gelling and emulsion-stabilising component.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2648/carbomer/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "carbomer": Object.freeze({ note_short: "Polyacrylic-acid polymer used for gel formation, viscosity control and emulsion stability; COSMILE Europe describes Carbomer as a gelling and emulsion-stabilising component.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2648/carbomer/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "chlorphenesin": Object.freeze({ note_short: "Preservative and antimicrobial ingredient; COSMILE Europe lists Chlorphenesin as protecting cosmetics from microbial spoilage and helping control microorganism growth.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3114/chlorphenesin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "cetearyl alcohol": Object.freeze({ note_short: "Fatty-alcohol mixture used for emollience, emulsion stability and viscosity control; COSMILE Europe also lists cleansing, emulsifying and foam-boosting surfactant functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2895/cetearyl-alcohol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "disodium edta": Object.freeze({ note_short: "Chelating ingredient; COSMILE Europe lists Disodium EDTA as binding metal ions that can affect cosmetic stability or appearance, with an additional viscosity-controlling function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/4934/disodium-edta/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "panthenol": Object.freeze({ note_short: "Provitamin B5 skin- and hair-conditioning ingredient; COSMILE Europe also describes humectant and skin-smoothing properties for Panthenol.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10243/panthenol/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -449,7 +453,7 @@
   }
 
   const api = {
-    version: "1.45.0",
+    version: "1.46.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
