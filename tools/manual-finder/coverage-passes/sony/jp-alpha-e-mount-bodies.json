@@ -3,14 +3,15 @@
   "maker": "Sony",
   "scopeId": "jp-alpha-e-mount-bodies",
   "scopeLabel": "Sony Japan digital interchangeable-lens camera α E-mount bodies",
-  "status": "reviewing",
+  "status": "coverage-pass-complete",
   "asOf": "2026-09-19",
   "region": "JP",
   "language": "ja",
   "allowedDomains": [
     "support.sony.jp",
     "helpguide.sony.net",
-    "sony.jp"
+    "sony.jp",
+    "sony.com"
   ],
   "universe": {
     "sourceUrls": [
@@ -151,7 +152,7 @@
       "ZV-E10Y"
     ],
     "populationMethod": "official_manual_index_plus_official_series_indexes",
-    "notes": "Sony's official Japanese E-mount manuals index declares 107 product model names. The exact 107-model universe is now locked from the official parent/series support indexes plus manufacturer-controlled exact model/product pages used to resolve series lists truncated in the public index view. Publication review is now in progress; universe capture alone does not promote any model."
+    "notes": "Sony's official Japanese E-mount manuals index declares 107 product model names. The exact 107-model universe is locked and fully reviewed. Every model has a final direct or support_only state; no model was dropped because a generated/manual candidate was absent."
   },
   "subscopes": [
     {
@@ -384,7 +385,1421 @@
       }
     ]
   },
-  "records": [],
+  "records": [
+    {
+      "model": "ILCE-1",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-1-series/ilce-1/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-1-series/ilce-1",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-1-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-1-series/ilce-1/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-1M2",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-1-series/ilce-1m2/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-1-series/ilce-1m2",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-1-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-1-series/ilce-1m2/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7C",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7c/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7c",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7c/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7CL",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7cl/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7cl",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7cl/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7CM2",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7cm2/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7cm2",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7cm2/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7CM2L",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7cm2l/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7cm2l",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7cm2l/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7CR",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7cr/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7cr",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7cr/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7K",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7k/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7k",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7k/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7M2",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m2/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m2",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m2/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7M2K",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m2k/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m2k",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m2k/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7M3",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m3/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m3",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m3/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7M3K",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m3k/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m3k",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m3k/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7M3M",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m3m/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m3m",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m3m/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7M4",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m4/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m4",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m4/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7M4K",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m4k/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m4k",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m4k/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7M4M",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m4m/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m4m",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m4m/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7M5",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m5/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m5",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m5/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7M5M",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m5m/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m5m",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m5m/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7R",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7r/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7r",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7r/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7RM2",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm2/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm2",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm2/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7RM3",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm3/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm3",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm3/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7RM3A",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm3a/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm3a",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm3a/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7RM4",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm4/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm4",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm4/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7RM4A",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm4a/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm4a",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm4a/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7RM5",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm5/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm5",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm5/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7RM6",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm6/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm6",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7rm6/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7S",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7s/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7s",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7s/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7SM2",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7sm2/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7sm2",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7sm2/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-7SM3",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7sm3/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7sm3",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7sm3/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-9",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-9-series/ilce-9/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-9-series/ilce-9",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-9-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-9-series/ilce-9/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-9M2",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-9-series/ilce-9m2/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-9-series/ilce-9m2",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-9-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-9-series/ilce-9m2/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-9M3",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-9-series/ilce-9m3/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-9-series/ilce-9m3",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-9-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-9-series/ilce-9m3/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-3000",
+      "state": "support_only",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-3000-series/ilce-3000",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-3000-series/ilce-3000"
+      ],
+      "attemptedDiscovery": [
+        "official_manual_index",
+        "official_model_support_candidate",
+        "official_regional_support"
+      ],
+      "secondaryEvidenceUrls": [
+        "https://www.sony.com/electronics/support/e-mount-body-ilce-3000-series/ilce-3000/manuals"
+      ],
+      "reviewMethod": "secondary_official_discovery",
+      "reviewNote": "Sony Japan currently states that no manual is provided on this model page. Sony USA retains exact-model manuals, but the JP pass keeps the Japanese exact support destination rather than silently switching region.",
+      "verifiedAt": "2026-09-19"
+    },
+    {
+      "model": "ILCE-5000",
+      "state": "direct",
+      "manualUrl": "https://helpguide.sony.net/gbmig/44879440/v1/jp/index.html",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5000",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5000",
+        "https://helpguide.sony.net/gbmig/44879440/v1/jp/contents/TP0000220296.html"
+      ],
+      "reviewMethod": "secondary_official_helpguide_exact_model",
+      "reviewNote": "Current Sony Japan support page does not expose a manual entry, but Sony's Japanese Help Guide explicitly identifies ILCE-5000.",
+      "verifiedAt": "2026-09-19"
+    },
+    {
+      "model": "ILCE-5000L",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5000l/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5000l",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5000l/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-5000Y",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5000y/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5000y",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5000y/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-5100",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5100/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5100",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5100/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-5100L",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5100l/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5100l",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5100l/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-5100Y",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5100y/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5100y",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/ilce-5100y/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6000",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6000/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6000",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6000/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6000L",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6000l/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6000l",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6000l/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6000Y",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6000y/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6000y",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6000y/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6100",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6100/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6100",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6100/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6100L",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6100l/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6100l",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6100l/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6100Y",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6100y/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6100y",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6100y/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6300",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6300/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6300",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6300/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6300L",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6300l/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6300l",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6300l/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6300M",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6300m/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6300m",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6300m/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6400",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6400K",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400k/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400k",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400k/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6400L",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400l/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400l",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400l/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6400M",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400m/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400m",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400m/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6400X",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400x/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400x",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400x/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6400Y",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400y/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400y",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400y/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6500",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6500/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6500",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6500/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6500M",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6500m/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6500m",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6500m/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6600",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6600/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6600",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6600/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6600M",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6600m/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6600m",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6600m/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6700",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6700/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6700",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6700/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6700K",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6700k/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6700k",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6700k/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6700L",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6700l/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6700l",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6700l/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-6700M",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6700m/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6700m",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6700m/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-QX1",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-qx-series/ilce-qx1/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-qx-series/ilce-qx1",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-qx-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-qx-series/ilce-qx1/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ILCE-QX1L",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-qx-series/ilce-qx1l/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-qx-series/ilce-qx1l",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-qx-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-ilce-qx-series/ilce-qx1l/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-3",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-3A",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3a/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3a",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3a/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-3D",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3d/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3d",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3d/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-3K",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3k/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3k",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3k/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-3N",
+      "state": "support_only",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3n",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3n"
+      ],
+      "attemptedDiscovery": [
+        "official_manual_index",
+        "official_model_support_candidate",
+        "official_regional_support",
+        "official_english_manual_archive"
+      ],
+      "secondaryEvidenceUrls": [
+        "https://www.sony.com/electronics/support/e-mount-body-nex-3-series/nex-3n",
+        "https://www.sony.jp/ichigan/emdown/index3.html"
+      ],
+      "reviewMethod": "secondary_official_discovery",
+      "reviewNote": "Sony Japan currently states that no Japanese manual is provided on this exact model page. Sony official English manual sources exist, but the JP pass publishes the exact JP support destination.",
+      "verifiedAt": "2026-09-19"
+    },
+    {
+      "model": "NEX-3NL",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3nl/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3nl",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3nl/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-3NY",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3ny/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3ny",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-3ny/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-5",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-5A",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5a/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5a",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5a/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-5D",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5d/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5d",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5d/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-5K",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5k/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5k",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5k/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-5N",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5n/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5n",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5n/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-5ND",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5nd/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5nd",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5nd/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-5NK",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5nk/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5nk",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5nk/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-5NY",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5ny/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5ny",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5ny/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-5R",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5r/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5r",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5r/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-5RL",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5rl/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5rl",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5rl/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-5RY",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5ry/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5ry",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5ry/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-5T",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5t/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5t",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5t/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-5TL",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5tl/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5tl",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5tl/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-5TY",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5ty/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5ty",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5ty/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-6",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-6-series/nex-6/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-6-series/nex-6",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-6-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-6-series/nex-6/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-6L",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-6-series/nex-6l/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-6-series/nex-6l",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-6-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-6-series/nex-6l/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-6Y",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-6-series/nex-6y/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-6-series/nex-6y",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-6-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-6-series/nex-6y/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-7",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-7-series/nex-7/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-7-series/nex-7",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-7-series/nex-7/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-7K",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-7-series/nex-7k/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-7-series/nex-7k",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-7-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-7-series/nex-7k/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-C3",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-c3/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-c3",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-c3/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-C3D",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-c3d/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-c3d",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-c3d/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-C3K",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-c3k/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-c3k",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-c3k/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-F3",
+      "state": "support_only",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-f3",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-f3"
+      ],
+      "attemptedDiscovery": [
+        "official_manual_index",
+        "official_model_support_candidate",
+        "official_regional_support",
+        "official_english_manual_archive"
+      ],
+      "secondaryEvidenceUrls": [
+        "https://www.sony.com/electronics/support/e-mount-body-nex-3-series/nex-f3",
+        "https://www.sony.jp/ichigan/emdown/index3.html"
+      ],
+      "reviewMethod": "secondary_official_discovery",
+      "reviewNote": "Sony Japan currently states that no Japanese manual is provided on this exact model page. Sony official English manual sources exist, but the JP pass publishes the exact JP support destination.",
+      "verifiedAt": "2026-09-19"
+    },
+    {
+      "model": "NEX-F3K",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-f3k/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-f3k",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-f3k/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "NEX-F3Y",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-f3y/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-f3y",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/nex-f3y/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ZV-E1",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e1/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e1",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e1/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ZV-E1L",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e1l/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e1l",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e1l/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ZV-E10",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ZV-E10K",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10k/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10k",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10k/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ZV-E10L",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10l/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10l",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10l/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ZV-E10M2",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10m2/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10m2",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10m2/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ZV-E10M2K",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10m2k/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10m2k",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10m2k/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ZV-E10M2X",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10m2x/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10m2x",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10m2x/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ZV-E10X",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10x/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10x",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10x/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    },
+    {
+      "model": "ZV-E10Y",
+      "state": "direct",
+      "manualUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10y/manuals",
+      "supportUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10y",
+      "evidenceUrls": [
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/manuals",
+        "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/zv-e10y/manuals"
+      ],
+      "verifiedAt": "2026-09-19",
+      "reviewMethod": "live_exact_official_manual_page",
+      "reviewNote": "Live review followed redirects within the Sony allowlist, required exact model text on the returned official page, and required a manual/help artifact marker."
+    }
+  ],
   "negativeEscalationChannels": [
     "official_manual_index",
     "official_support_index",
@@ -396,5 +1811,84 @@
   "refresh": {
     "compareAgainstOfficialUniverse": true,
     "preserveHeldHistory": true
+  },
+  "review": {
+    "candidateRun": {
+      "workflowRunId": 35418341499,
+      "workflowJobId": 105831200041,
+      "reviewedPopulation": 107,
+      "candidateCounts": {
+        "direct": 103,
+        "support_only": 4,
+        "needs_secondary_discovery": 0
+      },
+      "publicationReady": false
+    },
+    "validationSample": [
+      {
+        "model": "ILCE-1M2",
+        "class": "current_direct",
+        "outcome": "confirmed",
+        "evidenceUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-1-series/ilce-1m2/manuals",
+        "note": "Exact model page exposes Help Guide and PDF manual artifacts."
+      },
+      {
+        "model": "ILCE-7M3M",
+        "class": "kit_direct",
+        "outcome": "confirmed",
+        "evidenceUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/ilce-7m3m/manuals",
+        "note": "Exact kit model page explicitly maps the kit to the ILCE-7M3 manual artifacts."
+      },
+      {
+        "model": "ILCE-6400X",
+        "class": "kit_direct",
+        "outcome": "confirmed",
+        "evidenceUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/ilce-6400x/manuals",
+        "note": "Exact kit model page explicitly maps the kit to ILCE-6400 Help Guide/start guide artifacts."
+      },
+      {
+        "model": "NEX-5TY",
+        "class": "legacy_kit_direct",
+        "outcome": "confirmed",
+        "evidenceUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5ty",
+        "note": "Exact legacy kit page exposes NEX-5T PDF manual artifacts."
+      },
+      {
+        "model": "NEX-5",
+        "class": "legacy_direct",
+        "outcome": "confirmed",
+        "evidenceUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5/manuals",
+        "note": "Exact legacy model page exposes multiple Sony PDF manuals."
+      },
+      {
+        "model": "ILCE-5000",
+        "class": "secondary_discovery",
+        "outcome": "upgraded_to_direct",
+        "evidenceUrl": "https://helpguide.sony.net/gbmig/44879440/v1/jp/contents/TP0000220296.html",
+        "note": "Sony Japanese Help Guide explicitly identifies ILCE-5000 despite the current JP support manual tab not surfacing it."
+      },
+      {
+        "model": "ILCE-3000",
+        "class": "secondary_discovery",
+        "outcome": "support_only_jp",
+        "evidenceUrl": "https://www.sony.com/electronics/support/e-mount-body-ilce-3000-series/ilce-3000/manuals",
+        "note": "Sony USA retains exact manuals; Sony Japan currently exposes exact support but states no manual is provided."
+      },
+      {
+        "model": "NEX-3N",
+        "class": "secondary_discovery",
+        "outcome": "support_only_jp",
+        "evidenceUrl": "https://www.sony.jp/ichigan/emdown/index3.html",
+        "note": "Sony official English manual archive lists NEX-3N; Sony Japan current exact support page states no Japanese manual is provided."
+      },
+      {
+        "model": "NEX-F3",
+        "class": "secondary_discovery",
+        "outcome": "support_only_jp",
+        "evidenceUrl": "https://www.sony.jp/ichigan/emdown/index3.html",
+        "note": "Sony official English manual archive lists NEX-F3; Sony Japan current exact support page states no Japanese manual is provided."
+      }
+    ],
+    "completedAt": "2026-09-19"
   }
 }
