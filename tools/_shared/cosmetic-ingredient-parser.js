@@ -236,7 +236,11 @@
     "ceramide ap": Object.freeze({ note_short: "Ceramide lipid used for skin and hair conditioning; COSMILE Europe identifies Ceramide AP as a ceramide sphingolipid and lists both conditioning functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2820/ceramide-ap/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "ceramide eop": Object.freeze({ note_short: "Ceramide lipid used for skin and hair conditioning; COSMILE Europe identifies Ceramide EOP as a ceramide sphingolipid and lists both conditioning functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/25521/ceramide-eop/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "squalane": Object.freeze({ note_short: "Skin- and hair-conditioning emollient; COSMILE Europe also lists refatting for Squalane and describes a skin-smoothing effect.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15418/squalane/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "allantoin": Object.freeze({ note_short: "Skin-conditioning, skin-protecting and soothing ingredient; COSMILE Europe lists all three functions for Allantoin.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/636/allantoin/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "allantoin": Object.freeze({ note_short: "Skin-conditioning, skin-protecting and soothing ingredient; COSMILE Europe lists all three functions for Allantoin.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/636/allantoin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "cholesterol": Object.freeze({ note_short: "Skin-conditioning emollient; COSMILE Europe also lists Cholesterol for emulsifying, viscosity control and light stabilisation.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3117/cholesterol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "arginine": Object.freeze({ note_short: "Amino acid used for skin and hair conditioning; COSMILE Europe also lists an antistatic function for Arginine.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1160/arginine/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "benzoic acid": Object.freeze({ note_short: "Preservative and pH-adjusting ingredient; COSMILE Europe also lists a fragrance function for Benzoic Acid.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1569/benzoic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "butylene glycol": Object.freeze({ note_short: "Humectant, skin-conditioning solvent and viscosity-controlling ingredient; COSMILE Europe lists these functions for Butylene Glycol.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2015/butylene-glycol/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -461,7 +465,7 @@
   }
 
   const api = {
-    version: "1.48.0",
+    version: "1.49.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,

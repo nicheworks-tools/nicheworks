@@ -30,6 +30,10 @@ on:
       - 'tools/_shared/check-cosmetics-verified-note-wave6.mjs'
       - 'tools/_shared/check-cosmetics-verified-note-wave7.mjs'
       - 'tools/_shared/check-cosmetics-verified-note-wave8.mjs'
+      - 'tools/_shared/check-cosmetics-verified-note-wave9.mjs'
+      - 'tools/_shared/check-cosmetics-verified-note-wave10.mjs'
+      - 'tools/_shared/check-cosmetics-verified-note-wave11.mjs'
+      - 'tools/_shared/check-cosmetics-verified-note-wave12.mjs'
       - 'tools/_shared/check-cosmetics-claim-note-inventory.mjs'
       - 'tools/_shared/check-cosmetics-canonical-merge.mjs'
       - 'tools/_shared/check-cosmetics-canonical-equivalents.mjs'
@@ -121,6 +125,8 @@ jobs:
         run: node tools/_shared/check-cosmetics-verified-note-wave10.mjs
       - name: Verified note wave 11 common-label priority
         run: node tools/_shared/check-cosmetics-verified-note-wave11.mjs
+      - name: Verified note wave 12 common-label priority
+        run: node tools/_shared/check-cosmetics-verified-note-wave12.mjs
       - name: Japanese label variant regression
         run: node tools/_shared/check-cosmetics-jp-label-variants.mjs
       - name: Canonical merge regression
@@ -152,6 +158,7 @@ jobs:
           node --check tools/_shared/check-cosmetics-verified-note-wave9.mjs
           node --check tools/_shared/check-cosmetics-verified-note-wave10.mjs
           node --check tools/_shared/check-cosmetics-verified-note-wave11.mjs
+          node --check tools/_shared/check-cosmetics-verified-note-wave12.mjs
           node --check tools/_shared/check-cosmetics-jp-label-variants.mjs
           node --check tools/_shared/check-fastscan-ocr-robustness.mjs
           node --check tools/cosmetic-ingredient-checker-lite/app.js
