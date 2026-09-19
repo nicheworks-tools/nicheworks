@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 284,
+  "published_municipality_count": 294,
   "municipalities": [
     {
       "lgcode": "131016",
@@ -1712,6 +1712,66 @@
       "pref_slug": "tochigi",
       "city_slug": "shimotsuke",
       "url": "https://nicheworks.app/tools/trashnavi/tochigi/shimotsuke/"
+    },
+    {
+      "lgcode": "092100",
+      "pref_slug": "tochigi",
+      "city_slug": "ohtawara",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/ohtawara/"
+    },
+    {
+      "lgcode": "092151",
+      "pref_slug": "tochigi",
+      "city_slug": "nasukarasuyama",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/nasukarasuyama/"
+    },
+    {
+      "lgcode": "093017",
+      "pref_slug": "tochigi",
+      "city_slug": "kaminokawa",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/kaminokawa/"
+    },
+    {
+      "lgcode": "093432",
+      "pref_slug": "tochigi",
+      "city_slug": "motegi",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/motegi/"
+    },
+    {
+      "lgcode": "093459",
+      "pref_slug": "tochigi",
+      "city_slug": "haga",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/haga/"
+    },
+    {
+      "lgcode": "093611",
+      "pref_slug": "tochigi",
+      "city_slug": "mibu",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/mibu/"
+    },
+    {
+      "lgcode": "093645",
+      "pref_slug": "tochigi",
+      "city_slug": "nogi",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/nogi/"
+    },
+    {
+      "lgcode": "093840",
+      "pref_slug": "tochigi",
+      "city_slug": "shioya",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/shioya/"
+    },
+    {
+      "lgcode": "093866",
+      "pref_slug": "tochigi",
+      "city_slug": "takanezawa",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/takanezawa/"
+    },
+    {
+      "lgcode": "094072",
+      "pref_slug": "tochigi",
+      "city_slug": "nasu",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/nasu/"
     }
   ]
 }

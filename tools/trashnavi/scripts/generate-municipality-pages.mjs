@@ -117,7 +117,7 @@ const by = new Map(), names = new Map();
 for (const row of rows) { const code=String(row.lgcode||'').trim(); if(!code) continue; if(!by.has(code)) by.set(code,[]); by.get(code).push(row); if(row.city) names.set(code,String(row.city).trim()); }
 const outputs=[];
 for(const entry of manifest.filter(x=>x.publish)) { const html=page(entry,by.get(entry.lgcode)||[],manifest,names); const relative=path.join('tools','trashnavi',entry.pref_slug,entry.city_slug,'index.html'); outputs.push({relative,absolute:path.join(repoRoot,relative),content:html,url:`https://nicheworks.app/tools/trashnavi/${entry.pref_slug}/${entry.city_slug}/`}); }
-if(outputs.length!==284) throw new Error(`municipality page count must be 284; got ${outputs.length}`);
+if(outputs.length!==294) throw new Error(`municipality page count must be 294; got ${outputs.length}`);
 const publishedCodes=new Set(manifest.filter(x=>x.publish).map(x=>String(x.lgcode||'').trim()));
 const lastmod=rows.filter(r=>publishedCodes.has(String(r.lgcode||'').trim())).map(r=>String(r.last_checked||'').trim()).filter(Boolean).sort().at(-1)||'';
 const sitemap=`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${['https://nicheworks.app/tools/trashnavi/',...outputs.map(o=>o.url)].map(u=>`  <url>\n    <loc>${u}</loc>${lastmod?`\n    <lastmod>${lastmod}</lastmod>`:''}\n  </url>`).join('\n')}\n</urlset>\n`;
