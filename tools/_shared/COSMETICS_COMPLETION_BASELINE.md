@@ -67,10 +67,10 @@ The original baseline intentionally counted only raw dictionary fields. That rem
 Current runtime provenance on main:
 
 - verified category overlay identities: 116
-- verified note overlay identities: 62
-- verified note identities with maintained Japanese naming: 62
-- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): 62 / 599
+- verified note overlay identities: 66
+- verified note identities with maintained Japanese naming: 66
+- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): 66 / 599
 
 Accordingly, completion readiness must report raw dictionary debt and runtime verified provenance separately. A raw evidence count of zero must not be interpreted as zero runtime provenance.
 
-The runtime provenance floors are ratcheted at 119 verified categories, 62 verified notes, and 62 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 15 adds source-backed ingredient-specific notes for Alanine, Betaine, Cetearyl Olivate, and Coco-Glucoside.
+The runtime provenance floors are ratcheted at 119 verified categories, 66 verified notes, and 66 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 16 adds source-backed ingredient-specific notes for Hydrolyzed Hyaluronic Acid, Hydroxyacetophenone, Potassium Sorbate, and Sodium PCA.

@@ -347,3 +347,22 @@ After Wave 15:
 - strong runtime identities: 62 / 599;
 - Wave 14 identities retained: 4 / 4;
 - raw dictionary records rewritten: no.
+
+
+## Verified note wave 16
+
+Wave 16 continues frequency-prioritized source-backed enrichment:
+
+| Canonical identity | Corpus occurrences | Reviewed runtime note basis |
+| --- | ---: | --- |
+| `hydrolyzed hyaluronic acid` | 3 | COSMILE Europe: humectant plus skin and hair conditioning. |
+| `hydroxyacetophenone` | 3 | COSMILE Europe: antioxidant function. |
+| `potassium sorbate` | 3 | COSMILE Europe: preservative plus perfume-oil excipient function. |
+| `sodium pca` | 3 | COSMILE Europe: humectant, skin/hair conditioning and antistatic. |
+
+After Wave 16:
+
+- cumulative verified-note identities: 66;
+- strong runtime identities: 66 / 599;
+- Wave 15 identities retained: 4 / 4;
+- raw dictionary records rewritten: no.
