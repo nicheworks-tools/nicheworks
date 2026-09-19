@@ -3,7 +3,7 @@
   "maker": "Sony",
   "scopeId": "jp-alpha-e-mount-bodies",
   "scopeLabel": "Sony Japan digital interchangeable-lens camera α E-mount bodies",
-  "status": "acquiring_universe",
+  "status": "reviewing",
   "asOf": "2026-09-19",
   "region": "JP",
   "language": "ja",
@@ -31,22 +31,47 @@
       "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5t",
       "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5tl",
       "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5ty",
-      "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5ry/software/00375010"
+      "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/nex-5ry/software/00375010",
+      "https://www.sony.jp/ichigan/products/ILCE-7/",
+      "https://www.sony.jp/ichigan/products/ILCE-6400/",
+      "https://www.sony.jp/ichigan/products/ILCE-6300/",
+      "https://www.sony.jp/ichigan/products/ILCE-6500/",
+      "https://www.sony.jp/ichigan/products/ILCE-6600/",
+      "https://www.sony.jp/ichigan/products/ILCE-6000/",
+      "https://www.sony.jp/ichigan/products/archive/NEX-F3/"
     ],
     "declaredCount": 107,
     "models": [
       "ILCE-1",
       "ILCE-1M2",
+      "ILCE-7",
+      "ILCE-7C",
+      "ILCE-7CL",
       "ILCE-7CM2",
       "ILCE-7CM2L",
       "ILCE-7CR",
+      "ILCE-7K",
+      "ILCE-7M2",
+      "ILCE-7M2K",
+      "ILCE-7M3",
+      "ILCE-7M3K",
       "ILCE-7M3M",
+      "ILCE-7M4",
       "ILCE-7M4K",
       "ILCE-7M4M",
       "ILCE-7M5",
       "ILCE-7M5M",
+      "ILCE-7R",
+      "ILCE-7RM2",
+      "ILCE-7RM3",
+      "ILCE-7RM3A",
+      "ILCE-7RM4",
+      "ILCE-7RM4A",
       "ILCE-7RM5",
       "ILCE-7RM6",
+      "ILCE-7S",
+      "ILCE-7SM2",
+      "ILCE-7SM3",
       "ILCE-9",
       "ILCE-9M2",
       "ILCE-9M3",
@@ -57,12 +82,25 @@
       "ILCE-5100",
       "ILCE-5100L",
       "ILCE-5100Y",
+      "ILCE-6000",
+      "ILCE-6000L",
+      "ILCE-6000Y",
       "ILCE-6100",
       "ILCE-6100L",
       "ILCE-6100Y",
+      "ILCE-6300",
+      "ILCE-6300L",
+      "ILCE-6300M",
+      "ILCE-6400",
       "ILCE-6400K",
+      "ILCE-6400L",
+      "ILCE-6400M",
       "ILCE-6400X",
+      "ILCE-6400Y",
+      "ILCE-6500",
+      "ILCE-6500M",
       "ILCE-6600",
+      "ILCE-6600M",
       "ILCE-6700",
       "ILCE-6700K",
       "ILCE-6700L",
@@ -98,6 +136,9 @@
       "NEX-C3",
       "NEX-C3D",
       "NEX-C3K",
+      "NEX-F3",
+      "NEX-F3K",
+      "NEX-F3Y",
       "ZV-E1",
       "ZV-E1L",
       "ZV-E10",
@@ -110,7 +151,7 @@
       "ZV-E10Y"
     ],
     "populationMethod": "official_manual_index_plus_official_series_indexes",
-    "notes": "Sony's official Japanese E-mount manuals index declares 107 product model names. Series indexes and exact official model/support pages are being used to capture the exact universe without treating any truncated first-page list as complete. 73 exact official identifiers are currently captured; 34 remain at the universe-acquisition layer and nothing is promoted merely because it was discovered."
+    "notes": "Sony's official Japanese E-mount manuals index declares 107 product model names. The exact 107-model universe is now locked from the official parent/series support indexes plus manufacturer-controlled exact model/product pages used to resolve series lists truncated in the public index view. Publication review is now in progress; universe capture alone does not promote any model."
   },
   "subscopes": [
     {
@@ -131,8 +172,8 @@
       "id": "alpha7",
       "sourceUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
       "declaredCount": 28,
-      "capturedCount": 10,
-      "captureState": "partial"
+      "capturedCount": 28,
+      "captureState": "captured"
     },
     {
       "id": "zv-e",
@@ -145,8 +186,8 @@
       "id": "alpha6000",
       "sourceUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
       "declaredCount": 23,
-      "capturedCount": 10,
-      "captureState": "partial"
+      "capturedCount": 23,
+      "captureState": "captured"
     },
     {
       "id": "alpha5000",
@@ -158,9 +199,9 @@
     {
       "id": "alpha3000",
       "sourceUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-3000-series/ilce-3000",
-      "declaredCount": null,
+      "declaredCount": 1,
       "capturedCount": 1,
-      "captureState": "official_model_observed"
+      "captureState": "captured"
     },
     {
       "id": "nex7",
@@ -187,8 +228,8 @@
       "id": "nex3",
       "sourceUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/manuals",
       "declaredCount": 13,
-      "capturedCount": 10,
-      "captureState": "partial"
+      "capturedCount": 13,
+      "captureState": "captured"
     },
     {
       "id": "ilce-qx",
