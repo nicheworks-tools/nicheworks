@@ -170,6 +170,9 @@ function pageHtml({entry, slug, image, offer, related, slugById}) {
   <meta property="og:url" content="${esc(url)}">
   ${imageUrl ? `<meta property="og:image" content="${esc(imageUrl)}">` : `<meta property="og:image" content="https://nicheworks.app/assets/ogp.png">`}
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${esc(title)}">
+  <meta name="twitter:description" content="${esc(description)}">
+  <meta name="twitter:image" content="${esc(imageUrl || "https://nicheworks.app/assets/ogp.png")}">
   <link rel="stylesheet" href="../../seo-detail-v2.3.css">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
