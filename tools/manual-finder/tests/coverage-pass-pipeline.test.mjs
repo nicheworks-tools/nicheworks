@@ -10,18 +10,27 @@ assert.equal(hostAllowed('https://example.com/?u=support.sony.jp', ['support.son
 const sony = JSON.parse(fs.readFileSync(new URL('../coverage-passes/sony/jp-alpha-e-mount-bodies.json', import.meta.url), 'utf8'));
 const sonyValidation = validateCoveragePass(sony);
 assert.equal(sonyValidation.valid, true);
-assert.equal(sonyValidation.completionReady, false);
+assert.equal(sonyValidation.completionReady, true);
 assert.equal(sonyValidation.summary.declaredCount, 107);
 assert.equal(sonyValidation.summary.capturedPopulation, 107);
 assert.equal(sonyValidation.summary.unresolvedUniverseCount, 0);
-assert.equal(sonyValidation.summary.reviewedCount, 0);
-assert.equal(sonyValidation.summary.unreviewedCount, 107);
-assert.equal(sony.status, 'reviewing');
+assert.equal(sonyValidation.summary.reviewedCount, 107);
+assert.equal(sonyValidation.summary.unreviewedCount, 0);
+assert.equal(sony.status, 'coverage-pass-complete');
+assert.equal(sonyValidation.summary.states.direct, 104);
+assert.equal(sonyValidation.summary.states.support_only, 3);
+assert.equal(sonyValidation.summary.states.shared, 0);
+assert.equal(sonyValidation.summary.states.held, 0);
+assert.equal(sonyValidation.summary.reconciliation, '107 = 104 direct + 0 shared + 3 support_only + 0 held');
 const scopedSonyModels = sony.subscopes.flatMap((scope) => scope.models || []);
 assert.equal(scopedSonyModels.length, 107);
 assert.equal(new Set(scopedSonyModels).size, 107);
 assert.deepEqual(new Set(scopedSonyModels), new Set(sony.universe.models));
 assert.ok(sony.subscopes.every((scope) => scope.captureState === 'captured' && scope.capturedCount === scope.models.length));
+assert.equal(sony.review.validationSample.length, 9);
+assert.ok(sony.review.validationSample.some((row) => row.class === 'secondary_discovery'));
+assert.equal(sony.review.candidateRun.candidateCounts.direct, 103);
+assert.equal(sony.review.candidateRun.candidateCounts.support_only, 4);
 
 const sampleHtml = `
 <html><body>
