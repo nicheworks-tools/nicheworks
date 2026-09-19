@@ -12,29 +12,38 @@
   }
 
   function mountAffiliate() {
-    const section = document.querySelector("[data-affiliate-entry]");
+    const sections = [...document.querySelectorAll("[data-affiliate-entry]")];
     const helper = window.NWAmazonAffiliate;
-    if (!section || !helper) return;
+    if (!sections.length || !helper) return;
 
-    const id = section.dataset.affiliateEntry;
-    const url = section.dataset.affiliateUrl;
-    const mount = section.querySelector(".affiliateMount");
-    const disclosure = section.querySelector(".affiliateDisclosure");
-    if (!id || !url || !mount || !disclosure) return;
-
+    const targets = {};
+    for (const section of sections) {
+      const id = section.dataset.affiliateEntry;
+      const url = section.dataset.affiliateUrl;
+      if (id && url) targets[id] = url;
+    }
     helper.configure({
       enabled: true,
       tool: "construction-tools-atlas",
-      targets: { [id]: url }
+      targets
     });
-    helper.mountUrl({
-      container: mount,
-      target: id,
-      url,
-      label: section.dataset.affiliateLabelJa || "Amazonで探す",
-      placement: "static_detail"
-    });
-    helper.renderDisclosure(disclosure, { includeEnglish: true });
+
+    for (const section of sections) {
+      const id = section.dataset.affiliateEntry;
+      const url = section.dataset.affiliateUrl;
+      const mount = section.querySelector(".affiliateMount");
+      const disclosure = section.querySelector(".affiliateDisclosure");
+      if (!id || !url || !mount || !disclosure) continue;
+
+      helper.mountUrl({
+        container: mount,
+        target: id,
+        url,
+        label: section.dataset.affiliateLabelJa || "Amazonで探す",
+        placement: section.dataset.affiliatePlacement || "static_detail"
+      });
+      helper.renderDisclosure(disclosure, { includeEnglish: true });
+    }
   }
 
   document.addEventListener("DOMContentLoaded", () => {
