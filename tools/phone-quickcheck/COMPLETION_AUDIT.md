@@ -174,6 +174,16 @@ Maintained dataset: **202 → 203**.
 
 The record preserves 151.1 × 71.8 × 8.06mm / 191g, 6.3-inch display, 6330mAh, 100W wired charging, PPS/PD support, 50W Wireless HyperCharge, and IP68. Xiaomi Japan explicitly documents the bundled charging cable. The AC-adapter package state remains `unknown` and is registered as `reviewed_unresolved` because the maintained FAQ describes region-dependent package variants rather than a sufficiently exact JP retail in-box claim.
 
+## Post-v1 maintenance Wave 8 — 2026-09-19
+
+Added Apple's formally announced Japan-market iPhone Duo ahead of its 2026-10-23 retail release.
+
+Maintained dataset: **203 → 204**.
+Foldables: **35 → 36**.
+
+The record preserves Apple's official folded 117.8 × 84.1 × 11.3mm and unfolded 117.8 × 164.6 × 5.2mm dimensions, 254g mass, 7.6-inch inner display, IP68, 60W-or-higher wired adapter guidance, and 25W MagSafe/Qi2 wireless charging. Apple does not publish maintained mAh, so battery capacity remains unknown under the existing Apple policy. The power adapter is explicitly separate; the exact in-box cable state remains `unknown` and is registered as `reviewed_unresolved`.
+
+
 
 
 ## Post-v1 maintenance Wave 3 — 2026-09-19
