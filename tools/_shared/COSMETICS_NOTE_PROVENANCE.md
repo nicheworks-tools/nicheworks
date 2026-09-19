@@ -366,3 +366,22 @@ After Wave 16:
 - strong runtime identities: 66 / 599;
 - Wave 15 identities retained: 4 / 4;
 - raw dictionary records rewritten: no.
+
+
+## Verified note wave 17
+
+Wave 17 continues frequency-prioritized source-backed enrichment:
+
+| Canonical identity | Corpus occurrences | Reviewed runtime note basis |
+| --- | ---: | --- |
+| `pca` | 3 | COSMILE Europe: humectant and moisturising functions. |
+| `serine` | 3 | COSMILE Europe: skin/hair conditioning, antistatic and fragrance functions. |
+| `sodium methyl cocoyl taurate` | 3 | COSMILE Europe: surfactant-cleansing function. |
+| `tetrasodium edta` | 3 | COSMILE Europe: chelating plus perfume-oil excipient function. |
+
+After Wave 17:
+
+- cumulative verified-note identities: 70;
+- strong runtime identities: 70 / 599;
+- Wave 16 identities retained: 4 / 4;
+- raw dictionary records rewritten: no.

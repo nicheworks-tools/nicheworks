@@ -256,7 +256,11 @@
     "hydrolyzed hyaluronic acid": Object.freeze({ note_short: "Humectant and skin/hair-conditioning ingredient; COSMILE Europe lists all three functions for Hydrolyzed Hyaluronic Acid.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/17975/hydrolyzed-hyaluronic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "hydroxyacetophenone": Object.freeze({ note_short: "Antioxidant ingredient; COSMILE Europe lists Hydroxyacetophenone as helping limit oxidation and deterioration of cosmetic ingredients.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/17301/hydroxyacetophenone/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "potassium sorbate": Object.freeze({ note_short: "Preservative ingredient; COSMILE Europe also lists a perfume-oil excipient function for Potassium Sorbate.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12776/potassium-sorbate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "sodium pca": Object.freeze({ note_short: "Humectant and skin/hair-conditioning ingredient; COSMILE Europe also lists an antistatic function for Sodium PCA.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15008/sodium-pca/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "sodium pca": Object.freeze({ note_short: "Humectant and skin/hair-conditioning ingredient; COSMILE Europe also lists an antistatic function for Sodium PCA.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15008/sodium-pca/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "pca": Object.freeze({ note_short: "Humectant and moisturising ingredient; COSMILE Europe lists both functions for PCA.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10309/pca/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "serine": Object.freeze({ note_short: "Amino acid used for skin and hair conditioning; COSMILE Europe also lists antistatic and fragrance functions for Serine.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14316/serine/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sodium methyl cocoyl taurate": Object.freeze({ note_short: "Cleansing surfactant; COSMILE Europe lists Sodium Methyl Cocoyl Taurate as a surfactant used to clean skin, hair or teeth.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14933/sodium-methyl-cocoyl-taurate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "tetrasodium edta": Object.freeze({ note_short: "Chelating ingredient; COSMILE Europe lists Tetrasodium EDTA as binding metal ions that could affect product stability or appearance, with a perfume-oil excipient function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/16076/tetrasodium-edta/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -481,7 +485,7 @@
   }
 
   const api = {
-    version: "1.53.0",
+    version: "1.54.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
