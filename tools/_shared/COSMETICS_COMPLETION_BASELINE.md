@@ -73,4 +73,4 @@ Current runtime provenance on main:
 
 Accordingly, completion readiness must report raw dictionary debt and runtime verified provenance separately. A raw evidence count of zero must not be interpreted as zero runtime provenance.
 
-The runtime provenance floors are ratcheted at 119 verified categories, 46 verified notes, and 46 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 11 adds source-backed ingredient-specific notes for Ceramide AP, Ceramide EOP, Squalane, and Trisodium Ethylenediamine Disuccinate.
+The runtime provenance floors are ratcheted at 119 verified categories, 46 verified notes, and 46 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 11 adds source-backed ingredient-specific notes for Ceramide AP, Ceramide EOP, Squalane, and Allantoin.
