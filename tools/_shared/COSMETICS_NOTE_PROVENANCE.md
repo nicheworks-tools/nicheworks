@@ -255,7 +255,7 @@ Wave 11 continues frequency-prioritized source-backed enrichment:
 | `ceramide ap` | 5 | COSMILE Europe: ceramide/sphingolipid identity plus skin and hair conditioning. |
 | `ceramide eop` | 5 | COSMILE Europe: ceramide/sphingolipid identity plus skin and hair conditioning. |
 | `squalane` | 5 | COSMILE Europe: skin and hair conditioning, emollience and refatting. |
-| `trisodium ethylenediamine disuccinate` | 5 | COSMILE Europe: chelating; binds metal ions and supports product stability / cleansing performance in hard water. |
+| `allantoin` | 4 | COSMILE Europe: skin conditioning, skin protecting and soothing. |
 
 Wave 10 remains a required reviewed subset rather than a total-overlay-size ceiling.
 
