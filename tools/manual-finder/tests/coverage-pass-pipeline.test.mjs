@@ -12,8 +12,8 @@ const sonyValidation = validateCoveragePass(sony);
 assert.equal(sonyValidation.valid, true);
 assert.equal(sonyValidation.completionReady, false);
 assert.equal(sonyValidation.summary.declaredCount, 107);
-assert.equal(sonyValidation.summary.capturedPopulation, 69);
-assert.equal(sonyValidation.summary.unresolvedUniverseCount, 38);
+assert.equal(sonyValidation.summary.capturedPopulation, 73);
+assert.equal(sonyValidation.summary.unresolvedUniverseCount, 34);
 assert.equal(sonyValidation.summary.reviewedCount, 0);
 
 const sampleHtml = `
