@@ -244,7 +244,11 @@
     "acrylates/c10-30 alkyl acrylate crosspolymer": Object.freeze({ note_short: "Polymer used for emulsion stability, film formation and viscosity control; COSMILE Europe lists all three functions for Acrylates/C10-30 Alkyl Acrylate Crosspolymer.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/377/acrylates-c10-30-alkyl-acrylate-crosspolymer/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "glyceryl stearate": Object.freeze({ note_short: "Skin-conditioning emollient and emulsifying surfactant; COSMILE Europe lists both functions for Glyceryl Stearate.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6054/glyceryl-stearate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "phytosphingosine": Object.freeze({ note_short: "Skin- and hair-conditioning ingredient; COSMILE Europe lists both functions for Phytosphingosine.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11660/phytosphingosine/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "polysorbate 60": Object.freeze({ note_short: "Cleansing and emulsifying surfactant; COSMILE Europe also lists a perfume-oil excipient function for Polysorbate 60.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12494/polysorbate-60/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "polysorbate 60": Object.freeze({ note_short: "Cleansing and emulsifying surfactant; COSMILE Europe also lists a perfume-oil excipient function for Polysorbate 60.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12494/polysorbate-60/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "salicylic acid": Object.freeze({ note_short: "Keratolytic, preservative and conditioning ingredient; COSMILE Europe lists Salicylic Acid for keratolytic, preservative, skin-conditioning, hair-conditioning and fragrance functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14076/salicylic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sodium lactate": Object.freeze({ note_short: "Buffering and humectant ingredient with a keratolytic function; COSMILE Europe lists all three functions for Sodium Lactate.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14848/sodium-lactate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sorbitan olivate": Object.freeze({ note_short: "Emulsifying surfactant; COSMILE Europe lists Sorbitan Olivate as enabling stable oil-and-water emulsions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15312/sorbitan-olivate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "caprylic/capric triglyceride": Object.freeze({ note_short: "Skin-conditioning oil component; COSMILE Europe lists a skin-conditioning function and describes smoothing and refatting use for Caprylic/Capric Triglyceride.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2584/caprylic-capric-triglyceride/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -469,7 +473,7 @@
   }
 
   const api = {
-    version: "1.50.0",
+    version: "1.51.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
