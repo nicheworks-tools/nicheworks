@@ -59,11 +59,12 @@ for (const offer of Array.isArray(affiliate?.offers) ? affiliate.offers : []) {
 
 const groups = {
   affiliate_in_progress: [],
-  seo_commerce_ready: [],
+  seo_commerce_ready_with_image: [],
+  seo_commerce_ready_image_not_required: [],
   affiliate_image_backlog: [],
   organic_image_ready: [],
   non_affiliate_image_backlog: [],
-  not_required: []
+  not_required_non_affiliate: []
 };
 
 const inProgressStages = new Set(["candidate", "provenance_verified", "subject_verified", "verified"]);
@@ -74,12 +75,11 @@ for (const row of rows) {
   const hasAffiliate = activeOffers.has(id);
 
   if (stage === "not_required") {
-    if (hasAffiliate) fail(`${id}: not_required image row must not be treated as commerce launch ready`);
-    groups.not_required.push(id);
+    (hasAffiliate ? groups.seo_commerce_ready_image_not_required : groups.not_required_non_affiliate).push(id);
     continue;
   }
   if (stage === "promoted") {
-    (hasAffiliate ? groups.seo_commerce_ready : groups.organic_image_ready).push(id);
+    (hasAffiliate ? groups.seo_commerce_ready_with_image : groups.organic_image_ready).push(id);
     continue;
   }
   if (stage === "awaiting_source") {
@@ -99,6 +99,11 @@ for (const key of Object.keys(groups)) groups[key] = sorted(groups[key]);
 const classified = Object.values(groups).reduce((sum, ids) => sum + ids.length, 0);
 if (classified !== rows.length) fail(`revenue grouping lost rows: ${classified}/${rows.length}`);
 
+const launchCohort = sorted([
+  ...groups.seo_commerce_ready_with_image,
+  ...groups.seo_commerce_ready_image_not_required
+]);
+
 const report = {
   schema: "cta-revenue-readiness-report-v2.3",
   generated_from: {
@@ -114,8 +119,12 @@ const report = {
     content_ready_public_entries: rows.length,
     active_affiliate_mappings: activeOffers.size
   },
-  summary: Object.fromEntries(Object.entries(groups).map(([key, ids]) => [key, ids.length])),
+  summary: {
+    ...Object.fromEntries(Object.entries(groups).map(([key, ids]) => [key, ids.length])),
+    seo_commerce_ready_total: launchCohort.length
+  },
   execution_order: policy.execution_order,
+  launch_cohort: launchCohort,
   groups
 };
 
