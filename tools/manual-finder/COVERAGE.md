@@ -17,7 +17,7 @@ All future model-level expansion must follow `COVERAGE_PASS_WORKFLOW.md`. Script
 
 ## Current verified model-level inventory
 
-With the completed Sony JP α E-mount and Panasonic JP LUMIX camera-body coverage-pass publications plus deployed Waves 3A / 3B / 3D / 3E, the accepted dataset contains **1,650 verified model/caliber rows**. **1,207 are outside Seiko**. The coverage-pass layer now contributes 134 reviewed rows across Sony and Panasonic.
+With the completed Sony JP α E-mount, Panasonic JP LUMIX, and Apple iPhone coverage-pass publications plus deployed Waves 3A / 3B / 3D / 3E, the accepted dataset contains **1,681 verified model/caliber rows**. **1,238 are outside Seiko**. The coverage-pass layer now contributes 165 reviewed rows across Sony, Panasonic, and Apple.
 
 | Maker / dataset identity | Verified rows | Current state | Notes |
 | --- | ---: | --- | --- |
@@ -27,6 +27,7 @@ With the completed Sony JP α E-mount and Panasonic JP LUMIX camera-body coverag
 | KYOCERA Document Solutions | 123 | expanded | Printer/MFP model rows from official manual pages. |
 | DJI | 107 | expanded | Product-level official download/support destinations. |
 | Sony | 107 | expanded, scope-complete | JP α E-mount body coverage pass is complete and published: 104 direct manual/help destinations + 3 exact JP support-only destinations. Sony company-wide coverage remains incomplete. |
+| Apple | 31 | expanded, scope-complete | Bounded iPhone User Guide model scope is complete and published: 31 exact models share Apple's manufacturer-defined Japanese iPhone User Guide, with exact model Manuals and Downloads pages retained separately. Apple company-wide coverage remains incomplete. |
 | Panasonic | 27 | expanded, scope-complete | JP LUMIX S/G/compact camera-body sitemap scope is complete and published: 27 direct official manual/support destinations. Panasonic company-wide coverage remains incomplete. |
 | OKI | 77 | expanded | Printer/MFP model-level official manual destinations. |
 | RICOH | 39 | expanded | Office MFP/wide-MFP model-level official product/manual destinations. |
@@ -42,7 +43,7 @@ With the completed Sony JP α E-mount and Panasonic JP LUMIX camera-body coverag
 | Epson | 6 | expanded | Wave 3D first Colorio batch; exact official manual/support targets with verified consumable mappings. |
 | Canon | 6 | expanded | Wave 3E first PIXUS batch; direct or vendor-shared official online manuals with verified consumable mappings. |
 | Hisense | 2 | expanded | Exact TV function-manual targets; coverage is still very thin. |
-| **Total** | **1,650** |  |  |
+| **Total** | **1,681** |  |  |
 
 Counts above are accepted repository rows, not estimates of manufacturer catalog size.
 
@@ -52,7 +53,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 
 | # | Baseline brand | Model-level state | Next action |
 | ---: | --- | --- | --- |
-| 1 | Apple | generic-only | PC/mobile queue |
+| 1 | Apple | **expanded — 31** | iPhone User Guide bounded scope is published and coverage-pass-complete at 31 shared manual rows + exact model support pages; broader Apple remains incomplete |
 | 2 | Sony | **expanded — 107** | JP α E-mount scope is published and coverage-pass-complete at 104 direct + 3 support-only + 0 held; broader Sony categories remain incomplete |
 | 3 | Panasonic | **expanded — 27** | JP LUMIX S/G/compact camera-body sitemap scope is published and coverage-pass-complete at 27 direct + 0 support-only + 0 held; broader Panasonic categories remain incomplete |
 | 4 | Canon | **expanded — 6** | First PIXUS batch covered in Wave 3E; broader Canon remains incomplete |
@@ -119,7 +120,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 65 | Bambu Lab | generic-only | P1 3D-printer queue |
 | 66 | Creality | generic-only | P1 3D-printer queue |
 
-Result after the Sony JP α E-mount and Panasonic JP LUMIX publications: **54 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
+Result after the Sony JP α E-mount, Panasonic JP LUMIX, and Apple iPhone publications: **53 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
 
 ## P0 source audit and order
 
@@ -134,6 +135,10 @@ The first rotation is based on source structure, user usefulness, and the abilit
 | 5 | Canon | Official manual selector is structured by product group, series and model across camera, printer, scanner and business lines. | **Wave 3E implemented:** six PIXUS models, preserving Canon-defined shared manual groups where applicable. |
 | 6 | Panasonic | Official manual search spans a very broad appliance/AV catalog. The LUMIX sitemap provides a bounded camera-body population under S-series, G-series, and compact-camera headings. | **Coverage pass complete and published for the sitemap camera-body scope:** 27 official identities = 27 direct + 0 support-only + 0 held. The live runner confirmed 26 direct product-support/manual pages; secondary official discovery resolved DC-G100D to Panasonic's exact PDF manual. Broader Panasonic remains future work. |
 
+### Apple iPhone coverage-pass pilot
+
+Apple's current Japanese iPhone User Guide explicitly enumerates a bounded 31-model set from iPhone 11 through iPhone 17e, including iPhone Air and iPhone SE (2nd/3rd generation). That population is coverage-pass-complete and published: **31 = 0 direct + 31 shared + 0 support-only + 0 held**. The first live model-doc review found 31 exact Apple model pages but no accepted per-model manual artifact on those JP pages; secondary discovery confirmed that Apple itself enumerates all 31 inside the shared Japanese iPhone User Guide. Older iPhones, accessories, and iOS software entries remain outside this pass.
+
 Primary official entry points used for this audit:
 
 - Nikon Web manuals: `https://onlinemanual.nikonimglib.com/portal/ja/`
@@ -142,6 +147,8 @@ Primary official entry points used for this audit:
 - Epson support: `https://www.epson.jp/support/`
 - Canon manuals: `https://canon.jp/support/manual`
 - Panasonic manuals: `https://panasonic.jp/support/manual.html`
+- Apple iPhone manuals: `https://support.apple.com/ja-jp/docs/iphone`
+- Apple iPhone User Guide: `https://support.apple.com/ja-jp/guide/iphone/welcome/ios`
 
 ## Wave rotation contract
 
@@ -153,7 +160,8 @@ Current deployed state:
 4. **Wave 3D — Epson:** implemented for six exact current Colorio models selected for clean manual and consumable evidence.
 5. **Wave 3E — Canon:** implemented for six PIXUS models; direct and vendor-shared manual targets are distinguished explicitly.
 6. **Panasonic coverage-pass pilot:** JP LUMIX S/G/compact camera-body scope is complete and published from `coverage-passes/panasonic/jp-lumix-camera-bodies-sitemap.json`: **27 = 27 direct + 0 shared + 0 support-only + 0 held**. The public compiled batch is `data/manuals.coverage-pass.panasonic-jp-lumix-camera-bodies.js`. Broader Panasonic categories remain separate future coverage passes.
-7. Re-evaluate counts and gaps before any second model-coverage wave for Nikon/Brother/Epson/Canon.
+7. **Apple coverage-pass pilot:** iPhone 11→17e/Air/SE2/SE3 scope is complete and published from `coverage-passes/apple/jp-iphone-ios26-guide-models.json`: **31 = 0 direct + 31 shared + 0 support-only + 0 held**. The public compiled batch is `data/manuals.coverage-pass.apple-jp-iphone-ios26-guide-models.js`. Broader Apple categories remain separate future coverage passes.
+8. Re-evaluate counts and gaps before any second model-coverage wave for Nikon/Brother/Epson/Canon.
 
 Affiliate expansion has a separate priority queue and may evaluate already-deep office-printer datasets for verified toner/drum mappings without claiming new model coverage.
 

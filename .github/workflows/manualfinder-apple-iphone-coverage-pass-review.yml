@@ -1,0 +1,33 @@
+name: ManualFinder Apple iPhone coverage-pass review
+
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/coverage-passes/apple/**'
+      - 'tools/manual-finder/scripts/apple-iphone-review.mjs'
+      - '.github/workflows/manualfinder-apple-iphone-coverage-pass-review.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  apple-iphone-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run Apple iPhone official review candidates
+        run: |
+          mkdir -p manualfinder-coverage-pass-artifacts
+          node tools/manual-finder/scripts/apple-iphone-review.mjs \
+            --pass tools/manual-finder/coverage-passes/apple/jp-iphone-ios26-guide-models.json \
+            --output manualfinder-coverage-pass-artifacts/apple-iphone-review.json
+      - name: Upload review artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-apple-iphone-review
+          path: manualfinder-coverage-pass-artifacts/apple-iphone-review.json
+          if-no-files-found: error
