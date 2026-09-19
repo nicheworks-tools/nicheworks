@@ -11,7 +11,9 @@ const DATA = path.join(ROOT, "data");
 const ENTRIES_DIR = path.join(ROOT, "entries");
 const MANIFEST_PATH = path.join(DATA, "seo-detail-pages-v2.3.json");
 const SITEMAP_PATH = path.join(ROOT, "sitemap.xml");
+const ROOT_SITEMAP_PATH = path.resolve(ROOT, "..", "..", "sitemap.xml");
 const SITE_ROOT = "https://nicheworks.app/tools/construction-tools-atlas";
+const ROOT_SITEMAP_LASTMOD = "2026-09-19";
 const args = new Set(process.argv.slice(2));
 
 function readJson(file) {
@@ -392,7 +394,15 @@ function renderSitemap(existingXml, launchIds) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url>\n    <loc>${escapeHtml(url)}</loc>\n  </url>`).join("\n")}\n</urlset>\n`;
 }
 
-function writeOutput(baseDir, pages, manifest, sitemap) {
+function renderRootSitemap(existingXml, launchIds) {
+  const managedBlock = /\s*<url>\s*<loc>https:\/\/nicheworks\.app\/tools\/construction-tools-atlas\/entries\/[^<]+<\/loc>[\s\S]*?<\/url>\s*/g;
+  const retained = String(existingXml || "").replace(managedBlock, "\n");
+  const blocks = launchIds.map((id) => `  <url>\n    <loc>${escapeHtml(canonicalEntryUrl(id))}</loc>\n    <lastmod>${ROOT_SITEMAP_LASTMOD}</lastmod>\n  </url>`).join("\n");
+  if (!/<\/urlset>\s*$/.test(retained)) throw new Error("root sitemap is missing closing urlset");
+  return retained.replace(/\s*<\/urlset>\s*$/, `\n${blocks}\n</urlset>\n`);
+}
+
+function writeOutput(baseDir, pages, manifest, sitemap, rootSitemap) {
   const entriesDir = path.join(baseDir, "entries");
   fs.rmSync(entriesDir, { recursive: true, force: true });
   for (const [id, html] of pages) {
@@ -404,6 +414,7 @@ function writeOutput(baseDir, pages, manifest, sitemap) {
   fs.mkdirSync(dataDir, { recursive: true });
   fs.writeFileSync(path.join(dataDir, "seo-detail-pages-v2.3.json"), JSON.stringify(manifest, null, 2) + "\n");
   fs.writeFileSync(path.join(baseDir, "sitemap.xml"), sitemap);
+  fs.writeFileSync(ROOT_SITEMAP_PATH, rootSitemap);
 }
 
 function compareFile(expected, actualPath, label, failures) {
@@ -485,6 +496,7 @@ async function main() {
   };
 
   const sitemap = renderSitemap(fs.readFileSync(SITEMAP_PATH, "utf8"), launchIds);
+  const rootSitemap = renderRootSitemap(fs.readFileSync(ROOT_SITEMAP_PATH, "utf8"), launchIds);
 
   if (args.has("--check")) {
     const failures = [];
@@ -499,6 +511,7 @@ async function main() {
     }
     compareFile(JSON.stringify(manifest, null, 2) + "\n", MANIFEST_PATH, "data/seo-detail-pages-v2.3.json", failures);
     compareFile(sitemap, SITEMAP_PATH, "sitemap.xml", failures);
+    compareFile(rootSitemap, ROOT_SITEMAP_PATH, "../../sitemap.xml", failures);
     if (failures.length) {
       console.error("Construction Tools Atlas static SEO detail pages v2.3: FAIL");
       failures.forEach((failure) => console.error(`- ${failure}`));
@@ -509,7 +522,7 @@ async function main() {
     return;
   }
 
-  writeOutput(ROOT, pages, manifest, sitemap);
+  writeOutput(ROOT, pages, manifest, sitemap, rootSitemap);
   console.log(`Wrote ${launchIds.length} static SEO detail pages.`);
   console.log(`CTA_SEO_DETAIL_SUMMARY=${JSON.stringify(manifest.summary)}`);
 }
