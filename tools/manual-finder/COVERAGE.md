@@ -58,7 +58,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 3 | Panasonic | **expanded — 27** | JP LUMIX S/G/compact camera-body sitemap scope is published and coverage-pass-complete at 27 direct + 0 support-only + 0 held; broader Panasonic categories remain incomplete |
 | 4 | Canon | **expanded — 6** | First PIXUS batch covered in Wave 3E; broader Canon remains incomplete |
 | 5 | Nikon | **expanded — 14** | Mirrorless Web-manual section covered in Wave 3A; rotate away |
-| 6 | Fujifilm | generic-only | Camera division must be handled separately from FUJIFILM Business Innovation |
+| 6 | Fujifilm | generic-only | **P0 — GFX + X-series camera manuals index scope started: 56 exact official camera identities locked and live review in progress; FinePix excluded from this pass** |
 | 7 | Brother | **expanded — 13** | First bounded MFC-J batch covered in Wave 3B; MFC-J6990CDW held; rotate away |
 | 8 | Epson | **expanded — 6** | First bounded Colorio batch covered in Wave 3D; broader Epson remains incomplete |
 | 9 | HP | generic-only | PC/mobile queue |
@@ -135,6 +135,10 @@ The first rotation is based on source structure, user usefulness, and the abilit
 | 5 | Canon | Official manual selector is structured by product group, series and model across camera, printer, scanner and business lines. | **Wave 3E implemented:** six PIXUS models, preserving Canon-defined shared manual groups where applicable. |
 | 6 | Panasonic | Official manual search spans a very broad appliance/AV catalog. The LUMIX sitemap provides a bounded camera-body population under S-series, G-series, and compact-camera headings. | **Coverage pass complete and published for the sitemap camera-body scope:** 27 official identities = 27 direct + 0 support-only + 0 held. The live runner confirmed 26 direct product-support/manual pages; secondary official discovery resolved DC-G100D to Panasonic's exact PDF manual. Broader Panasonic remains future work. |
 
+### Fujifilm GFX/X coverage-pass pilot
+
+FUJIFILM Japan's official camera 使用説明書 page explicitly enumerates 56 exact camera models across the GFX and X-series sections: 9 GFX, 32 X-series mirrorless, and 15 X-series fixed-lens models. That exact population is registered under `coverage-passes/fujifilm/jp-gfx-x-camera-manual-index.json`; FinePix, lenses, accessories, and software are intentionally outside this pass. Live review verifies generated detail-page candidates against FUJIFILM-controlled pages rather than treating the URL pattern itself as evidence.
+
 ### Apple iPhone coverage-pass pilot
 
 Apple's current Japanese iPhone User Guide explicitly enumerates a bounded 31-model set from iPhone 11 through iPhone 17e, including iPhone Air and iPhone SE (2nd/3rd generation). That population is coverage-pass-complete and published: **31 = 0 direct + 31 shared + 0 support-only + 0 held**. The first live model-doc review found 31 exact Apple model pages but no accepted per-model manual artifact on those JP pages; secondary discovery confirmed that Apple itself enumerates all 31 inside the shared Japanese iPhone User Guide. Older iPhones, accessories, and iOS software entries remain outside this pass.
@@ -149,6 +153,7 @@ Primary official entry points used for this audit:
 - Panasonic manuals: `https://panasonic.jp/support/manual.html`
 - Apple iPhone manuals: `https://support.apple.com/ja-jp/docs/iphone`
 - Apple iPhone User Guide: `https://support.apple.com/ja-jp/guide/iphone/welcome/ios`
+- Fujifilm camera manuals: `https://www.fujifilm-x.com/ja-jp/support/manual/cameras/`
 
 ## Wave rotation contract
 
@@ -161,7 +166,8 @@ Current deployed state:
 5. **Wave 3E — Canon:** implemented for six PIXUS models; direct and vendor-shared manual targets are distinguished explicitly.
 6. **Panasonic coverage-pass pilot:** JP LUMIX S/G/compact camera-body scope is complete and published from `coverage-passes/panasonic/jp-lumix-camera-bodies-sitemap.json`: **27 = 27 direct + 0 shared + 0 support-only + 0 held**. The public compiled batch is `data/manuals.coverage-pass.panasonic-jp-lumix-camera-bodies.js`. Broader Panasonic categories remain separate future coverage passes.
 7. **Apple coverage-pass pilot:** iPhone 11→17e/Air/SE2/SE3 scope is complete and published from `coverage-passes/apple/jp-iphone-ios26-guide-models.json`: **31 = 0 direct + 31 shared + 0 support-only + 0 held**. The public compiled batch is `data/manuals.coverage-pass.apple-jp-iphone-ios26-guide-models.js`. Broader Apple categories remain separate future coverage passes.
-8. Re-evaluate counts and gaps before any second model-coverage wave for Nikon/Brother/Epson/Canon.
+8. **Fujifilm coverage-pass pilot:** GFX + X-series camera manual-index scope is locked at 56 exact official camera identities and live review is in progress. No Fujifilm rows are public from this pass until reconciliation completes.
+9. Re-evaluate counts and gaps before any second model-coverage wave for Nikon/Brother/Epson/Canon.
 
 Affiliate expansion has a separate priority queue and may evaluate already-deep office-printer datasets for verified toner/drum mappings without claiming new model coverage.
 
