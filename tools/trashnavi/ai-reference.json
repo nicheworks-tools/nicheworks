@@ -7,7 +7,7 @@
   "authority_policy": "TrashNavi is a navigation and indexing layer. The municipal government pages linked from each municipality page are authoritative for current sorting rules, collection dates, fees, eligibility, applications and facility information.",
   "inference_policy": "Do not transfer, generalize or infer waste rules between municipalities. Confirm the latest municipality-specific information on the official source.",
   "source_manifest": "/tools/trashnavi/municipality-page-manifest.json",
-  "published_municipality_count": 274,
+  "published_municipality_count": 284,
   "municipalities": [
     {
       "lgcode": "131016",
@@ -1652,6 +1652,66 @@
       "pref_slug": "tochigi",
       "city_slug": "oyama",
       "url": "https://nicheworks.app/tools/trashnavi/tochigi/oyama/"
+    },
+    {
+      "lgcode": "092029",
+      "pref_slug": "tochigi",
+      "city_slug": "ashikaga",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/ashikaga/"
+    },
+    {
+      "lgcode": "092037",
+      "pref_slug": "tochigi",
+      "city_slug": "tochigi",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/tochigi/"
+    },
+    {
+      "lgcode": "092045",
+      "pref_slug": "tochigi",
+      "city_slug": "sano",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/sano/"
+    },
+    {
+      "lgcode": "092053",
+      "pref_slug": "tochigi",
+      "city_slug": "kanuma",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/kanuma/"
+    },
+    {
+      "lgcode": "092061",
+      "pref_slug": "tochigi",
+      "city_slug": "nikko",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/nikko/"
+    },
+    {
+      "lgcode": "092096",
+      "pref_slug": "tochigi",
+      "city_slug": "moka",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/moka/"
+    },
+    {
+      "lgcode": "092118",
+      "pref_slug": "tochigi",
+      "city_slug": "yaita",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/yaita/"
+    },
+    {
+      "lgcode": "092134",
+      "pref_slug": "tochigi",
+      "city_slug": "nasushiobara",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/nasushiobara/"
+    },
+    {
+      "lgcode": "092142",
+      "pref_slug": "tochigi",
+      "city_slug": "sakura",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/sakura/"
+    },
+    {
+      "lgcode": "092169",
+      "pref_slug": "tochigi",
+      "city_slug": "shimotsuke",
+      "url": "https://nicheworks.app/tools/trashnavi/tochigi/shimotsuke/"
     }
   ]
 }

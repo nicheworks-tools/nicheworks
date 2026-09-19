@@ -272,5 +272,15 @@
   {"lgcode":"083640","pref_slug":"ibaraki","city_slug":"daigo","publish":true},
   {"lgcode":"084425","pref_slug":"ibaraki","city_slug":"miho","publish":true},
   {"lgcode":"085464","pref_slug":"ibaraki","city_slug":"sakai","publish":true},
-  {"lgcode":"092088","pref_slug":"tochigi","city_slug":"oyama","publish":true}
+  {"lgcode":"092088","pref_slug":"tochigi","city_slug":"oyama","publish":true},
+  {"lgcode":"092029","pref_slug":"tochigi","city_slug":"ashikaga","publish":true},
+  {"lgcode":"092037","pref_slug":"tochigi","city_slug":"tochigi","publish":true},
+  {"lgcode":"092045","pref_slug":"tochigi","city_slug":"sano","publish":true},
+  {"lgcode":"092053","pref_slug":"tochigi","city_slug":"kanuma","publish":true},
+  {"lgcode":"092061","pref_slug":"tochigi","city_slug":"nikko","publish":true},
+  {"lgcode":"092096","pref_slug":"tochigi","city_slug":"moka","publish":true},
+  {"lgcode":"092118","pref_slug":"tochigi","city_slug":"yaita","publish":true},
+  {"lgcode":"092134","pref_slug":"tochigi","city_slug":"nasushiobara","publish":true},
+  {"lgcode":"092142","pref_slug":"tochigi","city_slug":"sakura","publish":true},
+  {"lgcode":"092169","pref_slug":"tochigi","city_slug":"shimotsuke","publish":true}
 ]
