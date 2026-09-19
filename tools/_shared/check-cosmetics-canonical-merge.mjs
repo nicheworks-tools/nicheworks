@@ -39,7 +39,11 @@ assert.deepEqual(ha.semantic_conflicts?.safety, ['safe', 'caution'], 'safety con
 assert.deepEqual(ha.categories, ['humectant', 'active'], 'all conflicting functional categories must survive canonical merge');
 assert.equal(ha.category, 'humectant / active', 'runtime category must expose all observed functions instead of silently selecting one');
 assert.deepEqual(ha.semantic_conflicts?.category, ['humectant', 'active'], 'category conflict must retain the original source values');
-assert.equal(ha.note_short, 'first', 'first note remains the compatibility note until note provenance work is complete');
+const haVerifiedNote = parser.verifiedNoteEvidence?.['sodium hyaluronate'];
+assert.ok(haVerifiedNote, 'Sodium Hyaluronate verified note evidence must exist once note provenance is complete for this identity');
+assert.equal(ha.note_short, haVerifiedNote.note_short, 'verified note overlay must replace conflicting raw compatibility notes');
+assert.equal(ha.note_verified, true, 'verified note flag must survive canonical merge');
+assert.deepEqual(ha.note_sources, [...haVerifiedNote.note_sources], 'verified note sources must survive canonical merge');
 
 assert.equal(parser.normalizeKey('ヒアルロン酸ナトリウム'), parser.normalizeKey('Sodium Hyaluronate'));
 assert.equal(parser.normalizeKey('AHA'), '', 'ambiguous exact labels must remain blocked');
