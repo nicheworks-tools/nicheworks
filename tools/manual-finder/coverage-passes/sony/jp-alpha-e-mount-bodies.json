@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "maker": "Sony",
+  "scopeId": "jp-alpha-e-mount-bodies",
+  "scopeLabel": "Sony Japan digital interchangeable-lens camera α E-mount bodies",
+  "status": "acquiring_universe",
+  "asOf": "2026-09-19",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "support.sony.jp",
+    "helpguide.sony.net",
+    "sony.jp"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://support.sony.jp/electronics/support/interchangeable-lens-cameras-e-mount-body/manuals",
+      "https://support.sony.jp/electronics/support/interchangeable-lens-cameras-e-mount-body"
+    ],
+    "declaredCount": 107,
+    "models": [
+      "ILCE-7M3M",
+      "ILCE-7M4M",
+      "ILCE-7RM6",
+      "ILCE-7M5",
+      "ILCE-7M5M",
+      "ILCE-6700K",
+      "ZV-E10K",
+      "ZV-E10X",
+      "ILCE-6400K",
+      "ILCE-6400X"
+    ],
+    "populationMethod": "official_manual_index",
+    "notes": "Sony's official Japanese E-mount manuals index declares 107 product model names. The exact universe is not yet fully captured; these ten identifiers are only the initial official-index seed and are not a completion claim."
+  },
+  "discovery": {
+    "declaredCountPatterns": [
+      {
+        "source": "製品型名\\s*[:：]\\s*([0-9,]+)",
+        "flags": "iu"
+      }
+    ],
+    "modelPatterns": [
+      {
+        "source": "\\b((?:ILCE|ZV-E|NEX)[A-Z0-9-]+)\\b",
+        "flags": "giu"
+      }
+    ]
+  },
+  "records": [],
+  "negativeEscalationChannels": [
+    "official_manual_index",
+    "official_support_index",
+    "official_site_search",
+    "official_product_page",
+    "official_help_guide",
+    "official_archive"
+  ],
+  "refresh": {
+    "compareAgainstOfficialUniverse": true,
+    "preserveHeldHistory": true
+  }
+}
