@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "maker": "Apple",
+  "scopeId": "jp-iphone-ios26-guide-models",
+  "scopeLabel": "Apple iPhone models enumerated by the iPhone User Guide from iPhone 11 through iPhone 17e",
+  "status": "reviewing",
+  "asOf": "2026-09-19",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "support.apple.com",
+    "apple.com"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+      "https://support.apple.com/ja-jp/docs/iphone"
+    ],
+    "declaredCount": 31,
+    "models": [
+      "iPhone 11",
+      "iPhone 11 Pro",
+      "iPhone 11 Pro Max",
+      "iPhone SE (2nd generation)",
+      "iPhone 12 mini",
+      "iPhone 12",
+      "iPhone 12 Pro",
+      "iPhone 12 Pro Max",
+      "iPhone 13 mini",
+      "iPhone 13",
+      "iPhone 13 Pro",
+      "iPhone 13 Pro Max",
+      "iPhone SE (3rd generation)",
+      "iPhone 14",
+      "iPhone 14 Plus",
+      "iPhone 14 Pro",
+      "iPhone 14 Pro Max",
+      "iPhone 15",
+      "iPhone 15 Plus",
+      "iPhone 15 Pro",
+      "iPhone 15 Pro Max",
+      "iPhone 16",
+      "iPhone 16 Plus",
+      "iPhone 16 Pro",
+      "iPhone 16 Pro Max",
+      "iPhone 16e",
+      "iPhone 17",
+      "iPhone 17 Pro",
+      "iPhone 17 Pro Max",
+      "iPhone Air",
+      "iPhone 17e"
+    ],
+    "populationMethod": "official_iphone_user_guide_model_list",
+    "notes": "Bounded scope: the 31 iPhone models explicitly enumerated in the current Apple iPhone User Guide model list from iPhone 11 through iPhone 17e, including iPhone SE 2nd/3rd generation and iPhone Air. Older iPhone models, accessories, and iOS software entries on the broader manuals index are outside this pass."
+  },
+  "sourceLabels": {
+    "iPhone SE (3rd generation)": [
+      "iPhone SE (第3世代)",
+      "iPhone SE (3rd generation)"
+    ],
+    "iPhone SE (2nd generation)": [
+      "iPhone SE (2nd generation)",
+      "iPhone SE (第2世代)"
+    ]
+  },
+  "subscopes": [
+    {
+      "id": "iphone-11",
+      "sourceUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+      "models": [
+        "iPhone 11",
+        "iPhone 11 Pro",
+        "iPhone 11 Pro Max"
+      ],
+      "capturedCount": 3,
+      "captureState": "captured"
+    },
+    {
+      "id": "iphone-se2",
+      "sourceUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+      "models": [
+        "iPhone SE (2nd generation)"
+      ],
+      "capturedCount": 1,
+      "captureState": "captured"
+    },
+    {
+      "id": "iphone-12",
+      "sourceUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+      "models": [
+        "iPhone 12 mini",
+        "iPhone 12",
+        "iPhone 12 Pro",
+        "iPhone 12 Pro Max"
+      ],
+      "capturedCount": 4,
+      "captureState": "captured"
+    },
+    {
+      "id": "iphone-13",
+      "sourceUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+      "models": [
+        "iPhone 13 mini",
+        "iPhone 13",
+        "iPhone 13 Pro",
+        "iPhone 13 Pro Max"
+      ],
+      "capturedCount": 4,
+      "captureState": "captured"
+    },
+    {
+      "id": "iphone-se3",
+      "sourceUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+      "models": [
+        "iPhone SE (3rd generation)"
+      ],
+      "capturedCount": 1,
+      "captureState": "captured"
+    },
+    {
+      "id": "iphone-14",
+      "sourceUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+      "models": [
+        "iPhone 14",
+        "iPhone 14 Plus",
+        "iPhone 14 Pro",
+        "iPhone 14 Pro Max"
+      ],
+      "capturedCount": 4,
+      "captureState": "captured"
+    },
+    {
+      "id": "iphone-15",
+      "sourceUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+      "models": [
+        "iPhone 15",
+        "iPhone 15 Plus",
+        "iPhone 15 Pro",
+        "iPhone 15 Pro Max"
+      ],
+      "capturedCount": 4,
+      "captureState": "captured"
+    },
+    {
+      "id": "iphone-16",
+      "sourceUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+      "models": [
+        "iPhone 16",
+        "iPhone 16 Plus",
+        "iPhone 16 Pro",
+        "iPhone 16 Pro Max",
+        "iPhone 16e"
+      ],
+      "capturedCount": 5,
+      "captureState": "captured"
+    },
+    {
+      "id": "iphone-17",
+      "sourceUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+      "models": [
+        "iPhone 17",
+        "iPhone 17 Pro",
+        "iPhone 17 Pro Max",
+        "iPhone Air",
+        "iPhone 17e"
+      ],
+      "capturedCount": 5,
+      "captureState": "captured"
+    }
+  ],
+  "records": [],
+  "negativeEscalationChannels": [
+    "official_iphone_manuals_index",
+    "official_model_docs_page",
+    "official_iphone_user_guide",
+    "official_support_search",
+    "official_model_identification_page"
+  ],
+  "refresh": {
+    "compareAgainstOfficialUniverse": true,
+    "preserveHeldHistory": true,
+    "sourceUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios"
+  }
+}
