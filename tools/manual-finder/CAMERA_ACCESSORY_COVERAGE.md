@@ -10,16 +10,16 @@ This document is the audited baseline for compatibility-sensitive camera battery
 | --- | ---: |
 | Canonical `カメラ・映像` records | **192** |
 | Camera records with a basic Amazon path | **185** |
-| Camera records with verified accessory detail | **121** |
+| Camera records with verified accessory detail | **133** |
 | Reviewed camera-detail exclusions | **26** |
-| Actionable camera records still missing accessory detail | **38** |
+| Actionable camera records still missing accessory detail | **26** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 185 = detail 121 + reviewed exclusion 26 + missing 38`
+`camera basic 185 = detail 133 + reviewed exclusion 26 + missing 26`
 
-The active detail ledger contains all fourteen actionable Nikon records, seventy reviewed DJI records, and all thirty-seven actionable OM SYSTEM records. Twenty-six DJI rows are evidence-backed reviewed exclusions covering built-in/nonremovable power, rechargeable controllers without model-specific replaceable power accessories, externally powered air units, and the multi-component Digital FPV System. Missing rows remain explicit rather than being converted to guessed mappings or unsupported exclusions.
+The active detail ledger contains all fourteen actionable Nikon records, seventy reviewed DJI records, all thirty-seven actionable OM SYSTEM records, and twelve reviewed GoPro records. Twenty-six DJI rows are evidence-backed reviewed exclusions covering built-in/nonremovable power, rechargeable controllers without model-specific replaceable power accessories, externally powered air units, and the multi-component Digital FPV System. Missing rows remain explicit rather than being converted to guessed mappings or unsupported exclusions.
 
 ## Actionable coverage by maker
 
@@ -27,7 +27,7 @@ The active detail ledger contains all fourteen actionable Nikon records, seventy
 | --- | ---: | ---: | ---: | ---: |
 | DJI | 96 | 70 | 26 | 0 |
 | OM SYSTEM | 37 | 37 | 0 | 0 |
-| GoPro | 31 | 0 | 0 | 31 |
+| GoPro | 31 | 12 | 0 | 19 |
 | Nikon | 14 | 14 | 0 | 0 |
 | Insta360 | 7 | 0 | 0 | 7 |
 
@@ -242,6 +242,36 @@ OM SYSTEM is now closed:
 
 `OM SYSTEM camera 37 = detail 37 + reviewed exclusion 0 + missing 0`
 
+## GoPro reviewed waves
+
+### Wave 1 — HERO13 Black Enduro
+
+Wave 1 activates exactly `HERO13 Black`. GoPro's official Enduro for HERO13 Black page explicitly identifies HERO13 Black compatibility, describes the 1900 mAh replacement/spare battery, and states that its connector is specific to HERO13 Black.
+
+The deterministic Amazon handoff is `GoPro Enduro Battery HERO13 Black`. Earlier HERO generations are not inferred.
+
+### Wave 2 — HERO9–HERO12 Enduro
+
+Wave 2 activates exactly `HERO9 Black`, `HERO10 Black`, `HERO11 Black`, and `HERO12 Black`. GoPro's official Enduro product page explicitly lists all four models as compatible.
+
+The deterministic Amazon handoff is `GoPro Enduro Battery`. `HERO11 Black Mini` is not included in this wave.
+
+### Wave 3 — HERO5–HERO8 replaceable battery family
+
+Wave 3 activates exactly `HERO5 Black`, `HERO6 Black`, `HERO7 Black`, `HERO8 Black`, and canonical `HERO 2018`. GoPro's official HERO8 Black Rechargeable Battery page lists HERO8 Black, HERO7 Black, HERO6 Black, and HERO (2018) as compatible and separately states that HERO5 Black and HERO (2018) compatibility requires a camera software update. The canonical `HERO 2018` spelling is the catalog-normalized form of GoPro's displayed `HERO (2018)`; the noncanonical punctuation variant is not activated.
+
+The deterministic Amazon handoff is `GoPro HERO8 Black Rechargeable Battery`.
+
+### Wave 4 — MAX / MAX2 Enduro
+
+Wave 4 activates exactly `MAX` and `MAX2`. GoPro publishes separate official Enduro battery pages for MAX and MAX2, and each page explicitly names its corresponding camera as compatible.
+
+The deterministic Amazon handoffs are `GoPro Enduro Battery MAX` and `GoPro Enduro Battery MAX2`. Compatibility is not generalized between the two rows.
+
+Current GoPro reconciliation:
+
+`GoPro camera 31 = detail 12 + reviewed exclusion 0 + missing 19`
+
 ## Non-actionable camera records
 
 Seven camera-category records are maker/index entries without an actionable exact-model Amazon path and are not counted as missing accessory detail:
@@ -267,7 +297,7 @@ Seven camera-category records are maker/index entries without an actionable exac
 
 ## Expansion order
 
-1. Review GoPro 31 actionable records.
+1. Continue GoPro from the remaining 19 actionable records in bounded official-evidence waves.
 2. Review Insta360 7 actionable records.
 
 DJI, Nikon, and OM SYSTEM are closed at zero missing.
@@ -278,7 +308,7 @@ The camera accessory phase is complete only when:
 
 `camera basic = detail + reviewed exclusion + missing 0`
 
-The current baseline is not complete: `38` actionable records remain missing accessory detail.
+The current baseline is not complete: `26` actionable records remain missing accessory detail.
 
 ## Source of truth
 
@@ -290,6 +320,10 @@ The current baseline is not complete: `38` actionable records remain missing acc
 - `affiliate-om-system-camera-accessories-wave4.js` — exact seven-row BLS-50 mappings.
 - `affiliate-om-system-camera-accessories-wave5.js` — exact five-row BLN-1 mappings.
 - `affiliate-om-system-camera-accessories-wave6.js` — exact fifteen-row legacy BLS-50 mappings and OM SYSTEM closure.
+- `affiliate-gopro-camera-accessories-wave1.js` — exact HERO13 Black Enduro mapping.
+- `affiliate-gopro-camera-accessories-wave2.js` — exact HERO9–HERO12 Enduro mappings.
+- `affiliate-gopro-camera-accessories-wave3.js` — exact HERO5–HERO8 / HERO 2018 rechargeable-battery mappings.
+- `affiliate-gopro-camera-accessories-wave4.js` — exact MAX / MAX2 Enduro mappings.
 - `affiliate-dji-camera-accessories-wave1.js` through `affiliate-dji-camera-accessories-wave41.js` — reviewed DJI camera accessory ledgers.
 - `affiliate-dji-camera-accessories-wave22.js` — exact reviewed Phantom 3 Advanced/Professional/Standard battery and charging-hub mappings.
 - `affiliate-dji-camera-accessories-wave23.js` — exact reviewed Phantom 3 SE battery-only mapping; charging hub remains intentionally unasserted.
@@ -308,7 +342,7 @@ The current baseline is not complete: `38` actionable records remain missing acc
 - `affiliate-dji-camera-accessories-wave39.js` — exact DJI Ronin 4D TB50/hub and original Osmo Action battery/hub mappings.
 - `affiliate-dji-camera-accessories-wave41.js` — exact Osmo Nano Multifunctional Vision Dock mapping.
 - `affiliate-camera-detail-exclusions.js` — twenty-six reviewed DJI exclusions across Waves 32, 34, 36, 40, and 41.
-- `affiliate-runtime.js` — sequential browser loading of Nikon, DJI, and OM SYSTEM accessory ledgers before rendering.
+- `affiliate-runtime.js` — sequential browser loading of Nikon, DJI, OM SYSTEM, and GoPro accessory ledgers before rendering.
 - `tests/dji-phantom3-accessory-wave22.test.mjs` — exact Wave 22 Phantom 3 boundary.
 - `tests/dji-phantom3-se-accessory-wave23.test.mjs` — exact Wave 23 Phantom 3 SE battery-only boundary.
 - `tests/dji-mavic2-enterprise-advanced-wave24.test.mjs` — exact Wave 24 Mavic 2 Enterprise Advanced battery-only boundary.
@@ -335,5 +369,9 @@ The current baseline is not complete: `38` actionable records remain missing acc
 - `tests/om-system-bls50-accessory-wave4.test.mjs` — exact OM SYSTEM Wave 4 BLS-50 boundary.
 - `tests/om-system-bln1-accessory-wave5.test.mjs` — exact OM SYSTEM Wave 5 BLN-1 boundary.
 - `tests/om-system-bls50-legacy-wave6.test.mjs` — exact OM SYSTEM Wave 6 legacy BLS-50 boundary.
+- `tests/gopro-hero13-accessory-wave1.test.mjs` — exact GoPro HERO13 Wave 1 boundary.
+- `tests/gopro-enduro-accessory-wave2.test.mjs` — exact GoPro HERO9–HERO12 Wave 2 boundary.
+- `tests/gopro-hero8-battery-accessory-wave3.test.mjs` — exact GoPro HERO5–HERO8/HERO 2018 Wave 3 boundary.
+- `tests/gopro-max-enduro-accessory-wave4.test.mjs` — exact GoPro MAX/MAX2 Wave 4 boundary.
 - `tests/camera-accessory-coverage.test.mjs` — catalog-wide camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` — documentation drift guard and implementation-evidence synchronization.
