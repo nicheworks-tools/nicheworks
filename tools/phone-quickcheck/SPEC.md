@@ -6,7 +6,7 @@
 - Public URL: `https://nicheworks.app/tools/phone-quickcheck/`
 - Specification status: `complete`
 - Common specification: `common-spec/spec-ja.md`
-- Current dataset: `199 verified models`
+- Current dataset: `202 verified models`
 - Public launch date: `2026-09-13`
 - Product class: `static browser utility / quick-check directory`
 
@@ -18,7 +18,7 @@ It is intentionally not a comprehensive smartphone encyclopedia, review database
 
 ## Current functional contract
 
-The maintained public dataset contains 199 verified models across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, Motorola, and ZTE, including 32 foldables with separate folded/unfolded dimensions. Users can search by model name and maintained aliases, filter by manufacturer, charging connector, and release year, and sort by newest, lightest, or compact-size oriented order.
+The maintained public dataset contains 202 verified models across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, Motorola, and ZTE, including 32 foldables with separate folded/unfolded dimensions. Users can search by model name and maintained aliases, filter by manufacturer, charging connector, and release year, and sort by newest, lightest, or compact-size oriented order.
 
 The list view remains deliberately compact. Selecting a phone exposes detail information including dimensions, weight, display size where maintained, water/dust rating or an explicitly source-backed non-resistant state, charging port, charger guidance, verified protocol labels, PPS state, wireless charging standard/wattage, battery capacity where an accepted value exists, included cable/adapter state, official specification/manual links, and last verification date.
 
@@ -125,7 +125,7 @@ Desktop uses a wide two-pane layout: searchable/filterable list on the left and 
 - [x] One canonical public tool page exists at `/tools/phone-quickcheck/`.
 - [x] Japanese and English UI are available on the same page.
 - [x] Desktop uses list + right detail pane and mobile uses a bottom sheet for details.
-- [x] The maintained public dataset contains 199 maintained models.
+- [x] The maintained public dataset contains 202 maintained models.
 - [x] Search matches canonical model names plus maintained aliases.
 - [x] Manufacturer, connector, and release-year filters work from canonical data.
 - [x] Device dimensions, weight, charging information, and official-source links can be displayed without converting the tool into a full specification encyclopedia.

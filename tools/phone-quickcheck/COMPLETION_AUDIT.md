@@ -152,6 +152,21 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 6 — 2026-09-19
+
+Added three Japan-market 2026 records:
+
+- OPPO Find X9 Ultra
+- POCO X8 Pro Max
+- POCO X8 Pro
+
+Maintained dataset: **199 → 202**.
+
+OPPO Find X9 Ultra uses `physicalVariants[]` for the official 9.1mm/236g Tundra Amber and 8.7mm/235g Canyon Orange variants. It preserves 7050mAh, 100W SUPERVOOC, 50W AIRVOOC, IPX8/IPX9/IP6X, and the explicit included 80W adapter + USB-C cable from OPPO Japan.
+
+POCO X8 Pro Max and X8 Pro are recorded from Xiaomi Japan specifications and support FAQs with exact dimensions/weight, 8500mAh / 6500mAh batteries, 100W HyperCharge, explicit PPS + PD support, IP68, and included charger/cable.
+
+
 ## Post-v1 maintenance Wave 3 — 2026-09-19
 
 Added four Japan-market 2026 models from primary manufacturer sources:
