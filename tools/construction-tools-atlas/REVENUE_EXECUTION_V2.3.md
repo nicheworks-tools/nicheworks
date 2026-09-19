@@ -34,11 +34,11 @@ Current commercial/image state:
 - 781 required images still awaiting source.
 
 The current intersection produces:
-- **32 immediate SEO + commerce-ready canonicals**: active Amazon mapping + promoted image,
+- **33 immediate SEO + commerce-ready canonicals**: 32 with an active Amazon mapping + promoted image, plus 1 with an active Amazon mapping whose image is explicitly not required,
 - **399 affiliate-backed image backlog canonicals**: active Amazon mapping + awaiting-source image,
 - **10 organic image-ready canonicals**: promoted image without Amazon mapping,
 - **382 non-affiliate image backlog canonicals**,
-- **47 not-required canonicals**.
+- **46 non-affiliate not-required canonicals**, plus the 1 commerce-ready not-required canonical above.
 
 These groups are computed by `scripts/report-revenue-readiness-v2.3.cjs`. They are not search-volume estimates and are not earnings forecasts.
 
@@ -123,7 +123,7 @@ Do not generate 870 thin pages at once.
 
 Publish the current `seo_commerce_ready` cohort first.
 
-At the 2026-09-19 baseline this is 32 canonicals. The report is authoritative for the current count.
+At the 2026-09-19 baseline this is 33 canonicals. The report is authoritative for the current count.
 
 ### R3 — Comparison / confusion pages
 
