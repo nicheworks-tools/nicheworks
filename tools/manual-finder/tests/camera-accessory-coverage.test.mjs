@@ -97,9 +97,18 @@ const wave3Rows = typeof context.window.MANUALFINDER_BUILD_WAVE3 === 'function'
   ? context.window.MANUALFINDER_BUILD_WAVE3()
   : [];
 
-const records = normalize([...baseRows, ...wave1Rows, ...wave2Rows, ...wave3Rows]);
+runData('manuals.coverage-passes.js');
+for (const name of context.window.MANUALFINDER_COVERAGE_PASS_BATCHES || []) runData(name);
+const coveragePassRows = typeof context.window.MANUALFINDER_BUILD_COVERAGE_PASSES === 'function'
+  ? context.window.MANUALFINDER_BUILD_COVERAGE_PASSES()
+  : [];
+
+const records = normalize([...baseRows, ...wave1Rows, ...wave2Rows, ...wave3Rows, ...coveragePassRows]);
 const cameraRecords = records.filter((row) => row.category === 'カメラ・映像');
 assert.ok(cameraRecords.length > 0, 'ManualFinder camera catalog should not be empty');
+assert.ok(cameraRecords.some((row) => row.maker === 'Sony' && row.model === 'ILCE-1'), 'camera audit must include Sony coverage-pass rows');
+assert.ok(cameraRecords.some((row) => row.maker === 'Panasonic' && row.model === 'DC-S1'), 'camera audit must include Panasonic coverage-pass rows');
+assert.ok(cameraRecords.some((row) => row.maker === 'Fujifilm' && row.model === 'X-H2S'), 'camera audit must include Fujifilm coverage-pass rows');
 
 for (const name of [
   'affiliate-config.js',
