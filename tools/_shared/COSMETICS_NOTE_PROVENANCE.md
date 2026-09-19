@@ -265,3 +265,24 @@ After Wave 11:
 - strong runtime identities: 46 / 599;
 - Wave 10 identities retained: 4 / 4;
 - raw dictionary records rewritten: no.
+
+
+## Verified note wave 12
+
+Wave 12 continues frequency-prioritized source-backed enrichment:
+
+| Canonical identity | Corpus occurrences | Reviewed runtime note basis |
+| --- | ---: | --- |
+| `cholesterol` | 4 | COSMILE Europe: skin-conditioning emollient plus emulsifying, viscosity-control and light-stabilising functions. |
+| `arginine` | 4 | COSMILE Europe: skin conditioning, hair conditioning and antistatic. |
+| `benzoic acid` | 4 | COSMILE Europe: preservative, pH adjustment and fragrance. |
+| `butylene glycol` | 4 | COSMILE Europe: humectant, skin conditioning, solvent and viscosity control. |
+
+Wave 11 remains a required reviewed subset rather than a total-overlay-size ceiling.
+
+After Wave 12:
+
+- cumulative verified-note identities: 50;
+- strong runtime identities: 50 / 599;
+- Wave 11 identities retained: 4 / 4;
+- raw dictionary records rewritten: no.
