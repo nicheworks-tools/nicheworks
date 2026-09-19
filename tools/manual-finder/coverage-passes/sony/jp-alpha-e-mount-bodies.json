@@ -159,84 +159,215 @@
       "sourceUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-1-series/manuals",
       "declaredCount": 2,
       "capturedCount": 2,
-      "captureState": "captured"
+      "captureState": "captured",
+      "models": [
+        "ILCE-1",
+        "ILCE-1M2"
+      ]
     },
     {
       "id": "alpha9",
       "sourceUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-9-series/manuals",
       "declaredCount": 3,
       "capturedCount": 3,
-      "captureState": "captured"
+      "captureState": "captured",
+      "models": [
+        "ILCE-9",
+        "ILCE-9M2",
+        "ILCE-9M3"
+      ]
     },
     {
       "id": "alpha7",
       "sourceUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-7-series/manuals",
       "declaredCount": 28,
       "capturedCount": 28,
-      "captureState": "captured"
+      "captureState": "captured",
+      "models": [
+        "ILCE-7M3M",
+        "ILCE-7M4M",
+        "ILCE-7RM6",
+        "ILCE-7M5",
+        "ILCE-7M5M",
+        "ILCE-7CM2",
+        "ILCE-7CM2L",
+        "ILCE-7CR",
+        "ILCE-7RM5",
+        "ILCE-7M4K",
+        "ILCE-7RM4A",
+        "ILCE-7RM4",
+        "ILCE-7RM3A",
+        "ILCE-7RM3",
+        "ILCE-7RM2",
+        "ILCE-7SM3",
+        "ILCE-7SM2",
+        "ILCE-7S",
+        "ILCE-7C",
+        "ILCE-7CL",
+        "ILCE-7M4",
+        "ILCE-7M3",
+        "ILCE-7M3K",
+        "ILCE-7M2",
+        "ILCE-7M2K",
+        "ILCE-7R",
+        "ILCE-7",
+        "ILCE-7K"
+      ]
     },
     {
       "id": "zv-e",
       "sourceUrl": "https://support.sony.jp/electronics/support/e-mount-body-zv-e-series/manuals",
       "declaredCount": 10,
       "capturedCount": 10,
-      "captureState": "captured"
+      "captureState": "captured",
+      "models": [
+        "ZV-E10K",
+        "ZV-E10X",
+        "ZV-E10M2",
+        "ZV-E10M2K",
+        "ZV-E10M2X",
+        "ZV-E10Y",
+        "ZV-E1",
+        "ZV-E1L",
+        "ZV-E10",
+        "ZV-E10L"
+      ]
     },
     {
       "id": "alpha6000",
       "sourceUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-6000-series/manuals",
       "declaredCount": 23,
       "capturedCount": 23,
-      "captureState": "captured"
+      "captureState": "captured",
+      "models": [
+        "ILCE-6700K",
+        "ILCE-6400K",
+        "ILCE-6400X",
+        "ILCE-6700",
+        "ILCE-6700L",
+        "ILCE-6700M",
+        "ILCE-6100",
+        "ILCE-6100L",
+        "ILCE-6100Y",
+        "ILCE-6600",
+        "ILCE-6600M",
+        "ILCE-6500",
+        "ILCE-6500M",
+        "ILCE-6400",
+        "ILCE-6400L",
+        "ILCE-6400M",
+        "ILCE-6400Y",
+        "ILCE-6300",
+        "ILCE-6300L",
+        "ILCE-6300M",
+        "ILCE-6000",
+        "ILCE-6000L",
+        "ILCE-6000Y"
+      ]
     },
     {
       "id": "alpha5000",
       "sourceUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-5000-series/manuals",
       "declaredCount": 6,
       "capturedCount": 6,
-      "captureState": "captured"
+      "captureState": "captured",
+      "models": [
+        "ILCE-5000",
+        "ILCE-5000L",
+        "ILCE-5000Y",
+        "ILCE-5100",
+        "ILCE-5100L",
+        "ILCE-5100Y"
+      ]
     },
     {
       "id": "alpha3000",
       "sourceUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-3000-series/ilce-3000",
       "declaredCount": 1,
       "capturedCount": 1,
-      "captureState": "captured"
+      "captureState": "captured",
+      "models": [
+        "ILCE-3000"
+      ]
     },
     {
       "id": "nex7",
       "sourceUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-7-series/manuals",
       "declaredCount": 2,
       "capturedCount": 2,
-      "captureState": "captured"
+      "captureState": "captured",
+      "models": [
+        "NEX-7",
+        "NEX-7K"
+      ]
     },
     {
       "id": "nex6",
       "sourceUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-6-series/manuals",
       "declaredCount": 3,
       "capturedCount": 3,
-      "captureState": "captured"
+      "captureState": "captured",
+      "models": [
+        "NEX-6",
+        "NEX-6L",
+        "NEX-6Y"
+      ]
     },
     {
       "id": "nex5",
       "sourceUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-5-series/manuals",
       "declaredCount": 14,
       "capturedCount": 14,
-      "captureState": "captured"
+      "captureState": "captured",
+      "models": [
+        "NEX-5",
+        "NEX-5A",
+        "NEX-5D",
+        "NEX-5K",
+        "NEX-5N",
+        "NEX-5ND",
+        "NEX-5NK",
+        "NEX-5NY",
+        "NEX-5R",
+        "NEX-5RL",
+        "NEX-5T",
+        "NEX-5TL",
+        "NEX-5TY",
+        "NEX-5RY"
+      ]
     },
     {
       "id": "nex3",
       "sourceUrl": "https://support.sony.jp/electronics/support/e-mount-body-nex-3-series/manuals",
       "declaredCount": 13,
       "capturedCount": 13,
-      "captureState": "captured"
+      "captureState": "captured",
+      "models": [
+        "NEX-3",
+        "NEX-3A",
+        "NEX-3D",
+        "NEX-3K",
+        "NEX-3N",
+        "NEX-3NL",
+        "NEX-3NY",
+        "NEX-C3",
+        "NEX-C3D",
+        "NEX-C3K",
+        "NEX-F3",
+        "NEX-F3K",
+        "NEX-F3Y"
+      ]
     },
     {
       "id": "ilce-qx",
       "sourceUrl": "https://support.sony.jp/electronics/support/e-mount-body-ilce-qx-series/manuals",
       "declaredCount": 2,
       "capturedCount": 2,
-      "captureState": "captured"
+      "captureState": "captured",
+      "models": [
+        "ILCE-QX1",
+        "ILCE-QX1L"
+      ]
     }
   ],
   "discovery": {

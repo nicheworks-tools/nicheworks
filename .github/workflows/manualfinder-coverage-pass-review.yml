@@ -1,0 +1,33 @@
+name: ManualFinder coverage-pass review
+
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/coverage-passes/sony/**'
+      - 'tools/manual-finder/scripts/sony-emount-review.mjs'
+      - '.github/workflows/manualfinder-coverage-pass-review.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  sony-emount-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run Sony E-mount official review candidates
+        run: |
+          mkdir -p manualfinder-coverage-pass-artifacts
+          node tools/manual-finder/scripts/sony-emount-review.mjs \
+            --pass tools/manual-finder/coverage-passes/sony/jp-alpha-e-mount-bodies.json \
+            --output manualfinder-coverage-pass-artifacts/sony-emount-review.json
+      - name: Upload review artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-sony-emount-review
+          path: manualfinder-coverage-pass-artifacts/sony-emount-review.json
+          if-no-files-found: error
