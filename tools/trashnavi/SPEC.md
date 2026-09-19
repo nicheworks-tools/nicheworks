@@ -1074,3 +1074,13 @@ Wave 50は栃木県の追加10市を、従来どおり `municipal_home` を除�
 - 2026 calendar callout: 佐野市、真岡市、矢板市、那須塩原市、さくら市。足利市は年度を推測せず、栃木市・鹿沼市・日光市・下野市は独立した2026 calendar recordを採用しない。
 - Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を維持する。
 
+## Wave 51 batch publication
+
+Wave 51は栃木県の追加10自治体を、従来どおり `municipal_home` を除く3種類以上の異なるwaste-specific municipal-official link typeで公開し、公開対象を **284自治体から294自治体** へ拡張する。益子町・市貝町・那珂川町は今回3独立URLを安全に揃えず採用しない。
+
+- 大田原市、那須烏山市、上三川町、茂木町、芳賀町、壬生町、野木町、塩谷町、高根沢町、那須町
+- readiness baseline: 2,970 / 2,970 valid HTTP(S)、294 preferred candidates、54 direct-link datasets / 902 records / 883 unique URLs / 0 invalid URLs
+- publication acceptance: 294 municipality pages、294 root internal links、AI reference 294/294、専用sitemapはtool rootを含む295 URL
+- 2026 calendar callout: 大田原市、那須烏山市、茂木町、壬生町、野木町、塩谷町、高根沢町、那須町。上三川町・芳賀町は年度を推測しない。
+- Amazon契約は `nicheworks09-22` / 4 fixed searches / municipality・runtime state非送信を維持する。
+
