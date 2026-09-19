@@ -307,3 +307,24 @@ After Wave 13:
 - strong runtime identities: 54 / 599;
 - Wave 12 identities retained: 4 / 4;
 - raw dictionary records rewritten: no.
+
+
+## Verified note wave 14
+
+Wave 14 continues frequency-prioritized source-backed enrichment:
+
+| Canonical identity | Corpus occurrences | Reviewed runtime note basis |
+| --- | ---: | --- |
+| `salicylic acid` | 4 | COSMILE Europe: keratolytic, preservative, skin-conditioning, hair-conditioning and fragrance functions. |
+| `sodium lactate` | 4 | COSMILE Europe: buffering, humectant and keratolytic functions. |
+| `sorbitan olivate` | 4 | COSMILE Europe: emulsifying surfactant. |
+| `caprylic/capric triglyceride` | 3 | COSMILE Europe: skin conditioning plus smoothing/refatting background use. |
+
+Sodium Lauroyl Lactylate remains deferred because its maintained Japanese name is currently missing; Wave 14 does not weaken the strong-runtime definition to include it.
+
+After Wave 14:
+
+- cumulative verified-note identities: 58;
+- strong runtime identities: 58 / 599;
+- Wave 13 identities retained: 4 / 4;
+- raw dictionary records rewritten: no.
