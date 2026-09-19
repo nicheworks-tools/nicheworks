@@ -1097,3 +1097,17 @@ Wave 51は栃木県の追加10自治体を、従来どおり `municipal_home` �
 - 今後の標準review batchは50自治体。共同処理等が複雑な地域では25自治体まで縮小できる。
 - CIは `scripts/check-national-completion.mjs` で台帳・source threshold・manifest publication stateを横断検証する。
 
+## National review batch 01
+
+全国完成モデル導入後の最初の50自治体review batch。従来の3 URLゲートだけで候補を飛ばさず、対象50件をすべて最終状態へ移行する。
+
+- 対象: 栃木県3、群馬県33、埼玉県2、千葉県12
+- review progress: **294 → 344 / 1,741**
+- pending_review: **1,447 → 1,397**
+- batch final states: standard 7 / limited 35 / joint_service 8 / reviewed_no_direct 0
+- cumulative states: standard 300 / limited 36 / joint_service 8 / reviewed_no_direct 0 / pending_review 1,397
+- publishable states 50件を追加し、公開ページは **294 → 344**
+- source records: 50自治体 / 77確認済み公式リンク
+- 3 URL未満の自治体は、確認できた実際の公式導線数をそのままlimitedとして公開する。
+- 共同処理主体が確認できた自治体はjoint_serviceとしてprovider identityを台帳に保持し、ページ上でも共同処理の公式情報であることを開示する。
+
