@@ -6905,12 +6905,12 @@
       "lgcode": "131016",
       "pref": "東京都",
       "municipality": "千代田区",
-      "coverage_state": "standard",
+      "coverage_state": "limited",
       "reviewed_at": "2026-09-19",
-      "qualifying_source_count": 3,
+      "qualifying_source_count": 2,
       "distinct_link_type_count": 3,
       "service_provider": null,
-      "review_note": "Migrated from the pre-policy 3-type / 3-URL publication gate."
+      "review_note": "Migrated from the legacy publication gate: 3 waste-specific types are verified across 2 distinct official URLs."
     },
     {
       "lgcode": "131024",
