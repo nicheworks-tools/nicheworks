@@ -13,7 +13,7 @@ const expected = {
   phoneCount: 204,
   foldableCount: 36,
   manufacturers: ['Apple', 'Google', 'Motorola', 'OPPO', 'SHARP', 'Samsung', 'Sony', 'Xiaomi', 'ZTE'],
-  appleBatteryUnknownCount: 33
+  appleBatteryUnknownCount: 34
 };
 
 const sort = (values) => [...values].sort();
