@@ -174,6 +174,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] GoPro currently reconciles to **31 basic = 12 detail + 7 reviewed exclusions + 12 missing accessory detail**.
 - [x] The catalog-wide camera audit reconciles to **185 basic = 133 detail + 33 reviewed exclusions + 19 missing accessory detail** while seven maker/index rows remain non-actionable.
 - [x] Missing-model maker diagnostics and documentation sync remain machine-readable drift guards.
+- [x] Sony Japan α E-mount coverage-pass population reconciles at **107 = 104 direct + 0 shared + 3 support-only + 0 held** and the reviewed rows are loaded into the public directory through the coverage-pass batch loader.
 - [x] Wrong maker/category, nonexistent models, spelling variants, and other unreviewed compatibility cases fail closed.
 - [x] Amazon disclosure and sponsored-link semantics remain supplied by the shared affiliate helper.
 
@@ -191,6 +192,11 @@ Core ManualFinder implementation:
 - `tools/manual-finder/affiliate-camera-accessories.js`
 - `tools/manual-finder/affiliate-nikon-camera-accessories-wave2.js`
 - `tools/manual-finder/affiliate-camera-detail-exclusions.js`
+- `tools/manual-finder/COVERAGE_PASS_WORKFLOW.md`
+- `tools/manual-finder/coverage-passes/sony/jp-alpha-e-mount-bodies.json`
+- `tools/manual-finder/data/manuals.coverage-passes.js`
+- `tools/manual-finder/data/manuals.coverage-pass.sony-jp-alpha-e-mount.js`
+- `tools/manual-finder/tests/sony-emount-coverage-pass-publication.test.mjs`
 - `tools/manual-finder/affiliate-printer-detail-exclusions.js`
 
 Reviewed DJI camera accessory ledgers:
