@@ -21,7 +21,7 @@ Required printer reconciliation:
 
 The camera accessory audit independently reconciles as:
 
-`camera basic 185 = detail 121 + reviewed exclusion 26 + missing 38`
+`camera basic 185 = detail 133 + reviewed exclusion 26 + missing 26`
 
 Maker-level camera state:
 
@@ -267,7 +267,7 @@ After Waves 1–41:
 
 `DJI camera 96 = detail 70 + reviewed exclusion 26 + missing 0`
 
-The catalog-wide camera audit is therefore 185 actionable basic rows, 121 detail mappings, 26 reviewed exclusions, and 38 missing accessory-detail rows.
+The catalog-wide camera audit is therefore 185 actionable basic rows, 133 detail mappings, 26 reviewed exclusions, and 26 missing accessory-detail rows.
 
 ## OM SYSTEM camera review — Waves 1–6
 
@@ -309,6 +309,28 @@ OM SYSTEM is closed:
 
 `OM SYSTEM camera 37 = detail 37 + reviewed exclusion 0 + missing 0`
 
+## GoPro camera review — Waves 1–4
+
+### HERO13 Black — Wave 1
+
+Wave 1 activates exactly `HERO13 Black`. GoPro's official Enduro for HERO13 Black page identifies the 1900 mAh battery as a replacement/spare for HERO13 Black and states that its connector is specific to HERO13 Black. The deterministic handoff is `GoPro Enduro Battery HERO13 Black`.
+
+### HERO9–HERO12 Enduro — Wave 2
+
+Wave 2 activates exactly `HERO9 Black`, `HERO10 Black`, `HERO11 Black`, and `HERO12 Black`. GoPro's official Enduro page explicitly lists all four models as compatible. The deterministic handoff is `GoPro Enduro Battery`.
+
+### HERO5–HERO8 battery family — Wave 3
+
+Wave 3 activates exactly `HERO5 Black`, `HERO6 Black`, `HERO7 Black`, `HERO8 Black`, and canonical `HERO 2018`. GoPro's official HERO8 Black Rechargeable Battery page lists HERO8 Black, HERO7 Black, HERO6 Black, and HERO (2018), and its compatibility note also covers HERO5 Black subject to a camera software update. The catalog's `HERO 2018` spelling is the normalized canonical form of GoPro's displayed `HERO (2018)`. The deterministic handoff is `GoPro HERO8 Black Rechargeable Battery`.
+
+### MAX / MAX2 Enduro — Wave 4
+
+Wave 4 activates exactly `MAX` and `MAX2` from their separate GoPro official Enduro battery pages. The deterministic handoffs are `GoPro Enduro Battery MAX` and `GoPro Enduro Battery MAX2`.
+
+Current GoPro reconciliation:
+
+`GoPro camera 31 = detail 12 + reviewed exclusion 0 + missing 19`
+
 ## Runtime boundary and source of truth
 
 - `app.paged.js` places canonical `maker`, `model`, and `category` metadata on result cards.
@@ -338,9 +360,13 @@ OM SYSTEM is closed:
 - `affiliate-om-system-camera-accessories-wave3.js` adds exact TG-4 / TG-5 / TG-6 / TG-7 LI-92B mappings.
 - `affiliate-om-system-camera-accessories-wave4.js` adds exact seven-row BLS-50 mappings.
 - `affiliate-om-system-camera-accessories-wave5.js` adds exact five-row BLN-1 mappings.
-- `affiliate-om-system-camera-accessories-wave6.js` adds exact fifteen-row legacy BLS-50 mappings and exposes the merged 121-row camera detail ledger.
+- `affiliate-om-system-camera-accessories-wave6.js` adds exact fifteen-row legacy BLS-50 mappings.
+- `affiliate-gopro-camera-accessories-wave1.js` adds the exact HERO13 Black Enduro mapping.
+- `affiliate-gopro-camera-accessories-wave2.js` adds exact HERO9–HERO12 Enduro mappings.
+- `affiliate-gopro-camera-accessories-wave3.js` adds exact HERO5–HERO8 / HERO 2018 rechargeable-battery mappings.
+- `affiliate-gopro-camera-accessories-wave4.js` adds exact MAX / MAX2 Enduro mappings and exposes the merged 133-row camera detail ledger.
 - `affiliate-camera-detail-exclusions.js` contains twenty-six exact DJI exclusions across Waves 32, 34, 36, 40, and 41.
-- `affiliate-runtime.js` sequentially loads Nikon, DJI, and OM SYSTEM ledgers before affiliate rendering.
+- `affiliate-runtime.js` sequentially loads Nikon, DJI, OM SYSTEM, and GoPro ledgers before affiliate rendering.
 - `tests/affiliate-coverage.test.mjs` and `tests/affiliate-doc-sync.test.mjs` protect printer reconciliation.
 - `tests/dji-phantom3-accessory-wave22.test.mjs` protects the exact Phantom 3 Wave 22 boundary.
 - `tests/dji-phantom3-se-accessory-wave23.test.mjs` protects the exact battery-only Phantom 3 SE Wave 23 boundary.
@@ -368,6 +394,10 @@ OM SYSTEM is closed:
 - `tests/om-system-bls50-accessory-wave4.test.mjs` protects the exact OM SYSTEM BLS-50 Wave 4 boundary.
 - `tests/om-system-bln1-accessory-wave5.test.mjs` protects the exact OM SYSTEM BLN-1 Wave 5 boundary.
 - `tests/om-system-bls50-legacy-wave6.test.mjs` protects the exact OM SYSTEM legacy BLS-50 Wave 6 boundary.
+- `tests/gopro-hero13-accessory-wave1.test.mjs` protects the exact HERO13 Wave 1 boundary.
+- `tests/gopro-enduro-accessory-wave2.test.mjs` protects the exact HERO9–HERO12 Wave 2 boundary.
+- `tests/gopro-hero8-battery-accessory-wave3.test.mjs` protects the exact HERO5–HERO8 / HERO 2018 Wave 3 boundary.
+- `tests/gopro-max-enduro-accessory-wave4.test.mjs` protects the exact MAX / MAX2 Wave 4 boundary.
 - `tests/camera-accessory-coverage.test.mjs` computes camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` prevents documentation drift and auto-discovers DJI wave evidence.
 - `CAMERA_ACCESSORY_COVERAGE.md` records the measured camera baseline.
@@ -400,4 +430,4 @@ DJI is closed at:
 
 ## Next expansion gate
 
-Printer-detail is closed. Nikon, DJI, and OM SYSTEM camera coverage are closed. The measured camera backlog is GoPro 31 and Insta360 7.
+Printer-detail is closed. Nikon, DJI, and OM SYSTEM camera coverage are closed. The measured camera backlog is GoPro 19 and Insta360 7.
