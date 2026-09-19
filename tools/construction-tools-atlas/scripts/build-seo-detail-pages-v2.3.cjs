@@ -53,6 +53,9 @@ function publicAsset(relative) {
 function canonicalEntryUrl(id) {
   return `${SITE_ROOT}/entries/${encodeURIComponent(id)}/`;
 }
+function comparisonUrl(id) {
+  return `${SITE_ROOT}/compare/${encodeURIComponent(id)}/`;
+}
 function atlasDeepLink(id) {
   return `${SITE_ROOT}/?entry=${encodeURIComponent(id)}`;
 }
@@ -205,6 +208,12 @@ function renderRelated(entry, entryById, launchSet, resolveCanonicalId) {
   return `<section class="entrySection"><h2>関連項目 / Related entries</h2><ul class="relatedList">${items}</ul></section>`;
 }
 
+function renderComparisons(rows) {
+  if (!Array.isArray(rows) || !rows.length) return "";
+  const links = rows.map((row) => `<a class="compareLink" href="${escapeHtml(comparisonUrl(row.id))}">${escapeHtml(row.title_ja)}<span lang="en"> / ${escapeHtml(row.title_en)}</span></a>`).join("");
+  return `<section class="entrySection"><h2>比較 / Compare</h2><div class="compareLinks">${links}</div></section>`;
+}
+
 function renderImage(image) {
   if (!image) return "";
   const attribution = text(image?.source?.attribution);
@@ -240,7 +249,7 @@ function renderAffiliate(entry, offer) {
     </section>`;
 }
 
-function renderPage({ entry, image, offer, entryById, launchSet, resolveCanonicalId }) {
+function renderPage({ entry, image, offer, entryById, launchSet, resolveCanonicalId, comparisonRows }) {
   const names = pair(entry, "term");
   const description = pair(entry, "description");
   const summary = pair(entry, "summary");
@@ -378,6 +387,7 @@ function renderPage({ entry, image, offer, entryById, launchSet, resolveCanonica
 
       ${renderAliases(aliases)}
       ${renderRelated(entry, entryById, launchSet, resolveCanonicalId)}
+      ${renderComparisons(comparisonRows)}
       ${renderAffiliate(entry, offer)}
 
       <section class="entrySection atlasCta">
@@ -446,13 +456,14 @@ function compareFile(expected, actualPath, label, failures) {
 }
 
 async function main() {
-  const [runtime, imageInventory, registry, affiliate, contentQuality, revenuePolicy] = await Promise.all([
+  const [runtime, imageInventory, registry, affiliate, contentQuality, revenuePolicy, comparisonLedger] = await Promise.all([
     loadRuntimeEntries(),
     Promise.resolve(readJson(path.join(DATA, "public-image-inventory-v2.3.json"))),
     Promise.resolve(readJson(path.join(DATA, "image-registry-v2.3.json"))),
     Promise.resolve(readJson(path.join(DATA, "affiliate-offers-v2.3.json"))),
     Promise.resolve(readJson(path.join(DATA, "public-content-quality-v2.3.json"))),
-    Promise.resolve(readJson(path.join(DATA, "revenue-priority-policy-v2.3.json")))
+    Promise.resolve(readJson(path.join(DATA, "revenue-priority-policy-v2.3.json"))),
+    Promise.resolve(readJson(path.join(DATA, "comparison-pairs-v2.3.json")))
   ]);
 
   if (contentQuality?.summary?.public_entries !== runtime.entries.length) {
@@ -467,6 +478,23 @@ async function main() {
   const imageMap = buildImageMap(registry, runtime.resolveCanonicalId);
   const launchIds = launchCohort(imageInventory, offerMap);
   const launchSet = new Set(launchIds);
+  const comparisonByEntry = new Map();
+  for (const pairRow of Array.isArray(comparisonLedger?.pairs) ? comparisonLedger.pairs : []) {
+    if (pairRow?.state !== "reviewed") continue;
+    const leftId = runtime.resolveCanonicalId(text(pairRow?.left_id));
+    const rightId = runtime.resolveCanonicalId(text(pairRow?.right_id));
+    if (!launchSet.has(leftId) || !launchSet.has(rightId)) continue;
+    const compact = {
+      id: text(pairRow?.id),
+      title_ja: text(pairRow?.title_ja),
+      title_en: text(pairRow?.title_en)
+    };
+    for (const id of [leftId, rightId]) {
+      if (!comparisonByEntry.has(id)) comparisonByEntry.set(id, []);
+      comparisonByEntry.get(id).push(compact);
+    }
+  }
+  for (const rows of comparisonByEntry.values()) rows.sort((a, b) => a.id.localeCompare(b.id, "en"));
 
   const pages = new Map();
   for (const id of launchIds) {
@@ -478,7 +506,8 @@ async function main() {
       offer: offerMap.get(id) || null,
       entryById,
       launchSet,
-      resolveCanonicalId: runtime.resolveCanonicalId
+      resolveCanonicalId: runtime.resolveCanonicalId,
+      comparisonRows: comparisonByEntry.get(id) || []
     }));
   }
 
@@ -497,7 +526,8 @@ async function main() {
       public_content_quality_version: contentQuality.version,
       public_image_inventory_version: imageInventory.version,
       image_registry_version: registry.version,
-      affiliate_offers_version: affiliate.version
+      affiliate_offers_version: affiliate.version,
+      comparison_pairs_version: comparisonLedger.version
     },
     summary: {
       public_runtime_entries: runtime.entries.length,
