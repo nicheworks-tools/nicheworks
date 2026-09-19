@@ -212,6 +212,62 @@
       reason: "externally_powered_component_no_model_specific_battery_or_charger",
       sourceUrl: "https://www.dji.com/support/product/o4-air-unit",
       verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "GoPro",
+      model: "HERO11 Black Mini",
+      category: "カメラ・映像",
+      reason: "built_in_battery_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://gopro.com/ja/jp/shop/cameras/hero11-black-mini/CHDHF-111-master.html",
+      verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "GoPro",
+      model: "HERO7 Silver",
+      category: "カメラ・映像",
+      reason: "built_in_battery_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://gopro.com/content/dam/help/hero7-silver/manuals/HERO7Silver_UM_ENG_REVA.pdf",
+      verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "GoPro",
+      model: "HERO7 White",
+      category: "カメラ・映像",
+      reason: "built_in_battery_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://gopro.com/content/dam/help/hero7-white/manuals/HERO7White_UM_ENG_REVB.pdf",
+      verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "GoPro",
+      model: "HERO5 Session",
+      category: "カメラ・映像",
+      reason: "built_in_battery_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://gopro.com/content/dam/help/hero5-session/manuals/HERO5Session_UM_ENG_REVD_WEB.pdf",
+      verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "GoPro",
+      model: "HERO Session",
+      category: "カメラ・映像",
+      reason: "built_in_battery_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://gopro.com/content/dam/help/hero-session/manuals/UM_HEROSession_ENG_REVC_Web.pdf",
+      verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "GoPro",
+      model: "HERO+",
+      category: "カメラ・映像",
+      reason: "built_in_battery_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://gopro.com/content/dam/help/heroplus/manuals/UM_HEROPlus_ENG_REVA_WEB.pdf",
+      verifiedAt: "2026-09-19"
+    }),
+    Object.freeze({
+      maker: "GoPro",
+      model: "HERO+ LCD",
+      category: "カメラ・映像",
+      reason: "built_in_battery_no_model_specific_replaceable_power_accessory",
+      sourceUrl: "https://gopro.com/content/dam/help/heroplus-lcd/manuals/UM_HEROPlusLCD_ENG_REVB_WEB.pdf",
+      verifiedAt: "2026-09-19"
     })
   ]);
 })();

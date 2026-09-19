@@ -11,15 +11,15 @@ This document is the audited baseline for compatibility-sensitive camera battery
 | Canonical `カメラ・映像` records | **192** |
 | Camera records with a basic Amazon path | **185** |
 | Camera records with verified accessory detail | **133** |
-| Reviewed camera-detail exclusions | **26** |
-| Actionable camera records still missing accessory detail | **26** |
+| Reviewed camera-detail exclusions | **33** |
+| Actionable camera records still missing accessory detail | **19** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 185 = detail 133 + reviewed exclusion 26 + missing 26`
+`camera basic 185 = detail 133 + reviewed exclusion 33 + missing 19`
 
-The active detail ledger contains all fourteen actionable Nikon records, seventy reviewed DJI records, all thirty-seven actionable OM SYSTEM records, and twelve reviewed GoPro records. Twenty-six DJI rows are evidence-backed reviewed exclusions covering built-in/nonremovable power, rechargeable controllers without model-specific replaceable power accessories, externally powered air units, and the multi-component Digital FPV System. Missing rows remain explicit rather than being converted to guessed mappings or unsupported exclusions.
+The active detail ledger contains all fourteen actionable Nikon records, seventy reviewed DJI records, all thirty-seven actionable OM SYSTEM records, and twelve reviewed GoPro records. Twenty-six DJI rows and seven GoPro rows are evidence-backed reviewed exclusions. The GoPro exclusions cover exact cameras with integrated/non-serviceable batteries and no model-specific replaceable power accessory at the audit standard. Missing rows remain explicit rather than being converted to guessed mappings or unsupported exclusions.
 
 ## Actionable coverage by maker
 
@@ -27,7 +27,7 @@ The active detail ledger contains all fourteen actionable Nikon records, seventy
 | --- | ---: | ---: | ---: | ---: |
 | DJI | 96 | 70 | 26 | 0 |
 | OM SYSTEM | 37 | 37 | 0 | 0 |
-| GoPro | 31 | 12 | 0 | 19 |
+| GoPro | 31 | 12 | 7 | 12 |
 | Nikon | 14 | 14 | 0 | 0 |
 | Insta360 | 7 | 0 | 0 | 7 |
 
@@ -272,6 +272,16 @@ Current GoPro reconciliation:
 
 `GoPro camera 31 = detail 12 + reviewed exclusion 0 + missing 19`
 
+### Wave 5 — integrated-battery GoPro exclusions
+
+Wave 5 reviews exactly seven canonical rows: `HERO11 Black Mini`, `HERO7 Silver`, `HERO7 White`, `HERO5 Session`, `HERO Session`, `HERO+`, and `HERO+ LCD`. GoPro's official product/manual material identifies the battery in each reviewed camera as built in, integrated, nonremovable, or non-serviceable.
+
+These rows receive `built_in_battery_no_model_specific_replaceable_power_accessory`. Generic USB chargers are not treated as model-specific compatibility-sensitive detail.
+
+Current GoPro reconciliation:
+
+`GoPro camera 31 = detail 12 + reviewed exclusion 7 + missing 12`
+
 ## Non-actionable camera records
 
 Seven camera-category records are maker/index entries without an actionable exact-model Amazon path and are not counted as missing accessory detail:
@@ -289,7 +299,7 @@ Seven camera-category records are maker/index entries without an actionable exac
 - Accessory detail means at least one compatibility-sensitive accessory offer emitted from an exact reviewed maker/model mapping.
 - A generic exact-model Amazon body search does not count as accessory detail.
 - Reviewed exclusions must live in `affiliate-camera-detail-exclusions.js` and resolve to a canonical `カメラ・映像` row.
-- The exclusion ledger contains three Wave 32 Goggles rows, three Wave 34 nonremovable RS/RSC rows, nine Wave 36 Osmo Mobile rows, six Wave 40 rechargeable-controller rows, and five final Wave 41 DJI exclusions. Missing records must not be converted to exclusions without an evidence-backed review reason.
+- The exclusion ledger contains twenty-six DJI exclusions across Waves 32, 34, 36, 40, and 41 plus seven GoPro Wave 5 integrated-battery exclusions. Missing records must not be converted to exclusions without an evidence-backed review reason.
 - One camera row cannot simultaneously be detail-mapped and excluded.
 - Every actionable camera row must reconcile to exactly one of: verified accessory detail, reviewed exclusion, or missing accessory detail.
 - Wrong maker/category, nonexistent model, spelling variants, and unreviewed family inference must fail closed.
@@ -297,7 +307,7 @@ Seven camera-category records are maker/index entries without an actionable exac
 
 ## Expansion order
 
-1. Continue GoPro from the remaining 19 actionable records in bounded official-evidence waves.
+1. Continue GoPro from the remaining 12 actionable records in bounded official-evidence waves.
 2. Review Insta360 7 actionable records.
 
 DJI, Nikon, and OM SYSTEM are closed at zero missing.
@@ -308,7 +318,7 @@ The camera accessory phase is complete only when:
 
 `camera basic = detail + reviewed exclusion + missing 0`
 
-The current baseline is not complete: `26` actionable records remain missing accessory detail.
+The current baseline is not complete: `19` actionable records remain missing accessory detail.
 
 ## Source of truth
 
@@ -341,7 +351,7 @@ The current baseline is not complete: `26` actionable records remain missing acc
 - `affiliate-dji-camera-accessories-wave38.js` — exact four-row legacy Ronin replaceable-battery mappings.
 - `affiliate-dji-camera-accessories-wave39.js` — exact DJI Ronin 4D TB50/hub and original Osmo Action battery/hub mappings.
 - `affiliate-dji-camera-accessories-wave41.js` — exact Osmo Nano Multifunctional Vision Dock mapping.
-- `affiliate-camera-detail-exclusions.js` — twenty-six reviewed DJI exclusions across Waves 32, 34, 36, 40, and 41.
+- `affiliate-camera-detail-exclusions.js` — twenty-six reviewed DJI exclusions plus seven exact GoPro Wave 5 integrated-battery exclusions.
 - `affiliate-runtime.js` — sequential browser loading of Nikon, DJI, OM SYSTEM, and GoPro accessory ledgers before rendering.
 - `tests/dji-phantom3-accessory-wave22.test.mjs` — exact Wave 22 Phantom 3 boundary.
 - `tests/dji-phantom3-se-accessory-wave23.test.mjs` — exact Wave 23 Phantom 3 SE battery-only boundary.
@@ -373,5 +383,6 @@ The current baseline is not complete: `26` actionable records remain missing acc
 - `tests/gopro-enduro-accessory-wave2.test.mjs` — exact GoPro HERO9–HERO12 Wave 2 boundary.
 - `tests/gopro-hero8-battery-accessory-wave3.test.mjs` — exact GoPro HERO5–HERO8/HERO 2018 Wave 3 boundary.
 - `tests/gopro-max-enduro-accessory-wave4.test.mjs` — exact GoPro MAX/MAX2 Wave 4 boundary.
+- `tests/gopro-integrated-battery-exclusions-wave5.test.mjs` — exact seven-row GoPro integrated-battery exclusion boundary.
 - `tests/camera-accessory-coverage.test.mjs` — catalog-wide camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` — documentation drift guard and implementation-evidence synchronization.
