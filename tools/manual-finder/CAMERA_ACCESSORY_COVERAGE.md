@@ -8,26 +8,29 @@ This document is the audited baseline for compatibility-sensitive camera battery
 
 | Metric | Audited value |
 | --- | ---: |
-| Canonical `カメラ・映像` records | **192** |
-| Camera records with a basic Amazon path | **185** |
+| Canonical `カメラ・映像` records | **382** |
+| Camera records with a basic Amazon path | **375** |
 | Camera records with verified accessory detail | **133** |
 | Reviewed camera-detail exclusions | **33** |
-| Actionable camera records still missing accessory detail | **19** |
+| Actionable camera records still missing accessory detail | **209** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 185 = detail 133 + reviewed exclusion 33 + missing 19`
+`camera basic 375 = detail 133 + reviewed exclusion 33 + missing 209`
 
-The active detail ledger contains all fourteen actionable Nikon records, seventy reviewed DJI records, all thirty-seven actionable OM SYSTEM records, and twelve reviewed GoPro records. Twenty-six DJI rows and seven GoPro rows are evidence-backed reviewed exclusions. The GoPro exclusions cover exact cameras with integrated/non-serviceable batteries and no model-specific replaceable power accessory at the audit standard. Missing rows remain explicit rather than being converted to guessed mappings or unsupported exclusions.
+The active detail ledger contains all fourteen actionable Nikon records, seventy reviewed DJI records, all thirty-seven actionable OM SYSTEM records, and twelve reviewed GoPro records. Twenty-six DJI rows and seven GoPro rows are evidence-backed reviewed exclusions. The audit now loads the same published coverage-pass batches as the runtime: Sony adds 107 actionable camera rows, Panasonic adds 27, and Fujifilm adds 56. Those 190 rows already receive exact-model Amazon body searches under the generic commerce rule, so their unreviewed compatibility-sensitive accessory detail is now counted honestly as missing rather than being invisible to the audit.
 
 ## Actionable coverage by maker
 
 | Maker | Basic | Detail | Reviewed exclusion | Missing |
 | --- | ---: | ---: | ---: | ---: |
+| Sony | 107 | 0 | 0 | 107 |
 | DJI | 96 | 70 | 26 | 0 |
+| Fujifilm | 56 | 0 | 0 | 56 |
 | OM SYSTEM | 37 | 37 | 0 | 0 |
 | GoPro | 31 | 12 | 7 | 12 |
+| Panasonic | 27 | 0 | 0 | 27 |
 | Nikon | 14 | 14 | 0 | 0 |
 | Insta360 | 7 | 0 | 0 | 7 |
 
@@ -307,10 +310,11 @@ Seven camera-category records are maker/index entries without an actionable exac
 
 ## Expansion order
 
-1. Continue GoPro from the remaining 12 actionable records in bounded official-evidence waves.
-2. Review Insta360 7 actionable records.
+1. Review the newly published Sony 107 camera rows in manufacturer-batched official-evidence accessory passes.
+2. Review Fujifilm 56 and Panasonic 27 published coverage-pass camera rows.
+3. Close the pre-existing GoPro 12 and Insta360 7 residuals.
 
-DJI, Nikon, and OM SYSTEM are closed at zero missing.
+DJI, Nikon, and OM SYSTEM remain closed at zero missing.
 
 ## Completion target
 
@@ -318,7 +322,7 @@ The camera accessory phase is complete only when:
 
 `camera basic = detail + reviewed exclusion + missing 0`
 
-The current baseline is not complete: `19` actionable records remain missing accessory detail.
+The current baseline is not complete: `209` actionable records remain missing accessory detail.
 
 ## Source of truth
 
