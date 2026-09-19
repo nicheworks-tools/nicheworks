@@ -21,7 +21,7 @@ Required printer reconciliation:
 
 The camera accessory audit independently reconciles as:
 
-`camera basic 185 = detail 133 + reviewed exclusion 26 + missing 26`
+`camera basic 185 = detail 133 + reviewed exclusion 33 + missing 19`
 
 Maker-level camera state:
 
@@ -267,7 +267,7 @@ After Waves 1–41:
 
 `DJI camera 96 = detail 70 + reviewed exclusion 26 + missing 0`
 
-The catalog-wide camera audit is therefore 185 actionable basic rows, 133 detail mappings, 26 reviewed exclusions, and 26 missing accessory-detail rows.
+The catalog-wide camera audit is therefore 185 actionable basic rows, 133 detail mappings, 33 reviewed exclusions, and 19 missing accessory-detail rows.
 
 ## OM SYSTEM camera review — Waves 1–6
 
@@ -331,6 +331,16 @@ Current GoPro reconciliation:
 
 `GoPro camera 31 = detail 12 + reviewed exclusion 0 + missing 19`
 
+### Integrated-battery cameras — Wave 5
+
+Wave 5 reviews exactly `HERO11 Black Mini`, `HERO7 Silver`, `HERO7 White`, `HERO5 Session`, `HERO Session`, `HERO+`, and `HERO+ LCD`. GoPro's official camera page/manuals identify each battery as built in, integrated, nonremovable, or non-serviceable.
+
+The seven rows receive `built_in_battery_no_model_specific_replaceable_power_accessory`. Generic USB charging does not qualify as compatibility-sensitive model detail.
+
+Current GoPro reconciliation:
+
+`GoPro camera 31 = detail 12 + reviewed exclusion 7 + missing 12`
+
 ## Runtime boundary and source of truth
 
 - `app.paged.js` places canonical `maker`, `model`, and `category` metadata on result cards.
@@ -365,7 +375,7 @@ Current GoPro reconciliation:
 - `affiliate-gopro-camera-accessories-wave2.js` adds exact HERO9–HERO12 Enduro mappings.
 - `affiliate-gopro-camera-accessories-wave3.js` adds exact HERO5–HERO8 / HERO 2018 rechargeable-battery mappings.
 - `affiliate-gopro-camera-accessories-wave4.js` adds exact MAX / MAX2 Enduro mappings and exposes the merged 133-row camera detail ledger.
-- `affiliate-camera-detail-exclusions.js` contains twenty-six exact DJI exclusions across Waves 32, 34, 36, 40, and 41.
+- `affiliate-camera-detail-exclusions.js` contains twenty-six exact DJI exclusions plus seven exact GoPro Wave 5 integrated-battery exclusions.
 - `affiliate-runtime.js` sequentially loads Nikon, DJI, OM SYSTEM, and GoPro ledgers before affiliate rendering.
 - `tests/affiliate-coverage.test.mjs` and `tests/affiliate-doc-sync.test.mjs` protect printer reconciliation.
 - `tests/dji-phantom3-accessory-wave22.test.mjs` protects the exact Phantom 3 Wave 22 boundary.
@@ -398,6 +408,7 @@ Current GoPro reconciliation:
 - `tests/gopro-enduro-accessory-wave2.test.mjs` protects the exact HERO9–HERO12 Wave 2 boundary.
 - `tests/gopro-hero8-battery-accessory-wave3.test.mjs` protects the exact HERO5–HERO8 / HERO 2018 Wave 3 boundary.
 - `tests/gopro-max-enduro-accessory-wave4.test.mjs` protects the exact MAX / MAX2 Wave 4 boundary.
+- `tests/gopro-integrated-battery-exclusions-wave5.test.mjs` protects the exact seven-row GoPro Wave 5 exclusion boundary.
 - `tests/camera-accessory-coverage.test.mjs` computes camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` prevents documentation drift and auto-discovers DJI wave evidence.
 - `CAMERA_ACCESSORY_COVERAGE.md` records the measured camera baseline.
@@ -430,4 +441,4 @@ DJI is closed at:
 
 ## Next expansion gate
 
-Printer-detail is closed. Nikon, DJI, and OM SYSTEM camera coverage are closed. The measured camera backlog is GoPro 19 and Insta360 7.
+Printer-detail is closed. Nikon, DJI, and OM SYSTEM camera coverage are closed. The measured camera backlog is GoPro 12 and Insta360 7.
