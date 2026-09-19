@@ -979,3 +979,27 @@ console.log('Phone QuickCheck final automated QA passed: controls, sort modes, e
   assert.match(html, /Wireless HyperCharge \/ 50W/);
 }
 
+// Post-v1 2026 maintenance Wave 8.
+{
+  const phone = byId.get('apple-iphone-duo');
+  assert.ok(phone, 'iPhone Duo fixture missing');
+  assert.equal(phone.formFactor, 'foldable');
+  assert.deepEqual(phone.dimensionsFolded, { heightMm: 117.8, widthMm: 84.1, depthMm: 11.3 });
+  assert.deepEqual(phone.dimensionsUnfolded, { heightMm: 117.8, widthMm: 164.6, depthMm: 5.2 });
+  assert.equal(phone.weightG, 254);
+  assert.equal(phone.displayInch, 7.6);
+  assert.equal(phone.waterRating, 'IP68');
+  assert.equal(phone.charging?.battery?.capacityMah, null);
+  assert.equal(phone.charging?.wiredRecommendedW, 60);
+  assert.equal(phone.charging?.wirelessStandard, 'Qi2 / MagSafe');
+  assert.equal(phone.charging?.wirelessMaxW, 25);
+  assert.equal(phone.included?.adapter, 'not_included');
+  assert.equal(phone.included?.cable, 'unknown');
+
+  const h = await createHarness(['apple-iphone-duo']);
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /117\.8 × 84\.1 × 11\.3 mm/);
+  assert.match(html, /117\.8 × 164\.6 × 5\.2 mm/);
+  assert.match(html, /Qi2 \/ MagSafe \/ 25W/);
+}
+
