@@ -140,6 +140,8 @@ Each Phase 1 municipality must eventually have at least:
 - qualifying-source count
 - distinct qualifying link-type count
 - optional service-provider identity for `joint_service`
+For migrated and newly reviewed rows, these two counts use `minimum_verified_for_state` semantics: they record the minimum verified source/type counts that justify the assigned state. CI independently recalculates the current direct-link datasets and requires the actual qualifying counts to be at least those recorded minimums. This avoids rewriting historical reviewed rows merely because additional official links are later added.
+
 - optional review note / reason for `reviewed_no_direct`
 
 The ledger, not the number of generated pages, is the authoritative Phase 1 completion measure.
