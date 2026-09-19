@@ -67,10 +67,10 @@ The original baseline intentionally counted only raw dictionary fields. That rem
 Current runtime provenance on main:
 
 - verified category overlay identities: 116
-- verified note overlay identities: 42
-- verified note identities with maintained Japanese naming: 42
-- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): 42 / 599
+- verified note overlay identities: 46
+- verified note identities with maintained Japanese naming: 46
+- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): 46 / 599
 
 Accordingly, completion readiness must report raw dictionary debt and runtime verified provenance separately. A raw evidence count of zero must not be interpreted as zero runtime provenance.
 
-The runtime provenance floors are ratcheted at 119 verified categories, 42 verified notes, and 42 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 10 adds source-backed ingredient-specific notes for Pentylene Glycol, Sodium Hyaluronate, Dimethicone, and Polysorbate 20.
+The runtime provenance floors are ratcheted at 119 verified categories, 46 verified notes, and 46 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 11 adds source-backed ingredient-specific notes for Ceramide AP, Ceramide EOP, Squalane, and Allantoin.

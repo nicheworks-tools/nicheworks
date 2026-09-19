@@ -19,26 +19,26 @@ const DATA_FILES = [
   'tools/inci-fastscan/data/ingredients-extra-8.json'
 ];
 
-const PRIOR_VERIFIED_NOTE_COUNT = 38;
-const EXPECTED_WAVE10 = Object.freeze({
-  'pentylene glycol': Object.freeze({
-    note_short: 'Solvent and skin-conditioning ingredient; COSMILE Europe lists both functions for Pentylene Glycol.',
-    source: 'https://cosmileeurope.eu/inci/detail/11416/pentylene-glycol/',
+const PRIOR_VERIFIED_NOTE_COUNT = 42;
+const EXPECTED_WAVE11 = Object.freeze({
+  'ceramide ap': Object.freeze({
+    note_short: 'Ceramide lipid used for skin and hair conditioning; COSMILE Europe identifies Ceramide AP as a ceramide sphingolipid and lists both conditioning functions.',
+    source: 'https://cosmileeurope.eu/inci/detail/2820/ceramide-ap/',
     authority: 'Cosmetics Europe / COSMILE Europe'
   }),
-  'sodium hyaluronate': Object.freeze({
-    note_short: 'Humectant and skin-conditioning ingredient; COSMILE Europe lists Sodium Hyaluronate as retaining moisture and maintaining skin condition.',
-    source: 'https://cosmileeurope.eu/inci/detail/14809/sodium-hyaluronate/',
+  'ceramide eop': Object.freeze({
+    note_short: 'Ceramide lipid used for skin and hair conditioning; COSMILE Europe identifies Ceramide EOP as a ceramide sphingolipid and lists both conditioning functions.',
+    source: 'https://cosmileeurope.eu/inci/detail/25521/ceramide-eop/',
     authority: 'Cosmetics Europe / COSMILE Europe'
   }),
-  dimethicone: Object.freeze({
-    note_short: 'Skin-conditioning silicone; COSMILE Europe lists Dimethicone for skin conditioning, emollience and skin protection, with an antifoaming function.',
-    source: 'https://cosmileeurope.eu/inci/detail/4583/dimethicone/',
+  squalane: Object.freeze({
+    note_short: 'Skin- and hair-conditioning emollient; COSMILE Europe also lists refatting for Squalane and describes a skin-smoothing effect.',
+    source: 'https://cosmileeurope.eu/inci/detail/15418/squalane/',
     authority: 'Cosmetics Europe / COSMILE Europe'
   }),
-  'polysorbate 20': Object.freeze({
-    note_short: 'Cleansing and emulsifying surfactant; COSMILE Europe lists both functions for Polysorbate 20.',
-    source: 'https://cosmileeurope.eu/inci/detail/12491/polysorbate-20/',
+  allantoin: Object.freeze({
+    note_short: 'Skin-conditioning, skin-protecting and soothing ingredient; COSMILE Europe lists all three functions for Allantoin.',
+    source: 'https://cosmileeurope.eu/inci/detail/636/allantoin/',
     authority: 'Cosmetics Europe / COSMILE Europe'
   })
 });
@@ -71,14 +71,15 @@ for (const row of rows) {
 }
 
 const evidence = parser.verifiedNoteEvidence || {};
-assert.ok(
-  Object.keys(evidence).length >= PRIOR_VERIFIED_NOTE_COUNT + Object.keys(EXPECTED_WAVE10).length,
-  'wave 10 reviewed identities must remain present as later verified-note waves extend the overlay'
+assert.equal(
+  Object.keys(evidence).length,
+  PRIOR_VERIFIED_NOTE_COUNT + Object.keys(EXPECTED_WAVE11).length,
+  'wave 11 must extend the 42 reviewed note identities by exactly four source-backed identities'
 );
 
-for (const [canonical, expected] of Object.entries(EXPECTED_WAVE10)) {
+for (const [canonical, expected] of Object.entries(EXPECTED_WAVE11)) {
   const item = evidence[canonical];
-  assert.ok(item, `${canonical}: wave 10 verified note evidence missing`);
+  assert.ok(item, `${canonical}: wave 11 verified note evidence missing`);
   assert.equal(normalizeText(item.note_short), expected.note_short, `${canonical}: reviewed note text changed unexpectedly`);
   assert.equal(normalizeText(item.authority), expected.authority, `${canonical}: reviewed authority changed unexpectedly`);
   assert.ok(Array.isArray(item.note_sources) && item.note_sources.length === 1, `${canonical}: exactly one reviewed source is required`);
@@ -93,25 +94,25 @@ for (const ambiguous of parser.ambiguousExactKeys || []) {
 
 const merged = parser.mergeDictionaryRecords(rows);
 const mergedByCanonical = new Map(merged.map((item) => [parser.canonicalIdentityKey(item.en), item]));
-for (const [canonical, expected] of Object.entries(EXPECTED_WAVE10)) {
+for (const [canonical, expected] of Object.entries(EXPECTED_WAVE11)) {
   const item = mergedByCanonical.get(canonical);
   assert.ok(item, `${canonical}: missing from merged runtime dictionary`);
   assert.equal(item.note_verified, true, `${canonical}: verified note flag must survive canonical merge`);
-  assert.equal(item.note_short, expected.note_short, `${canonical}: runtime note must equal the reviewed wave 10 note`);
+  assert.equal(item.note_short, expected.note_short, `${canonical}: runtime note must equal the reviewed wave 11 note`);
   assert.ok(Array.isArray(item.note_sources) && item.note_sources.includes(expected.source), `${canonical}: reviewed source must survive canonical merge`);
   assert.equal(item.note_authority, expected.authority, `${canonical}: note authority must survive canonical merge`);
   assert.equal(item.note_provenance_conflict, undefined, `${canonical}: verified overlay must not create a note provenance conflict`);
-  assert.ok(normalizeText(item.category), `${canonical}: wave 10 note identity must retain a supported public role`);
-  assert.ok(Array.isArray(item.jp) && item.jp.some((value) => normalizeText(value)), `${canonical}: wave 10 note identity must retain a Japanese name`);
+  assert.ok(normalizeText(item.category), `${canonical}: wave 11 note identity must retain a supported public role`);
+  assert.ok(Array.isArray(item.jp) && item.jp.some((value) => normalizeText(value)), `${canonical}: wave 11 note identity must retain a Japanese name`);
 }
 
 console.log(JSON.stringify({
   status: 'pass',
-  phase: 'verified-note-wave-10-common-label-priority',
+  phase: 'verified-note-wave-11-common-label-priority',
   prior_verified_note_identities: PRIOR_VERIFIED_NOTE_COUNT,
-  wave_10_verified_note_identities: Object.keys(EXPECTED_WAVE10).length,
+  wave_11_verified_note_identities: Object.keys(EXPECTED_WAVE11).length,
   cumulative_verified_note_identities: Object.keys(evidence).length,
-  wave_10_identities: Object.keys(EXPECTED_WAVE10),
+  wave_11_identities: Object.keys(EXPECTED_WAVE11),
   source_authority: 'Cosmetics Europe / COSMILE Europe',
   raw_dictionary_records_rewritten: false,
   recognition_contract_changed: false,
