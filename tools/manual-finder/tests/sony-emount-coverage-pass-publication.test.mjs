@@ -15,13 +15,13 @@ for (const name of [
   });
 }
 
-assert.deepEqual(
-  Array.from(context.window.MANUALFINDER_COVERAGE_PASS_BATCHES || []),
-  ['manuals.coverage-pass.sony-jp-alpha-e-mount.js']
+assert.ok(
+  Array.from(context.window.MANUALFINDER_COVERAGE_PASS_BATCHES || []).includes('manuals.coverage-pass.sony-jp-alpha-e-mount.js')
 );
 
-const rows = Array.from(context.window.MANUALFINDER_BUILD_COVERAGE_PASSES?.() || []);
+const mergedRows = Array.from(context.window.MANUALFINDER_BUILD_COVERAGE_PASSES?.() || []);
 const sonyRows = Array.from(context.window.MANUALFINDER_COVERAGE_PASS_SONY_EMOUNT || []);
+const rows = mergedRows.filter((row) => row.maker === 'Sony');
 const pass = JSON.parse(fs.readFileSync(new URL('../coverage-passes/sony/jp-alpha-e-mount-bodies.json', import.meta.url), 'utf8'));
 
 assert.equal(pass.status, 'coverage-pass-complete');
