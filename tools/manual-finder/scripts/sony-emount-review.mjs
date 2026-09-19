@@ -15,15 +15,14 @@ async function fetchText(url, allowedDomains) {
   try {
     const response = await fetch(url, {
       redirect: 'follow',
-      signal: AbortSignal.timeout(20000),
+      signal: AbortSignal.timeout(15000),
       headers: { 'user-agent': 'NicheWorks-ManualFinder-CoveragePass/1.0 (+https://nicheworks.app/tools/manual-finder/)' }
     });
     const finalUrl = response.url;
     if (!hostAllowed(finalUrl, allowedDomains)) {
       return { ok: false, status: response.status, finalUrl, error: 'redirect_outside_allowed_domains', text: '' };
     }
-    const html = await response.text();
-    return { ok: response.ok, status: response.status, finalUrl, text: htmlToText(html) };
+    return { ok: response.ok, status: response.status, finalUrl, text: htmlToText(await response.text()) };
   } catch (error) {
     return { ok: false, status: null, finalUrl: url, error: String(error?.message || error), text: '' };
   }
@@ -36,6 +35,77 @@ function scopeBase(scope, model) {
   return source.replace(/\/manuals\/?$/i, '').replace(/\/$/, '') + '/' + lower;
 }
 
+async function reviewOne({ model, scope }, allowedDomains) {
+  const supportCandidate = scopeBase(scope, model);
+  const manualCandidate = supportCandidate.endsWith('/manuals') ? supportCandidate : supportCandidate + '/manuals';
+  const manual = await fetchText(manualCandidate, allowedDomains);
+  const manualExact = manual.text.includes(model);
+  const saysNoManual = /現在、本ページで提供されている取扱説明書はありません/.test(manual.text);
+  const hasManualArtifact = /ヘルプガイド|\[PDF\]|PDF|ファイルサイズ/.test(manual.text);
+
+  if (manual.ok && manualExact && !saysNoManual && hasManualArtifact) {
+    return {
+      model,
+      scopeId: scope.id,
+      candidateState: 'direct',
+      manualUrl: manual.finalUrl,
+      supportUrl: supportCandidate,
+      evidenceUrls: [scope.sourceUrl, manual.finalUrl],
+      verification: { exactModelText: true, officialHost: true, manualArtifactMarker: true }
+    };
+  }
+
+  const support = await fetchText(supportCandidate, allowedDomains);
+  const supportExact = support.text.includes(model);
+  if (support.ok && supportExact) {
+    return {
+      model,
+      scopeId: scope.id,
+      candidateState: 'support_only',
+      supportUrl: support.finalUrl,
+      evidenceUrls: [scope.sourceUrl, support.finalUrl],
+      verification: {
+        exactModelText: true,
+        officialHost: true,
+        manualCandidateStatus: manual.status,
+        noManualStatement: saysNoManual
+      }
+    };
+  }
+
+  return {
+    model,
+    scopeId: scope.id,
+    candidateState: 'needs_secondary_discovery',
+    attemptedDiscovery: ['official_manual_index', 'official_model_support_candidate'],
+    evidenceUrls: [scope.sourceUrl],
+    diagnostics: {
+      manualStatus: manual.status,
+      manualFinalUrl: manual.finalUrl,
+      manualExact,
+      manualError: manual.error || null,
+      supportStatus: support.status,
+      supportFinalUrl: support.finalUrl,
+      supportExact,
+      supportError: support.error || null
+    }
+  };
+}
+
+async function mapLimit(items, concurrency, worker) {
+  const results = new Array(items.length);
+  let next = 0;
+  async function run() {
+    while (true) {
+      const index = next++;
+      if (index >= items.length) return;
+      results[index] = await worker(items[index], index);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, () => run()));
+  return results;
+}
+
 const args = parseArgs(process.argv.slice(2));
 if (!args.pass) {
   console.error('Usage: node sony-emount-review.mjs --pass <manifest.json> [--output <result.json>]');
@@ -46,66 +116,12 @@ const pass = JSON.parse(await fs.readFile(args.pass, 'utf8'));
 const allowedDomains = pass.allowedDomains || [];
 const scopes = Array.isArray(pass.subscopes) ? pass.subscopes : [];
 const scopedModels = scopes.flatMap((scope) => (scope.models || []).map((model) => ({ model, scope })));
-if (scopedModels.length !== pass.universe.models.length) {
+if (scopedModels.length !== pass.universe.models.length || new Set(scopedModels.map((x) => x.model)).size !== pass.universe.models.length) {
   throw new Error(`subscope partition mismatch: ${scopedModels.length} vs universe ${pass.universe.models.length}`);
 }
 
-const records = [];
-for (const { model, scope } of scopedModels) {
-  const supportCandidate = scopeBase(scope, model);
-  const manualCandidate = supportCandidate.endsWith('/manuals') ? supportCandidate : supportCandidate + '/manuals';
-  const manual = await fetchText(manualCandidate, allowedDomains);
-  const manualExact = manual.text.includes(model);
-  const saysNoManual = /現在、本ページで提供されている取扱説明書はありません/.test(manual.text);
-  const hasManualArtifact = /ヘルプガイド|\[PDF\]|PDF|ファイルサイズ/.test(manual.text);
-
-  let record;
-  if (manual.ok && manualExact && !saysNoManual && hasManualArtifact) {
-    record = {
-      model,
-      scopeId: scope.id,
-      candidateState: 'direct',
-      manualUrl: manual.finalUrl,
-      supportUrl: supportCandidate,
-      evidenceUrls: [scope.sourceUrl, manual.finalUrl],
-      verification: { exactModelText: true, officialHost: true, manualArtifactMarker: true }
-    };
-  } else {
-    const support = await fetchText(supportCandidate, allowedDomains);
-    const supportExact = support.text.includes(model);
-    if (support.ok && supportExact) {
-      record = {
-        model,
-        scopeId: scope.id,
-        candidateState: 'support_only',
-        supportUrl: support.finalUrl,
-        evidenceUrls: [scope.sourceUrl, support.finalUrl],
-        verification: {
-          exactModelText: true,
-          officialHost: true,
-          manualCandidateStatus: manual.status,
-          noManualStatement: saysNoManual
-        }
-      };
-    } else {
-      record = {
-        model,
-        scopeId: scope.id,
-        candidateState: 'needs_secondary_discovery',
-        attemptedDiscovery: ['official_manual_index', 'official_model_support_candidate'],
-        evidenceUrls: [scope.sourceUrl],
-        diagnostics: {
-          manualStatus: manual.status,
-          manualFinalUrl: manual.finalUrl,
-          manualExact,
-          supportStatus: support.status,
-          supportFinalUrl: support.finalUrl,
-          supportExact
-        }
-      };
-    }
-  }
-  records.push(record);
+const records = await mapLimit(scopedModels, 8, (entry) => reviewOne(entry, allowedDomains));
+for (const record of records) {
   console.log('MANUALFINDER_SONY_REVIEW_RECORD ' + JSON.stringify(record));
 }
 
