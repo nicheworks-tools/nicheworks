@@ -240,7 +240,11 @@
     "cholesterol": Object.freeze({ note_short: "Skin-conditioning emollient; COSMILE Europe also lists Cholesterol for emulsifying, viscosity control and light stabilisation.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3117/cholesterol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "arginine": Object.freeze({ note_short: "Amino acid used for skin and hair conditioning; COSMILE Europe also lists an antistatic function for Arginine.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1160/arginine/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "benzoic acid": Object.freeze({ note_short: "Preservative and pH-adjusting ingredient; COSMILE Europe also lists a fragrance function for Benzoic Acid.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1569/benzoic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "butylene glycol": Object.freeze({ note_short: "Humectant, skin-conditioning solvent and viscosity-controlling ingredient; COSMILE Europe lists these functions for Butylene Glycol.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2015/butylene-glycol/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "butylene glycol": Object.freeze({ note_short: "Humectant, skin-conditioning solvent and viscosity-controlling ingredient; COSMILE Europe lists these functions for Butylene Glycol.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2015/butylene-glycol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "acrylates/c10-30 alkyl acrylate crosspolymer": Object.freeze({ note_short: "Polymer used for emulsion stability, film formation and viscosity control; COSMILE Europe lists all three functions for Acrylates/C10-30 Alkyl Acrylate Crosspolymer.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/377/acrylates-c10-30-alkyl-acrylate-crosspolymer/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "glyceryl stearate": Object.freeze({ note_short: "Skin-conditioning emollient and emulsifying surfactant; COSMILE Europe lists both functions for Glyceryl Stearate.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6054/glyceryl-stearate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "phytosphingosine": Object.freeze({ note_short: "Skin- and hair-conditioning ingredient; COSMILE Europe lists both functions for Phytosphingosine.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11660/phytosphingosine/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polysorbate 60": Object.freeze({ note_short: "Cleansing and emulsifying surfactant; COSMILE Europe also lists a perfume-oil excipient function for Polysorbate 60.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12494/polysorbate-60/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -465,7 +469,7 @@
   }
 
   const api = {
-    version: "1.49.0",
+    version: "1.50.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,

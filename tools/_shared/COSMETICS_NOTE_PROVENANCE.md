@@ -286,3 +286,24 @@ After Wave 12:
 - strong runtime identities: 50 / 599;
 - Wave 11 identities retained: 4 / 4;
 - raw dictionary records rewritten: no.
+
+
+## Verified note wave 13
+
+Wave 13 continues frequency-prioritized source-backed enrichment:
+
+| Canonical identity | Corpus occurrences | Reviewed runtime note basis |
+| --- | ---: | --- |
+| `acrylates/c10-30 alkyl acrylate crosspolymer` | 4 | COSMILE Europe: emulsion stability, film formation and viscosity control. |
+| `glyceryl stearate` | 4 | COSMILE Europe: skin-conditioning emollient and emulsifying surfactant. |
+| `phytosphingosine` | 4 | COSMILE Europe: skin and hair conditioning. |
+| `polysorbate 60` | 4 | COSMILE Europe: cleansing and emulsifying surfactant plus perfume-oil excipient function. |
+
+Wave 12 remains a required reviewed subset rather than a total-overlay-size ceiling.
+
+After Wave 13:
+
+- cumulative verified-note identities: 54;
+- strong runtime identities: 54 / 599;
+- Wave 12 identities retained: 4 / 4;
+- raw dictionary records rewritten: no.
