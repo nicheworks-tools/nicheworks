@@ -24,7 +24,7 @@ Correction note: Galaxy A35 5G was removed from the JP-maintained set on 2026-09
 - raw water unresolved: **3 records**
 - reviewed-unresolved package/water fields: **18 / 18**
 - **unreviewed package/water gaps: 0**
-- battery capacity unknown: **33** — all maintained Apple records; intentional under current policy
+- battery capacity unknown: **34** — all maintained Apple records; intentional under current policy
 - charger guidance missing at v1 closure: **62**
 - handset-side wired maximum missing at v1 closure: **86**
 - PPS unknown at v1 closure: **152**
@@ -68,7 +68,7 @@ Galaxy Z Flip 5G and Galaxy M23 5G were separately resolved to explicit `not_res
 
 ### Apple battery capacity
 
-All 33 current Apple records intentionally keep `charging.battery.capacityMah` unknown. The data contract rejects guessed Apple mAh values unless the policy is explicitly revised.
+All 34 current Apple records intentionally keep `charging.battery.capacityMah` unknown. The data contract rejects guessed Apple mAh values unless the policy is explicitly revised.
 
 ### Charger guidance / handset maximum / PPS / wireless
 
