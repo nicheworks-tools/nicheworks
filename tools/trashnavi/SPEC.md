@@ -1097,3 +1097,17 @@ Wave 51は栃木県の追加10自治体を、従来どおり `municipal_home` �
 - 今後の標準review batchは50自治体。共同処理等が複雑な地域では25自治体まで縮小できる。
 - CIは `scripts/check-national-completion.mjs` で台帳・source threshold・manifest publication stateを横断検証する。
 
+## National review batch 1
+
+全国完成方針導入後の最初の50自治体レビュー。旧Waveの「3 URLを満たさなければ保留」ではなく、`NATIONAL_COMPLETION_POLICY.md` の最終状態へ必ず割り当てる。
+
+- review batch: 栃木県3、群馬県33、埼玉県2、千葉県12 = **50自治体**
+- reviewed: **294 → 344 / 1,741**
+- pending_review: **1,447 → 1,397**
+- state totals after batch: `standard 300 / limited 35 / joint_service 9 / reviewed_no_direct 0 / pending_review 1,397`
+- batch states: `standard 7 / limited 34 / joint_service 9`
+- 50自治体すべてに最低1件のqualifying official waste-specific sourceを確認したため、このbatchでは `reviewed_no_direct` は0。
+- `joint_service` は市貝町、中之条町、高山村、東吾妻町、越生町、多古町、東庄町、芝山町、一宮町。
+- 公開ページは294 → 344。公開数と全国レビュー完了数は同じ値になったが、これは今回50件すべてがpublishable stateだったためであり、両メトリクスは別物として扱う。
+- 3 URL未満の自治体について同一URLを複数タイプへ水増ししない。
+
