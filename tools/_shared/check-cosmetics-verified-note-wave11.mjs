@@ -1,0 +1,121 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { createRequire } from 'node:module';
+
+const root = process.cwd();
+const require = createRequire(import.meta.url);
+const parser = require('./cosmetic-ingredient-parser.js');
+
+const DATA_FILES = [
+  'tools/inci-fastscan/data/ingredients.json',
+  'tools/inci-fastscan/data/ingredients-extra-1.json',
+  'tools/inci-fastscan/data/ingredients-extra-2.json',
+  'tools/inci-fastscan/data/ingredients-extra-3.json',
+  'tools/inci-fastscan/data/ingredients-extra-4.json',
+  'tools/inci-fastscan/data/ingredients-extra-5.json',
+  'tools/inci-fastscan/data/ingredients-extra-6.json',
+  'tools/inci-fastscan/data/ingredients-extra-7.json',
+  'tools/inci-fastscan/data/ingredients-extra-8.json'
+];
+
+const PRIOR_VERIFIED_NOTE_COUNT = 42;
+const EXPECTED_WAVE11 = Object.freeze({
+  'ceramide ap': Object.freeze({
+    note_short: 'Ceramide lipid used for skin and hair conditioning; COSMILE Europe identifies Ceramide AP as a ceramide sphingolipid and lists both conditioning functions.',
+    source: 'https://cosmileeurope.eu/inci/detail/2820/ceramide-ap/',
+    authority: 'Cosmetics Europe / COSMILE Europe'
+  }),
+  'ceramide eop': Object.freeze({
+    note_short: 'Ceramide lipid used for skin and hair conditioning; COSMILE Europe identifies Ceramide EOP as a ceramide sphingolipid and lists both conditioning functions.',
+    source: 'https://cosmileeurope.eu/inci/detail/25521/ceramide-eop/',
+    authority: 'Cosmetics Europe / COSMILE Europe'
+  }),
+  squalane: Object.freeze({
+    note_short: 'Skin- and hair-conditioning emollient; COSMILE Europe also lists refatting for Squalane and describes a skin-smoothing effect.',
+    source: 'https://cosmileeurope.eu/inci/detail/15418/squalane/',
+    authority: 'Cosmetics Europe / COSMILE Europe'
+  }),
+  'trisodium ethylenediamine disuccinate': Object.freeze({
+    note_short: 'Chelating ingredient; COSMILE Europe describes Trisodium Ethylenediamine Disuccinate as binding metal ions to support product stability and cleansing performance in hard water.',
+    source: 'https://cosmileeurope.eu/inci/detail/16590/trisodium-ethylenediamine-disuccinate/',
+    authority: 'Cosmetics Europe / COSMILE Europe'
+  })
+});
+
+function normalizeText(value = '') {
+  return String(value).normalize('NFKC').replace(/\s+/g, ' ').trim();
+}
+
+function validCosmileSource(value) {
+  try {
+    const url = new URL(String(value || '').trim());
+    return url.protocol === 'https:' && url.hostname === 'cosmileeurope.eu';
+  } catch {
+    return false;
+  }
+}
+
+const rows = DATA_FILES.flatMap((file) => {
+  const payload = JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
+  if (!Array.isArray(payload)) throw new Error(`${file}: dictionary payload must be an array`);
+  return payload;
+});
+
+const canonicalRows = new Map();
+for (const row of rows) {
+  const key = parser.canonicalIdentityKey(row.en);
+  if (!key) continue;
+  if (!canonicalRows.has(key)) canonicalRows.set(key, []);
+  canonicalRows.get(key).push(row);
+}
+
+const evidence = parser.verifiedNoteEvidence || {};
+assert.equal(
+  Object.keys(evidence).length,
+  PRIOR_VERIFIED_NOTE_COUNT + Object.keys(EXPECTED_WAVE11).length,
+  'wave 11 must extend the 42 reviewed note identities by exactly four source-backed identities'
+);
+
+for (const [canonical, expected] of Object.entries(EXPECTED_WAVE11)) {
+  const item = evidence[canonical];
+  assert.ok(item, `${canonical}: wave 11 verified note evidence missing`);
+  assert.equal(normalizeText(item.note_short), expected.note_short, `${canonical}: reviewed note text changed unexpectedly`);
+  assert.equal(normalizeText(item.authority), expected.authority, `${canonical}: reviewed authority changed unexpectedly`);
+  assert.ok(Array.isArray(item.note_sources) && item.note_sources.length === 1, `${canonical}: exactly one reviewed source is required`);
+  assert.ok(item.note_sources.every(validCosmileSource), `${canonical}: source must use COSMILE Europe HTTPS`);
+  assert.ok(item.note_sources.includes(expected.source), `${canonical}: reviewed source URL missing`);
+  assert.ok(canonicalRows.has(canonical), `${canonical}: canonical identity must exist in maintained dictionary`);
+}
+
+for (const ambiguous of parser.ambiguousExactKeys || []) {
+  assert.equal(evidence[ambiguous], undefined, `ambiguous exact token must not receive verified note evidence: ${ambiguous}`);
+}
+
+const merged = parser.mergeDictionaryRecords(rows);
+const mergedByCanonical = new Map(merged.map((item) => [parser.canonicalIdentityKey(item.en), item]));
+for (const [canonical, expected] of Object.entries(EXPECTED_WAVE11)) {
+  const item = mergedByCanonical.get(canonical);
+  assert.ok(item, `${canonical}: missing from merged runtime dictionary`);
+  assert.equal(item.note_verified, true, `${canonical}: verified note flag must survive canonical merge`);
+  assert.equal(item.note_short, expected.note_short, `${canonical}: runtime note must equal the reviewed wave 11 note`);
+  assert.ok(Array.isArray(item.note_sources) && item.note_sources.includes(expected.source), `${canonical}: reviewed source must survive canonical merge`);
+  assert.equal(item.note_authority, expected.authority, `${canonical}: note authority must survive canonical merge`);
+  assert.equal(item.note_provenance_conflict, undefined, `${canonical}: verified overlay must not create a note provenance conflict`);
+  assert.ok(normalizeText(item.category), `${canonical}: wave 11 note identity must retain a supported public role`);
+  assert.ok(Array.isArray(item.jp) && item.jp.some((value) => normalizeText(value)), `${canonical}: wave 11 note identity must retain a Japanese name`);
+}
+
+console.log(JSON.stringify({
+  status: 'pass',
+  phase: 'verified-note-wave-11-common-label-priority',
+  prior_verified_note_identities: PRIOR_VERIFIED_NOTE_COUNT,
+  wave_11_verified_note_identities: Object.keys(EXPECTED_WAVE11).length,
+  cumulative_verified_note_identities: Object.keys(evidence).length,
+  wave_11_identities: Object.keys(EXPECTED_WAVE11),
+  source_authority: 'Cosmetics Europe / COSMILE Europe',
+  raw_dictionary_records_rewritten: false,
+  recognition_contract_changed: false,
+  safety_contract_changed: false,
+  affiliate_contract_changed: false
+}, null, 2));
