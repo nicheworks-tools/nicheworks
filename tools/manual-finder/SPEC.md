@@ -176,6 +176,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] Missing-model maker diagnostics and documentation sync remain machine-readable drift guards.
 - [x] Sony Japan α E-mount coverage-pass population reconciles at **107 = 104 direct + 0 shared + 3 support-only + 0 held** and the reviewed rows are loaded into the public directory through the coverage-pass batch loader.
 - [x] Panasonic Japan LUMIX S/G/compact camera-body sitemap scope reconciles at **27 = 27 direct + 0 shared + 0 support-only + 0 held** and the reviewed rows are loaded through the same reusable coverage-pass batch loader.
+- [x] Apple iPhone bounded User Guide scope reconciles at **31 = 0 direct + 31 shared + 0 support-only + 0 held**; every model retains its exact Apple Manuals and Downloads support page while the manufacturer-defined Japanese iPhone User Guide remains explicit as a shared target.
 - [x] Wrong maker/category, nonexistent models, spelling variants, and other unreviewed compatibility cases fail closed.
 - [x] Amazon disclosure and sponsored-link semantics remain supplied by the shared affiliate helper.
 
@@ -201,6 +202,10 @@ Core ManualFinder implementation:
 - `tools/manual-finder/coverage-passes/panasonic/jp-lumix-camera-bodies-sitemap.json`
 - `tools/manual-finder/data/manuals.coverage-pass.panasonic-jp-lumix-camera-bodies.js`
 - `tools/manual-finder/tests/panasonic-lumix-coverage-pass-publication.test.mjs`
+- `tools/manual-finder/coverage-passes/apple/jp-iphone-ios26-guide-models.json`
+- `tools/manual-finder/data/manuals.coverage-pass.apple-jp-iphone-ios26-guide-models.js`
+- `tools/manual-finder/tests/apple-iphone-coverage-pass.test.mjs`
+- `tools/manual-finder/tests/apple-iphone-coverage-pass-publication.test.mjs`
 - `tools/manual-finder/affiliate-printer-detail-exclusions.js`
 
 Reviewed DJI camera accessory ledgers:
