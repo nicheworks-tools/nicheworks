@@ -8,6 +8,7 @@ const toolDir = path.resolve(scriptDir, '..');
 const repoRoot = path.resolve(toolDir, '../..');
 const dataDir = path.join(toolDir, 'data');
 const manifestPath = path.join(toolDir, 'municipality-page-manifest.json');
+const ledgerPath = path.join(dataDir, 'municipality-review-ledger.json');
 const sitemapPath = path.join(repoRoot, 'sitemap-trashnavi.xml');
 const rootSitemapPath = path.join(repoRoot, 'sitemap.xml');
 const checkMode = process.argv.includes('--check');
@@ -43,17 +44,25 @@ function linksFor(rows) {
   }).sort((a,b) => TYPE_ORDER.indexOf(canonicalType(a)) - TYPE_ORDER.indexOf(canonicalType(b)) || String(a.name || '').localeCompare(String(b.name || ''),'ja'));
 }
 
-function card(row) {
+function card(row, coverage) {
   const type = canonicalType(row), labels = TYPE_LABELS[type] || [type,type];
   const meta = [];
+  const jointService = coverage?.coverage_state === 'joint_service';
+  const sourceJa = jointService ? `${coverage.service_provider}など、この自治体を担当する公式公共機関の情報です。最新内容はリンク先で確認してください。` : '自治体公式サイトの情報です。最新内容はリンク先で確認してください。';
+  const sourceEn = jointService ? `Official public-service source serving this municipality${coverage.service_provider ? ` (${coverage.service_provider})` : ''}. Confirm the latest details on the linked page.` : 'Official municipal source. Confirm the latest details on the linked page.';
   if (row.fiscal_year) meta.push(`<span data-i18n="ja">対象年度: ${esc(row.fiscal_year)}</span><span data-i18n="en">Year: ${esc(row.fiscal_year)}</span>`);
   if (row.last_checked) meta.push(`<span data-i18n="ja">確認日: ${esc(row.last_checked)}</span><span data-i18n="en">Checked: ${esc(row.last_checked)}</span>`);
-  return `<article class="official-link-card"><span class="result-tag"><span data-i18n="ja">${esc(labels[0])}</span><span data-i18n="en">${esc(labels[1])}</span></span><h3>${esc(row.name || labels[0])}</h3>${meta.length ? `<p class="verification-meta">${meta.join(' · ')}</p>` : ''}<p class="official-source-note" data-i18n="ja">自治体公式サイトの情報です。最新内容はリンク先で確認してください。</p><p class="official-source-note" data-i18n="en">Official municipal source. Confirm the latest details on the linked page.</p><a class="result-button" href="${esc(row.url)}" target="_blank" rel="noopener noreferrer"><span data-i18n="ja">公式ページを開く</span><span data-i18n="en">Open official page</span><span class="external-label">外部 / External</span></a></article>`;
+  return `<article class="official-link-card"><span class="result-tag"><span data-i18n="ja">${esc(labels[0])}</span><span data-i18n="en">${esc(labels[1])}</span></span><h3>${esc(row.name || labels[0])}</h3>${meta.length ? `<p class="verification-meta">${meta.join(' · ')}</p>` : ''}<p class="official-source-note" data-i18n="ja">${esc(sourceJa)}</p><p class="official-source-note" data-i18n="en">${esc(sourceEn)}</p><a class="result-button" href="${esc(row.url)}" target="_blank" rel="noopener noreferrer"><span data-i18n="ja">公式ページを開く</span><span data-i18n="en">Open official page</span><span class="external-label">外部 / External</span></a></article>`;
 }
 
-function page(entry, rows, manifest, names) {
+function page(entry, rows, manifest, names, coverage) {
   const links = linksFor(rows), types = new Set(links.map(canonicalType));
-  if (types.size < 3) throw new Error(`${entry.lgcode}: preferred readiness lost (${types.size})`);
+  const state = String(coverage?.coverage_state || '').trim();
+  const urlCount = new Set(links.map(row=>String(row.url || '').trim())).size;
+  if (!['standard','limited','joint_service'].includes(state)) throw new Error(`${entry.lgcode}: published page has invalid coverage state ${state || '(missing)'}`);
+  if (state === 'standard' && (types.size < 3 || urlCount < 3)) throw new Error(`${entry.lgcode}: standard readiness lost (${types.size} types / ${urlCount} URLs)`);
+  if (state === 'limited' && (!links.length || (types.size >= 3 && urlCount >= 3))) throw new Error(`${entry.lgcode}: limited state/source mismatch (${types.size} types / ${urlCount} URLs)`);
+  if (state === 'joint_service' && (!links.length || !String(coverage?.service_provider || '').trim())) throw new Error(`${entry.lgcode}: joint_service requires source links and service_provider`);
   const pref = String(rows.find(r=>r.pref)?.pref || '').trim(), city = String(rows.find(r=>r.city)?.city || '').trim();
   if (!pref || !city) throw new Error(`${entry.lgcode}: identity missing`);
   const canonical = `https://nicheworks.app/tools/trashnavi/${entry.pref_slug}/${entry.city_slug}/`;
@@ -68,11 +77,14 @@ function page(entry, rows, manifest, names) {
   }
   const legacyCore = hasSorting && hasCalendar && hasBulky;
   const title = legacyCore ? `${city}のごみ分別・収集カレンダー・粗大ごみ公式情報｜TrashNavi | NicheWorks` : `${city}の${titleTerms.slice(0,3).join('・')}公式情報｜TrashNavi | NicheWorks`;
-  const desc = legacyCore ? `${pref}${city}のごみ分別、収集カレンダー、粗大ごみなどの自治体公式ページをまとめています。TrashNaviは公式情報への案内で、分別ルールの最終判断や申込みは行いません。` : `${pref}${city}の確認済み自治体公式ごみ情報をまとめています。TrashNaviは公式情報への案内で、分別ルール・料金・収集日の最終判断や申込みは行いません。`;
-  const heroJa = legacyCore ? '分別、収集カレンダー、粗大ごみなど、確認済みの自治体公式ページをまとめています。具体的な分別方法・料金・収集日は、必ず各公式ページの最新情報を確認してください。' : hasBulky ? '確認済みの自治体公式ごみ情報へのリンクをまとめています。具体的な分別方法・料金・収集日などは、必ず各公式ページの最新情報を確認してください。' : '分別、収集日など、確認済みの自治体公式ごみ情報をまとめています。具体的な分別方法・料金・収集日は、必ず各公式ページの最新情報を確認してください。';
-  const heroEn = legacyCore ? 'Use these verified municipal links for sorting, collection calendars and bulky waste. Confirm current rules, fees and dates on the official source.' : 'Use these verified municipal waste-information links. Confirm current sorting rules, fees and collection dates on the official source.';
+  const desc = state === 'joint_service' ? `${pref}${city}について、自治体または共同処理を担う公式公共機関の確認済みごみ情報をまとめています。TrashNaviは公式情報への案内で、分別ルール・料金・収集日の最終判断や申込みは行いません。` : state === 'limited' ? `${pref}${city}について確認できた公式ごみ情報を掲載しています。直接確認できる公式導線は限定的なため、リンク先の最新情報を確認してください。` : legacyCore ? `${pref}${city}のごみ分別、収集カレンダー、粗大ごみなどの自治体公式ページをまとめています。TrashNaviは公式情報への案内で、分別ルールの最終判断や申込みは行いません。` : `${pref}${city}の確認済み自治体公式ごみ情報をまとめています。TrashNaviは公式情報への案内で、分別ルール・料金・収集日の最終判断や申込みは行いません。`;
+  const heroJa = state === 'joint_service' ? '自治体または共同処理を担う公式公共機関の確認済みごみ情報へのリンクをまとめています。具体的な分別方法・料金・収集日は、必ず公式リンク先の最新情報を確認してください。' : state === 'limited' ? '確認できた公式ごみ情報へのリンクを掲載しています。この自治体では直接確認できる公式導線が限定的です。具体的なルールはリンク先の最新情報を確認してください。' : legacyCore ? '分別、収集カレンダー、粗大ごみなど、確認済みの自治体公式ページをまとめています。具体的な分別方法・料金・収集日は、必ず各公式ページの最新情報を確認してください。' : hasBulky ? '確認済みの自治体公式ごみ情報へのリンクをまとめています。具体的な分別方法・料金・収集日などは、必ず各公式ページの最新情報を確認してください。' : '分別、収集日など、確認済みの自治体公式ごみ情報をまとめています。具体的な分別方法・料金・収集日は、必ず各公式ページの最新情報を確認してください。';
+  const heroEn = state === 'joint_service' ? 'Use these verified official public-service waste links for this municipality. Confirm current sorting rules, fees and dates on the official source.' : state === 'limited' ? 'Verified official waste links are available, but direct official-link coverage is limited. Confirm current rules on the linked official source.' : legacyCore ? 'Use these verified municipal links for sorting, collection calendars and bulky waste. Confirm current rules, fees and dates on the official source.' : 'Use these verified municipal waste-information links. Confirm current sorting rules, fees and collection dates on the official source.';
   const calendar = links.find(r=>canonicalType(r)==='collection_calendar' && String(r.fiscal_year || '')==='2026');
   const checked = links.map(r=>String(r.last_checked || '').trim()).filter(Boolean).sort().at(-1) || '';
+  const leadJa = state === 'joint_service' ? `${pref}${city}を対象とする確認済み公式公共ごみ情報への入口です。` : `${pref}${city}の確認済み自治体公式ごみ情報への入口です。`;
+  const leadEn = state === 'joint_service' ? `Verified official public-service waste-information links for ${city}, ${pref}.` : `Official municipal waste-information links for ${city}, ${pref}.`;
+  const coverageNotice = state === 'limited' ? `<section class="municipality-guide coverage-status-note"><h2 data-i18n="ja">公式リンクの掲載状況</h2><h2 data-i18n="en">Official-link coverage</h2><p data-i18n="ja">この自治体は確認できた公式ごみ情報への直接リンクが限定的です。掲載していない情報が存在しないことを意味しません。</p><p data-i18n="en">Direct official waste-information links verified for this municipality are limited. Missing categories do not mean the service or information does not exist.</p></section>` : state === 'joint_service' ? `<section class="municipality-guide coverage-status-note"><h2 data-i18n="ja">共同処理の公式情報</h2><h2 data-i18n="en">Joint public waste service</h2><p data-i18n="ja">${esc(coverage.service_provider)}が関係する公式公共ごみ情報を含みます。自治体との対応関係を確認したうえで掲載しています。</p><p data-i18n="en">This page includes official public waste information from ${esc(coverage.service_provider)}, verified as serving this municipality.</p></section>` : '';
   const relatedEntries = [
     ...manifest.filter(m=>m.publish && m.lgcode!==entry.lgcode && m.pref_slug===entry.pref_slug),
     ...manifest.filter(m=>m.publish && m.lgcode!==entry.lgcode && m.pref_slug!==entry.pref_slug)
@@ -91,11 +103,12 @@ function page(entry, rows, manifest, names) {
 <script type="application/ld+json">${ld}</script><script type="application/ld+json">${crumbs}</script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"aeec938336694c99bc864cdf859b5e37"}'></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
 </head><body>
-<header class="nw-header"><div class="nw-header-inner"><h1 class="nw-title">${esc(city)}のごみ情報 | TrashNavi</h1><p class="nw-lead" data-i18n="ja">${esc(pref)}${esc(city)}の確認済み自治体公式ごみ情報への入口です。</p><p class="nw-lead" data-i18n="en">Official municipal waste-information links for ${esc(city)}, ${esc(pref)}.</p><div class="nw-lang-switch" aria-label="Language switch"><button type="button" data-lang="ja">JP</button> / <button type="button" data-lang="en">EN</button></div></div></header>
+<header class="nw-header"><div class="nw-header-inner"><h1 class="nw-title">${esc(city)}のごみ情報 | TrashNavi</h1><p class="nw-lead" data-i18n="ja">${esc(leadJa)}</p><p class="nw-lead" data-i18n="en">${esc(leadEn)}</p><div class="nw-lang-switch" aria-label="Language switch"><button type="button" data-lang="ja">JP</button> / <button type="button" data-lang="en">EN</button></div></div></header>
 <main class="nw-main municipality-page"><nav class="municipality-breadcrumb" aria-label="Breadcrumb"><a href="/tools/trashnavi/">TrashNavi</a><span>›</span><span>${esc(pref)}</span><span>›</span><span>${esc(city)}</span></nav>
 <section class="municipality-hero"><h2 data-i18n="ja">${esc(city)}の公式ごみ情報</h2><h2 data-i18n="en">Official waste information for ${esc(city)}</h2><p data-i18n="ja">${esc(heroJa)}</p><p data-i18n="en">${esc(heroEn)}</p>${checked?`<p class="verification-summary"><span data-i18n="ja">最新のリンク確認記録: ${esc(checked)}</span><span data-i18n="en">Latest recorded link check: ${esc(checked)}</span></p>`:''}</section>
+${coverageNotice}
 ${calendar?`<section class="current-calendar-callout"><h2 data-i18n="ja">2026年の収集カレンダー</h2><h2 data-i18n="en">2026 collection calendar</h2><p>${esc(calendar.name)}</p><a class="result-button" href="${esc(calendar.url)}" target="_blank" rel="noopener noreferrer"><span data-i18n="ja">2026年公式カレンダーを開く</span><span data-i18n="en">Open the official 2026 calendar</span></a></section>`:''}
-<section class="municipality-links-section"><h2 data-i18n="ja">公式リンク</h2><h2 data-i18n="en">Official links</h2><div class="official-link-grid">${links.map(card).join('')}</div></section>
+<section class="municipality-links-section"><h2 data-i18n="ja">公式リンク</h2><h2 data-i18n="en">Official links</h2><div class="official-link-grid">${links.map(row=>card(row,coverage)).join('')}</div></section>
 <section class="municipality-guide"><h2 data-i18n="ja">このページの使い方</h2><h2 data-i18n="en">How to use this page</h2><ol data-i18n="ja"><li>必要な情報の公式リンクを選びます。</li><li>住所・品目・申込条件などの最新情報を自治体公式ページで確認します。</li><li>粗大ごみの申込みが必要な場合は自治体指定の受付先へ進みます。</li></ol><ol data-i18n="en"><li>Choose the relevant official link.</li><li>Confirm current address-specific rules and eligibility on the municipal website.</li><li>For bulky waste, continue through the municipality's official route.</li></ol><p class="official-source-warning" data-i18n="ja">TrashNaviは分別を最終判定せず、粗大ごみの申込みも受け付けません。</p><p class="official-source-warning" data-i18n="en">TrashNavi does not make final sorting decisions or accept bulky-waste applications.</p></section>
 <section class="trashnavi-affiliate-section" id="trashnaviAmazonAffiliate" aria-label="Amazon affiliate links" hidden><h2 data-i18n="ja">ごみ出し・片付け用品 [PR]</h2><h2 data-i18n="en">Waste-sorting and cleanup supplies [PR]</h2><p data-i18n="ja">自治体の収集ルールとは別に、家庭での分別や片付けに使う一般用品です。商品が自治体ルールに適合することを保証するものではありません。</p><p data-i18n="en">These are general household products, separate from municipal collection rules. NicheWorks does not guarantee that a product satisfies local disposal requirements.</p><div class="trashnavi-affiliate-grid" id="trashnaviAmazonAffiliateLinks"></div><div class="trashnavi-amazon-disclosure" id="trashnaviAmazonDisclosure"></div></section>
 <section class="faq-section"><h2 data-i18n="ja">よくある確認</h2><h2 data-i18n="en">Common checks</h2>${hasCalendar?`<div class="faq-item"><h3 data-i18n="ja">今日・今週の収集日はどこで確認しますか？</h3><h3 data-i18n="en">Where should I check today's collection date?</h3><p data-i18n="ja">上の収集カレンダーを開き、住所・地域に対応する最新日程を確認してください。</p><p data-i18n="en">Open the official collection calendar and confirm the current schedule for your area.</p></div>`:`<div class="faq-item"><h3 data-i18n="ja">収集日などの最新情報はどこで確認しますか？</h3><h3 data-i18n="en">Where should I confirm current collection information?</h3><p data-i18n="ja">上の自治体公式リンクから、住所・地域に対応する最新情報を確認してください。</p><p data-i18n="en">Use the official municipal links above to confirm current information for your area.</p></div>`}<div class="faq-item"><h3 data-i18n="ja">粗大ごみの料金や対象品をTrashNaviで確認できますか？</h3><h3 data-i18n="en">Does TrashNavi determine bulky-waste fees?</h3><p data-i18n="ja">いいえ。料金・対象品・申込方法は自治体公式の粗大ごみページで確認してください。</p><p data-i18n="en">No. Confirm fees, eligible items and application routes on the official municipal page.</p></div></section>
@@ -111,13 +124,17 @@ ${calendar?`<section class="current-calendar-callout"><h2 data-i18n="ja">2026年
 }
 
 const manifest = readJson(manifestPath);
+const ledger = readJson(ledgerPath);
+const coverageByCode = new Map(ledger.municipalities.map(row=>[String(row.lgcode||'').trim(),row]));
+const publishableStates = new Set(['standard','limited','joint_service']);
+const expectedPublished = ledger.municipalities.filter(row=>publishableStates.has(row.coverage_state)).length;
 const files = fs.readdirSync(dataDir).filter(n=>/^direct-waste-links.*\.json$/.test(n)).sort();
 const rows = files.flatMap(n=>readJson(path.join(dataDir,n)));
 const by = new Map(), names = new Map();
 for (const row of rows) { const code=String(row.lgcode||'').trim(); if(!code) continue; if(!by.has(code)) by.set(code,[]); by.get(code).push(row); if(row.city) names.set(code,String(row.city).trim()); }
 const outputs=[];
-for(const entry of manifest.filter(x=>x.publish)) { const html=page(entry,by.get(entry.lgcode)||[],manifest,names); const relative=path.join('tools','trashnavi',entry.pref_slug,entry.city_slug,'index.html'); outputs.push({relative,absolute:path.join(repoRoot,relative),content:html,url:`https://nicheworks.app/tools/trashnavi/${entry.pref_slug}/${entry.city_slug}/`}); }
-if(outputs.length!==294) throw new Error(`municipality page count must be 294; got ${outputs.length}`);
+for(const entry of manifest.filter(x=>x.publish)) { const coverage=coverageByCode.get(String(entry.lgcode||'').trim()); const html=page(entry,by.get(entry.lgcode)||[],manifest,names,coverage); const relative=path.join('tools','trashnavi',entry.pref_slug,entry.city_slug,'index.html'); outputs.push({relative,absolute:path.join(repoRoot,relative),content:html,url:`https://nicheworks.app/tools/trashnavi/${entry.pref_slug}/${entry.city_slug}/`}); }
+if(outputs.length!==expectedPublished) throw new Error(`municipality page count must match publishable ledger states (${expectedPublished}); got ${outputs.length}`);
 const publishedCodes=new Set(manifest.filter(x=>x.publish).map(x=>String(x.lgcode||'').trim()));
 const lastmod=rows.filter(r=>publishedCodes.has(String(r.lgcode||'').trim())).map(r=>String(r.last_checked||'').trim()).filter(Boolean).sort().at(-1)||'';
 const sitemap=`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${['https://nicheworks.app/tools/trashnavi/',...outputs.map(o=>o.url)].map(u=>`  <url>\n    <loc>${u}</loc>${lastmod?`\n    <lastmod>${lastmod}</lastmod>`:''}\n  </url>`).join('\n')}\n</urlset>\n`;
