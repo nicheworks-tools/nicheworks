@@ -41,7 +41,7 @@ for (const model of models) {
   assert.ok(offers[0].url.includes('tag=nicheworks09-22'));
 }
 
-for (const args of [{"maker":"GoPro","model":"HERO11 Black Mini","category":"カメラ・映像"},{"maker":"GoPro","model":"HERO8 Black","category":"カメラ・映像"},{"maker":"GoPro","model":"HERO12","category":"カメラ・映像"}]) {
+for (const args of [{"maker":"GoPro","model":"HERO11 Black Mini","category":"カメラ・映像"},{"maker":"GoPro","model":"HERO12","category":"カメラ・映像"},{"maker":"GoPro","model":"HERO12 Black","category":"その他"}]) {
   assert.deepEqual(Array.from(config.getAccessoryOffers(args)), [], `unreviewed GoPro mapping must fail closed: ${JSON.stringify(args)}`);
 }
 
