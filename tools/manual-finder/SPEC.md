@@ -72,7 +72,7 @@ ManualFinder is an `AFFILIATE` tool, but commerce is an optional next-action lay
 
 Every actionable `カメラ・映像` row with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or explicit missing-accessory diagnostic state.
 
-The current camera state is **185 basic = 133 detail + 26 reviewed exclusions + 26 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
+The current camera state is **185 basic = 133 detail + 33 reviewed exclusions + 19 missing accessory detail** across 192 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator.
 
 Nikon Waves 1–2 remain closed at **14 detail + 0 reviewed exclusions + 0 missing**.
 
@@ -93,9 +93,9 @@ DJI camera review is closed at zero missing. Camera-detail exclusions contain tw
 
 OM SYSTEM review is closed through Waves 1–6. Waves 1–4 cover BLX-1, BLH-1, LI-92B, and current/late BLS-50 families. Wave 5 maps exactly `E-M1`, `E-M5`, `E-M5 Mark II`, `E-P5`, and `PEN-F` to BLN-1. Wave 6 maps the final fifteen legacy PEN/E-M10 rows to BLS-50. Waves 5–6 use OM SYSTEM's official power-supply compatibility table, which explicitly marks those battery/model combinations; no family-name inference is used. The measured OM SYSTEM state is **37 basic = 37 detail + 0 reviewed exclusions + 0 missing accessory detail**.
 
-GoPro review has started through Waves 1–4. Wave 1 maps exactly `HERO13 Black` to its HERO13-specific Enduro battery. Wave 2 maps exactly `HERO9 Black`, `HERO10 Black`, `HERO11 Black`, and `HERO12 Black` to GoPro Enduro. Wave 3 maps exactly `HERO5 Black`, `HERO6 Black`, `HERO7 Black`, `HERO8 Black`, and canonical `HERO 2018` to the HERO8 Black Rechargeable Battery using GoPro's explicit compatibility page and note. Wave 4 maps exactly `MAX` and `MAX2` to their separately documented Enduro batteries. The measured GoPro state is **31 basic = 12 detail + 0 reviewed exclusions + 19 missing accessory detail**.
+GoPro review now covers Waves 1–5. Waves 1–4 map twelve exact HERO/MAX rows to GoPro-documented replaceable Enduro/rechargeable batteries. Wave 5 reviews exactly `HERO11 Black Mini`, `HERO7 Silver`, `HERO7 White`, `HERO5 Session`, `HERO Session`, `HERO+`, and `HERO+ LCD` as built-in/integrated-battery cameras based on official GoPro product/manual evidence; no generic USB charger handoff is emitted. The measured GoPro state is **31 basic = 12 detail + 7 reviewed exclusions + 12 missing accessory detail**.
 
-Remaining missing camera rows are GoPro 19 and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
+Remaining missing camera rows are GoPro 12 and Insta360 7. Exact missing models are emitted by `tests/camera-accessory-coverage.test.mjs` and summarized in `CAMERA_ACCESSORY_COVERAGE.md`.
 
 ## State and persistence
 
@@ -166,8 +166,9 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] GoPro Wave 2 activates exactly HERO9 Black through HERO12 Black with explicit Enduro compatibility evidence.
 - [x] GoPro Wave 3 activates exactly HERO5 Black, HERO6 Black, HERO7 Black, HERO8 Black, and canonical HERO 2018 with explicit GoPro battery compatibility evidence.
 - [x] GoPro Wave 4 activates exactly MAX and MAX2 with separate official Enduro battery evidence.
-- [x] GoPro currently reconciles to **31 basic = 12 detail + 0 reviewed exclusions + 19 missing accessory detail**.
-- [x] The catalog-wide camera audit reconciles to **185 basic = 133 detail + 26 reviewed exclusions + 26 missing accessory detail** while seven maker/index rows remain non-actionable.
+- [x] GoPro Wave 5 reviews exactly seven built-in/integrated-battery cameras as evidence-backed exclusions with no generic USB charger handoff.
+- [x] GoPro currently reconciles to **31 basic = 12 detail + 7 reviewed exclusions + 12 missing accessory detail**.
+- [x] The catalog-wide camera audit reconciles to **185 basic = 133 detail + 33 reviewed exclusions + 19 missing accessory detail** while seven maker/index rows remain non-actionable.
 - [x] Missing-model maker diagnostics and documentation sync remain machine-readable drift guards.
 - [x] Wrong maker/category, nonexistent models, spelling variants, and other unreviewed compatibility cases fail closed.
 - [x] Amazon disclosure and sponsored-link semantics remain supplied by the shared affiliate helper.
@@ -293,6 +294,7 @@ Camera accessory tests and audit gates:
 - `tools/manual-finder/tests/gopro-enduro-accessory-wave2.test.mjs`
 - `tools/manual-finder/tests/gopro-hero8-battery-accessory-wave3.test.mjs`
 - `tools/manual-finder/tests/gopro-max-enduro-accessory-wave4.test.mjs`
+- `tools/manual-finder/tests/gopro-integrated-battery-exclusions-wave5.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-coverage.test.mjs`
 - `tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs`
 - `tools/manual-finder/tests/affiliate-coverage.test.mjs`
