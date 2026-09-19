@@ -10663,6 +10663,62 @@
         "verifiedAt": "2026-09-19"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "apple-iphone-duo",
+      "manufacturer": "Apple",
+      "model": "iPhone Duo",
+      "aliases": [
+        "iPhoneDuo",
+        "iPhone Duo",
+        "アイフォンDuo",
+        "アイフォンデュオ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "formFactor": "foldable",
+      "dimensionsFolded": {
+        "heightMm": 117.8,
+        "widthMm": 84.1,
+        "depthMm": 11.3
+      },
+      "dimensionsUnfolded": {
+        "heightMm": 117.8,
+        "widthMm": 164.6,
+        "depthMm": 5.2
+      },
+      "weightG": 254,
+      "displayInch": 7.6,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": null,
+          "valueClass": "unknown",
+          "sourceRef": null
+        },
+        "wiredRecommendedW": 60,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi2 / MagSafe",
+        "wirelessMaxW": 25
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.apple.com/jp/iphone-duo/specs/",
+        "manualUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+        "releaseUrl": "https://www.apple.com/jp/newsroom/2026/09/apple-unveils-iphone-duo/",
+        "chargingUrl": "https://www.apple.com/jp/iphone-duo/specs/",
+        "wirelessUrl": "https://www.apple.com/jp/iphone-duo/specs/",
+        "waterUrl": "https://www.apple.com/jp/newsroom/2026/09/apple-unveils-iphone-duo/",
+        "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
     }
   ]
 }
