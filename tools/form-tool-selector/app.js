@@ -68,7 +68,7 @@
     {
       key: "simple",
       name: { ja: "シンプル収集フォーム", en: "Simple collection form" },
-      tags: ["free"],
+      tags: ["free", "multi"],
       reasons: {
         ja: "無料枠から始めやすく、問い合わせ・アンケート・小規模な申込受付に向きます。",
         en: "Easy to start from a free tier and suited for inquiries, surveys, and small intake forms."
@@ -81,7 +81,7 @@
     {
       key: "upload",
       name: { ja: "ファイル回収向けフォーム", en: "File collection form" },
-      tags: ["upload"],
+      tags: ["upload", "notify"],
       reasons: {
         ja: "応募書類、画像、確認資料など、添付ファイルの提出を前提にした運用に向きます。",
         en: "Suited for workflows that require resumes, images, verification files, or other attachments."
@@ -94,7 +94,7 @@
     {
       key: "payments",
       name: { ja: "決済連携フォーム", en: "Payment-ready form" },
-      tags: ["payments"],
+      tags: ["payments", "notify"],
       reasons: {
         ja: "申込、予約、注文、チケットなど、回答と支払いを同時に扱うケースに向きます。",
         en: "Suited for signups, bookings, orders, tickets, and other flows that combine submission and payment."
@@ -107,7 +107,7 @@
     {
       key: "automation",
       name: { ja: "通知・自動連携フォーム", en: "Automation & notification form" },
-      tags: ["notify"],
+      tags: ["notify", "upload"],
       reasons: {
         ja: "Slack、メール、スプレッドシート、CRMなどへ回答後すぐ流したい用途に向きます。",
         en: "Suited for sending submissions to Slack, email, spreadsheets, CRMs, or similar systems quickly."
@@ -120,7 +120,7 @@
     {
       key: "multilang",
       name: { ja: "多言語フォーム", en: "Multilingual form" },
-      tags: ["multi"],
+      tags: ["multi", "free"],
       reasons: {
         ja: "日本語/英語など複数言語で、同じ受付導線を使いたいケースに向きます。",
         en: "Suited for sharing one intake flow across Japanese, English, or other languages."
@@ -133,7 +133,7 @@
     {
       key: "privacy",
       name: { ja: "プライバシー重視フォーム", en: "Privacy-first form" },
-      tags: ["privacy"],
+      tags: ["privacy", "upload", "multi"],
       reasons: {
         ja: "個人情報、社内情報、顧客情報など、保存先や権限を慎重に確認したい用途に向きます。",
         en: "Suited for personal, internal, or customer data where storage and permissions need careful review."
@@ -141,6 +141,108 @@
       avoid: {
         ja: "外部サービスに預けられない情報なら、フォームサービスではなく自前運用や契約済み基盤を検討してください。",
         en: "If data cannot be stored in an external service, consider self-hosting or an already-approved platform instead."
+      }
+    }
+  ];
+
+  const setupDirectionRules = [
+    {
+      id: "modular_setup",
+      condition: (req) => (req.upload && req.payments) || (req.upload && req.multi && req.notify),
+      guidance: {
+        ja: "モジュール型の構成を推奨します。1つの製品ですべての要件を満たそうとせず、各機能に強いツールをAPI等で組み合わせるのが現実的です。",
+        en: "Recommended: Modular setup. One product is unlikely to satisfy all requirements well; combining specialized tools via APIs is more practical."
+      }
+    },
+    {
+      id: "payment_specialist",
+      condition: (req) => req.payments,
+      guidance: {
+        ja: "フォーム ＋ 専門決済レイヤーの組み合わせを推奨します。決済専用サービスの埋め込みやリンク連携を検討してください。",
+        en: "Recommended: Form + specialist payment layer. Consider embedding or linking to a dedicated payment service."
+      }
+    },
+    {
+      id: "file_storage_workflow",
+      condition: (req) => req.upload && (req.privacy || req.notify),
+      guidance: {
+        ja: "フォーム ＋ ファイルストレージ/承認ワークフローの分離を推奨します。添付ファイルをセキュアな外部ストレージに自動保存する構成が適しています。",
+        en: "Recommended: Form + file storage/review workflow. Use a setup that automatically saves attachments to secure external storage."
+      }
+    },
+    {
+      id: "multilingual_intake",
+      condition: (req) => req.multi && req.notify,
+      guidance: {
+        ja: "多言語受付レイヤー ＋ 共通処理ワークフローの構成を推奨します。入り口は言語別に分かれていても、裏側の通知や管理は一元化してください。",
+        en: "Recommended: Multilingual intake layer + shared processing workflow. Keep intake separate by language but centralize back-end notifications and management."
+      }
+    },
+    {
+      id: "privacy_governed",
+      condition: (req) => req.privacy,
+      guidance: {
+        ja: "プライバシー統制パスまたは社内承認済みプラットフォームの使用を推奨します。データの保存場所やアクセス権限が厳格に管理できる製品を選定してください。",
+        en: "Recommended: Privacy-governed or approved-platform path. Select products where data residency and access controls can be strictly managed."
+      }
+    },
+    {
+      id: "automation_layer",
+      condition: (req) => req.notify,
+      guidance: {
+        ja: "フォーム ＋ 自動化/統合レイヤー（iPaaS等）の活用を推奨します。回答データを即座に業務ツールへ同期する構成が有効です。",
+        en: "Recommended: Form + automation/integration layer (e.g., iPaaS). Effective for syncing submission data instantly to business tools."
+      }
+    },
+    {
+      id: "single_platform",
+      condition: (req) => true,
+      guidance: {
+        ja: "単一のフォームプラットフォームで完結可能です。設定のシンプルさを優先してください。",
+        en: "A single form platform may be enough. Prioritize simplicity in setup."
+      }
+    }
+  ];
+
+  const combinationAttentionRules = [
+    {
+      id: "upload_privacy",
+      condition: (req) => req.upload && req.privacy,
+      note: {
+        ja: "【アップロード × プライバシー】ファイルの保存場所（リージョン）と、保持期間終了後の物理的な削除プロセスを必ず確認してください。",
+        en: "[Upload + Privacy] Verify file storage location (region) and the physical deletion process after the retention period ends."
+      }
+    },
+    {
+      id: "payments_privacy",
+      condition: (req) => req.payments && req.privacy,
+      note: {
+        ja: "【決済 × プライバシー】カード情報等の機密データがフォーム側に残らない構成か、および決済代行会社とのデータ委託関係を確認してください。",
+        en: "[Payments + Privacy] Ensure sensitive data like card info is not stored on the form side, and verify data processing agreements with payment providers."
+      }
+    },
+    {
+      id: "payments_free",
+      condition: (req) => req.payments && req.free,
+      note: {
+        ja: "【決済 × 無料優先】無料プランでは決済手数料が割高になる、または決済機能自体が制限されている場合があります。トータルコストを試算してください。",
+        en: "[Payments + Free-first] Free plans may have higher transaction fees or limited payment features. Estimate the total cost including fees."
+      }
+    },
+    {
+      id: "upload_free",
+      condition: (req) => req.upload && req.free,
+      note: {
+        ja: "【アップロード × 無料優先】無料プランは添付ファイルの合計容量上限が非常に低いことが多いです。運用ですぐに溢れないか検証してください。",
+        en: "[Upload + Free-first] Free tiers often have very low total attachment storage limits. Verify if it will exceed capacity quickly in production."
+      }
+    },
+    {
+      id: "multi_notify",
+      condition: (req) => req.multi && req.notify,
+      note: {
+        ja: "【多言語 × 通知/連携】言語に関わらず通知内容（項目名や選択肢）が整合性を保てるか、および通知先の担当者が各言語に対応できるか確認してください。",
+        en: "[Multilingual + Notifications] Check if notification content remains consistent across languages and if recipients can handle different languages."
       }
     }
   ];
@@ -178,16 +280,69 @@
   const selectedDefs = (req) => requirementDefs.filter((def) => req[def.key]);
   const hasAnySelection = (req) => selectedDefs(req).length > 0;
 
-  const scoreTool = (tool, req) => requirementDefs.reduce((total, def) => {
-    if (!req[def.key]) return total;
-    return total + (tool.tags.includes(def.tag) ? def.weight : 0);
-  }, 0);
+  const getComplexity = (req, lang) => {
+    let score = 0;
+    const reasons = [];
+    if (req.upload) { score += 2; reasons.push(lang === "ja" ? "ファイル管理" : "file management"); }
+    if (req.payments) { score += 3; reasons.push(lang === "ja" ? "決済処理" : "payment processing"); }
+    if (req.notify) { score += 1; reasons.push(lang === "ja" ? "外部連携" : "external integration"); }
+    if (req.multi) { score += 2; reasons.push(lang === "ja" ? "多言語対応" : "multilingual setup"); }
+    if (req.privacy) { score += 2; reasons.push(lang === "ja" ? "ガバナンス要件" : "governance requirements"); }
+
+    let levelKey = "Simple";
+    if (score >= 6) levelKey = "High";
+    else if (score >= 3) levelKey = "Moderate";
+
+    const labels = {
+      Simple: { ja: "初級", en: "Simple" },
+      Moderate: { ja: "中級", en: "Moderate" },
+      High: { ja: "上級", en: "High" }
+    };
+
+    const reasonText = reasons.length > 0
+      ? (lang === "ja" ? `${reasons.join("、")}が含まれるため` : `Includes ${reasons.join(", ")}`)
+      : (lang === "ja" ? "標準的な構成のため" : "Standard configuration");
+
+    return { levelKey, label: labels[levelKey][lang], reason: reasonText };
+  };
+
+  const getSetupDirection = (req, lang) => {
+    const rule = setupDirectionRules.find(r => r.condition(req));
+    return rule ? rule.guidance[lang] : "";
+  };
+
+  const getAttentionNotes = (req, lang) => {
+    return combinationAttentionRules
+      .filter(r => r.condition(req))
+      .map(r => r.note[lang]);
+  };
+
+  const scoreTool = (tool, req) => {
+    let hasMatch = false;
+    const score = requirementDefs.reduce((total, def) => {
+      if (!req[def.key]) return total;
+      // Boost if matched
+      if (tool.tags.includes(def.tag)) {
+        hasMatch = true;
+        return total + def.weight;
+      }
+      // Penalty if a critical requirement is missing
+      if (def.weight >= 3) {
+        return total - 1;
+      }
+      return total;
+    }, 0);
+    return { score, hasMatch };
+  };
 
   const buildRecommendationData = (lang) => {
     const req = getSelections();
     return toolList
-      .map((tool) => ({ tool, score: scoreTool(tool, req) }))
-      .filter((pick) => pick.score > 0)
+      .map((tool) => {
+        const { score, hasMatch } = scoreTool(tool, req);
+        return { tool, score, hasMatch };
+      })
+      .filter((pick) => pick.hasMatch) // Only show tools with at least one matched requirement
       .sort((a, b) => b.score - a.score || a.tool.key.localeCompare(b.tool.key))
       .slice(0, 3)
       .map((pick) => {
@@ -221,7 +376,27 @@
   };
 
   const makeText = (lang, recommendations) => {
+    const req = getSelections();
+    const complexity = getComplexity(req, lang);
+    const direction = getSetupDirection(req, lang);
+    const attention = getAttentionNotes(req, lang);
+    const selected = selectedDefs(req).map((def) => def.label[lang]);
+
     const lines = [];
+    lines.push(lang === "ja" ? "選択した要件" : "Selected requirements");
+    selected.forEach(s => lines.push(`- ${s}`));
+    lines.push("");
+    lines.push(lang === "ja" ? "推奨セットアップ方向" : "Recommended setup direction");
+    lines.push(`- ${direction}`);
+    lines.push("");
+    lines.push(lang === "ja" ? "構成の複雑さ" : "Setup complexity");
+    lines.push(`- ${complexity.label}: ${complexity.reason}`);
+    if (attention.length > 0) {
+      lines.push("");
+      lines.push(lang === "ja" ? "組み合わせ注意点" : "Combination-specific notes");
+      attention.forEach(note => lines.push(`- ${note}`));
+    }
+    lines.push("");
     lines.push(lang === "ja" ? "候補タイプ（参考）" : "Candidate form types");
     lines.push("-");
     recommendations.forEach((rec, idx) => {
@@ -245,6 +420,9 @@
 
   const makeMemo = (lang, recommendations) => {
     const req = getSelections();
+    const complexity = getComplexity(req, lang);
+    const direction = getSetupDirection(req, lang);
+    const attention = getAttentionNotes(req, lang);
     const selected = selectedDefs(req).map((def) => def.label[lang]);
     const top = recommendations[0];
     const cautions = buildRequirementCautions(lang);
@@ -254,12 +432,16 @@
     if (lang === "ja") {
       return [
         "Decision memo",
+        `推奨セットアップ: ${direction}`,
+        `複雑さ: ${complexity.label} （理由: ${complexity.reason}）`,
         `候補タイプ: ${top.name}`,
         `比較候補数: ${recommendations.length}件`,
         "選定理由:",
         ...top.matched.map((item) => `- ${item}`),
         "選択した要件:",
         ...selected.map((item) => `- ${item}`),
+        "組み合わせ注意点:",
+        ...(attention.length ? attention.map(a => `- ${a}`) : ["- 特になし"]),
         "確認すべき未決事項:",
         "- 具体サービスごとの料金、無料枠、保存先、利用規約",
         "- 回答データと添付ファイルの保存期間・削除方法",
@@ -282,12 +464,16 @@
 
     return [
       "Decision memo",
+      `Recommended setup: ${direction}`,
+      `Complexity: ${complexity.label} (Reason: ${complexity.reason})`,
       `Candidate type: ${top.name}`,
       `Number of candidates compared: ${recommendations.length}`,
       "Selection reasons:",
       ...top.matched.map((item) => `- ${item}`),
       "Selected requirements:",
       ...selected.map((item) => `- ${item}`),
+      "Combination-specific notes:",
+      ...(attention.length ? attention.map(a => `- ${a}`) : ["- None"]),
       "Open items to verify:",
       "- Pricing, free tier, storage location, and terms for each service",
       "- Retention and deletion process for submissions and attachments",
@@ -338,12 +524,55 @@
     const matchedList = document.createElement("ul");
     (rec.matched.length ? rec.matched : [lang === "ja" ? "該当なし" : "None"]).forEach((item) => appendText(matchedList, "li", "", item));
     card.appendChild(matchedList);
-    appendText(card, "p", "result-section-title", lang === "ja" ? "未一致/注意" : "Missing / notes");
-    const tradeList = document.createElement("ul");
-    rec.tradeoffs.forEach((item) => appendText(tradeList, "li", "", item));
-    card.appendChild(tradeList);
+
+    const missing = rec.tradeoffs.filter(t => t.startsWith(lang === "ja" ? "未対応" : "Missing"));
+    const notes = rec.tradeoffs.filter(t => !t.startsWith(lang === "ja" ? "未対応" : "Missing"));
+
+    if (missing.length > 0) {
+      appendText(card, "p", "result-section-title", lang === "ja" ? "未対応の要件" : "Unmet requirements");
+      const missingList = document.createElement("ul");
+      missing.forEach((item) => appendText(missingList, "li", "unmet-item", item));
+      card.appendChild(missingList);
+    }
+
+    if (notes.length > 0) {
+      appendText(card, "p", "result-section-title", lang === "ja" ? "注意点" : "Notes");
+      const noteList = document.createElement("ul");
+      notes.forEach((item) => appendText(noteList, "li", "", item));
+      card.appendChild(noteList);
+    }
+
     return card;
   });
+
+  const buildSetupGuidance = (req, lang) => {
+    const complexity = getComplexity(req, lang);
+    const direction = getSetupDirection(req, lang);
+    const attention = getAttentionNotes(req, lang);
+
+    const wrap = document.createElement("div");
+    wrap.className = "setup-guidance-card";
+
+    const head = document.createElement("div");
+    head.className = "setup-head";
+
+    const badge = appendText(head, "span", `complexity-badge badge-${complexity.levelKey.toLowerCase()}`, complexity.label);
+    appendText(head, "span", "complexity-reason", complexity.reason);
+    wrap.appendChild(head);
+
+    appendText(wrap, "p", "result-section-title", lang === "ja" ? "推奨セットアップ方向" : "Recommended setup direction");
+    appendText(wrap, "p", "setup-direction-text", direction);
+
+    if (attention.length > 0) {
+      appendText(wrap, "p", "result-section-title", lang === "ja" ? "組み合わせ注意点" : "Combination-specific notes");
+      const list = document.createElement("ul");
+      list.className = "attention-list";
+      attention.forEach(note => appendText(list, "li", "attention-item", note));
+      wrap.appendChild(list);
+    }
+
+    return wrap;
+  };
 
   const buildCautionList = (items, lang) => {
     const wrap = document.createElement("div");
@@ -455,6 +684,7 @@
         hasGenerated = false;
         setOutputActions(false);
         resultList.replaceChildren(buildStateCard(messages.noSelection[current]));
+        $("setupGuidanceSection").replaceChildren();
         memoOutput.textContent = messages.copyBlocked[current];
         showToast(messages.noSelection[current]);
         return;
@@ -467,6 +697,7 @@
       hasGenerated = true;
       setOutputActions(true);
 
+      $("setupGuidanceSection").replaceChildren(buildSetupGuidance(req, current));
       const cards = buildRecommendationCards(recommendations, current);
       cards.push(buildCautionList(buildRequirementCautions(current), current));
       resultList.replaceChildren(...cards);
