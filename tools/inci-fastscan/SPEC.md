@@ -26,7 +26,7 @@ Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized 
 - Conservatively repair OCR line wraps only at the dictionary-aware analysis stage, and only when adjacent fragments form an exact maintained dictionary name/alias and are not already two independently known ingredients. One fragment may itself be known when the combined identity is exact.
 - Normalize/parse OCR or pasted text and match ingredients against the local/generated dictionary and declared aliases.
 - For every exact match, retain the canonical INCI name and identify the route used: canonical INCI, Japanese name, declared alias, or shared high-confidence naming variant.
-- Show result cards with canonical INCI, original input, match route, matched spelling, Japanese names where available, category, review cue, and neutral explanatory note.
+- Show the main role and bilingual role-level explanation first. A source-backed, verified ingredient-specific note may appear in a secondary expand/collapse area (English source wording, clearly labeled in Japanese UI) with explicit HTTPS evidence links. Unverified legacy notes are never public. Canonical INCI, original input, matched spelling, Japanese names, and review cues remain secondary information; match-route debugging must not displace role explanations.
 - Display `辞書一致 / Dictionary match`, `追加確認 / Additional review`, and `未一致 / Unmatched` as reference states; these are not safety or danger grades.
 - Allow result cards to be filtered by all / dictionary match / additional review / unmatched without rerunning analysis.
 - Provide previous/next review-queue controls that navigate only currently visible `追加確認` and `未一致` cards, scroll/focus the selected card, and never modify input or rerun analysis.
