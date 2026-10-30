@@ -5,6 +5,7 @@ on:
     paths:
       - 'tools/manual-finder/coverage-passes/vaio/**'
       - 'tools/manual-finder/scripts/vaio-jp-start-guides-review.mjs'
+      - 'tools/manual-finder/scripts/vaio-jp-secondary-review.mjs'
       - 'tools/manual-finder/tests/vaio-jp-start-guides-review.test.mjs'
       - '.github/workflows/manualfinder-vaio-coverage-pass-review.yml'
   workflow_dispatch:
@@ -29,10 +30,15 @@ jobs:
         run: |
           mkdir -p manualfinder-coverage-pass-artifacts
           node tools/manual-finder/scripts/vaio-jp-start-guides-review.mjs --out manualfinder-coverage-pass-artifacts/vaio-jp-review.json
+      - name: Live secondary official identity review
+        run: |
+          node tools/manual-finder/scripts/vaio-jp-secondary-review.mjs \
+            --first-pass manualfinder-coverage-pass-artifacts/vaio-jp-review.json \
+            --out manualfinder-coverage-pass-artifacts/vaio-jp-secondary-review.json
       - name: Upload audit artifact even if source drifts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: manualfinder-vaio-jp-coverage-pass-review
-          path: manualfinder-coverage-pass-artifacts/vaio-jp-review.json
+          path: manualfinder-coverage-pass-artifacts/*.json
           if-no-files-found: warn
