@@ -39,6 +39,7 @@ requireText(checkout, "validateConfiguredProduct", 'checkout');
 requireText(checkout, "product_id", 'checkout');
 requireText(checkout, "return_path", 'checkout');
 requireText(checkout, "BILLING_LIVE_CHECKOUT_ENABLED", 'checkout');
+requireText(checkout, "product_not_on_sale", 'checkout');
 forbidText(checkout, "product?.productId === 'okj.toolkit_pro'", 'checkout');
 
 requireText(productConfig, 'session?.amount_total', 'product config');
@@ -76,8 +77,11 @@ forbidText(success, "Entitlement verification and grant flow will be added", 'su
 
 const okj = config.products.find((product) => product.productId === 'okj.toolkit_pro');
 if (!okj) fail('product registry missing okj.toolkit_pro');
-requireEqual(okj?.price?.amount, 4.99, 'OKJ price must remain unchanged');
-requireEqual(okj?.price?.currency, 'USD', 'OKJ currency must remain unchanged');
+requireEqual(okj?.price?.amount, null, 'OKJ must stay unpriced before approval');
+requireEqual(okj?.price?.currency, null, 'OKJ currency must stay undecided');
+requireEqual(okj?.priceTierId, null, 'OKJ cannot imply a price tier before approval');
+requireEqual(okj?.stripe?.mode, 'not_connected', 'OKJ sales remain disabled before live QA');
+requireArrayEqual(okj?.features, ["okj.batch","okj.history","okj.collections","okj.workspaces","okj.reports","okj.advancedExport","okj.ocr.batch","okj.ocr.crop","okj.modernizer.batch","okj.name.batch","okj.place.batch","okj.unicode.batch","okj.variant.batch","okj.document.batch"], 'OKJ shared Phase 1 features');
 
 const reconcile = config.products.find((product) => product.productId === 'reconcile.pro_v1');
 if (!reconcile) fail('product registry missing reconcile.pro_v1');

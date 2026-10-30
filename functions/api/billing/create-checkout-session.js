@@ -134,6 +134,10 @@ export async function onRequestPost({ request, env }) {
   }
 
   const { product } = productCheck;
+  // Explicit launch gate: secret configuration alone must not start selling a planning product.
+  if (product.stripe.mode !== 'connected') {
+    return json({ ok: false, error: 'product_not_on_sale' }, 409);
+  }
   const priceIdEnvName = product.stripe.priceIdEnv;
   const stripePriceId = env[priceIdEnvName];
   if (typeof stripePriceId !== 'string' || !stripePriceId) {

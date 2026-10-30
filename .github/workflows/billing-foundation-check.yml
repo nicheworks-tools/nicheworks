@@ -8,6 +8,11 @@ on:
       - 'billing/success.html'
       - 'billing/cancel.html'
       - 'config/billing/products.json'
+      - 'config/old-kanji-toolkit-pro-phase1.json'
+      - 'schema/billing_entitlements.sql'
+      - 'scripts/check-old-kanji-pro-phase1.mjs'
+      - 'tools/OLD_KANJI_CLUSTER.md'
+      - 'tools/**/SPEC.md'
       - 'tools/reconcile/index.html'
       - 'tools/reconcile/refund.html'
       - 'tools/reconcile/SPEC.md'
@@ -22,6 +27,11 @@ on:
       - 'billing/success.html'
       - 'billing/cancel.html'
       - 'config/billing/products.json'
+      - 'config/old-kanji-toolkit-pro-phase1.json'
+      - 'schema/billing_entitlements.sql'
+      - 'scripts/check-old-kanji-pro-phase1.mjs'
+      - 'tools/OLD_KANJI_CLUSTER.md'
+      - 'tools/**/SPEC.md'
       - 'tools/reconcile/index.html'
       - 'tools/reconcile/refund.html'
       - 'tools/reconcile/SPEC.md'
@@ -48,3 +58,5 @@ jobs:
           node --check assets/nw-pro-entitlement.js
       - name: Check billing contract
         run: node scripts/check-billing-foundation.mjs
+      - name: Check Old Kanji product contract
+        run: node scripts/check-old-kanji-pro-phase1.mjs

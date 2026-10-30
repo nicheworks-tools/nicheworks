@@ -9,8 +9,8 @@
         "ja": "Old Kanji Toolkit Pro"
       },
       "price": {
-        "amount": 4.99,
-        "currency": "USD",
+        "amount": null,
+        "currency": null,
         "type": "one_time"
       },
       "stripe": {
@@ -18,35 +18,29 @@
         "priceIdEnv": "STRIPE_PRICE_OKJ_TOOLKIT_PRO"
       },
       "features": [
-        "okj.batchOcr",
-        "okj.scanHistory",
-        "okj.oldKanjiCollection",
-        "okj.exportCsv",
-        "okj.exportMarkdown",
-        "okj.exportJson",
-        "okj.report",
-        "okj.cropOcr",
-        "okj.zoomInspect",
-        "okj.imageMarking",
-        "okj.batchNameCheck",
-        "okj.batchPlaceCheck",
-        "okj.batchTextHighlight",
-        "okj.savedCompareSets",
-        "okj.unicodeAuditExport",
-        "okj.quizHistory"
+        "okj.batch",
+        "okj.history",
+        "okj.collections",
+        "okj.workspaces",
+        "okj.reports",
+        "okj.advancedExport",
+        "okj.ocr.batch",
+        "okj.ocr.crop",
+        "okj.modernizer.batch",
+        "okj.name.batch",
+        "okj.place.batch",
+        "okj.unicode.batch",
+        "okj.variant.batch",
+        "okj.document.batch"
       ],
       "ui": {
         "state": "billing-unavailable",
-        "cta": {
-          "en": "View Pro",
-          "ja": "Pro を確認する"
-        },
         "billingUnavailableNote": {
-          "en": "Pro features are being prepared. Billing is not connected yet.",
-          "ja": "現在、Pro機能は準備中です。課金導線はまだ接続されていません。"
+          "en": "Pro sales have not launched. Pricing and live billing verification are pending.",
+          "ja": "Proは未販売です。価格と本番決済の検証が完了するまで購入できません。"
         }
       },
-      "priceTierId": "nw.one_time.usd_499"
+      "priceTierId": null
     },
     {
       "productId": "reconcile.pro_v1",
@@ -88,13 +82,6 @@
       "currency": "USD",
       "type": "one_time",
       "label": "$2.99 one-time"
-    },
-    {
-      "priceTierId": "nw.one_time.usd_499",
-      "amount": 4.99,
-      "currency": "USD",
-      "type": "one_time",
-      "label": "$4.99 one-time"
     },
     {
       "priceTierId": "nw.one_time.jpy_3980",

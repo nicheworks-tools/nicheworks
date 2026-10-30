@@ -141,6 +141,7 @@
 
   const OLD_KANJI_TOOLKIT_PAGES = new Set([
     'old-kanji-reference',
+    'kanji-modernizer',
     'old-kanji-ocr-scanner',
     'old-document-kanji-highlighter',
     'unicode-kanji-checker',
