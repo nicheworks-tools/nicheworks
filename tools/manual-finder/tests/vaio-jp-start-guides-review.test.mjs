@@ -7,8 +7,8 @@ import { verifyHtmlIdentity, secondaryReview } from '../scripts/vaio-jp-secondar
 const manifest = JSON.parse(fs.readFileSync(new URL('../coverage-passes/vaio/jp-pc-start-guide-manual-index.json', import.meta.url), 'utf8'));
 const validation = validateCoveragePass(manifest);
 assert.equal(validation.valid, true);
-assert.equal(validation.completionReady, false);
-assert.equal(manifest.status, 'reviewing');
+assert.equal(validation.completionReady, true);
+assert.equal(manifest.status, 'coverage-pass-complete');
 assert.equal(manifest.universe.models.length, 82);
 assert.equal(new Set(manifest.universe.models).size, 82);
 assert.equal(manifest.subscopes[0].models.length, 47);
