@@ -28,13 +28,22 @@
           found: false,
           safety: undefined,
           note_short: undefined,
+          note_verified: false,
+          note_sources: [],
           publicSemanticIncomplete: true
         };
       }
+      const sources = Array.isArray(result.note_sources)
+        ? result.note_sources.filter(url => typeof url === 'string' && /^https:\/\//i.test(url.trim()))
+        : [];
+      const verified = result.note_verified === true && typeof result.note_short === 'string' &&
+        result.note_short.trim().length > 0 && sources.length > 0;
       return {
         ...result,
         safety: undefined,
-        note_short: undefined
+        note_short: verified ? result.note_short : undefined,
+        note_verified: verified,
+        note_sources: verified ? sources : []
       };
     });
   }
