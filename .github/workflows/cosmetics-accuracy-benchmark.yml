@@ -42,6 +42,7 @@ on:
       - 'tools/_shared/check-fastscan-ocr-confusion.mjs'
       - 'tools/_shared/check-fastscan-ocr-line-repair.mjs'
       - 'tools/_shared/check-fastscan-ocr-robustness.mjs'
+      - 'tools/_shared/check-fastscan-image-rotation.mjs'
       - 'tools/_shared/check-fastscan-result-controls.mjs'
       - 'tools/_shared/check-fastscan-review-queue.mjs'
       - 'tools/_shared/check-lite-wave3-navigation.mjs'
@@ -185,6 +186,7 @@ jobs:
           node --check tools/_shared/check-cosmetics-verified-note-wave20.mjs
           node --check tools/_shared/check-cosmetics-jp-label-variants.mjs
           node --check tools/_shared/check-fastscan-ocr-robustness.mjs
+          node --check tools/_shared/check-fastscan-image-rotation.mjs
           node --check tools/cosmetic-ingredient-checker-lite/app.js
           node --check tools/cosmetic-ingredient-checker-lite/enhancements.js
           node --check tools/inci-fastscan/enhancements.js
@@ -195,6 +197,7 @@ jobs:
           node --check tools/inci-fastscan/js/core_ocr_post.js
           node --check tools/inci-fastscan/js/web_ui.js
           node --check tools/inci-fastscan/js/web_ocr.js
+          node --check tools/inci-fastscan/js/image_preprocess.js
           node --check tools/inci-fastscan/js/strings.js
           node --check tools/inci-fastscan/js/generated_dictionary.js
       - name: FastScan detailed result contract
@@ -205,6 +208,8 @@ jobs:
         run: node tools/_shared/check-fastscan-ocr-line-repair.mjs
       - name: FastScan source-backed OCR robustness
         run: node tools/_shared/check-fastscan-ocr-robustness.mjs
+      - name: FastScan image rotation regression
+        run: node tools/_shared/check-fastscan-image-rotation.mjs
       - name: FastScan result controls regression
         run: node tools/_shared/check-fastscan-result-controls.mjs
       - name: FastScan review queue regression
