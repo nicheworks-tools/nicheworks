@@ -449,6 +449,10 @@ function renderLaunchIndex(entryById, launchIds) {
   <meta property="og:description" content="${escapeHtml(description)}">
   <meta property="og:url" content="${escapeHtml(INDEX_URL)}">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(heading)} | Construction Tools Atlas">
+  <meta name="twitter:description" content="${escapeHtml(description)}">
+  <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
   <script>
