@@ -1,3 +1,7 @@
+# Historical billing planning document (superseded for Old Kanji)
+
+As of 2026-10-31, `okj.toolkit_pro` is **unpriced and not on sale**. Its authoritative live/staged contract is `config/billing/products.json` and `config/old-kanji-toolkit-pro-phase1.json`. Do not restore any obsolete tier or feature grants from this historical design record.
+
 # Billing Config and Mock Entitlement Scaffold
 
 Status:
@@ -46,12 +50,12 @@ Initial registry/tier entries:
 
 Price tiers:
 - `nw.one_time.usd_299` (`$2.99` one-time, `USD`)
-- `nw.one_time.usd_499` (`$4.99` one-time, `USD`)
+- `legacy-retired-okj-tier` (`(unapproved historical example)` one-time, `USD`)
 
 Product:
 - `okj.toolkit_pro`
-- references `priceTierId: nw.one_time.usd_499`
-- keeps product-level list price (`$4.99` one-time, `USD`)
+- references `priceTierId: legacy-retired-okj-tier`
+- keeps product-level list price (`(unapproved historical example)` one-time, `USD`)
 - Stripe not connected (`stripe.mode: not_connected`)
 - Stripe env var remains product-specific (`STRIPE_PRICE_OKJ_TOOLKIT_PRO`)
 - UI state `billing-unavailable`
@@ -152,7 +156,7 @@ Validation checklist for this scaffold:
 - Price tiers are reusable price metadata only.
 - Entitlement boundary remains `productId`, not `priceTierId`.
 - Feature unlock scope remains each product's `features` list.
-- A future `$4.99` tool must define its own `productId` and its own Stripe `priceIdEnv`.
+- A future `(unapproved historical example)` tool must define its own `productId` and its own Stripe `priceIdEnv`.
 - Shared tier does not mean shared unlock.
 - Bundle/all-access requires separate explicit `productId` later.
 
