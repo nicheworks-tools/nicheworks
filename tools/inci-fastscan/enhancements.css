@@ -36,6 +36,29 @@
   cursor: pointer;
 }
 
+.ocr-image-rotate-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.ocr-image-rotate-controls button {
+  min-height: 38px;
+  padding: 6px 12px;
+  border: 1px solid rgba(127, 127, 127, 0.3);
+  border-radius: 9px;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.ocr-image-rotate-controls button:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
 .ocr-review-hint {
   margin-top: 8px;
   padding: 10px 12px;

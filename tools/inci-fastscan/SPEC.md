@@ -19,6 +19,7 @@ Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized 
 - Preserve legitimate ingredient punctuation such as `/`, `・`, and numeric locant commas such as `1,2-Hexanediol` through parsing and OCR cleanup.
 - Accept an image and run browser-side OCR using Tesseract.js loaded from an external CDN, with separate English and Japanese+English OCR actions.
 - Show a local preview of the selected image before OCR and allow the user to remove/reselect it without uploading it.
+- For both INCI/English and Japanese OCR, provide explicit 90° left/right image-rotation controls. The preview displays the rotated pixels and Tesseract receives those same pixels; an unrotated image still uses the original file.
 - Show OCR progress in the page while recognition is running.
 - Put OCR output back into the editable ingredient textarea and show a clear review cue after OCR; users review/correct OCR text before running ingredient matching.
 - Preserve OCR candidate line boundaries during label cleanup rather than guessing joins from common INCI prefixes/suffixes.
@@ -150,7 +151,8 @@ Affiliate analytics use `affiliate_impression` for fixed impression metadata and
 ## Limits and non-goals
 
 - OCR may be slow and can omit, split, or misrecognize characters; users must visually verify OCR text before trusting scan results.
-- Image preview is a review aid only; this wave does not rotate/crop/re-encode the selected file before OCR.
+- The image preview now supports 90° rotation in either direction (0°/90°/180°/270°). Only an explicitly rotated file is locally re-encoded to PNG before OCR; unrotated OCR retains the original file. Rotated processing caps the longest canvas edge at 4096px.
+- Crop, arbitrary-angle deskew, contrast controls, and automated curvature/glare correction remain unimplemented. This step does not establish real-photo OCR accuracy.
 - OCR cleanup preserves candidate boundaries; it does not heuristically join lines based on a prefix/suffix list.
 - Exact OCR line repair only joins fragments when the combined text exactly matches a maintained dictionary key and the fragments are not already two independently known ingredients; it is not fuzzy correction.
 - A fragment that is independently known may still participate in a repair only when the complete combined identity is an exact maintained dictionary name/alias.
@@ -172,6 +174,8 @@ Affiliate analytics use `affiliate_impression` for fixed impression metadata and
 - [x] Slash / middle-dot names and numeric locant commas survive the current parsing/OCR cleanup path.
 - [x] OCR can be started from a selected image when the external Tesseract library loads and visible progress is exposed in the page.
 - [x] Selected OCR images can be previewed locally and removed/reselected without upload.
+- [x] Both OCR tabs can rotate selected photos by 90° before recognition; rotated preview and OCR use the same local processing path, with a deterministic regression for orientation and cleanup.
+- [ ] Crop, deskew, contrast adjustment, real-photo OCR benchmarks, and mobile-device visual QA remain release blockers.
 - [x] OCR results remain editable and a review cue is shown before ingredient matching.
 - [x] OCR cleanup preserves candidate line boundaries and does not perform heuristic prefix/suffix joining.
 - [x] Adjacent OCR fragments are automatically rejoined only when their combined value is an exact maintained dictionary name/alias and they are not already two independently known ingredients.
