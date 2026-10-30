@@ -6,10 +6,10 @@ async function runOCR(imageFile, lang = "eng", onProgress = null, options = {}) 
   }
 
   const turns = Number.isInteger(options?.quarterTurns) ? options.quarterTurns : 0;
-  if (turns && typeof prepareFastScanOcrImage !== "function") {
-    throw new Error("Image rotation is unavailable.");
+  if (typeof prepareFastScanOcrImage !== "function") {
+    throw new Error("Local image processing is unavailable.");
   }
-  const preparedImage = turns ? await prepareFastScanOcrImage(imageFile, turns) : imageFile;
+  const preparedImage = await prepareFastScanOcrImage(imageFile, turns, options);
 
   const { data } = await Tesseract.recognize(
     preparedImage,
