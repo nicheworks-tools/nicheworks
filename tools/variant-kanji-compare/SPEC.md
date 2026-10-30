@@ -110,3 +110,10 @@ comparison cardsはscreen幅に応じてgrid/stack化し、desktop/mobile双方�
 - `tools/variant-kanji-compare/app.js` — input parsing、presets、Old Kanji Reference data load、glyph/code/mapping/shape/stroke comparison、BMP/Supplement compatibility判定、variation selector判定、独立したsummary counts、copy output。
 - `tools/variant-kanji-compare/tests/behavior.test.mjs` — custom dedupe、preset inventory、supplementary UTF-16、Compatibility Ideographs Supplement、Variation Selectors Supplement、mapping、multi-font wiring、summary count separation、CSVのdurable regression QA。
 - `tools/old-kanji-reference/` — comparison reference datasets。
+## Toolkit Pro Phase 1 — staged / not on sale
+
+- Shared product ID: `okj.toolkit_pro` (one entitlement covers all eight tools).
+- Current Free guarantee: Existing multi-character comparison, presets, glyph/metadata, copy and shipped CSV remain Free.
+- Proposed Pro feature IDs: `okj.variant.batch`, `okj.history`, `okj.collections`, `okj.workspaces`, `okj.reports`.
+- The active Free workflow remains unchanged. No purchase CTA/fixed Pro price is allowed until verified checkout, entitlement, restore and browser QA.
+- Canonical definition: `config/old-kanji-toolkit-pro-phase1.json`. Existing contextual Amazon Associates links remain active and independent of Pro; user content must not flow to affiliate URLs or analytics.
