@@ -78,7 +78,7 @@ assert.equal(invalid.calls.at(-1)[0], 'revokeURL', 'failed decoding must revoke 
 const prepAsset = html.indexOf('js/image_preprocess.js?v=');
 const ocrAsset = html.indexOf('js/web_ocr.js?v=');
 assert.ok(prepAsset > 0 && prepAsset < ocrAsset, 'image preparation must load before OCR');
-assert.match(ocr, /prepareFastScanOcrImage\(imageFile, turns\)/, 'OCR must use actual rotated image pixels');
+assert.match(ocr, /prepareFastScanOcrImage\(imageFile, turns, options\)/, 'OCR must use actual locally processed image pixels');
 assert.match(app, /fastScanImageRotation\("ocr-file-fast"\)/, 'English OCR must send its rotation');
 assert.match(app, /fastScanImageRotation\("ocr-file"\)/, 'Japanese OCR must send its rotation');
 assert.match(enhancements, /data-ocr-rotate="-1"/);
