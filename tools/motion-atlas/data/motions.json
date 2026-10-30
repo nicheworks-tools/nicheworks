@@ -1,1 +1,2159 @@
-[]
+[
+  {
+    "id": "motion_fade_in",
+    "slug": "fade-in",
+    "name_en": "Fade in",
+    "name_ja": "フェードイン",
+    "aliases_en": [
+      "fade in",
+      "fade in animation"
+    ],
+    "aliases_ja": [
+      "フェードイン",
+      "フェードインアニメーション"
+    ],
+    "category": "entrance",
+    "motion_type": [
+      "opacity"
+    ],
+    "trigger": "on-load",
+    "summary_en": "An element becomes visible through opacity without changing its position.",
+    "summary_ja": "要素の位置を変えず、不透明度だけを上げて登場させます。",
+    "beginner_wording_en": [
+      "Make it fade in",
+      "An element becomes visible through opacity without changing its position."
+    ],
+    "beginner_wording_ja": [
+      "フェードインのように動かす",
+      "要素の位置を変えず、不透明度だけを上げて登場させます。"
+    ],
+    "practical_intent_en": "Reveal a completed result",
+    "practical_intent_ja": "完成した結果を表示",
+    "use_case_en": [
+      "Reveal a completed result"
+    ],
+    "use_case_ja": [
+      "完成した結果を表示"
+    ],
+    "not_for_en": [
+      "Not for items that need a strong spatial entrance"
+    ],
+    "not_for_ja": [
+      "移動方向を伝えたい登場演出には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Fade in on on-load, duration 760ms, using opacity. An element becomes visible through opacity without changing its position. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-loadのタイミングでフェードインを760msで実装してください。要素の位置を変えず、不透明度だけを上げて登場させます。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Fade in: An element becomes visible through opacity without changing its position. Trigger on-load; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "フェードイン：要素の位置を変えず、不透明度だけを上げて登場させます。 発火条件 on-load、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_fade_up",
+      "motion_scale_in"
+    ],
+    "demo_type": "fade-in",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "low",
+    "speed_feel": "calm",
+    "mobile_fit": "good",
+    "a11y_load": "low",
+    "code_hint_css": "@keyframes demoFadeIn{from{opacity:0}to{opacity:1}}\n.motion-target{animation:demoFadeIn 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use reveal a completed result only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "完成した結果を表示用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_fade_out",
+    "slug": "fade-out",
+    "name_en": "Fade out",
+    "name_ja": "フェードアウト",
+    "aliases_en": [
+      "fade out",
+      "fade out animation"
+    ],
+    "aliases_ja": [
+      "フェードアウト",
+      "フェードアウトアニメーション"
+    ],
+    "category": "exit",
+    "motion_type": [
+      "opacity"
+    ],
+    "trigger": "on-close",
+    "summary_en": "An element gently disappears by lowering opacity.",
+    "summary_ja": "不透明度を下げて、要素を静かに消します。",
+    "beginner_wording_en": [
+      "Make it fade out",
+      "An element gently disappears by lowering opacity."
+    ],
+    "beginner_wording_ja": [
+      "フェードアウトのように動かす",
+      "不透明度を下げて、要素を静かに消します。"
+    ],
+    "practical_intent_en": "Dismiss a transient hint",
+    "practical_intent_ja": "一時的な案内の終了",
+    "use_case_en": [
+      "Dismiss a transient hint"
+    ],
+    "use_case_ja": [
+      "一時的な案内の終了"
+    ],
+    "not_for_en": [
+      "Not for critical errors that must remain readable"
+    ],
+    "not_for_ja": [
+      "読ませる必要のあるエラーの消去には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Fade out on on-close, duration 760ms, using opacity. An element gently disappears by lowering opacity. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-closeのタイミングでフェードアウトを760msで実装してください。不透明度を下げて、要素を静かに消します。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Fade out: An element gently disappears by lowering opacity. Trigger on-close; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "フェードアウト：不透明度を下げて、要素を静かに消します。 発火条件 on-close、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_slide_out",
+      "motion_backdrop_fade"
+    ],
+    "demo_type": "fade-out",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "low",
+    "speed_feel": "quick",
+    "mobile_fit": "good",
+    "a11y_load": "low",
+    "code_hint_css": "@keyframes demoFadeOut{from{opacity:1}to{opacity:.12}}\n.motion-target{animation:demoFadeOut 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use dismiss a transient hint only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "一時的な案内の終了用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_slide_in",
+    "slug": "slide-in",
+    "name_en": "Slide in",
+    "name_ja": "スライドイン",
+    "aliases_en": [
+      "slide in",
+      "slide in animation"
+    ],
+    "aliases_ja": [
+      "スライドイン",
+      "スライドインアニメーション"
+    ],
+    "category": "entrance",
+    "motion_type": [
+      "translate"
+    ],
+    "trigger": "on-open",
+    "summary_en": "An element moves in from outside its resting position.",
+    "summary_ja": "要素が元の位置へ横方向に滑り込みます。",
+    "beginner_wording_en": [
+      "Make it slide in",
+      "An element moves in from outside its resting position."
+    ],
+    "beginner_wording_ja": [
+      "スライドインのように動かす",
+      "要素が元の位置へ横方向に滑り込みます。"
+    ],
+    "practical_intent_en": "Bring in a contextual panel",
+    "practical_intent_ja": "補助パネルの登場",
+    "use_case_en": [
+      "Bring in a contextual panel"
+    ],
+    "use_case_ja": [
+      "補助パネルの登場"
+    ],
+    "not_for_en": [
+      "Not for content that should not imply a direction"
+    ],
+    "not_for_ja": [
+      "移動方向を持たせたくない表示には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Slide in on on-open, duration 760ms, using translate. An element moves in from outside its resting position. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-openのタイミングでスライドインを760msで実装してください。要素が元の位置へ横方向に滑り込みます。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Slide in: An element moves in from outside its resting position. Trigger on-open; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "スライドイン：要素が元の位置へ横方向に滑り込みます。 発火条件 on-open、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_fade_up",
+      "motion_drawer_slide"
+    ],
+    "demo_type": "slide-in",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "quick",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": "@keyframes demoSlideIn{from{opacity:0;transform:translateX(-34px)}to{opacity:1;transform:translateX(0)}}\n.motion-target{animation:demoSlideIn 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use bring in a contextual panel only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "補助パネルの登場用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_slide_out",
+    "slug": "slide-out",
+    "name_en": "Slide out",
+    "name_ja": "スライドアウト",
+    "aliases_en": [
+      "slide out",
+      "slide out animation"
+    ],
+    "aliases_ja": [
+      "スライドアウト",
+      "スライドアウトアニメーション"
+    ],
+    "category": "exit",
+    "motion_type": [
+      "translate"
+    ],
+    "trigger": "on-close",
+    "summary_en": "An element leaves toward an edge while fading.",
+    "summary_ja": "要素が端の方向へ移動しながら退場します。",
+    "beginner_wording_en": [
+      "Make it slide out",
+      "An element leaves toward an edge while fading."
+    ],
+    "beginner_wording_ja": [
+      "スライドアウトのように動かす",
+      "要素が端の方向へ移動しながら退場します。"
+    ],
+    "practical_intent_en": "Dismiss a side panel",
+    "practical_intent_ja": "サイドパネルを閉じる",
+    "use_case_en": [
+      "Dismiss a side panel"
+    ],
+    "use_case_ja": [
+      "サイドパネルを閉じる"
+    ],
+    "not_for_en": [
+      "Not for preserving content location"
+    ],
+    "not_for_ja": [
+      "情報の位置を保つ必要がある場合には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Slide out on on-close, duration 760ms, using translate. An element leaves toward an edge while fading. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-closeのタイミングでスライドアウトを760msで実装してください。要素が端の方向へ移動しながら退場します。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Slide out: An element leaves toward an edge while fading. Trigger on-close; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "スライドアウト：要素が端の方向へ移動しながら退場します。 発火条件 on-close、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_fade_out",
+      "motion_drawer_slide"
+    ],
+    "demo_type": "slide-out",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "quick",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": "@keyframes demoSlideOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(36px)}}\n.motion-target{animation:demoSlideOut 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use dismiss a side panel only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "サイドパネルを閉じる用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_fade_up",
+    "slug": "fade-up",
+    "name_en": "Fade up",
+    "name_ja": "フェードアップ",
+    "aliases_en": [
+      "fade up",
+      "fade up animation",
+      "scroll reveal"
+    ],
+    "aliases_ja": [
+      "フェードアップ",
+      "フェードアップアニメーション"
+    ],
+    "category": "scroll-reveal",
+    "motion_type": [
+      "opacity",
+      "translate"
+    ],
+    "trigger": "on-scroll",
+    "summary_en": "An element rises slightly while becoming visible.",
+    "summary_ja": "要素が少し上昇しながらフェードインします。",
+    "beginner_wording_en": [
+      "Make it fade up",
+      "An element rises slightly while becoming visible."
+    ],
+    "beginner_wording_ja": [
+      "フェードアップのように動かす",
+      "要素が少し上昇しながらフェードインします。"
+    ],
+    "practical_intent_en": "Reveal a section on scroll",
+    "practical_intent_ja": "スクロール時にセクションを表示",
+    "use_case_en": [
+      "Reveal a section on scroll"
+    ],
+    "use_case_ja": [
+      "スクロール時にセクションを表示"
+    ],
+    "not_for_en": [
+      "Not for large upward travel or auto-looping"
+    ],
+    "not_for_ja": [
+      "大きな移動や繰り返しには不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Fade up on on-scroll, duration 760ms, using opacity + translate. An element rises slightly while becoming visible. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-scrollのタイミングでフェードアップを760msで実装してください。要素が少し上昇しながらフェードインします。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Fade up: An element rises slightly while becoming visible. Trigger on-scroll; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "フェードアップ：要素が少し上昇しながらフェードインします。 発火条件 on-scroll、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_fade_in",
+      "motion_slide_in"
+    ],
+    "demo_type": "fade-up",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "low",
+    "speed_feel": "calm",
+    "mobile_fit": "good",
+    "a11y_load": "low",
+    "code_hint_css": "@keyframes demoFadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}\n.motion-target{animation:demoFadeUp 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use reveal a section on scroll only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "スクロール時にセクションを表示用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_scale_in",
+    "slug": "scale-in",
+    "name_en": "Scale in",
+    "name_ja": "スケールイン",
+    "aliases_en": [
+      "scale in",
+      "scale in animation",
+      "pop-in",
+      "pop in"
+    ],
+    "aliases_ja": [
+      "スケールイン",
+      "スケールインアニメーション"
+    ],
+    "category": "entrance",
+    "motion_type": [
+      "scale",
+      "opacity"
+    ],
+    "trigger": "on-load",
+    "summary_en": "An element grows from slightly smaller to its natural size.",
+    "summary_ja": "小さな状態から本来の大きさへ拡大して表示します。",
+    "beginner_wording_en": [
+      "Make it scale in",
+      "An element grows from slightly smaller to its natural size."
+    ],
+    "beginner_wording_ja": [
+      "スケールインのように動かす",
+      "小さな状態から本来の大きさへ拡大して表示します。"
+    ],
+    "practical_intent_en": "Introduce a badge or compact card",
+    "practical_intent_ja": "バッジや小型カードの登場",
+    "use_case_en": [
+      "Introduce a badge or compact card"
+    ],
+    "use_case_ja": [
+      "バッジや小型カードの登場"
+    ],
+    "not_for_en": [
+      "Not for dense tables that must not reflow"
+    ],
+    "not_for_ja": [
+      "位置ずれが許されない表には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Scale in on on-load, duration 760ms, using scale + opacity. An element grows from slightly smaller to its natural size. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-loadのタイミングでスケールインを760msで実装してください。小さな状態から本来の大きさへ拡大して表示します。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Scale in: An element grows from slightly smaller to its natural size. Trigger on-load; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "スケールイン：小さな状態から本来の大きさへ拡大して表示します。 発火条件 on-load、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_fade_in",
+      "motion_modal_fade_scale"
+    ],
+    "demo_type": "scale-in",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "quick",
+    "mobile_fit": "good",
+    "a11y_load": "medium",
+    "code_hint_css": "@keyframes demoScaleIn{from{opacity:0;transform:scale(.72)}to{opacity:1;transform:scale(1)}}\n.motion-target{animation:demoScaleIn 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use introduce a badge or compact card only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "バッジや小型カードの登場用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_scale_press",
+    "slug": "scale-press",
+    "name_en": "Scale press",
+    "name_ja": "押し込みスケール",
+    "aliases_en": [
+      "scale press",
+      "scale press animation"
+    ],
+    "aliases_ja": [
+      "押し込みスケール",
+      "押し込みスケールアニメーション"
+    ],
+    "category": "cta-micro-interaction",
+    "motion_type": [
+      "scale"
+    ],
+    "trigger": "on-click",
+    "summary_en": "The pressed target compresses briefly and returns.",
+    "summary_ja": "押した要素を瞬間的に縮め、元に戻します。",
+    "beginner_wording_en": [
+      "Make it scale press",
+      "The pressed target compresses briefly and returns."
+    ],
+    "beginner_wording_ja": [
+      "押し込みスケールのように動かす",
+      "押した要素を瞬間的に縮め、元に戻します。"
+    ],
+    "practical_intent_en": "Acknowledge a button tap",
+    "practical_intent_ja": "ボタンの押下を伝える",
+    "use_case_en": [
+      "Acknowledge a button tap"
+    ],
+    "use_case_ja": [
+      "ボタンの押下を伝える"
+    ],
+    "not_for_en": [
+      "Not as the only confirmation of a successful action"
+    ],
+    "not_for_ja": [
+      "処理成功の唯一の通知には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Scale press on on-click, duration 760ms, using scale. The pressed target compresses briefly and returns. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-clickのタイミングで押し込みスケールを760msで実装してください。押した要素を瞬間的に縮め、元に戻します。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Scale press: The pressed target compresses briefly and returns. Trigger on-click; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "押し込みスケール：押した要素を瞬間的に縮め、元に戻します。 発火条件 on-click、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_button_press",
+      "motion_hover_lift"
+    ],
+    "demo_type": "scale-press",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "low",
+    "speed_feel": "instant",
+    "mobile_fit": "good",
+    "a11y_load": "low",
+    "code_hint_css": "@keyframes demoPress{0%,100%{transform:scale(1)}45%{transform:scale(.84)}}\n.motion-target{animation:demoPress 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use acknowledge a button tap only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "ボタンの押下を伝える用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_hover_lift",
+    "slug": "hover-lift",
+    "name_en": "Hover lift",
+    "name_ja": "ホバーリフト",
+    "aliases_en": [
+      "hover lift",
+      "hover lift animation"
+    ],
+    "aliases_ja": [
+      "ホバーリフト",
+      "ホバーリフトアニメーション"
+    ],
+    "category": "hover",
+    "motion_type": [
+      "translate",
+      "shadow"
+    ],
+    "trigger": "on-hover",
+    "summary_en": "A hoverable card lifts subtly with a shadow.",
+    "summary_ja": "カードがわずかに浮き、影が変わります。",
+    "beginner_wording_en": [
+      "Make it hover lift",
+      "A hoverable card lifts subtly with a shadow."
+    ],
+    "beginner_wording_ja": [
+      "ホバーリフトのように動かす",
+      "カードがわずかに浮き、影が変わります。"
+    ],
+    "practical_intent_en": "Indicate pointer hover over a card",
+    "practical_intent_ja": "カードへのポインタ操作",
+    "use_case_en": [
+      "Indicate pointer hover over a card"
+    ],
+    "use_case_ja": [
+      "カードへのポインタ操作"
+    ],
+    "not_for_en": [
+      "Not for touch-only primary affordances"
+    ],
+    "not_for_ja": [
+      "タッチ操作だけに依存する導線には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Hover lift on on-hover, duration 760ms, using translate + shadow. A hoverable card lifts subtly with a shadow. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-hoverのタイミングでホバーリフトを760msで実装してください。カードがわずかに浮き、影が変わります。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Hover lift: A hoverable card lifts subtly with a shadow. Trigger on-hover; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "ホバーリフト：カードがわずかに浮き、影が変わります。 発火条件 on-hover、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_button_press",
+      "motion_scale_press"
+    ],
+    "demo_type": "hover-lift",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "low",
+    "speed_feel": "quick",
+    "mobile_fit": "avoid",
+    "a11y_load": "low",
+    "code_hint_css": "@keyframes demoLift{0%{transform:translateY(0)}65%{transform:translateY(-14px);box-shadow:0 14px 20px rgba(36,84,230,.22)}100%{transform:translateY(0)}}\n.motion-target{animation:demoLift 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use indicate pointer hover over a card only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "カードへのポインタ操作用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_button_press",
+    "slug": "button-press",
+    "name_en": "Button press",
+    "name_ja": "ボタンプレス",
+    "aliases_en": [
+      "button press",
+      "button press animation"
+    ],
+    "aliases_ja": [
+      "ボタンプレス",
+      "ボタンプレスアニメーション"
+    ],
+    "category": "cta-micro-interaction",
+    "motion_type": [
+      "scale"
+    ],
+    "trigger": "on-click",
+    "summary_en": "A button briefly scales down on interaction.",
+    "summary_ja": "ボタンが操作時に小さく押し込まれます。",
+    "beginner_wording_en": [
+      "Make it button press",
+      "A button briefly scales down on interaction."
+    ],
+    "beginner_wording_ja": [
+      "ボタンプレスのように動かす",
+      "ボタンが操作時に小さく押し込まれます。"
+    ],
+    "practical_intent_en": "Give immediate click feedback",
+    "practical_intent_ja": "クリック直後の反応",
+    "use_case_en": [
+      "Give immediate click feedback"
+    ],
+    "use_case_ja": [
+      "クリック直後の反応"
+    ],
+    "not_for_en": [
+      "Not for replacing a loading or error state"
+    ],
+    "not_for_ja": [
+      "読み込み中・失敗表示の代替には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Button press on on-click, duration 760ms, using scale. A button briefly scales down on interaction. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-clickのタイミングでボタンプレスを760msで実装してください。ボタンが操作時に小さく押し込まれます。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Button press: A button briefly scales down on interaction. Trigger on-click; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "ボタンプレス：ボタンが操作時に小さく押し込まれます。 発火条件 on-click、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_scale_press",
+      "motion_hover_lift"
+    ],
+    "demo_type": "button-press",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "low",
+    "speed_feel": "instant",
+    "mobile_fit": "good",
+    "a11y_load": "low",
+    "code_hint_css": "@keyframes demoPress{0%,100%{transform:scale(1)}45%{transform:scale(.84)}}\n.motion-target{animation:demoPress 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use give immediate click feedback only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "クリック直後の反応用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_pulse",
+    "slug": "pulse",
+    "name_en": "Pulse",
+    "name_ja": "パルス",
+    "aliases_en": [
+      "pulse",
+      "pulse animation"
+    ],
+    "aliases_ja": [
+      "パルス",
+      "パルスアニメーション"
+    ],
+    "category": "emphasis",
+    "motion_type": [
+      "scale",
+      "opacity"
+    ],
+    "trigger": "loop",
+    "summary_en": "An element grows and shrinks softly to attract attention.",
+    "summary_ja": "要素が一定の周期で控えめに拡大縮小します。",
+    "beginner_wording_en": [
+      "Make it pulse",
+      "An element grows and shrinks softly to attract attention."
+    ],
+    "beginner_wording_ja": [
+      "パルスのように動かす",
+      "要素が一定の周期で控えめに拡大縮小します。"
+    ],
+    "practical_intent_en": "Draw attention to optional status",
+    "practical_intent_ja": "補助的な状態表示の強調",
+    "use_case_en": [
+      "Draw attention to optional status"
+    ],
+    "use_case_ja": [
+      "補助的な状態表示の強調"
+    ],
+    "not_for_en": [
+      "Not for incessant decorative looping"
+    ],
+    "not_for_ja": [
+      "常時装飾ループには不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Pulse on loop, duration 1100ms, using scale + opacity. An element grows and shrinks softly to attract attention. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "loopのタイミングでパルスを1100msで実装してください。要素が一定の周期で控えめに拡大縮小します。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Pulse: An element grows and shrinks softly to attract attention. Trigger loop; 1100ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "パルス：要素が一定の周期で控えめに拡大縮小します。 発火条件 loop、1100ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_wiggle",
+      "motion_shake"
+    ],
+    "demo_type": "pulse",
+    "demo_config": {
+      "duration_ms": 1100,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": true
+    },
+    "intensity": "medium",
+    "speed_feel": "calm",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": "@keyframes demoPulse{0%,100%{transform:scale(1);opacity:.75}50%{transform:scale(1.13);opacity:1}}\n.motion-target{animation:demoPulse 1100ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use draw attention to optional status only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "補助的な状態表示の強調用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_shake",
+    "slug": "shake",
+    "name_en": "Shake",
+    "name_ja": "シェイク",
+    "aliases_en": [
+      "shake",
+      "shake animation"
+    ],
+    "aliases_ja": [
+      "シェイク",
+      "シェイクアニメーション"
+    ],
+    "category": "feedback",
+    "motion_type": [
+      "translate"
+    ],
+    "trigger": "on-error",
+    "summary_en": "An element moves left and right in short oscillations.",
+    "summary_ja": "要素が短く左右へ揺れます。",
+    "beginner_wording_en": [
+      "Make it shake",
+      "An element moves left and right in short oscillations."
+    ],
+    "beginner_wording_ja": [
+      "シェイクのように動かす",
+      "要素が短く左右へ揺れます。"
+    ],
+    "practical_intent_en": "Draw attention to a failed validation",
+    "practical_intent_ja": "入力エラーへの注意喚起",
+    "use_case_en": [
+      "Draw attention to a failed validation"
+    ],
+    "use_case_ja": [
+      "入力エラーへの注意喚起"
+    ],
+    "not_for_en": [
+      "Not for frequent or strong error feedback"
+    ],
+    "not_for_ja": [
+      "頻繁なエラーや激しい刺激には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Shake on on-error, duration 760ms, using translate. An element moves left and right in short oscillations. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-errorのタイミングでシェイクを760msで実装してください。要素が短く左右へ揺れます。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Shake: An element moves left and right in short oscillations. Trigger on-error; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "シェイク：要素が短く左右へ揺れます。 発火条件 on-error、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_error_shake",
+      "motion_wiggle"
+    ],
+    "demo_type": "shake",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "strong",
+    "speed_feel": "quick",
+    "mobile_fit": "avoid",
+    "a11y_load": "high",
+    "code_hint_css": "@keyframes demoShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-12px)}40%{transform:translateX(10px)}60%{transform:translateX(-7px)}80%{transform:translateX(5px)}}\n.motion-target{animation:demoShake 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use draw attention to a failed validation only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "入力エラーへの注意喚起用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_wiggle",
+    "slug": "wiggle",
+    "name_en": "Wiggle",
+    "name_ja": "ウィグル",
+    "aliases_en": [
+      "wiggle",
+      "wiggle animation"
+    ],
+    "aliases_ja": [
+      "ウィグル",
+      "ウィグルアニメーション"
+    ],
+    "category": "emphasis",
+    "motion_type": [
+      "rotate"
+    ],
+    "trigger": "on-hover",
+    "summary_en": "An element rotates slightly back and forth around its center.",
+    "summary_ja": "要素が中心を軸に小さく左右回転します。",
+    "beginner_wording_en": [
+      "Make it wiggle",
+      "An element rotates slightly back and forth around its center."
+    ],
+    "beginner_wording_ja": [
+      "ウィグルのように動かす",
+      "要素が中心を軸に小さく左右回転します。"
+    ],
+    "practical_intent_en": "Playful optional hover cue",
+    "practical_intent_ja": "遊びのある補助的ホバー演出",
+    "use_case_en": [
+      "Playful optional hover cue"
+    ],
+    "use_case_ja": [
+      "遊びのある補助的ホバー演出"
+    ],
+    "not_for_en": [
+      "Not for serious warnings or continuously moving content"
+    ],
+    "not_for_ja": [
+      "重大警告や常時動く表示には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Wiggle on on-hover, duration 760ms, using rotate. An element rotates slightly back and forth around its center. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-hoverのタイミングでウィグルを760msで実装してください。要素が中心を軸に小さく左右回転します。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Wiggle: An element rotates slightly back and forth around its center. Trigger on-hover; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "ウィグル：要素が中心を軸に小さく左右回転します。 発火条件 on-hover、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_shake",
+      "motion_pulse"
+    ],
+    "demo_type": "wiggle",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "quick",
+    "mobile_fit": "avoid",
+    "a11y_load": "medium",
+    "code_hint_css": "@keyframes demoWiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-9deg)}50%{transform:rotate(7deg)}75%{transform:rotate(-4deg)}}\n.motion-target{animation:demoWiggle 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use playful optional hover cue only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "遊びのある補助的ホバー演出用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_skeleton_shimmer",
+    "slug": "skeleton-shimmer",
+    "name_en": "Skeleton shimmer",
+    "name_ja": "スケルトンシマー",
+    "aliases_en": [
+      "skeleton shimmer",
+      "skeleton shimmer animation"
+    ],
+    "aliases_ja": [
+      "スケルトンシマー",
+      "スケルトンシマーアニメーション"
+    ],
+    "category": "loading",
+    "motion_type": [
+      "loading-indicator",
+      "loop"
+    ],
+    "trigger": "loop",
+    "summary_en": "A placeholder surface shows a traveling light band while waiting.",
+    "summary_ja": "読み込み中のプレースホルダー上を光が移動します。",
+    "beginner_wording_en": [
+      "Make it skeleton shimmer",
+      "A placeholder surface shows a traveling light band while waiting."
+    ],
+    "beginner_wording_ja": [
+      "スケルトンシマーのように動かす",
+      "読み込み中のプレースホルダー上を光が移動します。"
+    ],
+    "practical_intent_en": "Show the shape of loading content",
+    "practical_intent_ja": "読み込み中のレイアウト予告",
+    "use_case_en": [
+      "Show the shape of loading content"
+    ],
+    "use_case_ja": [
+      "読み込み中のレイアウト予告"
+    ],
+    "not_for_en": [
+      "Not when the expected wait is instantaneous"
+    ],
+    "not_for_ja": [
+      "ほぼ即時に終わる処理には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Skeleton shimmer on loop, duration 1350ms, using loading-indicator + loop. A placeholder surface shows a traveling light band while waiting. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "loopのタイミングでスケルトンシマーを1350msで実装してください。読み込み中のプレースホルダー上を光が移動します。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Skeleton shimmer: A placeholder surface shows a traveling light band while waiting. Trigger loop; 1350ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "スケルトンシマー：読み込み中のプレースホルダー上を光が移動します。 発火条件 loop、1350ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_spinner",
+      "motion_dots_loading"
+    ],
+    "demo_type": "skeleton",
+    "demo_config": {
+      "duration_ms": 1350,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": true
+    },
+    "intensity": "low",
+    "speed_feel": "calm",
+    "mobile_fit": "good",
+    "a11y_load": "medium",
+    "code_hint_css": ".motion-target{background:linear-gradient(90deg,#dfe7f6,#f8fbff,#dfe7f6);background-size:220% 100%;}\n@keyframes demoShimmer{from{background-position:220% 0}to{background-position:-220% 0}}\n.motion-target{animation:demoShimmer 1350ms ease-out infinite;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use show the shape of loading content only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "読み込み中のレイアウト予告用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_spinner",
+    "slug": "spinner",
+    "name_en": "Spinner",
+    "name_ja": "スピナー",
+    "aliases_en": [
+      "spinner",
+      "spinner animation"
+    ],
+    "aliases_ja": [
+      "スピナー",
+      "スピナーアニメーション"
+    ],
+    "category": "loading",
+    "motion_type": [
+      "rotate",
+      "loop"
+    ],
+    "trigger": "loop",
+    "summary_en": "A rotating arc indicates work with unknown completion time.",
+    "summary_ja": "回転する弧で、完了時刻が不明な処理中を示します。",
+    "beginner_wording_en": [
+      "Make it spinner",
+      "A rotating arc indicates work with unknown completion time."
+    ],
+    "beginner_wording_ja": [
+      "スピナーのように動かす",
+      "回転する弧で、完了時刻が不明な処理中を示します。"
+    ],
+    "practical_intent_en": "Represent indeterminate loading",
+    "practical_intent_ja": "進捗率不明の読み込み",
+    "use_case_en": [
+      "Represent indeterminate loading"
+    ],
+    "use_case_ja": [
+      "進捗率不明の読み込み"
+    ],
+    "not_for_en": [
+      "Not when actual progress percentage is known"
+    ],
+    "not_for_ja": [
+      "進捗率が分かる場面には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Spinner on loop, duration 900ms, using rotate + loop. A rotating arc indicates work with unknown completion time. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "loopのタイミングでスピナーを900msで実装してください。回転する弧で、完了時刻が不明な処理中を示します。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Spinner: A rotating arc indicates work with unknown completion time. Trigger loop; 900ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "スピナー：回転する弧で、完了時刻が不明な処理中を示します。 発火条件 loop、900ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_dots_loading",
+      "motion_progress_fill"
+    ],
+    "demo_type": "spinner",
+    "demo_config": {
+      "duration_ms": 900,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": true
+    },
+    "intensity": "medium",
+    "speed_feel": "quick",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": ".motion-target{border:6px solid #cfd9ff;border-top-color:#2454e6;border-radius:50%;}\n@keyframes demoSpin{to{transform:rotate(360deg)}}\n.motion-target{animation:demoSpin 900ms ease-out infinite;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use represent indeterminate loading only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "進捗率不明の読み込み用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_progress_fill",
+    "slug": "progress-fill",
+    "name_en": "Progress fill",
+    "name_ja": "進捗バー",
+    "aliases_en": [
+      "progress fill",
+      "progress fill animation"
+    ],
+    "aliases_ja": [
+      "進捗バー",
+      "進捗バーアニメーション"
+    ],
+    "category": "loading",
+    "motion_type": [
+      "scale",
+      "loading-indicator"
+    ],
+    "trigger": "on-submit",
+    "summary_en": "A bar fills to communicate advancing progress.",
+    "summary_ja": "バーの長さを伸ばして進み具合を表します。",
+    "beginner_wording_en": [
+      "Make it progress fill",
+      "A bar fills to communicate advancing progress."
+    ],
+    "beginner_wording_ja": [
+      "進捗バーのように動かす",
+      "バーの長さを伸ばして進み具合を表します。"
+    ],
+    "practical_intent_en": "Display measured upload progress",
+    "practical_intent_ja": "測定可能な進捗表示",
+    "use_case_en": [
+      "Display measured upload progress"
+    ],
+    "use_case_ja": [
+      "測定可能な進捗表示"
+    ],
+    "not_for_en": [
+      "Not for invented completion percentages"
+    ],
+    "not_for_ja": [
+      "根拠のない進捗率の表示には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Progress fill on on-submit, duration 760ms, using scale + loading-indicator. A bar fills to communicate advancing progress. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-submitのタイミングで進捗バーを760msで実装してください。バーの長さを伸ばして進み具合を表します。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Progress fill: A bar fills to communicate advancing progress. Trigger on-submit; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "進捗バー：バーの長さを伸ばして進み具合を表します。 発火条件 on-submit、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_spinner",
+      "motion_dots_loading"
+    ],
+    "demo_type": "progress-fill",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "low",
+    "speed_feel": "calm",
+    "mobile_fit": "good",
+    "a11y_load": "low",
+    "code_hint_css": "@keyframes demoProgress{from{transform:scaleX(.08)}to{transform:scaleX(1)}}\n.motion-target{animation:demoProgress 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use display measured upload progress only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "測定可能な進捗表示用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_dots_loading",
+    "slug": "dots-loading",
+    "name_en": "Dots loading",
+    "name_ja": "ドットローディング",
+    "aliases_en": [
+      "dots loading",
+      "dots loading animation"
+    ],
+    "aliases_ja": [
+      "ドットローディング",
+      "ドットローディングアニメーション"
+    ],
+    "category": "loading",
+    "motion_type": [
+      "opacity",
+      "loop"
+    ],
+    "trigger": "loop",
+    "summary_en": "Three dots shift to indicate ongoing lightweight activity.",
+    "summary_ja": "複数の点が動き、軽量な処理中を伝えます。",
+    "beginner_wording_en": [
+      "Make it dots loading",
+      "Three dots shift to indicate ongoing lightweight activity."
+    ],
+    "beginner_wording_ja": [
+      "ドットローディングのように動かす",
+      "複数の点が動き、軽量な処理中を伝えます。"
+    ],
+    "practical_intent_en": "Indicate a pending short response",
+    "practical_intent_ja": "短い応答待ちの表示",
+    "use_case_en": [
+      "Indicate a pending short response"
+    ],
+    "use_case_ja": [
+      "短い応答待ちの表示"
+    ],
+    "not_for_en": [
+      "Not for critical long-running work without status text"
+    ],
+    "not_for_ja": [
+      "長時間処理の唯一の表示には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Dots loading on loop, duration 760ms, using opacity + loop. Three dots shift to indicate ongoing lightweight activity. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "loopのタイミングでドットローディングを760msで実装してください。複数の点が動き、軽量な処理中を伝えます。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Dots loading: Three dots shift to indicate ongoing lightweight activity. Trigger loop; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "ドットローディング：複数の点が動き、軽量な処理中を伝えます。 発火条件 loop、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_spinner",
+      "motion_skeleton_shimmer"
+    ],
+    "demo_type": "dots-loading",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": true
+    },
+    "intensity": "low",
+    "speed_feel": "calm",
+    "mobile_fit": "good",
+    "a11y_load": "low",
+    "code_hint_css": "@keyframes demoDots{0%,100%{box-shadow:-26px 0 0 #91a7ff,26px 0 0 #91a7ff}50%{box-shadow:-26px -8px 0 #91a7ff,26px 8px 0 #91a7ff}}\n.motion-target{animation:demoDots 760ms ease-out infinite;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use indicate a pending short response only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "短い応答待ちの表示用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_stagger_reveal",
+    "slug": "stagger-reveal",
+    "name_en": "Stagger reveal",
+    "name_ja": "順次リビール",
+    "aliases_en": [
+      "stagger reveal",
+      "stagger reveal animation",
+      "stagger",
+      "staggered entrance"
+    ],
+    "aliases_ja": [
+      "順次リビール",
+      "順次リビールアニメーション"
+    ],
+    "category": "list-stagger",
+    "motion_type": [
+      "sequence",
+      "opacity",
+      "translate"
+    ],
+    "trigger": "on-scroll",
+    "summary_en": "Several sibling elements appear in a deliberate sequence with time offsets.",
+    "summary_ja": "並んだ要素が時間差で一つずつ現れます。",
+    "beginner_wording_en": [
+      "Make it stagger reveal",
+      "Several sibling elements appear in a deliberate sequence with time offsets."
+    ],
+    "beginner_wording_ja": [
+      "順次リビールのように動かす",
+      "並んだ要素が時間差で一つずつ現れます。"
+    ],
+    "practical_intent_en": "Introduce a small set of result cards",
+    "practical_intent_ja": "少数の結果カードを順番に表示",
+    "use_case_en": [
+      "Introduce a small set of result cards"
+    ],
+    "use_case_ja": [
+      "少数の結果カードを順番に表示"
+    ],
+    "not_for_en": [
+      "Not for hundreds of rows or delayed access to content"
+    ],
+    "not_for_ja": [
+      "大量の行や閲覧を遅らせる表示には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Stagger reveal on on-scroll, duration 650ms, using sequence + opacity + translate. Several sibling elements appear in a deliberate sequence with time offsets. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-scrollのタイミングで順次リビールを650msで実装してください。並んだ要素が時間差で一つずつ現れます。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Stagger reveal: Several sibling elements appear in a deliberate sequence with time offsets. Trigger on-scroll; 650ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "順次リビール：並んだ要素が時間差で一つずつ現れます。 発火条件 on-scroll、650ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_list_cascade",
+      "motion_fade_up"
+    ],
+    "demo_type": "stagger-reveal",
+    "demo_config": {
+      "duration_ms": 650,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "calm",
+    "mobile_fit": "good",
+    "a11y_load": "medium",
+    "code_hint_css": "@keyframes demoStagger{0%{opacity:0;transform:translateY(12px)}60%{opacity:1;transform:translateY(0)}100%{opacity:1}}\n.stagger-item{animation:demoStagger 650ms ease-out both;}\n.stagger-item:nth-child(2){animation-delay:150ms;}\n.stagger-item:nth-child(3){animation-delay:300ms;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use introduce a small set of result cards only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "少数の結果カードを順番に表示用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_list_cascade",
+    "slug": "list-cascade",
+    "name_en": "List cascade",
+    "name_ja": "リストカスケード",
+    "aliases_en": [
+      "list cascade",
+      "list cascade animation"
+    ],
+    "aliases_ja": [
+      "リストカスケード",
+      "リストカスケードアニメーション"
+    ],
+    "category": "list-stagger",
+    "motion_type": [
+      "sequence",
+      "translate"
+    ],
+    "trigger": "on-load",
+    "summary_en": "List entries enter one after another with directional movement.",
+    "summary_ja": "リスト要素を順に方向を付けて表示します。",
+    "beginner_wording_en": [
+      "Make it list cascade",
+      "List entries enter one after another with directional movement."
+    ],
+    "beginner_wording_ja": [
+      "リストカスケードのように動かす",
+      "リスト要素を順に方向を付けて表示します。"
+    ],
+    "practical_intent_en": "Bring a short menu into view",
+    "practical_intent_ja": "短いメニューを段階表示",
+    "use_case_en": [
+      "Bring a short menu into view"
+    ],
+    "use_case_ja": [
+      "短いメニューを段階表示"
+    ],
+    "not_for_en": [
+      "Not for bulk results that need immediate scanning"
+    ],
+    "not_for_ja": [
+      "一度に読める必要がある大量結果には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement List cascade on on-load, duration 1000ms, using sequence + translate. List entries enter one after another with directional movement. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-loadのタイミングでリストカスケードを1000msで実装してください。リスト要素を順に方向を付けて表示します。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "List cascade: List entries enter one after another with directional movement. Trigger on-load; 1000ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "リストカスケード：リスト要素を順に方向を付けて表示します。 発火条件 on-load、1000ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_stagger_reveal",
+      "motion_slide_in"
+    ],
+    "demo_type": "list-cascade",
+    "demo_config": {
+      "duration_ms": 1000,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "calm",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": "@keyframes demoCascade{from{transform:translateX(-12px);opacity:.2}to{transform:translateX(0);opacity:1}}\n.motion-target{animation:demoCascade 1000ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use bring a short menu into view only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "短いメニューを段階表示用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_modal_fade_scale",
+    "slug": "modal-fade-scale",
+    "name_en": "Modal fade-scale",
+    "name_ja": "モーダルフェードスケール",
+    "aliases_en": [
+      "modal fade-scale",
+      "modal fade-scale animation",
+      "modal pop in"
+    ],
+    "aliases_ja": [
+      "モーダルフェードスケール",
+      "モーダルフェードスケールアニメーション"
+    ],
+    "category": "modal-sheet-drawer",
+    "motion_type": [
+      "opacity",
+      "scale"
+    ],
+    "trigger": "on-open",
+    "summary_en": "A modal fades in as its content scales gently into place.",
+    "summary_ja": "モーダルが透明度と拡大を組み合わせて開きます。",
+    "beginner_wording_en": [
+      "Make it modal fade-scale",
+      "A modal fades in as its content scales gently into place."
+    ],
+    "beginner_wording_ja": [
+      "モーダルフェードスケールのように動かす",
+      "モーダルが透明度と拡大を組み合わせて開きます。"
+    ],
+    "practical_intent_en": "Open a focused dialog",
+    "practical_intent_ja": "集中して操作するダイアログの表示",
+    "use_case_en": [
+      "Open a focused dialog"
+    ],
+    "use_case_ja": [
+      "集中して操作するダイアログの表示"
+    ],
+    "not_for_en": [
+      "Not without focus management and accessible close behavior"
+    ],
+    "not_for_ja": [
+      "フォーカス管理や閉じ方がない実装には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Modal fade-scale on on-open, duration 760ms, using opacity + scale. A modal fades in as its content scales gently into place. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-openのタイミングでモーダルフェードスケールを760msで実装してください。モーダルが透明度と拡大を組み合わせて開きます。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Modal fade-scale: A modal fades in as its content scales gently into place. Trigger on-open; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "モーダルフェードスケール：モーダルが透明度と拡大を組み合わせて開きます。 発火条件 on-open、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_backdrop_fade",
+      "motion_scale_in"
+    ],
+    "demo_type": "modal-fade-scale",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "quick",
+    "mobile_fit": "good",
+    "a11y_load": "medium",
+    "code_hint_css": "@keyframes demoModal{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:scale(1)}}\n.motion-target{animation:demoModal 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use open a focused dialog only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "集中して操作するダイアログの表示用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_bottom_sheet_slide",
+    "slug": "bottom-sheet-slide",
+    "name_en": "Bottom sheet slide",
+    "name_ja": "ボトムシートスライド",
+    "aliases_en": [
+      "bottom sheet slide",
+      "bottom sheet slide animation"
+    ],
+    "aliases_ja": [
+      "ボトムシートスライド",
+      "ボトムシートスライドアニメーション"
+    ],
+    "category": "modal-sheet-drawer",
+    "motion_type": [
+      "translate"
+    ],
+    "trigger": "on-open",
+    "summary_en": "A sheet rises from the bottom edge of the viewport.",
+    "summary_ja": "画面下端からシートがせり上がります。",
+    "beginner_wording_en": [
+      "Make it bottom sheet slide",
+      "A sheet rises from the bottom edge of the viewport."
+    ],
+    "beginner_wording_ja": [
+      "ボトムシートスライドのように動かす",
+      "画面下端からシートがせり上がります。"
+    ],
+    "practical_intent_en": "Open a mobile action sheet",
+    "practical_intent_ja": "モバイルの操作シートを開く",
+    "use_case_en": [
+      "Open a mobile action sheet"
+    ],
+    "use_case_ja": [
+      "モバイルの操作シートを開く"
+    ],
+    "not_for_en": [
+      "Not for wide desktop data tables"
+    ],
+    "not_for_ja": [
+      "PCの横長データ表には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Bottom sheet slide on on-open, duration 760ms, using translate. A sheet rises from the bottom edge of the viewport. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-openのタイミングでボトムシートスライドを760msで実装してください。画面下端からシートがせり上がります。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Bottom sheet slide: A sheet rises from the bottom edge of the viewport. Trigger on-open; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "ボトムシートスライド：画面下端からシートがせり上がります。 発火条件 on-open、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_drawer_slide",
+      "motion_modal_fade_scale"
+    ],
+    "demo_type": "bottom-sheet-slide",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "quick",
+    "mobile_fit": "good",
+    "a11y_load": "medium",
+    "code_hint_css": "@keyframes demoSheet{from{opacity:0;transform:translateY(38px)}to{opacity:1;transform:translateY(0)}}\n.motion-target{animation:demoSheet 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use open a mobile action sheet only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "モバイルの操作シートを開く用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_drawer_slide",
+    "slug": "drawer-slide",
+    "name_en": "Drawer slide",
+    "name_ja": "ドロワースライド",
+    "aliases_en": [
+      "drawer slide",
+      "drawer slide animation"
+    ],
+    "aliases_ja": [
+      "ドロワースライド",
+      "ドロワースライドアニメーション"
+    ],
+    "category": "modal-sheet-drawer",
+    "motion_type": [
+      "translate"
+    ],
+    "trigger": "on-open",
+    "summary_en": "A navigation or filter panel slides in from a side.",
+    "summary_ja": "ナビゲーションやフィルタが横から滑り込みます。",
+    "beginner_wording_en": [
+      "Make it drawer slide",
+      "A navigation or filter panel slides in from a side."
+    ],
+    "beginner_wording_ja": [
+      "ドロワースライドのように動かす",
+      "ナビゲーションやフィルタが横から滑り込みます。"
+    ],
+    "practical_intent_en": "Reveal secondary filters",
+    "practical_intent_ja": "補助フィルタを表示",
+    "use_case_en": [
+      "Reveal secondary filters"
+    ],
+    "use_case_ja": [
+      "補助フィルタを表示"
+    ],
+    "not_for_en": [
+      "Not when critical controls become hard to discover"
+    ],
+    "not_for_ja": [
+      "重要操作が隠れてしまう構成には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Drawer slide on on-open, duration 760ms, using translate. A navigation or filter panel slides in from a side. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-openのタイミングでドロワースライドを760msで実装してください。ナビゲーションやフィルタが横から滑り込みます。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Drawer slide: A navigation or filter panel slides in from a side. Trigger on-open; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "ドロワースライド：ナビゲーションやフィルタが横から滑り込みます。 発火条件 on-open、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_bottom_sheet_slide",
+      "motion_slide_in"
+    ],
+    "demo_type": "drawer-slide",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "quick",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": "@keyframes demoDrawer{from{opacity:0;transform:translateX(-46px)}to{opacity:1;transform:translateX(0)}}\n.motion-target{animation:demoDrawer 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use reveal secondary filters only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "補助フィルタを表示用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_backdrop_fade",
+    "slug": "backdrop-fade",
+    "name_en": "Backdrop fade",
+    "name_ja": "背景フェード",
+    "aliases_en": [
+      "backdrop fade",
+      "backdrop fade animation"
+    ],
+    "aliases_ja": [
+      "背景フェード",
+      "背景フェードアニメーション"
+    ],
+    "category": "modal-sheet-drawer",
+    "motion_type": [
+      "opacity"
+    ],
+    "trigger": "on-open",
+    "summary_en": "A scrim fades in behind a foreground surface.",
+    "summary_ja": "前面パネルの背後に半透明の背景を表示します。",
+    "beginner_wording_en": [
+      "Make it backdrop fade",
+      "A scrim fades in behind a foreground surface."
+    ],
+    "beginner_wording_ja": [
+      "背景フェードのように動かす",
+      "前面パネルの背後に半透明の背景を表示します。"
+    ],
+    "practical_intent_en": "Clarify modal layering",
+    "practical_intent_ja": "モーダルの前後関係を伝える",
+    "use_case_en": [
+      "Clarify modal layering"
+    ],
+    "use_case_ja": [
+      "モーダルの前後関係を伝える"
+    ],
+    "not_for_en": [
+      "Not as a substitute for focus trapping"
+    ],
+    "not_for_ja": [
+      "フォーカス制御の代替には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Backdrop fade on on-open, duration 760ms, using opacity. A scrim fades in behind a foreground surface. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-openのタイミングで背景フェードを760msで実装してください。前面パネルの背後に半透明の背景を表示します。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Backdrop fade: A scrim fades in behind a foreground surface. Trigger on-open; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "背景フェード：前面パネルの背後に半透明の背景を表示します。 発火条件 on-open、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_modal_fade_scale",
+      "motion_fade_in"
+    ],
+    "demo_type": "backdrop-fade",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "low",
+    "speed_feel": "quick",
+    "mobile_fit": "good",
+    "a11y_load": "low",
+    "code_hint_css": "@keyframes demoBackdrop{from{opacity:.2;box-shadow:0 0 0 0 rgba(36,84,230,0)}to{opacity:1;box-shadow:0 0 0 999px rgba(36,84,230,.10)}}\n.motion-target{animation:demoBackdrop 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use clarify modal layering only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "モーダルの前後関係を伝える用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_accordion_expand",
+    "slug": "accordion-expand",
+    "name_en": "Accordion expand",
+    "name_ja": "アコーディオン展開",
+    "aliases_en": [
+      "accordion expand",
+      "accordion expand animation"
+    ],
+    "aliases_ja": [
+      "アコーディオン展開",
+      "アコーディオン展開アニメーション"
+    ],
+    "category": "state-change",
+    "motion_type": [
+      "height-collapse"
+    ],
+    "trigger": "on-click",
+    "summary_en": "A collapsed content region expands vertically from its header.",
+    "summary_ja": "折りたたまれた領域が見出しから縦に開きます。",
+    "beginner_wording_en": [
+      "Make it accordion expand",
+      "A collapsed content region expands vertically from its header."
+    ],
+    "beginner_wording_ja": [
+      "アコーディオン展開のように動かす",
+      "折りたたまれた領域が見出しから縦に開きます。"
+    ],
+    "practical_intent_en": "Reveal FAQ details",
+    "practical_intent_ja": "FAQの詳細を展開",
+    "use_case_en": [
+      "Reveal FAQ details"
+    ],
+    "use_case_ja": [
+      "FAQの詳細を展開"
+    ],
+    "not_for_en": [
+      "Not when the hidden content is essential to every user"
+    ],
+    "not_for_ja": [
+      "全員が読むべき必須情報の隠蔽には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Accordion expand on on-click, duration 760ms, using height-collapse. A collapsed content region expands vertically from its header. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-clickのタイミングでアコーディオン展開を760msで実装してください。折りたたまれた領域が見出しから縦に開きます。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Accordion expand: A collapsed content region expands vertically from its header. Trigger on-click; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "アコーディオン展開：折りたたまれた領域が見出しから縦に開きます。 発火条件 on-click、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_bottom_sheet_slide",
+      "motion_drawer_slide"
+    ],
+    "demo_type": "accordion-expand",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "calm",
+    "mobile_fit": "good",
+    "a11y_load": "medium",
+    "code_hint_css": "@keyframes demoAccordion{from{transform:scaleY(.18);opacity:.4}to{transform:scaleY(1);opacity:1}}\n.motion-target{animation:demoAccordion 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use reveal faq details only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "FAQの詳細を展開用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_toast_slide",
+    "slug": "toast-slide",
+    "name_en": "Toast slide",
+    "name_ja": "トーストスライド",
+    "aliases_en": [
+      "toast slide",
+      "toast slide animation"
+    ],
+    "aliases_ja": [
+      "トーストスライド",
+      "トーストスライドアニメーション"
+    ],
+    "category": "feedback",
+    "motion_type": [
+      "translate",
+      "opacity"
+    ],
+    "trigger": "on-success",
+    "summary_en": "A short-lived message enters and leaves near a screen edge.",
+    "summary_ja": "短時間の通知が画面端から現れます。",
+    "beginner_wording_en": [
+      "Make it toast slide",
+      "A short-lived message enters and leaves near a screen edge."
+    ],
+    "beginner_wording_ja": [
+      "トーストスライドのように動かす",
+      "短時間の通知が画面端から現れます。"
+    ],
+    "practical_intent_en": "Confirm a noncritical action",
+    "practical_intent_ja": "軽微な処理結果を通知",
+    "use_case_en": [
+      "Confirm a noncritical action"
+    ],
+    "use_case_ja": [
+      "軽微な処理結果を通知"
+    ],
+    "not_for_en": [
+      "Not for blocking decisions or urgent failures"
+    ],
+    "not_for_ja": [
+      "操作を止める判断や重大失敗には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Toast slide on on-success, duration 760ms, using translate + opacity. A short-lived message enters and leaves near a screen edge. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-successのタイミングでトーストスライドを760msで実装してください。短時間の通知が画面端から現れます。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Toast slide: A short-lived message enters and leaves near a screen edge. Trigger on-success; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "トーストスライド：短時間の通知が画面端から現れます。 発火条件 on-success、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_slide_in",
+      "motion_fade_up"
+    ],
+    "demo_type": "toast-slide",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "quick",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": "@keyframes demoToast{0%{transform:translateY(28px);opacity:0}70%{transform:translateY(0);opacity:1}100%{transform:translateY(0);opacity:1}}\n.motion-target{animation:demoToast 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use confirm a noncritical action only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "軽微な処理結果を通知用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_success_check_draw",
+    "slug": "success-check-draw",
+    "name_en": "Success check draw",
+    "name_ja": "成功チェック描画",
+    "aliases_en": [
+      "success check draw",
+      "success check draw animation",
+      "line draw",
+      "stroke draw"
+    ],
+    "aliases_ja": [
+      "成功チェック描画",
+      "成功チェック描画アニメーション"
+    ],
+    "category": "feedback",
+    "motion_type": [
+      "stroke-draw"
+    ],
+    "trigger": "on-success",
+    "summary_en": "A checkmark stroke is progressively drawn along its path.",
+    "summary_ja": "チェックマークの線を経路に沿って描画します。",
+    "beginner_wording_en": [
+      "Make it success check draw",
+      "A checkmark stroke is progressively drawn along its path."
+    ],
+    "beginner_wording_ja": [
+      "成功チェック描画のように動かす",
+      "チェックマークの線を経路に沿って描画します。"
+    ],
+    "practical_intent_en": "Acknowledge a completed task",
+    "practical_intent_ja": "処理の完了を伝える",
+    "use_case_en": [
+      "Acknowledge a completed task"
+    ],
+    "use_case_ja": [
+      "処理の完了を伝える"
+    ],
+    "not_for_en": [
+      "Not for success before the operation completes"
+    ],
+    "not_for_ja": [
+      "処理完了前の成功表示には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Success check draw on on-success, duration 850ms, using stroke-draw. A checkmark stroke is progressively drawn along its path. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-successのタイミングで成功チェック描画を850msで実装してください。チェックマークの線を経路に沿って描画します。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Success check draw: A checkmark stroke is progressively drawn along its path. Trigger on-success; 850ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "成功チェック描画：チェックマークの線を経路に沿って描画します。 発火条件 on-success、850ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_progress_fill",
+      "motion_scale_in"
+    ],
+    "demo_type": "checkmark-draw",
+    "demo_config": {
+      "duration_ms": 850,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "calm",
+    "mobile_fit": "good",
+    "a11y_load": "low",
+    "code_hint_css": "/* Apply to an SVG path with the checkmark path data. */\n@keyframes demoStrokeDraw{from{stroke-dashoffset:70}to{stroke-dashoffset:0}}\n.check-path{stroke-dasharray:70;stroke-dashoffset:0;animation:demoStrokeDraw 850ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use acknowledge a completed task only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "処理の完了を伝える用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_error_shake",
+    "slug": "error-shake",
+    "name_en": "Error shake",
+    "name_ja": "エラーシェイク",
+    "aliases_en": [
+      "error shake",
+      "error shake animation"
+    ],
+    "aliases_ja": [
+      "エラーシェイク",
+      "エラーシェイクアニメーション"
+    ],
+    "category": "feedback",
+    "motion_type": [
+      "translate"
+    ],
+    "trigger": "on-error",
+    "summary_en": "An invalid field makes a brief horizontal shake.",
+    "summary_ja": "不正な入力欄を短く横に揺らします。",
+    "beginner_wording_en": [
+      "Make it error shake",
+      "An invalid field makes a brief horizontal shake."
+    ],
+    "beginner_wording_ja": [
+      "エラーシェイクのように動かす",
+      "不正な入力欄を短く横に揺らします。"
+    ],
+    "practical_intent_en": "Accompany inline form validation",
+    "practical_intent_ja": "フォーム内の入力エラーを補足",
+    "use_case_en": [
+      "Accompany inline form validation"
+    ],
+    "use_case_ja": [
+      "フォーム内の入力エラーを補足"
+    ],
+    "not_for_en": [
+      "Not without readable error text"
+    ],
+    "not_for_ja": [
+      "読めるエラー文の代替には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Error shake on on-error, duration 760ms, using translate. An invalid field makes a brief horizontal shake. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-errorのタイミングでエラーシェイクを760msで実装してください。不正な入力欄を短く横に揺らします。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Error shake: An invalid field makes a brief horizontal shake. Trigger on-error; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "エラーシェイク：不正な入力欄を短く横に揺らします。 発火条件 on-error、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_shake",
+      "motion_focus_ring_expand"
+    ],
+    "demo_type": "error-shake",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "strong",
+    "speed_feel": "quick",
+    "mobile_fit": "avoid",
+    "a11y_load": "high",
+    "code_hint_css": "@keyframes demoShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-12px)}40%{transform:translateX(10px)}60%{transform:translateX(-7px)}80%{transform:translateX(5px)}}\n.motion-target{animation:demoShake 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use accompany inline form validation only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "フォーム内の入力エラーを補足用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_focus_ring_expand",
+    "slug": "focus-ring-expand",
+    "name_en": "Focus ring expand",
+    "name_ja": "フォーカスリング拡張",
+    "aliases_en": [
+      "focus ring expand",
+      "focus ring expand animation"
+    ],
+    "aliases_ja": [
+      "フォーカスリング拡張",
+      "フォーカスリング拡張アニメーション"
+    ],
+    "category": "focus",
+    "motion_type": [
+      "shadow",
+      "scale"
+    ],
+    "trigger": "on-focus",
+    "summary_en": "A visible outline expands around the focused element.",
+    "summary_ja": "フォーカス要素の周囲にリングが広がります。",
+    "beginner_wording_en": [
+      "Make it focus ring expand",
+      "A visible outline expands around the focused element."
+    ],
+    "beginner_wording_ja": [
+      "フォーカスリング拡張のように動かす",
+      "フォーカス要素の周囲にリングが広がります。"
+    ],
+    "practical_intent_en": "Reinforce keyboard focus location",
+    "practical_intent_ja": "キーボードフォーカス位置を強調",
+    "use_case_en": [
+      "Reinforce keyboard focus location"
+    ],
+    "use_case_ja": [
+      "キーボードフォーカス位置を強調"
+    ],
+    "not_for_en": [
+      "Not for replacing a persistent focus-visible indicator"
+    ],
+    "not_for_ja": [
+      "持続するフォーカス表示の代替には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Focus ring expand on on-focus, duration 760ms, using shadow + scale. A visible outline expands around the focused element. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-focusのタイミングでフォーカスリング拡張を760msで実装してください。フォーカス要素の周囲にリングが広がります。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Focus ring expand: A visible outline expands around the focused element. Trigger on-focus; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "フォーカスリング拡張：フォーカス要素の周囲にリングが広がります。 発火条件 on-focus、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_underline_slide",
+      "motion_scale_press"
+    ],
+    "demo_type": "focus-ring-expand",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "low",
+    "speed_feel": "quick",
+    "mobile_fit": "good",
+    "a11y_load": "low",
+    "code_hint_css": "@keyframes demoFocus{to{box-shadow:0 0 0 14px rgba(36,84,230,.10)}}\n.motion-target{animation:demoFocus 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use reinforce keyboard focus location only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "キーボードフォーカス位置を強調用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_underline_slide",
+    "slug": "underline-slide",
+    "name_en": "Underline slide",
+    "name_ja": "下線スライド",
+    "aliases_en": [
+      "underline slide",
+      "underline slide animation"
+    ],
+    "aliases_ja": [
+      "下線スライド",
+      "下線スライドアニメーション"
+    ],
+    "category": "hover",
+    "motion_type": [
+      "scale",
+      "translate"
+    ],
+    "trigger": "on-hover",
+    "summary_en": "A line reveals itself beneath an active or hovered label.",
+    "summary_ja": "文字の下線が伸びて選択・ホバー状態を示します。",
+    "beginner_wording_en": [
+      "Make it underline slide",
+      "A line reveals itself beneath an active or hovered label."
+    ],
+    "beginner_wording_ja": [
+      "下線スライドのように動かす",
+      "文字の下線が伸びて選択・ホバー状態を示します。"
+    ],
+    "practical_intent_en": "Indicate tab or navigation affordance",
+    "practical_intent_ja": "タブやナビゲーションの状態表示",
+    "use_case_en": [
+      "Indicate tab or navigation affordance"
+    ],
+    "use_case_ja": [
+      "タブやナビゲーションの状態表示"
+    ],
+    "not_for_en": [
+      "Not as the only signifier of selection"
+    ],
+    "not_for_ja": [
+      "選択状態の唯一の区別には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Underline slide on on-hover, duration 760ms, using scale + translate. A line reveals itself beneath an active or hovered label. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-hoverのタイミングで下線スライドを760msで実装してください。文字の下線が伸びて選択・ホバー状態を示します。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Underline slide: A line reveals itself beneath an active or hovered label. Trigger on-hover; 760ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "下線スライド：文字の下線が伸びて選択・ホバー状態を示します。 発火条件 on-hover、760ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_focus_ring_expand",
+      "motion_hover_lift"
+    ],
+    "demo_type": "underline-slide",
+    "demo_config": {
+      "duration_ms": 760,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "low",
+    "speed_feel": "quick",
+    "mobile_fit": "avoid",
+    "a11y_load": "low",
+    "code_hint_css": "@keyframes demoUnderline{from{transform:scaleX(.1)}to{transform:scaleX(1)}}\n.motion-target{animation:demoUnderline 760ms ease-out both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use indicate tab or navigation affordance only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "タブやナビゲーションの状態表示用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_typewriter",
+    "slug": "typewriter",
+    "name_en": "Typewriter",
+    "name_ja": "タイプライター",
+    "aliases_en": [
+      "typewriter",
+      "typewriter animation",
+      "typewriter effect"
+    ],
+    "aliases_ja": [
+      "タイプライター",
+      "タイプライターアニメーション"
+    ],
+    "category": "text-animation",
+    "motion_type": [
+      "text"
+    ],
+    "trigger": "on-load",
+    "summary_en": "Text appears one character at a time through stepped clipping.",
+    "summary_ja": "文字列をクリップして一文字ずつ現れるように見せます。",
+    "beginner_wording_en": [
+      "Make it typewriter",
+      "Text appears one character at a time through stepped clipping."
+    ],
+    "beginner_wording_ja": [
+      "タイプライターのように動かす",
+      "文字列をクリップして一文字ずつ現れるように見せます。"
+    ],
+    "practical_intent_en": "Present a short playful headline",
+    "practical_intent_ja": "短い見出しの演出",
+    "use_case_en": [
+      "Present a short playful headline"
+    ],
+    "use_case_ja": [
+      "短い見出しの演出"
+    ],
+    "not_for_en": [
+      "Not for long or critical instructional text"
+    ],
+    "not_for_ja": [
+      "長文や重要説明の逐次表示には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Typewriter on on-load, duration 1300ms, using text. Text appears one character at a time through stepped clipping. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-loadのタイミングでタイプライターを1300msで実装してください。文字列をクリップして一文字ずつ現れるように見せます。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Typewriter: Text appears one character at a time through stepped clipping. Trigger on-load; 1300ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "タイプライター：文字列をクリップして一文字ずつ現れるように見せます。 発火条件 on-load、1300ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_fade_in",
+      "motion_stagger_reveal"
+    ],
+    "demo_type": "typewriter",
+    "demo_config": {
+      "duration_ms": 1300,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "slow",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": ".motion-target{display:inline-block;overflow:hidden;white-space:nowrap;width:92px;}\n@keyframes demoType{from{width:0}to{width:92px}}\n.motion-target{animation:demoType 1300ms steps(6) both;}",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use present a short playful headline only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "短い見出しの演出用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_count_up",
+    "slug": "count-up",
+    "name_en": "Count up",
+    "name_ja": "カウントアップ",
+    "aliases_en": [
+      "count up",
+      "count up animation",
+      "number counter",
+      "animated counter"
+    ],
+    "aliases_ja": [
+      "カウントアップ",
+      "カウントアップアニメーション"
+    ],
+    "category": "text-animation",
+    "motion_type": [
+      "text"
+    ],
+    "trigger": "on-load",
+    "summary_en": "A displayed number increments from its starting value to a known target.",
+    "summary_ja": "表示数値を初期値から実際の目標値まで増やします。",
+    "beginner_wording_en": [
+      "Make it count up",
+      "A displayed number increments from its starting value to a known target."
+    ],
+    "beginner_wording_ja": [
+      "カウントアップのように動かす",
+      "表示数値を初期値から実際の目標値まで増やします。"
+    ],
+    "practical_intent_en": "Animate a verified statistic",
+    "practical_intent_ja": "確認済み統計値の変化を見せる",
+    "use_case_en": [
+      "Animate a verified statistic"
+    ],
+    "use_case_ja": [
+      "確認済み統計値の変化を見せる"
+    ],
+    "not_for_en": [
+      "Not for invented metrics or essential rapidly changing values"
+    ],
+    "not_for_ja": [
+      "根拠のない数値や高速更新には不向き"
+    ],
+    "bad_request_en": "Make this move nicely.",
+    "bad_request_ja": "いい感じに動かして。",
+    "better_request_en": "Implement Count up on on-load, duration 900ms, using text. A displayed number increments from its starting value to a known target. Respect reduced motion and avoid layout shift.",
+    "better_request_ja": "on-loadのタイミングでカウントアップを900msで実装してください。表示数値を初期値から実際の目標値まで増やします。 動きを減らす設定に対応し、レイアウトずれを避けてください。",
+    "why_better_en": "Specifies the trigger, visual behavior, duration, and reduced-motion fallback.",
+    "why_better_ja": "発火条件、実際の見た目、長さ、軽減モーション対応まで指定しています。",
+    "short_ai_prompt_en": "Count up: A displayed number increments from its starting value to a known target. Trigger on-load; 900ms; provide a reduced-motion fallback.",
+    "short_ai_prompt_ja": "カウントアップ：表示数値を初期値から実際の目標値まで増やします。 発火条件 on-load、900ms。動きを減らす設定の代替を用意してください。",
+    "compare_ids": [
+      "motion_progress_fill",
+      "motion_typewriter"
+    ],
+    "demo_type": "count-up",
+    "demo_config": {
+      "duration_ms": 900,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "distance_px": 14,
+      "loop": false,
+      "target_value": 259
+    },
+    "intensity": "medium",
+    "speed_feel": "calm",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": "/* A real counter updates text, not just opacity or position. */\n.number {font-variant-numeric: tabular-nums;}\n/* Animate integer textContent with requestAnimationFrame (0 → target) and honor reduced motion. */",
+    "reduced_motion_fallback_en": "Show the final state immediately, without transform or repeated motion.",
+    "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
+    "implementation_notes_en": "Use animate a verified statistic only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
+    "implementation_notes_ja": "確認済み統計値の変化を見せる用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  }
+]
