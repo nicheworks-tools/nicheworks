@@ -33,6 +33,10 @@ Provide a searchable, paginated directory of verified official manufacturer manu
 - Manufacturer-defined shared targets where applicable.
 - Optional Amazon purchase-search handoffs generated only from canonical metadata or exact reviewed compatibility mappings.
 
+## VAIO JP PC coverage-pass (2026-10-31)
+
+The bounded VAIO Corporation Japanese start-guide index scope is complete and published: 82 official model identities (47 personal and 35 business) = 21 direct model-specific HTML manuals + 0 shared + 61 exact model support-only + 0 held. All 82 model identities and support destinations passed live official verification. Start-guide PDF endpoints returned HTTP 403 from CI, so no PDF candidates were promoted without artifact verification; this does not imply that manuals do not exist. Publication uses `coverage-passes/vaio/jp-pc-start-guide-manual-index.json` and `data/manuals.coverage-pass.vaio-jp-pc-start-guide.js`, with CI at `.github/workflows/manualfinder-vaio-coverage-pass-review.yml`. The scope is not VAIO company-wide.
+
 ## Coverage expansion workflow
 
 Future model-level expansion is governed by `COVERAGE_PASS_WORKFLOW.md`. Automation may discover candidates at scale, but it cannot promote rows solely because a URL was found or omit rows solely because a scraper missed them. Each manufacturer/category pass must lock an official population, retain every population model through direct/shared/support-only/held review states, escalate negative cases through alternate official discovery channels, and reconcile the entire population before `coverage-pass-complete` is allowed. Machine-readable manifests live under `coverage-passes/` and fail-closed validation lives under `scripts/coverage-pass-lib.mjs` plus `tests/coverage-pass-pipeline.test.mjs`.
