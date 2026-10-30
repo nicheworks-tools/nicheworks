@@ -1,0 +1,25 @@
+name: ManualFinder Xiaomi JP manual index source probe
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/scripts/xiaomi-jp-manual-index-probe.mjs'
+      - '.github/workflows/manualfinder-xiaomi-jp-coverage-pass.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  xiaomi-official-index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/manual-finder/scripts/xiaomi-jp-manual-index-probe.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-xiaomi-jp-index-probe
+          path: manualfinder-xiaomi-probe/*.json
+          if-no-files-found: warn
