@@ -1,0 +1,49 @@
+name: ManualFinder Samsung JP Galaxy 89-model coverage-pass review
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/coverage-passes/samsung/**'
+      - 'tools/manual-finder/scripts/samsung-jp-galaxy-review.mjs'
+      - 'tools/manual-finder/scripts/samsung-jp-galaxy-secondary-review.mjs'
+      - 'tools/manual-finder/scripts/samsung-jp-manual-index-probe.mjs'
+      - 'tools/manual-finder/tests/samsung-jp-galaxy-review.test.mjs'
+      - 'tools/manual-finder/tests/samsung-jp-galaxy-publication.test.mjs'
+      - 'tools/manual-finder/data/manuals.coverage-pass.samsung-jp-galaxy-smartphones.js'
+      - 'tools/manual-finder/data/manuals.coverage-passes.js'
+      - '.github/workflows/manualfinder-samsung-coverage-pass.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  galaxy-coverage-pass:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fail-closed Samsung population and model/manual title tests
+        run: |
+          node tools/manual-finder/tests/coverage-pass-pipeline.test.mjs
+          node tools/manual-finder/tests/samsung-jp-galaxy-review.test.mjs
+          if [ -e tools/manual-finder/tests/samsung-jp-galaxy-publication.test.mjs ]; then
+            node tools/manual-finder/tests/samsung-jp-galaxy-publication.test.mjs
+          fi
+      - name: Live review all official Samsung Galaxy model and manual candidates
+        run: |
+          mkdir -p manualfinder-samsung-review
+          node tools/manual-finder/scripts/samsung-jp-galaxy-review.mjs \
+            --out manualfinder-samsung-review/galaxy-jp-review.json
+      - name: Official secondary discovery for all held model identities
+        run: |
+          node tools/manual-finder/scripts/samsung-jp-galaxy-secondary-review.mjs \
+            --first-pass manualfinder-samsung-review/galaxy-jp-review.json \
+            --out manualfinder-samsung-review/galaxy-jp-secondary.json
+      - name: Upload audit artifact including exceptions
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-samsung-jp-galaxy-review
+          path: manualfinder-samsung-review/*.json
+          if-no-files-found: warn
