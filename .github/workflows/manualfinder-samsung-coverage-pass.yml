@@ -1,0 +1,25 @@
+name: ManualFinder Samsung JP Galaxy manual source probe
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/scripts/samsung-jp-manual-index-probe.mjs'
+      - '.github/workflows/manualfinder-samsung-coverage-pass.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  galaxy-source-structure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/manual-finder/scripts/samsung-jp-manual-index-probe.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-samsung-jp-index-probe
+          path: manualfinder-samsung-probe/*.json
+          if-no-files-found: warn
