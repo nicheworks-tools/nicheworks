@@ -9,10 +9,12 @@ const vm = require("node:vm");
 const ROOT = path.resolve(__dirname, "..");
 const DATA = path.join(ROOT, "data");
 const ENTRIES_DIR = path.join(ROOT, "entries");
+const INDEX_PATH = path.join(ENTRIES_DIR, "index.html");
 const MANIFEST_PATH = path.join(DATA, "seo-detail-pages-v2.3.json");
 const SITEMAP_PATH = path.join(ROOT, "sitemap.xml");
 const ROOT_SITEMAP_PATH = path.resolve(ROOT, "..", "..", "sitemap.xml");
 const SITE_ROOT = "https://nicheworks.app/tools/construction-tools-atlas";
+const INDEX_URL = `${SITE_ROOT}/entries/`;
 const ROOT_SITEMAP_LASTMOD = "2026-09-19";
 const args = new Set(process.argv.slice(2));
 
@@ -400,6 +402,109 @@ function renderPage({ entry, image, offer, entryById, launchSet, resolveCanonica
 `;
 }
 
+function renderLaunchIndex(entryById, launchIds) {
+  const items = launchIds.map((id) => {
+    const entry = entryById.get(id);
+    if (!entry) throw new Error(`${id}: missing from launch directory corpus`);
+    const names = pair(entry, "term");
+    if (!names.ja || !names.en) throw new Error(`${id}: missing bilingual name in launch directory`);
+    return { id, ja: names.ja, en: names.en, url: canonicalEntryUrl(id) };
+  });
+  const heading = `建設工具・現場用語の公開詳細ページ（${items.length}件）`;
+  const description = `Construction Tools Atlasで公開中の${items.length}件の工具・材料・現場用語の詳細ページを、日本語名と英語名から探せます。全項目の検索はAtlas本体をご利用ください。`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": heading,
+    "url": INDEX_URL,
+    "description": description,
+    "inLanguage": ["ja", "en"],
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": items.length,
+      "itemListElement": items.map((item, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": `${item.ja} / ${item.en}`,
+        "url": item.url
+      }))
+    }
+  };
+  const entryLinks = items.map((item) => `        <li><a href="${escapeHtml(item.url)}"><strong lang="ja">${escapeHtml(item.ja)}</strong><span lang="en">${escapeHtml(item.en)}</span></a></li>`).join("\n");
+  return `<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>${escapeHtml(heading)} | Construction Tools Atlas | NicheWorks</title>
+  <meta name="description" content="${escapeHtml(description)}">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="${escapeHtml(INDEX_URL)}">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="/tools/construction-tools-atlas/seo-detail-v2.3.css">
+  <link rel="stylesheet" href="/tools/construction-tools-atlas/seo-index-v2.3.css">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NicheWorks">
+  <meta property="og:title" content="${escapeHtml(heading)} | Construction Tools Atlas">
+  <meta property="og:description" content="${escapeHtml(description)}">
+  <meta property="og:url" content="${escapeHtml(INDEX_URL)}">
+  <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-57QT78M3JB');
+  </script>
+  <script type="application/ld+json">${escapeJson(jsonLd)}</script>
+</head>
+<body>
+  <header class="detailHeader">
+    <div class="detailHeader__inner">
+      <a href="https://nicheworks.app/">NicheWorks</a>
+      <a href="/tools/construction-tools-atlas/">Construction Tools Atlas</a>
+    </div>
+  </header>
+  <main class="detailMain">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/tools/construction-tools-atlas/">Construction Tools Atlas</a>
+      <span aria-hidden="true">›</span>
+      <span>公開詳細ページ一覧 / Published entries</span>
+    </nav>
+    <article class="entryArticle">
+      <header class="entryHero">
+        <h1>${escapeHtml(heading)}</h1>
+        <p lang="en">Published construction tool and site terminology entries</p>
+      </header>
+      <section class="entrySection">
+        <p>${escapeHtml(description)}</p>
+        <p lang="en">This directory lists the currently published detail pages, not every term in the interactive Atlas. Entries are listed by canonical ID, not by product ranking or recommendation.</p>
+        <p><a href="/tools/construction-tools-atlas/">全項目をAtlasで検索 / Search the full Atlas</a></p>
+        <ul class="cohortIndex">
+${entryLinks}
+        </ul>
+      </section>
+      <section class="entrySection">
+        <h2>掲載対象 / Publication criteria</h2>
+        <p>内容が日英で整備され、代表画像が検証済み（または明示的に不要）で、管理済みの購入先リンクがあるcanonicalのみ掲載しています。価格、在庫、メーカー適合性、ランキングを保証しません。</p>
+        <p lang="en">Every listed entry has bilingual content, a verified representative image or an explicit image-not-required disposition, and a maintained commercial destination. No price, stock, compatibility, or product ranking is claimed.</p>
+      </section>
+    </article>
+    <section class="entrySection supportSection">
+      <p>このツールが役立ったら開発継続をご支援ください。</p>
+      <p><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a> / <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a></p>
+    </section>
+  </main>
+  <footer class="detailFooter">
+    <p>© NicheWorks — Small Web Tools for Boring Tasks</p>
+    <p>安全基準・法令・メーカー仕様は公式資料をご確認ください。</p>
+  </footer>
+</body>
+</html>
+`;
+}
+
 function extractSitemapUrls(xml) {
   return [...String(xml || "").matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim()).filter(Boolean);
 }
@@ -408,20 +513,24 @@ function renderSitemap(existingXml, launchIds) {
     .filter((url) => !url.startsWith(`${SITE_ROOT}/entries/`));
   const urls = unique([
     ...retained,
+    INDEX_URL,
     ...launchIds.map(canonicalEntryUrl)
   ]);
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url>\n    <loc>${escapeHtml(url)}</loc>\n  </url>`).join("\n")}\n</urlset>\n`;
 }
 
 function renderRootSitemap(existingXml, launchIds) {
-  const managedBlock = /\s*<url>\s*<loc>https:\/\/nicheworks\.app\/tools\/construction-tools-atlas\/entries\/[^<]+<\/loc>[\s\S]*?<\/url>\s*/g;
+  const managedBlock = /\s*<url>\s*<loc>https:\/\/nicheworks\.app\/tools\/construction-tools-atlas\/entries\/[^<]*<\/loc>[\s\S]*?<\/url>\s*/g;
   const retained = String(existingXml || "").replace(managedBlock, "\n");
-  const blocks = launchIds.map((id) => `  <url>\n    <loc>${escapeHtml(canonicalEntryUrl(id))}</loc>\n    <lastmod>${ROOT_SITEMAP_LASTMOD}</lastmod>\n  </url>`).join("\n");
+  const blocks = [
+    `  <url>\n    <loc>${escapeHtml(INDEX_URL)}</loc>\n    <lastmod>2026-10-31</lastmod>\n  </url>`,
+    ...launchIds.map((id) => `  <url>\n    <loc>${escapeHtml(canonicalEntryUrl(id))}</loc>\n    <lastmod>${ROOT_SITEMAP_LASTMOD}</lastmod>\n  </url>`)
+  ].join("\n");
   if (!/<\/urlset>\s*$/.test(retained)) throw new Error("root sitemap is missing closing urlset");
   return retained.replace(/\s*<\/urlset>\s*$/, `\n${blocks}\n</urlset>\n`);
 }
 
-function writeOutput(baseDir, pages, manifest, sitemap, rootSitemap) {
+function writeOutput(baseDir, pages, indexHtml, manifest, sitemap, rootSitemap) {
   const entriesDir = path.join(baseDir, "entries");
   fs.rmSync(entriesDir, { recursive: true, force: true });
   for (const [id, html] of pages) {
@@ -429,6 +538,7 @@ function writeOutput(baseDir, pages, manifest, sitemap, rootSitemap) {
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(path.join(dir, "index.html"), html);
   }
+  fs.writeFileSync(path.join(entriesDir, "index.html"), indexHtml);
   const dataDir = path.join(baseDir, "data");
   fs.mkdirSync(dataDir, { recursive: true });
   fs.writeFileSync(path.join(dataDir, "seo-detail-pages-v2.3.json"), JSON.stringify(manifest, null, 2) + "\n");
@@ -569,6 +679,7 @@ async function main() {
     }))
   };
 
+  const indexHtml = renderLaunchIndex(entryById, launchIds);
   const sitemap = renderSitemap(fs.readFileSync(SITEMAP_PATH, "utf8"), launchIds);
   const rootSitemap = renderRootSitemap(fs.readFileSync(ROOT_SITEMAP_PATH, "utf8"), launchIds);
 
@@ -576,6 +687,11 @@ async function main() {
     const failures = [];
     for (const [id, html] of pages) {
       compareFile(html, path.join(ENTRIES_DIR, id, "index.html"), `entries/${id}/index.html`, failures);
+    }
+    compareFile(indexHtml, INDEX_PATH, "entries/index.html", failures);
+    const atlasHome = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+    if (!atlasHome.includes(`href="/tools/construction-tools-atlas/entries/"`)) {
+      failures.push("Atlas home is missing the public static entry directory link");
     }
     const actualDirs = fs.existsSync(ENTRIES_DIR)
       ? fs.readdirSync(ENTRIES_DIR, { withFileTypes: true }).filter((item) => item.isDirectory()).map((item) => item.name).sort()
@@ -596,7 +712,7 @@ async function main() {
     return;
   }
 
-  writeOutput(ROOT, pages, manifest, sitemap, rootSitemap);
+  writeOutput(ROOT, pages, indexHtml, manifest, sitemap, rootSitemap);
   console.log(`Wrote ${launchIds.length} static SEO detail pages.`);
   console.log(`CTA_SEO_DETAIL_SUMMARY=${JSON.stringify(manifest.summary)}`);
 }
