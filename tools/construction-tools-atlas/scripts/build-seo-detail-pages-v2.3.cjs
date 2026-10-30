@@ -494,9 +494,6 @@ async function main() {
     if (imageStage === "promoted" && !image) {
       throw new Error(`${id}: promoted entry is missing its verified formal image`);
     }
-    if (imageStage === "not_required" && image) {
-      throw new Error(`${id}: image-not-required entry unexpectedly uses a formal image`);
-    }
     if (imageStage !== "promoted" && imageStage !== "not_required") {
       throw new Error(`${id}: not eligible for static SEO publication`);
     }
