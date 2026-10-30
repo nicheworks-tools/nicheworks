@@ -64,6 +64,9 @@
     root.renderResults = wrappedRender;
   }
 
+  const rotationState = Object.create(null);
+  root.fastScanImageRotation = fileId => rotationState[fileId] || 0;
+
   const workflows = [
     {
       fileId: 'ocr-file-fast',
@@ -169,6 +172,10 @@
       <div class="ocr-image-preview-meta">
         <span class="ocr-image-preview-label"></span>
         <button type="button" class="ocr-image-clear">${textFor(config.lang, '画像を外す', 'Remove image')}</button>
+      </div>
+      <div class="ocr-image-rotate-controls" role="group" aria-label="Image rotation">
+        <button type="button" data-ocr-rotate="-1" data-lang-text data-ja="左へ90°回転" data-en="Rotate 90° left">左へ90°回転</button>
+        <button type="button" data-ocr-rotate="1" data-lang-text data-ja="右へ90°回転" data-en="Rotate 90° right">右へ90°回転</button>
       </div>`;
     fileRow.insertAdjacentElement('afterend', preview);
 
@@ -187,26 +194,52 @@
     const label = preview.querySelector('.ocr-image-preview-label');
     const clear = preview.querySelector('.ocr-image-clear');
     let objectUrl = null;
+    let previewVersion = 0;
 
-    function clearPreview({ clearInput = false } = {}) {
+    for (const button of preview.querySelectorAll('[data-ocr-rotate]')) {
+      button.textContent = document.documentElement.lang === 'en' ? button.dataset.en : button.dataset.ja;
+    }
+
+    function clearPreview({ clearInput = false, resetRotation = false } = {}) {
+      previewVersion += 1;
       if (objectUrl) URL.revokeObjectURL(objectUrl);
       objectUrl = null;
       preview.hidden = true;
       image.removeAttribute('src');
       label.textContent = '';
       reviewHint.hidden = true;
+      if (resetRotation) rotationState[config.fileId] = 0;
       if (clearInput) fileInput.value = '';
     }
 
-    function updatePreview() {
+    async function updatePreview() {
       clearPreview();
+      const requestId = previewVersion;
       const file = fileInput.files?.[0];
       if (!file || !file.type.startsWith('image/')) return;
-      objectUrl = URL.createObjectURL(file);
-      image.src = objectUrl;
-      const kb = Math.max(1, Math.round(file.size / 1024));
-      label.textContent = textFor(config.lang, `選択画像 · ${kb} KB`, `Selected image · ${kb} KB`);
-      preview.hidden = false;
+
+      const turns = rotationState[config.fileId] || 0;
+      try {
+        if (turns && typeof root.prepareFastScanOcrImage !== 'function') {
+          throw new Error('Image rotation is unavailable.');
+        }
+        const imageBlob = turns ? await root.prepareFastScanOcrImage(file, turns) : file;
+        if (requestId !== previewVersion) return;
+        objectUrl = URL.createObjectURL(imageBlob);
+        image.src = objectUrl;
+        const kb = Math.max(1, Math.round(file.size / 1024));
+        const angle = turns * 90;
+        label.textContent = textFor(
+          config.lang,
+          `選択画像 · ${kb} KB · 回転 ${angle}°`,
+          `Selected image · ${kb} KB · rotated ${angle}°`
+        );
+        preview.hidden = false;
+      } catch (error) {
+        if (requestId !== previewVersion) return;
+        label.textContent = textFor(config.lang, '回転プレビューに失敗しました。画像を選び直してください。', 'Could not prepare the rotated preview. Reselect the image.');
+        preview.hidden = false;
+      }
     }
 
     function updateReviewHint() {
@@ -217,9 +250,20 @@
       reviewHint.hidden = !(hasText && likelyCompleted);
     }
 
-    fileInput.addEventListener('change', updatePreview);
-    clear.addEventListener('click', () => clearPreview({ clearInput: true }));
-    reset?.addEventListener('click', () => clearPreview({ clearInput: true }));
+    fileInput.addEventListener('change', () => {
+      rotationState[config.fileId] = 0;
+      void updatePreview();
+    });
+    preview.querySelectorAll('[data-ocr-rotate]').forEach(button => {
+      button.addEventListener('click', () => {
+        if (!fileInput.files?.[0]) return;
+        const step = Number(button.dataset.ocrRotate);
+        rotationState[config.fileId] = ((rotationState[config.fileId] || 0) + step + 4) % 4;
+        void updatePreview();
+      });
+    });
+    clear.addEventListener('click', () => clearPreview({ clearInput: true, resetRotation: true }));
+    reset?.addEventListener('click', () => clearPreview({ clearInput: true, resetRotation: true }));
     textarea.addEventListener('input', updateReviewHint);
 
     const statusObserver = new MutationObserver(updateReviewHint);
