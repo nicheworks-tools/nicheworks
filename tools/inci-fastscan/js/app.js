@@ -305,7 +305,7 @@ function setupFastCheck() {
     setStatus(status, getText("ocrRunning"), "");
 
     try {
-      const text = await runOCR(file, "eng", update => updateOcrProgress(status, progress, update));
+      const text = await runOCR(file, "eng", update => updateOcrProgress(status, progress, update), { quarterTurns: typeof fastScanImageRotation === "function" ? fastScanImageRotation("ocr-file-fast") : 0 });
       const processed = postProcessOcrText(text, { langHint: "en" });
       document.getElementById("fast-input").value = processed;
       completeOcrProgress(progress);
@@ -348,7 +348,7 @@ function setupJapaneseCheck() {
     setStatus(status, getText("ocrRunningJp"), "");
 
     try {
-      const text = await runOCR(file, "jpn+eng", update => updateOcrProgress(status, progress, update));
+      const text = await runOCR(file, "jpn+eng", update => updateOcrProgress(status, progress, update), { quarterTurns: typeof fastScanImageRotation === "function" ? fastScanImageRotation("ocr-file") : 0 });
       const processed = postProcessOcrText(text, { langHint: "jp" });
       document.getElementById("jb-input").value = processed;
       completeOcrProgress(progress);
