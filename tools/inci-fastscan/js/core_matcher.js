@@ -247,6 +247,8 @@ function found(item, input) {
     match_kind: route.kind,
     matched_name: route.matchedName,
     category: item.category || "general",
-    note_short: note || undefined
+    note_short: note || undefined,
+    note_verified: Boolean(note),
+    note_sources: note ? item.note_sources.filter(source => typeof source === "string" && /^https:\/\//i.test(source.trim())) : []
   };
 }
