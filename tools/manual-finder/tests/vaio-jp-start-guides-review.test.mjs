@@ -17,20 +17,20 @@ assert.deepEqual(new Set(manifest.subscopes.flatMap(s => s.models)), new Set(man
 const html = '<html><body><table><tr><th>型番</th><th>発売日</th><th>マニュアル</th></tr>'
  + '<tr><td>VJS4R2*</td><td>2026年05月発売</td><td><a href="https://solutions.vaio.com/assets/start.pdf">Windows 11モデル</a><a href="https://support.vaio.com/manual/vjs4r2/">ユーザーマニュアル</a></td></tr>'
  + '<tr><td>VJPKR2*</td><td>2026年05月発売</td><td><a href="https://solutions.vaio.com/assets/start.pdf">Windows 11モデル</a></td></tr>'
- + '<tr><td>VJ99999*</td><td>2026年08月発売</td><td><a href="https://untrusted.example/pdf">untrusted</a></td></tr>'
+ + '<tr><td>VJS9999*</td><td>2026年08月発売</td><td><a href="https://untrusted.example/pdf">untrusted</a></td></tr>'
  + '</table><table><tr><td>VJS4R2* / VJPKR2*</td><td>安全のために</td><td><a href="https://solutions.vaio.com/safety.pdf">安全</a></td></tr></table></body></html>';
 
 const extracted = extractCandidates(html);
 assert.equal(extracted.modelToRows.get('VJS4R2').length, 1);
 assert.equal(extracted.modelToRows.get('VJPKR2').length, 1);
-assert.equal(extracted.modelToRows.get('VJ99999').length, 1);
+assert.equal(extracted.modelToRows.get('VJS9999').length, 1);
 assert.equal(extracted.modelToRows.get('VJS4R2')[0].links.length, 2);
-assert.equal(extracted.modelToRows.get('VJ99999')[0].links.length, 0, 'unofficial URL rejected');
+assert.equal(extracted.modelToRows.get('VJS9999')[0].links.length, 0, 'unofficial URL rejected');
 const result = await review({ html, pass: manifest, checkTargets: false });
 assert.equal(result.lockedPopulation, 82);
 assert.equal(result.candidates.length, 82);
 assert.equal(result.foundLockedModels, 2);
-assert.deepEqual(result.extraModels, ['VJ99999']);
+assert.deepEqual(result.extraModels, ['VJS9999']);
 assert.equal(result.publicationEligible, false);
 assert.equal(result.candidates.filter(x => x.candidateStatus === 'needs_secondary_discovery').length, 80);
 assert.equal(result.candidates.find(x => x.model === 'VJS4R2').candidateStatus, 'candidate_only_requires_positive_model_review');
