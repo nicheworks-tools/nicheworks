@@ -423,3 +423,22 @@ After Wave 19:
 - strong runtime identities: 78 / 599;
 - Wave 18 identities retained: 4 / 4;
 - raw dictionary records rewritten: no.
+
+
+## Verified note wave 20
+
+Wave 20 continues frequency-prioritized source-backed enrichment:
+
+| Canonical identity | Corpus occurrences | Reviewed runtime note basis |
+| --- | ---: | --- |
+| `glycine` | 2 | COSMILE Europe: antistatic, buffering, skin conditioning and hair conditioning. |
+| `lactic acid` | 2 | COSMILE Europe: buffering, humectant, skin conditioning and fragrance-functional roles. |
+| `peg-100 stearate` | 2 | COSMILE Europe: surfactant-cleansing. |
+| `proline` | 2 | COSMILE Europe: skin and hair conditioning. |
+
+After Wave 20:
+
+- cumulative verified-note identities: 82;
+- strong runtime identities: 82 / 599;
+- Wave 19 identities retained: 4 / 4;
+- raw dictionary records rewritten: no.

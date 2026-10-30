@@ -67,10 +67,10 @@ The original baseline intentionally counted only raw dictionary fields. That rem
 Current runtime provenance on main:
 
 - verified category overlay identities: 116
-- verified note overlay identities: 78
-- verified note identities with maintained Japanese naming: 78
-- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): 78 / 599
+- verified note overlay identities: 82
+- verified note identities with maintained Japanese naming: 82
+- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): 82 / 599
 
 Accordingly, completion readiness must report raw dictionary debt and runtime verified provenance separately. A raw evidence count of zero must not be interpreted as zero runtime provenance.
 
-The runtime provenance floors are ratcheted at 119 verified categories, 78 verified notes, and 78 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 19 adds source-backed ingredient-specific notes for Adenosine, Behentrimonium Methosulfate, Butyrospermum Parkii (Shea) Butter, and Glyceryl Stearate SE.
+The runtime provenance floors are ratcheted at 119 verified categories, 82 verified notes, and 82 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 20 adds source-backed ingredient-specific notes for Glycine, Lactic Acid, PEG-100 Stearate, and Proline.
