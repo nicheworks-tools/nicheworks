@@ -412,7 +412,7 @@ function renderLaunchIndex(entryById, launchIds) {
   });
   const heading = `建設工具・現場用語の公開詳細ページ（${items.length}件）`;
   const description = `Construction Tools Atlasで公開中の${items.length}件の工具・材料・現場用語の詳細ページを、日本語名と英語名から探せます。全項目の検索はAtlas本体をご利用ください。`;
-  const jsonLd = {
+  const jsonLd = [{
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": heading,
@@ -429,7 +429,15 @@ function renderLaunchIndex(entryById, launchIds) {
         "url": item.url
       }))
     }
-  };
+  }, {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Construction Tools Atlas",
+    "url": `${SITE_ROOT}/`,
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "inLanguage": ["ja", "en"]
+  }];
   const entryLinks = items.map((item) => `        <li><a href="${escapeHtml(item.url)}"><strong lang="ja">${escapeHtml(item.ja)}</strong><span lang="en">${escapeHtml(item.en)}</span></a></li>`).join("\n");
   return `<!doctype html>
 <html lang="ja">
@@ -441,6 +449,7 @@ function renderLaunchIndex(entryById, launchIds) {
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="${escapeHtml(INDEX_URL)}">
   <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
   <link rel="stylesheet" href="/tools/construction-tools-atlas/seo-detail-v2.3.css">
   <link rel="stylesheet" href="/tools/construction-tools-atlas/seo-index-v2.3.css">
   <meta property="og:type" content="website">
