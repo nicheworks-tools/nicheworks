@@ -7,6 +7,10 @@ on:
       - 'tools/manual-finder/scripts/vaio-jp-start-guides-review.mjs'
       - 'tools/manual-finder/scripts/vaio-jp-secondary-review.mjs'
       - 'tools/manual-finder/tests/vaio-jp-start-guides-review.test.mjs'
+      - 'tools/manual-finder/tests/vaio-jp-coverage-pass-publication.test.mjs'
+      - 'tools/manual-finder/data/manuals.coverage-pass.vaio-jp-pc-start-guide.js'
+      - 'tools/manual-finder/data/manuals.coverage-passes.js'
+      - 'tools/manual-finder/COVERAGE.md'
       - '.github/workflows/manualfinder-vaio-coverage-pass-review.yml'
   workflow_dispatch:
 
@@ -26,6 +30,7 @@ jobs:
         run: |
           node tools/manual-finder/tests/coverage-pass-pipeline.test.mjs
           node tools/manual-finder/tests/vaio-jp-start-guides-review.test.mjs
+          node tools/manual-finder/tests/vaio-jp-coverage-pass-publication.test.mjs
       - name: Run VAIO official 82-model candidate review
         run: |
           mkdir -p manualfinder-coverage-pass-artifacts
