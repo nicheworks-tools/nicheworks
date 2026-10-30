@@ -17,7 +17,7 @@ All future model-level expansion must follow `COVERAGE_PASS_WORKFLOW.md`. Script
 
 ## Current verified model-level inventory
 
-With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, and VAIO JP start-guide PC coverage-pass publications plus deployed Waves 3A / 3B / 3D / 3E, the accepted dataset contains **1,819 verified model/caliber rows**. **1,376 are outside Seiko**. The coverage-pass layer now contributes 303 reviewed rows across Sony, Panasonic, Apple, Fujifilm, and VAIO.
+With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PC, and Samsung JP Galaxy smartphone coverage-pass publications plus deployed Waves 3A / 3B / 3D / 3E, the accepted dataset contains **1,908 verified model/caliber rows**. **1,465 are outside Seiko**. The coverage-pass layer contributes 392 reviewed rows across six manufacturer scopes. Samsung adds 89 distinct manufacturer-defined marketed Galaxy models with an explicit selected carrier/product SKU for each published deep link; these are NOT 189 carrier-variant-specific rows.
 
 | Maker / dataset identity | Verified rows | Current state | Notes |
 | --- | ---: | --- | --- |
@@ -30,6 +30,7 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifil
 | Apple | 31 | expanded, scope-complete | Bounded iPhone User Guide model scope is complete and published: 31 exact models share Apple's manufacturer-defined Japanese iPhone User Guide, with exact model Manuals and Downloads pages retained separately. Apple company-wide coverage remains incomplete. |
 | Fujifilm | 56 | expanded, scope-complete | JP GFX + X-series camera-manual-index scope is complete and published: 52 direct manual destinations + 4 explicit shared official manual-index targets. FinePix and broader Fujifilm coverage remain incomplete. |
 | Panasonic | 27 | expanded, scope-complete | JP LUMIX S/G/compact camera-body sitemap scope is complete and published: 27 direct official manual/support destinations. Panasonic company-wide coverage remains incomplete. |
+| Samsung Mobile | 89 | expanded, scope-complete | Samsung Japan Galaxy smartphone manuals index: five smartphone tables A/S/Note/Fold-Flip/other = 89 models; 85 direct manufacturer model-specific manual-download sections + 4 exact manufacturer support-only + 0 held. One labelled official carrier SKU per model; carrier variants are not assumed interchangeable. Broader Samsung remains incomplete. |
 | VAIO | 82 | expanded, scope-complete | JP official start-guide index: 47 personal + 35 business PCs = 21 exact HTML manuals + 61 exact model support-only + 0 held. PDFs are listed by VAIO but returned HTTP 403 in CI and were not promoted; broader VAIO catalog remains incomplete. |
 | OKI | 77 | expanded | Printer/MFP model-level official manual destinations. |
 | RICOH | 39 | expanded | Office MFP/wide-MFP model-level official product/manual destinations. |
@@ -45,7 +46,7 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifil
 | Epson | 6 | expanded | Wave 3D first Colorio batch; exact official manual/support targets with verified consumable mappings. |
 | Canon | 6 | expanded | Wave 3E first PIXUS batch; direct or vendor-shared official online manuals with verified consumable mappings. |
 | Hisense | 2 | expanded | Exact TV function-manual targets; coverage is still very thin. |
-| **Total** | **1,819** |  |  |
+| **Total** | **1,908** |  |  |
 
 Counts above are accepted repository rows, not estimates of manufacturer catalog size.
 
@@ -74,7 +75,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 17 | NEC LAVIE | generic-only | PC/mobile queue |
 | 18 | Fujitsu FMV | generic-only | PC/mobile queue |
 | 19 | Google Pixel | generic-only | Mobile queue; verify whether stable per-device manual targets exist |
-| 20 | Samsung Mobile | generic-only | Mobile queue; verify regional/per-device target stability |
+| 20 | Samsung Mobile | **expanded — 89** | Samsung JP five smartphone tables scope-complete: 85 exact model-specific manual indexes + 4 manufacturer support-only; not Samsung-wide |
 | 21 | Huawei | generic-only | Mobile queue |
 | 22 | Xiaomi | generic-only | Mobile queue |
 | 23 | OPPO | generic-only | Mobile queue |
@@ -122,7 +123,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 65 | Bambu Lab | generic-only | P1 3D-printer queue |
 | 66 | Creality | generic-only | P1 3D-printer queue |
 
-Result after the Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, and Fujifilm GFX/X publications: **51 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
+Result after the Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, and Fujifilm GFX/X publications: **50 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
 
 ## P0 source audit and order
 
@@ -161,6 +162,10 @@ Primary official entry points used for this audit:
 
 VAIO Corporation's Japanese official start-guide download index at `https://solutions.vaio.com/2012` enumerates a bounded 82 exact PC model codes: 47 personal and 35 business. The live GitHub Actions run `41095058960` independently recaptured 82/82 from the official HTML tables with zero unexpected models, missing models, or duplicate rows. Exact HTML document-title review and secondary official model-support discovery reconciled all 82: **82 = 21 direct HTML user guides + 0 shared + 61 exact model support-only + 0 held**. The first-pass run reported 58 PDF-access exceptions: many VAIO-owned PDF endpoints returned HTTP 403 in the CI environment. These are not evidence of missing manuals; no PDF was promoted without positive verification. Three linked HTML guides showed a title for a different model (VJPKR2/VJS4R2, VJPKR1/VJS4R1 and VJBM11/VJBM12) and were conservatively left support-only rather than falsely inferred as direct or shared. Published batch: `data/manuals.coverage-pass.vaio-jp-pc-start-guide.js`. Other VAIO hardware, peripherals and product scopes remain out of scope.
 
+### Samsung JP Galaxy smartphone coverage pass
+
+The official Samsung Japan [Galaxy smartphone/tablet manuals index](https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/) exposes five complete smartphone tables: **18 A + 39 S + 8 Note + 19 Fold/Flip + 5 other = 89 official marketed model identities**, alongside a separately excluded 34-model tablet table. GitHub Actions live review on 2026-10-31 checked the official 89/89 model population, 189 manufacturer-linked carrier product candidates, and exact official model/HTML manual evidence. Initial results were 82 direct and 7 identity exceptions. Independent Samsung official carrier/support and product metadata secondary discovery reconciled **89 = 85 direct + 0 shared + 4 support_only + 0 held**. The four support-only rows are Galaxy S20 5G, Galaxy Note3, Galaxy Note20 Ultra 5G, and Galaxy Z Fold2 5G Thom Browne Edition: the manufacturer index and secondary SKU mapping confirm model identity but the chosen support destination does not visibly present the same full marketed title; no unsupported manual equivalence was promoted. Samsung A21 シンプル required an explicit source conflict review (manual index SCG49 vs Samsung au software list SCV49), resolved through a manufacturer manual explicitly marked シンプル. The published single support/manual link is for the **displayed exact SKU**; other carrier versions may have different manuals. Tablets and all other Samsung lines remain outside this pass.
+
 ## Wave rotation contract
 
 Current deployed state:
@@ -174,6 +179,7 @@ Current deployed state:
 7. **Apple coverage-pass pilot:** iPhone 11→17e/Air/SE2/SE3 scope is complete and published from `coverage-passes/apple/jp-iphone-ios26-guide-models.json`: **31 = 0 direct + 31 shared + 0 support-only + 0 held**. The public compiled batch is `data/manuals.coverage-pass.apple-jp-iphone-ios26-guide-models.js`. Broader Apple categories remain separate future coverage passes.
 8. **Fujifilm coverage-pass pilot:** GFX + X-series camera manual-index scope is complete and published from `coverage-passes/fujifilm/jp-gfx-x-camera-manual-index.json`: **56 = 52 direct + 4 shared + 0 support-only + 0 held**. The public compiled batch is `data/manuals.coverage-pass.fujifilm-jp-gfx-x-camera-manual-index.js`. FinePix and broader Fujifilm categories remain separate future coverage passes.
 9. **VAIO JP start-guide pass:** 82 official PC models are complete and published from `coverage-passes/vaio/jp-pc-start-guide-manual-index.json`: 21 exact HTML manuals + 61 exact model support pages + 0 held. This is not all VAIO models.
+10. **Samsung JP Galaxy smartphone index pass:** 89 official marketed models complete and published, 85 direct manufacturer-specific manual indexes + 4 exact support only + 0 held; one labelled manufacturer SKU per marketed model, no inferred cross-carrier manual mapping.
 10. Re-evaluate counts and gaps before any second model-coverage wave for Nikon/Brother/Epson/Canon.
 
 Affiliate expansion has a separate priority queue and may evaluate already-deep office-printer datasets for verified toner/drum mappings without claiming new model coverage.
