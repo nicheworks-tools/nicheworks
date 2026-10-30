@@ -8,6 +8,11 @@
       batch: '複数画像を一括OCR（最大10枚）',
       run: '順番にOCRを実行',
       history: '現在のOCR結果を履歴に保存',
+      collection: '旧字体コレクション',
+      oldGlyph: '保存する旧字体（1文字）',
+      modernGlyph: '現代表記候補（任意）',
+      collectionSave: '文字をコレクションへ保存',
+      collectionEmpty: '保存された文字はありません。',
       saved: '保存済みのOCR履歴',
       batchSave: '一括OCR結果を履歴に保存',
       restore: 'この結果を通常のOCR編集欄で開く',
@@ -30,6 +35,11 @@
       batch: 'Batch OCR images (up to 10)',
       run: 'Recognize images sequentially',
       history: 'Save current OCR text to history',
+      collection: 'Old-kanji collection',
+      oldGlyph: 'Old-form character (one glyph)',
+      modernGlyph: 'Modern candidate (optional)',
+      collectionSave: 'Save character to collection',
+      collectionEmpty: 'No saved characters yet.',
       saved: 'Saved OCR history',
       batchSave: 'Save batch results to history',
       restore: 'Open in the regular OCR editor',
@@ -70,7 +80,8 @@
 
     var hasBatch = currentGate('okj.ocr.batch').active;
     var hasHistory = currentGate('okj.history').active;
-    if (!hasBatch && !hasHistory) return;
+    var hasCollection = currentGate('okj.collections').active;
+    if (!hasBatch && !hasHistory && !hasCollection) return;
     var anchor = document.getElementById('copy-actions');
     if (!anchor || document.getElementById('okj-pro-ocr-phase1')) return;
     var panel = el('section', 'okj-pro-ocr-phase1');
@@ -81,7 +92,7 @@
     panel.append(heading, notice);
     var status = el('p', 'okj-pro-status', '');
     status.setAttribute('aria-live', 'polite');
-    var batchInput, batchButton, batchSave, batchHeading;
+    var batchInput, batchButton, batchSave, batchHeading, collectionHeading, collectionSave, collectionOld, collectionModern;
     var batchResults = [];
 
     function verifiedHistoryGate() {
@@ -130,6 +141,7 @@
           var authorized = await recheck('okj.ocr.batch');
           if (!authorized.active) { inform(message('unavailable')); return; }
           var files = Array.from(batchInput.files || []);
+          if (!window.Tesseract || typeof window.Tesseract.recognize !== 'function') { inform(message('ocr_unavailable')); return; }
           var result = await engine.runBatch(files, authorized,
             function (file, lang, options) { return window.Tesseract.recognize(file, lang, options); },
             function (progress) {
@@ -191,6 +203,48 @@
       listing.id = 'okj-pro-history-list';
       panel.append(listing);
     }
+    if (hasCollection) {
+      collectionHeading = el('h3', '', message('collection'));
+      collectionOld = el('input');
+      collectionOld.type = 'text';
+      collectionOld.maxLength = 8;
+      collectionOld.placeholder = message('oldGlyph');
+      collectionOld.setAttribute('aria-label', message('oldGlyph'));
+      collectionModern = el('input');
+      collectionModern.type = 'text';
+      collectionModern.placeholder = message('modernGlyph');
+      collectionModern.setAttribute('aria-label', message('modernGlyph'));
+      collectionSave = el('button', '', message('collectionSave'));
+      collectionSave.type = 'button';
+      var collectionList = el('div', 'okj-pro-collection-list');
+      function renderCollectionList() {
+        collectionList.textContent = '';
+        var read = history.listCollectionRecords(currentGate('okj.collections'));
+        var records = read.ok ? read.records : [];
+        if (!records.length) { collectionList.append(el('p', '', message('collectionEmpty'))); return; }
+        records.forEach(function (record) {
+          collectionList.append(el('div', 'okj-pro-record', record.old + ' → ' + record.modern.join(', ')));
+        });
+      }
+      collectionSave.addEventListener('click', async function () {
+        var verified = await recheck('okj.collections');
+        if (!verified.active) { inform(message('unavailable')); return; }
+        var old = collectionOld.value.trim();
+        if (Array.from(old).length !== 1) { inform(message('oldGlyph')); return; }
+        var modern = collectionModern.value.trim();
+        var result = history.saveCollectionRecord({
+          old: old,
+          modern: modern ? [modern] : [],
+          source: 'ocr'
+        }, verified);
+        if (result.ok) {
+          collectionOld.value = ''; collectionModern.value = '';
+          inform(message('savedOk')); renderCollectionList();
+        } else { inform(message('error')); }
+      });
+      panel.append(collectionHeading, collectionOld, collectionModern, collectionSave, collectionList);
+      renderCollectionList();
+    }
     panel.append(status);
     anchor.insertAdjacentElement('afterend', panel);
     if (hasHistory) renderHistoryList();
@@ -200,6 +254,14 @@
       var save = document.getElementById('okj-pro-save-current');
       if (save) save.textContent = message('history');
       if (batchSave) batchSave.textContent = message('batchSave');
+      if (collectionHeading) {
+        collectionHeading.textContent = message('collection');
+        collectionOld.placeholder = message('oldGlyph');
+        collectionOld.setAttribute('aria-label', message('oldGlyph'));
+        collectionModern.placeholder = message('modernGlyph');
+        collectionModern.setAttribute('aria-label', message('modernGlyph'));
+        collectionSave.textContent = message('collectionSave');
+      }
       panel.querySelectorAll('.okj-pro-record button').forEach(function (b) { b.textContent = message('restore'); });
     }
     ['lang-ja','lang-en'].forEach(function (id) {

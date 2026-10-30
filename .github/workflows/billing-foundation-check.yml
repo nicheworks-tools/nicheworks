@@ -5,6 +5,7 @@ on:
     paths:
       - 'functions/api/billing/**'
       - 'assets/nw-pro-entitlement.js'
+      - 'assets/okj-history-collection.js'
       - 'assets/okj-ocr-pro-*.js'
       - 'assets/okj-ocr-pro-phase1.css'
       - 'tools/old-kanji-ocr-scanner/index.html'
@@ -28,6 +29,7 @@ on:
     paths:
       - 'functions/api/billing/**'
       - 'assets/nw-pro-entitlement.js'
+      - 'assets/okj-history-collection.js'
       - 'assets/okj-ocr-pro-*.js'
       - 'assets/okj-ocr-pro-phase1.css'
       - 'tools/old-kanji-ocr-scanner/index.html'
@@ -66,6 +68,7 @@ jobs:
           node --check assets/nw-pro-entitlement.js
           node --check assets/okj-ocr-pro-engine.js
           node --check assets/okj-ocr-pro-ui.js
+          node --check assets/okj-history-collection.js
       - name: Check billing contract
         run: node scripts/check-billing-foundation.mjs
       - name: Check Old Kanji product contract

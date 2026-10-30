@@ -37,4 +37,27 @@ assert.ok(ui.includes("recheck('okj.ocr.batch')"));
 assert.ok(ui.includes("recheck('okj.history')"));
 assert.ok(ui.includes("window.Tesseract.recognize"));
 assert.doesNotMatch(ui,/gtag\(|affiliate_outbound|api\/billing\/create-checkout-session/);
-console.log('Old Kanji OCR Pro engine, unauthorized fallback, OCR and history wiring: PASS');
+
+const historySrc=fs.readFileSync('assets/okj-history-collection.js','utf8');
+const saved=new Map();
+const storage={
+  getItem(key){return saved.get(key)||null;},
+  setItem(key,value){saved.set(key,value);},
+  removeItem(key){saved.delete(key);}
+};
+const localContext=vm.createContext({window:{localStorage:storage}});
+vm.runInContext(historySrc,localContext);
+const store=localContext.window.OldKanjiHistoryCollection;
+const historyGate={active:true,productId:'okj.toolkit_pro',featureId:'okj.history'};
+const collectionGate={active:true,productId:'okj.toolkit_pro',featureId:'okj.collections'};
+assert.equal(store.saveHistoryRecord({ocrText:'舊　學'}, {active:true,productId:'nicheworks.pro',featureId:'okj.history'}).error,'pro_required');
+assert.equal(store.saveHistoryRecord({ocrText:'舊　學'},collectionGate).error,'pro_required');
+assert.equal(store.saveHistoryRecord({ocrText:'舊　學'},historyGate).ok,true);
+assert.equal(store.listHistoryRecords(historyGate).records[0].ocrText,'舊　學');
+assert.equal(store.listHistoryRecords(collectionGate).error,'pro_required');
+assert.equal(store.saveCollectionRecord({old:'舊',modern:['旧'],source:'ocr'},historyGate).error,'pro_required');
+assert.equal(store.saveCollectionRecord({old:'舊',modern:['旧'],source:'ocr'},collectionGate).ok,true);
+assert.equal(store.listCollectionRecords(collectionGate).records[0].old,'舊');
+assert.ok(ui.includes("recheck('okj.collections')"));
+
+console.log('Old Kanji Pro OCR batch, feature-specific history and collection: PASS');
