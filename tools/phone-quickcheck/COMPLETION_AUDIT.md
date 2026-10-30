@@ -152,6 +152,18 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 9 — 2026-10-31
+
+Added **motorola edge 70 fusion**, released for Japan on **2026-10-23**.
+
+Maintained dataset: **204 → 205**. Manufacturers: **9**. Foldables: **36**.
+
+Canonical facts were verified against Motorola Japan's [official specification table](https://store.motorola.co.jp/item/EDGE70FUSION.html): 162.76 × 75.60 × 7.99 mm, approximately 193 g, 6.78-inch display, 7,000 mAh, 68W TurboPower, IP68/IP69, USB-C, and explicitly non-included AC adapter/USB cable. The product page's promotional summary has a conflicting 7.2 mm/177 g line; the detailed Japanese specification table and Motorola Japan's 2026-10-23 launch release both support 7.99 mm/193 g, so the canonical record uses the specification-table values.
+
+Wireless charging and PPS remain unknown (not asserted as unsupported) because this evidence does not establish their exact device capability. The adapter guidance remains null rather than treating a supported handset charge rate as a charger recommendation.
+
+`data/phones.json` updatedAt was advanced from the stale 2026-09-18 value to 2026-10-31 to reflect this maintained update.
+
 ## Post-v1 maintenance Wave 6 — 2026-09-19
 
 Added three Japan-market 2026 records:
