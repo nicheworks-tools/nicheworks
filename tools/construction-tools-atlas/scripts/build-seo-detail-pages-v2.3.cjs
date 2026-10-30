@@ -461,6 +461,10 @@ async function main() {
   if (contentQuality?.summary?.runtime_fallback_dependent !== 0) {
     throw new Error("static SEO publication requires zero runtime fallback-dependent entries");
   }
+  if (contentQuality?.summary?.fallback_independent_core !== runtime.entries.length ||
+      contentQuality?.summary?.missing_core_bilingual_content !== 0) {
+    throw new Error("static SEO publication requires fully complete bilingual core content");
+  }
 
   const entryById = new Map(runtime.entries.map((entry) => [text(entry?.id), entry]));
   const offerMap = buildOfferMap(affiliate, runtime.resolveCanonicalId);
@@ -468,18 +472,69 @@ async function main() {
   const launchIds = launchCohort(imageInventory, offerMap);
   const launchSet = new Set(launchIds);
 
+  const imageStageById = new Map();
+  for (const row of imageInventory?.lifecycle?.rows || []) {
+    const id = text(row?.id);
+    if (!id) continue;
+    if (imageStageById.has(id)) throw new Error(`${id}: duplicate public image inventory ID`);
+    imageStageById.set(id, row.stage);
+  }
+
   const pages = new Map();
+  const titles = new Set();
+  const canonicalUrls = new Set();
   for (const id of launchIds) {
     const entry = entryById.get(id);
     if (!entry) throw new Error(`${id}: launch cohort entry missing from runtime corpus`);
-    pages.set(id, renderPage({
+    if (runtime.resolveCanonicalId(id) !== id) {
+      throw new Error(`${id}: redirect source must not receive a static canonical page`);
+    }
+    const imageStage = imageStageById.get(id);
+    const image = imageMap.get(id) || null;
+    if (imageStage === "promoted" && !image) {
+      throw new Error(`${id}: promoted entry is missing its verified formal image`);
+    }
+    if (imageStage !== "promoted" && imageStage !== "not_required") {
+      throw new Error(`${id}: not eligible for static SEO publication`);
+    }
+    for (const field of ["term", "description", "detail"]) {
+      const bilingual = pair(entry, field);
+      if (!bilingual.ja || !bilingual.en) {
+        throw new Error(`${id}: bilingual ${field} is incomplete`);
+      }
+    }
+    for (const field of ["bullets", "examples"]) {
+      const bilingual = arrayPair(entry, field);
+      if (!bilingual.ja.length || !bilingual.en.length) {
+        throw new Error(`${id}: bilingual ${field} is incomplete`);
+      }
+    }
+    const offer = offerMap.get(id);
+    if (!offer?.amazon_url) throw new Error(`${id}: active maintained Amazon mapping is missing`);
+    let destination;
+    try { destination = new URL(offer.amazon_url); }
+    catch { throw new Error(`${id}: invalid maintained Amazon destination`); }
+    if (destination.protocol !== "https:" ||
+        !["amazon.co.jp", "www.amazon.co.jp"].includes(destination.hostname) ||
+        destination.searchParams.get("tag") !== "nicheworks09-22") {
+      throw new Error(`${id}: Amazon destination violates provider/tracking contract`);
+    }
+
+    const html = renderPage({
       entry,
-      image: imageMap.get(id) || null,
-      offer: offerMap.get(id) || null,
+      image,
+      offer,
       entryById,
       launchSet,
       resolveCanonicalId: runtime.resolveCanonicalId
-    }));
+    });
+    const title = html.split("<title>")[1]?.split("</title>")[0];
+    const canonical = canonicalEntryUrl(id);
+    if (!title || titles.has(title)) throw new Error(`${id}: missing or duplicated SEO title`);
+    if (canonicalUrls.has(canonical)) throw new Error(`${id}: duplicated canonical URL`);
+    titles.add(title);
+    canonicalUrls.add(canonical);
+    pages.set(id, html);
   }
 
   const manifest = {
