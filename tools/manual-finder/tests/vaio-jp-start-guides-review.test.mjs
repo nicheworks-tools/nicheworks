@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { extractCandidates, review } from '../scripts/vaio-jp-start-guides-review.mjs';
 import { validateCoveragePass } from '../scripts/coverage-pass-lib.mjs';
+import { verifyHtmlIdentity, secondaryReview } from '../scripts/vaio-jp-secondary-review.mjs';
 
 const manifest = JSON.parse(fs.readFileSync(new URL('../coverage-passes/vaio/jp-pc-start-guide-manual-index.json', import.meta.url), 'utf8'));
 const validation = validateCoveragePass(manifest);
@@ -36,3 +37,17 @@ assert.equal(result.candidates.filter(x => x.candidateStatus === 'needs_secondar
 assert.equal(result.candidates.find(x => x.model === 'VJS4R2').candidateStatus, 'candidate_only_requires_positive_model_review');
 assert.equal(result.candidates.find(x => x.model === 'VJS4R1').reason, 'missing_from_live_official_index');
 console.log('VAIO official start-guide candidate runner and silent-drop protections passed.');
+
+const validManualHtml = '<html><head><title>ユーザーマニュアル VJS4R2 | VAIOサポート</title></head><body><h1>VJS4R2 ユーザーマニュアル</h1></body></html>';
+assert.equal(verifyHtmlIdentity({html:validManualHtml, model:'VJS4R2', kind:'manual'}).accepted, true);
+assert.equal(verifyHtmlIdentity({html:validManualHtml, model:'VJS4R1', kind:'manual'}).accepted, false);
+assert.equal(verifyHtmlIdentity({html:'<title>製品別サポート</title><body>VJS4R2 ナビ</body>', model:'VJS4R2', kind:'support'}).accepted, false, 'global navigation not proof');
+const completedFixture = {lockedPopulation:82,candidates:manifest.universe.models.map(model=>({model,candidateStatus:'candidate_only_requires_positive_model_review',links:model==='VJS4R2'?[{candidateKind:'html_manual_candidate',url:'https://support.vaio.com/products/VJS4R2/userguide/'}]:[]}))};
+const reviewed = await secondaryReview(manifest,completedFixture,async(url,model,kind)=>({url,accepted:kind==='support'||model==='VJS4R2'}));
+assert.equal(reviewed.lockedPopulation,82);
+assert.equal(reviewed.records.length,82);
+assert.equal(reviewed.counts.direct,1);
+assert.equal(reviewed.counts.support_only,81);
+assert.equal(reviewed.publicationEligible,false);
+assert.deepEqual(reviewed.records.find(x=>x.model==='VJS4R2').attemptedDiscovery,['official_start_guide_index','official_exact_model_product_support','official_linked_html_user_guide']);
+console.log('VAIO secondary exact-title checks and full-population evidence review passed.');
