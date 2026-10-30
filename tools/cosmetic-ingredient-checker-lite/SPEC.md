@@ -59,6 +59,8 @@ A row may be counted and labeled as `役割・説明あり / Role and explanatio
 - a supported bilingual role label, and
 - a non-empty JP and EN role explanation for that role.
 
+Lite and FastScan use identical bilingual role labels and descriptions for the supported `buffer`, `conditioning`, `skin conditioning`, `hair conditioning`, and `plant extract` categories. These remain role-level explanations, not ingredient-specific notes. `general` must remain incomplete. CI enforces this parity.
+
 Dictionary recognition by itself is not enough to qualify as a complete public result. A dictionary record with missing or unsupported role/explanation metadata is presented as `情報不足 / Information incomplete` rather than receiving a fabricated role description.
 
 `note_short` remains a more specific data-layer note where available. Missing `note_short` must not be disguised as a verified ingredient-specific note. The public Japanese explanation may be a clearly role-level explanation; the UI labels that column `役割の説明` rather than implying that every sentence is an ingredient-specific monograph.
