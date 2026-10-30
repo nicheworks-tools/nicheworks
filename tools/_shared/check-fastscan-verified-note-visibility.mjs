@@ -10,32 +10,32 @@ const sandbox = {};
 vm.runInNewContext(matcher, sandbox, { filename: 'core_matcher.js' });
 
 const verifiedItem = {
-  en: 'Glycerin',
-  jp: ['グリセリン'],
-  category: 'humectant',
+  en: '1,2-Hexanediol',
+  jp: ['1,2-ヘキサンジオール'],
+  category: 'solvent',
   note_short: 'Verified functional note with a reviewed source.',
   note_verified: true,
-  note_sources: ['https://cosmileeurope.eu/inci/detail/6082/glycerin/']
+  note_sources: ['https://cosmileeurope.eu/inci/detail/5/1-2-hexanediol/']
 };
-const result = sandbox.found(verifiedItem, 'Glycerin');
+const result = sandbox.found(verifiedItem, '1,2-Hexanediol');
 assert.equal(result.found, true);
 assert.equal(result.note_verified, true);
 assert.equal(result.note_short, verifiedItem.note_short);
 assert.equal(result.note_sources[0], verifiedItem.note_sources[0]);
 
-const unverified = sandbox.found({ ...verifiedItem, note_verified: false }, 'Glycerin');
+const unverified = sandbox.found({ ...verifiedItem, note_verified: false }, '1,2-Hexanediol');
 assert.equal(unverified.note_short, undefined, 'unverified legacy notes must never be exposed');
 assert.equal(unverified.note_verified, false);
 assert.equal(unverified.note_sources.length, 0);
-const noEvidence = sandbox.found({ ...verifiedItem, note_sources: [] }, 'Glycerin');
+const noEvidence = sandbox.found({ ...verifiedItem, note_sources: [] }, '1,2-Hexanediol');
 assert.equal(noEvidence.note_short, undefined, 'missing source URL must fail closed');
 
 const snippetStart = enhancement.indexOf('  function bilingualRoleEntry(');
 const snippetEnd = enhancement.indexOf('  function syncIncompleteResultCopy(', snippetStart);
 assert.ok(snippetStart > 0 && snippetEnd > snippetStart);
 const env = {
-  ROLE_LABELS: { humectant: { ja: '保湿', en: 'Humectant' } },
-  ROLE_DESCRIPTIONS: { humectant: { ja: '保湿目的で使用', en: 'Helps retain moisture.' } }
+  ROLE_LABELS: { solvent: { ja: '溶剤', en: 'Solvent' } },
+  ROLE_DESCRIPTIONS: { solvent: { ja: '溶剤として使用', en: 'Used as a solvent.' } }
 };
 vm.runInNewContext(enhancement.slice(snippetStart, snippetEnd), env);
 const visible = env.normalizePublicResults([result])[0];
