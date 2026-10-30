@@ -40,6 +40,7 @@ on:
       - 'tools/_shared/check-cosmetics-canonical-equivalents.mjs'
       - 'tools/_shared/check-cosmetics-jp-label-variants.mjs'
       - 'tools/_shared/check-fastscan-result-contract.mjs'
+      - 'tools/_shared/check-fastscan-verified-note-visibility.mjs'
       - 'tools/_shared/check-fastscan-ocr-confusion.mjs'
       - 'tools/_shared/check-fastscan-ocr-line-repair.mjs'
       - 'tools/_shared/check-fastscan-ocr-robustness.mjs'
@@ -200,6 +201,7 @@ jobs:
           node --check tools/inci-fastscan/js/core_analyze.js
           node --check tools/inci-fastscan/js/core_ocr_post.js
           node --check tools/inci-fastscan/js/web_ui.js
+          node --check tools/_shared/check-fastscan-verified-note-visibility.mjs
           node --check tools/inci-fastscan/js/web_ocr.js
           node --check tools/inci-fastscan/js/image_preprocess.js
           node --check tools/inci-fastscan/js/strings.js
@@ -208,6 +210,8 @@ jobs:
         run: node tools/_shared/check-cosmetics-role-parity.mjs
       - name: FastScan detailed result contract
         run: node tools/_shared/check-fastscan-result-contract.mjs
+      - name: FastScan verified-only note visibility
+        run: node tools/_shared/check-fastscan-verified-note-visibility.mjs
       - name: FastScan OCR confusion regression
         run: node tools/_shared/check-fastscan-ocr-confusion.mjs
       - name: FastScan OCR line repair regression
