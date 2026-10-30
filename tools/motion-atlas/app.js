@@ -8,7 +8,7 @@
   const $ = (s) => document.querySelector(s);
   const els = { search:$("#motion-search"), cat:$("#category-filter"), type:$("#type-filter"), trigger:$("#trigger-filter"), intensity:$("#intensity-filter"), speedFilter:$("#speed-filter"), mobile:$("#mobile-filter"), a11y:$("#a11y-filter"), count:$("#result-count"), list:$("#motion-list"), detail:$("#motion-detail"), zero:$("#zero-state"), suggestions:$("#quick-suggestions"), reducedToggle:$("#reduced-toggle"), reducedNote:$("#reduced-note"), favList:$("#favorites-list"), recentList:$("#recent-list"), tray:$("#compare-tray"), table:$("#compare-table"), compareTitle:$("[data-compare-title]"), proOutput:$("#pro-output"), proLock:$("#pro-lock-message") };
   const proText = { en: { limit:"Free compare is limited to 2 motions. Unlock Pro to compare up to 4.", locked:"Preview mode: Pro output samples are visible. Unlock Pro to copy and export these outputs.", buy:"Unlock NicheWorks Pro — $2.99", compareTitle:"Compare up to", markdown:"Motion Atlas handoff", json:"Motion Atlas JSON export" }, ja: { limit:"無料版の比較は2件までです。Proを有効化すると最大4件まで比較できます。", locked:"Previewモード: Pro出力サンプルを表示しています。コピーや書き出しにはProの有効化が必要です。", buy:"NicheWorks Proを購入 — $2.99", compareTitle:"比較（最大", markdown:"Motion Atlas ハンドオフ", json:"Motion Atlas JSON書き出し" } }[lang];
-  const paymentLink = "https://buy.stripe.com/14A6oJ3UZ1M1eWhbIHcV209";
+  // The legacy purchase flow is retired: Motion Atlas features remain free.
   let proActive = document.documentElement.dataset.proActive === "true" || document.body.dataset.proActive === "true";
   let motions=[], filtered=[], selected=null, speed=1;
   let favorites=readLS("motionAtlasFavorites", []), recent=readLS("motionAtlasRecent", []), compare=readLS("motionAtlasCompare", []);
@@ -38,8 +38,66 @@
   function renderMemory(){ renderChipList(els.favList,favorites,words.noFav); renderChipList(els.recentList,recent,words.noRecent); }
   function renderChipList(node,slugs,empty){ if(!node)return; node.replaceChildren(); if(!slugs.length){node.textContent=empty;return;} slugs.forEach((slug)=>{ const m=motions.find((x)=>x.slug===slug); if(!m)return; const b=btn(m.name_en); b.addEventListener("click",()=>selectMotion(slug)); node.append(b); }); }
   function toggleFavorite(slug){ favorites=favorites.includes(slug)?favorites.filter((x)=>x!==slug):[...favorites.slice(-9),slug]; saveLS("motionAtlasFavorites",favorites); renderList(); }
-  function demo(m,size){ const box=el("div","",`motion-demo ${size}`); box.dataset.demo=m.demo_type; box.setAttribute("aria-label",`${m.name_en} demo`); const shape=el("span",m.demo_type==="typewriter"?"Motion":"","demo-shape"); box.append(shape); if(reduced&&["shake","error-shake","wiggle","pulse","spinner","skeleton"].includes(m.demo_type))box.dataset.reduced="true"; return box; }
-  function replay(scope){ scope.querySelectorAll(".motion-demo").forEach((d)=>{ d.classList.remove("is-replaying"); void d.offsetWidth; requestAnimationFrame(()=>d.classList.add("is-replaying")); }); }
+  function demo(m,size){
+    const box=el("div","","motion-demo "+size);
+    box.dataset.demo=m.demo_type;
+    box.setAttribute("aria-label",m.name_en+" demo");
+    const shape=el("span",m.demo_type==="typewriter"?"Motion":m.demo_type==="count-up"?"259":"","demo-shape");
+    if(m.demo_type==="stagger-reveal"){
+      for(let i=0;i<3;i++)shape.append(el("span","","demo-stagger-step"));
+    }else if(m.demo_type==="checkmark-draw"){
+      const ns="http://www.w3.org/2000/svg";
+      const svg=document.createElementNS(ns,"svg");
+      svg.setAttribute("viewBox","0 0 64 64");
+      svg.setAttribute("aria-hidden","true");
+      const path=document.createElementNS(ns,"path");
+      path.setAttribute("d","M13 32 L27 45 L52 18");
+      path.setAttribute("fill","none");
+      path.setAttribute("stroke","currentColor");
+      path.setAttribute("stroke-width","6");
+      path.setAttribute("stroke-linecap","round");
+      path.setAttribute("stroke-linejoin","round");
+      svg.append(path);
+      shape.append(svg);
+    }else if(m.demo_type==="count-up"){
+      box.dataset.target=String(Number.isFinite(Number(m.demo_config?.target_value))?m.demo_config.target_value:259);
+    }
+    box.append(shape);
+    if(reduced&&["shake","error-shake","wiggle","pulse","spinner","skeleton","stagger-reveal","checkmark-draw"].includes(m.demo_type))box.dataset.reduced="true";
+    return box;
+  }
+  const countFrames=new WeakMap();
+  function replay(scope){
+    scope.querySelectorAll(".motion-demo").forEach((box)=>{
+      box.classList.remove("is-replaying");
+      void box.offsetWidth;
+      requestAnimationFrame(()=>box.classList.add("is-replaying"));
+      if(box.dataset.demo!=="count-up")return;
+      const text=box.querySelector(".demo-shape");
+      const target=Number(box.dataset.target||259);
+      const old=countFrames.get(box);
+      if(old)cancelAnimationFrame(old);
+      if(reduced){text.textContent=String(target);return;}
+      text.textContent="0";
+      let start=null,pausedAt=null;
+      const duration=900/speed;
+      const tick=(now)=>{
+        if(!box.isConnected)return;
+        if(start===null)start=now;
+        if(box.closest("[data-paused]")){
+          if(pausedAt===null)pausedAt=now;
+          countFrames.set(box,requestAnimationFrame(tick));
+          return;
+        }
+        if(pausedAt!==null){start+=now-pausedAt;pausedAt=null;}
+        const ratio=Math.min(1,(now-start)/duration);
+        text.textContent=String(Math.round(target*(1-Math.pow(1-ratio,3))));
+        if(ratio<1)countFrames.set(box,requestAnimationFrame(tick));
+        else countFrames.delete(box);
+      };
+      countFrames.set(box,requestAnimationFrame(tick));
+    });
+  }
   function currentMotion(){ return selected || motions[0] || {}; }
   function selectedName(m=currentMotion()){ return `${m.name_en || "Selected motion"} / ${m.name_ja || ""}`.trim(); }
   function lines(title, values){ return [`## ${title}`,...values.map((v)=>`- ${v}`)].join("\n"); }
@@ -51,13 +109,32 @@
   function getSelectedGithubIssue(){ const m=currentMotion(); return [`# Add ${selectedName(m)} motion`, "## Background", pick(m,"summary"), "## Implementation requirements", `- Trigger: ${m.trigger}`, `- Motion type: ${arr(m.motion_type).join(", ")}`, `- Duration/easing: ${m.demo_config?.duration_ms || 220}ms / ${m.demo_config?.easing || "ease-out"}`, "## Accessibility requirements", `- Reduced motion fallback: ${pick(m,"reduced_motion_fallback")}`, "- Avoid shake, pulse, bounce, or loop effects where they are not necessary.", "## Acceptance criteria", "- The interaction communicates state clearly.", "- Reduced motion is tested.", "## Test checklist", "- Default motion", "- Reduced motion", "- Mobile", "- Keyboard/focus"].join("\n"); }
   function getReducedChecklist(){ return ["# Reduced motion checklist", "- prefers-reduced-motion is respected.", "- Transform motion is removed or replaced with opacity-only feedback.", "- Loops stop unless they communicate active loading.", "- Shake / pulse / bounce have static or opacity alternatives.", "- Autoplay is suppressed where possible.", "- Replay remains possible when useful.", "- Pause remains possible for repeated motion.", "- Focus position and visibility are not harmed."].join("\n"); }
   function getCompareMarkdown(){ const items=compare.map((slug)=>motions.find((m)=>m.slug===slug)).filter(Boolean); const names=items.map((m)=>selectedName(m)); const recommended=items[0] || currentMotion(); return [`# Motion compare handoff`, `Compared motions: ${names.join(", ") || selectedName(recommended)}`, `Recommendation: ${selectedName(recommended)}`, `Reason: ${pick(recommended,"practical_intent") || pick(recommended,"summary")}`, `Rejected alternatives: ${items.slice(1).map((m)=>`${m.name_en} (${arr(m[`not_for_${lang}`]).join(" / ")})`).join("; ") || "None selected"}`, `Reduced motion fallback: ${pick(recommended,"reduced_motion_fallback")}`, `Implementation note: ${pick(recommended,"implementation_notes")}`, "## Codex handoff", getSelectedCodexTask()].join("\n\n"); }
-  function getSelectedJson(){ const m=currentMotion(); return JSON.stringify({ tool:"motion-atlas", entitlement:"nicheworks_pro", language:lang, selected:{ slug:m.slug, name_en:m.name_en, name_ja:m.name_ja, category:m.category, motion_type:arr(m.motion_type), trigger:m.trigger, intensity:m.intensity, mobile_fit:m.mobile_fit, a11y_load:m.a11y_load, reduced_motion_fallback:pick(m,"reduced_motion_fallback"), basic_prompt:pick(m,"short_ai_prompt"), css_hint:m.code_hint_css }, compare:compare.map((slug)=>motions.find((x)=>x.slug===slug)).filter(Boolean).map((x)=>({ slug:x.slug, name_en:x.name_en, name_ja:x.name_ja, trigger:x.trigger, motion_type:arr(x.motion_type), reduced_motion_fallback:pick(x,"reduced_motion_fallback") })), exports:{ decision_memo:getSelectedHandoff(), compare_handoff:getCompareMarkdown(), codex_task:getSelectedCodexTask(), github_issue:getSelectedGithubIssue(), reduced_motion_checklist:getReducedChecklist() } }, null, 2); }
+  function getSelectedJson(){ const m=currentMotion(); return JSON.stringify({ tool:"motion-atlas", entitlement:"free", language:lang, selected:{ slug:m.slug, name_en:m.name_en, name_ja:m.name_ja, category:m.category, motion_type:arr(m.motion_type), trigger:m.trigger, intensity:m.intensity, mobile_fit:m.mobile_fit, a11y_load:m.a11y_load, reduced_motion_fallback:pick(m,"reduced_motion_fallback"), basic_prompt:pick(m,"short_ai_prompt"), css_hint:m.code_hint_css }, compare:compare.map((slug)=>motions.find((x)=>x.slug===slug)).filter(Boolean).map((x)=>({ slug:x.slug, name_en:x.name_en, name_ja:x.name_ja, trigger:x.trigger, motion_type:arr(x.motion_type), reduced_motion_fallback:pick(x,"reduced_motion_fallback") })), exports:{ decision_memo:getSelectedHandoff(), compare_handoff:getCompareMarkdown(), codex_task:getSelectedCodexTask(), github_issue:getSelectedGithubIssue(), reduced_motion_checklist:getReducedChecklist() } }, null, 2); }
   function getMarkdownExport(){ return [getSelectedHandoff(), getCompareMarkdown(), getSelectedCodexTask(), getSelectedGithubIssue(), getReducedChecklist()].join("\n\n---\n\n"); }
   function exposeApi(){ window.NWMotionAtlas = { getCompareMarkdown, getSelectedHandoff, getSelectedJson, getSelectedCodexTask, getSelectedGithubIssue, getFramerPrompt, getCssPrompt, getReactTailwindPrompt }; }
   function updateProState(active){ proActive=Boolean(active || document.documentElement.dataset.proActive === "true"); if(!proActive && compare.length>2){ compare=compare.slice(0,2); saveLS("motionAtlasCompare",compare); } renderCompare(); }
   function showLockedPro(){ if(els.proLock){ els.proLock.hidden=false; els.proLock.textContent=proText.locked; } toast(proText.locked); document.querySelector("[data-pro-preview]")?.scrollIntoView({behavior:"smooth",block:"center"}); }
   function showProOutput(title,value){ if(!els.proOutput)return; els.proOutput.hidden=false; els.proOutput.textContent=`${title}\n\n${value}`; }
-  async function runProAction(actionName){ if(!proActive){ showLockedPro(); return; } const map={ decision:["Motion decision memo",getSelectedHandoff], framer:["Framer Motion prompt",getFramerPrompt], css:["CSS implementation prompt",getCssPrompt], react:["Tailwind / React prompt",getReactTailwindPrompt], codex:["Codex task",getSelectedCodexTask], issue:["GitHub Issue",getSelectedGithubIssue], compare:["Compare handoff Markdown",getCompareMarkdown], markdown:[proText.markdown,getMarkdownExport], json:[proText.json,getSelectedJson] }; const item=map[actionName]; if(!item)return; const value=item[1](); showProOutput(item[0],value); await copy(value); }
+  async function runProAction(actionName){ if(!proActive){ showLockedPro(); return; } const map={ decision:["Motion decision memo",getSelectedHandoff], framer:["Framer Motion prompt",getFramerPrompt], css:["CSS implementation prompt",getCssPrompt], react:["Tailwind / React prompt",getReactTailwindPrompt], codex:["Codex task",getSelectedCodexTask], issue:["GitHub Issue",getSelectedGithubIssue], compare:["Compare handoff Markdown",getCompareMarkdown], markdown:[proText.markdown,getMarkdownExport], json:[proText.json,getSelectedJson] }; const item=map[actionName]; if(!item)return; const value=item[1]();
+    showProOutput(item[0],value);
+    if(actionName==="markdown"||actionName==="json"){
+      const extension=actionName==="json"?"json":"md";
+      const mime=actionName==="json"?"application/json;charset=utf-8":"text/markdown;charset=utf-8";
+      try{
+        const blob=new Blob([value],{type:mime});
+        const url=URL.createObjectURL(blob);
+        const anchor=document.createElement("a");
+        anchor.href=url;
+        anchor.download="motion-atlas-"+currentMotion().slug+"."+extension;
+        anchor.hidden=true;
+        document.body.append(anchor);
+        anchor.click();
+        anchor.remove();
+        setTimeout(()=>URL.revokeObjectURL(url),1000);
+        toast(lang==="ja"?"ファイルを保存しました":"Download started");
+      }catch(error){ await copy(value); }
+    }else await copy(value);
+  }
   function resetFilters(){ if(els.search)els.search.value=""; [els.cat,els.type,els.trigger].forEach((node)=>Array.from(node?.options||[]).forEach((o)=>o.selected=false)); [els.intensity,els.speedFilter,els.mobile,els.a11y].forEach((node)=>{if(node)node.value="";}); applyFilters(); }
   async function copy(value){ try{ await navigator.clipboard.writeText(value); toast(words.copied); }catch{ toast(words.copyFailed); } }
   function toast(msg){ const node=el("div",msg,"toast"); document.body.append(node); setTimeout(()=>node.remove(),1800); }
