@@ -15,7 +15,7 @@ const AU=samsung+'/jp/support/mobile-devices/please-tell-us-about-the-latest-ver
 const config={
  'GALAXY S II':{type:'alternate_exact_manual',url:samsung+'/jp/support/model/SGH-N033RWNDCM/',carrierCode:'SC-02C'},
  'Galaxy Z Flip Thom Browne Edition':{type:'alternate_exact_manual',url:samsung+'/jp/support/model/SM-F700JZPAKDI/',carrierCode:'SM-F700J'},
- 'Galaxy A21 シンプル':{type:'manual_variant',carrierCode:'SCV49',additionalUrl:AU,manualMarker:'シンプル'},
+ 'Galaxy A21 シンプル':{type:'manual_variant',carrierCode:'SCG49',secondaryCarrierCode:'SCV49',additionalUrl:AU,manualMarker:'シンプル'},
  'Galaxy S20 5G':{type:'official_variant_mapping',carrierCode:'SC-51A',additionalUrl:DOCOMO},
  'Galaxy Note3':{type:'official_variant_mapping',carrierCode:'SC-01F',additionalUrl:DOCOMO},
  'Galaxy Note20 Ultra 5G':{type:'official_variant_mapping',carrierCode:'SC-53A',additionalUrl:DOCOMO},
@@ -74,11 +74,11 @@ export async function secondaryReview(first,fetchOfficial=get) {
        if(!manuals.some(x=>compact(x.description+' '+x.fileName).includes(compact(configRow.manualMarker))))
          throw Error('manufacturer manual metadata does not explicitly identify variant');
        const second=await getCached(configRow.additionalUrl);
-       if(!rowHasModelAndCode(second,row.model,configRow.carrierCode))
+       if(!rowHasModelAndCode(second,row.model,configRow.secondaryCarrierCode))
          throw Error('secondary official carrier model evidence missing');
        resolved={state:'direct',manualUrl:doc.url+'#downloads',supportUrl:doc.url,
          manualEvidence:manuals.filter(x=>compact(x.description+' '+x.fileName).includes(compact(configRow.manualMarker))).slice(0,8),
-         reviewNote:'Manufacturer manual metadata explicitly identifies シンプル variant; official au model table binds exact model to SCV49.'};
+         reviewNote:'Manufacturer manual metadata explicitly identifies シンプル variant; official au model table binds exact model to SCV49. The manufacturer manual index prints SCG49, a conflicting carrier code; identity is accepted only with explicit シンプル manual metadata plus independent official variant listing.'};
        evidence.push(doc.url,configRow.additionalUrl);checks.push('exact_variant_in_official_manual_metadata','secondary_official_carrier_row');
      }else{
        const extra=await getCached(configRow.additionalUrl);
