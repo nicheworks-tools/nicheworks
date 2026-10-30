@@ -1,6 +1,6 @@
 {
   "version": 8,
-  "updatedAt": "2026-09-18",
+  "updatedAt": "2026-10-31",
   "phones": [
     {
       "id": "apple-iphone-18-pro",
@@ -10717,6 +10717,59 @@
         "wirelessUrl": "https://www.apple.com/jp/iphone-duo/specs/",
         "waterUrl": "https://www.apple.com/jp/newsroom/2026/09/apple-unveils-iphone-duo/",
         "verifiedAt": "2026-09-19"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "motorola-edge-70-fusion",
+      "manufacturer": "Motorola",
+      "model": "motorola edge 70 fusion",
+      "aliases": [
+        "Motorola edge 70 fusion",
+        "edge 70 fusion",
+        "edge70fusion",
+        "モトローラ edge 70 fusion"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 162.76,
+        "widthMm": 75.6,
+        "depthMm": 7.99
+      },
+      "weightG": 193,
+      "displayInch": 6.78,
+      "waterRating": "IP68/IP69",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 68,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 7000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://store.motorola.co.jp/item/EDGE70FUSION.html"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://store.motorola.co.jp/item/EDGE70FUSION.html",
+        "manualUrl": "https://jp-jp.support.motorola.com/",
+        "releaseUrl": "https://store.motorola.co.jp/topics_list.html",
+        "chargingUrl": "https://store.motorola.co.jp/item/EDGE70FUSION.html",
+        "waterUrl": "https://store.motorola.co.jp/item/EDGE70FUSION.html",
+        "packageUrl": "https://store.motorola.co.jp/item/EDGE70FUSION.html",
+        "verifiedAt": "2026-10-31"
       },
       "affiliateKeys": []
     }
