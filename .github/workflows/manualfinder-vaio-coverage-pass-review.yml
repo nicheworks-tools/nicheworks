@@ -1,0 +1,38 @@
+name: ManualFinder VAIO JP coverage-pass candidate review
+
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/coverage-passes/vaio/**'
+      - 'tools/manual-finder/scripts/vaio-jp-start-guides-review.mjs'
+      - 'tools/manual-finder/tests/vaio-jp-start-guides-review.test.mjs'
+      - '.github/workflows/manualfinder-vaio-coverage-pass-review.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  vaio-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fail-closed manifest invariants
+        run: |
+          node tools/manual-finder/tests/coverage-pass-pipeline.test.mjs
+          node tools/manual-finder/tests/vaio-jp-start-guides-review.test.mjs
+      - name: Run VAIO official 82-model candidate review
+        run: |
+          mkdir -p manualfinder-coverage-pass-artifacts
+          node tools/manual-finder/scripts/vaio-jp-start-guides-review.mjs --out manualfinder-coverage-pass-artifacts/vaio-jp-review.json
+      - name: Upload audit artifact even if source drifts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-vaio-jp-coverage-pass-review
+          path: manualfinder-coverage-pass-artifacts/vaio-jp-review.json
+          if-no-files-found: warn
