@@ -1,0 +1,13 @@
+.okj-pro-ocr-phase1{margin:20px 0;padding:18px;border:1px solid #d1d5db;border-radius:10px;background:#f8fafc;color:#17202c}
+.okj-pro-ocr-phase1 h2{font-size:1.25rem;margin:0 0 8px}
+.okj-pro-ocr-phase1 h3{font-size:1rem;margin:16px 0 8px}
+.okj-pro-ocr-phase1 p{line-height:1.5}
+.okj-pro-ocr-phase1 .okj-pro-privacy{font-size:.9rem;color:#475569}
+.okj-pro-ocr-phase1 input[type=file]{display:block;width:100%;max-width:100%;margin:10px 0}
+.okj-pro-ocr-phase1 button{padding:9px 12px;margin:5px 6px 5px 0;border:1px solid #64748b;border-radius:6px;background:#fff;color:#0f172a;cursor:pointer}
+.okj-pro-ocr-phase1 button:disabled{opacity:.5;cursor:default}
+.okj-pro-ocr-phase1 .okj-pro-record{margin-top:8px;padding:10px;border:1px solid #cbd5e1;border-radius:6px;overflow-wrap:anywhere}
+.okj-pro-ocr-phase1 .okj-pro-record span{display:block;white-space:pre-wrap}
+.okj-pro-ocr-phase1 textarea{display:block;min-height:90px;width:100%;box-sizing:border-box;margin-top:8px;font:inherit}
+.okj-pro-ocr-phase1 .okj-pro-status{min-height:1.4em;font-weight:600}
+@media(max-width:480px){.okj-pro-ocr-phase1{padding:12px}.okj-pro-ocr-phase1 button{display:block;width:100%;text-align:left}}

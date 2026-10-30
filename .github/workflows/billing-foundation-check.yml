@@ -5,6 +5,10 @@ on:
     paths:
       - 'functions/api/billing/**'
       - 'assets/nw-pro-entitlement.js'
+      - 'assets/okj-ocr-pro-*.js'
+      - 'assets/okj-ocr-pro-phase1.css'
+      - 'tools/old-kanji-ocr-scanner/index.html'
+      - 'scripts/check-old-kanji-pro-functional.mjs'
       - 'billing/success.html'
       - 'billing/cancel.html'
       - 'config/billing/products.json'
@@ -24,6 +28,10 @@ on:
     paths:
       - 'functions/api/billing/**'
       - 'assets/nw-pro-entitlement.js'
+      - 'assets/okj-ocr-pro-*.js'
+      - 'assets/okj-ocr-pro-phase1.css'
+      - 'tools/old-kanji-ocr-scanner/index.html'
+      - 'scripts/check-old-kanji-pro-functional.mjs'
       - 'billing/success.html'
       - 'billing/cancel.html'
       - 'config/billing/products.json'
@@ -56,7 +64,11 @@ jobs:
           node --check functions/api/billing/entitlement.js
           node --check functions/api/billing/stripe-webhook.js
           node --check assets/nw-pro-entitlement.js
+          node --check assets/okj-ocr-pro-engine.js
+          node --check assets/okj-ocr-pro-ui.js
       - name: Check billing contract
         run: node scripts/check-billing-foundation.mjs
       - name: Check Old Kanji product contract
         run: node scripts/check-old-kanji-pro-phase1.mjs
+      - name: Test real local OCR Batch and History Pro gate
+        run: node scripts/check-old-kanji-pro-functional.mjs
