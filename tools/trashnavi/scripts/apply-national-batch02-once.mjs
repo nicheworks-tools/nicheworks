@@ -22,7 +22,7 @@ const ledger=json(ledgerPath),manifest=json(manifestPath),ai=json(aiPath);
 const slugs={
 '082112':'joso','082155':'kitaibaraki','124222':'mutsuzawa','124231':'chosei','124249':'shirako','124265':'nagara',
 '124273':'chonan','124419':'otaki','124435':'onjuku','124630':'kyonan',
-'133035':'mizuho','133051':'hinode','133078':'hinohara','133086':'okutama','133612':'oshima','133621':'toshima',
+'133035':'mizuho','133051':'hinode','133078':'hinohara','133086':'okutama','133612':'oshima','133621':'toshima-island',
 '133639':'niijima','133647':'kozushima','133817':'miyake','133825':'mikurajima','134015':'hachijo','134023':'aogashima','134210':'ogasawara',
 '142085':'zushi','142107':'miura','142115':'hadano','142174':'minamiashigara','142182':'ayase',
 '143014':'hayama','143219':'samukawa','143413':'oiso','143421':'ninomiya','143618':'nakai','143626':'oi',
