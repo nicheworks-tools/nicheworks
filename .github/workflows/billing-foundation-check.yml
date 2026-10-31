@@ -9,6 +9,8 @@ on:
       - 'assets/okj-history-collection.js'
       - 'assets/okj-workspace-*.js'
       - 'assets/okj-name-place-batch*'
+      - 'assets/okj-multi-*'
+      - 'scripts/check-old-kanji-multitool-batch.mjs'
       - 'scripts/check-old-kanji-name-place-batch.mjs'
       - 'assets/okj-workspace.css'
       - 'scripts/check-old-kanji-workspaces.mjs'
@@ -48,6 +50,8 @@ on:
       - 'assets/okj-history-collection.js'
       - 'assets/okj-workspace-*.js'
       - 'assets/okj-name-place-batch*'
+      - 'assets/okj-multi-*'
+      - 'scripts/check-old-kanji-multitool-batch.mjs'
       - 'scripts/check-old-kanji-name-place-batch.mjs'
       - 'assets/okj-workspace.css'
       - 'scripts/check-old-kanji-workspaces.mjs'
@@ -109,6 +113,9 @@ jobs:
           node --check assets/okj-workspace-ui.js
           node --check assets/okj-name-place-batch.js
           node --check assets/okj-name-place-batch-ui.js
+          node --check assets/okj-multi-core.js
+          node --check assets/okj-multi-batch.js
+          node --check assets/okj-multi-batch-ui.js
       - name: Check billing contract
         run: node scripts/check-billing-foundation.mjs
       - name: Test fail-closed unpriced and unknown products
@@ -125,5 +132,7 @@ jobs:
         run: node scripts/check-old-kanji-workspaces.mjs
       - name: Test actual reference-backed Name and Place CSV batch
         run: node scripts/check-old-kanji-name-place-batch.mjs
+      - name: Test all four real local reference-backed batch processors
+        run: node scripts/check-old-kanji-multitool-batch.mjs
       - name: Test actual OCR reports, advanced exports and CSV formula safety
         run: node scripts/check-old-kanji-reports-export.mjs
