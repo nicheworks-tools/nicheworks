@@ -8,7 +8,8 @@
     "manuals.coverage-pass.fujifilm-jp-gfx-x-camera-manual-index.js",
     "manuals.coverage-pass.vaio-jp-pc-start-guide.js",
     "manuals.coverage-pass.samsung-jp-galaxy-smartphones.js",
-    "manuals.coverage-pass.dynabook-jp-2024-2026.js"
+    "manuals.coverage-pass.dynabook-jp-2024-2026.js",
+    "manuals.coverage-pass.fujitsu-lifebook-u.js"
   ]);
 
   window.MANUALFINDER_BUILD_COVERAGE_PASSES = () => [
@@ -18,6 +19,7 @@
     ...(window.MANUALFINDER_COVERAGE_PASS_FUJIFILM_GFX_X || []),
     ...(window.MANUALFINDER_COVERAGE_PASS_VAIO_JP || []),
     ...(window.MANUALFINDER_COVERAGE_PASS_SAMSUNG_JP_GALAXY || []),
-    ...(window.MANUALFINDER_COVERAGE_PASS_DYNABOOK_JP || [])
+    ...(window.MANUALFINDER_COVERAGE_PASS_DYNABOOK_JP || []),
+    ...(window.MANUALFINDER_COVERAGE_PASS_FUJITSU_LIFEBOOK_U || [])
   ];
 })();

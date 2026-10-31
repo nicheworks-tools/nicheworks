@@ -53,6 +53,14 @@ After live official URL and PDF signature checks for 53 distinct manufacturer-co
 
 This is a **bounded 2024–2026 announced PC index scope**, not all Dynabook products or earlier years.
 
+## Fujitsu FMWORLD Japan business LIFEBOOK U-series Coverage-Pass (2026-10-31)
+
+Official FMWORLD Japanese business computer manual-index [LIFEBOOK page](https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html) lists many independent families. This Coverage-Pass locks only the explicitly enumerated **LIFEBOOK U-series**: 148 manufacturer-linked model identities. The full model name sequence and model-to-manual-landing URL relationships are independently fingerprinted with SHA256, preventing stale snapshots and silent pagination/HTML truncation. The official index is not company-wide.
+
+For every one of the 148 models, live GitHub Actions confirmed the exact model name in the manufacturer manual-index page H1, a manufacturer-controlled HTTPS destination, and a linked manufacturer PDF with valid `%PDF-` signature after HTTP redirect checks. 78 distinct PDFs were checked. The final reconciliation is **148 = 148 direct + 0 shared + 0 support_only + 0 held**. Each manual destination is the **exact model-specific HTML manual index**, not a single PDF selected from multiple guides. Some subordinate PDF artifacts are explicitly repeated across different models; this does not mean the model-specific HTML indexes have shared identities. No inferred URLs or manufacturer-independent PDF mirrors are published.
+
+Source records: `coverage-passes/fujitsu/jp-business-lifebook-u-model-manual-index.json`. Public batch: `data/manuals.coverage-pass.fujitsu-lifebook-u.js`. Live exact-document confirmation: `scripts/fujitsu-lifebook-u-review.mjs`; publication recheck: `scripts/fujitsu-lifebook-u-reconcile-publication.mjs`; CI: `.github/workflows/manualfinder-fujitsu-lifebook-u-coverage-pass.yml`. Consumer FMV, other LIFEBOOK families, and Fujitsu company-wide manual coverage remain incomplete.
+
 ## Coverage expansion workflow
 
 Future model-level expansion is governed by `COVERAGE_PASS_WORKFLOW.md`. Automation may discover candidates at scale, but it cannot promote rows solely because a URL was found or omit rows solely because a scraper missed them. Each manufacturer/category pass must lock an official population, retain every population model through direct/shared/support-only/held review states, escalate negative cases through alternate official discovery channels, and reconcile the entire population before `coverage-pass-complete` is allowed. Machine-readable manifests live under `coverage-passes/` and fail-closed validation lives under `scripts/coverage-pass-lib.mjs` plus `tests/coverage-pass-pipeline.test.mjs`.
