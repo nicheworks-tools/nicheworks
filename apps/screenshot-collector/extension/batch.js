@@ -18,12 +18,13 @@ $("batch-start").addEventListener("click",async()=>{
  if(!urls.length){$("batch-status").textContent="Select at least one discovered page.";return;}
  running=true;stop=false;$("batch-start").disabled=true;$("batch-stop").disabled=false;
  const entries=[],records=[],start=new Date().toISOString();
+ const existing=$("batch-download");if(existing.href.startsWith("blob:"))URL.revokeObjectURL(existing.href);existing.removeAttribute("href");existing.hidden=true;
  for(let i=0;i<urls.length;i++){
   if(stop)break;
   const url=urls[i],filename=slug(i);
   $("batch-status").textContent=`Capturing ${i+1}/${urls.length}: ${url}`;
   let success=false;
-  for(let attempt=1;attempt<=2&&!success;attempt++){
+  for(let attempt=1;attempt<=2&&!success&&!stop;attempt++){
    try{
     const r=await capture(url);
     entries.push({name:filename,data:r.bytes});
@@ -31,7 +32,7 @@ $("batch-start").addEventListener("click",async()=>{
     success=true;
    }catch(e){
     if(attempt===2)records.push({url,filename:null,status:"failed",error:String(e.message||e),attempts:attempt});
-    else await pause(1000);
+    else if(!stop) await pause(1000);
    }
   }
  }
