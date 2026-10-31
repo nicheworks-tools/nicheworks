@@ -1,0 +1,37 @@
+name: Construction Tools Atlas Wave8 Source Staging
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/construction-tools-atlas-image-wave8-staging.yml'
+      - 'tools/construction-tools-atlas/scripts/materialize-image-wave8-v2.3.mjs'
+      - 'tools/construction-tools-atlas/data/affiliate-image-acquisition-wave8-v2.3.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  stage-pinned-source-images:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install ImageMagick
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq imagemagick
+          command -v convert
+      - name: Validate image evidence intake
+        run: node tools/construction-tools-atlas/scripts/materialize-image-wave8-v2.3.mjs --check
+      - name: Download SHA1-pinned originals and create local derivative WebP
+        env:
+          CTA_WAVE8_STAGING_DIR: ${{ runner.temp }}/cta-wave8
+        run: node tools/construction-tools-atlas/scripts/materialize-image-wave8-v2.3.mjs --stage
+      - name: Store source, images, SHA report
+        uses: actions/upload-artifact@v4
+        with:
+          name: construction-atlas-wave8-pinned-source-staging
+          path: ${{ runner.temp }}/cta-wave8/
+          if-no-files-found: error
+          retention-days: 14
