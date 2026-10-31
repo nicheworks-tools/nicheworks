@@ -1,0 +1,365 @@
+{
+  "schemaVersion": 1,
+  "maker": "Xiaomi",
+  "scopeId": "jp-user-guide-phone-tablet-2026",
+  "scopeLabel": "Xiaomi Japan manufacturer User Guide Index, phones/tablets Xiaomi/REDMI/POCO and Leica powered by Xiaomi, source category through POCO Pad, 2026-11-01",
+  "status": "reviewing",
+  "asOf": "2026-11-01",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "mi.com"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://www.mi.com/jp/support/user-guide/"
+    ],
+    "models": [
+      "Xiaomi 17T Pro",
+      "Xiaomi 17T",
+      "Leica Leitzphone powered by Xiaomi",
+      "Xiaomi 17 Ultra",
+      "Xiaomi Pad 8 Pro",
+      "Xiaomi Pad 8",
+      "Xiaomi Pad 7 Pro",
+      "Xiaomi Pad 7",
+      "Xiaomi Pad Mini",
+      "Xiaomi 15T",
+      "Xiaomi 15T Pro",
+      "Xiaomi 15",
+      "Xiaomi 15 Ultra",
+      "Xiaomi 14T Pro",
+      "Xiaomi 14 Ultra",
+      "Xiaomi 13T Pro",
+      "Mi Note 10",
+      "Mi Note 10 Lite",
+      "Mi 10 Lite 5G",
+      "Mi 11 Lite 5G",
+      "Xiaomi 11T",
+      "Xiaomi 12T Pro",
+      "Xiaomi Pad 6S Pro 12.4",
+      "Xiaomi Pad 6",
+      "Xiaomi Pad 5",
+      "REDMI Note 17 Pro Max 5G",
+      "REDMI 17",
+      "REDMI Pad 2 9.7",
+      "REDMI Pad 2 9.7 4G",
+      "Redmi Pad 2 4G",
+      "REDMI Pad 2 Pro",
+      "REDMI Pad 2",
+      "REDMI 14C",
+      "REDMI Pad SE 8.7 4G",
+      "REDMI Pad SE 8.7",
+      "REDMI Note 13 Pro+ 5G",
+      "REDMI 12 5G",
+      "REDMI Pad SE",
+      "REDMI Note 9S",
+      "REDMI 9T",
+      "REDMI Note 10 Pro",
+      "REDMI Note 11 Pro 5G",
+      "REDMI Note 11 Pro 5G - Rakuten",
+      "REDMI Note 11",
+      "REDMI 12C",
+      "REDMI Pad",
+      "REDMI Pad Pro",
+      "POCO F9 Ultra",
+      "POCO X8 Pro",
+      "POCO X8 Pro Max",
+      "POCO F8 Pro",
+      "POCO Pad M1",
+      "POCO F7",
+      "POCO M7 Pro 5G",
+      "POCO F7 Pro",
+      "POCO F7 Ultra",
+      "POCO X7 Pro",
+      "POCO F6 Pro",
+      "POCO F4 GT",
+      "POCO Pad"
+    ],
+    "declaredCount": 60,
+    "populationMethod": "Manufacturer's complete 306-link user-guide index: first contiguous 74 mobile-section links, remove explicitly generic software/safety (7) and separately identified case/pen/keyboard/photography kit accessories (6), collapse 2 case-variant duplicates 'Redmi Pad 2 4G' and 'REDMI Pad 2 4G' with identical href (1) -> 60 unique model guide entries. Maintain product category boundary at first REDMI Buds 5 Pro item (index 74).",
+    "sourceObservation": {
+      "totalOfficialGuideLinks": 306,
+      "mobileSectionRawLinks": 74,
+      "excludedGenericIndexes": [
+        0,
+        1,
+        2,
+        3,
+        13,
+        23
+      ],
+      "excludedAccessoryIndexes": [
+        17,
+        32,
+        33,
+        34,
+        35,
+        36,
+        43
+      ],
+      "duplicateEntryIndex": 44,
+      "duplicateOfIndex": 41,
+      "firstFollowingCategoryModel": "REDMI Buds 5 Pro",
+      "officialIndexSha256": "5bb7ef2bc9ed28059378d880f5b3f250951b83414b12f72d30d7862a0a28fa45",
+      "sourceShaFormula": "sha256(join('\\n', retained60.map(model => model + '|' + officialGuideHref)))",
+      "liveIndexRunId": 41225704156,
+      "liveIndexArtifactId": 13050959945
+    },
+    "officialGuideEntries": [
+      {
+        "model": "Xiaomi 17T Pro",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-17t-pro"
+      },
+      {
+        "model": "Xiaomi 17T",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-17t"
+      },
+      {
+        "model": "Leica Leitzphone powered by Xiaomi",
+        "officialGuideHref": "https://www.mi.com/jp/support/user-guide-pdf/leica-leitzphone-powered-by-xiaomi/"
+      },
+      {
+        "model": "Xiaomi 17 Ultra",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-17-ultra"
+      },
+      {
+        "model": "Xiaomi Pad 8 Pro",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-pad-8-pro"
+      },
+      {
+        "model": "Xiaomi Pad 8",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-pad-8"
+      },
+      {
+        "model": "Xiaomi Pad 7 Pro",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-pad-7-pro"
+      },
+      {
+        "model": "Xiaomi Pad 7",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-pad-7"
+      },
+      {
+        "model": "Xiaomi Pad Mini",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-pad-mini"
+      },
+      {
+        "model": "Xiaomi 15T",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-15t"
+      },
+      {
+        "model": "Xiaomi 15T Pro",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-15t-pro"
+      },
+      {
+        "model": "Xiaomi 15",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-15"
+      },
+      {
+        "model": "Xiaomi 15 Ultra",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-15-ultra"
+      },
+      {
+        "model": "Xiaomi 14T Pro",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-14t-pro"
+      },
+      {
+        "model": "Xiaomi 14 Ultra",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-14-ultra"
+      },
+      {
+        "model": "Xiaomi 13T Pro",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-13t-pro"
+      },
+      {
+        "model": "Mi Note 10",
+        "officialGuideHref": "/jp/support/user-guide-pdf/mi-note-10"
+      },
+      {
+        "model": "Mi Note 10 Lite",
+        "officialGuideHref": "/jp/support/user-guide-pdf/mi-note-10-lite"
+      },
+      {
+        "model": "Mi 10 Lite 5G",
+        "officialGuideHref": "/jp/support/user-guide-pdf/mi-10-lite-5g"
+      },
+      {
+        "model": "Mi 11 Lite 5G",
+        "officialGuideHref": "/jp/support/user-guide-pdf/mi-11-lite-5g"
+      },
+      {
+        "model": "Xiaomi 11T",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-11t"
+      },
+      {
+        "model": "Xiaomi 12T Pro",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-12t-pro"
+      },
+      {
+        "model": "Xiaomi Pad 6S Pro 12.4",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-pad-6s-pro-12.4"
+      },
+      {
+        "model": "Xiaomi Pad 6",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-pad-6"
+      },
+      {
+        "model": "Xiaomi Pad 5",
+        "officialGuideHref": "/jp/support/user-guide-pdf/xiaomi-pad-5"
+      },
+      {
+        "model": "REDMI Note 17 Pro Max 5G",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-note-17-pro-max-5g"
+      },
+      {
+        "model": "REDMI 17",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-17"
+      },
+      {
+        "model": "REDMI Pad 2 9.7",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-pad-2-9.7"
+      },
+      {
+        "model": "REDMI Pad 2 9.7 4G",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-pad-2-9.7-4g"
+      },
+      {
+        "model": "Redmi Pad 2 4G",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-pad-2-4g"
+      },
+      {
+        "model": "REDMI Pad 2 Pro",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-pad-2-pro"
+      },
+      {
+        "model": "REDMI Pad 2",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-pad-2"
+      },
+      {
+        "model": "REDMI 14C",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-14c"
+      },
+      {
+        "model": "REDMI Pad SE 8.7 4G",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-pad-se-8.7-4g"
+      },
+      {
+        "model": "REDMI Pad SE 8.7",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-pad-se-8.7"
+      },
+      {
+        "model": "REDMI Note 13 Pro+ 5G",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-note-13-pro%2B-5g"
+      },
+      {
+        "model": "REDMI 12 5G",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-12-5g"
+      },
+      {
+        "model": "REDMI Pad SE",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-pad-se"
+      },
+      {
+        "model": "REDMI Note 9S",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-note-9s"
+      },
+      {
+        "model": "REDMI 9T",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-9t"
+      },
+      {
+        "model": "REDMI Note 10 Pro",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-note-10-pro"
+      },
+      {
+        "model": "REDMI Note 11 Pro 5G",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-note-11-pro-5g"
+      },
+      {
+        "model": "REDMI Note 11 Pro 5G - Rakuten",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-note-11-pro-5g---rakuten"
+      },
+      {
+        "model": "REDMI Note 11",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-note-11"
+      },
+      {
+        "model": "REDMI 12C",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-12c"
+      },
+      {
+        "model": "REDMI Pad",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-pad"
+      },
+      {
+        "model": "REDMI Pad Pro",
+        "officialGuideHref": "/jp/support/user-guide-pdf/redmi-pad-pro"
+      },
+      {
+        "model": "POCO F9 Ultra",
+        "officialGuideHref": "/jp/support/user-guide-pdf/poco-f9-ultra"
+      },
+      {
+        "model": "POCO X8 Pro",
+        "officialGuideHref": "/jp/support/user-guide-pdf/poco-x8-pro"
+      },
+      {
+        "model": "POCO X8 Pro Max",
+        "officialGuideHref": "/jp/support/user-guide-pdf/poco-x8-pro-max"
+      },
+      {
+        "model": "POCO F8 Pro",
+        "officialGuideHref": "/jp/support/user-guide-pdf/poco-f8-pro"
+      },
+      {
+        "model": "POCO Pad M1",
+        "officialGuideHref": "/jp/support/user-guide-pdf/poco-pad-m1"
+      },
+      {
+        "model": "POCO F7",
+        "officialGuideHref": "/jp/support/user-guide-pdf/poco-f7"
+      },
+      {
+        "model": "POCO M7 Pro 5G",
+        "officialGuideHref": "/jp/support/user-guide-pdf/poco-m7-pro-5g"
+      },
+      {
+        "model": "POCO F7 Pro",
+        "officialGuideHref": "/jp/support/user-guide-pdf/poco-f7-pro"
+      },
+      {
+        "model": "POCO F7 Ultra",
+        "officialGuideHref": "/jp/support/user-guide-pdf/poco-f7-ultra"
+      },
+      {
+        "model": "POCO X7 Pro",
+        "officialGuideHref": "/jp/support/user-guide-pdf/poco-x7-pro"
+      },
+      {
+        "model": "POCO F6 Pro",
+        "officialGuideHref": "/jp/support/user-guide-pdf/poco-f6-pro"
+      },
+      {
+        "model": "POCO F4 GT",
+        "officialGuideHref": "/jp/support/user-guide-pdf/poco-f4-gt"
+      },
+      {
+        "model": "POCO Pad",
+        "officialGuideHref": "/jp/support/user-guide-pdf/poco-pad"
+      }
+    ],
+    "notes": "The index explicitly names the full 60 phones and tablets with official manufacturer URLs. It is not proof that the JavaScript-rendered target contains an operating manual. The source includes the official Leica Leitzphone powered by Xiaomi under Xiaomi product category. Both carrier variant (Rakuten) and tablet radio variants are separate manufacturer-listed devices. Duplicate REDMI Pad 2 4G appears twice in original with identical slug; collapse only the duplicate while preserving evidence of two index positions. No full Xiaomi company-wide completion claim."
+  },
+  "review": {
+    "publicationGate": "blocked until actual document/pdf/manual type and exact device identity verified at each manufacturer's linked destination using manufacturer PDF API or rendered browser",
+    "discoveryChannels": [
+      "manufacturer_JP_user_guide_complete_index",
+      "individual_manufacturer_named_guide_route",
+      "manufacturer_client_side_pdf_viewer_API",
+      "rendered_manufacturer_user_guide_page",
+      "exact_PDF_document_metadata"
+    ],
+    "notes": "Never promote HTTP 200 generic Xiaomi Japan SPA shell to direct manual. Confirm manufacturer-controlled final guide or PDF and exact model identity. If unresolved after independent manufacturer paths, retain held. Scope includes 60 devices even when document checks fail."
+  },
+  "records": []
+}
