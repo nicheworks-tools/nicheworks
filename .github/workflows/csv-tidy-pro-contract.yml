@@ -1,0 +1,27 @@
+name: CSV Tidy Pro disabled-checkout contract
+
+on:
+  pull_request:
+    paths:
+      - 'tools/csv-tidy/**'
+      - 'config/billing/products.json'
+      - 'functions/api/billing/create-checkout-session.js'
+      - 'functions/api/billing/product-config.js'
+      - '.github/workflows/csv-tidy-pro-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate CSV Tidy Pro planning, safety gates and Free boundary
+        run: node --experimental-default-type=module tools/csv-tidy/tests/pro-contract.mjs
+      - name: Verify no generated changes
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
