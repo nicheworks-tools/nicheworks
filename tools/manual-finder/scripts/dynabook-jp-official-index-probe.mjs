@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import fs from 'node:fs/promises';
-const YEARS=[
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+export const YEARS=[
  {year:2024,url:'https://dynabook.com/manual_download/cata2024.html'},
  {year:2025,url:'https://dynabook.com/manual_download/cata2025.html'},
  {year:2026,url:'https://dynabook.com/manual_download/index.html'}
@@ -35,7 +37,7 @@ function rowCells(raw){
  }
  return cells;
 }
-function inspectYear(html,year,url){
+export function inspectYear(html,year,url){
  const tables=balanced(html,'table'),tableResults=[];let rowCount=0;
  for(const [index,table] of tables.entries()){
   const trs=balanced(table,'tr'),rows=[];
@@ -54,14 +56,15 @@ function inspectYear(html,year,url){
  }
  return{year,url,htmlLength:html.length,tableCount:tables.length,rowCount,tableResults};
 }
-async function get(url){
+export async function fetchOfficialIndex(url){
  const r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(35000),headers:{'user-agent':'Mozilla/5.0','accept':'text/html,application/xhtml+xml'}});
  if(!r.ok||new URL(r.url).hostname!=='dynabook.com')throw Error(url+' HTTP '+r.status+' redirected '+r.url);
  return r.text();
 }
+async function main(){
 const out=[];
 for(const {year,url} of YEARS){
- const html=await get(url);
+ const html=await fetchOfficialIndex(url);
  const item=inspectYear(html,year,url);
  const duplicateNames=Object.entries(Object.groupBy(item.tableResults.flatMap(x=>x.rows),x=>x.name)).filter(x=>x[1].length>1).map(([name,rows])=>({name,n:rows.length}));
  out.push({...item,duplicateNames,sample:item.tableResults.flatMap(x=>x.rows).slice(0,5)});
@@ -70,3 +73,5 @@ for(const {year,url} of YEARS){
 await fs.mkdir('manualfinder-dynabook-probe',{recursive:true});
 await fs.writeFile('manualfinder-dynabook-probe/official-2024-2026-structure.json',JSON.stringify(out,null,2)+'\n');
 if(out.some(x=>!x.rowCount))process.exitCode=1;
+}
+if(process.argv[1] && path.resolve(process.argv[1])===fileURLToPath(import.meta.url))main().catch(e=>{console.error(e);process.exitCode=1;});
