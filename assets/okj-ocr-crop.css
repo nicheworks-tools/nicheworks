@@ -1,0 +1,9 @@
+.okj-pro-crop{margin:18px 0;padding:16px;border:1px solid #cbd5e1;border-radius:10px;background:#f8fafc;color:#17202c}
+.okj-pro-crop h2{font-size:1.2rem;margin:0 0 8px}
+.okj-pro-crop p{line-height:1.5}.okj-pro-crop canvas{display:block;width:auto;height:auto;max-width:100%;max-height:580px;box-sizing:border-box;border:1px solid #8b9bac;border-radius:5px;cursor:crosshair;touch-action:none}
+.okj-pro-crop canvas[hidden],.okj-pro-crop .okj-pro-crop-controls[hidden]{display:none!important}
+.okj-pro-crop .okj-pro-crop-controls{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0}
+.okj-pro-crop button,.okj-pro-crop select{padding:9px 12px;font:inherit;color:#173048;background:#fff;border:1px solid #64748b;border-radius:7px;max-width:100%}
+.okj-pro-crop button:disabled{opacity:.5;cursor:default}
+.okj-pro-crop .okj-pro-crop-status{min-height:1.4em;font-weight:600}
+@media(max-width:540px){.okj-pro-crop{padding:12px}.okj-pro-crop .okj-pro-crop-controls{display:block}.okj-pro-crop button,.okj-pro-crop select{display:block;width:100%;margin:8px 0}}
