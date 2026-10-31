@@ -195,7 +195,8 @@ async function main(){
         fail.push('reports/browser-download: expected Markdown report and CSV advanced export '+JSON.stringify(downloads));
       }
     }
-    // QA-only verified entitlement: drag touch selection and OCR on an actual PNG.
+    // QA-only verified entitlement: mobile-width touch drag on an actual PNG.
+    await c.rect(375,812);
     await c.nav(base+'/tools/old-kanji-ocr-scanner/');
     await sleep(420);
     const cropMounted=await c.js("return !!document.getElementById('okj-pro-crop');");
@@ -216,6 +217,7 @@ async function main(){
         }
       }
     }
+    await c.rect(1440,1000);
     await c.js("localStorage.setItem('nicheworks:billing:session:okj.toolkit_pro','cs_test_DENIED');");
     await c.nav(base+'/tools/old-kanji-ocr-scanner/');
     await sleep(350);
