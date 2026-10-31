@@ -35,3 +35,7 @@ All eight pages load the shared `assets/old-kanji-pro-sales.js`, which **renders
 ## Phase 1B: cross-tool browser-local Workspaces
 
 A single entitlement `okj.workspaces` enables opt-in workspaces on all eight Old Kanji pages. Users can create named cases, import the current tool input, add multiple labeled records from different tools, copy or delete entries, and export Markdown/JSON locally. Storage is per browser (`okj.workspaces.v1`) and must not be described as cross-device sync. Every write/read/export requires the feature entitlement; each user action rechecks server-side via the shared entitlement adapter. No raw source text is submitted to billing, Amazon or analytics. Existing Free controls are unchanged. Unit/Chrome regression checks verify that both unentitled and entitled paths behave as documented. Pro sales remain gated and off.
+
+## Phase 1C: actual Name / Place batch checking
+
+Two existing tools now load a shared browser-only batch analyzer and Pro UI. A single product grant permits `okj.name.batch` and `okj.place.batch`, each rechecked independently. Inputs support multiline pastes or a small UTF-8 CSV; outputs show dictionary forward/reverse candidates, unmatched rows and downloadable CSV/JSON. The implementation is NOT an official name/address validator. Existing Free checks and affiliate links continue. Batch UI only mounts after verified entitlement; commercial pricing remains undecided and selling disabled.
