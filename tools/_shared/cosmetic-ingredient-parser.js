@@ -187,7 +187,18 @@
     "microcrystalline wax": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/fr/inci/ingredient/22305/microcrystalline-wax/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "sulfur": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15709/sulfur/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "aminobenzoic acid": Object.freeze({ category: "uv filter", sources: Object.freeze(["https://eur-lex.europa.eu/eli/reg/2009/1223"]), authority: "European Union / EUR-Lex" }),
-    "ammonium hydroxide": Object.freeze({ category: "buffer", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/906/ammonium-hydroxide/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "ammonium hydroxide": Object.freeze({ category: "buffer", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/906/ammonium-hydroxide/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed keratin": Object.freeze({ category: "hair conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6885/hydrolyzed-keratin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed silk": Object.freeze({ category: "hair conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6982/hydrolyzed-silk/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed collagen": Object.freeze({ category: "humectant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6824/hydrolyzed-collagen/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "menthol": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8827/menthol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "beeswax": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/21574/beeswax/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "aluminum starch octenylsuccinate": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/791/aluminum-starch-octenylsuccinate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "benzyl benzoate": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1593/benzyl-benzoate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "benzyl salicylate": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1601/benzyl-salicylate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydroxycitronellal": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19143/hydroxycitronellal/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "isoeugenol": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/7436/isoeugenol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "amyl cinnamal": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19189/amyl-cinnamal/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
@@ -275,7 +286,18 @@
     "proline": Object.freeze({ note_short: "Amino acid used for skin and hair conditioning; COSMILE Europe lists both functions for Proline.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/13164/proline/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "1,2-hexanediol": Object.freeze({ note_short: "Solvent and skin-conditioning ingredient; COSMILE Europe also lists a fragrance-functional role for 1,2-Hexanediol.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5/1-2-hexanediol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "sodium citrate": Object.freeze({ note_short: "Buffering and chelating ingredient; COSMILE Europe lists pH control and metal-ion binding among Sodium Citrate's cosmetic functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14681/sodium-citrate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "urea": Object.freeze({ note_short: "Moisture-binding ingredient and natural component of skin's moisture factor; COSMILE Europe lists Urea as a humectant, buffer and skin-conditioning ingredient.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/16737/urea/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "urea": Object.freeze({ note_short: "Moisture-binding ingredient and natural component of skin's moisture factor; COSMILE Europe lists Urea as a humectant, buffer and skin-conditioning ingredient.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/16737/urea/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed keratin": Object.freeze({ note_short: "Hydrolyzed Keratin is used for hair conditioning and film formation; COSMILE Europe also lists humectant and skin-conditioning functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6885/hydrolyzed-keratin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed silk": Object.freeze({ note_short: "Hydrolyzed Silk serves hair conditioning and moisture retention; COSMILE Europe also lists antistatic and skin-conditioning functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6982/hydrolyzed-silk/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed collagen": Object.freeze({ note_short: "Hydrolyzed Collagen is a humectant and film-forming ingredient; COSMILE Europe also lists hair- and skin-conditioning functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6824/hydrolyzed-collagen/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "menthol": Object.freeze({ note_short: "Menthol can impart fragrance and a refreshing sensation; COSMILE Europe also lists soothing and denaturant functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8827/menthol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "beeswax": Object.freeze({ note_short: "Beeswax can control formulation viscosity and bind powders; COSMILE Europe also lists emulsion-stabilising and skin-conditioning functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/21574/beeswax/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "aluminum starch octenylsuccinate": Object.freeze({ note_short: "Aluminum Starch Octenylsuccinate can control formulation viscosity, absorb dispersed substances and reduce powder caking.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/791/aluminum-starch-octenylsuccinate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "benzyl benzoate": Object.freeze({ note_short: "Benzyl Benzoate serves as a fragrance ingredient or solvent; COSMILE Europe also lists an antimicrobial function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1593/benzyl-benzoate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "benzyl salicylate": Object.freeze({ note_short: "Benzyl Salicylate serves as a fragrance ingredient and a UV absorber that can help protect the cosmetic formulation.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1601/benzyl-salicylate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydroxycitronellal": Object.freeze({ note_short: "Hydroxycitronellal is used to impart fragrance to cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19143/hydroxycitronellal/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "isoeugenol": Object.freeze({ note_short: "Isoeugenol is a fragrance ingredient; COSMILE Europe also lists a flavouring function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/7436/isoeugenol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "amyl cinnamal": Object.freeze({ note_short: "Amyl Cinnamal is used to impart fragrance to cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19189/amyl-cinnamal/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -500,7 +522,7 @@
   }
 
   const api = {
-    version: "1.58.0",
+    version: "1.59.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,

@@ -354,3 +354,24 @@ The runtime readiness audit identified three identities with source-backed verif
 | `ammonium hydroxide` | `buffer` | category missing | COSMILE Europe lists `BUFFERING` for Ammonium Hydroxide. |
 
 After this closure, all 22 verified-note identities also satisfy the strong runtime definition: supported public role + maintained Japanese name + source-backed verified ingredient-specific note.
+
+
+## Source-backed category wave 26 (2026-10-31)
+
+The user-facing runtime had 78/599 canonical identities without a supported bilingual role explanation. This bounded wave reviews **11** additional existing identities one by one using the exact COSMILE Europe ingredient pages, without inferring functions from raw category names or rewriting dictionary recognition records.
+
+| Canonical identity | Verified public role | COSMILE source function |
+| --- | --- | --- |
+| `hydrolyzed keratin` | `hair conditioning` | HAIR CONDITIONING |
+| `hydrolyzed silk` | `hair conditioning` | HAIR CONDITIONING |
+| `hydrolyzed collagen` | `humectant` | HUMECTANT |
+| `menthol` | `fragrance` | FRAGRANCE |
+| `beeswax` | `viscosity adjuster` | VISCOSITY CONTROLLING |
+| `aluminum starch octenylsuccinate` | `viscosity adjuster` | VISCOSITY CONTROLLING |
+| `benzyl benzoate` | `fragrance` | FRAGRANCE |
+| `benzyl salicylate` | `fragrance` | FRAGRANCE |
+| `hydroxycitronellal` | `fragrance` | FRAGRANCE |
+| `isoeugenol` | `fragrance` | FRAGRANCE |
+| `amyl cinnamal` | `fragrance` | FRAGRANCE |
+
+The authoritative HTTPS URLs are stored in the verified parser category overlay, the taxonomy reviewed mapping, and the regression file `check-cosmetics-source-verified-wave26.mjs`. Ingredient roles express possible formulation functions, **not** product-specific concentrations, allergy forecasts or safety determinations. After this wave, runtime supported roles are expected at **532/599**, leaving **67** unresolved. Frozen raw-canonical baseline remains 408/599.

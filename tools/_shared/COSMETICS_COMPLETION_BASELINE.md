@@ -64,16 +64,20 @@ FastScan inherits the shared-data requirements and additionally needs the OCR/re
 
 The original baseline intentionally counted only raw dictionary fields. That remains useful as raw-data debt, but it no longer represents runtime provenance after the verified overlay work.
 
-Current runtime provenance on main:
+Reviewed runtime provenance after source-backed Wave 26 (the raw inventory above remains frozen):
 
-- verified category overlay identities: 116
-- verified note overlay identities: 85
-- verified note identities with maintained Japanese naming: 85
-- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): 85 / 599
+- verified category overlay identities: **130**
+- verified note overlay identities: **96**
+- verified note identities with maintained Japanese naming: **96**
+- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): **96 / 599**
+- runtime public role explanations: **532 / 599 (88.81%)**; **67** identities still incomplete. This is distinct from the frozen 408/599 raw-canonical baseline.
 
 Accordingly, completion readiness must report raw dictionary debt and runtime verified provenance separately. A raw evidence count of zero must not be interpreted as zero runtime provenance.
 
-The runtime provenance floors are ratcheted at 119 verified categories, 85 verified notes, and 85 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 20 adds source-backed ingredient-specific notes for Glycine, Lactic Acid, PEG-100 Stearate, and Proline.
+The runtime provenance floors are ratcheted at 130 verified categories, 96 verified notes, and 96 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 20 adds source-backed ingredient-specific notes for Glycine, Lactic Acid, PEG-100 Stearate, and Proline.
 
 
 Wave 21 (2026-10-31) verifies three additional common-label notes against COSMILE Europe: 1,2-Hexanediol, Sodium Citrate, and Urea. Raw recognition records remain unchanged; verified runtime strong readiness is 85/599. Historical baseline metrics above remain frozen inventory, not a statement that all 599 identities have complete descriptions.
+
+
+Category Wave 26 / Verified Note Wave 22 (2026-10-31) reviews 11 previously public-role-incomplete identities with named official COSMILE Europe ingredient-function URLs. These are exact per-ingredient evidence mappings, not automatic category generalizations. No raw recognition dictionary was rewritten, and no unsupported category or safety conclusion was invented. The stronger incomplete-note backlog is **503/599**.

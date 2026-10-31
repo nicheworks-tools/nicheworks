@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 65, 'the 2 remaining legacy-only category conflicts plus 63 reviewed verified-primary role conflicts must be explicit at runtime');
+assert.equal(categoryConflicts.length, 72, 'the 2 remaining legacy-only category conflicts plus 70 reviewed verified-primary role conflicts must be explicit at runtime');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
@@ -98,7 +98,14 @@ const reviewedVerifiedPrimary = new Map([
   ['zinc oxide', { category: 'uv filter', legacy: ['colorant'] }],
   ['zea mays starch', { category: 'viscosity adjuster', legacy: ['powder'] }],
   ['peg-8', { category: 'humectant', legacy: ['solvent'] }],
-  ['microcrystalline wax', { category: 'viscosity adjuster', legacy: ['wax', 'texture agent'] }]
+  ['microcrystalline wax', { category: 'viscosity adjuster', legacy: ['wax', 'texture agent'] }],
+  ['hydrolyzed keratin', { category: 'hair conditioning', legacy: ['protein'] }],
+  ['hydrolyzed silk', { category: 'hair conditioning', legacy: ['protein'] }],
+  ['hydrolyzed collagen', { category: 'humectant', legacy: ['protein'] }],
+  ['menthol', { category: 'fragrance', legacy: ['sensory'] }],
+  ['beeswax', { category: 'viscosity adjuster', legacy: ['wax'] }],
+  ['aluminum starch octenylsuccinate', { category: 'viscosity adjuster', legacy: ['powder'] }],
+  ['isoeugenol', { category: 'fragrance', legacy: ['fragrance allergen'] }]
 ]);
 
 for (const item of categoryConflicts) {
