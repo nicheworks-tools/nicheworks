@@ -36,10 +36,10 @@ async function warmLazy(id) {
     window.scrollTo(0,0); await nap(350);
   }});
 }
-async function cdpCapture(id){
+async function cdpCapture(id,expectedOrigin){
   // Recheck the final origin immediately before invoking privileged capture.
   const tab=await chrome.tabs.get(id);
-  if(!tab.url || !["http:","https:"].includes(new URL(tab.url).protocol))throw Error("Unsafe capture target");
+  if(!tab.url || new URL(tab.url).origin!==expectedOrigin)throw Error("Capture target navigated outside authorized origin");
   await chrome.debugger.attach({tabId:id},"1.3");
   try {
     await send(id,"Page.enable");
@@ -75,7 +75,7 @@ chrome.runtime.onMessage.addListener((msg,sender,reply)=>{
     if(!sender.url?.startsWith(chrome.runtime.getURL("collector.html")))throw Error("Unexpected message sender");
     const result=await withTarget(url,async id=>{
       await warmLazy(id);
-      if(msg.engine==="cdp")return await cdpCapture(id);
+      if(msg.engine==="cdp")return await cdpCapture(id,new URL(url).origin);
       if(msg.engine==="scroll")return await scrollCapture(id);
       throw Error("Unknown capture engine");
     });
