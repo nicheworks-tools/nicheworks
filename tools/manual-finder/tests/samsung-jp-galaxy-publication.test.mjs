@@ -67,6 +67,6 @@ assert.equal(merged.filter(x=>x.maker==='Samsung Mobile').length,89);
 assert.equal(merged.filter(x=>x.maker==='VAIO').length,82);
 assert.equal(merged.filter(x=>x.maker==='Sony').length,107);
 const coverage=fs.readFileSync(new URL('../COVERAGE.md',import.meta.url),'utf8');
-assert.ok(coverage.includes('**1,908 verified model/caliber rows**'));
-assert.ok(coverage.includes('**50 of the 66 baseline brands are still generic-only**'));
+assert.ok(coverage.includes('| Samsung Mobile | 89 | expanded, scope-complete |'), 'Samsung own scope must remain listed regardless of other pass additions');
+assert.ok(coverage.includes('Samsung JP Galaxy smartphone coverage pass'), 'Samsung own provenance must remain documented');
 console.log('Samsung JP Galaxy 89-row publication, carrier disclosure, and 392-row runtime reconciliation passed.');

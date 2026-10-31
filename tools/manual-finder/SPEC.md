@@ -45,6 +45,14 @@ Final reconciliation: **89 = 85 direct Samsung model-specific manual-download in
 
 **Critical variant safety:** each marketing-model row links one **visibly labelled manufacturer product SKU** and does not claim manuals are interchangeable across carriers. Other carrier-specific documents must be chosen from Samsung's official index. The evidence is recorded in coverage-passes/samsung/jp-galaxy-smartphone-online-manual-index.json, published in data/manuals.coverage-pass.samsung-jp-galaxy-smartphones.js, with CI at .github/workflows/manualfinder-samsung-coverage-pass.yml. Samsung company-wide coverage is not complete.
 
+## dynabook JP announced PC 2024–2026 coverage-pass (2026-10-31)
+
+Official annual Japanese PDF manual tables enumerate 47 (2024) + 32 (2025) + 99 (2026) manufacturer **source rows**, including a repeated announcement for `dynabook B86/PA`. The two B86/PA rows list identical manuals, so the canonical model count is 177 rather than 178. The two `XP7/AR` full part codes, and explicitly distinguished Windows 11 Home/Pro configurations, remain separate official model identities. Nested HTML tables require balanced parsing and each official year's complete source-row order is locked with SHA256. This prevents silent source population truncation.
+
+After live official URL and PDF signature checks for 53 distinct manufacturer-controlled PDFs, final reconciliation is **177 models = 16 direct + 161 manufacturer-defined shared + 0 support_only + 0 held**. For `shared`, multiple independent manufacturer model rows visibly link to the identical PDF artifact. Model-family similarity alone cannot justify the relationship. Source records: `coverage-passes/dynabook/jp-announced-pc-2024-2026-official-manual-index.json`. Public data: `data/manuals.coverage-pass.dynabook-jp-2024-2026.js`. CI checks: `.github/workflows/manualfinder-dynabook-jp-coverage-pass.yml`, `tests/dynabook-jp-2024-26-review.test.mjs` and `tests/dynabook-jp-2024-26-publication.test.mjs`.
+
+This is a **bounded 2024–2026 announced PC index scope**, not all Dynabook products or earlier years.
+
 ## Coverage expansion workflow
 
 Future model-level expansion is governed by `COVERAGE_PASS_WORKFLOW.md`. Automation may discover candidates at scale, but it cannot promote rows solely because a URL was found or omit rows solely because a scraper missed them. Each manufacturer/category pass must lock an official population, retain every population model through direct/shared/support-only/held review states, escalate negative cases through alternate official discovery channels, and reconcile the entire population before `coverage-pass-complete` is allowed. Machine-readable manifests live under `coverage-passes/` and fail-closed validation lives under `scripts/coverage-pass-lib.mjs` plus `tests/coverage-pass-pipeline.test.mjs`.

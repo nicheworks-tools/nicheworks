@@ -17,7 +17,7 @@ All future model-level expansion must follow `COVERAGE_PASS_WORKFLOW.md`. Script
 
 ## Current verified model-level inventory
 
-With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PC, and Samsung JP Galaxy smartphone coverage-pass publications plus deployed Waves 3A / 3B / 3D / 3E, the accepted dataset contains **1,908 verified model/caliber rows**. **1,465 are outside Seiko**. The coverage-pass layer contributes 392 reviewed rows across six manufacturer scopes. Samsung adds 89 distinct manufacturer-defined marketed Galaxy models with an explicit selected carrier/product SKU for each published deep link; these are NOT 189 carrier-variant-specific rows.
+With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PC, Samsung JP Galaxy smartphones, and dynabook JP PC 2024–2026 coverage-pass publications plus deployed Waves 3A / 3B / 3D / 3E, the accepted dataset contains **2,085 verified model/caliber rows**. **1,642 are outside Seiko**. The coverage-pass layer contributes **569 reviewed rows across seven bounded manufacturer scopes**. Samsung's 89 rows select one explicitly disclosed official carrier SKU each; dynabook's 177 rows group one repeated model announcement row without counting it twice.
 
 | Maker / dataset identity | Verified rows | Current state | Notes |
 | --- | ---: | --- | --- |
@@ -31,6 +31,7 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifil
 | Fujifilm | 56 | expanded, scope-complete | JP GFX + X-series camera-manual-index scope is complete and published: 52 direct manual destinations + 4 explicit shared official manual-index targets. FinePix and broader Fujifilm coverage remain incomplete. |
 | Panasonic | 27 | expanded, scope-complete | JP LUMIX S/G/compact camera-body sitemap scope is complete and published: 27 direct official manual/support destinations. Panasonic company-wide coverage remains incomplete. |
 | Samsung Mobile | 89 | expanded, scope-complete | Samsung Japan Galaxy smartphone manuals index: five smartphone tables A/S/Note/Fold-Flip/other = 89 models; 85 direct manufacturer model-specific manual-download sections + 4 exact manufacturer support-only + 0 held. One labelled official carrier SKU per model; carrier variants are not assumed interchangeable. Broader Samsung remains incomplete. |
+| dynabook | 177 | expanded, scope-complete | 2024–2026 annual Japanese PC manual index: 178 manufacturer source rows reconcile to 177 canonical PC identities (B86/PA repeated announcement). 16 direct and 161 explicitly manufacturer-shared official PDF manuals, 0 support-only, 0 held. All 53 distinct PDF endpoints returned verified PDF signatures. Earlier announced PC products remain out of scope. |
 | VAIO | 82 | expanded, scope-complete | JP official start-guide index: 47 personal + 35 business PCs = 21 exact HTML manuals + 61 exact model support-only + 0 held. PDFs are listed by VAIO but returned HTTP 403 in CI and were not promoted; broader VAIO catalog remains incomplete. |
 | OKI | 77 | expanded | Printer/MFP model-level official manual destinations. |
 | RICOH | 39 | expanded | Office MFP/wide-MFP model-level official product/manual destinations. |
@@ -46,7 +47,7 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifil
 | Epson | 6 | expanded | Wave 3D first Colorio batch; exact official manual/support targets with verified consumable mappings. |
 | Canon | 6 | expanded | Wave 3E first PIXUS batch; direct or vendor-shared official online manuals with verified consumable mappings. |
 | Hisense | 2 | expanded | Exact TV function-manual targets; coverage is still very thin. |
-| **Total** | **1,908** |  |  |
+| **Total** | **2,085** |  |  |
 
 Counts above are accepted repository rows, not estimates of manufacturer catalog size.
 
@@ -71,7 +72,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 13 | Acer | generic-only | PC/mobile queue |
 | 14 | MSI | generic-only | PC/mobile queue |
 | 15 | VAIO | **expanded — 82** | JP start-guide table scope complete: 21 direct HTML user guides + 61 exact support-only + 0 held; broader VAIO remains incomplete |
-| 16 | dynabook | generic-only | PC/mobile queue |
+| 16 | dynabook | **expanded — 177** | JP 2024–2026 announced PC manual index scope-complete: 16 direct + 161 vendor-defined shared PDFs, zero held. Older years remain incomplete. |
 | 17 | NEC LAVIE | generic-only | PC/mobile queue |
 | 18 | Fujitsu FMV | generic-only | PC/mobile queue |
 | 19 | Google Pixel | generic-only | Mobile queue; verify whether stable per-device manual targets exist |
@@ -123,7 +124,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 65 | Bambu Lab | generic-only | P1 3D-printer queue |
 | 66 | Creality | generic-only | P1 3D-printer queue |
 
-Result after the Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, and Fujifilm GFX/X publications: **50 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
+Result after the Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, and Fujifilm GFX/X publications: **49 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
 
 ## P0 source audit and order
 
@@ -165,6 +166,10 @@ VAIO Corporation's Japanese official start-guide download index at `https://solu
 ### Samsung JP Galaxy smartphone coverage pass
 
 The official Samsung Japan [Galaxy smartphone/tablet manuals index](https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/) exposes five complete smartphone tables: **18 A + 39 S + 8 Note + 19 Fold/Flip + 5 other = 89 official marketed model identities**, alongside a separately excluded 34-model tablet table. GitHub Actions live review on 2026-10-31 checked the official 89/89 model population, 189 manufacturer-linked carrier product candidates, and exact official model/HTML manual evidence. Initial results were 82 direct and 7 identity exceptions. Independent Samsung official carrier/support and product metadata secondary discovery reconciled **89 = 85 direct + 0 shared + 4 support_only + 0 held**. The four support-only rows are Galaxy S20 5G, Galaxy Note3, Galaxy Note20 Ultra 5G, and Galaxy Z Fold2 5G Thom Browne Edition: the manufacturer index and secondary SKU mapping confirm model identity but the chosen support destination does not visibly present the same full marketed title; no unsupported manual equivalence was promoted. Samsung A21 シンプル required an explicit source conflict review (manual index SCG49 vs Samsung au software list SCV49), resolved through a manufacturer manual explicitly marked シンプル. The published single support/manual link is for the **displayed exact SKU**; other carrier versions may have different manuals. Tablets and all other Samsung lines remain outside this pass.
+
+### dynabook JP 2024–2026 PC official manual-index coverage pass
+
+The manufacturer maintains year-scoped manual download tables: [2024](https://dynabook.com/manual_download/cata2024.html) (47 product rows), [2025](https://dynabook.com/manual_download/cata2025.html) (32 rows), and [2026](https://dynabook.com/manual_download/index.html) (99 rows). Nested HTML tables were parsed completely, and per-year ordered source-row SHA256 fingerprints were locked to catch silent truncation/drift. The one duplicate 2026 `dynabook B86/PA` announcement (January and September) lists identical manuals and is one canonical product identity; two different `XP7/AR` product part codes and Home/Pro variants are separate because the manufacturer explicitly distinguishes them. **178 official source rows = 177 unique canonical models = 16 direct official PDF manuals + 161 manufacturer-explicit shared official PDF manuals + 0 support_only + 0 held**. All 53 distinct accepted dynabook-controlled HTTPS PDF destinations passed a live ranged GET and `%PDF-` magic-header verification. A `shared` relationship is established solely because each manufacturer's exact model row explicitly links to the identical PDF; no family resemblance or inferred URL pattern is used. Published data: `data/manuals.coverage-pass.dynabook-jp-2024-2026.js`, manifest: `coverage-passes/dynabook/jp-announced-pc-2024-2026-official-manual-index.json`, live CI: `.github/workflows/manualfinder-dynabook-jp-coverage-pass.yml`. All earlier year products are outside this scope and company-wide coverage remains incomplete.
 
 ## Wave rotation contract
 
