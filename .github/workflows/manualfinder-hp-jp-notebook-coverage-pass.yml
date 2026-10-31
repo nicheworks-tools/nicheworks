@@ -1,0 +1,28 @@
+name: ManualFinder HP JP Notebook official matrix discovery
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/scripts/hp-jp-notebook-source-probe.mjs'
+      - '.github/workflows/manualfinder-hp-jp-notebook-coverage-pass.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  official-hp-matrix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Ensure PDF text extractor
+        run: command -v pdftotext || (sudo apt-get update -qq && sudo apt-get install -y poppler-utils)
+      - name: Fetch complete HP manufacturer-defined notebook model matrix
+        run: node tools/manual-finder/scripts/hp-jp-notebook-source-probe.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-hp-notebook-official-matrix-probe
+          path: manualfinder-hp-probe/*
+          if-no-files-found: warn
