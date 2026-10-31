@@ -61,6 +61,16 @@ For every one of the 148 models, live GitHub Actions confirmed the exact model n
 
 Source records: `coverage-passes/fujitsu/jp-business-lifebook-u-model-manual-index.json`. Public batch: `data/manuals.coverage-pass.fujitsu-lifebook-u.js`. Live exact-document confirmation: `scripts/fujitsu-lifebook-u-review.mjs`; publication recheck: `scripts/fujitsu-lifebook-u-reconcile-publication.mjs`; CI: `.github/workflows/manualfinder-fujitsu-lifebook-u-coverage-pass.yml`. Consumer FMV, other LIFEBOOK families, and Fujitsu company-wide manual coverage remain incomplete.
 
+## Google Pixel official model support Coverage-Pass (2026-10-31)
+
+Google's [Pixel release-date index](https://support.google.com/pixelphone/answer/15738422?hl=ja) contains **33 official rows** (five manufacturer-grouped dual-model rows), enumerating **38 exact Google Pixel phone models** from 2016 through the 2026 Pixel 11 generation. An independent manufacturer [safety, regulatory and other information index](https://support.google.com/pixelphone/answer/9204905?hl=ja) lists all 38 exact device identities and explicitly links them to **24 manufacturer-controlled, model-named support articles**. The live runner verifies each official HTTPS destination, content type, and exact model alias in the manufacturer document's title. Earlier official titles such as `Pixel 4` omit `Google`; these aliases are accepted only with the authoritative model-to-document index and exact token boundaries, never by family prefix inference.
+
+Final reconciliation: **38 = 0 direct + 0 shared + 38 support_only + 0 held**. Safety/regulatory information is **not** an operating user manual. Do not turn the general Google Pixel Help homepage into a false exact manual, or claim that several models sharing one regulatory support article implies they share a manufacturer-defined user manual. The published record links the exact official safety/support article and explicitly discloses its limited scope. Detailed operational user-manual coverage is still unresolved as a separate scope.
+
+Manifest: `coverage-passes/google/pixel-phone-jp-2016-2026.json`. Official source / destination verification: `scripts/google-pixel-coverage-review.mjs`. Public batch: `data/manuals.coverage-pass.google-pixel-jp.js`. CI: `.github/workflows/manualfinder-google-pixel-coverage-pass.yml`.
+
+This is a **bounded manufacturer-documented Pixel phone support-information scope**, not complete Google-wide documentation; Pixel Tablet, Watch and all unlisted devices are excluded.
+
 ## Coverage expansion workflow
 
 Future model-level expansion is governed by `COVERAGE_PASS_WORKFLOW.md`. Automation may discover candidates at scale, but it cannot promote rows solely because a URL was found or omit rows solely because a scraper missed them. Each manufacturer/category pass must lock an official population, retain every population model through direct/shared/support-only/held review states, escalate negative cases through alternate official discovery channels, and reconcile the entire population before `coverage-pass-complete` is allowed. Machine-readable manifests live under `coverage-passes/` and fail-closed validation lives under `scripts/coverage-pass-lib.mjs` plus `tests/coverage-pass-pipeline.test.mjs`.
