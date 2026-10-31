@@ -125,7 +125,7 @@
           container: slot,
           target: offer.target,
           url: offer.url,
-          label: lang === "ja" ? offer.labelJa : offer.labelEn,
+          label: (lang === "ja" ? offer.labelJa : offer.labelEn) + " [PR]",
           placement: "consumables_lookup",
           destinationKey: "consumable:" + row.maker + ":" + row.model + ":" + (offer.key || offer.query),
           className: "amazon-link",
@@ -173,5 +173,7 @@
   const params = new URLSearchParams(location.search);
   const initial = params.get("q");
   if (initial && initial.length <= 80) input.value = initial;
+  const requestedLang = params.get("lang");
+  if (requestedLang === "ja" || requestedLang === "en") lang = requestedLang;
   setLanguage(lang);
 })();
