@@ -11094,6 +11094,221 @@
         "verifiedAt": "2026-10-31"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-we2-m07",
+      "manufacturer": "FCNT",
+      "model": "arrows We2",
+      "aliases": [
+        "arrows We2 M07",
+        "arrows We2 SIMフリー",
+        "アローズ We2",
+        "M07",
+        "FCNT arrows We2"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 155,
+        "widthMm": 73,
+        "depthMm": 8.9
+      },
+      "weightG": 179,
+      "displayInch": 6.1,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4500,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fcnt.com/spec/m07-sim-free/"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fcnt.com/spec/m07-sim-free/",
+        "manualUrl": "https://www.fcnt.com/product/arrows/m07-sim-free/",
+        "releaseUrl": "https://www.fcnt.com/news/1008/",
+        "chargingUrl": "https://www.fcnt.com/spec/m07-sim-free/",
+        "waterUrl": "https://www.fcnt.com/spec/m07-sim-free/",
+        "packageUrl": "https://www.fcnt.com/spec/m07-sim-free/",
+        "verifiedAt": "2026-10-31"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "nothing-cmf-phone-2-pro",
+      "manufacturer": "Nothing",
+      "model": "CMF Phone 2 Pro",
+      "aliases": [
+        "CMF by Nothing Phone 2 Pro",
+        "CMF Phone2 Pro",
+        "CMF Phone 2Pro",
+        "Nothing CMF Phone 2 Pro",
+        "A001"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 164.08,
+        "widthMm": 78.06,
+        "depthMm": 7.8
+      },
+      "weightG": 185,
+      "displayInch": 6.77,
+      "waterRating": "IPX4 / IP5X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 33,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStatus": "not_supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.nothing.tech/products/cmf-phone-2-pro"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/cmf-phone-2-pro/spec/",
+        "manualUrl": "https://support.nothing.tech/hc/ja/categories/32612177779473-CMF-by-Nothing-Phone-2-Pro",
+        "releaseUrl": "https://corp.mobile.rakuten.co.jp/news/press/2025/0722_01/",
+        "chargingUrl": "https://jp.nothing.tech/products/cmf-phone-2-pro",
+        "wirelessUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/cmf-phone-2-pro/spec/",
+        "waterUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/cmf-phone-2-pro/spec/",
+        "packageUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/cmf-phone-2-pro/spec/",
+        "verifiedAt": "2026-10-31"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "nothing-phone-3a-lite",
+      "manufacturer": "Nothing",
+      "model": "Phone (3a) Lite",
+      "aliases": [
+        "Nothing Phone (3a) Lite",
+        "Nothing Phone 3a Lite",
+        "Phone 3a Lite",
+        "A001T",
+        "フォン3a Lite"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 164.1,
+        "widthMm": 78.08,
+        "depthMm": 8.35
+      },
+      "weightG": 199.2,
+      "displayInch": 6.77,
+      "waterRating": "IPX4 / IP5X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 33,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStatus": "not_supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.nothing.tech/products/phone-3a-lite"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3a-lite/spec/",
+        "manualUrl": "https://support.nothing.tech/hc/ja/categories/37560459056913-Nothing-Phone-3a-Lite",
+        "releaseUrl": "https://corp.mobile.rakuten.co.jp/news/press/2026/0107_01/",
+        "chargingUrl": "https://jp.nothing.tech/products/phone-3a-lite",
+        "wirelessUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3a-lite/spec/",
+        "waterUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3a-lite/spec/",
+        "packageUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3a-lite/spec/",
+        "verifiedAt": "2026-10-31"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "nothing-phone-3",
+      "manufacturer": "Nothing",
+      "model": "Phone (3)",
+      "aliases": [
+        "Nothing Phone (3)",
+        "Nothing Phone 3",
+        "Phone3",
+        "Nothing Phone3",
+        "A024"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 160.6,
+        "widthMm": 75.59,
+        "depthMm": 8.99
+      },
+      "weightG": 218,
+      "displayInch": 6.67,
+      "waterRating": "IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Wireless charging",
+        "wirelessMaxW": 15,
+        "battery": {
+          "capacityMah": 5150,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3/spec/"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3/spec/",
+        "manualUrl": "https://support.nothing.tech/hc/ja/categories/34659490954897-Nothing-Phone-3",
+        "releaseUrl": "https://corp.mobile.rakuten.co.jp/news/press/2025/0820_01/",
+        "chargingUrl": "https://jp.nothing.tech/products/phone-3",
+        "wirelessUrl": "https://jp.nothing.tech/products/phone-3",
+        "waterUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3/spec/",
+        "packageUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3/spec/",
+        "verifiedAt": "2026-10-31"
+      },
+      "affiliateKeys": []
     }
   ]
 }
