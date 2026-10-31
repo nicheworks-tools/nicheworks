@@ -4,6 +4,7 @@ on:
     paths:
       - 'tools/manual-finder/coverage-passes/google/**'
       - 'tools/manual-finder/scripts/google-pixel-coverage-review.mjs'
+      - 'tools/manual-finder/scripts/google-pixel-reconcile-publication.mjs'
       - 'tools/manual-finder/scripts/google-pixel-source-probe.mjs'
       - 'tools/manual-finder/tests/google-pixel-coverage-review.test.mjs'
       - 'tools/manual-finder/tests/google-pixel-publication.test.mjs'
@@ -34,6 +35,10 @@ jobs:
         run: |
           mkdir -p manualfinder-pixel-review
           node tools/manual-finder/scripts/google-pixel-coverage-review.mjs --out manualfinder-pixel-review/review.json
+      - name: Reconcile all reviewed model support URLs against published manifest
+        run: |
+          node tools/manual-finder/scripts/google-pixel-reconcile-publication.mjs \
+            --live manualfinder-pixel-review/review.json
       - if: always()
         uses: actions/upload-artifact@v4
         with:
