@@ -10,7 +10,14 @@ async function stitch(result){
  const canvas=document.createElement("canvas");canvas.width=images[0].bitmap.width;canvas.height=Math.round(info.height*ratio);
  if(canvas.height>32767||canvas.width>32767)throw Error("Canvas dimensions exceed PoC limit");
  const ctx=canvas.getContext("2d");if(!ctx)throw Error("Canvas unavailable");
- for(const {bitmap,y} of images){const targetY=Math.round(y*ratio),height=Math.min(bitmap.height,canvas.height-targetY);ctx.drawImage(bitmap,0,0,bitmap.width,height,0,targetY,bitmap.width,height);bitmap.close();}
+ let paintedBottom=0;
+ for(const {bitmap,y} of images){
+   const targetY=Math.round(y*ratio);
+   const sourceOffset=Math.max(0,paintedBottom-targetY);
+   const height=Math.min(bitmap.height-sourceOffset,canvas.height-(targetY+sourceOffset));
+   if(height>0){ctx.drawImage(bitmap,0,sourceOffset,bitmap.width,height,0,targetY+sourceOffset,bitmap.width,height);paintedBottom=targetY+sourceOffset+height;}
+   bitmap.close();
+ }
  return await new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(Error("PNG encoding failed")),"image/png"));
 }
 button.addEventListener("click",async()=>{
