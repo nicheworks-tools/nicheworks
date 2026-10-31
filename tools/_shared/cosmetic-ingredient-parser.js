@@ -242,7 +242,23 @@
     "citrus limon lemon peel oil": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/18168/citrus-limon-peel-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "mentha piperita peppermint oil": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/18166/mentha-piperita-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "evernia prunastri extract": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19229/evernia-prunastri-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "evernia furfuracea extract": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19227/evernia-furfuracea-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "evernia furfuracea extract": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19227/evernia-furfuracea-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "dioxybenzone": Object.freeze({ category: "uv filter", sources: Object.freeze(["https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun"]), authority: "U.S. Food and Drug Administration (FDA)" }),
+    "ensulizole": Object.freeze({ category: "uv filter", sources: Object.freeze(["https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun"]), authority: "U.S. Food and Drug Administration (FDA)" }),
+    "meradimate": Object.freeze({ category: "uv filter", sources: Object.freeze(["https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun"]), authority: "U.S. Food and Drug Administration (FDA)" }),
+    "3-o-ethyl ascorbic acid": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/25166/3-o-ethyl-ascorbic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "trametes versicolor extract": Object.freeze({ category: "hair conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/16277/trametes-versicolor-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "madecassic acid": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8503/madecassic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "asiatic acid": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1251/asiatic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "anisyl alcohol": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19193/anise-alcohol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "isoamyl salicylate": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/26150/isoamyl-salicylate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "lavandula angustifolia lavender oil": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8190/lavandula-angustifolia-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "copernicia cerifera carnauba wax": Object.freeze({ category: "film former", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3787/copernicia-cerifera-cera/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "euphorbia cerifera candelilla wax": Object.freeze({ category: "film former", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/17595/euphorbia-cerifera-cera/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "peg-12": Object.freeze({ category: "humectant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10395/peg-12/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "peg-75": Object.freeze({ category: "humectant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11036/peg-75/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ppg-26-buteth-26": Object.freeze({ category: "hair conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12992/ppg-26-buteth-26/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "elastin": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5210/elastin/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
@@ -385,7 +401,23 @@
     "citrus limon lemon peel oil": Object.freeze({ note_short: "Lemon peel oil is used for fragrance; COSMILE Europe also lists skin conditioning for Citrus Limon Peel Oil.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/18168/citrus-limon-peel-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "mentha piperita peppermint oil": Object.freeze({ note_short: "Peppermint Oil is used for fragrance; COSMILE Europe also lists refreshing and tonic functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/18166/mentha-piperita-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "evernia prunastri extract": Object.freeze({ note_short: "Evernia Prunastri (oakmoss) Extract is a fragrance ingredient.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19229/evernia-prunastri-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "evernia furfuracea extract": Object.freeze({ note_short: "Evernia Furfuracea (tree moss) Extract is a fragrance ingredient.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19227/evernia-furfuracea-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "evernia furfuracea extract": Object.freeze({ note_short: "Evernia Furfuracea (tree moss) Extract is a fragrance ingredient.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19227/evernia-furfuracea-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "dioxybenzone": Object.freeze({ note_short: "Dioxybenzone is listed by the FDA as a sunscreen active ingredient; this identifies its UV-filtering purpose, not a safety or approval determination.", note_sources: Object.freeze(["https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun"]), authority: "U.S. Food and Drug Administration (FDA)" }),
+    "ensulizole": Object.freeze({ note_short: "Ensulizole is listed by the FDA as a sunscreen active ingredient used for UV protection; the listing alone does not establish product safety.", note_sources: Object.freeze(["https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun"]), authority: "U.S. Food and Drug Administration (FDA)" }),
+    "meradimate": Object.freeze({ note_short: "Meradimate is listed by the FDA as a sunscreen active ingredient for UV protection; this is a function description, not a product safety assessment.", note_sources: Object.freeze(["https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun"]), authority: "U.S. Food and Drug Administration (FDA)" }),
+    "3-o-ethyl ascorbic acid": Object.freeze({ note_short: "3-O-Ethyl Ascorbic Acid is listed for skin-conditioning use in cosmetics.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/25166/3-o-ethyl-ascorbic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "trametes versicolor extract": Object.freeze({ note_short: "Trametes Versicolor Extract is listed as a hair-conditioning ingredient in cosmetics.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/16277/trametes-versicolor-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "madecassic acid": Object.freeze({ note_short: "Madecassic Acid is listed for skin-conditioning use in cosmetics.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8503/madecassic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "asiatic acid": Object.freeze({ note_short: "Asiatic Acid is used for skin conditioning; COSMILE Europe also lists light-stabilizing properties.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1251/asiatic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "anisyl alcohol": Object.freeze({ note_short: "Anisyl Alcohol (also called Anise Alcohol) is used to impart fragrance to cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19193/anise-alcohol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "isoamyl salicylate": Object.freeze({ note_short: "Isoamyl Salicylate is used as a fragrance ingredient in cosmetics.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/26150/isoamyl-salicylate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "lavandula angustifolia lavender oil": Object.freeze({ note_short: "Lavandula Angustifolia (Lavender) Oil is used for fragrance; COSMILE Europe also lists a tonic function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8190/lavandula-angustifolia-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "copernicia cerifera carnauba wax": Object.freeze({ note_short: "Copernicia Cerifera (Carnauba) Wax can form a film; COSMILE Europe also lists skin-conditioning and emollient functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3787/copernicia-cerifera-cera/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "euphorbia cerifera candelilla wax": Object.freeze({ note_short: "Euphorbia Cerifera (Candelilla) Wax can form a film; COSMILE Europe also lists emulsion stabilization, gel formation and viscosity control.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/17595/euphorbia-cerifera-cera/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "peg-12": Object.freeze({ note_short: "PEG-12 retains moisture in cosmetic products and is also listed as a solvent and fragrance-functional ingredient.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10395/peg-12/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "peg-75": Object.freeze({ note_short: "PEG-75 retains moisture and can also bind powdered ingredients or act as a solvent in cosmetics.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11036/peg-75/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ppg-26-buteth-26": Object.freeze({ note_short: "PPG-26-Buteth-26 is listed for hair and skin conditioning, with a fragrance-functional role.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12992/ppg-26-buteth-26/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "elastin": Object.freeze({ note_short: "Elastin is used for skin conditioning and smoothing in cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5210/elastin/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -610,7 +642,7 @@
   }
 
   const api = {
-    version: "1.62.0",
+    version: "1.63.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
