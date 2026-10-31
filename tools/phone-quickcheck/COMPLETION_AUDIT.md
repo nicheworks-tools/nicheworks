@@ -152,6 +152,16 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 10 — 2026-10-31
+
+Added **moto g06** from Motorola Japan first-party product specifications and dated Japan launch notice.
+
+Maintained dataset: **205 → 206**; manufacturers: **9**; foldables: **36**.
+
+Manufacturer official [specifications](https://store.motorola.co.jp/item/MOTO_G06.html) preserve exactly: 171.35 × 77.50 × 8.31 mm, approximately 194 g, 6.9-inch screen, 5,200mAh battery, USB Type-C, 10W charging, and IP64. Both the power adapter and USB cable are explicitly not included. [Manufacturer Japan-market release notice](https://store.motorola.co.jp/topics_detail.html?info_id=1148) dated 2026-03-10 states Japan retail launch scheduled for 2026-03-19.
+
+`wiredMaxW` reflects the stated 10W device charging capability; `wiredRecommendedW` remains null. No USB-PD/PPS/wireless capability is invented; PPS is unknown and wireless fields are null. Charging, water, package, release and battery sources are stored explicitly.
+
 ## Post-v1 maintenance Wave 9 — 2026-10-31
 
 Added **motorola edge 70 fusion**, released for Japan on **2026-10-23**.

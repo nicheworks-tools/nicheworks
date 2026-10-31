@@ -10772,6 +10772,58 @@
         "verifiedAt": "2026-10-31"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "motorola-moto-g06",
+      "manufacturer": "Motorola",
+      "model": "moto g06",
+      "aliases": [
+        "Motorola moto g06",
+        "Moto G06",
+        "moto g 06",
+        "motog06",
+        "モトローラ moto g06"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 171.35,
+        "widthMm": 77.5,
+        "depthMm": 8.31
+      },
+      "weightG": 194,
+      "displayInch": 6.9,
+      "waterRating": "IP64",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 10,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5200,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://store.motorola.co.jp/item/MOTO_G06.html"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://store.motorola.co.jp/item/MOTO_G06.html",
+        "manualUrl": "https://jp-jp.support.motorola.com/",
+        "releaseUrl": "https://store.motorola.co.jp/topics_detail.html?info_id=1148",
+        "chargingUrl": "https://store.motorola.co.jp/item/MOTO_G06.html",
+        "waterUrl": "https://store.motorola.co.jp/item/MOTO_G06.html",
+        "packageUrl": "https://store.motorola.co.jp/item/MOTO_G06.html",
+        "verifiedAt": "2026-10-31"
+      },
+      "affiliateKeys": []
     }
   ]
 }
