@@ -53,7 +53,7 @@ jobs:
             --no-first-run --no-default-browser-check \
             --user-data-dir="$PROFILE_DIR" \
             --download-default-directory="$DOWNLOAD_DIR" \
-            --window-size=1440,1000 --virtual-time-budget=45000 \
+            --window-size=1440,1000 --virtual-time-budget=12000 \
             --dump-dom http://127.0.0.1:8766/tools/csv-tidy/tests/pro-browser-acceptance.html \
             >"$RUNNER_TEMP/pro-browser-result.html" 2>"$RUNNER_TEMP/pro-browser-chrome.log" || {
               tail -80 "$RUNNER_TEMP/pro-browser-chrome.log" || true
