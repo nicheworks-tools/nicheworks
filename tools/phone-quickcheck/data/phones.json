@@ -10932,6 +10932,168 @@
         "wirelessUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4b/spec/"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-alpha-m08",
+      "manufacturer": "FCNT",
+      "model": "arrows Alpha",
+      "aliases": [
+        "FCNT arrows Alpha",
+        "arrows Alpha M08",
+        "arrows Alpha SIMフリー",
+        "アローズ アルファ",
+        "M08"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 156,
+        "widthMm": 72,
+        "depthMm": 8.8
+      },
+      "weightG": 188,
+      "displayInch": 6.4,
+      "waterRating": "IPX6/IPX8/IPX9 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": 90,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fcnt.com/spec/m08-sim-free/"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fcnt.com/spec/m08-sim-free/",
+        "manualUrl": "https://www.fcnt.com/product/arrows/m08-sim-free/",
+        "releaseUrl": "https://www.fcnt.com/news/27917/",
+        "chargingUrl": "https://www.fcnt.com/spec/m08-sim-free/",
+        "waterUrl": "https://www.fcnt.com/spec/m08-sim-free/",
+        "packageUrl": "https://www.fcnt.com/spec/m08-sim-free/",
+        "verifiedAt": "2026-10-31"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-we2-plus-m06",
+      "manufacturer": "FCNT",
+      "model": "arrows We2 Plus",
+      "aliases": [
+        "FCNT arrows We2 Plus",
+        "arrows We2 Plus M06",
+        "arrows We 2 Plus",
+        "アローズ ウィーツープラス",
+        "M06"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 162,
+        "widthMm": 75,
+        "depthMm": 8.5
+      },
+      "weightG": 182,
+      "displayInch": 6.6,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fcnt.com/spec/m06/"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fcnt.com/spec/m06/",
+        "manualUrl": "https://www.fcnt.com/product/arrows/m06/",
+        "releaseUrl": "https://www.fcnt.com/news/1005/",
+        "chargingUrl": "https://www.fcnt.com/spec/m06/",
+        "waterUrl": "https://www.fcnt.com/spec/m06/",
+        "packageUrl": "https://www.fcnt.com/spec/m06/",
+        "verifiedAt": "2026-10-31"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "nothing-phone-3a",
+      "manufacturer": "Nothing",
+      "model": "Phone (3a)",
+      "aliases": [
+        "Nothing Phone (3a)",
+        "Nothing Phone 3a",
+        "Phone 3a",
+        "フォン3a",
+        "A059"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 163.52,
+        "widthMm": 77.5,
+        "depthMm": 8.35
+      },
+      "weightG": 201,
+      "displayInch": 6.77,
+      "waterRating": "IPX4 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStatus": "not_supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3a/spec/"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3a/spec/",
+        "manualUrl": "https://support.nothing.tech/hc/ja/categories/30143147215889-Nothing-Phone-3a",
+        "releaseUrl": "https://corp.mobile.rakuten.co.jp/news/press/2025/0408_01/",
+        "chargingUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3a/spec/",
+        "wirelessUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3a/spec/",
+        "waterUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3a/spec/",
+        "packageUrl": "https://support.nothing.tech/hc/ja/articles/32978953822609-Phone-3a-%E3%81%AE%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9%E3%81%AB%E3%81%AF%E4%BD%95%E3%81%8C%E5%85%A5%E3%81%A3%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%81%8B",
+        "verifiedAt": "2026-10-31"
+      },
+      "affiliateKeys": []
     }
   ]
 }

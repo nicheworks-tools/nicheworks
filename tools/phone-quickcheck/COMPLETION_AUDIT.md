@@ -152,6 +152,26 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 16 — 2026-10-31
+
+Verified Japan-market backfill of three missing phones from the existing two under-covered manufacturers: FCNT and Nothing. Dataset **208 → 211**; manufacturers **11**, foldables **36** unchanged. All in-box, charging-protocol and water facts are tied to official sources; wireless support on Nothing Phone (3a) is explicitly verified negative.
+
+### FCNT arrows Alpha M08 (SIM-free, 2025-08-28)
+- [Manufacturer SIM-free specifications](https://www.fcnt.com/spec/m08-sim-free/) and [release confirmation](https://www.fcnt.com/news/27917/) state 156 × 72 × 8.8 mm; approx. 188 g; 6.4-inch screen; 5,000 mAh; USB-C and USB Power Delivery Revision 3.0; IPX6/IPX8/IPX9 and IP6X.
+- FCNT's official SIM-free in-box list explicitly includes both **AC adapter a02 (90W)** and **USB cable**, so both are `included`. 90W is a **charger recommendation/adapter capability**, not assumed as device input maximum; `wiredMaxW` remains null. No PPS or wireless charging capability is inferred.
+
+### FCNT arrows We2 Plus M06 (Rakuten Mobile, 2024-10-15)
+- [Official M06 specifications](https://www.fcnt.com/spec/m06/) and [launch announcement](https://www.fcnt.com/news/1005/) show 162 × 75 × 8.5 mm; approx. 182 g; 6.6-inch display; 5,000 mAh; USB-C + USB Power Delivery Rev 3.0; IPX5/IPX8 + IP6X.
+- FCNT's exhaustive official M06 **in-box list names only the quick-start guide**, so adapter and cable are marked `not_included` for this **specific M06 SKU**. Carrier-specific F-51E is not silently conflated with M06. Charging watts/PPS/wireless remain unknown.
+
+### Nothing Phone (3a) A059 (Rakuten Mobile Japan, 2025-04-15)
+- [Rakuten Japan product specification](https://network.mobile.rakuten.co.jp/product/smartphone/phone-3a/spec/) and [2025 launch notice](https://corp.mobile.rakuten.co.jp/news/press/2025/0408_01/) establish 163.52 × 77.5 × 8.35 mm; 201g; 6.77-inch screen; 5,000 mAh; USB Type-C; IPX4 + IP6X; official **wireless charging: not supported**.
+- [Nothing's own explicit in-box list](https://support.nothing.tech/hc/ja/articles/32978953822609-Phone-3a-%E3%81%AE%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9%E3%81%AB%E3%81%AF%E4%BD%95%E3%81%8C%E5%85%A5%E3%81%A3%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%81%8B) confirms a USB-C cable and no AC charger. No USB-PD/PPS protocol or device-side wattage is inferred from retailer claims or other regions.
+
+### Verification
+- Completion/data/source semantics retain **zero unreviewed package/water fields**; the three records add no false positives or arbitrary wattage.
+- The live-production Chrome workflow merged in [PR #1445](https://github.com/nicheworks-tools/nicheworks/pull/1445) will run on the main push; pending CI and deployment assertions must pass before claiming public 211.
+
 ## Post-v1 maintenance Wave 15 — 2026-10-31
 
 Added a measured production browser regression to the already merged mobile badge-close fix: the live stylesheet must contain the 46px clearance rule; at each mobile/tablet viewport (320/390/414/768) the actual Chrome badge and 32px close-control bounding rectangles must **not intersect**. Both the close control's 32px minimum hit area and the existing JP/EN, search, mobile-sheet and 208-phone production assertions remain enforced.
