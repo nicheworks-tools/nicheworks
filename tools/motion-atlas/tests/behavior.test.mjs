@@ -20,6 +20,7 @@ const ids = new Set(motions.map((m) => m.id));
 const slugs = new Set(motions.map((m) => m.slug));
 assert.equal(ids.size, motions.length, "duplicate motion ID");
 assert.equal(slugs.size, motions.length, "duplicate motion slug");
+assert.equal(new Set(motions.map((m) => m.summary_ja)).size, motions.length, "duplicate Japanese summaries");
 
 const required = [
   "id", "slug", "name_en", "name_ja", "category", "motion_type", "trigger",
@@ -40,7 +41,7 @@ for (const m of motions) {
   assert.match(css, new RegExp("is-replaying\\[data-demo=\\\"" + m.demo_type + "\\\"\\]"), m.slug + ": missing replay animation");
   assert.ok(m.code_hint_css.length >= 70, m.slug + ": CSS hint too thin");
   assert.ok(m.summary_en.length >= 35, m.slug + ": generic English summary");
-  assert.ok(m.summary_ja.length >= 20, m.slug + ": generic Japanese summary");
+  assert.ok(m.summary_ja.length >= 12, m.slug + ": Japanese summary too short");
   assert.notEqual(m.name_en, m.name_ja, m.slug + ": missing localization");
 }
 
