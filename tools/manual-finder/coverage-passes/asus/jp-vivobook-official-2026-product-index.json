@@ -3,7 +3,7 @@
   "maker": "ASUS",
   "scopeId": "jp-vivobook-official-2026-model-product-index",
   "scopeLabel": "ASUS Japan Vivobook product catalog filtered to 2026 manufacturer-listed Vivobook family including the creator-labeled Vivobook Pro model",
-  "status": "reviewing",
+  "status": "coverage-pass-complete",
   "asOf": "2026-10-31",
   "region": "JP",
   "language": "ja",
@@ -240,10 +240,10 @@
         "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-12-e210/"
       }
     ],
-    "notes": "Products from both manufacturer ProductList pages are retained, including one creator-category Vivobook Pro manufacturer-listed within the selected Vivobook series. The exact family-code, manufacturer product ID and product URL form the locked universe; listing labels may contain marketing taglines not usable as SKU equivalence. Actual support/manual URLs are candidates until live model-specific proof; selected variant code must be disclosed."
+    "notes": "Products from both manufacturer ProductList pages are retained, including one creator-category Vivobook Pro manufacturer-listed within the selected Vivobook series. The exact family-code, manufacturer product ID and product URL form the locked universe; listing labels may contain marketing taglines not usable as SKU equivalence. Actual support/manual URLs are candidates until live model-specific proof; selected variant code must be disclosed. 2026-10-31 live review run 41213023329 re-captured 35/35 exact source model, product ID and URL identities from two 20+15 manufacturer API pages and 100-result cross-check. Secondary manufacturer-selected variant discovery (global helpdesk model selector and alternate exact M1605YA official product page) found 35 distinct manufacturer model-specific operational manual indices. Positive HTML manual section, actual English user manual, 34 Japanese user manual listings, selected variant and edition/download metadata were validated for all; zero held. The X1607QA/X1407QA family title uses the manufacturer-shortened Q code but exact full QA variant is explicitly selected and product source identifies the full QA model."
   },
   "review": {
-    "publicationGate": "blocked until 35 model-specific ASUS manual index destinations with correct family and explicit document metadata are reviewed; classify remaining models support_only/held",
+    "publicationGate": "all_35_exact_model_operational_manual_destinations_positive",
     "discoveryChannels": [
       "manufacturer_jp_vivobook_api_full_pagination",
       "official_jp_product_page",
@@ -251,7 +251,903 @@
       "official_manual_language_and_version_metadata",
       "manufacturer_model_variant_selector"
     ],
-    "notes": "All 35 model-specific user manual list paths are candidates until source-linked identity, final manufacturer HTTPS destination, displayed selected variant and actual Japanese/English user manual metadata are positively verified. No inference that variants within one marketed family use interchangeable manuals."
+    "notes": "All 35 model-specific user manual list paths are candidates until source-linked identity, final manufacturer HTTPS destination, displayed selected variant and actual Japanese/English user manual metadata are positively verified. No inference that variants within one marketed family use interchangeable manuals.",
+    "liveReview": {
+      "workflowRunId": 41213023329,
+      "artifactId": 13046592579,
+      "officialPopulation": 35,
+      "apiPageCounts": [
+        20,
+        15
+      ],
+      "fullAPIRecordCount": 35,
+      "direct": 35,
+      "shared": 0,
+      "support_only": 0,
+      "held": 0,
+      "englishManualListing": 35,
+      "japaneseManualListing": 34,
+      "onlyEnglishVariant": "ASUS Vivobook 16 (X1605)",
+      "secondaryFindings": "ASUS model selector supplied model-specific codes; M1605YA official alternate global Vivobook 16 OLED M1605 manual positively verified; manufacturer shortens X1607QA/X1407QA family page title but exact QA selected variant documented.",
+      "sourceDigest": "951f569be9a417a8aa246df001590f74645bbe2b78c589175905451462e956c6"
+    }
   },
-  "records": []
+  "records": [
+    {
+      "model": "ASUS Vivobook S16 (S5608, Snapdragon); Copilot+ PC",
+      "productId": "35880",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s16-s5608-qualcomm/helpdesk_manual?model2Name=S5608QA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s16-s5608-qualcomm/",
+      "selectedVariant": "S5608QA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s16-s5608-qualcomm/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s16-s5608-qualcomm/helpdesk_manual?model2Name=S5608QA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is S5608QA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook S14 (S5408, Snapdragon); Copilot+ PC",
+      "productId": "35876",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s14-s5408-qualcomm/helpdesk_manual?model2Name=S5408QA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s14-s5408-qualcomm/",
+      "selectedVariant": "S5408QA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s14-s5408-qualcomm/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s14-s5408-qualcomm/helpdesk_manual?model2Name=S5408QA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is S5408QA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook S16 (S3607)",
+      "productId": "30781",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-s16-s3607/helpdesk_manual?model2Name=S3607VA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s16-s3607/",
+      "selectedVariant": "S3607VA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s16-s3607/",
+        "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-s16-s3607/helpdesk_manual?model2Name=S3607VA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is S3607VA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 16 (M1605)",
+      "productId": "22409",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-16-oled-m1605/helpdesk_manual?model2Name=M1605YA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-m1605/",
+      "selectedVariant": "M1605YA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-m1605/",
+        "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-16-oled-m1605/",
+        "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-16-oled-m1605/helpdesk_manual?model2Name=M1605YA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "secondary_verified_alternate_official_exact_family_and_M1605YA_selected_variant",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is M1605YA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook S14 (S3407); Copilot+ PC",
+      "productId": "30728",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-s14-s3407/helpdesk_manual?model2Name=S3407VA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s14-s3407/",
+      "selectedVariant": "S3407VA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s14-s3407/",
+        "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-s14-s3407/helpdesk_manual?model2Name=S3407VA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is S3407VA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook S16 (M3607); Copilot＋ PC",
+      "productId": "30779",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-s16-m3607/helpdesk_manual?model2Name=M3607HA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s16-m3607/",
+      "selectedVariant": "M3607HA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s16-m3607/",
+        "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-s16-m3607/helpdesk_manual?model2Name=M3607HA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is M3607HA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook S14 (M3407); Copilot＋ PC",
+      "productId": "30726",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-s14-m3407/helpdesk_manual?model2Name=M3407HA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s14-m3407/",
+      "selectedVariant": "M3407HA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s14-m3407/",
+        "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-s14-m3407/helpdesk_manual?model2Name=M3407HA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is M3407HA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 18 (M1807)",
+      "productId": "30785",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-18-m1807/helpdesk_manual?model2Name=M1807GA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-18-m1807/",
+      "selectedVariant": "M1807GA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-18-m1807/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-18-m1807/helpdesk_manual?model2Name=M1807GA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is M1807GA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 16 (X1607)",
+      "productId": "28612",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-x1607/helpdesk_manual?model2Name=X1607CA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-x1607/",
+      "selectedVariant": "X1607CA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-x1607/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-x1607/helpdesk_manual?model2Name=X1607CA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is X1607CA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 16 (M1607); Copilot+ PC",
+      "productId": "28617",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-m1607/helpdesk_manual?model2Name=M1607KA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-m1607/",
+      "selectedVariant": "M1607KA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-m1607/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-m1607/helpdesk_manual?model2Name=M1607KA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is M1607KA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 14 (M1407); Copilot+ PC",
+      "productId": "29677",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14-m1407/helpdesk_manual?model2Name=M1407KA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14-m1407/",
+      "selectedVariant": "M1407KA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14-m1407/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14-m1407/helpdesk_manual?model2Name=M1407KA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is M1407KA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 16 (X1607QA); Copilot+ PC",
+      "productId": "30771",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-x1607q/helpdesk_manual/?model2Name=X1607QA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-x1607q/",
+      "selectedVariant": "X1607QA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-x1607q/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-x1607q/helpdesk_manual/?model2Name=X1607QA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is X1607QA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 14 (X1407QA); Copilot+ PC",
+      "productId": "30765",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14-x1407q/helpdesk_manual/?model2Name=X1407QA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14-x1407q/",
+      "selectedVariant": "X1407QA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14-x1407q/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14-x1407q/helpdesk_manual/?model2Name=X1407QA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is X1407QA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 14 (X1407)",
+      "productId": "29672",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14-x1407/helpdesk_manual?model2Name=X1407CA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14-x1407/",
+      "selectedVariant": "X1407CA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14-x1407/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14-x1407/helpdesk_manual?model2Name=X1407CA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is X1407CA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook S15 (S5507); Copilot＋ PC",
+      "productId": "25323",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s-15-s5507/helpdesk_manual?model2Name=S5507QA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s-15-s5507/",
+      "selectedVariant": "S5507QA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s-15-s5507/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s-15-s5507/helpdesk_manual?model2Name=S5507QA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is S5507QA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook S16 (M5606); Copilot＋ PC",
+      "productId": "23990",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-s-16-oled-m5606/helpdesk_manual?model2Name=M5606NA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s-16-oled-m5606/",
+      "selectedVariant": "M5606NA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s-16-oled-m5606/",
+        "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-s-16-oled-m5606/helpdesk_manual?model2Name=M5606NA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is M5606NA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook S14 (M5406)",
+      "productId": "23993",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s-14-oled-m5406/helpdesk_manual?model2Name=M5406NA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s-14-oled-m5406/",
+      "selectedVariant": "M5406NA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s-14-oled-m5406/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s-14-oled-m5406/helpdesk_manual?model2Name=M5406NA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is M5406NA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook S 14 (S5406); Copilot＋ PC",
+      "productId": "23980",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-s-14-oled-s5406/helpdesk_manual?model2Name=S5406MA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s-14-oled-s5406/",
+      "selectedVariant": "S5406MA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s-14-oled-s5406/",
+        "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-s-14-oled-s5406/helpdesk_manual?model2Name=S5406MA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is S5406MA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 16X (K3605)",
+      "productId": "21158",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-16x-oled-k3605/helpdesk_manual?model2Name=K3605VCB",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16x-oled-k3605/",
+      "selectedVariant": "K3605VCB",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16x-oled-k3605/",
+        "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-16x-oled-k3605/helpdesk_manual?model2Name=K3605VCB"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is K3605VCB. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 14X (K3405)",
+      "productId": "21161",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-14x-oled-k3405/helpdesk_manual?model2Name=K3405VA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14x-oled-k3405/",
+      "selectedVariant": "K3405VA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14x-oled-k3405/",
+        "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-14x-oled-k3405/helpdesk_manual?model2Name=K3405VA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is K3405VA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 16X (K3604)",
+      "productId": "21179",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-16x-oled-k3604/helpdesk_manual?model2Name=K3604VA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16x-oled-k3604/",
+      "selectedVariant": "K3604VA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16x-oled-k3604/",
+        "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-16x-oled-k3604/helpdesk_manual?model2Name=K3604VA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is K3604VA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 15X (K3504)",
+      "productId": "21175",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-15x-oled-k3504/helpdesk_manual?model2Name=K3504VA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-15x-oled-k3504/",
+      "selectedVariant": "K3504VA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-15x-oled-k3504/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-15x-oled-k3504/helpdesk_manual?model2Name=K3504VA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is K3504VA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 13 Slate OLED (T3304)",
+      "productId": "21131",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-13-slate-oled-t3304/helpdesk_manual?model2Name=T3304GA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-13-slate-oled-t3304/",
+      "selectedVariant": "T3304GA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-13-slate-oled-t3304/",
+        "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-13-slate-oled-t3304/helpdesk_manual?model2Name=T3304GA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is T3304GA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook Go 14 (E1404F)",
+      "productId": "21051",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-14-e1404f/helpdesk_manual?model2Name=Vivobook-Go-14-E1404F",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-14-e1404f/",
+      "selectedVariant": "Vivobook-Go-14-E1404F",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-14-e1404f/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-14-e1404f/helpdesk_manual?model2Name=Vivobook-Go-14-E1404F"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is Vivobook-Go-14-E1404F. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 17 (X1704)",
+      "productId": "20958",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-17-x1704/helpdesk_manual?model2Name=X1704VA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-17-x1704/",
+      "selectedVariant": "X1704VA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-17-x1704/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-17-x1704/helpdesk_manual?model2Name=X1704VA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is X1704VA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 15 (X1504)",
+      "productId": "20953",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-15-x1504/helpdesk_manual?model2Name=X1504VA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-15-x1504/",
+      "selectedVariant": "X1504VA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-15-x1504/",
+        "https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-15-x1504/helpdesk_manual?model2Name=X1504VA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is X1504VA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook Go 15 (E1504F)",
+      "productId": "21042",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-15-oled-e1504f/helpdesk_manual?model2Name=E1504FA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-15-oled-e1504f/",
+      "selectedVariant": "E1504FA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-15-oled-e1504f/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-15-oled-e1504f/helpdesk_manual?model2Name=E1504FA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is E1504FA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook Pro 16X OLED (K6604)",
+      "productId": "21135",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/laptops/for-creators/vivobook/vivobook-pro-16x-oled-k6604/helpdesk_manual?model2Name=K6604JV",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-creators/vivobook/vivobook-pro-16x-oled-k6604/",
+      "selectedVariant": "K6604JV",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-creators/vivobook/vivobook-pro-16x-oled-k6604/",
+        "https://www.asus.com/laptops/for-creators/vivobook/vivobook-pro-16x-oled-k6604/helpdesk_manual?model2Name=K6604JV"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is K6604JV. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 14 (X1405)",
+      "productId": "20857",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-14-oled-x1405/helpdesk_manual?model2Name=X1405VA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-14-oled-x1405/",
+      "selectedVariant": "X1405VA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-14-oled-x1405/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-14-oled-x1405/helpdesk_manual?model2Name=X1405VA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is X1405VA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 16 (X1605)",
+      "productId": "20843",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/laptops/for-home/vivobook/vivobook-16-oled-x1605/helpdesk_manual?model2Name=X1605EA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-16-oled-x1605/",
+      "selectedVariant": "X1605EA",
+      "manualLanguage": "en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-16-oled-x1605/",
+        "https://www.asus.com/laptops/for-home/vivobook/vivobook-16-oled-x1605/helpdesk_manual?model2Name=X1605EA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is X1605EA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 15 OLED (X1505)",
+      "productId": "20862",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-15-oled-x1505/helpdesk_manual?model2Name=X1505VA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-15-oled-x1505/",
+      "selectedVariant": "X1505VA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-15-oled-x1505/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-15-oled-x1505/helpdesk_manual?model2Name=X1505VA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is X1505VA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 15 (X1502)",
+      "productId": "20515",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-15-x1502/helpdesk_manual?model2Name=X1502VA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-15-x1502/",
+      "selectedVariant": "X1502VA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-15-x1502/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-15-x1502/helpdesk_manual?model2Name=X1502VA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is X1502VA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook 15 (M1502)",
+      "productId": "20517",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-15-m1502/helpdesk_manual?model2Name=M1502YA",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-15-m1502/",
+      "selectedVariant": "M1502YA",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-15-m1502/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-15-m1502/helpdesk_manual?model2Name=M1502YA"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is M1502YA. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook Go 15 (E510)",
+      "productId": "18063",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-15-e510/helpdesk_manual?model2Name=Vivobook-Go-15-E510",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-15-e510/",
+      "selectedVariant": "Vivobook-Go-15-E510",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-15-e510/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-15-e510/helpdesk_manual?model2Name=Vivobook-Go-15-E510"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is Vivobook-Go-15-E510. Manual equivalence to other configurations is not assumed."
+    },
+    {
+      "model": "ASUS Vivobook Go 12 (E210)",
+      "productId": "19111",
+      "state": "direct",
+      "manualUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-12-e210/helpdesk_manual?model2Name=Vivobook-Go-12-e210",
+      "supportUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-12-e210/",
+      "selectedVariant": "Vivobook-Go-12-e210",
+      "manualLanguage": "ja,en",
+      "manualKind": "model-specific HTML manual and document index",
+      "evidenceUrls": [
+        "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-12-e210/",
+        "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-12-e210/helpdesk_manual?model2Name=Vivobook-Go-12-e210"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_locked_product_identity_explicit_selected_variant_positive_manual_edition_metadata",
+      "attemptedDiscovery": [
+        "official_complete_ASUS_product_list_20_plus_15",
+        "manufacturer_exact_product_page",
+        "manufacturer_selected_model_variant",
+        "official_Japanese_or_English_operating_manual_listing",
+        "manufacturer_alternate_global_document_index"
+      ],
+      "reviewNote": "Official ASUS selected-variant manual/document index positively verified, contains downloadable operating user manual metadata with editions and version. Published selected model variant is Vivobook-Go-12-e210. Manual equivalence to other configurations is not assumed."
+    }
+  ]
 }
