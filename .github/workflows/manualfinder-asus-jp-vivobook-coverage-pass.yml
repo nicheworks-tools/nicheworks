@@ -29,6 +29,10 @@ jobs:
           if test -f tools/manual-finder/tests/asus-jp-vivobook-publication.test.mjs; then
             node tools/manual-finder/tests/asus-jp-vivobook-publication.test.mjs
           fi
+      - name: Inspect manufacturer-explicit support variant picker
+        run: |
+          mkdir -p manualfinder-asus-probe
+          node tools/manual-finder/scripts/asus-jp-vivobook-variant-probe.mjs
       - name: Live official full 35-model ASUS manual index review
         run: |
           mkdir -p manualfinder-asus-review
@@ -43,5 +47,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: manualfinder-asus-vivobook-35-official-full-review
-          path: manualfinder-asus-review/*.json
+          path: |
+            manualfinder-asus-review/*.json
+            manualfinder-asus-probe/*
           if-no-files-found: warn
