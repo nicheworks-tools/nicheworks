@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 83, 'the 2 remaining legacy-only category conflicts plus 81 reviewed verified-primary role conflicts must be explicit at runtime');
+assert.equal(categoryConflicts.length, 99, 'the 2 legacy-only and 97 reviewed verified-primary role conflicts must remain explicit');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
@@ -116,7 +116,23 @@ const reviewedVerifiedPrimary = new Map([
   ["magnesium chloride", { category: "viscosity adjuster", legacy: ["mineral"] }],
   ["calcium chloride", { category: "viscosity adjuster", legacy: ["mineral"] }],
   ["aluminum hydroxide", { category: "viscosity adjuster", legacy: ["pigment coating"] }],
-  ["boron nitride", { category: "skin conditioning", legacy: ["powder"] }]
+  ["boron nitride", { category: "skin conditioning", legacy: ["powder"] }],
+  ["peg-60 hydrogenated castor oil", { category: "emulsifier", legacy: ["solubilizer"] }],
+  ["kaolin", { category: "colorant", legacy: ["powder"] }],
+  ["nylon-12", { category: "viscosity adjuster", legacy: ["powder"] }],
+  ["guar hydroxypropyltrimonium chloride", { category: "skin conditioning", legacy: ["conditioning polymer"] }],
+  ["calcium carbonate", { category: "buffer", legacy: ["powder"] }],
+  ["polyquaternium-37", { category: "film former", legacy: ["conditioning polymer"] }],
+  ["microcrystalline cellulose", { category: "viscosity adjuster", legacy: ["powder"] }],
+  ["zinc stearate", { category: "viscosity adjuster", legacy: ["powder binder"] }],
+  ["polymethyl methacrylate", { category: "film former", legacy: ["powder"] }],
+  ["polyacrylate-13", { category: "film former", legacy: ["polymer"] }],
+  ["magnesium stearate", { category: "colorant", legacy: ["powder binder"] }],
+  ["glycosphingolipids", { category: "skin conditioning", legacy: ["barrier lipid"] }],
+  ["ceramide ns", { category: "skin conditioning", legacy: ["barrier lipid"] }],
+  ["soluble collagen", { category: "humectant", legacy: ["protein"] }],
+  ["ozokerite", { category: "viscosity adjuster", legacy: ["wax"] }],
+  ["polyacrylamide", { category: "film former", legacy: ["polymer"] }]
 ]);
 
 for (const item of categoryConflicts) {
