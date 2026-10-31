@@ -100,7 +100,9 @@ export async function reviewAll({pass,indexHtml,apiFetch=getOfficial,pageFetch=g
     }catch(e){row.attempts.push({candidate:url,source,error:String(e)})}
     return false;
    };
-   let passed=await attempt(candidate,'primary_family_model_code_candidate');
+   const previouslyVerified=pass.records?.find(x=>x.model===item.model&&x.state==='direct')?.manualUrl;
+   let passed=previouslyVerified?await attempt(previouslyVerified,'fresh_verification_of_previously_positive_exact_manufacturer_manual'):false;
+   if(!passed)passed=await attempt(candidate,'primary_family_model_code_candidate');
    if(!passed){
     let options=[];
     try{
