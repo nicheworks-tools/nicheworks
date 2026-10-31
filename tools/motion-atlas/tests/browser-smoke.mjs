@@ -19,6 +19,7 @@ const injected=[
   "const all=q=>Array.from(document.querySelectorAll(q));",
   "async function test(){",
   "check(await ready(),'42 catalog cards did not load');",
+  "check(typeof window.NWToolAnalytics?.track==='function','shared usage analytics helper did not initialize');",
   "const search=document.querySelector('#motion-search');",
   "search.value='overshoot';search.dispatchEvent(new Event('input',{bubbles:true}));",
   "await sleep(100);check(all('.motion-card').length>0&&all('.motion-card').length<42,'search did not filter');",
