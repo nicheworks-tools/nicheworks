@@ -71,13 +71,13 @@ export function reconcileSources(releaseHtml,safetyHtml,pass){
 function exactModel(s,model){
  // Preserve exact model boundary, including sibling Pro/XL/5G variants.
  const esc=model.replace(/[.*+?^$()|[\]{}\\]/g,'\\$&');
- return new RegExp('(?:^|[^\\p{L}\\p{N}])'+esc+'(?=$|[^\\p{L}\\p{N}])(?!\\s+[A-Za-z0-9])','iu').test(s);
+ return new RegExp('(?:^|[^\\p{L}\\p{N}])'+esc+'(?=$|[^\\p{L}\\p{N}])(?!\\s+(?!20\\d\\d\\b)[A-Za-z0-9])','iu').test(s);
 }
 export function inspectDocument(html,model){
  const title=clean(html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]||'');
  const headings=[...html.matchAll(/<h[1-4]\b[^>]*>([\s\S]*?)<\/h[1-4]>/gi)].map(x=>clean(x[1]));
  const body=clean(html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ').slice(0,250000));
- const exact=exactModel([title,...headings,body].join(' '),model);
+ const exact=exactModel(title,model)||exactModel(title,model.replace(/^Google /,'')); // Manufacturer's 2016-2019 article titles sometimes omit the Google prefix; evidence is still an exact title token.
  const kind=/安全|規制|Safety|Regulatory/i.test([title,...headings].join(' '));
  return{accepted:exact&&kind,exact,kind,title,headings:headings.slice(0,8)};
 }
