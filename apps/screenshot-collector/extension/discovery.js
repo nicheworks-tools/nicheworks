@@ -1,4 +1,6 @@
 // Pure URL policy shared by crawler and unit tests. No remote calls or dependencies.
+const BLOCKED_QUERY=/^(action|do|cmd|command|operation)$/i;
+const DANGEROUS_QUERY_VALUE=/^(logout|log-out|signout|sign-out|delete|remove|destroy|purchase|pay)$/i;
 const TRACKING=/^(utm_.+|fbclid|gclid|msclkid|mc_cid|mc_eid)$/i;
 const DANGEROUS=/(^|\/)(logout|log-out|signout|sign-out|delete|remove|destroy|checkout|purchase|pay|admin|wp-admin)(\/|$)/i;
 export function normalizeUrl(raw,base,origin) {
@@ -6,8 +8,9 @@ export function normalizeUrl(raw,base,origin) {
   try {u=new URL(raw,base);}catch{return null;}
   if(!["http:","https:"].includes(u.protocol)||u.origin!==origin)return null;
   if(DANGEROUS.test(u.pathname))return null;
+  for(const [key,value] of u.searchParams){if(BLOCKED_QUERY.test(key)&&DANGEROUS_QUERY_VALUE.test(value))return null;}
   u.hash="";
-  u.searchParams.forEach((_,k)=>{if(TRACKING.test(k))u.searchParams.delete(k);});
+  for(const key of [...u.searchParams.keys()]){if(TRACKING.test(key))u.searchParams.delete(key);}
   u.searchParams.sort();
   if(u.pathname!=="/")u.pathname=u.pathname.replace(/\/+$/,"");
   return u.href;
