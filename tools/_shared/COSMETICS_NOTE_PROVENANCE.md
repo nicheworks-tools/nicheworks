@@ -442,3 +442,16 @@ After Wave 20:
 - strong runtime identities: 82 / 599;
 - Wave 19 identities retained: 4 / 4;
 - raw dictionary records rewritten: no.
+
+
+## Verified note wave 21
+
+Wave 21 adds source-backed ingredient-specific notes for three maintained Japanese-named identities frequent in the 30-product label corpus.
+
+| Canonical identity | Official-label corpus occurrences | Reviewed source basis |
+| --- | ---: | --- |
+| `1,2-hexanediol` | 7 | COSMILE Europe: solvent, skin conditioning and fragrance-functional use. |
+| `sodium citrate` | 2 | COSMILE Europe: buffering and chelating. |
+| `urea` | 2 | COSMILE Europe: humectant and skin-conditioning ingredient, also buffering. |
+
+After wave 21: cumulative verified notes 85; strong runtime identities 85/599. The notes are narrow descriptive statements, not a safety/irritation/concentration score. Raw dictionary notes, recognition and OCR are unchanged. The three exact authoritative URLs are pinned by `check-cosmetics-verified-note-wave21.mjs`.

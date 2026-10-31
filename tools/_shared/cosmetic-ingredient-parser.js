@@ -272,7 +272,10 @@
     "glycine": Object.freeze({ note_short: "Amino acid used for skin and hair conditioning and buffering; COSMILE Europe also lists an antistatic function for Glycine.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6084/glycine/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "lactic acid": Object.freeze({ note_short: "Buffering, humectant and skin-conditioning ingredient; COSMILE Europe also lists a fragrance-functional role for Lactic Acid.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/7749/lactic-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "peg-100 stearate": Object.freeze({ note_short: "Cleansing surfactant; COSMILE Europe lists PEG-100 Stearate as a surface-active cleansing ingredient.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10380/peg-100-stearate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "proline": Object.freeze({ note_short: "Amino acid used for skin and hair conditioning; COSMILE Europe lists both functions for Proline.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/13164/proline/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "proline": Object.freeze({ note_short: "Amino acid used for skin and hair conditioning; COSMILE Europe lists both functions for Proline.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/13164/proline/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "1,2-hexanediol": Object.freeze({ note_short: "Solvent and skin-conditioning ingredient; COSMILE Europe also lists a fragrance-functional role for 1,2-Hexanediol.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5/1-2-hexanediol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sodium citrate": Object.freeze({ note_short: "Buffering and chelating ingredient; COSMILE Europe lists pH control and metal-ion binding among Sodium Citrate's cosmetic functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14681/sodium-citrate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "urea": Object.freeze({ note_short: "Moisture-binding ingredient and natural component of skin's moisture factor; COSMILE Europe lists Urea as a humectant, buffer and skin-conditioning ingredient.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/16737/urea/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -497,7 +500,7 @@
   }
 
   const api = {
-    version: "1.57.0",
+    version: "1.58.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
