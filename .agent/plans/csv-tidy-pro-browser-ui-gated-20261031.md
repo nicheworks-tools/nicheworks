@@ -25,6 +25,6 @@ Connect the previously merged preset, batch and ZIP engines to a *real browser i
 - Server-unverified session (including missing/revoked) keeps Pro UI absent.
 - Test-only verified session gives bilingual Pro UI.
 - Save current editable Free mapping, persist, restore, import/export preset.
-- Choose valid and invalid CSV and obtain on-disk ZIP; Python `zipfile` and `csv.reader` verify output and report, no invalid CSV included.
+- Choose valid and invalid CSV, intercept the actual browser-created ZIP Blob in the isolated CI harness (without navigating a headless download), and use Python `zipfile` and `csv.reader` to verify output and report; no invalid CSV included. Existing Free acceptance separately covers an on-disk browser download.
 - Existing 18/18 Free browser and all repository CI pass.
 - Do not merge on a failing acceptance.
