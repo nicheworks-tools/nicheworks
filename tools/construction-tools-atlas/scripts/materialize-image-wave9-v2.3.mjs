@@ -40,7 +40,7 @@ for(const item of items){
  const json=await api.json();
  const page=Object.values(json.query?.pages||{})[0];
  const info=page?.imageinfo?.[0];
- if(!info||info.sha1!==sha1||info.url!==item.source_url)throw Error(item.entry_id+": Commons API metadata does not match source bytes/URL");
+ if(!info||info.sha1!==sha1||info.url!==item.source_url)throw Error(item.entry_id+": Commons API metadata does not match source bytes/URL "+JSON.stringify({api_sha1:info?.sha1,local_sha1:sha1,api_url:info?.url,declared_url:item.source_url,page_id:page?.pageid,missing:page?.missing}));
  console.log("WAVE9_VERIFIED_SOURCE="+JSON.stringify({entry_id:item.entry_id,sha1,source_url:item.source_url,size:bytes.length}));
  const folder=path.join(outDir,item.entry_id);await fs.mkdir(folder,{recursive:true});
  const source=path.join(folder,item.source_filename);await fs.writeFile(source,bytes);
