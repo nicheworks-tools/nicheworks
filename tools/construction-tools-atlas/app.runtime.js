@@ -4,6 +4,8 @@
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
   const MOBILE_QUERY = "(max-width: 899px)";
   const PAGE_SIZE = 50;
+  // Curated canonical starting points, not search popularity or product recommendations.
+  const STARTER_IDS = ["drill_driver", "q011_mortar_mixer", "q013_scaffold_clamp", "q015_cable_gland", "q016_vinyl_sheet_flooring", "q012_air_impact_wrench"];
   const LS = {
     lang: "cta_uilang",
     favs: "cta_favs",
@@ -81,7 +83,7 @@
     [
       "langControl","favoritesToggle","pageTitle","pageLead","privacyNote","searchInput","clearSearch","autocomplete",
       "interpretationBar","interpretationLabel","interpretationChips","actionLabel","actionFilters","typeLabel","typeFilters",
-      "openFilters","atlasWorkspace","resultCount","resultHint","loadingState","resultList","loadMoreWrap","loadMore","loadMoreHint",
+      "openFilters","dictionaryJump","dictionaryJumpLabel","dictionaryJumpButtons","atlasWorkspace","resultCount","resultHint","loadingState","resultList","loadMoreWrap","loadMore","loadMoreHint",
       "detailPanel","detailEmpty","detailContent","detailClose","detailFavorite","detailCopy","detailShare","detailEyebrow","detailTitle",
       "detailSecondary","detailTaxonomy","detailImage","detailImageMissing","whatHeading","detailDefinition","notesSection","notesHeading",
       "detailNotes","detailBullets","examplesSection","examplesHeading","detailExamples","aliasesSection","aliasesHeading","detailAliases",
@@ -172,7 +174,7 @@
 
   function entryKind(entry) {
     const value = normalized(entry.type);
-    if (/material|材|部材|塗料|接着/.test(value)) return "material";
+    if (/material|component|hardware|材|部材|金物|塗料|接着/.test(value)) return "material";
     if (/task|work|operation|施工|工事|作業/.test(value)) return "task";
     if (/tool|equipment|machine|instrument|工具|機械|器具|測定/.test(value)) return "tool";
     return "term";
@@ -288,7 +290,13 @@
     if (!image) {
       const missing = document.createElement("div");
       missing.className = className === "resultThumb" ? "resultThumbMissing" : "thumbMissing";
-      missing.textContent = state.lang === "en" ? "No image" : "画像なし";
+      const kind = entryKind(entry);
+      const labels = state.lang === "en"
+        ? { tool:"Tool", material:"Material", task:"Task", term:"Term" }
+        : { tool:"工具", material:"部材", task:"作業", term:"用語" };
+      missing.textContent = labels[kind];
+      missing.title = state.lang === "en" ? "Representative photo not yet reviewed" : "代表写真は未登録";
+      missing.dataset.kind = kind;
       return missing;
     }
     const img = document.createElement("img");
@@ -353,7 +361,15 @@
       [humanize(entry.type), ...entry.categories.slice(0, 1).map(humanize)].filter(Boolean).forEach((value) => {
         const span = document.createElement("span"); span.className = "chip"; span.textContent = value; meta.appendChild(span);
       });
-      copy.append(title); if (secondary.textContent) copy.append(secondary); copy.append(summary, meta);
+      const contextValue = primaryPair(entry.detail);
+      const context = document.createElement("div"); context.className = "resultContext";
+      if (contextValue && contextValue !== summary.textContent) {
+        context.textContent = contextValue;
+      }
+      copy.append(title); if (secondary.textContent) copy.append(secondary);
+      copy.append(summary);
+      if (context.textContent) copy.append(context);
+      copy.append(meta);
 
       const star = document.createElement("button"); star.type = "button"; star.className = `starButton${state.favs.has(entry.id) ? " active" : ""}`; star.textContent = state.favs.has(entry.id) ? "★" : "☆";
       star.setAttribute("aria-label", state.favs.has(entry.id) ? "Remove favorite" : "Add favorite");
@@ -390,7 +406,20 @@
 
   function renderArray(node, value) {
     clear(node);
-    const values = state.lang === "en" ? value.en : state.lang === "both" ? unique([...value.ja, ...value.en]) : value.ja;
+    if (state.lang === "both") {
+      let count = 0;
+      for (const [code, items] of [["JA", value.ja], ["EN", value.en]]) {
+        for (const item of items) {
+          const li = document.createElement("li");
+          const tag = document.createElement("span"); tag.className = "langTag";
+          tag.textContent = code;
+          li.append(tag, document.createTextNode(item));
+          node.appendChild(li); count++;
+        }
+      }
+      return count;
+    }
+    const values = state.lang === "en" ? value.en : value.ja;
     values.forEach((item) => { const li = document.createElement("li"); li.textContent = item; node.appendChild(li); });
     return values.length;
   }
@@ -432,12 +461,36 @@
     labels.forEach((label) => { const span = document.createElement("span"); span.className = "chip"; span.textContent = label; els.detailTaxonomy.appendChild(span); });
   }
 
+  function browseInSameContext(entry) {
+    // Common task/category links are suggestions for browsing, NOT asserted tool relationships.
+    const generic = new Set(["tool","material","term","task","general","construction","site","all"]);
+    const tasks = new Set(entry.tasks.filter(x => !generic.has(normalized(x))));
+    const categories = new Set(entry.categories.filter(x => !generic.has(normalized(x))));
+    return state.entries.filter(item => item.id !== entry.id).map(item => {
+      const sharedTasks = item.tasks.filter(x => tasks.has(x)).length;
+      const sharedCategories = item.categories.filter(x => categories.has(x)).length;
+      return { item, score: sharedTasks * 3 + sharedCategories * 2 };
+    }).filter(x => x.score >= 2)
+      .sort((a,b) => b.score - a.score || primaryTerm(a.item).localeCompare(primaryTerm(b.item), state.lang === "en" ? "en" : "ja"))
+      .slice(0,6).map(x => x.item);
+  }
+
   function renderRelated(entry) {
     clear(els.detailRelated);
-    const related = entry.relationIds.map((id) => state.entryById.get(resolveId(id))).filter(Boolean).filter((item, index, arr) => arr.findIndex((x) => x.id === item.id) === index).slice(0, 12);
-    els.relatedSection.hidden = !related.length;
-    related.forEach((item) => {
-      const button = document.createElement("button"); button.type = "button"; button.textContent = primaryTerm(item); button.addEventListener("click", () => openDetail(item.id, "push")); els.detailRelated.appendChild(button);
+    const maintained = entry.relationIds.map(id => state.entryById.get(resolveId(id)))
+      .filter(Boolean).filter((item,index,arr) => arr.findIndex(x => x.id === item.id) === index)
+      .filter(item => item.id !== entry.id).slice(0,12);
+    const inferred = maintained.length === 0;
+    const entries = inferred ? browseInSameContext(entry) : maintained;
+    els.relatedHeading.textContent = inferred
+      ? (state.lang === "en" ? "Explore the same task / category" : "同じ作業・分類から探す")
+      : (state.lang === "en" ? "Maintained related entries" : "関連する工具・材料（登録済み）");
+    els.relatedSection.hidden = !entries.length;
+    entries.forEach(item => {
+      const button = document.createElement("button"); button.type = "button";
+      button.textContent = primaryTerm(item);
+      button.addEventListener("click", () => openDetail(item.id,"push"));
+      els.detailRelated.appendChild(button);
     });
   }
 
@@ -576,8 +629,21 @@
     els.affiliateHeading.textContent = en ? "Find related tools / materials" : "関連する工具・材料を探す";
     els.affiliateLead.textContent = en ? "Amazon links are shown only for explicitly maintained canonical mappings." : "購入先の参考として、管理済みの項目だけAmazonへのリンクを表示します。";
     els.loadMore.textContent = en ? "Load more" : "さらに表示";
-    els.detailImageMissing.textContent = en ? "Reviewed image not available yet." : "確認済み画像はまだありません。";
+    els.detailImageMissing.textContent = en ? "Photo not yet reviewed; the definition and usage are available." : "代表写真は未登録です。説明・使用例は閲覧できます。";
     els.favoritesToggle.textContent = state.favOnly ? (en ? "★ Favorites" : "★ お気に入り") : (en ? "☆ Favorites" : "☆ お気に入り");
+  }
+
+  function renderQuickStart() {
+    clear(els.dictionaryJumpButtons);
+    const entries = STARTER_IDS.map(id => state.entryById.get(id)).filter(Boolean);
+    els.dictionaryJump.hidden = !entries.length;
+    els.dictionaryJumpLabel.textContent = state.lang === "en" ? "Open an example entry" : "用語の実例を見る";
+    entries.forEach(entry => {
+      const button = document.createElement("button"); button.type = "button";
+      button.textContent = primaryTerm(entry);
+      button.addEventListener("click", () => openDetail(entry.id,"push"));
+      els.dictionaryJumpButtons.appendChild(button);
+    });
   }
 
   function render() {
@@ -585,6 +651,7 @@
     applyLanguageChrome();
     refreshFiltered();
     renderPrimaryFilters();
+    renderQuickStart();
     renderInterpretations();
     renderList();
     els.favoritesToggle.setAttribute("aria-pressed", String(state.favOnly));
@@ -654,6 +721,10 @@
     if (requested) {
       if (!openDetail(requested, "none")) setEntryInUrl("", "replace");
       else if (resolveId(requested) !== requested) setEntryInUrl(state.current.id, "replace");
+    } else if (!isMobile()) {
+      // Do not leave the desktop dictionary's entire detail half blank on first load.
+      const starter = STARTER_IDS.find(id => state.entryById.has(id));
+      if (starter) openDetail(starter, "none");
     }
   }
 
