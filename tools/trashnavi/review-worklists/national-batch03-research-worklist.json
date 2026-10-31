@@ -122,11 +122,11 @@
       "pref": "新潟県",
       "municipality": "南魚沼市",
       "coverage_state": "pending_review",
-      "candidate_official_waste_url": "https://www.city.minamiuonuma.niigata.jp/konnatoki/gomi/",
-      "candidate_link_type": null,
-      "verification_status": "official_directory_only_follow_direct_link",
+      "candidate_official_waste_url": "https://www.city.minamiuonuma.niigata.jp/docs/1454.html",
+      "candidate_link_type": "waste_sorting",
+      "verification_status": "official_waste_source_discovered_requires_final_audit",
       "reviewed_at": null,
-      "notes": "Waste-category landing page is not yet a qualifying direct link; drill into district-specific official sorting/calendars"
+      "notes": "Region-specific: 六日町・塩沢地域 only. Investigate 大和地域 separately before citywide presentation."
     },
     {
       "lgcode": "152277",
@@ -342,11 +342,11 @@
       "pref": "富山県",
       "municipality": "射水市",
       "coverage_state": "pending_review",
-      "candidate_official_waste_url": "https://www.city.imizu.toyama.jp/guide/svGuideList.aspx?cd=0112",
-      "candidate_link_type": null,
-      "verification_status": "official_directory_only_follow_direct_link",
+      "candidate_official_waste_url": "https://www.city.imizu.toyama.jp/guide/svguidedtl.aspx?servno=18337",
+      "candidate_link_type": "waste_sorting",
+      "verification_status": "official_waste_source_discovered_requires_final_audit",
       "reviewed_at": null,
-      "notes": "Official waste directory: drill down to direct waste-specific page before final publication"
+      "notes": "City official sorting guide links to 2026 collection calendars; separate URL pending review."
     },
     {
       "lgcode": "163210",
@@ -386,11 +386,11 @@
       "pref": "富山県",
       "municipality": "入善町",
       "coverage_state": "pending_review",
-      "candidate_official_waste_url": "https://www.town.nyuzen.toyama.jp/gyosei/soshiki/jumin_kankyo/2/1/index.html",
-      "candidate_link_type": null,
-      "verification_status": "official_directory_only_follow_direct_link",
+      "candidate_official_waste_url": "https://www.town.nyuzen.toyama.jp/gyosei/kurashi_tetsuzuki/gomi_kankyo_petto/kateigomi/2699.html",
+      "candidate_link_type": "waste_sorting",
+      "verification_status": "official_waste_source_discovered_requires_final_audit",
       "reviewed_at": null,
-      "notes": "Official waste directory: drill down to direct waste-specific page before final publication"
+      "notes": "Official 2024 guide page notes changes effective 2026 April; verify linked latest pages and 2026 district calendar."
     },
     {
       "lgcode": "163431",
@@ -485,11 +485,11 @@
       "pref": "石川県",
       "municipality": "白山市",
       "coverage_state": "pending_review",
-      "candidate_official_waste_url": "https://www.city.hakusan.lg.jp/seikatsu/kankyo/1001731/1005552/index.html",
-      "candidate_link_type": null,
-      "verification_status": "official_directory_only_follow_direct_link",
+      "candidate_official_waste_url": "https://www.city.hakusan.lg.jp/seikatsu/kankyo/1001731/1005552/1005554.html",
+      "candidate_link_type": "waste_search",
+      "verification_status": "official_waste_source_discovered_requires_final_audit",
       "reviewed_at": null,
-      "notes": "Official waste directory: choose an exact official waste-specific source rather than a general directory"
+      "notes": "White-san City guide states jointly developed search resource with 白山野々市広域事務組合; verify provider and joint-service scope."
     },
     {
       "lgcode": "172111",
