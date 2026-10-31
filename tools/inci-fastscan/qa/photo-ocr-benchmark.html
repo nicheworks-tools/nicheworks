@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>INCI FastScan — Local Photo OCR QA</title>
+  <meta name="description" content="Local-only quality-assurance runner comparing photo OCR against independently transcribed label text.">
+  <style>
+    :root { color-scheme: light; font-family: system-ui, -apple-system, sans-serif; color: #17223a; background: #f5f7fb; }
+    * { box-sizing: border-box; }
+    body { margin: 0 auto; max-width: 1000px; padding: clamp(12px, 3vw, 32px); line-height: 1.55; }
+    h1 { margin: 0 0 8px; font-size: clamp(1.5rem, 3vw, 2.2rem); }
+    h2 { font-size: 1.2rem; margin: 0 0 12px; }
+    a { color: #174bbc; } p { margin: 6px 0 14px; }
+    .card { padding: 18px; border: 1px solid #d7dfee; background: white; border-radius: 14px; margin: 16px 0; }
+    .muted { color: #52617b; } .micro { font-size: .88rem; }
+    label { display: block; font-weight: 650; margin: 8px 0 4px; }
+    input[type=file], select, textarea, input[type=number] {
+      max-width: 100%; width: 100%; padding: 10px;
+      border: 1px solid #bbc7d8; border-radius: 8px; font: inherit; background: white;
+    }
+    textarea { min-height: 115px; resize: vertical; }
+    fieldset { border: 1px solid #d7dfee; border-radius: 10px; padding: 12px; margin: 12px 0; min-width: 0; }
+    legend { font-weight: 700; padding: 0 6px; }
+    input[type=range] { width: 100%; accent-color: #175ac7; }
+    .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+    .crop { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 8px; }
+    .crop input { min-width: 0; }
+    .row { display: flex; flex-wrap: wrap; gap: 12px; }
+    button { border: 1px solid #154b9b; border-radius: 8px; color: white; background: #175ac7;
+      padding: 11px 16px; font: 650 1rem system-ui; cursor: pointer; }
+    button:disabled { opacity: .45; cursor: not-allowed; }
+    button.secondary { background: white; color: #174bbc; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; font: 0.94rem/1.6 ui-monospace, monospace; }
+    img { width: 100%; max-height: 390px; object-fit: contain; background: #fff; border: 1px solid #d7dfee; border-radius: 8px; }
+    #qa-status { border-left: 3px solid #175ac7; padding: 8px 12px; background: #f2f6fe; margin-top: 14px; overflow-wrap: anywhere; }
+    @media (max-width: 450px) { .crop { grid-template-columns: repeat(2,minmax(0,1fr)); } .card { padding: 14px; } }
+  </style>
+  <script defer src="https://unpkg.com/tesseract.js@5.0.3/dist/tesseract.min.js"></script>
+  <script defer src="/tools/_shared/cosmetic-ingredient-parser.js?v=20261031-verified-wave29"></script>
+  <script defer src="../js/core_ocr_post.js?v=20260916-role-first-3"></script>
+  <script defer src="../js/image_preprocess.js?v=20261031-manual-deskew-1"></script>
+  <script defer src="../js/web_ocr.js?v=20261031-crop-contrast-1"></script>
+  <script defer src="./photo_ocr_metrics.js?v=20261031-qa-photo1"></script>
+  <script defer src="./photo_ocr_runner.js?v=20261031-qa-photo1"></script>
+</head>
+<body>
+  <a href="../">← INCI FastScan</a>
+  <h1>Photo OCR accuracy benchmark</h1>
+  <p class="muted">実写真OCR精度検証 / Local photo quality assurance. Test the same label photo <strong>before and after</strong> the available rotation, deskew, crop and contrast controls.</p>
+
+  <section class="card" aria-labelledby="qa-data-title">
+    <h2 id="qa-data-title">1. Source photo and independent reference</h2>
+    <label for="qa-image">Ingredient-label photo (processed only in your browser)</label>
+    <input id="qa-image" type="file" accept="image/*">
+    <label for="qa-language">Label OCR language</label>
+    <select id="qa-language">
+      <option value="eng">INCI / English (eng)</option>
+      <option value="jpn+eng">日本語 + English (jpn+eng)</option>
+    </select>
+    <label for="qa-reference">Ground-truth transcription (copy the words from the original packaging, not from OCR)</label>
+    <textarea id="qa-reference" placeholder="Water, Glycerin, Sodium Hyaluronate..."></textarea>
+    <p class="micro muted">Reference text should include ingredient names in label order. Avoid brand/marketing text. The selected photo and transcription are never sent to NicheWorks; the OCR library and language models are downloaded externally.</p>
+  </section>
+
+  <section class="card" aria-labelledby="qa-correction-title">
+    <h2 id="qa-correction-title">2. Optional local image adjustments</h2>
+    <fieldset id="qa-correction">
+      <legend>Settings for adjusted OCR only</legend>
+      <div class="grid">
+        <div>
+          <label for="qa-turns">Quarter-turn orientation</label>
+          <select id="qa-turns"><option value="0">0°</option><option value="1">90° clockwise</option>
+            <option value="2">180°</option><option value="3">270° clockwise</option></select>
+        </div>
+        <div>
+          <label for="qa-tilt">Manual fine deskew <output id="qa-tilt-label">0°</output></label>
+          <input type="range" id="qa-tilt" min="-12" max="12" step="1" value="0">
+        </div>
+        <div>
+          <label for="qa-contrast">Contrast <output id="qa-contrast-label">100%</output></label>
+          <input type="range" id="qa-contrast" min="100" max="180" step="10" value="100">
+        </div>
+      </div>
+      <div class="crop">
+        <div><label for="qa-crop-left">Crop left %</label><input id="qa-crop-left" type="number" min="0" max="90" step="5" value="0"></div>
+        <div><label for="qa-crop-right">Crop right %</label><input id="qa-crop-right" type="number" min="0" max="90" step="5" value="0"></div>
+        <div><label for="qa-crop-top">Crop top %</label><input id="qa-crop-top" type="number" min="0" max="90" step="5" value="0"></div>
+        <div><label for="qa-crop-bottom">Crop bottom %</label><input id="qa-crop-bottom" type="number" min="0" max="90" step="5" value="0"></div>
+      </div>
+      <p class="micro muted">Crop pairs must leave at least 10% of each axis. The OCR output and image preview use FastScan's actual image preparation function.</p>
+    </fieldset>
+    <div class="row">
+      <button id="qa-baseline" type="button">Run original photo OCR</button>
+      <button id="qa-adjusted" type="button">Run adjusted photo OCR</button>
+      <button id="qa-copy" class="secondary" type="button" disabled>Copy metrics-only JSON</button>
+    </div>
+    <p id="qa-status" role="status" aria-live="polite">Select a real label photo and transcribe its ingredient text before starting.</p>
+  </section>
+
+  <section class="card" aria-labelledby="qa-results-title">
+    <h2 id="qa-results-title">3. Accuracy results</h2>
+    <div class="grid">
+      <section><h2>Original image</h2><pre id="qa-baseline-result">No result yet.</pre></section>
+      <section><h2>Adjusted image</h2><pre id="qa-adjusted-result">No result yet.</pre></section>
+    </div>
+    <p id="qa-delta" class="muted">Run baseline and adjusted OCR on the same photo and reference to see a comparison.</p>
+    <p class="micro muted">CER = character edit distance / transcribed characters, after NFKC, case and whitespace normalization. Ingredient recall/precision require exact spelling (no automatic OCR correction), and preserve repeated ingredients as separate occurrences. Lower CER and higher exact recall are better. These metrics are for the selected photo only, not a universal OCR accuracy claim.</p>
+    <label for="qa-recognized">Review the most recently recognized ingredients (read-only)</label>
+    <textarea id="qa-recognized" readonly></textarea>
+    <img id="qa-preview" alt="Actual image prepared for the last OCR run" hidden>
+    <p class="micro muted">The copied JSON report excludes image bytes, file names, transcribed labels, and OCR text. It contains only aggregate accuracy numbers, selected adjustments and durations.</p>
+  </section>
+</body>
+</html>
