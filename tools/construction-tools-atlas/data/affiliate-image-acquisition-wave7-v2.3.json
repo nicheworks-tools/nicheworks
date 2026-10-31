@@ -1,0 +1,62 @@
+{
+  "schema": "cta-affiliate-image-acquisition-wave7-v2.3",
+  "version": "2026-10-31-wave7-three-source-leads-1",
+  "policy": {
+    "no_image_hotlink": true,
+    "originals_must_be_retained": true,
+    "no_direct_promotion": true,
+    "manual_derivative_visual_review_required": true
+  },
+  "first_wave_ids": [
+    "utility_knife",
+    "screwdriver",
+    "multimeter"
+  ],
+  "source_leads": [
+    {
+      "entry_id": "utility_knife",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Utility_knife.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Utility_knife.jpg",
+      "author": "Matěj Baťha",
+      "license": "CC BY-SA 2.5",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.5/",
+      "attribution": "Matěj Baťha / Wikimedia Commons, CC BY-SA 2.5",
+      "expected_sha1": "d4d42d040c2be9f5764f165590b9700d60753bd7",
+      "subject_note": "Original shows a yellow retractable snap-off utility knife and spare blade; tool form matches construction utility knife.",
+      "source_filename": "source.jpg",
+      "source_review": "commons_original_preview_and_license_checked_20261031",
+      "binary_review": "pending_download_sha1_webp_quality_review",
+      "promotion_allowed": false
+    },
+    {
+      "entry_id": "screwdriver",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Screw_driver.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Screw_driver.jpg",
+      "author": "Dmitry G",
+      "license": "Public Domain (PD-self)",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+      "attribution": "Dmitry G / Wikimedia Commons, Public Domain",
+      "expected_sha1": "73a6fa3dbbd195bc549a94beb2838158f543cf47",
+      "subject_note": "Original photograph shows a single manual Phillips screwdriver, handle and tip, rather than a powered screw gun.",
+      "source_filename": "source.jpg",
+      "source_review": "commons_original_preview_and_license_checked_20261031",
+      "binary_review": "pending_download_sha1_webp_quality_review",
+      "promotion_allowed": false
+    },
+    {
+      "entry_id": "multimeter",
+      "source_page": "https://commons.wikimedia.org/wiki/File:DT830D_DIGITAL_MULTIMETER.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/43/DT830D_DIGITAL_MULTIMETER.jpg",
+      "author": "Ranjithkumar Murugesan",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "Ranjithkumar Murugesan / Wikimedia Commons, CC0 1.0",
+      "expected_sha1": "ff22145553196e8b7fe75d30bb8e519441b89a3f",
+      "subject_note": "Original photograph shows a digital multimeter, screen, selector dial, and test lead sockets; single clear subject.",
+      "source_filename": "source.jpg",
+      "source_review": "commons_original_preview_and_license_checked_20261031",
+      "binary_review": "pending_download_sha1_webp_quality_review",
+      "promotion_allowed": false
+    }
+  ]
+}
