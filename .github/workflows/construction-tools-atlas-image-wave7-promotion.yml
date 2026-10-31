@@ -1,66 +1,25 @@
-name: Construction Tools Atlas Reviewed Wave7 Promotion
+name: Construction Tools Atlas Wave7 Image Provenance Audit
 on:
-  pull_request:
-    paths:
-      - '.github/workflows/construction-tools-atlas-image-wave7-promotion.yml'
-      - 'tools/construction-tools-atlas/scripts/promote-image-wave7-reviewed-v2.3.cjs'
+  workflow_dispatch:
+
 permissions:
-  contents: write
-  actions: read
+  contents: read
+
 jobs:
-  prepare-reviewed-three-images:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+  audit-retained-source-images:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          persist-credentials: true
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Download SHA-1 verified source assets from Wave7 CI
-        uses: actions/download-artifact@v4
-        with:
-          name: construction-atlas-wave7-pinned-source-staging
-          run-id: 41203896378
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path: ${{ runner.temp }}/cta-wave7-sources
-      - name: Promote exactly the three visually reviewed images
+      - name: Verify Wave7 original hashes and official attribution
         run: |
-          if [ -f tools/construction-tools-atlas/data/image-wave7-sources-v2.3.json ]; then
-            echo "Wave7 already promoted; check committed immutable sources and generated output."
-          else
-            for id in utility_knife screwdriver multimeter; do
-              mkdir -p "tools/construction-tools-atlas/images/$id"
-              cp "${{ runner.temp }}/cta-wave7-sources/$id/source.jpg" "tools/construction-tools-atlas/images/$id/source.jpg"
-              cp "${{ runner.temp }}/cta-wave7-sources/$id/primary.webp" "tools/construction-tools-atlas/images/$id/primary.webp"
-              cp "${{ runner.temp }}/cta-wave7-sources/$id/thumb.webp" "tools/construction-tools-atlas/images/$id/thumb.webp"
-            done
-            node tools/construction-tools-atlas/scripts/promote-image-wave7-reviewed-v2.3.cjs
-          fi
-      - name: Regenerate image inventory, public image snapshot and SEO pages
-        run: |
-          node tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs --write > /dev/null
-          node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --write > /dev/null
-          node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs
-          node tools/construction-tools-atlas/scripts/build-affiliate-image-acquisition-queue-v2.3.cjs --write
-      - name: Check image provenance, static SEO pages and consistency
-        run: |
+          echo "d4d42d040c2be9f5764f165590b9700d60753bd7  tools/construction-tools-atlas/images/utility_knife/source.jpg" | sha1sum -c
+          echo "73a6fa3dbbd195bc549a94beb2838158f543cf47  tools/construction-tools-atlas/images/screwdriver/source.jpg" | sha1sum -c
+          echo "ff22145553196e8b7fe75d30bb8e519441b89a3f  tools/construction-tools-atlas/images/multimeter/source.jpg" | sha1sum -c
           node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs
           node tools/construction-tools-atlas/scripts/check-image-attribution-v2.3.cjs
-          node tools/construction-tools-atlas/scripts/image-lifecycle-v2.3.cjs
-          node tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs --check > /dev/null
-          node tools/construction-tools-atlas/scripts/audit-public-image-inventory-v2.3.cjs --check > /dev/null
           node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs --check
           node tools/construction-tools-atlas/scripts/build-affiliate-image-acquisition-queue-v2.3.cjs --check
-          node tools/construction-tools-atlas/scripts/build-comparison-pages-v2.3.cjs --check
-      - name: Commit verified assets and all public files to the PR branch
-        run: |
-          git config user.name "nicheworks-image-wave7[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tools/construction-tools-atlas sitemap.xml
-          git diff --cached --quiet && { echo "No new images or generated outputs"; exit 0; }
-          git commit -m "Construction Atlas: publish three reviewed images and 38 static SEO pages"
-          git push origin HEAD:"${{ github.event.pull_request.head.ref }}"
