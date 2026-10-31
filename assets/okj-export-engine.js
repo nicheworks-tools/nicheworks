@@ -96,6 +96,8 @@
 
   function escapeCsv(value) {
     var text = normalizeString(value);
+    // OCR and names are untrusted spreadsheet data, never executable CSV formulas.
+    if (/^[\\s\\uFEFF]*[=+\\-@]/.test(text)) text = "'" + text;
     var escaped = text.replace(/"/g, '""');
     if (/[",\n\r]/.test(escaped)) {
       return '"' + escaped + '"';
