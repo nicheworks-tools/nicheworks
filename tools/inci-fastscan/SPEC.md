@@ -19,14 +19,14 @@ Parse pasted or OCR-extracted cosmetic ingredient labels and compare normalized 
 - Preserve legitimate ingredient punctuation such as `/`, `・`, and numeric locant commas such as `1,2-Hexanediol` through parsing and OCR cleanup.
 - Accept an image and run browser-side OCR using Tesseract.js loaded from an external CDN, with separate English and Japanese+English OCR actions.
 - Show a local preview of the selected image before OCR and allow the user to remove/reselect it without uploading it.
-- For both INCI/English and Japanese OCR, provide explicit 90° left/right image rotation, manual four-edge percentage crop (minimum 10% retained per axis), and 100–180% contrast adjustment. The preview displays the processed image and Tesseract receives pixels prepared by the same local processing function. An unmodified image still uses its original file.
+- For both INCI/English and Japanese OCR, provide explicit 90° left/right image rotation, small-angle manual deskew (−12° to +12° in 1° steps), manual four-edge percentage crop (minimum 10% retained per axis), and 100–180% contrast adjustment. The preview displays the processed image and Tesseract receives pixels prepared by the same local processing function. An unmodified image still uses its original file.
 - Show OCR progress in the page while recognition is running.
 - Put OCR output back into the editable ingredient textarea and show a clear review cue after OCR; users review/correct OCR text before running ingredient matching.
 - Preserve OCR candidate line boundaries during label cleanup rather than guessing joins from common INCI prefixes/suffixes.
 - Conservatively repair OCR line wraps only at the dictionary-aware analysis stage, and only when adjacent fragments form an exact maintained dictionary name/alias and are not already two independently known ingredients. One fragment may itself be known when the combined identity is exact.
 - Normalize/parse OCR or pasted text and match ingredients against the local/generated dictionary and declared aliases.
 - For every exact match, retain the canonical INCI name and identify the route used: canonical INCI, Japanese name, declared alias, or shared high-confidence naming variant.
-- Show result cards with canonical INCI, original input, match route, matched spelling, Japanese names where available, category, review cue, and neutral explanatory note.
+- Show the main role and bilingual role-level explanation first. A source-backed, verified ingredient-specific note may appear in a secondary expand/collapse area (English source wording, clearly labeled in Japanese UI) with explicit HTTPS evidence links. Unverified legacy notes are never public. Canonical INCI, original input, matched spelling, Japanese names, and review cues remain secondary information; match-route debugging must not displace role explanations.
 - Display `辞書一致 / Dictionary match`, `追加確認 / Additional review`, and `未一致 / Unmatched` as reference states; these are not safety or danger grades.
 - Allow result cards to be filtered by all / dictionary match / additional review / unmatched without rerunning analysis.
 - Provide previous/next review-queue controls that navigate only currently visible `追加確認` and `未一致` cards, scroll/focus the selected card, and never modify input or rerun analysis.
@@ -151,8 +151,8 @@ Affiliate analytics use `affiliate_impression` for fixed impression metadata and
 ## Limits and non-goals
 
 - OCR may be slow and can omit, split, or misrecognize characters; users must visually verify OCR text before trusting scan results.
-- Image preprocessing supports 90° turns (0°/90°/180°/270°), four-edge manual cropping in 5% increments, and contrast 100–180%. Edits are browser-local and export a temporary PNG before OCR; an unmodified image keeps its original file. The source image's longest edge is capped at 4096px during processing, and temporary object URLs are revoked. Image adjustments are reset when a new file is chosen; crop is also reset on rotation because its coordinate axes change.
-- Arbitrary-angle deskew, automated curvature/glare correction, and objective real-photo OCR accuracy benchmarking remain unimplemented. Browser support for canvas contrast is required for contrast adjustments; if unavailable, the tool fails visibly rather than silently ignoring the selected adjustment.
+- Image preprocessing supports 90° turns (0°/90°/180°/270°), manual fine deskew from −12° to +12° in 1° steps, four-edge manual cropping in 5% increments, and contrast 100–180%. Fine deskew expands the transformed canvas around the full photo (white corners rather than cropped text); the final expanded canvas remains bounded on large phone photos. Crop percentages are measured on that deskewed canvas. Edits are browser-local and export a temporary PNG before OCR; an unmodified image keeps its original file. The source image's longest edge is capped at 4096px during processing, and temporary object URLs are revoked. Image adjustments are reset when a new file is chosen; crop is also reset on rotation because its coordinate axes change.
+- Manual small-angle deskew is implemented, but automatic tilt estimation, automated curvature/glare correction, and objective real-photo OCR accuracy benchmarking remain unimplemented. Browser support for canvas contrast is required for contrast adjustments; if unavailable, the tool fails visibly rather than silently ignoring the selected adjustment.
 - OCR cleanup preserves candidate boundaries; it does not heuristically join lines based on a prefix/suffix list.
 - Exact OCR line repair only joins fragments when the combined text exactly matches a maintained dictionary key and the fragments are not already two independently known ingredients; it is not fuzzy correction.
 - A fragment that is independently known may still participate in a repair only when the complete combined identity is an exact maintained dictionary name/alias.
@@ -176,7 +176,8 @@ Affiliate analytics use `affiliate_impression` for fixed impression metadata and
 - [x] Selected OCR images can be previewed locally and removed/reselected without upload.
 - [x] Both OCR tabs can rotate selected photos by 90° before recognition; rotated preview and OCR use the same local processing path, with a deterministic regression for orientation and cleanup.
 - [x] Both OCR tabs support manually controlled crop and contrast settings; preview and Tesseract share a single processing function and CI tests geometry/cleanup/orientation/setting propagation.
-- [ ] Arbitrary-angle deskew, real-photo OCR benchmarks, and mobile-device visual QA remain release blockers.
+- [x] Both OCR tabs offer manual fine deskew with expanded white-backed preview, the same corrected pixels for Tesseract, and a deterministic geometry/privacy/cleanup regression.
+- [ ] Auto-deskew and curvature/glare correction, real-photo OCR benchmarks, and mobile-device visual QA remain release blockers.
 - [x] OCR results remain editable and a review cue is shown before ingredient matching.
 - [x] OCR cleanup preserves candidate line boundaries and does not perform heuristic prefix/suffix joining.
 - [x] Adjacent OCR fragments are automatically rejoined only when their combined value is an exact maintained dictionary name/alias and they are not already two independently known ingredients.

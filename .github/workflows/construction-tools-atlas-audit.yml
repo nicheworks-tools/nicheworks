@@ -265,6 +265,15 @@ jobs:
 
       - name: Validate revenue execution readiness
         run: node tools/construction-tools-atlas/scripts/report-revenue-readiness-v2.3.cjs
+      - name: Validate pinned Wikimedia source-intake and 399-entry commercial image acquisition queue
+        run: node tools/construction-tools-atlas/scripts/build-affiliate-image-acquisition-queue-v2.3.cjs --check
+      - name: Validate Wave6 source materialization preflight (no network / no promotion)
+        run: node tools/construction-tools-atlas/scripts/materialize-image-wave6-v2.3.mjs --check
 
       - name: Validate generated static SEO detail pages
         run: node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs --check
+      - name: Check maintained comparison page generator syntax
+        run: node --check tools/construction-tools-atlas/scripts/build-comparison-pages-v2.3.cjs
+
+      - name: Validate source-backed comparison page, links and sitemap
+        run: node tools/construction-tools-atlas/scripts/build-comparison-pages-v2.3.cjs --check

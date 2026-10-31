@@ -36,9 +36,18 @@ check(
   !enhancements.includes('return item.note_short'),
   'FastScan public completeness layer must not use note_short as the role explanation'
 );
+const descriptionStart = webUi.indexOf('function ingredientDescription(');
+const noteStart = webUi.indexOf('function renderVerifiedNote(');
+check(descriptionStart !== -1 && noteStart > descriptionStart, 'FastScan must retain role-first explanation and separate verified note rendering');
 check(
-  webUi.includes('if (lang === "en" && item?.note_short) return item.note_short;'),
-  'FastScan legacy renderer changed unexpectedly; public completeness layer should neutralize note_short before rendering'
+  descriptionStart !== -1 && noteStart > descriptionStart &&
+    !webUi.slice(descriptionStart, noteStart).includes('note_short'),
+  'FastScan primary bilingual role explanation must never be replaced by English-only ingredient notes'
+);
+check(
+  webUi.includes('item?.note_verified !== true') && webUi.includes('Array.isArray(item.note_sources)') &&
+    webUi.includes('renderVerifiedNote(r, uiLang)'),
+  'FastScan optional ingredient notes must be source-backed and verification-gated'
 );
 check(
   webUi.includes('const reviewState = isReviewState(r.safety) ? "review" : "matched";'),

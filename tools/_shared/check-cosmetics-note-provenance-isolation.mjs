@@ -13,11 +13,15 @@ assert.ok(matcher.includes('Array.isArray(item.note_sources)'), 'verified notes 
 assert.ok(matcher.includes('/^https:\\/\\//i.test(source.trim())'), 'note provenance must require HTTPS source URLs');
 assert.ok(matcher.includes('note_short: note || undefined'), 'only verified notes may enter FastScan result objects');
 
-// Public role-first results may use a verified note when one reaches the result object;
-// otherwise they fall back to maintained local role descriptions, never to raw legacy notes.
+// Role-level explanations remain bilingual and primary; reviewed ingredient notes
+// appear only in a secondary source-linked detail view. Legacy raw notes fail closed.
 assert.ok(ui.includes('function ingredientDescription(item, lang)'), 'FastScan must centralize public ingredient descriptions');
-assert.ok(ui.includes('if (lang === "en" && item?.note_short) return item.note_short;'), 'FastScan may use only the verified note already gated by the matcher');
-assert.ok(ui.includes('const description = ROLE_DESCRIPTIONS[key] || ROLE_DESCRIPTIONS.general;'), 'FastScan must fall back to maintained neutral role copy');
+const roleDescription = ui.slice(ui.indexOf('function ingredientDescription('), ui.indexOf('function renderVerifiedNote('));
+assert.ok(!roleDescription.includes('note_short'), 'ingredient-specific notes must not replace bilingual role descriptions');
+assert.ok(ui.includes('const description = ROLE_DESCRIPTIONS[key] || ROLE_DESCRIPTIONS.general;'), 'FastScan must keep maintained neutral role copy');
+assert.ok(ui.includes('function renderVerifiedNote(item, lang)'), 'verified notes require a dedicated secondary detail renderer');
+assert.ok(ui.includes('item?.note_verified !== true'), 'secondary note renderer must require source-verification flag');
+assert.ok(ui.includes('note_sources'), 'secondary note renderer must require public provenance links');
 assert.ok(ui.includes('この成分の主な役割情報は現在整理中です。'), 'Japanese neutral role fallback missing');
 assert.ok(ui.includes('The primary role for this ingredient is still being organized.'), 'English neutral role fallback missing');
 assert.ok(!ui.includes('r.note_short || rt("defaultNote", uiLang)'), 'obsolete dictionary-match fallback must not return');

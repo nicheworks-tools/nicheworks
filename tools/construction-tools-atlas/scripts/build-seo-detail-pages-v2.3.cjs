@@ -190,21 +190,38 @@ function renderAliases(aliases) {
   return `<section class="entrySection"><h2>別名・呼び方 / Aliases</h2>${ja}${en}</section>`;
 }
 
-function renderRelated(entry, entryById, launchSet, resolveCanonicalId) {
+function renderRelated(entry, entryById, launchSet, resolveCanonicalId, maintainedComparisons) {
+  const comparisonPairs = (maintainedComparisons || []).filter((pair) =>
+    pair?.status === "approved" &&
+    pair?.relationship === "maintained_comparison" &&
+    (pair.left === entry.id || pair.right === entry.id) &&
+    launchSet.has(pair.left) && launchSet.has(pair.right));
+  const comparisonLinks = comparisonPairs.map((pair) => {
+    const otherId = pair.left === entry.id ? pair.right : pair.left;
+    const other = entryById.get(otherId);
+    if (!other || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(pair.slug)) {
+      throw new Error(`${entry.id}: invalid maintained comparison reference`);
+    }
+    return `<li><a href="${escapeHtml(`${SITE_ROOT}/comparisons/${pair.slug}/`)}">使い分けを比較 / Compare with ${escapeHtml(text(other?.term?.ja) || otherId)} <span lang="en">(${escapeHtml(text(other?.term?.en) || otherId)})</span></a></li>`;
+  }).join("");
+  const maintained = comparisonLinks
+    ? `<section class="entrySection"><h2>工具の比較・使い分け / Tool comparison</h2><ul class="relatedList">${comparisonLinks}</ul></section>`
+    : "";
+
   const ids = extractRelationIds(entry)
     .map(resolveCanonicalId)
     .filter((id) => id && id !== entry.id)
     .filter((id, index, all) => all.indexOf(id) === index)
     .slice(0, 12);
   const rows = ids.map((id) => entryById.get(id)).filter(Boolean);
-  if (!rows.length) return "";
+  if (!rows.length) return maintained;
   const items = rows.map((related) => {
     const ja = text(related?.term?.ja);
     const en = text(related?.term?.en);
     const href = launchSet.has(related.id) ? canonicalEntryUrl(related.id) : atlasDeepLink(related.id);
     return `<li><a href="${escapeHtml(href)}">${escapeHtml(ja || en || related.id)}${ja && en ? ` <span lang="en">/ ${escapeHtml(en)}</span>` : ""}</a></li>`;
   }).join("");
-  return `<section class="entrySection"><h2>関連項目 / Related entries</h2><ul class="relatedList">${items}</ul></section>`;
+  return `<section class="entrySection"><h2>関連項目 / Related entries</h2><ul class="relatedList">${items}</ul></section>${maintained}`;
 }
 
 function renderImage(image) {
@@ -242,7 +259,7 @@ function renderAffiliate(entry, offer) {
     </section>`;
 }
 
-function renderPage({ entry, image, offer, entryById, launchSet, resolveCanonicalId }) {
+function renderPage({ entry, image, offer, entryById, launchSet, resolveCanonicalId, maintainedComparisons }) {
   const names = pair(entry, "term");
   const description = pair(entry, "description");
   const summary = pair(entry, "summary");
@@ -379,7 +396,7 @@ function renderPage({ entry, image, offer, entryById, launchSet, resolveCanonica
       </section>` : ""}
 
       ${renderAliases(aliases)}
-      ${renderRelated(entry, entryById, launchSet, resolveCanonicalId)}
+      ${renderRelated(entry, entryById, launchSet, resolveCanonicalId, maintainedComparisons)}
       ${renderAffiliate(entry, offer)}
 
       <section class="entrySection atlasCta">
@@ -594,6 +611,11 @@ async function main() {
   const imageMap = buildImageMap(registry, runtime.resolveCanonicalId);
   const launchIds = launchCohort(imageInventory, offerMap);
   const launchSet = new Set(launchIds);
+  const comparisonLedger = readJson(path.join(DATA, "maintained-comparisons-v2.3.json"));
+  if (comparisonLedger?.schema !== "cta-maintained-comparisons-v2.3") {
+    throw new Error("maintained comparison ledger schema mismatch");
+  }
+  const maintainedComparisons = comparisonLedger.pairs || [];
 
   const imageStageById = new Map();
   for (const row of imageInventory?.lifecycle?.rows || []) {
@@ -649,7 +671,8 @@ async function main() {
       offer,
       entryById,
       launchSet,
-      resolveCanonicalId: runtime.resolveCanonicalId
+      resolveCanonicalId: runtime.resolveCanonicalId,
+      maintainedComparisons
     });
     const title = html.split("<title>")[1]?.split("</title>")[0];
     const canonical = canonicalEntryUrl(id);

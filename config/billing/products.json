@@ -79,6 +79,42 @@
         }
       },
       "priceTierId": "nw.one_time.jpy_3980"
+    },
+    {
+      "productId": "csv_tidy.pro_v1",
+      "displayName": {
+        "en": "CSV Tidy Pro",
+        "ja": "CSV Tidy Pro"
+      },
+      "price": {
+        "amount": 1980,
+        "currency": "JPY",
+        "type": "one_time"
+      },
+      "stripe": {
+        "mode": "not_connected",
+        "priceIdEnv": "STRIPE_PRICE_CSV_TIDY_PRO"
+      },
+      "checkout": {
+        "enabled": false
+      },
+      "features": [
+        "csvTidy.savedPresets",
+        "csvTidy.batchApply",
+        "csvTidy.batchReport"
+      ],
+      "ui": {
+        "state": "billing-unavailable",
+        "cta": {
+          "en": "Pro (coming later)",
+          "ja": "Pro（準備中）"
+        },
+        "billingUnavailableNote": {
+          "en": "CSV Tidy Pro is a planned product. Purchasing and unlocking are not available.",
+          "ja": "CSV Tidy Proは企画中です。現在は購入・機能解放できません。"
+        }
+      },
+      "priceTierId": "nw.one_time.jpy_1980"
     }
   ],
   "priceTiers": [
@@ -102,6 +138,13 @@
       "currency": "JPY",
       "type": "one_time",
       "label": "¥3,980 one-time"
+    },
+    {
+      "priceTierId": "nw.one_time.jpy_1980",
+      "amount": 1980,
+      "currency": "JPY",
+      "type": "one_time",
+      "label": "¥1,980 one-time (draft)"
     }
   ]
 }

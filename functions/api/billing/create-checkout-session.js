@@ -134,6 +134,12 @@ export async function onRequestPost({ request, env }) {
   }
 
   const { product } = productCheck;
+  // An explicitly configured product-level checkout gate is fail-closed.
+  // Existing products without checkout settings preserve their legacy behavior.
+  // This check runs before reading price credentials or contacting Stripe.
+  if (product.checkout && product.checkout.enabled !== true) {
+    return json({ ok: false, error: 'product_checkout_disabled' }, 403);
+  }
   const priceIdEnvName = product.stripe.priceIdEnv;
   const stripePriceId = env[priceIdEnvName];
   if (typeof stripePriceId !== 'string' || !stripePriceId) {

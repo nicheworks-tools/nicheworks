@@ -286,7 +286,8 @@ function hasPublicExplanation(match, flags) {
 
 function buildDescription(match, flags) {
   if (match && hasBilingualRoleExplanation(match.category)) {
-    if (currentLang === 'en' && match.note_short) return match.note_short;
+    // Always show the maintained bilingual role explanation first.
+    // Raw dictionary notes are not a valid substitute for a role description.
     return roleDescription(match.category);
   }
   const fallback = flags[0];
@@ -299,6 +300,40 @@ function buildDescription(match, flags) {
   return currentLang === 'en'
     ? 'Role information is not available for this spelling yet. Check the label spelling or official manufacturer information.'
     : 'この表記の役割情報はまだ登録されていません。表記やメーカー公式の成分表示を確認してください。';
+}
+
+function verifiedIngredientNote(match) {
+  if (match?.note_verified !== true) return null;
+  const note = typeof match.note_short === 'string' ? match.note_short.trim() : '';
+  const sources = Array.isArray(match.note_sources)
+    ? match.note_sources.filter(url => typeof url === 'string' && /^https:\/\//i.test(url.trim()))
+    : [];
+  if (!note || !sources.length) return null;
+  return { note, sources };
+}
+
+function appendVerifiedIngredientNote(cell, match) {
+  const reviewed = verifiedIngredientNote(match);
+  if (!reviewed) return;
+  const detail = document.createElement('details');
+  detail.className = 'lite-verified-note';
+  const summary = document.createElement('summary');
+  summary.textContent = currentLang === 'en' ? 'Source-backed ingredient note' : '出典付きの補足説明（英語）';
+  const description = document.createElement('p');
+  description.textContent = reviewed.note;
+  const evidence = document.createElement('p');
+  evidence.className = 'lite-verified-note-links';
+  reviewed.sources.forEach((url, index) => {
+    if (index) evidence.appendChild(document.createTextNode(' / '));
+    const link = document.createElement('a');
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = (currentLang === 'en' ? 'Source ' : '出典 ') + (index + 1);
+    evidence.appendChild(link);
+  });
+  detail.append(summary, description, evidence);
+  cell.appendChild(detail);
 }
 
 function roleLabel(item) {
@@ -372,6 +407,7 @@ function renderTable(items) {
     roleCell.appendChild(renderRoleCell(item));
     const noteCell = document.createElement('td');
     noteCell.textContent = buildDescription(item.match, item.flags);
+    if (item.statusKey === 'matched') appendVerifiedIngredientNote(noteCell, item.match);
     row.appendChild(nameCell);
     row.appendChild(roleCell);
     row.appendChild(noteCell);

@@ -131,9 +131,23 @@ function roleLabel(category, lang) {
 
 function ingredientDescription(item, lang) {
   const key = roleKey(item?.category);
-  if (lang === "en" && item?.note_short) return item.note_short;
   const description = ROLE_DESCRIPTIONS[key] || ROLE_DESCRIPTIONS.general;
   return description[lang] || description.ja;
+}
+
+function renderVerifiedNote(item, lang) {
+  if (item?.note_verified !== true || typeof item.note_short !== "string" || !item.note_short.trim()) return "";
+  const urls = Array.isArray(item.note_sources)
+    ? item.note_sources.filter(url => typeof url === "string" && /^https:\/\//i.test(url.trim()))
+    : [];
+  if (!urls.length) return "";
+  const heading = lang === "en" ? "Source-backed ingredient note" : "出典付きの補足説明（英語）";
+  const sourceLabel = lang === "en" ? "Source" : "出典";
+  const links = urls.map((url, i) => '<a href="' + escapeHtml(url) +
+    '" target="_blank" rel="noopener noreferrer">' + escapeHtml(sourceLabel + ' ' + (i + 1)) +
+    '</a>').join(' / ');
+  return '<details class="result-verified-note"><summary>' + escapeHtml(heading) +
+    '</summary><p>' + escapeHtml(item.note_short) + '</p><p class="small">' + links + '</p></details>';
 }
 
 function renderResults(container, results, lang = "ja") {
@@ -194,6 +208,7 @@ function renderResults(container, results, lang = "ja") {
         </div>
         <div class="small"><strong>${escapeHtml(rt("role", uiLang))}:</strong> ${escapeHtml(role)}</div>
         <div class="result-note"><strong>${escapeHtml(rt("whatItDoes", uiLang))}:</strong> ${escapeHtml(description)}</div>
+        ${renderVerifiedNote(r, uiLang)}
         ${r.en ? `<div class="small">${escapeHtml(rt("inci", uiLang))}: ${escapeHtml(r.en)}</div>` : ""}
         ${Array.isArray(r.jp) && r.jp.length ? `<div class="small">${escapeHtml(rt("japaneseName", uiLang))}: ${escapeHtml(r.jp.join(" / "))}</div>` : ""}
         ${isReviewState(r.safety) ? `<div class="small">${escapeHtml(rt("reviewHint", uiLang))}</div>` : ""}

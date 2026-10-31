@@ -41,14 +41,17 @@ on:
       - 'tools/_shared/check-cosmetics-canonical-equivalents.mjs'
       - 'tools/_shared/check-cosmetics-jp-label-variants.mjs'
       - 'tools/_shared/check-fastscan-result-contract.mjs'
+      - 'tools/_shared/check-fastscan-verified-note-visibility.mjs'
       - 'tools/_shared/check-fastscan-ocr-confusion.mjs'
       - 'tools/_shared/check-fastscan-ocr-line-repair.mjs'
       - 'tools/_shared/check-fastscan-ocr-robustness.mjs'
       - 'tools/_shared/check-fastscan-image-rotation.mjs'
       - 'tools/_shared/check-fastscan-image-crop-contrast.mjs'
+      - 'tools/_shared/check-fastscan-image-deskew.mjs'
       - 'tools/_shared/check-fastscan-result-controls.mjs'
       - 'tools/_shared/check-fastscan-review-queue.mjs'
       - 'tools/_shared/check-lite-wave3-navigation.mjs'
+      - 'tools/_shared/check-lite-verified-note-visibility.mjs'
       - 'tools/_shared/check-cosmetics-cross-tool-release.mjs'
       - 'tools/_shared/check-cosmetics-wave2-release.mjs'
       - 'tools/_shared/check-cosmetics-wave3-release.mjs'
@@ -195,6 +198,8 @@ jobs:
           node --check tools/_shared/check-fastscan-ocr-robustness.mjs
           node --check tools/_shared/check-fastscan-image-rotation.mjs
           node --check tools/_shared/check-fastscan-image-crop-contrast.mjs
+          node --check tools/_shared/check-fastscan-image-deskew.mjs
+          node --check tools/_shared/check-lite-verified-note-visibility.mjs
           node --check tools/cosmetic-ingredient-checker-lite/app.js
           node --check tools/cosmetic-ingredient-checker-lite/enhancements.js
           node --check tools/inci-fastscan/enhancements.js
@@ -204,6 +209,7 @@ jobs:
           node --check tools/inci-fastscan/js/core_analyze.js
           node --check tools/inci-fastscan/js/core_ocr_post.js
           node --check tools/inci-fastscan/js/web_ui.js
+          node --check tools/_shared/check-fastscan-verified-note-visibility.mjs
           node --check tools/inci-fastscan/js/web_ocr.js
           node --check tools/inci-fastscan/js/image_preprocess.js
           node --check tools/inci-fastscan/js/strings.js
@@ -212,6 +218,8 @@ jobs:
         run: node tools/_shared/check-cosmetics-role-parity.mjs
       - name: FastScan detailed result contract
         run: node tools/_shared/check-fastscan-result-contract.mjs
+      - name: FastScan verified-only note visibility
+        run: node tools/_shared/check-fastscan-verified-note-visibility.mjs
       - name: FastScan OCR confusion regression
         run: node tools/_shared/check-fastscan-ocr-confusion.mjs
       - name: FastScan OCR line repair regression
@@ -222,10 +230,14 @@ jobs:
         run: node tools/_shared/check-fastscan-image-rotation.mjs
       - name: FastScan crop and contrast regression
         run: node tools/_shared/check-fastscan-image-crop-contrast.mjs
+      - name: FastScan manual deskew regression
+        run: node tools/_shared/check-fastscan-image-deskew.mjs
       - name: FastScan result controls regression
         run: node tools/_shared/check-fastscan-result-controls.mjs
       - name: FastScan review queue regression
         run: node tools/_shared/check-fastscan-review-queue.mjs
+      - name: Lite verified ingredient note visibility
+        run: node tools/_shared/check-lite-verified-note-visibility.mjs
       - name: Lite wave 3 navigation regression
         run: node tools/_shared/check-lite-wave3-navigation.mjs
       - name: Cosmetics 100-case accuracy benchmark
