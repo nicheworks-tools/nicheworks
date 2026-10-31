@@ -1,0 +1,25 @@
+name: ManualFinder Xiaomi JP model guide official source probe
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/scripts/xiaomi-jp-model-guide-probe.mjs'
+      - '.github/workflows/manualfinder-xiaomi-jp-coverage-pass.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  xiaomi-guide-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/manual-finder/scripts/xiaomi-jp-model-guide-probe.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-xiaomi-jp-model-user-guide-source
+          path: manualfinder-xiaomi-probe/*
+          if-no-files-found: warn
