@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CSV Tidy — real browser acceptance harness</title>
+  <style>
+    body { margin: 0; font: 14px/1.4 system-ui, sans-serif; }
+    iframe { display: block; width: 1440px; height: 980px; border: 0; max-width: none; }
+    pre { white-space: pre-wrap; padding: 16px; }
+  </style>
+</head>
+<body data-test-result="RUNNING">
+  <iframe id="tool" src="../index.html" title="CSV Tidy production workbench"></iframe>
+  <pre id="results" data-test-result="RUNNING">RUNNING</pre>
+  <script>(() => {
+  "use strict";
+  const results = [];
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+  const record = (name, ok, detail = "") => results.push({ name, ok: Boolean(ok), detail: String(detail) });
+  async function until(predicate, limitMs = 6000) {
+    const started = Date.now();
+    while (Date.now() - started < limitMs) {
+      if (predicate()) return true;
+      await sleep(80);
+    }
+    return false;
+  }
+  function finish() {
+    const failures = results.filter(item => !item.ok);
+    const status = failures.length ? "FAIL" : "PASS";
+    const output = document.getElementById("results");
+    document.body.dataset.testResult = status;
+    output.dataset.testResult = status;
+    output.textContent = status + " (" + (results.length - failures.length) + "/" + results.length + ")\n" +
+      results.map(item => (item.ok ? "PASS " : "FAIL ") + item.name +
+        (item.detail ? " — " + item.detail : "")).join("\n");
+  }
+  async function run() {
+    const frame = document.getElementById("tool");
+    await Promise.race([
+      new Promise(resolve => frame.addEventListener("load", resolve, { once: true })),
+      sleep(12000).then(() => { throw new Error("iframe load timed out"); })
+    ]);
+    const w = frame.contentWindow;
+    const d = w.document;
+    const firstPartyErrors = [];
+    w.addEventListener("error", event => {
+      const source = String(event.filename || "");
+      if (!source || source.includes("/tools/csv-tidy/")) {
+        firstPartyErrors.push(String(event.message || "script error"));
+      }
+    });
+    record("production workbench mounted", Boolean(d.getElementById("fileInput") &&
+      d.getElementById("previewTable") && d.getElementById("downloadBtn")));
+    record("production summary API available", typeof w.csvTidySummary === "function");
+
+    async function loadCsv(filename, text) {
+      const dt = new w.DataTransfer();
+      dt.items.add(new w.File([text], filename, { type: "text/csv" }));
+      const input = d.getElementById("fileInput");
+      input.files = dt.files;
+      input.dispatchEvent(new w.Event("change", { bubbles: true }));
+      return true;
+    }
+
+    const good = 'code,name,note\n001,Alice,"hi,there"\n002,Bob,ok\n';
+    await loadCsv("browser-test.csv", good);
+    record("real browser File/DataTransfer load", await until(() =>
+      d.querySelectorAll("#colsList li.col-item").length === 3 &&
+      d.getElementById("downloadBtn").disabled === false));
+    record("parsed preview populated", d.getElementById("previewTable").textContent.includes("Alice"));
+
+    const cols = [...d.querySelectorAll("#colsList li.col-item")];
+    if (cols.length === 3) {
+      const firstName = cols[0].querySelector(".col-name");
+      firstName.value = "item_code";
+      firstName.dispatchEvent(new w.Event("input", { bubbles: true }));
+      const exclude = cols[1].querySelector(".col-exclude");
+      exclude.checked = true;
+      exclude.dispatchEvent(new w.Event("change", { bubbles: true }));
+      record("rename and exclusion retained", await until(() => {
+        const model = w.csvTidySummary("ja");
+        return model.valid && model.outputCols === 2 &&
+          model.excluded.some(name => name.includes("name"));
+      }));
+      record("output preview respects rename/exclusion", await until(() =>
+        d.getElementById("previewTable").textContent.includes("item_code") &&
+        !d.getElementById("previewTable").textContent.includes("Alice")));
+    } else {
+      record("rename and exclusion retained", false, "column controls missing");
+      record("output preview respects rename/exclusion", false, "column controls missing");
+    }
+
+    w.confirm = () => true;
+    d.getElementById("outName").value = "browser-acceptance.csv";
+    d.getElementById("downloadBtn").click();
+    record("browser download requested", true, "on-disk CSV checked separately by CI");
+    await sleep(700);
+
+    d.querySelector('.nw-lang-switch button[data-lang="en"]').click();
+    record("English UI switch", await until(() =>
+      d.querySelector('.nw-title [data-i18n="en"]').style.display !== "none" &&
+      d.getElementById("colSearch").placeholder === "Search columns..."));
+    d.querySelector('.nw-lang-switch button[data-lang="ja"]').click();
+    record("Japanese UI switch", await until(() =>
+      d.querySelector('.nw-title [data-i18n="ja"]').style.display !== "none" &&
+      d.getElementById("colSearch").placeholder === "列を検索..."));
+
+    const button = d.getElementById("downloadBtn");
+    button.focus();
+    record("keyboard-focusable download", d.activeElement === button);
+
+    for (const width of [1440, 1024, 768, 375, 320]) {
+      frame.style.width = width + "px";
+      await sleep(160);
+      const client = d.documentElement.clientWidth;
+      const scroll = d.documentElement.scrollWidth;
+      record("responsive " + width + "px", Math.abs(client - width) <= 2 && scroll <= client + 2,
+        "client=" + client + " scroll=" + scroll);
+    }
+
+    await loadCsv("malformed.csv", 'code,note\n"unclosed,note\n');
+    record("malformed replacement blocks stale export", await until(() =>
+      d.getElementById("downloadBtn").disabled === true));
+    await loadCsv("recovered.csv", good);
+    record("valid replacement restores export", await until(() =>
+      d.getElementById("downloadBtn").disabled === false));
+
+    record("no observed first-party page errors", firstPartyErrors.length === 0,
+      firstPartyErrors.join(" | "));
+  }
+
+  run().catch(error => record("harness completed without exception", false,
+    error && error.stack ? error.stack : String(error))).finally(finish);
+})();</script>
+</body>
+</html>
