@@ -2304,15 +2304,291 @@
     "publish": true
   },
   {
+    "lgcode": "173860",
+    "pref_slug": "ishikawa",
+    "city_slug": "hodatsushimizu",
+    "publish": true
+  },
+  {
+    "lgcode": "174076",
+    "pref_slug": "ishikawa",
+    "city_slug": "nakanoto",
+    "publish": true
+  },
+  {
+    "lgcode": "174611",
+    "pref_slug": "ishikawa",
+    "city_slug": "anamizu",
+    "publish": true
+  },
+  {
+    "lgcode": "174637",
+    "pref_slug": "ishikawa",
+    "city_slug": "noto",
+    "publish": true
+  },
+  {
     "lgcode": "182010",
     "pref_slug": "fukui",
     "city_slug": "fukui",
     "publish": true
   },
   {
+    "lgcode": "182028",
+    "pref_slug": "fukui",
+    "city_slug": "tsuruga",
+    "publish": true
+  },
+  {
+    "lgcode": "182044",
+    "pref_slug": "fukui",
+    "city_slug": "obama",
+    "publish": true
+  },
+  {
+    "lgcode": "182052",
+    "pref_slug": "fukui",
+    "city_slug": "ono",
+    "publish": true
+  },
+  {
+    "lgcode": "182061",
+    "pref_slug": "fukui",
+    "city_slug": "katsuyama",
+    "publish": true
+  },
+  {
+    "lgcode": "182079",
+    "pref_slug": "fukui",
+    "city_slug": "sabae",
+    "publish": true
+  },
+  {
+    "lgcode": "182087",
+    "pref_slug": "fukui",
+    "city_slug": "awara",
+    "publish": true
+  },
+  {
+    "lgcode": "182095",
+    "pref_slug": "fukui",
+    "city_slug": "echizen-city",
+    "publish": true
+  },
+  {
+    "lgcode": "182109",
+    "pref_slug": "fukui",
+    "city_slug": "sakai",
+    "publish": true
+  },
+  {
+    "lgcode": "183229",
+    "pref_slug": "fukui",
+    "city_slug": "eiheiji",
+    "publish": true
+  },
+  {
+    "lgcode": "183822",
+    "pref_slug": "fukui",
+    "city_slug": "ikeda",
+    "publish": true
+  },
+  {
+    "lgcode": "184047",
+    "pref_slug": "fukui",
+    "city_slug": "minamiechizen",
+    "publish": true
+  },
+  {
+    "lgcode": "184233",
+    "pref_slug": "fukui",
+    "city_slug": "echizen-town",
+    "publish": true
+  },
+  {
+    "lgcode": "184420",
+    "pref_slug": "fukui",
+    "city_slug": "mihama",
+    "publish": true
+  },
+  {
+    "lgcode": "184811",
+    "pref_slug": "fukui",
+    "city_slug": "takahama",
+    "publish": true
+  },
+  {
+    "lgcode": "184837",
+    "pref_slug": "fukui",
+    "city_slug": "ohi",
+    "publish": true
+  },
+  {
+    "lgcode": "185019",
+    "pref_slug": "fukui",
+    "city_slug": "wakasa",
+    "publish": true
+  },
+  {
     "lgcode": "192015",
     "pref_slug": "yamanashi",
     "city_slug": "kofu",
+    "publish": true
+  },
+  {
+    "lgcode": "192023",
+    "pref_slug": "yamanashi",
+    "city_slug": "fujiyoshida",
+    "publish": true
+  },
+  {
+    "lgcode": "192040",
+    "pref_slug": "yamanashi",
+    "city_slug": "tsuru",
+    "publish": true
+  },
+  {
+    "lgcode": "192058",
+    "pref_slug": "yamanashi",
+    "city_slug": "yamanashi",
+    "publish": true
+  },
+  {
+    "lgcode": "192066",
+    "pref_slug": "yamanashi",
+    "city_slug": "otsuki",
+    "publish": true
+  },
+  {
+    "lgcode": "192074",
+    "pref_slug": "yamanashi",
+    "city_slug": "nirasaki",
+    "publish": true
+  },
+  {
+    "lgcode": "192082",
+    "pref_slug": "yamanashi",
+    "city_slug": "minami-alps",
+    "publish": true
+  },
+  {
+    "lgcode": "192091",
+    "pref_slug": "yamanashi",
+    "city_slug": "hokuto",
+    "publish": true
+  },
+  {
+    "lgcode": "192104",
+    "pref_slug": "yamanashi",
+    "city_slug": "kai",
+    "publish": true
+  },
+  {
+    "lgcode": "192112",
+    "pref_slug": "yamanashi",
+    "city_slug": "fuefuki",
+    "publish": true
+  },
+  {
+    "lgcode": "192121",
+    "pref_slug": "yamanashi",
+    "city_slug": "uenohara",
+    "publish": true
+  },
+  {
+    "lgcode": "192139",
+    "pref_slug": "yamanashi",
+    "city_slug": "koshu",
+    "publish": true
+  },
+  {
+    "lgcode": "192147",
+    "pref_slug": "yamanashi",
+    "city_slug": "chuo",
+    "publish": true
+  },
+  {
+    "lgcode": "193461",
+    "pref_slug": "yamanashi",
+    "city_slug": "ichikawamisato",
+    "publish": true
+  },
+  {
+    "lgcode": "193640",
+    "pref_slug": "yamanashi",
+    "city_slug": "hayakawa",
+    "publish": true
+  },
+  {
+    "lgcode": "193658",
+    "pref_slug": "yamanashi",
+    "city_slug": "minobu",
+    "publish": true
+  },
+  {
+    "lgcode": "193666",
+    "pref_slug": "yamanashi",
+    "city_slug": "nanbu",
+    "publish": true
+  },
+  {
+    "lgcode": "193682",
+    "pref_slug": "yamanashi",
+    "city_slug": "fujikawa",
+    "publish": true
+  },
+  {
+    "lgcode": "193844",
+    "pref_slug": "yamanashi",
+    "city_slug": "showa",
+    "publish": true
+  },
+  {
+    "lgcode": "194221",
+    "pref_slug": "yamanashi",
+    "city_slug": "doshi",
+    "publish": true
+  },
+  {
+    "lgcode": "194239",
+    "pref_slug": "yamanashi",
+    "city_slug": "nishikatsura",
+    "publish": true
+  },
+  {
+    "lgcode": "194247",
+    "pref_slug": "yamanashi",
+    "city_slug": "oshino",
+    "publish": true
+  },
+  {
+    "lgcode": "194255",
+    "pref_slug": "yamanashi",
+    "city_slug": "yamanakako",
+    "publish": true
+  },
+  {
+    "lgcode": "194298",
+    "pref_slug": "yamanashi",
+    "city_slug": "narusawa",
+    "publish": true
+  },
+  {
+    "lgcode": "194301",
+    "pref_slug": "yamanashi",
+    "city_slug": "fujikawaguchiko",
+    "publish": true
+  },
+  {
+    "lgcode": "194425",
+    "pref_slug": "yamanashi",
+    "city_slug": "kosuge",
+    "publish": true
+  },
+  {
+    "lgcode": "194433",
+    "pref_slug": "yamanashi",
+    "city_slug": "tabayama",
     "publish": true
   },
   {
@@ -2325,6 +2601,30 @@
     "lgcode": "202029",
     "pref_slug": "nagano",
     "city_slug": "matsumoto",
+    "publish": true
+  },
+  {
+    "lgcode": "202037",
+    "pref_slug": "nagano",
+    "city_slug": "ueda",
+    "publish": true
+  },
+  {
+    "lgcode": "202045",
+    "pref_slug": "nagano",
+    "city_slug": "okaya",
+    "publish": true
+  },
+  {
+    "lgcode": "202053",
+    "pref_slug": "nagano",
+    "city_slug": "iida",
+    "publish": true
+  },
+  {
+    "lgcode": "202061",
+    "pref_slug": "nagano",
+    "city_slug": "suwa",
     "publish": true
   },
   {
