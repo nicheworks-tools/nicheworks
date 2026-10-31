@@ -54,7 +54,7 @@ for (const row of published) {
 const batches = Array.from(context.window.MANUALFINDER_COVERAGE_PASS_BATCHES || []);
 assert.ok(batches.includes('manuals.coverage-pass.vaio-jp-pc-start-guide.js'));
 const merged = Array.from(context.window.MANUALFINDER_BUILD_COVERAGE_PASSES());
-assert.equal(merged.length, 303);
+assert.ok(merged.length>=303,'later manufacturer batches must not break VAIO scope tests');
 for (const [maker, count] of [['Sony', 107], ['Panasonic', 27], ['Apple', 31], ['Fujifilm', 56], ['VAIO', 82]])
   assert.equal(merged.filter(x => x.maker === maker).length, count);
 console.log('VAIO 82-model official publication and 303-row coverage-pass runtime passed.');
