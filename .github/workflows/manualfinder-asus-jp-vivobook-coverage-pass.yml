@@ -4,6 +4,7 @@ on:
     paths:
       - 'tools/manual-finder/scripts/asus-jp-vivobook-probe.mjs'
       - 'tools/manual-finder/scripts/asus-jp-vivobook-api-probe.mjs'
+      - 'tools/manual-finder/scripts/asus-jp-vivobook-manual-probe.mjs'
       - '.github/workflows/manualfinder-asus-jp-vivobook-coverage-pass.yml'
   workflow_dispatch:
 permissions:
@@ -19,6 +20,7 @@ jobs:
           node-version: '22'
       - run: node tools/manual-finder/scripts/asus-jp-vivobook-probe.mjs
       - run: node tools/manual-finder/scripts/asus-jp-vivobook-api-probe.mjs
+      - run: node tools/manual-finder/scripts/asus-jp-vivobook-manual-probe.mjs
       - if: always()
         uses: actions/upload-artifact@v4
         with:
