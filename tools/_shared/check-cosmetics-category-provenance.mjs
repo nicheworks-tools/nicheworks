@@ -58,6 +58,19 @@ const EXPECTED_WAVE25_LEGACY_CATEGORIES = Object.freeze(Object.fromEntries(Objec
 const EXPECTED_OFFICIAL_LABEL_CLOSURE = Object.freeze({ triethoxycaprylylsilane:'binder', 'p-anisic acid':'fragrance', 'polyquaternium-39':'film former', 'polyquaternium-53':'hair conditioning', 'ppg-5-ceteth-20':'emulsifier', 'snail secretion filtrate':'skin conditioning', 'synthetic beeswax':'viscosity adjuster', 'hexadecyloxy pg hydroxyethyl hexadecanamide':'moisturizer', 'peg-6 caprylic/capric glycerides':'emulsifier', 'sodium lauroyl lactylate':'emulsifier', 'zinc oxide':'uv filter', 'zea mays starch':'viscosity adjuster', 'peg-8':'humectant', 'microcrystalline wax':'viscosity adjuster' });
 const EXPECTED_OFFICIAL_LABEL_CLOSURE_RAW = Object.freeze({ triethoxycaprylylsilane:['general'], 'p-anisic acid':['preservative support'], 'polyquaternium-39':['conditioning polymer'], 'polyquaternium-53':['conditioning polymer'], 'ppg-5-ceteth-20':['general'], 'snail secretion filtrate':['animal extract'], 'synthetic beeswax':['texture agent'], 'hexadecyloxy pg hydroxyethyl hexadecanamide':['barrier lipid'], 'peg-6 caprylic/capric glycerides':['surfactant','emulsifier'], 'sodium lauroyl lactylate':['surfactant','emulsifier'], 'zinc oxide':['uv filter','colorant'], 'zea mays starch':['powder'], 'peg-8':['humectant','solvent'], 'microcrystalline wax':['wax','texture agent'] });
 const EXPECTED_STRONG_RUNTIME_CLOSURE = Object.freeze({ sulfur:'skin conditioning', 'aminobenzoic acid':'uv filter', 'ammonium hydroxide':'buffer' });
+const EXPECTED_WAVE26_LEGACY_CATEGORIES = Object.freeze({
+  "hydrolyzed keratin": ["protein"],
+  "hydrolyzed silk": ["protein"],
+  "hydrolyzed collagen": ["protein"],
+  "menthol": ["sensory"],
+  "beeswax": ["wax"],
+  "aluminum starch octenylsuccinate": ["powder"],
+  "benzyl benzoate": [],
+  "benzyl salicylate": [],
+  "hydroxycitronellal": [],
+  "isoeugenol": ["fragrance allergen"],
+  "amyl cinnamal": []
+});
 const EXPECTED_WAVE26 = Object.freeze({ "hydrolyzed keratin":"hair conditioning", "hydrolyzed silk":"hair conditioning", "hydrolyzed collagen":"humectant", "menthol":"fragrance", "beeswax":"viscosity adjuster", "aluminum starch octenylsuccinate":"viscosity adjuster", "benzyl benzoate":"fragrance", "benzyl salicylate":"fragrance", "hydroxycitronellal":"fragrance", "isoeugenol":"fragrance", "amyl cinnamal":"fragrance" });
 const EXPECTED_ALL = Object.freeze({ ...EXPECTED_WAVE1, ...EXPECTED_WAVE2, ...EXPECTED_WAVE3, ...EXPECTED_WAVE4, ...EXPECTED_WAVE5, ...EXPECTED_WAVE6, ...EXPECTED_WAVE7, ...EXPECTED_WAVE8, ...EXPECTED_WAVE9, ...EXPECTED_WAVE10, ...EXPECTED_WAVE11, ...EXPECTED_WAVE12, ...EXPECTED_WAVE13, ...EXPECTED_WAVE14, ...EXPECTED_WAVE15, ...EXPECTED_WAVE16, ...EXPECTED_WAVE17, ...EXPECTED_WAVE18, ...EXPECTED_WAVE19, ...EXPECTED_WAVE20, ...EXPECTED_WAVE21, ...EXPECTED_WAVE22, ...EXPECTED_WAVE23, ...EXPECTED_WAVE24, ...EXPECTED_WAVE25, ...EXPECTED_OFFICIAL_LABEL_CLOSURE, ...EXPECTED_STRONG_RUNTIME_CLOSURE, ...EXPECTED_WAVE26 });
 
@@ -220,7 +233,7 @@ for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
   const hasRawMissing=canonicalRows.some((row)=>!normalizeText(row.category));
   rawCategoryInventory[canonical]=rawCategories;
   if(rawCategories.length===0) newlyClassifiedCanonicalIdentities+=1;
-  if(rawCategories.length>0 && !Object.hasOwn(EXPECTED_WAVE15,canonical) && !Object.hasOwn(EXPECTED_WAVE16,canonical) && !Object.hasOwn(EXPECTED_WAVE18,canonical) && !Object.hasOwn(EXPECTED_WAVE19,canonical) && !Object.hasOwn(EXPECTED_WAVE20,canonical) && !Object.hasOwn(EXPECTED_WAVE21,canonical) && !Object.hasOwn(EXPECTED_WAVE22,canonical) && !Object.hasOwn(EXPECTED_WAVE23,canonical) && !Object.hasOwn(EXPECTED_WAVE24,canonical) && !Object.hasOwn(EXPECTED_WAVE25,canonical) && !Object.hasOwn(EXPECTED_OFFICIAL_LABEL_CLOSURE,canonical) && !Object.hasOwn(EXPECTED_STRONG_RUNTIME_CLOSURE,canonical)) assert.ok(rawCategories.includes(expectedCategory.toLowerCase()),`${canonical}: verified category conflicts with existing raw category metadata (${rawCategories.join(', ')})`);
+  if(rawCategories.length>0 && !Object.hasOwn(EXPECTED_WAVE15,canonical) && !Object.hasOwn(EXPECTED_WAVE16,canonical) && !Object.hasOwn(EXPECTED_WAVE18,canonical) && !Object.hasOwn(EXPECTED_WAVE19,canonical) && !Object.hasOwn(EXPECTED_WAVE20,canonical) && !Object.hasOwn(EXPECTED_WAVE21,canonical) && !Object.hasOwn(EXPECTED_WAVE22,canonical) && !Object.hasOwn(EXPECTED_WAVE23,canonical) && !Object.hasOwn(EXPECTED_WAVE24,canonical) && !Object.hasOwn(EXPECTED_WAVE25,canonical) && !Object.hasOwn(EXPECTED_WAVE26,canonical) && !Object.hasOwn(EXPECTED_OFFICIAL_LABEL_CLOSURE,canonical) && !Object.hasOwn(EXPECTED_STRONG_RUNTIME_CLOSURE,canonical)) assert.ok(rawCategories.includes(expectedCategory.toLowerCase()),`${canonical}: verified category conflicts with existing raw category metadata (${rawCategories.join(', ')})`);
 
   if(Object.hasOwn(EXPECTED_WAVE6,canonical)){
     assert.equal(hasRawMissing,true,`${canonical}: wave 6 must resolve at least one raw missing-category row`);
@@ -347,6 +360,10 @@ for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
     assert.equal(hasRawMissing,true,`${canonical}: wave 25 must preserve the existing duplicate raw missing-category row alongside fragrance-allergen metadata`);
     assert.deepEqual(rawCategories,EXPECTED_WAVE25_LEGACY_CATEGORIES[canonical],`${canonical}: wave 25 must preserve fragrance-allergen as an auditable legacy label class`);
     wave25Reviewed+=1;
+  }
+  if(Object.hasOwn(EXPECTED_WAVE26,canonical)) {
+    assert.deepEqual(rawCategories, EXPECTED_WAVE26_LEGACY_CATEGORIES[canonical],
+      `${canonical}: wave26 must retain its original raw category labels without copying the verified category`);
   }
   if(Object.hasOwn(EXPECTED_OFFICIAL_LABEL_CLOSURE,canonical)){
     assert.equal(hasRawMissing,false,`${canonical}: official-label closure must preserve the existing non-empty raw category state`);
