@@ -12,15 +12,15 @@
     "revenue_priority_policy_version": "2026-09-19-revenue-priority-2",
     "public_content_quality_version": "2026-09-16-q014-identity-closure-1",
     "public_image_inventory_version": "2026-09-16-q014-identity-closure-1",
-    "image_registry_version": "2026-10-31-reviewed-image-wave7-three-1",
+    "image_registry_version": "2026-10-31-reviewed-image-wave8-two-1",
     "affiliate_offers_version": "2026-09-18-wave6l-affiliate-1"
   },
   "summary": {
     "public_runtime_entries": 870,
-    "published_static_detail_pages": 38,
-    "with_promoted_image": 37,
+    "published_static_detail_pages": 40,
+    "with_promoted_image": 39,
     "image_not_required": 1,
-    "with_active_affiliate_mapping": 38
+    "with_active_affiliate_mapping": 40
   },
   "entries": [
     {
@@ -246,8 +246,20 @@
       "affiliate": "active"
     },
     {
+      "id": "torque_wrench",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/torque_wrench/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
       "id": "utility_knife",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/utility_knife/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "wire_stripper",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/wire_stripper/",
       "image": "promoted",
       "affiliate": "active"
     }

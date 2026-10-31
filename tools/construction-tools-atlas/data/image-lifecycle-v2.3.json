@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-10-31-reviewed-image-wave7-three-1",
+  "version": "2026-10-31-reviewed-image-wave8-two-1",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -501,6 +501,24 @@
       "source_ref": {
         "file": "image-wave7-sources-v2.3.json",
         "entry_id": "multimeter"
+      }
+    },
+    {
+      "id": "wave6:torque_wrench",
+      "source_entry_id": "torque_wrench",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave8-sources-v2.3.json",
+        "entry_id": "torque_wrench"
+      }
+    },
+    {
+      "id": "wave6:wire_stripper",
+      "source_entry_id": "wire_stripper",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave8-sources-v2.3.json",
+        "entry_id": "wire_stripper"
       }
     }
   ],
@@ -20028,6 +20046,42 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-10-31T13:21:00Z",
+          "actor": "image-wave8-reviewed-20261031",
+          "reason": "Pinned Wikimedia original accepted for review, with distinct canonical subject and reviewed license.",
+          "candidate_id": "wave6:torque_wrench",
+          "candidate_sha256": "99fab50c03d1b42eeb982325f28e34bffd1157d844ca643aaebbf0e997a0c674",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-10-31T13:21:01Z",
+          "actor": "image-wave8-reviewed-20261031",
+          "reason": "Commons attribution, license URL, source page, original bytes, and SHA-1 were validated.",
+          "candidate_id": "wave6:torque_wrench",
+          "candidate_sha256": "99fab50c03d1b42eeb982325f28e34bffd1157d844ca643aaebbf0e997a0c674",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-10-31T13:21:02Z",
+          "actor": "image-wave8-reviewed-20261031",
+          "reason": "Inspected original 2560x1920 JPEG and primary 960x720 WebP: a complete torque wrench with torque setting grip and ratchet head is clearly visible; replaces the rejected mixed-tool collection photo.",
+          "candidate_id": "wave6:torque_wrench",
+          "candidate_sha256": "99fab50c03d1b42eeb982325f28e34bffd1157d844ca643aaebbf0e997a0c674",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-10-31T13:21:03Z",
+          "actor": "image-wave8-reviewed-20261031",
+          "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+          "candidate_id": "wave6:torque_wrench",
+          "candidate_sha256": "99fab50c03d1b42eeb982325f28e34bffd1157d844ca643aaebbf0e997a0c674",
+          "hold": null
         }
       ]
     },
@@ -20661,6 +20715,42 @@
           "reason": "A wire stripper is a physical hand tool with distinctive stripping jaws/notches; a subject-matched photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-10-31T13:21:00Z",
+          "actor": "image-wave8-reviewed-20261031",
+          "reason": "Pinned Wikimedia original accepted for review, with distinct canonical subject and reviewed license.",
+          "candidate_id": "wave6:wire_stripper",
+          "candidate_sha256": "44d315ad92fdfcf0d75feb403454059e44c70d40772e1c4245d1eb43752dc7da",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-10-31T13:21:01Z",
+          "actor": "image-wave8-reviewed-20261031",
+          "reason": "Commons attribution, license URL, source page, original bytes, and SHA-1 were validated.",
+          "candidate_id": "wave6:wire_stripper",
+          "candidate_sha256": "44d315ad92fdfcf0d75feb403454059e44c70d40772e1c4245d1eb43752dc7da",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-10-31T13:21:02Z",
+          "actor": "image-wave8-reviewed-20261031",
+          "reason": "Inspected original 588x1065 JPEG and primary 398x720 WebP: an automatic wire stripper with visible stripping jaws and red handles is clearly identifiable.",
+          "candidate_id": "wave6:wire_stripper",
+          "candidate_sha256": "44d315ad92fdfcf0d75feb403454059e44c70d40772e1c4245d1eb43752dc7da",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-10-31T13:21:03Z",
+          "actor": "image-wave8-reviewed-20261031",
+          "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+          "candidate_id": "wave6:wire_stripper",
+          "candidate_sha256": "44d315ad92fdfcf0d75feb403454059e44c70d40772e1c4245d1eb43752dc7da",
           "hold": null
         }
       ]

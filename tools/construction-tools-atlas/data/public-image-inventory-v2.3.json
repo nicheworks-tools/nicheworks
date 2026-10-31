@@ -20,18 +20,18 @@
   "sources": {
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
-    "image_registry_version": "2026-10-31-reviewed-image-wave7-three-1",
+    "image_registry_version": "2026-10-31-reviewed-image-wave8-two-1",
     "image_exception_ledger_version": "2026-09-18-applicability-wave17-final"
   },
   "summary": {
     "public_entries": 870,
-    "formal_image_entries": 47,
-    "missing_formal_image_entries": 776,
+    "formal_image_entries": 49,
+    "missing_formal_image_entries": 774,
     "not_required_entries": 47,
     "unobtainable_entries": 0,
     "classified_entries": 870,
-    "formal_coverage_percent": 5.4023,
-    "registry_items_total": 47,
+    "formal_coverage_percent": 5.6322,
+    "registry_items_total": 49,
     "formal_images_inherited_via_redirect": 6,
     "formal_images_outside_public": 0,
     "image_exceptions_outside_public": 0,
@@ -46,20 +46,20 @@
       "applicability_reviewed": 870,
       "required": 823,
       "on_hold": 0,
-      "final_dispositions": 94,
-      "unresolved": 776,
+      "final_dispositions": 96,
+      "unresolved": 774,
       "by_stage": {
         "unreviewed": 0,
         "not_required": 47,
-        "awaiting_source": 776,
+        "awaiting_source": 774,
         "candidate": 0,
         "provenance_verified": 0,
         "subject_verified": 0,
         "verified": 0,
-        "promoted": 47
+        "promoted": 49
       }
     },
-    "evidence_sha256": "30eef18ea13aa433fd45542d6d5a8dd8eb11d39509fc33d93b97f3f7d9ef09c2",
+    "evidence_sha256": "abad9b143479b6973b5a12486a9b2859d79e275d815083b931d4bf49217ee43a",
     "rows": [
       {
         "id": "access_door",
@@ -10945,15 +10945,15 @@
       {
         "id": "torque_wrench",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A torque wrench is a physical precision fastening tool with recognizable ratchet/scale or digital forms; a reviewed photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+        "candidate_id": "wave6:torque_wrench",
+        "source_entry_id": "torque_wrench",
+        "attachment": "direct"
       },
       {
         "id": "total_station",
@@ -11283,15 +11283,15 @@
       {
         "id": "wire_stripper",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A wire stripper is a physical hand tool with distinctive stripping jaws/notches; a subject-matched photograph aids identification.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+        "candidate_id": "wave6:wire_stripper",
+        "source_entry_id": "wire_stripper",
+        "attachment": "direct"
       },
       {
         "id": "wood_flooring",
@@ -11523,17 +11523,17 @@
     },
     "tool": {
       "public_entries": 333,
-      "formal_image": 37,
-      "missing_formal_image": 271,
+      "formal_image": 39,
+      "missing_formal_image": 269,
       "not_required": 25,
       "unobtainable": 0
     }
   },
   "hashes": {
     "public_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
-    "public_formal_image_id_sha256": "b9d2114c02ebe99a9cea6fb6255d0259c7a8d9597e126c851c916c8b95647e5c",
-    "public_missing_formal_image_id_sha256": "7a8f4cd128dd9a05b8803b1bc5d7c1407c7ca83c914d5efa97197ef84b474255",
-    "public_image_classification_sha256": "a3b404471cf80d8defded7c0ddc29926df37d6b0133dd1e435eb4fb584e000e3"
+    "public_formal_image_id_sha256": "79e432c59f8c30faca857a0233c4e1e8b76913d6b54cc605de503f3a17c94230",
+    "public_missing_formal_image_id_sha256": "4b69920167290b67ed5727ecde7e46c4e5867991c76ee3273a23389c47fd5184",
+    "public_image_classification_sha256": "459c52a8f9740f65402dc5f19168195eddc785eb8605b11e74c87b01b3e9c196"
   },
   "inherited_formal_images": [
     {

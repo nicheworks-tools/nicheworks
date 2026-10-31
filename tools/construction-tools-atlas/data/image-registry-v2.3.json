@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-registry-v2.3",
-  "version": "2026-10-31-reviewed-image-wave7-three-1",
+  "version": "2026-10-31-reviewed-image-wave8-two-1",
   "policy": {
     "primary_format": "webp",
     "formal_min_state": "reviewed",
@@ -1135,6 +1135,54 @@
         "source_sha1": "ff22145553196e8b7fe75d30bb8e519441b89a3f"
       },
       "notes": "Wave7: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 1840x2453 JPEG and primary 540x720 WebP: digital multimeter with screen, selector knob, electrical measurement ranges and lead ports; single identifiable multimeter."
+    },
+    {
+      "entry_id": "torque_wrench",
+      "alt_ja": "黒と赤の調整グリップとラチェットヘッドを備えたトルクレンチ",
+      "alt_en": "Torque wrench with black-and-red adjustable grip, torque markings and ratcheting head",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/torque_wrench/source.jpg",
+        "display": "./images/torque_wrench/primary.webp",
+        "thumbnail": "./images/torque_wrench/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/1-4%22_5-25Nm.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:1-4%22_5-25Nm.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "Sunnyhappy123",
+        "attribution": "Sunnyhappy123 / Wikimedia Commons, CC BY-SA 4.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "616511023ad6dd0c4a13632892c7f1177f623e97"
+      },
+      "notes": "Wave8: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 2560x1920 JPEG and primary 960x720 WebP: a complete torque wrench with torque setting grip and ratchet head is clearly visible; replaces the rejected mixed-tool collection photo."
+    },
+    {
+      "entry_id": "wire_stripper",
+      "alt_ja": "赤いグリップと自動被覆剥き取り機構を備えたワイヤーストリッパー",
+      "alt_en": "Automatic wire stripper with red handles and wire insulation stripping jaws",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/wire_stripper/source.jpg",
+        "display": "./images/wire_stripper/primary.webp",
+        "thumbnail": "./images/wire_stripper/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/25/Wire_Stripper_Automatic.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Wire_Stripper_Automatic.jpg",
+        "license": "Public Domain (PD-self)",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+        "author": "Scott Ehardt",
+        "attribution": "Scott Ehardt / Wikimedia Commons, Public Domain",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "6906c01a40180712660fdce8df495d96395fab67"
+      },
+      "notes": "Wave8: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 588x1065 JPEG and primary 398x720 WebP: an automatic wire stripper with visible stripping jaws and red handles is clearly identifiable."
     }
   ]
 }
