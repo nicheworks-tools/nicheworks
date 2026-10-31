@@ -38,7 +38,7 @@ const html=fs.readFileSync('tools/old-kanji-ocr-scanner/index.html','utf8');
 for(const asset of ['okj-report-engine.js','okj-export-engine.js','okj-report-export-ui.js'])
   assert.ok(html.includes('/assets/'+asset));
 const ui=fs.readFileSync('assets/okj-report-export-ui.js','utf8');
-for(const needle of ["refreshProState({productId:PRODUCT,featureId:feature})",
+for(const needle of ["refreshProState({productId:PRODUCT,featureId:featureId})",
   "recheck('okj.history')","recheck('okj.collections')",
   "reports.buildMarkdownReport(","exporter.buildCsvExport("])
   assert.ok(ui.includes(needle),'UI missing '+needle);
