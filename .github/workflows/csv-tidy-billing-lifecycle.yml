@@ -1,0 +1,30 @@
+name: CSV Tidy signed Stripe webhook and SQLite lifecycle
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/check-csv-tidy-billing-lifecycle.mjs'
+      - 'functions/api/billing/**'
+      - 'schema/billing_entitlements.sql'
+      - 'config/billing/products.json'
+      - '.github/workflows/csv-tidy-billing-lifecycle.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-billing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Check webhook/D1 real-function lifecycle with HMAC and SQLite
+        run: node --experimental-default-type=module scripts/check-csv-tidy-billing-lifecycle.mjs
+      - name: Ensure test did not change source tree
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
