@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 110, 'two legacy-only and 108 reviewed verified-primary role conflicts must remain explicit');
+assert.equal(categoryConflicts.length, 117, 'two legacy-only plus 115 reviewed verified-primary role conflicts must remain explicit');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
@@ -143,7 +143,14 @@ const reviewedVerifiedPrimary = new Map([
   ["eucalyptus globulus leaf oil", { category: "fragrance", legacy: ["essential oil"] }],
   ["citrus aurantium dulcis orange peel oil", { category: "fragrance", legacy: ["essential oil"] }],
   ["citrus limon lemon peel oil", { category: "fragrance", legacy: ["essential oil"] }],
-  ["mentha piperita peppermint oil", { category: "fragrance", legacy: ["essential oil"] }]
+  ["mentha piperita peppermint oil", { category: "fragrance", legacy: ["essential oil"] }],
+  ["lavandula angustifolia lavender oil", { category: "fragrance", legacy: ["essential oil"] }],
+  ["copernicia cerifera carnauba wax", { category: "film former", legacy: ["wax"] }],
+  ["euphorbia cerifera candelilla wax", { category: "film former", legacy: ["wax"] }],
+  ["peg-12", { category: "humectant", legacy: ["humectant","solvent"] }],
+  ["peg-75", { category: "humectant", legacy: ["humectant","solvent"] }],
+  ["ppg-26-buteth-26", { category: "hair conditioning", legacy: ["solubilizer"] }],
+  ["elastin", { category: "skin conditioning", legacy: ["protein"] }]
 ]);
 
 for (const item of categoryConflicts) {
