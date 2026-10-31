@@ -47,6 +47,7 @@ on:
       - 'tools/_shared/check-fastscan-ocr-robustness.mjs'
       - 'tools/_shared/check-fastscan-image-rotation.mjs'
       - 'tools/_shared/check-fastscan-image-crop-contrast.mjs'
+      - 'tools/_shared/check-fastscan-image-deskew.mjs'
       - 'tools/_shared/check-fastscan-result-controls.mjs'
       - 'tools/_shared/check-fastscan-review-queue.mjs'
       - 'tools/_shared/check-lite-wave3-navigation.mjs'
@@ -197,6 +198,7 @@ jobs:
           node --check tools/_shared/check-fastscan-ocr-robustness.mjs
           node --check tools/_shared/check-fastscan-image-rotation.mjs
           node --check tools/_shared/check-fastscan-image-crop-contrast.mjs
+          node --check tools/_shared/check-fastscan-image-deskew.mjs
           node --check tools/_shared/check-lite-verified-note-visibility.mjs
           node --check tools/cosmetic-ingredient-checker-lite/app.js
           node --check tools/cosmetic-ingredient-checker-lite/enhancements.js
@@ -228,6 +230,8 @@ jobs:
         run: node tools/_shared/check-fastscan-image-rotation.mjs
       - name: FastScan crop and contrast regression
         run: node tools/_shared/check-fastscan-image-crop-contrast.mjs
+      - name: FastScan manual deskew regression
+        run: node tools/_shared/check-fastscan-image-deskew.mjs
       - name: FastScan result controls regression
         run: node tools/_shared/check-fastscan-result-controls.mjs
       - name: FastScan review queue regression
