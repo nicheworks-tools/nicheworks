@@ -67,6 +67,9 @@
     <loc>https://nicheworks.app/tools/construction-tools-atlas/entries/hammer/</loc>
   </url>
   <url>
+    <loc>https://nicheworks.app/tools/construction-tools-atlas/entries/hammer_drill/</loc>
+  </url>
+  <url>
     <loc>https://nicheworks.app/tools/construction-tools-atlas/entries/hard_hat/</loc>
   </url>
   <url>
@@ -119,5 +122,8 @@
   </url>
   <url>
     <loc>https://nicheworks.app/tools/construction-tools-atlas/entries/safety_harness/</loc>
+  </url>
+  <url>
+    <loc>https://nicheworks.app/tools/construction-tools-atlas/entries/tape_measure/</loc>
   </url>
 </urlset>

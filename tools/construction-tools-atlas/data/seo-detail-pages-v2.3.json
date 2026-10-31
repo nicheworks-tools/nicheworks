@@ -12,15 +12,15 @@
     "revenue_priority_policy_version": "2026-09-19-revenue-priority-2",
     "public_content_quality_version": "2026-09-16-q014-identity-closure-1",
     "public_image_inventory_version": "2026-09-16-q014-identity-closure-1",
-    "image_registry_version": "2026-09-19-wave5-promotion-1",
+    "image_registry_version": "2026-10-31-reviewed-image-wave6-two-1",
     "affiliate_offers_version": "2026-09-18-wave6l-affiliate-1"
   },
   "summary": {
     "public_runtime_entries": 870,
-    "published_static_detail_pages": 33,
-    "with_promoted_image": 32,
+    "published_static_detail_pages": 35,
+    "with_promoted_image": 34,
     "image_not_required": 1,
-    "with_active_affiliate_mapping": 33
+    "with_active_affiliate_mapping": 35
   },
   "entries": [
     {
@@ -110,6 +110,12 @@
     {
       "id": "hammer",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/hammer/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "hammer_drill",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/hammer_drill/",
       "image": "promoted",
       "affiliate": "active"
     },
@@ -218,6 +224,12 @@
     {
       "id": "safety_harness",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/safety_harness/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "tape_measure",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/tape_measure/",
       "image": "promoted",
       "affiliate": "active"
     }

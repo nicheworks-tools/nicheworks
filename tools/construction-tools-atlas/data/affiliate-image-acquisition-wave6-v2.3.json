@@ -1,6 +1,6 @@
 {
   "schema": "cta-affiliate-image-acquisition-wave6-v2.3",
-  "version": "2026-10-31-affiliate-image-first-acquisition-1",
+  "version": "2026-10-31-reviewed-image-wave6-two-1",
   "policy": {
     "queue_order": "curated source-feasibility work order, NOT empirical market ranking",
     "no_guessed_search_volume": true,
@@ -17,9 +17,9 @@
   },
   "expected": {
     "active_affiliate_mappings": 432,
-    "revenue_ready": 33,
-    "awaiting_source": 399,
-    "first_wave": 12,
+    "revenue_ready": 35,
+    "awaiting_source": 397,
+    "first_wave": 10,
     "source_leads": 3
   },
   "first_wave_ids": [
@@ -81,6 +81,23 @@
       "source_review": "commons_metadata_checked",
       "binary_review": "pending_download_sha1_webp_quality_review",
       "promotion_allowed": false
+    }
+  ],
+  "review_decisions": [
+    {
+      "entry_id": "hammer_drill",
+      "disposition": "promoted",
+      "review": "Original and WebP image visibly match hammer drill; SHA-1 verified, formal image lifecycle completed."
+    },
+    {
+      "entry_id": "tape_measure",
+      "disposition": "promoted",
+      "review": "Original and WebP image visibly match tape measure; SHA-1 verified, formal image lifecycle completed."
+    },
+    {
+      "entry_id": "torque_wrench",
+      "disposition": "rejected_subject_focus",
+      "review": "Image depicts a wall-mounted mixed-tool/wrench collection; inadequate focal representation of a single torque wrench. Keep canonical awaiting_source; find a new photo."
     }
   ]
 }

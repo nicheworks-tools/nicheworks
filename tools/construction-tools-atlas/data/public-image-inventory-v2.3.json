@@ -20,18 +20,18 @@
   "sources": {
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
-    "image_registry_version": "2026-09-19-wave5-promotion-1",
+    "image_registry_version": "2026-10-31-reviewed-image-wave6-two-1",
     "image_exception_ledger_version": "2026-09-18-applicability-wave17-final"
   },
   "summary": {
     "public_entries": 870,
-    "formal_image_entries": 42,
-    "missing_formal_image_entries": 781,
+    "formal_image_entries": 44,
+    "missing_formal_image_entries": 779,
     "not_required_entries": 47,
     "unobtainable_entries": 0,
     "classified_entries": 870,
-    "formal_coverage_percent": 4.8276,
-    "registry_items_total": 42,
+    "formal_coverage_percent": 5.0575,
+    "registry_items_total": 44,
     "formal_images_inherited_via_redirect": 6,
     "formal_images_outside_public": 0,
     "image_exceptions_outside_public": 0,
@@ -46,20 +46,20 @@
       "applicability_reviewed": 870,
       "required": 823,
       "on_hold": 0,
-      "final_dispositions": 89,
-      "unresolved": 781,
+      "final_dispositions": 91,
+      "unresolved": 779,
       "by_stage": {
         "unreviewed": 0,
         "not_required": 47,
-        "awaiting_source": 781,
+        "awaiting_source": 779,
         "candidate": 0,
         "provenance_verified": 0,
         "subject_verified": 0,
         "verified": 0,
-        "promoted": 42
+        "promoted": 44
       }
     },
-    "evidence_sha256": "0dd3a1ff2fd1e5a4f1e3ca8e390c603e396501dc28a4b8173bcffd2193b0efe9",
+    "evidence_sha256": "218985cfc4e9d5a51531cae0331bbe38b5cf5f7a057995b2f81b982848407efb",
     "rows": [
       {
         "id": "access_door",
@@ -1858,15 +1858,15 @@
       {
         "id": "hammer_drill",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A hammer drill is a distinctive power drill for masonry; a subject-matched photograph helps distinguish it from rotary hammers and drill drivers.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+        "candidate_id": "wave6:hammer_drill",
+        "source_entry_id": "hammer_drill",
+        "attachment": "direct"
       },
       {
         "id": "hammer_tacker",
@@ -10711,15 +10711,15 @@
       {
         "id": "tape_measure",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A tape measure is a physical retractable measuring tool with clear visual identity; a reviewed photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+        "candidate_id": "wave6:tape_measure",
+        "source_entry_id": "tape_measure",
+        "attachment": "direct"
       },
       {
         "id": "tarpaulin_tarp",
@@ -11523,17 +11523,17 @@
     },
     "tool": {
       "public_entries": 333,
-      "formal_image": 32,
-      "missing_formal_image": 276,
+      "formal_image": 34,
+      "missing_formal_image": 274,
       "not_required": 25,
       "unobtainable": 0
     }
   },
   "hashes": {
     "public_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
-    "public_formal_image_id_sha256": "937d58837fe8c17ee04da8d64dbea1acec9f07c43adecc595aa8a058e9dd52e2",
-    "public_missing_formal_image_id_sha256": "176b22ab638d2a712d43618ee9557ec80e9251277afb302a0cb3fcaaf9f773d3",
-    "public_image_classification_sha256": "602d7ffacf659afc5503d44c065bb5a159655b47cb5372123f05d82b5b8d4642"
+    "public_formal_image_id_sha256": "e908f227919ed1511c7975cc69e34e92dcde2a833d805051e1d7310f4584d1b3",
+    "public_missing_formal_image_id_sha256": "732cfdb341e1ad9304521de7961e509947873b71444e76d2954eff8f8153a2b5",
+    "public_image_classification_sha256": "20ed46204439ef006125f9ccd2e130883ed1f3f0fee24abd6fe523f2cc7ad514"
   },
   "inherited_formal_images": [
     {

@@ -15,16 +15,23 @@ function computeQueue(image,affiliate,content,priority,selected){
  const pending=[...active.keys()].filter(id=>stages.get(id)==="awaiting_source").sort((a,b)=>a.localeCompare(b,"en"));
  if(ready+pending.length!==active.size)throw Error("affiliate in-progress rows require explicit review");
  const selectedIds=selected.first_wave_ids, leads=selected.source_leads;
- if(new Set(selectedIds).size!==selectedIds.length||selectedIds.some(id=>!pending.includes(id)))throw Error("selected ID missing from backlog/duplicated");
+ if(new Set(selectedIds).size!==selectedIds.length||selectedIds.some(id=>!active.has(id)))throw Error("selected ID missing from active canonical mappings / duplicated");
  if(new Set(leads.map(x=>x.entry_id)).size!==leads.length||leads.some(x=>!selectedIds.includes(x.entry_id)))throw Error("unselected/duplicate lead");
  for(const lead of leads){
   if(!/^https:\/\/commons\.wikimedia\.org\/wiki\/File:/.test(lead.source_page)||!/^https:\/\/upload\.wikimedia\.org\/wikipedia\/commons\//.test(lead.source_url)||!/^https:\/\//.test(lead.license_url)||!/^[a-f0-9]{40}$/.test(lead.expected_sha1)||lead.promotion_allowed!==false||!lead.binary_review.startsWith("pending_"))throw Error("source lead provenance/hash unverified or incorrectly promoted: "+lead.entry_id);
   for(const key of ["author","license","attribution","source_filename","subject_note"])if(!String(lead[key]||"").trim())throw Error("lead lacks "+key);
  }
- for(const [k,v] of Object.entries({active_affiliate_mappings:active.size,revenue_ready:ready,awaiting_source:pending.length,first_wave:selectedIds.length,source_leads:leads.length}))if(selected.expected[k]!==v)throw Error("cohort drift: "+k);
- const leadSet=new Set(leads.map(x=>x.entry_id)),waveSet=new Set(selectedIds),ids=[...selectedIds,...pending.filter(id=>!waveSet.has(id))];
- const rows=ids.map((id,index)=>{const o=active.get(id);return{order:index+1,entry_id:id,offer_id:o.offer_id,maintained_query:o.query,image_stage:"awaiting_source",queue_group:leadSet.has(id)?"pinned_commons_source_lead":waveSet.has(id)?"selected_first_wave":"remaining_backlog",source_status:leadSet.has(id)?"metadata_checked_binary_unverified":"not_sourced"};});
- return{schema:"cta-affiliate-image-acquisition-queue-v2.3",version:selected.version,sources:selected.source_versions,notice:"Execution order only. It is not a search-demand, CPC, conversion or earnings score.",summary:{active_affiliate_mappings:active.size,revenue_ready:ready,awaiting_source:pending.length,first_wave:selectedIds.length,source_leads:leads.length,new_formally_promoted:0},rows};
+ const remainingSelected=selectedIds.filter(id=>pending.includes(id));
+ const decisions=new Map((selected.review_decisions||[]).map(x=>[x.entry_id,x]));
+ for(const [id,decision] of decisions){
+  if(!selectedIds.includes(id))throw Error("unselected decision: "+id);
+  if(decision.disposition==="promoted"&&stages.get(id)!=="promoted")throw Error("claimed image promotion missing: "+id);
+  if(decision.disposition==="rejected_subject_focus"&&stages.get(id)!=="awaiting_source")throw Error("rejected image must not be formally promoted: "+id);
+ }
+ for(const [k,v] of Object.entries({active_affiliate_mappings:active.size,revenue_ready:ready,awaiting_source:pending.length,first_wave:remainingSelected.length,source_leads:leads.length}))if(selected.expected[k]!==v)throw Error("cohort drift: "+k);
+ const leadSet=new Set(leads.map(x=>x.entry_id)),waveSet=new Set(remainingSelected),ids=[...remainingSelected,...pending.filter(id=>!waveSet.has(id))];
+ const rows=ids.map((id,index)=>{const o=active.get(id);return{order:index+1,entry_id:id,offer_id:o.offer_id,maintained_query:o.query,image_stage:"awaiting_source",queue_group:leadSet.has(id)?"pinned_commons_source_lead":waveSet.has(id)?"selected_first_wave":"remaining_backlog",source_status:decisions.get(id)?.disposition==="rejected_subject_focus"?"rejected_visual_review_needs_replacement":leadSet.has(id)?"metadata_checked_binary_unverified":"not_sourced"};});
+ return{schema:"cta-affiliate-image-acquisition-queue-v2.3",version:selected.version,sources:selected.source_versions,notice:"Execution order only. It is not a search-demand, CPC, conversion or earnings score.",summary:{active_affiliate_mappings:active.size,revenue_ready:ready,awaiting_source:pending.length,first_wave:remainingSelected.length,source_leads:leads.length,new_formally_promoted:[...decisions.values()].filter(x=>x.disposition==="promoted").length},rows};
 }
 try{
  const expected=computeQueue(read("public-image-inventory-v2.3.json"),read("affiliate-offers-v2.3.json"),read("public-content-quality-v2.3.json"),read("revenue-priority-policy-v2.3.json"),read("affiliate-image-acquisition-wave6-v2.3.json"));
