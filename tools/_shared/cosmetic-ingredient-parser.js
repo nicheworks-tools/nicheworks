@@ -228,7 +228,21 @@
     "soluble collagen": Object.freeze({ category: "humectant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15238/soluble-collagen/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "ozokerite": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10032/ozokerite/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "polyacrylamide": Object.freeze({ category: "film former", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11964/polyacrylamide/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "padimate o": Object.freeze({ category: "uv filter", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5470/ethylhexyl-dimethyl-paba/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "padimate o": Object.freeze({ category: "uv filter", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5470/ethylhexyl-dimethyl-paba/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "honey extract": Object.freeze({ category: "humectant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/22039/honey-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "royal jelly extract": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/13866/royal-jelly-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "propolis extract": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/13177/propolis-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sodium stearate": Object.freeze({ category: "cleanser", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15088/sodium-stearate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "potassium laurate": Object.freeze({ category: "cleanser", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12701/potassium-laurate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sea salt": Object.freeze({ category: "humectant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/22800/sea-salt/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "camphor": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2509/camphor/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrochloric acid": Object.freeze({ category: "buffer", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6563/hydrochloric-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "eucalyptus globulus leaf oil": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5516/eucalyptus-globulus-leaf-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "citrus aurantium dulcis orange peel oil": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/21738/citrus-aurantium-dulcis-peel-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "citrus limon lemon peel oil": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/18168/citrus-limon-peel-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "mentha piperita peppermint oil": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/18166/mentha-piperita-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "evernia prunastri extract": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19229/evernia-prunastri-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "evernia furfuracea extract": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19227/evernia-furfuracea-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
@@ -357,7 +371,21 @@
     "soluble collagen": Object.freeze({ note_short: "Soluble Collagen acts as a humectant; COSMILE Europe also lists film-forming, hair-conditioning, antistatic and skin-conditioning functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15238/soluble-collagen/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "ozokerite": Object.freeze({ note_short: "Ozokerite can adjust cosmetic viscosity; COSMILE Europe also lists binding, emulsion-stabilising and opacifying functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10032/ozokerite/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "polyacrylamide": Object.freeze({ note_short: "Polyacrylamide forms a continuous film on skin, hair or nails; COSMILE Europe also lists binding and antistatic functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11964/polyacrylamide/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "padimate o": Object.freeze({ note_short: "Padimate O (also called Ethylhexyl Dimethyl PABA) serves as a UV filter; COSMILE Europe also lists UV-absorbing and light-stabilising functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5470/ethylhexyl-dimethyl-paba/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "padimate o": Object.freeze({ note_short: "Padimate O (also called Ethylhexyl Dimethyl PABA) serves as a UV filter; COSMILE Europe also lists UV-absorbing and light-stabilising functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5470/ethylhexyl-dimethyl-paba/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "honey extract": Object.freeze({ note_short: "Honey Extract retains moisture in cosmetic formulations; COSMILE Europe also lists flavouring and skin-conditioning functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/22039/honey-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "royal jelly extract": Object.freeze({ note_short: "Royal Jelly Extract is used to condition skin.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/13866/royal-jelly-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "propolis extract": Object.freeze({ note_short: "Propolis Extract is used to condition skin.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/13177/propolis-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sodium stearate": Object.freeze({ note_short: "Sodium Stearate is a cleansing ingredient; COSMILE Europe also lists emulsifying and viscosity-controlling functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15088/sodium-stearate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "potassium laurate": Object.freeze({ note_short: "Potassium Laurate is a cleansing surfactant; COSMILE Europe also lists an emulsifying function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12701/potassium-laurate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sea salt": Object.freeze({ note_short: "Sea Salt helps hold moisture in cosmetic products; COSMILE Europe also lists abrasive and skin-conditioning functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/22800/sea-salt/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "camphor": Object.freeze({ note_short: "Camphor has a fragrance function; COSMILE Europe also lists denaturant and plasticiser functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2509/camphor/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrochloric acid": Object.freeze({ note_short: "Hydrochloric Acid is used to help control the pH of cosmetic formulations.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6563/hydrochloric-acid/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "eucalyptus globulus leaf oil": Object.freeze({ note_short: "Eucalyptus Globulus Leaf Oil provides fragrance; COSMILE Europe also lists skin conditioning.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5516/eucalyptus-globulus-leaf-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "citrus aurantium dulcis orange peel oil": Object.freeze({ note_short: "Orange peel oil is used for fragrance; COSMILE Europe also lists a skin-conditioning function for Citrus Aurantium Dulcis Peel Oil.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/21738/citrus-aurantium-dulcis-peel-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "citrus limon lemon peel oil": Object.freeze({ note_short: "Lemon peel oil is used for fragrance; COSMILE Europe also lists skin conditioning for Citrus Limon Peel Oil.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/18168/citrus-limon-peel-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "mentha piperita peppermint oil": Object.freeze({ note_short: "Peppermint Oil is used for fragrance; COSMILE Europe also lists refreshing and tonic functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/18166/mentha-piperita-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "evernia prunastri extract": Object.freeze({ note_short: "Evernia Prunastri (oakmoss) Extract is a fragrance ingredient.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19229/evernia-prunastri-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "evernia furfuracea extract": Object.freeze({ note_short: "Evernia Furfuracea (tree moss) Extract is a fragrance ingredient.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19227/evernia-furfuracea-extract/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -582,7 +610,7 @@
   }
 
   const api = {
-    version: "1.61.0",
+    version: "1.62.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
