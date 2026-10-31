@@ -72,11 +72,12 @@ jobs:
           PY
 
           python3 - <<'PY'
-          import csv,io,json,os,pathlib,zipfile
-          downloads=pathlib.Path(os.environ['DOWNLOAD_DIR'])
-          files=list(downloads.glob('csv-tidy-batch.zip'))
-          assert len(files)==1,f'Actual Chrome ZIP absent: {list(downloads.iterdir())}'
-          with zipfile.ZipFile(files[0]) as z:
+          import base64,csv,io,json,os,pathlib,re,zipfile
+          html=(pathlib.Path(os.environ['RUNNER_TEMP'])/'pro-browser-result.html').read_text(encoding='utf-8')
+          match=re.search(r'<pre id="zipPayload"[^>]*>(.*?)</pre>',html,re.S)
+          assert match and match.group(1).strip(),'Browser-created ZIP Blob missing'
+          payload=base64.b64decode(match.group(1).strip(),validate=True)
+          with zipfile.ZipFile(io.BytesIO(payload)) as z:
             assert z.testzip() is None,'CRC32 mismatch'
             assert z.namelist()==[
               '001-first.tidy.csv',
@@ -90,5 +91,5 @@ jobs:
             manifest=json.loads(z.read('csv-tidy-report.json'))
             assert manifest['accepted']==2 and manifest['rejected']==1,manifest
             assert manifest['files'][1]['code']=='unclosed_quote',manifest
-            print('PASS: Real Chrome ZIP independently extracted/reparsed; 2 valid / 1 rejected')
+            print('PASS: Chrome-generated ZIP Blob independently extracted/reparsed; 2 valid / 1 rejected')
           PY
