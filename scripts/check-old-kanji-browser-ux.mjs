@@ -22,7 +22,7 @@ function staticServer() {
       const ok=u.searchParams.get('productId')==='okj.toolkit_pro' &&
         u.searchParams.get('sessionId')==='cs_test_WORKSPACEQA';
       res.writeHead(ok?200:403,{'content-type':'application/json;charset=utf-8','cache-control':'no-store'});
-      res.end(JSON.stringify(ok?{ok:true,active:true,features:['okj.workspaces']}:{ok:false,active:false,error:'not_entitled'}));
+      res.end(JSON.stringify(ok?{ok:true,active:true,features:['okj.workspaces','okj.name.batch','okj.place.batch']}:{ok:false,active:false,error:'not_entitled'}));
       return;
     }
     let p=decodeURIComponent(u.pathname); if(p.endsWith('/'))p+='index.html';
@@ -167,9 +167,27 @@ async function main(){
       const reused=await c.js("const panel=document.getElementById('okj-pro-workspaces'); return {mounted:!!panel,text:panel?.querySelector('.okj-workspace-entry p')?.textContent||''};");
       if(!reused.mounted||!reused.text.includes('舊學 𠮷'))fail.push('workspace/cross-tool: saved OCR entry missing from Name Checker');
     }
+    // A real Chrome interaction with the new Pro batch panels and on-site dictionary.
+    await c.js("const batchPanel=document.getElementById('okj-pro-batch'); if(batchPanel){ batchPanel.querySelector('textarea').value='舊\n學'; batchPanel.querySelector('.okj-batch-actions button').click(); }");
+    await sleep(350);
+    const checkedName=await c.js("const panel=document.getElementById('okj-pro-batch'); return {mounted:!!panel,rows:panel?.querySelectorAll('tbody tr').length||0,text:panel?.querySelector('tbody')?.textContent||''};");
+    if(!checkedName.mounted || checkedName.rows!==2 || !checkedName.text.includes('旧') || !checkedName.text.includes('学')){
+      fail.push('batch/name: verified name checker did not analyze 舊 and 學: '+JSON.stringify(checkedName));
+    }
+    await c.nav(base+'/tools/place-old-kanji-checker/');
+    await sleep(500);
+    await c.js("const batchPanel=document.getElementById('okj-pro-batch'); if(batchPanel){ batchPanel.querySelector('textarea').value='廣島\n國府'; batchPanel.querySelector('.okj-batch-actions button').click(); }");
+    await sleep(350);
+    const checkedPlace=await c.js("const panel=document.getElementById('okj-pro-batch'); return {mounted:!!panel,rows:panel?.querySelectorAll('tbody tr').length||0,text:panel?.querySelector('tbody')?.textContent||''};");
+    if(!checkedPlace.mounted || checkedPlace.rows!==2 || !checkedPlace.text.includes('広') || !checkedPlace.text.includes('国')){
+      fail.push('batch/place: verified place checker did not analyze 廣 and 國: '+JSON.stringify(checkedPlace));
+    }
     await c.js("localStorage.setItem('nicheworks:billing:session:okj.toolkit_pro','cs_test_DENIED');");
     await c.nav(base+'/tools/name-old-kanji-checker/');
     await sleep(350);
+    if(await c.js("return !!document.getElementById('okj-pro-batch');")){
+      fail.push('batch/denied: place batch UI exposed without verified entitlement');
+    }
     if(await c.js("return !!document.getElementById('okj-pro-workspaces');")){
       fail.push('workspace/denied: Pro UI exposed without verified entitlement');
     }
