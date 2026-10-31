@@ -160,7 +160,10 @@ export async function onRequestPost({ request, env }) {
   if (listedProduct.checkout && listedProduct.checkout.enabled !== true) {
     return json({ ok: false, error: 'product_checkout_disabled' }, 403);
   }
-  if (config.status !== 'active' || listedProduct.stripe?.mode !== 'connected') {
+  // Keep earlier non-OKJ products' error handling stable; only Old Kanji is
+  // subject to this new unpriced-product launch boundary.
+  if (listedProduct.productId === 'okj.toolkit_pro' &&
+      (config.status !== 'active' || listedProduct.stripe?.mode !== 'connected')) {
     return json({ ok: false, error: 'product_not_on_sale' }, 409);
   }
 
