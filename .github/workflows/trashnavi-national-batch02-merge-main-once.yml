@@ -1,0 +1,76 @@
+name: Sync TrashNavi Batch 02 with main
+on:
+  push:
+    branches:
+      - feat/trashnavi-national-batch02-20261031
+    paths:
+      - '.github/workflows/trashnavi-national-batch02-merge-main-once.yml'
+permissions:
+  contents: write
+jobs:
+  merge-main:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Merge current main and reconcile only sitemap.xml
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          if git merge --no-commit --no-ff origin/main; then
+            echo "main merged without conflicts"
+          else
+            conflicts="$(git diff --name-only --diff-filter=U)"
+            if [ "$conflicts" != "sitemap.xml" ]; then
+              echo "Unexpected conflicts: $conflicts" >&2
+              exit 1
+            fi
+            git show :2:sitemap.xml > /tmp/trashnavi-ours.xml
+            git show :3:sitemap.xml > /tmp/trashnavi-main.xml
+            node <<'NODE'
+          const fs=require('node:fs');
+          const ours=fs.readFileSync('/tmp/trashnavi-ours.xml','utf8');
+          const main=fs.readFileSync('/tmp/trashnavi-main.xml','utf8');
+          if(!ours.includes('</urlset>') || !main.includes('</urlset>'))throw Error('Malformed sitemap');
+          const extract=s=>[...s.matchAll(/<url>\s*([\s\S]*?)\s*<\/url>/g)].map(m=>({full:m[0],loc:m[1].match(/<loc>([^<]+)<\/loc>/)?.[1]}));
+          const oldEntries=extract(main);
+          const seen=new Set(oldEntries.map(x=>x.loc));
+          const add=extract(ours).filter(x=>x.loc?.startsWith('https://nicheworks.app/tools/trashnavi/')&&!seen.has(x.loc));
+          if(add.length!==48)throw Error('Expected exactly 48 new TrashNavi URLs, got '+add.length);
+          const merged=main.replace('</urlset>',add.map(x=>x.full).join('\n')+'\n</urlset>');
+          const all=extract(merged).map(x=>x.loc);
+          if(all.length!==new Set(all).size)throw Error('Duplicate sitemap URL');
+          if(!oldEntries.every(x=>all.includes(x.loc)))throw Error('Main sitemap URL lost');
+          fs.writeFileSync('sitemap.xml',merged);
+          console.log('Retained main sitemap entries:',oldEntries.length,'added:',add.length,'final:',all.length);
+          NODE
+            git add sitemap.xml
+          fi
+          if [ -n "$(git diff --name-only --diff-filter=U)" ]; then
+            echo "Unresolved merge conflicts remain" >&2
+            exit 1
+          fi
+      - name: Recheck TrashNavi generation and national states
+        run: |
+          node tools/trashnavi/scripts/check-national-completion.mjs
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node tools/trashnavi/scripts/check-affiliate-contract.mjs
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+      - name: Commit clean merge after checks
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/trashnavi-national-batch02-merge-main-once.yml
+          git add -A
+          git diff --cached --stat
+          git commit -m "chore(trashnavi): integrate current main without dropping sitemap URLs"
+          git push origin HEAD:feat/trashnavi-national-batch02-20261031
