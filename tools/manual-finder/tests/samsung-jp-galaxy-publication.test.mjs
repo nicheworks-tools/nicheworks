@@ -62,7 +62,7 @@ assert.equal(support,4);
 const batchFiles=Array.from(window.MANUALFINDER_COVERAGE_PASS_BATCHES||[]);
 assert.ok(batchFiles.includes('manuals.coverage-pass.samsung-jp-galaxy-smartphones.js'));
 const merged=Array.from(window.MANUALFINDER_BUILD_COVERAGE_PASSES());
-assert.equal(merged.length,392);
+assert.ok(merged.length>=392,'later manufacturer batches must not break Samsung scope tests');
 assert.equal(merged.filter(x=>x.maker==='Samsung Mobile').length,89);
 assert.equal(merged.filter(x=>x.maker==='VAIO').length,82);
 assert.equal(merged.filter(x=>x.maker==='Sony').length,107);
