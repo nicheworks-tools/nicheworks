@@ -193,8 +193,10 @@ export async function runBatch(files, rawPreset, codec, { onOutput, signal, stop
         status: 'ok', inputRows: result.inputRows, outputColumns: result.outputColumns,
         byteLength: result.bytes.byteLength
       });
-    } catch {
-      outcomes.push({ index, name: inputName, status: 'rejected', code: 'output_delivery_failed' });
+    } catch (error) {
+      const code = error && error.code === 'archive_budget_exceeded'
+        ? 'archive_budget_exceeded' : 'output_delivery_failed';
+      outcomes.push({ index, name: inputName, status: 'rejected', code });
       if (stopOnError) break;
     }
     result = null;
