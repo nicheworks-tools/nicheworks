@@ -152,6 +152,12 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 17 — 2026-10-31
+
+Strengthened the independent live Cloudflare Pages smoke to verify **whole-file canonical JSON parity**, not merely total phone count, against the GitHub checkout used by CI. Public phones.json must structurally match checked-in data (all device IDs, source facts, attributes, provenance and revision metadata); this detects stale partial deploys or unexpected source changes. Added targeted checks for the three Wave 16 Japan-market models: Alpha M08 bundled adapter, We2 Plus M06 inclusion, Nothing Phone (3a) explicit wireless non-support. Existing Alpha2/Phone (4b) checks and all 5 production browser viewports remain intact.
+
+PR-triggered production verification is required to establish public **211 phones**, and a main-push production smoke should continue guarding all future Phone QuickCheck updates.
+
 ## Post-v1 maintenance Wave 16 — 2026-10-31
 
 Verified Japan-market backfill of three missing phones from the existing two under-covered manufacturers: FCNT and Nothing. Dataset **208 → 211**; manufacturers **11**, foldables **36** unchanged. All in-box, charging-protocol and water facts are tied to official sources; wireless support on Nothing Phone (3a) is explicitly verified negative.
