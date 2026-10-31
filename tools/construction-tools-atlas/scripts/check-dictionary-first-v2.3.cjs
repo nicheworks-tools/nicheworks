@@ -2,6 +2,12 @@
 const fs=require("node:fs"),path=require("node:path"),assert=require("node:assert/strict");
 const root=path.resolve(__dirname,".."),read=p=>fs.readFileSync(path.join(root,p),"utf8");
 const html=read("index.html"),runtime=read("app.runtime.js"),css=read("style.css");
+const loader=read("data/quality-loader.js");
+for(const versioned of ["style.css?v=20261101-dictionary-first-1","app.runtime.js?v=20261101-dictionary-first-1","quality-loader.js?v=20261101-reviewed-definitions-15"])
+  assert(html.includes(versioned),"production HTML still references a stale cached dictionary asset: "+versioned);
+assert(loader.includes('REVIEWED_DEFINITION_SOURCE_VERSION = "20261101-reviewed-definitions-15"'),"quality loader must refresh revised dictionary sources");
+assert(loader.includes("REVIEWED_DEFINITION_PACKS.has(baseName)"),"original compact definition source packs need versioned fetches");
+
 const before=(token)=>html.indexOf(token);
 assert(before('id="dictionaryJumpButtons"')>0,"quick access to actual dictionary entries must be on main page");
 assert(before('id="detailDefinition"')<before('id="detailImage"'),"dictionary definition must precede any image");

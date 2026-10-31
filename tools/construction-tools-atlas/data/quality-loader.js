@@ -10,6 +10,8 @@
   const IDENTITY_PATH = "./data/canonical-identity-resolutions-v2.3.json";
   const GENERATED_FILLER_BATCHES = new Set(["direct-5000", "atlas-expand-5000"]);
   const FAVORITES_KEY = "cta_favs";
+  const REVIEWED_DEFINITION_SOURCE_VERSION = "20261101-reviewed-definitions-15";
+  const REVIEWED_DEFINITION_PACKS = new Set(["tools.quality-011.json","tools.quality-012.json","tools.quality-013.json","tools.quality-014.json","tools.quality-015.json","tools.quality-016.json","tools.quality-017.json"]);
 
   const text = (value) => typeof value === "string" ? value.trim() : "";
   const arr = (value) => Array.isArray(value) ? value.filter(Boolean).map(String) : (typeof value === "string" && value.trim() ? [value.trim()] : []);
@@ -19,7 +21,11 @@
   async function fetchJson(path) {
     if (!path) return null;
     try {
-      const response = await originalFetch(path);
+      const baseName = String(path).split("/").pop();
+      const url = REVIEWED_DEFINITION_PACKS.has(baseName)
+        ? path + "?v=" + REVIEWED_DEFINITION_SOURCE_VERSION
+        : path;
+      const response = await originalFetch(url);
       if (!response.ok) return null;
       return await response.json();
     } catch (_) { return null; }
