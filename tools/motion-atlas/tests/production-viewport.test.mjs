@@ -158,5 +158,9 @@ try {
 } finally {
   if (websocket?.readyState === WebSocket.OPEN) websocket.close();
   child.kill("SIGTERM");
-  fs.rmSync(dir, { recursive: true, force: true });
+  await new Promise(resolve => {
+    if (child.exitCode !== null || child.signalCode !== null) resolve();
+    else child.once("close", resolve);
+  });
+  fs.rmSync(dir, { recursive: true, force: true, maxRetries: 8, retryDelay: 200 });
 }
