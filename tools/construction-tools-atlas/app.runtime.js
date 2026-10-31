@@ -539,7 +539,7 @@
     // Preserve reviewed source copy. Short source definitions may be shown with
     // their existing subject-specific notes rather than artificially generated filler.
     const definition = { ...entry.description };
-    const notes = { ...entry.detail };
+    const notes = { ja: isTemplateText(entry.detail.ja) ? "" : entry.detail.ja, en: isTemplateText(entry.detail.en) ? "" : entry.detail.en };
     for (const [language,definitionLimit,detailMin] of [["ja",60,65],["en",135,125]]) {
       const lead = definition[language] || "";
       const context = notes[language] || "";
@@ -562,13 +562,15 @@
     const composed = composeDefinition(entry);
     renderPair(els.detailDefinition, composed.definition);
 
-    const hasNotes = Boolean(composed.notes.ja || composed.notes.en || entry.bullets.ja.length || entry.bullets.en.length);
+    const maintainedBullets = { ja: entry.bullets.ja.filter((value) => !isTemplateText(value)), en: entry.bullets.en.filter((value) => !isTemplateText(value)) };
+    const maintainedExamples = { ja: entry.examples.ja.filter((value) => !isTemplateText(value)), en: entry.examples.en.filter((value) => !isTemplateText(value)) };
+    const hasNotes = Boolean(composed.notes.ja || composed.notes.en || maintainedBullets.ja.length || maintainedBullets.en.length);
     els.notesSection.hidden = !hasNotes;
     els.detailNotes.hidden = !composed.notes.ja && !composed.notes.en;
     renderPair(els.detailNotes, composed.notes);
-    renderArray(els.detailBullets, entry.bullets);
+    renderArray(els.detailBullets, maintainedBullets);
 
-    const hasExamples = renderArray(els.detailExamples, entry.examples);
+    const hasExamples = renderArray(els.detailExamples, maintainedExamples);
     els.examplesSection.hidden = !hasExamples;
 
     clear(els.detailAliases);
