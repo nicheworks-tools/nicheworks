@@ -3,7 +3,7 @@
   "maker": "dynabook",
   "scopeId": "jp-announced-pc-2024-2026-official-manual-index",
   "scopeLabel": "dynabook Japan manufacturer PDF manual index: PC products announced 2024, 2025 and 2026 (consumer, business and ChromeOS)",
-  "status": "reviewing",
+  "status": "coverage-pass-complete",
   "asOf": "2026-10-31",
   "region": "JP",
   "language": "ja",
@@ -197,7 +197,7 @@
       "dynaDesk DT210/A"
     ],
     "populationMethod": "complete nested official product row extraction from 3 annual manufacturer manual download indexes; 178 source rows grouped to 177 unique canonical model and explicitly separated configuration identities",
-    "notes": "47 manufacturer rows in 2024 +32 in 2025 +99 in 2026 =178 source rows. Two 2026 dynabook B86/PA announcements (2026-01-22 and 2026-09-08) explicitly link the same manuals and are tracked as two source rows of one unique canonical model, not two distinct product models. XP7/AR P2P7ARBL/P1P7ARBL remain separate because the official model cell explicitly includes distinct part codes. GR/ZA Home vs Pro remain distinct configuration models. Source row digest and exact order must reconcile before accepting candidates."
+    "notes": "47 manufacturer rows in 2024 +32 in 2025 +99 in 2026 =178 source rows. Two 2026 dynabook B86/PA announcements (2026-01-22 and 2026-09-08) explicitly link the same manuals and are tracked as two source rows of one unique canonical model, not two distinct product models. XP7/AR P2P7ARBL/P1P7ARBL remain separate because the official model cell explicitly includes distinct part codes. GR/ZA Home vs Pro remain distinct configuration models. Source row digest and exact order must reconcile before accepting candidates. 2026-10-31 live GitHub Actions review: 53 distinct official PDF destinations verified by HTTPS redirect, status and %PDF- signature. Final 177 = 16 direct + 161 manufacturer-explicit shared + 0 support_only + 0 held. Official 2024,2025,2026 source-row SHA256 and expected row counts independently rechecked in live CI; duplicate B86/PA rows have the same manual URL vector and are one canonical identity."
   },
   "subscopes": [
     {
@@ -412,8 +412,4790 @@
     }
   ],
   "review": {
-    "candidateRun": null,
-    "notes": "Publishing blocked while acquiring/reviewing all PDFs. A shared manual may be accepted only when the manufacturer's exact model row explicitly links the identical document and final destination passes official PDF verification. Any model without positive evidence remains held after secondary discovery; no inferred URLs."
+    "candidateRun": {
+      "workflowRunId": 41157870905,
+      "artifactId": 13025422069,
+      "sourceRows": 178,
+      "canonicalModels": 177,
+      "verifiedOfficialPDFDestinations": 53,
+      "direct": 16,
+      "shared": 161,
+      "support_only": 0,
+      "held": 0,
+      "sourceAudits": [
+        {
+          "year": 2024,
+          "sourceRows": 47,
+          "digest": "ad019ae2d38d0817793ed69be034805d68cd93df8f19362844355da0d0c12167"
+        },
+        {
+          "year": 2025,
+          "sourceRows": 32,
+          "digest": "0c4923f49e9ecd868367f7def90308f0d968cde366957b0684b53f9fe09f27c0"
+        },
+        {
+          "year": 2026,
+          "sourceRows": 99,
+          "digest": "671e574a0a03e22ebf21f65fe5ca3b3c0121353d16a9e8bb04c5644a02cbb96a"
+        }
+      ],
+      "duplicateSourceException": "dynabook B86/PA repeated 2026 Jan/Sep, identical official document URLs, canonicalized once"
+    },
+    "notes": "All 177 were positively mapped by the manufacturer's own product row to a dynabook-controlled HTTPS PDF, and all 53 distinct destination URLs returned valid PDF signatures. No missing rows, weak held or unverified mirrors. Same actual manufacturer-issued PDF is explicitly linked from each shared model's row.",
+    "publicationGate": "passed_full_population_and_positive_official_pdf_review"
   },
-  "records": []
+  "records": [
+    {
+      "model": "dynabook C5/X",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045421210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9045421210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C6/X",
+        "dynabook C7/X",
+        "dynabook T5/X",
+        "dynabook T6/X",
+        "dynabook T7/X",
+        "dynabook T9/X",
+        "dynabook C5/Y",
+        "dynabook C5/AB",
+        "dynabook C6/AB",
+        "dynabook C7/AB",
+        "dynabook T5/AB",
+        "dynabook T6/AB",
+        "dynabook T7/AB",
+        "dynabook AZ/DA",
+        "dynabook AZ/SA"
+      ]
+    },
+    {
+      "model": "dynabook C6/X",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045421210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9045421210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/X",
+        "dynabook C7/X",
+        "dynabook T5/X",
+        "dynabook T6/X",
+        "dynabook T7/X",
+        "dynabook T9/X",
+        "dynabook C5/Y",
+        "dynabook C5/AB",
+        "dynabook C6/AB",
+        "dynabook C7/AB",
+        "dynabook T5/AB",
+        "dynabook T6/AB",
+        "dynabook T7/AB",
+        "dynabook AZ/DA",
+        "dynabook AZ/SA"
+      ]
+    },
+    {
+      "model": "dynabook C7/X",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045421210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9045421210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/X",
+        "dynabook C6/X",
+        "dynabook T5/X",
+        "dynabook T6/X",
+        "dynabook T7/X",
+        "dynabook T9/X",
+        "dynabook C5/Y",
+        "dynabook C5/AB",
+        "dynabook C6/AB",
+        "dynabook C7/AB",
+        "dynabook T5/AB",
+        "dynabook T6/AB",
+        "dynabook T7/AB",
+        "dynabook AZ/DA",
+        "dynabook AZ/SA"
+      ]
+    },
+    {
+      "model": "dynabook T5/X",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045421210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9045421210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/X",
+        "dynabook C6/X",
+        "dynabook C7/X",
+        "dynabook T6/X",
+        "dynabook T7/X",
+        "dynabook T9/X",
+        "dynabook C5/Y",
+        "dynabook C5/AB",
+        "dynabook C6/AB",
+        "dynabook C7/AB",
+        "dynabook T5/AB",
+        "dynabook T6/AB",
+        "dynabook T7/AB",
+        "dynabook AZ/DA",
+        "dynabook AZ/SA"
+      ]
+    },
+    {
+      "model": "dynabook T6/X",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045421210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9045421210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/X",
+        "dynabook C6/X",
+        "dynabook C7/X",
+        "dynabook T5/X",
+        "dynabook T7/X",
+        "dynabook T9/X",
+        "dynabook C5/Y",
+        "dynabook C5/AB",
+        "dynabook C6/AB",
+        "dynabook C7/AB",
+        "dynabook T5/AB",
+        "dynabook T6/AB",
+        "dynabook T7/AB",
+        "dynabook AZ/DA",
+        "dynabook AZ/SA"
+      ]
+    },
+    {
+      "model": "dynabook T7/X",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045421210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9045421210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/X",
+        "dynabook C6/X",
+        "dynabook C7/X",
+        "dynabook T5/X",
+        "dynabook T6/X",
+        "dynabook T9/X",
+        "dynabook C5/Y",
+        "dynabook C5/AB",
+        "dynabook C6/AB",
+        "dynabook C7/AB",
+        "dynabook T5/AB",
+        "dynabook T6/AB",
+        "dynabook T7/AB",
+        "dynabook AZ/DA",
+        "dynabook AZ/SA"
+      ]
+    },
+    {
+      "model": "dynabook T9/X",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045421210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9045421210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/X",
+        "dynabook C6/X",
+        "dynabook C7/X",
+        "dynabook T5/X",
+        "dynabook T6/X",
+        "dynabook T7/X",
+        "dynabook C5/Y",
+        "dynabook C5/AB",
+        "dynabook C6/AB",
+        "dynabook C7/AB",
+        "dynabook T5/AB",
+        "dynabook T6/AB",
+        "dynabook T7/AB",
+        "dynabook AZ/DA",
+        "dynabook AZ/SA"
+      ]
+    },
+    {
+      "model": "dynabook G6/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9044954210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9044954210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G8/Y",
+        "dynabook GS5/Y"
+      ]
+    },
+    {
+      "model": "dynabook G8/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9044954210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9044954210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G6/Y",
+        "dynabook GS5/Y"
+      ]
+    },
+    {
+      "model": "dynabook GS5/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9044954210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9044954210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G6/Y",
+        "dynabook G8/Y"
+      ]
+    },
+    {
+      "model": "dynabook M6/X",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045387210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9045387210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook M7/X",
+        "dynabook S6/X",
+        "dynabook M6/Y",
+        "dynabook M7/Y",
+        "dynabook S6/Y",
+        "dynabook M6/A",
+        "dynabook M7/A",
+        "dynabook S6/A",
+        "dynabook SZ/LA"
+      ]
+    },
+    {
+      "model": "dynabook M7/X",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045387210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9045387210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook M6/X",
+        "dynabook S6/X",
+        "dynabook M6/Y",
+        "dynabook M7/Y",
+        "dynabook S6/Y",
+        "dynabook M6/A",
+        "dynabook M7/A",
+        "dynabook S6/A",
+        "dynabook SZ/LA"
+      ]
+    },
+    {
+      "model": "dynabook R7/X",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045388210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9045388210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook R8/X",
+        "dynabook R9/X",
+        "dynabook R7/Y",
+        "dynabook R8/Y",
+        "dynabook R7/A",
+        "dynabook R8/A",
+        "dynabook RZ/HA"
+      ]
+    },
+    {
+      "model": "dynabook R8/X",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045388210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9045388210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook R7/X",
+        "dynabook R9/X",
+        "dynabook R7/Y",
+        "dynabook R8/Y",
+        "dynabook R7/A",
+        "dynabook R8/A",
+        "dynabook RZ/HA"
+      ]
+    },
+    {
+      "model": "dynabook R9/X",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045388210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9045388210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook R7/X",
+        "dynabook R8/X",
+        "dynabook R7/Y",
+        "dynabook R8/Y",
+        "dynabook R7/A",
+        "dynabook R8/A",
+        "dynabook RZ/HA"
+      ]
+    },
+    {
+      "model": "dynabook S6/X",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045387210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9045387210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook M6/X",
+        "dynabook M7/X",
+        "dynabook M6/Y",
+        "dynabook M7/Y",
+        "dynabook S6/Y",
+        "dynabook M6/A",
+        "dynabook M7/A",
+        "dynabook S6/A",
+        "dynabook SZ/LA"
+      ]
+    },
+    {
+      "model": "dynabook X6/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045308210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9045308210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook X8/Y"
+      ]
+    },
+    {
+      "model": "dynabook X8/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045308210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9045308210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook X6/Y"
+      ]
+    },
+    {
+      "model": "dynabook K2/X",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045363210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/c/manual/gm9045363210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook K2/Y"
+      ]
+    },
+    {
+      "model": "dynabook B45/KY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-5d1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-5d1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook B55/KY",
+        "dynabook B55/LY",
+        "dynabook B75/KY",
+        "dynabook B75/LY",
+        "dynabook B55/LA",
+        "dynabook B75/LA"
+      ]
+    },
+    {
+      "model": "dynabook B55/KY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-5d1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-5d1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook B45/KY",
+        "dynabook B55/LY",
+        "dynabook B75/KY",
+        "dynabook B75/LY",
+        "dynabook B55/LA",
+        "dynabook B75/LA"
+      ]
+    },
+    {
+      "model": "dynabook B55/LY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-5d1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-5d1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook B45/KY",
+        "dynabook B55/KY",
+        "dynabook B75/KY",
+        "dynabook B75/LY",
+        "dynabook B55/LA",
+        "dynabook B75/LA"
+      ]
+    },
+    {
+      "model": "dynabook B75/KY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-5d1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-5d1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook B45/KY",
+        "dynabook B55/KY",
+        "dynabook B55/LY",
+        "dynabook B75/LY",
+        "dynabook B55/LA",
+        "dynabook B75/LA"
+      ]
+    },
+    {
+      "model": "dynabook B75/LY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-5d1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-5d1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook B45/KY",
+        "dynabook B55/KY",
+        "dynabook B55/LY",
+        "dynabook B75/KY",
+        "dynabook B55/LA",
+        "dynabook B75/LA"
+      ]
+    },
+    {
+      "model": "Dynabook Chromebook C70/MY",
+      "state": "direct",
+      "manualUrl": "https://dynabook.com/b/manual/yb-de1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/yb-de1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Official Dynabook model-year manual index explicitly links this exact model to this signature-verified PDF."
+    },
+    {
+      "model": "dynabook G83/KY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-cr3-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-cr3-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G83/LY",
+        "dynabook G83/MY",
+        "dynabook G83/MA"
+      ]
+    },
+    {
+      "model": "dynabook G83/LY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-cr3-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-cr3-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G83/KY",
+        "dynabook G83/MY",
+        "dynabook G83/MA"
+      ]
+    },
+    {
+      "model": "dynabook G83/MY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-cr3-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-cr3-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G83/KY",
+        "dynabook G83/LY",
+        "dynabook G83/MA"
+      ]
+    },
+    {
+      "model": "dynabook GA83/XY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-am1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-am1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook GA83/XA"
+      ]
+    },
+    {
+      "model": "dynabook MJ64/KY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/xb-sy2-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/xb-sy2-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook MJ64/LX",
+        "dynabook MJ64/LY",
+        "dynabook SJ73/KY",
+        "dynabook SJ73/LX",
+        "dynabook SJ73/LY",
+        "dynabook MJ64/LA",
+        "dynabook SJ73/LA"
+      ]
+    },
+    {
+      "model": "dynabook MJ64/LX",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/xb-sy2-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/xb-sy2-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook MJ64/KY",
+        "dynabook MJ64/LY",
+        "dynabook SJ73/KY",
+        "dynabook SJ73/LX",
+        "dynabook SJ73/LY",
+        "dynabook MJ64/LA",
+        "dynabook SJ73/LA"
+      ]
+    },
+    {
+      "model": "dynabook MJ64/LY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/xb-sy2-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/xb-sy2-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook MJ64/KY",
+        "dynabook MJ64/LX",
+        "dynabook SJ73/KY",
+        "dynabook SJ73/LX",
+        "dynabook SJ73/LY",
+        "dynabook MJ64/LA",
+        "dynabook SJ73/LA"
+      ]
+    },
+    {
+      "model": "dynabook P55/LY",
+      "state": "direct",
+      "manualUrl": "https://dynabook.com/b/manual/wb-bsa-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-bsa-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Official Dynabook model-year manual index explicitly links this exact model to this signature-verified PDF."
+    },
+    {
+      "model": "dynabook RJ74/KY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-za1-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-za1-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook RJ74/LY",
+        "dynabook RJ74/MY",
+        "dynabook RJ74/MA"
+      ]
+    },
+    {
+      "model": "dynabook RJ74/LY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-za1-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-za1-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook RJ74/KY",
+        "dynabook RJ74/MY",
+        "dynabook RJ74/MA"
+      ]
+    },
+    {
+      "model": "dynabook RJ74/MY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-za1-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-za1-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook RJ74/KY",
+        "dynabook RJ74/LY",
+        "dynabook RJ74/MA"
+      ]
+    },
+    {
+      "model": "dynabook SJ73/KY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/xb-sy2-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/xb-sy2-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook MJ64/KY",
+        "dynabook MJ64/LX",
+        "dynabook MJ64/LY",
+        "dynabook SJ73/LX",
+        "dynabook SJ73/LY",
+        "dynabook MJ64/LA",
+        "dynabook SJ73/LA"
+      ]
+    },
+    {
+      "model": "dynabook SJ73/LX",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/xb-sy2-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/xb-sy2-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook MJ64/KY",
+        "dynabook MJ64/LX",
+        "dynabook MJ64/LY",
+        "dynabook SJ73/KY",
+        "dynabook SJ73/LY",
+        "dynabook MJ64/LA",
+        "dynabook SJ73/LA"
+      ]
+    },
+    {
+      "model": "dynabook SJ73/LY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/xb-sy2-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/xb-sy2-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook MJ64/KY",
+        "dynabook MJ64/LX",
+        "dynabook MJ64/LY",
+        "dynabook SJ73/KY",
+        "dynabook SJ73/LX",
+        "dynabook MJ64/LA",
+        "dynabook SJ73/LA"
+      ]
+    },
+    {
+      "model": "dynabook X74/LY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-pl1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/y-pl1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook X94/NY",
+        "dynabook X74/LA",
+        "dynabook X94/NA"
+      ]
+    },
+    {
+      "model": "dynabook X83/LY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-ru1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-ru1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook X83/LA"
+      ]
+    },
+    {
+      "model": "dynabook V83/KY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-da1-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-da1-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook V83/LX",
+        "dynabook V83/LY",
+        "dynabook V83/MY",
+        "dynabook V83/MA",
+        "dynabook V83/NA"
+      ]
+    },
+    {
+      "model": "dynabook V83/LX",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-da1-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-da1-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook V83/KY",
+        "dynabook V83/LY",
+        "dynabook V83/MY",
+        "dynabook V83/MA",
+        "dynabook V83/NA"
+      ]
+    },
+    {
+      "model": "dynabook V83/LY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-da1-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-da1-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook V83/KY",
+        "dynabook V83/LX",
+        "dynabook V83/MY",
+        "dynabook V83/MA",
+        "dynabook V83/NA"
+      ]
+    },
+    {
+      "model": "dynabook K70/HX",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/gm9045368210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/gm9045368210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook K70/HY"
+      ]
+    },
+    {
+      "model": "dynabook K70/HY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/gm9045368210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/gm9045368210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook K70/HX"
+      ]
+    },
+    {
+      "model": "dynaDesk DT200/Y",
+      "state": "direct",
+      "manualUrl": "https://dynabook.com/b/manual/wb-lc1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2024.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2024.html",
+        "https://dynabook.com/b/manual/wb-lc1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Official Dynabook model-year manual index explicitly links this exact model to this signature-verified PDF."
+    },
+    {
+      "model": "dynabook C5/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045421210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/gm9045421210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/X",
+        "dynabook C6/X",
+        "dynabook C7/X",
+        "dynabook T5/X",
+        "dynabook T6/X",
+        "dynabook T7/X",
+        "dynabook T9/X",
+        "dynabook C5/AB",
+        "dynabook C6/AB",
+        "dynabook C7/AB",
+        "dynabook T5/AB",
+        "dynabook T6/AB",
+        "dynabook T7/AB",
+        "dynabook AZ/DA",
+        "dynabook AZ/SA"
+      ]
+    },
+    {
+      "model": "dynabook C5/Z",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook C6/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook C7/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook T5/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook T6/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook T7/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook T9/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook G6/Z",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-qu1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/y-qu1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G8/Z",
+        "dynabook GS5/Z",
+        "dynabook G6/A",
+        "dynabook G8/A",
+        "dynabook GS5/A"
+      ]
+    },
+    {
+      "model": "dynabook G8/Z",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-qu1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/y-qu1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G6/Z",
+        "dynabook GS5/Z",
+        "dynabook G6/A",
+        "dynabook G8/A",
+        "dynabook GS5/A"
+      ]
+    },
+    {
+      "model": "dynabook GS5/Z",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-qu1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/y-qu1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G6/Z",
+        "dynabook G8/Z",
+        "dynabook G6/A",
+        "dynabook G8/A",
+        "dynabook GS5/A"
+      ]
+    },
+    {
+      "model": "dynabook M6/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045387210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/gm9045387210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook M6/X",
+        "dynabook M7/X",
+        "dynabook S6/X",
+        "dynabook M7/Y",
+        "dynabook S6/Y",
+        "dynabook M6/A",
+        "dynabook M7/A",
+        "dynabook S6/A",
+        "dynabook SZ/LA"
+      ]
+    },
+    {
+      "model": "dynabook M7/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045387210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/gm9045387210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook M6/X",
+        "dynabook M7/X",
+        "dynabook S6/X",
+        "dynabook M6/Y",
+        "dynabook S6/Y",
+        "dynabook M6/A",
+        "dynabook M7/A",
+        "dynabook S6/A",
+        "dynabook SZ/LA"
+      ]
+    },
+    {
+      "model": "dynabook R7/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045388210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/gm9045388210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook R7/X",
+        "dynabook R8/X",
+        "dynabook R9/X",
+        "dynabook R8/Y",
+        "dynabook R7/A",
+        "dynabook R8/A",
+        "dynabook RZ/HA"
+      ]
+    },
+    {
+      "model": "dynabook R8/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045388210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/gm9045388210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook R7/X",
+        "dynabook R8/X",
+        "dynabook R9/X",
+        "dynabook R7/Y",
+        "dynabook R7/A",
+        "dynabook R8/A",
+        "dynabook RZ/HA"
+      ]
+    },
+    {
+      "model": "dynabook S6/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045387210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/gm9045387210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook M6/X",
+        "dynabook M7/X",
+        "dynabook S6/X",
+        "dynabook M6/Y",
+        "dynabook M7/Y",
+        "dynabook M6/A",
+        "dynabook M7/A",
+        "dynabook S6/A",
+        "dynabook SZ/LA"
+      ]
+    },
+    {
+      "model": "dynabook XD5/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/ac-fr1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/ac-fr1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook XD5/AR"
+      ]
+    },
+    {
+      "model": "dynabook XP6/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-pl1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/y-pl1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook XP9/Y",
+        "dynabook XP9/A",
+        "dynabook XP7/AR P2P7ARBL",
+        "dynabook XP8/AR"
+      ]
+    },
+    {
+      "model": "dynabook XP9/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-pl1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/y-pl1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook XP6/A",
+        "dynabook XP9/A",
+        "dynabook XP7/AR P2P7ARBL",
+        "dynabook XP8/AR"
+      ]
+    },
+    {
+      "model": "dynabook XP9/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-pl1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/y-pl1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook XP6/A",
+        "dynabook XP9/Y",
+        "dynabook XP7/AR P2P7ARBL",
+        "dynabook XP8/AR"
+      ]
+    },
+    {
+      "model": "dynabook K2/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045363210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/gm9045363210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook K2/X"
+      ]
+    },
+    {
+      "model": "dynabook V6/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045352210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/gm9045352210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook V8/Y",
+        "dynabook V6/A",
+        "dynabook V8/A"
+      ]
+    },
+    {
+      "model": "dynabook V8/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045352210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/c/manual/gm9045352210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook V6/Y",
+        "dynabook V6/A",
+        "dynabook V8/A"
+      ]
+    },
+    {
+      "model": "dynabook B86/MY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-pn1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/b/manual/y-pn1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook B86/PA",
+        "dynabook B86/MA"
+      ]
+    },
+    {
+      "model": "dynabook BA86/VY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-bc1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/b/manual/y-bc1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook BA86/VA"
+      ]
+    },
+    {
+      "model": "dynabook P56/LY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/b/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook P56/LA"
+      ]
+    },
+    {
+      "model": "dynabook RJ73/MY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-qu1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/b/manual/y-qu1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook RJ73/MA"
+      ]
+    },
+    {
+      "model": "dynabook RA73/VY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-gn1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/b/manual/y-gn1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook RA73/VA"
+      ]
+    },
+    {
+      "model": "dynabook V83/MY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-da1-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/b/manual/wb-da1-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook V83/KY",
+        "dynabook V83/LX",
+        "dynabook V83/LY",
+        "dynabook V83/MA",
+        "dynabook V83/NA"
+      ]
+    },
+    {
+      "model": "dynabook X94/NY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-pl1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/b/manual/y-pl1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook X74/LY",
+        "dynabook X74/LA",
+        "dynabook X94/NA"
+      ]
+    },
+    {
+      "model": "dynabook XA74/VY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-sp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/b/manual/y-sp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook XA74/VA"
+      ]
+    },
+    {
+      "model": "dynaDesk DT210/Y",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/yb-lc2-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/cata2025.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/cata2025.html",
+        "https://dynabook.com/b/manual/yb-lc2-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynaDesk DT210/A"
+      ]
+    },
+    {
+      "model": "dynabook C5/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook C5/AB",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045421210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045421210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/X",
+        "dynabook C6/X",
+        "dynabook C7/X",
+        "dynabook T5/X",
+        "dynabook T6/X",
+        "dynabook T7/X",
+        "dynabook T9/X",
+        "dynabook C5/Y",
+        "dynabook C6/AB",
+        "dynabook C7/AB",
+        "dynabook T5/AB",
+        "dynabook T6/AB",
+        "dynabook T7/AB",
+        "dynabook AZ/DA",
+        "dynabook AZ/SA"
+      ]
+    },
+    {
+      "model": "dynabook C5/A3",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook C6/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook C6/AB",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045421210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045421210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/X",
+        "dynabook C6/X",
+        "dynabook C7/X",
+        "dynabook T5/X",
+        "dynabook T6/X",
+        "dynabook T7/X",
+        "dynabook T9/X",
+        "dynabook C5/Y",
+        "dynabook C5/AB",
+        "dynabook C7/AB",
+        "dynabook T5/AB",
+        "dynabook T6/AB",
+        "dynabook T7/AB",
+        "dynabook AZ/DA",
+        "dynabook AZ/SA"
+      ]
+    },
+    {
+      "model": "dynabook C6/A3",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook C7/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook C7/AB",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045421210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045421210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/X",
+        "dynabook C6/X",
+        "dynabook C7/X",
+        "dynabook T5/X",
+        "dynabook T6/X",
+        "dynabook T7/X",
+        "dynabook T9/X",
+        "dynabook C5/Y",
+        "dynabook C5/AB",
+        "dynabook C6/AB",
+        "dynabook T5/AB",
+        "dynabook T6/AB",
+        "dynabook T7/AB",
+        "dynabook AZ/DA",
+        "dynabook AZ/SA"
+      ]
+    },
+    {
+      "model": "dynabook C7/A3",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook T5/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook T5/AB",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045421210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045421210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/X",
+        "dynabook C6/X",
+        "dynabook C7/X",
+        "dynabook T5/X",
+        "dynabook T6/X",
+        "dynabook T7/X",
+        "dynabook T9/X",
+        "dynabook C5/Y",
+        "dynabook C5/AB",
+        "dynabook C6/AB",
+        "dynabook C7/AB",
+        "dynabook T6/AB",
+        "dynabook T7/AB",
+        "dynabook AZ/DA",
+        "dynabook AZ/SA"
+      ]
+    },
+    {
+      "model": "dynabook T5/A3",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook T6/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook T6/AB",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045421210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045421210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/X",
+        "dynabook C6/X",
+        "dynabook C7/X",
+        "dynabook T5/X",
+        "dynabook T6/X",
+        "dynabook T7/X",
+        "dynabook T9/X",
+        "dynabook C5/Y",
+        "dynabook C5/AB",
+        "dynabook C6/AB",
+        "dynabook C7/AB",
+        "dynabook T5/AB",
+        "dynabook T7/AB",
+        "dynabook AZ/DA",
+        "dynabook AZ/SA"
+      ]
+    },
+    {
+      "model": "dynabook T6/A3",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook T7/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook T7/AB",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045421210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045421210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/X",
+        "dynabook C6/X",
+        "dynabook C7/X",
+        "dynabook T5/X",
+        "dynabook T6/X",
+        "dynabook T7/X",
+        "dynabook T9/X",
+        "dynabook C5/Y",
+        "dynabook C5/AB",
+        "dynabook C6/AB",
+        "dynabook C7/AB",
+        "dynabook T5/AB",
+        "dynabook T6/AB",
+        "dynabook AZ/DA",
+        "dynabook AZ/SA"
+      ]
+    },
+    {
+      "model": "dynabook T7/A3",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook T9/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook T9/A3",
+      "state": "direct",
+      "manualUrl": "https://dynabook.com/c/manual/a-tp2-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/a-tp2-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Official Dynabook model-year manual index explicitly links this exact model to this signature-verified PDF."
+    },
+    {
+      "model": "dynabook G6/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-qu1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-qu1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G6/Z",
+        "dynabook G8/Z",
+        "dynabook GS5/Z",
+        "dynabook G8/A",
+        "dynabook GS5/A"
+      ]
+    },
+    {
+      "model": "dynabook G7/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/a-qu3-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/a-qu3-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G9/A",
+        "dynabook GR/ZA （Windows 11 Homeモデル）",
+        "dynabook GR/ZA （Windows 11 Proモデル）"
+      ]
+    },
+    {
+      "model": "dynabook G8/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-qu1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-qu1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G6/Z",
+        "dynabook G8/Z",
+        "dynabook GS5/Z",
+        "dynabook G6/A",
+        "dynabook GS5/A"
+      ]
+    },
+    {
+      "model": "dynabook G9/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/a-qu3-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/a-qu3-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G7/A",
+        "dynabook GR/ZA （Windows 11 Homeモデル）",
+        "dynabook GR/ZA （Windows 11 Proモデル）"
+      ]
+    },
+    {
+      "model": "dynabook GS5/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-qu1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-qu1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G6/Z",
+        "dynabook G8/Z",
+        "dynabook GS5/Z",
+        "dynabook G6/A",
+        "dynabook G8/A"
+      ]
+    },
+    {
+      "model": "dynabook M6/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045387210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045387210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook M6/X",
+        "dynabook M7/X",
+        "dynabook S6/X",
+        "dynabook M6/Y",
+        "dynabook M7/Y",
+        "dynabook S6/Y",
+        "dynabook M7/A",
+        "dynabook S6/A",
+        "dynabook SZ/LA"
+      ]
+    },
+    {
+      "model": "dynabook M7/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045387210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045387210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook M6/X",
+        "dynabook M7/X",
+        "dynabook S6/X",
+        "dynabook M6/Y",
+        "dynabook M7/Y",
+        "dynabook S6/Y",
+        "dynabook M6/A",
+        "dynabook S6/A",
+        "dynabook SZ/LA"
+      ]
+    },
+    {
+      "model": "dynabook R7/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045388210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045388210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook R7/X",
+        "dynabook R8/X",
+        "dynabook R9/X",
+        "dynabook R7/Y",
+        "dynabook R8/Y",
+        "dynabook R8/A",
+        "dynabook RZ/HA"
+      ]
+    },
+    {
+      "model": "dynabook R8/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045388210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045388210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook R7/X",
+        "dynabook R8/X",
+        "dynabook R9/X",
+        "dynabook R7/Y",
+        "dynabook R8/Y",
+        "dynabook R7/A",
+        "dynabook RZ/HA"
+      ]
+    },
+    {
+      "model": "dynabook S6/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045387210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045387210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook M6/X",
+        "dynabook M7/X",
+        "dynabook S6/X",
+        "dynabook M6/Y",
+        "dynabook M7/Y",
+        "dynabook S6/Y",
+        "dynabook M6/A",
+        "dynabook M7/A",
+        "dynabook SZ/LA"
+      ]
+    },
+    {
+      "model": "dynabook X7/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/a-ru3-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/a-ru3-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook X9/A",
+        "dynabook XZ/HA"
+      ]
+    },
+    {
+      "model": "dynabook X9/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/a-ru3-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/a-ru3-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook X7/A",
+        "dynabook XZ/HA"
+      ]
+    },
+    {
+      "model": "dynabook XD5/AR",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/ac-fr1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/ac-fr1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook XD5/A"
+      ]
+    },
+    {
+      "model": "dynabook XP7/AR P2P7ARBL",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-pl1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-pl1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook XP6/A",
+        "dynabook XP9/Y",
+        "dynabook XP9/A",
+        "dynabook XP8/AR"
+      ]
+    },
+    {
+      "model": "dynabook XP7/AR P1P7ARBL",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/a-pl3-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/a-pl3-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook XP9/AR",
+        "dynabook XP/ZA",
+        "dynabook XP/ZAE"
+      ]
+    },
+    {
+      "model": "dynabook XP8/AR",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-pl1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-pl1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook XP6/A",
+        "dynabook XP9/Y",
+        "dynabook XP9/A",
+        "dynabook XP7/AR P2P7ARBL"
+      ]
+    },
+    {
+      "model": "dynabook XP9/AR",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/a-pl3-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/a-pl3-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook XP7/AR P1P7ARBL",
+        "dynabook XP/ZA",
+        "dynabook XP/ZAE"
+      ]
+    },
+    {
+      "model": "dynabook V6/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045352210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045352210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook V6/Y",
+        "dynabook V8/Y",
+        "dynabook V8/A"
+      ]
+    },
+    {
+      "model": "dynabook V8/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045352210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045352210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook V6/Y",
+        "dynabook V8/Y",
+        "dynabook V6/A"
+      ]
+    },
+    {
+      "model": "dynabook AZ/DA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045421210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045421210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/X",
+        "dynabook C6/X",
+        "dynabook C7/X",
+        "dynabook T5/X",
+        "dynabook T6/X",
+        "dynabook T7/X",
+        "dynabook T9/X",
+        "dynabook C5/Y",
+        "dynabook C5/AB",
+        "dynabook C6/AB",
+        "dynabook C7/AB",
+        "dynabook T5/AB",
+        "dynabook T6/AB",
+        "dynabook T7/AB",
+        "dynabook AZ/SA"
+      ]
+    },
+    {
+      "model": "dynabook AZ/SA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045421210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045421210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/X",
+        "dynabook C6/X",
+        "dynabook C7/X",
+        "dynabook T5/X",
+        "dynabook T6/X",
+        "dynabook T7/X",
+        "dynabook T9/X",
+        "dynabook C5/Y",
+        "dynabook C5/AB",
+        "dynabook C6/AB",
+        "dynabook C7/AB",
+        "dynabook T5/AB",
+        "dynabook T6/AB",
+        "dynabook T7/AB",
+        "dynabook AZ/DA"
+      ]
+    },
+    {
+      "model": "dynabook AZ/MA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook AZ/LA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook CZ/MA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook BA/ZA",
+      "state": "direct",
+      "manualUrl": "https://dynabook.com/c/manual/y-bc1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-bc1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Official Dynabook model-year manual index explicitly links this exact model to this signature-verified PDF."
+    },
+    {
+      "model": "dynabook CZ/MA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook PZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook PZ/MA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook C5/Z",
+        "dynabook C6/Y",
+        "dynabook C7/Y",
+        "dynabook T5/Y",
+        "dynabook T6/Y",
+        "dynabook T7/Y",
+        "dynabook T9/Y",
+        "dynabook C5/A",
+        "dynabook C5/A3",
+        "dynabook C6/A",
+        "dynabook C6/A3",
+        "dynabook C7/A",
+        "dynabook C7/A3",
+        "dynabook T5/A",
+        "dynabook T5/A3",
+        "dynabook T6/A",
+        "dynabook T6/A3",
+        "dynabook T7/A",
+        "dynabook T7/A3",
+        "dynabook T9/A",
+        "dynabook AZ/MA",
+        "dynabook AZ/LA",
+        "dynabook CZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook PZ/LY",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/wb-bsa-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/wb-bsa-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook PZ/LA"
+      ]
+    },
+    {
+      "model": "dynabook PZ/LA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/wb-bsa-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/wb-bsa-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook PZ/LY"
+      ]
+    },
+    {
+      "model": "dynabook GA/ZA",
+      "state": "direct",
+      "manualUrl": "https://dynabook.com/c/manual/wb-am1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/wb-am1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Official Dynabook model-year manual index explicitly links this exact model to this signature-verified PDF."
+    },
+    {
+      "model": "dynabook GR/ZA （Windows 11 Homeモデル）",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/a-qu3-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/a-qu3-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G7/A",
+        "dynabook G9/A",
+        "dynabook GR/ZA （Windows 11 Proモデル）"
+      ]
+    },
+    {
+      "model": "dynabook GR/ZA （Windows 11 Proモデル）",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/a-qu3-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/a-qu3-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G7/A",
+        "dynabook G9/A",
+        "dynabook GR/ZA （Windows 11 Homeモデル）"
+      ]
+    },
+    {
+      "model": "dynabook GZ/HA",
+      "state": "direct",
+      "manualUrl": "https://dynabook.com/c/manual/wb-cr3-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/wb-cr3-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Official Dynabook model-year manual index explicitly links this exact model to this signature-verified PDF."
+    },
+    {
+      "model": "dynabook MZ/MA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/xb-sy2-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/xb-sy2-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook SZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook RA/ZA",
+      "state": "direct",
+      "manualUrl": "https://dynabook.com/c/manual/y-gn1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-gn1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Official Dynabook model-year manual index explicitly links this exact model to this signature-verified PDF."
+    },
+    {
+      "model": "dynabook RZ/HA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045388210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045388210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook R7/X",
+        "dynabook R8/X",
+        "dynabook R9/X",
+        "dynabook R7/Y",
+        "dynabook R8/Y",
+        "dynabook R7/A",
+        "dynabook R8/A"
+      ]
+    },
+    {
+      "model": "dynabook SZ/LA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045387210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045387210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook M6/X",
+        "dynabook M7/X",
+        "dynabook S6/X",
+        "dynabook M6/Y",
+        "dynabook M7/Y",
+        "dynabook S6/Y",
+        "dynabook M6/A",
+        "dynabook M7/A",
+        "dynabook S6/A"
+      ]
+    },
+    {
+      "model": "dynabook SZ/MA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/xb-sy2-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/xb-sy2-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook MZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook XA/ZA",
+      "state": "direct",
+      "manualUrl": "https://dynabook.com/c/manual/y-sp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/y-sp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Official Dynabook model-year manual index explicitly links this exact model to this signature-verified PDF."
+    },
+    {
+      "model": "dynabook XP/ZA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/a-pl3-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/a-pl3-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook XP7/AR P1P7ARBL",
+        "dynabook XP9/AR",
+        "dynabook XP/ZAE"
+      ]
+    },
+    {
+      "model": "dynabook XP/ZAE",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/a-pl3-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/a-pl3-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook XP7/AR P1P7ARBL",
+        "dynabook XP9/AR",
+        "dynabook XP/ZA"
+      ]
+    },
+    {
+      "model": "dynabook XZ/HA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/a-ru3-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/a-ru3-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook X7/A",
+        "dynabook X9/A"
+      ]
+    },
+    {
+      "model": "dynabook VZ/HA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/wb-da1-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/wb-da1-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook VZ/MA"
+      ]
+    },
+    {
+      "model": "dynabook VZ/MA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/c/manual/wb-da1-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/wb-da1-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook VZ/HA"
+      ]
+    },
+    {
+      "model": "dynabook FA/ZA",
+      "state": "direct",
+      "manualUrl": "https://dynabook.com/c/manual/a-cd1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/a-cd1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Official Dynabook model-year manual index explicitly links this exact model to this signature-verified PDF."
+    },
+    {
+      "model": "dynabook KZ/20A",
+      "state": "direct",
+      "manualUrl": "https://dynabook.com/c/manual/gm9045368210.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/c/manual/gm9045368210.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Official Dynabook model-year manual index explicitly links this exact model to this signature-verified PDF."
+    },
+    {
+      "model": "dynabook B55/LA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-5d1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/wb-5d1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook B45/KY",
+        "dynabook B55/KY",
+        "dynabook B55/LY",
+        "dynabook B75/KY",
+        "dynabook B75/LY",
+        "dynabook B75/LA"
+      ]
+    },
+    {
+      "model": "dynabook B56/RA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/a-wl1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/a-wl1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook M64/RA"
+      ]
+    },
+    {
+      "model": "dynabook BA56/VA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/ab-wl1-01_start.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/ab-wl1-01_start.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook MA64/VA"
+      ]
+    },
+    {
+      "model": "dynabook B75/LA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-5d1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/wb-5d1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook B45/KY",
+        "dynabook B55/KY",
+        "dynabook B55/LY",
+        "dynabook B75/KY",
+        "dynabook B75/LY",
+        "dynabook B55/LA"
+      ]
+    },
+    {
+      "model": "dynabook B86/PA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-pn1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/y-pn1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook B86/MY",
+        "dynabook B86/MA"
+      ]
+    },
+    {
+      "model": "dynabook B86/MA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-pn1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/y-pn1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook B86/MY",
+        "dynabook B86/PA"
+      ]
+    },
+    {
+      "model": "dynabook BA86/VA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-bc1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/y-bc1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook BA86/VY"
+      ]
+    },
+    {
+      "model": "dynabook P56/LA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-tp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/y-tp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook P56/LY"
+      ]
+    },
+    {
+      "model": "dynabook P56/RA",
+      "state": "direct",
+      "manualUrl": "https://dynabook.com/b/manual/a-tp2-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/a-tp2-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Official Dynabook model-year manual index explicitly links this exact model to this signature-verified PDF."
+    },
+    {
+      "model": "dynabook G83/MA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-cr3-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/wb-cr3-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G83/KY",
+        "dynabook G83/LY",
+        "dynabook G83/MY"
+      ]
+    },
+    {
+      "model": "dynabook G83/NA",
+      "state": "direct",
+      "manualUrl": "https://dynabook.com/b/manual/a-cr6-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/a-cr6-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Official Dynabook model-year manual index explicitly links this exact model to this signature-verified PDF."
+    },
+    {
+      "model": "dynabook G83R/PA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/a-qu3-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/a-qu3-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G83R/RA"
+      ]
+    },
+    {
+      "model": "dynabook G83R/RA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/a-qu3-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/a-qu3-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook G83R/PA"
+      ]
+    },
+    {
+      "model": "dynabook GA83/XA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-am1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/wb-am1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook GA83/XY"
+      ]
+    },
+    {
+      "model": "dynabook M64/RA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/a-wl1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/a-wl1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook B56/RA"
+      ]
+    },
+    {
+      "model": "dynabook MA64/VA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/ab-wl1-01_start.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/ab-wl1-01_start.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook BA56/VA"
+      ]
+    },
+    {
+      "model": "dynabook MJ64/LA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/xb-sy2-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/xb-sy2-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook MJ64/KY",
+        "dynabook MJ64/LX",
+        "dynabook MJ64/LY",
+        "dynabook SJ73/KY",
+        "dynabook SJ73/LX",
+        "dynabook SJ73/LY",
+        "dynabook SJ73/LA"
+      ]
+    },
+    {
+      "model": "dynabook RA73/VA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-gn1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/y-gn1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook RA73/VY"
+      ]
+    },
+    {
+      "model": "dynabook RJ73/MA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-qu1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/y-qu1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook RJ73/MY"
+      ]
+    },
+    {
+      "model": "dynabook RJ74/MA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-za1-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/wb-za1-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook RJ74/KY",
+        "dynabook RJ74/LY",
+        "dynabook RJ74/MY"
+      ]
+    },
+    {
+      "model": "dynabook SJ73/LA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/xb-sy2-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/xb-sy2-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook MJ64/KY",
+        "dynabook MJ64/LX",
+        "dynabook MJ64/LY",
+        "dynabook SJ73/KY",
+        "dynabook SJ73/LX",
+        "dynabook SJ73/LY",
+        "dynabook MJ64/LA"
+      ]
+    },
+    {
+      "model": "dynabook X74/LA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-pl1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/y-pl1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook X74/LY",
+        "dynabook X94/NY",
+        "dynabook X94/NA"
+      ]
+    },
+    {
+      "model": "dynabook X74/PA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/a-pl3-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/a-pl3-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook X74/RA"
+      ]
+    },
+    {
+      "model": "dynabook X74/RA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/a-pl3-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/a-pl3-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook X74/PA"
+      ]
+    },
+    {
+      "model": "dynabook XA74/VA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-sp1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/y-sp1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook XA74/VY"
+      ]
+    },
+    {
+      "model": "dynabook X83/LA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-ru1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/wb-ru1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook X83/LY"
+      ]
+    },
+    {
+      "model": "dynabook X83/PA",
+      "state": "direct",
+      "manualUrl": "https://dynabook.com/b/manual/a-ru3-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/a-ru3-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Official Dynabook model-year manual index explicitly links this exact model to this signature-verified PDF."
+    },
+    {
+      "model": "dynabook X94/NA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/y-pl1-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/y-pl1-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook X74/LY",
+        "dynabook X94/NY",
+        "dynabook X74/LA"
+      ]
+    },
+    {
+      "model": "dynabook V83/MA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-da1-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/wb-da1-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook V83/KY",
+        "dynabook V83/LX",
+        "dynabook V83/LY",
+        "dynabook V83/MY",
+        "dynabook V83/NA"
+      ]
+    },
+    {
+      "model": "dynabook V83/NA",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/wb-da1-02_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/wb-da1-02_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynabook V83/KY",
+        "dynabook V83/LX",
+        "dynabook V83/LY",
+        "dynabook V83/MY",
+        "dynabook V83/MA"
+      ]
+    },
+    {
+      "model": "dynabook V83/PA",
+      "state": "direct",
+      "manualUrl": "https://dynabook.com/b/manual/a-ac1-01_katsu.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/a-ac1-01_katsu.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Official Dynabook model-year manual index explicitly links this exact model to this signature-verified PDF."
+    },
+    {
+      "model": "dynabook K80/LA",
+      "state": "direct",
+      "manualUrl": "https://dynabook.com/b/manual/a-jt2-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/a-jt2-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Official Dynabook model-year manual index explicitly links this exact model to this signature-verified PDF."
+    },
+    {
+      "model": "dynaDesk DT210/A",
+      "state": "shared",
+      "manualUrl": "https://dynabook.com/b/manual/yb-lc2-01_om.pdf",
+      "supportUrl": "https://dynabook.com/manual_download/index.html",
+      "evidenceUrls": [
+        "https://dynabook.com/manual_download/index.html",
+        "https://dynabook.com/b/manual/yb-lc2-01_om.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_model_row_pdf_signature_verified",
+      "attemptedDiscovery": [
+        "official_year_index",
+        "official_model_pdf_candidates",
+        "official_pdf_get_range_and_magic"
+      ],
+      "reviewNote": "Dynabook's own exact model row explicitly links this identical verified PDF for multiple listed models; no family-name inference.",
+      "sharedWith": [
+        "dynaDesk DT210/Y"
+      ]
+    }
+  ]
 }
