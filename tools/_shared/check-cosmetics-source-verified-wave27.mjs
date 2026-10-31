@@ -88,10 +88,10 @@ const authority='Cosmetics Europe / COSMILE Europe';
 assert.equal(records.length,725,'reviewed wave must not rewrite raw ingredient recognition');
 assert.equal(merged.length,599,'no new or removed canonical identities');
 assert.equal(Object.keys(expected).length,12);
-assert.equal(Object.keys(parser.verifiedCategoryEvidence).length,142);
-assert.equal(Object.keys(parser.verifiedNoteEvidence).length,108);
-assert.equal(Object.keys(taxonomy.reviewed_mappings).length,142);
-assert.equal(parser.version,'1.60.0');
+assert.ok(Object.keys(parser.verifiedCategoryEvidence).length >= 142, 'wave27 roles retained');
+assert.ok(Object.keys(parser.verifiedNoteEvidence).length >= 108, 'wave27 notes retained');
+assert.ok(Object.keys(taxonomy.reviewed_mappings).length >= 142, 'wave27 mappings retained');
+assert.ok(Number(parser.version.split('.')[1]) >= 60, 'wave27 parser version retained');
 for (const [key,item] of Object.entries(expected)) {
   const category=parser.verifiedCategoryEvidence[key];
   const note=parser.verifiedNoteEvidence[key];

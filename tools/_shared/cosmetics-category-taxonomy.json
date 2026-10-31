@@ -23,7 +23,8 @@
     "binder": { "authority_functions": ["binding"] },
     "film former": { "authority_functions": ["film forming"] },
     "hair conditioning": { "authority_functions": ["hair conditioning"] },
-    "moisturizer": { "authority_functions": ["保湿"] }
+    "moisturizer": { "authority_functions": ["保湿"] },
+    "colorant": { "authority_functions": ["colorant"] }
   },
   "reviewed_mappings": {
     "water": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/water/"],"runtime_verified":true},
@@ -167,6 +168,24 @@
     "calcium chloride": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2378/calcium-chloride/"],"runtime_verified":true},
     "aluminum hydroxide": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/767/aluminum-hydroxide/"],"runtime_verified":true},
     "boron nitride": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/1864/boron-nitride/"],"runtime_verified":true},
-    "cinnamyl alcohol": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/3353/cinnamyl-alcohol/"],"runtime_verified":true}
+    "cinnamyl alcohol": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/3353/cinnamyl-alcohol/"],"runtime_verified":true},
+    "polyisobutene": {"category":"binder","source_functions":["binding"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12319/polyisobutene/"],"runtime_verified":true},
+    "peg-60 hydrogenated castor oil": {"category":"emulsifier","source_functions":["surfactant - emulsifying"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/10991/peg-60-hydrogenated-castor-oil/"],"runtime_verified":true},
+    "kaolin": {"category":"colorant","source_functions":["colorant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/7698/kaolin/"],"runtime_verified":true},
+    "nylon-12": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/9521/nylon-12/"],"runtime_verified":true},
+    "guar hydroxypropyltrimonium chloride": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6212/guar-hydroxypropyltrimonium-chloride/"],"runtime_verified":true},
+    "calcium carbonate": {"category":"buffer","source_functions":["buffering"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/2372/calcium-carbonate/"],"runtime_verified":true},
+    "polyquaternium-37": {"category":"film former","source_functions":["film forming"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12404/polyquaternium-37/"],"runtime_verified":true},
+    "microcrystalline cellulose": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/9079/microcrystalline-cellulose/"],"runtime_verified":true},
+    "zinc stearate": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/17145/zinc-stearate/"],"runtime_verified":true},
+    "polymethyl methacrylate": {"category":"film former","source_functions":["film forming"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12336/polymethyl-methacrylate/"],"runtime_verified":true},
+    "polyacrylate-13": {"category":"film former","source_functions":["film forming"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/11976/polyacrylate-13/"],"runtime_verified":true},
+    "magnesium stearate": {"category":"colorant","source_functions":["colorant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/8561/magnesium-stearate/"],"runtime_verified":true},
+    "glycosphingolipids": {"category":"skin conditioning","source_functions":["skin conditioning - miscellaneous"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/6143/glycosphingolipids/"],"runtime_verified":true},
+    "ceramide ns": {"category":"skin conditioning","source_functions":["skin conditioning - miscellaneous"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/25523/ceramide-ns/"],"runtime_verified":true},
+    "soluble collagen": {"category":"humectant","source_functions":["humectant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15238/soluble-collagen/"],"runtime_verified":true},
+    "ozokerite": {"category":"viscosity adjuster","source_functions":["viscosity controlling"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/10032/ozokerite/"],"runtime_verified":true},
+    "polyacrylamide": {"category":"film former","source_functions":["film forming"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/11964/polyacrylamide/"],"runtime_verified":true},
+    "padimate o": {"category":"uv filter","source_functions":["uv filter"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/5470/ethylhexyl-dimethyl-paba/"],"runtime_verified":true}
   }
 }

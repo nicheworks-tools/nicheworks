@@ -210,7 +210,25 @@
     "calcium chloride": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2378/calcium-chloride/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "aluminum hydroxide": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/767/aluminum-hydroxide/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "boron nitride": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1864/boron-nitride/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "cinnamyl alcohol": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3353/cinnamyl-alcohol/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "cinnamyl alcohol": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3353/cinnamyl-alcohol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polyisobutene": Object.freeze({ category: "binder", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12319/polyisobutene/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "peg-60 hydrogenated castor oil": Object.freeze({ category: "emulsifier", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10991/peg-60-hydrogenated-castor-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "kaolin": Object.freeze({ category: "colorant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/7698/kaolin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "nylon-12": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/9521/nylon-12/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "guar hydroxypropyltrimonium chloride": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6212/guar-hydroxypropyltrimonium-chloride/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "calcium carbonate": Object.freeze({ category: "buffer", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2372/calcium-carbonate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polyquaternium-37": Object.freeze({ category: "film former", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12404/polyquaternium-37/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "microcrystalline cellulose": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/9079/microcrystalline-cellulose/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "zinc stearate": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/17145/zinc-stearate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polymethyl methacrylate": Object.freeze({ category: "film former", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12336/polymethyl-methacrylate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polyacrylate-13": Object.freeze({ category: "film former", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11976/polyacrylate-13/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "magnesium stearate": Object.freeze({ category: "colorant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8561/magnesium-stearate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "glycosphingolipids": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6143/glycosphingolipids/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ceramide ns": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/25523/ceramide-ns/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "soluble collagen": Object.freeze({ category: "humectant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15238/soluble-collagen/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ozokerite": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10032/ozokerite/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polyacrylamide": Object.freeze({ category: "film former", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11964/polyacrylamide/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "padimate o": Object.freeze({ category: "uv filter", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5470/ethylhexyl-dimethyl-paba/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
@@ -321,7 +339,25 @@
     "calcium chloride": Object.freeze({ note_short: "Calcium Chloride is used to control cosmetic formulation viscosity; COSMILE Europe also lists an astringent function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2378/calcium-chloride/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "aluminum hydroxide": Object.freeze({ note_short: "Aluminum Hydroxide is used for viscosity control, opacifying and skin-protecting functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/767/aluminum-hydroxide/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "boron nitride": Object.freeze({ note_short: "Boron Nitride has skin-conditioning, absorbent and opacifying functions in cosmetics.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1864/boron-nitride/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "cinnamyl alcohol": Object.freeze({ note_short: "Cinnamyl Alcohol is used as a fragrance ingredient; COSMILE Europe also lists a flavouring function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3353/cinnamyl-alcohol/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "cinnamyl alcohol": Object.freeze({ note_short: "Cinnamyl Alcohol is used as a fragrance ingredient; COSMILE Europe also lists a flavouring function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3353/cinnamyl-alcohol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polyisobutene": Object.freeze({ note_short: "Polyisobutene is a binding ingredient; COSMILE Europe also lists film formation and viscosity control.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12319/polyisobutene/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "peg-60 hydrogenated castor oil": Object.freeze({ note_short: "PEG-60 Hydrogenated Castor Oil can help emulsify water and oil; COSMILE Europe also lists cleansing surfactant and fragrance-functional roles.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10991/peg-60-hydrogenated-castor-oil/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "kaolin": Object.freeze({ note_short: "Kaolin can act as a colourant; COSMILE Europe also lists absorbent, abrasive and opacifying functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/7698/kaolin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "nylon-12": Object.freeze({ note_short: "Nylon-12 helps control product viscosity; COSMILE Europe also lists bulking and opacifying functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/9521/nylon-12/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "guar hydroxypropyltrimonium chloride": Object.freeze({ note_short: "Guar Hydroxypropyltrimonium Chloride conditions skin; COSMILE Europe also lists antistatic, film-forming and viscosity-controlling functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6212/guar-hydroxypropyltrimonium-chloride/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "calcium carbonate": Object.freeze({ note_short: "Calcium Carbonate can buffer the pH of a cosmetic formula; COSMILE Europe also lists abrasive, bulking and opacifying functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2372/calcium-carbonate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polyquaternium-37": Object.freeze({ note_short: "Polyquaternium-37 forms a film on skin, hair or nails and has an antistatic function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12404/polyquaternium-37/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "microcrystalline cellulose": Object.freeze({ note_short: "Microcrystalline Cellulose can control formula viscosity; COSMILE Europe also lists absorbent, bulking, emulsion-stabilising and opacifying functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/9079/microcrystalline-cellulose/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "zinc stearate": Object.freeze({ note_short: "Zinc Stearate can control cosmetic viscosity; COSMILE Europe also lists anticaking, slip-modifying and colourant functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/17145/zinc-stearate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polymethyl methacrylate": Object.freeze({ note_short: "Polymethyl Methacrylate is used to form a continuous film on skin, hair or nails.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12336/polymethyl-methacrylate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polyacrylate-13": Object.freeze({ note_short: "Polyacrylate-13 is used as a film-forming ingredient.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11976/polyacrylate-13/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "magnesium stearate": Object.freeze({ note_short: "Magnesium Stearate can be used as a colourant; COSMILE Europe also lists anticaking, bulking and moisturising functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8561/magnesium-stearate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "glycosphingolipids": Object.freeze({ note_short: "Glycosphingolipids are used for skin conditioning.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6143/glycosphingolipids/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ceramide ns": Object.freeze({ note_short: "Ceramide NS conditions skin; COSMILE Europe also lists a hair-conditioning function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/25523/ceramide-ns/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "soluble collagen": Object.freeze({ note_short: "Soluble Collagen acts as a humectant; COSMILE Europe also lists film-forming, hair-conditioning, antistatic and skin-conditioning functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15238/soluble-collagen/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ozokerite": Object.freeze({ note_short: "Ozokerite can adjust cosmetic viscosity; COSMILE Europe also lists binding, emulsion-stabilising and opacifying functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10032/ozokerite/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "polyacrylamide": Object.freeze({ note_short: "Polyacrylamide forms a continuous film on skin, hair or nails; COSMILE Europe also lists binding and antistatic functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11964/polyacrylamide/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "padimate o": Object.freeze({ note_short: "Padimate O (also called Ethylhexyl Dimethyl PABA) serves as a UV filter; COSMILE Europe also lists UV-absorbing and light-stabilising functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5470/ethylhexyl-dimethyl-paba/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -546,7 +582,7 @@
   }
 
   const api = {
-    version: "1.60.0",
+    version: "1.61.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
