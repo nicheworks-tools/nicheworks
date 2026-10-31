@@ -156,7 +156,7 @@ try {
     const result = await evaluate("(" + smoke.toString() + ")()");
     assert.ok(result.ok, lang + " " + width + ": " + JSON.stringify(result));
     assert.equal(result.width, width, "Incorrect CSS viewport width");
-    assert.equal(result.clientWidth, width, "Incorrect layout viewport width");
+    assert.ok(result.clientWidth <= width && result.clientWidth >= width - (mobile ? 0 : 24), "Incorrect layout viewport width; allow native desktop scrollbar");
     console.log("PASS", lang, width + "px", JSON.stringify(result));
   }
   console.log("Motion Atlas production viewport smoke PASS: real 390px mobile + 1280px desktop.");
