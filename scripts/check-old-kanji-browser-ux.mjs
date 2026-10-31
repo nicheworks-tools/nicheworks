@@ -22,7 +22,7 @@ function staticServer() {
       const ok=u.searchParams.get('productId')==='okj.toolkit_pro' &&
         u.searchParams.get('sessionId')==='cs_test_WORKSPACEQA';
       res.writeHead(ok?200:403,{'content-type':'application/json;charset=utf-8','cache-control':'no-store'});
-      res.end(JSON.stringify(ok?{ok:true,active:true,features:['okj.workspaces','okj.name.batch','okj.place.batch','okj.reports','okj.advancedExport','okj.ocr.crop']}:{ok:false,active:false,error:'not_entitled'}));
+      res.end(JSON.stringify(ok?{ok:true,active:true,features:['okj.workspaces','okj.name.batch','okj.place.batch','okj.reports','okj.advancedExport','okj.ocr.crop','okj.modernizer.batch','okj.unicode.batch','okj.variant.batch','okj.document.batch']}:{ok:false,active:false,error:'not_entitled'}));
       return;
     }
     let p=decodeURIComponent(u.pathname); if(p.endsWith('/'))p+='index.html';
@@ -217,6 +217,31 @@ async function main(){
         }
       }
     }
+    // Four tool-specific Pro batch integrations, real DOM inputs, local dictionary data, CSV/JSON exports.
+    await c.rect(375,812);
+    const multiCases=[
+      {slug:'kanji-modernizer',values:'舊學\\n國府',expected:['旧学','国府'],kind:'modernizer'},
+      {slug:'unicode-kanji-checker',values:'𠮷\\n﨑',expected:['U+20BB7','U+FA11'],kind:'unicode'},
+      {slug:'variant-kanji-compare',values:'舊 旧\\n﨑 崎',expected:['U+820A','U+FA11'],kind:'variant'},
+      {slug:'old-document-kanji-highlighter',values:'舊學\\n國府',expected:['旧学','国府'],kind:'document'}
+    ];
+    for(const test of multiCases){
+      await c.nav(base+'/tools/'+test.slug+'/');await sleep(450);
+      const mounted=await c.js("return !!document.getElementById('okj-multi-batch');");
+      if(!mounted){fail.push('multibatch/'+test.kind+': entitled UI missing');continue;}
+      await c.js("const v=arguments[0];document.getElementById('okj-multi-input').value=v;document.querySelector('#okj-multi-batch .okj-multi-actions button').click();",[test.values.replaceAll('\\n','\n')]);
+      await sleep(450);
+      const result=await c.js("return {rows:document.querySelectorAll('#okj-multi-batch tbody tr').length,text:document.querySelector('#okj-multi-batch tbody')?.textContent||'',status:document.querySelector('#okj-multi-batch .okj-multi-status')?.textContent||'',overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth};");
+      if(result.rows!==2||!test.expected.every(value=>result.text.includes(value))||result.overflow>2){
+        fail.push('multibatch/'+test.kind+': bad mobile conversion '+JSON.stringify(result));
+      }
+      await c.js("window.__okjBatchDownloaded=[];HTMLAnchorElement.prototype.click=function(){window.__okjBatchDownloaded.push(this.download||'');};const buttons=document.querySelectorAll('#okj-multi-batch .okj-multi-actions button');buttons[1].click();buttons[2].click();");
+      await sleep(350);
+      const files=await c.js("return window.__okjBatchDownloaded||[];");
+      if(!files.includes('old-kanji-'+test.kind+'-batch.csv')||!files.includes('old-kanji-'+test.kind+'-batch.json')){
+        fail.push('multibatch/'+test.kind+': CSV/JSON downloads missing '+JSON.stringify(files));
+      }
+    }
     await c.rect(1440,1000);
     await c.js("localStorage.setItem('nicheworks:billing:session:okj.toolkit_pro','cs_test_DENIED');");
     await c.nav(base+'/tools/old-kanji-ocr-scanner/');
@@ -234,6 +259,12 @@ async function main(){
     }
     if(await c.js("return !!document.getElementById('okj-pro-workspaces');")){
       fail.push('workspace/denied: Pro UI exposed without verified entitlement');
+    }
+    for(const slug of ['kanji-modernizer','unicode-kanji-checker','variant-kanji-compare','old-document-kanji-highlighter']){
+      await c.nav(base+'/tools/'+slug+'/');await sleep(350);
+      if(await c.js("return !!document.getElementById('okj-multi-batch');")){
+        fail.push('multibatch/denied: unverified Pro panel exposed in '+slug);
+      }
     }
     await c.js("localStorage.removeItem('nicheworks:billing:session:okj.toolkit_pro');");
     if(fail.length){console.error(`Old Kanji browser UX audit failed: ${fail.length}`);for(const x of fail)console.error('- '+x);process.exitCode=1;}else console.log(`Old Kanji browser UX audit passed: ${tools.length} tools x ${viewports.length} viewports.`);

@@ -1,0 +1,18 @@
+.okj-multi-batch{margin:22px 0;padding:18px;border:1px solid #cbd5e1;background:#f8fafc;border-radius:10px;color:#213448;box-sizing:border-box;max-width:100%}
+.okj-multi-batch h2{font-size:1.28rem;margin:0 0 8px}
+.okj-multi-batch p{line-height:1.55}
+.okj-multi-batch label:not(:has(input[type=checkbox])){display:block;margin:10px 0 5px;font-weight:600}
+.okj-multi-batch textarea{box-sizing:border-box;width:100%;max-width:100%;min-height:115px;padding:10px;border:1px solid #74859a;border-radius:6px;font:inherit;background:#fff;color:#203247}
+.okj-multi-batch input[type=file]{max-width:100%;font:inherit}
+.okj-multi-options{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin:12px 0}
+.okj-multi-options label{margin:0!important}
+.okj-multi-options select{padding:8px;border:1px solid #74859a;background:#fff;color:#203247}
+.okj-multi-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.okj-multi-actions button{font:inherit;padding:9px 12px;border-radius:6px;border:1px solid #64748b;color:#203247;background:white}
+.okj-multi-actions button:disabled{opacity:.55}
+.okj-multi-status{font-weight:600;min-height:1.3em}
+.okj-multi-table-scroll{max-width:100%;overflow-x:auto}
+.okj-multi-table-scroll table{border-collapse:collapse;width:100%;min-width:570px;font-size:.92rem}
+.okj-multi-table-scroll th,.okj-multi-table-scroll td{border:1px solid #c5d0da;padding:8px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.okj-multi-table-scroll pre{font:inherit;font-size:.82rem;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;max-width:400px}
+@media(max-width:540px){.okj-multi-batch{padding:12px}.okj-multi-options{display:block}.okj-multi-options select,.okj-multi-actions button{display:block;width:100%;margin:7px 0}.okj-multi-actions{display:block}}
