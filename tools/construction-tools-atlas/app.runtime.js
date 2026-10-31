@@ -507,6 +507,23 @@
     els.affiliateSection.hidden = false;
   }
 
+  function composeDefinition(entry) {
+    // Preserve reviewed source copy. Short source definitions may be shown with
+    // their existing subject-specific notes rather than artificially generated filler.
+    const definition = { ...entry.description };
+    const notes = { ...entry.detail };
+    for (const [language,definitionLimit,detailMin] of [["ja",60,65],["en",135,125]]) {
+      const lead = definition[language] || "";
+      const context = notes[language] || "";
+      if (lead.length && lead.length < definitionLimit &&
+          context.length >= detailMin && !context.includes(lead)) {
+        definition[language] = lead + "\n" + context;
+        notes[language] = ""; // Don't repeat the same text under the next heading.
+      }
+    }
+    return { definition, notes };
+  }
+
   function renderDetail(entry) {
     if (!entry) return;
     els.detailEyebrow.textContent = humanize(entry.type) || (state.lang === "en" ? "Dictionary entry" : "辞書項目");
@@ -514,11 +531,13 @@
     els.detailSecondary.textContent = secondaryTerm(entry);
     renderTaxonomy(entry);
     renderImage(entry);
-    renderPair(els.detailDefinition, entry.description);
+    const composed = composeDefinition(entry);
+    renderPair(els.detailDefinition, composed.definition);
 
-    const hasNotes = Boolean(entry.detail.ja || entry.detail.en || entry.bullets.ja.length || entry.bullets.en.length);
+    const hasNotes = Boolean(composed.notes.ja || composed.notes.en || entry.bullets.ja.length || entry.bullets.en.length);
     els.notesSection.hidden = !hasNotes;
-    renderPair(els.detailNotes, entry.detail);
+    els.detailNotes.hidden = !composed.notes.ja && !composed.notes.en;
+    renderPair(els.detailNotes, composed.notes);
     renderArray(els.detailBullets, entry.bullets);
 
     const hasExamples = renderArray(els.detailExamples, entry.examples);
