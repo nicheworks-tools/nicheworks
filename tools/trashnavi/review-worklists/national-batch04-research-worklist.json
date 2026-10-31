@@ -1,0 +1,463 @@
+{
+  "schema_version": 1,
+  "batch": "national-batch04",
+  "phase1_target": 1741,
+  "phase2_wards_excluded": 175,
+  "planned_count": 50,
+  "source_base_commit": "96920a212c41fb8acb667d2f0b50f4442e428aca",
+  "status": "scope_defined_research_not_started",
+  "source_policy": "Official municipality or officially responsible joint-service sources only; do not count a candidate as verified until the actual content, scope and relationship are checked. Do not invent 3 URLs, calendar years, district scope, or providers. reviewed_no_direct is a valid completed state after documented research; pending_review is the only incomplete state.",
+  "continuation": "Read tools/trashnavi/NATIONAL_COMPLETION_POLICY.md first. For every one of these 50 municipalities, verify and assign exactly one final state, generate/publish only where sources support it, and complete strict audits, PR and merge. Preserve other tools' sitemap entries. Treat 50 reviewed, not 50 published, as the batch completion gate.",
+  "work_items": [
+    {
+      "lgcode": "173860",
+      "pref": "石川県",
+      "municipality": "宝達志水町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "174076",
+      "pref": "石川県",
+      "municipality": "中能登町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "174611",
+      "pref": "石川県",
+      "municipality": "穴水町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "174637",
+      "pref": "石川県",
+      "municipality": "能登町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "182028",
+      "pref": "福井県",
+      "municipality": "敦賀市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "182044",
+      "pref": "福井県",
+      "municipality": "小浜市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "182052",
+      "pref": "福井県",
+      "municipality": "大野市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "182061",
+      "pref": "福井県",
+      "municipality": "勝山市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "182079",
+      "pref": "福井県",
+      "municipality": "鯖江市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "182087",
+      "pref": "福井県",
+      "municipality": "あわら市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "182095",
+      "pref": "福井県",
+      "municipality": "越前市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "182109",
+      "pref": "福井県",
+      "municipality": "坂井市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "183229",
+      "pref": "福井県",
+      "municipality": "永平寺町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "183822",
+      "pref": "福井県",
+      "municipality": "池田町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "184047",
+      "pref": "福井県",
+      "municipality": "南越前町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "184233",
+      "pref": "福井県",
+      "municipality": "越前町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "184420",
+      "pref": "福井県",
+      "municipality": "美浜町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "184811",
+      "pref": "福井県",
+      "municipality": "高浜町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "184837",
+      "pref": "福井県",
+      "municipality": "おおい町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "185019",
+      "pref": "福井県",
+      "municipality": "若狭町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "192023",
+      "pref": "山梨県",
+      "municipality": "富士吉田市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "192040",
+      "pref": "山梨県",
+      "municipality": "都留市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "192058",
+      "pref": "山梨県",
+      "municipality": "山梨市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "192066",
+      "pref": "山梨県",
+      "municipality": "大月市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "192074",
+      "pref": "山梨県",
+      "municipality": "韮崎市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "192082",
+      "pref": "山梨県",
+      "municipality": "南アルプス市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "192091",
+      "pref": "山梨県",
+      "municipality": "北杜市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "192104",
+      "pref": "山梨県",
+      "municipality": "甲斐市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "192112",
+      "pref": "山梨県",
+      "municipality": "笛吹市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "192121",
+      "pref": "山梨県",
+      "municipality": "上野原市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "192139",
+      "pref": "山梨県",
+      "municipality": "甲州市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "192147",
+      "pref": "山梨県",
+      "municipality": "中央市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "193461",
+      "pref": "山梨県",
+      "municipality": "市川三郷町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "193640",
+      "pref": "山梨県",
+      "municipality": "早川町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "193658",
+      "pref": "山梨県",
+      "municipality": "身延町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "193666",
+      "pref": "山梨県",
+      "municipality": "南部町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "193682",
+      "pref": "山梨県",
+      "municipality": "富士川町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "193844",
+      "pref": "山梨県",
+      "municipality": "昭和町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "194221",
+      "pref": "山梨県",
+      "municipality": "道志村",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "194239",
+      "pref": "山梨県",
+      "municipality": "西桂町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "194247",
+      "pref": "山梨県",
+      "municipality": "忍野村",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "194255",
+      "pref": "山梨県",
+      "municipality": "山中湖村",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "194298",
+      "pref": "山梨県",
+      "municipality": "鳴沢村",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "194301",
+      "pref": "山梨県",
+      "municipality": "富士河口湖町",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "194425",
+      "pref": "山梨県",
+      "municipality": "小菅村",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "194433",
+      "pref": "山梨県",
+      "municipality": "丹波山村",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "202037",
+      "pref": "長野県",
+      "municipality": "上田市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "202045",
+      "pref": "長野県",
+      "municipality": "岡谷市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "202053",
+      "pref": "長野県",
+      "municipality": "飯田市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    },
+    {
+      "lgcode": "202061",
+      "pref": "長野県",
+      "municipality": "諏訪市",
+      "coverage_state": "pending_review",
+      "candidate_official_waste_url": null,
+      "verification_status": "not_started",
+      "notes": null
+    }
+  ]
+}
