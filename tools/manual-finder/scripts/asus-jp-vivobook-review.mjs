@@ -66,24 +66,60 @@ export function inspectManual(doc,product){
 export async function reviewAll({pass,indexHtml,apiFetch=getOfficial,pageFetch=getOfficial,concurrency=8}){
  const pop=await lockedPopulation({pass,indexHtml,apiFetch}),records=new Array(35);
  let cursor=0;
+ function makerOptions(html,sourceUrl,code){
+  const candidates=[];
+  try{
+   const url=new URL(sourceUrl),selected=url.searchParams.get('model2Name');
+   if(url.hostname==='www.asus.com'&&/\/helpdesk_manual\/?$/.test(url.pathname)&&selected&&selected.toUpperCase().includes(code))
+    candidates.push(selected);
+  }catch{}
+  const options=[...html.matchAll(/<div\b[^>]*class="[^"]*selectListOption[^"]*"[^>]*>([^<]+)<\/div>/gi)].map(x=>clean(x[1]));
+  for(const option of options)if(option.toUpperCase().startsWith(code)&&/^[A-Z0-9-]{5,20}$/.test(option))candidates.push(option);
+  return[...new Set(candidates)];
+ }
  async function worker(){
   while(cursor<records.length){
    const i=cursor++,item=pop.items[i],code=familyCode(item.model);
    const candidate=item.productUrl+'helpdesk_manual/?model2Name='+encodeURIComponent(code);
+   const global=item.productUrl.replace('https://www.asus.com/jp/','https://www.asus.com/')+'helpdesk_manual/';
    const row={model:item.model,productId:item.productId,productUrl:item.productUrl,verifiedAt:'2026-10-31',
-    attemptedDiscovery:['official_complete_Vivobook_API','exact_official_product_page','official_model_variant_manual_index','official_user_manual_language_version_listing'],candidateUrl:candidate};
-   try{
-    const doc=await pageFetch(candidate),tested=inspectManual(doc,item);
-    row.checkedUrl=doc.url;row.manualEvidence=tested;
-    if(tested.accepted){
-     row.state='direct';row.manualUrl=doc.url;row.supportUrl=item.productUrl;row.selectedVariant=tested.variant;
-     row.evidenceUrls=[INDEX,item.productUrl,doc.url];row.reviewMethod='manufacturer_locked_product_and_positive_model_variant_manual_page';
-     row.reviewNote='Exact ASUS product family and manufacturer-selected variant with Japanese or English User Manual entry and version/download metadata. Other variants are not assumed interchangeable.';
-    }else{
-     row.state='held';row.reason='Manufacturer manual candidate failed positive exact product code, variant, or operational manual metadata: '+JSON.stringify(tested);
-     row.evidenceUrls=[INDEX,item.productUrl];
+    attemptedDiscovery:['official_complete_Vivobook_API','official_exact_product_listing','official_manufacturer_variant_selector','model_selected_manual_document_index','operating_user_manual_language_and_version'],
+    candidateUrl:candidate,variantSelectorUrl:global,attempts:[]};
+   const attempt=async(url,source)=>{
+    try{
+     const doc=await pageFetch(url),tested=inspectManual(doc,item);
+     row.attempts.push({candidate:url,source,finalUrl:doc.url,manualIdentity:tested});
+     if(tested.accepted){
+      row.state='direct';row.manualUrl=doc.url;row.supportUrl=item.productUrl;row.selectedVariant=tested.variant;
+      row.manualEvidence=tested;row.evidenceUrls=[INDEX,item.productUrl,global,doc.url];
+      row.reviewMethod='official_locked_family_plus_manufacturer_selected_variant_and_downloadable_user_manual';
+      row.reviewNote='Exact manufacturer-listed product family, manufacturer-explicit selected variant, final ASUS model manual index with Japanese/English operating manual and version/download metadata. Does not imply other variants share this guide.';
+      return true;
+     }
+    }catch(e){row.attempts.push({candidate:url,source,error:String(e)})}
+    return false;
+   };
+   let passed=await attempt(candidate,'primary_family_model_code_candidate');
+   if(!passed){
+    let options=[];
+    try{
+     const doc=await pageFetch(global);
+     options=makerOptions(doc.text,doc.url,code);
+     row.manufacturerVariantOptions=options;
+     row.globalVariantSource=doc.url;
+    }catch(e){row.attempts.push({candidate:global,source:'manufacturer_global_variant_selector',error:String(e)})}
+    for(const variant of options.slice(0,14)){
+     const variantUrl=item.productUrl+'helpdesk_manual?model2Name='+encodeURIComponent(variant);
+     passed=await attempt(variantUrl,'manufacturer_explicit_variant_option');
+     if(!passed)passed=await attempt(item.productUrl+'helpdesk_manual/?model2Name='+encodeURIComponent(variant),'manufacturer_explicit_variant_slash_form');
+     if(passed)break;
     }
-   }catch(e){row.state='held';row.reason='Official model-specific manual destination unresolved: '+String(e);row.evidenceUrls=[INDEX,item.productUrl];}
+   }
+   if(!passed){
+    row.state='held';
+    row.reason='Manufacturer-listed family verified in locked official catalog, but no exact variant-specific ASUS operational manual page with actual manual download metadata was accepted after family path and manufacturer variant-selector secondary discovery.';
+    row.evidenceUrls=[INDEX,item.productUrl,...(row.globalVariantSource&&official(row.globalVariantSource)?[row.globalVariantSource]:[])];
+   }
    records[i]=row;
   }
  }
