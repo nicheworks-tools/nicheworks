@@ -156,6 +156,10 @@ export async function onRequestPost({ request, env }) {
   if (!listedProduct) {
     return json({ ok: false, error: 'unknown_product_id' }, 404);
   }
+  // Preserve product-specific launch switches added for CSV Tidy and future products.
+  if (listedProduct.checkout && listedProduct.checkout.enabled !== true) {
+    return json({ ok: false, error: 'product_checkout_disabled' }, 403);
+  }
   if (config.status !== 'active' || listedProduct.stripe?.mode !== 'connected') {
     return json({ ok: false, error: 'product_not_on_sale' }, 409);
   }

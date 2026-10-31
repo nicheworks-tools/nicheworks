@@ -27,4 +27,7 @@ linked.products.find(x=>x.productId==='okj.toolkit_pro').stripe.mode='connected'
 response=await onRequestPost({request:req('okj.toolkit_pro'),env:{fixture:linked}});
 assert.equal(response.status,409);
 assert.equal((await response.json()).error,'product_not_on_sale');
-console.log('Old Kanji checkout remains closed for undecided prices / planning catalog: PASS');
+response=await onRequestPost({request:req('csv_tidy.pro_v1'),env:{fixture:config}});
+assert.equal(response.status,403);
+assert.equal((await response.json()).error,'product_checkout_disabled');
+console.log('Old Kanji and CSV Tidy checkout remain closed for unlaunched products: PASS');

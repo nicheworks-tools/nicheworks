@@ -13,6 +13,8 @@ assert.deepEqual(c.featureIds,ids);
 assert.deepEqual(c.tools.map(x=>x.slug),slugs);
 const product=b.products.find(x=>x.productId===c.productId);
 assert.ok(product);
+assert.ok(b.products.some(x=>x.productId==='csv_tidy.pro_v1' && x.checkout?.enabled === false), 'Preserve concurrent CSV Tidy Pro disabled checkout');
+assert.ok(b.priceTiers.some(x=>x.priceTierId==='nw.one_time.jpy_1980'), 'Preserve concurrent CSV Tidy Pro price tier');
 assert.deepEqual(product.features,ids);
 assert.equal(product.price.amount,null);
 assert.equal(product.price.currency,null);
