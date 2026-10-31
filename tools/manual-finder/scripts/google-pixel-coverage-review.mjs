@@ -36,8 +36,13 @@ export function extractReleased(html){
  return{rows,models};
 }
 export function extractOfficialSupportIndex(html){
+ const sections=[...html.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/gi)];
+ const sectionIndex=sections.findIndex(x=>clean(x[1])==='安全と規制に関する情報');
+ if(sectionIndex<0||!sections[sectionIndex+1]||clean(sections[sectionIndex+1][1])!=='RFE 情報')
+  throw Error('manufacturer safety section boundary drift');
+ const scoped=html.slice(sections[sectionIndex].index,sections[sectionIndex+1].index);
  const entries=[];
- for(const m of html.matchAll(/<a\b[^>]*href\s*=\s*(["'])(.*?)\1[^>]*>([\s\S]*?)<\/a>/gi)){
+ for(const m of scoped.matchAll(/<a\b[^>]*href\s*=\s*(["'])(.*?)\1[^>]*>([\s\S]*?)<\/a>/gi)){
   const label=clean(m[3]);
   if(!/^Google Pixel(?:\b|\s|、)/i.test(label)||!/\s*\(20(?:1[6-9]|2\d)\)$/.test(label))continue;
   let url;try{url=new URL(decodeHtml(m[2]),SAFETY)}catch{continue}
@@ -46,7 +51,8 @@ export function extractOfficialSupportIndex(html){
   if(!names.length||names.some(x=>!x.startsWith('Google Pixel')))continue;
   entries.push({models:names,url:url.href.split('?')[0]+'?hl=ja',label});
  }
- const groups=[...new Map(entries.map(x=>[x.models.join('|'),x])).values()];
+ const deduped=new Map();for(const x of entries){const k=x.models.join('|');if(!deduped.has(k))deduped.set(k,x);}
+ const groups=[...deduped.values()];
  if(groups.length!==24||groups.flatMap(x=>x.models).length!==38||new Set(groups.flatMap(x=>x.models)).size!==38)
   throw Error('official support groups changed '+groups.length);
  return groups;
