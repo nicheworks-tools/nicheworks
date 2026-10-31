@@ -60,8 +60,8 @@ assert.equal(combined.length,717);
 for(const [maker,count] of [['Sony',107],['Panasonic',27],['Apple',31],['Fujifilm',56],['VAIO',82],['Samsung Mobile',89],['dynabook',177],['Fujitsu FMV',148]])
  assert.equal(combined.filter(x=>x.maker===maker).length,count);
 const covered=fs.readFileSync(new URL('../COVERAGE.md',import.meta.url),'utf8');
-assert.ok(covered.includes('**2,233 verified model/caliber rows**'));
-assert.ok(covered.includes('**48 of the 66 baseline brands are still generic-only**'));
+assert.ok(covered.includes('| Fujitsu FMV | 148 | expanded, scope-complete |'), 'Fujitsu own scope must remain documented regardless of unrelated maker growth');
+assert.ok(covered.includes('Fujitsu FMWORLD JP business LIFEBOOK U-series Coverage-Pass'), 'Fujitsu own provenance must remain documented');
 const matching={population:148,checkedPdfDestinations:78,counts:{direct:148,shared:0,support_only:0,held:0},
  records:pass.records.map(x=>({model:x.model,state:x.state,manualUrl:x.manualUrl,supportUrl:x.supportUrl,primaryDocumentUrl:x.primaryDocumentUrl}))};
 assert.equal(compareFinal(pass,matching).valid,true);
