@@ -99,7 +99,8 @@
       await until(()=>panel.querySelector('.csvt-pro-status').textContent.includes('ZIP')));
     report('Browser status reports two valid and one rejected file',
       /2/.test(panel.querySelector('.csvt-pro-status').textContent) &&
-      /1/.test(panel.querySelector('.csvt-pro-status').textContent));
+      /1/.test(panel.querySelector('.csvt-pro-status').textContent),
+      panel.querySelector('.csvt-pro-status').textContent);
 
     d.querySelector('.nw-lang-switch button[data-lang="en"]').click();
     report('Verified Pro UI respects English language toggle',
