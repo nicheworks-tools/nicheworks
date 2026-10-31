@@ -478,3 +478,8 @@ The note text does not make product safety, allergy probability, medical efficac
 ## Verified ingredient note wave 24 (2026-10-31)
 
 The 18 reviewed category-wave28 ingredients also receive individual source-backed, neutral short notes. Notes describe only the cosmetic-function properties of their exact COSMILE ingredient entries (including the explicitly listed Padimate O identity synonym); they do not claim that a particular finished product contains sufficient concentrations, is safe for an allergy, or has an approved SPF rating. `note_verified` and HTTPS source metadata must survive canonical merging. Cumulative note/strong runtime: **126 / 599 (21.04%)**, with **473** identities still lacking an equivalent ingredient-specific verified note.
+
+
+## Source-backed note wave 25 (2026-10-31)
+
+The same 14 individually reviewed ingredients receive provenance-checked neutral function descriptions. All notes remain optional and secondary to maintained bilingual role explanations. The notes do not predict allergy, medical efficacy, concentrations, product SPF, or finished product safety. The combined strong runtime inventory is **140/599 = 23.37%**, with **459** ingredient-specific verified notes still unreviewed. Exact source URLs and texts are pinned in `check-cosmetics-source-verified-wave29.mjs`.
