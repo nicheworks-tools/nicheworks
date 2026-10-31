@@ -3,6 +3,7 @@
 
   const runtimeScriptUrl = document.currentScript?.src || "";
   let initialized = false;
+  let refreshAfterAccessoryLayers = () => {};
 
   function loadScript(relativeUrl, isLoaded, done) {
     if (isLoaded() || !runtimeScriptUrl) {
@@ -87,7 +88,7 @@
     if (initialized) return;
     initialized = true;
 
-    const config = window.MANUALFINDER_AFFILIATE_CONFIG;
+    let config = window.MANUALFINDER_AFFILIATE_CONFIG;
     const affiliate = window.NWAmazonAffiliate;
     const results = document.getElementById("results");
 
@@ -271,11 +272,29 @@
       refreshDisclosure();
     }
 
+    function applyAccessoryLayers() {
+      const latest = window.MANUALFINDER_AFFILIATE_CONFIG;
+      if (!latest || latest.enabled !== true) return;
+      config = latest;
+      affiliate.configure({
+        enabled: true,
+        tool: config.tool || "manual-finder",
+        targets: config.targets || {}
+      });
+      results.querySelectorAll(".card").forEach((card) => {
+        card.querySelector(".mf-commerce")?.remove();
+        delete card.dataset.mfAffiliateChecked;
+      });
+      refresh();
+    }
+    refreshAfterAccessoryLayers = applyAccessoryLayers;
+
     const observer = new MutationObserver(refresh);
     observer.observe(results, { childList: true });
 
     refresh();
   }
 
-  loadCameraAccessoryLayers(init);
+  init();
+  loadCameraAccessoryLayers(refreshAfterAccessoryLayers);
 })();
