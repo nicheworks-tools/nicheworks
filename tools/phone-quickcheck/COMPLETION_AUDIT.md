@@ -152,6 +152,12 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 19 — 2026-10-31
+
+Expanded the real production Chrome smoke to enforce the new **Wave 18 four-model** deployment facts in addition to the existing exact full-file JSON parity assertion. The public JSON must include FCNT arrows We2 M07 with its 4,500mAh battery; Nothing CMF Phone 2 Pro with 33W/negative wireless; Nothing Phone (3a) Lite with JP USB-C cable and negative wireless; and Nothing Phone (3) with JP A024 cable inclusion plus 15W wireless. This specifically guards against cross-regional package-state regressions, stale deploys and unsupported wireless claims. Five viewport browser checks, JP/EN, and badge-close non-overlap remain intact.
+
+Do not declare the public **215-phone** release verified until GitHub Actions actually fetches and confirms the public page and JSON.
+
 ## Post-v1 maintenance Wave 18 — 2026-10-31
 
 Backfilled four **existing-maker** Japan-market phones using first-party manufacturer and Japanese carrier sources. Maintained **211 → 215 phones**, **11 manufacturers**, **36 foldables** (no new unreviewed package or water unknown fields). Existing V1 closure baseline of 181 unchanged.
