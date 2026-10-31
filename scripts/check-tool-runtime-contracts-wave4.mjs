@@ -44,7 +44,11 @@ has('tools/money-template-checker/app.js', 'Income is 0, so percentage-based che
 has('tools/money-template-checker/app.js', 'localStorage.setItem("nw_lang", lang)');
 
 // 50. Motion Atlas — ADS_DONATION free mode keeps advanced compare/handoff available without entitlement or Stripe.
-has('tools/motion-atlas/app.js', 'function compareLimit(){ return proActive ? 4 : 2; }');
+has('tools/motion-atlas/app.js', 'function compareLimit(){ return 4; }');
+has('tools/motion-atlas/app.js', 'entitlement:"free"');
+has('tools/motion-atlas/app.js', 'URL.createObjectURL(blob)');
+lacks('tools/motion-atlas/app.js', 'showLockedPro', 'retired Pro copy/export lock');
+lacks('tools/motion-atlas/app.js', 'buy.stripe.com', 'retired Stripe purchase link');
 has('tools/motion-atlas/app.js', 'motionAtlasFavorites');
 has('tools/motion-atlas/app.js', 'motionAtlasRecent');
 has('tools/motion-atlas/pro-bridge.js', 'document.documentElement.dataset.proActive = "true"');
