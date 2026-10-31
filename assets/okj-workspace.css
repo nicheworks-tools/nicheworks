@@ -1,0 +1,15 @@
+.okj-pro-workspaces{margin:18px 0;padding:16px;border:1px solid #cbd5e1;border-radius:10px;background:#f8fafc;color:#18212b}
+.okj-pro-workspaces h2{font-size:1.2rem;margin:0 0 8px}
+.okj-pro-workspaces .okj-workspace-notice{font-size:.88rem;line-height:1.5;color:#475569}
+.okj-pro-workspaces input,.okj-pro-workspaces select,.okj-pro-workspaces textarea{display:block;box-sizing:border-box;max-width:100%;width:100%;font:inherit;padding:9px;margin:8px 0;border-radius:6px;border:1px solid #8c9bad;background:#fff;color:#1b2733}
+.okj-pro-workspaces textarea{resize:vertical;min-height:90px;white-space:pre-wrap}
+.okj-pro-workspaces button{font:inherit;color:#102d45;background:#fff;border:1px solid #64748b;border-radius:7px;padding:9px 12px;cursor:pointer}
+.okj-pro-workspaces button:disabled{opacity:.48;cursor:default}
+.okj-pro-workspaces .okj-workspace-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
+.okj-pro-workspaces .okj-workspace-row input,.okj-pro-workspaces .okj-workspace-row select{flex:1;min-width:160px}
+.okj-pro-workspaces .okj-workspace-entry{margin:8px 0;padding:10px;border:1px solid #cbd5e1;border-radius:7px;overflow-wrap:anywhere}
+.okj-pro-workspaces .okj-workspace-entry small{display:block;color:#46586b}
+.okj-pro-workspaces .okj-workspace-entry p{white-space:pre-wrap;max-height:130px;overflow:auto}
+.okj-pro-workspaces .okj-workspace-entry button{margin:3px 7px 3px 0}
+.okj-pro-workspaces .okj-workspace-status{min-height:1.5em;font-weight:600}
+@media(max-width:520px){.okj-pro-workspaces{padding:12px}.okj-pro-workspaces .okj-workspace-row{display:block}.okj-pro-workspaces button{width:100%;margin:4px 0}}
