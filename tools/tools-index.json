@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-13T00:00:00.000Z",
-  "total": 88,
+  "generatedAt": "2026-10-31T00:00:00.000Z",
+  "total": 89,
   "items": [
     {
       "slug": "ai-interaction-atlas",
@@ -935,6 +935,19 @@
         "file",
         "batch",
         "organize"
+      ]
+    },
+    {
+      "slug": "screenshot-canvas",
+      "title_en": "Screenshot Canvas",
+      "title_ja": "スクショ自由配置・比較",
+      "desc_en": "Arrange multiple screenshots in a freeform, grid, side-by-side, or overlay canvas.",
+      "desc_ja": "複数のスクリーンショットを自由配置・横並び・グリッド・重ね合わせで比較するツールです。",
+      "tags": [
+        "screenshot",
+        "image",
+        "compare",
+        "canvas"
       ]
     },
     {
