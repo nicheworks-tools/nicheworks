@@ -1,0 +1,54 @@
+name: Normalize Batch02 root sitemap with Atlas generator
+on:
+  push:
+    branches:
+      - feat/trashnavi-national-batch02-20261031
+    paths:
+      - '.github/workflows/trashnavi-national-batch02-normalize-sitemap-once.yml'
+permissions:
+  contents: write
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Rebuild authoritative Atlas sitemap order
+        run: |
+          node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs --check
+      - name: Verify TrashNavi and Atlas URL preservation
+        run: |
+          node <<'NODE'
+          const fs=require('node:fs');
+          const txt=fs.readFileSync('sitemap.xml','utf8');
+          const urls=[...txt.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>x[1]);
+          const tn=urls.filter(u=>u.startsWith('https://nicheworks.app/tools/trashnavi/'));
+          if(tn.length!==393)throw Error('Expected 392 municipality pages plus tool root (393); got '+tn.length);
+          if(tn.length!==new Set(tn).size)throw Error('Duplicate TrashNavi sitemap URL');
+          if(!urls.includes('https://nicheworks.app/tools/trashnavi/tokyo/toshima-island/'))throw Error('Toshima island missing');
+          if(!urls.includes('https://nicheworks.app/tools/trashnavi/tokyo/toshima/'))throw Error('Toshima special ward lost');
+          if(!urls.includes('https://nicheworks.app/tools/construction-tools-atlas/entries/'))throw Error('Construction Atlas index lost');
+          console.log('TrashNavi sitemap URLs verified:',tn.length,'total root sitemap:',urls.length);
+          NODE
+          node tools/trashnavi/scripts/check-national-completion.mjs
+          node tools/trashnavi/scripts/generate-municipality-pages.mjs --check
+          node tools/trashnavi/scripts/audit-coverage.mjs --strict
+          node tools/trashnavi/scripts/check-affiliate-contract.mjs
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
+          node scripts/check-trashnavi-direct-links.mjs --inventory
+      - name: Commit normalized sitemap after all audits
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/trashnavi-national-batch02-normalize-sitemap-once.yml
+          git add -A
+          git diff --cached --stat
+          git commit -m "fix(trashnavi): preserve Atlas sitemap generator ordering"
+          git push origin HEAD:feat/trashnavi-national-batch02-20261031
