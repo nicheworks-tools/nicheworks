@@ -22,7 +22,7 @@ function staticServer() {
       const ok=u.searchParams.get('productId')==='okj.toolkit_pro' &&
         u.searchParams.get('sessionId')==='cs_test_WORKSPACEQA';
       res.writeHead(ok?200:403,{'content-type':'application/json;charset=utf-8','cache-control':'no-store'});
-      res.end(JSON.stringify(ok?{ok:true,active:true,features:['okj.workspaces','okj.name.batch','okj.place.batch']}:{ok:false,active:false,error:'not_entitled'}));
+      res.end(JSON.stringify(ok?{ok:true,active:true,features:['okj.workspaces','okj.name.batch','okj.place.batch','okj.reports','okj.advancedExport']}:{ok:false,active:false,error:'not_entitled'}));
       return;
     }
     let p=decodeURIComponent(u.pathname); if(p.endsWith('/'))p+='index.html';
@@ -182,7 +182,25 @@ async function main(){
     if(!checkedPlace.mounted || checkedPlace.rows!==2 || !checkedPlace.text.includes('広') || !checkedPlace.text.includes('国')){
       fail.push('batch/place: verified place checker did not analyze 廣 and 國: '+JSON.stringify(checkedPlace));
     }
+    // Verify real browser download actions for Reports and Advanced Export.
+    await c.nav(base+'/tools/old-kanji-ocr-scanner/');
+    await sleep(550);
+    const reportVisible=await c.js("return !!document.getElementById('okj-pro-reports-export');");
+    if(!reportVisible)fail.push('reports/verified: report and export UI missing');
+    else{
+      await c.js("const e=document.getElementById('manual-text'); e.value='舊學'; e.dispatchEvent(new Event('input',{bubbles:true})); window.__okjReportsDownloaded=[]; HTMLAnchorElement.prototype.click=function(){window.__okjReportsDownloaded.push(this.download||'');}; const panel=document.getElementById('okj-pro-reports-export'); panel.querySelector('button[data-report-type=report][data-report-format=md]').click(); panel.querySelector('button[data-report-type=export][data-report-format=csv]').click();");
+      await sleep(500);
+      const downloads=await c.js("return {files:window.__okjReportsDownloaded||[],status:document.querySelector('#okj-pro-reports-export .okj-reports-status')?.textContent||''};");
+      if(!downloads.files.includes('old-kanji-report.md')||!downloads.files.includes('old-kanji-export.csv')){
+        fail.push('reports/browser-download: expected Markdown report and CSV advanced export '+JSON.stringify(downloads));
+      }
+    }
     await c.js("localStorage.setItem('nicheworks:billing:session:okj.toolkit_pro','cs_test_DENIED');");
+    await c.nav(base+'/tools/old-kanji-ocr-scanner/');
+    await sleep(350);
+    if(await c.js("return !!document.getElementById('okj-pro-reports-export');")){
+      fail.push('reports/denied: report/export UI exposed without verified entitlement');
+    }
     await c.nav(base+'/tools/name-old-kanji-checker/');
     await sleep(350);
     if(await c.js("return !!document.getElementById('okj-pro-batch');")){

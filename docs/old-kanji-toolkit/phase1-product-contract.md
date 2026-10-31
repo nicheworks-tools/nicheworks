@@ -39,3 +39,7 @@ A single entitlement `okj.workspaces` enables opt-in workspaces on all eight Old
 ## Phase 1C: actual Name / Place batch checking
 
 Two existing tools now load a shared browser-only batch analyzer and Pro UI. A single product grant permits `okj.name.batch` and `okj.place.batch`, each rechecked independently. Inputs support multiline pastes or a small UTF-8 CSV; outputs show dictionary forward/reverse candidates, unmatched rows and downloadable CSV/JSON. The implementation is NOT an official name/address validator. Existing Free checks and affiliate links continue. Batch UI only mounts after verified entitlement; commercial pricing remains undecided and selling disabled.
+
+## Phase 1D: OCR report and advanced export UI
+
+The existing `assets/okj-report-engine.js` and `assets/okj-export-engine.js` now have a usable browser UI on Old Kanji OCR Scanner, gated by `okj.reports` or `okj.advancedExport` respectively. Users can generate research reports in Markdown/JSON or export their current OCR text, dictionary detections and modern preview in CSV/Markdown/JSON. Inclusion of saved history and collection is opt-in and independently rechecks `okj.history` / `okj.collections`; the output remains entirely local. Pro sales are not enabled. The reports do not attest to official spelling.

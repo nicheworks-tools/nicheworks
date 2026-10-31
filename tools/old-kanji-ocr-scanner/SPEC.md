@@ -113,3 +113,10 @@ Camera/image selection, OCR status, editable result text, and detected cards for
 - Proposed Pro feature IDs: `okj.ocr.batch`, `okj.ocr.crop`, `okj.history`, `okj.collections`, `okj.workspaces`, `okj.reports`, `okj.advancedExport`.
 - The active Free workflow remains unchanged. No purchase CTA/fixed Pro price is allowed until verified checkout, entitlement, restore and browser QA.
 - Canonical definition: `config/old-kanji-toolkit-pro-phase1.json`. Existing contextual Amazon Associates links remain active and independent of Pro; user content must not flow to affiliate URLs or analytics.
+
+## Phase 1D — OCR reporting and advanced export (staged)
+
+- `okj.reports` now drives Markdown/JSON reports from manually checked OCR text, modern preview, and reference dictionary detections.
+- `okj.advancedExport` now drives local CSV/Markdown/JSON export of the OCR text and detection summary, independently feature-gated.
+- Optional inclusion of saved local History and Collections requires opt-in plus independent paid entitlement for each feature.
+- Existing Free copy actions stay Free and unchanged. No OCR text is sent to external analytics, affiliate links or billing. CSV escaping mitigates spreadsheet formula execution. No legal or official-spelling guarantee is made.
