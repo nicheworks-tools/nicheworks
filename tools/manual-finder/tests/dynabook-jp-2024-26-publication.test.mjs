@@ -62,6 +62,6 @@ for(const [maker,n] of [['Sony',107],['Panasonic',27],['Apple',31],['Fujifilm',5
  assert.equal(merged.filter(x=>x.maker===maker).length,n);
 }
 const coverage=fs.readFileSync(new URL('../COVERAGE.md',import.meta.url),'utf8');
-assert.ok(coverage.includes('**2,085 verified model/caliber rows**'));
-assert.ok(coverage.includes('**49 of the 66 baseline brands are still generic-only**'));
+assert.ok(coverage.includes('| dynabook | 177 | expanded, scope-complete |'), 'dynabook scope remains published');
+assert.ok(coverage.includes('dynabook JP 2024–2026 PC official manual-index coverage pass'), 'dynabook bounded provenance remains recorded');
 console.log('dynabook 177-model PDF publication and 569-row Coverage-Pass runtime fully reconciled.');
