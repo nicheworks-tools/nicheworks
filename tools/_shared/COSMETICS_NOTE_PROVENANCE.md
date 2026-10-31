@@ -473,3 +473,8 @@ Review remains per-ingredient, not extrapolated from `protein`, `wax`, `powder` 
 The same 12 reviewed canonical identities receive narrow, ingredient-specific short notes backed by their own COSMILE Europe function lists. Runtime note/strong completion rises from 96 to **108/599 (18.03%)**, leaving **491** without an equivalent reviewed note.
 
 The note text does not make product safety, allergy probability, medical efficacy, or concentration claims. In particular, older unsourced source-record descriptions (such as Cinnamyl Alcohol's legacy text) are **not** accepted as provenance. Their verified runtime notes are separate source-backed overlays. Exact function/category/note/source alignment is enforced in `check-cosmetics-source-verified-wave27.mjs`.
+
+
+## Verified ingredient note wave 24 (2026-10-31)
+
+The 18 reviewed category-wave28 ingredients also receive individual source-backed, neutral short notes. Notes describe only the cosmetic-function properties of their exact COSMILE ingredient entries (including the explicitly listed Padimate O identity synonym); they do not claim that a particular finished product contains sufficient concentrations, is safe for an allergy, or has an approved SPF rating. `note_verified` and HTTPS source metadata must survive canonical merging. Cumulative note/strong runtime: **126 / 599 (21.04%)**, with **473** identities still lacking an equivalent ingredient-specific verified note.
