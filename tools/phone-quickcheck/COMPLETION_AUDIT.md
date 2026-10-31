@@ -152,6 +152,26 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 20 — 2026-11-01
+
+Backfilled four previously absent Nothing models from Japanese first-party manufacturer/carrier evidence. **215 → 219 phones**, **11 manufacturers**, **36 foldables**. `updatedAt` advances to 2026-11-01; original V1 181 baseline retained. No new unreviewed package/water unknown fields.
+
+### Nothing Phone (4a) — 2026 JP au retail unit
+[au's official Japan sale SKU](https://onlineshop.au.com/disp/CSfLastGoodsPage_001.jsp?GOODS_NO=14595&dispNo=001007) records **163.9 × 77.5 × 8.5 mm**, **205 g**, 6.78-inch screen, **5,080 mAh**, IP64 and an included USB-C cable; no adapter appears in its complete in-box listing. The [Nothing Japan manufacturer's product](https://jp.nothing.tech/products/phone-4a) explicitly supports **50 W fast charging**; no inferred PPS status, charger recommendation or wireless negative claim. Manufacturer [general box evidence](https://support.nothing.tech/hc/en-us/articles/43193532938513-What-s-included-in-the-box-for-Phone-4a) supports cable inclusion. Note: Nothing generic laboratory support uses 163.8 × 77.45 × 8.55mm; the maintained JP record deliberately uses au's exact sold-unit specifications.
+
+### Nothing Phone (4a) Pro — 2026 JP Rakuten A069P
+[Rakuten Mobile A069P Japan SKU](https://network.mobile.rakuten.co.jp/product/smartphone/phone-4a-pro/spec/) and [press announcement](https://corp.mobile.rakuten.co.jp/news/press/2026/0415_01/) establish **163.6 × 76.6 × 7.9 mm**, **210 g**, 6.83-inch display, **5,080 mAh**, IPX5/IP6X, **wireless charging unsupported**, USB-C cable included and wall adapter not included. [Nothing Japan product page](https://jp.nothing.tech/products/phone-4a-pro/) states **50 W fast charging**; leave PPS unverified. Nothing global lab measures 163.66 × 76.62 × 7.95mm, but JP carrier specifications intentionally govern this canonical A069P record.
+
+### Nothing Phone (2a) — 2024 Japan direct product
+[Nothing JP product](https://jp.nothing.tech/products/phone-2a) and [Nothing lab dimensions](https://support.nothing.tech/hc/en-us/articles/22960522674321-What-are-the-dimensions-weight-of-Phone-2a) establish **161.74 × 76.32 × 8.55 mm**, **190 g**, 6.7-inch AMOLED, **5,000 mAh**, **45 W charging**, IP54, USB-C cable in box and no wall adapter; [official wireless support answer](https://support.nothing.tech/hc/en-us/articles/22960579342737-Does-Phone-2a-support-wireless-charging) explicitly says **wireless charging not supported**. No PPS or charger requirement inferred.
+
+### CMF by Nothing Phone 1 — Japan IIJmio unit
+[IIJmio Japan sale specification](https://www.iijmio.jp/campaign/device/nothing202410.html) and [dated original Japan release](https://www.iijmio.jp/info/iij/1726809877.html) establish **164 × 77 mm**, **8.0 mm/197 g standard black-green** and **9.0 mm/202 g vegan-leather orange**. Preserved as paired `physicalVariants[]` rather than a misleading averaged thickness or weight. 6.67-inch display, [Nothing Japan](https://jp.nothing.tech/products/cmf-phone-1) **5,000 mAh** and **33 W fast charging**. Japanese carrier explicitly labels **33 W PPS** and **IPX2/IP5X**; `PPS` is a carrier-supported charging protocol, with a separate unknown adapter recommendation. The retailer's complete normal phone package contains USB-C cable and no adapter. The historical IIJmio *limited promotional bundle* with extra earbuds is not generalized into the phone's standard box. Wireless charging absence is not guessed from lack of a positive claim.
+
+### Source safety and validation
+- The Nothing trusted first-party-domain list is narrowly extended to official Japan carrier domains `au.com` and `iijmio.jp`; remaining third-party hosts are rejected.
+- Package and water evidence tied to exact Japanese direct/carrier variant, and source-backed wired charging and PPS only. CI must validate dataset/source/semantic/completion/behavior; after merge require actual Chrome/public JSON exact parity at 219 with all 5 viewport checks.
+
 ## Post-v1 maintenance Wave 19 — 2026-10-31
 
 Expanded the real production Chrome smoke to enforce the new **Wave 18 four-model** deployment facts in addition to the existing exact full-file JSON parity assertion. The public JSON must include FCNT arrows We2 M07 with its 4,500mAh battery; Nothing CMF Phone 2 Pro with 33W/negative wireless; Nothing Phone (3a) Lite with JP USB-C cable and negative wireless; and Nothing Phone (3) with JP A024 cable inclusion plus 15W wireless. This specifically guards against cross-regional package-state regressions, stale deploys and unsupported wireless claims. Five viewport browser checks, JP/EN, and badge-close non-overlap remain intact.
