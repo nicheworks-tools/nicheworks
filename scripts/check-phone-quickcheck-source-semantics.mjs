@@ -66,6 +66,13 @@ for (const phone of phones) {
   if (hasWirelessWattage && !hasWirelessStandard) {
     fail(`${phone.id}: wirelessMaxW requires wirelessStandard`);
   }
+  if (charging.wirelessStatus != null && charging.wirelessStatus !== 'not_supported') {
+    fail(`${phone.id}: unsupported wirelessStatus`);
+  }
+  if (charging.wirelessStatus === 'not_supported') {
+    if (hasWirelessStandard || hasWirelessWattage) fail(`${phone.id}: wirelessStatus not_supported conflicts with positive wireless fields`);
+    if (!sources.wirelessUrl) fail(`${phone.id}: source-backed wirelessStatus not_supported requires sources.wirelessUrl`);
+  }
 
   const hasChargingClaim =
     charging.wiredRecommendedW !== null && charging.wiredRecommendedW !== undefined

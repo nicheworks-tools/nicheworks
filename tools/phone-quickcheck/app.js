@@ -544,6 +544,7 @@
   }
 
   function wirelessLabel(charging) {
+    if (charging?.wirelessStatus === 'not_supported') return msg('notSupported');
     if (!charging?.wirelessStandard) return '—';
     return charging.wirelessMaxW ? `${charging.wirelessStandard} / ${formatNumber(charging.wirelessMaxW)}W` : charging.wirelessStandard;
   }

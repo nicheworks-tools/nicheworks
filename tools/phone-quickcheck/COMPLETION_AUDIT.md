@@ -152,6 +152,12 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 13 — 2026-10-31
+
+Implemented explicit negative wireless charging state in the Phone QuickCheck runtime and data/source QA: `charging.wirelessStatus: not_supported` requires a manufacturer/carrier primary `sources.wirelessUrl` and forbids coexisting positive `wirelessStandard` or `wirelessMaxW`. The JP/EN detail view now renders **非対応 / Not supported** rather than a dash for a source-backed negative claim. Existing unknowns and affirmative wireless records retain their prior output, and behavioral coverage confirms both languages.
+
+Applied to Japan-model **Nothing Phone (4b)** using the [Rakuten Mobile official Japan specification](https://network.mobile.rakuten.co.jp/product/smartphone/phone-4b/spec/) explicitly stating ワイヤレス充電 非対応. Model count and manufacturer count remain **208 / 11**, foldables **36**.
+
 ## Post-v1 maintenance Wave 12 — 2026-10-31
 
 Added a second new Japan-market manufacturer, **Nothing**, with **Phone (4b)** (Japan sale 2026-10-27). Dataset **207 → 208 phones**, **10 → 11 manufacturers**, foldables unchanged at 36.

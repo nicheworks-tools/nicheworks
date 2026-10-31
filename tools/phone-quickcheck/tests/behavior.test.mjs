@@ -1003,3 +1003,19 @@ console.log('Phone QuickCheck final automated QA passed: controls, sort modes, e
   assert.match(html, /Qi2 \/ MagSafe \/ 25W/);
 }
 
+
+
+// Post-v1 2026 wireless negative-state display: manufacturer/carrier-sourced non-support is not the same as unknown.
+{
+  const phone = byId.get('nothing-phone-4b');
+  assert.ok(phone, 'Nothing Phone (4b) fixture missing');
+  assert.equal(phone.charging?.wirelessStatus, 'not_supported');
+  assert.equal(phone.charging?.wirelessStandard, null);
+  assert.equal(phone.charging?.wirelessMaxW, null);
+  assert.match(phone.sources?.wirelessUrl || '', /^https:\/\/network\.mobile\.rakuten\.co\.jp\//);
+
+  const h = await createHarness(['nothing-phone-4b']);
+  assert.match(h.elements.desktopDetail.innerHTML, /ワイヤレス<\/span><b>非対応<\/b>/);
+  h.langEn.click();
+  assert.match(h.elements.desktopDetail.innerHTML, /Wireless<\/span><b>Not supported<\/b>/);
+}

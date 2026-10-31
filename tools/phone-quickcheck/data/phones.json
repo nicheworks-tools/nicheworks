@@ -10914,7 +10914,8 @@
           "capacityMah": 5200,
           "valueClass": "manufacturer",
           "sourceRef": "https://jp.nothing.tech/products/phone-4b"
-        }
+        },
+        "wirelessStatus": "not_supported"
       },
       "included": {
         "cable": "included",
@@ -10927,7 +10928,8 @@
         "chargingUrl": "https://support.nothing.tech/hc/en-us/articles/47859704876177-How-long-does-it-take-to-charge",
         "waterUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4b/spec/",
         "packageUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4b/spec/",
-        "verifiedAt": "2026-10-31"
+        "verifiedAt": "2026-10-31",
+        "wirelessUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4b/spec/"
       },
       "affiliateKeys": []
     }
