@@ -25,13 +25,20 @@
     return Number.isFinite(value) ? Math.max(100, Math.min(180, value)) : 100;
   }
 
+  function normalizeDeskewDegrees(value) {
+    const angle = Number(value);
+    return Number.isFinite(angle) ? Math.max(-12, Math.min(12, Math.round(angle))) : 0;
+  }
+
   async function prepareFastScanOcrImage(file, quarterTurns = 0, options = {}) {
     if (!file) throw new Error('An OCR image is required.');
     const turns = normalizeQuarterTurns(quarterTurns);
     const crop = normalizeCrop(options.crop);
     const contrast = normalizeContrast(options.contrastPercent);
+    const deskewDegrees = normalizeDeskewDegrees(options.deskewDegrees);
+    const deskewRadians = deskewDegrees * Math.PI / 180;
     const hasCrop = Object.values(crop).some(value => value > 0);
-    if (!turns && !hasCrop && contrast === 100) return file;
+    if (!turns && !hasCrop && contrast === 100 && deskewDegrees === 0) return file;
 
     const imageUrl = URL.createObjectURL(file);
     try {
@@ -46,16 +53,25 @@
       const naturalHeight = image.naturalHeight || image.height;
       if (!naturalWidth || !naturalHeight) throw new Error('Invalid image dimensions.');
 
-      // Cap peak image/canvas memory for smartphone photos. Never upload pixels.
-      const scale = Math.min(1, 4096 / Math.max(naturalWidth, naturalHeight));
-      const width = Math.max(1, Math.round(naturalWidth * scale));
-      const height = Math.max(1, Math.round(naturalHeight * scale));
+      // Include the rotated bounding rectangle in the memory cap: a small
+      // deskew can otherwise enlarge a 4096px phone photo past the canvas limit.
+      const cos = Math.abs(Math.cos(deskewRadians));
+      const sin = Math.abs(Math.sin(deskewRadians));
+      const baseWidth = turns % 2 ? naturalHeight : naturalWidth;
+      const baseHeight = turns % 2 ? naturalWidth : naturalHeight;
+      const naturalBoxWidth = baseWidth * cos + baseHeight * sin;
+      const naturalBoxHeight = baseWidth * sin + baseHeight * cos;
+      const scale = Math.min(1, 4096 / Math.max(naturalBoxWidth, naturalBoxHeight));
+      const width = Math.max(1, Math.floor(naturalWidth * scale));
+      const height = Math.max(1, Math.floor(naturalHeight * scale));
       const rotatedWidth = turns % 2 ? height : width;
       const rotatedHeight = turns % 2 ? width : height;
+      const boxWidth = deskewDegrees ? Math.ceil(rotatedWidth * cos + rotatedHeight * sin) : rotatedWidth;
+      const boxHeight = deskewDegrees ? Math.ceil(rotatedWidth * sin + rotatedHeight * cos) : rotatedHeight;
 
       const canvas = document.createElement('canvas');
-      canvas.width = Math.max(1, Math.round(rotatedWidth * (1 - (crop.left + crop.right) / 100)));
-      canvas.height = Math.max(1, Math.round(rotatedHeight * (1 - (crop.top + crop.bottom) / 100)));
+      canvas.width = Math.max(1, Math.round(boxWidth * (1 - (crop.left + crop.right) / 100)));
+      canvas.height = Math.max(1, Math.round(boxHeight * (1 - (crop.top + crop.bottom) / 100)));
 
       const ctx = canvas.getContext('2d');
       if (!ctx) throw new Error('Image processing is unavailable.');
@@ -64,13 +80,20 @@
         ctx.filter = 'contrast(' + contrast + '%)';
       }
 
-      // Crop coordinates are percentages of the already-rotated preview,
-      // so the processed OCR pixels always match the displayed preview.
+      // Small-angle rotation creates corner triangles. Fill them white rather
+      // than handing transparent/black pixels to Tesseract. Do not crop the
+      // original photo to conceal corners: retain its full rotated bounding box.
+      if (deskewDegrees) {
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+      // Crop edges are relative to the deskewed, expanded preview box.
+      // The same preparation routine is used by the preview and OCR worker.
       ctx.translate(
-        rotatedWidth / 2 - rotatedWidth * crop.left / 100,
-        rotatedHeight / 2 - rotatedHeight * crop.top / 100
+        boxWidth / 2 - boxWidth * crop.left / 100,
+        boxHeight / 2 - boxHeight * crop.top / 100
       );
-      ctx.rotate(turns * Math.PI / 2);
+      ctx.rotate(turns * Math.PI / 2 + deskewRadians);
       ctx.drawImage(image, -width / 2, -height / 2, width, height);
 
       return await new Promise((resolve, reject) => {

@@ -77,11 +77,12 @@
   const prepState = Object.create(null);
   root.fastScanImageRotation = fileId => rotationState[fileId] || 0;
   root.fastScanImageOptions = fileId => {
-    const state = prepState[fileId] || { crop: { left: 0, right: 0, top: 0, bottom: 0 }, contrastPercent: 100 };
+    const state = prepState[fileId] || { crop: { left: 0, right: 0, top: 0, bottom: 0 }, contrastPercent: 100, deskewDegrees: 0 };
     return {
       quarterTurns: rotationState[fileId] || 0,
       crop: { ...state.crop },
-      contrastPercent: state.contrastPercent
+      contrastPercent: state.contrastPercent,
+      deskewDegrees: state.deskewDegrees
     };
   };
 
@@ -211,12 +212,16 @@
       '<button type="button" data-ocr-rotate="1" data-lang-text data-ja="右へ90°回転" data-en="Rotate 90° right">' +
       textFor(uiLanguage(), '右へ90°回転', 'Rotate 90° right') + '</button></div>' +
       '<details class="ocr-image-adjustments"><summary><span data-lang-text ' +
-      'data-ja="切り抜き・コントラスト" data-en="Crop and contrast">' +
-      textFor(uiLanguage(), '切り抜き・コントラスト', 'Crop and contrast') + '</span></summary>' +
+      'data-ja="傾き・切り抜き・コントラスト" data-en="Deskew, crop and contrast">' +
+      textFor(uiLanguage(), '傾き・切り抜き・コントラスト', 'Deskew, crop and contrast') + '</span></summary>' +
       '<p data-lang-text data-ja="各辺から除く割合を調整します。変更後の画像でOCRします。" ' +
-      'data-en="Trim image edges by percentage. OCR uses the processed preview.">' +
-      textFor(uiLanguage(), '各辺から除く割合を調整します。変更後の画像でOCRします。',
-        'Trim image edges by percentage. OCR uses the processed preview.') + '</p>' +
+      'data-en="Correct tilt first; crop percentages apply to the resulting image. OCR uses the processed preview.">' +
+      textFor(uiLanguage(), '傾きを直してから各辺の切り抜き割合を調整できます。補正後の画像をOCRします。',
+        'Correct tilt first; crop percentages apply to the resulting image. OCR uses the processed preview.') + '</p>' +
+      '<label class="ocr-image-control"><span data-lang-text data-ja="傾き補正（手動）" data-en="Deskew (manual)">' +
+      textFor(uiLanguage(), '傾き補正（手動）', 'Deskew (manual)') + '</span>' +
+      '<input type="range" data-ocr-deskew min="-12" max="12" step="1" value="0">' +
+      '<output>0°</output></label>' +
       '<div class="ocr-image-crop-controls">' + cropControls + '</div>' +
       '<label class="ocr-image-control"><span data-lang-text data-ja="文字コントラスト" data-en="Text contrast">' +
       textFor(uiLanguage(), '文字コントラスト', 'Text contrast') + '</span>' +
@@ -243,23 +248,28 @@
     const clear = preview.querySelector('.ocr-image-clear');
     const cropSliders = [...preview.querySelectorAll('[data-ocr-crop]')];
     const contrastSlider = preview.querySelector('[data-ocr-contrast]');
+    const deskewSlider = preview.querySelector('[data-ocr-deskew]');
     let objectUrl = null;
     let previewVersion = 0;
     let previewTimer = null;
-    prepState[config.fileId] = { crop: { left: 0, right: 0, top: 0, bottom: 0 }, contrastPercent: 100 };
+    prepState[config.fileId] = { crop: { left: 0, right: 0, top: 0, bottom: 0 }, contrastPercent: 100, deskewDegrees: 0 };
 
     function readControls() {
       const crop = {};
       for (const slider of cropSliders) crop[slider.dataset.ocrCrop] = Number(slider.value);
-      prepState[config.fileId] = { crop, contrastPercent: Number(contrastSlider.value) };
+      prepState[config.fileId] = { crop, contrastPercent: Number(contrastSlider.value), deskewDegrees: Number(deskewSlider.value) };
       for (const slider of [...cropSliders, contrastSlider]) {
         slider.nextElementSibling.textContent = slider.value + '%';
       }
+      deskewSlider.nextElementSibling.textContent = deskewSlider.value + '°';
     }
 
     function resetControls({ resetContrast = true } = {}) {
       for (const slider of cropSliders) slider.value = '0';
-      if (resetContrast) contrastSlider.value = '100';
+      if (resetContrast) {
+        contrastSlider.value = '100';
+        deskewSlider.value = '0';
+      }
       readControls();
     }
 
@@ -313,7 +323,8 @@
 
         const kb = Math.max(1, Math.round(file.size / 1024));
         const trimmed = Object.values(options.crop).some(value => value > 0);
-        const adjustments = (trimmed ? ' / Crop' : '') +
+        const adjustments = (options.deskewDegrees ? ' / tilt ' + options.deskewDegrees + '°' : '') +
+          (trimmed ? ' / Crop' : '') +
           (options.contrastPercent !== 100 ? ' / ' + options.contrastPercent + '% contrast' : '');
         label.textContent = textFor(
           uiLanguage(),
@@ -376,6 +387,13 @@
       });
     });
     contrastSlider.addEventListener('input', () => {
+      readControls();
+      markOcrTextStale();
+      schedulePreview();
+    });
+    deskewSlider.addEventListener('input', () => {
+      // Cropping follows the deskewed bounding rectangle. Keep crop values
+      // stable so users can fine-tune tilt without losing their edge settings.
       readControls();
       markOcrTextStale();
       schedulePreview();
