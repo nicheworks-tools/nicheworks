@@ -1,0 +1,257 @@
+{
+  "schemaVersion": 1,
+  "maker": "ASUS",
+  "scopeId": "jp-vivobook-official-2026-model-product-index",
+  "scopeLabel": "ASUS Japan Vivobook product catalog filtered to 2026 manufacturer-listed Vivobook family including the creator-labeled Vivobook Pro model",
+  "status": "reviewing",
+  "asOf": "2026-10-31",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "asus.com"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook"
+    ],
+    "declaredCount": 35,
+    "models": [
+      "ASUS Vivobook S16 (S5608, Snapdragon); Copilot+ PC",
+      "ASUS Vivobook S14 (S5408, Snapdragon); Copilot+ PC",
+      "ASUS Vivobook S16 (S3607)",
+      "ASUS Vivobook 16 (M1605)",
+      "ASUS Vivobook S14 (S3407); Copilot+ PC",
+      "ASUS Vivobook S16 (M3607); Copilot＋ PC",
+      "ASUS Vivobook S14 (M3407); Copilot＋ PC",
+      "ASUS Vivobook 18 (M1807)",
+      "ASUS Vivobook 16 (X1607)",
+      "ASUS Vivobook 16 (M1607); Copilot+ PC",
+      "ASUS Vivobook 14 (M1407); Copilot+ PC",
+      "ASUS Vivobook 16 (X1607QA); Copilot+ PC",
+      "ASUS Vivobook 14 (X1407QA); Copilot+ PC",
+      "ASUS Vivobook 14 (X1407)",
+      "ASUS Vivobook S15 (S5507); Copilot＋ PC",
+      "ASUS Vivobook S16 (M5606); Copilot＋ PC",
+      "ASUS Vivobook S14 (M5406)",
+      "ASUS Vivobook S 14 (S5406); Copilot＋ PC",
+      "ASUS Vivobook 16X (K3605)",
+      "ASUS Vivobook 14X (K3405)",
+      "ASUS Vivobook 16X (K3604)",
+      "ASUS Vivobook 15X (K3504)",
+      "ASUS Vivobook 13 Slate OLED (T3304)",
+      "ASUS Vivobook Go 14 (E1404F)",
+      "ASUS Vivobook 17 (X1704)",
+      "ASUS Vivobook 15 (X1504)",
+      "ASUS Vivobook Go 15 (E1504F)",
+      "ASUS Vivobook Pro 16X OLED (K6604)",
+      "ASUS Vivobook 14 (X1405)",
+      "ASUS Vivobook 16 (X1605)",
+      "ASUS Vivobook 15 OLED (X1505)",
+      "ASUS Vivobook 15 (X1502)",
+      "ASUS Vivobook 15 (M1502)",
+      "ASUS Vivobook Go 15 (E510)",
+      "ASUS Vivobook Go 12 (E210)"
+    ],
+    "populationMethod": "ASUS official ProductList API /recent-data/apiv2/SeriesFilterResult with two non-overlapping pages (20+15), and independent PageSize=100 corroboration. The manufacturer metadata TotalCount is 35 as of 2026-10-31, not stale search-index count 33 nor the first page 20.",
+    "sourceObservation": {
+      "count": 35,
+      "firstPage": 20,
+      "secondPage": 15,
+      "fullPage": 35,
+      "orderedModelIdUrlSha256": "951f569be9a417a8aa246df001590f74645bbe2b78c589175905451462e956c6",
+      "apiHost": "odinapi.asus.com",
+      "ciRun": 41211371699,
+      "ciArtifact": 13046318011
+    },
+    "officialProducts": [
+      {
+        "model": "ASUS Vivobook S16 (S5608, Snapdragon); Copilot+ PC",
+        "productId": "35880",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s16-s5608-qualcomm/"
+      },
+      {
+        "model": "ASUS Vivobook S14 (S5408, Snapdragon); Copilot+ PC",
+        "productId": "35876",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s14-s5408-qualcomm/"
+      },
+      {
+        "model": "ASUS Vivobook S16 (S3607)",
+        "productId": "30781",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s16-s3607/"
+      },
+      {
+        "model": "ASUS Vivobook 16 (M1605)",
+        "productId": "22409",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-m1605/"
+      },
+      {
+        "model": "ASUS Vivobook S14 (S3407); Copilot+ PC",
+        "productId": "30728",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s14-s3407/"
+      },
+      {
+        "model": "ASUS Vivobook S16 (M3607); Copilot＋ PC",
+        "productId": "30779",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s16-m3607/"
+      },
+      {
+        "model": "ASUS Vivobook S14 (M3407); Copilot＋ PC",
+        "productId": "30726",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s14-m3407/"
+      },
+      {
+        "model": "ASUS Vivobook 18 (M1807)",
+        "productId": "30785",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-18-m1807/"
+      },
+      {
+        "model": "ASUS Vivobook 16 (X1607)",
+        "productId": "28612",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-x1607/"
+      },
+      {
+        "model": "ASUS Vivobook 16 (M1607); Copilot+ PC",
+        "productId": "28617",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-m1607/"
+      },
+      {
+        "model": "ASUS Vivobook 14 (M1407); Copilot+ PC",
+        "productId": "29677",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14-m1407/"
+      },
+      {
+        "model": "ASUS Vivobook 16 (X1607QA); Copilot+ PC",
+        "productId": "30771",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16-x1607q/"
+      },
+      {
+        "model": "ASUS Vivobook 14 (X1407QA); Copilot+ PC",
+        "productId": "30765",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14-x1407q/"
+      },
+      {
+        "model": "ASUS Vivobook 14 (X1407)",
+        "productId": "29672",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14-x1407/"
+      },
+      {
+        "model": "ASUS Vivobook S15 (S5507); Copilot＋ PC",
+        "productId": "25323",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s-15-s5507/"
+      },
+      {
+        "model": "ASUS Vivobook S16 (M5606); Copilot＋ PC",
+        "productId": "23990",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s-16-oled-m5606/"
+      },
+      {
+        "model": "ASUS Vivobook S14 (M5406)",
+        "productId": "23993",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s-14-oled-m5406/"
+      },
+      {
+        "model": "ASUS Vivobook S 14 (S5406); Copilot＋ PC",
+        "productId": "23980",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-s-14-oled-s5406/"
+      },
+      {
+        "model": "ASUS Vivobook 16X (K3605)",
+        "productId": "21158",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16x-oled-k3605/"
+      },
+      {
+        "model": "ASUS Vivobook 14X (K3405)",
+        "productId": "21161",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-14x-oled-k3405/"
+      },
+      {
+        "model": "ASUS Vivobook 16X (K3604)",
+        "productId": "21179",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-16x-oled-k3604/"
+      },
+      {
+        "model": "ASUS Vivobook 15X (K3504)",
+        "productId": "21175",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-15x-oled-k3504/"
+      },
+      {
+        "model": "ASUS Vivobook 13 Slate OLED (T3304)",
+        "productId": "21131",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-13-slate-oled-t3304/"
+      },
+      {
+        "model": "ASUS Vivobook Go 14 (E1404F)",
+        "productId": "21051",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-14-e1404f/"
+      },
+      {
+        "model": "ASUS Vivobook 17 (X1704)",
+        "productId": "20958",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-17-x1704/"
+      },
+      {
+        "model": "ASUS Vivobook 15 (X1504)",
+        "productId": "20953",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-15-x1504/"
+      },
+      {
+        "model": "ASUS Vivobook Go 15 (E1504F)",
+        "productId": "21042",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-15-oled-e1504f/"
+      },
+      {
+        "model": "ASUS Vivobook Pro 16X OLED (K6604)",
+        "productId": "21135",
+        "productUrl": "https://www.asus.com/jp/laptops/for-creators/vivobook/vivobook-pro-16x-oled-k6604/"
+      },
+      {
+        "model": "ASUS Vivobook 14 (X1405)",
+        "productId": "20857",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-14-oled-x1405/"
+      },
+      {
+        "model": "ASUS Vivobook 16 (X1605)",
+        "productId": "20843",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-16-oled-x1605/"
+      },
+      {
+        "model": "ASUS Vivobook 15 OLED (X1505)",
+        "productId": "20862",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-15-oled-x1505/"
+      },
+      {
+        "model": "ASUS Vivobook 15 (X1502)",
+        "productId": "20515",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-15-x1502/"
+      },
+      {
+        "model": "ASUS Vivobook 15 (M1502)",
+        "productId": "20517",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-15-m1502/"
+      },
+      {
+        "model": "ASUS Vivobook Go 15 (E510)",
+        "productId": "18063",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-15-e510/"
+      },
+      {
+        "model": "ASUS Vivobook Go 12 (E210)",
+        "productId": "19111",
+        "productUrl": "https://www.asus.com/jp/laptops/for-home/vivobook/vivobook-go-12-e210/"
+      }
+    ],
+    "notes": "Products from both manufacturer ProductList pages are retained, including one creator-category Vivobook Pro manufacturer-listed within the selected Vivobook series. The exact family-code, manufacturer product ID and product URL form the locked universe; listing labels may contain marketing taglines not usable as SKU equivalence. Actual support/manual URLs are candidates until live model-specific proof; selected variant code must be disclosed."
+  },
+  "review": {
+    "publicationGate": "blocked until 35 model-specific ASUS manual index destinations with correct family and explicit document metadata are reviewed; classify remaining models support_only/held",
+    "discoveryChannels": [
+      "manufacturer_jp_vivobook_api_full_pagination",
+      "official_jp_product_page",
+      "manufacturer_helpdesk_manual_selected_variant",
+      "official_manual_language_and_version_metadata",
+      "manufacturer_model_variant_selector"
+    ],
+    "notes": "All 35 model-specific user manual list paths are candidates until source-linked identity, final manufacturer HTTPS destination, displayed selected variant and actual Japanese/English user manual metadata are positively verified. No inference that variants within one marketed family use interchangeable manuals."
+  },
+  "records": []
+}
