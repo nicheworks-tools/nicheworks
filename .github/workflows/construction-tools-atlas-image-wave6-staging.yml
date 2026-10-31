@@ -22,6 +22,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - name: Install ImageMagick for raster-to-WebP conversion
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq imagemagick
+          command -v convert
       - name: Validate image source intake without fetching
         run: node tools/construction-tools-atlas/scripts/materialize-image-wave6-v2.3.mjs --check
       - name: Download pinned Commons images and produce local WebP staging files
