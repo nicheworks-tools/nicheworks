@@ -29,6 +29,7 @@ const injected=[
   "check(document.querySelector('#compare-table table'),'comparison table is missing');",
   "all('.motion-card')[4]?.querySelector('.card-actions button:nth-child(2)')?.click();",
   "check(all('#compare-tray button').length===4,'fifth comparison was accepted');",
+  "let fakeFrameTime=performance.now();window.requestAnimationFrame=callback=>setTimeout(()=>{fakeFrameTime+=16;callback(fakeFrameTime)},16);window.cancelAnimationFrame=clearTimeout;",
   "const count=all('.motion-card').find(c=>c.querySelector('h3')?.textContent.includes('Count up'));",
   "check(count,'count-up card missing');count.querySelector('.card-actions button').click();",
   "check(document.querySelector('#motion-detail .motion-demo[data-demo=\"count-up\"]'),'count-up detail missing');",
