@@ -66,6 +66,19 @@ const capture = async (files, selection = preset, opts = {}) => {
 
 const originalBytes = Buffer.from(sourceText, 'utf8');
 const transformed = await convertOne(makeFile('one.csv', originalBytes), preset, codec);
+// Regression: modern browser File/Blob has a bytes() METHOD. It must never
+// be mistaken for a Uint8Array property when arrayBuffer() is available.
+const modernFile = {
+  name: 'browser-file.csv',
+  size: originalBytes.byteLength,
+  bytes: async () => new Uint8Array(originalBytes),
+  arrayBuffer: async () => originalBytes.buffer.slice(
+    originalBytes.byteOffset, originalBytes.byteOffset + originalBytes.byteLength
+  )
+};
+const browserLike = await convertOne(modernFile, preset, codec);
+assert.deepEqual(Buffer.from(browserLike.bytes), Buffer.from(transformed.bytes));
+success('modern File.bytes() method is not mistaken for direct raw bytes');
 assert.equal(transformed.inputRows, 3);
 assert.equal(transformed.outputColumns, 4);
 assert.deepEqual(pythonRead(transformed.bytes), [
