@@ -105,3 +105,11 @@ Camera/image selection, OCR status, editable result text, and detected cards for
 - `assets/old-kanji-amazon-context.js`
 - `tools/old-kanji-reference/dict.json`
 - `tools/old-kanji-reference/compatibility-notes.json`
+
+## Toolkit Pro Phase 1 — staged / not on sale
+
+- Shared product ID: `okj.toolkit_pro` (one entitlement covers all eight tools).
+- Current Free guarantee: Single image OCR, manual correction, old-kanji detection, modern preview and copy remain Free.
+- Proposed Pro feature IDs: `okj.ocr.batch`, `okj.ocr.crop`, `okj.history`, `okj.collections`, `okj.workspaces`, `okj.reports`, `okj.advancedExport`.
+- The active Free workflow remains unchanged. No purchase CTA/fixed Pro price is allowed until verified checkout, entitlement, restore and browser QA.
+- Canonical definition: `config/old-kanji-toolkit-pro-phase1.json`. Existing contextual Amazon Associates links remain active and independent of Pro; user content must not flow to affiliate URLs or analytics.

@@ -1,3 +1,7 @@
+# Historical roadmap — current implementation supersedes planning assumptions
+
+For the actual 2026-10-31 Phase 1 scope and Free/export guarantees, see `docs/old-kanji-toolkit/phase1-product-contract.md` and `config/old-kanji-toolkit-pro-phase1.json`. The old proposed price and feature IDs below were never approved as a sale and must not be used to create a paid offer. OCR single-image Free is shipped; Pro batch code is staged behind verified entitlements, not on sale.
+
 # Old Kanji Toolkit Free / Pro / OCR / Billing Roadmap
 
 Status:
@@ -254,7 +258,7 @@ This suite is **not** positioned as:
 
 **Product:** Old Kanji Toolkit Pro
 
-**Price:** $4.99 one-time
+**Price:** (unapproved historical example) one-time
 
 **Other small NicheWorks Pro tools:** $2.99 one-time can remain separate
 
@@ -267,7 +271,7 @@ Common billing foundation does not require a common price. It means shared check
 
 **Display name:** Old Kanji Toolkit Pro
 
-**Price:** 4.99 USD one-time
+**Price:** (price undecided) one-time
 
 **Feature IDs:**
 

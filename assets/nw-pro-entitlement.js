@@ -141,6 +141,7 @@
 
   const OLD_KANJI_TOOLKIT_PAGES = new Set([
     'old-kanji-reference',
+    'kanji-modernizer',
     'old-kanji-ocr-scanner',
     'old-document-kanji-highlighter',
     'unicode-kanji-checker',
@@ -248,7 +249,7 @@
 
   const OLD_KANJI_ANALYTICS_TOOLS = OLD_KANJI_TOOLKIT_PAGES;
   const pathParts = global.location?.pathname?.split('/').filter(Boolean) || [];
-  if (pathParts[0] === 'tools' && OLD_KANJI_ANALYTICS_TOOLS.has(pathParts[1]) && !global.__nicheworksOldKanjiAnalyticsLoading) {
+  if (pathParts[0] === 'tools' && OLD_KANJI_ANALYTICS_TOOLS.has(pathParts[1]) && !global.__nicheworksOldKanjiAnalyticsLoading && !global.document.querySelector('script[src^="/assets/old-kanji-analytics.js"]')) {
     global.__nicheworksOldKanjiAnalyticsLoading = true;
     const script = global.document.createElement('script');
     script.src = '/assets/old-kanji-analytics.js?v=20260914-1';

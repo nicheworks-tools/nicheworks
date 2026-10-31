@@ -1,3 +1,7 @@
+# Historical planning note — superseded on 2026-10-31
+
+**Do not use this old tier catalog to set Old Kanji Toolkit Pro pricing.** The canonical unpriced status is `config/billing/products.json` and `docs/old-kanji-toolkit/phase1-product-contract.md`. The Old Kanji product does not have an approved amount/currency/tier; never create Stripe Prices from the historical example below.
+
 # Price Tier Config (Planning)
 
 Status:
@@ -24,7 +28,7 @@ Each tier includes:
 
 Current tiers:
 - `nw.one_time.usd_299` → `$2.99` one-time (USD)
-- `nw.one_time.usd_499` → `$4.99` one-time (USD)
+- `legacy-retired-okj-tier` → `(unapproved historical example)` one-time (USD)
 
 ## 3. Product linkage
 
@@ -35,7 +39,7 @@ Each product continues to own its own identity and Stripe env var mapping:
 
 Example:
 - `okj.toolkit_pro`
-  - `priceTierId: nw.one_time.usd_499`
+  - `priceTierId: legacy-retired-okj-tier`
   - `stripe.priceIdEnv: STRIPE_PRICE_OKJ_TOOLKIT_PRO`
 
 ## 4. Entitlement boundary (critical)
@@ -44,12 +48,12 @@ Example:
 - Feature unlock scope remains each product's `features` list.
 - Sharing the same price tier does **not** create shared unlock.
 
-Therefore, a future `$4.99` product must still define:
+Therefore, a future `(unapproved historical example)` product must still define:
 - its own `productId`
 - its own `stripe.priceIdEnv`
 - its own `features`
 
-A purchase of one `$4.99` product must not unlock another `$4.99` product.
+A purchase of one `(unapproved historical example)` product must not unlock another `(unapproved historical example)` product.
 
 ## 5. Future bundle/all-access note
 

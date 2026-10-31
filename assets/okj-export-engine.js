@@ -4,10 +4,7 @@
   var EXPORT_SCHEMA_VERSION = 'okj-export-v1';
   var DEFAULT_PRODUCT_ID = 'okj.toolkit_pro';
   var SUPPORTED_FEATURE_IDS = {
-    'okj.exportCsv': true,
-    'okj.exportMarkdown': true,
-    'okj.exportJson': true,
-    'okj.report': true
+    'okj.advancedExport': true
   };
 
   function normalizeString(value) {
@@ -107,7 +104,7 @@
   }
 
   function buildCsvExport(input, gate) {
-    if (!canExport(gate, 'okj.exportCsv')) return denyResponse();
+    if (!canExport(gate, 'okj.advancedExport')) return denyResponse();
 
     var normalized = normalizeExportInput(input);
     var lines = [
@@ -148,7 +145,7 @@
   }
 
   function buildMarkdownExport(input, gate) {
-    if (!canExport(gate, 'okj.exportMarkdown')) return denyResponse();
+    if (!canExport(gate, 'okj.advancedExport')) return denyResponse();
 
     var normalized = normalizeExportInput(input);
     var detectedLines = normalized.detectedOldKanji.map(function (item) {
@@ -196,7 +193,7 @@
   }
 
   function buildJsonExport(input, gate) {
-    if (!canExport(gate, 'okj.exportJson')) return denyResponse();
+    if (!canExport(gate, 'okj.advancedExport')) return denyResponse();
 
     var normalized = normalizeExportInput(input);
     return {

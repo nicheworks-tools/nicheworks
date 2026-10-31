@@ -1,0 +1,36 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const read = p => fs.readFileSync(p, 'utf8');
+const c = JSON.parse(read('config/old-kanji-toolkit-pro-phase1.json'));
+const b = JSON.parse(read('config/billing/products.json'));
+const a = JSON.parse(read('MONETIZATION_CLASSIFICATION.json'));
+const slugs = ["old-kanji-reference","kanji-modernizer","old-kanji-ocr-scanner","old-document-kanji-highlighter","unicode-kanji-checker","variant-kanji-compare","place-old-kanji-checker","name-old-kanji-checker"];
+const ids = ["okj.batch","okj.history","okj.collections","okj.workspaces","okj.reports","okj.advancedExport","okj.ocr.batch","okj.ocr.crop","okj.modernizer.batch","okj.name.batch","okj.place.batch","okj.unicode.batch","okj.variant.batch","okj.document.batch"];
+assert.equal(c.productId,'okj.toolkit_pro');
+assert.equal(c.status,'staged-not-for-sale');
+assert.equal(c.priceDecision,'pending');
+assert.deepEqual(c.featureIds,ids);
+assert.deepEqual(c.tools.map(x=>x.slug),slugs);
+const product=b.products.find(x=>x.productId===c.productId);
+assert.ok(product);
+assert.ok(b.products.some(x=>x.productId==='csv_tidy.pro_v1' && x.checkout?.enabled === false), 'Preserve concurrent CSV Tidy Pro disabled checkout');
+assert.ok(b.priceTiers.some(x=>x.priceTierId==='nw.one_time.jpy_1980'), 'Preserve concurrent CSV Tidy Pro price tier');
+assert.deepEqual(product.features,ids);
+assert.equal(product.price.amount,null);
+assert.equal(product.price.currency,null);
+assert.equal(product.priceTierId,null);
+assert.equal(product.stripe.mode,'not_connected');
+for (const t of c.tools) {
+  assert.ok(a.classes.AFFILIATE.includes(t.slug),t.slug+' must stay AFFILIATE');
+  assert.ok(t.freeGuarantee && t.proFeatureIds.every(x=>ids.includes(x)));
+  assert.ok(read('tools/'+t.slug+'/SPEC.md').includes('## Toolkit Pro Phase 1'));
+  assert.doesNotMatch(read('tools/'+t.slug+'/index.html'),/\$4\.99|data-okj-pro-state="billing-unavailable"/i);
+  assert.ok(read('tools/'+t.slug+'/index.html').includes('/assets/nw-pro-entitlement.js'),t.slug+' missing shared entitlement adapter');
+  assert.ok(read('tools/'+t.slug+'/index.html').includes('/assets/old-kanji-pro-sales.js'),t.slug+' missing conditional Pro checkout');
+}
+const reference=read('tools/old-kanji-reference/SPEC.md');
+for (const label of ['CSV','JSON','Markdown','print']) assert.ok(reference.includes(label));
+for (const slug of slugs) assert.ok(read('assets/nw-pro-entitlement.js').includes("'"+slug+"'"));
+assert.ok(read('functions/api/billing/create-checkout-session.js').includes('product_not_on_sale'));
+assert.ok(read('schema/billing_entitlements.sql').includes('CREATE TABLE IF NOT EXISTS billing_entitlements'));
+console.log('Old Kanji Toolkit Pro staged contract: PASS (8/8 Free and AFFILIATE preserved).');

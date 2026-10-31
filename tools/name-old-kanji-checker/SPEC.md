@@ -100,3 +100,11 @@ The workflow is a short name input followed by vertically stacked per-character 
 - `tools/name-old-kanji-checker/style.css`
 - `tools/old-kanji-reference/dict.json`
 - `tools/old-kanji-reference/compatibility-notes.json`
+
+## Toolkit Pro Phase 1 — staged / not on sale
+
+- Shared product ID: `okj.toolkit_pro` (one entitlement covers all eight tools).
+- Current Free guarantee: Single name/surname candidate checks, metadata, copy and Modernizer handoff remain Free.
+- Proposed Pro feature IDs: `okj.name.batch`, `okj.history`, `okj.workspaces`, `okj.reports`, `okj.advancedExport`.
+- The active Free workflow remains unchanged. No purchase CTA/fixed Pro price is allowed until verified checkout, entitlement, restore and browser QA.
+- Canonical definition: `config/old-kanji-toolkit-pro-phase1.json`. Existing contextual Amazon Associates links remain active and independent of Pro; user content must not flow to affiliate URLs or analytics.

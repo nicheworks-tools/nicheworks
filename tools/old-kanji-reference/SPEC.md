@@ -141,3 +141,11 @@ The dense searchable catalog, filters, detector, display modes, export controls,
 - `tools/old-kanji-reference/amazon-layout.css`
 - `assets/amazon-affiliate.js`
 - `assets/old-kanji-amazon-context.js`
+
+## Toolkit Pro Phase 1 — staged / not on sale
+
+- Shared product ID: `okj.toolkit_pro` (one entitlement covers all eight tools).
+- Current Free guarantee: Search, list, details, favorites, recent, quiz, CSV, JSON, Markdown and print remain Free.
+- Proposed Pro feature IDs: `okj.history`, `okj.collections`, `okj.workspaces`, `okj.reports`.
+- The active Free workflow remains unchanged. No purchase CTA/fixed Pro price is allowed until verified checkout, entitlement, restore and browser QA.
+- Canonical definition: `config/old-kanji-toolkit-pro-phase1.json`. Existing contextual Amazon Associates links remain active and independent of Pro; user content must not flow to affiliate URLs or analytics.
