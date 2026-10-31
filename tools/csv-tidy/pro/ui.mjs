@@ -145,12 +145,12 @@ function setup() {
   select.id = 'csvt-pro-presets';
   const buttons = node('div', 'csvt-pro-buttons');
   const exportButton = action('');
-  const importCaption = node('label', 'csvt-pro-import');
+  const importButton = action('');
   const importFile = node('input');
   importFile.type = 'file';
   importFile.accept = '.json,application/json';
   importFile.hidden = true;
-  importCaption.appendChild(importFile);
+  importButton.addEventListener('click', () => importFile.click());
   const deleteButton = action('');
   const csvCaption = node('label');
   csvCaption.htmlFor = 'csvt-pro-files';
@@ -166,10 +166,10 @@ function setup() {
 
   const labels = {
     title: heading, intro: description, label: labelCaption, labelHint: name,
-    save, saved: presetCaption, export: exportButton, import: importCaption,
+    save, saved: presetCaption, export: exportButton, import: importButton,
     remove: deleteButton, files: csvCaption, batch: run
   };
-  buttons.append(exportButton, importCaption, deleteButton);
+  buttons.append(exportButton, importButton, importFile, deleteButton);
   panel.append(
     heading, description, labelCaption, name, save, presetCaption,
     select, buttons, csvCaption, csvFiles, run, status
