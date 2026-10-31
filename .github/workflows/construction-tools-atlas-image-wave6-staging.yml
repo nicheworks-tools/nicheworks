@@ -1,0 +1,40 @@
+name: Construction Tools Atlas Image Wave6 Staging
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/construction-tools-atlas-image-wave6-staging.yml'
+      - 'tools/construction-tools-atlas/scripts/materialize-image-wave6-v2.3.mjs'
+      - 'tools/construction-tools-atlas/data/affiliate-image-acquisition-wave6-v2.3.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage-pinned-source-images:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Checkout pinned image source ledger
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate image source intake without fetching
+        run: node tools/construction-tools-atlas/scripts/materialize-image-wave6-v2.3.mjs --check
+      - name: Download pinned Commons images and produce local WebP staging files
+        env:
+          CTA_WAVE6_STAGING_DIR: ${{ runner.temp }}/cta-wave6
+        run: node tools/construction-tools-atlas/scripts/materialize-image-wave6-v2.3.mjs --stage
+      - name: Retain source originals, WebP derivatives and immutable SHA-1 report
+        uses: actions/upload-artifact@v4
+        with:
+          name: construction-atlas-wave6-pinned-source-staging
+          path: ${{ runner.temp }}/cta-wave6/
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Explicitly refuse automatic image publication
+        run: echo 'No canonical registry, public image inventory, lifecycle or published detail page is changed by this job.'
