@@ -35,7 +35,7 @@ const injected=[
   "check(document.querySelector('#motion-detail .motion-demo[data-demo=\"count-up\"]'),'count-up detail missing');",
   "await sleep(1100);const countText=document.querySelector('#motion-detail .demo-shape')?.textContent;const countValue=Number(countText);check(Number.isInteger(countValue)&&countValue>0&&countValue<=259,'counter did not numerically advance (actual: '+JSON.stringify(countText)+')');",
   "const mask=all('.motion-card').find(c=>c.querySelector('h3')?.textContent.includes('Mask reveal'));",
-  "check(mask,'mask reveal missing');mask.querySelector('.card-actions button').click();",
+  "check(mask,'mask reveal missing');mask.querySelector('.card-actions button').click();await sleep(64);",
   "check(getComputedStyle(document.querySelector('#motion-detail .demo-shape')).animationName.includes('atlasMaskReveal'),'mask animation missing');",
   "const reduced=document.querySelector('#reduced-toggle');",
   "reduced.checked=true;reduced.dispatchEvent(new Event('change',{bubbles:true}));",
