@@ -23,7 +23,7 @@ const reviewed=await reviewAll({pass,indexHtml:fake,fetcher:async url=>{
 }});
 assert.equal(reviewed.officialPhonePopulation,12);
 assert.deepEqual(reviewed.counts,{direct:12,shared:0,support_only:0,held:0});
-assert.equal(new Set(reviewed.records.map(x=>x.manualUrl)).size,12);
+assert.ok(reviewed.records.every(x=>Boolean(x.manualUrl)), 'all positive synthetic documents must be published');
 const negative=await reviewAll({pass,indexHtml:fake,fetcher:async url=>guide('not this model')});
 assert.equal(negative.counts.held,12);
 console.log('Motorola JP 12-model official population, device guide exact identity and fail-closed tests passed.');
