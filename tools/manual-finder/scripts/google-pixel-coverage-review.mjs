@@ -65,7 +65,7 @@ export function reconcileSources(releaseHtml,safetyHtml,pass){
 function exactModel(s,model){
  // Preserve exact model boundary, including sibling Pro/XL/5G variants.
  const esc=model.replace(/[.*+?^$()|[\]{}\\]/g,'\\$&');
- return new RegExp('(?:^|[^\\p{L}\\p{N}])'+esc+'(?=$|[^\\p{L}\\p{N}])','iu').test(s);
+ return new RegExp('(?:^|[^\\p{L}\\p{N}])'+esc+'(?=$|[^\\p{L}\\p{N}])(?!\\s+[A-Za-z0-9])','iu').test(s);
 }
 export function inspectDocument(html,model){
  const title=clean(html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]||'');
