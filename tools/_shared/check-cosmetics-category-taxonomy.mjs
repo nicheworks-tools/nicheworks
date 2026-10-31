@@ -10,7 +10,7 @@ const taxonomy = JSON.parse(fs.readFileSync(path.join(root, 'tools/_shared/cosme
 
 const EXPECTED_CATEGORIES = new Set([
   'solvent', 'humectant', 'preservative', 'thickener', 'pH adjuster', 'antioxidant', 'viscosity adjuster', 'chelating agent',
-  'skin conditioning', 'emollient', 'cleanser', 'emulsifier', 'smoothing', 'buffer', 'uv filter', 'fragrance', 'binder', 'film former', 'hair conditioning', 'moisturizer'
+  'skin conditioning', 'emollient', 'cleanser', 'emulsifier', 'smoothing', 'buffer', 'uv filter', 'fragrance', 'binder', 'film former', 'hair conditioning', 'moisturizer', 'colorant'
 ]);
 const EXPECTED_AUTHORITY_FUNCTIONS = Object.freeze({
   'solvent': ['solvent'],
@@ -32,7 +32,8 @@ const EXPECTED_AUTHORITY_FUNCTIONS = Object.freeze({
   'binder': ['binding'],
   'film former': ['film forming'],
   'hair conditioning': ['hair conditioning'],
-  'moisturizer': ['保湿']
+  'moisturizer': ['保湿'],
+  'colorant': ['colorant']
 });
 const EXPECTED_WAVE3_PROMOTED = new Set(['sodium chloride', 'disodium edta']);
 const EXPECTED_WAVE4_PROMOTED = new Set(['tocopheryl acetate']);
@@ -60,6 +61,7 @@ const EXPECTED_WAVE25_PROMOTED = new Set(['limonene', 'linalool', 'citral', 'ger
 const EXPECTED_OFFICIAL_LABEL_CLOSURE = new Set(['triethoxycaprylylsilane', 'p-anisic acid', 'polyquaternium-39', 'polyquaternium-53', 'ppg-5-ceteth-20', 'snail secretion filtrate', 'synthetic beeswax', 'hexadecyloxy pg hydroxyethyl hexadecanamide', 'peg-6 caprylic/capric glycerides', 'sodium lauroyl lactylate', 'zinc oxide', 'zea mays starch', 'peg-8', 'microcrystalline wax']);
 const EXPECTED_STRONG_RUNTIME_BLOCKERS = new Set(['sulfur', 'aminobenzoic acid', 'ammonium hydroxide']);
 const EXPECTED_WAVE26_PROMOTED = new Set(["hydrolyzed keratin","hydrolyzed silk","hydrolyzed collagen","menthol","beeswax","aluminum starch octenylsuccinate","benzyl benzoate","benzyl salicylate","hydroxycitronellal","isoeugenol","amyl cinnamal"]);
+const EXPECTED_WAVE28_PROMOTED = new Set(["polyisobutene","peg-60 hydrogenated castor oil","kaolin","nylon-12","guar hydroxypropyltrimonium chloride","calcium carbonate","polyquaternium-37","microcrystalline cellulose","zinc stearate","polymethyl methacrylate","polyacrylate-13","magnesium stearate","glycosphingolipids","ceramide ns","soluble collagen","ozokerite","polyacrylamide","padimate o"]);
 const EXPECTED_WAVE27_PROMOTED = new Set(["hydrolyzed wheat protein","hydrolyzed rice protein","hydrolyzed vegetable protein","hydrolyzed soy protein","hydrolyzed pea protein","hydrolyzed elastin","collagen","magnesium chloride","calcium chloride","aluminum hydroxide","boron nitride","cinnamyl alcohol"]);
 const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org', 'health.ec.europa.eu', 'cosmileeurope.eu', 'kcia.or.kr', 'www.kao-kirei.com', 'eur-lex.europa.eu']);
 
@@ -104,7 +106,7 @@ assert.equal(authorityFunctionToCategory.get('binding'), 'binder', 'COSMILE BIND
 assert.equal(authorityFunctionToCategory.get('film forming'), 'film former', 'COSMILE FILM FORMING must map explicitly to film former');
 assert.equal(authorityFunctionToCategory.get('hair conditioning'), 'hair conditioning', 'COSMILE HAIR CONDITIONING must map explicitly to hair conditioning');
 assert.equal(authorityFunctionToCategory.get('保湿'), 'moisturizer', 'Kao official 保湿 function must map explicitly to moisturizer');
-assert.equal(authorityFunctionToCategory.size, 27, 'authority function vocabulary must contain exactly 27 reviewed terms');
+assert.equal(authorityFunctionToCategory.size, 28, 'authority function vocabulary must include reviewed COLORANT semantics');
 
 const runtimeMappings = {};
 for (const [canonical, mapping] of Object.entries(taxonomy.reviewed_mappings)) {
@@ -147,6 +149,7 @@ for (const canonical of EXPECTED_OFFICIAL_LABEL_CLOSURE) assert.ok(runtimeMappin
 for (const canonical of EXPECTED_STRONG_RUNTIME_BLOCKERS) assert.ok(runtimeMappings[canonical], `${canonical}: strong-runtime blocker mapping must be runtime_verified`);
 for (const canonical of EXPECTED_WAVE26_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave26 mapping must be runtime_verified`);
 for (const canonical of EXPECTED_WAVE27_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave27 mapping must be runtime_verified`);
+for (const canonical of EXPECTED_WAVE28_PROMOTED) assert.ok(runtimeMappings[canonical], `${canonical}: wave28 mapping must be runtime_verified`);
 assert.equal(runtimeMappings['sodium gluconate']?.source_functions?.[0], 'chelating', 'Sodium Gluconate must use the reviewed COSMILE CHELATING authority term');
 assert.equal(runtimeMappings['xanthan gum']?.source_functions?.[0], 'viscosity controlling', 'Xanthan Gum must use the reviewed COSMILE VISCOSITY CONTROLLING authority term');
 assert.equal(runtimeMappings['ethylhexylglycerin']?.source_functions?.[0], 'skin conditioning', 'Ethylhexylglycerin must use the reviewed COSMILE SKIN CONDITIONING authority term');
