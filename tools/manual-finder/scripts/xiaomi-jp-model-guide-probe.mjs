@@ -17,6 +17,7 @@ const anchors=[...html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)].map(x=>{
 }).filter(x=>/user-guide-pdf/i.test(x.href));
 result.index={status:index.status,url:index.url,bytes:html.length,totalGuideLinks:anchors.length,links:anchors,head:tidy(html).slice(0,1500)};
 console.log(JSON.stringify({status:index.status,bytes:html.length,totalGuideLinks:anchors.length,first:anchors.slice(0,15),last:anchors.slice(-5)}));
+await fs.mkdir('manualfinder-xiaomi-probe',{recursive:true});
 const names=['Xiaomi 17T Pro','Xiaomi 15 Ultra','REDMI Note 13 Pro+ 5G','POCO F7','Xiaomi Pad 8'];
 await Promise.all(names.map(async name=>{
  const link=anchors.find(x=>x.label.toLowerCase()===name.toLowerCase());
