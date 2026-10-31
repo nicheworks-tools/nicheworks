@@ -21,5 +21,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: manualfinder-asus-jp-vivobook-source-probe
-          path: manualfinder-asus-probe/*.json
+          path: manualfinder-asus-probe/*
           if-no-files-found: warn
