@@ -3,7 +3,7 @@
   "maker": "Google Pixel",
   "scopeId": "jp-pixel-phone-release-and-safety-docs-2016-2026",
   "scopeLabel": "Google official Japanese Pixel smartphone model release table and explicitly model-named safety/regulatory support documents, through 2026-10-31",
-  "status": "reviewing",
+  "status": "coverage-pass-complete",
   "asOf": "2026-10-31",
   "region": "JP",
   "language": "ja",
@@ -57,10 +57,10 @@
     ],
     "declaredCount": null,
     "populationMethod": "official_33_release_table_rows_expanded_into_38_exact_pixel_phone_names",
-    "notes": "Official manufacturer release table enumerates all 2016-2026 Pixel phone models through Pixel 11; five rows explicitly contain two sibling models separated by vertical bar, expanded without family guessing. The separate official safety/regulatory index explicitly links model names to manufacturer-controlled model-specific support documents. Publication is support_only unless an independently explicit model-specific user guide is verified. General Pixel Help homepage must never be published as an exact per-model manual or treated as manufacturer-defined shared without explicit model listing. Pixel Tablet/Watch and unlisted regions excluded."
+    "notes": "Official manufacturer release table enumerates all 2016-2026 Pixel phone models through Pixel 11; five rows explicitly contain two sibling models separated by vertical bar, expanded without family guessing. The separate official safety/regulatory index explicitly links model names to manufacturer-controlled model-specific support documents. Publication is support_only unless an independently explicit model-specific user guide is verified. General Pixel Help homepage must never be published as an exact per-model manual or treated as manufacturer-defined shared without explicit model listing. Pixel Tablet/Watch and unlisted regions excluded. Live GitHub Actions confirmed 33/33 manufacturer release rows and 38/38 marketed smartphone names, with 24 exact manufacturer-named regulatory-support document groups; no silent drop. The safety model list is an independent manufacturer source. Official regulatory content is support documentation, not a user manual, so all are support_only and none direct/shared."
   },
   "review": {
-    "publicationGate": "blocked until every one of 38 release-list models has a verified specific manufacturer document link or held with secondary discovery",
+    "publicationGate": "all_38_exact_model_support_documents_verified",
     "sourceLiveProbe": {
       "workflowRunId": 41201268188,
       "artifactId": 13043041050,
@@ -74,7 +74,743 @@
       "exact_official_safety_document",
       "manufacturer_Pixel_setup_and_help_topics"
     ],
-    "notes": "Regulatory/safety/support documents are NOT operational user manuals. If the only accepted evidence is regulatory/safety material, model is support_only, not direct or shared."
+    "notes": "Regulatory/safety/support documents are NOT operational user manuals. If the only accepted evidence is regulatory/safety material, model is support_only, not direct or shared.",
+    "liveReview": {
+      "workflowRunId": 41201889586,
+      "artifactId": 13042827773,
+      "releaseRows": 33,
+      "models": 38,
+      "documentGroups": 24,
+      "documentFetches": 24,
+      "direct": 0,
+      "shared": 0,
+      "support_only": 38,
+      "held": 0,
+      "notes": "All documents passed official HTTPS status/type checks plus exact device name in manufacturer safety/regulatory article title, with legacy aliases Pixel 4/3a/3/XL positively reconciled against Google official index and article title. No operational manuals were claimed."
+    }
   },
-  "records": []
+  "records": [
+    {
+      "model": "Google Pixel 11 Pro Fold",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/17042342?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/17042342?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 11 Pro XL",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/17033799?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/17033799?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 11 Pro",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/17033799?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/17033799?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 11",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/17033799?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/17033799?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 10a",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/16593610?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/16593610?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 10 Pro Fold",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/16443248?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/16443248?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 10 Pro XL",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/16275254?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/16275254?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 10 Pro",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/16275254?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/16275254?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 10",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/16275254?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/16275254?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 9a",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/15475035?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/15475035?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 9 Pro XL",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/14958126?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/14958126?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 9 Pro",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/14958126?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/14958126?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 9",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/14958126?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/14958126?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 9 Pro Fold",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/15090466?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/15090466?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 8a",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/14164796?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/14164796?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 8 Pro",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/13662136?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/13662136?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 8",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/13662136?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/13662136?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel Fold",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/13380503?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/13380503?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 7a",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/13014099?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/13014099?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 7 Pro",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/12164747?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/12164747?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 7",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/12164747?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/12164747?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 6a",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/11542583?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/11542583?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 6 Pro",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/10937646?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/10937646?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 6",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/10937646?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/10937646?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 5a (5G)",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/10331506?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/10331506?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 5",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/9910799?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/9910799?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 4a (5G)",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/9921397?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/9921397?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 4a",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/9803272?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/9803272?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 4",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/9369238?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/9369238?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 4 XL",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/9369238?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/9369238?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 3a",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/9224138?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/9224138?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 3a XL",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/9224138?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/9224138?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 3",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/9134668?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/9134668?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 3 XL",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/9134668?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/9134668?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 2",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/7486047?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/7486047?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel 2 XL",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/7486047?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/7486047?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/7022290?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/7022290?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    },
+    {
+      "model": "Google Pixel XL",
+      "state": "support_only",
+      "supportUrl": "https://support.google.com/pixelphone/answer/7022290?hl=ja",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+        "https://support.google.com/pixelphone/answer/9204905?hl=ja",
+        "https://support.google.com/pixelphone/answer/7022290?hl=ja"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "exact_model_manufacturer_safety_regulatory_support_article",
+      "attemptedDiscovery": [
+        "official_Pixel_release_list",
+        "official_model_named_regulatory_document_index",
+        "official_regulatory_article_title",
+        "official_Pixel_help_topic_index"
+      ],
+      "reviewNote": "Manufacturer official exact model safety/regulatory support article checked. This is not a model-specific operational user manual, and models sharing a safety article are not presented as sharing an operational user manual."
+    }
+  ]
 }
