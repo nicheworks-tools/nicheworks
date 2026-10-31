@@ -200,6 +200,7 @@
           url: modelUrl,
           label: currentLang() === "en" ? `Find ${maker} ${model} on Amazon` : `Amazonで ${maker} ${model} を探す`,
           placement: "manual_result_commerce",
+          destinationKey: `model:${maker}:${model}`,
           className: "mf-amazon-link"
         });
         if (mounted) mountedCount += 1;
@@ -212,6 +213,7 @@
           url: offer.url,
           label: currentLang() === "en" ? offer.labelEn : offer.labelJa,
           placement: "manual_result_consumable",
+          destinationKey: `consumable:${maker}:${model}:${offer.key || offer.query}`,
           className: "mf-amazon-link"
         });
         if (mounted) {
@@ -227,6 +229,7 @@
           url: offer.url,
           label: currentLang() === "en" ? offer.labelEn : offer.labelJa,
           placement: "manual_result_accessory",
+          destinationKey: `accessory:${maker}:${model}:${offer.key || offer.query}`,
           className: "mf-amazon-link"
         });
         if (mounted) {
