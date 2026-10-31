@@ -168,7 +168,7 @@ async function main(){
       if(!reused.mounted||!reused.text.includes('舊學 𠮷'))fail.push('workspace/cross-tool: saved OCR entry missing from Name Checker');
     }
     // A real Chrome interaction with the new Pro batch panels and on-site dictionary.
-    await c.js("const batchPanel=document.getElementById('okj-pro-batch'); if(batchPanel){ batchPanel.querySelector('textarea').value='舊\n學'; batchPanel.querySelector('.okj-batch-actions button').click(); }");
+    await c.js("const batchPanel=document.getElementById('okj-pro-batch'); if(batchPanel){ batchPanel.querySelector('textarea').value=['舊','學'].join(String.fromCharCode(10)); batchPanel.querySelector('.okj-batch-actions button').click(); }");
     await sleep(350);
     const checkedName=await c.js("const panel=document.getElementById('okj-pro-batch'); return {mounted:!!panel,rows:panel?.querySelectorAll('tbody tr').length||0,text:panel?.querySelector('tbody')?.textContent||''};");
     if(!checkedName.mounted || checkedName.rows!==2 || !checkedName.text.includes('旧') || !checkedName.text.includes('学')){
@@ -176,7 +176,7 @@ async function main(){
     }
     await c.nav(base+'/tools/place-old-kanji-checker/');
     await sleep(500);
-    await c.js("const batchPanel=document.getElementById('okj-pro-batch'); if(batchPanel){ batchPanel.querySelector('textarea').value='廣島\n國府'; batchPanel.querySelector('.okj-batch-actions button').click(); }");
+    await c.js("const batchPanel=document.getElementById('okj-pro-batch'); if(batchPanel){ batchPanel.querySelector('textarea').value=['廣島','國府'].join(String.fromCharCode(10)); batchPanel.querySelector('.okj-batch-actions button').click(); }");
     await sleep(350);
     const checkedPlace=await c.js("const panel=document.getElementById('okj-pro-batch'); return {mounted:!!panel,rows:panel?.querySelectorAll('tbody tr').length||0,text:panel?.querySelector('tbody')?.textContent||''};");
     if(!checkedPlace.mounted || checkedPlace.rows!==2 || !checkedPlace.text.includes('広') || !checkedPlace.text.includes('国')){
