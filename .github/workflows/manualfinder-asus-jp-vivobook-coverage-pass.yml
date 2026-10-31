@@ -1,0 +1,25 @@
+name: ManualFinder ASUS JP Vivobook manufacturer-source probe
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/scripts/asus-jp-vivobook-probe.mjs'
+      - '.github/workflows/manualfinder-asus-jp-vivobook-coverage-pass.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  asus-source-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/manual-finder/scripts/asus-jp-vivobook-probe.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-asus-jp-vivobook-source-probe
+          path: manualfinder-asus-probe/*.json
+          if-no-files-found: warn
