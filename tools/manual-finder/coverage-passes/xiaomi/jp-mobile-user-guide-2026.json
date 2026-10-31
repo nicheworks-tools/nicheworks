@@ -77,7 +77,7 @@
       "POCO Pad"
     ],
     "declaredCount": 60,
-    "populationMethod": "Manufacturer's complete 306-link user-guide index: first contiguous 74 mobile-section links, remove explicitly generic software/safety (7) and separately identified case/pen/keyboard/photography kit accessories (6), collapse 2 case-variant duplicates 'Redmi Pad 2 4G' and 'REDMI Pad 2 4G' with identical href (1) -> 60 unique model guide entries. Maintain product category boundary at first REDMI Buds 5 Pro item (index 74).",
+    "populationMethod": "Manufacturer's complete 306-link user-guide index: first contiguous 74 mobile-section links, remove explicitly generic software/safety (6) and separately identified case/pen/keyboard/photography kit accessories (7), collapse 2 case-variant duplicates 'Redmi Pad 2 4G' and 'REDMI Pad 2 4G' with identical href (1) -> 60 unique model guide entries. Maintain product category boundary at first REDMI Buds 5 Pro item (index 74).",
     "sourceObservation": {
       "totalOfficialGuideLinks": 306,
       "mobileSectionRawLinks": 74,
