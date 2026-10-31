@@ -17,7 +17,7 @@ All future model-level expansion must follow `COVERAGE_PASS_WORKFLOW.md`. Script
 
 ## Current verified model-level inventory
 
-With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, and Fujitsu FMWORLD LIFEBOOK U business PCs, the accepted dataset contains **2,233 verified model/caliber rows**. **1,790 are outside Seiko**. Coverage-Pass publication contributes **717 reviewed rows across eight bounded manufacturer scopes**. Fujitsu LIFEBOOK U adds 148 exact model-specific manuals, not a Fujitsu company-wide completion claim.
+With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, and Google Pixel JP official model-specific safety/support documentation, the accepted dataset contains **2,271 verified model/caliber rows**. **1,828 are outside Seiko**. Coverage-Pass publication contributes **755 reviewed rows across nine bounded manufacturer scopes**. Pixel adds 38 exact device-specific support-only regulatory documents, **not** 38 user manuals, and not Google company-wide coverage.
 
 | Maker / dataset identity | Verified rows | Current state | Notes |
 | --- | ---: | --- | --- |
@@ -31,6 +31,7 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifil
 | Fujifilm | 56 | expanded, scope-complete | JP GFX + X-series camera-manual-index scope is complete and published: 52 direct manual destinations + 4 explicit shared official manual-index targets. FinePix and broader Fujifilm coverage remain incomplete. |
 | Panasonic | 27 | expanded, scope-complete | JP LUMIX S/G/compact camera-body sitemap scope is complete and published: 27 direct official manual/support destinations. Panasonic company-wide coverage remains incomplete. |
 | Samsung Mobile | 89 | expanded, scope-complete | Samsung Japan Galaxy smartphone manuals index: five smartphone tables A/S/Note/Fold-Flip/other = 89 models; 85 direct manufacturer model-specific manual-download sections + 4 exact manufacturer support-only + 0 held. One labelled official carrier SKU per model; carrier variants are not assumed interchangeable. Broader Samsung remains incomplete. |
+| Google Pixel | 38 | expanded, support-scope-complete | Google Japan Pixel phone release table 2016–2026: 33 source rows expanded to 38 exact marketed models. Manufacturer official safety/regulatory index explicitly maps these to 24 verified model-named support documents. 0 direct, 0 shared, 38 support_only, 0 held. These documents are **not operational user manuals**; company-wide and operating-manual completeness are not claimed. |
 | Fujitsu FMV | 148 | expanded, scope-complete | Manufacturer FMWORLD JP business LIFEBOOK U-series only: exact 148 model-specific manual pages, each with positively verified official manual PDF evidence. 78 distinct official PDF endpoints validated. Business LIFEBOOK A/E/other families and consumer FMV are not complete. |
 | dynabook | 177 | expanded, scope-complete | 2024–2026 annual Japanese PC manual index: 178 manufacturer source rows reconcile to 177 canonical PC identities (B86/PA repeated announcement). 16 direct and 161 explicitly manufacturer-shared official PDF manuals, 0 support-only, 0 held. All 53 distinct PDF endpoints returned verified PDF signatures. Earlier announced PC products remain out of scope. |
 | VAIO | 82 | expanded, scope-complete | JP official start-guide index: 47 personal + 35 business PCs = 21 exact HTML manuals + 61 exact model support-only + 0 held. PDFs are listed by VAIO but returned HTTP 403 in CI and were not promoted; broader VAIO catalog remains incomplete. |
@@ -48,7 +49,7 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifil
 | Epson | 6 | expanded | Wave 3D first Colorio batch; exact official manual/support targets with verified consumable mappings. |
 | Canon | 6 | expanded | Wave 3E first PIXUS batch; direct or vendor-shared official online manuals with verified consumable mappings. |
 | Hisense | 2 | expanded | Exact TV function-manual targets; coverage is still very thin. |
-| **Total** | **2,233** |  |  |
+| **Total** | **2,271** |  |  |
 
 Counts above are accepted repository rows, not estimates of manufacturer catalog size.
 
@@ -76,7 +77,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 16 | dynabook | **expanded — 177** | JP 2024–2026 announced PC manual index scope-complete: 16 direct + 161 vendor-defined shared PDFs, zero held. Older years remain incomplete. |
 | 17 | NEC LAVIE | generic-only | PC/mobile queue |
 | 18 | Fujitsu FMV | **expanded — 148** | JP business LIFEBOOK U manual-index 148/148 direct, 0 held; other Fujitsu/FMV product scopes incomplete |
-| 19 | Google Pixel | generic-only | Mobile queue; verify whether stable per-device manual targets exist |
+| 19 | Google Pixel | **expanded — 38** | Exact manufacturer model-specific safety/regulatory support-only records. 38/38 scope complete; operational user-guide coverage remains pending. |
 | 20 | Samsung Mobile | **expanded — 89** | Samsung JP five smartphone tables scope-complete: 85 exact model-specific manual indexes + 4 manufacturer support-only; not Samsung-wide |
 | 21 | Huawei | generic-only | Mobile queue |
 | 22 | Xiaomi | generic-only | Mobile queue |
@@ -125,7 +126,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 65 | Bambu Lab | generic-only | P1 3D-printer queue |
 | 66 | Creality | generic-only | P1 3D-printer queue |
 
-Result after the Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, and Fujifilm GFX/X publications: **48 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
+Result after the Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, and Fujifilm GFX/X publications: **47 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
 
 ## P0 source audit and order
 
@@ -175,6 +176,10 @@ The manufacturer maintains year-scoped manual download tables: [2024](https://dy
 ### Fujitsu FMWORLD JP business LIFEBOOK U-series Coverage-Pass
 
 The official [Fujitsu LIFEBOOK business PC manual index](https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html) separately lists A, E, P, S, T, U and other product families. The explicit **LIFEBOOK U-series** section was captured as a bounded 148-model official population. Source name/order and each model-to-page link are locked with SHA256; stale web-search snapshots would miss current U9416NQ/U8316 entries. Live GitHub Actions `41172890943` rechecked the official full population, the exact model name in every manufacturer-controlled manual page H1, and at least one manufacturer PDF with verified HTTPS redirect and `%PDF-` signature for all models. Final **148 = 148 direct + 0 shared + 0 support_only + 0 held**. There are 148 unique model-specific HTML manual index pages; 78 distinct PDF URLs were checked and may appear in several model pages. A common subordinate PDF does not make separate model-specific manual index pages a shared destination. Public file: `data/manuals.coverage-pass.fujitsu-lifebook-u.js`; manifest: `coverage-passes/fujitsu/jp-business-lifebook-u-model-manual-index.json`. This pass is **not** company-wide, nor complete for other LIFEBOOK families or consumer FMV products.
+
+### Google Pixel JP official manufacturer support scope (2016–2026)
+
+Google's [Pixel launch-date list](https://support.google.com/pixelphone/answer/15738422?hl=ja) has **33 official release table rows**, including five grouped two-model rows, which reconcile to **38 unique Pixel phone identities**. Google's independently maintained [safety, regulatory and other information index](https://support.google.com/pixelphone/answer/9204905?hl=ja) explicitly links those 38 models to **24 Google-controlled model-named regulatory support documents**, all HTTP/HTTPS and exact-name/type reviewed. Final scope state: **38 = 0 direct + 0 shared + 38 support_only + 0 held**. The 2016–2019 manufacturer article titles sometimes omit the `Google` brand prefix; positive exact Pixel variant labels and the manufacturer index relationship were checked without prefix/family guessing. Multiple Pixel models may be named on one regulatory document, but this is **not** grounds for claiming a shared operating user manual. Published support pages are not general Pixel Help and do not represent the user's instruction guide; the operating-guide search remains separate. Public batch: `data/manuals.coverage-pass.google-pixel-jp.js`. Source manifest: `coverage-passes/google/pixel-phone-jp-2016-2026.json`. This pass does not cover Pixel Tablet/Watch, generic Google products, nor Google's company-wide manuals.
 
 ## Wave rotation contract
 
