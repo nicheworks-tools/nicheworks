@@ -3,12 +3,15 @@
   "maker": "Xiaomi",
   "scopeId": "jp-user-guide-phone-tablet-2026",
   "scopeLabel": "Xiaomi Japan manufacturer User Guide Index, phones/tablets Xiaomi/REDMI/POCO and Leica powered by Xiaomi, source category through POCO Pad, 2026-11-01",
-  "status": "reviewing",
+  "status": "coverage-pass-complete",
   "asOf": "2026-11-01",
   "region": "JP",
   "language": "ja",
   "allowedDomains": [
-    "mi.com"
+    "mi.com",
+    "mi-fds.com",
+    "xiaomi.com",
+    "leica-camera.com"
   ],
   "universe": {
     "sourceUrls": [
@@ -348,10 +351,10 @@
         "officialGuideHref": "/jp/support/user-guide-pdf/poco-pad"
       }
     ],
-    "notes": "The index explicitly names the full 60 phones and tablets with official manufacturer URLs. It is not proof that the JavaScript-rendered target contains an operating manual. The source includes the official Leica Leitzphone powered by Xiaomi under Xiaomi product category. Both carrier variant (Rakuten) and tablet radio variants are separate manufacturer-listed devices. Duplicate REDMI Pad 2 4G appears twice in original with identical slug; collapse only the duplicate while preserving evidence of two index positions. No full Xiaomi company-wide completion claim."
+    "notes": "The index explicitly names the full 60 phones and tablets with official manufacturer URLs. It is not proof that the JavaScript-rendered target contains an operating manual. The source includes the official Leica Leitzphone powered by Xiaomi under Xiaomi product category. Both carrier variant (Rakuten) and tablet radio variants are separate manufacturer-listed devices. Duplicate REDMI Pad 2 4G appears twice in original with identical slug; collapse only the duplicate while preserving evidence of two index positions. No full Xiaomi company-wide completion claim. Live GitHub Actions validated all 306 manufacturer index labels and independent Xiaomi CMS model names/order, bounded 74 mobile section entries, and all 60 unique smartphone/tablet models. 59 manufacturer CMS model-bound PDFs passed official HTTPS host, HTTP status, actual application/pdf bytes and %PDF- header (including Mi 10 Lite 5G after retries); Leica co-branded handset is held after independent Leica official multi-language PDF was found but final PDF bytes returned HTTP 502 from CI. The held model is retained, never published as an unverified direct manual."
   },
   "review": {
-    "publicationGate": "blocked until actual document/pdf/manual type and exact device identity verified at each manufacturer's linked destination using manufacturer PDF API or rendered browser",
+    "publicationGate": "manufacturer_60_model_reconciliation_59_verified_pdf_1_held_leica_not_published",
     "discoveryChannels": [
       "manufacturer_JP_user_guide_complete_index",
       "individual_manufacturer_named_guide_route",
@@ -359,7 +362,1402 @@
       "rendered_manufacturer_user_guide_page",
       "exact_PDF_document_metadata"
     ],
-    "notes": "Never promote HTTP 200 generic Xiaomi Japan SPA shell to direct manual. Confirm manufacturer-controlled final guide or PDF and exact model identity. If unresolved after independent manufacturer paths, retain held. Scope includes 60 devices even when document checks fail."
+    "notes": "Never promote HTTP 200 generic Xiaomi Japan SPA shell to direct manual. Confirm manufacturer-controlled final guide or PDF and exact model identity. If unresolved after independent manufacturer paths, retain held. Scope includes 60 devices even when document checks fail.",
+    "liveReview": {
+      "workflowRunId": 41226817374,
+      "artifactId": 13051944248,
+      "officialGuideIndexRows": 306,
+      "sourceMobileRawRows": 74,
+      "uniqueDeviceModels": 60,
+      "direct": 59,
+      "shared": 0,
+      "support_only": 0,
+      "held": 1,
+      "heldModel": "Leica Leitzphone powered by Xiaomi",
+      "heldReason": "Xiaomi official CMS links to own unresolved SPA route, independent Leica JP manufacturer downloads lists exact multilingual Quickstart Guide; direct Leica manufacturer PDF returned HTTP 502 from GitHub Actions after 3 retries, so NOT asserted as verified.",
+      "pdfFormat": "manufacturer-hosted product quick start / user guide PDF, do not assume full operating manual"
+    }
   },
-  "records": []
+  "records": [
+    {
+      "model": "Xiaomi 17T Pro",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-17t-pro",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-17t-pro",
+        "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/P12U_Xiaomi%2017T%20Pro/P12U_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_20260309_2.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/P12U_Xiaomi%2017T%20Pro/P12U_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_20260309_2.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi 17T",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-17t",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-17t",
+        "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/P12A_Xiaomi%2017T/P12A_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20260304.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/P12A_Xiaomi%2017T/P12A_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20260304.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Leica Leitzphone powered by Xiaomi",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/leica-leitzphone-powered-by-xiaomi/",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery",
+        "secondary_Leica_JP_exact_download_page",
+        "manufacturer_Leica_direct_PDF_attempt_HTTP_502"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/leica-leitzphone-powered-by-xiaomi/",
+        "https://leica-camera.com/ja-JP/mobile/leitzphone-powered-by-xiaomi/downloads",
+        "https://leica-camera.com/sites/default/files/pm-127087-Leica-Leitzphone-powered-by-Xiaomi-Quickstart-guide.pdf"
+      ],
+      "state": "held",
+      "reason": "Manufacturer Xiaomi JP CMS guide link resolves to a model route rather than a PDF. Independent co-manufacturer Leica Japan official download page lists exact model and multilingual Quickstart-Guide including Japanese; its linked official PDF returned HTTP 502 in GitHub Actions after retries. Actual PDF bytes could not be positively verified there, so do not publish direct.",
+      "reviewNote": "Held is a verified population member only, not a verified direct PDF. Do not silently omit from the 60-model source universe."
+    },
+    {
+      "model": "Xiaomi 17 Ultra",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-17-ultra",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-17-ultra",
+        "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/P1%E6%99%AE%E9%80%9A%E7%89%88_Xiaomi%2017%20Ultra/1850201004973_P1%E6%99%AE%E9%80%9A%E7%89%88_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_20251121.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/P1%E6%99%AE%E9%80%9A%E7%89%88_Xiaomi%2017%20Ultra/1850201004973_P1%E6%99%AE%E9%80%9A%E7%89%88_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_20251121.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi Pad 8 Pro",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-pad-8-pro",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-pad-8-pro",
+        "https://gl123.alsgp0.mi-fds.com/gl123/XiaomiPad/P81_Xiaomi%20Pad%208%20Pro/1850201004436A_P81_Pad_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_V1.0_20251027.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/XiaomiPad/P81_Xiaomi%20Pad%208%20Pro/1850201004436A_P81_Pad_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_V1.0_20251027.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi Pad 8",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-pad-8",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-pad-8",
+        "https://gl123.alsgp0.mi-fds.com/gl123/XiaomiPad/P82_Xiaomi%20Pad%208/1850201004460_P82_Pad_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_V1.0.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/XiaomiPad/P82_Xiaomi%20Pad%208/1850201004460_P82_Pad_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_V1.0.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi Pad 7 Pro",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-pad-7-pro",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-pad-7-pro",
+        "https://gl123.alsgp0.mi-fds.com/gl123/XiaomiPad/O81-Xiaomi%20Pad%207%20Pro/O81%20Pad/1850201003077_O81_PAD_QSG_%E6%97%A5%E8%AF%AD%E7%89%88_1015.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/XiaomiPad/O81-Xiaomi%20Pad%207%20Pro/O81%20Pad/1850201003077_O81_PAD_QSG_%E6%97%A5%E8%AF%AD%E7%89%88_1015.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi Pad 7",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-pad-7",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-pad-7",
+        "https://gl123.alsgp0.mi-fds.com/gl123/XiaomiPad/O82-Xiaomi%20Pad%207/Pad/O82_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20241015.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/XiaomiPad/O82-Xiaomi%20Pad%207/Pad/O82_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20241015.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi Pad Mini",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-pad-mini",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-pad-mini",
+        "https://gl123.alsgp0.mi-fds.com/gl123/XiaomiPad/O88_Xiaomi%20Pad%20Mini/O88_Pad_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%BD%91%E9%A1%B5%E7%89%88.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/XiaomiPad/O88_Xiaomi%20Pad%20Mini/O88_Pad_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%BD%91%E9%A1%B5%E7%89%88.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi 15T",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-15t",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-15t",
+        "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/O12A%20Xiaomi%2015T/O12A_%E6%97%A5%E8%AF%AD%E7%89%88_A_20250709_3.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/O12A%20Xiaomi%2015T/O12A_%E6%97%A5%E8%AF%AD%E7%89%88_A_20250709_3.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi 15T Pro",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-15t-pro",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-15t-pro",
+        "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/O12U%20Xiaomi%2015T%20Pro/O12U_%E6%97%A5%E8%AF%AD%E7%89%88_A_20250709_4.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/O12U%20Xiaomi%2015T%20Pro/O12U_%E6%97%A5%E8%AF%AD%E7%89%88_A_20250709_4.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi 15",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-15",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-15",
+        "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/O3-Xiaomi%2015/O3_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20250107.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/O3-Xiaomi%2015/O3_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20250107.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi 15 Ultra",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-15-ultra",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-15-ultra",
+        "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/O1_Xiaomi%2015%20Ultra/O1_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_V4%20%E6%9B%B4%E6%96%B0NFC%E6%8F%8F%E8%BF%B0%E5%8F%8ASAR%E5%80%BC.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/O1_Xiaomi%2015%20Ultra/O1_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_V4%20%E6%9B%B4%E6%96%B0NFC%E6%8F%8F%E8%BF%B0%E5%8F%8ASAR%E5%80%BC.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi 14T Pro",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-14t-pro",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-14t-pro",
+        "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/Xiaomi%2014T%20Pro/%E9%87%8F%E4%BA%A7/1850201001961_N12_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E6%9C%AC%E5%85%AC%E7%89%88-240903.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/Xiaomi%2014T%20Pro/%E9%87%8F%E4%BA%A7/1850201001961_N12_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E6%9C%AC%E5%85%AC%E7%89%88-240903.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi 14 Ultra",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-14-ultra",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-14-ultra",
+        "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/Xiaomi%2014%20Ultra/%E9%87%8F%E4%BA%A7/N1_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_20240409.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/Xiaomi%2014%20Ultra/%E9%87%8F%E4%BA%A7/N1_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_20240409.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi 13T Pro",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-13t-pro",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-13t-pro",
+        "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/Xiaomi%2013T%20Pro/%E9%87%8F%E4%BA%A7/_M12_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20230703.pdf?GalaxyAccessKeyId=5151729087601&Expires=9223372036854775807&Signature=1MoTvksHXBliDmtgLoujTGSs5bY%3D"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/XIAOMI/Xiaomi%2013T%20Pro/%E9%87%8F%E4%BA%A7/_M12_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20230703.pdf?GalaxyAccessKeyId=5151729087601&Expires=9223372036854775807&Signature=1MoTvksHXBliDmtgLoujTGSs5bY%3D",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Mi Note 10",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/mi-note-10",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/mi-note-10",
+        "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/136b9121ff4cd3dff82e3298e1105046.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/136b9121ff4cd3dff82e3298e1105046.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Mi Note 10 Lite",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/mi-note-10-lite",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/mi-note-10-lite",
+        "https://alsgp0.fds.api.xiaomi.com/gl123/XIAOMI/Mi%20Note%2010%20Lite/%E9%87%8F%E4%BA%A7/ja_V1%3DGUID-856ED167-DC61-4754-942D-EFB57AEC04C8%3D1%3Dja%3D.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/gl123/XIAOMI/Mi%20Note%2010%20Lite/%E9%87%8F%E4%BA%A7/ja_V1%3DGUID-856ED167-DC61-4754-942D-EFB57AEC04C8%3D1%3Dja%3D.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Mi 10 Lite 5G",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/mi-10-lite-5g",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/mi-10-lite-5g",
+        "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/67b3c43ce0286110866c2808de5b75dd.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/67b3c43ce0286110866c2808de5b75dd.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Mi 11 Lite 5G",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/mi-11-lite-5g",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/mi-11-lite-5g",
+        "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/8b688491721359f06f87113727431a5d.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/8b688491721359f06f87113727431a5d.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi 11T",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-11t",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-11t",
+        "https://alsgp0.fds.api.xiaomi.com/gl123/XIAOMI/Xiaomi%2011T/%E9%87%8F%E4%BA%A7/K11R_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_%3DGUID-85A3C2FA-6BF0-424A-8716-ECA8A0F0922D%3D1%3Dja%3D.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/gl123/XIAOMI/Xiaomi%2011T/%E9%87%8F%E4%BA%A7/K11R_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_%3DGUID-85A3C2FA-6BF0-424A-8716-ECA8A0F0922D%3D1%3Dja%3D.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi 12T Pro",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-12t-pro",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-12t-pro",
+        "https://alsgp0.fds.api.xiaomi.com/gl123/XIAOMI/Xiaomi%2012T%20Pro/%E9%87%8F%E4%BA%A7/L12U_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20220721.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/gl123/XIAOMI/Xiaomi%2012T%20Pro/%E9%87%8F%E4%BA%A7/L12U_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20220721.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi Pad 6S Pro 12.4",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-pad-6s-pro-12.4",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-pad-6s-pro-12.4",
+        "https://gl123.alsgp0.mi-fds.com/gl123/XiaomiPad/Xiaomi%20Pad%206S%20Pro%2012.4/N81A_PAD_QSG_%E6%97%A5%E8%AF%AD%E7%89%88_V2%20%E5%90%88%E5%85%A5%E4%BF%9D%E4%BF%AE%E9%80%9A%E7%9F%A5.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/XiaomiPad/Xiaomi%20Pad%206S%20Pro%2012.4/N81A_PAD_QSG_%E6%97%A5%E8%AF%AD%E7%89%88_V2%20%E5%90%88%E5%85%A5%E4%BF%9D%E4%BF%AE%E9%80%9A%E7%9F%A5.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi Pad 6",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-pad-6",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-pad-6",
+        "https://alsgp0.fds.api.xiaomi.com/gl123/XiaomiPad/Xiaomi%20Pad%206/%E9%87%8F%E4%BA%A7/M82_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20230308.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/gl123/XiaomiPad/Xiaomi%20Pad%206/%E9%87%8F%E4%BA%A7/M82_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20230308.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Xiaomi Pad 5",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-pad-5",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/xiaomi-pad-5",
+        "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/9cdaf61ffd7df4b05e133f1c7e9cb3a5.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/9cdaf61ffd7df4b05e133f1c7e9cb3a5.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI Note 17 Pro Max 5G",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-note-17-pro-max-5g",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-note-17-pro-max-5g",
+        "https://gl123.alsgp0.mi-fds.com/gl123/Redmi/BRUSSELS_REDMI%20Note%2017%20Pro%20Max%205G/1850201005647_BRUSSELS_%E6%97%A5%E6%9C%AC_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_20260608.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/Redmi/BRUSSELS_REDMI%20Note%2017%20Pro%20Max%205G/1850201005647_BRUSSELS_%E6%97%A5%E6%9C%AC_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_20260608.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI 17",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-17",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-17",
+        "https://gl123.alsgp0.mi-fds.com/gl123/Redmi/LEEDS-A_REDMI%2017/LEEDSAL-%E6%97%A5%E6%9C%AC%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/Redmi/LEEDS-A_REDMI%2017/LEEDSAL-%E6%97%A5%E6%9C%AC%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI Pad 2 9.7",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-2-9.7",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-2-9.7",
+        "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/P85_REDMI%20Pad%202%209.7/1850201005237_Pad_P85_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_20260203.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/P85_REDMI%20Pad%202%209.7/1850201005237_Pad_P85_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_20260203.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI Pad 2 9.7 4G",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-2-9.7-4g",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-2-9.7-4g",
+        "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/P85X_REDMI%20Pad%202%209.7%204G/1850201005221A_Pad_P85X_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_V1.0_20260203.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/P85X_REDMI%20Pad%202%209.7%204G/1850201005221A_Pad_P85X_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_V1.0_20260203.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "Redmi Pad 2 4G",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-2-4g",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-2-4g",
+        "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/O84X_Redmi%20Pad%202%204G/O84X_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_20250410.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/O84X_Redmi%20Pad%202%204G/O84X_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_20250410.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI Pad 2 Pro",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-2-pro",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-2-pro",
+        "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/P83_Redmi%20Pad%202%20Pro/P83_Pad_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/P83_Redmi%20Pad%202%20Pro/P83_Pad_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI Pad 2",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-2",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-2",
+        "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/O84_Redmi%20Pad%202/O84_Pad_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/O84_Redmi%20Pad%202/O84_Pad_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI 14C",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-14c",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-14c",
+        "https://gl123.alsgp0.mi-fds.com/gl123/Redmi/Redmi%2014C/C3NL%20%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_V2.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/Redmi/Redmi%2014C/C3NL%20%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_V2.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI Pad SE 8.7 4G",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-se-8.7-4g",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-se-8.7-4g",
+        "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/N85X_Redmi%20Pad%20SE%208.7%204G/%E9%87%8F%E4%BA%A7/N85X_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20240625.pdf?GalaxyAccessKeyId=5151729087601&Expires=9223372036854775807&Signature=x4RnkuaRpsXwUO5138pPydwfmmI%3D"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/N85X_Redmi%20Pad%20SE%208.7%204G/%E9%87%8F%E4%BA%A7/N85X_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20240625.pdf?GalaxyAccessKeyId=5151729087601&Expires=9223372036854775807&Signature=x4RnkuaRpsXwUO5138pPydwfmmI%3D",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI Pad SE 8.7",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-se-8.7",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-se-8.7",
+        "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/N85_Redmi%20Pad%20SE%208.7%20/%E9%87%8F%E4%BA%A7/_N85_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20240614-2.pdf?GalaxyAccessKeyId=5151729087601&Expires=9223372036854775807&Signature=0LH7sex5V7M%2BLr5zdRObzZ2lF2I%3D"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/N85_Redmi%20Pad%20SE%208.7%20/%E9%87%8F%E4%BA%A7/_N85_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20240614-2.pdf?GalaxyAccessKeyId=5151729087601&Expires=9223372036854775807&Signature=0LH7sex5V7M%2BLr5zdRObzZ2lF2I%3D",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI Note 13 Pro+ 5G",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-note-13-pro%2B-5g",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-note-13-pro%2B-5g",
+        "https://gl123.alsgp0.mi-fds.com/gl123/Redmi/Redmi%20Note%2013%20Pro+%205G/%E9%87%8F%E4%BA%A7/N16U_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20240227.pdf?GalaxyAccessKeyId=5151729087601&Expires=9223372036854775807&Signature=LlY64T5UCdXQYYYGO3ES6cZv2ns%3D"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/Redmi/Redmi%20Note%2013%20Pro+%205G/%E9%87%8F%E4%BA%A7/N16U_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20240227.pdf?GalaxyAccessKeyId=5151729087601&Expires=9223372036854775807&Signature=LlY64T5UCdXQYYYGO3ES6cZv2ns%3D",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI 12 5G",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-12-5g",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-12-5g",
+        "https://gl123.alsgp0.mi-fds.com/gl123/Redmi/Redmi%2012%205G/%E9%87%8F%E4%BA%A7/M19J_%E6%97%A5%E8%AF%AD%E7%89%88_QSG_20240403.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/Redmi/Redmi%2012%205G/%E9%87%8F%E4%BA%A7/M19J_%E6%97%A5%E8%AF%AD%E7%89%88_QSG_20240403.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI Pad SE",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-se",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-se",
+        "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/Redmi%20Pad%20SE/%E9%87%8F%E4%BA%A7/M84_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20230625.pdf?GalaxyAccessKeyId=5151729087601&Expires=9223372036854775807&Signature=nfWET%2BF0fYlK3pJFeh80JMgf5vs%3D"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/Redmi%20Pad%20SE/%E9%87%8F%E4%BA%A7/M84_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20230625.pdf?GalaxyAccessKeyId=5151729087601&Expires=9223372036854775807&Signature=nfWET%2BF0fYlK3pJFeh80JMgf5vs%3D",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI Note 9S",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-note-9s",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-note-9s",
+        "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/7c9156c16826b0b9656d4027b0e967c0.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/7c9156c16826b0b9656d4027b0e967c0.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI 9T",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-9t",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-9t",
+        "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/4faada0a3b92c97527c85b5289d8915a.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/4faada0a3b92c97527c85b5289d8915a.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI Note 10 Pro",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-note-10-pro",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-note-10-pro",
+        "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/7bdedb3adae75d7141b4c2d3357e572e.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/7bdedb3adae75d7141b4c2d3357e572e.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI Note 11 Pro 5G",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-note-11-pro-5g",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-note-11-pro-5g",
+        "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/b007b40ce8575b7b07eec4983db6157a.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/b007b40ce8575b7b07eec4983db6157a.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI Note 11 Pro 5G - Rakuten",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-note-11-pro-5g---rakuten",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-note-11-pro-5g---rakuten",
+        "https://alsgp0.fds.api.xiaomi.com/gl123/Redmi/Redmi%20Note%2011%20Pro%205G/%E9%87%8F%E4%BA%A7/K6S%20%E6%97%A5%E6%9C%AC%E4%B9%90%E5%A4%A9%3DGUID-B1F576C5-DEA3-4F52-8CB8-789B35A2B4DD%3D1%3Dja%3D.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/gl123/Redmi/Redmi%20Note%2011%20Pro%205G/%E9%87%8F%E4%BA%A7/K6S%20%E6%97%A5%E6%9C%AC%E4%B9%90%E5%A4%A9%3DGUID-B1F576C5-DEA3-4F52-8CB8-789B35A2B4DD%3D1%3Dja%3D.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI Note 11",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-note-11",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-note-11",
+        "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/149d3e46922ec5c5872ef213752821f1.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/149d3e46922ec5c5872ef213752821f1.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI 12C",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-12c",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-12c",
+        "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/5a6b5f1d7fc82f605989515ac8175cc6.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/5a6b5f1d7fc82f605989515ac8175cc6.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI Pad",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad",
+        "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/7a0ae2457938b686a73b134633c4ac57.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/7a0ae2457938b686a73b134633c4ac57.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "REDMI Pad Pro",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-pro",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/redmi-pad-pro",
+        "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/Redmi%20Pad%20Pro/N83_PAD_QSG_%E6%97%A5%E8%AF%AD%E7%89%88_A_20240412.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/Redmi%20Pad/Redmi%20Pad%20Pro/N83_PAD_QSG_%E6%97%A5%E8%AF%AD%E7%89%88_A_20240412.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "POCO F9 Ultra",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/poco-f9-ultra",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/poco-f9-ultra",
+        "https://gl123.alsgp0.mi-fds.com/gl123/POCO/SONGYUAN_POCO%20F9%20Ultra/SONGYUAN_%E6%97%A5%E8%A7%84_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_20260529_1.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/POCO/SONGYUAN_POCO%20F9%20Ultra/SONGYUAN_%E6%97%A5%E8%A7%84_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_20260529_1.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "POCO X8 Pro",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/poco-x8-pro",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/poco-x8-pro",
+        "https://gl123.alsgp0.mi-fds.com/gl123/POCO/P10_%20POCO%20X8%20Pro/1850201004856_P10_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/POCO/P10_%20POCO%20X8%20Pro/1850201004856_P10_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "POCO X8 Pro Max",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/poco-x8-pro-max",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/poco-x8-pro-max",
+        "https://gl123.alsgp0.mi-fds.com/gl123/POCO/P10U_POCO%20X8%20Pro%20Max/1850201005174_P10U_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20251224.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/POCO/P10U_POCO%20X8%20Pro%20Max/1850201005174_P10U_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20251224.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "POCO F8 Pro",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/poco-f8-pro",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/poco-f8-pro",
+        "https://gl123.alsgp0.mi-fds.com/gl123/POCO/P11-POCO%20F8%20Pro/1850201004573_P11_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20251119.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/POCO/P11-POCO%20F8%20Pro/1850201004573_P11_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20251119.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "POCO Pad M1",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/poco-pad-m1",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/poco-pad-m1",
+        "https://gl123.alsgp0.mi-fds.com/gl123/POCO%20Pad/P83P_POCO%20Pad%20M1/1850201004657_P83P_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_V1.0_20250822.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/POCO%20Pad/P83P_POCO%20Pad%20M1/1850201004657_P83P_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_V1.0_20250822.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "POCO F7",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/poco-f7",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/poco-f7",
+        "https://gl123.alsgp0.mi-fds.com/gl123/POCO/O10U_POCO%20F7/1850202000707_O10U_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_V1.1.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/POCO/O10U_POCO%20F7/1850202000707_O10U_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_V1.1.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "POCO M7 Pro 5G",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/poco-m7-pro-5g",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/poco-m7-pro-5g",
+        "https://gl123.alsgp0.mi-fds.com/gl123/POCO/O17P_POCO%20M7%20Pro%205G/O17P_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20250114.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/POCO/O17P_POCO%20M7%20Pro%205G/O17P_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20250114.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "POCO F7 Pro",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/poco-f7-pro",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/poco-f7-pro",
+        "https://gl123.alsgp0.mi-fds.com/gl123/POCO/O11-POCO%20F7%20Pro/O11_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20241126.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/POCO/O11-POCO%20F7%20Pro/O11_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_20241126.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "POCO F7 Ultra",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/poco-f7-ultra",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/poco-f7-ultra",
+        "https://gl123.alsgp0.mi-fds.com/gl123/POCO/O11U-POCO%20F7%20Ultra/O11U_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%E5%90%AB%E4%BF%9D%E5%8D%A1_%E6%97%A5%E8%AF%AD%E7%89%88.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/POCO/O11U-POCO%20F7%20Ultra/O11U_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%E5%90%AB%E4%BF%9D%E5%8D%A1_%E6%97%A5%E8%AF%AD%E7%89%88.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "POCO X7 Pro",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/poco-x7-pro",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/poco-x7-pro",
+        "https://gl123.alsgp0.mi-fds.com/gl123/POCO/O10_POCO%20X7%20Pro/%E9%87%8F%E4%BA%A7/O10_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/POCO/O10_POCO%20X7%20Pro/%E9%87%8F%E4%BA%A7/O10_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "POCO F6 Pro",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/poco-f6-pro",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/poco-f6-pro",
+        "https://gl123.alsgp0.mi-fds.com/gl123/POCO/POCO%20F6%20Pro/N11_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_V3.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/POCO/POCO%20F6%20Pro/N11_%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97_%E6%97%A5%E8%AF%AD%E7%89%88_A_V3.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "POCO F4 GT",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/poco-f4-gt",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/poco-f4-gt",
+        "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/79742822a8323eb0bc81d2c3f39db0c7.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://alsgp0.fds.api.xiaomi.com/xiaomi-b2c-i18n-upload/user-guides/79742822a8323eb0bc81d2c3f39db0c7.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    },
+    {
+      "model": "POCO Pad",
+      "verifiedAt": "2026-11-01",
+      "manufacturerGuidePage": "https://www.mi.com/jp/support/user-guide-pdf/poco-pad",
+      "attemptedDiscovery": [
+        "complete_Xiaomi_306_official_JP_index",
+        "manufacturer_CMS_60_exact_model_PDF_binding",
+        "manufacturer_PDF_HTTPS_file_magic",
+        "secondary_official_manufacturer_document_discovery"
+      ],
+      "evidenceUrls": [
+        "https://www.mi.com/jp/support/user-guide/",
+        "https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide",
+        "https://www.mi.com/jp/support/user-guide-pdf/poco-pad",
+        "https://gl123.alsgp0.mi-fds.com/gl123/POCO%20Pad/POCO%20Pad/N83P_QSG_%E6%97%A5%E8%AF%AD%E7%89%88_A_20240416.pdf"
+      ],
+      "state": "direct",
+      "manualUrl": "https://gl123.alsgp0.mi-fds.com/gl123/POCO%20Pad/POCO%20Pad/N83P_QSG_%E6%97%A5%E8%AF%AD%E7%89%88_A_20240416.pdf",
+      "pdfContentType": "application/pdf",
+      "manualKind": "manufacturer PDF product / quick-start guide",
+      "reviewMethod": "official_Xiaomi_model_named_index_and_independent_CMS_PDF_link_and_live_magic",
+      "reviewNote": "Manufacturer official Japan device-specific guide index positively connects this exact model to an official PDF; the actual PDF was independently retrieved/verified as a PDF in CI. This may be a quick-start guide, not an exhaustive operating user manual."
+    }
+  ]
 }
