@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: '24'
       - name: Check webhook/D1 real-function lifecycle with HMAC and SQLite
-        run: node --experimental-default-type=module scripts/check-csv-tidy-billing-lifecycle.mjs
+        run: node scripts/check-csv-tidy-billing-lifecycle.mjs
       - name: Ensure test did not change source tree
         run: |
           git diff --exit-code
