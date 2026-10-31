@@ -1,0 +1,25 @@
+name: ManualFinder Motorola JP bounded product and user guides probe
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/scripts/motorola-jp-model-guides-probe.mjs'
+      - '.github/workflows/manualfinder-motorola-jp-coverage-pass.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe-manufacturer-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/manual-finder/scripts/motorola-jp-model-guides-probe.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-motorola-jp-guide-source-probe
+          path: manualfinder-motorola-jp-probe/*.json
+          if-no-files-found: warn
