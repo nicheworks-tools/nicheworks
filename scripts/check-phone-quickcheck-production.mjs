@@ -28,6 +28,7 @@ async function httpSmoke(){
   assert.ok(data[''].includes('id="phoneList"'),'HTML list missing');
   assert.ok(data['app.js'].includes("wirelessStatus === 'not_supported'"),'Live JS is stale');
   assert.ok(data['style.css'].includes('.bottom-sheet'),'Live CSS missing');
+  assert.ok(data['style.css'].includes('.bottom-sheet .detail-title{padding-right:46px}'),'Live CSS missing mobile close-button collision fix');
   const live = JSON.parse(data['data/phones.json']).phones;
   assert.equal(live.length,count,'Public JSON count is stale');
   assert.ok(live.some(p=>p.id==='fcnt-arrows-alpha2-m10'),'FCNT missing from public JSON');
@@ -118,6 +119,11 @@ async function browserSmoke(){
       const jp=await evalJs('(()=>{document.querySelector(".phone-row[data-phone-id=nothing-phone-4b]").click();const mobile=matchMedia("(max-width: 900px)").matches;const detail=document.querySelector(mobile?"#sheetDetail":"#desktopDetail");const ok=[...detail.querySelectorAll(".kv")].some(x=>x.querySelector("span")?.textContent==="ワイヤレス"&&x.querySelector("b")?.textContent==="非対応");return {mobile,open:!document.querySelector("#mobileSheet").hidden,ok};})()');
       assert.ok(jp.ok,width+'px: JP wireless negative state not rendered');
       assert.equal(jp.open,jp.mobile,width+'px: bottom sheet state mismatch');
+      if(jp.mobile){
+        const rects=await evalJs('(()=>{const badge=document.querySelector("#mobileSheet .status-badge").getBoundingClientRect();const close=document.querySelector("#sheetClose").getBoundingClientRect();return {badge:{left:badge.left,right:badge.right,top:badge.top,bottom:badge.bottom},close:{left:close.left,right:close.right,top:close.top,bottom:close.bottom,width:close.width,height:close.height},overlap:badge.left<close.right&&badge.right>close.left&&badge.top<close.bottom&&badge.bottom>close.top};})()');
+        assert.ok(rects.close.width>=32&&rects.close.height>=32,width+'px: close button tap area shrank');
+        assert.equal(rects.overlap,false,width+'px: Quick Check badge overlaps close button: '+JSON.stringify(rects));
+      }
       const en=await evalJs('(()=>{document.querySelector("button[data-lang=en]").click();const mobile=matchMedia("(max-width: 900px)").matches;const detail=document.querySelector(mobile?"#sheetDetail":"#desktopDetail");return {ok:[...detail.querySelectorAll(".kv")].some(x=>x.querySelector("span")?.textContent==="Wireless"&&x.querySelector("b")?.textContent==="Not supported"),lang:document.documentElement.lang,count:document.querySelector("#dataState")?.textContent};})()');
       assert.ok(en.ok&&en.lang==='en'&&en.count===count+' models',width+'px: EN detail or counter incorrect: '+JSON.stringify(en));
       const screenshot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
