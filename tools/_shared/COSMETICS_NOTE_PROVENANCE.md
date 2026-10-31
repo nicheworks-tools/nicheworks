@@ -466,3 +466,10 @@ Eleven category Wave 26 identities also receive distinct reviewed, ingredient-sp
 - **Perfuming and related documented functions:** Menthol, Benzyl Benzoate, Benzyl Salicylate, Hydroxycitronellal, Isoeugenol, Amyl Cinnamal
 
 Review remains per-ingredient, not extrapolated from `protein`, `wax`, `powder` or `fragrance allergen` legacy group labels. After Wave 22 the verified note inventory is **96/599**, all with supported role and maintained Japanese naming, leaving **503** identities without the stronger source-backed note. No raw ingredient records or legacy notes are modified. Exact source links and function terms are enforced by `check-cosmetics-source-verified-wave26.mjs`.
+
+
+## Verified note wave 23 (2026-10-31)
+
+The same 12 reviewed canonical identities receive narrow, ingredient-specific short notes backed by their own COSMILE Europe function lists. Runtime note/strong completion rises from 96 to **108/599 (18.03%)**, leaving **491** without an equivalent reviewed note.
+
+The note text does not make product safety, allergy probability, medical efficacy, or concentration claims. In particular, older unsourced source-record descriptions (such as Cinnamyl Alcohol's legacy text) are **not** accepted as provenance. Their verified runtime notes are separate source-backed overlays. Exact function/category/note/source alignment is enforced in `check-cosmetics-source-verified-wave27.mjs`.
