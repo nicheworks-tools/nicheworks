@@ -147,8 +147,8 @@ const reviewedVerifiedPrimary = new Map([
   ["lavandula angustifolia lavender oil", { category: "fragrance", legacy: ["essential oil"] }],
   ["copernicia cerifera carnauba wax", { category: "film former", legacy: ["wax"] }],
   ["euphorbia cerifera candelilla wax", { category: "film former", legacy: ["wax"] }],
-  ["peg-12", { category: "humectant", legacy: ["humectant","solvent"] }],
-  ["peg-75", { category: "humectant", legacy: ["humectant","solvent"] }],
+  ["peg-12", { category: "humectant", legacy: ["solvent"] }],
+  ["peg-75", { category: "humectant", legacy: ["solvent"] }],
   ["ppg-26-buteth-26", { category: "hair conditioning", legacy: ["solubilizer"] }],
   ["elastin", { category: "skin conditioning", legacy: ["protein"] }]
 ]);
