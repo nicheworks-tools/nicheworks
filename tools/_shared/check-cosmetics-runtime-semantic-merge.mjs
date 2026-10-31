@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 99, 'the 2 legacy-only and 97 reviewed verified-primary role conflicts must remain explicit');
+assert.equal(categoryConflicts.length, 110, 'two legacy-only and 108 reviewed verified-primary role conflicts must remain explicit');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
@@ -132,7 +132,18 @@ const reviewedVerifiedPrimary = new Map([
   ["ceramide ns", { category: "skin conditioning", legacy: ["barrier lipid"] }],
   ["soluble collagen", { category: "humectant", legacy: ["protein"] }],
   ["ozokerite", { category: "viscosity adjuster", legacy: ["wax"] }],
-  ["polyacrylamide", { category: "film former", legacy: ["polymer"] }]
+  ["polyacrylamide", { category: "film former", legacy: ["polymer"] }],
+  ["honey extract", { category: "humectant", legacy: ["animal extract"] }],
+  ["royal jelly extract", { category: "skin conditioning", legacy: ["animal extract"] }],
+  ["propolis extract", { category: "skin conditioning", legacy: ["animal extract"] }],
+  ["sodium stearate", { category: "cleanser", legacy: ["soap"] }],
+  ["potassium laurate", { category: "cleanser", legacy: ["soap"] }],
+  ["sea salt", { category: "humectant", legacy: ["mineral"] }],
+  ["camphor", { category: "fragrance", legacy: ["sensory"] }],
+  ["eucalyptus globulus leaf oil", { category: "fragrance", legacy: ["essential oil"] }],
+  ["citrus aurantium dulcis orange peel oil", { category: "fragrance", legacy: ["essential oil"] }],
+  ["citrus limon lemon peel oil", { category: "fragrance", legacy: ["essential oil"] }],
+  ["mentha piperita peppermint oil", { category: "fragrance", legacy: ["essential oil"] }]
 ]);
 
 for (const item of categoryConflicts) {
