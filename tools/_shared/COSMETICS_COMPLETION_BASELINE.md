@@ -66,15 +66,15 @@ The original baseline intentionally counted only raw dictionary fields. That rem
 
 Reviewed runtime provenance after source-backed Wave 26 (the raw inventory above remains frozen):
 
-- verified category overlay identities: **160**
-- verified note overlay identities: **126**
-- verified note identities with maintained Japanese naming: **126**
-- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): **126 / 599**
-- runtime public role explanations: **562 / 599 (93.82%)**; **37** identities still incomplete. This is distinct from the frozen 408/599 raw-canonical baseline.
+- verified category overlay identities: **174**
+- verified note overlay identities: **140**
+- verified note identities with maintained Japanese naming: **140**
+- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): **140 / 599**
+- runtime public role explanations: **576 / 599 (96.16%)**; **23** identities still incomplete. This is distinct from the frozen 408/599 raw-canonical baseline.
 
 Accordingly, completion readiness must report raw dictionary debt and runtime verified provenance separately. A raw evidence count of zero must not be interpreted as zero runtime provenance.
 
-The runtime provenance floors are ratcheted at 160 verified categories, 126 verified notes, and 126 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 20 adds source-backed ingredient-specific notes for Glycine, Lactic Acid, PEG-100 Stearate, and Proline.
+The runtime provenance floors are ratcheted at 174 verified categories, 140 verified notes, and 140 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 20 adds source-backed ingredient-specific notes for Glycine, Lactic Acid, PEG-100 Stearate, and Proline.
 
 
 Wave 21 (2026-10-31) verifies three additional common-label notes against COSMILE Europe: 1,2-Hexanediol, Sodium Citrate, and Urea. Raw recognition records remain unchanged; verified runtime strong readiness is 85/599. Historical baseline metrics above remain frozen inventory, not a statement that all 599 identities have complete descriptions.
@@ -87,3 +87,6 @@ Category wave27 / note wave23 (2026-10-31): 12 more reviewed source-linked roles
 
 
 Category wave28 / note wave24 (2026-10-31): 18 independently source-reviewed entries including film-forming polymers, skin-conditioning ceramides, mineral ingredients, and Padimate O UV-filter identity. Adds an explicit reviewed `COLORANT` taxonomy function for Kaolin and Magnesium Stearate. Runtime **562/599 supported primary roles** (37 unresolved) and **126/599 source-backed ingredient-specific notes** (473 unresolved). These are release target values subject to CI validation. Raw 725 records and 599 canonical names unchanged.
+
+
+Category wave29 / note wave25 (2026-10-31): 14 source-reviewed ingredients including animal-derived extracts, cleansing soap salts, sea salt, camphor, hydrochloric acid, essential oils and lichen extracts. Runtime public roles target **576/599 (96.16%)**, leaving **23** incomplete; source-backed ingredient notes target **140/599 (23.37%)**, leaving **459** incomplete. Exact authoritative COSMILE pages, previous raw category values, and alias/name ambiguity invariants are validated in CI. The raw 725-record dataset stays unchanged.
