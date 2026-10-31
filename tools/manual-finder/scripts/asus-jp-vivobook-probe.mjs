@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 import fs from 'node:fs/promises';
+await fs.mkdir('manualfinder-asus-probe',{recursive:true});
 const sources=[
  {name:'vivobook_index',url:'https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook'},
  {name:'vivobook_all_series',url:'https://www.asus.com/jp/laptops/for-home/all-series/filter?Series=Vivobook'},
+ {name:'vivobook_page2',url:'https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook&page=2'},
+ {name:'vivobook_offset20',url:'https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook&offset=20'},
  {name:'model_manual_global',url:'https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-15-x1504/helpdesk_manual/?model2Name=X1504VAPB'},
  {name:'model_manual_jp',url:'https://www.asus.com/jp/laptops/for-home/vivobook/asus-vivobook-15-x1504/helpdesk_manual/?model2Name=X1504VAPB'}
 ];
@@ -12,6 +15,7 @@ for(const {name,url} of sources){
  try{
   const r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(24000),headers:{'user-agent':'Mozilla/5.0 (compatible; ManualFinderCoveragePass/1.0)','accept':'text/html,application/xhtml+xml'}});
   const html=await r.text();
+  if(['vivobook_index','vivobook_page2','vivobook_offset20'].includes(name))await fs.writeFile('manualfinder-asus-probe/'+name+'.html',html);
   const title=clean(html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]||'');
   const heads=[...html.matchAll(/<h[1-5]\b[^>]*>([\s\S]*?)<\/h[1-5]>/gi)].map(m=>clean(m[1])).filter(Boolean);
   const anchors=[...html.matchAll(/<a\b[^>]*href\s*=\s*(["'])(.*?)\1[^>]*>([\s\S]*?)<\/a>/gi)].map(m=>({href:m[2],text:clean(m[3])})).filter(a=>/vivobook|manual|support|X1504|詳細はこちら/i.test(a.href+' '+a.text));
