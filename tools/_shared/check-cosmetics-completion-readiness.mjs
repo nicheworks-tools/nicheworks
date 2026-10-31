@@ -52,9 +52,9 @@ const BASELINE_FLOORS = Object.freeze({
 });
 
 const BASELINE_RUNTIME_PROVENANCE_FLOORS = Object.freeze({
-  verified_category_runtime_identities: 174,
-  verified_note_runtime_identities: 140,
-  strong_runtime_data_identities: 140
+  verified_category_runtime_identities: 190,
+  verified_note_runtime_identities: 156,
+  strong_runtime_data_identities: 156
 });
 
 function text(value = '') {
