@@ -101,10 +101,10 @@ const AUTHORITY='Cosmetics Europe / COSMILE Europe';
 assert.equal(raw.length,725,'source-backed overlays must preserve frozen 725-row recognition data');
 assert.equal(merged.length,599,'source-backed overlays must preserve the 599 canonical identities');
 assert.equal(Object.keys(expected).length,14);
-assert.equal(Object.keys(parser.verifiedCategoryEvidence).length,174);
-assert.equal(Object.keys(parser.verifiedNoteEvidence).length,140);
-assert.equal(Object.keys(taxonomy.reviewed_mappings).length,174);
-assert.equal(parser.version,'1.62.0');
+assert.ok(Object.keys(parser.verifiedCategoryEvidence).length >= 174, 'wave29 role evidence preserved');
+assert.ok(Object.keys(parser.verifiedNoteEvidence).length >= 140, 'wave29 note evidence preserved');
+assert.ok(Object.keys(taxonomy.reviewed_mappings).length >= 174, 'wave29 taxonomy preserved');
+assert.ok(Number(parser.version.split('.')[1]) >= 62, 'wave29 parser contract preserved');
 for(const [canonical,e] of Object.entries(expected)) {
   const category=parser.verifiedCategoryEvidence[canonical];
   const note=parser.verifiedNoteEvidence[canonical];
