@@ -52,6 +52,11 @@ async function smoke() {
     check(document.querySelector("#result-count")?.textContent === "42", "Visible catalog count is not 42");
     check(all("[data-pro-buy]").length === 0, "Retired Stripe purchase action is present");
     check(all("[data-pro-action]").every(element => !element.disabled), "Free output disabled");
+    const initialReduced = document.querySelector("#reduced-toggle");
+    if (initialReduced?.checked) {
+      initialReduced.checked = false;
+      initialReduced.dispatchEvent(new Event("change", { bubbles: true }));
+    }
     const input = document.querySelector("#motion-search");
     input.value = "overshoot";
     input.dispatchEvent(new Event("input", { bubbles: true }));
