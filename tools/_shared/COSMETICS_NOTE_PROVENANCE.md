@@ -455,3 +455,14 @@ Wave 21 adds source-backed ingredient-specific notes for three maintained Japane
 | `urea` | 2 | COSMILE Europe: humectant and skin-conditioning ingredient, also buffering. |
 
 After wave 21: cumulative verified notes 85; strong runtime identities 85/599. The notes are narrow descriptive statements, not a safety/irritation/concentration score. Raw dictionary notes, recognition and OCR are unchanged. The three exact authoritative URLs are pinned by `check-cosmetics-verified-note-wave21.mjs`.
+
+
+## Verified note wave 22 (2026-10-31)
+
+Eleven category Wave 26 identities also receive distinct reviewed, ingredient-specific notes and official COSMILE URLs. Notes intentionally describe functional roles only, do not assert whether a consumer product is safe, and do not extend claims beyond the cited source.
+
+- **Hair/skin/moisture:** Hydrolyzed Keratin, Hydrolyzed Silk, Hydrolyzed Collagen
+- **Formulation viscosity:** Beeswax, Aluminum Starch Octenylsuccinate
+- **Perfuming and related documented functions:** Menthol, Benzyl Benzoate, Benzyl Salicylate, Hydroxycitronellal, Isoeugenol, Amyl Cinnamal
+
+Review remains per-ingredient, not extrapolated from `protein`, `wax`, `powder` or `fragrance allergen` legacy group labels. After Wave 22 the verified note inventory is **96/599**, all with supported role and maintained Japanese naming, leaving **503** identities without the stronger source-backed note. No raw ingredient records or legacy notes are modified. Exact source links and function terms are enforced by `check-cosmetics-source-verified-wave26.mjs`.
