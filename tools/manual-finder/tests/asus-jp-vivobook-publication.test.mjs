@@ -77,13 +77,13 @@ assert.equal(pass.records.find(x=>x.manualLanguage==='en')?.model,'ASUS Vivobook
 const scripts=Array.from(context.window.MANUALFINDER_COVERAGE_PASS_BATCHES||[]);
 assert.ok(scripts.includes('manuals.coverage-pass.asus-jp-vivobook.js'));
 const combined=Array.from(context.window.MANUALFINDER_BUILD_COVERAGE_PASSES());
-assert.equal(combined.length,801);
+assert.ok(combined.length>=801,'later manufacturer batches must not break ASUS scope regression');
 for(const [maker,expected] of [['ASUS',35],['Motorola',11],['Google Pixel',38],['Fujitsu FMV',148],['dynabook',177],['Samsung Mobile',89]]){
  assert.equal(combined.filter(x=>x.maker===maker).length,expected);
 }
 const coverage=fs.readFileSync(new URL('../COVERAGE.md',import.meta.url),'utf8');
-assert.ok(coverage.includes('**2,317 verified model/caliber rows**'));
-assert.ok(coverage.includes('**45 of the 66 baseline brands are still generic-only**'));
+assert.ok(coverage.includes('| ASUS | 35 | expanded, scope-complete |'), 'ASUS own scope must remain documented');
+assert.ok(coverage.includes('ASUS Japan Vivobook official 2026 product catalog Coverage-Pass'), 'ASUS provenance must remain documented');
 assert.ok(coverage.includes('| ASUS | 35 | expanded, scope-complete |'));
 const reviewed={
  officialPopulation:35,manufacturerPageRows:[20,15],sourceDigest:digest,

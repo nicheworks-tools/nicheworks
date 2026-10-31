@@ -40,9 +40,15 @@ export function extractPopulation(html,pass){
 }
 async function get(url){
  if(!vendor(url))throw Error('not Motorola-controlled HTTPS');
- const res=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(20000),headers:{'user-agent':'Mozilla/5.0','accept':'text/html,application/xhtml+xml'}});
- if(!res.ok||!vendor(res.url)||!/html/i.test(res.headers.get('content-type')||''))throw Error('official HTTP/redirect/type rejection: '+res.status+' '+res.url);
- return{url:res.url,html:await res.text(),status:res.status};
+ let last;
+ for(let attempt=0;attempt<3;attempt++){
+  try{
+   const res=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(25000),headers:{'user-agent':'Mozilla/5.0','accept':'text/html,application/xhtml+xml'}});
+   if(!res.ok||!vendor(res.url)||!/html/i.test(res.headers.get('content-type')||''))throw Error('official HTTP/redirect/type rejection: '+res.status+' '+res.url);
+   return{url:res.url,html:await res.text(),status:res.status};
+  }catch(e){last=e;if(attempt<2)await new Promise(r=>setTimeout(r,1000*(attempt+1)));}
+ }
+ throw last;
 }
 export function checkManualHtml(doc,model,{alias=null,regional=false}={}){
  const title=clean(doc.html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]||'');
