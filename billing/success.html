@@ -50,7 +50,7 @@
         <button class="btn secondary" type="button" id="copyRecoveryCode">Copy code / コピー</button>
       </div>
       <p class="muted" id="recoveryCopyStatus" role="status" aria-live="polite"></p>
-      <p><a href="/billing/restore.html">Restore access on another device / 別端末で復元</a></p>
+      <p><a id="recoveryRestoreLink" href="/billing/restore.html">Restore access on another device / 別端末で復元</a></p>
       <p class="muted">If you lose both this code and your original device, automated email recovery is not yet available. Keep your Stripe receipt and contact support.</p>
     </section>
     <div class="actions">
@@ -134,6 +134,8 @@
         if (state.active && state.source === 'server') {
           recoveryCode.value = sessionId;
           recoveryBox.hidden = false;
+          document.getElementById('recoveryRestoreLink').href =
+            '/billing/restore.html?product_id=' + encodeURIComponent(productId);
           setState('ok', 'Purchase verified', 'Server-confirmed access is active. Securely back up your recovery code before leaving this page.');
           retry.disabled = false;
           return;
