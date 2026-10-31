@@ -152,6 +152,12 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 21 — 2026-11-01
+
+Strengthened public Cloudflare Pages real-Chrome tests after the four-model Nothing Japan catalog addition. The runtime script already deep-compares the **entire** public `phones.json` with canonical GitHub data; now it also explicitly asserts Phone (4a)'s 50W and Japanese cable inclusion, Phone (4a) Pro's primary wireless-negative and charger omission, Phone (2a)'s 45W and negative wireless, and CMF Phone 1's 33W PPS with two exact thickness↔weight pairs.
+
+In Chrome at **320/390/414/768/1280px**, the actual live page must search for `CMF Phone 1` and display both 8mm/197g standard and 9mm/202g vegan-leather values with distinct English labels. Existing JP/EN, older Phone (4b) sheet, horizontal overflow and ×-button badge collision tests remain intact. A successful Github source CI is not sufficient: this PR explicitly triggers the *public* browser workflow against the already merged 219-phone live page.
+
 ## Post-v1 maintenance Wave 20 — 2026-11-01
 
 Backfilled four previously absent Nothing models from Japanese first-party manufacturer/carrier evidence. **215 → 219 phones**, **11 manufacturers**, **36 foldables**. `updatedAt` advances to 2026-11-01; original V1 181 baseline retained. No new unreviewed package/water unknown fields.
