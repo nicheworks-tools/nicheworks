@@ -162,7 +162,7 @@
     const documentToExport = {
       schema: 'fastscan-photo-qa-v1',
       generatedAt: new Date().toISOString(),
-      scoring: 'NFKC lowercase whitespace-normalized CER plus non-deduplicated ingredient exact recall/precision',
+      scoring: 'NFKC lowercase tokenized-ingredient CER (separator-insensitive, numeric locants preserved) plus non-deduplicated exact ingredient recall/precision',
       originalImageUploaded: false,
       rawPhotoOrIngredientTextIncluded: false,
       runs: toExport,

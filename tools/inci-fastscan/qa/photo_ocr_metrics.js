@@ -43,8 +43,17 @@
   }
 
   function score(referenceText, recognizedText, splitIngredients) {
-    const reference = normalizedText(referenceText);
-    const predicted = normalizedText(recognizedText);
+    // The OCR postprocessor intentionally converts ingredient separators
+    // (commas, Japanese commas, line breaks) into line-delimited tokens.
+    // Compare identically normalized ingredient sequences, otherwise a
+    // perfect OCR read of a comma-separated label would register false
+    // character edits purely because of that delimiter conversion.
+    // Numeric locant commas inside names (e.g. 1,2-Hexanediol) are preserved
+    // by the shared parser and remain part of the measured text.
+    const referenceTokens = ingredients(referenceText, splitIngredients);
+    const predictedTokens = ingredients(recognizedText, splitIngredients);
+    const reference = normalizedText(referenceTokens.join('\n'));
+    const predicted = normalizedText(predictedTokens.join('\n'));
     if (!reference) throw new Error('A transcribed reference label is required.');
     if (Array.from(reference).length > 5000 || Array.from(predicted).length > 5000) {
       throw new Error('Limit each OCR comparison to 5000 normalized characters.');
@@ -53,8 +62,6 @@
     const referenceChars = Array.from(reference).length;
     const recognizedChars = Array.from(predicted).length;
     const editDistance = levenshtein(reference, predicted);
-    const referenceTokens = ingredients(referenceText, splitIngredients);
-    const predictedTokens = ingredients(recognizedText, splitIngredients);
     const referenceCounts = new Map();
     for (const token of referenceTokens) {
       referenceCounts.set(token, (referenceCounts.get(token) || 0) + 1);

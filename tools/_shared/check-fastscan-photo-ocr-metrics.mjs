@@ -34,6 +34,16 @@ assert.equal(result.exactIngredientHits, 2);
 assert.equal(result.exactIngredientRecall, 1);
 assert.equal(result.exactIngredientPrecision, 1);
 
+// The production OCR cleanup changes comma separators to line breaks.
+// Correctly recognized ingredient text must not produce artificial CER.
+result = m.score('Water, Glycerin', 'Water\nGlycerin', split);
+assert.equal(result.characterEdits, 0, 'OCR delimiter normalization must not inflate CER');
+assert.equal(result.characterErrorRate, 0);
+result = m.score('水、グリセリン', '水\nグリセリン', split);
+assert.equal(result.characterErrorRate, 0, 'Japanese comma/newline layout must be neutral');
+result = m.score('1,2-Hexanediol, Glycerin', '1,2-Hexanediol\nGlycerin', split);
+assert.equal(result.characterErrorRate, 0, 'numeric locant comma stays within the ingredient name');
+
 result = m.score('Water, Glycerin', 'Waler, Glycerin', split);
 assert.equal(result.characterEdits, 1, 'one OCR substitution is one character edit');
 assert.equal(result.referenceIngredients, 2);
