@@ -74,7 +74,7 @@ The suite includes a measurement page at `/tools/inci-fastscan/qa/photo-ocr-benc
 2. Select English or Japanese+English OCR according to the photographed label.
 3. Run the **original** image first. This supplies a baseline with no image modifications.
 4. Set 90° rotation, fine deskew ±12°, edge crop or 100–180% contrast. Run the **adjusted** image using the same photo/reference.
-5. Compare normalized character error rate (CER, edit distance/reference characters), exact-ingredient recall and precision (duplicates counted) and time to complete. For CER lower is better; for exact-name recall higher is better.
+5. Compare normalized character error rate (CER, edit distance/reference characters), exact-ingredient recall and precision (duplicates counted) and time to complete. The CER normalizer first tokenizes label ingredients via the shared parser so the OCR cleanup's comma-to-line-break formatting does not create false OCR character errors; numeric locant commas inside ingredient names remain significant. For CER lower is better; for exact-name recall higher is better.
 6. Copy the **metrics-only JSON** for later aggregation. It contains no source image, filename, transcribed label or OCR output. Raw photo and label transcription stay local to the browser. Tesseract's library/language data are downloaded externally.
 7. Repeat on independent English and Japanese packaging photos, including low contrast, imperfect lighting, slight tilt, shadows, different phone cameras, high ingredient density, and text wrapping.
 
