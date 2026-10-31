@@ -120,3 +120,12 @@ Camera/image selection, OCR status, editable result text, and detected cards for
 - `okj.advancedExport` now drives local CSV/Markdown/JSON export of the OCR text and detection summary, independently feature-gated.
 - Optional inclusion of saved local History and Collections requires opt-in plus independent paid entitlement for each feature.
 - Existing Free copy actions stay Free and unchanged. No OCR text is sent to external analytics, affiliate links or billing. CSV escaping mitigates spreadsheet formula execution. No legal or official-spelling guarantee is made.
+
+## Phase 1E — region crop OCR (staged / not for sale)
+
+- An `okj.ocr.crop` entitlement verified by the shared server-side API exposes a **usable image crop OCR UI**, without changing the free image OCR workflow.
+- Mouse or touch drag selects an image rectangle. Full image, center, upper and lower region presets offer touch/keyboard alternatives.
+- The selected rectangle is calculated against the actual image pixel dimensions. The client crops using canvas and passes only the resulting image Blob to local Tesseract.js Japanese OCR; maximum output dimensions and pixels prevent excessive canvas allocations.
+- Recognized text is placed in the existing editable Free OCR text field, triggering the existing dictionary detection and modern preview. Empty results do not overwrite any existing text.
+- The feature requires `okj.toolkit_pro` and exact `okj.ocr.crop` authorization before drawing the crop into a Blob and again at each run. Image data and OCR text are never sent to the billing/affiliate/analytics endpoints.
+- Official registered spellings are never inferred by OCR. Pricing, real payment and sale activation remain pending.

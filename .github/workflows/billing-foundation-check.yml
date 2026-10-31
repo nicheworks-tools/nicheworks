@@ -13,6 +13,9 @@ on:
       - 'assets/okj-workspace.css'
       - 'scripts/check-old-kanji-workspaces.mjs'
       - 'assets/okj-ocr-pro-*.js'
+      - 'assets/okj-ocr-crop-*.js'
+      - 'assets/okj-ocr-crop.css'
+      - 'scripts/check-old-kanji-crop.mjs'
       - 'assets/okj-report-*.js'
       - 'assets/okj-report-export.css'
       - 'assets/okj-export-engine.js'
@@ -49,6 +52,9 @@ on:
       - 'assets/okj-workspace.css'
       - 'scripts/check-old-kanji-workspaces.mjs'
       - 'assets/okj-ocr-pro-*.js'
+      - 'assets/okj-ocr-crop-*.js'
+      - 'assets/okj-ocr-crop.css'
+      - 'scripts/check-old-kanji-crop.mjs'
       - 'assets/okj-report-*.js'
       - 'assets/okj-report-export.css'
       - 'assets/okj-export-engine.js'
@@ -93,6 +99,8 @@ jobs:
           node --check assets/old-kanji-pro-sales.js
           node --check assets/okj-ocr-pro-engine.js
           node --check assets/okj-ocr-pro-ui.js
+          node --check assets/okj-ocr-crop-engine.js
+          node --check assets/okj-ocr-crop-ui.js
           node --check assets/okj-report-engine.js
           node --check assets/okj-export-engine.js
           node --check assets/okj-report-export-ui.js
@@ -111,6 +119,8 @@ jobs:
         run: node scripts/check-old-kanji-pro-phase1.mjs
       - name: Test real local OCR Batch and History Pro gate
         run: node scripts/check-old-kanji-pro-functional.mjs
+      - name: Test actual selected region OCR and Pro authorization
+        run: node scripts/check-old-kanji-crop.mjs
       - name: Test cross-tool Pro workspaces with entitlement-specific gates
         run: node scripts/check-old-kanji-workspaces.mjs
       - name: Test actual reference-backed Name and Place CSV batch

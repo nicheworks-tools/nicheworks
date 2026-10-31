@@ -43,3 +43,7 @@ Two existing tools now load a shared browser-only batch analyzer and Pro UI. A s
 ## Phase 1D: OCR report and advanced export UI
 
 The existing `assets/okj-report-engine.js` and `assets/okj-export-engine.js` now have a usable browser UI on Old Kanji OCR Scanner, gated by `okj.reports` or `okj.advancedExport` respectively. Users can generate research reports in Markdown/JSON or export their current OCR text, dictionary detections and modern preview in CSV/Markdown/JSON. Inclusion of saved history and collection is opt-in and independently rechecks `okj.history` / `okj.collections`; the output remains entirely local. Pro sales are not enabled. The reports do not attest to official spelling.
+
+## Phase 1E: drag-to-crop Japanese OCR
+
+The OCR Scanner now has a genuine pointer/touch crop selection, presets and browser-local Tesseract OCR through `okj.ocr.crop`. A selected rectangle of the original image is rendered into a bounded canvas, encoded into a PNG Blob, and recognized with `jpn`; results enter the existing editable Free OCR field, not a separate incompatible output. Entitlement must be verified to mount the UI and again before processing. The existing Free whole-image OCR remains free. The browser QA uses mocked entitlement; real purchase and restore have not been validated. No price has been approved.
