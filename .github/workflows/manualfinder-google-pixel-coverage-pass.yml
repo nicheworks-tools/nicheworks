@@ -1,0 +1,47 @@
+name: ManualFinder Google Pixel official 38-model Coverage-Pass
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/coverage-passes/google/**'
+      - 'tools/manual-finder/scripts/google-pixel-coverage-review.mjs'
+      - 'tools/manual-finder/scripts/google-pixel-reconcile-publication.mjs'
+      - 'tools/manual-finder/scripts/google-pixel-source-probe.mjs'
+      - 'tools/manual-finder/tests/google-pixel-coverage-review.test.mjs'
+      - 'tools/manual-finder/tests/google-pixel-publication.test.mjs'
+      - 'tools/manual-finder/data/manuals.coverage-pass.google-pixel-jp.js'
+      - 'tools/manual-finder/data/manuals.coverage-passes.js'
+      - 'tools/manual-finder/COVERAGE.md'
+      - '.github/workflows/manualfinder-google-pixel-coverage-pass.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pixel-coverage-pass:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify fail-closed release and exact manufacturer document mapping
+        run: |
+          node tools/manual-finder/tests/coverage-pass-pipeline.test.mjs
+          node tools/manual-finder/tests/google-pixel-coverage-review.test.mjs
+          if [ -f tools/manual-finder/tests/google-pixel-publication.test.mjs ]; then
+            node tools/manual-finder/tests/google-pixel-publication.test.mjs
+          fi
+      - name: Live-review all 38 Pixel models and official support documents
+        run: |
+          mkdir -p manualfinder-pixel-review
+          node tools/manual-finder/scripts/google-pixel-coverage-review.mjs --out manualfinder-pixel-review/review.json
+      - name: Reconcile all reviewed model support URLs against published manifest
+        run: |
+          node tools/manual-finder/scripts/google-pixel-reconcile-publication.mjs \
+            --live manualfinder-pixel-review/review.json
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-pixel-38-model-review
+          path: manualfinder-pixel-review/*.json
+          if-no-files-found: warn
