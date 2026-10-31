@@ -107,7 +107,7 @@
     canvas.addEventListener('pointerdown',e=>{
       if(busy||canvas.hidden)return;
       e.preventDefault();dragging=true;dragStart=at(e);prior=region;
-      canvas.setPointerCapture?.(e.pointerId);
+      try{canvas.setPointerCapture?.(e.pointerId);}catch(_error){}
     });
     canvas.addEventListener('pointermove',e=>{
       if(!dragging)return;e.preventDefault();
