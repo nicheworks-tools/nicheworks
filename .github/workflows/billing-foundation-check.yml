@@ -13,6 +13,10 @@ on:
       - 'assets/okj-workspace.css'
       - 'scripts/check-old-kanji-workspaces.mjs'
       - 'assets/okj-ocr-pro-*.js'
+      - 'assets/okj-report-*.js'
+      - 'assets/okj-report-export.css'
+      - 'assets/okj-export-engine.js'
+      - 'scripts/check-old-kanji-reports-export.mjs'
       - 'assets/okj-ocr-pro-phase1.css'
       - 'tools/old-kanji-ocr-scanner/index.html'
       - 'scripts/check-old-kanji-pro-functional.mjs'
@@ -45,6 +49,10 @@ on:
       - 'assets/okj-workspace.css'
       - 'scripts/check-old-kanji-workspaces.mjs'
       - 'assets/okj-ocr-pro-*.js'
+      - 'assets/okj-report-*.js'
+      - 'assets/okj-report-export.css'
+      - 'assets/okj-export-engine.js'
+      - 'scripts/check-old-kanji-reports-export.mjs'
       - 'assets/okj-ocr-pro-phase1.css'
       - 'tools/old-kanji-ocr-scanner/index.html'
       - 'scripts/check-old-kanji-pro-functional.mjs'
@@ -85,6 +93,9 @@ jobs:
           node --check assets/old-kanji-pro-sales.js
           node --check assets/okj-ocr-pro-engine.js
           node --check assets/okj-ocr-pro-ui.js
+          node --check assets/okj-report-engine.js
+          node --check assets/okj-export-engine.js
+          node --check assets/okj-report-export-ui.js
           node --check assets/okj-history-collection.js
           node --check assets/okj-workspace-store.js
           node --check assets/okj-workspace-ui.js
@@ -104,3 +115,5 @@ jobs:
         run: node scripts/check-old-kanji-workspaces.mjs
       - name: Test actual reference-backed Name and Place CSV batch
         run: node scripts/check-old-kanji-name-place-batch.mjs
+      - name: Test actual OCR reports, advanced exports and CSV formula safety
+        run: node scripts/check-old-kanji-reports-export.mjs
