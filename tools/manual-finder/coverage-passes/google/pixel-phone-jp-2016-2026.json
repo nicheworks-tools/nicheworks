@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "maker": "Google Pixel",
+  "scopeId": "jp-pixel-phone-release-and-safety-docs-2016-2026",
+  "scopeLabel": "Google official Japanese Pixel smartphone model release table and explicitly model-named safety/regulatory support documents, through 2026-10-31",
+  "status": "reviewing",
+  "asOf": "2026-10-31",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "support.google.com"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://support.google.com/pixelphone/answer/15738422?hl=ja",
+      "https://support.google.com/pixelphone/answer/9204905?hl=ja"
+    ],
+    "models": [
+      "Google Pixel 11 Pro Fold",
+      "Google Pixel 11 Pro XL",
+      "Google Pixel 11 Pro",
+      "Google Pixel 11",
+      "Google Pixel 10a",
+      "Google Pixel 10 Pro Fold",
+      "Google Pixel 10 Pro XL",
+      "Google Pixel 10 Pro",
+      "Google Pixel 10",
+      "Google Pixel 9a",
+      "Google Pixel 9 Pro XL",
+      "Google Pixel 9 Pro",
+      "Google Pixel 9",
+      "Google Pixel 9 Pro Fold",
+      "Google Pixel 8a",
+      "Google Pixel 8 Pro",
+      "Google Pixel 8",
+      "Google Pixel Fold",
+      "Google Pixel 7a",
+      "Google Pixel 7 Pro",
+      "Google Pixel 7",
+      "Google Pixel 6a",
+      "Google Pixel 6 Pro",
+      "Google Pixel 6",
+      "Google Pixel 5a (5G)",
+      "Google Pixel 5",
+      "Google Pixel 4a (5G)",
+      "Google Pixel 4a",
+      "Google Pixel 4",
+      "Google Pixel 4 XL",
+      "Google Pixel 3a",
+      "Google Pixel 3a XL",
+      "Google Pixel 3",
+      "Google Pixel 3 XL",
+      "Google Pixel 2",
+      "Google Pixel 2 XL",
+      "Google Pixel",
+      "Google Pixel XL"
+    ],
+    "declaredCount": null,
+    "populationMethod": "official_33_release_table_rows_expanded_into_38_exact_pixel_phone_names",
+    "notes": "Official manufacturer release table enumerates all 2016-2026 Pixel phone models through Pixel 11; five rows explicitly contain two sibling models separated by vertical bar, expanded without family guessing. The separate official safety/regulatory index explicitly links model names to manufacturer-controlled model-specific support documents. Publication is support_only unless an independently explicit model-specific user guide is verified. General Pixel Help homepage must never be published as an exact per-model manual or treated as manufacturer-defined shared without explicit model listing. Pixel Tablet/Watch and unlisted regions excluded."
+  },
+  "review": {
+    "publicationGate": "blocked until every one of 38 release-list models has a verified specific manufacturer document link or held with secondary discovery",
+    "sourceLiveProbe": {
+      "workflowRunId": 41201268188,
+      "artifactId": 13043041050,
+      "releaseRows": 33,
+      "modelCount": 38,
+      "officialSafetyPageLinks": true
+    },
+    "discoveryChannels": [
+      "official_Pixel_release_table",
+      "official_model_named_safety_document_index",
+      "exact_official_safety_document",
+      "manufacturer_Pixel_setup_and_help_topics"
+    ],
+    "notes": "Regulatory/safety/support documents are NOT operational user manuals. If the only accepted evidence is regulatory/safety material, model is support_only, not direct or shared."
+  },
+  "records": []
+}
