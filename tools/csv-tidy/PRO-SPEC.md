@@ -53,3 +53,8 @@ No arbitrary ETL, AI cleaning, cloud uploads, account requirements or background
 - No new Stripe request can be made for the disabled product regardless of site-wide checkout flags.
 - Existing products without an explicit `checkout` gate preserve previous code path.
 - Focused tests and repo CI green; no live payments.
+
+## Implemented engineering checkpoints
+
+- **2026-10-31, preset core:** `pro/preset-core.mjs` supplies a pure ESM, local-only and versioned preset contract: capture, strict allow-list validation, JSON import/export and atomic positional compatibility planning. Duplicate and blank headers/renames are preserved; source-header/order/width mismatches reject. No CSV rows are stored, and raw file processing is not implemented here.
+- The preset library is not wired to the Free UI or entitlement, and does **not** mean `csvTidy.savedPresets` is user-visible or purchasable. A later controlled integration must reuse the accepted CSV state, add local persistence and test safely against the production browser.
