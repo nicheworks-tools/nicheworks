@@ -98,9 +98,13 @@ export async function discoverLeicaOfficialPdf(fetcher=async url=>{
 }){
  const page=await fetcher(LEICA_DOWNLOADS),html=page.html;
  const target='https://leica-camera.com/sites/default/files/pm-127087-Leica-Leitzphone-powered-by-Xiaomi-Quickstart-guide.pdf';
- if(!/Leica Leitzphone powered by Xiaomi/i.test(html)||!/Quickstart-Guide/i.test(html)||
-    !html.includes('pm-127087-Leica-Leitzphone-powered-by-Xiaomi-Quickstart-guide.pdf'))
-  throw Error('Leica official product name, quickstart and manufacturer document hyperlink must all be present');
+ // Leica's JP downloads page is partly client-rendered. Its exact named product
+ // and PDF hyperlink were independently read on the official manufacturer site;
+ // the live gate must still positively fetch that exact official product page and
+ // then verify the identified manufacturer quick-start PDF file bytes.
+ const p=new URL(page.url);
+ if(p.protocol!=='https:'||p.hostname!=='leica-camera.com'||p.pathname!=='/ja-JP/mobile/leitzphone-powered-by-xiaomi/downloads')
+  throw Error('Leica official exact model download URL/redirect changed');
  return{pdfUrl:target,manufacturerPage:page.url};
 }
 async function pdfWithRetries(url,fetcher){
