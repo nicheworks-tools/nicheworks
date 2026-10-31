@@ -27,3 +27,7 @@ No scanned text, image data, typed names/addresses, source filenames, documents 
 ## Commercial decision outstanding
 
 The legacy internal USD $4.99 entry was an unapproved planning remnant. It is removed from the staged product record, not restored as a live price. Price, currency and purchase terms must be agreed before live configuration and sales.
+
+## Conditional purchase UI (staged behind server launch gate)
+
+All eight pages load the shared `assets/old-kanji-pro-sales.js`, which **renders nothing** while `GET /api/billing/product-availability?productId=okj.toolkit_pro` returns `available:false`. The availability endpoint requires an approved registry, a live Stripe secret, matching configured Stripe Price ID, webhook secret, `BILLING_DB` table, opt-in live flags, and `OKJ_TOOLKIT_PRO_LAUNCH_APPROVED=true`. The POST checkout route independently rechecks the launch guard, and verifies the Stripe Price currency/amount before charging. The purchase CTA is only shown after the same task-result activation already used for contextual Amazon; Reference remains always eligible after real launch. This is source wiring, not real paid QA or authorization to sell.

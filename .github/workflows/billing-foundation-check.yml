@@ -5,6 +5,7 @@ on:
     paths:
       - 'functions/api/billing/**'
       - 'assets/nw-pro-entitlement.js'
+      - 'assets/old-kanji-pro-sales.*'
       - 'assets/okj-history-collection.js'
       - 'assets/okj-ocr-pro-*.js'
       - 'assets/okj-ocr-pro-phase1.css'
@@ -30,6 +31,7 @@ on:
     paths:
       - 'functions/api/billing/**'
       - 'assets/nw-pro-entitlement.js'
+      - 'assets/old-kanji-pro-sales.*'
       - 'assets/okj-history-collection.js'
       - 'assets/okj-ocr-pro-*.js'
       - 'assets/okj-ocr-pro-phase1.css'
@@ -69,6 +71,7 @@ jobs:
           node --check functions/api/billing/entitlement.js
           node --check functions/api/billing/stripe-webhook.js
           node --check assets/nw-pro-entitlement.js
+          node --check assets/old-kanji-pro-sales.js
           node --check assets/okj-ocr-pro-engine.js
           node --check assets/okj-ocr-pro-ui.js
           node --check assets/okj-history-collection.js

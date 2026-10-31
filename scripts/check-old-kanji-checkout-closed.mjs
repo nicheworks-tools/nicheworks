@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const source=fs.readFileSync('functions/api/billing/create-checkout-session.js','utf8');
-const importLine="import { getProduct, loadProductsConfig, validateConfiguredProduct } from './product-config.js';";
+const importLine="import { expectedMinorAmount, getProduct, loadProductsConfig, validateConfiguredProduct } from './product-config.js';\nimport { oldKanjiLiveReady } from './old-kanji-launch-guard.js';";
 assert.ok(source.includes(importLine));
 const mock=`
+const expectedMinorAmount=()=>0;
+const oldKanjiLiveReady=async()=>false;
 const getProduct=(config,id)=>config.products.find(x=>x.productId===id)||null;
 const loadProductsConfig=async(_request,env)=>env.fixture;
 const validateConfiguredProduct=()=>{ throw new Error('Validation must not run before sales launch gate'); };`;

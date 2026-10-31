@@ -24,6 +24,7 @@ for (const t of c.tools) {
   assert.ok(read('tools/'+t.slug+'/SPEC.md').includes('## Toolkit Pro Phase 1'));
   assert.doesNotMatch(read('tools/'+t.slug+'/index.html'),/\$4\.99|data-okj-pro-state="billing-unavailable"/i);
   assert.ok(read('tools/'+t.slug+'/index.html').includes('/assets/nw-pro-entitlement.js'),t.slug+' missing shared entitlement adapter');
+  assert.ok(read('tools/'+t.slug+'/index.html').includes('/assets/old-kanji-pro-sales.js'),t.slug+' missing conditional Pro checkout');
 }
 const reference=read('tools/old-kanji-reference/SPEC.md');
 for (const label of ['CSV','JSON','Markdown','print']) assert.ok(reference.includes(label));
