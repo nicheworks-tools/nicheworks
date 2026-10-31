@@ -12,3 +12,17 @@
 .detailImageMissing{height:auto;min-height:0;margin:10px 0;padding:4px 0;border:0;border-radius:0;background:transparent;display:block;text-align:left;color:#7a8490;font-size:11px}
 .detailList .langTag{display:inline-block;vertical-align:baseline;margin:0 8px 0 0;font-weight:700;color:#58657b;font-size:10px}
 @media(max-width:899px){.dictionaryJump{display:block}.dictionaryJumpLabel{display:block;margin-bottom:7px}.dictionaryJumpButtons{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}.dictionaryJumpButtons button{flex-shrink:0}.resultContext{-webkit-line-clamp:2}}
+
+/* Dictionary-first: entries without reviewed imagery use text width, not repeated placeholders. */
+.resultRow--no-image{grid-template-columns:minmax(0,1fr) 34px;align-items:start}
+.autocomplete button.autocompleteNoImage{grid-template-columns:minmax(0,1fr)}
+.resultExample,.resultAliases{margin-top:5px;font-size:12px;line-height:1.5;color:#53616e;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;-webkit-line-clamp:2}
+.resultExample{color:#586675}
+.resultAliases{color:#66717e;-webkit-line-clamp:1}
+@media(max-width:899px){.resultRow--no-image{grid-template-columns:minmax(0,1fr) 32px}}
+@media(max-width:480px){
+  .resultSummary{display:-webkit-box;-webkit-line-clamp:2}
+  .resultContext,.resultExample{-webkit-line-clamp:2}
+  .resultAliases{-webkit-line-clamp:1}
+  .resultRow--no-image .resultText{min-width:0}
+}
