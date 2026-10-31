@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-registry-v2.3",
-  "version": "2026-09-19-wave5-promotion-1",
+  "version": "2026-10-31-reviewed-image-wave6-two-1",
   "policy": {
     "primary_format": "webp",
     "formal_min_state": "reviewed",
@@ -1015,6 +1015,54 @@
         "source_sha1": "5c4c636002f7e51946b7fe34268e8b79f013d1ff"
       },
       "notes": "Wave 5 promotion of a previously provenance-verified and subject-verified lifecycle candidate."
+    },
+    {
+      "entry_id": "hammer_drill",
+      "alt_ja": "補助ハンドルとコンクリート用ドリルビットが付いた有線振動ドリル",
+      "alt_en": "Corded hammer drill with auxiliary handle and masonry drill bit",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/hammer_drill/source.jpg",
+        "display": "./images/hammer_drill/primary.webp",
+        "thumbnail": "./images/hammer_drill/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Hammer_drill-1.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Hammer_drill-1.jpg",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Shakespeare (English Wikipedia)",
+        "attribution": "Shakespeare (English Wikipedia) / Wikimedia Commons, CC BY-SA 3.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "3076529a2af3514d64a784177f37c52eb3aed4a1"
+      },
+      "notes": "Wave6: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 800x905 JPEG and 636x720 WebP: corded hammer drill with side handle and masonry drill bit clearly identifiable, not an impact driver or rotary hammer."
+    },
+    {
+      "entry_id": "tape_measure",
+      "alt_ja": "伸縮式の金属製巻尺（10メートル表示）",
+      "alt_en": "Retractable ten-metre tape measure with a partially extended metal measuring blade",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/tape_measure/source.jpg",
+        "display": "./images/tape_measure/primary.webp",
+        "thumbnail": "./images/tape_measure/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Centroinstrument_measuring_tape.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Centroinstrument_measuring_tape.JPG",
+        "license": "Public Domain (PD-self)",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+        "author": "Dmitry G",
+        "attribution": "Dmitry G / Wikimedia Commons, Public Domain (PD-self)",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "dd3e0b24aa589afee0c7986949e18645dd896d0b"
+      },
+      "notes": "Wave6: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 3648x2056 JPEG and 960x541 WebP: identifiable tape housing, ten-metre label and extended ruler; clear tool subject."
     }
   ]
 }

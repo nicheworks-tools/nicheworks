@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-09-19-image-wave5-promoted",
+  "version": "2026-10-31-reviewed-image-wave6-two-1",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -456,6 +456,24 @@
         "author": "Gisling",
         "attribution": "Gisling / Wikimedia Commons, CC BY-SA 3.0",
         "source_sha1": "dee2602b63bd39b80c9f8b83dd12ea511ee7972f"
+      }
+    },
+    {
+      "id": "wave6:hammer_drill",
+      "source_entry_id": "hammer_drill",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave6-sources-v2.3.json",
+        "entry_id": "hammer_drill"
+      }
+    },
+    {
+      "id": "wave6:tape_measure",
+      "source_entry_id": "tape_measure",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave6-sources-v2.3.json",
+        "entry_id": "tape_measure"
       }
     }
   ],
@@ -3923,6 +3941,42 @@
           "reason": "A hammer drill is a distinctive power drill for masonry; a subject-matched photograph helps distinguish it from rotary hammers and drill drivers.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-10-31T12:20:00Z",
+          "actor": "image-wave6-reviewed-20261031",
+          "reason": "Pinned Wikimedia original accepted for review, with distinct canonical subject and reviewed license.",
+          "candidate_id": "wave6:hammer_drill",
+          "candidate_sha256": "fc6e7ddb5cae8571b9f34cd76addb28e3c107b99b0b7e59cb94cfd35c4ee7964",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-10-31T12:20:01Z",
+          "actor": "image-wave6-reviewed-20261031",
+          "reason": "Commons attribution, license URL, source page, original bytes, and SHA-1 were validated.",
+          "candidate_id": "wave6:hammer_drill",
+          "candidate_sha256": "fc6e7ddb5cae8571b9f34cd76addb28e3c107b99b0b7e59cb94cfd35c4ee7964",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-10-31T12:20:02Z",
+          "actor": "image-wave6-reviewed-20261031",
+          "reason": "Inspected original 800x905 JPEG and 636x720 WebP: corded hammer drill with side handle and masonry drill bit clearly identifiable, not an impact driver or rotary hammer.",
+          "candidate_id": "wave6:hammer_drill",
+          "candidate_sha256": "fc6e7ddb5cae8571b9f34cd76addb28e3c107b99b0b7e59cb94cfd35c4ee7964",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-10-31T12:20:03Z",
+          "actor": "image-wave6-reviewed-20261031",
+          "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+          "candidate_id": "wave6:hammer_drill",
+          "candidate_sha256": "fc6e7ddb5cae8571b9f34cd76addb28e3c107b99b0b7e59cb94cfd35c4ee7964",
           "hold": null
         }
       ]
@@ -19424,6 +19478,42 @@
           "reason": "A tape measure is a physical retractable measuring tool with clear visual identity; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-10-31T12:20:00Z",
+          "actor": "image-wave6-reviewed-20261031",
+          "reason": "Pinned Wikimedia original accepted for review, with distinct canonical subject and reviewed license.",
+          "candidate_id": "wave6:tape_measure",
+          "candidate_sha256": "0efc4febfd4f727a10bd5ae7a337afc60ce3dc51b0dc191f3acf69b07c3997bf",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-10-31T12:20:01Z",
+          "actor": "image-wave6-reviewed-20261031",
+          "reason": "Commons attribution, license URL, source page, original bytes, and SHA-1 were validated.",
+          "candidate_id": "wave6:tape_measure",
+          "candidate_sha256": "0efc4febfd4f727a10bd5ae7a337afc60ce3dc51b0dc191f3acf69b07c3997bf",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-10-31T12:20:02Z",
+          "actor": "image-wave6-reviewed-20261031",
+          "reason": "Inspected original 3648x2056 JPEG and 960x541 WebP: identifiable tape housing, ten-metre label and extended ruler; clear tool subject.",
+          "candidate_id": "wave6:tape_measure",
+          "candidate_sha256": "0efc4febfd4f727a10bd5ae7a337afc60ce3dc51b0dc191f3acf69b07c3997bf",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-10-31T12:20:03Z",
+          "actor": "image-wave6-reviewed-20261031",
+          "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+          "candidate_id": "wave6:tape_measure",
+          "candidate_sha256": "0efc4febfd4f727a10bd5ae7a337afc60ce3dc51b0dc191f3acf69b07c3997bf",
           "hold": null
         }
       ]

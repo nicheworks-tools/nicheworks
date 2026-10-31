@@ -50,6 +50,8 @@ For licensed sources, each generated WebP derivative is made available under the
 | `hammer` | Michael Jastremski / Wikimedia Commons, CC BY-SA 2.0 | [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Hammer.jpg) | `43d9123800ab1dd248c66d50227bfea4f228b1cf` |
 | `hard_hat` | Dwight Burdette / Wikimedia Commons, CC BY 3.0 | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:A_Hard_Hat.JPG) | `e9347fa698168117e63b0730f897427ffebc8a32` |
 | `jigsaw` | Mark Hunter / Wikimedia Commons, CC BY 2.0 | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Makita_4350FCT_Jigsaw.jpg) | `5c4c636002f7e51946b7fe34268e8b79f013d1ff` |
+| `hammer_drill` | Shakespeare (English Wikipedia) / Wikimedia Commons, CC BY-SA 3.0 | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Hammer_drill-1.jpg) | `3076529a2af3514d64a784177f37c52eb3aed4a1` |
+| `tape_measure` | Dmitry G / Wikimedia Commons, Public Domain (PD-self) | [Public Domain (PD-self)](https://commons.wikimedia.org/wiki/Template:PD-self) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Centroinstrument_measuring_tape.JPG) | `dd3e0b24aa589afee0c7986949e18645dd896d0b` |
 
-Source ledger versions: `2026-09-14-wave1-1`, `2026-09-14-wave2b-1`, `2026-09-14-wave3a-1`, `2026-09-18-wave4a-1`, `2026-09-19-wave5-promotion-1`.
+Source ledger versions: `2026-09-14-wave1-1`, `2026-09-14-wave2b-1`, `2026-09-14-wave3a-1`, `2026-09-18-wave4a-1`, `2026-09-19-wave5-promotion-1`, `2026-10-31-reviewed-image-wave6-two-1`.
 
