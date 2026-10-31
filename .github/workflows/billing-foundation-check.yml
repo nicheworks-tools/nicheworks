@@ -7,6 +7,9 @@ on:
       - 'assets/nw-pro-entitlement.js'
       - 'assets/old-kanji-pro-sales.*'
       - 'assets/okj-history-collection.js'
+      - 'assets/okj-workspace-*.js'
+      - 'assets/okj-workspace.css'
+      - 'scripts/check-old-kanji-workspaces.mjs'
       - 'assets/okj-ocr-pro-*.js'
       - 'assets/okj-ocr-pro-phase1.css'
       - 'tools/old-kanji-ocr-scanner/index.html'
@@ -34,6 +37,9 @@ on:
       - 'assets/nw-pro-entitlement.js'
       - 'assets/old-kanji-pro-sales.*'
       - 'assets/okj-history-collection.js'
+      - 'assets/okj-workspace-*.js'
+      - 'assets/okj-workspace.css'
+      - 'scripts/check-old-kanji-workspaces.mjs'
       - 'assets/okj-ocr-pro-*.js'
       - 'assets/okj-ocr-pro-phase1.css'
       - 'tools/old-kanji-ocr-scanner/index.html'
@@ -76,6 +82,8 @@ jobs:
           node --check assets/okj-ocr-pro-engine.js
           node --check assets/okj-ocr-pro-ui.js
           node --check assets/okj-history-collection.js
+          node --check assets/okj-workspace-store.js
+          node --check assets/okj-workspace-ui.js
       - name: Check billing contract
         run: node scripts/check-billing-foundation.mjs
       - name: Test fail-closed unpriced and unknown products
@@ -86,3 +94,5 @@ jobs:
         run: node scripts/check-old-kanji-pro-phase1.mjs
       - name: Test real local OCR Batch and History Pro gate
         run: node scripts/check-old-kanji-pro-functional.mjs
+      - name: Test cross-tool Pro workspaces with entitlement-specific gates
+        run: node scripts/check-old-kanji-workspaces.mjs

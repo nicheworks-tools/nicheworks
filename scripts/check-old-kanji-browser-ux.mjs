@@ -16,7 +16,16 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 function staticServer() {
   const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.ico':'image/x-icon'};
   const server=http.createServer((req,res)=>{
-    const u=new URL(req.url||'/',base); let p=decodeURIComponent(u.pathname); if(p.endsWith('/'))p+='index.html';
+    const u=new URL(req.url||'/',base);
+    // Local QA-only entitlement fixture; never part of the deployed app.
+    if(u.pathname==='/api/billing/entitlement'){
+      const ok=u.searchParams.get('productId')==='okj.toolkit_pro' &&
+        u.searchParams.get('sessionId')==='cs_test_WORKSPACEQA';
+      res.writeHead(ok?200:403,{'content-type':'application/json;charset=utf-8','cache-control':'no-store'});
+      res.end(JSON.stringify(ok?{ok:true,active:true,features:['okj.workspaces']}:{ok:false,active:false,error:'not_entitled'}));
+      return;
+    }
+    let p=decodeURIComponent(u.pathname); if(p.endsWith('/'))p+='index.html';
     const f=path.resolve(root,'.'+p), rr=path.resolve(root)+path.sep;
     if(!f.startsWith(rr)||!fs.existsSync(f)||!fs.statSync(f).isFile()){res.writeHead(404).end('Not found');return;}
     res.writeHead(200,{'content-type':mime[path.extname(f)]||'application/octet-stream','cache-control':'no-store'}); fs.createReadStream(f).pipe(res);
@@ -138,6 +147,33 @@ async function main(){
       if(tool==='old-kanji-reference'&&vp.name==='desktop')await referenceExports(c,fail);
       const errs=await c.js('return window.__w15||[]');if(errs.length)fail.push(label+': runtime errors '+JSON.stringify(errs));check(label+'/final',await c.js(scanScript),fail);
     }}
+    // Authenticated Pro UI: prove one workspace survives navigation between two distinct tools.
+    await c.rect(1440,1000);
+    await c.nav(base+'/tools/old-kanji-ocr-scanner/');
+    await c.js("localStorage.setItem('nicheworks:billing:session:okj.toolkit_pro','cs_test_WORKSPACEQA');");
+    await c.nav(base+'/tools/old-kanji-ocr-scanner/');
+    await sleep(450);
+    const proMounted=await c.js("return !!document.getElementById('okj-pro-workspaces');");
+    if(!proMounted)fail.push('workspace/entitled: Pro workspace panel failed to mount');
+    else{
+      await c.js("const panel=document.getElementById('okj-pro-workspaces'); panel.querySelector('.okj-workspace-row input').value='QA historical manuscript'; panel.querySelector('.okj-workspace-row button').click();");
+      await sleep(200);
+      await c.js("const panel=document.getElementById('okj-pro-workspaces'); panel.querySelector('textarea').value='舊學 𠮷 historical text'; panel.querySelectorAll('.okj-workspace-row')[2].querySelector('button').click();");
+      await sleep(250);
+      const count=await c.js("return document.querySelectorAll('#okj-pro-workspaces .okj-workspace-entry').length;");
+      if(count!==1)fail.push('workspace/ocr: expected one stored entry, got '+count);
+      await c.nav(base+'/tools/name-old-kanji-checker/');
+      await sleep(500);
+      const reused=await c.js("const panel=document.getElementById('okj-pro-workspaces'); return {mounted:!!panel,text:panel?.querySelector('.okj-workspace-entry p')?.textContent||''};");
+      if(!reused.mounted||!reused.text.includes('舊學 𠮷'))fail.push('workspace/cross-tool: saved OCR entry missing from Name Checker');
+    }
+    await c.js("localStorage.setItem('nicheworks:billing:session:okj.toolkit_pro','cs_test_DENIED');");
+    await c.nav(base+'/tools/name-old-kanji-checker/');
+    await sleep(350);
+    if(await c.js("return !!document.getElementById('okj-pro-workspaces');")){
+      fail.push('workspace/denied: Pro UI exposed without verified entitlement');
+    }
+    await c.js("localStorage.removeItem('nicheworks:billing:session:okj.toolkit_pro');");
     if(fail.length){console.error(`Old Kanji browser UX audit failed: ${fail.length}`);for(const x of fail)console.error('- '+x);process.exitCode=1;}else console.log(`Old Kanji browser UX audit passed: ${tools.length} tools x ${viewports.length} viewports.`);
   }finally{if(c)await c.close().catch(()=>{});proc.kill('SIGTERM');server.close();}
 }
