@@ -11,6 +11,20 @@ import json
 
 
 class Handler(SimpleHTTPRequestHandler):
+    def end_headers(self):
+        # CI-only: block third-party trackers/ads so browser navigation cannot
+        # depend on external DNS or unrelated resource load completion.
+        self.send_header(
+            "Content-Security-Policy",
+            "default-src 'self' blob: data:; "
+            "script-src 'self' 'unsafe-inline'; "
+            "style-src 'self' 'unsafe-inline'; "
+            "connect-src 'self'; "
+            "img-src 'self' blob: data:; "
+            "font-src 'self' data:; frame-src 'self'"
+        )
+        super().end_headers()
+
     def do_GET(self):
         uri = urlsplit(self.path)
         if uri.path != "/api/billing/entitlement":
