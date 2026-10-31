@@ -156,9 +156,9 @@
       "pref": "東京都",
       "municipality": "大島町",
       "review_state": "pending_review",
-      "candidate_official_waste_url": "https://www.town.oshima.tokyo.jp/uploaded/attachment/8394.pdf",
+      "candidate_official_waste_url": "https://www.town.oshima.tokyo.jp/soshiki/suidou/gomi2025.html",
       "verification_status": "candidate_located",
-      "notes": "2026 source PDF is district-specific; do not present it as an all-island schedule. Locate townwide listing."
+      "notes": "Townwide official listing has six distinct district-specific 2026 calendar PDFs and sorting guide. Link listing, not one district PDF, to prevent scope misrepresentation."
     },
     {
       "lgcode": "133621",
