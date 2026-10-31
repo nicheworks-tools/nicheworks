@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
   <title>NicheWorks Billing - Purchase Verification</title>
   <style>
     body { font-family: system-ui, -apple-system, sans-serif; margin: 0; background: #f7f7f8; color: #111; }
@@ -15,19 +17,19 @@
     .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
     .btn { display: inline-block; border: 1px solid #111827; border-radius: 999px; padding: 9px 14px; text-decoration: none; background: #111827; color: #fff; font: inherit; cursor: pointer; }
     .btn.secondary { background: #fff; color: #111827; }
+    .recovery-box { padding: 16px; border: 1px solid #9ba7b7; border-radius: 10px; margin: 18px 0; }
+    .recovery-box[hidden] { display: none; }
+    .recovery-box h2 { margin: 0 0 8px; font-size: 1.15rem; }
+    .recovery-box p { line-height: 1.5; }
+    .recovery-box input { width: 100%; box-sizing: border-box; padding: 12px; border: 1px solid #6b7280; border-radius: 8px; font: inherit; }
+    .recovery-box button { margin-top: 8px; margin-right: 8px; }
+    .recovery-box button:focus-visible { outline: 3px solid #2563eb; outline-offset: 2px; }
   </style>
   <meta name="description" content="Verify a completed NicheWorks purchase against the server-side entitlement record.">
   <meta name="robots" content="noindex,nofollow">
   <link rel="canonical" href="https://nicheworks.app/billing/success.html">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-57QT78M3JB');
-  </script>
 </head>
 <body>
   <main>
@@ -37,11 +39,25 @@
       <strong id="statusTitle">Checking purchase…</strong>
       <div id="statusText" class="muted">The payment webhook may take a moment to finish.</div>
     </div>
+    <section class="recovery-box" id="recoveryBox" hidden aria-labelledby="recoveryHeading">
+      <h2 id="recoveryHeading">Back up your access code / 復元コードを保存</h2>
+      <p>Your verified checkout session ID is a confidential access code, <strong>not</strong> your receipt. Anyone who gets it may access this product. Save it securely, for example in a password manager.</p>
+      <p lang="ja">復元コードは購入権利にアクセスできる秘密情報です。他人に見せず、パスワード管理アプリなどに保管してください。領収書とは異なります。</p>
+      <label for="recoveryCode">Confidential recovery code / 秘密の復元コード</label>
+      <input id="recoveryCode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" readonly>
+      <div>
+        <button class="btn secondary" type="button" id="toggleRecoveryCode">Show / 表示</button>
+        <button class="btn secondary" type="button" id="copyRecoveryCode">Copy code / コピー</button>
+      </div>
+      <p class="muted" id="recoveryCopyStatus" role="status" aria-live="polite"></p>
+      <p><a href="/billing/restore.html">Restore access on another device / 別端末で復元</a></p>
+      <p class="muted">If you lose both this code and your original device, automated email recovery is not yet available. Keep your Stripe receipt and contact support.</p>
+    </section>
     <div class="actions">
       <button class="btn secondary" id="retryButton" type="button">Check again</button>
       <a class="btn" id="returnLink" href="/">Return to NicheWorks</a>
     </div>
-    <p class="muted">The Checkout Session ID is used only to ask the NicheWorks server for the matching product entitlement. It is not displayed as proof of purchase and is not sent as a GA4 event parameter.</p>
+    <p class="muted">Access is granted only after server-side verification. This purchase page does not load analytics. A recovery code is shown only after verification and should be treated like a password.</p>
   </main>
   <script src="/assets/nw-pro-entitlement.js"></script>
   <script>
@@ -55,6 +71,37 @@
       const text = document.getElementById('statusText');
       const retry = document.getElementById('retryButton');
       const returnLink = document.getElementById('returnLink');
+      const recoveryBox = document.getElementById('recoveryBox');
+      const recoveryCode = document.getElementById('recoveryCode');
+      const copyStatus = document.getElementById('recoveryCopyStatus');
+      const toggleRecovery = document.getElementById('toggleRecoveryCode');
+      const copyRecovery = document.getElementById('copyRecoveryCode');
+
+      // Checkout Session IDs grant product access. Remove all URL query
+      // parameters before asynchronous checks or same-origin navigation.
+      // We have captured the values needed for verification above.
+      if (sessionId) {
+        try { history.replaceState(null, '', location.pathname); } catch {}
+      }
+
+      toggleRecovery.addEventListener('click', () => {
+        const reveal = recoveryCode.type === 'password';
+        recoveryCode.type = reveal ? 'text' : 'password';
+        toggleRecovery.textContent = reveal ? 'Hide / 隠す' : 'Show / 表示';
+      });
+      copyRecovery.addEventListener('click', async () => {
+        if (recoveryBox.hidden || !recoveryCode.value) return;
+        try {
+          if (!navigator.clipboard?.writeText) throw new Error('clipboard_unavailable');
+          await navigator.clipboard.writeText(recoveryCode.value);
+          copyStatus.textContent = 'Copied. Keep it private. / コピーしました。秘密として保管してください。';
+        } catch {
+          recoveryCode.type = 'text';
+          recoveryCode.focus();
+          recoveryCode.select();
+          copyStatus.textContent = 'Select and copy the highlighted code manually. / 選択されたコードを手動でコピーしてください。';
+        }
+      });
 
       function safeReturnPath(value) {
         return typeof value === 'string' && value.startsWith('/') && !value.startsWith('//') && !value.includes('://') && value.length <= 512;
@@ -71,6 +118,10 @@
 
       async function verify() {
         retry.disabled = true;
+        recoveryBox.hidden = true;
+        recoveryCode.value = '';
+        recoveryCode.type = 'password';
+        copyStatus.textContent = '';
         setState('', 'Checking purchase…', 'Waiting for a verified server entitlement.');
 
         if (!sessionId || !window.NicheWorksProEntitlement) {
@@ -80,8 +131,10 @@
         }
 
         const state = await window.NicheWorksProEntitlement.activateFromSession({ productId, sessionId });
-        if (state.active) {
-          setState('ok', 'Purchase verified', 'This product entitlement is active in this browser. You can return to the tool.');
+        if (state.active && state.source === 'server') {
+          recoveryCode.value = sessionId;
+          recoveryBox.hidden = false;
+          setState('ok', 'Purchase verified', 'Server-confirmed access is active. Securely back up your recovery code before leaving this page.');
           retry.disabled = false;
           return;
         }
