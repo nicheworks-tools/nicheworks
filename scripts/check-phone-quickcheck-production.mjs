@@ -49,6 +49,18 @@ async function httpSmoke(){
   assert.equal(live.find(p=>p.id==='nothing-phone-3a-lite')?.included?.cable,'included','Phone 3a Lite Japan cable mismatch');
   assert.equal(live.find(p=>p.id==='nothing-phone-3')?.charging?.wirelessMaxW,15,'Phone 3 15W wireless mismatch');
   assert.equal(live.find(p=>p.id==='nothing-phone-3')?.included?.cable,'included','Phone 3 Japan A024 cable mismatch');
+  // Wave 20: four current Japan-store Nothing models, explicit packaged/wireless/charging/variant facts.
+  assert.equal(live.find(p=>p.id==='nothing-phone-4a')?.charging?.wiredMaxW,50,'Phone 4a wired 50W absent from live data');
+  assert.equal(live.find(p=>p.id==='nothing-phone-4a')?.included?.cable,'included','Phone 4a JP cable inclusion absent');
+  assert.equal(live.find(p=>p.id==='nothing-phone-4a-pro')?.charging?.wirelessStatus,'not_supported','Phone 4a Pro JP wireless negative missing');
+  assert.equal(live.find(p=>p.id==='nothing-phone-4a-pro')?.included?.adapter,'not_included','Phone 4a Pro JP charger exclusion missing');
+  assert.equal(live.find(p=>p.id==='nothing-phone-2a')?.charging?.wiredMaxW,45,'Phone 2a device 45W not deployed');
+  assert.equal(live.find(p=>p.id==='nothing-phone-2a')?.charging?.wirelessStatus,'not_supported','Phone 2a wireless negative missing');
+  const cmf1=live.find(p=>p.id==='nothing-cmf-phone-1');
+  assert.ok(cmf1,'CMF Phone 1 missing from live JSON');
+  assert.equal(cmf1.charging?.wiredMaxW,33,'CMF Phone 1 33W missing');
+  assert.equal(cmf1.charging?.pps,'supported','CMF Phone 1 primary-sourced PPS missing');
+  assert.deepEqual(cmf1.physicalVariants?.map(v=>[v.depthMm,v.weightG]),[[8,197],[9,202]],'CMF Phone 1 exact variant pair mismatch');
   assert.ok(Array.isArray(JSON.parse(data['data/accessories.json']).accessories),'Accessories JSON missing');
   console.log('HTTP PASS: '+count+' verified public phones, assets and latest records');
 }
@@ -148,6 +160,10 @@ async function browserSmoke(){
         const closed=await evalJs('(()=>{document.querySelector("#sheetClose").click();return document.querySelector("#mobileSheet").hidden&&document.body.style.overflow==="";})()');
         assert.equal(closed,true,width+'px: bottom sheet fails to close');
       }
+      // Ensure the real public UI preserves both material-specific CMF Phone 1 thickness/weight pairs.
+      const cmfRender=await evalJs('(()=>{const input=document.querySelector("#searchInput");input.value="CMF Phone 1";input.dispatchEvent(new Event("input",{bubbles:true}));const row=document.querySelector(".phone-row[data-phone-id=nothing-cmf-phone-1]");if(!row)return {found:false};row.click();const mobile=matchMedia("(max-width: 900px)").matches;const detail=document.querySelector(mobile?"#sheetDetail":"#desktopDetail").textContent;return {found:true,mobile,standard:detail.includes("8 mm / 197 g")&&detail.includes("Black / Light Green"),vegan:detail.includes("9 mm / 202 g")&&detail.includes("Orange (vegan leather)")};})()');
+      assert.ok(cmfRender.found&&cmfRender.standard&&cmfRender.vegan,width+'px CMF Phone 1 variant pairs not rendered: '+JSON.stringify(cmfRender));
+      if(cmfRender.mobile) await evalJs('document.querySelector("#sheetClose").click()');
       console.log('Chrome PASS: '+width+'px, no overflow, search, JP/EN, '+(jp.mobile?'mobile sheet':'desktop detail'));
     }
   }finally{
