@@ -152,6 +152,10 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 11 — 2026-10-31
+
+Expanded the verified Japan-market manufacturer set by **FCNT**, and added **arrows Alpha2 M10** (SIM-free). Dataset **206 → 207 models / 9 → 10 manufacturers**, 36 foldables retained. Official FCNT [specification](https://www.fcnt.com/spec/m10-sim-free/) and [Japan SIM-free launch notice](https://www.fcnt.com/news/35527/) establish 155 × 72 × 8.6 mm, approximately 187 g, 6.4-inch display, 5,370 mAh, USB-C / USB Power Delivery 3.0, IPX6/IPX8/IPX9 + IP6X, and the 2026-08-27 release. The exhaustive [included items](https://www.fcnt.com/spec/m10-sim-free/) section lists only the quick-start guide, supporting not-included cable and adapter for the SIM-free variant. The [90W compatible adapter notice](https://www.fcnt.com/accessory/charger/a02/) and [product page](https://www.fcnt.com/product/arrows/alpha2/) support a **90W recommended adapter class**, not an inferred handset maximum input; therefore `wiredMaxW = null`. PPS and wireless remain unknown without primary device-specific support documentation.
+
 ## Post-v1 maintenance Wave 10 — 2026-10-31
 
 Added **moto g06** from Motorola Japan first-party product specifications and dated Japan launch notice.
