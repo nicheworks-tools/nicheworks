@@ -1,4 +1,5 @@
 name: Apply TrashNavi National Batch 02
+# Re-run after ensuring Toshima village and Toshima ward have distinct paths.
 on:
   push:
     branches:
