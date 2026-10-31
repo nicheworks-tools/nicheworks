@@ -6,9 +6,9 @@ if(items.length!==35)throw Error('ASUS official 35 product list not locked from 
 const picks=[items[0],items[2],items[20],items[23],items[34]];
 function clean(s){return String(s).replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]*>/g,' ').replace(/&nbsp;|&#160;/gi,' ').replace(/&amp;/gi,'&').replace(/\s+/g,' ').trim()}
 const result=[];
-for(const item of picks){
+await Promise.all(picks.map(async item=>{
  const routes=[item.url,item.url+'helpdesk_manual',item.url+'helpdesk_manual/?model2Name='+encodeURIComponent(item.name.match(/\(([A-Z]\d+[A-Z0-9]*)(?:[,)]|$)/)?.[1]||'')];
- for(const url of routes){
+ await Promise.all(routes.map(async url=>{
   try{
    const r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(24000),headers:{'user-agent':'Mozilla/5.0','accept':'text/html,application/xhtml+xml'}});
    const h=await r.text(), title=clean(h.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]||'');
@@ -21,6 +21,6 @@ for(const item of picks){
    result.push(rec);
    console.log(JSON.stringify({product:item.name,url:r.url,status:r.status,title,bytes:h.length,variant:rec.variantList.slice(0,8),ja:rec.japaneseManual,en:rec.englishManual,select:rec.isSelectionPage,headings:headings.slice(0,3)}));
   }catch(e){result.push({product:item.name,url,error:String(e)});console.error(String(e))}
- }
-}
+ }));
+}));
 await fs.writeFile('manualfinder-asus-probe/asus-vivobook-manual-samples.json',JSON.stringify(result,null,2)+'\n');
